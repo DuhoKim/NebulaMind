@@ -1,0 +1,22 @@
+[project]
+name = "nebulamind-backend"
+version = "0.1.0"
+description = "NebulaMind — astronomy wiki backend"
+requires-python = ">=3.11"
+dependencies = [
+    "fastapi>=0.111,<1",
+    "uvicorn[standard]>=0.29,<1",
+    "sqlalchemy>=2.0,<3",
+    "psycopg2-binary>=2.9,<3",
+    "alembic>=1.13,<2",
+    "celery[redis]>=5.3,<6",
+    "pydantic-settings>=2.2,<3",
+    "python-slugify>=8,<9",
+]
+
+[project.optional-dependencies]
+dev = ["ruff", "pytest", "httpx"]
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.backends._legacy:_Backend"

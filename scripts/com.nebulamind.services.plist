@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.nebulamind.services</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/duhokim/NebulaMind/NebulaMind/scripts/start.sh</string>
+    </array>
+
+    <!-- Start after login -->
+    <key>RunAtLoad</key>
+    <true/>
+
+    <!-- Restart if it exits -->
+    <key>KeepAlive</key>
+    <false/>
+
+    <!-- Wait 30s after boot before starting -->
+    <key>StartInterval</key>
+    <integer>30</integer>
+
+    <key>StandardOutPath</key>
+    <string>/Users/duhokim/NebulaMind/logs/launchd.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/duhokim/NebulaMind/logs/launchd.error.log</string>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/duhokim/NebulaMind</string>
+
+    <!-- Give services time to stabilize -->
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+</dict>
+</plist>
