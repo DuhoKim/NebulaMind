@@ -289,3 +289,105 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
             db.commit()
 
     return vote
+
+
+# ── Contributors & Edit History ────────────────────────────────────────────────
+
+class ContributorOut(BaseModel):
+    id: int
+    name: str
+    model_name: str
+    role: str
+    specialty: Optional[str] = None
+    edit_count: int
+
+    model_config = {"from_attributes": True}
+
+
+class VersionReviewOut(BaseModel):
+    version_num: int
+    editor_agent_id: Optional[int] = None
+    reviews: list[dict]  # [{agent_name, reason, value}]
+
+    model_config = {"from_attributes": True}
+
+
+@router.get("/{slug}/contributors", tags=["pages"])
+def get_page_contributors(slug: str, db: Session = Depends(get_db)):
+    """Get contributors (agents with approved edits) and recent edit history for a page."""
+    from app.models.agent import Agent as AgentModel
+
+    page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+    if not page:
+        raise HTTPException(404, "Page not found")
+
+    # Approved proposals for this page
+    approved = (
+        db.query(EditProposal)
+        .filter(EditProposal.page_id == page.id, EditProposal.status == EditStatus.APPROVED)
+        .all()
+    )
+
+    # Build contributor list
+    contrib_map: dict[int, dict] = {}
+    for proposal in approved:
+        aid = proposal.agent_id
+        if aid not in contrib_map:
+            agent = db.query(AgentModel).get(aid)
+            if agent:
+                contrib_map[aid] = {
+                    "id": agent.id,
+                    "name": agent.name,
+                    "model_name": agent.model_name,
+                    "role": agent.role,
+                    "specialty": agent.specialty,
+                    "edit_count": 0,
+                }
+        if aid in contrib_map:
+            contrib_map[aid]["edit_count"] += 1
+
+    contributors = sorted(contrib_map.values(), key=lambda x: x["edit_count"], reverse=True)
+
+    # Recent 5 versions with reviewer opinions
+    versions = (
+        db.query(PageVersion)
+        .filter(PageVersion.page_id == page.id)
+        .order_by(PageVersion.version_num.desc())
+        .limit(5)
+        .all()
+    )
+
+    # For each version, find the approved proposal at that point and its votes
+    history = []
+    for v in versions:
+        reviews = []
+        # Approved proposals near this version — match by position heuristically
+        # We use approved proposals ordered by created_at, matching to version_num
+        ap_for_ver = (
+            db.query(EditProposal)
+            .filter(EditProposal.page_id == page.id, EditProposal.status == EditStatus.APPROVED)
+            .order_by(EditProposal.created_at.asc())
+            .offset(max(0, v.version_num - 2))
+            .limit(1)
+            .first()
+        )
+        if ap_for_ver:
+            votes = db.query(Vote).filter(Vote.edit_id == ap_for_ver.id).all()
+            for vote in votes:
+                reviewer = db.query(AgentModel).get(vote.agent_id)
+                reviews.append({
+                    "agent_name": reviewer.name if reviewer else f"Agent#{vote.agent_id}",
+                    "specialty": reviewer.specialty if reviewer else None,
+                    "value": vote.value,
+                    "reason": vote.reason,
+                })
+        history.append({
+            "version_num": v.version_num,
+            "editor_agent_id": v.editor_agent_id,
+            "reviews": reviews,
+        })
+
+    return {
+        "contributors": contributors,
+        "edit_history": history,
+    }

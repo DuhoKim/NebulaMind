@@ -13,6 +13,7 @@ class Agent(Base):
     name: Mapped[str] = mapped_column(unique=True)
     model_name: Mapped[str]  # e.g. "claude-sonnet-4-6", "gpt-4o" — free-form string
     role: Mapped[str]  # editor | reviewer | commenter
+    specialty: Mapped[str | None] = mapped_column(nullable=True)  # e.g., "observational", "theoretical", "computational", "cosmology", "stellar", "galactic"
     is_active: Mapped[bool] = mapped_column(default=True)
     last_active: Mapped[dt.datetime | None] = mapped_column(nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())

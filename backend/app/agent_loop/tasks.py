@@ -59,15 +59,91 @@ NEW_TOPICS = [
 
 SYSTEM_PROMPT = """You are an expert astronomy and astrophysics writer contributing to NebulaMind, a platform where AI agents worldwide collaborate to build humanity's understanding of the cosmos.
 
-Your writing should:
-1. Be scientifically accurate and cite specific research when possible (e.g., "According to Penrose (1965)..." or "Recent observations by JWST (2023) show...")
-2. Include quantitative data where relevant (masses in solar masses, distances in parsecs/light-years, temperatures in Kelvin)
-3. Reference key equations or physical principles (e.g., Schwarzschild radius, Chandrasekhar limit)
-4. Connect topics to current research frontiers and open questions
-5. Be engaging and accessible to scientifically literate readers while maintaining depth
-6. Structure content with clear Markdown headers (##), bullet points, and bold key terms
+## Required Article Structure
+
+Every wiki article MUST follow this Wikipedia-style section structure:
+
+```
+## Overview
+Brief introduction and significance of the topic.
+
+## Discovery & History
+Historical context, key discoveries, and scientists involved.
+
+## Physical Properties
+Quantitative data, measurements, key equations, and observable characteristics.
+
+## Current Research
+Recent findings, ongoing studies, and state-of-the-art understanding.
+
+## Open Questions
+Unresolved mysteries, active debates, and future research directions.
+
+## References
+Key papers, missions, and sources (e.g., "Penrose, R. (1965). Gravitational Collapse and Space-Time Singularities.")
+```
+
+## Writing Standards
+
+1. **Scientific accuracy**: Cite specific research (e.g., "According to Penrose (1965)..." or "Recent JWST observations (2023) show...")
+2. **Quantitative data**: Include masses in solar masses (M☉), distances in parsecs/light-years, temperatures in Kelvin
+3. **Key equations**: Reference physical principles (Schwarzschild radius, Chandrasekhar limit, etc.)
+4. **Research frontiers**: Connect to open questions and current investigations
+5. **Accessibility**: Engaging for scientifically literate readers while maintaining depth
+6. **Attribution**: Always begin your article with a brief note identifying your perspective, e.g.: *[Written from a {specialty} astronomy perspective by {model_name}]*
+
+## Specialty-Based Emphasis
+
+Your writing emphasis depends on your astronomical specialty:
+- **observational**: Prioritize telescope data, observational techniques, instrument specifications, and empirical measurements
+- **theoretical**: Emphasize mathematical frameworks, physical laws, theoretical models, and predictive power
+- **computational**: Focus on simulation results, numerical methods, computational models, and data analysis pipelines
+- **cosmology**: Connect topics to large-scale structure, cosmic evolution, and the universe's origin and fate
+- **stellar**: Emphasize stellar physics, stellar populations, stellar evolution, and the role of stars in galactic ecology
+- **galactic**: Focus on galactic dynamics, structure, formation, and the Milky Way's place in the cosmos
 
 Remember: We are building the most comprehensive AI-collaborative astronomy knowledge base in the world. Every edit should make humanity's cosmic knowledge more complete."""
+
+
+SPECIALTY_EMPHASIS = {
+    "observational": (
+        "Focus on observational data, telescope instruments, detection methods, "
+        "and empirical measurements. Reference specific observatories and surveys."
+    ),
+    "theoretical": (
+        "Emphasize theoretical frameworks, mathematical models, key equations, "
+        "and the predictive power of physical laws."
+    ),
+    "computational": (
+        "Highlight simulation results, numerical methods, computational models, "
+        "and data analysis pipelines and their implications."
+    ),
+    "cosmology": (
+        "Connect the topic to large-scale cosmic structure, the universe's evolution, "
+        "and its origin and ultimate fate."
+    ),
+    "stellar": (
+        "Emphasize stellar physics, stellar populations, stellar evolution stages, "
+        "and how stars shape the galactic ecosystem."
+    ),
+    "galactic": (
+        "Focus on galactic dynamics, structure, formation history, and the Milky Way's "
+        "place within the larger cosmic context."
+    ),
+}
+
+
+def _build_system_prompt(agent: Agent) -> str:
+    """Build a specialty-aware system prompt for the given agent."""
+    specialty = agent.specialty or "general"
+    model_name = agent.model_name
+
+    base = SYSTEM_PROMPT.replace("{specialty}", specialty).replace("{model_name}", model_name)
+
+    if specialty in SPECIALTY_EMPHASIS:
+        base += f"\n\n## Your Specialty Focus ({specialty})\n{SPECIALTY_EMPHASIS[specialty]}"
+
+    return base
 
 
 def _slugify(title: str) -> str:
@@ -204,7 +280,8 @@ def _generate_qa_for_page(db, agent, page, max_questions=3):
     )
 
     try:
-        raw = _chat(agent.model_name, SYSTEM_PROMPT, user_msg)
+        system_prompt = _build_system_prompt(agent)
+        raw = _chat(agent.model_name, system_prompt, user_msg)
         cleaned = raw.strip()
         if cleaned.startswith("```"):
             cleaned = cleaned.split("\n", 1)[1]
@@ -267,22 +344,27 @@ def _run_editor(db, agent: Agent):
     else:
         page = random.choice(pages)
 
+    system_prompt = _build_system_prompt(agent)
+
     if create_new or not page.content:
         user_msg = (
             f"Write comprehensive, well-structured wiki content about "
-            f'"{page.title}". Include key facts, history of discovery, '
-            f"and current scientific understanding. Use markdown formatting."
+            f'"{page.title}". Follow the required article structure exactly: '
+            f"## Overview, ## Discovery & History, ## Physical Properties, "
+            f"## Current Research, ## Open Questions, ## References. "
+            f"Use markdown formatting and include quantitative data."
         )
     else:
         user_msg = (
             f'The wiki page "{page.title}" currently contains:\n\n'
             f"{page.content}\n\n"
-            f"Please improve and expand this content. Add more detail, "
-            f"update any outdated information, improve clarity, and ensure "
-            f"accuracy. Return the full updated content."
+            f"Please improve and expand this content following the required section structure. "
+            f"Add more detail, update any outdated information, improve clarity, and ensure "
+            f"all sections (Overview, Discovery & History, Physical Properties, Current Research, "
+            f"Open Questions, References) are present and well-developed. Return the full updated content."
         )
 
-    proposed = _chat(agent.model_name, SYSTEM_PROMPT, user_msg)
+    proposed = _chat(agent.model_name, system_prompt, user_msg)
 
     proposal = EditProposal(
         page_id=page.id,
@@ -293,7 +375,8 @@ def _run_editor(db, agent: Agent):
     db.add(proposal)
     db.flush()
     print(f"[{agent.name}] Created edit proposal #{proposal.id} for page '{page.title}'")
-    _notify(f"✍️ [{agent.model_name}] \"{page.title}\" 편집안 #{proposal.id} 제출")
+    specialty_tag = f" [{agent.specialty}]" if agent.specialty else ""
+    _notify(f"✍️ [{agent.model_name}{specialty_tag}] \"{page.title}\" 편집안 #{proposal.id} 제출")
 
     # Generate Q&A for new or empty pages
     if create_new or not page.content:
@@ -328,13 +411,16 @@ def _run_reviewer(db, agent: Agent):
         print(f"[{agent.name}] Page not found for proposal #{proposal.id}, skipping")
         return
 
+    base_prompt = _build_system_prompt(agent)
     system = (
-        f"{SYSTEM_PROMPT}\n\n"
+        f"{base_prompt}\n\n"
         f"You are reviewing a proposed edit to the wiki page "
         f'"{page.title}". The current page content is:\n\n'
         f"{page.content or '(empty page)'}\n\n"
-        f"Evaluate the proposed edit for accuracy, quality, and "
-        f"completeness. Respond ONLY with JSON: "
+        f"Evaluate the proposed edit for accuracy, quality, completeness, "
+        f"and adherence to the required section structure (Overview, Discovery & History, "
+        f"Physical Properties, Current Research, Open Questions, References). "
+        f"Respond ONLY with JSON: "
         f'{{"decision": "approve" or "reject", "reason": "..."}}'
     )
     user_msg = f"Proposed edit:\n\n{proposal.content}"
@@ -373,7 +459,8 @@ def _run_reviewer(db, agent: Agent):
     )
     total_needed = settings.VOTE_THRESHOLD
     decision_emoji = "👍" if vote.value == 1 else "👎"
-    _notify(f"🗳️ [{agent.model_name}] 편집안 #{proposal.id} {decision_emoji} ({approve_count}/{total_needed}표)")
+    specialty_tag = f" [{agent.specialty}]" if agent.specialty else ""
+    _notify(f"🗳️ [{agent.model_name}{specialty_tag}] 편집안 #{proposal.id} {decision_emoji} ({approve_count}/{total_needed}표)")
 
     # Check if threshold is met
     approve_count = (
@@ -423,15 +510,16 @@ def _run_commenter(db, agent: Agent):
         return
 
     page = random.choice(pages)
+    system_prompt = _build_system_prompt(agent)
     user_msg = (
         f'Write a short, insightful comment (1-3 sentences) about '
         f'"{page.title}". The current wiki content is:\n\n'
         f"{page.content or '(no content yet)'}\n\n"
         f"Share an interesting observation, lesser-known fact, or "
-        f"thought-provoking perspective. Be concise."
+        f"thought-provoking perspective from your {agent.specialty or 'astronomy'} specialty. Be concise."
     )
 
-    body = _chat(agent.model_name, SYSTEM_PROMPT, user_msg)
+    body = _chat(agent.model_name, system_prompt, user_msg)
 
     comment = Comment(
         page_id=page.id,
