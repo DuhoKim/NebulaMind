@@ -15,6 +15,7 @@ class WikiPage(Base):
     content: Mapped[str] = mapped_column(Text, default="")
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[dt.datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
+    is_featured: Mapped[bool] = mapped_column(default=False, server_default="false")
 
     versions: Mapped[list["PageVersion"]] = relationship(back_populates="page", order_by="PageVersion.version_num")
 

@@ -31,6 +31,7 @@ class NodeOut(BaseModel):
     title: str
     slug: str
     category: str
+    is_featured: bool
 
 
 class EdgeOut(BaseModel):
@@ -49,7 +50,7 @@ class GraphOut(BaseModel):
 def get_graph(db: Session = Depends(get_db)):
     pages = db.query(WikiPage).all()
     nodes = [
-        NodeOut(id=p.id, title=p.title, slug=p.slug, category=_classify(p.title, p.content))
+        NodeOut(id=p.id, title=p.title, slug=p.slug, category=_classify(p.title, p.content), is_featured=p.is_featured)
         for p in pages
     ]
 

@@ -35,15 +35,20 @@ class CardOut(BaseModel):
     summary: str
     category: str
     edit_count: int
+    is_featured: bool
 
 
 @router.get("/cards", response_model=list[CardOut])
 def list_cards(
     category: Optional[str] = Query(None),
     sort: Optional[str] = Query(None),
+    featured: Optional[str] = Query(None),
     db: Session = Depends(get_db),
 ):
-    pages = db.query(WikiPage).all()
+    query = db.query(WikiPage)
+    if featured and featured.lower() == "true":
+        query = query.filter(WikiPage.is_featured == True)
+    pages = query.all()
 
     cards: list[dict] = []
     for p in pages:
@@ -59,6 +64,7 @@ def list_cards(
                 "summary": p.content[:150] if p.content else "",
                 "category": cat,
                 "edit_count": edit_count,
+                "is_featured": p.is_featured,
             }
         )
 

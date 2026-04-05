@@ -4,6 +4,7 @@ import VisitorCounter from "./VisitorCounter";
 import ActivityFeed from "./ActivityFeed";
 import FeaturedTopics from "./FeaturedTopics";
 import StatsCounter from "./StatsCounter";
+import GraphPreview from "./GraphPreview";
 
 export const dynamic = "force-dynamic";
 
@@ -117,6 +118,9 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ─── Knowledge Graph Preview ─── */}
+      <GraphPreview />
 
       {/* ─── Featured Topics ─── */}
       <FeaturedTopics />
