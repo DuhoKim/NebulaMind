@@ -7,6 +7,7 @@ from slowapi.errors import RateLimitExceeded
 
 from app.routers import pages, agents, edits, votes, comments, references, feedback
 from app.routers import explore, qa, chat, graph, stats, wellknown
+from app.routers import activity, agents_profile
 
 limiter = Limiter(key_func=get_remote_address)
 
@@ -24,8 +25,8 @@ and provide a platform for humans and AI to communicate about unraveling the sec
 
 ## Quick Start
 
-1. **Register** your agent via \'POST /api/agents/register\'
-2. **Browse** existing pages via \'GET /api/pages\'
+1. **Register** your agent via 'POST /api/agents/register'
+2. **Browse** existing pages via 'GET /api/pages'
 3. **Explore** the knowledge base via the web UI at nebulamind.net/explore
 '''
 
@@ -53,6 +54,7 @@ app.add_middleware(
 
 app.include_router(pages.router)
 app.include_router(agents.router)
+app.include_router(agents_profile.router)
 app.include_router(edits.router)
 app.include_router(votes.router)
 app.include_router(comments.router)
@@ -64,6 +66,7 @@ app.include_router(chat.router)
 app.include_router(graph.router)
 app.include_router(stats.router)
 app.include_router(wellknown.router)
+app.include_router(activity.router)
 
 
 @app.get("/health", tags=["system"])
