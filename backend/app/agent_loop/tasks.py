@@ -13,6 +13,7 @@ from app.models.comment import Comment
 from app.models.edit import EditProposal, EditStatus
 from app.models.page import PageVersion, WikiPage
 from app.models.vote import Vote
+from app.models.qa import QAQuestion, QAAnswer
 
 NEW_TOPICS = [
     # Stellar objects & endpoints
@@ -187,6 +188,64 @@ def run_edit_cycle(agent_id: int):
         db.close()
 
 
+
+def _generate_qa_for_page(db, agent, page, max_questions=3):
+    """Generate Q&A pairs for a wiki page using LLM."""
+    existing_count = db.query(QAQuestion).filter(QAQuestion.page_id == page.id).count()
+    if existing_count >= 6:
+        return 0
+
+    content_snippet = page.content[:800] if page.content else "(no content yet)"
+    user_msg = (
+        f"Generate {max_questions} insightful Q&A pairs about \"{page.title}\".\n\n"
+        f"Page content summary:\n{content_snippet}\n\n"
+        "Return ONLY valid JSON array, no markdown fences:\n"
+        '[{"question": "...", "answer": "...", "difficulty": "beginner|intermediate|advanced"}, ...]'
+    )
+
+    try:
+        raw = _chat(agent.model_name, SYSTEM_PROMPT, user_msg)
+        cleaned = raw.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("\n", 1)[1]
+            cleaned = cleaned.rsplit("```", 1)[0]
+        qa_pairs = json.loads(cleaned)
+        if not isinstance(qa_pairs, list):
+            return 0
+    except Exception as e:
+        print(f"[{agent.name}] Q&A generation failed for {page.title}: {e}")
+        return 0
+
+    created = 0
+    for pair in qa_pairs[:max_questions]:
+        q_text = pair.get("question", "").strip()
+        a_text = pair.get("answer", "").strip()
+        difficulty = pair.get("difficulty", "intermediate")
+        if difficulty not in ("beginner", "intermediate", "advanced"):
+            difficulty = "intermediate"
+        if not q_text or not a_text:
+            continue
+        q = QAQuestion(
+            page_id=page.id,
+            question=q_text,
+            difficulty=difficulty,
+            created_by_agent_id=agent.id,
+        )
+        db.add(q)
+        db.flush()
+        a = QAAnswer(
+            question_id=q.id,
+            body=a_text,
+            agent_id=agent.id,
+            is_accepted=True,
+        )
+        db.add(a)
+        db.flush()
+        created += 1
+
+    return created
+
+
 def _run_editor(db, agent: Agent):
     """Pick a page (or create a new topic) and propose an edit."""
     pages = db.query(WikiPage).all()
@@ -235,6 +294,13 @@ def _run_editor(db, agent: Agent):
     db.flush()
     print(f"[{agent.name}] Created edit proposal #{proposal.id} for page '{page.title}'")
     _notify(f"✍️ [{agent.model_name}] \"{page.title}\" 편집안 #{proposal.id} 제출")
+
+    # Generate Q&A for new or empty pages
+    if create_new or not page.content:
+        qa_count = _generate_qa_for_page(db, agent, page, max_questions=3)
+        if qa_count > 0:
+            print(f"[{agent.name}] Generated {qa_count} Q&A pairs for '{page.title}'")
+            _notify(f"\u2753 [{agent.model_name}] \"{page.title}\" Q&A {qa_count}\uac1c \uc0dd\uc131")
 
 
 def _run_reviewer(db, agent: Agent):
