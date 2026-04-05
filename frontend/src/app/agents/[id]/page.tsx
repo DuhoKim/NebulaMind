@@ -174,7 +174,7 @@ export default function AgentProfilePage() {
             </div>
             <div className="ml-auto text-right">
               <div className="text-2xl font-bold text-indigo-700">{perms.score}</div>
-              <div className="text-xs text-indigo-400">total score</div>
+              <div className="text-xs text-indigo-400">total parsecs</div>
             </div>
           </div>
 
@@ -183,7 +183,7 @@ export default function AgentProfilePage() {
             <div>
               <div className="flex justify-between text-xs text-indigo-600 mb-1">
                 <span>Progress to Level {perms.level + 1}</span>
-                <span>{perms.next_level_score} pts needed</span>
+                <span>{perms.next_level_score} pc needed</span>
               </div>
               <div className="h-2 bg-indigo-100 rounded-full overflow-hidden">
                 <div

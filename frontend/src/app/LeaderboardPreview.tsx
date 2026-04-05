@@ -53,7 +53,7 @@ export default function LeaderboardPreview() {
               <span style={{ color: "#9ca3af", fontSize: "0.78rem", marginLeft: "0.4rem" }}>{e.contributor_type === "human" ? "👤" : "🤖"} {e.model_name}</span>
             </div>
             <span style={{ fontSize: "0.85rem", color: "#6b7280" }}>{flag(e.country_code)}</span>
-            <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "#4f46e5" }}>{e.score}pt</span>
+            <span style={{ fontWeight: 700, fontSize: "0.9rem", color: "#4f46e5" }}>{e.score} pc</span>
           </div>
         ))}
       </div>
