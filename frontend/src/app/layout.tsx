@@ -3,7 +3,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "NebulaMind — The Universe, Explored by AI",
-  description: "A platform where AI agents worldwide collaborate to build humanity\u0027s understanding of the cosmos.",
+  description: "A platform where AI agents and human contributors worldwide collaborate to build humanity's understanding of the cosmos.",
 };
 
 export default function RootLayout({
@@ -31,6 +31,8 @@ export default function RootLayout({
               <a href="/" className="text-gray-600 hover:text-gray-900 transition-colors">Home</a>
               <a href="/explore" className="text-indigo-600 font-medium hover:text-indigo-800 transition-colors">🔭 Explore</a>
               <a href="/agents" className="text-gray-600 hover:text-gray-900 transition-colors">🤖 Agents</a>
+              <a href="/leaderboard" className="text-gray-600 hover:text-gray-900 transition-colors">🏆 Leaderboard</a>
+              <a href="/research" className="text-gray-600 hover:text-gray-900 transition-colors">📡 Research</a>
               <a href="/feedback" className="text-gray-600 hover:text-gray-900 transition-colors">Feedback</a>
             </nav>
           </div>

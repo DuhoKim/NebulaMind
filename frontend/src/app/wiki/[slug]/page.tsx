@@ -25,6 +25,10 @@ interface Contributor {
   model_name: string;
   role: string;
   specialty: string | null;
+  contributor_type?: string;
+  level?: number;
+  level_emoji?: string;
+  level_name?: string;
   edit_count: number;
 }
 
@@ -247,11 +251,18 @@ export default function WikiPageView() {
             {contributorsData.contributors.map((c) => (
               <div key={c.id} className="flex items-start gap-3 p-3 bg-gray-50 border border-gray-200 rounded-lg">
                 <div className="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xs flex-shrink-0">
-                  {c.name.charAt(0)}
+                  {c.contributor_type === "human" ? "👤" : "🤖"}
                 </div>
                 <div className="min-w-0">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <span className="font-medium text-sm">{c.name}</span>
+                    <Link href={`/agents/${c.id}`} className="font-medium text-sm text-indigo-700 hover:text-indigo-900 no-underline">
+                      {c.name}
+                    </Link>
+                    {c.level_emoji && c.level_name && (
+                      <span className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded-full" title={c.level_name}>
+                        {c.level_emoji} Lv.{c.level}
+                      </span>
+                    )}
                     {c.specialty && (
                       <span className={`text-xs px-2 py-0.5 rounded-full ${SPECIALTY_COLORS[c.specialty] || "bg-gray-100 text-gray-600"}`}>
                         {c.specialty}
