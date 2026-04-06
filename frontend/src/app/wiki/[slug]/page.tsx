@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import Link from "next/link";
+import ClaimBlock from "./ClaimBlock";
 
 interface WikiPage {
   id: number;
@@ -97,6 +98,9 @@ export default function WikiPageView() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"A" | "B">("B");
   const [voted, setVoted] = useState(false);
+  const [showV2, setShowV2] = useState(false);
+  const [showColors, setShowColors] = useState(true);
+  const [claims, setClaims] = useState<any>(null);
 
   useEffect(() => {
     if (!slug) return;
@@ -111,6 +115,15 @@ export default function WikiPageView() {
       setLoading(false);
     });
   }, [slug]);
+
+  useEffect(() => {
+    if (showV2 && !claims) {
+      fetch(`/api/pages/${slug}/claims`)
+        .then(r => r.json())
+        .then(d => setClaims(d))
+        .catch(() => {});
+    }
+  }, [showV2, slug, claims]);
 
   const handleVote = async (version: "A" | "B") => {
     try {
@@ -191,6 +204,46 @@ export default function WikiPageView() {
         </div>
       )}
 
+      {/* V2 Evidence View Toggle */}
+      <div className="flex gap-2 mb-4 items-center flex-wrap">
+        <button
+          onClick={() => setShowV2(!showV2)}
+          className={`text-xs px-3 py-1 rounded-full border transition-colors ${showV2 ? "bg-indigo-600 text-white border-indigo-600" : "border-gray-300 text-gray-600 hover:border-indigo-400"}`}
+        >
+          {showV2 ? "📎 Evidence View" : "📎 Enable Evidence View"}
+        </button>
+        {showV2 && (
+          <button
+            onClick={() => setShowColors(!showColors)}
+            className="text-xs px-3 py-1 rounded-full border border-gray-300 text-gray-600 hover:border-indigo-400"
+          >
+            {showColors ? "🎨 Colors On" : "⬜ Clean View"}
+          </button>
+        )}
+        {showV2 && (
+          <div className="flex gap-2 text-xs text-gray-500">
+            <span className="bg-green-50 px-1 rounded">🟢 Consensus</span>
+            <span className="bg-orange-50 px-1 rounded">🟠 Debated</span>
+            <span className="bg-red-50 px-1 rounded">🔴 Challenged</span>
+          </div>
+        )}
+      </div>
+
+      {/* V2 Claim Rendering */}
+      {showV2 && claims ? (
+        <div className="prose max-w-none">
+          {claims.sections?.map((section: any) => (
+            <div key={section.name} className="mb-6">
+              <h2 className="text-xl font-bold text-gray-800 mb-3 mt-6 border-b border-gray-200 pb-2">{section.name}</h2>
+              <p className="leading-relaxed text-gray-700">
+                {section.claims.map((claim: any) => (
+                  <ClaimBlock key={claim.id} claim={claim} showColors={showColors} />
+                ))}
+              </p>
+            </div>
+          ))}
+        </div>
+      ) : (
       <div className="prose prose-gray max-w-none leading-relaxed">
         <ReactMarkdown
           components={{
@@ -224,6 +277,7 @@ export default function WikiPageView() {
           {page.content}
         </ReactMarkdown>
       </div>
+      )}
 
       {edits.length > 0 && (
         <section className="mt-12 border-t pt-8">

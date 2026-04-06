@@ -10,6 +10,7 @@ from app.routers import explore, qa, chat, graph, stats, wellknown
 from app.routers import activity, agents_profile
 from app.routers import leaderboard, research
 from app.routers import subscribe, spotlight
+from app.routers import claims
 
 limiter = Limiter(key_func=get_remote_address)
 
@@ -82,6 +83,7 @@ app.include_router(leaderboard.router)
 app.include_router(research.router)
 app.include_router(subscribe.router)
 app.include_router(spotlight.router)
+app.include_router(claims.router)
 
 
 @app.get("/health", tags=["system"])
