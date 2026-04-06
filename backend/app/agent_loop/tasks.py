@@ -2,6 +2,7 @@ import datetime as dt
 import json
 import os
 import random
+import time
 
 import httpx
 
@@ -150,21 +151,60 @@ def _slugify(title: str) -> str:
     return title.lower().replace(" ", "-")
 
 
-def _chat(model: str, system: str, user_msg: str) -> str:
-    """Call an OpenAI-compatible chat completions endpoint."""
-    api_key = settings.LLM_API_KEY
-    if not api_key:
-        raise ValueError("LLM_API_KEY is not set")
+_CHAT_MAX_WAIT = 30  # seconds — cap retry-after so threads don't block for minutes
 
-    model_override = os.environ.get("NM_LLM_MODEL")
-    if model_override:
-        model = model_override
+# ---------------------------------------------------------------------------
+# LLM provider fallback chain
+# Each entry: (base_url, api_key_env, model_name_or_env, label)
+# Tried in order; if a provider returns 429 with retry-after > _CHAT_MAX_WAIT
+# (daily limit), we skip to the next provider instead of blocking.
+# ---------------------------------------------------------------------------
+def _build_provider_chain():
+    """Build the ordered list of LLM providers from env vars."""
+    chain = []
 
+    # 1. Primary: Groq (from settings / env)
+    groq_key = settings.LLM_API_KEY
+    groq_url = settings.LLM_BASE_URL
+    groq_model = os.environ.get("NM_LLM_MODEL", "llama-3.3-70b-versatile")
+    if groq_key:
+        chain.append({
+            "base_url": groq_url,
+            "api_key": groq_key,
+            "model": groq_model,
+            "label": "groq",
+        })
+
+    # 2. Fallback: Cerebras
+    cerebras_key = settings.CEREBRAS_API_KEY
+    if cerebras_key:
+        chain.append({
+            "base_url": "https://api.cerebras.ai/v1",
+            "api_key": cerebras_key,
+            "model": settings.CEREBRAS_MODEL or "llama3.1-8b",
+            "label": "cerebras",
+        })
+
+    # 3. Fallback: SambaNova
+    samba_key = settings.SAMBANOVA_API_KEY
+    if samba_key:
+        chain.append({
+            "base_url": "https://api.sambanova.ai/v1",
+            "api_key": samba_key,
+            "model": settings.SAMBANOVA_MODEL or "Meta-Llama-3.3-70B-Instruct",
+            "label": "sambanova",
+        })
+
+    return chain
+
+
+def _call_provider(provider: dict, system: str, user_msg: str) -> str:
+    """Single call to one provider (no retry — caller handles that)."""
     resp = httpx.post(
-        f"{settings.LLM_BASE_URL}/chat/completions",
-        headers={"Authorization": f"Bearer {api_key}"},
+        f"{provider['base_url']}/chat/completions",
+        headers={"Authorization": f"Bearer {provider['api_key']}"},
         json={
-            "model": model,
+            "model": provider["model"],
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": user_msg},
@@ -172,8 +212,76 @@ def _chat(model: str, system: str, user_msg: str) -> str:
         },
         timeout=120,
     )
-    resp.raise_for_status()
-    return resp.json()["choices"][0]["message"]["content"]
+    return resp  # caller inspects status
+
+
+def _chat(model: str, system: str, user_msg: str, max_retries: int = 3) -> str:
+    """Call LLM with provider fallback chain + per-provider retry.
+
+    Strategy:
+    1. Try each provider in order (Groq → Cerebras → SambaNova).
+    2. Per provider: retry up to max_retries on short 429s and timeouts.
+    3. If a provider hits daily limit (retry-after > _CHAT_MAX_WAIT),
+       immediately fall through to the next provider.
+    4. If all providers exhausted, raise.
+    """
+    chain = _build_provider_chain()
+    if not chain:
+        raise ValueError("No LLM providers configured (check API keys)")
+
+    all_errors = []
+
+    for provider in chain:
+        last_exc = None
+        for attempt in range(max_retries):
+            try:
+                resp = _call_provider(provider, system, user_msg)
+
+                if resp.status_code == 429:
+                    retry_after = int(resp.headers.get("retry-after", 0))
+                    if retry_after > _CHAT_MAX_WAIT:
+                        print(f"[_chat][{provider['label']}] daily limit hit (retry-after={retry_after}s), trying next provider...")
+                        last_exc = Exception(f"{provider['label']} daily limit (retry-after={retry_after}s)")
+                        break  # break inner retry loop → next provider
+                    wait = retry_after if retry_after > 0 else min(2 ** attempt + random.uniform(0, 1), _CHAT_MAX_WAIT)
+                    print(f"[_chat][{provider['label']}] 429 (attempt {attempt+1}/{max_retries}), waiting {wait:.1f}s...")
+                    time.sleep(wait)
+                    last_exc = Exception(f"{provider['label']} 429")
+                    continue
+
+                resp.raise_for_status()
+                if provider["label"] != "groq":
+                    print(f"[_chat] served by fallback provider: {provider['label']}")
+                return resp.json()["choices"][0]["message"]["content"]
+
+            except httpx.HTTPStatusError as e:
+                if e.response.status_code == 429:
+                    retry_after = int(e.response.headers.get("retry-after", 0))
+                    if retry_after > _CHAT_MAX_WAIT:
+                        print(f"[_chat][{provider['label']}] daily limit, trying next provider...")
+                        last_exc = e
+                        break
+                    wait = retry_after if retry_after > 0 else min(2 ** attempt + random.uniform(0, 1), _CHAT_MAX_WAIT)
+                    print(f"[_chat][{provider['label']}] 429 (attempt {attempt+1}/{max_retries}), waiting {wait:.1f}s...")
+                    time.sleep(wait)
+                    last_exc = e
+                    continue
+                # Non-429 HTTP error — skip this provider
+                print(f"[_chat][{provider['label']}] HTTP {e.response.status_code}, trying next provider...")
+                last_exc = e
+                break
+
+            except httpx.TimeoutException as e:
+                wait = min(2 ** attempt + random.uniform(0, 1), 30)
+                print(f"[_chat][{provider['label']}] timeout (attempt {attempt+1}/{max_retries}), waiting {wait:.1f}s...")
+                time.sleep(wait)
+                last_exc = e
+                continue
+
+        if last_exc:
+            all_errors.append(f"{provider['label']}: {last_exc}")
+
+    raise RuntimeError(f"[_chat] all providers failed: {'; '.join(all_errors)}")
 
 
 NEBULAMIND_WEBHOOK = (
@@ -184,20 +292,8 @@ NEBULAMIND_BASE_URL = "https://nebulamind.net"
 
 
 def _notify(message: str) -> None:
-    """Send a system event to HwaO via OpenClaw gateway."""
-    try:
-        gateway_url = settings.OPENCLAW_GATEWAY_URL
-        gateway_token = settings.OPENCLAW_GATEWAY_TOKEN
-        if not gateway_url or not gateway_token:
-            return
-        httpx.post(
-            f"{gateway_url}/api/sessions/agent:main:main/event",
-            headers={"Authorization": f"Bearer {gateway_token}"},
-            json={"text": message},
-            timeout=10,
-        )
-    except Exception as e:
-        print(f"[notify] failed: {e}")
+    """Log agent activity. Discord notifications go via _notify_nebulamind_channel for approvals only."""
+    print(f"[activity] {message}")
 
 
 def _notify_nebulamind_channel(

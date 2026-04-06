@@ -1,6 +1,6 @@
 import datetime as dt
 
-from sqlalchemy import ForeignKey, Text, func
+from sqlalchemy import ForeignKey, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -16,6 +16,10 @@ class WikiPage(Base):
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     updated_at: Mapped[dt.datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
     is_featured: Mapped[bool] = mapped_column(default=False, server_default="false")
+    category: Mapped[str | None] = mapped_column(String(30), nullable=True)
+    difficulty: Mapped[str | None] = mapped_column(String(20), nullable=True)
+    summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+    thumbnail_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)
 
     versions: Mapped[list["PageVersion"]] = relationship(back_populates="page", order_by="PageVersion.version_num")
 

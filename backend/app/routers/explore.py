@@ -18,6 +18,15 @@ CATEGORY_KEYWORDS: dict[str, list[str]] = {
     "solarsystem": ["planet", "asteroid", "kuiper", "comet", "moon", "orbit", "solar system", "mars", "jupiter"],
 }
 
+CATEGORY_EMOJI: dict[str, str] = {
+    "blackhole": "🕳️",
+    "stellar": "⭐",
+    "galaxy": "🌌",
+    "cosmology": "🔭",
+    "solarsystem": "🪐",
+    "general": "📖",
+}
+
 
 def _classify(title: str, content: str) -> str:
     text = (title + " " + content).lower()
@@ -34,6 +43,8 @@ class CardOut(BaseModel):
     slug: str
     summary: str
     category: str
+    difficulty: Optional[str]
+    thumbnail_emoji: Optional[str]
     edit_count: int
     is_featured: bool
 
@@ -41,6 +52,7 @@ class CardOut(BaseModel):
 @router.get("/cards", response_model=list[CardOut])
 def list_cards(
     category: Optional[str] = Query(None),
+    difficulty: Optional[str] = Query(None),
     sort: Optional[str] = Query(None),
     featured: Optional[str] = Query(None),
     db: Session = Depends(get_db),
@@ -52,17 +64,27 @@ def list_cards(
 
     cards: list[dict] = []
     for p in pages:
-        cat = _classify(p.title, p.content)
+        # DB에 category가 있으면 사용, 없으면 키워드 매칭 fallback
+        cat = p.category if p.category else _classify(p.title, p.content)
         if category and cat != category:
             continue
+        # difficulty 필터
+        if difficulty and p.difficulty != difficulty:
+            continue
         edit_count = db.query(func.count(EditProposal.id)).filter(EditProposal.page_id == p.id).scalar() or 0
+        # summary: DB에 있으면 사용, 없으면 content[:150]
+        summary = p.summary if p.summary else (p.content[:150] if p.content else "")
+        # thumbnail_emoji: DB에 있으면 사용, 없으면 카테고리 기본값
+        emoji = p.thumbnail_emoji if p.thumbnail_emoji else CATEGORY_EMOJI.get(cat, "📖")
         cards.append(
             {
                 "id": p.id,
                 "title": p.title,
                 "slug": p.slug,
-                "summary": p.content[:150] if p.content else "",
+                "summary": summary,
                 "category": cat,
+                "difficulty": p.difficulty,
+                "thumbnail_emoji": emoji,
                 "edit_count": edit_count,
                 "is_featured": p.is_featured,
             }
