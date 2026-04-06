@@ -8,6 +8,9 @@ from app.models.feedback import Feedback
 from app.models.visitor import Visit
 from app.models.qa import QAQuestion, QAAnswer
 from app.models.graph import PageRelation
+from app.models.arxiv import ArxivPaper
+from app.models.subscriber import Subscriber
+from app.models.spotlight import Spotlight
 
 __all__ = [
     "WikiPage",
@@ -22,4 +25,7 @@ __all__ = [
     "QAQuestion",
     "QAAnswer",
     "PageRelation",
+    "ArxivPaper",
+    "Subscriber",
+    "Spotlight",
 ]

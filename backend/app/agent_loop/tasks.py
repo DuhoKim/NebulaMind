@@ -629,3 +629,175 @@ def _run_commenter(db, agent: Agent):
     preview = comment.body[:80]
     suffix = "..." if len(comment.body) > 80 else ""
     _notify(f"💬 [{agent.model_name}] \"{page.title}\"에 코멘트: {preview}{suffix}")
+
+# ---------------------------------------------------------------------------
+# arXiv Research Frontier
+# ---------------------------------------------------------------------------
+import feedparser
+
+ARXIV_CATEGORIES = ["astro-ph.GA", "astro-ph.CO", "astro-ph.HE", "astro-ph.SR"]
+
+ARXIV_WIKI_KEYWORDS = {
+    "black hole": ["black-holes", "black-hole-mergers"],
+    "dark matter": ["dark-matter"],
+    "dark energy": ["dark-energy"],
+    "hubble": ["hubble-constant"],
+    "gravitational wave": ["gravitational-waves"],
+    "galaxy": ["galaxy-formation", "galaxy-clusters"],
+    "exoplanet": ["exoplanets"],
+    "neutron star": ["neutron-stars"],
+    "supernova": ["supernovae"],
+    "pulsar": ["pulsars"],
+    "cosmic inflation": ["cosmic-inflation"],
+    "fast radio burst": ["fast-radio-bursts"],
+    "quasar": ["quasars"],
+    "active galactic": ["active-galactic-nuclei"],
+}
+
+ARXIV_SUMMARY_SYSTEM = (
+    "You are a science communicator summarizing astronomy papers for a knowledge base. "
+    "Be concise and accurate."
+)
+
+
+def _match_wiki_pages(title: str, abstract: str) -> list[str]:
+    text = (title + " " + abstract).lower()
+    matched = set()
+    for keyword, slugs in ARXIV_WIKI_KEYWORDS.items():
+        if keyword in text:
+            matched.update(slugs)
+    return list(matched)[:3]  # max 3
+
+
+def _parse_arxiv_rss(category: str, limit: int = 10) -> list[dict]:
+    url = f"https://rss.arxiv.org/rss/{category}"
+    feed = feedparser.parse(url)
+    papers = []
+    for entry in feed.entries[:limit]:
+        arxiv_id = entry.get("id", "").split("/abs/")[-1].replace("v1", "").strip()
+        title = entry.get("title", "").replace("\n", " ").strip()
+        abstract = entry.get("summary", "").replace("\n", " ").strip()
+
+        authors = []
+        if hasattr(entry, "authors"):
+            authors = [a.get("name", "") for a in entry.authors]
+        elif hasattr(entry, "author"):
+            authors = [entry.author]
+
+        submitted = ""
+        if hasattr(entry, "published_parsed") and entry.published_parsed:
+            t = entry.published_parsed
+            submitted = f"{t.tm_year}-{t.tm_mon:02d}-{t.tm_mday:02d}"
+
+        papers.append({
+            "arxiv_id": arxiv_id,
+            "title": title,
+            "abstract": abstract,
+            "authors": json.dumps(authors[:5]),
+            "submitted": submitted,
+            "url": entry.get("link", f"https://arxiv.org/abs/{arxiv_id}"),
+            "category": category,
+        })
+    return papers
+
+
+@celery_app.task
+def fetch_arxiv_daily():
+    """Fetch latest arXiv papers, summarize with LLM, store in DB."""
+    from app.models.arxiv import ArxivPaper
+
+    db = SessionLocal()
+    try:
+        arxivbot = db.query(Agent).filter(Agent.name == "ArxivBot").first()
+        if not arxivbot:
+            print("[fetch_arxiv_daily] ArxivBot not found, skipping")
+            return
+
+        total_new = 0
+        for cat in ARXIV_CATEGORIES:
+            try:
+                papers = _parse_arxiv_rss(cat, limit=8)
+            except Exception as e:
+                print(f"[fetch_arxiv_daily] RSS parse failed for {cat}: {e}")
+                continue
+
+            for p in papers:
+                if not p["arxiv_id"]:
+                    continue
+
+                # dedup
+                exists = db.query(ArxivPaper).filter(ArxivPaper.arxiv_id == p["arxiv_id"]).first()
+                if exists:
+                    continue
+
+                # LLM summary
+                try:
+                    user_msg = (
+                        f"Summarize this astronomy paper in 2-3 sentences for a general science audience.\n\n"
+                        f"Title: {p['title']}\n\nAbstract: {p['abstract'][:800]}"
+                    )
+                    summary = _chat(arxivbot.model_name, ARXIV_SUMMARY_SYSTEM, user_msg)
+                    summary = summary.strip()[:500]
+                except Exception as e:
+                    print(f"[fetch_arxiv_daily] LLM summary failed: {e}")
+                    summary = p["abstract"][:300]
+
+                # wiki matching
+                related = _match_wiki_pages(p["title"], p["abstract"])
+
+                # save
+                paper = ArxivPaper(
+                    arxiv_id=p["arxiv_id"],
+                    title=p["title"],
+                    authors=p["authors"],
+                    abstract=p["abstract"],
+                    abstract_summary=summary,
+                    category=p["category"],
+                    submitted=p["submitted"],
+                    url=p["url"],
+                    related_pages=json.dumps(related),
+                    wiki_edit_proposed=False,
+                )
+                db.add(paper)
+                db.flush()
+                total_new += 1
+                print(f"[fetch_arxiv_daily] Saved: {p['title'][:60]}")
+
+                # propose wiki edit if related pages found
+                if related:
+                    for slug in related[:1]:  # max 1 edit per paper
+                        wiki_page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+                        if not wiki_page or not wiki_page.content:
+                            continue
+                        try:
+                            edit_msg = (
+                                f"Update the '## Current Research' section of the '{wiki_page.title}' wiki page "
+                                f"to include this recent finding. Keep all existing content and naturally integrate:\n\n"
+                                f"Paper: {p['title']}\nAuthors: {json.loads(p['authors'])[:3]}\n"
+                                f"Summary: {summary}\nSource: {p['url']}\n\n"
+                                f"Current page content:\n{wiki_page.content[:2000]}"
+                            )
+                            updated = _chat(arxivbot.model_name, SYSTEM_PROMPT, edit_msg)
+                            proposal = EditProposal(
+                                page_id=wiki_page.id,
+                                agent_id=arxivbot.id,
+                                content=updated,
+                                status=EditStatus.PENDING,
+                            )
+                            db.add(proposal)
+                            paper.wiki_edit_proposed = True
+                            print(f"[fetch_arxiv_daily] Proposed wiki edit for: {slug}")
+                        except Exception as e:
+                            print(f"[fetch_arxiv_daily] Wiki edit failed for {slug}: {e}")
+
+                time.sleep(2)
+
+        db.commit()
+        print(f"[fetch_arxiv_daily] Done. {total_new} new papers saved.")
+        _notify(f"📡 arXiv 수집 완료: {total_new}개 새 논문")
+    except Exception as e:
+        db.rollback()
+        print(f"[fetch_arxiv_daily] Error: {e}")
+        raise
+    finally:
+        db.close()

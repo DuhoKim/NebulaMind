@@ -237,13 +237,195 @@ feedparser    # arXiv RSS 파싱
 
 ---
 
-## 8. 향후 확장
+## 8. 이메일 뉴스레터 (Daily/Weekly Digest)
+
+구독자에게 관심 분야 논문 요약을 메일로 보내는 기능.
+
+### 데이터 모델
+
+```python
+class Subscriber(Base):
+    __tablename__ = "subscribers"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    email: Mapped[str] = mapped_column(unique=True, index=True)
+    name: Mapped[str | None] = mapped_column(nullable=True)
+    categories: Mapped[str]  # JSON array: ["astro-ph.GA", "astro-ph.CO"]
+    frequency: Mapped[str] = mapped_column(default="daily")  # daily | weekly
+    is_active: Mapped[bool] = mapped_column(default=True)
+    unsubscribe_token: Mapped[str] = mapped_column(unique=True)  # 원클릭 해지용
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+```
+
+### API
+
+```python
+POST /api/subscribe       # { email, name?, categories, frequency }
+GET  /api/unsubscribe?token=xxx  # 원클릭 해지
+```
+
+### 프론트엔드 구독 위젯
+
+`/research` 페이지 하단 + 홈페이지에 간단한 구독 폼:
+
+```
+📬 Get the cosmos in your inbox
+[이메일 입력] [카테고리 선택] [Daily/Weekly] [Subscribe]
+"Free · No spam · Unsubscribe anytime"
+```
+
+### 메일 발송
+
+```python
+@celery_app.task
+def send_digest_emails():
+    """구독자별 관심 카테고리 논문 요약 메일 발송"""
+    subscribers = get_active_subscribers(frequency="daily")
+    
+    for sub in subscribers:
+        papers = get_recent_papers(categories=sub.categories, days=1)
+        if not papers:
+            continue
+        
+        html = render_digest_email(sub, papers)
+        send_email(
+            to=sub.email,
+            subject=f"🔭 NebulaMind Daily — {len(papers)} new papers ({today})",
+            html=html,
+        )
+```
+
+### 메일 서비스 옵션 (무료~저비용)
+
+| 서비스 | 무료 한도 | 비고 |
+|--------|----------|------|
+| **Resend** | 3,000/월 | 개발자 친화적, API 깔끔 |
+| **Brevo (Sendinblue)** | 300/일 | 충분히 넉넉 |
+| **AWS SES** | 62,000/월 (EC2에서) | 가장 저렴 |
+| **Mailgun** | 1,000/월 | 간단한 셋업 |
+
+초기에는 Resend (3,000/월 무료)이면 충분.
+
+### Celery Beat 추가
+
+```python
+celery_app.conf.beat_schedule["send-daily-digest"] = {
+    "task": "app.agent_loop.tasks.send_digest_emails",
+    "schedule": crontab(hour=9, minute=0),  # UTC 09:00 = KST 18:00
+}
+
+celery_app.conf.beat_schedule["send-weekly-digest"] = {
+    "task": "app.agent_loop.tasks.send_weekly_digest",
+    "schedule": crontab(hour=9, minute=0, day_of_week="mon"),  # 매주 월요일
+}
+```
+
+---
+
+## 9. Researcher Spotlight (논문 홍보 채널)
+
+연구자가 자기 논문을 NebulaMind에 제출하면 AI가 요약 + 위키 연결 + 뉴스레터 노출해주는 기능.
+**레벨 제한으로 참여 유도 + 스팸 방지.**
+
+### 레벨별 언락 혜택
+
+**초기 홍보 기간:** 가입만 하면 누구나 Spotlight 가능 (진입 장벽 최소화)
+**수요 증가 후:** 레벨 제한 활성화
+
+| 단계 | 조건 | Spotlight 정책 |
+|------|------|------|
+| 🚀 **론칭기** (현재) | 가입만 하면 | 누구나 1편/월 무료 |
+| 📈 **성장기** (구독자 500+) | Lv.2+ | Lunar Observer부터 1편/월 |
+| 🏛️ **안정기** (구독자 2000+) | Lv.4+ | 아래 정규 테이블 적용 |
+
+**정규 레벨 테이블 (안정기):**
+
+| 레벨 | 이름 | pc | Spotlight 혜택 |
+|------|------|-----|------|
+| 1-3 | Stargazer ~ Solar Analyst | 0-50 | ❌ 열람만 |
+| 4 | 🪐 Planetary Scientist | 150 | 📡 1편/월 |
+| 5 | 🔭 Deep Space Explorer | 300 | 📡 3편/월 |
+| 6 | 🌌 Galactic Cartographer | 500 | 📡 무제한 + 뉴스레터 Featured |
+| 7 | 🔬 Principal Investigator | 1000 | Author Page + 프로필 배지 |
+| 8 | 🏆 Astro Legend | 2500 | 모든 혜택 + 큐레이터 권한 |
+
+단계 전환은 config.py의 `SPOTLIGHT_LEVEL_REQUIRED` 값 하나로 제어 (기본값: 0 = 누구나).
+
+### 제출 플로우
+
+```
+연구자가 arXiv ID 입력 (로그인 필요, Lv.4+)
+    ↓
+AI가 논문 읽고 요약 생성
+    ↓
+관련 위키 페이지 자동 매칭
+    ↓
+Research Frontier에 "🔬 Community Submitted" 태그로 노출
+    ↓
+위키 "Current Research" 섹션에 편집안 자동 제출
+    ↓
+뉴스레터에 "Community Picks" 코너로 포함 (Lv.6+는 Featured)
+```
+
+### 데이터 모델
+
+```python
+class Spotlight(Base):
+    __tablename__ = "spotlights"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
+    arxiv_id: Mapped[str] = mapped_column(index=True)
+    title: Mapped[str]
+    authors: Mapped[str]  # JSON array
+    summary: Mapped[str] = mapped_column(Text)  # AI 생성 요약
+    related_pages: Mapped[str | None]  # JSON array of wiki slugs
+    status: Mapped[str] = mapped_column(default="active")  # active | expired | rejected
+    featured: Mapped[bool] = mapped_column(default=False)  # Lv.6+ 뉴스레터 Featured
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    expires_at: Mapped[dt.datetime]  # 30일 후 자동 만료
+```
+
+### API
+
+```python
+POST /api/spotlight          # { arxiv_id } — Lv.4+ 필요
+GET  /api/spotlight           # 최근 Spotlight 목록
+GET  /api/spotlight/featured  # 뉴스레터용 Featured 목록
+```
+
+### 프론트엔드
+
+`/research` 페이지에 "🔬 Community Spotlight" 섹션 추가:
+
+```
+🔬 Community Spotlight
+"Researchers share their own work with the NebulaMind community"
+
+[논문 카드 — Community Submitted 태그]
+  📄 "New constraints on supermassive black hole formation from JWST"
+  by J. Smith et al. · submitted by @researcher123 (🪐 Planetary Scientist)
+  🔗 Related: Black Holes, Galaxy Formation
+
+[Submit Your Paper] → Lv.4+ 필요, 미달시 "Reach 🪐 Planetary Scientist to unlock!"
+```
+
+### 연구자 입장에서의 가치
+
+- ✅ 내 논문이 AI 천문학 위키에 인용됨
+- ✅ 구독자들에게 뉴스레터로 도달
+- ✅ NebulaMind 지식 그래프에 영구 기록
+- ✅ MCP로 Claude/Cursor에서도 검색 가능
+- ✅ 참여할수록 더 많은 홍보 기회 (레벨업 동기)
+
+---
+
+## 10. 향후 확장
 
 - **하이라이트 논문** — AI가 특히 중요한 논문을 "🔥 Featured"로 마킹
-- **주간 다이제스트** — 일주일 논문을 요약한 뉴스레터 형식 페이지
 - **Discord 알림** — 중요 논문 발견 시 `#nebulamind` 채널에 자동 알림
 - **MCP 연동** — Claude/Cursor에서 "이번 주 dark matter 관련 새 논문?" 쿼리
-- **사용자 구독** — 관심 토픽 구독하면 관련 논문만 알림
+- **사용자 카테고리 커스텀** — astro-ph 외에 gr-qc, hep-ph 등도 지원
 
 ---
 
