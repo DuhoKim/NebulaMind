@@ -25,7 +25,7 @@ interface EvidenceItem {
 
 const TRUST_STYLES: Record<string, string> = {
   consensus: "bg-green-50 border-l-2 border-green-400",
-  accepted: "",
+  accepted: "bg-blue-50 border-l-2 border-blue-300",
   debated: "bg-orange-50 border-l-2 border-orange-400",
   challenged: "bg-red-50 border-l-2 border-red-400",
   unverified: "bg-gray-50",

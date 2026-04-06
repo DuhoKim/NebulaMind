@@ -14,6 +14,7 @@ class Settings(BaseSettings):
     SAMBANOVA_MODEL: str = "Meta-Llama-3.3-70B-Instruct"
     OPENCLAW_GATEWAY_URL: str = ""
     OPENCLAW_GATEWAY_TOKEN: str = ""
+    RESEND_API_KEY: str = ""
     DISCORD_WEBHOOK_URL: str = ""
 
     model_config = {

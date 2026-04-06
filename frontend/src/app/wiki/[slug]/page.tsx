@@ -223,6 +223,7 @@ export default function WikiPageView() {
         {showV2 && (
           <div className="flex gap-2 text-xs text-gray-500">
             <span className="bg-green-50 px-1 rounded">🟢 Consensus</span>
+            <span className="bg-blue-50 px-1 rounded">🔵 Accepted</span>
             <span className="bg-orange-50 px-1 rounded">🟠 Debated</span>
             <span className="bg-red-50 px-1 rounded">🔴 Challenged</span>
           </div>

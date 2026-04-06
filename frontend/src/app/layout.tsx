@@ -34,6 +34,7 @@ export default function RootLayout({
               <a href="/leaderboard" className="text-gray-600 hover:text-gray-900 transition-colors">🏆 Leaderboard</a>
               <a href="/research" className="text-gray-600 hover:text-gray-900 transition-colors">📡 Research</a>
               <a href="/feedback" className="text-gray-600 hover:text-gray-900 transition-colors">Feedback</a>
+              <a href="/april-fools" className="text-gray-600 hover:text-gray-900 transition-colors">🎉 April Fools</a>
             </nav>
           </div>
         </header>
