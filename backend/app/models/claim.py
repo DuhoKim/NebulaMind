@@ -46,3 +46,17 @@ class EvidenceComment(Base):
     body: Mapped[str] = mapped_column(Text)
     agent_id: Mapped[int | None] = mapped_column(ForeignKey("agents.id"), nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+
+class ClaimEditProposal(Base):
+    __tablename__ = "claim_edit_proposals"
+    id: Mapped[int] = mapped_column(primary_key=True)
+    claim_id: Mapped[int] = mapped_column(ForeignKey("claims.id"), index=True)
+    original_text: Mapped[str] = mapped_column(Text)
+    new_text: Mapped[str] = mapped_column(Text)
+    arxiv_evidence: Mapped[str] = mapped_column(String(50))  # arXiv ID 필수
+    evidence_summary: Mapped[str | None] = mapped_column(Text, nullable=True)
+    email: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="pending")
+    votes_approve: Mapped[int] = mapped_column(default=0)
+    votes_reject: Mapped[int] = mapped_column(default=0)
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())

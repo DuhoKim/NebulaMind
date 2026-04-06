@@ -11,7 +11,7 @@ from app.models.graph import PageRelation
 from app.models.arxiv import ArxivPaper
 from app.models.subscriber import Subscriber
 from app.models.spotlight import Spotlight
-from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment
+from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal
 
 __all__ = [
     "WikiPage",
@@ -33,4 +33,5 @@ __all__ = [
     "Evidence",
     "EvidenceVote",
     "EvidenceComment",
+    "ClaimEditProposal",
 ]

@@ -6,7 +6,7 @@ from typing import Optional
 import re
 
 from app.database import get_db
-from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment
+from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal
 from app.models.page import WikiPage
 
 router = APIRouter(prefix="/api", tags=["claims"])
@@ -204,3 +204,65 @@ def decompose_page(slug: str, db: Session = Depends(get_db)):
         created += 1
     db.commit()
     return {"created": created}
+
+
+class ClaimEditCreate(BaseModel):
+    new_text: str
+    arxiv_evidence: str
+    evidence_summary: Optional[str] = None
+    email: Optional[str] = None
+
+@router.post("/claims/{claim_id}/suggest-edit", status_code=201)
+def suggest_edit(claim_id: int, body: ClaimEditCreate, db: Session = Depends(get_db)):
+    claim = db.query(Claim).filter(Claim.id == claim_id).first()
+    if not claim:
+        raise HTTPException(404, "Claim not found")
+    if not body.arxiv_evidence.strip():
+        raise HTTPException(400, "arXiv evidence ID is required")
+    proposal = ClaimEditProposal(
+        claim_id=claim_id, original_text=claim.text, new_text=body.new_text,
+        arxiv_evidence=body.arxiv_evidence.strip()[:50],
+        evidence_summary=body.evidence_summary, email=body.email,
+    )
+    db.add(proposal)
+    db.commit()
+    db.refresh(proposal)
+    return {"id": proposal.id, "status": "pending"}
+
+@router.post("/claim-proposals/{proposal_id}/vote")
+def vote_claim_proposal(proposal_id: int, value: int = 1, db: Session = Depends(get_db)):
+    proposal = db.query(ClaimEditProposal).filter(ClaimEditProposal.id == proposal_id).first()
+    if not proposal:
+        raise HTTPException(404)
+    if value == 1:
+        proposal.votes_approve += 1
+    else:
+        proposal.votes_reject += 1
+    if proposal.votes_approve >= 3 and proposal.status == "pending":
+        claim = db.query(Claim).filter(Claim.id == proposal.claim_id).first()
+        if claim:
+            claim.text = proposal.new_text
+            claim.trust_level = "accepted"
+            ev = Evidence(
+                claim_id=claim.id,
+                title=f"arXiv:{proposal.arxiv_evidence}",
+                arxiv_id=proposal.arxiv_evidence[:30],
+                url=f"https://arxiv.org/abs/{proposal.arxiv_evidence}",
+                summary=proposal.evidence_summary or "Community-submitted evidence",
+                stance="supports",
+            )
+            db.add(ev)
+            proposal.status = "approved"
+    elif proposal.votes_reject >= 3:
+        proposal.status = "rejected"
+    db.commit()
+    return {"votes_approve": proposal.votes_approve, "votes_reject": proposal.votes_reject, "status": proposal.status}
+
+@router.get("/claims/{claim_id}/proposals")
+def get_claim_proposals(claim_id: int, db: Session = Depends(get_db)):
+    proposals = db.query(ClaimEditProposal).filter(
+        ClaimEditProposal.claim_id == claim_id,
+        ClaimEditProposal.status == "pending"
+    ).all()
+    return [{"id": p.id, "new_text": p.new_text, "arxiv_evidence": p.arxiv_evidence,
+             "votes_approve": p.votes_approve, "votes_reject": p.votes_reject} for p in proposals]
