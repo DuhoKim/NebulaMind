@@ -258,7 +258,7 @@ export default function GraphPage() {
         d.fx = null;
         d.fy = null;
       });
-    node.call(drag);
+    (node as any).call(drag);
 
     const label = g
       .append("g")
