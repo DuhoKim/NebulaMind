@@ -4,10 +4,10 @@ import { usePathname } from "next/navigation";
 import Link from "next/link";
 
 const TABS = [
-  { label: "Cards", href: "/explore/cards" },
-  { label: "Q&A", href: "/explore/qa" },
-  { label: "Chat", href: "/explore/chat" },
-  { label: "Graph", href: "/explore/graph" },
+  { label: "🃏 Cards", href: "/explore/cards" },
+  { label: "❓ Q&A", href: "/explore/qa" },
+  { label: "💬 Chat", href: "/explore/chat" },
+  { label: "🕸️ Graph", href: "/explore/graph" },
 ];
 
 export default function ExploreLayout({ children }: { children: React.ReactNode }) {
@@ -33,11 +33,14 @@ export default function ExploreLayout({ children }: { children: React.ReactNode 
               style={{
                 padding: "0.5rem 1rem",
                 textDecoration: "none",
-                fontWeight: active ? 600 : 400,
+                fontWeight: active ? 700 : 400,
                 color: active ? "#4f46e5" : "#6b7280",
                 borderBottom: active ? "2px solid #4f46e5" : "2px solid transparent",
                 marginBottom: "-2px",
                 fontSize: "0.9rem",
+                background: active ? "#eef2ff" : "transparent",
+                borderRadius: "0.5rem 0.5rem 0 0",
+                transition: "all 0.15s ease",
               }}
             >
               {tab.label}
