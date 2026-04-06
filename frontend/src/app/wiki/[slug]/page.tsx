@@ -11,6 +11,9 @@ interface WikiPage {
   title: string;
   slug: string;
   content: string;
+  hero_tagline?: string | null;
+  hero_facts?: string | null;
+  did_you_know?: string | null;
 }
 
 interface EditProposal {
@@ -146,6 +149,9 @@ export default function WikiPageView() {
   const headings = extractHeadings(page.content);
   const keyFacts = extractKeyFacts(page.content);
 
+  const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
+  const didYouKnow = page.did_you_know ? (() => { try { return JSON.parse(page.did_you_know); } catch { return []; } })() : [];
+
   return (
     <article className="max-w-4xl mx-auto">
       {/* View mode toggle */}
@@ -173,10 +179,80 @@ export default function WikiPageView() {
         {voted && <span className="ml-4 text-green-600 text-xs">✅ Thanks for voting!</span>}
       </div>
 
-      <header className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">{page.title}</h1>
-        <p className="text-sm text-gray-400">slug: {page.slug}</p>
-      </header>
+      {/* Hero Section — National Geographic style */}
+      {page.hero_tagline && (
+        <section style={{
+          background: "linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%)",
+          color: "white",
+          borderRadius: "1rem",
+          padding: "2rem",
+          marginBottom: "1.5rem",
+          position: "relative",
+          overflow: "hidden",
+        }}>
+          {/* Star background effect */}
+          <div style={{
+            position: "absolute",
+            inset: 0,
+            opacity: 0.15,
+            background: "radial-gradient(1px 1px at 20% 30%, white, transparent), radial-gradient(1px 1px at 60% 70%, white, transparent), radial-gradient(1.5px 1.5px at 80% 20%, white, transparent)",
+            backgroundSize: "300px 200px",
+          }} />
+          <div style={{ position: "relative" }}>
+            <h1 style={{ fontSize: "2rem", fontWeight: 800, marginBottom: "0.5rem", color: "white" }}>
+              {page.title}
+            </h1>
+            <p style={{ fontSize: "1.2rem", color: "#a5b4fc", fontStyle: "italic", marginBottom: "1.5rem", lineHeight: 1.5 }}>
+              {page.hero_tagline}
+            </p>
+            {parsedFacts.length > 0 && (
+              <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                {parsedFacts.map((fact: any, i: number) => (
+                  <div key={i} style={{
+                    background: "rgba(255,255,255,0.1)",
+                    borderRadius: "0.75rem",
+                    padding: "0.75rem 1.25rem",
+                    textAlign: "center",
+                    minWidth: "100px",
+                  }}>
+                    <div style={{ fontSize: "1.5rem", fontWeight: 800, color: "#fbbf24" }}>{fact.value}</div>
+                    <div style={{ fontSize: "0.7rem", color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>{fact.unit}</div>
+                    <div style={{ fontSize: "0.8rem", color: "#cbd5e1" }}>{fact.label}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Fallback header for pages without hero */}
+      {!page.hero_tagline && (
+        <header className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">{page.title}</h1>
+          <p className="text-sm text-gray-400">slug: {page.slug}</p>
+        </header>
+      )}
+
+      {/* Did You Know? section */}
+      {didYouKnow.length > 0 && (
+        <section style={{
+          background: "#fef3c7",
+          border: "1px solid #fcd34d",
+          borderRadius: "1rem",
+          padding: "1.25rem",
+          marginBottom: "1.5rem",
+        }}>
+          <h3 style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", fontWeight: 700, color: "#92400e", textTransform: "uppercase", letterSpacing: "0.1em" }}>
+            💡 Did You Know?
+          </h3>
+          {didYouKnow.map((fact: string, i: number) => (
+            <p key={i} style={{ margin: i === 0 ? 0 : "0.5rem 0 0", color: "#78350f", fontSize: "0.9rem", lineHeight: 1.6 }}>
+              {fact}
+            </p>
+          ))}
+        </section>
+      )}
 
       {viewMode === "B" && headings.length > 2 && (
         <nav className="mb-8 p-4 bg-gray-50 border border-gray-200 rounded-xl">

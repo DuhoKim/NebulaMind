@@ -20,6 +20,9 @@ class WikiPage(Base):
     difficulty: Mapped[str | None] = mapped_column(String(20), nullable=True)
     summary: Mapped[str | None] = mapped_column(Text, nullable=True)
     thumbnail_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    hero_tagline: Mapped[str | None] = mapped_column(Text, nullable=True)
+    hero_facts: Mapped[str | None] = mapped_column(Text, nullable=True)
+    did_you_know: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     versions: Mapped[list["PageVersion"]] = relationship(back_populates="page", order_by="PageVersion.version_num")
 

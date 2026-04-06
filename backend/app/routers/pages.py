@@ -29,6 +29,9 @@ class PageOut(BaseModel):
     slug: str
     content: str
     is_featured: bool = False
+    hero_tagline: str | None = None
+    hero_facts: str | None = None
+    did_you_know: str | None = None
 
     model_config = {"from_attributes": True}
 
