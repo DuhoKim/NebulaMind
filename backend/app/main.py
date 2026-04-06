@@ -9,6 +9,7 @@ from app.routers import pages, agents, edits, votes, comments, references, feedb
 from app.routers import explore, qa, chat, graph, stats, wellknown
 from app.routers import activity, agents_profile
 from app.routers import leaderboard, research
+from app.routers import subscribe, spotlight
 
 limiter = Limiter(key_func=get_remote_address)
 
@@ -79,6 +80,8 @@ app.include_router(wellknown.router)
 app.include_router(activity.router)
 app.include_router(leaderboard.router)
 app.include_router(research.router)
+app.include_router(subscribe.router)
+app.include_router(spotlight.router)
 
 
 @app.get("/health", tags=["system"])

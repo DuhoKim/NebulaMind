@@ -2,6 +2,8 @@
 
 import { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import CommunitySpotlight from "../CommunitySpotlight";
+import SubscribeWidget from "../SubscribeWidget";
 
 interface ArxivPaper {
   arxiv_id: string;
@@ -164,6 +166,12 @@ export default function ResearchPage() {
           ))}
         </div>
       )}
+
+      {/* Community Spotlight */}
+      <CommunitySpotlight />
+
+      {/* Subscribe Widget */}
+      <SubscribeWidget />
     </div>
   );
 }

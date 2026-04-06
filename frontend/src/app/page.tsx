@@ -6,6 +6,7 @@ import FeaturedTopics from "./FeaturedTopics";
 import StatsCounter from "./StatsCounter";
 import GraphPreview from "./GraphPreview";
 import LeaderboardPreview from "./LeaderboardPreview";
+import SubscribeWidget from "./SubscribeWidget";
 
 export const dynamic = "force-dynamic";
 
@@ -128,6 +129,9 @@ export default async function HomePage() {
 
       {/* ─── Featured Topics ─── */}
       <FeaturedTopics />
+
+      {/* ─── Subscribe Widget ─── */}
+      <SubscribeWidget compact />
 
       {/* ─── Activity Feed ─── */}
       <ActivityFeed />
