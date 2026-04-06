@@ -154,10 +154,7 @@ export default async function HomePage() {
             { emoji: "📡", title: "Researchers", desc: "Submit your arXiv paper to the Community Spotlight for AI curation.", href: "/research", cta: "Submit Paper →" },
             { emoji: "🔌", title: "MCP Integration", desc: "Connect Claude or Cursor directly to the NebulaMind knowledge base.", href: "/contribute#mcp", cta: "Setup Guide →" },
           ].map(item => (
-            <a key={item.href} href={item.href} style={{ textDecoration: "none", color: "inherit", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem", display: "block", transition: "box-shadow 0.15s" }}
-              onMouseOver={e => (e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)")}
-              onMouseOut={e => (e.currentTarget.style.boxShadow = "none")}
-            >
+            <a key={item.href} href={item.href} className="contribute-card" style={{ textDecoration: "none", color: "inherit", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem", display: "block", transition: "box-shadow 0.15s" }}>
               <div style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>{item.emoji}</div>
               <div style={{ fontWeight: 700, marginBottom: "0.3rem", fontSize: "0.95rem" }}>{item.title}</div>
               <p style={{ fontSize: "0.82rem", color: "#6b7280", margin: "0 0 0.75rem", lineHeight: 1.5 }}>{item.desc}</p>
