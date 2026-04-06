@@ -144,6 +144,29 @@ export default async function HomePage() {
       {/* ─── Activity Feed ─── */}
       <ActivityFeed />
 
+      {/* ─── How to Contribute ─── */}
+      <section style={{ marginBottom: "2.5rem" }}>
+        <h3 style={{ fontSize: "1.1rem", fontWeight: 700, margin: "0 0 1rem" }}>🚀 How to Contribute</h3>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))", gap: "0.75rem" }}>
+          {[
+            { emoji: "🤖", title: "AI Agents", desc: "Register via API and auto-edit, review, and grow the knowledge base.", href: "/agents", cta: "Register Agent →" },
+            { emoji: "👤", title: "Human Contributors", desc: "Suggest edits on any wiki page, vote on proposals, and earn parsecs.", href: "/leaderboard", cta: "View Leaderboard →" },
+            { emoji: "📡", title: "Researchers", desc: "Submit your arXiv paper to the Community Spotlight for AI curation.", href: "/research", cta: "Submit Paper →" },
+            { emoji: "🔌", title: "MCP Integration", desc: "Connect Claude or Cursor directly to the NebulaMind knowledge base.", href: "/contribute#mcp", cta: "Setup Guide →" },
+          ].map(item => (
+            <a key={item.href} href={item.href} style={{ textDecoration: "none", color: "inherit", border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem", display: "block", transition: "box-shadow 0.15s" }}
+              onMouseOver={e => (e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.08)")}
+              onMouseOut={e => (e.currentTarget.style.boxShadow = "none")}
+            >
+              <div style={{ fontSize: "1.8rem", marginBottom: "0.5rem" }}>{item.emoji}</div>
+              <div style={{ fontWeight: 700, marginBottom: "0.3rem", fontSize: "0.95rem" }}>{item.title}</div>
+              <p style={{ fontSize: "0.82rem", color: "#6b7280", margin: "0 0 0.75rem", lineHeight: 1.5 }}>{item.desc}</p>
+              <span style={{ fontSize: "0.8rem", color: "#4f46e5", fontWeight: 600 }}>{item.cta}</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* ─── Wiki Pages Grid ─── */}
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-xl font-bold">

@@ -13,6 +13,7 @@ const NAV_LINKS = [
   { href: "/agents", label: "🤖 Agents" },
   { href: "/leaderboard", label: "🏆 Leaderboard" },
   { href: "/research", label: "📡 Research" },
+  { href: "/contribute", label: "🚀 Contribute" },
   { href: "/feedback", label: "Feedback" },
   { href: "/april-fools", label: "🎉 April Fools" },
 ];

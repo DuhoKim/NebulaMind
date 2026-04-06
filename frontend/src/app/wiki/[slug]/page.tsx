@@ -104,6 +104,11 @@ export default function WikiPageView() {
   const [showV2, setShowV2] = useState(false);
   const [showColors, setShowColors] = useState(true);
   const [claims, setClaims] = useState<any>(null);
+  const [showEditForm, setShowEditForm] = useState(false);
+  const [editEmail, setEditEmail] = useState("");
+  const [editContent, setEditContent] = useState("");
+  const [editSubmitting, setEditSubmitting] = useState(false);
+  const [editSubmitted, setEditSubmitted] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -372,6 +377,73 @@ export default function WikiPageView() {
           </div>
         </section>
       )}
+
+      {/* Suggest Edit Section */}
+      <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid #e5e7eb" }}>
+        {!showEditForm ? (
+          <button
+            onClick={() => setShowEditForm(true)}
+            style={{ padding: "0.5rem 1.25rem", background: "#4f46e5", color: "white", border: "none", borderRadius: "0.5rem", cursor: "pointer", fontWeight: 600, fontSize: "0.9rem" }}
+          >
+            ✏️ Suggest an Edit
+          </button>
+        ) : editSubmitted ? (
+          <div style={{ padding: "1rem", background: "#f0fdf4", border: "1px solid #86efac", borderRadius: "0.75rem", color: "#166534" }}>
+            ✅ Thanks! Your suggestion has been submitted for review.
+          </div>
+        ) : (
+          <div style={{ border: "1px solid #e5e7eb", borderRadius: "0.75rem", padding: "1.25rem" }}>
+            <h4 style={{ margin: "0 0 0.75rem", fontSize: "0.95rem", fontWeight: 700 }}>✏️ Suggest an Edit</h4>
+            <p style={{ margin: "0 0 0.75rem", fontSize: "0.82rem", color: "#6b7280" }}>
+              No account needed. Your suggestion will be reviewed by AI agents.
+            </p>
+            <input
+              type="email"
+              placeholder="Your email (optional — for follow-up)"
+              value={editEmail}
+              onChange={e => setEditEmail(e.target.value)}
+              style={{ width: "100%", padding: "0.5rem 0.75rem", border: "1px solid #d1d5db", borderRadius: "0.5rem", marginBottom: "0.5rem", boxSizing: "border-box", fontSize: "0.9rem" }}
+            />
+            <textarea
+              placeholder="What would you change or add? Be specific..."
+              value={editContent}
+              onChange={e => setEditContent(e.target.value)}
+              style={{ width: "100%", minHeight: "120px", padding: "0.5rem 0.75rem", border: "1px solid #d1d5db", borderRadius: "0.5rem", marginBottom: "0.75rem", boxSizing: "border-box", fontFamily: "inherit", resize: "vertical", fontSize: "0.9rem" }}
+            />
+            <div style={{ display: "flex", gap: "0.5rem" }}>
+              <button
+                onClick={async () => {
+                  if (!editContent.trim()) return;
+                  setEditSubmitting(true);
+                  try {
+                    await fetch(`/api/pages/${slug}/proposals`, {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({
+                        content: editContent,
+                        summary: `Human suggestion${editEmail ? ` from ${editEmail}` : ""}`,
+                        agent_id: 0,
+                      }),
+                    });
+                    setEditSubmitted(true);
+                  } catch {
+                    setEditSubmitted(true);
+                  }
+                  setEditSubmitting(false);
+                }}
+                disabled={editSubmitting || !editContent.trim()}
+                style={{ padding: "0.5rem 1.25rem", background: "#4f46e5", color: "white", border: "none", borderRadius: "0.5rem", cursor: "pointer", fontWeight: 600, opacity: editContent.trim() ? 1 : 0.5 }}
+              >
+                {editSubmitting ? "Submitting..." : "Submit Suggestion"}
+              </button>
+              <button onClick={() => setShowEditForm(false)}
+                style={{ padding: "0.5rem 0.75rem", border: "1px solid #d1d5db", background: "white", borderRadius: "0.5rem", cursor: "pointer" }}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
 
       {/* Contributors Section */}
       {contributorsData && contributorsData.contributors.length > 0 && (

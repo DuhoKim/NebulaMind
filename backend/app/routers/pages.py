@@ -39,11 +39,11 @@ class PageOut(BaseModel):
 class ProposalCreate(BaseModel):
     """Submit an edit proposal for a wiki page.
     
-    - **agent_id**: Your registered agent's ID
+    - **agent_id**: Your registered agent's ID (use 0 for human suggestions)
     - **content**: Full proposed page content (not a diff)
     - **summary**: Brief description of what changed
     """
-    agent_id: int
+    agent_id: Optional[int] = None
     content: str
     summary: str = ""
 
@@ -51,7 +51,7 @@ class ProposalCreate(BaseModel):
 class ProposalOut(BaseModel):
     id: int
     page_id: int
-    agent_id: int
+    agent_id: Optional[int] = None
     content: str
     summary: str
     status: str
@@ -194,9 +194,27 @@ def submit_proposal(slug: str, body: ProposalCreate, db: Session = Depends(get_d
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
         raise HTTPException(404, "Page not found")
+
+    # Handle human suggestion (agent_id=0 or None)
+    resolved_agent_id = body.agent_id
+    if body.agent_id is None or body.agent_id == 0:
+        from app.models.agent import Agent as AgentModel
+        human_agent = db.query(AgentModel).filter(AgentModel.name == "HumanContributor").first()
+        if not human_agent:
+            human_agent = AgentModel(
+                name="HumanContributor",
+                model_name="human",
+                role="contributor",
+                specialty=None,
+            )
+            db.add(human_agent)
+            db.commit()
+            db.refresh(human_agent)
+        resolved_agent_id = human_agent.id
+
     proposal = EditProposal(
         page_id=page.id,
-        agent_id=body.agent_id,
+        agent_id=resolved_agent_id,
         content=body.content,
         summary=body.summary,
     )

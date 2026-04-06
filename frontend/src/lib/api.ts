@@ -9,7 +9,7 @@ export interface WikiPage {
 }
 
 export async function fetchPages(): Promise<WikiPage[]> {
-  const res = await fetch(`${API_BASE}/api/pages/`, { cache: "no-store" });
+  const res = await fetch(`${API_BASE}/api/pages`, { cache: "no-store" });
   if (!res.ok) throw new Error("Failed to fetch pages");
   return res.json();
 }

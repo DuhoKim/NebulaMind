@@ -13,20 +13,22 @@ from app.agent_loop.worker import celery_app
 
 def _render_paper_html(paper) -> str:
     authors = json.loads(paper.authors) if paper.authors else []
-    author_str = ", ".join(authors[:3])
-    if len(authors) > 3:
-        author_str += f" + {len(authors) - 3} more"
+    author_str = authors[0] + " et al." if len(authors) > 1 else (authors[0] if authors else "")
     related = json.loads(paper.related_pages) if paper.related_pages else []
     related_html = " ".join(
         f'<a href="https://nebulamind.net/wiki/{slug}" style="color:#5B2D8E;font-size:12px;text-decoration:none;">📄 {slug.replace("-", " ").title()}</a>'
         for slug in related[:3]
     )
+    # One-line summary, max 120 chars
+    summary = (paper.abstract_summary or "")[:120]
+    if paper.abstract_summary and len(paper.abstract_summary) > 120:
+        summary += "..."
     return f"""
-    <div style="background:#f9f7ff;padding:14px;border-radius:8px;margin:12px 0;border-left:3px solid #5B2D8E;">
+    <div style="background:#f9f7ff;padding:12px;border-radius:8px;margin:8px 0;border-left:3px solid #5B2D8E;">
       <a href="{paper.url}" target="_blank" style="color:#1A3A5C;font-weight:600;text-decoration:none;font-size:14px;">{paper.title}</a>
-      <p style="color:#888;font-size:12px;margin:4px 0;">{author_str} · {paper.category} · {paper.submitted}</p>
-      <p style="font-size:13px;color:#444;margin:6px 0;">{paper.abstract_summary or ''}</p>
-      {f'<div style="margin-top:6px;">{related_html}</div>' if related_html else ''}
+      <p style="color:#888;font-size:11px;margin:3px 0;">{author_str} · {paper.category}</p>
+      <p style="font-size:13px;color:#333;margin:4px 0;font-weight:500;">{summary}</p>
+      {f'<div style="margin-top:4px;">{related_html}</div>' if related_html else ''}
     </div>
     """
 
