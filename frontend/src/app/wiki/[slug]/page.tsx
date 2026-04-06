@@ -101,7 +101,7 @@ export default function WikiPageView() {
   const [loading, setLoading] = useState(true);
   const [viewMode, setViewMode] = useState<"A" | "B">("B");
   const [voted, setVoted] = useState(false);
-  const [showV2, setShowV2] = useState(false);
+  const [showV2, setShowV2] = useState(true);
   const [showColors, setShowColors] = useState(true);
   const [claims, setClaims] = useState<any>(null);
   const [showEditForm, setShowEditForm] = useState(false);
@@ -125,13 +125,14 @@ export default function WikiPageView() {
   }, [slug]);
 
   useEffect(() => {
-    if (showV2 && !claims) {
+    // showV2 defaults true, fetch claims on page load
+    if (!claims) {
       fetch(`/api/pages/${slug}/claims`)
         .then(r => r.json())
         .then(d => setClaims(d))
         .catch(() => {});
     }
-  }, [showV2, slug, claims]);
+  }, [slug]);
 
   const handleVote = async (version: "A" | "B") => {
     try {
@@ -291,7 +292,7 @@ export default function WikiPageView() {
           onClick={() => setShowV2(!showV2)}
           className={`text-xs px-3 py-1 rounded-full border transition-colors ${showV2 ? "bg-indigo-600 text-white border-indigo-600" : "border-gray-300 text-gray-600 hover:border-indigo-400"}`}
         >
-          {showV2 ? "📎 Evidence View" : "📎 Enable Evidence View"}
+          {showV2 ? "📝 Switch to Raw Text" : "📎 Citation View (Default)"}
         </button>
         {showV2 && (
           <button
@@ -300,6 +301,11 @@ export default function WikiPageView() {
           >
             {showColors ? "🎨 Colors On" : "⬜ Clean View"}
           </button>
+        )}
+        {showV2 && (
+          <p style={{ fontSize: "0.78rem", color: "#9ca3af", margin: 0 }}>
+            📎 Each sentence comes from a published paper. Click 📄 to see sources.
+          </p>
         )}
         {showV2 && (
           <div className="flex gap-2 text-xs text-gray-500">

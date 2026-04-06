@@ -4,6 +4,7 @@ import { useState } from "react";
 interface ClaimData {
   id: number;
   text: string;
+  connector?: string | null;
   trust_level: string;
   evidence_count: number;
   section: string;
@@ -78,7 +79,7 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
 
   return (
     <span className={`${style} rounded px-0.5 py-0.5 transition-colors relative`}>
-      {claim.text}{" "}
+      {claim.connector ? <span className="text-gray-500 italic">{claim.connector} </span> : null}{claim.text}{" "}
       <button
         onClick={openPanel}
         className="inline-flex items-center text-xs text-gray-400 hover:text-indigo-600 ml-0.5"

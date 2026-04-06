@@ -9,6 +9,7 @@ class Claim(Base):
     page_id: Mapped[int] = mapped_column(ForeignKey("wiki_pages.id"), index=True)
     section: Mapped[str] = mapped_column(String(100), default="Overview")
     order_idx: Mapped[int] = mapped_column(default=0)
+    connector: Mapped[str | None] = mapped_column(String(50), nullable=True)
     text: Mapped[str] = mapped_column(Text)
     trust_level: Mapped[str] = mapped_column(String(20), default="unverified")
     created_by_agent_id: Mapped[int | None] = mapped_column(ForeignKey("agents.id"), nullable=True)

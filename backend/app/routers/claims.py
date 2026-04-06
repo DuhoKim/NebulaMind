@@ -46,6 +46,7 @@ class ClaimOut(BaseModel):
     section: str
     order_idx: int
     text: str
+    connector: str | None = None
     trust_level: str
     evidence_count: int
     class Config:
@@ -63,7 +64,7 @@ def get_claims(slug: str, db: Session = Depends(get_db)):
         ev_count = db.query(func.count(Evidence.id)).filter(Evidence.claim_id == c.id).scalar() or 0
         result.append({
             "id": c.id, "section": c.section, "order_idx": c.order_idx,
-            "text": c.text, "trust_level": c.trust_level, "evidence_count": ev_count
+            "text": c.text, "connector": c.connector, "trust_level": c.trust_level, "evidence_count": ev_count
         })
     sections = {}
     for r in result:
