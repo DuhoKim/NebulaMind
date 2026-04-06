@@ -32,17 +32,17 @@ const TRUST_STYLES: Record<string, string> = {
 };
 
 const TRUST_LABELS: Record<string, string> = {
-  consensus: "\ud83d\udfe2 Consensus",
-  accepted: "\u2705 Accepted",
-  debated: "\ud83d\udfe0 Debated",
-  challenged: "\ud83d\udd34 Challenged",
-  unverified: "\u2b1c Unverified",
+  consensus: "🟢 Consensus",
+  accepted: "✅ Accepted",
+  debated: "🟠 Debated",
+  challenged: "🔴 Challenged",
+  unverified: "⬜ Unverified",
 };
 
 const STANCE_ICON: Record<string, string> = {
-  supports: "\u2705",
-  challenges: "\u274c",
-  neutral: "\u2796",
+  supports: "✅",
+  challenges: "❌",
+  neutral: "➖",
 };
 
 export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; showColors: boolean }) {
@@ -73,9 +73,9 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
       <button
         onClick={openPanel}
         className="inline-flex items-center text-xs text-gray-400 hover:text-indigo-600 ml-0.5"
-        title={`${TRUST_LABELS[claim.trust_level]} \u00b7 ${claim.evidence_count} source(s)`}
+        title={`${TRUST_LABELS[claim.trust_level]} · ${claim.evidence_count} source(s)`}
       >
-        \ud83d\udcc4{claim.evidence_count > 0 ? claim.evidence_count : ""}
+        📄{claim.evidence_count > 0 ? claim.evidence_count : ""}
       </button>
 
       {open && (
@@ -84,9 +84,9 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
           style={{ display: "block" }}
         >
           <div className="flex justify-between items-center mb-2">
-            <span className="font-semibold text-gray-700">\ud83d\udcce Evidence</span>
+            <span className="font-semibold text-gray-700">📎 Evidence</span>
             <span className="text-xs text-gray-400">{TRUST_LABELS[claim.trust_level]}</span>
-            <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 ml-2">\u2715</button>
+            <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 ml-2">✕</button>
           </div>
           <p className="text-xs text-gray-500 mb-3 italic line-clamp-2">{claim.text}</p>
 
@@ -111,9 +111,9 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
                   {ev.year && <span className="text-gray-400 text-xs ml-1">({ev.year})</span>}
                   {ev.summary && <p className="text-xs text-gray-500 mt-1 leading-relaxed">{ev.summary}</p>}
                   <div className="flex gap-2 mt-1 text-xs text-gray-400">
-                    <span>\ud83d\udc4d {ev.votes_agree}</span>
-                    <span>\ud83d\udc4e {ev.votes_disagree}</span>
-                    <span>\ud83d\udcac {ev.comments_count}</span>
+                    <span>👍 {ev.votes_agree}</span>
+                    <span>👎 {ev.votes_disagree}</span>
+                    <span>💬 {ev.comments_count}</span>
                   </div>
                 </div>
               </div>
