@@ -32,9 +32,11 @@ function useCountUp(target: number, duration = 1500) {
 export default function StatsCounter({ pageCount }: Props) {
   const [agentCount, setAgentCount] = useState(0);
   const [edgeCount, setEdgeCount] = useState(0);
+  const [evidenceCount, setEvidenceCount] = useState(0);
 
   useEffect(() => {
     const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+
     fetch(`${API_BASE}/api/agents`)
       .then((r) => r.json())
       .then((d) => setAgentCount(Array.isArray(d) ? d.length : 0))
@@ -44,11 +46,17 @@ export default function StatsCounter({ pageCount }: Props) {
       .then((r) => r.json())
       .then((d) => setEdgeCount(d?.edges?.length ?? 0))
       .catch(() => {});
+
+    fetch(`${API_BASE}/api/stats`)
+      .then((r) => r.json())
+      .then((d) => setEvidenceCount(d?.evidence_count ?? 0))
+      .catch(() => {});
   }, []);
 
   const animPages = useCountUp(pageCount);
   const animAgents = useCountUp(agentCount);
   const animEdges = useCountUp(edgeCount);
+  const animEvidence = useCountUp(evidenceCount);
 
   const stats = [
     { label: "Wiki Pages", value: animPages, suffix: "", icon: "📄" },
@@ -59,10 +67,16 @@ export default function StatsCounter({ pageCount }: Props) {
       suffix: "+",
       icon: "🔗",
     },
+    {
+      label: "Evidence Entries",
+      value: animEvidence,
+      suffix: "+",
+      icon: "🔬",
+    },
   ];
 
   return (
-    <div className="grid grid-cols-3 gap-4 max-w-2xl mx-auto">
+    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
       {stats.map(({ label, value, suffix, icon }) => (
         <div
           key={label}

@@ -1,11 +1,10 @@
-import httpx
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.page import WikiPage
-from app.config import settings
+from app.agent_loop.tasks import _chat
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
@@ -43,7 +42,7 @@ def _search_pages(question: str, pages: list[WikiPage], top_k: int = 3) -> list[
 
 
 @router.post("/ask", response_model=ChatResponse)
-async def ask(body: ChatRequest, db: Session = Depends(get_db)):
+def ask(body: ChatRequest, db: Session = Depends(get_db)):
     pages = db.query(WikiPage).all()
     relevant = _search_pages(body.question, pages)
 
@@ -60,33 +59,19 @@ async def ask(body: ChatRequest, db: Session = Depends(get_db)):
         f"--- Wiki Context ---\n{context}\n--- End Context ---"
     )
 
-    messages = [{"role": "system", "content": system_prompt}]
-    for msg in body.history:
-        messages.append({"role": msg.role, "content": msg.content})
-    messages.append({"role": "user", "content": body.question})
+    # Build history text (last 4 messages)
+    history_text = ""
+    for msg in body.history[-4:]:
+        history_text += f"\n{msg.role.upper()}: {msg.content}"
 
-    if not settings.LLM_API_KEY:
-        return ChatResponse(
-            answer="LLM API key not configured. Please set NM_LLM_API_KEY.",
-            references=[ReferencePage(title=p.title, slug=p.slug) for p in relevant],
-        )
+    full_user_msg = (
+        f"{history_text}\nUSER: {body.question}" if history_text else body.question
+    )
 
     try:
-        async with httpx.AsyncClient(timeout=30.0) as client:
-            resp = await client.post(
-                f"{settings.LLM_BASE_URL}/chat/completions",
-                headers={"Authorization": f"Bearer {settings.LLM_API_KEY}"},
-                json={
-                    "model": settings.LLM_MODEL or "gpt-4o-mini",
-                    "messages": messages,
-                    "max_tokens": 1024,
-                },
-            )
-            resp.raise_for_status()
-            data = resp.json()
-            answer = data["choices"][0]["message"]["content"]
+        answer = _chat("llama3.1-8b", system_prompt, full_user_msg)
     except Exception as e:
-        answer = f"Error calling LLM: {e}"
+        answer = f"Sorry, I couldn't process your question right now. Error: {str(e)[:100]}"
 
     return ChatResponse(
         answer=answer,

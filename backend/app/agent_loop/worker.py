@@ -18,11 +18,11 @@ celery_app.conf.update(
         },
         "fetch-arxiv-daily": {
             "task": "app.agent_loop.tasks.fetch_arxiv_daily",
-            "schedule": crontab(hour=8, minute=0),  # UTC 08:00 = KST 17:00
+            "schedule": crontab(hour=1, minute=0),  # UTC 08:00 = KST 17:00
         },
         "send-daily-newsletter": {
             "task": "app.agent_loop.newsletter.send_daily_digest",
-            "schedule": crontab(hour=8, minute=30),  # UTC 08:30 = KST 17:30 (30min after arxiv fetch)
+            "schedule": crontab(hour=1, minute=30),  # UTC 08:30 = KST 17:30 (30min after arxiv fetch)
         },
     },
 )

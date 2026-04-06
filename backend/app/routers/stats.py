@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from app.database import get_db
 from app.models.visitor import Visit
+from app.models.claim import Evidence
 
 router = APIRouter(prefix="/api/stats", tags=["stats"])
 
@@ -40,6 +41,7 @@ class StatsOut(BaseModel):
     online_human: int
     online_agent: int
     unique_ips: int
+    evidence_count: int
 
 
 class VisitOut(BaseModel):
@@ -93,6 +95,8 @@ def get_stats(db: Session = Depends(get_db)):
 
     unique = db.query(func.count(func.distinct(Visit.ip_address))).scalar() or 0
 
+    evidence_count = db.query(Evidence).count()
+
     return StatsOut(
         total_visits=total,
         human_visits=human,
@@ -103,4 +107,5 @@ def get_stats(db: Session = Depends(get_db)):
         online_human=online_human,
         online_agent=online_agent,
         unique_ips=unique,
+        evidence_count=evidence_count,
     )

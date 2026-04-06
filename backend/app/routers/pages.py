@@ -28,6 +28,7 @@ class PageOut(BaseModel):
     title: str
     slug: str
     content: str
+    is_featured: bool = False
 
     model_config = {"from_attributes": True}
 

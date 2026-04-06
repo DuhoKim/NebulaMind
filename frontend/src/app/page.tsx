@@ -128,7 +128,15 @@ export default async function HomePage() {
       <LeaderboardPreview />
 
       {/* ─── Featured Topics ─── */}
-      <FeaturedTopics />
+      <section className="mb-2">
+        <div className="flex items-center justify-between mb-4">
+          <div>
+            <h2 className="text-2xl font-bold text-gray-900">🌟 Core Topics</h2>
+            <p className="text-gray-500 text-sm mt-1">Explore our 10 featured astronomy topics</p>
+          </div>
+        </div>
+        <FeaturedTopics />
+      </section>
 
       {/* ─── Subscribe Widget ─── */}
       <SubscribeWidget compact />
@@ -152,7 +160,13 @@ export default async function HomePage() {
         <p className="text-gray-500">No pages yet.</p>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {pages.map((p) => (
+          {[...pages]
+            .sort((a, b) => {
+              if (a.is_featured && !b.is_featured) return -1;
+              if (!a.is_featured && b.is_featured) return 1;
+              return a.title.localeCompare(b.title);
+            })
+            .map((p) => (
             <Link
               key={p.slug}
               href={`/wiki/${p.slug}`}

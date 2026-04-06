@@ -5,6 +5,7 @@ export interface WikiPage {
   title: string;
   slug: string;
   content: string;
+  is_featured?: boolean;
 }
 
 export async function fetchPages(): Promise<WikiPage[]> {
