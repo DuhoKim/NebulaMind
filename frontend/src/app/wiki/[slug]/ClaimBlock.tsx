@@ -140,49 +140,46 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
       )}
 
       {showEditModal && (
-        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.6)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2000 }} onClick={() => setShowEditModal(false)}>
-          <div style={{ background: "white", borderRadius: "1rem", padding: "1.75rem", maxWidth: "560px", width: "90%", boxShadow: "0 25px 60px rgba(0,0,0,0.3)" }} onClick={e => e.stopPropagation()}>
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2000 }} onClick={() => setShowEditModal(false)}>
+          <div style={{ background: "#1e293b", borderRadius: "4px", padding: "1.5rem", maxWidth: "560px", width: "90%", boxShadow: "0 25px 60px rgba(0,0,0,0.3)" }} onClick={e => e.stopPropagation()}>
             {editSubmitted ? (
               <div style={{ textAlign: "center", padding: "1.5rem" }}>
-                <div style={{ fontSize: "3rem", marginBottom: "0.5rem" }}>✅</div>
-                <h3 style={{ margin: "0 0 0.5rem", fontSize: "1.1rem" }}>Suggestion Submitted!</h3>
-                <p style={{ color: "#6b7280", fontSize: "0.88rem", marginBottom: "1rem" }}>3 community votes needed to apply this change.</p>
+                <h3 style={{ margin: "0 0 0.5rem", fontSize: "1rem", fontWeight: 700, color: "#f8fafc" }}>Proposal submitted</h3>
+                <p style={{ color: "#94a3b8", fontSize: "0.85rem", marginBottom: "1rem" }}>Three votes required to apply this change.</p>
                 <button onClick={() => { setShowEditModal(false); setEditSubmitted(false); }}
-                  style={{ padding: "0.5rem 1.25rem", background: "#4f46e5", color: "white", border: "none", borderRadius: "0.5rem", cursor: "pointer" }}>Close</button>
+                  style={{ padding: "0.4rem 1rem", background: "#6366f1", color: "#f8fafc", border: "none", borderRadius: "4px", cursor: "pointer", fontSize: "0.88rem" }}>Close</button>
               </div>
             ) : (
               <>
-                <h3 style={{ margin: "0 0 1rem", fontSize: "1.1rem", fontWeight: 700 }}>✏️ Suggest an Edit</h3>
-                <p style={{ margin: "0 0 0.75rem", fontSize: "0.8rem", color: "#6b7280" }}>
-                  No login required. Every edit must include a published paper as evidence.
-                </p>
-                <div style={{ background: "#f8fafc", borderRadius: "0.5rem", padding: "0.75rem", marginBottom: "0.75rem", border: "1px solid #e2e8f0" }}>
-                  <p style={{ margin: 0, fontSize: "0.75rem", color: "#94a3b8", marginBottom: "0.25rem" }}>Original claim:</p>
-                  <p style={{ margin: 0, fontSize: "0.85rem", color: "#475569", lineHeight: 1.5 }}>{claim.text}</p>
+                <h3 style={{ margin: "0 0 0.75rem", fontSize: "1rem", fontWeight: 700, color: "#f8fafc" }}>Edit Proposal</h3>
+                <p style={{ margin: "0 0 0.75rem", fontSize: "0.8rem", color: "#94a3b8" }}>No account required. A published paper citation is mandatory.</p>
+                <div style={{ background: "#0f172a", borderRadius: "4px", padding: "0.75rem", marginBottom: "0.75rem", border: "1px solid #334155" }}>
+                  <p style={{ margin: 0, fontSize: "0.72rem", color: "#64748b", marginBottom: "0.25rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Original claim:</p>
+                  <p style={{ margin: 0, fontSize: "0.85rem", color: "#94a3b8", lineHeight: 1.5 }}>{claim.text}</p>
                 </div>
                 <textarea value={editText} onChange={e => setEditText(e.target.value)}
-                  style={{ width: "100%", minHeight: "80px", padding: "0.5rem 0.75rem", border: "1px solid #d1d5db", borderRadius: "0.5rem", marginBottom: "0.75rem", boxSizing: "border-box", fontFamily: "inherit", fontSize: "0.9rem", resize: "vertical" }}
+                  style={{ width: "100%", minHeight: "80px", padding: "0.5rem 0.75rem", border: "1px solid #334155", borderRadius: "4px", marginBottom: "0.75rem", boxSizing: "border-box", fontFamily: "inherit", fontSize: "0.88rem", resize: "vertical", background: "#0f172a", color: "#f8fafc" }}
                   placeholder="Your improved version of this sentence..." />
                 <div style={{ marginBottom: "0.75rem" }}>
                   <label style={{ fontSize: "0.82rem", fontWeight: 700, display: "block", marginBottom: "0.3rem" }}>
-                    📄 arXiv ID <span style={{ color: "#dc2626", fontWeight: 400 }}>* required</span>
+                    arXiv ID <span style={{ color: "#ef4444", fontWeight: 400 }}>*</span>
                   </label>
                   <input type="text" value={arxivId} onChange={e => setArxivId(e.target.value)}
                     placeholder="e.g. 2301.12345"
-                    style={{ width: "100%", padding: "0.4rem 0.75rem", border: arxivId ? "1px solid #d1d5db" : "1px solid #fca5a5", borderRadius: "0.5rem", boxSizing: "border-box", fontSize: "0.88rem" }} />
-                  <p style={{ margin: "0.2rem 0 0", fontSize: "0.73rem", color: "#9ca3af" }}>
+                    style={{ width: "100%", padding: "0.4rem 0.75rem", border: arxivId ? "1px solid #334155" : "1px solid #ef4444", borderRadius: "4px", background: "#0f172a", color: "#f8fafc", boxSizing: "border-box", fontSize: "0.88rem" }} />
+                  <p style={{ margin: "0.2rem 0 0", fontSize: "0.73rem", color: "#64748b" }}>
                     Find papers at <a href="https://arxiv.org" target="_blank" rel="noopener noreferrer" style={{ color: "#4f46e5" }}>arxiv.org</a>
                   </p>
                 </div>
                 <textarea value={evidenceSummary} onChange={e => setEvidenceSummary(e.target.value)}
                   placeholder="How does this paper support your edit? (optional)"
-                  style={{ width: "100%", minHeight: "60px", padding: "0.4rem 0.75rem", border: "1px solid #d1d5db", borderRadius: "0.5rem", marginBottom: "0.5rem", boxSizing: "border-box", fontFamily: "inherit", fontSize: "0.85rem", resize: "vertical" }} />
+                  style={{ width: "100%", minHeight: "60px", padding: "0.4rem 0.75rem", border: "1px solid #334155", borderRadius: "4px", marginBottom: "0.5rem", boxSizing: "border-box", fontFamily: "inherit", fontSize: "0.85rem", resize: "vertical", background: "#0f172a", color: "#f8fafc" }} />
                 <input type="email" value={editEmail} onChange={e => setEditEmail(e.target.value)}
                   placeholder="Email for updates (optional)"
-                  style={{ width: "100%", padding: "0.4rem 0.75rem", border: "1px solid #d1d5db", borderRadius: "0.5rem", marginBottom: "1rem", boxSizing: "border-box", fontSize: "0.85rem" }} />
+                  style={{ width: "100%", padding: "0.4rem 0.75rem", border: "1px solid #334155", borderRadius: "4px", marginBottom: "1rem", boxSizing: "border-box", fontSize: "0.85rem", background: "#0f172a", color: "#f8fafc" }} />
                 <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
                   <button onClick={() => setShowEditModal(false)}
-                    style={{ padding: "0.5rem 1rem", border: "1px solid #d1d5db", background: "white", borderRadius: "0.5rem", cursor: "pointer", fontSize: "0.9rem" }}>Cancel</button>
+                    style={{ padding: "0.4rem 0.85rem", border: "1px solid #334155", background: "transparent", color: "#94a3b8", borderRadius: "4px", cursor: "pointer", fontSize: "0.88rem" }}>Cancel</button>
                   <button
                     onClick={async () => {
                       if (!editText.trim() || !arxivId.trim()) return;
@@ -198,8 +195,8 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
                       setEditSubmitting(false);
                     }}
                     disabled={editSubmitting || !editText.trim() || !arxivId.trim()}
-                    style={{ padding: "0.5rem 1.25rem", background: "#4f46e5", color: "white", border: "none", borderRadius: "0.5rem", cursor: "pointer", fontWeight: 600, opacity: (editText.trim() && arxivId.trim()) ? 1 : 0.5, fontSize: "0.9rem" }}>
-                    {editSubmitting ? "Submitting..." : "Submit with Evidence"}
+                    style={{ padding: "0.4rem 1rem", background: "#6366f1", color: "#f8fafc", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: 600, opacity: (editText.trim() && arxivId.trim()) ? 1 : 0.5, fontSize: "0.88rem" }}>
+                    {editSubmitting ? "Submitting..." : "Submit Edit Proposal"}
                   </button>
                 </div>
               </>
