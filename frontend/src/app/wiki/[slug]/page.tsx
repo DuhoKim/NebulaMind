@@ -335,6 +335,36 @@ export default function WikiPageView() {
               </p>
             </div>
           ))}
+
+          {/* Open Debates */}
+          {claims.debates?.length > 0 && (
+            <div style={{ marginTop: "2rem" }}>
+              <h2 style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc", marginBottom: "1.25rem", borderBottom: "1px solid #334155", paddingBottom: "0.5rem" }}>
+                Open Debates
+              </h2>
+              {claims.debates.map((debate: any, i: number) => (
+                <div key={i} style={{ marginBottom: "1.5rem", border: "1px solid #334155", borderRadius: "4px", overflow: "hidden" }}>
+                  <div style={{ background: "#1e293b", borderBottom: "1px solid #334155", padding: "0.6rem 1rem" }}>
+                    <span style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f8fafc" }}>{debate.topic}</span>
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+                    {debate.pro && (
+                      <div style={{ padding: "0.75rem 1rem", borderRight: "1px solid #334155", borderLeft: "3px solid #22c55e" }}>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Supporting</div>
+                        <ClaimBlock claim={{...debate.pro, trust_level: "debated"}} showColors={showColors} />
+                      </div>
+                    )}
+                    {debate.con && (
+                      <div style={{ padding: "0.75rem 1rem", borderLeft: debate.pro ? "none" : "3px solid #ef4444" }}>
+                        <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#ef4444", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Alternative</div>
+                        <ClaimBlock claim={{...debate.con, trust_level: "debated"}} showColors={showColors} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       ) : (
       <div className="prose prose-invert max-w-none" style={{ lineHeight: 1.7 }}>

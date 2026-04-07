@@ -59,20 +59,53 @@ def get_claims(slug: str, db: Session = Depends(get_db)):
     if not page:
         raise HTTPException(404, "Page not found")
     claims = db.query(Claim).filter(Claim.page_id == page.id).order_by(Claim.order_idx).all()
-    result = []
+
+    established = []
+    debates_map = {}  # topic -> {pro: claim, con: claim}
+
     for c in claims:
         ev_count = db.query(func.count(Evidence.id)).filter(Evidence.claim_id == c.id).scalar() or 0
-        result.append({
+        claim_data = {
             "id": c.id, "section": c.section, "order_idx": c.order_idx,
-            "text": c.text, "connector": c.connector, "trust_level": c.trust_level, "evidence_count": ev_count
-        })
+            "text": c.text, "trust_level": c.trust_level,
+            "claim_type": getattr(c, 'claim_type', 'established') or 'established',
+            "debate_topic": getattr(c, 'debate_topic', None),
+            "debate_stance": getattr(c, 'debate_stance', None),
+            "connector": getattr(c, 'connector', None),
+            "evidence_count": ev_count
+        }
+
+        ct = claim_data["claim_type"]
+        if ct == "debate" and claim_data["debate_topic"]:
+            topic = claim_data["debate_topic"]
+            if topic not in debates_map:
+                debates_map[topic] = {"pro": None, "con": None}
+            stance = claim_data["debate_stance"]
+            if stance in ("pro", "con"):
+                debates_map[topic][stance] = claim_data
+        else:
+            established.append(claim_data)
+
+    # Group established by section
     sections = {}
-    for r in result:
+    for r in established:
         s = r["section"]
         if s not in sections:
             sections[s] = []
         sections[s].append(r)
-    return {"page_id": page.id, "sections": [{"name": k, "claims": v} for k, v in sections.items()]}
+
+    # Debates as list
+    debates = [
+        {"topic": topic, "pro": v["pro"], "con": v["con"]}
+        for topic, v in debates_map.items()
+        if v["pro"] or v["con"]
+    ]
+
+    return {
+        "page_id": page.id,
+        "sections": [{"name": k, "claims": v} for k, v in sections.items()],
+        "debates": debates
+    }
 
 
 class EvidenceCreate(BaseModel):
