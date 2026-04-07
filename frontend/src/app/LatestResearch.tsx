@@ -51,8 +51,8 @@ export default function LatestResearch() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-        <h3 style={{ fontSize: "1.1rem", fontWeight: 700, margin: 0 }}>📡 Latest Research</h3>
-        <Link href="/research" style={{ fontSize: "0.85rem", color: "#4f46e5" }}>View all →</Link>
+        <h3 style={{ fontSize: "0.85rem", fontWeight: 700, margin: 0, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0f172a" }}>Recent Papers</h3>
+        <Link href="/research" style={{ fontSize: "0.78rem", color: "#6366f1" }}>View all</Link>
       </div>
 
       {loading ? (
@@ -62,19 +62,19 @@ export default function LatestResearch() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.6rem" }}>
           {papers.map(paper => (
-            <div key={paper.arxiv_id} style={{ border: "1px solid #e5e7eb", borderRadius: "0.65rem", padding: "0.75rem", background: "#fff" }}>
+            <div key={paper.arxiv_id} style={{ border: "1px solid #e2e8f0", borderRadius: "4px", padding: "0.75rem", background: "#fff" }}>
               <div style={{ display: "flex", gap: "0.4rem", marginBottom: "0.3rem", alignItems: "center", flexWrap: "wrap" }}>
-                <span style={{ fontSize: "0.68rem", background: "#eef2ff", color: "#4f46e5", padding: "0.1rem 0.4rem", borderRadius: "9999px", fontWeight: 600 }}>
+                <span style={{ fontSize: "0.68rem", color: "#64748b", fontWeight: 500, textTransform: "uppercase", letterSpacing: "0.05em" }}>
                   {CATEGORY_LABELS[paper.category] || paper.category}
                 </span>
-                <span style={{ fontSize: "0.7rem", color: "#9ca3af" }}>{timeAgo(paper.submitted)}</span>
+                <span style={{ fontSize: "0.68rem", color: "#94a3b8" }}>{timeAgo(paper.submitted)}</span>
               </div>
               <a href={paper.url} target="_blank" rel="noopener noreferrer"
-                style={{ fontWeight: 600, fontSize: "0.82rem", color: "#1f2937", textDecoration: "none", lineHeight: 1.4, display: "block", marginBottom: "0.25rem" }}>
+                style={{ fontWeight: 600, fontSize: "0.82rem", color: "#0f172a", textDecoration: "none", lineHeight: 1.4, display: "block", marginBottom: "0.25rem" }}>
                 {paper.title.length > 90 ? paper.title.slice(0, 90) + "..." : paper.title}
               </a>
               {paper.abstract_summary && (
-                <p style={{ margin: "0 0 0.3rem", fontSize: "0.76rem", color: "#6b7280", lineHeight: 1.4 }}>
+                <p style={{ margin: "0 0 0.3rem", fontSize: "0.76rem", color: "#475569", lineHeight: 1.5 }}>
                   {paper.abstract_summary.length > 100 ? paper.abstract_summary.slice(0, 100) + "..." : paper.abstract_summary}
                 </p>
               )}
@@ -82,7 +82,7 @@ export default function LatestResearch() {
                 <div style={{ display: "flex", gap: "0.3rem", flexWrap: "wrap" }}>
                   {paper.related_pages.slice(0, 2).map(slug => (
                     <Link key={slug} href={`/wiki/${slug}`}
-                      style={{ fontSize: "0.7rem", color: "#4f46e5", background: "#eef2ff", padding: "0.1rem 0.35rem", borderRadius: "9999px", textDecoration: "none" }}>
+                      style={{ fontSize: "0.68rem", color: "#6366f1", textDecoration: "none" }}>
                       🔗 {slug}
                     </Link>
                   ))}
