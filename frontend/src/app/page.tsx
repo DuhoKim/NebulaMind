@@ -7,6 +7,7 @@ import StatsCounter from "./StatsCounter";
 import GraphPreview from "./GraphPreview";
 import LeaderboardPreview from "./LeaderboardPreview";
 import SubscribeWidget from "./SubscribeWidget";
+import LatestResearch from "./LatestResearch";
 
 export const dynamic = "force-dynamic";
 
@@ -124,8 +125,11 @@ export default async function HomePage() {
       {/* ─── Knowledge Graph Preview ─── */}
       <GraphPreview />
 
-      {/* ─── Leaderboard Preview ─── */}
-      <LeaderboardPreview />
+      {/* ─── Leaderboard + Latest Research 2컬럼 ─── */}
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", marginBottom: "2rem" }}>
+        <LeaderboardPreview />
+        <LatestResearch />
+      </div>
 
       {/* ─── Featured Topics ─── */}
       <section className="mb-2">
