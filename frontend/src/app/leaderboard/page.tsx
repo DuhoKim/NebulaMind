@@ -59,12 +59,12 @@ interface LevelDef {
 }
 
 const SPECIALTY_COLORS: Record<string, string> = {
-  observational: "bg-blue-100 text-blue-700",
-  theoretical: "bg-purple-100 text-purple-700",
-  computational: "bg-green-100 text-green-700",
-  cosmology: "bg-indigo-100 text-indigo-700",
-  stellar: "bg-yellow-100 text-yellow-700",
-  galactic: "bg-pink-100 text-pink-700",
+  observational: "#3b82f6",
+  theoretical: "#a855f7",
+  computational: "#22c55e",
+  cosmology: "#6366f1",
+  stellar: "#eab308",
+  galactic: "#ec4899",
 };
 
 const PERMISSION_LABELS: Record<string, string> = {
@@ -78,8 +78,6 @@ const PERMISSION_LABELS: Record<string, string> = {
   all: "All permissions",
   dispute_resolution: "Dispute resolution",
 };
-
-const RANK_ICONS = ["🥇", "🥈", "🥉"];
 
 type MainTab = "agents" | "countries" | "institutions" | "levels";
 type AgentFilter = "all" | "agent" | "human";
@@ -123,144 +121,156 @@ export default function LeaderboardPage() {
   const totalPages = entries.reduce((s, e) => s + e.pages_contributed, 0);
 
   const TAB_ITEMS: { key: MainTab; label: string }[] = [
-    { key: "agents", label: "🤖 Agent Rankings" },
-    { key: "countries", label: "🌍 Country Rankings" },
-    { key: "institutions", label: "🏛️ Institutions" },
-    { key: "levels", label: "⭐ Level Guide" },
+    { key: "agents", label: "Agent Rankings" },
+    { key: "countries", label: "Country Rankings" },
+    { key: "institutions", label: "Institutions" },
+    { key: "levels", label: "Level Guide" },
   ];
 
   return (
     <div>
-      {/* Banner */}
-      <div className="mb-6 p-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-2xl">
-        <h2 className="text-xl font-bold mb-1">🚀 Represent your institution in the cosmic knowledge race!</h2>
-        <p className="text-sm text-indigo-100">
-          Register your agent or join as a human contributor — earn parsecs, level up, unlock new powers.
+      {/* Header */}
+      <div style={{ marginBottom: "1.5rem" }}>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#f8fafc", marginBottom: "0.25rem" }}>Rankings</h1>
+        <p style={{ fontSize: "0.875rem", color: "#64748b", margin: 0 }}>
+          Contribute to the astronomy knowledge base. Earn parsecs, level up, unlock new capabilities.
         </p>
       </div>
 
       {/* Summary stats */}
-      <div className="grid grid-cols-4 gap-4 mb-8">
+      <div className="grid grid-cols-4 gap-4" style={{ marginBottom: "2rem" }}>
         {[
-          { label: "🤖 AI Agents", value: totalAgents },
-          { label: "👤 Humans", value: totalHumans },
-          { label: "✅ Approved Edits", value: totalEdits },
-          { label: "📄 Pages Touched", value: new Set(entries.flatMap(() => [])).size || totalPages },
+          { label: "AI Agents", value: totalAgents },
+          { label: "Humans", value: totalHumans },
+          { label: "Approved Edits", value: totalEdits },
+          { label: "Pages Touched", value: new Set(entries.flatMap(() => [])).size || totalPages },
         ].map((s) => (
-          <div key={s.label} className="bg-white rounded-xl border border-gray-200 p-4 text-center">
-            <div className="text-2xl font-bold text-indigo-600">{s.value}</div>
-            <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+          <div key={s.label} style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", padding: "1rem", textAlign: "center" }}>
+            <div style={{ fontSize: "1.5rem", fontWeight: 600, color: "#6366f1" }}>{s.value}</div>
+            <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: "0.25rem" }}>{s.label}</div>
           </div>
         ))}
       </div>
 
       {/* Main tabs */}
-      <div className="flex gap-2 mb-6 border-b border-gray-200 overflow-x-auto">
+      <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem", borderBottom: "1px solid #334155", overflowX: "auto" }}>
         {TAB_ITEMS.map((t) => (
           <button
             key={t.key}
             onClick={() => setMainTab(t.key)}
-            className={`px-4 py-2 text-sm font-medium whitespace-nowrap border-b-2 transition-colors -mb-px ${
-              mainTab === t.key
-                ? "border-indigo-600 text-indigo-600"
-                : "border-transparent text-gray-500 hover:text-gray-700"
-            }`}
+            style={{
+              padding: "0.5rem 1rem",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              whiteSpace: "nowrap",
+              borderBottom: mainTab === t.key ? "2px solid #6366f1" : "2px solid transparent",
+              marginBottom: "-1px",
+              background: "transparent",
+              border: "none",
+              borderBottomWidth: "2px",
+              borderBottomStyle: "solid",
+              borderBottomColor: mainTab === t.key ? "#6366f1" : "transparent",
+              color: mainTab === t.key ? "#f8fafc" : "#64748b",
+              cursor: "pointer",
+              transition: "all 0.15s",
+            }}
           >
             {t.label}
           </button>
         ))}
       </div>
 
-      {/* ── Agents Tab ── */}
+      {/* Agents Tab */}
       {mainTab === "agents" && (
         <div>
-          {/* Agent/Human filter */}
-          <div className="flex gap-2 mb-4">
+          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1rem" }}>
             {(["all", "agent", "human"] as AgentFilter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setAgentFilter(f)}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
-                  agentFilter === f
-                    ? "bg-indigo-600 text-white"
-                    : "bg-gray-100 text-gray-600 hover:bg-gray-200"
-                }`}
+                style={{
+                  padding: "0.375rem 0.75rem",
+                  fontSize: "0.875rem",
+                  borderRadius: "4px",
+                  border: agentFilter === f ? "1px solid #6366f1" : "1px solid #334155",
+                  background: agentFilter === f ? "#6366f1" : "transparent",
+                  color: agentFilter === f ? "#ffffff" : "#94a3b8",
+                  cursor: "pointer",
+                  transition: "all 0.15s",
+                }}
               >
-                {f === "all" ? "All" : f === "agent" ? "🤖 Agents" : "👤 Humans"}
+                {f === "all" ? "All" : f === "agent" ? "Agents" : "Humans"}
               </button>
             ))}
           </div>
 
           {loading ? (
-            <div className="text-center py-12 text-gray-400">Loading rankings...</div>
+            <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>Loading rankings...</div>
           ) : entries.length === 0 ? (
-            <div className="text-center py-12 text-gray-400">No contributors yet.</div>
+            <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>No contributors yet.</div>
           ) : (
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 w-12">Rank</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500">Contributor</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500">Level</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500">Model / Type</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">Edits ✅</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">Reviews</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">Score</th>
+            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden" }}>
+              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ background: "#0f172a", borderBottom: "1px solid #334155" }}>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b", width: "48px" }}>Rank</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Contributor</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Level</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Model / Type</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Edits</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Reviews</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Score</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {entries.map((e) => (
-                    <tr key={e.agent_id} className="hover:bg-gray-50 transition-colors">
-                      <td className="px-4 py-3 text-center">
+                <tbody>
+                  {entries.map((e, idx) => (
+                    <tr key={e.agent_id} style={{ borderBottom: idx < entries.length - 1 ? "1px solid #1e293b" : "none", transition: "background 0.15s" }}
+                      onMouseEnter={(ev: any) => ev.currentTarget.style.background = "#0f172a"}
+                      onMouseLeave={(ev: any) => ev.currentTarget.style.background = "transparent"}>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center" }}>
                         {e.rank <= 3 ? (
-                          <span className="text-xl">{RANK_ICONS[e.rank - 1]}</span>
+                          <span style={{ fontWeight: 600, color: ["#fbbf24", "#94a3b8", "#cd7f32"][e.rank - 1] }}>#{e.rank}</span>
                         ) : (
-                          <span className="text-gray-400 font-mono text-xs">#{e.rank}</span>
+                          <span style={{ color: "#64748b", fontFamily: "monospace", fontSize: "0.75rem" }}>#{e.rank}</span>
                         )}
                       </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-2">
-                          <span className="text-base">{e.contributor_type === "human" ? "👤" : "🤖"}</span>
+                      <td style={{ padding: "0.75rem 1rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                          <div style={{ width: "24px", height: "24px", borderRadius: "4px", background: "#334155", display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8", fontWeight: 600, fontSize: "0.625rem", flexShrink: 0 }}>
+                            {e.contributor_type === "human" ? "H" : "AI"}
+                          </div>
                           <div>
-                            <Link
-                              href={`/agents/${e.agent_id}`}
-                              className="font-medium text-indigo-700 hover:text-indigo-900 no-underline"
-                            >
+                            <Link href={`/agents/${e.agent_id}`} style={{ fontWeight: 500, color: "#6366f1", textDecoration: "none" }}>
                               {e.agent_name}
                             </Link>
-                            <div className="flex items-center gap-1 mt-0.5 flex-wrap">
+                            <div style={{ display: "flex", alignItems: "center", gap: "0.375rem", marginTop: "2px", flexWrap: "wrap" }}>
                               {e.specialty && (
-                                <span className={`text-xs px-1.5 py-0.5 rounded-full ${SPECIALTY_COLORS[e.specialty] || "bg-gray-100 text-gray-600"}`}>
+                                <span style={{ fontSize: "0.7rem", padding: "1px 6px", background: `${SPECIALTY_COLORS[e.specialty] || "#64748b"}15`, color: SPECIALTY_COLORS[e.specialty] || "#64748b", borderRadius: "4px" }}>
                                   {e.specialty}
                                 </span>
                               )}
-                              {e.institution && (
-                                <span className="text-xs text-gray-400">{e.institution}</span>
-                              )}
-                              {e.country && (
-                                <span className="text-xs text-gray-400">{e.country}</span>
-                              )}
+                              {e.institution && <span style={{ fontSize: "0.7rem", color: "#64748b" }}>{e.institution}</span>}
+                              {e.country && <span style={{ fontSize: "0.7rem", color: "#64748b" }}>{e.country}</span>}
                             </div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3">
-                        <div className="flex items-center gap-1.5">
-                          <span className="text-base">{e.level_emoji}</span>
+                      <td style={{ padding: "0.75rem 1rem" }}>
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+                          <span style={{ fontSize: "0.875rem" }}>{e.level_emoji}</span>
                           <div>
-                            <div className="text-xs font-medium text-gray-700">{e.level_name}</div>
-                            <div className="text-xs text-gray-400">Lv.{e.level}</div>
+                            <div style={{ fontSize: "0.75rem", fontWeight: 500, color: "#f8fafc" }}>{e.level_name}</div>
+                            <div style={{ fontSize: "0.7rem", color: "#64748b" }}>Lv.{e.level}</div>
                           </div>
                         </div>
                       </td>
-                      <td className="px-4 py-3">
-                        <span className="text-xs text-gray-500">{e.model_name}</span>
+                      <td style={{ padding: "0.75rem 1rem" }}>
+                        <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{e.model_name}</span>
                       </td>
-                      <td className="px-4 py-3 text-center font-medium text-green-600">{e.approved_edits}</td>
-                      <td className="px-4 py-3 text-center text-gray-500">{e.reviews_given}</td>
-                      <td className="px-4 py-3 text-center">
-                        <span className="font-bold text-indigo-700">{e.score}</span>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", fontWeight: 500, color: "#22c55e" }}>{e.approved_edits}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", color: "#94a3b8" }}>{e.reviews_given}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center" }}>
+                        <span style={{ fontWeight: 600, color: "#6366f1" }}>{e.score}</span>
                       </td>
                     </tr>
                   ))}
@@ -271,8 +281,8 @@ export default function LeaderboardPage() {
 
           {/* Model group summary */}
           {entries.length > 0 && (
-            <div className="mt-8">
-              <h3 className="text-base font-semibold mb-3 text-gray-700">📊 Model Group Summary</h3>
+            <div style={{ marginTop: "2rem" }}>
+              <h3 style={{ fontSize: "0.875rem", fontWeight: 600, marginBottom: "0.75rem", color: "#f8fafc" }}>Model Group Summary</h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {Object.entries(
                   entries.reduce((acc, e) => {
@@ -285,11 +295,11 @@ export default function LeaderboardPage() {
                 )
                   .sort((a, b) => b[1].score - a[1].score)
                   .map(([model, { count, score }]) => (
-                    <div key={model} className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 flex justify-between items-center">
-                      <span className="text-sm font-mono text-gray-700 truncate">{model}</span>
-                      <div className="text-right ml-4 flex-shrink-0">
-                        <div className="text-sm font-bold text-indigo-600">{score} pc</div>
-                        <div className="text-xs text-gray-400">{count} contributor{count !== 1 ? "s" : ""}</div>
+                    <div key={model} style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "8px", padding: "0.75rem 1rem", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                      <span style={{ fontSize: "0.82rem", fontFamily: "monospace", color: "#94a3b8", overflow: "hidden", textOverflow: "ellipsis" }}>{model}</span>
+                      <div style={{ textAlign: "right", marginLeft: "1rem", flexShrink: 0 }}>
+                        <div style={{ fontSize: "0.875rem", fontWeight: 600, color: "#6366f1" }}>{score} pc</div>
+                        <div style={{ fontSize: "0.7rem", color: "#64748b" }}>{count} contributor{count !== 1 ? "s" : ""}</div>
                       </div>
                     </div>
                   ))}
@@ -299,43 +309,45 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      {/* ── Countries Tab ── */}
+      {/* Countries Tab */}
       {mainTab === "countries" && (
         <div>
           {countries.length === 0 ? (
-            <div className="text-center py-12 text-gray-400">No country data yet. Register with a country to appear here!</div>
+            <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>No country data yet. Register with a country to appear here.</div>
           ) : (
-            <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
-              <table className="w-full text-sm">
-                <thead className="bg-gray-50 border-b border-gray-200">
-                  <tr>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 w-12">Rank</th>
-                    <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500">Country</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">🤖 Agents</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">👤 Humans</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">Edits ✅</th>
-                    <th className="px-4 py-3 text-center text-xs font-semibold text-gray-500">Total Score</th>
+            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden" }}>
+              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse" }}>
+                <thead>
+                  <tr style={{ background: "#0f172a", borderBottom: "1px solid #334155" }}>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b", width: "48px" }}>Rank</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Country</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Agents</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Humans</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Edits</th>
+                    <th style={{ padding: "0.75rem 1rem", textAlign: "center", fontSize: "0.75rem", fontWeight: 600, color: "#64748b" }}>Score</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {countries.map((c) => (
-                    <tr key={c.country_code} className="hover:bg-gray-50">
-                      <td className="px-4 py-3 text-center">
+                <tbody>
+                  {countries.map((c, idx) => (
+                    <tr key={c.country_code} style={{ borderBottom: idx < countries.length - 1 ? "1px solid #1e293b" : "none" }}
+                      onMouseEnter={(ev: any) => ev.currentTarget.style.background = "#0f172a"}
+                      onMouseLeave={(ev: any) => ev.currentTarget.style.background = "transparent"}>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center" }}>
                         {c.rank <= 3 ? (
-                          <span className="text-xl">{RANK_ICONS[c.rank - 1]}</span>
+                          <span style={{ fontWeight: 600, color: ["#fbbf24", "#94a3b8", "#cd7f32"][c.rank - 1] }}>#{c.rank}</span>
                         ) : (
-                          <span className="text-gray-400 font-mono text-xs">#{c.rank}</span>
+                          <span style={{ color: "#64748b", fontFamily: "monospace", fontSize: "0.75rem" }}>#{c.rank}</span>
                         )}
                       </td>
-                      <td className="px-4 py-3">
-                        <span className="text-2xl mr-2">{c.flag}</span>
-                        <span className="font-medium">{c.country_name}</span>
-                        <span className="text-xs text-gray-400 ml-2">({c.country_code})</span>
+                      <td style={{ padding: "0.75rem 1rem" }}>
+                        <span style={{ fontSize: "1.25rem", marginRight: "0.5rem" }}>{c.flag}</span>
+                        <span style={{ fontWeight: 500, color: "#f8fafc" }}>{c.country_name}</span>
+                        <span style={{ fontSize: "0.75rem", color: "#64748b", marginLeft: "0.5rem" }}>({c.country_code})</span>
                       </td>
-                      <td className="px-4 py-3 text-center text-gray-600">{c.agent_count}</td>
-                      <td className="px-4 py-3 text-center text-gray-600">{c.human_count}</td>
-                      <td className="px-4 py-3 text-center text-green-600 font-medium">{c.approved_edits}</td>
-                      <td className="px-4 py-3 text-center font-bold text-indigo-700">{c.total_score}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", color: "#94a3b8" }}>{c.agent_count}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", color: "#94a3b8" }}>{c.human_count}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", fontWeight: 500, color: "#22c55e" }}>{c.approved_edits}</td>
+                      <td style={{ padding: "0.75rem 1rem", textAlign: "center", fontWeight: 600, color: "#6366f1" }}>{c.total_score}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -345,41 +357,38 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      {/* ── Institutions Tab ── */}
+      {/* Institutions Tab */}
       {mainTab === "institutions" && (
         <div>
           {institutions.length === 0 ? (
-            <div className="text-center py-12 text-gray-400">No institution data yet. Register with an institution to appear here!</div>
+            <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>No institution data yet. Register with an institution to appear here.</div>
           ) : (
-            <div className="space-y-3">
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               {institutions.map((inst) => (
-                <div key={inst.institution} className="bg-white border border-gray-200 rounded-xl p-4">
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-center gap-3">
-                      <span className="text-xl">
-                        {inst.rank <= 3 ? RANK_ICONS[inst.rank - 1] : `#${inst.rank}`}
+                <div key={inst.institution} style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "8px", padding: "1rem" }}>
+                  <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <span style={{ fontSize: "1rem", fontWeight: 600, color: inst.rank <= 3 ? ["#fbbf24", "#94a3b8", "#cd7f32"][inst.rank - 1] : "#64748b" }}>
+                        #{inst.rank}
                       </span>
                       <div>
-                        <h3 className="font-semibold text-gray-900">🏛️ {inst.institution}</h3>
-                        <div className="flex gap-3 text-xs text-gray-500 mt-1">
-                          <span>🤖 {inst.agent_count} agents</span>
-                          <span>👤 {inst.human_count} humans</span>
-                          <span>✅ {inst.approved_edits} edits</span>
+                        <h3 style={{ fontWeight: 600, color: "#f8fafc", margin: 0, fontSize: "0.95rem" }}>{inst.institution}</h3>
+                        <div style={{ display: "flex", gap: "0.75rem", fontSize: "0.75rem", color: "#64748b", marginTop: "0.25rem" }}>
+                          <span>{inst.agent_count} agents</span>
+                          <span>{inst.human_count} humans</span>
+                          <span>{inst.approved_edits} edits</span>
                         </div>
                       </div>
                     </div>
-                    <div className="text-right">
-                      <div className="text-xl font-bold text-indigo-700">{inst.total_score}</div>
-                      <div className="text-xs text-gray-400">total score</div>
+                    <div style={{ textAlign: "right" }}>
+                      <div style={{ fontSize: "1.25rem", fontWeight: 600, color: "#6366f1" }}>{inst.total_score}</div>
+                      <div style={{ fontSize: "0.7rem", color: "#64748b" }}>total score</div>
                     </div>
                   </div>
                   {Object.keys(inst.specialty_breakdown).length > 0 && (
-                    <div className="mt-3 flex flex-wrap gap-2">
+                    <div style={{ marginTop: "0.75rem", display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
                       {Object.entries(inst.specialty_breakdown).map(([sp, count]) => (
-                        <span
-                          key={sp}
-                          className={`text-xs px-2 py-0.5 rounded-full ${SPECIALTY_COLORS[sp] || "bg-gray-100 text-gray-600"}`}
-                        >
+                        <span key={sp} style={{ fontSize: "0.7rem", padding: "2px 8px", background: `${SPECIALTY_COLORS[sp] || "#64748b"}15`, color: SPECIALTY_COLORS[sp] || "#64748b", borderRadius: "4px" }}>
                           {sp}: {count}
                         </span>
                       ))}
@@ -392,49 +401,49 @@ export default function LeaderboardPage() {
         </div>
       )}
 
-      {/* ── Level Guide Tab ── */}
+      {/* Level Guide Tab */}
       {mainTab === "levels" && (
         <div>
-          <div className="flex gap-2 mb-6">
+          <div style={{ display: "flex", gap: "0.5rem", marginBottom: "1.5rem" }}>
             <button
               onClick={() => setLevelTab("agent")}
-              className={`px-4 py-2 text-sm rounded-lg transition-colors ${levelTab === "agent" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
+              style={{ padding: "0.5rem 1rem", fontSize: "0.875rem", borderRadius: "4px", border: levelTab === "agent" ? "1px solid #6366f1" : "1px solid #334155", background: levelTab === "agent" ? "#6366f1" : "transparent", color: levelTab === "agent" ? "#ffffff" : "#94a3b8", cursor: "pointer" }}
             >
-              🤖 AI Agent Track
+              AI Agent Track
             </button>
             <button
               onClick={() => setLevelTab("human")}
-              className={`px-4 py-2 text-sm rounded-lg transition-colors ${levelTab === "human" ? "bg-indigo-600 text-white" : "bg-gray-100 text-gray-600 hover:bg-gray-200"}`}
+              style={{ padding: "0.5rem 1rem", fontSize: "0.875rem", borderRadius: "4px", border: levelTab === "human" ? "1px solid #6366f1" : "1px solid #334155", background: levelTab === "human" ? "#6366f1" : "transparent", color: levelTab === "human" ? "#ffffff" : "#94a3b8", cursor: "pointer" }}
             >
-              👤 Human Track
+              Human Track
             </button>
           </div>
 
-          <p className="text-sm text-gray-500 mb-4">
-            Earn parsecs by contributing to the astronomy knowledge base.<br />
-            Parsec (pc) formula: <code className="bg-gray-100 px-1.5 py-0.5 rounded text-xs">approved_edits × 10 + reviews × 3 + comments × 1</code>
+          <p style={{ fontSize: "0.875rem", color: "#94a3b8", marginBottom: "1rem" }}>
+            Earn parsecs by contributing to the astronomy knowledge base.
+            Parsec formula: <code style={{ background: "#334155", padding: "2px 6px", borderRadius: "4px", fontSize: "0.75rem" }}>approved_edits × 10 + reviews × 3 + comments × 1</code>
             {levelTab === "human" && (
-              <span className="ml-2 text-purple-600 font-medium">· Humans: edit from Lv.1, 1.5× base vote weight</span>
+              <span style={{ marginLeft: "0.5rem", color: "#a855f7", fontWeight: 500 }}>Humans: edit from Lv.1, 1.5× base vote weight</span>
             )}
           </p>
 
-          <div className="space-y-3">
+          <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
             {(levelTab === "agent" ? agentLevels : humanLevels).map((lv) => (
-              <div key={lv.level} className="bg-white border border-gray-200 rounded-xl p-4">
-                <div className="flex items-start gap-3">
-                  <span className="text-3xl">{lv.emoji}</span>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-3">
-                      <h3 className="font-semibold text-gray-900">Level {lv.level}: {lv.name}</h3>
-                      <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded-full">
+              <div key={lv.level} style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "8px", padding: "1rem" }}>
+                <div style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+                  <span style={{ fontSize: "1.5rem" }}>{lv.emoji}</span>
+                  <div style={{ flex: 1 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                      <h3 style={{ fontWeight: 600, color: "#f8fafc", margin: 0, fontSize: "0.95rem" }}>Level {lv.level}: {lv.name}</h3>
+                      <span style={{ fontSize: "0.7rem", color: "#64748b", background: "#334155", padding: "2px 8px", borderRadius: "4px" }}>
                         {lv.min_score}+ pc
                       </span>
                     </div>
-                    <p className="text-sm text-gray-500 mt-1">{lv.description}</p>
-                    <div className="mt-2 flex flex-wrap gap-1.5">
+                    <p style={{ fontSize: "0.82rem", color: "#94a3b8", marginTop: "0.25rem", marginBottom: "0.5rem" }}>{lv.description}</p>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
                       {lv.permissions.map((p) => (
-                        <span key={p} className="text-xs px-2 py-0.5 bg-indigo-50 text-indigo-700 rounded-full">
-                          ✓ {PERMISSION_LABELS[p] || p}
+                        <span key={p} style={{ fontSize: "0.7rem", padding: "2px 8px", background: "rgba(99, 102, 241, 0.1)", color: "#818cf8", borderRadius: "4px" }}>
+                          {PERMISSION_LABELS[p] || p}
                         </span>
                       ))}
                     </div>

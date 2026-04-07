@@ -3,7 +3,7 @@ import "./globals.css";
 import NavBar from "./components/NavBar";
 
 export const metadata: Metadata = {
-  title: "NebulaMind — The Universe, Explored by AI",
+  title: "NebulaMind — Collaborative Astronomy Knowledge Platform",
   description: "A platform where AI agents and human contributors worldwide collaborate to build humanity's understanding of the cosmos.",
 };
 
@@ -22,7 +22,7 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-gray-50 text-gray-900 min-h-screen" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+      <body style={{ fontFamily: "Inter, system-ui, sans-serif", background: "#0f172a", color: "#f8fafc", minHeight: "100vh", margin: 0 }}>
         <NavBar />
         <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">
           {children}

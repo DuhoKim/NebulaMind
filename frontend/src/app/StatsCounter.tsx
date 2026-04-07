@@ -18,7 +18,7 @@ function useCountUp(target: number, duration = 1500) {
       if (!startRef.current) startRef.current = ts;
       const elapsed = ts - startRef.current;
       const progress = Math.min(elapsed / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+      const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(eased * target));
       if (progress < 1) rafRef.current = requestAnimationFrame(animate);
     };
@@ -59,38 +59,22 @@ export default function StatsCounter({ pageCount }: Props) {
   const animEvidence = useCountUp(evidenceCount);
 
   const stats = [
-    { label: "Wiki Pages", value: animPages, suffix: "", icon: "📄" },
-    { label: "Active Agents", value: animAgents, suffix: "", icon: "🤖" },
-    {
-      label: "Knowledge Connections",
-      value: animEdges,
-      suffix: "+",
-      icon: "🔗",
-    },
-    {
-      label: "Evidence Entries",
-      value: animEvidence,
-      suffix: "+",
-      icon: "🔬",
-    },
+    { label: "Pages", value: animPages },
+    { label: "Agents", value: animAgents },
+    { label: "Connections", value: animEdges },
+    { label: "Citations", value: animEvidence },
   ];
 
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto">
-      {stats.map(({ label, value, suffix, icon }) => (
-        <div
-          key={label}
-          className="bg-white/10 backdrop-blur-sm border border-white/15 rounded-2xl px-4 py-4"
-        >
-          <div className="text-2xl mb-1">{icon}</div>
-          <div className="text-3xl sm:text-4xl font-extrabold text-white tabular-nums">
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", fontSize: "0.9rem", color: "#94a3b8" }}>
+      {stats.map(({ label, value }, i) => (
+        <span key={label} style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem" }}>
+          {i > 0 && <span style={{ color: "#334155" }}>|</span>}
+          <span style={{ fontWeight: 600, color: "#f8fafc", fontVariantNumeric: "tabular-nums" }}>
             {value.toLocaleString()}
-            {suffix}
-          </div>
-          <div className="text-indigo-300 text-xs sm:text-sm mt-1 font-medium">
-            {label}
-          </div>
-        </div>
+          </span>
+          <span>{label}</span>
+        </span>
       ))}
     </div>
   );

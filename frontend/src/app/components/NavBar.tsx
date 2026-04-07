@@ -3,19 +3,18 @@
 import { useState, useRef } from "react";
 
 const EXPLORE_LINKS = [
-  { href: "/explore/cards", label: "🃏 Cards" },
-  { href: "/explore/qa", label: "❓ Q&A" },
-  { href: "/explore/chat", label: "💬 Chat" },
-  { href: "/explore/graph", label: "🕸️ Graph" },
+  { href: "/explore/cards", label: "Cards" },
+  { href: "/explore/qa", label: "Q&A" },
+  { href: "/explore/chat", label: "Chat" },
+  { href: "/explore/graph", label: "Graph" },
 ];
 
 const NAV_LINKS = [
-  { href: "/agents", label: "🤖 Agents" },
-  { href: "/leaderboard", label: "🏆 Leaderboard" },
-  { href: "/research", label: "📡 Research" },
-  { href: "/contribute", label: "🚀 Contribute" },
+  { href: "/agents", label: "Agents" },
+  { href: "/leaderboard", label: "Leaderboard" },
+  { href: "/research", label: "Research" },
+  { href: "/contribute", label: "Contribute" },
   { href: "/feedback", label: "Feedback" },
-  { href: "/april-fools", label: "🎉 April Fools" },
 ];
 
 export default function NavBar() {
@@ -33,15 +32,19 @@ export default function NavBar() {
   };
 
   return (
-    <header className="border-b border-gray-200 bg-white sticky top-0 z-40">
+    <header style={{ borderBottom: "1px solid #334155", background: "#0f172a", position: "sticky", top: 0, zIndex: 40 }}>
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <a href="/" className="no-underline text-inherit">
-          <h1 className="text-xl font-bold tracking-tight">🌌 NebulaMind</h1>
+          <span style={{ fontWeight: 600, fontSize: "1.1rem", color: "#f8fafc", letterSpacing: "-0.025em" }}>
+            NebulaMind
+          </span>
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex gap-4 text-sm items-center">
-          <a href="/" className="text-gray-600 hover:text-gray-900 transition-colors">
+        <nav className="hidden md:flex gap-6 text-sm items-center">
+          <a href="/" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
             Home
           </a>
 
@@ -53,18 +56,22 @@ export default function NavBar() {
           >
             <a
               href="/explore"
-              className="text-indigo-600 font-medium hover:text-indigo-800 transition-colors flex items-center gap-0.5"
+              style={{ color: "#94a3b8", fontWeight: 500, textDecoration: "none", display: "flex", alignItems: "center", gap: "2px", transition: "color 0.15s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
             >
-              🔭 Explore
-              <span className="text-xs text-indigo-400 ml-0.5">▾</span>
+              Explore
+              <span style={{ fontSize: "0.7rem", color: "#64748b", marginLeft: "2px" }}>▾</span>
             </a>
             {exploreOpen && (
-              <div className="absolute top-full left-0 mt-1.5 bg-white border border-gray-200 rounded-xl shadow-lg py-1 min-w-[150px] z-50">
+              <div style={{ position: "absolute", top: "100%", left: 0, marginTop: "6px", background: "#1e293b", border: "1px solid #334155", borderRadius: "6px", boxShadow: "0 4px 12px rgba(0,0,0,0.3)", padding: "4px 0", minWidth: "140px", zIndex: 50 }}>
                 {EXPLORE_LINKS.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    className="block px-4 py-2 text-sm text-gray-700 hover:bg-indigo-50 hover:text-indigo-600 transition-colors"
+                    style={{ display: "block", padding: "8px 16px", fontSize: "0.875rem", color: "#94a3b8", textDecoration: "none", transition: "all 0.15s" }}
+                    onMouseEnter={e => { e.currentTarget.style.background = "#334155"; e.currentTarget.style.color = "#f8fafc"; }}
+                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#94a3b8"; }}
                   >
                     {link.label}
                   </a>
@@ -77,7 +84,9 @@ export default function NavBar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-gray-600 hover:text-gray-900 transition-colors"
+              style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
+              onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
+              onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
             >
               {link.label}
             </a>
@@ -86,7 +95,8 @@ export default function NavBar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-gray-600 hover:text-gray-900 text-xl px-2 py-1 rounded-lg hover:bg-gray-100 transition-colors"
+          className="md:hidden"
+          style={{ color: "#94a3b8", fontSize: "1.25rem", padding: "4px 8px", borderRadius: "4px", border: "none", background: "transparent", cursor: "pointer" }}
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Toggle menu"
         >
@@ -96,42 +106,23 @@ export default function NavBar() {
 
       {/* Mobile dropdown */}
       {menuOpen && (
-        <div className="md:hidden border-t border-gray-100 bg-white shadow-sm">
+        <div className="md:hidden" style={{ borderTop: "1px solid #334155", background: "#1e293b" }}>
           <div className="max-w-5xl mx-auto px-4 py-3 flex flex-col">
-            <a
-              href="/"
-              className="py-2.5 px-2 text-gray-600 hover:text-gray-900 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
+            <a href="/" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
               Home
             </a>
-            <a
-              href="/explore"
-              className="py-2.5 px-2 text-indigo-600 font-medium text-sm rounded-lg hover:bg-indigo-50 transition-colors"
-              onClick={() => setMenuOpen(false)}
-            >
-              🔭 Explore
+            <a href="/explore" style={{ padding: "10px 8px", color: "#f8fafc", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
+              Explore
             </a>
-            {/* Explore sub-links indented */}
-            <div className="pl-5 flex flex-col border-l-2 border-indigo-100 ml-2 my-1">
+            <div style={{ paddingLeft: "20px", display: "flex", flexDirection: "column", borderLeft: "2px solid #334155", marginLeft: "8px", margin: "4px 0 4px 8px" }}>
               {EXPLORE_LINKS.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="py-2 text-gray-500 hover:text-indigo-600 text-sm transition-colors"
-                  onClick={() => setMenuOpen(false)}
-                >
+                <a key={link.href} href={link.href} style={{ padding: "8px 0", color: "#64748b", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
                   {link.label}
                 </a>
               ))}
             </div>
             {NAV_LINKS.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="py-2.5 px-2 text-gray-600 hover:text-gray-900 text-sm rounded-lg hover:bg-gray-50 transition-colors"
-                onClick={() => setMenuOpen(false)}
-              >
+              <a key={link.href} href={link.href} style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
                 {link.label}
               </a>
             ))}
