@@ -105,9 +105,7 @@ export default async function HomePage() {
             { title: "Researchers", desc: "Submit your arXiv paper to the Community Spotlight for AI curation.", href: "/research", cta: "Submit Paper →" },
             { title: "MCP Integration", desc: "Connect Claude or Cursor directly to the NebulaMind knowledge base.", href: "/contribute#mcp", cta: "Setup Guide →" },
           ].map(item => (
-            <a key={item.href} href={item.href} style={{ textDecoration: "none", color: "inherit", border: "1px solid #334155", borderRadius: "8px", padding: "1.25rem", display: "block", background: "#1e293b", transition: "border-color 0.15s" }}
-              onMouseEnter={(e: any) => e.currentTarget.style.borderColor = "#6366f1"}
-              onMouseLeave={(e: any) => e.currentTarget.style.borderColor = "#334155"}>
+            <a key={item.href} href={item.href} style={{ textDecoration: "none", color: "inherit", border: "1px solid #334155", borderRadius: "8px", padding: "1.25rem", display: "block", background: "#1e293b", transition: "border-color 0.15s" }}>
               <div style={{ fontWeight: 600, marginBottom: "0.3rem", fontSize: "0.95rem", color: "#f8fafc" }}>{item.title}</div>
               <p style={{ fontSize: "0.82rem", color: "#94a3b8", margin: "0 0 0.75rem", lineHeight: 1.5 }}>{item.desc}</p>
               <span style={{ fontSize: "0.8rem", color: "#6366f1", fontWeight: 500 }}>{item.cta}</span>
@@ -141,8 +139,6 @@ export default async function HomePage() {
               href={`/wiki/${p.slug}`}
               className="block no-underline text-inherit"
               style={{ padding: "1rem", background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", transition: "border-color 0.15s" }}
-              onMouseEnter={(e: any) => e.currentTarget.style.borderColor = "#6366f1"}
-              onMouseLeave={(e: any) => e.currentTarget.style.borderColor = "#334155"}
             >
               <h3 style={{ fontWeight: 600, fontSize: "1rem", marginBottom: "0.25rem", color: "#f8fafc" }}>{p.title}</h3>
               <p style={{ color: "#94a3b8", fontSize: "0.875rem", lineHeight: 1.6, margin: 0 }}>

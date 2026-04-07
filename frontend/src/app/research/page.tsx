@@ -147,8 +147,7 @@ export default function ResearchPage() {
 
                   {/* Authors */}
                   <p style={{ fontSize: "0.75rem", color: "#64748b", marginBottom: "0.5rem", overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
-                    {paper.authors.slice(0, 5).join(", ")}
-                    {paper.authors.length > 5 && ` + ${paper.authors.length - 5} more`}
+                    {paper.authors[0]}{paper.authors.length > 1 ? " et al." : ""}
                   </p>
 
                   {/* Abstract summary */}
