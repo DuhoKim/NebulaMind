@@ -82,21 +82,17 @@ export default function FeaturedTopics() {
 
   useEffect(() => {
     const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
-    Promise.all([
-      fetch(`${API_BASE}/api/pages`).then((r) => r.json()),
-      fetch(`${API_BASE}/api/edits`).then((r) => r.json()),
-    ])
-      .then(([pages, edits]: [WikiPage[], EditRecord[]]) => {
-        const countMap: Record<number, number> = {};
-        for (const e of edits) {
-          countMap[e.page_id] = (countMap[e.page_id] || 0) + 1;
-        }
-        const enriched: FeaturedPage[] = pages.map((p) => ({
-          ...p,
-          editCount: countMap[p.id] || 0,
+    fetch(`${API_BASE}/api/explore/cards?featured=true`)
+      .then((r) => r.json())
+      .then((cards: any[]) => {
+        const enriched: FeaturedPage[] = cards.map((c: any) => ({
+          id: c.id,
+          title: c.title,
+          slug: c.slug,
+          content: c.summary || "",
+          editCount: c.edit_count || 0,
         }));
-        enriched.sort((a, b) => b.editCount - a.editCount);
-        setFeatured(enriched.slice(0, 6));
+        setFeatured(enriched.slice(0, 10));
       })
       .catch(() => setFeatured([]))
       .finally(() => setLoading(false));
@@ -141,7 +137,7 @@ export default function FeaturedTopics() {
             <div className="flex items-start justify-between mb-2">
               <span className="text-3xl">{getEmoji(page.title)}</span>
               <span className="text-xs font-semibold bg-indigo-100 text-indigo-700 px-2 py-0.5 rounded-full">
-                편집 {page.editCount}회
+                {page.editCount} edits
               </span>
             </div>
             <h3 className="font-bold text-base mb-1 group-hover:text-indigo-700 transition-colors">
