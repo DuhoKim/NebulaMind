@@ -439,26 +439,175 @@ def _generate_qa_for_page(db, agent, page, max_questions=3):
     return created
 
 
-def _run_editor(db, agent: Agent):
-    """Pick a page (or create a new topic) and propose an edit."""
-    pages = db.query(WikiPage).all()
-    create_new = random.random() < 0.5 or not pages
+def _pick_weak_page(db) -> "WikiPage | None":
+    """Pick the page most in need of improvement.
+    Priority: 1) empty content, 2) short content (<500 chars), 3) oldest updated.
+    """
+    from sqlalchemy import func
 
-    if create_new:
-        topic = random.choice(NEW_TOPICS)
-        # Check if page already exists for this topic
-        slug = _slugify(topic)
-        existing = db.query(WikiPage).filter(WikiPage.slug == slug).first()
-        if existing:
-            page = existing
-            create_new = False
+    # 1. Empty pages first
+    empty = db.query(WikiPage).filter(
+        (WikiPage.content == None) | (WikiPage.content == "")
+    ).first()
+    if empty:
+        return empty
+
+    # 2. Short pages (< 500 chars)
+    all_pages = db.query(WikiPage).all()
+    short_pages = [p for p in all_pages if p.content and len(p.content) < 500]
+    if short_pages:
+        return random.choice(short_pages)
+
+    # 3. Page with fewest approved edits
+    edit_counts = (
+        db.query(EditProposal.page_id, func.count(EditProposal.id).label("cnt"))
+        .filter(EditProposal.status == EditStatus.APPROVED)
+        .group_by(EditProposal.page_id)
+        .all()
+    )
+    edit_map = {row.page_id: row.cnt for row in edit_counts}
+    if all_pages:
+        return min(all_pages, key=lambda p: edit_map.get(p.id, 0))
+
+    return None
+
+
+def _discover_new_topic(db) -> "str | None":
+    """Find a new topic from arXiv papers not yet covered in the wiki."""
+    from app.models.arxiv import ArxivPaper
+    import re
+
+    # Get existing slugs
+    existing_slugs = {p.slug for p in db.query(WikiPage).all()}
+
+    # Scan recent arXiv titles for candidate topics
+    papers = db.query(ArxivPaper).order_by(ArxivPaper.id.desc()).limit(100).all()
+    candidate_freq: dict[str, int] = {}
+    topic_patterns = [
+        r'\b(magnetar[s]?)\b',
+        r'\b(fast radio burst[s]?)\b',
+        r'\b(neutron star[s]?)\b',
+        r'\b(black hole[s]?)\b',
+        r'\b(gravitational wave[s]?)\b',
+        r'\b(dark matter)\b',
+        r'\b(dark energy)\b',
+        r'\b(exoplanet[s]?)\b',
+        r'\b(galaxy cluster[s]?)\b',
+        r'\b(cosmic inflation)\b',
+        r'\b(stellar evolution)\b',
+        r'\b(supernova[e]?)\b',
+        r'\b(pulsar[s]?)\b',
+        r'\b(quasar[s]?)\b',
+        r'\b(gamma.ray burst[s]?)\b',
+        r'\b(active galactic nuclei?)\b',
+        r'\b(interstellar medium)\b',
+        r'\b(planetary formation)\b',
+        r'\b(stellar nursery|stellar nurseries)\b',
+        r'\b(cosmic web)\b',
+        r'\b(reionization)\b',
+        r'\b(baryon acoustic oscillation[s]?)\b',
+        r'\b(gravitational lensing)\b',
+        r'\b(accretion dis[ck])\b',
+        r'\b(red giant[s]?)\b',
+    ]
+    title_to_canonical = {
+        'magnetar': 'Magnetars', 'magnetars': 'Magnetars',
+        'fast radio burst': 'Fast Radio Bursts', 'fast radio bursts': 'Fast Radio Bursts',
+        'neutron star': 'Neutron Stars', 'neutron stars': 'Neutron Stars',
+        'black hole': 'Black Holes', 'black holes': 'Black Holes',
+        'gravitational wave': 'Gravitational Waves', 'gravitational waves': 'Gravitational Waves',
+        'dark matter': 'Dark Matter', 'dark energy': 'Dark Energy',
+        'exoplanet': 'Exoplanets', 'exoplanets': 'Exoplanets',
+        'galaxy cluster': 'Galaxy Clusters', 'galaxy clusters': 'Galaxy Clusters',
+        'cosmic inflation': 'Cosmic Inflation',
+        'stellar evolution': 'Stellar Evolution',
+        'supernova': 'Supernovae', 'supernovae': 'Supernovae',
+        'pulsar': 'Pulsars', 'pulsars': 'Pulsars',
+        'quasar': 'Quasars', 'quasars': 'Quasars',
+        'gamma-ray burst': 'Gamma-ray Bursts', 'gamma-ray bursts': 'Gamma-ray Bursts',
+        'gamma ray burst': 'Gamma-ray Bursts', 'gamma ray bursts': 'Gamma-ray Bursts',
+        'active galactic nucleus': 'Active Galactic Nuclei', 'active galactic nuclei': 'Active Galactic Nuclei',
+        'interstellar medium': 'Interstellar Medium',
+        'planetary formation': 'Planetary Formation',
+        'stellar nursery': 'Stellar Nurseries', 'stellar nurseries': 'Stellar Nurseries',
+        'cosmic web': 'Cosmic Web',
+        'reionization': 'Reionization',
+        'baryon acoustic oscillation': 'Baryon Acoustic Oscillations',
+        'baryon acoustic oscillations': 'Baryon Acoustic Oscillations',
+        'gravitational lensing': 'Gravitational Lensing',
+        'accretion disk': 'Accretion Disks', 'accretion disc': 'Accretion Disks',
+        'red giant': 'Red Giants', 'red giants': 'Red Giants',
+    }
+
+    for paper in papers:
+        text = (paper.title + " " + (paper.abstract or "")).lower()
+        for pattern in topic_patterns:
+            match = re.search(pattern, text, re.IGNORECASE)
+            if match:
+                key = match.group(1).lower()
+                canonical = title_to_canonical.get(key)
+                if canonical:
+                    slug = _slugify(canonical)
+                    if slug not in existing_slugs:
+                        candidate_freq[canonical] = candidate_freq.get(canonical, 0) + 1
+
+    if candidate_freq:
+        # Return the most frequently mentioned new topic
+        return max(candidate_freq, key=lambda k: candidate_freq[k])
+    return None
+
+
+def _run_editor(db, agent: Agent):
+    """Pick a page (or create a new topic) and propose an edit.
+
+    Strategy (priority order):
+    1. 20% chance: discover a new topic from arXiv trends
+    2. 40% chance: pick the weakest existing page (empty/short/least-edited)
+    3. 40% chance: random page
+    """
+    pages = db.query(WikiPage).all()
+    create_new = False
+    page = None
+    rand = random.random()
+
+    if rand < 0.20:
+        # Try to discover a new topic from arXiv
+        new_topic = _discover_new_topic(db)
+        if new_topic:
+            slug = _slugify(new_topic)
+            existing = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+            if existing:
+                page = existing
+            else:
+                page = WikiPage(title=new_topic, slug=slug, content="")
+                db.add(page)
+                db.flush()
+                create_new = True
+                print(f"[{agent.name}] arXiv-discovered new topic: {new_topic}")
+
+    if page is None and rand < 0.60:
+        # Pick weakest page
+        page = _pick_weak_page(db)
+        if page and not page.content:
+            create_new = True
+
+    if page is None:
+        # Random fallback
+        if pages:
+            page = random.choice(pages)
         else:
-            page = WikiPage(title=topic, slug=slug, content="")
-            db.add(page)
-            db.flush()
-            print(f"[{agent.name}] Created new page: {topic}")
-    else:
-        page = random.choice(pages)
+            # Last resort: pick from NEW_TOPICS
+            topic = random.choice(NEW_TOPICS)
+            slug = _slugify(topic)
+            existing = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+            if existing:
+                page = existing
+            else:
+                page = WikiPage(title=topic, slug=slug, content="")
+                db.add(page)
+                db.flush()
+                create_new = True
+                print(f"[{agent.name}] Created new page: {topic}")
 
     system_prompt = _build_system_prompt(agent)
 
