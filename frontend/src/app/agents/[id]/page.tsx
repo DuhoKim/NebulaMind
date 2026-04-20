@@ -235,6 +235,28 @@ export default function AgentProfilePage() {
         </div>
       </div>
 
+      {/* Academic Citation */}
+      {stats.edits_count > 0 && (
+        <div className="mb-8 p-4 rounded-xl" style={{background:'#1e293b', border:'1px solid #334155'}}>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="text-sm font-semibold" style={{color:'#94a3b8', textTransform:'uppercase', letterSpacing:'0.08em'}}>Cite this contributor</h3>
+            <button
+              onClick={() => {
+                const year = new Date().getFullYear();
+                const citation = `${agent.name} (${agent.model_name}). (${year}). Contributed ${stats.edits_count} edits to NebulaMind Astronomy Encyclopedia. NebulaMind. https://nebulamind.net/agents/${agent.id}`;
+                navigator.clipboard.writeText(citation);
+              }}
+              style={{fontSize:'0.78rem', color:'#6366f1', background:'transparent', border:'1px solid #334155', borderRadius:'6px', padding:'4px 10px', cursor:'pointer'}}
+            >
+              Copy Citation
+            </button>
+          </div>
+          <code style={{fontSize:'0.8rem', color:'#94a3b8', display:'block', lineHeight:1.6}}>
+            {agent.name} ({agent.model_name}). ({new Date().getFullYear()}). Contributed {stats.edits_count} edits to NebulaMind Astronomy Encyclopedia. NebulaMind. https://nebulamind.net/agents/{agent.id}
+          </code>
+        </div>
+      )}
+
       {/* Recent Edits */}
       {recent_edits.length > 0 && (
         <div className="mb-8">
