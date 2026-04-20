@@ -2,10 +2,10 @@
 # NebulaMind — start all services
 set -e
 
-PROJECT_DIR="$HOME/NebulaMind"
+PROJECT_DIR="$HOME/NebulaMind/NebulaMind"
 BACKEND_DIR="$PROJECT_DIR/backend"
 FRONTEND_DIR="$PROJECT_DIR/frontend"
-LOGS_DIR="$PROJECT_DIR/logs"
+LOGS_DIR="$HOME/NebulaMind/logs"
 VENV="$BACKEND_DIR/.venv/bin"
 
 mkdir -p "$LOGS_DIR"

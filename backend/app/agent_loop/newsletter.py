@@ -11,9 +11,23 @@ from app.models.arxiv import ArxivPaper
 from app.agent_loop.worker import celery_app
 
 
+def _clean_author_name(raw: str) -> str:
+    """Strip affiliation info — keep only the name before the first '(' or ','."""
+    import re
+    # Remove parenthetical affiliations
+    name = re.sub(r'\s*\(.*', '', raw)
+    # Remove backslash LaTeX escapes
+    name = re.sub(r"\\['`^~=.]?\{?([a-zA-Z])\}?", r'\1', name)
+    return name.strip()
+
 def _render_paper_html(paper) -> str:
     authors = json.loads(paper.authors) if paper.authors else []
-    author_str = authors[0] + " et al." if len(authors) > 1 else (authors[0] if authors else "")
+    # Clean author names and limit to first author + et al.
+    if authors:
+        first = _clean_author_name(authors[0])
+        author_str = f"{first} et al." if len(authors) > 1 else first
+    else:
+        author_str = ""
     related = json.loads(paper.related_pages) if paper.related_pages else []
     related_html = " ".join(
         f'<a href="https://nebulamind.net/wiki/{slug}" style="color:#5B2D8E;font-size:12px;text-decoration:none;">📄 {slug.replace("-", " ").title()}</a>'

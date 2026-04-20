@@ -19,4 +19,5 @@ class Subscriber(Base):
     unsubscribe_token: Mapped[str] = mapped_column(
         unique=True, default=lambda: uuid.uuid4().hex
     )
+    specialty: Mapped[str | None] = mapped_column(String(50), default="general", nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())

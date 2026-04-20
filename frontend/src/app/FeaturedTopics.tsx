@@ -140,7 +140,7 @@ export default function FeaturedTopics() {
                 {page.editCount} edits
               </span>
             </div>
-            <h3 className="font-bold text-base mb-1 group-hover:text-indigo-700 transition-colors">
+            <h3 className="font-bold text-base mb-1 text-gray-900 group-hover:text-indigo-700 transition-colors">
               {page.title}
             </h3>
             <p className="text-gray-500 text-sm leading-relaxed">

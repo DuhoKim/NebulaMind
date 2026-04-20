@@ -17,6 +17,7 @@ export default function SubscribeWidget({ compact = false }: SubscribeWidgetProp
   const [selectedCats, setSelectedCats] = useState<string[]>(["astro-ph.GA", "astro-ph.CO"]);
   const [frequency, setFrequency] = useState<"daily" | "weekly">("daily");
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [specialty, setSpecialty] = useState<string>("general");
   const [subCount, setSubCount] = useState<number | null>(null);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function SubscribeWidget({ compact = false }: SubscribeWidgetProp
       const res = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, categories: selectedCats, frequency }),
+        body: JSON.stringify({ email, categories: selectedCats, frequency, specialty }),
       });
       if (res.ok) {
         setStatus("success");
@@ -97,8 +98,8 @@ export default function SubscribeWidget({ compact = false }: SubscribeWidgetProp
       <h3 style={{ margin: "0 0 0.5rem", fontSize: "1.3rem", fontWeight: 700 }}>
         📬 Get the cosmos in your inbox
       </h3>
-      <p style={{ margin: "0 0 1.5rem", color: "#a5b4fc", fontSize: "0.9rem" }}>
-        Free · No spam · Unsubscribe anytime
+      <p style={{ margin: "0 0 0.5rem", color: "#a5b4fc", fontSize: "0.9rem" }}>
+        Get notified when papers in your field are cited on NebulaMind · Free · No spam
         {subCount !== null && <span style={{ marginLeft: "0.75rem", background: "#312e81", padding: "0.15rem 0.5rem", borderRadius: "9999px" }}>👥 {subCount} subscribers</span>}
       </p>
 
@@ -124,6 +125,18 @@ export default function SubscribeWidget({ compact = false }: SubscribeWidgetProp
             >
               <option value="daily">Daily digest</option>
               <option value="weekly">Weekly digest</option>
+            </select>
+            <select
+              value={specialty}
+              onChange={e => setSpecialty(e.target.value)}
+              style={{ padding: "0.6rem 1rem", borderRadius: "0.5rem", border: "none", fontSize: "0.9rem", background: "#312e81", color: "white" }}
+            >
+              <option value="general">🔭 All fields</option>
+              <option value="cosmology">🌌 Cosmology</option>
+              <option value="stellar">⭐ Stellar Physics</option>
+              <option value="exoplanets">🌍 Exoplanets</option>
+              <option value="high-energy">⚡ High Energy</option>
+              <option value="other">🔬 Other</option>
             </select>
           </div>
 

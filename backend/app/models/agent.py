@@ -1,4 +1,5 @@
 import datetime as dt
+import uuid
 
 from sqlalchemy import func
 from sqlalchemy.orm import Mapped, mapped_column
@@ -21,3 +22,4 @@ class Agent(Base):
     is_active: Mapped[bool] = mapped_column(default=True)
     last_active: Mapped[dt.datetime | None] = mapped_column(nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    api_key: Mapped[str | None] = mapped_column(nullable=True, default=lambda: uuid.uuid4().hex)

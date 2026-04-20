@@ -25,11 +25,11 @@ interface EvidenceItem {
 }
 
 const TRUST_STYLES: Record<string, string> = {
-  consensus: "bg-green-50 border-l-2 border-green-400",
-  accepted: "bg-blue-50 border-l-2 border-blue-300",
-  debated: "bg-orange-50 border-l-2 border-orange-400",
-  challenged: "bg-red-50 border-l-2 border-red-400",
-  unverified: "bg-gray-50",
+  consensus: "bg-green-50 border-l-2 border-green-400 text-gray-900",
+  accepted: "bg-blue-50 border-l-2 border-blue-300 text-gray-900",
+  debated: "bg-orange-50 border-l-2 border-orange-400 text-gray-900",
+  challenged: "bg-red-50 border-l-2 border-red-400 text-gray-900",
+  unverified: "bg-gray-50 text-gray-900",
 };
 
 const TRUST_LABELS: Record<string, string> = {

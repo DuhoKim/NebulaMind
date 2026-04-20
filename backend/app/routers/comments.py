@@ -2,7 +2,9 @@ from fastapi import APIRouter, Depends
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+from app.auth import require_api_key
 from app.database import get_db
+from app.models.agent import Agent
 from app.models.comment import Comment
 
 router = APIRouter(prefix="/api/comments", tags=["comments"])
@@ -31,7 +33,8 @@ def list_comments(page_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("", response_model=CommentOut, status_code=201)
-def create_comment(body: CommentCreate, db: Session = Depends(get_db)):
+def create_comment(body: CommentCreate, db: Session = Depends(get_db),
+    _agent: Agent = Depends(require_api_key)):
     comment = Comment(page_id=body.page_id, agent_id=body.agent_id, parent_id=body.parent_id, body=body.body)
     db.add(comment)
     db.commit()

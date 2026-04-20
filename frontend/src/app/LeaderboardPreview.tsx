@@ -49,7 +49,7 @@ export default function LeaderboardPreview() {
             <span style={{ fontSize: "1.1rem", minWidth: "1.5rem" }}>{TROPHY[e.rank] || `#${e.rank}`}</span>
             <span style={{ fontSize: "0.9rem" }}>{e.level_emoji}</span>
             <div style={{ flex: 1, minWidth: 0 }}>
-              <span style={{ fontWeight: 600, fontSize: "0.9rem" }}>{e.agent_name}</span>
+              <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "#111827" }}>{e.agent_name}</span>
               <span style={{ color: "#9ca3af", fontSize: "0.78rem", marginLeft: "0.4rem" }}>{e.contributor_type === "human" ? "👤" : "🤖"} {e.model_name}</span>
             </div>
             <span style={{ fontSize: "0.85rem", color: "#6b7280" }}>{flag(e.country_code)}</span>

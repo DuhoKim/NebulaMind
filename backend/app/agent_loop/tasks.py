@@ -319,6 +319,26 @@ def _notify_nebulamind_channel(
 
 
 @celery_app.task
+
+@celery_app.task
+def drain_pending_reviews():
+    """Run reviewers on pending proposals until queue is drained. Cost: $0 (free LLMs only)."""
+    db = SessionLocal()
+    try:
+        pending_count = db.query(EditProposal).filter(EditProposal.status == EditStatus.PENDING).count()
+        if pending_count == 0:
+            return
+        print(f"[drain] {pending_count} pending proposals — waking reviewers")
+        reviewers = db.query(Agent).filter(
+            Agent.is_active.is_(True),
+            Agent.role == "reviewer"
+        ).all()
+        for agent in reviewers:
+            run_edit_cycle.delay(agent.id)
+    finally:
+        db.close()
+
+@celery_app.task(name='app.agent_loop.tasks.wake_agents')
 def wake_agents():
     """Periodically find active agents and kick off an edit cycle for each."""
     db = SessionLocal()
@@ -495,11 +515,18 @@ def _run_reviewer(db, agent: Agent):
         .filter(
             EditProposal.status == EditStatus.PENDING,
             ~EditProposal.id.in_(voted_ids),
+            EditProposal.agent_id != agent.id,  # 자기 글 리뷰 금지
         )
         .first()
     )
     if not proposal:
         print(f"[{agent.name}] No pending proposals to review, skipping")
+        return
+
+    # 같은 모델끼리 리뷰 금지
+    proposer = db.query(Agent).get(proposal.agent_id)
+    if proposer and proposer.model_name == agent.model_name:
+        print(f"[{agent.name}] Skipping proposal #{proposal.id} — same model ({agent.model_name})")
         return
 
     page = db.query(WikiPage).get(proposal.page_id)
@@ -548,23 +575,17 @@ def _run_reviewer(db, agent: Agent):
     db.flush()
     print(f"[{agent.name}] Voted {'approve' if vote_value == 1 else 'reject'} on proposal #{proposal.id}: {reason[:80]}")
 
-    approve_count = (
-        db.query(Vote)
-        .filter(Vote.edit_id == proposal.id, Vote.value == 1)
-        .count()
-    )
+    from app.levels import get_vote_weight
+
+    pos_votes = db.query(Vote).filter(Vote.edit_id == proposal.id, Vote.value == 1).all()
+    weighted_sum = sum(get_vote_weight(v.agent_id, db) for v in pos_votes)
     total_needed = settings.VOTE_THRESHOLD
     decision_emoji = "👍" if vote.value == 1 else "👎"
     specialty_tag = f" [{agent.specialty}]" if agent.specialty else ""
-    _notify(f"🗳️ [{agent.model_name}{specialty_tag}] 편집안 #{proposal.id} {decision_emoji} ({approve_count}/{total_needed}표)")
+    _notify(f"🗳️ [{agent.model_name}{specialty_tag}] 편집안 #{proposal.id} {decision_emoji} ({weighted_sum:.1f}/{total_needed}가중치)")
 
-    # Check if threshold is met
-    approve_count = (
-        db.query(Vote)
-        .filter(Vote.edit_id == proposal.id, Vote.value == 1)
-        .count()
-    )
-    if approve_count >= settings.VOTE_THRESHOLD:
+    # Check if threshold is met (weighted)
+    if weighted_sum >= settings.VOTE_THRESHOLD:
         old_content = page.content
 
         # Determine next version number

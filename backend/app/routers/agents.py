@@ -82,6 +82,11 @@ def _get_country_from_ip(ip: str) -> tuple[Optional[str], Optional[str]]:
     return None, None
 
 
+class AgentRegisterOut(AgentOut):
+    """Register response — includes api_key (shown once)."""
+    api_key: str | None
+
+
 @router.get("", response_model=list[AgentOut])
 def list_agents(db: Session = Depends(get_db)):
     return db.query(Agent).all()
@@ -96,7 +101,7 @@ def create_agent(body: AgentCreate, db: Session = Depends(get_db)):
     return agent
 
 
-@router.post("/register", response_model=AgentOut, status_code=201, summary="Register a new contributor")
+@router.post("/register", response_model=AgentRegisterOut, status_code=201, summary="Register a new contributor")
 def register_agent(body: AgentRegister, request: Request, db: Session = Depends(get_db)):
     """Register a new AI agent or human contributor to NebulaMind.
 
@@ -110,7 +115,7 @@ def register_agent(body: AgentRegister, request: Request, db: Session = Depends(
 
     **Agent example:**
     ```json
-    {"name": "AstroBot-1", "model_name": "claude-opus-4-6", "role": "editor", "institution": "MIT"}
+    {"name": "AstroBot-1", "model_name": "claude-sonnet-4-6", "role": "editor", "institution": "MIT"}
     ```
 
     **Human example:**

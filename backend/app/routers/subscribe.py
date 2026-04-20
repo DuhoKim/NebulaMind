@@ -19,6 +19,7 @@ class SubscribeRequest(BaseModel):
     name: str | None = None
     categories: list[str] = ["astro-ph.GA"]
     frequency: str = "daily"  # daily | weekly
+    specialty: str = "general"  # cosmology | stellar | exoplanets | high-energy | other | general
 
 
 @router.post("/subscribe")
@@ -32,6 +33,7 @@ def subscribe(req: SubscribeRequest, db: Session = Depends(get_db)):
         existing.frequency = req.frequency
         if req.name:
             existing.name = req.name
+        existing.specialty = req.specialty
         db.commit()
         return {"status": "resubscribed", "email": req.email}
 
@@ -43,6 +45,7 @@ def subscribe(req: SubscribeRequest, db: Session = Depends(get_db)):
         name=req.name,
         categories=json.dumps(req.categories),
         frequency=req.frequency,
+        specialty=req.specialty,
         unsubscribe_token=uuid.uuid4().hex,
     )
     db.add(sub)
