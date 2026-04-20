@@ -66,8 +66,22 @@ else
   echo "       ⚠️  cloudflared not found — skipping"
 fi
 
+# 7. MCP Server
+echo "  [7/7] Starting MCP Server..."
+MCP_DIR="$HOME/NebulaMind/NebulaMind/mcp"
+if [ -f "$MCP_DIR/.venv/bin/python3" ]; then
+  cd "$MCP_DIR"
+  nohup .venv/bin/python3 server.py --transport sse --host 0.0.0.0 --port 8001 \
+    > "$LOGS_DIR/mcp.log" 2>&1 &
+  echo $! > "$LOGS_DIR/mcp.pid"
+  echo "       MCP Server started (PID $(cat $LOGS_DIR/mcp.pid))"
+else
+  echo "       ⚠️  MCP venv not found — skipping"
+fi
+
 echo ""
 echo "✅ All NebulaMind services started!"
 echo "   API docs:  http://localhost:8000/docs"
 echo "   Frontend:  http://localhost:3000"
+echo "   MCP:       http://localhost:8001/sse"
 echo "   Logs:      $LOGS_DIR/"
