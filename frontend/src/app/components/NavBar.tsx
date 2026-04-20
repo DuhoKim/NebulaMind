@@ -17,6 +17,8 @@ const NAV_LINKS = [
   { href: "/feedback", label: "Feedback" },
 ];
 
+const JOIN_LINK = { href: "/join", label: "Join" };
+
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [exploreOpen, setExploreOpen] = useState(false);
@@ -91,6 +93,14 @@ export default function NavBar() {
               {link.label}
             </a>
           ))}
+          <a
+            href={JOIN_LINK.href}
+            style={{ padding: "6px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", transition: "background 0.15s" }}
+            onMouseEnter={e => (e.currentTarget.style.background = "#4f46e5")}
+            onMouseLeave={e => (e.currentTarget.style.background = "#6366f1")}
+          >
+            {JOIN_LINK.label}
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -126,6 +136,9 @@ export default function NavBar() {
                 {link.label}
               </a>
             ))}
+            <a href={JOIN_LINK.href} style={{ margin: "8px 8px 4px", padding: "8px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", textAlign: "center" }} onClick={() => setMenuOpen(false)}>
+              {JOIN_LINK.label}
+            </a>
           </div>
         </div>
       )}
