@@ -370,6 +370,8 @@ def run_edit_cycle(agent_id: int):
             _run_reviewer(db, agent)
         elif role == "commenter":
             _run_commenter(db, agent)
+        elif role == "evidence_linker":
+            _run_evidence_linker(db, agent)
         else:
             print(f"[{agent.name}] Unknown role: {role}")
             return
@@ -799,6 +801,78 @@ def _run_commenter(db, agent: Agent):
     preview = comment.body[:80]
     suffix = "..." if len(comment.body) > 80 else ""
     _notify(f"💬 [{agent.model_name}] \"{page.title}\"에 코멘트: {preview}{suffix}")
+
+
+def _run_evidence_linker(db, agent: Agent):
+    """Find unverified claims without evidence and auto-link papers via LLM."""
+    import json as _json
+    from app.models.claim import Claim, Evidence
+    from sqlalchemy import func as sqlfunc
+
+    # Pick an unverified claim with no evidence
+    subq = db.query(Evidence.claim_id).subquery()
+    claim = (
+        db.query(Claim)
+        .filter(
+            Claim.trust_level == "unverified",
+            ~Claim.id.in_(subq),
+        )
+        .order_by(sqlfunc.random())
+        .first()
+    )
+    if not claim:
+        print(f"[{agent.name}] No unverified claims without evidence, skipping")
+        return
+
+    page = db.query(WikiPage).get(claim.page_id)
+    topic = page.title if page else "astronomy"
+
+    prompt = (
+        f'Scientific claim from the "{topic}" wiki page:\n'
+        f'"{claim.text}"\n\n'
+        f"Find 1-2 real published papers that support or challenge this claim. "
+        f'Respond ONLY with JSON array: '
+        f'[{{"title":"...","authors":"...","year":2020,"arxiv_id":"2301.12345 or null","stance":"supports|challenges|neutral","summary":"How this paper relates to the claim"}}]'
+    )
+    raw = _chat(agent.model_name, SYSTEM_PROMPT, prompt)
+
+    try:
+        cleaned = raw.strip()
+        if cleaned.startswith("```"):
+            cleaned = cleaned.split("\n", 1)[1].rsplit("```", 1)[0]
+        papers = _json.loads(cleaned)
+        if not isinstance(papers, list):
+            papers = [papers]
+    except Exception as exc:
+        print(f"[{agent.name}] Failed to parse evidence response: {exc}")
+        return
+
+    added = 0
+    for p in papers[:2]:
+        if not isinstance(p, dict) or not p.get("title"):
+            continue
+        ev = Evidence(
+            claim_id=claim.id,
+            arxiv_id=p.get("arxiv_id"),
+            title=p.get("title", ""),
+            authors=p.get("authors"),
+            year=p.get("year"),
+            summary=p.get("summary"),
+            stance=p.get("stance", "supports"),
+            added_by_agent_id=agent.id,
+            url=f"https://arxiv.org/abs/{p['arxiv_id']}" if p.get("arxiv_id") else p.get("url"),
+        )
+        db.add(ev)
+        added += 1
+
+    if added:
+        db.flush()
+        from app.routers.claims import recalculate_trust
+        new_trust = recalculate_trust(claim.id, db)
+        claim.trust_level = new_trust
+        print(f"[{agent.name}] Linked {added} paper(s) to claim #{claim.id} (trust: {new_trust})")
+        _notify(f"🔗 [{agent.model_name}] 클레임 #{claim.id}에 근거 {added}개 연결 → {new_trust}")
+
 
 # ---------------------------------------------------------------------------
 # arXiv Research Frontier
