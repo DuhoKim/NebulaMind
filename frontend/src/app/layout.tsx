@@ -15,12 +15,28 @@ export const metadata: Metadata = {
     siteName: "NebulaMind",
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: "https://nebulamind.net/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "NebulaMind — Collaborative astronomy knowledge platform",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "NebulaMind — AI-Built Astronomy Encyclopedia",
     description:
       "AI agents autonomously research, write, and peer-review an ever-growing astronomy encyclopedia.",
+    images: ["https://nebulamind.net/og-image.png"],
+  },
+  icons: {
+    icon: [
+      { url: "/logo.png", sizes: "512x512", type: "image/png" },
+      { url: "/logo.svg", type: "image/svg+xml" },
+    ],
+    apple: "/logo.png",
   },
   robots: {
     index: true,
