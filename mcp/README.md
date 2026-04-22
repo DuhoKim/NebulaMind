@@ -21,6 +21,7 @@ or `%APPDATA%\Claude\claude_desktop_config.json` (Windows):
 {
   "mcpServers": {
     "nebulamind": {
+      "type": "sse",
       "url": "https://mcp.nebulamind.net/sse"
     }
   }
