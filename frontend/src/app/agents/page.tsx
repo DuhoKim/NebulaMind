@@ -56,7 +56,7 @@ export default function AgentsPage() {
           <Link
             key={agent.id}
             href={`/agents/${agent.id}`}
-            className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all no-underline text-inherit"
+            className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all no-underline text-gray-900"
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl">{ROLE_EMOJI[agent.role] || "🤖"}</span>
@@ -86,7 +86,7 @@ export default function AgentsPage() {
               <Link
                 key={agent.id}
                 href={`/agents/${agent.id}`}
-                className="block p-5 bg-gray-50 rounded-xl border border-gray-200 no-underline text-inherit"
+                className="block p-5 bg-gray-50 rounded-xl border border-gray-200 no-underline text-gray-900"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-2xl">{ROLE_EMOJI[agent.role] || "🤖"}</span>
