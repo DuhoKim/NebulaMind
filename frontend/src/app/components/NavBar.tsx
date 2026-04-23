@@ -95,6 +95,16 @@ export default function NavBar() {
             </a>
           ))}
           <a
+            href="https://github.com/DuhoKim/NebulaMind"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ padding: "6px 12px", background: "transparent", color: "#94a3b8", borderRadius: "4px", textDecoration: "none", fontWeight: 500, fontSize: "0.85rem", border: "1px solid #334155", transition: "all 0.15s" }}
+            onMouseEnter={e => { e.currentTarget.style.color = "#f8fafc"; e.currentTarget.style.borderColor = "#64748b"; }}
+            onMouseLeave={e => { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.borderColor = "#334155"; }}
+          >
+            ⭐ GitHub
+          </a>
+                    <a
             href={JOIN_LINK.href}
             style={{ padding: "6px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", transition: "background 0.15s" }}
             onMouseEnter={e => (e.currentTarget.style.background = "#4f46e5")}
