@@ -24,5 +24,9 @@ celery_app.conf.update(
             "task": "app.agent_loop.newsletter.send_daily_digest",
             "schedule": crontab(hour=1, minute=30),  # UTC 08:30 = KST 17:30 (30min after arxiv fetch)
         },
+        "update-coverage-map-daily": {
+            "task": "app.agent_loop.tasks.update_coverage_map",
+            "schedule": crontab(hour=2, minute=0),  # UTC 02:00 = KST 11:00 (after arxiv + newsletter)
+        },
     },
 )

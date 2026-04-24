@@ -2,7 +2,9 @@ import datetime as dt
 import json
 import os
 import random
+import re
 import time
+from pathlib import Path
 
 import httpx
 
@@ -15,6 +17,17 @@ from app.models.edit import EditProposal, EditStatus
 from app.models.page import PageVersion, WikiPage
 from app.models.vote import Vote
 from app.models.qa import QAQuestion, QAAnswer
+
+# ---------------------------------------------------------------------------
+# Wiki Schema loader
+# ---------------------------------------------------------------------------
+
+def load_wiki_schema() -> str:
+    """Load wiki_schema.md from project root. Returns empty string if missing."""
+    schema_path = Path(__file__).parents[3] / "wiki_schema.md"
+    if schema_path.exists():
+        return schema_path.read_text(encoding="utf-8")
+    return ""
 
 NEW_TOPICS = [
     # Stellar objects & endpoints
@@ -58,50 +71,8 @@ NEW_TOPICS = [
     "Oort Cloud",
 ]
 
+# Core identity prompt — structural rules are loaded from wiki_schema.md
 SYSTEM_PROMPT = """You are an expert astronomy and astrophysics writer contributing to NebulaMind, a platform where AI agents worldwide collaborate to build humanity's understanding of the cosmos.
-
-## Required Article Structure
-
-Every wiki article MUST follow this Wikipedia-style section structure:
-
-```
-## Overview
-Brief introduction and significance of the topic.
-
-## Discovery & History
-Historical context, key discoveries, and scientists involved.
-
-## Physical Properties
-Quantitative data, measurements, key equations, and observable characteristics.
-
-## Current Research
-Recent findings, ongoing studies, and state-of-the-art understanding.
-
-## Open Questions
-Unresolved mysteries, active debates, and future research directions.
-
-## References
-Key papers, missions, and sources (e.g., "Penrose, R. (1965). Gravitational Collapse and Space-Time Singularities.")
-```
-
-## Writing Standards
-
-1. **Scientific accuracy**: Cite specific research (e.g., "According to Penrose (1965)..." or "Recent JWST observations (2023) show...")
-2. **Quantitative data**: Include masses in solar masses (M☉), distances in parsecs/light-years, temperatures in Kelvin
-3. **Key equations**: Reference physical principles (Schwarzschild radius, Chandrasekhar limit, etc.)
-4. **Research frontiers**: Connect to open questions and current investigations
-5. **Accessibility**: Engaging for scientifically literate readers while maintaining depth
-6. **Attribution**: Always begin your article with a brief note identifying your perspective, e.g.: *[Written from a {specialty} astronomy perspective by {model_name}]*
-
-## Specialty-Based Emphasis
-
-Your writing emphasis depends on your astronomical specialty:
-- **observational**: Prioritize telescope data, observational techniques, instrument specifications, and empirical measurements
-- **theoretical**: Emphasize mathematical frameworks, physical laws, theoretical models, and predictive power
-- **computational**: Focus on simulation results, numerical methods, computational models, and data analysis pipelines
-- **cosmology**: Connect topics to large-scale structure, cosmic evolution, and the universe's origin and fate
-- **stellar**: Emphasize stellar physics, stellar populations, stellar evolution, and the role of stars in galactic ecology
-- **galactic**: Focus on galactic dynamics, structure, formation, and the Milky Way's place in the cosmos
 
 Remember: We are building the most comprehensive AI-collaborative astronomy knowledge base in the world. Every edit should make humanity's cosmic knowledge more complete."""
 
@@ -135,11 +106,24 @@ SPECIALTY_EMPHASIS = {
 
 
 def _build_system_prompt(agent: Agent) -> str:
-    """Build a specialty-aware system prompt for the given agent."""
+    """Build a specialty-aware system prompt for the given agent.
+    
+    Loads wiki_schema.md dynamically — changes to the schema file propagate
+    to all agents on the next edit cycle without redeploying.
+    """
     specialty = agent.specialty or "general"
     model_name = agent.model_name
 
+    # Load schema (structural rules, categories, cross-link rules)
+    schema = load_wiki_schema()
+    # Strip Coverage Map section — agents don't need the raw map, only the rules
+    if "## Coverage Map" in schema:
+        schema = schema[:schema.index("## Coverage Map")].rstrip()
+
     base = SYSTEM_PROMPT.replace("{specialty}", specialty).replace("{model_name}", model_name)
+
+    if schema:
+        base = base + "\n\n" + schema
 
     if specialty in SPECIALTY_EMPHASIS:
         base += f"\n\n## Your Specialty Focus ({specialty})\n{SPECIALTY_EMPHASIS[specialty]}"
@@ -149,6 +133,104 @@ def _build_system_prompt(agent: Agent) -> str:
 
 def _slugify(title: str) -> str:
     return title.lower().replace(" ", "-")
+
+
+# ---------------------------------------------------------------------------
+# Coverage Map (Phase 5)
+# ---------------------------------------------------------------------------
+
+def compute_coverage(db) -> dict:
+    """Compare DB wiki pages with NEW_TOPICS. Returns coverage stats."""
+    existing_slugs = {p.slug for p in db.query(WikiPage).all()}
+    existing_titles = {p.title.lower() for p in db.query(WikiPage).all()}
+
+    covered = []
+    not_covered = []
+    for topic in NEW_TOPICS:
+        slug = _slugify(topic)
+        if slug in existing_slugs or topic.lower() in existing_titles:
+            covered.append(topic)
+        else:
+            not_covered.append(topic)
+
+    total = len(NEW_TOPICS)
+    pct = round(len(covered) / total * 100, 1) if total else 0
+    return {
+        "covered": covered,
+        "not_covered": not_covered,
+        "total": total,
+        "coverage_pct": pct,
+        "existing_page_count": len(existing_slugs),
+    }
+
+
+def update_coverage_map_in_schema(db) -> dict:
+    """Recalculate coverage and update the Coverage Map section in wiki_schema.md."""
+    schema_path = Path(__file__).parents[3] / "wiki_schema.md"
+    if not schema_path.exists():
+        print("[coverage] wiki_schema.md not found, skipping update")
+        return {}
+
+    stats = compute_coverage(db)
+    covered = stats["covered"]
+    not_covered = stats["not_covered"]
+    pct = stats["coverage_pct"]
+    now = dt.datetime.now(dt.UTC).strftime("%Y-%m-%d %H:%M UTC")
+
+    covered_lines = "\n".join(f"  ✅ {t}" for t in sorted(covered)) or "  (none yet)"
+    not_covered_lines = "\n".join(f"  ⏳ {t}" for t in not_covered) or "  (all topics covered!)"
+
+    new_map = f"""## Coverage Map
+
+> Auto-updated daily by the `update_coverage_map` Celery task.
+> Last updated: {now}
+
+### Topic Coverage Status
+
+```
+COVERED ({len(covered)} topics):
+{covered_lines}
+
+NOT YET COVERED ({len(not_covered)} topics — priority queue):
+{not_covered_lines}
+
+Coverage: {len(covered)} / {stats['total']} predefined topics ({pct}%)
+Total wiki pages in DB: {stats['existing_page_count']}
+```
+
+### Expansion Priority
+
+Topics are selected for new page creation in this priority order:
+1. Topics in `NOT YET COVERED` list (highest priority)
+2. arXiv-trending topics not yet in DB
+3. Weakest existing pages (empty or short content)
+4. Random page improvement
+"""
+
+    # Replace Coverage Map section in existing schema file
+    schema_text = schema_path.read_text(encoding="utf-8")
+    if "## Coverage Map" in schema_text:
+        # Replace from ## Coverage Map to end of file
+        schema_text = schema_text[:schema_text.index("## Coverage Map")] + new_map
+    else:
+        schema_text = schema_text.rstrip() + "\n\n" + new_map
+
+    schema_path.write_text(schema_text, encoding="utf-8")
+    print(f"[coverage] Updated wiki_schema.md — {len(covered)}/{stats['total']} covered ({pct}%)")
+    return stats
+
+
+def _select_uncovered_topic(db) -> "str | None":
+    """Return a NEW_TOPICS entry not yet in DB. Returns None if all covered."""
+    existing_slugs = {p.slug for p in db.query(WikiPage).all()}
+    existing_titles = {p.title.lower() for p in db.query(WikiPage).all()}
+    uncovered = [
+        t for t in NEW_TOPICS
+        if _slugify(t) not in existing_slugs and t.lower() not in existing_titles
+    ]
+    if uncovered:
+        return random.choice(uncovered)
+    return None
 
 
 _CHAT_MAX_WAIT = 30  # seconds — cap retry-after so threads don't block for minutes
@@ -594,11 +676,24 @@ def _run_editor(db, agent: Agent):
             create_new = True
 
     if page is None:
-        # Random fallback
-        if pages:
+        # Try uncovered topics from NEW_TOPICS first
+        uncovered_topic = _select_uncovered_topic(db)
+        if uncovered_topic:
+            slug = _slugify(uncovered_topic)
+            existing = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+            if existing:
+                page = existing
+            else:
+                page = WikiPage(title=uncovered_topic, slug=slug, content="")
+                db.add(page)
+                db.flush()
+                create_new = True
+                print(f"[{agent.name}] Created uncovered topic page: {uncovered_topic}")
+        elif pages:
+            # All predefined topics covered — improve existing pages
             page = random.choice(pages)
         else:
-            # Last resort: pick from NEW_TOPICS
+            # Absolute last resort
             topic = random.choice(NEW_TOPICS)
             slug = _slugify(topic)
             existing = db.query(WikiPage).filter(WikiPage.slug == slug).first()
@@ -872,6 +967,30 @@ def _run_evidence_linker(db, agent: Agent):
         claim.trust_level = new_trust
         print(f"[{agent.name}] Linked {added} paper(s) to claim #{claim.id} (trust: {new_trust})")
         _notify(f"🔗 [{agent.model_name}] 클레임 #{claim.id}에 근거 {added}개 연결 → {new_trust}")
+
+
+# ---------------------------------------------------------------------------
+# Coverage Map Celery Task (Phase 5)
+# ---------------------------------------------------------------------------
+
+@celery_app.task(name="app.agent_loop.tasks.update_coverage_map")
+def update_coverage_map():
+    """Recompute coverage and update wiki_schema.md Coverage Map section (daily)."""
+    db = SessionLocal()
+    try:
+        stats = update_coverage_map_in_schema(db)
+        if stats:
+            _notify(
+                f"🗺️ Coverage Map updated: "
+                f"{len(stats['covered'])}/{stats['total']} topics covered "
+                f"({stats['coverage_pct']}%) | "
+                f"{stats['existing_page_count']} total wiki pages"
+            )
+    except Exception as e:
+        print(f"[update_coverage_map] Error: {e}")
+        raise
+    finally:
+        db.close()
 
 
 # ---------------------------------------------------------------------------
