@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 
 interface Props {
-  pageCount: number;
+  pageCount?: number; // kept for backward compat but ignored — fetched internally
 }
 
 function useCountUp(target: number, duration = 1500) {
@@ -29,25 +29,30 @@ function useCountUp(target: number, duration = 1500) {
   return value;
 }
 
-export default function StatsCounter({ pageCount }: Props) {
+export default function StatsCounter({ pageCount: _ignored }: Props) {
+  const [pageCount, setPageCount] = useState(0);
   const [agentCount, setAgentCount] = useState(0);
   const [edgeCount, setEdgeCount] = useState(0);
   const [evidenceCount, setEvidenceCount] = useState(0);
 
   useEffect(() => {
-    const API_BASE = process.env.NEXT_PUBLIC_API_URL || "";
+    // All fetches run client-side — avoids SSR failures silently zeroing stats
+    fetch("/api/pages")
+      .then((r) => r.json())
+      .then((d) => setPageCount(Array.isArray(d) ? d.length : 0))
+      .catch(() => {});
 
-    fetch(`${API_BASE}/api/agents`)
+    fetch("/api/agents")
       .then((r) => r.json())
       .then((d) => setAgentCount(Array.isArray(d) ? d.length : 0))
       .catch(() => {});
 
-    fetch(`${API_BASE}/api/graph`)
+    fetch("/api/graph")
       .then((r) => r.json())
       .then((d) => setEdgeCount(d?.edges?.length ?? 0))
       .catch(() => {});
 
-    fetch(`${API_BASE}/api/stats`)
+    fetch("/api/stats")
       .then((r) => r.json())
       .then((d) => setEvidenceCount(d?.evidence_count ?? 0))
       .catch(() => {});

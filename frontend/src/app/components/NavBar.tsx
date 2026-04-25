@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 const EXPLORE_LINKS = [
   { href: "/explore/cards", label: "Cards" },
@@ -23,7 +23,20 @@ const JOIN_LINK = { href: "/join", label: "Join" };
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [exploreOpen, setExploreOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const exploreTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Close mobile menu on desktop resize
+  useEffect(() => {
+    if (!isMobile) setMenuOpen(false);
+  }, [isMobile]);
 
   const handleExploreEnter = () => {
     if (exploreTimeoutRef.current) clearTimeout(exploreTimeoutRef.current);
@@ -36,7 +49,7 @@ export default function NavBar() {
 
   return (
     <header style={{ borderBottom: "1px solid #334155", background: "#0f172a", position: "sticky", top: 0, zIndex: 40 }}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
+      <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a href="/" className="no-underline text-inherit">
           <span style={{ fontWeight: 600, fontSize: "1.1rem", color: "#f8fafc", letterSpacing: "-0.025em" }}>
             NebulaMind
@@ -44,7 +57,7 @@ export default function NavBar() {
         </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex gap-6 text-sm items-center">
+        <nav style={{ display: isMobile ? "none" : "flex", gap: "1.5rem", fontSize: "0.875rem", alignItems: "center" }}>
           <a href="/" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
             onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
             onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
@@ -53,7 +66,7 @@ export default function NavBar() {
 
           {/* Explore with dropdown */}
           <div
-            className="relative"
+            style={{ position: "relative" }}
             onMouseEnter={handleExploreEnter}
             onMouseLeave={handleExploreLeave}
           >
@@ -115,20 +128,21 @@ export default function NavBar() {
         </nav>
 
         {/* Mobile hamburger */}
-        <button
-          className="md:hidden"
-          style={{ color: "#94a3b8", fontSize: "1.25rem", padding: "4px 8px", borderRadius: "4px", border: "none", background: "transparent", cursor: "pointer" }}
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? "✕" : "☰"}
-        </button>
+        {isMobile && (
+          <button
+            style={{ color: "#94a3b8", fontSize: "1.25rem", padding: "4px 8px", borderRadius: "4px", border: "none", background: "transparent", cursor: "pointer" }}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            {menuOpen ? "✕" : "☰"}
+          </button>
+        )}
       </div>
 
       {/* Mobile dropdown */}
-      {menuOpen && (
-        <div className="md:hidden" style={{ borderTop: "1px solid #334155", background: "#1e293b" }}>
-          <div className="max-w-5xl mx-auto px-4 py-3 flex flex-col">
+      {isMobile && menuOpen && (
+        <div style={{ borderTop: "1px solid #334155", background: "#1e293b" }}>
+          <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0.75rem 1rem", display: "flex", flexDirection: "column" }}>
             <a href="/" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
               Home
             </a>
