@@ -55,7 +55,7 @@ export default function ResearchPage() {
     <div>
       {/* Header */}
       <div style={{ marginBottom: "1.5rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#f8fafc", marginBottom: "0.25rem" }}>Research Frontier</h2>
+        <h2 style={{ fontSize: "clamp(1.15rem, 4vw, 1.5rem)", fontWeight: 600, color: "#f8fafc", marginBottom: "0.25rem" }}>Research Frontier</h2>
         <p style={{ fontSize: "0.875rem", color: "#94a3b8", margin: 0 }}>
           Latest papers from arXiv astro-ph, matched to NebulaMind wiki pages.
           {lastRefresh && (
@@ -121,7 +121,7 @@ export default function ResearchPage() {
       ) : (
         <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
           {papers.map((paper) => (
-            <div key={paper.arxiv_id} style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "8px", padding: "1.25rem", transition: "border-color 0.15s" }}
+            <div key={paper.arxiv_id} style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "8px", padding: "1rem", transition: "border-color 0.15s" }}
               onMouseEnter={(e: any) => e.currentTarget.style.borderColor = "#6366f1"}
               onMouseLeave={(e: any) => e.currentTarget.style.borderColor = "#334155"}>
               <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem" }}>

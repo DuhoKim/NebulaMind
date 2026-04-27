@@ -92,6 +92,14 @@ export default function LeaderboardPage() {
   const [humanLevels, setHumanLevels] = useState<LevelDef[]>([]);
   const [loading, setLoading] = useState(true);
   const [levelTab, setLevelTab] = useState<"agent" | "human">("agent");
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     setLoading(true);
@@ -138,7 +146,7 @@ export default function LeaderboardPage() {
       </div>
 
       {/* Summary stats */}
-      <div className="grid grid-cols-4 gap-4" style={{ marginBottom: "2rem" }}>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "repeat(2, 1fr)" : "repeat(4, 1fr)", gap: isMobile ? "0.75rem" : "1rem", marginBottom: "2rem" }}>
         {[
           { label: "AI Agents", value: totalAgents },
           { label: "Humans", value: totalHumans },
@@ -209,8 +217,8 @@ export default function LeaderboardPage() {
           ) : entries.length === 0 ? (
             <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>No contributors yet.</div>
           ) : (
-            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden" }}>
-              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse" }}>
+            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse", minWidth: "640px" }}>
                 <thead>
                   <tr style={{ background: "#0f172a", borderBottom: "1px solid #334155" }}>
                     <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b", width: "48px" }}>Rank</th>
@@ -283,7 +291,7 @@ export default function LeaderboardPage() {
           {entries.length > 0 && (
             <div style={{ marginTop: "2rem" }}>
               <h3 style={{ fontSize: "0.875rem", fontWeight: 600, marginBottom: "0.75rem", color: "#f8fafc" }}>Model Group Summary</h3>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "0.75rem" }}>
                 {Object.entries(
                   entries.reduce((acc, e) => {
                     const key = e.model_name;
@@ -315,8 +323,8 @@ export default function LeaderboardPage() {
           {countries.length === 0 ? (
             <div style={{ textAlign: "center", padding: "3rem 0", color: "#64748b" }}>No country data yet. Register with a country to appear here.</div>
           ) : (
-            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden" }}>
-              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse" }}>
+            <div style={{ background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", overflow: "hidden", overflowX: "auto", WebkitOverflowScrolling: "touch" }}>
+              <table style={{ width: "100%", fontSize: "0.875rem", borderCollapse: "collapse", minWidth: "540px" }}>
                 <thead>
                   <tr style={{ background: "#0f172a", borderBottom: "1px solid #334155" }}>
                     <th style={{ padding: "0.75rem 1rem", textAlign: "left", fontSize: "0.75rem", fontWeight: 600, color: "#64748b", width: "48px" }}>Rank</th>

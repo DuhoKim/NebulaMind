@@ -26,6 +26,14 @@ const ROLE_COLOR: Record<string, string> = {
 export default function AgentsPage() {
   const [agents, setAgents] = useState<AgentItem[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     fetch("/api/agents")
@@ -37,40 +45,40 @@ export default function AgentsPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="text-gray-400 py-8 text-center">Loading agents...</div>;
+  if (loading) return <div style={{ color: "#9ca3af", padding: "2rem 0", textAlign: "center" }}>Loading agents...</div>;
 
   const active = agents.filter((a) => a.is_active);
   const inactive = agents.filter((a) => !a.is_active);
 
   return (
     <div>
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-1">🤖 AI Agents</h2>
-        <p className="text-gray-500 text-sm">
+      <div style={{ marginBottom: "2rem" }}>
+        <h2 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "0.25rem", color: "#f8fafc" }}>AI Agents</h2>
+        <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>
           {active.length} active agents building the cosmos knowledge base
         </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
         {active.map((agent) => (
           <Link
             key={agent.id}
             href={`/agents/${agent.id}`}
-            className="block p-5 bg-white rounded-xl border border-gray-200 hover:border-indigo-300 hover:shadow-md transition-all no-underline text-gray-900"
+            style={{ display: "block", padding: "1.25rem", background: "#1e293b", borderRadius: "12px", border: "1px solid #334155", textDecoration: "none", color: "#f8fafc", transition: "border-color 0.15s" }}
           >
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-2xl">{ROLE_EMOJI[agent.role] || "🤖"}</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+              <span style={{ fontSize: "1.5rem" }}>{ROLE_EMOJI[agent.role] || "🤖"}</span>
               <div>
-                <h3 className="font-semibold text-base">{agent.name}</h3>
-                <p className="text-xs text-gray-400">{agent.model_name}</p>
+                <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>{agent.name}</h3>
+                <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>{agent.model_name}</p>
               </div>
             </div>
-            <div className="flex items-center gap-2">
-              <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${ROLE_COLOR[agent.role] || "bg-gray-100 text-gray-600"}`}>
+            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ fontSize: "0.75rem", padding: "2px 8px", borderRadius: "9999px", fontWeight: 500, background: "rgba(99, 102, 241, 0.1)", color: "#818cf8" }}>
                 {agent.role}
               </span>
-              <span className="flex items-center gap-1 text-xs text-green-600">
-                <span className="inline-block w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.75rem", color: "#22c55e" }}>
+                <span style={{ display: "inline-block", width: "6px", height: "6px", background: "#22c55e", borderRadius: "50%" }}></span>
                 active
               </span>
             </div>
@@ -80,22 +88,22 @@ export default function AgentsPage() {
 
       {inactive.length > 0 && (
         <>
-          <h3 className="text-lg font-semibold mt-10 mb-4 text-gray-400">Inactive Agents</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 opacity-60">
+          <h3 style={{ fontSize: "1.125rem", fontWeight: 600, marginTop: "2.5rem", marginBottom: "1rem", color: "#9ca3af" }}>Inactive Agents</h3>
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem", opacity: 0.6 }}>
             {inactive.map((agent) => (
               <Link
                 key={agent.id}
                 href={`/agents/${agent.id}`}
-                className="block p-5 bg-gray-50 rounded-xl border border-gray-200 no-underline text-gray-900"
+                style={{ display: "block", padding: "1.25rem", background: "#1e293b", borderRadius: "12px", border: "1px solid #334155", textDecoration: "none", color: "#f8fafc" }}
               >
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl">{ROLE_EMOJI[agent.role] || "🤖"}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
+                  <span style={{ fontSize: "1.5rem" }}>{ROLE_EMOJI[agent.role] || "🤖"}</span>
                   <div>
-                    <h3 className="font-semibold text-base">{agent.name}</h3>
-                    <p className="text-xs text-gray-400">{agent.model_name}</p>
+                    <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>{agent.name}</h3>
+                    <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>{agent.model_name}</p>
                   </div>
                 </div>
-                <span className="text-xs px-2 py-0.5 rounded-full font-medium bg-gray-200 text-gray-500">
+                <span style={{ fontSize: "0.75rem", padding: "2px 8px", borderRadius: "9999px", fontWeight: 500, background: "#334155", color: "#64748b" }}>
                   inactive
                 </span>
               </Link>

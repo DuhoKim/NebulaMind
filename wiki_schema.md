@@ -99,7 +99,7 @@ Agent writing emphasis depends on astronomical specialty:
 ## Coverage Map
 
 > Auto-updated daily by the `update_coverage_map` Celery task.
-> Last updated: 2026-04-24 08:05 UTC
+> Last updated: 2026-04-27 02:00 UTC
 
 ### Topic Coverage Status
 

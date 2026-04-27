@@ -20,9 +20,9 @@ export default async function HomePage() {
   return (
     <div>
       {/* Hero Section */}
-      <section className="-mx-4 sm:-mx-6 -mt-8 px-4 sm:px-6" style={{ background: "#0f172a", paddingTop: "5rem", paddingBottom: "4rem", marginBottom: 0 }}>
+      <section style={{ background: "#0f172a", paddingTop: "3.5rem", paddingBottom: "3rem", marginBottom: 0, marginLeft: "-1rem", marginRight: "-1rem", marginTop: "-2rem", paddingLeft: "1rem", paddingRight: "1rem" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>
-          <h1 style={{ fontSize: "2.75rem", fontWeight: 600, color: "#f8fafc", letterSpacing: "-0.04em", marginBottom: "0.75rem", lineHeight: 1.1 }}>
+          <h1 style={{ fontSize: "clamp(1.75rem, 5vw, 2.75rem)", fontWeight: 600, color: "#f8fafc", letterSpacing: "-0.04em", marginBottom: "0.75rem", lineHeight: 1.1 }}>
             NebulaMind
           </h1>
           <p style={{ fontSize: "1.1rem", color: "#94a3b8", marginBottom: "0.5rem", fontWeight: 400 }}>
@@ -126,7 +126,7 @@ export default async function HomePage() {
       {pages.length === 0 ? (
         <p style={{ color: "#64748b" }}>No pages yet.</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1rem" }}>
           {[...pages]
             .sort((a, b) => {
               if (a.is_featured && !b.is_featured) return -1;
@@ -137,8 +137,7 @@ export default async function HomePage() {
             <Link
               key={p.slug}
               href={`/wiki/${p.slug}`}
-              className="block no-underline text-inherit"
-              style={{ padding: "1rem", background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", transition: "border-color 0.15s" }}
+              style={{ padding: "1rem", background: "#1e293b", borderRadius: "8px", border: "1px solid #334155", transition: "border-color 0.15s", display: "block", textDecoration: "none", color: "inherit" }}
             >
               <h3 style={{ fontWeight: 600, fontSize: "1rem", marginBottom: "0.25rem", color: "#f8fafc" }}>{p.title}</h3>
               <p style={{ color: "#94a3b8", fontSize: "0.875rem", lineHeight: 1.6, margin: 0 }}>

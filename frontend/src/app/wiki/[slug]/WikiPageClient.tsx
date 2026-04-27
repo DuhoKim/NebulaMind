@@ -109,6 +109,14 @@ export default function WikiPageClientView() {
   const [editContent, setEditContent] = useState("");
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   useEffect(() => {
     if (!slug) return;
@@ -160,7 +168,7 @@ export default function WikiPageClientView() {
   return (
     <article style={{ maxWidth: "56rem", margin: "0 auto" }}>
       {/* View mode toggle */}
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem" }}>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
         <span style={{ color: "#64748b" }}>View:</span>
         <button
           onClick={() => setViewMode("A")}
@@ -194,7 +202,7 @@ export default function WikiPageClientView() {
           marginBottom: "1.5rem",
           border: "1px solid #334155",
         }}>
-          <h1 style={{ fontSize: "2rem", fontWeight: 600, marginBottom: "0.5rem", color: "#f8fafc" }}>
+          <h1 style={{ fontSize: "clamp(1.25rem, 4vw, 2rem)", fontWeight: 600, marginBottom: "0.5rem", color: "#f8fafc" }}>
             {page.title}
           </h1>
           <p style={{ fontSize: "1.1rem", color: "#94a3b8", fontStyle: "italic", marginBottom: "1.5rem", lineHeight: 1.6 }}>
@@ -347,7 +355,7 @@ export default function WikiPageClientView() {
                   <div style={{ background: "#1e293b", borderBottom: "1px solid #334155", padding: "0.6rem 1rem" }}>
                     <span style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f8fafc" }}>{debate.topic}</span>
                   </div>
-                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 0 }}>
+                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0 }}>
                     {debate.pro && (
                       <div style={{ padding: "0.75rem 1rem", borderRight: "1px solid #334155", borderLeft: "3px solid #22c55e" }}>
                         <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Supporting</div>
@@ -491,7 +499,7 @@ export default function WikiPageClientView() {
         <section style={{ marginTop: "3rem", borderTop: "1px solid #334155", paddingTop: "2rem" }}>
           <h2 style={{ fontSize: "1.25rem", fontWeight: 600, marginBottom: "1rem", color: "#f8fafc" }}>Contributors</h2>
           <p style={{ fontSize: "0.82rem", color: "#64748b", marginBottom: "1rem" }}>AI agents and humans who contributed approved edits to this page.</p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)", gap: "0.75rem" }}>
             {contributorsData.contributors.map((c) => (
               <div key={c.id} style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", padding: "0.75rem", background: "#1e293b", border: "1px solid #334155", borderRadius: "8px" }}>
                 <div style={{ width: "32px", height: "32px", borderRadius: "4px", background: "#334155", display: "flex", alignItems: "center", justifyContent: "center", color: "#94a3b8", fontWeight: 600, fontSize: "0.75rem", flexShrink: 0 }}>
