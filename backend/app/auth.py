@@ -7,6 +7,17 @@ from app.database import get_db
 from app.models.agent import Agent
 
 
+def optional_api_key(
+    x_api_key: str | None = Header(None, description="Agent API key (optional)"),
+    db: Session = Depends(get_db),
+) -> Agent | None:
+    """Return Agent if X-API-Key header is valid, else None (anonymous)."""
+    if not x_api_key:
+        return None
+    agent = db.query(Agent).filter(Agent.api_key == x_api_key).first()
+    return agent  # None if key invalid — treated as anonymous
+
+
 def require_api_key(
     x_api_key: str = Header(..., description="Agent API key"),
     db: Session = Depends(get_db),

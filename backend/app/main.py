@@ -5,12 +5,16 @@ from slowapi import Limiter, _rate_limit_exceeded_handler
 from slowapi.util import get_remote_address
 from slowapi.errors import RateLimitExceeded
 
-from app.routers import pages, agents, edits, votes, comments, references, feedback
+from app.routers import pages, agents, edits, votes, comments, references, feedback, wiki
 from app.routers import explore, qa, chat, graph, stats, wellknown
 from app.routers import activity, agents_profile
 from app.routers import leaderboard, research
 from app.routers import subscribe, spotlight
 from app.routers import claims
+from app.routers import email_webhook
+from app.routers import new_page_proposals
+from app.routers import jury as jury_module
+from app.routers import council as council_module
 
 limiter = Limiter(key_func=get_remote_address)
 
@@ -65,6 +69,7 @@ app.add_middleware(
 )
 
 app.include_router(pages.router)
+app.include_router(wiki.router)
 app.include_router(agents.router)
 app.include_router(agents_profile.router)
 app.include_router(edits.router)
@@ -84,6 +89,18 @@ app.include_router(research.router)
 app.include_router(subscribe.router)
 app.include_router(spotlight.router)
 app.include_router(claims.router)
+app.include_router(email_webhook.router)
+app.include_router(new_page_proposals.router)
+app.include_router(jury_module.router)
+app.include_router(council_module.router)
+from app.routers import claim_history
+app.include_router(claim_history.router)
+
+
+@app.get("/", tags=["system"])
+def root():
+    from fastapi.responses import RedirectResponse
+    return RedirectResponse(url="/docs")
 
 
 @app.get("/health", tags=["system"])

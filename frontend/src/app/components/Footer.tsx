@@ -74,6 +74,21 @@ export default function Footer() {
                 </a>
               ))}
             </div>
+            <div>
+              <div style={{ color: "#64748b", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.07em" }}>Contact</div>
+              <a href="/contact" style={{ display: "block", color: "#475569", textDecoration: "none", marginBottom: "0.25rem" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#94a3b8")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#475569")}
+              >
+                Contact
+              </a>
+              <a href="mailto:hwao@nebulamind.net" style={{ display: "block", color: "#475569", textDecoration: "none", marginBottom: "0.25rem" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#94a3b8")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#475569")}
+              >
+                hwao@nebulamind.net
+              </a>
+            </div>
           </div>
         </div>
 
@@ -91,7 +106,6 @@ export default function Footer() {
             Acknowledgements
           </div>
 
-          {/* llm-wiki */}
           <p style={{ margin: 0, color: "#334155" }}>
             🔬 Architectural patterns inspired by{" "}
             <a
@@ -114,7 +128,6 @@ export default function Footer() {
             .
           </p>
 
-          {/* NRF */}
           <p style={{ margin: 0, color: "#334155" }}>
             🇰🇷 This research was supported by the{" "}
             <a

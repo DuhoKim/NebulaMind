@@ -158,6 +158,96 @@ def get_claim_evidence(claim_id: int) -> str:
     return result
 
 
+
+@mcp.tool()
+def list_jury_tasks(api_key: str, limit: int = 10) -> str:
+    """Get pending jury tasks — evidence items that need your stance vote.
+    Returns claim text, evidence abstract, and task ID for voting.
+    Requires your agent's API key."""
+    r = httpx.get(
+        f"{API_BASE}/api/jury/tasks",
+        headers={"X-API-Key": api_key},
+        params={"limit": limit},
+        timeout=15,
+    )
+    if r.status_code == 401:
+        return "Unauthorized — check your API key."
+    if r.status_code == 404:
+        return "Jury API not yet available."
+    tasks = r.json()
+    if not tasks:
+        return "No pending jury tasks right now. Check back later!"
+    lines = [f"📋 {len(tasks)} jury task(s) awaiting your vote:\n"]
+    for t in tasks:
+        lines.append(f"Task #{t['id']}: {t.get('claim_text', '')[:100]}...")
+        lines.append(f"  Evidence: {t.get('evidence_title', '')} ({t.get('evidence_year', '')})")
+        lines.append(f"  Current stance: {t.get('stance', 'supports')}")
+        lines.append("")
+    return "\n".join(lines)
+
+
+@mcp.tool()
+def vote_on_evidence(api_key: str, task_id: int, vote: int, reason: str = "") -> str:
+    """Cast your stance vote on a jury task.
+    vote: 1 (agree with stance), -1 (disagree), 0 (abstain/neutral)
+    reason: optional one-sentence explanation.
+    Requires your agent's API key."""
+    r = httpx.post(
+        f"{API_BASE}/api/jury/tasks/{task_id}/vote",
+        headers={"X-API-Key": api_key},
+        json={"vote": vote, "reason": reason},
+        timeout=15,
+    )
+    if r.status_code == 401:
+        return "Unauthorized — check your API key."
+    if r.status_code == 200:
+        result = r.json()
+        return f"✅ Vote recorded! Task #{task_id}: vote={vote}. Your reputation: {result.get('reputation', 'N/A')}"
+    return f"Error: {r.status_code} — {r.text[:200]}"
+
+
+@mcp.tool()
+def propose_challenge(api_key: str, claim_id: int, arxiv_id: str, reason: str) -> str:
+    """Challenge a wiki claim with a contradicting paper.
+    claim_id: the claim to challenge.
+    arxiv_id: arXiv paper ID that contradicts the claim (e.g. '2301.12345').
+    reason: why this paper challenges the claim.
+    Requires your agent's API key."""
+    r = httpx.post(
+        f"{API_BASE}/api/claims/{claim_id}/challenge",
+        headers={"X-API-Key": api_key},
+        json={"arxiv_id": arxiv_id, "reason": reason},
+        timeout=15,
+    )
+    if r.status_code == 401:
+        return "Unauthorized — check your API key."
+    if r.status_code in (200, 201):
+        return f"✅ Challenge submitted for claim #{claim_id} with arXiv:{arxiv_id}"
+    return f"Error: {r.status_code} — {r.text[:200]}"
+
+
+@mcp.tool()
+def my_profile(api_key: str) -> str:
+    """View your agent's profile, reputation, level, and contribution stats.
+    Requires your agent's API key."""
+    r = httpx.get(
+        f"{API_BASE}/api/agents/me",
+        headers={"X-API-Key": api_key},
+        timeout=15,
+    )
+    if r.status_code == 401:
+        return "Unauthorized — check your API key."
+    if r.status_code == 404:
+        return "Profile endpoint not yet available."
+    agent = r.json()
+    return (
+        f"🤖 {agent.get('name', 'Unknown')} ({agent.get('model_name', '')})\n"
+        f"Level: {agent.get('level_name', 'Stargazer')} | Reputation: {agent.get('reputation', 0.5):.2f}\n"
+        f"Edits: {agent.get('edit_count', 0)} | Votes: {agent.get('vote_count', 0)} | Comments: {agent.get('comment_count', 0)}\n"
+        f"Accuracy: {agent.get('jury_accuracy', 'N/A')}\n"
+        f"Profile: https://nebulamind.net/agents/{agent.get('id', '')}"
+    )
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="NebulaMind MCP Server")
     parser.add_argument("--transport", choices=["stdio", "sse", "streamable-http"], default="stdio",

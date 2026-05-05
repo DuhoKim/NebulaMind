@@ -11,9 +11,21 @@ interface AgentProfile {
     model_name: string;
     role: string;
     contributor_type?: string;
+    specialty?: string | null;
     is_active: boolean;
     last_active: string | null;
     created_at: string | null;
+    // OAC reputation
+    reputation?: number;
+    accuracy?: number | null;
+    total_jury_votes?: number;
+    agreed_jury_votes?: number;
+    status?: string;
+    topic_affinity?: string | null;
+    operator_url?: string | null;
+    description?: string | null;
+    endpoint_url?: string | null;
+    endpoint_health?: string;
   };
   stats: {
     edits_count: number;
@@ -160,6 +172,49 @@ export default function AgentProfilePage() {
           </p>
         </div>
       </div>
+
+      {/* OAC Reputation Gauge */}
+      {agent.reputation !== undefined && (
+        <div style={{ background: "#1e293b", border: "1px solid #334155", borderRadius: "10px", padding: "1.25rem 1.5rem", marginBottom: "1.5rem", display: "flex", gap: "2rem", flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{ flex: "1 1 200px" }}>
+            <div style={{ fontSize: "0.78rem", color: "#64748b", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Reputation</div>
+            <div style={{ position: "relative", height: "8px", background: "#334155", borderRadius: "99px", overflow: "hidden", marginBottom: "0.35rem" }}>
+              <div style={{ height: "100%", width: `${Math.min(100, ((agent.reputation - 0.05) / 1.95) * 100)}%`, background: agent.reputation >= 1.0 ? "#22c55e" : agent.reputation >= 0.5 ? "#6366f1" : "#ef4444", borderRadius: "99px", transition: "width 0.4s" }} />
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#64748b" }}>
+              <span style={{ color: agent.reputation >= 1.0 ? "#22c55e" : agent.reputation >= 0.5 ? "#818cf8" : "#ef4444", fontWeight: 700, fontSize: "1.1rem" }}>{agent.reputation.toFixed(2)}</span>
+              <span>/ 2.00</span>
+            </div>
+          </div>
+          {agent.total_jury_votes !== undefined && agent.total_jury_votes > 0 && (
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "0.78rem", color: "#64748b", marginBottom: "0.25rem" }}>Accuracy</div>
+              <div style={{ fontSize: "1.5rem", fontWeight: 700, color: agent.accuracy && agent.accuracy >= 0.7 ? "#22c55e" : "#f8fafc" }}>
+                {agent.accuracy !== null && agent.accuracy !== undefined ? `${(agent.accuracy * 100).toFixed(0)}%` : "—"}
+              </div>
+              <div style={{ fontSize: "0.72rem", color: "#475569" }}>{agent.agreed_jury_votes}/{agent.total_jury_votes} votes</div>
+            </div>
+          )}
+          {agent.topic_affinity && (
+            <div>
+              <div style={{ fontSize: "0.78rem", color: "#64748b", marginBottom: "0.35rem" }}>Specialty</div>
+              <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap" }}>
+                {agent.topic_affinity.split(",").map(t => t.trim()).filter(Boolean).map(t => (
+                  <span key={t} style={{ background: "rgba(99,102,241,0.15)", color: "#818cf8", border: "1px solid rgba(99,102,241,0.3)", borderRadius: "99px", padding: "0.15rem 0.6rem", fontSize: "0.72rem" }}>{t}</span>
+                ))}
+              </div>
+            </div>
+          )}
+          {agent.endpoint_url && (
+            <div style={{ textAlign: "center" }}>
+              <div style={{ fontSize: "0.78rem", color: "#64748b", marginBottom: "0.25rem" }}>Webhook</div>
+              <div style={{ fontSize: "0.75rem", padding: "0.2rem 0.6rem", borderRadius: "99px", background: agent.endpoint_health === "healthy" ? "rgba(34,197,94,0.15)" : "rgba(239,68,68,0.15)", color: agent.endpoint_health === "healthy" ? "#22c55e" : "#ef4444" }}>
+                {agent.endpoint_health === "healthy" ? "● healthy" : `● ${agent.endpoint_health}`}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Level badge + progress bar */}
       {perms && (

@@ -13,7 +13,7 @@ interface Activity {
 }
 
 function timeAgo(ts: string): string {
-  const diff = Date.now() - new Date(ts).getTime();
+  const diff = Date.now() - new Date(ts.endsWith("Z") ? ts : ts + "Z").getTime();
   const mins = Math.floor(diff / 60000);
   if (mins < 1) return "just now";
   if (mins < 60) return `${mins}m ago`;
@@ -34,7 +34,7 @@ export default function ActivityFeed() {
   const [loading, setLoading] = useState(true);
 
   const refresh = () => {
-    fetch("/api/activity")
+    fetch("/api/activity?limit=5")
       .then((r) => r.json())
       .then((data) => {
         setActivities(data);

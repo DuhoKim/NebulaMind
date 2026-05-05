@@ -10,6 +10,8 @@ const EXPLORE_LINKS = [
 ];
 
 const NAV_LINKS = [
+  { href: "/council", label: "Council" },
+  { href: "/escalations", label: "⚖️ Appeals" },
   { href: "/agents", label: "Agents" },
   { href: "/leaderboard", label: "Leaderboard" },
   { href: "/research", label: "Research" },
@@ -22,12 +24,24 @@ const JOIN_LINK = { href: "/join", label: "Join" };
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [online, setOnline] = useState<{human: number, agent: number} | null>(null);
+
+  useEffect(() => {
+    const fetchOnline = () => {
+      fetch("/api/stats").then(r => r.json()).then(d => {
+        setOnline({ human: d.online_human || 0, agent: d.online_agent || 0 });
+      }).catch(() => {});
+    };
+    fetchOnline();
+    const t = setInterval(fetchOnline, 30000);
+    return () => clearInterval(t);
+  }, []);
   const [exploreOpen, setExploreOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const exploreTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const check = () => setIsMobile(window.innerWidth < 768);
+    const check = () => setIsMobile(window.innerWidth < 1024);
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
@@ -57,11 +71,23 @@ export default function NavBar() {
         </a>
 
         {/* Desktop nav */}
-        <nav style={{ display: isMobile ? "none" : "flex", gap: "1.5rem", fontSize: "0.875rem", alignItems: "center" }}>
+        <nav style={{ display: isMobile ? "none" : "flex", gap: "1.5rem", fontSize: "0.875rem", alignItems: "center", marginLeft: "2rem" }}>
           <a href="/" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
             onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
             onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
             Home
+          </a>
+
+          <a href="/wiki" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
+            Wiki
+          </a>
+
+          <a href="/directory" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
+            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
+            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
+            Directory
           </a>
 
           {/* Explore with dropdown */}
@@ -107,16 +133,7 @@ export default function NavBar() {
               {link.label}
             </a>
           ))}
-          <a
-            href="https://github.com/DuhoKim/NebulaMind"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ padding: "6px 12px", background: "transparent", color: "#94a3b8", borderRadius: "4px", textDecoration: "none", fontWeight: 500, fontSize: "0.85rem", border: "1px solid #334155", transition: "all 0.15s" }}
-            onMouseEnter={e => { e.currentTarget.style.color = "#f8fafc"; e.currentTarget.style.borderColor = "#64748b"; }}
-            onMouseLeave={e => { e.currentTarget.style.color = "#94a3b8"; e.currentTarget.style.borderColor = "#334155"; }}
-          >
-            ⭐ GitHub
-          </a>
+
                     <a
             href={JOIN_LINK.href}
             style={{ padding: "6px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", transition: "background 0.15s" }}
@@ -125,6 +142,12 @@ export default function NavBar() {
           >
             {JOIN_LINK.label}
           </a>
+          {online !== null && (
+            <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", fontSize: "0.7rem", color: "#4ade80", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: "999px", padding: "3px 8px", whiteSpace: "nowrap" }}>
+              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#22c55e", flexShrink: 0 }} />
+              {online.human + online.agent} ({online.human}👤{online.agent}🤖)
+            </span>
+          )}
         </nav>
 
         {/* Mobile hamburger */}
@@ -145,6 +168,9 @@ export default function NavBar() {
           <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0.75rem 1rem", display: "flex", flexDirection: "column" }}>
             <a href="/" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
               Home
+            </a>
+            <a href="/directory" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
+              Directory
             </a>
             <a href="/explore" style={{ padding: "10px 8px", color: "#f8fafc", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
               Explore

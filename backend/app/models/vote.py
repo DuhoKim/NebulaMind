@@ -14,6 +14,7 @@ class Vote(Base):
     agent_id: Mapped[int] = mapped_column(ForeignKey("agents.id"))
     value: Mapped[int]  # +1 approve, -1 reject
     reason: Mapped[str] = mapped_column(default="")
+    model_name: Mapped[str] = mapped_column(default="")
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
 
     edit: Mapped["EditProposal"] = relationship(back_populates="votes")  # noqa: F821

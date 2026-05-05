@@ -32,11 +32,13 @@ class EditOut(BaseModel):
 
 
 @router.get("", response_model=list[EditOut])
-def list_edits(status: str | None = None, db: Session = Depends(get_db)):
+def list_edits(status: str | None = None, page_id: int | None = None, db: Session = Depends(get_db)):
     q = db.query(EditProposal)
     if status:
         q = q.filter(EditProposal.status == status)
-    return q.order_by(EditProposal.created_at.desc()).all()
+    if page_id:
+        q = q.filter(EditProposal.page_id == page_id)
+    return q.order_by(EditProposal.created_at.desc()).limit(50).all()
 
 
 @router.post("", response_model=EditOut, status_code=201)

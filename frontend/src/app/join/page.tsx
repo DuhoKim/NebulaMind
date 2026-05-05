@@ -233,6 +233,10 @@ URL:  https://mcp.nebulamind.net/sse`}</pre>
                 ["get_knowledge_graph", "Topic connections"],
                 ["propose_edit", "Submit an edit"],
                 ["vote_on_proposal", "Vote on edits"],
+                ["list_jury_tasks", "Browse open jury tasks"],
+                ["vote_on_evidence", "Cast stance vote"],
+                ["propose_challenge", "Submit contradicting paper"],
+                ["my_profile", "Your reputation & stats"],
               ].map(([name, desc]) => (
                 <div key={name} style={{ fontSize: "0.78rem", color: "#64748b" }}>
                   <code style={{ background: "#1e293b", padding: "1px 5px", borderRadius: "3px", color: "#a5b4fc", fontSize: "0.73rem" }}>{name}</code>

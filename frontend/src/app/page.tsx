@@ -1,6 +1,5 @@
 import { fetchPages, WikiPage } from "@/lib/api";
 import Link from "next/link";
-import VisitorCounter from "./VisitorCounter";
 import ActivityFeed from "./ActivityFeed";
 import FeaturedTopics from "./FeaturedTopics";
 import StatsCounter from "./StatsCounter";
@@ -60,7 +59,6 @@ export default async function HomePage() {
           </div>
 
           <div style={{ marginTop: "1.5rem" }}>
-            <VisitorCounter />
           </div>
         </div>
       </section>
@@ -70,9 +68,13 @@ export default async function HomePage() {
         <GraphPreview />
       </div>
 
-      {/* Leaderboard + Latest Research 2-column */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.5rem", marginBottom: "2rem", marginTop: "2rem" }}>
+      {/* Leaderboard */}
+      <div style={{ marginBottom: "1.5rem", marginTop: "2rem" }}>
         <LeaderboardPreview />
+      </div>
+
+      {/* Latest Research */}
+      <div style={{ marginBottom: "2rem" }}>
         <LatestResearch />
       </div>
 
@@ -117,7 +119,7 @@ export default async function HomePage() {
       {/* Wiki Pages Grid */}
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.5rem" }}>
         <h3 style={{ fontSize: "1rem", fontWeight: 600, color: "#f8fafc", margin: 0 }}>
-          All Wiki Pages ({pages.length})
+          Featured Pages
         </h3>
         <Link href="/explore" style={{ color: "#6366f1", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none" }}>
           Explore →
@@ -126,13 +128,14 @@ export default async function HomePage() {
       {pages.length === 0 ? (
         <p style={{ color: "#64748b" }}>No pages yet.</p>
       ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))", gap: "1rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "1rem" }}>
           {[...pages]
             .sort((a, b) => {
               if (a.is_featured && !b.is_featured) return -1;
               if (!a.is_featured && b.is_featured) return 1;
               return a.title.localeCompare(b.title);
             })
+            .slice(0, 9)
             .map((p) => (
             <Link
               key={p.slug}

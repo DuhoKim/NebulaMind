@@ -1,4 +1,5 @@
 "use client";
+import TrustTimeline from "./TrustTimeline";
 import { useState } from "react";
 
 interface ClaimData {
@@ -8,6 +9,7 @@ interface ClaimData {
   trust_level: string;
   evidence_count: number;
   section: string;
+  has_escalation?: boolean;
 }
 
 interface EvidenceItem {
@@ -25,11 +27,11 @@ interface EvidenceItem {
 }
 
 const TRUST_STYLES: Record<string, string> = {
-  consensus: "bg-green-50 border-l-2 border-green-400 text-gray-900",
-  accepted: "bg-blue-50 border-l-2 border-blue-300 text-gray-900",
-  debated: "bg-orange-50 border-l-2 border-orange-400 text-gray-900",
-  challenged: "bg-red-50 border-l-2 border-red-400 text-gray-900",
-  unverified: "bg-gray-50 text-gray-900",
+  consensus: "border-l-2 border-green-400 bg-green-950/40",
+  accepted: "border-l-2 border-blue-400 bg-blue-950/40",
+  debated: "border-l-2 border-orange-400 bg-orange-950/40",
+  challenged: "border-l-2 border-red-400 bg-red-950/40",
+  unverified: "border-l-2 border-gray-600 bg-gray-800/30",
 };
 
 const TRUST_LABELS: Record<string, string> = {
@@ -38,6 +40,29 @@ const TRUST_LABELS: Record<string, string> = {
   debated: "🟠 Debated",
   challenged: "🔴 Challenged",
   unverified: "⬜ Unverified",
+};
+
+const TRUST_BADGE: Record<string, { label: string; style: React.CSSProperties }> = {
+  consensus: {
+    label: "🟢 consensus",
+    style: { background: "rgba(34,197,94,0.15)", color: "#16a34a", border: "1px solid rgba(34,197,94,0.4)" },
+  },
+  accepted: {
+    label: "accepted",
+    style: { background: "rgba(255,255,255,0.07)", color: "#94a3b8", border: "1px solid rgba(148,163,184,0.3)" },
+  },
+  debated: {
+    label: "🟠 debated",
+    style: { background: "rgba(249,115,22,0.15)", color: "#ea580c", border: "1px solid rgba(249,115,22,0.4)" },
+  },
+  challenged: {
+    label: "🔴 challenged",
+    style: { background: "rgba(239,68,68,0.15)", color: "#dc2626", border: "1px solid rgba(239,68,68,0.4)" },
+  },
+  unverified: {
+    label: "unverified",
+    style: { background: "rgba(100,116,139,0.15)", color: "#64748b", border: "1px solid rgba(100,116,139,0.3)" },
+  },
 };
 
 const STANCE_ICON: Record<string, string> = {
@@ -53,6 +78,13 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
 
   // Edit proposal state
   const [showEditModal, setShowEditModal] = useState(false);
+  const [showOverrideModal, setShowOverrideModal] = useState(false);
+  const [overrideLevel, setOverrideLevel] = useState(claim.trust_level);
+  const [overrideReason, setOverrideReason] = useState("");
+  const [overrideLocked, setOverrideLocked] = useState(true);
+  const [overrideSubmitting, setOverrideSubmitting] = useState(false);
+  const [overrideActive, setOverrideActive] = useState(false);
+  const [overrideInfo, setOverrideInfo] = useState<any>(null);
   const [editText, setEditText] = useState(claim.text);
   const [arxivId, setArxivId] = useState("");
   const [evidenceSummary, setEvidenceSummary] = useState("");
@@ -80,6 +112,50 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
   return (
     <span className={`${style} rounded px-0.5 py-0.5 transition-colors relative`}>
       {claim.connector ? <span className="text-gray-500 italic">{claim.connector} </span> : null}{claim.text}{" "}
+      {showColors && TRUST_BADGE[claim.trust_level] && (
+        <span
+          style={{
+            ...TRUST_BADGE[claim.trust_level].style,
+            display: "inline-flex",
+            alignItems: "center",
+            fontSize: "0.65rem",
+            fontWeight: 600,
+            letterSpacing: "0.04em",
+            padding: "0.1rem 0.45rem",
+            borderRadius: "999px",
+            verticalAlign: "middle",
+            marginLeft: "0.3rem",
+            marginRight: "0.15rem",
+            textTransform: "uppercase",
+            cursor: "default",
+            userSelect: "none",
+          }}
+          title={TRUST_LABELS[claim.trust_level]}
+        >
+          {TRUST_BADGE[claim.trust_level].label}
+        </span>
+      )}
+      {claim.has_escalation && (
+        <span
+          style={{
+            display: "inline-flex",
+            alignItems: "center",
+            fontSize: "0.65rem",
+            fontWeight: 600,
+            padding: "0.1rem 0.45rem",
+            borderRadius: "999px",
+            background: "rgba(59,130,246,0.15)",
+            color: "#3b82f6",
+            border: "1px solid rgba(59,130,246,0.3)",
+            marginLeft: "0.3rem",
+            cursor: "default",
+            userSelect: "none",
+          }}
+          title="This claim is under council appeal"
+        >
+          🔵 Under appeal
+        </span>
+      )}
       <button
         onClick={openPanel}
         className="inline-flex items-center text-xs text-gray-400 hover:text-indigo-600 ml-0.5"
@@ -87,6 +163,7 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
       >
         📄{claim.evidence_count > 0 ? claim.evidence_count : ""}
       </button>
+      <TrustTimeline claimId={claim.id} />
       <button
         onClick={(e) => { e.stopPropagation(); setShowEditModal(true); }}
         className="inline-flex items-center text-xs text-gray-400 hover:text-yellow-500 ml-0.5"
@@ -94,11 +171,34 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
       >
         ✏️
       </button>
+      {/* Researcher override button — only show if admin/researcher */}
+      <button
+        onClick={async (e) => {
+          e.stopPropagation();
+          // Check if override is active
+          try {
+            const r = await fetch(`/api/claims/${claim.id}/override-status`);
+            const d = await r.json();
+            setOverrideInfo(d);
+            setOverrideActive(d.active);
+            if (d.active) {
+              setOverrideLevel(d.override_level || claim.trust_level);
+              setOverrideReason(d.reason || "");
+            }
+          } catch {}
+          setShowOverrideModal(true);
+        }}
+        className="inline-flex items-center text-xs text-gray-400 hover:text-purple-400 ml-0.5"
+        title="Researcher: pin trust level"
+        style={{ opacity: 0.5 }}
+      >
+        📌
+      </button>
 
       {open && (
         <span
-          className="absolute left-0 top-full mt-1 z-50 bg-white border border-gray-200 rounded-xl shadow-xl p-4 w-96 text-sm text-left"
-          style={{ display: "block" }}
+          className="absolute left-0 top-full mt-1 z-50 bg-white border border-gray-200 rounded-xl shadow-xl p-4 text-sm text-left"
+          style={{ width: "min(24rem, 90vw)", maxWidth: "90vw", display: "block" }}
         >
           <div className="flex justify-between items-center mb-2">
             <span className="font-semibold text-gray-700">📎 Evidence</span>
@@ -137,6 +237,81 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
             </div>
           ))}
         </span>
+      )}
+
+      {/* ── Researcher Trust Override Modal ── */}
+      {showOverrideModal && (
+        <div style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.8)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 2100 }} onClick={() => setShowOverrideModal(false)}>
+          <div style={{ background: "#1e293b", border: "1px solid #475569", borderRadius: "8px", padding: "1.5rem", maxWidth: "480px", width: "90%" }} onClick={e => e.stopPropagation()}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
+              <h3 style={{ margin: 0, color: "#f8fafc", fontWeight: 700 }}>📌 Researcher Trust Override</h3>
+              <button onClick={() => setShowOverrideModal(false)} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer", fontSize: "1.1rem" }}>✕</button>
+            </div>
+            <p style={{ fontSize: "0.8rem", color: "#64748b", marginBottom: "0.75rem" }}>Pin this claim to a trust level, bypassing automated calculation.</p>
+
+            {/* Override status banner */}
+            {overrideActive && overrideInfo && (
+              <div style={{ background: "rgba(168,85,247,0.1)", border: "1px solid rgba(168,85,247,0.3)", borderRadius: "6px", padding: "0.6rem 0.85rem", marginBottom: "0.75rem", fontSize: "0.78rem" }}>
+                <strong style={{ color: "#a855f7" }}>Active override:</strong> <span style={{ color: "#d8b4fe" }}>{overrideInfo.override_level}</span>
+                {overrideInfo.stale_reminder && (
+                  <span style={{ color: "#fbbf24", marginLeft: "0.5rem" }}>⚠️ {overrideInfo.new_evidence_since_override} new evidence rows since override</span>
+                )}
+                {overrideInfo.expires_at && (
+                  <div style={{ color: "#64748b", marginTop: "0.25rem" }}>Expires: {new Date(overrideInfo.expires_at).toLocaleDateString()}</div>
+                )}
+              </div>
+            )}
+
+            <div style={{ marginBottom: "0.75rem" }}>
+              <label style={{ fontSize: "0.82rem", color: "#94a3b8", display: "block", marginBottom: "0.3rem" }}>Trust level</label>
+              <select value={overrideLevel} onChange={e => setOverrideLevel(e.target.value)}
+                style={{ width: "100%", padding: "0.4rem 0.75rem", background: "#0f172a", color: "#f8fafc", border: "1px solid #334155", borderRadius: "4px" }}>
+                {["consensus","accepted","debated","challenged","unverified"].map(l => (
+                  <option key={l} value={l}>{l}</option>
+                ))}
+              </select>
+            </div>
+            <textarea value={overrideReason} onChange={e => setOverrideReason(e.target.value)}
+              placeholder="Reason for override (required, min 5 chars)..."
+              style={{ width: "100%", minHeight: "70px", padding: "0.5rem", background: "#0f172a", color: "#f8fafc", border: "1px solid #334155", borderRadius: "4px", fontFamily: "inherit", marginBottom: "0.75rem", boxSizing: "border-box", resize: "vertical" }} />
+            <label style={{ display: "flex", alignItems: "center", gap: "0.5rem", fontSize: "0.82rem", color: "#94a3b8", marginBottom: "1rem", cursor: "pointer" }}>
+              <input type="checkbox" checked={overrideLocked} onChange={e => setOverrideLocked(e.target.checked)} />
+              Lock (prevent automated recalculation)
+            </label>
+            <div style={{ display: "flex", gap: "0.5rem", justifyContent: "flex-end" }}>
+              {overrideActive && (
+                <button
+                  onClick={async () => {
+                    await fetch(`/api/claims/${claim.id}/trust-override`, { method: "DELETE" });
+                    setOverrideActive(false);
+                    setShowOverrideModal(false);
+                  }}
+                  style={{ padding: "0.4rem 0.85rem", background: "transparent", color: "#ef4444", border: "1px solid #ef4444", borderRadius: "4px", cursor: "pointer", fontSize: "0.85rem" }}>
+                  Remove override
+                </button>
+              )}
+              <button onClick={() => setShowOverrideModal(false)}
+                style={{ padding: "0.4rem 0.85rem", background: "transparent", color: "#64748b", border: "1px solid #334155", borderRadius: "4px", cursor: "pointer" }}>Cancel</button>
+              <button
+                disabled={overrideSubmitting || overrideReason.trim().length < 5}
+                onClick={async () => {
+                  setOverrideSubmitting(true);
+                  try {
+                    await fetch(`/api/claims/${claim.id}/trust-override`, {
+                      method: "PATCH",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ trust_level: overrideLevel, reason: overrideReason, locked: overrideLocked }),
+                    });
+                    setOverrideActive(true);
+                    setShowOverrideModal(false);
+                  } catch {} finally { setOverrideSubmitting(false); }
+                }}
+                style={{ padding: "0.4rem 0.85rem", background: "#6366f1", color: "#fff", border: "none", borderRadius: "4px", cursor: "pointer", opacity: overrideReason.trim().length < 5 ? 0.5 : 1 }}>
+                {overrideSubmitting ? "Saving..." : overrideActive ? "Update override" : "Set override"}
+              </button>
+            </div>
+          </div>
+        </div>
       )}
 
       {showEditModal && (

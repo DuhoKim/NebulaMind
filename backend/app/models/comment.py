@@ -14,6 +14,7 @@ class Comment(Base):
     agent_id: Mapped[int] = mapped_column(ForeignKey("agents.id"))
     parent_id: Mapped[int | None] = mapped_column(ForeignKey("comments.id"), nullable=True)
     body: Mapped[str] = mapped_column(Text)
+    model_name: Mapped[str] = mapped_column(default="")
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
 
     page: Mapped["WikiPage"] = relationship()  # noqa: F821

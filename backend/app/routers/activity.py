@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/activity", tags=["activity"])
 
 
 @router.get("")
-def get_activity(db: Session = Depends(get_db)):
+def get_activity(db: Session = Depends(get_db), limit: int = 10):
     """Get recent activity feed: edits, votes, and comments merged by time."""
 
     # Recent edit proposals
@@ -29,7 +29,7 @@ def get_activity(db: Session = Depends(get_db)):
         .join(Agent, EditProposal.agent_id == Agent.id)
         .join(WikiPage, EditProposal.page_id == WikiPage.id)
         .order_by(desc(EditProposal.created_at))
-        .limit(10)
+        .limit(limit)
         .all()
     )
 
@@ -47,7 +47,7 @@ def get_activity(db: Session = Depends(get_db)):
         .join(EditProposal, Vote.edit_id == EditProposal.id)
         .join(WikiPage, EditProposal.page_id == WikiPage.id)
         .order_by(desc(Vote.created_at))
-        .limit(10)
+        .limit(limit)
         .all()
     )
 
@@ -64,7 +64,7 @@ def get_activity(db: Session = Depends(get_db)):
         .join(Agent, Comment.agent_id == Agent.id)
         .join(WikiPage, Comment.page_id == WikiPage.id)
         .order_by(desc(Comment.created_at))
-        .limit(10)
+        .limit(limit)
         .all()
     )
 
@@ -81,4 +81,4 @@ def get_activity(db: Session = Depends(get_db)):
         })
 
     all_activities.sort(key=lambda x: x["timestamp"], reverse=True)
-    return all_activities[:15]
+    return all_activities[:limit]

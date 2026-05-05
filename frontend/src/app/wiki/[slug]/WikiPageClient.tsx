@@ -14,6 +14,8 @@ interface WikiPage {
   hero_tagline?: string | null;
   hero_facts?: string | null;
   did_you_know?: string | null;
+  wiki_summary?: string | null;
+  wiki_summary_url?: string | null;
 }
 
 interface EditProposal {
@@ -92,6 +94,48 @@ function extractKeyFacts(content: string): string[] {
   return facts;
 }
 
+function renderSourceBadge(src: any): React.ReactNode {
+  if (!src) return <span style={{fontSize:"0.58rem",color:"#475569"}}>⚠️ AI estimate</span>;
+  if (src.tier === "authoritative") return (
+    <a href={src.reference_url || "#"} target="_blank" rel="noopener noreferrer"
+      style={{fontSize:"0.58rem",color:"#818cf8",textDecoration:"none"}} title={src.reference_title}>
+      📐 {src.attribution}
+    </a>
+  );
+  if (src.tier === "claim") {
+    const tc = src.trust_level === "consensus" ? "#22c55e" : src.trust_level === "debated" ? "#f97316" : "#94a3b8";
+    return <span style={{fontSize:"0.58rem",color:tc}} title={`${src.evidence_count} cited papers`}>📄 {src.evidence_count} sources · {src.trust_level}</span>;
+  }
+  if (src.flagged) return <span style={{fontSize:"0.58rem",color:"#ef4444"}}>🚩 {src.reason || "Flagged"}</span>;
+  return <span style={{fontSize:"0.58rem",color:"#f59e0b"}}>⚠️ AI estimate</span>;
+}
+
+function superscript(n: number): string {
+  const map: Record<string, string> = {
+    "0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹","-":"⁻",
+  };
+  return String(n).split("").map(c => map[c] || c).join("");
+}
+
+function renderFactValue(fact: any): string {
+  switch (fact?.kind ?? "scalar") {
+    case "range": {
+      if (fact.scale === "log" && fact.value_min != null && fact.value_max != null) {
+        const lo = Math.log10(fact.value_min);
+        const hi = Math.log10(fact.value_max);
+        return `10${superscript(Math.round(lo))} – 10${superscript(Math.round(hi))}`;
+      }
+      return `${fact.value_min} – ${fact.value_max}`;
+    }
+    case "count":
+      return `${fact.modifier === "approximately" ? "~" : ""}${Number(fact.value).toLocaleString()}`;
+    case "date":
+      return String(fact.year ?? fact.value ?? "");
+    default:
+      return String(fact.value ?? "");
+  }
+}
+
 export default function WikiPageClientView() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -110,6 +154,8 @@ export default function WikiPageClientView() {
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [wikiSummaryOpen, setWikiSummaryOpen] = useState(true);
+  const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -120,16 +166,30 @@ export default function WikiPageClientView() {
 
   useEffect(() => {
     if (!slug) return;
-    Promise.all([
-      fetch(`/api/pages/${slug}`).then((r) => r.ok ? r.json() : null),
-      fetch(`/api/edits?status=pending`).then((r) => r.ok ? r.json() : []).catch(() => []),
-      fetch(`/api/pages/${slug}/contributors`).then((r) => r.ok ? r.json() : null).catch(() => null),
-    ]).then(([p, e, c]) => {
-      setPage(p);
-      setEdits(p ? e.filter((ed: EditProposal) => true) : []);
-      setContributorsData(c);
-      setLoading(false);
-    });
+    fetch(`/api/pages/${slug}/health`)
+      .then(r => r.ok ? r.json() : null)
+      .then(d => { if (d?.score != null) setHealth(d); })
+      .catch(() => {});
+  }, [slug]);
+
+  useEffect(() => {
+    if (!slug) return;
+    fetch(`/api/pages/${slug}`)
+      .then(r => r.ok ? r.json() : null)
+      .then(p => {
+        setPage(p);
+        setLoading(false);
+        if (p?.id) {
+          fetch(`/api/edits?status=pending&page_id=${p.id}`)
+            .then(r => r.ok ? r.json() : [])
+            .then(setEdits)
+            .catch(() => setEdits([]));
+        }
+        fetch(`/api/pages/${slug}/contributors`)
+          .then(r => r.ok ? r.json() : null)
+          .then(setContributorsData)
+          .catch(() => setContributorsData(null));
+      });
   }, [slug]);
 
   useEffect(() => {
@@ -163,12 +223,41 @@ export default function WikiPageClientView() {
   const keyFacts = extractKeyFacts(page.content);
 
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
-  const didYouKnow = page.did_you_know ? (() => { try { return JSON.parse(page.did_you_know); } catch { return []; } })() : [];
+  // H6: filter out flagged AI-estimate facts (failed validation)
+  const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
+  const didYouKnow = page.did_you_know ? (() => {
+    try {
+      const raw = JSON.parse(page.did_you_know);
+      return raw.map((item: any) => typeof item === "string" ? { text: item, source: null } : item)
+        .filter((item: any) => !(item?.source?.tier === "ai_estimate" && item?.source?.flagged));
+    } catch { return []; }
+  })() : [];
 
   return (
     <article style={{ maxWidth: "56rem", margin: "0 auto" }}>
       {/* View mode toggle */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
+        {health && (
+          <span
+            title={`Health: ${health.score}/100 — ${health.band}`}
+            style={{
+              fontSize: "0.72rem", fontWeight: 600,
+              padding: "0.15rem 0.5rem", borderRadius: "99px", cursor: "help",
+              background: health.score >= 80 ? "rgba(34,197,94,0.15)"
+                : health.score >= 60 ? "rgba(59,130,246,0.15)"
+                : health.score >= 40 ? "rgba(234,179,8,0.15)"
+                : health.score >= 20 ? "rgba(249,115,22,0.15)"
+                : "rgba(239,68,68,0.15)",
+              color: health.score >= 80 ? "#22c55e"
+                : health.score >= 60 ? "#3b82f6"
+                : health.score >= 40 ? "#ca8a04"
+                : health.score >= 20 ? "#ea580c"
+                : "#ef4444",
+            }}
+          >
+            {health.emoji} {health.score}/100
+          </span>
+        )}
         <span style={{ color: "#64748b" }}>View:</span>
         <button
           onClick={() => setViewMode("A")}
@@ -190,6 +279,16 @@ export default function WikiPageClientView() {
           </span>
         )}
         {voted && <span style={{ marginLeft: "1rem", color: "#22c55e", fontSize: "0.75rem" }}>Thanks for voting</span>}
+        <Link href={`/wiki/${slug}/history`}
+          style={{ marginLeft: "auto", fontSize: "0.75rem", color: "#64748b", textDecoration: "none",
+            padding: "0.25rem 0.5rem", border: "1px solid #334155", borderRadius: "4px" }}>
+          📜 History
+        </Link>
+        <Link href={`/wiki/${slug}/sources`}
+          style={{ fontSize: "0.75rem", color: "#64748b", textDecoration: "none",
+            padding: "0.25rem 0.5rem", border: "1px solid #334155", borderRadius: "4px" }}>
+          📚 Sources
+        </Link>
       </div>
 
       {/* Hero Section */}
@@ -208,9 +307,9 @@ export default function WikiPageClientView() {
           <p style={{ fontSize: "1.1rem", color: "#94a3b8", fontStyle: "italic", marginBottom: "1.5rem", lineHeight: 1.6 }}>
             {page.hero_tagline}
           </p>
-          {parsedFacts.length > 0 && (
+          {displayFacts.length > 0 && (
             <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-              {parsedFacts.map((fact: any, i: number) => (
+              {displayFacts.map((fact: any, i: number) => (
                 <div key={i} style={{
                   background: "rgba(255,255,255,0.05)",
                   borderRadius: "6px",
@@ -218,10 +317,29 @@ export default function WikiPageClientView() {
                   textAlign: "center",
                   minWidth: "100px",
                   border: "1px solid #334155",
+                  position: "relative",
                 }}>
-                  <div style={{ fontSize: "1.5rem", fontWeight: 600, color: "#f8fafc" }}>{fact.value}</div>
+                  {/* H6 trust dot */}
+                  {fact.trust_level && (
+                    <span
+                      title={`Source trust: ${fact.trust_level}`}
+                      style={{
+                        position: "absolute", top: "4px", right: "5px",
+                        fontSize: "0.55rem",
+                        color: fact.trust_level === "consensus" ? "#22c55e"
+                          : fact.trust_level === "accepted" ? "#64748b"
+                          : fact.trust_level === "debated" ? "#f97316"
+                          : fact.trust_level === "challenged" ? "#ef4444"
+                          : "#475569",
+                      }}
+                    >
+                      {fact.trust_level === "consensus" ? "●" : fact.trust_level === "debated" ? "◖" : "◦"}
+                    </span>
+                  )}
+                  <div style={{ fontSize: "1.5rem", fontWeight: 600, color: "#f8fafc" }}>{renderFactValue(fact)}</div>
                   <div style={{ fontSize: "0.7rem", color: "#64748b", textTransform: "uppercase", letterSpacing: "0.05em" }}>{fact.unit}</div>
                   <div style={{ fontSize: "0.8rem", color: "#94a3b8" }}>{fact.label}</div>
+                  <div style={{ marginTop: "0.3rem" }}>{renderSourceBadge(fact?.source)}</div>
                 </div>
               ))}
             </div>
@@ -249,11 +367,72 @@ export default function WikiPageClientView() {
           <h3 style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", fontWeight: 600, color: "#0f172a", textTransform: "uppercase", letterSpacing: "0.1em" }}>
             Did You Know
           </h3>
-          {didYouKnow.map((fact: string, i: number) => (
-            <p key={i} style={{ margin: i === 0 ? 0 : "0.5rem 0 0", color: "#334155", fontSize: "0.9rem", lineHeight: 1.6 }}>
-              {fact}
-            </p>
-          ))}
+          {didYouKnow.map((item: any, i: number) => {
+            const text = typeof item === "string" ? item : item?.text || "";
+            const src = typeof item === "object" ? item?.source : null;
+            return (
+              <div key={i} style={{ margin: i === 0 ? 0 : "0.5rem 0 0" }}>
+                <p style={{ margin: 0, color: "#334155", fontSize: "0.9rem", lineHeight: 1.6 }}>{text}</p>
+                {src && <div style={{ marginTop: "2px" }}>{renderSourceBadge(src)}</div>}
+              </div>
+            );
+          })}
+        </section>
+      )}
+
+      {/* Wikipedia Summary Block — default collapsed, per spec §4.2 */}
+      {page.wiki_summary && (
+        <section style={{
+          background: "#1e293b",
+          border: "1px solid #334155",
+          borderRadius: "8px",
+          marginBottom: "1.5rem",
+          overflow: "hidden",
+        }}>
+          <button
+            onClick={() => setWikiSummaryOpen(v => !v)}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              padding: "0.75rem 1rem",
+              background: "transparent",
+              border: "none",
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+              <span style={{ fontSize: "1rem" }}>📖</span>
+              <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
+                Wikipedia Overview
+              </span>
+              <span style={{ fontSize: "0.7rem", color: "#475569", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
+                CC BY-SA 4.0
+              </span>
+            </span>
+            <span style={{ color: "#475569", fontSize: "0.75rem", transition: "transform 0.2s", display: "inline-block", transform: wikiSummaryOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
+              ▾
+            </span>
+          </button>
+          {wikiSummaryOpen && (
+            <div style={{ padding: "0 1rem 1rem" }}>
+              <p style={{ margin: "0 0 0.75rem", fontSize: "0.9rem", color: "#cbd5e1", lineHeight: 1.7 }}>
+                {page.wiki_summary}
+              </p>
+              {page.wiki_summary_url && (
+                <a
+                  href={page.wiki_summary_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ fontSize: "0.78rem", color: "#6366f1", textDecoration: "none" }}
+                >
+                  Read full article on Wikipedia →
+                </a>
+              )}
+            </div>
+          )}
         </section>
       )}
 
@@ -331,7 +510,7 @@ export default function WikiPageClientView() {
       </div>
 
       {/* Claim Rendering */}
-      {showV2 && claims ? (
+      {showV2 && claims && (claims.sections?.length > 0 || claims.debates?.length > 0) ? (
         <div className="prose max-w-none">
           {claims.sections?.map((section: any) => (
             <div key={section.name} style={{ marginBottom: "1.5rem" }}>
@@ -375,7 +554,7 @@ export default function WikiPageClientView() {
           )}
         </div>
       ) : (
-      <div className="prose prose-invert max-w-none" style={{ lineHeight: 1.7 }}>
+      <div className="prose max-w-none" style={{ lineHeight: 1.7, color: "#94a3b8" }}>
         <ReactMarkdown
           components={{
             h1: ({ children }) => {
@@ -394,9 +573,10 @@ export default function WikiPageClientView() {
               return <h3 id={id} style={{ fontSize: "1.1rem", fontWeight: 500, marginTop: "1rem", marginBottom: "0.5rem", color: "#f8fafc" }}>{children}</h3>;
             },
             p: ({ children }) => <p style={{ marginBottom: "1rem", lineHeight: 1.7, color: "#94a3b8" }}>{children}</p>,
-            ul: ({ children }) => <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", marginBottom: "1rem" }}>{children}</ul>,
-            ol: ({ children }) => <ol style={{ listStyleType: "decimal", paddingLeft: "1.5rem", marginBottom: "1rem" }}>{children}</ol>,
-            strong: ({ children }) => <strong style={{ fontWeight: 500, color: "#f8fafc" }}>{children}</strong>,
+            ul: ({ children }) => <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", marginBottom: "1rem", color: "#94a3b8" }}>{children}</ul>,
+            ol: ({ children }) => <ol style={{ listStyleType: "decimal", paddingLeft: "1.5rem", marginBottom: "1rem", color: "#94a3b8" }}>{children}</ol>,
+            li: ({ children }) => <li style={{ marginBottom: "0.25rem", color: "#94a3b8" }}>{children}</li>,
+            strong: ({ children }) => <strong style={{ fontWeight: 600, color: "#f8fafc" }}>{children}</strong>,
             blockquote: ({ children }) => (
               <blockquote style={{ borderLeft: "3px solid #6366f1", paddingLeft: "1rem", fontStyle: "italic", color: "#94a3b8", margin: "1rem 0" }}>{children}</blockquote>
             ),

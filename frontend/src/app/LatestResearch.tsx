@@ -14,7 +14,7 @@ interface Paper {
 }
 
 function timeAgo(dateStr: string): string {
-  const diff = Date.now() - new Date(dateStr).getTime();
+  const diff = Date.now() - new Date(dateStr.endsWith("Z") ? dateStr : dateStr + "Z").getTime();
   const days = Math.floor(diff / 86400000);
   if (days === 0) return "today";
   if (days === 1) return "yesterday";
@@ -51,7 +51,7 @@ export default function LatestResearch() {
   return (
     <div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.75rem" }}>
-        <h3 style={{ fontSize: "0.85rem", fontWeight: 700, margin: 0, textTransform: "uppercase", letterSpacing: "0.08em", color: "#0f172a" }}>Recent Papers</h3>
+        <h3 style={{ fontSize: "0.85rem", fontWeight: 700, margin: 0, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc" }}>Recent Papers</h3>
         <Link href="/research" style={{ fontSize: "0.78rem", color: "#6366f1" }}>View all</Link>
       </div>
 

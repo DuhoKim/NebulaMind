@@ -57,10 +57,10 @@ def record_visit(request: Request, path: Optional[str] = None, db: Session = Dep
     vtype = "agent" if is_agent else "human"
 
     # Deduplicate: skip if same IP visited in last 30 minutes
-    thirty_min_ago = dt.datetime.now(dt.UTC) - dt.timedelta(minutes=30)
+    five_min_ago_dedup = dt.datetime.now(dt.UTC) - dt.timedelta(minutes=5)
     recent = db.query(Visit).filter(
         Visit.ip_address == ip,
-        Visit.created_at >= thirty_min_ago,
+        Visit.created_at >= five_min_ago_dedup,
     ).first()
     if recent:
         return VisitOut(visitor_type=vtype)
@@ -91,7 +91,17 @@ def get_stats(db: Session = Depends(get_db)):
     today_agent = db.query(Visit).filter(func.date(Visit.created_at) == today, Visit.visitor_type == "agent").count()
 
     online_human = db.query(func.count(func.distinct(Visit.ip_address))).filter(Visit.created_at >= five_min_ago, Visit.visitor_type == "human").scalar() or 0
-    online_agent = db.query(func.count(func.distinct(Visit.ip_address))).filter(Visit.created_at >= five_min_ago, Visit.visitor_type == "agent").scalar() or 0
+
+    # Count active agents from actual activity (edits, votes, comments in last 5 min)
+    from app.models.edit import EditProposal
+    from app.models.vote import Vote
+    from app.models.comment import Comment
+    from sqlalchemy import union_all, literal_column
+    active_agent_ids = set()
+    for model in [EditProposal, Vote, Comment]:
+        ids = [r[0] for r in db.query(model.agent_id).filter(model.created_at >= five_min_ago).distinct().all()]
+        active_agent_ids.update(ids)
+    online_agent = len(active_agent_ids)
 
     unique = db.query(func.count(func.distinct(Visit.ip_address))).scalar() or 0
 

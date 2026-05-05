@@ -21,6 +21,9 @@ class PageCreate(BaseModel):
 
 class PageUpdate(BaseModel):
     content: str
+    hero_tagline: str | None = None
+    hero_facts: str | None = None  # JSON string
+    did_you_know: str | None = None  # JSON string
 
 
 class PageOut(BaseModel):
@@ -32,6 +35,12 @@ class PageOut(BaseModel):
     hero_tagline: str | None = None
     hero_facts: str | None = None
     did_you_know: str | None = None
+    wiki_summary: str | None = None
+    wiki_summary_url: str | None = None
+    summary_source: str | None = None
+    summary_source_url: str | None = None
+    do_not_renovate: bool = False
+    health_score: float | None = None
 
     model_config = {"from_attributes": True}
 
@@ -104,8 +113,11 @@ class VoteOut(BaseModel):
 
 
 @router.get("", response_model=list[PageOut])
-def list_pages(db: Session = Depends(get_db)):
-    return db.query(WikiPage).order_by(WikiPage.updated_at.desc()).all()
+def list_pages(category: str | None = None, db: Session = Depends(get_db)):
+    q = db.query(WikiPage)
+    if category:
+        q = q.filter(WikiPage.category == category)
+    return q.order_by(WikiPage.updated_at.desc()).all()
 
 
 @router.get("/{slug}", response_model=PageOut)
@@ -135,6 +147,19 @@ def update_page(slug: str, body: PageUpdate, db: Session = Depends(get_db)):
     if not page:
         raise HTTPException(404, "Page not found")
     page.content = body.content
+    if body.hero_tagline is not None:
+        page.hero_tagline = body.hero_tagline
+    if body.hero_facts is not None:
+        try:
+            import json as _json
+            from app.services.hero_facts import validate_and_save_hero_facts
+            facts = _json.loads(body.hero_facts)
+            if isinstance(facts, list):
+                validate_and_save_hero_facts(page, db, facts)
+        except Exception:
+            page.hero_facts = body.hero_facts  # fallback: save as-is
+    if body.did_you_know is not None:
+        page.did_you_know = body.did_you_know
     last_version = (
         db.query(PageVersion)
         .filter(PageVersion.page_id == page.id)
@@ -413,3 +438,54 @@ def get_page_contributors(slug: str, db: Session = Depends(get_db)):
         "contributors": contributors,
         "edit_history": history,
     }
+
+
+@router.get("/{slug}/fact-sources", tags=["pages"],
+    summary="Get fact source records for a page",
+    description="Returns all FactSource rows for hero_facts and did_you_know on this page.")
+def get_fact_sources(slug: str, db: Session = Depends(get_db)):
+    page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+    if not page:
+        raise HTTPException(404, "Page not found")
+    from app.models.page import FactSource
+    sources = db.query(FactSource).filter(FactSource.page_id == page.id).all()
+    return [
+        {
+            "id": s.id,
+            "fact_kind": s.fact_kind,
+            "fact_index": s.fact_index,
+            "source_tier": s.source_tier,
+            "authority": s.authority,
+            "reference_url": s.reference_url,
+            "reference_title": s.reference_title,
+            "retrieval_year": s.retrieval_year,
+            "claim_id": s.claim_id,
+            "trust_level_snapshot": s.trust_level_snapshot,
+            "evidence_count_snapshot": s.evidence_count_snapshot,
+            "representative_arxiv_id": s.representative_arxiv_id,
+            "attribution": s.attribution,
+            "flagged": s.flagged,
+            "reason": s.reason,
+        }
+        for s in sources
+    ]
+
+
+@router.get("/{slug}/health",
+    summary="Get page health score",
+    description="Computes and returns the 6-dimension health score for a wiki page. Public read.")
+def get_page_health(slug: str, db: Session = Depends(get_db)):
+    import datetime as _dt
+    from app.services.page_health import compute_health_score
+    from app.models.page import WikiPage as _WikiPage
+    page = db.query(_WikiPage).filter(_WikiPage.slug == slug).first()
+    if not page:
+        raise HTTPException(404, "Page not found")
+    if page.do_not_renovate:
+        return {"score": None, "band": "Frozen", "emoji": "🔒", "note": "do_not_renovate=true"}
+    result = compute_health_score(page, db)
+    # Cache in wiki_pages
+    page.health_score = result["score"]
+    page.health_updated_at = _dt.datetime.utcnow()
+    db.commit()
+    return result

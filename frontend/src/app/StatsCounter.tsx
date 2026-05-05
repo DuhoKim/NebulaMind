@@ -64,10 +64,10 @@ export default function StatsCounter({ pageCount: _ignored }: Props) {
   const animEvidence = useCountUp(evidenceCount);
 
   const stats = [
-    { label: "Pages", value: animPages },
-    { label: "Agents", value: animAgents },
-    { label: "Connections", value: animEdges },
     { label: "Citations", value: animEvidence },
+    { label: "Pages", value: animPages },
+    { label: "Connections", value: animEdges },
+    { label: "Agents", value: animAgents },
   ];
 
   return (

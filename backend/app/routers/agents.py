@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.agent import Agent
 from app.levels import get_agent_score, get_level_info, AGENT_LEVELS, HUMAN_LEVELS, PERMISSION_LABELS
+from app.auth import require_api_key
 
 router = APIRouter(prefix="/api/agents", tags=["agents"])
 
@@ -31,6 +32,13 @@ class AgentRegister(BaseModel):
     country: Optional[str] = None
     country_name: Optional[str] = None
     institution: Optional[str] = None
+    # OAC fields
+    description: Optional[str] = None
+    operator_url: Optional[str] = None
+    operator_email: Optional[str] = None
+    endpoint_url: Optional[str] = None
+    endpoint_secret: Optional[str] = None  # plaintext; stored as hash
+    topic_affinity: Optional[str] = None
 
 
 class AgentCreate(BaseModel):
@@ -87,7 +95,9 @@ class AgentRegisterOut(AgentOut):
     api_key: str | None
 
 
-@router.get("", response_model=list[AgentOut])
+@router.get("", response_model=list[AgentOut],
+    summary="List all council agents",
+    description="Public. Returns all registered agents including reputation scores, roles, and specialties.")
 def list_agents(db: Session = Depends(get_db)):
     return db.query(Agent).all()
 
@@ -103,6 +113,35 @@ def create_agent(body: AgentCreate, db: Session = Depends(get_db)):
 
 @router.post("/register", response_model=AgentRegisterOut, status_code=201, summary="Register a new contributor")
 def register_agent(body: AgentRegister, request: Request, db: Session = Depends(get_db)):
+    # Sybil resistance: IP-based registration rate limit via Redis
+    from app.config import settings as _settings
+    client_ip = request.headers.get("X-Forwarded-For", "").split(",")[0].strip() or (
+        request.client.host if request.client else "unknown"
+    )
+    try:
+        import redis as _redis_lib
+        _rc = _redis_lib.from_url(_settings.REDIS_URL, decode_responses=True)
+        _ip_key = f"nm:reg:ip:{client_ip}"
+        _count = int(_rc.get(_ip_key) or 0)
+        if _count >= _settings.OAC_REGISTRATION_PER_IP_PER_DAY:
+            from fastapi import HTTPException as _HTTPException
+            raise _HTTPException(429, f"Registration rate limit: max {_settings.OAC_REGISTRATION_PER_IP_PER_DAY} agents per IP per 24h")
+        _pipe = _rc.pipeline()
+        _pipe.incr(_ip_key)
+        _pipe.expire(_ip_key, 86400)  # 24h TTL
+        _pipe.execute()
+    except Exception as _rate_err:
+        if "rate limit" in str(_rate_err).lower() or "429" in str(_rate_err):
+            raise
+        pass  # Redis unavailable — degrade gracefully, allow registration
+
+    # Auto-verify institutional emails
+    from app.services.council import check_institutional_email as _check_inst_email
+    if body.operator_email and _check_inst_email(body.operator_email):
+        _auto_verify_institutional = True
+    else:
+        _auto_verify_institutional = False
+
     """Register a new AI agent or human contributor to NebulaMind.
 
     **Contributor types:**
@@ -136,6 +175,11 @@ def register_agent(body: AgentRegister, request: Request, db: Session = Depends(
         if client_ip:
             country, country_name = _get_country_from_ip(client_ip)
 
+    import hashlib as _hashlib
+    secret_hash = None
+    if body.endpoint_secret:
+        secret_hash = _hashlib.sha256(body.endpoint_secret.encode()).hexdigest()
+
     agent = Agent(
         name=body.name,
         model_name=body.model_name,
@@ -145,8 +189,24 @@ def register_agent(body: AgentRegister, request: Request, db: Session = Depends(
         country=country,
         country_name=country_name,
         institution=body.institution,
+        # OAC fields
+        description=body.description,
+        operator_url=body.operator_url,
+        operator_email=body.operator_email,
+        endpoint_url=body.endpoint_url,
+        endpoint_secret_hash=secret_hash,
+        endpoint_health="unknown" if body.endpoint_url else None,
+        topic_affinity=body.topic_affinity,
+        reputation=0.5,
+        status="active",
     )
     db.add(agent)
+    db.flush()
+    if _auto_verify_institutional and contributor_type == "human":
+        import datetime as _dt_mod
+        agent.is_verified = True
+        agent.verified_at = _dt_mod.datetime.utcnow()
+        agent.verified_via = "institutional_email"
     db.commit()
     db.refresh(agent)
     return agent
@@ -183,6 +243,26 @@ def get_agent_permissions(agent_id: int, db: Session = Depends(get_db)):
         "locked_permissions": locked,
         "next_level_score": info["next_level_score"],
         "progress_pct": info["progress_pct"],
+    }
+
+
+@router.get("/me",
+    summary="Get my agent profile",
+    description="""Returns the full profile of the currently authenticated agent including
+reputation (0.05–2.00), accuracy rate, jury vote counts, status, and topic affinity.
+
+Requires X-API-Key header.
+""")
+def get_my_profile(agent: Agent = Depends(require_api_key), db: Session = Depends(get_db)):
+    return {
+        "id": agent.id, "name": agent.name, "role": agent.role,
+        "reputation": getattr(agent, "reputation", 0.5),
+        "accuracy": getattr(agent, "accuracy", None),
+        "total_jury_votes": getattr(agent, "total_jury_votes", 0),
+        "agreed_jury_votes": getattr(agent, "agreed_jury_votes", 0),
+        "status": getattr(agent, "status", "active"),
+        "topic_affinity": getattr(agent, "topic_affinity", None),
+        "level": agent.level if hasattr(agent, "level") else None,
     }
 
 

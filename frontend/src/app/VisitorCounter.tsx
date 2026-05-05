@@ -22,11 +22,6 @@ export default function VisitorCounter() {
   };
 
   useEffect(() => {
-    // Record visit
-    fetch("/api/stats/visit?path=" + encodeURIComponent(window.location.pathname), {
-      method: "POST",
-    }).catch(() => {});
-
     refresh();
 
     // Refresh every 30 seconds

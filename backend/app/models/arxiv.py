@@ -21,3 +21,5 @@ class ArxivPaper(Base):
     related_pages: Mapped[str | None] = mapped_column(Text, nullable=True)  # JSON array of slugs
     wiki_edit_proposed: Mapped[bool] = mapped_column(Boolean, default=False)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    match_type: Mapped[str | None] = mapped_column(String(30), nullable=True)
+    processed_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
