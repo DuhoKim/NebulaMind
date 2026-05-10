@@ -7,6 +7,25 @@ import re
 import time
 from pathlib import Path
 
+
+def _normalize_authors(authors_raw, cap: int = 5) -> str | None:
+    """Normalize authors to a JSON array of individual name strings, capped at `cap`."""
+    if not authors_raw:
+        return None
+    try:
+        if isinstance(authors_raw, list):
+            names = authors_raw
+        elif authors_raw.startswith("["):
+            names = json.loads(authors_raw)
+        else:
+            names = [authors_raw]
+        # If stored as single comma-sep string, split it
+        if len(names) == 1 and "," in names[0]:
+            names = [n.strip() for n in names[0].split(",") if n.strip()]
+        return json.dumps([n for n in names if n][:cap])
+    except Exception:
+        return authors_raw[:200] if authors_raw else None
+
 import httpx
 
 from app.agent_loop.worker import celery_app
@@ -18,6 +37,32 @@ from app.models.edit import EditProposal, EditStatus
 from app.models.page import PageVersion, WikiPage
 from app.models.vote import Vote
 from app.models.qa import QAQuestion, QAAnswer
+
+# ---------------------------------------------------------------------------
+# Model keep-alive helpers
+# ---------------------------------------------------------------------------
+
+def _keep_alive_ollama(base_url: str, model: str, keep_alive: str = "24h") -> None:
+    """Ping Ollama to keep a model loaded in memory."""
+    try:
+        httpx.post(
+            f"{base_url.rstrip('/').rstrip('/v1')}/api/generate",
+            json={"model": model, "keep_alive": keep_alive, "prompt": ""},
+            timeout=10,
+        )
+    except Exception:
+        pass
+
+
+@celery_app.task(name="app.agent_loop.tasks.warm_models")
+def warm_models():
+    """Keep key models loaded in Ollama memory. Runs every 20 minutes."""
+    _keep_alive_ollama("http://192.188.0.4:11434", "deepseek-r1:671b", "24h")  # Rakon
+    _keep_alive_ollama("http://192.188.0.4:11434", "deepseek-r1:32b",  "2h")   # Pro 32b
+    for model in ["llama3.3:70b", "qwen3:30b", "deepseek-r1:14b"]:
+        _keep_alive_ollama("http://localhost:11434", model, "30m")              # Studio
+    print("[warm_models] keep-alive pings sent")
+
 
 # ---------------------------------------------------------------------------
 # Wiki Schema loader
@@ -1052,6 +1097,8 @@ def _run_editor(db, agent: Agent):
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
     ]
+    if settings.GEMINI_API_KEY:
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
 
     parallel_results = _chat_parallel(parallel_models, system_prompt, user_msg, timeout=60)
 
@@ -1139,6 +1186,8 @@ def _run_reviewer(db, agent: Agent):
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
     ]
+    if settings.GEMINI_API_KEY:
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
 
     parallel_results = _chat_parallel(parallel_models, system, user_msg, timeout=90)
 
@@ -1257,6 +1306,8 @@ def _run_commenter(db, agent: Agent):
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "phi4:14b",         "label": "phi4:14b"},
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b",  "label": "deepseek-r1:14b"},
     ]
+    if settings.GEMINI_API_KEY:
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
 
     parallel_results = _chat_parallel(parallel_models, system_prompt, user_msg, timeout=60)
 
@@ -1359,7 +1410,7 @@ def _run_evidence_linker_v1(db, agent: Agent):
             claim_id=claim.id,
             arxiv_id=arxiv_id,
             title=v["title"] or p.get("title", ""),
-            authors=p.get("authors"),
+            authors=_normalize_authors(p.get("authors")),
             year=v["year"] or p.get("year"),
             summary=p.get("summary"),
             stance=p.get("stance", "supports"),
@@ -1493,6 +1544,8 @@ def _run_evidence_linker_v2(db, agent: Agent):
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",    "label": "llama3.3:70b"},
     ]
+    if settings.GEMINI_API_KEY:
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
     proposals = _chat_parallel(parallel_models, sys_prompt, user_msg, timeout=60)
 
     queries: list[str] = []
@@ -2170,7 +2223,10 @@ def refresh_evidence_highlights(page_id: int | None = None):
                 if ev.authors:
                     try:
                         au_list = _json.loads(ev.authors) if ev.authors.startswith("[") else [ev.authors]
-                        first_au = au_list[0].split(",")[0].split(" ")[-1] if au_list else ""
+                        # Handle legacy single-string comma-sep entries
+                        if len(au_list) == 1 and "," in au_list[0]:
+                            au_list = [n.strip() for n in au_list[0].split(",") if n.strip()]
+                        first_au = au_list[0].split(" ")[-1] if au_list else ""
                         authors = f"{first_au} et al." if len(au_list) > 1 else first_au
                     except Exception:
                         authors = str(ev.authors)[:30]
@@ -2583,6 +2639,534 @@ def dispatch_jury_webhooks():
         db.close()
 
 
+# ── Wiki Renovation Phase 2 Pipeline ────────────────────────────────────────
+
+@celery_app.task(name="app.agent_loop.tasks.diagnose_page")
+def diagnose_page(page_id: int):
+    """Stage 1: Compute health score → create RenovationPlan."""
+    import json as _json
+    import datetime as _dt
+    from app.models.page import WikiPage, RenovationPlan
+    from app.services.page_health import compute_health_score
+
+    db = SessionLocal()
+    try:
+        page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+        if not page or page.do_not_renovate:
+            return
+        # Check no active plan
+        existing = db.query(RenovationPlan).filter(
+            RenovationPlan.page_id == page_id,
+            RenovationPlan.status.in_(["queued", "gathering", "synthesizing", "proposed"])
+        ).first()
+        if existing:
+            return
+
+        h = compute_health_score(page, db)
+        page.health_score = h["score"]
+        page.health_updated_at = _dt.datetime.utcnow()
+
+        plan = RenovationPlan(
+            page_id=page_id,
+            health_score=h["score"],
+            components=_json.dumps(h["components"]),
+            weakest_dimensions=",".join(h.get("weakest_dimensions", [])),
+            missing_subtopics=_json.dumps(h.get("missing_subtopics", [])),
+            status="queued",
+        )
+        db.add(plan)
+        db.flush()
+        plan_id = plan.id
+        db.commit()
+
+        _notify(f"🔍 Renovation diagnosed: {page.slug} (score={h['score']:.1f} {h['emoji']} {h['band']})")
+        # Kick off Stage 2
+        gather_renovation_evidence.delay(plan_id)
+    except Exception as e:
+        db.rollback()
+        print(f"[diagnose_page] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.gather_renovation_evidence",
+                 bind=True, max_retries=2, default_retry_delay=300)
+def gather_renovation_evidence(self, plan_id: int):
+    """Stage 2: Gather arXiv evidence for missing subtopics."""
+    import json as _json
+    import datetime as _dt
+    from app.models.page import WikiPage, RenovationPlan
+    from app.services.subtopic_maps import get_required_subtopics
+    from app.services.paper_search import search_papers
+
+    db = SessionLocal()
+    try:
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if not plan or plan.status not in ("queued",):
+            return
+        plan.status = "gathering"
+        plan.started_at = _dt.datetime.utcnow()
+        db.commit()
+
+        page = db.query(WikiPage).filter(WikiPage.id == plan.page_id).first()
+        missing = _json.loads(plan.missing_subtopics or "[]")
+        subtopic_kw = get_required_subtopics(page.slug)
+
+        papers = []
+        seen_ids = set()
+
+        # Freshness: fetch 2024+ papers on main topic
+        try:
+            fresh = search_papers(f"{page.title} 2024 2025", rows=5, prefer_recent=True)
+            for p in fresh:
+                if p.arxiv_id and p.arxiv_id not in seen_ids:
+                    papers.append({"arxiv_id": p.arxiv_id, "title": p.title,
+                                   "year": p.year, "abstract": (p.abstract or "")[:400],
+                                   "source": "freshness"})
+                    seen_ids.add(p.arxiv_id)
+        except Exception:
+            pass
+
+        # Missing subtopics: fetch relevant papers
+        for subtopic_id in missing[:4]:  # max 4 subtopics
+            aliases = subtopic_kw.get(subtopic_id, [subtopic_id.replace("_", " ")])
+            query = f"{page.title} {aliases[0]}"
+            try:
+                results = search_papers(query, rows=5, prefer_recent=True)
+                for p in results:
+                    if p.arxiv_id and p.arxiv_id not in seen_ids and len(papers) < 30:
+                        papers.append({"arxiv_id": p.arxiv_id, "title": p.title,
+                                       "year": p.year, "abstract": (p.abstract or "")[:400],
+                                       "source": subtopic_id})
+                        seen_ids.add(p.arxiv_id)
+            except Exception:
+                pass
+
+        # Store gathered evidence in plan notes
+        plan.notes = _json.dumps({"papers": papers})
+        plan.status = "synthesizing" if papers else "queued"
+        db.commit()
+
+        if papers:
+            synthesize_renovation.delay(plan_id)
+            _notify(f"📚 Renovation gathered: {page.slug} — {len(papers)} papers")
+        else:
+            _notify(f"⚠️ Renovation: no papers found for {page.slug}")
+    except Exception as e:
+        db.rollback()
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if plan:
+            plan.status = "queued"
+            db.commit()
+        raise self.retry(exc=e)
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.synthesize_renovation",
+                 bind=True, max_retries=1, default_retry_delay=600)
+def synthesize_renovation(self, plan_id: int):
+    """Stage 3: Parallel multi-model synthesis → propose rewrite."""
+    import json as _json
+    import datetime as _dt
+    import re as _re
+    from app.models.page import WikiPage, RenovationPlan
+    from app.services.subtopic_maps import get_required_subtopics
+
+    db = SessionLocal()
+    try:
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if not plan or plan.status != "synthesizing":
+            return
+
+        page = db.query(WikiPage).filter(WikiPage.id == plan.page_id).first()
+        notes = _json.loads(plan.notes or "{}")
+        papers = notes.get("papers", [])
+        missing = _json.loads(plan.missing_subtopics or "[]")
+        subtopic_kw = get_required_subtopics(page.slug)
+
+        if not papers:
+            plan.status = "queued"
+            db.commit()
+            return
+
+        # Format evidence for prompt
+        evidence_text = "\n".join(
+            f"- [{p.get('arxiv_id','?')}] {p.get('title','?')} ({p.get('year','n.d.')}): {p.get('abstract','')}"
+            for p in papers[:20]
+        )
+
+        missing_with_kw = {sid: subtopic_kw.get(sid, [sid]) for sid in missing[:4]}
+        missing_text = "\n".join(f"- {sid}: {', '.join(v[:3])}" for sid, v in missing_with_kw.items())
+
+        # Find weakest section name
+        section_to_rewrite = "Current Research"  # default
+        components = _json.loads(plan.components) if isinstance(plan.components, str) else (plan.components or {})
+        weakest = plan.weakest_dimensions.split(",") if plan.weakest_dimensions else []
+        if "freshness" in weakest or "depth" in weakest:
+            section_to_rewrite = "Current Research"
+
+        # Extract current section
+        content = page.content or ""
+        section_match = _re.search(
+            rf'(## {section_to_rewrite}.*?)(?=\n## |\Z)', content, _re.DOTALL
+        )
+        current_section = section_match.group(1)[:2000] if section_match else f"## {section_to_rewrite}\n(empty)"
+
+        SYNTH_SYSTEM = f"""You are renovating the NebulaMind wiki page "{page.title}".
+Goal: rewrite the {section_to_rewrite} section to be genuinely representative.
+
+CONSTRAINTS:
+- Each new claim MUST be backed by a paper in the evidence list (cite [arXiv:ID] inline).
+- Missing subtopics listed are suggestions — only include if applicable to {page.title}.
+  For subtopics not relevant to this specific page, write "NOT_APPLICABLE".
+- Preserve any existing accepted/consensus claims in the section.
+- Do NOT invent papers or unsourced claims.
+- Output ONLY the rewritten section starting with ## {section_to_rewrite}
+- 6-10 distinct claim sentences with citations."""
+
+        user_msg = f"""Available evidence (arXiv, last 3 years):
+{evidence_text}
+
+Missing subtopics to address (if applicable):
+{missing_text}
+
+Current section (preserve strong existing content):
+{current_section}
+
+Rewrite ## {section_to_rewrite} with these papers."""
+
+        # Renovation synthesis — use routing table (Rakon leads)
+        from app.services.llm_routing.routing import get_models
+        parallel_models = get_models("renovation_synth")
+
+        results = _chat_parallel(parallel_models, SYNTH_SYSTEM, user_msg, timeout=120)
+
+        if not results or len(results) < 2:
+            # Fallback: single model
+            try:
+                fallback = _chat("gemma3:27b", SYNTH_SYSTEM, user_msg, role="renovator")
+                results = [{"label": "gemma3:27b_fallback", "response": fallback}]
+            except Exception:
+                plan.status = "queued"
+                db.commit()
+                return
+
+        # Synthesize: pick best/merged response
+        if len(results) == 1:
+            final_section = results[0]["response"]
+        else:
+            MERGE_SYSTEM = f"""You are merging {len(results)} draft rewrites of ## {section_to_rewrite} for the {page.title} wiki page.
+
+Rules:
+1. Include claims that ≥2 agents proposed (consensus)
+2. Include uniquely strong cited claims from single agents
+3. DROP any claim missing [arXiv:ID] citation
+4. Keep 6-10 total claim sentences
+5. Output ONLY the merged section starting with ## {section_to_rewrite}"""
+
+            drafts = "\n\n".join(
+                f"=== Draft {i+1} ({r['label']}) ===\n{r['response']}"
+                for i, r in enumerate(results)
+            )
+            merge_msg = f"Evidence pool:\n{evidence_text}\n\nDrafts to merge:\n{drafts}"
+
+            try:
+                final_section = _chat("gemma3:27b", MERGE_SYSTEM, merge_msg, role="renovator")
+            except Exception:
+                final_section = results[0]["response"]  # best single result
+
+        # Validate: must start with section header
+        if not final_section.strip().startswith(f"## {section_to_rewrite}"):
+            final_section = f"## {section_to_rewrite}\n\n{final_section.strip()}"
+
+        # Store synthesized section
+        notes["synthesized_section"] = final_section
+        notes["section_name"] = section_to_rewrite
+        plan.notes = _json.dumps(notes)
+        db.commit()
+
+        verify_renovation.delay(plan_id)
+    except Exception as e:
+        db.rollback()
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if plan:
+            plan.status = "queued"
+            db.commit()
+        raise self.retry(exc=e)
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.verify_renovation",
+                 bind=True, max_retries=1, default_retry_delay=120)
+def verify_renovation(self, plan_id: int):
+    """Stage 3.5: QA check synthesized section before committing as proposal."""
+    import json as _json
+    import datetime as _dt
+    from app.models.page import WikiPage, RenovationPlan
+    from app.services.llm_routing.routing import get_models, _gemini
+
+    db = SessionLocal()
+    try:
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if not plan or plan.status != "synthesizing":
+            return
+
+        page = db.query(WikiPage).filter(WikiPage.id == plan.page_id).first()
+        notes = _json.loads(plan.notes or "{}")
+        synthesized_section = notes.get("synthesized_section", "")
+        section_name = notes.get("section_name", "Current Research")
+
+        if not synthesized_section:
+            plan.status = "queued"
+            db.commit()
+            return
+
+        QA_SYSTEM = """You are a QA reviewer for an astronomy wiki. You verify renovated wiki sections.
+
+Check the section and reply with exactly one line:
+PASS if ALL of the following are true:
+- Contains at least 3 inline citations (format: [arXiv:XXXX] or [arXiv:YYYYABCXXXXX])
+- Starts with the correct markdown section header (## ...)
+- Makes specific scientific claims (not vague/generic statements)
+- Content is relevant astronomy/astrophysics (not off-topic)
+
+FAIL:<reason> if any check fails. Keep reason under 20 words."""
+
+        QA_USER = f"""Wiki page: {page.title}
+Section name: {section_name}
+
+Section content:
+{synthesized_section[:3000]}
+
+Is this section PASS or FAIL?"""
+
+        verdict = "PASS"
+        try:
+            gemini_cfg = _gemini()
+            if gemini_cfg:
+                result = _chat_parallel([gemini_cfg], QA_SYSTEM, QA_USER, timeout=45)
+                if result:
+                    verdict = result[0]["response"].strip().upper()
+            else:
+                # Fallback: structural check only
+                has_header = synthesized_section.strip().startswith(f"## {section_name}")
+                import re as _re
+                citation_count = len(_re.findall(r"\[arXiv:", synthesized_section, _re.IGNORECASE))
+                verdict = "PASS" if (has_header and citation_count >= 2) else f"FAIL:structural check — header={has_header} citations={citation_count}"
+        except Exception as qa_err:
+            print(f"[verify_renovation] QA error (defaulting PASS): {qa_err}")
+            verdict = "PASS"
+
+        if verdict.startswith("PASS"):
+            notes["verify_passed"] = True
+            plan.notes = _json.dumps(notes)
+            db.commit()
+            commit_renovation_proposal.delay(plan_id)
+            print(f"[verify_renovation] Plan #{plan_id} ({page.slug}): PASSED QA")
+        else:
+            reason = verdict.replace("FAIL:", "").strip() if "FAIL:" in verdict else verdict
+            notes["verify_failed"] = reason
+            plan.notes = _json.dumps(notes)
+            plan.status = "queued"
+            db.commit()
+            _notify(f"❌ Renovation QA failed: {page.slug} — {reason[:80]}")
+            print(f"[verify_renovation] Plan #{plan_id} ({page.slug}): FAILED — {reason}")
+    except Exception as e:
+        db.rollback()
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if plan:
+            plan.status = "queued"
+            db.commit()
+        raise self.retry(exc=e)
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.commit_renovation_proposal")
+def commit_renovation_proposal(plan_id: int):
+    """Stage 4: Submit synthesized rewrite as EditProposal."""
+    import json as _json
+    import datetime as _dt
+    import re as _re
+    from app.models.page import WikiPage, RenovationPlan
+    from app.models.edit import EditProposal, EditStatus
+    from app.models.agent import Agent
+
+    db = SessionLocal()
+    try:
+        plan = db.query(RenovationPlan).filter(RenovationPlan.id == plan_id).first()
+        if not plan:
+            return
+        page = db.query(WikiPage).filter(WikiPage.id == plan.page_id).first()
+        notes = _json.loads(plan.notes or "{}")
+        synthesized_section = notes.get("synthesized_section", "")
+        section_name = notes.get("section_name", "Current Research")
+
+        if not synthesized_section:
+            plan.status = "queued"
+            db.commit()
+            return
+
+        # Throttle gate
+        arxivbot = db.query(Agent).filter(Agent.name == "ArxivBot").first()
+        if not arxivbot:
+            return
+        allowed, reason = can_propose_edit(db, page.id, arxivbot.id)
+        if not allowed:
+            plan.status = "queued"
+            plan.notes = str(_json.loads(plan.notes or "{}") | {"throttle_reason": reason})
+            db.commit()
+            _notify(f"⏸ Renovation throttled for {page.slug}: {reason}")
+            return
+
+        # Replace section in full content
+        content = page.content or ""
+        pattern = rf'(## {_re.escape(section_name)}.*?)(?=\n## |\Z)'
+        if _re.search(pattern, content, _re.DOTALL):
+            new_content = _re.sub(pattern, synthesized_section, content, flags=_re.DOTALL)
+        else:
+            # Section doesn't exist — append
+            new_content = content.rstrip() + "\n\n" + synthesized_section
+
+        proposal = EditProposal(
+            page_id=page.id,
+            agent_id=arxivbot.id,
+            content=new_content,
+            status=EditStatus.PENDING,
+        )
+        db.add(proposal)
+        db.flush()
+
+        plan.status = "proposed"
+        plan.completed_at = _dt.datetime.utcnow()
+        plan.edit_proposal_id = proposal.id
+        page.last_renovated_at = _dt.datetime.utcnow()
+        db.commit()
+
+        _notify(f"✏️ Renovation proposed: {page.slug} (plan #{plan_id}, proposal #{proposal.id}, score={plan.health_score:.1f})")
+    except Exception as e:
+        db.rollback()
+        print(f"[commit_renovation] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.queue_next_renovation")
+def queue_next_renovation():
+    """Daily: pick worst-scoring pages and kick off renovation."""
+    from app.models.page import WikiPage, RenovationPlan
+    from sqlalchemy import text as _text
+
+    db = SessionLocal()
+    try:
+        candidates = db.execute(_text("""
+            SELECT p.id, p.slug, COALESCE(p.health_score, 0) AS score
+            FROM wiki_pages p
+            WHERE p.do_not_renovate = false
+              AND p.category IS NOT NULL
+              AND NOT EXISTS (
+                SELECT 1 FROM renovation_plans rp
+                WHERE rp.page_id = p.id
+                  AND rp.status IN ('queued','gathering','synthesizing','proposed')
+              )
+              AND (
+                p.last_renovated_at IS NULL
+                OR p.last_renovated_at < NOW() - INTERVAL '30 days'
+              )
+            ORDER BY score ASC NULLS FIRST
+            LIMIT 2
+        """)).fetchall()
+
+        for row in candidates:
+            diagnose_page.delay(row.id)
+            _notify(f"🔧 Renovation queued: {row.slug} (score={row.score:.1f})")
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.rescue_stale_renovation_plans")
+def rescue_stale_renovation_plans():
+    """Daily: retry renovation plans stuck in queued/proposed with gathered papers but no edit proposal."""
+    import json as _json
+    import ast as _ast
+    import datetime as _dt
+    from app.models.page import WikiPage, RenovationPlan
+
+    db = SessionLocal()
+    rescued = 0
+    try:
+        # Find plans that have papers but are stuck (up to 3 per run to avoid overload)
+        stuck = db.query(RenovationPlan).filter(
+            RenovationPlan.status.in_(["queued", "proposed"]),
+            RenovationPlan.edit_proposal_id.is_(None),
+            RenovationPlan.notes.isnot(None),
+        ).order_by(RenovationPlan.health_score.asc()).limit(3).all()
+
+        for plan in stuck:
+            try:
+                notes_str = plan.notes or ""
+                if not notes_str or "papers" not in notes_str:
+                    continue
+
+                # Parse notes — try JSON first, then Python dict literal (legacy format)
+                notes = None
+                if notes_str.startswith('{"') or notes_str == "{}":
+                    try:
+                        notes = _json.loads(notes_str)
+                    except Exception:
+                        pass
+                if notes is None:
+                    try:
+                        notes = _ast.literal_eval(notes_str)
+                        # Convert to canonical JSON format
+                        plan.notes = _json.dumps(notes)
+                        db.commit()
+                        print(f"[rescue] Plan #{plan.id}: converted Python-dict notes to JSON")
+                    except Exception as parse_err:
+                        print(f"[rescue] Plan #{plan.id}: can't parse notes — {parse_err}")
+                        continue
+
+                papers = notes.get("papers", [])
+                if not papers:
+                    continue
+
+                # Has synthesized_section but still not committed → go to verify
+                if notes.get("synthesized_section"):
+                    plan.status = "synthesizing"
+                    db.commit()
+                    verify_renovation.delay(plan.id)
+                    rescued += 1
+                    print(f"[rescue] Plan #{plan.id} (page={plan.page_id}): has synth → queued verify")
+                else:
+                    # Has papers but no synthesis → re-trigger synthesis
+                    plan.status = "synthesizing"
+                    db.commit()
+                    synthesize_renovation.delay(plan.id)
+                    rescued += 1
+                    print(f"[rescue] Plan #{plan.id} (page={plan.page_id}): has papers → queued synthesize")
+
+            except Exception as inner_e:
+                print(f"[rescue] Plan #{plan.id}: error — {inner_e}")
+                continue
+
+        if rescued:
+            _notify(f"🔄 Rescued {rescued} stale renovation plan(s)")
+        else:
+            print("[rescue] No stale renovation plans to rescue")
+    except Exception as e:
+        db.rollback()
+        print(f"[rescue_stale_renovation_plans] Error: {e}")
+    finally:
+        db.close()
+
+
+# ── End Wiki Renovation Phase 2 Pipeline ─────────────────────────────────────
+
+
 @celery_app.task(name="app.agent_loop.tasks.normalize_did_you_know")
 def normalize_did_you_know():
     """Tier-cascade for did_you_know: Tier B (claim matcher) → explicit Tier C.
@@ -2766,6 +3350,195 @@ def sweep_stale_escalations():
         db.close()
 
 
+
+
+@celery_app.task(name="app.agent_loop.tasks.sweep_council_tiers")
+def sweep_council_tiers():
+    """Hourly: escalate contested Stage 2 decisions to Stage 3; safety-net E1/E2 jury patterns."""
+    import datetime as _dt
+    from app.models.council import Escalation, EscalationVote
+    from app.models.evidence import EvidenceVote
+    from app.services.council import open_escalation, evaluate_escalation_triggers
+    from app.config import settings
+
+    db = SessionLocal()
+    try:
+        now = _dt.datetime.utcnow()
+        promoted = 0
+        auto_opened = 0
+
+        # 1. Promote contested Stage 2 "overturned" to Stage 3 (S1 trigger)
+        window = now - _dt.timedelta(hours=48)
+        stage2_overturned = db.query(Escalation).filter(
+            Escalation.current_stage == 2,
+            Escalation.status == "resolved",
+            Escalation.resolution == "overturned",
+            Escalation.resolved_at >= window,
+        ).all()
+
+        for esc in stage2_overturned:
+            # Check if Stage 3 already exists for this source
+            existing_s3 = db.query(Escalation).filter(
+                Escalation.source_kind == esc.source_kind,
+                Escalation.source_id == esc.source_id,
+                Escalation.current_stage == 3,
+                Escalation.status.in_(["open", "resolved"]),
+            ).first()
+            if existing_s3:
+                continue
+
+            # Compute vote margin
+            votes = db.query(EscalationVote).filter(
+                EscalationVote.escalation_id == esc.id,
+                EscalationVote.voter_tier == 2,
+            ).all()
+            w_overturn = sum(v.weight for v in votes if v.action in ("overturn", "revoke"))
+            w_uphold = sum(v.weight for v in votes if v.action in ("uphold", "ratify"))
+            total = w_overturn + w_uphold
+            margin = abs(w_overturn - w_uphold) / total if total > 0 else 1.0
+
+            # Only auto-escalate if margin < 30% (contested)
+            if margin < 0.30:
+                s3 = open_escalation(
+                    db,
+                    esc.source_kind,
+                    esc.source_id,
+                    "S1",
+                    trigger_detail=f"Contested Stage 2 overturn (margin={margin:.1%}, esc #{esc.id})",
+                    stage=3,
+                )
+                promoted += 1
+                print(f"[sweep_council_tiers] Promoted esc #{esc.id} → Stage 3 (#{s3.id})")
+
+        # 2. Safety-net: find evidence votes settled in the last 2h with no escalation
+        ev_window = now - _dt.timedelta(hours=2)
+        try:
+            from app.models.evidence import EvidenceVote
+            recent_ev_ids = (
+                db.execute(
+                    __import__("sqlalchemy").text(
+                        "SELECT DISTINCT evidence_id FROM evidence_votes "
+                        "WHERE created_at >= :since AND settled = true"
+                    ),
+                    {"since": ev_window},
+                )
+                .fetchall()
+            )
+            for row in recent_ev_ids:
+                ev_id = row[0]
+                # Skip if escalation already exists
+                existing = db.query(Escalation).filter(
+                    Escalation.source_kind == "evidence_vote",
+                    Escalation.source_id == ev_id,
+                    Escalation.status == "open",
+                ).first()
+                if existing:
+                    continue
+
+                votes = db.query(EvidenceVote).filter(
+                    EvidenceVote.evidence_id == ev_id,
+                    EvidenceVote.settled == True,
+                ).all()
+                trigger = evaluate_escalation_triggers(db, ev_id, votes)
+                if trigger:
+                    open_escalation(db, "evidence_vote", ev_id, trigger)
+                    auto_opened += 1
+                    print(f"[sweep_council_tiers] Auto-escalated evidence #{ev_id} ({trigger})")
+        except Exception as e_inner:
+            print(f"[sweep_council_tiers] Safety-net scan skipped: {e_inner}")
+
+        db.commit()
+        if promoted or auto_opened:
+            _notify(
+                f"🏛️ Council sweep: {promoted} Stage 2→3 promotion(s), "
+                f"{auto_opened} auto-escalation(s)"
+            )
+        else:
+            print("[sweep_council_tiers] Nothing to escalate")
+    except Exception as e:
+        db.rollback()
+        print(f"[sweep_council_tiers] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.update_agent_behavior_scores")
+def update_agent_behavior_scores():
+    """Daily: compute behavior scores for all active agents. Write-only, no enforcement."""
+    from app.services.agent_behavior import upsert_behavior_score
+    from app.models.agent import Agent
+    db = SessionLocal()
+    try:
+        agents = db.query(Agent).filter(Agent.status == "active").all()
+        flagged = []
+        for agent in agents:
+            result = upsert_behavior_score(agent.id, db)
+            if result["flags"]:
+                flagged.append((agent.name, result["flags"], result["score"]))
+        db.commit()
+        if flagged:
+            msg = "🚨 Agent behavior flags:\n" + "\n".join(
+                f"  • {name}: {', '.join(flags)} (score={score:.3f})"
+                for name, flags, score in flagged
+            )
+            _notify(msg)
+        print(f"[behavior] Scored {len(agents)} agents, {len(flagged)} flagged")
+    except Exception as e:
+        db.rollback()
+        print(f"[behavior] Error: {e}")
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.check_api_key_expiry")
+def check_api_key_expiry():
+    """Daily: alert agents whose API key expires within 30 days."""
+    import datetime as _dt
+    from sqlalchemy import text as _text
+    db = SessionLocal()
+    try:
+        soon = _dt.datetime.utcnow() + _dt.timedelta(days=30)
+        expiring = db.execute(_text("""
+            SELECT id, name, api_key_expires_at FROM agents
+            WHERE api_key_expires_at BETWEEN now() AND :soon
+              AND status = 'active'
+        """), {"soon": soon}).fetchall()
+        if expiring:
+            lines = "\n".join(f"  • {r.name} (expires {r.api_key_expires_at.date()})" for r in expiring)
+            _notify(f"🔑 API keys expiring soon:\n{lines}")
+        print(f"[key_expiry] {len(expiring)} keys expiring within 30 days")
+    except Exception as e:
+        print(f"[key_expiry] Error: {e}")
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.gdpr_subscriber_purge")
+def gdpr_subscriber_purge():
+    """Weekly: anonymize subscriber PII 90 days after unsubscribe."""
+    import datetime as _dt
+    from sqlalchemy import text as _text
+    db = SessionLocal()
+    try:
+        cutoff = _dt.datetime.utcnow() - _dt.timedelta(days=90)
+        result = db.execute(_text("""
+            UPDATE subscribers
+            SET email = concat('anon_', id, '@deleted.invalid'),
+                anonymized_at = now()
+            WHERE unsubscribed_at < :cutoff
+              AND anonymized_at IS NULL
+              AND is_active = false
+        """), {"cutoff": cutoff})
+        db.commit()
+        print(f"[gdpr] Anonymized {result.rowcount} subscriber(s)")
+    except Exception as e:
+        db.rollback()
+        print(f"[gdpr] Error: {e}")
+    finally:
+        db.close()
+
+
 @celery_app.task(name="app.agent_loop.tasks.source_facts_for_page")
 def source_facts_for_page(page_id: int):
     """One-pass fact sourcing for all hero_facts and did_you_know on one page."""
@@ -2882,6 +3655,380 @@ def source_facts_for_page(page_id: int):
         db.rollback()
         print(f"[source_facts] error page #{page_id}: {e}")
         raise
+    finally:
+        db.close()
+
+
+# ============================================================
+# Fact Sourcing v1 — LLM-assisted hero fact and DYK upgrading
+# ============================================================
+
+_FACT_DRAFT_SYSTEM = """You are a precision astronomy fact extractor for NebulaMind wiki.
+Given a page topic and content excerpt, return 3–5 hero facts with SPECIFIC numeric values.
+
+Return ONLY a JSON array — no explanation, no markdown fences:
+[
+  {"label": "...", "value": "...", "unit": "...", "kind": "scalar"},
+  ...
+]
+
+Rules:
+- Values MUST be specific numbers (e.g. 1.4, 1e51, 2.7255, 30000-52000).
+- FORBIDDEN in value: millions, billions, trillions, thousands, hundreds, many, few, several.
+- kind = "scalar" for single values; kind = "range" with value_min / value_max for ranges.
+- Labels ≤ 4 words. Units are real physical units or empty string.
+- Prefer values backed by Planck 2018, NIST CODATA, IAU, NASA, or peer-reviewed papers.
+- NO discovery years unless the page is specifically about that event.
+- NO person names as values."""
+
+_DYK_DRAFT_SYSTEM = """You are an astronomy writer for NebulaMind wiki's "Did You Know?" section.
+Given a page topic and content excerpt, write 3 concise surprising facts.
+
+Return ONLY a JSON array of strings — no objects, no markdown, no explanation:
+["fact one", "fact two", "fact three"]
+
+Rules:
+- Each fact: 1 sentence, 40–120 characters.
+- MUST contain a specific number. FORBIDDEN: millions, billions, trillions, thousands, hundreds, many, few.
+- Surprising or counter-intuitive. Start each with a different word."""
+
+_FACT_DRAFT_MODELS = [
+    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",    "label": "qwen3:30b"},
+    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "phi4:14b",     "label": "phi4:14b"},
+    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b", "label": "llama3.3:70b"},
+]
+
+
+def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str:
+    """Call local Ollama models in priority order until one succeeds."""
+    import json as _j
+    import urllib.request as _req
+    import re as _re
+
+    for m in _FACT_DRAFT_MODELS:
+        try:
+            payload = _j.dumps({
+                "model": m["model"],
+                "messages": [
+                    {"role": "system", "content": system},
+                    {"role": "user",   "content": user},
+                ],
+                "stream": False,
+                "options": {"num_predict": 1024, "num_ctx": 4096},
+            }).encode()
+            req = _req.Request(
+                f"{m['base_url']}/chat/completions",
+                data=payload,
+                headers={"Content-Type": "application/json"},
+            )
+            with _req.urlopen(req, timeout=timeout) as r:
+                resp = _j.loads(r.read())
+            content = resp["choices"][0]["message"]["content"]
+            content = _re.sub(r"<think>.*?</think>", "", content, flags=_re.DOTALL).strip()
+            print(f"[fact_draft] served by {m['label']}")
+            return content
+        except Exception as e:
+            print(f"[fact_draft] {m['label']} failed: {e}")
+    raise RuntimeError("All local LLM models failed for fact drafting")
+
+
+def _parse_fact_json(raw: str) -> list:
+    """Extract first JSON array from raw LLM output."""
+    import json as _j
+    import re as _re
+
+    cleaned = raw.strip()
+    if cleaned.startswith("```"):
+        cleaned = cleaned.split("\n", 1)[1].rsplit("```", 1)[0].strip()
+    m = _re.search(r"\[.*\]", cleaned, _re.DOTALL)
+    if m:
+        return _j.loads(m.group())
+    return _j.loads(cleaned)
+
+
+@celery_app.task(name="app.agent_loop.tasks.draft_hero_facts_for_page", bind=True, max_retries=2)
+def draft_hero_facts_for_page(self, page_id: int):
+    """Use local LLM to draft improved hero facts for Tier-C / unsourced slots.
+
+    Keeps existing Tier-A and Tier-B facts untouched. Uses local Ollama to
+    generate replacements for Tier-C facts, validates them, applies 3-tier
+    sourcing, and writes back to the page.
+    """
+    import json as _json
+    import datetime as _dt
+    from app.models.page import WikiPage, FactSource
+    from app.services.hero_facts import (
+        validate_hero_fact, _should_suppress_tier_c,
+        try_authoritative_source, try_claim_grounded_source, stamp_ai_estimate,
+    )
+
+    db = SessionLocal()
+    try:
+        page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+        if not page:
+            return f"page {page_id} not found"
+
+        current = []
+        try:
+            current = _json.loads(page.hero_facts) if page.hero_facts else []
+        except Exception:
+            pass
+
+        keep_facts = []
+        needs_draft = []
+        for f in current:
+            if not isinstance(f, dict):
+                continue
+            tier = f.get("source", {}).get("tier", "")
+            if tier in ("authoritative", "claim"):
+                keep_facts.append(f)
+            else:
+                needs_draft.append(f)
+
+        if not needs_draft and len(current) >= 3:
+            return f"page {page_id}: all {len(current)} facts already A/B-tier, skip"
+
+        content_excerpt = (page.content or "")[:1500]
+        user_msg = (
+            f"Page topic: {page.title or page.slug}\n\n"
+            f"Content excerpt:\n{content_excerpt}\n\n"
+            f"Weak/missing facts to replace (generate specific numeric alternatives):\n"
+            + _json.dumps(needs_draft or [{"note": "generate fresh facts"}], ensure_ascii=False)
+        )
+
+        try:
+            raw = _call_local_llm_for_facts(_FACT_DRAFT_SYSTEM, user_msg)
+            candidates = _parse_fact_json(raw)
+        except Exception as e:
+            print(f"[draft_hero] page {page_id} LLM failed: {e}")
+            return f"page {page_id}: LLM failed — {e}"
+
+        new_facts = list(keep_facts)
+        n_added = 0
+        for fact in candidates[:5]:
+            if not isinstance(fact, dict):
+                continue
+            if "kind" not in fact:
+                fact["kind"] = "scalar"
+            ok, reason = validate_hero_fact(fact)
+            if not ok:
+                print(f"[draft_hero] page {page_id} rejected: {reason}")
+                continue
+            if _should_suppress_tier_c(fact):
+                continue
+            source = (
+                try_authoritative_source(fact)
+                or try_claim_grounded_source(fact, page_id, db)
+                or stamp_ai_estimate(fact.get("label", ""), "LLM draft — no authoritative source found")
+            )
+            fact["source"] = source
+            new_facts.append(fact)
+            n_added += 1
+            db.add(FactSource(
+                page_id=page_id,
+                fact_kind="hero",
+                fact_index=len(new_facts) - 1,
+                source_tier=source.get("tier", "ai_estimate"),
+                authority=source.get("authority"),
+                reference_url=source.get("reference_url"),
+                reference_title=source.get("reference_title"),
+                retrieval_year=source.get("retrieval_year"),
+                claim_id=source.get("claim_id"),
+                trust_level_snapshot=source.get("trust_level"),
+                evidence_count_snapshot=source.get("evidence_count"),
+                representative_arxiv_id=source.get("representative_arxiv_id"),
+                generator="fact_sourcing_v1",
+                flagged=source.get("flagged", False),
+                reason=source.get("reason"),
+                attribution=source.get("attribution", ""),
+                cited_at=_dt.datetime.utcnow(),
+            ))
+
+        if new_facts:
+            page.hero_facts = _json.dumps(new_facts, ensure_ascii=False)
+
+        db.commit()
+        msg = (
+            f"page {page_id} ({page.slug}): "
+            f"kept {len(keep_facts)} A/B, added {n_added} new "
+            f"(A={sum(1 for f in new_facts if f.get('source',{}).get('tier')=='authoritative')} "
+            f"B={sum(1 for f in new_facts if f.get('source',{}).get('tier')=='claim')} "
+            f"C={sum(1 for f in new_facts if f.get('source',{}).get('tier')=='ai_estimate')})"
+        )
+        print(f"[draft_hero] {msg}")
+        return msg
+    except Exception as e:
+        db.rollback()
+        print(f"[draft_hero] page {page_id} error: {e}")
+        raise self.retry(exc=e, countdown=60)
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.draft_dyk_for_page", bind=True, max_retries=2)
+def draft_dyk_for_page(self, page_id: int):
+    """Use local LLM to draft improved DYK items for Tier-C / unsourced slots.
+
+    Keeps existing Tier-B (claim-grounded) items. Generates replacements for
+    Tier-C items, validates them, applies claim-grounding, and writes back.
+    """
+    import json as _json
+    import datetime as _dt
+    from app.models.page import WikiPage, FactSource
+    from app.services.hero_facts import (
+        validate_dyk, try_claim_grounded_source, stamp_ai_estimate,
+    )
+
+    db = SessionLocal()
+    try:
+        page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+        if not page:
+            return f"page {page_id} not found"
+
+        current = []
+        try:
+            for item in _json.loads(page.did_you_know or "[]"):
+                if isinstance(item, str):
+                    current.append({"text": item})
+                elif isinstance(item, dict):
+                    current.append(item)
+        except Exception:
+            pass
+
+        keep_items = []
+        needs_draft = []
+        for item in current:
+            tier = item.get("source", {}).get("tier", "")
+            if tier == "claim":
+                keep_items.append(item)
+            else:
+                needs_draft.append(item)
+
+        if not needs_draft and len(current) >= 3:
+            return f"page {page_id}: all {len(current)} DYK already B-tier, skip"
+
+        content_excerpt = (page.content or "")[:1200]
+        user_msg = (
+            f"Page topic: {page.title or page.slug}\n\n"
+            f"Content excerpt:\n{content_excerpt}\n\n"
+            f"Generate 3 surprising Did You Know facts about this topic."
+        )
+
+        try:
+            raw = _call_local_llm_for_facts(_DYK_DRAFT_SYSTEM, user_msg)
+            candidates = _parse_fact_json(raw)
+        except Exception as e:
+            print(f"[draft_dyk] page {page_id} LLM failed: {e}")
+            return f"page {page_id}: LLM failed — {e}"
+
+        new_items = list(keep_items)
+        n_added = 0
+        for text in candidates[:5]:
+            if not isinstance(text, str):
+                if isinstance(text, dict):
+                    text = text.get("text", text.get("fact", ""))
+                if not isinstance(text, str):
+                    continue
+            ok, reason = validate_dyk(text)
+            if not ok:
+                print(f"[draft_dyk] page {page_id} rejected: {reason}")
+                continue
+            source = (
+                try_claim_grounded_source(
+                    {"label": text, "value": "", "unit": ""}, page_id, db
+                )
+                or stamp_ai_estimate(text[:50], "LLM draft — no matching claim")
+            )
+            new_items.append({"text": text, "source": source})
+            n_added += 1
+            db.add(FactSource(
+                page_id=page_id,
+                fact_kind="did_you_know",
+                fact_index=len(new_items) - 1,
+                source_tier=source.get("tier", "ai_estimate"),
+                claim_id=source.get("claim_id"),
+                trust_level_snapshot=source.get("trust_level"),
+                evidence_count_snapshot=source.get("evidence_count"),
+                representative_arxiv_id=source.get("representative_arxiv_id"),
+                generator="fact_sourcing_v1",
+                flagged=source.get("flagged", False),
+                reason=source.get("reason"),
+                attribution=source.get("attribution", ""),
+                cited_at=_dt.datetime.utcnow(),
+            ))
+
+        if new_items:
+            page.did_you_know = _json.dumps(new_items, ensure_ascii=False)
+
+        db.commit()
+        msg = (
+            f"page {page_id} ({page.slug}): "
+            f"kept {len(keep_items)} B-tier DYK, added {n_added} new"
+        )
+        print(f"[draft_dyk] {msg}")
+        return msg
+    except Exception as e:
+        db.rollback()
+        print(f"[draft_dyk] page {page_id} error: {e}")
+        raise self.retry(exc=e, countdown=60)
+    finally:
+        db.close()
+
+
+@celery_app.task(name="app.agent_loop.tasks.run_fact_sourcing_v1")
+def run_fact_sourcing_v1():
+    """Batch coordinator: dispatch per-page LLM fact drafting for all pages
+    with Tier-C or unsourced hero_facts / did_you_know items.
+
+    Hero facts: keeps A/B-tier, uses local LLM to replace C-tier.
+    DYK: keeps claim-grounded items, uses local LLM to replace C-tier.
+    """
+    import json as _json
+    from app.models.page import WikiPage
+
+    db = SessionLocal()
+    try:
+        pages = db.query(WikiPage).filter(WikiPage.hero_facts.isnot(None)).all()
+
+        hero_queue = []
+        dyk_queue = []
+
+        for page in pages:
+            # Hero: any non-A/B fact → queue
+            try:
+                facts = _json.loads(page.hero_facts or "[]")
+                if any(
+                    isinstance(f, dict)
+                    and f.get("source", {}).get("tier", "") not in ("authoritative", "claim")
+                    for f in facts
+                ):
+                    hero_queue.append(page.id)
+            except Exception:
+                hero_queue.append(page.id)
+
+            # DYK: any non-claim item → queue
+            try:
+                items = _json.loads(page.did_you_know or "[]")
+                if any(
+                    (isinstance(i, str) or i.get("source", {}).get("tier", "") != "claim")
+                    for i in items
+                    if isinstance(i, (str, dict))
+                ):
+                    dyk_queue.append(page.id)
+            except Exception:
+                dyk_queue.append(page.id)
+
+        print(f"[fact_sourcing_v1] queuing {len(hero_queue)} hero + {len(dyk_queue)} DYK pages")
+
+        for page_id in hero_queue:
+            draft_hero_facts_for_page.delay(page_id)
+
+        for page_id in dyk_queue:
+            draft_dyk_for_page.delay(page_id)
+
+        msg = f"Fact Sourcing v1: queued {len(hero_queue)} hero + {len(dyk_queue)} DYK pages"
+        _notify(f"🧪 {msg}")
+        return msg
     finally:
         db.close()
 
@@ -3358,10 +4505,13 @@ def fetch_arxiv_daily():
             print("[fetch_arxiv_daily] ArxivBot not found, skipping")
             return
 
+        from app.services.arxiv_classifier import refresh_page_vectors
+        refresh_page_vectors(db)
+
         total_new = 0
         for cat in ARXIV_CATEGORIES:
             try:
-                papers = _parse_arxiv_rss(cat, limit=8)
+                papers = _parse_arxiv_rss(cat, limit=20)
             except Exception as e:
                 print(f"[fetch_arxiv_daily] RSS parse failed for {cat}: {e}")
                 continue
@@ -3375,88 +4525,212 @@ def fetch_arxiv_daily():
                 if exists:
                     continue
 
-                # LLM summary
                 try:
-                    user_msg = (
-                        f"Summarize this astronomy paper in 2-3 sentences for a general science audience.\n\n"
-                        f"Title: {p['title']}\n\nAbstract: {p['abstract'][:800]}"
-                    )
-                    summary = _chat(arxivbot.model_name, ARXIV_SUMMARY_SYSTEM, user_msg, role="arxivbot")
-                    summary = summary.strip()[:500]
-                except Exception as e:
-                    print(f"[fetch_arxiv_daily] LLM summary failed: {e}")
-                    summary = p["abstract"][:300]
-
-                # wiki matching
-                related = _match_wiki_pages(p["title"], p["abstract"])
-
-                # save
-                paper = ArxivPaper(
-                    arxiv_id=p["arxiv_id"],
-                    title=p["title"],
-                    authors=p["authors"],
-                    abstract=p["abstract"],
-                    abstract_summary=summary,
-                    category=p["category"],
-                    submitted=p["submitted"],
-                    url=p["url"],
-                    related_pages=json.dumps(related),
-                    wiki_edit_proposed=False,
-                )
-                db.add(paper)
-                db.flush()
-                total_new += 1
-                print(f"[fetch_arxiv_daily] Saved: {p['title'][:60]}")
-
-                # === arXiv integration v2 (Phase B) ===
-                if settings.ARXIV_INTEGRATION_ENABLED:
+                    # LLM summary
                     try:
-                        from app.services.arxiv_classifier import classify_match_type
-                        from app.services.arxiv_ingest import (
-                            handle_claim_evidence, handle_page_extension, handle_new_topic
+                        user_msg = (
+                            f"Summarize this astronomy paper in 2-3 sentences for a general science audience.\n\n"
+                            f"Title: {p['title']}\n\nAbstract: {p['abstract'][:800]}"
                         )
-                        import datetime as _dt
-                        match_type, meta = classify_match_type(paper, db)
-                        paper.match_type = match_type
-                        paper.processed_at = _dt.datetime.utcnow()
-                        if match_type == "claim_evidence":
-                            handle_claim_evidence(paper, meta, db, arxivbot)
-                        elif match_type == "page_extension":
-                            handle_page_extension(paper, meta, db, arxivbot)
-                        elif match_type == "new_topic_candidate":
-                            handle_new_topic(paper, meta, db, arxivbot)
-                        print(f"[fetch_arxiv_daily] classified: {match_type} ({paper.arxiv_id})")
-                    except Exception as _integ_err:
-                        print(f"[fetch_arxiv_daily] integration error: {_integ_err}")
-                else:
-                    # Legacy: propose wiki edit if related pages found
-                    if related:
-                        for slug in related[:1]:
-                            wiki_page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
-                            if not wiki_page or not wiki_page.content:
-                                continue
-                            try:
-                                edit_msg = (
-                                    f"Update the wiki page."
-                                )
-                                updated = _chat(arxivbot.model_name, SYSTEM_PROMPT, edit_msg, role="arxivbot")
-                                allowed, reason = can_propose_edit(db, wiki_page.id, arxivbot.id)
-                                if allowed:
-                                    proposal = EditProposal(page_id=wiki_page.id, agent_id=arxivbot.id, content=updated, status=EditStatus.PENDING)
-                                    db.add(proposal)
-                                    paper.wiki_edit_proposed = True
-                                else:
-                                    print(f"[fetch_arxiv_daily] Edit throttled for {slug}: {reason}")
-                            except Exception as e:
-                                print(f"[fetch_arxiv_daily] Wiki edit failed for {slug}: {e}")
+                        summary = _chat(arxivbot.model_name, ARXIV_SUMMARY_SYSTEM, user_msg, role="arxivbot")
+                        summary = summary.strip()[:500]
+                    except Exception as e:
+                        print(f"[fetch_arxiv_daily] LLM summary failed: {e}")
+                        summary = p["abstract"][:300]
+
+                    # wiki matching
+                    related = _match_wiki_pages(p["title"], p["abstract"])
+
+                    # save
+                    paper = ArxivPaper(
+                        arxiv_id=p["arxiv_id"],
+                        title=p["title"],
+                        authors=p["authors"],
+                        abstract=p["abstract"],
+                        abstract_summary=summary,
+                        category=p["category"],
+                        submitted=p["submitted"],
+                        url=p["url"],
+                        related_pages=json.dumps(related),
+                        wiki_edit_proposed=False,
+                    )
+                    db.add(paper)
+                    db.flush()
+                    print(f"[fetch_arxiv_daily] Saved: {p['title'][:60]}")
+
+                    # === arXiv integration v2 (Phase B) ===
+                    if settings.ARXIV_INTEGRATION_ENABLED:
+                        try:
+                            from app.services.arxiv_classifier import classify_match_type
+                            from app.services.arxiv_ingest import (
+                                handle_claim_evidence, handle_page_extension, handle_new_topic
+                            )
+                            import datetime as _dt
+                            match_type, meta = classify_match_type(paper, db)
+                            paper.match_type = match_type
+                            paper.processed_at = _dt.datetime.utcnow()
+                            if match_type == "claim_evidence":
+                                handle_claim_evidence(paper, meta, db, arxivbot)
+                            elif match_type == "page_extension":
+                                handle_page_extension(paper, meta, db, arxivbot)
+                            elif match_type == "new_topic_candidate":
+                                handle_new_topic(paper, meta, db, arxivbot)
+                            print(f"[fetch_arxiv_daily] classified: {match_type} ({paper.arxiv_id})")
+                        except Exception as _integ_err:
+                            print(f"[fetch_arxiv_daily] integration error: {_integ_err}")
+                    else:
+                        # Legacy: propose wiki edit if related pages found
+                        if related:
+                            for slug in related[:1]:
+                                wiki_page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+                                if not wiki_page or not wiki_page.content:
+                                    continue
+                                try:
+                                    edit_msg = (
+                                        f"Update the wiki page."
+                                    )
+                                    updated = _chat(arxivbot.model_name, SYSTEM_PROMPT, edit_msg, role="arxivbot")
+                                    allowed, reason = can_propose_edit(db, wiki_page.id, arxivbot.id)
+                                    if allowed:
+                                        proposal = EditProposal(page_id=wiki_page.id, agent_id=arxivbot.id, content=updated, status=EditStatus.PENDING)
+                                        db.add(proposal)
+                                        paper.wiki_edit_proposed = True
+                                    else:
+                                        print(f"[fetch_arxiv_daily] Edit throttled for {slug}: {reason}")
+                                except Exception as e:
+                                    print(f"[fetch_arxiv_daily] Wiki edit failed for {slug}: {e}")
+
+                    db.commit()
+                    total_new += 1
+                except Exception as _paper_err:
+                    db.rollback()
+                    print(f"[fetch_arxiv_daily] paper failed ({p.get('arxiv_id', '?')}): {_paper_err}")
+
                 time.sleep(2)
 
-        db.commit()
         print(f"[fetch_arxiv_daily] Done. {total_new} new papers saved.")
         _notify(f"📡 arXiv 수집 완료: {total_new}개 새 논문")
     except Exception as e:
-        db.rollback()
         print(f"[fetch_arxiv_daily] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task
+def retry_unprocessed_arxiv_papers():
+    """Re-classify ArxivPaper rows that were saved but never processed (match_type IS NULL)."""
+    import datetime as _dt
+    from app.models.arxiv import ArxivPaper
+
+    db = SessionLocal()
+    try:
+        cutoff = _dt.datetime.utcnow() - _dt.timedelta(hours=1)
+        papers = db.query(ArxivPaper).filter(
+            ArxivPaper.match_type.is_(None),
+            ArxivPaper.processed_at.is_(None),
+            ArxivPaper.created_at < cutoff,
+        ).all()
+
+        if not papers:
+            print("[retry_unprocessed] nothing to retry")
+            return
+
+        print(f"[retry_unprocessed] {len(papers)} papers to retry")
+        arxivbot = db.query(Agent).filter(Agent.name == "ArxivBot").first()
+
+        from app.services.arxiv_classifier import classify_match_type, refresh_page_vectors
+        from app.services.arxiv_ingest import (
+            handle_claim_evidence, handle_page_extension, handle_new_topic
+        )
+        refresh_page_vectors(db)
+
+        for paper in papers:
+            try:
+                match_type, meta = classify_match_type(paper, db)
+                paper.match_type = match_type
+                paper.processed_at = _dt.datetime.utcnow()
+                if match_type == "claim_evidence":
+                    handle_claim_evidence(paper, meta, db, arxivbot)
+                elif match_type == "page_extension":
+                    handle_page_extension(paper, meta, db, arxivbot)
+                elif match_type == "new_topic_candidate":
+                    handle_new_topic(paper, meta, db, arxivbot)
+                db.commit()
+                print(f"[retry_unprocessed] {paper.arxiv_id} → {match_type}")
+            except Exception as _err:
+                db.rollback()
+                print(f"[retry_unprocessed] failed {paper.arxiv_id}: {_err}")
+    except Exception as e:
+        print(f"[retry_unprocessed] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task
+def send_arxiv_daily_summary():
+    """Post a daily arXiv ingest summary to Discord #general."""
+    import datetime as _dt
+    import json as _json
+    import os
+    import subprocess
+    from app.models.external import ExternalSourceLog, NewPageProposal
+    from app.models.arxiv import ArxivPaper
+
+    db = SessionLocal()
+    try:
+        today_start = _dt.datetime.utcnow().replace(hour=0, minute=0, second=0, microsecond=0)
+
+        rows = db.query(ExternalSourceLog).filter(
+            ExternalSourceLog.source == "arxiv",
+            ExternalSourceLog.created_at >= today_start,
+        ).all()
+
+        decision_counts: dict[str, int] = {}
+        for row in rows:
+            decision_counts[row.decision] = decision_counts.get(row.decision, 0) + 1
+
+        paper_count = db.query(ArxivPaper).filter(
+            ArxivPaper.created_at >= today_start,
+        ).count()
+
+        evidence = decision_counts.get("evidence_inserted", 0)
+        page_edits = decision_counts.get("page_extension_proposed", 0)
+        new_topics = decision_counts.get("new_topic_staged", 0)
+        skipped = sum(
+            v for k, v in decision_counts.items()
+            if k.startswith("skipped") or k in ("verify_rejected", "verify_failed")
+        )
+
+        pending_proposals = db.query(NewPageProposal).filter(
+            NewPageProposal.status == "pending",
+        ).count()
+
+        lines = [
+            f"📡 **arXiv ingest {today_start.strftime('%Y-%m-%d')}:**",
+            f"  • {paper_count} new papers",
+            f"  • {evidence} evidence inserted",
+            f"  • {page_edits} page edits proposed",
+            f"  • {new_topics} new topic candidates staged",
+            f"  • {skipped} skipped/rejected",
+        ]
+        if pending_proposals > 0:
+            lines.append(f"  • {pending_proposals} pending proposals in queue")
+
+        message = "\n".join(lines)
+
+        webhook_url = os.getenv("DISCORD_NEBULAMIND_WEBHOOK", "")
+        if webhook_url:
+            subprocess.run(
+                ["curl", "-s", "-X", "POST", webhook_url,
+                 "-H", "Content-Type: application/json",
+                 "-d", _json.dumps({"content": message})],
+                timeout=5, capture_output=True,
+            )
+        print(f"[arxiv_daily_summary] posted: {paper_count} papers, {evidence} evidence")
+    except Exception as e:
+        print(f"[arxiv_daily_summary] Error: {e}")
         raise
     finally:
         db.close()
