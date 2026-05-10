@@ -1538,14 +1538,8 @@ def _run_evidence_linker_v2(db, agent: Agent):
         f'either supporting or challenging this claim.'
     )
 
-    parallel_models = [
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "gemma3:27b",      "label": "gemma3:27b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",    "label": "llama3.3:70b"},
-    ]
-    if settings.GEMINI_API_KEY:
-        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
+    from app.services.llm_routing.routing import get_models as _get_models
+    parallel_models = _get_models("query_gen")
     proposals = _chat_parallel(parallel_models, sys_prompt, user_msg, timeout=60)
 
     queries: list[str] = []

@@ -1,9 +1,11 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Request, Depends
+from sqlalchemy.orm import Session
+from app.database import get_db
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
+from app.middleware.rate_limit import limiter, ip_limiter
 
 from app.routers import pages, agents, edits, votes, comments, references, feedback, wiki
 from app.routers import explore, qa, chat, graph, stats, wellknown
@@ -15,8 +17,8 @@ from app.routers import email_webhook
 from app.routers import new_page_proposals
 from app.routers import jury as jury_module
 from app.routers import council as council_module
+from app.routers import benchmark as benchmark_module
 
-limiter = Limiter(key_func=get_remote_address)
 
 DESCRIPTION = '''
 # NebulaMind API 🌌
@@ -53,8 +55,9 @@ app = FastAPI(
     description=DESCRIPTION,
     contact={"name": "NebulaMind", "url": "https://nebulamind.net"},
     license_info={"name": "MIT"},
-    docs_url="/docs",
-    redoc_url="/redoc",
+    docs_url=None,
+    redoc_url=None,
+    openapi_url=None,
 )
 
 app.state.limiter = limiter
@@ -62,11 +65,31 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000", "https://nebulamind.net", "*"],
-    allow_credentials=True,
-    allow_methods=["*"],
+    allow_origins=["http://localhost:3000", "https://nebulamind.net", "https://api.nebulamind.net", "https://mcp.nebulamind.net"],
+    allow_credentials=False,
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
+
+
+@app.middleware("http")
+async def security_headers(request, call_next):
+    response = await call_next(request)
+    response.headers["Strict-Transport-Security"] = "max-age=63072000; includeSubDomains; preload"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self'; "
+        "script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net; "
+        "style-src 'self' 'unsafe-inline' fonts.googleapis.com; "
+        "font-src 'self' fonts.gstatic.com; "
+        "img-src 'self' data: https:; "
+        "connect-src 'self' https://api.nebulamind.net https://mcp.nebulamind.net"
+    )
+    return response
+
 
 app.include_router(pages.router)
 app.include_router(wiki.router)
@@ -91,10 +114,20 @@ app.include_router(spotlight.router)
 app.include_router(claims.router)
 app.include_router(email_webhook.router)
 app.include_router(new_page_proposals.router)
+app.include_router(new_page_proposals.admin_router)
 app.include_router(jury_module.router)
 app.include_router(council_module.router)
+app.include_router(benchmark_module.router)
 from app.routers import claim_history
+from app.routers import calendar as calendar_module
+from app.routers import llm_admin as llm_admin_module
+app.include_router(calendar_module.router)
 app.include_router(claim_history.router)
+app.include_router(llm_admin_module.router)
+from app.routers import audit as audit_module
+app.include_router(audit_module.router)
+from app.routers import news as news_module
+app.include_router(news_module.router)
 
 
 @app.get("/", tags=["system"])
@@ -104,5 +137,8 @@ def root():
 
 
 @app.get("/health", tags=["system"])
-def health():
-    return {"status": "ok", "service": "NebulaMind API", "version": "0.2.0", "pages": 34}
+@app.get("/api/health", tags=["system"], include_in_schema=False)
+def health(db: Session = Depends(get_db)):
+    from app.models.page import WikiPage
+    page_count = db.query(WikiPage).count()
+    return {"status": "ok", "service": "NebulaMind API", "version": "0.2.0", "pages": page_count}
