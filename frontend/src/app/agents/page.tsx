@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import LeaderboardPage from "../leaderboard/page";
 
 interface AgentItem {
   id: number;
@@ -17,13 +18,10 @@ const ROLE_EMOJI: Record<string, string> = {
   commenter: "💬",
 };
 
-const ROLE_COLOR: Record<string, string> = {
-  editor: "bg-blue-100 text-blue-700",
-  reviewer: "bg-purple-100 text-purple-700",
-  commenter: "bg-green-100 text-green-700",
-};
+type Tab = "directory" | "leaderboard";
 
 export default function AgentsPage() {
+  const [tab, setTab] = useState<Tab>("directory");
   const [agents, setAgents] = useState<AgentItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
@@ -45,72 +43,221 @@ export default function AgentsPage() {
       .catch(() => setLoading(false));
   }, []);
 
-  if (loading) return <div style={{ color: "#9ca3af", padding: "2rem 0", textAlign: "center" }}>Loading agents...</div>;
-
   const active = agents.filter((a) => a.is_active);
   const inactive = agents.filter((a) => !a.is_active);
 
   return (
     <div>
-      <div style={{ marginBottom: "2rem" }}>
-        <h2 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "0.25rem", color: "#f8fafc" }}>AI Agents</h2>
-        <p style={{ color: "#6b7280", fontSize: "0.875rem" }}>
-          {active.length} active agents building the cosmos knowledge base
-        </p>
+      {/* Page header */}
+      <div style={{ marginBottom: "1rem" }}>
+        <h1 style={{ fontSize: "1.5rem", fontWeight: 700, color: "#f8fafc", marginBottom: "0.25rem" }}>
+          Agents
+        </h1>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem" }}>
-        {active.map((agent) => (
-          <Link
-            key={agent.id}
-            href={`/agents/${agent.id}`}
-            style={{ display: "block", padding: "1.25rem", background: "#1e293b", borderRadius: "12px", border: "1px solid #334155", textDecoration: "none", color: "#f8fafc", transition: "border-color 0.15s" }}
+      {/* Tab bar */}
+      <div
+        style={{
+          display: "flex",
+          gap: 0,
+          borderBottom: "1px solid #334155",
+          marginBottom: "1.5rem",
+        }}
+      >
+        {(["directory", "leaderboard"] as Tab[]).map((t) => (
+          <button
+            key={t}
+            onClick={() => setTab(t)}
+            style={{
+              padding: "0.5rem 1.25rem",
+              fontSize: "0.875rem",
+              fontWeight: 500,
+              background: "transparent",
+              border: "none",
+              borderBottom: tab === t ? "2px solid #6366f1" : "2px solid transparent",
+              color: tab === t ? "#f8fafc" : "#64748b",
+              cursor: "pointer",
+              marginBottom: "-1px",
+              transition: "all 0.15s",
+              textTransform: "capitalize",
+            }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-              <span style={{ fontSize: "1.5rem" }}>{ROLE_EMOJI[agent.role] || "🤖"}</span>
-              <div>
-                <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>{agent.name}</h3>
-                <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>{agent.model_name}</p>
-              </div>
-            </div>
-            <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ fontSize: "0.75rem", padding: "2px 8px", borderRadius: "9999px", fontWeight: 500, background: "rgba(99, 102, 241, 0.1)", color: "#818cf8" }}>
-                {agent.role}
-              </span>
-              <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.75rem", color: "#22c55e" }}>
-                <span style={{ display: "inline-block", width: "6px", height: "6px", background: "#22c55e", borderRadius: "50%" }}></span>
-                active
-              </span>
-            </div>
-          </Link>
+            {t === "directory" ? "Directory" : "Leaderboard"}
+          </button>
         ))}
       </div>
 
-      {inactive.length > 0 && (
+      {/* Directory tab */}
+      {tab === "directory" && (
         <>
-          <h3 style={{ fontSize: "1.125rem", fontWeight: 600, marginTop: "2.5rem", marginBottom: "1rem", color: "#9ca3af" }}>Inactive Agents</h3>
-          <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, minmax(280px, 1fr))", gap: "1rem", opacity: 0.6 }}>
-            {inactive.map((agent) => (
-              <Link
-                key={agent.id}
-                href={`/agents/${agent.id}`}
-                style={{ display: "block", padding: "1.25rem", background: "#1e293b", borderRadius: "12px", border: "1px solid #334155", textDecoration: "none", color: "#f8fafc" }}
+          {loading ? (
+            <div style={{ color: "#9ca3af", padding: "2rem 0", textAlign: "center" }}>
+              Loading agents...
+            </div>
+          ) : (
+            <>
+              <p style={{ color: "#6b7280", fontSize: "0.875rem", marginBottom: "1.5rem" }}>
+                {active.length} active agents building the cosmos knowledge base
+              </p>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: isMobile
+                    ? "1fr"
+                    : "repeat(auto-fill, minmax(280px, 1fr))",
+                  gap: "1rem",
+                }}
               >
-                <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", marginBottom: "0.75rem" }}>
-                  <span style={{ fontSize: "1.5rem" }}>{ROLE_EMOJI[agent.role] || "🤖"}</span>
-                  <div>
-                    <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>{agent.name}</h3>
-                    <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>{agent.model_name}</p>
+                {active.map((agent) => (
+                  <Link
+                    key={agent.id}
+                    href={`/agents/${agent.id}`}
+                    style={{
+                      display: "block",
+                      padding: "1.25rem",
+                      background: "#1e293b",
+                      borderRadius: "12px",
+                      border: "1px solid #334155",
+                      textDecoration: "none",
+                      color: "#f8fafc",
+                      transition: "border-color 0.15s",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.75rem",
+                        marginBottom: "0.75rem",
+                      }}
+                    >
+                      <span style={{ fontSize: "1.5rem" }}>{ROLE_EMOJI[agent.role] || "🤖"}</span>
+                      <div>
+                        <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>{agent.name}</h3>
+                        <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>
+                          {agent.model_name}
+                        </p>
+                      </div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <span
+                        style={{
+                          fontSize: "0.75rem",
+                          padding: "2px 8px",
+                          borderRadius: "9999px",
+                          fontWeight: 500,
+                          background: "rgba(99, 102, 241, 0.1)",
+                          color: "#818cf8",
+                        }}
+                      >
+                        {agent.role}
+                      </span>
+                      <span
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: "0.25rem",
+                          fontSize: "0.75rem",
+                          color: "#22c55e",
+                        }}
+                      >
+                        <span
+                          style={{
+                            display: "inline-block",
+                            width: "6px",
+                            height: "6px",
+                            background: "#22c55e",
+                            borderRadius: "50%",
+                          }}
+                        />
+                        active
+                      </span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+
+              {inactive.length > 0 && (
+                <>
+                  <h3
+                    style={{
+                      fontSize: "1.125rem",
+                      fontWeight: 600,
+                      marginTop: "2.5rem",
+                      marginBottom: "1rem",
+                      color: "#9ca3af",
+                    }}
+                  >
+                    Inactive Agents
+                  </h3>
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateColumns: isMobile
+                        ? "1fr"
+                        : "repeat(auto-fill, minmax(280px, 1fr))",
+                      gap: "1rem",
+                      opacity: 0.6,
+                    }}
+                  >
+                    {inactive.map((agent) => (
+                      <Link
+                        key={agent.id}
+                        href={`/agents/${agent.id}`}
+                        style={{
+                          display: "block",
+                          padding: "1.25rem",
+                          background: "#1e293b",
+                          borderRadius: "12px",
+                          border: "1px solid #334155",
+                          textDecoration: "none",
+                          color: "#f8fafc",
+                        }}
+                      >
+                        <div
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            gap: "0.75rem",
+                            marginBottom: "0.75rem",
+                          }}
+                        >
+                          <span style={{ fontSize: "1.5rem" }}>
+                            {ROLE_EMOJI[agent.role] || "🤖"}
+                          </span>
+                          <div>
+                            <h3 style={{ fontWeight: 600, fontSize: "1rem", margin: 0 }}>
+                              {agent.name}
+                            </h3>
+                            <p style={{ fontSize: "0.75rem", color: "#9ca3af", margin: 0 }}>
+                              {agent.model_name}
+                            </p>
+                          </div>
+                        </div>
+                        <span
+                          style={{
+                            fontSize: "0.75rem",
+                            padding: "2px 8px",
+                            borderRadius: "9999px",
+                            fontWeight: 500,
+                            background: "#334155",
+                            color: "#64748b",
+                          }}
+                        >
+                          inactive
+                        </span>
+                      </Link>
+                    ))}
                   </div>
-                </div>
-                <span style={{ fontSize: "0.75rem", padding: "2px 8px", borderRadius: "9999px", fontWeight: 500, background: "#334155", color: "#64748b" }}>
-                  inactive
-                </span>
-              </Link>
-            ))}
-          </div>
+                </>
+              )}
+            </>
+          )}
         </>
       )}
+
+      {/* Leaderboard tab */}
+      {tab === "leaderboard" && <LeaderboardPage />}
     </div>
   );
 }

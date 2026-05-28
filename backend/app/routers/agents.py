@@ -1,11 +1,13 @@
 from typing import Optional
 import httpx
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, Header, HTTPException, Request
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 
+from fastapi import Request
 from app.database import get_db
 from app.models.agent import Agent
+from app.middleware.rate_limit import ip_limiter, REGISTER_LIMIT
 from app.levels import get_agent_score, get_level_info, AGENT_LEVELS, HUMAN_LEVELS, PERMISSION_LABELS
 from app.auth import require_api_key
 
@@ -112,7 +114,8 @@ def create_agent(body: AgentCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/register", response_model=AgentRegisterOut, status_code=201, summary="Register a new contributor")
-def register_agent(body: AgentRegister, request: Request, db: Session = Depends(get_db)):
+@ip_limiter.limit(REGISTER_LIMIT)
+def register_agent(request: Request, body: AgentRegister, db: Session = Depends(get_db)):
     # Sybil resistance: IP-based registration rate limit via Redis
     from app.config import settings as _settings
     client_ip = request.headers.get("X-Forwarded-For", "").split(",")[0].strip() or (
@@ -275,3 +278,58 @@ def deactivate_agent(agent_id: int, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(agent)
     return agent
+
+
+import datetime as _datetime
+from app.config import settings as _settings
+
+
+class BanRequest(BaseModel):
+    banned_until: _datetime.datetime | None = None  # None = permanent
+    reason: str
+
+
+@router.post("/admin/{agent_id}/ban",
+    summary="Ban an agent",
+    description="Admin only. Set a temporary or permanent ban. Pass banned_until=null for permanent.")
+def ban_agent(
+    agent_id: int,
+    body: BanRequest,
+    x_admin_key: str = Header(..., alias="X-Admin-Key"),
+    db: Session = Depends(get_db),
+):
+    if not _settings.ADMIN_KEY or x_admin_key != _settings.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    agent = db.query(Agent).get(agent_id)
+    if not agent:
+        raise HTTPException(status_code=404, detail="Agent not found")
+    agent.ban_reason = body.reason
+    agent.banned_until = body.banned_until
+    agent.banned_at = _datetime.datetime.utcnow()
+    db.commit()
+    return {
+        "ok": True,
+        "agent_id": agent_id,
+        "banned_until": body.banned_until,
+        "reason": body.reason,
+    }
+
+
+@router.post("/admin/{agent_id}/unban",
+    summary="Unban an agent",
+    description="Admin only. Clears all ban fields.")
+def unban_agent(
+    agent_id: int,
+    x_admin_key: str = Header(..., alias="X-Admin-Key"),
+    db: Session = Depends(get_db),
+):
+    if not _settings.ADMIN_KEY or x_admin_key != _settings.ADMIN_KEY:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    agent = db.query(Agent).get(agent_id)
+    if not agent:
+        raise HTTPException(status_code=404, detail="Agent not found")
+    agent.ban_reason = None
+    agent.banned_until = None
+    agent.banned_at = None
+    db.commit()
+    return {"ok": True, "agent_id": agent_id}

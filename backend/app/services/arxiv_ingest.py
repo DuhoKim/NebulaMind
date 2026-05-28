@@ -3,7 +3,7 @@ arXiv paper ingest handlers (Phase B, PR-3).
 
 Three handlers, one for each match_type from arxiv_classifier:
   - handle_claim_evidence   → verify paper via paper_search, insert Evidence
-  - handle_page_extension   → propose a wiki edit via LLM (4-model parallel)
+  - handle_page_extension   → propose a wiki edit via LLM (_chat with editor role)
   - handle_new_topic        → stage a NewPageProposal cluster entry
 
 All handlers are idempotent, write exactly one ExternalSourceLog row, and
@@ -66,6 +66,21 @@ def _already_processed(db: Session, arxiv_id: str, source_channel: str) -> bool:
     ).first() is not None
 
 
+def _maybe_fallback_page_extension(
+    paper: "ArxivPaper",
+    meta: dict,
+    db: Session,
+    agent: "Agent",
+    best_page_score: float,
+) -> None:
+    """Re-route to page_extension when claim verify fails but page score qualifies."""
+    if best_page_score >= settings.ARXIV_PAGE_EXTENSION_THRESHOLD:
+        try:
+            handle_page_extension(paper, meta, db, agent)
+        except Exception as exc:
+            log.debug("[arxiv_ingest] fallback page_extension failed: %s", exc)
+
+
 def _pending_proposals_for_page(db: Session, page_id: int) -> int:
     """Count pending EditProposals for a page."""
     from app.models.edit import EditProposal
@@ -120,8 +135,15 @@ def handle_claim_evidence(
                       notes=f"already {existing_count} evidence rows for this arxiv_id")
         return
 
-    # Verify paper quality via Phase 1 paper_search
-    from app.services.paper_search import verify_for_claim
+    # Verify paper quality via Phase 1 paper_search.
+    # 2026-05-12 fix: verify_for_claim() was refactored to take a PaperRecord
+    # (not a bare arxiv_id string). The caller here hadn't been updated, so
+    # every claim_evidence handler invocation since the refactor was throwing
+    # `TypeError: verify_for_claim() got an unexpected keyword argument
+    # 'arxiv_id'`, getting caught below, and logged as `verify_failed`. The
+    # last successful Evidence row from this path was 2026-05-07. Now we
+    # resolve arxiv_id → PaperRecord via ads_lookup_arxiv first, then verify.
+    from app.services.paper_search import verify_for_claim, ads_lookup_arxiv
     from app.models.claim import Claim
     claim = db.query(Claim).get(best_claim_id)
     if not claim:
@@ -130,11 +152,23 @@ def handle_claim_evidence(
                       decision="skipped_claim_missing")
         return
 
+    best_page_score = meta.get("best_page_score", 0.0)
+
     try:
-        verified = verify_for_claim(
-            arxiv_id=arxiv_id,
-            claim_text=claim.text,
-        )
+        # Strip the `oai:arXiv.org:` OAI prefix that some classifier paths
+        # emit — ads_lookup_arxiv expects a bare 2604.02823-style ID.
+        clean_arxiv = arxiv_id.replace("oai:arXiv.org:", "").replace("arXiv:", "").strip()
+        record = ads_lookup_arxiv(clean_arxiv)
+        if record is None:
+            # ADS hasn't indexed this paper yet — schedule a 48h retry.
+            paper.verify_retry_at = datetime.utcnow() + timedelta(hours=48)
+            _log_external(db, source="arxiv", external_id=arxiv_id,
+                          page_id=best_page_id, claim_id=best_claim_id,
+                          decision="verify_rejected_ads_lag",
+                          notes="ads_lookup_arxiv returned None; retry scheduled at 48h")
+            _maybe_fallback_page_extension(paper, meta, db, agent, best_page_score)
+            return
+        verified = verify_for_claim(record=record, claim_text=claim.text)
     except Exception as exc:
         _log_external(db, source="arxiv", external_id=arxiv_id,
                       page_id=best_page_id, claim_id=best_claim_id,
@@ -144,23 +178,35 @@ def handle_claim_evidence(
     if verified is None:
         _log_external(db, source="arxiv", external_id=arxiv_id,
                       page_id=best_page_id, claim_id=best_claim_id,
-                      decision="verify_rejected", notes="paper_search returned None")
+                      decision="verify_rejected_quality",
+                      notes="verify_for_claim returned None (quality floor)")
+        _maybe_fallback_page_extension(paper, meta, db, agent, best_page_score)
         return
 
-    # Insert Evidence
+    if verified.quality is not None and verified.quality < 0.6:
+        _log_external(db, source="arxiv", external_id=arxiv_id,
+                      page_id=best_page_id, claim_id=best_claim_id,
+                      decision="verify_rejected_quality",
+                      notes=f"quality {verified.quality:.2f} below 0.6 floor")
+        _maybe_fallback_page_extension(paper, meta, db, agent, best_page_score)
+        return
+
+    # Insert Evidence. Metadata now nests under verified.record.
+    rec = verified.record
+    authors_str = ", ".join(rec.authors) if isinstance(rec.authors, list) else (rec.authors or None)
     evidence = Evidence(
         claim_id=best_claim_id,
-        arxiv_id=verified.arxiv_id,
-        doi=verified.doi,
-        url=f"https://arxiv.org/abs/{verified.arxiv_id}",
-        title=verified.title,
-        authors=verified.authors,
-        year=verified.year,
-        summary=verified.abstract[:500] if verified.abstract else None,
-        abstract=verified.abstract,
-        ads_bibcode=verified.ads_bibcode,
+        arxiv_id=rec.arxiv_id,
+        doi=rec.doi,
+        url=f"https://arxiv.org/abs/{rec.arxiv_id}" if rec.arxiv_id else None,
+        title=rec.title,
+        authors=authors_str,
+        year=rec.year,
+        summary=rec.abstract[:500] if rec.abstract else None,
+        abstract=rec.abstract,
+        ads_bibcode=rec.bibcode,
         quality=verified.quality,
-        stance="supports",
+        stance=verified.stance_hint or "supports",
         added_by_agent_id=agent.id if agent else None,
         verified_at=datetime.utcnow(),
         source_channel="arxiv_ingest",
@@ -179,6 +225,16 @@ def handle_claim_evidence(
         recalculate_trust.delay(best_page_id)
     except Exception:
         pass  # best-effort; trust will recalc on next scheduled run
+
+    # T5 hook: fire lightweight research-idea generation for new arxiv paper (debounced 6h/page)
+    try:
+        from app.agent_loop.research_ideas.auto_improvement import process_lightweight_event
+        process_lightweight_event.apply_async(
+            args=[best_page_id, "new_arxiv", arxiv_id],
+            countdown=0,
+        )
+    except Exception:
+        pass
 
     log.info("[arxiv_ingest] evidence inserted: arxiv=%s claim=%d q=%.2f",
              arxiv_id, best_claim_id, verified.quality)
@@ -239,7 +295,7 @@ def handle_page_extension(
                       notes=f"daily cap {today_count}/{settings.ARXIV_MAX_PAGE_EDITS_PER_PAGE_PER_DAY}")
         return
 
-    # Build LLM prompt and call _chat_parallel
+    # Build LLM prompt and call _chat
     from app.models.page import WikiPage
     page = db.query(WikiPage).get(best_page_id)
     if not page:
@@ -255,9 +311,10 @@ def handle_page_extension(
         f"findings. Be factual, concise, and cite the paper as (arXiv:{paper.arxiv_id})."
     )
 
+    system_prompt = "You are a NebulaMind wiki editor. Be factual, concise, and encyclopedic."
     try:
-        from app.agent_loop.tasks import _chat_parallel
-        result = _chat_parallel(prompt, role="editor")
+        from app.agent_loop.tasks import _chat
+        result = _chat(None, system_prompt, prompt, role="editor")
         if not result:
             raise ValueError("empty LLM response")
     except Exception as exc:
@@ -348,6 +405,32 @@ def handle_new_topic(
         cluster_ids.append(arxiv_id)
         matched_proposal.cluster_papers = json.dumps(cluster_ids)
 
+        # Recompute centroid_similarity as mean pairwise TF-IDF cosine across all cluster papers
+        try:
+            from app.services.arxiv_classifier import _tokenize, _tfidf_vector, _cosine, _corpus
+            from app.models.arxiv import ArxivPaper as _ArxivPaper
+            cluster_objs = db.query(_ArxivPaper).filter(
+                _ArxivPaper.arxiv_id.in_(cluster_ids)
+            ).all()
+            if len(cluster_objs) >= 2:
+                vecs = [
+                    _tfidf_vector(
+                        _tokenize(f"{cp.title} {cp.abstract or ''}"),
+                        _corpus.idf or {},
+                    )
+                    for cp in cluster_objs
+                ]
+                pairs = [
+                    (vecs[i], vecs[j])
+                    for i in range(len(vecs))
+                    for j in range(i + 1, len(vecs))
+                ]
+                matched_proposal.centroid_similarity = (
+                    sum(_cosine(a, b) for a, b in pairs) / len(pairs)
+                )
+        except Exception as _exc:
+            log.debug("[arxiv_ingest] centroid recompute failed: %s", _exc)
+
         # If cluster now meets min size, schedule Discord notification
         if len(cluster_ids) >= settings.ARXIV_NEW_TOPIC_MIN_CLUSTER_SIZE:
             _maybe_notify_new_proposals(db)
@@ -356,13 +439,13 @@ def handle_new_topic(
                       decision="new_topic_staged",
                       notes=f"added to cluster proposal_id={matched_proposal.id} size={len(cluster_ids)}")
     else:
-        # Start a new cluster
+        # Start a new cluster; size-1 is perfectly self-coherent → 1.0
         slug_candidate = _make_slug(paper.title)
         proposal = NewPageProposal(
             suggested_slug=slug_candidate,
             suggested_title=paper.title[:200],
             cluster_papers=json.dumps([arxiv_id]),
-            centroid_similarity=0.0,
+            centroid_similarity=1.0,
             status="pending",
         )
         db.add(proposal)

@@ -37,6 +37,7 @@ from app.models.edit import EditProposal, EditStatus
 from app.models.page import PageVersion, WikiPage
 from app.models.vote import Vote
 from app.models.qa import QAQuestion, QAAnswer
+from app.services.llm_utils import strip_think_blocks
 
 # ---------------------------------------------------------------------------
 # Model keep-alive helpers
@@ -56,11 +57,15 @@ def _keep_alive_ollama(base_url: str, model: str, keep_alive: str = "24h") -> No
 
 @celery_app.task(name="app.agent_loop.tasks.warm_models")
 def warm_models():
-    """Keep key models loaded in Ollama memory. Runs every 20 minutes."""
-    _keep_alive_ollama("http://192.188.0.4:11434", "deepseek-r1:671b", "24h")  # Rakon
-    _keep_alive_ollama("http://192.188.0.4:11434", "deepseek-r1:32b",  "2h")   # Pro 32b
-    for model in ["llama3.3:70b", "qwen3:30b", "deepseek-r1:14b"]:
-        _keep_alive_ollama("http://localhost:11434", model, "30m")              # Studio
+    """Keep key models loaded in Ollama memory. Runs every 20 minutes.
+    Resident set (galaxy-evolution focus): astrosage-70b, deepseek-r1:14b, atom-7b, qwen3:30b-a3b-instruct-2507-q4_K_M
+    Excluded: llama3.3:70b (Blanc), gemma3:27b (Tera), phi4:14b (Takji) — RAM pressure risk
+    """
+    _keep_alive_ollama(settings.RAKON_BASE_URL, settings.RAKON_MODEL, "24h")  # Rakon
+    _keep_alive_ollama(settings.RAKON_BASE_URL, settings.BUDDLE_MODEL, "2h")  # Buddle
+    # Studio resident set — ~212GB safe budget
+    for model in [settings.ASTRO_SYNTH_MODEL, settings.OLLAMA_STUDIO_HEAVY_MODEL, settings.OLLAMA_STUDIO_FAST_MODEL, settings.ASTRO_SCORER_MODEL]:
+        _keep_alive_ollama("http://localhost:11434", model, "30m")
     print("[warm_models] keep-alive pings sent")
 
 
@@ -91,14 +96,15 @@ Respond with ONLY a JSON object:
 {"stance_correct": true|false, "vote": 1|-1|0, "reason": "<one sentence, max 200 chars>"}"""
 
 STANCE_JURY_MODELS = [
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "gemma3:27b",      "label": "gemma3:27b"},
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",   "label": "llama3.3:70b"},
+    {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
 ]
+STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
 
 JURY_AGENT_LABELS = {
-    "qwen3:30b":       "JuryQwen",
+    "gemini-2.5-flash":  "JuryGeminiFlash",
+    "qwen3:30b-a3b-instruct-2507-q4_K_M":       "JuryQwen",
     "gemma3:27b":      "JuryGemma",
     "deepseek-r1:14b": "JuryDeepseek",
     "llama3.3:70b":       "JuryLlama",
@@ -107,6 +113,57 @@ JURY_AGENT_LABELS = {
     "groq-llama3.3":      "JuryGroq",
     "cerebras-llama3.1":  "JuryCerebras",
 }
+
+STANCE_JURY_INFLIGHT_PREFIX = "stance_jury:inflight:"
+
+
+def _stance_jury_inflight_ttl(countdown: int = 0) -> int:
+    base_ttl = max(
+        settings.STANCE_JURY_INFLIGHT_TTL_SECONDS,
+        settings.STANCE_JURY_TIMEOUT_SECONDS
+        + settings.STANCE_JURY_RETRY_BACKOFF_SECONDS
+        + 300,
+    )
+    return int(max(60, countdown + base_ttl))
+
+
+def _claim_stance_jury_inflight(evidence_id: int, countdown: int = 0) -> bool:
+    """Reserve an evidence id before delayed jury enqueue so producers cannot overlap."""
+    try:
+        import redis as _redis_lib
+        r = _redis_lib.from_url(settings.REDIS_URL, decode_responses=True)
+        return bool(
+            r.set(
+                f"{STANCE_JURY_INFLIGHT_PREFIX}{evidence_id}",
+                "1",
+                nx=True,
+                ex=_stance_jury_inflight_ttl(countdown),
+            )
+        )
+    except Exception as e:
+        print(f"[stance_jury] inflight claim failed for ev #{evidence_id}: {e}")
+        return False
+
+
+def _release_stance_jury_inflight(evidence_id: int) -> None:
+    try:
+        import redis as _redis_lib
+        _redis_lib.from_url(settings.REDIS_URL, decode_responses=True).delete(
+            f"{STANCE_JURY_INFLIGHT_PREFIX}{evidence_id}"
+        )
+    except Exception:
+        pass
+
+
+def _enqueue_stance_jury_task(task, evidence_id: int, countdown: int) -> bool:
+    if not _claim_stance_jury_inflight(evidence_id, countdown=countdown):
+        return False
+    try:
+        task.apply_async(args=[evidence_id], countdown=countdown)
+        return True
+    except Exception:
+        _release_stance_jury_inflight(evidence_id)
+        raise
 
 ADVERSARIAL_QUERY_SYSTEM = """You translate scientific claims into ADS search queries that find DISAGREEING or CONTRADICTING papers.
 
@@ -440,12 +497,12 @@ def _build_provider_chain_for_role(role: str = None):
         })
 
     # 5. Mac Pro Ollama (deepseek-r1:32b / 671b — heavy analysis)
-    macpro_url = settings.OLLAMA_MACPRO_BASE_URL
+    macpro_url = settings.RAKON_BASE_URL or settings.OLLAMA_MACPRO_BASE_URL
     if macpro_url:
         chain.append({
-            "base_url": macpro_url,
+            "base_url": macpro_url.rstrip("/") if macpro_url.rstrip("/").endswith("/v1") else f"{macpro_url.rstrip('/')}/v1",
             "api_key": "ollama",
-            "model": settings.OLLAMA_MACPRO_MODEL or "deepseek-r1:32b",
+            "model": settings.OLLAMA_MACPRO_MODEL or settings.BUDDLE_MODEL,
             "label": "ollama-macpro",
         })
 
@@ -545,17 +602,21 @@ def _chat(model: str, system: str, user_msg: str, max_retries: int = 3, role: st
 async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, user_msg: str, timeout: int) -> dict | None:
     """Call a single model asynchronously. Returns dict on success, None on failure."""
     try:
+        payload: dict = {
+            "model": model["model"],
+            "messages": [
+                {"role": "system", "content": system},
+                {"role": "user", "content": user_msg},
+            ],
+        }
+        if model.get("api_key") == "ollama":
+            payload["options"] = {"num_ctx": 8192}
+        if "max_tokens" in model:
+            payload["max_tokens"] = model["max_tokens"]
         resp = await client.post(
             f"{model['base_url']}/chat/completions",
             headers={"Authorization": f"Bearer {model['api_key']}"},
-            json={
-                "model": model["model"],
-                "messages": [
-                    {"role": "system", "content": system},
-                    {"role": "user", "content": user_msg},
-                ],
-                **({"options": {"num_ctx": 8192}} if model.get("api_key") == "ollama" else {}),
-            },
+            json=payload,
             timeout=timeout,
         )
         resp.raise_for_status()
@@ -644,12 +705,9 @@ def _notify_nebulamind_channel(
 # ---------------------------------------------------------------------------
 
 def _parse_jury_json(text: str) -> dict | None:
-    cleaned = text.strip()
+    cleaned = strip_think_blocks(text)
     if cleaned.startswith("```"):
         cleaned = cleaned.split("\n", 1)[1].rsplit("```", 1)[0]
-    # Strip <think> blocks from qwen3
-    import re as _re
-    cleaned = _re.sub(r'<think>.*?</think>', '', cleaned, flags=_re.DOTALL).strip()
     start = cleaned.find("{")
     end = cleaned.rfind("}")
     if start < 0 or end < 0:
@@ -658,6 +716,13 @@ def _parse_jury_json(text: str) -> dict | None:
         return json.loads(cleaned[start:end+1])
     except Exception:
         return None
+
+
+def _jury_retry(self, exc: Exception):
+    """Retry stance jury calls without marking evidence as processed."""
+    backoff = max(30, settings.STANCE_JURY_RETRY_BACKOFF_SECONDS)
+    countdown = min(backoff * (2 ** getattr(self.request, "retries", 0)), 3600)
+    raise self.retry(exc=exc, countdown=countdown)
 
 
 def _agent_id_for_model(db, label: str, role: str = "jury") -> int | None:
@@ -981,7 +1046,7 @@ def _synthesize(drafts: list[dict], page_title: str) -> str:
         f'Topic: "{page_title}"\n\n'
         f"Merge the following {len(drafts)} drafts into one superior wiki article. "
         f"Preserve the required section structure (## Overview, ## Discovery & History, "
-        f"## Physical Properties, ## Current Research, ## Open Questions, ## References). "
+        f"## Physical Properties, ## Current Research, ## Open Questions). Do NOT include a ## References section. "
         f"Take the strongest content from each draft, resolve contradictions, and produce "
         f"a single cohesive article. Return ONLY the merged article in markdown — no preamble.\n\n"
         + "\n\n".join(sections)
@@ -1078,7 +1143,7 @@ def _run_editor(db, agent: Agent):
             f"Write comprehensive, well-structured wiki content about "
             f'"{page.title}". Follow the required article structure exactly: '
             f"## Overview, ## Discovery & History, ## Physical Properties, "
-            f"## Current Research, ## Open Questions, ## References. "
+            f"## Current Research, ## Open Questions. Do NOT include a ## References section. "
             f"Use markdown formatting and include quantitative data."
         )
     else:
@@ -1094,11 +1159,11 @@ def _run_editor(db, agent: Agent):
     # Phase 3: parallel writer (3 models) + synthesis via gemma3:27b
     parallel_models = [
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",    "label": "llama3.3:70b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
     ]
     if settings.GEMINI_API_KEY:
-        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192})
 
     parallel_results = _chat_parallel(parallel_models, system_prompt, user_msg, timeout=60)
 
@@ -1183,11 +1248,11 @@ def _run_reviewer(db, agent: Agent):
 
     # Phase 1: parallel multi-model voting (4 Ollama models)
     parallel_models = [
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b", "label": "deepseek-r1:14b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",       "label": "qwen3:30b"},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
     ]
     if settings.GEMINI_API_KEY:
-        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192})
 
     parallel_results = _chat_parallel(parallel_models, system, user_msg, timeout=90)
 
@@ -1307,7 +1372,7 @@ def _run_commenter(db, agent: Agent):
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b",  "label": "deepseek-r1:14b"},
     ]
     if settings.GEMINI_API_KEY:
-        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash", "label": "gemini-2.0-flash"})
+        parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192})
 
     parallel_results = _chat_parallel(parallel_models, system_prompt, user_msg, timeout=60)
 
@@ -1468,10 +1533,12 @@ def schedule_stance_jury(claim_id: int) -> None:
             _Evidence.stance_jury_run_at.is_(None),
             _Evidence.abstract.isnot(None),
         ).all()
+        enqueued = 0
         for ev in pending:
-            run_stance_jury_for_evidence.apply_async(args=[ev.id], countdown=5)
-        if pending:
-            print(f"[schedule_stance_jury] enqueued {len(pending)} jury runs for claim #{claim_id}")
+            if _enqueue_stance_jury_task(run_stance_jury_for_evidence, ev.id, countdown=5):
+                enqueued += 1
+        if enqueued:
+            print(f"[schedule_stance_jury] enqueued {enqueued} jury runs for claim #{claim_id}")
     finally:
         db.close()
 
@@ -1494,6 +1561,26 @@ def _maybe_create_jury_task(db, evidence_id: int, claim_id: int, page_id) -> Non
         votes_target=settings.OAC_JURY_VOTES_TARGET,
         expires_at=_dt.datetime.utcnow() + _dt.timedelta(days=settings.OAC_JURY_TASK_EXPIRY_DAYS),
     ))
+
+
+def _check_arxiv_journal_ref(arxiv_id: str) -> str | None:
+    """Fetch journal_ref from arXiv API for a single paper. Returns None on error or absence."""
+    import urllib.request
+    import urllib.error
+    import xml.etree.ElementTree as ET
+    try:
+        url = f"http://export.arxiv.org/api/query?id_list={arxiv_id}&max_results=1"
+        req = urllib.request.Request(url, headers={"User-Agent": "NebulaMind/1.0"})
+        with urllib.request.urlopen(req, timeout=10) as resp:
+            root = ET.fromstring(resp.read())
+        ns = {"atom": "http://www.w3.org/2005/Atom", "arxiv": "http://arxiv.org/schemas/atom"}
+        for entry in root.findall("atom:entry", ns):
+            jr = entry.find("arxiv:journal_ref", ns)
+            if jr is not None and jr.text:
+                return jr.text.strip()
+    except Exception:
+        pass
+    return None
 
 
 def _run_evidence_linker_v2(db, agent: Agent):
@@ -1582,15 +1669,25 @@ def _run_evidence_linker_v2(db, agent: Agent):
             verified.append(v)
     verified.sort(key=lambda x: x.quality, reverse=True)
 
-    # ---- Step 4: persist top-N ----
+    # ---- Step 4: persist top-N (peer-reviewed papers only) ----
     from datetime import datetime as _dt
     top = verified[:settings.EVIDENCE_INSERTS_PER_RUN]
     added = 0
+    rejected = 0
     ev_list = []
     for v in top:
         ed = v.record.to_evidence_dict()
-        # Phase 1 gate: must have a real arXiv ID — verify_for_claim already
-        # enforces resolvability, so anything here is genuinely arxiv-anchored.
+        # Peer-review gate: accept only if DOI, ADS bibcode, or arXiv journal_ref present.
+        # Pure preprints (arXiv only, no DOI, no bibcode, no journal_ref) are rejected.
+        journal_ref = None
+        is_peer_reviewed = bool(ed.get("doi") or ed.get("ads_bibcode"))
+        if not is_peer_reviewed and ed.get("arxiv_id"):
+            journal_ref = _check_arxiv_journal_ref(ed["arxiv_id"])
+            is_peer_reviewed = bool(journal_ref)
+        if not is_peer_reviewed:
+            print(f"[{agent.name}] rejected pure preprint: {ed.get('arxiv_id') or ed.get('title', '')[:60]}")
+            rejected += 1
+            continue
         ev = Evidence(
             claim_id=claim.id,
             arxiv_id=ed["arxiv_id"],
@@ -1608,10 +1705,14 @@ def _run_evidence_linker_v2(db, agent: Agent):
             s2_paper_id=ed["s2_paper_id"],
             verified_at=_dt.utcnow(),
             arxiv_verified=bool(ed["arxiv_id"]),
+            journal_ref=journal_ref,
+            peer_reviewed=True,
         )
         db.add(ev)
         ev_list.append(ev)
         added += 1
+    if rejected:
+        print(f"[{agent.name}] rejected {rejected} pure preprint(s) for claim #{claim.id}")
 
     claim.evidence_search_attempted_at = _dt.utcnow()
 
@@ -2281,14 +2382,17 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
     try:
         ev = db.query(Evidence).get(evidence_id)
         if not ev or ev.stance_jury_run_at is not None:
+            _release_stance_jury_inflight(evidence_id)
             return  # idempotent
         if not ev.abstract or len(ev.abstract) < settings.STANCE_JURY_MIN_ABSTRACT_CHARS:
             ev.stance_jury_run_at = _dt.datetime.utcnow()
             db.commit()
+            _release_stance_jury_inflight(evidence_id)
             return
 
         claim = db.query(Claim).get(ev.claim_id)
         if not claim:
+            _release_stance_jury_inflight(evidence_id)
             return
 
         user_msg = (
@@ -2305,16 +2409,16 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
                                   timeout=settings.STANCE_JURY_TIMEOUT_SECONDS)
 
         if not results:
-            ev.stance_jury_run_at = _dt.datetime.utcnow()
-            db.commit()
-            return
+            raise RuntimeError(f"no stance jury model responses for evidence #{evidence_id}")
 
         wrong_stance_count = 0
+        parsed_count = 0
         votes_added = 0
         for r in results:
             parsed = _parse_jury_json(r["response"])
             if not parsed:
                 continue
+            parsed_count += 1
             if not parsed.get("stance_correct", True):
                 wrong_stance_count += 1
             value = max(-1, min(1, int(parsed.get("vote", 0))))
@@ -2329,6 +2433,9 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
             ))
             votes_added += 1
 
+        if parsed_count == 0:
+            raise RuntimeError(f"stance jury returned no parseable votes for evidence #{evidence_id}")
+
         # Stance gate: 3+ of 4 say wrong → flip (one-time only)
         if wrong_stance_count >= settings.STANCE_JURY_FLIP_THRESHOLD:
             old_stance = ev.stance
@@ -2339,11 +2446,14 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         ev.stance_jury_run_at = _dt.datetime.utcnow()
         db.flush()
 
+        old_trust = claim.trust_level
+
         # Recompute trust
         result = recalculate_trust_v2(ev.claim_id, db,
                                        trigger="stance_jury", actor_agent_id=None)
         new_trust = result[0] if isinstance(result, tuple) else result
         db.commit()
+        _release_stance_jury_inflight(evidence_id)
         print(f"[stance_jury] ev #{evidence_id}: {votes_added} votes, "
               f"claim #{ev.claim_id} → {new_trust}")
 
@@ -2353,17 +2463,34 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         elif new_trust == "challenged":
             _notify(f"🔴 Claim #{ev.claim_id} → challenged: \"{claim.text[:80]}…\"")
 
+        # §16 demotion trigger: if claim just became debated/challenged, seed ideas for it
+        if new_trust in ("debated", "challenged") and old_trust not in ("debated", "challenged"):
+            try:
+                import redis as _redis_lib
+                from app.config import settings as _s
+                _phase3 = _redis_lib.from_url(_s.REDIS_URL, decode_responses=True).get(
+                    "research_ideas:phase3_enabled"
+                ) == "1"
+            except Exception:
+                _phase3 = False
+            if _phase3:
+                try:
+                    from app.agent_loop.research_ideas.auto_improvement import seed_debated_claim_ideas
+                    seed_debated_claim_ideas.delay(page_id=claim.page_id, target_per_claim=3)
+                except Exception:
+                    pass
+
     except Exception as e:
         db.rollback()
         print(f"[stance_jury] ev #{evidence_id} error: {e}")
-        raise self.retry(exc=e)
+        _jury_retry(self, e)
     finally:
         db.close()
 
 
 @celery_app.task(name="app.agent_loop.tasks.drain_stance_jury_backlog")
 def drain_stance_jury_backlog():
-    """Hourly: process up to STANCE_JURY_MAX_PER_HOUR unjudged evidence."""
+    """Hourly: pace unjudged evidence into stance jury tasks."""
     import datetime as _dt
     from app.models.claim import Claim, Evidence, EvidenceVote
     from sqlalchemy import func as sqlfunc, case
@@ -2378,7 +2505,8 @@ def drain_stance_jury_backlog():
             EvidenceVote.created_at > cutoff,
             EvidenceVote.voter_type == "jury",
         ).scalar() or 0
-        budget = max(0, settings.STANCE_JURY_MAX_PER_HOUR - (recent_jury // 4))
+        hourly_cap = min(settings.STANCE_JURY_MAX_PER_HOUR, settings.STANCE_JURY_MAX_ENQUEUE_PER_HOUR)
+        budget = max(0, hourly_cap - (recent_jury // 4))
         if budget == 0:
             print("[stance_jury] hourly budget exhausted, skipping")
             return
@@ -2397,12 +2525,19 @@ def drain_stance_jury_backlog():
             .all()
         )
 
-        for ev in candidates:
-            run_stance_jury_for_evidence.apply_async(args=[ev.id], countdown=2)
+        spacing = max(1, settings.STANCE_JURY_ENQUEUE_SPACING_SECONDS)
+        enqueued = 0
+        skipped_inflight = 0
+        for idx, ev in enumerate(candidates):
+            countdown = 2 + idx * spacing
+            if _enqueue_stance_jury_task(run_stance_jury_for_evidence, ev.id, countdown=countdown):
+                enqueued += 1
+            else:
+                skipped_inflight += 1
 
-        print(f"[stance_jury] enqueued {len(candidates)} jury runs (budget={budget})")
-        if len(candidates) >= 10:
-            _notify(f"🧑\u200d⚖️ [Phase 2] {len(candidates)} evidence queued for jury this hour")
+        print(f"[stance_jury] enqueued {enqueued} jury runs (budget={budget}, skipped_inflight={skipped_inflight})")
+        if enqueued >= 10:
+            _notify(f"🧑\u200d⚖️ [Phase 2] {enqueued} evidence queued for jury this hour")
     finally:
         db.close()
 
@@ -2494,6 +2629,8 @@ def settle_evidence_and_update_rep():
                     delta=delta,
                     old_value=old_rep,
                     new_value=new_rep,
+                    old_reputation=old_rep,
+                    new_reputation=new_rep,
                     reason="vote_agreed_consensus" if agreed else "vote_disagreed_consensus",
                     ref_id=ev.id,
                     ref_type="evidence",
@@ -3163,9 +3300,9 @@ def rescue_stale_renovation_plans():
 
 @celery_app.task(name="app.agent_loop.tasks.normalize_did_you_know")
 def normalize_did_you_know():
-    """Tier-cascade for did_you_know: Tier B (claim matcher) → explicit Tier C.
-    DYK is prose-form so KNOWN_CONSTANTS lookup is skipped; TF-IDF claim matching is the lever.
-    """
+    """Tier-cascade for did_you_know — retired: DYK UI removed, column no longer in schema."""
+    return {"skipped": "dyk_column_removed"}
+
     import json as _json
     import datetime as _dt
     from app.services.hero_facts import validate_dyk, try_claim_grounded_source
@@ -3173,7 +3310,7 @@ def normalize_did_you_know():
 
     db = SessionLocal()
     try:
-        pages = db.query(_WikiPage).filter(_WikiPage.did_you_know.isnot(None)).all()
+        pages = db.query(_WikiPage).filter(_WikiPage.hero_facts.isnot(None)).all()
         n_pages_changed = n_promoted_b = n_kept_c = n_dropped = 0
 
         for page in pages:
@@ -3351,7 +3488,7 @@ def sweep_council_tiers():
     """Hourly: escalate contested Stage 2 decisions to Stage 3; safety-net E1/E2 jury patterns."""
     import datetime as _dt
     from app.models.council import Escalation, EscalationVote
-    from app.models.evidence import EvidenceVote
+    from app.models.claim import EvidenceVote
     from app.services.council import open_escalation, evaluate_escalation_triggers
     from app.config import settings
 
@@ -3407,7 +3544,7 @@ def sweep_council_tiers():
         # 2. Safety-net: find evidence votes settled in the last 2h with no escalation
         ev_window = now - _dt.timedelta(hours=2)
         try:
-            from app.models.evidence import EvidenceVote
+            from app.models.claim import EvidenceVote
             recent_ev_ids = (
                 db.execute(
                     __import__("sqlalchemy").text(
@@ -3600,51 +3737,9 @@ def source_facts_for_page(page_id: int):
         if new_hero:
             page.hero_facts = _json.dumps(new_hero, ensure_ascii=False)
 
-        # — Did You Know —
-        dyk_raw = []
-        try:
-            dyk_raw = _json.loads(page.did_you_know) if page.did_you_know else []
-        except Exception:
-            pass
-
-        new_dyk = []
-        for idx, item in enumerate(dyk_raw):
-            if isinstance(item, str):
-                item = {"text": item}
-            text = item.get("text", "")
-            ok, reason = validate_dyk(text)
-            if not ok:
-                db.add(FactSource(
-                    page_id=page_id, fact_kind="did_you_know", fact_index=idx,
-                    source_tier="ai_estimate", flagged=True, reason=reason,
-                    attribution=f"Suppressed: {reason}",
-                ))
-                continue
-            source = (
-                try_claim_grounded_source({"label": text, "value": "", "unit": ""}, page_id, db)
-                or stamp_ai_estimate(text[:50], "No matching claim")
-            )
-            new_dyk.append({"text": text, "source": source})
-            db.add(FactSource(
-                page_id=page_id, fact_kind="did_you_know", fact_index=idx,
-                source_tier=source.get("tier", "ai_estimate"),
-                claim_id=source.get("claim_id"),
-                trust_level_snapshot=source.get("trust_level"),
-                evidence_count_snapshot=source.get("evidence_count"),
-                representative_arxiv_id=source.get("representative_arxiv_id"),
-                generator=source.get("generator"),
-                flagged=source.get("flagged", False),
-                reason=source.get("reason"),
-                attribution=source.get("attribution", ""),
-                cited_at=_dt.datetime.utcnow(),
-            ))
-
-        if new_dyk:
-            page.did_you_know = _json.dumps(new_dyk, ensure_ascii=False)
-
         db.commit()
-        print(f"[source_facts] page #{page_id}: {len(new_hero)} hero, {len(new_dyk)} dyk sourced")
-        _notify(f"📐 Fact sourcing: page #{page_id} done ({len(new_hero)} hero, {len(new_dyk)} dyk)")
+        print(f"[source_facts] page #{page_id}: {len(new_hero)} hero sourced (dyk retired)")
+        _notify(f"📐 Fact sourcing: page #{page_id} done ({len(new_hero)} hero)")
     except Exception as e:
         db.rollback()
         print(f"[source_facts] error page #{page_id}: {e}")
@@ -3687,7 +3782,7 @@ Rules:
 - Surprising or counter-intuitive. Start each with a different word."""
 
 _FACT_DRAFT_MODELS = [
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "qwen3:30b",    "label": "qwen3:30b"},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
     {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "phi4:14b",     "label": "phi4:14b"},
     {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b", "label": "llama3.3:70b"},
 ]
@@ -3697,7 +3792,6 @@ def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str
     """Call local Ollama models in priority order until one succeeds."""
     import json as _j
     import urllib.request as _req
-    import re as _re
 
     for m in _FACT_DRAFT_MODELS:
         try:
@@ -3718,7 +3812,7 @@ def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str
             with _req.urlopen(req, timeout=timeout) as r:
                 resp = _j.loads(r.read())
             content = resp["choices"][0]["message"]["content"]
-            content = _re.sub(r"<think>.*?</think>", "", content, flags=_re.DOTALL).strip()
+            content = strip_think_blocks(content)
             print(f"[fact_draft] served by {m['label']}")
             return content
         except Exception as e:
@@ -3861,11 +3955,9 @@ def draft_hero_facts_for_page(self, page_id: int):
 
 @celery_app.task(name="app.agent_loop.tasks.draft_dyk_for_page", bind=True, max_retries=2)
 def draft_dyk_for_page(self, page_id: int):
-    """Use local LLM to draft improved DYK items for Tier-C / unsourced slots.
+    """DYK drafting — retired: DYK UI removed, column no longer in schema."""
+    return {"skipped": "dyk_column_removed"}
 
-    Keeps existing Tier-B (claim-grounded) items. Generates replacements for
-    Tier-C items, validates them, applies claim-grounding, and writes back.
-    """
     import json as _json
     import datetime as _dt
     from app.models.page import WikiPage, FactSource
@@ -4000,27 +4092,12 @@ def run_fact_sourcing_v1():
             except Exception:
                 hero_queue.append(page.id)
 
-            # DYK: any non-claim item → queue
-            try:
-                items = _json.loads(page.did_you_know or "[]")
-                if any(
-                    (isinstance(i, str) or i.get("source", {}).get("tier", "") != "claim")
-                    for i in items
-                    if isinstance(i, (str, dict))
-                ):
-                    dyk_queue.append(page.id)
-            except Exception:
-                dyk_queue.append(page.id)
-
-        print(f"[fact_sourcing_v1] queuing {len(hero_queue)} hero + {len(dyk_queue)} DYK pages")
+        print(f"[fact_sourcing_v1] queuing {len(hero_queue)} hero pages (dyk retired)")
 
         for page_id in hero_queue:
             draft_hero_facts_for_page.delay(page_id)
 
-        for page_id in dyk_queue:
-            draft_dyk_for_page.delay(page_id)
-
-        msg = f"Fact Sourcing v1: queued {len(hero_queue)} hero + {len(dyk_queue)} DYK pages"
+        msg = f"Fact Sourcing v1: queued {len(hero_queue)} hero pages"
         _notify(f"🧪 {msg}")
         return msg
     finally:
@@ -4190,7 +4267,7 @@ def run_adversarial_pass():
                 _maybe_create_jury_task(db, ev.id, claim.id, claim.page_id)
                 challenges_added += 1
                 inserted += 1
-                run_stance_jury_for_evidence.apply_async(args=[ev.id], countdown=10)
+                _enqueue_stance_jury_task(run_stance_jury_for_evidence, ev.id, countdown=10)
 
             claim.last_adversarial_probe_at = _dt.datetime.utcnow()
             import time as _time; _time.sleep(1)
@@ -4212,26 +4289,29 @@ def run_adversarial_pass():
 # ---------------------------------------------------------------------------
 
 @celery_app.task(name="app.agent_loop.tasks.run_stance_jury_single",
-                 bind=True, max_retries=1, default_retry_delay=60)
-def run_stance_jury_single(self, evidence_id: int, model: str = "llama3.3:70b"):
-    """Fast single-model jury for bulk processing. Uses llama3.3:70b by default."""
+                 bind=True, max_retries=3, default_retry_delay=300)
+def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
+    """Fast single-model jury for bulk processing."""
     import datetime as _dt
     import urllib.request as _urlreq
-    import re as _re
     from app.models.claim import Claim, Evidence, EvidenceVote
 
+    model = model or settings.STANCE_JURY_FAST_MODEL
     db = SessionLocal()
     try:
         ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()
         if not ev or ev.stance_jury_run_at is not None:
+            _release_stance_jury_inflight(evidence_id)
             return
         if not ev.abstract or len(ev.abstract) < 100:
             ev.stance_jury_run_at = _dt.datetime.utcnow()
             db.commit()
+            _release_stance_jury_inflight(evidence_id)
             return
 
         claim = db.query(Claim).filter(Claim.id == ev.claim_id).first()
         if not claim:
+            _release_stance_jury_inflight(evidence_id)
             return
 
         user_msg = (
@@ -4259,22 +4339,18 @@ def run_stance_jury_single(self, evidence_id: int, model: str = "llama3.3:70b"):
             )
             with _urlreq.urlopen(req, timeout=45) as resp:
                 content = json.loads(resp.read())["choices"][0]["message"]["content"]
-                content = _re.sub(r'<think>.*?</think>', '', content, flags=_re.DOTALL).strip()
+                content = strip_think_blocks(content)
                 parsed = _parse_jury_json(content)
         except Exception as e:
             print(f"[jury_single] ev #{evidence_id}: model call failed: {e}")
-            ev.stance_jury_run_at = _dt.datetime.utcnow()
-            db.commit()
-            return
+            raise
 
         if not parsed:
-            ev.stance_jury_run_at = _dt.datetime.utcnow()
-            db.commit()
-            return
+            raise RuntimeError(f"jury_single returned no parseable vote for evidence #{evidence_id}")
 
         value = max(-1, min(1, int(parsed.get("vote", 0))))
         if value != 0:
-            agent_id = _agent_id_for_model(db, "llama3.3:70b")
+            agent_id = _agent_id_for_model(db, model)
             db.add(EvidenceVote(
                 evidence_id=ev.id,
                 value=value,
@@ -4298,6 +4374,7 @@ def run_stance_jury_single(self, evidence_id: int, model: str = "llama3.3:70b"):
         result = recalculate_trust_v2(ev.claim_id, db, trigger="jury_single")
         new_trust = result[0] if isinstance(result, tuple) else result
         db.commit()
+        _release_stance_jury_inflight(evidence_id)
 
         if new_trust == "consensus":
             _notify(f"🟢 Claim #{ev.claim_id} → consensus (jury_single)")
@@ -4307,7 +4384,7 @@ def run_stance_jury_single(self, evidence_id: int, model: str = "llama3.3:70b"):
     except Exception as e:
         db.rollback()
         print(f"[jury_single] ev #{evidence_id} error: {e}")
-        raise self.retry(exc=e)
+        _jury_retry(self, e)
     finally:
         db.close()
 
@@ -4324,8 +4401,10 @@ def drain_jury_fast_pass():
 
     db = SessionLocal()
     try:
-        # Budget: up to 200 evidence per pass (each takes ~30-45s, runs in parallel workers)
-        budget = 200
+        budget = max(0, settings.STANCE_JURY_FAST_MAX_ENQUEUE_PER_PASS)
+        if budget == 0:
+            print("[drain_jury_fast] fast-pass budget is 0, skipping")
+            return
 
         # Priority 1: evidence with 0 votes on accepted/consensus claims
         zero_vote_accepted = (
@@ -4344,38 +4423,60 @@ def drain_jury_fast_pass():
         )
 
         enqueued = 0
+        skipped_inflight = 0
+        spacing = max(1, settings.STANCE_JURY_ENQUEUE_SPACING_SECONDS)
         for ev in zero_vote_accepted:
-            run_stance_jury_single.apply_async(args=[ev.id], countdown=enqueued % 10)
-            enqueued += 1
+            countdown = enqueued * spacing
+            if _enqueue_stance_jury_task(run_stance_jury_single, ev.id, countdown=countdown):
+                enqueued += 1
+            else:
+                skipped_inflight += 1
 
         if enqueued < budget:
             # Priority 2: evidence with 1-2 votes (needs 3 for full confidence)
+            low_vote_retry_cutoff = _dt.datetime.utcnow() - _dt.timedelta(
+                seconds=max(0, settings.STANCE_JURY_LOW_VOTE_RETRY_MIN_AGE_SECONDS)
+            )
+            vote_count = (
+                db.query(sqlfunc.count(EvidenceVote.id))
+                .filter(EvidenceVote.evidence_id == Evidence.id)
+                .correlate(Evidence)
+                .as_scalar()
+            )
             low_vote = (
                 db.query(Evidence)
                 .join(Claim, Claim.id == Evidence.claim_id)
                 .filter(Evidence.stance_jury_run_at.isnot(None))  # already run but low votes
+                .filter(Evidence.stance_jury_run_at < low_vote_retry_cutoff)
                 .filter(Evidence.abstract.isnot(None))
                 .filter(sqlfunc.length(Evidence.abstract) >= 100)
                 .filter(Claim.trust_level.in_(["accepted", "debated"]))
-                .filter(
-                    db.query(sqlfunc.count(EvidenceVote.id))
-                    .filter(EvidenceVote.evidence_id == Evidence.id)
-                    .correlate(Evidence)
-                    .as_scalar() < 3
-                )
+                .filter(vote_count > 0)
+                .filter(vote_count < 3)
                 .order_by(Evidence.quality.desc())
                 .limit(budget - enqueued)
                 .all()
             )
+            low_vote_claims: list[tuple[int, int]] = []
             for ev in low_vote:
-                # Reset so single jury can run again
-                ev.stance_jury_run_at = None
-                run_stance_jury_single.apply_async(args=[ev.id], countdown=(enqueued % 10) + 2)
-                enqueued += 1
-            if low_vote:
+                countdown = (enqueued + len(low_vote_claims)) * spacing
+                if _claim_stance_jury_inflight(ev.id, countdown=countdown):
+                    # Reset so single jury can run again
+                    ev.stance_jury_run_at = None
+                    low_vote_claims.append((ev.id, countdown))
+                else:
+                    skipped_inflight += 1
+            if low_vote_claims:
                 db.commit()
+            for ev_id, countdown in low_vote_claims:
+                try:
+                    run_stance_jury_single.apply_async(args=[ev_id], countdown=countdown)
+                except Exception:
+                    _release_stance_jury_inflight(ev_id)
+                    raise
+                enqueued += 1
 
-        print(f"[drain_jury_fast] enqueued {enqueued} fast jury runs")
+        print(f"[drain_jury_fast] enqueued {enqueued} fast jury runs (skipped_inflight={skipped_inflight})")
         if enqueued >= 50:
             _notify(f"⚡ Fast jury drain: {enqueued} evidence queued")
     finally:
@@ -4657,6 +4758,72 @@ def retry_unprocessed_arxiv_papers():
                 print(f"[retry_unprocessed] failed {paper.arxiv_id}: {_err}")
     except Exception as e:
         print(f"[retry_unprocessed] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
+@celery_app.task
+def process_pending_verify_retries():
+    """Retry claim_evidence papers that were rejected due to ADS indexing lag.
+
+    Runs daily at UTC 08:00. Finds ArxivPaper rows with verify_retry_at <= now
+    (set 48h after initial verify_rejected_ads_lag) and re-attempts the ADS
+    lookup + evidence insertion. Clears verify_retry_at after each attempt
+    regardless of outcome so papers are retried at most once.
+    """
+    import datetime as _dt
+    from app.models.arxiv import ArxivPaper
+
+    db = SessionLocal()
+    try:
+        now = _dt.datetime.utcnow()
+        papers = db.query(ArxivPaper).filter(
+            ArxivPaper.verify_retry_at <= now,
+            ArxivPaper.match_type == "claim_evidence",
+        ).all()
+
+        if not papers:
+            print("[verify_retry] nothing due")
+            return
+
+        print(f"[verify_retry] {len(papers)} papers due for ADS-lag retry")
+        arxivbot = db.query(Agent).filter(Agent.name == "ArxivBot").first()
+
+        from app.services.arxiv_classifier import classify_match_type
+        from app.services.arxiv_ingest import handle_claim_evidence
+        from app.models.external import ExternalSourceLog
+
+        for paper in papers:
+            # Clear retry flag before attempt so it isn't picked up again even
+            # if this worker crashes mid-flight.
+            paper.verify_retry_at = None
+            db.flush()
+
+            # Re-fetch match meta from a fresh classify or reconstruct from log
+            try:
+                match_type, meta = classify_match_type(paper, db)
+                if match_type != "claim_evidence":
+                    # Page/claim vectors changed; re-route naturally
+                    paper.match_type = match_type
+                    db.commit()
+                    print(f"[verify_retry] {paper.arxiv_id} reclassified → {match_type}")
+                    continue
+
+                handle_claim_evidence(paper, meta, db, arxivbot)
+                db.commit()
+                print(f"[verify_retry] {paper.arxiv_id} → retried")
+            except Exception as _err:
+                db.rollback()
+                # Re-clear retry flag after rollback
+                try:
+                    paper.verify_retry_at = None
+                    db.commit()
+                except Exception:
+                    pass
+                print(f"[verify_retry] failed {paper.arxiv_id}: {_err}")
+    except Exception as e:
+        print(f"[verify_retry] Error: {e}")
         raise
     finally:
         db.close()

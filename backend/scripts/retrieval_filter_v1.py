@@ -16,6 +16,8 @@ from pathlib import Path
 from typing import Any
 
 
+DEFAULT_TAXONOMY_PATH = Path(__file__).with_name("retrieval_filter_v1_taxonomy.json")
+
 STOPWORDS = frozenset(
     """
     a about above after against all also am an and any are as at be because been before
@@ -31,23 +33,6 @@ STOPWORDS = frozenset(
     paper papers research system systems object objects source sources sample samples
     """.split()
 )
-
-SECTION_SLUG_TO_LEGACY_SECTION = {
-    "high_z_sf": "Physical Mechanisms",
-    "shmr_halo_quenching": "Dark Matter, Halos & Structure Formation",
-    "env_quenching": "Environmental Effects",
-    "feedback_outflows": "AGN Feedback & Quenching Debates",
-    "size_evolution": "Galaxy Scaling Relations & Size Evolution",
-}
-
-NEIGHBORING_DOMAIN_TAGS = {
-    "single_object_agn",
-    "stellar_object",
-    "milky_way_local",
-    "molecular_cloud",
-    "instrumentation",
-    "compact_object_transient",
-}
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -98,32 +83,29 @@ def safe_div(num: float, den: float) -> float:
     return num / den if den else 0.0
 
 
-def lexical_metadata_tags(title: str | None, abstract: str | None) -> list[str]:
+def load_taxonomy(path: Path = DEFAULT_TAXONOMY_PATH) -> dict[str, Any]:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _pattern_group_matches(patterns: list[str], text: str, require_all: bool) -> bool:
+    if not patterns:
+        return True
+    matches = [bool(re.search(pattern, text)) for pattern in patterns]
+    return all(matches) if require_all else any(matches)
+
+
+def lexical_metadata_tags(title: str | None, abstract: str | None, taxonomy: dict[str, Any]) -> list[str]:
     text = f"{title or ''}\n{abstract or ''}".lower()
     tags: set[str] = set()
 
-    if re.search(r"\b(ngc|mrk|ark|eso|qso|bl\s*lac|seyfert|agn)\s*[- ]?\d+", text) and re.search(
-        r"\b(reverberation|continuum lag|lag|accretion disk|broad-line|blr)\b", text
-    ):
-        tags.add("single_object_agn")
-    if re.search(r"\b(pulsar|globular cluster|white dwarf|neutron star|x-ray binary|stellar wind|massive star)\b", text):
-        tags.add("stellar_object")
-    if re.search(r"\b(milky way|galactic center|galactic centre|local group|magellanic|nearby dwarf)\b", text):
-        tags.add("milky_way_local")
-    if re.search(r"\b(molecular cloud|dark cloud|filament|protostar|star-forming region|interstellar cloud)\b", text):
-        tags.add("molecular_cloud")
-    if re.search(r"\b(instrument|detector|pipeline|calibration|spectrograph|telescope performance|survey strategy)\b", text):
-        tags.add("instrumentation")
-    if re.search(r"\b(transient|fast radio burst|grb|supernova|tidal disruption|compact object)\b", text):
-        tags.add("compact_object_transient")
-    if re.search(r"\b(population|mass function|scaling relation|main sequence|quiescent|star-forming galaxies)\b", text):
-        tags.add("galaxy_population")
-    if re.search(r"\b(cosmological simulation|hydrodynamic simulation|n-body|illustris|eagle|tng|simba|zoom-in)\b", text):
-        tags.add("cosmological_simulation")
-    if re.search(r"\b(size|effective radius|half-light|morpholog|compact|disk|bulge|surface brightness)\b", text):
-        tags.add("morphology_size")
-    if re.search(r"\b(quench|feedback|outflow|agn feedback|suppression|green valley|red sequence)\b", text):
-        tags.add("quenching")
+    for tag_config in taxonomy.get("tags", []):
+        name = tag_config.get("name")
+        if not name:
+            continue
+        any_match = _pattern_group_matches(tag_config.get("any", []), text, require_all=False)
+        all_match = _pattern_group_matches(tag_config.get("all", []), text, require_all=True)
+        if any_match and all_match:
+            tags.add(str(name))
 
     return sorted(tags)
 
@@ -248,9 +230,11 @@ def score_row(row: dict[str, Any], positive_terms: dict[str, float]) -> tuple[fl
     return lexical_score, positive_score, combined_score
 
 
-def calibrate_section(rows: list[dict[str, Any]], section: str) -> dict[str, Any]:
+def calibrate_section(rows: list[dict[str, Any]], section: str, taxonomy: dict[str, Any] | None = None) -> dict[str, Any]:
+    taxonomy = taxonomy or load_taxonomy()
+    neighboring_domain_tags = set(taxonomy.get("neighboring_domain_tags", []))
     for row in rows:
-        row["tags"] = lexical_metadata_tags(row.get("paper_title_snapshot"), row.get("paper_abstract_snapshot"))
+        row["tags"] = lexical_metadata_tags(row.get("paper_title_snapshot"), row.get("paper_abstract_snapshot"), taxonomy)
 
     positive_terms = derive_positive_terms(rows)
     lifts = tag_lift(rows)
@@ -303,7 +287,7 @@ def calibrate_section(rows: list[dict[str, Any]], section: str) -> dict[str, Any
             if row["combined_score"] < off_domain_high:
                 enriched_tag_gate = True
                 reasons.append("off_domain_enriched_tag_gate")
-        if row_tags & NEIGHBORING_DOMAIN_TAGS and row["combined_score"] < off_domain_high:
+        if row_tags & neighboring_domain_tags and row["combined_score"] < off_domain_high:
             final_score *= 0.82
             reasons.append("neighboring_domain_tag_downweight")
         if normalize_arxiv_id(row.get("paper_id")) in suppressed_papers:
@@ -354,6 +338,7 @@ def summarize_rows(rows: list[FilteredRow]) -> dict[str, Any]:
     return {
         "before_total": total_before,
         "after_total": total_after,
+        "candidate_drop_rate": round(safe_div(total_before - total_after, total_before), 6),
         "before_labels": dict(sorted(before.items())),
         "after_labels": dict(sorted(after.items())),
         "dropped_labels": dict(sorted(dropped.items())),

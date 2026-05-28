@@ -27,6 +27,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${BASE_URL}/benchmark/methodology`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
     { url: `${BASE_URL}/contribute`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.5 },
     { url: `${BASE_URL}/join`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.4 },
+    { url: `${BASE_URL}/surveys`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
     { url: `${BASE_URL}/feedback`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
   ];
 
@@ -54,7 +55,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         priority: 0.4,
       },
     ]);
-    return [...staticPages, ...wikiPages];
+    // Dynamic survey pages
+    let surveyPages: MetadataRoute.Sitemap = [];
+    try {
+      const sRes = await fetch(`${API_BASE}/api/surveys`, { next: { revalidate: 3600 } });
+      const sData = await sRes.json();
+      const surveys: any[] = sData.surveys ?? [];
+      surveyPages = surveys.map((s: any) => ({
+        url: `${BASE_URL}/surveys/${s.slug}`,
+        lastModified: s.updated_at ? new Date(s.updated_at) : new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.6,
+      }));
+    } catch {
+      // surveys unavailable — skip
+    }
+
+    return [...staticPages, ...wikiPages, ...surveyPages];
   } catch {
     return staticPages;
   }

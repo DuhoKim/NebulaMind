@@ -92,15 +92,21 @@ def get_stats(db: Session = Depends(get_db)):
 
     online_human = db.query(func.count(func.distinct(Visit.ip_address))).filter(Visit.created_at >= five_min_ago, Visit.visitor_type == "human").scalar() or 0
 
-    # Count active agents from actual activity (edits, votes, comments in last 5 min)
+    # Count active agents: edits/votes/comments in last 5 min + Celery agents via last_active
     from app.models.edit import EditProposal
     from app.models.vote import Vote
     from app.models.comment import Comment
-    from sqlalchemy import union_all, literal_column
+    from app.models.agent import Agent
     active_agent_ids = set()
     for model in [EditProposal, Vote, Comment]:
         ids = [r[0] for r in db.query(model.agent_id).filter(model.created_at >= five_min_ago).distinct().all()]
         active_agent_ids.update(ids)
+    celery_ids = [
+        r[0] for r in db.query(Agent.id)
+        .filter(Agent.last_active >= five_min_ago, Agent.is_active == True)
+        .all()
+    ]
+    active_agent_ids.update(celery_ids)
     online_agent = len(active_agent_ids)
 
     unique = db.query(func.count(func.distinct(Visit.ip_address))).scalar() or 0

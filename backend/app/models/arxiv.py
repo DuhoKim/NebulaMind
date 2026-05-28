@@ -23,3 +23,5 @@ class ArxivPaper(Base):
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     match_type: Mapped[str | None] = mapped_column(String(30), nullable=True)
     processed_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+    # Set when ADS hasn't indexed the paper yet; cleared after successful retry
+    verify_retry_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)

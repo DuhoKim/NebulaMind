@@ -12,16 +12,28 @@ class Settings(BaseSettings):
     CEREBRAS_MODEL: str = "llama3.1-8b"
     SAMBANOVA_API_KEY: str = ""
     SAMBANOVA_MODEL: str = "Meta-Llama-3.3-70B-Instruct"
-    OLLAMA_BASE_URL: str = ""
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "llama3.3:70b"
+    OLLAMA_STUDIO_BASE_URL: str = "http://localhost:11434/v1"
+    OLLAMA_STUDIO_FAST_MODEL: str = "deepseek-r1:14b"
+    OLLAMA_STUDIO_HEAVY_MODEL: str = "qwen3:30b-a3b-instruct-2507-q4_K_M"
     OLLAMA_WRITER: str = ""
     OLLAMA_EDITOR: str = ""
     OLLAMA_REVIEWER: str = ""
     OLLAMA_COMMENTER: str = ""
     OLLAMA_ARXIV: str = ""
+    ASTRO_SCORER_MODEL: str = "vanta-research/atom-astronomy-7b"
+    ASTRO_SYNTH_MODEL: str = "astrosage-70b"
     ADS_API_KEY: str = ""
     OLLAMA_MACPRO_BASE_URL: str = ""
     OLLAMA_MACPRO_MODEL: str = "deepseek-r1:32b"
+    OLLAMA_MACPRO_FAST_MODEL: str = "deepseek-r1:32b"
+    OLLAMA_MACPRO_HEAVY_MODEL: str = "deepseek-r1:671b"
+    RAKON_BASE_URL: str = "http://169.254.100.1:11435"  # Mac Pro — deepseek-r1:671b (Thunderbolt, confirmed working)
+    RAKON_MODEL: str = "deepseek-r1:671b"
+    BUDDLE_MODEL: str = "deepseek-r1:32b"
+    EMBED_OLLAMA_BASE_URL: str = "http://127.0.0.1:11435"
+    EMBED_OLLAMA_MODEL: str = "nomic-embed-text:v1.5"
     OPENCLAW_GATEWAY_URL: str = ""
     OPENCLAW_GATEWAY_TOKEN: str = ""
     RESEND_API_KEY: str = ""
@@ -57,7 +69,7 @@ class Settings(BaseSettings):
     # arXiv classifier thresholds
     ARXIV_PAGE_MATCH_THRESHOLD: float = 0.30
     ARXIV_PAGE_EXTENSION_THRESHOLD: float = 0.50
-    ARXIV_CLAIM_MATCH_THRESHOLD: float = 0.55
+    ARXIV_CLAIM_MATCH_THRESHOLD: float = 0.45
     # arXiv ingest limits
     ARXIV_INGEST_MAX_PER_RUN: int = 50
     ARXIV_INGEST_CATEGORIES: str = "astro-ph.GA,astro-ph.SR,astro-ph.EP,astro-ph.HE,astro-ph.CO"
@@ -97,9 +109,17 @@ class Settings(BaseSettings):
     # === Trust Phase 2: Stance Jury ===
     STANCE_JURY_ENABLED: bool = True
     STANCE_JURY_MAX_PER_HOUR: int = 10000
+    STANCE_JURY_MAX_ENQUEUE_PER_HOUR: int = 40
+    STANCE_JURY_FAST_MAX_ENQUEUE_PER_PASS: int = 20
+    STANCE_JURY_ENQUEUE_SPACING_SECONDS: int = 90
+    STANCE_JURY_RETRY_BACKOFF_SECONDS: int = 300
+    STANCE_JURY_INFLIGHT_TTL_SECONDS: int = 7200
+    STANCE_JURY_LOW_VOTE_RETRY_MIN_AGE_SECONDS: int = 86400
+    STANCE_JURY_FAST_MODEL: str = "qwen3:30b-a3b-instruct-2507-q4_K_M"
     STANCE_JURY_TIMEOUT_SECONDS: int = 60
     STANCE_JURY_MIN_ABSTRACT_CHARS: int = 100
     STANCE_JURY_FLIP_THRESHOLD: int = 3
+    OLLAMA_MAX_CTX_DEFAULT: int = 8192
 
     # === Trust Phase 2: Adversarial Pass ===
     ADVERSARIAL_PASS_ENABLED: bool = True
@@ -152,11 +172,27 @@ class Settings(BaseSettings):
     COUNCIL_ESCALATION_STAGE3_DAYS: int = 60
     COUNCIL_STAGE1_ESCALATION_MARGIN: float = 0.10
     COUNCIL_INSTITUTIONAL_EMAIL_DOMAINS: str = ".edu,.ac.kr,.ac.jp,.ac.uk,.research.gov"
+    GEMINI_API_KEY: str = ""
+    ADMIN_KEY: str = ""
+    ANTHROPIC_API_KEY: str = ""
+
+    # === Research Ideas pipeline ===
+    RESEARCH_IDEAS_COMBO_WHITELIST: str = ""  # comma-separated, e.g. "JWST+DESI,ALMA+Euclid" — empty = allow all
+
+    # === General astronomy news curator (v2) ===
+    GENERAL_NEWS_ENABLED: bool = False
+    GENERAL_NEWS_SCORE_FLOOR_A: float = 0.65
+    GENERAL_NEWS_SCORE_FLOOR_B: float = 0.65
+    GENERAL_NEWS_SCORE_FLOOR_C: float = 0.75
+    GENERAL_NEWS_DEDUP_TITLE_COSINE: float = 0.70
+    GENERAL_NEWS_DEDUP_LOOKBACK_DAYS: int = 30
+    GENERAL_NEWS_MAX_ITEMS_PER_FEED: int = 15
 
     model_config = {
         "env_prefix": "NM_",
         "env_file": "/Users/duhokim/NebulaMind/NebulaMind/backend/.env",
         "env_file_encoding": "utf-8",
+        "extra": "ignore",
     }
 
 

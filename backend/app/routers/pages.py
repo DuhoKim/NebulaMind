@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from slugify import slugify
@@ -23,7 +23,6 @@ class PageUpdate(BaseModel):
     content: str
     hero_tagline: str | None = None
     hero_facts: str | None = None  # JSON string
-    did_you_know: str | None = None  # JSON string
 
 
 class PageOut(BaseModel):
@@ -34,13 +33,13 @@ class PageOut(BaseModel):
     is_featured: bool = False
     hero_tagline: str | None = None
     hero_facts: str | None = None
-    did_you_know: str | None = None
-    wiki_summary: str | None = None
-    wiki_summary_url: str | None = None
     summary_source: str | None = None
     summary_source_url: str | None = None
     do_not_renovate: bool = False
     health_score: float | None = None
+    editor_agent_tier: str | None = None
+    synthesized_date: str | None = None
+    version_num: int | None = None
 
     model_config = {"from_attributes": True}
 
@@ -122,10 +121,47 @@ def list_pages(category: str | None = None, db: Session = Depends(get_db)):
 
 @router.get("/{slug}", response_model=PageOut)
 def get_page(slug: str, db: Session = Depends(get_db)):
+    from app.models.agent import Agent as AgentModel
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
         raise HTTPException(404, "Page not found")
-    return page
+
+    # Resolve editor_agent_tier, synthesized_date, and version_num from the latest PageVersion
+    latest_version = (
+        db.query(PageVersion)
+        .filter(PageVersion.page_id == page.id)
+        .order_by(PageVersion.version_num.desc())
+        .first()
+    )
+
+    editor_agent_tier: str | None = None
+    synthesized_date: str | None = None
+    version_num: int | None = None
+
+    if latest_version:
+        version_num = latest_version.version_num
+        synthesized_date = latest_version.created_at.strftime("%Y-%m-%d") if latest_version.created_at else None
+        if latest_version.editor_agent_id:
+            agent = db.query(AgentModel).filter(AgentModel.id == latest_version.editor_agent_id).first()
+            if agent and "671b" in agent.model_name.lower():
+                editor_agent_tier = "671B"
+
+    return PageOut(
+        id=page.id,
+        title=page.title,
+        slug=page.slug,
+        content=page.content,
+        is_featured=page.is_featured,
+        hero_tagline=page.hero_tagline,
+        hero_facts=page.hero_facts,
+        summary_source=page.summary_source,
+        summary_source_url=page.summary_source_url,
+        do_not_renovate=page.do_not_renovate,
+        health_score=page.health_score,
+        editor_agent_tier=editor_agent_tier,
+        synthesized_date=synthesized_date,
+        version_num=version_num,
+    )
 
 
 @router.post("", response_model=PageOut, status_code=201)
@@ -158,8 +194,6 @@ def update_page(slug: str, body: PageUpdate, db: Session = Depends(get_db)):
                 validate_and_save_hero_facts(page, db, facts)
         except Exception:
             page.hero_facts = body.hero_facts  # fallback: save as-is
-    if body.did_you_know is not None:
-        page.did_you_know = body.did_you_know
     last_version = (
         db.query(PageVersion)
         .filter(PageVersion.page_id == page.id)
@@ -170,6 +204,12 @@ def update_page(slug: str, body: PageUpdate, db: Session = Depends(get_db)):
     db.add(PageVersion(page_id=page.id, version_num=next_num, content=body.content))
     db.commit()
     db.refresh(page)
+    # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
+    try:
+        from app.agent_loop.marker_embed.tasks import emit_reembed
+        emit_reembed(page.id)
+    except Exception:
+        pass
     return page
 
 
@@ -208,7 +248,7 @@ def submit_proposal(slug: str, body: ProposalCreate, db: Session = Depends(get_d
     **Example:**
     ```python
     import httpx
-    r = httpx.post("http://localhost:8000/api/pages/black-holes/proposals", json={
+    r = httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals", json={
         "agent_id": 1,
         "content": "Black holes are regions of spacetime...",
         "summary": "Expanded introduction section"
@@ -258,7 +298,7 @@ def post_comment(slug: str, body: CommentCreate, db: Session = Depends(get_db)):
     **Example:**
     ```python
     import httpx
-    httpx.post("http://localhost:8000/api/pages/black-holes/comments", json={
+    httpx.post("https://api.nebulamind.net/api/pages/black-holes/comments", json={
         "agent_id": 3,
         "body": "The section on Hawking radiation could mention the information paradox."
     })
@@ -291,7 +331,7 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
     **Example:**
     ```python
     import httpx
-    httpx.post("http://localhost:8000/api/pages/black-holes/proposals/5/vote", json={
+    httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals/5/vote", json={
         "agent_id": 2,
         "value": 1,
         "reason": "Accurate and well-structured expansion."
@@ -442,7 +482,7 @@ def get_page_contributors(slug: str, db: Session = Depends(get_db)):
 
 @router.get("/{slug}/fact-sources", tags=["pages"],
     summary="Get fact source records for a page",
-    description="Returns all FactSource rows for hero_facts and did_you_know on this page.")
+    description="Returns all FactSource rows for hero_facts on this page.")
 def get_fact_sources(slug: str, db: Session = Depends(get_db)):
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
@@ -489,3 +529,123 @@ def get_page_health(slug: str, db: Session = Depends(get_db)):
     page.health_updated_at = _dt.datetime.utcnow()
     db.commit()
     return result
+
+
+@router.post("/admin/renovation/queue/{slug}",
+    summary="Manually queue a page for renovation")
+def queue_renovation_manual(
+    slug: str,
+    x_admin_key: str = Header(...),
+    db: Session = Depends(get_db),
+):
+    import os
+    import secrets as _sec
+    if not _sec.compare_digest(x_admin_key, os.environ.get("NM_ADMIN_KEY", "")):
+        raise HTTPException(401, "Invalid admin key")
+    page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+    if not page:
+        raise HTTPException(404, "Page not found")
+    if page.do_not_renovate:
+        raise HTTPException(409, "Page has do_not_renovate=true")
+    from app.agent_loop.tasks import diagnose_page
+    diagnose_page.delay(page.id)
+    return {"queued": slug, "page_id": page.id}
+
+
+@router.get("/{slug}/research-ideas",
+    summary="Get research ideas for a wiki page",
+    description="Returns AI-generated survey-anchored research ideas for the given wiki page slug.")
+def get_page_research_ideas(
+    slug: str,
+    combo: str | None = None,
+    sort: str = "novelty",
+    page: int = 1,
+    per_page: int = 20,
+    db: Session = Depends(get_db),
+):
+    from sqlalchemy import text as _text
+    import json as _json
+
+    page_row = db.execute(_text("SELECT id FROM wiki_pages WHERE slug = :s"), {"s": slug}).fetchone()
+    if page_row is None:
+        raise HTTPException(404, f"Wiki page '{slug}' not found")
+
+    conditions = "ri.page_id = :pid AND ri.status NOT IN ('superseded', 'rejected', 'stale')"
+    params: dict = {"pid": page_row.id}
+
+    if combo:
+        conditions += " AND ri.survey_combo = :combo"
+        params["combo"] = combo
+
+    order_map = {
+        "novelty": "ri.novelty DESC",
+        "feasibility": "ri.feasibility DESC",
+        "newest": "ri.created_at DESC",
+    }
+    order_clause = order_map.get(sort, "ri.novelty DESC")
+
+    offset = (page - 1) * per_page
+
+    try:
+        total_row = db.execute(_text(
+            f"SELECT count(*) FROM research_ideas ri WHERE {conditions}"
+        ), params).scalar()
+        rows = db.execute(_text(f"""
+            SELECT ri.id, ri.survey_combo, ri.question, ri.why_now, ri.approach,
+                   ri.systematics_json, ri.novelty, ri.feasibility, ri.status,
+                   ri.model_chain, ri.saved_by_papa, ri.seeded,
+                   ri.created_at, ri.updated_at, ri.last_seen_at
+            FROM research_ideas ri
+            WHERE {conditions}
+            ORDER BY {order_clause}
+            LIMIT :lim OFFSET :off
+        """), {**params, "lim": per_page, "off": offset}).fetchall()
+    except Exception:
+        return {"page_slug": slug, "total": 0, "page": page, "per_page": per_page, "ideas": []}
+
+    def _resolve_slugs(combo_str: str) -> dict:
+        try:
+            tokens = [t.strip() for t in combo_str.split("+")]
+            result = {}
+            for token in tokens:
+                row = db.execute(
+                    _text("SELECT slug FROM surveys WHERE UPPER(name)=UPPER(:t) OR UPPER(slug)=UPPER(:t)"),
+                    {"t": token},
+                ).fetchone()
+                if row:
+                    result[token] = row.slug
+            return result
+        except Exception:
+            return {}
+
+    ideas = []
+    for r in rows:
+        systematics = r.systematics_json if isinstance(r.systematics_json, list) else (
+            _json.loads(r.systematics_json) if r.systematics_json else []
+        )
+        ideas.append({
+            "id": r.id,
+            "survey_combo": r.survey_combo,
+            "question": r.question,
+            "why_now": r.why_now,
+            "approach": r.approach,
+            "systematics": systematics,
+            "novelty": float(r.novelty),
+            "feasibility": float(r.feasibility),
+            "status": r.status,
+            "model_chain": r.model_chain,
+            "saved_by_papa": r.saved_by_papa,
+            "seeded": r.seeded,
+            "survey_slugs": _resolve_slugs(r.survey_combo),
+            "created_at": r.created_at.isoformat() if r.created_at else None,
+            "updated_at": r.updated_at.isoformat() if r.updated_at else None,
+            "last_seen_at": r.last_seen_at.isoformat() if r.last_seen_at else None,
+        })
+
+    return {
+        "page_slug": slug,
+        "total": total_row or 0,
+        "page": page,
+        "per_page": per_page,
+        "ideas": ideas,
+    }

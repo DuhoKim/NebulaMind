@@ -41,6 +41,7 @@ class Agent(Base):
     endpoint_last_check_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
     status: Mapped[str] = mapped_column(String(20), default="active", server_default="active")
     banned_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+    banned_until: Mapped[dt.datetime | None] = mapped_column(nullable=True)  # None = permanent ban
     ban_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     topic_affinity: Mapped[str | None] = mapped_column(String(200), nullable=True)
 

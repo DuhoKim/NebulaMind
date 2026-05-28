@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Repair broken hero_facts using local Ollama qwen3:30b."""
+"""Repair broken hero_facts using local Ollama qwen3:30b-a3b-instruct-2507-q4_K_M."""
 import sys, os, json, urllib.request, re, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
 from app.models.page import WikiPage
+from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
 MODEL = "phi4:14b"
@@ -45,7 +46,7 @@ def call_ollama(user: str, temperature: float = 0.2) -> str:
         resp = json.loads(r.read())
     content = resp["choices"][0]["message"]["content"]
     # Strip <think>...</think> tags from qwen3 responses
-    content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+    content = strip_think_blocks(content)
     return content
 
 def is_valid(facts) -> bool:

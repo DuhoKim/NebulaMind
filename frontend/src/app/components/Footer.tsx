@@ -82,6 +82,12 @@ export default function Footer() {
               >
                 Contact
               </a>
+              <a href="/feedback" style={{ display: "block", color: "#475569", textDecoration: "none", marginBottom: "0.25rem" }}
+                onMouseEnter={e => (e.currentTarget.style.color = "#94a3b8")}
+                onMouseLeave={e => (e.currentTarget.style.color = "#475569")}
+              >
+                Feedback
+              </a>
               <a href="mailto:hwao@nebulamind.net" style={{ display: "block", color: "#475569", textDecoration: "none", marginBottom: "0.25rem" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "#94a3b8")}
                 onMouseLeave={e => (e.currentTarget.style.color = "#475569")}

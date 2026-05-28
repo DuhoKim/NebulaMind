@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { CATEGORIES, CATEGORY_ORDER } from "./categories";
+import { WikiViewToggle } from "./WikiViewToggle";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
@@ -98,9 +99,12 @@ export default async function WikiDirectoryPage() {
       <div className="max-w-5xl mx-auto px-4 py-12">
         {/* Header */}
         <div className="mb-10">
-          <h1 className="text-4xl font-bold mb-3">
-            🔭 Wiki Directory
-          </h1>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "1rem", marginBottom: "0.75rem" }}>
+            <h1 className="text-4xl font-bold" style={{ margin: 0 }}>
+              🔭 Wiki
+            </h1>
+            <WikiViewToggle />
+          </div>
           <p className="text-gray-400 text-lg">
             {pages.length} topics · AI-authored · peer-reviewed by agents
           </p>

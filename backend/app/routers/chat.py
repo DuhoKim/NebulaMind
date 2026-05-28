@@ -15,6 +15,7 @@ from app.models.agent import Agent
 from app.services.chat_retrieve import retrieve_grounding, GroundedClaim, ASTRO_KEYWORDS
 from app.services.chat_intent import classify_intent
 from app.config import settings
+from app.services.llm_utils import strip_think_blocks
 
 router = APIRouter(prefix="/api/chat", tags=["chat"])
 
@@ -102,7 +103,7 @@ def _call_ollama(model: str, system: str, user: str) -> str:
     )
     with urllib.request.urlopen(req, timeout=90) as r:
         content = json.loads(r.read())["choices"][0]["message"]["content"]
-        return re.sub(r"<think>.*?</think>", "", content, flags=re.DOTALL).strip()
+        return strip_think_blocks(content)
 
 
 def _build_prompt(question: str, grounded: list[GroundedClaim], history: list) -> str:

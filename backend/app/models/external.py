@@ -34,6 +34,21 @@ class WikipediaReference(Base):
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
 
 
+class DOIResolutionLog(Base):
+    __tablename__ = "doi_resolution_log"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    news_item_id: Mapped[int] = mapped_column(ForeignKey("facility_news_items.id"), index=True)
+    resolved_doi: Mapped[str | None] = mapped_column(String(200), nullable=True)
+    confidence: Mapped[float] = mapped_column(Float)
+    source_api: Mapped[str] = mapped_column(String(20))   # 'ads' | 'crossref'
+    title_similarity: Mapped[float] = mapped_column(Float)
+    venue_match: Mapped[bool] = mapped_column(Boolean)
+    status: Mapped[str] = mapped_column(String(20))       # 'auto_applied' | 'unresolved'
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+
+
 class NewPageProposal(Base):
     __tablename__ = "new_page_proposals"
 

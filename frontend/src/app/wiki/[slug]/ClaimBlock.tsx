@@ -8,8 +8,21 @@ interface ClaimData {
   connector?: string | null;
   trust_level: string;
   evidence_count: number;
+  con_count?: number;
   section: string;
   has_escalation?: boolean;
+}
+
+
+interface IdeaSummary {
+  id: number;
+  question: string;
+  survey_combo: string;
+  novelty: number;
+  feasibility: number;
+  well_posed_score?: number | null;
+  saved_by_papa?: boolean;
+  gap_type?: string | null;
 }
 
 interface EvidenceItem {
@@ -26,12 +39,54 @@ interface EvidenceItem {
   comments_count: number;
 }
 
+const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
+  gap:      { bg: "rgba(239,68,68,0.15)",   text: "#f87171" },
+  tension:  { bg: "rgba(245,158,11,0.15)",  text: "#fbbf24" },
+  bridge:   { bg: "rgba(16,185,129,0.15)",  text: "#34d399" },
+  frontier: { bg: "rgba(99,102,241,0.15)",  text: "#818cf8" },
+  synergy:  { bg: "rgba(14,165,233,0.15)",  text: "#38bdf8" },
+};
+
+function GapTypeChip({ gapType }: { gapType: string }) {
+  const colors = GAP_TYPE_COLORS[gapType] ?? { bg: "rgba(100,116,139,0.15)", text: "#94a3b8" };
+  return (
+    <span style={{
+      fontSize: "0.65rem", fontWeight: 600, letterSpacing: "0.02em",
+      color: colors.text, background: colors.bg,
+      padding: "1px 5px", borderRadius: "4px", textTransform: "uppercase",
+    }}>
+      {gapType}
+    </span>
+  );
+}
+
+const IDEA_Q_MAX = 100;
+
+function IdeaQuestion({ text }: { text: string }) {
+  const [expanded, setExpanded] = useState(false);
+  if (!text) return null;
+  if (text.length <= IDEA_Q_MAX) {
+    return <p style={{ margin: 0, fontSize: "0.8rem", color: "#cbd5e1", lineHeight: 1.5 }}>{text}</p>;
+  }
+  return (
+    <p style={{ margin: 0, fontSize: "0.8rem", color: "#cbd5e1", lineHeight: 1.5 }}>
+      {expanded ? text : text.slice(0, IDEA_Q_MAX) + "…"}
+      <button
+        onClick={(e) => { e.stopPropagation(); setExpanded(!expanded); }}
+        style={{ background: "none", border: "none", color: "#818cf8", cursor: "pointer", fontSize: "0.72rem", padding: "0 0.2rem", marginLeft: "0.2rem" }}
+      >
+        {expanded ? "less" : "more"}
+      </button>
+    </p>
+  );
+}
+
 const TRUST_STYLES: Record<string, string> = {
-  consensus: "border-l-2 border-green-400 bg-green-950/40",
-  accepted: "border-l-2 border-blue-400 bg-blue-950/40",
-  debated: "border-l-2 border-orange-400 bg-orange-950/40",
-  challenged: "border-l-2 border-red-400 bg-red-950/40",
-  unverified: "border-l-2 border-gray-600 bg-gray-800/30",
+  consensus: "border-l-4 border-green-400 bg-green-900/50",
+  accepted: "border-l-4 border-blue-400 bg-blue-900/50",
+  debated: "border-l-4 border-orange-400 bg-orange-900/55",
+  challenged: "border-l-4 border-red-500 bg-red-900/60",
+  unverified: "border-l-2 border-gray-500 bg-gray-800/40",
 };
 
 const TRUST_LABELS: Record<string, string> = {
@@ -45,23 +100,23 @@ const TRUST_LABELS: Record<string, string> = {
 const TRUST_BADGE: Record<string, { label: string; style: React.CSSProperties }> = {
   consensus: {
     label: "🟢 consensus",
-    style: { background: "rgba(34,197,94,0.15)", color: "#16a34a", border: "1px solid rgba(34,197,94,0.4)" },
+    style: { background: "rgba(34,197,94,0.28)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.65)", fontWeight: 700 },
   },
   accepted: {
-    label: "accepted",
-    style: { background: "rgba(255,255,255,0.07)", color: "#94a3b8", border: "1px solid rgba(148,163,184,0.3)" },
+    label: "✅ accepted",
+    style: { background: "rgba(59,130,246,0.25)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.6)", fontWeight: 700 },
   },
   debated: {
     label: "🟠 debated",
-    style: { background: "rgba(249,115,22,0.15)", color: "#ea580c", border: "1px solid rgba(249,115,22,0.4)" },
+    style: { background: "rgba(249,115,22,0.28)", color: "#fb923c", border: "1px solid rgba(249,115,22,0.65)", fontWeight: 700 },
   },
   challenged: {
     label: "🔴 challenged",
-    style: { background: "rgba(239,68,68,0.15)", color: "#dc2626", border: "1px solid rgba(239,68,68,0.4)" },
+    style: { background: "rgba(239,68,68,0.30)", color: "#f87171", border: "1px solid rgba(239,68,68,0.7)", fontWeight: 700 },
   },
   unverified: {
-    label: "unverified",
-    style: { background: "rgba(100,116,139,0.15)", color: "#64748b", border: "1px solid rgba(100,116,139,0.3)" },
+    label: "⬜ unverified",
+    style: { background: "rgba(100,116,139,0.22)", color: "#94a3b8", border: "1px solid rgba(100,116,139,0.5)" },
   },
 };
 
@@ -71,7 +126,7 @@ const STANCE_ICON: Record<string, string> = {
   neutral: "➖",
 };
 
-export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; showColors: boolean }) {
+export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimData; showColors: boolean; ideas?: IdeaSummary[] }) {
   const [open, setOpen] = useState(false);
   const [evidence, setEvidence] = useState<EvidenceItem[] | null>(null);
   const [loading, setLoading] = useState(false);
@@ -91,6 +146,7 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
   const [editEmail, setEditEmail] = useState("");
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
+  const [ideasOpen, setIdeasOpen] = useState(false);
 
   const openPanel = async () => {
     if (!open && evidence === null) {
@@ -118,10 +174,10 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
             ...TRUST_BADGE[claim.trust_level].style,
             display: "inline-flex",
             alignItems: "center",
-            fontSize: "0.65rem",
-            fontWeight: 600,
+            fontSize: "0.7rem",
+            fontWeight: 700,
             letterSpacing: "0.04em",
-            padding: "0.1rem 0.45rem",
+            padding: "0.15rem 0.5rem",
             borderRadius: "999px",
             verticalAlign: "middle",
             marginLeft: "0.3rem",
@@ -163,6 +219,57 @@ export default function ClaimBlock({ claim, showColors }: { claim: ClaimData; sh
       >
         📄{claim.evidence_count > 0 ? claim.evidence_count : ""}
       </button>
+      {ideas && ideas.length > 0 && (() => {
+        const isOpen = ['debated', 'challenged'].includes(claim.trust_level) || (claim.con_count ?? 0) >= 2;
+        const chipStyle = isOpen
+          ? { color: "#fbbf24", fontWeight: 700, background: "rgba(251,191,36,0.12)", borderRadius: "4px", padding: "1px 5px", border: "1px solid rgba(251,191,36,0.3)" }
+          : { color: "#818cf8", fontWeight: 400, opacity: 0.6 };
+        return (
+        <>
+          <button
+            onClick={(e) => { e.stopPropagation(); setIdeasOpen(!ideasOpen); }}
+            className="inline-flex items-center text-xs ml-0.5"
+            style={chipStyle}
+            title={isOpen
+              ? `⚡ ${ideas.length} open research question${ideas.length > 1 ? "s" : ""} — this claim is actively debated`
+              : `${ideas.length} research idea${ideas.length > 1 ? "s" : ""} linked to this claim`}
+          >
+            {isOpen ? "⚡" : "💡"} {ideas.length}
+          </button>
+          {ideasOpen && (
+            <span
+              style={{
+                position: "absolute", left: 0, top: "100%", marginTop: "4px",
+                zIndex: 60, background: "#1e293b", border: "1px solid #4f46e5",
+                borderRadius: "8px", boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+                padding: "0.75rem", width: "min(28rem, 92vw)", display: "block",
+              }}
+            >
+              <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+                <span style={{ color: isOpen ? "#fbbf24" : "#818cf8", fontWeight: 600, fontSize: "0.8rem" }}>{isOpen ? "⚡ Open Research Questions" : "💡 Research Ideas"}</span>
+                <button onClick={(e) => { e.stopPropagation(); setIdeasOpen(false); }} style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer" }}>&#x2715;</button>
+              </div>
+              {ideas.map(idea => (
+                <div key={idea.id} style={{ border: "1px solid #334155", borderRadius: "6px", padding: "0.6rem 0.75rem", marginBottom: "0.4rem", background: "#0f172a" }}>
+                  <div style={{ display: "flex", gap: "0.5rem", alignItems: "center", marginBottom: "0.3rem", flexWrap: "wrap" }}>
+                    <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#818cf8", background: "rgba(99,102,241,0.12)", padding: "1px 6px", borderRadius: "4px" }}>
+                      {idea.survey_combo}
+                    </span>
+                    {idea.gap_type && <GapTypeChip gapType={idea.gap_type} />}
+                    {idea.saved_by_papa && <span style={{ fontSize: "0.7rem", color: "#f59e0b" }}>★</span>}
+                    <span style={{ marginLeft: "auto", fontSize: "0.68rem", color: "#475569" }}>
+                      N:{Math.round((idea.novelty || 0) * 5)}/5 · F:{Math.round((idea.feasibility || 0) * 5)}/5
+                      {idea.well_posed_score != null ? ` · W:${Math.round(idea.well_posed_score * 5)}/5` : ""}
+                    </span>
+                  </div>
+                  <IdeaQuestion text={idea.question} />
+                </div>
+              ))}
+            </span>
+          )}
+        </>
+        );
+      })()}
       <TrustTimeline claimId={claim.id} />
       <button
         onClick={(e) => { e.stopPropagation(); setShowEditModal(true); }}

@@ -43,9 +43,9 @@ export default function StatsCounter({ pageCount: _ignored }: Props) {
       .catch(() => {});
 
     fetch("/api/agents")
-      .then((r) => r.json())
-      .then((d) => setAgentCount(Array.isArray(d) ? d.length : 0))
-      .catch(() => {});
+      .then((r) => { console.log("[agents] status:", r.status, r.headers.get("content-type")); return r.text(); })
+      .then((t) => { try { const d = JSON.parse(t); setAgentCount(Array.isArray(d) ? d.length : 0); } catch(pe) {} })
+      .catch((e) => console.error("[agents] fetch failed:", e));
 
     fetch("/api/graph")
       .then((r) => r.json())
@@ -59,7 +59,8 @@ export default function StatsCounter({ pageCount: _ignored }: Props) {
   }, []);
 
   const animPages = useCountUp(pageCount);
-  const animAgents = useCountUp(agentCount);
+  const animAgents = agentCount;  // skip animation — useCountUp stays at 0 bug
+  if (typeof window !== 'undefined') console.log('[render] agentCount=', agentCount, 'animAgents=', animAgents);
   const animEdges = useCountUp(edgeCount);
   const animEvidence = useCountUp(evidenceCount);
 

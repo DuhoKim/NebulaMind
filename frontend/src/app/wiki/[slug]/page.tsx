@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import WikiPageClient from "./WikiPageClient";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
@@ -10,7 +11,7 @@ type Props = {
 async function fetchPage(slug: string) {
   try {
     const res = await fetch(`${API_BASE}/api/pages/${slug}`, {
-      next: { revalidate: 3600 },
+      next: { revalidate: 60 },
     });
     if (!res.ok) return null;
     return await res.json();
@@ -64,6 +65,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function WikiPageRoute({ params }: Props) {
   const { slug } = await params;
   const page = await fetchPage(slug);
+
+  if (!page) notFound();
 
   // Article JSON-LD for Google Scholar / rich results
   const articleJsonLd = page

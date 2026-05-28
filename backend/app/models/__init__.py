@@ -35,3 +35,4 @@ __all__ = [
     "EvidenceComment",
     "ClaimEditProposal",
 ]
+from app.models.social import SocialPostDraft

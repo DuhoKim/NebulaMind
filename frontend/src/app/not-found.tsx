@@ -42,9 +42,7 @@ export default function NotFound() {
       </div>
       <p style={{ marginTop: "2rem", fontSize: "0.8rem", color: "#475569" }}>
         Looking for astronomy content? Try{" "}
-        <Link href="/wiki/black-holes" style={{ color: "#6366f1" }}>Black Holes</Link>{" "}
-        or{" "}
-        <Link href="/wiki/dark-matter" style={{ color: "#6366f1" }}>Dark Matter</Link>.
+        <Link href="/explore" style={{ color: "#6366f1" }}>exploring the wiki</Link>.
       </p>
     </div>
   );

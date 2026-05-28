@@ -41,6 +41,21 @@ interface ArchiveResponse {
   days: number;
 }
 
+interface TrackItem {
+  title: string;
+  summary: string;
+  kind: string;
+  kind_label: string;
+  source_url: string | null;
+  facility_name: string | null;
+}
+
+interface TracksResponse {
+  news: TrackItem[];
+  data: TrackItem[];
+  papers: TrackItem[];
+}
+
 function PaperCard({ paper }: { paper: Paper }) {
   const summary = paper.abstract_summary
     ? paper.abstract_summary.length > 160
@@ -83,25 +98,12 @@ function PaperCard({ paper }: { paper: Paper }) {
         {paper.title}
       </a>
       {authorStr && (
-        <p
-          style={{
-            color: "#475569",
-            fontSize: "0.75rem",
-            margin: "0 0 0.3rem",
-          }}
-        >
+        <p style={{ color: "#475569", fontSize: "0.75rem", margin: "0 0 0.3rem" }}>
           {authorStr} · {CAT_LABELS[paper.category] || paper.category}
         </p>
       )}
       {summary && (
-        <p
-          style={{
-            color: "#94a3b8",
-            fontSize: "0.8rem",
-            margin: "0 0 0.4rem",
-            lineHeight: 1.5,
-          }}
-        >
+        <p style={{ color: "#94a3b8", fontSize: "0.8rem", margin: "0 0 0.4rem", lineHeight: 1.5 }}>
           {summary}
         </p>
       )}
@@ -125,6 +127,46 @@ function PaperCard({ paper }: { paper: Paper }) {
           ))}
         </div>
       )}
+    </div>
+  );
+}
+
+function TrackCard({ item }: { item: TrackItem }) {
+  return (
+    <div
+      style={{
+        background: "#0f172a",
+        border: "1px solid #1e293b",
+        borderRadius: "6px",
+        padding: "0.75rem 1rem",
+        marginBottom: "0.5rem",
+      }}
+    >
+      {item.source_url ? (
+        <a
+          href={item.source_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "#e0e7ff",
+            fontWeight: 600,
+            fontSize: "0.88rem",
+            textDecoration: "none",
+            lineHeight: 1.4,
+            display: "block",
+          }}
+        >
+          {item.title}
+        </a>
+      ) : (
+        <span style={{ color: "#e0e7ff", fontWeight: 600, fontSize: "0.88rem" }}>
+          {item.title}
+        </span>
+      )}
+      <p style={{ color: "#475569", fontSize: "0.72rem", margin: "0.25rem 0 0" }}>
+        {item.kind_label}
+        {item.facility_name && ` · ${item.facility_name}`}
+      </p>
     </div>
   );
 }
@@ -164,14 +206,7 @@ function SubscribeInline({ subCount }: { subCount: number }) {
         marginBottom: "2.5rem",
       }}
     >
-      <h2
-        style={{
-          fontSize: "1.25rem",
-          fontWeight: 800,
-          color: "#f8fafc",
-          margin: "0 0 0.3rem",
-        }}
-      >
+      <h2 style={{ fontSize: "1.25rem", fontWeight: 800, color: "#f8fafc", margin: "0 0 0.3rem" }}>
         📬 Get the cosmos in your inbox
       </h2>
       <p style={{ color: "#a5b4fc", fontSize: "0.85rem", margin: "0 0 1.25rem" }}>
@@ -256,22 +291,71 @@ function SubscribeInline({ subCount }: { subCount: number }) {
   );
 }
 
+function TrackSection({
+  icon,
+  label,
+  accentColor,
+  items,
+}: {
+  icon: string;
+  label: string;
+  accentColor: string;
+  items: TrackItem[];
+}) {
+  if (items.length === 0) return null;
+  return (
+    <div style={{ marginBottom: "2rem" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+          marginBottom: "0.75rem",
+          paddingBottom: "0.5rem",
+          borderBottom: `2px solid ${accentColor}40`,
+        }}
+      >
+        <span style={{ fontSize: "1rem" }}>{icon}</span>
+        <h2
+          style={{
+            fontSize: "0.8rem",
+            fontWeight: 700,
+            color: accentColor,
+            margin: 0,
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+          }}
+        >
+          {label}
+        </h2>
+      </div>
+      {items.map((item, i) => (
+        <TrackCard key={i} item={item} />
+      ))}
+    </div>
+  );
+}
+
 export default function NewsletterPage() {
   const [archive, setArchive] = useState<ArchiveResponse | null>(null);
+  const [tracks, setTracks] = useState<TracksResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [catFilter, setCatFilter] = useState("");
   const [expandedDates, setExpandedDates] = useState<Set<string>>(new Set());
 
-  const fetchArchive = useCallback(async (cat: string) => {
+  const fetchAll = useCallback(async (cat: string) => {
     setLoading(true);
     try {
-      const url = `${API_BASE}/api/newsletter/archive?days=14${cat ? `&category=${cat}` : ""}`;
-      const res = await fetch(url);
-      const data: ArchiveResponse = await res.json();
-      setArchive(data);
-      // Auto-expand the first (most recent) issue
-      if (data.issues.length > 0) {
-        setExpandedDates(new Set([data.issues[0].date]));
+      const [archiveRes, tracksRes] = await Promise.all([
+        fetch(`${API_BASE}/api/newsletter/archive?days=14${cat ? `&category=${cat}` : ""}`),
+        fetch(`${API_BASE}/api/newsletter/tracks?n=6`),
+      ]);
+      const archiveData: ArchiveResponse = await archiveRes.json();
+      const tracksData: TracksResponse = await tracksRes.json();
+      setArchive(archiveData);
+      setTracks(tracksData);
+      if (archiveData.issues.length > 0) {
+        setExpandedDates(new Set([archiveData.issues[0].date]));
       }
     } catch {
       setArchive(null);
@@ -280,17 +364,14 @@ export default function NewsletterPage() {
   }, []);
 
   useEffect(() => {
-    fetchArchive(catFilter);
-  }, [catFilter, fetchArchive]);
+    fetchAll(catFilter);
+  }, [catFilter, fetchAll]);
 
   const toggleDate = (date: string) => {
     setExpandedDates((prev) => {
       const next = new Set(prev);
-      if (next.has(date)) {
-        next.delete(date);
-      } else {
-        next.add(date);
-      }
+      if (next.has(date)) next.delete(date);
+      else next.add(date);
       return next;
     });
   };
@@ -298,21 +379,11 @@ export default function NewsletterPage() {
   const subCount = archive?.subscriber_count ?? 0;
 
   return (
-    <main
-      style={{
-        maxWidth: "780px",
-        margin: "0 auto",
-        padding: "2.5rem 1.25rem",
-        color: "#f8fafc",
-      }}
-    >
+    <main style={{ maxWidth: "780px", margin: "0 auto", padding: "2.5rem 1.25rem", color: "#f8fafc" }}>
       {/* Header */}
       <div style={{ marginBottom: "2rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "0.5rem" }}>
-          <Link
-            href="/"
-            style={{ color: "#475569", fontSize: "0.82rem", textDecoration: "none" }}
-          >
+          <Link href="/" style={{ color: "#475569", fontSize: "0.82rem", textDecoration: "none" }}>
             NebulaMind
           </Link>
           <span style={{ color: "#334155" }}>›</span>
@@ -337,165 +408,252 @@ export default function NewsletterPage() {
       {/* Subscribe CTA */}
       <SubscribeInline subCount={subCount} />
 
-      {/* Archive section */}
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.75rem" }}>
-        <h2
-          style={{
-            fontSize: "1rem",
-            fontWeight: 700,
-            color: "#94a3b8",
-            margin: 0,
-            textTransform: "uppercase",
-            letterSpacing: "0.08em",
-          }}
-        >
-          Archive — Last 14 Days
-        </h2>
-        <select
-          value={catFilter}
-          onChange={(e) => setCatFilter(e.target.value)}
-          style={{
-            padding: "0.4rem 0.75rem",
-            background: "#0f172a",
-            border: "1px solid #334155",
-            borderRadius: "6px",
-            color: "#f8fafc",
-            fontSize: "0.82rem",
-          }}
-        >
-          {CAT_OPTIONS.map((o) => (
-            <option key={o.id} value={o.id}>
-              {o.label}
-            </option>
-          ))}
-        </select>
+      {/* Track nav tabs */}
+      <div
+        style={{
+          display: "flex",
+          gap: "0.5rem",
+          marginBottom: "1.75rem",
+          borderBottom: "1px solid #1e293b",
+          paddingBottom: "0",
+        }}
+      >
+        {[
+          { label: "📰 News", href: "#news" },
+          { label: "📦 Data", href: "#data" },
+          { label: "📄 Papers", href: "#papers" },
+        ].map(({ label, href }) => (
+          <a
+            key={href}
+            href={href}
+            style={{
+              padding: "0.5rem 1rem",
+              fontSize: "0.82rem",
+              fontWeight: 600,
+              color: "#94a3b8",
+              textDecoration: "none",
+              borderBottom: "2px solid transparent",
+            }}
+            onMouseEnter={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color = "#e0e7ff";
+            }}
+            onMouseLeave={(e) => {
+              (e.currentTarget as HTMLAnchorElement).style.color = "#94a3b8";
+            }}
+          >
+            {label}
+          </a>
+        ))}
       </div>
 
       {loading ? (
         <div style={{ textAlign: "center", padding: "3rem", color: "#475569" }}>
-          Loading archive…
-        </div>
-      ) : !archive || archive.issues.length === 0 ? (
-        <div
-          style={{
-            background: "#0f172a",
-            border: "1px solid #1e293b",
-            borderRadius: "8px",
-            padding: "2rem",
-            textAlign: "center",
-            color: "#475569",
-          }}
-        >
-          No papers found for the selected filter.
+          Loading…
         </div>
       ) : (
-        <div>
-          {archive.issues.map((issue) => {
-            const isOpen = expandedDates.has(issue.date);
-            const dateObj = new Date(issue.date + "T00:00:00");
-            const dateLabel = dateObj.toLocaleDateString("en-US", {
-              weekday: "short",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-            });
+        <>
+          {/* News track */}
+          <div id="news">
+            <TrackSection
+              icon="📰"
+              label="News"
+              accentColor="#22c55e"
+              items={tracks?.news ?? []}
+            />
+          </div>
 
-            return (
-              <div
-                key={issue.date}
-                style={{
-                  marginBottom: "0.75rem",
-                  border: "1px solid #1e293b",
-                  borderRadius: "8px",
-                  overflow: "hidden",
-                }}
-              >
-                {/* Issue header — clickable to expand */}
-                <button
-                  onClick={() => toggleDate(issue.date)}
+          {/* Data track */}
+          <div id="data">
+            <TrackSection
+              icon="📦"
+              label="Data"
+              accentColor="#3b82f6"
+              items={tracks?.data ?? []}
+            />
+          </div>
+
+          {/* Papers track — published papers + arXiv archive */}
+          <div id="papers">
+            {tracks && tracks.papers.length > 0 && (
+              <div style={{ marginBottom: "2rem" }}>
+                <div
                   style={{
-                    width: "100%",
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "space-between",
-                    padding: "0.85rem 1.1rem",
-                    background: isOpen ? "#1e293b" : "#0f172a",
-                    border: "none",
-                    cursor: "pointer",
-                    color: "#f8fafc",
-                    textAlign: "left",
-                    transition: "background 0.15s",
+                    gap: "0.5rem",
+                    marginBottom: "0.75rem",
+                    paddingBottom: "0.5rem",
+                    borderBottom: "2px solid #5B2D8E40",
                   }}
                 >
-                  <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                    <span style={{ fontSize: "1rem" }}>📅</span>
-                    <div>
-                      <div style={{ fontWeight: 700, fontSize: "0.92rem", color: "#e0e7ff" }}>
-                        {dateLabel}
-                      </div>
-                      <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: "1px" }}>
-                        {issue.count} paper{issue.count !== 1 ? "s" : ""}
-                        {catFilter ? "" : " across all categories"}
-                      </div>
-                    </div>
-                  </div>
-                  <span
+                  <span style={{ fontSize: "1rem" }}>📄</span>
+                  <h2
                     style={{
-                      color: "#475569",
-                      fontSize: "1rem",
-                      transform: isOpen ? "rotate(180deg)" : "none",
-                      transition: "transform 0.15s",
+                      fontSize: "0.8rem",
+                      fontWeight: 700,
+                      color: "#818cf8",
+                      margin: 0,
+                      textTransform: "uppercase",
+                      letterSpacing: "0.08em",
                     }}
                   >
-                    ▼
-                  </span>
-                </button>
-
-                {/* Issue body */}
-                {isOpen && (
-                  <div style={{ padding: "1rem 1.1rem", background: "#080f1a" }}>
-                    {/* Group by category within the issue */}
-                    {(() => {
-                      const bycat: Record<string, Paper[]> = {};
-                      issue.papers.forEach((p) => {
-                        bycat[p.category] = bycat[p.category] || [];
-                        bycat[p.category].push(p);
-                      });
-                      return Object.entries(bycat).map(([cat, papers]) => (
-                        <div key={cat} style={{ marginBottom: "1.25rem" }}>
-                          <div
-                            style={{
-                              fontSize: "0.75rem",
-                              fontWeight: 700,
-                              color: "#6366f1",
-                              textTransform: "uppercase",
-                              letterSpacing: "0.07em",
-                              marginBottom: "0.5rem",
-                            }}
-                          >
-                            {CAT_LABELS[cat] || cat}
-                          </div>
-                          {papers.map((p) => (
-                            <PaperCard key={p.arxiv_id} paper={p} />
-                          ))}
-                        </div>
-                      ));
-                    })()}
-
-                    <div style={{ textAlign: "right", marginTop: "0.5rem" }}>
-                      <Link
-                        href={`/research`}
-                        style={{ color: "#6366f1", fontSize: "0.8rem", textDecoration: "none" }}
-                      >
-                        Browse all research →
-                      </Link>
-                    </div>
-                  </div>
-                )}
+                    Published Papers
+                  </h2>
+                </div>
+                {tracks.papers.map((item, i) => (
+                  <TrackCard key={i} item={item} />
+                ))}
               </div>
-            );
-          })}
-        </div>
+            )}
+
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.75rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <span>📑</span>
+                <h2
+                  style={{
+                    fontSize: "0.8rem",
+                    fontWeight: 700,
+                    color: "#818cf8",
+                    margin: 0,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.08em",
+                  }}
+                >
+                  Recent arXiv — Last 14 Days
+                </h2>
+              </div>
+              <select
+                value={catFilter}
+                onChange={(e) => setCatFilter(e.target.value)}
+                style={{
+                  padding: "0.4rem 0.75rem",
+                  background: "#0f172a",
+                  border: "1px solid #334155",
+                  borderRadius: "6px",
+                  color: "#f8fafc",
+                  fontSize: "0.82rem",
+                }}
+              >
+                {CAT_OPTIONS.map((o) => (
+                  <option key={o.id} value={o.id}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            {!archive || archive.issues.length === 0 ? (
+              <div
+                style={{
+                  background: "#0f172a",
+                  border: "1px solid #1e293b",
+                  borderRadius: "8px",
+                  padding: "2rem",
+                  textAlign: "center",
+                  color: "#475569",
+                }}
+              >
+                No papers found for the selected filter.
+              </div>
+            ) : (
+              <div>
+                {archive.issues.map((issue) => {
+                  const isOpen = expandedDates.has(issue.date);
+                  const dateObj = new Date(issue.date + "T00:00:00");
+                  const dateLabel = dateObj.toLocaleDateString("en-US", {
+                    weekday: "short",
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  });
+
+                  return (
+                    <div
+                      key={issue.date}
+                      style={{ marginBottom: "0.75rem", border: "1px solid #1e293b", borderRadius: "8px", overflow: "hidden" }}
+                    >
+                      <button
+                        onClick={() => toggleDate(issue.date)}
+                        style={{
+                          width: "100%",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          padding: "0.85rem 1.1rem",
+                          background: isOpen ? "#1e293b" : "#0f172a",
+                          border: "none",
+                          cursor: "pointer",
+                          color: "#f8fafc",
+                          textAlign: "left",
+                          transition: "background 0.15s",
+                        }}
+                      >
+                        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+                          <span style={{ fontSize: "1rem" }}>📅</span>
+                          <div>
+                            <div style={{ fontWeight: 700, fontSize: "0.92rem", color: "#e0e7ff" }}>
+                              {dateLabel}
+                            </div>
+                            <div style={{ fontSize: "0.75rem", color: "#64748b", marginTop: "1px" }}>
+                              {issue.count} paper{issue.count !== 1 ? "s" : ""}
+                              {catFilter ? "" : " across all categories"}
+                            </div>
+                          </div>
+                        </div>
+                        <span
+                          style={{
+                            color: "#475569",
+                            fontSize: "1rem",
+                            transform: isOpen ? "rotate(180deg)" : "none",
+                            transition: "transform 0.15s",
+                          }}
+                        >
+                          ▼
+                        </span>
+                      </button>
+
+                      {isOpen && (
+                        <div style={{ padding: "1rem 1.1rem", background: "#080f1a" }}>
+                          {(() => {
+                            const bycat: Record<string, Paper[]> = {};
+                            issue.papers.forEach((p) => {
+                              bycat[p.category] = bycat[p.category] || [];
+                              bycat[p.category].push(p);
+                            });
+                            return Object.entries(bycat).map(([cat, papers]) => (
+                              <div key={cat} style={{ marginBottom: "1.25rem" }}>
+                                <div
+                                  style={{
+                                    fontSize: "0.75rem",
+                                    fontWeight: 700,
+                                    color: "#6366f1",
+                                    textTransform: "uppercase",
+                                    letterSpacing: "0.07em",
+                                    marginBottom: "0.5rem",
+                                  }}
+                                >
+                                  {CAT_LABELS[cat] || cat}
+                                </div>
+                                {papers.map((p) => (
+                                  <PaperCard key={p.arxiv_id} paper={p} />
+                                ))}
+                              </div>
+                            ));
+                          })()}
+                          <div style={{ textAlign: "right", marginTop: "0.5rem" }}>
+                            <Link href="/research" style={{ color: "#6366f1", fontSize: "0.8rem", textDecoration: "none" }}>
+                              Browse all research →
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+        </>
       )}
 
       {/* Footer CTA */}

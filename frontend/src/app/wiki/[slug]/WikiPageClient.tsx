@@ -1,10 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
+import rehypeRaw from "rehype-raw";
 import Link from "next/link";
 import ClaimBlock from "./ClaimBlock";
+import TOCSidebar from "./TOCSidebar";
+import ProvenanceChip from "./ProvenanceChip";
 
 interface WikiPage {
   id: number;
@@ -13,9 +16,9 @@ interface WikiPage {
   content: string;
   hero_tagline?: string | null;
   hero_facts?: string | null;
-  did_you_know?: string | null;
-  wiki_summary?: string | null;
-  wiki_summary_url?: string | null;
+  editor_agent_tier?: string | null;
+  synthesized_date?: string | null;
+  version_num?: number | null;
 }
 
 interface EditProposal {
@@ -56,6 +59,14 @@ interface ContributorsData {
   edit_history: VersionHistory[];
 }
 
+const TRUST_COLORS: Record<string, string> = {
+  consensus: "#22c55e",
+  accepted: "#6366f1",
+  debated: "#f97316",
+  challenged: "#ef4444",
+  unverified: "#64748b",
+};
+
 const SPECIALTY_COLORS: Record<string, string> = {
   observational: "#3b82f6",
   theoretical: "#a855f7",
@@ -64,6 +75,34 @@ const SPECIALTY_COLORS: Record<string, string> = {
   stellar: "#eab308",
   galactic: "#ec4899",
 };
+
+const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
+  gap:      { bg: "rgba(239,68,68,0.15)",   text: "#f87171" },
+  tension:  { bg: "rgba(245,158,11,0.15)",  text: "#fbbf24" },
+  bridge:   { bg: "rgba(16,185,129,0.15)",  text: "#34d399" },
+  frontier: { bg: "rgba(99,102,241,0.15)",  text: "#818cf8" },
+  synergy:  { bg: "rgba(14,165,233,0.15)",  text: "#38bdf8" },
+};
+
+function slugify(text: string): string {
+  return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function unwrapCodeFence(content: string): string {
+  const trimmed = content.trim();
+  const m = trimmed.match(/^```(?:markdown|md)?\s*\n([\s\S]*?)\n```\s*$/);
+  return m ? m[1].trim() : trimmed;
+}
+
+function wrapClaimComments(content: string): string {
+  return content.replace(
+    /<!--\s*claim:(\d+)\s*-->([\s\S]*?)<!--\s*\/claim:\1\s*-->/g,
+    (_, id, body) => {
+      const safe = body.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      return `<span data-claim-id="${id}" id="claim-${id}">${safe}</span>`;
+    }
+  );
+}
 
 function extractHeadings(content: string) {
   const headings: { level: number; text: string; id: string }[] = [];
@@ -75,24 +114,24 @@ function extractHeadings(content: string) {
       headings.push({
         level: match[1].length,
         text,
-        id: text.toLowerCase().replace(/[^a-z0-9]+/g, "-"),
+        id: slugify(text),
       });
     }
   }
   return headings;
 }
 
-function extractKeyFacts(content: string): string[] {
-  const facts: string[] = [];
-  const lines = content.split("\n");
-  for (const line of lines) {
-    if (line.match(/^\*\*.*\*\*/) || line.match(/^- \*\*/)) {
-      facts.push(line.replace(/^\*\*|\*\*$/g, "").replace(/^- /, "").trim());
-      if (facts.length >= 4) break;
-    }
-  }
-  return facts;
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.+?)\*\*/g, "$1")   // bold
+    .replace(/\*(.+?)\*/g, "$1")         // italic
+    .replace(/`(.+?)`/g, "$1")           // inline code
+    .replace(/\[(.+?)\]\(.+?\)/g, "$1") // links
+    .replace(/^#+\s/gm, "")             // headings
+    .replace(/^[-*]\s/gm, "")           // bullets
+    .trim();
 }
+
 
 function renderSourceBadge(src: any): React.ReactNode {
   if (!src) return <span style={{fontSize:"0.58rem",color:"#475569"}}>⚠️ AI estimate</span>;
@@ -136,6 +175,145 @@ function renderFactValue(fact: any): string {
   }
 }
 
+function ClaimAnnotatedSpan({
+  claim,
+  showColors,
+  ideas,
+  children,
+}: {
+  claim: any;
+  showColors: boolean;
+  ideas?: any[];
+  children: React.ReactNode;
+}) {
+  const [open, setOpen] = useState(false);
+  const [ideasOpen, setIdeasOpen] = useState(false);
+  const trustLevel = claim?.trust_level ?? "unverified";
+  const trustColor = TRUST_COLORS[trustLevel] ?? "#64748b";
+  const evidenceCount = claim?.evidence_count ?? 0;
+  const isContested = ["debated", "challenged"].includes(trustLevel) || (claim?.con_count ?? 0) >= 2;
+
+  useEffect(() => {
+    if (!open && !ideasOpen) return;
+    const close = () => { setOpen(false); setIdeasOpen(false); };
+    document.addEventListener("click", close);
+    return () => document.removeEventListener("click", close);
+  }, [open, ideasOpen]);
+
+  if (!showColors) return <span>{children}</span>;
+
+  return (
+    <span style={{ position: "relative", display: "inline" }}>
+      <span
+        style={{ borderBottom: `1px dotted ${trustColor}`, cursor: "pointer" }}
+        title={`${trustLevel} · ${evidenceCount} source${evidenceCount !== 1 ? "s" : ""}`}
+        onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
+      >{children}</span>
+      {ideas && ideas.length > 0 && (
+        <button
+          onClick={(e) => { e.stopPropagation(); setIdeasOpen((v) => !v); }}
+          style={{
+            display: "inline",
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            fontSize: "0.72rem",
+            padding: "0 2px",
+            ...(isContested
+              ? { color: "#fbbf24", fontWeight: 700 }
+              : { color: "#818cf8", fontWeight: 400, opacity: 0.6 }),
+          }}
+          title={isContested
+            ? `⚡ ${ideas.length} open research question${ideas.length > 1 ? "s" : ""} — this claim is actively debated`
+            : `${ideas.length} research idea${ideas.length > 1 ? "s" : ""} linked to this claim`}
+        >
+          {isContested ? "⚡" : "💡"} {ideas.length}
+        </button>
+      )}
+      {open && (
+        <span
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            top: "1.5em",
+            left: 0,
+            zIndex: 100,
+            background: "#1e293b",
+            border: "1px solid #334155",
+            borderLeft: `3px solid ${trustColor}`,
+            borderRadius: "6px",
+            padding: "0.6rem 0.8rem",
+            minWidth: "180px",
+            maxWidth: "280px",
+            fontSize: "0.78rem",
+            color: "#94a3b8",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
+            display: "block",
+            whiteSpace: "normal",
+          }}
+        >
+          <div style={{ fontWeight: 600, color: "#f8fafc", marginBottom: "0.3rem", textTransform: "capitalize" }}>
+            {trustLevel}
+          </div>
+          {evidenceCount > 0 && (
+            <div>📄 {evidenceCount} source{evidenceCount !== 1 ? "s" : ""}</div>
+          )}
+        </span>
+      )}
+      {ideasOpen && ideas && ideas.length > 0 && (
+        <span
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            left: 0,
+            top: "1.5em",
+            zIndex: 110,
+            background: "#1e293b",
+            border: "1px solid #4f46e5",
+            borderRadius: "8px",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.4)",
+            padding: "0.75rem",
+            width: "min(28rem, 92vw)",
+            display: "block",
+            whiteSpace: "normal",
+          }}
+        >
+          <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
+            <span style={{ color: isContested ? "#fbbf24" : "#818cf8", fontWeight: 600, fontSize: "0.8rem" }}>
+              {isContested ? "⚡ Open Research Questions" : "💡 Research Ideas"}
+            </span>
+            <button
+              onClick={(e) => { e.stopPropagation(); setIdeasOpen(false); }}
+              style={{ background: "none", border: "none", color: "#64748b", cursor: "pointer" }}
+            >&#x2715;</button>
+          </div>
+          {ideas.map((idea: any) => (
+            <div key={idea.id} style={{ border: "1px solid #334155", borderRadius: "6px", padding: "0.6rem 0.75rem", marginBottom: "0.4rem", background: "#0f172a" }}>
+              {idea.gap_type && (
+                <span style={{
+                  display: "inline-block",
+                  fontSize: "0.65rem",
+                  fontWeight: 600,
+                  textTransform: "uppercase",
+                  letterSpacing: "0.06em",
+                  padding: "1px 6px",
+                  borderRadius: "99px",
+                  marginBottom: "0.3rem",
+                  background: GAP_TYPE_COLORS[idea.gap_type]?.bg ?? "rgba(100,116,139,0.15)",
+                  color: GAP_TYPE_COLORS[idea.gap_type]?.text ?? "#94a3b8",
+                }}>
+                  {idea.gap_type}
+                </span>
+              )}
+              <p style={{ margin: 0, fontSize: "0.82rem", color: "#f8fafc", lineHeight: 1.5 }}>{idea.question}</p>
+            </div>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
 export default function WikiPageClientView() {
   const params = useParams();
   const slug = params?.slug as string;
@@ -154,8 +332,10 @@ export default function WikiPageClientView() {
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [wikiSummaryOpen, setWikiSummaryOpen] = useState(true);
+
   const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
+  const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>({});
+  const [ideasOpen, setIdeasOpen] = useState(false);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -201,6 +381,23 @@ export default function WikiPageClientView() {
     }
   }, [slug]);
 
+  useEffect(() => {
+    if (!slug) return;
+    fetch(`/api/pages/${slug}/ideas?per_page=100`)
+      .then(r => r.json())
+      .then(data => {
+        const map: Record<number, any[]> = {};
+        for (const idea of data.ideas || []) {
+          if (idea.claim_id) {
+            if (!map[idea.claim_id]) map[idea.claim_id] = [];
+            map[idea.claim_id].push(idea);
+          }
+        }
+        setClaimIdeasMap(map);
+      })
+      .catch(() => {});
+  }, [slug]);
+
   const handleVote = async (version: "A" | "B") => {
     try {
       await fetch("/api/feedback", {
@@ -216,25 +413,41 @@ export default function WikiPageClientView() {
     } catch {}
   };
 
+  const claimById = useMemo(() => {
+    const map: Record<number, any> = {};
+    for (const section of claims?.sections ?? []) {
+      for (const claim of section.claims ?? []) {
+        map[claim.id] = claim;
+      }
+    }
+    return map;
+  }, [claims]);
+
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
 
   const headings = extractHeadings(page.content);
-  const keyFacts = extractKeyFacts(page.content);
-
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
   // H6: filter out flagged AI-estimate facts (failed validation)
   const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
-  const didYouKnow = page.did_you_know ? (() => {
-    try {
-      const raw = JSON.parse(page.did_you_know);
-      return raw.map((item: any) => typeof item === "string" ? { text: item, source: null } : item)
-        .filter((item: any) => !(item?.source?.tier === "ai_estimate" && item?.source?.flagged));
-    } catch { return []; }
-  })() : [];
+  const processedContent = wrapClaimComments(unwrapCodeFence(page.content));
 
   return (
-    <article style={{ maxWidth: "56rem", margin: "0 auto" }}>
+    <article
+      style={
+        isMobile
+          ? { maxWidth: "56rem", margin: "0 auto" }
+          : {
+              display: "grid",
+              gridTemplateColumns: "minmax(0, 56rem) 240px",
+              gap: "2rem",
+              maxWidth: "64rem",
+              margin: "0 auto",
+              alignItems: "start",
+            }
+      }
+    >
+      <div>
       {/* View mode toggle */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
         {health && (
@@ -352,114 +565,27 @@ export default function WikiPageClientView() {
         <header style={{ marginBottom: "2rem" }}>
           <h1 style={{ fontSize: "1.75rem", fontWeight: 600, marginBottom: "0.5rem", color: "#f8fafc" }}>{page.title}</h1>
           <p style={{ fontSize: "0.82rem", color: "#64748b" }}>slug: {page.slug}</p>
+          {/* ProvenanceChip for pages without hero */}
+          <ProvenanceChip
+            editorAgentTier={page.editor_agent_tier ?? undefined}
+            synthesizedDate={page.synthesized_date ?? undefined}
+            versionNum={page.version_num ?? undefined}
+          />
         </header>
       )}
 
-      {/* Did You Know? section */}
-      {didYouKnow.length > 0 && (
-        <section style={{
-          background: "#f8fafc",
-          borderLeft: "3px solid #6366f1",
-          borderRadius: "0 6px 6px 0",
-          padding: "1.25rem",
-          marginBottom: "1.5rem",
-        }}>
-          <h3 style={{ margin: "0 0 0.75rem", fontSize: "0.85rem", fontWeight: 600, color: "#0f172a", textTransform: "uppercase", letterSpacing: "0.1em" }}>
-            Did You Know
-          </h3>
-          {didYouKnow.map((item: any, i: number) => {
-            const text = typeof item === "string" ? item : item?.text || "";
-            const src = typeof item === "object" ? item?.source : null;
-            return (
-              <div key={i} style={{ margin: i === 0 ? 0 : "0.5rem 0 0" }}>
-                <p style={{ margin: 0, color: "#334155", fontSize: "0.9rem", lineHeight: 1.6 }}>{text}</p>
-                {src && <div style={{ marginTop: "2px" }}>{renderSourceBadge(src)}</div>}
-              </div>
-            );
-          })}
-        </section>
+      {/* ProvenanceChip for pages with hero (placed after hero) */}
+      {page.hero_tagline && (
+        <ProvenanceChip
+          editorAgentTier={page.editor_agent_tier ?? undefined}
+          synthesizedDate={page.synthesized_date ?? undefined}
+          versionNum={page.version_num ?? undefined}
+        />
       )}
 
-      {/* Wikipedia Summary Block — default collapsed, per spec §4.2 */}
-      {page.wiki_summary && (
-        <section style={{
-          background: "#1e293b",
-          border: "1px solid #334155",
-          borderRadius: "8px",
-          marginBottom: "1.5rem",
-          overflow: "hidden",
-        }}>
-          <button
-            onClick={() => setWikiSummaryOpen(v => !v)}
-            style={{
-              width: "100%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-              padding: "0.75rem 1rem",
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              textAlign: "left",
-            }}
-          >
-            <span style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-              <span style={{ fontSize: "1rem" }}>📖</span>
-              <span style={{ fontSize: "0.82rem", fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.05em" }}>
-                Wikipedia Overview
-              </span>
-              <span style={{ fontSize: "0.7rem", color: "#475569", fontWeight: 400, textTransform: "none", letterSpacing: 0 }}>
-                CC BY-SA 4.0
-              </span>
-            </span>
-            <span style={{ color: "#475569", fontSize: "0.75rem", transition: "transform 0.2s", display: "inline-block", transform: wikiSummaryOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
-              ▾
-            </span>
-          </button>
-          {wikiSummaryOpen && (
-            <div style={{ padding: "0 1rem 1rem" }}>
-              <p style={{ margin: "0 0 0.75rem", fontSize: "0.9rem", color: "#cbd5e1", lineHeight: 1.7 }}>
-                {page.wiki_summary}
-              </p>
-              {page.wiki_summary_url && (
-                <a
-                  href={page.wiki_summary_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ fontSize: "0.78rem", color: "#6366f1", textDecoration: "none" }}
-                >
-                  Read full article on Wikipedia →
-                </a>
-              )}
-            </div>
-          )}
-        </section>
-      )}
-
-      {viewMode === "B" && headings.length > 2 && (
-        <nav style={{ marginBottom: "2rem", padding: "1rem", background: "#1e293b", border: "1px solid #334155", borderRadius: "8px" }}>
-          <h3 style={{ fontSize: "0.82rem", fontWeight: 600, color: "#64748b", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Contents</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-            {headings.map((h, i) => (
-              <li key={i} style={{ paddingLeft: `${(h.level - 1) * 12}px` }}>
-                <a href={`#${h.id}`} style={{ fontSize: "0.875rem", color: "#6366f1", textDecoration: "none" }}>
-                  {h.text}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </nav>
-      )}
-
-      {viewMode === "B" && keyFacts.length > 0 && (
-        <div style={{ marginBottom: "2rem", padding: "1rem", background: "rgba(99, 102, 241, 0.05)", border: "1px solid #334155", borderRadius: "8px" }}>
-          <h3 style={{ fontSize: "0.82rem", fontWeight: 600, color: "#818cf8", marginBottom: "0.5rem", textTransform: "uppercase", letterSpacing: "0.05em" }}>Key Facts</h3>
-          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.25rem" }}>
-            {keyFacts.map((fact, i) => (
-              <li key={i} style={{ fontSize: "0.875rem", color: "#f8fafc" }}>{fact}</li>
-            ))}
-          </ul>
-        </div>
+      {/* Mobile TOC: collapsed accordion above content */}
+      {isMobile && (
+        <TOCSidebar headings={headings} isMobile={true} />
       )}
 
       {/* Evidence View Toggle */}
@@ -509,67 +635,24 @@ export default function WikiPageClientView() {
         )}
       </div>
 
-      {/* Claim Rendering */}
-      {showV2 && claims && (claims.sections?.length > 0 || claims.debates?.length > 0) ? (
-        <div className="prose max-w-none">
-          {claims.sections?.map((section: any) => (
-            <div key={section.name} style={{ marginBottom: "1.5rem" }}>
-              <h2 style={{ fontSize: "1.25rem", fontWeight: 600, color: "#f8fafc", marginBottom: "0.75rem", marginTop: "1.5rem", borderBottom: "1px solid #334155", paddingBottom: "0.5rem" }}>{section.name}</h2>
-              <p style={{ lineHeight: 1.7, color: "#94a3b8" }}>
-                {section.claims.map((claim: any) => (
-                  <ClaimBlock key={claim.id} claim={claim} showColors={showColors} />
-                ))}
-              </p>
-            </div>
-          ))}
-
-          {/* Open Debates */}
-          {claims.debates?.length > 0 && (
-            <div style={{ marginTop: "2rem" }}>
-              <h2 style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc", marginBottom: "1.25rem", borderBottom: "1px solid #334155", paddingBottom: "0.5rem" }}>
-                Open Debates
-              </h2>
-              {claims.debates.map((debate: any, i: number) => (
-                <div key={i} style={{ marginBottom: "1.5rem", border: "1px solid #334155", borderRadius: "4px", overflow: "hidden" }}>
-                  <div style={{ background: "#1e293b", borderBottom: "1px solid #334155", padding: "0.6rem 1rem" }}>
-                    <span style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f8fafc" }}>{debate.topic}</span>
-                  </div>
-                  <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0 }}>
-                    {debate.pro && (
-                      <div style={{ padding: "0.75rem 1rem", borderRight: "1px solid #334155", borderLeft: "3px solid #22c55e" }}>
-                        <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Supporting</div>
-                        <ClaimBlock claim={{...debate.pro, trust_level: "debated"}} showColors={showColors} />
-                      </div>
-                    )}
-                    {debate.con && (
-                      <div style={{ padding: "0.75rem 1rem", borderLeft: debate.pro ? "none" : "3px solid #ef4444" }}>
-                        <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#ef4444", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Alternative</div>
-                        <ClaimBlock claim={{...debate.con, trust_level: "debated"}} showColors={showColors} />
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
-      ) : (
+      {/* Prose content — identical in both modes; Citation View adds inline claim badges */}
       <div className="prose max-w-none" style={{ lineHeight: 1.7, color: "#94a3b8" }}>
         <ReactMarkdown
+          rehypePlugins={[rehypeRaw]}
           components={{
             h1: ({ children }) => {
               const text = String(children);
-              const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+              const id = slugify(text);
               return <h1 id={id} style={{ fontSize: "1.5rem", fontWeight: 600, marginTop: "2rem", marginBottom: "1rem", color: "#f8fafc" }}>{children}</h1>;
             },
             h2: ({ children }) => {
               const text = String(children);
-              const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+              const id = slugify(text);
               return <h2 id={id} style={{ fontSize: "1.25rem", fontWeight: 600, marginTop: "1.5rem", marginBottom: "0.75rem", borderBottom: "1px solid #334155", paddingBottom: "0.5rem", color: "#f8fafc" }}>{children}</h2>;
             },
             h3: ({ children }) => {
               const text = String(children);
-              const id = text.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+              const id = slugify(text);
               return <h3 id={id} style={{ fontSize: "1.1rem", fontWeight: 500, marginTop: "1rem", marginBottom: "0.5rem", color: "#f8fafc" }}>{children}</h3>;
             },
             p: ({ children }) => <p style={{ marginBottom: "1rem", lineHeight: 1.7, color: "#94a3b8" }}>{children}</p>,
@@ -583,12 +666,123 @@ export default function WikiPageClientView() {
             code: ({ children }) => (
               <code style={{ background: "#334155", padding: "2px 6px", borderRadius: "4px", fontSize: "0.875rem", fontFamily: "JetBrains Mono, monospace" }}>{children}</code>
             ),
+            span: ({ node, children, ...props }: any) => {
+              const claimId = props["data-claim-id"];
+              if (claimId && showV2) {
+                return (
+                  <ClaimAnnotatedSpan
+                    claim={claimById[Number(claimId)]}
+                    showColors={showColors}
+                    ideas={claimIdeasMap[Number(claimId)]}
+                  >
+                    {children}
+                  </ClaimAnnotatedSpan>
+                );
+              }
+              return <span {...props}>{children}</span>;
+            },
           }}
         >
-          {page.content}
+          {processedContent}
         </ReactMarkdown>
       </div>
+
+      {/* Open Debates — only in Citation View; suppressed for flagship 671B pages (spec §5.3 / D12) */}
+      {showV2 && !page.editor_agent_tier?.includes("671B") && claims?.debates?.length > 0 && (
+        <div style={{ marginTop: "2rem" }}>
+          <h2 style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc", marginBottom: "1.25rem", borderBottom: "1px solid #334155", paddingBottom: "0.5rem" }}>
+            Open Debates
+          </h2>
+          {claims.debates.map((debate: any, i: number) => (
+            <div key={i} style={{ marginBottom: "1.5rem", border: "1px solid #334155", borderRadius: "4px", overflow: "hidden" }}>
+              <div style={{ background: "#1e293b", borderBottom: "1px solid #334155", padding: "0.6rem 1rem" }}>
+                <span style={{ fontSize: "0.88rem", fontWeight: 600, color: "#f8fafc" }}>{debate.topic}</span>
+              </div>
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr", gap: 0 }}>
+                {debate.pro && (
+                  <div style={{ padding: "0.75rem 1rem", borderRight: "1px solid #334155", borderLeft: "3px solid #22c55e" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Supporting</div>
+                    <ClaimBlock claim={{...debate.pro, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.pro?.id]} />
+                  </div>
+                )}
+                {debate.con && (
+                  <div style={{ padding: "0.75rem 1rem", borderLeft: debate.pro ? "none" : "3px solid #ef4444" }}>
+                    <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#ef4444", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Alternative</div>
+                    <ClaimBlock claim={{...debate.con, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.con?.id]} />
+                  </div>
+                )}
+              </div>
+            </div>
+          ))}
+        </div>
       )}
+
+      {/* Research Ideas — shown in both Citation View and Raw Text modes */}
+      {(() => {
+        const allIdeas = Object.values(claimIdeasMap).flat();
+        if (allIdeas.length === 0) return null;
+        const GAP_COLORS: Record<string, string> = {
+          empirical: "#3b82f6",
+          theoretical: "#a855f7",
+          methodological: "#22c55e",
+          observational: "#6366f1",
+          computational: "#14b8a6",
+        };
+        return (
+          <div style={{ marginTop: "2rem" }}>
+            <button
+              onClick={() => setIdeasOpen(v => !v)}
+              style={{
+                width: "100%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                background: "transparent",
+                border: "none",
+                borderBottom: "1px solid #334155",
+                paddingBottom: "0.5rem",
+                marginBottom: ideasOpen ? "1rem" : 0,
+                cursor: "pointer",
+                textAlign: "left",
+              }}
+            >
+              <span style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc" }}>
+                Research Ideas ({allIdeas.length})
+              </span>
+              <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{ideasOpen ? "▲" : "▼"}</span>
+            </button>
+            {ideasOpen && (
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+                {allIdeas.map((idea: any, i: number) => (
+                  <div key={idea.id ?? i} style={{ padding: "0.85rem 1rem", background: "#1e293b", border: "1px solid #334155", borderRadius: "6px", borderLeft: "3px solid #6366f1" }}>
+                    {idea.gap_type && (
+                      <span style={{
+                        display: "inline-block",
+                        fontSize: "0.65rem",
+                        fontWeight: 600,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.06em",
+                        padding: "1px 7px",
+                        borderRadius: "99px",
+                        marginBottom: "0.45rem",
+                        background: `${GAP_COLORS[idea.gap_type] ?? "#64748b"}22`,
+                        color: GAP_COLORS[idea.gap_type] ?? "#94a3b8",
+                        border: `1px solid ${GAP_COLORS[idea.gap_type] ?? "#334155"}55`,
+                      }}>
+                        {idea.gap_type}
+                      </span>
+                    )}
+                    <p style={{ margin: 0, fontSize: "0.875rem", color: "#f8fafc", lineHeight: 1.6 }}>{idea.question}</p>
+                    {idea.why_now && (
+                      <p style={{ margin: "0.4rem 0 0", fontSize: "0.78rem", color: "#64748b", lineHeight: 1.5 }}>{idea.why_now}</p>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })()}
 
       {edits.length > 0 && (
         <section style={{ marginTop: "3rem", borderTop: "1px solid #334155", paddingTop: "2rem" }}>
@@ -755,6 +949,12 @@ export default function WikiPageClientView() {
           See how this connects to other topics →
         </Link>
       </div>
+      </div>{/* end column 1 */}
+
+      {/* Column 2: sticky TOC sidebar (desktop only) */}
+      {!isMobile && (
+        <TOCSidebar headings={headings} isMobile={false} />
+      )}
     </article>
   );
 }

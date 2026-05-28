@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
 from app.models.page import WikiPage
 from app.models.claim import Claim, Evidence
+from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
 MODEL = "gemma3:27b"
@@ -37,8 +38,7 @@ def call_ollama(user: str) -> str:
     req = urllib.request.Request(OLLAMA_URL, data=data, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=90) as r:
         content = json.loads(r.read())["choices"][0]["message"]["content"]
-        # Strip think blocks
-        content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+        content = strip_think_blocks(content)
         return content
 
 def extract_section(content: str, section_name: str) -> str:

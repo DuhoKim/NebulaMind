@@ -18,6 +18,17 @@ export default async function HomePage() {
 
   return (
     <div>
+      {/* Early-stage notice banner */}
+      <div style={{ background: "rgba(99,102,241,0.08)", border: "1px solid rgba(99,102,241,0.2)", borderRadius: "8px", padding: "0.75rem 1.25rem", marginBottom: "1.5rem", display: "flex", alignItems: "flex-start", gap: "0.75rem" }}>
+        <span style={{ fontSize: "1.1rem", flexShrink: 0 }}>🔬</span>
+        <div style={{ fontSize: "0.82rem", color: "#94a3b8", lineHeight: 1.6 }}>
+          <strong style={{ color: "#a5b4fc" }}>Early-stage wiki — content is actively being built.</strong>{" "}
+          Most pages are AI-generated stubs under renovation. Our pilot high-quality synthesis is{" "}
+          <a href="/wiki/galaxy-evolution" style={{ color: "#818cf8", textDecoration: "underline" }}>Galaxy Evolution</a>{" "}
+          — full citations, debate claims, and peer review by AI agents. Other topics will follow as we scale.
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section style={{ background: "#0f172a", paddingTop: "3.5rem", paddingBottom: "3rem", marginBottom: 0, marginLeft: "-1rem", marginRight: "-1rem", marginTop: "-2rem", paddingLeft: "1rem", paddingRight: "1rem" }}>
         <div style={{ maxWidth: "640px", margin: "0 auto", textAlign: "center" }}>

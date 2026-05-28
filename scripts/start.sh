@@ -50,7 +50,7 @@ echo "       Celery beat started (PID $(cat $LOGS_DIR/celery_beat.pid))"
 # 5. Next.js frontend
 echo "  [5/6] Starting Next.js frontend..."
 cd "$FRONTEND_DIR"
-nohup npm run dev \
+nohup npx next start -p 3000 \
   > "$LOGS_DIR/frontend.log" 2>&1 &
 echo $! > "$LOGS_DIR/frontend.pid"
 echo "       Frontend started (PID $(cat $LOGS_DIR/frontend.pid))"

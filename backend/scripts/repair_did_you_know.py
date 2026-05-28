@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-"""Regenerate did_you_know facts using local Ollama qwen3:30b."""
+"""Regenerate did_you_know facts using local Ollama qwen3:30b-a3b-instruct-2507-q4_K_M."""
 import sys, os, json, urllib.request, re, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
 from app.models.page import WikiPage
+from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
-MODEL = "qwen3:30b"
+MODEL = "qwen3:30b-a3b-instruct-2507-q4_K_M"
 
 FORBIDDEN_WORDS = {"millions", "billions", "trillions", "thousands", "hundreds", "million", "billion"}
 
@@ -33,7 +34,7 @@ def call_ollama(user: str) -> str:
     with urllib.request.urlopen(req, timeout=180) as r:
         content = json.loads(r.read())["choices"][0]["message"]["content"]
         # Strip qwen3 thinking blocks
-        content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+        content = strip_think_blocks(content)
         return content
 
 def parse_json(raw: str):

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import func
+from sqlalchemy import func, or_
 from sqlalchemy import text as _text
 from typing import Optional
 import math
@@ -9,8 +9,10 @@ import re
 from datetime import datetime, timedelta
 from datetime import datetime as _datetime
 
+from fastapi import Request
 from app.config import settings
 from app.database import get_db
+from app.middleware.rate_limit import limiter, VOTES_LIMIT, EDITS_LIMIT
 from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal, TrustAuditLog
 from app.models.council import Escalation
 from app.models.page import WikiPage
@@ -257,18 +259,31 @@ class ClaimOut(BaseModel):
         from_attributes = True
 
 
+def visible_claim_filter():
+    return or_(Claim.rewrite_status.is_(None), Claim.rewrite_status != "parent_replaced")
+
+
 @router.get("/pages/{slug}/claims")
 def get_claims(slug: str, db: Session = Depends(get_db)):
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
         raise HTTPException(404, "Page not found")
-    claims = db.query(Claim).filter(Claim.page_id == page.id).order_by(Claim.order_idx).all()
+    claims = (
+        db.query(Claim)
+        .filter(Claim.page_id == page.id)
+        .filter(visible_claim_filter())
+        .order_by(Claim.order_idx)
+        .all()
+    )
 
     established = []
     debates_map = {}  # topic -> {pro: claim, con: claim}
 
     for c in claims:
         ev_count = db.query(func.count(Evidence.id)).filter(Evidence.claim_id == c.id).scalar() or 0
+        con_count = db.query(func.count(Evidence.id)).filter(
+            Evidence.claim_id == c.id, Evidence.stance == "challenges"
+        ).scalar() or 0
         claim_data = {
             "id": c.id, "section": c.section, "order_idx": c.order_idx,
             "text": c.text, "trust_level": c.trust_level,
@@ -277,6 +292,7 @@ def get_claims(slug: str, db: Session = Depends(get_db)):
             "debate_stance": getattr(c, 'debate_stance', None),
             "connector": getattr(c, 'connector', None),
             "evidence_count": ev_count,
+            "con_count": con_count,
             "has_escalation": db.query(Escalation).filter(
                 Escalation.source_kind == "claim_trust",
                 Escalation.source_id == c.id,
@@ -379,7 +395,8 @@ class VoteCreate(BaseModel):
 
 
 @router.post("/evidence/{evidence_id}/vote")
-def vote_evidence(evidence_id: int, body: VoteCreate, db: Session = Depends(get_db)):
+@limiter.limit(VOTES_LIMIT)
+def vote_evidence(request: Request, evidence_id: int, body: VoteCreate, db: Session = Depends(get_db)):
     ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()
     if not ev:
         raise HTTPException(404, "Evidence not found")
@@ -446,6 +463,13 @@ def decompose_page(slug: str, db: Session = Depends(get_db)):
         order += 1
         created += 1
     db.commit()
+    # T1 hook: fire lightweight research-idea generation (debounced 1h per page)
+    if created > 0:
+        try:
+            from app.agent_loop.research_ideas.auto_improvement import process_lightweight_event
+            process_lightweight_event.delay(page.id, "claim_inserted")
+        except Exception:
+            pass
     return {"created": created}
 
 
@@ -456,7 +480,8 @@ class ClaimEditCreate(BaseModel):
     email: Optional[str] = None
 
 @router.post("/claims/{claim_id}/suggest-edit", status_code=201)
-def suggest_edit(claim_id: int, body: ClaimEditCreate, db: Session = Depends(get_db)):
+@limiter.limit(EDITS_LIMIT)
+def suggest_edit(request: Request, claim_id: int, body: ClaimEditCreate, db: Session = Depends(get_db)):
     claim = db.query(Claim).filter(Claim.id == claim_id).first()
     if not claim:
         raise HTTPException(404, "Claim not found")

@@ -128,6 +128,17 @@ from app.routers import audit as audit_module
 app.include_router(audit_module.router)
 from app.routers import news as news_module
 app.include_router(news_module.router)
+from app.routers import autowiki as autowiki_module
+app.include_router(autowiki_module.router)
+from app.routers import surveys as surveys_module
+from app.routers import research_ideas as research_ideas_module
+from app.routers import admin_surveys as admin_surveys_module
+app.include_router(surveys_module.router)
+app.include_router(research_ideas_module.router)
+app.include_router(research_ideas_module.p3_router)
+app.include_router(admin_surveys_module.router)
+from app.routers import admin_marker_audit as admin_marker_audit_module
+app.include_router(admin_marker_audit_module.router)
 
 
 @app.get("/", tags=["system"])

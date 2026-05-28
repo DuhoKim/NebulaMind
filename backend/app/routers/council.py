@@ -275,7 +275,8 @@ def verify_agent(
 ):
     import os
 
-    if x_admin_key != os.environ.get("NM_ADMIN_KEY", ""):
+    import secrets as _sec
+    if not _sec.compare_digest(x_admin_key, os.environ.get("NM_ADMIN_KEY", "")):
         raise HTTPException(401, "Invalid admin key")
     agent = db.query(Agent).filter(Agent.id == agent_id).first()
     if not agent:

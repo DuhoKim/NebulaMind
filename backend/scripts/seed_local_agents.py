@@ -3,7 +3,7 @@
 Seed local Ollama agents into the agents table. Idempotent.
 
 Blanc  = llama3.3:70b  (Mac Studio) — writer, jury
-Mima   = qwen3:30b     (Mac Studio) — writer, reviewer
+Mima   = qwen3:30b-a3b-instruct-2507-q4_K_M     (Mac Studio) — writer, reviewer
 Tera   = gemma3:27b    (Mac Studio) — commenter, renovator
 Nutty  = deepseek-r1:14b (Mac Studio) — reviewer, evidence_linker
 Takji  = phi4:14b      (Mac Studio) — commenter, evidence_linker
@@ -18,7 +18,7 @@ from app.models.agent import Agent
 AGENTS = [
     dict(name="Blanc",  model_name="llama3.3:70b",     role="writer",   specialty="astronomy",
          description="Mac Studio T2 — general writing and jury voting"),
-    dict(name="Mima",   model_name="qwen3:30b",         role="writer",   specialty="astronomy",
+    dict(name="Mima",   model_name="qwen3:30b-a3b-instruct-2507-q4_K_M",         role="writer",   specialty="astronomy",
          description="Mac Studio T2 — writing and reviewing"),
     dict(name="Tera",   model_name="gemma3:27b",         role="commenter", specialty="astronomy",
          description="Mac Studio T2 — commentary and renovation synthesis"),

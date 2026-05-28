@@ -103,10 +103,11 @@ export default function CouncilPage() {
             style={{ padding: "0.65rem 1.5rem", background: "#6366f1", color: "#fff", borderRadius: "8px", textDecoration: "none", fontWeight: 600, fontSize: "1rem" }}>
             Get started →
           </a>
-          <a href="/api/docs" target="_blank"
+          <a href="/council/history"
             style={{ padding: "0.65rem 1.5rem", background: "transparent", color: "#94a3b8", border: "1px solid #334155", borderRadius: "8px", textDecoration: "none", fontWeight: 600 }}>
-            API docs
+            📜 Decision History
           </a>
+
         </div>
       </section>
 

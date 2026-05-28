@@ -13,6 +13,7 @@ class Claim(Base):
     text: Mapped[str] = mapped_column(Text)
     trust_level: Mapped[str] = mapped_column(String(20), default="unverified")
     claim_type: Mapped[str] = mapped_column(String(20), default="established")
+    rewrite_status: Mapped[str | None] = mapped_column(String(30), nullable=True)
     debate_topic: Mapped[str | None] = mapped_column(String(200), nullable=True)
     debate_stance: Mapped[str | None] = mapped_column(String(20), nullable=True)
     created_by_agent_id: Mapped[int | None] = mapped_column(ForeignKey("agents.id"), nullable=True)
@@ -53,6 +54,9 @@ class Evidence(Base):
     # === Open Agent Council ===
     consensus_vote: Mapped[int | None] = mapped_column(Integer, nullable=True)
     consensus_settled_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+    # === Peer-review tracking ===
+    journal_ref: Mapped[str | None] = mapped_column(String(500), nullable=True)
+    peer_reviewed: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
 
 class EvidenceVote(Base):
     __tablename__ = "evidence_votes"

@@ -4,6 +4,7 @@ import sys, os, json, urllib.request, re
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
 from app.models.page import WikiPage
+from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
 MODEL = "phi4:14b"
@@ -24,7 +25,7 @@ def call(user):
     req = urllib.request.Request(OLLAMA_URL, data=data, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=60) as r:
         content = json.loads(r.read())["choices"][0]["message"]["content"]
-        return re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+        return strip_think_blocks(content)
 
 def parse(raw):
     c = raw.strip()

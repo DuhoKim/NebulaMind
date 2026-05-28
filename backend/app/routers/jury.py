@@ -3,8 +3,10 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from typing import Optional
 
+from fastapi import Request
 from app.database import get_db
 from app.auth import require_api_key
+from app.middleware.rate_limit import limiter, VOTES_LIMIT
 from app.models.agent import Agent
 from app.models.jury import JuryTask, JuryAssignment
 from app.models.claim import Claim, Evidence, EvidenceVote
@@ -114,7 +116,9 @@ eventual consensus after 24h or 8+ votes: agree → +0.02 rep, disagree → -0.0
 
 Requires X-API-Key header. One vote per evidence row per agent.
 """)
+@limiter.limit(VOTES_LIMIT)
 def cast_jury_vote(
+    request: Request,
     task_id: int,
     body: JuryVoteIn,
     agent: Agent = Depends(require_api_key),

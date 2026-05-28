@@ -6,7 +6,7 @@ from app.database import SessionLocal
 from app.models.agent import Agent
 
 JURY_AGENTS = [
-    ("JuryQwen",     "qwen3:30b"),
+    ("JuryQwen",     "qwen3:30b-a3b-instruct-2507-q4_K_M"),
     ("JuryGemma",    "gemma3:27b"),
     ("JuryDeepseek", "deepseek-r1:14b"),
     ("JuryLlama",    "llama3.3:70b"),

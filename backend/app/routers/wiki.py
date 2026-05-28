@@ -10,7 +10,7 @@ router = APIRouter(prefix="/api/wiki", tags=["wiki"])
 CATEGORIES = [
     {"id": "stars",        "label": "Stars",        "emoji": "⭐"},
     {"id": "black-holes",  "label": "Black Holes",  "emoji": "🕳️"},
-    {"id": "galaxies",     "label": "Galaxies",     "emoji": "🌌"},
+    {"id": "galaxy",       "label": "Galaxies",     "emoji": "🌌"},
     {"id": "cosmology",    "label": "Cosmology",    "emoji": "🌠"},
     {"id": "high-energy",  "label": "High Energy",  "emoji": "⚡"},
     {"id": "solar-system", "label": "Solar System", "emoji": "🪐"},

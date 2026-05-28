@@ -290,6 +290,46 @@ def _stance_hint(claim_kw: set[str], abstract: str | None) -> str | None:
     return None
 
 
+_OLLAMA_VERIFY_URL = "http://localhost:11434/api/generate"
+_VERIFY_MODEL = "deepseek-r1:14b"  # Nutty — reasoning-tuned, good at claim/evidence matching
+
+
+def _llm_stance_verify(claim_text: str, abstract: str, timeout: int = 30) -> str | None:
+    """Call deepseek-r1:14b via Ollama to assess if abstract supports/refutes a claim.
+
+    Returns 'supports', 'refutes', 'neutral', or None on any error (caller falls back
+    to heuristic). Platoon assignment: Nutty (deepseek-r1:14b) — see ollama_model_policy_v1.md.
+    """
+    prompt = (
+        "Does the abstract below support, refute, or neither address the claim?\n\n"
+        f"Claim: {claim_text[:300]}\n\n"
+        f"Abstract: {abstract[:600]}\n\n"
+        "Answer with exactly one word: supports, refutes, or neutral."
+    )
+    payload = json.dumps({
+        "model": _VERIFY_MODEL,
+        "prompt": prompt,
+        "stream": False,
+        "options": {"num_ctx": 4096, "temperature": 0},
+    }).encode()
+    try:
+        req = urllib.request.Request(
+            _OLLAMA_VERIFY_URL,
+            data=payload,
+            headers={"Content-Type": "application/json"},
+        )
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            data = json.loads(resp.read())
+        response = data.get("response", "").lower()
+        # R1 may emit chain-of-thought before the answer; scan for the keyword
+        for word in ("refutes", "neutral", "supports"):
+            if word in response:
+                return word
+        return "neutral"
+    except Exception:
+        return None
+
+
 def verify_for_claim(
     record: PaperRecord,
     claim_text: str,
@@ -363,6 +403,11 @@ def verify_for_claim(
     if q < settings.EVIDENCE_MIN_QUALITY_FOR_ACCEPTED * 0.75:
         return None
 
+    # LLM stance pre-judge (deepseek-r1:14b / Nutty). Falls back to heuristic on
+    # error so a cold Ollama or network hiccup doesn't block evidence insertion.
+    llm_stance = _llm_stance_verify(claim_text, record.abstract or "")
+    stance = llm_stance or _stance_hint(kw, record.abstract)
+
     return VerifiedPaper(
         record=record,
         quality=q,
@@ -370,7 +415,7 @@ def verify_for_claim(
         title_match=title_match,
         recency_bonus=recency_bonus,
         cross_confirmed=cross_confirmed,
-        stance_hint=_stance_hint(kw, record.abstract),
+        stance_hint=stance,
     )
 
 
@@ -456,6 +501,76 @@ def verify_arxiv_id(arxiv_id: str | None, claim_text: str) -> dict:
         return {"verified": True, "quality": quality, "title": title, "year": year}
     except Exception:
         return {"verified": True, "quality": 0.50, "title": title, "year": year}
+
+
+def _token_jaccard(s1: str, s2: str) -> float:
+    """Token-set Jaccard similarity — order-insensitive, good for title matching."""
+    t1 = set(re.findall(r"[a-z]+", s1.lower())) - {"the", "a", "an", "of", "in", "on", "and", "or"}
+    t2 = set(re.findall(r"[a-z]+", s2.lower())) - {"the", "a", "an", "of", "in", "on", "and", "or"}
+    if not t1 or not t2:
+        return 0.0
+    return len(t1 & t2) / len(t1 | t2)
+
+
+def _venue_prefix_match(v1: str, v2: str) -> bool:
+    """True if the two venue strings share a 4-char normalized prefix."""
+    a = re.sub(r"[^a-z0-9]", "", v1.lower())[:4]
+    b = re.sub(r"[^a-z0-9]", "", v2.lower())[:4]
+    return bool(a) and a == b
+
+
+def ads_lookup_by_title_and_venue(title: str, venue: str | None, *, rows: int = 3) -> list[PaperRecord]:
+    """Search ADS by title (+ optional venue bibstem filter). Returns up to `rows` candidates."""
+    if not settings.ADS_API_KEY:
+        return []
+    quoted = urllib.parse.quote(f'title:"{title}"')
+    if venue:
+        # Map common journal names to ADS bibstems (best-effort)
+        bibstem_map = {
+            "apj": "ApJ", "apjl": "ApJL", "apjs": "ApJS",
+            "mnras": "MNRAS", "aap": "A&A", "aa": "A&A",
+            "nature astronomy": "NatAs", "natastron": "NatAs",
+            "aj": "AJ", "pasp": "PASP", "prd": "PhRvD",
+        }
+        norm = re.sub(r"[^a-z0-9]", "", venue.lower())
+        bibstem = next((v for k, v in bibstem_map.items() if norm.startswith(re.sub(r"[^a-z0-9]", "", k))), None)
+        if bibstem:
+            quoted += urllib.parse.quote(f' bibstem:"{bibstem}"')
+    url = (
+        f"{ADS_SEARCH_URL}?q={quoted}&fl={ADS_FIELDS}&rows={rows}&sort=date+desc"
+    )
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {settings.ADS_API_KEY}",
+        "User-Agent": "NebulaMind/1.0 (doi-backfill)",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read())
+        return [_ads_to_record(d) for d in data.get("response", {}).get("docs", [])]
+    except Exception as e:
+        print(f"[paper_search] ads_lookup_by_title_and_venue error: {e}")
+        return []
+
+
+def crossref_lookup_by_title_and_venue(title: str, venue: str | None, *, rows: int = 3) -> list[dict]:
+    """Search CrossRef by bibliographic query. Returns raw CrossRef item dicts."""
+    params: dict = {
+        "query.bibliographic": title,
+        "rows": rows,
+        "select": "DOI,title,container-title,score",
+        "mailto": "admin@nebulamind.net",
+    }
+    if venue:
+        params["query.container-title"] = venue
+    url = f"https://api.crossref.org/works?{urllib.parse.urlencode(params)}"
+    try:
+        req = urllib.request.Request(url, headers={"User-Agent": "NebulaMind/1.0 doi-backfill (admin@nebulamind.net)"})
+        with urllib.request.urlopen(req, timeout=15) as resp:
+            data = json.loads(resp.read())
+        return data.get("message", {}).get("items", [])
+    except Exception as e:
+        print(f"[paper_search] crossref_lookup error: {e}")
+        return []
 
 
 def lookup_ads(arxiv_id: str) -> bool:

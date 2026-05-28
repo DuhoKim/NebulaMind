@@ -2,8 +2,8 @@
 LLM Routing v1 — Model-role assignment for NebulaMind agent tasks.
 
 Tiers:
-  T1  Mac Studio fast   — Nutty (deepseek-r1:14b), Takji (phi4:14b)
-  T2  Mac Studio heavy  — Blanc (llama3.3:70b), Mima (qwen3:30b), Tera (gemma3:27b)
+  T1  Mac Studio fast   — Nutty (deepseek-r1:14b)
+  T2  Mac Studio heavy  — Mima (qwen3:30b-a3b-instruct-2507-q4_K_M)
   T3  Mac Pro 32b       — Buddle (deepseek-r1:32b)
   T4  Mac Pro 671b      — Rakon (deepseek-r1:671b) — galaxy-evolution priority
   T5  Cloud free        — Gemini-2.0-flash, Cerebras, SambaNova, Groq
@@ -12,8 +12,19 @@ from __future__ import annotations
 
 from app.config import settings
 
-_STUDIO = "http://localhost:11434/v1"
-_PRO    = "http://192.188.0.4:11434/v1"
+def _v1_url(url: str) -> str:
+    base = (url or "").rstrip("/")
+    if not base:
+        return ""
+    return base if base.endswith("/v1") else f"{base}/v1"
+
+
+_STUDIO = _v1_url(settings.OLLAMA_STUDIO_BASE_URL or settings.OLLAMA_BASE_URL)
+_PRO = _v1_url(settings.RAKON_BASE_URL or settings.OLLAMA_MACPRO_BASE_URL)
+_NUTTY = settings.OLLAMA_STUDIO_FAST_MODEL
+_MIMA = settings.OLLAMA_STUDIO_HEAVY_MODEL
+_BUDDLE = settings.BUDDLE_MODEL or settings.OLLAMA_MACPRO_FAST_MODEL or settings.OLLAMA_MACPRO_MODEL
+_RAKON = settings.RAKON_MODEL or settings.OLLAMA_MACPRO_HEAVY_MODEL
 
 def _ollama(host: str, model: str, label: str | None = None, timeout: int = 120) -> dict:
     return {"base_url": host, "api_key": "ollama", "model": model,
@@ -54,64 +65,59 @@ ROUTING: dict[str, list[dict]] = {
 
     # Writer: best quality content generation
     "writer": _compact([
-        _ollama(_STUDIO, "llama3.3:70b",    "blanc"),
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle", timeout=180),
+        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_PRO,    _BUDDLE,            "buddle", timeout=180),
         _gemini(),
         _sambanova(),
     ]),
 
     # Reviewer: critical evaluation of proposals
     "reviewer": _compact([
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle", timeout=180),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
+        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_PRO,    _BUDDLE,            "buddle", timeout=180),
         _gemini(),
     ]),
 
     # Commenter: discussion comments
     "commenter": _compact([
-        _ollama(_STUDIO, "gemma3:27b",       "tera"),
-        _ollama(_STUDIO, "phi4:14b",         "takji"),
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
+        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
         _gemini(),
     ]),
 
     # Synthesis: multi-draft merge (heavy reasoning)
     "synthesis": _compact([
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle",  timeout=240),
-        _ollama(_STUDIO, "llama3.3:70b",     "blanc"),
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
+        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_STUDIO, _MIMA,              "mima"),
         _gemini(),
     ]),
 
     # Renovation synthesis: Studio local preferred; Rakon reserved for galaxy-evolution
     "renovation_synth": _compact([
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
-        _ollama(_STUDIO, "gemma3:27b",       "tera"),
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle",  timeout=240),
+        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
+        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
         _gemini(),
     ]),
 
     # Jury fast: evidence stance voting (speed matters)
     "jury_fast": _compact([
-        _ollama(_STUDIO, "llama3.3:70b",     "blanc"),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
         _cerebras("cerebras-fast"),
         _sambanova(),
     ]),
 
     # Adversarial: challenging existing claims (deep reasoning)
     "adversarial": _compact([
-        _ollama(_PRO,    "deepseek-r1:671b", "rakon",   timeout=300),
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle",  timeout=240),
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
+        _ollama(_PRO,    _RAKON,             "rakon",   timeout=300),
+        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
     ]),
 
-    # Evidence linker: Nutty/Takji for cheap inference, Cerebras fallback
+    # Evidence linker: Nutty for inference, Cerebras fallback
     "evidence_linker": _compact([
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
-        _ollama(_STUDIO, "phi4:14b",         "takji"),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
         _cerebras("cerebras-fast"),
         _gemini(),
     ]),
@@ -119,23 +125,20 @@ ROUTING: dict[str, list[dict]] = {
     # ArXiv bot: paper summarization (Cerebras primary for speed)
     "arxivbot": _compact([
         _cerebras("cerebras-fast"),
-        _ollama(_STUDIO, "llama3.3:70b",     "blanc"),
         _gemini(),
     ]),
 
     # Council adjudication: high-stakes decisions (Rakon)
     "council": _compact([
-        _ollama(_PRO,    "deepseek-r1:671b", "rakon",   timeout=300),
-        _ollama(_PRO,    "deepseek-r1:32b",  "buddle",  timeout=240),
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
+        _ollama(_PRO,    _RAKON,             "rakon",   timeout=300),
+        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_STUDIO, _MIMA,              "mima"),
     ]),
 
     # Query generation: search query formulation
     "query_gen": _compact([
-        _ollama(_STUDIO, "qwen3:30b",        "mima"),
-        _ollama(_STUDIO, "gemma3:27b",       "tera"),
-        _ollama(_STUDIO, "deepseek-r1:14b",  "nutty"),
-        _ollama(_STUDIO, "llama3.3:70b",     "blanc"),
+        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_STUDIO, _NUTTY,             "nutty"),
         _gemini(),
     ]),
 }

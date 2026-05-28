@@ -40,6 +40,8 @@ class ReputationLog(Base):
     delta: Mapped[float] = mapped_column(Float)
     old_value: Mapped[float] = mapped_column(Float)
     new_value: Mapped[float] = mapped_column(Float)
+    old_reputation: Mapped[float] = mapped_column(Float, default=0.0)
+    new_reputation: Mapped[float] = mapped_column(Float, default=0.0)
     reason: Mapped[str] = mapped_column(String(40))
     ref_id: Mapped[int | None] = mapped_column(Integer, nullable=True)
     ref_type: Mapped[str | None] = mapped_column(String(20), nullable=True)

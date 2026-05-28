@@ -22,12 +22,9 @@ class WikiPage(Base):
     thumbnail_emoji: Mapped[str | None] = mapped_column(String(10), nullable=True)
     hero_tagline: Mapped[str | None] = mapped_column(Text, nullable=True)
     hero_facts: Mapped[str | None] = mapped_column(Text, nullable=True)
-    did_you_know: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     # Wikipedia integration (Phase A)
     wikipedia_title: Mapped[str | None] = mapped_column(String(200), nullable=True, index=True)
-    wiki_summary: Mapped[str | None] = mapped_column(Text, nullable=True)
-    wiki_summary_url: Mapped[str | None] = mapped_column(Text, nullable=True)
     wiki_summary_revision: Mapped[str | None] = mapped_column(String(40), nullable=True)
     wiki_summary_license: Mapped[str | None] = mapped_column(String(60), nullable=True, default="CC BY-SA 4.0")
     wiki_summary_fetched_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)

@@ -10,6 +10,8 @@ from pydantic import BaseModel, EmailStr
 from sqlalchemy import func
 from sqlalchemy.orm import Session
 
+from sqlalchemy import text
+
 from app.database import get_db
 from app.models.subscriber import Subscriber
 from app.models.arxiv import ArxivPaper
@@ -95,6 +97,8 @@ def newsletter_archive(
         if date not in grouped:
             grouped[date] = []
         authors = json.loads(p.authors) if p.authors else []
+        if len(authors) == 1 and "," in authors[0]:
+            authors = [n.strip() for n in authors[0].split(",") if n.strip()]
         related = json.loads(p.related_pages) if p.related_pages else []
         grouped[date].append({
             "arxiv_id": p.arxiv_id,
@@ -144,6 +148,8 @@ def newsletter_preview(
     by_cat: dict[str, list] = {}
     for p in papers:
         authors = json.loads(p.authors) if p.authors else []
+        if len(authors) == 1 and "," in authors[0]:
+            authors = [n.strip() for n in authors[0].split(",") if n.strip()]
         related = json.loads(p.related_pages) if p.related_pages else []
         by_cat.setdefault(p.category, []).append({
             "arxiv_id": p.arxiv_id,
@@ -159,3 +165,53 @@ def newsletter_preview(
         for cat, ps in by_cat.items()
     ]
     return {"date": target, "sections": sections, "total": len(papers)}
+
+
+_KIND_LABELS = {
+    "release":        "📦 Data Release",
+    "proposal_call":  "📋 Proposal Call",
+    "milestone":      "🏆 Milestone",
+    "facility_news":  "🔭 Facility News",
+    "other":          "📋 Facility Update",
+    "first_light":    "💡 First Light",
+    "news":           "📰 News",
+    "press_release":  "📢 Press Release",
+    "refereed_paper": "📄 Published Paper",
+}
+
+_TRACK_WHERE = {
+    "news":   "fni.track = 'results'",
+    "data":   "fni.track IN ('data', 'facility')",
+    "papers": "fni.track = 'highlights' AND fni.kind = 'refereed_paper' AND fni.paper_doi IS NOT NULL",
+}
+
+
+@router.get("/newsletter/tracks")
+def newsletter_tracks(
+    n: int = Query(default=6, ge=1, le=20),
+    db: Session = Depends(get_db),
+):
+    """Return News, Data, and Papers track items for the newsletter page."""
+    result: dict[str, list] = {}
+    for track, where in _TRACK_WHERE.items():
+        rows = db.execute(text(f"""
+            SELECT fni.title, fni.summary, fni.kind, fni.source_url,
+                   fp.short_name AS facility_name
+            FROM facility_news_items fni
+            LEFT JOIN facility_profiles fp ON fp.id = fni.facility_id
+            WHERE {where}
+            ORDER BY fni.featured DESC, fni.created_at DESC
+            LIMIT :n
+        """), {"n": n}).fetchall()
+        result[track] = [
+            {
+                "title": r.title,
+                "summary": r.summary or "",
+                "kind": r.kind,
+                "kind_label": _KIND_LABELS.get(r.kind, r.kind),
+                "source_url": r.source_url,
+                "facility_name": r.facility_name,
+            }
+            for r in rows
+        ]
+    return result

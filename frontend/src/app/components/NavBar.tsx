@@ -2,21 +2,19 @@
 
 import { useState, useRef, useEffect } from "react";
 
-const EXPLORE_LINKS = [
-  { href: "/explore/cards", label: "Cards" },
-  { href: "/explore/qa", label: "Q&A" },
-  { href: "/explore/chat", label: "Chat" },
-  { href: "/explore/graph", label: "Graph" },
+const NAV_LINKS = [
+  { href: "/wiki", label: "Wiki" },
+  { href: "/surveys", label: "Surveys" },
+  { href: "/news", label: "News" },
+  { href: "/council", label: "Council" },
+  { href: "/agents", label: "Agents" },
 ];
 
-const NAV_LINKS = [
-  { href: "/council", label: "Council" },
-  { href: "/escalations", label: "⚖️ Appeals" },
-  { href: "/agents", label: "Agents" },
-  { href: "/leaderboard", label: "Leaderboard" },
-  { href: "/research", label: "Research" },
-  { href: "/newsletter", label: "Newsletter" },
+const MORE_LINKS = [
+  { href: "/explore/chat", label: "Chat" },
+  { href: "/escalations", label: "Appeals" },
   { href: "/contribute", label: "Contribute" },
+  { href: "/benchmark", label: "Benchmark" },
   { href: "/feedback", label: "Feedback" },
 ];
 
@@ -24,21 +22,25 @@ const JOIN_LINK = { href: "/join", label: "Join" };
 
 export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [online, setOnline] = useState<{human: number, agent: number} | null>(null);
+  const [moreOpen, setMoreOpen] = useState(false);
+  const [mobileMoreOpen, setMobileMoreOpen] = useState(false);
+  const [online, setOnline] = useState<{ human: number; agent: number } | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const moreTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const fetchOnline = () => {
-      fetch("/api/stats").then(r => r.json()).then(d => {
-        setOnline({ human: d.online_human || 0, agent: d.online_agent || 0 });
-      }).catch(() => {});
+      fetch("/api/stats")
+        .then((r) => r.json())
+        .then((d) => {
+          setOnline({ human: d.online_human || 0, agent: d.online_agent || 0 });
+        })
+        .catch(() => {});
     };
     fetchOnline();
     const t = setInterval(fetchOnline, 30000);
     return () => clearInterval(t);
   }, []);
-  const [exploreOpen, setExploreOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const exploreTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 1024);
@@ -47,73 +49,136 @@ export default function NavBar() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  // Close mobile menu on desktop resize
   useEffect(() => {
     if (!isMobile) setMenuOpen(false);
   }, [isMobile]);
 
-  const handleExploreEnter = () => {
-    if (exploreTimeoutRef.current) clearTimeout(exploreTimeoutRef.current);
-    setExploreOpen(true);
+  const handleMoreEnter = () => {
+    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
+    setMoreOpen(true);
   };
 
-  const handleExploreLeave = () => {
-    exploreTimeoutRef.current = setTimeout(() => setExploreOpen(false), 150);
+  const handleMoreLeave = () => {
+    moreTimeoutRef.current = setTimeout(() => setMoreOpen(false), 150);
   };
 
   return (
-    <header style={{ borderBottom: "1px solid #334155", background: "#0f172a", position: "sticky", top: 0, zIndex: 40 }}>
-      <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+    <header
+      style={{
+        borderBottom: "1px solid #334155",
+        background: "#0f172a",
+        position: "sticky",
+        top: 0,
+        zIndex: 40,
+      }}
+    >
+      <div
+        style={{
+          maxWidth: "1024px",
+          margin: "0 auto",
+          padding: "1rem 1.5rem",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+        }}
+      >
         <a href="/" className="no-underline text-inherit">
-          <span style={{ fontWeight: 600, fontSize: "1.1rem", color: "#f8fafc", letterSpacing: "-0.025em" }}>
+          <span
+            style={{
+              fontWeight: 600,
+              fontSize: "1.1rem",
+              color: "#f8fafc",
+              letterSpacing: "-0.025em",
+            }}
+          >
             NebulaMind
           </span>
         </a>
 
         {/* Desktop nav */}
-        <nav style={{ display: isMobile ? "none" : "flex", gap: "1.5rem", fontSize: "0.875rem", alignItems: "center", marginLeft: "2rem" }}>
-          <a href="/" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
-            Home
-          </a>
+        <nav
+          style={{
+            display: isMobile ? "none" : "flex",
+            gap: "1.5rem",
+            fontSize: "0.875rem",
+            alignItems: "center",
+            marginLeft: "2rem",
+          }}
+        >
+          {NAV_LINKS.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#f8fafc")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
+            >
+              {link.label}
+            </a>
+          ))}
 
-          <a href="/wiki" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
-            Wiki
-          </a>
-
-          <a href="/directory" style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
-            onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
-            onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}>
-            Directory
-          </a>
-
-          {/* Explore with dropdown */}
+          {/* More dropdown */}
           <div
             style={{ position: "relative" }}
-            onMouseEnter={handleExploreEnter}
-            onMouseLeave={handleExploreLeave}
+            onMouseEnter={handleMoreEnter}
+            onMouseLeave={handleMoreLeave}
           >
-            <a
-              href="/explore"
-              style={{ color: "#94a3b8", fontWeight: 500, textDecoration: "none", display: "flex", alignItems: "center", gap: "2px", transition: "color 0.15s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
+            <button
+              style={{
+                color: "#94a3b8",
+                fontWeight: 500,
+                background: "transparent",
+                border: "none",
+                display: "flex",
+                alignItems: "center",
+                gap: "2px",
+                transition: "color 0.15s",
+                cursor: "pointer",
+                fontSize: "0.875rem",
+                padding: 0,
+              }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "#f8fafc")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
             >
-              Explore
+              More
               <span style={{ fontSize: "0.7rem", color: "#64748b", marginLeft: "2px" }}>▾</span>
-            </a>
-            {exploreOpen && (
-              <div style={{ position: "absolute", top: "100%", left: 0, marginTop: "6px", background: "#1e293b", border: "1px solid #334155", borderRadius: "6px", boxShadow: "0 4px 12px rgba(0,0,0,0.3)", padding: "4px 0", minWidth: "140px", zIndex: 50 }}>
-                {EXPLORE_LINKS.map((link) => (
+            </button>
+            {moreOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: 0,
+                  marginTop: "6px",
+                  background: "#1e293b",
+                  border: "1px solid #334155",
+                  borderRadius: "6px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.3)",
+                  padding: "4px 0",
+                  minWidth: "140px",
+                  zIndex: 50,
+                }}
+              >
+                {MORE_LINKS.map((link) => (
                   <a
                     key={link.href}
                     href={link.href}
-                    style={{ display: "block", padding: "8px 16px", fontSize: "0.875rem", color: "#94a3b8", textDecoration: "none", transition: "all 0.15s" }}
-                    onMouseEnter={e => { e.currentTarget.style.background = "#334155"; e.currentTarget.style.color = "#f8fafc"; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = "transparent"; e.currentTarget.style.color = "#94a3b8"; }}
+                    style={{
+                      display: "block",
+                      padding: "8px 16px",
+                      fontSize: "0.875rem",
+                      color: "#94a3b8",
+                      textDecoration: "none",
+                      transition: "all 0.15s",
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = "#334155";
+                      e.currentTarget.style.color = "#f8fafc";
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = "transparent";
+                      e.currentTarget.style.color = "#94a3b8";
+                    }}
                   >
                     {link.label}
                   </a>
@@ -122,29 +187,48 @@ export default function NavBar() {
             )}
           </div>
 
-          {NAV_LINKS.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              style={{ color: "#94a3b8", textDecoration: "none", transition: "color 0.15s" }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#f8fafc")}
-              onMouseLeave={e => (e.currentTarget.style.color = "#94a3b8")}
-            >
-              {link.label}
-            </a>
-          ))}
-
-                    <a
+          <a
             href={JOIN_LINK.href}
-            style={{ padding: "6px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", transition: "background 0.15s" }}
-            onMouseEnter={e => (e.currentTarget.style.background = "#4f46e5")}
-            onMouseLeave={e => (e.currentTarget.style.background = "#6366f1")}
+            style={{
+              padding: "6px 14px",
+              background: "#6366f1",
+              color: "#f8fafc",
+              borderRadius: "4px",
+              textDecoration: "none",
+              fontWeight: 600,
+              fontSize: "0.85rem",
+              transition: "background 0.15s",
+            }}
+            onMouseEnter={(e) => (e.currentTarget.style.background = "#4f46e5")}
+            onMouseLeave={(e) => (e.currentTarget.style.background = "#6366f1")}
           >
             {JOIN_LINK.label}
           </a>
+
           {online !== null && (
-            <span style={{ display: "inline-flex", alignItems: "center", gap: "5px", fontSize: "0.7rem", color: "#4ade80", background: "rgba(74,222,128,0.08)", border: "1px solid rgba(74,222,128,0.2)", borderRadius: "999px", padding: "3px 8px", whiteSpace: "nowrap" }}>
-              <span style={{ width: "6px", height: "6px", borderRadius: "50%", background: "#22c55e", flexShrink: 0 }} />
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "5px",
+                fontSize: "0.7rem",
+                color: "#4ade80",
+                background: "rgba(74,222,128,0.08)",
+                border: "1px solid rgba(74,222,128,0.2)",
+                borderRadius: "999px",
+                padding: "3px 8px",
+                whiteSpace: "nowrap",
+              }}
+            >
+              <span
+                style={{
+                  width: "6px",
+                  height: "6px",
+                  borderRadius: "50%",
+                  background: "#22c55e",
+                  flexShrink: 0,
+                }}
+              />
               {online.human + online.agent} ({online.human}👤{online.agent}🤖)
             </span>
           )}
@@ -153,7 +237,15 @@ export default function NavBar() {
         {/* Mobile hamburger */}
         {isMobile && (
           <button
-            style={{ color: "#94a3b8", fontSize: "1.25rem", padding: "4px 8px", borderRadius: "4px", border: "none", background: "transparent", cursor: "pointer" }}
+            style={{
+              color: "#94a3b8",
+              fontSize: "1.25rem",
+              padding: "4px 8px",
+              borderRadius: "4px",
+              border: "none",
+              background: "transparent",
+              cursor: "pointer",
+            }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
           >
@@ -165,29 +257,95 @@ export default function NavBar() {
       {/* Mobile dropdown */}
       {isMobile && menuOpen && (
         <div style={{ borderTop: "1px solid #334155", background: "#1e293b" }}>
-          <div style={{ maxWidth: "1024px", margin: "0 auto", padding: "0.75rem 1rem", display: "flex", flexDirection: "column" }}>
-            <a href="/" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
-              Home
-            </a>
-            <a href="/directory" style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
-              Directory
-            </a>
-            <a href="/explore" style={{ padding: "10px 8px", color: "#f8fafc", fontWeight: 500, fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
-              Explore
-            </a>
-            <div style={{ paddingLeft: "20px", display: "flex", flexDirection: "column", borderLeft: "2px solid #334155", marginLeft: "8px", margin: "4px 0 4px 8px" }}>
-              {EXPLORE_LINKS.map((link) => (
-                <a key={link.href} href={link.href} style={{ padding: "8px 0", color: "#64748b", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
-                  {link.label}
-                </a>
-              ))}
-            </div>
+          <div
+            style={{
+              maxWidth: "1024px",
+              margin: "0 auto",
+              padding: "0.75rem 1rem",
+              display: "flex",
+              flexDirection: "column",
+            }}
+          >
             {NAV_LINKS.map((link) => (
-              <a key={link.href} href={link.href} style={{ padding: "10px 8px", color: "#94a3b8", fontSize: "0.875rem", textDecoration: "none" }} onClick={() => setMenuOpen(false)}>
+              <a
+                key={link.href}
+                href={link.href}
+                style={{
+                  padding: "10px 8px",
+                  color: "#94a3b8",
+                  fontSize: "0.875rem",
+                  textDecoration: "none",
+                }}
+                onClick={() => setMenuOpen(false)}
+              >
                 {link.label}
               </a>
             ))}
-            <a href={JOIN_LINK.href} style={{ margin: "8px 8px 4px", padding: "8px 14px", background: "#6366f1", color: "#f8fafc", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.85rem", textAlign: "center" }} onClick={() => setMenuOpen(false)}>
+
+            {/* Mobile More collapsible */}
+            <button
+              onClick={() => setMobileMoreOpen(!mobileMoreOpen)}
+              style={{
+                padding: "10px 8px",
+                color: "#94a3b8",
+                fontSize: "0.875rem",
+                background: "transparent",
+                border: "none",
+                textAlign: "left",
+                cursor: "pointer",
+                display: "flex",
+                alignItems: "center",
+                gap: "4px",
+              }}
+            >
+              More
+              <span style={{ fontSize: "0.65rem", color: "#64748b" }}>
+                {mobileMoreOpen ? "▴" : "▾"}
+              </span>
+            </button>
+            {mobileMoreOpen && (
+              <div
+                style={{
+                  paddingLeft: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  borderLeft: "2px solid #334155",
+                  margin: "4px 0 4px 8px",
+                }}
+              >
+                {MORE_LINKS.map((link) => (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    style={{
+                      padding: "8px 0",
+                      color: "#64748b",
+                      fontSize: "0.875rem",
+                      textDecoration: "none",
+                    }}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </div>
+            )}
+
+            <a
+              href={JOIN_LINK.href}
+              style={{
+                margin: "8px 8px 4px",
+                padding: "8px 14px",
+                background: "#6366f1",
+                color: "#f8fafc",
+                borderRadius: "4px",
+                textDecoration: "none",
+                fontWeight: 600,
+                fontSize: "0.85rem",
+                textAlign: "center",
+              }}
+              onClick={() => setMenuOpen(false)}
+            >
               {JOIN_LINK.label}
             </a>
           </div>

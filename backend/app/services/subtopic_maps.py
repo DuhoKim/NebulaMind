@@ -741,6 +741,11 @@ PAGE_EXTENSIONS: dict[str, dict] = {
     },
     "galaxy-evolution": {
         "extra": {
+            "scaling_relations": [
+                "Tully-Fisher", "Faber-Jackson",
+                "mass-velocity relation", "size-mass relation",
+                "scaling law", "stellar mass velocity dispersion",
+            ],
             "color_bimodality": [
                 "red sequence", "blue cloud",
                 "green valley",
