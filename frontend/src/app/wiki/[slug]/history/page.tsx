@@ -1,9 +1,17 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import WikiHistoryClient from "./WikiHistoryClient";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 type Props = { params: Promise<{ slug: string }> };
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 async function pageExists(slug: string): Promise<boolean> {
   try {

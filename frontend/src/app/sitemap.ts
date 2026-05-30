@@ -35,26 +35,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   try {
     const res = await fetch(`${API_BASE}/api/pages`, { next: { revalidate: 3600 } });
     const pages = await res.json();
-    const wikiPages: MetadataRoute.Sitemap = pages.flatMap((p: any) => [
-      {
-        url: `${BASE_URL}/wiki/${p.slug}`,
-        lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),
-        changeFrequency: "daily" as const,
-        priority: 0.8,
-      },
-      {
-        url: `${BASE_URL}/wiki/${p.slug}/history`,
-        lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),
-        changeFrequency: "weekly" as const,
-        priority: 0.4,
-      },
-      {
-        url: `${BASE_URL}/wiki/${p.slug}/sources`,
-        lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),
-        changeFrequency: "weekly" as const,
-        priority: 0.4,
-      },
-    ]);
+    const wikiPages: MetadataRoute.Sitemap = pages.map((p: any) => ({
+      url: `${BASE_URL}/wiki/${p.slug}`,
+      lastModified: p.updated_at ? new Date(p.updated_at) : new Date(),
+      changeFrequency: "daily" as const,
+      priority: 0.8,
+    }));
     // Dynamic survey pages
     let surveyPages: MetadataRoute.Sitemap = [];
     try {
