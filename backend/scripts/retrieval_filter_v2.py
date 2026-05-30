@@ -45,6 +45,7 @@ ENTAILMENT_MODEL = ENTAILMENT_GEMINI_MODEL
 ENTAILMENT_TIMEOUT_SECONDS = 45
 ENTAILMENT_PROMPT_TEMPLATE = """You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
 Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
+Use the Claim Context to interpret the Specific Element. If the claim context narrows the element by role, scope, condition, population, quantity, comparison, causal status, or importance, answer yes only when the Source Abstract supports that narrowed meaning. A generic mention of the element, or support for a broader nearby topic, is not enough.
 
 Claim Context: {claim_text_snapshot}
 Specific Element to Verify: {element_text}
