@@ -31,7 +31,7 @@ sys.path.insert(0, str(BACKEND_ROOT))
 from scripts.retrieval_filter_v2 import (
     ENTAILMENT_GEMINI_BASE,
     ENTAILMENT_GEMINI_MODEL,
-    ENTAILMENT_MODEL,
+    ENTAILMENT_OLLAMA_MODEL,
     ENTAILMENT_TIMEOUT_SECONDS,
     evaluate_entailment_gate,
     evaluate_entailment_gate_gemini,
@@ -44,9 +44,9 @@ ARTIFACT_ROOT = Path("/Users/duhokim/.openclaw/workspace/arxiv_wiki_feed_v2")
 ATOM_MODEL = os.getenv("ARXIV_WIKI_ATOM_MODEL", "vanta-research/atom-astronomy-7b:latest")
 ASTROSAGE_MODEL = os.getenv("ARXIV_WIKI_ASTROSAGE_MODEL", "astrosage-70b:latest")
 OLLAMA_BASE = os.getenv("ARXIV_WIKI_OLLAMA_BASE", "http://localhost:11434")
-ENTAILMENT_GATE_MODEL = os.getenv("ARXIV_WIKI_ENTAILMENT_MODEL", ENTAILMENT_MODEL)
+ENTAILMENT_GATE_MODEL = os.getenv("ARXIV_WIKI_ENTAILMENT_MODEL", ENTAILMENT_GEMINI_MODEL)
 ENTAILMENT_GATE_TIMEOUT = int(os.getenv("ARXIV_WIKI_ENTAILMENT_TIMEOUT", str(ENTAILMENT_TIMEOUT_SECONDS)))
-ENTAILMENT_GATE_PROVIDER = os.getenv("ARXIV_WIKI_ENTAILMENT_PROVIDER", "ollama")
+ENTAILMENT_GATE_PROVIDER = os.getenv("ARXIV_WIKI_ENTAILMENT_PROVIDER", "gemini")
 ENTAILMENT_GEMINI_API_KEY_ENV = os.getenv("ARXIV_WIKI_ENTAILMENT_GEMINI_API_KEY_ENV", "NM_GEMINI_API_KEY")
 EMBED_MODEL = "nomic-embed-text:v1.5"
 PROMPT_VERSION = "candidate_grounded_atom_backfill_v1_20260528"
@@ -850,7 +850,7 @@ def run_backfill(args: argparse.Namespace) -> dict[str, Any]:
     entailment_timeout = getattr(args, "entailment_timeout", ENTAILMENT_GATE_TIMEOUT)
     entailment_ollama_host = getattr(args, "entailment_ollama_host", None) or ollama_host
     entailment_provider = getattr(args, "entailment_provider", ENTAILMENT_GATE_PROVIDER)
-    if entailment_provider == "gemini" and entailment_model == ENTAILMENT_MODEL:
+    if entailment_provider == "gemini" and entailment_model == ENTAILMENT_OLLAMA_MODEL:
         entailment_model = ENTAILMENT_GEMINI_MODEL
         args.entailment_model = entailment_model
     entailment_base_url = getattr(args, "entailment_base_url", None)

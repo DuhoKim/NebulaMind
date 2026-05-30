@@ -10,6 +10,7 @@ grants promotion authority.
 from __future__ import annotations
 
 import json
+import os
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -36,10 +37,11 @@ DOWNRANK: Decision = "downrank"
 BOUNDARY_REVIEW_KEEP: Decision = "boundary_review_keep"
 ELEMENT_UNSUPPORTED: Decision = "element_unsupported"
 SEMANTIC_UNSUPPORTED: Decision = "semantic_unsupported"
-ENTAILMENT_MODEL = "llama3.1:8b"
+ENTAILMENT_OLLAMA_MODEL = "llama3.1:8b"
 ENTAILMENT_OLLAMA_BASE = "http://localhost:11434"
 ENTAILMENT_GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
 ENTAILMENT_GEMINI_MODEL = "google/gemini-3.1-pro-preview"
+ENTAILMENT_MODEL = ENTAILMENT_GEMINI_MODEL
 ENTAILMENT_TIMEOUT_SECONDS = 45
 ENTAILMENT_PROMPT_TEMPLATE = """You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
 Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
@@ -450,7 +452,7 @@ def _parse_entailment_payload(raw_content: str) -> EntailmentGateResult:
 def evaluate_entailment_gate(
     row: Mapping[str, Any],
     *,
-    model: str = ENTAILMENT_MODEL,
+    model: str = ENTAILMENT_OLLAMA_MODEL,
     ollama_base: str = ENTAILMENT_OLLAMA_BASE,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
 ) -> EntailmentGateResult:
@@ -575,13 +577,22 @@ def split_rows_by_entailment_gate(
     rows: Iterable[Mapping[str, Any]],
     *,
     model: str = ENTAILMENT_MODEL,
-    ollama_base: str = ENTAILMENT_OLLAMA_BASE,
+    base_url: str = ENTAILMENT_GEMINI_BASE,
+    api_key: str | None = None,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     admitted: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
+    resolved_api_key = api_key or os.getenv("NM_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
     for row in rows:
-        result = evaluate_entailment_gate(row, model=model, ollama_base=ollama_base, timeout=timeout)
+        if resolved_api_key:
+            result = evaluate_entailment_gate_gemini(row, model=model, base_url=base_url, api_key=resolved_api_key, timeout=timeout)
+        else:
+            result = EntailmentGateResult(
+                entailment="error",
+                error="ValueError: Gemini API key missing; set NM_GEMINI_API_KEY or GEMINI_API_KEY",
+                latency_seconds=0.0,
+            )
         gated = row_with_entailment_gate(row, result, model)
         if result.admits_coverage:
             admitted.append(gated)

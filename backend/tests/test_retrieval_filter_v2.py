@@ -636,7 +636,7 @@ class _EntailmentResponse:
     def json(self):
         if self.json_exc:
             raise self.json_exc
-        return {"message": {"content": self.content}}
+        return {"choices": [{"message": {"content": self.content}}]}
 
 
 def _coverage_row():
@@ -649,6 +649,8 @@ def _coverage_row():
 
 @pytest.mark.parametrize("entailment", ["yes", "no", "abstain"])
 def test_entailment_gate_routes_yes_only(monkeypatch, entailment):
+    monkeypatch.setenv("NM_GEMINI_API_KEY", "fixture-key")
+
     def fake_post(*_args, **_kwargs):
         return _EntailmentResponse(json.dumps({"entailment": entailment, "reason": "checked"}))
 
@@ -668,6 +670,8 @@ def test_entailment_gate_routes_yes_only(monkeypatch, entailment):
 
 
 def test_entailment_gate_connection_error_routes_excluded(monkeypatch):
+    monkeypatch.setenv("NM_GEMINI_API_KEY", "fixture-key")
+
     def fake_post(*_args, **_kwargs):
         raise retrieval_filter_v2_mod.requests.exceptions.ConnectionError("down")
 
@@ -682,6 +686,8 @@ def test_entailment_gate_connection_error_routes_excluded(monkeypatch):
 
 
 def test_entailment_gate_json_decode_error_routes_excluded(monkeypatch):
+    monkeypatch.setenv("NM_GEMINI_API_KEY", "fixture-key")
+
     def fake_post(*_args, **_kwargs):
         return _EntailmentResponse(json_exc=json.JSONDecodeError("bad", "", 0))
 
