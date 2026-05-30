@@ -693,3 +693,44 @@ def test_entailment_gate_json_decode_error_routes_excluded(monkeypatch):
     assert len(excluded) == 1
     assert excluded[0]["entailment_gate_decision"] == "error"
     assert excluded[0]["coverage_queue_exclusion_reason"] == "entailment_error"
+
+
+def test_openai_compatible_entailment_records_usage(monkeypatch):
+    class Response:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {
+                "choices": [
+                    {
+                        "message": {
+                            "content": '```json\n{"entailment":"yes","reason":"supported"}\n```',
+                        }
+                    }
+                ],
+                "usage": {"prompt_tokens": 10, "completion_tokens": 4, "total_tokens": 14},
+            }
+
+    seen = {}
+
+    def fake_post(url, **kwargs):
+        seen["url"] = url
+        seen["json"] = kwargs["json"]
+        return Response()
+
+    monkeypatch.setattr(retrieval_filter_v2_mod.requests, "post", fake_post)
+
+    result = retrieval_filter_v2_mod.evaluate_entailment_gate_gemini(
+        _coverage_row(),
+        model="google/gemini-3.1-pro-preview",
+        api_key="test-key",
+        timeout=1,
+    )
+
+    assert result.entailment == "yes"
+    assert result.prompt_tokens == 10
+    assert result.completion_tokens == 4
+    assert result.total_tokens == 14
+    assert seen["url"] == "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
+    assert seen["json"]["model"] == "gemini-3.1-pro-preview"

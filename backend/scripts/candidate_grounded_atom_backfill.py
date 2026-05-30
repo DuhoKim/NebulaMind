@@ -29,9 +29,13 @@ BACKEND_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_ROOT))
 
 from scripts.retrieval_filter_v2 import (
+    ENTAILMENT_GEMINI_BASE,
+    ENTAILMENT_GEMINI_MODEL,
     ENTAILMENT_MODEL,
     ENTAILMENT_TIMEOUT_SECONDS,
     evaluate_entailment_gate,
+    evaluate_entailment_gate_gemini,
+    evaluate_entailment_gate_openai_compatible,
     row_with_entailment_gate,
 )
 
@@ -42,6 +46,8 @@ ASTROSAGE_MODEL = os.getenv("ARXIV_WIKI_ASTROSAGE_MODEL", "astrosage-70b:latest"
 OLLAMA_BASE = os.getenv("ARXIV_WIKI_OLLAMA_BASE", "http://localhost:11434")
 ENTAILMENT_GATE_MODEL = os.getenv("ARXIV_WIKI_ENTAILMENT_MODEL", ENTAILMENT_MODEL)
 ENTAILMENT_GATE_TIMEOUT = int(os.getenv("ARXIV_WIKI_ENTAILMENT_TIMEOUT", str(ENTAILMENT_TIMEOUT_SECONDS)))
+ENTAILMENT_GATE_PROVIDER = os.getenv("ARXIV_WIKI_ENTAILMENT_PROVIDER", "ollama")
+ENTAILMENT_GEMINI_API_KEY_ENV = os.getenv("ARXIV_WIKI_ENTAILMENT_GEMINI_API_KEY_ENV", "NM_GEMINI_API_KEY")
 EMBED_MODEL = "nomic-embed-text:v1.5"
 PROMPT_VERSION = "candidate_grounded_atom_backfill_v1_20260528"
 
@@ -81,6 +87,26 @@ def sha_text(value: Any) -> str:
     if not isinstance(value, str):
         value = json.dumps(value, ensure_ascii=False, sort_keys=True)
     return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def env_or_dotenv(name: str | None) -> str | None:
+    if not name:
+        return None
+    value = os.getenv(name)
+    if value:
+        return value
+    env_path = BACKEND_ROOT / ".env"
+    if not env_path.exists():
+        return None
+    for line in env_path.read_text(encoding="utf-8").splitlines():
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#") or "=" not in stripped:
+            continue
+        key, raw_value = stripped.split("=", 1)
+        if key.strip() != name:
+            continue
+        return raw_value.strip().strip('"').strip("'") or None
+    return None
 
 
 def hydration_abort(row: dict[str, Any], missing: list[str], source: str | Path | None = None) -> ValueError:
@@ -404,6 +430,14 @@ def coverage_row(
         "source_label": row.get("label"),
         "candidate_source": row.get("candidate_source"),
         "candidate_key": row.get("candidate_key"),
+        "entailment_gate_model": row.get("entailment_gate_model"),
+        "entailment_gate_decision": row.get("entailment_gate_decision"),
+        "entailment_gate_reason": row.get("entailment_gate_reason"),
+        "entailment_gate_error": row.get("entailment_gate_error"),
+        "entailment_gate_latency_seconds": row.get("entailment_gate_latency_seconds"),
+        "entailment_gate_prompt_tokens": row.get("entailment_gate_prompt_tokens"),
+        "entailment_gate_completion_tokens": row.get("entailment_gate_completion_tokens"),
+        "entailment_gate_total_tokens": row.get("entailment_gate_total_tokens"),
         "coverage_key": coverage_key(row, PROMPT_VERSION, model),
         "backfill_model": model,
         "audit_model_reserved": ASTROSAGE_MODEL,
@@ -482,6 +516,9 @@ def collect_rows_from_validator_artifacts(
     entailment_model: str = ENTAILMENT_GATE_MODEL,
     entailment_timeout: int = ENTAILMENT_GATE_TIMEOUT,
     entailment_ollama_host: str | None = None,
+    entailment_provider: str = ENTAILMENT_GATE_PROVIDER,
+    entailment_base_url: str | None = None,
+    entailment_api_key: str | None = None,
     section: str | None = None,
     limit: int = 0,
 ) -> dict[str, list[dict[str, Any]]]:
@@ -537,12 +574,48 @@ def collect_rows_from_validator_artifacts(
             if limit and main_candidates_seen > limit:
                 continue
             if enable_entailment_gate:
-                gate = evaluate_entailment_gate(
-                    hydrated,
-                    model=entailment_model,
-                    ollama_base=entailment_ollama_host or ollama_host,
-                    timeout=entailment_timeout,
-                )
+                if entailment_provider == "gemini":
+                    api_key = entailment_api_key or env_or_dotenv(ENTAILMENT_GEMINI_API_KEY_ENV) or env_or_dotenv("GEMINI_API_KEY")
+                    if not api_key:
+                        from scripts.retrieval_filter_v2 import EntailmentGateResult
+
+                        gate = EntailmentGateResult(
+                            entailment="error",
+                            error=f"ValueError: Gemini API key missing; set {ENTAILMENT_GEMINI_API_KEY_ENV} or GEMINI_API_KEY",
+                            latency_seconds=0.0,
+                        )
+                    else:
+                        gate = evaluate_entailment_gate_gemini(
+                            hydrated,
+                            model=entailment_model,
+                            base_url=entailment_base_url or ENTAILMENT_GEMINI_BASE,
+                            api_key=api_key,
+                            timeout=entailment_timeout,
+                        )
+                elif entailment_provider == "openai_compatible":
+                    if not entailment_base_url or not entailment_api_key:
+                        from scripts.retrieval_filter_v2 import EntailmentGateResult
+
+                        gate = EntailmentGateResult(
+                            entailment="error",
+                            error="ValueError: entailment openai-compatible base URL or API key missing",
+                            latency_seconds=0.0,
+                        )
+                    else:
+                        gate = evaluate_entailment_gate_openai_compatible(
+                            hydrated,
+                            model=entailment_model,
+                            base_url=entailment_base_url,
+                            api_key=entailment_api_key,
+                            timeout=entailment_timeout,
+                        )
+                else:
+                    gate = evaluate_entailment_gate(
+                        hydrated,
+                        model=entailment_model,
+                        ollama_base=entailment_ollama_host or ollama_host,
+                        timeout=entailment_timeout,
+                    )
                 gated = row_with_entailment_gate(hydrated, gate, entailment_model)
                 if not gate.admits_coverage:
                     excluded_rows.append(
@@ -610,9 +683,11 @@ def hydration_manifest(
         "min_semantic_similarity": getattr(args, "min_semantic_similarity", 0.50),
         "ollama_host": getattr(args, "ollama_host", OLLAMA_BASE),
         "entailment_gate_enabled": not getattr(args, "no_entailment_gate", True),
+        "entailment_gate_provider": getattr(args, "entailment_provider", ENTAILMENT_GATE_PROVIDER),
         "entailment_gate_model": getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL),
         "entailment_gate_timeout": getattr(args, "entailment_timeout", ENTAILMENT_GATE_TIMEOUT),
         "entailment_ollama_host": getattr(args, "entailment_ollama_host", None) or getattr(args, "ollama_host", OLLAMA_BASE),
+        "entailment_base_url": getattr(args, "entailment_base_url", None),
         "prompt_version": PROMPT_VERSION,
     }
     write_json(out_dir / "hydration_manifest.json", manifest)
@@ -699,8 +774,10 @@ def write_report(out_dir: Path, coverage_rows: list[dict[str, Any]], args: argpa
         "model": args.model,
         "prompt_version": PROMPT_VERSION,
         "entailment_gate_enabled": not getattr(args, "no_entailment_gate", True),
+        "entailment_gate_provider": getattr(args, "entailment_provider", ENTAILMENT_GATE_PROVIDER),
         "entailment_gate_model": getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL),
         "entailment_ollama_host": getattr(args, "entailment_ollama_host", None) or getattr(args, "ollama_host", OLLAMA_BASE),
+        "entailment_base_url": getattr(args, "entailment_base_url", None),
         "no_db_writes": True,
         "summary": summary,
         "audit_only": {
@@ -772,6 +849,12 @@ def run_backfill(args: argparse.Namespace) -> dict[str, Any]:
     entailment_model = getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL)
     entailment_timeout = getattr(args, "entailment_timeout", ENTAILMENT_GATE_TIMEOUT)
     entailment_ollama_host = getattr(args, "entailment_ollama_host", None) or ollama_host
+    entailment_provider = getattr(args, "entailment_provider", ENTAILMENT_GATE_PROVIDER)
+    if entailment_provider == "gemini" and entailment_model == ENTAILMENT_MODEL:
+        entailment_model = ENTAILMENT_GEMINI_MODEL
+        args.entailment_model = entailment_model
+    entailment_base_url = getattr(args, "entailment_base_url", None)
+    entailment_api_key = env_or_dotenv(getattr(args, "entailment_api_key_env", None))
     collected = collect_rows_from_validator_artifacts(
         args.source_dir,
         args.retrieval_run_id,
@@ -781,6 +864,9 @@ def run_backfill(args: argparse.Namespace) -> dict[str, Any]:
         entailment_model,
         entailment_timeout,
         entailment_ollama_host,
+        entailment_provider,
+        entailment_base_url,
+        entailment_api_key,
         args.section,
         args.limit,
     )
@@ -835,6 +921,9 @@ def main() -> None:
     parser.add_argument("--entailment-model", default=ENTAILMENT_GATE_MODEL)
     parser.add_argument("--entailment-timeout", type=int, default=ENTAILMENT_GATE_TIMEOUT)
     parser.add_argument("--entailment-ollama-host", default=None)
+    parser.add_argument("--entailment-provider", choices=["ollama", "openai_compatible", "gemini"], default=ENTAILMENT_GATE_PROVIDER)
+    parser.add_argument("--entailment-base-url", default=None)
+    parser.add_argument("--entailment-api-key-env", default=None)
     args = parser.parse_args()
     payload = run_backfill(args)
     print(json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True))

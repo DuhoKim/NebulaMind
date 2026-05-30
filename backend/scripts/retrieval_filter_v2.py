@@ -38,6 +38,8 @@ ELEMENT_UNSUPPORTED: Decision = "element_unsupported"
 SEMANTIC_UNSUPPORTED: Decision = "semantic_unsupported"
 ENTAILMENT_MODEL = "llama3.1:8b"
 ENTAILMENT_OLLAMA_BASE = "http://localhost:11434"
+ENTAILMENT_GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
+ENTAILMENT_GEMINI_MODEL = "google/gemini-3.1-pro-preview"
 ENTAILMENT_TIMEOUT_SECONDS = 45
 ENTAILMENT_PROMPT_TEMPLATE = """You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
 Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
@@ -156,6 +158,9 @@ class EntailmentGateResult:
     error: str | None = None
     raw_response: str | None = None
     latency_seconds: float | None = None
+    prompt_tokens: int | None = None
+    completion_tokens: int | None = None
+    total_tokens: int | None = None
 
     @property
     def admits_coverage(self) -> bool:
@@ -418,7 +423,17 @@ def entailment_gate_prompt(row: Mapping[str, Any]) -> str:
 
 
 def _parse_entailment_payload(raw_content: str) -> EntailmentGateResult:
-    parsed = json.loads(raw_content)
+    content = raw_content.strip()
+    if content.startswith("<think>") and "</think>" in content:
+        content = content.split("</think>", 1)[1].strip()
+    try:
+        parsed = json.loads(content)
+    except json.JSONDecodeError:
+        start = content.find("{")
+        end = content.rfind("}")
+        if start < 0 or end <= start:
+            raise
+        parsed = json.loads(content[start : end + 1])
     if not isinstance(parsed, Mapping):
         raise ValueError("entailment response is not a JSON object")
     entailment = str(parsed.get("entailment") or "").strip().lower()
@@ -467,6 +482,78 @@ def evaluate_entailment_gate(
         )
 
 
+def evaluate_entailment_gate_openai_compatible(
+    row: Mapping[str, Any],
+    *,
+    model: str,
+    base_url: str,
+    api_key: str,
+    timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
+) -> EntailmentGateResult:
+    request_model = model
+    if base_url.rstrip("/").endswith("/v1beta/openai") and request_model.startswith("google/"):
+        request_model = request_model.split("/", 1)[1]
+    payload = {
+        "model": request_model,
+        "messages": [{"role": "user", "content": entailment_gate_prompt(row)}],
+        "temperature": 0.0,
+        "response_format": {"type": "json_object"},
+    }
+    started = time.monotonic()
+    try:
+        response = requests.post(
+            f"{base_url.rstrip('/')}/chat/completions",
+            headers={"Authorization": f"Bearer {api_key}", "Content-Type": "application/json"},
+            json=payload,
+            timeout=timeout,
+        )
+        response.raise_for_status()
+        body = response.json()
+        choices = body.get("choices") or []
+        content = (((choices[0] or {}).get("message") or {}).get("content") or "").strip() if choices else ""
+        parsed = _parse_entailment_payload(content)
+        return EntailmentGateResult(
+            entailment=parsed.entailment,
+            reason=parsed.reason,
+            raw_response=parsed.raw_response,
+            latency_seconds=round(time.monotonic() - started, 3),
+            prompt_tokens=_usage_int(body, "prompt_tokens"),
+            completion_tokens=_usage_int(body, "completion_tokens"),
+            total_tokens=_usage_int(body, "total_tokens"),
+        )
+    except Exception as exc:
+        return EntailmentGateResult(
+            entailment="error",
+            error=f"{type(exc).__name__}: {exc}"[:240],
+            latency_seconds=round(time.monotonic() - started, 3),
+        )
+
+
+def _usage_int(body: Mapping[str, Any], key: str) -> int | None:
+    usage = body.get("usage")
+    if not isinstance(usage, Mapping):
+        return None
+    value = usage.get(key)
+    return value if isinstance(value, int) else None
+
+
+def evaluate_entailment_gate_gemini(
+    row: Mapping[str, Any],
+    *,
+    model: str = ENTAILMENT_GEMINI_MODEL,
+    api_key: str,
+    base_url: str = ENTAILMENT_GEMINI_BASE,
+    timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
+) -> EntailmentGateResult:
+    return evaluate_entailment_gate_openai_compatible(
+        row,
+        model=model,
+        base_url=base_url,
+        api_key=api_key,
+        timeout=timeout,
+    )
+
+
 def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResult, model: str = ENTAILMENT_MODEL) -> dict[str, Any]:
     out = dict(row)
     out.update(
@@ -476,6 +563,9 @@ def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResul
             "entailment_gate_reason": result.reason,
             "entailment_gate_error": result.error,
             "entailment_gate_latency_seconds": result.latency_seconds,
+            "entailment_gate_prompt_tokens": result.prompt_tokens,
+            "entailment_gate_completion_tokens": result.completion_tokens,
+            "entailment_gate_total_tokens": result.total_tokens,
         }
     )
     return out
