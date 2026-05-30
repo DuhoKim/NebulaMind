@@ -10,6 +10,7 @@ grants promotion authority.
 from __future__ import annotations
 
 import json
+import time
 from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Iterable, Literal, Mapping
@@ -154,6 +155,7 @@ class EntailmentGateResult:
     reason: str | None = None
     error: str | None = None
     raw_response: str | None = None
+    latency_seconds: float | None = None
 
     @property
     def admits_coverage(self) -> bool:
@@ -444,14 +446,25 @@ def evaluate_entailment_gate(
         "format": "json",
         "options": {"temperature": 0.0, "num_ctx": 4096, "num_predict": 160},
     }
+    started = time.monotonic()
     try:
         response = requests.post(f"{ollama_base.rstrip('/')}/api/chat", json=payload, timeout=timeout)
         response.raise_for_status()
         body = response.json()
         content = ((body.get("message") or {}).get("content") or "").strip()
-        return _parse_entailment_payload(content)
+        parsed = _parse_entailment_payload(content)
+        return EntailmentGateResult(
+            entailment=parsed.entailment,
+            reason=parsed.reason,
+            raw_response=parsed.raw_response,
+            latency_seconds=round(time.monotonic() - started, 3),
+        )
     except Exception as exc:
-        return EntailmentGateResult(entailment="error", error=f"{type(exc).__name__}: {exc}"[:240])
+        return EntailmentGateResult(
+            entailment="error",
+            error=f"{type(exc).__name__}: {exc}"[:240],
+            latency_seconds=round(time.monotonic() - started, 3),
+        )
 
 
 def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResult, model: str = ENTAILMENT_MODEL) -> dict[str, Any]:
@@ -462,6 +475,7 @@ def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResul
             "entailment_gate_decision": result.entailment,
             "entailment_gate_reason": result.reason,
             "entailment_gate_error": result.error,
+            "entailment_gate_latency_seconds": result.latency_seconds,
         }
     )
     return out

@@ -481,6 +481,7 @@ def collect_rows_from_validator_artifacts(
     enable_entailment_gate: bool = True,
     entailment_model: str = ENTAILMENT_GATE_MODEL,
     entailment_timeout: int = ENTAILMENT_GATE_TIMEOUT,
+    entailment_ollama_host: str | None = None,
     section: str | None = None,
     limit: int = 0,
 ) -> dict[str, list[dict[str, Any]]]:
@@ -539,7 +540,7 @@ def collect_rows_from_validator_artifacts(
                 gate = evaluate_entailment_gate(
                     hydrated,
                     model=entailment_model,
-                    ollama_base=ollama_host,
+                    ollama_base=entailment_ollama_host or ollama_host,
                     timeout=entailment_timeout,
                 )
                 gated = row_with_entailment_gate(hydrated, gate, entailment_model)
@@ -611,6 +612,7 @@ def hydration_manifest(
         "entailment_gate_enabled": not getattr(args, "no_entailment_gate", True),
         "entailment_gate_model": getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL),
         "entailment_gate_timeout": getattr(args, "entailment_timeout", ENTAILMENT_GATE_TIMEOUT),
+        "entailment_ollama_host": getattr(args, "entailment_ollama_host", None) or getattr(args, "ollama_host", OLLAMA_BASE),
         "prompt_version": PROMPT_VERSION,
     }
     write_json(out_dir / "hydration_manifest.json", manifest)
@@ -698,6 +700,7 @@ def write_report(out_dir: Path, coverage_rows: list[dict[str, Any]], args: argpa
         "prompt_version": PROMPT_VERSION,
         "entailment_gate_enabled": not getattr(args, "no_entailment_gate", True),
         "entailment_gate_model": getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL),
+        "entailment_ollama_host": getattr(args, "entailment_ollama_host", None) or getattr(args, "ollama_host", OLLAMA_BASE),
         "no_db_writes": True,
         "summary": summary,
         "audit_only": {
@@ -768,6 +771,7 @@ def run_backfill(args: argparse.Namespace) -> dict[str, Any]:
     enable_entailment_gate = not getattr(args, "no_entailment_gate", True)
     entailment_model = getattr(args, "entailment_model", ENTAILMENT_GATE_MODEL)
     entailment_timeout = getattr(args, "entailment_timeout", ENTAILMENT_GATE_TIMEOUT)
+    entailment_ollama_host = getattr(args, "entailment_ollama_host", None) or ollama_host
     collected = collect_rows_from_validator_artifacts(
         args.source_dir,
         args.retrieval_run_id,
@@ -776,6 +780,7 @@ def run_backfill(args: argparse.Namespace) -> dict[str, Any]:
         enable_entailment_gate,
         entailment_model,
         entailment_timeout,
+        entailment_ollama_host,
         args.section,
         args.limit,
     )
@@ -829,6 +834,7 @@ def main() -> None:
     parser.add_argument("--no-entailment-gate", action="store_true", help="Disable the post-semantic entailment gate.")
     parser.add_argument("--entailment-model", default=ENTAILMENT_GATE_MODEL)
     parser.add_argument("--entailment-timeout", type=int, default=ENTAILMENT_GATE_TIMEOUT)
+    parser.add_argument("--entailment-ollama-host", default=None)
     args = parser.parse_args()
     payload = run_backfill(args)
     print(json.dumps(payload, indent=2, ensure_ascii=False, sort_keys=True))
