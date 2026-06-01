@@ -1,6 +1,6 @@
 "use client";
 import TrustTimeline from "./TrustTimeline";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ClaimData {
   id: number;
@@ -25,6 +25,11 @@ interface IdeaSummary {
   gap_type?: string | null;
 }
 
+interface ElementLink {
+  element_id: string;
+  element_text_snapshot: string | null;
+}
+
 interface EvidenceItem {
   id: number;
   title: string;
@@ -37,6 +42,8 @@ interface EvidenceItem {
   votes_agree: number;
   votes_disagree: number;
   comments_count: number;
+  element_links: ElementLink[];
+  link_count: number;
 }
 
 const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
@@ -129,6 +136,7 @@ const STANCE_ICON: Record<string, string> = {
 export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimData; showColors: boolean; ideas?: IdeaSummary[] }) {
   const [open, setOpen] = useState(false);
   const [evidence, setEvidence] = useState<EvidenceItem[] | null>(null);
+  const [totalElements, setTotalElements] = useState(0);
   const [loading, setLoading] = useState(false);
 
   // Edit proposal state
@@ -155,8 +163,10 @@ export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimD
         const res = await fetch(`/api/claims/${claim.id}/evidence`);
         const data = await res.json();
         setEvidence(data.evidence || []);
+        setTotalElements(data.total_elements || 0);
       } catch {
         setEvidence([]);
+        setTotalElements(0);
       }
       setLoading(false);
     }
@@ -333,6 +343,11 @@ export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimD
                     <span className="font-medium text-gray-700 text-xs">{ev.title}</span>
                   )}
                   {ev.year && <span className="text-gray-400 text-xs ml-1">({ev.year})</span>}
+                  {ev.element_links && ev.element_links.length > 0 && (
+                    <div className="text-xs text-gray-500 mt-1">
+                      supports: element {ev.link_count} of {totalElements}
+                    </div>
+                  )}
                   {ev.summary && <p className="text-xs text-gray-500 mt-1 leading-relaxed">{ev.summary}</p>}
                   <div className="flex gap-2 mt-1 text-xs text-gray-400">
                     <span>👍 {ev.votes_agree}</span>

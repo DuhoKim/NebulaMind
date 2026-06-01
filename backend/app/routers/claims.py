@@ -1,13 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
-from sqlalchemy import func, or_
+from sqlalchemy import func, or_, distinct
 from sqlalchemy import text as _text
 from typing import Optional
 import math
 import re
 from datetime import datetime, timedelta
 from datetime import datetime as _datetime
+from collections import defaultdict
 
 from fastapi import Request
 from app.config import settings
@@ -16,6 +17,7 @@ from app.middleware.rate_limit import limiter, VOTES_LIMIT, EDITS_LIMIT
 from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal, TrustAuditLog
 from app.models.council import Escalation
 from app.models.page import WikiPage
+from app.models.evidence_element_link import EvidenceElementLink
 
 router = APIRouter(prefix="/api", tags=["claims"])
 
@@ -350,9 +352,28 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
     claim = db.query(Claim).filter(Claim.id == claim_id).first()
     if not claim:
         raise HTTPException(404, "Claim not found")
-    evidence = db.query(Evidence).filter(Evidence.claim_id == claim_id).all()
+    
+    evidence_rows = db.query(Evidence).filter(Evidence.claim_id == claim_id).all()
+    
+    total_elements = db.query(func.count(distinct(EvidenceElementLink.element_id))).filter(
+        EvidenceElementLink.target_claim_id == claim_id
+    ).scalar() or 0
+
+    if not evidence_rows:
+        return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": [], "total_elements": total_elements}
+
+    evidence_ids = [e.id for e in evidence_rows]
+    
+    element_links = db.query(EvidenceElementLink).filter(EvidenceElementLink.evidence_id.in_(evidence_ids)).all()
+    links_by_evidence_id = defaultdict(list)
+    for link in element_links:
+        links_by_evidence_id[link.evidence_id].append({
+            "element_id": link.element_id,
+            "element_text_snapshot": link.element_text_snapshot,
+        })
+
     result = []
-    for e in evidence:
+    for e in evidence_rows:
         agree = db.query(func.count(EvidenceVote.id)).filter(
             EvidenceVote.evidence_id == e.id, EvidenceVote.value == 1
         ).scalar() or 0
@@ -362,13 +383,19 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
         comments = db.query(func.count(EvidenceComment.id)).filter(
             EvidenceComment.evidence_id == e.id
         ).scalar() or 0
+        
+        links = links_by_evidence_id.get(e.id, [])
+        
         result.append({
             "id": e.id, "title": e.title, "arxiv_id": e.arxiv_id,
             "url": e.url, "authors": e.authors, "year": e.year,
             "summary": e.summary, "stance": e.stance,
-            "votes_agree": agree, "votes_disagree": disagree, "comments_count": comments
+            "votes_agree": agree, "votes_disagree": disagree, "comments_count": comments,
+            "element_links": links,
+            "link_count": len(links)
         })
-    return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": result}
+
+    return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": result, "total_elements": total_elements}
 
 
 @router.post("/claims/{claim_id}/evidence", status_code=201)
