@@ -476,6 +476,338 @@ def ensure_shadow_row(conn, row: dict, manifest: dict, run_id: int, run_key: str
     return int(candidate_id)
 
 
+def check_element_match(preserved: Any, element_id: str) -> bool:
+    if not preserved:
+        return False
+
+    def clean_id(item: Any) -> str:
+        if isinstance(item, str):
+            return item.split("|")[0]
+        return str(item)
+
+    try:
+        elem_id_int = int(element_id)
+    except (ValueError, TypeError):
+        elem_id_int = None
+
+    if isinstance(preserved, list):
+        cleaned_preserved = [clean_id(item) for item in preserved]
+        if element_id in cleaned_preserved:
+            return True
+        if elem_id_int is not None and elem_id_int in preserved:
+            return True
+        return False
+
+    if isinstance(preserved, dict):
+        supp_ev = preserved.get("supporting_evidence_ids") or []
+        cleaned_supp_ev = [clean_id(item) for item in supp_ev]
+        if element_id in cleaned_supp_ev:
+            return True
+        if elem_id_int is not None and elem_id_int in supp_ev:
+            return True
+
+        id_map = preserved.get("element_id_map") or {}
+        cleaned_map_keys = [clean_id(k) for k in id_map.keys()]
+        cleaned_map_values = [clean_id(v) for v in id_map.values()]
+        if element_id in cleaned_map_keys or element_id in cleaned_map_values:
+            return True
+
+    return False
+
+
+def resolve_target_claim(conn, source_claim_id: int, element_id: str) -> tuple[int | None, str, str | None]:
+    row = conn.execute(
+        text("SELECT id, page_id, rewrite_status FROM claims WHERE id = :id"),
+        {"id": source_claim_id}
+    ).mappings().first()
+    
+    if not row:
+        return None, "not_found", f"Source claim {source_claim_id} not found"
+    
+    rewrite_status = row["rewrite_status"]
+    if rewrite_status is None or rewrite_status != "parent_replaced":
+        return source_claim_id, "self", None
+        
+    queue = [source_claim_id]
+    visited = {source_claim_id}
+    candidate_children = []
+    
+    while queue:
+        current = queue.pop(0)
+        children_rows = conn.execute(
+            text("""
+                SELECT child_claim_id, preserved_elements_json 
+                FROM claim_rewrite_lineage 
+                WHERE parent_claim_id = :parent_id
+            """),
+            {"parent_id": current}
+        ).mappings().all()
+        
+        for c in children_rows:
+            child_id = c["child_claim_id"]
+            if child_id not in visited:
+                visited.add(child_id)
+                queue.append(child_id)
+                
+                child_claim = conn.execute(
+                    text("SELECT id, rewrite_status FROM claims WHERE id = :id"),
+                    {"id": child_id}
+                ).mappings().first()
+                
+                if child_claim:
+                    preserved = c["preserved_elements_json"]
+                    if isinstance(preserved, str):
+                        try:
+                            preserved = json.loads(preserved)
+                        except Exception:
+                            preserved = {}
+                    
+                    candidate_children.append({
+                        "id": child_id,
+                        "rewrite_status": child_claim["rewrite_status"],
+                        "preserved": preserved
+                    })
+                    
+    visible_matching_children = []
+    for cand in candidate_children:
+        c_status = cand["rewrite_status"]
+        if c_status is None or c_status != "parent_replaced":
+            if check_element_match(cand["preserved"], element_id):
+                visible_matching_children.append(cand["id"])
+                
+    if len(visible_matching_children) == 1:
+        return visible_matching_children[0], "resolved", f"Retargeted via lineage to child claim {visible_matching_children[0]}"
+    elif len(visible_matching_children) > 1:
+        return None, "ambiguous", f"Ambiguous: multiple visible matching child claims found {visible_matching_children}"
+    else:
+        return None, "not_found", f"No visible child claim matches element {element_id}"
+
+
+def promote_element_scoped(manifest: dict, conn, dry_run: bool = True) -> dict:
+    from collections import defaultdict
+    
+    evidence_rows_inserted = 0
+    evidence_rows_reused = 0
+    element_links_inserted = 0
+    element_links_skipped_duplicate = 0
+    rewrite_resolution_skipped = 0
+    rewrite_resolution_failed = 0
+    
+    groups = defaultdict(list)
+    
+    for item in manifest.get("rows", []):
+        row = item.get("candidate") or item
+        status = row.get("status") or row.get("validator_status")
+        if status != "validated_ready":
+            continue
+            
+        source_claim_id = row.get("source_claim_id") or row.get("claim_id")
+        element_id = row.get("element_id")
+        
+        if not source_claim_id or not element_id:
+            rewrite_resolution_failed += 1
+            continue
+            
+        target_claim_id, resolution_status, resolution_reason = resolve_target_claim(
+            conn, source_claim_id, element_id
+        )
+        
+        # Hydrate missing page_id and page_slug for reporting & DB writes
+        claim_info = conn.execute(
+            text("""
+                SELECT c.page_id, p.slug 
+                FROM claims c 
+                JOIN wiki_pages p ON c.page_id = p.id 
+                WHERE c.id = :id
+            """),
+            {"id": target_claim_id or source_claim_id}
+        ).mappings().first()
+        
+        if claim_info:
+            row["page_id"] = claim_info["page_id"]
+            row["page_slug"] = claim_info["slug"]
+            item["page_id"] = claim_info["page_id"]
+            item["page_slug"] = claim_info["slug"]
+        
+        row["target_claim_id"] = target_claim_id
+        row["rewrite_resolution_status"] = resolution_status
+        row["rewrite_resolution_reason"] = resolution_reason
+        item["target_claim_id"] = target_claim_id
+        item["rewrite_resolution_status"] = resolution_status
+        item["rewrite_resolution_reason"] = resolution_reason
+        
+        if not target_claim_id:
+            if resolution_status == "ambiguous":
+                rewrite_resolution_skipped += 1
+            else:
+                rewrite_resolution_failed += 1
+            continue
+            
+        key = (target_claim_id, row["arxiv_id"])
+        groups[key].append(row)
+        
+    run_id = None
+    run_key = None
+    seen_in_batch = set()
+    
+    for (target_claim_id, arxiv_id), group_rows in groups.items():
+        existing_evidence = conn.execute(
+            text("""
+                SELECT id FROM evidence 
+                WHERE claim_id = :claim_id 
+                  AND arxiv_id = :arxiv_id 
+                  AND evidence_status = 'production_active' 
+                LIMIT 1
+            """),
+            {"claim_id": target_claim_id, "arxiv_id": arxiv_id}
+        ).scalar()
+        
+        if existing_evidence:
+            evidence_rows_reused += 1
+            evidence_id = existing_evidence
+        else:
+            evidence_rows_inserted += 1
+            if not dry_run:
+                if run_id is None:
+                    run_id, run_key = create_promotion_run(conn, group_rows[0], manifest)
+                
+                first_row = group_rows[0]
+                row_copy = {**first_row, "claim_id": target_claim_id}
+                candidate_id = ensure_shadow_row(conn, row_copy, manifest, run_id, run_key)
+                
+                evidence_id = conn.execute(
+                    text(
+                        """
+                        INSERT INTO evidence
+                            (claim_id, arxiv_id, url, title, authors, year, summary, stance,
+                             quality, abstract, verified_at, source_channel, arxiv_verified,
+                             arxiv_wiki_candidate_id, evidence_status, provenance)
+                        VALUES
+                            (:claim_id, :arxiv_id, :url, :title, :authors, :year, :summary, 'supports',
+                             :quality, :abstract, now(), 'arxiv_wiki_feed_v1', true,
+                             :candidate_id, 'production_active', CAST(:provenance AS jsonb))
+                        RETURNING id
+                        """
+                    ),
+                    {
+                        "claim_id": target_claim_id,
+                        "arxiv_id": arxiv_id,
+                        "url": first_row.get("paper_url"),
+                        "title": first_row["paper_title_snapshot"],
+                        "authors": first_row.get("paper_authors_snapshot"),
+                        "year": first_row.get("paper_year"),
+                        "summary": first_row.get("evidence_summary"),
+                        "quality": first_row.get("quality") or 0.8,
+                        "abstract": first_row.get("paper_abstract_snapshot"),
+                        "candidate_id": candidate_id,
+                        "provenance": json.dumps(
+                            {
+                                "manifest_version": manifest.get("manifest_version", "arxiv_wiki_feed_v2_element_scoped"),
+                                "source": "arxiv_wiki_feed_v1",
+                                "approved_by": manifest.get("approved_by"),
+                                "count_gate_override": manifest.get("count_gate_override", False),
+                                "override_reason": manifest.get("override_reason"),
+                                "source_validator_path": manifest.get("source_validator_path"),
+                            }
+                        ),
+                    },
+                ).scalar_one()
+                
+                conn.execute(
+                    text(
+                        """
+                        UPDATE arxiv_wiki_evidence_candidates
+                        SET status='promoted', promoted_evidence_id=:evidence_id, promoted_at=now(), updated_at=now()
+                        WHERE id=:candidate_id
+                        """
+                    ),
+                    {"evidence_id": evidence_id, "candidate_id": candidate_id},
+                )
+            else:
+                evidence_id = -1
+                
+        for row in group_rows:
+            element_id = row["element_id"]
+            link_key = (target_claim_id, element_id, arxiv_id)
+            if link_key in seen_in_batch:
+                element_links_skipped_duplicate += 1
+                continue
+            seen_in_batch.add(link_key)
+            
+            existing_link = conn.execute(
+                text("""
+                    SELECT id FROM evidence_element_links 
+                    WHERE target_claim_id = :target_claim_id 
+                      AND element_id = :element_id 
+                      AND arxiv_id = :arxiv_id
+                    LIMIT 1
+                """),
+                {
+                    "target_claim_id": target_claim_id,
+                    "element_id": element_id,
+                    "arxiv_id": arxiv_id
+                }
+            ).scalar()
+            
+            if existing_link:
+                element_links_skipped_duplicate += 1
+            else:
+                element_links_inserted += 1
+                if not dry_run:
+                    if run_id is None:
+                        run_id, run_key = create_promotion_run(conn, row, manifest)
+                        
+                    conn.execute(
+                        text("""
+                            INSERT INTO evidence_element_links (
+                                evidence_id, source_claim_id, target_claim_id, page_id, page_slug,
+                                element_id, element_text_snapshot, arxiv_id, candidate_key,
+                                validator_run_key, promotion_run_id, rewrite_resolution_status,
+                                rewrite_resolution_reason, provenance
+                            ) VALUES (
+                                :evidence_id, :source_claim_id, :target_claim_id, :page_id, :page_slug,
+                                :element_id, :element_text_snapshot, :arxiv_id, :candidate_key,
+                                :validator_run_key, :promotion_run_id, :rewrite_resolution_status,
+                                :rewrite_resolution_reason, CAST(:provenance AS jsonb)
+                            ) ON CONFLICT (target_claim_id, element_id, arxiv_id) DO NOTHING
+                        """),
+                        {
+                            "evidence_id": evidence_id,
+                            "source_claim_id": row.get("source_claim_id") or row.get("claim_id"),
+                            "target_claim_id": target_claim_id,
+                            "page_id": row.get("page_id"),
+                            "page_slug": row.get("page_slug"),
+                            "element_id": element_id,
+                            "element_text_snapshot": row.get("element_text_snapshot"),
+                            "arxiv_id": arxiv_id,
+                            "candidate_key": row.get("candidate_key"),
+                            "validator_run_key": manifest.get("run_key") or manifest.get("validator_run_key"),
+                            "promotion_run_id": run_id,
+                            "rewrite_resolution_status": row.get("rewrite_resolution_status"),
+                            "rewrite_resolution_reason": row.get("rewrite_resolution_reason"),
+                            "provenance": json.dumps({
+                                "source": "arxiv_wiki_feed_promote_element_scoped",
+                                "dry_run": dry_run
+                            })
+                        }
+                    )
+                    
+    if not dry_run and run_id is not None:
+        conn.execute(
+            text("UPDATE arxiv_wiki_feed_runs SET status='promoted', finished_at=now() WHERE id=:run_id"),
+            {"run_id": run_id},
+        )
+        
+    return {
+        "evidence_rows_inserted": evidence_rows_inserted,
+        "evidence_rows_reused": evidence_rows_reused,
+        "element_links_inserted": element_links_inserted,
+        "element_links_skipped_duplicate": element_links_skipped_duplicate,
+        "rewrite_resolution_skipped": rewrite_resolution_skipped,
+        "rewrite_resolution_failed": rewrite_resolution_failed,
+    }
+
+
 def promote(manifest: dict) -> list[int]:
     if not manifest.get("apply_requested") or not manifest.get("approved_by"):
         raise SystemExit("Production promotion requires --apply and --approved-by.")
@@ -559,6 +891,7 @@ def main() -> None:
     parser.add_argument("--force-rows", help="Count-gate override, comma-separated claim_id:arxiv_id rows. Does not lower default gates.")
     parser.add_argument("--override-reason", help="Required explanation for --force-rows production override.")
     parser.add_argument("--policy", choices=["v1.0", "v1.1", "tier_ab"], default="v1.0", help="Promotion aggregation policy. Non-v1.0 policies are dry-run only.")
+    parser.add_argument("--promotion-scope", choices=["claim", "element"], default="element", help="Promotion scope: claim or element.")
     parser.add_argument("--manifest-output", type=Path, help="Optional dry-run manifest output path.")
     args = parser.parse_args()
     if args.force_rows and not args.override_reason:
@@ -593,10 +926,23 @@ def main() -> None:
             raise SystemExit("--manifest-output is only supported for dry-run manifests.")
         manifest_path = args.manifest_output
 
-    if args.apply:
-        promoted = promote(manifest)
-        manifest["promoted_evidence_ids"] = promoted
-        manifest["dry_run"] = False
+    manifest["promotion_scope"] = args.promotion_scope
+
+    if args.promotion_scope == "element":
+        engine = db_engine()
+        with engine.begin() as conn:
+            is_dry_run = not args.apply
+            if not is_dry_run and not args.approved_by:
+                raise SystemExit("Production promotion requires --apply and --approved-by.")
+            counters = promote_element_scoped(manifest, conn, dry_run=is_dry_run)
+            manifest["element_promotion_counters"] = counters
+            if not is_dry_run:
+                manifest["dry_run"] = False
+    else:
+        if args.apply:
+            promoted = promote(manifest)
+            manifest["promoted_evidence_ids"] = promoted
+            manifest["dry_run"] = False
 
     write_json(manifest_path, manifest)
     print(
@@ -612,6 +958,7 @@ def main() -> None:
                 "tier_b_audit_sample_path": manifest.get("tier_b_audit_sample_path"),
                 "sample_path": manifest.get("sample_path"),
                 "applied": args.apply,
+                "element_promotion_counters": manifest.get("element_promotion_counters"),
             },
             indent=2,
         )
