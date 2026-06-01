@@ -3206,7 +3206,7 @@ def queue_next_renovation():
               )
               AND (
                 p.last_renovated_at IS NULL
-                OR p.last_renovated_at < NOW() - INTERVAL '30 days'
+                OR p.last_renovated_at < NOW() - (COALESCE(p.renovation_interval_days, 14) || ' days')::interval
               )
             ORDER BY score ASC NULLS FIRST
             LIMIT 2
