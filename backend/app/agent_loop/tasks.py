@@ -4295,8 +4295,13 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
     import datetime as _dt
     import urllib.request as _urlreq
     from app.models.claim import Claim, Evidence, EvidenceVote
+    # batch guard — prevents accidentally routing expensive preview/pro models into high-volume loops.
+    # drain_jury_fast_pass enqueues this task per evidence row; a premium model override would
+    # multiply cost across the entire jury backlog.
+    from app.utils.model_guard import guard_batch_model
 
     model = model or settings.STANCE_JURY_FAST_MODEL
+    model = guard_batch_model(model, "tasks.run_stance_jury_single")
     db = SessionLocal()
     try:
         ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()

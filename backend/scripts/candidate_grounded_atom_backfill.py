@@ -529,6 +529,14 @@ def collect_rows_from_validator_artifacts(
     retrieval_index = load_retrieval_index(source_dir)
     embedding_cache: dict[str, list[float]] = {}
     main_candidates_seen = 0
+    # batch guard — prevents accidentally routing expensive preview/pro models into high-volume loops.
+    # Fails fast at the top of the row-iteration loop before any API spend.
+    if enable_entailment_gate and entailment_provider in ("gemini", "openai_compatible"):
+        from app.utils.model_guard import guard_batch_model
+        entailment_model = guard_batch_model(
+            entailment_model,
+            "candidate_grounded_atom_backfill.collect_rows_from_validator_artifacts",
+        )
     for subdir in ["validator_brk_run", "validator_firm_keep_run"]:
         pair_path = source_dir / subdir / "element_candidate_pairs.jsonl"
         if not pair_path.exists():

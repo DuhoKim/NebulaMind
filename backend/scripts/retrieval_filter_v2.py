@@ -547,6 +547,9 @@ def evaluate_entailment_gate_gemini(
     base_url: str = ENTAILMENT_GEMINI_BASE,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
 ) -> EntailmentGateResult:
+    # batch guard — prevents accidentally routing expensive preview/pro models into high-volume loops
+    from app.utils.model_guard import guard_batch_model
+    model = guard_batch_model(model, "retrieval_filter_v2.evaluate_entailment_gate_gemini")
     return evaluate_entailment_gate_openai_compatible(
         row,
         model=model,

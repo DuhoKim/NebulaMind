@@ -197,3 +197,48 @@ class Settings(BaseSettings):
 
 
 settings = Settings()
+
+
+# === Batch-cost safeguard ===
+# Allowlist of model IDs cleared for repetitive / long-context batch jobs (loops
+# over claims or papers). Criterion: estimated input price < ~$1/M tokens.
+# Anything outside this set is blocked from batch use by guard_batch_model()
+# to prevent a recurrence of the 2026-06-01 Gemini 3.1 Pro Preview incident
+# (29 papers x 478 claims x 8K tokens -> 114M tokens on a premium preview model).
+#
+# Provider-prefixed variants ("google/gemini-2.5-flash") are also accepted —
+# guard_batch_model() strips the prefix before lookup.
+BATCH_SAFE_MODELS: frozenset[str] = frozenset({
+    # Google Flash tier
+    "gemini-2.5-flash",
+    "gemini-2.5-flash-lite",
+    "gemini-2.5-flash-8b",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
+    "gemini-1.5-flash-8b",
+    "gemini-3.5-flash",
+    # Local Ollama models (no API cost)
+    "llama3.1:8b",
+    "llama3.3:70b",
+    "deepseek-r1:14b",
+    "deepseek-r1:32b",
+    "qwen3:30b",
+    "qwen3:30b-a3b-instruct-2507-q4_K_M",
+    "gemma3:27b",
+    "phi4:14b",
+    "astrosage-70b",
+    "astrosage-70b:latest",
+    "atom-astronomy-7b",
+    "vanta-research/atom-astronomy-7b",
+    "vanta-research/atom-astronomy-7b:latest",
+    "nomic-embed-text:v1.5",
+})
+
+# Default substitute returned in non-strict mode. Cheapest hosted member of
+# BATCH_SAFE_MODELS while still maintaining astronomy-prompt fluency.
+BATCH_SAFE_DEFAULT_MODEL: str = "gemini-2.5-flash"
+
+# When True, guard_batch_model() raises ValueError on a non-allowlisted model.
+# When False, it logs a warning and substitutes BATCH_SAFE_DEFAULT_MODEL.
+# Override at runtime via NM_BATCH_STRICT_MODE if needed for emergencies.
+BATCH_STRICT_MODE: bool = True
