@@ -38,17 +38,24 @@ from app.models.page import PageVersion, WikiPage
 from app.models.vote import Vote
 from app.models.qa import QAQuestion, QAAnswer
 from app.services.llm_utils import strip_think_blocks
+from app.utils.model_guard import guard_batch_model
+from app.utils.premium_dispatch import dispatch_premium, log_llm_spend
 
 # ---------------------------------------------------------------------------
 # Model keep-alive helpers
 # ---------------------------------------------------------------------------
 
 def _keep_alive_ollama(base_url: str, model: str, keep_alive: str = "24h") -> None:
-    """Ping Ollama to keep a model loaded in memory."""
+    """Ping Ollama to keep a model loaded in memory with a capped context."""
     try:
         httpx.post(
             f"{base_url.rstrip('/').rstrip('/v1')}/api/generate",
-            json={"model": model, "keep_alive": keep_alive, "prompt": ""},
+            json={
+                "model": model, 
+                "keep_alive": keep_alive, 
+                "prompt": "",
+                "options": {"num_ctx": 8192}
+            },
             timeout=10,
         )
     except Exception:
@@ -99,6 +106,7 @@ STANCE_JURY_MODELS = [
     {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": "vanta-research/atom-astronomy-7b", "label": "vanta-research/atom-astronomy-7b"},
 ]
 STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
 
@@ -112,6 +120,7 @@ JURY_AGENT_LABELS = {
     "deepseek-r1:671b":    "JuryDeepseek671",
     "groq-llama3.3":      "JuryGroq",
     "cerebras-llama3.1":  "JuryCerebras",
+    "vanta-research/atom-astronomy-7b": "JuryAtom",
 }
 
 STANCE_JURY_INFLIGHT_PREFIX = "stance_jury:inflight:"
@@ -511,6 +520,9 @@ def _build_provider_chain_for_role(role: str = None):
 
 def _call_provider(provider: dict, system: str, user_msg: str) -> str:
     """Single call to one provider (no retry — caller handles that)."""
+    est_tokens = max(1, (len(system) + len(user_msg)) // 4)
+    job_name = f"tasks.chat.{provider.get('label', provider['model'])}"
+    dispatch_premium(job_name, provider["model"], est_tokens)
     resp = httpx.post(
         f"{provider['base_url']}/chat/completions",
         headers={"Authorization": f"Bearer {provider['api_key']}"},
@@ -523,6 +535,19 @@ def _call_provider(provider: dict, system: str, user_msg: str) -> str:
         },
         timeout=120,
     )
+    if resp.status_code < 400:
+        usage = {}
+        try:
+            usage = resp.json().get("usage") or {}
+        except Exception:
+            pass
+        log_llm_spend(
+            job_name,
+            provider["model"],
+            prompt_tokens=usage.get("prompt_tokens"),
+            completion_tokens=usage.get("completion_tokens"),
+            estimated_tokens=est_tokens,
+        )
     return resp  # caller inspects status
 
 
@@ -602,6 +627,8 @@ def _chat(model: str, system: str, user_msg: str, max_retries: int = 3, role: st
 async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, user_msg: str, timeout: int) -> dict | None:
     """Call a single model asynchronously. Returns dict on success, None on failure."""
     try:
+        est_tokens = max(1, (len(system) + len(user_msg)) // 4)
+        job_name = f"tasks.chat_parallel.{model.get('label', model['model'])}"
         payload: dict = {
             "model": model["model"],
             "messages": [
@@ -613,6 +640,7 @@ async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, u
             payload["options"] = {"num_ctx": 8192}
         if "max_tokens" in model:
             payload["max_tokens"] = model["max_tokens"]
+        dispatch_premium(job_name, model["model"], est_tokens)
         resp = await client.post(
             f"{model['base_url']}/chat/completions",
             headers={"Authorization": f"Bearer {model['api_key']}"},
@@ -620,7 +648,16 @@ async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, u
             timeout=timeout,
         )
         resp.raise_for_status()
-        content = resp.json()["choices"][0]["message"]["content"]
+        data = resp.json()
+        usage = data.get("usage") or {}
+        log_llm_spend(
+            job_name,
+            model["model"],
+            prompt_tokens=usage.get("prompt_tokens"),
+            completion_tokens=usage.get("completion_tokens"),
+            estimated_tokens=est_tokens,
+        )
+        content = data["choices"][0]["message"]["content"]
         return {"model": model["model"], "label": model["label"], "response": content}
     except Exception as e:
         print(f"[_chat_parallel][{model.get('label', '?')}] failed: {e}")
@@ -1583,7 +1620,7 @@ def _check_arxiv_journal_ref(arxiv_id: str) -> str | None:
     return None
 
 
-def _run_evidence_linker_v2(db, agent: Agent):
+def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run=2):
     """Phase 1 evidence linker: real sources only, no hallucinated papers."""
     import json as _json
     from datetime import datetime, timedelta
@@ -1592,22 +1629,25 @@ def _run_evidence_linker_v2(db, agent: Agent):
     from sqlalchemy import func as sqlfunc
 
     # ---- Pick a target claim ----
-    cooloff = datetime.utcnow() - timedelta(days=settings.EVIDENCE_RETRY_COOLOFF_DAYS)
-    subq = db.query(Evidence.claim_id).subquery()
-    claim = (
-        db.query(Claim)
-        .filter(
-            Claim.trust_level == "unverified",
-            ~Claim.id.in_(subq),
-            (Claim.evidence_search_attempted_at.is_(None)) |
-            (Claim.evidence_search_attempted_at < cooloff),
+    if target_claim is None:
+        cooloff = datetime.utcnow() - timedelta(days=settings.EVIDENCE_RETRY_COOLOFF_DAYS)
+        subq = db.query(Evidence.claim_id).subquery()
+        claim = (
+            db.query(Claim)
+            .filter(
+                Claim.trust_level == "unverified",
+                ~Claim.id.in_(subq),
+                (Claim.evidence_search_attempted_at.is_(None)) |
+                (Claim.evidence_search_attempted_at < cooloff),
+            )
+            .order_by(sqlfunc.random())
+            .first()
         )
-        .order_by(sqlfunc.random())
-        .first()
-    )
-    if not claim:
-        print(f"[{agent.name}] no unverified claims due for evidence search")
-        return
+        if not claim:
+            print(f"[{agent.name if agent else 'system'}] no unverified claims due for evidence search")
+            return
+    else:
+        claim = target_claim
 
     page = db.query(WikiPage).get(claim.page_id)
     topic = page.title if page else "astronomy"
@@ -1671,7 +1711,7 @@ def _run_evidence_linker_v2(db, agent: Agent):
 
     # ---- Step 4: persist top-N (peer-reviewed papers only) ----
     from datetime import datetime as _dt
-    top = verified[:settings.EVIDENCE_INSERTS_PER_RUN]
+    top = verified[:inserts_per_run]
     added = 0
     rejected = 0
     ev_list = []
@@ -1698,7 +1738,7 @@ def _run_evidence_linker_v2(db, agent: Agent):
             year=ed["year"],
             summary=None,
             stance=v.stance_hint or "supports",
-            added_by_agent_id=agent.id,
+            added_by_agent_id=agent.id if agent else None,
             quality=v.quality,
             abstract=ed["abstract"],
             ads_bibcode=ed["ads_bibcode"],
@@ -1712,7 +1752,7 @@ def _run_evidence_linker_v2(db, agent: Agent):
         ev_list.append(ev)
         added += 1
     if rejected:
-        print(f"[{agent.name}] rejected {rejected} pure preprint(s) for claim #{claim.id}")
+        print(f"[{agent.name if agent else 'system'}] rejected {rejected} pure preprint(s) for claim #{claim.id}")
 
     claim.evidence_search_attempted_at = _dt.utcnow()
 
@@ -1723,18 +1763,174 @@ def _run_evidence_linker_v2(db, agent: Agent):
         from app.routers.claims import recalculate_trust_v2
         new_trust, ts = recalculate_trust_v2(
             claim.id, db, trigger="evidence_linker_v2",
-            actor_agent_id=agent.id,
+            actor_agent_id=agent.id if agent else None,
         )
         schedule_stance_jury(claim.id)
-        print(f"[{agent.name}] linked {added} verified paper(s) to claim #{claim.id} "
+        print(f"[{agent.name if agent else 'system'}] linked {added} verified paper(s) to claim #{claim.id} "
               f"→ {new_trust} (TS={ts:+.2f})")
         _notify(
-            f"🔗 [{agent.model_name}] claim #{claim.id} +{added} verified → {new_trust}"
+            f"🔗 [{(agent.model_name if agent else 'system')}] claim #{claim.id} +{added} verified → {new_trust}"
         )
     else:
-        print(f"[{agent.name}] claim #{claim.id}: no verifiable papers from {len(unique)} candidates")
-        _notify(f"🔍 [{agent.model_name}] claim #{claim.id}: 0/{len(unique)} candidates passed verification")
+        print(f"[{agent.name if agent else 'system'}] claim #{claim.id}: no verifiable papers from {len(unique)} candidates")
+        _notify(f"🔍 [{(agent.model_name if agent else 'system')}] claim #{claim.id}: 0/{len(unique)} candidates passed verification")
 
+
+# ---------------------------------------------------------------------------
+# P1 Pipeline Redesign: drain_evidence_for_page
+# ---------------------------------------------------------------------------
+
+@celery_app.task(name="app.agent_loop.tasks.drain_evidence_for_page")
+def drain_evidence_for_page(page_id: int = 57):
+    """
+    Celery beat task to run the ADS/S2 evidence search directly for unverified
+    established claims with <2 evidence.
+    """
+    from datetime import datetime, timedelta
+    from app.models.claim import Claim, Evidence
+    from sqlalchemy import func as sqlfunc
+
+    db = SessionLocal()
+    try:
+        cooloff = datetime.utcnow() - timedelta(days=settings.EVIDENCE_RETRY_COOLOFF_DAYS)
+
+        # Count evidence per claim to find those with < 2
+        evidence_counts = (
+            db.query(Evidence.claim_id, sqlfunc.count(Evidence.id).label("c"))
+            .group_by(Evidence.claim_id)
+            .subquery()
+        )
+
+        claims = (
+            db.query(Claim)
+            .outerjoin(evidence_counts, Claim.id == evidence_counts.c.claim_id)
+            .filter(
+                Claim.page_id == page_id,
+                Claim.trust_level == "unverified",
+                Claim.claim_type == "established",
+                (evidence_counts.c.c == None) | (evidence_counts.c.c < 2),
+                (Claim.evidence_search_attempted_at.is_(None)) |
+                (Claim.evidence_search_attempted_at < cooloff),
+            )
+            .order_by(sqlfunc.random())
+            .limit(10)  # We can process a small batch each run
+            .all()
+        )
+
+        if not claims:
+            print(f"[system] drain_evidence_for_page({page_id}): No unverified claims due for search.")
+            return
+
+        for claim in claims:
+            print(f"[system] drain_evidence_for_page: Running search for claim_id={claim.id}")
+            # we run it for each found claim, overriding inserts_per_run to 3-4
+            _run_evidence_linker_v2(db, agent=None, target_claim=claim, inserts_per_run=4)
+
+    except Exception as e:
+        print(f"[system] drain_evidence_for_page failed: {e}")
+    finally:
+        db.close()
+
+
+# ---------------------------------------------------------------------------
+# P1 Pipeline Redesign: sync_verbatim_markers_nightly
+# ---------------------------------------------------------------------------
+
+@celery_app.task(name="app.agent_loop.tasks.sync_verbatim_markers_nightly")
+def sync_verbatim_markers_nightly(page_id: int = 57):
+    """
+    Nightly beat task to run sync_verbatim_claim_markers.py and check coverage.
+    """
+    import subprocess
+    import json
+
+    db = SessionLocal()
+    try:
+        cmd = [
+            ".venv/bin/python",
+            "scripts/sync_verbatim_claim_markers.py",
+            "--commit",
+            "--page", str(page_id)
+        ]
+        print(f"[system] Running nightly verbatim sync for page {page_id}...")
+        result = subprocess.run(cmd, capture_output=True, text=True, cwd="/Users/duhokim/NebulaMind/NebulaMind/backend")
+        print(result.stdout)
+        if result.stderr:
+            print(result.stderr)
+
+        # Coverage Map / Watchdog (Phase 4)
+        from sqlalchemy import text
+        from app.models.page import WikiPage
+        page = db.execute(text("SELECT id, slug, content FROM wiki_pages WHERE id = :pid"), {"pid": page_id}).fetchone()
+        if page and page.content:
+            import re
+            # Count visible asserted markers
+            markers = {
+                int(token.strip())
+                for group in re.findall(r"<!--claim:([\d,\s]+)-->", page.content)
+                for token in group.split(",")
+                if token.strip()
+            }
+            visible_count = len(markers)
+            
+            # Count active assigned claims
+            owned_res = db.execute(text("""
+                SELECT c.id, c.trust_level 
+                FROM claim_section_assignments a
+                JOIN claims c ON c.id = a.claim_id
+                WHERE a.page_id = :pid AND a.assignment_status = 'active'
+            """), {"pid": page_id}).fetchall()
+            
+            active_claims = {r.id for r in owned_res}
+            must_keep_claims = {r.id for r in owned_res if r.trust_level in ('accepted', 'consensus')}
+            
+            # --- Coverage v2 (2026-06-04): scope denominator to MUST-KEEP claims. ---
+            # Rationale: accepted/consensus claims are the high-trust facts that
+            # belong in article prose. Debated/unverified/structured-only claims are
+            # correctly NOT inline (rendered via /claims API). The old denominator
+            # (all active assignments) counted 462/478 structured-only nodes on p57,
+            # making <50% unsatisfiable by construction. See Watchdog_Denominator_Fix_v1.md.
+            must_keep_missing = must_keep_claims - markers
+            mk_total = len(must_keep_claims)
+            # Informational structural ratio (kept for the log, NOT for alerting):
+            structural_ratio = visible_count / len(active_claims) if active_claims else 1.0
+            # The alerting metric: fraction of must-keep claims present in prose.
+            mk_coverage = (len(must_keep_claims & markers) / mk_total) if mk_total else 1.0
+
+            print(
+                f"[system] Watchdog for {page.slug}: must-keep coverage {mk_coverage:.1%} "
+                f"({mk_total - len(must_keep_missing)}/{mk_total}); "
+                f"structural {structural_ratio:.1%} ({visible_count}/{len(active_claims)}, info-only)"
+            )
+            
+            from app.agent_loop.tasks import _notify
+            # Only must-keep claims drive alerts now. Severity reflects a CONTENT gap,
+            # not a "collapse": route to regen, do not cry catastrophe.
+            if mk_total == 0:
+                pass  # no high-trust claims yet — nothing to assert in prose
+            elif mk_coverage < 0.50 or len(must_keep_missing) >= 10:
+                msg = (
+                    f"⚠️ [WARN] Page {page_id} must-keep prose coverage low: "
+                    f"{mk_coverage:.1%}; {len(must_keep_missing)} high-trust claims not in prose. "
+                    f"Content regeneration recommended."
+                )
+                print(msg)
+                _notify(msg)
+                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
+                claim_marker_embed_page.delay(page_id)
+            elif must_keep_missing:
+                # A few missing: log + repair, but no notify (sub-alert noise floor).
+                print(
+                    f"📉 [info] Page {page_id} must-keep coverage {mk_coverage:.1%}, "
+                    f"{len(must_keep_missing)} missing. Triggering repair pass."
+                )
+                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
+                claim_marker_embed_page.delay(page_id)
+
+    except Exception as e:
+        print(f"[system] sync_verbatim_markers_nightly failed: {e}")
+    finally:
+        db.close()
 
 # ---------------------------------------------------------------------------
 # Coverage Map Celery Task (Phase 5)
@@ -2953,12 +3149,21 @@ CONSTRAINTS:
 - Missing subtopics listed are suggestions — only include if applicable to {page.title}.
   For subtopics not relevant to this specific page, write "NOT_APPLICABLE".
 - Preserve any existing accepted/consensus claims in the section.
+- You MUST PRESERVE any existing HTML claim markers (e.g. <!--claim:123-->) from the current section.
+- You MUST weave HTML claim markers inline immediately after asserting any of the provided key claims (e.g. <!--claim:xxx-->).
 - Do NOT invent papers or unsourced claims.
 - Output ONLY the rewritten section starting with ## {section_to_rewrite}
 - 6-10 distinct claim sentences with citations."""
 
+        from app.models.claim import Claim as ClaimModel
+        page_claims = db.query(ClaimModel).filter(ClaimModel.page_id == page.id).order_by(ClaimModel.created_at.desc()).limit(200).all()
+        claims_text = "\n".join(f"<!--claim:{c.id}--> [{c.trust_level}] {c.text[:200]}" for c in page_claims)
+
         user_msg = f"""Available evidence (arXiv, last 3 years):
 {evidence_text}
+
+Key claims on this page:
+{claims_text}
 
 Missing subtopics to address (if applicable):
 {missing_text}
@@ -3795,8 +4000,10 @@ def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str
 
     for m in _FACT_DRAFT_MODELS:
         try:
+            model = guard_batch_model(m["model"], "tasks.fact_draft")
+            est_tokens = max(1, (len(system) + len(user)) // 4)
             payload = _j.dumps({
-                "model": m["model"],
+                "model": model,
                 "messages": [
                     {"role": "system", "content": system},
                     {"role": "user",   "content": user},
@@ -3804,6 +4011,7 @@ def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str
                 "stream": False,
                 "options": {"num_predict": 1024, "num_ctx": 4096},
             }).encode()
+            dispatch_premium("tasks.fact_draft", model, est_tokens)
             req = _req.Request(
                 f"{m['base_url']}/chat/completions",
                 data=payload,
@@ -3811,6 +4019,14 @@ def _call_local_llm_for_facts(system: str, user: str, timeout: int = 300) -> str
             )
             with _req.urlopen(req, timeout=timeout) as r:
                 resp = _j.loads(r.read())
+            usage = resp.get("usage") or {}
+            log_llm_spend(
+                "tasks.fact_draft",
+                model,
+                prompt_tokens=usage.get("prompt_tokens"),
+                completion_tokens=usage.get("completion_tokens"),
+                estimated_tokens=est_tokens,
+            )
             content = resp["choices"][0]["message"]["content"]
             content = strip_think_blocks(content)
             print(f"[fact_draft] served by {m['label']}")
@@ -4337,13 +4553,27 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         }).encode()
 
         try:
+            dispatch_premium(
+                "tasks.run_stance_jury_single",
+                model,
+                max(1, (len(STANCE_JURY_SYSTEM) + len(user_msg)) // 4),
+            )
             req = _urlreq.Request(
                 "http://localhost:11434/v1/chat/completions",
                 data=payload,
                 headers={"Content-Type": "application/json"},
             )
             with _urlreq.urlopen(req, timeout=45) as resp:
-                content = json.loads(resp.read())["choices"][0]["message"]["content"]
+                data = json.loads(resp.read())
+                usage = data.get("usage") or {}
+                log_llm_spend(
+                    "tasks.run_stance_jury_single",
+                    model,
+                    prompt_tokens=usage.get("prompt_tokens"),
+                    completion_tokens=usage.get("completion_tokens"),
+                    estimated_tokens=max(1, (len(STANCE_JURY_SYSTEM) + len(user_msg)) // 4),
+                )
+                content = data["choices"][0]["message"]["content"]
                 content = strip_think_blocks(content)
                 parsed = _parse_jury_json(content)
         except Exception as e:
