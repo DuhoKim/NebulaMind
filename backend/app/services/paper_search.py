@@ -45,6 +45,7 @@ def is_doi(url: str) -> bool:
 ADS_SEARCH_URL = "https://api.adsabs.harvard.edu/v1/search/query"
 S2_SEARCH_URL  = "https://api.semanticscholar.org/graph/v1/paper/search"
 S2_PAPER_URL   = "https://api.semanticscholar.org/graph/v1/paper/{id}"
+S2_CITATIONS_URL = "https://api.semanticscholar.org/graph/v1/paper/{id}/citations"
 
 ADS_FIELDS = "bibcode,title,abstract,author,year,doi,identifier,citation_count,pub"
 S2_FIELDS  = "title,abstract,authors,year,externalIds,citationCount,venue"
@@ -108,6 +109,42 @@ def ads_search(query: str, *, rows: int = 5, sort: str = "date desc",
             data = json.loads(resp.read())
     except Exception as e:
         raise PaperSearchError(f"ADS request failed: {e}") from e
+
+    return [_ads_to_record(d) for d in data.get("response", {}).get("docs", [])]
+
+
+def ads_citing_papers(
+    bibcode: str,
+    *,
+    rows: int = 200,
+    start: int = 0,
+    min_year: int | None = None,
+) -> list[PaperRecord]:
+    """Return modern ADS papers that cite a seminal bibcode."""
+    if not settings.ADS_API_KEY:
+        raise PaperSearchError("ADS_API_KEY not configured")
+
+    q = f'citations(bibcode:"{bibcode}")'
+    if min_year:
+        q = f"{q} year:{min_year}-"
+    params: dict = {
+        "q": q,
+        "fl": ADS_FIELDS,
+        "rows": rows,
+        "start": start,
+        "sort": "date desc",
+        "fq": "database:astronomy",
+    }
+    url = f"{ADS_SEARCH_URL}?{urllib.parse.urlencode(params)}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {settings.ADS_API_KEY}",
+        "User-Agent": "NebulaMind/1.0 (citation-context-mining)",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        raise PaperSearchError(f"ADS citations request failed: {e}") from e
 
     return [_ads_to_record(d) for d in data.get("response", {}).get("docs", [])]
 
@@ -176,6 +213,26 @@ def s2_search(query: str, *, rows: int = 5) -> list[PaperRecord]:
     except Exception as e:
         raise PaperSearchError(f"S2 request failed: {e}") from e
     return [_s2_to_record(p) for p in data.get("data", [])]
+
+
+def s2_citation_contexts(s2_id_or_extid: str, *, limit: int = 1000, offset: int = 0) -> list[dict]:
+    """Return Semantic Scholar citation records with contexts and intents."""
+    fields = (
+        "contexts,intents,isInfluential,"
+        "citingPaper.externalIds,citingPaper.title,citingPaper.year,citingPaper.abstract"
+    )
+    params = {"fields": fields, "limit": limit, "offset": offset}
+    url = (
+        S2_CITATIONS_URL.format(id=urllib.parse.quote(s2_id_or_extid, safe=":"))
+        + "?"
+        + urllib.parse.urlencode(params)
+    )
+    try:
+        with urllib.request.urlopen(url, timeout=20) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        raise PaperSearchError(f"S2 citations request failed: {e}") from e
+    return data.get("data", []) or []
 
 
 def _s2_to_record(p: dict) -> PaperRecord:
