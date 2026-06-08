@@ -11,7 +11,7 @@ from app.models.agent import Agent
 from app.models.claim import Claim
 from app.models.page import WikiPage
 from app.models.seminal import SeminalClaimMap
-from scripts.seed_seminal_claims import build_rows
+from scripts.ccm_seed_seminal_map import resolve_mappings, strip_claim_markers
 
 
 def test_seminal_claim_map_model_and_seed_resolution():
@@ -28,34 +28,47 @@ def test_seminal_claim_map_model_and_seed_resolution():
     Session = sessionmaker(bind=engine)
     db = Session()
     try:
-        page = WikiPage(slug="galaxy-formation", title="Galaxy Formation")
+        page = WikiPage(id=57, slug="galaxy-evolution", title="Galaxy Evolution")
         db.add(page)
         db.flush()
         claim = Claim(
+            id=1632,
             page_id=page.id,
-            text="Gas can cool radiatively inside dark matter halos and condense into galaxies.",
+            section="Overview & Historical Foundations",
+            text=(
+                "The <!--claim:1579-->Planck Collaboration measured the primordial "
+                "power spectrum with high precision."
+            ),
         )
         db.add(claim)
         db.commit()
 
-        entries = [
+        meta = {"page_id": 57, "section": "Overview & Historical Foundations"}
+        mappings = [
             {
-                "label": "White & Rees 1978",
-                "bibcode": "1978MNRAS.183..341W",
-                "doi": "10.1093/mnras/183.3.341",
-                "match_claims": [{"page_slug": "galaxy-formation", "text_contains": "cool radiatively"}],
-                "keyphrases": ["radiative cooling", "dark matter halo"],
+                "claim_id": 1632,
+                "text_guard": "measured the primordial power spectrum",
+                "label": "Planck Collaboration 2020",
+                "bibcode": "2020A&A...641A..10P",
+                "doi": "10.1051/0004-6361/201833887",
+                "arxiv_id": "1807.06211",
+                "keyphrases": ["primordial power spectrum", "Planck"],
             }
         ]
-        rows = build_rows(db, entries, added_by="kun_audit", allow_ambiguous=False, validate_ads=False)
+        resolved, failures = resolve_mappings(db, meta, mappings, added_by="kun_audit")
+        assert failures == []
+        rows = [item.row for item in resolved]
+        assert strip_claim_markers(claim.text) == (
+            "The Planck Collaboration measured the primordial power spectrum with high precision."
+        )
         assert rows == [
             {
                 "claim_id": claim.id,
-                "canonical_bibcode": "1978MNRAS.183..341W",
-                "canonical_label": "White & Rees 1978",
-                "canonical_doi": "10.1093/mnras/183.3.341",
-                "canonical_arxiv_id": None,
-                "topic_keyphrases": '["radiative cooling", "dark matter halo"]',
+                "canonical_bibcode": "2020A&A...641A..10P",
+                "canonical_label": "Planck Collaboration 2020",
+                "canonical_doi": "10.1051/0004-6361/201833887",
+                "canonical_arxiv_id": "1807.06211",
+                "topic_keyphrases": '["primordial power spectrum", "Planck"]',
                 "enabled": True,
                 "added_by": "kun_audit",
                 "notes": None,
@@ -66,7 +79,7 @@ def test_seminal_claim_map_model_and_seed_resolution():
         db.commit()
         mapped = db.scalar(select(SeminalClaimMap))
         assert mapped.claim_id == claim.id
-        assert mapped.canonical_label == "White & Rees 1978"
+        assert mapped.canonical_label == "Planck Collaboration 2020"
         assert mapped.enabled is True
     finally:
         db.close()

@@ -1,0 +1,398 @@
+# =============================================================================
+# seminal_claims.yaml — Citation Context Mining (CCM) seed registry
+# =============================================================================
+# Authoritative, human-reviewed mapping of baseline historical/theoretical
+# NebulaMind claims to their canonical source paper(s) (ADS bibcodes).
+#
+# Author:   Kun (analyst) — authored 2026-06-07
+# Reviewer: HwaO (approved CCM design v1, 2026-06-07)
+# Design:   docs/citation_context_mining_design_v1.md  (§2 Seminal Claim Mapping)
+# Loader:   scripts/ccm_seed_seminal_map.py  → upserts into table seminal_claim_map
+#
+# -----------------------------------------------------------------------------
+# PROVENANCE — every bibcode below was resolved and verified against NASA ADS
+# on 2026-06-07 using settings.ADS_API_KEY (app.services.paper_search.ads_search).
+# The `verified` block on each entry records year + citation_count AT AUDIT TIME,
+# so a future reviewer can detect if a bibcode was silently swapped.
+# DOIs and arXiv IDs are likewise ADS-resolved, not hand-typed.
+#
+# -----------------------------------------------------------------------------
+# BINDING MODEL (per HwaO directive 2026-06-07: bind to REAL claim IDs)
+# Each mapping carries BOTH:
+#   * claim_id   — the explicit, resolved Page-57 claim primary key (fast, exact).
+#   * text_guard — a verbatim substring that MUST be present in claims.text at
+#                  load time. The loader ABORTS the row if the guard is absent
+#                  (claim was rewritten / re-IDed). This is the drift tripwire
+#                  that makes hardcoded IDs safe against autowiki rewrites.
+# If claim_id resolution and text_guard disagree, the loader trusts NEITHER and
+# emits the row to a review file (see scripts/ccm_seed_seminal_map.py --dry-run).
+#
+# -----------------------------------------------------------------------------
+# SCOPE — this seed covers ONLY:
+#   page_id 57  ("Galaxy Evolution", slug: galaxy-evolution)
+#   section     "Overview & Historical Foundations"
+# All 14 target claims were confirmed page_id=57, correct section,
+# trust_level=unverified at audit time. CCM is intentionally NOT corpus-wide.
+#
+# keyphrases — reused verbatim by the Stage-3 extractor on-topic gate and the
+# Stage-4 Pico classifier (design §2.6 / §4.5 / §6.4). A citing paper whose
+# context sentence shares ZERO keyphrases with the claim is dropped pre-LLM.
+# =============================================================================
+
+meta:
+  page_id: 57
+  page_slug: galaxy-evolution
+  section: "Overview & Historical Foundations"
+  audited_by: kun
+  audited_at: "2026-06-07"
+  ads_verified: true
+  notes: >
+    Citation counts are ADS values at audit time (2026-06-07) and will drift
+    upward; they are recorded for provenance/anti-swap auditing, not as gates.
+
+mappings:
+
+  # ---------------------------------------------------------------------------
+  # TIER 1 — Direct attributions (claim text explicitly names the seminal work).
+  # These are the highest-fidelity CCM targets: the claim itself credits the
+  # historical paper, so modern introductory citations of that paper are the
+  # exact corroboration CCM is designed to harvest.
+  # ---------------------------------------------------------------------------
+
+  - claim_id: 1631
+    text_guard: "White & Rees (1978) established the conceptual framework for baryon condensation"
+    label: "White & Rees 1978"
+    bibcode: "1978MNRAS.183..341W"
+    doi: "10.1093/mnras/183.3.341"
+    arxiv_id: null            # pre-print era; no arXiv ID exists
+    verified: { year: 1978, citation_count: 3979 }
+    keyphrases:
+      - "radiative cooling"
+      - "gas cooling"
+      - "dark matter halo"
+      - "baryon condensation"
+      - "two-stage"
+      - "cooling time"
+      - "gas infall"
+      - "hierarchical"
+    notes: >
+      The canonical gas-cooling-in-halos result. Already has 1 old supporting
+      evidence row (ev 21078, year 1978, q=0.40); CCM supplies the recent
+      citers needed to clear n_supports>=3 and defeat the freshness floor.
+
+  - claim_id: 1632
+    # NOTE: claim text has an embedded <!--claim:1579--> marker right after "The ",
+    # so the guard must be a span that does NOT cross the marker. Loader should
+    # ALSO strip <!--claim:N--> markers before matching (design normalize_claim_text).
+    text_guard: "measured the primordial power spectrum"
+    label: "Planck Collaboration 2020 (2018 results X, inflation)"
+    bibcode: "2020A&A...641A..10P"
+    doi: "10.1051/0004-6361/201833887"
+    arxiv_id: "1807.06211"
+    verified: { year: 2020, citation_count: 3708 }
+    keyphrases:
+      - "primordial power spectrum"
+      - "spectral index"
+      - "scalar tilt"
+      - "n_s"
+      - "initial conditions"
+      - "inflation"
+      - "CMB anisotropies"
+      - "Planck"
+    notes: >
+      Claim cites n_s = 0.9649 ± 0.0042 — that is the inflation paper (X), not
+      the cosmological-parameters paper (VI). Bibcode disambiguated via ADS
+      title match on "Constraints on inflation".
+
+  - claim_id: 1634
+    # Embedded <!--claim:1580--> marker after "employed a "; use post-marker span.
+    text_guard: "comoving box with 2160"
+    label: "Springel et al. 2005 (Millennium Simulation)"
+    bibcode: "2005Natur.435..629S"
+    doi: "10.1038/nature03597"
+    arxiv_id: "astro-ph/0504097"
+    verified: { year: 2005, citation_count: 4450 }
+    keyphrases:
+      - "N-body simulation"
+      - "Millennium Simulation"
+      - "large-scale structure"
+      - "two-point correlation function"
+      - "galaxy clustering"
+      - "halo merger tree"
+      - "comoving box"
+    notes: >
+      Claim 1634 currently has ZERO evidence rows despite naming Springel 2005
+      explicitly — a prime CCM target (high modern-citer volume expected).
+
+  - claim_id: 1642
+    text_guard: "AGN feedback is invoked to truncate star formation in halos exceeding"
+    label: "Croton et al. 2006"
+    bibcode: "2006MNRAS.365...11C"
+    doi: "10.1111/j.1365-2966.2005.09675.x"
+    arxiv_id: "astro-ph/0508046"
+    verified: { year: 2006, citation_count: 3636 }
+    keyphrases:
+      - "AGN feedback"
+      - "radio mode"
+      - "cooling flow"
+      - "semi-analytic"
+      - "star formation truncation"
+      - "massive halo"
+      - "virial temperature"
+    notes: >
+      Claim 1642 has ZERO evidence despite citing Croton 2006. Canonical
+      radio-mode AGN feedback SAM paper.
+
+  - claim_id: 1639
+    text_guard: "the green valley contains fewer than 15% of galaxies at fixed stellar mass"
+    label: "Schawinski et al. 2014"
+    bibcode: "2014MNRAS.440..889S"
+    doi: "10.1093/mnras/stu327"
+    arxiv_id: "1402.4814"
+    verified: { year: 2014, citation_count: 689 }
+    keyphrases:
+      - "green valley"
+      - "quenching timescale"
+      - "blue cloud"
+      - "red sequence"
+      - "morphology"
+      - "transition timescale"
+      - "Galaxy Zoo"
+    notes: >
+      Claim names Schawinski 2014 for the green-valley quench-timescale result;
+      currently backed only by Faber 2007 (ev 20766). CCM adds modern citers.
+
+  - claim_id: 1648
+    text_guard: "The cosmic stellar mass density at z = 0"
+    label: "Fukugita & Peebles 2004"
+    bibcode: "2004ApJ...616..643F"
+    doi: "10.1086/425155"
+    arxiv_id: "astro-ph/0406095"
+    verified: { year: 2004, citation_count: 512 }
+    keyphrases:
+      - "cosmic energy inventory"
+      - "stellar mass density"
+      - "baryon budget"
+      - "baryon density"
+      - "cosmic baryon"
+      - "mass assembly"
+    notes: >
+      Cosmic stellar mass density / baryon inventory. Existing ev 20767.
+
+  # ---------------------------------------------------------------------------
+  # TIER 2 — SDSS bimodality cluster (claim 1638 names Blanton 2003 + Kauffmann
+  # 2003; the bimodality discovery lineage adds Strateva 2001 + Baldry 2004).
+  # Multiple seminal bibcodes legitimately map to the same claim.
+  # ---------------------------------------------------------------------------
+
+  - claim_id: 1638
+    # Embedded <!--claim:1582--> marker after "(SDSS) "; use post-marker span.
+    text_guard: "characterized approximately 700,000 galaxies"
+    label: "Blanton et al. 2003 (SDSS luminosity function)"
+    bibcode: "2003ApJ...592..819B"
+    doi: "10.1086/375776"
+    arxiv_id: "astro-ph/0210215"
+    verified: { year: 2003, citation_count: 987 }
+    keyphrases:
+      - "SDSS"
+      - "color bimodality"
+      - "luminosity function"
+      - "red sequence"
+      - "blue cloud"
+      - "stellar mass"
+      - "spectroscopic survey"
+
+  - claim_id: 1638
+    text_guard: "establishing the bimodal color distribution separated at"
+    label: "Kauffmann et al. 2003 (SDSS stellar masses)"
+    bibcode: "2003MNRAS.341...33K"
+    doi: "10.1046/j.1365-8711.2003.06291.x"
+    arxiv_id: "astro-ph/0204055"
+    verified: { year: 2003, citation_count: 2322 }
+    keyphrases:
+      - "SDSS"
+      - "stellar mass"
+      - "star formation history"
+      - "color bimodality"
+      - "structural transition"
+      - "4000 angstrom break"
+      - "surface mass density"
+
+  - claim_id: 1638
+    text_guard: "identifying a structural transition at a stellar mass"
+    label: "Strateva et al. 2001 (SDSS color separation)"
+    bibcode: "2001AJ....122.1861S"
+    doi: "10.1086/323301"
+    arxiv_id: "astro-ph/0107201"
+    verified: { year: 2001, citation_count: 1516 }
+    keyphrases:
+      - "color separation"
+      - "color bimodality"
+      - "early-type"
+      - "late-type"
+      - "SDSS"
+      - "u-r color"
+      - "galaxy classification"
+    notes: >
+      Strateva 2001 is the first-discovery paper of SDSS color bimodality;
+      bound to 1638 as the origin of the bimodal-distribution statement even
+      though the claim names Blanton/Kauffmann for the 700k-galaxy figure.
+
+  # ---------------------------------------------------------------------------
+  # TIER 3 — Theory/simulation foundations (hierarchical assembly + feedback
+  # essentiality + IllustrisTNG). Claim text references the framework; seminal
+  # works are the canonical sources even where the claim does not inline-cite.
+  # ---------------------------------------------------------------------------
+
+  - claim_id: 1630
+    text_guard: "the hierarchical assembly paradigm within ΛCDM cosmology"
+    label: "White & Frenk 1991"
+    bibcode: "1991ApJ...379...52W"
+    doi: "10.1086/170483"
+    arxiv_id: null
+    verified: { year: 1991, citation_count: 2372 }
+    keyphrases:
+      - "hierarchical clustering"
+      - "galaxy formation"
+      - "dark matter halo"
+      - "merger"
+      - "cold dark matter"
+      - "gas cooling"
+      - "halo merging"
+    notes: >
+      Canonical hierarchical-clustering galaxy-formation paper. Existing ev
+      20759 (White & Frenk 1991, q=0.40).
+
+  - claim_id: 1635
+    text_guard: "The IllustrisTNG suite subsequently extended this framework"
+    label: "Pillepich et al. 2018 (IllustrisTNG galaxy-formation model)"
+    bibcode: "2018MNRAS.473.4077P"
+    doi: "10.1093/mnras/stx2656"
+    arxiv_id: "1703.02970"
+    verified: { year: 2018, citation_count: 2058 }
+    keyphrases:
+      - "IllustrisTNG"
+      - "magnetohydrodynamics"
+      - "kinetic AGN feedback"
+      - "stellar-to-halo mass relation"
+      - "galaxy color bimodality"
+      - "black hole feedback"
+      - "cosmological simulation"
+    notes: >
+      Claim 1635 has ZERO evidence. The TNG statement spans three foundational
+      papers; Pillepich 2018 is the model/methods paper (kinetic AGN above
+      ~10^8 Msun BH mass).
+
+  - claim_id: 1635
+    text_guard: "galaxy color bimodality and the stellar-to-halo mass relation at z = 0 are reproduced"
+    label: "Nelson et al. 2018 (IllustrisTNG color bimodality)"
+    bibcode: "2018MNRAS.475..624N"
+    doi: "10.1093/mnras/stx3040"
+    arxiv_id: "1707.03395"
+    verified: { year: 2018, citation_count: 1616 }
+    keyphrases:
+      - "IllustrisTNG"
+      - "galaxy color bimodality"
+      - "red sequence"
+      - "color-magnitude"
+      - "kinetic AGN feedback"
+      - "quenching"
+    notes: >
+      Nelson 2018 is the TNG color-bimodality result paper, directly matching
+      the claim's "color bimodality ... reproduced" assertion.
+
+  - claim_id: 1635
+    text_guard: "only when kinetic AGN feedback is active above a black hole mass threshold"
+    label: "Weinberger et al. 2017 (TNG black-hole-driven thermal/kinetic feedback)"
+    bibcode: "2017MNRAS.465.3291W"
+    doi: "10.1093/mnras/stw2944"
+    arxiv_id: "1607.03486"
+    verified: { year: 2017, citation_count: 1299 }
+    keyphrases:
+      - "kinetic AGN feedback"
+      - "black hole feedback"
+      - "low-accretion state"
+      - "quenching"
+      - "thermal feedback"
+      - "IllustrisTNG"
+      - "black hole mass threshold"
+    notes: >
+      Weinberger 2017 is the kinetic-mode AGN feedback model underlying the
+      TNG threshold statement. Also cited by sibling claims 1633/1636/1643.
+
+  - claim_id: 1633
+    text_guard: "Observational validation of the hierarchical picture emerged through large-scale numerical simulations"
+    label: "Springel et al. 2005 (Millennium Simulation)"
+    bibcode: "2005Natur.435..629S"
+    doi: "10.1038/nature03597"
+    arxiv_id: "astro-ph/0504097"
+    verified: { year: 2005, citation_count: 4450 }
+    keyphrases:
+      - "N-body simulation"
+      - "Millennium Simulation"
+      - "hierarchical"
+      - "large-scale structure"
+      - "galaxy clustering"
+      - "dark matter"
+    notes: >
+      Same seminal work as 1634; here bound to the "observational validation
+      via simulations" framing claim. Existing ev 20761 (Springel 2005).
+
+  - claim_id: 1640
+    text_guard: "Semi-analytic models grounded in the ΛCDM paradigm generally replicate the galaxy stellar mass function"
+    label: "Somerville & Davé 2015 (ARA&A review)"
+    bibcode: "2015ARA&A..53...51S"
+    doi: "10.1146/annurev-astro-082812-140951"
+    arxiv_id: "1412.2712"
+    verified: { year: 2015, citation_count: 1476 }
+    keyphrases:
+      - "semi-analytic model"
+      - "stellar mass function"
+      - "galaxy formation"
+      - "feedback"
+      - "ΛCDM"
+      - "physical model"
+      - "cosmological framework"
+    notes: >
+      Canonical SAM review. Already the most-reused backing paper on this page
+      (ev 20773/20774/20775/20776/...); CCM will add modern citers to lift the
+      family of SAM-grounded claims.
+
+  - claim_id: 1650
+    text_guard: "necessitates physical suppression mechanisms beyond gravity alone"
+    label: "Behroozi et al. 2013"
+    bibcode: "2013ApJ...770...57B"
+    doi: "10.1088/0004-637X/770/1/57"
+    arxiv_id: "1207.6105"
+    verified: { year: 2013, citation_count: 2134 }
+    keyphrases:
+      - "stellar-to-halo mass"
+      - "star formation efficiency"
+      - "abundance matching"
+      - "star formation history"
+      - "halo mass function"
+      - "galaxy formation efficiency"
+    notes: >
+      Behroozi 2013 abundance-matching SFH paper underpins the M*/M_h
+      inefficiency statement. Existing ev 20772.
+
+# =============================================================================
+# DELIBERATELY EXCLUDED (documented so reviewers know these were considered):
+#   * claim 1636 "feedback processes ... essential" — generic; covered
+#     transitively via its Springel 2005 + Weinberger 2017 evidence and the
+#     1633/1635 mappings. Adding a 4th seminal binding risks over-greening a
+#     soft summary claim. Revisit after first dry-run if n_supports lags.
+#   * claims 1644–1647 (SFR problem, too-big-to-fail, missing satellites) —
+#     these are OPEN TENSIONS, not settled baseline facts. They are correctly
+#     NOT seminal-mapped: CCM must never green an unresolved problem. They
+#     remain in the normal stance-jury / debated-claim pipeline.
+#   * claim 1649 (baryon fraction 5-8%) — same source as 1648 (Fukugita &
+#     Peebles 2004); mapping 1648 suffices for that bibcode's citer harvest,
+#     and trust recompute is per-claim so 1649 still benefits from its own
+#     existing Fukugita+Behroozi evidence. Add later if needed.
+#
+# NEXT STEP: scripts/ccm_seed_seminal_map.py --dry-run  (Kun reviews resolved
+# claim_id/text_guard agreement + projected citer volume per bibcode before any
+# write). Then --commit to upsert seminal_claim_map. CCM_ENABLED stays false
+# until the dry-run audit passes (design §9 pre-enable gate).
+# =============================================================================
