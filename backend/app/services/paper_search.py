@@ -149,6 +149,31 @@ def ads_citing_papers(
     return [_ads_to_record(d) for d in data.get("response", {}).get("docs", [])]
 
 
+def ads_reference_bibcodes(bibcode: str, *, rows: int = 200) -> list[PaperRecord]:
+    """Return bibliography records cited by the given ADS bibcode."""
+    if not settings.ADS_API_KEY:
+        raise PaperSearchError("ADS_API_KEY not configured")
+
+    params: dict = {
+        "q": f'references(bibcode:"{bibcode}")',
+        "fl": ADS_FIELDS,
+        "rows": rows,
+        "sort": "date desc",
+        "fq": "database:astronomy",
+    }
+    url = f"{ADS_SEARCH_URL}?{urllib.parse.urlencode(params)}"
+    req = urllib.request.Request(url, headers={
+        "Authorization": f"Bearer {settings.ADS_API_KEY}",
+        "User-Agent": "NebulaMind/1.0 (dynamic-citation-context-mining)",
+    })
+    try:
+        with urllib.request.urlopen(req, timeout=20) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        raise PaperSearchError(f"ADS references request failed: {e}") from e
+    return [_ads_to_record(d) for d in data.get("response", {}).get("docs", [])]
+
+
 def ads_lookup_arxiv(arxiv_id: str) -> PaperRecord | None:
     """Resolve a known arXiv ID to a full paper record (used by the verifier)."""
     clean = arxiv_id.replace("arXiv:", "").strip()
@@ -232,6 +257,26 @@ def s2_citation_contexts(s2_id_or_extid: str, *, limit: int = 1000, offset: int 
             data = json.loads(resp.read())
     except Exception as e:
         raise PaperSearchError(f"S2 citations request failed: {e}") from e
+    return data.get("data", []) or []
+
+
+def s2_references(s2_id_or_extid: str, *, limit: int = 1000, offset: int = 0) -> list[dict]:
+    """Return Semantic Scholar reference records with contexts and intents."""
+    fields = (
+        "contexts,intents,isInfluential,"
+        "citedPaper.externalIds,citedPaper.title,citedPaper.year,citedPaper.abstract"
+    )
+    params = {"fields": fields, "limit": limit, "offset": offset}
+    url = (
+        f"https://api.semanticscholar.org/graph/v1/paper/"
+        f"{urllib.parse.quote(s2_id_or_extid, safe=':')}/references?"
+        f"{urllib.parse.urlencode(params)}"
+    )
+    try:
+        with urllib.request.urlopen(url, timeout=20) as resp:
+            data = json.loads(resp.read())
+    except Exception as e:
+        raise PaperSearchError(f"S2 references request failed: {e}") from e
     return data.get("data", []) or []
 
 

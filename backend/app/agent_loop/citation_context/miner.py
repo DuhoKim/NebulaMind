@@ -16,6 +16,7 @@ from sqlalchemy.orm import Session
 from app.config import settings
 from app.models.agent import Agent
 from app.models.claim import Claim, Evidence, EvidenceVote
+import app.models.jury  # Ensure ForeignKey metadata is fully resolved to avoid NoReferencedTableError on flush
 from app.models.seminal import SeminalClaimMap
 from app.services.llm_utils import strip_think_blocks
 from app.services.paper_search import (

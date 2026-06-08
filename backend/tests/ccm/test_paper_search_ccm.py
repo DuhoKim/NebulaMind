@@ -77,3 +77,56 @@ def test_s2_citation_contexts(monkeypatch):
     assert rows[0]["contexts"] == ["Following White and Rees..."]
     assert "fields=contexts" in captured["url"]
     assert "DOI:10.1093%2Fmnras%2F183.3.341" in captured["url"]
+
+
+def test_ads_reference_bibcodes_query_shape(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(req, timeout):
+        captured["url"] = req.full_url
+        captured["headers"] = dict(req.header_items())
+        return FakeResponse(
+            {
+                "response": {
+                    "docs": [
+                        {
+                            "bibcode": "1978MNRAS.183..341W",
+                            "title": ["Seed paper"],
+                            "abstract": "Foundational result.",
+                            "author": ["White S."],
+                            "year": "1978",
+                            "doi": ["10.1093/mnras/183.3.341"],
+                            "identifier": [],
+                            "citation_count": 3979,
+                            "pub": "MNRAS",
+                        }
+                    ]
+                }
+            }
+        )
+
+    monkeypatch.setattr(settings, "ADS_API_KEY", "token")
+    monkeypatch.setattr(paper_search.urllib.request, "urlopen", fake_urlopen)
+
+    records = paper_search.ads_reference_bibcodes("2026MNRAS.548ag650S", rows=30)
+
+    assert records[0].bibcode == "1978MNRAS.183..341W"
+    assert "references%28bibcode%3A%222026MNRAS.548ag650S%22%29" in captured["url"]
+    assert "rows=30" in captured["url"]
+    assert captured["headers"]["Authorization"] == "Bearer token"
+
+
+def test_s2_references(monkeypatch):
+    captured = {}
+
+    def fake_urlopen(url, timeout):
+        captured["url"] = url
+        return FakeResponse({"data": [{"contexts": ["We follow the cited work."], "citedPaper": {"title": "Seed"}}]})
+
+    monkeypatch.setattr(paper_search.urllib.request, "urlopen", fake_urlopen)
+
+    rows = paper_search.s2_references("arXiv:2501.00001")
+
+    assert rows[0]["contexts"] == ["We follow the cited work."]
+    assert "/references?" in captured["url"]
+    assert "citedPaper.externalIds" in captured["url"]
