@@ -1,38 +1,59 @@
-from app.models.page import WikiPage, PageVersion
-from app.models.agent import Agent
-from app.models.edit import EditProposal
-from app.models.vote import Vote
-from app.models.comment import Comment
-from app.models.reference import Reference
-from app.models.feedback import Feedback
-from app.models.visitor import Visit
-from app.models.qa import QAQuestion, QAAnswer
-from app.models.graph import PageRelation
-from app.models.arxiv import ArxivPaper
-from app.models.subscriber import Subscriber
-from app.models.spotlight import Spotlight
-from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal
+from sqlalchemy.types import TypeDecorator, TEXT
+import json
 
-__all__ = [
-    "WikiPage",
-    "PageVersion",
-    "Agent",
-    "EditProposal",
-    "Vote",
-    "Comment",
-    "Reference",
-    "Feedback",
-    "Visit",
-    "QAQuestion",
-    "QAAnswer",
-    "PageRelation",
-    "ArxivPaper",
-    "Subscriber",
-    "Spotlight",
-    "Claim",
-    "Evidence",
-    "EvidenceVote",
-    "EvidenceComment",
-    "ClaimEditProposal",
-]
-from app.models.social import SocialPostDraft
+class JSONB(TypeDecorator):
+    impl = TEXT
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == 'postgresql':
+            from sqlalchemy.dialects.postgresql import JSONB
+            return dialect.type_descriptor(JSONB())
+        else:
+            return dialect.type_descriptor(TEXT())
+
+    def process_bind_param(self, value, dialect):
+        if dialect.name == 'postgresql':
+            return value
+        if value is not None:
+            return json.dumps(value)
+        return value
+
+    def process_result_value(self, value, dialect):
+        if dialect.name == 'postgresql':
+            return value
+        if value is not None:
+            return json.loads(value)
+        return value
+
+class ARRAY(TypeDecorator):
+    impl = TEXT
+
+    def load_dialect_impl(self, dialect):
+        if dialect.name == 'postgresql':
+            from sqlalchemy.dialects.postgresql import ARRAY
+            return dialect.type_descriptor(ARRAY(self.item_type))
+        else:
+            return dialect.type_descriptor(TEXT())
+
+    def process_bind_param(self, value, dialect):
+        if dialect.name == 'postgresql':
+            return value
+        if value is not None:
+            return ",".join(map(str, value))
+        return value
+
+    def process_result_value(self, value, dialect):
+        if dialect.name == 'postgresql':
+            return value
+        if value is not None:
+            return [self.item_type(x) for x in value.split(',')]
+        return value
+
+    def __init__(self, item_type):
+        super(ARRAY, self).__init__()
+        self.item_type = item_type
+
+
+def import_all_models():
+    """Import model modules that are registered through this package."""
+    from app.models import seminal  # noqa: F401

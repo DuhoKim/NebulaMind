@@ -5,7 +5,9 @@ from sqlalchemy import engine_from_config, pool
 
 from app.config import settings
 from app.database import Base
-import app.models  # noqa: F401 — ensure all models are imported
+import app.models
+
+app.models.import_all_models()
 
 config = context.config
 config.set_main_option("sqlalchemy.url", settings.DATABASE_URL)
