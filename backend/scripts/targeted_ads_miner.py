@@ -310,7 +310,10 @@ def sort_for_claim(claim: Claim) -> str:
 
 def claim_ads_class(claim: Claim) -> str | None:
     mapped = SECTION_CLASS_MAP.get(claim.section or "")
-    return mapped[0] if mapped else None
+    if mapped:
+        return mapped[0]
+    # Default to astro-ph.GA for general extragalactic and galactic topics, which covers the entire corpus safely
+    return "astro-ph.GA"
 
 
 def paper_key(record: PaperRecord) -> str:
@@ -685,8 +688,21 @@ async def run_jury_async(claim: Claim | ClaimSnapshot, record: PaperRecord) -> l
     prompt = user_prompt(claim, record)
     async with httpx.AsyncClient() as client:
         calls = [_call_juror(client, model, prompt) for model in jury_models()]
-        results = await asyncio.gather(*calls)
-    return [r for r in results if r]
+        try:
+            results = await asyncio.wait_for(
+                asyncio.gather(*calls, return_exceptions=True),
+                timeout=600.0
+            )
+        except asyncio.TimeoutError:
+            print("jury gather hard timeout after 600s")
+            results = []
+    filtered_results = []
+    for r in results:
+        if isinstance(r, dict) and r:
+            filtered_results.append(r)
+        elif isinstance(r, Exception):
+            print(f"jury call exception captured: {r}")
+    return filtered_results
 
 
 def normalize_for_substring(text: str) -> str:

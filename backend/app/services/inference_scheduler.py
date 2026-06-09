@@ -4,6 +4,8 @@ import asyncio
 import logging
 import httpx
 import redis
+import platform
+import socket
 from typing import Any, Optional, Dict
 from app.config import settings, BATCH_SAFE_DEFAULT_MODEL
 from app.services.llm_utils import clean_llm_response
@@ -112,6 +114,39 @@ class ModelFootprints:
         return None
 
 
+_OLLAMA_LIVENESS_CACHE: dict[str, tuple[float, bool]] = {}
+_PERSISTENT_CLIENT: Optional[httpx.AsyncClient] = None
+
+def get_persistent_client() -> httpx.AsyncClient:
+    global _PERSISTENT_CLIENT
+    if _PERSISTENT_CLIENT is None:
+        socket_options = [
+            (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
+        ]
+        if platform.system() == "Darwin":
+            # macOS: TCP_KEEPALIVE is 0x10
+            socket_options.append((socket.IPPROTO_TCP, 0x10, 30))
+        else:
+            if hasattr(socket, "TCP_KEEPIDLE"):
+                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30))
+            if hasattr(socket, "TCP_KEEPINTVL"):
+                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10))
+            if hasattr(socket, "TCP_KEEPCNT"):
+                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5))
+
+        limits = httpx.Limits(
+            max_connections=20,
+            max_keepalive_connections=5,
+            keepalive_expiry=60.0,
+        )
+        transport = httpx.AsyncHTTPTransport(
+            socket_options=socket_options,
+            limits=limits,
+        )
+        _PERSISTENT_CLIENT = httpx.AsyncClient(transport=transport)
+    return _PERSISTENT_CLIENT
+
+
 class InferenceScheduler:
     def __init__(self, redis_client=None):
         self._redis = redis_client
@@ -129,6 +164,50 @@ class InferenceScheduler:
         except Exception as e:
             logger.warning(f"[InferenceScheduler] Redis connection failed: {e}")
             return None
+
+    async def _ollama_alive(self, base_url: str) -> bool:
+        now = time.time()
+        cached = _OLLAMA_LIVENESS_CACHE.get(base_url)
+        if cached and now - cached[0] < 10.0:
+            return cached[1]
+        
+        probe_url = base_url.rstrip("/").removesuffix("/v1") + "/api/tags"
+        try:
+            client = get_persistent_client()
+            r = await client.get(probe_url, timeout=0.5)
+            alive = r.status_code == 200
+        except Exception:
+            alive = False
+            
+        _OLLAMA_LIVENESS_CACHE[base_url] = (now, alive)
+        return alive
+
+    async def _is_circuit_breaker_active(self) -> bool:
+        r = self._get_redis()
+        if not r:
+            return False
+        try:
+            blackout = await asyncio.to_thread(r.get, "ollama:circuit_breaker:blackout")
+            return bool(blackout)
+        except Exception as e:
+            logger.warning(f"[InferenceScheduler] Error checking circuit breaker: {e}")
+            return False
+
+    async def _record_failure(self):
+        r = self._get_redis()
+        if not r:
+            return
+        try:
+            now = time.time()
+            key = "ollama:circuit_breaker:failures"
+            await asyncio.to_thread(r.zadd, key, {str(now): now})
+            await asyncio.to_thread(r.zremrangebyscore, key, "-inf", now - 60)
+            count = await asyncio.to_thread(r.zcard, key)
+            if count >= 3:
+                await asyncio.to_thread(r.set, "ollama:circuit_breaker:blackout", "1", ex=300)
+                logger.warning("[InferenceScheduler] Circuit breaker tripped! 3 fails in 60s. Blackout active for 300s.")
+        except Exception as e:
+            logger.warning(f"[InferenceScheduler] Error in circuit breaker record: {e}")
 
     async def execute(self, juror_spec: dict, prompt_text: str, timeout: int, system_prompt: str = None) -> Optional[str]:
         model_name = juror_spec.get("model", "")
@@ -149,6 +228,18 @@ class InferenceScheduler:
         host = info["host"]
         tier = info["tier"]
         cold_load = info.get("cold_load", 30)
+
+        # Check circuit breaker
+        if await self._is_circuit_breaker_active():
+            logger.warning(f"[InferenceScheduler] Circuit breaker active. Routing {model_name} to fallback.")
+            return await self._execute_fallback(juror_spec, prompt_text, timeout, system_prompt, reason="circuit_breaker_active")
+
+        # Preflight check before locks
+        base_url = ModelFootprints.HOSTS.get(host, "http://localhost:11434/v1")
+        if not await self._ollama_alive(base_url):
+            logger.warning(f"[InferenceScheduler] Preflight check failed for {base_url}. Routing {model_name} to fallback.")
+            await self._record_failure()
+            return await self._execute_fallback(juror_spec, prompt_text, timeout, system_prompt, reason="preflight_failed")
 
         # 2. Check host online status via 'ollama:health' Redis key
         host_online = True
@@ -179,8 +270,6 @@ class InferenceScheduler:
             backoff = 0.5
             
             logger.info(f"[InferenceScheduler] Acquiring advisory lock {lock_key} for {model_name} (tier={tier}).")
-            # Raised wait from 30s to 240s to allow heavy local model serialization
-            # (e.g. Mima 30B takes ~45s, so Buddle 70B needs to wait ~45s in queue cleanly).
             while time.time() - start_time < 180:
                 if r:
                     try:
@@ -200,7 +289,8 @@ class InferenceScheduler:
                 backoff = min(backoff * 1.5, 3.0)
 
             if not acquired:
-                logger.warning(f"[InferenceScheduler] Lock acquisition timed out for {model_name} after 30s. Tripping circuit breaker and falling back.")
+                logger.warning(f"[InferenceScheduler] Lock acquisition timed out for {model_name} after 180s. Tripping circuit breaker and falling back.")
+                await self._record_failure()
                 return await self._execute_fallback(juror_spec, prompt_text, timeout, system_prompt, reason="lock_timeout")
 
         # 4. Execute standard local call with finally block to release lock
@@ -208,15 +298,24 @@ class InferenceScheduler:
             logger.info(f"[InferenceScheduler] Executing local model {model_name} on {host}.")
             return await self._make_http_call(juror_spec, prompt_text, timeout, system_prompt)
         except Exception as e:
-            logger.warning(f"[InferenceScheduler] Local execution of {model_name} failed: {e}. Executing fallback.")
-            return await self._execute_fallback(juror_spec, prompt_text, timeout, system_prompt, reason=f"execution_error: {e}")
+            logger.warning(f"[InferenceScheduler] Local execution of {model_name} failed: {type(e).__name__}: {e!r}. Executing fallback.")
+            await self._record_failure()
+            return await self._execute_fallback(juror_spec, prompt_text, timeout, system_prompt, reason=f"execution_error: {type(e).__name__}: {e!r}")
         finally:
             if acquired and r:
+                async def _release():
+                    try:
+                        await asyncio.wait_for(
+                            asyncio.to_thread(r.delete, lock_key),
+                            timeout=2.0
+                        )
+                        logger.info(f"[InferenceScheduler] Released lock {lock_key} for {model_name}.")
+                    except Exception as err:
+                        logger.warning(f"[InferenceScheduler] Failed to release lock {lock_key}: {type(err).__name__}: {err!r}")
                 try:
-                    await asyncio.to_thread(r.delete, lock_key)
-                    logger.info(f"[InferenceScheduler] Released lock {lock_key} for {model_name}.")
-                except Exception as e:
-                    logger.warning(f"[InferenceScheduler] Failed to release lock {lock_key}: {e}")
+                    await asyncio.shield(_release())
+                except Exception as err:
+                    logger.warning(f"[InferenceScheduler] Shielded release lock wrapper exception: {type(err).__name__}: {err!r}")
 
     async def _execute_fallback(self, juror_spec: dict, prompt_text: str, timeout: int, system_prompt: str = None, reason: str = "") -> Optional[str]:
         model_name = juror_spec.get("model", "")
@@ -300,7 +399,8 @@ class InferenceScheduler:
         base_url = juror_spec.get("base_url") or "http://localhost:11434/v1"
         url = f"{base_url.rstrip('/')}/chat/completions"
 
-        async with httpx.AsyncClient() as client:
+        async def _do_call():
+            client = get_persistent_client()
             response = await client.post(
                 url,
                 headers=headers,
@@ -316,3 +416,9 @@ class InferenceScheduler:
                 content = message.get("content", "")
                 return clean_llm_response(content)
             return ""
+
+        try:
+            return await asyncio.wait_for(_do_call(), timeout=float(timeout))
+        except asyncio.TimeoutError:
+            logger.warning(f"[InferenceScheduler] HTTP call timed out (wall-clock) after {timeout}s")
+            raise
