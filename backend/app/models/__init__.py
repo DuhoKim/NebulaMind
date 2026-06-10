@@ -56,4 +56,6 @@ class ARRAY(TypeDecorator):
 
 def import_all_models():
     """Import model modules that are registered through this package."""
+    from app.models import agent  # noqa: F401
+    from app.models import page  # noqa: F401
     from app.models import seminal  # noqa: F401

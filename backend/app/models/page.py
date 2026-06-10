@@ -1,6 +1,7 @@
 import datetime as dt
+import json
 
-from sqlalchemy import Boolean, ForeignKey, Numeric, String, Text, func
+from sqlalchemy import Boolean, Float, ForeignKey, Numeric, String, Text, UniqueConstraint, event, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
@@ -37,7 +38,42 @@ class WikiPage(Base):
     health_score: Mapped[float | None] = mapped_column(nullable=True)
     health_updated_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
 
+    content_canonicalize_failed_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+    content_canonicalize_failure_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
+
     versions: Mapped[list["PageVersion"]] = relationship(back_populates="page", order_by="PageVersion.version_num")
+
+
+class ContentQuarantine(Base):
+    __tablename__ = "content_quarantine"
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    page_id: Mapped[int | None] = mapped_column(ForeignKey("wiki_pages.id"), nullable=True, index=True)
+    source_tag: Mapped[str] = mapped_column(String(120), default="wiki_page_content_set")
+    violations: Mapped[str] = mapped_column(Text)
+    content: Mapped[str] = mapped_column(Text)
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    resolved_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+
+
+@event.listens_for(WikiPage.content, "set", retval=True)
+def _canonicalize_wiki_page_content(target: WikiPage, value: str | None, oldvalue, initiator) -> str:
+    if value is None:
+        return ""
+    if not isinstance(value, str):
+        return value
+
+    from app.services.content_canonicalizer import CanonicalizerError, canonicalize
+
+    result = canonicalize(value)
+    if not result.invariants_ok:
+        target.content_canonicalize_failed_at = dt.datetime.utcnow()
+        target.content_canonicalize_failure_reason = json.dumps(result.violations or [])
+        raise CanonicalizerError(result.violations or ["unknown_violation"])
+
+    target.content_canonicalize_failed_at = None
+    target.content_canonicalize_failure_reason = None
+    return result.new_content
 
 
 class PageVersion(Base):
@@ -49,8 +85,25 @@ class PageVersion(Base):
     content: Mapped[str] = mapped_column(Text)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     editor_agent_id: Mapped[int | None] = mapped_column(ForeignKey("agents.id"), nullable=True)
+    source_note: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     page: Mapped["WikiPage"] = relationship(back_populates="versions")
+
+
+class PageCitationLink(Base):
+    __tablename__ = "page_citation_links"
+    __table_args__ = (
+        UniqueConstraint("page_id", "author_year_key", name="uq_page_citation_links_page_key"),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    page_id: Mapped[int] = mapped_column(ForeignKey("wiki_pages.id", ondelete="CASCADE"), index=True)
+    evidence_id: Mapped[int] = mapped_column(ForeignKey("evidence.id", ondelete="CASCADE"), index=True)
+    author_year_key: Mapped[str] = mapped_column(String(120))
+    match_method: Mapped[str] = mapped_column(String(32))
+    match_confidence: Mapped[float] = mapped_column(Float, default=1.0, server_default="1.0")
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[dt.datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
 
 
 class FactSource(Base):
