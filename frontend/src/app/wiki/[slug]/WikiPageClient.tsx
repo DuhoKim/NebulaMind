@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
+import remarkMath from "remark-math";
+import rehypeKatex from "rehype-katex";
+import "katex/dist/katex.min.css";
 import Link from "next/link";
 import ClaimBlock from "./ClaimBlock";
 import TOCSidebar from "./TOCSidebar";
@@ -19,6 +22,20 @@ interface WikiPage {
   editor_agent_tier?: string | null;
   synthesized_date?: string | null;
   version_num?: number | null;
+}
+
+interface PageCitation {
+  evidence_id: number;
+  author_year_key: string;
+  title: string;
+  authors: string[];
+  year?: number | null;
+  doi?: string | null;
+  arxiv_id?: string | null;
+  url?: string | null;
+  summary?: string | null;
+  abstract?: string | null;
+  journal_ref?: string | null;
 }
 
 interface EditProposal {
@@ -88,18 +105,39 @@ function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
 
-function unwrapCodeFence(content: string): string {
+function stripLeadingH1(content: string): string {
   const trimmed = content.trim();
-  const m = trimmed.match(/^```(?:markdown|md)?\s*\n([\s\S]*?)\n```\s*$/);
-  return m ? m[1].trim() : trimmed;
+  return trimmed.replace(/^#\s+.+?[\r\n]+/, "").trim();
 }
 
-function wrapClaimComments(content: string): string {
-  return content.replace(
-    /<!--\s*claim:(\d+)\s*-->([\s\S]*?)<!--\s*\/claim:\1\s*-->/g,
-    (_, id, body) => {
-      const safe = body.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-      return `<span data-claim-id="${id}" id="claim-${id}">${safe}</span>`;
+function renderWikiMarkers(content: string): string {
+  const parseIds = (ids: string): number[] =>
+    ids
+      .split(",")
+      .map((s) => Number(s.trim()))
+      .filter((n) => Number.isFinite(n) && n > 0);
+
+  const withCites = content
+    .replace(/<!--cite:([\d,\s]+)-->/g, (_m, ids) => {
+      const idList = parseIds(ids);
+      return idList.length > 0 ? `<span data-cite-ids="${idList.join(",")}"></span>` : "";
+    })
+    .replace(/<!--cite-unmatched:([^>]+?)-->/g, (_m, raw) => {
+      const safeText = String(raw).replace(/"/g, "&quot;").replace(/</g, "&lt;");
+      return `<span class="cite-unmatched" data-cite-unmatched="${safeText}"></span>`;
+    });
+
+  return withCites.replace(
+    /<!--\s*claim:([\d,\s]+?)\s*-->([\s\S]*?)<!--\s*\/claim:([\d,\s]+?)\s*-->/g,
+    (match, openIds, body, closeIds) => {
+      const open = parseIds(String(openIds));
+      const close = parseIds(String(closeIds));
+      if (open.join(",") !== close.join(",")) {
+        return match;
+      }
+      const dataAttr = open.join(",");
+      const anchorId = open[0] ? String(open[0]) : "";
+      return `<span data-claim-id="${dataAttr}" id="claim-${anchorId}">${body}</span>`;
     }
   );
 }
@@ -175,19 +213,130 @@ function renderFactValue(fact: any): string {
   }
 }
 
+function formatAuthors(authors: string[]): string {
+  if (!authors || authors.length === 0) return "";
+  
+  // If we got a single-item array containing semicolons or commas, split it!
+  let list = authors;
+  if (authors.length === 1 && typeof authors[0] === "string") {
+    if (authors[0].includes(";")) {
+      list = authors[0].split(";").map(s => s.trim());
+    } else if (authors[0].includes(",")) {
+      list = authors[0].split(",").map(s => s.trim());
+    }
+  }
+  
+  if (list[0] && (list[0].includes("Collaboration") || list[0].includes("collaboration"))) {
+    return list[0];
+  }
+  if (list.length <= 2) return list.join(", ");
+  return `${list.slice(0, 2).join(", ")} et al.`;
+}
+
+function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; unmatched?: string }) {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const close = () => setOpen(false);
+    document.addEventListener("click", close);
+    return () => document.removeEventListener("click", close);
+  }, [open]);
+
+  if (unmatched) return null;
+
+  if (citations.length === 0) {
+    return (
+      <span
+        title="Citation metadata is still loading"
+        style={{ color: "#64748b", fontSize: "0.72em", verticalAlign: "super", marginLeft: "2px" }}
+      >
+        📄
+      </span>
+    );
+  }
+
+  return (
+    <span style={{ position: "relative", display: "inline" }}>
+      <button
+        type="button"
+        onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(v => !v); }}
+        style={{
+          display: "inline",
+          background: "none",
+          border: "none",
+          color: "#818cf8",
+          cursor: "pointer",
+          fontSize: "0.72em",
+          verticalAlign: "super",
+          marginLeft: "2px",
+          padding: 0,
+          fontWeight: 600,
+        }}
+        title={`${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
+      >
+        📄
+      </button>
+      {open && (
+        <span
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            top: "1.4em",
+            left: 0,
+            zIndex: 120,
+            width: "min(24rem, 92vw)",
+            background: "#1e293b",
+            border: "1px solid #334155",
+            borderLeft: "3px solid #818cf8",
+            borderRadius: "6px",
+            padding: "0.75rem",
+            boxShadow: "0 8px 24px rgba(0,0,0,0.45)",
+            whiteSpace: "normal",
+          }}
+        >
+          {citations.map((citation) => (
+            <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.65rem" }}>
+              {citation.url ? (
+                <a href={citation.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none" }}>
+                  {citation.title}
+                </a>
+              ) : (
+                <span style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600 }}>{citation.title}</span>
+              )}
+              <span style={{ display: "block", color: "#94a3b8", fontSize: "0.72rem", marginTop: "0.15rem" }}>
+                {formatAuthors(citation.authors)}{citation.year ? ` · ${citation.year}` : ""}{citation.journal_ref ? ` · ${citation.journal_ref}` : ""}
+              </span>
+              {(citation.summary || citation.abstract) && (
+                <span style={{ display: "block", color: "#64748b", fontSize: "0.7rem", lineHeight: 1.35, marginTop: "0.3rem" }}>
+                  {(citation.summary || citation.abstract || "").slice(0, 180)}
+                </span>
+              )}
+            </span>
+          ))}
+        </span>
+      )}
+    </span>
+  );
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
   ideas,
   children,
+  citationByEvidenceId,
 }: {
   claim: any;
   showColors: boolean;
   ideas?: any[];
   children: React.ReactNode;
+  citationByEvidenceId?: Record<number, any>;
 }) {
   const [open, setOpen] = useState(false);
   const [ideasOpen, setIdeasOpen] = useState(false);
+  const [evidence, setEvidence] = useState<any[] | null>(null);
+  const [loadingEvidence, setLoadingEvidence] = useState(false);
   const trustLevel = claim?.trust_level ?? "unverified";
   const trustColor = TRUST_COLORS[trustLevel] ?? "#64748b";
   const evidenceCount = claim?.evidence_count ?? 0;
@@ -199,6 +348,22 @@ function ClaimAnnotatedSpan({
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, [open, ideasOpen]);
+
+  useEffect(() => {
+    if (open && claim?.id && !evidence) {
+      setLoadingEvidence(true);
+      fetch(`/api/claims/${claim.id}/evidence`)
+        .then((r) => r.ok ? r.json() : null)
+        .then((data) => {
+          setEvidence(data?.evidence || []);
+          setLoadingEvidence(false);
+        })
+        .catch(() => {
+          setEvidence([]);
+          setLoadingEvidence(false);
+        });
+    }
+  }, [open, claim?.id]);
 
   if (!showColors) return <span>{children}</span>;
 
@@ -243,8 +408,8 @@ function ClaimAnnotatedSpan({
             borderLeft: `3px solid ${trustColor}`,
             borderRadius: "6px",
             padding: "0.6rem 0.8rem",
-            minWidth: "180px",
-            maxWidth: "280px",
+            minWidth: evidenceCount > 3 ? "340px" : "260px",
+            maxWidth: evidenceCount > 3 ? "480px" : "360px",
             fontSize: "0.78rem",
             color: "#94a3b8",
             boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
@@ -252,11 +417,51 @@ function ClaimAnnotatedSpan({
             whiteSpace: "normal",
           }}
         >
-          <div style={{ fontWeight: 600, color: "#f8fafc", marginBottom: "0.3rem", textTransform: "capitalize" }}>
-            {trustLevel}
+          <div style={{ fontWeight: 600, color: "#f8fafc", marginBottom: "0.3rem", textTransform: "capitalize", display: "flex", justifyContent: "space-between" }}>
+            <span>{trustLevel}</span>
+            <span style={{ fontSize: "0.7rem", opacity: 0.7 }}>#{claim?.id}</span>
           </div>
           {evidenceCount > 0 && (
-            <div>📄 {evidenceCount} source{evidenceCount !== 1 ? "s" : ""}</div>
+            <div style={{ marginBottom: "0.4rem", borderBottom: "1px solid #2d3748", paddingBottom: "0.3rem" }}>
+              📄 {evidenceCount} source{evidenceCount !== 1 ? "s" : ""}
+            </div>
+          )}
+          {loadingEvidence && <div style={{ fontSize: "0.72rem", color: "#64748b" }}>Loading papers...</div>}
+          {evidence && evidence.length > 0 && (
+            <div style={{ 
+              maxHeight: evidence.length > 3 ? "280px" : "160px", 
+              overflowY: "auto", 
+              display: "flex", 
+              flexDirection: "column", 
+              gap: "0.4rem" 
+            }}>
+              {evidence.map((ev) => {
+                const titleHasYear = ev.year && ev.title && (ev.title.includes(String(ev.year)) || ev.title.endsWith(String(ev.year)));
+                const displayYear = ev.year && !titleHasYear ? ` (${ev.year})` : "";
+                return (
+                  <div key={ev.id} style={{ fontSize: "0.72rem", background: "#0f172a", borderRadius: "4px", padding: "0.3rem 0.4rem" }}>
+                    <div style={{ fontWeight: 500, color: "#cbd5e1", display: "flex", gap: "4px" }}>
+                      <span>{ev.stance === "supports" ? "✅" : ev.stance === "challenges" ? "❌" : "➖"}</span>
+                      {ev.url ? (
+                        <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ color: "#818cf8", textDecoration: "none" }} className="hover:underline">
+                          {ev.title}{displayYear}
+                        </a>
+                      ) : (
+                        <span>{ev.title}{displayYear}</span>
+                      )}
+                    </div>
+                    {ev.summary && (
+                      <p style={{ margin: "0.2rem 0 0", color: "#64748b", fontSize: "0.68rem", lineHeight: 1.3 }} className="line-clamp-2" title={ev.summary}>
+                        {ev.summary}
+                      </p>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          )}
+          {evidence && evidence.length === 0 && (
+            <div style={{ fontSize: "0.72rem", color: "#64748b" }}>No detailed papers linked yet.</div>
           )}
         </span>
       )}
@@ -321,11 +526,10 @@ export default function WikiPageClientView() {
   const [edits, setEdits] = useState<EditProposal[]>([]);
   const [contributorsData, setContributorsData] = useState<ContributorsData | null>(null);
   const [loading, setLoading] = useState(true);
-  const [viewMode, setViewMode] = useState<"A" | "B">("B");
-  const [voted, setVoted] = useState(false);
   const [showV2, setShowV2] = useState(true);
   const [showColors, setShowColors] = useState(true);
   const [claims, setClaims] = useState<any>(null);
+  const [citations, setCitations] = useState<PageCitation[]>([]);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editEmail, setEditEmail] = useState("");
   const [editContent, setEditContent] = useState("");
@@ -336,6 +540,20 @@ export default function WikiPageClientView() {
   const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
   const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>({});
   const [ideasOpen, setIdeasOpen] = useState(false);
+  const [citeViewMode, setCiteViewMode] = useState<"shown" | "hidden">("shown");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("nm.cite_mode");
+    if (saved === "hidden") {
+      setCiteViewMode(saved);
+    }
+  }, []);
+
+  const handleToggleCiteViewMode = () => {
+    const next = citeViewMode === "shown" ? "hidden" : "shown";
+    setCiteViewMode(next);
+    localStorage.setItem("nm.cite_mode", next);
+  };
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -398,20 +616,15 @@ export default function WikiPageClientView() {
       .catch(() => {});
   }, [slug]);
 
-  const handleVote = async (version: "A" | "B") => {
-    try {
-      await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: `Wiki Vote: ${version}`,
-          message: `Preferred wiki view: Version ${version} for page "${page?.title}"`,
-          is_ai: false,
-        }),
-      });
-      setVoted(true);
-    } catch {}
-  };
+  useEffect(() => {
+    if (!slug) return;
+    fetch(`/api/pages/${slug}/citations`)
+      .then(r => r.ok ? r.json() : { citations: [] })
+      .then(data => setCitations(data.citations || []))
+      .catch(() => setCitations([]));
+  }, [slug]);
+
+
 
   const claimById = useMemo(() => {
     const map: Record<number, any> = {};
@@ -423,6 +636,20 @@ export default function WikiPageClientView() {
     return map;
   }, [claims]);
 
+  const processedContent = useMemo(() => {
+    if (!page?.content) return "";
+    let rawContent = stripLeadingH1(page.content);
+    return renderWikiMarkers(rawContent);
+  }, [page?.content]);
+
+  const citationByEvidenceId = useMemo(() => {
+    const map: Record<number, PageCitation> = {};
+    for (const citation of citations) {
+      map[citation.evidence_id] = citation;
+    }
+    return map;
+  }, [citations]);
+
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
 
@@ -430,7 +657,6 @@ export default function WikiPageClientView() {
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
   // H6: filter out flagged AI-estimate facts (failed validation)
   const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
-  const processedContent = wrapClaimComments(unwrapCodeFence(page.content));
 
   return (
     <article
@@ -471,30 +697,9 @@ export default function WikiPageClientView() {
             {health.emoji} {health.score}/100
           </span>
         )}
-        <span style={{ color: "#64748b" }}>View:</span>
-        <button
-          onClick={() => setViewMode("A")}
-          style={{ padding: "0.25rem 0.75rem", borderRadius: "4px", border: viewMode === "A" ? "1px solid #6366f1" : "1px solid #334155", background: viewMode === "A" ? "#6366f1" : "transparent", color: viewMode === "A" ? "#ffffff" : "#94a3b8", cursor: "pointer", transition: "all 0.15s" }}
-        >
-          Clean
-        </button>
-        <button
-          onClick={() => setViewMode("B")}
-          style={{ padding: "0.25rem 0.75rem", borderRadius: "4px", border: viewMode === "B" ? "1px solid #6366f1" : "1px solid #334155", background: viewMode === "B" ? "#6366f1" : "transparent", color: viewMode === "B" ? "#ffffff" : "#94a3b8", cursor: "pointer", transition: "all 0.15s" }}
-        >
-          Rich
-        </button>
-        {!voted && (
-          <span style={{ marginLeft: "1rem", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ color: "#64748b" }}>Which do you prefer?</span>
-            <button onClick={() => handleVote("A")} style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem", background: "rgba(99, 102, 241, 0.1)", color: "#818cf8", border: "1px solid #334155", borderRadius: "4px", cursor: "pointer" }}>Vote A</button>
-            <button onClick={() => handleVote("B")} style={{ fontSize: "0.75rem", padding: "0.25rem 0.5rem", background: "rgba(99, 102, 241, 0.1)", color: "#818cf8", border: "1px solid #334155", borderRadius: "4px", cursor: "pointer" }}>Vote B</button>
-          </span>
-        )}
-        {voted && <span style={{ marginLeft: "1rem", color: "#22c55e", fontSize: "0.75rem" }}>Thanks for voting</span>}
         <Link href={`/wiki/${slug}/history`}
-          style={{ marginLeft: "auto", fontSize: "0.75rem", color: "#64748b", textDecoration: "none",
-            padding: "0.25rem 0.5rem", border: "1px solid #334155", borderRadius: "4px" }}>
+          style={{ fontSize: "0.75rem", color: "#64748b", textDecoration: "none",
+            padding: "0.25rem 0.5rem", border: "1px solid #334155", borderRadius: "4px", marginLeft: "auto" }}>
           📜 History
         </Link>
         <Link href={`/wiki/${slug}/sources`}
@@ -621,6 +826,22 @@ export default function WikiPageClientView() {
           </button>
         )}
         {showV2 && (
+          <button
+            onClick={handleToggleCiteViewMode}
+            style={{
+              fontSize: "0.75rem",
+              padding: "0.25rem 0.75rem",
+              borderRadius: "4px",
+              border: citeViewMode === "shown" ? "1px solid #818cf8" : "1px solid #334155",
+              background: "transparent",
+              color: "#94a3b8",
+              cursor: "pointer",
+            }}
+          >
+            {citeViewMode === "shown" ? "Hide Citations" : "Show Citations"}
+          </button>
+        )}
+        {showV2 && (
           <p style={{ fontSize: "0.78rem", color: "#64748b", margin: 0 }}>
             Each sentence is sourced from a published paper. Click the citation icon to see sources.
           </p>
@@ -638,7 +859,8 @@ export default function WikiPageClientView() {
       {/* Prose content — identical in both modes; Citation View adds inline claim badges */}
       <div className="prose max-w-none" style={{ lineHeight: 1.7, color: "#94a3b8" }}>
         <ReactMarkdown
-          rehypePlugins={[rehypeRaw]}
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeRaw, [rehypeKatex, { throwOnError: false, output: "html", strict: "ignore" }]]}
           components={{
             h1: ({ children }) => {
               const text = String(children);
@@ -666,18 +888,43 @@ export default function WikiPageClientView() {
             code: ({ children }) => (
               <code style={{ background: "#334155", padding: "2px 6px", borderRadius: "4px", fontSize: "0.875rem", fontFamily: "JetBrains Mono, monospace" }}>{children}</code>
             ),
+            sup: ({ children, ...props }: any) => <sup {...props}>{children}</sup>,
             span: ({ node, children, ...props }: any) => {
               const claimId = props["data-claim-id"];
+              const citeIds = props["data-cite-ids"];
+              const unmatched = props["data-cite-unmatched"];
+
+              if ((citeIds || unmatched) && citeViewMode === "hidden") {
+                return null;
+              }
+
+              if (citeIds) {
+                const ids = String(citeIds).split(",").map((s: string) => Number(s.trim())).filter((n: number) => Number.isFinite(n) && n > 0);
+                const cites = ids.map((id: number) => citationByEvidenceId[id]).filter(Boolean);
+                return <CitationBadge citations={cites} />;
+              }
+
+              if (unmatched) {
+                return <CitationBadge citations={[]} unmatched={String(unmatched)} />;
+              }
+
               if (claimId && showV2) {
-                return (
+                const ids = String(claimId).split(',').map((s: string) => Number(s.trim())).filter((n: number) => Number.isFinite(n) && n > 0);
+                if (ids.length === 0) {
+                  return <span {...props}>{children}</span>;
+                }
+                // Stack: nest a ClaimAnnotatedSpan per claim_id; innermost wraps the prose.
+                return ids.reduceRight<React.ReactNode>((inner, id) => (
                   <ClaimAnnotatedSpan
-                    claim={claimById[Number(claimId)]}
+                    key={id}
+                    claim={claimById[id]}
                     showColors={showColors}
-                    ideas={claimIdeasMap[Number(claimId)]}
+                    ideas={claimIdeasMap[id]}
+                    citationByEvidenceId={citationByEvidenceId}
                   >
-                    {children}
+                    {inner}
                   </ClaimAnnotatedSpan>
-                );
+                ), <>{children}</>);
               }
               return <span {...props}>{children}</span>;
             },
