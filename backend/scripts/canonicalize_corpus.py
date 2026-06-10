@@ -106,20 +106,20 @@ def main() -> None:
         elif would_quarantine:
             print(f"Page {page.id} ({page.slug}): no changes | invariants_ok=False | violations={result.violations}")
             
-        if has_changes and not args.dry_run:
-            if not result.invariants_ok:
-                quarantine_count += 1
-                db.add(
-                    ContentQuarantine(
-                        page_id=page.id,
-                        source_tag="canonicalize_corpus_v2",
-                        violations=json.dumps(result.violations or [], ensure_ascii=False),
-                        content=result.new_content,
-                    )
+        if would_quarantine and not args.dry_run:
+            quarantine_count += 1
+            db.add(
+                ContentQuarantine(
+                    page_id=page.id,
+                    source_tag="canonicalize_corpus_v2",
+                    violations=json.dumps(result.violations or [], ensure_ascii=False),
+                    content=result.new_content,
                 )
-                db.flush()
-                continue
+            )
+            db.flush()
+            continue
 
+        if has_changes and not args.dry_run:
             # Update page content
             page.content = result.new_content
             page.content_canonicalize_failed_at = None
