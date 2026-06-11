@@ -27,6 +27,7 @@ _PRO = _v1_url(settings.RAKON_BASE_URL or settings.OLLAMA_MACPRO_BASE_URL)
 _BUDDLE_HOST = _v1_url(settings.BUDDLE_BASE_URL or settings.OLLAMA_STUDIO_BASE_URL or settings.OLLAMA_BASE_URL)
 _NUTTY = settings.OLLAMA_STUDIO_FAST_MODEL
 _MIMA = settings.OLLAMA_STUDIO_HEAVY_MODEL
+_TERA = settings.ADVERSARIAL_QUERY_MODEL
 _BUDDLE = settings.BUDDLE_MODEL or settings.OLLAMA_MACPRO_FAST_MODEL or settings.OLLAMA_MACPRO_MODEL
 _RAKON = settings.RAKON_MODEL or settings.OLLAMA_MACPRO_HEAVY_MODEL
 
@@ -141,7 +142,7 @@ ROUTING: dict[str, list[dict]] = {
 
     # Query generation: search query formulation
     "query_gen": _compact([
-        _ollama(_STUDIO, _MIMA,              "mima"),
+        _ollama(_STUDIO, _TERA,              "tera"),
         _ollama(_STUDIO, _NUTTY,             "nutty"),
         _gemini(),
     ]),
