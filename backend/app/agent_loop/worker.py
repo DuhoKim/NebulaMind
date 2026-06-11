@@ -39,7 +39,7 @@ celery_app.conf.update(
         },
         "retry-unprocessed-arxiv-daily": {
             "task": "app.agent_loop.tasks.retry_unprocessed_arxiv_papers",
-            "schedule": crontab(hour=2, minute=15),  # UTC 02:15 = KST 11:15 (daily sweep)
+            "schedule": crontab(hour=2, minute=15, day_of_week=0),  # weekly cleanup sweep
         },
         "arxiv-wiki-feed-v2-retry-coverage": {
             "task": "app.agent_loop.tasks.arxiv_wiki_feed_retry_coverage",
@@ -47,7 +47,7 @@ celery_app.conf.update(
         },
         "process-pending-verify-retries": {
             "task": "app.agent_loop.tasks.process_pending_verify_retries",
-            "schedule": crontab(hour=8, minute=0),  # UTC 08:00 = KST 17:00 (48h ADS-lag retry)
+            "schedule": crontab(hour=8, minute=0, day_of_week=0),  # weekly cleanup sweep
         },
         "update-coverage-map-daily": {
             "task": "app.agent_loop.tasks.update_coverage_map",
@@ -67,7 +67,7 @@ celery_app.conf.update(
         },
         "adversarial-pass-daily": {
             "task": "app.agent_loop.tasks.run_adversarial_pass",
-            "schedule": crontab(hour=4, minute=0),  # UTC 04:00 = KST 13:00
+            "schedule": crontab(hour=4, minute=0, day_of_week=0),  # weekly re-mining lane
         },
         "temporal-decay-daily": {
             "task": "app.agent_loop.tasks.run_temporal_decay",
@@ -145,7 +145,7 @@ celery_app.conf.update(
         # rakon-deep-pass: tightened from 6h to 2h (§9.5.2 v2)
         "rakon-deep-pass-2h": {
             "task": "app.agent_loop.autowiki.deep_synthesis.rakon_deep_pass",
-            "schedule": crontab(minute=0, hour="*/2"),
+            "schedule": crontab(minute=0, hour=2, day_of_week=0),  # weekly re-mining lane
             "kwargs": {"page_id": 57},
         },
         # sonnet-judge-tick: HwaO (claude-sonnet-4-6) independent quality audit
@@ -178,7 +178,7 @@ celery_app.conf.update(
         },
         "buddle-evidence-pair-hourly": {
             "task": "app.agent_loop.research_ideas.auto_improvement.buddle_evidence_pair",
-            "schedule": crontab(minute=30),
+            "schedule": crontab(hour=6, minute=30, day_of_week=0),  # weekly evidence-pair cleanup
         },
         "opus-hero-refresh-8h": {                             # was astrosage-hero-refresh-8h; now Opus
             "task": "app.agent_loop.research_ideas.auto_improvement.opus_hero_refresh",
@@ -196,7 +196,7 @@ celery_app.conf.update(
         },
         "rakon-adversarial-probe-daily": {                   # was rakon-adversarial-probe-mwf (3×/wk → daily)
             "task": "app.agent_loop.research_ideas.auto_improvement.rakon_adversarial_probe",
-            "schedule": crontab(minute=0, hour=15),          # 15 UTC = 00 KST daily
+            "schedule": crontab(minute=0, hour=15, day_of_week=0),  # weekly re-mining lane
             "kwargs": {"page_id": 57},
         },
         "sonnet-section-rewrite-q30m": {                     # NEW v3 §3.3: Sonnet active section proposer
@@ -260,7 +260,7 @@ celery_app.conf.update(
         # P1-A: drain evidence for page 57 (every 30 mins)
         "drain-evidence-p57": {
             "task": "app.agent_loop.tasks.drain_evidence_for_page",
-            "schedule": crontab(minute="*/30"),
+            "schedule": crontab(hour=7, minute=30, day_of_week=0),  # weekly cleanup sweep
             "kwargs": {"page_id": 57},
         },
         # P1-C: nightly verbatim sync + alarm (daily at 03:00 UTC)
@@ -277,6 +277,9 @@ celery_app.conf.update(
 # drains this queue (see com.nebulamind.celery_autowiki.plist).
 celery_app.conf.task_routes = {
     "app.agent_loop.autowiki.tasks.autowiki_tick":                              {"queue": "autowiki"},
+    "app.agent_loop.autowiki.tasks.autowiki_propose_and_commit":                {"queue": "autowiki"},
+    "app.agent_loop.autowiki.tasks.autowiki_post_pipeline_notify":              {"queue": "autowiki"},
+    "app.agent_loop.autowiki.tasks.autowiki_pipeline_rollback":                 {"queue": "autowiki"},
     "app.agent_loop.autowiki.deep_synthesis.rakon_deep_pass":                   {"queue": "autowiki"},
     "app.agent_loop.research_ideas.auto_improvement.process_lightweight_event": {"queue": "autowiki"},
     "app.agent_loop.research_ideas.auto_improvement.judge_idea_pool":           {"queue": "autowiki"},

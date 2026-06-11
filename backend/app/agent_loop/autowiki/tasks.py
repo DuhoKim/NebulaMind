@@ -16,6 +16,7 @@ import httpx
 
 logger = logging.getLogger(__name__)
 from sqlalchemy import func as sqlfunc
+from celery.exceptions import Ignore
 
 from app.agent_loop.worker import celery_app
 from app.agent_loop.autowiki.judge import judge_page, PROMPT_VERSION
@@ -350,6 +351,9 @@ def _check_coherence_due(db, page_id: int) -> bool:
     3. The number of committed ``section_rewrite`` runs since the last committed
        ``rakon_coherence_pass`` exceeds COHERENCE_TRIGGER_REWRITES (default 50).
     """
+    if page_id == 57:
+        return False
+
     try:
         r = _get_redis()
         if r and r.get(f"autowiki:coherence_dispatched:{page_id}"):
@@ -624,9 +628,10 @@ def autowiki_propose_and_commit(self, page_id: int, pre_image_version_id: int | 
     
     decision = result.get("decision")
     if decision != "commit":
-        # Raise PipelineSkip to cleanly stop the chain
-        reason = result.get("reject_reason") or decision or "skipped"
-        raise PipelineSkip(f"Pipeline skip/rollback: {reason}")
+        _release_lock(page_id)
+        _clear_run_meta(page_id)
+        self.update_state(state="IGNORED", meta=result)
+        raise Ignore()
         
     # On commit, save run metadata in Redis for rollback capability
     try:
@@ -724,7 +729,16 @@ def autowiki_post_pipeline_notify(self, result_dict, page_id: int) -> dict:
     bind=True,
     max_retries=0,
 )
-def autowiki_pipeline_rollback(self, request, exc, traceback, page_id: int):
+def autowiki_pipeline_rollback(self, request=None, exc=None, traceback=None, page_id: int | None = None, *extra):
+    if page_id is None and extra:
+        page_id = extra[0]
+    if page_id is None and isinstance(request, int):
+        page_id = request
+        request = None
+    if page_id is None:
+        logger.error("[autowiki_pipeline_rollback] Missing page_id; request=%s exc=%s", request, exc)
+        return {"status": "error", "reason": "missing_page_id"}
+
     # Ensure Redis page lock is strictly released
     _release_lock(page_id)
     
@@ -885,10 +899,10 @@ def autowiki_tick() -> dict:
     from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
 
     pipeline = chain(
-        autowiki_propose_and_commit.s(page_id, pre_image_version_id),
-        claim_marker_embed_page.s(),
-        autowiki_post_pipeline_notify.s(page_id)
-    ).on_error(autowiki_pipeline_rollback.s(page_id, pre_image_version_id))
+        autowiki_propose_and_commit.s(page_id, pre_image_version_id).set(queue="autowiki"),
+        claim_marker_embed_page.s().set(queue="autowiki"),
+        autowiki_post_pipeline_notify.s(page_id).set(queue="autowiki"),
+    ).on_error(autowiki_pipeline_rollback.s(page_id).set(queue="autowiki"))
 
     pipeline.delay()
     logger.info("[autowiki_tick] Dispatched sequential canvas chain for page %d", page_id)
@@ -1128,6 +1142,17 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                     try:
                         import json
                         report = json.loads(report_match.group(1))
+                        proposal.payload.new_content = re.sub(
+                            r"<!--marker-report.*?-->",
+                            "",
+                            raw_text,
+                            flags=re.DOTALL,
+                        ).strip()
+                        proposal.payload.new_content = re.sub(
+                            r"<!--unmatched-citation-->",
+                            "",
+                            proposal.payload.new_content,
+                        ).strip()
                         asserted = set(report.get("asserted_claim_ids", []))
                         must_keep_ids = {r.id for r in must_keep}
                         missing_must_keep = must_keep_ids - asserted
@@ -1281,6 +1306,8 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                     pattern, lambda m: p.new_content + "\n\n", page.content,
                     count=1, flags=re.MULTILINE | re.DOTALL,
                 )
+                new_content = re.sub(r"<!--marker-report.*?-->", "", new_content, flags=re.DOTALL)
+                new_content = re.sub(r"<!--unmatched-citation-->", "", new_content)
                 from app.services.content_canonicalizer import canonicalize
                 new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
                 page.content = new_content
