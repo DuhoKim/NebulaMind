@@ -15,8 +15,8 @@ class Settings(BaseSettings):
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     OLLAMA_MODEL: str = "llama3.3:70b"
     OLLAMA_STUDIO_BASE_URL: str = "http://localhost:11434/v1"
-    OLLAMA_STUDIO_FAST_MODEL: str = "deepseek-r1:14b"
-    OLLAMA_STUDIO_HEAVY_MODEL: str = "qwen3:30b-a3b-instruct-2507-q4_K_M"
+    OLLAMA_STUDIO_FAST_MODEL: str = "gpt-oss:20b"
+    OLLAMA_STUDIO_HEAVY_MODEL: str = "qwen3.6:35b-a3b"
     OLLAMA_WRITER: str = ""
     OLLAMA_EDITOR: str = ""
     OLLAMA_REVIEWER: str = ""
@@ -26,12 +26,13 @@ class Settings(BaseSettings):
     ASTRO_SYNTH_MODEL: str = "astrosage-70b"
     ADS_API_KEY: str = ""
     OLLAMA_MACPRO_BASE_URL: str = ""
-    OLLAMA_MACPRO_MODEL: str = "deepseek-r1:32b"
-    OLLAMA_MACPRO_FAST_MODEL: str = "deepseek-r1:32b"
+    OLLAMA_MACPRO_MODEL: str = "deepseek-r1:671b"
+    OLLAMA_MACPRO_FAST_MODEL: str = "deepseek-r1:671b"
     OLLAMA_MACPRO_HEAVY_MODEL: str = "deepseek-r1:671b"
     RAKON_BASE_URL: str = "http://169.254.100.1:11435"  # Mac Pro — deepseek-r1:671b (Thunderbolt, confirmed working)
     RAKON_MODEL: str = "deepseek-r1:671b"
-    BUDDLE_MODEL: str = "deepseek-r1:32b"
+    BUDDLE_BASE_URL: str = "http://localhost:11434"
+    BUDDLE_MODEL: str = "gpt-oss:120b"
     EMBED_OLLAMA_BASE_URL: str = "http://127.0.0.1:11435"
     EMBED_OLLAMA_MODEL: str = "nomic-embed-text:v1.5"
     OPENCLAW_GATEWAY_URL: str = ""
@@ -115,7 +116,7 @@ class Settings(BaseSettings):
     STANCE_JURY_RETRY_BACKOFF_SECONDS: int = 300
     STANCE_JURY_INFLIGHT_TTL_SECONDS: int = 7200
     STANCE_JURY_LOW_VOTE_RETRY_MIN_AGE_SECONDS: int = 86400
-    STANCE_JURY_FAST_MODEL: str = "qwen3:30b-a3b-instruct-2507-q4_K_M"
+    STANCE_JURY_FAST_MODEL: str = "qwen3.6:35b-a3b"
     STANCE_JURY_TIMEOUT_SECONDS: int = 60
     STANCE_JURY_MIN_ABSTRACT_CHARS: int = 100
     STANCE_JURY_FLIP_THRESHOLD: int = 3
@@ -126,8 +127,8 @@ class Settings(BaseSettings):
     ADVERSARIAL_PASS_BATCH_SIZE: int = 20
     ADVERSARIAL_CLAIM_MIN_AGE_DAYS: int = 7
     ADVERSARIAL_REPROBE_INTERVAL_DAYS: int = 14
-    ADVERSARIAL_QUERY_MODEL: str = "gemma3:27b"
-    ADVERSARIAL_SKEPTIC_MODEL: str = "deepseek-r1:14b"
+    ADVERSARIAL_QUERY_MODEL: str = "qwen3.6:27b"
+    ADVERSARIAL_SKEPTIC_MODEL: str = "gpt-oss:20b"
     ADVERSARIAL_MAX_INSERTS_PER_CLAIM: int = 3
 
     # === Open Agent Council ===
@@ -188,6 +189,12 @@ class Settings(BaseSettings):
     GENERAL_NEWS_DEDUP_LOOKBACK_DAYS: int = 30
     GENERAL_NEWS_MAX_ITEMS_PER_FEED: int = 15
 
+    INFERENCE_SCHEDULER_ENABLED: bool = True
+    TARGETED_ADS_FAST_SCREEN_ENABLED: bool = True
+    SCREEN_BATCH: int = 25
+    SCREEN_CONCURRENCY: int = 5
+    JURY_PAPER_CONCURRENCY: int = 2
+
     model_config = {
         "env_prefix": "NM_",
         "env_file": "/Users/duhokim/NebulaMind/NebulaMind/backend/.env",
@@ -220,12 +227,11 @@ BATCH_SAFE_MODELS: frozenset[str] = frozenset({
     # Local Ollama models (no API cost)
     "llama3.1:8b",
     "llama3.3:70b",
-    "deepseek-r1:14b",
-    "deepseek-r1:32b",
-    "qwen3:30b",
-    "qwen3:30b-a3b-instruct-2507-q4_K_M",
-    "gemma3:27b",
-    "phi4:14b",
+    "deepseek-r1:671b",
+    "gpt-oss:20b",
+    "gpt-oss:120b",
+    "qwen3.6:35b-a3b",
+    "qwen3.6:27b",
     "astrosage-70b",
     "astrosage-70b:latest",
     "atom-astronomy-7b",

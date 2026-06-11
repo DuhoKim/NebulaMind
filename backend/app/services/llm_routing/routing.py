@@ -2,9 +2,9 @@
 LLM Routing v1 — Model-role assignment for NebulaMind agent tasks.
 
 Tiers:
-  T1  Mac Studio fast   — Nutty (deepseek-r1:14b)
-  T2  Mac Studio heavy  — Mima (qwen3:30b-a3b-instruct-2507-q4_K_M)
-  T3  Mac Pro 32b       — Buddle (deepseek-r1:32b)
+  T1  Mac Studio fast   — Nutty (gpt-oss:20b)
+  T2  Mac Studio heavy  — Mima (qwen3.6:35b-a3b)
+  T3  Mac Studio heavy  — Buddle (gpt-oss:120b)
   T4  Mac Pro 671b      — Rakon (deepseek-r1:671b) — galaxy-evolution priority
   T5  Cloud free        — Gemini-2.0-flash, Cerebras, SambaNova, Groq
 """
@@ -21,6 +21,7 @@ def _v1_url(url: str) -> str:
 
 _STUDIO = _v1_url(settings.OLLAMA_STUDIO_BASE_URL or settings.OLLAMA_BASE_URL)
 _PRO = _v1_url(settings.RAKON_BASE_URL or settings.OLLAMA_MACPRO_BASE_URL)
+_BUDDLE_HOST = _v1_url(settings.BUDDLE_BASE_URL or settings.OLLAMA_STUDIO_BASE_URL or settings.OLLAMA_BASE_URL)
 _NUTTY = settings.OLLAMA_STUDIO_FAST_MODEL
 _MIMA = settings.OLLAMA_STUDIO_HEAVY_MODEL
 _BUDDLE = settings.BUDDLE_MODEL or settings.OLLAMA_MACPRO_FAST_MODEL or settings.OLLAMA_MACPRO_MODEL
@@ -66,7 +67,7 @@ ROUTING: dict[str, list[dict]] = {
     # Writer: best quality content generation
     "writer": _compact([
         _ollama(_STUDIO, _MIMA,              "mima"),
-        _ollama(_PRO,    _BUDDLE,            "buddle", timeout=180),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=180),
         _gemini(),
         _sambanova(),
     ]),
@@ -75,7 +76,7 @@ ROUTING: dict[str, list[dict]] = {
     "reviewer": _compact([
         _ollama(_STUDIO, _NUTTY,             "nutty"),
         _ollama(_STUDIO, _MIMA,              "mima"),
-        _ollama(_PRO,    _BUDDLE,            "buddle", timeout=180),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=180),
         _gemini(),
     ]),
 
@@ -88,7 +89,7 @@ ROUTING: dict[str, list[dict]] = {
 
     # Synthesis: multi-draft merge (heavy reasoning)
     "synthesis": _compact([
-        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=240),
         _ollama(_STUDIO, _MIMA,              "mima"),
         _gemini(),
     ]),
@@ -97,7 +98,7 @@ ROUTING: dict[str, list[dict]] = {
     "renovation_synth": _compact([
         _ollama(_STUDIO, _MIMA,              "mima"),
         _ollama(_STUDIO, _NUTTY,             "nutty"),
-        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=240),
         _gemini(),
     ]),
 
@@ -111,7 +112,7 @@ ROUTING: dict[str, list[dict]] = {
     # Adversarial: challenging existing claims (deep reasoning)
     "adversarial": _compact([
         _ollama(_PRO,    _RAKON,             "rakon",   timeout=300),
-        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=240),
         _ollama(_STUDIO, _NUTTY,             "nutty"),
     ]),
 
@@ -131,7 +132,7 @@ ROUTING: dict[str, list[dict]] = {
     # Council adjudication: high-stakes decisions (Rakon)
     "council": _compact([
         _ollama(_PRO,    _RAKON,             "rakon",   timeout=300),
-        _ollama(_PRO,    _BUDDLE,            "buddle",  timeout=240),
+        _ollama(_BUDDLE_HOST, _BUDDLE,       "buddle", timeout=240),
         _ollama(_STUDIO, _MIMA,              "mima"),
     ]),
 

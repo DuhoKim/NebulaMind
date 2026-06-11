@@ -353,7 +353,7 @@ def _compute_idea_signals(db, page_id: int) -> tuple[dict[int, float], list[int]
 
 
 def _takji_methodology_check(proposed_text: str, claims_block: str) -> dict:
-    """K2 gate: phi4:14b checks methodology + dataset realism + systematics.
+    """K2 gate: Nutty checks methodology + dataset realism + systematics.
     Returns {'verdict': 'pass'|'soft_fail'|'hard_fail', 'rationale': str}.
     """
     import re as _re
@@ -372,7 +372,7 @@ def _takji_methodology_check(proposed_text: str, claims_block: str) -> dict:
         "- hard_fail: fundamental flaw, fabricated dataset, or systematics violation"
     )
     try:
-        model = guard_batch_model("phi4:14b", "autowiki.takji_methodology_check")
+        model = guard_batch_model(settings.ADVERSARIAL_SKEPTIC_MODEL, "autowiki.takji_methodology_check")
         est_tokens = max(1, len(prompt) // 4)
         dispatch_premium("autowiki.takji_methodology_check", model, est_tokens)
         resp = httpx.post(

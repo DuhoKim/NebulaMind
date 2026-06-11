@@ -393,14 +393,14 @@ def _stance_hint(claim_kw: set[str], abstract: str | None) -> str | None:
 
 
 _OLLAMA_VERIFY_URL = "http://localhost:11434/api/generate"
-_VERIFY_MODEL = "deepseek-r1:14b"  # Nutty — reasoning-tuned, good at claim/evidence matching
+_VERIFY_MODEL = "gpt-oss:20b"  # Nutty — fast JSON-safe claim/evidence matching
 
 
 def _llm_stance_verify(claim_text: str, abstract: str, timeout: int = 30) -> str | None:
-    """Call deepseek-r1:14b via Ollama to assess if abstract supports/refutes a claim.
+    """Call Nutty via Ollama to assess if abstract supports/refutes a claim.
 
     Returns 'supports', 'refutes', 'neutral', or None on any error (caller falls back
-    to heuristic). Platoon assignment: Nutty (deepseek-r1:14b) — see ollama_model_policy_v1.md.
+    to heuristic). Platoon assignment: Nutty (gpt-oss:20b) — see ollama_model_policy_v1.md.
     """
     prompt = (
         "Does the abstract below support, refute, or neither address the claim?\n\n"
@@ -505,7 +505,7 @@ def verify_for_claim(
     if q < settings.EVIDENCE_MIN_QUALITY_FOR_ACCEPTED * 0.75:
         return None
 
-    # LLM stance pre-judge (deepseek-r1:14b / Nutty). Falls back to heuristic on
+    # LLM stance pre-judge (gpt-oss:20b / Nutty). Falls back to heuristic on
     # error so a cold Ollama or network hiccup doesn't block evidence insertion.
     llm_stance = _llm_stance_verify(claim_text, record.abstract or "")
     stance = llm_stance or _stance_hint(kw, record.abstract)

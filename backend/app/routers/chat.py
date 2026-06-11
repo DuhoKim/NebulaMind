@@ -245,7 +245,7 @@ def ask(
     # Synthesize
     prompt = _build_prompt(body.question, grounded, body.history)
     try:
-        raw = _call_ollama("gemma3:27b", SYNTHESIS_SYSTEM, prompt)
+        raw = _call_ollama(settings.ADVERSARIAL_QUERY_MODEL, SYNTHESIS_SYSTEM, prompt)
     except Exception:
         # Fallback to larger model
         try:
@@ -311,7 +311,7 @@ async def stream_ask(
 
     async def stream_gen():
         payload = json.dumps({
-            "model": "gemma3:27b",
+            "model": settings.ADVERSARIAL_QUERY_MODEL,
             "messages": [
                 {"role": "system", "content": SYNTHESIS_SYSTEM},
                 {"role": "user", "content": prompt},
@@ -347,7 +347,7 @@ async def stream_ask(
         except Exception:
             # Fallback: non-streaming call
             try:
-                raw = _call_ollama("gemma3:27b", SYNTHESIS_SYSTEM, prompt)
+                raw = _call_ollama(settings.ADVERSARIAL_QUERY_MODEL, SYNTHESIS_SYSTEM, prompt)
             except Exception:
                 raw = "\n".join(f"• {g.claim_text[:100]}" for g in grounded[:3])
             yield f"data: {json.dumps({'chunk': raw})}\n\n"

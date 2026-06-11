@@ -65,11 +65,10 @@ def _keep_alive_ollama(base_url: str, model: str, keep_alive: str = "24h") -> No
 @celery_app.task(name="app.agent_loop.tasks.warm_models")
 def warm_models():
     """Keep key models loaded in Ollama memory. Runs every 20 minutes.
-    Resident set (galaxy-evolution focus): astrosage-70b, deepseek-r1:14b, atom-7b, qwen3:30b-a3b-instruct-2507-q4_K_M
-    Excluded: llama3.3:70b (Blanc), gemma3:27b (Tera), phi4:14b (Takji) — RAM pressure risk
+    Resident set: Vera, Mima, Nutty, Pico. Buddle/Blanc load on demand.
     """
     _keep_alive_ollama(settings.RAKON_BASE_URL, settings.RAKON_MODEL, "24h")  # Rakon
-    _keep_alive_ollama(settings.RAKON_BASE_URL, settings.BUDDLE_MODEL, "2h")  # Buddle
+    _keep_alive_ollama(settings.BUDDLE_BASE_URL, settings.BUDDLE_MODEL, "2h")  # Buddle
     # Studio resident set — ~212GB safe budget
     for model in [settings.ASTRO_SYNTH_MODEL, settings.OLLAMA_STUDIO_HEAVY_MODEL, settings.OLLAMA_STUDIO_FAST_MODEL, settings.ASTRO_SCORER_MODEL]:
         _keep_alive_ollama("http://localhost:11434", model, "30m")
@@ -104,18 +103,17 @@ Respond with ONLY a JSON object:
 
 STANCE_JURY_MODELS = [
     {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192},
-    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL, "max_tokens": 512, "no_think": True},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL, "max_tokens": 512, "no_think": True},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": "vanta-research/atom-astronomy-7b", "label": "vanta-research/atom-astronomy-7b"},
 ]
 STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
 
 JURY_AGENT_LABELS = {
     "gemini-2.5-flash":  "JuryGeminiFlash",
-    "qwen3:30b-a3b-instruct-2507-q4_K_M":       "JuryQwen",
-    "gemma3:27b":      "JuryGemma",
-    "deepseek-r1:14b": "JuryDeepseek",
+    "qwen3.6:35b-a3b":       "JuryQwen36",
+    "gpt-oss:20b": "JuryGptOss20",
     "llama3.3:70b":       "JuryLlama",
-    "deepseek-r1:32b":   "JuryDeepseek32",
     "deepseek-r1:671b":    "JuryDeepseek671",
     "groq-llama3.3":      "JuryGroq",
     "cerebras-llama3.1":  "JuryCerebras",
@@ -504,7 +502,7 @@ def _build_provider_chain_for_role(role: str = None):
             "label": "sambanova",
         })
 
-    # 5. Mac Pro Ollama (deepseek-r1:32b / 671b — heavy analysis)
+    # 5. Mac Pro Ollama (Rakon 671b — heavy analysis)
     macpro_url = settings.RAKON_BASE_URL or settings.OLLAMA_MACPRO_BASE_URL
     if macpro_url:
         chain.append({
@@ -628,13 +626,39 @@ async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, u
     try:
         est_tokens = max(1, (len(system) + len(user_msg)) // 4)
         job_name = f"tasks.chat_parallel.{model.get('label', model['model'])}"
+
+        if settings.INFERENCE_SCHEDULER_ENABLED:
+            from app.services.inference_scheduler import InferenceScheduler
+            scheduler = InferenceScheduler()
+            dispatch_premium(job_name, model["model"], est_tokens)
+            content = await scheduler.execute(model, user_msg, timeout, system_prompt=system)
+            if content is None:
+                return None
+            log_llm_spend(
+                job_name,
+                model["model"],
+                prompt_tokens=None,
+                completion_tokens=None,
+                estimated_tokens=est_tokens,
+            )
+            return {"model": model["model"], "label": model["label"], "response": content}
+
+        system_msg = system
+        user_content = user_msg
+        if model.get("no_think"):
+            system_msg = f"{system_msg}\n\nDo not think step by step. Return only the requested JSON."
+            user_content = f"/no_think\n{user_content}"
+
         payload: dict = {
             "model": model["model"],
             "messages": [
-                {"role": "system", "content": system},
-                {"role": "user", "content": user_msg},
+                {"role": "system", "content": system_msg},
+                {"role": "user", "content": user_content},
             ],
         }
+        if model.get("no_think"):
+            payload["thinking"] = False
+            payload["reasoning_effort"] = "none"
         if model.get("api_key") == "ollama":
             payload["options"] = {"num_ctx": 8192}
         if "max_tokens" in model:
@@ -1051,8 +1075,8 @@ def _discover_new_topic(db) -> "str | None":
 _SYNTHESIS_MODEL = {
     "base_url": "http://localhost:11434/v1",
     "api_key": "ollama",
-    "model": "gemma3:27b",
-    "label": "gemma3:27b",
+    "model": settings.ADVERSARIAL_QUERY_MODEL,
+    "label": settings.ADVERSARIAL_QUERY_MODEL,
 }
 
 _SYNTHESIS_SYSTEM_PROMPT = (
@@ -1062,7 +1086,7 @@ _SYNTHESIS_SYSTEM_PROMPT = (
 
 
 def _synthesize(drafts: list[dict], page_title: str) -> str:
-    """Merge multiple wiki drafts into a single superior version via gemma3:27b.
+    """Merge multiple wiki drafts into a single superior version via Tera.
 
     drafts: list of {"label": str, "response": str} from _chat_parallel.
     Falls back to the longest response if synthesis fails.
@@ -1192,7 +1216,7 @@ def _run_editor(db, agent: Agent):
             f"Open Questions, References) are present and well-developed. Return the full updated content."
         )
 
-    # Phase 3: parallel writer (3 models) + synthesis via gemma3:27b
+    # Phase 3: parallel writer (3 models) + synthesis via qwen3.6:27b
     parallel_models = [
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",    "label": "llama3.3:70b"},
         {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
@@ -1403,9 +1427,9 @@ def _run_commenter(db, agent: Agent):
     )
 
     parallel_models = [
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "gemma3:27b",       "label": "gemma3:27b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "phi4:14b",         "label": "phi4:14b"},
-        {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "deepseek-r1:14b",  "label": "deepseek-r1:14b"},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.ADVERSARIAL_QUERY_MODEL, "label": settings.ADVERSARIAL_QUERY_MODEL},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
+        {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
     ]
     if settings.GEMINI_API_KEY:
         parallel_models.append({"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192})
@@ -3181,8 +3205,8 @@ Rewrite ## {section_to_rewrite} with these papers."""
         if not results or len(results) < 2:
             # Fallback: single model
             try:
-                fallback = _chat("gemma3:27b", SYNTH_SYSTEM, user_msg, role="renovator")
-                results = [{"label": "gemma3:27b_fallback", "response": fallback}]
+                fallback = _chat(settings.ADVERSARIAL_QUERY_MODEL, SYNTH_SYSTEM, user_msg, role="renovator")
+                results = [{"label": f"{settings.ADVERSARIAL_QUERY_MODEL}_fallback", "response": fallback}]
             except Exception:
                 plan.status = "queued"
                 db.commit()
@@ -3208,7 +3232,7 @@ Rules:
             merge_msg = f"Evidence pool:\n{evidence_text}\n\nDrafts to merge:\n{drafts}"
 
             try:
-                final_section = _chat("gemma3:27b", MERGE_SYSTEM, merge_msg, role="renovator")
+                final_section = _chat(settings.ADVERSARIAL_QUERY_MODEL, MERGE_SYSTEM, merge_msg, role="renovator")
             except Exception:
                 final_section = results[0]["response"]  # best single result
 
@@ -3987,7 +4011,7 @@ Rules:
 
 _FACT_DRAFT_MODELS = [
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
-    {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "phi4:14b",     "label": "phi4:14b"},
+    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
     {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b", "label": "llama3.3:70b"},
 ]
 

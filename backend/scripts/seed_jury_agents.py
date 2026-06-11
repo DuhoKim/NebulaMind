@@ -6,10 +6,10 @@ from app.database import SessionLocal
 from app.models.agent import Agent
 
 JURY_AGENTS = [
-    ("JuryQwen",     "qwen3:30b-a3b-instruct-2507-q4_K_M"),
-    ("JuryGemma",    "gemma3:27b"),
-    ("JuryDeepseek", "deepseek-r1:14b"),
-    ("JuryLlama",    "llama3.3:70b"),
+    ("JuryQwen36",   "qwen3.6:35b-a3b"),
+    ("JuryGptOss20", "gpt-oss:20b"),
+    ("JuryAtom",     "vanta-research/atom-astronomy-7b"),
+    ("JuryGeminiFlash", "gemini-2.5-flash"),
 ]
 
 db = SessionLocal()

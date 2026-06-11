@@ -285,8 +285,8 @@ def _evict_non_resident_on_boot(sender, **_kwargs):
         "astrosage-70b:latest",
         _settings_boot.OLLAMA_STUDIO_FAST_MODEL,
         _settings_boot.OLLAMA_STUDIO_HEAVY_MODEL,
-        "gemma3:27b",                                # Tera
-        "phi4:14b",                                  # Takji
+        _settings_boot.ADVERSARIAL_QUERY_MODEL,      # Tera
+        _settings_boot.BUDDLE_MODEL,                 # Buddle
         "vanta-research/atom-astronomy-7b:latest",
         _settings_boot.EMBED_OLLAMA_MODEL,           # marker-embed Stage B
     }

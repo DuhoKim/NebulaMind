@@ -6,6 +6,8 @@ import httpx
 import redis
 import platform
 import socket
+import weakref
+from urllib.parse import urlparse
 from typing import Any, Optional, Dict
 from app.config import settings, BATCH_SAFE_DEFAULT_MODEL
 from app.services.llm_utils import clean_llm_response
@@ -21,13 +23,6 @@ class ModelFootprints:
 
     # Model Footprints Map
     FOOTPRINTS = {
-        "llama3.1:405b": {
-            "host": "pro",
-            "tier": "heavy",
-            "vram_gb": 344,
-            "slots": 1,
-            "cold_load": 120
-        },
         "llama3.3:70b": {
             "host": "studio",
             "tier": "heavy",
@@ -35,12 +30,12 @@ class ModelFootprints:
             "slots": 1,
             "cold_load": 30
         },
-        "deepseek-r1:70b": {
+        "gpt-oss:120b": {
             "host": "studio",
             "tier": "heavy",
-            "vram_gb": 42,
+            "vram_gb": 65,
             "slots": 1,
-            "cold_load": 30
+            "cold_load": 45
         },
         "astrosage-70b:latest": {
             "host": "studio",
@@ -56,26 +51,26 @@ class ModelFootprints:
             "slots": 1,
             "cold_load": 30
         },
-        "qwen3:30b": {
+        "qwen3.6:35b-a3b": {
             "host": "studio",
             "tier": "medium",
-            "vram_gb": 18,
+            "vram_gb": 23,
             "slots": 1,
             "cold_load": 15
         },
-        "qwen3:30b-a3b-instruct-2507-q4_K_M": {
+        "qwen3.6:27b": {
             "host": "studio",
             "tier": "medium",
-            "vram_gb": 18,
+            "vram_gb": 17,
             "slots": 1,
             "cold_load": 15
         },
-        "deepseek-r1:14b": {
+        "gpt-oss:20b": {
             "host": "studio",
             "tier": "light",
-            "vram_gb": 9,
+            "vram_gb": 13,
             "slots": 0,
-            "cold_load": 5
+            "cold_load": 10
         },
         "vanta-research/atom-astronomy-7b:latest": {
             "host": "studio",
@@ -115,36 +110,58 @@ class ModelFootprints:
 
 
 _OLLAMA_LIVENESS_CACHE: dict[str, tuple[float, bool]] = {}
-_PERSISTENT_CLIENT: Optional[httpx.AsyncClient] = None
+_PERSISTENT_CLIENTS: "weakref.WeakKeyDictionary[asyncio.AbstractEventLoop, httpx.AsyncClient]" = weakref.WeakKeyDictionary()
+PREFLIGHT_TIMEOUT_SECONDS = 1.0
+FALLBACK_TIMEOUT_SECONDS = 90
+
+
+def _is_local_url(base_url: str) -> bool:
+    host = urlparse(base_url).hostname or ""
+    return host in {"localhost", "127.0.0.1", "::1"}
+
+
+def _http_timeout(seconds: float) -> httpx.Timeout:
+    seconds = max(1.0, float(seconds))
+    return httpx.Timeout(
+        timeout=seconds,
+        connect=min(5.0, seconds),
+        read=seconds,
+        write=min(10.0, seconds),
+        pool=min(5.0, seconds),
+    )
 
 def get_persistent_client() -> httpx.AsyncClient:
-    global _PERSISTENT_CLIENT
-    if _PERSISTENT_CLIENT is None:
-        socket_options = [
-            (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
-        ]
-        if platform.system() == "Darwin":
-            # macOS: TCP_KEEPALIVE is 0x10
-            socket_options.append((socket.IPPROTO_TCP, 0x10, 30))
-        else:
-            if hasattr(socket, "TCP_KEEPIDLE"):
-                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30))
-            if hasattr(socket, "TCP_KEEPINTVL"):
-                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10))
-            if hasattr(socket, "TCP_KEEPCNT"):
-                socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5))
+    loop = asyncio.get_running_loop()
+    client = _PERSISTENT_CLIENTS.get(loop)
+    if client is not None and not client.is_closed:
+        return client
 
-        limits = httpx.Limits(
-            max_connections=20,
-            max_keepalive_connections=5,
-            keepalive_expiry=60.0,
-        )
-        transport = httpx.AsyncHTTPTransport(
-            socket_options=socket_options,
-            limits=limits,
-        )
-        _PERSISTENT_CLIENT = httpx.AsyncClient(transport=transport)
-    return _PERSISTENT_CLIENT
+    socket_options = [
+        (socket.SOL_SOCKET, socket.SO_KEEPALIVE, 1),
+    ]
+    if platform.system() == "Darwin":
+        # macOS: TCP_KEEPALIVE is 0x10
+        socket_options.append((socket.IPPROTO_TCP, 0x10, 30))
+    else:
+        if hasattr(socket, "TCP_KEEPIDLE"):
+            socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPIDLE, 30))
+        if hasattr(socket, "TCP_KEEPINTVL"):
+            socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 10))
+        if hasattr(socket, "TCP_KEEPCNT"):
+            socket_options.append((socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 5))
+
+    limits = httpx.Limits(
+        max_connections=20,
+        max_keepalive_connections=5,
+        keepalive_expiry=60.0,
+    )
+    transport = httpx.AsyncHTTPTransport(
+        socket_options=socket_options,
+        limits=limits,
+    )
+    client = httpx.AsyncClient(transport=transport)
+    _PERSISTENT_CLIENTS[loop] = client
+    return client
 
 
 class InferenceScheduler:
@@ -215,9 +232,9 @@ class InferenceScheduler:
         # 1. Cloud models (Gemini, OpenAI, Cerebras, SambaNova) run immediately without scheduling
         info = ModelFootprints.get_info(model_name)
         is_cloud = (
-            info is None or 
-            any(ind in model_name.lower() for ind in ["gemini", "gpt", "openai", "claude", "cerebras", "sambanova"]) or
             juror_spec.get("api_key") != "ollama"
+            or info is None
+            or any(ind in model_name.lower() for ind in ["gemini", "openai", "claude", "cerebras", "sambanova"])
         )
         
         if is_cloud:
@@ -344,21 +361,41 @@ class InferenceScheduler:
             }
         else:
             fallback_spec = {
-                "model": "deepseek-r1:14b",
+                "model": "gpt-oss:20b",
                 "base_url": "http://localhost:11434/v1",
                 "api_key": "ollama",
                 "label": f"{juror_spec.get('label', '')}-Fallback-Local"
             }
             
         logger.info(f"[InferenceScheduler] Falling back from {model_name} to {fallback_spec['model']}")
+        fallback_base = fallback_spec.get("base_url") or ""
+        if (
+            fallback_spec.get("api_key") == "ollama"
+            and _is_local_url(fallback_base)
+            and any(marker in reason for marker in ("preflight_failed", "host_offline", "circuit_breaker_active"))
+        ):
+            logger.warning(
+                "[InferenceScheduler] Skipping local fallback %s after unhealthy-local reason=%s",
+                fallback_spec["model"],
+                reason,
+            )
+            return None
+
+        fallback_timeout = min(int(timeout), FALLBACK_TIMEOUT_SECONDS)
         try:
-            return await self._make_http_call(fallback_spec, prompt_text, timeout, system_prompt)
+            return await self._make_http_call(fallback_spec, prompt_text, fallback_timeout, system_prompt)
         except Exception as e:
             logger.error(f"[InferenceScheduler] Fallback execution failed: {e}")
             return None
 
     async def _make_http_call(self, juror_spec: dict, prompt_text: str, timeout: int, system_prompt: str = None) -> str:
         model_name = juror_spec["model"]
+        if juror_spec.get("no_think"):
+            prompt_text = f"/no_think\n{prompt_text}"
+            if system_prompt:
+                system_prompt = f"{system_prompt}\n\nDo not think step by step. Return only the requested JSON."
+            else:
+                system_prompt = "Do not think step by step. Return only the requested JSON."
         
         if "deepseek-r1" in model_name.lower():
             if system_prompt:
@@ -385,31 +422,57 @@ class InferenceScheduler:
             payload["temperature"] = juror_spec["temperature"]
         if "max_tokens" in juror_spec:
             payload["max_tokens"] = juror_spec["max_tokens"]
+        if juror_spec.get("no_think"):
+            payload["thinking"] = False
+            payload["think"] = False
+            payload["reasoning_effort"] = "none"
             
-        if juror_spec.get("api_key") == "ollama" or "localhost" in juror_spec.get("base_url", "") or "127.0.0.1" in juror_spec.get("base_url", ""):
-            payload["options"] = {"num_ctx": 8192}
+        base_url = juror_spec.get("base_url") or "http://localhost:11434/v1"
+        is_local_ollama = juror_spec.get("api_key") == "ollama" and _is_local_url(base_url)
+
+        if is_local_ollama:
+            payload["options"] = {"num_ctx": int(juror_spec.get("num_ctx", 8192))}
             if "temperature" in juror_spec:
                 payload["options"]["temperature"] = juror_spec["temperature"]
+            if "num_predict" in juror_spec:
+                payload["options"]["num_predict"] = juror_spec["num_predict"]
 
         headers = {}
         api_key = juror_spec.get("api_key") or ""
         if api_key and api_key != "ollama":
             headers["Authorization"] = f"Bearer {api_key}"
 
-        base_url = juror_spec.get("base_url") or "http://localhost:11434/v1"
-        url = f"{base_url.rstrip('/')}/chat/completions"
+        if is_local_ollama:
+            # Ollama's OpenAI-compatible endpoint can ignore model context settings
+            # from the payload for some Modelfiles. Use the native chat API so
+            # num_ctx=8192 is enforced at runner load time.
+            ollama_root = base_url.rstrip("/").removesuffix("/v1")
+            url = f"{ollama_root}/api/chat"
+        else:
+            url = f"{base_url.rstrip('/')}/chat/completions"
 
         async def _do_call():
-            client = get_persistent_client()
-            response = await client.post(
-                url,
-                headers=headers,
-                json=payload,
-                timeout=timeout,
-            )
+            request_timeout = _http_timeout(float(timeout))
+            if is_local_ollama:
+                # Local Ollama runner sockets can get wedged after model-load failures.
+                # Use a fresh client per generation so cancellation closes the socket.
+                async with httpx.AsyncClient(timeout=request_timeout) as client:
+                    response = await client.post(url, json=payload)
+            else:
+                client = get_persistent_client()
+                response = await client.post(
+                    url,
+                    headers=headers,
+                    json=payload,
+                    timeout=request_timeout,
+                )
             response.raise_for_status()
             data = response.json()
-            
+
+            if is_local_ollama:
+                content = (data.get("message") or {}).get("content") or data.get("response") or ""
+                return clean_llm_response(content)
+
             choices = data.get("choices", [])
             if choices:
                 message = choices[0].get("message", {})
