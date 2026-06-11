@@ -103,6 +103,7 @@ Respond with ONLY a JSON object:
 
 STANCE_JURY_MODELS = [
     {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192},
+    {"base_url": settings.LLM_BASE_URL, "api_key": settings.LLM_API_KEY, "model": "openai/gpt-oss-20b", "label": "openai/gpt-oss-20b", "max_tokens": 512},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL, "max_tokens": 512, "no_think": True},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL, "max_tokens": 512, "no_think": True},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": "vanta-research/atom-astronomy-7b", "label": "vanta-research/atom-astronomy-7b"},
@@ -115,6 +116,7 @@ JURY_AGENT_LABELS = {
     "gpt-oss:20b": "JuryGptOss20",
     "llama3.3:70b":       "JuryLlama",
     "deepseek-r1:671b":    "JuryDeepseek671",
+    "openai/gpt-oss-20b":  "JuryGroq",
     "groq-llama3.3":      "JuryGroq",
     "cerebras-llama3.1":  "JuryCerebras",
     "vanta-research/atom-astronomy-7b": "JuryAtom",
@@ -405,7 +407,7 @@ def _build_provider_chain():
     # 1. Primary: Groq (from settings / env)
     groq_key = settings.LLM_API_KEY
     groq_url = settings.LLM_BASE_URL
-    groq_model = os.environ.get("NM_LLM_MODEL", "llama-3.3-70b-versatile")
+    groq_model = os.environ.get("NM_LLM_MODEL", "openai/gpt-oss-120b")
     if groq_key:
         chain.append({
             "base_url": groq_url,
@@ -480,7 +482,7 @@ def _build_provider_chain_for_role(role: str = None):
         chain.append({
             "base_url": settings.LLM_BASE_URL,
             "api_key": settings.LLM_API_KEY,
-            "model": os.environ.get("NM_LLM_MODEL", "llama-3.3-70b-versatile"),
+            "model": os.environ.get("NM_LLM_MODEL", "openai/gpt-oss-120b"),
             "label": "groq",
         })
 
