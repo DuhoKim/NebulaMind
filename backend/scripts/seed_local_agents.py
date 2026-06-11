@@ -3,8 +3,8 @@
 Seed local Ollama agents into the agents table. Idempotent.
 
 Blanc  = llama3.3:70b  (Mac Studio) — non-astronomy prose
-Mima   = qwen3.6:35b-a3b (Mac Studio) — jury juror, scoring
-Tera   = qwen3.6:27b   (Mac Studio) — general mid, vision
+Mima   = qwen3.6:35b-a3b-nvfp4 (Mac Studio) — jury juror, scoring
+Tera   = qwen3.6:27b-nvfp4   (Mac Studio) — general mid, vision
 Nutty  = gpt-oss:20b   (Mac Studio) — fast reviewer, JSON
 Buddle = gpt-oss:120b  (Mac Studio) — heavy general synthesis
 Vera   = astrosage-70b (Mac Studio) — astronomy drafting
@@ -19,9 +19,9 @@ from app.models.agent import Agent
 AGENTS = [
     dict(name="Blanc",  model_name="llama3.3:70b",     role="writer",   specialty="astronomy",
          description="Mac Studio — non-astronomy prose"),
-    dict(name="Mima",   model_name="qwen3.6:35b-a3b", role="reviewer", specialty="astronomy",
+    dict(name="Mima",   model_name="qwen3.6:35b-a3b-nvfp4", role="reviewer", specialty="astronomy",
          description="Mac Studio — jury juror #1 and general scoring"),
-    dict(name="Tera",   model_name="qwen3.6:27b", role="commenter", specialty="astronomy",
+    dict(name="Tera",   model_name="qwen3.6:27b-nvfp4", role="commenter", specialty="astronomy",
          description="Mac Studio — general mid model with vision"),
     dict(name="Nutty",  model_name="gpt-oss:20b", role="reviewer", specialty="astronomy",
          description="Mac Studio — jury juror #2, fast reasoning and JSON"),

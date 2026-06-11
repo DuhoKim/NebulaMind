@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     OLLAMA_MODEL: str = "llama3.3:70b"
     OLLAMA_STUDIO_BASE_URL: str = "http://localhost:11434/v1"
     OLLAMA_STUDIO_FAST_MODEL: str = "gpt-oss:20b"  # Nutty
-    OLLAMA_STUDIO_HEAVY_MODEL: str = "qwen3.6:35b-a3b"  # Mima
+    OLLAMA_STUDIO_HEAVY_MODEL: str = "qwen3.6:35b-a3b-nvfp4"  # Mima
     OLLAMA_WRITER: str = ""
     OLLAMA_EDITOR: str = ""
     OLLAMA_REVIEWER: str = ""
@@ -116,7 +116,7 @@ class Settings(BaseSettings):
     STANCE_JURY_RETRY_BACKOFF_SECONDS: int = 300
     STANCE_JURY_INFLIGHT_TTL_SECONDS: int = 7200
     STANCE_JURY_LOW_VOTE_RETRY_MIN_AGE_SECONDS: int = 86400
-    STANCE_JURY_FAST_MODEL: str = "qwen3.6:35b-a3b"  # Mima
+    STANCE_JURY_FAST_MODEL: str = "qwen3.6:35b-a3b-nvfp4"  # Mima
     STANCE_JURY_TIMEOUT_SECONDS: int = 60
     STANCE_JURY_MIN_ABSTRACT_CHARS: int = 100
     STANCE_JURY_FLIP_THRESHOLD: int = 3
@@ -127,7 +127,7 @@ class Settings(BaseSettings):
     ADVERSARIAL_PASS_BATCH_SIZE: int = 20
     ADVERSARIAL_CLAIM_MIN_AGE_DAYS: int = 7
     ADVERSARIAL_REPROBE_INTERVAL_DAYS: int = 14
-    ADVERSARIAL_QUERY_MODEL: str = "qwen3.6:27b"  # Tera
+    ADVERSARIAL_QUERY_MODEL: str = "qwen3.6:27b-nvfp4"  # Tera
     ADVERSARIAL_SKEPTIC_MODEL: str = "gpt-oss:20b"  # Nutty
     ADVERSARIAL_MAX_INSERTS_PER_CLAIM: int = 3
 
@@ -230,8 +230,8 @@ BATCH_SAFE_MODELS: frozenset[str] = frozenset({
     "deepseek-r1:671b",
     "gpt-oss:20b",
     "gpt-oss:120b",
-    "qwen3.6:35b-a3b",
-    "qwen3.6:27b",
+    "qwen3.6:35b-a3b-nvfp4",
+    "qwen3.6:27b-nvfp4",
     "astrosage-70b",
     "astrosage-70b:latest",
     "atom-astronomy-7b",

@@ -3,7 +3,7 @@ LLM Routing v3 — canonical platoon nicknames from docs/platoon_overhaul_v2.md 
 
 Tiers:
   T1  Mac Studio fast   — Nutty (gpt-oss:20b)
-  T2  Mac Studio heavy  — Mima (qwen3.6:35b-a3b)
+  T2  Mac Studio heavy  — Mima (qwen3.6:35b-a3b-nvfp4)
   T3  Mac Studio heavy  — Buddle (gpt-oss:120b)
   T4  Mac Pro 671b      — Rakon (deepseek-r1:671b) — galaxy-evolution priority
   T5  Cloud free        — Gemini-2.0-flash, Cerebras, SambaNova, Groq

@@ -6,7 +6,7 @@ from app.database import SessionLocal
 from app.models.agent import Agent
 
 JURY_AGENTS = [
-    ("JuryQwen36",   "qwen3.6:35b-a3b"),
+    ("JuryQwen36",   "qwen3.6:35b-a3b-nvfp4"),
     ("JuryGptOss20", "gpt-oss:20b"),
     ("JuryAtom",     "vanta-research/atom-astronomy-7b"),
     ("JuryGeminiFlash", "gemini-2.5-flash"),

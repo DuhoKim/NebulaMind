@@ -11,8 +11,8 @@ Source: `docs/platoon_overhaul_v2.md` section 4 and section 6.
 | Buddle | gpt-oss:120b | Mac Studio | Heavy general reasoning / synthesis backup |
 | Vera | astrosage-70b | Mac Studio | Astronomy drafting and synthesis |
 | Blanc | llama3.3:70b | Mac Studio | Non-astronomy prose |
-| Mima | qwen3.6:35b-a3b | Mac Studio | Jury juror #1 / general scoring |
-| Tera | qwen3.6:27b | Mac Studio | General mid + vision |
+| Mima | qwen3.6:35b-a3b-nvfp4 | Mac Studio | Jury juror #1 / general scoring |
+| Tera | qwen3.6:27b-nvfp4 | Mac Studio | General mid + vision |
 | Nutty | gpt-oss:20b | Mac Studio | Jury juror #2 / fast reasoning + JSON |
 | Pico | vanta-research/atom-astronomy-7b | Mac Studio | Jury juror #3 / astro fast screen |
 | Embeddings | qwen3-embedding:4b | Mac Studio | Primary embeddings |

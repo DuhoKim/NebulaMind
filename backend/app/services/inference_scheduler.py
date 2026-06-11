@@ -51,14 +51,14 @@ class ModelFootprints:
             "slots": 1,
             "cold_load": 30
         },
-        "qwen3.6:35b-a3b": {
+        "qwen3.6:35b-a3b-nvfp4": {
             "host": "studio",
             "tier": "medium",
             "vram_gb": 23,
             "slots": 1,
             "cold_load": 15
         },
-        "qwen3.6:27b": {
+        "qwen3.6:27b-nvfp4": {
             "host": "studio",
             "tier": "medium",
             "vram_gb": 17,

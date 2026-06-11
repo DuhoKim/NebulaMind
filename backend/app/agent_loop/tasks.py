@@ -111,7 +111,7 @@ STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
 
 JURY_AGENT_LABELS = {
     "gemini-2.5-flash":  "JuryGeminiFlash",
-    "qwen3.6:35b-a3b":       "JuryQwen36",
+    "qwen3.6:35b-a3b-nvfp4":       "JuryQwen36",
     "gpt-oss:20b": "JuryGptOss20",
     "llama3.3:70b":       "JuryLlama",
     "deepseek-r1:671b":    "JuryDeepseek671",
@@ -1216,7 +1216,7 @@ def _run_editor(db, agent: Agent):
             f"Open Questions, References) are present and well-developed. Return the full updated content."
         )
 
-    # Phase 3: parallel writer (3 models) + synthesis via qwen3.6:27b
+    # Phase 3: parallel writer (3 models) + synthesis via qwen3.6:27b-nvfp4
     parallel_models = [
         {"base_url": "http://localhost:11434/v1", "api_key": "ollama", "model": "llama3.3:70b",    "label": "llama3.3:70b"},
         {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_HEAVY_MODEL, "label": settings.OLLAMA_STUDIO_HEAVY_MODEL},
