@@ -3,7 +3,7 @@ from celery.schedules import crontab
 
 from app.config import settings
 
-celery_app = Celery("nebulamind", broker=settings.REDIS_URL, backend=settings.REDIS_URL, include=["app.agent_loop.tasks", "app.agent_loop.arxiv_fetch", "app.agent_loop.newsletter", "app.agent_loop.facility_curation", "app.agent_loop.news_curator", "app.agent_loop.doi_backfill", "app.agent_loop.autowiki.tasks", "app.agent_loop.autowiki.deep_synthesis", "app.agent_loop.autowiki.judge_panel", "app.agent_loop.research_ideas.auto_improvement", "app.agent_loop.research_ideas.dataset_verify", "app.agent_loop.autowiki_surveys.tasks", "app.agent_loop.autowiki_surveys.daily_url_health", "app.agent_loop.autowiki_surveys.weekly_audit", "app.agent_loop.marker_embed.tasks"])
+celery_app = Celery("nebulamind", broker=settings.REDIS_URL, backend=settings.REDIS_URL, include=["app.agent_loop.tasks", "app.agent_loop.arxiv_fetch", "app.agent_loop.newsletter", "app.agent_loop.facility_curation", "app.agent_loop.news_curator", "app.agent_loop.doi_backfill", "app.agent_loop.autowiki.tasks", "app.agent_loop.autowiki.deep_synthesis", "app.agent_loop.autowiki.judge_panel", "app.agent_loop.research_ideas.auto_improvement", "app.agent_loop.research_ideas.dataset_verify", "app.agent_loop.autowiki_surveys.tasks", "app.agent_loop.autowiki_surveys.daily_url_health", "app.agent_loop.autowiki_surveys.weekly_audit", "app.agent_loop.marker_embed.tasks", "app.services.liveness_monitor", "app.services.model_canary"])
 
 celery_app.conf.update(
     task_serializer="json",
@@ -12,6 +12,14 @@ celery_app.conf.update(
     timezone="UTC",
     enable_utc=True,
     beat_schedule={
+        "liveness-check-30s": {
+            "task": "app.services.liveness_monitor.run_liveness_check",
+            "schedule": 30.0,
+        },
+        "model-call-canary-daily": {
+            "task": "app.services.model_canary.run_model_call_canary",
+            "schedule": crontab(hour=0, minute=20),  # UTC 00:20 = KST 09:20
+        },
         "fetch-arxiv-daily": {
             "task": "app.agent_loop.tasks.fetch_arxiv_daily",
             "schedule": crontab(hour=1, minute=0),  # UTC 01:00 = KST 10:00
@@ -24,9 +32,18 @@ celery_app.conf.update(
             "task": "app.agent_loop.tasks.send_arxiv_daily_summary",
             "schedule": crontab(hour=1, minute=30),  # UTC 01:30 = KST 10:30 (30min after fetch)
         },
+        "arxiv-wiki-feed-v2-daily-mode1": {
+            "task": "app.agent_loop.tasks.arxiv_wiki_feed_daily",
+            "schedule": crontab(hour=1, minute=10),  # chained by fetch; beat is a safety net
+            "kwargs": {"trigger": "beat_safety_net"},
+        },
         "retry-unprocessed-arxiv-daily": {
             "task": "app.agent_loop.tasks.retry_unprocessed_arxiv_papers",
             "schedule": crontab(hour=2, minute=15),  # UTC 02:15 = KST 11:15 (daily sweep)
+        },
+        "arxiv-wiki-feed-v2-retry-coverage": {
+            "task": "app.agent_loop.tasks.arxiv_wiki_feed_retry_coverage",
+            "schedule": crontab(hour=2, minute=15),  # Layer 2 retryable coverage sweep
         },
         "process-pending-verify-retries": {
             "task": "app.agent_loop.tasks.process_pending_verify_retries",
@@ -240,6 +257,18 @@ celery_app.conf.update(
             "schedule": crontab(hour=2, minute=0, day_of_week=0),  # Every Sunday 02:00 UTC
             "kwargs": {"page_id": 57},
         },
+        # P1-A: drain evidence for page 57 (every 30 mins)
+        "drain-evidence-p57": {
+            "task": "app.agent_loop.tasks.drain_evidence_for_page",
+            "schedule": crontab(minute="*/30"),
+            "kwargs": {"page_id": 57},
+        },
+        # P1-C: nightly verbatim sync + alarm (daily at 03:00 UTC)
+        "sync-verbatim-nightly-p57": {
+            "task": "app.agent_loop.tasks.sync_verbatim_markers_nightly",
+            "schedule": crontab(hour=3, minute=0),
+            "kwargs": {"page_id": 57},
+        },
     },
 )
 
@@ -273,11 +302,81 @@ celery_app.conf.task_routes = {
     "autowiki_surveys.weekly_audit":                                            {"queue": "autowiki"},
     "app.agent_loop.autowiki.tasks.run_rakon_coherence_pass":                   {"queue": "autowiki"},
     "app.agent_loop.marker_embed.tasks.claim_marker_embed_page":                {"queue": "autowiki"},
+    "app.services.liveness_monitor.run_liveness_check":                         {"queue": "celery"},
+    "app.services.model_canary.run_model_call_canary":                          {"queue": "celery"},
 }
 
-from celery.signals import worker_ready
+from celery.signals import task_failure, task_postrun, task_prerun, worker_ready
 import httpx as _httpx_boot
 from app.config import settings as _settings_boot
+
+_SCHEDULE_NAMES_BY_TASK: dict[str, str] = {}
+for _schedule_name, _entry in celery_app.conf.beat_schedule.items():
+    _task_name = _entry.get("task")
+    if not _task_name or _schedule_name == "liveness-check-30s":
+        continue
+    if _task_name in _SCHEDULE_NAMES_BY_TASK:
+        _SCHEDULE_NAMES_BY_TASK[_task_name] = f"{_SCHEDULE_NAMES_BY_TASK[_task_name]},{_schedule_name}"
+    else:
+        _SCHEDULE_NAMES_BY_TASK[_task_name] = _schedule_name
+
+_PIPELINE_RUN_IDS: dict[str, int | None] = {}
+
+
+@task_prerun.connect
+def _pipeline_run_start(task_id=None, task=None, args=None, kwargs=None, **_kwargs):
+    task_name = getattr(task, "name", None)
+    if not task_name or task_name not in _SCHEDULE_NAMES_BY_TASK:
+        return
+    try:
+        from app.services.pipeline_runs import start_pipeline_run
+
+        _PIPELINE_RUN_IDS[task_id] = start_pipeline_run(
+            task_name=task_name,
+            task_id=task_id,
+            schedule_name=_SCHEDULE_NAMES_BY_TASK.get(task_name),
+            args=args,
+            kwargs=kwargs,
+        )
+    except Exception as exc:
+        print(f"[pipeline_runs] start skipped for {task_name}: {exc}")
+
+
+@task_postrun.connect
+def _pipeline_run_finish(task_id=None, task=None, retval=None, state=None, **_kwargs):
+    task_name = getattr(task, "name", None)
+    if not task_name or task_name not in _SCHEDULE_NAMES_BY_TASK:
+        return
+    run_id = _PIPELINE_RUN_IDS.pop(task_id, None)
+    try:
+        from app.services.pipeline_runs import finish_pipeline_run
+
+        finish_pipeline_run(
+            run_id=run_id,
+            task_id=task_id,
+            status="failed" if state == "FAILURE" else "finished",
+            result=retval,
+        )
+    except Exception as exc:
+        print(f"[pipeline_runs] finish skipped for {task_name}: {exc}")
+
+
+@task_failure.connect
+def _pipeline_run_failure(task_id=None, exception=None, traceback=None, sender=None, **_kwargs):
+    task_name = getattr(sender, "name", None)
+    if not task_name or task_name not in _SCHEDULE_NAMES_BY_TASK:
+        return
+    try:
+        from app.services.pipeline_runs import finish_pipeline_run
+
+        finish_pipeline_run(
+            run_id=_PIPELINE_RUN_IDS.get(task_id),
+            task_id=task_id,
+            status="failed",
+            error=f"{exception}\n{traceback}"[:4000],
+        )
+    except Exception as exc:
+        print(f"[pipeline_runs] failure skipped for {task_name}: {exc}")
 
 @worker_ready.connect
 def _evict_non_resident_on_boot(sender, **_kwargs):

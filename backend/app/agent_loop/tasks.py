@@ -39,7 +39,8 @@ from app.models.vote import Vote
 from app.models.qa import QAQuestion, QAAnswer
 from app.services.llm_utils import strip_think_blocks
 from app.utils.model_guard import guard_batch_model
-from app.utils.premium_dispatch import dispatch_premium, log_llm_spend
+from app.utils.premium_dispatch import dispatch_premium, log_llm_call, log_llm_spend
+from app.agent_loop.autowiki.citation_context import build_evidence_map, emit_citation_scrub_required
 
 # ---------------------------------------------------------------------------
 # Model keep-alive helpers
@@ -49,12 +50,13 @@ def _keep_alive_ollama(base_url: str, model: str, keep_alive: str = "24h") -> No
     """Ping Ollama to keep a model loaded in memory with a capped context."""
     try:
         httpx.post(
-            f"{base_url.rstrip('/').rstrip('/v1')}/api/generate",
+            f"{base_url.rstrip('/').rstrip('/v1')}/api/chat",
             json={
-                "model": model, 
-                "keep_alive": keep_alive, 
-                "prompt": "",
-                "options": {"num_ctx": 8192}
+                "model": model,
+                "keep_alive": keep_alive,
+                "stream": False,
+                "messages": [{"role": "user", "content": "ping"}],
+                "options": {"num_ctx": 8192, "num_predict": 1},
             },
             timeout=10,
         )
@@ -89,7 +91,11 @@ def load_wiki_schema() -> str:
 # ---------------------------------------------------------------------------
 # Trust Phase 2: Stance Jury + Adversarial Pass
 # ---------------------------------------------------------------------------
-STANCE_JURY_SYSTEM = """You are an astronomy peer reviewer judging whether a cited paper actually supports a wiki claim.
+try:
+    from app.services.prompt_registry import PromptRegistry
+    STANCE_JURY_SYSTEM = PromptRegistry().render("stance", {}, policy="permissive_v1")
+except Exception as e:
+    STANCE_JURY_SYSTEM = """You are an astronomy peer reviewer judging whether a cited paper actually supports a wiki claim.
 
 Read the claim and the paper's abstract carefully. Apply scientific judgment:
 - A paper "supports" a claim if its findings are consistent with and reinforce the claim.
@@ -107,6 +113,15 @@ STANCE_JURY_MODELS = [
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL, "max_tokens": 512, "no_think": True},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL, "max_tokens": 512, "no_think": True},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": "vanta-research/atom-astronomy-7b", "label": "vanta-research/atom-astronomy-7b"},
+    {
+        "provider": "mlx_outlines",
+        "api_key": "local",
+        "model": "mlx-community/Qwen3.6-35B-A3B-NVFP4",
+        "label": "MimaOutlines",
+        "max_tokens": 128,
+        "timeout": 45,
+        "overall_timeout": 90,
+    },
 ]
 STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
 
@@ -120,9 +135,11 @@ JURY_AGENT_LABELS = {
     "groq-llama3.3":      "JuryGroq",
     "cerebras-llama3.1":  "JuryCerebras",
     "vanta-research/atom-astronomy-7b": "JuryAtom",
+    "MimaOutlines": "JuryMimaOutlines",
 }
 
 STANCE_JURY_INFLIGHT_PREFIX = "stance_jury:inflight:"
+_MLX_OUTLINES_CACHE: dict[str, tuple[object, object]] = {}
 
 
 def _stance_jury_inflight_ttl(countdown: int = 0) -> int:
@@ -522,6 +539,7 @@ def _call_provider(provider: dict, system: str, user_msg: str) -> str:
     est_tokens = max(1, (len(system) + len(user_msg)) // 4)
     job_name = f"tasks.chat.{provider.get('label', provider['model'])}"
     dispatch_premium(job_name, provider["model"], est_tokens)
+    started = time.monotonic()
     resp = httpx.post(
         f"{provider['base_url']}/chat/completions",
         headers={"Authorization": f"Bearer {provider['api_key']}"},
@@ -534,6 +552,7 @@ def _call_provider(provider: dict, system: str, user_msg: str) -> str:
         },
         timeout=120,
     )
+    latency_ms = _ms(started)
     if resp.status_code < 400:
         usage = {}
         try:
@@ -546,6 +565,17 @@ def _call_provider(provider: dict, system: str, user_msg: str) -> str:
             prompt_tokens=usage.get("prompt_tokens"),
             completion_tokens=usage.get("completion_tokens"),
             estimated_tokens=est_tokens,
+            metadata={"latency_ms": latency_ms},
+        )
+    else:
+        log_llm_call(
+            job_name,
+            provider["model"],
+            model_name=provider["model"],
+            success=False,
+            latency_ms=latency_ms,
+            prompt_tokens=est_tokens,
+            error=f"HTTP {resp.status_code}: {resp.text[:500]}",
         )
     return resp  # caller inspects status
 
@@ -623,11 +653,61 @@ def _chat(model: str, system: str, user_msg: str, max_retries: int = 3, role: st
 # Parallel multi-model chat (Reviewer Phase 1 — voting)
 # ---------------------------------------------------------------------------
 
+def _call_mlx_outlines_stance_model(model: dict, system: str, user_msg: str) -> str:
+    from typing import Literal
+
+    import outlines
+    from mlx_lm import load
+    from pydantic import BaseModel, Field
+
+    class StanceJuryVote(BaseModel):
+        stance_correct: bool
+        vote: Literal[-1, 0, 1]
+        reason: str = Field(max_length=200)
+
+    model_id = model["model"]
+    if model_id not in _MLX_OUTLINES_CACHE:
+        _MLX_OUTLINES_CACHE[model_id] = load(model_id)
+
+    mlx_model, tokenizer = _MLX_OUTLINES_CACHE[model_id]
+    wrapped = outlines.from_mlxlm(mlx_model, tokenizer)
+    generator = outlines.Generator(wrapped, StanceJuryVote)
+    prompt = (
+        f"{system}\n\n"
+        "Return ONLY JSON matching this schema: "
+        '{"stance_correct": true|false, "vote": 1|-1|0, "reason": "<one sentence>"}'
+        f"\n\n{user_msg}"
+    )
+    result = generator(prompt, max_tokens=model.get("max_tokens", 128))
+    if hasattr(result, "model_dump_json"):
+        return result.model_dump_json()
+    parsed = StanceJuryVote.model_validate_json(str(result))
+    return parsed.model_dump_json()
+
+
 async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, user_msg: str, timeout: int) -> dict | None:
     """Call a single model asynchronously. Returns dict on success, None on failure."""
+    started = time.monotonic()
     try:
         est_tokens = max(1, (len(system) + len(user_msg)) // 4)
         job_name = f"tasks.chat_parallel.{model.get('label', model['model'])}"
+
+        if model.get("provider") == "mlx_outlines":
+            content = await asyncio.wait_for(
+                asyncio.to_thread(_call_mlx_outlines_stance_model, model, system, user_msg),
+                timeout=model.get("timeout", timeout),
+            )
+            log_llm_call(
+                job_name,
+                model["label"],
+                model_name=model["model"],
+                success=bool(content),
+                latency_ms=_ms(started),
+                prompt_tokens=est_tokens,
+                completion_tokens=len(content) // 4 if content else 0,
+                error=None if content else "empty content",
+            )
+            return {"model": model["model"], "label": model["label"], "response": content}
 
         if settings.INFERENCE_SCHEDULER_ENABLED:
             from app.services.inference_scheduler import InferenceScheduler
@@ -642,6 +722,8 @@ async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, u
                 prompt_tokens=None,
                 completion_tokens=None,
                 estimated_tokens=est_tokens,
+                metadata={"latency_ms": _ms(started), "error": None if content else "empty content"},
+                status="executed" if content else "empty",
             )
             return {"model": model["model"], "label": model["label"], "response": content}
 
@@ -681,10 +763,33 @@ async def _call_one_async(client: httpx.AsyncClient, model: dict, system: str, u
             prompt_tokens=usage.get("prompt_tokens"),
             completion_tokens=usage.get("completion_tokens"),
             estimated_tokens=est_tokens,
+            metadata={"latency_ms": _ms(started)},
         )
         content = data["choices"][0]["message"]["content"]
+        if not content:
+            log_llm_call(
+                job_name,
+                model["label"],
+                model_name=model["model"],
+                success=False,
+                latency_ms=_ms(started),
+                prompt_tokens=usage.get("prompt_tokens") or est_tokens,
+                completion_tokens=usage.get("completion_tokens"),
+                error="empty content",
+            )
         return {"model": model["model"], "label": model["label"], "response": content}
     except Exception as e:
+        try:
+            log_llm_call(
+                f"tasks.chat_parallel.{model.get('label', model.get('model', '?'))}",
+                model.get("label", model.get("model", "?")),
+                model_name=model.get("model"),
+                success=False,
+                latency_ms=_ms(started),
+                error=str(e),
+            )
+        except Exception:
+            pass
         print(f"[_chat_parallel][{model.get('label', '?')}] failed: {e}")
         return None
 
@@ -700,9 +805,13 @@ def _chat_parallel(models: list[dict], system: str, user_msg: str, timeout: int 
         async with httpx.AsyncClient() as client:
             tasks = [_call_one_async(client, m, system, user_msg, timeout) for m in models]
             try:
-                results = await asyncio.wait_for(asyncio.gather(*tasks, return_exceptions=False), timeout=90)
+                overall_timeout = max(90, *[int(m.get("overall_timeout", timeout + 30)) for m in models])
+                results = await asyncio.wait_for(
+                    asyncio.gather(*tasks, return_exceptions=False),
+                    timeout=overall_timeout,
+                )
             except asyncio.TimeoutError:
-                print("[_chat_parallel] overall 120s timeout exceeded")
+                print("[_chat_parallel] overall timeout exceeded")
                 return []
             return [r for r in results if r is not None]
 
@@ -1551,8 +1660,8 @@ def _run_evidence_linker_v1(db, agent: Agent):
 
     if added:
         db.flush()
-        from app.services.trust_calculator import recalculate_trust
-        new_trust = recalculate_trust(claim.id, db)
+        from app.routers.claims import recalculate_trust_v2
+        new_trust, _ = recalculate_trust_v2(claim.id, db, trigger="arxiv_verification")
         print(f"[{agent.name}] Linked {added} verified paper(s) to claim #{claim.id} "
               f"(trust: {new_trust}, skipped: {skipped})")
         _notify(f"🔗 [{agent.model_name}] 클레임 #{claim.id}에 근거 {added}개 연결 → {new_trust}")
@@ -2635,6 +2744,7 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         wrong_stance_count = 0
         parsed_count = 0
         votes_added = 0
+        jurors_data = []
         for r in results:
             parsed = _parse_jury_json(r["response"])
             if not parsed:
@@ -2643,9 +2753,16 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
             if not parsed.get("stance_correct", True):
                 wrong_stance_count += 1
             value = max(-1, min(1, int(parsed.get("vote", 0))))
+            agent_id = _agent_id_for_model(db, r["label"])
+            jurors_data.append({
+                "agent_id": agent_id,
+                "vote": value,
+                "confidence_str": "MEDIUM",
+                "reason": (parsed.get("reason") or "")[:500],
+                "model_name": r["label"]
+            })
             if value == 0:
                 continue
-            agent_id = _agent_id_for_model(db, r["label"])
             db.add(EvidenceVote(
                 evidence_id=ev.id, value=value,
                 agent_id=agent_id, voter_type="jury",
@@ -2666,6 +2783,21 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
 
         ev.stance_jury_run_at = _dt.datetime.utcnow()
         db.flush()
+
+        try:
+            from app.services.jury_shadow import execute_shadow_validation
+            execute_shadow_validation(
+                db=db,
+                evidence_id=ev.id,
+                claim_id=claim.id,
+                claim_text=claim.text,
+                evidence_title=ev.title,
+                legacy_stance=ev.stance,
+                legacy_quality=ev.quality,
+                jurors_data=jurors_data
+            )
+        except Exception as shadow_err:
+            print(f"[stance_jury] shadow validation failed: {shadow_err}")
 
         old_trust = claim.trust_level
 
@@ -3133,6 +3265,11 @@ def synthesize_renovation(self, plan_id: int):
             return
 
         page = db.query(WikiPage).filter(WikiPage.id == plan.page_id).first()
+        try:
+            from app.agent_loop.autowiki.tasks import align_citations_page
+            align_citations_page.delay(page.id)
+        except Exception:
+            pass
         notes = _json.loads(plan.notes or "{}")
         papers = notes.get("papers", [])
         missing = _json.loads(plan.missing_subtopics or "[]")
@@ -3166,19 +3303,23 @@ def synthesize_renovation(self, plan_id: int):
         )
         current_section = section_match.group(1)[:2000] if section_match else f"## {section_to_rewrite}\n(empty)"
 
+        evidence_map = build_evidence_map(db, page.id, max_rows=80)
+
         SYNTH_SYSTEM = f"""You are renovating the NebulaMind wiki page "{page.title}".
 Goal: rewrite the {section_to_rewrite} section to be genuinely representative.
 
 CONSTRAINTS:
-- Each new claim MUST be backed by a paper in the evidence list (cite [arXiv:ID] inline).
+- Each new claim should be backed by a paper in the evidence map when possible.
+- DO NOT write author-year parenthetical citations. Use only <!--cite:EVIDENCE_ID--> markers from the EVIDENCE MAP.
+- If no evidence ID is available for an assertion, write it without a citation marker.
 - Missing subtopics listed are suggestions — only include if applicable to {page.title}.
   For subtopics not relevant to this specific page, write "NOT_APPLICABLE".
 - Preserve any existing accepted/consensus claims in the section.
 - You MUST PRESERVE any existing HTML claim markers (e.g. <!--claim:123-->) from the current section.
 - You MUST weave HTML claim markers inline immediately after asserting any of the provided key claims (e.g. <!--claim:xxx-->).
-- Do NOT invent papers or unsourced claims.
+- Do NOT invent papers, evidence IDs, or unsourced claims.
 - Output ONLY the rewritten section starting with ## {section_to_rewrite}
-- 6-10 distinct claim sentences with citations."""
+- 6-10 distinct claim sentences with dynamic citation markers where evidence IDs are available."""
 
         from app.models.claim import Claim as ClaimModel
         page_claims = db.query(ClaimModel).filter(ClaimModel.page_id == page.id).order_by(ClaimModel.created_at.desc()).limit(200).all()
@@ -3186,6 +3327,8 @@ CONSTRAINTS:
 
         user_msg = f"""Available evidence (arXiv, last 3 years):
 {evidence_text}
+
+{evidence_map}
 
 Key claims on this page:
 {claims_text}
@@ -3223,7 +3366,7 @@ Rewrite ## {section_to_rewrite} with these papers."""
 Rules:
 1. Include claims that ≥2 agents proposed (consensus)
 2. Include uniquely strong cited claims from single agents
-3. DROP any claim missing [arXiv:ID] citation
+3. Prefer claims with <!--cite:N--> markers from the EVIDENCE MAP; do not invent IDs
 4. Keep 6-10 total claim sentences
 5. Output ONLY the merged section starting with ## {section_to_rewrite}"""
 
@@ -3289,7 +3432,7 @@ def verify_renovation(self, plan_id: int):
 
 Check the section and reply with exactly one line:
 PASS if ALL of the following are true:
-- Contains at least 3 inline citations (format: [arXiv:XXXX] or [arXiv:YYYYABCXXXXX])
+- Contains at least 2 inline citations, either dynamic <!--cite:N--> markers or legacy [arXiv:XXXX] markers during rollout
 - Starts with the correct markdown section header (## ...)
 - Makes specific scientific claims (not vague/generic statements)
 - Content is relevant astronomy/astrophysics (not off-topic)
@@ -3315,7 +3458,7 @@ Is this section PASS or FAIL?"""
                 # Fallback: structural check only
                 has_header = synthesized_section.strip().startswith(f"## {section_name}")
                 import re as _re
-                citation_count = len(_re.findall(r"\[arXiv:", synthesized_section, _re.IGNORECASE))
+                citation_count = len(_re.findall(r"\[arXiv:|<!--cite:\d+(?:,\d+)*-->", synthesized_section, _re.IGNORECASE))
                 verdict = "PASS" if (has_header and citation_count >= 2) else f"FAIL:structural check — header={has_header} citations={citation_count}"
         except Exception as qa_err:
             print(f"[verify_renovation] QA error (defaulting PASS): {qa_err}")
@@ -3391,6 +3534,9 @@ def commit_renovation_proposal(plan_id: int):
         else:
             # Section doesn't exist — append
             new_content = content.rstrip() + "\n\n" + synthesized_section
+
+        from app.services.content_canonicalizer import canonicalize
+        new_content = canonicalize(new_content, page_id=page.id, db=db).new_content
 
         proposal = EditProposal(
             page_id=page.id,

@@ -31,11 +31,17 @@ from app.agent_loop.autowiki.proposers import (
     SectionRewriteProposal,
 )
 from app.agent_loop.autowiki.scorer import compute_quality
+from app.agent_loop.autowiki.citation_context import (
+    CITATION_RULES,
+    build_evidence_map,
+    emit_citation_scrub_required,
+)
 from app.config import settings
 from app.database import SessionLocal
 from app.models.autowiki import AutowikiRun, AutowikiTarget
 from app.models.claim import Claim, Evidence
 from app.models.page import PageVersion, WikiPage
+from app.models.agent import Agent
 from app.services.llm_utils import strip_think_blocks
 from app.services.page_health import compute_health_score
 from app.utils.model_guard import guard_batch_model
@@ -43,6 +49,21 @@ from app.utils.premium_dispatch import dispatch_premium, log_llm_spend
 
 PILOT_PAGE_ID = 57
 _ASTROSAGE = settings.ASTRO_SYNTH_MODEL or "astrosage-70b"
+
+
+@celery_app.task(name="app.agent_loop.autowiki.tasks.align_citations_page")
+def align_citations_page(page_id: int) -> dict:
+    """Repair author-year citations and hallucinated cite markers for one page."""
+    from scripts.align_citations import align_page, bootstrap_page_links
+
+    with SessionLocal() as db:
+        page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+        if not page:
+            return {"decision": "error", "reason": "page_not_found", "page_id": page_id}
+        bootstrap_page_links(db, page_id)
+        report = align_page(db, page, dry_run=False, bootstrap=False)
+        db.commit()
+        return report
 
 
 # ---------------------------------------------------------------------------
@@ -88,32 +109,55 @@ def _release_lock(page_id: int) -> None:
 
 def _rakon_probe() -> bool:
     """§4: Ollama liveness check. Returns True if the local Ollama service is
-    running and BUDDLE_MODEL is loaded.
+    running and BUDDLE_MODEL is installed/available on the system.
 
-    2026-06-05 v2: switched from 1-token inference ping to /api/ps lookup.
-    The inference probe competed with the mining campaign for qwen3:30b slots,
-    causing 30-180s probe delays and dead ticks whenever the campaign ran.
-    /api/ps is a metadata-only endpoint: fast (<100ms), zero GPU contention.
+    2026-06-06 v3: switched from /api/ps (loaded-only) to /api/tags (installed).
+    Checking /api/ps caused a deadlock when Ollama goes idle and unloads the
+    massive 405B model, skipping all ticks and preventing it from ever loading.
+    /api/tags verifies Ollama is active and responsive, and the model is
+    installed, without requiring it to be resident in memory.
 
-    Earlier 2026-05-12 cold-start saga (kept for context): cold-load of
-    deepseek-r1:671b took ~115s; the 60s probe timeout fired silently for
-    ~13h. /api/ps avoids this entirely — model presence is checked by name,
-    not by inference round-trip.
+    2026-06-06 upgrade: Refactored to fetch from Redis key 'ollama:health' first
+    to avoid conducting network pings on the critical path. Falls back gracefully.
     """
+    import json
+    r = _get_redis()
+    if r:
+        try:
+            health_str = r.get("ollama:health")
+            if health_str:
+                health_data = json.loads(health_str)
+                local_online = health_data.get("local_online", False)
+                local_models = health_data.get("local_models", [])
+                probe_model = settings.BUDDLE_MODEL
+                
+                if local_online:
+                    if any(probe_model in name for name in local_models):
+                        return True
+                    else:
+                        logger.warning("[autowiki] _rakon_probe (Redis) model not installed: %s (installed: %s)", probe_model, local_models)
+                        return False
+                else:
+                    logger.warning("[autowiki] _rakon_probe (Redis) local node is offline")
+                    return False
+        except Exception as redis_err:
+            logger.warning("[autowiki] _rakon_probe Redis read/parse error: %s", redis_err)
+
+    # Fallback synchronous check
     base = settings.BUDDLE_BASE_URL.rstrip("/")
     probe_model = settings.BUDDLE_MODEL
     try:
-        resp = httpx.get(f"{base}/api/ps", timeout=10)
+        resp = httpx.get(f"{base}/api/tags", timeout=5)
         if resp.status_code != 200:
-            logger.warning("[autowiki] _rakon_probe /api/ps non-200: %s", resp.status_code)
+            logger.warning("[autowiki] _rakon_probe fallback /api/tags non-200: %s", resp.status_code)
             return False
-        loaded = {m.get("name", "") for m in resp.json().get("models", [])}
-        if not any(probe_model in name for name in loaded):
-            logger.warning("[autowiki] _rakon_probe model not loaded: %s (loaded: %s)", probe_model, loaded)
+        installed = {m.get("name", "") for m in resp.json().get("models", [])}
+        if not any(probe_model in name for name in installed):
+            logger.warning("[autowiki] _rakon_probe fallback model not installed: %s (installed: %s)", probe_model, installed)
             return False
         return True
     except Exception as _probe_exc:
-        logger.warning("[autowiki] _rakon_probe exception: %s", _probe_exc)
+        logger.warning("[autowiki] _rakon_probe fallback exception: %s", _probe_exc)
         return False
 
 
@@ -141,7 +185,7 @@ def _discord_notify(msg: str) -> None:
 
 
 
-def _call_opus_coherence(content: str, claims_text: str = "") -> "str | None":
+def _call_opus_coherence(content: str, claims_text: str = "", citation_context: str = "") -> "str | None":
     """Call Claude claude-opus-4-7 for a full-page coherence rewrite (streaming).
 
     Reads NM_ANTHROPIC_API_KEY from ~/NebulaMind/NebulaMind/backend/.env.
@@ -164,9 +208,18 @@ def _call_opus_coherence(content: str, claims_text: str = "") -> "str | None":
 
         import anthropic
         client = anthropic.Anthropic(api_key=api_key)
-        prompt = _COHERENCE_USER_TEMPLATE.format(full_page_content=content, claims_text=claims_text)
-        logger.info("[opus_coherence] streaming to claude-opus-4-7 (%d char prompt)...", len(prompt))
-        est_tokens = {"input": max(1, (len(_COHERENCE_SYSTEM_PROMPT) + len(prompt)) // 4), "output": 32000}
+        
+        # Split prompt into stable page block + dynamic instructions
+        page_block = _COHERENCE_USER_TEMPLATE.replace("{citation_context}", "").format(full_page_content=content)
+        dynamic_block = (
+            f"===CLAIMS===\n{claims_text}\n\n"
+            f"===CITATIONS===\n{citation_context}\n\n"
+            "Now rewrite the page following all system instructions."
+        )
+
+        logger.info("[opus_coherence] streaming to claude-opus-4-7 (%d char page, %d char dynamic)...", len(page_block), len(dynamic_block))
+        prompt_len = len(page_block) + len(dynamic_block)
+        est_tokens = {"input": max(1, (len(_COHERENCE_SYSTEM_PROMPT) + prompt_len) // 4), "output": 32000}
         dispatch_premium("autowiki.opus_coherence", "claude-opus-4-7", est_tokens)
 
         full_text = ""
@@ -174,16 +227,37 @@ def _call_opus_coherence(content: str, claims_text: str = "") -> "str | None":
             model="claude-opus-4-7",
             max_tokens=32000,
             system=_COHERENCE_SYSTEM_PROMPT,
-            messages=[{"role": "user", "content": prompt}],
+            messages=[
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": page_block,
+                            "cache_control": {"type": "ephemeral"},  # cache page content
+                        },
+                        {
+                            "type": "text",
+                            "text": dynamic_block,                   # dynamic, not cached
+                        },
+                    ],
+                }
+            ],
         ) as stream:
             for chunk in stream.text_stream:
                 full_text += chunk
 
         logger.info("[opus_coherence] streaming complete, got %d chars", len(full_text))
+        final_msg = stream.get_final_message()
+        usage = getattr(final_msg, "usage", None)
         log_llm_spend(
             "autowiki.opus_coherence",
             "claude-opus-4-7",
-            estimated_tokens=est_tokens["input"] + max(1, len(full_text) // 4),
+            prompt_tokens=getattr(usage, "input_tokens", None),
+            completion_tokens=getattr(usage, "output_tokens", None),
+            cache_creation_tokens=getattr(usage, "cache_creation_input_tokens", None),
+            cache_read_tokens=getattr(usage, "cache_read_input_tokens", None),
+            estimated_tokens=est_tokens["input"],
         )
         return full_text
     except Exception as exc:
@@ -191,7 +265,7 @@ def _call_opus_coherence(content: str, claims_text: str = "") -> "str | None":
         return None
 
 
-def _call_gemini_coherence(content: str, claims_text: str = "") -> "str | None":
+def _call_gemini_coherence(content: str, claims_text: str = "", citation_context: str = "") -> "str | None":
     """Call Gemini 2.5 Pro for a full-page coherence rewrite (OpenAI-compat endpoint).
 
     Reads NM_GEMINI_API_KEY from ~/NebulaMind/NebulaMind/backend/.env.
@@ -211,7 +285,7 @@ def _call_gemini_coherence(content: str, claims_text: str = "") -> "str | None":
             logger.error("[gemini_coherence] NM_GEMINI_API_KEY not found in .env")
             return None
 
-        prompt = _COHERENCE_USER_TEMPLATE.format(full_page_content=content, claims_text=claims_text)
+        prompt = _COHERENCE_USER_TEMPLATE.format(full_page_content=content, claims_text=claims_text, citation_context=citation_context)
         logger.info("[gemini_coherence] calling gemini-2.5-pro (%d char prompt)...", len(prompt))
         est_tokens = {"input": max(1, (len(_COHERENCE_SYSTEM_PROMPT) + len(prompt)) // 4), "output": 65536}
         dispatch_premium("autowiki.gemini_coherence", "gemini-2.5-pro", est_tokens)
@@ -519,6 +593,249 @@ def _rollback_section_rewrite(db, page: WikiPage, prior_version_id: int) -> None
 
 
 # ---------------------------------------------------------------------------
+# Pipeline Upgrade Phase 3 (Sequential Canvas Chains in Celery)
+# ---------------------------------------------------------------------------
+
+class PipelineSkip(Exception):
+    """Exception to cleanly skip or rollback the pipeline chain in Stage 1."""
+    pass
+
+
+def _clear_run_meta(page_id: int) -> None:
+    r = _get_redis()
+    if r:
+        try:
+            r.delete(f"autowiki:run_meta:{page_id}")
+        except Exception:
+            pass
+
+
+@celery_app.task(
+    name="app.agent_loop.autowiki.tasks.autowiki_propose_and_commit",
+    bind=True,
+    max_retries=0,
+)
+def autowiki_propose_and_commit(self, page_id: int, pre_image_version_id: int | None = None) -> int:
+    latency = {}
+    tick_start = time.monotonic()
+    
+    # Run the tick logic
+    result = _run_tick(page_id, tick_start, latency)
+    
+    decision = result.get("decision")
+    if decision != "commit":
+        # Raise PipelineSkip to cleanly stop the chain
+        reason = result.get("reject_reason") or decision or "skipped"
+        raise PipelineSkip(f"Pipeline skip/rollback: {reason}")
+        
+    # On commit, save run metadata in Redis for rollback capability
+    try:
+        r = _get_redis()
+        if r:
+            with SessionLocal() as db:
+                run = db.query(AutowikiRun).filter(
+                    AutowikiRun.page_id == page_id,
+                    AutowikiRun.decision == 'commit'
+                ).order_by(AutowikiRun.id.desc()).first()
+                
+                claim_ids = []
+                evidence_ids = []
+                prior_hero_facts = None
+                
+                page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+                if page:
+                    prior_hero_facts = page.hero_facts
+                
+                if run:
+                    claims_to_delete = db.query(Claim).filter(
+                        Claim.page_id == page_id,
+                        Claim.created_at >= run.started_at - dt.timedelta(seconds=10)
+                    ).all()
+                    claim_ids = [c.id for c in claims_to_delete]
+                    
+                    if claim_ids:
+                        ev_rows = db.query(Evidence).filter(Evidence.claim_id.in_(claim_ids)).all()
+                        evidence_ids = [e.id for e in ev_rows]
+                    else:
+                        evidence_to_delete = db.query(Evidence).join(Claim).filter(
+                            Claim.page_id == page_id,
+                            Evidence.created_at >= run.started_at - dt.timedelta(seconds=10)
+                        ).all()
+                        evidence_ids = [e.id for e in evidence_to_delete]
+                        
+                meta = {
+                    "prior_hero_facts": prior_hero_facts,
+                    "proposal_type": result.get("proposal_type"),
+                    "claim_ids_inserted": claim_ids,
+                    "evidence_ids_inserted": evidence_ids,
+                    "prior_page_version_id": pre_image_version_id,
+                }
+                r.set(f"autowiki:run_meta:{page_id}", json.dumps(meta), ex=3600)
+    except Exception as meta_exc:
+        logger.warning("[autowiki_propose_and_commit] Failed to save metadata in Redis: %s", meta_exc)
+        
+    return page_id
+
+
+@celery_app.task(
+    name="app.agent_loop.autowiki.tasks.autowiki_post_pipeline_notify",
+    bind=True,
+    max_retries=0,
+)
+def autowiki_post_pipeline_notify(self, result_dict, page_id: int) -> dict:
+    # Strictly release the Redis advisory lock
+    _release_lock(page_id)
+    
+    # Clean up the run metadata since it completed successfully!
+    _clear_run_meta(page_id)
+    
+    # Update last_tick and decision in Redis
+    try:
+        r = _get_redis()
+        if r:
+            now_iso = dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
+            r.set("autowiki:last_tick", now_iso, ex=86400)
+            r.set("autowiki:last_tick_decision", "commit", ex=86400)
+    except Exception as redis_exc:
+        logger.error("[autowiki_post_pipeline_notify] Failed to write to Redis: %s", redis_exc)
+        
+    logger.info(
+        "[autowiki_post_pipeline_notify] Pipeline successfully completed for page %d. Stats: %s",
+        page_id, result_dict
+    )
+    
+    # Trigger process notifications (Discord)
+    status_str = result_dict.get("status") if isinstance(result_dict, dict) else "success"
+    coverage = result_dict.get("coverage_pct") if isinstance(result_dict, dict) else None
+    matched = result_dict.get("matched") if isinstance(result_dict, dict) else None
+    total = result_dict.get("total") if isinstance(result_dict, dict) else None
+    
+    msg = f"✅ **autowiki** page={page_id} pipeline successfully completed! "
+    if coverage is not None:
+        msg += f"Marker embedding coverage: {coverage:.2f}%. Matched: {matched}/{total}."
+        
+    _discord_notify(msg)
+    
+    return {"status": "success", "page_id": page_id, "stats": result_dict}
+
+
+@celery_app.task(
+    name="app.agent_loop.autowiki.tasks.autowiki_pipeline_rollback",
+    bind=True,
+    max_retries=0,
+)
+def autowiki_pipeline_rollback(self, request, exc, traceback, page_id: int):
+    # Ensure Redis page lock is strictly released
+    _release_lock(page_id)
+    
+    # Check if this is a PipelineSkip vs a real error
+    exc_class_name = exc.__class__.__name__ if exc else ""
+    is_skip = (exc_class_name == "PipelineSkip")
+    
+    if is_skip:
+        logger.info("[autowiki_pipeline_rollback] Pipeline skipped/rolled back cleanly in Stage 1: %s", exc)
+        _clear_run_meta(page_id)
+        return {"status": "skipped", "reason": str(exc)}
+        
+    logger.error("[autowiki_pipeline_rollback] Pipeline failed on page %d: %s", page_id, exc)
+    
+    # Log detailed error trace to logs/autowiki_pipeline_errors.log
+    import os
+    try:
+        os.makedirs("/Users/duhokim/NebulaMind/NebulaMind/backend/logs", exist_ok=True)
+        with open("/Users/duhokim/NebulaMind/NebulaMind/backend/logs/autowiki_pipeline_errors.log", "a") as f:
+            f.write(f"=== {dt.datetime.utcnow().isoformat()} ===\n")
+            f.write(f"Page ID: {page_id}\n")
+            f.write(f"Exception: {exc}\n")
+            f.write(f"Traceback:\n{traceback}\n")
+            f.write("=========================================\n\n")
+    except Exception as io_err:
+        logger.error("[autowiki_pipeline_rollback] Failed to write to error log: %s", io_err)
+
+    # Perform DB rollback and clean up using Redis metadata if available
+    r = _get_redis()
+    meta = None
+    if r:
+        meta_str = r.get(f"autowiki:run_meta:{page_id}")
+        if meta_str:
+            try:
+                meta = json.loads(meta_str)
+            except Exception:
+                pass
+                
+    with SessionLocal() as db:
+        try:
+            prior_version_id = meta.get("prior_page_version_id") if meta else None
+            
+            page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
+            if page:
+                if meta and "prior_hero_facts" in meta:
+                    page.hero_facts = meta["prior_hero_facts"]
+                
+                if meta and meta.get("proposal_type") == "section_rewrite" and prior_version_id is not None:
+                    prior = db.query(PageVersion).filter(PageVersion.id == prior_version_id).first()
+                    if prior:
+                        page.content = prior.content
+                    
+                    db.query(PageVersion).filter(
+                        PageVersion.page_id == page_id,
+                        PageVersion.id > prior_version_id
+                    ).delete(synchronize_session=False)
+
+            if meta:
+                claim_ids = meta.get("claim_ids_inserted") or []
+                evidence_ids = meta.get("evidence_ids_inserted") or []
+                if evidence_ids:
+                    db.query(Evidence).filter(Evidence.id.in_(evidence_ids)).delete(synchronize_session=False)
+                if claim_ids:
+                    db.query(Claim).filter(Claim.id.in_(claim_ids)).delete(synchronize_session=False)
+                    
+            # Fallback cleanup just in case metadata is missing or incomplete
+            if not meta or not meta.get("proposal_type"):
+                run = db.query(AutowikiRun).filter(
+                    AutowikiRun.page_id == page_id,
+                    AutowikiRun.decision == 'commit'
+                ).order_by(AutowikiRun.id.desc()).first()
+                if run:
+                    run.decision = "error"
+                    run.error_text = str(exc)[:2000]
+                    
+                    if run.proposal_type == "section_rewrite" and run.committed_version_id:
+                        prior_pv = db.query(PageVersion).filter(
+                            PageVersion.page_id == page_id,
+                            PageVersion.id < run.committed_version_id
+                        ).order_by(PageVersion.id.desc()).first()
+                        if prior_pv and page:
+                            page.content = prior_pv.content
+                        
+                        db.query(PageVersion).filter(PageVersion.id == run.committed_version_id).delete(synchronize_session=False)
+                    
+                    claims_to_delete = db.query(Claim).filter(
+                        Claim.page_id == page_id,
+                        Claim.created_at >= run.started_at - dt.timedelta(seconds=10)
+                    ).all()
+                    claim_ids = [c.id for c in claims_to_delete]
+                    if claim_ids:
+                        db.query(Evidence).filter(Evidence.id.in_(claim_ids)).delete(synchronize_session=False)
+                        db.query(Claim).filter(Claim.id.in_(claim_ids)).delete(synchronize_session=False)
+                    
+                    evidence_to_delete = db.query(Evidence).join(Claim).filter(
+                        Claim.page_id == page_id,
+                        Evidence.created_at >= run.started_at - dt.timedelta(seconds=10)
+                    ).all()
+                    ev_ids = [e.id for e in evidence_to_delete]
+                    if ev_ids:
+                        db.query(Evidence).filter(Evidence.id.in_(ev_ids)).delete(synchronize_session=False)
+
+            db.commit()
+        except Exception as db_err:
+            db.rollback()
+            logger.error("[autowiki_pipeline_rollback] Database rollback failed: %s", db_err)
+        finally:
+            _clear_run_meta(page_id)
+
+
+# ---------------------------------------------------------------------------
 # Main tick
 # ---------------------------------------------------------------------------
 
@@ -528,59 +845,54 @@ def _rollback_section_rewrite(db, page: WikiPage, prior_version_id: int) -> None
     max_retries=0,
 )
 def autowiki_tick() -> dict:
-    import datetime as _dt
-    tick_start = time.monotonic()
-    latency: dict = {}
-    result: dict = {}
+    # --- Kill switch (§4.5) ---
+    if not _is_enabled():
+        return {"decision": "skip", "reject_reason": "flag_off"}
 
+    # --- Rakon probe (§4, warm probe) ---
+    if not _rakon_probe():
+        logger.warning("[autowiki] tick skipped: rakon_unavailable")
+        return {"decision": "skip", "reject_reason": "rakon_unavailable"}
+
+    page_id = PILOT_PAGE_ID  # v1: hardcoded pilot page
+
+    if not _acquire_lock(page_id):
+        logger.warning("[autowiki] tick skipped: concurrent_tick lock held on page %d", page_id)
+        return {"decision": "skip", "reject_reason": "concurrent_tick"}
+
+    # Query pre-image PageVersion ID before the pipeline runs
+    from app.models.page import PageVersion
+    from app.database import SessionLocal
+    pre_image_version_id = None
     try:
-        # --- Kill switch (§4.5) ---
-        if not _is_enabled():
-            result = {"decision": "skip", "reject_reason": "flag_off"}
-            return result
-
-        # --- Rakon probe (§4, warm probe) ---
-        t = time.monotonic()
-        if not _rakon_probe():
-            # WARN-level so the celery_autowiki worker (loglevel=warning) surfaces it;
-            # previously this skip was silent and we lost ~13h of ticks before
-            # diagnosing the cold-start timeout (see _rakon_probe docstring).
-            logger.warning(
-                "[autowiki] tick skipped: rakon_unavailable (probe failed after %dms)",
-                _ms(t),
+        with SessionLocal() as db:
+            last_ver = (
+                db.query(PageVersion)
+                .filter(PageVersion.page_id == page_id)
+                .order_by(PageVersion.id.desc())
+                .first()
             )
-            result = {"decision": "skip", "reject_reason": "rakon_unavailable"}
-            return result
-        latency["rakon_probe_ms"] = _ms(t)
+            pre_image_version_id = last_ver.id if last_ver else None
+    except Exception as db_exc:
+        logger.error("[autowiki_tick] Failed to get pre-image page version ID: %s", db_exc)
 
-        page_id = PILOT_PAGE_ID  # v1: hardcoded pilot page
+    from celery import chain
+    from app.agent_loop.autowiki.tasks import (
+        autowiki_propose_and_commit,
+        autowiki_post_pipeline_notify,
+        autowiki_pipeline_rollback
+    )
+    from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
 
-        if not _acquire_lock(page_id):
-            logger.warning("[autowiki] tick skipped: concurrent_tick lock held on page %d", page_id)
-            result = {"decision": "skip", "reject_reason": "concurrent_tick"}
-            return result
+    pipeline = chain(
+        autowiki_propose_and_commit.s(page_id, pre_image_version_id),
+        claim_marker_embed_page.s(),
+        autowiki_post_pipeline_notify.s(page_id)
+    ).on_error(autowiki_pipeline_rollback.s(page_id, pre_image_version_id))
 
-        try:
-            result = _run_tick(page_id, tick_start, latency)
-            return result
-        finally:
-            _release_lock(page_id)
-    finally:
-        try:
-            r = _get_redis()
-        except Exception as _redis_exc:
-            logger.error("[autowiki] last_tick: failed to get Redis client: %s", _redis_exc)
-            r = None
-        if r:
-            now_iso = _dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ")
-            try:
-                r.set("autowiki:last_tick", now_iso, ex=86400)
-            except Exception as _exc:
-                logger.error("[autowiki] last_tick: failed to write autowiki:last_tick: %s", _exc)
-            try:
-                r.set("autowiki:last_tick_decision", result.get("decision", "unknown"), ex=86400)
-            except Exception as _exc:
-                logger.error("[autowiki] last_tick: failed to write autowiki:last_tick_decision: %s", _exc)
+    pipeline.delay()
+    logger.info("[autowiki_tick] Dispatched sequential canvas chain for page %d", page_id)
+    return {"status": "dispatched", "page_id": page_id}
 
 
 def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
@@ -800,11 +1112,18 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 """), {"pid": page_id, "sec_key": sec_key}).fetchall()
                 context_claims_text = "\n".join(f"<!--claim:{c.id}--> [{c.trust_level}] {c.text[:200]}" for c in context_res)
 
-                proposal = propose_section_rewrite(page.content, section_header, program, owned_claims_text, context_claims_text)
+                proposal = propose_section_rewrite(
+                    page.content,
+                    section_header,
+                    program,
+                    owned_claims_text,
+                    context_claims_text,
+                    page_id=page_id,
+                )
                 
                 # Check gate
-                raw_text = proposal.get("content", "")
-                report_match = re.search(r"<!--marker-report\s*({.*?})\s*-->", raw_text, re.DOTALL)
+                raw_text = proposal.payload.new_content if hasattr(proposal.payload, "new_content") else ""
+                report_match = re.search(r"<!--marker-report\s*({.*?})\s*-->", raw_text, re.DOTALL) if raw_text else None
                 if report_match:
                     try:
                         import json
@@ -817,11 +1136,13 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                         unaccounted = missing_must_keep - omitted_with_reason
                         if unaccounted:
                             logger.warning(f"[autowiki_tick] Missing must_keep claims unaccounted for in proposer: {unaccounted}")
-                            proposal["reject_reason"] = "missing_must_keep_claims"
+                            proposal.gate_passed = False
+                            proposal.gate_reason = "missing_must_keep_claims"
                     except Exception as e:
                         pass
                 else:
-                    proposal["reject_reason"] = "missing_marker_report"
+                    proposal.gate_passed = False
+                    proposal.gate_reason = "missing_marker_report"
                 
         except Exception as exc:
             return _emit_run(
@@ -896,7 +1217,12 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                         year=paper.get("year"),
                         abstract=paper.get("abstract") or paper.get("summary"),
                         stance=paper.get("stance", "supports"),
-                        quality=0.50,
+                        quality=paper.get("quality_v2") or paper.get("quality") or 0.50,
+                        consensus_scorecard_id=paper.get("consensus_scorecard_id"),
+                        relevance=paper.get("relevance"),
+                        entailment=paper.get("entailment"),
+                        rigor=paper.get("rigor"),
+                        confidence=paper.get("confidence"),
                         source_channel="autowiki",
                     )
                     db.add(ev)
@@ -913,7 +1239,12 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                         year=paper.get("year"),
                         abstract=paper.get("abstract") or paper.get("summary"),
                         stance=paper.get("stance", "supports"),
-                        quality=0.50,
+                        quality=paper.get("quality_v2") or paper.get("quality") or 0.50,
+                        consensus_scorecard_id=paper.get("consensus_scorecard_id"),
+                        relevance=paper.get("relevance"),
+                        entailment=paper.get("entailment"),
+                        rigor=paper.get("rigor"),
+                        confidence=paper.get("confidence"),
                         source_channel="autowiki",
                     )
                     db.add(ev)
@@ -945,10 +1276,13 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 # Replace section in content
                 import re
                 pattern = rf"(## {re.escape(p.section_header)}.*?)(?=^## |\Z)"
+                # Use a lambda replacement to prevent Python re.sub from parsing backslashes (e.g. \s, \alpha) in the new content
                 new_content = re.sub(
-                    pattern, p.new_content + "\n\n", page.content,
+                    pattern, lambda m: p.new_content + "\n\n", page.content,
                     count=1, flags=re.MULTILINE | re.DOTALL,
                 )
+                from app.services.content_canonicalizer import canonicalize
+                new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
                 page.content = new_content
                 # Write new PageVersion
                 next_num = (last_ver.version_num + 1) if last_ver else 1
@@ -959,12 +1293,6 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 )
                 db.add(new_pv)
                 db.flush()
-                # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
-                try:
-                    from app.agent_loop.marker_embed.tasks import emit_reembed
-                    emit_reembed(page_id)
-                except Exception:
-                    pass
 
         except Exception as exc:
             db.rollback()
@@ -1078,6 +1406,9 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 f"[autowiki] COMMIT page={page_id} type={proposal_type} "
                 f"Q0={q0:.3f}→Q1={q1:.3f} Δ={delta_q:+.3f}"
             )
+
+            # ── Post-commit: Marker re-embed is now handled asynchronously by the Celery chain (Stage 2) ──
+            logger.info("[autowiki] Skipping synchronous claim_marker_embed_page; delegated to Celery chain Stage 2")
 
             # ── Post-commit: fire research ideas trigger ─────────────────────────────
             from app.agent_loop.research_ideas.auto_improvement import process_lightweight_event
@@ -1244,7 +1575,7 @@ _SONNET_SECTION_SYSTEM = (
     "  1. Minimum 400 words below the ## header.\n"
     "  2. At least 3 quantitative facts: redshifts, masses, luminosities, "
     "percentages, timescales, temperatures, or distances with units.\n"
-    "  3. Every major claim attributed with (Author et al. YYYY) in-text.\n"
+    "  3. Do not write author-year parenthetical citations. Use only <!--cite:EVIDENCE_ID--> markers from the EVIDENCE MAP.\n"
     "  4. BANNED phrases: 'plays a crucial role', 'complex and dynamic', "
     "'plays an important role', 'is a fascinating', 'remains to be seen', "
     "'future work will', 'this page covers', 'in conclusion'.\n"
@@ -1351,14 +1682,17 @@ def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: s
         
         claims_text = "Must-Keep Owned Claims:\n" + "\n".join(f"<!--claim:{c.id}--> [{c.trust_level}] {c.text[:200]}" for c in must_keep) + "\n\n"
         claims_text += "Optional Owned Claims:\n" + "\n".join(f"<!--claim:{c.id}--> [{c.trust_level}] {c.text[:200]}" for c in optional)
+        evidence_map = build_evidence_map(db, page_id, max_rows=50, section=section_header)
 
 
         user_msg = (
             f"Program:\n{program[:400]}\n\n"
+            f"{evidence_map}\n\n"
             f"Current section:\n{current_section}\n\n"
             f"Owned claims for this section:\n{claims_text}\n\n"
             "Rewrite this section following the requirements in the system prompt. "
             "Keep the ## header unchanged.\n\n"
+            "Citation requirements: do not write (Author et al. Year). Use <!--cite:EVIDENCE_ID--> only from the EVIDENCE MAP. Omit a citation if no evidence ID is available.\n\n"
             "At the end of your response, you MUST include a marker report in exactly this format:\n"
             "<!--marker-report\n{\n  \"section\": \"Section Name\",\n  \"asserted_claim_ids\": [123, 124],\n  \"omitted_owned_claim_ids\": [{\"id\": 126, \"reason\": \"not asserted\"}]\n}\n-->"
         )
@@ -1381,6 +1715,8 @@ def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: s
                 "claude-sonnet-4-6",
                 prompt_tokens=getattr(usage, "input_tokens", None),
                 completion_tokens=getattr(usage, "output_tokens", None),
+                cache_creation_tokens=getattr(usage, "cache_creation_input_tokens", None),
+                cache_read_tokens=getattr(usage, "cache_read_input_tokens", None),
                 estimated_tokens=est_tokens["input"],
             )
             new_section_text = response.content[0].text.strip()
@@ -1472,6 +1808,9 @@ def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: s
 
         # Snapshot current content into page_versions before writing so that
         # a future autowiki_tick rollback can restore past this commit (not before it).
+        from app.services.content_canonicalizer import canonicalize
+        new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
+
         last_pv = (
             db.query(PageVersion)
             .filter(PageVersion.page_id == page_id)
@@ -1514,6 +1853,7 @@ def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: s
         from app.agent_loop.agent_ping import mark_celery_agent_active
         mark_celery_agent_active(db, "claude-sonnet-4-6")
         db.commit()
+        emit_citation_scrub_required(page_id)
         logger.info(
             "[sonnet_section_rewrite] page=%d section='%s' body_len=%d committed",
             page_id, section_header, len(section_body),
@@ -1533,9 +1873,7 @@ def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: s
 
 _COHERENCE_SYSTEM_PROMPT = 'You are Rakon, a senior astronomy reviewer with deep expertise in galaxy evolution. You are restructuring a Wikipedia-style review article assembled by four different agents over five days. The result is fragmented, duplicative, and inconsistent in voice. Your job: produce a single coherent rewrite with a unified review-article voice, no duplicate content, and clean transitions between sections.\n\nCRITICAL ORGANIZING PRINCIPLE: The structure must be physically and scientifically organized. Observational evidence belongs EMBEDDED WITHIN each physical topic section — not isolated in a standalone observations section. Write like a graduate-level textbook chapter: state the physics, then immediately support it with the relevant observations (SDSS, JWST, ALMA, MaNGA, CANDELS, etc.) inline. There must be NO dedicated "Observational Evidence" H2 section.\n\nYou are NOT adding new scientific claims. You are NOT inventing new citations. You are restructuring existing content with better organization and prose.'
 
-_COHERENCE_USER_TEMPLATE = '''CRITICAL: You MUST use these EXACT H2 header strings, character-for-character. Do not paraphrase or modify them.\n\nTARGET STRUCTURE (9 H2 sections, in this order):\n\n1. ## Overview & Historical Context\n2. ## Galaxy Formation & Dark Matter Halos\n   ### Hierarchical Assembly and Halo Mass Functions\n   ### The Stellar-to-Halo Mass Relation\n   ### Cold Streams vs Hot Accretion\n3. ## Star Formation & Gas Physics\n   ### The Star-Forming Main Sequence\n   ### Molecular Gas Reservoirs and Kennicutt-Schmidt\n   ### Stellar Feedback and Self-Regulation\n4. ## Quenching Mechanisms\n   ### AGN Feedback: Radiative and Kinetic Modes\n   ### Stellar Feedback and Supernova-Driven Winds\n   ### Strangulation, Starvation, and Halo Heating\n   ### The M–σ Relation and AGN Co-evolution\n5. ## Environmental Effects & Galaxy Clusters\n   ### The Morphology-Density Relation\n   ### Ram-Pressure Stripping\n   ### Tidal Interactions, Harassment, and Mergers\n6. ## Structural Evolution\n   ### Morphological Transformation and the Hubble Sequence\n   ### Galaxy Scaling Relations: Tully-Fisher and Faber-Jackson\n   ### Size Growth and the Two-Phase Assembly Picture\n7. ## Chemical Enrichment & Stellar Populations\n   ### The Mass-Metallicity Relation\n   ### α-element Abundances and Star Formation Timescales\n   ### Stellar Population Gradients from IFU Surveys\n8. ## High-Redshift Universe & Cosmic Star Formation History\n   ### Cosmic Star Formation Rate Density\n   ### Early Massive Galaxies and JWST Discoveries\n   ### Color Bimodality Evolution: Red Sequence Growth Since z∼2\n9. ## Open Questions & Future Directions\n   (one concise paragraph per open debate, drawn from the page\'s contested claims)\n\nBelow is the current state of the "Galaxy Evolution" wiki page. Rewrite it as a coherent review article using the EXACT target structure provided above.\n\nHARD CONSTRAINTS:\n- Preserve all substantive claims (rephrase OK, delete NOT OK).\n- Preserve all inline citations in form (Author et al. Year). Do not invent.\n- Preserve all quantitative facts (z, M_☉, slopes, fractions, dates). Do not modify.\n- Observational evidence (surveys, instruments, datasets) must be embedded WITHIN the relevant physical section — NEVER grouped into a standalone observations H2.\n  Example: JWST results go in section 8 (High-Redshift); SDSS/MaNGA results go in sections 4 or 7; ALMA data go where gas physics is discussed.\n- Single unified voice: authoritative astronomy review article. Concrete prose.\n  No first-person "we". No "interestingly" or "remarkably".\n- Transitions: last sentence of each section connects substantively forward.\n- DO NOT invent new claims, datasets, instruments, or citations.\n- DO NOT add a hero tagline (separate task).\n- PRESERVE ANY EXISTING HTML claim markers (e.g. <!--claim:123-->).\n- Weave HTML claim markers inline where you assert key claims from the list provided below.
-- PRESERVE ANY EXISTING HTML claim markers (e.g. <!--claim:123-->).
-- Weave HTML claim markers inline where you assert key claims from the list provided below.\n\nOUTPUT FORMAT:\n- Markdown. H1: `# Galaxy Evolution` (keep verbatim). Then H2 sections in order above.\n- H3 sub-sections as listed (adjust names slightly if needed for flow, but keep section count = 9).\n- DO NOT include a `## References` or bibliography section — evidence is surfaced inline via the claim evidence system.\n- Single newline between paragraphs; double newline before headings.\n- Target length: 65,000–80,000 chars.\n\nCURRENT PAGE CONTENT:\n=====================================\n\n{full_page_content}\n\nNow produce the rewritten page.'''
+_COHERENCE_USER_TEMPLATE = '''CRITICAL: You MUST use these EXACT H2 header strings, character-for-character. Do not paraphrase or modify them.\n\nTARGET STRUCTURE (9 H2 sections, in this order):\n\n1. ## Overview & Historical Context\n2. ## Galaxy Formation & Dark Matter Halos\n   ### Hierarchical Assembly and Halo Mass Functions\n   ### The Stellar-to-Halo Mass Relation\n   ### Cold Streams vs Hot Accretion\n3. ## Star Formation & Gas Physics\n   ### The Star-Forming Main Sequence\n   ### Molecular Gas Reservoirs and Kennicutt-Schmidt\n   ### Stellar Feedback and Self-Regulation\n4. ## Quenching Mechanisms\n   ### AGN Feedback: Radiative and Kinetic Modes\n   ### Stellar Feedback and Supernova-Driven Winds\n   ### Strangulation, Starvation, and Halo Heating\n   ### The M–σ Relation and AGN Co-evolution\n5. ## Environmental Effects & Galaxy Clusters\n   ### The Morphology-Density Relation\n   ### Ram-Pressure Stripping\n   ### Tidal Interactions, Harassment, and Mergers\n6. ## Structural Evolution\n   ### Morphological Transformation and the Hubble Sequence\n   ### Galaxy Scaling Relations: Tully-Fisher and Faber-Jackson\n   ### Size Growth and the Two-Phase Assembly Picture\n7. ## Chemical Enrichment & Stellar Populations\n   ### The Mass-Metallicity Relation\n   ### α-element Abundances and Star Formation Timescales\n   ### Stellar Population Gradients from IFU Surveys\n8. ## High-Redshift Universe & Cosmic Star Formation History\n   ### Cosmic Star Formation Rate Density\n   ### Early Massive Galaxies and JWST Discoveries\n   ### Color Bimodality Evolution: Red Sequence Growth Since z∼2\n9. ## Open Questions & Future Directions\n   (one concise paragraph per open debate, drawn from the page\'s contested claims)\n\nBelow is the current state of the wiki page. Rewrite it as a coherent review article using the EXACT target structure provided above.\n\nHARD CONSTRAINTS:\n- Preserve all substantive claims (rephrase OK, delete NOT OK).\n- DO NOT write inline citations in (Author et al. Year) format. Evidence is linked via <!--cite:N--> markers.\n- When asserting a claim backed by a specific paper, insert <!--cite:EVIDENCE_ID--> immediately after the assertion using only IDs from the EVIDENCE MAP. If no evidence ID is available, omit the citation.\n- Preserve all quantitative facts (z, M_☉, slopes, fractions, dates). Do not modify.\n- Observational evidence (surveys, instruments, datasets) must be embedded WITHIN the relevant physical section — NEVER grouped into a standalone observations H2.\n- Single unified voice: authoritative astronomy review article. Concrete prose.\n- Transitions: last sentence of each section connects substantively forward.\n- DO NOT invent new claims, datasets, instruments, citations, or evidence IDs.\n- DO NOT add a hero tagline (separate task).\n- PRESERVE ANY EXISTING HTML claim markers (e.g. <!--claim:123-->).\n- Weave HTML claim markers inline where you assert key claims from the list provided below.\n\nOUTPUT FORMAT:\n- Markdown. H1: `# Galaxy Evolution` (keep verbatim). Then H2 sections in order above.\n- H3 sub-sections as listed (adjust names slightly if needed for flow, but keep section count = 9).\n- DO NOT include a `## References` or bibliography section — evidence is surfaced dynamically.\n- Single newline between paragraphs; double newline before headings.\n- Target length: 65,000–80,000 chars.\n\n{citation_context}\n\nCURRENT PAGE CONTENT:\n=====================================\n\n{full_page_content}\n\nNow produce the rewritten page.'''
 
 _COHERENCE_EXPECTED_SECTIONS = ['## Overview & Historical Context', '## Galaxy Formation & Dark Matter Halos', '## Star Formation & Gas Physics', '## Quenching Mechanisms', '## Environmental Effects & Galaxy Clusters', '## Structural Evolution', '## Chemical Enrichment & Stellar Populations', '## High-Redshift Universe & Cosmic Star Formation History', '## Open Questions & Future Directions']
 
@@ -1620,6 +1958,8 @@ def run_rakon_coherence_pass(self, page_id: int = 57) -> dict:
         return {"decision": "error", "reason": "page_not_found"}
 
     current_content = row[0]
+    with SessionLocal() as db:
+        citation_context = build_evidence_map(db, page_id, max_rows=80)
 
     logger.info(
         "[coherence] Dispatching to Opus 4-7 + Gemini 2.5 Pro in parallel (%d char content)...",
@@ -1628,8 +1968,8 @@ def run_rakon_coherence_pass(self, page_id: int = 57) -> dict:
 
     import concurrent.futures as _cf
     with _cf.ThreadPoolExecutor(max_workers=2) as _pool:
-        opus_future = _pool.submit(_call_opus_coherence, current_content)
-        gemini_future = _pool.submit(_call_gemini_coherence, current_content)
+        opus_future = _pool.submit(_call_opus_coherence, current_content, "", citation_context)
+        gemini_future = _pool.submit(_call_gemini_coherence, current_content, "", citation_context)
         opus_result = opus_future.result()
         gemini_result = gemini_future.result()
 
@@ -1784,6 +2124,7 @@ def run_rakon_coherence_pass(self, page_id: int = 57) -> dict:
         from app.agent_loop.agent_ping import mark_celery_agent_active
         mark_celery_agent_active(db, winner_label)
         db.commit()
+        emit_citation_scrub_required(page_id)
 
     # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
     try:
