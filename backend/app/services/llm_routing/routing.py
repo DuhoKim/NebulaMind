@@ -1,5 +1,5 @@
 """
-LLM Routing v1 — Model-role assignment for NebulaMind agent tasks.
+LLM Routing v3 — canonical platoon nicknames from docs/platoon_overhaul_v2.md §4.
 
 Tiers:
   T1  Mac Studio fast   — Nutty (gpt-oss:20b)
@@ -7,6 +7,9 @@ Tiers:
   T3  Mac Studio heavy  — Buddle (gpt-oss:120b)
   T4  Mac Pro 671b      — Rakon (deepseek-r1:671b) — galaxy-evolution priority
   T5  Cloud free        — Gemini-2.0-flash, Cerebras, SambaNova, Groq
+
+Other canonical residents: Vera (astrosage-70b), Blanc (llama3.3:70b),
+Pico (vanta-research/atom-astronomy-7b).
 """
 from __future__ import annotations
 
