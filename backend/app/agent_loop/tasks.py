@@ -105,7 +105,6 @@ Respond with ONLY a JSON object:
 STANCE_JURY_MODELS = [
     {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai", "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.5-flash", "label": "gemini-2.5-flash", "max_tokens": 8192},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.STANCE_JURY_FAST_MODEL, "label": settings.STANCE_JURY_FAST_MODEL},
-    {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": settings.OLLAMA_STUDIO_FAST_MODEL, "label": settings.OLLAMA_STUDIO_FAST_MODEL},
     {"base_url": settings.OLLAMA_STUDIO_BASE_URL, "api_key": "ollama", "model": "vanta-research/atom-astronomy-7b", "label": "vanta-research/atom-astronomy-7b"},
 ]
 STANCE_JURY_MODELS = [m for m in STANCE_JURY_MODELS if m["api_key"]]
