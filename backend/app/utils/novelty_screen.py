@@ -421,13 +421,19 @@ def run_calibration(db: Session) -> dict[str, Any]:
     return payload
 
 
-def unscreened_query(limit: int, offset: int = 0) -> tuple[str, dict[str, int]]:
+def unscreened_query(
+    limit: int,
+    offset: int = 0,
+    *,
+    include_all_statuses: bool = False,
+) -> tuple[str, dict[str, int]]:
+    status_filter = "" if include_all_statuses else "AND status NOT IN ('rejected', 'superseded', 'stale', 'covered')"
     return (
-        """
+        f"""
         SELECT *
         FROM research_ideas
         WHERE coverage_status IS NULL
-          AND status NOT IN ('rejected', 'superseded', 'stale', 'covered')
+          {status_filter}
         ORDER BY id
         LIMIT :limit OFFSET :offset
         """,

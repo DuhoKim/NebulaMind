@@ -26,22 +26,38 @@ def main() -> int:
     parser.add_argument("--batch-size", type=int, default=10)
     parser.add_argument("--limit", type=int, default=0, help="Optional max ideas after calibration")
     parser.add_argument("--dry-run", action="store_true")
+    parser.add_argument(
+        "--include-all-statuses",
+        action="store_true",
+        help="Screen every coverage_status IS NULL row, including covered/rejected/stale statuses.",
+    )
+    parser.add_argument(
+        "--calibration-mode",
+        choices=("abort", "warn", "skip"),
+        default="abort",
+        help="How to handle calibration failure before the backfill.",
+    )
     args = parser.parse_args()
 
     processed = 0
     with SessionLocal() as db:
-        calibration = run_calibration(db)
-        log.info("CALIBRATION_RESULT %s", json.dumps(calibration, sort_keys=True))
-        if not calibration["passed"]:
-            log.error("Calibration failed; aborting unscreened backfill")
-            return 2
+        if args.calibration_mode == "skip":
+            log.warning("CALIBRATION_SKIPPED")
+        else:
+            calibration = run_calibration(db)
+            log.info("CALIBRATION_RESULT %s", json.dumps(calibration, sort_keys=True))
+            if not calibration["passed"]:
+                if args.calibration_mode == "abort":
+                    log.error("Calibration failed; aborting unscreened backfill")
+                    return 2
+                log.warning("Calibration failed; continuing because calibration_mode=warn")
 
         while True:
             remaining = args.limit - processed if args.limit else args.batch_size
             if remaining <= 0:
                 break
             batch_size = min(args.batch_size, remaining)
-            query, params = unscreened_query(batch_size)
+            query, params = unscreened_query(batch_size, include_all_statuses=args.include_all_statuses)
             rows = db.execute(text(query), params).fetchall()
             if not rows:
                 break
