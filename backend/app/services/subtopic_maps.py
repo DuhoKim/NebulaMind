@@ -23,6 +23,10 @@ To add or evolve subtopics: edit the dicts below, version-control the change.
 """
 from __future__ import annotations
 
+import logging
+
+log = logging.getLogger(__name__)
+
 # ---------------------------------------------------------------------------
 # CORE SUBTOPICS BY CATEGORY
 # ---------------------------------------------------------------------------
@@ -1143,16 +1147,31 @@ PAGE_EXTENSIONS: dict[str, dict] = {
 # PUBLIC API
 # ---------------------------------------------------------------------------
 
+def _category_from_db(slug: str) -> str | None:
+    try:
+        from app.database import SessionLocal
+        from app.services.page_registry import category_for_slug
+
+        with SessionLocal() as db:
+            return category_for_slug(db, slug)
+    except Exception as exc:
+        log.warning("[subtopic_maps] category DB lookup failed for slug=%s: %s", slug, exc)
+        return None
+
+
 def get_required_subtopics(slug: str) -> dict[str, list[str]]:
     """Return the merged subtopic→aliases dict for a wiki page slug.
 
     Resolution order:
-      1. Determine category from PAGE_CATEGORY (default: "instrumentation")
+      1. Determine category from wiki_pages.category, with PAGE_CATEGORY fallback
       2. Start with CORE_SUBTOPICS[category]
       3. If PAGE_EXTENSIONS[slug] has "override", REPLACE the dict
       4. Else, merge "extra" into the dict
     """
-    category = PAGE_CATEGORY.get(slug, "instrumentation")
+    category = _category_from_db(slug)
+    if not category:
+        category = PAGE_CATEGORY.get(slug, "instrumentation")
+        log.warning("[subtopic_maps] using PAGE_CATEGORY fallback for slug=%s category=%s", slug, category)
     base = dict(CORE_SUBTOPICS.get(category, {}))
     ext = PAGE_EXTENSIONS.get(slug, {})
     if "override" in ext:

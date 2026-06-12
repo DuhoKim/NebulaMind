@@ -301,7 +301,21 @@ def build_pairs(elements: list[dict[str, Any]], candidates_path: Path, out_dir: 
 
 
 
-def build_targeted_pairs_from_coverage_ready(coverage_rows_path: Path, source_dir: Path | None, out_dir: Path, require_hydrated: bool = False, db_reads_used: list[bool] | None = None) -> list[dict[str, Any]]:
+def row_is_coverage_ready(row: dict[str, Any], allow_incomplete_coverage: bool = False) -> bool:
+    if allow_incomplete_coverage:
+        return True
+    status = str(row.get("coverage_status") or "").strip().lower()
+    return status == "coverage_ready"
+
+
+def build_targeted_pairs_from_coverage_ready(
+    coverage_rows_path: Path,
+    source_dir: Path | None,
+    out_dir: Path,
+    require_hydrated: bool = False,
+    db_reads_used: list[bool] | None = None,
+    allow_incomplete_coverage: bool = False,
+) -> list[dict[str, Any]]:
     # Targeted mode is a pure artifact consumer. coverage_rows_path is authoritative.
     if db_reads_used is not None:
         db_reads_used.append(False)
@@ -310,7 +324,11 @@ def build_targeted_pairs_from_coverage_ready(coverage_rows_path: Path, source_di
     targeted_pairs = []
     seen = set()
 
-    for row in rows:
+    coverage_backlog = [row for row in rows if not row_is_coverage_ready(row, allow_incomplete_coverage)]
+    rows_for_validator = [row for row in rows if row_is_coverage_ready(row, allow_incomplete_coverage)]
+    write_jsonl(out_dir / "coverage_backlog_rows.jsonl", coverage_backlog)
+
+    for row in rows_for_validator:
         claim_id = int(row.get("claim_id"))
         element_id = row.get("element_id")
         arxiv_id = row.get("arxiv_id")
@@ -362,6 +380,10 @@ def build_targeted_pairs_from_coverage_ready(coverage_rows_path: Path, source_di
             "source_candidate_key": row.get("candidate_key"),
             "candidate_source": "coverage_ready_targeted",
             "candidate_atom_coverage_status": row.get("candidate_atom_coverage_status"),
+            "coverage_status": row.get("coverage_status") or "coverage_ready",
+            "coverage_required_stages": row.get("coverage_required_stages"),
+            "coverage_missing_stages": row.get("coverage_missing_stages") or [],
+            "coverage_artifact_refs": row.get("coverage_artifact_refs") or {},
             "section": row.get("section"),
             "retrieval_filter_decision": row.get("retrieval_filter_decision"),
             "paper_title_snapshot": row.get("paper_title_snapshot"),
@@ -384,6 +406,8 @@ def build_targeted_pairs_from_coverage_ready(coverage_rows_path: Path, source_di
     write_json(out_dir / "targeted_metrics.json", {
         "coverage_ready_input_rows": len(rows),
         "targeted_pair_rows": len(targeted_pairs),
+        "coverage_backlog_rows": len(coverage_backlog),
+        "allow_incomplete_coverage": allow_incomplete_coverage,
         "hydration_missing_rows": 0,
         "db_reads_used": False,
         "hydration_policy": "artifact_only_fail_closed",
@@ -639,6 +663,7 @@ def main() -> None:
     parser.add_argument("--source-dir", type=Path)
     parser.add_argument("--targeted-coverage-mode", action="store_true")
     parser.add_argument("--require-hydrated-text", action="store_true")
+    parser.add_argument("--allow-incomplete-coverage", action="store_true", help="Diagnostic override; do not use for production promotion.")
     parser.add_argument("--out-dir", type=Path)
     parser.add_argument("--no-db-write", action="store_true", required=True)
     parser.add_argument("--phases", nargs="+", default=["merge-elements", "build-pairs", "aggregate", "report"])
@@ -660,7 +685,13 @@ def main() -> None:
         if not args.coverage_ready_rows:
             raise SystemExit("BLOCKED_VALIDATOR_TARGETED_INPUT_SOURCE_ARTIFACT_MISSING: --coverage-ready-rows required")
         if "build-pairs" in args.phases:
-            pairs = build_targeted_pairs_from_coverage_ready(args.coverage_ready_rows, args.source_dir, out_dir, args.require_hydrated_text)
+            pairs = build_targeted_pairs_from_coverage_ready(
+                args.coverage_ready_rows,
+                args.source_dir,
+                out_dir,
+                args.require_hydrated_text,
+                allow_incomplete_coverage=args.allow_incomplete_coverage,
+            )
     else:
         if "merge-elements" in args.phases:
             elements = merge_elements(args.phase1_elements, args.phase15_elements, out_dir)

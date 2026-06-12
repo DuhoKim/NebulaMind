@@ -1,0 +1,1502 @@
+[
+  {
+    "slug": "2mass",
+    "name": "2MASS",
+    "full_name": "Two Micron All Sky Survey",
+    "description": "2MASS was a ground-based all-sky survey conducted from 1997 to 2001 using two dedicated 1.3-m telescopes at Mount Hopkins (Arizona) and CTIO (Chile). It imaged the entire sky in three near-infrared bands — J (1.25 μm), H (1.65 μm), and Ks (2.17 μm) — achieving point-source completeness to J ~ 15.8, H ~ 15.1, and Ks ~ 14.3 (Vega magnitudes).\n\nAlthough retired, 2MASS remains one of the most heavily cited datasets in astronomy. Its all-sky photometric catalog is the baseline near-infrared reference for stellar classification, galaxy number counts, Milky Way dust-extinction mapping (combined with WISE), and the identification of brown dwarfs and nearby galaxies. The 2MASS Extended Source Catalog lists ~1.65 million resolved galaxies.",
+    "wavelength_range": "1.25–2.17 μm (J, H, Ks bands)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "All-sky coverage (99.998% of celestial sphere)",
+    "redshift_range": "z ≈ 0–0.1 (extragalactic sources); stellar catalog all distances",
+    "instruments_json": [
+      "1.3 m FLWO telescope (Mt. Hopkins)",
+      "1.3 m CTIO telescope",
+      "256×256 HgCdTe detector arrays (J+H+Ks simultaneous)"
+    ],
+    "current_data_release": "Final Release (2003) — complete; no further updates",
+    "data_volume": "~25 TB raw; ~1.3 million point sources; ~1.65 million extended sources",
+    "primary_science_goals": "All-sky near-infrared photometry; stellar classification; nearby galaxy identification; dust-extinction reference; brown dwarf discovery.",
+    "flagship_programs_json": [
+      "2MASS Point Source Catalog",
+      "2MASS Extended Source Catalog",
+      "2MASS Large Galaxy Atlas"
+    ],
+    "operator": "UMass Amherst / IPAC / Caltech (NASA 2MASS project)",
+    "status": "retired",
+    "archive_url": "https://irsa.ipac.caltech.edu/Missions/2mass.html",
+    "mission_url": "https://www.ipac.caltech.edu/project/2mass",
+    "emoji": "⭐"
+  },
+  {
+    "slug": "4most",
+    "name": "4MOST",
+    "full_name": "4-metre Multi-Object Spectroscopic Telescope",
+    "description": "4MOST is a high-multiplex fiber-fed spectrograph on ESO's 4 m VISTA telescope at Paranal, Chile, providing 2,436 fibers over a 4.1 deg² field of view. It operates simultaneously in low-resolution (LRS, R ≈ 5,000) and high-resolution (HRS, R ≈ 20,000) modes. Observations began in April 2024. 4MOST will execute 12 community surveys in parallel, spanning Milky Way chemical abundances (4MIDABLE-LR/HR), galaxy evolution (4HS, WAVES), AGN and cosmology (4C3R2, StePS), and counterpart spectroscopy for Euclid, eROSITA, and LSST.",
+    "wavelength_range": "0.37–0.95 μm (LRS: two arms); 0.39–0.68 μm (HRS: three arms)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 15000,
+    "sky_coverage_note": "~15,000 deg² planned over 5-year survey lifetime",
+    "redshift_range": "Milky Way stars (RV); galaxies z = 0–4; AGN z = 0–6",
+    "instruments_json": [
+      "VISTA 4.1 m telescope",
+      "4MOST fiber positioner (2,436 fibers)",
+      "LRS (low-resolution spectrograph)",
+      "HRS (high-resolution spectrograph)"
+    ],
+    "current_data_release": "Operations began April 2024; first public data release expected ~2026",
+    "data_volume": "~7 M spectra planned per year; ~30 M over full survey",
+    "primary_science_goals": "Milky Way chemical cartography; galaxy redshift surveys; AGN and eROSITA counterpart spectroscopy; dark energy and large-scale structure.",
+    "flagship_programs_json": [
+      "4MIDABLE-LR",
+      "4MIDABLE-HR",
+      "WAVES",
+      "4HS",
+      "StePS",
+      "4C3R2"
+    ],
+    "operator": "4MOST consortium (AIP, MPIA, ESO) / ESO VISTA",
+    "status": "operational",
+    "archive_url": "https://www.4most.eu/cms/",
+    "mission_url": "https://www.4most.eu/",
+    "emoji": "🔬"
+  },
+  {
+    "slug": "act",
+    "name": "ACT",
+    "full_name": "Atacama Cosmology Telescope",
+    "description": "ACT is a 6 m off-axis Gregorian telescope on Cerro Toco in the Chilean Atacama desert, operating since 2007. Its successive camera upgrades (MBAC → ACTPol → AdvACT) have enabled high-resolution temperature and polarisation maps of the CMB across ~18,000 deg². ACT DR6 (2023) delivered the most precise CMB lensing power spectrum measurement to date and high-S/N maps used for cosmological constraints. ACT has discovered thousands of galaxy clusters via the thermal Sunyaev-Zel'dovich (tSZ) effect and produced high-resolution CMB-derived lensing convergence maps.",
+    "wavelength_range": "1.4–3.3 mm (90, 150, 220 GHz); AdvACT adds 28 GHz channel",
+    "wavelength_band": "sub_mm",
+    "sky_coverage_deg2": 18000,
+    "sky_coverage_note": "~18,000 deg² (DR6 temperature+polarisation maps)",
+    "redshift_range": "CMB (z ≈ 1100); clusters z = 0.1–1.5; lensing mass maps",
+    "instruments_json": [
+      "6 m off-axis Gregorian telescope",
+      "AdvACT camera (multichromatic bolometer arrays)",
+      "ACTPol (2013–2016)",
+      "MBAC (2007–2010)"
+    ],
+    "current_data_release": "ACT DR6 (2023) — CMB lensing power spectrum; temperature+polarisation maps; ACT DR6 cluster catalog",
+    "data_volume": "~10 TB public maps and catalogs",
+    "primary_science_goals": "CMB power spectra and cosmological parameters; CMB gravitational lensing; tSZ galaxy cluster surveys; kSZ pairwise momentum; CMB-derived mass maps.",
+    "flagship_programs_json": [
+      "ACT DR6 lensing",
+      "ACT cluster catalog (ACT-CL)",
+      "AdvACT CMB maps"
+    ],
+    "operator": "Princeton University / international ACT collaboration",
+    "status": "operational",
+    "archive_url": "https://lambda.gsfc.nasa.gov/product/act/",
+    "mission_url": "https://act.princeton.edu/",
+    "emoji": "🌡️"
+  },
+  {
+    "slug": "alma",
+    "name": "ALMA",
+    "full_name": "Atacama Large Millimeter/submillimeter Array",
+    "description": "ALMA is an interferometric array of 66 antennas (54 × 12-m and 12 × 7-m) located at 5000 m altitude on the Atacama Plateau in Chile, operated jointly by ESO, NAOJ, and NRAO. Operating between 84 GHz and 950 GHz (Bands 3–10), it provides the highest-resolution millimetre/submillimetre images ever achieved, resolving sub-arcsecond structure in protoplanetary disks, molecular gas in high-z galaxies, and thermal emission from dust at cosmological distances.\n\nALMA is the primary facility for measuring cold gas reservoirs (CO, [CII], dust continuum) in galaxies from z ~ 0 to z > 7, making it indispensable for the baryon cycle of galaxy evolution. Its long-baseline configurations achieve 20 mas resolution.",
+    "wavelength_range": "0.3–3.6 mm (84–950 GHz; Bands 3–10)",
+    "wavelength_band": "sub_mm",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed mission; accessible sky: declination < +40°; VLSS covers ~few deg² cumulatively",
+    "redshift_range": "z = 0–10+ (dust/gas at all cosmic epochs)",
+    "instruments_json": [
+      "54 × 12-m antennas (main array)",
+      "12 × 7-m antennas (Morita ACA)",
+      "4 × 12-m total-power antennas",
+      "Bands 3–10 receivers (84–950 GHz)"
+    ],
+    "current_data_release": "Cycle 11 (2024–2025 observing season); full science archive public at ALMA Science Archive",
+    "data_volume": "~3 PB cumulative; ~300 TB/year",
+    "primary_science_goals": "Cold gas in high-z galaxies; protoplanetary disk structure and planet formation; AGN torus and jet-ISM interaction; cosmic star formation history via dust continuum; astrochemistry.",
+    "flagship_programs_json": [
+      "ASPECS",
+      "REBELS",
+      "CRISTAL",
+      "ALMAquest",
+      "DESHIMA pilot",
+      "NOEMA+ALMA PHANGS"
+    ],
+    "operator": "ESO / NAOJ / NRAO (Joint ALMA Observatory)",
+    "status": "operational",
+    "archive_url": "https://almascience.eso.org/asax/",
+    "mission_url": "https://www.almaobservatory.org/",
+    "emoji": "📡"
+  },
+  {
+    "slug": "askap-emu",
+    "name": "ASKAP/EMU",
+    "full_name": "Australian SKA Pathfinder – Evolutionary Map of the Universe",
+    "description": "The Australian Square Kilometre Array Pathfinder (ASKAP) is a 36-dish radio array in the Murchison Radio-astronomy Observatory, Western Australia. Its phased-array feeds (PAFs) provide a 30 deg² instantaneous field of view, enabling extremely fast survey speeds. The Evolutionary Map of the Universe (EMU) is ASKAP's flagship continuum survey, targeting the entire southern sky at ~944 MHz to map ~70 million radio sources. ASKAP also hosts WALLABY (HI survey), DINGO, FLASH, and VAST (transients). The Pilot Survey (DR1, 2021) demonstrated EMU's science capabilities.",
+    "wavelength_range": "700–1800 MHz (primary survey: 800–1088 MHz at 944 MHz centre)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": 30000,
+    "sky_coverage_note": "EMU full southern-sky survey: ~30,000 deg²; Pilot Survey: 270 deg²",
+    "redshift_range": "z = 0–5+ (radio continuum); z = 0–0.26 (WALLABY HI)",
+    "instruments_json": [
+      "36 × 12 m dishes",
+      "Phased Array Feeds (PAFs, 36-beam)",
+      "30 deg² field of view"
+    ],
+    "current_data_release": "EMU Pilot Survey DR1 (Norris et al. 2021, PASA); EMU full survey ongoing from 2022",
+    "data_volume": "~6 PB survey data total (estimated)",
+    "primary_science_goals": "All-sky radio continuum mapping; galaxy evolution and AGN; star formation history; cosmic magnetism; transients and variables.",
+    "flagship_programs_json": [
+      "EMU",
+      "WALLABY",
+      "DINGO",
+      "FLASH",
+      "VAST"
+    ],
+    "operator": "CSIRO Astronomy and Space Science (CASS)",
+    "status": "operational",
+    "archive_url": "https://research.csiro.au/casda/",
+    "mission_url": "https://www.atnf.csiro.au/projects/askap/index.html",
+    "emoji": "🔭"
+  },
+  {
+    "slug": "cdf-n",
+    "name": "CDF-N",
+    "full_name": "Chandra Deep Field North",
+    "description": "The Chandra Deep Field North (CDF-N) accumulated 2 million seconds of Chandra ACIS-S exposure over ~450 arcmin² centred on the HDF-N. The 2 Ms catalog (Alexander et al. 2003; Xue et al. 2016 updated) contains 683 X-ray point sources. Overlapping with the Hubble Deep Field North, the CDF-N has exquisite multiwavelength coverage enabling spectroscopic redshifts for most X-ray sources. Together with CDF-S, the two Chandra deep fields define our understanding of the cosmic X-ray background and faint AGN populations at z = 0.5–5.",
+    "wavelength_range": "0.5–8.0 keV (Chandra ACIS-S; full band, soft, hard)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": 0.13,
+    "sky_coverage_note": "~450 arcmin² (2 Ms field centred on HDF-N)",
+    "redshift_range": "z = 0.1 – 5.5 (X-ray AGN, galaxies, groups)",
+    "instruments_json": [
+      "Chandra ACIS-S (back-illuminated chips, 17'×17' FOV)"
+    ],
+    "current_data_release": "2 Ms CDF-N catalog (Xue et al. 2016) — 683 X-ray sources",
+    "data_volume": "~20 GB event files; ~5 MB source catalog",
+    "primary_science_goals": "Faint AGN demographics; cosmic X-ray background; AGN/galaxy co-evolution; Compton-thick AGN at high-z; X-ray normal galaxies.",
+    "flagship_programs_json": [
+      "2 Ms CDF-N catalog (Xue et al. 2016)",
+      "Alexander et al. 2003 catalog"
+    ],
+    "operator": "NASA/CXC / Chandra Deep Field collaboration",
+    "status": "retired",
+    "archive_url": "https://cxc.cfa.harvard.edu/cda/",
+    "mission_url": "https://cxc.harvard.edu/",
+    "emoji": "🔵"
+  },
+  {
+    "slug": "cdf-s",
+    "name": "CDF-S",
+    "full_name": "Chandra Deep Field South",
+    "description": "The Chandra Deep Field South (CDF-S) is the deepest X-ray observation ever conducted, accumulating 7 million seconds (≈81 days) of Chandra ACIS-I exposure over the ~465 arcmin² field, published by Luo et al. (2017). It detected 1,008 X-ray sources with limiting fluxes of ~1×10⁻¹⁷ erg/cm²/s in the 0.5–2 keV band — probing AGN down to luminosities of ~10⁴⁰ erg/s at z~1. The CDF-S is the best-studied extragalactic deep field, with multiwavelength counterpart coverage from X-ray to radio including HST, ALMA, and VLT.",
+    "wavelength_range": "0.5–8.0 keV (Chandra ACIS-I; full band, soft, hard)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": 0.13,
+    "sky_coverage_note": "~465 arcmin² (main 7 Ms field); wider 4 Ms field ~0.25 deg²",
+    "redshift_range": "z = 0.01 – 6.5 (X-ray AGN and galaxies)",
+    "instruments_json": [
+      "Chandra ACIS-I (4 × 1024² CCDs, 17'×17' FOV)"
+    ],
+    "current_data_release": "7 Ms CDF-S catalog (Luo et al. 2017) — 1,008 X-ray sources; 4 Ms catalog (Xue et al. 2011) also public",
+    "data_volume": "~50 GB event files + spectra; ~10 MB source catalogs",
+    "primary_science_goals": "Faint AGN demographics at z=0.5–5; X-ray background synthesis; AGN host galaxy properties; X-ray emission from normal galaxies; Compton-thick AGN census.",
+    "flagship_programs_json": [
+      "7 Ms CDF-S catalog (Luo et al. 2017)",
+      "4 Ms catalog (Xue et al. 2011)",
+      "CDF-S multiwavelength catalog"
+    ],
+    "operator": "NASA/CXC / Chandra Deep Field collaboration",
+    "status": "retired",
+    "archive_url": "https://cxc.cfa.harvard.edu/cda/",
+    "mission_url": "https://cxc.harvard.edu/",
+    "emoji": "🔴"
+  },
+  {
+    "slug": "cmb-s4",
+    "name": "CMB-S4",
+    "full_name": "Cosmic Microwave Background Stage 4",
+    "description": "CMB-S4 is a next-generation ground-based CMB polarisation experiment jointly funded by DOE and NSF. It will deploy ~500,000 cryogenic detector pixels at two sites: the South Pole (deep, high-resolution survey) and the Chilean Atacama (wide-area survey). CMB-S4 targets a 5σ detection of primordial B-mode polarisation from inflationary gravitational waves (r ≲ 0.001), as well as Neff constraints, massive neutrino detection via CMB lensing, and a galaxy cluster survey of ~100,000 clusters via the tSZ effect. Construction is expected to begin ~2026 with first science ~2030–2033.",
+    "wavelength_range": "3–15 mm (20–300 GHz; multiple frequency channels)",
+    "wavelength_band": "sub_mm",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Deep survey: ~3% sky (South Pole); Wide survey: ~70% sky (Atacama)",
+    "redshift_range": "CMB (z ≈ 1100); clusters z = 0.1–2; lensing mass up to z ≈ 10",
+    "instruments_json": [
+      "~500,000 bolometric detectors (TES arrays)",
+      "South Pole deep survey telescope",
+      "Chilean Atacama wide-survey telescope"
+    ],
+    "current_data_release": "No data yet; CDT report (2021); construction expected 2026–2030",
+    "data_volume": "~10 TB/day of detector timestreams (estimated)",
+    "primary_science_goals": "Inflationary gravitational waves (primordial B-modes); neutrino mass sum; Neff constraints; tSZ cluster cosmology; CMB lensing.",
+    "flagship_programs_json": [
+      "CMB-S4 Science Book (2016)",
+      "CMB-S4 CDT (Concept Design Report 2021)"
+    ],
+    "operator": "DOE / NSF / CMB-S4 collaboration (>20 US institutions + international partners)",
+    "status": "planned",
+    "archive_url": "https://cmb-s4.org/",
+    "mission_url": "https://cmb-s4.org/",
+    "emoji": "🌌"
+  },
+  {
+    "slug": "cosmos2020",
+    "name": "COSMOS2020",
+    "full_name": "COSMOS2020 Photometric Catalog",
+    "description": "COSMOS2020 is the latest photometric catalog from the COSMOS (Cosmic Evolution Survey) field — a 2 deg² equatorial field at RA 10h, Dec +02° observed across virtually all wavelengths from X-ray to radio. COSMOS2020 (Weaver et al. 2022) combines imaging from Subaru HSC, UVISTA, Spitzer, HST, and ground-based optical telescopes into a 30+-band catalog of ~1.7 million sources with photometric redshifts to z ~ 10. It provides the most complete census of galaxy stellar masses, star-formation rates, and photo-z in a 1–2 deg² deep field.",
+    "wavelength_range": "0.15–8.0 μm (UV through Spitzer IRAC; 30+ photometric bands)",
+    "wavelength_band": "multi",
+    "sky_coverage_deg2": 1.27,
+    "sky_coverage_note": "COSMOS field: 1.27 deg² (≈1.7 deg² total with flanking fields)",
+    "redshift_range": "z = 0.01–10 (photometric redshifts)",
+    "instruments_json": [
+      "Subaru HSC / Suprime-Cam",
+      "UVISTA (VISTA/VIRCAM)",
+      "Spitzer IRAC",
+      "HST ACS + WFC3",
+      "GALEX",
+      "XMM + Chandra"
+    ],
+    "current_data_release": "COSMOS2020 (Weaver et al. 2022) — 1.7 million sources, 30+ bands, LePhare + EAZY photo-z",
+    "data_volume": "~5 TB multi-band mosaics; ~500 MB catalogs",
+    "primary_science_goals": "Galaxy stellar mass functions and evolution; photometric redshifts; AGN host galaxy properties; cosmic star-formation history.",
+    "flagship_programs_json": [
+      "COSMOS2020 Farmer catalog",
+      "COSMOS2020 Classic catalog",
+      "COSMOS SED fitting"
+    ],
+    "operator": "COSMOS collaboration (Caltech, ESO, NAOJ, STScI, CEA, others)",
+    "status": "operational",
+    "archive_url": "https://cosmos2020.calet.org/",
+    "mission_url": "https://cosmos.astro.caltech.edu/",
+    "emoji": "🌌"
+  },
+  {
+    "slug": "chandra",
+    "name": "Chandra",
+    "full_name": "Chandra X-ray Observatory",
+    "description": "The Chandra X-ray Observatory (CXO), launched 1999, is NASA's flagship X-ray telescope. Its nested grazing-incidence optics achieve a sub-arcsecond angular resolution (<0.5\" HEW) unique among X-ray observatories — 10× sharper than XMM-Newton. Chandra's ACIS (CCD imaging spectrometer) and HRC (microchannel plate detector) cover photon energies from 0.1 to 10 keV.\n\nChandra has provided definitive measurements of AGN demographics, supernova remnant shocks, intracluster medium thermodynamics, and X-ray binary populations. Its combination of spatial resolution and moderate energy resolution makes it irreplaceable for point-source separation in dense fields and for imaging extended X-ray emission at arcsecond scales.",
+    "wavelength_range": "0.12–10 keV (soft to medium X-ray; ~0.1–1.2 nm)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed mission; CXB surveys cover ~few deg² (CDF-S, CDF-N, AEGIS-X)",
+    "redshift_range": "z = 0–5 (AGN detected); resolved sources in Local Group",
+    "instruments_json": [
+      "ACIS-I (CCD array, 0.5–8 keV)",
+      "ACIS-S (back-illuminated CCD + grating)",
+      "HRC-I (UV/X imaging)",
+      "HRC-S (grating readout)"
+    ],
+    "current_data_release": "Cycle 27 (2025–2026); Chandra Source Catalog v2.1 (CSC2.1)",
+    "data_volume": "~4 TB/year; ~25 TB cumulative; CSC2.1 ~317,000 sources",
+    "primary_science_goals": "AGN demographics and obscured black hole growth; ICM thermodynamics and cooling flows; supernova remnant shocks; X-ray binary populations; gravitational lensing arcs in clusters.",
+    "flagship_programs_json": [
+      "Chandra Deep Field South (CDF-S)",
+      "Chandra Deep Field North (CDF-N)",
+      "CSC (Chandra Source Catalog)",
+      "AEGIS-X",
+      "COSMOS-Legacy"
+    ],
+    "operator": "CXC / SAO / NASA",
+    "status": "operational",
+    "archive_url": "https://cxc.cfa.harvard.edu/cda/",
+    "mission_url": "https://chandra.harvard.edu/",
+    "emoji": "☢️"
+  },
+  {
+    "slug": "deep2",
+    "name": "DEEP2",
+    "full_name": "DEEP2 Galaxy Redshift Survey",
+    "description": "The DEEP2 Galaxy Redshift Survey used the DEIMOS spectrograph on the Keck II 10 m telescope to observe ~50,000 galaxies in four fields over ~3.5 deg², targeting objects at z > 0.7 selected from CFHT B, R, I photometry. DEEP2 was designed to map the large-scale structure and galaxy properties at z ≈ 0.7–1.5, providing the first detailed measurement of the galaxy luminosity function, colour bimodality, and clustering at these redshifts. The final DR4 catalog (2012) is the complete public data release.",
+    "wavelength_range": "0.65–0.95 μm (Keck DEIMOS optical spectroscopy, R ≈ 5,000–6,000)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 3.5,
+    "sky_coverage_note": "4 fields (EGS, Groth Strip, and 3 others): ~3.5 deg² total",
+    "redshift_range": "z = 0.7 – 1.5 (spectroscopic; median z ≈ 0.95)",
+    "instruments_json": [
+      "Keck II DEIMOS multi-object spectrograph"
+    ],
+    "current_data_release": "DR4 (2012) — ~53,000 galaxy spectra; Newman et al. 2013 ApJS catalog",
+    "data_volume": "~20 GB spectra; ~100 MB catalogs",
+    "primary_science_goals": "Galaxy luminosity function at z~1; colour bimodality and the red sequence build-up; galaxy clustering and the halo occupation distribution; pair statistics.",
+    "flagship_programs_json": [
+      "DEEP2 DR4 catalog",
+      "DEEP2 EGS field",
+      "DEEP2 LF"
+    ],
+    "operator": "UC Berkeley / DEEP collaboration (Keck Observatory)",
+    "status": "retired",
+    "archive_url": "https://deep.ps.uci.edu/",
+    "mission_url": "https://deep.ps.uci.edu/",
+    "emoji": "🌃"
+  },
+  {
+    "slug": "des",
+    "name": "DES",
+    "full_name": "Dark Energy Survey",
+    "description": "The Dark Energy Survey (DES) used the 570-megapixel Dark Energy Camera (DECam) on the CTIO Blanco 4 m telescope in Chile to image 5,000 deg² of the southern sky in grizY bands over six seasons (2013–2019). DES DR2 (2021) provides photometry for 691 million distinct objects, enabling precision weak-lensing, galaxy clustering, and joint cosmological analyses. DES has produced the most powerful constraints on dark energy from photometric surveys prior to Euclid and Rubin, including the Year 3 3×2-point analysis (DES Y3) combining shear, galaxy–shear, and galaxy–galaxy power spectra.",
+    "wavelength_range": "0.40–1.07 μm (grizY optical–NIR bands)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 4787,
+    "sky_coverage_note": "DR2 footprint: 4,787 deg²; full survey footprint 5,000 deg²",
+    "redshift_range": "z = 0–2.5 (photometric); up to z ~ 6 for quasars",
+    "instruments_json": [
+      "DECam (570 megapixels, 3 deg² FOV)",
+      "CTIO Victor M. Blanco 4 m Telescope"
+    ],
+    "current_data_release": "DES DR2 (2021) — 691 million objects, grizY photometry, shear catalogs; DES Y3 science papers (2022)",
+    "data_volume": "~100 TB raw + ~30 TB processed",
+    "primary_science_goals": "Dark energy equation of state via weak lensing and galaxy clustering; Type Ia supernova distances; galaxy cluster cosmology; large-scale structure.",
+    "flagship_programs_json": [
+      "DES Y3 3×2pt",
+      "DES SN survey",
+      "DES Weak Lensing",
+      "DES Clusters"
+    ],
+    "operator": "Dark Energy Survey Collaboration / NOAO / Fermilab",
+    "status": "retired",
+    "archive_url": "https://des.ncsa.illinois.edu/releases/dr2",
+    "mission_url": "https://www.darkenergysurvey.org/",
+    "emoji": "🌑"
+  },
+  {
+    "slug": "desi",
+    "name": "DESI",
+    "full_name": "Dark Energy Spectroscopic Instrument",
+    "description": "DESI is a Stage-IV dark energy experiment mounted on the Mayall 4-m telescope at Kitt Peak National Observatory. Its 5000-fibre robotic positioner system acquires spectra for ~5000 targets simultaneously, enabling the most precise baryon acoustic oscillation (BAO) measurement ever attempted. The five-year survey (2021–2026) targets ~37 million spectra across bright galaxy sample (BGS), luminous red galaxies (LRG), emission-line galaxies (ELG), quasars (QSO), and Lyman-alpha forest quasars.\n\nDESI DR1 (released March 2025) delivered BAO constraints from the first year of data, with σ(w₀) < 5% and clear tension with ΛCDM at the 2–3σ level when combined with external datasets. The BGS sample (z < 0.4) is particularly powerful for galaxy evolution and environment studies.",
+    "wavelength_range": "0.36–0.98 μm (optical; 10 spectrograph arms)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 14000,
+    "sky_coverage_note": "14,000 deg² footprint over 5-year survey; ~8,000 deg² in DR1",
+    "redshift_range": "z = 0.0–3.5 (galaxy samples); z = 2.1–4.2 (Lyman-alpha forest)",
+    "instruments_json": [
+      "Mayall 4 m (KPNO)",
+      "DESI FPS (5000 fibres)",
+      "10 spectrographs (B+R+Z arms)"
+    ],
+    "current_data_release": "DR1 (March 2025) — Year 1 BAO + full shape",
+    "data_volume": "~37 M spectra planned; ~14 M in DR1; ~5 TB compressed spectra",
+    "primary_science_goals": "Baryon acoustic oscillations; redshift-space distortions; dark energy equation of state; galaxy evolution in the BGS and ELG samples; Lyman-alpha forest cosmology.",
+    "flagship_programs_json": [
+      "BGS (Bright Galaxy Sample)",
+      "LRG",
+      "ELG",
+      "QSO",
+      "Lyman-alpha QSO",
+      "MWS (Milky Way Survey)"
+    ],
+    "operator": "DESI Collaboration / Lawrence Berkeley National Laboratory",
+    "status": "operational",
+    "archive_url": "https://data.desi.lbl.gov/",
+    "mission_url": "https://www.desi.lbl.gov/",
+    "emoji": "🔬"
+  },
+  {
+    "slug": "elt",
+    "name": "ELT",
+    "full_name": "Extremely Large Telescope",
+    "description": "ESO's Extremely Large Telescope (ELT) is a 39 m primary mirror optical–mid-IR telescope under construction on Cerro Armazones (3,046 m), Chile. It will be the world's largest optical telescope, with first-light instruments including HARMONI (visible+NIR IFU), MICADO (diffraction-limited imager), MORFEO (MCAO module), METIS (mid-IR IFU+imager), and ANDES (high-res spectrograph). The ELT will characterise exoplanet atmospheres, directly image exoplanets, probe the first galaxies, measure fundamental constants, and detect Pop III stars. First science observations are expected around 2028.",
+    "wavelength_range": "0.35–25 μm (visible through mid-infrared; varies by instrument)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Targeted pointed observations; wide-field surveys planned with MOSAIC (multi-object spectrograph, future instrument)",
+    "redshift_range": "z = 0–10+ (first galaxies, reionisation epoch)",
+    "instruments_json": [
+      "39 m primary mirror (798 hexagonal segments)",
+      "HARMONI (visible+NIR IFU)",
+      "MICADO (diffraction-limited imager)",
+      "METIS (mid-IR)",
+      "ANDES (high-res spectrograph)",
+      "MORFEO (MCAO)"
+    ],
+    "current_data_release": "No data yet; under construction; first light ~2028",
+    "data_volume": "~1–10 TB/night of science data",
+    "primary_science_goals": "Exoplanet atmosphere characterisation; direct imaging of rocky exoplanets; first stars and galaxies; stellar populations in resolved galaxies; fundamental constants.",
+    "flagship_programs_json": [
+      "HARMONI",
+      "MICADO",
+      "METIS",
+      "ANDES",
+      "MOSAIC (future)"
+    ],
+    "operator": "ESO (European Southern Observatory)",
+    "status": "planned",
+    "archive_url": "https://elt.eso.org/",
+    "mission_url": "https://elt.eso.org/",
+    "emoji": "🔭"
+  },
+  {
+    "slug": "euclid",
+    "name": "Euclid",
+    "full_name": "Euclid Space Mission",
+    "description": "Euclid is ESA's wide-field cosmology mission launched July 2023, designed to map the geometry of the dark Universe over 14,000 deg² of extragalactic sky. The Euclid telescope features a 1.2-m silicon-carbide mirror feeding two instruments: VIS (visible imaging, 0.55–0.9 μm, 0.1\"/pixel) and NISP (near-infrared photometry in Y, J, H and slitless grism spectroscopy 0.92–1.85 μm).\n\nEuclid's primary probes are weak gravitational lensing (cosmic shear) and galaxy clustering (BAO+RSD). The first data release, Q1 (March 2025), released ~1500 deg² with morphological catalogs, shear catalogs, and photometric redshifts for ~170 million galaxies. Euclid's combination of imaging depth (IE ~ 24.5 AB per pointing), resolution (0.16\" FWHM), and sky coverage makes it uniquely powerful for environmental studies.",
+    "wavelength_range": "0.55–1.85 μm (VIS optical + NISP NIR photometry + grism spectroscopy)",
+    "wavelength_band": "multi",
+    "sky_coverage_deg2": 14000,
+    "sky_coverage_note": "14,000 deg² planned over 6-year wide survey; ~1,500 deg² in Q1 (2025)",
+    "redshift_range": "z = 0–3 (galaxy shear/clustering); z = 0.9–1.8 (primary grism spectroscopy window)",
+    "instruments_json": [
+      "VIS (0.55–0.9 μm imaging, 0.1\"/pix, 0.53 deg² FOV)",
+      "NISP-P (Y/J/H photometry)",
+      "NISP-S (grism spectroscopy 0.92–1.85 μm)"
+    ],
+    "current_data_release": "Q1 (March 2025) — ~1,500 deg², shear catalogs, morphology",
+    "data_volume": "~250 TB/year; ~1.5 PB over mission lifetime",
+    "primary_science_goals": "Weak gravitational lensing (dark matter mapping); baryon acoustic oscillations; dark energy equation-of-state; galaxy morphology and structure at z < 2; strong lensing statistics.",
+    "flagship_programs_json": [
+      "Euclid Wide Survey (EWS)",
+      "Euclid Deep Survey (EDS)",
+      "Q1 Morphology Catalog",
+      "Euclid Collaboration Papers"
+    ],
+    "operator": "ESA / Euclid Consortium",
+    "status": "operational",
+    "archive_url": "https://www.cosmos.esa.int/web/euclid/euclid-q1-data-release",
+    "mission_url": "https://www.esa.int/Science_Exploration/Space_Science/Euclid",
+    "emoji": "🌍"
+  },
+  {
+    "slug": "fermi-lat",
+    "name": "Fermi-LAT",
+    "full_name": "Fermi Large Area Telescope — Fourth Source Catalog (4FGL-DR4)",
+    "description": "The Fermi Large Area Telescope (LAT) is a pair-conversion gamma-ray telescope launched in 2008 aboard the Fermi Gamma-ray Space Telescope. Operating in all-sky survey mode, the LAT covers 50 MeV to >1 TeV with an instantaneous field of view of ~20% of the sky. The Fourth Fermi-LAT Source Catalog Data Release 4 (4FGL-DR4, 2023) is derived from 14 years of all-sky data, containing 7,195 gamma-ray sources including blazars, pulsars, SNRs, GRBs, star-forming galaxies, and unidentified sources.",
+    "wavelength_range": "50 MeV – 1 TeV (gamma-ray; pair-conversion telescope)",
+    "wavelength_band": "gamma",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "Full all-sky survey; revisits every ~3 hours in survey mode",
+    "redshift_range": "z = 0 – 3+ (AGN/blazars); Galactic sources at z ≈ 0",
+    "instruments_json": [
+      "LAT pair-conversion tracker (tungsten converter + silicon strip detectors)",
+      "CsI calorimeter",
+      "Anti-coincidence detector (ACD)"
+    ],
+    "current_data_release": "4FGL-DR4 (2023) — 7,195 gamma-ray sources, 14 years of data; Abdollahi et al. 2022 + incremental updates",
+    "data_volume": "~50 TB cumulative photon event files; ~10 MB source catalog",
+    "primary_science_goals": "Gamma-ray source census; blazar demographics; pulsar gamma-ray emission; dark matter searches; GRB detection; cosmic gamma-ray background.",
+    "flagship_programs_json": [
+      "4FGL-DR4 source catalog",
+      "Fermi GBM (gamma-ray bursts)",
+      "Fermi LAT 3FHL",
+      "LAT dark matter limits"
+    ],
+    "operator": "NASA/GSFC / SLAC / Fermi-LAT collaboration (international)",
+    "status": "operational",
+    "archive_url": "https://fermi.gsfc.nasa.gov/ssc/data/access/lat/14yr_catalog/",
+    "mission_url": "https://fermi.gsfc.nasa.gov/",
+    "emoji": "⚡"
+  },
+  {
+    "slug": "galex",
+    "name": "GALEX",
+    "full_name": "Galaxy Evolution Explorer",
+    "description": "GALEX was a NASA small-explorer UV space telescope that conducted the first wide-field ultraviolet surveys of the sky from 2003 to 2013. It imaged in two UV bands simultaneously: FUV (135–175 nm) and NUV (175–275 nm), with a 1.25 deg² field of view. The All-sky Imaging Survey (AIS), Medium Imaging Survey (MIS), and Deep Imaging Survey (DIS) collectively covered ~26,000 deg². The final GR6/GR7 data release (2012) contains ~280 million UV source detections and remains the primary UV photometric reference catalog for nearly all galaxies.",
+    "wavelength_range": "0.135–0.280 μm (FUV: 135–175 nm; NUV: 175–280 nm)",
+    "wavelength_band": "uv",
+    "sky_coverage_deg2": 26000,
+    "sky_coverage_note": "AIS: ~26,000 deg²; MIS: ~700 deg²; DIS: ~80 deg²",
+    "redshift_range": "z = 0 – 1.5+ (UV continuum detection; star-forming galaxies)",
+    "instruments_json": [
+      "UV telescope (50 cm primary)",
+      "FUV detector (135–175 nm)",
+      "NUV detector (175–280 nm)",
+      "1.25 deg² circular FOV"
+    ],
+    "current_data_release": "GR6/GR7 (2012) — ~280 million UV detections; final mission data release",
+    "data_volume": "~30 TB raw images; ~10 TB catalogs",
+    "primary_science_goals": "Star formation rate history of the universe; UV properties of galaxies; stellar populations; quasar UV variability; UV-bright stellar objects.",
+    "flagship_programs_json": [
+      "GALEX AIS",
+      "GALEX MIS",
+      "GALEX DIS",
+      "GR6/GR7 source catalog"
+    ],
+    "operator": "NASA / JPL / Caltech",
+    "status": "retired",
+    "archive_url": "https://galex.stsci.edu/GR6/",
+    "mission_url": "https://www.galex.caltech.edu/",
+    "emoji": "☀️"
+  },
+  {
+    "slug": "gama",
+    "name": "GAMA",
+    "full_name": "Galaxy and Mass Assembly Survey",
+    "description": "GAMA is a highly complete spectroscopic survey conducted with the AAOmega spectrograph on the 3.9 m Anglo-Australian Telescope (AAT), supplemented by multiwavelength photometric data from UV to radio. The survey targets ~250,000 galaxies to r < 19.8 mag in five sky regions (three equatorial + two southern), achieving ~99% spectroscopic completeness. GAMA DR4 (2022) provides the definitive combined catalog. The survey is renowned for its group finder (GAMA groups), measurements of the galaxy luminosity function, and stellar mass–halo mass relation.",
+    "wavelength_range": "0.15 μm (GALEX UV) – 500 μm (Herschel); spectroscopy at 0.37–0.88 μm",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 286,
+    "sky_coverage_note": "286 deg² across 5 fields (G09, G12, G15, G02, G23)",
+    "redshift_range": "z = 0 – 0.4 (spectroscopic median z ≈ 0.22)",
+    "instruments_json": [
+      "AAT AAOmega spectrograph",
+      "VST KiDS (imaging)",
+      "VISTA VIKING (NIR)",
+      "Herschel PACS/SPIRE",
+      "GALEX",
+      "WISE"
+    ],
+    "current_data_release": "GAMA DR4 (2022) — ~250,000 spectroscopic redshifts, multiwavelength photometry, value-added catalogs",
+    "data_volume": "~5 TB multi-wavelength; catalogs ~2 GB",
+    "primary_science_goals": "Galaxy luminosity and stellar mass functions; galaxy group catalog; star formation rate functions; galaxy pair statistics; HMF and SHMR.",
+    "flagship_programs_json": [
+      "GAMA Group Catalog (G3C)",
+      "GAMA stellar mass function",
+      "GAMA SFR function"
+    ],
+    "operator": "GAMA consortium (ICRAR, St Andrews, LJMU, Queensland, ESO, others)",
+    "status": "retired",
+    "archive_url": "https://www.gama-survey.org/dr4/",
+    "mission_url": "https://www.gama-survey.org/",
+    "emoji": "🌠"
+  },
+  {
+    "slug": "gaia",
+    "name": "Gaia",
+    "full_name": "Gaia Astrometric Mission",
+    "description": "Gaia is ESA's space astrometry mission (launched December 2013), designed to measure the positions, parallaxes, and proper motions of ~1.5 billion stars with microarcsecond precision. By mapping stellar positions with unprecedented accuracy across multiple epochs, Gaia produces the most precise 3D map of the Milky Way ever assembled. The mission also delivers photometry in G, GBP, and GRP bands, and radial velocities for ~40 million bright stars.\n\nGaia DR3 (2022) is the current definitive release, containing astrometry and photometry for 1.46 billion sources, radial velocities for 33 million stars, and astrophysical parameter estimates (effective temperature, metallicity) from the BP/RP spectra. DR4 is expected in late 2026.",
+    "wavelength_range": "0.33–1.05 μm (G, GBP, GRP photometry; 0.35–0.95 μm radial velocity)",
+    "wavelength_band": "astrometric",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "All-sky astrometry and photometry for sources G < 21",
+    "redshift_range": "Milky Way and Local Group stars (v_r for bright stars); extragalactic sources as background astrometry reference",
+    "instruments_json": [
+      "1.45 × 0.50 m SiC primary mirror",
+      "Astro (astrometry) focal plane 0.7 Gpix",
+      "Blue+Red photometer (BP/RP)",
+      "Radial Velocity Spectrometer (RVS, 847–874 nm)"
+    ],
+    "current_data_release": "DR3 (June 2022) — 1.46 B sources; DR4 expected late 2026",
+    "data_volume": "~10 TB per release; 1.46 B source catalog (main table ~300 GB)",
+    "primary_science_goals": "Milky Way kinematics and dynamics (6D phase space); stellar ages and metallicities; binary star demographics; quasar proper motion reference frame; exoplanet search via astrometric wobble.",
+    "flagship_programs_json": [
+      "Gaia DR1",
+      "Gaia DR2",
+      "Gaia DR3",
+      "Gaia eDR3",
+      "Gaia NSS (non-single stars)",
+      "Gaia-RVS"
+    ],
+    "operator": "ESA / Gaia DPAC",
+    "status": "operational",
+    "archive_url": "https://gea.esac.esa.int/archive/",
+    "mission_url": "https://www.cosmos.esa.int/web/gaia",
+    "emoji": "⚡"
+  },
+  {
+    "slug": "h-atlas",
+    "name": "H-ATLAS",
+    "full_name": "Herschel Astrophysical Terahertz Large Area Survey",
+    "description": "H-ATLAS is the largest area survey conducted with the Herschel Space Observatory, covering 660 deg² across five fields (three GAMA equatorial fields + North Galactic Pole + South Galactic Pole) at 100, 160, 250, 350, and 500 μm. It detected ~300,000 extragalactic sources — mainly star-forming galaxies and dusty AGN — providing the first statistical census of the far-infrared/submillimetre sky at these wavelengths. DR2 (2017) is the definitive public data release covering all five fields.",
+    "wavelength_range": "100–500 μm (Herschel PACS: 100, 160 μm; SPIRE: 250, 350, 500 μm)",
+    "wavelength_band": "sub_mm",
+    "sky_coverage_deg2": 660,
+    "sky_coverage_note": "660 deg² across 5 fields (GAMA 9h, 12h, 15h + NGP + SGP)",
+    "redshift_range": "z = 0 – 6 (submm galaxies at high-z; predominantly z < 0.4 at flux limit)",
+    "instruments_json": [
+      "Herschel PACS (100, 160 μm)",
+      "Herschel SPIRE (250, 350, 500 μm)"
+    ],
+    "current_data_release": "H-ATLAS DR2 (2017) — ~300,000 sources across 660 deg²; Maddox et al. 2018",
+    "data_volume": "~500 GB maps; ~100 MB catalogs",
+    "primary_science_goals": "Far-infrared luminosity function; dust-obscured star formation history; lensed submm galaxies; galaxy SED fitting with UV-submm photometry.",
+    "flagship_programs_json": [
+      "H-ATLAS NGP catalog",
+      "H-ATLAS lensed galaxy sample",
+      "H-ATLAS DR2"
+    ],
+    "operator": "H-ATLAS consortium (Cardiff, Edinburgh, Padova, others) / ESA Herschel",
+    "status": "retired",
+    "archive_url": "http://www.h-atlas.org/public-data/download",
+    "mission_url": "http://www.h-atlas.org/",
+    "emoji": "♨️"
+  },
+  {
+    "slug": "hetdex",
+    "name": "HETDEX",
+    "full_name": "Hobby-Eberly Telescope Dark Energy Experiment",
+    "description": "HETDEX is a blind integral-field spectroscopic survey using the VIRUS instrument on the Hobby-Eberly Telescope (HET) at McDonald Observatory, Texas. VIRUS consists of 78 dual-channel IFU spectrographs (156 units total) deployed across HET's 22 arcmin FOV, covering 350–550 nm simultaneously. The survey detects Lyman-alpha emitters (LAEs) at z = 1.9–3.5 without pre-selection, targeting ~1 million LAEs for a dark energy measurement via the BAO feature in the LAE power spectrum. HDR3 (2023) provides ~1 million emission-line sources.",
+    "wavelength_range": "0.35–0.55 μm (UV–optical; IFU spectroscopy, R ≈ 800)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 540,
+    "sky_coverage_note": "~540 deg² surveyed (HDR3); planned ~1,600 deg² full survey",
+    "redshift_range": "z = 1.9 – 3.5 (Lyman-alpha emitters); z = 0–1 (other emission lines)",
+    "instruments_json": [
+      "HET 10 m telescope",
+      "VIRUS (156 IFU spectrograph units, 34,000 fibers)",
+      "22-arcmin FOV"
+    ],
+    "current_data_release": "HDR3 (2023) — ~1 million source spectra; Leung et al. 2023 LAE catalog",
+    "data_volume": "~100 TB raw spectra; ~10 TB processed",
+    "primary_science_goals": "BAO in Lyman-alpha emitter power spectrum at z~2.4; dark energy w(z); LAE luminosity function; serendipitous discoveries.",
+    "flagship_programs_json": [
+      "HETDEX LAE catalog (HDR3)",
+      "HETDEX BAO measurement",
+      "HETDEX AGN catalog"
+    ],
+    "operator": "The University of Texas at Austin / McDonald Observatory / international HETDEX consortium",
+    "status": "operational",
+    "archive_url": "https://hetdex.org/",
+    "mission_url": "https://hetdex.org/",
+    "emoji": "💡"
+  },
+  {
+    "slug": "hipass",
+    "name": "HIPASS",
+    "full_name": "HI Parkes All Sky Survey",
+    "description": "HIPASS was a blind HI 21-cm emission survey conducted with the 64 m Parkes radio telescope using its 13-beam multibeam receiver. It covered the entire southern sky (δ < +25°) in a systematic blind survey, providing a complete census of HI-selected galaxies in the local universe (z < 0.04). The survey detected over 5,000 HI sources, characterising the HI mass function, large-scale structure, and the HI content of the Local Group and nearby galaxy groups. Its northern extension (HIPASS North) extended coverage to δ = +25°.",
+    "wavelength_range": "21 cm (1.42 GHz HI line); 1.30–1.42 GHz band",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": 29000,
+    "sky_coverage_note": "Full sky south of δ = +25° (~29,000 deg²)",
+    "redshift_range": "z = 0 – 0.04 (recession velocity 0–12,700 km/s)",
+    "instruments_json": [
+      "64 m Parkes Radio Telescope",
+      "13-beam multibeam receiver"
+    ],
+    "current_data_release": "HIPASS catalog v2 (Meyer et al. 2004) + HIPASS North; HOPCAT optical IDs (Doyle et al. 2005); BGC (2004)",
+    "data_volume": "~400 GB raw cubes; catalogs ~50 MB",
+    "primary_science_goals": "HI mass function of galaxies; Large-scale structure via HI; HI content of galaxy groups; Local Group HI census.",
+    "flagship_programs_json": [
+      "HICAT",
+      "NHICAT",
+      "BGC"
+    ],
+    "operator": "CSIRO / Australia Telescope National Facility",
+    "status": "retired",
+    "archive_url": "https://www.atnf.csiro.au/research/multibeam/release/",
+    "mission_url": "https://www.atnf.csiro.au/research/multibeam/",
+    "emoji": "📡"
+  },
+  {
+    "slug": "hsc-ssp",
+    "name": "HSC",
+    "full_name": "Hyper Suprime-Cam Subaru Strategic Program",
+    "description": "The Hyper Suprime-Cam (HSC) Subaru Strategic Program (SSP) is a 300-night imaging survey using the 870-megapixel HSC camera on the Subaru 8.2-m telescope at Mauna Kea. HSC-SSP covers three layers (Wide ~1200 deg², Deep ~26 deg², UltraDeep ~4 deg²) in five grizy bands to depths surpassing the Sloan Digital Sky Survey by 2–3 magnitudes.\n\nHSC-SSP's wide-field depth and sub-arcsecond PSF (FWHM ~ 0.6\") make it the premier dataset for weak gravitational lensing, galaxy morphology, Lyman-break galaxies at z ~ 3–5, and group/cluster mass calibration in the local Universe. PDR3 (Public Data Release 3) is the current public release, covering the final survey footprint.",
+    "wavelength_range": "0.55–1.05 μm (g, r, i, z, y bands)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 1200,
+    "sky_coverage_note": "~1,200 deg² Wide layer; ~26 deg² Deep; ~4 deg² UltraDeep",
+    "redshift_range": "z = 0–6 (photometric redshifts); z = 0–0.6 (lensing source galaxies)",
+    "instruments_json": [
+      "Hyper Suprime-Cam (870 Mpix, 1.5° diameter FOV)",
+      "Subaru 8.2 m telescope"
+    ],
+    "current_data_release": "PDR3 (2022) — full Wide+Deep+UltraDeep photometric catalogs",
+    "data_volume": "~100 TB imaging; ~50 TB catalogs",
+    "primary_science_goals": "Cosmic shear and weak gravitational lensing; galaxy cluster mass calibration; strong lensing; galaxy morphology at z < 3; Lyman-break galaxy statistics; cross-correlation with CMB lensing.",
+    "flagship_programs_json": [
+      "HSC-SSP Wide",
+      "HSC-SSP Deep",
+      "HSC-SSP UltraDeep",
+      "PDR1/PDR2/PDR3"
+    ],
+    "operator": "NAOJ / HSC-SSP Collaboration",
+    "status": "operational",
+    "archive_url": "https://hsc-release.mtk.nao.ac.jp/doc/",
+    "mission_url": "https://hsc.mtk.nao.ac.jp/ssp/",
+    "emoji": "🔵"
+  },
+  {
+    "slug": "hst",
+    "name": "HST",
+    "full_name": "Hubble Space Telescope",
+    "description": "The Hubble Space Telescope has operated since 1990, providing 35+ years of optical and ultraviolet observations that underpin modern extragalactic astronomy. Its 2.4-m mirror and suite of cameras (ACS, WFC3, STIS, COS) have produced landmark datasets including the Hubble Deep Field series, CANDELS, COSMOS, and 3D-HST — the primary training sets for photometric redshift codes used by Euclid, JWST, and Rubin.\n\nHST remains the only facility with diffraction-limited UV/optical resolution (~0.05\") from space, critical for spatially resolving morphology, star clusters, and AGN host galaxies at z < 3. Gyroscope degradation has limited scheduling efficiency since 2024; the observatory continues safe-mode science operations.",
+    "wavelength_range": "0.1–1.7 μm (UV + optical + near-IR)",
+    "wavelength_band": "multi",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed mission; CANDELS covers ~0.25 deg², 3D-HST ~0.6 deg²",
+    "redshift_range": "z = 0–6 (deep imaging); z = 0–3 (spectroscopy)",
+    "instruments_json": [
+      "ACS (optical imaging)",
+      "WFC3 (UV+optical+NIR)",
+      "STIS (UV spectroscopy)",
+      "COS (UV spectroscopy)",
+      "NICMOS (retired)"
+    ],
+    "current_data_release": "HST Cycle 32 (ongoing) — all data public after 12-month proprietary period",
+    "data_volume": "~200 TB cumulative archive (35 years)",
+    "primary_science_goals": "Galaxy morphology and evolution; supernova cosmology (original dark energy measurement); stellar populations; AGN host galaxies; UV spectroscopy of IGM and CGM.",
+    "flagship_programs_json": [
+      "CANDELS",
+      "3D-HST",
+      "COSMOS-HST",
+      "HUDF",
+      "HFF",
+      "CLASH",
+      "GOODS"
+    ],
+    "operator": "STScI / NASA / ESA",
+    "status": "operational",
+    "archive_url": "https://mast.stsci.edu/",
+    "mission_url": "https://hubblesite.org/",
+    "emoji": "🌠"
+  },
+  {
+    "slug": "jwst",
+    "name": "JWST",
+    "full_name": "James Webb Space Telescope",
+    "description": "JWST is NASA/ESA/CSA's premier infrared space observatory, launched December 2021 and operational at the Sun-Earth L2 point since July 2022. Its 6.5-m segmented primary mirror and suite of instruments (NIRCam, NIRSpec, MIRI, NIRISS) deliver diffraction-limited imaging and spectroscopy from 0.6 to 28 μm — a factor of 100 improvement in sensitivity over Hubble in the near-infrared.\n\nJWST is transforming our understanding of the first billion years of cosmic history, directly detecting galaxy candidates at z > 10, characterising exoplanet atmospheres with transmission spectroscopy, and resolving dust and star formation in nearby galaxies at sub-arcsecond resolution. The observatory has a fuel-limited operational lifetime of at least 20 years.",
+    "wavelength_range": "0.6–28 μm (near-infrared + mid-infrared)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed mission — no all-sky survey; major programs cover ~10 deg² cumulatively",
+    "redshift_range": "z ≈ 0–20 (depth limited by photometric bands)",
+    "instruments_json": [
+      "NIRCam (0.6–5 μm imaging)",
+      "NIRSpec (0.6–5.3 μm MOS/IFU/prism)",
+      "MIRI (5–28 μm imaging+spectroscopy)",
+      "NIRISS (0.8–5 μm grism+SOSS)",
+      "FGS"
+    ],
+    "current_data_release": "GO Cycle 4 (ongoing) — ERS, GO, AR data public on MAST",
+    "data_volume": "~50 TB/year; ~250 TB cumulative (2026)",
+    "primary_science_goals": "Reionization-era galaxy formation and first light; stellar mass assembly at cosmic noon (z ~ 2); exoplanet atmosphere characterisation; protoplanetary disk chemistry; resolved stellar populations in nearby galaxies.",
+    "flagship_programs_json": [
+      "CEERS",
+      "JADES",
+      "PRIMER",
+      "COSMOS-Web",
+      "UNCOVER",
+      "PEARLS",
+      "JWST-PRISM",
+      "CRISTAL",
+      "RUBIES"
+    ],
+    "operator": "STScI / NASA / ESA / CSA",
+    "status": "operational",
+    "archive_url": "https://mast.stsci.edu/",
+    "mission_url": "https://webb.nasa.gov/",
+    "emoji": "🔭"
+  },
+  {
+    "slug": "kids",
+    "name": "KiDS",
+    "full_name": "Kilo-Degree Survey",
+    "description": "KiDS (Kilo-Degree Survey) used the OmegaCAM wide-field camera on ESO's VLT Survey Telescope (VST) at Paranal to image 1,350 deg² in four optical bands (ugri) with exceptional image quality designed for weak gravitational lensing. KiDS DR5 (2022) provides the definitive shear catalog from the survey, enabling the KiDS-1000 cosmic shear analysis — one of the two key Stage-III lensing constraints on σ8–Ωm tension with the Planck CMB. KiDS is complemented by the VIKING infrared survey covering the same footprint.",
+    "wavelength_range": "0.33–0.95 μm (ugri optical); VIKING adds ZYJHKs (0.85–2.15 μm)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 1347,
+    "sky_coverage_note": "DR5: 1,347 deg² in ugri (with VIKING overlap for photo-z)",
+    "redshift_range": "z = 0.1–2.0 (photometric); weak lensing sample z_B > 0.1",
+    "instruments_json": [
+      "OmegaCAM (32 CCDs, 1 deg² FOV)",
+      "ESO VST 2.6 m telescope"
+    ],
+    "current_data_release": "KiDS DR5 (2022) — 1,347 deg², weak-lensing shape catalog, photo-z; KiDS-1000 cosmic shear (Asgari et al. 2021)",
+    "data_volume": "~20 TB survey data; ~2 TB catalogs",
+    "primary_science_goals": "Weak gravitational lensing and cosmic shear; σ8 tension with CMB; galaxy photo-z and photometry; galaxy–galaxy lensing.",
+    "flagship_programs_json": [
+      "KiDS-450 shear",
+      "KiDS-1000 3×2pt",
+      "KiDS+VIKING photo-z"
+    ],
+    "operator": "KiDS consortium (Leiden, Bonn, Edinburgh, others) / ESO VST",
+    "status": "retired",
+    "archive_url": "https://kids.strw.leidenuniv.nl/DR5/",
+    "mission_url": "https://kids.strw.leidenuniv.nl/",
+    "emoji": "🔍"
+  },
+  {
+    "slug": "lofar",
+    "name": "LOFAR",
+    "full_name": "LOw-Frequency ARray – LOFAR Two-metre Sky Survey (LoTSS)",
+    "description": "LOFAR is a pan-European radio interferometer operating at low frequencies (10–240 MHz), with its core at Exloo, Netherlands, and stations across Europe. The LOFAR Two-metre Sky Survey (LoTSS) is systematically imaging the northern sky at 144 MHz with 6-arcsecond resolution. LoTSS DR2 (2022) covers 5,720 deg² with 4.4 million radio sources — the deepest wide-field radio survey to date at these frequencies. LOFAR is uniquely sensitive to diffuse low-frequency emission from galaxy clusters, radio relics, and steep-spectrum sources.",
+    "wavelength_range": "10–240 MHz (LoTSS primary: 120–168 MHz at 144 MHz centre)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": 5720,
+    "sky_coverage_note": "LoTSS DR2: 5,720 deg² northern sky; full northern-sky coverage ongoing",
+    "redshift_range": "z = 0–6+ (radio continuum; LOFAR-VLBI for HI absorption)",
+    "instruments_json": [
+      "24 core stations (Exloo, NL)",
+      "14 remote stations (NL)",
+      "14 international stations",
+      "HBA (High-Band Antenna)",
+      "LBA (Low-Band Antenna)"
+    ],
+    "current_data_release": "LoTSS DR2 (2022) — 4.4 million sources, 5,720 deg², 6″ resolution at 144 MHz",
+    "data_volume": "~5 PB raw; public images + value-added catalogues ~50 TB",
+    "primary_science_goals": "Deep radio continuum surveys; galaxy formation and AGN feedback; galaxy clusters and diffuse emission; cosmic magnetism; epoch of reionisation.",
+    "flagship_programs_json": [
+      "LoTSS",
+      "LoLSS",
+      "LOFAR EoR",
+      "LOFAR-VLBI"
+    ],
+    "operator": "ASTRON / International LOFAR Telescope (ILT) consortium",
+    "status": "operational",
+    "archive_url": "https://lofar-surveys.org/dr2_release.html",
+    "mission_url": "https://www.astron.nl/telescopes/lofar/",
+    "emoji": "📻"
+  },
+  {
+    "slug": "meerkat",
+    "name": "MeerKAT",
+    "full_name": "MeerKAT Radio Telescope Array",
+    "description": "MeerKAT is a 64-dish radio interferometer operated by the South African Radio Astronomy Observatory (SARAO) in the Karoo desert. It operates across three receiver bands (UHF, L-band, S-band) and is the most sensitive radio telescope in the southern hemisphere prior to the SKA. Key surveys include the MeerKAT Galactic Plane Survey (MGPS), LADUMA (21-cm HI), MIGHTEE (continuum), and MeerKLASS. MeerKAT serves as a pathfinder for SKA-Mid and will be incorporated into that facility.",
+    "wavelength_range": "580 MHz – 3.5 GHz (UHF, L-band, S-band)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Varies by survey; MGPS covers ~3,000 deg² along the Galactic plane",
+    "redshift_range": "z = 0–2 (HI 21cm + continuum)",
+    "instruments_json": [
+      "64 × 13.5 m dishes",
+      "UHF receiver (580–1015 MHz)",
+      "L-band (856–1712 MHz)",
+      "S-band (1750–3500 MHz)"
+    ],
+    "current_data_release": "MGPS DR1 (2024); MIGHTEE early science (2022); LADUMA early release (2024)",
+    "data_volume": "~1 PB science archive",
+    "primary_science_goals": "HI 21cm emission and absorption; radio continuum surveys; pulsar timing; transients; Galactic science.",
+    "flagship_programs_json": [
+      "MGPS",
+      "MIGHTEE",
+      "LADUMA",
+      "MeerKLASS",
+      "ThunderKAT"
+    ],
+    "operator": "SARAO (South African Radio Astronomy Observatory)",
+    "status": "operational",
+    "archive_url": "https://archive.sarao.ac.za/",
+    "mission_url": "https://www.sarao.ac.za/science-engineering/meerkat/",
+    "emoji": "📡"
+  },
+  {
+    "slug": "pfs",
+    "name": "PFS",
+    "full_name": "Subaru Prime Focus Spectrograph",
+    "description": "The Subaru Prime Focus Spectrograph (PFS) is a massively multiplexed fiber spectrograph (2394 fibres over 1.25 deg² FOV) mounted at the prime focus of Subaru 8.2 m. Operating from 380 nm to 1260 nm in a single observation (three spectrograph arms: blue 380–640 nm, red 640–970 nm, NIR 940–1260 nm), PFS combines the collecting area of an 8-m telescope with the multiplex advantage of a large-field fibre positioner.\n\nThe PFS Subaru Strategic Program (SSP) is planned to begin in 2026, targeting ~100 deg² of deep spectroscopy in three tiers: low-z (BGS-like), medium-z (z ~ 1 ELG), and high-z (z ~ 4 LAE). PFS SSP is designed to complement Euclid and Rubin with spectroscopic redshifts for photometric redshift calibration and intrinsic alignment measurements.",
+    "wavelength_range": "0.38–1.26 μm (blue + red + NIR arms; full optical to near-IR in one shot)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 1400,
+    "sky_coverage_note": "~1,400 deg² planned for PFS SSP over ~5 years",
+    "redshift_range": "z = 0.1–0.7 (low-z); z = 0.7–1.7 (medium-z ELG); z = 2–4 (QSO+LAE)",
+    "instruments_json": [
+      "2394-fibre Cobra positioner (1.25 deg² FOV)",
+      "4 spectrograph modules (blue + red + NIR arms each)",
+      "Subaru 8.2 m prime focus"
+    ],
+    "current_data_release": "SSP not yet started; commissioning data from 2025; SSP survey ~2026",
+    "data_volume": "~5 TB/year during SSP",
+    "primary_science_goals": "Galaxy evolution at z = 0.1–2 with spectroscopy; photo-z calibration for Euclid and Rubin; large-scale structure at z ~ 1; Lyman-alpha emitters at z > 2; dark energy with RSD.",
+    "flagship_programs_json": [
+      "PFS SSP Low-z",
+      "PFS SSP Medium-z",
+      "PFS SSP Cosmology",
+      "PFS Galactic Archeology"
+    ],
+    "operator": "NAOJ / PFS Team (international consortium: Caltech, Princeton, LAM, IPMU, Johns Hopkins)",
+    "status": "commissioning",
+    "archive_url": "https://pfs.ipmu.jp/",
+    "mission_url": "https://pfs.ipmu.jp/",
+    "emoji": "🔎"
+  },
+  {
+    "slug": "panstarrs",
+    "name": "Pan-STARRS",
+    "full_name": "Panoramic Survey Telescope and Rapid Response System",
+    "description": "Pan-STARRS (PS1) is a 1.8 m telescope at Haleakalā Observatory, Hawai'i, with a 1.4-gigapixel GPC1 camera covering 7 deg² per exposure. The 3π survey imaged the entire sky north of declination −30° multiple times in grizy bands, accumulating 26 billion photometric detections. Pan-STARRS DR2 (2019) provides stacked and single-epoch photometry for ~3 billion unique sources, along with a mean object catalog of 1.9 billion objects. PS1 also runs a time-domain programme discovering supernovae, asteroids, and transients (PS1 Medium Deep Survey).",
+    "wavelength_range": "0.40–1.03 μm (grizy bands)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 30000,
+    "sky_coverage_note": "3π survey: ~30,000 deg² (δ > −30°); MDS: 10 deep fields ~7 deg² each",
+    "redshift_range": "z = 0–6 (photometric); up to z > 6 for quasar searches",
+    "instruments_json": [
+      "1.8 m Ritchey-Chrétien telescope",
+      "GPC1 camera (1.4 Gpixel, 7 deg² FOV)"
+    ],
+    "current_data_release": "Pan-STARRS DR2 (2019) — 26 billion detections, 3 billion sources; stacked + single-epoch catalogs",
+    "data_volume": "~2 PB raw; ~250 TB public catalogs",
+    "primary_science_goals": "Transient surveys (SN, asteroids, comets); galaxy photometry and photo-z; stellar streams and Milky Way structure; NEO discovery.",
+    "flagship_programs_json": [
+      "PS1 3π Survey",
+      "Pan-STARRS MDS",
+      "PS1 SN survey",
+      "NEO discovery program"
+    ],
+    "operator": "Institute for Astronomy, University of Hawai'i / STScI",
+    "status": "operational",
+    "archive_url": "https://catalogs.mast.stsci.edu/panstarrs/",
+    "mission_url": "https://panstarrs.stsci.edu/",
+    "emoji": "🌐"
+  },
+  {
+    "slug": "planck",
+    "name": "Planck",
+    "full_name": "Planck Satellite",
+    "description": "The Planck satellite (ESA, 2009–2013) measured the temperature and polarisation anisotropies of the cosmic microwave background (CMB) with unprecedented precision over the full sky. Its two instruments — the Low Frequency Instrument (LFI, 30–70 GHz) and High Frequency Instrument (HFI, 100–857 GHz) — provided nine frequency maps from microwave to submillimetre wavelengths, enabling separation of CMB from foreground emission (dust, synchrotron, free-free, spinning dust, SZ clusters).\n\nPlanck's final data release (PR4/NPIPE) provides the definitive CMB power spectrum measurements over angular scales from 2° to 5 arcminutes. The Planck cosmological parameter results — including ΩΛ, Ωb, h, ns, σ8, and the optical depth τ — remain the global baseline for precision cosmology. Planck also produced an all-sky submillimetre Galactic dust polarisation map and a catalog of ~1600 SZ-selected galaxy clusters.",
+    "wavelength_range": "0.35–10 mm (30–857 GHz; LFI + HFI)",
+    "wavelength_band": "multi",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "Full sky; usable CMB sky ~85% after Galactic mask",
+    "redshift_range": "z ~ 1100 (CMB surface of last scattering); z = 0–1 (SZ cluster catalog)",
+    "instruments_json": [
+      "LFI (30, 44, 70 GHz; 22 radiometers)",
+      "HFI (100, 143, 217, 353, 545, 857 GHz; 52 bolometers)"
+    ],
+    "current_data_release": "PR4 / NPIPE (2020) — final release; Planck Legacy Archive",
+    "data_volume": "~50 TB raw timelines; ~5 TB released maps and catalogs",
+    "primary_science_goals": "CMB temperature and polarisation power spectra; cosmological parameter constraints (ΛCDM + extensions); Galactic foreground characterisation; SZ galaxy cluster catalog; primordial non-Gaussianity limits.",
+    "flagship_programs_json": [
+      "Planck PR1/PR2/PR3/PR4 CMB maps",
+      "Planck SZ cluster catalog (PSZ2)",
+      "Planck Galactic Cold Clumps Catalog",
+      "Planck NPIPE reprocessing"
+    ],
+    "operator": "ESA / Planck Collaboration",
+    "status": "retired",
+    "archive_url": "https://pla.esac.esa.int/",
+    "mission_url": "https://www.cosmos.esa.int/web/planck",
+    "emoji": "🌀"
+  },
+  {
+    "slug": "rosat",
+    "name": "ROSAT",
+    "full_name": "ROSAT All-Sky Survey — Second Reprocessed Source Catalog (2RXS)",
+    "description": "ROSAT (Röntgensatellit) was a German–US–UK X-ray and EUV space telescope operating from 1990 to 1999. The ROSAT All-Sky Survey (RASS), conducted in 1990–1991, remains the only complete imaging survey of the entire X-ray sky at 0.1–2.4 keV. The second reprocessing (2RXS, Boller et al. 2016) produced a catalog of 135,118 X-ray sources with improved source characterisation, replacing the first-generation 1RXS catalog. The 2RXS is the primary all-sky soft X-ray reference, widely used for eROSITA calibration and counterpart matching.",
+    "wavelength_range": "0.1–2.4 keV (soft X-ray); EUV: 6–19 nm (EUVE instrument)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "Full sky (99% coverage in RASS); PSPC pointed observations cover ~4,000 deg² additionally",
+    "redshift_range": "z = 0–2 (AGN/quasars); local galaxy clusters; Galactic X-ray sources",
+    "instruments_json": [
+      "Position Sensitive Proportional Counter (PSPC)",
+      "High Resolution Imager (HRI)",
+      "Wide Field Camera (WFC, EUV)"
+    ],
+    "current_data_release": "2RXS (2016) — 135,118 X-ray sources (Boller et al. 2016); RASS-3 final sky maps",
+    "data_volume": "~1 TB PSPC images; ~100 MB catalogs",
+    "primary_science_goals": "All-sky X-ray source catalog; AGN and quasar X-ray properties; galaxy cluster X-ray survey; Galactic X-ray binary and stellar coronal sources.",
+    "flagship_programs_json": [
+      "2RXS (2016)",
+      "ROSAT cluster catalog (NORAS/REFLEX)",
+      "RASS Bright Source Catalog (1RXS-BSC)"
+    ],
+    "operator": "DLR (Germany) / NASA / SERC (UK) / MPE",
+    "status": "retired",
+    "archive_url": "https://www.mpe.mpg.de/ROSAT/",
+    "mission_url": "https://www.mpe.mpg.de/ROSAT/",
+    "emoji": "⚡"
+  },
+  {
+    "slug": "roman",
+    "name": "Roman",
+    "full_name": "Nancy Grace Roman Space Telescope",
+    "description": "The Nancy Grace Roman Space Telescope (formerly WFIRST) is NASA's next flagship space observatory, planned for launch around 2027. Its 2.4-m primary mirror (identical in diameter to HST) feeds a 0.281 deg² wide-field imager (WFI) with 18 H4RG-10 near-infrared detectors in 8 broadband filters (0.5–2.3 μm). Roman will achieve HST-quality resolution (0.11\"/pixel) over a field of view 200× larger than HST/WFC3-IR in a single pointing.\n\nRoman's primary science case is dark energy via weak lensing and BAO, plus a Galactic Bulge microlensing survey for exoplanets. Its high-latitude wide-area survey (HLWAS, ~2000 deg² to AB ~ 26.7) will be the deepest wide-field NIR dataset ever obtained, critical for photometric redshifts for Euclid and Rubin cross-calibration.",
+    "wavelength_range": "0.5–2.3 μm (8 broadband filters + low-resolution prism/grism)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 2000,
+    "sky_coverage_note": "~2,000 deg² planned for HLWAS; ~2 deg² Galactic Bulge microlensing field",
+    "redshift_range": "z = 0–4 (photometric WFI); z = 0.7–2.7 (grism spectroscopy)",
+    "instruments_json": [
+      "WFI (Wide Field Instrument, 18 H4RG-10 detectors, 0.281 deg² FOV)",
+      "CGI (Coronagraph Instrument, tech demo)"
+    ],
+    "current_data_release": "No data yet; launch ~2027; simulated HLWAS images (OpenUniverse 2024) publicly available",
+    "data_volume": "~85 PB over mission lifetime (planned)",
+    "primary_science_goals": "Weak gravitational lensing and BAO; exoplanet demographics via microlensing; transient detection (SNe Ia); CGI direct imaging of nearby giant planets.",
+    "flagship_programs_json": [
+      "HLWAS (High Latitude Wide Area Survey)",
+      "HLTDS (Time Domain Survey)",
+      "Galactic Bulge Time Domain Survey",
+      "GRS (Galactic Bulge Radial Velocity Survey)"
+    ],
+    "operator": "STScI / NASA GSFC",
+    "status": "planned",
+    "archive_url": "https://roman.ipac.caltech.edu/",
+    "mission_url": "https://roman.gsfc.nasa.gov/",
+    "emoji": "🚀"
+  },
+  {
+    "slug": "rubin-lsst",
+    "name": "Rubin/LSST",
+    "full_name": "Vera C. Rubin Observatory / Legacy Survey of Space and Time",
+    "description": "The Vera C. Rubin Observatory on Cerro Pachón, Chile, will conduct the Legacy Survey of Space and Time (LSST) — a 10-year all-sky survey in six optical bands (ugrizy) beginning in 2026. Its 8.4-m primary mirror and 3.2-gigapixel LSST Camera will survey 18,000 deg² to unprecedented depth (~r ~ 27.5 in 10 years of co-adds) with a rapid cadence (~3 nights per sky patch).\n\nLSST's science pillars are: (1) weak gravitational lensing and large-scale structure over cosmic time; (2) transient detection (supernovae, tidal disruption events, optical counterparts); (3) Solar System object (asteroid) discovery; (4) Milky Way stellar populations. Data Preview 0.2 (DP0.2, using HSC-based simulated data) is publicly available; DP1 from commissioning data is expected in 2026.",
+    "wavelength_range": "0.32–1.06 μm (u, g, r, i, z, y bands)",
+    "wavelength_band": "multi",
+    "sky_coverage_deg2": 18000,
+    "sky_coverage_note": "~18,000 deg² LSST Wide-Fast-Deep; ~15 deg² Deep Drilling Fields",
+    "redshift_range": "z = 0–3 (photometric redshifts); z = 0–1.5 (spectroscopic follow-up)",
+    "instruments_json": [
+      "Simonyi Survey Telescope 8.4 m (f/1.234)",
+      "LSST Camera (3.2 Gpix, 9.6 deg² FOV)",
+      "6-filter exchanger (ugrizy)"
+    ],
+    "current_data_release": "DP0.2 (simulated; public on RSP); DP1 from commissioning expected 2026",
+    "data_volume": "~20 TB/night; ~60 PB over 10 years",
+    "primary_science_goals": "Weak gravitational lensing; transient and variable source detection; Solar System minor bodies; Milky Way structure; strong lensing statistics.",
+    "flagship_programs_json": [
+      "LSST Wide-Fast-Deep",
+      "LSST Deep Drilling Fields (DDFs)",
+      "DESC (Dark Energy Science Collaboration)",
+      "TVSC (Transients and Variable Stars)"
+    ],
+    "operator": "Rubin Observatory / NOIRLab / NSF / DOE / SLAC",
+    "status": "commissioning",
+    "archive_url": "https://data.lsst.cloud/",
+    "mission_url": "https://www.lsst.org/",
+    "emoji": "🌃"
+  },
+  {
+    "slug": "sdss",
+    "name": "SDSS",
+    "full_name": "Sloan Digital Sky Survey",
+    "description": "The Sloan Digital Sky Survey is one of the most influential photometric and spectroscopic surveys in the history of astronomy. Since 2000, SDSS has imaged over a third of the sky in five optical bands (ugriz) and obtained spectra for more than three million galaxies, quasars, and stars. Its legacy databases underpin a generation of studies in galaxy evolution, large-scale structure, and stellar populations.\n\nSDSS-V (launched 2020) is a major expansion covering both hemispheres with 1000-fibre SDSS-V FPS (Focal Plane System) robots, targeting Milky Way stellar spectra, black-hole variability in AGN, and time-domain multi-object spectroscopy (MOS). SDSS-V operates simultaneously at Apache Point Observatory (New Mexico) and Las Campanas Observatory (Chile).",
+    "wavelength_range": "0.35–1.05 μm (ugriz optical bands)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 14000,
+    "sky_coverage_note": "~14,000 deg² imaging; SDSS-V adds southern hemisphere coverage",
+    "redshift_range": "z = 0–7 (photometric); z = 0–3.5 (spectroscopic)",
+    "instruments_json": [
+      "2.5m Sloan Telescope",
+      "BOSS spectrograph",
+      "SDSS-V FPS",
+      "MaNGA IFU",
+      "APOGEE-2"
+    ],
+    "current_data_release": "SDSS-V ongoing (DR18 = last legacy DR, 2022)",
+    "data_volume": "~60 TB imaging; ~15 TB spectra cumulative",
+    "primary_science_goals": "Galaxy clustering and large-scale structure; stellar populations and the Milky Way; AGN demographics and black-hole mass functions; quasar variability and reverberation mapping.",
+    "flagship_programs_json": [
+      "BOSS",
+      "eBOSS",
+      "MaNGA",
+      "APOGEE-2",
+      "SDSS-V BHM",
+      "SDSS-V MWM"
+    ],
+    "operator": "ARC / Sloan Foundation / international consortium",
+    "status": "operational",
+    "archive_url": "https://www.sdss.org/dr18/",
+    "mission_url": "https://www.sdss.org/",
+    "emoji": "🌌"
+  },
+  {
+    "slug": "sdss-v",
+    "name": "SDSS-V",
+    "full_name": "Sloan Digital Sky Survey V (Fifth Generation)",
+    "description": "SDSS-V is the fifth generation of the Sloan Digital Sky Survey, operational since 2020, running simultaneously at Apache Point Observatory (APO) and Las Campanas Observatory (LCO) in Chile. It deploys 500-fibre robotic Focal Plane Systems (FPS) to conduct three core programs: the Milky Way Mapper (MWM) targeting Galactic stellar spectra at all evolutionary stages; the Black Hole Mapper (BHM) monitoring AGN variability; and the Local Volume Mapper (LVM) producing spatially resolved IFU spectroscopy of nearby galaxies. SDSS-V is the first all-sky spectroscopic survey.",
+    "wavelength_range": "0.36–1.70 μm (optical + NIR; BOSS spectrograph + APOGEE)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Both hemispheres; MWM full sky; BHM wide-area; LVM targeted IFU",
+    "redshift_range": "Stellar: RV km/s; AGN/QSO z = 0–5; LVM local z < 0.01",
+    "instruments_json": [
+      "Focal Plane System (FPS, 500 fibres)",
+      "BOSS spectrograph",
+      "APOGEE-2 NIR spectrograph",
+      "LVM IFU spectrograph"
+    ],
+    "current_data_release": "IPL-3 (internal); first public data release (DR19) expected 2025–2026",
+    "data_volume": "~50 M spectra planned over survey lifetime; ~5 TB/yr",
+    "primary_science_goals": "Complete Milky Way stellar spectral census; AGN variability and reverberation mapping; resolved stellar populations in nearby galaxies; all-sky radial velocities.",
+    "flagship_programs_json": [
+      "MWM (Milky Way Mapper)",
+      "BHM (Black Hole Mapper)",
+      "LVM (Local Volume Mapper)"
+    ],
+    "operator": "ARC / Sloan Foundation / international consortium",
+    "status": "operational",
+    "archive_url": "https://www.sdss.org/surveys/sdss-v/",
+    "mission_url": "https://www.sdss.org/future/sdss5/",
+    "emoji": "⭐"
+  },
+  {
+    "slug": "ska1",
+    "name": "SKA Phase 1",
+    "full_name": "Square Kilometre Array Phase 1 (SKA-Mid + SKA-Low)",
+    "description": "The Square Kilometre Array Phase 1 (SKA1) consists of two telescopes under construction: SKA-Mid (197 dishes, 350 MHz–15.4 GHz, Karoo, South Africa) and SKA-Low (131,072 antennas, 50–350 MHz, Murchison, Western Australia). The SKA will be the world's largest and most sensitive radio telescope by a factor of ~10, enabling transformative science in HI cosmology, pulsar timing, SETI, gravitational waves (via pulsar timing arrays), cosmic magnetism, and the Epoch of Reionisation. Construction is under way as of 2024; first science observations expected ~2028–2029.",
+    "wavelength_range": "50 MHz – 15.4 GHz (SKA-Low: 50–350 MHz; SKA-Mid: 350 MHz–15.4 GHz)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Full sky from both sites (Karoo + Murchison); deep fields + all-sky surveys planned",
+    "redshift_range": "z = 0–27 (HI 21cm); z = 0–6 (continuum); pulsars throughout Galaxy",
+    "instruments_json": [
+      "SKA-Mid: 197 × 15 m dishes (Karoo, South Africa)",
+      "SKA-Low: 131,072 dual-polarisation antennas in 512 stations (Murchison, WA)"
+    ],
+    "current_data_release": "No data yet; under construction (2021–2028); CD3 design completed",
+    "data_volume": "~5 TB/s raw visibilities; HPC processing on-site",
+    "primary_science_goals": "HI cosmology and epoch of reionisation; pulsar timing and gravitational waves; cosmic magnetism; SETI; testing general relativity with pulsars.",
+    "flagship_programs_json": [
+      "SKA HI Cosmology Survey",
+      "SKA Pulsar Timing Array",
+      "SKA-EoR Survey",
+      "SKA Continuum Survey"
+    ],
+    "operator": "SKAO (Square Kilometre Array Observatory) — intergovernmental organisation",
+    "status": "planned",
+    "archive_url": "https://www.skao.int/en/science-users/",
+    "mission_url": "https://www.skao.int/",
+    "emoji": "🌐"
+  },
+  {
+    "slug": "spherex",
+    "name": "SPHEREx",
+    "full_name": "Spectro-Photometer for the History of the Universe, Epoch of Reionization, and Ices Explorer",
+    "description": "SPHEREx is a NASA SMEX mission launched on 11 March 2025 into a sun-synchronous orbit. It maps the entire sky every 6 months in 102 spectral channels spanning 0.75–5.0 μm (R ≈ 40–130), providing the first all-sky near-infrared spectrophotometric survey. Its three science themes are: (1) primordial non-Gaussianity and inflation via galaxy 3D clustering; (2) history of galaxy formation via NIR background fluctuations; and (3) water ice and organics in the Milky Way interstellar medium. SPHEREx will produce photo-z catalogs of ~450 million galaxies.",
+    "wavelength_range": "0.75–5.0 μm (near-infrared; 102 spectral channels, R ≈ 40–130)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "All-sky survey (full sky every 6 months); ~2-year prime mission",
+    "redshift_range": "z = 0–6 (photo-z; 450 M galaxies planned)",
+    "instruments_json": [
+      "20 cm aperture telescope",
+      "102-channel linear variable filter spectrometer",
+      "6 HgCdTe detector arrays",
+      "4 channels per octave resolution"
+    ],
+    "current_data_release": "Launched 11 March 2025; early observations ongoing; first public data release expected 2026",
+    "data_volume": "~10 TB/yr spectra + images",
+    "primary_science_goals": "Primordial non-Gaussianity (fNL); NIR cosmic background fluctuations; ISM ice and molecular abundances; all-sky galaxy photo-z catalog.",
+    "flagship_programs_json": [
+      "SPHEREx All-Sky Survey",
+      "SPHEREx galaxy photo-z catalog",
+      "SPHEREx ISM ice map"
+    ],
+    "operator": "NASA / JPL / Caltech / BAE Systems",
+    "status": "operational",
+    "archive_url": "https://www.ipac.caltech.edu/project/spherex",
+    "mission_url": "https://spherex.caltech.edu/",
+    "emoji": "🌈"
+  },
+  {
+    "slug": "spt",
+    "name": "SPT",
+    "full_name": "South Pole Telescope",
+    "description": "The South Pole Telescope (SPT) is a 10 m off-axis Gregorian telescope located at the Amundsen-Scott South Pole Station, Antarctica. Its exceptional atmospheric stability enables deep, wide-area CMB observations at millimetre wavelengths. SPT has evolved through three receiver generations: SPT-SZ (2007–2011), SPTpol (2012–2016), and SPT-3G (2017–present). SPT is a world leader in galaxy cluster discovery via the tSZ effect and CMB polarisation measurements at small angular scales.",
+    "wavelength_range": "2–4 mm (95, 150, 220 GHz; SPT-3G adds 220 GHz sensitivity)",
+    "wavelength_band": "sub_mm",
+    "sky_coverage_deg2": 1500,
+    "sky_coverage_note": "SPT-3G deep: ~1,500 deg²; SPT-SZ wide: ~2,500 deg²",
+    "redshift_range": "CMB (z ≈ 1100); clusters z = 0.2–1.7; gravitational lensing",
+    "instruments_json": [
+      "10 m off-axis Gregorian telescope",
+      "SPT-3G camera (16,000 detectors)",
+      "SPTpol (2012–2016)",
+      "SPT-SZ (2007–2011)"
+    ],
+    "current_data_release": "SPT-3G ongoing (2017–present); SPTpol B-mode maps (2019); SPT-SZ cluster catalog (Bocquet et al. 2024)",
+    "data_volume": "~5 TB public data products",
+    "primary_science_goals": "CMB polarisation B-modes and inflationary gravitational waves; tSZ galaxy cluster surveys; CMB lensing; CMB-S4 pathfinder.",
+    "flagship_programs_json": [
+      "SPT-SZ cluster catalog",
+      "SPTpol BB spectrum",
+      "SPT-3G CMB maps"
+    ],
+    "operator": "University of Chicago / NSF / international SPT collaboration",
+    "status": "operational",
+    "archive_url": "https://pole.uchicago.edu/public/data/",
+    "mission_url": "https://pole.uchicago.edu/",
+    "emoji": "❄️"
+  },
+  {
+    "slug": "ukidss",
+    "name": "UKIDSS",
+    "full_name": "UKIRT Infrared Deep Sky Survey",
+    "description": "UKIDSS was a suite of five near-infrared surveys conducted with the WFCAM camera on UKIRT at Mauna Kea. The sub-surveys range from the wide-area Large Area Survey (LAS, 4,000 deg²) to the ultradeep Ultra Deep Survey (UDS, 0.77 deg²), covering ZYJHKs bands at depths significantly fainter than 2MASS. UKIDSS DR11 (2017) is the final release, providing a comprehensive near-infrared photometric database used for stellar, galactic, and extragalactic science. The UDS remains one of the deepest near-IR images of the sky.",
+    "wavelength_range": "0.83–2.37 μm (ZYJHK; K_dark extended for CO emission)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 7500,
+    "sky_coverage_note": "LAS: ~4,000 deg²; GCS + GPS: ~1,800 deg²; DXS: 35 deg²; UDS: 0.77 deg²",
+    "redshift_range": "z = 0–6+ (galaxy photometric; UDS fields targeted to high-z)",
+    "instruments_json": [
+      "UKIRT 3.8 m telescope (Mauna Kea)",
+      "WFCAM (4 × 2048² Rockwell detectors, 0.21 deg² FOV)"
+    ],
+    "current_data_release": "UKIDSS DR11 (2017) — final release; all sub-surveys complete",
+    "data_volume": "~50 TB images; ~5 TB catalogs",
+    "primary_science_goals": "Brown dwarf discovery and census; high-redshift quasars; stellar populations; galaxy evolution; Milky Way structure.",
+    "flagship_programs_json": [
+      "UKIDSS LAS",
+      "UKIDSS UDS",
+      "UKIDSS brown dwarf sample",
+      "UKIDSS z>6 quasars"
+    ],
+    "operator": "UKIDSS consortium / UKIRT (JCMT/UKIRT, Mauna Kea)",
+    "status": "retired",
+    "archive_url": "http://wsa.roe.ac.uk/",
+    "mission_url": "http://www.ukidss.org/",
+    "emoji": "🌿"
+  },
+  {
+    "slug": "unions",
+    "name": "UNIONS",
+    "full_name": "Ultraviolet Near Infrared Optical Northern Survey",
+    "description": "UNIONS is a collaborative wide-field photometric survey of the northern sky being conducted across four telescope facilities: CFHT (u-band via CFIS), Pan-STARRS (i/z-band), Subaru HSC (r-band), and UKIRT (H-band). Covering ~4,800 deg² of the northern extragalactic sky, UNIONS provides multi-band photometry optimised for weak gravitational lensing, photometric redshifts, and galaxy shape measurements for Stage-IV cosmology. It serves as a key photometric complement to DESI spectroscopy.",
+    "wavelength_range": "0.32–1.80 μm (ugriH; multi-facility)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 4800,
+    "sky_coverage_note": "Planned ~4,800 deg² northern extragalactic sky (ongoing completion)",
+    "redshift_range": "z = 0.1–1.5 (weak-lensing source galaxies)",
+    "instruments_json": [
+      "CFHT MegaCam (u-band, CFIS)",
+      "Subaru HSC (r-band)",
+      "Pan-STARRS GPC1 (i/z)",
+      "UKIRT WFCAM (H-band)"
+    ],
+    "current_data_release": "Ongoing multi-year survey; weak-lensing papers published 2022–2024; ShapePipe shear catalog (Guinot et al. 2022)",
+    "data_volume": "~50 TB across all facilities",
+    "primary_science_goals": "Weak gravitational lensing and cosmic shear; photometric redshifts for DESI; galaxy morphology; strong lensing searches.",
+    "flagship_programs_json": [
+      "CFIS u-band",
+      "UNIONS shear catalog",
+      "UNIONS photo-z"
+    ],
+    "operator": "CFHT / Pan-STARRS / Subaru / UKIRT consortium (multi-national)",
+    "status": "operational",
+    "archive_url": "https://www.skysurvey.cc/",
+    "mission_url": "https://www.skysurvey.cc/",
+    "emoji": "🔭"
+  },
+  {
+    "slug": "viking",
+    "name": "VIKING",
+    "full_name": "VISTA Kilo-Degree Infrared Galaxy Survey",
+    "description": "VIKING was an ESO Public Survey conducted with the VIRCAM camera on the 4.1 m VISTA telescope at Paranal, Chile. It imaged 1,350 deg² in five near-infrared bands (ZYJHKs) with depths designed to complement KiDS optical imaging for photometric redshifts. VIKING overlaps exactly with KiDS, enabling the KiDS+VIKING (KV) joint optical–NIR weak-lensing analysis. DR5 (2019) is the final data release, providing aperture-matched photometry for ~50 million sources.",
+    "wavelength_range": "0.85–2.15 μm (ZYJHKs near-infrared bands)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 1350,
+    "sky_coverage_note": "1,350 deg² overlapping the KiDS optical footprint",
+    "redshift_range": "z = 0.1–2.0 (photometric; NIR complement to KiDS)",
+    "instruments_json": [
+      "VISTA VIRCAM (67 Mpixel, 1.65 deg² FOV)"
+    ],
+    "current_data_release": "VIKING DR5 (2019) — 1,350 deg², ZYJHKs photometry, ~50 million sources",
+    "data_volume": "~5 TB images; ~2 TB catalogs",
+    "primary_science_goals": "Near-infrared photometric redshifts for KiDS weak lensing; stellar mass estimates; high-z galaxy and quasar selection; galaxy cluster photometric surveys.",
+    "flagship_programs_json": [
+      "VIKING DR5",
+      "KiDS+VIKING combined catalog"
+    ],
+    "operator": "VIKING consortium (Leiden, Edinburgh, others) / ESO VISTA",
+    "status": "retired",
+    "archive_url": "https://www.eso.org/sci/observing/phase3/data_releases/viking_dr5.html",
+    "mission_url": "https://www.eso.org/sci/observing/phase3/data_releases/viking_dr5.html",
+    "emoji": "🏔️"
+  },
+  {
+    "slug": "vipers",
+    "name": "VIPERS",
+    "full_name": "VIMOS Public Extragalactic Redshift Survey",
+    "description": "VIPERS is an ESO Large Programme that used the VIMOS multi-object spectrograph on the VLT to measure ~90,000 galaxy spectra at 0.5 < z < 1.2 across 23.5 deg² of the CFHTLS W1 and W4 fields. The survey was designed to probe the large-scale structure and galaxy properties at the epoch when dark energy first dominated the expansion. VIPERS is unique in combining a large comoving volume, high number density, and high spectroscopic completeness at intermediate redshift. The final PDR2 catalog (2018) contains 91,507 spectra.",
+    "wavelength_range": "0.55–0.92 μm (VIMOS optical spectroscopy, R ≈ 200)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 23.5,
+    "sky_coverage_note": "23.5 deg² across two CFHTLS Wide fields (W1 and W4)",
+    "redshift_range": "z = 0.5 – 1.2 (spectroscopic; target pre-selection from CFHTLS photo-z)",
+    "instruments_json": [
+      "VLT VIMOS multi-object spectrograph (4 quadrants, 7′×8′ per quadrant)"
+    ],
+    "current_data_release": "PDR2 (2018) — 91,507 spectroscopic redshifts; Scodeggio et al. 2018 A&A",
+    "data_volume": "~5 GB spectra; ~500 MB catalogs",
+    "primary_science_goals": "Galaxy clustering and power spectrum at z~0.7; BAO at intermediate redshift; galaxy luminosity function evolution; galaxy–environment correlations.",
+    "flagship_programs_json": [
+      "VIPERS PDR2 catalog",
+      "VIPERS power spectrum",
+      "VIPERS 2PCF"
+    ],
+    "operator": "ESO / VIPERS collaboration (INAF, IAP, CNRS, others)",
+    "status": "retired",
+    "archive_url": "http://vipers.inaf.it/",
+    "mission_url": "http://vipers.inaf.it/",
+    "emoji": "🔭"
+  },
+  {
+    "slug": "vla",
+    "name": "VLA",
+    "full_name": "Karl G. Jansky Very Large Array",
+    "description": "The Karl G. Jansky Very Large Array (VLA) at the National Radio Astronomy Observatory in New Mexico is the world's most versatile and productive radio telescope facility. Its 27 moveable 25-m dishes arranged in a Y-pattern provide baselines from 35 m (D configuration) to 36 km (A configuration), enabling angular resolutions from 1 arcsecond to 50 milliarcseconds at centimetre wavelengths.\n\nThe VLA covers frequencies from 1 to 50 GHz (L, S, C, X, Ku, K, Ka, Q bands) plus P-band (230–470 MHz) with the WIDAR correlator providing 8 GHz instantaneous bandwidth. The VLA Sky Survey (VLASS) is conducting a 3-epoch all-sky radio survey at 2–4 GHz (S-band), detecting radio-emitting AGN, star-forming galaxies, and transients across the full sky above declination −40°.",
+    "wavelength_range": "0.6 cm–2 m (0.23–50 GHz; P through Q band)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed facility; VLASS covers ~34,000 deg² (dec > −40°) in 3 epochs",
+    "redshift_range": "z = 0–6 (radio AGN); z = 0–3 (star-forming galaxies); neutral HI at any z",
+    "instruments_json": [
+      "27 × 25-m antennas (Y-array)",
+      "WIDAR correlator (up to 8 GHz bandwidth)",
+      "Receivers: P, L, S, C, X, Ku, K, Ka, Q bands"
+    ],
+    "current_data_release": "VLASS DR4 (2024); VLASS Epoch 1-3 Quick Look images public",
+    "data_volume": "~50 TB/year; VLASS ~10 PB raw; Quick Look images ~200 TB",
+    "primary_science_goals": "Radio AGN demographics and jet-ISM interaction; HI 21-cm emission in nearby galaxies; transient detection (FRBs, GW counterparts); star formation rate tracers; magnetic field polarimetry.",
+    "flagship_programs_json": [
+      "VLASS (VLA Sky Survey)",
+      "CHILES (COSMOS HI Large Extragalactic Survey)",
+      "FIRST",
+      "NVSS"
+    ],
+    "operator": "NRAO / NSF / AUI",
+    "status": "operational",
+    "archive_url": "https://data.nrao.edu/",
+    "mission_url": "https://public.nrao.edu/telescopes/vla/",
+    "emoji": "📻"
+  },
+  {
+    "slug": "weave",
+    "name": "WEAVE",
+    "full_name": "Wide-field Multi-Object Spectrograph (WHT Enhanced Area Velocity Explorer)",
+    "description": "WEAVE is a new wide-field spectroscopic facility on the 4.2 m William Herschel Telescope (WHT) at La Palma, Canary Islands. It provides ~950 fibers over a 2 deg² field in multi-object (MOS) mode, plus large IFU and mini-IFU modes, covering 366–959 nm in low (R≈5,000) or high (R≈20,000) resolution. First light was achieved in 2023. WEAVE will execute seven surveys including a Galactic archaeology survey, an OB stellar survey, and galaxy cluster / AGN surveys complementing LOFAR, Gaia, and Euclid.",
+    "wavelength_range": "0.37–0.96 μm (low-res R≈5,000; high-res R≈20,000; two arms)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Northern sky; survey areas vary by science case (total ~10,000 deg² planned)",
+    "redshift_range": "Galactic stars (RV); galaxies z = 0–2; AGN z = 0–4",
+    "instruments_json": [
+      "WHT 4.2 m telescope",
+      "~950 fibers (MOS mode)",
+      "Large IFU (90×78 arcsec)",
+      "Mini IFUs (20×26 arcsec × 20)"
+    ],
+    "current_data_release": "First light 2023; commissioning and early science 2024; first public release expected 2025–2026",
+    "data_volume": "~5 M spectra planned per year",
+    "primary_science_goals": "Galactic archaeology and chemical evolution; OB stellar properties; galaxy clusters and AGN; LOFAR counterpart spectroscopy.",
+    "flagship_programs_json": [
+      "WEAVE-GA (Galactic Archaeology)",
+      "WEAVE-LOFAR",
+      "WEAVE-Clusters",
+      "WEAVE-StePS"
+    ],
+    "operator": "ING / WHT; WEAVE consortium (>20 institutions)",
+    "status": "commissioning",
+    "archive_url": "https://www.ing.iac.es/astronomy/instruments/weave/",
+    "mission_url": "https://www.ing.iac.es/astronomy/instruments/weave/",
+    "emoji": "🌀"
+  },
+  {
+    "slug": "wise",
+    "name": "WISE",
+    "full_name": "Wide-field Infrared Survey Explorer / NEOWISE",
+    "description": "WISE was a NASA space mission (2009–2011 primary mission) that surveyed the entire sky in four mid-infrared bands: W1 (3.4 μm), W2 (4.6 μm), W3 (12 μm), and W4 (22 μm). After exhausting its cryogen (needed for W3/W4), the mission was re-activated as NEOWISE-Reactivation in 2013 using W1 and W2 for asteroid tracking. NEOWISE-R continued operations through 2024.\n\nThe unWISE coadd project has produced the deepest all-sky W1/W2 images by stacking all NEOWISE epochs. WISE is the primary mid-infrared all-sky reference used for identifying AGN (W1–W2 colour cut), obscured star formation, and late-type stars. The AllWISE catalog contains ~747 million sources.",
+    "wavelength_range": "3.4–22 μm (W1–W4; W1+W2 in NEOWISE-R)",
+    "wavelength_band": "infrared",
+    "sky_coverage_deg2": 41253,
+    "sky_coverage_note": "All-sky; unWISE provides ~10× deeper W1/W2 by stacking epochs",
+    "redshift_range": "z = 0–3 (AGN selection); stellar catalog all distances",
+    "instruments_json": [
+      "40-cm WISE telescope (Sun-synchronous LEO)",
+      "4 HgCdTe/Si:As detector arrays (W1–W4 simultaneous)"
+    ],
+    "current_data_release": "AllWISE (2013); unWISE DR (2019/2022 coadds); NEOWISE-R yr 10 (2023)",
+    "data_volume": "~150 TB raw coadded images; AllWISE catalog ~20 GB",
+    "primary_science_goals": "AGN selection via W1–W2 colour; all-sky mid-IR photometry; brown dwarf discovery; dust emission in nearby galaxies; asteroid characterisation.",
+    "flagship_programs_json": [
+      "AllWISE",
+      "unWISE",
+      "CatWISE2020",
+      "NEOWISE-R annual releases"
+    ],
+    "operator": "JPL / NASA / Caltech",
+    "status": "operational",
+    "archive_url": "https://irsa.ipac.caltech.edu/Missions/wise.html",
+    "mission_url": "https://www.jpl.nasa.gov/missions/wide-field-infrared-survey-explorer-wise/",
+    "emoji": "🌟"
+  },
+  {
+    "slug": "xmm",
+    "name": "XMM-Newton",
+    "full_name": "XMM-Newton X-ray Observatory",
+    "description": "XMM-Newton (X-ray Multi-Mirror Mission) is ESA's flagship X-ray observatory, launched December 1999. Its three co-aligned X-ray telescopes (EPIC-pn and two EPIC-MOS CCDs) and two Reflection Grating Spectrometers (RGS) cover 0.15–15 keV. Compared to Chandra, XMM has a larger effective area (~3000 cm² at 1 keV vs 600 cm²) at the cost of angular resolution (~6\" vs 0.5\" HEW), making it superior for spectral studies of extended, diffuse, or faint sources.\n\nXMM-Newton is particularly important for AGN variability, ICM spectroscopy, and X-ray surveys of wide-field populations. The XMM-Newton Serendipitous Survey (4XMM-DR13, 2023) contains over 940,000 unique X-ray sources — the largest X-ray point-source catalog.",
+    "wavelength_range": "0.15–15 keV (soft to hard X-ray)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "Pointed mission; 4XMM serendipitous sky coverage ~1,200 deg²",
+    "redshift_range": "z = 0–5 (AGN); z = 0–1 (cluster spectroscopy)",
+    "instruments_json": [
+      "EPIC-pn (CCD, 0.15–15 keV)",
+      "EPIC-MOS1 + MOS2",
+      "RGS-1 + RGS-2 (grating spectrometers)",
+      "OM (optical monitor, 180–600 nm)"
+    ],
+    "current_data_release": "AO-24 (2025–2026); 4XMM-DR13 (2023)",
+    "data_volume": "~3 TB/year; 4XMM-DR13 catalog ~940,000 sources",
+    "primary_science_goals": "AGN X-ray spectral variability; ICM thermodynamics and metal abundances; X-ray survey demographics; stellar coronae; background X-ray emission measurement.",
+    "flagship_programs_json": [
+      "4XMM (XMM-Newton Serendipitous Source Catalog)",
+      "XCS (XMM Cluster Survey)",
+      "XXL Survey"
+    ],
+    "operator": "ESA / XMM-Newton SOC (ESAC)",
+    "status": "operational",
+    "archive_url": "https://www.cosmos.esa.int/web/xmm-newton/xsa",
+    "mission_url": "https://www.cosmos.esa.int/web/xmm-newton",
+    "emoji": "💫"
+  },
+  {
+    "slug": "erosita",
+    "name": "eROSITA",
+    "full_name": "extended ROentgen Survey with an Imaging Telescope Array",
+    "description": "eROSITA is the primary instrument aboard the Russian-German Spektr-RG mission (launched July 2019), designed to perform the first all-sky X-ray survey with imaging spectral capability since ROSAT (1990–1991). Seven identical telescope modules (TM1–TM7) cover 0.2–10 keV, providing ~25\" angular resolution and effective area ~1500 cm² at 1 keV for the full array.\n\nThe eROSITA-DE consortium (Germany) completed four all-sky scans (eRASS1–eRASS4) before the instrument was placed in safe mode in February 2022 due to geopolitical constraints. eROSITA-DE DR1 (2024) released the eRASS1 Western galactic hemisphere (DE half) catalog with ~900,000 X-ray sources — a factor of 5 more than ROSAT — and a galaxy cluster catalog of ~12,000 objects.",
+    "wavelength_range": "0.2–10 keV (soft to medium X-ray)",
+    "wavelength_band": "xray",
+    "sky_coverage_deg2": 20000,
+    "sky_coverage_note": "eROSITA-DE has rights to the western galactic hemisphere (~20,000 deg²); full sky in eRASS1 but only DE half released",
+    "redshift_range": "z = 0–1 (galaxy clusters); z = 0–5 (AGN); stellar X-ray all distances",
+    "instruments_json": [
+      "7 × Wolter-I telescope modules (TM1–TM7)",
+      "7 × pn-CCD detectors (0.2–10 keV)"
+    ],
+    "current_data_release": "eROSITA-DE DR1 (2024) — eRASS1 western hemisphere; ~900,000 X-ray sources",
+    "data_volume": "~50 TB raw; eRASS1 DE catalog ~900,000 sources",
+    "primary_science_goals": "All-sky X-ray survey; galaxy cluster cosmology (mass function); AGN demographics and obscured fraction; hot gas in the cosmic web; stellar X-ray activity.",
+    "flagship_programs_json": [
+      "eRASS1 (first all-sky scan)",
+      "eROSITA Cluster Catalog (eRASS1)",
+      "eROSITA AGN Catalog"
+    ],
+    "operator": "MPE / DLR (Germany) + IKI (Russia) — eROSITA-DE consortium for western sky",
+    "status": "operational",
+    "archive_url": "https://erosita.mpe.mpg.de/edr/",
+    "mission_url": "https://erosita.mpe.mpg.de/",
+    "emoji": "🌡️"
+  },
+  {
+    "slug": "ngvla",
+    "name": "ngVLA",
+    "full_name": "Next Generation Very Large Array",
+    "description": "The Next Generation Very Large Array (ngVLA) is a proposed NSF/NRAO radio observatory consisting of 263 dishes distributed across North America, with a dense core in New Mexico, mid-baseline antennas across the US/Mexico, and long-baseline stations in the US, Canada, and Hawaii. Operating at 1.2 GHz–116 GHz (1.2 cm–25 cm wavelengths), the ngVLA will be 10× more sensitive than the current VLA and ALMA at overlapping frequencies. Key science cases include directly imaging exoplanets, resolving molecular gas in galaxies, detecting gravitational wave counterparts, and mapping cosmic magnetic fields.",
+    "wavelength_range": "2.6 mm – 25 cm (1.2–116 GHz radio–microwave)",
+    "wavelength_band": "radio",
+    "sky_coverage_deg2": null,
+    "sky_coverage_note": "δ = −40° to +90° sky access; designed for both targeted and survey observations",
+    "redshift_range": "z = 0–10 (radio continuum and molecular lines); CO ladder to z>4",
+    "instruments_json": [
+      "Main array: 214 × 18 m dishes (Southwest US)",
+      "Short-baseline array: 19 × 6 m dishes",
+      "Long-baseline stations: 30 × 18 m dishes across N. America"
+    ],
+    "current_data_release": "No data; design and construction planning phase; operations ~2035",
+    "data_volume": "~1 EB/yr raw correlator output (estimated)",
+    "primary_science_goals": "Molecular gas in high-z galaxies; exoplanet radio emission; time-domain radio transients; cosmic magnetism; stellar and planetary formation.",
+    "flagship_programs_json": [
+      "ngVLA Science Book",
+      "ngVLA Key Science Goals"
+    ],
+    "operator": "NRAO / NSF / Associated Universities Inc. (AUI)",
+    "status": "planned",
+    "archive_url": "https://ngvla.nrao.edu/",
+    "mission_url": "https://ngvla.nrao.edu/",
+    "emoji": "📡"
+  },
+  {
+    "slug": "zcosmos",
+    "name": "zCOSMOS",
+    "full_name": "zCOSMOS Spectroscopic Survey",
+    "description": "zCOSMOS is a large ESO Spectroscopic Programme using the VIMOS spectrograph on the VLT to obtain spectra of galaxies and AGN in the COSMOS field. It consists of two components: zCOSMOS-bright (IAB < 22.5, z ≈ 0.1–1.2; ~20,000 spectra) and zCOSMOS-deep (ugr colour-selected; z ≈ 1.4–3.0; ~10,000 spectra). The bright component (DR3, public 2015) provides ~99% complete spectroscopy over the inner 1.7 deg² of COSMOS, making it a key anchor for photo-z calibration and environmental studies in that field.",
+    "wavelength_range": "0.55–0.95 μm (VIMOS LR-Red grism, R ≈ 200–600)",
+    "wavelength_band": "optical",
+    "sky_coverage_deg2": 1.7,
+    "sky_coverage_note": "zCOSMOS-bright: 1.7 deg² (inner COSMOS); zCOSMOS-deep: sub-region",
+    "redshift_range": "z = 0.1–1.2 (bright); z = 1.4–3.0 (deep)",
+    "instruments_json": [
+      "VLT VIMOS multi-object spectrograph"
+    ],
+    "current_data_release": "DR3 (zCOSMOS-bright, 2015) — ~20,000 public spectra with confidence classes",
+    "data_volume": "~2 GB spectra; ~100 MB catalogs",
+    "primary_science_goals": "Galaxy clustering and environment at 0.1 < z < 1.2; photo-z calibration; AGN host galaxies; galaxy group catalog in COSMOS.",
+    "flagship_programs_json": [
+      "zCOSMOS-bright DR3",
+      "ZCOSMOS group catalog"
+    ],
+    "operator": "ESO / zCOSMOS consortium (ETH Zurich, INAF, others)",
+    "status": "retired",
+    "archive_url": "https://www.eso.org/sci/activities/garching/projects/zcosmos/",
+    "mission_url": "https://www.eso.org/sci/activities/garching/projects/zcosmos/",
+    "emoji": "🌌"
+  }
+]

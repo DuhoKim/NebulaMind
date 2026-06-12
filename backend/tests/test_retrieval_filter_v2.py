@@ -418,6 +418,8 @@ def test_brk_audit_only_writes_element_row_but_no_validator_queue_insert():
         ],
         {"p1": 1},
         99,
+        page_id=57,
+        page_slug="galaxy-evolution",
     )
     assert len(handoff_rows) == 1
     assert handoff_rows[0]["retrieval_routes_to_validator"] is False
@@ -453,6 +455,8 @@ def test_keep_writes_element_row_and_validator_queue_insert():
         ],
         {"p1": 1},
         99,
+        page_id=57,
+        page_slug="galaxy-evolution",
     )
     assert len(handoff_rows) == 1
     assert handoff_rows[0]["retrieval_routes_to_validator"] is True
@@ -477,6 +481,8 @@ def test_production_apply_persists_paper_metadata_snapshot_in_row_payload():
         ],
         {"p1": {"id": 1, "title": "Paper title", "abstract": "Paper abstract"}},
         99,
+        page_id=57,
+        page_slug="galaxy-evolution",
     )
     payload = json.loads(handoff_rows[0]["row_payload"])
     assert handoff_rows[0]["arxiv_paper_id"] == 1
@@ -729,7 +735,7 @@ def test_openai_compatible_entailment_records_usage(monkeypatch):
 
     result = retrieval_filter_v2_mod.evaluate_entailment_gate_gemini(
         _coverage_row(),
-        model="google/gemini-3.1-pro-preview",
+        model="google/gemini-2.5-flash",
         api_key="test-key",
         timeout=1,
     )
@@ -739,4 +745,4 @@ def test_openai_compatible_entailment_records_usage(monkeypatch):
     assert result.completion_tokens == 4
     assert result.total_tokens == 14
     assert seen["url"] == "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
-    assert seen["json"]["model"] == "gemini-3.1-pro-preview"
+    assert seen["json"]["model"] == "gemini-2.5-flash"

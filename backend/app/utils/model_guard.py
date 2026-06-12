@@ -19,7 +19,7 @@ import logging
 from app.config import (
     BATCH_SAFE_DEFAULT_MODEL,
     BATCH_SAFE_MODELS,
-    BATCH_STRICT_MODE,
+    settings,
 )
 
 log = logging.getLogger(__name__)
@@ -50,14 +50,14 @@ def guard_batch_model(model_id: str, job_name: str) -> str:
     if model_id in BATCH_SAFE_MODELS or normalized in BATCH_SAFE_MODELS:
         return model_id
 
-    if BATCH_STRICT_MODE:
+    if settings.BATCH_STRICT_MODE:
         raise ValueError(
             f"Model {model_id!r} is not approved for batch job {job_name!r}. "
             f"Use a model from BATCH_SAFE_MODELS (see app/config.py)."
         )
 
     log.warning(
-        "batch_guard: substituting %r -> %r for job %r (BATCH_STRICT_MODE=False)",
+        "batch_guard: substituting %r -> %r for job %r (NM_BATCH_STRICT_MODE=False)",
         model_id,
         BATCH_SAFE_DEFAULT_MODEL,
         job_name,

@@ -19,6 +19,8 @@ def ready_row(**extra):
         "candidate_key": "candidate-1",
         "retrieval_filter_decision": "keep",
         "source_label": "citable",
+        "coverage_status": "coverage_ready",
+        "coverage_missing_stages": [],
         "candidate_atom_coverage_status": "ready",
         "candidate_atoms": [{"atom_text": "supported", "support_relation": "direct"}],
         "claim_text_snapshot": "Outflows suppress star formation.",
@@ -85,6 +87,63 @@ def test_h_validator_does_not_expand_sibling_elements(tmp_path):
     assert len(pairs) == 1
     assert pairs[0]["element_id"] == "claim-1-e01"
     assert pairs[0]["claim_text_snapshot"] == "Outflows suppress star formation."
+
+
+def test_validator_skips_incomplete_coverage_as_backlog(tmp_path):
+    path = tmp_path / "coverage_rows.jsonl"
+    out_dir = tmp_path / "out"
+    write_jsonl(
+        path,
+        [
+            ready_row(
+                coverage_status="coverage_pending",
+                coverage_missing_stages=["atom_decomposition", "precheck", "astrosage_verdict"],
+                candidate_atom_coverage_status=None,
+            )
+        ],
+    )
+    pairs = mod.build_targeted_pairs_from_coverage_ready(path, None, out_dir, require_hydrated=True)
+    assert pairs == []
+    backlog = read_jsonl(out_dir / "coverage_backlog_rows.jsonl")
+    assert len(backlog) == 1
+    assert backlog[0]["coverage_status"] == "coverage_pending"
+
+
+def test_coverage_ready_row_enters_validator_queue(tmp_path):
+    path = tmp_path / "coverage_rows.jsonl"
+    out_dir = tmp_path / "out"
+    write_jsonl(path, [ready_row(coverage_status="coverage_ready", coverage_missing_stages=[])])
+    pairs = mod.build_targeted_pairs_from_coverage_ready(path, None, out_dir, require_hydrated=True)
+    assert len(pairs) == 1
+    assert pairs[0]["coverage_status"] == "coverage_ready"
+
+
+def test_atom_ready_without_coverage_ready_stays_backlog(tmp_path):
+    path = tmp_path / "coverage_rows.jsonl"
+    out_dir = tmp_path / "out"
+    row = ready_row()
+    row.pop("coverage_status")
+    write_jsonl(path, [row])
+    pairs = mod.build_targeted_pairs_from_coverage_ready(path, None, out_dir, require_hydrated=True)
+    assert pairs == []
+    backlog = read_jsonl(out_dir / "coverage_backlog_rows.jsonl")
+    assert backlog[0]["candidate_atom_coverage_status"] == "ready"
+
+
+def test_allow_incomplete_coverage_is_diagnostic_override(tmp_path):
+    path = tmp_path / "coverage_rows.jsonl"
+    out_dir = tmp_path / "out"
+    write_jsonl(path, [ready_row(coverage_status="coverage_pending", coverage_missing_stages=["astrosage_verdict"])])
+    pairs = mod.build_targeted_pairs_from_coverage_ready(
+        path,
+        None,
+        out_dir,
+        require_hydrated=True,
+        allow_incomplete_coverage=True,
+    )
+    metrics = json.loads((out_dir / "targeted_metrics.json").read_text(encoding="utf-8"))
+    assert len(pairs) == 1
+    assert metrics["allow_incomplete_coverage"] is True
 
 
 def test_i_targeted_metrics_show_no_db_reads(tmp_path):

@@ -5,6 +5,7 @@ from sqlalchemy import Boolean, Float, ForeignKey, Numeric, String, Text, Unique
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database import Base
+from app.models import JSONB
 
 
 class WikiPage(Base):
@@ -42,6 +43,20 @@ class WikiPage(Base):
     content_canonicalize_failure_reason: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     versions: Mapped[list["PageVersion"]] = relationship(back_populates="page", order_by="PageVersion.version_num")
+
+
+class PageOrchestration(Base):
+    __tablename__ = "page_orchestration"
+
+    page_id: Mapped[int] = mapped_column(ForeignKey("wiki_pages.id", ondelete="CASCADE"), primary_key=True)
+    status: Mapped[str] = mapped_column(String(20), default="dormant", server_default="dormant", index=True)
+    enabled_lanes: Mapped[dict] = mapped_column(JSONB, default=dict, server_default="{}")
+    budget_caps: Mapped[dict] = mapped_column(JSONB, default=dict, server_default="{}")
+    calibration_config_path: Mapped[str | None] = mapped_column(Text, nullable=True)
+    model_assignments: Mapped[dict] = mapped_column(JSONB, default=dict, server_default="{}")
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+    updated_at: Mapped[dt.datetime] = mapped_column(server_default=func.now(), onupdate=func.now())
 
 
 class ContentQuarantine(Base):

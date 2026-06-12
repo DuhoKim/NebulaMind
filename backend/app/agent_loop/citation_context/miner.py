@@ -2,11 +2,9 @@ from __future__ import annotations
 
 import asyncio
 import datetime as dt
-import html
 import json
 import re
 import time
-import urllib.request
 from dataclasses import dataclass, field
 from typing import Any, Literal
 
@@ -19,6 +17,8 @@ from app.models.claim import Claim, Evidence, EvidenceVote
 import app.models.jury  # Ensure ForeignKey metadata is fully resolved to avoid NoReferencedTableError on flush
 from app.models.seminal import SeminalClaimMap
 from app.services.llm_utils import strip_think_blocks
+from app.database import SessionLocal
+from app.services.intro_fetch import fetch_intro
 from app.services.paper_search import (
     PaperRecord,
     PaperSearchError,
@@ -260,20 +260,14 @@ def extract_arxiv_intro_context(arxiv_id: str, seminal_label: str, timeout: int 
     surnames, year = _label_author_year_tokens(seminal_label)
     if not surnames and not year:
         return None
-    url = f"https://ar5iv.labs.arxiv.org/html/{arxiv_id}"
+    db = SessionLocal()
     try:
-        with urllib.request.urlopen(url, timeout=timeout) as resp:
-            raw = resp.read().decode("utf-8", errors="ignore")
-    except Exception:
+        text = fetch_intro(arxiv_id, db)
+    finally:
+        db.close()
+    if not text:
         return None
-    lower = raw.lower()
-    start = lower.find("introduction")
-    if start == -1:
-        start = 0
-    chunk = raw[start : start + 30000]
-    text = re.sub(r"<script.*?</script>|<style.*?</style>", " ", chunk, flags=re.I | re.S)
-    text = re.sub(r"<[^>]+>", " ", text)
-    text = normalize_text(html.unescape(text))
+    text = normalize_text(text[:30000])
     for sentence in SENTENCE_RE.split(text):
         sent_lower = sentence.lower()
         surname_hit = any(surname.lower() in sent_lower for surname in surnames)

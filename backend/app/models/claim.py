@@ -1,5 +1,5 @@
 import datetime as dt
-from sqlalchemy import ForeignKey, String, Text, Integer, Boolean, func
+from sqlalchemy import ForeignKey, String, Text, Integer, Boolean, Float, func
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
@@ -57,6 +57,22 @@ class Evidence(Base):
     # === Peer-review tracking ===
     journal_ref: Mapped[str | None] = mapped_column(String(500), nullable=True)
     peer_reviewed: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
+    consensus_scorecard_id: Mapped[int | None] = mapped_column(ForeignKey("jury_scorecards.id"), nullable=True)
+    relevance: Mapped[float | None] = mapped_column(Float, nullable=True)
+    entailment: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rigor: Mapped[float | None] = mapped_column(Float, nullable=True)
+    confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    intro_excerpt: Mapped[str | None] = mapped_column(Text, nullable=True)
+    intro_fetch_attempted_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+
+
+class PaperIntro(Base):
+    __tablename__ = "paper_intros"
+    arxiv_id: Mapped[str] = mapped_column(String(30), primary_key=True)
+    intro_text: Mapped[str | None] = mapped_column(Text, nullable=True)
+    http_status: Mapped[int | None] = mapped_column(Integer, nullable=True)
+    source: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    fetched_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
 
 class EvidenceVote(Base):
     __tablename__ = "evidence_votes"
@@ -68,6 +84,13 @@ class EvidenceVote(Base):
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     weight: Mapped[float] = mapped_column(default=1.0)
     voter_type: Mapped[str] = mapped_column(String(20), default="agent")
+    prompt_revision_id: Mapped[int | None] = mapped_column(ForeignKey("prompt_revisions.id"), nullable=True)
+    relevance: Mapped[float | None] = mapped_column(Float, nullable=True)
+    entailment: Mapped[float | None] = mapped_column(Float, nullable=True)
+    rigor: Mapped[float | None] = mapped_column(Float, nullable=True)
+    confidence: Mapped[float | None] = mapped_column(Float, nullable=True)
+    scheduled_via: Mapped[str | None] = mapped_column(String(40), nullable=True)
+    latency_ms: Mapped[int | None] = mapped_column(Integer, nullable=True)
 
 class EvidenceComment(Base):
     __tablename__ = "evidence_comments"

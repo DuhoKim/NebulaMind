@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Repair broken hero_facts using local Ollama qwen3:30b-a3b-instruct-2507-q4_K_M."""
+"""Repair broken hero_facts using local Ollama qwen3.6:35b-a3b-nvfp4."""
 import sys, os, json, urllib.request, re, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
@@ -7,7 +7,7 @@ from app.models.page import WikiPage
 from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
-MODEL = "phi4:14b"
+MODEL = "gpt-oss:20b"
 
 BROKEN_SLUGS = [
     "asteroid-belt", "binary-stars", "black-holes",

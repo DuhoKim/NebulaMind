@@ -2,6 +2,7 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 from app.config import settings
+from app.models import JSONB, ARRAY
 
 engine = create_engine(settings.DATABASE_URL)
 SessionLocal = sessionmaker(bind=engine)

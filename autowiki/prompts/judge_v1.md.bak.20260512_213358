@@ -1,0 +1,121 @@
+You are evaluating a NebulaMind astronomy wiki page for a professional
+astronomer reader (postdoc-level or above).
+
+The astronomer's only two needs from this page are:
+  1. Learn what has been ESTABLISHED in the field — clearly, accurately,
+     with the right citations.
+  2. Get IDEAS for what to research next — specific open questions,
+     active debates, frontier directions.
+
+Your job: rate the page against the rubric below. Score for SUBSTANCE,
+not style. Well-written prose with no specific findings should score
+LOW, not high. Generic intros and filler trigger the noise_penalty.
+
+================================================================
+RUBRIC — return five integer sub-scores and a 3-sentence rationale.
+================================================================
+
+findings_clarity : 0..3
+  3 — every major established result is named, quantified (numbers /
+      mechanisms / dates), and tied to an identifiable paper or survey.
+  2 — most established results are named with at least partial numbers
+      or named mechanisms; some claims are descriptive only.
+  1 — established results are mentioned but mostly descriptive, no
+      specific values, mechanisms, or paper-level attribution.
+  0 — no clear summary of what has been established.
+
+open_questions_q : 0..3
+  3 — multiple debates named with COMPETING positions explicitly
+      attributed (e.g., "Authors A argue X; authors B counter with Y").
+  2 — open questions named but only one side of each debate is given,
+      or competing positions are gestured at without attribution.
+  1 — open questions are listed at the level of "X is not fully
+      understood" without specifics.
+  0 — no open questions / debates surfaced.
+
+evidence_depth : 0..2
+  2 — load-bearing claims have specific paper citations (author + year
+      OR arXiv id), and at least one citation is from 2023 or later.
+  1 — some claims are cited, but citations are sparse, anonymous
+      ("studies show"), or all pre-2020.
+  0 — no traceable citations on the central claims.
+
+frontier_signal : 0..1
+  1 — page names at least one current instrument / survey / dataset
+      that is shaping the field right now (e.g., JWST, DESI, Euclid,
+      Rubin/LSST, ALMA cycle X, SKA precursors), with at least one
+      sentence connecting it to a specific research question.
+  0 — no current frontier mentioned, OR mentioned by name only with
+      no research connection.
+
+noise_penalty : -2..0
+  Each of the following deductions is automatic when its anchored
+  pattern is present. Floor the total at -2. In the rationale, QUOTE
+  the offending text for any deduction you apply.
+
+  -1 if ANY of these chatbot/marketing intro phrases appears verbatim
+     (case-insensitive substring match) anywhere in the page:
+       "is a fascinating field"
+       "is a critical area of study"
+       "has revolutionized our understanding"
+       "provides unprecedented insights"
+       "fundamentally altering"
+       "it is important to note"
+       "here is a comprehensive"
+       "in summary,"
+       "providing insights"
+
+  -1 if the page contains ANY h2 (line starting with "## ") whose text
+     matches one of these forbidden headings:
+       "## Open Questions"
+       "## Open Questions and Active Debates"
+       "## Research Frontiers"
+       "## Recent Advances"
+       "## Future Work"
+       "## Research Priorities"
+       "## What to Study Next"
+     OR any heading (h2/h3) that reads as a prescriptive imperative
+     ("How to ...", "What to study ...", "Where to look ...").
+
+  -1 if ANY content section (i.e. excluding "## See Also" and
+     "## References") contains ZERO of the following types of tokens:
+       a digit grouped as a number ("0.7", "2023", "10^10.5"),
+       a redshift / wavelength / mass unit ("z=", "Myr", "Gyr",
+         "M☉", "kpc", "Mpc", "arXiv:"),
+       a citation in the form "(Author Year)" or "Author et al.".
+
+  -1 if ANY two non-heading sentences within the page are identical
+     or differ only in trivial punctuation/whitespace.
+
+  -1 if you find ANY in-text citation of the form "(Author YYYY)" or
+     "arXiv:NNNN.NNNNN" whose author surname does NOT appear anywhere
+     in the "## References" section of the page.
+
+  Stop at -2. Do not double-count the same passage across two
+  different rules.
+
+================================================================
+
+raw = findings_clarity + open_questions_q + evidence_depth
+    + frontier_signal + noise_penalty                       # range -2..9
+utility_0_10 = max(0, min(10, (raw + 2) * 10 / 11))         # normalized
+
+================================================================
+
+The page content is delimited by ===PAGE=== below. The page's claims
+(consensus / debate / accepted) follow after ===CLAIMS===. Evidence
+summary follows after ===EVIDENCE===.
+
+You do NOT see the previous version of this page. You do NOT see
+who drafted it. Score absolute state only.
+
+Output VALID JSON ONLY, no preamble, no markdown fence. Schema:
+
+{
+  "findings_clarity": <int 0..3>,
+  "open_questions_q": <int 0..3>,
+  "evidence_depth": <int 0..2>,
+  "frontier_signal": <int 0..1>,
+  "noise_penalty": <int -2..0>,
+  "rationale": "<3 sentences. If you applied any noise_penalty deduction, quote the offending text in this rationale.>"
+}

@@ -11,10 +11,13 @@ import argparse
 import asyncio
 import datetime as dt
 import json
+import logging
 import os
 import random
 import re
+import subprocess
 import sys
+import tempfile
 import unicodedata
 from dataclasses import dataclass
 from pathlib import Path
@@ -36,6 +39,9 @@ from app.services.prompt_registry import PromptRegistry
 from app.services.llm_utils import clean_llm_response, strip_think_blocks
 from app.utils.premium_dispatch import log_llm_spend
 
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(name)s: %(message)s")
+logger = logging.getLogger("targeted_ads_miner")
+
 Verdict = Literal["SUPPORTS", "REFUTES", "ABSTAIN"]
 Confidence = Literal["LOW", "MEDIUM", "HIGH"]
 
@@ -44,6 +50,7 @@ MIN_HITS = 3
 CLAIM_TEXT_LIMIT = 600
 ABSTRACT_LIMIT = 1800
 JURY_TIMEOUT_SECONDS = 360
+JUROR_SUBPROCESS_TIMEOUT_SECONDS = int(os.getenv("TARGETED_ADS_JUROR_TIMEOUT_SECONDS", "90"))
 MIN_SUPPORT_VOTES = 2
 SCREEN_MODEL = "gemini-2.5-flash"
 SCREEN_TIMEOUT_SECONDS = 45
@@ -131,6 +138,8 @@ TOKEN_RE = re.compile(r"[A-Za-z][A-Za-z0-9\-]{3,}")
 VERDICT_RE = re.compile(r"###VERDICT:\s*(SUPPORTS|REFUTES|ABSTAIN)", re.I)
 SENTENCE_RE = re.compile(r"###SENTENCE:\s*(.+)")
 CONF_RE = re.compile(r"###CONFIDENCE:\s*(LOW|MEDIUM|HIGH)", re.I)
+
+ABSTAIN_RAW = "###VERDICT: ABSTAIN\n###SENTENCE: NONE\n###CONFIDENCE: LOW\n"
 
 try:
     JURY_SYSTEM_PROMPT = PromptRegistry().render("stance", {}, policy="permissive_v1")
@@ -491,12 +500,12 @@ def parse_screen_response(raw: str | None, refs: set[int]) -> tuple[dict[int, Sc
         value = str(row.get("pre_filter") or row.get("decision") or row.get("label") or "").upper()
         if value not in {"KEEP", "DISCARD"}:
             fallback = True
-            value = "KEEP"
+            continue
         outcomes[ref] = ScreenOutcome(ref=ref, pre_filter=value, fail_open=False)  # type: ignore[arg-type]
         seen.add(ref)
 
     missing = refs - seen
-    if not seen:
+    if missing or not seen:
         fallback = True
     return outcomes, fallback
 
@@ -588,13 +597,13 @@ def jury_models() -> list[dict[str, Any]]:
             "label": "Mima",
             "base_url": studio_base,
             "api_key": "ollama",
-            "model": os.getenv("TARGETED_ADS_MIMA_MODEL", "qwen3:30b"),
+            "model": os.getenv("TARGETED_ADS_MIMA_MODEL", "gpt-oss:120b"),
         },
         {
             "label": "Nutty-Heavy",
             "base_url": os.getenv("TARGETED_ADS_BUDDLE_BASE_URL", buddle_base),
             "api_key": "ollama",
-            "model": os.getenv("TARGETED_ADS_BUDDLE_MODEL", "deepseek-r1:70b"),
+            "model": os.getenv("TARGETED_ADS_BUDDLE_MODEL", "gpt-oss:120b"),
         },
         {
             "label": "Atom-7B",
@@ -684,18 +693,206 @@ async def _call_juror(client: httpx.AsyncClient, model: dict[str, Any], prompt: 
         return None
 
 
+def _juror_subprocess_abstain(label: str, *, reason: str) -> dict[str, Any]:
+    return {"label": label, "raw": ABSTAIN_RAW, "subprocess_abstain_reason": reason}
+
+
+async def _run_juror_worker_async(model: dict[str, Any], prompt: str) -> dict[str, Any] | None:
+    async with httpx.AsyncClient(timeout=JURY_TIMEOUT_SECONDS) as client:
+        return await _call_juror(client, model, prompt)
+
+
+def run_juror_worker(payload_path: str | None) -> int:
+    if not payload_path:
+        raise SystemExit("--juror-payload is required for --juror-worker")
+
+    payload = json.loads(Path(payload_path).read_text(encoding="utf-8"))
+    output_path = Path(payload["output_path"])
+    try:
+        result = asyncio.run(_run_juror_worker_async(payload["model"], payload["prompt"]))
+        output_path.write_text(
+            json.dumps({"ok": True, "result": result}, ensure_ascii=False),
+            encoding="utf-8",
+        )
+        return 0
+    except Exception as exc:
+        logger.exception("juror worker failed")
+        output_path.write_text(
+            json.dumps(
+                {"ok": False, "error": f"{type(exc).__name__}: {exc}"},
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        return 1
+
+
+def _tail_for_log(text: str | bytes | None, limit: int = 1000) -> str:
+    if isinstance(text, bytes):
+        text = text.decode("utf-8", errors="replace")
+    text = (text or "").strip()
+    if len(text) <= limit:
+        return text
+    return text[-limit:]
+
+
+def _release_acquired_scheduler_lock_from_timeout(output: str) -> str | None:
+    match = re.search(r"Lock (ollama:lock:[\w:-]+) acquired successfully", output or "")
+    if not match:
+        return None
+    lock_key = match.group(1)
+    try:
+        import redis
+
+        r = redis.from_url(
+            settings.REDIS_URL,
+            decode_responses=True,
+            socket_timeout=2.0,
+            socket_connect_timeout=1.0,
+        )
+        deleted = r.delete(lock_key)
+        logger.warning("juror_subprocess_timeout_released_scheduler_lock key=%s deleted=%s", lock_key, deleted)
+        return lock_key
+    except Exception as exc:
+        logger.warning("juror_subprocess_timeout_lock_release_failed key=%s error=%s", lock_key, exc)
+        return None
+
+
+def _call_juror_subprocess(model: dict[str, Any], prompt: str) -> dict[str, Any]:
+    label = str(model.get("label") or model.get("model") or "unknown")
+    started = dt.datetime.now(dt.timezone.utc)
+    logger.info(
+        "juror_subprocess_start label=%s model=%s timeout_s=%s timestamp=%s",
+        label,
+        model.get("model"),
+        JUROR_SUBPROCESS_TIMEOUT_SECONDS,
+        started.isoformat(),
+    )
+
+    with tempfile.TemporaryDirectory(prefix="targeted_ads_juror_") as tmp_dir:
+        tmp = Path(tmp_dir)
+        payload_path = tmp / "payload.json"
+        output_path = tmp / "output.json"
+        payload_path.write_text(
+            json.dumps(
+                {"model": model, "prompt": prompt, "output_path": str(output_path)},
+                ensure_ascii=False,
+            ),
+            encoding="utf-8",
+        )
+        env = os.environ.copy()
+        env["PYTHONPATH"] = str(BACKEND_ROOT)
+        cmd = [
+            sys.executable,
+            str(Path(__file__).resolve()),
+            "--juror-worker",
+            "--juror-payload",
+            str(payload_path),
+        ]
+        try:
+            completed = subprocess.run(
+                cmd,
+                cwd=str(BACKEND_ROOT),
+                env=env,
+                capture_output=True,
+                text=True,
+                timeout=JUROR_SUBPROCESS_TIMEOUT_SECONDS,
+                check=False,
+            )
+        except subprocess.TimeoutExpired as exc:
+            elapsed = (dt.datetime.now(dt.timezone.utc) - started).total_seconds()
+            stdout_tail = _tail_for_log(exc.stdout or "")
+            stderr_tail = _tail_for_log(exc.stderr or "")
+            _release_acquired_scheduler_lock_from_timeout(f"{stdout_tail}\n{stderr_tail}")
+            logger.warning(
+                "juror_subprocess_timeout label=%s model=%s elapsed_s=%.1f timeout_s=%s stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                elapsed,
+                JUROR_SUBPROCESS_TIMEOUT_SECONDS,
+                stdout_tail,
+                stderr_tail,
+            )
+            return _juror_subprocess_abstain(label, reason="timeout")
+
+        elapsed = (dt.datetime.now(dt.timezone.utc) - started).total_seconds()
+        if completed.returncode != 0:
+            logger.warning(
+                "juror_subprocess_failed label=%s model=%s returncode=%s elapsed_s=%.1f stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                completed.returncode,
+                elapsed,
+                _tail_for_log(completed.stdout),
+                _tail_for_log(completed.stderr),
+            )
+            return _juror_subprocess_abstain(label, reason=f"returncode_{completed.returncode}")
+
+        if not output_path.exists():
+            logger.warning(
+                "juror_subprocess_missing_output label=%s model=%s elapsed_s=%.1f stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                elapsed,
+                _tail_for_log(completed.stdout),
+                _tail_for_log(completed.stderr),
+            )
+            return _juror_subprocess_abstain(label, reason="missing_output")
+
+        try:
+            data = json.loads(output_path.read_text(encoding="utf-8"))
+        except Exception as exc:
+            logger.warning(
+                "juror_subprocess_bad_output label=%s model=%s elapsed_s=%.1f error=%s stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                elapsed,
+                exc,
+                _tail_for_log(completed.stdout),
+                _tail_for_log(completed.stderr),
+            )
+            return _juror_subprocess_abstain(label, reason="bad_output")
+
+        if not data.get("ok"):
+            logger.warning(
+                "juror_subprocess_worker_error label=%s model=%s elapsed_s=%.1f error=%r stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                elapsed,
+                data.get("error"),
+                _tail_for_log(completed.stdout),
+                _tail_for_log(completed.stderr),
+            )
+            return _juror_subprocess_abstain(label, reason="worker_error")
+
+        result = data.get("result")
+        if not isinstance(result, dict) or not result.get("raw"):
+            logger.warning(
+                "juror_subprocess_empty_result label=%s model=%s elapsed_s=%.1f stdout_tail=%r stderr_tail=%r",
+                label,
+                model.get("model"),
+                elapsed,
+                _tail_for_log(completed.stdout),
+                _tail_for_log(completed.stderr),
+            )
+            return _juror_subprocess_abstain(label, reason="empty_result")
+
+        result["label"] = result.get("label") or label
+        logger.info(
+            "juror_subprocess_done label=%s model=%s elapsed_s=%.1f",
+            label,
+            model.get("model"),
+            elapsed,
+        )
+        return result
+
+
 async def run_jury_async(claim: Claim | ClaimSnapshot, record: PaperRecord) -> list[dict[str, Any]]:
     prompt = user_prompt(claim, record)
-    async with httpx.AsyncClient() as client:
-        calls = [_call_juror(client, model, prompt) for model in jury_models()]
-        try:
-            results = await asyncio.wait_for(
-                asyncio.gather(*calls, return_exceptions=True),
-                timeout=600.0
-            )
-        except asyncio.TimeoutError:
-            print("jury gather hard timeout after 600s")
-            results = []
+    results: list[Any] = []
+    for model in jury_models():
+        result = await asyncio.to_thread(_call_juror_subprocess, model, prompt)
+        results.append(result)
     filtered_results = []
     for r in results:
         if isinstance(r, dict) and r:
@@ -905,16 +1102,55 @@ def select_claims(db: Session, page_id: int, claim_ids: list[int], limit: int | 
     return filtered
 
 
-async def _jury_candidates_async(candidates: list[Candidate], concurrency: int) -> list[tuple[Candidate, JuryDecision]]:
+async def _jury_candidates_async(
+    candidates: list[Candidate],
+    concurrency: int,
+    *,
+    phase: str = "main",
+) -> list[tuple[Candidate, JuryDecision]]:
     semaphore = asyncio.Semaphore(max(1, concurrency))
+    total = len(candidates)
 
-    async def run(candidate: Candidate) -> tuple[Candidate, JuryDecision]:
+    async def run(index: int, candidate: Candidate) -> tuple[Candidate, JuryDecision]:
         async with semaphore:
+            started = dt.datetime.now(dt.timezone.utc)
+            logger.info(
+                "jury_candidate_start phase=%s index=%s/%s claim_id=%s timestamp=%s title=%r",
+                phase,
+                index,
+                total,
+                candidate.claim.id,
+                started.isoformat(),
+                (candidate.record.title or "")[:120],
+            )
             raw_results = await run_jury_async(candidate.claim, candidate.record)
             decision = aggregate_jury(raw_results, candidate.record.abstract or "")
-            return candidate, decision
+            elapsed = (dt.datetime.now(dt.timezone.utc) - started).total_seconds()
+            verdicts = ", ".join(f"{r.label}:{r.verdict}" for r in decision.results)
+            logger.info(
+                "jury_candidate_done phase=%s index=%s/%s claim_id=%s stance=%s quality=%.2f merge_eligible=%s elapsed_s=%.1f verdicts=[%s] title=%r",
+                phase,
+                index,
+                total,
+                candidate.claim.id,
+                decision.stance,
+                decision.quality,
+                decision.merge_eligible,
+                elapsed,
+                verdicts,
+                (candidate.record.title or "")[:120],
+            )
+            return index, candidate, decision
 
-    return await asyncio.gather(*(run(candidate) for candidate in candidates))
+    tasks = [
+        asyncio.create_task(run(index, candidate))
+        for index, candidate in enumerate(candidates, start=1)
+    ]
+    results: list[tuple[Candidate, JuryDecision]] = []
+    for task in asyncio.as_completed(tasks):
+        _index, candidate, decision = await task
+        results.append((candidate, decision))
+    return results
 
 
 def _write_jury_result(db: Session, candidate: Candidate, decision: JuryDecision, *, commit: bool) -> dict[str, int]:
@@ -995,7 +1231,7 @@ def run_jury_on_candidates(
     if not candidates:
         return totals
 
-    results = asyncio.run(_jury_candidates_async(candidates, concurrency))
+    results = asyncio.run(_jury_candidates_async(candidates, concurrency, phase="audit" if audit else "main"))
     for candidate, decision in results:
         prefix = "audit " if audit else ""
         verdicts = ", ".join(f"{r.label}:{r.verdict}" for r in decision.results)
@@ -1166,11 +1402,15 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--no-fast-screen", action="store_true", help="Disable Gemini fast-screen and run the local jury on every pre-gate survivor.")
     parser.add_argument("--screen-batch", type=int, default=None, help="Fast-screen batch size. Defaults to settings.SCREEN_BATCH.")
     parser.add_argument("--screen-audit-frac", type=float, default=None, help="Override DISCARD shadow-audit sample fraction.")
+    parser.add_argument("--juror-worker", action="store_true", help=argparse.SUPPRESS)
+    parser.add_argument("--juror-payload", default=None, help=argparse.SUPPRESS)
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
+    if args.juror_worker:
+        return run_juror_worker(args.juror_payload)
     if not settings.ADS_API_KEY:
         raise SystemExit("ADS_API_KEY is not configured")
     db = SessionLocal()

@@ -19,7 +19,7 @@ from pathlib import Path
 
 import feedparser  # type: ignore
 
-from celery import shared_task
+from celery import current_app, shared_task
 
 log = logging.getLogger(__name__)
 
@@ -31,8 +31,10 @@ ARXIV_SUMMARY_SYSTEM = (
 )
 
 
-def _wiki_feed_v2_pages() -> list[str]:
-    return [page.strip() for page in settings.ARXIV_WIKI_FEED_V2_PAGES.split(",") if page.strip()]
+def _wiki_feed_v2_pages(db) -> list[str]:
+    from app.services.page_registry import registry_slugs_for_feed
+
+    return registry_slugs_for_feed(db)
 
 
 def _wiki_feed_v2_artifact_dir(kind: str) -> Path:
@@ -227,7 +229,10 @@ def fetch_arxiv_daily() -> dict:
         log.info("[arxiv_fetch] done — %d new papers", total_new)
         if getattr(settings, "ARXIV_WIKI_FEED_V2_ENABLED", True):
             try:
-                arxiv_wiki_feed_daily.apply_async(kwargs={"trigger": "fetch_arxiv_daily"})
+                current_app.send_task(
+                    "app.agent_loop.tasks.arxiv_wiki_feed_daily",
+                    kwargs={"trigger": "fetch_arxiv_daily"},
+                )
             except Exception as exc:
                 log.warning("[arxiv_fetch] failed to enqueue arxiv_wiki_feed_daily: %s", exc)
         return {"total_new": total_new}
@@ -306,7 +311,7 @@ def arxiv_wiki_feed_daily(trigger: str = "manual", lookback_hours: int = 24) -> 
             "created_at": dt.datetime.now(dt.timezone.utc).isoformat(),
             "trigger": trigger,
             "mode": settings.ARXIV_WIKI_FEED_V2_MODE,
-            "pages": _wiki_feed_v2_pages(),
+            "pages": _wiki_feed_v2_pages(db),
             "lookback_hours": lookback_hours,
             "paper_count": len(papers),
             "papers": [dict(row) for row in papers],

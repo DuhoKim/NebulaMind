@@ -1,0 +1,258 @@
+page_slug: galaxy-evolution
+version: retrieval_calibration_v2
+status: approved_persisted
+derived_at: '2026-05-26T13:20:11Z'
+source_run_key: arxiv_wiki_feed_v2_phase2_unclear_retry_20260526T040155Z
+semantic_band:
+  min_semantic_similarity: 0.50
+  embedding_model: nomic-embed-text:v1.5
+  failure_policy: fail_closed
+category_policy:
+  mode: soft_weight
+  categories:
+  - category: unknown
+    total: 863
+    citable: 199
+    off_domain: 185
+    positive_lift: 1.0
+    negative_lift: 1.0
+    weight: 1.0
+  unknown_category_weight: 1.0
+  note: Category metadata was sparse/low-diversity in current artifact; object-class
+    and recurring-paper signals carry the proposal.
+score_policy:
+  target_citable_recall: 0.9
+  thresholds:
+    claim_key_overlap_hard_min: null
+    boundary_review_below: 0.2
+  combination: negative_marker_or_recurring_paper_drop_else_keep
+  note: Score-only thresholds were rejected because they dropped citable recall below
+    the floor.
+query_policy:
+  include_parent_claim: true
+  include_section_title: true
+  neighbor_claim_window: 2
+  max_query_terms: 48
+  negative_terms:
+  - black hole
+  - continuum lag
+  - globular cluster
+  - infrared dark cloud
+  - little red dots
+  - massive star
+  - molecular cloud
+  - ngc 4151
+  - odd radio circle
+  - orion b
+  - protostar
+  - pulsar
+  - qso
+  - quasar
+  - red supergiant
+  - reverberation mapping
+  - sn remnant
+  - stellar wind
+  - supernova
+  - transfer function
+  - type ia
+  - x-ray binaries
+reranker_policy:
+  enabled: true
+  method: deterministic_negative_marker_prefilter_plus_page_local_recurring_paper_suppression
+  hard_negative_markers:
+  - agn_reverberation_mapping
+  - local_ism_cloud
+  - pulsar_or_globular_cluster
+  - stellar_evolution
+  - supernova_dust
+  page_local_suppressed_papers:
+  - 2512.15881v2
+  - 2512.16154v1
+  - 2512.16209v1
+  - 2512.18992v1
+  - 2512.19074v2
+  - 2512.23060v2
+  - 2512.23384v1
+  - 2512.24433v1
+  - 2601.00044v2
+  - '2605.03016'
+  suppression_rule: paper off_domain_count >= 3 and citable_count == 0 in page-labeled
+    history
+  boundary_validation_run_key: retrieval_calibration_galaxy-evolution_boundary_validation_20260526T130924Z
+manual_overrides:
+  feedback_outflows_supernova_dust_protect:
+    type: section_marker_protection
+    section: feedback_outflows
+    marker: supernova_dust
+    decision: do_not_hard_drop
+    source_boundary_run: retrieval_calibration_galaxy-evolution_boundary_validation_20260526T130924Z
+    example_false_negative:
+      paper_id: 2512.17563v2
+      element_id: claim-1783-e01
+approval:
+  approved_by: Papa
+  approved_at: '2026-05-26T13:36:49Z'
+  approval_source: HwaO dispatch 2026-05-26 persist v2 with feedback_outflows override
+section_overrides:
+  feedback_outflows:
+    verdict: widen_fingerprint
+    action: protect_negative_marker_from_hard_drop
+    protected_negative_markers:
+    - supernova_dust
+    minimum_claim_key_overlap_for_marker_drop: 0.2
+    reason: Boundary validation found supernova_dust false-negative risk in feedback_outflows,
+      including 2512.17563v2 on AGN-driven feedback in M87.
+    protected_decisions:
+    - drop
+    - holdout_drop
+    fallback_decision: boundary_review_keep
+persisted_at: '2026-05-26T13:36:49Z'
+config_scope:
+  page_slug: galaxy-evolution
+  mechanism: page_agnostic_retrieval_calibration
+retrieval_filter_v1_partial_ship:
+  status: production_partial
+  shipped_at: '2026-05-26T23:22:05Z'
+  source_dry_run_key: arxiv_wiki_feed_v2_retrieval_filter_v1_dryrun_20260526T081400Z
+  scope:
+    page_slug: galaxy-evolution
+    enabled_sections:
+    - size_evolution
+    - shmr_halo_quenching
+    excluded_sections:
+    - env_quenching
+    - high_z_sf
+    - feedback_outflows
+  rule_source: retrieval_filter_v1_legacy_section_calibration
+  apply_mode: section_scoped_only
+  section_rules:
+    size_evolution:
+      before_total: 134
+      after_total: 89
+      citable_recall: 1.0
+      before_off_domain_share: 0.298507
+      after_off_domain_share: 0.11236
+      off_domain_reduction: 0.75
+      thresholds:
+        citable_combined_score_p20: 0.0
+        off_domain_combined_score_p80: 0.214231
+      off_domain_enriched_tags:
+      - instrumentation
+      - molecular_cloud
+      - single_object_agn
+      - stellar_object
+    shmr_halo_quenching:
+      before_total: 160
+      after_total: 138
+      citable_recall: 1.0
+      before_off_domain_share: 0.15625
+      after_off_domain_share: 0.108696
+      off_domain_reduction: 0.4
+      thresholds:
+        citable_combined_score_p20: 0.0
+        off_domain_combined_score_p80: 0.130167
+      off_domain_enriched_tags:
+      - milky_way_local
+      - molecular_cloud
+retrieval_filter_v2_boundary_review:
+  status: dryrun_config_locked
+  configured_at: '2026-05-26T23:40:16Z'
+  source_design_run_key: retrieval_filter_v2_design_and_dryrun_20260526T232738Z
+  source_dry_run_key: arxiv_wiki_feed_v2_retrieval_filter_v1_dryrun_20260526T081400Z
+  apply_mode: section_scoped_dryrun_only
+  no_db_writes: true
+  core_mechanism_required: boundary_review_keep
+  decision_values:
+  - keep
+  - drop
+  - downrank
+  - boundary_review_keep
+  shared_primitives:
+  - score_band
+  - protected_marker
+  - tag_protection
+  - suppression_demoted
+  validator_enqueue_policy:
+    keep_decisions:
+    - keep
+    boundary_review_keep:
+      enqueue: false
+      usage: retrieval_audit_only
+      rationale: validator_projection_missing_dominant
+  scope:
+    enabled_sections:
+    - feedback_outflows
+    - high_z_sf
+    - env_quenching
+    excluded_sections:
+    - size_evolution
+    - shmr_halo_quenching
+  section_rules:
+    feedback_outflows:
+      policy_id: feedback_outflows_boundary_review_v2_20260526
+      hard_drop_below: 0.07
+      old_v1_floor: 0.117051
+      protected_markers:
+      - feedback
+      - outflow
+      - cgm
+      - circumgalactic
+      - agn
+      - supernova
+      - galactic_wind
+      - metal_enrichment
+      - dust
+      tag_protection:
+        compact_object_transient: downrank_or_boundary_review
+        milky_way_local: boundary_review_when_protected_marker_present
+      boundary_review_reasons:
+      - score_band
+      - protected_marker
+      - tag_protection
+    high_z_sf:
+      policy_id: high_z_sf_boundary_review_v2_20260526
+      hard_drop_below: 0.06
+      old_v1_floor: 0.103125
+      protected_markers:
+      - jwst
+      - high_z
+      - reionization
+      - reionisation
+      - early_galaxy
+      - lyman
+      - metallicity
+      - star_formation
+      - quasar
+      - agn_feedback
+      - dwarf_galaxy
+      tag_protection:
+        compact_object_transient: downrank_only_unless_stellar_leakage
+        cosmological_simulation: boundary_review_when_high_z_marker_present
+      boundary_review_reasons:
+      - score_band
+      - protected_marker
+      - tag_protection
+    env_quenching:
+      policy_id: env_quenching_boundary_review_v2_20260526
+      hard_drop_below: 0.10
+      old_v1_floor: 0.183333
+      protected_markers:
+      - environment
+      - quenching
+      - satellite
+      - compact_group
+      - group_scale
+      - cluster
+      - protocluster
+      - morphology_density
+      - ram_pressure
+      - preprocessing
+      - halo_mass
+      - bar_formation
+      tag_protection:
+        molecular_cloud: hard_negative_unless_environment_marker_present
+        stellar_object: hard_negative_unless_environment_marker_present
+      boundary_review_reasons:
+      - score_band
+      - protected_marker
+      - tag_protection

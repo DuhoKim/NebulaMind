@@ -29,6 +29,7 @@ BACKEND_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(BACKEND_ROOT))
 
 from scripts.retrieval_filter_v2 import (
+    DEFAULT_COVERAGE_REQUIRED_STAGES,
     ENTAILMENT_GEMINI_BASE,
     ENTAILMENT_GEMINI_MODEL,
     ENTAILMENT_OLLAMA_MODEL,
@@ -314,6 +315,46 @@ def normalize_coverage_payload(payload: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def coverage_contract_fields(row: dict[str, Any], coverage_status: str, coverage_key_value: str, reason: str | None = None) -> dict[str, Any]:
+    stages = list(DEFAULT_COVERAGE_REQUIRED_STAGES)
+    if coverage_status == "coverage_ready":
+        statuses = {stage: "ready" for stage in stages}
+    elif coverage_status == "coverage_blocked_retryable":
+        statuses = {stage: "ready" for stage in stages}
+        statuses["atom_decomposition"] = "blocked_retryable"
+    else:
+        statuses = {stage: "ready" for stage in stages}
+        statuses["atom_decomposition"] = "blocked_terminal"
+    missing = [stage for stage in stages if statuses[stage] != "ready"]
+    refs = {
+        stage: {
+            "stage": stage,
+            "status": statuses[stage],
+            "cache_key": coverage_key_value if stage == "atom_decomposition" else sha_text(
+                {
+                    "stage": stage,
+                    "claim_id": row.get("claim_id"),
+                    "element_id": row.get("element_id"),
+                    "arxiv_id": row.get("arxiv_id"),
+                    "element_text_hash": sha_text(row.get("element_text")),
+                    "paper_abstract_hash": sha_text(row.get("paper_abstract_snapshot")),
+                    "prompt_version": PROMPT_VERSION,
+                    "model_version": ATOM_MODEL if stage == "atom_decomposition" else "deterministic_v1",
+                }
+            ),
+            "reason": reason,
+        }
+        for stage in stages
+    }
+    return {
+        "coverage_status": coverage_status,
+        "coverage_required_stages": stages,
+        "coverage_missing_stages": missing,
+        "coverage_stage_statuses": statuses,
+        "coverage_artifact_refs": refs,
+    }
+
+
 def extract_json_object(text_value: str) -> dict[str, Any]:
     text_value = (text_value or "").strip()
     if not text_value:
@@ -419,6 +460,7 @@ def coverage_row(
     if missing:
         raise hydration_abort(row, missing)
 
+    base_coverage_key = coverage_key(row, PROMPT_VERSION, model)
     base = {
         "coverage_run_id": coverage_run_id,
         "retrieval_filter_run_id": row.get("retrieval_filter_run_id"),
@@ -438,7 +480,7 @@ def coverage_row(
         "entailment_gate_prompt_tokens": row.get("entailment_gate_prompt_tokens"),
         "entailment_gate_completion_tokens": row.get("entailment_gate_completion_tokens"),
         "entailment_gate_total_tokens": row.get("entailment_gate_total_tokens"),
-        "coverage_key": coverage_key(row, PROMPT_VERSION, model),
+        "coverage_key": base_coverage_key,
         "backfill_model": model,
         "audit_model_reserved": ASTROSAGE_MODEL,
         "backfill_prompt_version": PROMPT_VERSION,
@@ -474,6 +516,7 @@ def coverage_row(
     if not anchors["has_anchor_overlap"]:
         return {
             **base,
+            **coverage_contract_fields(row, "coverage_blocked_terminal", base_coverage_key, "anchor_overlap_missing"),
             "candidate_atom_coverage_status": "missing",
             "candidate_atoms": [],
             "rationale": "No lexical or numeric anchor overlap between element and title/abstract.",
@@ -483,6 +526,7 @@ def coverage_row(
     if not use_model:
         return {
             **base,
+            **coverage_contract_fields(row, "coverage_blocked_retryable", base_coverage_key, "model_disabled"),
             "candidate_atom_coverage_status": "needs_human",
             "candidate_atoms": [],
             "rationale": "Model execution disabled for dry-run plumbing.",
@@ -494,10 +538,21 @@ def coverage_row(
     try:
         raw, latency = ollama_chat(model, backfill_prompt(row, anchors), timeout)
         normalized = normalize_coverage_payload(extract_json_object(raw))
-        return {**base, **normalized, "raw_response": raw, "latency_seconds": latency}
+        status = normalized.get("candidate_atom_coverage_status")
+        coverage_status = "coverage_ready" if status == "ready" else "coverage_blocked_terminal"
+        if status in {"needs_human", "error_retryable"}:
+            coverage_status = "coverage_blocked_retryable"
+        return {
+            **base,
+            **coverage_contract_fields(row, coverage_status, base_coverage_key, status),
+            **normalized,
+            "raw_response": raw,
+            "latency_seconds": latency,
+        }
     except Exception as exc:
         return {
             **base,
+            **coverage_contract_fields(row, "coverage_blocked_retryable", base_coverage_key, "model_call_or_parse_failed"),
             "candidate_atom_coverage_status": "error_retryable",
             "candidate_atoms": [],
             "rationale": "Model call or parse failed.",

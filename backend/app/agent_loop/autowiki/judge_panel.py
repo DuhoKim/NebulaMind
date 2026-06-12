@@ -218,7 +218,7 @@ def _audit_tick(page_id: int, judge_fn, proposal_type: str, judge_model: str) ->
     task_acks_late=True,
     max_retries=0,
 )
-def sonnet_judge_tick(page_id: int = 57) -> dict:
+def sonnet_judge_tick(page_id: int) -> dict:
     return _audit_tick(page_id, judge_sonnet, "sonnet_audit", SONNET_MODEL)
 
 
@@ -227,5 +227,5 @@ def sonnet_judge_tick(page_id: int = 57) -> dict:
     task_acks_late=True,
     max_retries=0,
 )
-def opus_judge_tick(page_id: int = 57) -> dict:
+def opus_judge_tick(page_id: int) -> dict:
     return _audit_tick(page_id, judge_opus, "opus_audit", OPUS_MODEL)

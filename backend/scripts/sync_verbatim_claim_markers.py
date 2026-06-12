@@ -43,8 +43,18 @@ from app.agent_loop.marker_embed.injector import (  # noqa: E402
 )
 
 _PREFIX_TRIES = (250, 200, 160, 120, 80, 60)
-_MARKER_OPEN_RE = re.compile(r"<!--claim:(\d+)-->")
-_MARKER_PAIR_RE = re.compile(r"<!--claim:(\d+)-->.*?<!--/claim:\1-->", re.DOTALL)
+_MARKER_OPEN_RE = re.compile(r"<!--claim:([\d,\s]+)-->")
+_MARKER_PAIR_RE = re.compile(r"<!--claim:([\d,\s]+)-->.*?<!--/claim:\1-->", re.DOTALL)
+
+
+def _expand_claim_groups(groups: list[str]) -> list[int]:
+    ids: list[int] = []
+    for group in groups:
+        for token in group.split(","):
+            token = token.strip()
+            if token:
+                ids.append(int(token))
+    return ids
 
 
 def _norm_for_match(value: str) -> str:
@@ -120,7 +130,7 @@ def sync_page(page_id: int, *, commit: bool, min_chars: int) -> dict:
         ).fetchone()
         source_version = source_version_row[0] if source_version_row else None
 
-        already_markered = {int(m) for m in _MARKER_OPEN_RE.findall(content)}
+        already_markered = set(_expand_claim_groups(_MARKER_OPEN_RE.findall(content)))
 
         claim_rows = db.execute(
             text(
@@ -164,8 +174,8 @@ def sync_page(page_id: int, *, commit: bool, min_chars: int) -> dict:
             close_tag = f"<!--/claim:{cid}-->"
             result = result[:s] + open_tag + result[s:e] + close_tag + result[e:]
 
-        opens = _MARKER_OPEN_RE.findall(result)
-        pairs = _MARKER_PAIR_RE.findall(result)
+        opens = _expand_claim_groups(_MARKER_OPEN_RE.findall(result))
+        pairs = _expand_claim_groups(_MARKER_PAIR_RE.findall(result))
 
         stats = {
             "page_id": page_id,

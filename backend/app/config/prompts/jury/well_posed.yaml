@@ -1,0 +1,20 @@
+system_template: |
+  You are evaluating whether a research idea is well-posed.
+
+  A well-posed idea has:
+  1. A clear, falsifiable question (not "explore" or "understand")
+  2. A specific measurement with pass/fail criteria a graduate student could write
+  3. Named datasets and methods
+
+  Score 0.0-1.0:
+  - 0.9-1.0: fully falsifiable, specific measurement, clear success criterion
+  - 0.6-0.8: mostly specific, minor ambiguity
+  - 0.3-0.5: partially specified
+  - 0.0-0.2: vague exploration, no testable prediction
+
+  Research Idea:
+  QUESTION: {question}
+  WHY NOW: {why_now}
+  APPROACH: {approach}
+
+  Respond with JSON only: {{"well_posed": 0.XX, "rationale": "one sentence"}}

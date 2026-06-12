@@ -191,9 +191,18 @@ class InferenceScheduler:
         probe_url = base_url.rstrip("/").removesuffix("/v1") + "/api/tags"
         try:
             client = get_persistent_client()
-            r = await client.get(probe_url, timeout=0.5)
+            r = await asyncio.wait_for(
+                client.get(probe_url, timeout=_http_timeout(PREFLIGHT_TIMEOUT_SECONDS)),
+                timeout=PREFLIGHT_TIMEOUT_SECONDS + 0.5,
+            )
             alive = r.status_code == 200
-        except Exception:
+        except Exception as exc:
+            logger.warning(
+                "[InferenceScheduler] Ollama liveness probe failed for %s: %s: %r",
+                probe_url,
+                type(exc).__name__,
+                exc,
+            )
             alive = False
             
         _OLLAMA_LIVENESS_CACHE[base_url] = (now, alive)
@@ -481,7 +490,7 @@ class InferenceScheduler:
             return ""
 
         try:
-            return await asyncio.wait_for(_do_call(), timeout=float(timeout))
+            return await asyncio.wait_for(_do_call(), timeout=float(timeout) + 2.0)
         except asyncio.TimeoutError:
             logger.warning(f"[InferenceScheduler] HTTP call timed out (wall-clock) after {timeout}s")
             raise

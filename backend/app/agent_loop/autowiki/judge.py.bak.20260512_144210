@@ -1,0 +1,261 @@
+"""
+Rakon judge wrapper — §5.6, §11. Prompt version: judge_v2-14b (2026-05-12).
+
+- N=5 calls (judge_v2; was N=3 in judge_v1), median rubric scores taken.
+- Temperature 0.0 (judge_v2; was 0.2 in judge_v1) — eliminates the dominant
+  variance source per the 2026-05-12 calibration fail.
+- Prompt loaded from autowiki/prompts/judge_v1.md on disk; inline fallback
+  only when the file is missing.
+- Noise_penalty rubric anchored to concrete textual patterns (banned phrases,
+  forbidden headings, missing-citation crosscheck) — see prompts/judge_v1.md.
+- Content-hash cache keyed on (page_id, content_hash, hero_facts_hash, claims_hash).
+- Buddle fallback (deepseek-r1:32b on Mac Pro) ONLY when >N/2 responses are
+  malformed. Unavailability is NOT a fallback trigger — the tick skips instead.
+- Utility normalization per §11.1: max(0, min(10, (raw + 2) * 10 / 11))
+"""
+import hashlib
+import json
+import statistics
+from pathlib import Path
+from typing import NamedTuple
+
+import httpx
+
+from app.config import settings
+
+_PROMPT_PATH = Path(__file__).parents[4] / "autowiki" / "prompts" / "judge_v1.md"
+PROMPT_VERSION = "judge_v2-14b"
+_CACHE_TTL = 86400  # 24h
+_N = 5
+
+RUBRIC_KEYS = [
+    "findings_clarity",
+    "open_questions_q",
+    "evidence_depth",
+    "frontier_signal",
+    "noise_penalty",
+]
+
+
+class JudgeResult(NamedTuple):
+    utility: float          # 0-10, §11.1 normalized
+    raw_scores: list[dict]  # up to 3 rubric dicts
+    rubric_median: dict     # median of each rubric field
+    rationale: str
+    prompt_version: str
+    model_used: str         # "rakon" or "buddle"
+
+
+# ---------------------------------------------------------------------------
+# Helpers
+# ---------------------------------------------------------------------------
+
+def _load_prompt() -> str:
+    if _PROMPT_PATH.exists():
+        return _PROMPT_PATH.read_text(encoding="utf-8")
+    return (
+        "You are judging an astronomy wiki page for astronomer utility.\n"
+        "Return JSON with: findings_clarity (0-3), open_questions_q (0-3), "
+        "evidence_depth (0-2), frontier_signal (0-1), noise_penalty (-2 to 0), "
+        'rationale (3 sentences). Format: {"findings_clarity":...}'
+    )
+
+
+def _get_redis():
+    try:
+        import redis as redis_lib
+        return redis_lib.from_url(settings.REDIS_URL, decode_responses=True)
+    except Exception:
+        return None
+
+
+def _hash4(page_id: int, content: str, hero_facts: str | None, claims_text: str) -> str:
+    """§1.5 cache key: (page_id, content_hash, hero_facts_hash, claims_hash)."""
+    h = hashlib.sha256(
+        f"{page_id}|{content}|{hero_facts or ''}|{claims_text}".encode()
+    ).hexdigest()[:40]
+    return f"autowiki:judge:{h}"
+
+
+def _parse_rubric(text: str) -> dict | None:
+    """Extract and validate a rubric JSON dict from a response string."""
+    start = text.find("{")
+    end = text.rfind("}") + 1
+    if start == -1 or end <= start:
+        return None
+    try:
+        obj = json.loads(text[start:end])
+    except (json.JSONDecodeError, ValueError):
+        return None
+    # Validate all required keys with numeric values
+    for k in RUBRIC_KEYS:
+        if k not in obj or not isinstance(obj[k], (int, float)):
+            return None
+    # Bounds check
+    if not (-2 <= obj["noise_penalty"] <= 0):
+        return None
+    if not (0 <= obj["findings_clarity"] <= 3):
+        return None
+    return obj
+
+
+def _median_rubric(results: list[dict]) -> dict:
+    medians: dict = {}
+    for k in RUBRIC_KEYS:
+        vals = [r[k] for r in results if isinstance(r.get(k), (int, float))]
+        medians[k] = statistics.median(vals) if vals else 0.0
+    rationales = [r.get("rationale", "") for r in results if r.get("rationale")]
+    medians["rationale"] = rationales[0] if rationales else ""
+    return medians
+
+
+def _rubric_to_utility(rubric: dict) -> float:
+    raw = sum(rubric.get(k, 0) for k in RUBRIC_KEYS)
+    return round(max(0.0, min(10.0, (raw + 2) * 10 / 11)), 4)
+
+
+# ---------------------------------------------------------------------------
+# Model calls
+# ---------------------------------------------------------------------------
+
+def _ollama_base() -> str:
+    """Return OLLAMA_BASE_URL normalised to include exactly one /v1 suffix."""
+    url = settings.OLLAMA_BASE_URL.rstrip("/")
+    if not url.endswith("/v1"):
+        url += "/v1"
+    return url
+
+
+def _call_rakon(system: str, user_msg: str, timeout: int = 180) -> dict | None:
+    base = _ollama_base()
+    try:
+        resp = httpx.post(
+            f"{base}/chat/completions",
+            json={
+                "model": "deepseek-r1:14b",
+                "messages": [
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user_msg},
+                ],
+                "temperature": 0.0,
+                "options": {"num_ctx": 8192},
+            },
+            timeout=timeout,
+        )
+        resp.raise_for_status()
+        text = resp.json()["choices"][0]["message"]["content"]
+        return _parse_rubric(text)
+    except Exception:
+        return None
+
+
+def _call_buddle(system: str, user_msg: str) -> dict | None:
+    """Buddle = deepseek-r1:32b on Mac Pro. Used ONLY when >2/3 Rakon calls malformed."""
+    base = _ollama_base()
+    try:
+        resp = httpx.post(
+            f"{base}/chat/completions",
+            json={
+                "model": "deepseek-r1:32b",
+                "messages": [
+                    {"role": "system", "content": system},
+                    {"role": "user", "content": user_msg},
+                ],
+                "temperature": 0.1,
+                "options": {"num_ctx": 8192},
+            },
+            timeout=120,
+        )
+        resp.raise_for_status()
+        text = resp.json()["choices"][0]["message"]["content"]
+        return _parse_rubric(text)
+    except Exception:
+        return None
+
+
+# ---------------------------------------------------------------------------
+# Public API
+# ---------------------------------------------------------------------------
+
+def judge_page(
+    page_id: int,
+    content: str,
+    hero_facts: str | None,
+    claims_text: str,
+    force: bool = False,
+) -> JudgeResult:
+    """
+    Judge a page state. Returns JudgeResult.
+    Cache key: (page_id, content_hash, hero_facts_hash, claims_hash).
+    N=_N Rakon calls → median. If >N/2 malformed, fall back to Buddle once.
+    """
+    cache_key = _hash4(page_id, content, hero_facts, claims_text)
+    r = _get_redis()
+
+    if not force and r:
+        try:
+            cached = r.get(cache_key)
+            if cached:
+                obj = json.loads(cached)
+                return JudgeResult(**obj)
+        except Exception:
+            pass
+
+    system = _load_prompt()
+    user_msg = (
+        f"===PAGE===\n{content[:4000]}\n\n"
+        f"===CLAIMS===\n{claims_text[:1500]}\n\n"
+        f"===EVIDENCE===\n(see inline citations in page text)"
+    )
+
+    raw_results: list[dict] = []
+    malformed = 0
+    for _ in range(_N):
+        result = _call_rakon(system, user_msg)
+        if result is not None:
+            raw_results.append(result)
+        else:
+            malformed += 1
+
+    model_used = "deepseek-r1:14b"
+    # Buddle fallback: >2/3 malformed means 2 or 3 of 3 are bad
+    if malformed > _N // 2:  # i.e., >= 2 of 3
+        buddle = _call_buddle(system, user_msg)
+        if buddle:
+            raw_results = [buddle]
+        model_used = "buddle"
+
+    if not raw_results:
+        # All sources failed — return a minimal zero-score result (tick will error)
+        rubric_median = {k: 0 for k in RUBRIC_KEYS}
+        rubric_median["rationale"] = "All judge calls failed."
+        result = JudgeResult(
+            utility=0.0,
+            raw_scores=[],
+            rubric_median=rubric_median,
+            rationale="All judge calls failed.",
+            prompt_version=PROMPT_VERSION,
+            model_used="none",
+        )
+        return result
+
+    rubric_median = _median_rubric(raw_results)
+    utility = _rubric_to_utility(rubric_median)
+    rationale = rubric_median.get("rationale", "")
+
+    jr = JudgeResult(
+        utility=utility,
+        raw_scores=raw_results,
+        rubric_median=rubric_median,
+        rationale=rationale,
+        prompt_version=PROMPT_VERSION,
+        model_used=model_used,
+    )
+
+    if r:
+        try:
+            r.setex(cache_key, _CACHE_TTL, json.dumps(jr._asdict()))
+        except Exception:
+            pass
+
+    return jr

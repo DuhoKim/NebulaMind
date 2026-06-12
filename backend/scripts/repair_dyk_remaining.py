@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fix remaining 6 vague did_you_know entries using phi4:14b (fast)."""
+"""Fix remaining 6 vague did_you_know entries using gpt-oss:20b (fast)."""
 import sys, os, json, urllib.request, re
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from app.database import SessionLocal
@@ -7,7 +7,7 @@ from app.models.page import WikiPage
 from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
-MODEL = "phi4:14b"
+MODEL = "gpt-oss:20b"
 SLUGS = ["magnetars", "milky-way", "neutron-stars", "quasars", "spacetime", "supernovae"]
 FORBIDDEN = {"million", "billion", "trillion", "thousand", "hundred"}
 

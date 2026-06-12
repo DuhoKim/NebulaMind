@@ -1,0 +1,77 @@
+"""Stage B: embed sentences and claims with nomic-embed-text:v1.5 via Ollama.
+
+Embeddings are cached in-process by content hash. Cache is per-process and
+reset on Celery worker restart — acceptable since the embedding call is cheap
+(~5 ms/sentence) and the cache only needs to save repeated calls within a
+single pipeline run.
+"""
+import hashlib
+import logging
+import math
+from typing import Optional
+
+import httpx
+
+log = logging.getLogger(__name__)
+
+OLLAMA_BASE = "http://localhost:11434"
+EMBED_MODEL = "nomic-embed-text:v1.5"
+COSINE_FLOOR = 0.45
+TOP_K = 3
+
+_cache: dict[str, Optional[list[float]]] = {}
+
+
+def _cache_key(text: str) -> str:
+    return hashlib.sha256(text.encode()).hexdigest()[:20]
+
+
+def _embed(text: str) -> Optional[list[float]]:
+    key = _cache_key(text)
+    if key in _cache:
+        return _cache[key]
+    try:
+        resp = httpx.post(
+            f"{OLLAMA_BASE}/api/embeddings",
+            json={"model": EMBED_MODEL, "prompt": text},
+            timeout=30,
+        )
+        resp.raise_for_status()
+        vec = resp.json().get("embedding")
+        _cache[key] = vec
+        return vec
+    except Exception as exc:
+        log.warning("embed_index: embed failed text[:60]=%r err=%s", text[:60], exc)
+        _cache[key] = None
+        return None
+
+
+def _cosine(a: list[float], b: list[float]) -> float:
+    dot = sum(x * y for x, y in zip(a, b))
+    na = math.sqrt(sum(x * x for x in a))
+    nb = math.sqrt(sum(x * x for x in b))
+    if na == 0.0 or nb == 0.0:
+        return 0.0
+    return dot / (na * nb)
+
+
+def rank_candidates(claim_text: str, sentences: list[str]) -> list[tuple[str, float]]:
+    """
+    Return up to TOP_K sentences scored ≥ COSINE_FLOOR, sorted by cosine desc.
+    Returns [] if the claim embedding fails.
+    """
+    claim_vec = _embed(claim_text)
+    if claim_vec is None:
+        return []
+
+    scored: list[tuple[str, float]] = []
+    for sent in sentences:
+        vec = _embed(sent)
+        if vec is None:
+            continue
+        score = _cosine(claim_vec, vec)
+        if score >= COSINE_FLOOR:
+            scored.append((sent, score))
+
+    scored.sort(key=lambda x: x[1], reverse=True)
+    return scored[:TOP_K]

@@ -44,6 +44,11 @@ interface EvidenceItem {
   comments_count: number;
   element_links: ElementLink[];
   link_count: number;
+  relevance?: number | null;
+  entailment?: number | null;
+  rigor?: number | null;
+  confidence?: number | null;
+  quality_v2?: number | null;
 }
 
 const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
@@ -89,11 +94,11 @@ function IdeaQuestion({ text }: { text: string }) {
 }
 
 const TRUST_STYLES: Record<string, string> = {
-  consensus: "border-l-4 border-green-400 bg-green-900/50",
-  accepted: "border-l-4 border-blue-400 bg-blue-900/50",
-  debated: "border-l-4 border-orange-400 bg-orange-900/55",
-  challenged: "border-l-4 border-red-500 bg-red-900/60",
-  unverified: "border-l-2 border-gray-500 bg-gray-800/40",
+  consensus:  "border-l-4 border-green-400 bg-green-900/30",
+  accepted:   "border-l-4 border-blue-400 bg-blue-900/30",
+  debated:    "border-l-4 border-orange-400 bg-orange-900/35",
+  challenged: "border-l-4 border-red-500 bg-red-900/40",
+  unverified: "border-l-2 border-gray-600 bg-gray-800/20",
 };
 
 const TRUST_LABELS: Record<string, string> = {
@@ -106,24 +111,20 @@ const TRUST_LABELS: Record<string, string> = {
 
 const TRUST_BADGE: Record<string, { label: string; style: React.CSSProperties }> = {
   consensus: {
-    label: "🟢 consensus",
+    label: "consensus",
     style: { background: "rgba(34,197,94,0.28)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.65)", fontWeight: 700 },
   },
   accepted: {
-    label: "✅ accepted",
+    label: "accepted",
     style: { background: "rgba(59,130,246,0.25)", color: "#93c5fd", border: "1px solid rgba(59,130,246,0.6)", fontWeight: 700 },
   },
   debated: {
-    label: "🟠 debated",
+    label: "debated",
     style: { background: "rgba(249,115,22,0.28)", color: "#fb923c", border: "1px solid rgba(249,115,22,0.65)", fontWeight: 700 },
   },
   challenged: {
-    label: "🔴 challenged",
+    label: "challenged",
     style: { background: "rgba(239,68,68,0.30)", color: "#f87171", border: "1px solid rgba(239,68,68,0.7)", fontWeight: 700 },
-  },
-  unverified: {
-    label: "⬜ unverified",
-    style: { background: "rgba(100,116,139,0.22)", color: "#94a3b8", border: "1px solid rgba(100,116,139,0.5)" },
   },
 };
 
@@ -133,11 +134,12 @@ const STANCE_ICON: Record<string, string> = {
   neutral: "➖",
 };
 
-export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimData; showColors: boolean; ideas?: IdeaSummary[] }) {
+export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false }: { claim: ClaimData; showColors: boolean; ideas?: IdeaSummary[]; showIdeas?: boolean }) {
   const [open, setOpen] = useState(false);
   const [evidence, setEvidence] = useState<EvidenceItem[] | null>(null);
   const [totalElements, setTotalElements] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [hoveredEvId, setHoveredEvId] = useState<number | null>(null);
 
   // Edit proposal state
   const [showEditModal, setShowEditModal] = useState(false);
@@ -229,7 +231,7 @@ export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimD
       >
         📄{claim.evidence_count > 0 ? claim.evidence_count : ""}
       </button>
-      {ideas && ideas.length > 0 && (() => {
+      {showIdeas && ideas && ideas.length > 0 && (() => {
         const isOpen = ['debated', 'challenged'].includes(claim.trust_level) || (claim.con_count ?? 0) >= 2;
         const chipStyle = isOpen
           ? { color: "#fbbf24", fontWeight: 700, background: "rgba(251,191,36,0.12)", borderRadius: "4px", padding: "1px 5px", border: "1px solid rgba(251,191,36,0.3)" }
@@ -349,10 +351,99 @@ export default function ClaimBlock({ claim, showColors, ideas }: { claim: ClaimD
                     </div>
                   )}
                   {ev.summary && <p className="text-xs text-gray-500 mt-1 leading-relaxed">{ev.summary}</p>}
-                  <div className="flex gap-2 mt-1 text-xs text-gray-400">
-                    <span>👍 {ev.votes_agree}</span>
-                    <span>👎 {ev.votes_disagree}</span>
-                    <span>💬 {ev.comments_count}</span>
+                  <div className="flex gap-2 mt-1 text-xs text-gray-400 items-center justify-between">
+                    <div className="flex gap-2">
+                      <span>👍 {ev.votes_agree}</span>
+                      <span>👎 {ev.votes_disagree}</span>
+                      <span>💬 {ev.comments_count}</span>
+                    </div>
+
+                    {/* Scorecard Integration */}
+                    {ev.quality_v2 !== undefined && ev.quality_v2 !== null ? (
+                      <div className="relative">
+                        <span
+                          onMouseEnter={() => setHoveredEvId(ev.id)}
+                          onMouseLeave={() => setHoveredEvId(null)}
+                          style={{
+                            fontSize: "0.68rem",
+                            fontWeight: 700,
+                            padding: "2px 6px",
+                            borderRadius: "4px",
+                            cursor: "help",
+                            userSelect: "none",
+                            background: ev.quality_v2 >= 0.8 
+                              ? "rgba(16,185,129,0.15)" 
+                              : ev.quality_v2 >= 0.5 
+                                ? "rgba(245,158,11,0.15)" 
+                                : "rgba(239,68,68,0.15)",
+                            color: ev.quality_v2 >= 0.8 
+                              ? "#10b981" 
+                              : ev.quality_v2 >= 0.5 
+                                ? "#fbbf24" 
+                                : "#ef4444",
+                            border: ev.quality_v2 >= 0.8 
+                              ? "1px solid rgba(16,185,129,0.3)" 
+                              : ev.quality_v2 >= 0.5 
+                                ? "1px solid rgba(245,158,11,0.3)" 
+                                : "1px solid rgba(239,68,68,0.3)",
+                          }}
+                        >
+                          ⚖️ {Math.round(ev.quality_v2 * 100)}% Quality
+                        </span>
+
+                        {hoveredEvId === ev.id && (
+                          <div
+                            className="absolute right-0 bottom-full mb-2 bg-slate-900 border border-slate-700 text-slate-100 rounded-lg p-3 shadow-2xl z-50 text-left"
+                            style={{ width: "200px" }}
+                          >
+                            <h4 className="text-xs font-bold text-white mb-2 border-b border-slate-700 pb-1 flex items-center justify-between">
+                              <span>Trust Scorecard</span>
+                              <span style={{ 
+                                color: ev.quality_v2 >= 0.8 ? "#10b981" : ev.quality_v2 >= 0.5 ? "#fbbf24" : "#ef4444" 
+                              }}>
+                                {Math.round(ev.quality_v2 * 100)}%
+                              </span>
+                            </h4>
+                            {[
+                              { label: "Relevance", val: ev.relevance },
+                              { label: "Factual Entailment", val: ev.entailment },
+                              { label: "Methodological Rigor", val: ev.rigor },
+                              { label: "Consensus/Confidence", val: ev.confidence }
+                            ].map(({ label, val }) => {
+                              const percent = Math.min(100, Math.max(0, Math.round((val ?? 0) * 100)));
+                              return (
+                                <div key={label} className="mb-2 last:mb-0">
+                                  <div className="flex justify-between text-[10px] text-slate-400 font-medium">
+                                    <span>{label}</span>
+                                    <span>{percent}%</span>
+                                  </div>
+                                  <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-0.5">
+                                    <div 
+                                      className="bg-indigo-500 h-full rounded-full transition-all duration-300" 
+                                      style={{ width: `${percent}%` }}
+                                    />
+                                  </div>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    ) : (
+                      <span 
+                        style={{
+                          fontSize: "0.68rem",
+                          fontWeight: 600,
+                          padding: "2px 6px",
+                          borderRadius: "4px",
+                          background: "rgba(59,130,246,0.1)",
+                          color: "#3b82f6",
+                          border: "1px solid rgba(59,130,246,0.2)"
+                        }}
+                      >
+                        ✓ Verified / Accepted
+                      </span>
+                    )}
                   </div>
                 </div>
               </div>

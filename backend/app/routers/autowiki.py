@@ -17,7 +17,7 @@ router = APIRouter(prefix="/api/autowiki", tags=["autowiki"])
 
 @router.get("/runs")
 def get_runs(
-    page_id: int = Query(default=57),
+    page_id: int = Query(...),
     limit: int = Query(default=50, le=200),
     decision: str | None = Query(default=None),
     db: Session = Depends(get_db),
@@ -64,7 +64,7 @@ def _run_dict(r: AutowikiRun) -> dict:
 
 @router.get("/summary")
 def get_summary(
-    page_id: int = Query(default=57),
+    page_id: int = Query(...),
     db: Session = Depends(get_db),
 ):
     target_row = db.query(AutowikiTarget).filter(
@@ -140,7 +140,7 @@ def get_summary(
 
 @router.get("/trajectory")
 def get_trajectory(
-    page_id: int = Query(default=57),
+    page_id: int = Query(...),
     limit: int = Query(default=200, le=500),
     db: Session = Depends(get_db),
 ):
@@ -194,7 +194,7 @@ def get_trajectory(
 
 @router.get("/judge-panel")
 def get_judge_panel(
-    page_id: int = Query(default=57),
+    page_id: int = Query(...),
     db: Session = Depends(get_db),
 ):
     def _latest_audit(proposal_type_filter) -> dict | None:

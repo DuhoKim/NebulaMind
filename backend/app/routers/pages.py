@@ -3,6 +3,7 @@ from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from slugify import slugify
 from typing import Optional
+import json
 
 from app.database import get_db
 from app.models.page import WikiPage, PageVersion
@@ -40,8 +41,48 @@ class PageOut(BaseModel):
     editor_agent_tier: str | None = None
     synthesized_date: str | None = None
     version_num: int | None = None
+    relevance: float | None = None
+    entailment: float | None = None
+    rigor: float | None = None
+    confidence: float | None = None
+    quality_v2: float | None = None
 
     model_config = {"from_attributes": True}
+
+
+class CitationOut(BaseModel):
+    seq: int
+    evidence_id: int
+    author_year_key: str
+    title: str
+    authors: list[str] = []
+    year: int | None = None
+    doi: str | None = None
+    arxiv_id: str | None = None
+    url: str | None = None
+    summary: str | None = None
+    abstract: str | None = None
+    journal_ref: str | None = None
+
+
+class PageCitationsOut(BaseModel):
+    citations: list[CitationOut]
+
+
+def _parse_authors(raw: str | None) -> list[str]:
+    if not raw:
+        return []
+    try:
+        parsed = json.loads(raw)
+        if isinstance(parsed, list):
+            return [str(item) for item in parsed]
+    except Exception:
+        pass
+    # Support splitting by both semicolon and comma
+    for d in [";", ","]:
+        if d in raw:
+            return [part.strip() for part in raw.split(d) if part.strip()]
+    return [raw.strip()]
 
 
 class ProposalCreate(BaseModel):
@@ -164,14 +205,80 @@ def get_page(slug: str, db: Session = Depends(get_db)):
     )
 
 
+@router.get("/{slug}/citations", response_model=PageCitationsOut)
+def get_page_citations(slug: str, db: Session = Depends(get_db)):
+    from sqlalchemy import text
+
+    page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
+    if not page:
+        raise HTTPException(404, "Page not found")
+
+    rows = db.execute(
+        text(
+            """
+            SELECT
+                pcl.evidence_id,
+                pcl.author_year_key,
+                e.title,
+                e.authors,
+                e.year,
+                e.doi,
+                e.arxiv_id,
+                e.url,
+                e.summary,
+                e.abstract,
+                e.journal_ref
+            FROM page_citation_links pcl
+            JOIN evidence e ON e.id = pcl.evidence_id
+            WHERE pcl.page_id = :page_id
+            ORDER BY pcl.id
+            """
+        ),
+        {"page_id": page.id},
+    ).fetchall()
+
+    seen: dict[int, int] = {}
+    citations: list[CitationOut] = []
+    for row in rows:
+        if row.evidence_id in seen:
+            continue
+        seq = len(seen) + 1
+        seen[row.evidence_id] = seq
+        url = row.url
+        if not url and row.doi:
+            url = f"https://doi.org/{row.doi}"
+        elif not url and row.arxiv_id:
+            arxiv_id = str(row.arxiv_id).replace("arXiv:", "")
+            url = f"https://arxiv.org/abs/{arxiv_id}"
+        citations.append(
+            CitationOut(
+                seq=seq,
+                evidence_id=row.evidence_id,
+                author_year_key=row.author_year_key,
+                title=row.title or f"Evidence {row.evidence_id}",
+                authors=_parse_authors(row.authors),
+                year=row.year,
+                doi=row.doi,
+                arxiv_id=row.arxiv_id,
+                url=url,
+                summary=row.summary,
+                abstract=row.abstract,
+                journal_ref=row.journal_ref,
+            )
+        )
+    return PageCitationsOut(citations=citations)
+
+
 @router.post("", response_model=PageOut, status_code=201)
 def create_page(body: PageCreate, db: Session = Depends(get_db)):
-    page = WikiPage(title=body.title, slug=slugify(body.title), content=body.content)
+    from app.services.content_canonicalizer import canonicalize
+    canon_content = canonicalize(body.content, db=db).new_content
+    page = WikiPage(title=body.title, slug=slugify(body.title), content=canon_content)
     db.add(page)
     db.commit()
     db.refresh(page)
     # Save initial version
-    v = PageVersion(page_id=page.id, version_num=1, content=body.content)
+    v = PageVersion(page_id=page.id, version_num=1, content=canon_content)
     db.add(v)
     db.commit()
     return page
@@ -182,7 +289,11 @@ def update_page(slug: str, body: PageUpdate, db: Session = Depends(get_db)):
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
         raise HTTPException(404, "Page not found")
-    page.content = body.content
+    
+    from app.services.content_canonicalizer import canonicalize
+    canon_content = canonicalize(body.content, page_id=page.id, db=db).new_content
+
+    page.content = canon_content
     if body.hero_tagline is not None:
         page.hero_tagline = body.hero_tagline
     if body.hero_facts is not None:
@@ -201,13 +312,18 @@ def update_page(slug: str, body: PageUpdate, db: Session = Depends(get_db)):
         .first()
     )
     next_num = (last_version.version_num + 1) if last_version else 1
-    db.add(PageVersion(page_id=page.id, version_num=next_num, content=body.content))
+    db.add(PageVersion(page_id=page.id, version_num=next_num, content=canon_content))
     db.commit()
     db.refresh(page)
     # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
     try:
         from app.agent_loop.marker_embed.tasks import emit_reembed
         emit_reembed(page.id)
+    except Exception:
+        pass
+    try:
+        from app.agent_loop.autowiki.citation_context import emit_citation_scrub_required
+        emit_citation_scrub_required(page.id)
     except Exception:
         pass
     return page
@@ -358,8 +474,10 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
         approve_count = db.query(Vote).filter(Vote.edit_id == proposal.id, Vote.value > 0).count()
         if approve_count >= settings.VOTE_THRESHOLD:
             proposal.status = EditStatus.APPROVED
-            old_content = page.content
-            page.content = proposal.content
+            from app.services.content_canonicalizer import canonicalize
+
+            canon_content = canonicalize(proposal.content, page_id=page.id, db=db).new_content
+            page.content = canon_content
             last = (
                 db.query(PageVersion)
                 .filter(PageVersion.page_id == page.id)
@@ -370,10 +488,15 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
             db.add(PageVersion(
                 page_id=page.id,
                 version_num=next_num,
-                content=old_content,
+                content=canon_content,
                 editor_agent_id=body.agent_id,
             ))
             db.commit()
+            try:
+                from app.agent_loop.autowiki.citation_context import emit_citation_scrub_required
+                emit_citation_scrub_required(page.id)
+            except Exception:
+                pass
 
     return vote
 
@@ -570,7 +693,10 @@ def get_page_research_ideas(
     if page_row is None:
         raise HTTPException(404, f"Wiki page '{slug}' not found")
 
-    conditions = "ri.page_id = :pid AND ri.status NOT IN ('superseded', 'rejected', 'stale')"
+    conditions = (
+        "ri.page_id = :pid AND ri.status NOT IN ('superseded', 'rejected', 'stale') "
+        "AND (ri.coverage_status IS NULL OR ri.coverage_status IN ('screened_pass', 'partial', 'inconclusive'))"
+    )
     params: dict = {"pid": page_row.id}
 
     if combo:
@@ -594,7 +720,9 @@ def get_page_research_ideas(
             SELECT ri.id, ri.survey_combo, ri.question, ri.why_now, ri.approach,
                    ri.systematics_json, ri.novelty, ri.feasibility, ri.status,
                    ri.model_chain, ri.saved_by_papa, ri.seeded,
-                   ri.created_at, ri.updated_at, ri.last_seen_at
+                   ri.created_at, ri.updated_at, ri.last_seen_at,
+                   ri.claim_id, ri.coverage_status, ri.closest_prior_work,
+                   ri.coverage_checked_at, ri.factual_verification_notes
             FROM research_ideas ri
             WHERE {conditions}
             ORDER BY {order_clause}
@@ -633,6 +761,14 @@ def get_page_research_ideas(
             "novelty": float(r.novelty),
             "feasibility": float(r.feasibility),
             "status": r.status,
+            "claim_id": getattr(r, "claim_id", None),
+            "coverage_status": getattr(r, "coverage_status", None),
+            "closest_prior_work": r.closest_prior_work if isinstance(getattr(r, "closest_prior_work", None), list) else (
+                _json.loads(r.closest_prior_work) if getattr(r, "closest_prior_work", None) else []
+            ),
+            "coverage_checked_at": r.coverage_checked_at.isoformat() if getattr(r, "coverage_checked_at", None) else None,
+            "display_badge": "unverified" if getattr(r, "coverage_status", None) in (None, "inconclusive") else None,
+            "papers_checked": (r.factual_verification_notes or {}).get("papers_checked") if isinstance(getattr(r, "factual_verification_notes", None), dict) else None,
             "model_chain": r.model_chain,
             "saved_by_papa": r.saved_by_papa,
             "seeded": r.seeded,

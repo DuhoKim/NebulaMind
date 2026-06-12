@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── Claim trust-level inline markers (Design_TrustLevelUI_v1) ── */
+.claim-inline {
+  cursor: pointer;
+  text-decoration-line: underline;
+  text-underline-offset: 3px;
+  border-radius: 2px;
+  transition: background-color 120ms ease;
+}
+.claim-inline--consensus  { text-decoration-style: solid;  text-decoration-color: #22c55e; text-decoration-thickness: 2px; }
+.claim-inline--accepted   { text-decoration-style: solid;  text-decoration-color: #3b82f6; text-decoration-thickness: 2px; }
+.claim-inline--debated    { text-decoration-style: dashed; text-decoration-color: #f97316; text-decoration-thickness: 2px; }
+.claim-inline--challenged { text-decoration-style: solid;  text-decoration-color: #ef4444; text-decoration-thickness: 2px;
+                            background-color: rgba(239, 68, 68, 0.07); }
+.claim-inline--unverified { text-decoration-style: dotted; text-decoration-color: rgba(100, 116, 139, 0.55); text-decoration-thickness: 1px; }
+.claim-inline--consensus:hover  { background-color: rgba(34, 197, 94, 0.10); }
+.claim-inline--accepted:hover   { background-color: rgba(59, 130, 246, 0.10); }
+.claim-inline--debated:hover    { background-color: rgba(249, 115, 22, 0.10); }
+.claim-inline--challenged:hover { background-color: rgba(239, 68, 68, 0.14); }
+.claim-inline--unverified:hover { background-color: rgba(100, 116, 139, 0.10); }
+
+/* ── Surveys Tab Overhaul classes (Design_SurveysTab_Overhaul_v1) ── */
+.survey-card {
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+.survey-card:hover {
+  border-color: #3b82f6 !important;
+}
+.band-seg {
+  transition: all 120ms ease;
+}
+.band-seg--active {
+  background-color: #1e293b !important;
+  box-shadow: inset 0 0 0 1px #334155;
+}
+.band-seg--empty {
+  opacity: 0.25;
+  cursor: not-allowed;
+  pointer-events: none;
+}

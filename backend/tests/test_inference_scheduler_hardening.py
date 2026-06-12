@@ -37,7 +37,9 @@ async def test_ollama_alive_probe(monkeypatch):
         
         alive = await scheduler._ollama_alive(base_url)
         assert alive is True
-        mock_get.assert_called_once_with("http://localhost:11434/api/tags", timeout=0.5)
+        mock_get.assert_called_once()
+        assert mock_get.call_args.args[0] == "http://localhost:11434/api/tags"
+        assert isinstance(mock_get.call_args.kwargs["timeout"], httpx.Timeout)
 
 @pytest.mark.anyio
 async def test_circuit_breaker_blackout(monkeypatch):
@@ -108,16 +110,98 @@ async def test_make_http_call_timeout(monkeypatch):
         "api_key": "ollama"
     }
     
-    # Mock get_persistent_client to hang
     async def slow_post(*args, **kwargs):
         await asyncio.sleep(5.0)
         return MagicMock()
-        
-    with patch("app.services.inference_scheduler.get_persistent_client") as mock_client_factory:
-        mock_client = MagicMock()
-        mock_client.post = slow_post
-        mock_client_factory.return_value = mock_client
-        
-        # Expect TimeoutError within 1 second
+
+    class SlowClient:
+        def __init__(self, *args, **kwargs):
+            self.timeout = kwargs.get("timeout")
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *args):
+            return None
+
+        post = slow_post
+
+    with patch("app.services.inference_scheduler.httpx.AsyncClient", SlowClient):
         with pytest.raises(asyncio.TimeoutError):
             await scheduler._make_http_call(juror_spec, "test prompt", timeout=1)
+
+
+@pytest.mark.anyio
+async def test_local_http_call_uses_native_ollama_api_with_num_ctx(monkeypatch):
+    scheduler = InferenceScheduler()
+    juror_spec = {
+        "model": "qwen3:30b",
+        "base_url": "http://localhost:11434/v1",
+        "api_key": "ollama",
+        "temperature": 0.2,
+    }
+    calls = []
+
+    class FakeResponse:
+        def raise_for_status(self):
+            return None
+
+        def json(self):
+            return {"message": {"content": "###VERDICT: ABSTAIN"}}
+
+    class FakeClient:
+        def __init__(self, *args, **kwargs):
+            self.timeout = kwargs.get("timeout")
+
+        async def __aenter__(self):
+            return self
+
+        async def __aexit__(self, *args):
+            return None
+
+        async def post(self, url, **kwargs):
+            calls.append((url, kwargs))
+            return FakeResponse()
+
+    with patch("app.services.inference_scheduler.httpx.AsyncClient", FakeClient):
+        result = await scheduler._make_http_call(juror_spec, "test prompt", timeout=5, system_prompt="system")
+
+    assert "ABSTAIN" in result
+    assert calls[0][0] == "http://localhost:11434/api/chat"
+    assert calls[0][1]["json"]["options"]["num_ctx"] == 8192
+    assert calls[0][1]["json"]["options"]["temperature"] == 0.2
+    assert "headers" not in calls[0][1]
+
+
+@pytest.mark.anyio
+async def test_local_fallback_skipped_after_preflight_failure(monkeypatch):
+    scheduler = InferenceScheduler()
+    juror_spec = {
+        "label": "Mima",
+        "model": "qwen3:30b",
+        "base_url": "http://localhost:11434/v1",
+        "api_key": "ollama",
+    }
+
+    monkeypatch.setattr("app.services.inference_scheduler.settings.GEMINI_API_KEY", "")
+    monkeypatch.setattr("app.services.inference_scheduler.settings.OLLAMA_STUDIO_FAST_MODEL", "deepseek-r1:14b")
+
+    called = False
+
+    async def fake_make_http_call(*args, **kwargs):
+        nonlocal called
+        called = True
+        return "SHOULD_NOT_RUN"
+
+    monkeypatch.setattr(scheduler, "_make_http_call", fake_make_http_call)
+
+    result = await scheduler._execute_fallback(
+        juror_spec,
+        "prompt",
+        timeout=360,
+        system_prompt="system",
+        reason="preflight_failed",
+    )
+
+    assert result is None
+    assert called is False

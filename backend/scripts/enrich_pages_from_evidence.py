@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 One-shot: enrich wiki pages' Current Research sections with top evidence.
-Uses local Ollama gemma3:27b. ~30s per page, ~21 min for all 42.
+Uses local Ollama qwen3.6:27b-nvfp4. ~30s per page, ~21 min for all 42.
 
 Usage:
   .venv/bin/python3 scripts/enrich_pages_from_evidence.py --dry-run --limit 3
@@ -15,7 +15,7 @@ from app.models.claim import Claim, Evidence
 from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
-MODEL = "gemma3:27b"
+MODEL = "qwen3.6:27b-nvfp4"
 
 SYSTEM = """You are an astronomy wiki editor enriching a 'Current Research' section with recent findings.
 

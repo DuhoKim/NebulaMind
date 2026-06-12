@@ -1,9 +1,10 @@
 from celery import Celery
 from celery.schedules import crontab
+import os
 
 from app.config import settings
 
-celery_app = Celery("nebulamind", broker=settings.REDIS_URL, backend=settings.REDIS_URL, include=["app.agent_loop.tasks", "app.agent_loop.arxiv_fetch", "app.agent_loop.newsletter", "app.agent_loop.facility_curation", "app.agent_loop.news_curator", "app.agent_loop.doi_backfill", "app.agent_loop.autowiki.tasks", "app.agent_loop.autowiki.deep_synthesis", "app.agent_loop.autowiki.judge_panel", "app.agent_loop.research_ideas.auto_improvement", "app.agent_loop.research_ideas.dataset_verify", "app.agent_loop.autowiki_surveys.tasks", "app.agent_loop.autowiki_surveys.daily_url_health", "app.agent_loop.autowiki_surveys.weekly_audit", "app.agent_loop.marker_embed.tasks", "app.services.liveness_monitor", "app.services.model_canary"])
+celery_app = Celery("nebulamind", broker=settings.REDIS_URL, backend=settings.REDIS_URL, include=["app.agent_loop.tasks", "app.agent_loop.arxiv_fetch", "app.agent_loop.newsletter", "app.agent_loop.facility_curation", "app.agent_loop.news_curator", "app.agent_loop.doi_backfill", "app.agent_loop.autowiki.tasks", "app.agent_loop.autowiki.deep_synthesis", "app.agent_loop.autowiki.judge_panel", "app.agent_loop.research_ideas.auto_improvement", "app.agent_loop.research_ideas.dataset_verify", "app.agent_loop.registry", "app.agent_loop.autowiki_surveys.tasks", "app.agent_loop.autowiki_surveys.daily_url_health", "app.agent_loop.autowiki_surveys.weekly_audit", "app.agent_loop.marker_embed.tasks", "app.services.liveness_monitor", "app.services.model_canary"])
 
 celery_app.conf.update(
     task_serializer="json",
@@ -60,6 +61,11 @@ celery_app.conf.update(
         "cluster-new-topic-candidates-daily": {
             "task": "app.agent_loop.tasks.cluster_new_topic_candidates",
             "schedule": crontab(hour=2, minute=0),  # UTC 02:00 = KST 11:00, same slot as coverage-map
+        },
+        # D1 triage (state audit 2026-06-12): expire >30d low-sim, enforce queue cap
+        "triage-new-page-proposals-daily": {
+            "task": "app.agent_loop.tasks.triage_new_page_proposals",
+            "schedule": crontab(hour=2, minute=40),  # after the daily clustering run
         },
         "drain-stance-jury-hourly": {
             "task": "app.agent_loop.tasks.drain_stance_jury_backlog",
@@ -137,10 +143,11 @@ celery_app.conf.update(
         },
         # autowiki-tick: disabled behind Redis flag `autowiki:enabled`
         # Enable via: redis-cli set autowiki:enabled 1
-        # Pilot page is hardcoded in tasks.py (PILOT_PAGE_ID=57)
+        # Page selection moves to page_orchestration when BEAT_SCHEDULE_MODE != legacy.
         "autowiki-tick": {
             "task": "app.agent_loop.autowiki.tasks.autowiki_tick",
             "schedule": 600.0,  # v3: 15 min → 10 min (144 ticks/day)
+            "kwargs": {"page_id": 57},
         },
         # rakon-deep-pass: tightened from 6h to 2h (§9.5.2 v2)
         "rakon-deep-pass-2h": {
@@ -257,11 +264,15 @@ celery_app.conf.update(
             "schedule": crontab(hour=2, minute=0, day_of_week=0),  # Every Sunday 02:00 UTC
             "kwargs": {"page_id": 57},
         },
-        # P1-A: drain evidence for page 57 (every 30 mins)
+        # P1-A: drain evidence for page 57 (hourly)
         "drain-evidence-p57": {
             "task": "app.agent_loop.tasks.drain_evidence_for_page",
-            "schedule": crontab(hour=7, minute=30, day_of_week=0),  # weekly cleanup sweep
+            "schedule": crontab(minute=30),
             "kwargs": {"page_id": 57},
+        },
+        "backfill-intro-excerpts": {
+            "task": "app.agent_loop.tasks.backfill_intro_excerpts",
+            "schedule": crontab(minute=10, hour="*/2"),
         },
         # P1-C: nightly verbatim sync + alarm (daily at 03:00 UTC)
         "sync-verbatim-nightly-p57": {
@@ -272,10 +283,72 @@ celery_app.conf.update(
     },
 )
 
+
+_REGISTRY_DISPATCH_TASK = "app.agent_loop.registry.dispatch_lane"
+_REGISTRY_BEAT_ENTRIES = {
+    "autowiki-tick": {"lane": "autowiki", "task_key": "autowiki_tick"},
+    "rakon-deep-pass-2h": {"lane": "deep_synthesis", "task_key": "rakon_deep_pass"},
+    "sonnet-judge-tick": {"lane": "judges", "task_key": "judges.sonnet"},
+    "opus-judge-tick": {"lane": "judges", "task_key": "judges.opus"},
+    "buddle-claim-propose-q3h": {"lane": "research_ideas", "task_key": "buddle_claim_propose"},
+    "rakon-draft-async-q4h": {"lane": "research_ideas", "task_key": "rakon_draft_async"},
+    "rakon-synthesis-pass-q8h": {"lane": "section_rewrite", "task_key": "rakon_synthesis_pass"},
+    "rakon-adversarial-probe-daily": {"lane": "adversarial", "task_key": "rakon_adversarial_probe"},
+    "sonnet-section-rewrite-q30m": {"lane": "section_rewrite", "task_key": "sonnet_section_rewrite"},
+    "debated-claim-seeder-6h": {
+        "lane": "research_ideas",
+        "task_key": "seed_debated_claim_ideas",
+        "extra_kwargs": {"target_per_claim": 3},
+    },
+    "karpathy-v2-gap-detect-daily": {"lane": "gap_detect", "task_key": "generate_research_ideas_v2"},
+    "autowiki-coherence-weekly": {"lane": "coherence", "task_key": "run_rakon_coherence_pass"},
+    "sync-verbatim-nightly-p57": {"lane": "verbatim_sync", "task_key": "sync_verbatim_markers_nightly"},
+}
+
+
+def _registry_entry(source_entry: dict, registry_kwargs: dict, *, shadow: bool) -> dict:
+    kwargs = {
+        "lane": registry_kwargs["lane"],
+        "task_key": registry_kwargs["task_key"],
+        "extra_kwargs": registry_kwargs.get("extra_kwargs"),
+        "shadow": shadow,
+    }
+    return {
+        "task": _REGISTRY_DISPATCH_TASK,
+        "schedule": source_entry["schedule"],
+        "kwargs": kwargs,
+    }
+
+
+def _apply_page_registry_schedule_mode() -> None:
+    mode = (os.getenv("BEAT_SCHEDULE_MODE") or settings.BEAT_SCHEDULE_MODE or "legacy").strip().lower()
+    schedule = celery_app.conf.beat_schedule
+    if mode not in {"legacy", "registry_shadow", "registry"}:
+        raise RuntimeError(f"Unsupported BEAT_SCHEDULE_MODE={settings.BEAT_SCHEDULE_MODE!r}")
+    if mode == "legacy":
+        return
+
+    for schedule_name, registry_kwargs in _REGISTRY_BEAT_ENTRIES.items():
+        source_entry = schedule[schedule_name]
+        registry_schedule_name = schedule_name.replace("-p57", "")
+        if mode == "registry":
+            schedule.pop(schedule_name)
+            schedule[registry_schedule_name] = _registry_entry(source_entry, registry_kwargs, shadow=False)
+        else:
+            schedule[f"registry-shadow-{registry_schedule_name}"] = _registry_entry(
+                source_entry,
+                registry_kwargs,
+                shadow=True,
+            )
+
+
+_apply_page_registry_schedule_mode()
+
 # Route autowiki long-running tasks to a dedicated queue so they don't get
 # buried behind stance-jury bursts. A separate worker pinned to -Q autowiki
 # drains this queue (see com.nebulamind.celery_autowiki.plist).
 celery_app.conf.task_routes = {
+    "app.agent_loop.registry.dispatch_lane":                                      {"queue": "autowiki"},
     "app.agent_loop.autowiki.tasks.autowiki_tick":                              {"queue": "autowiki"},
     "app.agent_loop.autowiki.tasks.autowiki_propose_and_commit":                {"queue": "autowiki"},
     "app.agent_loop.autowiki.tasks.autowiki_post_pipeline_notify":              {"queue": "autowiki"},

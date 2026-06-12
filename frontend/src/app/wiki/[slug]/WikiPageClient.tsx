@@ -78,7 +78,7 @@ interface ContributorsData {
 
 const TRUST_COLORS: Record<string, string> = {
   consensus: "#22c55e",
-  accepted: "#6366f1",
+  accepted: "#3b82f6",
   debated: "#f97316",
   challenged: "#ef4444",
   unverified: "#64748b",
@@ -320,16 +320,70 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
   );
 }
 
+function IdeaStatusBadge({ idea }: { idea: any }) {
+  if (idea.display_badge !== "unverified") return null;
+  return (
+    <span
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        padding: "0.08rem 0.42rem",
+        borderRadius: "999px",
+        border: "1px solid rgba(100,116,139,0.5)",
+        background: "rgba(100,116,139,0.18)",
+        color: "#94a3b8",
+        fontSize: "0.64rem",
+        fontWeight: 700,
+        textTransform: "uppercase",
+        lineHeight: 1.2,
+      }}
+    >
+      unverified
+    </span>
+  );
+}
+
+function formatCoverageDate(value?: string | null) {
+  if (!value) return "";
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return date.toLocaleDateString(undefined, { year: "numeric", month: "short", day: "numeric" });
+}
+
+function IdeaCoverageLine({ idea }: { idea: any }) {
+  const status = idea.coverage_status;
+  if (status === "screened_pass") {
+    const checked = idea.papers_checked ?? 0;
+    const date = formatCoverageDate(idea.coverage_checked_at);
+    return (
+      <p style={{ margin: "0.45rem 0 0", color: "#94a3b8", fontSize: "0.74rem", lineHeight: 1.45 }}>
+        no covering work found ({checked} papers checked{date ? `, ${date}` : ""})
+      </p>
+    );
+  }
+  if (status === "partial") {
+    const closest = Array.isArray(idea.closest_prior_work) ? idea.closest_prior_work[0] : null;
+    return (
+      <p style={{ margin: "0.45rem 0 0", color: "#94a3b8", fontSize: "0.74rem", lineHeight: 1.45 }}>
+        closest prior work: {closest?.bibcode || "listed precursor"}; no fully covering work found
+      </p>
+    );
+  }
+  return null;
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
   ideas,
+  showIdeas,
   children,
   citationByEvidenceId,
 }: {
   claim: any;
   showColors: boolean;
   ideas?: any[];
+  showIdeas: boolean;
   children: React.ReactNode;
   citationByEvidenceId?: Record<number, any>;
 }) {
@@ -338,7 +392,8 @@ function ClaimAnnotatedSpan({
   const [evidence, setEvidence] = useState<any[] | null>(null);
   const [loadingEvidence, setLoadingEvidence] = useState(false);
   const trustLevel = claim?.trust_level ?? "unverified";
-  const trustColor = TRUST_COLORS[trustLevel] ?? "#64748b";
+  const trustKey = TRUST_COLORS[trustLevel] ? trustLevel : "unverified";
+  const trustColor = TRUST_COLORS[trustKey];
   const evidenceCount = claim?.evidence_count ?? 0;
   const isContested = ["debated", "challenged"].includes(trustLevel) || (claim?.con_count ?? 0) >= 2;
 
@@ -370,11 +425,11 @@ function ClaimAnnotatedSpan({
   return (
     <span style={{ position: "relative", display: "inline" }}>
       <span
-        style={{ borderBottom: `1px dotted ${trustColor}`, cursor: "pointer" }}
+        className={`claim-inline claim-inline--${trustKey}`}
         title={`${trustLevel} · ${evidenceCount} source${evidenceCount !== 1 ? "s" : ""}`}
         onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
       >{children}</span>
-      {ideas && ideas.length > 0 && (
+      {showIdeas && ideas && ideas.length > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdeasOpen((v) => !v); }}
           style={{
@@ -392,7 +447,7 @@ function ClaimAnnotatedSpan({
             ? `⚡ ${ideas.length} open research question${ideas.length > 1 ? "s" : ""} — this claim is actively debated`
             : `${ideas.length} research idea${ideas.length > 1 ? "s" : ""} linked to this claim`}
         >
-          {isContested ? "⚡" : "💡"} {ideas.length}
+          ⚡ {ideas.length}
         </button>
       )}
       {open && (
@@ -418,7 +473,10 @@ function ClaimAnnotatedSpan({
           }}
         >
           <div style={{ fontWeight: 600, color: "#f8fafc", marginBottom: "0.3rem", textTransform: "capitalize", display: "flex", justifyContent: "space-between" }}>
-            <span>{trustLevel}</span>
+            <span>
+              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: trustColor, marginRight: 6, verticalAlign: "baseline" }} />
+              {trustLevel}
+            </span>
             <span style={{ fontSize: "0.7rem", opacity: 0.7 }}>#{claim?.id}</span>
           </div>
           {evidenceCount > 0 && (
@@ -485,7 +543,7 @@ function ClaimAnnotatedSpan({
         >
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "0.5rem" }}>
             <span style={{ color: isContested ? "#fbbf24" : "#818cf8", fontWeight: 600, fontSize: "0.8rem" }}>
-              {isContested ? "⚡ Open Research Questions" : "💡 Research Ideas"}
+              Ideas
             </span>
             <button
               onClick={(e) => { e.stopPropagation(); setIdeasOpen(false); }}
@@ -494,23 +552,27 @@ function ClaimAnnotatedSpan({
           </div>
           {ideas.map((idea: any) => (
             <div key={idea.id} style={{ border: "1px solid #334155", borderRadius: "6px", padding: "0.6rem 0.75rem", marginBottom: "0.4rem", background: "#0f172a" }}>
-              {idea.gap_type && (
-                <span style={{
-                  display: "inline-block",
-                  fontSize: "0.65rem",
-                  fontWeight: 600,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.06em",
-                  padding: "1px 6px",
-                  borderRadius: "99px",
-                  marginBottom: "0.3rem",
-                  background: GAP_TYPE_COLORS[idea.gap_type]?.bg ?? "rgba(100,116,139,0.15)",
-                  color: GAP_TYPE_COLORS[idea.gap_type]?.text ?? "#94a3b8",
-                }}>
-                  {idea.gap_type}
-                </span>
-              )}
+              <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginBottom: "0.35rem" }}>
+                {idea.gap_type && (
+                  <span style={{
+                    display: "inline-block",
+                    fontSize: "0.65rem",
+                    fontWeight: 600,
+                    textTransform: "uppercase",
+                    letterSpacing: "0.06em",
+                    padding: "1px 6px",
+                    borderRadius: "99px",
+                    background: GAP_TYPE_COLORS[idea.gap_type]?.bg ?? "rgba(100,116,139,0.15)",
+                    color: GAP_TYPE_COLORS[idea.gap_type]?.text ?? "#94a3b8",
+                  }}>
+                    {idea.gap_type}
+                  </span>
+                )}
+                <span style={{ color: "#93c5fd", fontSize: "0.65rem", fontWeight: 700 }}>{idea.survey_combo}</span>
+                <IdeaStatusBadge idea={idea} />
+              </div>
               <p style={{ margin: 0, fontSize: "0.82rem", color: "#f8fafc", lineHeight: 1.5 }}>{idea.question}</p>
+              <IdeaCoverageLine idea={idea} />
             </div>
           ))}
         </span>
@@ -540,6 +602,7 @@ export default function WikiPageClientView() {
   const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
   const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>({});
   const [ideasOpen, setIdeasOpen] = useState(false);
+  const [showIdeas, setShowIdeas] = useState(false);
   const [citeViewMode, setCiteViewMode] = useState<"shown" | "hidden">("shown");
 
   useEffect(() => {
@@ -547,12 +610,19 @@ export default function WikiPageClientView() {
     if (saved === "hidden") {
       setCiteViewMode(saved);
     }
+    setShowIdeas(localStorage.getItem("nm.show_ideas") === "1");
   }, []);
 
   const handleToggleCiteViewMode = () => {
     const next = citeViewMode === "shown" ? "hidden" : "shown";
     setCiteViewMode(next);
     localStorage.setItem("nm.cite_mode", next);
+  };
+
+  const handleToggleIdeas = () => {
+    const next = !showIdeas;
+    setShowIdeas(next);
+    localStorage.setItem("nm.show_ideas", next ? "1" : "0");
   };
 
   useEffect(() => {
@@ -641,6 +711,29 @@ export default function WikiPageClientView() {
     let rawContent = stripLeadingH1(page.content);
     return renderWikiMarkers(rawContent);
   }, [page?.content]);
+
+  const renderedClaimIds = useMemo(() => {
+    const ids = new Set<number>();
+    for (const match of processedContent.matchAll(/data-claim-id="([^"]+)"/g)) {
+      for (const raw of match[1].split(",")) {
+        const id = Number(raw.trim());
+        if (Number.isFinite(id) && id > 0) ids.add(id);
+      }
+    }
+    return ids;
+  }, [processedContent]);
+
+  const allIdeas = useMemo(() => Object.values(claimIdeasMap).flat(), [claimIdeasMap]);
+
+  const orphanIdeas = useMemo(() => {
+    const seen = new Set<number>();
+    return allIdeas.filter((idea: any) => {
+      const claimId = Number(idea.claim_id);
+      if (!claimId || renderedClaimIds.has(claimId) || seen.has(idea.id)) return false;
+      seen.add(idea.id);
+      return true;
+    });
+  }, [allIdeas, renderedClaimIds]);
 
   const citationByEvidenceId = useMemo(() => {
     const map: Record<number, PageCitation> = {};
@@ -842,6 +935,22 @@ export default function WikiPageClientView() {
           </button>
         )}
         {showV2 && (
+          <button
+            onClick={handleToggleIdeas}
+            style={{
+              fontSize: "0.75rem",
+              padding: "0.25rem 0.75rem",
+              borderRadius: "4px",
+              border: showIdeas ? "1px solid #fbbf24" : "1px solid #334155",
+              background: "transparent",
+              color: showIdeas ? "#fbbf24" : "#94a3b8",
+              cursor: "pointer",
+            }}
+          >
+            {showIdeas ? "Hide Ideas" : "Show Ideas"}
+          </button>
+        )}
+        {showV2 && (
           <p style={{ fontSize: "0.78rem", color: "#64748b", margin: 0 }}>
             Each sentence is sourced from a published paper. Click the citation icon to see sources.
           </p>
@@ -849,7 +958,7 @@ export default function WikiPageClientView() {
         {showV2 && (
           <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.75rem", color: "#64748b" }}>
             <span style={{ borderLeft: "2px solid #22c55e", paddingLeft: "4px" }}>Consensus</span>
-            <span style={{ borderLeft: "2px solid #6366f1", paddingLeft: "4px" }}>Accepted</span>
+            <span style={{ borderLeft: "2px solid #3b82f6", paddingLeft: "4px" }}>Accepted</span>
             <span style={{ borderLeft: "2px solid #f59e0b", paddingLeft: "4px" }}>Debated</span>
             <span style={{ borderLeft: "2px solid #ef4444", paddingLeft: "4px" }}>Challenged</span>
           </div>
@@ -920,6 +1029,7 @@ export default function WikiPageClientView() {
                     claim={claimById[id]}
                     showColors={showColors}
                     ideas={claimIdeasMap[id]}
+                    showIdeas={showIdeas}
                     citationByEvidenceId={citationByEvidenceId}
                   >
                     {inner}
@@ -949,13 +1059,13 @@ export default function WikiPageClientView() {
                 {debate.pro && (
                   <div style={{ padding: "0.75rem 1rem", borderRight: "1px solid #334155", borderLeft: "3px solid #22c55e" }}>
                     <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#22c55e", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Supporting</div>
-                    <ClaimBlock claim={{...debate.pro, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.pro?.id]} />
+                    <ClaimBlock claim={{...debate.pro, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.pro?.id]} showIdeas={showIdeas} />
                   </div>
                 )}
                 {debate.con && (
                   <div style={{ padding: "0.75rem 1rem", borderLeft: debate.pro ? "none" : "3px solid #ef4444" }}>
                     <div style={{ fontSize: "0.7rem", fontWeight: 600, color: "#ef4444", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "0.4rem" }}>Alternative</div>
-                    <ClaimBlock claim={{...debate.con, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.con?.id]} />
+                    <ClaimBlock claim={{...debate.con, trust_level: "debated"}} showColors={showColors} ideas={claimIdeasMap[debate.con?.id]} showIdeas={showIdeas} />
                   </div>
                 )}
               </div>
@@ -964,44 +1074,35 @@ export default function WikiPageClientView() {
         </div>
       )}
 
-      {/* Research Ideas — shown in both Citation View and Raw Text modes */}
-      {(() => {
-        const allIdeas = Object.values(claimIdeasMap).flat();
-        if (allIdeas.length === 0) return null;
-        const GAP_COLORS: Record<string, string> = {
-          empirical: "#3b82f6",
-          theoretical: "#a855f7",
-          methodological: "#22c55e",
-          observational: "#6366f1",
-          computational: "#14b8a6",
-        };
-        return (
-          <div style={{ marginTop: "2rem" }}>
-            <button
-              onClick={() => setIdeasOpen(v => !v)}
-              style={{
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-                background: "transparent",
-                border: "none",
-                borderBottom: "1px solid #334155",
-                paddingBottom: "0.5rem",
-                marginBottom: ideasOpen ? "1rem" : 0,
-                cursor: "pointer",
-                textAlign: "left",
-              }}
-            >
-              <span style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc" }}>
-                Research Ideas ({allIdeas.length})
-              </span>
-              <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{ideasOpen ? "▲" : "▼"}</span>
-            </button>
-            {ideasOpen && (
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
-                {allIdeas.map((idea: any, i: number) => (
-                  <div key={idea.id ?? i} style={{ padding: "0.85rem 1rem", background: "#1e293b", border: "1px solid #334155", borderRadius: "6px", borderLeft: "3px solid #6366f1" }}>
+      {orphanIdeas.length > 0 && (
+        <div style={{ marginTop: "2rem" }}>
+          <button
+            onClick={() => setIdeasOpen(v => !v)}
+            style={{
+              width: "100%",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              background: "transparent",
+              border: "none",
+              borderBottom: "1px solid #334155",
+              paddingBottom: "0.5rem",
+              marginBottom: ideasOpen ? "1rem" : 0,
+              cursor: "pointer",
+              textAlign: "left",
+            }}
+          >
+            <span style={{ fontSize: "0.85rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.08em", color: "#f8fafc" }}>
+              Open Questions ({orphanIdeas.length})
+            </span>
+            <span style={{ fontSize: "0.75rem", color: "#64748b" }}>{ideasOpen ? "▲" : "▼"}</span>
+          </button>
+          {ideasOpen && (
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+              {orphanIdeas.map((idea: any, i: number) => (
+                <div key={idea.id ?? i} style={{ padding: "0.85rem 1rem", background: "#1e293b", border: "1px solid #334155", borderRadius: "6px", borderLeft: "3px solid #fbbf24" }}>
+                  <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginBottom: "0.45rem" }}>
+                    <span style={{ color: "#93c5fd", fontSize: "0.68rem", fontWeight: 700 }}>{idea.survey_combo}</span>
                     {idea.gap_type && (
                       <span style={{
                         display: "inline-block",
@@ -1011,25 +1112,22 @@ export default function WikiPageClientView() {
                         letterSpacing: "0.06em",
                         padding: "1px 7px",
                         borderRadius: "99px",
-                        marginBottom: "0.45rem",
-                        background: `${GAP_COLORS[idea.gap_type] ?? "#64748b"}22`,
-                        color: GAP_COLORS[idea.gap_type] ?? "#94a3b8",
-                        border: `1px solid ${GAP_COLORS[idea.gap_type] ?? "#334155"}55`,
+                        background: GAP_TYPE_COLORS[idea.gap_type]?.bg ?? "rgba(100,116,139,0.15)",
+                        color: GAP_TYPE_COLORS[idea.gap_type]?.text ?? "#94a3b8",
                       }}>
                         {idea.gap_type}
                       </span>
                     )}
-                    <p style={{ margin: 0, fontSize: "0.875rem", color: "#f8fafc", lineHeight: 1.6 }}>{idea.question}</p>
-                    {idea.why_now && (
-                      <p style={{ margin: "0.4rem 0 0", fontSize: "0.78rem", color: "#64748b", lineHeight: 1.5 }}>{idea.why_now}</p>
-                    )}
+                    <IdeaStatusBadge idea={idea} />
                   </div>
-                ))}
-              </div>
-            )}
-          </div>
-        );
-      })()}
+                  <p style={{ margin: 0, fontSize: "0.875rem", color: "#f8fafc", lineHeight: 1.6 }}>{idea.question}</p>
+                  <IdeaCoverageLine idea={idea} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
 
       {edits.length > 0 && (
         <section style={{ marginTop: "3rem", borderTop: "1px solid #334155", paddingTop: "2rem" }}>

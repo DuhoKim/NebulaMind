@@ -43,6 +43,7 @@ ENTAILMENT_GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/opena
 ENTAILMENT_GEMINI_MODEL = "google/gemini-2.5-flash"
 ENTAILMENT_MODEL = ENTAILMENT_GEMINI_MODEL
 ENTAILMENT_TIMEOUT_SECONDS = 45
+DEFAULT_COVERAGE_REQUIRED_STAGES = ("atom_decomposition", "precheck", "astrosage_verdict")
 ENTAILMENT_PROMPT_TEMPLATE = """You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
 Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
 
@@ -417,11 +418,16 @@ def _normal_text(value: Any) -> str:
 
 
 def entailment_gate_prompt(row: Mapping[str, Any]) -> str:
-    return ENTAILMENT_PROMPT_TEMPLATE.format(
-        claim_text_snapshot=str(row.get("claim_text_snapshot") or ""),
-        element_text=str(row.get("element_text") or ""),
-        paper_abstract_snapshot=str(row.get("paper_abstract_snapshot") or row.get("paper_abstract") or ""),
-    )
+    from app.services.prompt_registry import PromptRegistry
+    variables = {
+        "claim_text_snapshot": str(row.get("claim_text_snapshot") or ""),
+        "element_text": str(row.get("element_text") or ""),
+        "paper_abstract_snapshot": str(row.get("paper_abstract_snapshot") or row.get("paper_abstract") or ""),
+    }
+    try:
+        return PromptRegistry().render("entailment", variables)
+    except Exception as e:
+        return ENTAILMENT_PROMPT_TEMPLATE.format(**variables)
 
 
 def _parse_entailment_payload(raw_content: str) -> EntailmentGateResult:
@@ -573,6 +579,23 @@ def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResul
             "entailment_gate_total_tokens": result.total_tokens,
         }
     )
+    return out
+
+
+def initial_coverage_fields(required_stages: Iterable[str] = DEFAULT_COVERAGE_REQUIRED_STAGES) -> dict[str, Any]:
+    stages = [str(stage) for stage in required_stages]
+    return {
+        "coverage_status": "coverage_pending",
+        "coverage_required_stages": stages,
+        "coverage_missing_stages": list(stages),
+        "coverage_artifact_refs": {},
+    }
+
+
+def row_with_initial_coverage(row: Mapping[str, Any], required_stages: Iterable[str] = DEFAULT_COVERAGE_REQUIRED_STAGES) -> dict[str, Any]:
+    out = dict(row)
+    for key, value in initial_coverage_fields(required_stages).items():
+        out.setdefault(key, value)
     return out
 
 
@@ -842,7 +865,7 @@ def route_candidate_v2(
 
 
 def _row_with_decision(row: Mapping[str, Any], routing: RoutingDecision) -> dict[str, Any]:
-    out = dict(row)
+    out = row_with_initial_coverage(row)
     out.update(
         {
             "retrieval_filter_version": "v2",

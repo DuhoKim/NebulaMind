@@ -1,0 +1,190 @@
+version: arxiv_retrieval_taxonomy_v1
+
+subdomains:
+  galaxy:
+    description: Galaxies, galaxy populations, galaxy evolution, galaxy-scale ISM, CGM, IGM links when galaxy-centered.
+    arxiv_category_priors:
+      astro-ph.GA: 0.85
+      astro-ph.CO: 0.45
+      astro-ph.HE: 0.20
+      astro-ph.SR: 0.05
+      astro-ph.IM: 0.10
+      astro-ph.EP: 0.00
+    positive_lexical_hints:
+      - galaxy
+      - galaxies
+      - stellar mass
+      - star formation
+      - quenching
+      - halo
+      - morphology
+      - redshift evolution
+      - galaxy evolution
+      - galactic outflow
+      - circumgalactic
+      - stellar population
+    negative_lexical_hints:
+      - pulsar
+      - comet
+      - exoplanet atmosphere
+      - galactic plane
+      - molecular cloud
+      - open cluster
+
+  agn:
+    description: Active galactic nuclei, quasars, SMBH accretion, reverberation mapping, jets when nucleus-centered.
+    arxiv_category_priors:
+      astro-ph.GA: 0.55
+      astro-ph.HE: 0.75
+      astro-ph.CO: 0.25
+      astro-ph.SR: 0.05
+      astro-ph.IM: 0.10
+      astro-ph.EP: 0.00
+    positive_lexical_hints:
+      - agn
+      - active galactic nucleus
+      - quasar
+      - black hole
+      - reverberation mapping
+      - accretion disk
+      - broad line region
+      - corona
+      - jet
+      - blazar
+    negative_lexical_hints:
+      - galaxy size evolution
+      - satellite quenching
+
+  stellar:
+    description: Individual stars, stellar evolution, pulsars, supergiants, star clusters when star-centered.
+    arxiv_category_priors:
+      astro-ph.SR: 0.85
+      astro-ph.GA: 0.20
+      astro-ph.HE: 0.30
+      astro-ph.CO: 0.05
+    positive_lexical_hints:
+      - pulsar
+      - globular cluster
+      - open cluster
+      - cepheid
+      - supergiant
+      - stellar wind
+      - star cluster
+      - binary star
+      - neutron star
+    negative_lexical_hints:
+      - galaxy population
+      - galaxy evolution
+
+  local_ism:
+    description: Molecular clouds, dust filaments, Galactic HII regions, local ISM, protostellar environments.
+    arxiv_category_priors:
+      astro-ph.GA: 0.35
+      astro-ph.SR: 0.45
+      astro-ph.IM: 0.10
+    positive_lexical_hints:
+      - molecular cloud
+      - orion
+      - h ii region
+      - hii region
+      - infrared dark cloud
+      - dust polarisation
+      - filament
+      - protostar
+      - maser
+      - galactic plane
+    negative_lexical_hints:
+      - galaxy population
+      - cosmological
+
+  cosmology:
+    description: Large-scale structure, dark matter, CMB, reionization when not galaxy-population centered.
+    arxiv_category_priors:
+      astro-ph.CO: 0.85
+      astro-ph.GA: 0.35
+      astro-ph.HE: 0.15
+    positive_lexical_hints:
+      - cosmology
+      - dark matter
+      - cmb
+      - large-scale structure
+      - reionization
+      - reionisation
+      - little red dots
+      - fuzzy dark matter
+      - lyman continuum
+    negative_lexical_hints:
+      - satellite galaxy
+      - morphology-density
+
+  instrumentation:
+    description: Instruments, detector effects, surveys, pipelines, calibration, telescope systems, candidate selection methods.
+    arxiv_category_priors:
+      astro-ph.IM: 0.90
+      astro-ph.GA: 0.12
+      astro-ph.HE: 0.12
+    positive_lexical_hints:
+      - instrument
+      - detector
+      - pipeline
+      - calibration
+      - telescope
+      - random forest
+      - candidate selection
+      - catalog
+      - catalogue
+      - survey design
+    negative_lexical_hints:
+      - physical mechanism
+      - quenching mechanism
+
+  planetary:
+    description: Planets, exoplanets, comets, asteroids, Kuiper belt, solar-system bodies.
+    arxiv_category_priors:
+      astro-ph.EP: 0.90
+      astro-ph.SR: 0.20
+      astro-ph.GA: 0.00
+    positive_lexical_hints:
+      - exoplanet
+      - planet
+      - comet
+      - asteroid
+      - kuiper belt
+      - solar system
+    negative_lexical_hints:
+      - galaxy
+
+scoring:
+  same_subdomain_bonus: 0.08
+  compatible_subdomain_bonus: 0.03
+  mismatch_penalty: -0.28
+  severe_mismatch_penalty: -0.50
+  ambiguous_penalty: -0.04
+  section_score_weight: 0.20
+  allow_hard_drop_when:
+    subdomain_confidence_min: 0.70
+    section_rerank_percentile_max: 0.28
+    citable_recall_floor: 0.90
+
+compatibility:
+  galaxy:
+    compatible: [agn, cosmology]
+    severe_mismatch: [stellar, local_ism, instrumentation, planetary]
+  agn:
+    compatible: [galaxy, cosmology]
+    severe_mismatch: [stellar, local_ism, planetary]
+  stellar:
+    compatible: [local_ism]
+    severe_mismatch: [galaxy, planetary, instrumentation]
+  local_ism:
+    compatible: [stellar]
+    severe_mismatch: [galaxy, agn, cosmology, planetary]
+  cosmology:
+    compatible: [galaxy, agn]
+    severe_mismatch: [stellar, local_ism, planetary]
+  instrumentation:
+    compatible: []
+    severe_mismatch: [galaxy, agn, stellar, local_ism, cosmology, planetary]
+  planetary:
+    compatible: []
+    severe_mismatch: [galaxy, agn, stellar, local_ism, cosmology, instrumentation]

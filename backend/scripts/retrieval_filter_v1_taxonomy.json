@@ -1,0 +1,56 @@
+{
+  "version": "retrieval_filter_v1_taxonomy_20260526",
+  "neighboring_domain_tags": [
+    "compact_object_transient",
+    "instrumentation",
+    "milky_way_local",
+    "molecular_cloud",
+    "single_object_agn",
+    "stellar_object"
+  ],
+  "tags": [
+    {
+      "name": "single_object_agn",
+      "all": [
+        "\\b(ngc|mrk|ark|eso|qso|bl\\s*lac|seyfert|agn)\\s*[- ]?\\d+",
+        "\\b(reverberation|continuum lag|lag|accretion disk|broad-line|blr)\\b"
+      ]
+    },
+    {
+      "name": "stellar_object",
+      "any": ["\\b(pulsar|globular cluster|white dwarf|neutron star|x-ray binary|stellar wind|massive star)\\b"]
+    },
+    {
+      "name": "milky_way_local",
+      "any": ["\\b(milky way|galactic center|galactic centre|local group|magellanic|nearby dwarf)\\b"]
+    },
+    {
+      "name": "molecular_cloud",
+      "any": ["\\b(molecular cloud|dark cloud|filament|protostar|star-forming region|interstellar cloud)\\b"]
+    },
+    {
+      "name": "instrumentation",
+      "any": ["\\b(instrument|detector|pipeline|calibration|spectrograph|telescope performance|survey strategy)\\b"]
+    },
+    {
+      "name": "compact_object_transient",
+      "any": ["\\b(transient|fast radio burst|grb|supernova|tidal disruption|compact object)\\b"]
+    },
+    {
+      "name": "galaxy_population",
+      "any": ["\\b(population|mass function|scaling relation|main sequence|quiescent|star-forming galaxies)\\b"]
+    },
+    {
+      "name": "cosmological_simulation",
+      "any": ["\\b(cosmological simulation|hydrodynamic simulation|n-body|illustris|eagle|tng|simba|zoom-in)\\b"]
+    },
+    {
+      "name": "morphology_size",
+      "any": ["\\b(size|effective radius|half-light|morpholog|compact|disk|bulge|surface brightness)\\b"]
+    },
+    {
+      "name": "quenching",
+      "any": ["\\b(quench|feedback|outflow|agn feedback|suppression|green valley|red sequence)\\b"]
+    }
+  ]
+}

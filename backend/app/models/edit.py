@@ -13,6 +13,8 @@ class EditStatus(str, enum.Enum):
     REJECTED = "rejected"
 
 
+from app.models.vote import Vote
+
 class EditProposal(Base):
     __tablename__ = "edit_proposals"
 

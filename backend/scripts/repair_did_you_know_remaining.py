@@ -7,7 +7,7 @@ from app.models.page import WikiPage
 from app.services.llm_utils import strip_think_blocks
 
 OLLAMA_URL = "http://localhost:11434/v1/chat/completions"
-MODEL = "qwen3:30b-a3b-instruct-2507-q4_K_M"
+MODEL = "qwen3.6:35b-a3b-nvfp4"
 
 FORBIDDEN_WORDS = {"millions", "billions", "trillions", "thousands", "hundreds", "million", "billion"}
 

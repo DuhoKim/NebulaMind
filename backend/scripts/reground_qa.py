@@ -25,7 +25,7 @@ def reground_qa():
                     continue
                 
                 prompt = _build_prompt(q.question, grounded, [])
-                raw = _call_ollama("gemma3:27b", SYNTHESIS_SYSTEM, prompt)
+                raw = _call_ollama("qwen3.6:27b-nvfp4", SYNTHESIS_SYSTEM, prompt)
                 result = _parse_response(raw, grounded)
                 
                 # Update the answer

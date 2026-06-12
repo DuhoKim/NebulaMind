@@ -16,9 +16,15 @@ import time
 from collections import Counter
 
 from app.database import SessionLocal
+import app.models.agent
+import app.models.jury
+import app.models.page
+import app.models.claim
+import app.models.edit
+import app.models.seminal
 from app.models.claim import Claim, Evidence
 from app.services.paper_search import verify_arxiv_id
-from app.services.trust_calculator import recalculate_trust
+from app.routers.claims import recalculate_trust_v2
 
 
 def verify_all_evidence(db, *, sleep_between: float = 0.05) -> dict:
@@ -97,7 +103,7 @@ def recalc_all_claims(db) -> dict:
     for c in claims:
         old = c.trust_level
         try:
-            new = recalculate_trust(c.id, db)
+            new, _ = recalculate_trust_v2(c.id, db, trigger="recalculate_all_claims_script")
         except Exception as exc:
             print(f"  [claim #{c.id}] recalc error: {exc}")
             db.rollback()

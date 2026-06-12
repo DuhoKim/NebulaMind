@@ -23,32 +23,8 @@ router = APIRouter(prefix="/api", tags=["claims"])
 
 
 def recalculate_trust(claim_id: int, db: Session) -> str:
-    evidence = db.query(Evidence).filter(Evidence.claim_id == claim_id).all()
-    if not evidence:
-        return "unverified"
-    supports = sum(1 for e in evidence if e.stance == "supports")
-    challenges = sum(1 for e in evidence if e.stance == "challenges")
-    total_agree = 0
-    total_disagree = 0
-    for e in evidence:
-        total_agree += db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == 1
-        ).scalar() or 0
-        total_disagree += db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == -1
-        ).scalar() or 0
-    total_votes = total_agree + total_disagree
-    if total_votes == 0:
-        return "accepted" if supports >= 1 and challenges == 0 else "unverified"
-    agree_ratio = total_agree / total_votes
-    if supports >= 3 and challenges == 0 and agree_ratio >= 0.8:
-        return "consensus"
-    elif agree_ratio >= 0.5:
-        return "accepted"
-    elif agree_ratio >= 0.4:
-        return "debated"
-    else:
-        return "challenged"
+    new_level, _ = recalculate_trust_v2(claim_id, db, trigger="legacy_router_shim")
+    return new_level
 
 
 # ---------------------------------------------------------------------------
@@ -392,7 +368,12 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "summary": e.summary, "stance": e.stance,
             "votes_agree": agree, "votes_disagree": disagree, "comments_count": comments,
             "element_links": links,
-            "link_count": len(links)
+            "link_count": len(links),
+            "relevance": e.relevance,
+            "entailment": e.entailment,
+            "rigor": e.rigor,
+            "confidence": e.confidence,
+            "quality_v2": e.quality if e.consensus_scorecard_id is not None else None,
         })
 
     return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": result, "total_elements": total_elements}

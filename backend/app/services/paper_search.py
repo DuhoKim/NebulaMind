@@ -12,6 +12,7 @@ import urllib.parse
 import urllib.request
 from dataclasses import dataclass, field
 from datetime import datetime
+from typing import Callable
 
 from app.config import settings
 
@@ -353,6 +354,7 @@ class VerifiedPaper:
     recency_bonus: float          # 0.0 – 1.0
     cross_confirmed: bool
     stance_hint: str | None       # "supports" | "challenges" | None (LLM jury decides final)
+    intro_excerpt: str | None = None
 
 
 _STOPWORDS = {
@@ -396,16 +398,22 @@ _OLLAMA_VERIFY_URL = "http://localhost:11434/api/generate"
 _VERIFY_MODEL = "gpt-oss:20b"  # Nutty — fast JSON-safe claim/evidence matching
 
 
-def _llm_stance_verify(claim_text: str, abstract: str, timeout: int = 30) -> str | None:
+def _llm_stance_verify(
+    claim_text: str,
+    abstract: str,
+    timeout: int = 30,
+    extra_context: str | None = None,
+) -> str | None:
     """Call Nutty via Ollama to assess if abstract supports/refutes a claim.
 
     Returns 'supports', 'refutes', 'neutral', or None on any error (caller falls back
     to heuristic). Platoon assignment: Nutty (gpt-oss:20b) — see ollama_model_policy_v1.md.
     """
+    extra = f"\n\nIntroduction excerpt:\n{extra_context[:800]}" if extra_context else ""
     prompt = (
         "Does the abstract below support, refute, or neither address the claim?\n\n"
         f"Claim: {claim_text[:300]}\n\n"
-        f"Abstract: {abstract[:600]}\n\n"
+        f"Abstract: {abstract[:600]}{extra}\n\n"
         "Answer with exactly one word: supports, refutes, or neutral."
     )
     payload = json.dumps({
@@ -437,6 +445,7 @@ def verify_for_claim(
     claim_text: str,
     *,
     s2_cross_check: bool = False,
+    intro_provider: Callable[[str, str], str | None] | None = None,
 ) -> VerifiedPaper | None:
     """Compute quality `q` for a paper record relative to a specific claim.
 
@@ -446,9 +455,16 @@ def verify_for_claim(
     # ---- Hard gates ----
     if not (record.arxiv_id or record.doi or record.bibcode):
         return None
-    if not record.title or not record.abstract:
+    if not record.title:
         return None
     if settings.EVIDENCE_REQUIRE_ARXIV and not record.arxiv_id:
+        return None
+    intro_excerpt = None
+    abstract_text = record.abstract or ""
+    if not abstract_text and record.arxiv_id and intro_provider:
+        intro_excerpt = intro_provider(record.arxiv_id, claim_text)
+    evidence_text = abstract_text or intro_excerpt or ""
+    if not evidence_text:
         return None
 
     # ---- Title match ----
@@ -458,7 +474,7 @@ def verify_for_claim(
     # ---- Keyword overlap ----
     kw = _claim_keywords(claim_text)
     if kw:
-        ab_words = set(re.findall(r"[A-Za-z][A-Za-z\-]+", record.abstract.lower()))
+        ab_words = set(re.findall(r"[A-Za-z][A-Za-z\-]+", evidence_text.lower()))
         overlap_count = len(kw & ab_words)
         keyword_overlap = min(1.0, overlap_count / max(2, len(kw) // 3))
     else:
@@ -503,12 +519,33 @@ def verify_for_claim(
 
     # ---- Drop floor ----
     if q < settings.EVIDENCE_MIN_QUALITY_FOR_ACCEPTED * 0.75:
-        return None
+        if abstract_text and record.arxiv_id and intro_provider:
+            intro_excerpt = intro_excerpt or intro_provider(record.arxiv_id, claim_text)
+            if intro_excerpt:
+                combined_text = f"{abstract_text}\n{intro_excerpt}"
+                if kw:
+                    combined_words = set(re.findall(r"[A-Za-z][A-Za-z\-]+", combined_text.lower()))
+                    combined_overlap = min(1.0, len(kw & combined_words) / max(2, len(kw) // 3))
+                else:
+                    combined_overlap = 0.5
+                combined_q = round(min(1.0, max(0.0, (
+                    0.40 * (1.0 if record.arxiv_id else 0.0)
+                    + 0.25 * combined_overlap
+                    + 0.15 * recency_bonus
+                    + 0.10 * (1.0 if cross_confirmed else 0.0)
+                ))), 3)
+                if combined_q > q:
+                    q = combined_q
+                    keyword_overlap = combined_overlap
+                    evidence_text = combined_text
+        if q < settings.EVIDENCE_MIN_QUALITY_FOR_ACCEPTED * 0.75:
+            return None
 
     # LLM stance pre-judge (gpt-oss:20b / Nutty). Falls back to heuristic on
     # error so a cold Ollama or network hiccup doesn't block evidence insertion.
-    llm_stance = _llm_stance_verify(claim_text, record.abstract or "")
-    stance = llm_stance or _stance_hint(kw, record.abstract)
+    stance_context = intro_excerpt[:800] if intro_excerpt and len(abstract_text) < 600 else None
+    llm_stance = _llm_stance_verify(claim_text, abstract_text, extra_context=stance_context)
+    stance = llm_stance or _stance_hint(kw, evidence_text)
 
     return VerifiedPaper(
         record=record,
@@ -518,6 +555,7 @@ def verify_for_claim(
         recency_bonus=recency_bonus,
         cross_confirmed=cross_confirmed,
         stance_hint=stance,
+        intro_excerpt=intro_excerpt,
     )
 
 

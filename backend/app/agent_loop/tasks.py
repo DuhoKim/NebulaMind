@@ -1759,7 +1759,8 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
     import json as _json
     from datetime import datetime, timedelta
     from app.models.claim import Claim, Evidence
-    from app.services.paper_search import search_papers, verify_for_claim
+    from app.services.intro_fetch import fetch_intro, select_excerpt
+    from app.services.paper_search import _claim_keywords, search_papers, verify_for_claim
     from sqlalchemy import func as sqlfunc
 
     # ---- Pick a target claim ----
@@ -1817,6 +1818,15 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
             continue
     if not queries:
         queries = [f'"{topic}" {claim.text[:80]}']
+    keyphrase_tokens = []
+    claim_kw = _claim_keywords(claim.text)
+    for token in re.findall(r"[A-Za-z][A-Za-z\-]+", claim.text.lower()):
+        if token in claim_kw and token not in keyphrase_tokens:
+            keyphrase_tokens.append(token)
+        if len(keyphrase_tokens) >= 5:
+            break
+    if keyphrase_tokens:
+        queries.append(f'full:"{" ".join(keyphrase_tokens)}"')
     queries = list(dict.fromkeys(queries))[:6]
 
     # ---- Step 2: deterministic paper search ----
@@ -1837,8 +1847,22 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
 
     # ---- Step 3: verification + quality scoring ----
     verified = []
+    intro_fetches = [0]
+
+    def _intro_provider(arxiv_id: str, text: str) -> str | None:
+        if intro_fetches[0] >= max(0, settings.INTRO_FETCH_PER_LINKER_RUN):
+            return None
+        intro_fetches[0] += 1
+        intro_text = fetch_intro(arxiv_id, db)
+        return select_excerpt(intro_text, text, cap=1200)
+
     for rec in unique[:12]:
-        v = verify_for_claim(rec, claim.text, s2_cross_check=bool(rec.doi))
+        v = verify_for_claim(
+            rec,
+            claim.text,
+            s2_cross_check=bool(rec.doi),
+            intro_provider=_intro_provider,
+        )
         if v:
             verified.append(v)
     verified.sort(key=lambda x: x.quality, reverse=True)
@@ -1875,6 +1899,8 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
             added_by_agent_id=agent.id if agent else None,
             quality=v.quality,
             abstract=ed["abstract"],
+            intro_excerpt=v.intro_excerpt,
+            intro_fetch_attempted_at=_dt.utcnow() if v.intro_excerpt else None,
             ads_bibcode=ed["ads_bibcode"],
             s2_paper_id=ed["s2_paper_id"],
             verified_at=_dt.utcnow(),
@@ -1915,7 +1941,7 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
 # ---------------------------------------------------------------------------
 
 @celery_app.task(name="app.agent_loop.tasks.drain_evidence_for_page")
-def drain_evidence_for_page(page_id: int = 57):
+def drain_evidence_for_page(page_id: int):
     """
     Celery beat task to run the ADS/S2 evidence search directly for unverified
     established claims with <2 evidence.
@@ -1947,7 +1973,7 @@ def drain_evidence_for_page(page_id: int = 57):
                 (Claim.evidence_search_attempted_at < cooloff),
             )
             .order_by(sqlfunc.random())
-            .limit(10)  # We can process a small batch each run
+            .limit(5)
             .all()
         )
 
@@ -1967,11 +1993,73 @@ def drain_evidence_for_page(page_id: int = 57):
 
 
 # ---------------------------------------------------------------------------
+# Intro augmentation: backfill intro excerpts
+# ---------------------------------------------------------------------------
+
+@celery_app.task(name="app.agent_loop.tasks.backfill_intro_excerpts")
+def backfill_intro_excerpts(batch_size: int | None = None):
+    """Backfill intro excerpts for arXiv evidence with missing/terse abstracts."""
+    import datetime as _dt
+    from app.models.claim import Claim, Evidence
+    from app.services.intro_fetch import fetch_intro, select_excerpt
+    from sqlalchemy import func as sqlfunc, or_
+
+    db = SessionLocal()
+    processed = 0
+    fetched = 0
+    excerpted = 0
+    errors = 0
+    try:
+        limit = max(1, int(batch_size or settings.INTRO_BACKFILL_BATCH))
+        candidates = (
+            db.query(Evidence, Claim)
+            .join(Claim, Claim.id == Evidence.claim_id)
+            .filter(Evidence.arxiv_id.isnot(None))
+            .filter(Evidence.intro_excerpt.is_(None))
+            .filter(or_(
+                Evidence.abstract.is_(None),
+                sqlfunc.length(Evidence.abstract) < 100,
+                Evidence.stance_jury_run_at.is_(None),
+            ))
+            .order_by(Evidence.created_at)
+            .limit(limit)
+            .all()
+        )
+        for ev, claim in candidates:
+            processed += 1
+            ev.intro_fetch_attempted_at = _dt.datetime.utcnow()
+            try:
+                intro = fetch_intro(ev.arxiv_id, db) if ev.arxiv_id else None
+                if intro:
+                    fetched += 1
+                    excerpt = select_excerpt(intro, claim.text, cap=1200)
+                    if excerpt:
+                        ev.intro_excerpt = excerpt
+                        excerpted += 1
+                db.commit()
+            except Exception as exc:
+                errors += 1
+                db.rollback()
+                print(f"[backfill_intro_excerpts] evidence #{ev.id} failed: {exc}")
+            time.sleep(0.5)
+        result = {
+            "processed": processed,
+            "intro_fetch_success": fetched,
+            "excerpted": excerpted,
+            "errors": errors,
+        }
+        print(f"[backfill_intro_excerpts] {result}")
+        return result
+    finally:
+        db.close()
+
+
+# ---------------------------------------------------------------------------
 # P1 Pipeline Redesign: sync_verbatim_markers_nightly
 # ---------------------------------------------------------------------------
 
 @celery_app.task(name="app.agent_loop.tasks.sync_verbatim_markers_nightly")
-def sync_verbatim_markers_nightly(page_id: int = 57):
+def sync_verbatim_markers_nightly(page_id: int):
     """
     Nightly beat task to run sync_verbatim_claim_markers.py and check coverage.
     """
@@ -2340,6 +2428,24 @@ def mine_wikipedia_bibliography(self, page_id: int):
 # Phase E: New-Topic Clustering → NewPageProposal
 # ---------------------------------------------------------------------------
 
+@celery_app.task(name="app.agent_loop.tasks.triage_new_page_proposals")
+def triage_new_page_proposals():
+    """D1 triage pass: expire stale low-similarity proposals, enforce queue cap."""
+    from app.services.proposal_triage import run_triage
+
+    db = SessionLocal()
+    try:
+        result = run_triage(db)
+        print(f"[triage_new_page_proposals] {result}")
+        return result
+    except Exception as e:
+        db.rollback()
+        print(f"[triage_new_page_proposals] Error: {e}")
+        raise
+    finally:
+        db.close()
+
+
 @celery_app.task(name="app.agent_loop.tasks.cluster_new_topic_candidates")
 def cluster_new_topic_candidates():
     """Cluster new-topic arxiv papers → NewPageProposal rows → Discord batch notify."""
@@ -2431,13 +2537,11 @@ def cluster_new_topic_candidates():
             if not suggested_slug:
                 continue
 
-            # Idempotent: skip if slug already exists as page or proposal
-            from app.models.page import WikiPage as _WikiPage
-            exists_page = db.query(_WikiPage).filter(_WikiPage.slug == suggested_slug).first()
-            exists_prop = db.query(NewPageProposal).filter(
-                NewPageProposal.suggested_slug == suggested_slug
-            ).first()
-            if exists_page or exists_prop:
+            # D1 dedupe gate: exact proposal slug + exact/fuzzy wiki page slug
+            from app.services.proposal_triage import is_duplicate_slug
+            dup_reason = is_duplicate_slug(db, suggested_slug)
+            if dup_reason:
+                print(f"[cluster_new_topic_candidates] dedupe skip '{suggested_slug}': {dup_reason}")
                 continue
 
             # Compute avg centroid similarity of cluster members
@@ -2714,7 +2818,12 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         if not ev or ev.stance_jury_run_at is not None:
             _release_stance_jury_inflight(evidence_id)
             return  # idempotent
-        if not ev.abstract or len(ev.abstract) < settings.STANCE_JURY_MIN_ABSTRACT_CHARS:
+        abstract_text = ev.abstract or ""
+        intro_excerpt = ev.intro_excerpt or ""
+        if (
+            len(abstract_text) < settings.STANCE_JURY_MIN_ABSTRACT_CHARS
+            and len(intro_excerpt) < settings.INTRO_EXCERPT_MIN_CHARS
+        ):
             ev.stance_jury_run_at = _dt.datetime.utcnow()
             db.commit()
             _release_stance_jury_inflight(evidence_id)
@@ -2730,7 +2839,8 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
             f'Cited paper:\n"{ev.title}" '
             f'({"arXiv:" + ev.arxiv_id if ev.arxiv_id else "DOI:" + (ev.doi or "")}, '
             f'{ev.year or "n.d."})\n\n'
-            f'Abstract:\n{(ev.abstract or "")[:2000]}\n\n'
+            f'Abstract:\n{abstract_text[:2000]}\n\n'
+            f'Introduction excerpt:\n{intro_excerpt[:1200]}\n\n'
             f'Asserted stance: {ev.stance}\n\n'
             f'Respond ONLY with JSON: {{"stance_correct": true|false, "vote": 1|-1|0, "reason": "<one sentence>"}}'
         )
@@ -2846,7 +2956,7 @@ def drain_stance_jury_backlog():
     """Hourly: pace unjudged evidence into stance jury tasks."""
     import datetime as _dt
     from app.models.claim import Claim, Evidence, EvidenceVote
-    from sqlalchemy import func as sqlfunc, case
+    from sqlalchemy import func as sqlfunc, case, or_
 
     if not settings.STANCE_JURY_ENABLED:
         return
@@ -2868,8 +2978,10 @@ def drain_stance_jury_backlog():
             db.query(Evidence)
             .join(Claim, Claim.id == Evidence.claim_id)
             .filter(Evidence.stance_jury_run_at.is_(None))
-            .filter(Evidence.abstract.isnot(None))
-            .filter(sqlfunc.length(Evidence.abstract) >= settings.STANCE_JURY_MIN_ABSTRACT_CHARS)
+            .filter(or_(
+                sqlfunc.length(Evidence.abstract) >= settings.STANCE_JURY_MIN_ABSTRACT_CHARS,
+                sqlfunc.length(Evidence.intro_excerpt) >= settings.INTRO_EXCERPT_MIN_CHARS,
+            ))
             .order_by(
                 case((Claim.trust_level == "accepted", 0), else_=1),
                 Evidence.created_at,
@@ -4695,7 +4807,9 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         if not ev or ev.stance_jury_run_at is not None:
             _release_stance_jury_inflight(evidence_id)
             return
-        if not ev.abstract or len(ev.abstract) < 100:
+        abstract_text = ev.abstract or ""
+        intro_excerpt = ev.intro_excerpt or ""
+        if len(abstract_text) < 100 and len(intro_excerpt) < settings.INTRO_EXCERPT_MIN_CHARS:
             ev.stance_jury_run_at = _dt.datetime.utcnow()
             db.commit()
             _release_stance_jury_inflight(evidence_id)
@@ -4709,7 +4823,8 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         user_msg = (
             f'Claim: "{claim.text[:300]}"\n\n'
             f'Paper: "{ev.title[:150]}" ({ev.year or "n.d."})\n'
-            f'Abstract: {ev.abstract[:600]}\n'
+            f'Abstract: {abstract_text[:600]}\n'
+            f'Introduction excerpt: {intro_excerpt[:800]}\n'
             f'Asserted stance: {ev.stance}\n\n'
             f'Respond ONLY with JSON: {{"vote": 1|-1|0, "reason": "one sentence"}}'
         )
@@ -4800,7 +4915,7 @@ def drain_jury_fast_pass():
     """Every 30 min: send jury tasks to fast single-model path for evidence with <3 votes."""
     import datetime as _dt
     from app.models.claim import Claim, Evidence, EvidenceVote
-    from sqlalchemy import func as sqlfunc
+    from sqlalchemy import func as sqlfunc, or_
 
     if not settings.STANCE_JURY_ENABLED:
         return
@@ -4818,8 +4933,10 @@ def drain_jury_fast_pass():
             .join(Claim, Claim.id == Evidence.claim_id)
             .outerjoin(EvidenceVote, EvidenceVote.evidence_id == Evidence.id)
             .filter(Evidence.stance_jury_run_at.is_(None))
-            .filter(Evidence.abstract.isnot(None))
-            .filter(sqlfunc.length(Evidence.abstract) >= 100)
+            .filter(or_(
+                sqlfunc.length(Evidence.abstract) >= 100,
+                sqlfunc.length(Evidence.intro_excerpt) >= settings.INTRO_EXCERPT_MIN_CHARS,
+            ))
             .filter(Claim.trust_level.in_(["accepted", "consensus"]))
             .group_by(Evidence.id)
             .having(sqlfunc.count(EvidenceVote.id) == 0)
@@ -4854,8 +4971,10 @@ def drain_jury_fast_pass():
                 .join(Claim, Claim.id == Evidence.claim_id)
                 .filter(Evidence.stance_jury_run_at.isnot(None))  # already run but low votes
                 .filter(Evidence.stance_jury_run_at < low_vote_retry_cutoff)
-                .filter(Evidence.abstract.isnot(None))
-                .filter(sqlfunc.length(Evidence.abstract) >= 100)
+                .filter(or_(
+                    sqlfunc.length(Evidence.abstract) >= 100,
+                    sqlfunc.length(Evidence.intro_excerpt) >= settings.INTRO_EXCERPT_MIN_CHARS,
+                ))
                 .filter(Claim.trust_level.in_(["accepted", "debated"]))
                 .filter(vote_count > 0)
                 .filter(vote_count < 3)

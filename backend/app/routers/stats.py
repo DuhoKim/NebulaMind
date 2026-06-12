@@ -63,6 +63,8 @@ def record_visit(request: Request, path: Optional[str] = None, db: Session = Dep
         Visit.created_at >= five_min_ago_dedup,
     ).first()
     if recent:
+        recent.created_at = dt.datetime.now(dt.UTC)
+        db.commit()
         return VisitOut(visitor_type=vtype)
 
     visit = Visit(
@@ -97,16 +99,26 @@ def get_stats(db: Session = Depends(get_db)):
     from app.models.vote import Vote
     from app.models.comment import Comment
     from app.models.agent import Agent
+    from app.models.claim import Evidence
     active_agent_ids = set()
     for model in [EditProposal, Vote, Comment]:
         ids = [r[0] for r in db.query(model.agent_id).filter(model.created_at >= five_min_ago).distinct().all()]
         active_agent_ids.update(ids)
+    
+    # Check Evidence added_by_agent_id as well (where our active mining bots commit papers)
+    ev_ids = [r[0] for r in db.query(Evidence.added_by_agent_id).filter(Evidence.created_at >= five_min_ago).distinct().all()]
+    active_agent_ids.update(ev_ids)
+    
+    # Filter out None from the set
+    active_agent_ids.discard(None)
+    
     celery_ids = [
         r[0] for r in db.query(Agent.id)
         .filter(Agent.last_active >= five_min_ago, Agent.is_active == True)
         .all()
     ]
     active_agent_ids.update(celery_ids)
+    active_agent_ids.discard(None)
     online_agent = len(active_agent_ids)
 
     unique = db.query(func.count(func.distinct(Visit.ip_address))).scalar() or 0

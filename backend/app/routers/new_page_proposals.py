@@ -172,6 +172,15 @@ def reject_proposal(proposal_id: int, body: RejectBody, db: Session = Depends(ge
 admin_router = APIRouter(prefix="/api/admin/proposals", tags=["admin-proposals"])
 
 
+@admin_router.get("/top")
+def top_proposals_for_review(limit: int = 10, db: Session = Depends(get_db)):
+    """Weekly review surface (D1): top pending proposals by paper_count x similarity."""
+    from app.services.proposal_triage import top_pending
+
+    items = top_pending(db, limit=limit)
+    return {"count": len(items), "items": items}
+
+
 class DecisionBody(BaseModel):
     action: Literal["accept", "reject"]
     actor: str = "papa"

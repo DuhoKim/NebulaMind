@@ -48,7 +48,6 @@ from app.services.page_health import compute_health_score
 from app.utils.model_guard import guard_batch_model
 from app.utils.premium_dispatch import dispatch_premium, log_llm_spend
 
-PILOT_PAGE_ID = 57
 _ASTROSAGE = settings.ASTRO_SYNTH_MODEL or "astrosage-70b"
 
 
@@ -351,9 +350,6 @@ def _check_coherence_due(db, page_id: int) -> bool:
     3. The number of committed ``section_rewrite`` runs since the last committed
        ``rakon_coherence_pass`` exceeds COHERENCE_TRIGGER_REWRITES (default 50).
     """
-    if page_id == 57:
-        return False
-
     try:
         r = _get_redis()
         if r and r.get(f"autowiki:coherence_dispatched:{page_id}"):
@@ -858,7 +854,7 @@ def autowiki_pipeline_rollback(self, request=None, exc=None, traceback=None, pag
     task_acks_late=True,
     max_retries=0,
 )
-def autowiki_tick() -> dict:
+def autowiki_tick(page_id: int) -> dict:
     # --- Kill switch (§4.5) ---
     if not _is_enabled():
         return {"decision": "skip", "reject_reason": "flag_off"}
@@ -867,8 +863,6 @@ def autowiki_tick() -> dict:
     if not _rakon_probe():
         logger.warning("[autowiki] tick skipped: rakon_unavailable")
         return {"decision": "skip", "reject_reason": "rakon_unavailable"}
-
-    page_id = PILOT_PAGE_ID  # v1: hardcoded pilot page
 
     if not _acquire_lock(page_id):
         logger.warning("[autowiki] tick skipped: concurrent_tick lock held on page %d", page_id)
@@ -1617,7 +1611,7 @@ _SONNET_SECTION_SYSTEM = (
     name="app.agent_loop.autowiki.tasks.sonnet_section_rewrite",
     bind=True, max_retries=0,
 )
-def sonnet_section_rewrite(self, page_id: int = PILOT_PAGE_ID, target_section: str = None):
+def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
     """v3 §3.3: Sonnet (claude-sonnet-4-6) writes section rewrites A/B with AstroSage."""
     import re
     import datetime as _dt
@@ -1914,7 +1908,7 @@ _COHERENCE_EXPECTED_SECTIONS = ['## Overview & Historical Context', '## Galaxy F
     time_limit=32400,    # 9h hard kill
     soft_time_limit=30000,  # ~8.3h soft
 )
-def run_rakon_coherence_pass(self, page_id: int = 57) -> dict:
+def run_rakon_coherence_pass(self, page_id: int) -> dict:
     """Full-page coherence rewrite using Claude claude-opus-4-7 via Anthropic API."""
     import json as _json
     import time as _time
@@ -1926,10 +1920,6 @@ def run_rakon_coherence_pass(self, page_id: int = 57) -> dict:
     t0 = _time.monotonic()
 
     with SessionLocal() as db:
-        if page_id == 57:
-            logger.warning("[coherence] Skipping page 57 (galaxy-evolution) per P1 pipeline redesign.")
-            return {"decision": "skip", "reject_reason": "page_57_exclusion"}
-
         # do_not_renovate guard: skip and release lock immediately if set
         _dnr_row = db.execute(
             __import__("sqlalchemy").text(

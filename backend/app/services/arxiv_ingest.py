@@ -219,10 +219,10 @@ def handle_claim_evidence(
                   evidence_id=evidence.id, decision="evidence_inserted",
                   quality=verified.quality)
 
-    # Trigger trust recalculation for this claim's page
+    # Trigger trust recalculation for this claim
     try:
-        from app.agent_loop.tasks import recalculate_trust
-        recalculate_trust.delay(best_page_id)
+        from app.routers.claims import recalculate_trust_v2
+        recalculate_trust_v2(best_claim_id, db, trigger="arxiv_ingest_verification")
     except Exception:
         pass  # best-effort; trust will recalc on next scheduled run
 
@@ -441,6 +441,17 @@ def handle_new_topic(
     else:
         # Start a new cluster; size-1 is perfectly self-coherent → 1.0
         slug_candidate = _make_slug(paper.title)
+
+        # D1 dedupe gate: skip slugs duplicating existing proposals/pages
+        from app.services.proposal_triage import is_duplicate_slug
+        dup_reason = is_duplicate_slug(db, slug_candidate)
+        if dup_reason:
+            _log_external(db, source="arxiv", external_id=arxiv_id,
+                          decision="new_topic_dedupe_skipped",
+                          notes=f"slug={slug_candidate} reason={dup_reason}")
+            log.debug("[arxiv_ingest] new_topic dedupe skip %s: %s", slug_candidate, dup_reason)
+            return
+
         proposal = NewPageProposal(
             suggested_slug=slug_candidate,
             suggested_title=paper.title[:200],

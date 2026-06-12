@@ -47,6 +47,11 @@ class Settings(BaseSettings):
     EVIDENCE_RETRY_COOLOFF_DAYS: int = 7
     PAPER_SEARCH_S2_CROSS_CHECK: bool = True
     PAPER_SEARCH_CACHE_TTL_HOURS: int = 24
+    INTRO_FETCH_ENABLED: bool = True
+    INTRO_FETCH_TIMEOUT_S: int = 20
+    INTRO_EXCERPT_MIN_CHARS: int = 200
+    INTRO_FETCH_PER_LINKER_RUN: int = 4
+    INTRO_BACKFILL_BATCH: int = 30
     # === Trust score weights ===
     TRUST_W_EVIDENCE: float = 0.45
     TRUST_W_VOTES: float = 0.35
@@ -95,6 +100,16 @@ class Settings(BaseSettings):
     ARXIV_NEW_TOPIC_CENTROID_THRESHOLD: float = 0.25
     NEW_PAGE_PROPOSAL_NOTIFY_BATCH_SIZE: int = 3
     NEW_PAGE_PROPOSAL_NOTIFY_FLUSH_HOURS: int = 24
+    # D1 proposal triage (state audit 2026-06-12)
+    PROPOSAL_EXPIRE_DAYS: int = 30
+    PROPOSAL_QUEUE_CAP: int = 100
+    PROPOSAL_DEDUPE_FUZZY_RATIO: float = 0.85
+    ARXIV_WIKI_FEED_V2_ENABLED: bool = True
+    ARXIV_WIKI_FEED_V2_MODE: str = "auto_validate_manual_promote"
+    ARXIV_WIKI_FEED_V2_ARTIFACT_ROOT: str = "/Users/duhokim/.openclaw/workspace/arxiv_wiki_feed_v2/daily"
+    BEAT_SCHEDULE_MODE: str = "registry"  # legacy | registry_shadow | registry
+    REGISTRY_ENFORCE_BUDGETS: bool = False
+    REGISTRY_DISPATCH_STAGGER_SECONDS: int = 120
     # === Wikipedia integration ===
     WIKIPEDIA_INTEGRATION_ENABLED: bool = True
     WIKIPEDIA_USER_AGENT: str = 'NebulaMind/1.0 (research; admin@nebulamind.net)'
@@ -109,6 +124,7 @@ class Settings(BaseSettings):
 
     # === Trust Phase 2: Stance Jury ===
     STANCE_JURY_ENABLED: bool = True
+    JURY_SHADOW_MODE: bool = False
     STANCE_JURY_MAX_PER_HOUR: int = 10000
     STANCE_JURY_MAX_ENQUEUE_PER_HOUR: int = 40
     STANCE_JURY_FAST_MAX_ENQUEUE_PER_PASS: int = 20
@@ -176,6 +192,14 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     ADMIN_KEY: str = ""
     ANTHROPIC_API_KEY: str = ""
+    BATCH_STRICT_MODE: bool = True
+    PREMIUM_DISPATCH_ENABLED: bool = True
+    PREMIUM_JOB_SOFT_KRW: int = 20_000
+    PREMIUM_JOB_HARD_KRW: int = 50_000
+    PREMIUM_24H_SOFT_KRW: int = 50_000
+    PREMIUM_24H_HARD_KRW: int = 150_000
+    PREMIUM_30D_SOFT_KRW: int = 500_000
+    PREMIUM_30D_HARD_KRW: int = 1_000_000
 
     # === Research Ideas pipeline ===
     RESEARCH_IDEAS_COMBO_WHITELIST: str = ""  # comma-separated, e.g. "JWST+DESI,ALMA+Euclid" — empty = allow all
@@ -243,8 +267,3 @@ BATCH_SAFE_MODELS: frozenset[str] = frozenset({
 # Default substitute returned in non-strict mode. Cheapest hosted member of
 # BATCH_SAFE_MODELS while still maintaining astronomy-prompt fluency.
 BATCH_SAFE_DEFAULT_MODEL: str = "gemini-2.5-flash"
-
-# When True, guard_batch_model() raises ValueError on a non-allowlisted model.
-# When False, it logs a warning and substitutes BATCH_SAFE_DEFAULT_MODEL.
-# Override at runtime via NM_BATCH_STRICT_MODE if needed for emergencies.
-BATCH_STRICT_MODE: bool = True
