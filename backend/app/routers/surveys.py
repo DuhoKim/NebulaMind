@@ -1,5 +1,6 @@
 """Astronomical Surveys Directory router."""
 import json
+from datetime import datetime, timedelta
 from fastapi import APIRouter, Depends, Query, HTTPException
 from sqlalchemy import text, func
 from sqlalchemy.orm import Session
@@ -104,6 +105,18 @@ def _dataset_row_to_dict(row, catalog_fields: list[dict] | None = None) -> dict:
     }
 
 
+def _facility_profile_row_to_dict(row) -> dict:
+    return {
+        "slug": row.slug,
+        "short_name": row.short_name,
+        "full_name": row.full_name,
+        "relation_type": row.relation_type,
+        "is_primary": bool(row.is_primary),
+        "event_count": int(row.event_count or 0),
+        "upcoming_count": int(row.upcoming_count or 0),
+    }
+
+
 def _get_survey_identity(slug: str, db: Session):
     survey_row = db.execute(
         text("SELECT id, slug, name FROM surveys WHERE slug = :slug"), {"slug": slug}
@@ -111,6 +124,32 @@ def _get_survey_identity(slug: str, db: Session):
     if survey_row is None:
         raise HTTPException(status_code=404, detail=f"Survey '{slug}' not found")
     return survey_row
+
+
+def _get_survey_facility_profiles(survey_id: int, db: Session) -> list[dict]:
+    try:
+        rows = db.execute(text("""
+            SELECT fp.slug, fp.short_name, fp.full_name,
+                   sfl.relation_type, sfl.is_primary,
+                   (
+                     SELECT count(*)
+                     FROM facility_news_items fni
+                     WHERE fni.facility_id = fp.id
+                   ) AS event_count,
+                   (
+                     SELECT count(*)
+                     FROM facility_news_items fni
+                     WHERE fni.facility_id = fp.id
+                       AND fni.occurs_at >= NOW()
+                   ) AS upcoming_count
+            FROM survey_facility_links sfl
+            JOIN facility_profiles fp ON fp.id = sfl.facility_profile_id
+            WHERE sfl.survey_id = :sid
+            ORDER BY sfl.is_primary DESC, fp.short_name ASC NULLS LAST, fp.slug ASC
+        """), {"sid": survey_id}).fetchall()
+    except Exception:
+        return []
+    return [_facility_profile_row_to_dict(row) for row in rows]
 
 
 def _get_survey_releases(survey_id: int, db: Session) -> list[dict]:
@@ -207,8 +246,72 @@ def get_survey(slug: str, db: Session = Depends(get_db)):
 
     detail["data_releases"] = _get_survey_releases(row.id, db)
     detail["datasets_count"] = _get_survey_datasets_count(row.id, db)
+    detail["facility_profiles"] = _get_survey_facility_profiles(row.id, db)
 
     return detail
+
+
+@router.get("/{slug}/events")
+def get_survey_events(
+    slug: str,
+    past_days: int = Query(default=180, ge=0, le=180),
+    upcoming_days: int = Query(default=730, ge=0, le=730),
+    limit: int = Query(default=8, ge=1, le=50),
+    db: Session = Depends(get_db),
+):
+    survey_row = _get_survey_identity(slug, db)
+    since = datetime.utcnow() - timedelta(days=past_days)
+    until = datetime.utcnow() + timedelta(days=upcoming_days)
+
+    linked = db.execute(text("""
+        SELECT count(*)
+        FROM survey_facility_links
+        WHERE survey_id = :sid
+    """), {"sid": survey_row.id}).scalar() or 0
+    if not linked:
+        return {
+            "survey": {"slug": survey_row.slug, "name": survey_row.name},
+            "count": 0,
+            "events": [],
+        }
+
+    params = {"sid": survey_row.id, "since": since, "until": until}
+    count = int(db.execute(text("""
+        SELECT count(*)
+        FROM survey_facility_links sfl
+        JOIN facility_profiles fp ON fp.id = sfl.facility_profile_id
+        JOIN facility_news_items fni ON fni.facility_id = fp.id
+        WHERE sfl.survey_id = :sid
+          AND (fni.occurs_at BETWEEN :since AND :until OR fni.occurs_at IS NULL)
+    """), params).scalar() or 0)
+
+    rows = db.execute(text("""
+        SELECT fni.id, fni.slug, fni.title, fni.kind, fni.track, fni.summary,
+               fni.occurs_at, fni.occurs_at_confidence, fni.occurrence_status,
+               fni.source_url, fni.data_portal_urls, fni.featured, fni.credibility_score,
+               fni.created_at,
+               fp.slug AS facility_slug,
+               COALESCE(fp.short_name, fp.full_name, fp.slug) AS facility_name,
+               fp.homepage_url AS facility_url
+        FROM survey_facility_links sfl
+        JOIN facility_profiles fp ON fp.id = sfl.facility_profile_id
+        JOIN facility_news_items fni ON fni.facility_id = fp.id
+        WHERE sfl.survey_id = :sid
+          AND (fni.occurs_at BETWEEN :since AND :until OR fni.occurs_at IS NULL)
+        ORDER BY
+          CASE WHEN fni.occurs_at >= NOW() THEN 0 ELSE 1 END,
+          fni.featured DESC,
+          CASE WHEN fni.occurs_at >= NOW() THEN fni.occurs_at END ASC NULLS LAST,
+          CASE WHEN fni.occurs_at < NOW() THEN fni.occurs_at END DESC NULLS LAST,
+          fni.created_at DESC
+        LIMIT :limit
+    """), {**params, "limit": limit}).fetchall()
+
+    return {
+        "survey": {"slug": survey_row.slug, "name": survey_row.name},
+        "count": count,
+        "events": [dict(row._mapping) for row in rows],
+    }
 
 
 @router.get("/{slug}/releases")

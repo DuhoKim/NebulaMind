@@ -31,6 +31,7 @@ interface SurveyDetail {
   related_wiki_page_slugs: string[];
   data_releases: SurveyRelease[];
   datasets_count: number;
+  facility_profiles: SurveyFacilityProfile[];
   updated_at: string | null;
   // Numeric fields
   num_sources_count: number | null;
@@ -39,6 +40,35 @@ interface SurveyDetail {
   z_max: number | null;
   dr_year: number | null;
   data_volume_tb: number | null;
+}
+
+interface SurveyFacilityProfile {
+  slug: string;
+  short_name: string | null;
+  full_name: string;
+  relation_type: string;
+  is_primary: boolean;
+  event_count: number;
+  upcoming_count: number;
+}
+
+interface SurveyEvent {
+  id: number;
+  slug: string;
+  title: string;
+  kind: string;
+  track: string;
+  summary: string | null;
+  occurs_at: string | null;
+  occurs_at_confidence: string | null;
+  occurrence_status: string | null;
+  source_url: string | null;
+  data_portal_urls: string | null;
+  featured: boolean | null;
+  credibility_score: number | null;
+  facility_slug: string | null;
+  facility_name: string | null;
+  facility_url: string | null;
 }
 
 interface SurveyRelease {
@@ -139,6 +169,15 @@ function formatReleaseDate(release: SurveyRelease): string {
 
 function formatDataType(value: string): string {
   return value.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function formatEventDate(value: string | null): string {
+  if (!value) return "Date pending";
+  return new Date(value).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
 
 // ── Sub-components ─────────────────────────────────────────────────────────────
@@ -412,6 +451,102 @@ function CatalogFieldRow({ field, i }: { field: CatalogField; i: number }) {
   );
 }
 
+function SurveyNewsEvents({
+  events,
+  loading,
+  linked,
+}: {
+  events: SurveyEvent[];
+  loading: boolean;
+  linked: boolean;
+}) {
+  if (!linked) return null;
+
+  return (
+    <SectionFrame title="News & Events">
+      <div style={{ padding: "1rem 1.25rem" }}>
+        <p style={{ margin: "0 0 0.9rem", color: "#94a3b8", fontSize: "0.9rem", lineHeight: 1.55 }}>
+          Latest data releases, proposal calls, and facility milestones linked to this survey.
+        </p>
+        {loading ? (
+          <p style={{ margin: 0, color: "#64748b", fontSize: "0.9rem" }}>Loading facility events…</p>
+        ) : events.length === 0 ? (
+          <p style={{ margin: 0, color: "#64748b", fontSize: "0.9rem" }}>No tracked news or calendar events yet.</p>
+        ) : (
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(3, minmax(240px, 1fr))",
+              gap: "0.75rem",
+              overflowX: "auto",
+              paddingBottom: "0.2rem",
+            }}
+          >
+            {events.map(event => (
+              <article
+                key={event.id}
+                style={{
+                  minWidth: 0,
+                  background: "#0f172a",
+                  border: "1px solid #334155",
+                  borderRadius: "8px",
+                  padding: "0.9rem",
+                }}
+              >
+                <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", marginBottom: "0.55rem" }}>
+                  {event.facility_slug && (
+                    <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#c4b5fd", background: "rgba(99,102,241,0.12)", borderRadius: "999px", padding: "0.1rem 0.5rem" }}>
+                      {event.facility_name || event.facility_slug}
+                    </span>
+                  )}
+                  <span style={{ fontSize: "0.7rem", fontWeight: 700, color: "#93c5fd", background: "rgba(59,130,246,0.12)", borderRadius: "999px", padding: "0.1rem 0.5rem" }}>
+                    {event.kind.replace(/_/g, " ")}
+                  </span>
+                </div>
+                <h3 style={{ margin: "0 0 0.45rem", color: "#f8fafc", fontSize: "0.92rem", lineHeight: 1.35 }}>
+                  {event.title}
+                </h3>
+                {event.summary && (
+                  <p
+                    style={{
+                      margin: "0 0 0.75rem",
+                      color: "#94a3b8",
+                      fontSize: "0.82rem",
+                      lineHeight: 1.45,
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      overflow: "hidden",
+                    }}
+                  >
+                    {event.summary}
+                  </p>
+                )}
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "0.65rem", alignItems: "center", color: "#64748b", fontSize: "0.76rem" }}>
+                  <span>
+                    {formatEventDate(event.occurs_at)}
+                    {event.occurrence_status ? ` · ${event.occurrence_status}` : ""}
+                  </span>
+                  {event.source_url && (
+                    <a href={event.source_url} target="_blank" rel="noopener noreferrer" style={{ color: "#818cf8", textDecoration: "none", flexShrink: 0 }}>
+                      Source ↗
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+        <div style={{ marginTop: "0.85rem" }}>
+          <Link href="/calendar" style={{ color: "#818cf8", textDecoration: "none", fontSize: "0.84rem" }}>
+            View calendar →
+          </Link>
+        </div>
+      </div>
+    </SectionFrame>
+  );
+}
+
 // ── Page ──────────────────────────────────────────────────────────────────────
 
 export default function SurveyDetailClient() {
@@ -420,7 +555,9 @@ export default function SurveyDetailClient() {
   const [survey, setSurvey] = useState<SurveyDetail | null>(null);
   const [ideas, setIdeas] = useState<Idea[]>([]);
   const [datasets, setDatasets] = useState<SurveyDataset[]>([]);
+  const [events, setEvents] = useState<SurveyEvent[]>([]);
   const [datasetsLoading, setDatasetsLoading] = useState(false);
+  const [eventsLoading, setEventsLoading] = useState(false);
   const [loading, setLoading] = useState(true);
   const [notFound, setNotFound] = useState(false);
 
@@ -452,6 +589,20 @@ export default function SurveyDetailClient() {
       .then(r => r.ok ? r.json() : { datasets: [] })
       .then(d => setDatasets(d.datasets || []))
       .finally(() => setDatasetsLoading(false));
+  }, [slug, survey]);
+
+  useEffect(() => {
+    if (!slug || !survey) return;
+    if (!survey.facility_profiles || survey.facility_profiles.length === 0) {
+      setEvents([]);
+      return;
+    }
+    setEvents([]);
+    setEventsLoading(true);
+    fetch(`/api/surveys/${slug}/events?limit=8`)
+      .then(r => r.ok ? r.json() : { events: [] })
+      .then(d => setEvents(d.events || []))
+      .finally(() => setEventsLoading(false));
   }, [slug, survey]);
 
   if (loading) {
@@ -621,6 +772,11 @@ export default function SurveyDetailClient() {
 
       <ReleaseTimeline releases={survey.data_releases} />
       <DatasetCatalogs datasets={datasets} loading={datasetsLoading} expectedCount={survey.datasets_count} />
+      <SurveyNewsEvents
+        events={events}
+        loading={eventsLoading}
+        linked={(survey.facility_profiles || []).length > 0}
+      />
 
       {/* Primary Science Goals */}
       {survey.primary_science_goals && (

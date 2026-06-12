@@ -162,6 +162,29 @@ class SurveyWikiPage(Base):
     __table_args__ = (UniqueConstraint("survey_id", "page_id", name="uq_survey_wiki_pages"),)
 
 
+class SurveyFacilityLink(Base):
+    __tablename__ = "survey_facility_links"
+
+    id = Column(Integer, primary_key=True)
+    survey_id = Column(Integer, ForeignKey("surveys.id", ondelete="CASCADE"), nullable=False)
+    facility_profile_id = Column(Integer, ForeignKey("facility_profiles.id", ondelete="CASCADE"), nullable=False)
+    relation_type = Column(String(40), nullable=False, server_default="same_facility")
+    is_primary = Column(Boolean, nullable=False, server_default="true")
+    confidence = Column(Numeric(3, 2), nullable=False, server_default="1.00")
+    source = Column(String(80), nullable=False, server_default="manual_seed_20260613")
+    notes = Column(Text, nullable=True)
+    created_at = Column(TIMESTAMP, nullable=False, server_default=func.now())
+
+    __table_args__ = (
+        UniqueConstraint(
+            "survey_id",
+            "facility_profile_id",
+            "relation_type",
+            name="uq_survey_facility_links_relation",
+        ),
+    )
+
+
 class SurveyDataRelease(Base):
     __tablename__ = "survey_data_releases"
 
