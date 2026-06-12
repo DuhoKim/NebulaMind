@@ -2,16 +2,29 @@
   "survey_slug": "panstarrs",
   "releases": [
     {
-      "label": "DR2",
-      "release_date": null,
-      "release_year": 2019,
-      "summary": "Pan-STARRS DR2 (2019) — 26 billion detections, 3 billion sources; stacked + single-epoch catalogs",
-      "n_objects": 1900000000,
-      "sky_coverage_deg2": null,
+      "label": "DR1",
+      "release_date": "2016-12-19",
+      "release_year": 2016,
+      "summary": "First PS1 3pi survey release — static-sky (mean and stacked) grizy photometry over three quarters of the sky (dec > -30)",
+      "n_objects": null,
+      "sky_coverage_deg2": 30000,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://panstarrs.stsci.edu/",
+      "doi": "10.48550/arXiv.1612.05560",
+      "bibcode": "2016arXiv161205560C",
+      "url": "https://outerspace.stsci.edu/display/PANSTARRS/",
+      "status": "superseded"
+    },
+    {
+      "label": "DR2",
+      "release_date": "2019-01-28",
+      "release_year": 2019,
+      "summary": "Current PS1 release — adds single-epoch (time-domain) detections to the DR1 static-sky catalogs; grizy photometry of ~3 billion sources (26 billion detections) over the 3pi survey footprint (dec > -30). Still the latest PS1 release as of 2026.",
+      "n_objects": 3000000000,
+      "sky_coverage_deg2": 30000,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4365/abb82d",
+      "bibcode": "2020ApJS..251....7F",
+      "url": "https://outerspace.stsci.edu/display/PANSTARRS/",
       "status": "released"
     }
   ]

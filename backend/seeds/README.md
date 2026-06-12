@@ -40,15 +40,18 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
 
 - Upsert key: `(dataset_id, name)`; resolve `dataset_id` from
   `survey_datasets.slug`. Apply file-level `source_url` to every row.
-- Load **after** the datasets backfill: 6 of the 13 files target dataset slugs
+- Load **after** the datasets backfill: 7 of the 21 files target dataset slugs
   created by `survey_datasets_backfill.json` (des-dr2, kids-dr5, hsc-pdr3,
-  erosita-erass1, gama-dr4, cosmos2020-classic).
+  erosita-erass1, gama-dr4, cosmos2020-classic, 5xmm-dr15).
 
 ## `survey_datasets_backfill.json` → table `survey_datasets`
 
-- `new`: 25 rows, upsert by `slug` (resolve `survey_id` from `survey_slug`).
+- `new`: 26 rows, upsert by `slug` (resolve `survey_id` from `survey_slug`).
+  Row 26 (`5xmm-dr15`, added in T2 batch 2) carries the 5XMM-DR15 catalogue
+  released by ESA on 2026-06-09.
 - `updates`: 23 patches `{slug, bibcode, doi}` for existing rows — patch only
-  these two columns, only when currently NULL.
+  these two columns, only when currently NULL (T2 batch 2 filled the
+  `wise-allwise` DOI 10.26131/IRSA1 in its existing patch entry).
 
 ## Gaps / known issues (for v1.1 or T2 pass)
 
@@ -60,13 +63,27 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
   null rather than guessed.
 - 9 pre-data facilities have planned-only rows and no datasets: 4most, cmb-s4,
   elt, ngvla, pfs, roman, ska1, spherex, weave.
-- T2 surveys: 7 enriched 2026-06-12 (alma, hst, chandra, vla, 2mass, galex,
-  rosat — releases web-verified against official archive pages; 5 new
-  catalog-field files transcribed from official column docs: chandra-csc21,
-  vla-first, 2mass-xsc, galex-gr67, rosat-2rxs). 21 remaining bootstrap-only
-  files (act, askap-emu, cdf-n, cdf-s, deep2, fermi-lat, h-atlas, hetdex,
-  hipass, lofar, meerkat, panstarrs, planck, spt, ukidss, unions, viking,
-  vipers, wise, xmm, zcosmos) still have a single mechanical release row;
-  enrichment continues as a rolling Kun task per design doc §3.3.
+- T2 surveys: 11 enriched as of 2026-06-12. Batch 1: alma, hst, chandra, vla,
+  2mass, galex, rosat (releases web-verified against official archive pages;
+  5 catalog-field files: chandra-csc21, vla-first, 2mass-xsc, galex-gr67,
+  rosat-2rxs). Batch 2: planck, wise, panstarrs, xmm (releases web-verified +
+  ADS-verified bibcodes; 3 catalog-field files: wise-allwise, ps1-dr2,
+  5xmm-dr15). 17 remaining bootstrap-only files (act, askap-emu, cdf-n,
+  cdf-s, deep2, fermi-lat, h-atlas, hetdex, hipass, lofar, meerkat, spt,
+  ukidss, unions, viking, vipers, zcosmos) still have a single mechanical
+  release row; enrichment continues as a rolling Kun task per design doc §3.3.
+- T2 batch 2 notes (2026-06-12): **5XMM-DR15 was released by ESA on
+  2026-06-09** (818,656 unique sources; provenance: HEASARC XMMSSC table) —
+  the xmm seed promotes it from planned to released and supersedes 4XMM-DR14;
+  its reference paper is not yet on ADS, so doi/bibcode are null. The SSC site
+  (xmmssc.irap.omp.eu) was returning 503 at seed time; 5xmm-dr15 catalog
+  fields were transcribed from the live HEASARC parameter docs instead, and
+  no 4xmm-dr13 field file was written (two generations stale). planck-pr3 is
+  a `cmb_map` product — no catalog-field file (honest empty state). PS1 key
+  columns span two MAST datamodel pages (ObjectThin: astrometry/flags;
+  MeanObject: photometry); file-level source_url points to the umbrella
+  "PS1 Database object and detection tables" page. Planck PR3/PR4 exact
+  release days not stated on archive pages → release_date left null with
+  year + month in summary.
 - GALEX GR6/GR7 release date and HSC v3.1 / GUVcat source counts not stated
   on the official pages → left null rather than guessed.

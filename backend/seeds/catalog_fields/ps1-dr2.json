@@ -1,0 +1,23 @@
+{
+  "dataset_slug": "ps1-dr2",
+  "source_url": "https://outerspace.stsci.edu/display/PANSTARRS/PS1+Database+object+and+detection+tables",
+  "fields": [
+    {"name": "objID", "dtype": "bigint", "unit": null, "description": "Unique object identifier (ObjectThin table)", "example": null, "is_key": true, "sort_order": 1},
+    {"name": "raMean", "dtype": "double", "unit": "deg", "description": "Right ascension from single epoch detections (weighted mean) in equinox J2000 at the mean epoch given by epochMean", "example": null, "is_key": true, "sort_order": 2},
+    {"name": "decMean", "dtype": "double", "unit": "deg", "description": "Declination from single epoch detections (weighted mean) in equinox J2000 at the mean epoch given by epochMean", "example": null, "is_key": true, "sort_order": 3},
+    {"name": "raMeanErr", "dtype": "float", "unit": "arcsec", "description": "Right ascension standard deviation from single epoch detections", "example": null, "is_key": true, "sort_order": 4},
+    {"name": "decMeanErr", "dtype": "float", "unit": "arcsec", "description": "Declination standard deviation from single epoch detections", "example": null, "is_key": true, "sort_order": 5},
+    {"name": "epochMean", "dtype": "double", "unit": "MJD days", "description": "Modified Julian Date of the mean epoch corresponding to raMean, decMean (weighted mean of the PS1 observation epochs)", "example": null, "is_key": true, "sort_order": 6},
+    {"name": "nDetections", "dtype": "int", "unit": null, "description": "Number of single epoch detections in all filters", "example": null, "is_key": true, "sort_order": 7},
+    {"name": "qualityFlag", "dtype": "int", "unit": null, "description": "Subset of objInfoFlag denoting whether this object is real or a likely false positive (ObjectQualityFlags bitmask)", "example": null, "is_key": true, "sort_order": 8},
+    {"name": "objInfoFlag", "dtype": "int", "unit": null, "description": "Information flag bitmask indicating details of the photometry (ObjectInfoFlags)", "example": null, "is_key": true, "sort_order": 9},
+    {"name": "gMeanPSFMag", "dtype": "float", "unit": "AB mag", "description": "Mean PSF magnitude from g filter detections (MeanObject table)", "example": null, "is_key": true, "sort_order": 10},
+    {"name": "gMeanPSFMagErr", "dtype": "float", "unit": "AB mag", "description": "Error in mean PSF magnitude from g filter detections", "example": null, "is_key": true, "sort_order": 11},
+    {"name": "rMeanPSFMag", "dtype": "float", "unit": "AB mag", "description": "Mean PSF magnitude from r filter detections", "example": null, "is_key": true, "sort_order": 12},
+    {"name": "iMeanPSFMag", "dtype": "float", "unit": "AB mag", "description": "Mean PSF magnitude from i filter detections", "example": null, "is_key": true, "sort_order": 13},
+    {"name": "iMeanPSFMagErr", "dtype": "float", "unit": "AB mag", "description": "Error in mean PSF magnitude from i filter detections", "example": null, "is_key": true, "sort_order": 14},
+    {"name": "zMeanPSFMag", "dtype": "float", "unit": "AB mag", "description": "Mean PSF magnitude from z filter detections", "example": null, "is_key": true, "sort_order": 15},
+    {"name": "yMeanPSFMag", "dtype": "float", "unit": "AB mag", "description": "Mean PSF magnitude from y filter detections", "example": null, "is_key": true, "sort_order": 16},
+    {"name": "iMeanKronMag", "dtype": "float", "unit": "AB mag", "description": "Mean Kron (1980) magnitude from i filter detections", "example": null, "is_key": true, "sort_order": 17}
+  ]
+}

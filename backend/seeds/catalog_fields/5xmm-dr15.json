@@ -1,0 +1,21 @@
+{
+  "dataset_slug": "5xmm-dr15",
+  "source_url": "https://heasarc.gsfc.nasa.gov/W3Browse/xmm-newton/xmmssc.html",
+  "fields": [
+    {"name": "SRCID", "dtype": "bigint", "unit": null, "description": "Unique number assigned to a unique source determined through source detection on the stack (5XMM SRCIDs bear no relation to 4XMM)", "example": null, "is_key": true, "sort_order": 1},
+    {"name": "NAME", "dtype": "string", "unit": null, "description": "IAU designation assigned to the unique SRCID, of the form 4XMM Jhhmmss.sSddmmss from the J2000.0 source coordinates", "example": null, "is_key": true, "sort_order": 2},
+    {"name": "RA", "dtype": "double", "unit": "deg", "description": "Corrected right ascension (J2000) of the detection after statistical correlation with USNO B1.0, 2MASS or SDSS optical/IR catalogs (field rectification)", "example": null, "is_key": true, "sort_order": 3},
+    {"name": "DEC", "dtype": "double", "unit": "deg", "description": "Corrected declination (J2000) of the detection after field rectification", "example": null, "is_key": true, "sort_order": 4},
+    {"name": "ERROR_RADIUS", "dtype": "float", "unit": "arcsec", "description": "Total positional uncertainty, computed as sqrt(ra_err^2 + dec_err^2)", "example": null, "is_key": true, "sort_order": 5},
+    {"name": "EP_FLUX", "dtype": "float", "unit": "erg/cm2/s", "description": "EPIC combined total band (0.2-12 keV) flux; mean of the band-specific detections in all cameras weighted by errors, full-PSF flux", "example": null, "is_key": true, "sort_order": 6},
+    {"name": "EP_FLUX_ERROR", "dtype": "float", "unit": "erg/cm2/s", "description": "Uncertainty in the EPIC combined total band flux (error of the weighted mean over cameras)", "example": null, "is_key": true, "sort_order": 7},
+    {"name": "EP_CTS", "dtype": "float", "unit": "counts", "description": "EPIC combined total band source counts, as derived by the SAS source detection task", "example": null, "is_key": true, "sort_order": 8},
+    {"name": "STACK_DET_ML", "dtype": "float", "unit": null, "description": "Detection maximum likelihood from fitting of the 5-band spectrum; catalog processing likelihood threshold is 6", "example": null, "is_key": true, "sort_order": 9},
+    {"name": "EXTENT", "dtype": "float", "unit": "arcsec", "description": "Total band extent — weighted average of the EPIC extents of all detections of the source; beta-model convolved with the PSF, point sources have extent below 6 arcsec or extent likelihood below 4 (reliable up to 80 arcsec)", "example": null, "is_key": true, "sort_order": 10},
+    {"name": "EXTENT_ERROR", "dtype": "float", "unit": "arcsec", "description": "1-sigma symmetric uncertainty in the total band extent as determined by the SAS task emldetect", "example": null, "is_key": true, "sort_order": 11},
+    {"name": "VAR_FLAG", "dtype": "boolean", "unit": null, "description": "Set to True if the source was detected as variable (chi-squared probability test) within a single observation", "example": null, "is_key": true, "sort_order": 12},
+    {"name": "SUM_FLAG", "dtype": "int", "unit": null, "description": "Summary flag — integer representation of the stacked source quality flags (0 = clean; higher values indicate possible issues or spurious detection)", "example": null, "is_key": true, "sort_order": 13},
+    {"name": "N_OBS", "dtype": "int", "unit": null, "description": "Total number of observations per stack; null in observation-specific rows, so N_OBS > 0 selects the summary source rows", "example": null, "is_key": true, "sort_order": 14},
+    {"name": "N_CONTRIB", "dtype": "int", "unit": null, "description": "Number of contributing observations for which the source position is inside the field of view", "example": null, "is_key": true, "sort_order": 15}
+  ]
+}

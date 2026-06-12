@@ -1,0 +1,26 @@
+{
+  "dataset_slug": "wise-allwise",
+  "source_url": "https://irsa.ipac.caltech.edu/data/WISE/docs/release/AllWISE/expsup/sec2_1a.html",
+  "fields": [
+    {"name": "designation", "dtype": "string", "unit": null, "description": "Sexagesimal, equatorial position-based source name", "example": "J000000.00+000000.0", "is_key": true, "sort_order": 1},
+    {"name": "ra", "dtype": "double", "unit": "deg", "description": "J2000 right ascension with respect to the 2MASS PSC reference frame from the non-moving source extraction", "example": null, "is_key": true, "sort_order": 2},
+    {"name": "dec", "dtype": "double", "unit": "deg", "description": "J2000 declination with respect to the 2MASS PSC reference frame from the non-moving source extraction", "example": null, "is_key": true, "sort_order": 3},
+    {"name": "sigra", "dtype": "float", "unit": "arcsec", "description": "One-sigma uncertainty in right ascension from profile-fit photometry", "example": null, "is_key": true, "sort_order": 4},
+    {"name": "sigdec", "dtype": "float", "unit": "arcsec", "description": "One-sigma uncertainty in declination from profile-fit photometry", "example": null, "is_key": true, "sort_order": 5},
+    {"name": "w1mpro", "dtype": "float", "unit": "mag", "description": "W1 (3.4 um) magnitude measured with profile-fitting photometry, or the magnitude of the 95% confidence brightness upper limit if the flux measurement has SNR < 2", "example": null, "is_key": true, "sort_order": 6},
+    {"name": "w1sigmpro", "dtype": "float", "unit": "mag", "description": "W1 profile-fit photometric measurement uncertainty; null if the W1 profile-fit magnitude is an upper limit", "example": null, "is_key": true, "sort_order": 7},
+    {"name": "w1snr", "dtype": "float", "unit": null, "description": "W1 profile-fit measurement signal-to-noise ratio (flux to flux uncertainty)", "example": null, "is_key": true, "sort_order": 8},
+    {"name": "w2mpro", "dtype": "float", "unit": "mag", "description": "W2 (4.6 um) profile-fit magnitude or 95% confidence upper limit", "example": null, "is_key": true, "sort_order": 9},
+    {"name": "w2sigmpro", "dtype": "float", "unit": "mag", "description": "W2 profile-fit photometric measurement uncertainty; null if upper limit", "example": null, "is_key": true, "sort_order": 10},
+    {"name": "w3mpro", "dtype": "float", "unit": "mag", "description": "W3 (12 um) profile-fit magnitude or 95% confidence upper limit", "example": null, "is_key": true, "sort_order": 11},
+    {"name": "w3sigmpro", "dtype": "float", "unit": "mag", "description": "W3 profile-fit photometric measurement uncertainty; null if upper limit", "example": null, "is_key": true, "sort_order": 12},
+    {"name": "w4mpro", "dtype": "float", "unit": "mag", "description": "W4 (22 um) profile-fit magnitude or 95% confidence upper limit", "example": null, "is_key": true, "sort_order": 13},
+    {"name": "w4sigmpro", "dtype": "float", "unit": "mag", "description": "W4 profile-fit photometric measurement uncertainty; null if upper limit", "example": null, "is_key": true, "sort_order": 14},
+    {"name": "pmra", "dtype": "int", "unit": "mas/yr", "description": "Apparent motion in right ascension estimated for this source (includes parallax motion for nearby objects)", "example": null, "is_key": true, "sort_order": 15},
+    {"name": "pmdec", "dtype": "int", "unit": "mas/yr", "description": "Apparent motion in declination estimated for this source", "example": null, "is_key": true, "sort_order": 16},
+    {"name": "cc_flags", "dtype": "string", "unit": null, "description": "Contamination and confusion flag, one character per band (W1/W2/W3/W4), indicating spurious detection of or contamination by image artifacts", "example": "0000", "is_key": true, "sort_order": 17},
+    {"name": "ext_flg", "dtype": "int", "unit": null, "description": "Extended source flag indicating whether source morphology is consistent with the point spread function or associated with a 2MASS XSC source", "example": null, "is_key": true, "sort_order": 18},
+    {"name": "var_flg", "dtype": "string", "unit": null, "description": "Variability probability flag, one character per band (0-9, n); higher values indicate higher probability of flux variability", "example": "nnnn", "is_key": true, "sort_order": 19},
+    {"name": "ph_qual", "dtype": "string", "unit": null, "description": "Photometric quality flag, one character per band (A/B/C/U/X/Z) summarizing the SNR of the profile-fit measurement", "example": "AABU", "is_key": true, "sort_order": 20}
+  ]
+}
