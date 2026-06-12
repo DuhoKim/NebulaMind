@@ -1,17 +1,44 @@
 {
   "survey_slug": "spt",
+  "retire_labels": ["SPT-3G ongoing"],
   "releases": [
     {
-      "label": "SPT-3G ongoing",
+      "label": "SPT-SZ 2500d",
       "release_date": null,
-      "release_year": 2017,
-      "summary": "SPT-3G ongoing (2017–present); SPTpol B-mode maps (2019); SPT-SZ cluster catalog (Bocquet et al. 2024)",
-      "n_objects": 14000,
-      "sky_coverage_deg2": null,
+      "release_year": 2015,
+      "summary": "Galaxy cluster catalog from the 2500 deg2 SPT-SZ survey — 677 cluster candidates selected via the thermal Sunyaev-Zel'dovich effect at significance xi >= 4.5 (409 above xi = 5.0); photometric redshifts for candidates with optical/NIR counterparts and spectroscopic redshifts for 141 systems. The version with updated redshifts and masses (Bocquet et al. 2019) is served alongside the fiducial Bleem et al. 2015 catalog on the SPT public data archive.",
+      "n_objects": 677,
+      "sky_coverage_deg2": 2500,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://pole.uchicago.edu/public/data/",
+      "doi": "10.1088/0067-0049/216/2/27",
+      "bibcode": "2015ApJS..216...27B",
+      "url": "https://pole.uchicago.edu/public/data/sptsz-clusters/",
+      "status": "released"
+    },
+    {
+      "label": "SPT-ECS",
+      "release_date": null,
+      "release_year": 2020,
+      "summary": "SPTpol Extended Cluster Survey — galaxy cluster catalog from 2770 deg2 surveyed with SPTpol north of previous SPT areas; 448 cluster candidates identified via the SZ effect, confirmed with archival and targeted follow-up making particular use of Dark Energy Survey data; brings SZ-detected clusters reported by SPT to over 1,000",
+      "n_objects": 448,
+      "sky_coverage_deg2": 2770,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4365/ab6993",
+      "bibcode": "2020ApJS..247...25B",
+      "url": "https://pole.uchicago.edu/public/data/sptsz-clusters/",
+      "status": "released"
+    },
+    {
+      "label": "SPT-Deep cluster catalog",
+      "release_date": null,
+      "release_year": 2025,
+      "summary": "Catalog of 500 galaxy cluster candidates in the SPT-Deep field — 100 deg2 combining SPT-3G and SPTpol data to noise levels of 3.0/2.2/9.0 uK-arcmin at 95/150/220 GHz (comparable to CMB-S4 wide survey expectations); SZ-selected at xi >= 4.0 with ~89% purity, 442 candidates confirmed with DES optical and Spitzer infrared data, spanning 0.12 < z <~ 1.8. Posted on the SPT public data archive 2025-03; reference paper arXiv-only on ADS at seed time.",
+      "n_objects": 500,
+      "sky_coverage_deg2": 100,
+      "data_volume_tb": null,
+      "doi": "10.48550/arXiv.2503.17271",
+      "bibcode": "2025arXiv250317271K",
+      "url": "https://pole.uchicago.edu/public/data/spt3g_deep_cluster_sample/",
       "status": "released"
     }
   ]

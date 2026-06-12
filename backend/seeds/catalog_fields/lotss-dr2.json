@@ -1,0 +1,28 @@
+{
+  "dataset_slug": "lotss-dr2",
+  "source_url": "https://lofar-surveys.org/public/DR2/catalogues/README-v1.1.md",
+  "fields": [
+    { "name": "Source_Name", "dtype": "string", "unit": null, "description": "Object identifier (ILT name)", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Radio right ascension (mean position)", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "DEC", "dtype": "double", "unit": "deg", "description": "Radio declination (mean position)", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "E_RA", "dtype": "double", "unit": "arcsec", "description": "Error on radio right ascension", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "E_DEC", "dtype": "double", "unit": "arcsec", "description": "Error on radio declination", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Total_flux", "dtype": "double", "unit": "mJy", "description": "144-MHz total flux density", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "E_Total_flux", "dtype": "double", "unit": "mJy", "description": "Error on total flux density", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "Peak_flux", "dtype": "double", "unit": "mJy/beam", "description": "144-MHz peak flux density", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "E_Peak_flux", "dtype": "double", "unit": "mJy/beam", "description": "Error on peak flux density", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "Maj", "dtype": "double", "unit": "arcsec", "description": "Major axis of fitted Gaussian", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "Min", "dtype": "double", "unit": "arcsec", "description": "Minor axis of fitted Gaussian", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "PA", "dtype": "double", "unit": "deg", "description": "Position angle of fitted Gaussian", "example": null, "is_key": true, "sort_order": 12 },
+    { "name": "Isl_rms", "dtype": "double", "unit": "mJy/beam", "description": "rms noise in island", "example": null, "is_key": true, "sort_order": 13 },
+    { "name": "S_Code", "dtype": "string", "unit": null, "description": "PyBDSF source code or Z for composite source", "example": null, "is_key": true, "sort_order": 14 },
+    { "name": "Mosaic_ID", "dtype": "string", "unit": null, "description": "LoTSS mosaic of source image", "example": null, "is_key": true, "sort_order": 15 },
+    { "name": "optRA", "dtype": "double", "unit": "deg", "description": "Optical right ascension", "example": null, "is_key": true, "sort_order": 16 },
+    { "name": "optDec", "dtype": "double", "unit": "deg", "description": "Optical declination", "example": null, "is_key": true, "sort_order": 17 },
+    { "name": "zphot", "dtype": "double", "unit": null, "description": "Photo-z estimate", "example": null, "is_key": true, "sort_order": 18 },
+    { "name": "zphot_err", "dtype": "double", "unit": null, "description": "Predicted 1-sigma uncertainty on photometric redshift", "example": null, "is_key": true, "sort_order": 19 },
+    { "name": "flag_qual", "dtype": "int", "unit": null, "description": "Predicted photo-z quality flag, 0 if bad, 1 if good", "example": null, "is_key": true, "sort_order": 20 },
+    { "name": "z_best", "dtype": "double", "unit": null, "description": "Spec-z if available and good, else photo-z if available and good, else blank", "example": null, "is_key": true, "sort_order": 21 },
+    { "name": "z_source", "dtype": "string", "unit": null, "description": "String describing origin of z_best", "example": null, "is_key": true, "sort_order": 22 }
+  ]
+}

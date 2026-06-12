@@ -1,0 +1,26 @@
+{
+  "dataset_slug": "mightee-dr1",
+  "source_url": "https://pybdsf.readthedocs.io/en/latest/write_catalog.html",
+  "fields": [
+    { "name": "Source_id", "dtype": "int", "unit": null, "description": "A unique number that identifies the Source, starting from zero", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "Isl_id", "dtype": "int", "unit": null, "description": "A unique number that identifies the Island, starting from zero", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "The right ascension of the source (for the equinox of the image)", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "E_RA", "dtype": "double", "unit": "deg", "description": "The error on the right ascension of the source", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "DEC", "dtype": "double", "unit": "deg", "description": "The declination of the source (for the equinox of the image)", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "E_DEC", "dtype": "double", "unit": "deg", "description": "The 1-sigma error on the declination of the source", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "Total_flux", "dtype": "double", "unit": "Jy", "description": "The total, integrated Stokes I flux density of the source at the reference frequency", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "E_Total_flux", "dtype": "double", "unit": "Jy", "description": "The 1-sigma error on the total flux density of the source", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "Peak_flux", "dtype": "double", "unit": "Jy/beam", "description": "The peak Stokes I flux density per beam of the source", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "E_Peak_flux", "dtype": "double", "unit": "Jy/beam", "description": "The 1-sigma error on the peak flux density per beam of the source", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "Maj", "dtype": "double", "unit": "deg", "description": "The FWHM of the major axis of the source", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "E_Maj", "dtype": "double", "unit": "deg", "description": "The 1-sigma error on the FWHM of the major axis of the source", "example": null, "is_key": true, "sort_order": 12 },
+    { "name": "Min", "dtype": "double", "unit": "deg", "description": "The FWHM of the minor axis of the source", "example": null, "is_key": true, "sort_order": 13 },
+    { "name": "E_Min", "dtype": "double", "unit": "deg", "description": "The 1-sigma error on the FWHM of the minor axis of the source", "example": null, "is_key": true, "sort_order": 14 },
+    { "name": "PA", "dtype": "double", "unit": "deg", "description": "The position angle of the major axis of the source measured east of north", "example": null, "is_key": true, "sort_order": 15 },
+    { "name": "E_PA", "dtype": "double", "unit": "deg", "description": "The 1-sigma error on the position angle of the major axis of the source", "example": null, "is_key": true, "sort_order": 16 },
+    { "name": "DC_Maj", "dtype": "double", "unit": "deg", "description": "The FWHM of the deconvolved major axis of the source", "example": null, "is_key": true, "sort_order": 17 },
+    { "name": "Isl_rms", "dtype": "double", "unit": "Jy/beam", "description": "The average background rms value of the island (derived from the rms map)", "example": null, "is_key": true, "sort_order": 18 },
+    { "name": "Resid_Isl_rms", "dtype": "double", "unit": "Jy/beam", "description": "The average residual background rms value of the island (derived from the residual map, after subtraction of fitted Gaussians)", "example": null, "is_key": true, "sort_order": 19 },
+    { "name": "S_Code", "dtype": "string", "unit": null, "description": "A code that defines the source structure ('S', 'C', or 'M')", "example": null, "is_key": true, "sort_order": 20 }
+  ]
+}

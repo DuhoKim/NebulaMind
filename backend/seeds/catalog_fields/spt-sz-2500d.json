@@ -1,0 +1,20 @@
+{
+  "dataset_slug": "spt-sz-2500d",
+  "source_url": "https://heasarc.gsfc.nasa.gov/w3browse/all/sptszgalcl.html",
+  "fields": [
+    { "name": "Name", "dtype": "string", "unit": null, "description": "Source designation based on J2000 position: SPT-CL JHHMM+DDMM", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Right Ascension in J2000 decimal degrees", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "Declination in J2000 decimal degrees", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "Best_Significance", "dtype": "double", "unit": null, "description": "The highest detection significance, xi, in the filtered map", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "Best_Core_Radius", "dtype": "double", "unit": "arcmin", "description": "Core radius theta_c corresponding to the detection", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Int_SZ_Compton", "dtype": "double", "unit": "arcmin2", "description": "The integrated Sunyaev-Zel'dovich comptonization Y_SZ within a 0.75 arcminute aperture", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "Int_SZ_Compton_Error", "dtype": "double", "unit": "arcmin2", "description": "Uncertainty in the integrated SZ comptonization Y_SZ", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "Redshift", "dtype": "double", "unit": null, "description": "Cluster redshift value (photometric or spectroscopic)", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "Redshift_Error", "dtype": "double", "unit": null, "description": "Redshift uncertainty (omitted for spectroscopic measurements)", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "Redshift_Note", "dtype": "string", "unit": null, "description": "Flag 'S' indicates spectroscopic redshift from SPT observations", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "Mass_500c", "dtype": "double", "unit": "Msun/h70", "description": "Mass enclosed within a radius at which the average density is 500 times the critical density", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "Mass_500c_Error", "dtype": "double", "unit": "Msun/h70", "description": "Uncertainty in the M500c mass", "example": null, "is_key": true, "sort_order": 12 },
+    { "name": "Source_Flag", "dtype": "string", "unit": null, "description": "'C' indicates Chandra X-ray data availability", "example": null, "is_key": true, "sort_order": 13 },
+    { "name": "Imaging_Notes", "dtype": "string", "unit": null, "description": "Coded annotations (1-18) regarding observational complications", "example": null, "is_key": true, "sort_order": 14 }
+  ]
+}

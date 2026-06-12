@@ -1,0 +1,26 @@
+{
+  "dataset_slug": "fermi-4fgl-dr4",
+  "source_url": "https://heasarc.gsfc.nasa.gov/W3Browse/fermi/fermilpsc.html",
+  "fields": [
+    { "name": "Name", "dtype": "string", "unit": null, "description": "Source designation following IAU format (4FGL JHHMM.m+DDMM[c])", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Right Ascension in J2000 decimal degrees", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "Declination in J2000 decimal degrees", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "LII", "dtype": "double", "unit": "deg", "description": "Galactic Longitude derived from J2000 position", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "BII", "dtype": "double", "unit": "deg", "description": "Galactic Latitude derived from J2000 position", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Semi_Major_Axis_95", "dtype": "double", "unit": "deg", "description": "Semi-major axis of error ellipse at 95% confidence", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "Detection_Significance", "dtype": "double", "unit": "sigma", "description": "Source detection significance in Gaussian sigma units over 100 MeV to 1 TeV band", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "Spectrum_Type", "dtype": "string", "unit": null, "description": "Spectral model type (PowerLaw, LogParabola, PLSuperExpCutoff)", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "PL_Index", "dtype": "double", "unit": null, "description": "Photon index for PowerLaw fit", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "Pivot_Energy", "dtype": "double", "unit": "MeV", "description": "Energy where error in differential photon flux is minimal", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "Flux_1_100_GeV", "dtype": "double", "unit": "photon/cm2/s", "description": "Integral photon flux for 1-100 GeV", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "Energy_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Energy flux in the 100 MeV to 100 GeV range", "example": null, "is_key": true, "sort_order": 12 },
+    { "name": "Variability_Index", "dtype": "double", "unit": null, "description": "Sum of log(likelihood) differences between flux fitted in each time interval and average flux", "example": null, "is_key": true, "sort_order": 13 },
+    { "name": "Frac_Variability", "dtype": "double", "unit": null, "description": "Fractional variability computed from fluxes in each year", "example": null, "is_key": true, "sort_order": 14 },
+    { "name": "Source_Type", "dtype": "string", "unit": null, "description": "Primary class designation of identification or likely associated source (abbreviations include AGN, BLL, FSRQ, PSR, PWN, SNR, and others)", "example": null, "is_key": true, "sort_order": 15 },
+    { "name": "Assoc_Name", "dtype": "string", "unit": null, "description": "Designation of identified or likely associated source", "example": null, "is_key": true, "sort_order": 16 },
+    { "name": "Assoc_Prob_Bay", "dtype": "double", "unit": null, "description": "Bayesian probability of association (NULL for extended sources, 0 for sources below 0.8 threshold)", "example": null, "is_key": true, "sort_order": 17 },
+    { "name": "TeVCat_Flag", "dtype": "string", "unit": null, "description": "Indicates possible TeVCat association (N=No, P=Small TeV source, E=Extended TeV source)", "example": null, "is_key": true, "sort_order": 18 },
+    { "name": "Data_Release", "dtype": "int", "unit": null, "description": "Data release in which source was added (1=8-year, 2=10-year, 3=12-year, 4=14-year)", "example": null, "is_key": true, "sort_order": 19 },
+    { "name": "Analysis_Flags", "dtype": "int", "unit": null, "description": "Bit-encoded flags indicating detection or characterization issues", "example": null, "is_key": true, "sort_order": 20 }
+  ]
+}

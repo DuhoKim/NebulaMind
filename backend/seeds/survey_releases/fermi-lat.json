@@ -2,15 +2,41 @@
   "survey_slug": "fermi-lat",
   "releases": [
     {
-      "label": "4FGL-DR4",
+      "label": "4FGL",
       "release_date": null,
-      "release_year": 2023,
-      "summary": "4FGL-DR4 (2023) — 7,195 gamma-ray sources, 14 years of data; Abdollahi et al. 2022 + incremental updates",
-      "n_objects": 7195,
-      "sky_coverage_deg2": null,
+      "release_year": 2020,
+      "summary": "Fourth Fermi-LAT catalog of gamma-ray sources — 5,064 sources above 4 sigma significance based on the first eight years of science data in the 50 MeV to 1 TeV range; deepest gamma-ray catalog yet in this energy range, with an updated Galactic diffuse emission model and two sets of light curves",
+      "n_objects": 5064,
+      "sky_coverage_deg2": 41253,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
+      "doi": "10.3847/1538-4365/ab6bcb",
+      "bibcode": "2020ApJS..247...33A",
+      "url": "https://fermi.gsfc.nasa.gov/ssc/data/access/lat/8yr_catalog/",
+      "status": "superseded"
+    },
+    {
+      "label": "4FGL-DR3",
+      "release_date": null,
+      "release_year": 2022,
+      "summary": "Incremental Data Release 3 of the 4FGL catalog — 6,658 sources from the first 12 years of science data (50 MeV to 1 TeV); more sources fit with curved spectra, more robust spectral parameterization for pulsars, spectral points extended to 1 TeV",
+      "n_objects": 6658,
+      "sky_coverage_deg2": 41253,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4365/ac6751",
+      "bibcode": "2022ApJS..260...53A",
+      "url": "https://fermi.gsfc.nasa.gov/ssc/data/access/lat/12yr_catalog/",
+      "status": "superseded"
+    },
+    {
+      "label": "4FGL-DR4",
+      "release_date": "2023-07-24",
+      "release_year": 2023,
+      "summary": "Incremental Data Release 4 of the 4FGL catalog — 7,194 gamma-ray sources from the first 14 years of science data (2008-08-04 to 2022-08-02, 50 MeV to 1 TeV), using the same analysis methods as 4FGL-DR3 with a few improvements; spectral parameters, SEDs, light curves and associations updated for all sources. Current FITS version gll_psc_v35 (updated 2024-07-24). Reference paper is arXiv-only on ADS at seed time.",
+      "n_objects": 7194,
+      "sky_coverage_deg2": 41253,
+      "data_volume_tb": null,
+      "doi": "10.48550/arXiv.2307.12546",
+      "bibcode": "2023arXiv230712546B",
       "url": "https://fermi.gsfc.nasa.gov/ssc/data/access/lat/14yr_catalog/",
       "status": "released"
     }
