@@ -36,8 +36,7 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
   `survey_datasets.slug`. Apply file-level `source_url` to every row.
 - Load **after** the datasets backfill: 6 of the 13 files target dataset slugs
   created by `survey_datasets_backfill.json` (des-dr2, kids-dr5, hsc-pdr3,
-  erosita-dr1*, gama-dr4, cosmos2020-classic).
-  *`erosita-dr1` fields target backfill slug `erosita-erass1` — see Gaps.
+  erosita-erass1, gama-dr4, cosmos2020-classic).
 
 ## `survey_datasets_backfill.json` → table `survey_datasets`
 
@@ -47,9 +46,6 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
 
 ## Gaps / known issues (for v1.1 or T2 pass)
 
-- `catalog_fields/erosita-dr1.json` has `dataset_slug: "erosita-dr1"` but the
-  backfill creates `erosita-erass1`. Loader should map it, or rename the file's
-  slug before loading (flagged in handoff; trivially fixable either side).
 - No catalog fields yet for: euclid-q1 (ESA datamodel column names not
   confidently transcribable without the Q1 docs), rubin-dp1, all jwst-* and
   alma-* datasets, unions-dr1, euclid-edf, hst-* (imaging products — column
