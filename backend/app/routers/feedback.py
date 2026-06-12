@@ -1,8 +1,3 @@
-from slowapi import Limiter
-from slowapi.util import get_remote_address
-
-limiter = Limiter(key_func=get_remote_address)
-
 import re
 import datetime as dt
 from typing import Optional
@@ -15,6 +10,7 @@ from sqlalchemy.orm import Session
 from app.database import get_db
 from app.models.feedback import Feedback
 from app.config import settings
+from app.middleware.rate_limit import ip_limiter
 
 router = APIRouter(prefix="/api/feedback", tags=["feedback"])
 
@@ -35,7 +31,6 @@ class FeedbackOut(BaseModel):
     name: Optional[str]
     message: str
     is_ai: bool
-    ip_address: Optional[str]
     country: Optional[str]
     country_code: Optional[str]
     created_at: dt.datetime
@@ -89,8 +84,8 @@ def list_feedback(db: Session = Depends(get_db)):
     return db.query(Feedback).order_by(Feedback.created_at.desc()).all()
 
 
-@limiter.limit("10/minute")
 @router.post("", response_model=FeedbackOut, status_code=201, summary="Submit feedback")
+@ip_limiter.limit("10/minute")
 def submit_feedback(body: FeedbackCreate, request: Request, db: Session = Depends(get_db)):
     is_ai = body.source != "web" if body.source else _detect_ai(body.name, None)
     ip = _get_client_ip(request)

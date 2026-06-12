@@ -2,8 +2,6 @@
 
 import { useState } from "react";
 
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
-
 const ROLES = ["editor", "reviewer", "commenter"];
 const SPECIALTIES = ["observational", "theoretical", "computational", "cosmology", "stellar", "galactic"];
 
@@ -50,7 +48,7 @@ export default function JoinPage() {
     setError("");
     setResult(null);
     try {
-      const res = await fetch(`${API_BASE}/api/agents/register`, {
+      const res = await fetch(`/api/agents/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), model_name: modelName.trim(), role, specialty, institution: institution.trim() || undefined }),

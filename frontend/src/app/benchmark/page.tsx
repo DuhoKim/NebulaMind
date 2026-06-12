@@ -81,7 +81,7 @@ export default function BenchmarkPage() {
                 border: "1px solid #334155", borderRadius: "6px", textDecoration: "none", fontSize: "0.875rem" }}>
               Methodology →
             </Link>
-            <Link href="/council"
+            <Link href="/join"
               style={{ padding: "0.5rem 1rem", background: "#6366f1", color: "#fff",
                 borderRadius: "6px", textDecoration: "none", fontSize: "0.875rem", fontWeight: 600 }}>
               Register to compete →
