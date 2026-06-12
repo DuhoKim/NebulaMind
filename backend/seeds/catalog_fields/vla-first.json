@@ -1,0 +1,18 @@
+{
+  "dataset_slug": "vla-first",
+  "source_url": "http://sundog.stsci.edu/first/catalogs/readme_14dec17.html",
+  "fields": [
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Right ascension (J2000); positional accuracy typically better than 1 arcsec for point sources at the detection limit", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "Declination (J2000)", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "P(S)", "dtype": "double", "unit": null, "description": "Probability that the source is spurious or a sidelobe; 76.3% of sources have values 0.00-0.05", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "Fpeak", "dtype": "double", "unit": "mJy", "description": "Peak flux density from the elliptical Gaussian model fit", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "Fint", "dtype": "double", "unit": "mJy", "description": "Integrated flux density", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "RMS", "dtype": "double", "unit": "mJy", "description": "Local noise estimate at the source position", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "Maj", "dtype": "double", "unit": "arcsec", "description": "Deconvolved major axis (FWHM) of the source", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "Min", "dtype": "double", "unit": "arcsec", "description": "Deconvolved minor axis (FWHM) of the source", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "PA", "dtype": "double", "unit": "deg", "description": "Position angle, east of north", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "fMaj", "dtype": "double", "unit": "arcsec", "description": "Fitted (non-deconvolved) major axis", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "fMin", "dtype": "double", "unit": "arcsec", "description": "Fitted (non-deconvolved) minor axis", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "Field Name", "dtype": "string", "unit": null, "description": "Name of the coadded image containing the source", "example": null, "is_key": true, "sort_order": 12 }
+  ]
+}

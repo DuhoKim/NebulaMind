@@ -1,0 +1,18 @@
+{
+  "dataset_slug": "galex-gr67",
+  "source_url": "https://archive.stsci.edu/hlsp/guvcat/guvcat-column-description",
+  "fields": [
+    { "name": "objid", "dtype": "int", "unit": null, "description": "GALEX identifier for the source", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "ra", "dtype": "float", "unit": "deg", "description": "Source right ascension", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "dec", "dtype": "float", "unit": "deg", "description": "Source declination", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "fuv_mag", "dtype": "float", "unit": "mag", "description": "FUV calibrated magnitude", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "nuv_mag", "dtype": "float", "unit": "mag", "description": "NUV calibrated magnitude", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "fuv_magerr", "dtype": "float", "unit": "mag", "description": "FUV calibrated magnitude error", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "nuv_magerr", "dtype": "float", "unit": "mag", "description": "NUV calibrated magnitude error", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "e_bv", "dtype": "float", "unit": "mag", "description": "E(B-V) Galactic reddening from Schlegel et al. 1998 maps", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "fov_radius", "dtype": "float", "unit": "deg", "description": "Distance of source from center of the field where it was measured", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "nuv_artifact", "dtype": "int", "unit": null, "description": "NUV artifact flag (logical OR near source)", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "fuv_artifact", "dtype": "int", "unit": null, "description": "FUV artifact flag (logical OR near source)", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "inlargeobj", "dtype": "string", "unit": null, "description": "Is the source in the footprint of an extended object?", "example": null, "is_key": true, "sort_order": 12 }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "dataset_slug": "rosat-2rxs",
+  "source_url": "https://heasarc.gsfc.nasa.gov/W3Browse/rosat/rass2rxs.html",
+  "fields": [
+    { "name": "Name", "dtype": "string", "unit": null, "description": "The IAU source designation", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "The source right ascension", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "The source declination", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "Detection_Likelihood", "dtype": "double", "unit": null, "description": "Statistic derived from the maximum likelihood source detection analysis", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "Count_Rate", "dtype": "double", "unit": "count/s", "description": "Background-corrected source count rate", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Count_Rate_Error", "dtype": "double", "unit": "count/s", "description": "Error in the background-corrected source count rate", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "Exposure", "dtype": "double", "unit": "s", "description": "The source exposure time", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "Hardness_Ratio_1", "dtype": "double", "unit": null, "description": "HR1 = (B-A)/(B+A), where A is PSPC channel range 11-41 and B is channel range 52-201", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "Hardness_Ratio_1_Error", "dtype": "double", "unit": null, "description": "Error in hardness ratio 1", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "Hardness_Ratio_2", "dtype": "double", "unit": null, "description": "HR2 = (D-C)/(D+C), where C is channel range 52-90 and D is channel range 91-201", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "Hardness_Ratio_2_Error", "dtype": "double", "unit": null, "description": "Error in hardness ratio 2", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "Source_Extent", "dtype": "double", "unit": "pixel", "description": "The source extent in image pixels", "example": null, "is_key": true, "sort_order": 12 }
+  ]
+}

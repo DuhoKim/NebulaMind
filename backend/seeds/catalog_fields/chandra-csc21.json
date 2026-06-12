@@ -1,0 +1,18 @@
+{
+  "dataset_slug": "chandra-csc21",
+  "source_url": "https://cxc.cfa.harvard.edu/csc/columns/master.html",
+  "fields": [
+    { "name": "name", "dtype": "string", "unit": null, "description": "Source name in the form 2CXO Jhhmmss.s{+|-}ddmmss", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "ra", "dtype": "double", "unit": "deg", "description": "Source position, right ascension (ICRS)", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "dec", "dtype": "double", "unit": "deg", "description": "Source position, declination (ICRS)", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "err_ellipse_r0", "dtype": "double", "unit": "arcsec", "description": "Major radius of the 95% confidence level position error ellipse", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "significance", "dtype": "double", "unit": null, "description": "Highest flux significance across all stacked observations", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "likelihood", "dtype": "double", "unit": null, "description": "Highest detection log-likelihood across all stacked observations", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "photflux_aper_b", "dtype": "double", "unit": "photon s-1 cm-2", "description": "Broad-band aperture photon flux", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "flux_aper_b", "dtype": "double", "unit": "erg s-1 cm-2", "description": "Broad-band aperture energy flux", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "major_axis", "dtype": "double", "unit": "arcsec", "description": "Deconvolved source extent, major axis (1-sigma)", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "extent_flag", "dtype": "boolean", "unit": null, "description": "Source is extended or inconsistent with a point source", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "var_flag", "dtype": "boolean", "unit": null, "description": "Source displays flux variability within one or more observations", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "conf_flag", "dtype": "boolean", "unit": null, "description": "Source may be confused with overlapping detections", "example": null, "is_key": true, "sort_order": 12 }
+  ]
+}

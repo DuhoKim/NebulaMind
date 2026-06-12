@@ -19,6 +19,12 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
 
 - Upsert key: `(survey_id, label)`; resolve `survey_id` from `surveys.slug`.
 - `status` ∈ `planned | released | superseded | final`.
+- Optional top-level `retire_labels: [..]` (added in the T2 enrichment pass,
+  2026-06-12): labels of previously loaded bootstrap rows that the enriched
+  rows replace. The loader must `DELETE FROM survey_data_releases WHERE
+  survey_id = :sid AND label = ANY(:retire_labels)` **before** upserting,
+  since bootstrap rows are already live in the DB and upsert alone would
+  strand them (e.g. chandra "Cycle 27" → "CSC 2.0"/"CSC 2.1").
 - 50 files (one per survey). 22 are hand-curated (12 T1 flagships + sdss-v +
   9 T3 planned-only facilities); the remaining 28 are mechanical bootstrap rows
   derived from `surveys.current_data_release` by
@@ -54,5 +60,13 @@ KiDS DR5 were web-verified 2026-06-12 (several supersede stale
   null rather than guessed.
 - 9 pre-data facilities have planned-only rows and no datasets: 4most, cmb-s4,
   elt, ngvla, pfs, roman, ska1, spherex, weave.
-- T2 surveys (28 bootstrap files) have a single mechanical release row;
-  enrichment is a rolling Kun task per design doc §3.3.
+- T2 surveys: 7 enriched 2026-06-12 (alma, hst, chandra, vla, 2mass, galex,
+  rosat — releases web-verified against official archive pages; 5 new
+  catalog-field files transcribed from official column docs: chandra-csc21,
+  vla-first, 2mass-xsc, galex-gr67, rosat-2rxs). 21 remaining bootstrap-only
+  files (act, askap-emu, cdf-n, cdf-s, deep2, fermi-lat, h-atlas, hetdex,
+  hipass, lofar, meerkat, panstarrs, planck, spt, ukidss, unions, viking,
+  vipers, wise, xmm, zcosmos) still have a single mechanical release row;
+  enrichment continues as a rolling Kun task per design doc §3.3.
+- GALEX GR6/GR7 release date and HSC v3.1 / GUVcat source counts not stated
+  on the official pages → left null rather than guessed.

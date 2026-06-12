@@ -1,0 +1,18 @@
+{
+  "dataset_slug": "2mass-xsc",
+  "source_url": "https://irsa.ipac.caltech.edu/cgi-bin/Gator/nph-dd?catalog=fp_xsc",
+  "fields": [
+    { "name": "designation", "dtype": "char(17)", "unit": null, "description": "Source designation formed from sexigesimal coordinates", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "ra", "dtype": "decimal", "unit": "deg", "description": "Right ascension (J2000 decimal deg) based on peak pixel", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "dec", "dtype": "decimal", "unit": "deg", "description": "Declination (J2000 decimal deg) based on peak pixel", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "r_k20fe", "dtype": "decimal", "unit": "arcsec", "description": "20 mag/sq-arcsec isophotal K fiducial elliptical aperture semi-major axis", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "j_m_k20fe", "dtype": "decimal", "unit": "mag", "description": "J 20 mag/sq-arcsec isophotal fiducial elliptical aperture magnitude", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "h_m_k20fe", "dtype": "decimal", "unit": "mag", "description": "H 20 mag/sq-arcsec isophotal fiducial elliptical aperture magnitude", "example": null, "is_key": true, "sort_order": 6 },
+    { "name": "k_m_k20fe", "dtype": "decimal", "unit": "mag", "description": "K 20 mag/sq-arcsec isophotal fiducial elliptical aperture magnitude", "example": null, "is_key": true, "sort_order": 7 },
+    { "name": "k_m_ext", "dtype": "decimal", "unit": "mag", "description": "K magnitude from fit extrapolation (total magnitude)", "example": null, "is_key": true, "sort_order": 8 },
+    { "name": "r_ext", "dtype": "decimal", "unit": "arcsec", "description": "Extrapolation/total radius", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "sup_ba", "dtype": "decimal", "unit": null, "description": "Minor/major axis ratio fit to the 3-sigma super-coadd isophote", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "sup_phi", "dtype": "smallint", "unit": "deg", "description": "Super-coadd angle to major axis (E of N)", "example": null, "is_key": true, "sort_order": 11 },
+    { "name": "cc_flg", "dtype": "char(1)", "unit": null, "description": "Indicates artifact contamination and/or confusion", "example": null, "is_key": true, "sort_order": 12 }
+  ]
+}

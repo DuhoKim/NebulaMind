@@ -1,18 +1,32 @@
 {
   "survey_slug": "galex",
+  "retire_labels": ["GR6"],
   "releases": [
     {
-      "label": "GR6",
+      "label": "GR6/GR7",
       "release_date": null,
       "release_year": 2012,
-      "summary": "GR6/GR7 (2012) — ~280 million UV detections; final mission data release",
-      "n_objects": 210000000,
+      "summary": "Final mission pipeline release at MAST. GALEX observed 2003-07-07 to 2012-02-07 (FUV detector ceased 2009); the Merged Catalog of Sources (MCAT) combines FUV/NUV SExtractor detections. Post-mission CAUSE observations partially available at MAST.",
+      "n_objects": null,
       "sky_coverage_deg2": null,
       "data_volume_tb": null,
       "doi": null,
       "bibcode": null,
       "url": "https://galex.stsci.edu/GR6/",
       "status": "final"
+    },
+    {
+      "label": "GUVcat_AIS (GR6+7)",
+      "release_date": "2017-06-15",
+      "release_year": 2017,
+      "summary": "Revised catalog of unique GALEX UV sources from the All-Sky Imaging Survey — 82,992,086 sources over 24,790 deg2, typical depth FUV=19.9 / NUV=20.8 ABmag, with artifact flags and extended-object footprint tags; the recommended science catalog for GALEX AIS",
+      "n_objects": 82992086,
+      "sky_coverage_deg2": 24790,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4365/aa7053",
+      "bibcode": "2017ApJS..230...24B",
+      "url": "https://archive.stsci.edu/prepds/guvcat/",
+      "status": "released"
     }
   ]
 }
