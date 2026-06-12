@@ -1,0 +1,96 @@
+{
+  "dataset_slug": "gama-dr4",
+  "source_url": "http://www.gama-survey.org/dr4/schema/",
+  "fields": [
+    {
+      "name": "CATAID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique GAMA catalogue ID; join key across all DMUs.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "RA",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "DEC",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "Z",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Heliocentric spectroscopic redshift.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "NQ",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Redshift quality: 4 best, 3 reliable, >=3 recommended for science.",
+      "example": "4",
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "PROB",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Probability that the redshift is correct (autoz cross-correlation).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 5
+    },
+    {
+      "name": "SURVEY_CLASS",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Survey class of the target (main sample selection tier).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 6
+    },
+    {
+      "name": "logmstar",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "Stellar mass from SED fitting (StellarMasses DMU; Chabrier IMF).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "dellogmstar",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "Uncertainty on logmstar.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "fluxscale",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Aperture correction factor applied to scale fitted mass to total.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 9
+    }
+  ]
+}

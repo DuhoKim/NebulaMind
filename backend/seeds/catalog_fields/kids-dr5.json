@@ -1,0 +1,141 @@
+{
+  "dataset_slug": "kids-dr5",
+  "source_url": "https://kids.strw.leidenuniv.nl/DR5/format.php",
+  "fields": [
+    {
+      "name": "ID",
+      "dtype": "string",
+      "unit": null,
+      "description": "Unique KiDS source identifier.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "RAJ2000",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "DECJ2000",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "MAG_GAAP_u",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Gaussian-aperture-and-PSF (GAaP) u magnitude, for consistent colours.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "MAG_GAAP_g",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "GAaP g magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "MAG_GAAP_r",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "GAaP r magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "MAG_GAAP_i",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "GAaP i magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "Z_B",
+      "dtype": "float32",
+      "unit": null,
+      "description": "BPZ photometric redshift (peak of posterior).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "Z_B_MIN",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Lower bound of the 68% photo-z confidence interval.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "Z_B_MAX",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Upper bound of the 68% photo-z confidence interval.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 9
+    },
+    {
+      "name": "SG2DPHOT",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Star/galaxy classification flag from r-band morphology; 0 = galaxy.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "MASK",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Photometry mask bitmask; 0 = unmasked.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 11
+    },
+    {
+      "name": "weight",
+      "dtype": "float32",
+      "unit": null,
+      "description": "lensfit shear measurement weight.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 12
+    },
+    {
+      "name": "e1",
+      "dtype": "float32",
+      "unit": null,
+      "description": "lensfit ellipticity component 1 (shear estimator).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 13
+    },
+    {
+      "name": "e2",
+      "dtype": "float32",
+      "unit": null,
+      "description": "lensfit ellipticity component 2.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 14
+    }
+  ]
+}

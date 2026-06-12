@@ -1,0 +1,150 @@
+{
+  "dataset_slug": "gaia-dr3",
+  "source_url": "https://gea.esac.esa.int/archive/documentation/GDR3/Gaia_archive/chap_datamodel/sec_dm_main_source_catalogue/ssec_dm_gaia_source.html",
+  "fields": [
+    {
+      "name": "source_id",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique Gaia source identifier (encodes HEALPix sky position).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "ra",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (ICRS, epoch 2016.0).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "dec",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (ICRS, epoch 2016.0).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "parallax",
+      "dtype": "float64",
+      "unit": "mas",
+      "description": "Absolute stellar parallax.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "parallax_error",
+      "dtype": "float32",
+      "unit": "mas",
+      "description": "Standard error of the parallax.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "pmra",
+      "dtype": "float64",
+      "unit": "mas/yr",
+      "description": "Proper motion in RA (pmra* = mu_alpha cos delta).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "pmdec",
+      "dtype": "float64",
+      "unit": "mas/yr",
+      "description": "Proper motion in declination.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "phot_g_mean_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Mean G-band magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "phot_bp_mean_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Mean BP magnitude.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "phot_rp_mean_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Mean RP magnitude.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 9
+    },
+    {
+      "name": "bp_rp",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "BP-RP colour.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "radial_velocity",
+      "dtype": "float32",
+      "unit": "km/s",
+      "description": "Spectroscopic radial velocity (available for ~33M bright stars).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 11
+    },
+    {
+      "name": "ruwe",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Renormalised unit weight error; RUWE > 1.4 indicates poor astrometric fit / possible binarity.",
+      "example": "1.0",
+      "is_key": true,
+      "sort_order": 12
+    },
+    {
+      "name": "teff_gspphot",
+      "dtype": "float32",
+      "unit": "K",
+      "description": "Effective temperature from GSP-Phot BP/RP fitting.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 13
+    },
+    {
+      "name": "logg_gspphot",
+      "dtype": "float32",
+      "unit": "dex",
+      "description": "Surface gravity from GSP-Phot.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 14
+    },
+    {
+      "name": "mh_gspphot",
+      "dtype": "float32",
+      "unit": "dex",
+      "description": "Metallicity [M/H] from GSP-Phot.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 15
+    }
+  ]
+}

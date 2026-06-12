@@ -1,0 +1,105 @@
+{
+  "dataset_slug": "erosita-dr1",
+  "source_url": "https://erosita.mpe.mpg.de/dr1/AllSkySurveyData_dr1/Catalogues_dr1/",
+  "fields": [
+    {
+      "name": "DETUID",
+      "dtype": "string",
+      "unit": null,
+      "description": "Unique detection identifier.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "IAUNAME",
+      "dtype": "string",
+      "unit": null,
+      "description": "IAU source designation (1eRASS JHHMMSS.s+DDMMSS).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "RA",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "DEC",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "POS_ERR",
+      "dtype": "float32",
+      "unit": "arcsec",
+      "description": "1-sigma positional uncertainty.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "DET_LIKE_0",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Detection likelihood in the 0.2-2.3 keV band; higher = more significant.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "EXT",
+      "dtype": "float32",
+      "unit": "arcsec",
+      "description": "Source extent; 0 for point-like sources.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "EXT_LIKE",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Extent likelihood (clusters/SNRs have EXT_LIKE > 0).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 7
+    },
+    {
+      "name": "ML_CTS_1",
+      "dtype": "float32",
+      "unit": "counts",
+      "description": "Source counts in the main (0.2-2.3 keV) band.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "ML_RATE_1",
+      "dtype": "float32",
+      "unit": "counts/s",
+      "description": "Count rate in the main band.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 9
+    },
+    {
+      "name": "ML_FLUX_1",
+      "dtype": "float32",
+      "unit": "erg/s/cm2",
+      "description": "X-ray flux in the 0.2-2.3 keV band.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 10
+    }
+  ]
+}

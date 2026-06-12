@@ -1,0 +1,96 @@
+{
+  "dataset_slug": "hsc-pdr3",
+  "source_url": "https://hsc-release.mtk.nao.ac.jp/schema/",
+  "fields": [
+    {
+      "name": "object_id",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique object ID (forced photometry table).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "ra",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (ICRS).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "dec",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (ICRS).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "g_cmodel_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "CModel g magnitude (AB).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "r_cmodel_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "CModel r magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "i_cmodel_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "CModel i magnitude (primary depth band, i~26 in Wide).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "z_cmodel_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "CModel z magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "y_cmodel_mag",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "CModel y magnitude.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 7
+    },
+    {
+      "name": "i_extendedness_value",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Star/galaxy separator in i band: 0 = point source, 1 = extended.",
+      "example": "1",
+      "is_key": true,
+      "sort_order": 8
+    },
+    {
+      "name": "isprimary",
+      "dtype": "bool",
+      "unit": null,
+      "description": "True for the primary (deblended, inner-patch) detection; standard science filter.",
+      "example": "True",
+      "is_key": true,
+      "sort_order": 9
+    }
+  ]
+}

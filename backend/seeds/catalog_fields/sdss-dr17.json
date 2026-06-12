@@ -1,0 +1,132 @@
+{
+  "dataset_slug": "sdss-dr17",
+  "source_url": "https://skyserver.sdss.org/dr17/MoreTools/browser/",
+  "fields": [
+    {
+      "name": "specObjID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique spectroscopic object ID (SpecObjAll); join key to photometry via bestObjID.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "plate",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Spectroscopic plate number.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "mjd",
+      "dtype": "int32",
+      "unit": "days",
+      "description": "MJD of the observation.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "fiberid",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Fiber number on the plate.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "ra",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "dec",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "z",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Final redshift from the spectro pipeline.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "zErr",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Redshift uncertainty.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "zWarning",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Redshift quality bitmask; 0 = clean.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 8
+    },
+    {
+      "name": "class",
+      "dtype": "string",
+      "unit": null,
+      "description": "Spectroscopic class: GALAXY, QSO or STAR.",
+      "example": "GALAXY",
+      "is_key": true,
+      "sort_order": 9
+    },
+    {
+      "name": "subClass",
+      "dtype": "string",
+      "unit": null,
+      "description": "Spectroscopic subclass (e.g. STARFORMING, AGN).",
+      "example": "STARFORMING",
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "veldisp",
+      "dtype": "float32",
+      "unit": "km/s",
+      "description": "Stellar velocity dispersion.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 11
+    },
+    {
+      "name": "veldispErr",
+      "dtype": "float32",
+      "unit": "km/s",
+      "description": "Velocity dispersion uncertainty.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 12
+    },
+    {
+      "name": "snMedian",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Median signal-to-noise per pixel over all good pixels.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 13
+    }
+  ]
+}

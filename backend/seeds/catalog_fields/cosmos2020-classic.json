@@ -1,0 +1,96 @@
+{
+  "dataset_slug": "cosmos2020-classic",
+  "source_url": "https://cosmos2020.calet.org/",
+  "fields": [
+    {
+      "name": "ID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique COSMOS2020 CLASSIC source ID.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "ALPHA_J2000",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "DELTA_J2000",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "lp_zBEST",
+      "dtype": "float32",
+      "unit": null,
+      "description": "LePhare photometric redshift (median of posterior; galaxies).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "lp_zPDF",
+      "dtype": "float32",
+      "unit": null,
+      "description": "LePhare photo-z from the full PDF.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 4
+    },
+    {
+      "name": "ez_z_phot",
+      "dtype": "float32",
+      "unit": null,
+      "description": "EAZY photometric redshift (independent of LePhare).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "lp_mass_med",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "Median stellar mass from LePhare SED fitting.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "lp_SFR_med",
+      "dtype": "float32",
+      "unit": "log Msun/yr",
+      "description": "Median star-formation rate from LePhare.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "lp_sSFR_med",
+      "dtype": "float32",
+      "unit": "log 1/yr",
+      "description": "Median specific SFR.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "FLAG_COMBINED",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Combined area flag: 0 = clean region (unmasked, inside UltraVISTA).",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 9
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "dataset_slug": "des-dr2",
+  "source_url": "https://des.ncsa.illinois.edu/releases/dr2/dr2-products",
+  "fields": [
+    {
+      "name": "COADD_OBJECT_ID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique coadd object identifier.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "RA",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "DEC",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "MAG_AUTO_G",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "SExtractor Kron-like elliptical aperture g magnitude (AB).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "MAG_AUTO_R",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Kron-like r magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "MAG_AUTO_I",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Kron-like i magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "MAG_AUTO_Z",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Kron-like z magnitude.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "MAG_AUTO_Y",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Kron-like Y magnitude.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 7
+    },
+    {
+      "name": "WAVG_MAG_PSF_R",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Weighted-average single-epoch PSF r magnitude (preferred for point sources).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 8
+    },
+    {
+      "name": "EXTENDED_CLASS_COADD",
+      "dtype": "int32",
+      "unit": null,
+      "description": "Star/galaxy classifier: 0 high-confidence star ... 3 high-confidence galaxy.",
+      "example": "3",
+      "is_key": true,
+      "sort_order": 9
+    },
+    {
+      "name": "FLAGS_R",
+      "dtype": "int32",
+      "unit": null,
+      "description": "SExtractor extraction flags in r; 0 = clean.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "EBV_SFD98",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Galactic E(B-V) at the object position (SFD98).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 11
+    }
+  ]
+}

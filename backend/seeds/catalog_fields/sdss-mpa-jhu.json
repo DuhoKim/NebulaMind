@@ -1,0 +1,123 @@
+{
+  "dataset_slug": "sdss-mpa-jhu",
+  "source_url": "https://www.sdss4.org/dr17/spectro/galaxy_mpajhu/",
+  "fields": [
+    {
+      "name": "specObjID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Join key to SpecObjAll.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "lgm_tot_p50",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "Median total stellar mass (log10) from SED fits to ugriz photometry.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "lgm_tot_p16",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "16th-percentile stellar mass (lower 1-sigma).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 2
+    },
+    {
+      "name": "lgm_tot_p84",
+      "dtype": "float32",
+      "unit": "log Msun",
+      "description": "84th-percentile stellar mass (upper 1-sigma).",
+      "example": null,
+      "is_key": false,
+      "sort_order": 3
+    },
+    {
+      "name": "sfr_tot_p50",
+      "dtype": "float32",
+      "unit": "log Msun/yr",
+      "description": "Median total star-formation rate (Brinchmann et al. 2004 methodology, aperture-corrected).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "ssfr_tot_p50",
+      "dtype": "float32",
+      "unit": "log 1/yr",
+      "description": "Median total specific SFR.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "bptclass",
+      "dtype": "int32",
+      "unit": null,
+      "description": "BPT emission-line classification: 1 SF, 2 low-S/N SF, 3 composite, 4 AGN, 5 low-S/N LINER, -1 unclassifiable.",
+      "example": "1",
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "oh_p50",
+      "dtype": "float32",
+      "unit": "12+log(O/H)",
+      "description": "Median gas-phase oxygen abundance (Tremonti et al. 2004).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "h_alpha_flux",
+      "dtype": "float32",
+      "unit": "1e-17 erg/s/cm2",
+      "description": "H-alpha emission-line flux (galSpecLine; continuum-subtracted).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 8
+    },
+    {
+      "name": "h_beta_flux",
+      "dtype": "float32",
+      "unit": "1e-17 erg/s/cm2",
+      "description": "H-beta emission-line flux.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 9
+    },
+    {
+      "name": "oiii_5007_flux",
+      "dtype": "float32",
+      "unit": "1e-17 erg/s/cm2",
+      "description": "[OIII] 5007 emission-line flux.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "nii_6584_flux",
+      "dtype": "float32",
+      "unit": "1e-17 erg/s/cm2",
+      "description": "[NII] 6584 emission-line flux.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 11
+    },
+    {
+      "name": "d4000_n",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Narrow 4000-Angstrom break index (galSpecIndx); age-sensitive.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 12
+    }
+  ]
+}

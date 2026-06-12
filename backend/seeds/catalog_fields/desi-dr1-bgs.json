@@ -1,0 +1,168 @@
+{
+  "dataset_slug": "desi-dr1-bgs",
+  "source_url": "https://desidatamodel.readthedocs.io/en/latest/",
+  "fields": [
+    {
+      "name": "TARGETID",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Unique DESI target identifier; primary key for joining redshift, fiber and photometry tables.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 0
+    },
+    {
+      "name": "SURVEY",
+      "dtype": "string",
+      "unit": null,
+      "description": "Survey phase the spectrum belongs to (sv1/sv3/main).",
+      "example": "main",
+      "is_key": true,
+      "sort_order": 1
+    },
+    {
+      "name": "PROGRAM",
+      "dtype": "string",
+      "unit": null,
+      "description": "Observing program (bright/dark/backup).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 2
+    },
+    {
+      "name": "TARGET_RA",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Right ascension of the target (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 3
+    },
+    {
+      "name": "TARGET_DEC",
+      "dtype": "float64",
+      "unit": "deg",
+      "description": "Declination of the target (J2000).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 4
+    },
+    {
+      "name": "Z",
+      "dtype": "float64",
+      "unit": null,
+      "description": "Best-fit redshift from the Redrock pipeline.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 5
+    },
+    {
+      "name": "ZERR",
+      "dtype": "float64",
+      "unit": null,
+      "description": "1-sigma uncertainty on Z.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 6
+    },
+    {
+      "name": "ZWARN",
+      "dtype": "int64",
+      "unit": null,
+      "description": "Redshift quality warning bitmask; 0 = no known problems.",
+      "example": "0",
+      "is_key": true,
+      "sort_order": 7
+    },
+    {
+      "name": "SPECTYPE",
+      "dtype": "string",
+      "unit": null,
+      "description": "Best-fit spectral classification: GALAXY, QSO or STAR.",
+      "example": "GALAXY",
+      "is_key": true,
+      "sort_order": 8
+    },
+    {
+      "name": "DELTACHI2",
+      "dtype": "float64",
+      "unit": null,
+      "description": "Chi-squared difference to the next-best Redrock fit; larger = more secure redshift.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 9
+    },
+    {
+      "name": "FLUX_G",
+      "dtype": "float32",
+      "unit": "nanomaggies",
+      "description": "Total g-band flux from Legacy Surveys imaging (not extinction-corrected).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 10
+    },
+    {
+      "name": "FLUX_R",
+      "dtype": "float32",
+      "unit": "nanomaggies",
+      "description": "Total r-band flux from Legacy Surveys imaging.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 11
+    },
+    {
+      "name": "FLUX_Z",
+      "dtype": "float32",
+      "unit": "nanomaggies",
+      "description": "Total z-band flux from Legacy Surveys imaging.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 12
+    },
+    {
+      "name": "FLUX_W1",
+      "dtype": "float32",
+      "unit": "nanomaggies",
+      "description": "WISE W1 (3.4 micron) forced-photometry flux.",
+      "example": null,
+      "is_key": true,
+      "sort_order": 13
+    },
+    {
+      "name": "EBV",
+      "dtype": "float32",
+      "unit": "mag",
+      "description": "Galactic E(B-V) reddening at the target position (SFD).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 14
+    },
+    {
+      "name": "PHOTSYS",
+      "dtype": "string",
+      "unit": null,
+      "description": "Imaging photometric system: N (BASS/MzLS) or S (DECaLS).",
+      "example": "S",
+      "is_key": true,
+      "sort_order": 15
+    },
+    {
+      "name": "BGS_TARGET",
+      "dtype": "int64",
+      "unit": null,
+      "description": "BGS targeting bitmask (BGS_BRIGHT / BGS_FAINT selections).",
+      "example": null,
+      "is_key": true,
+      "sort_order": 16
+    },
+    {
+      "name": "TSNR2_BGS",
+      "dtype": "float32",
+      "unit": null,
+      "description": "Effective squared template signal-to-noise for BGS targets; spectra with TSNR2_BGS >= threshold count as full-depth.",
+      "example": null,
+      "is_key": false,
+      "sort_order": 17
+    }
+  ]
+}
