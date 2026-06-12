@@ -14,7 +14,9 @@ from fastapi import Request
 from app.config import settings
 from app.database import get_db
 from app.middleware.rate_limit import limiter, VOTES_LIMIT, EDITS_LIMIT
-from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal, TrustAuditLog
+from app.auth import require_api_key
+from app.models.agent import Agent
+from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, ClaimEditProposal, ClaimProposalVote, TrustAuditLog
 from app.models.council import Escalation
 from app.models.page import WikiPage
 from app.models.evidence_element_link import EvidenceElementLink
@@ -506,33 +508,48 @@ def suggest_edit(request: Request, claim_id: int, body: ClaimEditCreate, db: Ses
     return {"id": proposal.id, "status": "pending"}
 
 @router.post("/claim-proposals/{proposal_id}/vote")
-def vote_claim_proposal(proposal_id: int, value: int = 1, db: Session = Depends(get_db)):
+@limiter.limit(EDITS_LIMIT)
+def vote_claim_proposal(
+    request: Request,
+    proposal_id: int,
+    value: int = 1,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Record an authenticated stance on a claim-edit proposal.
+
+    Votes only record a stance and update tallies/status. Applying an approved
+    proposal (claim text, trust level, evidence) is handled by the jury path,
+    never by this endpoint.
+    """
     proposal = db.query(ClaimEditProposal).filter(ClaimEditProposal.id == proposal_id).first()
     if not proposal:
         raise HTTPException(404)
-    if value == 1:
-        proposal.votes_approve += 1
+    stance = 1 if value == 1 else -1
+    existing = db.query(ClaimProposalVote).filter(
+        ClaimProposalVote.proposal_id == proposal_id,
+        ClaimProposalVote.agent_id == agent.id,
+    ).first()
+    if existing:
+        existing.value = stance
     else:
-        proposal.votes_reject += 1
-    if proposal.votes_approve >= 3 and proposal.status == "pending":
-        claim = db.query(Claim).filter(Claim.id == proposal.claim_id).first()
-        if claim:
-            claim.text = proposal.new_text
-            claim.trust_level = "accepted"
-            ev = Evidence(
-                claim_id=claim.id,
-                title=f"arXiv:{proposal.arxiv_evidence}",
-                arxiv_id=proposal.arxiv_evidence[:30],
-                url=f"https://arxiv.org/abs/{proposal.arxiv_evidence}",
-                summary=proposal.evidence_summary or "Community-submitted evidence",
-                stance="supports",
-            )
-            db.add(ev)
+        db.add(ClaimProposalVote(proposal_id=proposal_id, agent_id=agent.id, value=stance))
+    db.flush()
+    approve = db.query(func.count(distinct(ClaimProposalVote.agent_id))).filter(
+        ClaimProposalVote.proposal_id == proposal_id, ClaimProposalVote.value > 0
+    ).scalar() or 0
+    reject = db.query(func.count(distinct(ClaimProposalVote.agent_id))).filter(
+        ClaimProposalVote.proposal_id == proposal_id, ClaimProposalVote.value < 0
+    ).scalar() or 0
+    proposal.votes_approve = approve
+    proposal.votes_reject = reject
+    if proposal.status == "pending":
+        if approve >= 3:
             proposal.status = "approved"
-    elif proposal.votes_reject >= 3:
-        proposal.status = "rejected"
+        elif reject >= 3:
+            proposal.status = "rejected"
     db.commit()
-    return {"votes_approve": proposal.votes_approve, "votes_reject": proposal.votes_reject, "status": proposal.status}
+    return {"votes_approve": approve, "votes_reject": reject, "status": proposal.status}
 
 _USER_EVENT_KIND = {
     "migration": "initialized",

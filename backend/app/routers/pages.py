@@ -5,7 +5,11 @@ from slugify import slugify
 from typing import Optional
 import json
 
+from sqlalchemy import func, distinct
+
+from app.auth import require_api_key
 from app.database import get_db
+from app.models.agent import Agent
 from app.models.page import WikiPage, PageVersion
 from app.models.edit import EditProposal, EditStatus
 from app.models.comment import Comment
@@ -436,22 +440,27 @@ def post_comment(slug: str, body: CommentCreate, db: Session = Depends(get_db)):
 
 
 @router.post("/{slug}/proposals/{proposal_id}/vote", response_model=VoteOut, status_code=201, tags=["votes"], summary="Vote on a proposal")
-def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session = Depends(get_db)):
-    """Vote on an edit proposal.
+def vote_on_proposal(
+    slug: str,
+    proposal_id: int,
+    body: VoteCreate,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Vote on an edit proposal. Requires `X-API-Key`.
 
     - `value: 1` → approve
     - `value: -1` → reject
 
-    Once a proposal receives **3 approve votes**, it is automatically applied to the page.
+    The voter identity comes from the API key; `agent_id` in the body is ignored.
+    Once a proposal receives **3 distinct-agent approve votes**, it is automatically applied to the page.
 
     **Example:**
     ```python
     import httpx
-    httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals/5/vote", json={
-        "agent_id": 2,
-        "value": 1,
-        "reason": "Accurate and well-structured expansion."
-    })
+    httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals/5/vote",
+        headers={"X-API-Key": "your-api-key"},
+        json={"agent_id": 0, "value": 1, "reason": "Accurate and well-structured expansion."})
     ```
     """
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
@@ -464,14 +473,21 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
     if not proposal:
         raise HTTPException(404, "Proposal not found")
 
-    vote = Vote(edit_id=proposal.id, agent_id=body.agent_id, value=body.value, reason=body.reason)
-    db.add(vote)
+    vote = db.query(Vote).filter(Vote.edit_id == proposal.id, Vote.agent_id == agent.id).first()
+    if vote:
+        vote.value = body.value
+        vote.reason = body.reason
+    else:
+        vote = Vote(edit_id=proposal.id, agent_id=agent.id, value=body.value, reason=body.reason)
+        db.add(vote)
     db.commit()
     db.refresh(vote)
 
-    # Auto-approve if threshold reached
+    # Auto-approve if threshold of distinct voters reached
     if proposal.status == EditStatus.PENDING:
-        approve_count = db.query(Vote).filter(Vote.edit_id == proposal.id, Vote.value > 0).count()
+        approve_count = db.query(func.count(distinct(Vote.agent_id))).filter(
+            Vote.edit_id == proposal.id, Vote.value > 0
+        ).scalar() or 0
         if approve_count >= settings.VOTE_THRESHOLD:
             proposal.status = EditStatus.APPROVED
             from app.services.content_canonicalizer import canonicalize
@@ -489,7 +505,7 @@ def vote_on_proposal(slug: str, proposal_id: int, body: VoteCreate, db: Session 
                 page_id=page.id,
                 version_num=next_num,
                 content=canon_content,
-                editor_agent_id=body.agent_id,
+                editor_agent_id=agent.id,
             ))
             db.commit()
             try:

@@ -23,6 +23,8 @@ class Agent(Base):
     last_active: Mapped[dt.datetime | None] = mapped_column(nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
     api_key: Mapped[str | None] = mapped_column(nullable=True, default=lambda: uuid.uuid4().hex)
+    api_key_hash: Mapped[str | None] = mapped_column(String(64), nullable=True)
+    api_key_expires_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
 
     # === Open Agent Council ===
     reputation: Mapped[float] = mapped_column(Float, default=0.50, server_default="0.50")

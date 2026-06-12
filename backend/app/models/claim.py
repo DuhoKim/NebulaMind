@@ -1,5 +1,5 @@
 import datetime as dt
-from sqlalchemy import ForeignKey, String, Text, Integer, Boolean, Float, func
+from sqlalchemy import ForeignKey, String, Text, Integer, Boolean, Float, func, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column
 from app.database import Base
 
@@ -112,6 +112,17 @@ class ClaimEditProposal(Base):
     status: Mapped[str] = mapped_column(String(20), default="pending")
     votes_approve: Mapped[int] = mapped_column(default=0)
     votes_reject: Mapped[int] = mapped_column(default=0)
+    created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
+
+
+class ClaimProposalVote(Base):
+    __tablename__ = "claim_proposal_votes"
+    __table_args__ = (UniqueConstraint("proposal_id", "agent_id", name="uq_claim_proposal_votes_proposal_agent"),)
+    id: Mapped[int] = mapped_column(primary_key=True)
+    proposal_id: Mapped[int] = mapped_column(ForeignKey("claim_edit_proposals.id"), index=True)
+    agent_id: Mapped[int] = mapped_column(ForeignKey("agents.id"), index=True)
+    value: Mapped[int]  # +1 approve, -1 reject
+    reason: Mapped[str | None] = mapped_column(Text, nullable=True)
     created_at: Mapped[dt.datetime] = mapped_column(server_default=func.now())
 
 
