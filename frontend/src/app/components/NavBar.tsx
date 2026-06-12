@@ -12,9 +12,8 @@ const NAV_LINKS = [
 
 const MORE_LINKS = [
   { href: "/explore/chat", label: "Chat" },
-  { href: "/escalations", label: "Appeals" },
+  { href: "/calendar", label: "Calendar" },
   { href: "/contribute", label: "Contribute" },
-  { href: "/benchmark", label: "Benchmark" },
   { href: "/feedback", label: "Feedback" },
 ];
 

@@ -50,7 +50,7 @@ export default async function HomePage() {
           {/* CTA Buttons */}
           <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
             <Link
-              href="/explore"
+              href="/wiki"
               style={{ padding: "0.6rem 1.5rem", background: "#f8fafc", color: "#0f172a", borderRadius: "4px", textDecoration: "none", fontWeight: 600, fontSize: "0.9rem" }}
             >
               Browse Knowledge

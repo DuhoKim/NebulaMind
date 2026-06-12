@@ -23,10 +23,12 @@ def get_arxiv_papers(
 ):
     """Return arXiv papers stored in DB for the given category."""
     cutoff = (dt.date.today() - dt.timedelta(days=days)).isoformat()
+    today = dt.date.today().isoformat()
     papers = (
         db.query(ArxivPaper)
         .filter(ArxivPaper.category == category)
         .filter(ArxivPaper.submitted >= cutoff)
+        .filter(ArxivPaper.submitted <= today)
         .order_by(desc(ArxivPaper.submitted), desc(ArxivPaper.created_at))
         .limit(limit)
         .all()

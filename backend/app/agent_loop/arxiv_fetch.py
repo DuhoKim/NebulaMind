@@ -50,6 +50,7 @@ def _write_json(path: Path, payload: dict) -> None:
 
 import requests
 from app.config import settings
+from app.services.arxiv_quality import looks_like_llm_refusal, normalize_submitted_date
 
 def _query_nasa_ads(category: str, limit: int = 20) -> list[dict]:
     # We will query NASA ADS using the token.
@@ -100,18 +101,21 @@ def _query_nasa_ads(category: str, limit: int = 20) -> list[dict]:
             authors = doc.get("author", [])
             pubdate = doc.get("pubdate", "") # format usually YYYY-MM
             
-            if not pubdate:
-                pubdate = "2026-06-01"
-            elif len(pubdate) == 7:
-                pubdate += "-01"
-            pubdate = pubdate.replace("-00", "-01")
+            submitted = normalize_submitted_date(pubdate, arxiv_id)
+            if not submitted:
+                log.warning(
+                    "[arxiv_fetch] skipping future/malformed ADS date arxiv_id=%s pubdate=%s",
+                    arxiv_id,
+                    pubdate,
+                )
+                continue
                 
             papers.append({
                 "arxiv_id": arxiv_id,
                 "title": title,
                 "abstract": abstract,
                 "authors": json.dumps(authors[:5]),
-                "submitted": pubdate,
+                "submitted": submitted,
                 "url": f"https://ui.adsabs.harvard.edu/abs/{doc.get('identifier', [''])[0]}/abstract",
                 "category": category,
             })
@@ -134,7 +138,11 @@ def _llm_summarize(title: str, abstract: str) -> str:
             system=ARXIV_SUMMARY_SYSTEM,
             messages=[{"role": "user", "content": f"Title: {title}\n\nAbstract: {abstract[:800]}"}],
         )
-        return msg.content[0].text.strip()[:500]
+        summary = msg.content[0].text.strip()[:500]
+        if looks_like_llm_refusal(summary):
+            log.warning("[arxiv_fetch] refusal-like summary rejected for title=%s", title[:80])
+            return abstract[:300]
+        return summary
     except Exception as exc:
         log.warning("[arxiv_fetch] LLM summarize failed: %s", exc)
         return abstract[:300]
