@@ -1606,6 +1606,7 @@ _SONNET_SECTION_SYSTEM = (
     "  7. MUST output a valid JSON report at the end wrapped in <!--marker-report ... -->.\n"
     "  8. You MUST include and assert EVERY 'Must-Keep Owned Claim'. DO NOT omit them.\n"
 )
+_SONNET_MAX_Q_REGRESSION = 0.03
 
 
 @celery_app.task(
@@ -1813,10 +1814,9 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
         if not replaced:
             return {"decision": "error", "reason": "section_not_found"}
 
-        # Commit gate: require minimum length (400 words ≈ 2000 chars below header).
-        # Do NOT compute delta_q here — Python dims are inconsistent with the LLM
-        # judge used by autowiki_tick. Leave q0/q1/delta_q as None; the next
-        # autowiki_tick audit will score the committed content via its full pipeline.
+        # Commit gates: require minimum length and a lightweight pre-commit
+        # quality check. Sonnet writes outside the AstroSage gated lane, so
+        # page 57 must not land a section rewrite that regresses q by > 0.03.
         section_body = new_section_text.split("\n", 1)[-1] if "\n" in new_section_text else ""
         if len(section_body.strip()) < 200:
             run = AutowikiRun(
@@ -1832,6 +1832,74 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
         # a future autowiki_tick rollback can restore past this commit (not before it).
         from app.services.content_canonicalizer import canonicalize
         new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
+
+        claims_for_gate = (
+            db.query(Claim)
+            .filter(Claim.page_id == page_id)
+            .order_by(Claim.created_at)
+            .all()
+        )
+        claims_text_for_gate = _claims_text(claims_for_gate)
+        h0_result = compute_health_score(page, db)
+        h0_struct = h0_result["score"]
+        components_before = h0_result["components"]
+        u0_result = judge_page(
+            page_id=page_id,
+            content=page.content,
+            hero_facts=page.hero_facts,
+            claims_text=claims_text_for_gate,
+            force=True,
+        )
+        q0 = compute_quality(h0_struct, u0_result.utility)
+        u1_result = judge_page(
+            page_id=page_id,
+            content=new_content,
+            hero_facts=page.hero_facts,
+            claims_text=claims_text_for_gate,
+            force=True,
+        )
+        # Section-only rewrites do not alter claim/evidence rows before commit,
+        # so structural health is unchanged until marker re-embed follows.
+        h1_struct = h0_struct
+        components_after = components_before
+        q1 = compute_quality(h1_struct, u1_result.utility)
+        delta_q = round(q1 - q0, 4)
+        if q1 < q0 - _SONNET_MAX_Q_REGRESSION:
+            run = AutowikiRun(
+                page_id=page_id,
+                started_at=started_at,
+                finished_at=_dt.datetime.utcnow(),
+                proposal_type="section_rewrite",
+                model_proposer="claude-sonnet-4-6",
+                model_judge=u1_result.model_used,
+                h0_struct=h0_struct,
+                h1_struct=h1_struct,
+                components_before=components_before,
+                components_after=components_after,
+                u0_median=u0_result.utility,
+                u1_median=u1_result.utility,
+                u0_runs=u0_result.raw_scores,
+                u1_runs=u1_result.raw_scores,
+                judge_rationale=u1_result.rationale or u0_result.rationale,
+                judge_prompt_version=PROMPT_VERSION,
+                q0=q0,
+                q1=q1,
+                delta_q=delta_q,
+                decision="gate_reject",
+                reject_reason=(
+                    f"sonnet_quality_regression: q1={q1:.4f} < "
+                    f"q0-{_SONNET_MAX_Q_REGRESSION:.2f} ({q0 - _SONNET_MAX_Q_REGRESSION:.4f})"
+                ),
+            )
+            db.add(run)
+            db.commit()
+            return {
+                "decision": "gate_reject",
+                "reason": "sonnet_quality_regression",
+                "q0": q0,
+                "q1": q1,
+                "delta_q": delta_q,
+            }
 
         last_pv = (
             db.query(PageVersion)
@@ -1853,6 +1921,18 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             decision="commit",
             judge_rationale=f"sonnet_section section='{section_header}' body_len={len(section_body)}",
             judge_prompt_version="sonnet_section_v1",
+            model_judge=u1_result.model_used,
+            h0_struct=h0_struct,
+            h1_struct=h1_struct,
+            components_before=components_before,
+            components_after=components_after,
+            u0_median=u0_result.utility,
+            u1_median=u1_result.utility,
+            u0_runs=u0_result.raw_scores,
+            u1_runs=u1_result.raw_scores,
+            q0=q0,
+            q1=q1,
+            delta_q=delta_q,
         )
         # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
         try:
