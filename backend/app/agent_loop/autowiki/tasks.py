@@ -937,6 +937,7 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
             content=page.content,
             hero_facts=page.hero_facts,
             claims_text=claims_text_before,
+            force=True,  # keep baseline and candidate scoring symmetric
         )
         latency["u0_judge_ms"] = _ms(t)
         u0 = u0_result.utility

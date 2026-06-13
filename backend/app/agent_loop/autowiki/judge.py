@@ -17,7 +17,7 @@ v4 changes vs v3 (saturation fix):
   §13.5.
 - Prompt loaded from autowiki/prompts/judge_v4.md.
 - Anonymized framing retained from v3.
-- N=3 calls, temp=0.1 (same as v3).
+- N=3 calls, temp=0.0 to reduce gate noise.
 - Content-hash cache keyed on (PROMPT_VERSION, page_id, content_hash,
   hero_facts_hash, claims_hash) — PROMPT_VERSION="judge_v4-14b" so v3
   entries auto-invalidate.
@@ -267,7 +267,7 @@ def _call_nutty(system: str, user_msg: str, timeout: int = 180) -> dict | None:
                     {"role": "system", "content": system},
                     {"role": "user", "content": user_msg},
                 ],
-                "temperature": 0.1,
+                "temperature": 0.0,
                 "options": {"num_ctx": 8192},
                 "keep_alive": "1h",
             },
@@ -293,7 +293,7 @@ def _call_buddle(system: str, user_msg: str) -> dict | None:
                     {"role": "system", "content": system},
                     {"role": "user", "content": user_msg},
                 ],
-                "temperature": 0.1,
+                "temperature": 0.0,
                 "options": {"num_ctx": 8192},
             },
             timeout=120,
