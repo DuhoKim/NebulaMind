@@ -304,6 +304,29 @@ def _final_unicode_script_sweep(text: str) -> tuple[str, int]:
     return _restore_regions(protected, placeholders), n
 
 
+def _strip_unknown_comments(text: str) -> tuple[str, int]:
+    n = 0
+
+    def repl(m: re.Match) -> str:
+        nonlocal n
+        if not REGISTERED_COMMENT_RE.fullmatch(m.group(0)):
+            n += 1
+            return ""
+        return m.group(0)
+
+    return re.sub(r"<!--[\s\S]*?-->", repl, text), n
+
+
+def _strip_author_year_parentheticals(text: str) -> tuple[str, int]:
+    protected, placeholders = _protect_regions(text)
+    result, n = re.subn(
+        r"\([A-Z][A-Za-z\-']+(?:\s+et\s+al\.?)?\s+(?:19|20)\d{2}[a-z]?\)",
+        "",
+        protected,
+    )
+    return _restore_regions(result, placeholders), n
+
+
 def canonicalize(content: str, page_id: int | None = None, db: Session | None = None) -> CanonicalizeResult:
     """Canonicalize stored wiki markdown.
 
@@ -415,6 +438,8 @@ def canonicalize(content: str, page_id: int | None = None, db: Session | None = 
     text, n_math_safety = _make_math_html_safe(text)
     text, n_bare_tex = _capture_bare_tex(text)
     text, n_final_unicode = _final_unicode_script_sweep(text)
+    text, n_author_year = _strip_author_year_parentheticals(text)
+    text, n_unknown_comments = _strip_unknown_comments(text)
 
     changes = {
         "entity_decode": n_entity_decode,
@@ -435,6 +460,8 @@ def canonicalize(content: str, page_id: int | None = None, db: Session | None = 
         "markdown_fence": n_markdown_fence,
         "nested_math": n_nested_math,
         "final_unicode": n_final_unicode,
+        "author_year_stripped": n_author_year,
+        "unknown_comments_stripped": n_unknown_comments,
         "orphan_span": 0,
     }
     violations = verify_invariants(text)

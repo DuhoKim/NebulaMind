@@ -79,7 +79,7 @@ def test_llm_dispatch_calls_have_nearby_guard(path: Path):
 
 def test_batch_strict_mode_reads_settings(monkeypatch):
     monkeypatch.setattr(settings, "BATCH_STRICT_MODE", False)
-    assert guard_batch_model("claude-opus-4-7", "test.loop") == "gemini-3.5-flash"
+    assert guard_batch_model("claude-opus-4-7", "test.loop") == "gemini-2.5-flash"
     monkeypatch.setattr(settings, "BATCH_STRICT_MODE", True)
     with pytest.raises(ValueError):
         guard_batch_model("claude-opus-4-7", "test.loop")
@@ -89,6 +89,6 @@ def test_premium_whitelist_blocks_non_judge_jobs(monkeypatch):
     monkeypatch.setattr(settings, "PREMIUM_DISPATCH_ENABLED", True)
     monkeypatch.setattr(premium_dispatch, "_log_block", lambda *args, **kwargs: None)
     with pytest.raises(PremiumDispatchBlocked):
-        dispatch_premium("autowiki.sonnet_section_rewrite", "claude-sonnet-4-6", 1_000, db=None)
+        dispatch_premium("autowiki.unapproved_batch", "claude-sonnet-4-6", 1_000, db=None)
     assert model_tier("claude-opus-4-7") == "PREMIUM"
-    assert model_tier("deepseek-r1:32b") == "BATCH_SAFE"
+    assert model_tier("deepseek-r1:671b") == "BATCH_SAFE"

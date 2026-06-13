@@ -340,7 +340,7 @@ def test_r_gemini_entailment_provider_uses_existing_key_path(tmp_path, monkeypat
         ollama_host="http://localhost:11434",
         no_entailment_gate=False,
         entailment_provider="gemini",
-        entailment_model="google/gemini-3.1-pro-preview",
+        entailment_model="google/gemini-2.5-flash",
         entailment_timeout=30,
         entailment_ollama_host=None,
         entailment_base_url=None,
@@ -350,7 +350,7 @@ def test_r_gemini_entailment_provider_uses_existing_key_path(tmp_path, monkeypat
 
     assert calls == [
         {
-            "model": "google/gemini-3.1-pro-preview",
+            "model": "google/gemini-2.5-flash",
             "base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
             "api_key": "fixture-key",
             "timeout": 30,
