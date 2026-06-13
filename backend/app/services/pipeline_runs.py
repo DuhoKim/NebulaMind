@@ -31,7 +31,7 @@ def ensure_pipeline_runs_table(db) -> None:
                 id SERIAL PRIMARY KEY,
                 task_name VARCHAR(200) NOT NULL,
                 task_id VARCHAR(80),
-                schedule_name VARCHAR(120),
+                schedule_name VARCHAR(255),
                 status VARCHAR(20) NOT NULL DEFAULT 'running',
                 started_at TIMESTAMP NOT NULL DEFAULT NOW(),
                 finished_at TIMESTAMP,
