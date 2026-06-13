@@ -1,18 +1,58 @@
 {
   "survey_slug": "act",
+  "retire_labels": ["DR6"],
   "releases": [
     {
-      "label": "DR6",
+      "label": "DR5 cluster catalog",
       "release_date": null,
-      "release_year": 2023,
-      "summary": "ACT DR6 (2023) — CMB lensing power spectrum; temperature+polarisation maps; ACT DR6 cluster catalog",
-      "n_objects": 10000,
-      "sky_coverage_deg2": null,
+      "release_year": 2021,
+      "summary": "SZ-selected galaxy cluster catalog from ACT 2008-2018 (DR5) maps at 98/150 GHz: 4,195 optically confirmed clusters detected at signal-to-noise > 4 in 13,211 deg2 of sky, with redshifts, UPP-based SZ masses, weak-lensing-recalibrated masses, and cross-matches with redMaPPer and CAMIRA. Served on LAMBDA as v1.1 (position/redshift fixes for three clusters vs. v1.0). Superseded by the DR6 cluster catalog.",
+      "n_objects": 4195,
+      "sky_coverage_deg2": 13211,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://lambda.gsfc.nasa.gov/product/act/",
+      "doi": "10.3847/1538-4365/abd023",
+      "bibcode": "2021ApJS..253....3H",
+      "url": "https://lambda.gsfc.nasa.gov/product/act/actpol_dr5_szcluster_catalog_info.html",
+      "status": "superseded"
+    },
+    {
+      "label": "DR6 lensing",
+      "release_date": "2023-11-01",
+      "release_year": 2023,
+      "summary": "CMB gravitational lensing mass map covering 9,400 deg2, reconstructed from ACT DR6 temperature and polarization data taken 2017-2021, with the lensing power-spectrum likelihood; lensing amplitude measured at 2.3% precision (43 sigma). Map product, no object catalog. Released on LAMBDA as v1 on 2023-11-01 (Madhavacheril et al. 2024; spectrum/likelihood in Qu et al. 2024).",
+      "n_objects": null,
+      "sky_coverage_deg2": 9400,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4357/acff5f",
+      "bibcode": "2024ApJ...962..113M",
+      "url": "https://lambda.gsfc.nasa.gov/product/act/actadv_prod_table.html",
       "status": "released"
+    },
+    {
+      "label": "DR6 cluster catalog",
+      "release_date": null,
+      "release_year": 2025,
+      "summary": "The largest SZ-selected cluster catalog to date: redshifts and mass estimates for 10,040 clusters (plus 374 candidates without redshifts) over 16,293 deg2, from ACT 2008-2022 data with DES and HSC optical confirmation. Includes a 'Legacy' cosmology subsample (fixed_SNR > 5.5, flags == 0, footprint_Legacy), a multiple-systems catalog, and Nemo selection-function products. v1.0 on LAMBDA; supersedes the DR5 cluster catalog. Reference paper published in the Open Journal of Astrophysics (2026).",
+      "n_objects": 10040,
+      "sky_coverage_deg2": 16293,
+      "data_volume_tb": null,
+      "doi": "10.33232/001c.155863",
+      "bibcode": "2026OJAp....955863A",
+      "url": "https://lambda.gsfc.nasa.gov/product/act/actadv_dr6_szcluster_catalog_info.html",
+      "status": "released"
+    },
+    {
+      "label": "DR6.02 maps",
+      "release_date": null,
+      "release_year": 2025,
+      "summary": "Final ACT data release: multi-frequency (f090/f150/f220) temperature and polarization maps from 2017-2022 observations covering 19,000 deg2 with a median combined depth of 10 uK-arcmin, plus beams, passbands, NILC component-separated maps, power spectra, likelihoods, and parameter chains (maps: Naess et al., arXiv:2503.14451, no journal DOI yet; power spectra and parameters: Louis et al. 2025, JCAP).",
+      "n_objects": null,
+      "sky_coverage_deg2": 19000,
+      "data_volume_tb": null,
+      "doi": "10.1088/1475-7516/2025/11/062",
+      "bibcode": "2025JCAP...11..062L",
+      "url": "https://lambda.gsfc.nasa.gov/product/act/act_dr6.02/",
+      "status": "final"
     }
   ]
 }

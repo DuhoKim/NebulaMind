@@ -1,0 +1,17 @@
+{
+  "dataset_slug": "zcosmos-dr3",
+  "source_url": "https://www.eso.org/qi/catalog/show/65",
+  "fields": [
+    { "name": "OBJECT_ID", "dtype": "int", "unit": null, "description": "zCOSMOS identification number", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "RAJ2000", "dtype": "double", "unit": "deg", "description": "Right Ascension (J2000)", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "DEJ2000", "dtype": "double", "unit": "deg", "description": "Declination (J2000)", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "REDSHIFT", "dtype": "double", "unit": null, "description": "Spectroscopic redshift (DR3 redshifts shifted by -100 km/s, dz = -0.0003(1+z), relative to DR1/DR2)", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "CC", "dtype": "double", "unit": null, "description": "Confidence class (0-4 plus 9 = one-line redshift and 18; +10 for broad-line AGN, +20 for secondary objects; decimal suffix encodes photometric-redshift consistency)", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "IMAG_AB", "dtype": "double", "unit": "mag", "description": "Selection mag F814W AB", "example": null, "is_key": false, "sort_order": 6 },
+    { "name": "FLAG_S", "dtype": "int", "unit": null, "description": "Spectroscopy flag", "example": null, "is_key": false, "sort_order": 7 },
+    { "name": "FLAG_X", "dtype": "int", "unit": null, "description": "X-ray flag", "example": null, "is_key": false, "sort_order": 8 },
+    { "name": "FLAG_R", "dtype": "int", "unit": null, "description": "Radio flag", "example": null, "is_key": false, "sort_order": 9 },
+    { "name": "FLAG_UV", "dtype": "int", "unit": null, "description": "UV flag", "example": null, "is_key": false, "sort_order": 10 },
+    { "name": "FILENAME", "dtype": "string", "unit": null, "description": "Name of the associated 1D spectrum file", "example": null, "is_key": false, "sort_order": 11 }
+  ]
+}

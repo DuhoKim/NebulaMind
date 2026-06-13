@@ -1,17 +1,31 @@
 {
   "survey_slug": "hetdex",
+  "retire_labels": ["HDR3"],
   "releases": [
     {
-      "label": "HDR3",
-      "release_date": null,
+      "label": "Public Source Catalog 1",
+      "release_date": "2023-02-07",
       "release_year": 2023,
-      "summary": "HDR3 (2023) — ~1 million source spectra; Leung et al. 2023 LAE catalog",
-      "n_objects": 1000000,
-      "sky_coverage_deg2": null,
+      "summary": "First public catalog of HETDEX, the untargeted VIRUS IFU spectroscopic survey (3500-5500 A) on the 10 m Hobby-Eberly Telescope, covering observations from January 2017 through June 2020 over 25 deg2 of contiguous fiber coverage (within a 540 deg2 footprint). The catalog table contains 232,650 source observations, including 51,863 Lya-emitter identifications, 123,891 [OII] emitters at z < 0.5, 37,916 stars, 5,274 low-redshift galaxies without emission lines, and 4,976 AGN, with classifications, redshifts, line fluxes and 1D spectra. Hosted at TACC, mirrored on Zenodo (10.5281/zenodo.7448504). Superseded by PDR1 / Public Source Catalog 2.",
+      "n_objects": 232650,
+      "sky_coverage_deg2": 25,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://hetdex.org/data",
+      "doi": "10.3847/1538-4357/aca962",
+      "bibcode": "2023ApJ...943..177M",
+      "url": "https://hetdex.org/data-results/",
+      "status": "superseded"
+    },
+    {
+      "label": "PDR1 / Public Source Catalog 2",
+      "release_date": null,
+      "release_year": 2026,
+      "summary": "First full HETDEX public data release: 431,713 IFU observations (datacubes at 3470-5540 A, R~800) covering 86.67 deg2 of noncontiguous sky in the Spring (13h, +51 deg) and Fall (1.5h, 0 deg) fields plus legacy regions (COSMOS, GOODS-N, NEP, SA22), with the second source catalog (HPSC2) carrying machine-learning quality scores (p_conf, p_cnn). HPSC2 classifications total 1,106,433 entries: 426,654 LAEs, 491,411 [OII] emitters, 19,457 low-z galaxies, 18,303 AGN, and 150,608 stars. Hosted at TACC with an MPE SciServer mirror; Zenodo record 10.5281/zenodo.19581262 (2026-04).",
+      "n_objects": 1106433,
+      "sky_coverage_deg2": 86.67,
+      "data_volume_tb": null,
+      "doi": "10.3847/1538-4365/ae6068",
+      "bibcode": "2026ApJS..284...67M",
+      "url": "https://hetdex.org/data-results/",
       "status": "released"
     }
   ]

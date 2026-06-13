@@ -1,0 +1,29 @@
+{
+  "dataset_slug": "cdf-n-2ms",
+  "source_url": "https://heasarc.gsfc.nasa.gov/W3Browse/chandra/cdfn2msnew.html",
+  "fields": [
+    { "name": "Source_Sample", "dtype": "string", "unit": null, "description": "'Main' if the entry comes from the main catalog (Table 3, 683 X-ray sources) or 'Supp' if from the supplementary catalog (Table 6)", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "Source_Number", "dtype": "int", "unit": null, "description": "Sequential identification number for each source in the specified sample, in order of increasing J2000.0 RA", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "Name", "dtype": "string", "unit": null, "description": "Source name with prefix 'CXOU' and the J2000.0 position truncated to 0.1 s in RA and 1 arcsec in Declination", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Best-fit X-ray source Right Ascension (J2000.0)", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "Best-fit X-ray source Declination (J2000.0)", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Log_Prob_No_Src", "dtype": "double", "unit": null, "description": "Minimum value of log P among the three standard bands, where P is the binomial no-source probability; main-catalog selection threshold log P < -2.4 (P < 0.004)", "example": null, "is_key": false, "sort_order": 6 },
+    { "name": "Error_Radius", "dtype": "double", "unit": "arcsec", "description": "X-ray positional uncertainty at the ~68% confidence level (0.10-2.2 arcsec, median 0.47)", "example": null, "is_key": false, "sort_order": 7 },
+    { "name": "Off_Axis", "dtype": "double", "unit": "arcmin", "description": "Off-axis angle (0.13-14.63 arcmin, median 6.01)", "example": null, "is_key": false, "sort_order": 8 },
+    { "name": "FB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the full band (0.5-7.0 keV); Kraft et al. (1991) 90% upper limits for non-detections", "example": null, "is_key": false, "sort_order": 9 },
+    { "name": "SB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the soft band (0.5-2.0 keV)", "example": null, "is_key": false, "sort_order": 10 },
+    { "name": "HB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the hard band (2.0-7.0 keV)", "example": null, "is_key": false, "sort_order": 11 },
+    { "name": "OIR_Ctrpart_Catalog", "dtype": "string", "unit": null, "description": "Catalog of the primary optical/NIR/MIR/radio (ONIR) counterpart: VLA, GOODS-N, CANDELS, Ks, CapakR/Yang14, or IRAC", "example": null, "is_key": false, "sort_order": 12 },
+    { "name": "Spec_Redshift", "dtype": "double", "unit": null, "description": "Secure spectroscopic redshift (351/670 ONIR-matched main sources)", "example": null, "is_key": true, "sort_order": 13 },
+    { "name": "Phot_Redshift", "dtype": "double", "unit": null, "description": "H-HDF-N photometric redshift from Yang et al. 2014 (612/670 = 91.3% of ONIR-matched main sources)", "example": null, "is_key": false, "sort_order": 14 },
+    { "name": "Redshift", "dtype": "double", "unit": null, "description": "Preferred redshift (zfinal), in order of preference: secure zspec, CANDELS/3D-HST zphot, H-HDF-N zphot", "example": null, "is_key": true, "sort_order": 15 },
+    { "name": "Band_Ratio", "dtype": "double", "unit": null, "description": "Hard-to-soft effective count-rate ratio", "example": null, "is_key": false, "sort_order": 16 },
+    { "name": "Photon_Index", "dtype": "double", "unit": null, "description": "Effective photon index Gamma for a power law with Galactic NH = 1.6e20 cm-2; Gamma = 1.4 assumed for low-count sources", "example": null, "is_key": false, "sort_order": 17 },
+    { "name": "FB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Observed-frame full-band flux, not corrected for Galactic or intrinsic absorption", "example": null, "is_key": true, "sort_order": 18 },
+    { "name": "SB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Observed-frame soft-band flux", "example": null, "is_key": false, "sort_order": 19 },
+    { "name": "HB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Observed-frame hard-band flux", "example": null, "is_key": false, "sort_order": 20 },
+    { "name": "Lx", "dtype": "double", "unit": "erg/s", "description": "Absorption-corrected, rest-frame 0.5-7 keV luminosity (H0 = 69.7 km/s/Mpc, OmegaM = 0.282, OmegaLambda = 0.718)", "example": null, "is_key": true, "sort_order": 21 },
+    { "name": "Broad_Type", "dtype": "string", "unit": null, "description": "'AGN', 'Galaxy', or 'Star'; 591 (86.5%), 75 (11.0%), and 17 (2.5%) of the 683 main-catalog sources respectively", "example": null, "is_key": true, "sort_order": 22 },
+    { "name": "A03_Source_Number", "dtype": "string", "unit": null, "description": "Cross-match to the Alexander et al. 2003 catalog (487 matches in the 503-source A03 main catalog; 196 new sources)", "example": null, "is_key": false, "sort_order": 23 }
+  ]
+}

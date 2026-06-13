@@ -2,16 +2,29 @@
   "survey_slug": "cdf-n",
   "releases": [
     {
+      "label": "2 Ms original catalog (Alexander et al. 2003)",
+      "release_date": null,
+      "release_year": 2003,
+      "summary": "Original point-source catalogs from the full ~2 Ms CDF-N exposure (20 ACIS observations, 1999-2002), then the deepest X-ray observation ever taken: 503 X-ray sources detected over an ~448 arcmin2 area in up to seven X-ray bands, plus a 78-source supplementary catalog; on-axis limits ~2.5e-17 (0.5-2 keV) and ~1.4e-16 (2-8 keV) erg/cm2/s. Superseded by the Xue et al. 2016 reprocessing.",
+      "n_objects": 503,
+      "sky_coverage_deg2": 0.124,
+      "data_volume_tb": null,
+      "doi": "10.1086/376473",
+      "bibcode": "2003AJ....126..539A",
+      "url": "https://heasarc.gsfc.nasa.gov/W3Browse/chandra/chandfn2ms.html",
+      "status": "superseded"
+    },
+    {
       "label": "2 Ms CDF-N catalog",
       "release_date": null,
       "release_year": 2016,
-      "summary": "2 Ms CDF-N catalog (Xue et al. 2016) — 683 X-ray sources",
+      "summary": "Improved 2 Ms CDF-N point-source catalog (Xue et al. 2016): reprocessing of the same data with modern methodology (wavdetect + binomial-probability selection P <= 0.004) yields a main catalog of 683 X-ray sources (196 new vs. Alexander et al. 2003) plus 72 supplementary NIR-bright sources, with improved positions, multiwavelength counterparts, spectroscopic/photometric redshifts, and AGN/galaxy/star classifications (591/75/17 in the main catalog). The current canonical CDF-N catalog over ~448 arcmin2 (HEASARC table CDFN2MSNEW).",
       "n_objects": 683,
-      "sky_coverage_deg2": null,
+      "sky_coverage_deg2": 0.124,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://cxc.cfa.harvard.edu/cda/",
+      "doi": "10.3847/0067-0049/224/2/15",
+      "bibcode": "2016ApJS..224...15X",
+      "url": "https://heasarc.gsfc.nasa.gov/W3Browse/chandra/cdfn2msnew.html",
       "status": "final"
     }
   ]

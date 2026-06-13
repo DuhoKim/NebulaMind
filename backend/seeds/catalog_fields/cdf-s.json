@@ -1,0 +1,31 @@
+{
+  "dataset_slug": "cdf-s",
+  "source_url": "https://heasarc.gsfc.nasa.gov/W3Browse/chandra/chandfs7ms.html",
+  "fields": [
+    { "name": "Source_Sample", "dtype": "string", "unit": null, "description": "'M' for the 1,008 sources from the main Chandra source catalog, 'S' for the 47 lower-significance sources from the supplementary NIR-bright catalog", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "XID_Source_Number", "dtype": "int", "unit": null, "description": "Unique XID per sample, in order of increasing J2000 RA", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "Name", "dtype": "string", "unit": null, "description": "Source name with prefix 'CXOCDFS' and the J2000.0 position truncated to 0.1 s in RA and 1 arcsec in Declination", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "RA", "dtype": "double", "unit": "deg", "description": "Right Ascension (J2000, to 1e-6 deg)", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "Dec", "dtype": "double", "unit": "deg", "description": "Declination (J2000, to 1e-6 deg)", "example": null, "is_key": true, "sort_order": 5 },
+    { "name": "Log_Min_NS_Prob", "dtype": "double", "unit": null, "description": "Minimum value of log PB (binomial no-source probability) among the three standard bands; main-catalog threshold PB < 0.007; supplementary 0.007 <= PB < 0.1 with bright Ks <= 23 TENIS counterpart", "example": null, "is_key": false, "sort_order": 6 },
+    { "name": "Error_Radius", "dtype": "double", "unit": "arcsec", "description": "1-sigma (~68%) positional uncertainty; 90% and 95% confidence levels are ~1.6x and ~2.0x this value", "example": null, "is_key": false, "sort_order": 7 },
+    { "name": "Off_Axis", "dtype": "double", "unit": "arcmin", "description": "Off-axis angle from the 7 Ms average aim point", "example": null, "is_key": false, "sort_order": 8 },
+    { "name": "FB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the full band (0.5-7 keV); 90% upper limits for non-detections", "example": null, "is_key": false, "sort_order": 9 },
+    { "name": "SB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the soft band (0.5-2 keV)", "example": null, "is_key": false, "sort_order": 10 },
+    { "name": "HB_Counts", "dtype": "double", "unit": "count", "description": "Aperture-corrected net counts in the hard band (2-7 keV)", "example": null, "is_key": false, "sort_order": 11 },
+    { "name": "Ctrpart_Catalog", "dtype": "string", "unit": null, "description": "Primary multiwavelength counterpart catalog, in priority order: CANDELS, GOODS-S, GEMS, TENIS, WFI, SEDS", "example": null, "is_key": false, "sort_order": 12 },
+    { "name": "Offset", "dtype": "double", "unit": "arcsec", "description": "X-ray-to-counterpart offset", "example": null, "is_key": false, "sort_order": 13 },
+    { "name": "Spect_Redshift", "dtype": "double", "unit": null, "description": "Spectroscopic redshift (stars set to 0); flag column marks 'Secure' or 'Insecure'", "example": null, "is_key": true, "sort_order": 14 },
+    { "name": "Redshift", "dtype": "double", "unit": null, "description": "Adopted redshift; reference codes H14, L10, R11, S14, S16, zSpec", "example": null, "is_key": true, "sort_order": 15 },
+    { "name": "Band_Ratio", "dtype": "double", "unit": null, "description": "Hard-to-soft count-rate ratio (BEHR Bayesian estimates)", "example": null, "is_key": false, "sort_order": 16 },
+    { "name": "Photon_Index", "dtype": "double", "unit": null, "description": "Effective photon index Gamma; 1.4 adopted for full-band-only sources", "example": null, "is_key": false, "sort_order": 17 },
+    { "name": "FB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Full-band flux; negative values indicate 90% confidence-level upper limits", "example": null, "is_key": true, "sort_order": 18 },
+    { "name": "SB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Soft-band flux", "example": null, "is_key": false, "sort_order": 19 },
+    { "name": "HB_Flux", "dtype": "double", "unit": "erg/cm2/s", "description": "Hard-band flux", "example": null, "is_key": false, "sort_order": 20 },
+    { "name": "RF_Lx", "dtype": "double", "unit": "erg/s", "description": "Apparent rest-frame 0.5-7 keV luminosity (K-corrected, Galactic-absorption-corrected, not intrinsic-absorption-corrected)", "example": null, "is_key": false, "sort_order": 21 },
+    { "name": "NH", "dtype": "double", "unit": "cm-2", "description": "Intrinsic column density via PIMMS assuming intrinsic Gamma = 1.8 (zero if effective Gamma > 1.8)", "example": null, "is_key": false, "sort_order": 22 },
+    { "name": "Abs_Corr_Lx", "dtype": "double", "unit": "erg/s", "description": "Absorption-corrected intrinsic 0.5-7 keV luminosity", "example": null, "is_key": true, "sort_order": 23 },
+    { "name": "Broad_Type", "dtype": "string", "unit": null, "description": "AGN, star, or galaxy classification (paper Section 4.5 criteria)", "example": null, "is_key": true, "sort_order": 24 },
+    { "name": "X11_Source_Number", "dtype": "string", "unit": null, "description": "Matched 4 Ms CDF-S source ID (Xue et al. 2011; 'S' suffix for supplementary)", "example": null, "is_key": false, "sort_order": 25 }
+  ]
+}

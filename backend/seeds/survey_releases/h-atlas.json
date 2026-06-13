@@ -2,17 +2,43 @@
   "survey_slug": "h-atlas",
   "releases": [
     {
+      "label": "DR1",
+      "release_date": null,
+      "release_year": 2016,
+      "summary": "First major H-ATLAS data release: PACS/SPIRE maps and catalogues for the three GAMA equatorial fields totalling 161.6 deg2 in five bands (100, 160, 250, 350, 500 um). The catalogue (Valiante et al. 2016) includes 120,230 sources detected at >4 sigma in any SPIRE band (113,995 / 46,209 / 11,011 at 250/350/500 um); Bourne et al. 2016 provide likelihood-ratio SDSS optical IDs (44,835 reliable counterparts, R >= 0.8).",
+      "n_objects": 120230,
+      "sky_coverage_deg2": 161.6,
+      "data_volume_tb": null,
+      "doi": "10.1093/mnras/stw1806",
+      "bibcode": "2016MNRAS.462.3146V",
+      "url": "https://www.h-atlas.org/public-data/download",
+      "status": "released"
+    },
+    {
       "label": "DR2",
       "release_date": null,
-      "release_year": 2017,
-      "summary": "H-ATLAS DR2 (2017) — ~300,000 sources across 660 deg²; Maddox et al. 2018",
-      "n_objects": 120000,
-      "sky_coverage_deg2": null,
+      "release_year": 2018,
+      "summary": "Data release for the two large fields at the North and South Galactic Poles — the largest submillimetre images of the extragalactic sky (NGP map 180.1 deg2, SGP map 317.6 deg2). The submillimetre catalogues (Maddox et al. 2018) contain 346,894 sources detected at >4 sigma in any SPIRE band: 153,367 in the NGP (177 deg2 catalogue area) and 193,527 in the SGP (303 deg2); images presented in Smith et al. 2017.",
+      "n_objects": 346894,
+      "sky_coverage_deg2": 480,
       "data_volume_tb": null,
-      "doi": null,
-      "bibcode": null,
-      "url": "https://www.h-atlas.org/data/",
-      "status": "final"
+      "doi": "10.3847/1538-4365/aab8fc",
+      "bibcode": "2018ApJS..236...30M",
+      "url": "https://www.h-atlas.org/public-data/download",
+      "status": "released"
+    },
+    {
+      "label": "DR3",
+      "release_date": null,
+      "release_year": 2022,
+      "summary": "Third H-ATLAS data release: optical/near-infrared (VISTA VIKING) counterparts to the DR2 SGP submillimetre sources, with photometric redshift estimates and gravitational-lensing probabilities; 110,374 sources (57.0%) have counterparts with association probability > 0.8, and 5,923 sources are identified as probably gravitationally lensed (Ward et al. 2022).",
+      "n_objects": 110374,
+      "sky_coverage_deg2": 303,
+      "data_volume_tb": null,
+      "doi": "10.1093/mnras/stab3300",
+      "bibcode": "2022MNRAS.510.2261W",
+      "url": "https://www.h-atlas.org/public-data/download",
+      "status": "released"
     }
   ]
 }

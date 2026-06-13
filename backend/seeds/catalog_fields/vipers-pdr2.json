@@ -1,0 +1,22 @@
+{
+  "dataset_slug": "vipers-pdr2",
+  "source_url": "https://www.eso.org/rm/api/v1/public/releaseDescriptions/98",
+  "fields": [
+    { "name": "id_IAU", "dtype": "string", "unit": null, "description": "IAU Object ID (VIPERS object name, according to IAU standards)", "example": null, "is_key": true, "sort_order": 1 },
+    { "name": "num", "dtype": "string", "unit": null, "description": "Object ID; internal id number in the form attxxxxxx where a identifies the sky area (1 for W1 and 4 for W4), tt the CFHTLS tile number, xxxxxx the original CFHTLS ID within the tile", "example": null, "is_key": true, "sort_order": 2 },
+    { "name": "alpha", "dtype": "double", "unit": "deg", "description": "Right ascension", "example": null, "is_key": true, "sort_order": 3 },
+    { "name": "delta", "dtype": "double", "unit": "deg", "description": "Declination", "example": null, "is_key": true, "sort_order": 4 },
+    { "name": "selmag", "dtype": "float", "unit": "mag", "description": "Selection mag (CFHTLS T0005 i galactic extinction corrected)", "example": null, "is_key": false, "sort_order": 5 },
+    { "name": "errselmag", "dtype": "float", "unit": "mag", "description": "Selection mag error", "example": null, "is_key": false, "sort_order": 6 },
+    { "name": "pointing", "dtype": "string", "unit": null, "description": "Pointing", "example": null, "is_key": false, "sort_order": 7 },
+    { "name": "quadrant", "dtype": "int", "unit": null, "description": "Quadrant number", "example": null, "is_key": false, "sort_order": 8 },
+    { "name": "zflg", "dtype": "float", "unit": null, "description": "Redshift flag: integer part 4/3 = highly secure, 2 = ~90% confidence, 9 = single emission feature, 1 = ~50% chance wrong; prefix 1 = broad-line AGN, prefix 2 = second object in slit; decimal suffix encodes photometric-redshift compatibility. Objects with flag 2.X-9.X are reliable (secure) redshifts", "example": null, "is_key": true, "sort_order": 9 },
+    { "name": "zspec", "dtype": "float", "unit": null, "description": "Redshift", "example": null, "is_key": true, "sort_order": 10 },
+    { "name": "norm", "dtype": "float", "unit": null, "description": "Normalization factor; the spectrum has been multiplied by this value to be normalized to the selmag value", "example": null, "is_key": false, "sort_order": 11 },
+    { "name": "classFlag", "dtype": "int", "unit": null, "description": "Selection flag: 1 = VIPERS main galaxy target (colors compatible with z > 0.5); 0 = colors compatible with z < 0.5; -1 = stellar-like object; -2 = i > 22.5; -3 = i < 17.5; -88 = problematic (possibly saturated); -99 = missing photometric data", "example": null, "is_key": true, "sort_order": 12 },
+    { "name": "epoch", "dtype": "int", "unit": null, "description": "Epoch: 1 = observed before VIMOS refurbishing in summer 2010 (old CCD), 2 = observed after summer 2010 (new CCD)", "example": null, "is_key": false, "sort_order": 13 },
+    { "name": "photoMask", "dtype": "int", "unit": null, "description": "Photometric mask flag; 1 if the object is inside the photometric mask", "example": null, "is_key": false, "sort_order": 14 },
+    { "name": "tsr", "dtype": "double", "unit": null, "description": "Target Sampling Rate: TSR = Nspec/Nparent, computed in small rectangular apertures", "example": null, "is_key": false, "sort_order": 15 },
+    { "name": "ssr", "dtype": "double", "unit": null, "description": "Spectroscopic Success Rate: ratio of galaxies with a successfully measured redshift (flag = 2.*, 3.*, 4.*, 9.*) over the total sample of detected galaxies", "example": null, "is_key": false, "sort_order": 16 }
+  ]
+}
