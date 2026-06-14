@@ -10,6 +10,7 @@ import datetime as dt
 import hashlib
 import json
 import logging
+import re
 import time
 
 import httpx
@@ -1605,8 +1606,44 @@ _SONNET_SECTION_SYSTEM = (
     "  6. You MUST PRESERVE all trust/consensus HTML comments (e.g. <!--accepted-->, <!--consensus-->).\n"
     "  7. MUST output a valid JSON report at the end wrapped in <!--marker-report ... -->.\n"
     "  8. You MUST include and assert EVERY 'Must-Keep Owned Claim'. DO NOT omit them.\n"
+    "  9. Do NOT use raw LaTeX math syntax (e.g. `$...$`, `\\Sigma`, `\\gtrsim`). Use plain text or Unicode for mathematical expressions; avoid dollar signs, backslash commands, and star/sun symbols in prose.\n"
 )
 _SONNET_MAX_Q_REGRESSION = 0.03
+
+
+def _normalize_sonnet_plain_math(text: str) -> str:
+    """Convert common raw LaTeX fragments from Sonnet into canonicalizer-safe prose."""
+    replacements = {
+        r"\gtrsim": ">=",
+        r"\lesssim": "<=",
+        r"\geq": ">=",
+        r"\ge": ">=",
+        r"\leq": "<=",
+        r"\le": "<=",
+        r"\approx": "about",
+        r"\sim": "~",
+        r"\propto": "proportional to",
+        r"\times": "x",
+        r"\pm": "+/-",
+        r"\Sigma": "Sigma",
+        r"\sigma": "sigma",
+        r"\Delta": "Delta",
+        r"\Omega": "Omega",
+        r"\Lambda": "Lambda",
+        r"\rho": "rho",
+        r"\mu": "mu",
+        r"\pi": "pi",
+        r"\star": "star",
+        r"\odot": "sun",
+    }
+    for raw, plain in replacements.items():
+        text = text.replace(raw, plain)
+    text = text.replace("\\,", " ")
+    text = re.sub(r"\$(.*?)\$", r"\1", text)
+    text = re.sub(r"\b([A-Za-z]+)_\{?([A-Za-z]+)\}?", r"\1-\2", text)
+    text = text.replace("{", "").replace("}", "")
+    text = re.sub(r"\s{2,}", " ", text)
+    return text
 
 
 @celery_app.task(
@@ -1619,6 +1656,7 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
     import datetime as _dt
     from app.config import settings
     from app.models.autowiki import AutowikiRun
+    from app.services.content_canonicalizer import CanonicalizerError, canonicalize
 
     if not _is_enabled():
         return {"decision": "skip", "reason": "autowiki_flag_off"}
@@ -1626,6 +1664,24 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
     started_at = _dt.datetime.utcnow()
 
     db = SessionLocal()
+
+    def _log_error_run(error_text: str) -> None:
+        try:
+            run = AutowikiRun(
+                page_id=page_id,
+                started_at=started_at,
+                finished_at=_dt.datetime.utcnow(),
+                proposal_type="section_rewrite",
+                model_proposer="claude-sonnet-4-6",
+                decision="error",
+                error_text=error_text,
+            )
+            db.add(run)
+            db.commit()
+        except Exception as log_exc:
+            db.rollback()
+            logger.warning("[sonnet_section_rewrite] failed to write error run: %s", log_exc)
+
     try:
         page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
         if not page:
@@ -1716,7 +1772,8 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             "Rewrite this section following the requirements in the system prompt. "
             "Keep the ## header unchanged.\n\n"
             "Citation requirements: do not write (Author et al. Year). Use <!--cite:EVIDENCE_ID--> only from the EVIDENCE MAP. Omit a citation if no evidence ID is available.\n\n"
-            "At the end of your response, you MUST include a marker report in exactly this format:\n"
+            "Math notation requirement: do NOT use raw LaTeX math syntax such as `$...$`, `\\Sigma`, or `\\gtrsim`. Use plain text or Unicode instead.\n\n"
+            "At the end of your response, you MUST include exactly one marker report in exactly this format. Do not omit it, do not wrap it in a code fence, and do not place any text after it:\n"
             "<!--marker-report\n{\n  \"section\": \"Section Name\",\n  \"asserted_claim_ids\": [123, 124],\n  \"omitted_owned_claim_ids\": [{\"id\": 126, \"reason\": \"not asserted\"}]\n}\n-->"
         )
 
@@ -1791,6 +1848,7 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
         # markers here have corrupted the global validator (Page 57 2026-06-02).
         new_section_text = re.sub(r"<!--/?claim:\d+-->", "", new_section_text)
         new_section_text = re.sub(r"<!--topic:\d+-->", "", new_section_text)
+        new_section_text = _normalize_sonnet_plain_math(new_section_text)
 
         if not new_section_text.startswith("## "):
             new_section_text = f"## {section_header}\n\n{new_section_text}"
@@ -1830,8 +1888,10 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
 
         # Snapshot current content into page_versions before writing so that
         # a future autowiki_tick rollback can restore past this commit (not before it).
-        from app.services.content_canonicalizer import canonicalize
-        new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
+        canonicalized = canonicalize(new_content, page_id=page_id, db=db)
+        if canonicalized.violations:
+            raise CanonicalizerError(canonicalized.violations)
+        new_content = canonicalized.new_content
 
         claims_for_gate = (
             db.query(Claim)
@@ -1961,9 +2021,15 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             page_id, section_header, len(section_body),
         )
         return {"decision": "commit", "page_id": page_id, "section": section_header}
+    except CanonicalizerError as exc:
+        db.rollback()
+        logger.exception("[sonnet_section_rewrite] canonicalizer failed: %s", exc)
+        _log_error_run(str(exc))
+        return {"decision": "error", "reason": str(exc)}
     except Exception as exc:
         db.rollback()
         logger.exception("[sonnet_section_rewrite] failed: %s", exc)
+        _log_error_run(str(exc))
         raise
     finally:
         db.close()
