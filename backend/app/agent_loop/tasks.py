@@ -180,6 +180,57 @@ def _release_stance_jury_inflight(evidence_id: int) -> None:
         pass
 
 
+def _parse_stance_jury_id_csv(raw: str | None) -> set[int]:
+    ids: set[int] = set()
+    for token in (raw or "").split(","):
+        token = token.strip()
+        if not token:
+            continue
+        try:
+            ids.add(int(token))
+        except ValueError:
+            print(f"[stance_jury] ignoring invalid held id token: {token!r}")
+    return ids
+
+
+def _stance_jury_held_page_ids() -> set[int]:
+    return _parse_stance_jury_id_csv(settings.STANCE_JURY_HELD_PAGE_IDS)
+
+
+def _stance_jury_held_claim_ids() -> set[int]:
+    return _parse_stance_jury_id_csv(settings.STANCE_JURY_HELD_CLAIM_IDS)
+
+
+def _stance_jury_held_evidence_ids() -> set[int]:
+    return _parse_stance_jury_id_csv(settings.STANCE_JURY_HELD_EVIDENCE_IDS)
+
+
+def _stance_jury_is_held(ev=None, claim=None, evidence_id: int | None = None,
+                         claim_id: int | None = None, page_id: int | None = None) -> bool:
+    ev_id = evidence_id if evidence_id is not None else getattr(ev, "id", None)
+    cl_id = claim_id if claim_id is not None else getattr(ev, "claim_id", None)
+    cl_id = cl_id if cl_id is not None else getattr(claim, "id", None)
+    pg_id = page_id if page_id is not None else getattr(claim, "page_id", None)
+    return (
+        (ev_id is not None and ev_id in _stance_jury_held_evidence_ids())
+        or (cl_id is not None and cl_id in _stance_jury_held_claim_ids())
+        or (pg_id is not None and pg_id in _stance_jury_held_page_ids())
+    )
+
+
+def _apply_stance_jury_held_filters(query, Evidence, Claim):
+    held_evidence_ids = _stance_jury_held_evidence_ids()
+    held_claim_ids = _stance_jury_held_claim_ids()
+    held_page_ids = _stance_jury_held_page_ids()
+    if held_evidence_ids:
+        query = query.filter(~Evidence.id.in_(held_evidence_ids))
+    if held_claim_ids:
+        query = query.filter(~Claim.id.in_(held_claim_ids))
+    if held_page_ids:
+        query = query.filter(~Claim.page_id.in_(held_page_ids))
+    return query
+
+
 def _enqueue_stance_jury_task(task, evidence_id: int, countdown: int) -> bool:
     if not _claim_stance_jury_inflight(evidence_id, countdown=countdown):
         return False
@@ -1696,9 +1747,13 @@ def can_propose_edit(db, page_id: int, agent_id: int) -> tuple[bool, str]:
 
 def schedule_stance_jury(claim_id: int) -> None:
     """Phase 2: enqueue stance jury for any unjudged evidence on this claim."""
-    from app.models.claim import Evidence as _Evidence
+    from app.models.claim import Claim as _Claim, Evidence as _Evidence
     db = SessionLocal()
     try:
+        claim = db.query(_Claim).get(claim_id)
+        if _stance_jury_is_held(claim=claim, claim_id=claim_id):
+            print(f"[schedule_stance_jury] held skip for claim #{claim_id}")
+            return
         pending = db.query(_Evidence).filter(
             _Evidence.claim_id == claim_id,
             _Evidence.stance_jury_run_at.is_(None),
@@ -1706,6 +1761,8 @@ def schedule_stance_jury(claim_id: int) -> None:
         ).all()
         enqueued = 0
         for ev in pending:
+            if _stance_jury_is_held(ev=ev, claim=claim):
+                continue
             if _enqueue_stance_jury_task(run_stance_jury_for_evidence, ev.id, countdown=5):
                 enqueued += 1
         if enqueued:
@@ -2138,16 +2195,22 @@ def sync_verbatim_markers_nightly(page_id: int):
                 )
                 print(msg)
                 _notify(msg)
-                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
-                claim_marker_embed_page.delay(page_id)
+                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page, marker_reembed_enabled
+                if marker_reembed_enabled():
+                    claim_marker_embed_page.delay(page_id)
+                else:
+                    print("[system] marker overlay repair suppressed: marker_embed:enabled is off")
             elif must_keep_missing:
                 # A few missing: log + repair, but no notify (sub-alert noise floor).
                 print(
                     f"📉 [info] Page {page_id} must-keep coverage {mk_coverage:.1%}, "
                     f"{len(must_keep_missing)} missing. Triggering repair pass."
                 )
-                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
-                claim_marker_embed_page.delay(page_id)
+                from app.agent_loop.marker_embed.tasks import claim_marker_embed_page, marker_reembed_enabled
+                if marker_reembed_enabled():
+                    claim_marker_embed_page.delay(page_id)
+                else:
+                    print("[system] marker overlay repair suppressed: marker_embed:enabled is off")
 
     except Exception as e:
         print(f"[system] sync_verbatim_markers_nightly failed: {e}")
@@ -2818,6 +2881,10 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         if not ev or ev.stance_jury_run_at is not None:
             _release_stance_jury_inflight(evidence_id)
             return  # idempotent
+        if _stance_jury_is_held(ev=ev, evidence_id=evidence_id):
+            print(f"[stance_jury] held skip for evidence #{evidence_id}")
+            _release_stance_jury_inflight(evidence_id)
+            return
         abstract_text = ev.abstract or ""
         intro_excerpt = ev.intro_excerpt or ""
         if (
@@ -2831,6 +2898,10 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
 
         claim = db.query(Claim).get(ev.claim_id)
         if not claim:
+            _release_stance_jury_inflight(evidence_id)
+            return
+        if _stance_jury_is_held(ev=ev, claim=claim):
+            print(f"[stance_jury] held skip for evidence #{evidence_id} claim #{claim.id}")
             _release_stance_jury_inflight(evidence_id)
             return
 
@@ -2974,7 +3045,7 @@ def drain_stance_jury_backlog():
             print("[stance_jury] hourly budget exhausted, skipping")
             return
 
-        candidates = (
+        candidates_query = (
             db.query(Evidence)
             .join(Claim, Claim.id == Evidence.claim_id)
             .filter(Evidence.stance_jury_run_at.is_(None))
@@ -2982,6 +3053,9 @@ def drain_stance_jury_backlog():
                 sqlfunc.length(Evidence.abstract) >= settings.STANCE_JURY_MIN_ABSTRACT_CHARS,
                 sqlfunc.length(Evidence.intro_excerpt) >= settings.INTRO_EXCERPT_MIN_CHARS,
             ))
+        )
+        candidates = (
+            _apply_stance_jury_held_filters(candidates_query, Evidence, Claim)
             .order_by(
                 case((Claim.trust_level == "accepted", 0), else_=1),
                 Evidence.created_at,
@@ -4802,6 +4876,10 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         if not ev or ev.stance_jury_run_at is not None:
             _release_stance_jury_inflight(evidence_id)
             return
+        if _stance_jury_is_held(ev=ev, evidence_id=evidence_id):
+            print(f"[jury_single] held skip for evidence #{evidence_id}")
+            _release_stance_jury_inflight(evidence_id)
+            return
         abstract_text = ev.abstract or ""
         intro_excerpt = ev.intro_excerpt or ""
         if len(abstract_text) < 100 and len(intro_excerpt) < settings.INTRO_EXCERPT_MIN_CHARS:
@@ -4812,6 +4890,10 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
 
         claim = db.query(Claim).filter(Claim.id == ev.claim_id).first()
         if not claim:
+            _release_stance_jury_inflight(evidence_id)
+            return
+        if _stance_jury_is_held(ev=ev, claim=claim):
+            print(f"[jury_single] held skip for evidence #{evidence_id} claim #{claim.id}")
             _release_stance_jury_inflight(evidence_id)
             return
 
@@ -4923,7 +5005,7 @@ def drain_jury_fast_pass():
             return
 
         # Priority 1: evidence with 0 votes on accepted/consensus claims
-        zero_vote_accepted = (
+        zero_vote_accepted_query = (
             db.query(Evidence)
             .join(Claim, Claim.id == Evidence.claim_id)
             .outerjoin(EvidenceVote, EvidenceVote.evidence_id == Evidence.id)
@@ -4933,6 +5015,9 @@ def drain_jury_fast_pass():
                 sqlfunc.length(Evidence.intro_excerpt) >= settings.INTRO_EXCERPT_MIN_CHARS,
             ))
             .filter(Claim.trust_level.in_(["accepted", "consensus"]))
+        )
+        zero_vote_accepted = (
+            _apply_stance_jury_held_filters(zero_vote_accepted_query, Evidence, Claim)
             .group_by(Evidence.id)
             .having(sqlfunc.count(EvidenceVote.id) == 0)
             .order_by(Evidence.quality.desc())
@@ -4961,7 +5046,7 @@ def drain_jury_fast_pass():
                 .correlate(Evidence)
                 .as_scalar()
             )
-            low_vote = (
+            low_vote_query = (
                 db.query(Evidence)
                 .join(Claim, Claim.id == Evidence.claim_id)
                 .filter(Evidence.stance_jury_run_at.isnot(None))  # already run but low votes
@@ -4973,6 +5058,9 @@ def drain_jury_fast_pass():
                 .filter(Claim.trust_level.in_(["accepted", "debated"]))
                 .filter(vote_count > 0)
                 .filter(vote_count < 3)
+            )
+            low_vote = (
+                _apply_stance_jury_held_filters(low_vote_query, Evidence, Claim)
                 .order_by(Evidence.quality.desc())
                 .limit(budget - enqueued)
                 .all()

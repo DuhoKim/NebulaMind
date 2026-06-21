@@ -125,6 +125,9 @@ class Settings(BaseSettings):
     # === Trust Phase 2: Stance Jury ===
     STANCE_JURY_ENABLED: bool = True
     JURY_SHADOW_MODE: bool = False
+    STANCE_JURY_HELD_PAGE_IDS: str = ""
+    STANCE_JURY_HELD_CLAIM_IDS: str = ""
+    STANCE_JURY_HELD_EVIDENCE_IDS: str = ""
     STANCE_JURY_MAX_PER_HOUR: int = 10000
     STANCE_JURY_MAX_ENQUEUE_PER_HOUR: int = 40
     STANCE_JURY_FAST_MAX_ENQUEUE_PER_PASS: int = 20

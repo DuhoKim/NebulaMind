@@ -5,11 +5,39 @@ site. Diffs old vs. new content; no-ops if unchanged.
 """
 import datetime
 import logging
+import os
 
 from celery import shared_task
 from sqlalchemy import text
 
+from app.config import settings
+
 log = logging.getLogger(__name__)
+
+_MARKER_ENABLED_KEY = "marker_embed:enabled"
+
+
+def marker_reembed_enabled() -> bool:
+    """Default-off marker overlay gate.
+
+    Re-enable with Redis `marker_embed:enabled=1` or MARKER_REEMBED_ENABLED=1.
+    """
+    env_value = os.getenv("MARKER_REEMBED_ENABLED", "").strip().lower()
+    if env_value in {"1", "true", "yes", "on"}:
+        return True
+    try:
+        import redis as redis_lib
+
+        r = redis_lib.from_url(settings.REDIS_URL, decode_responses=True)
+        return r.get(_MARKER_ENABLED_KEY) == "1"
+    except Exception as exc:
+        log.warning("marker_reembed_enabled: defaulting off after flag read failed: %s", exc)
+        return False
+
+
+def _provenance_enforce_enabled() -> bool:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    return mode == "enforce"
 
 
 @shared_task(
@@ -20,6 +48,20 @@ log = logging.getLogger(__name__)
 )
 def claim_marker_embed_page(self, page_id: int, section_key: str = None, expected_source_version: int = None) -> dict:
     """Run the marker embedding pipeline for a single page."""
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_direct_marker_embed",
+            "page_id": page_id,
+        }
+
+    if not marker_reembed_enabled():
+        log.info("claim_marker_embed_page skipped: marker overlay disabled for page_id=%d", page_id)
+        return {
+            "skip": "marker_overlay_disabled",
+            "page_id": page_id,
+            "re_enable": "set Redis marker_embed:enabled=1 or MARKER_REEMBED_ENABLED=1",
+        }
+
     from app.database import SessionLocal
     from app.agent_loop.marker_embed.pipeline import run_pipeline
     from app.agent_loop.marker_embed.injector import strip_markers
@@ -195,6 +237,9 @@ def emit_reembed(page_id: int, section_key: str = None, expected_source_version:
     Dispatches claim_marker_embed_page.delay(page_id, section_key, expected_source_version) safely.
     Must be called AFTER the database transaction commits to avoid race conditions reading stale pages.
     """
+    if not marker_reembed_enabled():
+        log.info("MARKER_REEMBED_REQUIRED suppressed: marker overlay disabled for page_id=%d section_key=%s", page_id, section_key)
+        return
     try:
         claim_marker_embed_page.delay(page_id, section_key, expected_source_version)
         log.debug("MARKER_REEMBED_REQUIRED dispatched for page_id=%d section_key=%s v=%s", page_id, section_key, expected_source_version)
