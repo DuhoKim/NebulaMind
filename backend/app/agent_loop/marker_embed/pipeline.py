@@ -1,11 +1,28 @@
 import datetime
+import json
 import logging
+import os
+import time
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Optional
 
 log = logging.getLogger(__name__)
+TIMING_LOG = os.getenv("MARKER_TIMING_LOG")
 
 COVERAGE_FLOOR = 0.0
+
+
+def _timing_event(event: str, **payload) -> None:
+    if not TIMING_LOG:
+        return
+    try:
+        path = Path(TIMING_LOG)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"stage": "pipeline", "event": event, **payload}, sort_keys=True) + "\n")
+    except Exception:
+        log.debug("pipeline timing log write failed", exc_info=True)
 
 @dataclass
 class RunStats:
@@ -47,19 +64,31 @@ def run_pipeline(
     source_version: Optional[int] = None,
     dry_run: bool = False,
     enable_topical_anchors: bool = False,
-    section_key: Optional[str] = None
+    section_key: Optional[str] = None,
+    preserve_existing_section_markers: bool = False,
 ) -> tuple[Optional[str], RunStats]:
     import re
 
     from .section_resolver import parse_sections, resolve_section
     from .sentence_splitter import split_sentences
     from .aligner import align_claim_multipass
-    from .judge import passes_judge
+    from .judge import get_fallback_stats, passes_judge, reset_fallback_stats
     from .injector import InjectionCandidate, inject_markers, strip_markers
     from .embed_index import _cosine, _embed
 
     stats = RunStats(page_id=page_id, source_version=source_version)
     stats.total_claims = len(claims)
+    reset_fallback_stats()
+    chunk_started = time.perf_counter()
+    _timing_event(
+        "chunk_start",
+        page_id=page_id,
+        source_version=source_version,
+        claim_count=len(claims),
+        dry_run=dry_run,
+        section_key=section_key,
+        preserve_existing_section_markers=preserve_existing_section_markers,
+    )
 
     if section_key:
         sections = parse_sections(content)
@@ -75,8 +104,9 @@ def run_pipeline(
             stats.notes = f"Section {section_key} not found"
             return None, stats
             
-        clean_section = strip_markers(target_section_block)
-        all_sentences_with_sections = [(sent, section_key) for sent in split_sentences(clean_section)]
+        sentence_source = strip_markers(target_section_block)
+        clean_section = target_section_block if preserve_existing_section_markers else sentence_source
+        all_sentences_with_sections = [(sent, section_key) for sent in split_sentences(sentence_source)]
         clean_content = content.replace(target_section_block, clean_section)
     else:
         clean_content = strip_markers(content)
@@ -89,6 +119,7 @@ def run_pipeline(
     candidates_for_injection: list[InjectionCandidate] = []
 
     for claim in claims:
+        claim_started = time.perf_counter()
         claim_id = claim["id"]
         claim_text = claim["text"]
         trust_level = claim.get("trust_level", "unknown")
@@ -106,12 +137,26 @@ def run_pipeline(
         if section_block is None:
             log.info("pipeline: claim_id=%d section=%r -> rejected_no_section", claim_id, claim_section)
             stats.rejected_no_section += 1
+            _timing_event(
+                "claim_done",
+                claim_id=claim_id,
+                section=claim_section,
+                status="rejected_no_section",
+                wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+            )
             continue
 
-        sentences = split_sentences(section_block.body)
+        sentences = split_sentences(strip_markers(section_block.body) if section_key else section_block.body)
         if not sentences:
             log.info("pipeline: claim_id=%d section=%r -> no sentences", claim_id, claim_section)
             stats.rejected_no_section += 1
+            _timing_event(
+                "claim_done",
+                claim_id=claim_id,
+                section=claim_section,
+                status="no_sentences",
+                wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+            )
             continue
 
         candidate_sentences = sentences[:60]
@@ -153,10 +198,25 @@ def run_pipeline(
                             )
                         )
                         stats.tier_breakdown["topic"] += 1
+                        _timing_event(
+                            "claim_done",
+                            claim_id=claim_id,
+                            section=claim_section,
+                            status="topic_anchor",
+                            wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+                            score=best_score,
+                        )
                         continue
             
             log.info("pipeline: claim_id=%d -> aligner rejected", claim_id)
             stats.rejected_low_confidence += 1
+            _timing_event(
+                "claim_done",
+                claim_id=claim_id,
+                section=claim_section,
+                status="aligner_rejected",
+                wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+            )
             continue
 
         span = alignment["span"]
@@ -176,6 +236,15 @@ def run_pipeline(
             if not passed:
                 log.info("pipeline: claim_id=%d -> judge veto (agreement=%.2f)", claim_id, agreement_score)
                 stats.rejected_validation += 1
+                _timing_event(
+                    "claim_done",
+                    claim_id=claim_id,
+                    section=claim_section,
+                    status="judge_veto",
+                    wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+                    agreement_score=agreement_score,
+                    match_type=mtype,
+                )
                 continue
         candidates_for_injection.append(
             InjectionCandidate(
@@ -191,6 +260,16 @@ def run_pipeline(
         stats.tier_breakdown[mtype] += 1
         stats.asserted_count += 1
         stats.matched_claims += 1
+        _timing_event(
+            "claim_done",
+            claim_id=claim_id,
+            section=claim_section,
+            status="matched",
+            wall_ms=round((time.perf_counter() - claim_started) * 1000, 3),
+            confidence=confidence,
+            agreement_score=agreement_score,
+            match_type=mtype,
+        )
 
     if stats.coverage_pct < COVERAGE_FLOOR:
         stats.status = "rolled_back"
@@ -199,6 +278,15 @@ def run_pipeline(
 
     if dry_run or not candidates_for_injection:
         stats.status = "dry_run" if dry_run else "no_candidates"
+        stats.tier_breakdown["judge_fallback"] = get_fallback_stats()
+        _timing_event(
+            "chunk_done",
+            page_id=page_id,
+            status=stats.status,
+            total_claims=stats.total_claims,
+            matched_claims=stats.matched_claims,
+            wall_ms=round((time.perf_counter() - chunk_started) * 1000, 3),
+        )
         return None, stats
 
     result = inject_markers(clean_content, candidates_for_injection)
@@ -209,9 +297,28 @@ def run_pipeline(
     if result.validation_errors:
         stats.status = "rolled_back"
         stats.notes = "; ".join(result.validation_errors)
+        stats.tier_breakdown["judge_fallback"] = get_fallback_stats()
         log.error("pipeline: page_id=%d validation errors: %s", page_id, stats.notes)
+        _timing_event(
+            "chunk_done",
+            page_id=page_id,
+            status=stats.status,
+            total_claims=stats.total_claims,
+            matched_claims=stats.matched_claims,
+            wall_ms=round((time.perf_counter() - chunk_started) * 1000, 3),
+            notes=stats.notes,
+        )
         return None, stats
 
     log.info(f"pipeline: page_id={page_id} committed {stats.asserted_count}/{stats.total_claims} assertions")
+    stats.tier_breakdown["judge_fallback"] = get_fallback_stats()
     stats.status = "committed"
+    _timing_event(
+        "chunk_done",
+        page_id=page_id,
+        status=stats.status,
+        total_claims=stats.total_claims,
+        matched_claims=stats.matched_claims,
+        wall_ms=round((time.perf_counter() - chunk_started) * 1000, 3),
+    )
     return result.content, stats
