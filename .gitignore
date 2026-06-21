@@ -12,7 +12,12 @@ logs/
 # runtime/dump artifacts (custody commit 2026-06-13)
 backend/backups/
 backend/tmp/
+backend/reports/*
+!backend/reports/runtime_hygiene_20260621T111900Z/
+!backend/reports/runtime_hygiene_20260621T111900Z/**
 backend/nebula.db
 backend/test.db
 backend/celerybeat-schedule.db
+backend/celerybeat-schedule.db.bak-*
+frontend/tsconfig.tsbuildinfo
 *.db.corrupt.*
