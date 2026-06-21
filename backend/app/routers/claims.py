@@ -22,6 +22,35 @@ from app.models.page import WikiPage
 from app.models.evidence_element_link import EvidenceElementLink
 
 router = APIRouter(prefix="/api", tags=["claims"])
+EVIDENCE_SCHEMA_VERSION = "debate_evidence.v1"
+EVIDENCE_VOTE_SCOPE = {
+    "display_counts_unit": "evidence_id",
+    "dedupe": "latest_vote_per_agent_id_per_evidence_id",
+    "same_proposition_scoped": False,
+    "limitation": (
+        "votes_agree/votes_disagree are deduped display counts per evidence row; "
+        "they are not independently scoped by proposition or claim element."
+    ),
+}
+
+
+def _dedup_vote_counts(votes: list[EvidenceVote]) -> tuple[int, int]:
+    """Count one latest vote per agent; anonymous votes remain independent."""
+    latest_by_voter: dict[object, EvidenceVote] = {}
+    for vote in votes:
+        voter_key = ("agent", vote.agent_id) if vote.agent_id is not None else ("vote", vote.id)
+        current = latest_by_voter.get(voter_key)
+        if current is None:
+            latest_by_voter[voter_key] = vote
+            continue
+        current_key = (current.created_at or datetime.min, current.id or 0)
+        vote_key = (vote.created_at or datetime.min, vote.id or 0)
+        if vote_key >= current_key:
+            latest_by_voter[voter_key] = vote
+
+    agree = sum(1 for vote in latest_by_voter.values() if vote.value > 0)
+    disagree = sum(1 for vote in latest_by_voter.values() if vote.value < 0)
+    return agree, disagree
 
 
 def recalculate_trust(claim_id: int, db: Session) -> str:
@@ -325,8 +354,7 @@ class EvidenceCreate(BaseModel):
     agent_id: Optional[int] = None
 
 
-@router.get("/claims/{claim_id}/evidence")
-def get_evidence(claim_id: int, db: Session = Depends(get_db)):
+def serialize_claim_evidence(claim_id: int, db: Session) -> dict:
     claim = db.query(Claim).filter(Claim.id == claim_id).first()
     if not claim:
         raise HTTPException(404, "Claim not found")
@@ -338,7 +366,15 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
     ).scalar() or 0
 
     if not evidence_rows:
-        return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": [], "total_elements": total_elements}
+        return {
+            "schema_version": EVIDENCE_SCHEMA_VERSION,
+            "claim_id": claim_id,
+            "claim_text": claim.text,
+            "trust_level": claim.trust_level,
+            "vote_scope": EVIDENCE_VOTE_SCOPE,
+            "evidence": [],
+            "total_elements": total_elements,
+        }
 
     evidence_ids = [e.id for e in evidence_rows]
     
@@ -350,14 +386,14 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "element_text_snapshot": link.element_text_snapshot,
         })
 
+    vote_rows = db.query(EvidenceVote).filter(EvidenceVote.evidence_id.in_(evidence_ids)).all()
+    votes_by_evidence_id = defaultdict(list)
+    for vote in vote_rows:
+        votes_by_evidence_id[vote.evidence_id].append(vote)
+
     result = []
     for e in evidence_rows:
-        agree = db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == 1
-        ).scalar() or 0
-        disagree = db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == -1
-        ).scalar() or 0
+        agree, disagree = _dedup_vote_counts(votes_by_evidence_id.get(e.id, []))
         comments = db.query(func.count(EvidenceComment.id)).filter(
             EvidenceComment.evidence_id == e.id
         ).scalar() or 0
@@ -378,7 +414,20 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "quality_v2": e.quality if e.consensus_scorecard_id is not None else None,
         })
 
-    return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": result, "total_elements": total_elements}
+    return {
+        "schema_version": EVIDENCE_SCHEMA_VERSION,
+        "claim_id": claim_id,
+        "claim_text": claim.text,
+        "trust_level": claim.trust_level,
+        "vote_scope": EVIDENCE_VOTE_SCOPE,
+        "evidence": result,
+        "total_elements": total_elements,
+    }
+
+
+@router.get("/claims/{claim_id}/evidence")
+def get_evidence(claim_id: int, db: Session = Depends(get_db)):
+    return serialize_claim_evidence(claim_id, db)
 
 
 @router.post("/claims/{claim_id}/evidence", status_code=201)

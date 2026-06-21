@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nebulamind.local/contracts/debate_evidence_v1.schema.json",
+  "title": "Debate Evidence Envelope v1",
+  "type": "object",
+  "required": ["schema_version", "claim_id", "claim_text", "trust_level", "vote_scope", "total_elements", "evidence"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "const": "debate_evidence.v1" },
+    "claim_id": { "type": "integer" },
+    "claim_text": { "type": "string" },
+    "trust_level": {
+      "type": "string",
+      "enum": ["consensus", "accepted", "debated", "challenged", "unverified"]
+    },
+    "vote_scope": {
+      "type": "object",
+      "required": ["display_counts_unit", "dedupe", "same_proposition_scoped", "limitation"],
+      "additionalProperties": false,
+      "properties": {
+        "display_counts_unit": { "const": "evidence_id" },
+        "dedupe": { "const": "latest_vote_per_agent_id_per_evidence_id" },
+        "same_proposition_scoped": { "const": false },
+        "limitation": { "type": "string", "minLength": 20 }
+      }
+    },
+    "total_elements": { "type": "integer", "minimum": 0 },
+    "evidence": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "title",
+          "arxiv_id",
+          "url",
+          "authors",
+          "year",
+          "summary",
+          "stance",
+          "votes_agree",
+          "votes_disagree",
+          "comments_count",
+          "element_links",
+          "link_count",
+          "relevance",
+          "entailment",
+          "rigor",
+          "confidence",
+          "quality_v2"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": { "type": ["integer", "string"] },
+          "title": { "type": "string" },
+          "arxiv_id": { "type": ["string", "null"] },
+          "url": { "type": ["string", "null"] },
+          "authors": { "type": ["string", "null"] },
+          "year": { "type": ["integer", "null"] },
+          "summary": { "type": ["string", "null"] },
+          "stance": { "type": ["string", "null"] },
+          "votes_agree": { "type": "integer", "minimum": 0 },
+          "votes_disagree": { "type": "integer", "minimum": 0 },
+          "comments_count": { "type": "integer", "minimum": 0 },
+          "element_links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["element_id", "element_text_snapshot"],
+              "additionalProperties": false,
+              "properties": {
+                "element_id": { "type": ["string", "integer"] },
+                "element_text_snapshot": { "type": ["string", "null"] }
+              }
+            }
+          },
+          "link_count": { "type": "integer", "minimum": 0 },
+          "relevance": { "type": ["number", "null"] },
+          "entailment": { "type": ["number", "null"] },
+          "rigor": { "type": ["number", "null"] },
+          "confidence": { "type": ["number", "null"] },
+          "quality_v2": { "type": ["number", "null"] }
+        }
+      }
+    }
+  }
+}
