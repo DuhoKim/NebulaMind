@@ -113,6 +113,7 @@ _OLLAMA_LIVENESS_CACHE: dict[str, tuple[float, bool]] = {}
 _PERSISTENT_CLIENTS: "weakref.WeakKeyDictionary[asyncio.AbstractEventLoop, httpx.AsyncClient]" = weakref.WeakKeyDictionary()
 PREFLIGHT_TIMEOUT_SECONDS = 1.0
 FALLBACK_TIMEOUT_SECONDS = 90
+PERSISTENT_CLIENT_WARN_THRESHOLD = 8
 
 
 def _is_local_url(base_url: str) -> bool:
@@ -129,6 +130,9 @@ def _http_timeout(seconds: float) -> httpx.Timeout:
         write=min(10.0, seconds),
         pool=min(5.0, seconds),
     )
+
+def persistent_client_count() -> int:
+    return sum(1 for client in _PERSISTENT_CLIENTS.values() if not client.is_closed)
 
 def get_persistent_client() -> httpx.AsyncClient:
     loop = asyncio.get_running_loop()
@@ -161,6 +165,12 @@ def get_persistent_client() -> httpx.AsyncClient:
     )
     client = httpx.AsyncClient(transport=transport)
     _PERSISTENT_CLIENTS[loop] = client
+    count = persistent_client_count()
+    if count > PERSISTENT_CLIENT_WARN_THRESHOLD:
+        logger.warning(
+            "[InferenceScheduler] persistent async HTTP client count is high: %d",
+            count,
+        )
     return client
 
 

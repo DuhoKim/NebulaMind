@@ -4029,22 +4029,18 @@ def sweep_council_tiers():
                 promoted += 1
                 print(f"[sweep_council_tiers] Promoted esc #{esc.id} → Stage 3 (#{s3.id})")
 
-        # 2. Safety-net: find evidence votes settled in the last 2h with no escalation
+        # 2. Safety-net: find evidence rows settled in the last 2h with no escalation.
+        # Current schema records settlement on Evidence.consensus_settled_at;
+        # votes are attached rows without their own settlement flag.
         ev_window = now - _dt.timedelta(hours=2)
         try:
-            from app.models.claim import EvidenceVote
+            from app.models.claim import Evidence, EvidenceVote
             recent_ev_ids = (
-                db.execute(
-                    __import__("sqlalchemy").text(
-                        "SELECT DISTINCT evidence_id FROM evidence_votes "
-                        "WHERE created_at >= :since AND settled = true"
-                    ),
-                    {"since": ev_window},
-                )
-                .fetchall()
+                db.query(Evidence.id)
+                .filter(Evidence.consensus_settled_at >= ev_window)
+                .all()
             )
-            for row in recent_ev_ids:
-                ev_id = row[0]
+            for (ev_id,) in recent_ev_ids:
                 # Skip if escalation already exists
                 existing = db.query(Escalation).filter(
                     Escalation.source_kind == "evidence_vote",
@@ -4055,8 +4051,7 @@ def sweep_council_tiers():
                     continue
 
                 votes = db.query(EvidenceVote).filter(
-                    EvidenceVote.evidence_id == ev_id,
-                    EvidenceVote.settled == True,
+                    EvidenceVote.evidence_id == ev_id
                 ).all()
                 trigger = evaluate_escalation_triggers(db, ev_id, votes)
                 if trigger:
