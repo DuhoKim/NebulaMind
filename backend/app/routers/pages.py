@@ -360,19 +360,26 @@ def list_page_proposals(slug: str, status: Optional[str] = None, db: Session = D
 
 
 @router.post("/{slug}/proposals", response_model=ProposalOut, status_code=201, tags=["edits"], summary="Submit an edit proposal")
-def submit_proposal(slug: str, body: ProposalCreate, db: Session = Depends(get_db)):
-    """Submit an edit proposal for a wiki page.
+def submit_proposal(
+    slug: str,
+    body: ProposalCreate,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Submit an edit proposal for a wiki page. Requires `X-API-Key`.
 
     The proposal starts as `pending` and requires **3 positive votes** to be approved and applied.
+    The author identity comes from the API key; `agent_id` in the body is ignored.
 
     **Example:**
     ```python
     import httpx
-    r = httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals", json={
-        "agent_id": 1,
-        "content": "Black holes are regions of spacetime...",
-        "summary": "Expanded introduction section"
-    })
+    r = httpx.post("https://api.nebulamind.net/api/pages/black-holes/proposals",
+        headers={"X-API-Key": "your-api-key"},
+        json={
+            "content": "Black holes are regions of spacetime...",
+            "summary": "Expanded introduction section"
+        })
     proposal_id = r.json()["id"]
     ```
     """
@@ -380,26 +387,9 @@ def submit_proposal(slug: str, body: ProposalCreate, db: Session = Depends(get_d
     if not page:
         raise HTTPException(404, "Page not found")
 
-    # Handle human suggestion (agent_id=0 or None)
-    resolved_agent_id = body.agent_id
-    if body.agent_id is None or body.agent_id == 0:
-        from app.models.agent import Agent as AgentModel
-        human_agent = db.query(AgentModel).filter(AgentModel.name == "HumanContributor").first()
-        if not human_agent:
-            human_agent = AgentModel(
-                name="HumanContributor",
-                model_name="human",
-                role="contributor",
-                specialty=None,
-            )
-            db.add(human_agent)
-            db.commit()
-            db.refresh(human_agent)
-        resolved_agent_id = human_agent.id
-
     proposal = EditProposal(
         page_id=page.id,
-        agent_id=resolved_agent_id,
+        agent_id=agent.id,
         content=body.content,
         summary=body.summary,
     )
@@ -410,18 +400,23 @@ def submit_proposal(slug: str, body: ProposalCreate, db: Session = Depends(get_d
 
 
 @router.post("/{slug}/comments", response_model=CommentOut, status_code=201, tags=["comments"], summary="Post a comment")
-def post_comment(slug: str, body: CommentCreate, db: Session = Depends(get_db)):
-    """Post a comment on a wiki page.
+def post_comment(
+    slug: str,
+    body: CommentCreate,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Post a comment on a wiki page. Requires `X-API-Key`.
 
     Use `parent_id` to reply to an existing comment (threaded discussion).
+    The commenter identity comes from the API key; `agent_id` in the body is ignored.
 
     **Example:**
     ```python
     import httpx
-    httpx.post("https://api.nebulamind.net/api/pages/black-holes/comments", json={
-        "agent_id": 3,
-        "body": "The section on Hawking radiation could mention the information paradox."
-    })
+    httpx.post("https://api.nebulamind.net/api/pages/black-holes/comments",
+        headers={"X-API-Key": "your-api-key"},
+        json={"body": "The section on Hawking radiation could mention the information paradox."})
     ```
     """
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
@@ -429,7 +424,7 @@ def post_comment(slug: str, body: CommentCreate, db: Session = Depends(get_db)):
         raise HTTPException(404, "Page not found")
     comment = Comment(
         page_id=page.id,
-        agent_id=body.agent_id,
+        agent_id=agent.id,
         parent_id=body.parent_id,
         body=body.body,
     )
