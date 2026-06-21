@@ -38,11 +38,13 @@ DOWNRANK: Decision = "downrank"
 BOUNDARY_REVIEW_KEEP: Decision = "boundary_review_keep"
 ELEMENT_UNSUPPORTED: Decision = "element_unsupported"
 SEMANTIC_UNSUPPORTED: Decision = "semantic_unsupported"
-ENTAILMENT_OLLAMA_MODEL = "llama3.1:8b"
+ENTAILMENT_OLLAMA_MODEL = "gpt-oss:20b"
+ENTAILMENT_MIMA_MODEL = "qwen3.6:35b-a3b"
 ENTAILMENT_OLLAMA_BASE = "http://localhost:11434"
 ENTAILMENT_GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
 ENTAILMENT_GEMINI_MODEL = "google/gemini-2.5-flash"
 ENTAILMENT_MODEL = ENTAILMENT_GEMINI_MODEL
+ENTAILMENT_PROVIDER = "gemini"
 ENTAILMENT_TIMEOUT_SECONDS = 45
 ENTAILMENT_PROMPT_VERSION = "entailment_gate_v1"
 DEFAULT_COVERAGE_REQUIRED_STAGES = ("atom_decomposition", "precheck", "astrosage_verdict")
@@ -563,13 +565,17 @@ def evaluate_entailment_gate(
     ollama_base: str = ENTAILMENT_OLLAMA_BASE,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
 ) -> EntailmentGateResult:
+    default_num_predict = 1024 if model.startswith("gpt-oss:") else 64
+    num_predict = int(os.getenv("ENTAILMENT_NUM_PREDICT", str(default_num_predict)))
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": entailment_gate_prompt(row)}],
         "stream": False,
         "format": "json",
-        "options": {"temperature": 0.0, "num_ctx": 4096, "num_predict": 160},
+        "options": {"temperature": 0.0, "num_ctx": 4096, "num_predict": num_predict},
     }
+    if model.startswith("qwen3.6"):
+        payload["think"] = False
     started = time.monotonic()
     try:
         response = requests.post(f"{ollama_base.rstrip('/')}/api/chat", json=payload, timeout=timeout)
@@ -672,9 +678,16 @@ def evaluate_entailment_gate_gemini(
 
 def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResult, model: str = ENTAILMENT_MODEL) -> dict[str, Any]:
     out = dict(row)
+    status = {
+        "yes": "pass",
+        "no": "reject",
+        "abstain": "abstain",
+        "error": "error",
+    }[result.entailment]
     out.update(
         {
             "entailment_gate_model": model,
+            "entailment_status": status,
             "entailment_gate_decision": result.entailment,
             "entailment_gate_reason": result.reason,
             "entailment_gate_error": result.error,
@@ -689,6 +702,22 @@ def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResul
         }
     )
     return out
+
+
+def row_is_entailment_gate_input(row: Mapping[str, Any], keep_decisions: Iterable[str] = (KEEP, DOWNRANK)) -> bool:
+    decision = str(row.get("retrieval_filter_decision") or row.get("decision") or KEEP)
+    if decision not in set(keep_decisions):
+        return False
+    if row.get("coverage_candidate") is False:
+        return False
+    if row.get("element_support_gate") is False:
+        return False
+    semantic_status = row.get("semantic_band_status") or row.get("semantic_status")
+    if semantic_status and str(semantic_status) != "semantic_passed":
+        return False
+    if str(row.get("coverage_queue_exclusion_reason") or "") in {"off_domain", "semantic_unsupported", "element_unsupported"}:
+        return False
+    return True
 
 
 def initial_coverage_fields(required_stages: Iterable[str] = DEFAULT_COVERAGE_REQUIRED_STAGES) -> dict[str, Any]:
@@ -712,23 +741,69 @@ def split_rows_by_entailment_gate(
     rows: Iterable[Mapping[str, Any]],
     *,
     model: str = ENTAILMENT_MODEL,
-    base_url: str = ENTAILMENT_GEMINI_BASE,
+    provider: str = ENTAILMENT_PROVIDER,
+    base_url: str | None = None,
     api_key: str | None = None,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
     cache_path: Path | None = None,
     force: bool = False,
+    keep_decisions: Iterable[str] = (KEEP, DOWNRANK),
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     admitted: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
-    resolved_api_key = api_key or os.getenv("NM_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
     cache = load_entailment_cache(cache_path)
     cache_dirty = False
+    provider = provider.strip().lower()
     for row in rows:
+        if not row_is_entailment_gate_input(row, keep_decisions):
+            excluded.append({**dict(row), "coverage_queue_exclusion_reason": "not_entailment_gate_input"})
+            continue
         key = entailment_cache_key(row, model=model)
         if not force and key in cache:
             result = _result_from_cache_payload(cache[key], key)
-        elif resolved_api_key:
-            result = evaluate_entailment_gate_gemini(row, model=model, base_url=base_url, api_key=resolved_api_key, timeout=timeout)
+        else:
+            if provider == "gemini":
+                resolved_api_key = api_key or os.getenv("NM_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+                if not resolved_api_key:
+                    result = EntailmentGateResult(
+                        entailment="error",
+                        error="ValueError: Gemini API key missing; set NM_GEMINI_API_KEY or GEMINI_API_KEY",
+                        latency_seconds=0.0,
+                        cache_key=key,
+                        model_version=model,
+                    )
+                else:
+                    result = evaluate_entailment_gate_gemini(
+                        row,
+                        model=model,
+                        base_url=base_url or ENTAILMENT_GEMINI_BASE,
+                        api_key=resolved_api_key,
+                        timeout=timeout,
+                    )
+            elif provider == "openai_compatible":
+                if not base_url or not api_key:
+                    result = EntailmentGateResult(
+                        entailment="error",
+                        error="ValueError: openai-compatible base URL or API key missing",
+                        latency_seconds=0.0,
+                        cache_key=key,
+                        model_version=model,
+                    )
+                else:
+                    result = evaluate_entailment_gate_openai_compatible(
+                        row,
+                        model=model,
+                        base_url=base_url,
+                        api_key=api_key,
+                        timeout=timeout,
+                    )
+            else:
+                result = evaluate_entailment_gate(
+                    row,
+                    model=model,
+                    ollama_base=base_url or ENTAILMENT_OLLAMA_BASE,
+                    timeout=timeout,
+                )
             result = EntailmentGateResult(
                 entailment=result.entailment,
                 reason=result.reason,
@@ -742,16 +817,6 @@ def split_rows_by_entailment_gate(
                 prompt_version=result.prompt_version,
                 model_version=result.model_version or model,
                 cache_hit=False,
-            )
-            cache[key] = _result_to_cache_payload(result)
-            cache_dirty = True
-        else:
-            result = EntailmentGateResult(
-                entailment="error",
-                error="ValueError: Gemini API key missing; set NM_GEMINI_API_KEY or GEMINI_API_KEY",
-                latency_seconds=0.0,
-                cache_key=key,
-                model_version=model,
             )
             cache[key] = _result_to_cache_payload(result)
             cache_dirty = True

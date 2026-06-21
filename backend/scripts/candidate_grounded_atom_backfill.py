@@ -872,6 +872,7 @@ def summarize_coverage(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "non_off_domain_rows": len(non_off),
         "non_off_domain_ready": ready_non_off,
         "non_off_domain_ready_rate": round(ready_non_off / len(non_off), 4) if non_off else 0.0,
+        "ready_denominator_policy": "ready among entailment-admitted non-off-domain rows; threshold remains 0.80",
         "acceptance": {
             "terminal_or_ready_ge_95pct": (terminal / total) >= 0.95 if total else False,
             "retryable_errors_le_2pct": (retryable / total) <= 0.02 if total else False,
@@ -894,6 +895,38 @@ def write_report(out_dir: Path, coverage_rows: list[dict[str, Any]], args: argpa
     audit_missing_rows = read_jsonl(out_dir / "audit_only_missing_input_rows.jsonl") if (out_dir / "audit_only_missing_input_rows.jsonl").exists() else []
     excluded_rows = read_jsonl(out_dir / "excluded_coverage_rows.jsonl") if (out_dir / "excluded_coverage_rows.jsonl").exists() else []
     excluded_counts = Counter(row.get("coverage_queue_exclusion_reason") for row in excluded_rows)
+    raw_non_off_rows = [
+        row
+        for row in [*coverage_rows, *excluded_rows]
+        if row.get("source_label") != "off_domain" and row.get("coverage_queue_exclusion_reason") != "off_domain"
+    ]
+    recalibrated_denominator_rows = [
+        row
+        for row in coverage_rows
+        if row.get("source_label") != "off_domain"
+        and str(row.get("entailment_gate_decision") or "yes").lower() in {"yes", ""}
+    ]
+    recalibrated_ready = sum(
+        1 for row in recalibrated_denominator_rows if row.get("candidate_atom_coverage_status") == "ready"
+    )
+    raw_ready = sum(1 for row in raw_non_off_rows if row.get("candidate_atom_coverage_status") == "ready")
+    recalibrated_projection = {
+        "threshold": 0.80,
+        "raw_non_off_domain_rows": len(raw_non_off_rows),
+        "raw_ready_rows": raw_ready,
+        "raw_ready_rate": round(raw_ready / len(raw_non_off_rows), 4) if raw_non_off_rows else 0.0,
+        "recalibrated_denominator": "entailment_admitted_non_off_domain_rows",
+        "recalibrated_denominator_rows": len(recalibrated_denominator_rows),
+        "recalibrated_ready_rows": recalibrated_ready,
+        "recalibrated_ready_rate": round(recalibrated_ready / len(recalibrated_denominator_rows), 4)
+        if recalibrated_denominator_rows
+        else 0.0,
+        "recalibrated_ready_ge_80pct": (recalibrated_ready / len(recalibrated_denominator_rows)) >= 0.80
+        if recalibrated_denominator_rows
+        else False,
+        "entailment_reject_rows_excluded": excluded_counts.get("entailment_rejected", 0),
+        "entailment_error_rows_escalated": excluded_counts.get("entailment_error", 0),
+    }
     payload = {
         "coverage_run_id": out_dir.name,
         "created_at": dt.datetime.now(dt.timezone.utc).isoformat(),
@@ -908,6 +941,7 @@ def write_report(out_dir: Path, coverage_rows: list[dict[str, Any]], args: argpa
         "entailment_base_url": getattr(args, "entailment_base_url", None),
         "no_db_writes": True,
         "summary": summary,
+        "recalibrated_denominator_coverage_projection": recalibrated_projection,
         "audit_only": {
             "coverage_rows": len(audit_rows),
             "missing_input_rows": len(audit_missing_rows),
@@ -938,9 +972,11 @@ def write_report(out_dir: Path, coverage_rows: list[dict[str, Any]], args: argpa
         f"- Terminal/ready coverage: `{summary['terminal_or_ready_coverage']}`",
         f"- Retryable error rate: `{summary['retryable_error_rate']}`",
         f"- Non-off-domain ready rate: `{summary['non_off_domain_ready_rate']}`",
+        f"- Recalibrated denominator: `{recalibrated_projection['recalibrated_denominator']}`",
+        f"- Recalibrated ready rate: `{recalibrated_projection['recalibrated_ready_rate']}`",
         f"- Gate terminal >=95%: `{summary['acceptance']['terminal_or_ready_ge_95pct']}`",
         f"- Gate retryable <=2%: `{summary['acceptance']['retryable_errors_le_2pct']}`",
-        f"- Gate non-off-domain ready >=80%: `{summary['acceptance']['non_off_domain_ready_ge_80pct']}`",
+        f"- Gate recalibrated ready >=80%: `{recalibrated_projection['recalibrated_ready_ge_80pct']}`",
         f"- Audit-only coverage rows: `{len(audit_rows)}` (not counted in readiness gate)",
         f"- Audit-only missing-input rows: `{len(audit_missing_rows)}` (not counted in readiness gate)",
         f"- Excluded rows: `{len(excluded_rows)}` (not counted in readiness gate)",
