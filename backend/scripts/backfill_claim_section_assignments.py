@@ -21,23 +21,17 @@ def norm_key(s: str) -> str:
     s = re.sub(r'[^a-z0-9\s]', '', s)
     return re.sub(r'\s+', '_', s.strip())
 
-def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("--page-id", type=int, required=True)
-    args = parser.parse_args()
-
-    db = SessionLocal()
-    page = db.query(WikiPage).get(args.page_id)
+def backfill_claim_section_assignments_for_page(db, page_id: int) -> dict:
+    page = db.query(WikiPage).get(page_id)
     if not page:
-        log.error(f"Page {args.page_id} not found")
-        return
+        raise ValueError(f"Page {page_id} not found")
 
     # current sections
     sections = re.findall(r"^## (.+)$", page.content, re.MULTILINE)
     section_keys = {norm_key(s): s for s in sections}
     log.info(f"Found {len(sections)} sections in current content")
 
-    claims = db.query(Claim).filter(Claim.page_id == args.page_id).all()
+    claims = db.query(Claim).filter(Claim.page_id == page_id).all()
     log.info(f"Found {len(claims)} total claims")
 
     # Map current markers
@@ -54,7 +48,7 @@ def main():
                     marker_sections[int(c)] = current_sec
 
     inserted = 0
-    db.execute(text("DELETE FROM claim_section_assignments WHERE page_id = :pid"), {"pid": args.page_id})
+    db.execute(text("DELETE FROM claim_section_assignments WHERE page_id = :pid"), {"pid": page_id})
 
     for c in claims:
         # Phase 1 algorithm:
@@ -98,13 +92,9 @@ def main():
         })
         inserted += 1
 
-    db.commit()
-    db.close()
-    
-    log.info(f"Inserted {inserted} claim section assignments for page {args.page_id}")
+    log.info(f"Inserted {inserted} claim section assignments for page {page_id}")
 
     # Audit query
-    db = SessionLocal()
     res = db.execute(text("""
         SELECT 
             assignment_status, 
@@ -113,10 +103,32 @@ def main():
         FROM claim_section_assignments 
         WHERE page_id = :pid
         GROUP BY assignment_status, assignment_method
-    """), {"pid": args.page_id}).fetchall()
+    """), {"pid": page_id}).fetchall()
     
+    summary = {"inserted": inserted, "status_counts": []}
     for r in res:
         log.info(f" - {r.assignment_status} ({r.assignment_method}): {r.c}")
+        summary["status_counts"].append(
+            {
+                "assignment_status": r.assignment_status,
+                "assignment_method": r.assignment_method,
+                "count": r.c,
+            }
+        )
+    return summary
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--page-id", type=int, required=True)
+    args = parser.parse_args()
+
+    db = SessionLocal()
+    try:
+        backfill_claim_section_assignments_for_page(db, args.page_id)
+        db.commit()
+    finally:
+        db.close()
 
 if __name__ == "__main__":
     main()
