@@ -184,6 +184,55 @@ def test_f_source_hashes_match_inline_text(monkeypatch):
     }
 
 
+def test_g_extract_json_repairs_latex_backslashes():
+    payload = mod.extract_json_object(
+        r'''{
+  "candidate_atom_coverage_status": "missing",
+  "candidate_atoms": [],
+  "rationale": "The paper reports $\langle z \rangle=0.036$, not z > 1.",
+  "failure_mode": null
+}'''
+    )
+    assert payload["candidate_atom_coverage_status"] == "missing"
+    assert r"\langle" in payload["rationale"]
+
+
+def test_h_extract_json_repairs_unquoted_anchor_numbers():
+    payload = mod.extract_json_object(
+        '''{
+  "candidate_atom_coverage_status": "ready",
+  "candidate_atoms": [
+    {
+      "atom_text": "AGN feedback is the primary quenching mechanism",
+      "atom_type": "relationship",
+      "evidence_anchor_terms": ["AGN feedback"],
+      "evidence_anchor_numbers": [2512.16208v1, 1865],
+      "quoted_span_or_null": null,
+      "support_relation": "direct",
+      "confidence": 0.95
+    }
+  ],
+  "rationale": "Grounded.",
+  "failure_mode": null
+}'''
+    )
+    assert payload["candidate_atoms"][0]["evidence_anchor_numbers"] == ["2512.16208v1", "1865"]
+
+
+def test_i_extract_json_ignores_trailing_prose():
+    payload = mod.extract_json_object(
+        '''{
+  "candidate_atom_coverage_status": "missing",
+  "candidate_atoms": [],
+  "rationale": "No support.",
+  "failure_mode": null
+}
+
+The paper is outside the target scope.'''
+    )
+    assert payload["candidate_atom_coverage_status"] == "missing"
+
+
 def test_n_full_artifact_smoke(tmp_path, monkeypatch):
     monkeypatch.setattr(mod, "ollama_chat", ready_model_response)
     monkeypatch.setattr(mod, "semantic_support_features", semantic_supported)

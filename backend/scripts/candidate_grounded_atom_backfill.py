@@ -355,6 +355,59 @@ def coverage_contract_fields(row: dict[str, Any], coverage_status: str, coverage
     }
 
 
+def _json_object_slice(text_value: str) -> str:
+    start = text_value.find("{")
+    if start < 0:
+        raise json.JSONDecodeError("no JSON object start", text_value, 0)
+
+    depth = 0
+    in_string = False
+    escaped = False
+    for index, char in enumerate(text_value[start:], start):
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+            continue
+
+        if char == '"':
+            in_string = True
+        elif char == "{":
+            depth += 1
+        elif char == "}":
+            depth -= 1
+            if depth == 0:
+                return text_value[start : index + 1]
+
+    end = text_value.rfind("}")
+    if end <= start:
+        raise json.JSONDecodeError("no JSON object end", text_value, start)
+    return text_value[start : end + 1]
+
+
+def _escape_invalid_json_backslashes(text_value: str) -> str:
+    return re.sub(r'\\(?!["\\/bfnrtu])', r"\\\\", text_value)
+
+
+def _quote_unquoted_anchor_numbers(text_value: str) -> str:
+    def repair(match: re.Match[str]) -> str:
+        parts = [part.strip() for part in match.group(1).split(",")]
+        repaired: list[str] = []
+        for part in parts:
+            if not part or part.lower() in {"null", "none"}:
+                continue
+            if part.startswith('"') and part.endswith('"'):
+                repaired.append(part)
+            else:
+                repaired.append(json.dumps(part))
+        return '"evidence_anchor_numbers": [' + ", ".join(repaired) + "]"
+
+    return re.sub(r'"evidence_anchor_numbers"\s*:\s*\[([^\]]*)\]', repair, text_value)
+
+
 def extract_json_object(text_value: str) -> dict[str, Any]:
     text_value = (text_value or "").strip()
     if not text_value:
@@ -365,11 +418,23 @@ def extract_json_object(text_value: str) -> dict[str, Any]:
         if isinstance(parsed, dict):
             return parsed
     except json.JSONDecodeError:
-        start = text_value.find("{")
-        end = text_value.rfind("}")
-        if start < 0 or end <= start:
-            raise
-        return json.loads(text_value[start : end + 1])
+        sliced = _json_object_slice(text_value)
+        attempts = [
+            sliced,
+            _escape_invalid_json_backslashes(sliced),
+            _quote_unquoted_anchor_numbers(_escape_invalid_json_backslashes(sliced)),
+        ]
+        last_error: json.JSONDecodeError | None = None
+        for attempt in attempts:
+            try:
+                parsed = json.loads(attempt)
+                if isinstance(parsed, dict):
+                    return parsed
+            except json.JSONDecodeError as exc:
+                last_error = exc
+        if last_error is not None:
+            raise last_error
+        raise
     raise ValueError("model response did not start with a JSON object")
 
 
