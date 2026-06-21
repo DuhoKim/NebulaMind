@@ -35,7 +35,7 @@ from app.services.page_health import compute_health_score
 from app.utils.premium_dispatch import dispatch_premium, log_llm_spend
 
 SONNET_MODEL = "claude-sonnet-4-6"
-OPUS_MODEL = "claude-opus-4-7"
+OPUS_MODEL = "claude-opus-4-8"
 PANEL_PROMPT_VERSION_SONNET = "judge_v4-sonnet"
 PANEL_PROMPT_VERSION_OPUS = "judge_v4-opus"
 
@@ -52,6 +52,11 @@ def _is_enabled() -> bool:
         return r.get("autowiki:enabled") == "1"
     except Exception:
         return False
+
+
+def _provenance_enforce_enabled() -> bool:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    return mode == "enforce"
 
 
 def _ms(t0: float) -> int:
@@ -161,6 +166,14 @@ def judge_opus(
 # ---------------------------------------------------------------------------
 
 def _audit_tick(page_id: int, judge_fn, proposal_type: str, judge_model: str) -> dict:
+    if _provenance_enforce_enabled():
+        return {
+            "decision": "skip",
+            "reject_reason": "provenance_enforce_suppressed_audit_only_judge_tick",
+            "page_id": page_id,
+            "proposal_type": proposal_type,
+        }
+
     if not _is_enabled():
         return {"decision": "skip", "reject_reason": "flag_off"}
 

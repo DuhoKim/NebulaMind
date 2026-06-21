@@ -42,6 +42,7 @@ class Settings(BaseSettings):
 
     # === Trust mechanics: Phase 1 ===
     EVIDENCE_REQUIRE_ARXIV: bool = True
+    EVIDENCE_REQUIRE_VERBATIM_QUOTE: bool = True
     EVIDENCE_MIN_QUALITY_FOR_ACCEPTED: float = 0.40
     EVIDENCE_INSERTS_PER_RUN: int = 2
     EVIDENCE_RETRY_COOLOFF_DAYS: int = 7
@@ -62,6 +63,9 @@ class Settings(BaseSettings):
     TRUST_ACCEPTED_MIN: float = 0.30
     TRUST_CHALLENGED_MAX: float = -0.30
     TRUST_CONSENSUS_MIN_SUPPORTS: int = 3
+    AUTOWIKI_PROVENANCE_GATE_MODE: str = "shadow"  # off|shadow|enforce
+    AUTOWIKI_PROVENANCE_SHADOW_DIR: str = "reports/autowiki_provenance_shadow"
+    AUTOWIKI_PROVENANCE_ALLOW_PARTIAL: bool = False
     # === Vote confidence ===
     VOTE_CONFIDENCE_HALF_LIFE: int = 2
     HUMAN_VOTE_WEIGHT: float = 5.0

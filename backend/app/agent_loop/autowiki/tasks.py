@@ -12,6 +12,7 @@ import json
 import logging
 import re
 import time
+from pathlib import Path
 
 import httpx
 
@@ -185,9 +186,156 @@ def _discord_notify(msg: str) -> None:
         pass
 
 
+def _autowiki_provenance_gate_mode() -> str:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    if mode not in {"off", "shadow", "enforce"}:
+        logger.warning("[autowiki_provenance] invalid mode=%s; fail-closed to shadow", mode)
+        return "shadow"
+    return mode
+
+
+_PROVENANCE_PAIR_PROPOSAL_TYPES = {
+    "claim_insert_subtopic",
+    "claim_insert_debate",
+    "evidence_link",
+}
+
+_PROVENANCE_SUPPRESSED_IN_ENFORCE = {
+    "hero_upgrade",
+    "section_rewrite",
+}
+
+
+def _autowiki_provenance_requires_pairs(proposal_type: str) -> bool:
+    return proposal_type in _PROVENANCE_PAIR_PROPOSAL_TYPES
+
+
+def _autowiki_provenance_suppressed_in_enforce(proposal_type: str) -> bool:
+    return proposal_type in _PROVENANCE_SUPPRESSED_IN_ENFORCE
+
+
+def _normalize_independent_d1_verdict(raw) -> str | None:
+    if isinstance(raw, dict):
+        raw = raw.get("verdict") or raw.get("label") or raw.get("support_verdict")
+    if raw is None:
+        return None
+    verdict = str(raw).strip().lower()
+    aliases = {
+        "direct": "supported",
+        "strict_support": "supported",
+        "supports": "supported",
+        "supported_direct": "supported",
+        "unsupported": "unsupported_misattributed",
+        "misattributed": "unsupported_misattributed",
+        "neutral_or_unclear": "unsupported_misattributed",
+        "needs_human": "no_verdict",
+    }
+    return aliases.get(verdict, verdict)
+
+
+def _paper_quote_text(paper: dict) -> tuple[str, str]:
+    quote = (
+        paper.get("quoted_evidence_span")
+        or paper.get("source_quote")
+        or paper.get("evidence_quote")
+        or paper.get("quote")
+        or paper.get("quoted_span")
+        or ""
+    )
+    evidence_text = "\n".join(
+        str(paper.get(key) or "")
+        for key in ("intro_excerpt", "abstract", "summary")
+        if paper.get(key)
+    )
+    return str(quote).strip(), evidence_text
+
+
+def _evaluate_autowiki_provenance_pair(claim_text: str, paper: dict) -> dict:
+    verdict = _normalize_independent_d1_verdict(paper.get("independent_d1_verdict"))
+    quote, evidence_text = _paper_quote_text(paper)
+    reasons: list[str] = []
+
+    if getattr(settings, "EVIDENCE_REQUIRE_ARXIV", True) and not paper.get("arxiv_id"):
+        reasons.append("missing_arxiv_id")
+
+    if getattr(settings, "EVIDENCE_REQUIRE_VERBATIM_QUOTE", True):
+        if not quote:
+            reasons.append("missing_verbatim_quote")
+        elif quote not in evidence_text:
+            reasons.append("verbatim_quote_not_substring")
+
+    if verdict is None:
+        reasons.append("missing_independent_d1_verdict")
+    elif verdict == "supported":
+        pass
+    elif verdict == "partial" and getattr(settings, "AUTOWIKI_PROVENANCE_ALLOW_PARTIAL", False):
+        pass
+    else:
+        reasons.append(f"independent_d1_{verdict}")
+
+    return {
+        "claim_text": claim_text,
+        "arxiv_id": paper.get("arxiv_id"),
+        "title": paper.get("title", ""),
+        "independent_d1_verdict": verdict,
+        "quote_present": bool(quote),
+        "quote_substring_ok": bool(quote and quote in evidence_text),
+        "would_admit": not reasons,
+        "reject_reasons": reasons,
+    }
+
+
+def _autowiki_provenance_pairs(db, proposal) -> list[dict]:
+    payload = proposal.payload
+    pairs: list[dict] = []
+    if isinstance(payload, ClaimInsertProposal):
+        for paper in payload.papers[:3]:
+            pairs.append(_evaluate_autowiki_provenance_pair(payload.claim_text, paper))
+    elif isinstance(payload, EvidenceLinkProposal):
+        claim = db.query(Claim).filter(Claim.id == payload.claim_id).first()
+        claim_text = claim.text if claim else ""
+        for paper in payload.papers[:3]:
+            pairs.append(_evaluate_autowiki_provenance_pair(claim_text, paper))
+    return pairs
+
+
+def _record_autowiki_provenance_shadow(page_id: int, proposal_type: str, mode: str, pairs: list[dict]) -> dict:
+    admitted = sum(1 for pair in pairs if pair["would_admit"])
+    rejected = len(pairs) - admitted
+    record = {
+        "ts": dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "page_id": page_id,
+        "proposal_type": proposal_type,
+        "mode": mode,
+        "counts": {
+            "pairs": len(pairs),
+            "would_admit": admitted,
+            "would_reject": rejected,
+        },
+        "pairs": pairs,
+    }
+    shadow_dir = Path(getattr(settings, "AUTOWIKI_PROVENANCE_SHADOW_DIR", "reports/autowiki_provenance_shadow"))
+    if not shadow_dir.is_absolute():
+        shadow_dir = Path.cwd() / shadow_dir
+    shadow_dir.mkdir(parents=True, exist_ok=True)
+    out_path = shadow_dir / f"autowiki_provenance_shadow_{dt.datetime.utcnow():%Y%m%d}.jsonl"
+    with out_path.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(record, sort_keys=True) + "\n")
+    logger.info(
+        "[autowiki_provenance] mode=%s page=%s type=%s would_admit=%s would_reject=%s artifact=%s",
+        mode,
+        page_id,
+        proposal_type,
+        admitted,
+        rejected,
+        out_path,
+    )
+    return {**record["counts"], "artifact": str(out_path)}
+
+
 
 def _call_opus_coherence(content: str, claims_text: str = "", citation_context: str = "") -> "str | None":
-    """Call Claude claude-opus-4-7 for a full-page coherence rewrite (streaming).
+    """Call Claude claude-opus-4-8 for a full-page coherence rewrite (streaming).
 
     Reads NM_ANTHROPIC_API_KEY from ~/NebulaMind/NebulaMind/backend/.env.
     Returns full streamed text, or None on failure.
@@ -218,14 +366,14 @@ def _call_opus_coherence(content: str, claims_text: str = "", citation_context: 
             "Now rewrite the page following all system instructions."
         )
 
-        logger.info("[opus_coherence] streaming to claude-opus-4-7 (%d char page, %d char dynamic)...", len(page_block), len(dynamic_block))
+        logger.info("[opus_coherence] streaming to claude-opus-4-8 (%d char page, %d char dynamic)...", len(page_block), len(dynamic_block))
         prompt_len = len(page_block) + len(dynamic_block)
         est_tokens = {"input": max(1, (len(_COHERENCE_SYSTEM_PROMPT) + prompt_len) // 4), "output": 32000}
-        dispatch_premium("autowiki.opus_coherence", "claude-opus-4-7", est_tokens)
+        dispatch_premium("autowiki.opus_coherence", "claude-opus-4-8", est_tokens)
 
         full_text = ""
         with client.messages.stream(
-            model="claude-opus-4-7",
+            model="claude-opus-4-8",
             max_tokens=32000,
             system=_COHERENCE_SYSTEM_PROMPT,
             messages=[
@@ -253,7 +401,7 @@ def _call_opus_coherence(content: str, claims_text: str = "", citation_context: 
         usage = getattr(final_msg, "usage", None)
         log_llm_spend(
             "autowiki.opus_coherence",
-            "claude-opus-4-7",
+            "claude-opus-4-8",
             prompt_tokens=getattr(usage, "input_tokens", None),
             completion_tokens=getattr(usage, "output_tokens", None),
             cache_creation_tokens=getattr(usage, "cache_creation_input_tokens", None),
@@ -891,13 +1039,17 @@ def autowiki_tick(page_id: int) -> dict:
         autowiki_post_pipeline_notify,
         autowiki_pipeline_rollback
     )
-    from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
+    from app.agent_loop.marker_embed.tasks import claim_marker_embed_page, marker_reembed_enabled
 
-    pipeline = chain(
-        autowiki_propose_and_commit.s(page_id, pre_image_version_id).set(queue="autowiki"),
-        claim_marker_embed_page.s().set(queue="autowiki"),
-        autowiki_post_pipeline_notify.s(page_id).set(queue="autowiki"),
-    ).on_error(autowiki_pipeline_rollback.s(page_id).set(queue="autowiki"))
+    stages = [autowiki_propose_and_commit.s(page_id, pre_image_version_id).set(queue="autowiki")]
+    if marker_reembed_enabled():
+        stages.append(claim_marker_embed_page.s().set(queue="autowiki"))
+    else:
+        # Re-enable with Redis marker_embed:enabled=1 or MARKER_REEMBED_ENABLED=1.
+        logger.info("[autowiki_tick] Marker overlay stage disabled; skipping marker embed pass")
+    stages.append(autowiki_post_pipeline_notify.s(page_id).set(queue="autowiki"))
+
+    pipeline = chain(*stages).on_error(autowiki_pipeline_rollback.s(page_id).set(queue="autowiki"))
 
     pipeline.delay()
     logger.info("[autowiki_tick] Dispatched sequential canvas chain for page %d", page_id)
@@ -1014,6 +1166,32 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
         else:
             # SectionRewrite: pick a section not recently touched
             proposal_type = "section_rewrite"
+
+        provenance_mode = _autowiki_provenance_gate_mode()
+        if provenance_mode == "enforce" and _autowiki_provenance_suppressed_in_enforce(proposal_type):
+            latency["proposer_ms"] = 0
+            provenance_note = {
+                "mode": provenance_mode,
+                "proposal_type": proposal_type,
+                "suppressed_before_proposer": True,
+                "reason": "empty_provenance_pairs_not_enforceable",
+            }
+            if idea_signals_json is not None:
+                idea_signals_json = {**idea_signals_json, "provenance_enforce": provenance_note}
+            else:
+                idea_signals_json = {"provenance_enforce": provenance_note}
+            logger.info(
+                "[autowiki_provenance] enforce suppresses proposal_type=%s before proposer execution",
+                proposal_type,
+            )
+            return _emit_run(
+                db, page_id, started_at, proposal_type, h0_struct, None,
+                components_before, None, u0_result, None, q0, None,
+                "gate_reject",
+                "provenance_enforce_suppressed_empty_pairs",
+                None, latency, None,
+                idea_signals_json=idea_signals_json,
+            )
 
 
         # surveys-win: if Surveys autowiki holds astrosage:surveys_priority, defer this tick
@@ -1184,6 +1362,50 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 None, latency, None,
                 idea_signals_json=idea_signals_json,
             )
+
+        # ── Stage 2A: Certified provenance gate, shadow/no-write by default ──
+        if provenance_mode != "off":
+            provenance_pairs = _autowiki_provenance_pairs(db, proposal)
+            provenance_summary = _record_autowiki_provenance_shadow(
+                page_id,
+                proposal_type,
+                provenance_mode,
+                provenance_pairs,
+            )
+            if idea_signals_json is not None:
+                idea_signals_json = {**idea_signals_json, "provenance_shadow": provenance_summary}
+            else:
+                idea_signals_json = {"provenance_shadow": provenance_summary}
+
+            if provenance_mode == "shadow":
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_shadow_no_write",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
+
+            if _autowiki_provenance_requires_pairs(proposal_type) and not provenance_pairs:
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_gate_empty_pairs",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
+
+            if any(not pair["would_admit"] for pair in provenance_pairs):
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_gate_reject",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
 
         # ── K2: Takji methodology gate (§9.2.7, default ON) ──────────────────
         _proposed_text = ""
@@ -1660,6 +1882,12 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
 
     if not _is_enabled():
         return {"decision": "skip", "reason": "autowiki_flag_off"}
+    if _autowiki_provenance_gate_mode() == "enforce":
+        return {
+            "decision": "skip",
+            "reason": "provenance_enforce_suppressed_direct_section_rewrite",
+            "page_id": page_id,
+        }
 
     started_at = _dt.datetime.utcnow()
 
@@ -2056,10 +2284,17 @@ _COHERENCE_EXPECTED_SECTIONS = ['## Overview & Historical Context', '## Galaxy F
     soft_time_limit=30000,  # ~8.3h soft
 )
 def run_rakon_coherence_pass(self, page_id: int) -> dict:
-    """Full-page coherence rewrite using Claude claude-opus-4-7 via Anthropic API."""
+    """Full-page coherence rewrite using Claude claude-opus-4-8 via Anthropic API."""
     import json as _json
     import time as _time
     import datetime as _dt
+
+    if _autowiki_provenance_gate_mode() == "enforce":
+        return {
+            "decision": "skip",
+            "reason": "provenance_enforce_suppressed_direct_coherence_rewrite",
+            "page_id": page_id,
+        }
 
     logger.info("[coherence] Starting Opus coherence pass page=%d", page_id)
 

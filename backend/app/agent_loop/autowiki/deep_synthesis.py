@@ -48,6 +48,11 @@ def _is_enabled() -> bool:
         return False
 
 
+def _provenance_enforce_enabled() -> bool:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    return mode == "enforce"
+
+
 def _get_autowiki_agent_id(db) -> int | None:
     from sqlalchemy import text
     row = db.execute(
@@ -138,6 +143,12 @@ def _parse_skeletons(raw: str) -> list[dict]:
 def rakon_deep_pass(page_id: int) -> dict:
     if not _is_enabled():
         return {"decision": "skip", "reason": "flag_off"}
+    if _provenance_enforce_enabled():
+        return {
+            "decision": "skip",
+            "reason": "provenance_enforce_suppressed_direct_claim_insert",
+            "page_id": page_id,
+        }
 
     started_at = dt.datetime.utcnow()
     t0 = time.monotonic()

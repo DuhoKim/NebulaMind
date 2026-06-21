@@ -73,6 +73,11 @@ def _redis_flag(key: str) -> bool:
         return False
 
 
+def _provenance_enforce_enabled() -> bool:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    return mode == "enforce"
+
+
 def _nutty_rate_check_and_increment() -> bool:
     """Return True if the call is allowed (increments counter). False if over limit."""
     try:
@@ -375,6 +380,11 @@ Respond with ONLY valid JSON:
 @shared_task(name="app.agent_loop.research_ideas.auto_improvement.process_lightweight_event", bind=True, max_retries=2)
 def process_lightweight_event(self, page_id: int, trigger: str, cause_id: str | None = None):
     """J1 — per-event Nutty pipeline: refresh existing drafts, then generate new candidates."""
+    if _provenance_enforce_enabled():
+        return {
+            "skipped": "provenance_enforce_suppressed_research_ideas_lightweight",
+            "page_id": page_id,
+        }
     log.warning("[J1] ENTRY page_id=%d trigger=%s cause_id=%s retry=%d", page_id, trigger, cause_id, self.request.retries)
     if not _nutty_rate_check_and_increment():
         log.info("[J1] rate limit hit (>%d/hr), skipping page_id=%d trigger=%s", NUTTY_RATE_LIMIT_PER_HOUR, page_id, trigger)
@@ -1579,6 +1589,11 @@ def rakon_draft_async(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_research_idea_draft",
+            "page_id": page_id,
+        }
 
     if not _rakon_lock_acquire(28800):
         log.info("[rakon_draft_async] rakon:lock held, skipping page %d", page_id)
@@ -1643,6 +1658,11 @@ def mima_draft_async(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_research_idea_draft",
+            "page_id": page_id,
+        }
 
     try:
         r = _redis()
@@ -1707,6 +1727,11 @@ def tera_draft_async(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_research_idea_draft",
+            "page_id": page_id,
+        }
 
     try:
         r = _redis()
@@ -1781,6 +1806,11 @@ def buddle_draft_async(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_research_idea_draft",
+            "page_id": page_id,
+        }
 
     try:
         r = _redis()
@@ -1845,6 +1875,14 @@ def rakon_adversarial_probe(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    provenance_mode = (
+        getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow"
+    ).strip().lower()
+    if provenance_mode == "enforce":
+        return {
+            "skip": "provenance_enforce_suppressed_direct_adversarial_evidence_insert",
+            "page_id": page_id,
+        }
 
     if not _rakon_lock_acquire(28800):
         return {"skip": "rakon_lock_held"}
@@ -1914,6 +1952,9 @@ JUDGE_POOL_PROMOTE_N = 5  # idea_judge:promote_per_tick default
 @shared_task(name="app.agent_loop.research_ideas.auto_improvement.judge_idea_pool", bind=True, max_retries=0)
 def judge_idea_pool(self):
     """JI: three-stage judge (Atom score → Takji verify → AstroSage polish). Promotes top-N drafts."""
+    if _provenance_enforce_enabled():
+        return {"skip": "provenance_enforce_suppressed_idea_judge_pool"}
+
     from app.database import SessionLocal
     from sqlalchemy import text
 
@@ -2040,6 +2081,14 @@ def buddle_evidence_pair(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    provenance_mode = (
+        getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow"
+    ).strip().lower()
+    if provenance_mode == "enforce":
+        return {
+            "skip": "provenance_enforce_suppressed_direct_evidence_insert",
+            "page_id": page_id,
+        }
 
     if _rakon_lock_held():
         return {"skip": "rakon_lock_held"}
@@ -2120,15 +2169,22 @@ def buddle_evidence_pair(self, page_id: int | None = None):
 
 @shared_task(name="app.agent_loop.research_ideas.auto_improvement.opus_hero_refresh", bind=True, max_retries=0)
 def opus_hero_refresh(self, page_id: int | None = None):
-    """A3-v3: Opus (claude-opus-4-7) regenerates hero_tagline + hero_facts from recent accepted claims."""
+    """A3-v3: Opus (claude-opus-4-8) regenerates hero_tagline + hero_facts from recent accepted claims."""
     if page_id is None:
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    provenance_mode = (
+        getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow"
+    ).strip().lower()
+    if provenance_mode == "enforce":
+        return {
+            "skip": "provenance_enforce_suppressed_direct_hero_refresh",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
-    from app.config import settings
     db = SessionLocal()
     try:
         page = db.execute(
@@ -2167,16 +2223,16 @@ def opus_hero_refresh(self, page_id: int | None = None):
             import anthropic
             client = anthropic.Anthropic(api_key=settings.ANTHROPIC_API_KEY)
             est_tokens = {"input": max(1, len(prompt) // 4), "output": 512}
-            dispatch_premium("research_ideas.opus_hero_refresh", "claude-opus-4-7", est_tokens)
+            dispatch_premium("research_ideas.opus_hero_refresh", "claude-opus-4-8", est_tokens)
             response = client.messages.create(
-                model="claude-opus-4-7",
+                model="claude-opus-4-8",
                 max_tokens=512,
                 messages=[{"role": "user", "content": prompt}],
             )
             usage = getattr(response, "usage", None)
             log_llm_spend(
                 "research_ideas.opus_hero_refresh",
-                "claude-opus-4-7",
+                "claude-opus-4-8",
                 prompt_tokens=getattr(usage, "input_tokens", None),
                 completion_tokens=getattr(usage, "output_tokens", None),
                 estimated_tokens=est_tokens["input"],
@@ -2252,6 +2308,19 @@ def rakon_synthesis_pass(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+
+    provenance_mode = (
+        getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow"
+    ).strip().lower()
+    if provenance_mode == "enforce":
+        log.info(
+            "[rakon_synthesis_pass] skipped page=%s: provenance enforce suppresses direct section_rewrite",
+            page_id,
+        )
+        return {
+            "skip": "provenance_enforce_suppressed_direct_section_rewrite",
+            "page_id": page_id,
+        }
 
     if not _rakon_lock_acquire(28800):
         return {"skip": "rakon_lock_held"}
@@ -2401,6 +2470,14 @@ def buddle_claim_propose(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    provenance_mode = (
+        getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow"
+    ).strip().lower()
+    if provenance_mode == "enforce":
+        return {
+            "skip": "provenance_enforce_suppressed_direct_claim_insert",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
@@ -2488,6 +2565,11 @@ def mima_cross_page_synthesis(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_claim_migration_proposals",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
@@ -2555,6 +2637,11 @@ def tera_coverage_audit(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_coverage_audit",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
@@ -2608,6 +2695,11 @@ def tera_evidence_audit(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_evidence_mismatch_audit",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
@@ -2669,6 +2761,9 @@ def tera_evidence_audit(self, page_id: int | None = None):
 @shared_task(name="app.agent_loop.research_ideas.auto_improvement.nutty_trust_recompute", bind=True, max_retries=0)
 def nutty_trust_recompute(self):
     """N5: For each EvidenceLink created in last 70 min, recompute parent Claim.trust_level."""
+    if _provenance_enforce_enabled():
+        return {"skip": "provenance_enforce_suppressed_trust_recompute"}
+
     from app.database import SessionLocal
     from sqlalchemy import text
     db = SessionLocal()
@@ -2737,6 +2832,11 @@ def takji_schema_validate(self, page_id: int | None = None):
         page_id = _pick_next_priority_page()
     if page_id is None:
         return {"skip": "no_page"}
+    if _provenance_enforce_enabled():
+        return {
+            "skip": "provenance_enforce_suppressed_schema_validate",
+            "page_id": page_id,
+        }
 
     from app.database import SessionLocal
     from sqlalchemy import text
@@ -2945,6 +3045,12 @@ def _generate_ideas_for_claim(claim_id: int, claim_text: str, trust_level: str,
 )
 def seed_debated_claim_ideas(self, page_id: int, target_per_claim: int = 3):
     """Seed research ideas anchored to debated/challenged claims with < target_per_claim active ideas."""
+    if _provenance_enforce_enabled():
+        return {
+            "skipped": "provenance_enforce_suppressed_debated_claim_seed",
+            "page_id": page_id,
+        }
+
     from app.database import SessionLocal
     from sqlalchemy import text
 
@@ -3679,6 +3785,12 @@ def generate_research_ideas_v2(self, page_slug: str):
     what is missing, contested, or needs bridging across five gap types.
     Lock: shared rakon:lock (value=karpathy_v2), TTL 2h.
     """
+    if _provenance_enforce_enabled():
+        return {
+            "skipped": "provenance_enforce_suppressed_karpathy_v2",
+            "page_slug": page_slug,
+        }
+
     from app.database import SessionLocal
     from sqlalchemy import text
 

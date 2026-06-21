@@ -584,6 +584,9 @@ def _build_provider_chain_for_role(role: str = None):
 
     return chain
 
+def _ms(t0: float) -> int:
+    return int((time.monotonic() - t0) * 1000)
+
 
 def _call_provider(provider: dict, system: str, user_msg: str) -> str:
     """Single call to one provider (no retry — caller handles that)."""
