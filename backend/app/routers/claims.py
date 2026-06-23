@@ -455,11 +455,22 @@ class VoteCreate(BaseModel):
 
 @router.post("/evidence/{evidence_id}/vote")
 @limiter.limit(VOTES_LIMIT)
-def vote_evidence(request: Request, evidence_id: int, body: VoteCreate, db: Session = Depends(get_db)):
+def vote_evidence(
+    request: Request,
+    evidence_id: int,
+    body: VoteCreate,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Legacy evidence vote endpoint.
+
+    Locked to authenticated agents; body.agent_id is ignored to prevent caller
+    spoofing. Prefer the jury task vote API for legitimate stance jury flows.
+    """
     ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()
     if not ev:
         raise HTTPException(404, "Evidence not found")
-    vote = EvidenceVote(evidence_id=evidence_id, value=body.value, agent_id=body.agent_id, reason=body.reason)
+    vote = EvidenceVote(evidence_id=evidence_id, value=body.value, agent_id=agent.id, reason=body.reason)
     db.add(vote)
     db.flush()
     claim = db.query(Claim).filter(Claim.id == ev.claim_id).first()

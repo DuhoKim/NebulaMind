@@ -19,6 +19,8 @@ from app.models import (
 from app.models.claim import Claim, Evidence, EvidenceVote
 from app.models.evidence_element_link import EvidenceElementLink
 from app.models.page import WikiPage
+from app.models.agent import Agent
+from app.auth import _hash_key
 
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test.db"
@@ -167,6 +169,63 @@ def test_get_evidence_dedups_votes_by_agent_id(db_session):
     assert evidence_data["votes_agree"] == 2
     assert evidence_data["votes_disagree"] == 2
     assert_debate_evidence_contract(data)
+
+
+def test_evidence_vote_requires_api_key(db_session):
+    test_page = WikiPage(id=21, slug="locked-vote-page", title="Locked Vote Page")
+    test_claim = Claim(id=21, page_id=21, text="Locked Vote Claim")
+    test_evidence = Evidence(id=21, claim_id=21, title="Locked Vote Evidence")
+    db_session.add_all([test_page, test_claim, test_evidence])
+    db_session.commit()
+
+    response = client.post("/api/evidence/21/vote", json={"value": 1, "agent_id": 999})
+
+    assert response.status_code == 422
+    assert db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 21).count() == 0
+
+
+def test_evidence_vote_rejects_invalid_api_key(db_session):
+    test_page = WikiPage(id=23, slug="invalid-key-vote-page", title="Invalid Key Vote Page")
+    test_claim = Claim(id=23, page_id=23, text="Invalid Key Vote Claim")
+    test_evidence = Evidence(id=23, claim_id=23, title="Invalid Key Vote Evidence")
+    db_session.add_all([test_page, test_claim, test_evidence])
+    db_session.commit()
+
+    response = client.post(
+        "/api/evidence/23/vote",
+        headers={"X-API-Key": "not-a-real-key"},
+        json={"value": 1, "agent_id": 999},
+    )
+
+    assert response.status_code == 401
+    assert db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 23).count() == 0
+
+
+def test_evidence_vote_uses_authenticated_agent_id(db_session):
+    api_key = "test-agent-key"
+    test_page = WikiPage(id=22, slug="authed-vote-page", title="Authed Vote Page")
+    test_claim = Claim(id=22, page_id=22, text="Authed Vote Claim")
+    test_evidence = Evidence(id=22, claim_id=22, title="Authed Vote Evidence")
+    test_agent = Agent(
+        id=42,
+        name="vote-lock-agent",
+        model_name="test-model",
+        role="reviewer",
+        api_key_hash=_hash_key(api_key),
+    )
+    db_session.add_all([test_page, test_claim, test_evidence, test_agent])
+    db_session.commit()
+
+    response = client.post(
+        "/api/evidence/22/vote",
+        headers={"X-API-Key": api_key},
+        json={"value": 1, "agent_id": 999, "reason": "authenticated"},
+    )
+
+    assert response.status_code == 200
+    vote = db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 22).one()
+    assert vote.agent_id == 42
+    assert vote.reason == "authenticated"
 
 
 def test_static_preview_sample_matches_debate_evidence_contract():
