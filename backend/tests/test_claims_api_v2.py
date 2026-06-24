@@ -1,5 +1,6 @@
 import sys
 import json
+import logging
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -201,10 +202,10 @@ def test_evidence_vote_rejects_invalid_api_key(db_session):
     assert db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 23).count() == 0
 
 
-def test_evidence_vote_uses_authenticated_agent_id(db_session):
+def test_evidence_vote_deprecated_no_write_with_valid_auth(db_session, caplog):
     api_key = "test-agent-key"
     test_page = WikiPage(id=22, slug="authed-vote-page", title="Authed Vote Page")
-    test_claim = Claim(id=22, page_id=22, text="Authed Vote Claim")
+    test_claim = Claim(id=22, page_id=22, text="Authed Vote Claim", trust_level="challenged")
     test_evidence = Evidence(id=22, claim_id=22, title="Authed Vote Evidence")
     test_agent = Agent(
         id=42,
@@ -216,16 +217,31 @@ def test_evidence_vote_uses_authenticated_agent_id(db_session):
     db_session.add_all([test_page, test_claim, test_evidence, test_agent])
     db_session.commit()
 
-    response = client.post(
-        "/api/evidence/22/vote",
-        headers={"X-API-Key": api_key},
-        json={"value": 1, "agent_id": 999, "reason": "authenticated"},
-    )
+    with caplog.at_level(logging.WARNING, logger="app.routers.claims"):
+        response = client.post(
+            "/api/evidence/22/vote",
+            headers={"X-API-Key": api_key},
+            json={"value": 1, "agent_id": 999, "reason": "authenticated"},
+        )
 
     assert response.status_code == 200
-    vote = db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 22).one()
-    assert vote.agent_id == 42
-    assert vote.reason == "authenticated"
+    assert response.headers["X-API-Deprecated"] == "true"
+    assert response.headers["X-API-No-Write"] == "true"
+    assert response.headers["X-API-Replacement"] == "/api/jury/tasks/{task_id}/vote"
+    data = response.json()
+    assert data["deprecated"] is True
+    assert data["no_write"] is True
+    assert data["replacement"] == "/api/jury/tasks/{task_id}/vote"
+    assert data["authenticated_agent_id"] == 42
+    assert "no vote was committed" in data["detail"]
+    assert db_session.query(EvidenceVote).filter(EvidenceVote.evidence_id == 22).count() == 0
+    db_session.refresh(test_claim)
+    assert test_claim.trust_level == "challenged"
+    assert "deprecated_legacy_evidence_vote_no_write" in caplog.text
+    assert "'route_name': 'vote_evidence'" in caplog.text
+    assert "'evidence_id': 22" in caplog.text
+    assert "'authenticated_agent_id': 42" in caplog.text
+    assert "'no_write': True" in caplog.text
 
 
 def test_static_preview_sample_matches_debate_evidence_contract():

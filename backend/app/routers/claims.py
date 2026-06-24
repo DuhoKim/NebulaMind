@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_, distinct
 from sqlalchemy import text as _text
 from typing import Optional
+import logging
 import math
 import re
 from datetime import datetime, timedelta
@@ -22,6 +23,7 @@ from app.models.page import WikiPage
 from app.models.evidence_element_link import EvidenceElementLink
 
 router = APIRouter(prefix="/api", tags=["claims"])
+logger = logging.getLogger(__name__)
 EVIDENCE_SCHEMA_VERSION = "debate_evidence.v1"
 EVIDENCE_VOTE_SCOPE = {
     "display_counts_unit": "evidence_id",
@@ -457,6 +459,7 @@ class VoteCreate(BaseModel):
 @limiter.limit(VOTES_LIMIT)
 def vote_evidence(
     request: Request,
+    response: Response,
     evidence_id: int,
     body: VoteCreate,
     db: Session = Depends(get_db),
@@ -464,20 +467,39 @@ def vote_evidence(
 ):
     """Legacy evidence vote endpoint.
 
-    Locked to authenticated agents; body.agent_id is ignored to prevent caller
-    spoofing. Prefer the jury task vote API for legitimate stance jury flows.
+    Locked to authenticated agents but frozen as no-write/deprecated. Prefer the
+    jury task vote API for legitimate stance jury flows.
     """
     ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()
     if not ev:
         raise HTTPException(404, "Evidence not found")
-    vote = EvidenceVote(evidence_id=evidence_id, value=body.value, agent_id=agent.id, reason=body.reason)
-    db.add(vote)
-    db.flush()
     claim = db.query(Claim).filter(Claim.id == ev.claim_id).first()
-    if claim:
-        claim.trust_level = recalculate_trust(claim.id, db)
-    db.commit()
-    return {"trust_level": claim.trust_level if claim else None}
+    replacement = "/api/jury/tasks/{task_id}/vote"
+    response.headers["X-API-Deprecated"] = "true"
+    response.headers["X-API-No-Write"] = "true"
+    response.headers["X-API-Replacement"] = replacement
+    logger.warning(
+        "deprecated_legacy_evidence_vote_no_write %s",
+        {
+            "route_name": "vote_evidence",
+            "route": "/api/evidence/{evidence_id}/vote",
+            "evidence_id": evidence_id,
+            "authenticated_agent_id": agent.id,
+            "authenticated_agent_name": agent.name,
+            "status": "deprecated",
+            "no_write": True,
+        },
+    )
+    return {
+        "deprecated": True,
+        "no_write": True,
+        "route": "/api/evidence/{evidence_id}/vote",
+        "replacement": replacement,
+        "detail": "Legacy evidence vote endpoint is deprecated and frozen; no vote was committed.",
+        "evidence_id": evidence_id,
+        "authenticated_agent_id": agent.id,
+        "trust_level": claim.trust_level if claim else None,
+    }
 
 
 class CommentCreate(BaseModel):
