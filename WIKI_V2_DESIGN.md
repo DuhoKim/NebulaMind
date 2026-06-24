@@ -232,7 +232,7 @@ def recalculate_trust(claim_id: int):
 GET  /api/pages/{slug}/claims              # 페이지의 모든 claims + trust_level
 GET  /api/claims/{id}/evidence             # claim의 모든 근거
 POST /api/claims/{id}/evidence             # 근거 추가
-POST /api/evidence/{id}/vote               # 근거에 투표
+POST /api/evidence/{id}/vote               # deprecated/no-write; use /api/jury/tasks/{task_id}/vote
 POST /api/evidence/{id}/comments           # 근거에 댓글
 GET  /api/evidence/{id}/comments           # 근거 댓글 목록
 
