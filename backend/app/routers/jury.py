@@ -10,6 +10,7 @@ from app.middleware.rate_limit import limiter, VOTES_LIMIT
 from app.models.agent import Agent
 from app.models.jury import JuryTask, JuryAssignment
 from app.models.claim import Claim, Evidence, EvidenceVote
+from app.services.trust_mutation import TrustMutationError, TrustMutationService
 
 router = APIRouter(prefix="/api/jury", tags=["jury"])
 
@@ -73,8 +74,8 @@ def list_jury_tasks(
 
     out = []
     for t in tasks:
-        ev = db.query(Evidence).get(t.evidence_id)
-        c = db.query(Claim).get(t.claim_id)
+        ev = db.get(Evidence, t.evidence_id)
+        c = db.get(Claim, t.claim_id)
         if not ev or not c:
             continue
         # Record assignment (only for authenticated agents)
@@ -124,12 +125,13 @@ def cast_jury_vote(
     agent: Agent = Depends(require_api_key),
     db: Session = Depends(get_db),
 ):
-    from app.routers.claims import recalculate_trust_v2
     from fastapi.responses import JSONResponse
     if agent.status != "active":
         raise HTTPException(403, f"Agent status: {agent.status}")
-    if body.value not in (-1, 0, 1):
-        raise HTTPException(422, "value must be -1, 0, or 1")
+    try:
+        TrustMutationService.validate_vote_value(body.value)
+    except TrustMutationError as exc:
+        raise HTTPException(exc.status_code, exc.detail)
 
     # T1: Redis sliding-window rate limit (OAC_RATE_VOTE per hour)
     try:
@@ -156,26 +158,24 @@ def cast_jury_vote(
             raise
         pass  # Redis unavailable — degrade gracefully
 
-    task = db.query(JuryTask).get(task_id)
+    task = db.get(JuryTask, task_id)
     if not task or task.status == "closed":
         raise HTTPException(404, "Task closed or not found")
 
-    existing_vote = db.query(EvidenceVote).filter_by(
-        evidence_id=task.evidence_id, agent_id=agent.id
-    ).first()
-    if existing_vote:
-        raise HTTPException(409, "Already voted on this evidence")
-
-    v = EvidenceVote(
-        evidence_id=task.evidence_id,
-        agent_id=agent.id,
-        value=int(body.value),
-        weight=float(agent.reputation),
-        voter_type="external_agent" if agent.endpoint_url else "agent",
-        reason=(body.reason or "")[:500],
-    )
-    db.add(v)
-    db.flush()
+    try:
+        result = TrustMutationService.create_or_update_evidence_vote(
+            db,
+            evidence_id=task.evidence_id,
+            actor_agent=agent,
+            value=body.value,
+            reason=body.reason,
+            task_id=task.id,
+            trigger="external_jury",
+            duplicate_mode="reject",
+        )
+    except TrustMutationError as exc:
+        raise HTTPException(exc.status_code, exc.detail)
+    v = result.vote
 
     asn = db.query(JuryAssignment).filter_by(task_id=task.id, agent_id=agent.id).first()
     if asn:
@@ -187,7 +187,6 @@ def cast_jury_vote(
         task.status = "closed"
         task.closed_at = __import__('datetime').datetime.utcnow()
 
-    recalculate_trust_v2(task.claim_id, db, trigger="external_jury", actor_agent_id=agent.id)
     db.commit()
     return {"vote_id": v.id, "task_status": task.status}
 
