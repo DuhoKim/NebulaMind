@@ -1,0 +1,33 @@
+{
+  "locked_artifact": "stance_gold_LOCKED_v1.jsonl",
+  "locked_sha256": "de7ec421d5092e5cccb7a1b70af4fc84463aaad08164a30c8e2a2eadd0bdbe27",
+  "locked_by": "Papa (Duho Kim); materialized + relayed by HwaO",
+  "locked_at_utc": "2026-06-23T06:43:13Z",
+  "source_draft": "stance_gold_draft_for_papa_v3.jsonl",
+  "source_draft_sha256": "14ae8ea1640662e5005d26536694ca8f179edcbfad1cac9d3c2aeab220d57e4b",
+  "adjudication": "papa_adjudication_v3.json",
+  "papa_overrides": {
+    "stance2b-000": "related_different_facet",
+    "stance2b-001": "contradicts",
+    "stance2b-003": "related_different_facet"
+  },
+  "final_label_histogram": {
+    "related_different_facet": 88,
+    "contradicts": 1,
+    "supports": 21,
+    "unrelated": 19
+  },
+  "final_stage1_histogram": {
+    "related": 110,
+    "unrelated": 19
+  },
+  "total_rows": 129,
+  "contradicts_handling": "n=1 (stance2b-001) -> SENTINEL only; excluded from scored P/R/F1 (n=1 meaningless). Documented corpus limit: slice-2b exhausted (see contradicts_mine_20260623T062201Z/papa_adjudication_contradicts_mine.json).",
+  "excluded_from_set": "mine-024, mine-066 (Papa-certified related_different_facet, expert-ambiguous, kept out of scored set).",
+  "nm_head": "4ba9675",
+  "containment": {
+    "db_write_count": 0,
+    "paid_lane_touched": false,
+    "page57_swapped": false
+  }
+}

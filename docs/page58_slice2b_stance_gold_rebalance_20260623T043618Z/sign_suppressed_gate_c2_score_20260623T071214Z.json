@@ -1,0 +1,243 @@
+{
+  "c1_neutrality_guard": {
+    "confirmed_contradiction_write_stance_if_later_human_approved": "challenges",
+    "neutral_seed_can_move_trust": false,
+    "no_hardcoded_contradicts_write_stance": true,
+    "rdf_auto_seed_evidence_stance": "none",
+    "trust_model_counts_only": [
+      "supports",
+      "challenges"
+    ]
+  },
+  "configuration_under_test": {
+    "local_sign_source_for_queue_only": {
+      "endpoint_or_source": "Ollama local chat via PAGE58_STAKING_OLLAMA_BASE default http://localhost:11434; stored prior_stance_label from classify_all_stance",
+      "label_mapping": {
+        "neither": "related_different_facet"
+      },
+      "models": [
+        "qwen3.6:27b-nvfp4",
+        "gpt-oss:20b"
+      ],
+      "name": "local_panel_provisional_no_claude_for_full_pass"
+    },
+    "stage1_relatedness_gate": {
+      "endpoint_or_source": "stored max_cosine compared with tau_rel from docs/page58_slice2_calibrated_staking_20260622T111621Z/summary.json",
+      "name": "Slice-2 calibrated cosine relevance gate",
+      "tau_rel": 0.53
+    },
+    "stage2_sign_suppression": {
+      "auto_seed_label_for_stage1_related": "related_different_facet",
+      "confirmed_contradiction_write_stance_if_later_human_approved": "challenges",
+      "explicit_evidence_stance_for_auto_seed": "none",
+      "local_contradicts": "human_queue_and_collapsed_to_rdf_for_auto_pass",
+      "local_supports": "human_queue_and_collapsed_to_rdf_for_auto_pass",
+      "tau_vote_not_tuned": 0.7,
+      "trust_vote_effect": "neutral_non_voting"
+    }
+  },
+  "containment": {
+    "api_health": {
+      "body": {
+        "pages": 44,
+        "service": "NebulaMind API",
+        "status": "ok",
+        "version": "0.2.0"
+      },
+      "status_code": 200,
+      "url": "http://localhost:8000/api/health"
+    },
+    "db_write_count": 0,
+    "locked_gold_sha256": "de7ec421d5092e5cccb7a1b70af4fc84463aaad08164a30c8e2a2eadd0bdbe27",
+    "nm_head": "4ba9675",
+    "no_alembic": true,
+    "no_db_apply": true,
+    "no_page57_or_page58_live_write": true,
+    "no_stance_lock_write": true,
+    "paid_lane_touched": false
+  },
+  "contradicts_sentinel": {
+    "auto_seed_stage2_label": "related_different_facet",
+    "auto_trust_bearing_write": false,
+    "correct_as_contradiction": false,
+    "gold_id": "stance2b-001",
+    "human_queue": true,
+    "local_stage2_label_suppressed": "contradicts",
+    "note": "The sign-suppressed auto pass intentionally renders the sentinel as neutral rdf and queues the local contradict for human review.",
+    "pred_stage1_label": "related",
+    "safe_suppression": true,
+    "true_stage1_label": "related",
+    "true_stage2_label": "contradicts"
+  },
+  "created_at_utc": "2026-06-23T07:12:14.822603+00:00",
+  "gold_file": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2b_stance_gold_rebalance_20260623T043618Z/stance_gold_LOCKED_v1.jsonl",
+  "macro_f1_excluding_contradicts_sentinel": {
+    "confusion_matrix": {
+      "related_different_facet": {
+        "related_different_facet": 76,
+        "supports": 0,
+        "unrelated": 12
+      },
+      "supports": {
+        "related_different_facet": 21,
+        "supports": 0,
+        "unrelated": 0
+      },
+      "unrelated": {
+        "related_different_facet": 7,
+        "supports": 0,
+        "unrelated": 12
+      }
+    },
+    "labels": [
+      "supports",
+      "related_different_facet",
+      "unrelated"
+    ],
+    "macro_f1": 0.4499,
+    "note": "Two-stage composite summary excluding the n=1 contradicts sentinel; stage-1 and stage-2 primary metrics remain separate.",
+    "per_class": {
+      "related_different_facet": {
+        "f1": 0.7917,
+        "precision": 0.7308,
+        "recall": 0.8636,
+        "support": 88
+      },
+      "supports": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 21
+      },
+      "unrelated": {
+        "f1": 0.5581,
+        "precision": 0.5,
+        "recall": 0.6316,
+        "support": 19
+      }
+    },
+    "rows": 128
+  },
+  "phase": "page58_sign_suppressed_gate_c2_score",
+  "prediction_counts": {
+    "local_sign_queue_source_on_stage1_related": {
+      "contradicts": 18,
+      "related_different_facet": 44,
+      "supports": 43
+    },
+    "reference_final_label": {
+      "contradicts": 1,
+      "related_different_facet": 88,
+      "supports": 21,
+      "unrelated": 19
+    },
+    "sign_suppressed_stage2_on_true_related": {
+      "no_stage2_prediction": 12,
+      "related_different_facet": 98
+    },
+    "stage1": {
+      "related": 105,
+      "unrelated": 24
+    }
+  },
+  "reference_fields": [
+    "final_label",
+    "final_stage1_label",
+    "final_stage2_label"
+  ],
+  "rows": 129,
+  "scope": {
+    "draft_for_kun_only": true,
+    "kun_independent_recert_required": true,
+    "no_certification": true,
+    "no_live_apply": true,
+    "no_mine_024_066": true,
+    "read_only_gold": true
+  },
+  "seed_plan_counts": {
+    "auto_seed_rows": 105,
+    "auto_trust_bearing_writes": 0,
+    "evidence_stance_for_write": {
+      "no_seed": 24,
+      "none": 105
+    },
+    "human_queue": {
+      "local_contradicts_suppressed_for_human_review": 18,
+      "local_support_suppressed_for_human_review": 43,
+      "not_queued": 68
+    },
+    "no_seed_rows": 24
+  },
+  "stage1_relatedness": {
+    "confusion_matrix": {
+      "related": {
+        "related": 98,
+        "unrelated": 12
+      },
+      "unrelated": {
+        "related": 7,
+        "unrelated": 12
+      }
+    },
+    "macro_f1": 0.7349,
+    "per_class": {
+      "related": {
+        "f1": 0.9116,
+        "precision": 0.9333,
+        "recall": 0.8909,
+        "support": 110
+      },
+      "unrelated": {
+        "f1": 0.5581,
+        "precision": 0.5,
+        "recall": 0.6316,
+        "support": 19
+      }
+    }
+  },
+  "stage2_sign_related_rows_only": {
+    "confusion_matrix": {
+      "contradicts": {
+        "contradicts": 0,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 1,
+        "supports": 0
+      },
+      "no_stage2_prediction": {
+        "contradicts": 0,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 0,
+        "supports": 0
+      },
+      "related_different_facet": {
+        "contradicts": 0,
+        "no_stage2_prediction": 12,
+        "related_different_facet": 76,
+        "supports": 0
+      },
+      "supports": {
+        "contradicts": 0,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 21,
+        "supports": 0
+      }
+    },
+    "contradicts_p_r_f1": "not_computed_n_equals_1_sentinel_only",
+    "macro_f1_excluding_contradicts_sentinel": 0.4086,
+    "per_class_excluding_contradicts_sentinel": {
+      "related_different_facet": {
+        "f1": 0.8172,
+        "precision": 0.7755,
+        "recall": 0.8636,
+        "support": 88
+      },
+      "supports": {
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "support": 21
+      }
+    },
+    "rows": 110
+  }
+}
