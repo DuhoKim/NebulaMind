@@ -515,6 +515,7 @@ def insert_dynamic_evidence(
         s2_paper_id=data.get("s2_paper_id"),
         verified_at=now,
         stance_jury_run_at=now,
+        status="provisional",
         source_channel=DCCM_SOURCE_CHANNEL,
         arxiv_verified=bool(record.arxiv_id),
         peer_reviewed=True,

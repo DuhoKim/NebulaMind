@@ -385,6 +385,7 @@ def insert_supportive_evidence(db: Session, ctx: CitationContext, verdict: PicoV
         s2_paper_id=data.get("s2_paper_id"),
         verified_at=now,
         stance_jury_run_at=now,
+        status="provisional",
         source_channel=SOURCE_CHANNEL,
         arxiv_verified=bool(record.arxiv_id),
         peer_reviewed=True,

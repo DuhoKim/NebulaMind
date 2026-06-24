@@ -225,6 +225,7 @@ def serialize_claim_evidence(claim_id: int, db: Session) -> dict:
             "id": e.id, "title": e.title, "arxiv_id": e.arxiv_id,
             "url": e.url, "authors": e.authors, "year": e.year,
             "summary": e.summary, "stance": e.stance,
+            "status": getattr(e, "status", None) or "active",
             "votes_agree": agree, "votes_disagree": disagree, "comments_count": comments,
             "element_links": links,
             "link_count": len(links),

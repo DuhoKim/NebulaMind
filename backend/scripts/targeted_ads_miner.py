@@ -1063,6 +1063,7 @@ def insert_evidence(db: Session, candidate: Candidate, decision: JuryDecision) -
         s2_paper_id=data.get("s2_paper_id"),
         verified_at=dt.datetime.utcnow() if decision.stance in {"supports", "refutes"} else None,
         stance_jury_run_at=dt.datetime.utcnow(),
+        status="provisional",
         source_channel="targeted_ads_miner",
         arxiv_verified=bool(record.arxiv_id),
         peer_reviewed=True,

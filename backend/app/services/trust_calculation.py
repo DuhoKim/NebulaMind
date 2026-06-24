@@ -71,7 +71,11 @@ def recalculate_trust_v2(
     if not claim:
         return "unverified", 0.0
 
-    evidence = db.query(Evidence).filter(Evidence.claim_id == claim_id).all()
+    evidence = (
+        db.query(Evidence)
+        .filter(Evidence.claim_id == claim_id, Evidence.status == "active")
+        .all()
+    )
 
     # ---- E component ----
     if not evidence:

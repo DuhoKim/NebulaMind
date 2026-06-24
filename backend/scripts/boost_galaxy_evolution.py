@@ -76,7 +76,7 @@ def generate_queries(claim_text: str, topic: str) -> list[str]:
 
 def boost_claim(db, claim: Claim, page_title: str, arxivbot: Agent) -> int:
     """Search for evidence for a single claim. Returns number inserted."""
-    from app.routers.claims import recalculate_trust_v2
+    from app.services.trust_calculation import recalculate_trust_v2
 
     existing_arxiv_ids = {
         e.arxiv_id for e in db.query(Evidence).filter(Evidence.claim_id == claim.id).all()

@@ -78,6 +78,7 @@ def assert_debate_evidence_contract(payload: dict):
         assert item["year"] is None or isinstance(item["year"], int)
         assert item["summary"] is None or isinstance(item["summary"], str)
         assert item["stance"] is None or isinstance(item["stance"], str)
+        assert item["status"] in {"active", "provisional"}
         assert isinstance(item["votes_agree"], int) and item["votes_agree"] >= 0
         assert isinstance(item["votes_disagree"], int) and item["votes_disagree"] >= 0
         assert isinstance(item["comments_count"], int) and item["comments_count"] >= 0
@@ -170,6 +171,26 @@ def test_get_evidence_dedups_votes_by_agent_id(db_session):
     assert evidence_data["votes_agree"] == 2
     assert evidence_data["votes_disagree"] == 2
     assert_debate_evidence_contract(data)
+
+
+def test_get_evidence_exposes_provisional_status(db_session):
+    test_page = WikiPage(id=12, slug="provisional-page", title="Provisional Page")
+    test_claim = Claim(id=12, page_id=12, text="Provisional Claim", trust_level="unverified")
+    test_evidence = Evidence(
+        id=12,
+        claim_id=12,
+        title="Provisional Evidence",
+        arxiv_id="2601.12121",
+        status="provisional",
+    )
+    db_session.add_all([test_page, test_claim, test_evidence])
+    db_session.commit()
+
+    response = client.get("/api/claims/12/evidence")
+    assert response.status_code == 200
+    data = response.json()
+    assert_debate_evidence_contract(data)
+    assert data["evidence"][0]["status"] == "provisional"
 
 
 def test_evidence_vote_requires_api_key(db_session):

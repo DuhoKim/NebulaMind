@@ -127,7 +127,7 @@ def main():
             for (ctx, v) in supportive[:n_insert]:
                 insert_supportive_evidence(db, ctx, v)
             db.flush()
-            from app.routers.claims import recalculate_trust_v2
+            from app.services.trust_calculation import recalculate_trust_v2
             new_level, ts = recalculate_trust_v2(claim_id, db, trigger="ccm_audit_dryrun")
             n_sup1, n_chal1, maxy1, ntot1 = evidence_counts(db, claim_id)
             projected = {
