@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import datetime as dt
 import json
+import logging
 import re
 import time
 from dataclasses import dataclass, field
@@ -12,7 +13,7 @@ from sqlalchemy import func, or_
 from sqlalchemy.orm import Session
 
 from app.config import settings
-from app.models.claim import Claim, Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence
 from app.services.llm_utils import strip_think_blocks
 from app.services.paper_search import (
     PaperRecord,
@@ -28,7 +29,6 @@ from app.agent_loop.citation_context.miner import (
     CONF_RE,
     PICO_TIMEOUT_SECONDS,
     SOURCE_CHANNEL as CCM_SOURCE_CHANNEL,
-    agent_id_for_label,
     already_attached,
     ccm_already_linked,
     extract_arxiv_intro_context,
@@ -38,6 +38,7 @@ from app.agent_loop.citation_context.miner import (
 
 DCCM_SOURCE_CHANNEL = "dynamic_citation_context_mining"
 DCCM_TRUST_TRIGGER = "dccm_dynamic_citation"
+logger = logging.getLogger(__name__)
 DCCM_MAX_EVIDENCE_PER_CLAIM_LIFETIME = 6
 DCCM_MAX_CLAIMS_PER_SEED = 3
 DCCM_MIN_SEED_QUALITY = 0.50
@@ -520,17 +521,14 @@ def insert_dynamic_evidence(
     )
     db.add(ev)
     db.flush()
-    db.add(
-        EvidenceVote(
-            evidence_id=ev.id,
-            value=1,
-            agent_id=agent_id_for_label(db, "Dynamic-Pico", settings.ASTRO_SCORER_MODEL or "vanta-research/atom-astronomy-7b"),
-            reason=(normalize_text(hit.context_sentence) or raw or confidence or "SUPPORTIVE")[:500],
-            weight=1.0,
-            voter_type="agent",
-            scheduled_via="dccm",
-            latency_ms=latency_ms,
-        )
+    logger.info(
+        "dccm_evidence_inserted_provisional_no_vote %s",
+        {
+            "evidence_id": ev.id,
+            "claim_id": ev.claim_id,
+            "source_channel": DCCM_SOURCE_CHANNEL,
+            "latency_ms": latency_ms,
+        },
     )
     return ev
 

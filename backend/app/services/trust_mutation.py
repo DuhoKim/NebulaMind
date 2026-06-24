@@ -48,6 +48,10 @@ class TrustMutationService:
         task_id: int | None = None,
         trigger: str,
         duplicate_mode: VoteDuplicateMode = "reject",
+        voter_type: str | None = None,
+        weight: float | None = None,
+        recalculate: bool = True,
+        recalc_actor_agent_id: int | None = None,
     ) -> EvidenceVoteMutationResult:
         if not actor_agent or actor_agent.id is None:
             raise TrustMutationError(401, "Authenticated agent required")
@@ -70,19 +74,20 @@ class TrustMutationService:
             db.add(vote)
 
         vote.value = value
-        vote.weight = float(actor_agent.reputation)
-        vote.voter_type = "external_agent" if actor_agent.endpoint_url else "agent"
+        vote.weight = float(actor_agent.reputation if weight is None else weight)
+        vote.voter_type = voter_type or ("external_agent" if actor_agent.endpoint_url else "agent")
         vote.reason = (reason or "")[:500]
         db.flush()
 
-        from app.routers.claims import recalculate_trust_v2
-
-        recalculate_trust_v2(
-            evidence.claim_id,
-            db,
-            trigger=trigger,
-            actor_agent_id=actor_agent.id,
-        )
+        if recalculate:
+            cls.recalculate_evidence_trust(
+                db,
+                evidence=evidence,
+                trigger=trigger,
+                actor_agent_id=(
+                    actor_agent.id if recalc_actor_agent_id is None else recalc_actor_agent_id
+                ),
+            )
         logger.info(
             "trust_mutation_evidence_vote %s",
             {
@@ -98,3 +103,21 @@ class TrustMutationService:
             },
         )
         return EvidenceVoteMutationResult(vote=vote, created=created)
+
+    @classmethod
+    def recalculate_evidence_trust(
+        cls,
+        db: Session,
+        *,
+        evidence: Evidence,
+        trigger: str,
+        actor_agent_id: int | None = None,
+    ) -> tuple[str, float]:
+        from app.routers.claims import recalculate_trust_v2
+
+        return recalculate_trust_v2(
+            evidence.claim_id,
+            db,
+            trigger=trigger,
+            actor_agent_id=actor_agent_id,
+        )

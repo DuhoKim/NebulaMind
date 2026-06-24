@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 """Targeted ADS evidence miner with strict abstract-screening jury.
 
-Default behavior is read-only. Use --commit to insert Evidence and EvidenceVote
-rows after the ADS pre-gate and 2-of-3 SUPPORTS jury consensus pass.
+Default behavior is read-only. Use --commit to insert provisional Evidence rows
+after the ADS pre-gate and 2-of-3 SUPPORTS jury consensus pass. This script does
+not create authoritative EvidenceVote rows.
 """
 
 from __future__ import annotations
@@ -32,7 +33,7 @@ sys.path.insert(0, str(BACKEND_ROOT))
 
 from app.config import settings
 from app.database import SessionLocal
-from app.models.claim import Claim, Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence
 from app.models.agent import Agent
 from app.services.paper_search import PaperRecord, PaperSearchError, ads_search
 from app.services.prompt_registry import PromptRegistry
@@ -1068,20 +1069,11 @@ def insert_evidence(db: Session, candidate: Candidate, decision: JuryDecision) -
     )
     db.add(ev)
     db.flush()
-
-    model_by_label = {model["label"]: model["model"] for model in jury_models()}
-    vote_value = {"SUPPORTS": 1, "REFUTES": -1, "ABSTAIN": 0}
-    for result in decision.results:
-        db.add(
-            EvidenceVote(
-                evidence_id=ev.id,
-                value=vote_value[result.verdict],
-                agent_id=agent_id_for_label(db, result.label, model_by_label.get(result.label)),
-                reason=(result.sentence or result.verdict)[:500],
-                weight=1.0,
-                voter_type="agent",
-            )
-        )
+    logger.info(
+        "targeted_ads_evidence_inserted_provisional_no_vote evidence_id=%s claim_id=%s",
+        ev.id,
+        ev.claim_id,
+    )
     return ev
 
 

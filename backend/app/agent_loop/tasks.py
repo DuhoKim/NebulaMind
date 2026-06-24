@@ -2875,8 +2875,8 @@ def refresh_evidence_highlights(page_id: int | None = None):
 def run_stance_jury_for_evidence(self, evidence_id: int):
     """4-model parallel jury reads (claim, abstract) and votes per evidence."""
     import datetime as _dt
-    from app.models.claim import Claim, Evidence, EvidenceVote
-    from app.routers.claims import recalculate_trust_v2
+    from app.models.claim import Claim, Evidence
+    from app.services.trust_mutation import TrustMutationService
 
     db = SessionLocal()
     try:
@@ -2947,13 +2947,23 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
             })
             if value == 0:
                 continue
-            db.add(EvidenceVote(
-                evidence_id=ev.id, value=value,
-                agent_id=agent_id, voter_type="jury",
+            juror_agent = db.get(Agent, agent_id)
+            if not juror_agent:
+                raise RuntimeError(f"missing jury agent #{agent_id} for model {r['label']}")
+            result = TrustMutationService.create_or_update_evidence_vote(
+                db,
+                evidence_id=ev.id,
+                actor_agent=juror_agent,
+                value=value,
+                reason=parsed.get("reason"),
+                trigger="stance_jury",
+                duplicate_mode="update",
+                voter_type="jury",
                 weight=1.0,
-                reason=(parsed.get("reason") or "")[:500],
-            ))
-            votes_added += 1
+                recalculate=False,
+            )
+            if result.created:
+                votes_added += 1
 
         if parsed_count == 0:
             raise RuntimeError(f"stance jury returned no parseable votes for evidence #{evidence_id}")
@@ -2986,8 +2996,9 @@ def run_stance_jury_for_evidence(self, evidence_id: int):
         old_trust = claim.trust_level
 
         # Recompute trust
-        result = recalculate_trust_v2(ev.claim_id, db,
-                                       trigger="stance_jury", actor_agent_id=None)
+        result = TrustMutationService.recalculate_evidence_trust(
+            db, evidence=ev, trigger="stance_jury", actor_agent_id=None
+        )
         new_trust = result[0] if isinstance(result, tuple) else result
         db.commit()
         _release_stance_jury_inflight(evidence_id)
@@ -4865,7 +4876,8 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
     """Fast single-model jury for bulk processing."""
     import datetime as _dt
     import urllib.request as _urlreq
-    from app.models.claim import Claim, Evidence, EvidenceVote
+    from app.models.claim import Claim, Evidence
+    from app.services.trust_mutation import TrustMutationService
     # batch guard — prevents accidentally routing expensive preview/pro models into high-volume loops.
     # drain_jury_fast_pass enqueues this task per evidence row; a premium model override would
     # multiply cost across the entire jury backlog.
@@ -4952,14 +4964,21 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         value = max(-1, min(1, int(parsed.get("vote", 0))))
         if value != 0:
             agent_id = _agent_id_for_model(db, model)
-            db.add(EvidenceVote(
+            juror_agent = db.get(Agent, agent_id)
+            if not juror_agent:
+                raise RuntimeError(f"missing jury agent #{agent_id} for model {model}")
+            TrustMutationService.create_or_update_evidence_vote(
+                db,
                 evidence_id=ev.id,
+                actor_agent=juror_agent,
                 value=value,
-                agent_id=agent_id,
+                reason=parsed.get("reason"),
+                trigger="jury_single",
+                duplicate_mode="update",
                 voter_type="jury",
                 weight=1.0,
-                reason=(parsed.get("reason") or "")[:500],
-            ))
+                recalculate=False,
+            )
 
         # Stance flip if clearly wrong
         if not parsed.get("stance_correct", True):
@@ -4971,8 +4990,9 @@ def run_stance_jury_single(self, evidence_id: int, model: str | None = None):
         ev.stance_jury_run_at = _dt.datetime.utcnow()
         db.flush()
 
-        from app.routers.claims import recalculate_trust_v2
-        result = recalculate_trust_v2(ev.claim_id, db, trigger="jury_single")
+        result = TrustMutationService.recalculate_evidence_trust(
+            db, evidence=ev, trigger="jury_single", actor_agent_id=None
+        )
         new_trust = result[0] if isinstance(result, tuple) else result
         db.commit()
         _release_stance_jury_inflight(evidence_id)

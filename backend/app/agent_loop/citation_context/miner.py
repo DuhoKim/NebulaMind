@@ -3,6 +3,7 @@ from __future__ import annotations
 import asyncio
 import datetime as dt
 import json
+import logging
 import re
 import time
 from dataclasses import dataclass, field
@@ -13,7 +14,7 @@ from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.models.agent import Agent
-from app.models.claim import Claim, Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence
 import app.models.jury  # Ensure ForeignKey metadata is fully resolved to avoid NoReferencedTableError on flush
 from app.models.seminal import SeminalClaimMap
 from app.services.llm_utils import strip_think_blocks
@@ -29,6 +30,7 @@ from app.services.paper_search import (
 
 SOURCE_CHANNEL = "citation_context_mining"
 TRUST_TRIGGER = "ccm_citation_context"
+logger = logging.getLogger(__name__)
 DEFAULT_MIN_YEAR = dt.datetime.utcnow().year - 2
 DEFAULT_ADS_ROWS = 200
 DEFAULT_MAX_MAPS = 16
@@ -389,17 +391,14 @@ def insert_supportive_evidence(db: Session, ctx: CitationContext, verdict: PicoV
     )
     db.add(ev)
     db.flush()
-    db.add(
-        EvidenceVote(
-            evidence_id=ev.id,
-            value=1,
-            agent_id=agent_id_for_label(db, "Pico", settings.ASTRO_SCORER_MODEL or "vanta-research/atom-astronomy-7b"),
-            reason=normalize_text(ctx.context_sentence)[:500],
-            weight=1.0,
-            voter_type="agent",
-            scheduled_via="ccm",
-            latency_ms=verdict.latency_ms,
-        )
+    logger.info(
+        "ccm_evidence_inserted_provisional_no_vote %s",
+        {
+            "evidence_id": ev.id,
+            "claim_id": ev.claim_id,
+            "source_channel": SOURCE_CHANNEL,
+            "latency_ms": verdict.latency_ms,
+        },
     )
     return ev
 
