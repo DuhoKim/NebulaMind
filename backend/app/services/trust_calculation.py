@@ -1,4 +1,5 @@
 import math
+import os
 from datetime import datetime, timedelta
 
 from sqlalchemy.orm import Session
@@ -49,7 +50,9 @@ def _notify_trust_demotion(claim_id: int, old_level: str, new_level: str, claim_
             f"*{claim_text}...*\n"
             f"View: https://nebulamind.net"
         )
-        recruitment_webhook = "https://discord.com/api/webhooks/1489167759286997133/XspESjRMHz4x_jRT8zW3LkgF1riNNJcbykGweSkvXgfeghy0E4ETr_FaGfWtjfBg5h1K"
+        recruitment_webhook = os.getenv("DISCORD_NEBULAMIND_RECRUITMENT_WEBHOOK", "")
+        if not recruitment_webhook:
+            return
         httpx.post(recruitment_webhook, json={"content": msg}, timeout=5)
     except Exception:
         pass  # best-effort

@@ -882,10 +882,7 @@ def _chat_parallel(models: list[dict], system: str, user_msg: str, timeout: int 
     return successes
 
 
-NEBULAMIND_WEBHOOK = (
-    "https://discord.com/api/webhooks/1489161782521106434/"
-    "15-E1EQmKaUgkHIYJa9REM0J1g59b9cAUiiGZUWY9vQVIzjWjTyKYLHvCI-rVDylzwzE"
-)
+NEBULAMIND_WEBHOOK = os.getenv("DISCORD_NEBULAMIND_WEBHOOK", "")
 NEBULAMIND_BASE_URL = "https://nebulamind.net"
 
 
