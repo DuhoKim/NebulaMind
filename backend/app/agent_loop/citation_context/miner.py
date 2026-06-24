@@ -539,7 +539,7 @@ def run_ccm_cycle(
             time.sleep(0.3)
 
     if not dry_run and report.inserted:
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
 
         for claim_id in sorted(inserted_by_claim):
             report.recalculated[claim_id] = recalculate_trust_v2(claim_id, db, trigger=TRUST_TRIGGER)

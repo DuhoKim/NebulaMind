@@ -113,7 +113,7 @@ class TrustMutationService:
         trigger: str,
         actor_agent_id: int | None = None,
     ) -> tuple[str, float]:
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
 
         return recalculate_trust_v2(
             evidence.claim_id,

@@ -45,3 +45,19 @@ def test_source_finding_paths_are_fenced_as_provisional_no_vote():
     assert "dccm_evidence_inserted_provisional_no_vote" in dynamic_source
     assert "targeted_ads_evidence_inserted_provisional_no_vote" in targeted_source
     assert "does\nnot create authoritative EvidenceVote rows" in targeted_source
+
+
+def test_trust_mutation_uses_trust_calculation_service_not_router():
+    mutation_source = read_repo_file("app/services/trust_mutation.py")
+    router_import = "from app." + "routers.claims import " + "recalculate_trust_v2"
+    app_sources = [
+        path
+        for path in (REPO_ROOT / "app").rglob("*.py")
+        if ".bak" not in path.name
+    ]
+
+    assert "from app.services.trust_calculation import recalculate_trust_v2" in mutation_source
+    assert router_import not in mutation_source
+    for path in app_sources:
+        source = path.read_text()
+        assert router_import not in source

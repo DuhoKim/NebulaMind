@@ -607,7 +607,7 @@ def process_dynamic_paper(
     if dry_run:
         db.rollback()
     elif touched_claims:
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
 
         for claim_id in sorted(touched_claims):
             report.recalculated[claim_id] = recalculate_trust_v2(claim_id, db, trigger=DCCM_TRUST_TRIGGER)

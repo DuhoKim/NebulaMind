@@ -1714,7 +1714,7 @@ def _run_evidence_linker_v1(db, agent: Agent):
 
     if added:
         db.flush()
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
         new_trust, _ = recalculate_trust_v2(claim.id, db, trigger="arxiv_verification")
         print(f"[{agent.name}] Linked {added} verified paper(s) to claim #{claim.id} "
               f"(trust: {new_trust}, skipped: {skipped})")
@@ -1980,7 +1980,7 @@ def _run_evidence_linker_v2(db, agent: Agent, target_claim=None, inserts_per_run
         db.flush()
         for _ev in ev_list:
             _maybe_create_jury_task(db, _ev.id, claim.id, claim.page_id)
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
         new_trust, ts = recalculate_trust_v2(
             claim.id, db, trigger="evidence_linker_v2",
             actor_agent_id=agent.id if agent else None,
@@ -2330,7 +2330,7 @@ def mine_wikipedia_bibliography(self, page_id: int):
         ads_lookup_arxiv, ads_lookup_doi, extract_arxiv_id, extract_doi,
         is_arxiv, is_doi, verify_for_claim
     )
-    from app.routers.claims import recalculate_trust_v2
+    from app.services.trust_calculation import recalculate_trust_v2
 
     db = SessionLocal()
     try:
@@ -3990,7 +3990,7 @@ def sweep_human_overrides():
                 claim.human_override_at = None
                 claim.human_override_reason = None
                 # Recompute trust now
-                from app.routers.claims import recalculate_trust_v2
+                from app.services.trust_calculation import recalculate_trust_v2
                 new_level, ts = recalculate_trust_v2(claim.id, db, trigger="override_expired")
                 expired += 1
                 print(f"[override_sweep] Claim #{claim.id}: {old_override} override expired → {new_level}")
