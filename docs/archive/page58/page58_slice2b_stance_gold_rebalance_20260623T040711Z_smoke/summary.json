@@ -1,0 +1,121 @@
+{
+  "accuracy_metric": "not_computed_papa_labels_required",
+  "artifact": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2b_stance_gold_rebalance_20260623T040711Z_smoke",
+  "claude_p_cap": 50,
+  "claude_p_invocations": 0,
+  "containment": {
+    "claude_plan_lane_reachable": true,
+    "db_write_count": 0,
+    "git_head": "4ba9675",
+    "local_only": true,
+    "no_apply": true,
+    "paid_lane_touched": false
+  },
+  "db_select_checks": {
+    "migration_applied": false,
+    "page58_seen_select_only": {
+      "id": 58,
+      "page_id": 17,
+      "source_note": null,
+      "version_num": 9
+    },
+    "sentence_votes_table_present": false
+  },
+  "disagreement_accounting": {
+    "claude_tiebroken": 0,
+    "human_review_required": 0,
+    "panel_disagreements": 0,
+    "still_ambiguous_to_related_different_facet": 0
+  },
+  "draft_label_counts": {
+    "contradicts": 1,
+    "related_different_facet": 2,
+    "supports": 1,
+    "unrelated": 1
+  },
+  "draft_label_ratios": {
+    "contradicts": "1/5 (20.0%)",
+    "related_different_facet": "2/5 (40.0%)",
+    "supports": "1/5 (20.0%)",
+    "unrelated": "1/5 (20.0%)"
+  },
+  "flag_counts": {
+    "claude_cap_exhausted_disagreement": 0,
+    "panel_disagreement": 0,
+    "papa_attention": 3,
+    "qwen_default": 0,
+    "sub_tau_relevance_boundary": 0
+  },
+  "gpt_label_counts": {
+    "contradicts": 1,
+    "related_different_facet": 2,
+    "supports": 1,
+    "unrelated": 1
+  },
+  "label_source_counts": {
+    "qwen_gpt_agree": 5
+  },
+  "no_full_staking_rollup_rerun": true,
+  "phase": "slice2b_gold_rebalance_smoke",
+  "qwen_label_counts": {
+    "contradicts": 1,
+    "related_different_facet": 2,
+    "supports": 1,
+    "unrelated": 1
+  },
+  "rows": 5,
+  "sample_buckets": {
+    "contradict_oversample": 3,
+    "sub_tau_unrelated_probe": 1,
+    "support_control": 1
+  },
+  "sample_meta": {
+    "contradiction_like_pool": 27,
+    "input_rows": 5,
+    "negative_probe_pool": 456,
+    "sample_buckets": {
+      "contradict_oversample": 3,
+      "sub_tau_unrelated_probe": 1,
+      "support_control": 1
+    },
+    "source_prior_labels": {
+      "contradicts": 2,
+      "neither": 1,
+      "sub_tau_unrelated_probe": 1,
+      "supports": 1
+    },
+    "source_rows_emergent": 3247,
+    "source_rows_pairwise": 306,
+    "sub_tau_boundary_pool": 3162
+  },
+  "sha256s": {
+    "STANCE_GOLD_REBALANCE_NOTE.md": "007861fab47f2db3b8b1626f5cf44b2d2947e3853ab3cab398730200c5842337",
+    "stance_gold_draft_for_papa_v3.jsonl": "9059d41139fca92cb03ccb064eb274803b00cda26f6f7a06b4aa38ff00a1cd7c",
+    "summary.json": "e952d25a33095937642c4a9abda91c778df28029980817ffbb04bf4b87306534"
+  },
+  "source_artifacts": {
+    "slice1": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_sentence_vote_staking_dry_run_20260622T090031Z",
+    "slice2": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2_calibrated_staking_20260622T111621Z"
+  },
+  "stage1_counts": {
+    "related": 4,
+    "unrelated": 1
+  },
+  "stage1_ratios": {
+    "related": "4/5 (80.0%)",
+    "unrelated": "1/5 (20.0%)"
+  },
+  "stage2_counts": {
+    "None": 1,
+    "contradicts": 1,
+    "related_different_facet": 2,
+    "supports": 1
+  },
+  "stage2_ratios": {
+    "None": "1/5 (20.0%)",
+    "contradicts": "1/5 (20.0%)",
+    "related_different_facet": "2/5 (40.0%)",
+    "supports": "1/5 (20.0%)"
+  },
+  "stance_lock": "not_locked_pending_papa_spot_check"
+}

@@ -1,0 +1,102 @@
+{
+  "accuracy_metric": "not_computed_papa_labels_required",
+  "artifact": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2b_stance_gold_rebalance_20260623T040613Z_smoke",
+  "claude_p_cap": 50,
+  "claude_p_invocations": 1,
+  "containment": {
+    "claude_plan_lane_reachable": true,
+    "db_write_count": 0,
+    "git_head": "4ba9675",
+    "local_only": true,
+    "no_apply": true,
+    "paid_lane_touched": false
+  },
+  "db_select_checks": {
+    "migration_applied": false,
+    "page58_seen_select_only": {
+      "id": 58,
+      "page_id": 17,
+      "source_note": null,
+      "version_num": 9
+    },
+    "sentence_votes_table_present": false
+  },
+  "disagreement_accounting": {
+    "claude_tiebroken": 1,
+    "human_review_required": 0,
+    "panel_disagreements": 1,
+    "still_ambiguous_to_related_different_facet": 0
+  },
+  "draft_label_counts": {
+    "contradicts": 2,
+    "related_different_facet": 3
+  },
+  "draft_label_ratios": {
+    "contradicts": "2/5 (40.0%)",
+    "related_different_facet": "3/5 (60.0%)"
+  },
+  "flag_counts": {
+    "claude_cap_exhausted_disagreement": 0,
+    "panel_disagreement": 1,
+    "papa_attention": 5,
+    "qwen_default": 0,
+    "sub_tau_relevance_boundary": 0
+  },
+  "gpt_label_counts": {
+    "contradicts": 3,
+    "related_different_facet": 2
+  },
+  "label_source_counts": {
+    "claude_tiebreak": 1,
+    "qwen_gpt_agree": 4
+  },
+  "no_full_staking_rollup_rerun": true,
+  "phase": "slice2b_gold_rebalance_smoke",
+  "qwen_label_counts": {
+    "contradicts": 2,
+    "related_different_facet": 3
+  },
+  "rows": 5,
+  "sample_buckets": {
+    "contradict_oversample": 5
+  },
+  "sample_meta": {
+    "contradiction_like_pool": 27,
+    "input_rows": 5,
+    "negative_probe_pool": 456,
+    "sample_buckets": {
+      "contradict_oversample": 5
+    },
+    "source_prior_labels": {
+      "contradicts": 4,
+      "neither": 1
+    },
+    "source_rows_emergent": 3247,
+    "source_rows_pairwise": 306,
+    "sub_tau_boundary_pool": 3162
+  },
+  "sha256s": {
+    "STANCE_GOLD_REBALANCE_NOTE.md": "7c46b9390e8655bce857006cdb42d40cc986241fb655474b3a085bd60798d6e5",
+    "stance_gold_draft_for_papa_v3.jsonl": "54faf09d3f1809ead176c71737dae6c646a03d3464d2e1ae9dbd8b42d2f20e13",
+    "summary.json": "3ac15d7d9dcb0c6cdf3a81d36ac419dda235f40a6836bd4835bea0149b3361da"
+  },
+  "source_artifacts": {
+    "slice1": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_sentence_vote_staking_dry_run_20260622T090031Z",
+    "slice2": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2_calibrated_staking_20260622T111621Z"
+  },
+  "stage1_counts": {
+    "related": 5
+  },
+  "stage1_ratios": {
+    "related": "5/5 (100.0%)"
+  },
+  "stage2_counts": {
+    "contradicts": 2,
+    "related_different_facet": 3
+  },
+  "stage2_ratios": {
+    "contradicts": "2/5 (40.0%)",
+    "related_different_facet": "3/5 (60.0%)"
+  },
+  "stance_lock": "not_locked_pending_papa_spot_check"
+}
