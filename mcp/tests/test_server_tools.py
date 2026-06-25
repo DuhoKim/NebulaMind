@@ -11,6 +11,43 @@ assert SPEC.loader is not None
 SPEC.loader.exec_module(server)
 
 
+class GetClaimEvidenceToolTest(TestCase):
+    def test_get_claim_evidence_labels_provisional_status(self):
+        response = SimpleNamespace(
+            status_code=200,
+            json=lambda: {
+                "claim_text": "A debated astronomy claim",
+                "trust_level": "debated",
+                "evidence": [
+                    {
+                        "title": "Fresh candidate paper",
+                        "year": 2026,
+                        "arxiv_id": "2601.01234",
+                        "stance": "supports",
+                        "summary": "Promising, but not reviewer-promoted yet.",
+                        "status": "provisional",
+                    },
+                    {
+                        "title": "Reviewed baseline paper",
+                        "year": 2024,
+                        "stance": "challenges",
+                        "status": "active",
+                    },
+                ],
+            },
+        )
+
+        with mock.patch.object(server.httpx, "get", return_value=response) as get:
+            result = server.get_claim_evidence(claim_id=42)
+
+        get.assert_called_once_with(f"{server.API_BASE}/api/claims/42/evidence", timeout=15)
+        self.assertIn("Fresh candidate paper", result)
+        self.assertIn("status: provisional", result)
+        self.assertIn("not in trust until promoted", result)
+        self.assertIn("Reviewed baseline paper", result)
+        self.assertIn("status: active", result)
+
+
 class PromoteEvidenceToolTest(TestCase):
     def test_promote_evidence_posts_authenticated_request_and_formats_result(self):
         response = SimpleNamespace(

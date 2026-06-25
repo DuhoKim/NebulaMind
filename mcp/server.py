@@ -152,6 +152,10 @@ def get_claim_evidence(claim_id: int) -> str:
         result += f"  {stance_icon} {ev['title']} ({ev['year'] or '?'})"
         if ev.get("arxiv_id"):
             result += f" — arxiv:{ev['arxiv_id']}"
+        status = (ev.get("status") or "active").lower()
+        result += f" — status: {status}"
+        if status == "provisional":
+            result += " (not in trust until promoted)"
         if ev.get("summary"):
             result += f"\n     {ev['summary']}"
         result += "\n"
