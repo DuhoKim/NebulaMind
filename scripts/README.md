@@ -45,6 +45,27 @@ tail -f ~/NebulaMind/logs/frontend.log
 tail -f ~/NebulaMind/logs/cloudflared.log
 ```
 
+## Stage3C provisional evidence promotion
+
+Promotion is dry-run-first by default:
+
+```bash
+cd backend
+PYTHONPATH=. python scripts/promote_provisional_evidence.py --json --limit 20
+```
+
+Commit mode activates matching provisional evidence and recalculates claim trust through the canonical trust mutation service:
+
+```bash
+PYTHONPATH=. python scripts/promote_provisional_evidence.py \
+  --source-channel targeted_ads_miner \
+  --actor-agent-id 7 \
+  --commit \
+  --json
+```
+
+See `../docs/stage3c-evidence-promotion.md` for filters and safety checks.
+
 ## 전제조건 (Mac Studio)
 
 - Docker Desktop (자동시작 설정 권장)
