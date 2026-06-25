@@ -17,7 +17,6 @@ import json
 import math
 import os
 import re
-import statistics
 import sys
 import time
 import urllib.request
@@ -25,6 +24,12 @@ from pathlib import Path
 from typing import Any
 
 from sqlalchemy import create_engine, text
+
+_SCRIPT_BACKEND_ROOT = Path(__file__).resolve().parents[1]
+if str(_SCRIPT_BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_BACKEND_ROOT))
+
+from app.services.sentence_trust import project_sentence_trust  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -277,22 +282,6 @@ def stance_from_tone(tone_tier: str, confidence: float, tau_vote: float) -> tupl
     return "neutral", None
 
 
-def trust_level(pro: int, con: int, distinct_sources: int) -> str:
-    total = pro + con
-    if total <= 0 or distinct_sources <= 0:
-        return "unverified"
-    if distinct_sources == 1:
-        return "unverified"
-    share = pro / total if total else 0.0
-    if con > pro:
-        return "challenged"
-    if con > 0:
-        return "debated" if share < 0.90 else "accepted"
-    if pro >= 3:
-        return "consensus"
-    return "accepted"
-
-
 def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vote: float, drop_con: bool = False) -> list[dict[str, Any]]:
     by_sentence = {int(row["sentence_index"]): row for row in base_rows}
     grouped: dict[int, dict[str, Any]] = {
@@ -332,9 +321,11 @@ def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vot
         pro = existing_pro + new["pro"]
         con = existing_con + new["con"]
         distinct_sources = len(existing_sources | new["papers"])
-        total = pro + con
-        share = pro / total if total else 0.0
-        level = trust_level(pro, con, distinct_sources)
+        projection = project_sentence_trust(
+            settled_votes=pro,
+            contested_votes=con,
+            distinct_sources=distinct_sources,
+        )
         rows.append({
             "page_version_id": base["page_version_id"],
             "sentence_index": idx,
@@ -347,13 +338,16 @@ def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vot
             "new_con_votes": new["con"],
             "refine_tally": new["refine"],
             "no_op_tally": new["no_op"],
-            "would_be_settled_votes": pro,
-            "would_be_contested_votes": con,
-            "would_be_vote_count": distinct_sources,
-            "settled_share": round(share, 6),
-            "trust_score": round(0.45 * ((pro - con) / (total + 0.001)), 6) if total else 0.0,
-            "would_be_trust_level": level,
-            "single_source": distinct_sources == 1,
+            "would_be_settled_votes": projection["settled_votes"],
+            "would_be_contested_votes": projection["contested_votes"],
+            "would_be_vote_count": projection["vote_count"],
+            "settled_share": round(float(projection["settled_share"]), 6),
+            "trust_score": round(float(projection["trust_score"]), 6),
+            "would_be_trust_level": projection["trust_level"],
+            "would_be_tone_tier": projection["tone_tier"],
+            "single_source": projection["single_source"],
+            "contested_veto": projection["contested_veto"],
+            "tone_distribution": projection["tone_distribution"],
         })
     return rows
 
@@ -634,7 +628,8 @@ def write_report(path: Path, summary: dict[str, Any], trust_rows: list[dict[str,
             row["sentence_text"],
             "",
             f"- New votes: +{row['new_pro_votes']} / -{row['new_con_votes']}; refine tally {row['refine_tally']}; no-op tally {row['no_op_tally']}.",
-            f"- Would-be trust: {row['would_be_trust_level']} (baseline {row['baseline_trust_level']}); settled share {row['settled_share']:.3f}.",
+            f"- Would-be trust: {row['would_be_trust_level']} / tone {row.get('would_be_tone_tier', 'n/a')} (baseline {row['baseline_trust_level']}); settled share {row['settled_share']:.3f}.",
+            f"- Flags: single_source={row.get('single_source', False)}, contested_veto={row.get('contested_veto', False)}.",
             "",
         ])
     lines.extend([

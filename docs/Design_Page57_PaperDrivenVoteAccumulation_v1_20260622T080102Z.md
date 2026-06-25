@@ -28,6 +28,8 @@
 
 **Build-order status after PR #20:** Revision 1's Step 2 is now partially complete as an app-code scaffold: the ledger/aggregate schema has ORM models and a deterministic rollup seam. The next non-destructive slice is still a `--no-apply` dry-run over page 58's 168 usable intros, after the calibration work in Revision 1 Point 2: τ_rel intro×base gold, new pairwise stance gold, and tone-tier intro-transfer gate.
 
+**Follow-up dry-run parity slice (`feat/page57-dry-run-trust-parity`):** the Page58 `--no-apply` staking dry-run now calls the same production `project_sentence_trust(...)` projector used by `TrustMutationService.recalculate_sentence_trust(...)`. This removes the prior duplicate `trust_level(...)` logic in the dry-run script, so `would_be_sentence_trust.jsonl` will use the same zero-vote, single-source, contested-veto, tone-tier, settled-share, and trust-score semantics as the eventual persisted `sentence_trust` rows. The dry-run report also surfaces `would_be_tone_tier`, `single_source`, and `contested_veto` flags. This still performs no live DB writes and does not authorize `--apply`.
+
 ---
 
 ## 0. The core inversion (and its honest tradeoff)
