@@ -350,6 +350,51 @@ def test_trust_history_surfaces_evidence_promotion_without_level_change(db_sessi
     assert data["stats"]["noise_filtered"] == 0
 
 
+def test_legacy_claim_history_surfaces_evidence_promotion_score_delta(db_session):
+    test_page = WikiPage(id=27, slug="legacy-promotion-history-page", title="Legacy Promotion History Page")
+    test_claim = Claim(
+        id=27,
+        page_id=27,
+        text="Legacy Promotion History Claim",
+        trust_level="unverified",
+        trust_score=0.42,
+    )
+    db_session.add_all([test_page, test_claim])
+    db_session.flush()
+    db_session.add(
+        TrustAuditLog(
+            claim_id=27,
+            old_level="unverified",
+            new_level="unverified",
+            old_score=0.10,
+            new_score=0.42,
+            trigger="evidence_promoted",
+            triggered_by_agent_id=44,
+            created_at=dt.datetime(2026, 6, 25, 12, 45, 0),
+        )
+    )
+    db_session.commit()
+
+    history_client = TestClient(app, raise_server_exceptions=False)
+    response = history_client.get("/api/claims/27/history")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["events"]
+    event = data["events"][0]
+    assert event["kind"] == "evidence_promoted"
+    assert event["color"] == "gold"
+    assert event["summary"] == "Evidence promoted into trust"
+    assert event["old_level"] == "unverified"
+    assert event["new_level"] == "unverified"
+    assert event["old_score"] == pytest.approx(0.10)
+    assert event["new_score"] == pytest.approx(0.42)
+    assert event["score_delta"] == pytest.approx(0.32)
+    assert event["detail"] == "Score 0.100 → 0.420 (+0.320)"
+    assert data["total_raw_rows"] == 1
+    assert data["total_condensed"] == 1
+
+
 def test_trust_history_events_include_structured_score_delta(db_session):
     test_page = WikiPage(id=26, slug="promotion-score-history-page", title="Promotion Score History Page")
     test_claim = Claim(
