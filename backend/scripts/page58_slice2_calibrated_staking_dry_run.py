@@ -11,13 +11,12 @@ import argparse
 import collections
 import datetime as dt
 import hashlib
-import importlib.util
 import json
-import math
 import os
 import random
 import re
 import subprocess
+import sys
 import time
 import urllib.request
 from pathlib import Path
@@ -25,6 +24,12 @@ from typing import Any
 
 from sqlalchemy import create_engine, text
 from sklearn.metrics import f1_score
+
+_SCRIPT_BACKEND_ROOT = Path(__file__).resolve().parents[1]
+if str(_SCRIPT_BACKEND_ROOT) not in sys.path:
+    sys.path.insert(0, str(_SCRIPT_BACKEND_ROOT))
+
+from app.services.sentence_trust import project_sentence_trust  # noqa: E402
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -240,24 +245,6 @@ def calibrate_tau_vote(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "tune_rows": len(tune), "validate_rows": len(validate), "provisional": True}
 
 
-def production_sentence_trust(pro: int, con: int, distinct_sources: int, new_con: int) -> str:
-    if distinct_sources <= 1:
-        return "unverified"
-    if con > pro:
-        return "challenged"
-    if new_con >= 2:
-        return "debated"
-    if pro >= 10 and con <= 2:
-        return "consensus"
-    if pro >= 3 and con == 0:
-        return "consensus"
-    if con > 0:
-        return "debated"
-    if pro > 0:
-        return "accepted"
-    return "unverified"
-
-
 def hydrate_base_rows(base_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
     if not base_rows:
         return base_rows
@@ -374,10 +361,17 @@ def reroll(base_rows: list[dict[str, Any]], stance_rows: list[dict[str, Any]], t
         pro = int(base["baseline_settled_votes"]) + g["pro"]
         con = int(base["baseline_contested_votes"]) + g["con"]
         sources = len(set(base.get("existing_arxiv_ids") or []) | g["papers"])
-        level = production_sentence_trust(pro, con, sources, g["con"])
+        projection = project_sentence_trust(
+            settled_votes=pro,
+            contested_votes=con,
+            distinct_sources=sources,
+        )
         out.append({**base, "slice2_new_pro_votes": g["pro"], "slice2_new_con_votes": g["con"], "seed_duplicate_stakes_skipped": g["skipped_seed_dupes"],
                     "slice2_settled_votes": pro, "slice2_contested_votes": con, "slice2_distinct_sources": sources,
-                    "slice2_settled_share": round(pro / (pro + con), 6) if pro + con else 0.0, "slice2_trust_level": level})
+                    "slice2_settled_share": projection["settled_share"], "slice2_trust_score": projection["trust_score"],
+                    "slice2_trust_level": projection["trust_level"], "slice2_tone_tier": projection["tone_tier"],
+                    "slice2_single_source": projection["single_source"], "slice2_contested_veto": projection["contested_veto"],
+                    "slice2_tone_distribution": projection["tone_distribution"]})
     return out
 
 
@@ -511,7 +505,8 @@ def write_report(path: Path, summary: dict[str, Any], roll: list[dict[str, Any]]
             f"### Sentence {row['sentence_index']}",
             row["sentence_text"],
             f"- New votes: +{row['slice2_new_pro_votes']} / -{row['slice2_new_con_votes']}; seed duplicate stakes skipped {row['seed_duplicate_stakes_skipped']}.",
-            f"- Would-be trust: {row['slice2_trust_level']} (settled share {row['slice2_settled_share']}).",
+            f"- Would-be trust: {row['slice2_trust_level']} (settled share {row['slice2_settled_share']}; "
+            f"tone {row['slice2_tone_tier']}; contested_veto={row['slice2_contested_veto']}).",
             "",
         ])
     lines.extend([
