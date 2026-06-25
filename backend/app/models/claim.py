@@ -49,6 +49,7 @@ class Evidence(Base):
     s2_paper_id: Mapped[str | None] = mapped_column(String(60), nullable=True)
     verified_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
     stance_jury_run_at: Mapped[dt.datetime | None] = mapped_column(nullable=True)
+    status: Mapped[str] = mapped_column(String(20), default="active", server_default="active")
     source_channel: Mapped[str] = mapped_column(String(40), default="manual", server_default="manual")
     arxiv_verified: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
     # === Open Agent Council ===

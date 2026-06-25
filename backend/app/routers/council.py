@@ -198,7 +198,7 @@ def _maybe_resolve_escalation(esc: Escalation, db) -> None:
     # Trust recalculation for claim_trust escalations that were overturned/revoked
     if esc.status == "resolved" and esc.source_kind == "claim_trust" and esc.resolution in ("overturned", "revoked"):
         try:
-            from app.routers.claims import recalculate_trust_v2
+            from app.services.trust_calculation import recalculate_trust_v2
             from app.models.claim import TrustAuditLog
             new_level, ts = recalculate_trust_v2(
                 esc.source_id, db,

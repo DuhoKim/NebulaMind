@@ -73,7 +73,7 @@ def main(apply: bool = False) -> None:
         db.flush()
 
         # ---- Step 3: Recompute trust for all claims ----
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
 
         claims = db.query(Claim).all()
         level_counts: dict[str, int] = {}

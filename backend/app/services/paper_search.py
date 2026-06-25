@@ -20,18 +20,53 @@ from app.config import settings
 # URL helpers (used by wikipedia bibliography miner)
 # ---------------------------------------------------------------------------
 
-_ARXIV_URL_RE = _re.compile(r'arxiv\.org/(?:abs|pdf)/([0-9]{4}\.[0-9]{4,5}(?:v\d+)?)')
+_ARXIV_ID_RE = _re.compile(r'(?:[A-Za-z-]+(?:\.[A-Z]{2})?/\d{7}|\d{4}\.\d{4,5}(?:v\d+)?)')
+_ARXIV_ID_FULL_RE = _re.compile(rf'^{_ARXIV_ID_RE.pattern}$')
+_ARXIV_URL_RE = _re.compile(r'arxiv\.org/(?:abs|pdf)/([^?#\s]+)')
+_ARXIV_DOI_RE = _re.compile(rf'10\.48550/arXiv\.({_ARXIV_ID_RE.pattern})', _re.IGNORECASE)
+_ARXIV_PREFIX_RE = _re.compile(rf'arXiv:\s*({_ARXIV_ID_RE.pattern})', _re.IGNORECASE)
 _DOI_URL_RE = _re.compile(r'(?:doi\.org/|dx\.doi\.org/)(.+?)(?:\s|$)')
+
+
+def normalize_arxiv_id(value: str | None) -> str | None:
+    """Return a DB-safe arXiv id, including old-style ids."""
+    if not value:
+        return None
+    text = urllib.parse.unquote(str(value)).strip().strip("<>")
+    if not text:
+        return None
+    text = text.split("#", 1)[0].split("?", 1)[0].rstrip(".")
+    if text.endswith(".pdf"):
+        text = text[:-4]
+
+    url_match = _ARXIV_URL_RE.search(text)
+    if url_match:
+        return normalize_arxiv_id(url_match.group(1))
+
+    doi_match = _ARXIV_DOI_RE.search(text)
+    if doi_match:
+        return doi_match.group(1)
+
+    prefix_match = _ARXIV_PREFIX_RE.search(text)
+    if prefix_match:
+        return prefix_match.group(1)
+
+    for prefix in ("oai:arXiv.org:", "arxiv:"):
+        if text.lower().startswith(prefix.lower()):
+            return normalize_arxiv_id(text[len(prefix):])
+
+    if _ARXIV_ID_FULL_RE.fullmatch(text):
+        return text
+    return None
 
 
 def extract_arxiv_id(url: str) -> str | None:
     """Extract arXiv ID from a URL. Returns bare ID like '2301.12345'."""
-    m = _ARXIV_URL_RE.search(url)
-    return m.group(1).split('v')[0] if m else None
+    return normalize_arxiv_id(url)
 
 
 def is_arxiv(url: str) -> bool:
-    return bool(_ARXIV_URL_RE.search(url))
+    return normalize_arxiv_id(url) is not None
 
 
 def extract_doi(url: str) -> str | None:
@@ -67,10 +102,14 @@ class PaperRecord:
     venue: str | None = None
     source: str = "ads"        # "ads" | "s2" | "merged"
 
+    def __post_init__(self) -> None:
+        self.arxiv_id = normalize_arxiv_id(self.arxiv_id)
+
     def to_evidence_dict(self) -> dict:
         """Map to the existing `evidence` table columns."""
+        arxiv_id = normalize_arxiv_id(self.arxiv_id)
         return {
-            "arxiv_id": self.arxiv_id,
+            "arxiv_id": arxiv_id,
             "doi": self.doi,
             "title": self.title,
             "authors": json.dumps(self.authors[:5]) if self.authors else None,
@@ -78,7 +117,7 @@ class PaperRecord:
             "abstract": self.abstract,
             "ads_bibcode": self.bibcode,
             "s2_paper_id": self.s2_id,
-            "url": (f"https://arxiv.org/abs/{self.arxiv_id}" if self.arxiv_id
+            "url": (f"https://arxiv.org/abs/{arxiv_id}" if arxiv_id
                     else (f"https://doi.org/{self.doi}" if self.doi else None)),
         }
 
@@ -177,7 +216,7 @@ def ads_reference_bibcodes(bibcode: str, *, rows: int = 200) -> list[PaperRecord
 
 def ads_lookup_arxiv(arxiv_id: str) -> PaperRecord | None:
     """Resolve a known arXiv ID to a full paper record (used by the verifier)."""
-    clean = arxiv_id.replace("arXiv:", "").strip()
+    clean = normalize_arxiv_id(arxiv_id) or arxiv_id.replace("arXiv:", "").strip()
     try:
         results = ads_search(f'identifier:"{clean}"', rows=1, sort="date desc", fq=None)
     except PaperSearchError:
@@ -210,7 +249,7 @@ def ads_lookup_doi(doi: str) -> PaperRecord | None:
 
 def _ads_to_record(d: dict) -> PaperRecord:
     ids = d.get("identifier", []) or []
-    arxiv = next((i.replace("arXiv:", "").strip() for i in ids if "arXiv" in i), None)
+    arxiv = next((clean for clean in (normalize_arxiv_id(i) for i in ids) if clean), None)
     return PaperRecord(
         title=(d.get("title", [""]) or [""])[0],
         abstract=d.get("abstract"),

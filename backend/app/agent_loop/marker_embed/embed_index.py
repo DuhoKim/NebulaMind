@@ -12,6 +12,7 @@ import math
 import json
 import time
 import threading
+from pathlib import Path
 from typing import Optional
 
 import httpx
@@ -28,6 +29,8 @@ OLLAMA_BASE = (
 EMBED_MODEL = settings.EMBED_OLLAMA_MODEL
 COSINE_FLOOR = 0.25  # lowered from 0.45 — Claude aligner picks best match, just needs candidates
 TOP_K = 5            # increased from 3 — more candidates for Claude to choose from
+EMBED_ATTEMPTS = 3
+TIMING_LOG = os.getenv("MARKER_TIMING_LOG")
 
 _cache: dict[str, Optional[list[float]]] = {}
 _stats = {"calls": 0, "hits": 0, "misses": 0, "errors": 0}
@@ -35,6 +38,18 @@ _stats = {"calls": 0, "hits": 0, "misses": 0, "errors": 0}
 # Circuit Breaker state
 _local_failures = 0
 _local_offline_until = 0.0
+
+
+def _timing_event(event: str, **payload) -> None:
+    if not TIMING_LOG:
+        return
+    try:
+        path = Path(TIMING_LOG)
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a", encoding="utf-8") as handle:
+            handle.write(json.dumps({"stage": "embed_index", "event": event, **payload}, sort_keys=True) + "\n")
+    except Exception:
+        log.debug("embed timing log write failed", exc_info=True)
 
 
 def _fast_local_check() -> bool:
@@ -74,6 +89,52 @@ def reset_cache_stats() -> None:
 
 def _cache_key(text: str) -> str:
     return hashlib.sha256(text.encode()).hexdigest()[:20]
+
+
+def _post_embedding(base_url: str, text: str, *, timeout: float, route_name: str) -> Optional[list[float]]:
+    for attempt in range(1, EMBED_ATTEMPTS + 1):
+        if attempt > 1:
+            time.sleep(2 ** (attempt - 1))
+        started = time.perf_counter()
+        try:
+            resp = httpx.post(
+                f"{base_url}/api/embeddings",
+                json={"model": EMBED_MODEL, "prompt": text, "keep_alive": "30m"},
+                timeout=timeout,
+            )
+            resp.raise_for_status()
+            embedding = resp.json().get("embedding")
+            _timing_event(
+                "post_embedding",
+                route=route_name,
+                base=base_url,
+                attempt=attempt,
+                ok=embedding is not None,
+                wall_ms=round((time.perf_counter() - started) * 1000, 3),
+                text_chars=len(text),
+            )
+            return embedding
+        except Exception as exc:
+            _timing_event(
+                "post_embedding",
+                route=route_name,
+                base=base_url,
+                attempt=attempt,
+                ok=False,
+                wall_ms=round((time.perf_counter() - started) * 1000, 3),
+                text_chars=len(text),
+                error=type(exc).__name__,
+            )
+            log.warning(
+                "embed_index: %s embedding failed attempt=%d/%d: %s",
+                route_name,
+                attempt,
+                EMBED_ATTEMPTS,
+                exc,
+            )
+            if attempt == EMBED_ATTEMPTS:
+                return None
+    return None
 
 
 def _embed(text: str) -> Optional[list[float]]:
@@ -126,13 +187,9 @@ def _embed(text: str) -> Optional[list[float]]:
     # Try local Mac Studio if NOT flagged offline and healthy
     if not local_is_flagged_offline and local_is_healthy_cache:
         try:
-            resp = httpx.post(
-                f"{local_base}/api/embeddings",
-                json={"model": EMBED_MODEL, "prompt": text, "keep_alive": "30m"},
-                timeout=6.0,  # >5s timeout to trigger circuit breaker if slow
-            )
-            resp.raise_for_status()
-            vec = resp.json().get("embedding")
+            vec = _post_embedding(local_base, text, timeout=6.0, route_name="local")
+            if vec is None:
+                raise RuntimeError("local embedding returned no vector")
             _local_failures = 0  # Reset on successful embedding call
             _cache[key] = vec
             return vec
@@ -146,30 +203,20 @@ def _embed(text: str) -> Optional[list[float]]:
             # Fallback to remote base immediately
             if remote_base:
                 try:
-                    resp = httpx.post(
-                        f"{remote_base}/api/embeddings",
-                        json={"model": EMBED_MODEL, "prompt": text, "keep_alive": "30m"},
-                        timeout=10,
-                    )
-                    resp.raise_for_status()
-                    vec = resp.json().get("embedding")
-                    _cache[key] = vec
-                    return vec
+                    vec = _post_embedding(remote_base, text, timeout=10, route_name="remote fallback")
+                    if vec is not None:
+                        _cache[key] = vec
+                        return vec
                 except Exception as fallback_exc:
                     log.warning("embed_index: remote fallback embedding failed: %s", fallback_exc)
     else:
         # Route directly to remote base/fallback
         if remote_base:
             try:
-                resp = httpx.post(
-                    f"{remote_base}/api/embeddings",
-                    json={"model": EMBED_MODEL, "prompt": text, "keep_alive": "30m"},
-                    timeout=10,
-                )
-                resp.raise_for_status()
-                vec = resp.json().get("embedding")
-                _cache[key] = vec
-                return vec
+                vec = _post_embedding(remote_base, text, timeout=10, route_name="direct remote fallback")
+                if vec is not None:
+                    _cache[key] = vec
+                    return vec
             except Exception as fallback_exc:
                 log.warning("embed_index: direct remote fallback embedding failed: %s", fallback_exc)
 
@@ -192,8 +239,19 @@ def rank_candidates(claim_text: str, sentences: list[str], top_k: int = TOP_K, c
     Return up to top_k sentences scored ≥ cosine_floor, sorted by cosine desc.
     Returns [] if the claim embedding fails.
     """
+    started = time.perf_counter()
     claim_vec = _embed(claim_text)
     if claim_vec is None:
+        _timing_event(
+            "rank_candidates",
+            ok=False,
+            sentence_count=len(sentences),
+            scored=0,
+            returned=0,
+            wall_ms=round((time.perf_counter() - started) * 1000, 3),
+            reason="claim_embed_failed",
+            cache_stats=get_cache_stats(),
+        )
         return []
 
     scored: list[tuple[str, float]] = []
@@ -206,4 +264,14 @@ def rank_candidates(claim_text: str, sentences: list[str], top_k: int = TOP_K, c
             scored.append((sent, score))
 
     scored.sort(key=lambda x: x[1], reverse=True)
-    return scored[:top_k]
+    result = scored[:top_k]
+    _timing_event(
+        "rank_candidates",
+        ok=True,
+        sentence_count=len(sentences),
+        scored=len(scored),
+        returned=len(result),
+        wall_ms=round((time.perf_counter() - started) * 1000, 3),
+        cache_stats=get_cache_stats(),
+    )
+    return result

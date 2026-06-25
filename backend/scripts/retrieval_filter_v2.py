@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import json
 import os
+import hashlib
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -37,15 +38,19 @@ DOWNRANK: Decision = "downrank"
 BOUNDARY_REVIEW_KEEP: Decision = "boundary_review_keep"
 ELEMENT_UNSUPPORTED: Decision = "element_unsupported"
 SEMANTIC_UNSUPPORTED: Decision = "semantic_unsupported"
-ENTAILMENT_OLLAMA_MODEL = "llama3.1:8b"
+ENTAILMENT_OLLAMA_MODEL = "gpt-oss:20b"
+ENTAILMENT_MIMA_MODEL = "qwen3.6:35b-a3b"
 ENTAILMENT_OLLAMA_BASE = "http://localhost:11434"
 ENTAILMENT_GEMINI_BASE = "https://generativelanguage.googleapis.com/v1beta/openai"
 ENTAILMENT_GEMINI_MODEL = "google/gemini-2.5-flash"
 ENTAILMENT_MODEL = ENTAILMENT_GEMINI_MODEL
+ENTAILMENT_PROVIDER = "gemini"
 ENTAILMENT_TIMEOUT_SECONDS = 45
+ENTAILMENT_PROMPT_VERSION = "entailment_gate_v1"
 DEFAULT_COVERAGE_REQUIRED_STAGES = ("atom_decomposition", "precheck", "astrosage_verdict")
 ENTAILMENT_PROMPT_TEMPLATE = """You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
 Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
+Pay attention to these discriminating dimensions: {entailment_dimensions}.
 
 Claim Context: {claim_text_snapshot}
 Specific Element to Verify: {element_text}
@@ -164,6 +169,10 @@ class EntailmentGateResult:
     prompt_tokens: int | None = None
     completion_tokens: int | None = None
     total_tokens: int | None = None
+    cache_key: str | None = None
+    prompt_version: str = ENTAILMENT_PROMPT_VERSION
+    model_version: str | None = None
+    cache_hit: bool = False
 
     @property
     def admits_coverage(self) -> bool:
@@ -417,12 +426,106 @@ def _normal_text(value: Any) -> str:
     return " ".join(str(value or "").lower().replace("_", " ").replace("-", " ").split())
 
 
+def _sha_text(value: Any) -> str:
+    if value is None:
+        value = ""
+    if not isinstance(value, str):
+        value = json.dumps(value, ensure_ascii=False, sort_keys=True)
+    return hashlib.sha256(value.encode("utf-8")).hexdigest()
+
+
+def _entailment_dimensions(row: Mapping[str, Any]) -> str:
+    value = row.get("entailment_dimensions")
+    if value is None:
+        value = row.get("gate_discriminating_dimensions")
+    if isinstance(value, str) and value.strip():
+        return value.strip()
+    if isinstance(value, Iterable) and not isinstance(value, (Mapping, str, bytes)):
+        items = [str(item).strip() for item in value if str(item).strip()]
+        if items:
+            return ", ".join(items)
+    return "measured quantity, physical mechanism, population, redshift or time range"
+
+
+def entailment_cache_key(
+    row: Mapping[str, Any],
+    *,
+    model: str = ENTAILMENT_MODEL,
+    prompt_version: str = ENTAILMENT_PROMPT_VERSION,
+) -> str:
+    payload = {
+        "claim_id": row.get("claim_id"),
+        "element_id": row.get("element_id"),
+        "element_text_hash": row.get("element_text_hash") or _sha_text(row.get("element_text")),
+        "paper_id": row.get("paper_id") or row.get("arxiv_id"),
+        "paper_text_hash": row.get("paper_text_hash")
+        or row.get("paper_abstract_hash")
+        or _sha_text(row.get("paper_abstract_snapshot") or row.get("paper_abstract")),
+        "prompt_version": prompt_version,
+        "model_version": model,
+    }
+    serialized = json.dumps(payload, ensure_ascii=False, sort_keys=True, separators=(",", ":"))
+    return hashlib.sha256(serialized.encode("utf-8")).hexdigest()
+
+
+def _result_to_cache_payload(result: EntailmentGateResult) -> dict[str, Any]:
+    return {
+        "entailment": result.entailment,
+        "reason": result.reason,
+        "error": result.error,
+        "raw_response": result.raw_response,
+        "prompt_tokens": result.prompt_tokens,
+        "completion_tokens": result.completion_tokens,
+        "total_tokens": result.total_tokens,
+        "prompt_version": result.prompt_version,
+        "model_version": result.model_version,
+    }
+
+
+def _result_from_cache_payload(payload: Mapping[str, Any], cache_key: str) -> EntailmentGateResult:
+    entailment = str(payload.get("entailment") or "error").strip().lower()
+    if entailment not in {"yes", "no", "abstain", "error"}:
+        entailment = "error"
+    return EntailmentGateResult(
+        entailment=entailment,  # type: ignore[arg-type]
+        reason=None if payload.get("reason") is None else str(payload.get("reason")),
+        error=None if payload.get("error") is None else str(payload.get("error")),
+        raw_response=None if payload.get("raw_response") is None else str(payload.get("raw_response")),
+        prompt_tokens=payload.get("prompt_tokens") if isinstance(payload.get("prompt_tokens"), int) else None,
+        completion_tokens=payload.get("completion_tokens") if isinstance(payload.get("completion_tokens"), int) else None,
+        total_tokens=payload.get("total_tokens") if isinstance(payload.get("total_tokens"), int) else None,
+        cache_key=cache_key,
+        prompt_version=str(payload.get("prompt_version") or ENTAILMENT_PROMPT_VERSION),
+        model_version=None if payload.get("model_version") is None else str(payload.get("model_version")),
+        cache_hit=True,
+        latency_seconds=0.0,
+    )
+
+
+def load_entailment_cache(path: Path | None) -> dict[str, dict[str, Any]]:
+    if path is None or not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as handle:
+        loaded = json.load(handle)
+    if not isinstance(loaded, Mapping):
+        return {}
+    return {str(key): dict(value) for key, value in loaded.items() if isinstance(value, Mapping)}
+
+
+def write_entailment_cache(path: Path | None, cache: Mapping[str, Mapping[str, Any]]) -> None:
+    if path is None:
+        return
+    path.parent.mkdir(parents=True, exist_ok=True)
+    path.write_text(json.dumps(cache, indent=2, ensure_ascii=False, sort_keys=True), encoding="utf-8")
+
+
 def entailment_gate_prompt(row: Mapping[str, Any]) -> str:
     from app.services.prompt_registry import PromptRegistry
     variables = {
         "claim_text_snapshot": str(row.get("claim_text_snapshot") or ""),
         "element_text": str(row.get("element_text") or ""),
         "paper_abstract_snapshot": str(row.get("paper_abstract_snapshot") or row.get("paper_abstract") or ""),
+        "entailment_dimensions": _entailment_dimensions(row),
     }
     try:
         return PromptRegistry().render("entailment", variables)
@@ -462,13 +565,17 @@ def evaluate_entailment_gate(
     ollama_base: str = ENTAILMENT_OLLAMA_BASE,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
 ) -> EntailmentGateResult:
+    default_num_predict = 1024 if model.startswith("gpt-oss:") else 64
+    num_predict = int(os.getenv("ENTAILMENT_NUM_PREDICT", str(default_num_predict)))
     payload = {
         "model": model,
         "messages": [{"role": "user", "content": entailment_gate_prompt(row)}],
         "stream": False,
         "format": "json",
-        "options": {"temperature": 0.0, "num_ctx": 4096, "num_predict": 160},
+        "options": {"temperature": 0.0, "num_ctx": 4096, "num_predict": num_predict},
     }
+    if model.startswith("qwen3.6"):
+        payload["think"] = False
     started = time.monotonic()
     try:
         response = requests.post(f"{ollama_base.rstrip('/')}/api/chat", json=payload, timeout=timeout)
@@ -481,12 +588,14 @@ def evaluate_entailment_gate(
             reason=parsed.reason,
             raw_response=parsed.raw_response,
             latency_seconds=round(time.monotonic() - started, 3),
+            model_version=model,
         )
     except Exception as exc:
         return EntailmentGateResult(
             entailment="error",
             error=f"{type(exc).__name__}: {exc}"[:240],
             latency_seconds=round(time.monotonic() - started, 3),
+            model_version=model,
         )
 
 
@@ -528,12 +637,14 @@ def evaluate_entailment_gate_openai_compatible(
             prompt_tokens=_usage_int(body, "prompt_tokens"),
             completion_tokens=_usage_int(body, "completion_tokens"),
             total_tokens=_usage_int(body, "total_tokens"),
+            model_version=model,
         )
     except Exception as exc:
         return EntailmentGateResult(
             entailment="error",
             error=f"{type(exc).__name__}: {exc}"[:240],
             latency_seconds=round(time.monotonic() - started, 3),
+            model_version=model,
         )
 
 
@@ -567,9 +678,16 @@ def evaluate_entailment_gate_gemini(
 
 def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResult, model: str = ENTAILMENT_MODEL) -> dict[str, Any]:
     out = dict(row)
+    status = {
+        "yes": "pass",
+        "no": "reject",
+        "abstain": "abstain",
+        "error": "error",
+    }[result.entailment]
     out.update(
         {
             "entailment_gate_model": model,
+            "entailment_status": status,
             "entailment_gate_decision": result.entailment,
             "entailment_gate_reason": result.reason,
             "entailment_gate_error": result.error,
@@ -577,9 +695,29 @@ def row_with_entailment_gate(row: Mapping[str, Any], result: EntailmentGateResul
             "entailment_gate_prompt_tokens": result.prompt_tokens,
             "entailment_gate_completion_tokens": result.completion_tokens,
             "entailment_gate_total_tokens": result.total_tokens,
+            "entailment_cache_key": result.cache_key,
+            "entailment_prompt_version": result.prompt_version,
+            "entailment_model_version": result.model_version or model,
+            "entailment_cache_hit": result.cache_hit,
         }
     )
     return out
+
+
+def row_is_entailment_gate_input(row: Mapping[str, Any], keep_decisions: Iterable[str] = (KEEP, DOWNRANK)) -> bool:
+    decision = str(row.get("retrieval_filter_decision") or row.get("decision") or KEEP)
+    if decision not in set(keep_decisions):
+        return False
+    if row.get("coverage_candidate") is False:
+        return False
+    if row.get("element_support_gate") is False:
+        return False
+    semantic_status = row.get("semantic_band_status") or row.get("semantic_status")
+    if semantic_status and str(semantic_status) != "semantic_passed":
+        return False
+    if str(row.get("coverage_queue_exclusion_reason") or "") in {"off_domain", "semantic_unsupported", "element_unsupported"}:
+        return False
+    return True
 
 
 def initial_coverage_fields(required_stages: Iterable[str] = DEFAULT_COVERAGE_REQUIRED_STAGES) -> dict[str, Any]:
@@ -603,27 +741,92 @@ def split_rows_by_entailment_gate(
     rows: Iterable[Mapping[str, Any]],
     *,
     model: str = ENTAILMENT_MODEL,
-    base_url: str = ENTAILMENT_GEMINI_BASE,
+    provider: str = ENTAILMENT_PROVIDER,
+    base_url: str | None = None,
     api_key: str | None = None,
     timeout: int = ENTAILMENT_TIMEOUT_SECONDS,
+    cache_path: Path | None = None,
+    force: bool = False,
+    keep_decisions: Iterable[str] = (KEEP, DOWNRANK),
 ) -> tuple[list[dict[str, Any]], list[dict[str, Any]]]:
     admitted: list[dict[str, Any]] = []
     excluded: list[dict[str, Any]] = []
-    resolved_api_key = api_key or os.getenv("NM_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+    cache = load_entailment_cache(cache_path)
+    cache_dirty = False
+    provider = provider.strip().lower()
     for row in rows:
-        if resolved_api_key:
-            result = evaluate_entailment_gate_gemini(row, model=model, base_url=base_url, api_key=resolved_api_key, timeout=timeout)
+        if not row_is_entailment_gate_input(row, keep_decisions):
+            excluded.append({**dict(row), "coverage_queue_exclusion_reason": "not_entailment_gate_input"})
+            continue
+        key = entailment_cache_key(row, model=model)
+        if not force and key in cache:
+            result = _result_from_cache_payload(cache[key], key)
         else:
+            if provider == "gemini":
+                resolved_api_key = api_key or os.getenv("NM_GEMINI_API_KEY") or os.getenv("GEMINI_API_KEY")
+                if not resolved_api_key:
+                    result = EntailmentGateResult(
+                        entailment="error",
+                        error="ValueError: Gemini API key missing; set NM_GEMINI_API_KEY or GEMINI_API_KEY",
+                        latency_seconds=0.0,
+                        cache_key=key,
+                        model_version=model,
+                    )
+                else:
+                    result = evaluate_entailment_gate_gemini(
+                        row,
+                        model=model,
+                        base_url=base_url or ENTAILMENT_GEMINI_BASE,
+                        api_key=resolved_api_key,
+                        timeout=timeout,
+                    )
+            elif provider == "openai_compatible":
+                if not base_url or not api_key:
+                    result = EntailmentGateResult(
+                        entailment="error",
+                        error="ValueError: openai-compatible base URL or API key missing",
+                        latency_seconds=0.0,
+                        cache_key=key,
+                        model_version=model,
+                    )
+                else:
+                    result = evaluate_entailment_gate_openai_compatible(
+                        row,
+                        model=model,
+                        base_url=base_url,
+                        api_key=api_key,
+                        timeout=timeout,
+                    )
+            else:
+                result = evaluate_entailment_gate(
+                    row,
+                    model=model,
+                    ollama_base=base_url or ENTAILMENT_OLLAMA_BASE,
+                    timeout=timeout,
+                )
             result = EntailmentGateResult(
-                entailment="error",
-                error="ValueError: Gemini API key missing; set NM_GEMINI_API_KEY or GEMINI_API_KEY",
-                latency_seconds=0.0,
+                entailment=result.entailment,
+                reason=result.reason,
+                error=result.error,
+                raw_response=result.raw_response,
+                latency_seconds=result.latency_seconds,
+                prompt_tokens=result.prompt_tokens,
+                completion_tokens=result.completion_tokens,
+                total_tokens=result.total_tokens,
+                cache_key=key,
+                prompt_version=result.prompt_version,
+                model_version=result.model_version or model,
+                cache_hit=False,
             )
+            cache[key] = _result_to_cache_payload(result)
+            cache_dirty = True
         gated = row_with_entailment_gate(row, result, model)
         if result.admits_coverage:
             admitted.append(gated)
         else:
             excluded.append({**gated, "coverage_queue_exclusion_reason": result.exclusion_reason})
+    if cache_dirty:
+        write_entailment_cache(cache_path, cache)
     return admitted, excluded
 
 

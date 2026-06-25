@@ -642,14 +642,20 @@ class _EntailmentResponse:
     def json(self):
         if self.json_exc:
             raise self.json_exc
-        return {"choices": [{"message": {"content": self.content}}]}
+        return {
+            "message": {"content": self.content},
+            "choices": [{"message": {"content": self.content}}],
+        }
 
 
 def _coverage_row():
     return {
+        "claim_id": 123,
+        "element_id": "claim-123-e01",
         "claim_text_snapshot": "A claim context.",
         "element_text": "Specific element.",
         "paper_abstract_snapshot": "A source abstract.",
+        "arxiv_id": "2401.00001",
     }
 
 
@@ -746,3 +752,58 @@ def test_openai_compatible_entailment_records_usage(monkeypatch):
     assert result.total_tokens == 14
     assert seen["url"] == "https://generativelanguage.googleapis.com/v1beta/openai/chat/completions"
     assert seen["json"]["model"] == "gemini-2.5-flash"
+
+
+def test_entailment_gate_prompt_renders_dimensions_when_registry_unavailable(monkeypatch):
+    import app.services.prompt_registry as prompt_registry
+
+    class BrokenRegistry:
+        def render(self, *_args, **_kwargs):
+            raise RuntimeError("registry unavailable")
+
+    monkeypatch.setattr(prompt_registry, "PromptRegistry", BrokenRegistry)
+
+    prompt = retrieval_filter_v2_mod.entailment_gate_prompt(
+        {
+            "claim_text_snapshot": "Claim",
+            "element_text": "Element",
+            "paper_abstract_snapshot": "Abstract",
+            "entailment_dimensions": "gas fraction, redshift, stellar mass",
+        }
+    )
+
+    assert "gas fraction, redshift, stellar mass" in prompt
+
+
+def test_entailment_cache_key_changes_with_prompt_and_model_version():
+    row = _coverage_row()
+    key_a = retrieval_filter_v2_mod.entailment_cache_key(row, model="model-a", prompt_version="prompt-a")
+    key_b = retrieval_filter_v2_mod.entailment_cache_key(row, model="model-b", prompt_version="prompt-a")
+    key_c = retrieval_filter_v2_mod.entailment_cache_key(row, model="model-a", prompt_version="prompt-b")
+
+    assert key_a != key_b
+    assert key_a != key_c
+
+
+def test_split_rows_by_entailment_gate_uses_cache(tmp_path, monkeypatch):
+    calls = {"count": 0}
+
+    def fake_post(*_args, **_kwargs):
+        calls["count"] += 1
+        return _EntailmentResponse(json.dumps({"entailment": "yes", "reason": "checked"}))
+
+    monkeypatch.setenv("NM_GEMINI_API_KEY", "fixture-key")
+    monkeypatch.setattr(retrieval_filter_v2_mod.requests, "post", fake_post)
+    cache_path = tmp_path / "entailment-cache.json"
+
+    first, first_excluded = split_rows_by_entailment_gate([_coverage_row()], cache_path=cache_path)
+    second, second_excluded = split_rows_by_entailment_gate([_coverage_row()], cache_path=cache_path)
+
+    assert len(first) == 1
+    assert first_excluded == []
+    assert len(second) == 1
+    assert second_excluded == []
+    assert calls["count"] == 1
+    assert first[0]["entailment_cache_hit"] is False
+    assert second[0]["entailment_cache_hit"] is True
+    assert first[0]["entailment_cache_key"] == second[0]["entailment_cache_key"]

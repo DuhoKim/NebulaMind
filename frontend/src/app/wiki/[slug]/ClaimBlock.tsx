@@ -1,6 +1,7 @@
 "use client";
 import TrustTimeline from "./TrustTimeline";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import DebateEvidencePanel, { DebateEvidenceItem } from "./DebateEvidencePanel";
 
 interface ClaimData {
   id: number;
@@ -30,9 +31,7 @@ interface ElementLink {
   element_text_snapshot: string | null;
 }
 
-interface EvidenceItem {
-  id: number;
-  title: string;
+interface EvidenceItem extends DebateEvidenceItem {
   arxiv_id: string | null;
   url: string | null;
   authors: string | null;
@@ -44,11 +43,6 @@ interface EvidenceItem {
   comments_count: number;
   element_links: ElementLink[];
   link_count: number;
-  relevance?: number | null;
-  entailment?: number | null;
-  rigor?: number | null;
-  confidence?: number | null;
-  quality_v2?: number | null;
 }
 
 const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
@@ -128,18 +122,11 @@ const TRUST_BADGE: Record<string, { label: string; style: React.CSSProperties }>
   },
 };
 
-const STANCE_ICON: Record<string, string> = {
-  supports: "✅",
-  challenges: "❌",
-  neutral: "➖",
-};
-
 export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false }: { claim: ClaimData; showColors: boolean; ideas?: IdeaSummary[]; showIdeas?: boolean }) {
   const [open, setOpen] = useState(false);
   const [evidence, setEvidence] = useState<EvidenceItem[] | null>(null);
   const [totalElements, setTotalElements] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [hoveredEvId, setHoveredEvId] = useState<number | null>(null);
 
   // Edit proposal state
   const [showEditModal, setShowEditModal] = useState(false);
@@ -157,6 +144,7 @@ export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
   const [ideasOpen, setIdeasOpen] = useState(false);
+  const trustChipRef = useRef<HTMLSpanElement | null>(null);
 
   const openPanel = async () => {
     if (!open && evidence === null) {
@@ -182,6 +170,17 @@ export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false
       {claim.connector ? <span className="text-gray-500 italic">{claim.connector} </span> : null}{claim.text}{" "}
       {showColors && TRUST_BADGE[claim.trust_level] && (
         <span
+          ref={trustChipRef}
+          onClick={(e) => { e.stopPropagation(); openPanel(); }}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              e.stopPropagation();
+              openPanel();
+            }
+          }}
+          role="button"
+          tabIndex={0}
           style={{
             ...TRUST_BADGE[claim.trust_level].style,
             display: "inline-flex",
@@ -195,10 +194,10 @@ export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false
             marginLeft: "0.3rem",
             marginRight: "0.15rem",
             textTransform: "uppercase",
-            cursor: "default",
+            cursor: "pointer",
             userSelect: "none",
           }}
-          title={TRUST_LABELS[claim.trust_level]}
+          title={`${TRUST_LABELS[claim.trust_level]} · open evidence map`}
         >
           {TRUST_BADGE[claim.trust_level].label}
         </span>
@@ -232,7 +231,7 @@ export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false
         📄{claim.evidence_count > 0 ? claim.evidence_count : ""}
       </button>
       {showIdeas && ideas && ideas.length > 0 && (() => {
-        const isOpen = ['debated', 'challenged'].includes(claim.trust_level) || (claim.con_count ?? 0) >= 2;
+        const isOpen = ['debated', 'challenged'].includes(claim.trust_level);
         const chipStyle = isOpen
           ? { color: "#fbbf24", fontWeight: 700, background: "rgba(251,191,36,0.12)", borderRadius: "4px", padding: "1px 5px", border: "1px solid rgba(251,191,36,0.3)" }
           : { color: "#818cf8", fontWeight: 400, opacity: 0.6 };
@@ -315,141 +314,16 @@ export default function ClaimBlock({ claim, showColors, ideas, showIdeas = false
       </button>
 
       {open && (
-        <span
-          className="absolute left-0 top-full mt-1 z-50 bg-white border border-gray-200 rounded-xl shadow-xl p-4 text-sm text-left"
-          style={{ width: "min(24rem, 90vw)", maxWidth: "90vw", display: "block" }}
-        >
-          <div className="flex justify-between items-center mb-2">
-            <span className="font-semibold text-gray-700">📎 Evidence</span>
-            <span className="text-xs text-gray-400">{TRUST_LABELS[claim.trust_level]}</span>
-            <button onClick={() => setOpen(false)} className="text-gray-400 hover:text-gray-600 ml-2">✕</button>
-          </div>
-          <p className="text-xs text-gray-500 mb-3 italic line-clamp-2">{claim.text}</p>
-
-          {loading && <p className="text-gray-400 text-xs">Loading...</p>}
-
-          {evidence && evidence.length === 0 && (
-            <p className="text-gray-400 text-xs">No evidence linked yet.</p>
-          )}
-
-          {evidence && evidence.map(ev => (
-            <div key={ev.id} className="border border-gray-100 rounded-lg p-2 mb-2 bg-gray-50">
-              <div className="flex gap-1 items-start">
-                <span className="text-sm">{STANCE_ICON[ev.stance]}</span>
-                <div className="flex-1 min-w-0">
-                  {ev.url ? (
-                    <a href={ev.url} target="_blank" rel="noopener noreferrer" className="font-medium text-indigo-700 hover:underline text-xs leading-tight block">
-                      {ev.title}
-                    </a>
-                  ) : (
-                    <span className="font-medium text-gray-700 text-xs">{ev.title}</span>
-                  )}
-                  {ev.year && <span className="text-gray-400 text-xs ml-1">({ev.year})</span>}
-                  {ev.element_links && ev.element_links.length > 0 && (
-                    <div className="text-xs text-gray-500 mt-1">
-                      supports: element {ev.link_count} of {totalElements}
-                    </div>
-                  )}
-                  {ev.summary && <p className="text-xs text-gray-500 mt-1 leading-relaxed">{ev.summary}</p>}
-                  <div className="flex gap-2 mt-1 text-xs text-gray-400 items-center justify-between">
-                    <div className="flex gap-2">
-                      <span>👍 {ev.votes_agree}</span>
-                      <span>👎 {ev.votes_disagree}</span>
-                      <span>💬 {ev.comments_count}</span>
-                    </div>
-
-                    {/* Scorecard Integration */}
-                    {ev.quality_v2 !== undefined && ev.quality_v2 !== null ? (
-                      <div className="relative">
-                        <span
-                          onMouseEnter={() => setHoveredEvId(ev.id)}
-                          onMouseLeave={() => setHoveredEvId(null)}
-                          style={{
-                            fontSize: "0.68rem",
-                            fontWeight: 700,
-                            padding: "2px 6px",
-                            borderRadius: "4px",
-                            cursor: "help",
-                            userSelect: "none",
-                            background: ev.quality_v2 >= 0.8 
-                              ? "rgba(16,185,129,0.15)" 
-                              : ev.quality_v2 >= 0.5 
-                                ? "rgba(245,158,11,0.15)" 
-                                : "rgba(239,68,68,0.15)",
-                            color: ev.quality_v2 >= 0.8 
-                              ? "#10b981" 
-                              : ev.quality_v2 >= 0.5 
-                                ? "#fbbf24" 
-                                : "#ef4444",
-                            border: ev.quality_v2 >= 0.8 
-                              ? "1px solid rgba(16,185,129,0.3)" 
-                              : ev.quality_v2 >= 0.5 
-                                ? "1px solid rgba(245,158,11,0.3)" 
-                                : "1px solid rgba(239,68,68,0.3)",
-                          }}
-                        >
-                          ⚖️ {Math.round(ev.quality_v2 * 100)}% Quality
-                        </span>
-
-                        {hoveredEvId === ev.id && (
-                          <div
-                            className="absolute right-0 bottom-full mb-2 bg-slate-900 border border-slate-700 text-slate-100 rounded-lg p-3 shadow-2xl z-50 text-left"
-                            style={{ width: "200px" }}
-                          >
-                            <h4 className="text-xs font-bold text-white mb-2 border-b border-slate-700 pb-1 flex items-center justify-between">
-                              <span>Trust Scorecard</span>
-                              <span style={{ 
-                                color: ev.quality_v2 >= 0.8 ? "#10b981" : ev.quality_v2 >= 0.5 ? "#fbbf24" : "#ef4444" 
-                              }}>
-                                {Math.round(ev.quality_v2 * 100)}%
-                              </span>
-                            </h4>
-                            {[
-                              { label: "Relevance", val: ev.relevance },
-                              { label: "Factual Entailment", val: ev.entailment },
-                              { label: "Methodological Rigor", val: ev.rigor },
-                              { label: "Consensus/Confidence", val: ev.confidence }
-                            ].map(({ label, val }) => {
-                              const percent = Math.min(100, Math.max(0, Math.round((val ?? 0) * 100)));
-                              return (
-                                <div key={label} className="mb-2 last:mb-0">
-                                  <div className="flex justify-between text-[10px] text-slate-400 font-medium">
-                                    <span>{label}</span>
-                                    <span>{percent}%</span>
-                                  </div>
-                                  <div className="w-full bg-slate-800 h-1 rounded-full overflow-hidden mt-0.5">
-                                    <div 
-                                      className="bg-indigo-500 h-full rounded-full transition-all duration-300" 
-                                      style={{ width: `${percent}%` }}
-                                    />
-                                  </div>
-                                </div>
-                              );
-                            })}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <span 
-                        style={{
-                          fontSize: "0.68rem",
-                          fontWeight: 600,
-                          padding: "2px 6px",
-                          borderRadius: "4px",
-                          background: "rgba(59,130,246,0.1)",
-                          color: "#3b82f6",
-                          border: "1px solid rgba(59,130,246,0.2)"
-                        }}
-                      >
-                        ✓ Verified / Accepted
-                      </span>
-                    )}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </span>
+        <DebateEvidencePanel
+          claimId={claim.id}
+          claimText={claim.text}
+          trustLevel={claim.trust_level}
+          evidence={evidence}
+          loading={loading}
+          totalElements={totalElements}
+          onClose={() => setOpen(false)}
+          returnFocusRef={trustChipRef}
+        />
       )}
 
       {/* ── Researcher Trust Override Modal ── */}

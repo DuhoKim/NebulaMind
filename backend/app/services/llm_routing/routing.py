@@ -13,7 +13,7 @@ Pico (vanta-research/atom-astronomy-7b).
 """
 from __future__ import annotations
 
-from app.config import settings
+from app.config import BATCH_SAFE_DEFAULT_MODEL, settings
 
 def _v1_url(url: str) -> str:
     base = (url or "").rstrip("/")
@@ -35,11 +35,12 @@ def _ollama(host: str, model: str, label: str | None = None, timeout: int = 120)
     return {"base_url": host, "api_key": "ollama", "model": model,
             "label": label or model, "timeout": timeout}
 
-def _gemini(label: str = "gemini-2.0-flash") -> dict | None:
+def _gemini(label: str = BATCH_SAFE_DEFAULT_MODEL) -> dict | None:
     if not settings.GEMINI_API_KEY:
         return None
+    model = BATCH_SAFE_DEFAULT_MODEL or "gemini-2.5-flash"
     return {"base_url": "https://generativelanguage.googleapis.com/v1beta/openai",
-            "api_key": settings.GEMINI_API_KEY, "model": "gemini-2.0-flash",
+            "api_key": settings.GEMINI_API_KEY, "model": model,
             "label": label, "timeout": 60}
 
 def _cerebras(label: str = "cerebras") -> dict | None:

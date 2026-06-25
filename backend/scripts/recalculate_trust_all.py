@@ -24,7 +24,7 @@ import app.models.edit
 import app.models.seminal
 from app.models.claim import Claim, Evidence
 from app.services.paper_search import verify_arxiv_id
-from app.routers.claims import recalculate_trust_v2
+from app.services.trust_calculation import recalculate_trust_v2
 
 
 def verify_all_evidence(db, *, sleep_between: float = 0.05) -> dict:

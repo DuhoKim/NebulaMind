@@ -235,10 +235,11 @@ function NewsCard({ item }: { item: NewsItem }) {
 }
 
 function TrackSection({
-  track, items, collapsed, onToggle,
+  track, items, count, collapsed, onToggle,
 }: {
   track: typeof TRACKS[number];
   items: NewsItem[];
+  count: number;
   collapsed: boolean;
   onToggle: () => void;
 }) {
@@ -266,7 +267,7 @@ function TrackSection({
             background: `${track.color}18`, border: `1px solid ${track.border}`,
             borderRadius: "999px", padding: "1px 8px",
           }}>
-            {items.length}
+            {count}
           </span>
           <span style={{ fontSize: "0.8rem", color: "#475569", fontWeight: 400, marginLeft: "0.25rem" }}>
             {track.desc}
@@ -321,12 +322,17 @@ function EditorialContent() {
 
   const featured = useMemo(() => items.filter(i => i.featured), [items]);
 
+  const trackCounts = useMemo(() => {
+    return Object.fromEntries(
+      TRACKS.map(t => [t.id, items.filter(i => t.kinds.includes(i.kind as never)).length])
+    ) as Record<string, number>;
+  }, [items]);
+
   const trackItems = useMemo(() => {
-    const nonFeatured = items.filter(i => !i.featured);
     const mapped = Object.fromEntries(
-      TRACKS.map(t => [t.id, nonFeatured.filter(i => t.kinds.includes(i.kind as never))])
+      TRACKS.map(t => [t.id, items.filter(i => t.kinds.includes(i.kind as never))])
     ) as Record<string, NewsItem[]>;
-    mapped["more"] = nonFeatured.filter(i => !ALL_TRACK_KINDS.has(i.kind));
+    mapped["more"] = items.filter(i => !ALL_TRACK_KINDS.has(i.kind) && !i.featured);
     return mapped;
   }, [items]);
 
@@ -373,9 +379,9 @@ function EditorialContent() {
               }}
             >
               {t.icon} {t.label}
-              {trackItems[t.id]?.length > 0 && (
+              {trackCounts[t.id] > 0 && (
                 <span style={{ marginLeft: "5px", opacity: 0.7, fontSize: "0.72rem" }}>
-                  ({trackItems[t.id].length})
+                  ({trackCounts[t.id]})
                 </span>
               )}
             </button>
@@ -386,22 +392,25 @@ function EditorialContent() {
           <div style={{ textAlign: "center", padding: "4rem", color: "#475569" }}>Loading news…</div>
         ) : (
           <>
-            {/* Featured section — shown in All view or when viewing any specific track */}
-            {featured.length > 0 && (
+            {/* Featured section — matches the featured badge count for the active view */}
+            {(() => {
+              const activeFeatured = featured.filter(i =>
+                activeTab === "all" || TRACKS.find(t => t.id === activeTab)?.kinds.includes(i.kind as never)
+              );
+              return activeFeatured.length > 0 && (
               <div style={{ marginBottom: "2.5rem" }}>
                 <h2 style={{
                   fontSize: "0.72rem", fontWeight: 600, color: "#64748b",
                   textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: "1rem",
                 }}>
-                  Featured Today
+                  Featured Today ({activeFeatured.length})
                 </h2>
                 <div style={{ display: "grid", gap: "1rem", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))" }}>
-                  {featured
-                    .filter(i => activeTab === "all" || TRACKS.find(t => t.id === activeTab)?.kinds.includes(i.kind as never))
-                    .map(item => <FeaturedCard key={item.id} item={item} />)}
+                  {activeFeatured.map(item => <FeaturedCard key={item.id} item={item} />)}
                 </div>
               </div>
-            )}
+              );
+            })()}
 
             {/* 3-track sections: Data → Tools → Results */}
             {visibleTracks.map(track => (
@@ -409,6 +418,7 @@ function EditorialContent() {
                 key={track.id}
                 track={track}
                 items={trackItems[track.id] || []}
+                count={trackCounts[track.id] || 0}
                 collapsed={!!collapsed[track.id]}
                 onToggle={() => toggleCollapsed(track.id)}
               />

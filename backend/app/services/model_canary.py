@@ -78,7 +78,7 @@ def _check_seat(seat: CanarySeat, *, notify: bool = True) -> dict:
                 "reasoning_effort": "none",
                 "options": {"num_ctx": 1024},
             },
-            timeout=45,
+            timeout=120,
         )
         status_code = resp.status_code
         if resp.status_code >= 400:

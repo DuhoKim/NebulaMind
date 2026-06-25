@@ -6,6 +6,7 @@ from unittest.mock import AsyncMock, MagicMock, patch
 from app.services.inference_scheduler import (
     InferenceScheduler,
     get_persistent_client,
+    persistent_client_count,
     _OLLAMA_LIVENESS_CACHE,
 )
 
@@ -13,6 +14,7 @@ from app.services.inference_scheduler import (
 async def test_get_persistent_client():
     client = get_persistent_client()
     assert isinstance(client, httpx.AsyncClient)
+    assert persistent_client_count() >= 1
     # Check that transport has limits and socket options
     transport = client._transport
     assert transport is not None

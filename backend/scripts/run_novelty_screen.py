@@ -37,6 +37,11 @@ def main() -> int:
         default="abort",
         help="How to handle calibration failure before the backfill.",
     )
+    parser.add_argument(
+        "--calibration-only",
+        action="store_true",
+        help="Run calibration and exit without screening unscreened ideas.",
+    )
     args = parser.parse_args()
 
     processed = 0
@@ -51,6 +56,8 @@ def main() -> int:
                     log.error("Calibration failed; aborting unscreened backfill")
                     return 2
                 log.warning("Calibration failed; continuing because calibration_mode=warn")
+            if args.calibration_only:
+                return 0
 
         while True:
             remaining = args.limit - processed if args.limit else args.batch_size

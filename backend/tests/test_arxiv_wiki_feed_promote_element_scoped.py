@@ -238,7 +238,35 @@ def test_promote_element_scoped_dry_run():
     assert len(conn.inserted_links) == 0
 
 
-def test_promote_element_scoped_real_apply_and_idempotency():
+def test_promote_element_scoped_real_apply_freezes_without_override(monkeypatch):
+    monkeypatch.delenv(mod.MANUAL_PROMOTER_FREEZE_ENV, raising=False)
+    conn = MockConn(claims_db={100: {"id": 100, "rewrite_status": None}})
+    manifest = {
+        "source_validator_path": "/tmp/validator.jsonl",
+        "rows": [
+            {
+                "candidate": {
+                    "claim_id": 100,
+                    "element_id": "elem-1",
+                    "page_id": 57,
+                    "page_slug": "galaxy-evolution",
+                    "arxiv_id": "2501.00001",
+                    "status": "validated_ready",
+                    "paper_title_snapshot": "Test Paper",
+                }
+            }
+        ],
+    }
+
+    with pytest.raises(SystemExit, match="Evidence promotion is frozen"):
+        mod.promote_element_scoped(manifest, conn, dry_run=False)
+
+    assert len(conn.inserted_evidence) == 0
+    assert len(conn.inserted_links) == 0
+
+
+def test_promote_element_scoped_real_apply_and_idempotency(monkeypatch):
+    monkeypatch.setenv(mod.MANUAL_PROMOTER_FREEZE_ENV, "1")
     claims = {
         100: {"id": 100, "rewrite_status": None},
     }

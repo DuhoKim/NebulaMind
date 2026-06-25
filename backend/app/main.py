@@ -139,6 +139,8 @@ app.include_router(research_ideas_module.p3_router)
 app.include_router(admin_surveys_module.router)
 from app.routers import admin_marker_audit as admin_marker_audit_module
 app.include_router(admin_marker_audit_module.router)
+from app.routers import admin_page_review as admin_page_review_module
+app.include_router(admin_page_review_module.router)
 
 
 @app.get("/", tags=["system"])

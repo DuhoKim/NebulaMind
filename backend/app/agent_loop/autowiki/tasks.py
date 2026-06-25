@@ -10,7 +10,9 @@ import datetime as dt
 import hashlib
 import json
 import logging
+import re
 import time
+from pathlib import Path
 
 import httpx
 
@@ -184,9 +186,156 @@ def _discord_notify(msg: str) -> None:
         pass
 
 
+def _autowiki_provenance_gate_mode() -> str:
+    mode = (getattr(settings, "AUTOWIKI_PROVENANCE_GATE_MODE", "shadow") or "shadow").strip().lower()
+    if mode not in {"off", "shadow", "enforce"}:
+        logger.warning("[autowiki_provenance] invalid mode=%s; fail-closed to shadow", mode)
+        return "shadow"
+    return mode
+
+
+_PROVENANCE_PAIR_PROPOSAL_TYPES = {
+    "claim_insert_subtopic",
+    "claim_insert_debate",
+    "evidence_link",
+}
+
+_PROVENANCE_SUPPRESSED_IN_ENFORCE = {
+    "hero_upgrade",
+    "section_rewrite",
+}
+
+
+def _autowiki_provenance_requires_pairs(proposal_type: str) -> bool:
+    return proposal_type in _PROVENANCE_PAIR_PROPOSAL_TYPES
+
+
+def _autowiki_provenance_suppressed_in_enforce(proposal_type: str) -> bool:
+    return proposal_type in _PROVENANCE_SUPPRESSED_IN_ENFORCE
+
+
+def _normalize_independent_d1_verdict(raw) -> str | None:
+    if isinstance(raw, dict):
+        raw = raw.get("verdict") or raw.get("label") or raw.get("support_verdict")
+    if raw is None:
+        return None
+    verdict = str(raw).strip().lower()
+    aliases = {
+        "direct": "supported",
+        "strict_support": "supported",
+        "supports": "supported",
+        "supported_direct": "supported",
+        "unsupported": "unsupported_misattributed",
+        "misattributed": "unsupported_misattributed",
+        "neutral_or_unclear": "unsupported_misattributed",
+        "needs_human": "no_verdict",
+    }
+    return aliases.get(verdict, verdict)
+
+
+def _paper_quote_text(paper: dict) -> tuple[str, str]:
+    quote = (
+        paper.get("quoted_evidence_span")
+        or paper.get("source_quote")
+        or paper.get("evidence_quote")
+        or paper.get("quote")
+        or paper.get("quoted_span")
+        or ""
+    )
+    evidence_text = "\n".join(
+        str(paper.get(key) or "")
+        for key in ("intro_excerpt", "abstract", "summary")
+        if paper.get(key)
+    )
+    return str(quote).strip(), evidence_text
+
+
+def _evaluate_autowiki_provenance_pair(claim_text: str, paper: dict) -> dict:
+    verdict = _normalize_independent_d1_verdict(paper.get("independent_d1_verdict"))
+    quote, evidence_text = _paper_quote_text(paper)
+    reasons: list[str] = []
+
+    if getattr(settings, "EVIDENCE_REQUIRE_ARXIV", True) and not paper.get("arxiv_id"):
+        reasons.append("missing_arxiv_id")
+
+    if getattr(settings, "EVIDENCE_REQUIRE_VERBATIM_QUOTE", True):
+        if not quote:
+            reasons.append("missing_verbatim_quote")
+        elif quote not in evidence_text:
+            reasons.append("verbatim_quote_not_substring")
+
+    if verdict is None:
+        reasons.append("missing_independent_d1_verdict")
+    elif verdict == "supported":
+        pass
+    elif verdict == "partial" and getattr(settings, "AUTOWIKI_PROVENANCE_ALLOW_PARTIAL", False):
+        pass
+    else:
+        reasons.append(f"independent_d1_{verdict}")
+
+    return {
+        "claim_text": claim_text,
+        "arxiv_id": paper.get("arxiv_id"),
+        "title": paper.get("title", ""),
+        "independent_d1_verdict": verdict,
+        "quote_present": bool(quote),
+        "quote_substring_ok": bool(quote and quote in evidence_text),
+        "would_admit": not reasons,
+        "reject_reasons": reasons,
+    }
+
+
+def _autowiki_provenance_pairs(db, proposal) -> list[dict]:
+    payload = proposal.payload
+    pairs: list[dict] = []
+    if isinstance(payload, ClaimInsertProposal):
+        for paper in payload.papers[:3]:
+            pairs.append(_evaluate_autowiki_provenance_pair(payload.claim_text, paper))
+    elif isinstance(payload, EvidenceLinkProposal):
+        claim = db.query(Claim).filter(Claim.id == payload.claim_id).first()
+        claim_text = claim.text if claim else ""
+        for paper in payload.papers[:3]:
+            pairs.append(_evaluate_autowiki_provenance_pair(claim_text, paper))
+    return pairs
+
+
+def _record_autowiki_provenance_shadow(page_id: int, proposal_type: str, mode: str, pairs: list[dict]) -> dict:
+    admitted = sum(1 for pair in pairs if pair["would_admit"])
+    rejected = len(pairs) - admitted
+    record = {
+        "ts": dt.datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "page_id": page_id,
+        "proposal_type": proposal_type,
+        "mode": mode,
+        "counts": {
+            "pairs": len(pairs),
+            "would_admit": admitted,
+            "would_reject": rejected,
+        },
+        "pairs": pairs,
+    }
+    shadow_dir = Path(getattr(settings, "AUTOWIKI_PROVENANCE_SHADOW_DIR", "reports/autowiki_provenance_shadow"))
+    if not shadow_dir.is_absolute():
+        shadow_dir = Path.cwd() / shadow_dir
+    shadow_dir.mkdir(parents=True, exist_ok=True)
+    out_path = shadow_dir / f"autowiki_provenance_shadow_{dt.datetime.utcnow():%Y%m%d}.jsonl"
+    with out_path.open("a", encoding="utf-8") as fh:
+        fh.write(json.dumps(record, sort_keys=True) + "\n")
+    logger.info(
+        "[autowiki_provenance] mode=%s page=%s type=%s would_admit=%s would_reject=%s artifact=%s",
+        mode,
+        page_id,
+        proposal_type,
+        admitted,
+        rejected,
+        out_path,
+    )
+    return {**record["counts"], "artifact": str(out_path)}
+
+
 
 def _call_opus_coherence(content: str, claims_text: str = "", citation_context: str = "") -> "str | None":
-    """Call Claude claude-opus-4-7 for a full-page coherence rewrite (streaming).
+    """Call Claude claude-opus-4-8 for a full-page coherence rewrite (streaming).
 
     Reads NM_ANTHROPIC_API_KEY from ~/NebulaMind/NebulaMind/backend/.env.
     Returns full streamed text, or None on failure.
@@ -217,14 +366,14 @@ def _call_opus_coherence(content: str, claims_text: str = "", citation_context: 
             "Now rewrite the page following all system instructions."
         )
 
-        logger.info("[opus_coherence] streaming to claude-opus-4-7 (%d char page, %d char dynamic)...", len(page_block), len(dynamic_block))
+        logger.info("[opus_coherence] streaming to claude-opus-4-8 (%d char page, %d char dynamic)...", len(page_block), len(dynamic_block))
         prompt_len = len(page_block) + len(dynamic_block)
         est_tokens = {"input": max(1, (len(_COHERENCE_SYSTEM_PROMPT) + prompt_len) // 4), "output": 32000}
-        dispatch_premium("autowiki.opus_coherence", "claude-opus-4-7", est_tokens)
+        dispatch_premium("autowiki.opus_coherence", "claude-opus-4-8", est_tokens)
 
         full_text = ""
         with client.messages.stream(
-            model="claude-opus-4-7",
+            model="claude-opus-4-8",
             max_tokens=32000,
             system=_COHERENCE_SYSTEM_PROMPT,
             messages=[
@@ -252,7 +401,7 @@ def _call_opus_coherence(content: str, claims_text: str = "", citation_context: 
         usage = getattr(final_msg, "usage", None)
         log_llm_spend(
             "autowiki.opus_coherence",
-            "claude-opus-4-7",
+            "claude-opus-4-8",
             prompt_tokens=getattr(usage, "input_tokens", None),
             completion_tokens=getattr(usage, "output_tokens", None),
             cache_creation_tokens=getattr(usage, "cache_creation_input_tokens", None),
@@ -890,13 +1039,17 @@ def autowiki_tick(page_id: int) -> dict:
         autowiki_post_pipeline_notify,
         autowiki_pipeline_rollback
     )
-    from app.agent_loop.marker_embed.tasks import claim_marker_embed_page
+    from app.agent_loop.marker_embed.tasks import claim_marker_embed_page, marker_reembed_enabled
 
-    pipeline = chain(
-        autowiki_propose_and_commit.s(page_id, pre_image_version_id).set(queue="autowiki"),
-        claim_marker_embed_page.s().set(queue="autowiki"),
-        autowiki_post_pipeline_notify.s(page_id).set(queue="autowiki"),
-    ).on_error(autowiki_pipeline_rollback.s(page_id).set(queue="autowiki"))
+    stages = [autowiki_propose_and_commit.s(page_id, pre_image_version_id).set(queue="autowiki")]
+    if marker_reembed_enabled():
+        stages.append(claim_marker_embed_page.s().set(queue="autowiki"))
+    else:
+        # Re-enable with Redis marker_embed:enabled=1 or MARKER_REEMBED_ENABLED=1.
+        logger.info("[autowiki_tick] Marker overlay stage disabled; skipping marker embed pass")
+    stages.append(autowiki_post_pipeline_notify.s(page_id).set(queue="autowiki"))
+
+    pipeline = chain(*stages).on_error(autowiki_pipeline_rollback.s(page_id).set(queue="autowiki"))
 
     pipeline.delay()
     logger.info("[autowiki_tick] Dispatched sequential canvas chain for page %d", page_id)
@@ -937,6 +1090,7 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
             content=page.content,
             hero_facts=page.hero_facts,
             claims_text=claims_text_before,
+            force=True,  # keep baseline and candidate scoring symmetric
         )
         latency["u0_judge_ms"] = _ms(t)
         u0 = u0_result.utility
@@ -1012,6 +1166,32 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
         else:
             # SectionRewrite: pick a section not recently touched
             proposal_type = "section_rewrite"
+
+        provenance_mode = _autowiki_provenance_gate_mode()
+        if provenance_mode == "enforce" and _autowiki_provenance_suppressed_in_enforce(proposal_type):
+            latency["proposer_ms"] = 0
+            provenance_note = {
+                "mode": provenance_mode,
+                "proposal_type": proposal_type,
+                "suppressed_before_proposer": True,
+                "reason": "empty_provenance_pairs_not_enforceable",
+            }
+            if idea_signals_json is not None:
+                idea_signals_json = {**idea_signals_json, "provenance_enforce": provenance_note}
+            else:
+                idea_signals_json = {"provenance_enforce": provenance_note}
+            logger.info(
+                "[autowiki_provenance] enforce suppresses proposal_type=%s before proposer execution",
+                proposal_type,
+            )
+            return _emit_run(
+                db, page_id, started_at, proposal_type, h0_struct, None,
+                components_before, None, u0_result, None, q0, None,
+                "gate_reject",
+                "provenance_enforce_suppressed_empty_pairs",
+                None, latency, None,
+                idea_signals_json=idea_signals_json,
+            )
 
 
         # surveys-win: if Surveys autowiki holds astrosage:surveys_priority, defer this tick
@@ -1182,6 +1362,50 @@ def _run_tick(page_id: int, tick_start: float, latency: dict) -> dict:
                 None, latency, None,
                 idea_signals_json=idea_signals_json,
             )
+
+        # ── Stage 2A: Certified provenance gate, shadow/no-write by default ──
+        if provenance_mode != "off":
+            provenance_pairs = _autowiki_provenance_pairs(db, proposal)
+            provenance_summary = _record_autowiki_provenance_shadow(
+                page_id,
+                proposal_type,
+                provenance_mode,
+                provenance_pairs,
+            )
+            if idea_signals_json is not None:
+                idea_signals_json = {**idea_signals_json, "provenance_shadow": provenance_summary}
+            else:
+                idea_signals_json = {"provenance_shadow": provenance_summary}
+
+            if provenance_mode == "shadow":
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_shadow_no_write",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
+
+            if _autowiki_provenance_requires_pairs(proposal_type) and not provenance_pairs:
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_gate_empty_pairs",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
+
+            if any(not pair["would_admit"] for pair in provenance_pairs):
+                return _emit_run(
+                    db, page_id, started_at, proposal_type, h0_struct, None,
+                    components_before, None, u0_result, None, q0, None,
+                    "gate_reject",
+                    "provenance_gate_reject",
+                    None, latency, None,
+                    idea_signals_json=idea_signals_json,
+                )
 
         # ── K2: Takji methodology gate (§9.2.7, default ON) ──────────────────
         _proposed_text = ""
@@ -1604,7 +1828,44 @@ _SONNET_SECTION_SYSTEM = (
     "  6. You MUST PRESERVE all trust/consensus HTML comments (e.g. <!--accepted-->, <!--consensus-->).\n"
     "  7. MUST output a valid JSON report at the end wrapped in <!--marker-report ... -->.\n"
     "  8. You MUST include and assert EVERY 'Must-Keep Owned Claim'. DO NOT omit them.\n"
+    "  9. Do NOT use raw LaTeX math syntax (e.g. `$...$`, `\\Sigma`, `\\gtrsim`). Use plain text or Unicode for mathematical expressions; avoid dollar signs, backslash commands, and star/sun symbols in prose.\n"
 )
+_SONNET_MAX_Q_REGRESSION = 0.03
+
+
+def _normalize_sonnet_plain_math(text: str) -> str:
+    """Convert common raw LaTeX fragments from Sonnet into canonicalizer-safe prose."""
+    replacements = {
+        r"\gtrsim": ">=",
+        r"\lesssim": "<=",
+        r"\geq": ">=",
+        r"\ge": ">=",
+        r"\leq": "<=",
+        r"\le": "<=",
+        r"\approx": "about",
+        r"\sim": "~",
+        r"\propto": "proportional to",
+        r"\times": "x",
+        r"\pm": "+/-",
+        r"\Sigma": "Sigma",
+        r"\sigma": "sigma",
+        r"\Delta": "Delta",
+        r"\Omega": "Omega",
+        r"\Lambda": "Lambda",
+        r"\rho": "rho",
+        r"\mu": "mu",
+        r"\pi": "pi",
+        r"\star": "star",
+        r"\odot": "sun",
+    }
+    for raw, plain in replacements.items():
+        text = text.replace(raw, plain)
+    text = text.replace("\\,", " ")
+    text = re.sub(r"\$(.*?)\$", r"\1", text)
+    text = re.sub(r"\b([A-Za-z]+)_\{?([A-Za-z]+)\}?", r"\1-\2", text)
+    text = text.replace("{", "").replace("}", "")
+    text = re.sub(r"\s{2,}", " ", text)
+    return text
 
 
 @celery_app.task(
@@ -1617,13 +1878,38 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
     import datetime as _dt
     from app.config import settings
     from app.models.autowiki import AutowikiRun
+    from app.services.content_canonicalizer import CanonicalizerError, canonicalize
 
     if not _is_enabled():
         return {"decision": "skip", "reason": "autowiki_flag_off"}
+    if _autowiki_provenance_gate_mode() == "enforce":
+        return {
+            "decision": "skip",
+            "reason": "provenance_enforce_suppressed_direct_section_rewrite",
+            "page_id": page_id,
+        }
 
     started_at = _dt.datetime.utcnow()
 
     db = SessionLocal()
+
+    def _log_error_run(error_text: str) -> None:
+        try:
+            run = AutowikiRun(
+                page_id=page_id,
+                started_at=started_at,
+                finished_at=_dt.datetime.utcnow(),
+                proposal_type="section_rewrite",
+                model_proposer="claude-sonnet-4-6",
+                decision="error",
+                error_text=error_text,
+            )
+            db.add(run)
+            db.commit()
+        except Exception as log_exc:
+            db.rollback()
+            logger.warning("[sonnet_section_rewrite] failed to write error run: %s", log_exc)
+
     try:
         page = db.query(WikiPage).filter(WikiPage.id == page_id).first()
         if not page:
@@ -1714,7 +2000,8 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             "Rewrite this section following the requirements in the system prompt. "
             "Keep the ## header unchanged.\n\n"
             "Citation requirements: do not write (Author et al. Year). Use <!--cite:EVIDENCE_ID--> only from the EVIDENCE MAP. Omit a citation if no evidence ID is available.\n\n"
-            "At the end of your response, you MUST include a marker report in exactly this format:\n"
+            "Math notation requirement: do NOT use raw LaTeX math syntax such as `$...$`, `\\Sigma`, or `\\gtrsim`. Use plain text or Unicode instead.\n\n"
+            "At the end of your response, you MUST include exactly one marker report in exactly this format. Do not omit it, do not wrap it in a code fence, and do not place any text after it:\n"
             "<!--marker-report\n{\n  \"section\": \"Section Name\",\n  \"asserted_claim_ids\": [123, 124],\n  \"omitted_owned_claim_ids\": [{\"id\": 126, \"reason\": \"not asserted\"}]\n}\n-->"
         )
 
@@ -1789,6 +2076,7 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
         # markers here have corrupted the global validator (Page 57 2026-06-02).
         new_section_text = re.sub(r"<!--/?claim:\d+-->", "", new_section_text)
         new_section_text = re.sub(r"<!--topic:\d+-->", "", new_section_text)
+        new_section_text = _normalize_sonnet_plain_math(new_section_text)
 
         if not new_section_text.startswith("## "):
             new_section_text = f"## {section_header}\n\n{new_section_text}"
@@ -1812,10 +2100,9 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
         if not replaced:
             return {"decision": "error", "reason": "section_not_found"}
 
-        # Commit gate: require minimum length (400 words ≈ 2000 chars below header).
-        # Do NOT compute delta_q here — Python dims are inconsistent with the LLM
-        # judge used by autowiki_tick. Leave q0/q1/delta_q as None; the next
-        # autowiki_tick audit will score the committed content via its full pipeline.
+        # Commit gates: require minimum length and a lightweight pre-commit
+        # quality check. Sonnet writes outside the AstroSage gated lane, so
+        # page 57 must not land a section rewrite that regresses q by > 0.03.
         section_body = new_section_text.split("\n", 1)[-1] if "\n" in new_section_text else ""
         if len(section_body.strip()) < 200:
             run = AutowikiRun(
@@ -1829,8 +2116,78 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
 
         # Snapshot current content into page_versions before writing so that
         # a future autowiki_tick rollback can restore past this commit (not before it).
-        from app.services.content_canonicalizer import canonicalize
-        new_content = canonicalize(new_content, page_id=page_id, db=db).new_content
+        canonicalized = canonicalize(new_content, page_id=page_id, db=db)
+        if canonicalized.violations:
+            raise CanonicalizerError(canonicalized.violations)
+        new_content = canonicalized.new_content
+
+        claims_for_gate = (
+            db.query(Claim)
+            .filter(Claim.page_id == page_id)
+            .order_by(Claim.created_at)
+            .all()
+        )
+        claims_text_for_gate = _claims_text(claims_for_gate)
+        h0_result = compute_health_score(page, db)
+        h0_struct = h0_result["score"]
+        components_before = h0_result["components"]
+        u0_result = judge_page(
+            page_id=page_id,
+            content=page.content,
+            hero_facts=page.hero_facts,
+            claims_text=claims_text_for_gate,
+            force=True,
+        )
+        q0 = compute_quality(h0_struct, u0_result.utility)
+        u1_result = judge_page(
+            page_id=page_id,
+            content=new_content,
+            hero_facts=page.hero_facts,
+            claims_text=claims_text_for_gate,
+            force=True,
+        )
+        # Section-only rewrites do not alter claim/evidence rows before commit,
+        # so structural health is unchanged until marker re-embed follows.
+        h1_struct = h0_struct
+        components_after = components_before
+        q1 = compute_quality(h1_struct, u1_result.utility)
+        delta_q = round(q1 - q0, 4)
+        if q1 < q0 - _SONNET_MAX_Q_REGRESSION:
+            run = AutowikiRun(
+                page_id=page_id,
+                started_at=started_at,
+                finished_at=_dt.datetime.utcnow(),
+                proposal_type="section_rewrite",
+                model_proposer="claude-sonnet-4-6",
+                model_judge=u1_result.model_used,
+                h0_struct=h0_struct,
+                h1_struct=h1_struct,
+                components_before=components_before,
+                components_after=components_after,
+                u0_median=u0_result.utility,
+                u1_median=u1_result.utility,
+                u0_runs=u0_result.raw_scores,
+                u1_runs=u1_result.raw_scores,
+                judge_rationale=u1_result.rationale or u0_result.rationale,
+                judge_prompt_version=PROMPT_VERSION,
+                q0=q0,
+                q1=q1,
+                delta_q=delta_q,
+                decision="gate_reject",
+                reject_reason=(
+                    f"sonnet_quality_regression: q1={q1:.4f} < "
+                    f"q0-{_SONNET_MAX_Q_REGRESSION:.2f} ({q0 - _SONNET_MAX_Q_REGRESSION:.4f})"
+                ),
+            )
+            db.add(run)
+            db.commit()
+            return {
+                "decision": "gate_reject",
+                "reason": "sonnet_quality_regression",
+                "q0": q0,
+                "q1": q1,
+                "delta_q": delta_q,
+            }
 
         last_pv = (
             db.query(PageVersion)
@@ -1852,6 +2209,18 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             decision="commit",
             judge_rationale=f"sonnet_section section='{section_header}' body_len={len(section_body)}",
             judge_prompt_version="sonnet_section_v1",
+            model_judge=u1_result.model_used,
+            h0_struct=h0_struct,
+            h1_struct=h1_struct,
+            components_before=components_before,
+            components_after=components_after,
+            u0_median=u0_result.utility,
+            u1_median=u1_result.utility,
+            u0_runs=u0_result.raw_scores,
+            u1_runs=u1_result.raw_scores,
+            q0=q0,
+            q1=q1,
+            delta_q=delta_q,
         )
         # MARKER_REEMBED_REQUIRED: re-derive claim markers against new prose
         try:
@@ -1880,9 +2249,15 @@ def sonnet_section_rewrite(self, page_id: int, target_section: str = None):
             page_id, section_header, len(section_body),
         )
         return {"decision": "commit", "page_id": page_id, "section": section_header}
+    except CanonicalizerError as exc:
+        db.rollback()
+        logger.exception("[sonnet_section_rewrite] canonicalizer failed: %s", exc)
+        _log_error_run(str(exc))
+        return {"decision": "error", "reason": str(exc)}
     except Exception as exc:
         db.rollback()
         logger.exception("[sonnet_section_rewrite] failed: %s", exc)
+        _log_error_run(str(exc))
         raise
     finally:
         db.close()
@@ -1909,10 +2284,17 @@ _COHERENCE_EXPECTED_SECTIONS = ['## Overview & Historical Context', '## Galaxy F
     soft_time_limit=30000,  # ~8.3h soft
 )
 def run_rakon_coherence_pass(self, page_id: int) -> dict:
-    """Full-page coherence rewrite using Claude claude-opus-4-7 via Anthropic API."""
+    """Full-page coherence rewrite using Claude claude-opus-4-8 via Anthropic API."""
     import json as _json
     import time as _time
     import datetime as _dt
+
+    if _autowiki_provenance_gate_mode() == "enforce":
+        return {
+            "decision": "skip",
+            "reason": "provenance_enforce_suppressed_direct_coherence_rewrite",
+            "page_id": page_id,
+        }
 
     logger.info("[coherence] Starting Opus coherence pass page=%d", page_id)
 

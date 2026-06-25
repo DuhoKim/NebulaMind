@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import random
 from pathlib import Path
 
@@ -18,6 +19,16 @@ TIER_B_AUDIT_SAMPLE_SIZE = 20
 TIER_B_AUDIT_SAMPLE_SEED = 20260524
 V1_1_SAMPLE_SIZE = 20
 V1_1_SAMPLE_SEED = 20260524
+MANUAL_PROMOTER_FREEZE_ENV = "ALLOW_MANUAL_EVIDENCE_PROMOTERS"
+
+
+def assert_manual_promoter_unfrozen() -> None:
+    if os.getenv(MANUAL_PROMOTER_FREEZE_ENV) != "1":
+        raise SystemExit(
+            "arxiv_wiki_feed_v1 Evidence promotion is frozen by Phase-2 D3 containment. "
+            f"Revert path: remove this guard patch, or set {MANUAL_PROMOTER_FREEZE_ENV}=1 "
+            "only for an explicitly authorized manual promoter run."
+        )
 
 
 def parse_force_rows(value: str | None) -> set[tuple[int, str]]:
@@ -585,6 +596,8 @@ def resolve_target_claim(conn, source_claim_id: int, element_id: str) -> tuple[i
 
 def promote_element_scoped(manifest: dict, conn, dry_run: bool = True) -> dict:
     from collections import defaultdict
+    if not dry_run:
+        assert_manual_promoter_unfrozen()
     
     evidence_rows_inserted = 0
     evidence_rows_reused = 0
@@ -811,6 +824,7 @@ def promote_element_scoped(manifest: dict, conn, dry_run: bool = True) -> dict:
 def promote(manifest: dict) -> list[int]:
     if not manifest.get("apply_requested") or not manifest.get("approved_by"):
         raise SystemExit("Production promotion requires --apply and --approved-by.")
+    assert_manual_promoter_unfrozen()
     engine = db_engine()
     promoted = []
     with engine.begin() as conn:

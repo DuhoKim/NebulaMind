@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -11,6 +11,7 @@ import Link from "next/link";
 import ClaimBlock from "./ClaimBlock";
 import TOCSidebar from "./TOCSidebar";
 import ProvenanceChip from "./ProvenanceChip";
+import DebateEvidencePanel from "./DebateEvidencePanel";
 
 interface WikiPage {
   id: number;
@@ -127,19 +128,21 @@ function renderWikiMarkers(content: string): string {
       return `<span class="cite-unmatched" data-cite-unmatched="${safeText}"></span>`;
     });
 
-  return withCites.replace(
-    /<!--\s*claim:([\d,\s]+?)\s*-->([\s\S]*?)<!--\s*\/claim:([\d,\s]+?)\s*-->/g,
-    (match, openIds, body, closeIds) => {
-      const open = parseIds(String(openIds));
-      const close = parseIds(String(closeIds));
-      if (open.join(",") !== close.join(",")) {
-        return match;
+  return withCites
+    .replace(
+      /<!--\s*claim:([\d,\s]+?)\s*-->([\s\S]*?)<!--\s*\/claim:([\d,\s]+?)\s*-->/g,
+      (match, openIds, body, closeIds) => {
+        const open = parseIds(String(openIds));
+        const close = parseIds(String(closeIds));
+        if (open.join(",") !== close.join(",")) {
+          return match;
+        }
+        const dataAttr = open.join(",");
+        const anchorId = open[0] ? String(open[0]) : "";
+        return `<span data-claim-id="${dataAttr}" id="claim-${anchorId}">${body}</span>`;
       }
-      const dataAttr = open.join(",");
-      const anchorId = open[0] ? String(open[0]) : "";
-      return `<span data-claim-id="${dataAttr}" id="claim-${anchorId}">${body}</span>`;
-    }
-  );
+    )
+    .replace(/<!--\s*\/claim:[^>]+-->/g, "");
 }
 
 function extractHeadings(content: string) {
@@ -390,12 +393,13 @@ function ClaimAnnotatedSpan({
   const [open, setOpen] = useState(false);
   const [ideasOpen, setIdeasOpen] = useState(false);
   const [evidence, setEvidence] = useState<any[] | null>(null);
+  const [totalElements, setTotalElements] = useState(0);
   const [loadingEvidence, setLoadingEvidence] = useState(false);
-  const trustLevel = claim?.trust_level ?? "unverified";
+  const claimTriggerRef = useRef<HTMLSpanElement | null>(null);
+  const trustLevel = claim?.trust_level || "unverified";
   const trustKey = TRUST_COLORS[trustLevel] ? trustLevel : "unverified";
-  const trustColor = TRUST_COLORS[trustKey];
   const evidenceCount = claim?.evidence_count ?? 0;
-  const isContested = ["debated", "challenged"].includes(trustLevel) || (claim?.con_count ?? 0) >= 2;
+  const isContested = ["debated", "challenged"].includes(trustLevel);
 
   useEffect(() => {
     if (!open && !ideasOpen) return;
@@ -411,10 +415,12 @@ function ClaimAnnotatedSpan({
         .then((r) => r.ok ? r.json() : null)
         .then((data) => {
           setEvidence(data?.evidence || []);
+          setTotalElements(data?.total_elements || 0);
           setLoadingEvidence(false);
         })
         .catch(() => {
           setEvidence([]);
+          setTotalElements(0);
           setLoadingEvidence(false);
         });
     }
@@ -425,9 +431,21 @@ function ClaimAnnotatedSpan({
   return (
     <span style={{ position: "relative", display: "inline" }}>
       <span
+        ref={claimTriggerRef}
         className={`claim-inline claim-inline--${trustKey}`}
         title={`${trustLevel} · ${evidenceCount} source${evidenceCount !== 1 ? "s" : ""}`}
         onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
+        onKeyDown={(e) => {
+          if (e.key === "Enter" || e.key === " ") {
+            e.preventDefault();
+            e.stopPropagation();
+            setOpen((v) => !v);
+          }
+        }}
+        role="button"
+        tabIndex={0}
+        aria-expanded={open}
+        aria-haspopup="dialog"
       >{children}</span>
       {showIdeas && ideas && ideas.length > 0 && (
         <button
@@ -451,77 +469,16 @@ function ClaimAnnotatedSpan({
         </button>
       )}
       {open && (
-        <span
-          onClick={(e) => e.stopPropagation()}
-          style={{
-            position: "absolute",
-            top: "1.5em",
-            left: 0,
-            zIndex: 100,
-            background: "#1e293b",
-            border: "1px solid #334155",
-            borderLeft: `3px solid ${trustColor}`,
-            borderRadius: "6px",
-            padding: "0.6rem 0.8rem",
-            minWidth: evidenceCount > 3 ? "340px" : "260px",
-            maxWidth: evidenceCount > 3 ? "480px" : "360px",
-            fontSize: "0.78rem",
-            color: "#94a3b8",
-            boxShadow: "0 4px 16px rgba(0,0,0,0.5)",
-            display: "block",
-            whiteSpace: "normal",
-          }}
-        >
-          <div style={{ fontWeight: 600, color: "#f8fafc", marginBottom: "0.3rem", textTransform: "capitalize", display: "flex", justifyContent: "space-between" }}>
-            <span>
-              <span style={{ display: "inline-block", width: 8, height: 8, borderRadius: "50%", background: trustColor, marginRight: 6, verticalAlign: "baseline" }} />
-              {trustLevel}
-            </span>
-            <span style={{ fontSize: "0.7rem", opacity: 0.7 }}>#{claim?.id}</span>
-          </div>
-          {evidenceCount > 0 && (
-            <div style={{ marginBottom: "0.4rem", borderBottom: "1px solid #2d3748", paddingBottom: "0.3rem" }}>
-              📄 {evidenceCount} source{evidenceCount !== 1 ? "s" : ""}
-            </div>
-          )}
-          {loadingEvidence && <div style={{ fontSize: "0.72rem", color: "#64748b" }}>Loading papers...</div>}
-          {evidence && evidence.length > 0 && (
-            <div style={{ 
-              maxHeight: evidence.length > 3 ? "280px" : "160px", 
-              overflowY: "auto", 
-              display: "flex", 
-              flexDirection: "column", 
-              gap: "0.4rem" 
-            }}>
-              {evidence.map((ev) => {
-                const titleHasYear = ev.year && ev.title && (ev.title.includes(String(ev.year)) || ev.title.endsWith(String(ev.year)));
-                const displayYear = ev.year && !titleHasYear ? ` (${ev.year})` : "";
-                return (
-                  <div key={ev.id} style={{ fontSize: "0.72rem", background: "#0f172a", borderRadius: "4px", padding: "0.3rem 0.4rem" }}>
-                    <div style={{ fontWeight: 500, color: "#cbd5e1", display: "flex", gap: "4px" }}>
-                      <span>{ev.stance === "supports" ? "✅" : ev.stance === "challenges" ? "❌" : "➖"}</span>
-                      {ev.url ? (
-                        <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ color: "#818cf8", textDecoration: "none" }} className="hover:underline">
-                          {ev.title}{displayYear}
-                        </a>
-                      ) : (
-                        <span>{ev.title}{displayYear}</span>
-                      )}
-                    </div>
-                    {ev.summary && (
-                      <p style={{ margin: "0.2rem 0 0", color: "#64748b", fontSize: "0.68rem", lineHeight: 1.3 }} className="line-clamp-2" title={ev.summary}>
-                        {ev.summary}
-                      </p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-          {evidence && evidence.length === 0 && (
-            <div style={{ fontSize: "0.72rem", color: "#64748b" }}>No detailed papers linked yet.</div>
-          )}
-        </span>
+        <DebateEvidencePanel
+          claimId={claim?.id}
+          claimText={claim?.text || String(children || "")}
+          trustLevel={trustLevel}
+          evidence={evidence}
+          loading={loadingEvidence}
+          totalElements={totalElements}
+          onClose={() => setOpen(false)}
+          returnFocusRef={claimTriggerRef}
+        />
       )}
       {ideasOpen && ideas && ideas.length > 0 && (
         <span
@@ -959,7 +916,7 @@ export default function WikiPageClientView() {
           <div style={{ display: "flex", gap: "0.5rem", fontSize: "0.75rem", color: "#64748b" }}>
             <span style={{ borderLeft: "2px solid #22c55e", paddingLeft: "4px" }}>Consensus</span>
             <span style={{ borderLeft: "2px solid #3b82f6", paddingLeft: "4px" }}>Accepted</span>
-            <span style={{ borderLeft: "2px solid #f59e0b", paddingLeft: "4px" }}>Debated</span>
+            <span style={{ borderLeft: "2px solid #f59e0b", paddingLeft: "4px" }} title="Click a debated underline or badge to open the debate map">Debated</span>
             <span style={{ borderLeft: "2px solid #ef4444", paddingLeft: "4px" }}>Challenged</span>
           </div>
         )}

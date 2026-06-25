@@ -19,6 +19,7 @@ N_PREMIUM = 5
 # Static price table, KRW per 1M input/output tokens.
 MODEL_PRICE_TABLE: dict[str, tuple[int, int]] = {
     "claude-opus-4-7": (15 * KRW_PER_USD, 75 * KRW_PER_USD),
+    "claude-opus-4-8": (15 * KRW_PER_USD, 75 * KRW_PER_USD),
     "claude-sonnet-4-6": (3 * KRW_PER_USD, 15 * KRW_PER_USD),
     "claude-3-5-sonnet": (3 * KRW_PER_USD, 15 * KRW_PER_USD),
     "gemini-2.5-pro": (2 * KRW_PER_USD, 10 * KRW_PER_USD),

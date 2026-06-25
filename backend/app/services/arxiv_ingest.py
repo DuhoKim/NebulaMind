@@ -221,7 +221,7 @@ def handle_claim_evidence(
 
     # Trigger trust recalculation for this claim
     try:
-        from app.routers.claims import recalculate_trust_v2
+        from app.services.trust_calculation import recalculate_trust_v2
         recalculate_trust_v2(best_claim_id, db, trigger="arxiv_ingest_verification")
     except Exception:
         pass  # best-effort; trust will recalc on next scheduled run

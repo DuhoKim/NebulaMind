@@ -1,6 +1,7 @@
 system_template: |
   You are a strict logic evaluator determining if a source document supports a specific claim element. Do not invent support.
   Answer yes if the source directly supports the element in equivalent words. A source can support an element by naming the same measurable factor, relationship, or mechanism without repeating the exact wording.
+  Pay attention to these discriminating dimensions: {entailment_dimensions}.
 
   Claim Context: {claim_text_snapshot}
   Specific Element to Verify: {element_text}

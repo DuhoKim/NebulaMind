@@ -1,17 +1,16 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Response
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_, distinct
 from sqlalchemy import text as _text
 from typing import Optional
-import math
+import logging
 import re
 from datetime import datetime, timedelta
 from datetime import datetime as _datetime
 from collections import defaultdict
 
 from fastapi import Request
-from app.config import settings
 from app.database import get_db
 from app.middleware.rate_limit import limiter, VOTES_LIMIT, EDITS_LIMIT
 from app.auth import require_api_key
@@ -22,71 +21,41 @@ from app.models.page import WikiPage
 from app.models.evidence_element_link import EvidenceElementLink
 
 router = APIRouter(prefix="/api", tags=["claims"])
+logger = logging.getLogger(__name__)
+EVIDENCE_SCHEMA_VERSION = "debate_evidence.v1"
+EVIDENCE_VOTE_SCOPE = {
+    "display_counts_unit": "evidence_id",
+    "dedupe": "latest_vote_per_agent_id_per_evidence_id",
+    "same_proposition_scoped": False,
+    "limitation": (
+        "votes_agree/votes_disagree are deduped display counts per evidence row; "
+        "they are not independently scoped by proposition or claim element."
+    ),
+}
+
+
+def _dedup_vote_counts(votes: list[EvidenceVote]) -> tuple[int, int]:
+    """Count one latest vote per agent; anonymous votes remain independent."""
+    latest_by_voter: dict[object, EvidenceVote] = {}
+    for vote in votes:
+        voter_key = ("agent", vote.agent_id) if vote.agent_id is not None else ("vote", vote.id)
+        current = latest_by_voter.get(voter_key)
+        if current is None:
+            latest_by_voter[voter_key] = vote
+            continue
+        current_key = (current.created_at or datetime.min, current.id or 0)
+        vote_key = (vote.created_at or datetime.min, vote.id or 0)
+        if vote_key >= current_key:
+            latest_by_voter[voter_key] = vote
+
+    agree = sum(1 for vote in latest_by_voter.values() if vote.value > 0)
+    disagree = sum(1 for vote in latest_by_voter.values() if vote.value < 0)
+    return agree, disagree
 
 
 def recalculate_trust(claim_id: int, db: Session) -> str:
     new_level, _ = recalculate_trust_v2(claim_id, db, trigger="legacy_router_shim")
     return new_level
-
-
-# ---------------------------------------------------------------------------
-# Trust v2 helpers
-# ---------------------------------------------------------------------------
-
-def _human_override_score(claim) -> float:
-    """Map human_trust_override to a float contribution H."""
-    mapping = {
-        "consensus": 1.0,
-        "accepted": 0.5,
-        "debated": 0.0,
-        "challenged": -0.5,
-    }
-    if not claim.human_trust_override:
-        return 0.0
-    return mapping.get(claim.human_trust_override, 0.0)
-
-
-def _bucket_debate(claim, evidence: list) -> str:
-    """Determine trust level for claim_type='debate' claims."""
-    has_supports = any(e.stance == "supports" for e in evidence)
-    has_challenges = any(e.stance == "challenges" for e in evidence)
-    if has_supports and has_challenges:
-        return "debated"
-    elif has_supports:
-        return "accepted"
-    elif has_challenges:
-        return "challenged"
-    else:
-        return "unverified"
-
-
-def _has_recent_evidence(claim, days: int) -> bool:
-    """Check if claim has any evidence added within `days` days (via created_at)."""
-    # We check evidence.created_at via the claim's evidence relationship
-    # This is called with the evidence list already loaded in recalculate_trust_v2
-    # so we do a direct DB check using claim.id
-    return False  # Implemented fully in recalculate_trust_v2 which passes evidence list
-
-
-def _emit_event(event_name: str, **kwargs) -> None:
-    """Emit a trust event. Phase 1: just print. Phase 4 will hook to Discord/Celery."""
-    print(f"[trust_event] {event_name}: {kwargs}")
-
-
-def _notify_trust_demotion(claim_id: int, old_level: str, new_level: str, claim_text: str) -> None:
-    """Post hard demotion to #nebulamind-recruitment Discord channel."""
-    try:
-        import httpx
-        msg = (
-            f"🔴 **Hard demotion** — Claim #{claim_id} demoted: "
-            f"{old_level} → **{new_level}**\n"
-            f"*{claim_text}...*\n"
-            f"View: https://nebulamind.net"
-        )
-        RECRUITMENT_WEBHOOK = "https://discord.com/api/webhooks/1489167759286997133/XspESjRMHz4x_jRT8zW3LkgF1riNNJcbykGweSkvXgfeghy0E4ETr_FaGfWtjfBg5h1K"
-        httpx.post(RECRUITMENT_WEBHOOK, json={"content": msg}, timeout=5)
-    except Exception:
-        pass  # best-effort
 
 
 def recalculate_trust_v2(
@@ -97,134 +66,15 @@ def recalculate_trust_v2(
     actor_agent_id: int | None = None,
     actor_human_id: int | None = None,
 ) -> tuple[str, float]:
-    """Compute and persist the v2 trust score for a claim.
+    from app.services.trust_calculation import recalculate_trust_v2 as _recalculate_trust_v2
 
-    Returns (new_level, trust_score).
-    """
-    claim = db.query(Claim).filter(Claim.id == claim_id).first()
-    if not claim:
-        return "unverified", 0.0
-
-    evidence = db.query(Evidence).filter(Evidence.claim_id == claim_id).all()
-
-    # ---- E component ----
-    if not evidence:
-        E = 0.0
-        n_supports = n_challenges = 0
-    else:
-        E_sup  = sum(e.quality for e in evidence if e.stance == "supports")
-        E_chal = sum(e.quality for e in evidence if e.stance == "challenges")
-        # neutral counts as 0 in the numerator (context only)
-        E = math.tanh((E_sup - E_chal) / 1.5)
-        n_supports   = sum(1 for e in evidence if e.stance == "supports")
-        n_challenges = sum(1 for e in evidence if e.stance == "challenges")
-
-    # ---- V component ----
-    if evidence:
-        ev_ids = [e.id for e in evidence]
-        votes = db.query(EvidenceVote).filter(EvidenceVote.evidence_id.in_(ev_ids)).all()
-        n_pos = sum(v.weight for v in votes if v.value > 0)
-        n_neg = sum(v.weight for v in votes if v.value < 0)
-        n_total = n_pos + n_neg
-        if n_total > 0:
-            raw = (n_pos - n_neg) / n_total
-            confidence = 1.0 - math.exp(-n_total / settings.VOTE_CONFIDENCE_HALF_LIFE)
-            V = raw * confidence
-        else:
-            V = 0.0
-    else:
-        V = 0.0
-
-    # ---- T component ----
-    sup_years = [e.year for e in evidence if e.stance == "supports" and e.year]
-    if sup_years:
-        years_since = datetime.utcnow().year - max(sup_years)
-        T = -0.05 * max(0, years_since - settings.DECAY_FREE_YEARS) / 5.0
-        T = max(T, -settings.DECAY_MAX_PENALTY)
-    else:
-        T = 0.0
-
-    # ---- H component ----
-    H = _human_override_score(claim)
-
-    # === Phase F: Wikipedia cross-check signal ===
-    if settings.WIKIPEDIA_CROSSCHECK_ENABLED:
-        from app.models.page import WikiPage
-        from app.services.wikipedia_ingest import wikipedia_cross_check_score
-        try:
-            page = db.query(WikiPage).get(claim.page_id)
-            if page and page.wikipedia_title and page.wiki_summary:
-                bonus = wikipedia_cross_check_score(claim, page)
-                bonus = min(bonus, settings.WIKIPEDIA_CROSSCHECK_MAX_BONUS)
-                if bonus > 0:
-                    V = min(1.0, V + bonus)
-        except Exception:
-            pass  # cross-check is advisory; never fail trust computation
-
-    # ---- Combine ----
-    TS = (
-        settings.TRUST_W_EVIDENCE * E
-        + settings.TRUST_W_VOTES * V
-        + settings.TRUST_W_TEMPORAL * T
-        + settings.TRUST_W_HUMAN * H
-    )
-
-    # ---- Bucket ----
-    if claim.human_trust_override and claim.human_override_locked:
-        new_level = claim.human_trust_override
-    elif claim.claim_type == "debate":
-        new_level = _bucket_debate(claim, evidence)
-    elif not evidence and TS == 0:
-        new_level = "unverified"
-    elif (TS >= settings.TRUST_CONSENSUS_MIN
-          and n_supports >= settings.TRUST_CONSENSUS_MIN_SUPPORTS
-          and n_challenges == 0):
-        new_level = "consensus"
-    elif TS >= settings.TRUST_ACCEPTED_MIN:
-        new_level = "accepted"
-    elif TS <= settings.TRUST_CHALLENGED_MAX:
-        new_level = "challenged"
-    elif n_supports >= 1 and n_challenges >= 1:
-        new_level = "debated"
-    else:
-        new_level = "unverified"
-
-    # ---- Freshness floor ----
-    if (new_level == "consensus" and sup_years
-            and (datetime.utcnow().year - max(sup_years)) > settings.FRESHNESS_FLOOR_YEARS):
-        # Check if any evidence was added recently
-        cutoff = datetime.utcnow() - timedelta(days=settings.FRESHNESS_FLOOR_NEW_EVIDENCE_DAYS)
-        recent = any(e.created_at >= cutoff for e in evidence)
-        if not recent:
-            new_level = "accepted"
-            _emit_event("claim.stale", claim_id=claim_id)
-
-    # ---- Persist + audit ----
-    old_level = claim.trust_level
-    old_score = getattr(claim, "trust_score", None)
-    claim.trust_level = new_level
-    claim.trust_score = TS
-    claim.trust_score_updated_at = datetime.utcnow()
-
-    # Hard demotion notification
-    if new_level == "challenged" and old_level != "challenged":
-        _notify_trust_demotion(claim_id, old_level, new_level, claim.text[:120] if claim.text else "")
-
-    db.add(TrustAuditLog(
-        claim_id=claim_id,
-        old_level=old_level,
-        new_level=new_level,
-        old_score=old_score,
-        new_score=TS,
-        e_component=E,
-        v_component=V,
-        t_component=T,
-        h_component=H,
+    return _recalculate_trust_v2(
+        claim_id,
+        db,
         trigger=trigger,
-        triggered_by_agent_id=actor_agent_id,
-        triggered_by_human_id=actor_human_id,
-    ))
-    return new_level, TS
+        actor_agent_id=actor_agent_id,
+        actor_human_id=actor_human_id,
+    )
 
 
 class ClaimOut(BaseModel):
@@ -325,8 +175,7 @@ class EvidenceCreate(BaseModel):
     agent_id: Optional[int] = None
 
 
-@router.get("/claims/{claim_id}/evidence")
-def get_evidence(claim_id: int, db: Session = Depends(get_db)):
+def serialize_claim_evidence(claim_id: int, db: Session) -> dict:
     claim = db.query(Claim).filter(Claim.id == claim_id).first()
     if not claim:
         raise HTTPException(404, "Claim not found")
@@ -338,7 +187,15 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
     ).scalar() or 0
 
     if not evidence_rows:
-        return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": [], "total_elements": total_elements}
+        return {
+            "schema_version": EVIDENCE_SCHEMA_VERSION,
+            "claim_id": claim_id,
+            "claim_text": claim.text,
+            "trust_level": claim.trust_level,
+            "vote_scope": EVIDENCE_VOTE_SCOPE,
+            "evidence": [],
+            "total_elements": total_elements,
+        }
 
     evidence_ids = [e.id for e in evidence_rows]
     
@@ -350,14 +207,14 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "element_text_snapshot": link.element_text_snapshot,
         })
 
+    vote_rows = db.query(EvidenceVote).filter(EvidenceVote.evidence_id.in_(evidence_ids)).all()
+    votes_by_evidence_id = defaultdict(list)
+    for vote in vote_rows:
+        votes_by_evidence_id[vote.evidence_id].append(vote)
+
     result = []
     for e in evidence_rows:
-        agree = db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == 1
-        ).scalar() or 0
-        disagree = db.query(func.count(EvidenceVote.id)).filter(
-            EvidenceVote.evidence_id == e.id, EvidenceVote.value == -1
-        ).scalar() or 0
+        agree, disagree = _dedup_vote_counts(votes_by_evidence_id.get(e.id, []))
         comments = db.query(func.count(EvidenceComment.id)).filter(
             EvidenceComment.evidence_id == e.id
         ).scalar() or 0
@@ -368,6 +225,7 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "id": e.id, "title": e.title, "arxiv_id": e.arxiv_id,
             "url": e.url, "authors": e.authors, "year": e.year,
             "summary": e.summary, "stance": e.stance,
+            "status": getattr(e, "status", None) or "active",
             "votes_agree": agree, "votes_disagree": disagree, "comments_count": comments,
             "element_links": links,
             "link_count": len(links),
@@ -378,7 +236,20 @@ def get_evidence(claim_id: int, db: Session = Depends(get_db)):
             "quality_v2": e.quality if e.consensus_scorecard_id is not None else None,
         })
 
-    return {"claim_id": claim_id, "claim_text": claim.text, "trust_level": claim.trust_level, "evidence": result, "total_elements": total_elements}
+    return {
+        "schema_version": EVIDENCE_SCHEMA_VERSION,
+        "claim_id": claim_id,
+        "claim_text": claim.text,
+        "trust_level": claim.trust_level,
+        "vote_scope": EVIDENCE_VOTE_SCOPE,
+        "evidence": result,
+        "total_elements": total_elements,
+    }
+
+
+@router.get("/claims/{claim_id}/evidence")
+def get_evidence(claim_id: int, db: Session = Depends(get_db)):
+    return serialize_claim_evidence(claim_id, db)
 
 
 @router.post("/claims/{claim_id}/evidence", status_code=201)
@@ -406,18 +277,49 @@ class VoteCreate(BaseModel):
 
 @router.post("/evidence/{evidence_id}/vote")
 @limiter.limit(VOTES_LIMIT)
-def vote_evidence(request: Request, evidence_id: int, body: VoteCreate, db: Session = Depends(get_db)):
+def vote_evidence(
+    request: Request,
+    response: Response,
+    evidence_id: int,
+    body: VoteCreate,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    """Legacy evidence vote endpoint.
+
+    Locked to authenticated agents but frozen as no-write/deprecated. Prefer the
+    jury task vote API for legitimate stance jury flows.
+    """
     ev = db.query(Evidence).filter(Evidence.id == evidence_id).first()
     if not ev:
         raise HTTPException(404, "Evidence not found")
-    vote = EvidenceVote(evidence_id=evidence_id, value=body.value, agent_id=body.agent_id, reason=body.reason)
-    db.add(vote)
-    db.flush()
     claim = db.query(Claim).filter(Claim.id == ev.claim_id).first()
-    if claim:
-        claim.trust_level = recalculate_trust(claim.id, db)
-    db.commit()
-    return {"trust_level": claim.trust_level if claim else None}
+    replacement = "/api/jury/tasks/{task_id}/vote"
+    response.headers["X-API-Deprecated"] = "true"
+    response.headers["X-API-No-Write"] = "true"
+    response.headers["X-API-Replacement"] = replacement
+    logger.warning(
+        "deprecated_legacy_evidence_vote_no_write %s",
+        {
+            "route_name": "vote_evidence",
+            "route": "/api/evidence/{evidence_id}/vote",
+            "evidence_id": evidence_id,
+            "authenticated_agent_id": agent.id,
+            "authenticated_agent_name": agent.name,
+            "status": "deprecated",
+            "no_write": True,
+        },
+    )
+    return {
+        "deprecated": True,
+        "no_write": True,
+        "route": "/api/evidence/{evidence_id}/vote",
+        "replacement": replacement,
+        "detail": "Legacy evidence vote endpoint is deprecated and frozen; no vote was committed.",
+        "evidence_id": evidence_id,
+        "authenticated_agent_id": agent.id,
+        "trust_level": claim.trust_level if claim else None,
+    }
 
 
 class CommentCreate(BaseModel):
