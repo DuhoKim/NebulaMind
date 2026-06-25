@@ -30,6 +30,8 @@
 
 **Follow-up dry-run parity slice (`feat/page57-dry-run-trust-parity`):** the Page58 `--no-apply` staking dry-run now calls the same production `project_sentence_trust(...)` projector used by `TrustMutationService.recalculate_sentence_trust(...)`. This removes the prior duplicate `trust_level(...)` logic in the dry-run script, so `would_be_sentence_trust.jsonl` will use the same zero-vote, single-source, contested-veto, tone-tier, settled-share, and trust-score semantics as the eventual persisted `sentence_trust` rows. The dry-run report also surfaces `would_be_tone_tier`, `single_source`, and `contested_veto` flags. This still performs no live DB writes and does not authorize `--apply`.
 
+**Slice-2 calibrated dry-run parity follow-up (`feat/page58-slice2-projector-parity`):** the calibrated Page58 Slice-2 dry-run now reuses the same `project_sentence_trust(...)` projector for baseline-plus-new vote projections instead of its older local `production_sentence_trust(...)` helper. This keeps the calibrated `would_be_sentence_trust_slice2.jsonl` projection aligned with production contested-veto, single-source, tone-tier, settled-share, and trust-score semantics while remaining `--no-apply` only.
+
 ---
 
 ## 0. The core inversion (and its honest tradeoff)
