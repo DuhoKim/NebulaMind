@@ -28,9 +28,17 @@ assert {seat.label for seat in platoon_canary_seats()} == {
 }
 PY
 
-if rg -n "PILOT_PAGE_ID|Query\\(default=57\\)|def .*page_id: int = 57|page_slug: str = \"galaxy-evolution\"" app --glob '!**/*.bak*'; then
-  echo "Page registry grep gate failed: remove page-57 defaults from active app code." >&2
-  exit 1
+PAGE57_DEFAULT_PATTERN='PILOT_PAGE_ID|Query\(default=57\)|def .*page_id: int = 57|page_slug: str = "galaxy-evolution"'
+if command -v rg >/dev/null 2>&1; then
+  if rg -n "$PAGE57_DEFAULT_PATTERN" app --glob '!**/*.bak*'; then
+    echo "Page registry grep gate failed: remove page-57 defaults from active app code." >&2
+    exit 1
+  fi
+else
+  if grep -RInE --exclude='*.bak*' "$PAGE57_DEFAULT_PATTERN" app; then
+    echo "Page registry grep gate failed: remove page-57 defaults from active app code." >&2
+    exit 1
+  fi
 fi
 
 "$PY" -m pytest -q \
