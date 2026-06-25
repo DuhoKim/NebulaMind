@@ -61,6 +61,24 @@ assert.equal(claimsForHistory.find((claim) => claim.id === 3)?.section, "Overvie
 assert.equal(claimsForHistory.find((claim) => claim.id === 4)?.section, "Debate: Expansion rate tension");
 assert.equal(collectTrustHistoryClaims({ sections: [{ name: "Many", claims: claimsForHistory }] }, 2).length, 2);
 
+const debateEdgeCases = collectTrustHistoryClaims({
+  debates: [
+    {
+      topic: "Dark energy alternatives",
+      pro: { id: 5, text: "Unsourced unverified debate pro", trust_level: "unverified", evidence_count: 0 },
+      con: {
+        id: 6,
+        text: "Backend-shaped sourced debate con",
+        trust_level: "unverified",
+        evidence_count: 1,
+        section: "Existing Debate Section",
+      },
+    },
+  ],
+});
+assert.deepEqual(Array.from(debateEdgeCases.map((claim) => claim.id)), [6]);
+assert.equal(debateEdgeCases[0].section, "Existing Debate Section");
+
 assert.equal(
   formatTrustHistoryStats({ total_raw_rows: 3, events_returned: 2, noise_filtered: 1 }),
   "3 raw events → 2 timeline events · 1 recompute hidden",
