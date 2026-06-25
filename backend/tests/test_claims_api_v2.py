@@ -1,6 +1,7 @@
 import sys
 import json
 import logging
+import datetime as dt
 from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
@@ -17,7 +18,7 @@ from app.models import (
     jury, page, qa, reference, research_idea, social, spotlight, subscriber,
     survey, visitor, vote
 )
-from app.models.claim import Claim, Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence, EvidenceVote, TrustAuditLog
 from app.models.evidence_element_link import EvidenceElementLink
 from app.models.page import WikiPage
 from app.models.agent import Agent
@@ -303,6 +304,47 @@ def test_promote_evidence_endpoint_activates_and_recalculates(db_session):
     db_session.refresh(test_claim)
     assert test_evidence.status == "active"
     assert test_claim.trust_level == "accepted"
+
+
+def test_trust_history_surfaces_evidence_promotion_without_level_change(db_session):
+    test_page = WikiPage(id=25, slug="promotion-history-page", title="Promotion History Page")
+    test_claim = Claim(
+        id=25,
+        page_id=25,
+        text="Promotion History Claim",
+        trust_level="unverified",
+        trust_score=0.12,
+    )
+    db_session.add_all([test_page, test_claim])
+    db_session.flush()
+    db_session.add(
+        TrustAuditLog(
+            claim_id=25,
+            old_level="unverified",
+            new_level="unverified",
+            old_score=0.12,
+            new_score=0.12,
+            trigger="evidence_promoted",
+            triggered_by_agent_id=44,
+            created_at=dt.datetime(2026, 6, 25, 12, 0, 0),
+        )
+    )
+    db_session.commit()
+
+    history_client = TestClient(app, raise_server_exceptions=False)
+    response = history_client.get("/api/claims/25/trust-history")
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["events"]
+    event = data["events"][0]
+    assert event["kind"] == "evidence_promoted"
+    assert event["color"] == "gold"
+    assert event["summary"] == "Evidence promoted into trust"
+    assert event["level_before"] == "unverified"
+    assert event["level_after"] == "unverified"
+    assert data["stats"]["events_returned"] == 1
+    assert data["stats"]["noise_filtered"] == 0
 
 
 def test_static_preview_sample_matches_debate_evidence_contract():
