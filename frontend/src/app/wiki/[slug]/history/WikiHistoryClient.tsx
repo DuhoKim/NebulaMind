@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { emptyTrustHistoryText, formatTrustHistoryStats } from "../trustHistoryCopy";
 
 interface ClaimSummary {
   id: number;
@@ -138,11 +139,10 @@ export default function WikiHistoryPage() {
                 <div style={{ borderTop: "1px solid #1e293b", padding: "0.75rem 1.125rem",
                   background: "#0f172a" }}>
                   <div style={{ fontSize: "0.7rem", color: "#475569", marginBottom: "0.5rem" }}>
-                    {hist.stats.total_raw_rows} raw events → {hist.events.length} transitions
-                    · {hist.stats.noise_filtered} recomputes hidden
+                    {formatTrustHistoryStats(hist.stats)}
                   </div>
                   {hist.events.length === 0 ? (
-                    <p style={{ color: "#334155", fontSize: "0.78rem" }}>No level transitions recorded.</p>
+                    <p style={{ color: "#334155", fontSize: "0.78rem" }}>{emptyTrustHistoryText}</p>
                   ) : (
                     <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
                       {hist.events.map((ev, i) => {

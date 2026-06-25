@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import { emptyTrustHistoryText, formatHiddenRecomputes } from "./trustHistoryCopy";
 
 interface TimelineEvent {
   kind: string;
@@ -86,7 +87,7 @@ export default function TrustTimeline({ claimId }: { claimId: number }) {
             </span>
             <div style={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
               <span style={{ fontSize: "0.7rem", color: "#475569" }}>
-                {history.stats.noise_filtered} recomputes hidden
+                {formatHiddenRecomputes(history.stats.noise_filtered)}
               </span>
               <button onClick={() => setOpen(false)}
                 style={{ background: "none", border: "none", color: "#475569", cursor: "pointer", fontSize: "0.9rem" }}>✕</button>
@@ -108,7 +109,7 @@ export default function TrustTimeline({ claimId }: { claimId: number }) {
 
           {/* Events */}
           {history.events.length === 0 ? (
-            <p style={{ color: "#475569", fontSize: "0.8rem" }}>No history available yet.</p>
+            <p style={{ color: "#475569", fontSize: "0.8rem" }}>{emptyTrustHistoryText}</p>
           ) : (
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
               {history.events.map((ev, i) => {
