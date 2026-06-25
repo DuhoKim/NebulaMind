@@ -2,14 +2,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { emptyTrustHistoryText, formatTrustHistoryStats, formatTrustScoreChange } from "../trustHistoryCopy";
+import { collectTrustHistoryClaims, emptyTrustHistoryText, formatTrustHistoryStats, formatTrustScoreChange } from "../trustHistoryCopy";
+import type { TrustHistoryClaimSummary } from "../trustHistoryCopy";
 
-interface ClaimSummary {
-  id: number;
-  text: string;
-  trust_level: string;
-  section: string;
-}
+type ClaimSummary = TrustHistoryClaimSummary;
 
 interface TimelineEvent {
   kind: string;
@@ -67,13 +63,7 @@ export default function WikiHistoryPage() {
       fetch(`/api/pages/${slug}/claims`).then(r => r.json()),
     ]).then(([page, claimsData]) => {
       setPageTitle(page?.title || slug);
-      const allClaims: ClaimSummary[] = [];
-      for (const section of claimsData?.sections || []) {
-        for (const c of section.claims || []) {
-          allClaims.push({ ...c, section: section.name });
-        }
-      }
-      setClaims(allClaims.filter((c: any) => c.trust_level !== "unverified").slice(0, 30));
+      setClaims(collectTrustHistoryClaims(claimsData));
       setLoading(false);
     }).catch(() => setLoading(false));
   }, [slug]);
