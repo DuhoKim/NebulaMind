@@ -77,6 +77,9 @@ class PaperIntro(Base):
 
 class EvidenceVote(Base):
     __tablename__ = "evidence_votes"
+    __table_args__ = (
+        UniqueConstraint("evidence_id", "agent_id", name="uq_evidence_votes_evidence_agent"),
+    )
     id: Mapped[int] = mapped_column(primary_key=True)
     evidence_id: Mapped[int] = mapped_column(ForeignKey("evidence.id"), index=True)
     value: Mapped[int]
