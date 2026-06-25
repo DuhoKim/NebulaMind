@@ -1,11 +1,26 @@
 from __future__ import annotations
 
-from typing import Any
+from typing import TypedDict
 
 from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.models.sentence_trust import SentenceTrust, SentenceVote
+
+
+class SentenceTrustProjection(TypedDict):
+    vote_count: int
+    settled_votes: int
+    contested_votes: int
+    settled_share: float
+    trust_score: float
+    trust_level: str
+    tone_tier: str
+    single_source: bool
+    contested_veto: bool
+    tier2_density: float
+    tone_distribution: dict[str, int]
+    tone_distribution_4: dict[str, int] | None
 
 
 def _sentence_tone_tier(settled_votes: int, contested_votes: int) -> str:
@@ -43,7 +58,7 @@ def project_sentence_trust(
     settled_votes: int,
     contested_votes: int,
     distinct_sources: int | None = None,
-) -> dict[str, Any]:
+) -> SentenceTrustProjection:
     """Project sentence trust fields without touching the database.
 
     The Page57/Page58 dry-run path needs the exact same vote-count, tiering,
@@ -58,6 +73,12 @@ def project_sentence_trust(
         distinct_sources = vote_total
     if distinct_sources < 0:
         raise ValueError("distinct_sources must be non-negative")
+    if vote_total == 0 and distinct_sources:
+        raise ValueError("distinct_sources must be 0 when sentence vote counts are 0")
+    if vote_total > 0 and distinct_sources == 0:
+        raise ValueError("distinct_sources must be positive when sentence vote counts are non-zero")
+    if distinct_sources > vote_total:
+        raise ValueError("distinct_sources cannot exceed total sentence votes")
 
     settled_share = (settled_votes / vote_total) if vote_total else 0.0
     raw_evidence = ((settled_votes - contested_votes) / vote_total) if vote_total else 0.0

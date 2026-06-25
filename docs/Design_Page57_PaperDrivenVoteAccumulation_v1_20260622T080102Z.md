@@ -32,6 +32,8 @@
 
 **Slice-2 calibrated dry-run parity follow-up (`feat/page58-slice2-projector-parity`):** the calibrated Page58 Slice-2 dry-run now reuses the same `project_sentence_trust(...)` projector for baseline-plus-new vote projections instead of its older local `production_sentence_trust(...)` helper. This keeps the calibrated `would_be_sentence_trust_slice2.jsonl` projection aligned with production contested-veto, single-source, tone-tier, settled-share, and trust-score semantics while remaining `--no-apply` only.
 
+**Projector contract hardening follow-up (`harden/sentence-trust-projector-contract`):** `project_sentence_trust(...)` now exposes an explicit typed projection contract and rejects impossible source/vote count combinations at the shared projector boundary. This protects both persisted rollups and Page58 dry-run callers from silently emitting invalid `vote_count`, single-source, or contested-veto projections. The validation remains compatibility-safe for legacy carried-forward baselines where distinct source counts may be lower than historical vote totals, but it rejects votes without sources, sources without votes, negative counts, and distinct-source counts above total vote rows. This remains code/test/docs only: no live DB writes, no `--apply`, and no frontend behavior change.
+
 ---
 
 ## 0. The core inversion (and its honest tradeoff)
