@@ -9,6 +9,27 @@
 
 ---
 
+## Implementation update — 2026-06-25
+
+**Why this doc did not move during PR #20:** the first executed slice treated Page57 as design input and landed the backend foundation first. That was a sequencing miss for documentation visibility: Page57's prose/content still did not change, but the implementation status below now records what actually landed.
+
+**Landed in PR #20 (`31a669a`, `feat: add sentence trust rollup scaffold`):**
+
+- Added ORM coverage for the already-committed `sentence_votes` and `sentence_trust` schema.
+- Added deterministic sentence-level rollup service: `sentence_votes` → `sentence_trust`.
+- Added `TrustMutationService.recalculate_sentence_trust(...)` as the seam for the future dual-source trust adapter.
+- Added regression coverage for one-paper-per-sentence uniqueness, migration/model type parity, zero-vote `unverified`/`mixed` behavior, single-source cap, consensus/debated/challenged branches, update-in-place, `tone_distribution`, and the service seam.
+
+**Still unchanged / not authorized by PR #20:**
+
+- No Page57 or Page58 public prose/content changed.
+- No live DB writes, no production migrations run, no `--apply`, no staking-loop writer, no frontend badge re-key.
+- The §3.2 relevance requirement for contested vetoes remains owned by the matcher/staking slice: dissent must bind to *this* sentence's proposition before it can affect trust.
+
+**Build-order status after PR #20:** Revision 1's Step 2 is now partially complete as an app-code scaffold: the ledger/aggregate schema has ORM models and a deterministic rollup seam. The next non-destructive slice is still a `--no-apply` dry-run over page 58's 168 usable intros, after the calibration work in Revision 1 Point 2: τ_rel intro×base gold, new pairwise stance gold, and tone-tier intro-transfer gate.
+
+---
+
 ## 0. The core inversion (and its honest tradeoff)
 
 The stuck pipeline is a **pull** model: each wiki claim reaches OUT to arXiv for a strict per-claim support, gated by a >10% proposer≠judge batch-veto. It has sat at ~23% coverage for weeks because most claims never find a clean one-shot support, and disagreement is treated as **failure** (veto → shelve).
