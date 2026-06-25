@@ -298,8 +298,11 @@ def test_promote_evidence_endpoint_activates_and_recalculates(db_session):
     assert data["evidence_id"] == 24
     assert data["promoted"] is True
     assert data["status"] == "active"
+    assert data["old_trust_level"] == "unverified"
+    assert data["old_trust_score"] == 0.0
     assert data["trust_level"] == "accepted"
     assert data["trust_score"] > 0.3
+    assert data["trust_score_delta"] == data["trust_score"] - data["old_trust_score"]
     db_session.refresh(test_evidence)
     db_session.refresh(test_claim)
     assert test_evidence.status == "active"

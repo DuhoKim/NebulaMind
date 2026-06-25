@@ -32,8 +32,13 @@ class EvidencePromotionResult:
     promoted: bool
     old_status: str
     old_level: str | None
+    old_score: float
     new_level: str
     new_score: float
+
+    @property
+    def score_delta(self) -> float:
+        return self.new_score - self.old_score
 
 
 class TrustMutationService:
@@ -152,6 +157,7 @@ class TrustMutationService:
         claim = db.query(Claim).filter(Claim.id == evidence.claim_id).first()
         old_status = evidence.status or "active"
         old_level = claim.trust_level if claim else None
+        old_score = float((claim.trust_score if claim else 0.0) or 0.0)
 
         if old_status == "active":
             return EvidencePromotionResult(
@@ -159,8 +165,9 @@ class TrustMutationService:
                 promoted=False,
                 old_status=old_status,
                 old_level=old_level,
+                old_score=old_score,
                 new_level=old_level or "unverified",
-                new_score=float((claim.trust_score if claim else 0.0) or 0.0),
+                new_score=old_score,
             )
         if old_status != "provisional":
             raise TrustMutationError(422, "Evidence status must be provisional or active")
@@ -195,6 +202,7 @@ class TrustMutationService:
             promoted=True,
             old_status=old_status,
             old_level=old_level,
+            old_score=old_score,
             new_level=new_level,
             new_score=new_score,
         )

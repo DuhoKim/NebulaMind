@@ -108,8 +108,10 @@ class PromoteEvidenceToolTest(TestCase):
                 "old_status": "provisional",
                 "status": "active",
                 "old_trust_level": "unverified",
+                "old_trust_score": 0.0,
                 "trust_level": "accepted",
                 "trust_score": 0.8123,
+                "trust_score_delta": 0.8123,
             },
         )
 
@@ -125,7 +127,8 @@ class PromoteEvidenceToolTest(TestCase):
         self.assertIn("claim #9", result)
         self.assertIn("provisional → active", result)
         self.assertIn("unverified → accepted", result)
-        self.assertIn("0.812", result)
+        self.assertIn("0.000 → 0.812", result)
+        self.assertIn("+0.812", result)
 
     def test_promote_evidence_reports_unauthorized_without_leaking_key(self):
         response = SimpleNamespace(status_code=401, text="bad key", json=lambda: {})
