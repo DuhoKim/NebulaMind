@@ -7,13 +7,14 @@ Create Date: 2026-06-24
 Adds evidence.status so source-finding evidence can remain provisional until
 promoted. Existing rows are active by default.
 
-TODO: the promotion workflow must set provisional evidence to active and
-recalculate affected claim trust; this migration only prepares the flag.
+Promotion is handled outside this schema migration by the canonical trust
+mutation service, POST /api/evidence/{evidence_id}/promote, and the dry-run-first
+backend/scripts/promote_provisional_evidence.py runner.
 
-The evidence_votes unique constraint on (evidence_id, agent_id) is deliberately
-deferred: production inventory found duplicate pairs, so dedupe must run first.
-Use backend/scripts/evidence_vote_dedupe_report.py for a read-only retention
-plan before any later destructive cleanup/constraint migration.
+The evidence_votes unique constraint on (evidence_id, agent_id) was deliberately
+deferred from this migration: production inventory found duplicate pairs, so
+dedupe had to run first. Use backend/scripts/evidence_vote_dedupe_report.py for
+a read-only retention plan before any destructive cleanup/constraint migration.
 """
 from alembic import op
 import sqlalchemy as sa
