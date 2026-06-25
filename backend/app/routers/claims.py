@@ -2,13 +2,13 @@ from fastapi import APIRouter, Depends, HTTPException, Response
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from sqlalchemy import func, or_, distinct
-from sqlalchemy import text as _text
 from typing import Optional
 import logging
 import re
 from datetime import datetime, timedelta
 from datetime import datetime as _datetime
 from collections import defaultdict
+from types import SimpleNamespace
 
 from fastapi import Request
 from app.database import get_db
@@ -499,6 +499,7 @@ _USER_EVENT_KIND = {
     "batch_recalc": "recomputed",
     "p1_consensus_push": "promoted_manually",
     "manual_admin": "promoted_manually",
+    "evidence_promoted": "evidence_promoted",
     "human_override": "human_corrected",
     "stale_demote": "decayed",
     "p1_fix": "promoted_manually",
@@ -511,9 +512,20 @@ _KIND_META = {
     "jury_voted":        {"icon": "🧑\u200d⚖️", "color": "purple"},
     "recomputed":        {"icon": "🔄", "color": "gray"},
     "promoted_manually": {"icon": "⭐", "color": "gold"},
+    "evidence_promoted": {"icon": "⭐", "color": "gold"},
     "human_corrected":   {"icon": "✋", "color": "orange"},
     "decayed":           {"icon": "🍂", "color": "brown"},
 }
+
+_VISIBLE_NOOP_TRUST_TRIGGERS = frozenset([
+    "migration",
+    "p1_consensus_push",
+    "manual_admin",
+    "evidence_promoted",
+    "human_override",
+    "p1_fix",
+    "p2_consensus_push",
+])
 
 
 @router.get("/claims/{claim_id}/trust-history")
@@ -528,68 +540,49 @@ def get_trust_history(
     if not claim:
         raise HTTPException(404, "Claim not found")
 
-    # Burst-grouping query: condense same-trigger runs within 1 hour
-    sql = _text("""
-        WITH filtered AS (
-          SELECT *
-          FROM trust_audit_log
-          WHERE claim_id = :cid
-            AND (
-              :include_noop
-              OR (old_level IS NOT NULL AND old_level != new_level)
-              OR trigger IN ('migration','p1_consensus_push','manual_admin',
-                             'human_override','p1_fix','p2_consensus_push')
+    max_events = min(max(limit, 0), 100)
+    audit_rows = db.query(TrustAuditLog).filter(
+        TrustAuditLog.claim_id == claim_id
+    ).order_by(TrustAuditLog.created_at.asc(), TrustAuditLog.id.asc()).all()
+    total_rows = len(audit_rows)
+
+    visible_rows = []
+    for audit in audit_rows:
+        level_changed = audit.old_level is not None and audit.old_level != audit.new_level
+        if include_noop or level_changed or audit.trigger in _VISIBLE_NOOP_TRUST_TRIGGERS:
+            visible_rows.append(audit)
+
+    # Burst-group same-trigger runs within 1 hour. This intentionally happens in
+    # Python rather than PostgreSQL-specific SQL so trust-history stays testable
+    # under SQLite and behaves the same for all supported databases.
+    rows = []
+    current = None
+    for audit in visible_rows:
+        created_at = audit.created_at
+        if current is None:
+            starts_new = True
+        else:
+            starts_new = audit.trigger != current.trigger
+            if not starts_new and created_at is not None and current.ended_at is not None:
+                starts_new = (created_at - current.ended_at).total_seconds() > 3600
+        if starts_new:
+            current = SimpleNamespace(
+                started_at=created_at,
+                ended_at=created_at,
+                trigger=audit.trigger,
+                level_before=audit.old_level,
+                level_after=audit.new_level,
+                score_before=audit.old_score or 0.0,
+                score_after=audit.new_score or 0.0,
+                raw_count=1,
             )
-          ORDER BY created_at
-        ),
-        numbered AS (
-          SELECT *,
-            ROW_NUMBER() OVER (ORDER BY created_at) AS rn
-          FROM filtered
-        ),
-        with_prev AS (
-          SELECT
-            a.*,
-            LAG(a.trigger) OVER (ORDER BY a.created_at) AS prev_trigger,
-            LAG(a.created_at) OVER (ORDER BY a.created_at) AS prev_at
-          FROM filtered a
-        ),
-        bursts AS (
-          SELECT *,
-            SUM(CASE
-              WHEN prev_at IS NULL THEN 1
-              WHEN EXTRACT(EPOCH FROM (created_at - prev_at)) > 3600 THEN 1
-              WHEN trigger != prev_trigger THEN 1
-              ELSE 0
-            END) OVER (ORDER BY created_at) AS burst_id
-          FROM with_prev
-        )
-        SELECT
-          burst_id,
-          MIN(created_at) AS started_at,
-          MAX(created_at) AS ended_at,
-          MIN(trigger) AS trigger,
-          (array_agg(old_level ORDER BY created_at))[1] AS level_before,
-          (array_agg(new_level ORDER BY created_at DESC))[1] AS level_after,
-          COALESCE(MIN(old_score), 0) AS score_before,
-          COALESCE(MAX(new_score), 0) AS score_after,
-          COUNT(*) AS raw_count
-        FROM bursts
-        GROUP BY claim_id, burst_id
-        ORDER BY started_at
-        LIMIT :limit
-    """)
-
-    rows = db.execute(sql, {
-        "cid": claim_id,
-        "include_noop": include_noop,
-        "limit": min(limit, 100),
-    }).fetchall()
-
-    total_rows = db.execute(
-        _text("SELECT COUNT(*) FROM trust_audit_log WHERE claim_id = :cid"),
-        {"cid": claim_id}
-    ).scalar() or 0
+            rows.append(current)
+        else:
+            current.ended_at = created_at or current.ended_at
+            current.level_after = audit.new_level
+            current.score_after = audit.new_score or 0.0
+            current.raw_count += 1
+    rows = rows[:max_events]
 
     events = []
     for row in rows:
@@ -615,6 +608,10 @@ def get_trust_history(
                 summary += f" → {la}"
         elif kind == "promoted_manually":
             summary = f"Promoted to {la}"
+        elif kind == "evidence_promoted":
+            summary = "Evidence promoted into trust"
+            if lb and la and lb != la:
+                summary += f" → {la}"
         elif kind == "human_corrected":
             summary = f"Researcher override → {la}"
         elif kind == "decayed":
