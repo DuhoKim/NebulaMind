@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
-import { emptyTrustHistoryText, formatTrustHistoryStats } from "../trustHistoryCopy";
+import { emptyTrustHistoryText, formatTrustHistoryStats, formatTrustScoreChange } from "../trustHistoryCopy";
 
 interface ClaimSummary {
   id: number;
@@ -20,6 +20,7 @@ interface TimelineEvent {
   level_after: string;
   score_before: number | null;
   score_after: number;
+  score_delta: number | null;
   summary: string;
   detail: string | null;
   raw_count: number;
@@ -148,6 +149,7 @@ export default function WikiHistoryPage() {
                       {hist.events.map((ev, i) => {
                         const c = COLOR_MAP[ev.color] || COLOR_MAP.gray;
                         const isLast = i === hist.events.length - 1;
+                        const scoreChange = formatTrustScoreChange(ev);
                         return (
                           <div key={i} style={{ display: "flex", gap: "0.6rem", paddingBottom: isLast ? 0 : "0.5rem" }}>
                             <div style={{ display: "flex", flexDirection: "column", alignItems: "center", flexShrink: 0 }}>
@@ -167,7 +169,7 @@ export default function WikiHistoryPage() {
                                   </span>
                                 )}
                               </div>
-                              {ev.detail && <div style={{ fontSize: "0.67rem", color: "#64748b" }}>{ev.detail}</div>}
+                              {scoreChange && <div style={{ fontSize: "0.67rem", color: "#64748b" }}>{scoreChange}</div>}
                               <div style={{ fontSize: "0.63rem", color: "#334155" }}>{fmtDate(ev.started_at)}</div>
                             </div>
                           </div>

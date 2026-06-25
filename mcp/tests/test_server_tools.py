@@ -66,6 +66,9 @@ class GetClaimTrustHistoryToolTest(TestCase):
                         "detail": None,
                         "level_before": "unverified",
                         "level_after": "accepted",
+                        "score_before": 0.0,
+                        "score_after": 0.8123,
+                        "score_delta": 0.8123,
                         "started_at": "2026-06-25T12:00:00",
                     },
                     {
@@ -93,6 +96,7 @@ class GetClaimTrustHistoryToolTest(TestCase):
         self.assertIn("Current: accepted (0.812)", result)
         self.assertIn("⭐ Evidence promoted into trust", result)
         self.assertIn("unverified → accepted", result)
+        self.assertIn("Score 0.000 → 0.812 (+0.812)", result)
         self.assertIn("Score 0.700 → 0.812", result)
         self.assertIn("3 raw events → 2 timeline events · 1 recompute hidden", result)
 
