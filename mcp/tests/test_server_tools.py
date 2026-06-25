@@ -48,6 +48,55 @@ class GetClaimEvidenceToolTest(TestCase):
         self.assertIn("status: active", result)
 
 
+class GetClaimTrustHistoryToolTest(TestCase):
+    def test_get_claim_trust_history_formats_promotion_events(self):
+        response = SimpleNamespace(
+            status_code=200,
+            json=lambda: {
+                "claim_id": 42,
+                "current": {
+                    "trust_level": "accepted",
+                    "trust_score": 0.8123,
+                    "claim_text": "A promoted astronomy claim",
+                },
+                "events": [
+                    {
+                        "icon": "⭐",
+                        "summary": "Evidence promoted into trust",
+                        "detail": None,
+                        "level_before": "unverified",
+                        "level_after": "accepted",
+                        "started_at": "2026-06-25T12:00:00",
+                    },
+                    {
+                        "icon": "🔄",
+                        "summary": "Trust recomputed",
+                        "detail": "Score 0.700 → 0.812 (+0.112)",
+                        "level_before": "accepted",
+                        "level_after": "accepted",
+                        "started_at": "2026-06-25T12:30:00",
+                    },
+                ],
+                "stats": {"total_raw_rows": 3, "events_returned": 2, "noise_filtered": 1},
+            },
+        )
+
+        with mock.patch.object(server.httpx, "get", return_value=response) as get:
+            result = server.get_claim_trust_history(claim_id=42, limit=7)
+
+        get.assert_called_once_with(
+            f"{server.API_BASE}/api/claims/42/trust-history",
+            params={"limit": 7},
+            timeout=15,
+        )
+        self.assertIn("Claim #42 trust history", result)
+        self.assertIn("Current: accepted (0.812)", result)
+        self.assertIn("⭐ Evidence promoted into trust", result)
+        self.assertIn("unverified → accepted", result)
+        self.assertIn("Score 0.700 → 0.812", result)
+        self.assertIn("3 raw events → 2 timeline events · 1 recompute hidden", result)
+
+
 class PromoteEvidenceToolTest(TestCase):
     def test_promote_evidence_posts_authenticated_request_and_formats_result(self):
         response = SimpleNamespace(

@@ -14,6 +14,37 @@ from mcp.server.fastmcp import FastMCP
 
 API_BASE = "https://api.nebulamind.net"
 
+
+def _count_or_zero(value) -> int:
+    try:
+        return max(0, int(value))
+    except (TypeError, ValueError):
+        return 0
+
+
+def _pluralize(count: int, singular: str, plural: str) -> str:
+    return f"{count} {singular if count == 1 else plural}"
+
+
+def _format_trust_history_stats(stats: dict | None) -> str:
+    stats = stats or {}
+    total = _count_or_zero(stats.get("total_raw_rows"))
+    returned = _count_or_zero(stats.get("events_returned"))
+    hidden = _count_or_zero(stats.get("noise_filtered"))
+    return (
+        f"{_pluralize(total, 'raw event', 'raw events')} → "
+        f"{_pluralize(returned, 'timeline event', 'timeline events')} · "
+        f"{_pluralize(hidden, 'recompute', 'recomputes')} hidden"
+    )
+
+
+def _safe_float(value, default: float = 0.0) -> float:
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return default
+
+
 from mcp.server.transport_security import TransportSecuritySettings
 
 mcp = FastMCP(
@@ -161,6 +192,55 @@ def get_claim_evidence(claim_id: int) -> str:
         result += "\n"
     return result
 
+
+@mcp.tool()
+def get_claim_trust_history(claim_id: int, limit: int = 10) -> str:
+    """Get a claim's trust-history timeline, including audit actions such as evidence promotions."""
+    r = httpx.get(
+        f"{API_BASE}/api/claims/{claim_id}/trust-history",
+        params={"limit": limit},
+        timeout=15,
+    )
+    if r.status_code == 404:
+        return f"Claim #{claim_id} not found."
+    if r.status_code != 200:
+        return f"Error: {r.status_code} — {r.text[:200]}"
+
+    data = r.json()
+    current = data.get("current", {})
+    trust_level = current.get("trust_level", "unknown")
+    trust_score = _safe_float(current.get("trust_score"))
+    lines = [
+        f"Claim #{data.get('claim_id', claim_id)} trust history",
+        f"Current: {trust_level} ({trust_score:.3f})",
+    ]
+    claim_text = current.get("claim_text")
+    if claim_text:
+        lines.append(f"Claim: {claim_text}")
+
+    events = data.get("events", [])
+    if not events:
+        lines.append("No timeline events recorded yet.")
+    else:
+        lines.append("")
+        lines.append("Timeline events:")
+        for event in events:
+            icon = event.get("icon") or "•"
+            summary = event.get("summary") or event.get("kind") or "Trust event"
+            line = f"  {icon} {summary}"
+            before = event.get("level_before")
+            after = event.get("level_after")
+            if before and after and before != after:
+                line += f" — {before} → {after}"
+            if event.get("started_at"):
+                line += f" ({event['started_at'][:10]})"
+            lines.append(line)
+            if event.get("detail"):
+                lines.append(f"     {event['detail']}")
+
+    lines.append("")
+    lines.append(_format_trust_history_stats(data.get("stats")))
+    return "\n".join(lines)
 
 
 @mcp.tool()
