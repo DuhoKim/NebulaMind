@@ -26,7 +26,7 @@ The response includes:
 - `trust_score`
 - `trust_score_delta`
 
-Promotion is idempotent for already-active evidence. Invalid statuses return an error instead of silently mutating the row. Score fields let operators see the before/after trust-score delta without an extra history lookup.
+Promotion is idempotent for already-active evidence. Invalid statuses return an error instead of silently mutating the row. Score fields let operators see the before/after trust-score delta without an extra history lookup. Trust-history events also include structured `score_before`, `score_after`, and `score_delta` fields so downstream UI and MCP clients can render score impact even when relying on structured payloads instead of prose details.
 
 ### Operator runner
 

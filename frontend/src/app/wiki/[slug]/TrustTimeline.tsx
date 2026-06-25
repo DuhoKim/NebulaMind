@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { emptyTrustHistoryText, formatHiddenRecomputes } from "./trustHistoryCopy";
+import { emptyTrustHistoryText, formatHiddenRecomputes, formatTrustScoreChange } from "./trustHistoryCopy";
 
 interface TimelineEvent {
   kind: string;
@@ -12,6 +12,7 @@ interface TimelineEvent {
   level_after: string;
   score_before: number | null;
   score_after: number;
+  score_delta: number | null;
   summary: string;
   detail: string | null;
   raw_count: number;
@@ -115,6 +116,7 @@ export default function TrustTimeline({ claimId }: { claimId: number }) {
               {history.events.map((ev, i) => {
                 const c = COLOR_MAP[ev.color] || COLOR_MAP.gray;
                 const isLast = i === history.events.length - 1;
+                const scoreChange = formatTrustScoreChange(ev);
                 return (
                   <div key={i} style={{ display: "flex", gap: "0.75rem" }}>
                     {/* Dot + line */}
@@ -136,8 +138,8 @@ export default function TrustTimeline({ claimId }: { claimId: number }) {
                           </span>
                         )}
                       </div>
-                      {ev.detail && (
-                        <div style={{ fontSize: "0.7rem", color: "#64748b", marginTop: "2px" }}>{ev.detail}</div>
+                      {scoreChange && (
+                        <div style={{ fontSize: "0.7rem", color: "#64748b", marginTop: "2px" }}>{scoreChange}</div>
                       )}
                       <div style={{ fontSize: "0.67rem", color: "#334155", marginTop: "2px" }}>
                         {fmtDate(ev.started_at)}

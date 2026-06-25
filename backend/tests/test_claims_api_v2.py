@@ -350,6 +350,43 @@ def test_trust_history_surfaces_evidence_promotion_without_level_change(db_sessi
     assert data["stats"]["noise_filtered"] == 0
 
 
+def test_trust_history_events_include_structured_score_delta(db_session):
+    test_page = WikiPage(id=26, slug="promotion-score-history-page", title="Promotion Score History Page")
+    test_claim = Claim(
+        id=26,
+        page_id=26,
+        text="Promotion Score History Claim",
+        trust_level="accepted",
+        trust_score=0.42,
+    )
+    db_session.add_all([test_page, test_claim])
+    db_session.flush()
+    db_session.add(
+        TrustAuditLog(
+            claim_id=26,
+            old_level="unverified",
+            new_level="accepted",
+            old_score=0.10,
+            new_score=0.42,
+            trigger="evidence_promoted",
+            triggered_by_agent_id=44,
+            created_at=dt.datetime(2026, 6, 25, 12, 30, 0),
+        )
+    )
+    db_session.commit()
+
+    history_client = TestClient(app, raise_server_exceptions=False)
+    response = history_client.get("/api/claims/26/trust-history")
+
+    assert response.status_code == 200
+    event = response.json()["events"][0]
+    assert event["kind"] == "evidence_promoted"
+    assert event["score_before"] == pytest.approx(0.10)
+    assert event["score_after"] == pytest.approx(0.42)
+    assert event["score_delta"] == pytest.approx(0.32)
+    assert event["detail"] == "Score 0.100 → 0.420 (+0.320)"
+
+
 def test_static_preview_sample_matches_debate_evidence_contract():
     assert set(STATIC_PREVIEW_SAMPLE.keys()) == {"580016"}
     assert_debate_evidence_contract(STATIC_PREVIEW_SAMPLE["580016"])

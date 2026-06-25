@@ -637,6 +637,7 @@ def get_trust_history(
             "level_after": la,
             "score_before": row.score_before,
             "score_after": row.score_after,
+            "score_delta": score_delta,
             "summary": summary,
             "detail": detail,
             "raw_count": row.raw_count,

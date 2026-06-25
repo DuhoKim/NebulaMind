@@ -45,7 +45,24 @@ def _safe_float(value, default: float = 0.0) -> float:
         return default
 
 
+def _format_score_change(event: dict | None) -> str | None:
+    event = event or {}
+    detail = event.get("detail")
+    if detail:
+        return str(detail)
+
+    if event.get("score_before") is None or event.get("score_after") is None:
+        return None
+    old_score = _safe_float(event.get("score_before"))
+    new_score = _safe_float(event.get("score_after"))
+    score_delta = _safe_float(event.get("score_delta"), new_score - old_score)
+    if abs(score_delta) <= 0.001:
+        return None
+    return f"Score {old_score:.3f} → {new_score:.3f} ({score_delta:+.3f})"
+
+
 from mcp.server.transport_security import TransportSecuritySettings
+
 
 mcp = FastMCP(
     "NebulaMind",
@@ -235,8 +252,9 @@ def get_claim_trust_history(claim_id: int, limit: int = 10) -> str:
             if event.get("started_at"):
                 line += f" ({event['started_at'][:10]})"
             lines.append(line)
-            if event.get("detail"):
-                lines.append(f"     {event['detail']}")
+            score_change = _format_score_change(event)
+            if score_change:
+                lines.append(f"     {score_change}")
 
     lines.append("")
     lines.append(_format_trust_history_stats(data.get("stats")))
