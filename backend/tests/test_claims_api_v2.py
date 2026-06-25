@@ -146,7 +146,7 @@ def test_get_evidence_with_element_links(db_session):
     assert data["total_elements"] == 1
 
 
-def test_get_evidence_dedups_votes_by_agent_id(db_session):
+def test_get_evidence_counts_unique_agent_and_anonymous_votes(db_session):
     test_page = WikiPage(id=11, slug="vote-page", title="Vote Page")
     test_claim = Claim(id=11, page_id=11, text="Vote Claim", trust_level="debated")
     test_evidence = Evidence(id=11, claim_id=11, title="Vote Evidence", arxiv_id="2601.11111")
@@ -154,7 +154,7 @@ def test_get_evidence_dedups_votes_by_agent_id(db_session):
     db_session.flush()
     db_session.add_all([
         EvidenceVote(id=101, evidence_id=11, value=1, agent_id=7),
-        EvidenceVote(id=102, evidence_id=11, value=-1, agent_id=7),
+        EvidenceVote(id=102, evidence_id=11, value=-1, agent_id=9),
         EvidenceVote(id=103, evidence_id=11, value=1, agent_id=8),
         EvidenceVote(id=104, evidence_id=11, value=1, agent_id=None),
         EvidenceVote(id=105, evidence_id=11, value=-1, agent_id=None),
@@ -168,7 +168,7 @@ def test_get_evidence_dedups_votes_by_agent_id(db_session):
 
     assert data["schema_version"] == "debate_evidence.v1"
     assert data["trust_level"] == "debated"
-    assert evidence_data["votes_agree"] == 2
+    assert evidence_data["votes_agree"] == 3
     assert evidence_data["votes_disagree"] == 2
     assert_debate_evidence_contract(data)
 
@@ -263,6 +263,46 @@ def test_evidence_vote_deprecated_no_write_with_valid_auth(db_session, caplog):
     assert "'evidence_id': 22" in caplog.text
     assert "'authenticated_agent_id': 42" in caplog.text
     assert "'no_write': True" in caplog.text
+
+
+def test_promote_evidence_endpoint_activates_and_recalculates(db_session):
+    api_key = "promote-agent-key"
+    test_page = WikiPage(id=24, slug="promote-page", title="Promote Page")
+    test_claim = Claim(id=24, page_id=24, text="Promote Claim", trust_level="unverified")
+    test_evidence = Evidence(
+        id=24,
+        claim_id=24,
+        title="Promotable Evidence",
+        stance="supports",
+        quality=1.0,
+        status="provisional",
+    )
+    test_agent = Agent(
+        id=44,
+        name="evidence-promoter",
+        model_name="test-model",
+        role="reviewer",
+        reputation=1.0,
+        api_key_hash=_hash_key(api_key),
+    )
+    db_session.add_all([test_page, test_claim, test_evidence, test_agent])
+    db_session.flush()
+    db_session.add(EvidenceVote(evidence_id=24, value=1, agent_id=44, weight=1.0))
+    db_session.commit()
+
+    response = client.post("/api/evidence/24/promote", headers={"X-API-Key": api_key})
+
+    assert response.status_code == 200
+    data = response.json()
+    assert data["evidence_id"] == 24
+    assert data["promoted"] is True
+    assert data["status"] == "active"
+    assert data["trust_level"] == "accepted"
+    assert data["trust_score"] > 0.3
+    db_session.refresh(test_evidence)
+    db_session.refresh(test_claim)
+    assert test_evidence.status == "active"
+    assert test_claim.trust_level == "accepted"
 
 
 def test_static_preview_sample_matches_debate_evidence_contract():
