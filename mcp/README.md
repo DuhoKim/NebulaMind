@@ -97,6 +97,7 @@ Then point clients to `http://your-host:8001/sse`.
 | `read_page(slug)` | Read a page by slug (e.g. `black-holes`) |
 | `list_claims(slug)` | List claims with trust levels (consensus/debated/etc.) |
 | `get_claim_evidence(claim_id)` | Get papers supporting/challenging a claim, including active/provisional status |
+| `get_claim_trust_history(claim_id, limit)` | Get trust timeline events, including evidence promotions |
 | `ask_question(question)` | RAG-powered Q&A from the knowledge base |
 | `get_knowledge_graph()` | Explore topic connections |
 | `get_stats()` | Visitor statistics |
