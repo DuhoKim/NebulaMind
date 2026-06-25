@@ -21,11 +21,13 @@ const module = { exports: {} };
 vm.runInNewContext(compiled.outputText, { module, exports: module.exports, require }, { filename: helperPath });
 
 const {
+  collectTrustHistoryClaims,
   formatHiddenRecomputes,
   formatTrustHistoryStats,
   formatTrustScoreChange,
   emptyTrustHistoryText,
 } = module.exports;
+assert.equal(typeof collectTrustHistoryClaims, "function");
 assert.equal(typeof formatHiddenRecomputes, "function");
 assert.equal(typeof formatTrustHistoryStats, "function");
 assert.equal(typeof formatTrustScoreChange, "function");
@@ -34,6 +36,30 @@ assert.equal(formatHiddenRecomputes(0), "0 recomputes hidden");
 assert.equal(formatHiddenRecomputes(1), "1 recompute hidden");
 assert.equal(formatHiddenRecomputes(2), "2 recomputes hidden");
 assert.equal(formatHiddenRecomputes(null), "0 recomputes hidden");
+
+const claimsForHistory = collectTrustHistoryClaims({
+  sections: [
+    {
+      name: "Overview",
+      claims: [
+        { id: 1, text: "Accepted section claim", trust_level: "accepted", evidence_count: 1 },
+        { id: 2, text: "Unsourced unverified section claim", trust_level: "unverified", evidence_count: 0 },
+        { id: 3, text: "Sourced unverified section claim", trust_level: "unverified", evidence_count: 2 },
+      ],
+    },
+  ],
+  debates: [
+    {
+      topic: "Expansion rate tension",
+      pro: { id: 4, text: "Sourced unverified debate pro", trust_level: "unverified", evidence_count: 1 },
+      con: { id: 3, text: "Duplicate sourced claim", trust_level: "unverified", evidence_count: 2 },
+    },
+  ],
+});
+assert.deepEqual(Array.from(claimsForHistory.map((claim) => claim.id)), [1, 3, 4]);
+assert.equal(claimsForHistory.find((claim) => claim.id === 3)?.section, "Overview");
+assert.equal(claimsForHistory.find((claim) => claim.id === 4)?.section, "Debate: Expansion rate tension");
+assert.equal(collectTrustHistoryClaims({ sections: [{ name: "Many", claims: claimsForHistory }] }, 2).length, 2);
 
 assert.equal(
   formatTrustHistoryStats({ total_raw_rows: 3, events_returned: 2, noise_filtered: 1 }),

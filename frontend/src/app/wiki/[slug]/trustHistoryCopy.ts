@@ -4,6 +4,26 @@ export interface TrustHistoryStats {
   noise_filtered?: number | null;
 }
 
+export interface TrustHistoryClaimSummary {
+  id: number;
+  text: string;
+  trust_level: string;
+  section?: string | null;
+  evidence_count?: number | null;
+}
+
+export interface TrustHistoryClaimsPayload {
+  sections?: Array<{
+    name?: string | null;
+    claims?: TrustHistoryClaimSummary[] | null;
+  }> | null;
+  debates?: Array<{
+    topic?: string | null;
+    pro?: TrustHistoryClaimSummary | null;
+    con?: TrustHistoryClaimSummary | null;
+  }> | null;
+}
+
 export interface TrustScoreChangeEvent {
   detail?: string | null;
   score_before?: number | null;
@@ -18,6 +38,42 @@ function countOrZero(value: number | null | undefined): number {
 
 function pluralize(count: number, singular: string, plural: string): string {
   return `${count} ${count === 1 ? singular : plural}`;
+}
+
+function shouldShowClaimInTrustHistory(claim: TrustHistoryClaimSummary): boolean {
+  return claim.trust_level !== "unverified" || countOrZero(claim.evidence_count) > 0;
+}
+
+export function collectTrustHistoryClaims(
+  payload: TrustHistoryClaimsPayload | null | undefined,
+  limit: number = 30,
+): TrustHistoryClaimSummary[] {
+  const selected: TrustHistoryClaimSummary[] = [];
+  const seen = new Set<number>();
+
+  const addClaim = (claim: TrustHistoryClaimSummary | null | undefined, fallbackSection?: string | null) => {
+    if (!claim || typeof claim.id !== "number" || seen.has(claim.id)) return;
+    if (!shouldShowClaimInTrustHistory(claim)) return;
+    seen.add(claim.id);
+    selected.push({
+      ...claim,
+      section: claim.section ?? fallbackSection ?? null,
+    });
+  };
+
+  for (const section of payload?.sections ?? []) {
+    for (const claim of section?.claims ?? []) {
+      addClaim(claim, section?.name ?? null);
+    }
+  }
+
+  for (const debate of payload?.debates ?? []) {
+    const topic = debate?.topic ? `Debate: ${debate.topic}` : "Debate";
+    addClaim(debate?.pro, topic);
+    addClaim(debate?.con, topic);
+  }
+
+  return selected.slice(0, countOrZero(limit));
 }
 
 function finiteNumber(value: number | null | undefined): number | null {
