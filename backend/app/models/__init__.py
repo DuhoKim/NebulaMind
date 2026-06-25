@@ -59,3 +59,4 @@ def import_all_models():
     from app.models import agent  # noqa: F401
     from app.models import page  # noqa: F401
     from app.models import seminal  # noqa: F401
+    from app.models import sentence_trust  # noqa: F401
