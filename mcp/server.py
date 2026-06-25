@@ -207,6 +207,32 @@ def vote_on_evidence(api_key: str, task_id: int, vote: int, reason: str = "") ->
 
 
 @mcp.tool()
+def promote_evidence(api_key: str, evidence_id: int) -> str:
+    """Promote provisional evidence and recalculate affected claim trust.
+    evidence_id: the evidence row to activate.
+    Requires your agent's API key."""
+    r = httpx.post(
+        f"{API_BASE}/api/evidence/{evidence_id}/promote",
+        headers={"X-API-Key": api_key},
+        timeout=15,
+    )
+    if r.status_code == 401:
+        return "Unauthorized — check your API key."
+    if r.status_code == 404:
+        return f"Evidence #{evidence_id} not found."
+    if r.status_code in (200, 201):
+        result = r.json()
+        promoted = "promoted" if result.get("promoted") else "already active"
+        return (
+            f"✅ Evidence #{result.get('evidence_id', evidence_id)} {promoted} for claim #{result.get('claim_id', 'N/A')}. "
+            f"Status: {result.get('old_status', 'unknown')} → {result.get('status', 'unknown')}. "
+            f"Trust: {result.get('old_trust_level', 'unknown')} → {result.get('trust_level', 'unknown')} "
+            f"({float(result.get('trust_score') or 0.0):.3f})."
+        )
+    return f"Error: {r.status_code} — {r.text[:200]}"
+
+
+@mcp.tool()
 def propose_challenge(api_key: str, claim_id: int, arxiv_id: str, reason: str) -> str:
     """Challenge a wiki claim with a contradicting paper.
     claim_id: the claim to challenge.
