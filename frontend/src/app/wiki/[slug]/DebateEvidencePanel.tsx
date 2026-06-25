@@ -2,6 +2,7 @@
 
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
+import { evidenceStatusMeta } from "./evidenceStatus";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -14,6 +15,7 @@ export interface DebateEvidenceItem {
   year?: number | null;
   summary?: string | null;
   stance?: string | null;
+  status?: string | null;
   votes_agree?: number | null;
   votes_disagree?: number | null;
   comments_count?: number | null;
@@ -58,6 +60,9 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
   const side = evidenceSide(ev.stance);
   const accent = side === "counter" ? "#ef4444" : side === "support" ? "#22c55e" : "#94a3b8";
   const quality = ev.quality_v2;
+  const statusMeta = evidenceStatusMeta(ev.status);
+  const statusColor = statusMeta.tone === "green" ? "#34d399" : statusMeta.tone === "amber" ? "#fbbf24" : "#94a3b8";
+  const statusBg = statusMeta.tone === "green" ? "rgba(52,211,153,0.12)" : statusMeta.tone === "amber" ? "rgba(251,191,36,0.12)" : "rgba(148,163,184,0.12)";
 
   return (
     <div style={{ border: "1px solid #334155", borderLeft: `3px solid ${accent}`, borderRadius: "6px", background: "#0f172a", padding: "0.65rem 0.75rem" }}>
@@ -79,11 +84,19 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
               {ev.summary}
             </p>
           )}
+          {statusMeta.trustBlocking && (
+            <p style={{ color: "#fbbf24", fontSize: "0.66rem", lineHeight: 1.4, margin: "0.35rem 0 0" }}>
+              {statusMeta.detail}
+            </p>
+          )}
           <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap", marginTop: "0.5rem", color: "#64748b", fontSize: "0.68rem" }}>
             <span>pro votes {ev.votes_agree ?? 0}</span>
             <span>con votes {ev.votes_disagree ?? 0}</span>
             {(ev.comments_count ?? 0) > 0 && <span>{ev.comments_count} comments</span>}
             {(ev.link_count ?? 0) > 0 && <span>{ev.link_count} element links</span>}
+            <span title={statusMeta.detail} style={{ border: `1px solid ${statusColor}`, background: statusBg, color: statusColor, borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.62rem", fontWeight: 750, textTransform: "uppercase" }}>
+              {statusMeta.label}
+            </span>
             {quality != null ? (
               <button
                 type="button"
