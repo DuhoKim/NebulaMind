@@ -7,9 +7,8 @@ Filters noise (noop recomputes), groups burst events, humanizes triggers.
 
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
-from sqlalchemy import text
 from app.database import get_db
-from typing import Optional
+from app.models.claim import TrustAuditLog
 
 router = APIRouter(prefix="/api/claims", tags=["claims"])
 
@@ -20,6 +19,7 @@ TRIGGER_MAP = {
     "stance_jury":              ("⚖️", "jury_voted",        "purple"),
     "settle_evidence":          ("⚖️", "jury_voted",        "purple"),
     "manual":                   ("⭐", "promoted_manually", "gold"),
+    "evidence_promoted":        ("⭐", "evidence_promoted", "gold"),
     "human_override":           ("👤", "human_corrected",   "gold"),
     "temporal_decay":           ("⏳", "decayed",           "gray"),
     "initialized":              ("🌱", "initialized",       "green"),
@@ -53,6 +53,8 @@ def humanize_trigger(trigger: str, old_level: str, new_level: str, detail: dict)
         summary = "Trust decayed (old citations)"
     elif kind == "promoted_manually":
         summary = "Manually promoted"
+    elif kind == "evidence_promoted":
+        summary = "Evidence promoted into trust"
     else:
         summary = f"Recomputed (score updated)"
 
@@ -74,26 +76,16 @@ def get_claim_history(
     """Get condensed trust history for a claim."""
 
     # Fetch all audit rows for this claim
-    rows = db.execute(text("""
-        SELECT
-            id,
-            trigger,
-            old_level,
-            new_level,
-            old_score,
-            new_score,
-            created_at
-        FROM trust_audit_log
-        WHERE claim_id = :claim_id
-        ORDER BY created_at ASC
-    """), {"claim_id": claim_id}).fetchall()
+    rows = db.query(TrustAuditLog).filter(
+        TrustAuditLog.claim_id == claim_id
+    ).order_by(TrustAuditLog.created_at.asc(), TrustAuditLog.id.asc()).all()
 
     if not rows:
         return {"claim_id": claim_id, "events": [], "current": None}
 
     # Filter noops unless requested
     filtered = rows if include_noop else [
-        r for r in rows if r.old_level != r.new_level or r.trigger in ("initialized", "manual", "human_override")
+        r for r in rows if r.old_level != r.new_level or r.trigger in ("initialized", "manual", "evidence_promoted", "human_override")
     ]
 
     # Group nearby same-trigger events into bursts (within 1 hour)
@@ -130,6 +122,13 @@ def get_claim_history(
             last.new_level,
             {"n_events": len(burst)}
         )
+        score_before = float(first.old_score or 0)
+        score_after = float(last.new_score or 0)
+        score_delta = score_after - score_before
+        detail = None
+        if abs(score_delta) > 0.001:
+            detail = f"Score {score_before:.3f} → {score_after:.3f} ({score_delta:+.3f})"
+
         events.append({
             "timestamp": first.created_at.isoformat(),
             "icon": icon,
@@ -138,8 +137,10 @@ def get_claim_history(
             "summary": summary,
             "old_level": first.old_level,
             "new_level": last.new_level,
-            "old_score": round(float(first.old_score or 0), 3),
-            "new_score": round(float(last.new_score or 0), 3),
+            "old_score": round(score_before, 3),
+            "new_score": round(score_after, 3),
+            "score_delta": score_delta,
+            "detail": detail,
             "event_count": len(burst),
             "trigger": first.trigger,
         })
