@@ -1,0 +1,208 @@
+{
+  "containment": {
+    "api_health": {
+      "body": {
+        "pages": 44,
+        "service": "NebulaMind API",
+        "status": "ok",
+        "version": "0.2.0"
+      },
+      "status_code": 200,
+      "url": "http://localhost:8000/api/health"
+    },
+    "db_write_count": 0,
+    "locked_gold_sha256": "de7ec421d5092e5cccb7a1b70af4fc84463aaad08164a30c8e2a2eadd0bdbe27",
+    "nm_head": "4ba9675",
+    "no_alembic": true,
+    "no_db_apply": true,
+    "no_page57_or_page58_live_write": true,
+    "no_stance_lock_write": true,
+    "paid_lane_touched": false
+  },
+  "contradicts_sentinel": {
+    "base_sentence": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.",
+    "correct": true,
+    "gold_id": "stance2b-001",
+    "intro_sentence": "In Bluck et al. ( 2020b ) , the quiescence of high mass satellites is shown to behave much like centrals, i.e. exhibiting a strong correlation with central velocity dispersion, although with the notable difference of a weak secondary dependence on environmental parameters.",
+    "pred_stage1_label": "related",
+    "pred_stage2_label": "contradicts",
+    "true_stage1_label": "related",
+    "true_stage2_label": "contradicts"
+  },
+  "created_at_utc": "2026-06-23T06:46:29.938741+00:00",
+  "gold_file": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2b_stance_gold_rebalance_20260623T043618Z/stance_gold_LOCKED_v1.jsonl",
+  "macro_f1_excluding_contradicts_sentinel": {
+    "confusion_matrix": {
+      "related_different_facet": {
+        "contradicts": 17,
+        "related_different_facet": 37,
+        "supports": 22,
+        "unrelated": 12
+      },
+      "supports": {
+        "related_different_facet": 0,
+        "supports": 21,
+        "unrelated": 0
+      },
+      "unrelated": {
+        "related_different_facet": 7,
+        "supports": 0,
+        "unrelated": 12
+      }
+    },
+    "labels": [
+      "supports",
+      "related_different_facet",
+      "unrelated"
+    ],
+    "macro_f1": 0.5916,
+    "note": "Two-stage composite summary excluding the n=1 contradicts sentinel; stage-1 and stage-2 primary metrics remain separate.",
+    "per_class": {
+      "related_different_facet": {
+        "f1": 0.5606,
+        "precision": 0.8409,
+        "recall": 0.4205,
+        "support": 88
+      },
+      "supports": {
+        "f1": 0.6562,
+        "precision": 0.4884,
+        "recall": 1.0,
+        "support": 21
+      },
+      "unrelated": {
+        "f1": 0.5581,
+        "precision": 0.5,
+        "recall": 0.6316,
+        "support": 19
+      }
+    },
+    "rows": 128
+  },
+  "phase": "page58_locked_stance_gold_local_gate_score",
+  "prediction_counts": {
+    "reference_final_label": {
+      "contradicts": 1,
+      "related_different_facet": 88,
+      "supports": 21,
+      "unrelated": 19
+    },
+    "stage1": {
+      "related": 105,
+      "unrelated": 24
+    },
+    "stage2_on_true_related": {
+      "contradicts": 18,
+      "no_stage2_prediction": 12,
+      "related_different_facet": 37,
+      "supports": 43
+    }
+  },
+  "reference_fields": [
+    "final_label",
+    "final_stage1_label",
+    "final_stage2_label"
+  ],
+  "rows": 129,
+  "scope": {
+    "kun_independent_exit_gate_required": true,
+    "no_certification": true,
+    "no_mine_024_066": true,
+    "read_only_gold": true
+  },
+  "scored_model_endpoint": {
+    "stage1_relatedness_gate": {
+      "endpoint_or_source": "stored max_cosine compared with tau_rel from docs/page58_slice2_calibrated_staking_20260622T111621Z/summary.json",
+      "name": "Slice-2 calibrated cosine relevance gate",
+      "tau_rel": 0.53
+    },
+    "stage2_stance_gate": {
+      "endpoint_or_source": "Ollama local chat via PAGE58_STAKING_OLLAMA_BASE default http://localhost:11434; stored prior_stance_label from classify_all_stance",
+      "label_mapping": {
+        "neither": "related_different_facet"
+      },
+      "models": [
+        "qwen3.6:27b-nvfp4",
+        "gpt-oss:20b"
+      ],
+      "name": "local_panel_provisional_no_claude_for_full_pass",
+      "tau_vote": 0.7
+    }
+  },
+  "sha256s": {
+    "local_stance_classifier_score_20260623T064629Z.json": "486846fe5947a968e8a279d984b0d627cd2badf43002a4e4262106ba157e8259",
+    "local_stance_classifier_score_20260623T064629Z.md": "d9f3ab4a99b5925b6fcedefd7ec39b98e7eba2a9909c75ce5d8a82f82809f273"
+  },
+  "stage1_relatedness": {
+    "confusion_matrix": {
+      "related": {
+        "related": 98,
+        "unrelated": 12
+      },
+      "unrelated": {
+        "related": 7,
+        "unrelated": 12
+      }
+    },
+    "macro_f1": 0.7349,
+    "per_class": {
+      "related": {
+        "f1": 0.9116,
+        "precision": 0.9333,
+        "recall": 0.8909,
+        "support": 110
+      },
+      "unrelated": {
+        "f1": 0.5581,
+        "precision": 0.5,
+        "recall": 0.6316,
+        "support": 19
+      }
+    }
+  },
+  "stage2_sign_related_rows_only": {
+    "confusion_matrix": {
+      "contradicts": {
+        "contradicts": 1,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 0,
+        "supports": 0
+      },
+      "no_stage2_prediction": {
+        "contradicts": 0,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 0,
+        "supports": 0
+      },
+      "related_different_facet": {
+        "contradicts": 17,
+        "no_stage2_prediction": 12,
+        "related_different_facet": 37,
+        "supports": 22
+      },
+      "supports": {
+        "contradicts": 0,
+        "no_stage2_prediction": 0,
+        "related_different_facet": 0,
+        "supports": 21
+      }
+    },
+    "contradicts_p_r_f1": "not_computed_n_equals_1_sentinel_only",
+    "macro_f1_excluding_contradicts_sentinel": 0.6241,
+    "per_class_excluding_contradicts_sentinel": {
+      "related_different_facet": {
+        "f1": 0.592,
+        "precision": 1.0,
+        "recall": 0.4205,
+        "support": 88
+      },
+      "supports": {
+        "f1": 0.6562,
+        "precision": 0.4884,
+        "recall": 1.0,
+        "support": 21
+      }
+    },
+    "rows": 110
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "adjudication_of": "stance_gold_draft_for_papa_v3.jsonl",
+  "draft_sha256": "14ae8ea1640662e5005d26536694ca8f179edcbfad1cac9d3c2aeab220d57e4b",
+  "adjudicator": "Papa (Duho Kim)",
+  "relayed_by": "HwaO",
+  "timestamp_utc": "2026-06-23T05:18:48Z",
+  "nm_head": "4ba9675",
+  "note": "final_label is Papa-authored and overrides draft_label for these gold_ids. label_source for these rows := papa.",
+  "decisions": [
+    {
+      "gold_id": "stance2b-000",
+      "draft_label": "contradicts",
+      "final_label": "related_different_facet",
+      "rationale": "Spatial-regime distinction. AGN feedback is negative (quenching) in the central region but can be positive (compresses gas, triggers SF) in the outskirts. Same mechanism, different region -> complementary facets that coexist, not a denial. -> related_different_facet."
+    },
+    {
+      "gold_id": "stance2b-001",
+      "draft_label": "contradicts",
+      "final_label": "contradicts",
+      "rationale": "Page-58 claim is general: satellite quenching is environmental, distinct from mass-driven in centrals. Paper claims that at least in the high-mass regime satellites behave mass-driven like centrals. Not contradictory across all regimes, but it denies the claim's explicit 'distinct from mass-driven' assertion within the high-mass regime. Net -> contradicts."
+    },
+    {
+      "gold_id": "stance2b-003",
+      "draft_label": null,
+      "final_label": "related_different_facet",
+      "rationale": "Page-58 is about how large AGN feedback's role specifically is in environmental quenching; the paper discusses AGN feedback in general (integrated lifetime energy vs current luminosity). Overlapping topic, different context. -> related_different_facet."
+    }
+  ],
+  "boundary_principle_established": "contradicts := candidate denies the base claim's explicit assertion, even if only within a sub-regime (see 001). related_different_facet := candidate describes a different or complementary aspect without denying the assertion (see 000, 003). Any future contradicts mining must satisfy the denial-of-assertion criterion, not merely 'opposite direction'.",
+  "resulting_label_deltas": {
+    "contradicts": "2 -> 1 (stance2b-001 only)",
+    "related_different_facet": "86 -> 88",
+    "human_review_null": "1 -> 0"
+  },
+  "resulting_distribution": {
+    "supports": 21,
+    "contradicts": 1,
+    "related_different_facet": 88,
+    "unrelated": 19,
+    "human_review_null": 0,
+    "total": 129
+  },
+  "mine_resolution_2026-06-23": "Papa chose 'mine'. Mine complete + adjudicated -> contradicts_mine_20260623T062201Z/papa_adjudication_contradicts_mine.json. 278 candidates panelled, 3 surfaced (1.1%): mine-000 = re-find of stance2b-001, mine-024/066 both rejected by Papa as related_different_facet (BH-mass primacy co-varies with stellar-mass primacy via M_BH-M_bulge -> no denial). Net new contradicts = 0; class confirmed n=1, slice-2b exhausted.",
+  "open_decision": "Lock the gold set. contradicts confirmed n=1 (stance2b-001 only), corpus exhausted (mining done). Recommended: lock v3 129-row set, score the 3 populated classes {supports/related_different_facet/unrelated}, keep contradicts as a documented 1-row sentinel (not a scored F1 class), keep mine-024/066 out of the scored set. See mine sidecar for the full terms + optional hard-negative toggle."
+}

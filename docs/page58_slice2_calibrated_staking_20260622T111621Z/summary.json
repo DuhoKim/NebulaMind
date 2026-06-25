@@ -1,0 +1,74 @@
+{
+  "artifact_dir": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2_calibrated_staking_20260622T111621Z",
+  "calibration": {
+    "relevance": {
+      "tau_rel": 0.53,
+      "tune_f1": 0.7538,
+      "tune_rows": 81,
+      "validate_f1": 0.8182,
+      "validate_rows": 39
+    },
+    "stance": {
+      "provisional": true,
+      "tau_vote": 0.7,
+      "tune_f1": 1.0,
+      "tune_rows": 64,
+      "validate_f1": 1.0,
+      "validate_rows": 26
+    },
+    "tone_transfer_gate": {
+      "gate_passed_provisionally": false,
+      "gate_threshold": 0.7,
+      "macro_f1_gpt_vs_panel_draft": 0.6127,
+      "macro_f1_qwen_vs_panel_draft": 0.6117,
+      "note": "Draft local-panel transfer sample; not tuned. Uses panel-draft labels pending human review.",
+      "rows": 60,
+      "status": "draft_panel_labeled_gate_only_not_tuned"
+    }
+  },
+  "claude_p_invocations": 15,
+  "claude_p_reachable": true,
+  "counts": {
+    "new_contradict_votes": 5,
+    "new_support_votes": 55,
+    "relevance_gold_rows": 120,
+    "seed_duplicate_stakes_skipped": 7,
+    "stance_gold_rows": 90,
+    "tone_transfer_gold_rows": 60
+  },
+  "created_at": "2026-06-22T11:58:30.037239+00:00",
+  "db_write_count": 0,
+  "elapsed_seconds": 2523.129,
+  "git_head_observed": "4ba9675",
+  "git_head_required": "4ba9675",
+  "local_only": true,
+  "no_apply": true,
+  "paid_lane_touched": false,
+  "ratios": {
+    "base_sentence_coverage": "9/10",
+    "intros_staked": "31/168",
+    "settled_share": "192/227"
+  },
+  "sensitivity": {
+    "drop_con_votes": "2/10",
+    "tau_vote_minus_0_10": "0/10",
+    "tau_vote_plus_0_10": "0/10"
+  },
+  "slice1_artifact": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_sentence_vote_staking_dry_run_20260622T090031Z",
+  "stance_gold_status": "DRAFT_FOR_PAPA_SPOT_CHECK__PROVISIONAL_NOT_LOCKED",
+  "task": "page58_slice2_calibrated_staking_dry_run",
+  "trust_distribution": {
+    "challenged": {
+      "count": 1,
+      "ratio": "1/10"
+    },
+    "consensus": {
+      "count": 5,
+      "ratio": "5/10"
+    },
+    "debated": {
+      "count": 4,
+      "ratio": "4/10"
+    }
+  }
+}

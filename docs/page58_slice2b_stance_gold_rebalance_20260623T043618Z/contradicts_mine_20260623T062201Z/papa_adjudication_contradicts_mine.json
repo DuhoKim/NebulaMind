@@ -1,0 +1,45 @@
+{
+  "adjudication_of": "contradicts_mine_20260623T062201Z/stance_gold_contradicts_mine_v1.jsonl",
+  "draft_sha256": "0e232a71ce7d0ac6aba7d47bb412139b0a8c8b4cd985dc113caf4f5e28f7ae3e",
+  "adjudicator": "Papa (Duho Kim)",
+  "relayed_by": "HwaO",
+  "timestamp_utc": "2026-06-23T06:42:00Z",
+  "nm_head": "4ba9675",
+  "purpose": "Mining pass to raise the page-58 stance gold contradicts class above n=1 (the v3 set held only stance2b-001). 278 candidates panelled; 3 surfaced as draft-contradicts (1.1%).",
+  "note": "final_label is Papa-authored and overrides draft_label. label_source for these rows := papa.",
+  "decisions": [
+    {
+      "gold_id": "mine-000",
+      "draft_label": "contradicts",
+      "final_label": "contradicts",
+      "status": "duplicate_of_existing",
+      "maps_to": "stance2b-001",
+      "rationale": "Same satellite/central denial Papa already confirmed as stance2b-001 in the v3 set. Re-found here as a sanity check; not a new row, does not increment the class."
+    },
+    {
+      "gold_id": "mine-024",
+      "source": "slice2_pairwise (pair-2183)",
+      "draft_label": "contradicts",
+      "draft_label_source": "claude_tiebreak 0.82 (gpt=unrelated 1.0; qwen=contradicts 0.95)",
+      "final_label": "related_different_facet",
+      "rationale": "Paper (Piotrowska 2022 / Bluck 2023) names black hole mass as the key predictor of intrinsic quenching via feedback energy. Papa: this does NOT deny stellar-mass-as-primary-driver, because BH mass and bulge/stellar mass are tightly coupled (M_BH-M_bulge relation) and AGN feedback is itself part of stellar-mass-regulated quenching. The paper names an underlying mechanism that co-varies with the stated primary driver, not a competing one. No denial -> related_different_facet."
+    },
+    {
+      "gold_id": "mine-066",
+      "source": "slice1_emergent",
+      "draft_label": "contradicts",
+      "draft_label_source": "claude_tiebreak 0.78 (gpt=unrelated 1.0; qwen=related_different_facet 0.85)",
+      "final_label": "related_different_facet",
+      "rationale": "Same paper, barer wording ('black hole mass by far the most predictive parameter in simulations and SDSS'). Same Papa reasoning as mine-024: BH-mass-primary co-varies with stellar-mass-primary via the BH-bulge relation, so it is a complementary/underlying mechanism, not a denial. Note: qwen independently reached this exact label and reason; only Claude's tiebreak pushed it to contradicts. -> related_different_facet."
+    }
+  ],
+  "boundary_principle_refinement": "Extends the v3 denial test: a paper that names a DIFFERENT primary variable does NOT contradict the base when that variable is physically degenerate / tightly co-varying with the base's named driver (e.g. black hole mass vs stellar/bulge mass via M_BH-M_bulge). The denial test must be applied with domain knowledge of variable degeneracy, not syntactically. Claude's tiebreak false-positived mine-024/066 by reading 'names a different driver' as denial; the domain truth is the drivers co-vary -> related_different_facet.",
+  "outcome": {
+    "net_new_contradicts": 0,
+    "contradicts_class_size": "1 (stance2b-001 only)",
+    "corpus_verdict": "slice-2b exhausted for contradicts. 1.1% surface rate, and both model-surfaced candidates overturned by domain expert. A third mine will not move it.",
+    "methodology_finding": "Panel+Claude-tiebreak over-calls contradicts: Claude alone pushed 024/066 to contradicts (0.82/0.78) over gpt=unrelated 1.0; domain expert (BH-bulge co-variance) overturned both. qwen independently got 066 right. Human sign-off gate validated; the gate-under-test carries a contradicts-over-call (precision) risk.",
+    "row_quality_note": "mine-024/066 are expert-ambiguous: the source papers' thesis is BH-mass primacy, which is precisely why the panel leaned contradicts. Defensible both ways -> weak gold rows. Recommend keeping them OUT of the scored set; preserve here as documented evidence the corpus was searched."
+  },
+  "open_decision": "Lock the page-58 stance gold set. Recommended terms: (1) lock the v3 129-row set with Papa's 3 adjudications folded (000->facet, 001->contradicts, 003->facet); (2) contradicts stays n=1 -> scored as a documented 1-row sentinel (smoke-test), not a scored F1 class; (3) mine-024/066 stay OUT of the scored set (expert-ambiguous, biased denial-cue draw) -> locked set = 129. Optional toggle: include 024/066 as a tagged hard-negative facet subset that probes the contradicts-over-call failure mode."
+}

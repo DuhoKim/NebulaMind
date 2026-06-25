@@ -1,0 +1,133 @@
+{
+  "accuracy_metric": "not_computed_papa_labels_required",
+  "artifact": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2b_stance_gold_rebalance_20260623T043618Z",
+  "claude_p_cap": 70,
+  "claude_p_invocations": 56,
+  "containment": {
+    "claude_plan_lane_reachable": true,
+    "db_write_count": 0,
+    "git_head": "4ba9675",
+    "local_only": true,
+    "no_apply": true,
+    "paid_lane_touched": false
+  },
+  "db_select_checks": {
+    "migration_applied": false,
+    "page58_seen_select_only": {
+      "id": 58,
+      "page_id": 17,
+      "source_note": null,
+      "version_num": 9
+    },
+    "sentence_votes_table_present": false
+  },
+  "disagreement_accounting": {
+    "claude_tiebroken": 56,
+    "human_review_required": 1,
+    "panel_disagreements": 56,
+    "still_ambiguous_to_related_different_facet": 0
+  },
+  "draft_label_counts": {
+    "None": 1,
+    "contradicts": 2,
+    "related_different_facet": 86,
+    "supports": 21,
+    "unrelated": 19
+  },
+  "draft_label_ratios": {
+    "None": "1/129 (0.8%)",
+    "contradicts": "2/129 (1.6%)",
+    "related_different_facet": "86/129 (66.7%)",
+    "supports": "21/129 (16.3%)",
+    "unrelated": "19/129 (14.7%)"
+  },
+  "flag_counts": {
+    "claude_cap_exhausted_disagreement": 0,
+    "panel_disagreement": 57,
+    "papa_attention": 101,
+    "qwen_default": 0,
+    "sub_tau_relevance_boundary": 24
+  },
+  "gpt_label_counts": {
+    "contradicts": 6,
+    "related_different_facet": 75,
+    "supports": 32,
+    "unrelated": 16
+  },
+  "label_source_counts": {
+    "claude_tiebreak": 56,
+    "human_review_required": 1,
+    "qwen_gpt_agree": 72
+  },
+  "no_full_staking_rollup_rerun": true,
+  "phase": "slice2b_gold_rebalance_complete",
+  "qwen_label_counts": {
+    "contradicts": 3,
+    "related_different_facet": 68,
+    "supports": 30,
+    "unrelated": 28
+  },
+  "rows": 129,
+  "sample_buckets": {
+    "contradict_oversample": 26,
+    "human_review_resolved_unresolved": 1,
+    "negative_contradiction_probe": 30,
+    "neither_oversample": 24,
+    "sub_tau_neither_boundary": 24,
+    "support_control": 24
+  },
+  "sample_meta": {
+    "contradiction_like_pool": 27,
+    "input_rows": 129,
+    "negative_probe_pool": 456,
+    "sample_buckets": {
+      "contradict_oversample": 26,
+      "human_review_resolved_unresolved": 1,
+      "negative_contradiction_probe": 30,
+      "neither_oversample": 24,
+      "sub_tau_neither_boundary": 24,
+      "support_control": 24
+    },
+    "source_prior_labels": {
+      "contradicts": 18,
+      "neither": 44,
+      "sub_tau_neither_boundary": 24,
+      "supports": 43
+    },
+    "source_rows_emergent": 3247,
+    "source_rows_pairwise": 306,
+    "sub_tau_boundary_pool": 3162
+  },
+  "sha256s": {
+    "STANCE_GOLD_REBALANCE_NOTE.md": "ffab534c5a4cb4159a99f0b217e85d2c79d6d65ff25ebdb216bfa412468f59aa",
+    "stance_gold_draft_for_papa_v3.jsonl": "14ae8ea1640662e5005d26536694ca8f179edcbfad1cac9d3c2aeab220d57e4b",
+    "summary.json": "e9353f0d1bd7518cba76a6629d0f606dbfd401aacfedc57f354fa43f326f3e7b"
+  },
+  "source_artifacts": {
+    "slice1": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_sentence_vote_staking_dry_run_20260622T090031Z",
+    "slice2": "/Users/duhokim/NebulaMind/NebulaMind/docs/page58_slice2_calibrated_staking_20260622T111621Z"
+  },
+  "stage1_counts": {
+    "None": 1,
+    "related": 109,
+    "unrelated": 19
+  },
+  "stage1_ratios": {
+    "None": "1/129 (0.8%)",
+    "related": "109/129 (84.5%)",
+    "unrelated": "19/129 (14.7%)"
+  },
+  "stage2_counts": {
+    "None": 20,
+    "contradicts": 2,
+    "related_different_facet": 86,
+    "supports": 21
+  },
+  "stage2_ratios": {
+    "None": "20/129 (15.5%)",
+    "contradicts": "2/129 (1.6%)",
+    "related_different_facet": "86/129 (66.7%)",
+    "supports": "21/129 (16.3%)"
+  },
+  "stance_lock": "not_locked_pending_papa_spot_check"
+}

@@ -17,13 +17,14 @@ backend/reports/*
 !backend/reports/runtime_hygiene_20260621T111900Z/**
 backend/nebula.db
 backend/test.db
+# scratch SQLite DBs from local tests/dry-runs; do not commit
 /test*.db
 backend/test*.db
+*.sqlite
+*.sqlite3
 backend/celerybeat-schedule.db
 backend/celerybeat-schedule.db.bak-*
 frontend/tsconfig.tsbuildinfo
 *.db.corrupt.*
-*.sqlite
-*.sqlite3
 *.bak.*
 *.egg-info/
