@@ -1,3 +1,5 @@
+import typing
+
 import pytest
 import sqlalchemy as sa
 from sqlalchemy import create_engine
@@ -8,6 +10,7 @@ from app.database import Base
 from app.models import agent, claim, jury  # noqa: F401 - registers FK target tables for metadata
 from app.models.page import PageVersion, WikiPage
 from app.models.sentence_trust import SentenceTrust, SentenceVote
+from app.services import sentence_trust as sentence_trust_service
 from app.services.sentence_trust import project_sentence_trust, recalculate_sentence_trust
 from app.services.trust_mutation import TrustMutationService
 
@@ -113,6 +116,40 @@ def test_sentence_vote_unique_guard_rejects_duplicate_paper_stake(db_session):
     db_session.add(SentenceVote(**vote_kwargs))
     with pytest.raises(IntegrityError):
         db_session.flush()
+
+
+def test_project_sentence_trust_exposes_typed_projection_contract():
+    hints = typing.get_type_hints(project_sentence_trust)
+    projection_type = sentence_trust_service.SentenceTrustProjection
+
+    assert hints["return"] is projection_type
+    assert projection_type.__required_keys__ == {
+        "vote_count",
+        "settled_votes",
+        "contested_votes",
+        "settled_share",
+        "trust_score",
+        "trust_level",
+        "tone_tier",
+        "single_source",
+        "contested_veto",
+        "tier2_density",
+        "tone_distribution",
+        "tone_distribution_4",
+    }
+
+
+def test_project_sentence_trust_rejects_invalid_vote_and_source_counts():
+    for kwargs in [
+        {"settled_votes": -1, "contested_votes": 0, "distinct_sources": 0},
+        {"settled_votes": 0, "contested_votes": -1, "distinct_sources": 0},
+        {"settled_votes": 0, "contested_votes": 0, "distinct_sources": -1},
+        {"settled_votes": 1, "contested_votes": 0, "distinct_sources": 0},
+        {"settled_votes": 0, "contested_votes": 0, "distinct_sources": 1},
+        {"settled_votes": 1, "contested_votes": 1, "distinct_sources": 3},
+    ]:
+        with pytest.raises(ValueError):
+            project_sentence_trust(**kwargs)
 
 
 def test_project_sentence_trust_matches_production_rollup_contract():
