@@ -176,8 +176,10 @@ def test_promote_provisional_evidence_activates_and_recalculates_trust(db_sessio
     assert result.promoted is True
     assert result.evidence.id == evidence.id
     assert result.old_level == "unverified"
+    assert result.old_score == before_score
     assert result.new_level == "accepted"
     assert result.new_score > 0.3
+    assert result.score_delta == result.new_score - result.old_score
     assert evidence.status == "active"
     assert claim.trust_level == "accepted"
     audit = db_session.query(TrustAuditLog).filter_by(trigger="evidence_promoted").one()

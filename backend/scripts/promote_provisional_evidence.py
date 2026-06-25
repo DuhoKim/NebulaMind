@@ -122,8 +122,10 @@ def run_promotion(
                 "promoted": result.promoted,
                 "status": result.evidence.status,
                 "old_trust_level": result.old_level,
+                "old_trust_score": result.old_score,
                 "new_trust_level": result.new_level,
                 "new_trust_score": result.new_score,
+                "trust_score_delta": result.score_delta,
             })
         db.commit()
     except Exception:
@@ -147,10 +149,16 @@ def _print_text(report: dict) -> None:
     )
     print(f"retention_policy={report['retention_policy']}")
     for row in report["sample"]:
-        print(
+        line = (
             "evidence_id={evidence_id} claim_id={claim_id} old_status={old_status} "
             "source_channel={source_channel} title={title!r}".format(**row)
         )
+        if "old_trust_score" in row and "new_trust_score" in row:
+            old_score = float(row.get("old_trust_score") or 0.0)
+            new_score = float(row.get("new_trust_score") or 0.0)
+            delta = float(row.get("trust_score_delta", new_score - old_score) or 0.0)
+            line += f" trust_score={old_score:.3f}->{new_score:.3f} trust_score_delta={delta:+.3f}"
+        print(line)
 
 
 def main() -> int:

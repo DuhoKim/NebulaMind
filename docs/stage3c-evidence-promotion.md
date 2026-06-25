@@ -21,10 +21,12 @@ The response includes:
 - `old_status`
 - `status`
 - `old_trust_level`
+- `old_trust_score`
 - `trust_level`
 - `trust_score`
+- `trust_score_delta`
 
-Promotion is idempotent for already-active evidence. Invalid statuses return an error instead of silently mutating the row.
+Promotion is idempotent for already-active evidence. Invalid statuses return an error instead of silently mutating the row. Score fields let operators see the before/after trust-score delta without an extra history lookup.
 
 ### Operator runner
 

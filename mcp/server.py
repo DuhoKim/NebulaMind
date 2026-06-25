@@ -307,11 +307,14 @@ def promote_evidence(api_key: str, evidence_id: int) -> str:
     if r.status_code in (200, 201):
         result = r.json()
         promoted = "promoted" if result.get("promoted") else "already active"
+        old_score = _safe_float(result.get("old_trust_score"))
+        new_score = _safe_float(result.get("trust_score"))
+        score_delta = _safe_float(result.get("trust_score_delta"), new_score - old_score)
         return (
             f"✅ Evidence #{result.get('evidence_id', evidence_id)} {promoted} for claim #{result.get('claim_id', 'N/A')}. "
             f"Status: {result.get('old_status', 'unknown')} → {result.get('status', 'unknown')}. "
             f"Trust: {result.get('old_trust_level', 'unknown')} → {result.get('trust_level', 'unknown')} "
-            f"({float(result.get('trust_score') or 0.0):.3f})."
+            f"({old_score:.3f} → {new_score:.3f}, {score_delta:+.3f})."
         )
     return f"Error: {r.status_code} — {r.text[:200]}"
 

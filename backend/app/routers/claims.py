@@ -348,8 +348,10 @@ def promote_evidence(
         "old_status": result.old_status,
         "status": result.evidence.status,
         "old_trust_level": result.old_level,
+        "old_trust_score": result.old_score,
         "trust_level": result.new_level,
         "trust_score": result.new_score,
+        "trust_score_delta": result.score_delta,
     }
 
 

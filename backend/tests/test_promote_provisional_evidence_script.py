@@ -17,7 +17,7 @@ from app.models import (
 from app.models.agent import Agent
 from app.models.claim import Claim, Evidence, EvidenceVote, TrustAuditLog
 from app.models.page import WikiPage
-from scripts.promote_provisional_evidence import find_promotion_candidates, run_promotion
+from scripts.promote_provisional_evidence import find_promotion_candidates, run_promotion, _print_text
 
 
 SQLALCHEMY_DATABASE_URL = "sqlite:///./test_promote_provisional_evidence.db"
@@ -124,7 +124,12 @@ def test_promotion_runner_commit_activates_and_recalculates():
         assert report["destructive_action"] is False
         assert report["candidate_count"] == 1
         assert report["promoted_count"] == 1
+        assert report["sample"][0]["old_trust_score"] == 0.0
         assert report["sample"][0]["new_trust_level"] == "accepted"
+        assert report["sample"][0]["new_trust_score"] > 0.3
+        assert report["sample"][0]["trust_score_delta"] == (
+            report["sample"][0]["new_trust_score"] - report["sample"][0]["old_trust_score"]
+        )
         db.refresh(promotable)
         db.refresh(claim_row)
         assert promotable.status == "active"
@@ -134,3 +139,28 @@ def test_promotion_runner_commit_activates_and_recalculates():
         assert audit.triggered_by_agent_id == 7
     finally:
         db.close()
+
+
+def test_promotion_runner_text_output_includes_trust_score_delta(capsys):
+    _print_text({
+        "commit": True,
+        "destructive_action": False,
+        "candidate_count": 1,
+        "promoted_count": 1,
+        "retention_policy": "not applicable; promotion activates rows and does not delete data",
+        "sample": [{
+            "evidence_id": 1,
+            "claim_id": 1,
+            "old_status": "provisional",
+            "status": "active",
+            "source_channel": "targeted_ads_miner",
+            "title": "Promotable Evidence",
+            "old_trust_score": 0.0,
+            "new_trust_score": 0.8123,
+            "trust_score_delta": 0.8123,
+        }],
+    })
+
+    output = capsys.readouterr().out
+    assert "trust_score=0.000->0.812" in output
+    assert "trust_score_delta=+0.812" in output
