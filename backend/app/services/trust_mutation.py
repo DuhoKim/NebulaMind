@@ -139,6 +139,25 @@ class TrustMutationService:
         )
 
     @classmethod
+    def recalculate_sentence_trust(
+        cls,
+        db: Session,
+        *,
+        page_version_id: int,
+        sentence_index: int,
+        sentence_hash: str,
+    ):
+        # Keep this lazy to avoid importing the sentence model from the claim/evidence mutation module at import time.
+        from app.services.sentence_trust import recalculate_sentence_trust
+
+        return recalculate_sentence_trust(
+            db,
+            page_version_id=page_version_id,
+            sentence_index=sentence_index,
+            sentence_hash=sentence_hash,
+        )
+
+    @classmethod
     def promote_evidence(
         cls,
         db: Session,
