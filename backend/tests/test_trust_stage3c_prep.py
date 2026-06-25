@@ -21,7 +21,7 @@ from app.models import (
     survey, visitor, vote
 )
 from app.models.agent import Agent
-from app.models.claim import Claim, Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence, EvidenceVote, TrustAuditLog
 from app.models.page import WikiPage
 from app.services.trust_calculation import recalculate_trust_v2
 from app.services.trust_mutation import TrustMutationError, TrustMutationService
@@ -139,6 +139,50 @@ def test_trust_mutation_update_mode_keeps_single_vote_row(db_session):
     vote_row = db_session.query(EvidenceVote).filter_by(evidence_id=1, agent_id=7).one()
     assert vote_row.value == -1
     assert vote_row.reason == "updated"
+
+
+def test_promote_provisional_evidence_activates_and_recalculates_trust(db_session):
+    claim = seed_claim(db_session)
+    evidence = Evidence(
+        id=1,
+        claim_id=claim.id,
+        title="Promotable Evidence",
+        stance="supports",
+        quality=1.0,
+        status="provisional",
+    )
+    agent_row = Agent(
+        id=7,
+        name="promotion-agent",
+        model_name="test-model",
+        role="reviewer",
+        reputation=1.0,
+        api_key_hash=_hash_key("promotion-key"),
+    )
+    db_session.add_all([evidence, agent_row])
+    db_session.flush()
+    db_session.add(EvidenceVote(evidence_id=evidence.id, value=1, agent_id=agent_row.id, weight=1.0))
+
+    before_level, before_score = recalculate_trust_v2(claim.id, db_session, trigger="stage3c_test")
+    result = TrustMutationService.promote_evidence(
+        db_session,
+        evidence_id=evidence.id,
+        actor_agent=agent_row,
+        trigger="evidence_promoted",
+    )
+
+    assert before_level == "unverified"
+    assert before_score == 0.0
+    assert result.promoted is True
+    assert result.evidence.id == evidence.id
+    assert result.old_level == "unverified"
+    assert result.new_level == "accepted"
+    assert result.new_score > 0.3
+    assert evidence.status == "active"
+    assert claim.trust_level == "accepted"
+    audit = db_session.query(TrustAuditLog).filter_by(trigger="evidence_promoted").one()
+    assert audit.claim_id == claim.id
+    assert audit.triggered_by_agent_id == agent_row.id
 
 
 def test_stage3c_migration_defers_evidence_vote_unique_constraint():

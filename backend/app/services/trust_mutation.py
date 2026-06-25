@@ -1,11 +1,12 @@
 import logging
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Literal
 
 from sqlalchemy.orm import Session
 
 from app.models.agent import Agent
-from app.models.claim import Evidence, EvidenceVote
+from app.models.claim import Claim, Evidence, EvidenceVote
 
 logger = logging.getLogger(__name__)
 
@@ -23,6 +24,16 @@ class TrustMutationError(Exception):
 class EvidenceVoteMutationResult:
     vote: EvidenceVote
     created: bool
+
+
+@dataclass(frozen=True)
+class EvidencePromotionResult:
+    evidence: Evidence
+    promoted: bool
+    old_status: str
+    old_level: str | None
+    new_level: str
+    new_score: float
 
 
 class TrustMutationService:
@@ -120,4 +131,70 @@ class TrustMutationService:
             db,
             trigger=trigger,
             actor_agent_id=actor_agent_id,
+        )
+
+    @classmethod
+    def promote_evidence(
+        cls,
+        db: Session,
+        *,
+        evidence_id: int,
+        actor_agent: Agent | None = None,
+        trigger: str = "evidence_promoted",
+    ) -> EvidencePromotionResult:
+        if actor_agent is not None and actor_agent.id is None:
+            raise TrustMutationError(401, "Authenticated agent required")
+
+        evidence = db.query(Evidence).filter(Evidence.id == evidence_id).first()
+        if not evidence:
+            raise TrustMutationError(404, "Evidence not found")
+
+        claim = db.query(Claim).filter(Claim.id == evidence.claim_id).first()
+        old_status = evidence.status or "active"
+        old_level = claim.trust_level if claim else None
+
+        if old_status == "active":
+            return EvidencePromotionResult(
+                evidence=evidence,
+                promoted=False,
+                old_status=old_status,
+                old_level=old_level,
+                new_level=old_level or "unverified",
+                new_score=float((claim.trust_score if claim else 0.0) or 0.0),
+            )
+        if old_status != "provisional":
+            raise TrustMutationError(422, "Evidence status must be provisional or active")
+
+        evidence.status = "active"
+        if evidence.verified_at is None:
+            evidence.verified_at = datetime.utcnow()
+        db.flush()
+
+        new_level, new_score = cls.recalculate_evidence_trust(
+            db,
+            evidence=evidence,
+            trigger=trigger,
+            actor_agent_id=actor_agent.id if actor_agent else None,
+        )
+        db.flush()
+        logger.info(
+            "trust_mutation_evidence_promoted %s",
+            {
+                "evidence_id": evidence.id,
+                "claim_id": evidence.claim_id,
+                "old_status": old_status,
+                "new_status": evidence.status,
+                "old_level": old_level,
+                "new_level": new_level,
+                "actor_agent_id": actor_agent.id if actor_agent else None,
+                "trigger": trigger,
+            },
+        )
+        return EvidencePromotionResult(
+            evidence=evidence,
+            promoted=True,
+            old_status=old_status,
+            old_level=old_level,
+            new_level=new_level,
+            new_score=new_score,
         )

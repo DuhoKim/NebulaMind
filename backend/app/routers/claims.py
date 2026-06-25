@@ -19,6 +19,7 @@ from app.models.claim import Claim, Evidence, EvidenceVote, EvidenceComment, Cla
 from app.models.council import Escalation
 from app.models.page import WikiPage
 from app.models.evidence_element_link import EvidenceElementLink
+from app.services.trust_mutation import TrustMutationError, TrustMutationService
 
 router = APIRouter(prefix="/api", tags=["claims"])
 logger = logging.getLogger(__name__)
@@ -319,6 +320,36 @@ def vote_evidence(
         "evidence_id": evidence_id,
         "authenticated_agent_id": agent.id,
         "trust_level": claim.trust_level if claim else None,
+    }
+
+
+@router.post("/evidence/{evidence_id}/promote")
+def promote_evidence(
+    evidence_id: int,
+    db: Session = Depends(get_db),
+    agent: Agent = Depends(require_api_key),
+):
+    if not getattr(agent, "is_active", True) or getattr(agent, "status", "active") != "active":
+        raise HTTPException(403, f"Agent status: {agent.status}")
+    try:
+        result = TrustMutationService.promote_evidence(
+            db,
+            evidence_id=evidence_id,
+            actor_agent=agent,
+            trigger="evidence_promoted",
+        )
+    except TrustMutationError as exc:
+        raise HTTPException(exc.status_code, exc.detail)
+    db.commit()
+    return {
+        "evidence_id": result.evidence.id,
+        "claim_id": result.evidence.claim_id,
+        "promoted": result.promoted,
+        "old_status": result.old_status,
+        "status": result.evidence.status,
+        "old_trust_level": result.old_level,
+        "trust_level": result.new_level,
+        "trust_score": result.new_score,
     }
 
 
