@@ -1,5 +1,4 @@
 import sys
-import datetime as dt
 import importlib.util
 from pathlib import Path
 
@@ -8,6 +7,7 @@ import sqlalchemy as sa
 from alembic.migration import MigrationContext
 from alembic.operations import Operations
 from sqlalchemy import create_engine
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import sessionmaker
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
@@ -184,51 +184,103 @@ def test_stage3c_migration_upgrade_downgrade_idempotent_on_sqlite(monkeypatch):
         assert "idx_evidence_status" not in indexes
 
 
-def test_dedupe_report_keeps_newest_vote_and_ignores_null_agents(db_session):
-    seed_claim(db_session)
-    evidence = Evidence(id=1, claim_id=1, title="Dedupe Evidence", status="active")
-    db_session.add(evidence)
-    db_session.flush()
-    db_session.add_all([
-        EvidenceVote(
-            id=1,
-            evidence_id=1,
-            agent_id=7,
-            value=1,
-            created_at=dt.datetime(2026, 1, 1, 12, 0, 0),
-        ),
-        EvidenceVote(
-            id=2,
-            evidence_id=1,
-            agent_id=7,
-            value=-1,
-            created_at=dt.datetime(2026, 1, 2, 12, 0, 0),
-        ),
-        EvidenceVote(
-            id=3,
-            evidence_id=1,
-            agent_id=7,
-            value=1,
-            created_at=dt.datetime(2026, 1, 2, 12, 0, 0),
-        ),
-        EvidenceVote(
-            id=10,
-            evidence_id=1,
-            agent_id=None,
-            value=1,
-            created_at=dt.datetime(2026, 1, 3, 12, 0, 0),
-        ),
-        EvidenceVote(
-            id=11,
-            evidence_id=1,
-            agent_id=None,
-            value=-1,
-            created_at=dt.datetime(2026, 1, 4, 12, 0, 0),
-        ),
-    ])
-    db_session.flush()
+def test_evidence_vote_model_declares_unique_evidence_agent_constraint():
+    constraints = {
+        constraint.name: tuple(column.name for column in constraint.columns)
+        for constraint in getattr(EvidenceVote.__table__, "constraints")
+        if isinstance(constraint, sa.UniqueConstraint)
+    }
 
-    report = build_dedupe_report(db_session, limit=10)
+    assert constraints["uq_evidence_votes_evidence_agent"] == ("evidence_id", "agent_id")
+
+
+def test_evidence_vote_uniqueness_migration_dedupes_and_enforces_sqlite(monkeypatch):
+    migration_path = Path(__file__).resolve().parents[1] / "alembic/versions/evidence_vote_uniqueness_v1.py"
+    spec = importlib.util.spec_from_file_location("evidence_vote_uniqueness_v1_test", migration_path)
+    assert spec is not None
+    migration = importlib.util.module_from_spec(spec)
+    assert spec.loader is not None
+    spec.loader.exec_module(migration)
+
+    local_engine = create_engine("sqlite:///:memory:")
+    with local_engine.begin() as conn:
+        conn.execute(sa.text("""
+            CREATE TABLE evidence_votes (
+                id INTEGER PRIMARY KEY,
+                evidence_id INTEGER NOT NULL,
+                agent_id INTEGER NULL,
+                value INTEGER NOT NULL,
+                created_at TIMESTAMP NULL
+            )
+        """))
+        conn.execute(sa.text("""
+            INSERT INTO evidence_votes (id, evidence_id, agent_id, value, created_at) VALUES
+            (1, 10, 7, 1, '2026-01-01 12:00:00'),
+            (2, 10, 7, -1, '2026-01-02 12:00:00'),
+            (3, 10, 7, 1, '2026-01-02 12:00:00'),
+            (10, 10, NULL, 1, '2026-01-03 12:00:00'),
+            (11, 10, NULL, -1, '2026-01-04 12:00:00')
+        """))
+        context = MigrationContext.configure(conn)
+        monkeypatch.setattr(migration, "op", Operations(context))
+
+        migration.upgrade()
+        migration.upgrade()
+
+        rows = conn.execute(sa.text("""
+            SELECT id, evidence_id, agent_id
+            FROM evidence_votes
+            ORDER BY id
+        """)).mappings().all()
+        assert [dict(row) for row in rows] == [
+            {"id": 3, "evidence_id": 10, "agent_id": 7},
+            {"id": 10, "evidence_id": 10, "agent_id": None},
+            {"id": 11, "evidence_id": 10, "agent_id": None},
+        ]
+        indexes = {index["name"] for index in sa.inspect(conn).get_indexes("evidence_votes")}
+        assert "uq_evidence_votes_evidence_agent" in indexes
+        with pytest.raises(IntegrityError):
+            conn.execute(sa.text("""
+                INSERT INTO evidence_votes (id, evidence_id, agent_id, value, created_at)
+                VALUES (12, 10, 7, 1, '2026-01-05 12:00:00')
+            """))
+        conn.execute(sa.text("""
+            INSERT INTO evidence_votes (id, evidence_id, agent_id, value, created_at)
+            VALUES (13, 10, NULL, 1, '2026-01-05 12:00:00')
+        """))
+
+        migration.downgrade()
+        migration.downgrade()
+        indexes = {index["name"] for index in sa.inspect(conn).get_indexes("evidence_votes")}
+        assert "uq_evidence_votes_evidence_agent" not in indexes
+        conn.execute(sa.text("""
+            INSERT INTO evidence_votes (id, evidence_id, agent_id, value, created_at)
+            VALUES (14, 10, 7, 1, '2026-01-06 12:00:00')
+        """))
+
+
+def test_dedupe_report_keeps_newest_vote_and_ignores_null_agents():
+    local_engine = create_engine("sqlite:///:memory:")
+    with local_engine.begin() as conn:
+        conn.execute(sa.text("""
+            CREATE TABLE evidence_votes (
+                id INTEGER PRIMARY KEY,
+                evidence_id INTEGER NOT NULL,
+                agent_id INTEGER NULL,
+                value INTEGER NOT NULL,
+                created_at TIMESTAMP NULL
+            )
+        """))
+        conn.execute(sa.text("""
+            INSERT INTO evidence_votes (id, evidence_id, agent_id, value, created_at) VALUES
+            (1, 1, 7, 1, '2026-01-01 12:00:00'),
+            (2, 1, 7, -1, '2026-01-02 12:00:00'),
+            (3, 1, 7, 1, '2026-01-02 12:00:00'),
+            (10, 1, NULL, 1, '2026-01-03 12:00:00'),
+            (11, 1, NULL, -1, '2026-01-04 12:00:00')
+        """))
+
+        report = build_dedupe_report(conn, limit=10)
 
     assert report["destructive_action"] is False
     assert report["duplicate_pairs"] == 1
