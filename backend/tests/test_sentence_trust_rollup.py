@@ -8,7 +8,7 @@ from app.database import Base
 from app.models import agent, claim, jury  # noqa: F401 - registers FK target tables for metadata
 from app.models.page import PageVersion, WikiPage
 from app.models.sentence_trust import SentenceTrust, SentenceVote
-from app.services.sentence_trust import recalculate_sentence_trust
+from app.services.sentence_trust import project_sentence_trust, recalculate_sentence_trust
 from app.services.trust_mutation import TrustMutationService
 
 
@@ -58,6 +58,21 @@ def add_sentence_vote(
     ))
 
 
+def assert_sentence_trust_row_matches_projection(row: SentenceTrust, projection: dict) -> None:
+    assert row.vote_count == projection["vote_count"]
+    assert row.settled_votes == projection["settled_votes"]
+    assert row.contested_votes == projection["contested_votes"]
+    assert row.settled_share == pytest.approx(projection["settled_share"])
+    assert row.trust_score == pytest.approx(projection["trust_score"], abs=0.001)
+    assert row.trust_level == projection["trust_level"]
+    assert row.tone_tier == projection["tone_tier"]
+    assert row.single_source is projection["single_source"]
+    assert row.contested_veto is projection["contested_veto"]
+    assert row.tier2_density == pytest.approx(projection["tier2_density"])
+    assert row.tone_distribution == projection["tone_distribution"]
+    assert row.tone_distribution_4 == projection["tone_distribution_4"]
+
+
 def test_sentence_vote_model_declares_one_paper_per_sentence_guard():
     constraints = {
         constraint.name: tuple(column.name for column in constraint.columns)
@@ -98,6 +113,29 @@ def test_sentence_vote_unique_guard_rejects_duplicate_paper_stake(db_session):
     db_session.add(SentenceVote(**vote_kwargs))
     with pytest.raises(IntegrityError):
         db_session.flush()
+
+
+def test_project_sentence_trust_matches_production_rollup_contract():
+    empty = project_sentence_trust(settled_votes=0, contested_votes=0, distinct_sources=0)
+    assert empty["vote_count"] == 0
+    assert empty["trust_level"] == "unverified"
+    assert empty["tone_tier"] == "mixed"
+    assert empty["single_source"] is False
+    assert empty["contested_veto"] is False
+
+    consensus = project_sentence_trust(settled_votes=3, contested_votes=0, distinct_sources=3)
+    assert consensus["vote_count"] == 3
+    assert consensus["settled_share"] == 1.0
+    assert consensus["trust_score"] == pytest.approx(0.45, abs=0.001)
+    assert consensus["trust_level"] == "consensus"
+    assert consensus["tone_tier"] == "settled"
+    assert consensus["tone_distribution"] == {"settled": 3, "contested": 0}
+
+    debated = project_sentence_trust(settled_votes=2, contested_votes=2, distinct_sources=4)
+    assert debated["trust_level"] == "debated"
+    assert debated["tone_tier"] == "mixed"
+    assert debated["contested_veto"] is True
+
 
 
 def test_recalculate_sentence_trust_with_no_votes_is_unverified_mixed(db_session):
@@ -173,6 +211,10 @@ def test_recalculate_sentence_trust_rolls_votes_into_sentence_trust(db_session):
     assert row.tone_tier == "mixed"
     assert row.single_source is False
     assert row.contested_veto is False
+    assert_sentence_trust_row_matches_projection(
+        row,
+        project_sentence_trust(settled_votes=2, contested_votes=1, distinct_sources=3),
+    )
     assert db_session.query(SentenceTrust).filter_by(
         page_version_id=version.id,
         sentence_index=4,
