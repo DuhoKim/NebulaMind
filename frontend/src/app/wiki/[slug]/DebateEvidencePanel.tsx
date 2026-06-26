@@ -3,6 +3,7 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
+import { buildEvidencePanelCopy, evidenceSide } from "./evidencePanelCopy";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -37,17 +38,6 @@ interface DebateEvidencePanelProps {
   totalElements?: number;
   onClose: () => void;
   returnFocusRef?: RefObject<HTMLElement>;
-}
-
-function evidenceSide(stance?: string | null): "support" | "counter" | "neutral" {
-  const value = (stance || "").toLowerCase();
-  if (value.includes("challenge") || value.includes("contradict") || value.includes("against") || value === "con") {
-    return "counter";
-  }
-  if (value.includes("support") || value.includes("agree") || value === "pro") {
-    return "support";
-  }
-  return "neutral";
 }
 
 function percent(value?: number | null): number {
@@ -201,7 +191,11 @@ export default function DebateEvidencePanel({
     return { support, counter, neutral };
   }, [evidence]);
 
-  const total = (evidence || []).length;
+  const evidenceCopy = useMemo(
+    () => buildEvidencePanelCopy(evidence || [], trustLevel),
+    [evidence, trustLevel],
+  );
+  const total = evidenceCopy.total;
   const supportPct = total ? Math.round((grouped.support.length / total) * 100) : 0;
   const counterPct = total ? Math.round((grouped.counter.length / total) * 100) : 0;
   const isContested = ["debated", "challenged"].includes(trustLevel);
@@ -272,15 +266,24 @@ export default function DebateEvidencePanel({
         </button>
       </div>
 
-      <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr 1fr" : "1fr auto 1fr", gap: "0.65rem", alignItems: "center", marginBottom: "0.8rem" }}>
-        <div style={{ textAlign: isNarrow ? "left" : "right", color: "#22c55e", fontSize: "0.7rem", fontWeight: 750 }}>supporting {grouped.support.length}</div>
-        <div style={{ width: isNarrow ? "100%" : "9rem", height: "0.55rem", background: "#1e293b", borderRadius: "999px", overflow: "hidden", display: "flex", gridColumn: isNarrow ? "1 / -1" : undefined, gridRow: isNarrow ? 2 : undefined }} title={`${supportPct}% supporting, ${counterPct}% countering`}>
-          <span style={{ width: `${supportPct}%`, background: "#22c55e" }} />
-          <span style={{ width: `${counterPct}%`, background: "#ef4444" }} />
-          <span style={{ flex: 1, background: "#64748b" }} />
+      {total > 0 && evidenceCopy.hasDirectionalStance ? (
+        <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr 1fr" : "1fr auto 1fr", gap: "0.65rem", alignItems: "center", marginBottom: "0.8rem" }}>
+          <div style={{ textAlign: isNarrow ? "left" : "right", color: "#22c55e", fontSize: "0.7rem", fontWeight: 750 }}>supporting {grouped.support.length}</div>
+          <div style={{ width: isNarrow ? "100%" : "9rem", height: "0.55rem", background: "#1e293b", borderRadius: "999px", overflow: "hidden", display: "flex", gridColumn: isNarrow ? "1 / -1" : undefined, gridRow: isNarrow ? 2 : undefined }} title={`${supportPct}% supporting, ${counterPct}% countering`}>
+            <span style={{ width: `${supportPct}%`, background: "#22c55e" }} />
+            <span style={{ width: `${counterPct}%`, background: "#ef4444" }} />
+            <span style={{ flex: 1, background: "#64748b" }} />
+          </div>
+          <div style={{ color: "#ef4444", fontSize: "0.7rem", fontWeight: 750, textAlign: isNarrow ? "right" : "left" }}>countering {grouped.counter.length}</div>
         </div>
-        <div style={{ color: "#ef4444", fontSize: "0.7rem", fontWeight: 750, textAlign: isNarrow ? "right" : "left" }}>countering {grouped.counter.length}</div>
-      </div>
+      ) : total > 0 ? (
+        <div
+          data-testid="evidence-panel-neutral-summary"
+          style={{ border: "1px solid #334155", background: "rgba(148,163,184,0.09)", borderRadius: "6px", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.45, padding: "0.6rem 0.7rem", marginBottom: "0.8rem" }}
+        >
+          {evidenceCopy.neutralOnlySummary}
+        </div>
+      ) : null}
 
       {totalElements > 0 && (
         <div style={{ color: "#64748b", fontSize: "0.66rem", marginBottom: "0.7rem" }}>
@@ -292,32 +295,41 @@ export default function DebateEvidencePanel({
       {!loading && total === 0 && <div style={{ color: "#64748b", fontSize: "0.75rem" }}>No detailed papers linked yet.</div>}
 
       {!loading && total > 0 && (
-        <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : "minmax(0, 1fr) minmax(0, 1fr)", gap: "0.75rem" }}>
-          <div>
-            <div style={{ color: "#22c55e", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Supporting evidence</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {grouped.support.length > 0 ? grouped.support.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
-                <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No supporting evidence recorded.</div>
-              )}
+        evidenceCopy.hasDirectionalStance ? (
+          <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : "minmax(0, 1fr) minmax(0, 1fr)", gap: "0.75rem" }}>
+            <div>
+              <div style={{ color: "#22c55e", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Supporting evidence</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {grouped.support.length > 0 ? grouped.support.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
+                  <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No supporting evidence recorded.</div>
+                )}
+              </div>
             </div>
-          </div>
-          <div>
-            <div style={{ color: "#ef4444", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Countering evidence</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {grouped.counter.length > 0 ? grouped.counter.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
-                <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No countering evidence recorded.</div>
-              )}
-              {grouped.neutral.length > 0 && (
-                <div style={{ marginTop: "0.35rem" }}>
-                  <div style={{ color: "#94a3b8", fontSize: "0.66rem", fontWeight: 750, marginBottom: "0.35rem" }}>Neutral or unresolved</div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                    {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} />)}
+            <div>
+              <div style={{ color: "#ef4444", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Countering evidence</div>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                {grouped.counter.length > 0 ? grouped.counter.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
+                  <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No countering evidence recorded.</div>
+                )}
+                {grouped.neutral.length > 0 && (
+                  <div style={{ marginTop: "0.35rem" }}>
+                    <div style={{ color: "#94a3b8", fontSize: "0.66rem", fontWeight: 750, marginBottom: "0.35rem" }}>Neutral or unresolved</div>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+                      {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} />)}
+                    </div>
                   </div>
-                </div>
-              )}
+                )}
+              </div>
             </div>
           </div>
-        </div>
+        ) : (
+          <div>
+            <div style={{ color: "#94a3b8", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Linked paper sources</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+              {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} />)}
+            </div>
+          </div>
+        )
       )}
       </section>
     </>,
