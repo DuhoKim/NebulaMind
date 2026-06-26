@@ -12,6 +12,14 @@ import ClaimBlock from "./ClaimBlock";
 import TOCSidebar from "./TOCSidebar";
 import ProvenanceChip from "./ProvenanceChip";
 import DebateEvidencePanel from "./DebateEvidencePanel";
+import {
+  formatClaimTrustBadge,
+  formatTrustSummaryLine,
+  summarizeTrustClaims,
+  trustVisibilityMeta,
+  TRUST_LEVEL_ORDER,
+  type TrustVisibilitySummary,
+} from "./trustVisibility";
 
 interface WikiPage {
   id: number;
@@ -375,6 +383,113 @@ function IdeaCoverageLine({ idea }: { idea: any }) {
   return null;
 }
 
+function ClaimTrustBadge({ claim, onOpen }: { claim: any; onOpen: () => void }) {
+  const meta = trustVisibilityMeta(claim?.trust_level);
+  const label = formatClaimTrustBadge(claim);
+  return (
+    <button
+      type="button"
+      data-testid="claim-trust-badge"
+      aria-label={`Open evidence map for ${label}`}
+      title={`${label} — click for paper evidence`}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onOpen();
+      }}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.22rem",
+        marginLeft: "0.42rem",
+        marginRight: "0.12rem",
+        padding: "0.08rem 0.46rem",
+        borderRadius: "999px",
+        border: `1px solid ${meta.border}`,
+        background: meta.background,
+        color: meta.color,
+        fontSize: "0.66rem",
+        fontWeight: 800,
+        letterSpacing: "0.015em",
+        lineHeight: 1.35,
+        verticalAlign: "0.08em",
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
+      <span>{label}</span>
+    </button>
+  );
+}
+
+function TrustSummaryPanel({ summary, versionNum }: { summary: TrustVisibilitySummary; versionNum?: number | null }) {
+  if (!summary.totalClaims) return null;
+  const visibleLevels = TRUST_LEVEL_ORDER.filter((level) => summary.levels[level].claims > 0);
+  return (
+    <section
+      data-testid="trust-summary-panel"
+      aria-label="Page trust snapshot"
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "12px",
+        border: "1px solid rgba(99,102,241,0.35)",
+        background: "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.82))",
+        boxShadow: "0 14px 30px rgba(2,6,23,0.25)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#a5b4fc", fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            Page trust snapshot
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 700 }}>
+            Provenance-gated claim layer
+          </h2>
+          <p style={{ margin: "0.35rem 0 0", color: "#94a3b8", fontSize: "0.82rem", lineHeight: 1.55 }}>
+            {formatTrustSummaryLine(summary)}. Page prose unchanged; these chips expose published claim metadata.
+          </p>
+        </div>
+        {versionNum != null && (
+          <span style={{ color: "#64748b", border: "1px solid #334155", borderRadius: "999px", padding: "0.22rem 0.55rem", fontSize: "0.72rem", fontWeight: 700 }}>
+            v{versionNum}
+          </span>
+        )}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(8.5rem, 1fr))", gap: "0.6rem", marginTop: "0.9rem" }}>
+        {visibleLevels.map((level) => {
+          const meta = trustVisibilityMeta(level);
+          const levelSummary = summary.levels[level];
+          return (
+            <div
+              key={level}
+              style={{
+                border: `1px solid ${meta.border}`,
+                background: meta.background,
+                borderRadius: "10px",
+                padding: "0.72rem 0.78rem",
+              }}
+              title={meta.description}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", color: meta.color, fontWeight: 800, fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.055em" }}>
+                <span aria-hidden="true">{meta.icon}</span>
+                <span>{meta.label}</span>
+              </div>
+              <div style={{ marginTop: "0.35rem", color: "#f8fafc", fontSize: "1.35rem", fontWeight: 800, lineHeight: 1 }}>
+                {levelSummary.claims}
+              </div>
+              <div style={{ marginTop: "0.18rem", color: "#94a3b8", fontSize: "0.72rem" }}>
+                {levelSummary.sources.toLocaleString()} source links
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
@@ -447,6 +562,12 @@ function ClaimAnnotatedSpan({
         aria-expanded={open}
         aria-haspopup="dialog"
       >{children}</span>
+      {claim?.id && (
+        <ClaimTrustBadge
+          claim={claim}
+          onOpen={() => setOpen((v) => !v)}
+        />
+      )}
       {showIdeas && ideas && ideas.length > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdeasOpen((v) => !v); }}
@@ -700,6 +821,8 @@ export default function WikiPageClientView() {
     return map;
   }, [citations]);
 
+  const trustSummary = useMemo(() => summarizeTrustClaims(claims), [claims]);
+
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
 
@@ -836,6 +959,10 @@ export default function WikiPageClientView() {
           synthesizedDate={page.synthesized_date ?? undefined}
           versionNum={page.version_num ?? undefined}
         />
+      )}
+
+      {showV2 && trustSummary.totalClaims > 0 && (
+        <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
       )}
 
       {/* Mobile TOC: collapsed accordion above content */}
