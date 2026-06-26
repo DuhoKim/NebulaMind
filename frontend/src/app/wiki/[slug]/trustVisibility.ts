@@ -99,7 +99,7 @@ function makeEmptyLevelSummary(): Record<TrustVisibilityLevel, TrustVisibilityLe
   }, {} as Record<TrustVisibilityLevel, TrustVisibilityLevelSummary>);
 }
 
-export function summarizeTrustClaims(payload: any): TrustVisibilitySummary {
+export function summarizeTrustClaims(payload: any, renderedClaimIds?: Set<number>): TrustVisibilitySummary {
   const levels = makeEmptyLevelSummary();
   const seen = new Set<string>();
   let totalClaims = 0;
@@ -107,6 +107,8 @@ export function summarizeTrustClaims(payload: any): TrustVisibilitySummary {
 
   for (const section of payload?.sections ?? []) {
     for (const claim of section?.claims ?? []) {
+      const numericId = Number(claim?.id);
+      if (renderedClaimIds && (!Number.isFinite(numericId) || !renderedClaimIds.has(numericId))) continue;
       const key = claim?.id != null ? `id:${claim.id}` : `text:${String(claim?.text ?? "").slice(0, 160)}`;
       if (seen.has(key)) continue;
       seen.add(key);
