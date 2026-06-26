@@ -1,5 +1,6 @@
 export type BandId = "all" | "radio" | "sub_mm" | "infrared" | "optical" | "uv" | "xray" | "gamma" | "multi"
 export type AxisKey = "sky_coverage_deg2" | "wavelength_center_um" | "z_max" | "dr_year" | "data_volume_tb"
+export type PlotType = "coverage_year" | "wavelength_redshift" | "depth_sources"
 
 export interface Survey {
   id: number
@@ -47,7 +48,7 @@ export type ExplorerAction =
   | { type: "SET_FOCUS"; slug: string | null }
   | { type: "SET_MODAL"; slug: string | null }
   | { type: "SET_SEARCH"; search: string }
-  | { type: "SET_PLOT_TYPE"; plotType: "coverage_year" | "wavelength_redshift" | "depth_sources" }
+  | { type: "SET_PLOT_TYPE"; plotType: PlotType }
   | { type: "RESET_FILTERS" }
 
 export const BAND_COLORS: Record<string, string> = {
@@ -93,6 +94,39 @@ export const BAND_LABELS_SHORT: Record<string, string> = {
   multi: "Multi",
 }
 
-export const BAND_ORDER: string[] = ["radio", "sub_mm", "infrared", "optical", "uv", "xray", "gamma", "multi"]
+export const BAND_ORDER: BandId[] = ["radio", "sub_mm", "infrared", "optical", "uv", "xray", "gamma", "multi"]
+export const BAND_IDS: BandId[] = ["all", ...BAND_ORDER]
 
 export const DEFAULT_STATUSES = ["operational", "commissioning", "planned", "retired"]
+export const PLOT_TYPES: PlotType[] = ["coverage_year", "wavelength_redshift", "depth_sources"]
+
+export function isBandId(value: string | null): value is BandId {
+  return value != null && BAND_IDS.includes(value as BandId)
+}
+
+export function parseBandParam(value: string | null, fallback: BandId = "all"): BandId {
+  return isBandId(value) ? value : fallback
+}
+
+export function isStatusId(value: string | null): value is string {
+  return value != null && Object.prototype.hasOwnProperty.call(STATUS_COLORS, value)
+}
+
+export function parseStatusesParam(value: string | null): string[] {
+  if (!value) return DEFAULT_STATUSES
+  const statuses = Array.from(new Set(
+    value
+      .split(",")
+      .map(status => status.trim())
+      .filter(isStatusId)
+  ))
+  return statuses.length > 0 ? statuses : DEFAULT_STATUSES
+}
+
+export function isPlotType(value: string | null): value is PlotType {
+  return value != null && PLOT_TYPES.includes(value as PlotType)
+}
+
+export function parsePlotTypeParam(value: string | null, fallback: PlotType = "wavelength_redshift"): PlotType {
+  return isPlotType(value) ? value : fallback
+}
