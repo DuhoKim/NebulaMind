@@ -357,6 +357,16 @@ def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vot
     return rows
 
 
+def summarize_rollup_counts(rollup_rows: list[dict[str, Any]]) -> dict[str, int]:
+    return {
+        "new_votes": sum(row["new_pro_votes"] + row["new_con_votes"] for row in rollup_rows),
+        "new_pro_votes": sum(row["new_pro_votes"] for row in rollup_rows),
+        "new_con_votes": sum(row["new_con_votes"] for row in rollup_rows),
+        "refine_tally": sum(row["refine_tally"] for row in rollup_rows),
+        "seed_duplicate_stakes_skipped": sum(row.get("seed_duplicate_stakes_skipped", 0) for row in rollup_rows),
+    }
+
+
 def load_base_and_intros(limit_intros: int | None) -> tuple[list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
     engine = create_engine(DSN)
     with engine.connect() as conn:
@@ -530,7 +540,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     no_match_intros = sum(1 for row in per_intro.values() if row["no_match"] > 0 and row["staked"] == 0)
     no_op_intros = len(intros) - staked_intros
     staked_sentences = sum(row["new_pro_votes"] + row["new_con_votes"] > 0 for row in rollup_rows)
-    total_votes = sum(row["new_pro_votes"] + row["new_con_votes"] for row in rollup_rows)
+    rollup_counts = summarize_rollup_counts(rollup_rows)
     total_settled = sum(row["would_be_settled_votes"] for row in rollup_rows)
     total_contested = sum(row["would_be_contested_votes"] for row in rollup_rows)
     tier_counts = collections.Counter(row["would_be_trust_level"] for row in rollup_rows)
@@ -569,10 +579,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "matched_findings": len(candidate_pairs),
             "emergent_pool_sentences": len(emergent_pool),
             "emergent_pool_intros": no_match_intros,
-            "new_votes": total_votes,
-            "new_pro_votes": sum(row["new_pro_votes"] for row in rollup_rows),
-            "new_con_votes": sum(row["new_con_votes"] for row in rollup_rows),
-            "refine_tally": sum(row["refine_tally"] for row in rollup_rows),
+            **rollup_counts,
         },
         "trust_distribution": {key: {"count": tier_counts[key], "ratio": f"{tier_counts[key]}/{len(base)}"} for key in sorted(tier_counts)},
         "sensitivity": {
@@ -612,6 +619,7 @@ def write_report(path: Path, summary: dict[str, Any], trust_rows: list[dict[str,
         f"- Finding-class sentences kept: {summary['ratios']['finding_sentences_kept']} ({pct(summary['ratios']['finding_sentences_kept'])}); filtered: {summary['ratios']['finding_sentences_filtered']} ({pct(summary['ratios']['finding_sentences_filtered'])}).",
         f"- Provenance coverage after new stakes: {summary['ratios']['provenance_coverage']} ({pct(summary['ratios']['provenance_coverage'])}).",
         f"- Settled share after rollup: {summary['ratios']['settled_share']} ({pct(summary['ratios']['settled_share'])}).",
+        f"- Seed duplicate stakes skipped: {summary.get('counts', {}).get('seed_duplicate_stakes_skipped', 0)}.",
         "",
         "## Calibration Warning",
         "",
