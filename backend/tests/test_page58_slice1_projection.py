@@ -1,4 +1,5 @@
 from app.services.sentence_trust import project_sentence_trust
+from scripts import page58_sentence_vote_staking_dry_run as slice1
 from scripts.page58_sentence_vote_staking_dry_run import rollup, write_report
 
 
@@ -91,6 +92,21 @@ def test_slice1_rollup_preserves_seed_duplicate_skip_when_dropping_con_votes():
     assert row["would_be_trust_level"] == expected["trust_level"]
 
 
+def test_slice1_summary_counts_include_seed_duplicate_skip_total():
+    counts = slice1.summarize_rollup_counts([
+        {"new_pro_votes": 1, "new_con_votes": 0, "refine_tally": 2, "seed_duplicate_stakes_skipped": 3},
+        {"new_pro_votes": 0, "new_con_votes": 1, "refine_tally": 0, "seed_duplicate_stakes_skipped": 4},
+    ])
+
+    assert counts == {
+        "new_votes": 2,
+        "new_pro_votes": 1,
+        "new_con_votes": 1,
+        "refine_tally": 2,
+        "seed_duplicate_stakes_skipped": 7,
+    }
+
+
 def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
     summary = {
         "ratios": {
@@ -108,6 +124,7 @@ def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
             "trust_tier_changes_if_tau_vote_plus_0_10": "0/1",
         },
         "timings": {"total_seconds": 0.01},
+        "counts": {"seed_duplicate_stakes_skipped": 2},
         "db_write_count": 0,
         "no_apply": True,
         "local_only": True,
@@ -135,4 +152,6 @@ def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
 
     write_report(path, summary, trust_rows)
 
-    assert "seed duplicate stakes skipped 2" in path.read_text(encoding="utf-8")
+    report = path.read_text(encoding="utf-8")
+    assert "- Seed duplicate stakes skipped: 2." in report
+    assert "seed duplicate stakes skipped 2" in report
