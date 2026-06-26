@@ -11,6 +11,8 @@ const controlBar = read('src/components/surveys/ControlBar.tsx');
 const surveysView = read('src/components/surveys/SurveysView.tsx');
 const chartView = read('src/components/surveys/ChartView.tsx');
 const plotA = read('src/components/surveys/PlotA.tsx');
+const surveyCard = read('src/components/surveys/SurveyCard.tsx');
+const bandSpectrumStrip = read('src/components/surveys/BandSpectrumStrip.tsx');
 const plottingPath = path('src/components/surveys/plotting.ts');
 const plotting = existsSync(plottingPath) ? readFileSync(plottingPath, 'utf8') : '';
 
@@ -81,5 +83,15 @@ assert.match(plotA, /from "\.\/plotting"/, 'PlotA should import shared plotting 
 assert.doesNotMatch(chartView, /function isPlottable/, 'ChartView should not keep a private plottability predicate.');
 assert.doesNotMatch(chartView, /statusOpSurveys/, 'ChartView should not expose the unused statusOpSurveys prop.');
 assert.doesNotMatch(surveysView, /statusOpSurveys=\{statusOpSurveys\}/, 'SurveysView should not pass the unused ChartView statusOpSurveys prop.');
+
+assert.match(surveyCard, /<button\s+className="survey-card"/, 'Survey cards should be real buttons, not generic clickable divs.');
+assert.match(surveyCard, /type="button"/, 'Survey card button should declare type="button".');
+assert.match(surveyCard, /aria-label=\{`Open \$\{survey\.name\} survey details`\}/, 'Survey card should expose a descriptive accessible name.');
+assert.doesNotMatch(surveyCard, /<div\s+className="survey-card"/, 'Survey cards should not use a root clickable div.');
+assert.match(bandSpectrumStrip, /<button\s+className=\{`band-seg/, 'Band strip segments should be real buttons.');
+assert.match(bandSpectrumStrip, /aria-pressed=\{band === "all"\}/, 'All-band segment should expose selected state.');
+assert.match(bandSpectrumStrip, /aria-pressed=\{active\}/, 'Band segments should expose selected state.');
+assert.match(bandSpectrumStrip, /disabled=\{count === 0\}/, 'Empty band segments should be disabled rather than pointer-event-only divs.');
+assert.match(bandSpectrumStrip, /aria-label=\{`Filter to \$\{BAND_LABELS_LONG\[bId\]\}/, 'Band segments should expose filter intent and band label.');
 
 console.log('surveys atlas IA smoke checks passed');
