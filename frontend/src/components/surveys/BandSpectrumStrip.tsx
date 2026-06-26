@@ -39,6 +39,12 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
       <style jsx>{`
         .band-seg {
           flex: 1 1 0%;
+          appearance: none;
+          background: transparent;
+          color: inherit;
+          font: inherit;
+          border: 0;
+          border-right: 1px solid #1e293b;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -54,8 +60,10 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
         .band-seg:last-child {
           border-right: none;
         }
-        .band-seg:hover {
+        .band-seg:hover,
+        .band-seg:focus-visible {
           background-color: rgba(30, 41, 59, 0.5);
+          outline: none;
         }
         .band-seg--active {
           background-color: #1e293b !important;
@@ -90,8 +98,11 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
       `}</style>
 
       {/* "All" Segment */}
-      <div
+      <button
         className={`band-seg ${band === "all" ? "band-seg--active" : ""}`}
+        type="button"
+        aria-label={`Show all ${totalCount} surveys and facilities`}
+        aria-pressed={band === "all"}
         onClick={() => handleSelectBand("all")}
         style={{
           borderLeft: "4px solid #64748b",
@@ -99,7 +110,7 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
       >
         <span className="band-seg__title">All</span>
         <span className="band-seg__count">{totalCount}</span>
-      </div>
+      </button>
 
       {/* Spectrum Segments */}
       {BAND_ORDER.map((bId) => {
@@ -109,10 +120,14 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
         const label = isNarrow ? BAND_LABELS_SHORT[bId] : BAND_LABELS_LONG[bId]
 
         return (
-          <div
-            key={bId}
+          <button
             className={`band-seg ${active ? "band-seg--active" : ""} ${count === 0 ? "band-seg--empty" : ""}`}
-            onClick={() => count > 0 && handleSelectBand(bId as BandId)}
+            key={bId}
+            type="button"
+            aria-label={`Filter to ${BAND_LABELS_LONG[bId]} band (${count} matching surveys and facilities)`}
+            aria-pressed={active}
+            disabled={count === 0}
+            onClick={() => handleSelectBand(bId as BandId)}
             style={{
               borderLeft: `4px solid ${color}`,
             }}
@@ -121,7 +136,7 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
               {label}
             </span>
             <span className="band-seg__count">{count}</span>
-          </div>
+          </button>
         )
       })}
     </div>

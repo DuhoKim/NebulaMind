@@ -13,11 +13,16 @@ export default function SurveyCard({ survey, onOpen }: Props) {
   const bandColor = BAND_COLORS[survey.wavelength_band] ?? "#818cf8"
 
   return (
-    <div
+    <button
       className="survey-card"
+      type="button"
+      aria-label={`Open ${survey.name} survey details`}
       onClick={() => onOpen(survey.slug)}
       style={{
         background: "#1e293b",
+        appearance: "none",
+        textAlign: "left",
+        font: "inherit",
         border: "1px solid #334155",
         borderRadius: "8px",
         padding: "1.25rem 1.5rem",
@@ -31,8 +36,10 @@ export default function SurveyCard({ survey, onOpen }: Props) {
       }}
     >
       <style jsx>{`
-        .survey-card:hover {
+        .survey-card:hover,
+        .survey-card:focus-visible {
           border-color: #3b82f6 !important;
+          outline: none;
         }
         .survey-card__row1 {
           display: flex;
@@ -164,6 +171,6 @@ export default function SurveyCard({ survey, onOpen }: Props) {
           </span>
         )}
       </div>
-    </div>
+    </button>
   )
 }
