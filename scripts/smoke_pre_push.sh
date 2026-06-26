@@ -6,6 +6,18 @@ cd "$ROOT/backend"
 
 PY="${PYTHON:-.venv/bin/python}"
 
+if [[ "$PY" == */* ]]; then
+  if [[ ! -x "$PY" ]]; then
+    echo "Python interpreter is not executable: $PY" >&2
+    echo "Create backend/.venv, or run: PYTHON=/path/to/python scripts/smoke_pre_push.sh" >&2
+    exit 127
+  fi
+elif ! command -v "$PY" >/dev/null 2>&1; then
+  echo "Python interpreter is not executable: $PY" >&2
+  echo "Create backend/.venv, or run: PYTHON=/path/to/python scripts/smoke_pre_push.sh" >&2
+  exit 127
+fi
+
 "$PY" -m py_compile \
   app/agent_loop/tasks.py \
   app/agent_loop/worker.py \
