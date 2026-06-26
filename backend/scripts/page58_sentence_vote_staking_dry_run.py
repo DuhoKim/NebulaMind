@@ -285,7 +285,7 @@ def stance_from_tone(tone_tier: str, confidence: float, tau_vote: float) -> tupl
 def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vote: float, drop_con: bool = False) -> list[dict[str, Any]]:
     by_sentence = {int(row["sentence_index"]): row for row in base_rows}
     grouped: dict[int, dict[str, Any]] = {
-        idx: {"pro": 0, "con": 0, "papers": set(), "refine": 0, "no_op": 0}
+        idx: {"pro": 0, "con": 0, "papers": set(), "refine": 0, "no_op": 0, "skipped_seed_dupes": 0}
         for idx in by_sentence
     }
     best: dict[tuple[int, str], dict[str, Any]] = {}
@@ -300,13 +300,17 @@ def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vot
         if stance in {"no_op", "neutral"} or value is None:
             grouped[idx]["no_op"] += 1
             continue
-        if drop_con and value < 0:
-            continue
         key = (idx, str(vote["arxiv_id"]))
         prior = best.get(key)
         if prior is None or float(vote["tone_confidence"]) > float(prior["tone_confidence"]):
             best[key] = {**vote, "value": value}
     for (idx, arxiv_id), vote in best.items():
+        existing_sources = set(by_sentence[idx].get("existing_arxiv_ids") or [])
+        if arxiv_id in existing_sources:
+            grouped[idx]["skipped_seed_dupes"] += 1
+            continue
+        if int(vote["value"]) < 0 and drop_con:
+            continue
         grouped[idx]["papers"].add(arxiv_id)
         if int(vote["value"]) > 0:
             grouped[idx]["pro"] += 1
@@ -336,6 +340,7 @@ def rollup(base_rows: list[dict[str, Any]], votes: list[dict[str, Any]], tau_vot
             "baseline_contested_votes": existing_con,
             "new_pro_votes": new["pro"],
             "new_con_votes": new["con"],
+            "seed_duplicate_stakes_skipped": new["skipped_seed_dupes"],
             "refine_tally": new["refine"],
             "no_op_tally": new["no_op"],
             "would_be_settled_votes": projection["settled_votes"],
@@ -627,7 +632,7 @@ def write_report(path: Path, summary: dict[str, Any], trust_rows: list[dict[str,
             "",
             row["sentence_text"],
             "",
-            f"- New votes: +{row['new_pro_votes']} / -{row['new_con_votes']}; refine tally {row['refine_tally']}; no-op tally {row['no_op_tally']}.",
+            f"- New votes: +{row['new_pro_votes']} / -{row['new_con_votes']}; seed duplicate stakes skipped {row.get('seed_duplicate_stakes_skipped', 0)}; refine tally {row['refine_tally']}; no-op tally {row['no_op_tally']}.",
             f"- Would-be trust: {row['would_be_trust_level']} / tone {row.get('would_be_tone_tier', 'n/a')} (baseline {row['baseline_trust_level']}); settled share {row['settled_share']:.3f}.",
             f"- Flags: single_source={row.get('single_source', False)}, contested_veto={row.get('contested_veto', False)}.",
             "",
