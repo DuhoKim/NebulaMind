@@ -821,7 +821,7 @@ export default function WikiPageClientView() {
     return map;
   }, [citations]);
 
-  const trustSummary = useMemo(() => summarizeTrustClaims(claims), [claims]);
+  const trustSummary = useMemo(() => summarizeTrustClaims(claims, renderedClaimIds), [claims, renderedClaimIds]);
 
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
