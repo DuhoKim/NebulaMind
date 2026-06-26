@@ -1,3 +1,6 @@
+import argparse
+import json
+
 from app.services.sentence_trust import project_sentence_trust
 from scripts import page58_sentence_vote_staking_dry_run as slice1
 from scripts.page58_sentence_vote_staking_dry_run import rollup, write_report
@@ -107,6 +110,15 @@ def test_slice1_summary_counts_include_seed_duplicate_skip_total():
     }
 
 
+def test_slice1_git_head_observed_is_best_effort(monkeypatch):
+    def raise_after_expensive_dry_run(*_args, **_kwargs):
+        raise FileNotFoundError("git unavailable")
+
+    monkeypatch.setattr(slice1.subprocess, "check_output", raise_after_expensive_dry_run)
+
+    assert slice1.observed_git_head() == "unknown"
+
+
 def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
     summary = {
         "ratios": {
@@ -124,7 +136,8 @@ def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
             "trust_tier_changes_if_tau_vote_plus_0_10": "0/1",
         },
         "timings": {"total_seconds": 0.01},
-        "counts": {"seed_duplicate_stakes_skipped": 2},
+        "counts": {"seed_duplicate_stakes_skipped": 2, "checkpoint_files_written": 4},
+        "progress": {"progress_log": "progress.jsonl", "checkpoint_dir": "checkpoints"},
         "db_write_count": 0,
         "no_apply": True,
         "local_only": True,
@@ -155,3 +168,115 @@ def test_slice1_report_surfaces_seed_duplicate_skip_count(tmp_path):
     report = path.read_text(encoding="utf-8")
     assert "- Seed duplicate stakes skipped: 2." in report
     assert "seed duplicate stakes skipped 2" in report
+    assert "- Progress log: progress.jsonl" in report
+    assert "- Checkpoint directory: checkpoints" in report
+    assert "- Checkpoint files written before final report: 4" in report
+
+
+def test_slice1_progress_event_appends_jsonl_and_prints_operator_line(tmp_path, capsys):
+    event = slice1.record_progress(
+        tmp_path,
+        "claim_filter_intro",
+        "running",
+        processed_intros=3,
+        total_intros=10,
+        no_apply=True,
+        db_write_count=0,
+    )
+
+    lines = (tmp_path / "progress.jsonl").read_text(encoding="utf-8").splitlines()
+    assert len(lines) == 1
+    persisted = json.loads(lines[0])
+    assert persisted["stage"] == "claim_filter_intro"
+    assert persisted["status"] == "running"
+    assert persisted["processed_intros"] == 3
+    assert persisted["total_intros"] == 10
+    assert persisted["no_apply"] is True
+    assert persisted["db_write_count"] == 0
+    assert persisted["created_at"] == event["created_at"]
+    stderr = capsys.readouterr().err
+    assert "PAGE58_PROGRESS" in stderr
+    assert "claim_filter_intro" in stderr
+
+
+def test_slice1_run_writes_operator_checkpoints_before_final_artifacts(tmp_path, monkeypatch):
+    base_rows = [
+        {
+            "page_version_id": 6189,
+            "sentence_index": 0,
+            "sentence_hash": "hash-0",
+            "sentence_text": "AGN feedback heats gas and can suppress star formation in galaxies.",
+            "trust_level": "debated",
+            "settled_votes": 2,
+            "contested_votes": 1,
+            "existing_arxiv_ids": ["2401.00001"],
+        }
+    ]
+    intros = [
+        {
+            "arxiv_id": "2401.99999",
+            "intro_text": "We find that AGN feedback heats circumgalactic gas and suppresses star formation in massive galaxies.",
+            "source": "test",
+            "fetched_at": "2026-06-26T00:00:00Z",
+        }
+    ]
+    meta = {"page": {"id": 58, "slug": "galaxy-evolution-v2"}, "page_version": {"id": 6189, "version_num": 1}}
+
+    monkeypatch.setattr(slice1, "load_base_and_intros", lambda limit: (base_rows, intros, meta))
+    monkeypatch.setattr(slice1, "embed_texts", lambda texts, timeout=180: [[1.0, 0.0] for _ in texts])
+    monkeypatch.setattr(
+        slice1,
+        "atom_claim_filter",
+        lambda sentences, timeout: [
+            {
+                "sentence": sentences[0],
+                "finding": True,
+                "confidence": 0.91,
+                "source": "test_claim_filter",
+                "reason": "test",
+            }
+        ],
+    )
+    monkeypatch.setattr(
+        slice1,
+        "tone_gate_predictions",
+        lambda pairs, timeout: [
+            {
+                **pairs[0],
+                "tone_tier": "accepted",
+                "tone_confidence": 0.95,
+            }
+        ],
+    )
+
+    summary = slice1.run(
+        argparse.Namespace(
+            no_apply=True,
+            limit_intros=1,
+            tau_rel=0.55,
+            tau_vote=0.70,
+            model_timeout=1,
+            out_dir=tmp_path,
+        )
+    )
+
+    progress = [json.loads(line) for line in (tmp_path / "progress.jsonl").read_text(encoding="utf-8").splitlines()]
+    stages = [event["stage"] for event in progress]
+    assert stages[0] == "start"
+    assert "load_base_and_intros" in stages
+    assert "claim_filter_intro" in stages
+    assert "claim_filter_done" in stages
+    assert "embedding_match_done" in stages
+    assert "tone_gate_done" in stages
+    assert stages[-1] == "final_artifacts_done"
+    assert all(event["no_apply"] is True for event in progress)
+    assert all(event["db_write_count"] == 0 for event in progress)
+
+    checkpoint_dir = tmp_path / "checkpoints"
+    assert json.loads((checkpoint_dir / "load_base_and_intros.json").read_text(encoding="utf-8"))["input_intros"] == 1
+    assert json.loads((checkpoint_dir / "claim_filter.json").read_text(encoding="utf-8"))["finding_sentences"] == 1
+    assert (checkpoint_dir / "candidate_pairs.jsonl").read_text(encoding="utf-8").strip()
+    assert (checkpoint_dir / "tone_gate_predictions.jsonl").read_text(encoding="utf-8").strip()
+    assert summary["progress"]["progress_log"].endswith("progress.jsonl")
+    assert summary["progress"]["checkpoint_dir"].endswith("checkpoints")
+    assert summary["counts"]["checkpoint_files_written"] >= 4

@@ -36,6 +36,8 @@
 
 **Slice-1 seed duplicate guard follow-up (`fix/page58-slice1-seed-dupe-rollup`):** the Page58 Slice-1 `--no-apply` dry-run rollup now skips candidate stakes from arXiv papers already present in the seed provenance for the same sentence before adding new pro/con votes. This aligns Slice-1 with the Slice-2 calibrated reroll behavior and preserves the one-paper-per-sentence invariant across carried-forward seed provenance plus newly matched intro votes. The dry-run artifact/report now surfaces per-sentence and top-level `seed_duplicate_stakes_skipped` counts so operators can see when reprocessing an already-seeded paper was ignored rather than inflated into a new vote. Still no live DB writes, no `--apply`, and no production migration run.
 
+**Slice-1 operator progress/checkpoint hardening (`fix/page58-no-apply-progress-checkpoints`):** the long Page58 Slice-1 `--no-apply` runner now creates the output directory at startup, appends operator-visible `progress.jsonl` events, prints `PAGE58_PROGRESS ...` lines to stderr, and writes checkpoint files under `checkpoints/` after load, claim filtering, embedding/match, and tone-gate stages. This makes long model-backed dry-runs monitorable and leaves partial artifacts if an interactive session is interrupted before the final `REPORT.md`/`summary.json` are emitted. The final summary/report surface the progress log path, checkpoint directory, and checkpoint-file count. Still no live DB writes, no `--apply`, and no production migration run.
+
 ---
 
 ## 0. The core inversion (and its honest tradeoff)
