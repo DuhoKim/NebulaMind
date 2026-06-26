@@ -13,9 +13,13 @@ import {
   BAND_LABELS_LONG,
   BAND_COLORS,
   DEFAULT_STATUSES,
+  parseBandParam,
+  parsePlotTypeParam,
+  parseStatusesParam,
   type Survey,
   type BandId,
   type AxisKey,
+  type PlotType,
   type ExplorerAction,
 } from "./constants"
 import { parseAxisParam } from "./plotting"
@@ -36,7 +40,7 @@ interface ExplorerState {
   focusSlug: string | null
   modalSlug: string | null // drives SurveyPeek selectedSlug
   search: string
-  plotType: "coverage_year" | "wavelength_redshift" | "depth_sources"
+  plotType: PlotType
 }
 
 function makeInitial(params: URLSearchParams): ExplorerState {
@@ -51,8 +55,8 @@ function makeInitial(params: URLSearchParams): ExplorerState {
 
   return {
     view,
-    band: (params.get("band") as BandId) || "all",
-    checkedStatuses: statusesParam ? statusesParam.split(",").filter(Boolean) : DEFAULT_STATUSES,
+    band: parseBandParam(params.get("band"), "all"),
+    checkedStatuses: parseStatusesParam(statusesParam),
     selectedOperators: params.get("operators")?.split(",").filter(Boolean) || [],
     xAxis: parseAxisParam(params.get("xaxis"), "wavelength_center_um"),
     yAxis: parseAxisParam(params.get("yaxis"), "z_max"),
@@ -60,7 +64,7 @@ function makeInitial(params: URLSearchParams): ExplorerState {
     hoverSlug: null,
     modalSlug: null,
     search: params.get("q") || "",
-    plotType: (params.get("plottype") as any) || "wavelength_redshift",
+    plotType: parsePlotTypeParam(params.get("plottype"), "wavelength_redshift"),
   }
 }
 
@@ -91,7 +95,7 @@ function reducer(state: ExplorerState, action: ExplorerAction): ExplorerState {
     case "RESET_FILTERS":    return {
       ...state,
       band: "all",
-      checkedStatuses: DEFAULT_STATUSES,
+      checkedStatuses: [...DEFAULT_STATUSES],
       selectedOperators: [],
       search: "",
     }
@@ -123,7 +127,7 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
     if (state.view !== "directory") p.set("view", state.view)
     if (state.band !== "all") p.set("band", state.band)
     if (sortedCheckedStatuses.join(",") !== sortedDefaultStatuses.join(","))
-      p.set("statuses", state.checkedStatuses.join(","))
+      p.set("statuses", sortedCheckedStatuses.join(","))
     if (state.selectedOperators.length) p.set("operators", state.selectedOperators.join(","))
     if (state.xAxis !== "wavelength_center_um") p.set("xaxis", state.xAxis)
     if (state.yAxis !== "z_max") p.set("yaxis", state.yAxis)

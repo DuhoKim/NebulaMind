@@ -1,6 +1,11 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
+import { createRequire } from 'node:module';
+import vm from 'node:vm';
+import ts from 'typescript';
+
+const require = createRequire(import.meta.url);
 
 const root = process.cwd();
 const path = (...parts) => join(root, ...parts);
@@ -13,8 +18,29 @@ const chartView = read('src/components/surveys/ChartView.tsx');
 const plotA = read('src/components/surveys/PlotA.tsx');
 const surveyCard = read('src/components/surveys/SurveyCard.tsx');
 const bandSpectrumStrip = read('src/components/surveys/BandSpectrumStrip.tsx');
+const constants = read('src/components/surveys/constants.ts');
 const plottingPath = path('src/components/surveys/plotting.ts');
 const plotting = existsSync(plottingPath) ? readFileSync(plottingPath, 'utf8') : '';
+
+const compiledConstants = ts.transpileModule(constants, {
+  compilerOptions: {
+    module: ts.ModuleKind.CommonJS,
+    target: ts.ScriptTarget.ES2019,
+    strict: true,
+  },
+  fileName: path('src/components/surveys/constants.ts'),
+});
+const constantsModule = { exports: {} };
+vm.runInNewContext(
+  compiledConstants.outputText,
+  { module: constantsModule, exports: constantsModule.exports, require },
+  { filename: path('src/components/surveys/constants.ts') },
+);
+const {
+  parseBandParam,
+  parsePlotTypeParam,
+  parseStatusesParam,
+} = constantsModule.exports;
 
 assert.match(
   surveysPage,
@@ -36,6 +62,12 @@ assert.match(controlBar, />\s*List\s*</, 'Mode toggle should show List, not Dire
 assert.match(controlBar, />\s*Explorer\s*</, 'Mode toggle should show Explorer, not Chart.');
 assert.doesNotMatch(controlBar, />\s*Directory\s*</, 'Directory label should be removed from visible toggle copy.');
 assert.doesNotMatch(controlBar, />\s*Chart\s*</, 'Chart label should be removed from visible toggle copy.');
+assert.match(controlBar, /role="group"/, 'Mode toggle should expose grouped segmented-control semantics.');
+assert.match(controlBar, /aria-label="Survey view mode"/, 'Mode toggle should expose an accessible group name.');
+assert.match(controlBar, /aria-pressed=\{view === "directory"\}/, 'List toggle should expose pressed state.');
+assert.match(controlBar, /aria-pressed=\{view === "chart"\}/, 'Explorer toggle should expose pressed state.');
+assert.match(controlBar, /aria-label="Search surveys by name, operator, or science goals"/, 'Search input should expose a descriptive accessible name.');
+assert.match(controlBar, /aria-label="Open survey filters"/, 'Filter trigger should expose a descriptive accessible name.');
 
 assert.doesNotMatch(
   surveysView,
@@ -78,6 +110,27 @@ assert.match(plotting, /export function surveyHasPlottableAxes/, 'Shared plottin
 assert.match(plotting, /export function parseAxisParam/, 'Shared plotting helpers should validate URL axis params with a fallback.');
 assert.match(surveysView, /parseAxisParam\(params\.get\("xaxis"\), "wavelength_center_um"\)/, 'Initial xAxis should validate malformed URL params before storing reducer state.');
 assert.match(surveysView, /parseAxisParam\(params\.get\("yaxis"\), "z_max"\)/, 'Initial yAxis should validate malformed URL params before storing reducer state.');
+assert.match(constants, /export function parseBandParam/, 'Band URL params should be validated by a shared helper.');
+assert.match(constants, /export function parseStatusesParam/, 'Status URL params should be validated by a shared helper.');
+assert.match(constants, /export function parsePlotTypeParam/, 'Plot type URL params should be validated by a shared helper.');
+assert.match(surveysView, /parseBandParam\(params\.get\("band"\), "all"\)/, 'Initial band should validate malformed URL params before storing reducer state.');
+assert.match(surveysView, /parseStatusesParam\(statusesParam\)/, 'Initial status filters should drop malformed URL params before storing reducer state.');
+assert.match(surveysView, /parsePlotTypeParam\(params\.get\("plottype"\), "wavelength_redshift"\)/, 'Initial plot type should validate malformed URL params before storing reducer state.');
+assert.equal(parseBandParam('optical', 'all'), 'optical', 'Valid band URL params should be preserved.');
+assert.equal(parseBandParam('not-a-band', 'all'), 'all', 'Malformed band URL params should fall back to all bands.');
+assert.deepEqual(
+  Array.from(parseStatusesParam('operational,not-a-status,retired,operational')),
+  ['operational', 'retired'],
+  'Status URL params should de-dupe and drop unknown status IDs.',
+);
+assert.deepEqual(
+  Array.from(parseStatusesParam('not-a-status')),
+  ['operational', 'commissioning', 'planned', 'retired'],
+  'Fully malformed status URL params should fall back to default statuses.',
+);
+assert.equal(parsePlotTypeParam('depth_sources', 'wavelength_redshift'), 'depth_sources', 'Valid plot type URL params should be preserved.');
+assert.equal(parsePlotTypeParam('not-a-plot', 'wavelength_redshift'), 'wavelength_redshift', 'Malformed plot type URL params should fall back safely.');
+assert.match(surveysView, /p\.set\("statuses", sortedCheckedStatuses\.join\(","\)\)/, 'Status URL sync should write a stable canonical status order.');
 assert.match(chartView, /from "\.\/plotting"/, 'ChartView should import shared plotting helpers.');
 assert.match(plotA, /from "\.\/plotting"/, 'PlotA should import shared plotting helpers.');
 assert.doesNotMatch(chartView, /function isPlottable/, 'ChartView should not keep a private plottability predicate.');

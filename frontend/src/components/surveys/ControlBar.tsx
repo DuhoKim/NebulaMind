@@ -148,14 +148,18 @@ export default function ControlBar({ view, search, activeFilterCount, dispatch, 
       `}</style>
 
       {/* Directory | Chart Segmented Toggle */}
-      <div className="control-bar__toggle">
+      <div className="control-bar__toggle" role="group" aria-label="Survey view mode">
         <button
+          type="button"
+          aria-pressed={view === "directory"}
           className={`control-bar__toggle-btn ${view === "directory" ? "control-bar__toggle-btn--active" : ""}`}
           onClick={() => dispatch({ type: "SET_VIEW", view: "directory" })}
         >
           List
         </button>
         <button
+          type="button"
+          aria-pressed={view === "chart"}
           className={`control-bar__toggle-btn ${view === "chart" ? "control-bar__toggle-btn--active" : ""}`}
           onClick={() => dispatch({ type: "SET_VIEW", view: "chart" })}
         >
@@ -168,6 +172,7 @@ export default function ControlBar({ view, search, activeFilterCount, dispatch, 
         <span className="control-bar__search-icon">🔍</span>
         <input
           type="text"
+          aria-label="Search surveys by name, operator, or science goals"
           className="control-bar__search-input"
           placeholder="Search name, operator, goals..."
           value={localSearch}
@@ -177,6 +182,8 @@ export default function ControlBar({ view, search, activeFilterCount, dispatch, 
 
       {/* Filters Sheet Trigger Button */}
       <button
+        type="button"
+        aria-label="Open survey filters"
         className={`control-bar__filter-btn ${activeFilterCount > 0 ? "control-bar__filter-btn--active" : ""}`}
         onClick={onOpenFilters}
       >
