@@ -487,6 +487,7 @@ def write_report(path: Path, summary: dict[str, Any], roll: list[dict[str, Any]]
         f"- Intros staked: {summary['ratios']['intros_staked']} ({pct(summary['ratios']['intros_staked'])}).",
         f"- Base sentence coverage: {summary['ratios']['base_sentence_coverage']} ({pct(summary['ratios']['base_sentence_coverage'])}).",
         f"- Settled share: {summary['ratios']['settled_share']} ({pct(summary['ratios']['settled_share'])}).",
+        f"- Seed duplicate stakes skipped: {summary['counts'].get('seed_duplicate_stakes_skipped', 0)}.",
         "",
         "## Golds",
         f"- Stance draft rows: {summary['counts']['stance_gold_rows']} (Papa spot-check required before lock).",
