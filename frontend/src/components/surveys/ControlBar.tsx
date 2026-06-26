@@ -153,13 +153,13 @@ export default function ControlBar({ view, search, activeFilterCount, dispatch, 
           className={`control-bar__toggle-btn ${view === "directory" ? "control-bar__toggle-btn--active" : ""}`}
           onClick={() => dispatch({ type: "SET_VIEW", view: "directory" })}
         >
-          Directory
+          List
         </button>
         <button
           className={`control-bar__toggle-btn ${view === "chart" ? "control-bar__toggle-btn--active" : ""}`}
           onClick={() => dispatch({ type: "SET_VIEW", view: "chart" })}
         >
-          Chart
+          Explorer
         </button>
       </div>
 

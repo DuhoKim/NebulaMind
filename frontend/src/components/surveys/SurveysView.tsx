@@ -18,6 +18,7 @@ import {
   type AxisKey,
   type ExplorerAction,
 } from "./constants"
+import { parseAxisParam } from "./plotting"
 
 // Bands that have a meaningful wavelength center — auto-switch xAxis on select
 const WAVELENGTH_BANDS = new Set<BandId>(["radio", "sub_mm", "infrared", "optical", "uv", "xray", "gamma"])
@@ -53,8 +54,8 @@ function makeInitial(params: URLSearchParams): ExplorerState {
     band: (params.get("band") as BandId) || "all",
     checkedStatuses: statusesParam ? statusesParam.split(",").filter(Boolean) : DEFAULT_STATUSES,
     selectedOperators: params.get("operators")?.split(",").filter(Boolean) || [],
-    xAxis: (params.get("xaxis") as AxisKey) || "wavelength_center_um",
-    yAxis: (params.get("yaxis") as AxisKey) || "z_max",
+    xAxis: parseAxisParam(params.get("xaxis"), "wavelength_center_um"),
+    yAxis: parseAxisParam(params.get("yaxis"), "z_max"),
     focusSlug: null,
     hoverSlug: null,
     modalSlug: null,
@@ -117,15 +118,17 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
       return
     }
     const p = new URLSearchParams()
+    const sortedCheckedStatuses = [...state.checkedStatuses].sort()
+    const sortedDefaultStatuses = [...DEFAULT_STATUSES].sort()
     if (state.view !== "directory") p.set("view", state.view)
     if (state.band !== "all") p.set("band", state.band)
-    if (state.checkedStatuses.sort().join(",") !== [...DEFAULT_STATUSES].sort().join(","))
+    if (sortedCheckedStatuses.join(",") !== sortedDefaultStatuses.join(","))
       p.set("statuses", state.checkedStatuses.join(","))
     if (state.selectedOperators.length) p.set("operators", state.selectedOperators.join(","))
-    if (state.xAxis !== "sky_coverage_deg2") p.set("xaxis", state.xAxis)
-    if (state.yAxis !== "dr_year") p.set("yaxis", state.yAxis)
+    if (state.xAxis !== "wavelength_center_um") p.set("xaxis", state.xAxis)
+    if (state.yAxis !== "z_max") p.set("yaxis", state.yAxis)
     if (state.search) p.set("q", state.search)
-    if (state.plotType !== "coverage_year") p.set("plottype", state.plotType)
+    if (state.plotType !== "wavelength_redshift") p.set("plottype", state.plotType)
 
     const qs = p.toString()
     const current = typeof window !== "undefined"
@@ -258,7 +261,6 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
       ) : (
         <ChartView
           surveys={filteredSurveys}
-          statusOpSurveys={statusOpSurveys}
           band={state.band}
           xAxis={state.xAxis}
           yAxis={state.yAxis}

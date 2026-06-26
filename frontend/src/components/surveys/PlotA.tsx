@@ -1,19 +1,14 @@
 "use client"
 
-import { useMemo, useEffect, useRef, useState } from "react"
+import { useMemo, useEffect, useRef, useState, useId } from "react"
 import { scaleLog, scaleLinear } from "d3"
-import { bandUnit, convertUm } from "@/lib/wavelengthUnits"
 import { BAND_COLORS, type Survey, type BandId, type AxisKey } from "./constants"
-
-export const AXIS_OPTIONS: {
-  key: AxisKey; baseLabel: string; unit: string; scale: "log" | "linear"
-}[] = [
-  { key: "sky_coverage_deg2",    baseLabel: "Sky Coverage",    unit: "deg²", scale: "log"    },
-  { key: "wavelength_center_um", baseLabel: "Wavelength",      unit: "μm",   scale: "log"    },
-  { key: "z_max",                baseLabel: "Redshift Max",    unit: "",     scale: "log"    }, // F3: Redshift axis z_max made log-scale
-  { key: "dr_year",              baseLabel: "Data Release Yr", unit: "",     scale: "linear" },
-  { key: "data_volume_tb",       baseLabel: "Data Volume",     unit: "TB",   scale: "log"    },
-]
+import {
+  AXIS_OPTIONS,
+  getAxisLabel,
+  getSurveyAxisValue,
+  surveyHasPlottableAxes,
+} from "./plotting"
 
 const ML = 66, MT = 20, MR = 24, MB = 52
 
@@ -50,6 +45,9 @@ export default function PlotA({
   height = 420
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const titleId = useId()
+  const descId = useId()
+  const missingListId = useId()
   const [plotWidth, setPlotWidth] = useState(700)
   const [missingExpanded, setMissingExpanded] = useState(false)
 
@@ -66,16 +64,9 @@ export default function PlotA({
 
   const IH = height - MT - MB
 
-  const getVal = (s: Survey, ax: AxisKey): number | null => {
-    const v = s[ax] as number | null
-    if (v == null) return null
-    if (ax === "wavelength_center_um" && band !== "all") return convertUm(v, band)
-    return v
-  }
-
-  // F1: compute missing surveys for PlotA
+  // F1: compute surveys excluded from the plot by missing or non-plottable axis values
   const missingSurveys = useMemo(() => {
-    return surveys.filter(s => getVal(s, xAxis) == null || getVal(s, yAxis) == null)
+    return surveys.filter(s => !surveyHasPlottableAxes(s, xAxis, yAxis, band))
   }, [surveys, xAxis, yAxis, band])
 
   const { pts, xScaleFn, yScaleFn, xTicks, yTicks, xLabel, yLabel } = useMemo(() => {
@@ -86,8 +77,12 @@ export default function PlotA({
     const yOpt = AXIS_OPTIONS.find(a => a.key === yAxis)!
 
     const pts = surveys
-      .map(s => ({ s, x: getVal(s, xAxis), y: getVal(s, yAxis) }))
-      .filter((p): p is { s: Survey; x: number; y: number } => p.x != null && p.y != null)
+      .filter(s => surveyHasPlottableAxes(s, xAxis, yAxis, band))
+      .map(s => ({
+        s,
+        x: getSurveyAxisValue(s, xAxis, band)!,
+        y: getSurveyAxisValue(s, yAxis, band)!,
+      }))
 
     if (pts.length === 0) return { pts: [], xScaleFn: null, yScaleFn: null, xTicks: [], yTicks: [], xLabel: "", yLabel: "" }
 
@@ -109,8 +104,8 @@ export default function PlotA({
     const xSc = buildScale(xMin, xMax, xOpt.scale === "log", [0, IW])
     const ySc = buildScale(yMin, yMax, yOpt.scale === "log", [IH, 0])
 
-    const xUnit = xAxis === "wavelength_center_um" && band !== "all" ? bandUnit(band) : xOpt.unit
-    const yUnit = yAxis === "wavelength_center_um" && band !== "all" ? bandUnit(band) : yOpt.unit
+    const xLabel = getAxisLabel(xAxis, band)
+    const yLabel = getAxisLabel(yAxis, band)
 
     return {
       pts,
@@ -118,22 +113,87 @@ export default function PlotA({
       yScaleFn: (v: number) => ySc(v),
       xTicks: xSc.ticks(6),
       yTicks: ySc.ticks(5),
-      xLabel: xOpt.baseLabel + (xUnit ? ` (${xUnit})` : ""),
-      yLabel: yOpt.baseLabel + (yUnit ? ` (${yUnit})` : ""),
+      xLabel,
+      yLabel,
     }
   }, [surveys, band, xAxis, yAxis, plotWidth, IH])
 
   const IW = plotWidth - ML - MR
 
+  const renderMissingSurveys = () => (
+    missingSurveys.length > 0 ? (
+      <div style={{ paddingLeft: ML, marginTop: "0.5rem" }}>
+        <button
+          onClick={() => setMissingExpanded(v => !v)}
+          aria-expanded={missingExpanded}
+          aria-controls={missingListId}
+          style={{
+            fontSize: "0.72rem", color: "#475569",
+            background: "rgba(71,85,105,0.12)", border: "1px solid #1e293b",
+            borderRadius: 999, padding: "0.15rem 0.6rem",
+            cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "0.3rem",
+          }}
+        >
+          <span>+{missingSurveys.length} survey{missingSurveys.length !== 1 ? "s" : ""} not plotted (missing/non-plottable {xAxis} or {yAxis})</span>
+          <span style={{ fontSize: "0.65rem" }}>{missingExpanded ? "▲" : "▼"}</span>
+        </button>
+        {missingExpanded && (
+          <div
+            id={missingListId}
+            style={{
+              marginTop: "0.35rem", padding: "0.5rem 0.75rem",
+              background: "#0f172a", border: "1px solid #1e293b", borderRadius: 6,
+              maxWidth: 480,
+            }}
+          >
+            <div style={{ fontSize: "0.7rem", color: "#475569", marginBottom: "0.35rem" }}>
+              Missing or non-plottable {xAxis} or {yAxis} values:
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+              {missingSurveys.map(s => (
+                <span
+                  key={s.slug}
+                  style={{
+                    fontSize: "0.72rem", color: "#64748b",
+                    background: "#1e293b", border: "1px solid #334155",
+                    borderRadius: 4, padding: "0.1rem 0.45rem",
+                  }}
+                  title={`${s.full_name} — ${xAxis}: ${getSurveyAxisValue(s, xAxis, band) ?? "—"}, ${yAxis}: ${getSurveyAxisValue(s, yAxis, band) ?? "—"}`}
+                >
+                  {s.name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    ) : null
+  )
+
   return (
     <div ref={containerRef} style={{ width: "100%" }}>
       {(!xScaleFn || pts.length === 0) ? (
-        <div style={{ height, display: "flex", alignItems: "center", justifyContent: "center", color: "#475569", fontSize: "0.875rem" }}>
-          No data for this band/axis combination.
-        </div>
+        <>
+          <div style={{ height, display: "flex", alignItems: "center", justifyContent: "center", color: "#475569", fontSize: "0.875rem", textAlign: "center", padding: "0 1rem" }}>
+            {surveys.length > 0 && missingSurveys.length > 0
+              ? `${surveys.length} matching survey${surveys.length === 1 ? "" : "s"}, but none have plottable ${xAxis} and ${yAxis} values.`
+              : "No data for this band/axis combination."}
+          </div>
+          {surveys.length > 0 && missingSurveys.length > 0 && renderMissingSurveys()}
+        </>
       ) : (
         <>
-          <svg width={plotWidth} height={height} style={{ display: "block", overflow: "visible" }}>
+          <svg
+            width={plotWidth}
+            height={height}
+            role="img"
+            aria-labelledby={`${titleId} ${descId}`}
+            style={{ display: "block", overflow: "visible" }}
+          >
+            <title id={titleId}>Survey atlas scatter plot</title>
+            <desc id={descId}>
+              {`${pts.length} plotted of ${surveys.length} matching surveys using ${xLabel} and ${yLabel}. ${missingSurveys.length} survey${missingSurveys.length === 1 ? "" : "s"} not plotted because one or both selected axis values are missing or non-plottable.`}
+            </desc>
             <g transform={`translate(${ML},${MT})`}>
               {yTicks.map(t => (
                 <line key={t} x1={0} x2={IW} y1={yScaleFn!(t)} y2={yScaleFn!(t)}
@@ -183,7 +243,18 @@ export default function PlotA({
                     onMouseEnter={() => onHover(s.slug)}
                     onMouseLeave={() => onHover(null)}
                     onClick={() => onClick(s.slug)}
-                    style={{ cursor: "pointer" }}
+                    onFocus={() => onHover(s.slug)}
+                    onBlur={() => onHover(null)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter" || event.key === " ") {
+                        event.preventDefault()
+                        onClick(s.slug)
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Open ${s.name} survey details`}
+                    style={{ cursor: "pointer", outline: "none" }}
                   >
                     {/* Transparent touch hit target of at least 44x44px */}
                     <circle
@@ -217,48 +288,7 @@ export default function PlotA({
           </svg>
 
           {/* F1: Missing-data footnote chip for PlotA */}
-          {missingSurveys.length > 0 && (
-            <div style={{ paddingLeft: ML, marginTop: "0.5rem" }}>
-              <button
-                onClick={() => setMissingExpanded(v => !v)}
-                style={{
-                  fontSize: "0.72rem", color: "#475569",
-                  background: "rgba(71,85,105,0.12)", border: "1px solid #1e293b",
-                  borderRadius: 999, padding: "0.15rem 0.6rem",
-                  cursor: "pointer", display: "inline-flex", alignItems: "center", gap: "0.3rem",
-                }}
-              >
-                <span>+{missingSurveys.length} survey{missingSurveys.length !== 1 ? "s" : ""} not plotted (missing {xAxis} or {yAxis})</span>
-                <span style={{ fontSize: "0.65rem" }}>{missingExpanded ? "▲" : "▼"}</span>
-              </button>
-              {missingExpanded && (
-                <div style={{
-                  marginTop: "0.35rem", padding: "0.5rem 0.75rem",
-                  background: "#0f172a", border: "1px solid #1e293b", borderRadius: 6,
-                  maxWidth: 480,
-                }}>
-                  <div style={{ fontSize: "0.7rem", color: "#475569", marginBottom: "0.35rem" }}>
-                    Missing {xAxis} or {yAxis} data values:
-                  </div>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
-                    {missingSurveys.map(s => (
-                      <span
-                        key={s.slug}
-                        style={{
-                          fontSize: "0.72rem", color: "#64748b",
-                          background: "#1e293b", border: "1px solid #334155",
-                          borderRadius: 4, padding: "0.1rem 0.45rem",
-                        }}
-                        title={`${s.full_name} — ${xAxis}: ${getVal(s, xAxis) ?? "—"}, ${yAxis}: ${getVal(s, yAxis) ?? "—"}`}
-                      >
-                        {s.name}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </div>
-          )}
+          {renderMissingSurveys()}
         </>
       )}
     </div>
