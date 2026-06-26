@@ -17,6 +17,7 @@ import json
 import math
 import os
 import re
+import subprocess  # nosec B404
 import sys
 import time
 import urllib.request
@@ -35,6 +36,7 @@ from app.services.sentence_trust import project_sentence_trust  # noqa: E402
 REPO_ROOT = Path(__file__).resolve().parents[2]
 BACKEND_ROOT = Path(__file__).resolve().parents[1]
 DOCS_ROOT = REPO_ROOT / "docs"
+GIT_BIN = "/usr/bin/git"
 DSN = os.getenv("DATABASE_URL", "postgresql://nebula:nebula@localhost:5432/nebulamind")
 OLLAMA_BASE = os.getenv("PAGE58_STAKING_OLLAMA_BASE", "http://localhost:11434").rstrip("/")
 ATOM_MODEL = "vanta-research/atom-astronomy-7b:latest"
@@ -70,6 +72,42 @@ def write_jsonl(path: Path, rows: list[dict[str, Any]]) -> None:
     with path.open("w", encoding="utf-8") as handle:
         for row in rows:
             handle.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
+
+
+def record_progress(out_dir: Path, stage: str, status: str, **details: Any) -> dict[str, Any]:
+    """Append one operator-visible progress event and mirror it to stderr."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    event = {
+        "created_at": dt.datetime.now(dt.UTC).isoformat(),
+        "stage": stage,
+        "status": status,
+        **details,
+    }
+    with (out_dir / "progress.jsonl").open("a", encoding="utf-8") as handle:
+        handle.write(json.dumps(event, ensure_ascii=False, sort_keys=True) + "\n")
+    print("PAGE58_PROGRESS " + json.dumps(event, ensure_ascii=False, sort_keys=True), file=sys.stderr, flush=True)
+    return event
+
+
+def write_checkpoint(out_dir: Path, name: str, payload: Any) -> Path:
+    path = out_dir / "checkpoints" / f"{name}.json"
+    write_json(path, payload)
+    return path
+
+
+def write_checkpoint_jsonl(out_dir: Path, name: str, rows: list[dict[str, Any]]) -> Path:
+    path = out_dir / "checkpoints" / f"{name}.jsonl"
+    write_jsonl(path, rows)
+    return path
+
+
+def observed_git_head() -> str:
+    try:
+        return subprocess.check_output(  # nosec B603
+            [GIT_BIN, "-C", str(REPO_ROOT), "rev-parse", "--short", "HEAD"], text=True
+        ).strip()
+    except (OSError, subprocess.SubprocessError):
+        return "unknown"
 
 
 def read_jsonl(path: Path) -> list[dict[str, Any]]:
@@ -448,21 +486,65 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         raise SystemExit("Refusing to run without --no-apply")
     if os.getenv("NM_ANTHROPIC_API_KEY"):
         raise SystemExit("Refusing to run with NM_ANTHROPIC_API_KEY set")
+    args.out_dir.mkdir(parents=True, exist_ok=True)
+    checkpoint_paths: list[Path] = []
+    record_progress(
+        args.out_dir,
+        "start",
+        "running",
+        no_apply=True,
+        db_write_count=0,
+        limit_intros=args.limit_intros,
+        tau_rel=args.tau_rel,
+        tau_vote=args.tau_vote,
+    )
     started = time.time()
     timings: dict[str, float] = {}
     base, intros, meta = load_base_and_intros(args.limit_intros)
     timings["load_seconds"] = round(time.time() - started, 3)
+    checkpoint_paths.append(write_checkpoint(
+        args.out_dir,
+        "load_base_and_intros",
+        {
+            "page": meta["page"],
+            "page_version": meta["page_version"],
+            "base_sentences": len(base),
+            "input_intros": len(intros),
+            "limit_intros": args.limit_intros,
+            "no_apply": True,
+            "db_write_count": 0,
+        },
+    ))
+    record_progress(
+        args.out_dir,
+        "load_base_and_intros",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        base_sentences=len(base),
+        input_intros=len(intros),
+        elapsed_seconds=timings["load_seconds"],
+    )
 
     t0 = time.time()
     base_embeddings = embed_texts([row["sentence_text"] for row in base], timeout=args.model_timeout)
     timings["base_embedding_seconds"] = round(time.time() - t0, 3)
+    record_progress(
+        args.out_dir,
+        "base_embedding",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        base_sentences=len(base),
+        elapsed_seconds=timings["base_embedding_seconds"],
+    )
 
     findings: list[dict[str, Any]] = []
     filtered_count = 0
     sentence_count = 0
     per_intro: dict[str, dict[str, Any]] = {}
     t0 = time.time()
-    for intro in intros:
+    for intro_index, intro in enumerate(intros, start=1):
         sentences = split_sentences(str(intro.get("intro_text") or ""))
         sentence_count += len(sentences)
         classified = atom_claim_filter(sentences, timeout=args.model_timeout)
@@ -477,7 +559,42 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         }
         for row in kept:
             findings.append({**row, "arxiv_id": intro["arxiv_id"]})
+        record_progress(
+            args.out_dir,
+            "claim_filter_intro",
+            "running" if intro_index < len(intros) else "done",
+            no_apply=True,
+            db_write_count=0,
+            processed_intros=intro_index,
+            total_intros=len(intros),
+            split_sentences=sentence_count,
+            finding_sentences=len(findings),
+            filtered_sentences=filtered_count,
+        )
     timings["claim_filter_seconds"] = round(time.time() - t0, 3)
+    checkpoint_paths.append(write_checkpoint(
+        args.out_dir,
+        "claim_filter",
+        {
+            "processed_intros": len(intros),
+            "split_sentences": sentence_count,
+            "finding_sentences": len(findings),
+            "filtered_sentences": filtered_count,
+            "no_apply": True,
+            "db_write_count": 0,
+        },
+    ))
+    record_progress(
+        args.out_dir,
+        "claim_filter_done",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        processed_intros=len(intros),
+        total_intros=len(intros),
+        finding_sentences=len(findings),
+        elapsed_seconds=timings["claim_filter_seconds"],
+    )
 
     t0 = time.time()
     finding_embeddings = embed_texts([row["sentence"] for row in findings], timeout=args.model_timeout) if findings else []
@@ -512,10 +629,42 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "base_sentence": base_row["sentence_text"],
         })
     timings["embedding_match_seconds"] = round(time.time() - t0, 3)
+    checkpoint_paths.append(write_checkpoint_jsonl(args.out_dir, "candidate_pairs", candidate_pairs))
+    checkpoint_paths.append(write_checkpoint_jsonl(args.out_dir, "emergent_pool", emergent_pool))
+    checkpoint_paths.append(write_checkpoint(
+        args.out_dir,
+        "embedding_match",
+        {
+            "matched_findings": len(candidate_pairs),
+            "emergent_pool_sentences": len(emergent_pool),
+            "no_apply": True,
+            "db_write_count": 0,
+        },
+    ))
+    record_progress(
+        args.out_dir,
+        "embedding_match_done",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        matched_findings=len(candidate_pairs),
+        emergent_pool_sentences=len(emergent_pool),
+        elapsed_seconds=timings["embedding_match_seconds"],
+    )
 
     t0 = time.time()
     stance_rows = tone_gate_predictions(candidate_pairs, timeout=args.model_timeout)
     timings["tone_gate_seconds"] = round(time.time() - t0, 3)
+    checkpoint_paths.append(write_checkpoint_jsonl(args.out_dir, "tone_gate_predictions", stance_rows))
+    record_progress(
+        args.out_dir,
+        "tone_gate_done",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        vote_candidates=len(stance_rows),
+        elapsed_seconds=timings["tone_gate_seconds"],
+    )
 
     all_vote_candidates: list[dict[str, Any]] = []
     for row in stance_rows:
@@ -560,7 +709,7 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
         "paid_lane_touched": False,
         "claude_p_used": False,
         "git_head_required": "4ba9675",
-        "git_head_observed": os.popen(f"git -C {REPO_ROOT} rev-parse --short HEAD").read().strip(),
+        "git_head_observed": observed_git_head(),
         "input_intros": len(intros),
         "base_sentences": len(base),
         "ratios": {
@@ -579,7 +728,13 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
             "matched_findings": len(candidate_pairs),
             "emergent_pool_sentences": len(emergent_pool),
             "emergent_pool_intros": no_match_intros,
+            "checkpoint_files_written": len(checkpoint_paths),
             **rollup_counts,
+        },
+        "progress": {
+            "progress_log": str(args.out_dir / "progress.jsonl"),
+            "checkpoint_dir": str(args.out_dir / "checkpoints"),
+            "checkpoint_files": [str(path) for path in checkpoint_paths],
         },
         "trust_distribution": {key: {"count": tier_counts[key], "ratio": f"{tier_counts[key]}/{len(base)}"} for key in sorted(tier_counts)},
         "sensitivity": {
@@ -597,6 +752,22 @@ def run(args: argparse.Namespace) -> dict[str, Any]:
     write_jsonl(args.out_dir / "would_be_sentence_trust.jsonl", rollup_rows)
     write_json(args.out_dir / "per_intro.json", per_intro)
     write_report(args.out_dir / "REPORT.md", summary, rollup_rows)
+    record_progress(
+        args.out_dir,
+        "final_artifacts_done",
+        "done",
+        no_apply=True,
+        db_write_count=0,
+        artifact_files=[
+            "summary.json",
+            "vote_candidates.jsonl",
+            "emergent_pool.jsonl",
+            "would_be_sentence_trust.jsonl",
+            "per_intro.json",
+            "REPORT.md",
+        ],
+        total_seconds=summary["timings"]["total_seconds"],
+    )
     return summary
 
 
@@ -646,6 +817,12 @@ def write_report(path: Path, summary: dict[str, Any], trust_rows: list[dict[str,
             "",
         ])
     lines.extend([
+        "## Operator Progress / Checkpoints",
+        "",
+        f"- Progress log: {summary.get('progress', {}).get('progress_log', 'n/a')}",
+        f"- Checkpoint directory: {summary.get('progress', {}).get('checkpoint_dir', 'n/a')}",
+        f"- Checkpoint files written before final report: {summary.get('counts', {}).get('checkpoint_files_written', 0)}",
+        "",
         "## Timing",
         "",
         *[f"- {key}: {value}s" for key, value in summary["timings"].items()],
