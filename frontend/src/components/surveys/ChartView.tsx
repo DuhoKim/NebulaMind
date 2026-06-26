@@ -1,11 +1,12 @@
 "use client"
 
-import PlotA, { AXIS_OPTIONS } from "./PlotA"
+import { useMemo } from "react"
+import PlotA from "./PlotA"
+import { AXIS_OPTIONS, surveyHasPlottableAxes } from "./plotting"
 import type { Survey, BandId, AxisKey, ExplorerAction } from "./constants"
 
 interface Props {
   surveys: Survey[]
-  statusOpSurveys: Survey[]
   band: BandId
   xAxis: AxisKey
   yAxis: AxisKey
@@ -17,7 +18,6 @@ interface Props {
 
 export default function ChartView({
   surveys,
-  statusOpSurveys,
   band,
   xAxis,
   yAxis,
@@ -26,6 +26,12 @@ export default function ChartView({
   dispatch,
   onSelect,
 }: Props) {
+  const plottedCount = useMemo(
+    () => surveys.filter(s => surveyHasPlottableAxes(s, xAxis, yAxis, band)).length,
+    [surveys, xAxis, yAxis, band]
+  )
+  const missingCount = Math.max(surveys.length - plottedCount, 0)
+
   return (
     <div
       style={{
@@ -44,19 +50,24 @@ export default function ChartView({
         style={{
           display: "flex",
           justifyContent: "space-between",
-          alignItems: "center",
+          alignItems: "flex-start",
           flexWrap: "wrap",
           gap: "1rem",
           borderBottom: "1px solid #1e293b",
           paddingBottom: "0.85rem",
         }}
       >
-        <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
-          <AxisSelect label="X Axis" value={xAxis} onChange={v => dispatch({ type: "SET_X_AXIS", axis: v })} />
-          <AxisSelect label="Y Axis" value={yAxis} onChange={v => dispatch({ type: "SET_Y_AXIS", axis: v })} />
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.55rem" }}>
+          <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+            <AxisSelect label="X Axis" value={xAxis} onChange={v => dispatch({ type: "SET_X_AXIS", axis: v })} />
+            <AxisSelect label="Y Axis" value={yAxis} onChange={v => dispatch({ type: "SET_Y_AXIS", axis: v })} />
+          </div>
+          <p style={{ margin: 0, maxWidth: 620, color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.55 }}>
+            Map surveys by physical reach. Missing-data rows stay visible in the not-plotted chip instead of silently disappearing.
+          </p>
         </div>
-        <span style={{ fontSize: "0.72rem", color: "#64748b" }}>
-          Showing {surveys.length} of {statusOpSurveys.length} surveys
+        <span style={{ fontSize: "0.72rem", color: missingCount > 0 ? "#fbbf24" : "#94a3b8", whiteSpace: "nowrap", paddingTop: "0.45rem" }}>
+          {plottedCount} plotted · {surveys.length} matching filters
         </span>
       </div>
 

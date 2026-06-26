@@ -1,0 +1,85 @@
+import assert from 'node:assert/strict';
+import { existsSync, readFileSync } from 'node:fs';
+import { join } from 'node:path';
+
+const root = process.cwd();
+const path = (...parts) => join(root, ...parts);
+const read = (...parts) => readFileSync(path(...parts), 'utf8');
+
+const surveysPage = read('src/app/surveys/page.tsx');
+const controlBar = read('src/components/surveys/ControlBar.tsx');
+const surveysView = read('src/components/surveys/SurveysView.tsx');
+const chartView = read('src/components/surveys/ChartView.tsx');
+const plotA = read('src/components/surveys/PlotA.tsx');
+const plottingPath = path('src/components/surveys/plotting.ts');
+const plotting = existsSync(plottingPath) ? readFileSync(plottingPath, 'utf8') : '';
+
+assert.match(
+  surveysPage,
+  /Astronomical Surveys & Facilities/,
+  'Surveys page should use honest Surveys & Facilities scope copy.',
+);
+assert.match(
+  surveysPage,
+  /observational programs, facilities, and survey data products/,
+  'Surveys subtitle should describe mixed survey/facility/data-product scope.',
+);
+assert.match(
+  surveysPage,
+  /survey-page__stats/,
+  'Surveys page should expose a lightweight stats row once data is loaded.',
+);
+
+assert.match(controlBar, />\s*List\s*</, 'Mode toggle should show List, not Directory.');
+assert.match(controlBar, />\s*Explorer\s*</, 'Mode toggle should show Explorer, not Chart.');
+assert.doesNotMatch(controlBar, />\s*Directory\s*</, 'Directory label should be removed from visible toggle copy.');
+assert.doesNotMatch(controlBar, />\s*Chart\s*</, 'Chart label should be removed from visible toggle copy.');
+
+assert.doesNotMatch(
+  surveysView,
+  /state\.checkedStatuses\.sort\(/,
+  'URL sync should not mutate reducer state with state.checkedStatuses.sort().',
+);
+assert.match(
+  surveysView,
+  /\[\.\.\.state\.checkedStatuses\]\.sort\(/,
+  'URL sync should copy checkedStatuses before sorting.',
+);
+
+assert.match(chartView, /plotted/i, 'Chart header should distinguish plotted rows from matching filters.');
+assert.match(chartView, /matching filters/i, 'Chart header should mention matching filters.');
+assert.match(chartView, /Map surveys by physical reach/i, 'Chart should explain Atlas/Explorer purpose.');
+assert.match(chartView, /missing-data rows/i, 'Chart should explain that missing-data rows are not silently dropped.');
+
+assert.match(plotA, /role="img"/, 'Plot SVG should expose image semantics.');
+assert.match(plotA, /aria-labelledby/, 'Plot SVG should link to an accessible title/description.');
+assert.match(plotA, /aria-expanded=\{missingExpanded\}/, 'Not-plotted disclosure button should expose aria-expanded state.');
+assert.match(plotA, /aria-controls=\{missingListId\}/, 'Not-plotted disclosure button should point at its controlled list region.');
+assert.match(plotA, /id=\{missingListId\}/, 'Not-plotted detail region should expose the ID referenced by aria-controls.');
+assert.match(plotA, /pts\.length <= 15/, 'Plot should keep persistent labels only for low-density views.');
+assert.match(plotA, /not plotted/, 'Plot should keep the missing-data chip language.');
+assert.match(
+  plotA,
+  /const renderMissingSurveys = \(\) => \(/,
+  'PlotA should centralize the not-plotted chip/list so it can render in both plotted and zero-plotted states.',
+);
+assert.match(
+  plotA,
+  /surveys\.length > 0[\s\S]*renderMissingSurveys\(\)/,
+  'When filters match surveys but zero points are plottable, PlotA should still render the not-plotted chip/list.',
+);
+
+assert.ok(existsSync(plottingPath), 'Plotting helpers should live in a shared plotting.ts module.');
+assert.match(plotting, /export const AXIS_OPTIONS/, 'Axis options should be exported from shared plotting helpers.');
+assert.match(plotting, /export function getSurveyAxisValue/, 'Shared plotting helpers should expose the axis-value conversion function.');
+assert.match(plotting, /export function surveyHasPlottableAxes/, 'Shared plotting helpers should expose the plottability predicate.');
+assert.match(plotting, /export function parseAxisParam/, 'Shared plotting helpers should validate URL axis params with a fallback.');
+assert.match(surveysView, /parseAxisParam\(params\.get\("xaxis"\), "wavelength_center_um"\)/, 'Initial xAxis should validate malformed URL params before storing reducer state.');
+assert.match(surveysView, /parseAxisParam\(params\.get\("yaxis"\), "z_max"\)/, 'Initial yAxis should validate malformed URL params before storing reducer state.');
+assert.match(chartView, /from "\.\/plotting"/, 'ChartView should import shared plotting helpers.');
+assert.match(plotA, /from "\.\/plotting"/, 'PlotA should import shared plotting helpers.');
+assert.doesNotMatch(chartView, /function isPlottable/, 'ChartView should not keep a private plottability predicate.');
+assert.doesNotMatch(chartView, /statusOpSurveys/, 'ChartView should not expose the unused statusOpSurveys prop.');
+assert.doesNotMatch(surveysView, /statusOpSurveys=\{statusOpSurveys\}/, 'SurveysView should not pass the unused ChartView statusOpSurveys prop.');
+
+console.log('surveys atlas IA smoke checks passed');
