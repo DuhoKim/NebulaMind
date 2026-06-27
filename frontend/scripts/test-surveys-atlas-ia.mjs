@@ -18,6 +18,8 @@ const chartView = read('src/components/surveys/ChartView.tsx');
 const plotA = read('src/components/surveys/PlotA.tsx');
 const surveyCard = read('src/components/surveys/SurveyCard.tsx');
 const bandSpectrumStrip = read('src/components/surveys/BandSpectrumStrip.tsx');
+const filterSheet = read('src/components/surveys/FilterSheet.tsx');
+const surveyPeek = read('src/components/surveys/SurveyPeek.tsx');
 const constants = read('src/components/surveys/constants.ts');
 const plottingPath = path('src/components/surveys/plotting.ts');
 const plotting = existsSync(plottingPath) ? readFileSync(plottingPath, 'utf8') : '';
@@ -68,6 +70,19 @@ assert.match(controlBar, /aria-pressed=\{view === "directory"\}/, 'List toggle s
 assert.match(controlBar, /aria-pressed=\{view === "chart"\}/, 'Explorer toggle should expose pressed state.');
 assert.match(controlBar, /aria-label="Search surveys by name, operator, or science goals"/, 'Search input should expose a descriptive accessible name.');
 assert.match(controlBar, /aria-label="Open survey filters"/, 'Filter trigger should expose a descriptive accessible name.');
+assert.match(controlBar, /filterSheetOpen: boolean/, 'ControlBar should accept filter sheet open state for aria-expanded.');
+assert.match(controlBar, /aria-haspopup="dialog"/, 'Filter trigger should announce that it opens a dialog.');
+assert.match(controlBar, /aria-expanded=\{filterSheetOpen\}/, 'Filter trigger should expose dialog open state.');
+assert.match(controlBar, /aria-controls="surveys-filter-sheet"/, 'Filter trigger should point at the filter sheet dialog.');
+assert.match(surveysView, /filterSheetOpen=\{filterSheetOpen\}/, 'SurveysView should pass filter sheet open state to ControlBar.');
+assert.match(filterSheet, /id="surveys-filter-sheet"/, 'FilterSheet dialog should expose the ID referenced by aria-controls.');
+assert.match(filterSheet, /role="dialog"/, 'FilterSheet should use dialog semantics.');
+assert.match(filterSheet, /aria-modal="true"/, 'FilterSheet should expose modal semantics.');
+assert.match(filterSheet, /aria-labelledby="surveys-filter-sheet-title"/, 'FilterSheet should label the dialog by its title.');
+assert.match(filterSheet, /id="surveys-filter-sheet-title"/, 'FilterSheet title should expose the label ID.');
+assert.match(surveyPeek, /role="dialog"/, 'SurveyPeek should use dialog semantics.');
+assert.match(surveyPeek, /aria-modal="true"/, 'SurveyPeek should expose modal semantics.');
+assert.match(surveyPeek, /aria-label=\{`\$\{survey\.name\} survey details`\}/, 'SurveyPeek should expose a descriptive dialog label.');
 
 assert.doesNotMatch(
   surveysView,

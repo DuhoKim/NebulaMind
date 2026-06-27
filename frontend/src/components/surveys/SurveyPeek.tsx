@@ -76,6 +76,9 @@ export default function SurveyPeek({ survey, onClose }: Props) {
       `}</style>
 
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label={`${survey.name} survey details`}
         ref={contentRef}
         className="survey-sheet__content"
         style={{
