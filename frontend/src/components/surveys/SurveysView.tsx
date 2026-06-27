@@ -224,6 +224,7 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
         view={state.view}
         search={state.search}
         activeFilterCount={activeFilterCount}
+        filterSheetOpen={filterSheetOpen}
         dispatch={dispatch}
         onOpenFilters={() => setFilterSheetOpen(true)}
       />

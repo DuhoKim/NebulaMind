@@ -91,6 +91,10 @@ export default function FilterSheet({
       `}</style>
 
       <div
+        id="surveys-filter-sheet"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="surveys-filter-sheet-title"
         ref={containerRef}
         className="filter-sheet__content"
         style={{
@@ -120,7 +124,7 @@ export default function FilterSheet({
             borderBottom: "1px solid #1e293b",
           }}
         >
-          <h4 style={{ margin: 0, fontSize: "0.95rem", fontWeight: 700, color: "#f8fafc" }}>Filters</h4>
+          <h4 id="surveys-filter-sheet-title" style={{ margin: 0, fontSize: "0.95rem", fontWeight: 700, color: "#f8fafc" }}>Filters</h4>
           <div style={{ display: "flex", gap: "0.5rem" }}>
             <button
               onClick={onReset}

@@ -7,11 +7,12 @@ interface Props {
   view: "directory" | "chart"
   search: string
   activeFilterCount: number
+  filterSheetOpen: boolean
   dispatch: React.Dispatch<ExplorerAction>
   onOpenFilters: () => void
 }
 
-export default function ControlBar({ view, search, activeFilterCount, dispatch, onOpenFilters }: Props) {
+export default function ControlBar({ view, search, activeFilterCount, filterSheetOpen, dispatch, onOpenFilters }: Props) {
   const [localSearch, setLocalSearch] = useState(search)
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
@@ -184,6 +185,9 @@ export default function ControlBar({ view, search, activeFilterCount, dispatch, 
       <button
         type="button"
         aria-label="Open survey filters"
+        aria-haspopup="dialog"
+        aria-expanded={filterSheetOpen}
+        aria-controls="surveys-filter-sheet"
         className={`control-bar__filter-btn ${activeFilterCount > 0 ? "control-bar__filter-btn--active" : ""}`}
         onClick={onOpenFilters}
       >
