@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = path.resolve(import.meta.dirname, "..");
 const helperPath = path.join(repoRoot, "src/app/wiki/[slug]/trustVisibility.ts");
 const clientPath = path.join(repoRoot, "src/app/wiki/[slug]/WikiPageClient.tsx");
+const panelPath = path.join(repoRoot, "src/app/wiki/[slug]/DebateEvidencePanel.tsx");
 
 const helperSource = fs.readFileSync(helperPath, "utf8");
 const compiled = ts.transpileModule(helperSource, {
@@ -71,6 +72,7 @@ assert.equal(formatClaimTrustBadge({ trust_level: "debated", evidence_count: 1 }
 assert.equal(trustVisibilityMeta("challenged").icon, "!");
 
 const clientSource = fs.readFileSync(clientPath, "utf8");
+const panelSource = fs.readFileSync(panelPath, "utf8");
 assert.match(clientSource, /from "\.\/trustVisibility"/);
 assert.match(clientSource, /Page trust snapshot/);
 assert.match(clientSource, /Provenance-gated claim layer/);
@@ -78,5 +80,11 @@ assert.match(clientSource, /formatClaimTrustBadge/);
 assert.match(clientSource, /summarizeTrustClaims\(claims, renderedClaimIds\)/);
 assert.match(clientSource, /data-testid="trust-summary-panel"/);
 assert.match(clientSource, /data-testid="claim-trust-badge"/);
+assert.match(clientSource, /aria-haspopup="dialog"/, "Trust chips should declare that they open an evidence dialog.");
+assert.match(clientSource, /aria-expanded=\{open\}/, "Trust chips should expose their live evidence-dialog expanded state.");
+assert.match(clientSource, /aria-controls=\{panelId\}/, "Trust chips should point assistive tech to the evidence dialog they open.");
+assert.match(clientSource, /const evidencePanelId = claim\?\.id \? `claim-evidence-panel-\$\{claim\.id\}` : undefined/, "Claim annotations should derive a stable evidence-dialog id from the claim id.");
+assert.match(clientSource, /panelId=\{evidencePanelId\}/, "The opened evidence dialog should receive the stable claim evidence panel id.");
+assert.match(panelSource, /id=\{panelId\}/, "Evidence dialogs should expose the id referenced by aria-controls.");
 
 console.log("wiki_trust_visibility_smoke_ok");
