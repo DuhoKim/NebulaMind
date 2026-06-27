@@ -31,6 +31,7 @@ export interface DebateEvidenceItem {
 
 interface DebateEvidencePanelProps {
   claimId?: number;
+  panelId?: string;
   claimText: string;
   trustLevel: string;
   evidence: DebateEvidenceItem[] | null;
@@ -138,6 +139,7 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
 
 export default function DebateEvidencePanel({
   claimId,
+  panelId,
   claimText,
   trustLevel,
   evidence,
@@ -215,6 +217,7 @@ export default function DebateEvidencePanel({
         aria-hidden="true"
       />
       <section
+        id={panelId}
         role="dialog"
         aria-modal="true"
         aria-label={isContested ? "Debate map" : "Evidence map"}

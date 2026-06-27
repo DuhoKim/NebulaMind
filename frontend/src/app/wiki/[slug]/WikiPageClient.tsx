@@ -383,7 +383,17 @@ function IdeaCoverageLine({ idea }: { idea: any }) {
   return null;
 }
 
-function ClaimTrustBadge({ claim, onOpen }: { claim: any; onOpen: () => void }) {
+function ClaimTrustBadge({
+  claim,
+  open,
+  panelId,
+  onOpen,
+}: {
+  claim: any;
+  open: boolean;
+  panelId?: string;
+  onOpen: () => void;
+}) {
   const meta = trustVisibilityMeta(claim?.trust_level);
   const label = formatClaimTrustBadge(claim);
   return (
@@ -391,6 +401,9 @@ function ClaimTrustBadge({ claim, onOpen }: { claim: any; onOpen: () => void }) 
       type="button"
       data-testid="claim-trust-badge"
       aria-label={`Open evidence map for ${label}`}
+      aria-haspopup="dialog"
+      aria-expanded={open}
+      aria-controls={panelId}
       title={`${label} — click for paper evidence`}
       onClick={(e) => {
         e.preventDefault();
@@ -515,6 +528,7 @@ function ClaimAnnotatedSpan({
   const trustKey = TRUST_COLORS[trustLevel] ? trustLevel : "unverified";
   const evidenceCount = claim?.evidence_count ?? 0;
   const isContested = ["debated", "challenged"].includes(trustLevel);
+  const evidencePanelId = claim?.id ? `claim-evidence-panel-${claim.id}` : undefined;
 
   useEffect(() => {
     if (!open && !ideasOpen) return;
@@ -561,10 +575,13 @@ function ClaimAnnotatedSpan({
         tabIndex={0}
         aria-expanded={open}
         aria-haspopup="dialog"
+        aria-controls={evidencePanelId}
       >{children}</span>
       {claim?.id && (
         <ClaimTrustBadge
           claim={claim}
+          open={open}
+          panelId={evidencePanelId}
           onOpen={() => setOpen((v) => !v)}
         />
       )}
@@ -599,6 +616,7 @@ function ClaimAnnotatedSpan({
           totalElements={totalElements}
           onClose={() => setOpen(false)}
           returnFocusRef={claimTriggerRef}
+          panelId={evidencePanelId}
         />
       )}
       {ideasOpen && ideas && ideas.length > 0 && (
