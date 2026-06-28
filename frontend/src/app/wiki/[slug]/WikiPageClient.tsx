@@ -23,6 +23,7 @@ import {
 import { formatSourceTraceHoverCard } from "./sourceTraceHover";
 import { buildClaimMiniMapHover, formatClaimMiniMapSummary } from "./claimMiniMapHover";
 import { buildPageContradictionRankingAtlas, type PageContradictionRankingAtlas, type PageContradictionRankingItem } from "./evidencePanelCopy";
+import { buildPaperClaimFlightDeck, type PaperClaimFlightDeck } from "./paperClaimFlightDeck";
 
 interface WikiPage {
   id: number;
@@ -718,6 +719,126 @@ function TrustSummaryPanel({ summary, versionNum }: { summary: TrustVisibilitySu
   );
 }
 
+function PaperClaimFlightDeckPanel({ deck, isMobile }: { deck: PaperClaimFlightDeck; isMobile: boolean }) {
+  if (!deck.totalPapers) return null;
+  const visibleItems = deck.items.slice(0, 5);
+  const paperClaimFlightDeckDescriptionId = "paper-claim-flight-deck-description";
+  return (
+    <section
+      data-testid="paper-claim-flight-deck"
+      aria-label="Paper-to-claim flight deck"
+      aria-describedby={paperClaimFlightDeckDescriptionId}
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "14px",
+        border: "1px solid rgba(56,189,248,0.35)",
+        borderLeft: "3px solid #38bdf8",
+        background: "linear-gradient(135deg, rgba(8,47,73,0.74), rgba(15,23,42,0.9))",
+        boxShadow: "0 18px 42px rgba(2,6,23,0.24)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.8rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#67e8f9", fontSize: "0.66rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            Paper-to-claim flight deck
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 820 }}>
+            Which papers drive visible claims
+          </h2>
+          <p id={paperClaimFlightDeckDescriptionId} style={{ margin: "0.35rem 0 0", color: "#bae6fd", fontSize: "0.78rem", lineHeight: 1.5, maxWidth: "42rem" }}>
+            {deck.headline}. {deck.summary}
+          </p>
+        </div>
+        <span style={{ color: "#67e8f9", border: "1px solid rgba(103,232,249,0.42)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.18rem 0.55rem", fontSize: "0.68rem", fontWeight: 850 }}>
+          {deck.linkedPapers.toLocaleString()}/{deck.totalPapers.toLocaleString()} mapped · {deck.unmappedPapers.toLocaleString()} unmapped
+        </span>
+      </div>
+      {visibleItems.length > 0 ? (
+        <div style={{ display: "grid", gap: "0.58rem", marginTop: "0.85rem" }}>
+          {visibleItems.map((item, index) => (
+            <article
+              key={item.evidenceId}
+              data-testid="paper-claim-flight-card"
+              style={{
+                border: "1px solid rgba(125,211,252,0.24)",
+                background: "rgba(15,23,42,0.78)",
+                borderRadius: "11px",
+                padding: "0.72rem",
+              }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2.25rem minmax(0,1fr) auto", gap: "0.64rem", alignItems: "start" }}>
+                <div style={{ color: "#38bdf8", fontSize: "1.15rem", lineHeight: 1, fontWeight: 900 }}>#{index + 1}</div>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ display: "flex", gap: "0.38rem", flexWrap: "wrap", alignItems: "center", marginBottom: "0.3rem" }}>
+                    <span style={{ color: "#67e8f9", border: "1px solid rgba(103,232,249,0.36)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                      {item.paperLabel}
+                    </span>
+                    <span style={{ color: item.counterPressureClaims > 0 ? "#fbbf24" : "#94a3b8", border: "1px solid rgba(148,163,184,0.24)", background: "rgba(15,23,42,0.64)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                      {item.rankLabel}
+                    </span>
+                  </div>
+                  <h3 style={{ margin: 0, color: "#f8fafc", fontSize: "0.86rem", lineHeight: 1.35 }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ margin: "0.2rem 0 0", color: "#94a3b8", fontSize: "0.7rem" }}>
+                    {item.byline} · {item.locator}
+                  </p>
+                  <p style={{ margin: "0.42rem 0 0", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.45 }}>
+                    {item.summary}
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.34rem", marginTop: "0.55rem" }}>
+                    {item.claimLinks.map((claim) => (
+                      <a
+                        key={claim.claimId}
+                        data-testid="paper-claim-flight-claim-link"
+                        href={claim.href}
+                        title={claim.claimText}
+                        style={{ color: claim.counterPressure ? "#fed7aa" : "#bfdbfe", border: `1px solid ${claim.counterPressure ? "rgba(249,115,22,0.35)" : "rgba(59,130,246,0.32)"}`, background: claim.counterPressure ? "rgba(249,115,22,0.12)" : "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none" }}
+                      >
+                        claim #{claim.claimId} · {claim.trustLevel}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: "0.4rem", alignItems: isMobile ? "center" : "stretch" }}>
+                  {item.externalHref && (
+                    <a
+                      data-testid="paper-claim-open-paper"
+                      href={item.externalHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#e0f2fe", border: "1px solid rgba(56,189,248,0.45)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.24rem 0.62rem", fontSize: "0.66rem", fontWeight: 860, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}
+                    >
+                      Open paper
+                    </a>
+                  )}
+                  {item.sourceIndexHref && (
+                    <Link
+                      data-testid="paper-claim-source-index-link"
+                      href={item.sourceIndexHref}
+                      style={{ color: "#bfdbfe", border: "1px solid rgba(59,130,246,0.28)", background: "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.22rem 0.58rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}
+                    >
+                      Open source index
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p style={{ margin: "0.8rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5 }}>
+          Claim-scoped paper links will appear here once citations are mapped to visible claims.
+        </p>
+      )}
+      <p style={{ margin: "0.8rem 0 0", color: "#64748b", fontSize: "0.66rem" }}>
+        Paper-to-claim navigation is scoped to this paper's footprint on this page only; it is not a final verdict.
+      </p>
+    </section>
+  );
+}
+
 function PageContradictionAtlasRanking({
   atlas,
   isMobile,
@@ -1231,6 +1352,11 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
   }, [citations]);
 
   const trustSummary = useMemo(() => summarizeTrustClaims(claims, renderedClaimIds), [claims, renderedClaimIds]);
+  // Flight deck derives from page.content, citations, claims, renderedClaimIds, slug.
+  const paperClaimFlightDeck = useMemo(
+    () => buildPaperClaimFlightDeck(page?.content || "", citations, claims, renderedClaimIds, slug),
+    [page?.content, citations, claims, renderedClaimIds, slug],
+  );
   const pageContradictionAtlas = useMemo(
     () => buildPageContradictionRankingAtlas(claims, pageAtlasEvidenceByClaimId, renderedClaimIds),
     [claims, pageAtlasEvidenceByClaimId, renderedClaimIds],
@@ -1391,6 +1517,10 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
 
       {showV2 && trustSummary.totalClaims > 0 && (
         <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
+      )}
+
+      {showV2 && (
+        <PaperClaimFlightDeckPanel deck={paperClaimFlightDeck} isMobile={isMobile} />
       )}
 
       {showV2 && (
