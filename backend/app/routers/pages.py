@@ -5,7 +5,7 @@ from slugify import slugify
 from typing import Optional
 import json
 
-from sqlalchemy import func, distinct
+from sqlalchemy import func, distinct, or_
 
 from app.auth import require_api_key
 from app.database import get_db
@@ -298,6 +298,171 @@ def get_cross_page_paper_footprint(
             "caveat": "Across indexed wiki evidence rows; this is not a final verdict about which claim is correct.",
         },
         "pages": pages,
+    }
+
+
+def _paper_directory_key(evidence) -> str:
+    arxiv_id = _normalize_paper_identifier(getattr(evidence, "arxiv_id", None))
+    if arxiv_id:
+        return f"arxiv:{arxiv_id.lower()}"
+    doi = str(getattr(evidence, "doi", None) or "").strip().lower()
+    if doi:
+        return f"doi:{doi}"
+    url = str(getattr(evidence, "url", None) or "").strip().lower()
+    if url:
+        return f"url:{url}"
+    return f"evidence:{getattr(evidence, 'id', 'unknown')}"
+
+
+def _paper_author_year_key(evidence) -> str:
+    authors = _parse_authors(getattr(evidence, "authors", None))
+    if getattr(evidence, "year", None):
+        first = authors[0] if authors else "Paper"
+        last = str(first).split()[-1] if str(first).split() else "Paper"
+        return f"{last}{evidence.year}"
+    return getattr(evidence, "title", None) or f"Evidence {evidence.id}"
+
+
+def _paper_directory_triage_status(tone_counts: dict[str, int], trust_counts: dict[str, int], has_stable_identifier: bool) -> str:
+    if tone_counts.get("counter", 0) > 0:
+        return "needs_adjudication"
+    if any(trust_counts.get(level, 0) > 0 for level in ("challenged", "debated", "disputed", "contested")):
+        return "needs_adjudication"
+    if not has_stable_identifier or tone_counts.get("neutral", 0) > 0 or trust_counts.get("unverified", 0) > 0:
+        return "needs_source"
+    return "ready_to_review"
+
+
+@router.get("/paper-directory", tags=["pages"],
+    summary="Search the global wiki paper directory",
+    description="Read-only directory of papers indexed in wiki evidence rows, grouped across pages and claims.")
+def get_global_paper_directory(
+    q: str | None = None,
+    limit: int = 25,
+    db: Session = Depends(get_db),
+):
+    from app.models.claim import Claim, Evidence
+
+    query_text = str(q or "").strip()
+    safe_limit = max(1, min(int(limit or 25), 50))
+    rows_query = (
+        db.query(Evidence, Claim, WikiPage)
+        .join(Claim, Evidence.claim_id == Claim.id)
+        .join(WikiPage, Claim.page_id == WikiPage.id)
+    )
+    if query_text:
+        like = f"%{query_text}%"
+        rows_query = rows_query.filter(or_(
+            Evidence.title.ilike(like),
+            Evidence.arxiv_id.ilike(like),
+            Evidence.doi.ilike(like),
+            Evidence.authors.ilike(like),
+            WikiPage.title.ilike(like),
+            WikiPage.slug.ilike(like),
+        ))
+
+    rows = rows_query.order_by(WikiPage.title.asc(), Claim.order_idx.asc(), Claim.id.asc(), Evidence.id.asc()).all()
+    paper_buckets: dict[str, dict] = {}
+    for evidence, claim, page in rows:
+        key = _paper_directory_key(evidence)
+        arxiv_id = _normalize_paper_identifier(evidence.arxiv_id) or None
+        url = evidence.url or (f"https://arxiv.org/abs/{arxiv_id}" if arxiv_id else None)
+        bucket = paper_buckets.setdefault(key, {
+            "paper": {
+                "evidence_id": evidence.id,
+                "arxiv_id": arxiv_id,
+                "doi": evidence.doi,
+                "url": url,
+                "title": evidence.title,
+                "authors": _parse_authors(evidence.authors),
+                "year": evidence.year,
+                "summary": evidence.summary or evidence.abstract,
+                "author_year_key": _paper_author_year_key(evidence),
+            },
+            "page_ids": set(),
+            "claim_ids": set(),
+            "evidence_ids": set(),
+            "tone_counts": {"support": 0, "counter": 0, "neutral": 0},
+            "trust_counts": {},
+            "pages": {},
+        })
+        tone = _paper_tone(evidence.stance)
+        trust = claim.trust_level or "unverified"
+        bucket["page_ids"].add(page.id)
+        bucket["claim_ids"].add(claim.id)
+        bucket["evidence_ids"].add(evidence.id)
+        bucket["tone_counts"][tone] += 1
+        bucket["trust_counts"][trust] = bucket["trust_counts"].get(trust, 0) + 1
+        page_bucket = bucket["pages"].setdefault(page.id, {
+            "page_id": page.id,
+            "slug": page.slug,
+            "title": page.title,
+            "href": f"/wiki/{page.slug}",
+            "claim_ids": set(),
+            "evidence_count": 0,
+            "support_count": 0,
+            "counter_count": 0,
+            "neutral_count": 0,
+        })
+        page_bucket["claim_ids"].add(claim.id)
+        page_bucket["evidence_count"] += 1
+        page_bucket[f"{tone}_count"] += 1
+
+    items = []
+    for bucket in paper_buckets.values():
+        pages = []
+        for page_bucket in bucket["pages"].values():
+            pages.append({
+                "page_id": page_bucket["page_id"],
+                "slug": page_bucket["slug"],
+                "title": page_bucket["title"],
+                "href": page_bucket["href"],
+                "claim_count": len(page_bucket["claim_ids"]),
+                "evidence_count": page_bucket["evidence_count"],
+                "support_count": page_bucket["support_count"],
+                "counter_count": page_bucket["counter_count"],
+                "neutral_count": page_bucket["neutral_count"],
+            })
+        pages.sort(key=lambda page: (-page["counter_count"], -page["claim_count"], page["title"].lower()))
+        paper = bucket["paper"]
+        has_stable_identifier = bool(paper.get("arxiv_id") or paper.get("doi") or paper.get("url"))
+        triage_status = _paper_directory_triage_status(bucket["tone_counts"], bucket["trust_counts"], has_stable_identifier)
+        page_count = len(bucket["page_ids"])
+        claim_count = len(bucket["claim_ids"])
+        counter_count = bucket["tone_counts"].get("counter", 0)
+        items.append({
+            "paper": paper,
+            "page_count": page_count,
+            "claim_count": claim_count,
+            "evidence_count": len(bucket["evidence_ids"]),
+            "tone_counts": bucket["tone_counts"],
+            "trust_counts": dict(sorted(bucket["trust_counts"].items())),
+            "triage_status": triage_status,
+            "impact_label": f"{page_count} {'page' if page_count == 1 else 'pages'} · {claim_count} {'claim' if claim_count == 1 else 'claims'} · {counter_count} countering",
+            "pages": pages[:5],
+        })
+
+    status_rank = {"needs_adjudication": 0, "needs_source": 1, "ready_to_review": 2}
+    items.sort(key=lambda item: (
+        status_rank.get(item["triage_status"], 9),
+        -item["tone_counts"].get("counter", 0),
+        -item["page_count"],
+        -item["claim_count"],
+        str(item["paper"].get("author_year_key") or item["paper"].get("title") or "").lower(),
+    ))
+    sliced = items[:safe_limit]
+
+    return {
+        "schema_version": "global_paper_directory.v1",
+        "query": query_text,
+        "limit": safe_limit,
+        "total_papers": len(items),
+        "result_count": len(sliced),
+        "scope": {
+            "label": "global paper directory",
+            "caveat": "Across indexed wiki evidence rows; directory/search, not a final verdict. No labels are written.",
+        },
+        "items": sliced,
     }
 
 

@@ -103,7 +103,12 @@ export default async function WikiDirectoryPage() {
             <h1 className="text-4xl font-bold" style={{ margin: 0 }}>
               🔭 Wiki
             </h1>
-            <WikiViewToggle />
+            <div style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexWrap: "wrap" }}>
+              <Link href="/wiki/papers" style={{ color: "#67e8f9", textDecoration: "none", fontSize: "0.85rem", fontWeight: 800, border: "1px solid rgba(103,232,249,0.35)", borderRadius: "999px", padding: "0.35rem 0.7rem" }}>
+                Paper directory
+              </Link>
+              <WikiViewToggle />
+            </div>
           </div>
           <p className="text-gray-400 text-lg">
             {pages.length} topics · AI-authored · peer-reviewed by agents
