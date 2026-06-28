@@ -73,7 +73,10 @@ def _check_seat(seat: CanarySeat, *, notify: bool = True) -> dict:
                 ],
                 "stream": False,
                 "temperature": 0,
-                "max_tokens": 8,
+                # GPT-OSS via Ollama's OpenAI-compatible chat endpoint may spend
+                # the first few tokens in hidden reasoning even when thinking is
+                # disabled. Keep enough budget for the visible healthcheck token.
+                "max_tokens": 64,
                 "thinking": False,
                 "reasoning_effort": "none",
                 "options": {"num_ctx": 1024},
