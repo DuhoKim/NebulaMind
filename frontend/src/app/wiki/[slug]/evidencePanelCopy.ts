@@ -1,6 +1,9 @@
 export type EvidenceSide = "support" | "counter" | "neutral";
 
 export interface EvidencePanelItemLike {
+  id?: number | string | null;
+  title?: string | null;
+  url?: string | null;
   stance?: string | null;
   votes_agree?: number | null;
   votes_disagree?: number | null;
@@ -59,6 +62,41 @@ export interface EvidenceCardDensityMeta {
   hasActivity: boolean;
 }
 
+export type ClaimSourceContradictionLaneKind = "support" | "counter" | "unresolved";
+
+export interface ClaimSourceContradictionLane {
+  kind: ClaimSourceContradictionLaneKind;
+  label: string;
+  count: number;
+  percent: number;
+  color: string;
+  background: string;
+}
+
+export interface ClaimSourceContradictionSource {
+  sourceId: number | null;
+  title: string;
+  side: EvidenceSide;
+  voteLabel: string;
+  qualityLabel: string | null;
+  anchorHref: string;
+  externalHref: string | null;
+}
+
+export interface ClaimSourceContradictionAtlas {
+  total: number;
+  supportCount: number;
+  counterCount: number;
+  unresolvedCount: number;
+  hasContradiction: boolean;
+  tensionScore: number;
+  headline: string;
+  summary: string;
+  lanes: ClaimSourceContradictionLane[];
+  primarySupport: ClaimSourceContradictionSource | null;
+  primaryCounter: ClaimSourceContradictionSource | null;
+}
+
 function pluralCount(count: number, singular: string, plural = `${singular}s`): string {
   return `${count.toLocaleString()} ${count === 1 ? singular : plural}`;
 }
@@ -77,6 +115,105 @@ function densitySideLabel(side: EvidenceSide): string {
   if (side === "support") return "supporting paper";
   if (side === "counter") return "countering paper";
   return "linked paper";
+}
+
+function sourceIdNumber(raw: EvidencePanelItemLike["id"]): number | null {
+  const value = Number(raw);
+  return Number.isFinite(value) && value > 0 ? Math.floor(value) : null;
+}
+
+function sourceQualityLabel(item: EvidencePanelItemLike | null | undefined): string | null {
+  const quality = item?.quality_v2 == null ? null : Number(item.quality_v2);
+  if (quality === null || !Number.isFinite(quality)) return null;
+  const boundedQuality = Math.min(1, Math.max(0, quality));
+  return `quality ${Math.round(boundedQuality * 100)}%`;
+}
+
+function sourceRank(item: EvidencePanelItemLike): number {
+  const signal = buildEvidenceVoteSignal([item]);
+  const quality = item.quality_v2 == null || !Number.isFinite(Number(item.quality_v2)) ? 0 : Math.min(1, Math.max(0, Number(item.quality_v2))) * 100;
+  return quality + signal.totalVotes;
+}
+
+function sourceTitle(item: EvidencePanelItemLike, fallback: string): string {
+  const title = String(item.title || "").trim();
+  return title || fallback;
+}
+
+function contradictionSource(item: EvidencePanelItemLike | undefined, side: EvidenceSide): ClaimSourceContradictionSource | null {
+  if (!item) return null;
+  const sourceId = sourceIdNumber(item.id);
+  return {
+    sourceId,
+    title: sourceTitle(item, side === "support" ? "Representative supporting source" : "Representative countering source"),
+    side,
+    voteLabel: compactVoteLabel(buildEvidenceVoteSignal([item])),
+    qualityLabel: sourceQualityLabel(item),
+    anchorHref: sourceId ? `#evidence-source-${sourceId}` : "#evidence-sources",
+    externalHref: item.url || null,
+  };
+}
+
+export function buildClaimSourceContradictionAtlas(evidence: EvidencePanelItemLike[] | null | undefined): ClaimSourceContradictionAtlas {
+  const items = Array.isArray(evidence) ? evidence : [];
+  const support = items.filter((item) => evidenceSide(item?.stance) === "support");
+  const counter = items.filter((item) => evidenceSide(item?.stance) === "counter");
+  const unresolved = items.filter((item) => evidenceSide(item?.stance) === "neutral");
+  const total = items.length;
+  const supportCount = support.length;
+  const counterCount = counter.length;
+  const unresolvedCount = unresolved.length;
+  const hasContradiction = supportCount > 0 && counterCount > 0;
+  const directionalCount = supportCount + counterCount;
+  const balance = hasContradiction ? Math.min(supportCount, counterCount) / Math.max(supportCount, counterCount) : 0;
+  const coverage = total > 0 ? directionalCount / total : 0;
+  const tensionScore = Math.round(balance * coverage * 100);
+  const lanes: ClaimSourceContradictionLane[] = [
+    {
+      kind: "support",
+      label: "supporting sources",
+      count: supportCount,
+      percent: votePercent(supportCount, total),
+      color: "#22c55e",
+      background: "rgba(34,197,94,0.14)",
+    },
+    {
+      kind: "counter",
+      label: "countering sources",
+      count: counterCount,
+      percent: votePercent(counterCount, total),
+      color: "#ef4444",
+      background: "rgba(239,68,68,0.14)",
+    },
+    {
+      kind: "unresolved",
+      label: "unresolved sources",
+      count: unresolvedCount,
+      percent: votePercent(unresolvedCount, total),
+      color: "#94a3b8",
+      background: "rgba(148,163,184,0.14)",
+    },
+  ];
+  const primarySupport = contradictionSource([...support].sort((a, b) => sourceRank(b) - sourceRank(a))[0], "support");
+  const primaryCounter = contradictionSource([...counter].sort((a, b) => sourceRank(b) - sourceRank(a))[0], "counter");
+
+  return {
+    total,
+    supportCount,
+    counterCount,
+    unresolvedCount,
+    hasContradiction,
+    tensionScore,
+    headline: hasContradiction
+      ? `Contradiction pressure: ${supportCount.toLocaleString()} supporting vs ${pluralCount(counterCount, "countering source")}`
+      : "No source contradiction mapped yet",
+    summary: hasContradiction
+      ? "This claim has mapped support and counter-evidence; the atlas surfaces where sources disagree, not which side is correct."
+      : "Mapped evidence currently leans one direction; keep watching for counter-sources or unresolved links.",
+    lanes,
+    primarySupport,
+    primaryCounter,
+  };
 }
 
 export function buildEvidenceCardDensityMeta(item: EvidencePanelItemLike | null | undefined): EvidenceCardDensityMeta {

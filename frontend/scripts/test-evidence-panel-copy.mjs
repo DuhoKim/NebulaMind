@@ -25,6 +25,7 @@ const module = { exports: {} };
 vm.runInNewContext(compiled.outputText, { module, exports: module.exports, require }, { filename: helperPath });
 
 const {
+  buildClaimSourceContradictionAtlas,
   buildEvidenceCardDensityMeta,
   buildEvidencePanelCopy,
   buildEvidenceVoteCockpitVisuals,
@@ -33,6 +34,7 @@ const {
   formatLinkedPaperSourceCount,
 } = module.exports;
 
+assert.equal(typeof buildClaimSourceContradictionAtlas, "function");
 assert.equal(typeof buildEvidenceCardDensityMeta, "function");
 assert.equal(typeof buildEvidencePanelCopy, "function");
 assert.equal(typeof buildEvidenceVoteCockpitVisuals, "function");
@@ -59,6 +61,34 @@ assert.equal(denseMeta.voteLabel, "4 support · 1 weakening");
 assert.equal(denseMeta.activityLabel, "2 comments · 3 element links");
 assert.equal(denseMeta.qualityLabel, "quality 83%");
 assert.equal(denseMeta.hasActivity, true);
+
+const atlas = buildClaimSourceContradictionAtlas([
+  { id: 101, title: "Resolved stellar population evidence", stance: "supports", votes_agree: 7, votes_disagree: 1, quality_v2: 0.91 },
+  { id: 202, title: "Dust-obscured counterexample survey", stance: "challenges", votes_agree: 5, votes_disagree: 2, quality_v2: 0.86 },
+  { id: 303, title: "Context-only calibration sample", stance: "none", votes_agree: 1, votes_disagree: 0, quality_v2: 0.44 },
+]);
+assert.equal(atlas.hasContradiction, true);
+assert.equal(atlas.headline, "Contradiction pressure: 1 supporting vs 1 countering source");
+assert.equal(atlas.summary, "This claim has mapped support and counter-evidence; the atlas surfaces where sources disagree, not which side is correct.");
+assert.match(atlas.summary, /not which side is correct/, "Atlas framing should say it surfaces corpus disagreement, not a final truth verdict.");
+assert.equal(atlas.tensionScore, 67);
+assert.equal(atlas.primarySupport?.sourceId, 101);
+assert.equal(atlas.primarySupport?.anchorHref, "#evidence-source-101");
+assert.equal(atlas.primaryCounter?.sourceId, 202);
+assert.equal(atlas.primaryCounter?.anchorHref, "#evidence-source-202");
+assert.equal(
+  JSON.stringify(atlas.lanes.map((lane) => [lane.kind, lane.label, lane.count, lane.percent])),
+  JSON.stringify([
+    ["support", "supporting sources", 1, 33],
+    ["counter", "countering sources", 1, 33],
+    ["unresolved", "unresolved sources", 1, 33],
+  ]),
+);
+
+const calmAtlas = buildClaimSourceContradictionAtlas([{ id: 404, title: "Single supporting paper", stance: "supports" }]);
+assert.equal(calmAtlas.hasContradiction, false);
+assert.equal(calmAtlas.headline, "No source contradiction mapped yet");
+assert.equal(calmAtlas.summary, "Mapped evidence currently leans one direction; keep watching for counter-sources or unresolved links.");
 
 const quietMeta = buildEvidenceCardDensityMeta({ stance: "none", votes_agree: 0, votes_disagree: 0 });
 assert.equal(quietMeta.sideLabel, "linked paper");
@@ -150,6 +180,12 @@ const panelSource = fs.readFileSync(panelPath, "utf8");
 assert.match(panelSource, /from "\.\/evidencePanelCopy"/, "DebateEvidencePanel should use shared copy helpers.");
 assert.match(panelSource, /data-testid="evidence-panel-neutral-summary"/, "Neutral-only evidence state should have a testable summary.");
 assert.match(panelSource, /data-testid="evidence-vote-signal"/, "Panel should expose a visible counted vote signal summary.");
+assert.match(panelSource, /data-testid="claim-source-contradiction-atlas"/, "Panel should expose a visible claim-to-source contradiction atlas.");
+assert.match(panelSource, /data-testid="contradiction-atlas-lane-grid"/, "Contradiction atlas should show lane counts for supporting, countering, and unresolved sources.");
+assert.match(panelSource, /data-testid="contradiction-atlas-tension-badge"/, "Contradiction atlas should expose a stable tension score marker.");
+assert.match(panelSource, /data-testid="contradiction-atlas-source-link"/, "Contradiction atlas should link representative sources back to evidence cards.");
+assert.match(panelSource, /Claim-to-source contradiction atlas/, "Contradiction atlas should use explicit user-facing copy.");
+assert.match(panelSource, /id=\{`evidence-source-\$\{ev\.id\}`\}/, "Evidence cards should expose source anchors for atlas links.");
 assert.match(panelSource, /data-testid="evidence-vote-balance-bar"/, "Vote cockpit polish should include a testable at-a-glance segmented balance bar.");
 assert.match(panelSource, /data-testid="evidence-vote-metric-grid"/, "Vote cockpit polish should expose metric cards for support, weakening, and unresolved counts.");
 assert.match(panelSource, /data-testid="evidence-card-density-shell"/, "Evidence cards should use a tighter testable density shell.");

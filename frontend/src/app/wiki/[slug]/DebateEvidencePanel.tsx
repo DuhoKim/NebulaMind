@@ -3,7 +3,7 @@
 import { RefObject, useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
-import { buildEvidenceCardDensityMeta, buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
+import { buildClaimSourceContradictionAtlas, buildEvidenceCardDensityMeta, buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide, type ClaimSourceContradictionSource } from "./evidencePanelCopy";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -46,6 +46,35 @@ function percent(value?: number | null): number {
   return Math.min(100, Math.max(0, Math.round(Number(value) * 100)));
 }
 
+function AtlasSourceLink({ source, label }: { source: ClaimSourceContradictionSource | null; label: string }) {
+  if (!source) {
+    return (
+      <div style={{ border: "1px dashed #334155", borderRadius: "8px", padding: "0.5rem", color: "#64748b", fontSize: "0.66rem" }}>
+        No {label.toLowerCase()} source mapped yet.
+      </div>
+    );
+  }
+  return (
+    <a
+      data-testid="contradiction-atlas-source-link"
+      href={source.anchorHref}
+      style={{
+        display: "block",
+        border: "1px solid rgba(148,163,184,0.24)",
+        background: "rgba(15,23,42,0.66)",
+        borderRadius: "8px",
+        padding: "0.5rem 0.55rem",
+        color: "#e2e8f0",
+        textDecoration: "none",
+      }}
+    >
+      <span style={{ display: "block", color: "#94a3b8", fontSize: "0.58rem", fontWeight: 850, letterSpacing: "0.08em", textTransform: "uppercase" }}>{label}</span>
+      <span style={{ display: "block", fontSize: "0.7rem", fontWeight: 750, lineHeight: 1.3, marginTop: "0.18rem" }}>{source.title}</span>
+      <span style={{ display: "block", color: "#64748b", fontSize: "0.62rem", marginTop: "0.18rem" }}>{source.voteLabel}{source.qualityLabel ? ` · ${source.qualityLabel}` : ""}</span>
+    </a>
+  );
+}
+
 function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
   const [scoreOpen, setScoreOpen] = useState(false);
   const side = evidenceSide(ev.stance);
@@ -59,8 +88,10 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
 
   return (
     <article
+      id={`evidence-source-${ev.id}`}
       data-testid="evidence-card-density-shell"
       style={{
+        scrollMarginTop: "5rem",
         border: "1px solid #334155",
         borderLeft: `3px solid ${accent}`,
         borderRadius: "9px",
@@ -240,6 +271,7 @@ export default function DebateEvidencePanel({
   );
   const voteSignal = useMemo(() => buildEvidenceVoteSignal(evidence || []), [evidence]);
   const voteVisuals = useMemo(() => buildEvidenceVoteCockpitVisuals(voteSignal), [voteSignal]);
+  const contradictionAtlas = useMemo(() => buildClaimSourceContradictionAtlas(evidence || []), [evidence]);
   const total = evidenceCopy.total;
   const supportPct = total ? Math.round((grouped.support.length / total) * 100) : 0;
   const counterPct = total ? Math.round((grouped.counter.length / total) * 100) : 0;
@@ -341,6 +373,57 @@ export default function DebateEvidencePanel({
           {evidenceCopy.neutralOnlySummary}
         </div>
       ) : null}
+
+      {total > 0 && (
+        <section
+          data-testid="claim-source-contradiction-atlas"
+          aria-label="Claim-to-source contradiction atlas"
+          style={{
+            border: `1px solid ${contradictionAtlas.hasContradiction ? "#f97316" : "#334155"}`,
+            borderLeft: `3px solid ${contradictionAtlas.hasContradiction ? "#f97316" : "#64748b"}`,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.95), rgba(30,41,59,0.66))",
+            borderRadius: "12px",
+            padding: "0.76rem 0.82rem",
+            marginBottom: "0.9rem",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div>
+              <div style={{ color: "#fbbf24", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                Claim-to-source contradiction atlas
+              </div>
+              <div style={{ color: "#f8fafc", fontSize: "0.88rem", fontWeight: 850, lineHeight: 1.25, marginTop: "0.22rem" }}>
+                {contradictionAtlas.headline}
+              </div>
+              <div style={{ color: "#94a3b8", fontSize: "0.68rem", lineHeight: 1.4, marginTop: "0.22rem", maxWidth: "34rem" }}>
+                {contradictionAtlas.summary}
+              </div>
+            </div>
+            <span
+              data-testid="contradiction-atlas-tension-badge"
+              style={{ color: contradictionAtlas.hasContradiction ? "#f97316" : "#94a3b8", border: `1px solid ${contradictionAtlas.hasContradiction ? "#f97316" : "#64748b"}`, background: "rgba(15,23,42,0.68)", borderRadius: "999px", padding: "0.12rem 0.5rem", fontSize: "0.64rem", fontWeight: 850, whiteSpace: "nowrap" }}
+            >
+              tension {contradictionAtlas.tensionScore}%
+            </span>
+          </div>
+          <div
+            data-testid="contradiction-atlas-lane-grid"
+            style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: "0.45rem", marginTop: "0.62rem" }}
+          >
+            {contradictionAtlas.lanes.map((lane) => (
+              <div key={lane.kind} style={{ border: `1px solid ${lane.color}`, background: lane.background, borderRadius: "9px", padding: "0.48rem 0.55rem" }}>
+                <div style={{ color: lane.color, fontSize: "0.92rem", fontWeight: 900, lineHeight: 1 }}>{lane.count.toLocaleString()}</div>
+                <div style={{ color: "#cbd5e1", fontSize: "0.62rem", fontWeight: 800, letterSpacing: "0.07em", textTransform: "uppercase", marginTop: "0.18rem" }}>{lane.label}</div>
+                <div style={{ color: "#94a3b8", fontSize: "0.62rem", marginTop: "0.1rem" }}>{lane.percent}% of mapped sources</div>
+              </div>
+            ))}
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : "1fr 1fr", gap: "0.5rem", marginTop: "0.62rem" }}>
+            <AtlasSourceLink source={contradictionAtlas.primarySupport} label="Representative support" />
+            <AtlasSourceLink source={contradictionAtlas.primaryCounter} label="Representative counter" />
+          </div>
+        </section>
+      )}
 
       {total > 0 && (
         <div
