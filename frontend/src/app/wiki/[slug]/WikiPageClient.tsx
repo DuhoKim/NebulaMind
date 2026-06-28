@@ -470,15 +470,18 @@ function ClaimTrustBadge({
   claim,
   open,
   panelId,
+  returnFocusRef,
   onOpen,
 }: {
   claim: any;
   open: boolean;
   panelId?: string;
-  onOpen: () => void;
+  returnFocusRef?: React.RefObject<HTMLButtonElement>;
+  onOpen: (origin?: HTMLElement | null) => void;
 }) {
   const [hovered, setHovered] = useState(false);
-  const claimMiniMapTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const localClaimMiniMapTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const claimMiniMapTriggerRef = returnFocusRef ?? localClaimMiniMapTriggerRef;
   const meta = trustVisibilityMeta(claim?.trust_level);
   const label = formatClaimTrustBadge(claim);
   const miniMap = buildClaimMiniMapHover(claim);
@@ -525,7 +528,7 @@ function ClaimTrustBadge({
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
-          onOpen();
+          onOpen(e.currentTarget);
         }}
         style={{
           display: "inline-flex",
@@ -615,7 +618,7 @@ function ClaimTrustBadge({
                 e.preventDefault();
                 e.stopPropagation();
                 setHovered(false);
-                onOpen();
+                onOpen(claimMiniMapTriggerRef.current);
               }}
               style={{ border: `1px solid ${meta.color}`, background: "rgba(15,23,42,0.72)", color: meta.color, borderRadius: "999px", padding: "0.18rem 0.52rem", fontSize: "0.64rem", fontWeight: 850, cursor: "pointer" }}
             >
@@ -726,11 +729,19 @@ function ClaimAnnotatedSpan({
   const [totalElements, setTotalElements] = useState(0);
   const [loadingEvidence, setLoadingEvidence] = useState(false);
   const claimTriggerRef = useRef<HTMLSpanElement | null>(null);
+  const claimBadgeTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const evidencePanelReturnFocusRef = useRef<HTMLElement | null>(null);
   const trustLevel = claim?.trust_level || "unverified";
   const trustKey = TRUST_COLORS[trustLevel] ? trustLevel : "unverified";
   const evidenceCount = claim?.evidence_count ?? 0;
   const isContested = ["debated", "challenged"].includes(trustLevel);
   const evidencePanelId = claim?.id ? `claim-evidence-panel-${claim.id}` : undefined;
+
+  const openEvidencePanelFrom = (origin?: HTMLElement | null) => {
+    // Capture the opener at the trigger event so close/Escape can restore focus to the claim badge.
+    evidencePanelReturnFocusRef.current = origin ?? claimBadgeTriggerRef.current ?? claimTriggerRef.current;
+    setOpen(true);
+  };
 
   useEffect(() => {
     if (!open && !ideasOpen) return;
@@ -765,12 +776,23 @@ function ClaimAnnotatedSpan({
         ref={claimTriggerRef}
         className={`claim-inline claim-inline--${trustKey}`}
         title={`${trustLevel} · ${evidenceCount} source${evidenceCount !== 1 ? "s" : ""}`}
-        onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (open) {
+            setOpen(false);
+          } else {
+            openEvidencePanelFrom(e.currentTarget);
+          }
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             e.stopPropagation();
-            setOpen((v) => !v);
+            if (open) {
+              setOpen(false);
+            } else {
+              openEvidencePanelFrom(e.currentTarget);
+            }
           }
         }}
         role="button"
@@ -784,7 +806,11 @@ function ClaimAnnotatedSpan({
           claim={claim}
           open={open}
           panelId={evidencePanelId}
-          onOpen={() => setOpen((v) => !v)}
+          returnFocusRef={claimBadgeTriggerRef}
+          onOpen={(origin) => {
+            evidencePanelReturnFocusRef.current = origin ?? claimBadgeTriggerRef.current ?? claimTriggerRef.current;
+            setOpen(true);
+          }}
         />
       )}
       {showIdeas && ideas && ideas.length > 0 && (
@@ -817,7 +843,7 @@ function ClaimAnnotatedSpan({
           loading={loadingEvidence}
           totalElements={totalElements}
           onClose={() => setOpen(false)}
-          returnFocusRef={claimTriggerRef}
+          returnFocusRef={evidencePanelReturnFocusRef}
           panelId={evidencePanelId}
         />
       )}
