@@ -246,7 +246,7 @@ function formatAuthors(authors: string[]): string {
   return `${list.slice(0, 2).join(", ")} et al.`;
 }
 
-function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; unmatched?: string }) {
+function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCitation[]; unmatched?: string; pageSlug?: string }) {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
   const visible = open || hovered;
@@ -332,7 +332,7 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
             Source trace
           </span>
           {citations.map((citation) => {
-            const trace = formatSourceTraceHoverCard(citation);
+            const trace = formatSourceTraceHoverCard(citation, pageSlug);
             return (
               <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.72rem", paddingBottom: "0.72rem", borderBottom: "1px solid rgba(51,65,85,0.8)" }}>
                 <span style={{ display: "inline-flex", color: "#93c5fd", background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)", borderRadius: "999px", padding: "0.08rem 0.45rem", fontSize: "0.63rem", fontWeight: 800, marginBottom: "0.35rem" }}>
@@ -354,6 +354,33 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
                 <span style={{ display: "block", color: "#64748b", fontSize: "0.68rem", marginTop: "0.38rem" }}>
                   {trace.locator}
                 </span>
+                {trace.crossLinks.length > 0 && (
+                  <span data-testid="source-trace-cross-links" style={{ display: "flex", flexWrap: "wrap", gap: "0.42rem", marginTop: "0.55rem" }}>
+                    {trace.crossLinks.map((link) => (
+                      link.external ? (
+                        <a
+                          key={link.kind}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ color: "#dbeafe", background: "rgba(99,102,241,0.16)", border: "1px solid rgba(129,140,248,0.34)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 800, textDecoration: "none" }}
+                        >
+                          {link.kind === "external-paper" ? "Open paper" : link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={link.kind}
+                          href={link.href}
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ color: "#bfdbfe", background: "rgba(59,130,246,0.13)", border: "1px solid rgba(59,130,246,0.34)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 800, textDecoration: "none" }}
+                        >
+                          {link.kind === "source-index" ? "Open source index" : link.label}
+                        </Link>
+                      )
+                    ))}
+                  </span>
+                )}
               </span>
             );
           })}
@@ -530,6 +557,32 @@ function ClaimTrustBadge({
           </span>
           <span style={{ display: "block", color: "#64748b", fontSize: "0.66rem", lineHeight: 1.4, marginTop: "0.55rem" }}>
             Click for full evidence map.
+          </span>
+          <span style={{ display: "flex", flexWrap: "wrap", gap: "0.42rem", marginTop: "0.58rem" }}>
+            <button
+              type="button"
+              data-testid="claim-mini-map-open-evidence-map"
+              aria-controls={panelId || miniMap.evidencePanelId}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setHovered(false);
+                onOpen();
+              }}
+              style={{ border: `1px solid ${meta.color}`, background: "rgba(15,23,42,0.72)", color: meta.color, borderRadius: "999px", padding: "0.18rem 0.52rem", fontSize: "0.64rem", fontWeight: 850, cursor: "pointer" }}
+            >
+              {miniMap.primaryActionLabel}
+            </button>
+            {miniMap.claimAnchorHref && (
+              <a
+                data-testid="claim-mini-map-jump-to-claim"
+                href={miniMap.claimAnchorHref}
+                onClick={(e) => e.stopPropagation()}
+                style={{ color: "#bfdbfe", background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.32)", borderRadius: "999px", padding: "0.18rem 0.52rem", fontSize: "0.64rem", fontWeight: 850, textDecoration: "none" }}
+              >
+                {miniMap.secondaryActionLabel}
+              </a>
+            )}
           </span>
         </span>
       )}
@@ -1213,7 +1266,7 @@ export default function WikiPageClientView() {
               if (citeIds) {
                 const ids = String(citeIds).split(",").map((s: string) => Number(s.trim())).filter((n: number) => Number.isFinite(n) && n > 0);
                 const cites = ids.map((id: number) => citationByEvidenceId[id]).filter(Boolean);
-                return <CitationBadge citations={cites} />;
+                return <CitationBadge citations={cites} pageSlug={slug} />;
               }
 
               if (unmatched) {

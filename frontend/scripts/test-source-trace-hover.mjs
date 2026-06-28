@@ -42,8 +42,9 @@ const trace = formatSourceTraceHoverCard({
   doi: "10.1234/galaxy.trace",
   arxiv_id: "2401.12345",
   journal_ref: "ApJ 900, 1",
+  url: "https://example.org/paper",
   summary: "A compact paper summary explaining why this citation supports the specific wiki sentence rather than the whole page.",
-});
+}, "galaxy-evolution-v2");
 
 assert.equal(trace.eyebrow, "Source trace");
 assert.equal(trace.title, "Quenching Pathways in Massive Galaxies");
@@ -51,6 +52,13 @@ assert.equal(trace.traceLabel, "Evidence #42 · Smith2024");
 assert.equal(trace.byline, "Jane Smith, Min Lee et al. · 2024 · ApJ 900, 1");
 assert.equal(trace.locator, "arXiv:2401.12345 · DOI:10.1234/galaxy.trace");
 assert.match(trace.summary, /specific wiki sentence/);
+assert.equal(
+  JSON.stringify(trace.crossLinks.map((link) => [link.kind, link.label, link.href, link.external])),
+  JSON.stringify([
+    ["source-index", "Open source index", "/wiki/galaxy-evolution-v2/sources", false],
+    ["external-paper", "Open paper", "https://example.org/paper", true],
+  ]),
+);
 assert.equal(
   formatSourceTraceSummary("0123456789".repeat(30), 64),
   `${"0123456789".repeat(6)}012…`,
@@ -66,6 +74,10 @@ assert.equal(fallback.summary, "No abstract or summary has been published for th
 const clientSource = fs.readFileSync(clientPath, "utf8");
 assert.match(clientSource, /from "\.\/sourceTraceHover"/, "WikiPageClient should use the source trace helper.");
 assert.match(clientSource, /data-testid="source-trace-hover-card"/, "Citation popovers should expose a testable source trace hover card.");
+assert.match(clientSource, /data-testid="source-trace-cross-links"/, "Source trace hover cards should expose cross-links into source surfaces.");
+assert.match(clientSource, /Open source index/, "Source trace cards should link to the full wiki source index.");
+assert.match(clientSource, /Open paper/, "Source trace cards should preserve an external paper link as a cross-link.");
+assert.match(clientSource, /pageSlug=\{slug\}/, "Citation badges should receive the page slug for internal cross-links.");
 assert.match(clientSource, /Source trace/, "Citation popovers should visibly label the hover card as a source trace.");
 assert.match(clientSource, /onMouseEnter=/, "Citation source traces should open on hover.");
 assert.match(clientSource, /onFocus=/, "Citation source traces should open for keyboard focus.");

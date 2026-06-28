@@ -46,6 +46,10 @@ assert.equal(debated.counterCount, 1);
 assert.equal(debated.unresolvedCount, 0);
 assert.equal(debated.stance, "mostly supporting");
 assert.equal(formatClaimMiniMapSummary(debated), "15 supporting · 1 countering · 0 unresolved");
+assert.equal(debated.evidencePanelId, "claim-evidence-panel-2931");
+assert.equal(debated.claimAnchorHref, "#claim-2931");
+assert.equal(debated.primaryActionLabel, "Open full evidence map");
+assert.equal(debated.secondaryActionLabel, "Jump to claim text");
 assert.equal(
   JSON.stringify(debated.segments.map((segment) => [segment.kind, segment.count, segment.percent])),
   JSON.stringify([["support", 15, 94], ["counter", 1, 6], ["unresolved", 0, 0]]),
@@ -76,6 +80,10 @@ assert.match(clientSource, /onMouseEnter=/, "Claim mini-maps should open on hove
 assert.match(clientSource, /onFocus=/, "Claim mini-maps should open for keyboard focus.");
 assert.match(clientSource, /aria-describedby=\{miniMapId\}/, "Claim badges should describe themselves with the hover card when present.");
 assert.match(clientSource, /Click for full evidence map/, "Mini-map should tell users click opens the full evidence map.");
+assert.match(clientSource, /data-testid="claim-mini-map-open-evidence-map"/, "Mini-map should include a cross-link button into the full evidence map.");
+assert.match(clientSource, /data-testid="claim-mini-map-jump-to-claim"/, "Mini-map should include a cross-link back to the claim text anchor.");
+assert.match(clientSource, /miniMap\.primaryActionLabel/, "Mini-map action copy should come from the helper contract.");
+assert.match(clientSource, /miniMap\.claimAnchorHref/, "Mini-map should use the helper-provided claim text anchor link.");
 
 const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));
 assert.equal(packageJson.scripts["test:claim-minimap-hover"], "node scripts/test-claim-minimap-hover.mjs");
