@@ -89,17 +89,20 @@ const miniMapEscapeHandlerSource = miniMapEscapeHandler[0];
 assert.ok(miniMapEscapeHandlerSource.length > 120, "Claim mini-map Escape handler extraction should include the full close/focus isolation block.");
 const miniMapPreventDefaultIndex = miniMapEscapeHandlerSource.indexOf("e.preventDefault();");
 const miniMapStopPropagationIndex = miniMapEscapeHandlerSource.indexOf("e.stopPropagation();");
+const miniMapStopImmediatePropagationIndex = miniMapEscapeHandlerSource.indexOf("e.nativeEvent.stopImmediatePropagation();");
 const miniMapCloseIndex = miniMapEscapeHandlerSource.indexOf("closeMiniMap();");
 const miniMapFocusIndex = miniMapEscapeHandlerSource.indexOf("claimMiniMapTriggerRef.current?.focus();");
 assert.ok(miniMapPreventDefaultIndex >= 0, "Claim mini-map Escape handler should prevent default before closing.");
-assert.ok(miniMapStopPropagationIndex >= 0, "Claim mini-map Escape handler should stop propagation before closing.");
+assert.ok(miniMapStopPropagationIndex >= 0, "Claim mini-map Escape handler should stop React propagation before closing.");
+assert.ok(miniMapStopImmediatePropagationIndex >= 0, "Claim mini-map Escape handler should stop the native event before document listeners can close parent dialogs.");
 assert.ok(miniMapCloseIndex >= 0, "Claim mini-map Escape handler should close the mini-map.");
 assert.ok(miniMapFocusIndex >= 0, "Claim mini-map Escape handler should return focus to the trigger.");
 assert.ok(
   miniMapPreventDefaultIndex < miniMapStopPropagationIndex
-    && miniMapStopPropagationIndex < miniMapCloseIndex
+    && miniMapStopPropagationIndex < miniMapStopImmediatePropagationIndex
+    && miniMapStopImmediatePropagationIndex < miniMapCloseIndex
     && miniMapCloseIndex < miniMapFocusIndex,
-  "Claim mini-map Escape isolation should prevent default and stop propagation before close/focus return.",
+  "Claim mini-map Escape isolation should prevent default, stop React propagation, and stop native document propagation before close/focus return.",
 );
 assert.match(clientSource, /claimMiniMapTriggerRef\.current\?\.focus\(\)/, "Claim mini-map Escape close should return focus to the trigger.");
 assert.match(clientSource, /aria-describedby=\{showMiniMap \? miniMapId : undefined\}/, "Claim badges should only describe themselves with the mini-map while it is present.");

@@ -264,6 +264,8 @@ function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCita
     if (e.key === "Escape" && visible) {
       e.preventDefault();
       e.stopPropagation();
+      // Prevent the evidence panel's document-level Escape listener from also closing.
+      e.nativeEvent.stopImmediatePropagation();
       closeSourceTrace();
       sourceTraceTriggerRef.current?.focus();
     }
@@ -492,6 +494,8 @@ function ClaimTrustBadge({
     if (e.key === "Escape" && showMiniMap) {
       e.preventDefault();
       e.stopPropagation();
+      // Prevent the evidence panel's document-level Escape listener from also closing.
+      e.nativeEvent.stopImmediatePropagation();
       closeMiniMap();
       claimMiniMapTriggerRef.current?.focus();
     }

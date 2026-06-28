@@ -91,17 +91,20 @@ const sourceTraceEscapeHandlerSource = sourceTraceEscapeHandler[0];
 assert.ok(sourceTraceEscapeHandlerSource.length > 120, "Source trace Escape handler extraction should include the full close/focus isolation block.");
 const sourceTracePreventDefaultIndex = sourceTraceEscapeHandlerSource.indexOf("e.preventDefault();");
 const sourceTraceStopPropagationIndex = sourceTraceEscapeHandlerSource.indexOf("e.stopPropagation();");
+const sourceTraceStopImmediatePropagationIndex = sourceTraceEscapeHandlerSource.indexOf("e.nativeEvent.stopImmediatePropagation();");
 const sourceTraceCloseIndex = sourceTraceEscapeHandlerSource.indexOf("closeSourceTrace();");
 const sourceTraceFocusIndex = sourceTraceEscapeHandlerSource.indexOf("sourceTraceTriggerRef.current?.focus();");
 assert.ok(sourceTracePreventDefaultIndex >= 0, "Source trace Escape handler should prevent default before closing.");
-assert.ok(sourceTraceStopPropagationIndex >= 0, "Source trace Escape handler should stop propagation before closing.");
+assert.ok(sourceTraceStopPropagationIndex >= 0, "Source trace Escape handler should stop React propagation before closing.");
+assert.ok(sourceTraceStopImmediatePropagationIndex >= 0, "Source trace Escape handler should stop the native event before document listeners can close parent dialogs.");
 assert.ok(sourceTraceCloseIndex >= 0, "Source trace Escape handler should close the hover card.");
 assert.ok(sourceTraceFocusIndex >= 0, "Source trace Escape handler should return focus to the trigger.");
 assert.ok(
   sourceTracePreventDefaultIndex < sourceTraceStopPropagationIndex
-    && sourceTraceStopPropagationIndex < sourceTraceCloseIndex
+    && sourceTraceStopPropagationIndex < sourceTraceStopImmediatePropagationIndex
+    && sourceTraceStopImmediatePropagationIndex < sourceTraceCloseIndex
     && sourceTraceCloseIndex < sourceTraceFocusIndex,
-  "Source trace Escape isolation should prevent default and stop propagation before close/focus return.",
+  "Source trace Escape isolation should prevent default, stop React propagation, and stop native document propagation before close/focus return.",
 );
 assert.match(clientSource, /sourceTraceTriggerRef\.current\?\.focus\(\)/, "Source trace Escape close should return focus to the trigger.");
 assert.match(clientSource, /aria-labelledby=\{sourceTraceHeadingId\}/, "Source trace dialog should be labelled by its visible heading.");
