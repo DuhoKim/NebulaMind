@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { RefObject, useCallback, useEffect, useId, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
 import { buildEvidenceCardDensityMeta, buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
@@ -185,6 +185,13 @@ export default function DebateEvidencePanel({
   const [isNarrow, setIsNarrow] = useState(false);
   const [mounted, setMounted] = useState(false);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const isContested = ["debated", "challenged"].includes(trustLevel);
+  const fallbackPanelId = useId();
+  const evidencePanelTitle = isContested ? "Debate map" : "Evidence map";
+  const evidencePanelNoun = isContested ? "debate map" : "evidence map";
+  const evidencePanelBaseId = panelId || (claimId ? `claim-evidence-panel-${claimId}` : `evidence-panel-dialog-${fallbackPanelId}`);
+  const evidencePanelHeadingId = `${evidencePanelBaseId}-heading`;
+  const evidencePanelHintId = `${evidencePanelBaseId}-keyboard-hint`;
 
   const closePanel = useCallback(() => {
     onClose();
@@ -236,7 +243,6 @@ export default function DebateEvidencePanel({
   const total = evidenceCopy.total;
   const supportPct = total ? Math.round((grouped.support.length / total) * 100) : 0;
   const counterPct = total ? Math.round((grouped.counter.length / total) * 100) : 0;
-  const isContested = ["debated", "challenged"].includes(trustLevel);
   const voteSignalColor = voteSignal.verdict === "net_support"
     ? "#22c55e"
     : voteSignal.verdict === "net_weakening"
@@ -261,9 +267,11 @@ export default function DebateEvidencePanel({
       />
       <section
         id={panelId}
+        data-testid="evidence-panel-dialog"
         role="dialog"
         aria-modal="true"
-        aria-label={isContested ? "Debate map" : "Evidence map"}
+        aria-labelledby={evidencePanelHeadingId}
+        aria-describedby={evidencePanelHintId}
         onClick={(e) => e.stopPropagation()}
       style={{
         position: "fixed",
@@ -289,8 +297,8 @@ export default function DebateEvidencePanel({
       <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem", alignItems: "flex-start", marginBottom: "0.65rem" }}>
         <div>
           <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap" }}>
-            <span style={{ color: "#f8fafc", fontWeight: 750, fontSize: "0.86rem" }}>
-              {isContested ? "Debate map" : "Evidence map"}
+            <span id={evidencePanelHeadingId} style={{ color: "#f8fafc", fontWeight: 750, fontSize: "0.86rem" }}>
+              {evidencePanelTitle}
             </span>
             <span style={{ color: "#f97316", border: "1px solid rgba(249,115,22,0.45)", background: "rgba(249,115,22,0.12)", borderRadius: "999px", padding: "0.08rem 0.45rem", fontSize: "0.64rem", fontWeight: 750, textTransform: "uppercase" }}>
               {trustLevel}
@@ -299,6 +307,9 @@ export default function DebateEvidencePanel({
           </div>
           <p style={{ margin: "0.35rem 0 0", color: "#cbd5e1", fontSize: "0.75rem", lineHeight: 1.45 }}>
             {claimText}
+          </p>
+          <p id={evidencePanelHintId} style={{ margin: "0.32rem 0 0", color: "#94a3b8", fontSize: "0.68rem", lineHeight: 1.4 }}>
+            Press Escape to close this {evidencePanelNoun}.
           </p>
         </div>
         <button
