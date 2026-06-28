@@ -85,11 +85,19 @@ function pluralizeSources(count: number): string {
   return `${count.toLocaleString()} source${count === 1 ? "" : "s"}`;
 }
 
-export function formatClaimTrustBadge(claim: { trust_level?: unknown; evidence_count?: unknown } | null | undefined): string {
+function pluralizeCountering(count: number): string {
+  return `${count.toLocaleString()} countering`;
+}
+
+export function formatClaimTrustBadge(claim: { trust_level?: unknown; evidence_count?: unknown; con_count?: unknown } | null | undefined): string {
   const meta = trustVisibilityMeta(claim?.trust_level);
   const evidenceCount = Number(claim?.evidence_count ?? 0);
   const safeCount = Number.isFinite(evidenceCount) && evidenceCount > 0 ? Math.round(evidenceCount) : 0;
-  return `${meta.label} · ${pluralizeSources(safeCount)}`;
+  const counterCount = Number(claim?.con_count ?? 0);
+  const safeCounterCount = Number.isFinite(counterCount) && counterCount > 0 ? Math.round(counterCount) : 0;
+  const parts = [`${meta.label} · ${pluralizeSources(safeCount)}`];
+  if (safeCounterCount > 0) parts.push(pluralizeCountering(safeCounterCount));
+  return parts.join(" · ");
 }
 
 function makeEmptyLevelSummary(): Record<TrustVisibilityLevel, TrustVisibilityLevelSummary> {
