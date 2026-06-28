@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -22,6 +22,7 @@ import {
 } from "./trustVisibility";
 import { formatSourceTraceHoverCard } from "./sourceTraceHover";
 import { buildClaimMiniMapHover, formatClaimMiniMapSummary } from "./claimMiniMapHover";
+import { buildPageContradictionRankingAtlas, type PageContradictionRankingAtlas, type PageContradictionRankingItem } from "./evidencePanelCopy";
 
 interface WikiPage {
   id: number;
@@ -717,6 +718,134 @@ function TrustSummaryPanel({ summary, versionNum }: { summary: TrustVisibilitySu
   );
 }
 
+function PageContradictionAtlasRanking({
+  atlas,
+  isMobile,
+  versionNum,
+  loadingCount,
+  onOpenClaim,
+}: {
+  atlas: PageContradictionRankingAtlas;
+  isMobile: boolean;
+  versionNum?: number | null;
+  loadingCount: number;
+  onOpenClaim: (item: PageContradictionRankingItem, origin?: HTMLElement | null) => void;
+}) {
+  if (!atlas.totalClaims) return null;
+  const visibleItems = atlas.items.slice(0, 6);
+  const pageAtlasDescriptionId = "page-contradiction-atlas-ranking-description";
+  return (
+    <section
+      data-testid="page-contradiction-atlas-ranking"
+      aria-label="Page-level contradiction atlas ranking"
+      aria-describedby={pageAtlasDescriptionId}
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "14px",
+        border: "1px solid rgba(249,115,22,0.38)",
+        borderLeft: "3px solid #f97316",
+        background: "linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.82))",
+        boxShadow: "0 18px 42px rgba(2,6,23,0.28)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.8rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#fbbf24", fontSize: "0.66rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            Page-level contradiction atlas
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 820 }}>
+            Where evidence weighs against this page
+          </h2>
+          <p id={pageAtlasDescriptionId} style={{ margin: "0.35rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5, maxWidth: "42rem" }}>
+            {atlas.headline}. Claims ranked by mapped counter-source pressure; source disagreement is not which side is correct. {atlas.summary}
+          </p>
+        </div>
+        <span style={{ color: "#f97316", border: "1px solid rgba(249,115,22,0.42)", background: "rgba(249,115,22,0.12)", borderRadius: "999px", padding: "0.18rem 0.55rem", fontSize: "0.68rem", fontWeight: 850 }}>
+          {atlas.surveyedClaims.toLocaleString()}/{atlas.totalClaims.toLocaleString()} surveyed{loadingCount > 0 ? ` · ${loadingCount} loading` : ""}
+        </span>
+      </div>
+      {visibleItems.length > 0 ? (
+        <div style={{ display: "grid", gap: "0.58rem", marginTop: "0.85rem" }}>
+          {visibleItems.map((item, index) => {
+            const meta = trustVisibilityMeta(item.trustLevel);
+            return (
+              <article
+                key={item.claimId}
+                data-testid="page-atlas-ranked-claim"
+                style={{
+                  border: "1px solid rgba(148,163,184,0.22)",
+                  background: "rgba(15,23,42,0.74)",
+                  borderRadius: "11px",
+                  padding: "0.72rem",
+                }}
+              >
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2.25rem minmax(0,1fr) auto", gap: "0.64rem", alignItems: "start" }}>
+                  <div style={{ color: "#f97316", fontSize: "1.15rem", lineHeight: 1, fontWeight: 900 }}>#{index + 1}</div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", alignItems: "center", marginBottom: "0.28rem" }}>
+                      <span style={{ color: meta.color, border: `1px solid ${meta.border}`, background: meta.background, borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850, textTransform: "uppercase" }}>
+                        {meta.label}
+                      </span>
+                      <span data-testid="page-atlas-claim-tier" style={{ color: item.tierLabel === "Contradicted" ? "#f97316" : item.tierLabel === "Contested" ? "#fbbf24" : "#93c5fd", border: "1px solid rgba(148,163,184,0.24)", background: "rgba(15,23,42,0.64)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                        {item.tierLabel}
+                      </span>
+                      <span data-testid="page-atlas-survey-state" style={{ color: item.sourceSurveyed ? "#34d399" : "#fbbf24", fontSize: "0.64rem", fontWeight: 800 }}>
+                        {item.sourceSurveyState}
+                      </span>
+                      <span style={{ color: "#64748b", fontSize: "0.64rem" }}>{item.sectionLabel}</span>
+                    </div>
+                    <p style={{ margin: 0, color: "#e2e8f0", fontSize: "0.82rem", lineHeight: 1.45, fontWeight: 760 }}>
+                      {item.claimText}
+                    </p>
+                    <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.45rem" }}>
+                      {item.lanes.map((lane) => (
+                        <span key={lane.kind} style={{ color: lane.color, background: lane.background, border: `1px solid ${lane.color}`, borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 820 }}>
+                          {lane.count.toLocaleString()} {lane.label.replace(" sources", "")}
+                        </span>
+                      ))}
+                    </div>
+                    <p data-testid="page-atlas-ranking-score" style={{ margin: "0.38rem 0 0", color: "#94a3b8", fontSize: "0.68rem" }}>
+                      {item.rankLabel}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: "0.4rem", alignItems: isMobile ? "center" : "stretch" }}>
+                    <button
+                      type="button"
+                      data-testid="page-atlas-open-evidence-map"
+                      aria-controls={item.evidencePanelId}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onOpenClaim(item, e.currentTarget);
+                      }}
+                      style={{ border: "1px solid rgba(249,115,22,0.5)", background: "rgba(249,115,22,0.12)", color: "#fed7aa", borderRadius: "999px", padding: "0.24rem 0.62rem", fontSize: "0.66rem", fontWeight: 860, cursor: "pointer", whiteSpace: "nowrap" }}
+                    >
+                      Open evidence map
+                    </button>
+                    <a href={item.sourceHref} style={{ color: "#bfdbfe", border: "1px solid rgba(59,130,246,0.28)", background: "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.22rem 0.58rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}>
+                      Jump to claim
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p style={{ margin: "0.8rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5 }}>
+          No page-level counter-source pressure is visible for this page version yet. Keep the source lanes surveyed as new evidence is linked.
+        </p>
+      )}
+      {versionNum != null && (
+        <p style={{ margin: "0.8rem 0 0", color: "#64748b", fontSize: "0.66rem" }}>
+          Computed against page version {versionNum}.
+        </p>
+      )}
+    </section>
+  );
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
@@ -937,6 +1066,11 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
   const [ideasOpen, setIdeasOpen] = useState(false);
   const [showIdeas, setShowIdeas] = useState(false);
   const [citeViewMode, setCiteViewMode] = useState<"shown" | "hidden">("shown");
+  const [pageAtlasEvidenceByClaimId, setPageAtlasEvidenceByClaimId] = useState<Record<number, any[]>>({});
+  const [pageAtlasLoadingByClaimId, setPageAtlasLoadingByClaimId] = useState<Record<number, boolean>>({});
+  const [pageAtlasPanelClaimId, setPageAtlasPanelClaimId] = useState<number | null>(null);
+  const pageAtlasFetchedIdsRef = useRef<Set<number>>(new Set());
+  const pageAtlasReturnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("nm.cite_mode");
@@ -1032,6 +1166,21 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
       .catch(() => setCitations([]));
   }, [slug, testOnlyFixtureData?.citations]);
 
+  const ensurePageAtlasEvidence = useCallback(async (claimId: number) => {
+    if (!claimId || pageAtlasFetchedIdsRef.current.has(claimId)) return;
+    pageAtlasFetchedIdsRef.current.add(claimId);
+    setPageAtlasLoadingByClaimId((prev) => ({ ...prev, [claimId]: true }));
+    try {
+      const response = await fetch(`/api/claims/${claimId}/evidence`);
+      const data = response.ok ? await response.json() : null;
+      setPageAtlasEvidenceByClaimId((prev) => ({ ...prev, [claimId]: data?.evidence || [] }));
+    } catch {
+      setPageAtlasEvidenceByClaimId((prev) => ({ ...prev, [claimId]: [] }));
+    } finally {
+      setPageAtlasLoadingByClaimId((prev) => ({ ...prev, [claimId]: false }));
+    }
+  }, []);
+
 
 
   const claimById = useMemo(() => {
@@ -1082,6 +1231,25 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
   }, [citations]);
 
   const trustSummary = useMemo(() => summarizeTrustClaims(claims, renderedClaimIds), [claims, renderedClaimIds]);
+  const pageContradictionAtlas = useMemo(
+    () => buildPageContradictionRankingAtlas(claims, pageAtlasEvidenceByClaimId, renderedClaimIds),
+    [claims, pageAtlasEvidenceByClaimId, renderedClaimIds],
+  );
+  const pageAtlasLoadingCount = useMemo(
+    () => Object.values(pageAtlasLoadingByClaimId).filter(Boolean).length,
+    [pageAtlasLoadingByClaimId],
+  );
+  const pageAtlasSelectedItem = useMemo(
+    () => pageContradictionAtlas.items.find((item) => item.claimId === pageAtlasPanelClaimId) || null,
+    [pageContradictionAtlas.items, pageAtlasPanelClaimId],
+  );
+
+  useEffect(() => {
+    if (!showV2 || !pageContradictionAtlas.items.length) return;
+    for (const item of pageContradictionAtlas.items.slice(0, 6)) {
+      void ensurePageAtlasEvidence(item.claimId);
+    }
+  }, [showV2, pageContradictionAtlas.items, ensurePageAtlasEvidence]);
 
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
@@ -1223,6 +1391,34 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
 
       {showV2 && trustSummary.totalClaims > 0 && (
         <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
+      )}
+
+      {showV2 && (
+        <PageContradictionAtlasRanking
+          atlas={pageContradictionAtlas}
+          isMobile={isMobile}
+          versionNum={page.version_num}
+          loadingCount={pageAtlasLoadingCount}
+          onOpenClaim={(item, origin) => {
+            pageAtlasReturnFocusRef.current = origin ?? null;
+            setPageAtlasPanelClaimId(item.claimId);
+            void ensurePageAtlasEvidence(item.claimId);
+          }}
+        />
+      )}
+
+      {pageAtlasPanelClaimId && pageAtlasSelectedItem && (
+        <DebateEvidencePanel
+          claimId={pageAtlasSelectedItem.claimId}
+          claimText={claimById[pageAtlasSelectedItem.claimId]?.text || pageAtlasSelectedItem.claimText}
+          trustLevel={claimById[pageAtlasSelectedItem.claimId]?.trust_level || pageAtlasSelectedItem.trustLevel}
+          evidence={pageAtlasEvidenceByClaimId[pageAtlasSelectedItem.claimId] || null}
+          loading={Boolean(pageAtlasLoadingByClaimId[pageAtlasSelectedItem.claimId])}
+          totalElements={0}
+          onClose={() => setPageAtlasPanelClaimId(null)}
+          returnFocusRef={pageAtlasReturnFocusRef}
+          panelId={pageAtlasSelectedItem.evidencePanelId}
+        />
       )}
 
       {/* Mobile TOC: collapsed accordion above content */}

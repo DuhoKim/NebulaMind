@@ -97,6 +97,45 @@ export interface ClaimSourceContradictionAtlas {
   primaryCounter: ClaimSourceContradictionSource | null;
 }
 
+export interface PageContradictionClaimLike {
+  id?: number | string | null;
+  text?: string | null;
+  trust_level?: string | null;
+  evidence_count?: number | null;
+  con_count?: number | null;
+  section?: string | null;
+}
+
+export interface PageContradictionRankingItem {
+  claimId: number;
+  claimText: string;
+  trustLevel: string;
+  sectionLabel: string;
+  evidenceCount: number;
+  supportCount: number;
+  counterCount: number;
+  unresolvedCount: number;
+  tensionScore: number;
+  rankScore: number;
+  rankLabel: string;
+  tierLabel: string;
+  sourceSurveyed: boolean;
+  sourceSurveyState: string;
+  sourceHref: string;
+  evidencePanelId: string;
+  lanes: ClaimSourceContradictionLane[];
+}
+
+export interface PageContradictionRankingAtlas {
+  totalClaims: number;
+  surfacedClaims: number;
+  surveyedClaims: number;
+  hasRankedClaims: boolean;
+  headline: string;
+  summary: string;
+  items: PageContradictionRankingItem[];
+}
+
 function pluralCount(count: number, singular: string, plural = `${singular}s`): string {
   return `${count.toLocaleString()} ${count === 1 ? singular : plural}`;
 }
@@ -213,6 +252,170 @@ export function buildClaimSourceContradictionAtlas(evidence: EvidencePanelItemLi
     lanes,
     primarySupport,
     primaryCounter,
+  };
+}
+
+function claimIdNumber(raw: PageContradictionClaimLike["id"]): number | null {
+  const value = Number(raw);
+  return Number.isFinite(value) && value > 0 ? Math.floor(value) : null;
+}
+
+function claimTextValue(claim: PageContradictionClaimLike, fallbackId: number): string {
+  const text = String(claim.text || "").replace(/\s+/g, " ").trim();
+  return text || `Claim ${fallbackId}`;
+}
+
+function normalizeRenderedClaimIds(renderedClaimIds?: Iterable<number | string> | null): Set<number> | null {
+  if (!renderedClaimIds) return null;
+  const ids = new Set<number>();
+  for (const raw of renderedClaimIds) {
+    const id = Number(raw);
+    if (Number.isFinite(id) && id > 0) ids.add(Math.floor(id));
+  }
+  return ids.size > 0 ? ids : null;
+}
+
+function sectionLabel(section: any): string {
+  const raw = section?.title ?? section?.heading ?? section?.name ?? section?.section;
+  const label = String(raw || "").trim();
+  return label || "Claim layer";
+}
+
+function flattenPageContradictionClaims(pageClaims: any, renderedClaimIds?: Iterable<number | string> | null): Array<PageContradictionClaimLike & { sectionLabel: string }> {
+  const rendered = normalizeRenderedClaimIds(renderedClaimIds);
+  const output: Array<PageContradictionClaimLike & { sectionLabel: string }> = [];
+  const seen = new Set<number>();
+  const pushClaim = (claim: PageContradictionClaimLike, label: string) => {
+    const id = claimIdNumber(claim?.id);
+    if (id == null || seen.has(id)) return;
+    if (rendered && !rendered.has(id)) return;
+    seen.add(id);
+    output.push({ ...claim, sectionLabel: label });
+  };
+
+  if (Array.isArray(pageClaims)) {
+    for (const claim of pageClaims) pushClaim(claim, "Claim layer");
+  }
+
+  for (const section of pageClaims?.sections ?? []) {
+    const label = sectionLabel(section);
+    for (const claim of section?.claims ?? []) pushClaim(claim, label);
+  }
+
+  return output;
+}
+
+function estimateTensionScore(supportCount: number, counterCount: number): number {
+  if (supportCount <= 0 || counterCount <= 0) return 0;
+  return Math.round((Math.min(supportCount, counterCount) / Math.max(supportCount, counterCount)) * 100);
+}
+
+function trustRankWeight(trustLevel: string): number {
+  if (trustLevel === "challenged") return 300;
+  if (trustLevel === "debated") return 200;
+  if (trustLevel === "unverified") return 80;
+  if (trustLevel === "accepted") return 30;
+  if (trustLevel === "consensus") return 10;
+  return 0;
+}
+
+function fallbackLanes(supportCount: number, counterCount: number, unresolvedCount: number): ClaimSourceContradictionLane[] {
+  const total = supportCount + counterCount + unresolvedCount;
+  return [
+    { kind: "support", label: "supporting sources", count: supportCount, percent: votePercent(supportCount, total), color: "#22c55e", background: "rgba(34,197,94,0.14)" },
+    { kind: "counter", label: "countering sources", count: counterCount, percent: votePercent(counterCount, total), color: "#ef4444", background: "rgba(239,68,68,0.14)" },
+    { kind: "unresolved", label: "unresolved sources", count: unresolvedCount, percent: votePercent(unresolvedCount, total), color: "#94a3b8", background: "rgba(148,163,184,0.14)" },
+  ];
+}
+
+function contradictionTierLabel(counterCount: number, supportCount: number, sourceSurveyed: boolean): string {
+  if (counterCount >= 2 && supportCount > 0) return "Contradicted";
+  if (sourceSurveyed && counterCount > 0 && supportCount > 0) return "Contested";
+  if (counterCount > 0) return "Questioned";
+  return "Watching";
+}
+
+export function buildPageContradictionRankingAtlas(
+  pageClaims: any,
+  evidenceByClaimId: Record<string | number, EvidencePanelItemLike[] | null | undefined> = {},
+  renderedClaimIds?: Iterable<number | string> | null,
+): PageContradictionRankingAtlas {
+  const claims = flattenPageContradictionClaims(pageClaims, renderedClaimIds);
+  let surveyedClaims = 0;
+  const items: PageContradictionRankingItem[] = [];
+
+  for (const claim of claims) {
+    const claimId = claimIdNumber(claim.id);
+    if (claimId == null) continue;
+    const evidence = evidenceByClaimId[claimId] ?? evidenceByClaimId[String(claimId)];
+    const sourceSurveyed = Array.isArray(evidence);
+    if (sourceSurveyed) surveyedClaims += 1;
+    const publishedEvidenceCount = safeVoteCount(claim.evidence_count);
+    const publishedCounterCount = safeVoteCount(claim.con_count);
+    const trustLevel = String(claim.trust_level || "unverified").toLowerCase();
+
+    let evidenceCount = publishedEvidenceCount;
+    let supportCount = Math.max(0, publishedEvidenceCount - publishedCounterCount);
+    let counterCount = publishedCounterCount;
+    let unresolvedCount = 0;
+    let tensionScore = estimateTensionScore(supportCount, counterCount);
+    let lanes = fallbackLanes(supportCount, counterCount, unresolvedCount);
+
+    if (sourceSurveyed) {
+      const sourceAtlas = buildClaimSourceContradictionAtlas(evidence || []);
+      evidenceCount = Math.max(publishedEvidenceCount, sourceAtlas.total);
+      supportCount = sourceAtlas.supportCount;
+      counterCount = sourceAtlas.counterCount;
+      unresolvedCount = sourceAtlas.unresolvedCount;
+      tensionScore = sourceAtlas.tensionScore;
+      lanes = sourceAtlas.lanes;
+    }
+
+    if (counterCount <= 0) continue;
+
+    const rankScore = counterCount * 1000 + tensionScore * 10 + evidenceCount + trustRankWeight(trustLevel);
+    items.push({
+      claimId,
+      claimText: claimTextValue(claim, claimId),
+      trustLevel,
+      sectionLabel: claim.sectionLabel,
+      evidenceCount,
+      supportCount,
+      counterCount,
+      unresolvedCount,
+      tensionScore,
+      rankScore,
+      rankLabel: sourceSurveyed
+        ? `${counterCount.toLocaleString()} countering · ${supportCount.toLocaleString()} supporting · tension ${tensionScore}%`
+        : `${counterCount.toLocaleString()} countering · ${supportCount.toLocaleString()} supporting · source lanes pending`,
+      tierLabel: contradictionTierLabel(counterCount, supportCount, sourceSurveyed),
+      sourceSurveyed,
+      sourceSurveyState: sourceSurveyed ? "source lanes surveyed" : "source lanes pending",
+      sourceHref: `#claim-${claimId}`,
+      evidencePanelId: `claim-evidence-panel-${claimId}`,
+      lanes,
+    });
+  }
+
+  items.sort((a, b) =>
+    b.rankScore - a.rankScore ||
+    b.counterCount - a.counterCount ||
+    b.tensionScore - a.tensionScore ||
+    b.evidenceCount - a.evidenceCount ||
+    a.claimId - b.claimId,
+  );
+
+  const surfacedClaims = items.length;
+  return {
+    totalClaims: claims.length,
+    surfacedClaims,
+    surveyedClaims,
+    hasRankedClaims: surfacedClaims > 0,
+    headline: surfacedClaims > 0
+      ? `${pluralCount(surfacedClaims, "claim")} ranked by counter-source pressure`
+      : "No page-level counter-source pressure surfaced",
+    summary: "Claims ranked by mapped counter-source pressure; the atlas surfaces where sources disagree, not which side is correct.",
+    items,
   };
 }
 
