@@ -69,6 +69,7 @@ assert.equal(renderedOnlySummary.levels.consensus.sources, 36);
 assert.equal(renderedOnlySummary.levels.debated.sources, 16);
 assert.equal(formatClaimTrustBadge({ trust_level: "consensus", evidence_count: 36 }), "Consensus · 36 sources");
 assert.equal(formatClaimTrustBadge({ trust_level: "debated", evidence_count: 1 }), "Debated · 1 source");
+assert.equal(formatClaimTrustBadge({ trust_level: "debated", evidence_count: 16, con_count: 1 }), "Debated · 16 sources · 1 countering");
 assert.equal(trustVisibilityMeta("challenged").icon, "!");
 
 const clientSource = fs.readFileSync(clientPath, "utf8");
