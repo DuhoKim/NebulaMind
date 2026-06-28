@@ -3,7 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { buildCrossPagePaperFootprintDeck, type CrossPagePaperFootprintResponse } from "./crossPagePaperFootprint";
-import { buildEvidenceTriageStudioDeck } from "./evidenceTriageStudio";
+import { buildEvidenceTriageQueueView, buildEvidenceTriageStudioDeck, type EvidenceTriageLaneFilter } from "./evidenceTriageStudio";
 
 export interface FactSource {
   id: number;
@@ -65,6 +65,8 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
   const [footprintsLoading, setFootprintsLoading] = useState(false);
   const [footprintError, setFootprintError] = useState<string | null>(null);
   const [footprintRetryNonce, setFootprintRetryNonce] = useState(0);
+  const [activeTriageLaneFilter, setActiveTriageLaneFilter] = useState<EvidenceTriageLaneFilter>("all");
+  const [triagePage, setTriagePage] = useState(0);
 
   useEffect(() => {
     if (!slug) return;
@@ -129,6 +131,15 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
   const evidenceTriageDeck = useMemo(
     () => buildEvidenceTriageStudioDeck({ sources, citations, crossPageFootprints, pageSlug: slug, pageTitle }),
     [sources, citations, crossPageFootprints, slug, pageTitle],
+  );
+
+  useEffect(() => {
+    setTriagePage(0);
+  }, [activeTriageLaneFilter, evidenceTriageDeck.items.length]);
+
+  const evidenceTriageQueueView = useMemo(
+    () => buildEvidenceTriageQueueView(evidenceTriageDeck, { laneFilter: activeTriageLaneFilter, page: triagePage }),
+    [activeTriageLaneFilter, evidenceTriageDeck, triagePage],
   );
 
 
@@ -222,10 +233,12 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
 
   const renderEvidenceTriageStudio = () => {
     const deck = evidenceTriageDeck;
-    const laneChips = [
-      { key: "needs_adjudication", label: "Adjudication", color: "#fb923c" },
-      { key: "needs_source", label: "Source gaps", color: "#facc15" },
-      { key: "ready_to_review", label: "Synthesis-ready", color: "#86efac" },
+    const queueView = evidenceTriageQueueView;
+    const laneFilters = [
+      { key: "all", label: "All lanes", count: queueView.totalCount, color: "#cbd5e1" },
+      { key: "needs_adjudication", label: "Adjudication", count: deck.laneCounts.needs_adjudication, color: "#fb923c" },
+      { key: "needs_source", label: "Source gaps", count: deck.laneCounts.needs_source, color: "#facc15" },
+      { key: "ready_to_review", label: "Synthesis-ready", count: deck.laneCounts.ready_to_review, color: "#86efac" },
     ] as const;
     return (
       <section data-testid="evidence-triage-studio" style={{ marginBottom: "2rem", background: "linear-gradient(135deg, rgba(30,41,59,0.96), rgba(15,23,42,0.9))", border: "1px solid rgba(251,146,60,0.24)", borderRadius: "14px", padding: "1rem" }}>
@@ -247,10 +260,20 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
         </div>
 
         <div style={{ display: "flex", gap: "0.45rem", flexWrap: "wrap", marginTop: "0.85rem" }}>
-          {laneChips.map((lane) => (
-            <span key={lane.key} data-testid="evidence-triage-lane-chip" style={{ border: `1px solid ${lane.color}55`, color: lane.color, background: `${lane.color}18`, borderRadius: "999px", padding: "0.25rem 0.58rem", fontSize: "0.72rem", fontWeight: 850 }}>
-              {lane.label}: {deck.laneCounts[lane.key].toLocaleString()}
-            </span>
+          {laneFilters.map((filter) => (
+            <button
+              key={filter.key}
+              type="button"
+              data-testid="evidence-triage-filter"
+              aria-pressed={activeTriageLaneFilter === filter.key}
+              onClick={() => {
+                setActiveTriageLaneFilter(filter.key);
+                setTriagePage(0);
+              }}
+              style={{ border: `1px solid ${filter.color}55`, color: filter.color, background: activeTriageLaneFilter === filter.key ? `${filter.color}28` : `${filter.color}12`, borderRadius: "999px", padding: "0.25rem 0.58rem", fontSize: "0.72rem", fontWeight: 850, cursor: "pointer" }}
+            >
+              <span data-testid="evidence-triage-lane-chip">{filter.label}: {filter.count.toLocaleString()}</span>
+            </button>
           ))}
         </div>
 
@@ -259,35 +282,57 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
             No evidence triage signals yet. Add paper-backed evidence or source flags before readiness review.
           </p>
         ) : (
-          <div style={{ display: "grid", gap: "0.65rem", marginTop: "0.9rem" }}>
-            {deck.items.slice(0, 6).map((item) => (
-              <article key={item.id} data-testid="evidence-triage-card" style={{ background: "rgba(2,6,23,0.74)", border: "1px solid rgba(51,65,85,0.92)", borderRadius: "12px", padding: "0.82rem" }}>
-                <div style={{ display: "flex", justifyContent: "space-between", gap: "0.85rem", flexWrap: "wrap" }}>
-                  <div>
-                    <div style={{ color: "#f8fafc", fontWeight: 850, fontSize: "0.86rem" }}>{item.actionLabel}</div>
-                    <div style={{ color: "#94a3b8", fontSize: "0.74rem", marginTop: "0.12rem" }}>
-                      {item.paperLabel} · {item.pageTitle} · {item.claimLabel}
+          <>
+            <p data-testid="evidence-triage-overflow-disclosure" style={{ color: "#94a3b8", fontSize: "0.74rem", lineHeight: 1.45, margin: "0.78rem 0 0" }}>
+              {queueView.overflowDisclosure}
+            </p>
+            {queueView.visibleItems.length === 0 ? (
+              <p data-testid="evidence-triage-empty" style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "0.85rem" }}>
+                {queueView.emptyFilterMessage}
+              </p>
+            ) : (
+              <div style={{ display: "grid", gap: "0.65rem", marginTop: "0.9rem" }}>
+                {queueView.visibleItems.map((item) => (
+                  <article key={item.id} data-testid="evidence-triage-card" style={{ background: "rgba(2,6,23,0.74)", border: "1px solid rgba(51,65,85,0.92)", borderRadius: "12px", padding: "0.82rem" }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", gap: "0.85rem", flexWrap: "wrap" }}>
+                      <div>
+                        <div style={{ color: "#f8fafc", fontWeight: 850, fontSize: "0.86rem" }}>{item.actionLabel}</div>
+                        <div style={{ color: "#94a3b8", fontSize: "0.74rem", marginTop: "0.12rem" }}>
+                          {item.paperLabel} · {item.pageTitle} · {item.claimLabel}
+                        </div>
+                      </div>
+                      <div style={{ color: item.lane === "needs_adjudication" ? "#fb923c" : item.lane === "needs_source" ? "#facc15" : "#86efac", fontSize: "0.72rem", fontWeight: 900 }}>
+                        {item.laneLabel}
+                      </div>
                     </div>
-                  </div>
-                  <div style={{ color: item.lane === "needs_adjudication" ? "#fb923c" : item.lane === "needs_source" ? "#facc15" : "#86efac", fontSize: "0.72rem", fontWeight: 900 }}>
-                    {item.laneLabel}
-                  </div>
-                </div>
-                <p style={{ color: "#cbd5e1", fontSize: "0.76rem", lineHeight: 1.45, margin: "0.55rem 0 0" }}>{item.claimText}</p>
-                <div style={{ color: "#64748b", fontSize: "0.72rem", marginTop: "0.45rem" }}>
-                  {item.reasonText} · {item.votesSummary}
-                </div>
-                <Link
-                  data-testid="evidence-triage-action-link"
-                  href={item.href}
-                  aria-label={`Review ${item.claimLabel} in ${item.pageTitle}`}
-                  style={{ display: "inline-flex", marginTop: "0.55rem", color: "#93c5fd", textDecoration: "none", fontSize: "0.74rem", fontWeight: 850 }}
-                >
-                  Open review context →
-                </Link>
-              </article>
-            ))}
-          </div>
+                    <p style={{ color: "#cbd5e1", fontSize: "0.76rem", lineHeight: 1.45, margin: "0.55rem 0 0" }}>{item.claimText}</p>
+                    <div style={{ color: "#64748b", fontSize: "0.72rem", marginTop: "0.45rem" }}>
+                      {item.reasonText} · {item.votesSummary}
+                    </div>
+                    <Link
+                      data-testid="evidence-triage-action-link"
+                      href={item.href}
+                      aria-label={`Review ${item.claimLabel} in ${item.pageTitle}`}
+                      style={{ display: "inline-flex", marginTop: "0.55rem", color: "#93c5fd", textDecoration: "none", fontSize: "0.74rem", fontWeight: 850 }}
+                    >
+                      Open review context →
+                    </Link>
+                  </article>
+                ))}
+              </div>
+            )}
+            {queueView.pageCount > 1 && (
+              <div data-testid="evidence-triage-page-control" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem", flexWrap: "wrap", marginTop: "0.85rem", color: "#94a3b8", fontSize: "0.74rem" }}>
+                <button type="button" disabled={queueView.currentPage === 0} onClick={() => setTriagePage(Math.max(0, queueView.currentPage - 1))} style={{ border: "1px solid rgba(148,163,184,0.3)", background: "rgba(15,23,42,0.92)", color: queueView.currentPage === 0 ? "#475569" : "#cbd5e1", borderRadius: "999px", padding: "0.28rem 0.7rem", cursor: queueView.currentPage === 0 ? "not-allowed" : "pointer" }}>
+                  Previous
+                </button>
+                <span>Page {queueView.currentPage + 1} of {queueView.pageCount}</span>
+                <button type="button" disabled={queueView.currentPage + 1 >= queueView.pageCount} onClick={() => setTriagePage(Math.min(queueView.pageCount - 1, queueView.currentPage + 1))} style={{ border: "1px solid rgba(148,163,184,0.3)", background: "rgba(15,23,42,0.92)", color: queueView.currentPage + 1 >= queueView.pageCount ? "#475569" : "#cbd5e1", borderRadius: "999px", padding: "0.28rem 0.7rem", cursor: queueView.currentPage + 1 >= queueView.pageCount ? "not-allowed" : "pointer" }}>
+                  Next
+                </button>
+              </div>
+            )}
+          </>
         )}
       </section>
     );

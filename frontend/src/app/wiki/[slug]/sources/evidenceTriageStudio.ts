@@ -1,6 +1,9 @@
 import type { CrossPagePaperFootprintResponse, CrossPagePaperTone } from "./crossPagePaperFootprint";
 
 export type EvidenceTriageLane = "needs_adjudication" | "needs_source" | "ready_to_review";
+export type EvidenceTriageLaneFilter = EvidenceTriageLane | "all";
+
+export const EVIDENCE_TRIAGE_PAGE_SIZE = 6;
 
 export interface EvidenceTriageLaneInput {
   tone?: CrossPagePaperTone | string | null;
@@ -63,6 +66,27 @@ export interface EvidenceTriageStudioDeck {
   scopeCaveat: string;
   laneCounts: Record<EvidenceTriageLane, number>;
   items: EvidenceTriageStudioItem[];
+}
+
+export interface EvidenceTriageQueueViewOptions {
+  laneFilter?: EvidenceTriageLaneFilter;
+  page?: number;
+  pageSize?: number;
+}
+
+export interface EvidenceTriageQueueView {
+  laneFilter: EvidenceTriageLaneFilter;
+  laneLabel: string;
+  totalCount: number;
+  filteredCount: number;
+  hiddenByFilterCount: number;
+  pageSize: number;
+  currentPage: number;
+  pageCount: number;
+  visibleItems: EvidenceTriageStudioItem[];
+  hasOverflow: boolean;
+  overflowDisclosure: string;
+  emptyFilterMessage: string;
 }
 
 const LANE_LABELS: Record<EvidenceTriageLane, string> = {
@@ -246,5 +270,44 @@ export function buildEvidenceTriageStudioDeck(input: EvidenceTriageStudioInput):
     scopeCaveat: "Evidence triage is a review queue, not a final verdict. No labels are written from this surface.",
     laneCounts,
     items,
+  };
+}
+
+export function buildEvidenceTriageQueueView(deck: EvidenceTriageStudioDeck, options: EvidenceTriageQueueViewOptions = {}): EvidenceTriageQueueView {
+  const laneFilter: EvidenceTriageLaneFilter = options.laneFilter || "all";
+  const laneLabel = laneFilter === "all" ? "All lanes" : LANE_LABELS[laneFilter];
+  const pageSize = Math.max(1, Math.floor(numberValue(options.pageSize || EVIDENCE_TRIAGE_PAGE_SIZE)));
+  const totalCount = deck.items.length;
+  const filteredItems = laneFilter === "all" ? deck.items : deck.items.filter((item) => item.lane === laneFilter);
+  const filteredCount = filteredItems.length;
+  const hiddenByFilterCount = totalCount - filteredCount;
+  const pageCount = Math.max(1, Math.ceil(filteredCount / pageSize));
+  const requestedPage = Math.max(0, Math.floor(numberValue(options.page)));
+  const currentPage = Math.min(requestedPage, pageCount - 1);
+  const startIndex = filteredCount ? currentPage * pageSize : 0;
+  const endIndex = Math.min(filteredCount, startIndex + pageSize);
+  const visibleItems = filteredItems.slice(startIndex, endIndex);
+  const showingText = filteredCount
+    ? `Showing ${startIndex + 1}-${endIndex} of ${filteredCount} triage items${laneFilter === "all" ? "" : ` in ${laneLabel}`}.`
+    : `No triage rows match ${laneLabel}.`;
+  const laterPages = filteredCount > endIndex ? ` ${filteredCount - endIndex} more on later pages.` : "";
+  const filterText = hiddenByFilterCount > 0 ? ` ${hiddenByFilterCount} hidden by the active lane filter.` : "";
+  const overflowDisclosure = `${showingText}${laterPages}${filterText} Queue is paginated for review safety; no labels are written.`;
+
+  return {
+    laneFilter,
+    laneLabel,
+    totalCount,
+    filteredCount,
+    hiddenByFilterCount,
+    pageSize,
+    currentPage,
+    pageCount,
+    visibleItems,
+    hasOverflow: filteredCount > pageSize || hiddenByFilterCount > 0,
+    overflowDisclosure,
+    emptyFilterMessage: totalCount
+      ? `No triage rows match ${laneLabel}. Clear the lane filter to review all queued signals.`
+      : "No evidence triage signals are available yet.",
   };
 }
