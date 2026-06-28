@@ -25,6 +25,7 @@ const module = { exports: {} };
 vm.runInNewContext(compiled.outputText, { module, exports: module.exports, require }, { filename: helperPath });
 
 const {
+  buildEvidenceCardDensityMeta,
   buildEvidencePanelCopy,
   buildEvidenceVoteCockpitVisuals,
   buildEvidenceVoteSignal,
@@ -32,6 +33,7 @@ const {
   formatLinkedPaperSourceCount,
 } = module.exports;
 
+assert.equal(typeof buildEvidenceCardDensityMeta, "function");
 assert.equal(typeof buildEvidencePanelCopy, "function");
 assert.equal(typeof buildEvidenceVoteCockpitVisuals, "function");
 assert.equal(typeof buildEvidenceVoteSignal, "function");
@@ -43,6 +45,27 @@ assert.equal(evidenceSide("strongly_challenges"), "counter");
 assert.equal(evidenceSide("none"), "neutral");
 assert.equal(formatLinkedPaperSourceCount(1), "1 linked paper source");
 assert.equal(formatLinkedPaperSourceCount(36), "36 linked paper sources");
+
+const denseMeta = buildEvidenceCardDensityMeta({
+  stance: "supports",
+  votes_agree: 4,
+  votes_disagree: 1,
+  comments_count: 2,
+  link_count: 3,
+  quality_v2: 0.83,
+});
+assert.equal(denseMeta.sideLabel, "supporting paper");
+assert.equal(denseMeta.voteLabel, "4 support · 1 weakening");
+assert.equal(denseMeta.activityLabel, "2 comments · 3 element links");
+assert.equal(denseMeta.qualityLabel, "quality 83%");
+assert.equal(denseMeta.hasActivity, true);
+
+const quietMeta = buildEvidenceCardDensityMeta({ stance: "none", votes_agree: 0, votes_disagree: 0 });
+assert.equal(quietMeta.sideLabel, "linked paper");
+assert.equal(quietMeta.voteLabel, "no counted votes");
+assert.equal(quietMeta.activityLabel, "no comments or element links yet");
+assert.equal(quietMeta.qualityLabel, null);
+assert.equal(quietMeta.hasActivity, false);
 
 const neutralConsensus = Array.from({ length: 36 }, (_, id) => ({ id, stance: "none", status: "active" }));
 const consensusCopy = buildEvidencePanelCopy(neutralConsensus, "consensus");
@@ -129,6 +152,18 @@ assert.match(panelSource, /data-testid="evidence-panel-neutral-summary"/, "Neutr
 assert.match(panelSource, /data-testid="evidence-vote-signal"/, "Panel should expose a visible counted vote signal summary.");
 assert.match(panelSource, /data-testid="evidence-vote-balance-bar"/, "Vote cockpit polish should include a testable at-a-glance segmented balance bar.");
 assert.match(panelSource, /data-testid="evidence-vote-metric-grid"/, "Vote cockpit polish should expose metric cards for support, weakening, and unresolved counts.");
+assert.match(panelSource, /data-testid="evidence-card-density-shell"/, "Evidence cards should use a tighter testable density shell.");
+assert.match(panelSource, /data-testid="evidence-card-density-rail"/, "Evidence cards should combine stance, vote, status, and quality metadata in a compact rail.");
+assert.match(panelSource, /data-testid="evidence-card-summary-clamp"/, "Evidence summaries should be visually clamped to preserve scan density.");
+assert.match(panelSource, /data-testid="evidence-card-activity-rail"/, "Comments and element links should move into a secondary compact activity rail.");
+assert.match(panelSource, /aria-label=\{scoreOpen \? "Hide evidence quality breakdown" : "Show evidence quality breakdown"\}/, "Quality pill should stay discoverable as an expandable control.");
+assert.match(panelSource, /scoreOpen \? "▲" : "▼"/, "Quality control should include a compact visible disclosure cue.");
+assert.match(panelSource, /buildEvidenceCardDensityMeta\(ev\)/, "Evidence cards should derive dense metadata from the shared helper contract.");
+assert.match(panelSource, /WebkitLineClamp/, "Evidence summary clamp should be explicit in source for chunk verification.");
+assert.ok(
+  panelSource.indexOf("{statusMeta.trustBlocking && (") < panelSource.indexOf("data-testid=\"evidence-card-summary-clamp\""),
+  "Trust-blocking caution should render before the clamped summary so warnings stay visible while density increases.",
+);
 assert.match(panelSource, /At-a-glance vote balance/, "Vote cockpit should use clearer visual hierarchy copy.");
 assert.match(panelSource, /How counted votes map to the claim signal/, "Detailed semantics should move behind a disclosure instead of dominating the cockpit.");
 assert.match(panelSource, /buildEvidenceVoteCockpitVisuals\(voteSignal\)/, "Panel should derive visual balance segments from the claim vote signal.");
