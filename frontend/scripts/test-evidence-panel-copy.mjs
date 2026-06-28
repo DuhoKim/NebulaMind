@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = path.resolve(import.meta.dirname, "..");
 const helperPath = path.join(repoRoot, "src/app/wiki/[slug]/evidencePanelCopy.ts");
 const panelPath = path.join(repoRoot, "src/app/wiki/[slug]/DebateEvidencePanel.tsx");
+const wikiClientPath = path.join(repoRoot, "src/app/wiki/[slug]/WikiPageClient.tsx");
 
 assert.ok(fs.existsSync(helperPath), "Evidence panel copy helpers should live in evidencePanelCopy.ts.");
 
@@ -26,6 +27,7 @@ vm.runInNewContext(compiled.outputText, { module, exports: module.exports, requi
 
 const {
   buildClaimSourceContradictionAtlas,
+  buildPageContradictionRankingAtlas,
   buildEvidenceCardDensityMeta,
   buildEvidencePanelCopy,
   buildEvidenceVoteCockpitVisuals,
@@ -35,6 +37,7 @@ const {
 } = module.exports;
 
 assert.equal(typeof buildClaimSourceContradictionAtlas, "function");
+assert.equal(typeof buildPageContradictionRankingAtlas, "function");
 assert.equal(typeof buildEvidenceCardDensityMeta, "function");
 assert.equal(typeof buildEvidencePanelCopy, "function");
 assert.equal(typeof buildEvidenceVoteCockpitVisuals, "function");
@@ -89,6 +92,48 @@ const calmAtlas = buildClaimSourceContradictionAtlas([{ id: 404, title: "Single 
 assert.equal(calmAtlas.hasContradiction, false);
 assert.equal(calmAtlas.headline, "No source contradiction mapped yet");
 assert.equal(calmAtlas.summary, "Mapped evidence currently leans one direction; keep watching for counter-sources or unresolved links.");
+
+const pageRanking = buildPageContradictionRankingAtlas(
+  {
+    sections: [
+      {
+        title: "Early assembly",
+        claims: [
+          { id: 501, text: "Massive galaxies assembled early.", trust_level: "challenged", evidence_count: 4, con_count: 2 },
+          { id: 502, text: "Minor mergers add stellar halos.", trust_level: "accepted", evidence_count: 3, con_count: 0 },
+          { id: 503, text: "Dust-obscured systems complicate counts.", trust_level: "debated", evidence_count: 2, con_count: 1 },
+        ],
+      },
+    ],
+  },
+  {
+    501: [
+      { id: 101, title: "JWST support synthesis", stance: "supports", votes_agree: 6, quality_v2: 0.88 },
+      { id: 202, title: "Dust-obscured counter survey", stance: "challenges", votes_agree: 7, quality_v2: 0.92 },
+      { id: 203, title: "Morphology counter sample", stance: "contradicts", votes_agree: 4, quality_v2: 0.81 },
+    ],
+    502: [
+      { id: 204, title: "Halo support sample", stance: "supports", votes_agree: 5, quality_v2: 0.74 },
+    ],
+  },
+  [501, 502, 503],
+);
+assert.equal(pageRanking.totalClaims, 3);
+assert.equal(pageRanking.surfacedClaims, 2);
+assert.equal(pageRanking.surveyedClaims, 2);
+assert.equal(pageRanking.hasRankedClaims, true);
+assert.match(pageRanking.summary, /not which side is correct/, "Page atlas framing should not imply final truth adjudication.");
+assert.equal(pageRanking.items[0].claimId, 501);
+assert.equal(pageRanking.items[0].sourceSurveyed, true);
+assert.equal(pageRanking.items[0].counterCount, 2);
+assert.equal(pageRanking.items[0].supportCount, 1);
+assert.equal(pageRanking.items[0].rankLabel, "2 countering · 1 supporting · tension 50%");
+assert.equal(pageRanking.items[0].tierLabel, "Contradicted");
+assert.equal(pageRanking.items[0].evidencePanelId, "claim-evidence-panel-501");
+assert.equal(pageRanking.items[1].claimId, 503);
+assert.equal(pageRanking.items[1].sourceSurveyed, false);
+assert.equal(pageRanking.items[1].rankLabel, "1 countering · 1 supporting · source lanes pending");
+assert.equal(pageRanking.items[1].tierLabel, "Questioned");
 
 const quietMeta = buildEvidenceCardDensityMeta({ stance: "none", votes_agree: 0, votes_disagree: 0 });
 assert.equal(quietMeta.sideLabel, "linked paper");
@@ -177,6 +222,7 @@ assert.equal(unresolvedVoteSignal.verdict, "unresolved");
 assert.equal(unresolvedVoteSignal.verdictLabel, "Evidence votes unresolved");
 
 const panelSource = fs.readFileSync(panelPath, "utf8");
+const wikiClientSource = fs.readFileSync(wikiClientPath, "utf8");
 assert.match(panelSource, /from "\.\/evidencePanelCopy"/, "DebateEvidencePanel should use shared copy helpers.");
 assert.match(panelSource, /data-testid="evidence-panel-neutral-summary"/, "Neutral-only evidence state should have a testable summary.");
 assert.match(panelSource, /data-testid="evidence-vote-signal"/, "Panel should expose a visible counted vote signal summary.");
@@ -217,5 +263,15 @@ assert.match(panelSource, /claim support signal/, "Evidence cards should explain
 assert.match(panelSource, /claim weakening signal/, "Evidence cards should explain claim-level weakening votes, not only raw pro/con counts.");
 assert.match(panelSource, /Linked paper sources/, "Neutral-only evidence rows should be grouped under linked paper source copy.");
 assert.match(panelSource, /total > 0 && evidenceCopy\.hasDirectionalStance/, "Directional support/counter counts should render only when directional stances exist.");
+assert.match(wikiClientSource, /buildPageContradictionRankingAtlas/, "Wiki page should derive a page-level claim contradiction ranking from shared helpers.");
+assert.match(wikiClientSource, /data-testid="page-contradiction-atlas-ranking"/, "Wiki page should expose the page-level contradiction atlas ranking section.");
+assert.match(wikiClientSource, /data-testid="page-atlas-ranked-claim"/, "Page atlas should render ranked claim rows with stable markers.");
+assert.match(wikiClientSource, /data-testid="page-atlas-open-evidence-map"/, "Page atlas rows should open the existing evidence map dialog.");
+assert.match(wikiClientSource, /Where evidence weighs against this page/, "Page atlas heading should avoid saying the wiki prose is simply wrong.");
+assert.match(wikiClientSource, /aria-describedby=\{pageAtlasDescriptionId\}/, "Page atlas should describe the ranking criterion for screen readers.");
+assert.match(wikiClientSource, /Claims ranked by mapped counter-source pressure/, "Page atlas should explain that ordering is meaningful.");
+assert.match(wikiClientSource, /\{item\.tierLabel\}/, "Page atlas should expose textual tiers, not color-only contradiction signals.");
+assert.match(wikiClientSource, /not which side is correct/, "Page atlas should preserve truth-framing copy in the visible UI.");
+assert.match(wikiClientSource, /fetch\(`\/api\/claims\/\$\{claimId\}\/evidence`\)/, "Page atlas should reuse the existing claim evidence endpoint for source-lane surveys.");
 
 console.log("evidence_panel_copy_ok");
