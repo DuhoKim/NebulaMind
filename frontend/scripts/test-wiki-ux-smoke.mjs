@@ -17,11 +17,12 @@ const wikiUxProbes = [
   { script: "test:source-trace-hover", marker: "source_trace_hover_ok" },
   { script: "test:claim-minimap-hover", marker: "claim_minimap_hover_ok" },
   { script: "test:paper-claim-flight-deck", marker: "paper_claim_flight_deck_ok" },
+  { script: "test:cross-page-paper-footprint", marker: "cross_page_paper_footprint_ok" },
 ];
 
 const expectedScripts = new Set(wikiUxProbes.map((probe) => probe.script));
 const packageWikiUxScripts = Object.keys(packageJson.scripts || {})
-  .filter((script) => /^test:(evidence|trust|wiki|source|claim|paper)/.test(script))
+  .filter((script) => /^test:(evidence|trust|wiki|source|claim|paper|cross)/.test(script))
   .filter((script) => script !== "test:wiki-ux-smoke")
   .sort();
 const runnerScripts = [...expectedScripts].sort();
