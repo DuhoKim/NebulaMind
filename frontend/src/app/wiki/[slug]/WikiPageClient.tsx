@@ -87,6 +87,15 @@ interface ContributorsData {
   edit_history: VersionHistory[];
 }
 
+export interface WikiPageClientTestOnlyFixtureData {
+  page: WikiPage;
+  claims: any;
+  citations: PageCitation[];
+  health?: { score: number; band: string; emoji: string } | null;
+  contributorsData?: ContributorsData | null;
+  claimIdeasMap?: Record<number, any[]>;
+}
+
 const TRUST_COLORS: Record<string, string> = {
   consensus: "#22c55e",
   accepted: "#3b82f6",
@@ -905,17 +914,17 @@ function ClaimAnnotatedSpan({
   );
 }
 
-export default function WikiPageClientView() {
+export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtureData }: { testOnlyFixtureSlug?: string; testOnlyFixtureData?: WikiPageClientTestOnlyFixtureData } = {}) {
   const params = useParams();
-  const slug = params?.slug as string;
-  const [page, setPage] = useState<WikiPage | null>(null);
+  const slug = testOnlyFixtureSlug ?? params?.slug as string;
+  const [page, setPage] = useState<WikiPage | null>(testOnlyFixtureData?.page ?? null);
   const [edits, setEdits] = useState<EditProposal[]>([]);
-  const [contributorsData, setContributorsData] = useState<ContributorsData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [contributorsData, setContributorsData] = useState<ContributorsData | null>(testOnlyFixtureData?.contributorsData ?? null);
+  const [loading, setLoading] = useState(!testOnlyFixtureData?.page);
   const [showV2, setShowV2] = useState(true);
   const [showColors, setShowColors] = useState(true);
-  const [claims, setClaims] = useState<any>(null);
-  const [citations, setCitations] = useState<PageCitation[]>([]);
+  const [claims, setClaims] = useState<any>(testOnlyFixtureData?.claims ?? null);
+  const [citations, setCitations] = useState<PageCitation[]>(testOnlyFixtureData?.citations ?? []);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editEmail, setEditEmail] = useState("");
   const [editContent, setEditContent] = useState("");
@@ -923,8 +932,8 @@ export default function WikiPageClientView() {
   const [editSubmitted, setEditSubmitted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
-  const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>({});
+  const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(testOnlyFixtureData?.health ?? null);
+  const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>(testOnlyFixtureData?.claimIdeasMap ?? {});
   const [ideasOpen, setIdeasOpen] = useState(false);
   const [showIdeas, setShowIdeas] = useState(false);
   const [citeViewMode, setCiteViewMode] = useState<"shown" | "hidden">("shown");
@@ -957,14 +966,16 @@ export default function WikiPageClientView() {
   }, []);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.health) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/health`)
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d?.score != null) setHealth(d); })
       .catch(() => {});
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.health]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.page) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}`)
       .then(r => r.ok ? r.json() : null)
@@ -982,18 +993,20 @@ export default function WikiPageClientView() {
           .then(setContributorsData)
           .catch(() => setContributorsData(null));
       });
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.page]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.claims) return;
     if (!claims) {
       fetch(`/api/pages/${slug}/claims`)
         .then(r => r.json())
         .then(d => setClaims(d))
         .catch(() => {});
     }
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.claims]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.claimIdeasMap) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/ideas?per_page=100`)
       .then(r => r.json())
@@ -1008,15 +1021,16 @@ export default function WikiPageClientView() {
         setClaimIdeasMap(map);
       })
       .catch(() => {});
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.claimIdeasMap]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.citations) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/citations`)
       .then(r => r.ok ? r.json() : { citations: [] })
       .then(data => setCitations(data.citations || []))
       .catch(() => setCitations([]));
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.citations]);
 
 
 
