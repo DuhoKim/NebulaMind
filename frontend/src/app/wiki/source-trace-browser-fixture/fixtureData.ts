@@ -29,7 +29,7 @@ The fixture intentionally combines one claim badge, one evidence panel, and two 
             connector: null,
             trust_level: "debated",
             evidence_count: 2,
-            con_count: 0,
+            con_count: 1,
             section: "Fixture",
             has_escalation: false,
           },
