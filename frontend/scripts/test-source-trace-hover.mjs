@@ -83,6 +83,26 @@ assert.match(clientSource, /Source trace/, "Citation popovers should visibly lab
 assert.match(clientSource, /onMouseEnter=/, "Citation source traces should open on hover.");
 assert.match(clientSource, /onFocus=/, "Citation source traces should open for keyboard focus.");
 assert.match(clientSource, /const handleSourceTraceKeyDown[\s\S]*e\.key === "Escape"/, "Source trace should close on Escape from trigger or card.");
+assert.match(clientSource, /if \(e\.key === "Escape" && visible\)/, "Source trace Escape handler should only intercept Escape while the hover card is visible.");
+// Keep this Escape isolation contract in lock-step with test-claim-minimap-hover.mjs.
+const sourceTraceEscapeHandler = clientSource.match(/const handleSourceTraceKeyDown = \(e: React\.KeyboardEvent\) => \{[\s\S]*?\n  \};/);
+assert.ok(sourceTraceEscapeHandler, "Source trace Escape handler should be extractable for isolation checks.");
+const sourceTraceEscapeHandlerSource = sourceTraceEscapeHandler[0];
+assert.ok(sourceTraceEscapeHandlerSource.length > 120, "Source trace Escape handler extraction should include the full close/focus isolation block.");
+const sourceTracePreventDefaultIndex = sourceTraceEscapeHandlerSource.indexOf("e.preventDefault();");
+const sourceTraceStopPropagationIndex = sourceTraceEscapeHandlerSource.indexOf("e.stopPropagation();");
+const sourceTraceCloseIndex = sourceTraceEscapeHandlerSource.indexOf("closeSourceTrace();");
+const sourceTraceFocusIndex = sourceTraceEscapeHandlerSource.indexOf("sourceTraceTriggerRef.current?.focus();");
+assert.ok(sourceTracePreventDefaultIndex >= 0, "Source trace Escape handler should prevent default before closing.");
+assert.ok(sourceTraceStopPropagationIndex >= 0, "Source trace Escape handler should stop propagation before closing.");
+assert.ok(sourceTraceCloseIndex >= 0, "Source trace Escape handler should close the hover card.");
+assert.ok(sourceTraceFocusIndex >= 0, "Source trace Escape handler should return focus to the trigger.");
+assert.ok(
+  sourceTracePreventDefaultIndex < sourceTraceStopPropagationIndex
+    && sourceTraceStopPropagationIndex < sourceTraceCloseIndex
+    && sourceTraceCloseIndex < sourceTraceFocusIndex,
+  "Source trace Escape isolation should prevent default and stop propagation before close/focus return.",
+);
 assert.match(clientSource, /sourceTraceTriggerRef\.current\?\.focus\(\)/, "Source trace Escape close should return focus to the trigger.");
 assert.match(clientSource, /aria-labelledby=\{sourceTraceHeadingId\}/, "Source trace dialog should be labelled by its visible heading.");
 assert.match(clientSource, /id=\{sourceTraceHeadingId\}/, "Source trace heading id should match aria-labelledby.");
