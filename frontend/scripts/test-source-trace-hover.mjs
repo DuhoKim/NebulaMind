@@ -73,6 +73,7 @@ assert.equal(fallback.summary, "No abstract or summary has been published for th
 
 const clientSource = fs.readFileSync(clientPath, "utf8");
 assert.match(clientSource, /from "\.\/sourceTraceHover"/, "WikiPageClient should use the source trace helper.");
+assert.match(clientSource, /data-testid="source-trace-trigger"/, "Citation trigger should be mechanically addressable for keyboard UX checks.");
 assert.match(clientSource, /data-testid="source-trace-hover-card"/, "Citation popovers should expose a testable source trace hover card.");
 assert.match(clientSource, /data-testid="source-trace-cross-links"/, "Source trace hover cards should expose cross-links into source surfaces.");
 assert.match(clientSource, /Open source index/, "Source trace cards should link to the full wiki source index.");
@@ -81,6 +82,11 @@ assert.match(clientSource, /pageSlug=\{slug\}/, "Citation badges should receive 
 assert.match(clientSource, /Source trace/, "Citation popovers should visibly label the hover card as a source trace.");
 assert.match(clientSource, /onMouseEnter=/, "Citation source traces should open on hover.");
 assert.match(clientSource, /onFocus=/, "Citation source traces should open for keyboard focus.");
+assert.match(clientSource, /const handleSourceTraceKeyDown[\s\S]*e\.key === "Escape"/, "Source trace should close on Escape from trigger or card.");
+assert.match(clientSource, /sourceTraceTriggerRef\.current\?\.focus\(\)/, "Source trace Escape close should return focus to the trigger.");
+assert.match(clientSource, /aria-labelledby=\{sourceTraceHeadingId\}/, "Source trace dialog should be labelled by its visible heading.");
+assert.match(clientSource, /id=\{sourceTraceHeadingId\}/, "Source trace heading id should match aria-labelledby.");
+assert.match(clientSource, /Press Escape to close/, "Source trace hover card should expose a visible keyboard dismissal hint.");
 assert.doesNotMatch(clientSource, /Citation metadata is still loading/, "Old generic citation-loading copy should be replaced with source trace language.");
 
 const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));

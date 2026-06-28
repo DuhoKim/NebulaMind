@@ -249,13 +249,29 @@ function formatAuthors(authors: string[]): string {
 function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCitation[]; unmatched?: string; pageSlug?: string }) {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const sourceTraceTriggerRef = useRef<HTMLButtonElement | null>(null);
   const visible = open || hovered;
   const firstEvidenceId = citations[0]?.evidence_id;
   const hoverCardId = firstEvidenceId ? `source-trace-hover-card-${firstEvidenceId}` : undefined;
+  const sourceTraceHeadingId = hoverCardId ? `${hoverCardId}-heading` : undefined;
+
+  const closeSourceTrace = () => {
+    setOpen(false);
+    setHovered(false);
+  };
+
+  const handleSourceTraceKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && visible) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeSourceTrace();
+      sourceTraceTriggerRef.current?.focus();
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
-    const close = () => setOpen(false);
+    const close = () => closeSourceTrace();
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, [open]);
@@ -282,9 +298,12 @@ function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCita
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
       }}
+      onKeyDown={handleSourceTraceKeyDown}
     >
       <button
+        ref={sourceTraceTriggerRef}
         type="button"
+        data-testid="source-trace-trigger"
         aria-label={`${visible ? "Hide" : "Show"} Source trace for ${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
         aria-haspopup="dialog"
         aria-expanded={visible}
@@ -311,7 +330,7 @@ function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCita
           id={hoverCardId}
           data-testid="source-trace-hover-card"
           role="dialog"
-          aria-label="Source trace hover card"
+          aria-labelledby={sourceTraceHeadingId}
           onClick={(e) => e.stopPropagation()}
           style={{
             position: "absolute",
@@ -328,8 +347,11 @@ function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCita
             whiteSpace: "normal",
           }}
         >
-          <span style={{ display: "block", color: "#a5b4fc", fontSize: "0.64rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+          <span id={sourceTraceHeadingId} style={{ display: "block", color: "#a5b4fc", fontSize: "0.64rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
             Source trace
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.35, marginTop: "-0.2rem", marginBottom: "0.55rem" }}>
+            Press Escape to close.
           </span>
           {citations.map((citation) => {
             const trace = formatSourceTraceHoverCard(citation, pageSlug);
@@ -454,13 +476,29 @@ function ClaimTrustBadge({
   onOpen: () => void;
 }) {
   const [hovered, setHovered] = useState(false);
+  const claimMiniMapTriggerRef = useRef<HTMLButtonElement | null>(null);
   const meta = trustVisibilityMeta(claim?.trust_level);
   const label = formatClaimTrustBadge(claim);
   const miniMap = buildClaimMiniMapHover(claim);
   const miniMapId = claim?.id ? `claim-mini-map-hover-${claim.id}` : undefined;
+  const miniMapHeadingId = miniMapId ? `${miniMapId}-heading` : undefined;
   const showMiniMap = hovered && !open;
+
+  const closeMiniMap = () => {
+    setHovered(false);
+  };
+
+  const handleMiniMapKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && showMiniMap) {
+      e.preventDefault();
+      e.stopPropagation();
+      closeMiniMap();
+      claimMiniMapTriggerRef.current?.focus();
+    }
+  };
   return (
     <span
+      data-testid="claim-mini-map-trigger"
       style={{ position: "relative", display: "inline-flex", verticalAlign: "0.08em" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -468,15 +506,17 @@ function ClaimTrustBadge({
       onBlur={(e) => {
         if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
       }}
+      onKeyDown={handleMiniMapKeyDown}
     >
       <button
+        ref={claimMiniMapTriggerRef}
         type="button"
         data-testid="claim-trust-badge"
         aria-label={`Open evidence map for ${label}`}
         aria-haspopup="dialog"
-        aria-expanded={open}
-        aria-controls={panelId}
-        aria-describedby={miniMapId}
+        aria-expanded={open || showMiniMap}
+        aria-controls={showMiniMap ? miniMapId : panelId}
+        aria-describedby={showMiniMap ? miniMapId : undefined}
         title={`${label} — hover for claim mini-map; click for paper evidence`}
         onClick={(e) => {
           e.preventDefault();
@@ -510,6 +550,7 @@ function ClaimTrustBadge({
           id={miniMapId}
           data-testid="claim-mini-map-hover-card"
           role="tooltip"
+          aria-labelledby={miniMapHeadingId}
           onClick={(e) => e.stopPropagation()}
           style={{
             position: "absolute",
@@ -526,8 +567,11 @@ function ClaimTrustBadge({
             whiteSpace: "normal",
           }}
         >
-          <span style={{ display: "block", color: "#a5b4fc", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.38rem" }}>
+          <span id={miniMapHeadingId} style={{ display: "block", color: "#a5b4fc", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.38rem" }}>
             Claim mini-map
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.35, marginTop: "-0.12rem", marginBottom: "0.42rem" }}>
+            Press Escape to close this mini-map.
           </span>
           <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, lineHeight: 1.35 }}>
             {miniMap.stance}
