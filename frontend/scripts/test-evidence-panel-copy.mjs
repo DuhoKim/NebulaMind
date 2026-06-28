@@ -26,12 +26,14 @@ vm.runInNewContext(compiled.outputText, { module, exports: module.exports, requi
 
 const {
   buildEvidencePanelCopy,
+  buildEvidenceVoteCockpitVisuals,
   buildEvidenceVoteSignal,
   evidenceSide,
   formatLinkedPaperSourceCount,
 } = module.exports;
 
 assert.equal(typeof buildEvidencePanelCopy, "function");
+assert.equal(typeof buildEvidenceVoteCockpitVisuals, "function");
 assert.equal(typeof buildEvidenceVoteSignal, "function");
 assert.equal(typeof evidenceSide, "function");
 assert.equal(typeof formatLinkedPaperSourceCount, "function");
@@ -88,11 +90,30 @@ assert.equal(voteSignal.headline, "Counted vote signal: 6 support · 4 weakening
 assert.equal(voteSignal.verdict, "net_support");
 assert.equal(voteSignal.verdictLabel, "Net +2 support signal");
 assert.match(voteSignal.detail, /Countering evidence flips the meaning/);
+const voteVisuals = buildEvidenceVoteCockpitVisuals(voteSignal);
+assert.equal(voteVisuals.eyebrow, "At-a-glance vote balance");
+assert.equal(voteVisuals.summary, "6 support votes · 4 weakening votes · 11 unresolved votes");
+assert.equal(voteVisuals.dominantLabel, "unresolved votes dominate this cockpit");
+assert.equal(
+  JSON.stringify(voteVisuals.segments.map((segment) => [segment.kind, segment.count, segment.percent, segment.label])),
+  JSON.stringify([
+    ["support", 6, 29, "support"],
+    ["weakening", 4, 19, "weakening"],
+    ["unresolved", 11, 52, "unresolved"],
+  ]),
+);
 
 const noVoteSignal = buildEvidenceVoteSignal([{ id: 4, stance: "supports", votes_agree: 0, votes_disagree: 0 }]);
 assert.equal(noVoteSignal.totalVotes, 0);
 assert.equal(noVoteSignal.verdict, "unvoted");
 assert.equal(noVoteSignal.verdictLabel, "No counted evidence votes yet");
+const noVoteVisuals = buildEvidenceVoteCockpitVisuals(noVoteSignal);
+assert.equal(noVoteVisuals.summary, "No counted evidence votes yet");
+assert.equal(noVoteVisuals.dominantLabel, "waiting for counted votes");
+assert.equal(
+  JSON.stringify(noVoteVisuals.segments.map((segment) => [segment.kind, segment.count, segment.percent])),
+  JSON.stringify([["support", 0, 0], ["weakening", 0, 0], ["unresolved", 0, 0]]),
+);
 
 const unresolvedVoteSignal = buildEvidenceVoteSignal([{ id: 5, stance: "none", votes_agree: 5, votes_disagree: 6 }]);
 assert.equal(unresolvedVoteSignal.supportVotes, 0);
@@ -106,6 +127,11 @@ const panelSource = fs.readFileSync(panelPath, "utf8");
 assert.match(panelSource, /from "\.\/evidencePanelCopy"/, "DebateEvidencePanel should use shared copy helpers.");
 assert.match(panelSource, /data-testid="evidence-panel-neutral-summary"/, "Neutral-only evidence state should have a testable summary.");
 assert.match(panelSource, /data-testid="evidence-vote-signal"/, "Panel should expose a visible counted vote signal summary.");
+assert.match(panelSource, /data-testid="evidence-vote-balance-bar"/, "Vote cockpit polish should include a testable at-a-glance segmented balance bar.");
+assert.match(panelSource, /data-testid="evidence-vote-metric-grid"/, "Vote cockpit polish should expose metric cards for support, weakening, and unresolved counts.");
+assert.match(panelSource, /At-a-glance vote balance/, "Vote cockpit should use clearer visual hierarchy copy.");
+assert.match(panelSource, /How counted votes map to the claim signal/, "Detailed semantics should move behind a disclosure instead of dominating the cockpit.");
+assert.match(panelSource, /buildEvidenceVoteCockpitVisuals\(voteSignal\)/, "Panel should derive visual balance segments from the claim vote signal.");
 assert.match(panelSource, /buildEvidenceVoteSignal\(evidence \|\| \[\]\)/, "Panel should derive claim-level support/weakening signal from evidence vote counts.");
 assert.match(panelSource, /claim support signal/, "Evidence cards should explain claim-level support votes, not only raw pro/con counts.");
 assert.match(panelSource, /claim weakening signal/, "Evidence cards should explain claim-level weakening votes, not only raw pro/con counts.");

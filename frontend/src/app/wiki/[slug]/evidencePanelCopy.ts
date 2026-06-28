@@ -7,6 +7,23 @@ export interface EvidencePanelItemLike {
 }
 
 export type EvidenceVoteSignalVerdict = "net_support" | "net_weakening" | "split" | "unresolved" | "unvoted";
+export type EvidenceVoteCockpitSegmentKind = "support" | "weakening" | "unresolved";
+
+export interface EvidenceVoteCockpitSegment {
+  kind: EvidenceVoteCockpitSegmentKind;
+  label: string;
+  count: number;
+  percent: number;
+  color: string;
+  background: string;
+}
+
+export interface EvidenceVoteCockpitVisuals {
+  eyebrow: "At-a-glance vote balance";
+  summary: string;
+  dominantLabel: string;
+  segments: EvidenceVoteCockpitSegment[];
+}
 
 export interface EvidenceVoteSignal {
   supportVotes: number;
@@ -111,6 +128,66 @@ export function buildEvidenceVoteSignal(evidence: EvidencePanelItemLike[] | null
     headline: totalVotes > 0 ? `Counted vote signal: ${headlineParts.join(" · ")}` : "Counted vote signal: no votes yet",
     detail:
       "Agreement on supporting evidence counts toward support; disagreement with supporting evidence counts toward weakening. Countering evidence flips the meaning: agreement counts toward weakening, disagreement counts toward support. Neutral evidence votes stay unresolved.",
+  };
+}
+
+function votePercent(count: number, total: number): number {
+  if (!total) return 0;
+  return Math.round((count / total) * 100);
+}
+
+function pluralVote(count: number, label: string): string {
+  return `${count.toLocaleString()} ${label} vote${count === 1 ? "" : "s"}`;
+}
+
+function dominantVoteLabel(signal: EvidenceVoteSignal): string {
+  if (!signal.totalVotes) return "waiting for counted votes";
+  const leaders = [
+    ["support", signal.supportVotes],
+    ["weakening", signal.weakeningVotes],
+    ["unresolved", signal.unresolvedVotes],
+  ] as const;
+  const max = Math.max(...leaders.map(([, count]) => count));
+  const winners = leaders.filter(([, count]) => count === max && count > 0);
+  if (winners.length !== 1) return "split vote cockpit";
+  return `${winners[0][0]} votes dominate this cockpit`;
+}
+
+export function buildEvidenceVoteCockpitVisuals(signal: EvidenceVoteSignal): EvidenceVoteCockpitVisuals {
+  const segments: EvidenceVoteCockpitSegment[] = [
+    {
+      kind: "support",
+      label: "support",
+      count: signal.supportVotes,
+      percent: votePercent(signal.supportVotes, signal.totalVotes),
+      color: "#22c55e",
+      background: "rgba(34,197,94,0.16)",
+    },
+    {
+      kind: "weakening",
+      label: "weakening",
+      count: signal.weakeningVotes,
+      percent: votePercent(signal.weakeningVotes, signal.totalVotes),
+      color: "#ef4444",
+      background: "rgba(239,68,68,0.16)",
+    },
+    {
+      kind: "unresolved",
+      label: "unresolved",
+      count: signal.unresolvedVotes,
+      percent: votePercent(signal.unresolvedVotes, signal.totalVotes),
+      color: "#94a3b8",
+      background: "rgba(148,163,184,0.16)",
+    },
+  ];
+
+  return {
+    eyebrow: "At-a-glance vote balance",
+    summary: signal.totalVotes > 0
+      ? segments.map((segment) => pluralVote(segment.count, segment.label)).join(" · ")
+      : "No counted evidence votes yet",
+    dominantLabel: dominantVoteLabel(signal),
+    segments,
   };
 }
 
