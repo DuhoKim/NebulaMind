@@ -12,6 +12,13 @@ export interface SourceTraceCitationLike {
   journal_ref?: string | null;
 }
 
+export interface SourceTraceCrossLink {
+  kind: "source-index" | "external-paper";
+  label: string;
+  href: string;
+  external: boolean;
+}
+
 export interface SourceTraceHoverCardCopy {
   eyebrow: "Source trace";
   title: string;
@@ -19,6 +26,7 @@ export interface SourceTraceHoverCardCopy {
   byline: string;
   locator: string;
   summary: string;
+  crossLinks: SourceTraceCrossLink[];
 }
 
 function splitAuthors(authors?: string[] | string | null): string[] {
@@ -81,7 +89,37 @@ function formatLocator(citation: SourceTraceCitationLike): string {
   return url ? "External source link available" : "External source link unavailable";
 }
 
-export function formatSourceTraceHoverCard(citation: SourceTraceCitationLike): SourceTraceHoverCardCopy {
+function cleanPageSlug(pageSlug?: string | null): string {
+  return cleanText(pageSlug).replace(/^\/+|\/+$/g, "");
+}
+
+export function buildSourceTraceCrossLinks(
+  citation: SourceTraceCitationLike,
+  pageSlug?: string | null,
+): SourceTraceCrossLink[] {
+  const links: SourceTraceCrossLink[] = [];
+  const slug = cleanPageSlug(pageSlug);
+  if (slug) {
+    links.push({
+      kind: "source-index",
+      label: "Open source index",
+      href: `/wiki/${encodeURIComponent(slug)}/sources`,
+      external: false,
+    });
+  }
+  const url = cleanText(citation.url);
+  if (url) {
+    links.push({
+      kind: "external-paper",
+      label: "Open paper",
+      href: url,
+      external: true,
+    });
+  }
+  return links;
+}
+
+export function formatSourceTraceHoverCard(citation: SourceTraceCitationLike, pageSlug?: string | null): SourceTraceHoverCardCopy {
   return {
     eyebrow: "Source trace",
     title: cleanText(citation.title) || "Untitled source",
@@ -89,5 +127,6 @@ export function formatSourceTraceHoverCard(citation: SourceTraceCitationLike): S
     byline: formatByline(citation),
     locator: formatLocator(citation),
     summary: formatSourceTraceSummary(citation.summary || citation.abstract),
+    crossLinks: buildSourceTraceCrossLinks(citation, pageSlug),
   };
 }

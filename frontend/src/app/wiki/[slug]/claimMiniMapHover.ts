@@ -25,6 +25,10 @@ export interface ClaimMiniMapHoverCopy {
   unresolvedCount: number;
   stance: string;
   summary: string;
+  evidencePanelId?: string;
+  claimAnchorHref?: string;
+  primaryActionLabel: "Open full evidence map";
+  secondaryActionLabel: "Jump to claim text";
   segments: ClaimMiniMapSegment[];
 }
 
@@ -50,6 +54,11 @@ function inferStance(total: number, support: number, counter: number, unresolved
   return "mixed evidence";
 }
 
+function claimIdText(value: unknown): string {
+  const clean = String(value ?? "").trim();
+  return /^\d+$/.test(clean) ? clean : "";
+}
+
 export function buildClaimMiniMapHover(claim: ClaimMiniMapClaimLike | null | undefined): ClaimMiniMapHoverCopy {
   const totalSources = safeCount(claim?.evidence_count);
   const counterCount = Math.min(safeCount(claim?.con_count), totalSources || safeCount(claim?.con_count));
@@ -62,6 +71,7 @@ export function buildClaimMiniMapHover(claim: ClaimMiniMapClaimLike | null | und
   const inferredTotal = Math.max(totalSources, supportCount + counterCount + explicitUnresolved);
   const unresolvedCount = Math.max(explicitUnresolved, inferredTotal - supportCount - counterCount);
   const stance = inferStance(inferredTotal, supportCount, counterCount, unresolvedCount);
+  const claimId = claimIdText(claim?.id);
 
   const segments: ClaimMiniMapSegment[] = [
     { kind: "support", label: "supporting", count: supportCount, percent: percent(supportCount, inferredTotal), color: "#22c55e" },
@@ -77,6 +87,10 @@ export function buildClaimMiniMapHover(claim: ClaimMiniMapClaimLike | null | und
     unresolvedCount,
     stance,
     summary: inferredTotal ? formatClaimMiniMapSummary({ supportCount, counterCount, unresolvedCount, totalSources: inferredTotal } as ClaimMiniMapHoverCopy) : "No evidence mini-map yet",
+    evidencePanelId: claimId ? `claim-evidence-panel-${claimId}` : undefined,
+    claimAnchorHref: claimId ? `#claim-${claimId}` : undefined,
+    primaryActionLabel: "Open full evidence map",
+    secondaryActionLabel: "Jump to claim text",
     segments,
   };
 }
