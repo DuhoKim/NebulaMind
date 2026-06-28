@@ -21,6 +21,7 @@ import {
   type TrustVisibilitySummary,
 } from "./trustVisibility";
 import { formatSourceTraceHoverCard } from "./sourceTraceHover";
+import { buildClaimMiniMapHover, formatClaimMiniMapSummary } from "./claimMiniMapHover";
 
 interface WikiPage {
   id: number;
@@ -425,45 +426,114 @@ function ClaimTrustBadge({
   panelId?: string;
   onOpen: () => void;
 }) {
+  const [hovered, setHovered] = useState(false);
   const meta = trustVisibilityMeta(claim?.trust_level);
   const label = formatClaimTrustBadge(claim);
+  const miniMap = buildClaimMiniMapHover(claim);
+  const miniMapId = claim?.id ? `claim-mini-map-hover-${claim.id}` : undefined;
+  const showMiniMap = hovered && !open;
   return (
-    <button
-      type="button"
-      data-testid="claim-trust-badge"
-      aria-label={`Open evidence map for ${label}`}
-      aria-haspopup="dialog"
-      aria-expanded={open}
-      aria-controls={panelId}
-      title={`${label} — click for paper evidence`}
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpen();
-      }}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.22rem",
-        marginLeft: "0.42rem",
-        marginRight: "0.12rem",
-        padding: "0.08rem 0.46rem",
-        borderRadius: "999px",
-        border: `1px solid ${meta.border}`,
-        background: meta.background,
-        color: meta.color,
-        fontSize: "0.66rem",
-        fontWeight: 800,
-        letterSpacing: "0.015em",
-        lineHeight: 1.35,
-        verticalAlign: "0.08em",
-        cursor: "pointer",
-        whiteSpace: "nowrap",
+    <span
+      style={{ position: "relative", display: "inline-flex", verticalAlign: "0.08em" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
       }}
     >
-      <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
-      <span>{label}</span>
-    </button>
+      <button
+        type="button"
+        data-testid="claim-trust-badge"
+        aria-label={`Open evidence map for ${label}`}
+        aria-haspopup="dialog"
+        aria-expanded={open}
+        aria-controls={panelId}
+        aria-describedby={miniMapId}
+        title={`${label} — hover for claim mini-map; click for paper evidence`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onOpen();
+        }}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "0.22rem",
+          marginLeft: "0.42rem",
+          marginRight: "0.12rem",
+          padding: "0.08rem 0.46rem",
+          borderRadius: "999px",
+          border: `1px solid ${meta.border}`,
+          background: meta.background,
+          color: meta.color,
+          fontSize: "0.66rem",
+          fontWeight: 800,
+          letterSpacing: "0.015em",
+          lineHeight: 1.35,
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
+        <span>{label}</span>
+      </button>
+      {showMiniMap && (
+        <span
+          id={miniMapId}
+          data-testid="claim-mini-map-hover-card"
+          role="tooltip"
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            top: "1.6rem",
+            left: "0.25rem",
+            zIndex: 130,
+            width: "min(22rem, 88vw)",
+            padding: "0.78rem",
+            borderRadius: "10px",
+            border: `1px solid ${meta.border}`,
+            borderLeft: `3px solid ${meta.color}`,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.96))",
+            boxShadow: "0 14px 34px rgba(0,0,0,0.48)",
+            whiteSpace: "normal",
+          }}
+        >
+          <span style={{ display: "block", color: "#a5b4fc", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.38rem" }}>
+            Claim mini-map
+          </span>
+          <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, lineHeight: 1.35 }}>
+            {miniMap.stance}
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.7rem", lineHeight: 1.45, marginTop: "0.24rem" }}>
+            {formatClaimMiniMapSummary(miniMap)}
+          </span>
+          <span aria-hidden="true" style={{ display: "flex", overflow: "hidden", height: "0.46rem", borderRadius: "999px", background: "rgba(100,116,139,0.22)", marginTop: "0.55rem", border: "1px solid rgba(148,163,184,0.16)" }}>
+            {miniMap.segments.map((segment) => (
+              <span
+                key={segment.kind}
+                title={`${segment.label}: ${segment.count} (${segment.percent}%)`}
+                style={{
+                  width: `${segment.percent}%`,
+                  minWidth: segment.count > 0 ? "0.4rem" : 0,
+                  background: segment.color,
+                }}
+              />
+            ))}
+          </span>
+          <span style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.35rem", marginTop: "0.55rem" }}>
+            {miniMap.segments.map((segment) => (
+              <span key={segment.kind} style={{ color: segment.color, fontSize: "0.66rem", fontWeight: 800 }}>
+                {segment.count.toLocaleString()} {segment.label}
+              </span>
+            ))}
+          </span>
+          <span style={{ display: "block", color: "#64748b", fontSize: "0.66rem", lineHeight: 1.4, marginTop: "0.55rem" }}>
+            Click for full evidence map.
+          </span>
+        </span>
+      )}
+    </span>
   );
 }
 
