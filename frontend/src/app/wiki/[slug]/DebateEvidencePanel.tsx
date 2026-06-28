@@ -4,6 +4,7 @@ import { RefObject, useCallback, useEffect, useId, useMemo, useRef, useState } f
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
 import { buildClaimSourceContradictionAtlas, buildEvidenceCardDensityMeta, buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide, type ClaimSourceContradictionSource } from "./evidencePanelCopy";
+import { buildPaperFootprintForEvidence, type PaperClaimFlightDeck, type PaperClaimFlightDeckItem, type PaperFootprintModalModel } from "./paperClaimFlightDeck";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -39,6 +40,7 @@ interface DebateEvidencePanelProps {
   totalElements?: number;
   onClose: () => void;
   returnFocusRef?: RefObject<HTMLElement>;
+  paperFootprintsByEvidenceId?: Record<number, PaperClaimFlightDeckItem | undefined>;
 }
 
 function percent(value?: number | null): number {
@@ -75,7 +77,15 @@ function AtlasSourceLink({ source, label }: { source: ClaimSourceContradictionSo
   );
 }
 
-function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
+function EvidenceCard({
+  ev,
+  paperFootprint,
+  onOpenPaperFootprint,
+}: {
+  ev: DebateEvidenceItem;
+  paperFootprint?: PaperClaimFlightDeckItem | null;
+  onOpenPaperFootprint?: (ev: DebateEvidenceItem, origin: HTMLButtonElement) => void;
+}) {
   const [scoreOpen, setScoreOpen] = useState(false);
   const side = evidenceSide(ev.stance);
   const accent = side === "counter" ? "#ef4444" : side === "support" ? "#22c55e" : "#94a3b8";
@@ -175,6 +185,32 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
           <div data-testid="evidence-card-activity-rail" style={{ color: density.hasActivity ? "#94a3b8" : "#475569", fontSize: "0.63rem", marginTop: "0.32rem" }}>
             {density.activityLabel}
           </div>
+          {paperFootprint && onOpenPaperFootprint && (
+            <button
+              type="button"
+              data-testid="paper-footprint-entry-button"
+              aria-haspopup="dialog"
+              aria-controls={`paper-footprint-modal-${ev.id}`}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                onOpenPaperFootprint(ev, e.currentTarget);
+              }}
+              style={{
+                marginTop: "0.42rem",
+                border: "1px solid rgba(56,189,248,0.42)",
+                background: "rgba(14,165,233,0.12)",
+                color: "#bae6fd",
+                borderRadius: "999px",
+                padding: "0.18rem 0.52rem",
+                cursor: "pointer",
+                fontSize: "0.64rem",
+                fontWeight: 850,
+              }}
+            >
+              View paper footprint
+            </button>
+          )}
           {scoreOpen && (
             <div style={{ marginTop: "0.45rem", borderTop: "1px solid #1e293b", paddingTop: "0.4rem" }}>
               {[
@@ -212,10 +248,14 @@ export default function DebateEvidencePanel({
   totalElements = 0,
   onClose,
   returnFocusRef,
+  paperFootprintsByEvidenceId,
 }: DebateEvidencePanelProps) {
   const [isNarrow, setIsNarrow] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [selectedPaperFootprint, setSelectedPaperFootprint] = useState<PaperFootprintModalModel | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement | null>(null);
+  const paperFootprintCloseButtonRef = useRef<HTMLButtonElement | null>(null);
+  const paperFootprintReturnFocusRef = useRef<HTMLButtonElement | null>(null);
   const isContested = ["debated", "challenged"].includes(trustLevel);
   const fallbackPanelId = useId();
   const evidencePanelTitle = isContested ? "Debate map" : "Evidence map";
@@ -223,8 +263,31 @@ export default function DebateEvidencePanel({
   const evidencePanelBaseId = panelId || (claimId ? `claim-evidence-panel-${claimId}` : `evidence-panel-dialog-${fallbackPanelId}`);
   const evidencePanelHeadingId = `${evidencePanelBaseId}-heading`;
   const evidencePanelHintId = `${evidencePanelBaseId}-keyboard-hint`;
+  const paperFootprintHeadingId = selectedPaperFootprint ? `paper-footprint-modal-${selectedPaperFootprint.evidenceId}-heading` : undefined;
+  const paperFootprintDescriptionId = selectedPaperFootprint ? `paper-footprint-modal-${selectedPaperFootprint.evidenceId}-description` : undefined;
+  const paperFootprintDeck = useMemo(() => ({
+    items: Object.values(paperFootprintsByEvidenceId ?? {}).filter((item): item is PaperClaimFlightDeckItem => Boolean(item)),
+  } as PaperClaimFlightDeck), [paperFootprintsByEvidenceId]);
+
+  const closePaperFootprint = useCallback(() => {
+    const origin = paperFootprintReturnFocusRef.current;
+    setSelectedPaperFootprint(null);
+    window.setTimeout(() => origin?.focus(), 0);
+  }, []);
+
+  const openPaperFootprint = useCallback((ev: DebateEvidenceItem, origin: HTMLButtonElement) => {
+    const footprint = buildPaperFootprintForEvidence(paperFootprintDeck, ev.id, {
+      claimId,
+      stance: ev.stance,
+      status: ev.status,
+    });
+    if (!footprint) return;
+    paperFootprintReturnFocusRef.current = origin;
+    setSelectedPaperFootprint(footprint);
+  }, [claimId, paperFootprintDeck]);
 
   const closePanel = useCallback(() => {
+    setSelectedPaperFootprint(null);
     onClose();
     window.requestAnimationFrame(() => returnFocusRef?.current?.focus());
   }, [onClose, returnFocusRef]);
@@ -233,9 +296,17 @@ export default function DebateEvidencePanel({
     setMounted(true);
     const priorOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    const focusTimer = window.setTimeout(() => closeButtonRef.current?.focus(), 0);
+    const focusTimer = paperFootprintReturnFocusRef.current ? undefined : window.setTimeout(() => closeButtonRef.current?.focus(), 0);
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closePanel();
+      if (event.key === "Escape") {
+        if (selectedPaperFootprint) {
+          event.preventDefault();
+          event.stopPropagation();
+          closePaperFootprint();
+          return;
+        }
+        closePanel();
+      }
     };
     document.addEventListener("keydown", closeOnEscape);
     return () => {
@@ -243,7 +314,7 @@ export default function DebateEvidencePanel({
       document.removeEventListener("keydown", closeOnEscape);
       document.body.style.overflow = priorOverflow;
     };
-  }, [closePanel]);
+  }, [closePanel, closePaperFootprint, selectedPaperFootprint]);
 
   useEffect(() => {
     const check = () => setIsNarrow(window.innerWidth < DEBATE_PANEL_BREAKPOINT);
@@ -251,6 +322,12 @@ export default function DebateEvidencePanel({
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
   }, []);
+
+  useEffect(() => {
+    if (!selectedPaperFootprint) return;
+    const focusTimer = window.setTimeout(() => paperFootprintCloseButtonRef.current?.focus(), 0);
+    return () => window.clearTimeout(focusTimer);
+  }, [selectedPaperFootprint]);
 
   const grouped = useMemo(() => {
     const support: DebateEvidenceItem[] = [];
@@ -506,7 +583,7 @@ export default function DebateEvidencePanel({
             <div>
               <div style={{ color: "#22c55e", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Supporting evidence</div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {grouped.support.length > 0 ? grouped.support.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
+                {grouped.support.length > 0 ? grouped.support.map((ev) => <EvidenceCard key={ev.id} ev={ev} paperFootprint={paperFootprintsByEvidenceId?.[ev.id]} onOpenPaperFootprint={openPaperFootprint} />) : (
                   <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No supporting evidence recorded.</div>
                 )}
               </div>
@@ -514,14 +591,14 @@ export default function DebateEvidencePanel({
             <div>
               <div style={{ color: "#ef4444", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Countering evidence</div>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                {grouped.counter.length > 0 ? grouped.counter.map((ev) => <EvidenceCard key={ev.id} ev={ev} />) : (
+                {grouped.counter.length > 0 ? grouped.counter.map((ev) => <EvidenceCard key={ev.id} ev={ev} paperFootprint={paperFootprintsByEvidenceId?.[ev.id]} onOpenPaperFootprint={openPaperFootprint} />) : (
                   <div style={{ border: "1px dashed #334155", borderRadius: "6px", padding: "0.7rem", color: "#64748b", fontSize: "0.7rem" }}>No countering evidence recorded.</div>
                 )}
                 {grouped.neutral.length > 0 && (
                   <div style={{ marginTop: "0.35rem" }}>
                     <div style={{ color: "#94a3b8", fontSize: "0.66rem", fontWeight: 750, marginBottom: "0.35rem" }}>Neutral or unresolved</div>
                     <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                      {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} />)}
+                      {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} paperFootprint={paperFootprintsByEvidenceId?.[ev.id]} onOpenPaperFootprint={openPaperFootprint} />)}
                     </div>
                   </div>
                 )}
@@ -532,12 +609,135 @@ export default function DebateEvidencePanel({
           <div>
             <div style={{ color: "#94a3b8", fontSize: "0.68rem", fontWeight: 750, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: "0.45rem" }}>Linked paper sources</div>
             <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-              {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} />)}
+              {grouped.neutral.map((ev) => <EvidenceCard key={ev.id} ev={ev} paperFootprint={paperFootprintsByEvidenceId?.[ev.id]} onOpenPaperFootprint={openPaperFootprint} />)}
             </div>
           </div>
         )
       )}
       </section>
+      {selectedPaperFootprint && (
+        <>
+          <div
+            onClick={(e) => { e.stopPropagation(); closePaperFootprint(); }}
+            style={{
+              position: "fixed",
+              inset: 0,
+              zIndex: 149,
+              background: "rgba(2,6,23,0.42)",
+            }}
+            aria-hidden="true"
+          />
+          <section
+            id={`paper-footprint-modal-${selectedPaperFootprint.evidenceId}`}
+            data-testid="paper-footprint-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={paperFootprintHeadingId}
+            aria-describedby={paperFootprintDescriptionId}
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              position: "fixed",
+              top: isNarrow ? "3.6rem" : "50%",
+              left: isNarrow ? "0.8rem" : "50%",
+              right: isNarrow ? "0.8rem" : undefined,
+              transform: isNarrow ? undefined : "translate(-50%, -50%)",
+              zIndex: 150,
+              width: isNarrow ? "auto" : "min(42rem, 92vw)",
+              maxHeight: isNarrow ? "calc(100vh - 5rem)" : "min(34rem, 78vh)",
+              overflowY: "auto",
+              background: "linear-gradient(135deg, #0f172a, #111827)",
+              border: "1px solid rgba(56,189,248,0.42)",
+              borderLeft: "3px solid #38bdf8",
+              borderRadius: "12px",
+              padding: "0.95rem",
+              boxShadow: "0 24px 54px rgba(0,0,0,0.58)",
+              color: "#cbd5e1",
+            }}
+          >
+            <div style={{ display: "flex", justifyContent: "space-between", gap: "0.85rem", alignItems: "flex-start" }}>
+              <div>
+                <div style={{ color: "#67e8f9", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                  Paper footprint on this page
+                </div>
+                <h2 id={paperFootprintHeadingId} style={{ margin: "0.18rem 0 0", color: "#f8fafc", fontSize: "0.98rem", lineHeight: 1.28 }}>
+                  {selectedPaperFootprint.title}
+                </h2>
+                <p id={paperFootprintDescriptionId} style={{ margin: "0.35rem 0 0", color: "#bae6fd", fontSize: "0.72rem", lineHeight: 1.45 }}>
+                  {selectedPaperFootprint.headline}. {selectedPaperFootprint.currentStanceLabel}. Paper footprint is shown on this page only and is not a final verdict.
+                </p>
+              </div>
+              <button
+                ref={paperFootprintCloseButtonRef}
+                type="button"
+                data-testid="paper-footprint-close"
+                aria-label="Close paper footprint"
+                onClick={(e) => { e.stopPropagation(); closePaperFootprint(); }}
+                style={{ border: "1px solid #334155", background: "#0f172a", color: "#cbd5e1", cursor: "pointer", fontSize: "1rem", lineHeight: 1, width: "2.5rem", height: "2.5rem", borderRadius: "999px", flexShrink: 0 }}
+              >
+                x
+              </button>
+            </div>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.38rem", marginTop: "0.68rem" }}>
+              <span style={{ color: "#67e8f9", border: "1px solid rgba(103,232,249,0.34)", background: "rgba(14,165,233,0.12)", borderRadius: "999px", padding: "0.08rem 0.44rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                {selectedPaperFootprint.paperLabel}
+              </span>
+              <span style={{ color: "#94a3b8", border: "1px solid rgba(148,163,184,0.24)", background: "rgba(15,23,42,0.66)", borderRadius: "999px", padding: "0.08rem 0.44rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                {selectedPaperFootprint.rankLabel}
+              </span>
+              <span style={{ color: "#fbbf24", border: "1px solid rgba(251,191,36,0.34)", background: "rgba(251,191,36,0.12)", borderRadius: "999px", padding: "0.08rem 0.44rem", fontSize: "0.62rem", fontWeight: 850, textTransform: "uppercase" }}>
+                {selectedPaperFootprint.currentStatusLabel}
+              </span>
+            </div>
+            <p style={{ margin: "0.58rem 0 0", color: "#94a3b8", fontSize: "0.7rem", lineHeight: 1.45 }}>
+              {selectedPaperFootprint.byline} · {selectedPaperFootprint.locator}
+            </p>
+            <p style={{ margin: "0.52rem 0 0", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.48 }}>
+              {selectedPaperFootprint.summary}
+            </p>
+            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.45rem", marginTop: "0.72rem" }}>
+              {selectedPaperFootprint.externalHref && (
+                <a data-testid="paper-footprint-open-paper" href={selectedPaperFootprint.externalHref} target="_blank" rel="noopener noreferrer" style={{ color: "#e0f2fe", border: "1px solid rgba(56,189,248,0.42)", background: "rgba(14,165,233,0.12)", borderRadius: "999px", padding: "0.2rem 0.58rem", fontSize: "0.64rem", fontWeight: 850, textDecoration: "none" }}>
+                  Open paper
+                </a>
+              )}
+              {selectedPaperFootprint.sourceIndexHref && (
+                <a data-testid="paper-footprint-source-index-link" href={selectedPaperFootprint.sourceIndexHref} style={{ color: "#bfdbfe", border: "1px solid rgba(59,130,246,0.3)", background: "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.2rem 0.58rem", fontSize: "0.64rem", fontWeight: 850, textDecoration: "none" }}>
+                  Open source index
+                </a>
+              )}
+            </div>
+            <div style={{ display: "grid", gap: "0.45rem", marginTop: "0.78rem" }}>
+              {selectedPaperFootprint.claimRows.map((row) => {
+                const toneColor = row.tone === "counter" || row.tone === "counter-pressure" ? "#fb923c" : row.tone === "support" ? "#34d399" : "#93c5fd";
+                return (
+                  <a
+                    key={row.claimId}
+                    data-testid="paper-footprint-claim-row"
+                    href={row.href}
+                    onClick={(e) => { e.stopPropagation(); closePaperFootprint(); }}
+                    style={{ display: "block", color: "#e2e8f0", textDecoration: "none", border: `1px solid ${row.isCurrentClaim ? toneColor : "rgba(148,163,184,0.22)"}`, background: row.isCurrentClaim ? "rgba(14,165,233,0.14)" : "rgba(15,23,42,0.62)", borderRadius: "10px", padding: "0.58rem 0.64rem" }}
+                  >
+                    <span style={{ display: "flex", flexWrap: "wrap", gap: "0.32rem", alignItems: "center", marginBottom: "0.28rem" }}>
+                      <span style={{ color: toneColor, border: `1px solid ${toneColor}`, background: "rgba(15,23,42,0.62)", borderRadius: "999px", padding: "0.04rem 0.38rem", fontSize: "0.6rem", fontWeight: 850 }}>
+                        {row.relationLabel}
+                      </span>
+                      <span style={{ color: "#94a3b8", fontSize: "0.62rem", fontWeight: 760 }}>
+                        claim #{row.claimId} · {row.trustLevel} · {row.sectionLabel}
+                      </span>
+                    </span>
+                    <span style={{ display: "block", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.42 }}>
+                      {row.claimText}
+                    </span>
+                  </a>
+                );
+              })}
+            </div>
+            <p style={{ margin: "0.76rem 0 0", color: "#64748b", fontSize: "0.66rem", lineHeight: 1.42 }}>
+              {selectedPaperFootprint.scopeCaveat}
+            </p>
+          </section>
+        </>
+      )}
     </>,
     document.body,
   );
