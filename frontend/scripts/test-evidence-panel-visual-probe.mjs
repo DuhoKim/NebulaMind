@@ -57,6 +57,15 @@ const visualMarkers = [
   ["dialog has responsive width", /width: isNarrow \? "auto" : "min\(46rem, 94vw\)"/],
   ["dialog caps viewport height", /maxHeight: isNarrow \? "calc\(100vh - 4\.5rem\)" : "min\(38rem, 82vh\)"/],
   ["dialog scrolls internally", /overflowY: "auto"/],
+  ["dialog root test id", /data-testid="evidence-panel-dialog"/],
+  ["dialog stable fallback id", /const fallbackPanelId = useId\(\)/],
+  ["dialog title single source", /const evidencePanelTitle = isContested \? "Debate map" : "Evidence map"/],
+  ["dialog noun single source", /const evidencePanelNoun = isContested \? "debate map" : "evidence map"/],
+  ["dialog labelled by visible heading", /aria-labelledby=\{evidencePanelHeadingId\}/],
+  ["dialog described by keyboard hint", /aria-describedby=\{evidencePanelHintId\}/],
+  ["dialog visible heading id", /id=\{evidencePanelHeadingId\}/],
+  ["dialog keyboard hint id", /id=\{evidencePanelHintId\}/],
+  ["dialog visible Escape hint", /Press Escape to close this \{evidencePanelNoun\}\./],
   ["header trust pill remains visible", /textTransform: "uppercase"[\s\S]*?\{trustLevel\}/],
   ["close button remains large enough", /width: "2\.75rem"[\s\S]*?height: "2\.75rem"/],
   ["neutral summary test id", /data-testid="evidence-panel-neutral-summary"/],
@@ -110,6 +119,12 @@ assert.ok(clampIndex >= 0, "Summary clamp branch should exist.");
 assert.ok(activityRailIndex >= 0, "Activity rail branch should exist.");
 assert.ok(trustBlockingIndex < clampIndex, "Trust-blocking caution should render before the clamped summary.");
 assert.ok(trustBlockingIndex < activityRailIndex, "Trust-blocking caution should render before the compact activity rail.");
+
+assert.ok(!panelSource.includes("undefined-heading") && !panelSource.includes("undefined-keyboard-hint"), "Dialog ARIA ids should never contain undefined.");
+assert.ok(
+  panelSource.indexOf("id={evidencePanelHintId}") < panelSource.indexOf("data-testid=\"evidence-vote-signal\""),
+  "Evidence panel keyboard hint should stay near the header before the vote cockpit scan path.",
+);
 
 const voteSignalIndex = panelSource.indexOf("data-testid=\"evidence-vote-signal\"");
 const evidenceGridIndex = panelSource.indexOf("Supporting evidence");
@@ -186,5 +201,5 @@ const fingerprint = createHash("sha256")
   .digest("hex")
   .slice(0, 12);
 
-assert.equal(fingerprint, "7609b1dae2f1", "Evidence panel visual contract fingerprint changed; review the visual probe snapshot before updating.");
+assert.equal(fingerprint, "3bfe8a2ef9cb", "Evidence panel visual contract fingerprint changed; review the visual probe snapshot before updating.");
 console.log(`evidence_panel_visual_probe_ok ${fingerprint}`);

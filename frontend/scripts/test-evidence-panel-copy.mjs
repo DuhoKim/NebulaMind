@@ -156,6 +156,15 @@ assert.match(panelSource, /data-testid="evidence-card-density-shell"/, "Evidence
 assert.match(panelSource, /data-testid="evidence-card-density-rail"/, "Evidence cards should combine stance, vote, status, and quality metadata in a compact rail.");
 assert.match(panelSource, /data-testid="evidence-card-summary-clamp"/, "Evidence summaries should be visually clamped to preserve scan density.");
 assert.match(panelSource, /data-testid="evidence-card-activity-rail"/, "Comments and element links should move into a secondary compact activity rail.");
+assert.match(panelSource, /data-testid="evidence-panel-dialog"/, "Evidence panel dialog should expose a stable root marker for a11y/visual probes.");
+assert.match(panelSource, /const fallbackPanelId = useId\(\)/, "Evidence panel dialog should use a stable React id fallback when no panel id is provided.");
+assert.match(panelSource, /const evidencePanelTitle = isContested \? "Debate map" : "Evidence map"/, "Evidence panel title should be single-sourced from contested state.");
+assert.match(panelSource, /const evidencePanelNoun = isContested \? "debate map" : "evidence map"/, "Evidence panel hint noun should use the same contested state as the heading.");
+assert.match(panelSource, /aria-labelledby=\{evidencePanelHeadingId\}/, "Evidence panel dialog should be labelled by its visible heading, not detached aria-label copy.");
+assert.match(panelSource, /aria-describedby=\{evidencePanelHintId\}/, "Evidence panel dialog should describe itself with the visible keyboard dismissal hint.");
+assert.match(panelSource, /Press Escape to close this \{evidencePanelNoun\}\./, "Evidence panel should expose visible Escape-dismissal copy inside the dialog.");
+assert.doesNotMatch(panelSource, /aria-label=\{isContested \? "Debate map" : "Evidence map"\}/, "Evidence panel dialog should not keep a detached aria-label once visible heading ids exist.");
+assert.ok(!panelSource.includes("undefined-heading") && !panelSource.includes("undefined-keyboard-hint"), "Evidence panel dialog ARIA ids should never contain undefined.");
 assert.match(panelSource, /aria-label=\{scoreOpen \? "Hide evidence quality breakdown" : "Show evidence quality breakdown"\}/, "Quality pill should stay discoverable as an expandable control.");
 assert.match(panelSource, /scoreOpen \? "▲" : "▼"/, "Quality control should include a compact visible disclosure cue.");
 assert.match(panelSource, /buildEvidenceCardDensityMeta\(ev\)/, "Evidence cards should derive dense metadata from the shared helper contract.");
