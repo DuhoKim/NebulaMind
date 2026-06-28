@@ -3,7 +3,7 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
-import { buildEvidencePanelCopy, evidenceSide } from "./evidencePanelCopy";
+import { buildEvidencePanelCopy, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -54,6 +54,7 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
   const statusMeta = evidenceStatusMeta(ev.status);
   const statusColor = statusMeta.tone === "green" ? "#34d399" : statusMeta.tone === "amber" ? "#fbbf24" : "#94a3b8";
   const statusBg = statusMeta.tone === "green" ? "rgba(52,211,153,0.12)" : statusMeta.tone === "amber" ? "rgba(251,191,36,0.12)" : "rgba(148,163,184,0.12)";
+  const cardVoteSignal = buildEvidenceVoteSignal([ev]);
 
   return (
     <div style={{ border: "1px solid #334155", borderLeft: `3px solid ${accent}`, borderRadius: "6px", background: "#0f172a", padding: "0.65rem 0.75rem" }}>
@@ -81,8 +82,8 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
             </p>
           )}
           <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap", marginTop: "0.5rem", color: "#64748b", fontSize: "0.68rem" }}>
-            <span>pro votes {ev.votes_agree ?? 0}</span>
-            <span>con votes {ev.votes_disagree ?? 0}</span>
+            <span title={cardVoteSignal.detail}>claim support signal {cardVoteSignal.supportVotes}</span>
+            <span title={cardVoteSignal.detail}>claim weakening signal {cardVoteSignal.weakeningVotes}</span>
             {(ev.comments_count ?? 0) > 0 && <span>{ev.comments_count} comments</span>}
             {(ev.link_count ?? 0) > 0 && <span>{ev.link_count} element links</span>}
             <span title={statusMeta.detail} style={{ border: `1px solid ${statusColor}`, background: statusBg, color: statusColor, borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.62rem", fontWeight: 750, textTransform: "uppercase" }}>
@@ -197,10 +198,18 @@ export default function DebateEvidencePanel({
     () => buildEvidencePanelCopy(evidence || [], trustLevel),
     [evidence, trustLevel],
   );
+  const voteSignal = useMemo(() => buildEvidenceVoteSignal(evidence || []), [evidence]);
   const total = evidenceCopy.total;
   const supportPct = total ? Math.round((grouped.support.length / total) * 100) : 0;
   const counterPct = total ? Math.round((grouped.counter.length / total) * 100) : 0;
   const isContested = ["debated", "challenged"].includes(trustLevel);
+  const voteSignalColor = voteSignal.verdict === "net_support"
+    ? "#22c55e"
+    : voteSignal.verdict === "net_weakening"
+      ? "#ef4444"
+      : voteSignal.verdict === "split"
+        ? "#fbbf24"
+        : "#94a3b8";
 
   if (!mounted) return null;
 
@@ -287,6 +296,34 @@ export default function DebateEvidencePanel({
           {evidenceCopy.neutralOnlySummary}
         </div>
       ) : null}
+
+      {total > 0 && (
+        <div
+          data-testid="evidence-vote-signal"
+          style={{
+            border: `1px solid ${voteSignalColor}`,
+            background: "rgba(15,23,42,0.72)",
+            borderRadius: "8px",
+            padding: "0.65rem 0.75rem",
+            marginBottom: "0.8rem",
+          }}
+        >
+          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
+            <span style={{ color: "#cbd5e1", fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase" }}>
+              Evidence vote cockpit
+            </span>
+            <span style={{ color: voteSignalColor, border: `1px solid ${voteSignalColor}`, borderRadius: "999px", padding: "0.05rem 0.45rem", fontSize: "0.64rem", fontWeight: 800 }}>
+              {voteSignal.verdictLabel}
+            </span>
+          </div>
+          <div style={{ color: "#e2e8f0", fontSize: "0.78rem", fontWeight: 700, marginTop: "0.38rem" }}>
+            {voteSignal.headline}
+          </div>
+          <div style={{ color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.45, marginTop: "0.28rem" }}>
+            {voteSignal.detail}
+          </div>
+        </div>
+      )}
 
       {totalElements > 0 && (
         <div style={{ color: "#64748b", fontSize: "0.66rem", marginBottom: "0.7rem" }}>

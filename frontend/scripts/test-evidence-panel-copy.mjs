@@ -26,11 +26,13 @@ vm.runInNewContext(compiled.outputText, { module, exports: module.exports, requi
 
 const {
   buildEvidencePanelCopy,
+  buildEvidenceVoteSignal,
   evidenceSide,
   formatLinkedPaperSourceCount,
 } = module.exports;
 
 assert.equal(typeof buildEvidencePanelCopy, "function");
+assert.equal(typeof buildEvidenceVoteSignal, "function");
 assert.equal(typeof evidenceSide, "function");
 assert.equal(typeof formatLinkedPaperSourceCount, "function");
 
@@ -72,9 +74,41 @@ assert.equal(directionalCopy.neutralCount, 1);
 assert.equal(directionalCopy.neutralOnlySummary, null);
 assert.equal(directionalCopy.directionalSplitLabel, "1 supporting · 1 countering");
 
+const voteSignal = buildEvidenceVoteSignal([
+  { id: 1, stance: "supports", votes_agree: 4, votes_disagree: 1 },
+  { id: 2, stance: "challenges", votes_agree: 3, votes_disagree: 2 },
+  { id: 3, stance: "none", votes_agree: 5, votes_disagree: 6 },
+]);
+assert.equal(voteSignal.supportVotes, 6);
+assert.equal(voteSignal.weakeningVotes, 4);
+assert.equal(voteSignal.unresolvedVotes, 11);
+assert.equal(voteSignal.totalVotes, 21);
+assert.equal(voteSignal.netSupport, 2);
+assert.equal(voteSignal.headline, "Counted vote signal: 6 support · 4 weakening · 11 unresolved");
+assert.equal(voteSignal.verdict, "net_support");
+assert.equal(voteSignal.verdictLabel, "Net +2 support signal");
+assert.match(voteSignal.detail, /Countering evidence flips the meaning/);
+
+const noVoteSignal = buildEvidenceVoteSignal([{ id: 4, stance: "supports", votes_agree: 0, votes_disagree: 0 }]);
+assert.equal(noVoteSignal.totalVotes, 0);
+assert.equal(noVoteSignal.verdict, "unvoted");
+assert.equal(noVoteSignal.verdictLabel, "No counted evidence votes yet");
+
+const unresolvedVoteSignal = buildEvidenceVoteSignal([{ id: 5, stance: "none", votes_agree: 5, votes_disagree: 6 }]);
+assert.equal(unresolvedVoteSignal.supportVotes, 0);
+assert.equal(unresolvedVoteSignal.weakeningVotes, 0);
+assert.equal(unresolvedVoteSignal.unresolvedVotes, 11);
+assert.equal(unresolvedVoteSignal.totalVotes, 11);
+assert.equal(unresolvedVoteSignal.verdict, "unresolved");
+assert.equal(unresolvedVoteSignal.verdictLabel, "Evidence votes unresolved");
+
 const panelSource = fs.readFileSync(panelPath, "utf8");
 assert.match(panelSource, /from "\.\/evidencePanelCopy"/, "DebateEvidencePanel should use shared copy helpers.");
 assert.match(panelSource, /data-testid="evidence-panel-neutral-summary"/, "Neutral-only evidence state should have a testable summary.");
+assert.match(panelSource, /data-testid="evidence-vote-signal"/, "Panel should expose a visible counted vote signal summary.");
+assert.match(panelSource, /buildEvidenceVoteSignal\(evidence \|\| \[\]\)/, "Panel should derive claim-level support/weakening signal from evidence vote counts.");
+assert.match(panelSource, /claim support signal/, "Evidence cards should explain claim-level support votes, not only raw pro/con counts.");
+assert.match(panelSource, /claim weakening signal/, "Evidence cards should explain claim-level weakening votes, not only raw pro/con counts.");
 assert.match(panelSource, /Linked paper sources/, "Neutral-only evidence rows should be grouped under linked paper source copy.");
 assert.match(panelSource, /total > 0 && evidenceCopy\.hasDirectionalStance/, "Directional support/counter counts should render only when directional stances exist.");
 
