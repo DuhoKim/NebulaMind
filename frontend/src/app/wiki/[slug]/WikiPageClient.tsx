@@ -23,7 +23,7 @@ import {
 import { formatSourceTraceHoverCard } from "./sourceTraceHover";
 import { buildClaimMiniMapHover, formatClaimMiniMapSummary } from "./claimMiniMapHover";
 import { buildPageContradictionRankingAtlas, type PageContradictionRankingAtlas, type PageContradictionRankingItem } from "./evidencePanelCopy";
-import { buildPaperClaimFlightDeck, type PaperClaimFlightDeck } from "./paperClaimFlightDeck";
+import { buildPaperClaimFlightDeck, type PaperClaimFlightDeck, type PaperClaimFlightDeckItem } from "./paperClaimFlightDeck";
 
 interface WikiPage {
   id: number;
@@ -974,6 +974,7 @@ function ClaimAnnotatedSpan({
   showIdeas,
   children,
   citationByEvidenceId,
+  paperFootprintsByEvidenceId,
 }: {
   claim: any;
   showColors: boolean;
@@ -981,6 +982,7 @@ function ClaimAnnotatedSpan({
   showIdeas: boolean;
   children: React.ReactNode;
   citationByEvidenceId?: Record<number, any>;
+  paperFootprintsByEvidenceId?: Record<number, PaperClaimFlightDeckItem | undefined>;
 }) {
   const [open, setOpen] = useState(false);
   const [ideasOpen, setIdeasOpen] = useState(false);
@@ -1104,6 +1106,7 @@ function ClaimAnnotatedSpan({
           onClose={() => setOpen(false)}
           returnFocusRef={evidencePanelReturnFocusRef}
           panelId={evidencePanelId}
+          paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
         />
       )}
       {ideasOpen && ideas && ideas.length > 0 && (
@@ -1357,6 +1360,13 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
     () => buildPaperClaimFlightDeck(page?.content || "", citations, claims, renderedClaimIds, slug),
     [page?.content, citations, claims, renderedClaimIds, slug],
   );
+  const paperFootprintsByEvidenceId = useMemo(() => {
+    const map: Record<number, PaperClaimFlightDeckItem> = {};
+    for (const item of paperClaimFlightDeck.items) {
+      map[item.evidenceId] = item;
+    }
+    return map;
+  }, [paperClaimFlightDeck.items]);
   const pageContradictionAtlas = useMemo(
     () => buildPageContradictionRankingAtlas(claims, pageAtlasEvidenceByClaimId, renderedClaimIds),
     [claims, pageAtlasEvidenceByClaimId, renderedClaimIds],
@@ -1548,6 +1558,7 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
           onClose={() => setPageAtlasPanelClaimId(null)}
           returnFocusRef={pageAtlasReturnFocusRef}
           panelId={pageAtlasSelectedItem.evidencePanelId}
+          paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
         />
       )}
 
@@ -1701,6 +1712,7 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
                     ideas={claimIdeasMap[id]}
                     showIdeas={showIdeas}
                     citationByEvidenceId={citationByEvidenceId}
+                    paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
                   >
                     {inner}
                   </ClaimAnnotatedSpan>

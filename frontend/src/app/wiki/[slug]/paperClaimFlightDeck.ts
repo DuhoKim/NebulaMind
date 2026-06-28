@@ -62,6 +62,108 @@ export interface PaperClaimFlightDeck {
   items: PaperClaimFlightDeckItem[];
 }
 
+export type PaperFootprintTone = "support" | "counter" | "neutral" | "counter-pressure" | "linked";
+
+export interface PaperFootprintEvidenceContext {
+  claimId?: number | string | null;
+  stance?: string | null;
+  status?: string | null;
+}
+
+export interface PaperFootprintClaimRow extends PaperClaimLink {
+  isCurrentClaim: boolean;
+  relationLabel: string;
+  tone: PaperFootprintTone;
+}
+
+export interface PaperFootprintModalModel {
+  evidenceId: number;
+  paperLabel: string;
+  title: string;
+  byline: string;
+  locator: string;
+  summary: string;
+  externalHref: string | null;
+  sourceIndexHref: string | null;
+  headline: string;
+  rankLabel: string;
+  currentStanceLabel: string;
+  currentStatusLabel: string;
+  scopeCaveat: string;
+  claimCount: number;
+  counterPressureClaims: number;
+  claimRows: PaperFootprintClaimRow[];
+}
+
+function normalizeEvidenceTone(stance?: string | null): "support" | "counter" | "neutral" {
+  const value = cleanText(stance).toLowerCase();
+  if (/counter|contradict|oppose|against|refut|weak/.test(value)) return "counter";
+  if (/support|agree|for|confirm|entail|strengthen/.test(value)) return "support";
+  return "neutral";
+}
+
+function currentClaimRelationLabel(tone: "support" | "counter" | "neutral"): string {
+  if (tone === "counter") return "Counters this claim";
+  if (tone === "support") return "Supports this claim";
+  return "Neutral or unresolved for this claim";
+}
+
+function currentStanceCopy(tone: "support" | "counter" | "neutral", claimId: number | null): string {
+  const target = claimId != null ? `claim #${claimId}` : "the current claim";
+  if (tone === "counter") return `Current evidence card counters ${target}`;
+  if (tone === "support") return `Current evidence card supports ${target}`;
+  return `Current evidence card is neutral or unresolved for ${target}`;
+}
+
+export function buildPaperFootprintForEvidence(
+  deck: PaperClaimFlightDeck | null | undefined,
+  evidenceId: number | string | null | undefined,
+  context: PaperFootprintEvidenceContext = {},
+): PaperFootprintModalModel | null {
+  const numericEvidenceId = Number(evidenceId);
+  if (!Number.isFinite(numericEvidenceId) || numericEvidenceId <= 0) return null;
+  const item = deck?.items?.find((candidate) => candidate.evidenceId === Math.floor(numericEvidenceId));
+  if (!item) return null;
+
+  const currentClaimId = claimIdNumber(context.claimId as PaperClaimLike["id"]);
+  const currentTone = normalizeEvidenceTone(context.stance);
+  const claimRows = item.claimLinks
+    .map((link) => {
+      const isCurrentClaim = currentClaimId != null && link.claimId === currentClaimId;
+      const tone: PaperFootprintTone = isCurrentClaim
+        ? currentTone
+        : link.counterPressure
+          ? "counter-pressure"
+          : "linked";
+      const relationLabel = isCurrentClaim
+        ? currentClaimRelationLabel(currentTone)
+        : link.counterPressure
+          ? "Counter-pressure claim"
+          : "Linked visible claim";
+      return { ...link, isCurrentClaim, relationLabel, tone } satisfies PaperFootprintClaimRow;
+    })
+    .sort((a, b) => Number(b.isCurrentClaim) - Number(a.isCurrentClaim) || Number(b.counterPressure) - Number(a.counterPressure) || a.claimId - b.claimId);
+
+  return {
+    evidenceId: item.evidenceId,
+    paperLabel: item.paperLabel,
+    title: item.title,
+    byline: item.byline,
+    locator: item.locator,
+    summary: item.summary,
+    externalHref: item.externalHref,
+    sourceIndexHref: item.sourceIndexHref,
+    headline: `${item.paperLabel} touches ${pluralCount(item.claimCount, "visible claim")} on this page`,
+    rankLabel: item.rankLabel,
+    currentStanceLabel: currentStanceCopy(currentTone, currentClaimId),
+    currentStatusLabel: cleanText(context.status) || "status pending",
+    scopeCaveat: "Showing this paper's footprint on this page only; it is not a final verdict.",
+    claimCount: item.claimCount,
+    counterPressureClaims: item.counterPressureClaims,
+    claimRows,
+  };
+}
+
 function cleanText(value?: string | number | null): string {
   return String(value ?? "").replace(/\s+/g, " ").trim();
 }

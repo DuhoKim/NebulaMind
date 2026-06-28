@@ -9,6 +9,7 @@ const require = createRequire(import.meta.url);
 const repoRoot = path.resolve(import.meta.dirname, "..");
 const helperPath = path.join(repoRoot, "src/app/wiki/[slug]/paperClaimFlightDeck.ts");
 const clientPath = path.join(repoRoot, "src/app/wiki/[slug]/WikiPageClient.tsx");
+const evidencePanelPath = path.join(repoRoot, "src/app/wiki/[slug]/DebateEvidencePanel.tsx");
 const packagePath = path.join(repoRoot, "package.json");
 const aggregatePath = path.join(repoRoot, "scripts/test-wiki-ux-smoke.mjs");
 
@@ -28,10 +29,12 @@ vm.runInNewContext(compiled.outputText, { module, exports: module.exports, requi
 
 const {
   buildPaperClaimFlightDeck,
+  buildPaperFootprintForEvidence,
   extractPaperClaimEdges,
 } = module.exports;
 
 assert.equal(typeof buildPaperClaimFlightDeck, "function");
+assert.equal(typeof buildPaperFootprintForEvidence, "function");
 assert.equal(typeof extractPaperClaimEdges, "function");
 
 const content = `# Fixture page
@@ -140,6 +143,27 @@ assert.equal(deck.items[2].evidenceId, 204);
 assert.equal(deck.items[2].locator, "External source link unavailable");
 assert.equal(deck.items[2].summary, "No abstract or summary has been published for this source yet.");
 
+const footprint = buildPaperFootprintForEvidence(deck, 102, {
+  claimId: 501,
+  stance: "contradicting",
+  status: "accepted",
+});
+assert.ok(footprint, "Evidence-card modal should find a footprint for a mapped paper source.");
+assert.equal(footprint.evidenceId, 102);
+assert.equal(footprint.title, "Dust-obscured counter survey");
+assert.equal(footprint.headline, "Dust2025 touches 2 visible claims on this page");
+assert.equal(footprint.currentStanceLabel, "Current evidence card counters claim #501");
+assert.equal(footprint.scopeCaveat, "Showing this paper's footprint on this page only; it is not a final verdict.");
+assert.equal(footprint.claimRows.length, 2);
+assert.equal(footprint.claimRows[0].claimId, 501);
+assert.equal(footprint.claimRows[0].isCurrentClaim, true);
+assert.equal(footprint.claimRows[0].relationLabel, "Counters this claim");
+assert.equal(footprint.claimRows[0].tone, "counter");
+assert.equal(footprint.claimRows[1].claimId, 503);
+assert.equal(footprint.claimRows[1].relationLabel, "Counter-pressure claim");
+assert.equal(footprint.claimRows[1].tone, "counter-pressure");
+assert.equal(buildPaperFootprintForEvidence(deck, 999, { claimId: 501 }), null, "Unmapped paper sources should not render the footprint modal affordance.");
+
 const emptyDeck = buildPaperClaimFlightDeck("No claim-scoped citations", [], { sections: [] }, [], "");
 assert.equal(emptyDeck.hasFlightDeck, false);
 assert.equal(emptyDeck.headline, "No paper-to-claim links mapped yet");
@@ -158,6 +182,22 @@ assert.match(clientSource, /not a final verdict/, "Flight deck should avoid impl
 assert.match(clientSource, /on this page only/, "Flight deck should visibly scope the paper footprint to the current page only.");
 assert.match(clientSource, /aria-describedby=\{paperClaimFlightDeckDescriptionId\}/, "Flight deck should describe its ranking criterion for assistive tech.");
 assert.match(clientSource, /page\.content, citations, claims, renderedClaimIds, slug/, "Flight deck should be derived from existing frontend page state, not a new backend endpoint.");
+assert.match(clientSource, /paperFootprintsByEvidenceId/, "WikiPageClient should derive a paper-footprint lookup for evidence-card modal entry points.");
+assert.match(clientSource, /paperFootprintsByEvidenceId=\{paperFootprintsByEvidenceId\}/, "WikiPageClient should pass paper-footprint lookup into evidence panels.");
+
+const evidencePanelSource = fs.readFileSync(evidencePanelPath, "utf8");
+assert.match(evidencePanelSource, /buildPaperFootprintForEvidence/, "Evidence panel should build a paper-footprint modal model from a mapped evidence card.");
+assert.match(evidencePanelSource, /paperFootprintsByEvidenceId/, "Evidence panel should receive the page-level paper footprint lookup.");
+assert.match(evidencePanelSource, /data-testid="paper-footprint-entry-button"/, "Evidence cards should expose a stable footprint modal trigger.");
+assert.match(evidencePanelSource, /data-testid="paper-footprint-modal"/, "Paper footprint should mount as a modal dialog.");
+assert.match(evidencePanelSource, /data-testid="paper-footprint-claim-row"/, "Paper footprint modal should list linked visible claims.");
+assert.match(evidencePanelSource, /data-testid="paper-footprint-close"/, "Paper footprint modal should expose a stable close control.");
+assert.match(evidencePanelSource, /Paper footprint on this page/, "Paper footprint modal should use explicit visible product copy.");
+assert.match(evidencePanelSource, /on this page only/, "Paper footprint modal should visibly scope the footprint to the current page.");
+assert.match(evidencePanelSource, /not a final verdict/, "Paper footprint modal should avoid implying truth adjudication.");
+assert.match(evidencePanelSource, /paperFootprintReturnFocusRef/, "Paper footprint modal should keep a return-focus ref for the opener button.");
+assert.match(evidencePanelSource, /paperFootprintCloseButtonRef/, "Paper footprint modal should focus its own close button when opened.");
+assert.match(evidencePanelSource, /event\.key === "Escape"[\s\S]*selectedPaperFootprint[\s\S]*closePaperFootprint/, "Escape should close only the paper-footprint modal before the parent evidence panel.");
 
 const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));
 assert.equal(packageJson.scripts["test:paper-claim-flight-deck"], "node scripts/test-paper-claim-flight-deck.mjs");

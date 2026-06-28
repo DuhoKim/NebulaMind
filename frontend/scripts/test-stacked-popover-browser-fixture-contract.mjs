@@ -28,6 +28,11 @@ assert.equal(
   "WIKI_STACKED_POPOVER_ONLY=page-atlas-ranking node scripts/test-wiki-stacked-popover-browser.mjs",
   "package.json should expose a targeted atlas browser interaction smoke command.",
 );
+assert.equal(
+  packageJson.scripts["smoke:wiki-paper-footprint-browser"],
+  "WIKI_STACKED_POPOVER_ONLY=paper-footprint node scripts/test-wiki-stacked-popover-browser.mjs",
+  "package.json should expose a targeted paper footprint modal browser smoke command.",
+);
 
 for (const filePath of [fixturePagePath, fixtureApiPath, fixtureApiSurfacePath, fixtureEvidenceApiPath, fixtureDataPath]) {
   assert.ok(fs.existsSync(filePath), `${path.relative(frontendRoot, filePath)} should exist for deterministic source-trace browser fixture coverage.`);
@@ -45,6 +50,11 @@ assert.ok(browserSmoke.includes("page-atlas-open-evidence-map"), "atlas browser 
 assert.ok(browserSmoke.includes("page-contradiction-atlas-ranking"), "atlas browser smoke should wait for the page-level atlas section.");
 assert.match(browserSmoke, /PAGE_ATLAS_BROWSER_OK|page_atlas_panel_closed_focus_returned/, "atlas browser smoke output should expose a page-atlas focus-return success marker.");
 assert.match(browserSmoke, /activeTestId[\s\S]*page-atlas-open-evidence-map/, "atlas browser smoke should assert Escape returns focus to the atlas opener.");
+assert.match(browserSmoke, /paper-footprint/, "browser smoke should include a paper-footprint scenario.");
+assert.ok(browserSmoke.includes("paper-footprint-entry-button"), "paper footprint browser smoke should click the evidence-card footprint opener.");
+assert.ok(browserSmoke.includes("paper-footprint-modal"), "paper footprint browser smoke should assert the modal mounts.");
+assert.ok(browserSmoke.includes("paper-footprint-close"), "paper footprint browser smoke should assert modal close focus behavior.");
+assert.match(browserSmoke, /PAPER_FOOTPRINT_BROWSER_OK|paper_footprint_modal_closed_panel_open/, "paper footprint browser smoke should expose a modal focus-return success marker.");
 
 const fixturePageSource = fs.readFileSync(fixturePagePath, "utf8");
 assert.match(fixturePageSource, /sourceTraceBrowserFixtureData/, "fixture page should pass deterministic data directly into the production wiki client.");

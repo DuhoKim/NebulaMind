@@ -31,6 +31,11 @@ const allScenarios = [
     routePath: process.env.WIKI_STACKED_POPOVER_PAGE_ATLAS_PATH || "/wiki/source-trace-browser-fixture",
     firstEscapeMarker: "page_atlas_panel_closed_focus_returned",
   },
+  {
+    name: "paper-footprint",
+    routePath: process.env.WIKI_STACKED_POPOVER_PAPER_FOOTPRINT_PATH || "/wiki/source-trace-browser-fixture",
+    firstEscapeMarker: "paper_footprint_modal_closed_panel_open",
+  },
 ];
 const scenarioFilter = (process.env.WIKI_STACKED_POPOVER_ONLY || "").split(",").map((value) => value.trim()).filter(Boolean);
 const scenarios = scenarioFilter.length > 0
@@ -307,11 +312,18 @@ const miniMapInteractionScript = String.raw`(async () => {
   await waitFor(() => document.querySelector('[data-testid="evidence-panel-dialog"]'), 'evidence panel open');
 
   const miniMapTrigger = document.querySelectorAll('[data-testid="claim-trust-badge"]')[1] || document.querySelector('[data-testid="claim-trust-badge"]');
-  miniMapTrigger.scrollIntoView({ block: 'center', inline: 'center' });
-  miniMapTrigger.focus();
-  miniMapTrigger.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
-  miniMapTrigger.parentElement?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
-  await waitFor(() => document.querySelector('[data-testid="claim-mini-map-hover-card"]'), 'claim mini-map hover card open with panel');
+  const openMiniMap = async () => {
+    for (let attempt = 0; attempt < 6; attempt += 1) {
+      miniMapTrigger.scrollIntoView({ block: 'center', inline: 'center' });
+      miniMapTrigger.focus();
+      miniMapTrigger.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+      miniMapTrigger.parentElement?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+      await delay(350);
+      if (document.querySelector('[data-testid="claim-mini-map-hover-card"]')) return;
+    }
+    throw new Error('Timed out waiting for claim mini-map hover card open with panel state=' + JSON.stringify(state()));
+  };
+  await openMiniMap();
 
   return state();
 })()`;
@@ -343,11 +355,18 @@ const sourceTraceInteractionScript = String.raw`(async () => {
   await waitFor(() => document.querySelector('[data-testid="evidence-panel-dialog"]'), 'evidence panel open');
 
   const sourceTraceTrigger = document.querySelector('[data-testid="source-trace-trigger"]');
-  sourceTraceTrigger.scrollIntoView({ block: 'center', inline: 'center' });
-  sourceTraceTrigger.focus();
-  sourceTraceTrigger.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
-  sourceTraceTrigger.parentElement?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
-  await waitFor(() => document.querySelector('[data-testid="source-trace-hover-card"]'), 'source trace hover card open with panel');
+  const openSourceTrace = async () => {
+    for (let attempt = 0; attempt < 6; attempt += 1) {
+      sourceTraceTrigger.scrollIntoView({ block: 'center', inline: 'center' });
+      sourceTraceTrigger.focus();
+      sourceTraceTrigger.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+      sourceTraceTrigger.parentElement?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+      await delay(350);
+      if (document.querySelector('[data-testid="source-trace-hover-card"]')) return;
+    }
+    throw new Error('Timed out waiting for source trace hover card open with panel state=' + JSON.stringify(state()));
+  };
+  await openSourceTrace();
 
   return state();
 })()`;
@@ -389,6 +408,65 @@ const pageAtlasInteractionScript = String.raw`(async () => {
   return state();
 })()`;
 
+const paperFootprintInteractionScript = String.raw`(async () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const state = () => {
+    const panel = document.querySelector('[data-testid="evidence-panel-dialog"]');
+    const modal = document.querySelector('[data-testid="paper-footprint-modal"]');
+    const entry = document.querySelector('[data-testid="paper-footprint-entry-button"]');
+    return {
+      claimBadges: document.querySelectorAll('[data-testid="claim-trust-badge"]').length,
+      entryButtons: document.querySelectorAll('[data-testid="paper-footprint-entry-button"]').length,
+      panelOpen: Boolean(panel),
+      footprintOpen: Boolean(modal),
+      modalRole: modal?.getAttribute('role') || '',
+      modalAriaModal: modal?.getAttribute('aria-modal') || '',
+      modalLabelledBy: Boolean(modal?.getAttribute('aria-labelledby')),
+      modalDescribedBy: Boolean(modal?.getAttribute('aria-describedby')),
+      modalText: modal?.textContent || '',
+      claimRows: document.querySelectorAll('[data-testid="paper-footprint-claim-row"]').length,
+      closeButtons: document.querySelectorAll('[data-testid="paper-footprint-close"]').length,
+      activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+      activeAriaLabel: document.activeElement?.getAttribute?.('aria-label') || '',
+      entryControls: entry?.getAttribute('aria-controls') || '',
+      modalId: modal?.getAttribute('id') || '',
+    };
+  };
+  const waitFor = async (predicate, label) => {
+    const start = Date.now();
+    while (Date.now() - start < ${SELECTOR_TIMEOUT_MS}) {
+      if (predicate()) return;
+      await delay(100);
+    }
+    throw new Error('Timed out waiting for ' + label + ' state=' + JSON.stringify(state()));
+  };
+
+  await waitFor(() => document.querySelectorAll('[data-testid="claim-trust-badge"]').length > 0, 'claim badges');
+  const claimBadge = document.querySelector('[data-testid="claim-trust-badge"]');
+  const openPanelFromClaimBadge = async () => {
+    for (let attempt = 0; attempt < 6; attempt += 1) {
+      claimBadge.scrollIntoView({ block: 'center', inline: 'center' });
+      claimBadge.focus();
+      claimBadge.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true, view: window }));
+      claimBadge.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true, view: window }));
+      claimBadge.click();
+      await delay(350);
+      if (document.querySelector('[data-testid="evidence-panel-dialog"]')) return;
+    }
+    throw new Error('Timed out waiting for hydrated claim badge click to open evidence panel state=' + JSON.stringify(state()));
+  };
+  await openPanelFromClaimBadge();
+  await waitFor(() => document.querySelector('[data-testid="paper-footprint-entry-button"]'), 'paper footprint entry button');
+  const entry = document.querySelector('[data-testid="paper-footprint-entry-button"]');
+  entry.scrollIntoView({ block: 'center', inline: 'center' });
+  entry.focus();
+  entry.click();
+  await waitFor(() => document.querySelector('[data-testid="paper-footprint-modal"]'), 'paper footprint modal open');
+  await waitFor(() => document.activeElement?.getAttribute?.('data-testid') === 'paper-footprint-close', 'paper footprint close button focus');
+
+  return state();
+})()`;
+
 const miniMapFirstEscapeStateScript = String.raw`(() => ({
   panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
   miniMapOpen: Boolean(document.querySelector('[data-testid="claim-mini-map-hover-card"]')),
@@ -426,6 +504,17 @@ const pageAtlasAfterEscapeStateScript = String.raw`(() => ({
   activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
   activeText: document.activeElement?.textContent?.trim() || '',
   openerControls: document.activeElement?.getAttribute?.('aria-controls') || '',
+}))()`;
+
+const paperFootprintAfterEscapeStateScript = String.raw`(() => ({
+  panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
+  footprintOpen: Boolean(document.querySelector('[data-testid="paper-footprint-modal"]')),
+  entryButtons: document.querySelectorAll('[data-testid="paper-footprint-entry-button"]').length,
+  activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+  activeText: document.activeElement?.textContent?.trim() || '',
+  activeAriaLabel: document.activeElement?.getAttribute?.('aria-label') || '',
+  panelRole: document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('role') || '',
+  panelAriaModal: document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('aria-modal') || '',
 }))()`;
 
 const scenarioScripts = {
@@ -495,6 +584,38 @@ const scenarioScripts = {
       assert.equal(afterSecondEscape.activeTestId, "page-atlas-open-evidence-map", "Second Escape should not steal focus away from the atlas opener.");
     },
   },
+  "paper-footprint": {
+    interaction: paperFootprintInteractionScript,
+    firstEscape: paperFootprintAfterEscapeStateScript,
+    secondEscape: paperFootprintAfterEscapeStateScript,
+    assertInitial(initial) {
+      assert.ok(initial.claimBadges > 0, "Paper-footprint fixture should render claim badges.");
+      assert.ok(initial.entryButtons > 0, "Evidence panel should render a paper-footprint entry button for mapped evidence.");
+      assert.equal(initial.panelOpen, true, "Evidence panel should remain open while the paper footprint modal is stacked above it.");
+      assert.equal(initial.footprintOpen, true, "Paper footprint modal should open from an evidence-card entry button.");
+      assert.equal(initial.modalRole, "dialog", "Paper footprint should use dialog role.");
+      assert.equal(initial.modalAriaModal, "true", "Paper footprint should be modal for assistive tech.");
+      assert.equal(initial.modalLabelledBy, true, "Paper footprint should have aria-labelledby.");
+      assert.equal(initial.modalDescribedBy, true, "Paper footprint should have aria-describedby.");
+      assert.ok(initial.modalText.includes("on this page only"), "Paper footprint should visibly scope itself to the current page.");
+      assert.ok(initial.modalText.includes("not a final verdict"), "Paper footprint should avoid truth adjudication copy.");
+      assert.ok(initial.claimRows > 0, "Paper footprint should list linked visible claims.");
+      assert.equal(initial.activeTestId, "paper-footprint-close", "Paper footprint close button should receive initial modal focus.");
+      assert.equal(initial.entryControls, initial.modalId, "Paper footprint opener aria-controls should target the opened modal.");
+    },
+    assertFirstEscape(afterFirstEscape) {
+      assert.equal(afterFirstEscape.panelOpen, true, "First Escape should leave the parent evidence panel open.");
+      assert.equal(afterFirstEscape.footprintOpen, false, "First Escape should close only the paper footprint modal.");
+      assert.equal(afterFirstEscape.activeTestId, "paper-footprint-entry-button", "First Escape should return focus to the footprint opener.");
+      assert.equal(afterFirstEscape.panelRole, "dialog", "Parent evidence panel should keep dialog role after footprint Escape.");
+      assert.equal(afterFirstEscape.panelAriaModal, "true", "Parent evidence panel should remain modal after footprint Escape.");
+    },
+    assertSecondEscape(afterSecondEscape) {
+      assert.equal(afterSecondEscape.panelOpen, false, "Second Escape should close the parent evidence panel after the footprint modal is gone.");
+      assert.equal(afterSecondEscape.footprintOpen, false, "Second Escape should not reopen the paper footprint modal.");
+      assert.equal(afterSecondEscape.activeTestId, "claim-trust-badge", "Second Escape should return focus to the original claim badge.");
+    },
+  },
 };
 
 async function waitForPageReady(cdp, routePath) {
@@ -560,6 +681,9 @@ async function runBrowserScenario(scenario, index) {
     }
     if (scenario.name === "page-atlas-ranking") {
       console.log(`PAGE_ATLAS_BROWSER_OK first_escape=page_atlas_panel_closed_focus_returned second_escape=panel_remained_closed url=${pageUrl}`);
+    }
+    if (scenario.name === "paper-footprint") {
+      console.log(`PAPER_FOOTPRINT_BROWSER_OK first_escape=paper_footprint_modal_closed_panel_open second_escape=panel_closed_focus_claim_badge url=${pageUrl}`);
     }
     return {
       name: scenario.name,
