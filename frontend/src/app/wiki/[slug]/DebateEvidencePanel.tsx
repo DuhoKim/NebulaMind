@@ -3,7 +3,7 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
-import { buildEvidencePanelCopy, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
+import { buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -199,6 +199,7 @@ export default function DebateEvidencePanel({
     [evidence, trustLevel],
   );
   const voteSignal = useMemo(() => buildEvidenceVoteSignal(evidence || []), [evidence]);
+  const voteVisuals = useMemo(() => buildEvidenceVoteCockpitVisuals(voteSignal), [voteSignal]);
   const total = evidenceCopy.total;
   const supportPct = total ? Math.round((grouped.support.length / total) * 100) : 0;
   const counterPct = total ? Math.round((grouped.counter.length / total) * 100) : 0;
@@ -300,28 +301,66 @@ export default function DebateEvidencePanel({
       {total > 0 && (
         <div
           data-testid="evidence-vote-signal"
+          aria-label="At-a-glance vote balance"
           style={{
             border: `1px solid ${voteSignalColor}`,
-            background: "rgba(15,23,42,0.72)",
-            borderRadius: "8px",
-            padding: "0.65rem 0.75rem",
-            marginBottom: "0.8rem",
+            borderLeft: `3px solid ${voteSignalColor}`,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.92), rgba(30,41,59,0.74))",
+            borderRadius: "12px",
+            padding: "0.78rem 0.82rem",
+            marginBottom: "0.9rem",
+            boxShadow: "0 12px 30px rgba(2,6,23,0.24)",
           }}
         >
-          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-            <span style={{ color: "#cbd5e1", fontSize: "0.68rem", fontWeight: 800, letterSpacing: "0.05em", textTransform: "uppercase" }}>
-              Evidence vote cockpit
-            </span>
-            <span style={{ color: voteSignalColor, border: `1px solid ${voteSignalColor}`, borderRadius: "999px", padding: "0.05rem 0.45rem", fontSize: "0.64rem", fontWeight: 800 }}>
+          <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem", flexWrap: "wrap" }}>
+            <div>
+              <div style={{ color: "#a5b4fc", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+                {voteVisuals.eyebrow}
+              </div>
+              <div style={{ color: "#f8fafc", fontSize: "0.9rem", fontWeight: 850, marginTop: "0.2rem", lineHeight: 1.25 }}>
+                Evidence vote cockpit
+              </div>
+              <div style={{ color: "#94a3b8", fontSize: "0.68rem", lineHeight: 1.4, marginTop: "0.22rem" }}>
+                {voteVisuals.dominantLabel}
+              </div>
+            </div>
+            <span style={{ color: voteSignalColor, border: `1px solid ${voteSignalColor}`, background: "rgba(15,23,42,0.68)", borderRadius: "999px", padding: "0.12rem 0.5rem", fontSize: "0.64rem", fontWeight: 850, whiteSpace: "nowrap" }}>
               {voteSignal.verdictLabel}
             </span>
           </div>
-          <div style={{ color: "#e2e8f0", fontSize: "0.78rem", fontWeight: 700, marginTop: "0.38rem" }}>
-            {voteSignal.headline}
+          <div style={{ color: "#e2e8f0", fontSize: "0.74rem", fontWeight: 750, marginTop: "0.58rem" }}>
+            {voteVisuals.summary}
           </div>
-          <div style={{ color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.45, marginTop: "0.28rem" }}>
-            {voteSignal.detail}
+          <div
+            data-testid="evidence-vote-balance-bar"
+            aria-label={voteVisuals.summary}
+            style={{ display: "flex", height: "0.62rem", overflow: "hidden", borderRadius: "999px", background: "rgba(100,116,139,0.22)", border: "1px solid rgba(148,163,184,0.16)", marginTop: "0.58rem" }}
+          >
+            {voteVisuals.segments.map((segment) => (
+              <span
+                key={segment.kind}
+                title={`${segment.label}: ${segment.count.toLocaleString()} (${segment.percent}%)`}
+                style={{
+                  width: `${segment.percent}%`,
+                  minWidth: segment.count > 0 ? "0.45rem" : 0,
+                  background: segment.color,
+                }}
+              />
+            ))}
           </div>
+          <div data-testid="evidence-vote-metric-grid" style={{ display: "grid", gridTemplateColumns: isNarrow ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: "0.45rem", marginTop: "0.62rem" }}>
+            {voteVisuals.segments.map((segment) => (
+              <div key={segment.kind} style={{ border: `1px solid ${segment.color}`, background: segment.background, borderRadius: "9px", padding: "0.48rem 0.55rem" }}>
+                <div style={{ color: segment.color, fontSize: "0.9rem", fontWeight: 900, lineHeight: 1 }}>{segment.count.toLocaleString()}</div>
+                <div style={{ color: "#cbd5e1", fontSize: "0.62rem", fontWeight: 800, letterSpacing: "0.07em", textTransform: "uppercase", marginTop: "0.18rem" }}>{segment.label}</div>
+                <div style={{ color: "#94a3b8", fontSize: "0.62rem", marginTop: "0.1rem" }}>{segment.percent}% of counted votes</div>
+              </div>
+            ))}
+          </div>
+          <details style={{ marginTop: "0.55rem", color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.45 }}>
+            <summary style={{ cursor: "pointer", color: "#cbd5e1", fontWeight: 750 }}>How counted votes map to the claim signal</summary>
+            <div style={{ marginTop: "0.32rem" }}>{voteSignal.detail}</div>
+          </details>
         </div>
       )}
 
