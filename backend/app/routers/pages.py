@@ -164,6 +164,143 @@ def list_pages(category: str | None = None, db: Session = Depends(get_db)):
     return q.order_by(WikiPage.updated_at.desc()).all()
 
 
+def _normalize_paper_identifier(value: str | None) -> str:
+    return str(value or "").replace("arXiv:", "").strip()
+
+
+def _paper_tone(stance: str | None) -> str:
+    value = str(stance or "").strip().lower()
+    if any(token in value for token in ("counter", "contradict", "oppose", "against", "refut", "weak")):
+        return "counter"
+    if any(token in value for token in ("support", "agree", "for", "confirm", "entail", "strengthen")):
+        return "support"
+    return "neutral"
+
+
+def _paper_claim_href(page_slug: str, claim_id: int) -> str:
+    return f"/wiki/{page_slug}#claim-{claim_id}"
+
+
+@router.get("/paper-footprint", tags=["pages"],
+    summary="Get a wiki-wide paper footprint",
+    description="Read-only aggregation of where a paper appears across indexed wiki evidence rows.")
+def get_cross_page_paper_footprint(
+    arxiv_id: str | None = None,
+    evidence_id: int | None = None,
+    db: Session = Depends(get_db),
+):
+    from app.models.claim import Claim, Evidence, EvidenceVote
+
+    normalized_arxiv = _normalize_paper_identifier(arxiv_id)
+    target_evidence_id = evidence_id if evidence_id and evidence_id > 0 else None
+
+    if not normalized_arxiv and target_evidence_id is None:
+        raise HTTPException(400, "Provide arxiv_id or evidence_id")
+
+    if target_evidence_id is not None and not normalized_arxiv:
+        seed = db.query(Evidence).filter(Evidence.id == target_evidence_id).first()
+        if not seed:
+            raise HTTPException(404, "Paper footprint not found")
+        normalized_arxiv = _normalize_paper_identifier(seed.arxiv_id)
+
+    q = (
+        db.query(Evidence, Claim, WikiPage)
+        .join(Claim, Evidence.claim_id == Claim.id)
+        .join(WikiPage, Claim.page_id == WikiPage.id)
+    )
+    if normalized_arxiv:
+        q = q.filter(Evidence.arxiv_id == normalized_arxiv)
+    elif target_evidence_id is not None:
+        q = q.filter(Evidence.id == target_evidence_id)
+
+    rows = q.order_by(WikiPage.title.asc(), Claim.order_idx.asc(), Claim.id.asc(), Evidence.id.asc()).all()
+    if not rows:
+        raise HTTPException(404, "Paper footprint not found")
+
+    evidence_ids = [evidence.id for evidence, _claim, _page in rows]
+    vote_counts: dict[int, dict[str, int]] = {evidence_id: {"agree": 0, "disagree": 0} for evidence_id in evidence_ids}
+    if evidence_ids:
+        for vote in db.query(EvidenceVote).filter(EvidenceVote.evidence_id.in_(evidence_ids)).all():
+            bucket = vote_counts.setdefault(vote.evidence_id, {"agree": 0, "disagree": 0})
+            if vote.value > 0:
+                bucket["agree"] += 1
+            elif vote.value < 0:
+                bucket["disagree"] += 1
+
+    first_evidence = rows[0][0]
+    paper = {
+        "evidence_id": first_evidence.id,
+        "arxiv_id": _normalize_paper_identifier(first_evidence.arxiv_id) or None,
+        "doi": first_evidence.doi,
+        "url": first_evidence.url or (f"https://arxiv.org/abs/{_normalize_paper_identifier(first_evidence.arxiv_id)}" if first_evidence.arxiv_id else None),
+        "title": first_evidence.title,
+        "authors": _parse_authors(first_evidence.authors),
+        "year": first_evidence.year,
+        "summary": first_evidence.summary or first_evidence.abstract,
+        "author_year_key": f"{(_parse_authors(first_evidence.authors) or ['Paper'])[0].split()[-1]}{first_evidence.year}" if first_evidence.year else (first_evidence.title or f"Evidence {first_evidence.id}"),
+    }
+
+    tone_counts = {"support": 0, "counter": 0, "neutral": 0}
+    trust_counts: dict[str, int] = {}
+    by_page: dict[int, dict] = {}
+    seen_claims: set[int] = set()
+
+    for evidence, claim, page in rows:
+        tone = _paper_tone(evidence.stance)
+        tone_counts[tone] += 1
+        trust = claim.trust_level or "unverified"
+        trust_counts[trust] = trust_counts.get(trust, 0) + 1
+        seen_claims.add(claim.id)
+        page_bucket = by_page.setdefault(page.id, {
+            "page_id": page.id,
+            "slug": page.slug,
+            "title": page.title,
+            "claim_count": 0,
+            "evidence_count": 0,
+            "support_count": 0,
+            "counter_count": 0,
+            "neutral_count": 0,
+            "claims": [],
+        })
+        page_bucket["evidence_count"] += 1
+        page_bucket[f"{tone}_count"] += 1
+        page_bucket["claims"].append({
+            "claim_id": claim.id,
+            "claim_text": claim.text,
+            "section": claim.section,
+            "trust_level": trust,
+            "evidence_id": evidence.id,
+            "stance": evidence.stance,
+            "status": evidence.status,
+            "tone": tone,
+            "href": _paper_claim_href(page.slug, claim.id),
+            "votes_agree": vote_counts.get(evidence.id, {}).get("agree", 0),
+            "votes_disagree": vote_counts.get(evidence.id, {}).get("disagree", 0),
+        })
+
+    pages = []
+    for page_bucket in by_page.values():
+        page_bucket["claims"].sort(key=lambda row: (0 if row["tone"] == "counter" else 1, row["claim_id"]))
+        page_bucket["claim_count"] = len({row["claim_id"] for row in page_bucket["claims"]})
+        pages.append(page_bucket)
+    pages.sort(key=lambda p: (-p["counter_count"], -p["claim_count"], p["title"].lower()))
+
+    return {
+        "schema_version": "cross_page_paper_footprint.v1",
+        "paper": paper,
+        "page_count": len(pages),
+        "claim_count": len(seen_claims),
+        "evidence_count": len(rows),
+        "tone_counts": tone_counts,
+        "trust_counts": dict(sorted(trust_counts.items())),
+        "scope": {
+            "label": "wiki-wide paper footprint",
+            "caveat": "Across indexed wiki evidence rows; this is not a final verdict about which claim is correct.",
+        },
+        "pages": pages,
+    }
+
+
 @router.get("/{slug}", response_model=PageOut)
 def get_page(slug: str, db: Session = Depends(get_db)):
     from app.models.agent import Agent as AgentModel

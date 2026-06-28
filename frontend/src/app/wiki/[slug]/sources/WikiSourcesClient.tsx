@@ -1,9 +1,10 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { buildCrossPagePaperFootprintDeck, type CrossPagePaperFootprintResponse } from "./crossPagePaperFootprint";
 
-interface FactSource {
+export interface FactSource {
   id: number;
   fact_kind: string;
   fact_index: number;
@@ -21,6 +22,26 @@ interface FactSource {
   reason: string | null;
 }
 
+export interface PageCitation {
+  evidence_id: number;
+  author_year_key?: string | null;
+  title?: string | null;
+  arxiv_id?: string | null;
+  url?: string | null;
+}
+
+export interface WikiSourcesClientTestOnlyFixtureData {
+  page: { title?: string | null; slug?: string | null };
+  sources?: FactSource[];
+  citations?: PageCitation[];
+  crossPageFootprints?: CrossPagePaperFootprintResponse[];
+}
+
+type WikiSourcesClientProps = {
+  testOnlyFixtureSlug?: string;
+  testOnlyFixtureData?: WikiSourcesClientTestOnlyFixtureData;
+};
+
 const TIER_COLOR: Record<string, { bg: string; text: string; label: string }> = {
   authoritative: { bg: "rgba(129,140,248,0.1)", text: "#818cf8", label: "📐 Authoritative" },
   claim:         { bg: "rgba(34,197,94,0.1)",   text: "#22c55e", label: "📄 Wiki-grounded" },
@@ -32,24 +53,78 @@ const TRUST_COLOR: Record<string, string> = {
   debated: "#f97316", challenged: "#ef4444", unverified: "#475569",
 };
 
-export default function WikiSourcesPage() {
+export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureData }: WikiSourcesClientProps = {}) {
   const params = useParams();
-  const slug = params?.slug as string;
+  const slug = testOnlyFixtureSlug || (params?.slug as string);
   const [sources, setSources] = useState<FactSource[]>([]);
+  const [citations, setCitations] = useState<PageCitation[]>([]);
+  const [crossPageFootprints, setCrossPageFootprints] = useState<CrossPagePaperFootprintResponse[]>([]);
   const [pageTitle, setPageTitle] = useState("");
   const [loading, setLoading] = useState(true);
+  const [footprintsLoading, setFootprintsLoading] = useState(false);
+  const [footprintError, setFootprintError] = useState<string | null>(null);
+  const [footprintRetryNonce, setFootprintRetryNonce] = useState(0);
 
   useEffect(() => {
     if (!slug) return;
+    if (testOnlyFixtureData) {
+      setPageTitle(testOnlyFixtureData.page?.title || slug);
+      setSources(Array.isArray(testOnlyFixtureData.sources) ? testOnlyFixtureData.sources : []);
+      setCitations(Array.isArray(testOnlyFixtureData.citations) ? testOnlyFixtureData.citations : []);
+      setCrossPageFootprints(Array.isArray(testOnlyFixtureData.crossPageFootprints) ? testOnlyFixtureData.crossPageFootprints : []);
+      setLoading(false);
+      setFootprintsLoading(false);
+      setFootprintError(null);
+      return;
+    }
+    setLoading(true);
+    setFootprintsLoading(true);
+    setFootprintError(null);
     Promise.all([
       fetch(`/api/pages/${slug}`).then(r => r.json()),
       fetch(`/api/pages/${slug}/fact-sources`).then(r => r.ok ? r.json() : []).catch(() => []),
-    ]).then(([page, srcs]) => {
+      fetch(`/api/pages/${slug}/citations`).then(r => r.ok ? r.json() : { citations: [] }).catch(() => ({ citations: [] })),
+    ]).then(async ([page, srcs, citationPayload]) => {
+      const citationList = Array.isArray(citationPayload?.citations) ? citationPayload.citations : [];
       setPageTitle(page?.title || slug);
       setSources(Array.isArray(srcs) ? srcs : []);
+      setCitations(citationList);
       setLoading(false);
-    }).catch(() => setLoading(false));
-  }, [slug]);
+
+      const byArxiv = new Map<string, PageCitation>();
+      for (const citation of citationList) {
+        const arxivId = String(citation?.arxiv_id || "").replace(/^arXiv:/, "").trim();
+        if (arxivId && !byArxiv.has(arxivId)) byArxiv.set(arxivId, { ...citation, arxiv_id: arxivId });
+      }
+      const footprintTargets = [...byArxiv.values()].slice(0, 4);
+      const footprintResults = await Promise.all(
+        footprintTargets.map(async (citation) => {
+          const query = new URLSearchParams({ arxiv_id: String(citation.arxiv_id || "") });
+          try {
+            const response = await fetch(`/api/pages/paper-footprint?${query.toString()}`);
+            if (response.status === 404) return { data: null, failed: false };
+            if (!response.ok) return { data: null, failed: true };
+            return { data: await response.json(), failed: false };
+          } catch {
+            return { data: null, failed: true };
+          }
+        }),
+      );
+      setCrossPageFootprints(footprintResults.map(result => result.data).filter(Boolean) as CrossPagePaperFootprintResponse[]);
+      setFootprintError(footprintResults.some(result => result.failed) ? "Couldn't load wiki-wide paper footprint. Retry." : null);
+      setFootprintsLoading(false);
+    }).catch(() => {
+      setFootprintError("Couldn't load wiki-wide paper footprint. Retry.");
+      setLoading(false);
+      setFootprintsLoading(false);
+    });
+  }, [slug, testOnlyFixtureData, footprintRetryNonce]);
+
+  const crossPageFootprintDeck = useMemo(
+    () => buildCrossPagePaperFootprintDeck(crossPageFootprints),
+    [crossPageFootprints],
+  );
+
 
   const heroSources = sources.filter(s => s.fact_kind === "hero");
 
@@ -139,6 +214,95 @@ export default function WikiSourcesPage() {
     );
   };
 
+  const renderCrossPagePaperFootprint = () => {
+    const deck = crossPageFootprintDeck;
+    return (
+      <section data-testid="cross-page-paper-footprint" style={{ marginBottom: "2rem", background: "linear-gradient(135deg, rgba(15,23,42,0.94), rgba(17,24,39,0.82))", border: "1px solid rgba(56,189,248,0.22)", borderRadius: "14px", padding: "1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+          <div>
+            <div style={{ color: "#67e8f9", fontSize: "0.68rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              wiki-wide paper footprint
+            </div>
+            <h2 style={{ fontSize: "1.1rem", fontWeight: 800, color: "#f8fafc", margin: "0.25rem 0" }}>
+              Cross-page paper footprint
+            </h2>
+            <p data-testid="cross-page-paper-footprint-scope" style={{ color: "#94a3b8", fontSize: "0.78rem", margin: 0, maxWidth: "44rem", lineHeight: 1.55 }}>
+              Across indexed wiki evidence rows; this is not a final verdict about which claim is correct.
+            </p>
+          </div>
+          <div style={{ color: "#cbd5e1", fontSize: "0.74rem", border: "1px solid rgba(148,163,184,0.24)", borderRadius: "999px", padding: "0.32rem 0.65rem" }}>
+            {deck.hasCrossPageFootprint ? `${deck.paperCount} papers · ${deck.pageCount} page touches · ${deck.claimCount} claims` : `${citations.filter(c => c.arxiv_id).length} arXiv-indexed papers scanned`}
+          </div>
+        </div>
+
+        {footprintsLoading && (
+          <p style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "0.85rem" }}>Loading cross-page paper footprint…</p>
+        )}
+
+        {!footprintsLoading && footprintError && (
+          <p data-testid="cross-page-paper-footprint-error" style={{ color: "#fb923c", fontSize: "0.8rem", marginTop: "0.85rem" }}>
+            {footprintError}{" "}
+            <button
+              type="button"
+              data-testid="cross-page-paper-footprint-retry"
+              onClick={() => setFootprintRetryNonce(nonce => nonce + 1)}
+              style={{ color: "#93c5fd", background: "transparent", border: "0", padding: 0, font: "inherit", fontWeight: 800, cursor: "pointer" }}
+            >
+              Retry
+            </button>
+          </p>
+        )}
+
+        {!footprintsLoading && !footprintError && !deck.hasCrossPageFootprint && (
+          <p style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "0.85rem" }}>
+            {deck.summary} Papers appear here after citation records include an arXiv ID and the wiki evidence index has matching rows.
+          </p>
+        )}
+
+        {!footprintsLoading && deck.hasCrossPageFootprint && (
+          <div style={{ display: "grid", gap: "0.75rem", marginTop: "0.9rem" }}>
+            {deck.items.map((item) => (
+              <article key={item.arxivId || item.paperLabel} data-testid="cross-page-paper-card" style={{ background: "rgba(2,6,23,0.72)", border: "1px solid rgba(51,65,85,0.92)", borderRadius: "12px", padding: "0.85rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+                  <div>
+                    <div style={{ color: "#f8fafc", fontWeight: 800, fontSize: "0.92rem" }}>{item.paperLabel}</div>
+                    <div style={{ color: "#cbd5e1", fontSize: "0.78rem", marginTop: "0.15rem" }}>{item.title}</div>
+                  </div>
+                  <div style={{ color: item.counterCount > 0 ? "#fb923c" : "#86efac", fontSize: "0.74rem", fontWeight: 800 }}>
+                    {item.impactLabel}
+                  </div>
+                </div>
+                <div style={{ display: "grid", gap: "0.55rem", marginTop: "0.75rem" }}>
+                  {item.pages.slice(0, 4).map((page) => (
+                    <div key={page.slug} style={{ borderTop: "1px solid rgba(30,41,59,0.95)", paddingTop: "0.55rem" }}>
+                      <Link data-testid="cross-page-paper-page-link" href={`/wiki/${page.slug}`} aria-label={`${page.title} — ${page.claim_count || page.claims.length} claims, ${page.counter_count || 0} countering`} style={{ color: "#93c5fd", fontWeight: 800, fontSize: "0.78rem", textDecoration: "none" }}>
+                        {page.title}
+                      </Link>
+                      <span style={{ color: "#64748b", fontSize: "0.72rem", marginLeft: "0.45rem" }}>
+                        {page.claim_count || page.claims.length} claims · {page.counter_count || 0} countering
+                      </span>
+                      <div style={{ display: "grid", gap: "0.35rem", marginTop: "0.4rem" }}>
+                        {page.claims.slice(0, 3).map((claim) => (
+                          <Link key={`${page.slug}-${claim.claim_id}-${claim.evidence_id}`} data-testid="cross-page-paper-claim-row" href={claim.href || `/wiki/${page.slug}#claim-${claim.claim_id}`} style={{ display: "block", color: "#cbd5e1", textDecoration: "none", fontSize: "0.74rem", lineHeight: 1.45 }}>
+                            <span style={{ color: claim.tone === "counter" ? "#fb923c" : claim.tone === "support" ? "#86efac" : "#94a3b8", fontWeight: 850 }}>
+                              {claim.tone === "counter" ? "Counters" : claim.tone === "support" ? "Supports" : "Neutral"}
+                            </span>
+                            <span style={{ color: "#64748b" }}> · {claim.trust_level || "unverified"} · </span>
+                            {claim.claim_text}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+    );
+  };
+
   return (
     <div style={{ maxWidth: "56rem", margin: "0 auto" }}>
       <div style={{ marginBottom: "2rem" }}>
@@ -157,6 +321,8 @@ export default function WikiSourcesPage() {
           {sources.filter(s => s.source_tier === "ai_estimate").length} AI estimate
         </p>
       </div>
+
+      {renderCrossPagePaperFootprint()}
 
       {sources.length === 0 ? (
         <p style={{ color: "#475569" }}>No source records found for this page.</p>
