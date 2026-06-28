@@ -20,6 +20,7 @@ import {
   TRUST_LEVEL_ORDER,
   type TrustVisibilitySummary,
 } from "./trustVisibility";
+import { formatSourceTraceHoverCard } from "./sourceTraceHover";
 
 interface WikiPage {
   id: number;
@@ -246,6 +247,10 @@ function formatAuthors(authors: string[]): string {
 
 function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; unmatched?: string }) {
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const visible = open || hovered;
+  const firstEvidenceId = citations[0]?.evidence_id;
+  const hoverCardId = firstEvidenceId ? `source-trace-hover-card-${firstEvidenceId}` : undefined;
 
   useEffect(() => {
     if (!open) return;
@@ -259,7 +264,7 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
   if (citations.length === 0) {
     return (
       <span
-        title="Citation metadata is still loading"
+        title="Source trace metadata is still loading"
         style={{ color: "#64748b", fontSize: "0.72em", verticalAlign: "super", marginLeft: "2px" }}
       >
         📄
@@ -268,9 +273,21 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
   }
 
   return (
-    <span style={{ position: "relative", display: "inline" }}>
+    <span
+      style={{ position: "relative", display: "inline" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
+      }}
+    >
       <button
         type="button"
+        aria-label={`${visible ? "Hide" : "Show"} Source trace for ${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
+        aria-haspopup="dialog"
+        aria-expanded={visible}
+        aria-controls={hoverCardId}
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(v => !v); }}
         style={{
           display: "inline",
@@ -284,47 +301,61 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
           padding: 0,
           fontWeight: 600,
         }}
-        title={`${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
+        title={`Source trace · ${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
       >
         📄
       </button>
-      {open && (
+      {visible && (
         <span
+          id={hoverCardId}
+          data-testid="source-trace-hover-card"
+          role="dialog"
+          aria-label="Source trace hover card"
           onClick={(e) => e.stopPropagation()}
           style={{
             position: "absolute",
             top: "1.4em",
             left: 0,
             zIndex: 120,
-            width: "min(24rem, 92vw)",
+            width: "min(27rem, 92vw)",
             background: "#1e293b",
             border: "1px solid #334155",
             borderLeft: "3px solid #818cf8",
-            borderRadius: "6px",
-            padding: "0.75rem",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.45)",
+            borderRadius: "8px",
+            padding: "0.85rem",
+            boxShadow: "0 12px 32px rgba(0,0,0,0.48)",
             whiteSpace: "normal",
           }}
         >
-          {citations.map((citation) => (
-            <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.65rem" }}>
-              {citation.url ? (
-                <a href={citation.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none" }}>
-                  {citation.title}
-                </a>
-              ) : (
-                <span style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600 }}>{citation.title}</span>
-              )}
-              <span style={{ display: "block", color: "#94a3b8", fontSize: "0.72rem", marginTop: "0.15rem" }}>
-                {formatAuthors(citation.authors)}{citation.year ? ` · ${citation.year}` : ""}{citation.journal_ref ? ` · ${citation.journal_ref}` : ""}
-              </span>
-              {(citation.summary || citation.abstract) && (
-                <span style={{ display: "block", color: "#64748b", fontSize: "0.7rem", lineHeight: 1.35, marginTop: "0.3rem" }}>
-                  {(citation.summary || citation.abstract || "").slice(0, 180)}
+          <span style={{ display: "block", color: "#a5b4fc", fontSize: "0.64rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+            Source trace
+          </span>
+          {citations.map((citation) => {
+            const trace = formatSourceTraceHoverCard(citation);
+            return (
+              <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.72rem", paddingBottom: "0.72rem", borderBottom: "1px solid rgba(51,65,85,0.8)" }}>
+                <span style={{ display: "inline-flex", color: "#93c5fd", background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)", borderRadius: "999px", padding: "0.08rem 0.45rem", fontSize: "0.63rem", fontWeight: 800, marginBottom: "0.35rem" }}>
+                  {trace.traceLabel}
                 </span>
-              )}
-            </span>
-          ))}
+                {citation.url ? (
+                  <a href={citation.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", color: "#f8fafc", fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.35, textDecoration: "none" }}>
+                    {trace.title}
+                  </a>
+                ) : (
+                  <span style={{ display: "block", color: "#f8fafc", fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.35 }}>{trace.title}</span>
+                )}
+                <span style={{ display: "block", color: "#94a3b8", fontSize: "0.72rem", marginTop: "0.18rem" }}>
+                  {trace.byline}
+                </span>
+                <span style={{ display: "block", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.45, marginTop: "0.38rem" }}>
+                  {trace.summary}
+                </span>
+                <span style={{ display: "block", color: "#64748b", fontSize: "0.68rem", marginTop: "0.38rem" }}>
+                  {trace.locator}
+                </span>
+              </span>
+            );
+          })}
         </span>
       )}
     </span>
