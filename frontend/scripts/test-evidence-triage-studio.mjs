@@ -27,9 +27,10 @@ const compiled = ts.transpileModule(helperSource, {
 const module = { exports: {} };
 vm.runInNewContext(compiled.outputText, { module, exports: module.exports, require }, { filename: helperPath });
 
-const { buildEvidenceTriageStudioDeck, normalizeTriageLane } = module.exports;
+const { buildEvidenceTriageStudioDeck, normalizeTriageLane, buildEvidenceTriageQueueView } = module.exports;
 assert.equal(typeof buildEvidenceTriageStudioDeck, "function");
 assert.equal(typeof normalizeTriageLane, "function");
+assert.equal(typeof buildEvidenceTriageQueueView, "function", "Triage queue safety view should be testable outside React.");
 assert.equal(normalizeTriageLane({ tone: "counter", trustLevel: "challenged", votesDisagree: 2 }), "needs_adjudication");
 assert.equal(normalizeTriageLane({ tone: "support", trustLevel: "accepted", votesDisagree: 0 }), "ready_to_review");
 assert.equal(normalizeTriageLane({ tone: "neutral", trustLevel: "unverified", votesDisagree: 0 }), "needs_source");
@@ -96,15 +97,41 @@ assert.match(deck.summary, /2 adjudication/i);
 assert.match(deck.scopeCaveat, /review queue, not a final verdict/i);
 assert.equal(deck.items.some((item) => item.paperLabel === "Future schema"), false, "Unknown schemas should not enter the triage queue.");
 
+const pagedView = buildEvidenceTriageQueueView(deck, { laneFilter: "all", page: 0, pageSize: 2 });
+assert.equal(pagedView.totalCount, 4);
+assert.equal(pagedView.filteredCount, 4);
+assert.equal(pagedView.visibleItems.length, 2, "Queue view should page long triage queues instead of silently slicing.");
+assert.equal(pagedView.pageCount, 2);
+assert.equal(pagedView.currentPage, 0);
+assert.equal(pagedView.hasOverflow, true);
+assert.match(pagedView.overflowDisclosure, /Showing 1-2 of 4 triage items/i);
+assert.match(pagedView.overflowDisclosure, /paginated for review safety/i);
+
+const adjudicationView = buildEvidenceTriageQueueView(deck, { laneFilter: "needs_adjudication", page: 0, pageSize: 1 });
+assert.equal(adjudicationView.filteredCount, 2);
+assert.equal(adjudicationView.hiddenByFilterCount, 2);
+assert.equal(adjudicationView.visibleItems.every((item) => item.lane === "needs_adjudication"), true);
+assert.match(adjudicationView.overflowDisclosure, /Needs adjudication/i);
+assert.match(adjudicationView.overflowDisclosure, /2 hidden by the active lane filter/i);
+
+const emptyFilteredView = buildEvidenceTriageQueueView(deck, { laneFilter: "needs_source", page: 3, pageSize: 6 });
+assert.equal(emptyFilteredView.currentPage, 0, "Out-of-range requested pages should clamp safely.");
+assert.equal(emptyFilteredView.visibleItems.length, 1);
+
 const emptyDeck = buildEvidenceTriageStudioDeck({ sources: [], citations: [], crossPageFootprints: [] });
 assert.equal(emptyDeck.hasTriageSignal, false);
 assert.match(emptyDeck.summary, /No evidence triage signals/i);
 
 const clientSource = fs.readFileSync(sourcesClientPath, "utf8");
 assert.match(clientSource, /buildEvidenceTriageStudioDeck/, "Sources page should derive an evidence triage studio deck.");
+assert.match(clientSource, /buildEvidenceTriageQueueView/, "Sources page should use the tested queue view for lane filters and pagination.");
 assert.match(clientSource, /data-testid="evidence-triage-studio"/, "Sources page should expose a stable evidence triage studio section.");
 assert.match(clientSource, /data-testid="evidence-triage-card"/, "Sources page should render stable triage cards.");
 assert.match(clientSource, /data-testid="evidence-triage-lane-chip"/, "Triage lanes should have stable chips.");
+assert.match(clientSource, /data-testid="evidence-triage-filter"/, "Triage lanes should have simple filter buttons.");
+assert.match(clientSource, /aria-pressed=\{activeTriageLaneFilter === filter\.key\}/, "Lane filters should expose pressed state to assistive tech.");
+assert.match(clientSource, /data-testid="evidence-triage-overflow-disclosure"/, "Triage queue should disclose truncation\/pagination instead of silently slicing.");
+assert.match(clientSource, /data-testid="evidence-triage-page-control"/, "Triage queue should expose page controls when rows overflow.");
 assert.match(clientSource, /data-testid="evidence-triage-action-link"/, "Triage cards should link to claim/page evidence context.");
 assert.match(clientSource, /review queue, not a final verdict/i, "Triage surface should preserve truth-framing copy.");
 assert.match(clientSource, /No labels are written/i, "Triage surface should be explicit that it is read-only.");
