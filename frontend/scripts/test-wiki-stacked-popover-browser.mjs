@@ -8,21 +8,25 @@ import path from "node:path";
 import { spawn } from "node:child_process";
 
 const frontendRoot = path.resolve(import.meta.dirname, "..");
-// Browser stack fixture contract: galaxy-evolution-v2 is public, requires no auth,
-// and currently renders multiple claim trust badges with mini-map hover cards. The
-// route has no source-trace triggers today, so this smoke locks the real available
-// evidence-panel + claim-mini-map stack; source-trace browser coverage is a follow-up
-// when a deterministic route/fixture with source-trace triggers exists.
-const routePath = process.env.WIKI_STACKED_POPOVER_PATH || "/wiki/galaxy-evolution-v2";
 const nextPort = Number(process.env.WIKI_STACKED_POPOVER_NEXT_PORT || 3033);
-const chromePort = Number(process.env.WIKI_STACKED_POPOVER_CHROME_PORT || 9234);
+const chromePortBase = Number(process.env.WIKI_STACKED_POPOVER_CHROME_PORT || 9234);
 const baseUrl = process.env.WIKI_STACKED_POPOVER_BASE_URL || `http://127.0.0.1:${nextPort}`;
-const pageUrl = new URL(routePath, baseUrl).toString();
 const chromeBinary = process.env.CHROME_BIN || "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
-const chromeProfile = path.join(os.tmpdir(), `nebulamind-stacked-popover-chrome-${process.pid}`);
 const STARTUP_TIMEOUT_MS = 45_000;
 const SELECTOR_TIMEOUT_MS = 30_000;
 const CDP_COMMAND_TIMEOUT_MS = 45_000;
+const scenarios = [
+  {
+    name: "claim-mini-map",
+    routePath: process.env.WIKI_STACKED_POPOVER_MINIMAP_PATH || "/wiki/galaxy-evolution-v2",
+    firstEscapeMarker: "mini_map_only",
+  },
+  {
+    name: "source-trace",
+    routePath: process.env.WIKI_STACKED_POPOVER_SOURCE_TRACE_PATH || "/wiki/source-trace-browser-fixture",
+    firstEscapeMarker: "source_trace_only",
+  },
+];
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -82,7 +86,7 @@ function spawnLogged(command, args, options = {}) {
   const child = spawn(command, args, { ...options, stdio: ["ignore", "pipe", "pipe"] });
   child.stdout.on("data", (chunk) => output.push(String(chunk)));
   child.stderr.on("data", (chunk) => output.push(String(chunk)));
-  child.outputTail = () => output.join("").split(/\r?\n/).slice(-20).join("\n");
+  child.outputTail = () => output.join("").split(/\r?\n/).slice(-24).join("\n");
   return child;
 }
 
@@ -198,8 +202,7 @@ class CdpClient {
   sendFrame(text) {
     const payload = Buffer.from(text, "utf8");
     const mask = crypto.randomBytes(4);
-    const header = [];
-    header.push(0x81);
+    const header = [0x81];
     if (payload.length < 126) {
       header.push(0x80 | payload.length);
     } else if (payload.length < 65536) {
@@ -269,7 +272,7 @@ class CdpClient {
   }
 }
 
-const interactionScript = String.raw`(async () => {
+const miniMapInteractionScript = String.raw`(async () => {
   const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
   const state = () => ({
     claimBadges: document.querySelectorAll('[data-testid="claim-trust-badge"]').length,
@@ -288,8 +291,6 @@ const interactionScript = String.raw`(async () => {
   };
 
   await waitFor(() => document.querySelectorAll('[data-testid="claim-trust-badge"]').length > 0, 'claim badges');
-  await waitFor(() => document.querySelectorAll('[data-testid="claim-trust-badge"]').length > 0, 'claim mini-map triggers');
-
   const claimBadge = document.querySelector('[data-testid="claim-trust-badge"]');
   claimBadge.scrollIntoView({ block: 'center', inline: 'center' });
   claimBadge.click();
@@ -305,7 +306,43 @@ const interactionScript = String.raw`(async () => {
   return state();
 })()`;
 
-const firstEscapeStateScript = String.raw`(() => ({
+const sourceTraceInteractionScript = String.raw`(async () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const state = () => ({
+    claimBadges: document.querySelectorAll('[data-testid="claim-trust-badge"]').length,
+    sourceTraceTriggers: document.querySelectorAll('[data-testid="source-trace-trigger"]').length,
+    panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
+    sourceTraceOpen: Boolean(document.querySelector('[data-testid="source-trace-hover-card"]')),
+    activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+  });
+  const waitFor = async (predicate, label) => {
+    const start = Date.now();
+    while (Date.now() - start < ${SELECTOR_TIMEOUT_MS}) {
+      if (predicate()) return;
+      await delay(100);
+    }
+    throw new Error('Timed out waiting for ' + label + ' state=' + JSON.stringify(state()));
+  };
+
+  await waitFor(() => document.querySelectorAll('[data-testid="claim-trust-badge"]').length > 0, 'claim badges');
+  await waitFor(() => document.querySelectorAll('[data-testid="source-trace-trigger"]').length > 0, 'source trace triggers');
+
+  const claimBadge = document.querySelector('[data-testid="claim-trust-badge"]');
+  claimBadge.scrollIntoView({ block: 'center', inline: 'center' });
+  claimBadge.click();
+  await waitFor(() => document.querySelector('[data-testid="evidence-panel-dialog"]'), 'evidence panel open');
+
+  const sourceTraceTrigger = document.querySelector('[data-testid="source-trace-trigger"]');
+  sourceTraceTrigger.scrollIntoView({ block: 'center', inline: 'center' });
+  sourceTraceTrigger.focus();
+  sourceTraceTrigger.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+  sourceTraceTrigger.parentElement?.dispatchEvent(new MouseEvent('mouseenter', { bubbles: true, cancelable: true, view: window }));
+  await waitFor(() => document.querySelector('[data-testid="source-trace-hover-card"]'), 'source trace hover card open with panel');
+
+  return state();
+})()`;
+
+const miniMapFirstEscapeStateScript = String.raw`(() => ({
   panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
   miniMapOpen: Boolean(document.querySelector('[data-testid="claim-mini-map-hover-card"]')),
   activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
@@ -314,22 +351,95 @@ const firstEscapeStateScript = String.raw`(() => ({
   panelLabelledBy: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('aria-labelledby')),
 }))()`;
 
-const secondEscapeStateScript = String.raw`(() => ({
+const sourceTraceFirstEscapeStateScript = String.raw`(() => ({
+  panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
+  sourceTraceOpen: Boolean(document.querySelector('[data-testid="source-trace-hover-card"]')),
+  activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+  dialogRole: document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('role') || '',
+  ariaModal: document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('aria-modal') || '',
+  panelLabelledBy: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')?.getAttribute('aria-labelledby')),
+}))()`;
+
+const miniMapSecondEscapeStateScript = String.raw`(() => ({
   panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
   miniMapOpen: Boolean(document.querySelector('[data-testid="claim-mini-map-hover-card"]')),
   activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
 }))()`;
 
-async function main() {
-  assert.ok(fs.existsSync(path.join(frontendRoot, ".next", "BUILD_ID")), "Run npm run build before smoke:wiki-stacked-popover-browser so next start can serve a production build.");
-  assert.ok(fs.existsSync(chromeBinary), `Chrome binary not found at ${chromeBinary}; set CHROME_BIN to override.`);
+const sourceTraceSecondEscapeStateScript = String.raw`(() => ({
+  panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
+  sourceTraceOpen: Boolean(document.querySelector('[data-testid="source-trace-hover-card"]')),
+  activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+}))()`;
 
-  fs.rmSync(chromeProfile, { recursive: true, force: true });
-  const next = process.env.WIKI_STACKED_POPOVER_BASE_URL
-    ? null
-    : spawnLogged("npm", ["run", "start", "--", "-p", String(nextPort)], { cwd: frontendRoot });
+const scenarioScripts = {
+  "claim-mini-map": {
+    interaction: miniMapInteractionScript,
+    firstEscape: miniMapFirstEscapeStateScript,
+    secondEscape: miniMapSecondEscapeStateScript,
+    assertInitial(initial) {
+      assert.equal(initial.panelOpen, true, "Evidence panel should be open before claim mini-map stacked Escape smoke.");
+      assert.equal(initial.miniMapOpen, true, "Claim mini-map hover card should be open above/with the evidence panel before first Escape.");
+      assert.equal(initial.activeTestId, "claim-trust-badge", "Claim badge should own keyboard focus before first Escape.");
+    },
+    assertFirstEscape(afterFirstEscape) {
+      assert.equal(afterFirstEscape.miniMapOpen, false, "First Escape should close only the claim mini-map hover card.");
+      assert.equal(afterFirstEscape.panelOpen, true, "First Escape should leave the evidence panel dialog open.");
+      assert.equal(afterFirstEscape.activeTestId, "claim-trust-badge", "First Escape should return focus to the claim badge mini-map trigger.");
+      assert.equal(afterFirstEscape.dialogRole, "dialog", "Evidence panel should keep dialog role after top-popover Escape.");
+      assert.equal(afterFirstEscape.ariaModal, "true", "Evidence panel should keep aria-modal after top-popover Escape.");
+      assert.equal(afterFirstEscape.panelLabelledBy, true, "Evidence panel should keep aria-labelledby after top-popover Escape.");
+    },
+    assertSecondEscape(afterSecondEscape) {
+      assert.equal(afterSecondEscape.panelOpen, false, "Second Escape should close the evidence panel after the top mini-map hover card is gone.");
+    },
+  },
+  "source-trace": {
+    interaction: sourceTraceInteractionScript,
+    firstEscape: sourceTraceFirstEscapeStateScript,
+    secondEscape: sourceTraceSecondEscapeStateScript,
+    assertInitial(initial) {
+      assert.ok(initial.sourceTraceTriggers > 0, "Source-trace fixture should render at least one source-trace trigger.");
+      assert.equal(initial.panelOpen, true, "Evidence panel should be open before source-trace stacked Escape smoke.");
+      assert.equal(initial.sourceTraceOpen, true, "Source-trace hover card should be open above/with the evidence panel before first Escape.");
+      assert.equal(initial.activeTestId, "source-trace-trigger", "Source-trace trigger should own keyboard focus before first Escape.");
+    },
+    assertFirstEscape(afterFirstEscape) {
+      assert.equal(afterFirstEscape.panelOpen, true, "First Escape should leave the evidence panel dialog open for source-trace stack.");
+      assert.equal(afterFirstEscape.sourceTraceOpen, false, "First Escape should close only the source-trace hover card.");
+      assert.equal(afterFirstEscape.activeTestId, "source-trace-trigger", "First Escape should return focus to the source-trace trigger.");
+      assert.equal(afterFirstEscape.dialogRole, "dialog", "Evidence panel should keep dialog role after source-trace Escape.");
+      assert.equal(afterFirstEscape.ariaModal, "true", "Evidence panel should keep aria-modal after source-trace Escape.");
+      assert.equal(afterFirstEscape.panelLabelledBy, true, "Evidence panel should keep aria-labelledby after source-trace Escape.");
+    },
+    assertSecondEscape(afterSecondEscape) {
+      assert.equal(afterSecondEscape.panelOpen, false, "Second Escape should close the evidence panel after the source-trace hover card is gone.");
+    },
+  },
+};
+
+async function waitForPageReady(cdp, routePath) {
+  await waitFor(async () => {
+    try {
+      const ready = await cdp.evaluate(`(() => ({ href: location.href, readyState: document.readyState }))()`);
+      return ready && ready.href.includes(routePath) && ready.readyState !== "loading";
+    } catch {
+      return false;
+    }
+  }, STARTUP_TIMEOUT_MS, `Chrome page navigation to stabilize for ${routePath}`);
+}
+
+async function runBrowserScenario(scenario, index) {
+  const routePath = scenario.routePath;
+  const pageUrl = new URL(routePath, baseUrl).toString();
+  const chromePort = chromePortBase + index;
+  const chromeProfile = path.join(os.tmpdir(), `nebulamind-stacked-popover-chrome-${process.pid}-${scenario.name}`);
+  const scripts = scenarioScripts[scenario.name];
+  assert.ok(scripts, `No scripts registered for scenario ${scenario.name}`);
+
   let chrome;
   let cdp;
+  fs.rmSync(chromeProfile, { recursive: true, force: true });
   try {
     await waitForHttpOk(pageUrl, STARTUP_TIMEOUT_MS);
     chrome = spawnLogged(chromeBinary, [
@@ -342,63 +452,81 @@ async function main() {
       `--user-data-dir=${chromeProfile}`,
       pageUrl,
     ]);
-    const targets = await waitFor(async () => {
+    const target = await waitFor(async () => {
       const pages = await requestJson(`http://127.0.0.1:${chromePort}/json/list`);
       return pages.find((page) => page.type === "page" && page.webSocketDebuggerUrl);
-    }, STARTUP_TIMEOUT_MS, "Chrome DevTools target");
-    cdp = new CdpClient(targets.webSocketDebuggerUrl);
+    }, STARTUP_TIMEOUT_MS, `Chrome DevTools target for ${scenario.name}`);
+    cdp = new CdpClient(target.webSocketDebuggerUrl);
     await cdp.connect();
     await cdp.command("Runtime.enable");
     await cdp.command("Page.enable");
-    await waitFor(async () => {
-      try {
-        const ready = await cdp.evaluate(`(() => ({ href: location.href, readyState: document.readyState }))()`);
-        return ready && ready.href.includes(routePath) && ready.readyState !== "loading";
-      } catch {
-        return false;
-      }
-    }, STARTUP_TIMEOUT_MS, "Chrome page navigation to stabilize");
+    await waitForPageReady(cdp, routePath);
 
-    const initial = await cdp.evaluate(interactionScript);
-    assert.equal(initial.panelOpen, true, "Evidence panel should be open before stacked Escape smoke.");
-    assert.equal(initial.miniMapOpen, true, "Claim mini-map hover card should be open above/with the evidence panel before first Escape.");
-    assert.equal(initial.activeTestId, "claim-trust-badge", "Claim badge should own keyboard focus before first Escape.");
+    const initial = await cdp.evaluate(scripts.interaction);
+    scripts.assertInitial(initial);
 
     await cdp.pressEscape();
     await sleep(300);
-    const afterFirstEscape = await cdp.evaluate(firstEscapeStateScript);
-    assert.equal(afterFirstEscape.miniMapOpen, false, "First Escape should close only the claim mini-map hover card.");
-    assert.equal(afterFirstEscape.panelOpen, true, "First Escape should leave the evidence panel dialog open.");
-    assert.equal(afterFirstEscape.activeTestId, "claim-trust-badge", "First Escape should return focus to the claim badge mini-map trigger.");
-    assert.equal(afterFirstEscape.dialogRole, "dialog", "Evidence panel should keep dialog role after top-popover Escape.");
-    assert.equal(afterFirstEscape.ariaModal, "true", "Evidence panel should keep aria-modal after top-popover Escape.");
-    assert.equal(afterFirstEscape.panelLabelledBy, true, "Evidence panel should keep aria-labelledby after top-popover Escape.");
+    const afterFirstEscape = await cdp.evaluate(scripts.firstEscape);
+    scripts.assertFirstEscape(afterFirstEscape);
 
     await cdp.pressEscape();
     await sleep(350);
-    const afterSecondEscape = await cdp.evaluate(secondEscapeStateScript);
-    assert.equal(afterSecondEscape.panelOpen, false, "Second Escape should close the evidence panel after the top hover card is gone.");
+    const afterSecondEscape = await cdp.evaluate(scripts.secondEscape);
+    scripts.assertSecondEscape(afterSecondEscape);
 
-    console.log(`STACKED_POPOVER_BROWSER_OK first_escape=mini_map_only second_escape=panel_closed url=${pageUrl}`);
-    console.log(`STACKED_POPOVER_BROWSER_JSON ${JSON.stringify({ ok: true, route: routePath, firstEscape: afterFirstEscape, secondEscape: afterSecondEscape })}`);
+    console.log(`STACKED_POPOVER_CASE_OK name=${scenario.name} first_escape=${scenario.firstEscapeMarker} second_escape=panel_closed url=${pageUrl}`);
+    if (scenario.name === "source-trace") {
+      console.log(`SOURCE_TRACE_STACK_OK first_escape=source_trace_only second_escape=panel_closed url=${pageUrl}`);
+    }
+    return {
+      name: scenario.name,
+      ok: true,
+      route: routePath,
+      url: pageUrl,
+      firstEscapeMarker: scenario.firstEscapeMarker,
+      firstEscape: afterFirstEscape,
+      secondEscape: afterSecondEscape,
+    };
   } catch (error) {
-    console.error(`STACKED_POPOVER_BROWSER_FAIL ${error.message}`);
-    if (next) console.error(`next_tail:\n${next.outputTail()}`);
-    if (chrome) console.error(`chrome_tail:\n${chrome.outputTail()}`);
-    process.exitCode = 1;
+    console.error(`STACKED_POPOVER_CASE_FAIL name=${scenario.name} ${error.message}`);
+    if (chrome) console.error(`chrome_tail_${scenario.name}:\n${chrome.outputTail()}`);
+    throw error;
   } finally {
     cdp?.close();
-    await stopChild(chrome, "chrome");
-    await stopChild(next, "next");
+    await stopChild(chrome, `chrome ${scenario.name}`);
     for (let i = 0; i < 8; i += 1) {
       try {
         fs.rmSync(chromeProfile, { recursive: true, force: true });
         break;
       } catch (cleanupError) {
-        if (i === 7) console.warn(`chrome_profile_cleanup_warning ${cleanupError.message}`);
+        if (i === 7) console.warn(`chrome_profile_cleanup_warning ${scenario.name} ${cleanupError.message}`);
         await sleep(250);
       }
     }
+  }
+}
+
+async function main() {
+  assert.ok(fs.existsSync(path.join(frontendRoot, ".next", "BUILD_ID")), "Run npm run build before smoke:wiki-stacked-popover-browser so next start can serve a production build.");
+  assert.ok(fs.existsSync(chromeBinary), `Chrome binary not found at ${chromeBinary}; set CHROME_BIN to override.`);
+
+  const next = process.env.WIKI_STACKED_POPOVER_BASE_URL
+    ? null
+    : spawnLogged("npm", ["run", "start", "--", "-p", String(nextPort)], { cwd: frontendRoot });
+  const results = [];
+  try {
+    for (let i = 0; i < scenarios.length; i += 1) {
+      results.push(await runBrowserScenario(scenarios[i], i));
+    }
+    console.log(`STACKED_POPOVER_BROWSER_OK cases=${results.length}/${scenarios.length} first_escape=top_popover_only second_escape=panel_closed`);
+    console.log(`STACKED_POPOVER_BROWSER_JSON ${JSON.stringify({ ok: true, cases: results })}`);
+  } catch (error) {
+    console.error(`STACKED_POPOVER_BROWSER_FAIL ${error.message}`);
+    if (next) console.error(`next_tail:\n${next.outputTail()}`);
+    process.exitCode = 1;
+  } finally {
+    await stopChild(next, "next");
   }
 }
 
