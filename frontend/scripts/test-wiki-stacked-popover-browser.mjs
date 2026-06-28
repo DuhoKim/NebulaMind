@@ -15,7 +15,7 @@ const chromeBinary = process.env.CHROME_BIN || "/Applications/Google Chrome.app/
 const STARTUP_TIMEOUT_MS = 45_000;
 const SELECTOR_TIMEOUT_MS = 30_000;
 const CDP_COMMAND_TIMEOUT_MS = 45_000;
-const scenarios = [
+const allScenarios = [
   {
     name: "claim-mini-map",
     routePath: process.env.WIKI_STACKED_POPOVER_MINIMAP_PATH || "/wiki/galaxy-evolution-v2",
@@ -26,7 +26,17 @@ const scenarios = [
     routePath: process.env.WIKI_STACKED_POPOVER_SOURCE_TRACE_PATH || "/wiki/source-trace-browser-fixture",
     firstEscapeMarker: "source_trace_only",
   },
+  {
+    name: "page-atlas-ranking",
+    routePath: process.env.WIKI_STACKED_POPOVER_PAGE_ATLAS_PATH || "/wiki/source-trace-browser-fixture",
+    firstEscapeMarker: "page_atlas_panel_closed_focus_returned",
+  },
 ];
+const scenarioFilter = (process.env.WIKI_STACKED_POPOVER_ONLY || "").split(",").map((value) => value.trim()).filter(Boolean);
+const scenarios = scenarioFilter.length > 0
+  ? allScenarios.filter((scenario) => scenarioFilter.includes(scenario.name))
+  : allScenarios;
+assert.ok(scenarios.length > 0, `No browser scenarios selected by WIKI_STACKED_POPOVER_ONLY=${process.env.WIKI_STACKED_POPOVER_ONLY || ""}`);
 
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
@@ -342,6 +352,43 @@ const sourceTraceInteractionScript = String.raw`(async () => {
   return state();
 })()`;
 
+const pageAtlasInteractionScript = String.raw`(async () => {
+  const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+  const state = () => {
+    const dialog = document.querySelector('[data-testid="evidence-panel-dialog"]');
+    const opener = document.querySelector('[data-testid="page-atlas-open-evidence-map"]');
+    return {
+      atlasVisible: Boolean(document.querySelector('[data-testid="page-contradiction-atlas-ranking"]')),
+      atlasRows: document.querySelectorAll('[data-testid="page-atlas-ranked-claim"]').length,
+      atlasOpeners: document.querySelectorAll('[data-testid="page-atlas-open-evidence-map"]').length,
+      panelOpen: Boolean(dialog),
+      dialogId: dialog?.getAttribute('id') || '',
+      openerControls: opener?.getAttribute('aria-controls') || '',
+      activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+      activeAriaLabel: document.activeElement?.getAttribute?.('aria-label') || '',
+    };
+  };
+  const waitFor = async (predicate, label) => {
+    const start = Date.now();
+    while (Date.now() - start < ${SELECTOR_TIMEOUT_MS}) {
+      if (predicate()) return;
+      await delay(100);
+    }
+    throw new Error('Timed out waiting for ' + label + ' state=' + JSON.stringify(state()));
+  };
+
+  await waitFor(() => document.querySelector('[data-testid="page-contradiction-atlas-ranking"]'), 'page atlas ranking');
+  await waitFor(() => document.querySelector('[data-testid="page-atlas-ranked-claim"]'), 'page atlas ranked row');
+  const opener = document.querySelector('[data-testid="page-atlas-open-evidence-map"]');
+  opener.scrollIntoView({ block: 'center', inline: 'center' });
+  opener.focus();
+  opener.click();
+  await waitFor(() => document.querySelector('[data-testid="evidence-panel-dialog"]'), 'atlas evidence panel open');
+  await waitFor(() => document.activeElement?.getAttribute?.('aria-label') === 'Close evidence panel', 'evidence panel close button focus');
+
+  return state();
+})()`;
+
 const miniMapFirstEscapeStateScript = String.raw`(() => ({
   panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
   miniMapOpen: Boolean(document.querySelector('[data-testid="claim-mini-map-hover-card"]')),
@@ -370,6 +417,15 @@ const sourceTraceSecondEscapeStateScript = String.raw`(() => ({
   panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
   sourceTraceOpen: Boolean(document.querySelector('[data-testid="source-trace-hover-card"]')),
   activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+}))()`;
+
+const pageAtlasAfterEscapeStateScript = String.raw`(() => ({
+  atlasVisible: Boolean(document.querySelector('[data-testid="page-contradiction-atlas-ranking"]')),
+  atlasRows: document.querySelectorAll('[data-testid="page-atlas-ranked-claim"]').length,
+  panelOpen: Boolean(document.querySelector('[data-testid="evidence-panel-dialog"]')),
+  activeTestId: document.activeElement?.getAttribute?.('data-testid') || '',
+  activeText: document.activeElement?.textContent?.trim() || '',
+  openerControls: document.activeElement?.getAttribute?.('aria-controls') || '',
 }))()`;
 
 const scenarioScripts = {
@@ -414,6 +470,29 @@ const scenarioScripts = {
     },
     assertSecondEscape(afterSecondEscape) {
       assert.equal(afterSecondEscape.panelOpen, false, "Second Escape should close the evidence panel after the source-trace hover card is gone.");
+    },
+  },
+  "page-atlas-ranking": {
+    interaction: pageAtlasInteractionScript,
+    firstEscape: pageAtlasAfterEscapeStateScript,
+    secondEscape: pageAtlasAfterEscapeStateScript,
+    assertInitial(initial) {
+      assert.equal(initial.atlasVisible, true, "Page atlas fixture should render the page-level contradiction atlas ranking.");
+      assert.ok(initial.atlasRows > 0, "Page atlas fixture should render at least one ranked claim row.");
+      assert.ok(initial.atlasOpeners > 0, "Page atlas fixture should render an evidence-map opener.");
+      assert.equal(initial.panelOpen, true, "Atlas opener should open the evidence panel before Escape.");
+      assert.equal(initial.dialogId, initial.openerControls, "Atlas opener aria-controls should target the opened evidence panel dialog id.");
+      assert.equal(initial.activeAriaLabel, "Close evidence panel", "Evidence panel close button should receive initial dialog focus.");
+    },
+    assertFirstEscape(afterFirstEscape) {
+      assert.equal(afterFirstEscape.atlasVisible, true, "Page atlas should remain visible after closing the evidence panel.");
+      assert.equal(afterFirstEscape.panelOpen, false, "Escape should close the evidence panel opened from the page atlas row.");
+      assert.equal(afterFirstEscape.activeTestId, "page-atlas-open-evidence-map", "Escape should return focus to the page atlas evidence-map opener.");
+      assert.equal(afterFirstEscape.activeText, "Open evidence map", "Focus-return target should be the atlas opener button, not the page body.");
+    },
+    assertSecondEscape(afterSecondEscape) {
+      assert.equal(afterSecondEscape.panelOpen, false, "A second Escape should leave the atlas evidence panel closed.");
+      assert.equal(afterSecondEscape.activeTestId, "page-atlas-open-evidence-map", "Second Escape should not steal focus away from the atlas opener.");
     },
   },
 };
@@ -478,6 +557,9 @@ async function runBrowserScenario(scenario, index) {
     console.log(`STACKED_POPOVER_CASE_OK name=${scenario.name} first_escape=${scenario.firstEscapeMarker} second_escape=panel_closed url=${pageUrl}`);
     if (scenario.name === "source-trace") {
       console.log(`SOURCE_TRACE_STACK_OK first_escape=source_trace_only second_escape=panel_closed url=${pageUrl}`);
+    }
+    if (scenario.name === "page-atlas-ranking") {
+      console.log(`PAGE_ATLAS_BROWSER_OK first_escape=page_atlas_panel_closed_focus_returned second_escape=panel_remained_closed url=${pageUrl}`);
     }
     return {
       name: scenario.name,
