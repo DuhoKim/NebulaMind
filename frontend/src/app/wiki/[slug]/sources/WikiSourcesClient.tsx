@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import { buildCrossPagePaperFootprintDeck, type CrossPagePaperFootprintResponse } from "./crossPagePaperFootprint";
+import { buildEvidenceTriageStudioDeck } from "./evidenceTriageStudio";
 
 export interface FactSource {
   id: number;
@@ -125,6 +126,11 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
     [crossPageFootprints],
   );
 
+  const evidenceTriageDeck = useMemo(
+    () => buildEvidenceTriageStudioDeck({ sources, citations, crossPageFootprints, pageSlug: slug, pageTitle }),
+    [sources, citations, crossPageFootprints, slug, pageTitle],
+  );
+
 
   const heroSources = sources.filter(s => s.fact_kind === "hero");
 
@@ -210,6 +216,79 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
             </div>
           );
         })}
+      </section>
+    );
+  };
+
+  const renderEvidenceTriageStudio = () => {
+    const deck = evidenceTriageDeck;
+    const laneChips = [
+      { key: "needs_adjudication", label: "Adjudication", color: "#fb923c" },
+      { key: "needs_source", label: "Source gaps", color: "#facc15" },
+      { key: "ready_to_review", label: "Synthesis-ready", color: "#86efac" },
+    ] as const;
+    return (
+      <section data-testid="evidence-triage-studio" style={{ marginBottom: "2rem", background: "linear-gradient(135deg, rgba(30,41,59,0.96), rgba(15,23,42,0.9))", border: "1px solid rgba(251,146,60,0.24)", borderRadius: "14px", padding: "1rem" }}>
+        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "1rem", flexWrap: "wrap" }}>
+          <div>
+            <div style={{ color: "#fb923c", fontSize: "0.68rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+              review cockpit
+            </div>
+            <h2 style={{ fontSize: "1.1rem", fontWeight: 850, color: "#f8fafc", margin: "0.25rem 0" }}>
+              Evidence triage studio
+            </h2>
+            <p data-testid="evidence-triage-caveat" style={{ color: "#94a3b8", fontSize: "0.78rem", margin: 0, maxWidth: "45rem", lineHeight: 1.55 }}>
+              Evidence triage is a review queue, not a final verdict. No labels are written from this surface.
+            </p>
+          </div>
+          <div style={{ color: "#cbd5e1", fontSize: "0.74rem", border: "1px solid rgba(148,163,184,0.24)", borderRadius: "999px", padding: "0.32rem 0.65rem" }}>
+            {deck.summary}
+          </div>
+        </div>
+
+        <div style={{ display: "flex", gap: "0.45rem", flexWrap: "wrap", marginTop: "0.85rem" }}>
+          {laneChips.map((lane) => (
+            <span key={lane.key} data-testid="evidence-triage-lane-chip" style={{ border: `1px solid ${lane.color}55`, color: lane.color, background: `${lane.color}18`, borderRadius: "999px", padding: "0.25rem 0.58rem", fontSize: "0.72rem", fontWeight: 850 }}>
+              {lane.label}: {deck.laneCounts[lane.key].toLocaleString()}
+            </span>
+          ))}
+        </div>
+
+        {!deck.hasTriageSignal ? (
+          <p data-testid="evidence-triage-empty" style={{ color: "#64748b", fontSize: "0.8rem", marginTop: "0.85rem" }}>
+            No evidence triage signals yet. Add paper-backed evidence or source flags before readiness review.
+          </p>
+        ) : (
+          <div style={{ display: "grid", gap: "0.65rem", marginTop: "0.9rem" }}>
+            {deck.items.slice(0, 6).map((item) => (
+              <article key={item.id} data-testid="evidence-triage-card" style={{ background: "rgba(2,6,23,0.74)", border: "1px solid rgba(51,65,85,0.92)", borderRadius: "12px", padding: "0.82rem" }}>
+                <div style={{ display: "flex", justifyContent: "space-between", gap: "0.85rem", flexWrap: "wrap" }}>
+                  <div>
+                    <div style={{ color: "#f8fafc", fontWeight: 850, fontSize: "0.86rem" }}>{item.actionLabel}</div>
+                    <div style={{ color: "#94a3b8", fontSize: "0.74rem", marginTop: "0.12rem" }}>
+                      {item.paperLabel} · {item.pageTitle} · {item.claimLabel}
+                    </div>
+                  </div>
+                  <div style={{ color: item.lane === "needs_adjudication" ? "#fb923c" : item.lane === "needs_source" ? "#facc15" : "#86efac", fontSize: "0.72rem", fontWeight: 900 }}>
+                    {item.laneLabel}
+                  </div>
+                </div>
+                <p style={{ color: "#cbd5e1", fontSize: "0.76rem", lineHeight: 1.45, margin: "0.55rem 0 0" }}>{item.claimText}</p>
+                <div style={{ color: "#64748b", fontSize: "0.72rem", marginTop: "0.45rem" }}>
+                  {item.reasonText} · {item.votesSummary}
+                </div>
+                <Link
+                  data-testid="evidence-triage-action-link"
+                  href={item.href}
+                  aria-label={`Review ${item.claimLabel} in ${item.pageTitle}`}
+                  style={{ display: "inline-flex", marginTop: "0.55rem", color: "#93c5fd", textDecoration: "none", fontSize: "0.74rem", fontWeight: 850 }}
+                >
+                  Open review context →
+                </Link>
+              </article>
+            ))}
+          </div>
+        )}
       </section>
     );
   };
@@ -322,6 +401,7 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
         </p>
       </div>
 
+      {renderEvidenceTriageStudio()}
       {renderCrossPagePaperFootprint()}
 
       {sources.length === 0 ? (

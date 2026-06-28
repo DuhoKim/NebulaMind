@@ -24,6 +24,23 @@ const sourceTraceSourcesFixtureData = {
       flagged: false,
       reason: null,
     },
+    {
+      id: 990502,
+      fact_kind: "hero",
+      fact_index: 1,
+      source_tier: "ai_estimate",
+      authority: null,
+      reference_url: null,
+      reference_title: null,
+      retrieval_year: null,
+      claim_id: null,
+      trust_level_snapshot: "unverified",
+      evidence_count_snapshot: null,
+      representative_arxiv_id: null,
+      attribution: "Fixture AI estimate with no paper-backed source",
+      flagged: true,
+      reason: "No peer-reviewed source linked",
+    },
   ],
   citations: [
     {
