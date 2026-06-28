@@ -3,7 +3,7 @@
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { evidenceStatusMeta } from "./evidenceStatus";
-import { buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
+import { buildEvidenceCardDensityMeta, buildEvidencePanelCopy, buildEvidenceVoteCockpitVisuals, buildEvidenceVoteSignal, evidenceSide } from "./evidencePanelCopy";
 
 const DEBATE_PANEL_BREAKPOINT = 768;
 
@@ -55,64 +55,97 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
   const statusColor = statusMeta.tone === "green" ? "#34d399" : statusMeta.tone === "amber" ? "#fbbf24" : "#94a3b8";
   const statusBg = statusMeta.tone === "green" ? "rgba(52,211,153,0.12)" : statusMeta.tone === "amber" ? "rgba(251,191,36,0.12)" : "rgba(148,163,184,0.12)";
   const cardVoteSignal = buildEvidenceVoteSignal([ev]);
+  const density = buildEvidenceCardDensityMeta(ev);
 
   return (
-    <div style={{ border: "1px solid #334155", borderLeft: `3px solid ${accent}`, borderRadius: "6px", background: "#0f172a", padding: "0.65rem 0.75rem" }}>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "0.45rem" }}>
-        <span style={{ marginTop: "0.1rem", width: "0.55rem", height: "0.55rem", borderRadius: "50%", background: accent, flexShrink: 0 }} />
+    <article
+      data-testid="evidence-card-density-shell"
+      style={{
+        border: "1px solid #334155",
+        borderLeft: `3px solid ${accent}`,
+        borderRadius: "9px",
+        background: "linear-gradient(180deg, rgba(15,23,42,0.98), rgba(15,23,42,0.9))",
+        padding: "0.52rem 0.62rem",
+      }}
+    >
+      <div data-testid="evidence-card-density-rail" style={{ display: "flex", alignItems: "center", gap: "0.34rem", flexWrap: "wrap", marginBottom: "0.32rem" }}>
+        <span style={{ color: accent, border: `1px solid ${accent}`, background: "rgba(15,23,42,0.72)", borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.6rem", fontWeight: 850, textTransform: "uppercase", letterSpacing: "0.04em" }}>
+          {density.sideLabel}
+        </span>
+        <span
+          title={`claim support signal ${cardVoteSignal.supportVotes}; claim weakening signal ${cardVoteSignal.weakeningVotes}. ${cardVoteSignal.detail}`}
+          style={{ color: "#cbd5e1", border: "1px solid rgba(148,163,184,0.22)", background: "rgba(30,41,59,0.54)", borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.62rem", fontWeight: 760 }}
+        >
+          {density.voteLabel}
+        </span>
+        <span title={statusMeta.detail} style={{ border: `1px solid ${statusColor}`, background: statusBg, color: statusColor, borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.6rem", fontWeight: 800, textTransform: "uppercase" }}>
+          {statusMeta.label}
+        </span>
+        {density.qualityLabel ? (
+          <button
+            type="button"
+            data-testid="evidence-card-score-toggle"
+            aria-expanded={scoreOpen}
+            aria-label={scoreOpen ? "Hide evidence quality breakdown" : "Show evidence quality breakdown"}
+            onClick={(e) => { e.stopPropagation(); setScoreOpen((v) => !v); }}
+            style={{
+              marginLeft: "auto",
+              border: "1px solid #334155",
+              background: "#111827",
+              color: quality != null && quality >= 0.8 ? "#34d399" : quality != null && quality >= 0.5 ? "#fbbf24" : "#f87171",
+              borderRadius: "999px",
+              padding: "0.06rem 0.42rem",
+              cursor: "pointer",
+              fontSize: "0.62rem",
+              fontWeight: 800,
+            }}
+          >
+            {density.qualityLabel} <span aria-hidden="true">{scoreOpen ? "▲" : "▼"}</span>
+          </button>
+        ) : (
+          <span style={{ marginLeft: "auto", color: "#38bdf8", fontSize: "0.62rem", fontWeight: 800 }}>accepted</span>
+        )}
+      </div>
+      <div style={{ display: "flex", alignItems: "flex-start", gap: "0.42rem" }}>
+        <span style={{ marginTop: "0.24rem", width: "0.45rem", height: "0.45rem", borderRadius: "50%", background: accent, flexShrink: 0 }} />
         <div style={{ minWidth: 0, flex: 1 }}>
           {ev.url ? (
-            <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ color: "#e2e8f0", textDecoration: "none", fontSize: "0.78rem", fontWeight: 650, lineHeight: 1.35 }}>
+            <a href={ev.url} target="_blank" rel="noopener noreferrer" style={{ color: "#e2e8f0", textDecoration: "none", fontSize: "0.77rem", fontWeight: 700, lineHeight: 1.28 }}>
               {ev.title}
             </a>
           ) : (
-            <div style={{ color: "#e2e8f0", fontSize: "0.78rem", fontWeight: 650, lineHeight: 1.35 }}>{ev.title}</div>
+            <div style={{ color: "#e2e8f0", fontSize: "0.77rem", fontWeight: 700, lineHeight: 1.28 }}>{ev.title}</div>
           )}
-          <div style={{ color: "#64748b", fontSize: "0.68rem", marginTop: "0.15rem" }}>
+          <div style={{ color: "#64748b", fontSize: "0.65rem", marginTop: "0.1rem" }}>
             {ev.authors ? `${ev.authors}${ev.year ? " · " : ""}` : ""}{ev.year || ""}
           </div>
-          {ev.summary && (
-            <p style={{ color: "#94a3b8", fontSize: "0.7rem", lineHeight: 1.45, margin: "0.4rem 0 0" }}>
-              {ev.summary}
-            </p>
-          )}
           {statusMeta.trustBlocking && (
-            <p style={{ color: "#fbbf24", fontSize: "0.66rem", lineHeight: 1.4, margin: "0.35rem 0 0" }}>
+            <p style={{ color: "#fbbf24", fontSize: "0.64rem", lineHeight: 1.35, margin: "0.24rem 0 0" }}>
               {statusMeta.detail}
             </p>
           )}
-          <div style={{ display: "flex", alignItems: "center", gap: "0.45rem", flexWrap: "wrap", marginTop: "0.5rem", color: "#64748b", fontSize: "0.68rem" }}>
-            <span title={cardVoteSignal.detail}>claim support signal {cardVoteSignal.supportVotes}</span>
-            <span title={cardVoteSignal.detail}>claim weakening signal {cardVoteSignal.weakeningVotes}</span>
-            {(ev.comments_count ?? 0) > 0 && <span>{ev.comments_count} comments</span>}
-            {(ev.link_count ?? 0) > 0 && <span>{ev.link_count} element links</span>}
-            <span title={statusMeta.detail} style={{ border: `1px solid ${statusColor}`, background: statusBg, color: statusColor, borderRadius: "999px", padding: "0.05rem 0.38rem", fontSize: "0.62rem", fontWeight: 750, textTransform: "uppercase" }}>
-              {statusMeta.label}
-            </span>
-            {quality != null ? (
-              <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); setScoreOpen((v) => !v); }}
-                style={{
-                  marginLeft: "auto",
-                  border: "1px solid #334155",
-                  background: "#111827",
-                  color: quality >= 0.8 ? "#34d399" : quality >= 0.5 ? "#fbbf24" : "#f87171",
-                  borderRadius: "4px",
-                  padding: "0.1rem 0.35rem",
-                  cursor: "pointer",
-                  fontSize: "0.66rem",
-                  fontWeight: 700,
-                }}
-              >
-                quality {Math.round(quality * 100)}%
-              </button>
-            ) : (
-              <span style={{ marginLeft: "auto", color: "#38bdf8" }}>accepted</span>
-            )}
+          {ev.summary && (
+            <p
+              data-testid="evidence-card-summary-clamp"
+              style={{
+                color: "#94a3b8",
+                fontSize: "0.68rem",
+                lineHeight: 1.38,
+                margin: "0.28rem 0 0",
+                display: "-webkit-box",
+                WebkitLineClamp: 3,
+                WebkitBoxOrient: "vertical",
+                overflow: "hidden",
+              }}
+            >
+              {ev.summary}
+            </p>
+          )}
+          <div data-testid="evidence-card-activity-rail" style={{ color: density.hasActivity ? "#94a3b8" : "#475569", fontSize: "0.63rem", marginTop: "0.32rem" }}>
+            {density.activityLabel}
           </div>
           {scoreOpen && (
-            <div style={{ marginTop: "0.55rem", borderTop: "1px solid #1e293b", paddingTop: "0.45rem" }}>
+            <div style={{ marginTop: "0.45rem", borderTop: "1px solid #1e293b", paddingTop: "0.4rem" }}>
               {[
                 ["Relevance", ev.relevance],
                 ["Entailment", ev.entailment],
@@ -134,7 +167,7 @@ function EvidenceCard({ ev }: { ev: DebateEvidenceItem }) {
           )}
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 

@@ -4,6 +4,9 @@ export interface EvidencePanelItemLike {
   stance?: string | null;
   votes_agree?: number | null;
   votes_disagree?: number | null;
+  comments_count?: number | null;
+  link_count?: number | null;
+  quality_v2?: number | null;
 }
 
 export type EvidenceVoteSignalVerdict = "net_support" | "net_weakening" | "split" | "unresolved" | "unvoted";
@@ -46,6 +49,57 @@ export interface EvidencePanelCopy {
   sourceLabel: string;
   directionalSplitLabel: string;
   neutralOnlySummary: string | null;
+}
+
+export interface EvidenceCardDensityMeta {
+  sideLabel: string;
+  voteLabel: string;
+  activityLabel: string;
+  qualityLabel: string | null;
+  hasActivity: boolean;
+}
+
+function pluralCount(count: number, singular: string, plural = `${singular}s`): string {
+  return `${count.toLocaleString()} ${count === 1 ? singular : plural}`;
+}
+
+function compactVoteLabel(signal: EvidenceVoteSignal): string {
+  if (!signal.totalVotes) return "no counted votes";
+  const parts = [
+    `${signal.supportVotes.toLocaleString()} support`,
+    `${signal.weakeningVotes.toLocaleString()} weakening`,
+  ];
+  if (signal.unresolvedVotes > 0) parts.push(`${signal.unresolvedVotes.toLocaleString()} unresolved`);
+  return parts.join(" · ");
+}
+
+function densitySideLabel(side: EvidenceSide): string {
+  if (side === "support") return "supporting paper";
+  if (side === "counter") return "countering paper";
+  return "linked paper";
+}
+
+export function buildEvidenceCardDensityMeta(item: EvidencePanelItemLike | null | undefined): EvidenceCardDensityMeta {
+  const signal = buildEvidenceVoteSignal(item ? [item] : []);
+  const comments = safeVoteCount(item?.comments_count);
+  const links = safeVoteCount(item?.link_count);
+  const activityParts: string[] = [];
+  if (comments > 0) activityParts.push(pluralCount(comments, "comment"));
+  if (links > 0) activityParts.push(pluralCount(links, "element link"));
+  const quality = item?.quality_v2 == null ? null : Number(item.quality_v2);
+  let qualityLabel: string | null = null;
+  if (quality !== null && Number.isFinite(quality)) {
+    const boundedQuality = Math.min(1, Math.max(0, quality));
+    qualityLabel = `quality ${Math.round(boundedQuality * 100)}%`;
+  }
+
+  return {
+    sideLabel: densitySideLabel(evidenceSide(item?.stance)),
+    voteLabel: compactVoteLabel(signal),
+    activityLabel: activityParts.length > 0 ? activityParts.join(" · ") : "no comments or element links yet",
+    qualityLabel,
+    hasActivity: activityParts.length > 0,
+  };
 }
 
 export function evidenceSide(stance?: string | null): EvidenceSide {
