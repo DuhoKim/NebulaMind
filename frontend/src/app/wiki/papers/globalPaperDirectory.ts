@@ -26,6 +26,8 @@ export interface GlobalPaperDirectoryPage {
 
 export interface GlobalPaperDirectoryPayloadItem {
   paper: GlobalPaperDirectoryPaper;
+  profile_id?: string | null;
+  profile_href?: string | null;
   page_count?: number | null;
   claim_count?: number | null;
   evidence_count?: number | null;
@@ -53,6 +55,7 @@ export interface GlobalPaperDirectoryItem {
   summary: string;
   arxivId: string | null;
   externalHref: string | null;
+  profileHref: string;
   footprintHref: string;
   status: GlobalPaperTriageStatus;
   statusLabel: string;
@@ -162,6 +165,8 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
       const label = paperLabel(paper);
       const arxivId = cleanText(paper.arxiv_id) || null;
       const externalHref = cleanText(paper.url) || (arxivId ? `https://arxiv.org/abs/${arxivId}` : null);
+      const profileId = cleanText(item.profile_id) || (arxivId ? `arxiv:${arxivId}` : cleanText(paper.doi) ? `doi:${cleanText(paper.doi)}` : cleanText(paper.url) ? `url:${cleanText(paper.url)}` : `evidence:${paper.evidence_id || label}`);
+      const profileHref = `/wiki/papers/${encodeURIComponent(profileId)}`;
       const pages = (item.pages || []).map((page) => ({
         ...page,
         href: cleanText(page.href) || `/wiki/${cleanText(page.slug)}`,
@@ -185,6 +190,7 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
         summary: cleanText(paper.summary),
         arxivId,
         externalHref,
+        profileHref,
         footprintHref,
         status,
         statusLabel: statusLabel(status),

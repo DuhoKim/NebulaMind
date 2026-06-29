@@ -151,6 +151,14 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
 
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginTop: "0.75rem" }}>
                   <Link
+                    data-testid="global-paper-profile-link"
+                    href={item.profileHref}
+                    aria-label={`Open paper profile for ${item.accessibleSummary}`}
+                    style={{ color: "#67e8f9", fontSize: "0.78rem", fontWeight: 900, textDecoration: "none" }}
+                  >
+                    Open paper profile →
+                  </Link>
+                  <Link
                     data-testid="global-paper-footprint-link"
                     href={item.footprintHref}
                     aria-label={item.accessibleSummary}

@@ -110,6 +110,8 @@ def test_global_paper_directory_groups_papers_and_prioritizes_counter_pressure()
 
     first = payload["items"][0]
     assert first["paper"]["arxiv_id"] == "2606.990101"
+    assert first["profile_id"] == "arxiv:2606.990101"
+    assert first["profile_href"] == "/wiki/papers/arxiv%3A2606.990101"
     assert first["paper"]["author_year_key"] == "Lens2026"
     assert first["page_count"] == 2
     assert first["claim_count"] == 2
