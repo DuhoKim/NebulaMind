@@ -323,6 +323,55 @@ def _paper_author_year_key(evidence) -> str:
     return getattr(evidence, "title", None) or f"Evidence {evidence.id}"
 
 
+def _evidence_source_url(evidence) -> Optional[str]:
+    url = getattr(evidence, "url", None)
+    if url:
+        return url
+    doi = getattr(evidence, "doi", None)
+    if doi:
+        return f"https://doi.org/{doi}"
+    arxiv_id = _normalize_paper_identifier(getattr(evidence, "arxiv_id", None))
+    if arxiv_id:
+        return f"https://arxiv.org/abs/{arxiv_id}"
+    return None
+
+
+def _page_claim_evidence_rows(db: Session, page_id: int):
+    """Read-only fallback evidence rows for page source surfaces.
+
+    The public citation/fact-source surfaces are backed by materialized tables
+    when available. Older pages can still have indexed Claim/Evidence rows while
+    page_citation_links/fact_sources are empty. This helper exposes those
+    existing rows without writing backfill records or changing page content.
+    """
+    from app.models.claim import Claim, Evidence
+
+    return (
+        db.query(Claim, Evidence)
+        .join(Evidence, Evidence.claim_id == Claim.id)
+        .filter(Claim.page_id == page_id)
+        .order_by(Claim.order_idx.asc(), Claim.id.asc(), Evidence.quality.desc(), Evidence.id.asc())
+        .all()
+    )
+
+
+def _citation_out_from_evidence(seq: int, evidence, author_year_key: Optional[str] = None) -> CitationOut:
+    return CitationOut(
+        seq=seq,
+        evidence_id=evidence.id,
+        author_year_key=(author_year_key or _paper_author_year_key(evidence))[:120],
+        title=evidence.title or f"Evidence {evidence.id}",
+        authors=_parse_authors(evidence.authors),
+        year=evidence.year,
+        doi=evidence.doi,
+        arxiv_id=evidence.arxiv_id,
+        url=_evidence_source_url(evidence),
+        summary=evidence.summary,
+        abstract=evidence.abstract,
+        journal_ref=evidence.journal_ref,
+    )
+
+
 def _paper_directory_triage_status(tone_counts: dict[str, int], trust_counts: dict[str, int], has_stable_identifier: bool) -> str:
     if tone_counts.get("counter", 0) > 0:
         return "needs_adjudication"
@@ -700,6 +749,7 @@ def get_page(slug: str, db: Session = Depends(get_db)):
 @router.get("/{slug}/citations", response_model=PageCitationsOut)
 def get_page_citations(slug: str, db: Session = Depends(get_db)):
     from sqlalchemy import text
+    from app.models.claim import Evidence
 
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
@@ -710,16 +760,7 @@ def get_page_citations(slug: str, db: Session = Depends(get_db)):
             """
             SELECT
                 pcl.evidence_id,
-                pcl.author_year_key,
-                e.title,
-                e.authors,
-                e.year,
-                e.doi,
-                e.arxiv_id,
-                e.url,
-                e.summary,
-                e.abstract,
-                e.journal_ref
+                pcl.author_year_key
             FROM page_citation_links pcl
             JOIN evidence e ON e.id = pcl.evidence_id
             WHERE pcl.page_id = :page_id
@@ -734,30 +775,21 @@ def get_page_citations(slug: str, db: Session = Depends(get_db)):
     for row in rows:
         if row.evidence_id in seen:
             continue
+        evidence = db.query(Evidence).filter(Evidence.id == row.evidence_id).first()
+        if not evidence:
+            continue
         seq = len(seen) + 1
         seen[row.evidence_id] = seq
-        url = row.url
-        if not url and row.doi:
-            url = f"https://doi.org/{row.doi}"
-        elif not url and row.arxiv_id:
-            arxiv_id = str(row.arxiv_id).replace("arXiv:", "")
-            url = f"https://arxiv.org/abs/{arxiv_id}"
-        citations.append(
-            CitationOut(
-                seq=seq,
-                evidence_id=row.evidence_id,
-                author_year_key=row.author_year_key,
-                title=row.title or f"Evidence {row.evidence_id}",
-                authors=_parse_authors(row.authors),
-                year=row.year,
-                doi=row.doi,
-                arxiv_id=row.arxiv_id,
-                url=url,
-                summary=row.summary,
-                abstract=row.abstract,
-                journal_ref=row.journal_ref,
-            )
-        )
+        citations.append(_citation_out_from_evidence(seq, evidence, row.author_year_key))
+
+    if not citations:
+        for _claim, evidence in _page_claim_evidence_rows(db, page.id):
+            if evidence.id in seen:
+                continue
+            seq = len(seen) + 1
+            seen[evidence.id] = seq
+            citations.append(_citation_out_from_evidence(seq, evidence))
+
     return PageCitationsOut(citations=citations)
 
 
@@ -1104,33 +1136,102 @@ def get_page_contributors(slug: str, db: Session = Depends(get_db)):
 
 @router.get("/{slug}/fact-sources", tags=["pages"],
     summary="Get fact source records for a page",
-    description="Returns all FactSource rows for hero_facts on this page.")
+    description="Returns FactSource rows, inline hero fact sources, or read-only claim/evidence source fallbacks for this page.")
 def get_fact_sources(slug: str, db: Session = Depends(get_db)):
     page = db.query(WikiPage).filter(WikiPage.slug == slug).first()
     if not page:
         raise HTTPException(404, "Page not found")
     from app.models.page import FactSource
     sources = db.query(FactSource).filter(FactSource.page_id == page.id).all()
-    return [
-        {
-            "id": s.id,
-            "fact_kind": s.fact_kind,
-            "fact_index": s.fact_index,
-            "source_tier": s.source_tier,
-            "authority": s.authority,
-            "reference_url": s.reference_url,
-            "reference_title": s.reference_title,
-            "retrieval_year": s.retrieval_year,
-            "claim_id": s.claim_id,
-            "trust_level_snapshot": s.trust_level_snapshot,
-            "evidence_count_snapshot": s.evidence_count_snapshot,
-            "representative_arxiv_id": s.representative_arxiv_id,
-            "attribution": s.attribution,
-            "flagged": s.flagged,
-            "reason": s.reason,
-        }
-        for s in sources
-    ]
+    if sources:
+        return [
+            {
+                "id": s.id,
+                "fact_kind": s.fact_kind,
+                "fact_index": s.fact_index,
+                "source_tier": s.source_tier,
+                "authority": s.authority,
+                "reference_url": s.reference_url,
+                "reference_title": s.reference_title,
+                "retrieval_year": s.retrieval_year,
+                "claim_id": s.claim_id,
+                "trust_level_snapshot": s.trust_level_snapshot,
+                "evidence_count_snapshot": s.evidence_count_snapshot,
+                "representative_arxiv_id": s.representative_arxiv_id,
+                "attribution": s.attribution,
+                "flagged": s.flagged,
+                "reason": s.reason,
+                "source_surface": "fact_sources_table",
+            }
+            for s in sources
+        ]
+
+    derived = []
+    try:
+        hero_facts = json.loads(page.hero_facts) if page.hero_facts else []
+    except Exception:
+        hero_facts = []
+    for idx, fact in enumerate(hero_facts):
+        if not isinstance(fact, dict):
+            continue
+        source = fact.get("source") if isinstance(fact.get("source"), dict) else None
+        if not source:
+            continue
+        derived.append({
+            "id": None,
+            "fact_kind": "hero",
+            "fact_index": idx,
+            "source_tier": source.get("tier", "ai_estimate"),
+            "authority": source.get("authority"),
+            "reference_url": source.get("reference_url"),
+            "reference_title": source.get("reference_title"),
+            "retrieval_year": source.get("retrieval_year"),
+            "claim_id": source.get("claim_id"),
+            "trust_level_snapshot": source.get("trust_level"),
+            "evidence_count_snapshot": source.get("evidence_count"),
+            "representative_arxiv_id": source.get("representative_arxiv_id"),
+            "attribution": source.get("attribution", "Inline hero_facts source; no fact_sources row written"),
+            "flagged": source.get("flagged", False),
+            "reason": source.get("reason"),
+            "source_surface": "inline_hero_fact_source",
+        })
+    if derived:
+        return derived
+
+    evidence_by_claim = []
+    current_claim_id = None
+    current = None
+    for claim, evidence in _page_claim_evidence_rows(db, page.id):
+        if claim.id != current_claim_id:
+            current_claim_id = claim.id
+            current = {"claim": claim, "representative": evidence, "count": 0}
+            evidence_by_claim.append(current)
+        if current is not None:
+            current["count"] += 1
+
+    for idx, item in enumerate(evidence_by_claim):
+        claim = item["claim"]
+        evidence = item["representative"]
+        arxiv_id = _normalize_paper_identifier(evidence.arxiv_id) or None
+        derived.append({
+            "id": None,
+            "fact_kind": "claim",
+            "fact_index": claim.order_idx if claim.order_idx is not None else idx,
+            "source_tier": "claim",
+            "authority": None,
+            "reference_url": _evidence_source_url(evidence),
+            "reference_title": evidence.title,
+            "retrieval_year": evidence.year,
+            "claim_id": claim.id,
+            "trust_level_snapshot": claim.trust_level,
+            "evidence_count_snapshot": item["count"],
+            "representative_arxiv_id": arxiv_id,
+            "attribution": "Indexed claim evidence fallback; no fact_sources row written.",
+            "flagged": False,
+            "reason": "fact_sources table and inline hero_facts sources are empty; derived from read-only claim/evidence rows.",
+            "source_surface": "claim_evidence_fallback",
+        })
+    return derived
 
 
 @router.get("/{slug}/health",
