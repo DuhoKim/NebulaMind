@@ -52,6 +52,23 @@ assert.equal(jsonResult.ok, true);
 assert.equal(jsonResult.kind, "json");
 assert.equal(jsonResult.rowCount, 2);
 
+const splitBadJsonRows = JSON.stringify({
+  rows: [
+    { sample_id: "VC-001" },
+    { final_decision: "count_as_support" },
+  ],
+});
+assert.equal(validateLabelUploadText(splitBadJsonRows, ".json").ok, false);
+assert.match(validateLabelUploadText(splitBadJsonRows, ".json").error, /same row|row must/i);
+
+const missingJsonSampleId = JSON.stringify({ rows: [{ final_decision: "count_as_support" }] });
+assert.equal(validateLabelUploadText(missingJsonSampleId, ".json").ok, false);
+assert.match(validateLabelUploadText(missingJsonSampleId, ".json").error, /sample_id/i);
+
+const missingJsonDecision = JSON.stringify({ rows: [{ sample_id: "VC-001" }] });
+assert.equal(validateLabelUploadText(missingJsonDecision, ".json").ok, false);
+assert.match(validateLabelUploadText(missingJsonDecision, ".json").error, /final_decision|human_action/i);
+
 const validCsv = [
   "sample_id,final_decision,human_notes",
   "VC-001,count_as_weakening,looks real",
@@ -61,6 +78,9 @@ const csvResult = validateLabelUploadText(validCsv, ".csv");
 assert.equal(csvResult.ok, true);
 assert.equal(csvResult.kind, "csv");
 assert.equal(csvResult.rowCount, 2);
+
+assert.match(validateLabelUploadText("sample_id,final_decision\n,count_as_support", ".csv").error, /sample_id/i);
+assert.match(validateLabelUploadText("sample_id,final_decision\nVC-001,", ".csv").error, /final_decision|human_action/i);
 
 assert.equal(validateLabelUploadText("{}", ".json").ok, false);
 assert.match(validateLabelUploadText("not json", ".json").error, /valid JSON/i);

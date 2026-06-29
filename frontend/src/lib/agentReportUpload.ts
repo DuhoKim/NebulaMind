@@ -61,12 +61,26 @@ function nonEmptyLines(text: string): string[] {
     .filter(Boolean);
 }
 
-function parseCsvHeader(line: string): string[] {
-  // The upload validator only needs the header names; exported headers are simple.
+function parseCsvCells(line: string): string[] {
+  // The upload validator only needs simple exported CSV cells; workspace exports do not embed commas in required fields.
   return line
     .split(",")
-    .map((cell) => cell.trim().replace(/^"|"$/g, ""))
-    .filter(Boolean);
+    .map((cell) => cell.trim().replace(/^"|"$/g, ""));
+}
+
+function hasPresentValue(value: unknown): boolean {
+  if (value === null || value === undefined) return false;
+  if (typeof value === "string") return value.trim().length > 0;
+  if (typeof value === "number" || typeof value === "boolean") return true;
+  return false;
+}
+
+function hasPrimaryDecision(record: Record<string, unknown>): boolean {
+  return hasPresentValue(record.final_decision) || hasPresentValue(record.human_action) || hasPresentValue(record.human_should_count);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return Boolean(value && typeof value === "object" && !Array.isArray(value));
 }
 
 export function validateLabelUploadText(text: string, extension: UploadExtension): UploadValidation {
@@ -98,14 +112,30 @@ export function validateLabelUploadText(text: string, extension: UploadExtension
     }
 
     if (rows.length) {
-      const hasSampleId = rows.some((row) => row && typeof row === "object" && "sample_id" in (row as Record<string, unknown>));
-      const hasDecision = rows.some((row) => {
-        if (!row || typeof row !== "object") return false;
-        const record = row as Record<string, unknown>;
-        return Boolean(record.final_decision || record.human_action || record.human_should_count);
-      });
-      if (!hasSampleId) return { ok: false, error: "JSON rows must include sample_id values." };
-      if (!hasDecision) return { ok: false, error: "JSON rows must include final_decision or human_action/should_count labels." };
+      for (const [index, row] of rows.entries()) {
+        if (!isRecord(row)) {
+          return { ok: false, error: `JSON row ${index + 1} must be an object with sample_id and final_decision or human_action/should_count labels.` };
+        }
+        if (!hasPresentValue(row.sample_id)) {
+          return { ok: false, error: `JSON row ${index + 1} must include sample_id.` };
+        }
+        if (!hasPrimaryDecision(row)) {
+          return { ok: false, error: `JSON row ${index + 1} must include final_decision or human_action/should_count labels on the same row as sample_id.` };
+        }
+      }
+    } else if (labelsBySampleId) {
+      for (const [sampleId, label] of Object.entries(labelsBySampleId)) {
+        if (!sampleId.trim()) {
+          return { ok: false, error: "labels_by_sample_id entries must use non-empty sample_id keys." };
+        }
+        if (isRecord(label)) {
+          if (!hasPrimaryDecision(label)) {
+            return { ok: false, error: `labels_by_sample_id.${sampleId} must include final_decision or human_action/should_count labels.` };
+          }
+        } else if (!hasPresentValue(label)) {
+          return { ok: false, error: `labels_by_sample_id.${sampleId} must include a non-empty label value.` };
+        }
+      }
     }
 
     return { ok: true, kind: "json", rowCount, message: `Accepted JSON label export with ${rowCount} row(s).` };
@@ -116,12 +146,27 @@ export function validateLabelUploadText(text: string, extension: UploadExtension
     return { ok: false, error: "CSV upload needs a header row and at least one data row." };
   }
 
-  const header = parseCsvHeader(lines[0]).map((name) => name.toLowerCase());
-  if (!header.includes("sample_id")) {
+  const header = parseCsvCells(lines[0]).map((name) => name.toLowerCase());
+  const sampleIdIndex = header.indexOf("sample_id");
+  if (sampleIdIndex < 0) {
     return { ok: false, error: "CSV upload must include a sample_id column." };
   }
-  if (!header.includes("final_decision") && !header.includes("human_action") && !header.includes("human_should_count")) {
+  const decisionIndexes = ["final_decision", "human_action", "human_should_count"]
+    .map((name) => header.indexOf(name))
+    .filter((index) => index >= 0);
+  if (!decisionIndexes.length) {
     return { ok: false, error: "CSV upload must include final_decision or human_action/should_count columns." };
+  }
+
+  for (const [index, line] of lines.slice(1).entries()) {
+    const rowNumber = index + 2;
+    const cells = parseCsvCells(line);
+    if (!hasPresentValue(cells[sampleIdIndex])) {
+      return { ok: false, error: `CSV row ${rowNumber} must include sample_id.` };
+    }
+    if (!decisionIndexes.some((decisionIndex) => hasPresentValue(cells[decisionIndex]))) {
+      return { ok: false, error: `CSV row ${rowNumber} must include final_decision or human_action/should_count labels.` };
+    }
   }
 
   return { ok: true, kind: "csv", rowCount: lines.length - 1, message: `Accepted CSV label export with ${lines.length - 1} row(s).` };
