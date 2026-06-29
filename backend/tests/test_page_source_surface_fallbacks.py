@@ -321,6 +321,93 @@ def test_fact_sources_keep_inline_hero_sources_before_claim_evidence_fallback():
     assert payload[0]["source_surface"] == "inline_hero_fact_source"
 
 
+def test_fact_sources_normalize_inline_hero_arxiv_reference_url_without_rewriting_page():
+    malformed_url = "https://arxiv.org/abs/arXiv:1712.04452"
+
+    def run():
+        _reset_db()
+        db = TestingSessionLocal()
+        try:
+            page_row = db.query(WikiPage).filter(WikiPage.id == 58).one()
+            page_row.hero_facts = json.dumps([
+                {
+                    "label": "Legacy arXiv source",
+                    "value": "1 paper",
+                    "source": {
+                        "tier": "indexed_page_claims",
+                        "reference_url": malformed_url,
+                        "reference_title": "Legacy prefixed inline source",
+                        "representative_arxiv_id": "1712.04452",
+                    },
+                }
+            ])
+            db.commit()
+        finally:
+            db.close()
+
+        response = client.get("/api/pages/galaxy-evolution-v2/fact-sources")
+        assert response.status_code == 200, response.text
+
+        db = TestingSessionLocal()
+        try:
+            fact_source_count = db.execute(text("SELECT count(*) FROM fact_sources")).scalar()
+            stored_hero_facts = db.query(WikiPage).filter(WikiPage.id == 58).one().hero_facts
+        finally:
+            db.close()
+        assert fact_source_count == 0
+        assert malformed_url in str(stored_hero_facts)
+        return response.json()
+
+    payload = _with_override(run)
+    assert len(payload) == 1
+    assert payload[0]["source_surface"] == "inline_hero_fact_source"
+    assert payload[0]["reference_url"] == "https://arxiv.org/abs/1712.04452"
+
+
+def test_fact_sources_normalize_materialized_arxiv_reference_url_without_rewriting_row():
+    malformed_url = "https://arxiv.org/abs/arXiv:1712.04452"
+
+    def run():
+        _reset_db()
+        db = TestingSessionLocal()
+        try:
+            db.add(FactSource(
+                page_id=58,
+                fact_kind="hero",
+                fact_index=0,
+                source_tier="authoritative",
+                authority="Fixture Authority",
+                reference_url=malformed_url,
+                reference_title="Legacy prefixed materialized source",
+                retrieval_year=2026,
+                claim_id=None,
+                trust_level_snapshot=None,
+                evidence_count_snapshot=None,
+                representative_arxiv_id="1712.04452",
+                attribution="Fixture authority",
+                flagged=False,
+                reason=None,
+            ))
+            db.commit()
+        finally:
+            db.close()
+        response = client.get("/api/pages/galaxy-evolution-v2/fact-sources")
+        assert response.status_code == 200, response.text
+
+        db = TestingSessionLocal()
+        try:
+            stored_url = db.query(FactSource).filter(FactSource.page_id == 58).one().reference_url
+        finally:
+            db.close()
+        assert stored_url == malformed_url
+        return response.json()
+
+    payload = _with_override(run)
+    assert len(payload) == 1
+    assert payload[0]["source_surface"] == "fact_sources_table"
+    assert payload[0]["reference_url"] == "https://arxiv.org/abs/1712.04452"
+
+
 def test_fact_sources_keep_materialized_rows_when_available():
     def run():
         _reset_db()
