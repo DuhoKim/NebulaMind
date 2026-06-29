@@ -163,6 +163,60 @@ def test_citations_fall_back_to_page_claim_evidence_without_writing_links():
     assert citations[1]["author_year_key"] == "Döven2026"
 
 
+def test_source_surfaces_normalize_prefixed_arxiv_abs_urls_without_writing():
+    def run():
+        _reset_db()
+        db = TestingSessionLocal()
+        try:
+            db.add(Claim(
+                id=5803,
+                page_id=58,
+                section="Legacy URL",
+                order_idx=3,
+                text="Legacy arXiv URLs should render cleanly.",
+                trust_level="accepted",
+            ))
+            db.add(Evidence(
+                id=8803,
+                claim_id=5803,
+                arxiv_id="1712.04452",
+                doi=None,
+                url="https://arxiv.org/abs/arXiv:1712.04452",
+                title="Legacy prefixed arXiv URL",
+                authors='["Jane Doe"]',
+                year=2017,
+                summary="Legacy URL exact-span source.",
+                stance="supporting",
+                quality=0.77,
+                status="active",
+            ))
+            db.commit()
+        finally:
+            db.close()
+
+        citations_response = client.get("/api/pages/galaxy-evolution-v2/citations")
+        fact_sources_response = client.get("/api/pages/galaxy-evolution-v2/fact-sources")
+        assert citations_response.status_code == 200, citations_response.text
+        assert fact_sources_response.status_code == 200, fact_sources_response.text
+
+        db = TestingSessionLocal()
+        try:
+            link_count = db.execute(text("SELECT count(*) FROM page_citation_links")).scalar()
+            fact_source_count = db.execute(text("SELECT count(*) FROM fact_sources")).scalar()
+        finally:
+            db.close()
+        assert link_count == 0
+        assert fact_source_count == 0
+        return citations_response.json(), fact_sources_response.json()
+
+    citations_payload, fact_sources_payload = _with_override(run)
+    citation = next(row for row in citations_payload["citations"] if row["evidence_id"] == 8803)
+    assert citation["url"] == "https://arxiv.org/abs/1712.04452"
+    fact_source = next(row for row in fact_sources_payload if row["claim_id"] == 5803)
+    assert fact_source["reference_url"] == "https://arxiv.org/abs/1712.04452"
+    assert fact_source["representative_arxiv_id"] == "1712.04452"
+
+
 def test_citations_keep_materialized_links_when_available():
     def run():
         _reset_db()
