@@ -129,6 +129,7 @@ assert.equal(deck.items[0].paperLabel, "Harness2026", "Counter-pressure papers s
 assert.equal(deck.items[0].statusLabel, "Needs adjudication");
 assert.match(deck.items[0].accessibleSummary, /2 pages, 3 claims, 1 countering/i);
 assert.equal(deck.items[0].footprintHref, "/wiki/dust-obscured-galaxies/sources");
+assert.equal(deck.items[0].profileHref, "/wiki/papers/arxiv%3A2606.990101");
 assert.equal(deck.items[1].statusLabel, "Needs source");
 
 const filteredDeck = buildGlobalPaperDirectoryDeck(payload, "stellar");
@@ -149,6 +150,7 @@ assert.match(clientSource, /data-testid="global-paper-directory"/, "Global paper
 assert.match(clientSource, /data-testid="global-paper-search-input"/, "Search input should have a stable selector.");
 assert.match(clientSource, /data-testid="global-paper-search-submit"/, "Search submit should have a stable selector.");
 assert.match(clientSource, /data-testid="global-paper-card"/, "Paper cards should have a stable selector.");
+assert.match(clientSource, /data-testid="global-paper-profile-link"/, "Directory cards should link directly to paper profiles.");
 assert.match(clientSource, /data-testid="global-paper-footprint-link"/, "Cards should link to wiki footprint context.");
 assert.match(clientSource, /data-testid="global-paper-scope-caveat"/, "Truth-framing caveat should be rendered.");
 assert.match(clientSource, /data-testid="global-paper-truncation-disclosure"/, "Limited directory responses should disclose hidden matching papers.");
