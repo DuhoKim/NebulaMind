@@ -165,7 +165,27 @@ def list_pages(category: str | None = None, db: Session = Depends(get_db)):
 
 
 def _normalize_paper_identifier(value: str | None) -> str:
-    return str(value or "").replace("arXiv:", "").strip()
+    text = str(value or "").strip()
+    while text.lower().startswith("arxiv:"):
+        text = text.split(":", 1)[1].strip()
+    return text
+
+
+def _normalize_arxiv_abs_url(url: Optional[str]) -> Optional[str]:
+    text = str(url or "").strip()
+    if not text:
+        return None
+    lower = text.lower()
+    for prefix in (
+        "https://arxiv.org/abs/",
+        "http://arxiv.org/abs/",
+        "https://www.arxiv.org/abs/",
+        "http://www.arxiv.org/abs/",
+    ):
+        if lower.startswith(prefix):
+            arxiv_id = _normalize_paper_identifier(text[len(prefix):])
+            return f"https://arxiv.org/abs/{arxiv_id}" if arxiv_id else text
+    return text
 
 
 def _paper_tone(stance: str | None) -> str:
@@ -326,7 +346,7 @@ def _paper_author_year_key(evidence) -> str:
 def _evidence_source_url(evidence) -> Optional[str]:
     url = getattr(evidence, "url", None)
     if url:
-        return url
+        return _normalize_arxiv_abs_url(url)
     doi = getattr(evidence, "doi", None)
     if doi:
         return f"https://doi.org/{doi}"
