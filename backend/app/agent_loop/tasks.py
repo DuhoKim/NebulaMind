@@ -205,29 +205,51 @@ def _stance_jury_held_evidence_ids() -> set[int]:
     return _parse_stance_jury_id_csv(settings.STANCE_JURY_HELD_EVIDENCE_IDS)
 
 
+def _parse_stance_jury_source_channel_csv(raw: str | None) -> set[str]:
+    return {token.strip().lower() for token in (raw or "").split(",") if token.strip()}
+
+
+def _stance_jury_held_source_channels() -> set[str]:
+    return _parse_stance_jury_source_channel_csv(
+        getattr(settings, "STANCE_JURY_HELD_SOURCE_CHANNELS", "")
+    )
+
+
 def _stance_jury_is_held(ev=None, claim=None, evidence_id: int | None = None,
-                         claim_id: int | None = None, page_id: int | None = None) -> bool:
+                         claim_id: int | None = None, page_id: int | None = None,
+                         source_channel: str | None = None) -> bool:
     ev_id = evidence_id if evidence_id is not None else getattr(ev, "id", None)
     cl_id = claim_id if claim_id is not None else getattr(ev, "claim_id", None)
     cl_id = cl_id if cl_id is not None else getattr(claim, "id", None)
     pg_id = page_id if page_id is not None else getattr(claim, "page_id", None)
+    src = source_channel if source_channel is not None else getattr(ev, "source_channel", None)
+    src = src.strip().lower() if isinstance(src, str) else None
     return (
         (ev_id is not None and ev_id in _stance_jury_held_evidence_ids())
         or (cl_id is not None and cl_id in _stance_jury_held_claim_ids())
         or (pg_id is not None and pg_id in _stance_jury_held_page_ids())
+        or (src is not None and src in _stance_jury_held_source_channels())
     )
 
 
 def _apply_stance_jury_held_filters(query, Evidence, Claim):
+    from sqlalchemy import or_ as _sql_or
+
     held_evidence_ids = _stance_jury_held_evidence_ids()
     held_claim_ids = _stance_jury_held_claim_ids()
     held_page_ids = _stance_jury_held_page_ids()
+    held_source_channels = _stance_jury_held_source_channels()
     if held_evidence_ids:
         query = query.filter(~Evidence.id.in_(held_evidence_ids))
     if held_claim_ids:
         query = query.filter(~Claim.id.in_(held_claim_ids))
     if held_page_ids:
         query = query.filter(~Claim.page_id.in_(held_page_ids))
+    if held_source_channels:
+        query = query.filter(_sql_or(
+            Evidence.source_channel.is_(None),
+            ~Evidence.source_channel.in_(held_source_channels),
+        ))
     return query
 
 

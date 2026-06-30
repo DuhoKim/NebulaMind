@@ -132,6 +132,7 @@ class Settings(BaseSettings):
     STANCE_JURY_HELD_PAGE_IDS: str = ""
     STANCE_JURY_HELD_CLAIM_IDS: str = ""
     STANCE_JURY_HELD_EVIDENCE_IDS: str = ""
+    STANCE_JURY_HELD_SOURCE_CHANNELS: str = "overnight_paper_harness_v1"
     STANCE_JURY_MAX_PER_HOUR: int = 10000
     STANCE_JURY_MAX_ENQUEUE_PER_HOUR: int = 40
     STANCE_JURY_FAST_MAX_ENQUEUE_PER_PASS: int = 20
