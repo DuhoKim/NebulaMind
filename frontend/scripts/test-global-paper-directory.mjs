@@ -145,6 +145,25 @@ const truncatedDeck = buildGlobalPaperDirectoryDeck({ ...payload, items: payload
 assert.match(truncatedDeck.truncationDisclosure, /Showing 1 of 3 indexed papers/i);
 assert.match(truncatedDeck.truncationDisclosure, /Refine search/i);
 
+// --- Slice 2: read-only metadata-health (summary + per-item flags) ---
+const healthDeck = buildGlobalPaperDirectoryDeck(payload);
+assert.ok(healthDeck.metadataHealth, "Deck should expose a metadataHealth summary.");
+assert.equal(healthDeck.metadataHealth.needsMetadataCount, 1, "Only the Unindexed source-gap row is missing core metadata.");
+assert.equal(healthDeck.metadataHealth.missingIdentifier, 1);
+assert.equal(healthDeck.metadataHealth.missingAuthors, 1);
+assert.equal(healthDeck.metadataHealth.missingYear, 1);
+assert.equal(healthDeck.metadataHealth.missingSummary, 1);
+assert.match(healthDeck.metadataHealth.summary, /1 of 3 papers need metadata/i);
+assert.match(healthDeck.metadataHealth.summary, /no labels are written|read-only/i);
+const gapItem = healthDeck.items.find((it) => it.title === "Unindexed source gap fixture");
+assert.ok(gapItem, "Unindexed source gap fixture should be present.");
+assert.equal(gapItem.needsMetadata, true, "The source-gap row should be flagged as needing metadata.");
+assert.deepEqual([...gapItem.missingFields].sort(), ["authors", "identifier", "summary", "year"], "Gap row should flag all four missing core fields.");
+assert.match(gapItem.metadataLabel, /needs metadata/i);
+const healthyItem = healthDeck.items.find((it) => it.paperLabel === "Harness2026");
+assert.equal(healthyItem.needsMetadata, false, "Fully-populated papers should not be flagged.");
+assert.equal(healthyItem.missingFields.length, 0);
+
 const clientSource = fs.readFileSync(clientPath, "utf8");
 assert.match(clientSource, /data-testid="global-paper-directory"/, "Global paper directory should expose a stable section marker.");
 assert.match(clientSource, /data-testid="global-paper-search-input"/, "Search input should have a stable selector.");
@@ -158,6 +177,10 @@ assert.match(clientSource, /not a final verdict/i, "Directory copy should avoid 
 assert.match(clientSource, /No labels are written/i, "Directory should be explicit that it is read-only.");
 assert.match(clientSource, /aria-label=\{item\.accessibleSummary\}/, "Paper cards should expose count/status context to assistive tech.");
 assert.match(clientSource, /fetch\(`\/api\/pages\/paper-directory/, "Client should fetch the read-only paper directory endpoint.");
+assert.match(clientSource, /data-testid="global-paper-metadata-summary"/, "Directory should render a read-only metadata-health summary.");
+assert.match(clientSource, /data-testid="global-paper-metadata-filter"/, "Directory should offer a 'Needs metadata' filter toggle.");
+assert.match(clientSource, /data-testid="global-paper-metadata-health-badge"/, "Cards missing core metadata should show a health badge.");
+assert.match(clientSource, /Needs metadata/i, "Metadata filter/badge copy should read 'Needs metadata'.");
 
 assert.ok(fs.existsSync(pagePath), "Global paper directory page route should exist.");
 assert.ok(fs.existsSync(fixturePath), "Global paper directory fixture route should exist for deterministic route/chunk probes.");

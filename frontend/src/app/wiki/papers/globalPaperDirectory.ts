@@ -68,6 +68,19 @@ export interface GlobalPaperDirectoryItem {
   impactLabel: string;
   accessibleSummary: string;
   pages: Array<GlobalPaperDirectoryPage & { href: string; claim_count: number; counter_count: number }>;
+  needsMetadata: boolean;
+  missingFields: string[];
+  metadataLabel: string;
+}
+
+export interface GlobalPaperDirectoryMetadataHealth {
+  needsMetadataCount: number;
+  completeCount: number;
+  missingIdentifier: number;
+  missingAuthors: number;
+  missingYear: number;
+  missingSummary: number;
+  summary: string;
 }
 
 export interface GlobalPaperDirectoryDeck {
@@ -81,6 +94,7 @@ export interface GlobalPaperDirectoryDeck {
   scopeCaveat: string;
   emptyMessage: string;
   truncationDisclosure: string | null;
+  metadataHealth: GlobalPaperDirectoryMetadataHealth;
   items: GlobalPaperDirectoryItem[];
 }
 
@@ -104,6 +118,30 @@ function firstAuthor(authors?: string[] | string | null): string {
   if (!first) return "Paper";
   const parts = first.split(/\s+/).filter(Boolean);
   return parts[parts.length - 1] || first;
+}
+
+function hasAuthorValue(authors?: string[] | string | null): boolean {
+  if (!authors) return false;
+  const list = Array.isArray(authors) ? authors : String(authors).split(/[;,]/);
+  return list.some((author) => cleanText(author).length > 0);
+}
+
+const METADATA_FIELD_LABEL: Record<string, string> = {
+  identifier: "no stable ID",
+  authors: "no authors",
+  year: "no year",
+  summary: "no summary",
+};
+
+// Read-only data-quality signal: which core catalog fields a paper is missing.
+// A "stable identifier" is an arXiv id or DOI (a URL is a link, not a canonical id).
+function paperMissingFields(paper: GlobalPaperDirectoryPaper): string[] {
+  return [
+    !cleanText(paper.arxiv_id) && !cleanText(paper.doi) ? "identifier" : "",
+    !hasAuthorValue(paper.authors) ? "authors" : "",
+    !cleanText(paper.year) ? "year" : "",
+    !cleanText(paper.summary) ? "summary" : "",
+  ].filter(Boolean);
 }
 
 function paperLabel(paper: GlobalPaperDirectoryPaper): string {
@@ -183,6 +221,11 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
       const impactLabel = cleanText(item.impact_label) || `${plural(pageCount, "page")} · ${plural(claimCount, "claim")} · ${counterCount.toLocaleString()} countering`;
       const title = cleanText(paper.title) || label;
       const accessibleSummary = `${label}: ${statusLabel(status)}; ${pageCount} pages, ${claimCount} claims, ${counterCount} countering. Open footprint context.`;
+      const missingFields = paperMissingFields(paper);
+      const needsMetadata = missingFields.length > 0;
+      const metadataLabel = needsMetadata
+        ? `Needs metadata: ${missingFields.map((field) => METADATA_FIELD_LABEL[field] || field).join(", ")}`
+        : "Metadata complete";
       return {
         id: arxivId || cleanText(paper.doi) || String(paper.evidence_id || label),
         paperLabel: label,
@@ -203,6 +246,9 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
         impactLabel,
         accessibleSummary,
         pages,
+        needsMetadata,
+        missingFields,
+        metadataLabel,
       } satisfies GlobalPaperDirectoryItem;
     })
     .sort((a, b) => {
@@ -213,6 +259,22 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
   const counterCount = items.reduce((sum, item) => sum + item.counterCount, 0);
   const totalPapers = query ? items.length : numberValue(payload?.total_papers || items.length);
   const resultCount = items.length;
+  const metaMissingIdentifier = items.filter((item) => item.missingFields.includes("identifier")).length;
+  const metaMissingAuthors = items.filter((item) => item.missingFields.includes("authors")).length;
+  const metaMissingYear = items.filter((item) => item.missingFields.includes("year")).length;
+  const metaMissingSummary = items.filter((item) => item.missingFields.includes("summary")).length;
+  const needsMetadataCount = items.filter((item) => item.needsMetadata).length;
+  const metadataHealth = {
+    needsMetadataCount,
+    completeCount: resultCount - needsMetadataCount,
+    missingIdentifier: metaMissingIdentifier,
+    missingAuthors: metaMissingAuthors,
+    missingYear: metaMissingYear,
+    missingSummary: metaMissingSummary,
+    summary: needsMetadataCount > 0
+      ? `${needsMetadataCount} of ${plural(resultCount, "paper")} need metadata — ${metaMissingIdentifier} no ID · ${metaMissingAuthors} no authors · ${metaMissingYear} no year · ${metaMissingSummary} no summary. Read-only signal; no labels are written.`
+      : `All ${plural(resultCount, "paper")} shown have complete core metadata. Read-only signal; no labels are written.`,
+  };
   const payloadTotal = numberValue(payload?.total_papers);
   const hasServerTruncation = payloadTotal > resultCount && !query;
   const hasSearchTruncation = payloadTotal > resultCount && Boolean(query) && cleanText(payload?.query) === query;
@@ -234,6 +296,7 @@ export function buildGlobalPaperDirectoryDeck(payload: GlobalPaperDirectoryPaylo
     scopeCaveat,
     emptyMessage: summary,
     truncationDisclosure,
+    metadataHealth,
     items,
   };
 }
