@@ -21,6 +21,7 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
   const [loading, setLoading] = useState(!testOnlyFixtureData);
   const [error, setError] = useState<string | null>(null);
   const [retryNonce, setRetryNonce] = useState(0);
+  const [needsMetadataOnly, setNeedsMetadataOnly] = useState(false);
 
   useEffect(() => {
     if (testOnlyFixtureData) {
@@ -52,6 +53,13 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
     () => buildGlobalPaperDirectoryDeck(payload, testOnlyFixtureData ? submittedQuery : ""),
     [payload, submittedQuery, testOnlyFixtureData],
   );
+
+  // Reset the read-only "Needs metadata" filter whenever a new search is submitted.
+  useEffect(() => {
+    setNeedsMetadataOnly(false);
+  }, [submittedQuery]);
+
+  const visibleItems = needsMetadataOnly ? deck.items.filter((item) => item.needsMetadata) : deck.items;
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -109,6 +117,25 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
           </p>
         )}
 
+        {!loading && !error && deck.hasResults && (
+          <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem", flexWrap: "wrap", alignItems: "center", marginBottom: "1rem" }}>
+            <p data-testid="global-paper-metadata-summary" style={{ color: "#94a3b8", fontSize: "0.8rem", margin: 0, lineHeight: 1.45, flex: "1 1 20rem" }}>
+              {deck.metadataHealth.summary}
+            </p>
+            {deck.metadataHealth.needsMetadataCount > 0 && (
+              <button
+                type="button"
+                data-testid="global-paper-metadata-filter"
+                aria-pressed={needsMetadataOnly}
+                onClick={() => setNeedsMetadataOnly((on) => !on)}
+                style={{ border: `1px solid ${needsMetadataOnly ? "rgba(250,204,21,0.6)" : "rgba(148,163,184,0.32)"}`, borderRadius: "999px", background: needsMetadataOnly ? "rgba(250,204,21,0.16)" : "rgba(2,6,23,0.6)", color: needsMetadataOnly ? "#fde68a" : "#cbd5e1", fontWeight: 850, fontSize: "0.76rem", padding: "0.4rem 0.85rem", cursor: "pointer", whiteSpace: "nowrap" }}
+              >
+                {needsMetadataOnly ? "Needs metadata — clear filter" : `Needs metadata (${deck.metadataHealth.needsMetadataCount})`}
+              </button>
+            )}
+          </div>
+        )}
+
         {error && !loading && (
           <p data-testid="global-paper-error" style={{ color: "#fb923c", fontSize: "0.86rem" }}>
             {error}{" "}
@@ -126,7 +153,7 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
 
         {!loading && !error && deck.hasResults && (
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "0.85rem" }}>
-            {deck.items.map((item) => (
+            {visibleItems.map((item) => (
               <article key={item.id} data-testid="global-paper-card" aria-label={item.accessibleSummary} style={{ background: "rgba(15,23,42,0.9)", border: "1px solid rgba(51,65,85,0.92)", borderLeft: `4px solid ${STATUS_COLOR[item.status]}`, borderRadius: "14px", padding: "1rem" }}>
                 <div style={{ display: "flex", justifyContent: "space-between", gap: "0.75rem", alignItems: "flex-start" }}>
                   <div>
@@ -137,6 +164,14 @@ export default function GlobalPaperDirectoryClient({ testOnlyFixtureData }: Glob
                     {item.statusLabel}
                   </span>
                 </div>
+
+                {item.needsMetadata && (
+                  <div style={{ marginTop: "0.4rem" }}>
+                    <span data-testid="global-paper-metadata-health-badge" title={item.metadataLabel} style={{ color: "#fde68a", border: "1px solid rgba(250,204,21,0.4)", background: "rgba(250,204,21,0.12)", borderRadius: "999px", padding: "0.15rem 0.55rem", fontSize: "0.68rem", fontWeight: 850, display: "inline-block" }}>
+                      {item.metadataLabel}
+                    </span>
+                  </div>
+                )}
 
                 <p style={{ color: "#94a3b8", fontSize: "0.76rem", lineHeight: 1.45, minHeight: "2.1rem" }}>
                   {item.summary || "No abstract summary is available in the evidence index yet."}

@@ -21,6 +21,7 @@ const wikiUxProbes = [
   { script: "test:evidence-triage-studio", marker: "evidence_triage_studio_ok" },
   { script: "test:global-paper-directory", marker: "global_paper_directory_ok" },
   { script: "test:paper-profile-detail", marker: "paper_profile_detail_ok" },
+  { script: "test:wiki-paper-footprint-panel", marker: "wiki_paper_footprint_panel_ok" },
 ];
 
 const expectedScripts = new Set(wikiUxProbes.map((probe) => probe.script));

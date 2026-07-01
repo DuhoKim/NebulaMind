@@ -2,11 +2,15 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import type { CrossPagePaperFootprintResponse } from "../../[slug]/sources/crossPagePaperFootprint";
+import PaperFootprintPanel from "./PaperFootprintPanel";
 import { buildPaperProfileDeck, type PaperProfilePayload } from "./paperProfile";
+import { buildPaperFootprintQuery } from "./paperFootprintQuery";
 
 type PaperProfileClientProps = {
   paperId: string;
   testOnlyFixtureData?: PaperProfilePayload;
+  testOnlyFootprintData?: CrossPagePaperFootprintResponse | null;
 };
 
 const STATUS_COLOR = {
@@ -21,11 +25,15 @@ const TONE_COLOR = {
   neutral: "#cbd5e1",
 } as const;
 
-export default function PaperProfileClient({ paperId, testOnlyFixtureData }: PaperProfileClientProps) {
+export default function PaperProfileClient({ paperId, testOnlyFixtureData, testOnlyFootprintData }: PaperProfileClientProps) {
   const [payload, setPayload] = useState<PaperProfilePayload | null>(testOnlyFixtureData || null);
   const [loading, setLoading] = useState(!testOnlyFixtureData);
   const [error, setError] = useState<string | null>(null);
   const [retryNonce, setRetryNonce] = useState(0);
+  const [footprintPayload, setFootprintPayload] = useState<CrossPagePaperFootprintResponse | null>(testOnlyFootprintData || null);
+  const [footprintLoading, setFootprintLoading] = useState(false);
+  const [footprintError, setFootprintError] = useState<string | null>(null);
+  const [footprintRetryNonce, setFootprintRetryNonce] = useState(0);
 
   useEffect(() => {
     if (testOnlyFixtureData) {
@@ -50,6 +58,45 @@ export default function PaperProfileClient({ paperId, testOnlyFixtureData }: Pap
         setLoading(false);
       });
   }, [paperId, retryNonce, testOnlyFixtureData]);
+
+  useEffect(() => {
+    if (testOnlyFootprintData !== undefined) {
+      setFootprintPayload(testOnlyFootprintData || null);
+      setFootprintLoading(false);
+      setFootprintError(null);
+      return;
+    }
+    if (!payload || loading || error) {
+      setFootprintPayload(null);
+      setFootprintLoading(false);
+      setFootprintError(null);
+      return;
+    }
+    const query = buildPaperFootprintQuery(paperId, payload);
+    if (!query) {
+      setFootprintPayload(null);
+      setFootprintLoading(false);
+      setFootprintError(null);
+      return;
+    }
+    setFootprintLoading(true);
+    setFootprintError(null);
+    fetch(`/api/pages/paper-footprint?${query}`)
+      .then((response) => {
+        if (response.status === 404) return null;
+        if (!response.ok) throw new Error(`paper-footprint ${response.status}`);
+        return response.json();
+      })
+      .then((data) => {
+        setFootprintPayload(data);
+        setFootprintLoading(false);
+      })
+      .catch(() => {
+        setFootprintPayload(null);
+        setFootprintError("Couldn't load Cited across NebulaMind footprint. Retry.");
+        setFootprintLoading(false);
+      });
+  }, [paperId, payload, loading, error, footprintRetryNonce, testOnlyFootprintData]);
 
   const deck = useMemo(() => buildPaperProfileDeck(payload), [payload]);
 
@@ -109,6 +156,15 @@ export default function PaperProfileClient({ paperId, testOnlyFixtureData }: Pap
           <p data-testid="paper-profile-truncation-disclosure" style={{ color: "#94a3b8", fontSize: "0.8rem", lineHeight: 1.45, margin: "0 0 1rem" }}>
             {deck.truncationDisclosure}
           </p>
+        )}
+
+        {!error && (
+          <PaperFootprintPanel
+            payload={footprintPayload}
+            loading={loading || footprintLoading}
+            error={footprintError}
+            onRetry={() => setFootprintRetryNonce((nonce) => nonce + 1)}
+          />
         )}
 
         {error && !loading && (
