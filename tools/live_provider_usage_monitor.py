@@ -58,13 +58,13 @@ def run(cmd: list[str], timeout: int = 20) -> subprocess.CompletedProcess[str]:
 
 
 def tmux_panes() -> list[dict[str, str]]:
-    cp = run(['tmux', 'list-panes', '-a', '-F', '#{pane_id}\t#{session_name}:#{window_name}.#{pane_index}\t#{pane_current_command}\t#{@mesh_role}#{@master_role}'])
+    cp = run(['tmux', 'list-panes', '-a', '-F', '#{pane_id}\t#{session_name}:#{window_name}.#{pane_index}\t#{pane_current_command}\t#{@mesh_role}#{@master_role}\t#{pane_in_mode}'])
     panes = []
     if cp.returncode != 0:
         return panes
     for line in cp.stdout.splitlines():
-        parts = (line.split('\t') + ['', '', '', ''])[:4]
-        panes.append({'pane_id': parts[0], 'target': parts[1], 'command': parts[2], 'role': parts[3]})
+        parts = (line.split('\t') + ['', '', '', '', ''])[:5]
+        panes.append({'pane_id': parts[0], 'target': parts[1], 'command': parts[2], 'role': parts[3], 'in_mode': parts[4]})
     return panes
 
 
@@ -97,9 +97,20 @@ def is_idle_agy(text: str) -> bool:
     return any(line.strip() == '>' for line in tail) and 'gemini' in joined and '? for shortcuts' in joined
 
 
+def in_copy_mode(pane: dict[str, str]) -> bool:
+    """A pane the operator has scrolled back is not safe to send keys to.
+
+    tmux copy-mode binds '/' to search-forward, so send-keys '/usage' would type a
+    search instead of a slash command and jump the operator's scroll position.
+    """
+    return pane.get('in_mode', '0') == '1'
+
+
 def choose_pane(panes: list[dict[str, str]], kind: str) -> dict[str, str] | None:
     candidates = []
     for pane in panes:
+        if in_copy_mode(pane):
+            continue
         cmd = pane['command'].lower()
         target = pane['target'].lower()
         role = pane['role'].lower()
