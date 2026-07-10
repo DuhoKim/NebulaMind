@@ -1,0 +1,97 @@
+# Gemini quota pools, and the app-usage gauge
+
+## The problem this fixes
+
+The cockpit's `Gemini / Goru` gauge reads the Antigravity CLI's `/usage` panel. That panel reports
+**Antigravity's agent-request quota**. It is not the meter you see at
+<https://gemini.google.com/usage>. The two are billed separately against the same Google AI
+subscription, so the gauge could sit at 4% while the Gemini app itself was exhausted.
+
+A gauge labelled "Gemini" that tracks a different pool than the one you check by hand is worse than
+no gauge, because you trust it.
+
+## The four pools
+
+One subscription, four budgets that do not share a pot:
+
+| Pool | Governs | Where it is visible | Tracked by the cockpit |
+|---|---|---|---|
+| Antigravity agent requests | `agy` agent turns | `agy` → `/usage` panel | yes — `Gemini / Goru` |
+| Consumer app compute meter | gemini.google.com chats, Deep Research, image/video gen | Settings → Usage Limits | yes — `Gemini app / consumer` |
+| Gemini CLI OAuth quota | `gemini` CLI turns | `gemini` → `/stats model` | no |
+| `generativelanguage` API key | backend jury/batch calls (RPM/TPM/RPD) | Google AI Studio / Cloud console | no (`NM_GEMINI_API_KEY` disabled 2026-07-08) |
+
+Spending one does not draw down another. Check the pool that matches the work you are about to route.
+
+## Why the app meter is captured by hand
+
+`gemini.google.com/usage` has **no API**. There is no documented endpoint and no OAuth scope. It is a
+private `batchexecute` RPC behind a logged-in session. Everything else is a reverse-engineering
+route:
+
+- The published libraries (`gemini-webapi`, `HanaokaYuzu/Gemini-API`) only wrap *chat*. None of them
+  read the usage page; the closest they get is a `USAGE_LIMIT_EXCEEDED` error *after* you hit the cap.
+- A headless browser driving your logged-in Google profile would work, but it reads your session
+  cookies and constitutes automated access under the Google Terms of Service ("Don't abuse our
+  services": *using automated means to access content*, *bypassing our systems or protective
+  measures*). It also breaks the monitor's own stated safety model — see the docstring at the top of
+  `tools/live_provider_usage_monitor.py`.
+- A bookmarklet cannot `fetch()` to `127.0.0.1` either: the page ships
+  `default-src 'none'; connect-src 'self' https://*.google.com …`, so CSP blocks the request.
+
+So the supported path is a **clipboard capture that you confirm by eye**. You are already on the
+page; nothing automates a session, nothing reads a cookie, and no port is opened.
+
+## Capturing a reading
+
+Install once — create a bookmark whose URL is the line this prints:
+
+```sh
+python3 tools/gemini_app_usage_ingest.py --emit-bookmarklet
+```
+
+Then, whenever you want a fresh number:
+
+1. Open <https://gemini.google.com/usage> (Settings → Usage Limits).
+2. Click the bookmark. It reads the page, shows you what it found, and asks you to confirm or correct
+   it. If it cannot parse the page it asks you to type the number — it never emits a guess.
+3. Run `python3 tools/gemini_app_usage_ingest.py --from-clipboard`.
+
+No browser? `python3 tools/gemini_app_usage_ingest.py --used-pct 47 --resets "in 3 hr 20 min"`.
+
+Inspect what is on file with `--show`.
+
+## Freshness, and never inventing a number
+
+The app meter is a 5-hour rolling window rolling into a weekly cap. A reading older than **6 hours**
+(the window plus an hour of grace) describes a window that has already turned over, so the gauge
+withholds the percentage and reports `stale capture` rather than painting an old number as current.
+The same applies when no capture exists, or when the drop-file fails validation.
+
+This matches how the rest of the cockpit behaves: `model_usage_status.json` already notes that Codex
+headroom is labelled *unknown* "instead of inventing a number."
+
+The reading lives at `.hermes/state/gemini_app_usage.json` (override with `NM_GEMINI_APP_USAGE_JSON`).
+It holds a percentage and a reset time. No secrets.
+
+## Using the headroom
+
+`tools/gemini_app_usage.py` turns a reading into a burn lane, surfaced live on the gauge and in
+`provider_usage_monitor.gemini_app_burn_advice`:
+
+| Headroom | Lane | What to do |
+|---|---|---|
+| ≥ 60% | `burn` | Push wide repo/document scans, alternative summaries, HTML/report QA, multi-file classification here. Keep Claude and Codex for reasoning-heavy lanes. |
+| 25–60% | `measured` | Batch scans only. Avoid Deep Research and image/video generation — they cost far more compute per prompt than a chat turn. |
+| < 25%, reset ≤ 45 min | `wait` | Queue the batch; start it after the window refills. |
+| < 25% | `reserve` | Route batch work elsewhere; keep the remainder for interactive prompts. |
+
+Because the meter is *compute-based* rather than a prompt counter, a Deep Research run or a Veo video
+can consume a large share of a window in one shot. Batch text work is the cheap way to spend it.
+
+To refresh the snapshot in `model_usage_status.json` (which external `ccusage` tooling regenerates,
+clobbering hand edits), re-run the idempotent patcher:
+
+```sh
+python3 tools/gemini_burn_plan_patch.py          # --check to test without writing
+```
