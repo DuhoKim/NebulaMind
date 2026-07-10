@@ -84,6 +84,34 @@ class TestDropFile:
             gau.load_reading(dest)
 
 
+class TestSetTier:
+    def test_names_the_plan_without_disturbing_the_capture(self, tmp_path):
+        dest = tmp_path / 'r.json'
+        gau.write_reading(reading(tier=None, used_pct=1.0), dest)
+        ingest.set_tier('AI Ultra', dest)
+        after = gau.load_reading(dest)
+        assert after['tier'] == 'AI Ultra'
+        assert after['used_pct'] == 1.0
+        assert after['captured_at_utc'] == gau.format_utc(NOW)
+        assert after['capture_method'] == 'bookmarklet-confirmed'
+
+    def test_blank_tier_clears_rather_than_storing_empty_string(self, tmp_path):
+        dest = tmp_path / 'r.json'
+        gau.write_reading(reading(tier='AI Pro'), dest)
+        ingest.set_tier('   ', dest)
+        assert gau.load_reading(dest)['tier'] is None
+
+    def test_refuses_when_there_is_no_capture(self, tmp_path):
+        with pytest.raises(SystemExit):
+            ingest.set_tier('AI Pro', tmp_path / 'absent.json')
+
+    def test_refuses_to_edit_a_corrupt_reading(self, tmp_path):
+        dest = tmp_path / 'r.json'
+        dest.write_text(json.dumps({'schema': 'NOPE'}))
+        with pytest.raises(SystemExit):
+            ingest.set_tier('AI Pro', dest)
+
+
 class TestStaleness:
     def test_fresh_reading_is_not_stale(self):
         assert not gau.is_stale(reading(captured_at_utc=gau.format_utc(NOW - timedelta(hours=5))), NOW)

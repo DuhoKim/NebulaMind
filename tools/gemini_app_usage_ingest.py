@@ -119,9 +119,26 @@ def show_current() -> int:
     return 0
 
 
+def set_tier(tier: str, path: Path | None = None) -> int:
+    """Name the plan on an existing capture. The page rarely states it, so it is
+    supplied by the operator rather than re-captured; percent and reset stand."""
+    try:
+        reading = load_reading(path)
+    except ReadingError as exc:
+        raise SystemExit(f'Refusing to edit an untrustworthy reading: {exc}') from exc
+    if reading is None:
+        raise SystemExit(f'No capture at {path or reading_path()}. Capture one before naming the tier.')
+
+    reading['tier'] = tier.strip() or None
+    dest = write_reading(reading, path)
+    print(f'Tier set to {reading["tier"]!r} on the capture from {reading["captured_at_utc"]} -> {dest}')
+    return 0
+
+
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     src = ap.add_mutually_exclusive_group()
+    src.add_argument('--set-tier', metavar='TIER', help='name the plan on the existing capture, e.g. "AI Ultra"')
     src.add_argument('--from-clipboard', action='store_true', help='read the bookmarklet JSON via pbpaste')
     src.add_argument('--stdin', action='store_true', help='read the bookmarklet JSON from stdin')
     src.add_argument('--json', metavar='JSON', help='the bookmarklet JSON as a literal string')
@@ -138,6 +155,8 @@ def main() -> int:
         return 0
     if args.show:
         return show_current()
+    if args.set_tier is not None:
+        return set_tier(args.set_tier, args.path)
 
     if args.used_pct is not None:
         captured_at = datetime.now(timezone.utc)
