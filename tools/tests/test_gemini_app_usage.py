@@ -121,6 +121,18 @@ class TestGauge:
         assert 'different quota pool' in g['detail']
         assert g['burn_advice']['pools_are_independent'] is True
 
+    def test_confirmed_tier_reaches_the_gauge(self):
+        g = gau.build_gauge(gau.validate(reading(tier='AI Ultra')), NOW, 'obs')
+        assert 'AI Ultra' in g['detail']
+
+    def test_absent_tier_degrades_to_a_label_not_a_guess(self):
+        r = gau.validate(reading(tier=None))
+        assert r['tier'] is None
+        assert 'tier not stated' in gau.build_gauge(r, NOW, 'obs')['detail']
+
+    def test_blank_tier_is_normalised_to_none(self):
+        assert gau.validate(reading(tier='   '))['tier'] is None
+
 
 class TestBurnAdvice:
     def test_plenty_of_headroom_says_burn(self):

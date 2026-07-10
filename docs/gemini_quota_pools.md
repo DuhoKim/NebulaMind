@@ -53,11 +53,17 @@ python3 tools/gemini_app_usage_ingest.py --emit-bookmarklet
 Then, whenever you want a fresh number:
 
 1. Open <https://gemini.google.com/usage> (Settings → Usage Limits).
-2. Click the bookmark. It reads the page, shows you what it found, and asks you to confirm or correct
-   it. If it cannot parse the page it asks you to type the number — it never emits a guess.
+2. Click the bookmark. It reads the page, then asks you to confirm three things — the percent used,
+   the reset text, and your plan tier. Each is pre-filled from the DOM where it can be found, but the
+   page does not reliably name the plan, so the tier is usually yours to type. If it cannot parse the
+   percentage it asks you to type that too — it never emits a guess.
 3. Run `python3 tools/gemini_app_usage_ingest.py --from-clipboard`.
 
-No browser? `python3 tools/gemini_app_usage_ingest.py --used-pct 47 --resets "in 3 hr 20 min"`.
+Chrome's address bar strips the `javascript:` scheme on paste. Create the bookmark through
+**Bookmark Manager → ⋮ → Add new bookmark** instead, or you will end up bookmarking a Google search
+for the script's source.
+
+No browser? `python3 tools/gemini_app_usage_ingest.py --used-pct 47 --resets "Resets at 2:59 AM" --tier "AI Pro"`.
 
 Inspect what is on file with `--show`.
 
@@ -85,6 +91,12 @@ It holds a percentage and a reset time. No secrets.
 | 25–60% | `measured` | Batch scans only. Avoid Deep Research and image/video generation — they cost far more compute per prompt than a chat turn. |
 | < 25%, reset ≤ 45 min | `wait` | Queue the batch; start it after the window refills. |
 | < 25% | `reserve` | Route batch work elsewhere; keep the remainder for interactive prompts. |
+
+The `wait` lane needs a parseable reset. Two wordings are understood: relative (`in 3 hr 20 min`) and
+the absolute clock time the live page actually uses (`Resets at 2:59 AM`, interpreted in your local
+zone, rolling to tomorrow if the hour has passed). A label neither parser recognises leaves
+`reset_at_utc` null, `minutes_to_reset` unavailable, and `wait` unreachable — the lane degrades to
+`reserve` rather than guessing a reset.
 
 Because the meter is *compute-based* rather than a prompt counter, a Deep Research run or a Veo video
 can consume a large share of a window in one shot. Batch text work is the cheap way to spend it.

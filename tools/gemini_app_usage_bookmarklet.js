@@ -90,6 +90,7 @@
     return relativeResetAtUtc(label, capturedAt) || absoluteResetAtUtc(label, capturedAt);
   }
 
+  // The usage page does not reliably name the plan, so this is only a pre-fill.
   function tierGuess(text) {
     var m = text.match(/Google AI (Ultra|Pro|Plus)/i);
     return m ? 'AI ' + m[1] : '';
@@ -116,15 +117,18 @@
   }
 
   var capturedAt = new Date();
-  var label = prompt('Reset text as shown (blank if none):', resetLabel(body));
+  var label = prompt('Reset text as shown, e.g. "Resets at 2:59 AM" (blank if none):', resetLabel(body));
   if (label === null) return;
+
+  var tier = prompt('Your plan, e.g. "AI Pro" (blank if unsure):', tierGuess(body));
+  if (tier === null) return;
 
   var payload = {
     schema: SCHEMA,
     used_pct: usedPct,
     reset_label: label || null,
     reset_at_utc: resetAtUtc(label || '', capturedAt),
-    tier: tierGuess(body) || null,
+    tier: (tier || '').trim() || null,
     source_url: 'https://gemini.google.com/usage',
     captured_at_utc: capturedAt.toISOString().replace(/\.\d{3}Z$/, 'Z'),
     capture_method: 'bookmarklet-confirmed'
