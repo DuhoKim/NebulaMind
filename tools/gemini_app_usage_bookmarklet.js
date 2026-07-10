@@ -55,15 +55,39 @@
     return m ? m[0].trim().replace(/\s+/g, ' ') : '';
   }
 
+  var iso = function (d) {
+    return d.toISOString().replace(/\.\d{3}Z$/, 'Z');
+  };
+
   // "resets in 3 hr 20 min" -> absolute UTC, so a later reader can age it out.
   // Longest alternative first: 'h|hr|hour' would match the 'h' of 'hr' and
   // strand the 'r', silently dropping the minutes that follow.
-  function resetAtUtc(label, capturedAt) {
+  function relativeResetAtUtc(label, capturedAt) {
     var m = label.match(/in\s+(?:(\d+)\s*(?:hours?|hrs?|h)\b)?\s*(?:(\d+)\s*(?:minutes?|mins?|m)\b)?/i);
     if (!m || (!m[1] && !m[2])) return null;
     var mins = (parseInt(m[1] || '0', 10) * 60) + parseInt(m[2] || '0', 10);
     if (!mins) return null;
-    return new Date(capturedAt.getTime() + mins * 60000).toISOString().replace(/\.\d{3}Z$/, 'Z');
+    return iso(new Date(capturedAt.getTime() + mins * 60000));
+  }
+
+  // The live page words it "Resets at 2:59 AM" — a local clock time, not an offset.
+  // A time already past today means tomorrow; the window always resets ahead.
+  function absoluteResetAtUtc(label, capturedAt) {
+    var m = label.match(/at\s+(\d{1,2}):(\d{2})\s*([AaPp])\.?[Mm]\.?/);
+    if (!m) return null;
+    var hour = parseInt(m[1], 10);
+    var minute = parseInt(m[2], 10);
+    if (hour < 1 || hour > 12 || minute > 59) return null;
+    hour = m[3].toLowerCase() === 'p' ? (hour % 12) + 12 : hour % 12;
+    var reset = new Date(capturedAt.getTime());
+    reset.setHours(hour, minute, 0, 0);
+    if (reset <= capturedAt) reset.setDate(reset.getDate() + 1);
+    return iso(reset);
+  }
+
+  function resetAtUtc(label, capturedAt) {
+    if (!label) return null;
+    return relativeResetAtUtc(label, capturedAt) || absoluteResetAtUtc(label, capturedAt);
   }
 
   function tierGuess(text) {

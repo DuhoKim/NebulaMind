@@ -164,3 +164,63 @@ class TestResetParsing:
     @pytest.mark.parametrize('label', ['', 'resets tomorrow', 'in 0 min', 'no reset info'])
     def test_unparseable_reset_is_none_not_zero(self, label):
         assert ingest.parse_relative_reset(label, NOW) is None
+
+
+class TestAbsoluteResetParsing:
+    """The live page says 'Resets at 2:59 AM' — a local clock time, not an offset."""
+
+    @pytest.mark.parametrize(
+        'label,want_hour,want_minute',
+        [
+            ('Resets at 2:59 AM', 2, 59),
+            ('Resets at 12:00 AM', 0, 0),
+            ('Resets at 12:30 PM', 12, 30),
+            ('resets at 11:05 p.m.', 23, 5),
+            ('Resets at 1:07 PM', 13, 7),
+        ],
+    )
+    def test_absolute_reset_lands_on_that_local_clock_time(self, label, want_hour, want_minute):
+        got = ingest.parse_absolute_reset(label, NOW)
+        assert got is not None
+        local = gau.parse_utc(got).astimezone()
+        assert (local.hour, local.minute) == (want_hour, want_minute)
+
+    def test_reset_is_always_in_the_future(self):
+        for label in ['Resets at 2:59 AM', 'Resets at 11:59 PM', 'Resets at 12:00 AM']:
+            reset = gau.parse_utc(ingest.parse_absolute_reset(label, NOW))
+            assert reset > NOW
+            assert (reset - NOW) <= timedelta(days=1)
+
+    def test_a_time_already_past_today_means_tomorrow(self):
+        local_now = NOW.astimezone()
+        one_minute_ago = local_now - timedelta(minutes=1)
+        label = one_minute_ago.strftime('Resets at %I:%M %p')
+        reset = gau.parse_utc(ingest.parse_absolute_reset(label, NOW))
+        assert reset > NOW
+        assert (reset - NOW) > timedelta(hours=23)
+
+    @pytest.mark.parametrize('label', ['Resets at 13:59 AM', 'Resets at 2:99 PM', 'Resets soon', ''])
+    def test_nonsense_absolute_reset_is_none(self, label):
+        assert ingest.parse_absolute_reset(label, NOW) is None
+
+
+class TestParseResetAcceptsEitherWording:
+    def test_prefers_relative_when_present(self):
+        assert ingest.parse_reset('in 2 hours', NOW) == gau.format_utc(NOW + timedelta(hours=2))
+
+    def test_falls_back_to_absolute(self):
+        got = ingest.parse_reset('Resets at 2:59 AM', NOW)
+        assert got is not None and gau.parse_utc(got).astimezone().hour == 2
+
+    def test_neither_wording_yields_none(self):
+        assert ingest.parse_reset('resets eventually', NOW) is None
+        assert ingest.parse_reset('', NOW) is None
+
+    def test_absolute_reset_enables_the_wait_lane(self):
+        """The whole point: without reset_at_utc, burn_advice can never return 'wait'."""
+        local_now = NOW.astimezone()
+        soon = (local_now + timedelta(minutes=20)).strftime('Resets at %I:%M %p')
+        reset_at = ingest.parse_reset(soon, NOW)
+        assert reset_at is not None
+        r = gau.validate(reading(used_pct=92.0, reset_label=soon, reset_at_utc=reset_at))
+        assert gau.burn_advice(r, NOW)['lane'] == 'wait'

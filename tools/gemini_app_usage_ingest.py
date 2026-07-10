@@ -27,6 +27,7 @@ from gemini_app_usage import (  # noqa: E402
     burn_advice,
     format_utc,
     load_reading,
+    parse_utc,
     reading_path,
     write_reading,
 )
@@ -58,6 +59,37 @@ def parse_relative_reset(label: str, captured_at: datetime) -> str | None:
     if not minutes:
         return None
     return format_utc(captured_at + timedelta(minutes=minutes))
+
+
+def parse_absolute_reset(label: str, captured_at: datetime) -> str | None:
+    """'Resets at 2:59 AM' -> absolute UTC, interpreted in the operator's local zone.
+
+    The live page words it this way, not as a relative offset. A clock time that has
+    already passed today refers to tomorrow, since the window always resets ahead.
+    """
+    match = re.search(r'at\s+(\d{1,2}):(\d{2})\s*([AaPp])\.?[Mm]\.?', label)
+    if not match:
+        return None
+    hour, minute = int(match.group(1)), int(match.group(2))
+    if not (1 <= hour <= 12 and 0 <= minute <= 59):
+        return None
+    if match.group(3).lower() == 'p':
+        hour = hour % 12 + 12
+    else:
+        hour = hour % 12
+
+    local = captured_at.astimezone()
+    reset = local.replace(hour=hour, minute=minute, second=0, microsecond=0)
+    if reset <= local:
+        reset += timedelta(days=1)
+    return format_utc(reset)
+
+
+def parse_reset(label: str, captured_at: datetime) -> str | None:
+    """Accept either wording the page uses."""
+    if not label:
+        return None
+    return parse_relative_reset(label, captured_at) or parse_absolute_reset(label, captured_at)
 
 
 def emit_bookmarklet() -> None:
@@ -113,7 +145,7 @@ def main() -> int:
             'schema': SCHEMA,
             'used_pct': args.used_pct,
             'reset_label': args.resets or None,
-            'reset_at_utc': parse_relative_reset(args.resets, captured_at),
+            'reset_at_utc': parse_reset(args.resets, captured_at),
             'tier': args.tier or None,
             'source_url': 'https://gemini.google.com/usage',
             'captured_at_utc': format_utc(captured_at),
@@ -135,6 +167,17 @@ def main() -> int:
             payload = json.loads(raw)
         except json.JSONDecodeError as exc:
             raise SystemExit(f'Clipboard does not hold the capture JSON: {exc}') from exc
+
+        # Older bookmarklets only understood relative resets ('in 3 hr 20 min'). The live
+        # page says 'Resets at 2:59 AM', so recover the absolute time here rather than
+        # losing it and disabling the 'wait' lane.
+        if isinstance(payload, dict) and not payload.get('reset_at_utc') and payload.get('reset_label'):
+            try:
+                captured_at = parse_utc(payload['captured_at_utc'])
+            except (KeyError, ValueError, TypeError):
+                captured_at = None
+            if captured_at:
+                payload['reset_at_utc'] = parse_reset(str(payload['reset_label']), captured_at)
 
     try:
         dest = write_reading(payload, args.path)
