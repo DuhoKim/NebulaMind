@@ -27,7 +27,10 @@ PROVIDER = 'Gemini app / consumer'
 # taken just before a window turns over; past that a percentage is meaningless.
 STALE_AFTER_SECONDS = 6 * 3600
 
-CAPTURE_METHODS = frozenset({'bookmarklet-confirmed', 'manual'})
+# 'chrome-auto' is an unattended DOM scrape (gemini_app_usage_autofetch.py). It is
+# accepted only when the extractor reports a high-confidence signal, and the gauge
+# labels it as unattended so a human-confirmed reading is never confused with one.
+CAPTURE_METHODS = frozenset({'bookmarklet-confirmed', 'manual', 'chrome-auto'})
 
 TOOL_DIR = Path(__file__).resolve().parent
 ROOT = TOOL_DIR.parent
@@ -232,6 +235,35 @@ def burn_advice(reading: dict[str, Any] | None, now: datetime) -> dict[str, Any]
     }
 
 
+def route_line(reading: dict[str, Any] | None, now: datetime) -> str:
+    """One advisory line for a router (e.g. the mastermind briefing Hwao).
+
+    Deliberately terse and self-contained: a lane verdict, the headroom that
+    justifies it, and the reminder that this pool is independent of Antigravity.
+    Says 'unknown' when there is no fresh capture rather than implying headroom.
+    """
+    advice = burn_advice(reading, now)
+    lane = advice['lane']
+    if lane == 'unknown':
+        return f'GEMINI APP LANE: unknown — {advice["rationale"]} Do not assume app-lane headroom.'
+
+    tier = (reading.get('tier') or 'tier unstated') if reading else 'tier unstated'
+    age = humanize_age(age_seconds(reading, now)) if reading else 'no capture'
+    to_reset = advice.get('minutes_to_reset')
+    reset_bit = '' if to_reset is None else f', resets ~{to_reset}m'
+    tasks = ', '.join(advice['good_burn_tasks'])
+    where = (
+        f'route wide/cheap/long-context work ({tasks}) here'
+        if lane in ('burn', 'measured')
+        else 'route batch work to another provider'
+    )
+    return (
+        f'GEMINI APP LANE: {lane} — {advice["headroom_pct"]:.0f}% headroom{reset_bit}. '
+        f'{where}; this pool is independent of the Antigravity/Goru quota. '
+        f'[{tier}, capture {age}]'
+    )
+
+
 def build_gauge(reading: dict[str, Any] | None, now: datetime, observed_at: str) -> dict[str, Any]:
     """Build the dashboard gauge. Reports 'unknown' rather than inventing a number."""
     advice = burn_advice(reading, now)
@@ -280,11 +312,12 @@ def build_gauge(reading: dict[str, Any] | None, now: datetime, observed_at: str)
 
     to_reset = minutes_to_reset(reading, now)
     reset_text = reset_label if to_reset is None else f'resets in ~{to_reset:.0f}m'
+    provenance = 'Unattended Chrome scrape' if reading['capture_method'] == 'chrome-auto' else 'Operator-confirmed capture'
     base.update({
         'value_label': f'{used:.0f}% used · {reset_text}',
         'fill_pct': used,
         'tone': tone_for_used(used),
-        'status': f'Operator-confirmed capture, {humanize_age(age)}',
+        'status': f'{provenance}, {humanize_age(age)}',
         'detail': (
             f'{tier}: {used:.0f}% of the app compute allowance used, {advice["headroom_pct"]:.0f}% headroom. '
             f'{advice["rationale"]} ' + shared_detail

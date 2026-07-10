@@ -112,6 +112,34 @@ class TestSetTier:
             ingest.set_tier('AI Pro', dest)
 
 
+class TestRouteLine:
+    def test_burn_line_names_the_lane_and_headroom(self):
+        line = gau.route_line(gau.validate(reading(used_pct=1.0, tier='AI Ultra')), NOW)
+        assert line.startswith('GEMINI APP LANE: burn')
+        assert '99% headroom' in line
+        assert 'independent of the Antigravity' in line
+        assert 'AI Ultra' in line
+
+    def test_reserve_line_sends_work_elsewhere(self):
+        line = gau.route_line(gau.validate(reading(used_pct=90.0)), NOW)
+        assert 'reserve' in line
+        assert 'another provider' in line
+
+    def test_unknown_when_no_capture_states_no_headroom(self):
+        line = gau.route_line(None, NOW)
+        assert line.startswith('GEMINI APP LANE: unknown')
+        assert 'Do not assume app-lane headroom' in line
+        assert '%' not in line.split('—')[1].split('Do not')[0]  # no fabricated headroom number
+
+    def test_unknown_when_stale(self):
+        old = gau.validate(reading(captured_at_utc=gau.format_utc(NOW - timedelta(hours=9))))
+        assert gau.route_line(old, NOW).startswith('GEMINI APP LANE: unknown')
+
+    def test_line_is_single_line(self):
+        for r in [None, gau.validate(reading(used_pct=1.0)), gau.validate(reading(used_pct=90.0))]:
+            assert '\n' not in gau.route_line(r, NOW)
+
+
 class TestStaleness:
     def test_fresh_reading_is_not_stale(self):
         assert not gau.is_stale(reading(captured_at_utc=gau.format_utc(NOW - timedelta(hours=5))), NOW)

@@ -107,3 +107,67 @@ clobbering hand edits), re-run the idempotent patcher:
 ```sh
 python3 tools/gemini_burn_plan_patch.py          # --check to test without writing
 ```
+
+## Feeding the lane to a router
+
+`tools/gemini_app_usage_ingest.py --route` prints one self-contained advisory line — the lane, the
+headroom that justifies it, the reset, and the reminder that this pool is independent of the
+Antigravity/Goru quota:
+
+```
+GEMINI APP LANE: burn — 99% headroom, resets ~135m. route wide/cheap/long-context work (…) here;
+this pool is independent of the Antigravity/Goru quota. [AI Ultra, capture 30m ago]
+```
+
+The galaxy-evolution autopilot injects this line into every `director_prompt()` dispatch (via
+`gemini_app_route_line()` in `tools/galaxy_evolution_autopilot.py`), so Hwao sees the current lane
+when it sequences a packet. It stays advisory: Hwao decides, and the line degrades to `unknown`
+rather than a fabricated number when the capture is missing or stale. The autopilot loads the module
+once, so the injection takes effect on its next restart.
+
+## Auto-refresh (optional, unattended)
+
+`tools/gemini_app_usage_autofetch.py` reads `gemini.google.com/usage` by driving your logged-in
+Chrome, so the number can refresh without a bookmarklet click. This is **not** wired into
+`live_provider_usage_monitor.py`, whose safety model forbids browser automation — it is a separate,
+opt-in tool. It is also ToS-adjacent (it automates your logged-in session), so treat it as a
+deliberate choice, not a default.
+
+Two one-time macOS grants are required before it can read anything:
+
+1. **System Settings → Privacy & Security → Automation** — allow the controlling terminal to control
+   Google Chrome. The first run fails with AppleEvents error `-1743` until this is granted.
+2. **Chrome → View → Developer → Allow JavaScript from Apple Events.**
+
+```sh
+python3 tools/gemini_app_usage_autofetch.py --dry-run   # scrape and print, store nothing
+python3 tools/gemini_app_usage_autofetch.py             # scrape and store
+```
+
+An unattended read has no human to confirm it, so it is **more** conservative than the manual path:
+it stores only a high-confidence value (a `[role=progressbar]` element or a percentage sitting next
+to usage/limit wording). A bare percentage found anywhere else on the page is refused, and any
+abstention leaves the existing reading untouched — an auto-scrape can never overwrite a good
+human-confirmed capture with a guess. Auto readings carry `capture_method: chrome-auto` and the gauge
+labels them "Unattended Chrome scrape" so they are never mistaken for operator-confirmed ones.
+
+To schedule it, run it from `cron`/`launchd` (scheduling is your call — a recurring browser-driving
+job is a deliberate action, not something the tools enable for you). A launchd example, every 30 min:
+
+```xml
+<!-- ~/Library/LaunchAgents/com.nebulamind.gemini-usage-autofetch.plist -->
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.nebulamind.gemini-usage-autofetch</string>
+  <key>ProgramArguments</key><array>
+    <string>/usr/bin/python3</string>
+    <string>/Users/duhokim/NebulaMind/NebulaMind/tools/gemini_app_usage_autofetch.py</string>
+  </array>
+  <key>StartInterval</key><integer>1800</integer>
+  <key>WorkingDirectory</key><string>/Users/duhokim/NebulaMind/NebulaMind</string>
+  <key>StandardErrorPath</key><string>/Users/duhokim/NebulaMind/logs/gemini-usage-autofetch.log</string>
+</dict></plist>
+```
+
+Load it with `launchctl load ~/Library/LaunchAgents/com.nebulamind.gemini-usage-autofetch.plist`.

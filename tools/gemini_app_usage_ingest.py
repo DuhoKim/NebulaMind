@@ -29,6 +29,7 @@ from gemini_app_usage import (  # noqa: E402
     load_reading,
     parse_utc,
     reading_path,
+    route_line,
     write_reading,
 )
 
@@ -145,6 +146,7 @@ def main() -> int:
     src.add_argument('--used-pct', type=float, metavar='N', help='enter the used percentage by hand (0-100)')
     src.add_argument('--emit-bookmarklet', action='store_true', help='print the javascript: bookmarklet URL')
     src.add_argument('--show', action='store_true', help='print the current reading, advice, and gauge')
+    src.add_argument('--route', action='store_true', help='print one advisory routing line for a director/agent')
     ap.add_argument('--resets', default='', help='reset text, e.g. "in 3 hr 20 min" (with --used-pct)')
     ap.add_argument('--tier', default='', help='plan tier, e.g. "AI Pro" (with --used-pct)')
     ap.add_argument('--path', type=Path, default=None, help='override the drop-file path')
@@ -155,6 +157,13 @@ def main() -> int:
         return 0
     if args.show:
         return show_current()
+    if args.route:
+        try:
+            reading = load_reading()
+        except ReadingError:
+            reading = None
+        print(route_line(reading, datetime.now(timezone.utc)))
+        return 0
     if args.set_tier is not None:
         return set_tier(args.set_tier, args.path)
 
