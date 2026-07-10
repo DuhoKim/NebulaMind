@@ -151,6 +151,18 @@ def process_extraction(extract: dict, now: datetime, path: Path | None = None, *
         return {'stored': False, 'reason': f'low-confidence signal ({signal}); abstaining', 'reading': None}
 
     reading = build_reading(extract, now)
+
+    # The usage page rarely names the plan, so a scrape usually yields tier=None.
+    # Carry forward the last operator-confirmed tier rather than wiping it on every
+    # unattended refresh — it is a remembered confirmed value, not an invented one.
+    if reading['tier'] is None:
+        try:
+            prior = load_reading(path)
+        except ReadingError:
+            prior = None
+        if prior and prior.get('tier'):
+            reading['tier'] = prior['tier']
+
     try:
         # validate() runs inside write_reading(); pre-check so a bad scrape abstains
         # instead of raising, and so --dry-run reports the same verdict.

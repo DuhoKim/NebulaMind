@@ -97,6 +97,36 @@ class TestGating:
         assert after['used_pct'] == 42.0
         assert after['capture_method'] == 'bookmarklet-confirmed'
 
+    def test_tier_carries_forward_from_a_prior_reading(self, tmp_path):
+        dest = tmp_path / 'r.json'
+        prior = {
+            'schema': gau.SCHEMA, 'used_pct': 5.0, 'reset_label': None, 'reset_at_utc': None,
+            'tier': 'AI Ultra', 'source_url': 'https://gemini.google.com/usage',
+            'captured_at_utc': gau.format_utc(NOW - timedelta(minutes=30)),
+            'capture_method': 'manual',
+        }
+        gau.write_reading(prior, dest)
+        # a scrape with no tier should inherit the operator-set one
+        af.process_extraction(extract(tier_guess=''), NOW, dest)
+        after = gau.load_reading(dest)
+        assert after['tier'] == 'AI Ultra'
+        assert after['capture_method'] == 'chrome-auto'  # provenance still honest
+
+    def test_scraped_tier_wins_over_a_prior_one(self, tmp_path):
+        dest = tmp_path / 'r.json'
+        prior = {
+            'schema': gau.SCHEMA, 'used_pct': 5.0, 'reset_label': None, 'reset_at_utc': None,
+            'tier': 'AI Pro', 'source_url': 'https://gemini.google.com/usage',
+            'captured_at_utc': gau.format_utc(NOW - timedelta(minutes=30)), 'capture_method': 'manual',
+        }
+        gau.write_reading(prior, dest)
+        af.process_extraction(extract(tier_guess='AI Ultra'), NOW, dest)
+        assert gau.load_reading(dest)['tier'] == 'AI Ultra'
+
+    def test_no_prior_and_no_scraped_tier_stays_none(self, tmp_path):
+        rep = af.process_extraction(extract(tier_guess=''), NOW, tmp_path / 'r.json')
+        assert rep['reading']['tier'] is None
+
     def test_dry_run_reports_but_stores_nothing(self, tmp_path):
         dest = tmp_path / 'r.json'
         rep = af.process_extraction(extract(), NOW, dest, dry_run=True)
