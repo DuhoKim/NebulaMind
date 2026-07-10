@@ -80,22 +80,30 @@ end tell
 '''
 
 
+def friendly_osascript_error(err: str) -> str:
+    """Map a raw osascript failure to an actionable message.
+
+    Chrome's errors are localized (a Korean install returns no English 'JavaScript'
+    and code (12), not -2700), so match on locale-stable anchors: the -1743 code for
+    the Automation grant, and Chrome's support-page slug for the JS-bridge toggle.
+    """
+    if '-1743' in err:
+        return (
+            'macOS has not granted this terminal permission to control Google Chrome. '
+            'Grant it once in System Settings -> Privacy & Security -> Automation, then retry.'
+        )
+    if 'p=applescript' in err or '-2700' in err or 'javascript' in err.lower():
+        return (
+            "Chrome refused 'execute javascript'. Enable it once in "
+            'Chrome -> View -> Developer -> Allow JavaScript from Apple Events, then retry.'
+        )
+    return f'osascript failed: {err}'
+
+
 def run_applescript(script: str, timeout: int = 40) -> str:
     cp = subprocess.run(['osascript', '-'], input=script, text=True, capture_output=True, timeout=timeout)
     if cp.returncode != 0:
-        err = cp.stderr.strip()
-        if '-1743' in err:
-            raise AutofetchError(
-                'macOS has not granted this terminal permission to control Google Chrome. '
-                'Grant it once in System Settings -> Privacy & Security -> Automation, then retry.'
-            )
-        if '-2700' in err or 'JavaScript' in err or 'execute' in err:
-            raise AutofetchError(
-                "Chrome refused 'execute javascript'. Enable it once in "
-                'Chrome -> View -> Developer -> Allow JavaScript from Apple Events, then retry. '
-                f'(osascript said: {err})'
-            )
-        raise AutofetchError(f'osascript failed: {err}')
+        raise AutofetchError(friendly_osascript_error(cp.stderr.strip()))
     return cp.stdout.strip()
 
 

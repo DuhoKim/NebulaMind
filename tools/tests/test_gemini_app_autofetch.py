@@ -122,6 +122,32 @@ class TestGaugeProvenance:
         assert 'Operator-confirmed capture' in gauge['status']
 
 
+class TestFriendlyErrors:
+    def test_automation_denied_maps_to_grant_instruction(self):
+        msg = af.friendly_osascript_error('39:55: execution error: ... (-1743)')
+        assert 'Privacy & Security -> Automation' in msg
+
+    def test_localized_js_bridge_off_matched_via_support_url(self):
+        # A non-English Chrome returns a localized message with code (12), no English
+        # 'JavaScript' word — but always links this support slug. Match on that anchor
+        # so the instruction is shown regardless of the OS/Chrome locale.
+        localized = (
+            '596:628: execution error: <localized text> '
+            'https://support.google.com/chrome/?p=applescript (12)'
+        )
+        msg = af.friendly_osascript_error(localized)
+        assert 'Allow JavaScript from Apple Events' in msg
+        assert 'support.google' not in msg  # raw dump replaced with the instruction
+
+    def test_english_js_bridge_off_is_recognised(self):
+        msg = af.friendly_osascript_error('execution error: JavaScript through AppleScript is turned off. (-2700)')
+        assert 'Allow JavaScript from Apple Events' in msg
+
+    def test_unknown_error_is_passed_through(self):
+        msg = af.friendly_osascript_error('some other failure')
+        assert msg == 'osascript failed: some other failure'
+
+
 class TestExtractorContract:
     """The Python side assumes these keys; pin the shape the JS must return."""
 
