@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import { STEPS, useTab, setTab } from "./labTabStore";
 
 const TOPICS = [
   { value: "simulations-vs-physics", label: "Simulations vs physics — calibration ≠ validation" },
@@ -37,6 +38,7 @@ export default function LabConfigurator() {
   const [method, setMethod] = useState(METHODS[0].value);
   const [aastex, setAastex] = useState(true);
   const [drReview, setDrReview] = useState(true);
+  const tab = useTab();
 
   const [plan, setPlan] = useState<Record<string, unknown> | null>(null);
   const [copied, setCopied] = useState(false);
@@ -48,6 +50,11 @@ export default function LabConfigurator() {
 
   const selectedData = Object.entries(data).filter(([, v]) => v).map(([k]) => k);
   const canAssemble = (topic !== "custom" || custom.trim().length > 0) && selectedData.length > 0;
+
+  function goNext() {
+    const i = STEPS.findIndex((s) => s.key === tab);
+    if (i < STEPS.length - 1) setTab(STEPS[i + 1].key);
+  }
 
   function assemble() {
     const p = {
@@ -110,7 +117,20 @@ export default function LabConfigurator() {
     <div className="cfg">
       <style>{`
         .cfg{border:1px solid var(--lab-line);border-radius:14px;background:var(--lab-panel);overflow:hidden}
-        .cfg-stage{display:grid;grid-template-columns:132px 1fr;gap:1rem;align-items:center;padding:1.05rem 1.25rem;border-bottom:1px solid var(--lab-line)}
+        .cfg-tabs{display:flex;background:#0c101c;border-bottom:1px solid var(--lab-line)}
+        .cfg-tab{flex:1;display:flex;flex-direction:column;gap:.2rem;align-items:flex-start;padding:.8rem 1rem;background:transparent;border:none;border-right:1px solid var(--lab-line);cursor:pointer;text-align:left;transition:background .12s}
+        .cfg-tab:last-child{border-right:none}
+        .cfg-tab:hover{background:rgba(124,134,255,.06)}
+        .cfg-tab.on{background:var(--lab-panel);box-shadow:inset 0 2px 0 var(--lab-accent)}
+        .cfg-tab .n{font-family:ui-monospace,monospace;font-size:.64rem;letter-spacing:.14em;color:var(--lab-soft)}
+        .cfg-tab.on .n{color:var(--lab-accent)}
+        .cfg-tab .t{font-size:.92rem;font-weight:600;color:var(--lab-soft);display:flex;align-items:center;gap:.35rem}
+        .cfg-tab.on .t{color:var(--lab-ink)}
+        .cfg-tab .chk{color:var(--lab-accent2);font-size:.72rem}
+        .cfg-panel{padding:1.3rem 1.25rem;border-bottom:1px solid var(--lab-line);min-height:104px}
+        .cfg-panel-h{font-family:ui-monospace,monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2);margin:0 0 .85rem}
+        .cfg-next{margin-top:1.1rem;background:transparent;border:1px solid var(--lab-line);color:var(--lab-ink);border-radius:8px;padding:.45rem .95rem;font-size:.82rem;cursor:pointer}
+        .cfg-next:hover{border-color:var(--lab-accent)}
         .cfg-label{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2)}
         .cfg-label .step{display:block;color:var(--lab-soft);font-size:.66rem;margin-top:.2rem}
         .cfg-sel,.cfg-inp{width:100%;background:#0a0d17;color:var(--lab-ink);border:1px solid var(--lab-line);border-radius:8px;padding:.6rem .7rem;font-size:.9rem;font-family:inherit}
@@ -140,48 +160,52 @@ export default function LabConfigurator() {
         .cfg-log{margin:.7rem 0 0;font-family:ui-monospace,monospace;font-size:.74rem;color:var(--lab-soft);line-height:1.6;white-space:pre-wrap}
         .cfg-result{margin-top:.8rem;font-size:.9rem;color:var(--lab-ink);line-height:1.55}
         .cfg-result img{max-width:100%;border:1px solid var(--lab-line);border-radius:10px;margin-top:.7rem;background:#fff}
-        @media(max-width:560px){.cfg-stage{grid-template-columns:1fr;gap:.55rem}}
+        @media(max-width:560px){.cfg-tab .n{display:none}.cfg-tab{padding:.7rem .5rem}.cfg-tab .t{font-size:.82rem}}
       `}</style>
 
-      <div className="cfg-stage">
-        <div className="cfg-label">Topic<span className="step">select</span></div>
-        <div>
-          <select className="cfg-sel" value={topic} onChange={(e) => setTopic(e.target.value)}>
-            {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+      <div className="cfg-panel" role="tabpanel">
+        <p className="cfg-panel-h">{STEPS.find((s) => s.key === tab)?.heading}</p>
+
+        {tab === "topic" && (
+          <div>
+            <select className="cfg-sel" value={topic} onChange={(e) => setTopic(e.target.value)}>
+              {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
+            </select>
+            {topic === "custom" && (
+              <input className="cfg-inp" style={{ marginTop: ".55rem" }} placeholder="Describe your research question…"
+                value={custom} onChange={(e) => setCustom(e.target.value)} />
+            )}
+          </div>
+        )}
+
+        {tab === "data" && (
+          <div className="cfg-chips">
+            {DATA_SOURCES.map((d) => (
+              <div key={d.id} className={`cfg-chip${data[d.id] ? " on" : ""}`}
+                onClick={() => setData((s) => ({ ...s, [d.id]: !s[d.id] }))} role="button" tabIndex={0}
+                onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setData((s) => ({ ...s, [d.id]: !s[d.id] })); }}>
+                <b>{d.label}</b><span>{d.sub}</span>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {tab === "research" && (
+          <select className="cfg-sel" value={method} onChange={(e) => setMethod(e.target.value)}>
+            {METHODS.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
           </select>
-          {topic === "custom" && (
-            <input className="cfg-inp" style={{ marginTop: ".55rem" }} placeholder="Describe your research question…"
-              value={custom} onChange={(e) => setCustom(e.target.value)} />
-          )}
-        </div>
-      </div>
+        )}
 
-      <div className="cfg-stage">
-        <div className="cfg-label">Data<span className="step">sources</span></div>
-        <div className="cfg-chips">
-          {DATA_SOURCES.map((d) => (
-            <div key={d.id} className={`cfg-chip${data[d.id] ? " on" : ""}`}
-              onClick={() => setData((s) => ({ ...s, [d.id]: !s[d.id] }))} role="button" tabIndex={0}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setData((s) => ({ ...s, [d.id]: !s[d.id] })); }}>
-              <b>{d.label}</b><span>{d.sub}</span>
-            </div>
-          ))}
-        </div>
-      </div>
+        {tab === "paper" && (
+          <div className="cfg-out">
+            <label className="cfg-check"><input type="checkbox" checked={aastex} onChange={(e) => setAastex(e.target.checked)} /> AASTeX draft + figures</label>
+            <label className="cfg-check"><input type="checkbox" checked={drReview} onChange={(e) => setDrReview(e.target.checked)} /> Deep-Research review loop</label>
+          </div>
+        )}
 
-      <div className="cfg-stage">
-        <div className="cfg-label">Research<span className="step">method</span></div>
-        <select className="cfg-sel" value={method} onChange={(e) => setMethod(e.target.value)}>
-          {METHODS.map((m) => <option key={m.value} value={m.value}>{m.label}</option>)}
-        </select>
-      </div>
-
-      <div className="cfg-stage">
-        <div className="cfg-label">Paper<span className="step">outputs</span></div>
-        <div className="cfg-out">
-          <label className="cfg-check"><input type="checkbox" checked={aastex} onChange={(e) => setAastex(e.target.checked)} /> AASTeX draft + figures</label>
-          <label className="cfg-check"><input type="checkbox" checked={drReview} onChange={(e) => setDrReview(e.target.checked)} /> Deep-Research review loop</label>
-        </div>
+        {tab !== "paper" && (
+          <button className="cfg-next" onClick={goNext}>Next →</button>
+        )}
       </div>
 
       <div className="cfg-foot">

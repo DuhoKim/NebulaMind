@@ -1,5 +1,6 @@
 import LabConfigurator from "./LabConfigurator";
 import RecentRuns from "./RecentRuns";
+import LabTopTabs from "./LabTopTabs";
 
 export const metadata = {
   title: "NebulaMind Lab — Autonomous Galaxy-Evolution Research",
@@ -64,11 +65,20 @@ export default function LabPage() {
         .lab-brand b{color:var(--lab-accent2);font-weight:600}
         .lab-back{color:var(--lab-soft);text-decoration:none;font-size:.82rem;font-family:ui-monospace,monospace}
         .lab-back:hover{color:var(--lab-ink)}
+        .lab-toptabs{display:flex;gap:.1rem}
+        .lab-toptab{position:relative;background:transparent;border:none;color:var(--lab-soft);font-size:.86rem;font-weight:500;padding:.45rem .75rem;border-radius:7px;cursor:pointer;font-family:inherit;transition:color .12s}
+        .lab-toptab:hover{color:var(--lab-ink)}
+        .lab-toptab.on{color:var(--lab-ink)}
+        .lab-toptab.on::after{content:"";position:absolute;left:.75rem;right:.75rem;bottom:-.55rem;height:2px;background:var(--lab-accent);border-radius:2px}
+        #configure{scroll-margin-top:72px}
+        @media(max-width:720px){.lab-back{display:none}}
+        @media(max-width:560px){.lab-brand b{display:none}.lab-toptab{padding:.4rem .5rem;font-size:.8rem}}
       `}</style>
 
       <nav className="lab-topbar">
         <div className="lab-wrap row">
           <a className="lab-brand" href="/">◆ NebulaMind&nbsp;<b>Lab</b></a>
+          <LabTopTabs />
           <a className="lab-back" href="https://nebulamind.net">nebulamind.net ↗</a>
         </div>
       </nav>
@@ -87,7 +97,7 @@ export default function LabPage() {
           </div>
         </header>
 
-        <section className="lab-sec">
+        <section className="lab-sec" id="configure">
           <p className="lab-kicker">Configure a run</p>
           <p className="lab-note" style={{ margin: "0 0 1.25rem" }}>
             Compose a study stage by stage — topic → data → research → paper — and assemble a
