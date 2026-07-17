@@ -1,5 +1,4 @@
-import LabConfigurator from "./LabConfigurator";
-import RecentRuns from "./RecentRuns";
+import LabStages from "./LabStages";
 import LabTopTabs from "./LabTopTabs";
 
 export const metadata = {
@@ -17,8 +16,6 @@ const STEPS = [
 ];
 
 const STUDIES = [
-  { title: "Open Research Frontiers", tag: "the map", href: "https://nebulamind.net/wiki/galaxy-evolution-open-research-frontiers",
-    d: "A bottom-up map of where the field is most actively unsettled, drawn from 12k papers + the review base." },
   { title: "Does IllustrisTNG make enough massive galaxies early enough?", tag: "DR-reviewed · native measurement", href: "https://nebulamind.net/agent-reports/research-frontiers/galaxy-evolution-massive-galaxies-draft.pdf",
     d: "A stellar-mass-function stress test vs the JWST massive-galaxy tension, with a Boylan-Kolchin baryon-budget check and a native centrals+M200c efficiency. Passed a 6-cycle Deep-Research review." },
   { title: "Scaling relations from z≈0 to the JWST frontier", tag: "calibration-verified", href: "https://nebulamind.net/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
@@ -70,7 +67,7 @@ export default function LabPage() {
         .lab-toptab:hover{color:var(--lab-ink)}
         .lab-toptab.on{color:var(--lab-ink)}
         .lab-toptab.on::after{content:"";position:absolute;left:.75rem;right:.75rem;bottom:-.55rem;height:2px;background:var(--lab-accent);border-radius:2px}
-        #configure{scroll-margin-top:72px}
+        #pipeline{scroll-margin-top:72px}
         @media(max-width:720px){.lab-back{display:none}}
         @media(max-width:560px){.lab-brand b{display:none}.lab-toptab{padding:.4rem .5rem;font-size:.8rem}}
       `}</style>
@@ -84,26 +81,12 @@ export default function LabPage() {
       </nav>
 
       <div className="lab-wrap">
-        <header className="lab-hero">
-          <p className="lab-eyebrow">NebulaMind Lab</p>
-          <h1 className="lab-h1">Autonomous <b>galaxy-evolution research.</b></h1>
-          <p className="lab-lede">
-            A pipeline that reads the literature, maps where the field is unsettled, runs the studies on public
-            data, and writes peer-review-style papers — then defends them against an adversarial review loop.
-          </p>
-          <div>
-            <a className="lab-cta" href="https://nebulamind.net/wiki/galaxy-evolution-open-research-frontiers">Explore the frontier map →</a>
-            <a className="lab-cta ghost" href="https://nebulamind.net/research">See the papers</a>
-          </div>
-        </header>
-
-        <section className="lab-sec" id="configure">
-          <p className="lab-kicker">Configure a run</p>
+        <section className="lab-sec" id="pipeline" style={{ paddingTop: "2.5rem" }}>
+          <p className="lab-kicker">The pipeline, stage by stage</p>
           <p className="lab-note" style={{ margin: "0 0 1.25rem" }}>
-            Compose a study stage by stage — topic → data → research → paper — and assemble a
-            reproducible run spec.
+            How a study is composed — topic → data → research → paper. Use the tabs above to walk each stage.
           </p>
-          <LabConfigurator />
+          <LabStages />
         </section>
 
         <section className="lab-sec">
@@ -132,12 +115,6 @@ export default function LabPage() {
               </a>
             ))}
           </div>
-
-          <p className="lab-note" style={{ margin: "1.75rem 0 1rem", color: "var(--lab-soft)" }}>
-            Runs from the configurator above — each is a live study with its figure, compiled AASTeX
-            manuscript, and the automated referee&rsquo;s review–revise verdict.
-          </p>
-          <RecentRuns />
         </section>
 
         <section className="lab-sec">

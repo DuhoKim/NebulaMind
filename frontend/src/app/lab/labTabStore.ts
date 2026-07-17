@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 
-// The four configurator stages, shared between the sticky top-banner tabs
-// (LabTopTabs) and the configurator panel (LabConfigurator).
+// The four pipeline stages, shared between the sticky top-banner tabs
+// (LabTopTabs) and the stage panel (LabStages).
 export const STEPS = [
-  { key: "topic", label: "Topic", sub: "select", heading: "Pick a research question" },
-  { key: "data", label: "Data", sub: "sources", heading: "Choose the data sources" },
-  { key: "research", label: "Research", sub: "method", heading: "Select the analysis method" },
-  { key: "paper", label: "Paper", sub: "outputs", heading: "Choose the outputs to produce" },
+  { key: "topic", label: "Topic", sub: "select", heading: "How the research topics were picked" },
+  { key: "data", label: "Data", sub: "sources", heading: "The data sources" },
+  { key: "research", label: "Research", sub: "method", heading: "The analysis methods" },
+  { key: "paper", label: "Paper", sub: "outputs", heading: "The outputs produced" },
 ] as const;
 
 export type StepKey = (typeof STEPS)[number]["key"];
