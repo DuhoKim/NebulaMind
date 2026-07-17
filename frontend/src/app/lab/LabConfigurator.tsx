@@ -26,6 +26,51 @@ const METHODS = [
   { value: "sim-vs-observation", label: "Simulation vs observation confrontation" },
 ];
 
+const METHOD_BLURB =
+  "Bottom-up frontier map: ~12,000 refereed astro-ph.GA abstracts (2016–2026, NASA ADS) were embedded and clustered into 32 themes; 278 open debates + 200 unknowns from 19 landmark reviews were overlaid; clusters were ranked by open-question density × recent growth. These five sit at the top of that ranking.";
+
+type Deriv = { cluster: string; debate: string; rank: string; papers: string; study: string; caveat?: string };
+
+const DERIVATIONS: Record<string, Deriv> = {
+  "simulations-vs-physics": {
+    cluster: "Cluster 14 · “Hydrodynamic Cosmological Simulations of Galaxies” — the single largest cluster (634 papers; keywords methods:numerical, hydrodynamics, galaxy formation; sample titles include IllustrisTNG, FIRE-2, SIMBA).",
+    debate: "Highest debate concentration of all 32 clusters — 53 debates / 26 unknowns, drawn from Somerville & Davé (2015): subgrid degeneracy, feedback & wind-recycling timescales, and matching the stellar-mass function without over-calibration.",
+    rank: "frontier_score 0.776 — elevated to the #1 headline frontier as the field’s densest concentration of open questions. The framing: sims are tuned to a few z≈0 observables, so the real test is their predictions away from that calibration point.",
+    papers: "IllustrisTNG (Pillepich+2018, Nelson+2019), FIRE-2, SIMBA.",
+    study: "“Calibration Is Not Validation” — TNG100 (~3×10⁴ galaxies) confronted with SDSS + JWST z≈4–6 scaling-relation evolution; TNG forms stars too vigorously at high z.",
+  },
+  "jwst-high-z-nebular": {
+    cluster: "Cluster 26 · “Nebular Diagnostics in High-Redshift Galaxies” (405 papers; keywords high-redshift, abundances, ISM; sample titles include JADES/GN-z11 nitrogen enhancement and MOSDEF electron-density work).",
+    debate: "13 debates / 10 unknowns from Maiolino & Mannucci (2019) and Kewley et al. (2019): do local strong-line calibrations hold at high-z; the ~0.5 dex offset between direct-Te and theoretical strong-line abundances; the origin of extreme N/O in young systems.",
+    rank: "frontier_score 0.797 — the 2nd-highest of all 32 clusters, powered by a high recent-growth fraction (0.42).",
+    papers: "Nakajima+2023 (180 NIRSpec galaxies), Lisiecki+2025 (3743 MIRI/CEERS), Sanders+2021.",
+    study: "“Galaxy Scaling Relations from z≈0 to the JWST Frontier” — MS & MZR out to JWST; a ~0.4 dex high-z metallicity deficit, near-constant across z≈4–7 on a matched Tₑ-anchored scale.",
+  },
+  "cosmic-chemical-evolution": {
+    cluster: "Cluster 1 · “Cosmic Chemical Evolution of Galaxies” (447 papers; keywords abundances, evolution; sample titles include “De re metallica”, the origin of the MZR, and a fully Tₑ-anchored FMR).",
+    debate: "15 debates / 7 unknowns from Maiolino & Mannucci (2019): inflow vs outflow as the driver of the FMR, the FMR’s universality / redshift-invariance at z>3, and the absolute gas-phase abundance zero point.",
+    rank: "frontier_score 0.78 (4th of 32) — one of the highest debate counts among non-simulation clusters.",
+    papers: "Tremonti+2004, Mannucci+2010 (FMR), Curti / Maiolino & Mannucci (2019).",
+    study: "SDSS mass–metallicity relation & the FMR aperture — N=202,968 DR18 galaxies; finds no canonical FMR anti-correlation with total SFR and argues it is an aperture artifact.",
+  },
+  "main-sequence-quenching": {
+    cluster: "Nearest match: Cluster 11 · “Galaxy Evolution: Gas, Star Formation, Models” (432 papers) — no cluster is branded specifically “main sequence / quenching”.",
+    debate: "13 debates / 10 unknowns spanning Somerville & Davé (2015), Tacconi et al. (2020) and Förster Schreiber & Wuyts (2020): low- vs high-mass quenching, the green valley, and supply-starvation vs suppressed SFE vs rapid gas removal.",
+    rank: "Not an independently top-ranked, named frontier — it has no standalone frontier_score. It maps to the nearest star-formation cluster and is analysed inside the scaling-relations study.",
+    papers: "Speagle+2014 (main-sequence calibration); Förster Schreiber & Wuyts (2020).",
+    study: "Realized as the SFMS / quenching component of the scaling-relations study — N=494,635; quench-50% at logM≈10.6; quenched fraction 0.04→0.18→0.70 across logM 9/10/11.",
+    caveat: "Honest note: this is not a top-scored cluster of its own — it is the nearest star-formation theme plus the review-base quenching debates.",
+  },
+  "massive-galaxies-too-early": {
+    cluster: "Split signal: Cluster 30 · “High-Redshift Galaxy Formation” is the fastest-growing cluster (455 papers, 71% recent, median year 2023; CEERS / z≈9–16 titles) but low debate count; SMHM context from Cluster 23. No single high-scored “SMF tension” cluster exists.",
+    debate: "The JWST “impossibly massive early galaxies” ΛCDM tension — Boylan-Kolchin (2023) baryon budget vs Labbé (2023): is the massive-end shortfall cosmological, or driven by star-formation efficiency? (Somerville & Davé downsizing; Wechsler & Tinker SMHM.)",
+    rank: "Selected on the strength of the debate × the fastest-growing cluster — not a high frontier_score cluster (cluster 30 scores only 0.411). The tension itself comes from the review base, not a top density×growth score.",
+    papers: "Labbé+2023, Boylan-Kolchin (2023), Chworowsky+2024 (120 z≈4–7 galaxies), Weibel+2024, Tinker (2008, HMF).",
+    study: "“Does IllustrisTNG Make Enough Massive Galaxies Early Enough?” — an SMF stress test at z≈4–6; passed a 6-cycle Deep-Research review.",
+    caveat: "Honest note: driven by the review-base tension intersecting the fastest-growing cluster, not by a top density×growth score.",
+  },
+};
+
 type Run = {
   id: string; status: string; log?: string[];
   result?: { summary?: string; figure_url?: string; pdf_url?: string; review?: string; review_model?: string; review_verdict?: string; review_cycles?: number; error?: string } | null;
@@ -129,6 +174,15 @@ export default function LabConfigurator() {
         .cfg-tab .chk{color:var(--lab-accent2);font-size:.72rem}
         .cfg-panel{padding:1.3rem 1.25rem;border-bottom:1px solid var(--lab-line);min-height:104px}
         .cfg-panel-h{font-family:ui-monospace,monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2);margin:0 0 .85rem}
+        .cfg-method{font-size:.8rem;color:var(--lab-soft);line-height:1.6;margin:0 0 .95rem;padding:.7rem .85rem;border-left:2px solid var(--lab-accent);background:rgba(124,134,255,.05);border-radius:0 8px 8px 0}
+        .cfg-deriv{margin-top:1rem;border:1px solid var(--lab-line);border-radius:10px;background:#0a0d17;overflow:hidden}
+        .cfg-deriv-h{padding:.65rem .9rem;border-bottom:1px solid var(--lab-line);font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2)}
+        .cfg-deriv-row{display:grid;grid-template-columns:118px 1fr;gap:.85rem;padding:.65rem .9rem;border-bottom:1px solid rgba(36,42,61,.55);font-size:.84rem;line-height:1.55}
+        .cfg-deriv-row:last-child{border-bottom:none}
+        .cfg-deriv-k{font-family:ui-monospace,monospace;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lab-soft);padding-top:.15rem}
+        .cfg-deriv-v{color:var(--lab-ink)}
+        .cfg-deriv-caveat{padding:.6rem .9rem;background:rgba(224,164,88,.09);color:#e0a458;font-size:.78rem;line-height:1.5;border-top:1px solid var(--lab-line)}
+        @media(max-width:560px){.cfg-deriv-row{grid-template-columns:1fr;gap:.2rem}}
         .cfg-next{margin-top:1.1rem;background:transparent;border:1px solid var(--lab-line);color:var(--lab-ink);border-radius:8px;padding:.45rem .95rem;font-size:.82rem;cursor:pointer}
         .cfg-next:hover{border-color:var(--lab-accent)}
         .cfg-label{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2)}
@@ -168,12 +222,28 @@ export default function LabConfigurator() {
 
         {tab === "topic" && (
           <div>
+            <p className="cfg-method">{METHOD_BLURB}</p>
             <select className="cfg-sel" value={topic} onChange={(e) => setTopic(e.target.value)}>
               {TOPICS.map((t) => <option key={t.value} value={t.value}>{t.label}</option>)}
             </select>
-            {topic === "custom" && (
-              <input className="cfg-inp" style={{ marginTop: ".55rem" }} placeholder="Describe your research question…"
-                value={custom} onChange={(e) => setCustom(e.target.value)} />
+            {topic === "custom" ? (
+              <>
+                <input className="cfg-inp" style={{ marginTop: ".55rem" }} placeholder="Describe your research question…"
+                  value={custom} onChange={(e) => setCustom(e.target.value)} />
+                <p className="cfg-hint" style={{ marginTop: ".7rem" }}>
+                  A custom question bypasses the frontier map — you supply the research question directly.
+                </p>
+              </>
+            ) : DERIVATIONS[topic] && (
+              <div className="cfg-deriv">
+                <div className="cfg-deriv-h">How this topic was derived</div>
+                <div className="cfg-deriv-row"><span className="cfg-deriv-k">Cluster</span><span className="cfg-deriv-v">{DERIVATIONS[topic].cluster}</span></div>
+                <div className="cfg-deriv-row"><span className="cfg-deriv-k">Open debate</span><span className="cfg-deriv-v">{DERIVATIONS[topic].debate}</span></div>
+                <div className="cfg-deriv-row"><span className="cfg-deriv-k">Why it ranks</span><span className="cfg-deriv-v">{DERIVATIONS[topic].rank}</span></div>
+                <div className="cfg-deriv-row"><span className="cfg-deriv-k">Key papers</span><span className="cfg-deriv-v">{DERIVATIONS[topic].papers}</span></div>
+                <div className="cfg-deriv-row"><span className="cfg-deriv-k">Becomes</span><span className="cfg-deriv-v">{DERIVATIONS[topic].study}</span></div>
+                {DERIVATIONS[topic].caveat && <div className="cfg-deriv-caveat">⚠ {DERIVATIONS[topic].caveat}</div>}
+              </div>
             )}
           </div>
         )}
