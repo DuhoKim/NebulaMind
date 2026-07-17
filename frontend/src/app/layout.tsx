@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import VisitTracker from "./VisitTracker";
@@ -71,11 +72,16 @@ const jsonLd = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = (await headers()).get("x-pathname") || "";
+  // The Lab subdomain gets a standalone, chrome-free presentation: no site nav,
+  // no footer, no constrained content container (its page is full-bleed).
+  const standalone = pathname === "/lab" || pathname.startsWith("/lab/");
+
   return (
     <html lang="en">
       <head>
@@ -103,10 +109,16 @@ export default function RootLayout({
           margin: 0,
         }}
       >
-        <NavBar />
-        <VisitTracker />
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">{children}</main>
-        <Footer />
+        {standalone ? (
+          children
+        ) : (
+          <>
+            <NavBar />
+            <VisitTracker />
+            <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">{children}</main>
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );
