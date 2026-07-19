@@ -123,6 +123,84 @@ const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
   synergy:  { bg: "rgba(14,165,233,0.15)",  text: "#38bdf8" },
 };
 
+const GALAXY_METHOD_RESULT_LINKS = [
+  {
+    label: "1 · Packet-gated reconciliation",
+    description: "Open the assembled wiki page from the packet-gated method.",
+    href: "/wiki/galaxy-evolution",
+  },
+  {
+    label: "2 · Source-first adjudication",
+    description: "Open the assembled wiki page from the source-first method.",
+    href: "/wiki/galaxy-evolution-method-2-sfa",
+  },
+  {
+    label: "3 · Debate-map rebuild",
+    description: "Open the assembled wiki page from the debate-map rebuild method.",
+    href: "/wiki/galaxy-evolution-method-3-dmw",
+  },
+];
+
+function GalaxyMethodResultSelector({ isMobile, currentSlug }: { isMobile: boolean; currentSlug: string }) {
+  return (
+    <section
+      aria-label="Galaxy Evolution method result selector"
+      data-testid="galaxy-method-result-selector"
+      style={{
+        background: "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.88))",
+        border: "1px solid rgba(129,140,248,0.45)",
+        borderRadius: "12px",
+        padding: "0.9rem",
+        marginBottom: "1rem",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem", marginBottom: "0.65rem" }}>
+        <div>
+          <p style={{ margin: "0 0 0.18rem", color: "#a5b4fc", fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Method result selector
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", lineHeight: 1.25, fontWeight: 750 }}>
+            Choose one of the three Galaxy Evolution wiki methods
+          </h2>
+        </div>
+        <span style={{ flexShrink: 0, color: "#c4b5fd", border: "1px solid rgba(129,140,248,0.45)", borderRadius: "999px", padding: "0.16rem 0.48rem", fontSize: "0.66rem", fontWeight: 800 }}>
+          3 pages
+        </span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: "0.55rem" }}>
+        {GALAXY_METHOD_RESULT_LINKS.map((link, index) => {
+          const isCurrent = link.href === "/wiki/" + currentSlug;
+          return (
+          <Link
+            key={link.href}
+            href={link.href}
+            data-testid="galaxy-method-result-link"
+            aria-current={isCurrent ? "page" : undefined}
+            data-current-method={isCurrent ? "true" : undefined}
+            style={{
+              display: "block",
+              minHeight: "100%",
+              border: isCurrent ? "1px solid rgba(129,140,248,0.95)" : "1px solid rgba(148,163,184,0.28)",
+              borderRadius: "10px",
+              padding: "0.62rem 0.7rem",
+              background: isCurrent ? "linear-gradient(135deg, rgba(79,70,229,0.34), rgba(30,41,59,0.92))" : "rgba(15,23,42,0.72)",
+              boxShadow: isCurrent ? "0 0 0 2px rgba(129,140,248,0.2), 0 14px 30px rgba(79,70,229,0.18)" : undefined,
+              outline: isCurrent ? "2px solid rgba(199,210,254,0.55)" : undefined,
+              outlineOffset: isCurrent ? "2px" : undefined,
+              color: "#bfdbfe",
+              textDecoration: "none",
+            }}
+          >
+            <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, marginBottom: "0.18rem" }}>{link.label}</span>
+            <span style={{ display: "block", color: isCurrent ? "#dbeafe" : "#94a3b8", fontSize: "0.7rem", lineHeight: 1.38 }}>{link.description}</span>
+          </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -193,7 +271,6 @@ function stripMarkdown(text: string): string {
     .replace(/^[-*]\s/gm, "")           // bullets
     .trim();
 }
-
 
 function renderSourceBadge(src: any): React.ReactNode {
   if (!src) return <span style={{fontSize:"0.58rem",color:"#475569"}}>⚠️ AI estimate</span>;
@@ -1394,6 +1471,7 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
   // H6: filter out flagged AI-estimate facts (failed validation)
   const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
+  const showTopAuditPanels = !["galaxy-evolution","galaxy-evolution-method-1-pgr","galaxy-evolution-method-2-sfa","galaxy-evolution-method-3-dmw","galaxy-evolution-scaffolding"].includes(slug);
 
   return (
     <article
@@ -1411,6 +1489,8 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
       }
     >
       <div>
+      {["galaxy-evolution","galaxy-evolution-method-2-sfa","galaxy-evolution-method-3-dmw"].includes(slug) && <GalaxyMethodResultSelector isMobile={isMobile} currentSlug={slug} />}
+
       {/* View mode toggle */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
         {health && (
@@ -1525,15 +1605,15 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
         />
       )}
 
-      {showV2 && trustSummary.totalClaims > 0 && (
+      {showTopAuditPanels && showV2 && trustSummary.totalClaims > 0 && (
         <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
       )}
 
-      {showV2 && (
+      {showTopAuditPanels && showV2 && (
         <PaperClaimFlightDeckPanel deck={paperClaimFlightDeck} isMobile={isMobile} />
       )}
 
-      {showV2 && (
+      {showTopAuditPanels && showV2 && (
         <PageContradictionAtlasRanking
           atlas={pageContradictionAtlas}
           isMobile={isMobile}

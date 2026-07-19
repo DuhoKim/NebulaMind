@@ -143,7 +143,7 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
   );
 
 
-  const heroSources = sources.filter(s => s.fact_kind === "hero");
+  const sourceRecordLabel = sources.length === 1 ? "source record" : "source records";
 
   const byTier = (list: FactSource[]) => {
     const groups: Record<string, FactSource[]> = { authoritative: [], claim: [], ai_estimate: [] };
@@ -439,7 +439,7 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
           📚 Sources — {pageTitle}
         </h1>
         <p style={{ color: "#64748b", fontSize: "0.875rem" }}>
-          {sources.length} sourced facts ·{" "}
+          {sources.length} {sourceRecordLabel} ·{" "}
           {sources.filter(s => s.source_tier === "authoritative").length} authoritative ·{" "}
           {sources.filter(s => s.source_tier === "claim").length} wiki-grounded ·{" "}
           {sources.filter(s => s.source_tier === "ai_estimate").length} AI estimate
@@ -450,10 +450,18 @@ export default function WikiSourcesPage({ testOnlyFixtureSlug, testOnlyFixtureDa
       {renderCrossPagePaperFootprint()}
 
       {sources.length === 0 ? (
-        <p style={{ color: "#475569" }}>No source records found for this page.</p>
+        <div style={{ color: "#64748b", lineHeight: 1.6 }}>
+          <p style={{ marginTop: 0 }}>No source records found for this page yet.</p>
+          <p>
+            This can still be a claim evidence page: highlighted claims may have paper evidence in the trust/evidence panels even when the separate fact-source table is empty.
+          </p>
+          <Link href={`/wiki/${slug}`} style={{ color: "#818cf8", textDecoration: "none", fontWeight: 600 }}>
+            ← Return to the page and open a claim trust badge to inspect claim evidence
+          </Link>
+        </div>
       ) : (
         <>
-          {renderSources(heroSources, "Hero Facts")}
+          {renderSources(sources, "Claim and Page Sources")}
         </>
       )}
     </div>
