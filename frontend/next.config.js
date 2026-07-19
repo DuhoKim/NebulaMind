@@ -34,7 +34,7 @@ const WIKI_SLUG_REDIRECTS = [
 
 const nextConfig = {
   async redirects() {
-    return WIKI_SLUG_REDIRECTS;
+    return [...WIKI_SLUG_REDIRECTS, { source: "/ideas", destination: "/research", permanent: false }];
   },
   async rewrites() {
     return [

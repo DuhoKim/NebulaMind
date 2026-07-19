@@ -69,6 +69,7 @@ assert.equal(renderedOnlySummary.levels.consensus.sources, 36);
 assert.equal(renderedOnlySummary.levels.debated.sources, 16);
 assert.equal(formatClaimTrustBadge({ trust_level: "consensus", evidence_count: 36 }), "Consensus · 36 sources");
 assert.equal(formatClaimTrustBadge({ trust_level: "debated", evidence_count: 1 }), "Debated · 1 source");
+assert.equal(formatClaimTrustBadge({ trust_level: "debated", evidence_count: 16, con_count: 1 }), "Debated · 16 sources · 1 countering");
 assert.equal(trustVisibilityMeta("challenged").icon, "!");
 
 const clientSource = fs.readFileSync(clientPath, "utf8");
@@ -81,8 +82,8 @@ assert.match(clientSource, /summarizeTrustClaims\(claims, renderedClaimIds\)/);
 assert.match(clientSource, /data-testid="trust-summary-panel"/);
 assert.match(clientSource, /data-testid="claim-trust-badge"/);
 assert.match(clientSource, /aria-haspopup="dialog"/, "Trust chips should declare that they open an evidence dialog.");
-assert.match(clientSource, /aria-expanded=\{open\}/, "Trust chips should expose their live evidence-dialog expanded state.");
-assert.match(clientSource, /aria-controls=\{panelId\}/, "Trust chips should point assistive tech to the evidence dialog they open.");
+assert.match(clientSource, /aria-expanded=\{open \|\| showMiniMap\}/, "Trust chips should expose whether either the evidence dialog or keyboard-visible mini-map is expanded.");
+assert.match(clientSource, /aria-controls=\{showMiniMap \? miniMapId : panelId\}/, "Trust chips should point assistive tech to the visible mini-map when focused, otherwise the evidence dialog they open.");
 assert.match(clientSource, /const evidencePanelId = claim\?\.id \? `claim-evidence-panel-\$\{claim\.id\}` : undefined/, "Claim annotations should derive a stable evidence-dialog id from the claim id.");
 assert.match(clientSource, /panelId=\{evidencePanelId\}/, "The opened evidence dialog should receive the stable claim evidence panel id.");
 assert.match(panelSource, /id=\{panelId\}/, "Evidence dialogs should expose the id referenced by aria-controls.");

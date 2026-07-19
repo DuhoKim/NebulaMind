@@ -5,6 +5,8 @@ import { useState, useRef, useEffect } from "react";
 const NAV_LINKS = [
   { href: "/wiki", label: "Wiki" },
   { href: "/surveys", label: "Surveys" },
+  { href: "/ideas", label: "Research" },
+  { href: "https://lab.nebulamind.net", label: "Lab" },
   { href: "/news", label: "News" },
   { href: "/council", label: "Council" },
   { href: "/agents", label: "Agents" },

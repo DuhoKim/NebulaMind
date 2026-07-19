@@ -1,0 +1,119 @@
+import assert from "node:assert/strict";
+import { spawnSync } from "node:child_process";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+
+const frontendRoot = path.resolve(import.meta.dirname, "..");
+const packagePath = path.join(frontendRoot, "package.json");
+const sourceAggregatePath = path.join(frontendRoot, "scripts/test-wiki-ux-smoke.mjs");
+const browserAggregatePath = path.join(frontendRoot, "scripts/test-wiki-browser-ux-smoke.mjs");
+
+const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));
+
+assert.equal(
+  packageJson.scripts["test:wiki-ux-smoke"],
+  "node scripts/test-wiki-ux-smoke.mjs",
+  "Source-only wiki UX aggregate must stay fast and must not be replaced by browser/build smoke.",
+);
+assert.equal(
+  packageJson.scripts["smoke:wiki-browser-ux"],
+  "node scripts/test-wiki-browser-ux-smoke.mjs",
+  "Browser UX aggregate should be a dedicated smoke command, separate from test:wiki-ux-smoke.",
+);
+assert.equal(
+  packageJson.scripts["smoke:wiki-browser-ux:build"],
+  "npm run build && npm run smoke:wiki-browser-ux",
+  "Build-inclusive browser UX command should run Next build before the browser smoke wrapper.",
+);
+assert.equal(
+  packageJson.scripts["smoke:wiki-browser-ux:contract"],
+  "node scripts/test-wiki-browser-ux-smoke-contract.mjs",
+  "The browser UX smoke/report contract should have a focused package command.",
+);
+assert.equal(
+  packageJson.scripts["smoke:wiki-paper-profile-browser"],
+  "node scripts/test-wiki-paper-profile-browser.mjs",
+  "Paper-profile browser journey should have a dedicated package command.",
+);
+
+const sourceAggregate = fs.readFileSync(sourceAggregatePath, "utf8");
+assert.doesNotMatch(
+  sourceAggregate,
+  /smoke:wiki-browser-ux|smoke:wiki-stacked-popover-browser|test-wiki-browser-ux-smoke|npm run build/,
+  "Source-only wiki UX aggregate must not invoke browser smoke or Next build.",
+);
+
+assert.ok(fs.existsSync(browserAggregatePath), "Browser UX smoke wrapper should exist.");
+const browserAggregate = fs.readFileSync(browserAggregatePath, "utf8");
+assert.match(
+  browserAggregate,
+  /smoke:wiki-stacked-popover-browser/,
+  "Browser UX wrapper should consume the existing stacked-popover browser smoke instead of duplicating it.",
+);
+assert.match(
+  browserAggregate,
+  /smoke:wiki-paper-profile-browser/,
+  "Browser UX wrapper should run the paper-profile browser journey smoke.",
+);
+assert.match(browserAggregate, /STACKED_POPOVER_BROWSER_JSON/, "Wrapper should parse the existing browser-smoke JSON marker.");
+assert.match(browserAggregate, /PAPER_PROFILE_BROWSER_JSON/, "Wrapper should parse the paper-profile browser JSON marker.");
+assert.match(browserAggregate, /paper-profile-journey/, "Wrapper should preserve the paper-profile journey case.");
+assert.match(browserAggregate, /WIKI_BROWSER_UX_SMOKE_OK/, "Wrapper should emit a stable OK marker for dashboards.");
+assert.match(browserAggregate, /WIKI_BROWSER_UX_SMOKE_JSON/, "Wrapper should emit one parseable JSON summary line.");
+assert.match(browserAggregate, /wiki_browser_ux_smoke\.v1/, "Summary JSON should include an explicit schema version.");
+assert.match(browserAggregate, /WIKI_BROWSER_UX_SMOKE_PAPER_PROFILE_FIXTURE_OUTPUT/, "Wrapper should support fixture output for the paper-profile browser smoke.");
+
+const stackedFixtureOutput = [
+  "STACKED_POPOVER_CASE_OK name=claim-mini-map first_escape=mini_map_only second_escape=panel_closed url=http://127.0.0.1:3033/wiki/galaxy-evolution-v2",
+  "STACKED_POPOVER_CASE_OK name=source-trace first_escape=source_trace_only second_escape=panel_closed url=http://127.0.0.1:3033/wiki/source-trace-browser-fixture",
+  'STACKED_POPOVER_BROWSER_OK cases=2/2 first_escape=top_popover_only second_escape=panel_closed',
+  'STACKED_POPOVER_BROWSER_JSON {"ok":true,"cases":[{"name":"claim-mini-map","ok":true,"route":"/wiki/galaxy-evolution-v2","url":"http://127.0.0.1:3033/wiki/galaxy-evolution-v2","firstEscapeMarker":"mini_map_only"},{"name":"source-trace","ok":true,"route":"/wiki/source-trace-browser-fixture","url":"http://127.0.0.1:3033/wiki/source-trace-browser-fixture","firstEscapeMarker":"source_trace_only"}]}',
+].join("\n");
+const paperProfileFixtureOutput = [
+  "PAPER_PROFILE_BROWSER_OK profile_id=arxiv:2606.990101 route=/wiki/papers/arxiv%3A2606.990101 page_cards=2 claim_rows=3",
+  'PAPER_PROFILE_BROWSER_JSON {"schemaVersion":"paper_profile_browser.v1","ok":true,"case":{"name":"paper-profile-journey","ok":true,"route":"/wiki/papers/arxiv%3A2606.990101","url":"http://127.0.0.1:3034/wiki/papers/arxiv%3A2606.990101","profileId":"arxiv:2606.990101","directoryCards":2,"pageCards":2,"claimRows":3,"truthFraming":true,"readOnlyFraming":true}}',
+].join("\n");
+const stackedFixturePath = path.join(os.tmpdir(), `wiki-browser-ux-smoke-stacked-fixture-${process.pid}.log`);
+const paperProfileFixturePath = path.join(os.tmpdir(), `wiki-browser-ux-smoke-paper-profile-fixture-${process.pid}.log`);
+fs.writeFileSync(stackedFixturePath, stackedFixtureOutput, "utf8");
+fs.writeFileSync(paperProfileFixturePath, paperProfileFixtureOutput, "utf8");
+try {
+  const result = spawnSync(process.execPath, [browserAggregatePath], {
+    cwd: frontendRoot,
+    encoding: "utf8",
+    env: {
+      ...process.env,
+      WIKI_BROWSER_UX_SMOKE_FIXTURE_OUTPUT: stackedFixturePath,
+      WIKI_BROWSER_UX_SMOKE_PAPER_PROFILE_FIXTURE_OUTPUT: paperProfileFixturePath,
+    },
+  });
+  assert.equal(result.status, 0, `Fixture wrapper run should pass. stdout=${result.stdout}\nstderr=${result.stderr}`);
+  assert.match(result.stdout, /WIKI_BROWSER_UX_SMOKE_OK passed=3\/3 failed=0/, "Wrapper should emit stable dashboard OK line.");
+  const jsonLine = result.stdout.split(/\r?\n/).find((line) => line.startsWith("WIKI_BROWSER_UX_SMOKE_JSON "));
+  assert.ok(jsonLine, `Wrapper should emit WIKI_BROWSER_UX_SMOKE_JSON. stdout=${result.stdout}`);
+  const summary = JSON.parse(jsonLine.replace("WIKI_BROWSER_UX_SMOKE_JSON ", ""));
+  assert.equal(summary.schemaVersion, "wiki_browser_ux_smoke.v1");
+  assert.equal(summary.ok, true);
+  assert.equal(summary.total, 3);
+  assert.equal(summary.passed, 3);
+  assert.equal(summary.failed, 0);
+  assert.deepEqual(summary.failedCases, []);
+  assert.deepEqual(
+    summary.cases.map((item) => item.name),
+    ["claim-mini-map", "source-trace", "paper-profile-journey"],
+  );
+  const paperCase = summary.cases.find((item) => item.name === "paper-profile-journey");
+  assert.equal(paperCase.profileId, "arxiv:2606.990101");
+  assert.equal(paperCase.truthFraming, true);
+  assert.equal(paperCase.readOnlyFraming, true);
+  assert.equal(summary.upstreams.length, 2);
+  assert.equal(summary.upstreams[0].command, "npm run --silent smoke:wiki-stacked-popover-browser");
+  assert.equal(summary.upstreams[1].command, "npm run --silent smoke:wiki-paper-profile-browser");
+  assert.ok(summary.generatedAt, "Summary should include a generated timestamp for report consumers.");
+} finally {
+  fs.rmSync(stackedFixturePath, { force: true });
+  fs.rmSync(paperProfileFixturePath, { force: true });
+}
+
+console.log("wiki_browser_ux_smoke_contract_ok");

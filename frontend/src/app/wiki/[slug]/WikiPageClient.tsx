@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import rehypeRaw from "rehype-raw";
@@ -20,6 +20,10 @@ import {
   TRUST_LEVEL_ORDER,
   type TrustVisibilitySummary,
 } from "./trustVisibility";
+import { formatSourceTraceHoverCard } from "./sourceTraceHover";
+import { buildClaimMiniMapHover, formatClaimMiniMapSummary } from "./claimMiniMapHover";
+import { buildPageContradictionRankingAtlas, type PageContradictionRankingAtlas, type PageContradictionRankingItem } from "./evidencePanelCopy";
+import { buildPaperClaimFlightDeck, type PaperClaimFlightDeck, type PaperClaimFlightDeckItem } from "./paperClaimFlightDeck";
 
 interface WikiPage {
   id: number;
@@ -85,6 +89,15 @@ interface ContributorsData {
   edit_history: VersionHistory[];
 }
 
+export interface WikiPageClientTestOnlyFixtureData {
+  page: WikiPage;
+  claims: any;
+  citations: PageCitation[];
+  health?: { score: number; band: string; emoji: string } | null;
+  contributorsData?: ContributorsData | null;
+  claimIdeasMap?: Record<number, any[]>;
+}
+
 const TRUST_COLORS: Record<string, string> = {
   consensus: "#22c55e",
   accepted: "#3b82f6",
@@ -109,6 +122,84 @@ const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
   frontier: { bg: "rgba(99,102,241,0.15)",  text: "#818cf8" },
   synergy:  { bg: "rgba(14,165,233,0.15)",  text: "#38bdf8" },
 };
+
+const GALAXY_METHOD_RESULT_LINKS = [
+  {
+    label: "1 · Packet-gated reconciliation",
+    description: "Open the assembled wiki page from the packet-gated method.",
+    href: "/wiki/galaxy-evolution",
+  },
+  {
+    label: "2 · Source-first adjudication",
+    description: "Open the assembled wiki page from the source-first method.",
+    href: "/wiki/galaxy-evolution-method-2-sfa",
+  },
+  {
+    label: "3 · Debate-map rebuild",
+    description: "Open the assembled wiki page from the debate-map rebuild method.",
+    href: "/wiki/galaxy-evolution-method-3-dmw",
+  },
+];
+
+function GalaxyMethodResultSelector({ isMobile, currentSlug }: { isMobile: boolean; currentSlug: string }) {
+  return (
+    <section
+      aria-label="Galaxy Evolution method result selector"
+      data-testid="galaxy-method-result-selector"
+      style={{
+        background: "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.88))",
+        border: "1px solid rgba(129,140,248,0.45)",
+        borderRadius: "12px",
+        padding: "0.9rem",
+        marginBottom: "1rem",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem", marginBottom: "0.65rem" }}>
+        <div>
+          <p style={{ margin: "0 0 0.18rem", color: "#a5b4fc", fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Method result selector
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", lineHeight: 1.25, fontWeight: 750 }}>
+            Choose one of the three Galaxy Evolution wiki methods
+          </h2>
+        </div>
+        <span style={{ flexShrink: 0, color: "#c4b5fd", border: "1px solid rgba(129,140,248,0.45)", borderRadius: "999px", padding: "0.16rem 0.48rem", fontSize: "0.66rem", fontWeight: 800 }}>
+          3 pages
+        </span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: "0.55rem" }}>
+        {GALAXY_METHOD_RESULT_LINKS.map((link, index) => {
+          const isCurrent = link.href === "/wiki/" + currentSlug;
+          return (
+          <Link
+            key={link.href}
+            href={link.href}
+            data-testid="galaxy-method-result-link"
+            aria-current={isCurrent ? "page" : undefined}
+            data-current-method={isCurrent ? "true" : undefined}
+            style={{
+              display: "block",
+              minHeight: "100%",
+              border: isCurrent ? "1px solid rgba(129,140,248,0.95)" : "1px solid rgba(148,163,184,0.28)",
+              borderRadius: "10px",
+              padding: "0.62rem 0.7rem",
+              background: isCurrent ? "linear-gradient(135deg, rgba(79,70,229,0.34), rgba(30,41,59,0.92))" : "rgba(15,23,42,0.72)",
+              boxShadow: isCurrent ? "0 0 0 2px rgba(129,140,248,0.2), 0 14px 30px rgba(79,70,229,0.18)" : undefined,
+              outline: isCurrent ? "2px solid rgba(199,210,254,0.55)" : undefined,
+              outlineOffset: isCurrent ? "2px" : undefined,
+              color: "#bfdbfe",
+              textDecoration: "none",
+            }}
+          >
+            <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, marginBottom: "0.18rem" }}>{link.label}</span>
+            <span style={{ display: "block", color: isCurrent ? "#dbeafe" : "#94a3b8", fontSize: "0.7rem", lineHeight: 1.38 }}>{link.description}</span>
+          </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
 
 function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
@@ -181,7 +272,6 @@ function stripMarkdown(text: string): string {
     .trim();
 }
 
-
 function renderSourceBadge(src: any): React.ReactNode {
   if (!src) return <span style={{fontSize:"0.58rem",color:"#475569"}}>⚠️ AI estimate</span>;
   if (src.tier === "authoritative") return (
@@ -244,12 +334,34 @@ function formatAuthors(authors: string[]): string {
   return `${list.slice(0, 2).join(", ")} et al.`;
 }
 
-function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; unmatched?: string }) {
+function CitationBadge({ citations, unmatched, pageSlug }: { citations: PageCitation[]; unmatched?: string; pageSlug?: string }) {
   const [open, setOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
+  const sourceTraceTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const visible = open || hovered;
+  const firstEvidenceId = citations[0]?.evidence_id;
+  const hoverCardId = firstEvidenceId ? `source-trace-hover-card-${firstEvidenceId}` : undefined;
+  const sourceTraceHeadingId = hoverCardId ? `${hoverCardId}-heading` : undefined;
+
+  const closeSourceTrace = () => {
+    setOpen(false);
+    setHovered(false);
+  };
+
+  const handleSourceTraceKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && visible) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Prevent the evidence panel's document-level Escape listener from also closing.
+      e.nativeEvent.stopImmediatePropagation();
+      closeSourceTrace();
+      sourceTraceTriggerRef.current?.focus();
+    }
+  };
 
   useEffect(() => {
     if (!open) return;
-    const close = () => setOpen(false);
+    const close = () => closeSourceTrace();
     document.addEventListener("click", close);
     return () => document.removeEventListener("click", close);
   }, [open]);
@@ -259,7 +371,7 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
   if (citations.length === 0) {
     return (
       <span
-        title="Citation metadata is still loading"
+        title="Source trace metadata is still loading"
         style={{ color: "#64748b", fontSize: "0.72em", verticalAlign: "super", marginLeft: "2px" }}
       >
         📄
@@ -268,9 +380,24 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
   }
 
   return (
-    <span style={{ position: "relative", display: "inline" }}>
+    <span
+      style={{ position: "relative", display: "inline" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
+      }}
+      onKeyDown={handleSourceTraceKeyDown}
+    >
       <button
+        ref={sourceTraceTriggerRef}
         type="button"
+        data-testid="source-trace-trigger"
+        aria-label={`${visible ? "Hide" : "Show"} Source trace for ${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
+        aria-haspopup="dialog"
+        aria-expanded={visible}
+        aria-controls={hoverCardId}
         onClick={(e) => { e.preventDefault(); e.stopPropagation(); setOpen(v => !v); }}
         style={{
           display: "inline",
@@ -284,47 +411,91 @@ function CitationBadge({ citations, unmatched }: { citations: PageCitation[]; un
           padding: 0,
           fontWeight: 600,
         }}
-        title={`${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
+        title={`Source trace · ${citations.length} linked source${citations.length !== 1 ? "s" : ""}`}
       >
         📄
       </button>
-      {open && (
+      {visible && (
         <span
+          id={hoverCardId}
+          data-testid="source-trace-hover-card"
+          role="dialog"
+          aria-labelledby={sourceTraceHeadingId}
           onClick={(e) => e.stopPropagation()}
           style={{
             position: "absolute",
             top: "1.4em",
             left: 0,
             zIndex: 120,
-            width: "min(24rem, 92vw)",
+            width: "min(27rem, 92vw)",
             background: "#1e293b",
             border: "1px solid #334155",
             borderLeft: "3px solid #818cf8",
-            borderRadius: "6px",
-            padding: "0.75rem",
-            boxShadow: "0 8px 24px rgba(0,0,0,0.45)",
+            borderRadius: "8px",
+            padding: "0.85rem",
+            boxShadow: "0 12px 32px rgba(0,0,0,0.48)",
             whiteSpace: "normal",
           }}
         >
-          {citations.map((citation) => (
-            <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.65rem" }}>
-              {citation.url ? (
-                <a href={citation.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600, textDecoration: "none" }}>
-                  {citation.title}
-                </a>
-              ) : (
-                <span style={{ display: "block", color: "#f8fafc", fontSize: "0.82rem", fontWeight: 600 }}>{citation.title}</span>
-              )}
-              <span style={{ display: "block", color: "#94a3b8", fontSize: "0.72rem", marginTop: "0.15rem" }}>
-                {formatAuthors(citation.authors)}{citation.year ? ` · ${citation.year}` : ""}{citation.journal_ref ? ` · ${citation.journal_ref}` : ""}
-              </span>
-              {(citation.summary || citation.abstract) && (
-                <span style={{ display: "block", color: "#64748b", fontSize: "0.7rem", lineHeight: 1.35, marginTop: "0.3rem" }}>
-                  {(citation.summary || citation.abstract || "").slice(0, 180)}
+          <span id={sourceTraceHeadingId} style={{ display: "block", color: "#a5b4fc", fontSize: "0.64rem", fontWeight: 800, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}>
+            Source trace
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.35, marginTop: "-0.2rem", marginBottom: "0.55rem" }}>
+            Press Escape to close.
+          </span>
+          {citations.map((citation) => {
+            const trace = formatSourceTraceHoverCard(citation, pageSlug);
+            return (
+              <span key={citation.evidence_id} style={{ display: "block", marginBottom: "0.72rem", paddingBottom: "0.72rem", borderBottom: "1px solid rgba(51,65,85,0.8)" }}>
+                <span style={{ display: "inline-flex", color: "#93c5fd", background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.3)", borderRadius: "999px", padding: "0.08rem 0.45rem", fontSize: "0.63rem", fontWeight: 800, marginBottom: "0.35rem" }}>
+                  {trace.traceLabel}
                 </span>
-              )}
-            </span>
-          ))}
+                {citation.url ? (
+                  <a href={citation.url} target="_blank" rel="noopener noreferrer" style={{ display: "block", color: "#f8fafc", fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.35, textDecoration: "none" }}>
+                    {trace.title}
+                  </a>
+                ) : (
+                  <span style={{ display: "block", color: "#f8fafc", fontSize: "0.84rem", fontWeight: 700, lineHeight: 1.35 }}>{trace.title}</span>
+                )}
+                <span style={{ display: "block", color: "#94a3b8", fontSize: "0.72rem", marginTop: "0.18rem" }}>
+                  {trace.byline}
+                </span>
+                <span style={{ display: "block", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.45, marginTop: "0.38rem" }}>
+                  {trace.summary}
+                </span>
+                <span style={{ display: "block", color: "#64748b", fontSize: "0.68rem", marginTop: "0.38rem" }}>
+                  {trace.locator}
+                </span>
+                {trace.crossLinks.length > 0 && (
+                  <span data-testid="source-trace-cross-links" style={{ display: "flex", flexWrap: "wrap", gap: "0.42rem", marginTop: "0.55rem" }}>
+                    {trace.crossLinks.map((link) => (
+                      link.external ? (
+                        <a
+                          key={link.kind}
+                          href={link.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ color: "#dbeafe", background: "rgba(99,102,241,0.16)", border: "1px solid rgba(129,140,248,0.34)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 800, textDecoration: "none" }}
+                        >
+                          {link.kind === "external-paper" ? "Open paper" : link.label}
+                        </a>
+                      ) : (
+                        <Link
+                          key={link.kind}
+                          href={link.href}
+                          onClick={(e) => e.stopPropagation()}
+                          style={{ color: "#bfdbfe", background: "rgba(59,130,246,0.13)", border: "1px solid rgba(59,130,246,0.34)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 800, textDecoration: "none" }}
+                        >
+                          {link.kind === "source-index" ? "Open source index" : link.label}
+                        </Link>
+                      )
+                    ))}
+                  </span>
+                )}
+              </span>
+            );
+          })}
         </span>
       )}
     </span>
@@ -387,52 +558,174 @@ function ClaimTrustBadge({
   claim,
   open,
   panelId,
+  returnFocusRef,
   onOpen,
 }: {
   claim: any;
   open: boolean;
   panelId?: string;
-  onOpen: () => void;
+  returnFocusRef?: React.RefObject<HTMLButtonElement>;
+  onOpen: (origin?: HTMLElement | null) => void;
 }) {
+  const [hovered, setHovered] = useState(false);
+  const localClaimMiniMapTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const claimMiniMapTriggerRef = returnFocusRef ?? localClaimMiniMapTriggerRef;
   const meta = trustVisibilityMeta(claim?.trust_level);
   const label = formatClaimTrustBadge(claim);
+  const miniMap = buildClaimMiniMapHover(claim);
+  const miniMapId = claim?.id ? `claim-mini-map-hover-${claim.id}` : undefined;
+  const miniMapHeadingId = miniMapId ? `${miniMapId}-heading` : undefined;
+  const showMiniMap = hovered && !open;
+
+  const closeMiniMap = () => {
+    setHovered(false);
+  };
+
+  const handleMiniMapKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && showMiniMap) {
+      e.preventDefault();
+      e.stopPropagation();
+      // Prevent the evidence panel's document-level Escape listener from also closing.
+      e.nativeEvent.stopImmediatePropagation();
+      closeMiniMap();
+      claimMiniMapTriggerRef.current?.focus();
+    }
+  };
   return (
-    <button
-      type="button"
-      data-testid="claim-trust-badge"
-      aria-label={`Open evidence map for ${label}`}
-      aria-haspopup="dialog"
-      aria-expanded={open}
-      aria-controls={panelId}
-      title={`${label} — click for paper evidence`}
-      onClick={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onOpen();
+    <span
+      data-testid="claim-mini-map-trigger"
+      style={{ position: "relative", display: "inline-flex", verticalAlign: "0.08em" }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onFocus={() => setHovered(true)}
+      onBlur={(e) => {
+        if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHovered(false);
       }}
-      style={{
-        display: "inline-flex",
-        alignItems: "center",
-        gap: "0.22rem",
-        marginLeft: "0.42rem",
-        marginRight: "0.12rem",
-        padding: "0.08rem 0.46rem",
-        borderRadius: "999px",
-        border: `1px solid ${meta.border}`,
-        background: meta.background,
-        color: meta.color,
-        fontSize: "0.66rem",
-        fontWeight: 800,
-        letterSpacing: "0.015em",
-        lineHeight: 1.35,
-        verticalAlign: "0.08em",
-        cursor: "pointer",
-        whiteSpace: "nowrap",
-      }}
+      onKeyDown={handleMiniMapKeyDown}
     >
-      <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
-      <span>{label}</span>
-    </button>
+      <button
+        ref={claimMiniMapTriggerRef}
+        type="button"
+        data-testid="claim-trust-badge"
+        aria-label={`Open evidence map for ${label}`}
+        aria-haspopup="dialog"
+        aria-expanded={open || showMiniMap}
+        aria-controls={showMiniMap ? miniMapId : panelId}
+        aria-describedby={showMiniMap ? miniMapId : undefined}
+        title={`${label} — hover for claim mini-map; click for paper evidence`}
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          onOpen(e.currentTarget);
+        }}
+        style={{
+          display: "inline-flex",
+          alignItems: "center",
+          gap: "0.22rem",
+          marginLeft: "0.42rem",
+          marginRight: "0.12rem",
+          padding: "0.08rem 0.46rem",
+          borderRadius: "999px",
+          border: `1px solid ${meta.border}`,
+          background: meta.background,
+          color: meta.color,
+          fontSize: "0.66rem",
+          fontWeight: 800,
+          letterSpacing: "0.015em",
+          lineHeight: 1.35,
+          cursor: "pointer",
+          whiteSpace: "nowrap",
+        }}
+      >
+        <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
+        <span>{label}</span>
+      </button>
+      {showMiniMap && (
+        <span
+          id={miniMapId}
+          data-testid="claim-mini-map-hover-card"
+          role="tooltip"
+          aria-labelledby={miniMapHeadingId}
+          onClick={(e) => e.stopPropagation()}
+          style={{
+            position: "absolute",
+            top: "1.6rem",
+            left: "0.25rem",
+            zIndex: 130,
+            width: "min(22rem, 88vw)",
+            padding: "0.78rem",
+            borderRadius: "10px",
+            border: `1px solid ${meta.border}`,
+            borderLeft: `3px solid ${meta.color}`,
+            background: "linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.96))",
+            boxShadow: "0 14px 34px rgba(0,0,0,0.48)",
+            whiteSpace: "normal",
+          }}
+        >
+          <span id={miniMapHeadingId} style={{ display: "block", color: "#a5b4fc", fontSize: "0.62rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.38rem" }}>
+            Claim mini-map
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.66rem", lineHeight: 1.35, marginTop: "-0.12rem", marginBottom: "0.42rem" }}>
+            Press Escape to close this mini-map.
+          </span>
+          <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, lineHeight: 1.35 }}>
+            {miniMap.stance}
+          </span>
+          <span style={{ display: "block", color: "#94a3b8", fontSize: "0.7rem", lineHeight: 1.45, marginTop: "0.24rem" }}>
+            {formatClaimMiniMapSummary(miniMap)}
+          </span>
+          <span aria-hidden="true" style={{ display: "flex", overflow: "hidden", height: "0.46rem", borderRadius: "999px", background: "rgba(100,116,139,0.22)", marginTop: "0.55rem", border: "1px solid rgba(148,163,184,0.16)" }}>
+            {miniMap.segments.map((segment) => (
+              <span
+                key={segment.kind}
+                title={`${segment.label}: ${segment.count} (${segment.percent}%)`}
+                style={{
+                  width: `${segment.percent}%`,
+                  minWidth: segment.count > 0 ? "0.4rem" : 0,
+                  background: segment.color,
+                }}
+              />
+            ))}
+          </span>
+          <span style={{ display: "grid", gridTemplateColumns: "repeat(3, minmax(0, 1fr))", gap: "0.35rem", marginTop: "0.55rem" }}>
+            {miniMap.segments.map((segment) => (
+              <span key={segment.kind} style={{ color: segment.color, fontSize: "0.66rem", fontWeight: 800 }}>
+                {segment.count.toLocaleString()} {segment.label}
+              </span>
+            ))}
+          </span>
+          <span style={{ display: "block", color: "#64748b", fontSize: "0.66rem", lineHeight: 1.4, marginTop: "0.55rem" }}>
+            Click for full evidence map.
+          </span>
+          <span style={{ display: "flex", flexWrap: "wrap", gap: "0.42rem", marginTop: "0.58rem" }}>
+            <button
+              type="button"
+              data-testid="claim-mini-map-open-evidence-map"
+              aria-controls={panelId || miniMap.evidencePanelId}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                setHovered(false);
+                onOpen(claimMiniMapTriggerRef.current);
+              }}
+              style={{ border: `1px solid ${meta.color}`, background: "rgba(15,23,42,0.72)", color: meta.color, borderRadius: "999px", padding: "0.18rem 0.52rem", fontSize: "0.64rem", fontWeight: 850, cursor: "pointer" }}
+            >
+              {miniMap.primaryActionLabel}
+            </button>
+            {miniMap.claimAnchorHref && (
+              <a
+                data-testid="claim-mini-map-jump-to-claim"
+                href={miniMap.claimAnchorHref}
+                onClick={(e) => e.stopPropagation()}
+                style={{ color: "#bfdbfe", background: "rgba(59,130,246,0.12)", border: "1px solid rgba(59,130,246,0.32)", borderRadius: "999px", padding: "0.18rem 0.52rem", fontSize: "0.64rem", fontWeight: 850, textDecoration: "none" }}
+              >
+                {miniMap.secondaryActionLabel}
+              </a>
+            )}
+          </span>
+        </span>
+      )}
+    </span>
   );
 }
 
@@ -503,6 +796,254 @@ function TrustSummaryPanel({ summary, versionNum }: { summary: TrustVisibilitySu
   );
 }
 
+function PaperClaimFlightDeckPanel({ deck, isMobile }: { deck: PaperClaimFlightDeck; isMobile: boolean }) {
+  if (!deck.totalPapers) return null;
+  const visibleItems = deck.items.slice(0, 5);
+  const paperClaimFlightDeckDescriptionId = "paper-claim-flight-deck-description";
+  return (
+    <section
+      data-testid="paper-claim-flight-deck"
+      aria-label="Paper-to-claim flight deck"
+      aria-describedby={paperClaimFlightDeckDescriptionId}
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "14px",
+        border: "1px solid rgba(56,189,248,0.35)",
+        borderLeft: "3px solid #38bdf8",
+        background: "linear-gradient(135deg, rgba(8,47,73,0.74), rgba(15,23,42,0.9))",
+        boxShadow: "0 18px 42px rgba(2,6,23,0.24)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.8rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#67e8f9", fontSize: "0.66rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            Paper-to-claim flight deck
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 820 }}>
+            Which papers drive visible claims
+          </h2>
+          <p id={paperClaimFlightDeckDescriptionId} style={{ margin: "0.35rem 0 0", color: "#bae6fd", fontSize: "0.78rem", lineHeight: 1.5, maxWidth: "42rem" }}>
+            {deck.headline}. {deck.summary}
+          </p>
+        </div>
+        <span style={{ color: "#67e8f9", border: "1px solid rgba(103,232,249,0.42)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.18rem 0.55rem", fontSize: "0.68rem", fontWeight: 850 }}>
+          {deck.linkedPapers.toLocaleString()}/{deck.totalPapers.toLocaleString()} mapped · {deck.unmappedPapers.toLocaleString()} unmapped
+        </span>
+      </div>
+      {visibleItems.length > 0 ? (
+        <div style={{ display: "grid", gap: "0.58rem", marginTop: "0.85rem" }}>
+          {visibleItems.map((item, index) => (
+            <article
+              key={item.evidenceId}
+              data-testid="paper-claim-flight-card"
+              style={{
+                border: "1px solid rgba(125,211,252,0.24)",
+                background: "rgba(15,23,42,0.78)",
+                borderRadius: "11px",
+                padding: "0.72rem",
+              }}
+            >
+              <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2.25rem minmax(0,1fr) auto", gap: "0.64rem", alignItems: "start" }}>
+                <div style={{ color: "#38bdf8", fontSize: "1.15rem", lineHeight: 1, fontWeight: 900 }}>#{index + 1}</div>
+                <div style={{ minWidth: 0 }}>
+                  <div style={{ display: "flex", gap: "0.38rem", flexWrap: "wrap", alignItems: "center", marginBottom: "0.3rem" }}>
+                    <span style={{ color: "#67e8f9", border: "1px solid rgba(103,232,249,0.36)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                      {item.paperLabel}
+                    </span>
+                    <span style={{ color: item.counterPressureClaims > 0 ? "#fbbf24" : "#94a3b8", border: "1px solid rgba(148,163,184,0.24)", background: "rgba(15,23,42,0.64)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                      {item.rankLabel}
+                    </span>
+                  </div>
+                  <h3 style={{ margin: 0, color: "#f8fafc", fontSize: "0.86rem", lineHeight: 1.35 }}>
+                    {item.title}
+                  </h3>
+                  <p style={{ margin: "0.2rem 0 0", color: "#94a3b8", fontSize: "0.7rem" }}>
+                    {item.byline} · {item.locator}
+                  </p>
+                  <p style={{ margin: "0.42rem 0 0", color: "#cbd5e1", fontSize: "0.72rem", lineHeight: 1.45 }}>
+                    {item.summary}
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: "0.34rem", marginTop: "0.55rem" }}>
+                    {item.claimLinks.map((claim) => (
+                      <a
+                        key={claim.claimId}
+                        data-testid="paper-claim-flight-claim-link"
+                        href={claim.href}
+                        title={claim.claimText}
+                        style={{ color: claim.counterPressure ? "#fed7aa" : "#bfdbfe", border: `1px solid ${claim.counterPressure ? "rgba(249,115,22,0.35)" : "rgba(59,130,246,0.32)"}`, background: claim.counterPressure ? "rgba(249,115,22,0.12)" : "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.14rem 0.48rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none" }}
+                      >
+                        claim #{claim.claimId} · {claim.trustLevel}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+                <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: "0.4rem", alignItems: isMobile ? "center" : "stretch" }}>
+                  {item.externalHref && (
+                    <a
+                      data-testid="paper-claim-open-paper"
+                      href={item.externalHref}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#e0f2fe", border: "1px solid rgba(56,189,248,0.45)", background: "rgba(14,165,233,0.14)", borderRadius: "999px", padding: "0.24rem 0.62rem", fontSize: "0.66rem", fontWeight: 860, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}
+                    >
+                      Open paper
+                    </a>
+                  )}
+                  {item.sourceIndexHref && (
+                    <Link
+                      data-testid="paper-claim-source-index-link"
+                      href={item.sourceIndexHref}
+                      style={{ color: "#bfdbfe", border: "1px solid rgba(59,130,246,0.28)", background: "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.22rem 0.58rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}
+                    >
+                      Open source index
+                    </Link>
+                  )}
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      ) : (
+        <p style={{ margin: "0.8rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5 }}>
+          Claim-scoped paper links will appear here once citations are mapped to visible claims.
+        </p>
+      )}
+      <p style={{ margin: "0.8rem 0 0", color: "#64748b", fontSize: "0.66rem" }}>
+        Paper-to-claim navigation is scoped to this paper's footprint on this page only; it is not a final verdict.
+      </p>
+    </section>
+  );
+}
+
+function PageContradictionAtlasRanking({
+  atlas,
+  isMobile,
+  versionNum,
+  loadingCount,
+  onOpenClaim,
+}: {
+  atlas: PageContradictionRankingAtlas;
+  isMobile: boolean;
+  versionNum?: number | null;
+  loadingCount: number;
+  onOpenClaim: (item: PageContradictionRankingItem, origin?: HTMLElement | null) => void;
+}) {
+  if (!atlas.totalClaims) return null;
+  const visibleItems = atlas.items.slice(0, 6);
+  const pageAtlasDescriptionId = "page-contradiction-atlas-ranking-description";
+  return (
+    <section
+      data-testid="page-contradiction-atlas-ranking"
+      aria-label="Page-level contradiction atlas ranking"
+      aria-describedby={pageAtlasDescriptionId}
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "14px",
+        border: "1px solid rgba(249,115,22,0.38)",
+        borderLeft: "3px solid #f97316",
+        background: "linear-gradient(135deg, rgba(15,23,42,0.98), rgba(30,41,59,0.82))",
+        boxShadow: "0 18px 42px rgba(2,6,23,0.28)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.8rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#fbbf24", fontSize: "0.66rem", fontWeight: 900, letterSpacing: "0.12em", textTransform: "uppercase" }}>
+            Page-level contradiction atlas
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 820 }}>
+            Where evidence weighs against this page
+          </h2>
+          <p id={pageAtlasDescriptionId} style={{ margin: "0.35rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5, maxWidth: "42rem" }}>
+            {atlas.headline}. Claims ranked by mapped counter-source pressure; source disagreement is not which side is correct. {atlas.summary}
+          </p>
+        </div>
+        <span style={{ color: "#f97316", border: "1px solid rgba(249,115,22,0.42)", background: "rgba(249,115,22,0.12)", borderRadius: "999px", padding: "0.18rem 0.55rem", fontSize: "0.68rem", fontWeight: 850 }}>
+          {atlas.surveyedClaims.toLocaleString()}/{atlas.totalClaims.toLocaleString()} surveyed{loadingCount > 0 ? ` · ${loadingCount} loading` : ""}
+        </span>
+      </div>
+      {visibleItems.length > 0 ? (
+        <div style={{ display: "grid", gap: "0.58rem", marginTop: "0.85rem" }}>
+          {visibleItems.map((item, index) => {
+            const meta = trustVisibilityMeta(item.trustLevel);
+            return (
+              <article
+                key={item.claimId}
+                data-testid="page-atlas-ranked-claim"
+                style={{
+                  border: "1px solid rgba(148,163,184,0.22)",
+                  background: "rgba(15,23,42,0.74)",
+                  borderRadius: "11px",
+                  padding: "0.72rem",
+                }}
+              >
+                <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "2.25rem minmax(0,1fr) auto", gap: "0.64rem", alignItems: "start" }}>
+                  <div style={{ color: "#f97316", fontSize: "1.15rem", lineHeight: 1, fontWeight: 900 }}>#{index + 1}</div>
+                  <div style={{ minWidth: 0 }}>
+                    <div style={{ display: "flex", gap: "0.4rem", flexWrap: "wrap", alignItems: "center", marginBottom: "0.28rem" }}>
+                      <span style={{ color: meta.color, border: `1px solid ${meta.border}`, background: meta.background, borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850, textTransform: "uppercase" }}>
+                        {meta.label}
+                      </span>
+                      <span data-testid="page-atlas-claim-tier" style={{ color: item.tierLabel === "Contradicted" ? "#f97316" : item.tierLabel === "Contested" ? "#fbbf24" : "#93c5fd", border: "1px solid rgba(148,163,184,0.24)", background: "rgba(15,23,42,0.64)", borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 850 }}>
+                        {item.tierLabel}
+                      </span>
+                      <span data-testid="page-atlas-survey-state" style={{ color: item.sourceSurveyed ? "#34d399" : "#fbbf24", fontSize: "0.64rem", fontWeight: 800 }}>
+                        {item.sourceSurveyState}
+                      </span>
+                      <span style={{ color: "#64748b", fontSize: "0.64rem" }}>{item.sectionLabel}</span>
+                    </div>
+                    <p style={{ margin: 0, color: "#e2e8f0", fontSize: "0.82rem", lineHeight: 1.45, fontWeight: 760 }}>
+                      {item.claimText}
+                    </p>
+                    <div style={{ display: "flex", gap: "0.35rem", flexWrap: "wrap", marginTop: "0.45rem" }}>
+                      {item.lanes.map((lane) => (
+                        <span key={lane.kind} style={{ color: lane.color, background: lane.background, border: `1px solid ${lane.color}`, borderRadius: "999px", padding: "0.06rem 0.42rem", fontSize: "0.62rem", fontWeight: 820 }}>
+                          {lane.count.toLocaleString()} {lane.label.replace(" sources", "")}
+                        </span>
+                      ))}
+                    </div>
+                    <p data-testid="page-atlas-ranking-score" style={{ margin: "0.38rem 0 0", color: "#94a3b8", fontSize: "0.68rem" }}>
+                      {item.rankLabel}
+                    </p>
+                  </div>
+                  <div style={{ display: "flex", flexDirection: isMobile ? "row" : "column", gap: "0.4rem", alignItems: isMobile ? "center" : "stretch" }}>
+                    <button
+                      type="button"
+                      data-testid="page-atlas-open-evidence-map"
+                      aria-controls={item.evidencePanelId}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onOpenClaim(item, e.currentTarget);
+                      }}
+                      style={{ border: "1px solid rgba(249,115,22,0.5)", background: "rgba(249,115,22,0.12)", color: "#fed7aa", borderRadius: "999px", padding: "0.24rem 0.62rem", fontSize: "0.66rem", fontWeight: 860, cursor: "pointer", whiteSpace: "nowrap" }}
+                    >
+                      Open evidence map
+                    </button>
+                    <a href={item.sourceHref} style={{ color: "#bfdbfe", border: "1px solid rgba(59,130,246,0.28)", background: "rgba(59,130,246,0.1)", borderRadius: "999px", padding: "0.22rem 0.58rem", fontSize: "0.64rem", fontWeight: 820, textDecoration: "none", textAlign: "center", whiteSpace: "nowrap" }}>
+                      Jump to claim
+                    </a>
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      ) : (
+        <p style={{ margin: "0.8rem 0 0", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.5 }}>
+          No page-level counter-source pressure is visible for this page version yet. Keep the source lanes surveyed as new evidence is linked.
+        </p>
+      )}
+      {versionNum != null && (
+        <p style={{ margin: "0.8rem 0 0", color: "#64748b", fontSize: "0.66rem" }}>
+          Computed against page version {versionNum}.
+        </p>
+      )}
+    </section>
+  );
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
@@ -510,6 +1051,7 @@ function ClaimAnnotatedSpan({
   showIdeas,
   children,
   citationByEvidenceId,
+  paperFootprintsByEvidenceId,
 }: {
   claim: any;
   showColors: boolean;
@@ -517,6 +1059,7 @@ function ClaimAnnotatedSpan({
   showIdeas: boolean;
   children: React.ReactNode;
   citationByEvidenceId?: Record<number, any>;
+  paperFootprintsByEvidenceId?: Record<number, PaperClaimFlightDeckItem | undefined>;
 }) {
   const [open, setOpen] = useState(false);
   const [ideasOpen, setIdeasOpen] = useState(false);
@@ -524,11 +1067,19 @@ function ClaimAnnotatedSpan({
   const [totalElements, setTotalElements] = useState(0);
   const [loadingEvidence, setLoadingEvidence] = useState(false);
   const claimTriggerRef = useRef<HTMLSpanElement | null>(null);
+  const claimBadgeTriggerRef = useRef<HTMLButtonElement | null>(null);
+  const evidencePanelReturnFocusRef = useRef<HTMLElement | null>(null);
   const trustLevel = claim?.trust_level || "unverified";
   const trustKey = TRUST_COLORS[trustLevel] ? trustLevel : "unverified";
   const evidenceCount = claim?.evidence_count ?? 0;
   const isContested = ["debated", "challenged"].includes(trustLevel);
   const evidencePanelId = claim?.id ? `claim-evidence-panel-${claim.id}` : undefined;
+
+  const openEvidencePanelFrom = (origin?: HTMLElement | null) => {
+    // Capture the opener at the trigger event so close/Escape can restore focus to the claim badge.
+    evidencePanelReturnFocusRef.current = origin ?? claimBadgeTriggerRef.current ?? claimTriggerRef.current;
+    setOpen(true);
+  };
 
   useEffect(() => {
     if (!open && !ideasOpen) return;
@@ -563,12 +1114,23 @@ function ClaimAnnotatedSpan({
         ref={claimTriggerRef}
         className={`claim-inline claim-inline--${trustKey}`}
         title={`${trustLevel} · ${evidenceCount} source${evidenceCount !== 1 ? "s" : ""}`}
-        onClick={(e) => { e.stopPropagation(); setOpen((v) => !v); }}
+        onClick={(e) => {
+          e.stopPropagation();
+          if (open) {
+            setOpen(false);
+          } else {
+            openEvidencePanelFrom(e.currentTarget);
+          }
+        }}
         onKeyDown={(e) => {
           if (e.key === "Enter" || e.key === " ") {
             e.preventDefault();
             e.stopPropagation();
-            setOpen((v) => !v);
+            if (open) {
+              setOpen(false);
+            } else {
+              openEvidencePanelFrom(e.currentTarget);
+            }
           }
         }}
         role="button"
@@ -582,7 +1144,11 @@ function ClaimAnnotatedSpan({
           claim={claim}
           open={open}
           panelId={evidencePanelId}
-          onOpen={() => setOpen((v) => !v)}
+          returnFocusRef={claimBadgeTriggerRef}
+          onOpen={(origin) => {
+            evidencePanelReturnFocusRef.current = origin ?? claimBadgeTriggerRef.current ?? claimTriggerRef.current;
+            setOpen(true);
+          }}
         />
       )}
       {showIdeas && ideas && ideas.length > 0 && (
@@ -615,8 +1181,9 @@ function ClaimAnnotatedSpan({
           loading={loadingEvidence}
           totalElements={totalElements}
           onClose={() => setOpen(false)}
-          returnFocusRef={claimTriggerRef}
+          returnFocusRef={evidencePanelReturnFocusRef}
           panelId={evidencePanelId}
+          paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
         />
       )}
       {ideasOpen && ideas && ideas.length > 0 && (
@@ -677,17 +1244,17 @@ function ClaimAnnotatedSpan({
   );
 }
 
-export default function WikiPageClientView() {
+export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtureData }: { testOnlyFixtureSlug?: string; testOnlyFixtureData?: WikiPageClientTestOnlyFixtureData } = {}) {
   const params = useParams();
-  const slug = params?.slug as string;
-  const [page, setPage] = useState<WikiPage | null>(null);
+  const slug = testOnlyFixtureSlug ?? params?.slug as string;
+  const [page, setPage] = useState<WikiPage | null>(testOnlyFixtureData?.page ?? null);
   const [edits, setEdits] = useState<EditProposal[]>([]);
-  const [contributorsData, setContributorsData] = useState<ContributorsData | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [contributorsData, setContributorsData] = useState<ContributorsData | null>(testOnlyFixtureData?.contributorsData ?? null);
+  const [loading, setLoading] = useState(!testOnlyFixtureData?.page);
   const [showV2, setShowV2] = useState(true);
   const [showColors, setShowColors] = useState(true);
-  const [claims, setClaims] = useState<any>(null);
-  const [citations, setCitations] = useState<PageCitation[]>([]);
+  const [claims, setClaims] = useState<any>(testOnlyFixtureData?.claims ?? null);
+  const [citations, setCitations] = useState<PageCitation[]>(testOnlyFixtureData?.citations ?? []);
   const [showEditForm, setShowEditForm] = useState(false);
   const [editEmail, setEditEmail] = useState("");
   const [editContent, setEditContent] = useState("");
@@ -695,11 +1262,16 @@ export default function WikiPageClientView() {
   const [editSubmitted, setEditSubmitted] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
-  const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
-  const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>({});
+  const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(testOnlyFixtureData?.health ?? null);
+  const [claimIdeasMap, setClaimIdeasMap] = useState<Record<number, any[]>>(testOnlyFixtureData?.claimIdeasMap ?? {});
   const [ideasOpen, setIdeasOpen] = useState(false);
   const [showIdeas, setShowIdeas] = useState(false);
   const [citeViewMode, setCiteViewMode] = useState<"shown" | "hidden">("shown");
+  const [pageAtlasEvidenceByClaimId, setPageAtlasEvidenceByClaimId] = useState<Record<number, any[]>>({});
+  const [pageAtlasLoadingByClaimId, setPageAtlasLoadingByClaimId] = useState<Record<number, boolean>>({});
+  const [pageAtlasPanelClaimId, setPageAtlasPanelClaimId] = useState<number | null>(null);
+  const pageAtlasFetchedIdsRef = useRef<Set<number>>(new Set());
+  const pageAtlasReturnFocusRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem("nm.cite_mode");
@@ -729,14 +1301,16 @@ export default function WikiPageClientView() {
   }, []);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.health) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/health`)
       .then(r => r.ok ? r.json() : null)
       .then(d => { if (d?.score != null) setHealth(d); })
       .catch(() => {});
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.health]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.page) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}`)
       .then(r => r.ok ? r.json() : null)
@@ -754,18 +1328,20 @@ export default function WikiPageClientView() {
           .then(setContributorsData)
           .catch(() => setContributorsData(null));
       });
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.page]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.claims) return;
     if (!claims) {
       fetch(`/api/pages/${slug}/claims`)
         .then(r => r.json())
         .then(d => setClaims(d))
         .catch(() => {});
     }
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.claims]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.claimIdeasMap) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/ideas?per_page=100`)
       .then(r => r.json())
@@ -780,15 +1356,31 @@ export default function WikiPageClientView() {
         setClaimIdeasMap(map);
       })
       .catch(() => {});
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.claimIdeasMap]);
 
   useEffect(() => {
+    if (testOnlyFixtureData?.citations) return;
     if (!slug) return;
     fetch(`/api/pages/${slug}/citations`)
       .then(r => r.ok ? r.json() : { citations: [] })
       .then(data => setCitations(data.citations || []))
       .catch(() => setCitations([]));
-  }, [slug]);
+  }, [slug, testOnlyFixtureData?.citations]);
+
+  const ensurePageAtlasEvidence = useCallback(async (claimId: number) => {
+    if (!claimId || pageAtlasFetchedIdsRef.current.has(claimId)) return;
+    pageAtlasFetchedIdsRef.current.add(claimId);
+    setPageAtlasLoadingByClaimId((prev) => ({ ...prev, [claimId]: true }));
+    try {
+      const response = await fetch(`/api/claims/${claimId}/evidence`);
+      const data = response.ok ? await response.json() : null;
+      setPageAtlasEvidenceByClaimId((prev) => ({ ...prev, [claimId]: data?.evidence || [] }));
+    } catch {
+      setPageAtlasEvidenceByClaimId((prev) => ({ ...prev, [claimId]: [] }));
+    } finally {
+      setPageAtlasLoadingByClaimId((prev) => ({ ...prev, [claimId]: false }));
+    }
+  }, []);
 
 
 
@@ -840,6 +1432,37 @@ export default function WikiPageClientView() {
   }, [citations]);
 
   const trustSummary = useMemo(() => summarizeTrustClaims(claims, renderedClaimIds), [claims, renderedClaimIds]);
+  // Flight deck derives from page.content, citations, claims, renderedClaimIds, slug.
+  const paperClaimFlightDeck = useMemo(
+    () => buildPaperClaimFlightDeck(page?.content || "", citations, claims, renderedClaimIds, slug),
+    [page?.content, citations, claims, renderedClaimIds, slug],
+  );
+  const paperFootprintsByEvidenceId = useMemo(() => {
+    const map: Record<number, PaperClaimFlightDeckItem> = {};
+    for (const item of paperClaimFlightDeck.items) {
+      map[item.evidenceId] = item;
+    }
+    return map;
+  }, [paperClaimFlightDeck.items]);
+  const pageContradictionAtlas = useMemo(
+    () => buildPageContradictionRankingAtlas(claims, pageAtlasEvidenceByClaimId, renderedClaimIds),
+    [claims, pageAtlasEvidenceByClaimId, renderedClaimIds],
+  );
+  const pageAtlasLoadingCount = useMemo(
+    () => Object.values(pageAtlasLoadingByClaimId).filter(Boolean).length,
+    [pageAtlasLoadingByClaimId],
+  );
+  const pageAtlasSelectedItem = useMemo(
+    () => pageContradictionAtlas.items.find((item) => item.claimId === pageAtlasPanelClaimId) || null,
+    [pageContradictionAtlas.items, pageAtlasPanelClaimId],
+  );
+
+  useEffect(() => {
+    if (!showV2 || !pageContradictionAtlas.items.length) return;
+    for (const item of pageContradictionAtlas.items.slice(0, 6)) {
+      void ensurePageAtlasEvidence(item.claimId);
+    }
+  }, [showV2, pageContradictionAtlas.items, ensurePageAtlasEvidence]);
 
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
@@ -848,6 +1471,7 @@ export default function WikiPageClientView() {
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
   // H6: filter out flagged AI-estimate facts (failed validation)
   const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
+  const showTopAuditPanels = !["galaxy-evolution","galaxy-evolution-method-1-pgr","galaxy-evolution-method-2-sfa","galaxy-evolution-method-3-dmw","galaxy-evolution-scaffolding"].includes(slug);
 
   return (
     <article
@@ -865,6 +1489,8 @@ export default function WikiPageClientView() {
       }
     >
       <div>
+      {["galaxy-evolution","galaxy-evolution-method-2-sfa","galaxy-evolution-method-3-dmw"].includes(slug) && <GalaxyMethodResultSelector isMobile={isMobile} currentSlug={slug} />}
+
       {/* View mode toggle */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
         {health && (
@@ -979,8 +1605,41 @@ export default function WikiPageClientView() {
         />
       )}
 
-      {showV2 && trustSummary.totalClaims > 0 && (
+      {showTopAuditPanels && showV2 && trustSummary.totalClaims > 0 && (
         <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
+      )}
+
+      {showTopAuditPanels && showV2 && (
+        <PaperClaimFlightDeckPanel deck={paperClaimFlightDeck} isMobile={isMobile} />
+      )}
+
+      {showTopAuditPanels && showV2 && (
+        <PageContradictionAtlasRanking
+          atlas={pageContradictionAtlas}
+          isMobile={isMobile}
+          versionNum={page.version_num}
+          loadingCount={pageAtlasLoadingCount}
+          onOpenClaim={(item, origin) => {
+            pageAtlasReturnFocusRef.current = origin ?? null;
+            setPageAtlasPanelClaimId(item.claimId);
+            void ensurePageAtlasEvidence(item.claimId);
+          }}
+        />
+      )}
+
+      {pageAtlasPanelClaimId && pageAtlasSelectedItem && (
+        <DebateEvidencePanel
+          claimId={pageAtlasSelectedItem.claimId}
+          claimText={claimById[pageAtlasSelectedItem.claimId]?.text || pageAtlasSelectedItem.claimText}
+          trustLevel={claimById[pageAtlasSelectedItem.claimId]?.trust_level || pageAtlasSelectedItem.trustLevel}
+          evidence={pageAtlasEvidenceByClaimId[pageAtlasSelectedItem.claimId] || null}
+          loading={Boolean(pageAtlasLoadingByClaimId[pageAtlasSelectedItem.claimId])}
+          totalElements={0}
+          onClose={() => setPageAtlasPanelClaimId(null)}
+          returnFocusRef={pageAtlasReturnFocusRef}
+          panelId={pageAtlasSelectedItem.evidencePanelId}
+          paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
+        />
       )}
 
       {/* Mobile TOC: collapsed accordion above content */}
@@ -1112,7 +1771,7 @@ export default function WikiPageClientView() {
               if (citeIds) {
                 const ids = String(citeIds).split(",").map((s: string) => Number(s.trim())).filter((n: number) => Number.isFinite(n) && n > 0);
                 const cites = ids.map((id: number) => citationByEvidenceId[id]).filter(Boolean);
-                return <CitationBadge citations={cites} />;
+                return <CitationBadge citations={cites} pageSlug={slug} />;
               }
 
               if (unmatched) {
@@ -1133,6 +1792,7 @@ export default function WikiPageClientView() {
                     ideas={claimIdeasMap[id]}
                     showIdeas={showIdeas}
                     citationByEvidenceId={citationByEvidenceId}
+                    paperFootprintsByEvidenceId={paperFootprintsByEvidenceId}
                   >
                     {inner}
                   </ClaimAnnotatedSpan>
