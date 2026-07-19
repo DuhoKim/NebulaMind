@@ -6,6 +6,7 @@ import { FRONTIERS } from "./frontiersData";
 import { itemsFor } from "./stageData";
 import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
+import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -679,31 +680,6 @@ const OVERVIEW_INTRO: Record<string, string> = {
   paper: "Every result is drafted as a paper and hardened by an automated referee — revised until it holds, or honestly held back. Pick a stage above for detail.",
 };
 
-function DataOverview() {
-  const zx = (z: number) => 62 + (Math.min(z, 10) / 10) * 776;
-  const bar = (z1: number, z2: number, y: number, color: string, label: string, dash?: boolean) => (
-    <g>
-      <line x1={zx(z1)} y1={y} x2={zx(z2)} y2={y} stroke={color} strokeWidth="6" strokeLinecap="round" strokeDasharray={dash ? "2 5" : undefined} />
-      <text x={zx(z1)} y={y - 8} fontSize="11" fill={color} fontFamily="ui-monospace,monospace">{label}</text>
-    </g>
-  );
-  return (
-    <svg viewBox="0 0 900 175" style={{ width: "100%", height: "auto" }} role="img" aria-label="Redshift coverage of the data sources">
-      <line x1="62" y1="150" x2="838" y2="150" stroke="#242a3d" strokeWidth="1.5" />
-      {[0, 1, 3, 6, 10].map((z) => (
-        <g key={z}>
-          <line x1={zx(z)} y1="146" x2={zx(z)} y2="154" stroke="#242a3d" />
-          <text x={zx(z)} y="168" fontSize="10" fill="#9aa3b8" textAnchor="middle" fontFamily="ui-monospace,monospace">z={z}</text>
-        </g>
-      ))}
-      {bar(0, 0.35, 42, "#4ad6c4", "SDSS · GSWLC")}
-      {bar(0.2, 5, 72, "#7c86ff", "COSMOS2020")}
-      {bar(4, 10, 102, "#e0a458", "JWST")}
-      {bar(0, 6, 128, "#8b93c9", "IllustrisTNG (simulation)", true)}
-    </svg>
-  );
-}
-
 function ResearchOverview() {
   const box = (x: number, title: string, path: string) => (
     <g>
@@ -742,6 +718,206 @@ function PaperOverview() {
       {node(730, "Accept", "#4ad6c4")}
       <text x="632" y="66" fontSize="10" fill="#4ad6c4" textAnchor="middle" fontFamily="ui-monospace,monospace">ACCEPT / MINOR</text>
     </svg>
+  );
+}
+
+// Piecewise redshift axis — extra room at low z, extends to z=15 with an off-scale
+// tail for the reionization-era surveys (JWST, ELT, SKA HI).
+function zx(z: number): number {
+  if (z <= 1) return 70 + z * 196;
+  if (z <= 3) return 266 + ((z - 1) / 2) * 204;
+  if (z <= 6) return 470 + ((z - 3) / 3) * 180;
+  if (z <= 10) return 650 + ((z - 6) / 4) * 140;
+  if (z <= 15) return 790 + ((z - 10) / 5) * 76;
+  return 866;
+}
+
+function CoverageMap() {
+  const rowH = 44;
+  const top = 22;
+  const height = top + BAND_ORDER.length * rowH + 46;
+  const axisY = top + BAND_ORDER.length * rowH + 6;
+  const ticks = [0, 1, 3, 6, 10, 15];
+  return (
+    <svg className="dv-cov" viewBox={`0 0 900 ${height}`} role="img"
+      aria-label="Wavelength by redshift coverage of 44 public galaxy-evolution surveys">
+      {/* redshift gridlines */}
+      {ticks.map((z) => (
+        <line key={`g${z}`} x1={zx(z)} y1={top - 6} x2={zx(z)} y2={axisY} stroke="#1a2033" strokeWidth="1" />
+      ))}
+      {BAND_ORDER.map((band, i) => {
+        const rows = LANDSCAPE.filter((s) => s.band === band);
+        if (rows.length === 0) return null;
+        const uMin = Math.min(...rows.map((s) => s.z0));
+        const uMax = Math.max(...rows.map((s) => s.z1));
+        const meta = BAND_META[band];
+        const yc = top + i * rowH + rowH / 2;
+        const inUse = rows.find((s) => s.inUse);
+        return (
+          <g key={band}>
+            <text x="8" y={yc + 3.5} fontSize="11" fill="#c7cede" fontFamily="ui-monospace,monospace">
+              {meta.label}<tspan fill="#6b7386"> ·{rows.length}</tspan>
+            </text>
+            {/* coverage envelope: band reaches this far in redshift */}
+            <rect x={zx(uMin)} y={yc - 11} width={Math.max(3, zx(uMax) - zx(uMin))} height="22" rx="5"
+              fill={meta.color} fillOpacity="0.12" stroke={meta.color} strokeOpacity="0.32" strokeWidth="1" />
+            {/* one reach-dot per survey at its high-z end */}
+            {rows.filter((s) => !s.inUse).map((s) => (
+              <circle key={s.name} cx={zx(s.z1)} cy={yc} r="2.3" fill={meta.color} fillOpacity="0.7" />
+            ))}
+            {/* highlighted in-use bar */}
+            {inUse && (
+              <g>
+                <rect x={zx(inUse.z0)} y={yc - 5} width={Math.max(6, zx(inUse.z1) - zx(inUse.z0))} height="10" rx="5"
+                  fill={meta.color} stroke="#e8ecf5" strokeWidth="1.2" />
+                {inUse.arrow && <path d={`M${zx(inUse.z1) + 2} ${yc} l7 -4 v8 z`} fill="#e8ecf5" />}
+                <text x={zx(inUse.z0) + 1} y={yc - 9} fontSize="10" fontWeight="700" fill={meta.color}
+                  fontFamily="ui-monospace,monospace">★ {inUse.name}</text>
+              </g>
+            )}
+          </g>
+        );
+      })}
+      {/* redshift axis */}
+      <line x1="70" y1={axisY} x2="866" y2={axisY} stroke="#242a3d" strokeWidth="1.5" />
+      {ticks.map((z) => (
+        <text key={`t${z}`} x={zx(z)} y={axisY + 16} fontSize="10" fill="#9aa3b8" textAnchor="middle"
+          fontFamily="ui-monospace,monospace">z={z}{z === 15 ? "+" : ""}</text>
+      ))}
+      <text x="468" y={axisY + 34} fontSize="10" fill="#6b7386" textAnchor="middle">
+        redshift → younger, farther universe →
+      </text>
+    </svg>
+  );
+}
+
+function DataView() {
+  const total = LANDSCAPE.length;
+  const bandCounts = BAND_ORDER.map((b) => ({ b, n: LANDSCAPE.filter((s) => s.band === b).length }))
+    .sort((a, z) => z.n - a.n);
+  const maxBand = Math.max(...bandCounts.map((x) => x.n));
+  const statusCounts = STATUS_ORDER.map((st) => ({ st, n: LANDSCAPE.filter((s) => s.status === st).length }));
+  return (
+    <div className="dv">
+      <p className="dv-lead">
+        Galaxy evolution is a <b>then-vs-now</b> science: to see how galaxies grew, you compare them across
+        cosmic time — and that takes surveys spanning redshift, wavelength, and physics. NebulaMind pulls from
+        and validates just <b>four sources today</b>. Everything below is the <b>wider public-data landscape</b> the
+        field draws on and that we could add next — a map of the open sky, not a claim that we already mine it.
+      </p>
+
+      {/* What we use now */}
+      <div className="corpus-block">
+        <p className="cch-h">What the pipeline uses now — 4 of {total}</p>
+        <div className="dv-meter"><i style={{ width: `${(4 / total) * 100}%` }} /></div>
+        <div className="dv-chips">
+          {IN_USE.map((s) => {
+            const color = s.band === "sim" ? "#7c86ff" : BAND_META[s.band as Band].color;
+            const sim = s.band === "sim";
+            return (
+              <div className={`dv-chip${sim ? " sim" : ""}`} key={s.name} style={{ borderLeftColor: color }}>
+                <div className="dv-chip-h"><b>{s.name}</b><span>{s.z}</span></div>
+                <p>{s.role}</p>
+              </div>
+            );
+          })}
+        </div>
+        <p className="cch-note">
+          Three observed sky surveys plus one cosmological <b style={{ color: "#8a92ff" }}>simulation</b> (IllustrisTNG,
+          dashed — a model to test observations against, not a telescope).
+        </p>
+      </div>
+
+      {/* Coverage map */}
+      <div className="corpus-block">
+        <p className="cch-h">The landscape — wavelength × cosmic time</p>
+        <CoverageMap />
+        <p className="cch-note">
+          Each band reaches as far in redshift as its shaded bar; dots mark how far individual surveys see.
+          The three bright, starred bars are the observed sources the pipeline mines today — SDSS anchors z≈0,
+          JWST pushes to cosmic dawn, COSMOS2020 bridges between.
+        </p>
+      </div>
+
+      {/* Band histogram + status split */}
+      <div className="dv-two">
+        <div className="corpus-block">
+          <p className="cch-h">By wavelength — what the sky offers</p>
+          <div className="dv-hist">
+            {bandCounts.map(({ b, n }) => (
+              <div className="dv-hrow" key={b}>
+                <span className="dv-hname">{BAND_META[b].label}</span>
+                <span className="dv-hbar"><i style={{ width: `${(n / maxBand) * 100}%`, background: BAND_META[b].color }} /></span>
+                <span className="dv-hn">{n}</span>
+              </div>
+            ))}
+          </div>
+          <p className="cch-note">Optical spectroscopy dominates the public record; radio, IR and X-ray fill in gas, dust and black holes.</p>
+        </div>
+        <div className="corpus-block">
+          <p className="cch-h">By status — live, coming, or archival</p>
+          <div className="dv-statusbar">
+            {statusCounts.map(({ st, n }) => (
+              <i key={st} style={{ width: `${(n / total) * 100}%`, background: STATUS_META[st].color }}
+                title={`${STATUS_META[st].label}: ${n}`} />
+            ))}
+          </div>
+          <div className="dv-pills">
+            {statusCounts.map(({ st, n }) => (
+              <span key={st}><i style={{ background: STATUS_META[st].color }} />{STATUS_META[st].label} · {n}</span>
+            ))}
+          </div>
+          <p className="cch-note">
+            <b style={{ color: "#e0a800" }}>&ldquo;On sky&rdquo; isn&rsquo;t &ldquo;downloadable&rdquo;</b> — commissioning and planned
+            facilities have little or no public data yet. Archival ≠ dead: retired surveys (SDSS legacy, GALEX, the CDFs) are still deep reference data.
+          </p>
+        </div>
+      </div>
+
+      {/* Grouped catalog */}
+      <div className="dv-groups">
+        <p className="cch-h" style={{ margin: "0 0 .2rem" }}>The full list — grouped by what it measures</p>
+        {GROUPS.map((g) => {
+          const members = LANDSCAPE.filter((s) => s.group === g.key);
+          return (
+            <div className="dv-group" key={g.key}>
+              <div className="dv-group-h">
+                <b>{g.title}</b><span>{g.sub}</span>
+              </div>
+              <p className="dv-group-d">{g.desc}</p>
+              <div className="dv-list">
+                {members.map((s) => (
+                  <div className={`dv-grow${s.inUse ? " use" : ""}`} key={s.name}>
+                    <span className="dv-gname">
+                      {s.name}
+                      {s.inUse && <span className="dv-use">in pipeline</span>}
+                    </span>
+                    <span className="dv-tags">
+                      <span className="dv-band" style={{ color: BAND_META[s.band].color, borderColor: BAND_META[s.band].color }}>
+                        {BAND_META[s.band].label}
+                      </span>
+                      <span className="dv-stat" style={{ color: STATUS_META[s.status].color }}>
+                        <i style={{ background: STATUS_META[s.status].color }} />{STATUS_META[s.status].label}
+                      </span>
+                    </span>
+                    <span className="dv-gline">{s.line}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Explorer on-ramp */}
+      <a className="dv-explorer" href="/surveys">
+        <div>
+          <b>Browse the full public-data landscape →</b>
+          <span>The interactive Surveys Explorer — all {total}+ surveys, filter by band, redshift, status and data release.</span>
+        </div>
+        <span className="dv-explorer-cta">Open Surveys Explorer</span>
+      </a>
+    </div>
   );
 }
 
@@ -910,6 +1086,56 @@ export default function LabStages() {
         .cfg-item-k span{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-accent2);font-weight:400;margin-left:.5rem}
         .cfg-item-v{font-size:.82rem;color:var(--lab-soft);line-height:1.5;margin-top:.25rem}
         @media(max-width:560px){.cfg-deriv-row{grid-template-columns:1fr;gap:.2rem}}
+        .dv{display:flex;flex-direction:column;gap:.8rem;margin-top:.2rem}
+        .dv-lead{font-size:.9rem;color:var(--lab-ink);line-height:1.6;margin:.1rem 0 .1rem}
+        .dv-lead b{color:var(--lab-accent2);font-weight:600}
+        .dv-meter{height:5px;border-radius:3px;background:#1a1f30;overflow:hidden;margin:.1rem 0 .7rem}
+        .dv-meter i{display:block;height:100%;background:var(--lab-accent2)}
+        .dv-chips{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.5rem}
+        .dv-chip{background:#0d1120;border:1px solid var(--lab-line);border-left:3px solid var(--lab-accent);border-radius:9px;padding:.55rem .7rem}
+        .dv-chip.sim{border-left-style:dashed}
+        .dv-chip-h{display:flex;align-items:baseline;justify-content:space-between;gap:.5rem}
+        .dv-chip-h b{font-size:.92rem;color:var(--lab-ink);font-weight:700}
+        .dv-chip-h span{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft)}
+        .dv-chip p{font-size:.75rem;color:var(--lab-soft);line-height:1.4;margin:.3rem 0 0}
+        .dv-cov{width:100%;height:auto;display:block;margin:.2rem 0}
+        .dv-two{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+        @media(max-width:620px){.dv-two{grid-template-columns:1fr}}
+        .dv-hist{display:flex;flex-direction:column;gap:.32rem;margin:.1rem 0}
+        .dv-hrow{display:grid;grid-template-columns:74px 1fr 1.6rem;gap:.5rem;align-items:center;font-size:.78rem}
+        .dv-hname{color:var(--lab-soft);white-space:nowrap}
+        .dv-hbar{height:9px;background:#1a1f30;border-radius:3px;overflow:hidden}
+        .dv-hbar i{display:block;height:100%;border-radius:3px}
+        .dv-hn{font-family:ui-monospace,monospace;font-size:.74rem;color:var(--lab-ink);text-align:right}
+        .dv-statusbar{display:flex;height:26px;border-radius:6px;overflow:hidden;margin:.15rem 0 .5rem;border:1px solid var(--lab-line)}
+        .dv-statusbar i{display:block;height:100%;border-right:2px solid #0a0d17}
+        .dv-statusbar i:last-child{border-right:none}
+        .dv-pills{display:flex;flex-wrap:wrap;gap:.35rem .8rem;font-size:.73rem;color:var(--lab-soft);margin-bottom:.15rem}
+        .dv-pills span{display:inline-flex;align-items:center;gap:.32rem}
+        .dv-pills i{width:9px;height:9px;border-radius:2px;display:inline-block;flex-shrink:0}
+        .dv-groups{display:flex;flex-direction:column;gap:.55rem}
+        .dv-group{border:1px solid var(--lab-line);border-radius:10px;background:#0a0d17;padding:.7rem .85rem}
+        .dv-group-h{display:flex;align-items:baseline;gap:.55rem}
+        .dv-group-h b{font-size:.92rem;color:var(--lab-ink);font-weight:650}
+        .dv-group-h span{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-accent2)}
+        .dv-group-d{font-size:.78rem;color:var(--lab-soft);line-height:1.5;margin:.25rem 0 .55rem}
+        .dv-list{display:flex;flex-direction:column;gap:.1rem}
+        .dv-grow{display:grid;grid-template-columns:170px 128px 1fr;gap:.6rem;align-items:start;padding:.4rem 0;border-top:1px solid rgba(36,42,61,.55);font-size:.8rem;line-height:1.45}
+        .dv-grow:first-child{border-top:none}
+        .dv-gname{color:var(--lab-ink);font-weight:600;display:flex;flex-direction:column;gap:.15rem}
+        .dv-grow.use .dv-gname{color:var(--lab-accent2)}
+        .dv-use{font-family:ui-monospace,monospace;font-size:.56rem;letter-spacing:.04em;text-transform:uppercase;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.5);border-radius:999px;padding:.03rem .35rem;width:fit-content}
+        .dv-tags{display:flex;flex-wrap:wrap;gap:.3rem;padding-top:.05rem}
+        .dv-band{font-size:.6rem;font-family:ui-monospace,monospace;border:1px solid;border-radius:4px;padding:.03rem .3rem;opacity:.9}
+        .dv-stat{display:inline-flex;align-items:center;gap:.25rem;font-size:.6rem;font-family:ui-monospace,monospace}
+        .dv-stat i{width:6px;height:6px;border-radius:50%;display:inline-block}
+        .dv-gline{color:var(--lab-soft)}
+        @media(max-width:560px){.dv-grow{grid-template-columns:1fr;gap:.15rem}.dv-tags{padding-top:0}}
+        .dv-explorer{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-decoration:none;border:1px solid rgba(124,134,255,.4);border-radius:11px;background:linear-gradient(90deg,rgba(124,134,255,.09),rgba(74,214,196,.06));padding:.85rem 1rem;transition:border-color .15s}
+        .dv-explorer:hover{border-color:var(--lab-accent)}
+        .dv-explorer b{display:block;font-size:.95rem;color:var(--lab-ink);font-weight:650}
+        .dv-explorer div span{display:block;font-size:.78rem;color:var(--lab-soft);line-height:1.45;margin-top:.2rem}
+        .dv-explorer-cta{flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.45);border-radius:8px;padding:.45rem .8rem;white-space:nowrap}
       `}</style>
 
       <div className="cfg-panel" role="tabpanel">
@@ -956,7 +1182,8 @@ export default function LabStages() {
 
         {(tab === "data" || tab === "research" || tab === "paper") && (() => {
           if (sub === "") {
-            const G = tab === "data" ? DataOverview : tab === "research" ? ResearchOverview : PaperOverview;
+            if (tab === "data") return <DataView />;
+            const G = tab === "research" ? ResearchOverview : PaperOverview;
             return (
               <div>
                 <div className="cfg-viz"><G /></div>
