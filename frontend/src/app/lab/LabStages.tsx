@@ -675,36 +675,6 @@ const DERIVATIONS: Record<string, Deriv> = {
   },
 };
 
-const OVERVIEW_INTRO: Record<string, string> = {
-  data: "Every study runs on real public archives, queried live — a z≈0 anchor, the high-z JWST frontier, and a flagship simulation to test against. Pick a source above for detail.",
-  research: "The same measurements, computed identically across surveys and simulation — how galaxies grow, enrich, and assemble. Pick a method above for detail.",
-  paper: "Every result is drafted as a paper and hardened by an automated referee — revised until it holds, or honestly held back. Pick a stage above for detail.",
-};
-
-function PaperOverview() {
-  const node = (cx: number, label: string, color: string) => (
-    <g>
-      <circle cx={cx} cy="78" r="30" fill="#0a0d17" stroke={color} strokeWidth="2" />
-      <text x={cx} y="82" fontSize="12" fill="#e8ecf5" textAnchor="middle">{label}</text>
-    </g>
-  );
-  return (
-    <svg viewBox="0 0 780 155" style={{ width: "100%", height: "auto" }} role="img" aria-label="Draft, review, revise, accept">
-      <defs><marker id="pa" markerWidth="7" markerHeight="7" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#7c86ff" /></marker></defs>
-      {node(66, "Draft", "#4ad6c4")}
-      <line x1="98" y1="78" x2="242" y2="78" stroke="#7c86ff" strokeWidth="1.5" markerEnd="url(#pa)" />
-      {node(300, "Referee", "#7c86ff")}
-      <line x1="332" y1="78" x2="476" y2="78" stroke="#7c86ff" strokeWidth="1.5" markerEnd="url(#pa)" />
-      {node(534, "Revise", "#e0a458")}
-      <path d="M534 47 C 534 6, 300 6, 300 47" fill="none" stroke="#e0a458" strokeWidth="1.5" strokeDasharray="3 4" markerEnd="url(#pa)" />
-      <text x="417" y="16" fontSize="10" fill="#e0a458" textAnchor="middle" fontFamily="ui-monospace,monospace">MAJOR → revise</text>
-      <line x1="564" y1="78" x2="698" y2="78" stroke="#7c86ff" strokeWidth="1.5" markerEnd="url(#pa)" />
-      {node(730, "Accept", "#4ad6c4")}
-      <text x="632" y="66" fontSize="10" fill="#4ad6c4" textAnchor="middle" fontFamily="ui-monospace,monospace">ACCEPT / MINOR</text>
-    </svg>
-  );
-}
-
 // Piecewise redshift axis — extra room at low z, extends to z=15 with an off-scale
 // tail for the reionization-era surveys (JWST, ELT, SKA HI).
 function zx(z: number): number {
@@ -1111,6 +1081,160 @@ function ResearchView() {
   );
 }
 
+// Graphic 1 — the outputs pipeline spine: Draft → Referee → Revise (loop) → Gate.
+function PipelineFlow() {
+  const nodes: [number, string, string, boolean][] = [
+    [36, "Draft", "AASTeX → PDF", false],
+    [260, "Referee", "astrosage-70b", false],
+    [484, "Revise", "soften · add caveats", false],
+    [708, "Gate", "held: descriptive", true],
+  ];
+  return (
+    <div className="cfg-viz">
+      <svg viewBox="0 0 900 150" role="img"
+        aria-label="Draft to Referee to Revise, looping back, ending at a Gate that holds papers as descriptive">
+        <defs>
+          <marker id="pf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#7c86ff" /></marker>
+          <marker id="pf-loop" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#e0a458" /></marker>
+        </defs>
+        {nodes.map(([x, t, s, gate]) => (
+          <g key={t}>
+            <rect x={x} y="52" width="156" height="56" rx="10" fill="#0a0d17" stroke={gate ? "#f47272" : "#242a3d"} strokeWidth="1.4" />
+            <text x={x + 78} y="80" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="13" fontWeight="700" fill="#e8ecf5">{t}</text>
+            <text x={x + 78} y="96" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="9.5" fill={gate ? "#f47272" : "#9aa3b8"}>{s}</text>
+          </g>
+        ))}
+        <path d="M196 80 H256" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
+        <path d="M420 80 H480" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
+        <path d="M644 80 H704" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
+        <path d="M562 52 C 562 16, 338 16, 338 52" fill="none" stroke="#e0a458" strokeWidth="1.4" strokeDasharray="4 3" markerEnd="url(#pf-loop)" />
+        <text x="450" y="12" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="9.5" fill="#e0a458">revise loop · MAJOR / REJECT</text>
+      </svg>
+      <p className="cap">Draft → referee → revise, looping until it holds — but the terminal state is almost always &ldquo;held back: descriptive,&rdquo; not accepted (2,489 of 2,490).</p>
+    </div>
+  );
+}
+
+function PaperView() {
+  const scatter = [[45,99],[62,90],[80,97],[98,85],[118,88],[138,78],[158,82],[178,70],[198,74],[220,62],[242,58],[258,50]];
+  return (
+    <div className="dv">
+      <p className="dv-lead">
+        <b>Writing a paper isn&rsquo;t proving it.</b> NebulaMind can write and referee a full, journal-formatted
+        manuscript for every result it computes — automatically, overnight. What it does <b style={{ color: "#f47272" }}>not</b> do
+        is decide the science is true. Every draft is labelled <b>descriptive, not validated</b> until a human clears it — and so far essentially none have.
+      </p>
+
+      {/* Pipeline spine */}
+      <div className="corpus-block">
+        <p className="cch-h">From result to refereed manuscript</p>
+        <PipelineFlow />
+      </div>
+
+      {/* Manuscript + referee */}
+      <div className="corpus-block">
+        <p className="cch-h">One manuscript, one referee — a real example</p>
+        <div className="ms-row">
+          <div className="ms-card">
+            <span className="ms-stamp">descriptive — not validated</span>
+            <p className="ms-eyebrow">AASTeX · aastex631 · compiled with tectonic</p>
+            <h4 className="ms-title">The star-forming main sequence in GSWLC-2</h4>
+            <p className="ms-auth">NebulaMind Lab · autonomous overnight</p>
+            <p className="ms-abstract">
+              <b>Bounded &amp; descriptive automated result — not a validated measurement.</b> Star-forming main
+              sequence from GSWLC-2 (GALEX+WISE SED SFRs), z=0.01–0.10: N<sub>SF</sub>=36,842, slope ≈0.57,
+              log SFR ≈0.04 at logM★=10. Uncorrected for completeness / selection; single calibration.
+            </p>
+            <div className="ms-fig">
+              <svg viewBox="0 0 300 120" role="img" aria-label="Rising star-forming main sequence: SFR vs stellar mass, fit slope 0.57">
+                <path d="M30 20 V105 H270" fill="none" stroke="#242a3d" strokeWidth="1" />
+                <path d="M30 100 L270 40" stroke="#4ad6c4" strokeWidth="2" />
+                {scatter.map(([cx, cy], i) => <circle key={i} cx={cx} cy={cy} r="2.4" fill="#9aa3b8" fillOpacity="0.85" />)}
+                <text x="150" y="118" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="8" fill="#9aa3b8">log M★</text>
+                <text x="10" y="62" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="8" fill="#9aa3b8" transform="rotate(-90 10 62)">log SFR</text>
+              </svg>
+            </div>
+            <p className="ms-figcap">Fig. 1 — SFR vs stellar mass; fit slope ≈0.57.</p>
+          </div>
+          <div className="rv-card">
+            <div className="rv-head">
+              <span className="rv-chip">⚠ MAJOR · revise</span>
+              <span className="rv-model">astrosage-70b · automated referee</span>
+            </div>
+            <p className="rv-verdict"><b>Verdict —</b> Preliminary results require further validation and analysis.</p>
+            <ul className="rv-risks">
+              <li><span className="rv-x">✗</span> <b>Dust attenuation</b> — GALEX+WISE SFRs may be biased; not corrected for.</li>
+              <li><span className="rv-x">✗</span> <b>AGN contamination</b> — non-star-forming galaxies may inflate the sample.</li>
+              <li><span className="rv-x">✗</span> <b>Selection &amp; redshift evolution</b> within z=0.01–0.10 — not accounted for.</li>
+            </ul>
+            <p className="rv-next"><b>Next step —</b> quantify systematic uncertainties and cross-check against alternative SFR indicators.</p>
+          </div>
+        </div>
+        <p className="cch-note">The manuscript self-labels &ldquo;not a validated measurement,&rdquo; and the referee immediately names the systematics the draft glossed over — the machine criticising its own output.</p>
+      </div>
+
+      {/* Batch honesty bar */}
+      <div className="corpus-block">
+        <p className="cch-h">The overnight batch, honestly</p>
+        <div className="bh-top">
+          <span className="bh-big">2,490</span>
+          <span className="bh-biglab">manuscripts drafted &amp; refereed in ~420 min<br />on GSWLC-2 · COSMOS2020 · JWST</span>
+        </div>
+        <div className="bh-meterrow">
+          <span className="bh-mlab">validated</span>
+          <span className="bh-meter"><i style={{ width: "0.4%" }} /></span>
+          <span className="bh-pct">0.0%</span>
+        </div>
+        <div className="bh-chips">
+          <span className="bh-chip">2,490 manuscripts</span>
+          <span className="bh-chip amber">2,489 sent back · preliminary</span>
+          <span className="bh-chip coral">0 cleared as validated</span>
+        </div>
+        <p className="cch-note">0 of 2,490 cleared — that is the referee doing its job, not a failure. Nothing is held up as a measurement until a human clears it.</p>
+      </div>
+
+      {/* Publishable bar + what descriptive means */}
+      <div className="dv-two">
+        <div className="corpus-block">
+          <p className="cch-h">The publishable bar</p>
+          <div className="pb-ladder">
+            <ul>
+              {["compiles", "lint-clean", "selection-honest"].map((t) => (
+                <li key={t} className="pass"><span className="pb-ic">✓</span>{t}</li>
+              ))}
+              <li className="pb-div"><span>automatic ends · judgment begins</span></li>
+              {["literature-grounded motivation", "non-circular result", "defensible conclusion"].map((t) => (
+                <li key={t} className="fail"><span className="pb-ic">✗</span>{t}</li>
+              ))}
+            </ul>
+            <p className="pb-foot">Still descriptive — a human decides.</p>
+          </div>
+        </div>
+        <div className="corpus-block">
+          <p className="cch-h">What &ldquo;descriptive&rdquo; means</p>
+          <p className="cch-note" style={{ margin: "0 0 .7rem", fontSize: ".84rem", color: "#e8ecf5" }}>
+            The number is <b>computed correctly</b> and its caveats are <b>stated honestly</b> — but <b style={{ color: "#f47272" }}>no
+            human has yet vouched for it</b> as a result. Compiling cleanly and labelling honestly clears the floor, not the bar.
+          </p>
+          <p className="cch-note" style={{ margin: 0 }}>
+            The gate has teeth: of the flagship auto-drafts put forward for human review, <b style={{ color: "#f47272" }}>all 9 were rejected</b>.
+            Even our best hand-picked drafts don&rsquo;t clear automatically — which is exactly why the honest label is believable.
+          </p>
+        </div>
+      </div>
+
+      {/* Cross-step footer */}
+      <a className="dv-explorer" href="/lab">
+        <div>
+          <b>Topic → Data → Research → Paper — the full loop →</b>
+          <span>Pick a question, ground it in real <b style={{ color: "#4ad6c4" }}>surveys</b>, compute an honest <b style={{ color: "#7c86ff" }}>result</b>, then draft and referee it like a journal would. The last step is the one we <b>don&rsquo;t</b> automate: a human decides what&rsquo;s true.</span>
+        </div>
+        <span className="dv-explorer-cta">Back to the pipeline</span>
+      </a>
+    </div>
+  );
+}
+
 export default function LabStages() {
   const tab = useTab();
   const sub = useSub();
@@ -1345,6 +1469,52 @@ export default function LabStages() {
         .rc-src.sim{color:var(--lab-accent);border-color:rgba(124,134,255,.45)}
         .rc-frontier{font-family:ui-monospace,monospace;font-size:.6rem;color:#f47272;margin-left:.15rem}
         @media(max-width:560px){.rc-row{grid-template-columns:1fr;gap:.05rem}}
+        .ms-row{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+        @media(max-width:600px){.ms-row{grid-template-columns:1fr}}
+        .ms-card{position:relative;border:1px solid var(--lab-line);border-radius:12px;background:#0a0d17;padding:1rem 1.05rem}
+        .ms-stamp{display:inline-block;background:rgba(244,114,114,.14);color:#f47272;border:1px solid rgba(244,114,114,.5);font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;padding:.2rem .55rem;border-radius:999px;margin:0 0 .55rem}
+        .ms-eyebrow{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--lab-soft);margin:0 0 .5rem}
+        .ms-title{font-size:1rem;font-weight:650;color:var(--lab-ink);margin:0 0 .2rem;line-height:1.3;max-width:32ch}
+        .ms-auth{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--lab-accent2);margin:0 0 .55rem}
+        .ms-abstract{font-size:.79rem;color:var(--lab-soft);line-height:1.55;margin:0 0 .7rem}
+        .ms-abstract b{color:var(--lab-ink);font-weight:600}
+        .ms-fig{border:1px solid var(--lab-line);border-radius:8px;background:#0a0d17;padding:.4rem}
+        .ms-fig svg{width:100%;height:auto;display:block}
+        .ms-figcap{font-family:ui-monospace,monospace;font-size:.68rem;color:var(--lab-soft);margin:.4rem 0 0}
+        .rv-card{border:1px solid var(--lab-line);border-radius:12px;background:#0a0d17;padding:1rem 1.05rem}
+        .rv-head{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin:0 0 .7rem}
+        .rv-chip{font-family:ui-monospace,monospace;font-size:.64rem;letter-spacing:.05em;color:#e0a458;background:rgba(224,164,88,.12);border:1px solid rgba(224,164,88,.5);border-radius:999px;padding:.18rem .55rem}
+        .rv-model{font-family:ui-monospace,monospace;font-size:.68rem;color:var(--lab-soft)}
+        .rv-verdict{font-size:.83rem;color:var(--lab-ink);line-height:1.5;margin:0 0 .6rem}
+        .rv-risks{list-style:none;margin:0 0 .6rem;padding:0;display:flex;flex-direction:column;gap:.4rem}
+        .rv-risks li{font-size:.78rem;color:var(--lab-soft);line-height:1.5}
+        .rv-risks b{color:var(--lab-ink);font-weight:600}
+        .rv-x{color:#f47272;font-family:ui-monospace,monospace}
+        .rv-next{font-size:.78rem;color:var(--lab-soft);line-height:1.5;margin:0;border-top:1px solid var(--lab-line);padding-top:.55rem}
+        .rv-next b,.rv-verdict b{color:var(--lab-ink)}
+        .bh-top{display:flex;align-items:baseline;gap:.7rem;margin:.2rem 0 .8rem;flex-wrap:wrap}
+        .bh-big{font-family:ui-monospace,monospace;font-size:2.4rem;font-weight:700;line-height:1;background:linear-gradient(120deg,var(--lab-accent),var(--lab-accent2));-webkit-background-clip:text;background-clip:text;color:transparent}
+        .bh-biglab{font-size:.75rem;color:var(--lab-soft);line-height:1.45}
+        .bh-meterrow{display:grid;grid-template-columns:auto 1fr auto;gap:.6rem;align-items:center;margin:0 0 .85rem}
+        .bh-mlab{font-family:ui-monospace,monospace;font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lab-soft)}
+        .bh-meter{height:5px;border-radius:3px;background:#1a1f30;overflow:hidden}
+        .bh-meter i{display:block;height:100%;min-width:2px;background:#f47272}
+        .bh-pct{font-family:ui-monospace,monospace;font-size:.7rem;color:#f47272}
+        .bh-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+        .bh-chip{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.25rem .6rem}
+        .bh-chip.amber{color:#e0a458;border-color:rgba(224,164,88,.5)}
+        .bh-chip.coral{color:#f47272;border-color:rgba(244,114,114,.5)}
+        .pb-ladder ul{list-style:none;margin:.1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+        .pb-ladder li{display:flex;align-items:center;gap:.6rem;font-size:.85rem;line-height:1.4}
+        .pb-ic{width:1.15rem;height:1.15rem;flex-shrink:0;border-radius:50%;display:grid;place-items:center;font-size:.7rem;font-family:ui-monospace,monospace}
+        .pb-ladder li.pass{color:var(--lab-ink)}
+        .pb-ladder li.pass .pb-ic{color:var(--lab-accent2);border:1px solid rgba(74,214,196,.55)}
+        .pb-ladder li.fail{color:var(--lab-soft)}
+        .pb-ladder li.fail .pb-ic{color:#f47272;border:1px solid rgba(244,114,114,.55)}
+        .pb-div{display:flex;align-items:center;font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--lab-soft)}
+        .pb-div span{padding-right:.6rem;white-space:nowrap}
+        .pb-div::after{content:"";flex:1;height:1px;background:var(--lab-line)}
+        .pb-foot{font-size:.78rem;color:#f47272;margin:.75rem 0 0;font-weight:500}
       `}</style>
 
       <div className="cfg-panel" role="tabpanel">
@@ -1393,12 +1563,7 @@ export default function LabStages() {
           if (sub === "") {
             if (tab === "data") return <DataView />;
             if (tab === "research") return <ResearchView />;
-            return (
-              <div>
-                <div className="cfg-viz"><PaperOverview /></div>
-                <p className="cfg-ov">{OVERVIEW_INTRO[tab]}</p>
-              </div>
-            );
+            return <PaperView />;
           }
           const items = itemsFor(tab);
           const active = items.find((i) => i.value === sub) || items[0];
