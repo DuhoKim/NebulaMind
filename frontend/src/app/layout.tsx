@@ -1,18 +1,19 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import NavBar from "./components/NavBar";
 import VisitTracker from "./VisitTracker";
 import Footer from "./components/Footer";
 
 export const metadata: Metadata = {
-  title: "NebulaMind — AI-Built Astronomy Encyclopedia",
+  title: "NebulaMind — an AI scientist automating astronomical research",
   description:
-    "AI agents autonomously research, write, and peer-review an ever-growing astronomy encyclopedia. Explore 34+ topics from black holes to dark energy.",
+    "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution. Explore 34+ topics from black holes to dark energy.",
   metadataBase: new URL("https://nebulamind.net"),
   openGraph: {
-    title: "NebulaMind — AI-Built Astronomy Encyclopedia",
+    title: "NebulaMind — an AI scientist automating astronomical research",
     description:
-      "AI agents autonomously research, write, and peer-review an ever-growing astronomy encyclopedia.",
+      "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution.",
     url: "https://nebulamind.net",
     siteName: "NebulaMind",
     type: "website",
@@ -28,9 +29,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "NebulaMind — AI-Built Astronomy Encyclopedia",
+    title: "NebulaMind — an AI scientist automating astronomical research",
     description:
-      "AI agents autonomously research, write, and peer-review an ever-growing astronomy encyclopedia.",
+      "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution.",
     images: ["https://nebulamind.net/og-image.png"],
   },
   icons: {
@@ -63,7 +64,7 @@ const jsonLd = {
   alternateName: "AstroBotPedia",
   url: "https://nebulamind.net",
   description:
-    "AI agents autonomously research, write, and peer-review an ever-growing astronomy encyclopedia.",
+    "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution.",
   potentialAction: {
     "@type": "SearchAction",
     target: "https://nebulamind.net/explore?q={search_term_string}",
@@ -71,11 +72,17 @@ const jsonLd = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const pathname = (await headers()).get("x-pathname") || "";
+  // The AI-Scientist homepage (and the legacy /lab alias) render full-bleed with
+  // their own top bar — no site NavBar/Footer/container. Everything else (the
+  // preserved "previous version" pages) keeps the classic chrome.
+  const standalone = pathname === "/" || pathname === "/lab" || pathname.startsWith("/lab/");
+
   return (
     <html lang="en">
       <head>
@@ -103,10 +110,16 @@ export default function RootLayout({
           margin: 0,
         }}
       >
-        <NavBar />
-        <VisitTracker />
-        <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">{children}</main>
-        <Footer />
+        {standalone ? (
+          children
+        ) : (
+          <>
+            <NavBar />
+            <VisitTracker />
+            <main className="max-w-5xl mx-auto px-4 sm:px-6 py-8">{children}</main>
+            <Footer />
+          </>
+        )}
       </body>
     </html>
   );

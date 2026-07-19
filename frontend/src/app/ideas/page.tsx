@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import IdeasIndexClient from "./IdeasIndexClient";
 
 export const metadata: Metadata = {
-  title: "Research Ideas — NebulaMind",
-  description: "Browse AI-generated astronomy research ideas linked to NebulaMind wiki claims.",
+  title: "Galaxy Evolution Research — NebulaMind",
+  description: "Browse Galaxy Evolution research ideas linked to NebulaMind wiki claims.",
 };
 
 export default function IdeasIndexPage() {

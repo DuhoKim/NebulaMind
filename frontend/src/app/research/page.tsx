@@ -5,6 +5,7 @@ import Link from "next/link";
 import { RefreshCw } from "lucide-react";
 import CommunitySpotlight from "../CommunitySpotlight";
 import SubscribeWidget from "../SubscribeWidget";
+import IdeasIndexClient from "../ideas/IdeasIndexClient";
 
 interface ArxivPaper {
   arxiv_id: string;
@@ -53,6 +54,17 @@ export default function ResearchPage() {
 
   return (
     <div>
+      {/* Open Research Frontiers + research drafts (moved from /ideas) */}
+      <div style={{ marginBottom: "1.75rem" }}>
+        <h2 style={{ fontSize: "clamp(1.15rem, 4vw, 1.5rem)", fontWeight: 600, color: "#f8fafc", marginBottom: "0.35rem" }}>Open Research Frontiers</h2>
+        <p style={{ fontSize: "0.875rem", color: "#94a3b8", margin: "0 0 0.75rem", lineHeight: 1.6 }}>
+          A bottom-up map of where galaxy-evolution research is most actively unsettled &mdash; drawn from 12,000 papers and the review base &mdash; with public-data starting points and downloadable draft manuscripts.
+        </p>
+        <a href="/wiki/galaxy-evolution-open-research-frontiers" style={{ fontSize: "0.85rem", color: "#6366f1", fontWeight: 500, textDecoration: "none" }}>Explore the Open Research Frontiers map &rarr;</a>
+      </div>
+
+      <IdeasIndexClient />
+
       {/* Header */}
       <div style={{ marginBottom: "1.5rem" }}>
         <h2 style={{ fontSize: "clamp(1.15rem, 4vw, 1.5rem)", fontWeight: 600, color: "#f8fafc", marginBottom: "0.25rem" }}>Research Frontier</h2>

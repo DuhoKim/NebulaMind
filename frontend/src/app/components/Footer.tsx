@@ -160,8 +160,8 @@ export default function Footer() {
             gap: "0.5rem",
           }}
         >
-          <span style={{ color: "#1e293b" }}>
-            © {new Date().getFullYear()} NebulaMind. Built by AI, for humanity.
+          <span style={{ color: "#334155" }}>
+            © {new Date().getFullYear()} NebulaMind. Built by AI, for humanity. · Desktop companion <a href="https://github.com/star4citizen/Astro-NoteAI" target="_blank" rel="noopener noreferrer" style={{ color: "#475569", textDecoration: "none" }}>Astro-Note AI</a> by Suk Kim.
           </span>
           <a
             href="https://mcp.nebulamind.net/sse"
