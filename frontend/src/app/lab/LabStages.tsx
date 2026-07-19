@@ -1,12 +1,13 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 import { STEPS, useTab, useSub, select } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
 import { itemsFor } from "./stageData";
 import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
+import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -680,23 +681,6 @@ const OVERVIEW_INTRO: Record<string, string> = {
   paper: "Every result is drafted as a paper and hardened by an automated referee — revised until it holds, or honestly held back. Pick a stage above for detail.",
 };
 
-function ResearchOverview() {
-  const box = (x: number, title: string, path: string) => (
-    <g>
-      <rect x={x} y="18" width="240" height="118" rx="8" fill="#0a0d17" stroke="#242a3d" />
-      <path d={path} transform={`translate(${x + 34},34)`} fill="none" stroke="#7c86ff" strokeWidth="2.5" />
-      <text x={x + 120} y="154" fontSize="11" fill="#9aa3b8" textAnchor="middle">{title}</text>
-    </g>
-  );
-  return (
-    <svg viewBox="0 0 780 168" style={{ width: "100%", height: "auto" }} role="img" aria-label="The measured relations">
-      {box(0, "Main sequence — rising", "M0 86 L172 8")}
-      {box(270, "Mass–metallicity — flattening", "M0 90 Q40 20 90 14 T172 8")}
-      {box(540, "Mass function — declining", "M0 8 Q70 12 120 48 T172 90")}
-    </svg>
-  );
-}
-
 function PaperOverview() {
   const node = (cx: number, label: string, color: string) => (
     <g>
@@ -921,6 +905,212 @@ function DataView() {
   );
 }
 
+const RECIPE = [
+  "pick a relation",
+  "bin galaxies by mass",
+  "take medians on a matched scale",
+  "fit slope & normalisation",
+  "overlay every survey + the simulation",
+  "disagreement = a frontier",
+];
+
+// Graphic 1 — a measurement is the shape of a relation.
+function RelationGallery() {
+  const plots: { d: string; extra?: ReactNode; yl: string; xl: string; cap: string }[] = [
+    { d: "M30 80 C60 68 96 46 132 30", yl: "log SFR", xl: "log M✱", cap: "Main sequence — lifts with redshift",
+      extra: <path d="M30 68 C60 55 96 33 132 17" stroke="#7c86ff" strokeWidth="1.6" strokeOpacity="0.45" fill="none" /> },
+    { d: "M30 84 C56 80 76 42 132 32", yl: "12+log(O/H)", xl: "log M✱", cap: "Mass–metallicity — rises then saturates" },
+    { d: "M30 30 C70 32 92 38 108 50 C120 60 126 80 132 86", yl: "log φ", xl: "log M✱", cap: "Stellar mass function — Schechter cutoff" },
+    { d: "M30 82 C48 72 60 24 78 24 C96 24 108 72 132 82", yl: "M✱/M_halo", xl: "log M_halo", cap: "SF efficiency — peaks at a special halo mass" },
+    { d: "M30 78 C64 60 98 40 132 30", yl: "relation", xl: "log M✱", cap: "Data vs TNG — diverge at the massive end",
+      extra: <path d="M30 78 C64 58 98 34 132 14" stroke="#9aa3b8" strokeWidth="1.8" strokeDasharray="4 3" fill="none" /> },
+  ];
+  return (
+    <div className="cfg-viz">
+      <div className="rg-grid">
+        {plots.map((p, i) => (
+          <figure className="rg-fig" key={i}>
+            <svg viewBox="0 0 150 110" role="img" aria-label={p.cap}>
+              <path d="M26 14 V88 H138" fill="none" stroke="#242a3d" strokeWidth="1" />
+              <text x="8" y="52" fontSize="8.5" fill="#9aa3b8" fontFamily="ui-monospace,monospace" transform="rotate(-90 8 52)" textAnchor="middle">{p.yl}</text>
+              <text x="82" y="104" fontSize="8.5" fill="#9aa3b8" fontFamily="ui-monospace,monospace" textAnchor="middle">{p.xl}</text>
+              {p.extra}
+              <path d={p.d} stroke="#4ad6c4" strokeWidth="2" fill="none" strokeLinecap="round" />
+            </svg>
+            <figcaption>{p.cap}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <p className="cap">A measurement is the shape of a relation. Solid teal = the data; dashed grey = the IllustrisTNG simulation; faint violet = the same relation at higher redshift.</p>
+    </div>
+  );
+}
+
+// Graphic 2 — eight literature-dispersion quantities ranked by mass-controlled S.
+function DispersionChart() {
+  const x0 = 150, maxS = 3.6, k = 170 / maxS;
+  const y = (i: number) => 16 + i * 25;
+  return (
+    <svg className="svc" viewBox="0 0 374 244" role="img"
+      aria-label="Eight measured quantities ranked by PDG scale factor S; five contested (S>2), two settled (S near 1)">
+      <rect x={x0 + 2 * k} y="10" width={(maxS - 2) * k} height="206" fill="#f47272" fillOpacity="0.06" />
+      <text x={x0 + 2.8 * k} y="8" fontSize="7.5" fill="#f47272" textAnchor="middle" fontFamily="ui-monospace,monospace">contested · S&gt;2</text>
+      <line x1={x0 + k} y1="10" x2={x0 + k} y2="216" stroke="#4ad6c4" strokeWidth="1" strokeDasharray="3 3" strokeOpacity="0.6" />
+      <text x={x0 + k} y="230" fontSize="7.5" fill="#4ad6c4" textAnchor="middle" fontFamily="ui-monospace,monospace">S=1 · agree</text>
+      {DISPERSION.map((d, i) => {
+        const color = VERDICT_META[d.verdict].color;
+        const w = (d.S / maxS) * 170;
+        return (
+          <g key={d.name}>
+            <text x="4" y={y(i) + 9.5} fontSize="9.5" fill="#9aa3b8" fontFamily="ui-monospace,monospace">{d.name}</text>
+            <rect x={x0} y={y(i)} width={w} height="12" rx="3" fill={color} />
+            <text x={x0 + w + 5} y={y(i) + 9.5} fontSize="9" fill={color} fontFamily="ui-monospace,monospace">{d.S.toFixed(2)}</text>
+            {d.tag && <text x={x0 + w + 30} y={y(i) + 9.5} fontSize="7.5" fill={color} fontFamily="ui-monospace,monospace">{d.tag}</text>}
+          </g>
+        );
+      })}
+    </svg>
+  );
+}
+
+// Graphic 4 — which of the 4 sources feeds which relation.
+function FeedMatrix() {
+  const cols: { s: Source; x: number }[] = [
+    { s: "SDSS", x: 150 }, { s: "JWST", x: 200 }, { s: "COSMOS2020", x: 250 }, { s: "IllustrisTNG", x: 296 },
+  ];
+  const rows: { m: string; y: number; fill: Record<string, "obs" | "sim" | "">; }[] = [
+    { m: "Main sequence", y: 62, fill: { SDSS: "obs", JWST: "obs", COSMOS2020: "", IllustrisTNG: "sim" } },
+    { m: "Mass–metallicity", y: 96, fill: { SDSS: "obs", JWST: "obs", COSMOS2020: "", IllustrisTNG: "sim" } },
+    { m: "Stellar mass function", y: 130, fill: { SDSS: "obs", JWST: "obs", COSMOS2020: "obs", IllustrisTNG: "sim" } },
+  ];
+  return (
+    <svg className="svc" viewBox="0 0 340 168" role="img" aria-label="Which data source feeds which measurement">
+      {cols.map((c) => (
+        <g key={c.s}>
+          <text x={c.x} y="24" fontSize="8.5" fill="#c7cede" textAnchor="middle" fontFamily="ui-monospace,monospace">{c.s === "COSMOS2020" ? "COSMOS" : c.s === "IllustrisTNG" ? "TNG" : c.s}</text>
+          <text x={c.x} y="35" fontSize="7.5" fill="#6b7386" textAnchor="middle" fontStyle="italic">{SOURCE_META[c.s].z}</text>
+        </g>
+      ))}
+      {rows.map((r) => (
+        <g key={r.m}>
+          <text x="6" y={r.y + 4} fontSize="9" fill="#9aa3b8" fontFamily="ui-monospace,monospace">{r.m}</text>
+          {cols.map((c) => {
+            const v = r.fill[c.s];
+            if (v === "obs") return <circle key={c.s} cx={c.x} cy={r.y} r="5.5" fill="#4ad6c4" />;
+            if (v === "sim") return <circle key={c.s} cx={c.x} cy={r.y} r="5.5" fill="none" stroke="#7c86ff" strokeWidth="2" />;
+            return <circle key={c.s} cx={c.x} cy={r.y} r="2" fill="#242a3d" />;
+          })}
+        </g>
+      ))}
+      <g transform="translate(150,156)">
+        <circle cx="0" cy="-3" r="4.5" fill="#4ad6c4" /><text x="9" y="0" fontSize="8" fill="#9aa3b8">survey</text>
+        <circle cx="66" cy="-3" r="4.5" fill="none" stroke="#7c86ff" strokeWidth="2" /><text x="76" y="0" fontSize="8" fill="#9aa3b8">simulation</text>
+      </g>
+    </svg>
+  );
+}
+
+function ResearchView() {
+  return (
+    <div className="dv">
+      <p className="dv-lead">
+        A measurement here is the <b>shape of a relation</b> — plotted the same way for every survey and every
+        simulation. Because the recipe never changes, any disagreement that&rsquo;s left is <b>physics, not method</b>.
+        Each method below is a real, fixed recipe; the dispersion scores come from the <b>published literature</b>.
+        But any relation the pipeline computes on its own is a <b>descriptive draft</b>, not a validated measurement,
+        until a person has reviewed it.
+      </p>
+
+      {/* Recipe */}
+      <div className="corpus-block">
+        <p className="cch-h">How a measurement is built</p>
+        <div className="cfg-pipe">
+          {RECIPE.map((s, i) => (
+            <span key={i}>{i > 0 && <em>→</em>}
+              {i === RECIPE.length - 1 ? <b style={{ color: "#f47272" }}>{s}</b> : s}
+            </span>
+          ))}
+        </div>
+        <p className="cch-note">Every method here is the same recipe on a different relation — the last step is where the science is.</p>
+      </div>
+
+      {/* Relation gallery */}
+      <div className="corpus-block">
+        <p className="cch-h">What a relation looks like</p>
+        <RelationGallery />
+      </div>
+
+      {/* Dispersion chart */}
+      <div className="corpus-block">
+        <p className="cch-h">Settled vs contested — how much the literature disagrees</p>
+        <DispersionChart />
+        <p className="cch-note">
+          Independent published measurements of the same quantity, matched by mass and redshift. Bars past
+          <b style={{ color: "#f47272" }}> S=2</b> disagree beyond their own error bars — a live frontier; near
+          <b style={{ color: "#4ad6c4" }}> S=1</b> the field agrees. Two look contested but aren&rsquo;t:
+          <b> UV-LF α</b> is <b style={{ color: "#4ad6c4" }}>z-driven</b> (cosmic evolution, not conflict), and gas
+          <b> metallicity</b> only truly disagrees at <b style={{ color: "#e0a458" }}>z&gt;7</b> once you compare like-mass galaxies.
+        </p>
+        <p className="cfg-credit">Dispersion scores are computed from published measurements; the pipeline&rsquo;s own draft results are descriptive until a human review clears them — some have not met our publishable bar.</p>
+      </div>
+
+      {/* The catalog */}
+      <div className="dv-groups">
+        <p className="cch-h" style={{ margin: "0 0 .2rem" }}>The measurements — grouped by what they probe</p>
+        {RESEARCH_GROUPS.map((g) => {
+          const members = MEASUREMENTS.filter((m) => m.group === g.key);
+          return (
+            <div className="dv-group" key={g.key}>
+              <div className="dv-group-h"><b>{g.title}</b><span>{members.length} {members.length === 1 ? "relation" : "relations"}</span></div>
+              <p className="dv-group-d">{g.desc}</p>
+              <div className="rc-list">
+                {members.map((m) => {
+                  const vm = VERDICT_META[m.verdict];
+                  return (
+                    <div className="rc-item" key={m.name}>
+                      <div className="rc-head">
+                        <b>{m.name}</b>
+                        <span className="rc-verdict" style={{ color: vm.color, borderColor: vm.color }}>
+                          {vm.label}{m.S != null && <i> · S {m.S.toFixed(2)}</i>}
+                        </span>
+                      </div>
+                      <div className="rc-row"><span className="rc-k">measures</span><span>{m.measures}</span></div>
+                      <div className="rc-row"><span className="rc-k">tests</span><span>{m.tests}</span></div>
+                      <div className="rc-row"><span className="rc-k">how</span><span className="rc-how">{m.method}</span></div>
+                      <div className="rc-tags">
+                        {m.data.map((s) => (
+                          <span className={`rc-src${SOURCE_META[s].sim ? " sim" : ""}`} key={s}>{s === "IllustrisTNG" ? "TNG" : s}</span>
+                        ))}
+                        {m.frontier && <span className="rc-frontier">frontier → {m.frontier}</span>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      {/* Feed matrix */}
+      <div className="corpus-block">
+        <p className="cch-h">Which data feeds which measurement</p>
+        <FeedMatrix />
+        <p className="cch-note">Every relation is anchored at z≈0 by SDSS and pushed to the frontier by JWST; COSMOS2020 deepens only the mass function; IllustrisTNG (rings) is the simulation each one is checked against.</p>
+      </div>
+
+      {/* Cross-step footer */}
+      <a className="dv-explorer" href="/lab">
+        <div>
+          <b>These measurements join the pipeline together →</b>
+          <span>They run on the surveys in <b style={{ color: "#4ad6c4" }}>Data</b>; the disagreements they expose become the ranked frontiers in <b style={{ color: "#7c86ff" }}>Ranking</b>. Use the Topic menu above to walk the steps.</span>
+        </div>
+        <span className="dv-explorer-cta">Back to the pipeline</span>
+      </a>
+    </div>
+  );
+}
+
 export default function LabStages() {
   const tab = useTab();
   const sub = useSub();
@@ -1133,9 +1323,28 @@ export default function LabStages() {
         @media(max-width:560px){.dv-grow{grid-template-columns:1fr;gap:.15rem}.dv-tags{padding-top:0}}
         .dv-explorer{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;text-decoration:none;border:1px solid rgba(124,134,255,.4);border-radius:11px;background:linear-gradient(90deg,rgba(124,134,255,.09),rgba(74,214,196,.06));padding:.85rem 1rem;transition:border-color .15s}
         .dv-explorer:hover{border-color:var(--lab-accent)}
-        .dv-explorer b{display:block;font-size:.95rem;color:var(--lab-ink);font-weight:650}
+        .dv-explorer>div>b{display:block;font-size:.95rem;color:var(--lab-ink);font-weight:650}
         .dv-explorer div span{display:block;font-size:.78rem;color:var(--lab-soft);line-height:1.45;margin-top:.2rem}
         .dv-explorer-cta{flex-shrink:0;font-size:.82rem;font-weight:600;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.45);border-radius:8px;padding:.45rem .8rem;white-space:nowrap}
+        .rg-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(132px,1fr));gap:.7rem}
+        .rg-fig{margin:0}
+        .rg-fig svg{width:100%;height:auto;display:block}
+        .rg-fig figcaption{font-size:.68rem;color:var(--lab-soft);text-align:center;margin-top:.3rem;line-height:1.4}
+        .rc-list{display:flex;flex-direction:column;gap:.45rem}
+        .rc-item{border:1px solid var(--lab-line);border-radius:9px;background:#0d1120;padding:.6rem .75rem}
+        .rc-head{display:flex;align-items:center;justify-content:space-between;gap:.6rem;flex-wrap:wrap;margin-bottom:.35rem}
+        .rc-head b{font-size:.9rem;color:var(--lab-ink);font-weight:650}
+        .rc-verdict{font-family:ui-monospace,monospace;font-size:.62rem;letter-spacing:.03em;border:1px solid;border-radius:999px;padding:.05rem .45rem;white-space:nowrap}
+        .rc-verdict i{font-style:normal;opacity:.85}
+        .rc-row{display:grid;grid-template-columns:62px 1fr;gap:.6rem;font-size:.79rem;line-height:1.45;padding:.08rem 0}
+        .rc-k{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lab-soft);padding-top:.18rem}
+        .rc-row span:last-child{color:var(--lab-ink)}
+        .rc-how{color:var(--lab-soft)!important;font-family:ui-monospace,monospace;font-size:.72rem}
+        .rc-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem;align-items:center}
+        .rc-src{font-family:ui-monospace,monospace;font-size:.62rem;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.4);border-radius:4px;padding:.03rem .35rem}
+        .rc-src.sim{color:var(--lab-accent);border-color:rgba(124,134,255,.45)}
+        .rc-frontier{font-family:ui-monospace,monospace;font-size:.6rem;color:#f47272;margin-left:.15rem}
+        @media(max-width:560px){.rc-row{grid-template-columns:1fr;gap:.05rem}}
       `}</style>
 
       <div className="cfg-panel" role="tabpanel">
@@ -1183,10 +1392,10 @@ export default function LabStages() {
         {(tab === "data" || tab === "research" || tab === "paper") && (() => {
           if (sub === "") {
             if (tab === "data") return <DataView />;
-            const G = tab === "research" ? ResearchOverview : PaperOverview;
+            if (tab === "research") return <ResearchView />;
             return (
               <div>
-                <div className="cfg-viz"><G /></div>
+                <div className="cfg-viz"><PaperOverview /></div>
                 <p className="cfg-ov">{OVERVIEW_INTRO[tab]}</p>
               </div>
             );
