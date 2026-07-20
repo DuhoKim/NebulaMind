@@ -30,19 +30,6 @@ const isDemo = (r: Run) => !r.created_utc || /demo/i.test(r.id);
 const prettyMethod = (m: string | null) =>
   (m ?? "study").split("-").map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w)).join(" ");
 
-// Flagship, human-guided studies hosted under /studies/ (not automated lab-runs).
-// These went the full distance — real forward-model + referee loop — but are still
-// descriptive until a human clears them. Curated; add an entry per published study.
-const FLAGSHIP = [
-  {
-    title: "A Selection-Bounded Mass–Metallicity Deficit at z>7",
-    summary: "A ~0.25–0.41 dex early-universe metallicity deficit that survives a JWST emission-line selection forward-model (bootstrap 95% CI excludes zero) — held descriptive, not a detection.",
-    meta: "SDSS anchor N=203,599 · Nakajima+23 z>7 (VizieR) · 7/7 bounded systematics · one overnight run",
-    verdict: "MINOR",
-    pdf: "/studies/z7-mzr-descriptive.pdf",
-  },
-];
-
 export default function PipelineBoard() {
   const [runs, setRuns] = useState<Run[] | null>(null);
   const [err, setErr] = useState<string | null>(null);
@@ -81,26 +68,6 @@ export default function PipelineBoard() {
     <div className="pb">
       <style>{PB_CSS}</style>
 
-      {/* Flagship, human-guided studies (hosted under /studies/) */}
-      <p className="pb-sect">Flagship studies — hand-guided, worked the full distance</p>
-      <div className="pb-runs">
-        {FLAGSHIP.map((f) => (
-          <div className="pb-run pb-flag" key={f.pdf}>
-            <div className="pb-run-top">
-              <span className="pb-run-title">{f.title}</span>
-              <span className="pb-chip" style={{ borderColor: vcolor(f.verdict), color: vcolor(f.verdict) }}>{f.verdict} · not accepted</span>
-            </div>
-            <p className="pb-run-summary">{f.summary}</p>
-            <div className="pb-run-chips"><span className="pb-src pb-src-flag">flagship · hand-guided</span></div>
-            <p className="pb-run-meta">{f.meta}</p>
-            <div className="pb-run-links"><a href={f.pdf} target="_blank" rel="noopener noreferrer">read the manuscript (PDF) ↗</a></div>
-            <p className="pb-tag">descriptive — not validated, not published</p>
-          </div>
-        ))}
-      </div>
-      <p className="pb-flag-note">These went the full distance — a real forward-model and referee loop — but a human still hasn&rsquo;t cleared them, so they stay descriptive too.</p>
-
-      <p className="pb-sect">Automated pipeline runs</p>
       <div className="pb-kpis">
         <div className="pb-kpi"><b>{total}</b><span>real runs</span></div>
         <div className="pb-kpi"><b>{nPdf}</b><span>with a draft PDF</span></div>
@@ -174,7 +141,7 @@ export default function PipelineBoard() {
   );
 }
 
-const PB_CSS = `
+export const PB_CSS = `
 .pb{color:var(--lab-ink);margin-top:.4rem}
 .pb-state{padding:1.1rem;border:1px solid var(--lab-line);border-radius:12px;background:var(--lab-panel);color:var(--lab-soft);font-size:.86rem}
 .pb-err{color:#f47272}

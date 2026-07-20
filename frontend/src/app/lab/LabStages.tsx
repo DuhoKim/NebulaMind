@@ -9,6 +9,7 @@ import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIV
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
 import PipelineBoard from "./PipelineBoard";
+import FlagshipStudies from "./FlagshipStudies";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -1197,22 +1198,6 @@ function PaperView() {
         <p className="cch-note">0 of 2,490 cleared — that is the referee doing its job, not a failure. Nothing is held up as a measurement until a human clears it.</p>
       </div>
 
-      {/* A real output, worked the full distance */}
-      <div className="corpus-block">
-        <p className="cch-h">A real output — worked end to end</p>
-        <a className="fs-card" href="/studies/z7-mzr-descriptive.pdf" target="_blank" rel="noopener noreferrer">
-          <span className="fs-tag">descriptive · refereed MINOR · not validated</span>
-          <b className="fs-title">A Selection-Bounded Mass–Metallicity Deficit at z&gt;7</b>
-          <p className="fs-line">
-            A ~0.25–0.41 dex early-universe metallicity deficit that <b>survives a JWST emission-line
-            selection forward-model</b> (bootstrap 95% CI excludes zero) — held honestly as <b>descriptive, not a detection</b>.
-          </p>
-          <span className="fs-meta">7/7 bounded systematics · Nakajima+23 z&gt;7 (VizieR) · SDSS anchor N=203,599 · one overnight run</span>
-          <span className="fs-cta">Read the manuscript (PDF) →</span>
-        </a>
-        <p className="cch-note">The one study the pipeline took the full distance in a single overnight run — through the referee <em>and</em> a selection forward-model — and still labels descriptive. This is what clearing the floor but not the bar looks like.</p>
-      </div>
-
       {/* Publishable bar + what descriptive means */}
       <div className="dv-two">
         <div className="corpus-block">
@@ -1243,14 +1228,17 @@ function PaperView() {
         </div>
       </div>
 
-      {/* Live board pointer */}
-      <button className="dv-explorer" style={{ cursor: "pointer", textAlign: "left", font: "inherit" }} onClick={() => select("paper", "progress")}>
-        <div>
-          <b>See the papers in progress →</b>
-          <span>Every run the Lab has worked sits on one live board — where each stopped, what the referee said, and the descriptive PDF you can open. Honest attrition: most stop early, none is validated.</span>
-        </div>
-        <span className="dv-explorer-cta">Open the board</span>
-      </button>
+      {/* Two output tracks */}
+      <div className="pt-tracks">
+        <button className="pt-track" onClick={() => select("paper", "flagship")}>
+          <b>Flagship studies →</b>
+          <span>The hand-guided, curated papers that went the full distance. Few, deep, complete — open the manuscripts.</span>
+        </button>
+        <button className="pt-track" onClick={() => select("paper", "pipeline")}>
+          <b>Pipeline runs →</b>
+          <span>The fully-automated track, live from the run pipeline. Many, fast, high-attrition — most stop early, 0 validated.</span>
+        </button>
+      </div>
 
       {/* Cross-step footer */}
       <a className="dv-explorer" href="/lab">
@@ -1553,6 +1541,12 @@ export default function LabStages() {
         .fs-line b{color:var(--lab-ink);font-weight:600}
         .fs-meta{display:block;font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-accent2);margin-bottom:.6rem}
         .fs-cta{display:inline-block;font-size:.82rem;font-weight:600;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.45);border-radius:8px;padding:.4rem .75rem}
+        .pt-tracks{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+        @media(max-width:560px){.pt-tracks{grid-template-columns:1fr}}
+        .pt-track{text-align:left;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.3rem;border:1px solid rgba(124,134,255,.4);border-radius:11px;background:linear-gradient(135deg,rgba(124,134,255,.09),rgba(74,214,196,.05));padding:.85rem 1rem;transition:border-color .15s}
+        .pt-track:hover{border-color:var(--lab-accent)}
+        .pt-track b{font-size:.95rem;color:var(--lab-ink);font-weight:650}
+        .pt-track span{font-size:.8rem;color:var(--lab-soft);line-height:1.5}
       `}</style>
 
       <div className="cfg-panel" role="tabpanel">
@@ -1614,7 +1608,10 @@ export default function LabStages() {
                   <span className="cfg-sub-k">{k}</span><span className="cfg-sub-v">{v}</span>
                 </div>
               ))}
-              {tab === "paper" && sub === "progress" && (
+              {tab === "paper" && sub === "flagship" && (
+                <div style={{ padding: ".2rem .9rem 1rem" }}><FlagshipStudies /></div>
+              )}
+              {tab === "paper" && sub === "pipeline" && (
                 <div style={{ padding: ".2rem .9rem 1rem" }}><PipelineBoard /></div>
               )}
             </div>
