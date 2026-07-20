@@ -1193,6 +1193,22 @@ function PaperView() {
         <p className="cch-note">0 of 2,490 cleared — that is the referee doing its job, not a failure. Nothing is held up as a measurement until a human clears it.</p>
       </div>
 
+      {/* A real output, worked the full distance */}
+      <div className="corpus-block">
+        <p className="cch-h">A real output — worked end to end</p>
+        <a className="fs-card" href="/studies/z7-mzr-descriptive.pdf" target="_blank" rel="noopener noreferrer">
+          <span className="fs-tag">descriptive · refereed MINOR · not validated</span>
+          <b className="fs-title">A Selection-Bounded Mass–Metallicity Deficit at z&gt;7</b>
+          <p className="fs-line">
+            A ~0.25–0.41 dex early-universe metallicity deficit that <b>survives a JWST emission-line
+            selection forward-model</b> (bootstrap 95% CI excludes zero) — held honestly as <b>descriptive, not a detection</b>.
+          </p>
+          <span className="fs-meta">7/7 bounded systematics · Nakajima+23 z&gt;7 (VizieR) · SDSS anchor N=203,599 · one overnight run</span>
+          <span className="fs-cta">Read the manuscript (PDF) →</span>
+        </a>
+        <p className="cch-note">The one study the pipeline took the full distance in a single overnight run — through the referee <em>and</em> a selection forward-model — and still labels descriptive. This is what clearing the floor but not the bar looks like.</p>
+      </div>
+
       {/* Publishable bar + what descriptive means */}
       <div className="dv-two">
         <div className="corpus-block">
@@ -1515,6 +1531,14 @@ export default function LabStages() {
         .pb-div span{padding-right:.6rem;white-space:nowrap}
         .pb-div::after{content:"";flex:1;height:1px;background:var(--lab-line)}
         .pb-foot{font-size:.78rem;color:#f47272;margin:.75rem 0 0;font-weight:500}
+        .fs-card{display:block;text-decoration:none;border:1px solid rgba(124,134,255,.4);border-radius:11px;background:linear-gradient(90deg,rgba(124,134,255,.08),rgba(74,214,196,.05));padding:.85rem 1rem;transition:border-color .15s}
+        .fs-card:hover{border-color:var(--lab-accent)}
+        .fs-tag{display:inline-block;font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;color:#f47272;background:rgba(244,114,114,.14);border:1px solid rgba(244,114,114,.5);border-radius:999px;padding:.2rem .55rem;margin-bottom:.5rem}
+        .fs-title{display:block;font-size:1rem;color:var(--lab-ink);font-weight:650;line-height:1.3;margin-bottom:.3rem}
+        .fs-line{font-size:.82rem;color:var(--lab-soft);line-height:1.5;margin:0 0 .5rem}
+        .fs-line b{color:var(--lab-ink);font-weight:600}
+        .fs-meta{display:block;font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-accent2);margin-bottom:.6rem}
+        .fs-cta{display:inline-block;font-size:.82rem;font-weight:600;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.45);border-radius:8px;padding:.4rem .75rem}
       `}</style>
 
       <div className="cfg-panel" role="tabpanel">
