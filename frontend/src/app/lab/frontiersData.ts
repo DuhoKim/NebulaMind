@@ -11,7 +11,7 @@ export type Frontier = {
 export const FRONTIERS: Frontier[] = [
   {
     "cluster": 41,
-    "name": "Formation · Metallicity · JWST",
+    "name": "JWST high-redshift galaxy evolution and emission",
     "desc": "A galaxy-evolution cluster (1306 papers, median 2021) around Formation, Metallicity, JWST, Redshift, III, Evolution. Contested-measurement rate 0.11.",
     "size": 1306,
     "yearMedian": 2021,
@@ -37,7 +37,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 33,
-    "name": "Dark · Energy · Cdm",
+    "name": "Dark energy models and Hubble tension",
     "desc": "A cosmology cluster (1124 papers, median 2021) around Dark, Energy, Cdm, EDE, Hubble, BAO. Contested-measurement rate 0.44.",
     "size": 1124,
     "yearMedian": 2021,
@@ -63,7 +63,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 53,
-    "name": "Gaia · Chemical · Parameters",
+    "name": "Gaia-APOGEE Galactic Chemical Evolution",
     "desc": "A galaxy-evolution cluster (661 papers, median 2021) around Gaia, Chemical, Parameters, Apogee, Spectra, Abundances. Contested-measurement rate 0.05.",
     "size": 661,
     "yearMedian": 2021,
@@ -89,7 +89,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 36,
-    "name": "Phase · Electroweak · Gravitational",
+    "name": "Electroweak phase transition and bubble dynamics",
     "desc": "A cosmology cluster (477 papers, median 2021) around Phase, Electroweak, Gravitational, Transition, Bubble, Higgs. Contested-measurement rate 0.04.",
     "size": 477,
     "yearMedian": 2021,
@@ -115,7 +115,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 28,
-    "name": "Black · Hole · Accretion",
+    "name": "SMBH accretion and gas formation",
     "desc": "A galaxy-evolution cluster (966 papers, median 2018) around Black, Hole, Accretion, Holes, Supermassive, Gas. Contested-measurement rate 0.05.",
     "size": 966,
     "yearMedian": 2018,
@@ -141,7 +141,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 0,
-    "name": "FRB · FRBs · Radio",
+    "name": "FRB host galaxies and IGM dispersion probes",
     "desc": "A cosmology cluster (441 papers, median 2022) around FRB, FRBs, Radio, Fast, Bursts, Host. Contested-measurement rate 0.10.",
     "size": 441,
     "yearMedian": 2022,
@@ -167,7 +167,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 15,
-    "name": "Reionization · Forest · IGM",
+    "name": "Lyman-α forest power spectrum in IGM reionization simulations",
     "desc": "A cosmology cluster (544 papers, median 2019) around Reionization, Forest, IGM, Simulations, Lyman-, Redshift. Contested-measurement rate 0.09.",
     "size": 544,
     "yearMedian": 2019,
@@ -193,7 +193,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 16,
-    "name": "LAEs · LyC · Escape",
+    "name": "Lyman-alpha escape fraction in high-redshift galaxies",
     "desc": "A galaxy-evolution cluster (896 papers, median 2019) around LAEs, LyC, Escape, Esc, Emission, Lyman. Contested-measurement rate 0.06.",
     "size": 896,
     "yearMedian": 2019,
@@ -219,7 +219,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 42,
-    "name": "Redshift · Power · Survey",
+    "name": "Large-scale structure and matter power spectrum from galaxy surveys",
     "desc": "A cosmology cluster (4279 papers, median 2020) around Redshift, Power, Survey, Lensing, Bias, Spectrum. Contested-measurement rate 0.06.",
     "size": 4279,
     "yearMedian": 2020,
@@ -245,7 +245,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 23,
-    "name": "Matter · Dark · FDM",
+    "name": "Fuzzy dark matter solitons",
     "desc": "A cosmology cluster (446 papers, median 2021) around Matter, Dark, FDM, Soliton, SFDM, Ultralight. Contested-measurement rate 0.10.",
     "size": 446,
     "yearMedian": 2021,
@@ -271,7 +271,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 24,
-    "name": "Axion · Axions · Dark",
+    "name": "Axion dark matter and ALP phenomenology",
     "desc": "A cosmology cluster (895 papers, median 2021) around Axion, Axions, Dark, Matter, Qcd, Alp. Contested-measurement rate 0.05.",
     "size": 895,
     "yearMedian": 2021,
@@ -297,7 +297,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 18,
-    "name": "Black · Gravitational · Binary",
+    "name": "LISA and black hole binary gravitational waves",
     "desc": "A cosmology cluster (3019 papers, median 2021) around Black, Gravitational, Binary, Hole, Binaries, Wave. Contested-measurement rate 0.05.",
     "size": 3019,
     "yearMedian": 2021,
@@ -323,7 +323,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 50,
-    "name": "r-process · metal-poor · CEMP",
+    "name": "r-process-enhanced metal-poor stars",
     "desc": "A galaxy-evolution cluster (460 papers, median 2020) around r-process, metal-poor, CEMP, Elements, Abundances, Abundance. Contested-measurement rate 0.08.",
     "size": 460,
     "yearMedian": 2020,
@@ -349,7 +349,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 45,
-    "name": "Halo · Haloes · Matter",
+    "name": "Dark matter halo alignments in cosmic filaments",
     "desc": "A cosmology cluster (935 papers, median 2019) around Halo, Haloes, Matter, Dark, Alignment, Filaments. Contested-measurement rate 0.07.",
     "size": 935,
     "yearMedian": 2019,
@@ -375,7 +375,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 13,
-    "name": "TDE · TDEs · Disruption",
+    "name": "Tidal Disruption Events and QPEs Around Black Holes",
     "desc": "A galaxy-evolution cluster (691 papers, median 2021) around TDE, TDEs, Disruption, Black, Tidal, Qpes. Contested-measurement rate 0.06.",
     "size": 691,
     "yearMedian": 2021,
@@ -401,7 +401,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 52,
-    "name": "Disk · Disc · Galactic",
+    "name": "Milky Way spiral disk kinematics",
     "desc": "A galaxy-evolution cluster (658 papers, median 2019) around Disk, Disc, Galactic, Kpc, Milky, Way. Contested-measurement rate 0.04.",
     "size": 658,
     "yearMedian": 2019,
@@ -427,7 +427,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 44,
-    "name": "Inflation · PBH · PBHs",
+    "name": "Primordial black holes from inflation",
     "desc": "A cosmology cluster (3695 papers, median 2020) around Inflation, PBH, PBHs, Primordial, Black, Inflationary. Contested-measurement rate 0.04.",
     "size": 3695,
     "yearMedian": 2020,
@@ -453,7 +453,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 12,
-    "name": "CMB · Planck · Microwave",
+    "name": "CMB power spectrum and non-Gaussianity from Planck and WMAP",
     "desc": "A cosmology cluster (492 papers, median 2014) around CMB, Planck, Microwave, Wmap, Power, Non-gaussianity. Contested-measurement rate 0.11.",
     "size": 492,
     "yearMedian": 2014,
@@ -479,7 +479,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 5,
-    "name": "Reionization · Signal · Power",
+    "name": "EoR intensity mapping and foreground separation",
     "desc": "A cosmology cluster (1575 papers, median 2020) around Reionization, Signal, Power, Spectrum, EoR, Foreground. Contested-measurement rate 0.03.",
     "size": 1575,
     "yearMedian": 2020,
@@ -505,7 +505,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 40,
-    "name": "Formation · Quenching · Quiescent",
+    "name": "Massive quiescent galaxy evolution in clusters",
     "desc": "A galaxy-evolution cluster (1796 papers, median 2017) around Formation, Quenching, Quiescent, Massive, Evolution, Star-forming. Contested-measurement rate 0.08.",
     "size": 1796,
     "yearMedian": 2017,
@@ -531,7 +531,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 56,
-    "name": "Lyrae · Halo · Stream",
+    "name": "Milky Way halo streams and RR Lyrae stars",
     "desc": "A galaxy-evolution cluster (810 papers, median 2019) around Lyrae, Halo, Stream, Streams, Rrab, Milky. Contested-measurement rate 0.03.",
     "size": 810,
     "yearMedian": 2019,
@@ -557,7 +557,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 51,
-    "name": "Clusters · Cluster · Open",
+    "name": "Gaia open cluster membership",
     "desc": "A galaxy-evolution cluster (446 papers, median 2021) around Clusters, Cluster, Open, Ngc, Gaia, Ocs. Contested-measurement rate 0.03.",
     "size": 446,
     "yearMedian": 2021,
@@ -583,7 +583,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 54,
-    "name": "Dwarf · Milky · Way",
+    "name": "Milky Way ultra-faint satellite kinematics",
     "desc": "A galaxy-evolution cluster (426 papers, median 2017) around Dwarf, Milky, Way, Velocity, Ultra-faint, Satellites. Contested-measurement rate 0.07.",
     "size": 426,
     "yearMedian": 2017,
@@ -609,7 +609,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 35,
-    "name": "Dust · SMGs · Formation",
+    "name": "ALMA SMGs at high redshift",
     "desc": "A galaxy-evolution cluster (1640 papers, median 2018) around Dust, SMGs, Formation, Gas, Emission, Alma. Contested-measurement rate 0.07.",
     "size": 1640,
     "yearMedian": 2018,
@@ -635,7 +635,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 22,
-    "name": "Lens · Lensing · Lenses",
+    "name": "Strong gravitational lensing and microlensing signatures",
     "desc": "A cosmology cluster (1115 papers, median 2019) around Lens, Lensing, Lenses, Lensed, Strong, Microlensing. Contested-measurement rate 0.08.",
     "size": 1115,
     "yearMedian": 2019,
@@ -661,7 +661,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 55,
-    "name": "Cepheids · Lmc · Magellanic",
+    "name": "Cepheids and TRGB in Magellanic Clouds",
     "desc": "A galaxy-evolution cluster (606 papers, median 2019) around Cepheids, Lmc, Magellanic, Smc, Cepheid, Cloud. Contested-measurement rate 0.09.",
     "size": 606,
     "yearMedian": 2019,
@@ -687,7 +687,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 31,
-    "name": "Rsgs · Agb · Lbv",
+    "name": "Massive star mass-loss in RSGs, AGBs, and LBVs",
     "desc": "A galaxy-evolution cluster (543 papers, median 2020) around Rsgs, Agb, Lbv, Lbvs, Mass-loss, Supergiants. Contested-measurement rate 0.08.",
     "size": 543,
     "yearMedian": 2020,
@@ -713,7 +713,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 19,
-    "name": "Gas · Cgm · Absorption",
+    "name": "CGM gas and DLA absorption in galactic medium",
     "desc": "A galaxy-evolution cluster (1942 papers, median 2018) around Gas, Cgm, Absorption, Absorbers, Dlas, Dla. Contested-measurement rate 0.07.",
     "size": 1942,
     "yearMedian": 2018,
@@ -739,7 +739,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 4,
-    "name": "AGN · Black · AGN",
+    "name": "Dual AGN and black hole binaries",
     "desc": "A galaxy-evolution cluster (423 papers, median 2019) around AGN, Black, AGN, Binary, Dual, Emission. Contested-measurement rate 0.03.",
     "size": 423,
     "yearMedian": 2019,
@@ -765,7 +765,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 27,
-    "name": "Gas · AGN · Emission",
+    "name": "AGN-driven molecular outflows and emission lines",
     "desc": "A galaxy-evolution cluster (1425 papers, median 2018) around Gas, AGN, Emission, Outflow, Molecular, Outflows. Contested-measurement rate 0.04.",
     "size": 1425,
     "yearMedian": 2018,
@@ -791,7 +791,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 17,
-    "name": "Gas · Formation · Ngc",
+    "name": "Jellyfish galaxies and ram pressure stripping in NGC surveys",
     "desc": "A galaxy-evolution cluster (1065 papers, median 2019) around Gas, Formation, Ngc, Rps, Ram, Stripping. Contested-measurement rate 0.04.",
     "size": 1065,
     "yearMedian": 2019,
@@ -817,7 +817,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 46,
-    "name": "Bar · Bars · Spiral",
+    "name": "Barred spiral galaxy formation",
     "desc": "A galaxy-evolution cluster (724 papers, median 2018) around Bar, Bars, Spiral, Barred, Formation, Orbits. Contested-measurement rate 0.04.",
     "size": 724,
     "yearMedian": 2018,
@@ -843,7 +843,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 30,
-    "name": "String · Strings · Gravitational",
+    "name": "Cosmic strings and domain walls in the early universe",
     "desc": "A cosmology cluster (483 papers, median 2018) around String, Strings, Gravitational, Loops, Walls, Domain. Contested-measurement rate 0.17.",
     "size": 483,
     "yearMedian": 2018,
@@ -869,7 +869,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 11,
-    "name": "CMB · Polarization · Microwave",
+    "name": "CMB polarization and lensing power spectra",
     "desc": "A cosmology cluster (891 papers, median 2018) around CMB, Polarization, Microwave, Lensing, Background, Power. Contested-measurement rate 0.03.",
     "size": 891,
     "yearMedian": 2018,
@@ -895,7 +895,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 25,
-    "name": "Radio · Cluster · Clusters",
+    "name": "Radio relics and X-ray sloshing in galaxy clusters",
     "desc": "A cosmology cluster (741 papers, median 2018) around Radio, Cluster, Clusters, X-ray, Emission, Abell. Contested-measurement rate 0.07.",
     "size": 741,
     "yearMedian": 2018,
@@ -921,7 +921,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 21,
-    "name": "Radio · Sources · GHz",
+    "name": "Radio AGN surveys at GHz and MHz frequencies",
     "desc": "A galaxy-evolution cluster (1213 papers, median 2018) around Radio, Sources, GHz, AGN, Survey, Emission. Contested-measurement rate 0.04.",
     "size": 1213,
     "yearMedian": 2018,
@@ -947,7 +947,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 29,
-    "name": "AGN · X-ray · AGN",
+    "name": "AGN X-ray emission and BLR line diagnostics",
     "desc": "A galaxy-evolution cluster (2696 papers, median 2017) around AGN, X-ray, AGN, Emission, Blr, Line. Contested-measurement rate 0.05.",
     "size": 2696,
     "yearMedian": 2017,
@@ -973,7 +973,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 47,
-    "name": "Molecular · Formation · Gas",
+    "name": "Molecular formation in protostellar disks",
     "desc": "A galaxy-evolution cluster (8936 papers, median 2019) around Molecular, Formation, Gas, Emission, Dust, Protostellar. Contested-measurement rate 0.04.",
     "size": 8936,
     "yearMedian": 2019,
@@ -999,7 +999,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 49,
-    "name": "Globular · Clusters · Cluster",
+    "name": "Multiple stellar populations in globular clusters",
     "desc": "A galaxy-evolution cluster (957 papers, median 2018) around Globular, Clusters, Cluster, Gcs, Ngc, Populations. Contested-measurement rate 0.05.",
     "size": 957,
     "yearMedian": 2018,
@@ -1025,7 +1025,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 26,
-    "name": "Clusters · Cluster · X-ray",
+    "name": "X-ray cluster surveys and ICM lensing at high redshift",
     "desc": "A cosmology cluster (1216 papers, median 2017) around Clusters, Cluster, X-ray, Gas, Redshift, Survey. Contested-measurement rate 0.10.",
     "size": 1216,
     "yearMedian": 2017,
@@ -1051,7 +1051,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 38,
-    "name": "Gravity · Teleparallel · Torsion",
+    "name": "Teleparallel gravity and Noether symmetry",
     "desc": "A cosmology cluster (568 papers, median 2018) around Gravity, Teleparallel, Torsion, Scalar, Energy, Matter. Contested-measurement rate 0.07.",
     "size": 568,
     "yearMedian": 2018,
@@ -1077,7 +1077,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 32,
-    "name": "Magnetic · Field · Dynamo",
+    "name": "Galactic dynamo and Faraday polarization",
     "desc": "A galaxy-evolution cluster (941 papers, median 2018) around Magnetic, Field, Dynamo, Faraday, Fields, Polarization. Contested-measurement rate 0.04.",
     "size": 941,
     "yearMedian": 2018,
@@ -1103,7 +1103,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 7,
-    "name": "SNe · Type · Supernova",
+    "name": "Type Ia supernova progenitors and explosion mechanisms",
     "desc": "A cosmology cluster (1424 papers, median 2016) around SNe, Type, Supernova, Supernovae, Host, Light. Contested-measurement rate 0.07.",
     "size": 1424,
     "yearMedian": 2016,
@@ -1129,7 +1129,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 34,
-    "name": "Dark · Energy · Matter",
+    "name": "Interacting dark energy scalar field",
     "desc": "A cosmology cluster (769 papers, median 2017) around Dark, Energy, Matter, Interaction, Interacting, Scalar. Contested-measurement rate 0.19.",
     "size": 769,
     "yearMedian": 2017,
@@ -1155,7 +1155,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 39,
-    "name": "Gravity · Chameleon · Modified",
+    "name": "Chameleon gravity and dark matter screening",
     "desc": "A cosmology cluster (631 papers, median 2017) around Gravity, Chameleon, Modified, Dark, Matter, Symmetron. Contested-measurement rate 0.06.",
     "size": 631,
     "yearMedian": 2017,
@@ -1181,7 +1181,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 10,
-    "name": "Pne · Planetary · Nebulae",
+    "name": "PNe emission from AGB circumstellar shells",
     "desc": "A galaxy-evolution cluster (900 papers, median 2019) around Pne, Planetary, Nebulae, Nebula, Emission, Agb. Contested-measurement rate 0.10.",
     "size": 900,
     "yearMedian": 2019,
@@ -1207,7 +1207,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 6,
-    "name": "Mond · Newtonian · Matter",
+    "name": "Modified Newtonian Dynamics",
     "desc": "A galaxy-evolution cluster (694 papers, median 2018) around Mond, Newtonian, Matter, Dark, Gravity, Rar. Contested-measurement rate 0.18.",
     "size": 694,
     "yearMedian": 2018,
@@ -1233,7 +1233,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 48,
-    "name": "Gcs · Globular · Ucds",
+    "name": "Globular clusters and ultra-compact dwarfs in galaxy halos",
     "desc": "A galaxy-evolution cluster (542 papers, median 2016) around Gcs, Globular, Ucds, Cluster, Ngc, Clusters. Contested-measurement rate 0.04.",
     "size": 542,
     "yearMedian": 2016,
@@ -1259,7 +1259,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 20,
-    "name": "Jet · Blazars · Blazar",
+    "name": "Blazar jet emission and flux variability",
     "desc": "A galaxy-evolution cluster (1770 papers, median 2017) around Jet, Blazars, Blazar, Radio, Emission, Ray. Contested-measurement rate 0.03.",
     "size": 1770,
     "yearMedian": 2017,
@@ -1285,7 +1285,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 37,
-    "name": "Dark · Matter · Neutrino",
+    "name": "WIMP dark matter annihilation and Higgs portal searches",
     "desc": "A cosmology cluster (3089 papers, median 2017) around Dark, Matter, Neutrino, Annihilation, Wimp, Dama. Contested-measurement rate 0.06.",
     "size": 3089,
     "yearMedian": 2017,
@@ -1311,7 +1311,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 8,
-    "name": "Snrs · Snr · Supernova",
+    "name": "SNR dust and radio emission",
     "desc": "A galaxy-evolution cluster (713 papers, median 2017) around Snrs, Snr, Supernova, Emission, Remnant, Dust. Contested-measurement rate 0.03.",
     "size": 713,
     "yearMedian": 2017,
@@ -1337,7 +1337,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 9,
-    "name": "Magnetic · Fields · Field",
+    "name": "Primordial magnetic fields from inflation",
     "desc": "A cosmology cluster (461 papers, median 2016) around Magnetic, Fields, Field, Pmfs, Magnetogenesis, Primordial. Contested-measurement rate 0.04.",
     "size": 461,
     "yearMedian": 2016,
@@ -1363,7 +1363,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 14,
-    "name": "Relativistic · Universe · Redshift",
+    "name": "Relativistic backreaction in inhomogeneous cosmology",
     "desc": "A cosmology cluster (842 papers, median 2016) around Relativistic, Universe, Redshift, Ltb, Effects, Backreaction. Contested-measurement rate 0.11.",
     "size": 842,
     "yearMedian": 2016,
@@ -1389,7 +1389,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 3,
-    "name": "Pulsars · Pulsar · Psr",
+    "name": "Millisecond Pulsar Radio Emission in the Galactic Context",
     "desc": "A galaxy-evolution cluster (497 papers, median 2015) around Pulsars, Pulsar, Psr, Msps, Emission, Radio. Contested-measurement rate 0.04.",
     "size": 497,
     "yearMedian": 2015,
@@ -1415,7 +1415,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 43,
-    "name": "Quantum · Bounce · Bouncing",
+    "name": "Quantum bounce in loop cosmology",
     "desc": "A cosmology cluster (550 papers, median 2016) around Quantum, Bounce, Bouncing, Cosmology, Universe, Rip. Contested-measurement rate 0.03.",
     "size": 550,
     "yearMedian": 2016,
@@ -1441,7 +1441,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 1,
-    "name": "GRB · Grbs · Gamma-ray",
+    "name": "GRB afterglow and host galaxy evolution",
     "desc": "A cosmology cluster (727 papers, median 2013) around GRB, Grbs, Gamma-ray, Afterglow, Bursts, Host. Contested-measurement rate 0.09.",
     "size": 727,
     "yearMedian": 2013,
@@ -1467,7 +1467,7 @@ export const FRONTIERS: Frontier[] = [
   },
   {
     "cluster": 2,
-    "name": "X-ray · Ulx · Ulxs",
+    "name": "X-ray ULXs and HMXB/LMXB luminosity sources",
     "desc": "A galaxy-evolution cluster (415 papers, median 2014) around X-ray, Ulx, Ulxs, Sources, Lmxbs, Hmxbs. Contested-measurement rate 0.04.",
     "size": 415,
     "yearMedian": 2014,
