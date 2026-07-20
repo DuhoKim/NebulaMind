@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, Fragment, type ReactNode } from "react";
-import { STEPS, useTab, useSub, select } from "./labTabStore";
+import { STEPS, useTab, useSub, select, useLabUrlSync } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
 import { itemsFor } from "./stageData";
 import { SUBNAV_VIDEOS } from "./subnavVideos";
@@ -1265,6 +1265,7 @@ function PaperView() {
 }
 
 export default function LabStages() {
+  useLabUrlSync();
   const tab = useTab();
   const sub = useSub();
   const [topicOpen, setTopicOpen] = useState("simulations-vs-physics");
