@@ -6,9 +6,9 @@
 // /agent-reports/research-frontiers/. Curated list.
 import { PB_CSS } from "./PipelineBoard";
 
-type Draft = { title: string; sub: string; pages: string; pdf: string };
+export type Draft = { title: string; sub: string; pages: string; pdf: string };
 
-const FRONTIER: Draft[] = [
+export const FRONTIER: Draft[] = [
   {
     title: "Galaxy scaling relations from z≈0 to the JWST frontier",
     sub: "The star-forming main sequence and the mass–metallicity relation anchored on ~5×10⁵ SDSS galaxies, then confronted with JWST out to the frontier.",

@@ -6,9 +6,9 @@
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
 
-type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string };
+export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string };
 
-const FLAGSHIP: Flagship[] = [
+export const FLAGSHIP: Flagship[] = [
   {
     title: "A Selection-Bounded Mass–Metallicity Deficit at z>7",
     summary: "A ~0.25–0.41 dex early-universe metallicity deficit that survives a JWST emission-line selection forward-model (bootstrap 95% CI excludes zero) — held descriptive, not a detection.",
