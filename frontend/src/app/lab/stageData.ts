@@ -71,17 +71,14 @@ export const RESEARCH_ITEMS: SubItem[] = [
 ];
 
 export const PAPER_ITEMS: SubItem[] = [
-  { value: "draft", label: "AASTeX draft + figures", sub: "the manuscript", rows: [
-    ["What", "A journal-style manuscript: title, abstract, method, the study’s figure, results, and honest caveats."],
-    ["How", "Filled from the study’s real numbers and compiled to PDF with tectonic (the AAS aastex631 class)."],
-  ] },
-  { value: "review", label: "Review → revise loop", sub: "hardening", rows: [
-    ["What", "An automated referee (astrosage-70b) reads the draft and issues a verdict: ACCEPT / MINOR / MAJOR / REJECT."],
-    ["How", "On MAJOR/REJECT the author revises — softening overclaims, adding caveats, never inventing numbers — then re-reviews, until it holds."],
-  ] },
-  { value: "honest", label: "Honest labeling", sub: "the bar", rows: [
-    ["What", "Every result states its selection, its calibration, and what it does not correct for."],
-    ["How", "Bounded automated results are labeled descriptive (not validated measurements) until a human review clears them."],
+  { value: "flagship", label: "Flagship studies", sub: "hand-guided" },
+  { value: "frontier", label: "Frontier drafts", sub: "pipeline studies" },
+  { value: "pipeline", label: "Pipeline runs", sub: "automated · live board" },
+  { value: "how", label: "How papers are made", sub: "the method", rows: [
+    ["Draft", "The study’s real numbers fill a journal-style AASTeX manuscript (the AAS aastex631 class) — title, abstract, method, the figure, results, honest caveats — compiled to PDF with tectonic."],
+    ["Referee", "An automated referee (astrosage-70b) issues a verdict — ACCEPT / MINOR / MAJOR / REJECT. On MAJOR/REJECT the author revises: softening overclaims, adding caveats, never inventing numbers, then re-reviews until it holds."],
+    ["Gates", "Two gates stand between a draft and a real contribution: a novelty gate (is the result actually new?) and a citation-entailment gate (does every cited paper truly support the claim it’s attached to?)."],
+    ["Honest label", "Bounded automated results are labeled descriptive — not validated measurements — until a human review clears them. A MINOR referee verdict means small fixes, not acceptance for publication."],
   ] },
 ];
 
