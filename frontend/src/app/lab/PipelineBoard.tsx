@@ -46,36 +46,38 @@ export default function PipelineBoard() {
   if (err) return <div className="pb-state pb-err">Couldn&rsquo;t load the pipeline — {err}</div>;
   if (!runs) return <div className="pb-state">Loading the pipeline…</div>;
 
-  const total = runs.length;
-  const nStudy = runs.filter((r) => r.summary).length;
-  const nDraft = runs.filter((r) => r.review_url).length;
-  const nPdf = runs.filter((r) => r.pdf_url).length;
-  const nRefereed = runs.filter((r) => r.review_verdict).length;
-  const nDemo = runs.filter(isDemo).length;
-  const nAccept = runs.filter((r) => (r.review_verdict ?? "").toUpperCase() === "ACCEPT").length;
+  // Pipeline test fixtures are not papers-in-progress — keep them off the board.
+  const real = runs.filter((r) => !isDemo(r));
+  const nDemo = runs.length - real.length;
+  const total = real.length;
+  const nStudy = real.filter((r) => r.summary).length;
+  const nDraft = real.filter((r) => r.review_url).length;
+  const nPdf = real.filter((r) => r.pdf_url).length;
+  const nRefereed = real.filter((r) => r.review_verdict).length;
+  const nAccept = real.filter((r) => (r.review_verdict ?? "").toUpperCase() === "ACCEPT").length;
   const funnel: [string, number][] = [["Study", nStudy], ["Draft", nDraft], ["PDF", nPdf], ["Refereed", nRefereed]];
-  const verdicts = runs.reduce<Record<string, number>>((a, r) => {
+  const verdicts = real.reduce<Record<string, number>>((a, r) => {
     const k = r.review_verdict ? r.review_verdict.toUpperCase() : "no verdict yet";
     a[k] = (a[k] ?? 0) + 1; return a;
   }, {});
   const verdictRows = Object.entries(verdicts).sort((a, b) => b[1] - a[1]);
   const vmax = Math.max(1, ...verdictRows.map(([, n]) => n));
-  // real runs first, demos last
-  const ordered = [...runs].sort((a, b) => (isDemo(a) ? 1 : 0) - (isDemo(b) ? 1 : 0));
+  const ordered = real;
 
   return (
     <div className="pb">
       <style>{PB_CSS}</style>
 
       <div className="pb-kpis">
-        <div className="pb-kpi"><b>{total}</b><span>runs in flight</span></div>
-        <div className="pb-kpi"><b>{nPdf}</b><span>compiled a draft PDF{nDemo ? ` · ${nDemo} demo` : ""}</span></div>
+        <div className="pb-kpi"><b>{total}</b><span>real runs</span></div>
+        <div className="pb-kpi"><b>{nPdf}</b><span>with a draft PDF</span></div>
         <div className="pb-kpi pb-kpi-zero"><b>{nAccept}</b><span>accepted / validated</span></div>
       </div>
       <p className="pb-lede">
         This is the filter, not a trophy case. Every run below is an <b>automated descriptive draft</b>: most
-        stop at the study stage, the best any reach is a referee <b>MINOR</b> (small fixes — <b>not</b> accepted),
-        and <b>none is validated or published</b>. The PDFs are drafts a human still has to vouch for.
+        stop at the study stage, only <b>{nPdf}</b> reached a compiled draft PDF, the best any reach is a referee <b>MINOR</b>
+        {" "}(small fixes — <b>not</b> accepted), and <b>none is validated or published</b>. The PDFs are drafts a human still has to vouch for.
+        {nDemo > 0 && <span className="pb-fixnote"> ({nDemo} pipeline test fixtures are hidden.)</span>}
       </p>
 
       <p className="pb-sect">Funnel — how many runs reach each stage</p>
@@ -150,6 +152,7 @@ const PB_CSS = `
 .pb-kpi-zero b{color:#f47272}
 .pb-lede{font-size:.84rem;color:var(--lab-ink);line-height:1.6;margin:.1rem 0 .2rem}
 .pb-lede b{color:var(--lab-accent2);font-weight:600}
+.pb-fixnote{color:var(--lab-soft);font-style:italic}
 .pb-card{border:1px solid var(--lab-line);border-radius:12px;background:var(--lab-panel);padding:.9rem 1rem}
 .pb-barwrap{display:flex;align-items:center;gap:.5rem;flex:1}
 .pb-bar{height:14px;border-radius:4px;min-width:3px;background:linear-gradient(90deg,var(--lab-accent),var(--lab-accent2))}
