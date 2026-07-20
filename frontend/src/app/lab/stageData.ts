@@ -72,6 +72,7 @@ export const RESEARCH_ITEMS: SubItem[] = [
 
 export const PAPER_ITEMS: SubItem[] = [
   { value: "flagship", label: "Flagship studies", sub: "hand-guided" },
+  { value: "frontier", label: "Frontier drafts", sub: "pipeline studies" },
   { value: "pipeline", label: "Pipeline runs", sub: "automated · live board" },
   { value: "how", label: "How papers are made", sub: "the method", rows: [
     ["Draft", "The study’s real numbers fill a journal-style AASTeX manuscript (the AAS aastex631 class) — title, abstract, method, the figure, results, honest caveats — compiled to PDF with tectonic."],

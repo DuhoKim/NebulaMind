@@ -10,6 +10,7 @@ import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
 import PipelineBoard from "./PipelineBoard";
 import FlagshipStudies from "./FlagshipStudies";
+import FrontierDrafts from "./FrontierDrafts";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -1228,11 +1229,15 @@ function PaperView() {
         </div>
       </div>
 
-      {/* Two output tracks */}
+      {/* Output tracks */}
       <div className="pt-tracks">
         <button className="pt-track" onClick={() => select("paper", "flagship")}>
           <b>Flagship studies →</b>
           <span>The hand-guided, curated papers that went the full distance. Few, deep, complete — open the manuscripts.</span>
+        </button>
+        <button className="pt-track" onClick={() => select("paper", "frontier")}>
+          <b>Frontier drafts →</b>
+          <span>Multi-page pipeline drafts, one per top frontier — scaling relations, the massive-galaxy tension, MZR/FMR, sim validation.</span>
         </button>
         <button className="pt-track" onClick={() => select("paper", "pipeline")}>
           <b>Pipeline runs →</b>
@@ -1541,8 +1546,7 @@ export default function LabStages() {
         .fs-line b{color:var(--lab-ink);font-weight:600}
         .fs-meta{display:block;font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-accent2);margin-bottom:.6rem}
         .fs-cta{display:inline-block;font-size:.82rem;font-weight:600;color:var(--lab-accent2);border:1px solid rgba(74,214,196,.45);border-radius:8px;padding:.4rem .75rem}
-        .pt-tracks{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
-        @media(max-width:560px){.pt-tracks{grid-template-columns:1fr}}
+        .pt-tracks{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.7rem}
         .pt-track{text-align:left;font:inherit;cursor:pointer;display:flex;flex-direction:column;gap:.3rem;border:1px solid rgba(124,134,255,.4);border-radius:11px;background:linear-gradient(135deg,rgba(124,134,255,.09),rgba(74,214,196,.05));padding:.85rem 1rem;transition:border-color .15s}
         .pt-track:hover{border-color:var(--lab-accent)}
         .pt-track b{font-size:.95rem;color:var(--lab-ink);font-weight:650}
@@ -1610,6 +1614,9 @@ export default function LabStages() {
               ))}
               {tab === "paper" && sub === "flagship" && (
                 <div style={{ padding: ".2rem .9rem 1rem" }}><FlagshipStudies /></div>
+              )}
+              {tab === "paper" && sub === "frontier" && (
+                <div style={{ padding: ".2rem .9rem 1rem" }}><FrontierDrafts /></div>
               )}
               {tab === "paper" && sub === "pipeline" && (
                 <div style={{ padding: ".2rem .9rem 1rem" }}><PipelineBoard /></div>
