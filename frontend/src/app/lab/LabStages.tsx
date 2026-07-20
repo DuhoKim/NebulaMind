@@ -339,19 +339,11 @@ function EmbeddingView() {
   );
 }
 
-// Top clusters by frontier score — real c-TF-IDF term lists, sizes, and scores from frontier_map_v2.json.
-const CLUSTER_TOPICS: [string, string, number, number][] = [
-  ["JWST high-z galaxy formation & metallicity", "formation · metallicity · jwst · redshift · emission", 1296, 0.96],
-  ["Dark energy & the Hubble tension", "dark energy · ΛCDM · EDE · BAO · tension", 1114, 0.75],
-  ["Galactic chemical evolution", "gaia · chemical · apogee · spectra · abundances", 656, 0.63],
-  ["Electroweak phase transitions & GWs", "electroweak · phase transition · bubble · higgs", 470, 0.59],
-  ["Supermassive black-hole accretion", "black hole · accretion · supermassive · smbh", 960, 0.59],
-  ["Fast radio bursts", "frb · radio · fast · bursts · dispersion", 437, 0.58],
-  ["Reionization & the intergalactic medium", "reionization · igm · lyman-α forest · redshift", 541, 0.53],
-  ["Weak lensing & large-scale structure", "lensing · power spectrum · survey · bias", 4253, 0.52],
-  ["Lyman-continuum escape (LAEs)", "laes · lyc escape · lyman-α · emission · fraction", 892, 0.52],
-  ["Fuzzy / ultralight dark matter", "fdm · soliton · sfdm · ultralight · fuzzy", 440, 0.51],
-];
+// Top clusters by citation-activity score — data-driven from the live 57-cluster
+// frontier map (frontier_map_v3 + arXiv delta re-rank), so new papers flow through.
+const CLUSTER_TOPICS: [string, string, number, number][] = FRONTIERS
+  .slice(0, 14)
+  .map((f) => [f.name, f.keywords.slice(0, 5).join(" · "), f.size, f.score]);
 const SCATTER_COLS = ["#7c86ff", "#4ad6c4", "#e0a458", "#f47272", "#c084fc", "#38bdf8", "#facc15", "#fb7185", "#34d399", "#a3e635"];
 function ClusterScatter() {
   const cmap = new Map<number, string>(SCATTER_CLUSTERS.map(([id], i) => [id, SCATTER_COLS[i % SCATTER_COLS.length]]));
