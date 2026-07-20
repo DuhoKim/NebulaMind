@@ -110,7 +110,44 @@ function StageTrack({ stage }: { stage: number }) {
   );
 }
 
-type HistState = { loading: boolean; data: ReviewLoop | null; err: string | null };
+// Normalized revision-log shape rendered by <RevisionLog>. Sourced from the
+// structured history.json (preferred — carries lineage + feedback categories +
+// human/gate slots) or, as a fallback, parsed from review_loop.md.
+type NormRev = { cycle: number | null; source: string; by: string; verdict: string | null; categories: string[]; feedback: string; changed: string | null };
+type NormHist = { model: string; topicSource: string | null; topic: string | null; revisions: NormRev[]; refereeCycles: number; humanCaptured: boolean; final?: string };
+
+function normalizeHistory(j: any): NormHist {
+  const revisions: NormRev[] = (j?.revisions ?? []).map((r: any) => ({
+    cycle: r.cycle ?? null,
+    source: r.feedbackSource ?? "referee-model",
+    by: r.feedbackBy ?? "unknown",
+    verdict: r.feedbackKind?.verdict ?? null,
+    categories: r.feedbackKind?.categories ?? [],
+    feedback: r.feedbackText ?? "",
+    changed: r.changed?.summary ?? null,
+  }));
+  return {
+    model: j?.model ?? "automated referee",
+    topicSource: j?.lineage?.topicSource ?? null,
+    topic: j?.lineage?.topic ?? null,
+    revisions,
+    refereeCycles: revisions.filter((r) => r.source === "referee-model").length,
+    humanCaptured: !!j?.humanFeedback?.captured,
+  };
+}
+function normalizeLoop(md: string): NormHist {
+  const p = parseReviewLoop(md);
+  const revisions: NormRev[] = p.cycles.map((c, i) => {
+    let changed: string | null = null;
+    if (i > 0) { const d = draftDelta(p.cycles[i - 1].draft, c.draft); changed = d.unchanged ? "draft unchanged" : `+${d.added} / −${d.removed} words vs previous`; }
+    return { cycle: c.n, source: "referee-model", by: p.model, verdict: c.verdict, categories: [], feedback: c.feedback, changed };
+  });
+  return { model: p.model, topicSource: null, topic: null, revisions, refereeCycles: revisions.length, humanCaptured: false, final: p.final };
+}
+
+const SOURCE_LABEL: Record<string, string> = { "referee-model": "automated referee", human: "human", "novelty-gate": "novelty gate", "citation-gate": "citation gate", "expected-value-gate": "expected-value gate" };
+
+type HistState = { loading: boolean; data: NormHist | null; err: string | null };
 function useRevisionLog(reviewUrl: string | null) {
   const [open, setOpen] = useState(false);
   const [st, setSt] = useState<HistState>({ loading: false, data: null, err: null });
@@ -121,10 +158,19 @@ function useRevisionLog(reviewUrl: string | null) {
       if (next && !fetched.current && reviewUrl) {
         fetched.current = true;
         setSt({ loading: true, data: null, err: null });
-        fetch(reviewUrl)
-          .then((r) => { if (r.status === 404) throw new Error("none"); if (!r.ok) throw new Error(`http ${r.status}`); return r.text(); })
-          .then((md) => setSt({ loading: false, data: parseReviewLoop(md), err: null }))
-          .catch((e) => setSt({ loading: false, data: null, err: e?.message || "error" }));
+        const historyUrl = reviewUrl.replace("review_loop.md", "history.json");
+        (async () => {
+          try {
+            const hr = await fetch(historyUrl);
+            if (hr.ok) { setSt({ loading: false, data: normalizeHistory(await hr.json()), err: null }); return; }
+            const rr = await fetch(reviewUrl);
+            if (rr.status === 404) throw new Error("none");
+            if (!rr.ok) throw new Error(`http ${rr.status}`);
+            setSt({ loading: false, data: normalizeLoop(await rr.text()), err: null });
+          } catch (e: any) {
+            setSt({ loading: false, data: null, err: e?.message || "error" });
+          }
+        })();
       }
       return next;
     });
@@ -137,38 +183,35 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
   if (h.err === "none") return <div className="dh-wrap"><div className="dh-note">No review recorded — this run stopped before referee review. No revisions exist.</div></div>;
   if (h.err) return <div className="dh-wrap"><div className="dh-note">Couldn&rsquo;t load the referee log ({h.err}).</div></div>;
   if (!h.data) return null;
-  const { model, cycles, final } = h.data;
-  const n = cycles.length;
+  const { model, revisions, refereeCycles, humanCaptured, topic, topicSource, final } = h.data;
   return (
     <div className="dh-wrap">
+      {topic && <p className="dh-lineage">Seeded from the <b>{topicSource || "frontier"}</b> · topic: {topic}</p>}
       <p className="dh-banner">Automated referee (<b>{model}</b>) — unedited machine-generated feedback. Not a human or journal referee; the paper is <b>not validated</b>.</p>
       <p className="dh-state">
-        {n === 0 ? "The referee ran but logged no cycle."
-          : n === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
-          : `${n} automated review passes by ${model}. The changes below are the model’s own revisions — no human reviewed any cycle.`}
+        {refereeCycles === 0 ? "The referee ran but logged no cycle."
+          : refereeCycles === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
+          : `${refereeCycles} automated review passes by ${model}. The changes below are the model’s own revisions — no human reviewed any cycle.`}
       </p>
       <ol className="dh-timeline">
-        {cycles.map((c, i) => {
-          const d = i > 0 ? draftDelta(cycles[i - 1].draft, c.draft) : null;
-          return (
-            <li className="dh-node" key={c.n}>
-              <span className="dh-dot" style={{ background: vcolor(c.verdict) }} />
-              <div className="dh-body">
-                <div className="dh-head">
-                  <span className="pb-chip" style={{ borderColor: vcolor(c.verdict), color: vcolor(c.verdict) }}>{c.verdict}</span>
-                  <span className="dh-cycle">cycle {c.n}</span>
-                  <span className="dh-by">automated · {model}</span>
-                </div>
-                {d && <div className="dh-delta">{d.unchanged ? "draft unchanged" : <><em className="add">+{d.added}</em> / <em className="rm">−{d.removed}</em> words vs previous</>}</div>}
-                <p className="dh-fb">{c.feedback}</p>
-                {c.draft && <details className="dh-draft"><summary>draft at cycle {c.n}</summary><div className="dh-excerpt">{c.draft}</div></details>}
+        {revisions.map((r, i) => (
+          <li className="dh-node" key={i}>
+            <span className="dh-dot" style={{ background: vcolor(r.verdict) }} />
+            <div className="dh-body">
+              <div className="dh-head">
+                {r.verdict && <span className="pb-chip" style={{ borderColor: vcolor(r.verdict), color: vcolor(r.verdict) }}>{r.verdict}</span>}
+                {r.cycle != null && <span className="dh-cycle">cycle {r.cycle}</span>}
+                <span className="dh-by">{SOURCE_LABEL[r.source] || r.source} · {r.by}</span>
               </div>
-            </li>
-          );
-        })}
+              {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
+              {r.changed && <div className="dh-delta">{r.changed}</div>}
+              <p className="dh-fb">{r.feedback}</p>
+            </div>
+          </li>
+        ))}
       </ol>
       {final && <details className="dh-draft dh-final"><summary>final manuscript body</summary><div className="dh-excerpt">{final}</div></details>}
-      <p className="dh-human">Human feedback: <b>not captured.</b> No person has reviewed this draft — its absence is real, not pending.</p>
+      <p className="dh-human">Human feedback: <b>{humanCaptured ? "recorded above." : "not captured."}</b> {humanCaptured ? "A person has reviewed this draft." : "No person has reviewed this draft — its absence is real, not pending."}</p>
     </div>
   );
 }
@@ -413,4 +456,8 @@ const DB_CSS = `
 .dh-final>summary{color:var(--lab-accent2)}
 .dh-human{font-size:.72rem;color:var(--lab-soft);margin:.7rem 0 0;padding-top:.6rem;border-top:1px solid var(--lab-line);font-style:italic}
 .dh-human b{color:var(--lab-ink);font-style:normal}
+.dh-lineage{font-size:.72rem;color:var(--lab-soft);margin:0 0 .5rem;font-family:ui-monospace,monospace}
+.dh-lineage b{color:var(--lab-accent2)}
+.dh-cats{display:flex;flex-wrap:wrap;gap:.3rem;margin:0 0 .45rem}
+.dh-cat{font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.03em;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.05rem .45rem}
 `;
