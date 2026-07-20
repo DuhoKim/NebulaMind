@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useSyncExternalStore } from "react";
 import { itemsFor } from "./stageData";
 
 // The four pipeline stages, shared between the sticky top-nav dropdowns
@@ -15,9 +15,18 @@ export const STEPS = [
 export type StepKey = (typeof STEPS)[number]["key"];
 
 let current: StepKey = "topic";
-let currentSub = ""; // "" = overview / Home // "" = overview / Home // "" = overview / Home
-const tabSubs = new Set<(k: StepKey) => void>();
-const subSubs = new Set<(v: string) => void>();
+let currentSub = ""; // "" = overview / Home
+
+// Single subscriber registry driving useSyncExternalStore — no per-hook setState
+// races: every subscriber re-reads the snapshot on emit, in a deterministic order.
+const listeners = new Set<() => void>();
+function subscribe(cb: () => void): () => void {
+  listeners.add(cb);
+  return () => { listeners.delete(cb); };
+}
+function emit() {
+  listeners.forEach((f) => f());
+}
 
 export function getTab(): StepKey {
   return current;
@@ -25,6 +34,7 @@ export function getTab(): StepKey {
 export function getSub(): string {
   return currentSub;
 }
+
 // Reflect the current tab/sub in the URL (?tab=paper&sub=progress) so a refresh
 // (or a shared link) restores the same page instead of snapping back to /lab.
 function writeUrl() {
@@ -43,6 +53,8 @@ export function syncFromUrl() {
   const p = new URLSearchParams(window.location.search);
   const t = p.get("tab");
   const s = p.get("sub");
+  const prevTab = current;
+  const prevSub = currentSub;
   let changed = false;
   if (t && STEPS.some((x) => x.key === t)) { current = t as StepKey; changed = true; }
   if (s !== null) {
@@ -51,18 +63,15 @@ export function syncFromUrl() {
   } else if (changed) {
     currentSub = ""; // a tab was given with no sub -> that tab's overview
   }
-  if (changed) {
-    tabSubs.forEach((f) => f(current));
-    subSubs.forEach((f) => f(currentSub));
-  }
+  // emit only on a real transition so useSyncExternalStore stays cheap
+  if (current !== prevTab || currentSub !== prevSub || changed) emit();
 }
 
-// Select a stage and (optionally) a sub-item. Omitting sub picks the stage's first item.
+// Select a stage and (optionally) a sub-item. Omitting sub picks the stage's overview.
 export function select(tab: StepKey, sub?: string) {
   current = tab;
   currentSub = sub ?? "";
-  tabSubs.forEach((f) => f(current));
-  subSubs.forEach((f) => f(currentSub));
+  emit();
   writeUrl();
 }
 export function setTab(k: StepKey) {
@@ -70,14 +79,18 @@ export function setTab(k: StepKey) {
 }
 export function setSub(v: string) {
   currentSub = v;
-  subSubs.forEach((f) => f(v));
+  emit();
   writeUrl();
 }
 
-// Call once from the Lab shell: restore state from the URL on mount, and keep it
-// in sync when the user hits browser back/forward.
+// Layout effect on the client (before paint → the deep-linked tab is applied
+// before the user ever sees the default), plain effect on the server.
+const useIsoLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
+
+// Call once from the Lab shell: restore state from the URL before first paint,
+// and keep it in sync on browser back/forward.
 export function useLabUrlSync() {
-  useEffect(() => {
+  useIsoLayoutEffect(() => {
     syncFromUrl();
     const onPop = () => syncFromUrl();
     window.addEventListener("popstate", onPop);
@@ -85,21 +98,11 @@ export function useLabUrlSync() {
   }, []);
 }
 
+// useSyncExternalStore: getServerSnapshot returns the SSR default so hydration
+// matches; the client snapshot is the live module value, updated race-free on emit.
 export function useTab(): StepKey {
-  const [t, setT] = useState<StepKey>(current);
-  useEffect(() => {
-    tabSubs.add(setT);
-    setT(current); // catch up if the URL sync changed `current` before we subscribed
-    return () => { tabSubs.delete(setT); };
-  }, []);
-  return t;
+  return useSyncExternalStore(subscribe, getTab, () => "topic" as StepKey);
 }
 export function useSub(): string {
-  const [v, setV] = useState<string>(currentSub);
-  useEffect(() => {
-    subSubs.add(setV);
-    setV(currentSub);
-    return () => { subSubs.delete(setV); };
-  }, []);
-  return v;
+  return useSyncExternalStore(subscribe, getSub, () => "");
 }
