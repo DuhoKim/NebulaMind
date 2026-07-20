@@ -35,7 +35,7 @@ export default function HomePage() {
 
       <nav className="h-topbar">
         <div className="h-wrap row">
-          <a className="h-brand" href="/">◆ NebulaMind</a>
+          <a className="h-brand" href="/">NebulaMind</a>
           <div className="h-nav">
             <a href="/lab">The pipeline</a>
             <a href="/lab">The papers</a>

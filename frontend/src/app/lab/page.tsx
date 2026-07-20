@@ -56,7 +56,7 @@ export default function PipelinePage() {
 
       <nav className="lab-topbar">
         <div className="lab-wrap row">
-          <a className="lab-brand" href="/">◆ NebulaMind</a>
+          <a className="lab-brand" href="/">NebulaMind</a>
           <LabTopTabs />
           <a className="lab-back" href="/">← home</a>
         </div>
