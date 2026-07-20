@@ -514,12 +514,24 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
           </button>
         </div>
       ) : mode === "rank" ? (
-        <div className="heat-scale">
-          <span>agree · settled</span>
-          <div className="heat-bar contest" />
-          <span>measurements clash · contested</span>
-          <span className="heat-grey"><i />not a galaxy-evo frontier</span>
-        </div>
+        <>
+          <div className="scatter-legend" role="group" aria-label="Contested clusters — highlight a frontier on the map">
+            {CONTESTED.map((f) => (
+              <button type="button" key={f.cluster}
+                className={`sl-chip${focus === f.cluster ? " active" : ""}`} aria-pressed={lockedCid === f.cluster}
+                onMouseEnter={() => onHover(f.cluster)} onMouseLeave={() => onHover(null)}
+                onFocus={() => onHover(f.cluster)} onBlur={() => onHover(null)} onClick={() => onSelect(f.cluster)}>
+                <i style={{ background: contestColor(contestNorm(f.scoreV1)) }} />{CID_SHORT.get(f.cluster) ?? f.keywords[0]}
+              </button>
+            ))}
+          </div>
+          <div className="heat-scale">
+            <span>agree · settled</span>
+            <div className="heat-bar contest" />
+            <span>clash · contested</span>
+            <span className="heat-grey"><i />not a galaxy-evo frontier</span>
+          </div>
+        </>
       ) : (
         <div className="heat-scale">
           <span>❄ settled (barely cited now)</span>
