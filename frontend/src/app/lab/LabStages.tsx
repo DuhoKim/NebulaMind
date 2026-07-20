@@ -345,30 +345,163 @@ const CLUSTER_TOPICS: [string, string, number, number][] = FRONTIERS
   .slice(0, 14)
   .map((f) => [f.name, f.keywords.slice(0, 5).join(" · "), f.size, f.score]);
 const SCATTER_COLS = ["#7c86ff", "#4ad6c4", "#e0a458", "#f47272", "#c084fc", "#38bdf8", "#facc15", "#fb7185", "#34d399", "#a3e635"];
-function ClusterScatter() {
-  const cmap = new Map<number, string>(SCATTER_CLUSTERS.map(([id], i) => [id, SCATTER_COLS[i % SCATTER_COLS.length]]));
+// ── Interactive cluster map (shared by the Clustering + Activity-overlay steps) ──
+// Everything keys off the cluster id (cid). The same integer space runs through
+// SCATTER_POINTS[..][2], SCATTER_CLUSTERS[..][0] and FRONTIERS[].cluster, so a hover
+// on a legend chip, a ranked row, or an island lights up all three surfaces at once.
+// Honesty floor (per referee): the points are a representative SAMPLE — a dot is never
+// a specific paper, and the UMAP axes carry no units — so the only revealable unit is
+// the CLUSTER. Nothing is addressable per-point; there is no per-point tooltip or link.
+const CID_COLORIDX = new Map<number, number>(SCATTER_CLUSTERS.map(([id], i) => [id, i]));
+const CID_SHORT = new Map<number, string>(SCATTER_CLUSTERS.map(([id, l]) => [id, l]));
+const FRONTIER_BY_CID = new Map(FRONTIERS.map((f) => [f.cluster, f]));
+const RANK_BY_CID = new Map<number, number>(FRONTIERS.map((f, i) => [f.cluster, i + 1])); // FRONTIERS is score-desc
+const CLUSTER_TOPIC_CIDS = FRONTIERS.slice(0, 14).map((f) => f.cluster);
+// island centroid per cid — a stable anchor for the tooltip, computed once over all points
+const CENTROIDS = (() => {
+  const acc = new Map<number, [number, number, number]>();
+  for (const [x, y, cid] of SCATTER_POINTS) {
+    const a = acc.get(cid) ?? [0, 0, 0];
+    acc.set(cid, [a[0] + x, a[1] + y, a[2] + 1]);
+  }
+  const out = new Map<number, { cx: number; cy: number }>();
+  acc.forEach(([sx, sy, n], cid) => out.set(cid, { cx: sx / n, cy: sy / n }));
+  return out;
+})();
+// value-match a hand-written OVERLAY_ACTIVE row to a real cid (self-correcting join)
+function cidForActivity(v: number): number | null {
+  let best: number | null = null;
+  let bd = 0.2;
+  for (const k in SCATTER_ACTIVITY) {
+    const cid = Number(k);
+    const d = Math.abs(SCATTER_ACTIVITY[cid] - v);
+    if (d < bd) { bd = d; best = cid; }
+  }
+  return best;
+}
+type CidMeta = { name: string; size: number; activity: number | null; rank: number | null };
+function cidMeta(cid: number): CidMeta | null {
+  if (cid < 0) return null;
+  const f = FRONTIER_BY_CID.get(cid);
+  return {
+    name: f?.name ?? CID_SHORT.get(cid) ?? `cluster ${cid}`,
+    size: f?.size ?? 0,
+    activity: SCATTER_ACTIVITY[cid] ?? null,
+    rank: RANK_BY_CID.get(cid) ?? null,
+  };
+}
+const isIsland = (cid: number, mode: "cluster" | "activity") =>
+  mode === "cluster" ? CID_COLORIDX.has(cid) : cid >= 0;
+function isMatch(cid: number, focus: number | null, mode: "cluster" | "activity") {
+  if (focus == null) return true;
+  if (focus === -1) return !isIsland(cid, mode); // the grey haze
+  return cid === focus;
+}
+const readCid = (t: EventTarget | null): number | null => {
+  const a = (t as Element | null)?.getAttribute?.("data-cid");
+  return a == null ? null : Number(a);
+};
+
+function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSelect }: {
+  mode: "cluster" | "activity";
+  hoveredCid: number | null;
+  lockedCid: number | null;
+  onHover: (c: number | null) => void;
+  onSelect: (c: number | null) => void;
+}) {
+  const focus = lockedCid ?? hoveredCid;
+  const dim = focus != null && focus !== -1; // a -1 (haze) focus lifts the haze, it doesn't dim islands
+  const tip = focus != null && focus >= 0 ? cidMeta(focus) : null;
+  const anchor = focus != null && focus >= 0 ? CENTROIDS.get(focus) : undefined;
   return (
     <div className="corpus-block">
-      <div className="cch-h">The map — 120k papers, self-organized</div>
-      <svg className="scatter" viewBox="0 0 100 100" role="img" aria-label="2D UMAP scatter of the corpus, colored by cluster">
-        {SCATTER_POINTS.map(([x, y, cid], i) => {
-          const c = cmap.get(cid);
-          return <circle key={i} cx={x} cy={100 - y} r={c ? 0.75 : 0.55} fill={c || "#39435f"} fillOpacity={c ? 0.9 : 0.32} />;
-        })}
-      </svg>
-      <div className="scatter-legend">
-        {SCATTER_CLUSTERS.map(([id, label], i) => (
-          <span key={id}><i style={{ background: SCATTER_COLS[i] }} />{label}</span>
-        ))}
-        <span><i style={{ background: "#39435f" }} />other + noise</span>
+      <div className="cch-h">{mode === "cluster"
+        ? "The map — 120k papers, self-organized"
+        : "The same map — now lit by how active each theme is"}</div>
+      <div className="scatter-wrap">
+        <svg className="scatter" viewBox="0 0 100 100" role="img"
+          aria-label={mode === "cluster"
+            ? "2D UMAP scatter of the corpus, colored by cluster. Hover the legend or the topic list to highlight a theme."
+            : "Cluster map heat-colored by recent citation activity. Hover the activity list to highlight a theme."}
+          onMouseMove={(e) => { const c = readCid(e.target); if (c != null && c >= 0) onHover(c); }}
+          onMouseLeave={() => onHover(null)}
+          onClick={(e) => { const c = readCid(e.target); onSelect(c != null && c >= 0 ? c : null); }}>
+          {SCATTER_POINTS.map(([x, y, cid], i) => {
+            let fill: string;
+            let baseR: number;
+            let baseOp: number;
+            if (mode === "cluster") {
+              const ci = CID_COLORIDX.get(cid);
+              fill = ci != null ? SCATTER_COLS[ci] : "#39435f";
+              baseR = ci != null ? 0.75 : 0.55;
+              baseOp = ci != null ? 0.9 : 0.32;
+            } else {
+              const a = SCATTER_ACTIVITY[cid];
+              const noise = a === undefined;
+              const t = noise ? 0 : actNorm(a);
+              fill = noise ? "#222a3a" : heatColor(t);
+              baseR = noise ? 0.5 : 0.7 + t * 0.7;
+              baseOp = noise ? 0.22 : 0.92;
+            }
+            const on = isMatch(cid, focus, mode);
+            const r = dim && on && cid >= 0 ? baseR + 0.55 : baseR;
+            const op = !dim ? baseOp : on ? Math.min(1, baseOp + 0.22) : baseOp * 0.16;
+            return <circle key={i} cx={x} cy={100 - y} r={r} fill={fill} fillOpacity={op} data-cid={cid} />;
+          })}
+        </svg>
+        {tip && anchor && (
+          <div className="scatter-tip" role="status" style={{ left: `${anchor.cx}%`, top: `${100 - anchor.cy}%` }}>
+            <b>{tip.name}</b>
+            <span>{tip.size.toLocaleString()} papers{tip.rank ? ` · #${tip.rank} of 57` : ""}</span>
+            {mode === "activity" && tip.activity != null && <span>{tip.activity.toFixed(1)} recent cites / paper</span>}
+          </div>
+        )}
+        {focus === -1 && (
+          <div className="scatter-tip haze" role="status" style={{ left: "50%", top: "88%" }}>
+            <b>unclustered</b><span>43% too scattered to group</span>
+          </div>
+        )}
       </div>
-      <p className="cch-note">A 2-D UMAP of a representative sample. The top-10 frontiers fall out as <b>distinct islands</b> — nobody drew the boundaries; the grey haze is the 43% the algorithm left unclustered rather than forcing into a theme.</p>
+      {mode === "cluster" ? (
+        <div className="scatter-legend" role="group" aria-label="Cluster legend — highlight a theme on the map">
+          {SCATTER_CLUSTERS.map(([id, label], i) => (
+            <button type="button" key={id}
+              className={`sl-chip${focus === id ? " active" : ""}`} aria-pressed={lockedCid === id}
+              onMouseEnter={() => onHover(id)} onMouseLeave={() => onHover(null)}
+              onFocus={() => onHover(id)} onBlur={() => onHover(null)} onClick={() => onSelect(id)}>
+              <i style={{ background: SCATTER_COLS[i] }} />{label}
+            </button>
+          ))}
+          <button type="button" className={`sl-chip${focus === -1 ? " active" : ""}`} aria-pressed={lockedCid === -1}
+            onMouseEnter={() => onHover(-1)} onMouseLeave={() => onHover(null)}
+            onFocus={() => onHover(-1)} onBlur={() => onHover(null)} onClick={() => onSelect(-1)}>
+            <i style={{ background: "#39435f" }} />other + noise
+          </button>
+        </div>
+      ) : (
+        <div className="heat-scale">
+          <span>❄ settled (barely cited now)</span>
+          <div className="heat-bar" />
+          <span>still argued about 🔥</span>
+          <span className="heat-grey"><i />not in a topic</span>
+        </div>
+      )}
+      <p className="scatter-disc">Colour marks the <b>cluster</b>, not the dot — a representative sample, not specific papers; the UMAP axes carry no units.</p>
+      {mode === "cluster" ? (
+        <p className="cch-note">A 2-D UMAP of a representative sample. The top-10 frontiers fall out as <b>distinct islands</b> — nobody drew the boundaries; the grey haze is the 43% the algorithm left unclustered rather than forcing into a theme. <b>Hover or tap a topic</b> to light up its island.</p>
+      ) : (
+        <p className="cch-note">Exactly the <b>same 57-theme map</b> as the previous step — but recolored: each theme now glows by its <b>recent citations per paper</b>. A handful burn hot (the field is still piling citations on); most sit cool and settled. The single hottest island is <b>JWST high-z galaxy formation</b>.</p>
+      )}
     </div>
   );
 }
 function ClusteringView() {
+  const [hoveredCid, setHoveredCid] = useState<number | null>(null);
+  const [lockedCid, setLockedCid] = useState<number | null>(null);
+  const effective = lockedCid ?? hoveredCid;
+  const toggleLock = (c: number | null) => setLockedCid((p) => (c == null ? null : p === c ? null : c));
   return (
-    <div className="corpus-view">
+    <div className="corpus-view" onKeyDown={(e) => { if (e.key === "Escape") { setLockedCid(null); setHoveredCid(null); } }}>
       <div className="corpus-stats">
         <div className="cst"><b>57</b><span>topics that formed themselves</span></div>
         <div className="cst"><b>68,772</b><span>papers that fell into a topic</span></div>
@@ -380,18 +513,26 @@ function ClusteringView() {
         <div className="cch-h">The map draws its own topics</div>
         <p className="cch-note">Nobody set a number of topics or drew any boundaries. Left alone on the map from the last step, <b>nearby papers fall into natural clumps</b> — the computer finds the clumps and names each one from the words that make it distinctive. Below is the real map, colored by the topics it found:</p>
       </div>
-      <ClusterScatter />
+      <InteractiveClusterScatter mode="cluster"
+        hoveredCid={hoveredCid} lockedCid={lockedCid} onHover={setHoveredCid} onSelect={toggleLock} />
       <div className="corpus-block">
         <div className="cch-h">The topics that emerged · most-cited first</div>
         <div className="embed-lb frontiers">
-          {CLUSTER_TOPICS.map(([label, kws, size], i) => (
-            <div className={`clu-row${i === 0 ? " top" : ""}`} key={label}>
-              <span className="clu-label"><b>{label}</b><span className="clu-kw">{kws} · {size.toLocaleString()} papers</span></span>
-              <span className="elb-bar"><i style={{ width: `${CLUSTER_TOPICS[i][3] * 100}%` }} /></span>
-            </div>
-          ))}
+          {CLUSTER_TOPICS.map(([label, kws, size], i) => {
+            const cid = CLUSTER_TOPIC_CIDS[i];
+            return (
+              <button type="button" key={label} aria-pressed={lockedCid === cid}
+                className={`clu-row${i === 0 ? " top" : ""}${effective === cid ? " active" : ""}`}
+                onMouseEnter={() => setHoveredCid(cid)} onMouseLeave={() => setHoveredCid(null)}
+                onFocus={() => setHoveredCid(cid)} onBlur={() => setHoveredCid(null)}
+                onClick={() => toggleLock(cid)}>
+                <span className="clu-label"><b>{label}</b><span className="clu-kw">{kws} · {size.toLocaleString()} papers</span></span>
+                <span className="elb-bar"><i style={{ width: `${CLUSTER_TOPICS[i][3] * 100}%` }} /></span>
+              </button>
+            );
+          })}
         </div>
-        <p className="cch-note">These are the field&rsquo;s own topics, read straight out of the literature — the bar is how actively each is being cited. The top <b>galaxy-evolution</b> ones become the research questions the pipeline works on.</p>
+        <p className="cch-note">These are the field&rsquo;s own topics, read straight out of the literature — the bar is how actively each is being cited. <b>Hover a row to find it on the map.</b> The top <b>galaxy-evolution</b> ones become the research questions the pipeline works on.</p>
       </div>
       <div className="corpus-block">
         <div className="cch-h">How it&rsquo;s actually done</div>
@@ -435,32 +576,15 @@ function heatColor(t: number): string {
 function actNorm(a: number): number {
   return Math.pow((a - ACTIVITY_MIN) / (ACTIVITY_MAX - ACTIVITY_MIN), 0.6);
 }
-function ActivityScatter() {
-  return (
-    <div className="corpus-block">
-      <div className="cch-h">The same map — now lit by how active each theme is</div>
-      <svg className="scatter" viewBox="0 0 100 100" role="img" aria-label="Cluster map heat-colored by recent citation activity">
-        {SCATTER_POINTS.map(([x, y, cid], i) => {
-          const a = SCATTER_ACTIVITY[cid];
-          const noise = a === undefined;
-          const t = noise ? 0 : actNorm(a);
-          return <circle key={i} cx={x} cy={100 - y} r={noise ? 0.5 : 0.7 + t * 0.7} fill={noise ? "#222a3a" : heatColor(t)} fillOpacity={noise ? 0.22 : 0.92} />;
-        })}
-      </svg>
-      <div className="heat-scale">
-        <span>❄ settled (barely cited now)</span>
-        <div className="heat-bar" />
-        <span>still argued about 🔥</span>
-        <span className="heat-grey"><i />not in a topic</span>
-      </div>
-      <p className="cch-note">Exactly the <b>same 57-theme map</b> as the previous step — but recolored: each theme now glows by its <b>recent citations per paper</b>. A handful burn hot (the field is still piling citations on); most sit cool and settled. The single hottest island is <b>JWST high-z galaxy formation</b>.</p>
-    </div>
-  );
-}
+// ActivityScatter is now InteractiveClusterScatter mode="activity" (see above).
 function OverlayView() {
   const max = 40;
+  const [hoveredCid, setHoveredCid] = useState<number | null>(null);
+  const [lockedCid, setLockedCid] = useState<number | null>(null);
+  const effective = lockedCid ?? hoveredCid;
+  const toggleLock = (c: number | null) => setLockedCid((p) => (c == null ? null : p === c ? null : c));
   return (
-    <div className="corpus-view">
+    <div className="corpus-view" onKeyDown={(e) => { if (e.key === "Escape") { setLockedCid(null); setHoveredCid(null); } }}>
       <div className="corpus-stats">
         <div className="cst"><b>2.30M</b><span>citation edges into clustered papers</span></div>
         <div className="cst"><b>911k</b><span>from recent (2023+) work</span></div>
@@ -476,19 +600,33 @@ function OverlayView() {
         </div>
         <p className="cch-note">Still being cited = a live frontier; stopped being cited = settled. An objective signal, replacing debates hand-counted from review papers.</p>
       </div>
-      <ActivityScatter />
+      <InteractiveClusterScatter mode="activity"
+        hoveredCid={hoveredCid} lockedCid={lockedCid} onHover={setHoveredCid} onSelect={toggleLock} />
       <div className="corpus-block">
         <div className="cch-h">Activity spectrum — recent citations per paper</div>
         <div className="embed-lb">
-          {OVERLAY_ACTIVE.map(([label, v], i) => (
-            <div className={`clu-row${i === 0 ? " top" : ""}`} key={label}>
-              <span className="clu-label"><b>{label}</b></span>
-              <span className="elb-bar"><i style={{ width: `${(v / max) * 100}%`, background: heatColor(actNorm(v)) }} /></span>
-              <span className="elb-score">{v.toFixed(1)}</span>
-            </div>
-          ))}
+          {OVERLAY_ACTIVE.map(([label, v], i) => {
+            const cid = String(label).startsWith("…") ? null : cidForActivity(v);
+            const inner = (
+              <>
+                <span className="clu-label"><b>{label}</b></span>
+                <span className="elb-bar"><i style={{ width: `${(v / max) * 100}%`, background: heatColor(actNorm(v)) }} /></span>
+                <span className="elb-score">{v.toFixed(1)}</span>
+              </>
+            );
+            if (cid == null) return <div className={`clu-row${i === 0 ? " top" : ""}`} key={label}>{inner}</div>;
+            return (
+              <button type="button" key={label} aria-pressed={lockedCid === cid}
+                className={`clu-row${i === 0 ? " top" : ""}${effective === cid ? " active" : ""}`}
+                onMouseEnter={() => setHoveredCid(cid)} onMouseLeave={() => setHoveredCid(null)}
+                onFocus={() => setHoveredCid(cid)} onBlur={() => setHoveredCid(null)}
+                onClick={() => toggleLock(cid)}>
+                {inner}
+              </button>
+            );
+          })}
         </div>
-        <p className="cch-note">The same numbers that color the map, as a ranked bar — a <b>13×</b> spread from JWST high-z (39.2) to the settled floor (pulsars, 3.0). The hot themes are exactly the ones that rise in the next step.</p>
+        <p className="cch-note">The same numbers that color the map, as a ranked bar — a <b>13×</b> spread from JWST high-z (39.2) to the settled floor (pulsars, 3.0). <b>Hover a row to find its island.</b> The hot themes are exactly the ones that rise in the next step.</p>
       </div>
     </div>
   );
@@ -1358,9 +1496,25 @@ export default function LabStages() {
         .elb-row.chosen .elb-score{color:var(--lab-accent2)}
         .scatter{width:100%;max-width:560px;aspect-ratio:1/1;display:block;margin:.1rem auto .2rem;background:radial-gradient(circle at 50% 45%,#0d1120,#080a12);border:1px solid var(--lab-line);border-radius:10px}
         .scatter circle{transition:none}
-        .scatter-legend{display:flex;flex-wrap:wrap;gap:.35rem .9rem;font-size:.7rem;color:var(--lab-soft);justify-content:center;margin-top:.2rem}
+        .scatter-wrap{position:relative;width:100%;max-width:560px;margin:.1rem auto .2rem}
+        .scatter-wrap .scatter{max-width:none;margin:0}
+        .scatter-tip{position:absolute;transform:translate(-50%,calc(-100% - 8px));z-index:6;pointer-events:none;display:flex;flex-direction:column;gap:.06rem;white-space:nowrap;background:rgba(8,11,20,.97);border:1px solid var(--lab-line);border-radius:8px;padding:.36rem .55rem;box-shadow:0 6px 18px rgba(0,0,0,.55)}
+        .scatter-tip b{font-size:.8rem;font-weight:650;color:var(--lab-ink)}
+        .scatter-tip span{font-size:.66rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
+        .scatter-tip.haze{transform:translate(-50%,-100%)}
+        .scatter-disc{font-size:.66rem;color:var(--lab-soft);text-align:center;margin:.4rem 0 0;line-height:1.45}
+        .scatter-disc b{color:var(--lab-accent2);font-weight:600}
+        .scatter-legend{display:flex;flex-wrap:wrap;gap:.35rem .55rem;font-size:.7rem;color:var(--lab-soft);justify-content:center;margin-top:.35rem}
         .scatter-legend span{display:inline-flex;align-items:center;gap:.32rem}
         .scatter-legend i{width:8px;height:8px;border-radius:50%;display:inline-block;flex-shrink:0}
+        .sl-chip{display:inline-flex;align-items:center;gap:.34rem;font:inherit;font-size:.7rem;color:var(--lab-soft);background:none;border:1px solid transparent;border-radius:7px;padding:.24rem .5rem;cursor:pointer;line-height:1}
+        .sl-chip:hover,.sl-chip.active{color:var(--lab-ink);border-color:var(--lab-line);background:rgba(124,134,255,.10)}
+        .sl-chip[aria-pressed="true"]{border-color:var(--lab-accent);color:var(--lab-ink)}
+        .sl-chip:focus-visible{outline:2px solid var(--lab-accent);outline-offset:1px}
+        button.clu-row{width:100%;text-align:left;-webkit-appearance:none;appearance:none;background:none;color:inherit;cursor:pointer;font:inherit;border:0;border-top:1px solid rgba(36,42,61,.5)}
+        .embed-lb button.clu-row:first-child{border-top:none}
+        .clu-row.active{background:rgba(124,134,255,.09)}
+        button.clu-row:focus-visible{outline:2px solid var(--lab-accent);outline-offset:-2px;border-radius:6px}
         .svc{width:100%;max-width:520px;height:auto;display:block;margin:.55rem auto .1rem;background:#0a0d17;border:1px solid var(--lab-line);border-radius:9px}
         .simmap{width:100%;max-width:470px;aspect-ratio:100/64;display:block;margin:.5rem auto .2rem;background:radial-gradient(circle at 60% 40%,#0d1120,#080a12);border:1px solid var(--lab-line);border-radius:10px}
         .embed-lb.frontiers .clu-row{grid-template-columns:1fr 150px}
