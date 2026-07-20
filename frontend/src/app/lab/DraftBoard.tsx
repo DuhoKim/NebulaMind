@@ -10,7 +10,7 @@
 // actually hold: the reference shows Novelty / Expected-value / Citation gates that this
 // pipeline's API does NOT expose, so those are deliberately absent (not faked). What we
 // add over the cockpit: real result-figure thumbnails and data-source chips.
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import { PB_CSS } from "./PipelineBoard";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
@@ -45,6 +45,172 @@ const isDemo = (r: Run) => !r.created_utc || /demo/i.test(r.id);
 const prettyMethod = (m: string | null) =>
   (m ?? "study").split("-").map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w)).join(" ");
 const VORDER = ["ACCEPT", "MINOR", "MAJOR", "REJECT", "no verdict yet"];
+
+// ── Revision log (per-draft referee-loop history) ─────────────────────────────
+// Parses a run's review_loop.md artifact into a structured, honest revision log.
+// Reality (Trio referee): the ONLY feedback source recorded is one automated referee
+// model; human feedback and gate history are NOT captured, and almost no run has
+// iterated past a single pass — so this is a *revision log*, not iterative peer review.
+//
+// Provenance schema the backend would eventually populate (only `referee-model` is
+// filled today; `human` / gates / lineage are reserved, rendered as explicit absences):
+//   DraftRevision = { cycle, feedbackSource: "referee-model"|"novelty-gate"|
+//     "citation-gate"|"expected-value-gate"|"human", feedbackBy, feedbackKind:{verdict,
+//     categories[]}, feedbackText, draftBefore?, draftAfter?, changed:{summary,diffStat?},
+//     timestamp } ; DraftHistory = { runId, model, converged, revisions[], lineage? }
+type ReviewCycle = { n: number; verdict: string; feedback: string; draft: string };
+type ReviewLoop = { model: string; convergedVerdict: string | null; cycles: ReviewCycle[]; final: string };
+
+const stripDetails = (s: string) =>
+  s.replace(/<details>\s*<summary>[^<]*<\/summary>/i, "").replace(/<\/details>/i, "").trim();
+const stripVerdictLine = (s: string) => s.replace(/^\s*VERDICT:\s*[A-Z]+\s*\n/i, "").trim();
+
+function parseReviewLoop(md: string): ReviewLoop {
+  const text = md.replace(/\r\n/g, "\n");
+  const model = text.match(/^Model:\s*(.+?)\.\s/m)?.[1]?.trim() ?? "automated referee";
+  const convergedVerdict = text.match(/Converged to \*\*([A-Z]+)\*\*/)?.[1] ?? null;
+  const finalSplit = text.split(/\n##\s*Final manuscript body\s*\n/);
+  const body = finalSplit[0];
+  const final = (finalSplit[1] ?? "").trim();
+  const cycleRe = /##\s*Cycle\s*(\d+)\s*[—–-]\s*VERDICT:\s*([A-Z]+)\s*\n([\s\S]*?)(?=\n##\s|$)/g;
+  const cycles: ReviewCycle[] = [];
+  for (const m of body.matchAll(cycleRe)) {
+    const rawBlock = m[3];
+    const detIdx = rawBlock.search(/<details>/i);
+    const feedbackRaw = detIdx >= 0 ? rawBlock.slice(0, detIdx) : rawBlock;
+    const draftRaw = detIdx >= 0 ? rawBlock.slice(detIdx) : "";
+    cycles.push({ n: Number(m[1]), verdict: m[2], feedback: stripVerdictLine(feedbackRaw), draft: draftRaw ? stripDetails(draftRaw) : "" });
+  }
+  return { model, convergedVerdict, cycles, final };
+}
+
+const dhWords = (s: string) => s.toLowerCase().match(/[a-z0-9']+/g) ?? [];
+function draftDelta(prev: string, next: string) {
+  const a = new Map<string, number>();
+  const b = new Map<string, number>();
+  for (const w of dhWords(prev)) a.set(w, (a.get(w) ?? 0) + 1);
+  for (const w of dhWords(next)) b.set(w, (b.get(w) ?? 0) + 1);
+  let added = 0;
+  let removed = 0;
+  b.forEach((c, w) => { added += Math.max(0, c - (a.get(w) ?? 0)); });
+  a.forEach((c, w) => { removed += Math.max(0, c - (b.get(w) ?? 0)); });
+  return { added, removed, unchanged: added === 0 && removed === 0 };
+}
+
+function StageTrack({ stage }: { stage: number }) {
+  return (
+    <div className="db-track" role="img" aria-label={`Reached stage ${stage} of 5: ${STAGES[stage - 1]}`}>
+      {STAGES.map((s, si) => {
+        const done = si + 1 <= stage;
+        const cur = si + 1 === stage;
+        const gate = si === 4;
+        return <div className={`db-step${done ? " done" : ""}${cur ? " cur" : ""}${gate ? " gate" : ""}`} key={s}><i /><span>{s}</span></div>;
+      })}
+    </div>
+  );
+}
+
+type HistState = { loading: boolean; data: ReviewLoop | null; err: string | null };
+function useRevisionLog(reviewUrl: string | null) {
+  const [open, setOpen] = useState(false);
+  const [st, setSt] = useState<HistState>({ loading: false, data: null, err: null });
+  const fetched = useRef(false);
+  const toggle = useCallback(() => {
+    setOpen((o) => {
+      const next = !o;
+      if (next && !fetched.current && reviewUrl) {
+        fetched.current = true;
+        setSt({ loading: true, data: null, err: null });
+        fetch(reviewUrl)
+          .then((r) => { if (r.status === 404) throw new Error("none"); if (!r.ok) throw new Error(`http ${r.status}`); return r.text(); })
+          .then((md) => setSt({ loading: false, data: parseReviewLoop(md), err: null }))
+          .catch((e) => setSt({ loading: false, data: null, err: e?.message || "error" }));
+      }
+      return next;
+    });
+  }, [reviewUrl]);
+  return { open, toggle, ...st };
+}
+
+function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
+  if (h.loading) return <div className="dh-wrap"><div className="dh-note">Loading revision log…</div></div>;
+  if (h.err === "none") return <div className="dh-wrap"><div className="dh-note">No review recorded — this run stopped before referee review. No revisions exist.</div></div>;
+  if (h.err) return <div className="dh-wrap"><div className="dh-note">Couldn&rsquo;t load the referee log ({h.err}).</div></div>;
+  if (!h.data) return null;
+  const { model, cycles, final } = h.data;
+  const n = cycles.length;
+  return (
+    <div className="dh-wrap">
+      <p className="dh-banner">Automated referee (<b>{model}</b>) — unedited machine-generated feedback. Not a human or journal referee; the paper is <b>not validated</b>.</p>
+      <p className="dh-state">
+        {n === 0 ? "The referee ran but logged no cycle."
+          : n === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
+          : `${n} automated review passes by ${model}. The changes below are the model’s own revisions — no human reviewed any cycle.`}
+      </p>
+      <ol className="dh-timeline">
+        {cycles.map((c, i) => {
+          const d = i > 0 ? draftDelta(cycles[i - 1].draft, c.draft) : null;
+          return (
+            <li className="dh-node" key={c.n}>
+              <span className="dh-dot" style={{ background: vcolor(c.verdict) }} />
+              <div className="dh-body">
+                <div className="dh-head">
+                  <span className="pb-chip" style={{ borderColor: vcolor(c.verdict), color: vcolor(c.verdict) }}>{c.verdict}</span>
+                  <span className="dh-cycle">cycle {c.n}</span>
+                  <span className="dh-by">automated · {model}</span>
+                </div>
+                {d && <div className="dh-delta">{d.unchanged ? "draft unchanged" : <><em className="add">+{d.added}</em> / <em className="rm">−{d.removed}</em> words vs previous</>}</div>}
+                <p className="dh-fb">{c.feedback}</p>
+                {c.draft && <details className="dh-draft"><summary>draft at cycle {c.n}</summary><div className="dh-excerpt">{c.draft}</div></details>}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+      {final && <details className="dh-draft dh-final"><summary>final manuscript body</summary><div className="dh-excerpt">{final}</div></details>}
+      <p className="dh-human">Human feedback: <b>not captured.</b> No person has reviewed this draft — its absence is real, not pending.</p>
+    </div>
+  );
+}
+
+function DraftCard({ it }: { it: Item }) {
+  const h = useRevisionLog(it.review ?? null);
+  return (
+    <div className={`pb-run db-rcard${it.track === "flagship" ? " pb-flag" : ""}`}>
+      <div className="pb-run-top">
+        <span className="pb-run-title">{it.title}</span>
+        <span className="pb-chip" style={{ borderColor: vcolor(it.verdict), color: vcolor(it.verdict) }}>
+          {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
+        </span>
+      </div>
+      <div className="pb-run-chips">
+        <span className="db-track-chip">{TRACK_META[it.track].label}</span>
+        {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
+        {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
+      </div>
+      {it.note && <p className="pb-run-summary">{it.note}</p>}
+      {it.figure && (
+        <>
+          <a href={it.figure} target="_blank" rel="noopener noreferrer" className="db-thumb">
+            <img src={it.figure} loading="lazy" alt={`Draft figure from automated run ${it.title} — not validated`} />
+          </a>
+          <p className="db-figcap">draft figure — not validated</p>
+        </>
+      )}
+      <StageTrack stage={it.stage} />
+      <div className="db-row-foot">
+        <span className="db-links">
+          {it.pdf ? <a href={it.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
+          {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
+          {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
+          {it.review && <button type="button" className={`dh-toggle${h.open ? " on" : ""}`} onClick={h.toggle} aria-expanded={h.open}>revision log <span className="dh-caret">▸</span></button>}
+        </span>
+        <span className="db-tag">descriptive — not validated</span>
+      </div>
+      {h.open && <RevisionLog h={h} />}
+    </div>
+  );
+}
 
 export default function DraftBoard() {
   const [runs, setRuns] = useState<Run[] | null>(null);
@@ -92,15 +258,6 @@ export default function DraftBoard() {
 
   const byTrack: Track[] = ["flagship", "frontier", "pipeline"];
   const pipeRows = items.filter((i) => i.track === "pipeline");
-
-  const StageTrack = ({ stage }: { stage: number }) => (
-    <div className="db-track" role="img" aria-label={`Reached stage ${stage} of 5: ${STAGES[stage - 1]}`}>
-      {STAGES.map((s, si) => {
-        const done = si + 1 <= stage, cur = si + 1 === stage, gate = si === 4;
-        return <div className={`db-step${done ? " done" : ""}${cur ? " cur" : ""}${gate ? " gate" : ""}`} key={s}><i /><span>{s}</span></div>;
-      })}
-    </div>
-  );
 
   return (
     <div className="pb db">
@@ -162,39 +319,7 @@ export default function DraftBoard() {
           <div key={tk}>
             <p className="pb-sect">{TRACK_META[tk].label} <span className="db-sect-sub">· {TRACK_META[tk].blurb}</span></p>
             <div className="pb-runs">
-              {rows.map((it, i) => (
-                <div className={`pb-run db-rcard${tk === "flagship" ? " pb-flag" : ""}`} key={`${tk}-${i}`}>
-                  <div className="pb-run-top">
-                    <span className="pb-run-title">{it.title}</span>
-                    <span className="pb-chip" style={{ borderColor: vcolor(it.verdict), color: vcolor(it.verdict) }}>
-                      {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
-                    </span>
-                  </div>
-                  <div className="pb-run-chips">
-                    <span className="db-track-chip">{TRACK_META[tk].label}</span>
-                    {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
-                    {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
-                  </div>
-                  {it.note && <p className="pb-run-summary">{it.note}</p>}
-                  {it.figure && (
-                    <>
-                      <a href={it.figure} target="_blank" rel="noopener noreferrer" className="db-thumb">
-                        <img src={it.figure} loading="lazy" alt={`Draft figure from automated run ${it.title} — not validated`} />
-                      </a>
-                      <p className="db-figcap">draft figure — not validated</p>
-                    </>
-                  )}
-                  <StageTrack stage={it.stage} />
-                  <div className="db-row-foot">
-                    <span className="db-links">
-                      {it.pdf ? <a href={it.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
-                      {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
-                      {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
-                    </span>
-                    <span className="db-tag">descriptive — not validated</span>
-                  </div>
-                </div>
-              ))}
+              {rows.map((it, i) => <DraftCard it={it} key={`${tk}-${i}`} />)}
             </div>
           </div>
         );
@@ -262,4 +387,30 @@ const DB_CSS = `
 .db-table tbody tr:last-child td{border-bottom:none}
 .db-mono{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--lab-soft)}
 @media(max-width:520px){.db-step span{font-size:.5rem}.db-links{gap:.6rem}}
+.dh-toggle{background:transparent;border:1px solid var(--lab-line);color:var(--lab-soft);font:inherit;font-family:ui-monospace,monospace;font-size:.72rem;padding:.1rem .5rem;border-radius:7px;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem}
+.dh-toggle:hover,.dh-toggle.on{color:var(--lab-ink);border-color:var(--lab-accent)}
+.dh-caret{display:inline-block;transition:transform .15s}
+.dh-toggle.on .dh-caret{transform:rotate(90deg)}
+.dh-wrap{margin-top:.75rem;padding:.85rem 1rem;background:#0a0d17;border:1px solid var(--lab-line);border-radius:10px}
+.dh-note{font-size:.82rem;color:var(--lab-soft);font-style:italic}
+.dh-banner{font-size:.72rem;line-height:1.5;color:var(--lab-soft);margin:0 0 .55rem;padding:.42rem .6rem;border:1px solid rgba(224,164,88,.35);border-radius:7px;background:rgba(224,164,88,.06)}
+.dh-banner b{color:#e0a458}
+.dh-state{font-size:.8rem;color:var(--lab-ink);margin:0 0 .85rem;line-height:1.5}
+.dh-timeline{list-style:none;margin:0;padding:0;position:relative}
+.dh-timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--lab-line)}
+.dh-node{position:relative;padding:0 0 1.1rem 1.4rem}
+.dh-dot{position:absolute;left:0;top:4px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 3px #0a0d17}
+.dh-head{display:flex;align-items:center;gap:.55rem;margin-bottom:.4rem;flex-wrap:wrap}
+.dh-cycle{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--lab-ink)}
+.dh-by{font-size:.66rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
+.dh-delta{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-soft);margin:0 0 .4rem}
+.dh-delta .add{color:var(--lab-accent2);font-style:normal}
+.dh-delta .rm{color:#f47272;font-style:normal}
+.dh-fb{font-size:.82rem;line-height:1.6;color:var(--lab-ink);margin:0 0 .5rem;white-space:pre-wrap}
+.dh-draft{margin:.35rem 0 0}
+.dh-draft>summary{cursor:pointer;font-size:.72rem;color:var(--lab-accent);font-family:ui-monospace,monospace}
+.dh-excerpt{margin-top:.5rem;padding:.6rem .75rem;background:var(--lab-panel);border:1px solid var(--lab-line);border-radius:8px;font-size:.78rem;line-height:1.55;color:var(--lab-soft);white-space:pre-wrap;max-height:16rem;overflow:auto}
+.dh-final>summary{color:var(--lab-accent2)}
+.dh-human{font-size:.72rem;color:var(--lab-soft);margin:.7rem 0 0;padding-top:.6rem;border-top:1px solid var(--lab-line);font-style:italic}
+.dh-human b{color:var(--lab-ink);font-style:normal}
 `;
