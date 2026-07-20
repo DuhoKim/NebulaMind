@@ -11,6 +11,7 @@ import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, t
 import PipelineBoard from "./PipelineBoard";
 import FlagshipStudies from "./FlagshipStudies";
 import FrontierDrafts from "./FrontierDrafts";
+import DraftBoard from "./DraftBoard";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -1824,6 +1825,9 @@ export default function LabStages() {
                   <span className="cfg-sub-k">{k}</span><span className="cfg-sub-v">{v}</span>
                 </div>
               ))}
+              {tab === "paper" && sub === "progress" && (
+                <div style={{ padding: ".2rem .9rem 1rem" }}><DraftBoard /></div>
+              )}
               {tab === "paper" && sub === "flagship" && (
                 <div style={{ padding: ".2rem .9rem 1rem" }}><FlagshipStudies /></div>
               )}

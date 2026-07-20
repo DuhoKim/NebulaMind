@@ -71,6 +71,7 @@ export const RESEARCH_ITEMS: SubItem[] = [
 ];
 
 export const PAPER_ITEMS: SubItem[] = [
+  { value: "progress", label: "Draft board", sub: "every draft · where it stands" },
   { value: "flagship", label: "Flagship studies", sub: "hand-guided" },
   { value: "frontier", label: "Frontier drafts", sub: "pipeline studies" },
   { value: "pipeline", label: "Pipeline runs", sub: "automated · live board" },
