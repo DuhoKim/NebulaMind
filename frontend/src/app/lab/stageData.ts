@@ -71,17 +71,24 @@ export const RESEARCH_ITEMS: SubItem[] = [
 ];
 
 export const PAPER_ITEMS: SubItem[] = [
+  { value: "progress", label: "Papers in progress", sub: "the live board",
+    desc: "Every paper the Lab is currently working, live from the pipeline — where each run stopped, the referee’s verdict, and the descriptive draft PDF you can open. Honest attrition: most stop early and none is validated.",
+    rows: [
+    ["Live", "Reads the Lab’s own run pipeline and refreshes on load — the real runs, not a snapshot."],
+    ["Shows", "A funnel by stage, the referee-verdict mix, and a card per run with its draft PDF and figure."],
+    ["Honest", "0 accepted, 0 validated. The PDFs are descriptive drafts a human has not yet vouched for — not published papers."],
+  ] },
   { value: "draft", label: "AASTeX draft + figures", sub: "the manuscript", rows: [
     ["What", "A journal-style manuscript: title, abstract, method, the study’s figure, results, and honest caveats."],
     ["How", "Filled from the study’s real numbers and compiled to PDF with tectonic (the AAS aastex631 class)."],
   ] },
-  { value: "review", label: "Review → revise loop", sub: "hardening", rows: [
+  { value: "review", label: "Referee → revise loop", sub: "hardening", rows: [
     ["What", "An automated referee (astrosage-70b) reads the draft and issues a verdict: ACCEPT / MINOR / MAJOR / REJECT."],
     ["How", "On MAJOR/REJECT the author revises — softening overclaims, adding caveats, never inventing numbers — then re-reviews, until it holds."],
   ] },
-  { value: "honest", label: "Honest labeling", sub: "the bar", rows: [
-    ["What", "Every result states its selection, its calibration, and what it does not correct for."],
-    ["How", "Bounded automated results are labeled descriptive (not validated measurements) until a human review clears them."],
+  { value: "gates", label: "Gates & honest labeling", sub: "the bar", rows: [
+    ["Gates", "Before a draft counts, it must clear a novelty gate (is the result actually new?) and a citation-entailment gate (does every cited paper really support the claim?)."],
+    ["Honest label", "Bounded automated results are labeled descriptive — not validated measurements — until a human review clears them; a MINOR referee verdict means small fixes, not acceptance."],
   ] },
 ];
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type ReactNode } from "react";
+import { useState, Fragment, type ReactNode } from "react";
 import { STEPS, useTab, useSub, select } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
 import { itemsFor } from "./stageData";
@@ -8,6 +8,7 @@ import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
+import PipelineBoard from "./PipelineBoard";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -1082,35 +1083,38 @@ function ResearchView() {
 }
 
 // Graphic 1 — the outputs pipeline spine: Draft → Referee → Revise (loop) → Gate.
+// The full pipeline from a computed result to a compiled (descriptive) paper.
 function PipelineFlow() {
-  const nodes: [number, string, string, boolean][] = [
-    [36, "Draft", "AASTeX → PDF", false],
-    [260, "Referee", "astrosage-70b", false],
-    [484, "Revise", "soften · add caveats", false],
-    [708, "Gate", "held: descriptive", true],
+  const stages: [string, string, "" | "gate" | "held"][] = [
+    ["idea", "a ranked frontier", ""],
+    ["study", "public data → numbers", ""],
+    ["draft", "AASTeX manuscript", ""],
+    ["referee", "astrosage-70b ⟲ revise", ""],
+    ["gates", "novelty · citations", "gate"],
+    ["PDF", "held: descriptive", "held"],
   ];
   return (
-    <div className="cfg-viz">
-      <svg viewBox="0 0 900 150" role="img"
-        aria-label="Draft to Referee to Revise, looping back, ending at a Gate that holds papers as descriptive">
-        <defs>
-          <marker id="pf-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#7c86ff" /></marker>
-          <marker id="pf-loop" markerWidth="8" markerHeight="8" refX="5" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6 z" fill="#e0a458" /></marker>
-        </defs>
-        {nodes.map(([x, t, s, gate]) => (
-          <g key={t}>
-            <rect x={x} y="52" width="156" height="56" rx="10" fill="#0a0d17" stroke={gate ? "#f47272" : "#242a3d"} strokeWidth="1.4" />
-            <text x={x + 78} y="80" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="13" fontWeight="700" fill="#e8ecf5">{t}</text>
-            <text x={x + 78} y="96" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="9.5" fill={gate ? "#f47272" : "#9aa3b8"}>{s}</text>
-          </g>
+    <div className="pf2">
+      <style>{`
+        .pf2-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:.25rem .2rem;padding:.7rem .8rem;background:#0a0d17;border:1px solid var(--lab-line);border-radius:9px}
+        .pf2-node{display:flex;flex-direction:column;gap:.1rem;padding:.15rem .5rem}
+        .pf2-node b{font-family:ui-monospace,monospace;font-size:.8rem;color:var(--lab-ink);font-weight:650}
+        .pf2-node span{font-size:.61rem;color:var(--lab-soft);line-height:1.2;white-space:nowrap}
+        .pf2-node.gate b{color:var(--lab-accent2)}
+        .pf2-node.held b{color:#e0a458}
+        .pf2-arr{align-self:center;color:var(--lab-accent);font-weight:700;font-family:ui-monospace,monospace;font-size:.8rem}
+        .pf2-cap{font-size:.76rem;color:var(--lab-soft);line-height:1.6;margin:.6rem 0 0}
+        .pf2-cap em{color:#e0a458;font-style:normal;font-weight:600}
+      `}</style>
+      <div className="pf2-row">
+        {stages.map(([k, s, kind], i) => (
+          <Fragment key={k}>
+            {i > 0 && <span className="pf2-arr">→</span>}
+            <span className={`pf2-node ${kind}`}><b>{k}</b><span>{s}</span></span>
+          </Fragment>
         ))}
-        <path d="M196 80 H256" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
-        <path d="M420 80 H480" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
-        <path d="M644 80 H704" stroke="#7c86ff" strokeWidth="1.6" markerEnd="url(#pf-arrow)" />
-        <path d="M562 52 C 562 16, 338 16, 338 52" fill="none" stroke="#e0a458" strokeWidth="1.4" strokeDasharray="4 3" markerEnd="url(#pf-loop)" />
-        <text x="450" y="12" textAnchor="middle" fontFamily="ui-monospace,monospace" fontSize="9.5" fill="#e0a458">revise loop · MAJOR / REJECT</text>
-      </svg>
-      <p className="cap">Draft → referee → revise, looping until it holds — but the terminal state is almost always &ldquo;held back: descriptive,&rdquo; not accepted (2,489 of 2,490).</p>
+      </div>
+      <p className="pf2-cap">Each station does one job a journal does — typeset the numbers, referee them, force revisions, then check every citation is real and the claim is new. <em>It&rsquo;s a filter, not a conveyor belt:</em> most runs stop early, and the line ends at a gate that holds the paper back as <b style={{ color: "#e0a458" }}>descriptive</b> until a human clears it.</p>
     </div>
   );
 }
@@ -1125,9 +1129,9 @@ function PaperView() {
         is decide the science is true. Every draft is labelled <b>descriptive, not validated</b> until a human clears it — and so far essentially none have.
       </p>
 
-      {/* Pipeline spine */}
+      {/* The pipeline: research -> journal paper */}
       <div className="corpus-block">
-        <p className="cch-h">From result to refereed manuscript</p>
+        <p className="cch-h">How a computed result becomes a journal paper</p>
         <PipelineFlow />
       </div>
 
@@ -1238,6 +1242,15 @@ function PaperView() {
           </p>
         </div>
       </div>
+
+      {/* Live board pointer */}
+      <button className="dv-explorer" style={{ cursor: "pointer", textAlign: "left", font: "inherit" }} onClick={() => select("paper", "progress")}>
+        <div>
+          <b>See the papers in progress →</b>
+          <span>Every run the Lab has worked sits on one live board — where each stopped, what the referee said, and the descriptive PDF you can open. Honest attrition: most stop early, none is validated.</span>
+        </div>
+        <span className="dv-explorer-cta">Open the board</span>
+      </button>
 
       {/* Cross-step footer */}
       <a className="dv-explorer" href="/lab">
@@ -1594,11 +1607,15 @@ export default function LabStages() {
           return (
             <div className="cfg-sub">
               <div className="cfg-sub-h">{active.label}<span>{active.sub}</span></div>
+              {active.desc && <div className="cfg-sub-desc">{active.desc}</div>}
               {(active.rows || []).map(([k, v]) => (
                 <div className="cfg-sub-row" key={k}>
                   <span className="cfg-sub-k">{k}</span><span className="cfg-sub-v">{v}</span>
                 </div>
               ))}
+              {tab === "paper" && sub === "progress" && (
+                <div style={{ padding: ".2rem .9rem 1rem" }}><PipelineBoard /></div>
+              )}
             </div>
           );
         })()}
