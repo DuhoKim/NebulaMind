@@ -120,11 +120,16 @@ export default function PipelineBoard() {
                 {r.data_sources.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
                 {r.review_cycles != null && <span className="pb-src pb-src-cyc">{r.review_cycles} review cycle{r.review_cycles === 1 ? "" : "s"}</span>}
               </div>
-              <div className="pb-run-links">
-                {r.pdf_url && <a href={r.pdf_url} target="_blank" rel="noopener noreferrer">draft PDF ↗</a>}
-                {r.figure_url && <a href={r.figure_url} target="_blank" rel="noopener noreferrer">figure ↗</a>}
-                {r.review_url && <a href={r.review_url} target="_blank" rel="noopener noreferrer">referee ↗</a>}
-              </div>
+              {demo ? (
+                <div className="pb-run-links pb-nolink">demo fixture — no live artifact</div>
+              ) : (
+                <div className="pb-run-links">
+                  {r.pdf_url && <a href={r.pdf_url} target="_blank" rel="noopener noreferrer">draft PDF ↗</a>}
+                  {r.figure_url && <a href={r.figure_url} target="_blank" rel="noopener noreferrer">figure ↗</a>}
+                  {r.review_url && <a href={r.review_url} target="_blank" rel="noopener noreferrer">referee ↗</a>}
+                  {!r.pdf_url && !r.figure_url && !r.review_url && <span className="pb-nolink">stopped early — no artifact yet</span>}
+                </div>
+              )}
               <p className="pb-tag">descriptive draft — not validated, not published</p>
             </div>
           );
@@ -170,6 +175,7 @@ const PB_CSS = `
 .pb-run-links{display:flex;gap:.9rem;font-size:.78rem;font-family:ui-monospace,monospace}
 .pb-run-links a{color:var(--lab-accent);text-decoration:none}
 .pb-run-links a:hover{text-decoration:underline}
+.pb-nolink{color:var(--lab-soft);font-style:italic}
 .pb-tag{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:#e0a458;margin:.55rem 0 0}
 @media(max-width:560px){.pb-kpis{gap:1.1rem}.pb-dk{width:120px}}
 `;
