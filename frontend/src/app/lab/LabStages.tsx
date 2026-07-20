@@ -379,7 +379,26 @@ function cidForActivity(v: number): number | null {
   }
   return best;
 }
-type CidMeta = { name: string; size: number; activity: number | null; rank: number | null };
+type ScatterMode = "cluster" | "activity" | "rank";
+const SCOREV1_MAX = Math.max(...FRONTIERS.map((f) => f.scoreV1)); // galaxy-evolution controversy scale
+function contestColor(t: number): string {
+  // agree/settled (teal) → amber → clash/contested (red), echoing the settled-vs-contested chart
+  const stops: [number, [number, number, number]][] = [[0, [74, 214, 196]], [0.5, [224, 164, 88]], [1, [244, 114, 114]]];
+  t = Math.max(0, Math.min(1, t));
+  for (let i = 1; i < stops.length; i++) {
+    if (t <= stops[i][0]) {
+      const [t0, c0] = stops[i - 1];
+      const [t1, c1] = stops[i];
+      const f = (t - t0) / (t1 - t0);
+      const c = c0.map((v, k) => Math.round(v + (c1[k] - v) * f));
+      return `rgb(${c[0]},${c[1]},${c[2]})`;
+    }
+  }
+  return "rgb(244,114,114)";
+}
+const contestNorm = (sv: number) => Math.pow(sv / SCOREV1_MAX, 0.7);
+const CONTESTED = FRONTIERS.filter((f) => f.scoreV1 > 0).sort((a, b) => b.scoreV1 - a.scoreV1).slice(0, 8);
+type CidMeta = { name: string; size: number; activity: number | null; rank: number | null; scoreV1: number };
 function cidMeta(cid: number): CidMeta | null {
   if (cid < 0) return null;
   const f = FRONTIER_BY_CID.get(cid);
@@ -388,11 +407,14 @@ function cidMeta(cid: number): CidMeta | null {
     size: f?.size ?? 0,
     activity: SCATTER_ACTIVITY[cid] ?? null,
     rank: RANK_BY_CID.get(cid) ?? null,
+    scoreV1: f?.scoreV1 ?? 0,
   };
 }
-const isIsland = (cid: number, mode: "cluster" | "activity") =>
-  mode === "cluster" ? CID_COLORIDX.has(cid) : cid >= 0;
-function isMatch(cid: number, focus: number | null, mode: "cluster" | "activity") {
+const isIsland = (cid: number, mode: ScatterMode) =>
+  mode === "cluster" ? CID_COLORIDX.has(cid)
+    : mode === "rank" ? (FRONTIER_BY_CID.get(cid)?.scoreV1 ?? 0) > 0
+    : cid >= 0;
+function isMatch(cid: number, focus: number | null, mode: ScatterMode) {
   if (focus == null) return true;
   if (focus === -1) return !isIsland(cid, mode); // the grey haze
   return cid === focus;
@@ -403,7 +425,7 @@ const readCid = (t: EventTarget | null): number | null => {
 };
 
 function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSelect }: {
-  mode: "cluster" | "activity";
+  mode: ScatterMode;
   hoveredCid: number | null;
   lockedCid: number | null;
   onHover: (c: number | null) => void;
@@ -417,11 +439,15 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
     <div className="corpus-block">
       <div className="cch-h">{mode === "cluster"
         ? "The map — 120k papers, self-organized"
+        : mode === "rank"
+        ? "The same map — now lit by how contested each theme is"
         : "The same map — now lit by how active each theme is"}</div>
       <div className="scatter-wrap">
         <svg className="scatter" viewBox="0 0 100 100" role="img"
           aria-label={mode === "cluster"
             ? "2D UMAP scatter of the corpus, colored by cluster. Hover the legend or the topic list to highlight a theme."
+            : mode === "rank"
+            ? "Cluster map colored by how contested each theme is. Hover the contested list to highlight a theme."
             : "Cluster map heat-colored by recent citation activity. Hover the activity list to highlight a theme."}
           onMouseMove={(e) => { const c = readCid(e.target); if (c != null && c >= 0) onHover(c); }}
           onMouseLeave={() => onHover(null)}
@@ -435,6 +461,13 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
               fill = ci != null ? SCATTER_COLS[ci] : "#39435f";
               baseR = ci != null ? 0.75 : 0.55;
               baseOp = ci != null ? 0.9 : 0.32;
+            } else if (mode === "rank") {
+              const sv = FRONTIER_BY_CID.get(cid)?.scoreV1 ?? 0;
+              const contested = sv > 0 && cid >= 0;
+              const t = contested ? contestNorm(sv) : 0;
+              fill = contested ? contestColor(t) : "#242c3d";
+              baseR = contested ? 0.62 + t * 0.75 : 0.5;
+              baseOp = contested ? 0.9 : 0.2;
             } else {
               const a = SCATTER_ACTIVITY[cid];
               const noise = a === undefined;
@@ -454,6 +487,7 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
             <b>{tip.name}</b>
             <span>{tip.size.toLocaleString()} papers{tip.rank ? ` · #${tip.rank} of 57` : ""}</span>
             {mode === "activity" && tip.activity != null && <span>{tip.activity.toFixed(1)} recent cites / paper</span>}
+            {mode === "rank" && tip.scoreV1 > 0 && <span>controversy {tip.scoreV1.toFixed(2)}</span>}
           </div>
         )}
         {focus === -1 && (
@@ -478,6 +512,13 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
             <i style={{ background: "#39435f" }} />other + noise
           </button>
         </div>
+      ) : mode === "rank" ? (
+        <div className="heat-scale">
+          <span>agree · settled</span>
+          <div className="heat-bar contest" />
+          <span>measurements clash · contested</span>
+          <span className="heat-grey"><i />not a galaxy-evo frontier</span>
+        </div>
       ) : (
         <div className="heat-scale">
           <span>❄ settled (barely cited now)</span>
@@ -489,6 +530,8 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
       <p className="scatter-disc">Colour marks the <b>cluster</b>, not the dot — a representative sample, not specific papers; the UMAP axes carry no units.</p>
       {mode === "cluster" ? (
         <p className="cch-note">A 2-D UMAP of a representative sample. The top-10 frontiers fall out as <b>distinct islands</b> — nobody drew the boundaries; the grey haze is the 43% the algorithm left unclustered rather than forcing into a theme. <b>Hover or tap a topic</b> to light up its island.</p>
+      ) : mode === "rank" ? (
+        <p className="cch-note">The <b>same 57-cluster map</b>, recolored by the <b>controversy score</b> — how much independent measurements of a cluster&rsquo;s key numbers disagree, once redshift and mass are controlled. The contested <b>galaxy-evolution</b> frontiers glow; settled or out-of-scope fields (much of cosmology, instrumentation) stay dark. <b>JWST high-z</b> is the most contested.</p>
       ) : (
         <p className="cch-note">Exactly the <b>same 57-theme map</b> as the previous step — but recolored: each theme now glows by its <b>recent citations per paper</b>. A handful burn hot (the field is still piling citations on); most sit cool and settled. The single hottest island is <b>JWST high-z galaxy formation</b>.</p>
       )}
@@ -678,8 +721,12 @@ function SettledVsContested() {
 function RankingView() {
   const smax = RANK_TOPICS[0].score;
   const Smax = 6.5;
+  const [hoveredCid, setHoveredCid] = useState<number | null>(null);
+  const [lockedCid, setLockedCid] = useState<number | null>(null);
+  const effective = lockedCid ?? hoveredCid;
+  const toggleLock = (c: number | null) => setLockedCid((p) => (c == null ? null : p === c ? null : c));
   return (
-    <div className="corpus-view">
+    <div className="corpus-view" onKeyDown={(e) => { if (e.key === "Escape") { setLockedCid(null); setHoveredCid(null); } }}>
       <div className="corpus-stats">
         <div className="cst"><b>disagreement</b><span>what we rank by — not popularity</span></div>
         <div className="cst"><b>same z &amp; mass</b><span>compared like-with-like</span></div>
@@ -701,6 +748,24 @@ function RankingView() {
           <div className="ing-x">×</div>
           <div className="ing-card f"><p className="ing-k">guard · alive</p><b>Is anyone still working on it?</b><span>a dead topic with no recent work is skipped</span></div>
         </div>
+      </div>
+      <InteractiveClusterScatter mode="rank"
+        hoveredCid={hoveredCid} lockedCid={lockedCid} onHover={setHoveredCid} onSelect={toggleLock} />
+      <div className="corpus-block">
+        <div className="cch-h">The most-contested clusters · straight from the data</div>
+        <div className="embed-lb frontiers">
+          {CONTESTED.map((f, i) => (
+            <button type="button" key={f.cluster} aria-pressed={lockedCid === f.cluster}
+              className={`clu-row${i === 0 ? " top" : ""}${effective === f.cluster ? " active" : ""}`}
+              onMouseEnter={() => setHoveredCid(f.cluster)} onMouseLeave={() => setHoveredCid(null)}
+              onFocus={() => setHoveredCid(f.cluster)} onBlur={() => setHoveredCid(null)}
+              onClick={() => toggleLock(f.cluster)}>
+              <span className="clu-label"><b>{i + 1}. {f.name}</b><span className="clu-kw">{f.keywords.slice(0, 5).join(" · ")} · {f.size.toLocaleString()} papers</span></span>
+              <span className="elb-bar"><i style={{ width: `${contestNorm(f.scoreV1) * 100}%`, background: contestColor(contestNorm(f.scoreV1)) }} /></span>
+            </button>
+          ))}
+        </div>
+        <p className="cch-note">The 57 clusters scored by how much their key measurements disagree — the galaxy-evolution controversy signal, the same one coloring the map above. <b>Hover a row to find its island.</b> This data-driven ranking is what the curated frontier shortlist below is distilled from.</p>
       </div>
       <div className="corpus-block">
         <div className="cch-h">The contested frontiers — where the field is unsettled</div>
@@ -1528,6 +1593,7 @@ export default function LabStages() {
         .ing-x{align-self:center;color:var(--lab-soft);font-family:ui-monospace,monospace;font-size:1.1rem}
         .heat-scale{display:flex;align-items:center;gap:.55rem;justify-content:center;flex-wrap:wrap;margin-top:.5rem;font-size:.7rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
         .heat-bar{flex:0 1 200px;height:9px;border-radius:5px;background:linear-gradient(90deg,rgb(58,69,96),rgb(74,214,196),rgb(250,204,21),rgb(251,90,90))}
+        .heat-bar.contest{background:linear-gradient(90deg,rgb(74,214,196),rgb(224,164,88),rgb(244,114,114))}
         .heat-grey{display:inline-flex;align-items:center;gap:.3rem;margin-left:.5rem}
         .heat-grey i{width:8px;height:8px;border-radius:50%;background:#222a3a;display:inline-block}
         .ov-flow{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem .5rem;margin:.1rem 0 .2rem}
