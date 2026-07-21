@@ -31,6 +31,7 @@ type Track = "flagship" | "frontier" | "pipeline";
 type Item = {
   title: string; track: Track; stage: number; verdict: string | null; pdf: string | null; note: string;
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
+  updated?: string | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -244,6 +245,7 @@ function DraftCard({ it }: { it: Item }) {
       <div className="db-row-foot">
         <span className="db-links">
           {it.pdf ? <a href={it.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
+          {it.pdf && it.updated && <span className="db-updated" title="last updated">upd. {it.updated.slice(0, 10)}</span>}
           {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
           {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
           {it.review && <button type="button" className={`dh-toggle${h.open ? " on" : ""}`} onClick={h.toggle} aria-expanded={h.open}>revision log <span className="dh-caret">▸</span></button>}
@@ -272,13 +274,13 @@ export default function DraftBoard() {
   if (!runs) return <div className="pb db"><style>{PB_CSS}</style><style>{DB_CSS}</style><div className="pb-state">Loading the draft board…</div></div>;
 
   const items: Item[] = [];
-  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary });
-  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: 3, verdict: null, pdf: f.pdf, note: f.sub });
+  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated });
+  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: 3, verdict: null, pdf: f.pdf, note: f.sub, updated: f.updated });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
     items.push({
       title: prettyMethod(r.method), track: "pipeline", stage, verdict: r.review_verdict, pdf: r.pdf_url, note: r.summary ?? "—",
-      id: r.id, method: r.method, sources: r.data_sources, cycles: r.review_cycles, figure: r.figure_url, review: r.review_url,
+      id: r.id, method: r.method, sources: r.data_sources, cycles: r.review_cycles, figure: r.figure_url, review: r.review_url, updated: r.created_utc,
     });
   }
 
@@ -419,8 +421,9 @@ const DB_CSS = `
 .db-step.gate i{background:transparent;border-style:dashed;border-color:var(--lab-soft)}
 .db-step.gate.done i{background:var(--lab-accent);border-style:solid}
 .db-row-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem;font-size:.76rem;font-family:ui-monospace,monospace;margin-top:auto;padding-top:.4rem}
-.db-links{display:flex;gap:.9rem}
+.db-links{display:flex;gap:.9rem;align-items:baseline;flex-wrap:wrap}
 .db-links a{color:var(--lab-accent);text-decoration:none}
+.db-updated{color:var(--lab-soft);font-size:.66rem;font-family:ui-monospace,monospace}
 .db-links a:hover{text-decoration:underline}
 .db-tag{font-size:.58rem;letter-spacing:.05em;text-transform:uppercase;color:#e0a458;white-space:nowrap}
 .db-table-wrap{overflow-x:auto;border:1px solid var(--lab-line);border-radius:12px;background:var(--lab-panel)}

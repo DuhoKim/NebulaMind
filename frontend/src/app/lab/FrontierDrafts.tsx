@@ -6,7 +6,7 @@
 // /agent-reports/research-frontiers/. Curated list.
 import { PB_CSS } from "./PipelineBoard";
 
-export type Draft = { title: string; sub: string; pages: string; pdf: string };
+export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string };
 
 export const FRONTIER: Draft[] = [
   {
@@ -14,24 +14,28 @@ export const FRONTIER: Draft[] = [
     sub: "The star-forming main sequence and the mass–metallicity relation anchored on ~5×10⁵ SDSS galaxies, then confronted with JWST out to the frontier.",
     pages: "3 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
+    updated: "2026-07-19",
   },
   {
     title: "Does IllustrisTNG make enough massive galaxies early enough?",
     sub: "A stellar-mass-function stress test of the flagship simulation against JWST at z=4–6 — the ‘too massive, too early’ tension with ΛCDM.",
     pages: "6 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-massive-galaxies-draft.pdf",
+    updated: "2026-07-19",
   },
   {
     title: "The stellar mass–metallicity relation in SDSS and the aperture sensitivity of the FMR",
     sub: "The MZR from 202,968 SDSS star-forming galaxies, and whether the fundamental metallicity relation is physical or an aperture artifact.",
     pages: "3 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-mzr-fmr-draft.pdf",
+    updated: "2026-07-19",
   },
   {
     title: "Calibration is not validation: confronting IllustrisTNG with observed scaling-relation evolution",
     sub: "Testing the simulation by its predictions away from its z≈0 calibration point, from SDSS to JWST.",
     pages: "3 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
+    updated: "2026-07-19",
   },
 ];
 
