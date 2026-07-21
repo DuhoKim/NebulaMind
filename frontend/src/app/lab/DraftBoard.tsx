@@ -189,6 +189,17 @@ function useRevisionLog(reviewUrl: string | null) {
   return { open, toggle, ...st };
 }
 
+// Color each entry by the direction of its verdict so the log's arc (needs-work →
+// accepted) reads at a glance. Hard fails are orange, work-needed amber, positive
+// teal, neutral grey. Used only inside the expanded log — the card chip stays grey.
+function verdictTone(v: string | null): { dot: string; border: string; bg: string } {
+  const s = (v || "").toUpperCase();
+  if (/REJECT|\bFAIL\b/.test(s)) return { dot: "#e0774f", border: "rgba(224,119,79,.45)", bg: "rgba(224,119,79,.09)" };
+  if (/ACCEPT|CLEAR|CONFIRM|\bPASS\b|READY/.test(s)) return { dot: "#4ad6c4", border: "rgba(74,214,196,.4)", bg: "rgba(74,214,196,.08)" };
+  if (/REVISE|DOWNGRADE|SHELVE|FLAG|OVERCLAIM|MINOR|MAJOR/.test(s)) return { dot: "#e0a458", border: "rgba(224,164,88,.45)", bg: "rgba(224,164,88,.09)" };
+  return { dot: "#9aa3b8", border: "var(--lab-line)", bg: "transparent" };
+}
+
 function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
   if (h.loading) return <div className="dh-wrap"><div className="dh-note">Loading revision log…</div></div>;
   if (h.err === "none") return <div className="dh-wrap"><div className="dh-note">No review recorded — this run stopped before referee review. No revisions exist.</div></div>;
@@ -201,25 +212,35 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
       <p className="dh-banner">Automated referee (<b>{model}</b>) — unedited machine-generated feedback. Not a human or journal referee; the paper is <b>not validated</b>.</p>
       <p className="dh-state">
         {refereeCycles === 0 ? "The referee ran but logged no cycle."
-          : refereeCycles === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
-          : `${refereeCycles} automated review passes by ${model}. The changes below are the model’s own revisions — no human reviewed any cycle.`}
+          : refereeCycles === 1 && revisions.length === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
+          : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}${revisions.length - refereeCycles > 0 ? `, plus ${revisions.length - refereeCycles} other input${revisions.length - refereeCycles === 1 ? "" : "s"} (deep research / analysis)` : ""}. The revisions below are the model’s own — no human reviewed any cycle.`}
       </p>
+      <p className="dh-legend">Each step reads top-down: <b>who weighed in</b> → their <b>verdict</b> → <b>what it changed</b> in the draft. Oldest first; newest at the bottom.</p>
       <ol className="dh-timeline">
-        {revisions.map((r, i) => (
-          <li className="dh-node" key={i}>
-            <span className="dh-dot" style={{ background: vcolor(r.verdict) }} />
-            <div className="dh-body">
-              <div className="dh-head">
-                {r.verdict && <span className="pb-chip" style={{ borderColor: vcolor(r.verdict), color: vcolor(r.verdict) }}>{r.verdict}</span>}
-                {r.cycle != null && <span className="dh-cycle">cycle {r.cycle}</span>}
-                <span className="dh-by">{SOURCE_LABEL[r.source] || r.source} · {r.by}</span>
+        {revisions.map((r, i) => {
+          const tone = verdictTone(r.verdict);
+          return (
+            <li className="dh-node" key={i}>
+              <span className="dh-dot" style={{ background: tone.dot }} />
+              <div className="dh-body">
+                <div className="dh-head">
+                  <span className="dh-src" data-kind={r.source}>{SOURCE_LABEL[r.source] || r.source}</span>
+                  <span className="dh-by">{r.by}</span>
+                  {r.cycle != null && <span className="dh-cycle">cycle {r.cycle}</span>}
+                </div>
+                {r.verdict && <span className="dh-verdict" style={{ color: tone.dot, borderColor: tone.border, background: tone.bg }}>{r.verdict}</span>}
+                <p className="dh-fb">{r.feedback}</p>
+                {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
+                {r.changed && (
+                  <div className="dh-response">
+                    <span className="dh-response-k">→ what changed</span>
+                    <span className="dh-response-t">{r.changed}</span>
+                  </div>
+                )}
               </div>
-              {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
-              {r.changed && <div className="dh-delta">{r.changed}</div>}
-              <p className="dh-fb">{r.feedback}</p>
-            </div>
-          </li>
-        ))}
+            </li>
+          );
+        })}
       </ol>
       {final && <details className="dh-draft dh-final"><summary>final manuscript body</summary><div className="dh-excerpt">{final}</div></details>}
       <p className="dh-human">Human feedback: <b>{humanCaptured ? "recorded above." : "not captured."}</b> {humanCaptured ? "A person has reviewed this draft." : "No person has reviewed this draft — its absence is real, not pending."}</p>
@@ -452,18 +473,26 @@ const DB_CSS = `
 .dh-note{font-size:.82rem;color:var(--lab-soft);font-style:italic}
 .dh-banner{font-size:.72rem;line-height:1.5;color:var(--lab-soft);margin:0 0 .55rem;padding:.42rem .6rem;border:1px solid rgba(224,164,88,.35);border-radius:7px;background:rgba(224,164,88,.06)}
 .dh-banner b{color:#e0a458}
-.dh-state{font-size:.8rem;color:var(--lab-ink);margin:0 0 .85rem;line-height:1.5}
+.dh-state{font-size:.8rem;color:var(--lab-ink);margin:0 0 .4rem;line-height:1.5}
+.dh-legend{font-size:.72rem;color:var(--lab-soft);margin:0 0 1rem;line-height:1.5;padding:.4rem .6rem;background:#0d1120;border:1px solid var(--lab-line);border-radius:7px}
+.dh-legend b{color:var(--lab-ink)}
 .dh-timeline{list-style:none;margin:0;padding:0;position:relative}
 .dh-timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--lab-line)}
-.dh-node{position:relative;padding:0 0 1.1rem 1.4rem}
+.dh-node{position:relative;padding:0 0 1.35rem 1.4rem}
 .dh-dot{position:absolute;left:0;top:4px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 3px #0a0d17}
-.dh-head{display:flex;align-items:center;gap:.55rem;margin-bottom:.4rem;flex-wrap:wrap}
-.dh-cycle{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--lab-ink)}
+.dh-head{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.35rem;flex-wrap:wrap}
+.dh-src{font-family:ui-monospace,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--lab-ink)}
+.dh-src[data-kind="deep-research"]{color:#7c86ff}
+.dh-src[data-kind="author-analysis"]{color:var(--lab-accent2)}
+.dh-src[data-kind="human"]{color:#e0a458}
+.dh-cycle{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft);margin-left:auto}
 .dh-by{font-size:.66rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
+.dh-verdict{display:inline-block;font-family:ui-monospace,monospace;font-size:.66rem;border:1px solid;border-radius:7px;padding:.1rem .5rem;margin:0 0 .5rem}
 .dh-delta{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-soft);margin:0 0 .4rem}
-.dh-delta .add{color:var(--lab-accent2);font-style:normal}
-.dh-delta .rm{color:#f47272;font-style:normal}
-.dh-fb{font-size:.82rem;line-height:1.6;color:var(--lab-ink);margin:0 0 .5rem;white-space:pre-wrap}
+.dh-fb{font-size:.82rem;line-height:1.6;color:var(--lab-soft);margin:0 0 .5rem;white-space:pre-wrap}
+.dh-response{display:flex;flex-direction:column;gap:.2rem;margin:.5rem 0 0;padding:.45rem .65rem;background:rgba(124,134,255,.07);border-left:2px solid var(--lab-accent);border-radius:0 7px 7px 0}
+.dh-response-k{font-family:ui-monospace,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.05em;color:var(--lab-accent);font-weight:700}
+.dh-response-t{font-size:.82rem;line-height:1.55;color:var(--lab-ink)}
 .dh-draft{margin:.35rem 0 0}
 .dh-draft>summary{cursor:pointer;font-size:.72rem;color:var(--lab-accent);font-family:ui-monospace,monospace}
 .dh-excerpt{margin-top:.5rem;padding:.6rem .75rem;background:var(--lab-panel);border:1px solid var(--lab-line);border-radius:8px;font-size:.78rem;line-height:1.55;color:var(--lab-soft);white-space:pre-wrap;max-height:16rem;overflow:auto}
