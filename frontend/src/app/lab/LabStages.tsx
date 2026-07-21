@@ -3,14 +3,15 @@
 import { useState, Fragment, type ReactNode } from "react";
 import { STEPS, useTab, useSub, select, useLabUrlSync } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
-import { itemsFor } from "./stageData";
+import { itemsFor, RESEARCH_ITEMS } from "./stageData";
+import { METHOD_LABEL } from "./methodLinks";
 import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
 import PipelineBoard from "./PipelineBoard";
-import FlagshipStudies from "./FlagshipStudies";
-import FrontierDrafts from "./FrontierDrafts";
+import FlagshipStudies, { FLAGSHIP } from "./FlagshipStudies";
+import FrontierDrafts, { FRONTIER } from "./FrontierDrafts";
 import DraftBoard from "./DraftBoard";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
@@ -1280,6 +1281,46 @@ function ResearchView() {
         <p className="cch-note">Every relation is anchored at z≈0 by SDSS and pushed to the frontier by JWST; COSMOS2020 deepens only the mass function; IllustrisTNG (rings) is the simulation each one is checked against.</p>
       </div>
 
+      {/* Cross-link: which method produced which manuscript (→ Paper) */}
+      <div className="corpus-block">
+        <p className="cch-h">Manuscripts built from these methods</p>
+        <div className="mm-grid">
+          <style>{`
+            .mm-grid{display:flex;flex-direction:column;gap:.1rem}
+            .mm-row{display:grid;grid-template-columns:minmax(9rem,14rem) 1fr;gap:.5rem 1rem;align-items:baseline;padding:.5rem 0;border-bottom:1px solid var(--lab-line)}
+            .mm-row:last-child{border-bottom:none}
+            .mm-method{font-family:ui-monospace,monospace;font-size:.72rem;color:var(--lab-accent2)}
+            .mm-papers{display:flex;flex-direction:column;gap:.35rem}
+            .mm-paper{text-align:left;font:inherit;font-size:.8rem;line-height:1.35;color:var(--lab-ink);background:transparent;border:none;padding:0;cursor:pointer}
+            .mm-paper:hover{color:var(--lab-accent);text-decoration:underline}
+            .mm-paper i{font-style:normal;font-family:ui-monospace,monospace;font-size:.64rem;color:var(--lab-soft)}
+            .mm-none{font-size:.76rem;color:var(--lab-soft);font-style:italic}
+            @media(max-width:560px){.mm-row{grid-template-columns:1fr;gap:.2rem}}
+          `}</style>
+          {RESEARCH_ITEMS.map((mi) => {
+            const papers = [
+              ...FLAGSHIP.filter((f) => f.methods?.includes(mi.value)).map((f) => ({ title: f.title, sub: "flagship", verdict: f.verdict as string | null })),
+              ...FRONTIER.filter((f) => f.methods?.includes(mi.value)).map((f) => ({ title: f.title, sub: "frontier", verdict: f.verdict ?? null })),
+            ];
+            return (
+              <div className="mm-row" key={mi.value}>
+                <span className="mm-method">{METHOD_LABEL[mi.value] ?? mi.label}</span>
+                {papers.length ? (
+                  <span className="mm-papers">
+                    {papers.map((p) => (
+                      <button type="button" className="mm-paper" key={p.title} onClick={() => select("paper", p.sub)} title={`Open in Paper · ${p.sub}`}>
+                        {p.title}{p.verdict && <i> · {p.verdict}</i>}
+                      </button>
+                    ))}
+                  </span>
+                ) : <span className="mm-none">no drafts yet</span>}
+              </div>
+            );
+          })}
+        </div>
+        <p className="cch-note">Each manuscript over in <b style={{ color: "#7c86ff" }}>Paper</b> is built from one or more of these methods — click a title to open the draft, or use the <b>methods</b> chips on any draft to come back here.</p>
+      </div>
+
       {/* Cross-step footer */}
       <a className="dv-explorer" href="/lab">
         <div>
@@ -1456,7 +1497,7 @@ function PaperView() {
       {/* Cross-step footer */}
       <a className="dv-explorer" href="/lab">
         <div>
-          <b>Topic → Data → Research → Paper — the full loop →</b>
+          <b>Topic → Data → Methods → Paper — the full loop →</b>
           <span>Pick a question, ground it in real <b style={{ color: "#4ad6c4" }}>surveys</b>, compute an honest <b style={{ color: "#7c86ff" }}>result</b>, then draft and referee it like a journal would. The last step is the one we <b>don&rsquo;t</b> automate: a human decides what&rsquo;s true.</span>
         </div>
         <span className="dv-explorer-cta">Back to the pipeline</span>

@@ -5,8 +5,9 @@
 // the crew, not the automated pipeline. Still descriptive until a human clears them.
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
+import { MethodChips } from "./methodLinks";
 
-export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string };
+export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[] };
 
 export const FLAGSHIP: Flagship[] = [
   {
@@ -17,6 +18,7 @@ export const FLAGSHIP: Flagship[] = [
     pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
     updated: "2026-07-21 13:40",
     review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
+    methods: ["mzr"],
   },
 ];
 
@@ -41,6 +43,7 @@ export default function FlagshipStudies() {
             <p className="pb-run-summary">{f.summary}</p>
             <div className="pb-run-chips"><span className="pb-src pb-src-flag">flagship · hand-guided</span></div>
             <p className="pb-run-meta">{f.meta}</p>
+            <MethodChips methods={f.methods} />
             <div className="pb-run-links"><a href={f.pdf} target="_blank" rel="noopener noreferrer">read the manuscript (PDF) ↗</a></div>
             <p className="pb-tag">descriptive — not validated, not published</p>
           </div>

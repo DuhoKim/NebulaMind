@@ -14,6 +14,7 @@ import { useEffect, useState, useRef, useCallback } from "react";
 import { PB_CSS } from "./PipelineBoard";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
+import { MethodChips } from "./methodLinks";
 
 type Run = {
   id: string;
@@ -31,7 +32,7 @@ type Track = "flagship" | "frontier" | "pipeline";
 type Item = {
   title: string; track: Track; stage: number; verdict: string | null; pdf: string | null; note: string;
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
-  updated?: string | null;
+  updated?: string | null; methods?: string[] | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -242,6 +243,7 @@ function DraftCard({ it }: { it: Item }) {
         {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
       </div>
       {it.note && <p className="pb-run-summary">{it.note}</p>}
+      <MethodChips methods={it.methods} />
       {it.figure && (
         <>
           <a href={it.figure} target="_blank" rel="noopener noreferrer" className="db-thumb">
@@ -283,8 +285,8 @@ export default function DraftBoard() {
   if (!runs) return <div className="pb db"><style>{PB_CSS}</style><style>{DB_CSS}</style><div className="pb-state">Loading the draft board…</div></div>;
 
   const items: Item[] = [];
-  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null });
-  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null });
+  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
+  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
     items.push({
