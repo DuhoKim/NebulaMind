@@ -5,6 +5,7 @@
 // most runs stop at the study stage, the best any reach is a MINOR referee verdict,
 // and ZERO are validated or published. Every PDF here is a descriptive draft.
 import { useEffect, useState } from "react";
+import { RawStyle } from "./rawStyle";
 
 type Run = {
   id: string;
@@ -66,7 +67,7 @@ export default function PipelineBoard() {
 
   return (
     <div className="pb">
-      <style>{PB_CSS}</style>
+      <RawStyle css={PB_CSS} />
 
       <div className="pb-kpis">
         <div className="pb-kpi"><b>{total}</b><span>real runs</span></div>

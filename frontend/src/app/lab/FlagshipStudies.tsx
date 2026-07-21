@@ -6,6 +6,7 @@
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
 import { MethodChips } from "./methodLinks";
+import { RawStyle } from "./rawStyle";
 
 export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[] };
 
@@ -27,7 +28,7 @@ const vcolor = (v: string) => ({ ACCEPT: "#4ad6c4", MINOR: "#e0a458", MAJOR: "#e
 export default function FlagshipStudies() {
   return (
     <div className="pb">
-      <style>{PB_CSS}</style>
+      <RawStyle css={PB_CSS} />
       <p className="pb-lede">
         These are the <b>hand-guided</b> studies — orchestrated by the crew, not the automated pipeline. Each went the
         <b> full distance</b> (a real forward-model and referee loop) and is the most complete work the Lab produces.

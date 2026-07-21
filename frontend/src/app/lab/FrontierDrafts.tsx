@@ -6,6 +6,7 @@
 // /agent-reports/research-frontiers/. Curated list.
 import { PB_CSS } from "./PipelineBoard";
 import { MethodChips } from "./methodLinks";
+import { RawStyle } from "./rawStyle";
 
 export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string; methods?: string[] };
 
@@ -51,7 +52,7 @@ export const FRONTIER: Draft[] = [
 export default function FrontierDrafts() {
   return (
     <div className="pb">
-      <style>{PB_CSS}</style>
+      <RawStyle css={PB_CSS} />
       <p className="pb-lede">
         Multi-page manuscript drafts from the <b>autonomous research pipeline</b>, one per top frontier —
         more developed than the single-measurement runs, but <b>descriptive drafts</b>: no human has cleared any of them.

@@ -1,6 +1,7 @@
 import LabStages from "./LabStages";
 import LabTopTabs from "./LabTopTabs";
 import DesktopCompanion from "./DesktopCompanion";
+import { RawStyle } from "./rawStyle";
 
 export const metadata = {
   title: "The pipeline — NebulaMind",
@@ -10,7 +11,7 @@ export const metadata = {
 export default function PipelinePage() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--lab-bg)", color: "var(--lab-ink)" }}>
-      <style>{`
+      <RawStyle css={`
         :root{ --lab-bg:#0a0d17; --lab-panel:#111524; --lab-ink:#e8ecf5; --lab-soft:#9aa3b8; --lab-line:#242a3d; --lab-accent:#7c86ff; --lab-accent2:#4ad6c4; }
         .lab-wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
         .lab-sec{padding:2.1rem 0;border-bottom:1px solid var(--lab-line)}
@@ -52,7 +53,7 @@ export default function PipelinePage() {
         #pipeline{scroll-margin-top:72px}
         @media(max-width:760px){.lab-back{display:none}}
         @media(max-width:560px){.lab-toptab{padding:.4rem .5rem;font-size:.8rem}}
-      `}</style>
+      `} />
 
       <nav className="lab-topbar">
         <div className="lab-wrap row">
