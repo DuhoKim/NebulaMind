@@ -10,12 +10,12 @@ export type Flagship = { title: string; summary: string; meta: string; verdict: 
 
 export const FLAGSHIP: Flagship[] = [
   {
-    title: "A Selection-Bounded Mass–Metallicity Deficit at z>7",
-    summary: "A ~0.25–0.41 dex early-universe metallicity deficit that survives a JWST emission-line selection forward-model (bootstrap 95% CI excludes zero) — held descriptive, not a detection.",
-    meta: "SDSS anchor N=203,599 · Nakajima+23 z>7 (VizieR) · 7/7 bounded systematics · one overnight run",
-    verdict: "MINOR",
-    pdf: "/studies/z7-mzr-descriptive.pdf",
-    updated: "2026-07-20",
+    title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z≈9–10",
+    summary: "On a single Te-consistent scale, the strictly unlensed z=9.3–9.9 field sample (Pollock+26, N=5 direct-Te) sits −0.69±0.03 dex below the local mass–metallicity relation — robust to leave-one-out (0.04 dex) and to the local anchor choice (Curti+20 vs Andrews–Martini, Δ0.04 dex). Explicitly NOT a formal statistical detection.",
+    meta: "Nakajima+23 direct-Te subset · Pollock+26 unlensed CAPERS/JADES · cross-checked vs Isobe+26 (~1500 gal) · abs. Te scale ±0.1–0.2 dex is the dominant systematic",
+    verdict: "REVIEW-READY",
+    pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
+    updated: "2026-07-21 13:40",
   },
 ];
 
