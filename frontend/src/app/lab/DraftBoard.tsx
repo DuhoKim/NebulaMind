@@ -201,11 +201,18 @@ function verdictTone(v: string | null): { dot: string; border: string; bg: strin
 }
 
 function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
+  // Per-cycle collapse: an open-index set (all collapsed by default) so the log
+  // reads as a scannable spine you drill into. Hook stays above the early returns.
+  const [openSet, setOpenSet] = useState<Set<number>>(new Set());
   if (h.loading) return <div className="dh-wrap"><div className="dh-note">Loading revision log…</div></div>;
   if (h.err === "none") return <div className="dh-wrap"><div className="dh-note">No review recorded — this run stopped before referee review. No revisions exist.</div></div>;
   if (h.err) return <div className="dh-wrap"><div className="dh-note">Couldn&rsquo;t load the referee log ({h.err}).</div></div>;
   if (!h.data) return null;
   const { model, revisions, refereeCycles, humanCaptured, topic, topicSource, final } = h.data;
+  const allOpen = revisions.length > 0 && openSet.size === revisions.length;
+  const toggleAll = () => setOpenSet(allOpen ? new Set() : new Set(revisions.map((_, i) => i)));
+  const toggleOne = (i: number) =>
+    setOpenSet((prev) => { const n = new Set(prev); if (n.has(i)) n.delete(i); else n.add(i); return n; });
   return (
     <div className="dh-wrap">
       {topic && <p className="dh-lineage">Seeded from the <b>{topicSource || "frontier"}</b> · topic: {topic}</p>}
@@ -215,26 +222,39 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
           : refereeCycles === 1 && revisions.length === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
           : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}${revisions.length - refereeCycles > 0 ? `, plus ${revisions.length - refereeCycles} other input${revisions.length - refereeCycles === 1 ? "" : "s"} (deep research / analysis)` : ""}. The revisions below are the model’s own — no human reviewed any cycle.`}
       </p>
-      <p className="dh-legend">Each step reads top-down: <b>who weighed in</b> → their <b>verdict</b> → <b>what it changed</b> in the draft. Oldest first; newest at the bottom.</p>
+      <div className="dh-legend-row">
+        <p className="dh-legend">Each step: <b>who weighed in</b> → their <b>verdict</b> → <b>what it changed</b>. Oldest first — <b>click a step to expand it</b>.</p>
+        {revisions.length > 1 && (
+          <button type="button" className="dh-expandall" onClick={toggleAll} aria-expanded={allOpen}>
+            {allOpen ? "collapse all" : "expand all"}
+          </button>
+        )}
+      </div>
       <ol className="dh-timeline">
         {revisions.map((r, i) => {
           const tone = verdictTone(r.verdict);
+          const open = openSet.has(i);
           return (
-            <li className="dh-node" key={i}>
+            <li className={`dh-node${open ? " open" : ""}`} key={i}>
               <span className="dh-dot" style={{ background: tone.dot }} />
               <div className="dh-body">
-                <div className="dh-head">
+                <button type="button" className="dh-nodehead" onClick={() => toggleOne(i)} aria-expanded={open}>
+                  <span className="dh-ncaret" data-open={open}>▸</span>
                   <span className="dh-src" data-kind={r.source}>{SOURCE_LABEL[r.source] || r.source}</span>
                   <span className="dh-by">{r.by}</span>
+                  {r.verdict && <span className="dh-verdict" style={{ color: tone.dot, borderColor: tone.border, background: tone.bg }}>{r.verdict}</span>}
                   {r.cycle != null && <span className="dh-cycle">cycle {r.cycle}</span>}
-                </div>
-                {r.verdict && <span className="dh-verdict" style={{ color: tone.dot, borderColor: tone.border, background: tone.bg }}>{r.verdict}</span>}
-                <p className="dh-fb">{r.feedback}</p>
-                {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
-                {r.changed && (
-                  <div className="dh-response">
-                    <span className="dh-response-k">→ what changed</span>
-                    <span className="dh-response-t">{r.changed}</span>
+                </button>
+                {open && (
+                  <div className="dh-detail">
+                    <p className="dh-fb">{r.feedback}</p>
+                    {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
+                    {r.changed && (
+                      <div className="dh-response">
+                        <span className="dh-response-k">→ what changed</span>
+                        <span className="dh-response-t">{r.changed}</span>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
@@ -474,20 +494,28 @@ const DB_CSS = `
 .dh-banner{font-size:.72rem;line-height:1.5;color:var(--lab-soft);margin:0 0 .55rem;padding:.42rem .6rem;border:1px solid rgba(224,164,88,.35);border-radius:7px;background:rgba(224,164,88,.06)}
 .dh-banner b{color:#e0a458}
 .dh-state{font-size:.8rem;color:var(--lab-ink);margin:0 0 .4rem;line-height:1.5}
-.dh-legend{font-size:.72rem;color:var(--lab-soft);margin:0 0 1rem;line-height:1.5;padding:.4rem .6rem;background:#0d1120;border:1px solid var(--lab-line);border-radius:7px}
+.dh-legend-row{display:flex;gap:.6rem;align-items:stretch;margin:0 0 1rem;flex-wrap:wrap}
+.dh-legend{flex:1;min-width:14rem;font-size:.72rem;color:var(--lab-soft);margin:0;line-height:1.5;padding:.4rem .6rem;background:#0d1120;border:1px solid var(--lab-line);border-radius:7px}
 .dh-legend b{color:var(--lab-ink)}
+.dh-expandall{font-family:ui-monospace,monospace;font-size:.64rem;color:var(--lab-soft);background:transparent;border:1px solid var(--lab-line);border-radius:7px;padding:.15rem .7rem;cursor:pointer;white-space:nowrap;align-self:center}
+.dh-expandall:hover{color:var(--lab-ink);border-color:var(--lab-accent)}
 .dh-timeline{list-style:none;margin:0;padding:0;position:relative}
 .dh-timeline::before{content:"";position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:var(--lab-line)}
-.dh-node{position:relative;padding:0 0 1.35rem 1.4rem}
-.dh-dot{position:absolute;left:0;top:4px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 3px #0a0d17}
-.dh-head{display:flex;align-items:baseline;gap:.5rem;margin-bottom:.35rem;flex-wrap:wrap}
+.dh-node{position:relative;padding:0 0 .5rem 1.4rem}
+.dh-node.open{padding-bottom:1.3rem}
+.dh-dot{position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;box-shadow:0 0 0 3px #0a0d17}
+.dh-nodehead{display:flex;align-items:baseline;gap:.5rem;flex-wrap:wrap;width:100%;background:transparent;border:none;padding:.2rem .35rem;margin-left:-.35rem;border-radius:6px;cursor:pointer;text-align:left;font:inherit}
+.dh-nodehead:hover{background:rgba(124,134,255,.07)}
+.dh-ncaret{flex-shrink:0;color:var(--lab-soft);font-size:.7rem;transition:transform .15s}
+.dh-ncaret[data-open="true"]{transform:rotate(90deg)}
 .dh-src{font-family:ui-monospace,monospace;font-size:.6rem;text-transform:uppercase;letter-spacing:.06em;font-weight:700;color:var(--lab-ink)}
 .dh-src[data-kind="deep-research"]{color:#7c86ff}
 .dh-src[data-kind="author-analysis"]{color:var(--lab-accent2)}
 .dh-src[data-kind="human"]{color:#e0a458}
 .dh-cycle{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft);margin-left:auto}
 .dh-by{font-size:.66rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
-.dh-verdict{display:inline-block;font-family:ui-monospace,monospace;font-size:.66rem;border:1px solid;border-radius:7px;padding:.1rem .5rem;margin:0 0 .5rem}
+.dh-detail{margin-top:.5rem}
+.dh-verdict{display:inline-block;font-family:ui-monospace,monospace;font-size:.66rem;border:1px solid;border-radius:7px;padding:.06rem .5rem;margin:0}
 .dh-delta{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-soft);margin:0 0 .4rem}
 .dh-fb{font-size:.82rem;line-height:1.6;color:var(--lab-soft);margin:0 0 .5rem;white-space:pre-wrap}
 .dh-response{display:flex;flex-direction:column;gap:.2rem;margin:.5rem 0 0;padding:.45rem .65rem;background:rgba(124,134,255,.07);border-left:2px solid var(--lab-accent);border-radius:0 7px 7px 0}
