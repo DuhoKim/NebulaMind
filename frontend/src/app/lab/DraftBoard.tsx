@@ -12,6 +12,7 @@
 // add over the cockpit: real result-figure thumbnails and data-source chips.
 import { useEffect, useState, useRef, useCallback } from "react";
 import { PB_CSS } from "./PipelineBoard";
+import { RawStyle } from "./rawStyle";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { MethodChips } from "./methodLinks";
@@ -322,8 +323,8 @@ export default function DraftBoard() {
     return () => { alive = false; };
   }, []);
 
-  if (err) return <div className="pb db"><style>{PB_CSS}</style><style>{DB_CSS}</style><div className="pb-state pb-err">Couldn&rsquo;t load the pipeline — {err}</div></div>;
-  if (!runs) return <div className="pb db"><style>{PB_CSS}</style><style>{DB_CSS}</style><div className="pb-state">Loading the draft board…</div></div>;
+  if (err) return <div className="pb db"><RawStyle css={PB_CSS} /><RawStyle css={DB_CSS} /><div className="pb-state pb-err">Couldn&rsquo;t load the pipeline — {err}</div></div>;
+  if (!runs) return <div className="pb db"><RawStyle css={PB_CSS} /><RawStyle css={DB_CSS} /><div className="pb-state">Loading the draft board…</div></div>;
 
   const items: Item[] = [];
   for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
@@ -358,8 +359,8 @@ export default function DraftBoard() {
 
   return (
     <div className="pb db">
-      <style>{PB_CSS}</style>
-      <style>{DB_CSS}</style>
+      <RawStyle css={PB_CSS} />
+      <RawStyle css={DB_CSS} />
 
       <div className="pb-kpis">
         <div className="pb-kpi"><b>{total}</b><span>drafts tracked</span></div>

@@ -5,6 +5,7 @@ import { STEPS, useTab, useSub, select, useLabUrlSync } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
 import { itemsFor, RESEARCH_ITEMS } from "./stageData";
 import { METHOD_LABEL } from "./methodLinks";
+import { RawStyle } from "./rawStyle";
 import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
@@ -1285,7 +1286,7 @@ function ResearchView() {
       <div className="corpus-block">
         <p className="cch-h">Manuscripts built from these methods</p>
         <div className="mm-grid">
-          <style>{`
+          <RawStyle css={`
             .mm-grid{display:flex;flex-direction:column;gap:.1rem}
             .mm-row{display:grid;grid-template-columns:minmax(9rem,14rem) 1fr;gap:.5rem 1rem;align-items:baseline;padding:.5rem 0;border-bottom:1px solid var(--lab-line)}
             .mm-row:last-child{border-bottom:none}
@@ -1296,7 +1297,7 @@ function ResearchView() {
             .mm-paper i{font-style:normal;font-family:ui-monospace,monospace;font-size:.64rem;color:var(--lab-soft)}
             .mm-none{font-size:.76rem;color:var(--lab-soft);font-style:italic}
             @media(max-width:560px){.mm-row{grid-template-columns:1fr;gap:.2rem}}
-          `}</style>
+          `} />
           {RESEARCH_ITEMS.map((mi) => {
             const papers = [
               ...FLAGSHIP.filter((f) => f.methods?.includes(mi.value)).map((f) => ({ title: f.title, sub: "flagship", verdict: f.verdict as string | null })),
@@ -1346,7 +1347,7 @@ function PipelineFlow() {
   ];
   return (
     <div className="pf2">
-      <style>{`
+      <RawStyle css={`
         .pf2-row{display:flex;flex-wrap:wrap;align-items:stretch;gap:.25rem .2rem;padding:.7rem .8rem;background:#0a0d17;border:1px solid var(--lab-line);border-radius:9px}
         .pf2-node{display:flex;flex-direction:column;gap:.1rem;padding:.15rem .5rem}
         .pf2-node b{font-family:ui-monospace,monospace;font-size:.8rem;color:var(--lab-ink);font-weight:650}
@@ -1356,7 +1357,7 @@ function PipelineFlow() {
         .pf2-arr{align-self:center;color:var(--lab-accent);font-weight:700;font-family:ui-monospace,monospace;font-size:.8rem}
         .pf2-cap{font-size:.76rem;color:var(--lab-soft);line-height:1.6;margin:.6rem 0 0}
         .pf2-cap em{color:#e0a458;font-style:normal;font-weight:600}
-      `}</style>
+      `} />
       <div className="pf2-row">
         {stages.map(([k, s, kind], i) => (
           <Fragment key={k}>
@@ -1525,7 +1526,7 @@ export default function LabStages() {
 
   return (
     <div className="cfg">
-      <style>{`
+      <RawStyle css={`
         .cfg{border:1px solid var(--lab-line);border-radius:14px;background:var(--lab-panel);overflow:hidden}
         .cfg-panel{padding:1.3rem 1.25rem;min-height:104px}
         .cfg-panel-h{font-family:ui-monospace,monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--lab-accent2);margin:0 0 .85rem}
@@ -1817,7 +1818,7 @@ export default function LabStages() {
         .pt-track:hover{border-color:var(--lab-accent)}
         .pt-track b{font-size:.95rem;color:var(--lab-ink);font-weight:650}
         .pt-track span{font-size:.8rem;color:var(--lab-soft);line-height:1.5}
-      `}</style>
+      `} />
 
       <div className="cfg-panel" role="tabpanel">
         <p className="cfg-panel-h">{STEPS.find((s) => s.key === tab)?.heading}</p>
