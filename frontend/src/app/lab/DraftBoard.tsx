@@ -45,7 +45,16 @@ const vcolor = (v: string | null) => (v ? VC[v.toUpperCase()] ?? "#9aa3b8" : "#9
 const isDemo = (r: Run) => !r.created_utc || /demo/i.test(r.id);
 const prettyMethod = (m: string | null) =>
   (m ?? "study").split("-").map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w)).join(" ");
-const VORDER = ["ACCEPT", "MINOR", "MAJOR", "REJECT", "no verdict yet"];
+const VORDER = ["ACCEPT", "REVIEW-READY", "REVIEW-CLEARED", "MINOR", "MAJOR", "REJECT", "no verdict yet"];
+
+// Format an "updated" value for display: show the date and, when present, the
+// time (HH:MM). Accepts "YYYY-MM-DD", "YYYY-MM-DD HH:MM", or ISO "…THH:MM:SSZ".
+// String-sliced (no Date parsing) so it never timezone-shifts the stored value.
+const fmtUpd = (s: string): string => {
+  const m = s.match(/(\d{4}-\d{2}-\d{2})(?:[ T](\d{2}:\d{2}))?/);
+  if (!m) return s;
+  return m[2] ? `${m[1]} ${m[2]}` : m[1];
+};
 
 // ── Revision log (per-draft referee-loop history) ─────────────────────────────
 // Parses a run's review_loop.md artifact into a structured, honest revision log.
@@ -245,7 +254,7 @@ function DraftCard({ it }: { it: Item }) {
       <div className="db-row-foot">
         <span className="db-links">
           {it.pdf ? <a href={it.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
-          {it.pdf && it.updated && <span className="db-updated" title="last updated">upd. {it.updated.slice(0, 10)}</span>}
+          {it.pdf && it.updated && <span className="db-updated" title="last updated">upd. {fmtUpd(it.updated)}</span>}
           {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
           {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
           {it.review && <button type="button" className={`dh-toggle${h.open ? " on" : ""}`} onClick={h.toggle} aria-expanded={h.open}>revision log <span className="dh-caret">▸</span></button>}
@@ -275,7 +284,7 @@ export default function DraftBoard() {
 
   const items: Item[] = [];
   for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated });
-  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: 3, verdict: null, pdf: f.pdf, note: f.sub, updated: f.updated });
+  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
     items.push({
