@@ -6,7 +6,7 @@
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
 
-export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string };
+export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string };
 
 export const FLAGSHIP: Flagship[] = [
   {
@@ -15,6 +15,7 @@ export const FLAGSHIP: Flagship[] = [
     meta: "SDSS anchor N=203,599 · Nakajima+23 z>7 (VizieR) · 7/7 bounded systematics · one overnight run",
     verdict: "MINOR",
     pdf: "/studies/z7-mzr-descriptive.pdf",
+    updated: "2026-07-20",
   },
 ];
 
