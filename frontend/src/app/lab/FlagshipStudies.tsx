@@ -6,7 +6,7 @@
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
 
-export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string };
+export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string };
 
 export const FLAGSHIP: Flagship[] = [
   {
@@ -16,6 +16,7 @@ export const FLAGSHIP: Flagship[] = [
     verdict: "REVIEW-READY",
     pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
     updated: "2026-07-21 13:40",
+    review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
   },
 ];
 

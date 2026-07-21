@@ -155,7 +155,7 @@ function normalizeLoop(md: string): NormHist {
   return { model: p.model, topicSource: null, topic: null, revisions, refereeCycles: revisions.length, humanCaptured: false, final: p.final };
 }
 
-const SOURCE_LABEL: Record<string, string> = { "referee-model": "automated referee", human: "human", "novelty-gate": "novelty gate", "citation-gate": "citation gate", "expected-value-gate": "expected-value gate" };
+const SOURCE_LABEL: Record<string, string> = { "referee-model": "automated referee", human: "human", "novelty-gate": "novelty gate", "citation-gate": "citation gate", "expected-value-gate": "expected-value gate", "deep-research": "deep research", "author-analysis": "author analysis" };
 
 type HistState = { loading: boolean; data: NormHist | null; err: string | null };
 function useRevisionLog(reviewUrl: string | null) {
@@ -283,8 +283,8 @@ export default function DraftBoard() {
   if (!runs) return <div className="pb db"><style>{PB_CSS}</style><style>{DB_CSS}</style><div className="pb-state">Loading the draft board…</div></div>;
 
   const items: Item[] = [];
-  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated });
-  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated });
+  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null });
+  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
     items.push({
