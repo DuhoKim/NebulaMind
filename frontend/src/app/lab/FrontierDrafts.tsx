@@ -5,8 +5,9 @@
 // pipeline runs, but still descriptive drafts (no human sign-off). Hosted under
 // /agent-reports/research-frontiers/. Curated list.
 import { PB_CSS } from "./PipelineBoard";
+import { MethodChips } from "./methodLinks";
 
-export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string };
+export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string; methods?: string[] };
 
 export const FRONTIER: Draft[] = [
   {
@@ -15,6 +16,7 @@ export const FRONTIER: Draft[] = [
     pages: "3 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
     updated: "2026-07-19 23:10",
+    methods: ["ms", "mzr"],
   },
   {
     title: "The z≈4–6 massive-galaxy abundance is consistent with IllustrisTNG once stellar-mass systematics are budgeted",
@@ -24,6 +26,7 @@ export const FRONTIER: Draft[] = [
     updated: "2026-07-21 12:51",
     verdict: "REVIEW-READY",
     review: "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_review_loop.md",
+    methods: ["smf", "simobs"],
   },
   {
     title: "Disentangling aperture and calibration systematics in the gas-phase MZR: a practitioner’s framework",
@@ -33,6 +36,7 @@ export const FRONTIER: Draft[] = [
     updated: "2026-07-21 12:41",
     verdict: "REVIEW-CLEARED",
     review: "/agent-reports/research-frontiers/mzr-aperture-calibration-framework_review_loop.md",
+    methods: ["mzr"],
   },
   {
     title: "Calibration is not validation: confronting IllustrisTNG with observed scaling-relation evolution",
@@ -40,6 +44,7 @@ export const FRONTIER: Draft[] = [
     pages: "3 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
     updated: "2026-07-19 23:10",
+    methods: ["simobs", "ms", "mzr"],
   },
 ];
 
@@ -64,6 +69,7 @@ export default function FrontierDrafts() {
             </div>
             <p className="pb-run-summary">{f.sub}</p>
             <div className="pb-run-chips"><span className="pb-src">AASTeX · {f.pages}</span></div>
+            <MethodChips methods={f.methods} />
             <div className="pb-run-links"><a href={f.pdf} target="_blank" rel="noopener noreferrer">read the draft (PDF) ↗</a></div>
             <p className="pb-tag">descriptive draft — not validated, not published</p>
           </div>

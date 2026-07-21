@@ -175,6 +175,10 @@ export const PB_CSS = `
 .pb-src-cyc{color:var(--lab-soft)}
 .pb-src-demo{color:var(--lab-soft);border-color:var(--lab-soft)}
 .pb-chip{display:inline-block;border:1px solid;border-radius:999px;padding:.06rem .55rem;font-size:.63rem;font-family:ui-monospace,monospace;white-space:nowrap}
+.mlx-chips{display:flex;flex-wrap:wrap;align-items:center;gap:.35rem;margin:.15rem 0 .5rem}
+.mlx-k{font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--lab-soft)}
+.mlx-chip{font:inherit;font-family:ui-monospace,monospace;font-size:.62rem;color:var(--lab-accent);background:transparent;border:1px solid var(--lab-line);border-radius:999px;padding:.08rem .55rem;cursor:pointer;white-space:nowrap}
+.mlx-chip:hover{border-color:var(--lab-accent);text-decoration:underline}
 .pb-run-links{display:flex;gap:.9rem;font-size:.78rem;font-family:ui-monospace,monospace}
 .pb-run-links a{color:var(--lab-accent);text-decoration:none}
 .pb-run-links a:hover{text-decoration:underline}

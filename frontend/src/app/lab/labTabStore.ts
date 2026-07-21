@@ -8,7 +8,7 @@ import { itemsFor } from "./stageData";
 export const STEPS = [
   { key: "topic", label: "Topic", sub: "select", heading: "How the research topics were picked" },
   { key: "data", label: "Data", sub: "sources", heading: "The data sources" },
-  { key: "research", label: "Research", sub: "method", heading: "The analysis methods" },
+  { key: "research", label: "Methods", sub: "method", heading: "The analysis methods" },
   { key: "paper", label: "Paper", sub: "outputs", heading: "The outputs produced" },
 ] as const;
 
