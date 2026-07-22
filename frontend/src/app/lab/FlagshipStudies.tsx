@@ -6,6 +6,8 @@
 // Curated list; add an entry per published study.
 import { PB_CSS } from "./PipelineBoard";
 import { MethodChips } from "./methodLinks";
+import { PaperVideo } from "./PaperVideo";
+import { PAPER_VIDEOS } from "./paperVideos";
 import { RawStyle } from "./rawStyle";
 
 export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[] };
@@ -45,6 +47,7 @@ export default function FlagshipStudies() {
             <div className="pb-run-chips"><span className="pb-src pb-src-flag">flagship · hand-guided</span></div>
             <p className="pb-run-meta">{f.meta}</p>
             <MethodChips methods={f.methods} />
+            <PaperVideo videoId={PAPER_VIDEOS[f.pdf]} title={f.title} />
             <div className="pb-run-links"><a href={f.pdf} target="_blank" rel="noopener noreferrer">read the manuscript (PDF) ↗</a></div>
             <p className="pb-tag">descriptive — not validated, not published</p>
           </div>

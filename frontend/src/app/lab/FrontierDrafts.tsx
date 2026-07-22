@@ -6,6 +6,8 @@
 // /agent-reports/research-frontiers/. Curated list.
 import { PB_CSS } from "./PipelineBoard";
 import { MethodChips } from "./methodLinks";
+import { PaperVideo } from "./PaperVideo";
+import { PAPER_VIDEOS } from "./paperVideos";
 import { RawStyle } from "./rawStyle";
 
 export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string; methods?: string[] };
@@ -71,6 +73,7 @@ export default function FrontierDrafts() {
             <p className="pb-run-summary">{f.sub}</p>
             <div className="pb-run-chips"><span className="pb-src">AASTeX · {f.pages}</span></div>
             <MethodChips methods={f.methods} />
+            <PaperVideo videoId={PAPER_VIDEOS[f.pdf]} title={f.title} />
             <div className="pb-run-links"><a href={f.pdf} target="_blank" rel="noopener noreferrer">read the draft (PDF) ↗</a></div>
             <p className="pb-tag">descriptive draft — not validated, not published</p>
           </div>
