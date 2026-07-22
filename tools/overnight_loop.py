@@ -94,7 +94,7 @@ def main():
             rec["status"] = "failed"; rec.setdefault("result", {})["error"] = str(e)[:200]
             (rundir / f"{rid}.json").write_text(json.dumps(rec, indent=2))
         rec = json.loads((rundir / f"{rid}.json").read_text())
-        entry = {"id": rid, "study": f"{spec.get('method')} z={spec.get('z0', '-')}", **triage(rec)}
+        entry = {"id": rid, "study": f"f_esc z={spec.get('z0', '-')} [{spec.get('corner', 'fiducial')}]", **triage(rec)}
         ledger.append(entry)
         with open(status_jsonl, "a") as f:
             f.write(json.dumps(entry) + "\n")

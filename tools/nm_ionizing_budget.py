@@ -86,19 +86,37 @@ def run_ionizing_budget(rec, res, plt, z0=6.0):
     Non-circularity: compare median Delta(required-inferred) under O32-only vs
     beta-only calibration; a sign flip => the shortfall is calibration-driven.
     """
+    spec = rec.get("spec", {}) if isinstance(rec, dict) else {}
+    xi_c = float(spec.get("xi_center", 25.5))
+    C_lo, C_hi = [float(v) for v in spec.get("clumping", [2.0, 5.0])]
+    proxy = str(spec.get("proxy", "both")).lower()
+    boost_mode = str(spec.get("sfrd_boost_mode", "jwst")).lower()
+    corner = str(spec.get("corner", "fiducial"))
+
+    def _boost(rn, n):
+        if boost_mode == "high":     # optimistic JWST-enhanced SFRD
+            return 10 ** rn.normal(0.1, 0.2, n) * (1.0 + rn.uniform(0.5, 2.0, n))
+        if boost_mode == "none":     # conservative, no high-z enhancement
+            return 10 ** rn.normal(0.0, 0.2, n)
+        return 10 ** rn.normal(0.0, 0.2, n) * (1.0 + rn.uniform(0.0, 1.5, n) * (rn.random(n) < 0.5))
+
     rng = np.random.default_rng(20260723)
     N = 40000
-    log_xi = rng.normal(25.5, 0.15, N)
-    C = rng.uniform(2.0, 5.0, N)
-    # SFRD boost: base spread + a one-sided JWST high-z enhancement tail
-    boost = 10 ** rng.normal(0.0, 0.2, N) * (1.0 + rng.uniform(0.0, 1.5, N) * (rng.random(N) < 0.5))
+    log_xi = rng.normal(xi_c, 0.15, N)
+    C = rng.uniform(C_lo, C_hi, N)
+    boost = _boost(rng, N)
 
     f_req = fesc_required(z0, log_xi, C, boost)
     f_req = np.clip(f_req, 1e-4, 5.0)
 
-    # proxy-inferred: half the draws use O32, half beta
-    use_o32 = rng.random(N) < 0.5
-    f_inf = np.where(use_o32, _sample_proxy(rng, "O32", N), _sample_proxy(rng, "beta", N))
+    # proxy-inferred f_esc (corner selects which LzLCS calibration)
+    if proxy == "o32":
+        f_inf = _sample_proxy(rng, "O32", N)
+    elif proxy == "beta":
+        f_inf = _sample_proxy(rng, "beta", N)
+    else:
+        use_o32 = rng.random(N) < 0.5
+        f_inf = np.where(use_o32, _sample_proxy(rng, "O32", N), _sample_proxy(rng, "beta", N))
 
     delta = f_req - f_inf                       # >0 => shortfall (galaxies need more escape than inferred)
     frac_short = float(np.mean(delta > 0))
@@ -120,8 +138,7 @@ def run_ionizing_budget(rec, res, plt, z0=6.0):
     zz = np.linspace(5.0, 9.0, 40)
     # required band across the xi_ion x C x boost systematic (per-z percentiles)
     M = 4000
-    lx = rng.normal(25.5, 0.15, M); cc = rng.uniform(2.0, 5.0, M)
-    bb = 10 ** rng.normal(0.0, 0.2, M) * (1.0 + rng.uniform(0.0, 1.5, M) * (rng.random(M) < 0.5))
+    lx = rng.normal(xi_c, 0.15, M); cc = rng.uniform(C_lo, C_hi, M); bb = _boost(rng, M)
     band = np.array([fesc_required(z, lx, cc, bb) for z in zz])       # (nz, M)
     r16, r50, r84 = (np.percentile(band, p, axis=1) for p in (16, 50, 84))
     plt.fill_between(zz, r16, r84, color="#c0392b", alpha=0.20, label="required (xi x C x SFRD syst.)")
@@ -149,11 +166,13 @@ def run_ionizing_budget(rec, res, plt, z0=6.0):
         "delta": [d_lo, d_med, d_hi], "frac_shortfall": frac_short,
         "noncircular_robust": bool(robust), "delta_O32": d_o32, "delta_beta": d_beta,
     }
+    _ct = "" if corner == "fiducial" else f" ({corner} systematic corner)"
     res["title"] = (
-        f"The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z~{z0:.0f}"
-        if closes else
-        f"A residual reionization ionizing-photon-budget shortfall for star-forming galaxies at z~{z0:.0f}"
+        (f"The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z~{z0:.0f}"
+         if closes else
+         f"A residual reionization ionizing-photon-budget shortfall for star-forming galaxies at z~{z0:.0f}") + _ct
     )
+    res["fesc"]["corner"] = corner
     # provenance guard: this is a literature-anchored calculation, NOT a survey-data study.
     res["provenance"] = (
         "Literature-anchored budget calculation — NO survey catalog data is used. The cosmic SFRD is the "
