@@ -28,12 +28,14 @@ type Run = {
   review_verdict: string | null;
   review_cycles: number | null;
   created_utc: string | null;
+  lit_grounded?: boolean | null;
+  lit_grounding?: string | null;
 };
 type Track = "flagship" | "frontier" | "pipeline";
 type Item = {
   title: string; track: Track; stage: number; verdict: string | null; pdf: string | null; note: string;
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
-  updated?: string | null; methods?: string[] | null;
+  updated?: string | null; methods?: string[] | null; grounded?: boolean | null; grounding?: string | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -283,6 +285,11 @@ function DraftCard({ it }: { it: Item }) {
         <span className="db-track-chip">{TRACK_META[it.track].label}</span>
         {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
         {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
+        {it.track === "pipeline" && it.grounded != null && (
+          <span className={`db-ground${it.grounded ? " on" : ""}`} title={it.grounding || (it.grounded ? "literature-grounded" : "not grounded")}>
+            {it.grounded ? "grounded" : "not grounded"}
+          </span>
+        )}
       </div>
       {it.note && <p className="pb-run-summary">{it.note}</p>}
       <MethodChips methods={it.methods} />
@@ -334,6 +341,7 @@ export default function DraftBoard() {
     items.push({
       title: prettyMethod(r.method), track: "pipeline", stage, verdict: r.review_verdict, pdf: r.pdf_url, note: r.summary ?? "—",
       id: r.id, method: r.method, sources: r.data_sources, cycles: r.review_cycles, figure: r.figure_url, review: r.review_url, updated: r.created_utc,
+      grounded: r.lit_grounded ?? null, grounding: r.lit_grounding ?? null,
     });
   }
 
@@ -457,6 +465,8 @@ const DB_CSS = `
 .db .pb-runs{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .db-rcard{display:flex;flex-direction:column}
 .db-track-chip{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.06rem .5rem;white-space:nowrap}
+.db-ground{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid #e0a458;color:#e0a458;background:rgba(224,164,88,.09);cursor:help}
+.db-ground.on{border-color:var(--lab-accent2);color:var(--lab-accent2);background:rgba(74,214,196,.1)}
 .db-thumb{display:block;margin:.1rem 0 .25rem;border:1px solid var(--lab-line);border-radius:8px;overflow:hidden;max-width:200px}
 .db-thumb img{display:block;width:100%;height:auto;max-height:120px;object-fit:cover;background:#0a0d17}
 .db-figcap{font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.04em;text-transform:uppercase;color:#e0a458;margin:0 0 .5rem}
