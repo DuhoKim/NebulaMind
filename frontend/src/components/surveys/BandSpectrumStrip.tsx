@@ -50,6 +50,10 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
           transition: all 120ms ease;
           user-select: none;
           min-width: 0;
+          background: transparent;
+          border: 0;
+          color: inherit;
+          font: inherit;
         }
         .band-seg:last-child {
           border-right: none;
@@ -90,16 +94,19 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
       `}</style>
 
       {/* "All" Segment */}
-      <div
+      <button
+        type="button"
         className={`band-seg ${band === "all" ? "band-seg--active" : ""}`}
         onClick={() => handleSelectBand("all")}
+        aria-pressed={band === "all"}
+        aria-label={`Show all ${totalCount} surveys`}
         style={{
           borderLeft: "4px solid #64748b",
         }}
       >
         <span className="band-seg__title">All</span>
         <span className="band-seg__count">{totalCount}</span>
-      </div>
+      </button>
 
       {/* Spectrum Segments */}
       {BAND_ORDER.map((bId) => {
@@ -109,10 +116,14 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
         const label = isNarrow ? BAND_LABELS_SHORT[bId] : BAND_LABELS_LONG[bId]
 
         return (
-          <div
+          <button
+            type="button"
             key={bId}
             className={`band-seg ${active ? "band-seg--active" : ""} ${count === 0 ? "band-seg--empty" : ""}`}
             onClick={() => count > 0 && handleSelectBand(bId as BandId)}
+            disabled={count === 0}
+            aria-pressed={active}
+            aria-label={`Show ${BAND_LABELS_LONG[bId]} surveys (${count})`}
             style={{
               borderLeft: `4px solid ${color}`,
             }}
@@ -121,7 +132,7 @@ export default function BandSpectrumStrip({ band, bandCounts, totalCount, dispat
               {label}
             </span>
             <span className="band-seg__count">{count}</span>
-          </div>
+          </button>
         )
       })}
     </div>

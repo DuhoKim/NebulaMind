@@ -93,6 +93,9 @@ export default function FilterSheet({
       <div
         ref={containerRef}
         className="filter-sheet__content"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Survey filters"
         style={{
           background: "#0f172a",
           border: "1px solid #1e293b",

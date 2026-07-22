@@ -74,6 +74,37 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Watch: intro + topic-derivation videos */}
+      <section style={{ marginTop: "2rem" }}>
+        <div style={{ marginBottom: "1rem" }}>
+          <h2 style={{ fontSize: "1rem", fontWeight: 600, color: "#f8fafc", textTransform: "uppercase", letterSpacing: "0.08em", margin: 0 }}>
+            Watch
+          </h2>
+          <p style={{ color: "#64748b", fontSize: "0.82rem", marginTop: "0.25rem" }}>What NebulaMind is, and how its research topics are derived</p>
+        </div>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 320px), 1fr))", gap: "1rem" }}>
+          {[
+            { id: "aa4SLbMn1z4", title: "NebulaMind — An AI Scientist for Galaxy Evolution", caption: "35-second intro: the full research loop, from 120,676 abstracts to an inspectable paper." },
+            { id: "oMA-H1m5yZQ", title: "How the Research Topics Are Derived", caption: "Deep dive: corpus, embeddings, clustering, and ranked open frontiers." },
+          ].map(v => (
+            <div key={v.id} style={{ border: "1px solid #334155", borderRadius: "8px", background: "#1e293b", overflow: "hidden" }}>
+              <div style={{ aspectRatio: "16 / 9" }}>
+                <iframe
+                  src={`https://www.youtube-nocookie.com/embed/${v.id}`}
+                  title={v.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                  style={{ width: "100%", height: "100%", border: 0, display: "block" }}
+                />
+              </div>
+              <p style={{ fontSize: "0.8rem", color: "#94a3b8", margin: 0, padding: "0.6rem 0.9rem", lineHeight: 1.5 }}>{v.caption}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
       {/* Knowledge Graph Preview */}
       <div style={{ marginTop: "2rem" }}>
         <GraphPreview />

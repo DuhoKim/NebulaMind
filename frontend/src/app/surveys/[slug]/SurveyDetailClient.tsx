@@ -337,6 +337,7 @@ function DatasetCatalogs({ datasets, loading, expectedCount }: { datasets: Surve
 function DatasetCard({ dataset }: { dataset: SurveyDataset }) {
   const [open, setOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const fieldPanelId = `dataset-fields-${dataset.slug}`;
   const keyFields = dataset.catalog_fields.filter(f => f.is_key);
   const otherFields = dataset.catalog_fields.filter(f => !f.is_key);
   const visibleFields = showAll ? [...keyFields, ...otherFields] : (keyFields.length ? keyFields : dataset.catalog_fields);
@@ -345,6 +346,8 @@ function DatasetCard({ dataset }: { dataset: SurveyDataset }) {
     <div style={{ border: "1px solid #334155", borderRadius: "8px", overflow: "hidden", background: "#0f172a" }}>
       <button
         onClick={() => setOpen(v => !v)}
+        aria-expanded={open}
+        aria-controls={fieldPanelId}
         style={{
           width: "100%",
           display: "flex",
@@ -391,7 +394,7 @@ function DatasetCard({ dataset }: { dataset: SurveyDataset }) {
         </span>
       </button>
       {open && (
-        <div style={{ borderTop: "1px solid #1e293b", padding: "0.9rem 1rem 1rem" }}>
+        <div id={fieldPanelId} style={{ borderTop: "1px solid #1e293b", padding: "0.9rem 1rem 1rem" }}>
           <p style={{ margin: "0 0 0.85rem", color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55 }}>{dataset.description}</p>
           {(dataset.bibcode || dataset.doi) && (
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.85rem", fontSize: "0.78rem" }}>

@@ -22,6 +22,7 @@ import { parseAxisParam } from "./plotting"
 
 // Bands that have a meaningful wavelength center — auto-switch xAxis on select
 const WAVELENGTH_BANDS = new Set<BandId>(["radio", "sub_mm", "infrared", "optical", "uv", "xray", "gamma"])
+const VALID_BANDS = new Set<BandId>(["all", "radio", "sub_mm", "infrared", "optical", "uv", "xray", "gamma", "multi"])
 
 // ── State / Reducer ────────────────────────────────────────────────────────────
 
@@ -39,6 +40,24 @@ interface ExplorerState {
   plotType: "coverage_year" | "wavelength_redshift" | "depth_sources"
 }
 
+const VALID_PLOT_TYPES = new Set<ExplorerState["plotType"]>(["coverage_year", "wavelength_redshift", "depth_sources"])
+
+function parseBandParam(value: string | null): BandId {
+  return value && VALID_BANDS.has(value as BandId) ? value as BandId : "all"
+}
+
+function parseStatusesParam(value: string | null): string[] {
+  if (!value) return [...DEFAULT_STATUSES]
+  const statuses = value.split(",").filter(status => DEFAULT_STATUSES.includes(status))
+  return statuses.length > 0 ? statuses : [...DEFAULT_STATUSES]
+}
+
+function parsePlotTypeParam(value: string | null): ExplorerState["plotType"] {
+  return value && VALID_PLOT_TYPES.has(value as ExplorerState["plotType"])
+    ? value as ExplorerState["plotType"]
+    : "wavelength_redshift"
+}
+
 function makeInitial(params: URLSearchParams): ExplorerState {
   const statusesParam = params.get("statuses")
   const rawView = params.get("view")
@@ -51,8 +70,8 @@ function makeInitial(params: URLSearchParams): ExplorerState {
 
   return {
     view,
-    band: (params.get("band") as BandId) || "all",
-    checkedStatuses: statusesParam ? statusesParam.split(",").filter(Boolean) : DEFAULT_STATUSES,
+    band: parseBandParam(params.get("band")),
+    checkedStatuses: parseStatusesParam(statusesParam),
     selectedOperators: params.get("operators")?.split(",").filter(Boolean) || [],
     xAxis: parseAxisParam(params.get("xaxis"), "wavelength_center_um"),
     yAxis: parseAxisParam(params.get("yaxis"), "z_max"),
@@ -60,7 +79,7 @@ function makeInitial(params: URLSearchParams): ExplorerState {
     hoverSlug: null,
     modalSlug: null,
     search: params.get("q") || "",
-    plotType: (params.get("plottype") as any) || "wavelength_redshift",
+    plotType: parsePlotTypeParam(params.get("plottype")),
   }
 }
 
@@ -261,6 +280,7 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
       ) : (
         <ChartView
           surveys={filteredSurveys}
+          statusOpSurveys={statusOpSurveys}
           band={state.band}
           xAxis={state.xAxis}
           yAxis={state.yAxis}

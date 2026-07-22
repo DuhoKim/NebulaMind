@@ -191,20 +191,51 @@ def _ollama(prompt, n=700, model=MODEL):
     j = r.json()
     return ((j.get("response") or "") or (j.get("thinking") or "")).strip()
 
+def lit_context(rec):
+    """On-demand full-text literature grounding for the draft (real, cited prior work).
+    Non-fatal: returns None if anything is unavailable, so drafting proceeds unchanged."""
+    try:
+        import sys, os
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import nm_fulltext_layer as ft
+        spec = rec["spec"]; summ = rec["result"].get("summary", "")
+        topic = spec.get("topic", "")
+        claim = f"{topic}. {spec.get('method','')}. Result: {summ}"
+        ctx = ft.literature_context(topic, claim, k_papers=6, k_passages=5)
+        if ctx and ctx.get("passages"):
+            log(rec, f"lit-grounded on {len(ctx['papers'])} papers, {len(ctx['passages'])} passages")
+            rec["lit_refs"] = ctx["refs"]; rec["lit_reflist"] = ctx["ref_list"]; rec["lit_papers"] = ctx["papers"]; save(rec)
+        return ctx
+    except Exception as e:
+        log(rec, f"lit grounding skipped: {type(e).__name__}: {str(e)[:100]}")
+        return None
+
 def draft_body(rec):
     spec = rec["spec"]; summ = rec["result"].get("summary", "")
+    ctx = lit_context(rec)
+    litblock = ""
+    if ctx and ctx.get("cite_block"):
+        litblock = (
+            "\n\nREAL PRIOR LITERATURE (retrieved from NASA ADS and full-text-grounded on arXiv; each "
+            "passage is quoted from the cited paper). You MAY cite these in the Introduction and position "
+            "your Result against them using their [Key] tags -- but do NOT copy any numeric value from them "
+            "into your Result paragraph; your Result may state ONLY the single given measurement. Cite "
+            "honestly; if a passage does not fit, omit it.\n" + ctx["cite_block"] + "\n"
+        )
     prompt = (
         "You are an astronomer writing the body of a short research note.\n"
         f"Topic: {spec.get('topic')}. Data: {', '.join(spec.get('data_sources', []))}. "
         f"Method: {spec.get('method')}.\n"
         f"The ONLY quantitative result you may state is exactly: {summ}\n"
+        + litblock +
         "Write four short paragraphs in plain prose (NO LaTeX, NO headings), separated by blank lines, "
-        "in this order: (1) Introduction/motivation, (2) Data and method, (3) Result, (4) Caveats. "
+        "in this order: (1) Introduction/motivation -- cite the relevant prior works above by [Key], "
+        "(2) Data and method, (3) Result, (4) Caveats. "
         "Do NOT invent any numbers, error bars, comparisons, or results beyond the single one given. "
         "The caveats paragraph must state the real limitations of an automated, single-selection, "
         "uncalibrated measurement. Be specific and honest."
     )
-    return _ollama(prompt, 700)
+    return _ollama(prompt, 800)
 
 def review_text(rec, body):
     spec = rec["spec"]
@@ -299,6 +330,9 @@ def make_aastex(rec, body=None):
             "default selections and calibrations and applies no completeness or selection modelling. It "
             "is a starting point, not a validated measurement."
         )
+    refs = rec.get("lit_reflist") or []
+    if refs:
+        bodytex += "\n" + r"\section*{References}" + "\n" + r"\footnotesize" + "\n" + (r" \par ").join(texsafe(x) for x in refs) + "\n"
     tex = ("\\documentclass[twocolumn]{aastex631}\n\\begin{document}\n\\title{" + texsafe(title) +
            "}\n\\author{NebulaMind Lab (autonomous pipeline)}\n"
            "\\affiliation{NebulaMind Lab, \\url{https://lab.nebulamind.net}}\n\\begin{abstract}\n" +
@@ -320,16 +354,63 @@ def make_aastex(rec, body=None):
         res["aastex_note"] = f"compile error: {e}"; log(rec, f"AASTeX error: {e}")
 
 
+def _gates():
+    import sys, os
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    import nm_gates
+    return nm_gates
+
+def gate_novelty(rec):
+    """Before study. Returns True to proceed, False to halt (already done)."""
+    try:
+        ng = _gates(); spec = rec["spec"]
+        planned = f"{spec.get('topic','')} via {spec.get('method','')} on {', '.join(spec.get('data_sources', []))}"
+        g = ng.novelty_gate(spec.get("topic", ""), spec.get("method", ""), planned)
+        rec.setdefault("gates", {})["novelty"] = g; save(rec)
+        log(rec, f"gate/novelty: {g['verdict']} (top-sim {g['top_similarity']})")
+        return not (g["verdict"] == "ABORT" and not spec.get("force"))
+    except Exception as e:
+        log(rec, f"gate/novelty skipped: {type(e).__name__}: {str(e)[:90]}"); return True
+
+def gate_expected(rec):
+    """After study, before draft. Returns True to proceed, False to KILL (contradicts)."""
+    try:
+        ng = _gates()
+        g = ng.expected_value_gate(rec["spec"].get("topic", ""), rec["result"].get("summary", ""))
+        rec.setdefault("gates", {})["expected_value"] = g; save(rec)
+        log(rec, f"gate/expected-value: {g['verdict']}")
+        return not g.get("kill")
+    except Exception as e:
+        log(rec, f"gate/expected-value skipped: {type(e).__name__}: {str(e)[:90]}"); return True
+
+def gate_citations(rec, body):
+    """After draft. Records unsupported citations (does not block; feeds review)."""
+    try:
+        ng = _gates(); papers = rec.get("lit_papers") or []
+        if not papers or not body: return
+        g = ng.citation_entailment_gate(body, papers)
+        rec.setdefault("gates", {})["citation_entailment"] = g; save(rec)
+        log(rec, f"gate/citations: {g['n_unsupported']} unsupported of {g['checked']} checked")
+    except Exception as e:
+        log(rec, f"gate/citations skipped: {type(e).__name__}: {str(e)[:90]}")
+
 def process(rec):
     rec["status"] = "running"; save(rec)
     try:
+        if not gate_novelty(rec):
+            rec["status"] = "gated-novelty"
+            log(rec, "HALTED by novelty gate: already done in the literature (set spec.force to override)"); save(rec); return
         study(rec)
+        if not gate_expected(rec):
+            rec["status"] = "gated-expected"
+            log(rec, "KILLED by expected-value gate: result contradicts the literature (likely a pipeline error)"); save(rec); return
         outs = rec["spec"].get("outputs", [])
         body = None
         if ("aastex-draft" in outs) or ("dr-review-loop" in outs):
             body = draft_body(rec); log(rec, "drafted manuscript body")
         if "dr-review-loop" in outs:
             body = revise_loop(rec, body); save(rec)
+        gate_citations(rec, body)
         if "aastex-draft" in outs:
             make_aastex(rec, body); save(rec)
         rec["status"] = "done"; log(rec, "done ✓")

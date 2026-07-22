@@ -12,6 +12,14 @@ import ClaimBlock from "./ClaimBlock";
 import TOCSidebar from "./TOCSidebar";
 import ProvenanceChip from "./ProvenanceChip";
 import DebateEvidencePanel from "./DebateEvidencePanel";
+import {
+  formatClaimTrustBadge,
+  formatTrustSummaryLine,
+  summarizeTrustClaims,
+  trustVisibilityMeta,
+  TRUST_LEVEL_ORDER,
+  type TrustVisibilitySummary,
+} from "./trustVisibility";
 
 interface WikiPage {
   id: number;
@@ -23,6 +31,7 @@ interface WikiPage {
   editor_agent_tier?: string | null;
   synthesized_date?: string | null;
   version_num?: number | null;
+  health_score?: number | null;
 }
 
 interface PageCitation {
@@ -102,6 +111,84 @@ const GAP_TYPE_COLORS: Record<string, { bg: string; text: string }> = {
   synergy:  { bg: "rgba(14,165,233,0.15)",  text: "#38bdf8" },
 };
 
+const GALAXY_METHOD_RESULT_LINKS = [
+  {
+    label: "1 · Packet-gated reconciliation",
+    description: "Open the assembled wiki page from the packet-gated method.",
+    href: "/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/wiki-page.html",
+  },
+  {
+    label: "2 · Source-first adjudication",
+    description: "Open the assembled wiki page from the source-first method.",
+    href: "/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/wiki-page.html",
+  },
+  {
+    label: "3 · Debate-map rebuild",
+    description: "Open the assembled wiki page from the debate-map rebuild method.",
+    href: "/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/wiki-page.html",
+  },
+];
+
+function GalaxyMethodResultSelector({ isMobile }: { isMobile: boolean }) {
+  return (
+    <section
+      aria-label="Galaxy Evolution method result selector"
+      data-testid="galaxy-method-result-selector"
+      style={{
+        background: "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.88))",
+        border: "1px solid rgba(129,140,248,0.45)",
+        borderRadius: "12px",
+        padding: "0.9rem",
+        marginBottom: "1rem",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "0.75rem", marginBottom: "0.65rem" }}>
+        <div>
+          <p style={{ margin: "0 0 0.18rem", color: "#a5b4fc", fontSize: "0.66rem", fontWeight: 800, letterSpacing: "0.1em", textTransform: "uppercase" }}>
+            Method result selector
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", lineHeight: 1.25, fontWeight: 750 }}>
+            Choose one of the three Galaxy Evolution wiki methods
+          </h2>
+        </div>
+        <span style={{ flexShrink: 0, color: "#c4b5fd", border: "1px solid rgba(129,140,248,0.45)", borderRadius: "999px", padding: "0.16rem 0.48rem", fontSize: "0.66rem", fontWeight: 800 }}>
+          3 pages
+        </span>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, minmax(0, 1fr))", gap: "0.55rem" }}>
+        {GALAXY_METHOD_RESULT_LINKS.map((link, index) => {
+          const isCurrent = index === 0;
+          return (
+          <Link
+            key={link.href}
+            href={link.href}
+            data-testid="galaxy-method-result-link"
+            aria-current={isCurrent ? "page" : undefined}
+            data-current-method={isCurrent ? "true" : undefined}
+            style={{
+              display: "block",
+              minHeight: "100%",
+              border: isCurrent ? "1px solid rgba(129,140,248,0.95)" : "1px solid rgba(148,163,184,0.28)",
+              borderRadius: "10px",
+              padding: "0.62rem 0.7rem",
+              background: isCurrent ? "linear-gradient(135deg, rgba(79,70,229,0.34), rgba(30,41,59,0.92))" : "rgba(15,23,42,0.72)",
+              boxShadow: isCurrent ? "0 0 0 2px rgba(129,140,248,0.2), 0 14px 30px rgba(79,70,229,0.18)" : undefined,
+              outline: isCurrent ? "2px solid rgba(199,210,254,0.55)" : undefined,
+              outlineOffset: isCurrent ? "2px" : undefined,
+              color: "#bfdbfe",
+              textDecoration: "none",
+            }}
+          >
+            <span style={{ display: "block", color: "#f8fafc", fontSize: "0.78rem", fontWeight: 800, marginBottom: "0.18rem" }}>{link.label}</span>
+            <span style={{ display: "block", color: isCurrent ? "#dbeafe" : "#94a3b8", fontSize: "0.7rem", lineHeight: 1.38 }}>{link.description}</span>
+          </Link>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function slugify(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
 }
@@ -172,7 +259,6 @@ function stripMarkdown(text: string): string {
     .replace(/^[-*]\s/gm, "")           // bullets
     .trim();
 }
-
 
 function renderSourceBadge(src: any): React.ReactNode {
   if (!src) return <span style={{fontSize:"0.58rem",color:"#475569"}}>⚠️ AI estimate</span>;
@@ -375,6 +461,113 @@ function IdeaCoverageLine({ idea }: { idea: any }) {
   return null;
 }
 
+function ClaimTrustBadge({ claim, onOpen }: { claim: any; onOpen: () => void }) {
+  const meta = trustVisibilityMeta(claim?.trust_level);
+  const label = formatClaimTrustBadge(claim);
+  return (
+    <button
+      type="button"
+      data-testid="claim-trust-badge"
+      aria-label={`Open evidence map for ${label}`}
+      title={`${label} — click for paper evidence`}
+      onClick={(e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onOpen();
+      }}
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: "0.22rem",
+        marginLeft: "0.42rem",
+        marginRight: "0.12rem",
+        padding: "0.08rem 0.46rem",
+        borderRadius: "999px",
+        border: `1px solid ${meta.border}`,
+        background: meta.background,
+        color: meta.color,
+        fontSize: "0.66rem",
+        fontWeight: 800,
+        letterSpacing: "0.015em",
+        lineHeight: 1.35,
+        verticalAlign: "0.08em",
+        cursor: "pointer",
+        whiteSpace: "nowrap",
+      }}
+    >
+      <span aria-hidden="true" style={{ fontSize: "0.68rem", lineHeight: 1 }}>{meta.icon}</span>
+      <span>{label}</span>
+    </button>
+  );
+}
+
+function TrustSummaryPanel({ summary, versionNum }: { summary: TrustVisibilitySummary; versionNum?: number | null }) {
+  if (!summary.totalClaims) return null;
+  const visibleLevels = TRUST_LEVEL_ORDER.filter((level) => summary.levels[level].claims > 0);
+  return (
+    <section
+      data-testid="trust-summary-panel"
+      aria-label="Page trust snapshot"
+      style={{
+        margin: "0 0 1.25rem",
+        padding: "1rem",
+        borderRadius: "12px",
+        border: "1px solid rgba(99,102,241,0.35)",
+        background: "linear-gradient(135deg, rgba(15,23,42,0.96), rgba(30,41,59,0.82))",
+        boxShadow: "0 14px 30px rgba(2,6,23,0.25)",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "flex-start", justifyContent: "space-between", gap: "1rem", flexWrap: "wrap" }}>
+        <div>
+          <p style={{ margin: "0 0 0.3rem", color: "#a5b4fc", fontSize: "0.68rem", fontWeight: 800, textTransform: "uppercase", letterSpacing: "0.12em" }}>
+            Page trust snapshot
+          </p>
+          <h2 style={{ margin: 0, color: "#f8fafc", fontSize: "1rem", fontWeight: 700 }}>
+            Provenance-gated claim layer
+          </h2>
+          <p style={{ margin: "0.35rem 0 0", color: "#94a3b8", fontSize: "0.82rem", lineHeight: 1.55 }}>
+            {formatTrustSummaryLine(summary)}. Page prose unchanged; these chips expose published claim metadata.
+          </p>
+        </div>
+        {versionNum != null && (
+          <span style={{ color: "#64748b", border: "1px solid #334155", borderRadius: "999px", padding: "0.22rem 0.55rem", fontSize: "0.72rem", fontWeight: 700 }}>
+            v{versionNum}
+          </span>
+        )}
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(8.5rem, 1fr))", gap: "0.6rem", marginTop: "0.9rem" }}>
+        {visibleLevels.map((level) => {
+          const meta = trustVisibilityMeta(level);
+          const levelSummary = summary.levels[level];
+          return (
+            <div
+              key={level}
+              style={{
+                border: `1px solid ${meta.border}`,
+                background: meta.background,
+                borderRadius: "10px",
+                padding: "0.72rem 0.78rem",
+              }}
+              title={meta.description}
+            >
+              <div style={{ display: "flex", alignItems: "center", gap: "0.35rem", color: meta.color, fontWeight: 800, fontSize: "0.78rem", textTransform: "uppercase", letterSpacing: "0.055em" }}>
+                <span aria-hidden="true">{meta.icon}</span>
+                <span>{meta.label}</span>
+              </div>
+              <div style={{ marginTop: "0.35rem", color: "#f8fafc", fontSize: "1.35rem", fontWeight: 800, lineHeight: 1 }}>
+                {levelSummary.claims}
+              </div>
+              <div style={{ marginTop: "0.18rem", color: "#94a3b8", fontSize: "0.72rem" }}>
+                {levelSummary.sources.toLocaleString()} source links
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
 function ClaimAnnotatedSpan({
   claim,
   showColors,
@@ -447,6 +640,12 @@ function ClaimAnnotatedSpan({
         aria-expanded={open}
         aria-haspopup="dialog"
       >{children}</span>
+      {claim?.id && (
+        <ClaimTrustBadge
+          claim={claim}
+          onOpen={() => setOpen((v) => !v)}
+        />
+      )}
       {showIdeas && ideas && ideas.length > 0 && (
         <button
           onClick={(e) => { e.stopPropagation(); setIdeasOpen((v) => !v); }}
@@ -554,6 +753,7 @@ export default function WikiPageClientView() {
   const [editContent, setEditContent] = useState("");
   const [editSubmitting, setEditSubmitting] = useState(false);
   const [editSubmitted, setEditSubmitted] = useState(false);
+  const [editError, setEditError] = useState<string | null>(null);
   const [isMobile, setIsMobile] = useState(false);
 
   const [health, setHealth] = useState<{score:number;band:string;emoji:string} | null>(null);
@@ -591,19 +791,19 @@ export default function WikiPageClientView() {
 
   useEffect(() => {
     if (!slug) return;
-    fetch(`/api/pages/${slug}/health`)
-      .then(r => r.ok ? r.json() : null)
-      .then(d => { if (d?.score != null) setHealth(d); })
-      .catch(() => {});
-  }, [slug]);
-
-  useEffect(() => {
-    if (!slug) return;
     fetch(`/api/pages/${slug}`)
       .then(r => r.ok ? r.json() : null)
       .then(p => {
         setPage(p);
         setLoading(false);
+        if (p?.health_score != null) {
+          const score = Math.round(Number(p.health_score));
+          const band = score >= 80 ? "Strong" : score >= 60 ? "Good" : score >= 40 ? "Mixed" : score >= 20 ? "Weak" : "Sparse";
+          const emoji = score >= 80 ? "✅" : score >= 60 ? "🟦" : score >= 40 ? "⚠️" : score >= 20 ? "🟧" : "🔴";
+          setHealth({ score, band, emoji });
+        } else {
+          setHealth(null);
+        }
         if (p?.id) {
           fetch(`/api/edits?status=pending&page_id=${p.id}`)
             .then(r => r.ok ? r.json() : [])
@@ -629,7 +829,11 @@ export default function WikiPageClientView() {
   useEffect(() => {
     if (!slug) return;
     fetch(`/api/pages/${slug}/ideas?per_page=100`)
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error(`Ideas endpoint failed with ${r.status}`);
+        return r.json();
+      })
+      .catch(() => fetch(`/api/research/ideas/${slug}?per_page=100`).then(r => r.ok ? r.json() : { ideas: [] }).catch(() => ({ ideas: [] })))
       .then(data => {
         const map: Record<number, any[]> = {};
         for (const idea of data.ideas || []) {
@@ -640,7 +844,7 @@ export default function WikiPageClientView() {
         }
         setClaimIdeasMap(map);
       })
-      .catch(() => {});
+      .catch(() => setClaimIdeasMap({}));
   }, [slug]);
 
   useEffect(() => {
@@ -700,6 +904,8 @@ export default function WikiPageClientView() {
     return map;
   }, [citations]);
 
+  const trustSummary = useMemo(() => summarizeTrustClaims(claims), [claims]);
+
   if (loading) return <p style={{ color: "#64748b" }}>Loading...</p>;
   if (!page) return <p style={{ color: "#94a3b8" }}>Page not found.</p>;
 
@@ -707,6 +913,7 @@ export default function WikiPageClientView() {
   const parsedFacts = page.hero_facts ? (() => { try { return JSON.parse(page.hero_facts); } catch { return []; } })() : [];
   // H6: filter out flagged AI-estimate facts (failed validation)
   const displayFacts = parsedFacts.filter((f: any) => !(f?.source?.tier === "ai_estimate" && f?.source?.flagged));
+  const showTopAuditPanels = slug !== "galaxy-evolution";
 
   return (
     <article
@@ -724,6 +931,8 @@ export default function WikiPageClientView() {
       }
     >
       <div>
+      {slug === "galaxy-evolution" && <GalaxyMethodResultSelector isMobile={isMobile} />}
+
       {/* View mode toggle */}
       <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "1.5rem", fontSize: "0.875rem", flexWrap: "wrap" }}>
         {health && (
@@ -838,6 +1047,10 @@ export default function WikiPageClientView() {
         />
       )}
 
+      {showTopAuditPanels && showV2 && trustSummary.totalClaims > 0 && (
+        <TrustSummaryPanel summary={trustSummary} versionNum={page.version_num} />
+      )}
+
       {/* Mobile TOC: collapsed accordion above content */}
       {isMobile && (
         <TOCSidebar headings={headings} isMobile={true} />
@@ -857,7 +1070,7 @@ export default function WikiPageClientView() {
             cursor: "pointer",
           }}
         >
-          {showV2 ? "Raw Text" : "Citation View"}
+          {showV2 ? "Reader view" : "Evidence view"}
         </button>
         {showV2 && (
           <button
@@ -872,7 +1085,7 @@ export default function WikiPageClientView() {
               cursor: "pointer",
             }}
           >
-            {showColors ? "Colors On" : "Clean View"}
+            {showColors ? "Reduce highlights" : "Show highlights"}
           </button>
         )}
         {showV2 && (
@@ -888,7 +1101,7 @@ export default function WikiPageClientView() {
               cursor: "pointer",
             }}
           >
-            {citeViewMode === "shown" ? "Hide Citations" : "Show Citations"}
+            {citeViewMode === "shown" ? "Hide citation chips" : "Show citation chips"}
           </button>
         )}
         {showV2 && (
@@ -904,12 +1117,12 @@ export default function WikiPageClientView() {
               cursor: "pointer",
             }}
           >
-            {showIdeas ? "Hide Ideas" : "Show Ideas"}
+            {showIdeas ? "Hide research questions" : "Show research questions"}
           </button>
         )}
         {showV2 && (
           <p style={{ fontSize: "0.78rem", color: "#64748b", margin: 0 }}>
-            Each sentence is sourced from a published paper. Click the citation icon to see sources.
+            Highlighted claims are linked to paper evidence. Click a trust badge or citation chip to inspect supporting and countering sources.
           </p>
         )}
         {showV2 && (
@@ -1107,7 +1320,7 @@ export default function WikiPageClientView() {
       <div style={{ marginTop: "2rem", paddingTop: "1.5rem", borderTop: "1px solid #334155" }}>
         {!showEditForm ? (
           <button
-            onClick={() => setShowEditForm(true)}
+            onClick={() => { setEditError(null); setShowEditForm(true); }}
             style={{ padding: "0.5rem 1.25rem", background: "#6366f1", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", fontWeight: 600, fontSize: "0.9rem" }}
           >
             Submit Edit Proposal
@@ -1120,8 +1333,13 @@ export default function WikiPageClientView() {
           <div style={{ border: "1px solid #334155", borderRadius: "8px", padding: "1.25rem", background: "#1e293b" }}>
             <h4 style={{ margin: "0 0 0.75rem", fontSize: "0.95rem", fontWeight: 600, color: "#f8fafc" }}>Submit Edit Proposal</h4>
             <p style={{ margin: "0 0 0.75rem", fontSize: "0.82rem", color: "#64748b" }}>
-              No account needed. Your suggestion will be reviewed by AI agents.
+              Proposals require an authenticated reviewer key. If this public submission cannot be accepted, the page will show the error instead of a false success.
             </p>
+            {editError && (
+              <p style={{ margin: "0 0 0.75rem", fontSize: "0.82rem", color: "#f87171" }}>
+                {editError}
+              </p>
+            )}
             <input
               type="email"
               placeholder="Your email (optional, for follow-up)"
@@ -1140,8 +1358,9 @@ export default function WikiPageClientView() {
                 onClick={async () => {
                   if (!editContent.trim()) return;
                   setEditSubmitting(true);
+                  setEditError(null);
                   try {
-                    await fetch(`/api/pages/${slug}/proposals`, {
+                    const response = await fetch(`/api/pages/${slug}/proposals`, {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
@@ -1150,9 +1369,13 @@ export default function WikiPageClientView() {
                         agent_id: 0,
                       }),
                     });
+                    if (!response.ok) {
+                      throw new Error(`Proposal submission failed with HTTP ${response.status}`);
+                    }
                     setEditSubmitted(true);
-                  } catch {
-                    setEditSubmitted(true);
+                  } catch (error) {
+                    setEditError(error instanceof Error ? error.message : "Proposal submission failed.");
+                    setEditSubmitted(false);
                   }
                   setEditSubmitting(false);
                 }}
