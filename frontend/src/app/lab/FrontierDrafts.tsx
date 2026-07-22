@@ -21,10 +21,10 @@ export const FRONTIER: Draft[] = [
   },
   {
     title: "The z≈4–6 massive-galaxy abundance is consistent with IllustrisTNG once stellar-mass systematics are budgeted",
-    sub: "The z>4 “too massive, too early” excess over ΛCDM re-examined: at z≈5–6 the ~2.7× excess in n(>10¹⁰·⁵ M⊙) is erased by a 0.28 dex stellar-mass shift — inside the ~1 dex systematic budget. No robust tension; the harder residual is spectroscopic quiescent galaxies at z>6.",
+    sub: "The z>4 “too massive, too early” excess over ΛCDM re-examined: the downward stellar-mass shift needed to erase it stays within the ~1 dex budget across the full excess (2–20×) × SMF-slope grid — no robust tension. The one genuine residual, spectroscopic quiescent galaxies at z>6, is bounded as statistics-of-one (~2 dex from a single object).",
     pages: "6 pp",
     pdf: "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf",
-    updated: "2026-07-21 12:51",
+    updated: "2026-07-22 11:19",
     verdict: "REVIEW-READY",
     review: "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_review_loop.md",
     methods: ["smf", "simobs"],
