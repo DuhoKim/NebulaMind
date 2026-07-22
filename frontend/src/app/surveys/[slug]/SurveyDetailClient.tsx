@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useId, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 import SurveyLogo from "@/components/surveys/SurveyLogo";
@@ -337,61 +337,67 @@ function DatasetCatalogs({ datasets, loading, expectedCount }: { datasets: Surve
 function DatasetCard({ dataset }: { dataset: SurveyDataset }) {
   const [open, setOpen] = useState(false);
   const [showAll, setShowAll] = useState(false);
+  const fieldPanelId = useId();
   const keyFields = dataset.catalog_fields.filter(f => f.is_key);
   const otherFields = dataset.catalog_fields.filter(f => !f.is_key);
   const visibleFields = showAll ? [...keyFields, ...otherFields] : (keyFields.length ? keyFields : dataset.catalog_fields);
 
   return (
     <div style={{ border: "1px solid #334155", borderRadius: "8px", overflow: "hidden", background: "#0f172a" }}>
-      <button
-        onClick={() => setOpen(v => !v)}
-        style={{
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-          gap: "1rem",
-          padding: "0.85rem 1rem",
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          textAlign: "left",
-        }}
-      >
-        <span style={{ minWidth: 0 }}>
-          <span style={{ display: "block", color: "#f8fafc", fontWeight: 700, fontSize: "0.92rem" }}>{dataset.name}</span>
-          <span style={{ display: "flex", gap: "0.45rem", alignItems: "center", flexWrap: "wrap", marginTop: "0.3rem", color: "#64748b", fontSize: "0.74rem" }}>
-            <span style={{ color: "#93c5fd", background: "rgba(59,130,246,0.12)", borderRadius: "999px", padding: "0.05rem 0.45rem" }}>
-              {formatDataType(dataset.data_type)}
+      <div style={{ display: "flex", alignItems: "stretch" }}>
+        <button
+          type="button"
+          onClick={() => setOpen(v => !v)}
+          aria-expanded={open}
+          aria-controls={fieldPanelId}
+          style={{
+            flex: 1,
+            minWidth: 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "1rem",
+            padding: "0.85rem 1rem",
+            background: "transparent",
+            border: "none",
+            cursor: "pointer",
+            textAlign: "left",
+          }}
+        >
+          <span style={{ minWidth: 0 }}>
+            <span style={{ display: "block", color: "#f8fafc", fontWeight: 700, fontSize: "0.92rem" }}>{dataset.name}</span>
+            <span style={{ display: "flex", gap: "0.45rem", alignItems: "center", flexWrap: "wrap", marginTop: "0.3rem", color: "#64748b", fontSize: "0.74rem" }}>
+              <span style={{ color: "#93c5fd", background: "rgba(59,130,246,0.12)", borderRadius: "999px", padding: "0.05rem 0.45rem" }}>
+                {formatDataType(dataset.data_type)}
+              </span>
+              {dataset.release_label && <span>{dataset.release_label}</span>}
+              {dataset.sample_size != null && <span>{formatSources(dataset.sample_size)} rows</span>}
+              {dataset.license && <span>{dataset.license}</span>}
             </span>
-            {dataset.release_label && <span>{dataset.release_label}</span>}
-            {dataset.sample_size != null && <span>{formatSources(dataset.sample_size)} rows</span>}
-            {dataset.license && <span>{dataset.license}</span>}
           </span>
-        </span>
-        <span style={{ display: "flex", alignItems: "center", gap: "0.75rem", flexShrink: 0 }}>
-          <a
-            href={dataset.primary_url}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={e => e.stopPropagation()}
-            title={dataset.url_verified_ok === false ? "Link unverified" : "Open data product"}
-            style={{
-              color: dataset.url_verified_ok === false ? "#64748b" : "#818cf8",
-              textDecoration: "none",
-              fontSize: "0.78rem",
-              border: "1px solid #334155",
-              borderRadius: 4,
-              padding: "0.2rem 0.5rem",
-            }}
-          >
-            Data ↗
-          </a>
           <span style={{ color: "#64748b", fontSize: "0.85rem" }}>{open ? "▲" : "▼"}</span>
-        </span>
-      </button>
-      {open && (
-        <div style={{ borderTop: "1px solid #1e293b", padding: "0.9rem 1rem 1rem" }}>
+        </button>
+        <a
+          href={dataset.primary_url}
+          target="_blank"
+          rel="noopener noreferrer"
+          title={dataset.url_verified_ok === false ? "Link unverified" : "Open data product"}
+          style={{
+            alignSelf: "center",
+            flexShrink: 0,
+            marginRight: "1rem",
+            color: dataset.url_verified_ok === false ? "#64748b" : "#818cf8",
+            textDecoration: "none",
+            fontSize: "0.78rem",
+            border: "1px solid #334155",
+            borderRadius: 4,
+            padding: "0.2rem 0.5rem",
+          }}
+        >
+          Data ↗
+        </a>
+      </div>
+      <div id={fieldPanelId} hidden={!open} style={{ borderTop: "1px solid #1e293b", padding: "0.9rem 1rem 1rem" }}>
           <p style={{ margin: "0 0 0.85rem", color: "#cbd5e1", fontSize: "0.86rem", lineHeight: 1.55 }}>{dataset.description}</p>
           {(dataset.bibcode || dataset.doi) && (
             <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap", marginBottom: "0.85rem", fontSize: "0.78rem" }}>
@@ -431,8 +437,7 @@ function DatasetCard({ dataset }: { dataset: SurveyDataset }) {
               )}
             </>
           )}
-        </div>
-      )}
+      </div>
     </div>
   );
 }

@@ -15,6 +15,7 @@ from app.routers import subscribe, spotlight
 from app.routers import claims
 from app.routers import email_webhook
 from app.routers import new_page_proposals
+from app.routers import lab_runner
 from app.routers import jury as jury_module
 from app.routers import council as council_module
 from app.routers import benchmark as benchmark_module
@@ -92,6 +93,7 @@ async def security_headers(request, call_next):
 
 
 app.include_router(pages.router)
+app.include_router(lab_runner.router)
 app.include_router(wiki.router)
 app.include_router(agents.router)
 app.include_router(agents_profile.router)

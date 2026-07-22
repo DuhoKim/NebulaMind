@@ -2,11 +2,13 @@
 
 import { useMemo } from "react"
 import PlotA from "./PlotA"
+import PlotB from "./PlotB"
 import { AXIS_OPTIONS, surveyHasPlottableAxes } from "./plotting"
 import type { Survey, BandId, AxisKey, ExplorerAction } from "./constants"
 
 interface Props {
   surveys: Survey[]
+  plotBSurveys: Survey[]
   band: BandId
   xAxis: AxisKey
   yAxis: AxisKey
@@ -18,6 +20,7 @@ interface Props {
 
 export default function ChartView({
   surveys,
+  plotBSurveys,
   band,
   xAxis,
   yAxis,
@@ -78,6 +81,20 @@ export default function ChartView({
           band={band}
           xAxis={xAxis}
           yAxis={yAxis}
+          hoverSlug={hoverSlug}
+          selectedSlug={selectedSlug}
+          onHover={(slug) => dispatch({ type: "SET_HOVER", slug })}
+          onClick={onSelect}
+        />
+      </div>
+
+      <div style={{ background: "#0f172a", border: "1px solid #1e293b", borderRadius: "6px", padding: "1rem 0.5rem" }}>
+        <p style={{ margin: "0 0.5rem 0.75rem", color: "#94a3b8", fontSize: "0.78rem", lineHeight: 1.55 }}>
+          Depth × breadth: source counts versus limiting magnitude. {plotBSurveys.length} matching search, status, and operator filters. Rows outside the active band are dimmed instead of hidden.
+        </p>
+        <PlotB
+          surveys={plotBSurveys}
+          band={band}
           hoverSlug={hoverSlug}
           selectedSlug={selectedSlug}
           onHover={(slug) => dispatch({ type: "SET_HOVER", slug })}
