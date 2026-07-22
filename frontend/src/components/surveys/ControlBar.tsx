@@ -187,7 +187,7 @@ export default function ControlBar({ view, search, activeFilterCount, filterShee
         aria-label="Open survey filters"
         aria-haspopup="dialog"
         aria-expanded={filterSheetOpen}
-        aria-controls="surveys-filter-sheet"
+        aria-controls={filterSheetOpen ? "surveys-filter-sheet" : undefined}
         className={`control-bar__filter-btn ${activeFilterCount > 0 ? "control-bar__filter-btn--active" : ""}`}
         onClick={onOpenFilters}
       >

@@ -137,35 +137,34 @@ export default function PlotA({
           <span>+{missingSurveys.length} survey{missingSurveys.length !== 1 ? "s" : ""} not plotted (missing/non-plottable {xAxis} or {yAxis})</span>
           <span style={{ fontSize: "0.65rem" }}>{missingExpanded ? "▲" : "▼"}</span>
         </button>
-        {missingExpanded && (
-          <div
-            id={missingListId}
-            style={{
-              marginTop: "0.35rem", padding: "0.5rem 0.75rem",
-              background: "#0f172a", border: "1px solid #1e293b", borderRadius: 6,
-              maxWidth: 480,
-            }}
-          >
-            <div style={{ fontSize: "0.7rem", color: "#475569", marginBottom: "0.35rem" }}>
-              Missing or non-plottable {xAxis} or {yAxis} values:
-            </div>
-            <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
-              {missingSurveys.map(s => (
-                <span
-                  key={s.slug}
-                  style={{
-                    fontSize: "0.72rem", color: "#64748b",
-                    background: "#1e293b", border: "1px solid #334155",
-                    borderRadius: 4, padding: "0.1rem 0.45rem",
-                  }}
-                  title={`${s.full_name} — ${xAxis}: ${getSurveyAxisValue(s, xAxis, band) ?? "—"}, ${yAxis}: ${getSurveyAxisValue(s, yAxis, band) ?? "—"}`}
-                >
-                  {s.name}
-                </span>
-              ))}
-            </div>
+        <div
+          id={missingListId}
+          hidden={!missingExpanded}
+          style={{
+            marginTop: "0.35rem", padding: "0.5rem 0.75rem",
+            background: "#0f172a", border: "1px solid #1e293b", borderRadius: 6,
+            maxWidth: 480,
+          }}
+        >
+          <div style={{ fontSize: "0.7rem", color: "#475569", marginBottom: "0.35rem" }}>
+            Missing or non-plottable {xAxis} or {yAxis} values:
           </div>
-        )}
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.35rem" }}>
+            {missingSurveys.map(s => (
+              <span
+                key={s.slug}
+                style={{
+                  fontSize: "0.72rem", color: "#64748b",
+                  background: "#1e293b", border: "1px solid #334155",
+                  borderRadius: 4, padding: "0.1rem 0.45rem",
+                }}
+                title={`${s.full_name} — ${xAxis}: ${getSurveyAxisValue(s, xAxis, band) ?? "—"}, ${yAxis}: ${getSurveyAxisValue(s, yAxis, band) ?? "—"}`}
+              >
+                {s.name}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
     ) : null
   )
@@ -186,7 +185,7 @@ export default function PlotA({
           <svg
             width={plotWidth}
             height={height}
-            role="img"
+            role="group"
             aria-labelledby={`${titleId} ${descId}`}
             style={{ display: "block", overflow: "visible" }}
           >

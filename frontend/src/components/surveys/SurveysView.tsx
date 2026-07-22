@@ -103,6 +103,18 @@ function reducer(state: ExplorerState, action: ExplorerAction): ExplorerState {
   }
 }
 
+export function filterSurveysBySearch(surveys: Survey[], search: string): Survey[] {
+  const query = search.trim().toLowerCase()
+  if (!query) return surveys
+
+  return surveys.filter(s =>
+    s.name.toLowerCase().includes(query)
+    || s.full_name.toLowerCase().includes(query)
+    || (s.operator && s.operator.toLowerCase().includes(query))
+    || s.primary_science_goals.toLowerCase().includes(query)
+  )
+}
+
 // ── Main component ─────────────────────────────────────────────────────────────
 
 export default function SurveysView({ surveys }: { surveys: Survey[] }) {
@@ -166,21 +178,18 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
     return counts
   }, [statusOpSurveys])
 
+  // PlotB honors search, status, and operator filters, but keeps other bands visible and dimmed.
+  const searchStatusOpSurveys = useMemo(
+    () => filterSurveysBySearch(statusOpSurveys, state.search),
+    [statusOpSurveys, state.search]
+  )
+
   // Full filter: band + status + operator + search — used for PlotA and list/directory
-  const filteredSurveys = useMemo(() => statusOpSurveys.filter(s => {
-    const bandOk = state.band === "all"
+  const filteredSurveys = useMemo(() => searchStatusOpSurveys.filter(s => {
+    return state.band === "all"
       || s.wavelength_band === state.band
       || (state.band === "multi" && s.wavelength_band === "astrometric")
-
-    const query = state.search.trim().toLowerCase()
-    const searchOk = !query
-      || s.name.toLowerCase().includes(query)
-      || s.full_name.toLowerCase().includes(query)
-      || (s.operator && s.operator.toLowerCase().includes(query))
-      || s.primary_science_goals.toLowerCase().includes(query)
-
-    return bandOk && searchOk
-  }), [statusOpSurveys, state.band, state.search])
+  }), [searchStatusOpSurveys, state.band])
 
   const modalSurvey = useMemo(
     () => surveys.find(s => s.slug === state.modalSlug) ?? null,
@@ -266,6 +275,7 @@ export default function SurveysView({ surveys }: { surveys: Survey[] }) {
       ) : (
         <ChartView
           surveys={filteredSurveys}
+          plotBSurveys={searchStatusOpSurveys}
           band={state.band}
           xAxis={state.xAxis}
           yAxis={state.yAxis}
