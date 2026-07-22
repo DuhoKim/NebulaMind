@@ -12,6 +12,7 @@ import ClaimBlock from "./ClaimBlock";
 import TOCSidebar from "./TOCSidebar";
 import ProvenanceChip from "./ProvenanceChip";
 import DebateEvidencePanel from "./DebateEvidencePanel";
+import DebateAxisMap from "./DebateAxisMap";
 import {
   formatClaimTrustBadge,
   formatTrustSummaryLine,
@@ -1626,6 +1627,8 @@ export default function WikiPageClientView({ testOnlyFixtureSlug, testOnlyFixtur
           }}
         />
       )}
+
+      {slug === "galaxy-evolution" && <DebateAxisMap />}
 
       {pageAtlasPanelClaimId && pageAtlasSelectedItem && (
         <DebateEvidencePanel
