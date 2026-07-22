@@ -149,6 +149,19 @@ def run_ionizing_budget(rec, res, plt, z0=6.0):
         "delta": [d_lo, d_med, d_hi], "frac_shortfall": frac_short,
         "noncircular_robust": bool(robust), "delta_O32": d_o32, "delta_beta": d_beta,
     }
+    res["title"] = (
+        f"The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z~{z0:.0f}"
+        if closes else
+        f"A residual reionization ionizing-photon-budget shortfall for star-forming galaxies at z~{z0:.0f}"
+    )
+    # provenance guard: this is a literature-anchored calculation, NOT a survey-data study.
+    res["provenance"] = (
+        "Literature-anchored budget calculation — NO survey catalog data is used. The cosmic SFRD is the "
+        "Madau & Dickinson (2014) analytic fitting function; xi_ion and the O32/beta f_esc proxy calibrations are "
+        "adopted published values (LzLCS: Chisholm+22, Flury+22; Simmonds+24). Do NOT state or imply that this "
+        "study uses JWST, SDSS, or TNG observational/catalog data — it is a systematics reconciliation over "
+        "published literature values."
+    )
     return True
 
 

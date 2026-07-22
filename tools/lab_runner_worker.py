@@ -237,12 +237,16 @@ def draft_body(rec):
             "\n\nREAL PRIOR LITERATURE (retrieved from NASA ADS and full-text-grounded on arXiv; each "
             "passage is quoted from the cited paper). You MAY cite these in the Introduction and position "
             "your Result against them using their [Key] tags -- but do NOT copy any numeric value from them "
-            "into your Result paragraph; your Result may state ONLY the single given measurement. Cite "
-            "honestly; if a passage does not fit, omit it.\n" + ctx["cite_block"] + "\n"
+            "into your Result paragraph; your Result may state ONLY the single given measurement. Cite a "
+            "paper ONLY for a statement that its quoted passage DIRECTLY supports; if the passage does not "
+            "directly support the sentence, OMIT the citation rather than attaching it for general framing. "
+            "Prefer fewer, well-supported citations.\n" + ctx["cite_block"] + "\n"
         )
+    prov = rec["result"].get("provenance")
+    dataline = prov if prov else f"Data: {', '.join(spec.get('data_sources', []))}."
     prompt = (
         "You are an astronomer writing the body of a short research note.\n"
-        f"Topic: {spec.get('topic')}. Data: {', '.join(spec.get('data_sources', []))}. "
+        f"Topic: {spec.get('topic')}. {dataline} "
         f"Method: {spec.get('method')}.\n"
         f"The ONLY quantitative result you may state is exactly: {summ}\n"
         + litblock +
@@ -317,7 +321,7 @@ def make_aastex(rec, body=None):
     rid = rec["id"]; out = RUNS / rid; res = rec["result"]; spec = rec["spec"]
     log(rec, "compiling AASTeX manuscript (PDF)...")
     summ = res.get("summary", "")
-    title = summ.split(" -- ")[0].split(" — ")[0].strip().rstrip(".") or "A galaxy-evolution study"
+    title = res.get("title") or summ.split(" -- ")[0].split(" — ")[0].strip().rstrip(".") or "A galaxy-evolution study"
     data = ", ".join(spec.get("data_sources", []))
     fig = (out / "result.png").exists()
     figblock = (r"\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{"
