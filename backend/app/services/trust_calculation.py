@@ -35,6 +35,35 @@ def _bucket_debate(claim, evidence: list) -> str:
         return "unverified"
 
 
+
+
+_STATUS_SEMANTIC_CAPS = {
+    "mixed_debated": "debated",
+    "model_bounded": "reported",
+}
+
+
+def _apply_debate_stance_semantic_cap(claim, candidate_level: str) -> tuple[str, str | None]:
+    """Preserve explicit debate/status semantics after numeric scoring.
+
+    `debate_stance` is reader-facing editorial/status metadata.  A scoped
+    claim that is deliberately marked mixed_debated or model_bounded should
+    not become visually `accepted` or `consensus` solely because all currently
+    attached evidence rows are supportive.  Human locked overrides still win;
+    challenged/unverified outcomes are not softened by this cap.
+    """
+    if claim.claim_type == "debate":
+        return candidate_level, None
+
+    cap = _STATUS_SEMANTIC_CAPS.get(claim.debate_stance)
+    if not cap:
+        return candidate_level, None
+
+    if candidate_level not in {"accepted", "consensus"}:
+        return candidate_level, None
+
+    return cap, f"debate_stance:{claim.debate_stance} capped {candidate_level}->{cap}"
+
 def _emit_event(event_name: str, **kwargs) -> None:
     """Emit a trust event. Phase 1: just print. Phase 4 will hook to Discord/Celery."""
     print(f"[trust_event] {event_name}: {kwargs}")
@@ -143,6 +172,7 @@ def recalculate_trust_v2(
     )
 
     # ---- Bucket ----
+    semantic_cap_note = None
     if claim.human_trust_override and claim.human_override_locked:
         new_level = claim.human_trust_override
     elif claim.claim_type == "debate":
@@ -161,6 +191,9 @@ def recalculate_trust_v2(
         new_level = "debated"
     else:
         new_level = "unverified"
+
+    if not (claim.human_trust_override and claim.human_override_locked):
+        new_level, semantic_cap_note = _apply_debate_stance_semantic_cap(claim, new_level)
 
     # ---- Freshness floor ----
     if (new_level == "consensus" and sup_years
@@ -196,5 +229,6 @@ def recalculate_trust_v2(
         trigger=trigger,
         triggered_by_agent_id=actor_agent_id,
         triggered_by_human_id=actor_human_id,
+        notes=semantic_cap_note,
     ))
     return new_level, TS
