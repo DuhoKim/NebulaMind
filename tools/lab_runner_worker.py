@@ -104,8 +104,15 @@ def study(rec):
     res = {"data_sources": data, "method": method}
     plt.figure(figsize=(5.6, 4.3)); made = False
 
+    # ---- Reionization ionizing-photon budget (f_esc closure; no survey pull) ----
+    if method == "ionizing-photon-budget":
+        import sys as _sys, os as _os
+        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+        from nm_ionizing_budget import run_ionizing_budget
+        log(rec, "computing reionization ionizing-photon budget (required vs. inferred f_esc)…")
+        made = run_ionizing_budget(rec, res, plt)
     # ---- Stellar mass function (TNG only; needs a box volume) ----
-    if method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
+    elif method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
         d = tng_load(rec, []); log(rec, "computing TNG stellar mass function…")
         ms = d["mstar"]; sel = (d["flag"] == 1) & (ms > 0); lgm = np.log10(ms[sel])
         b = np.arange(8.5, 11.8, 0.2); c = 0.5 * (b[:-1] + b[1:]); n, _ = np.histogram(lgm, bins=b)

@@ -28,12 +28,16 @@ RUNS_DIR.mkdir(parents=True, exist_ok=True)
 
 TOPICS = {
     "simulations-vs-physics", "jwst-high-z-nebular", "cosmic-chemical-evolution",
-    "main-sequence-quenching", "massive-galaxies-too-early", "custom",
+    "main-sequence-quenching", "massive-galaxies-too-early",
+    "reionization-photon-budget", "custom",
 }
 DATA_SOURCES = {"sdss", "jwst", "tng"}
 METHODS = {
     "scaling-relation-evolution", "stellar-mass-function", "mass-metallicity",
     "sf-efficiency-baryon-budget", "sim-vs-observation",
+    # literature-anchored reionization ionizing-photon budget (no survey pull;
+    # solves for required LyC f_esc and confronts proxy-inferred f_esc)
+    "ionizing-photon-budget",
 }
 OUTPUTS = {"aastex-draft", "dr-review-loop"}
 
