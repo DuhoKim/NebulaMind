@@ -58,7 +58,13 @@ class Evidence(Base):
     # === Peer-review tracking ===
     journal_ref: Mapped[str | None] = mapped_column(String(500), nullable=True)
     peer_reviewed: Mapped[bool] = mapped_column(Boolean, default=False, server_default="false")
-    consensus_scorecard_id: Mapped[int | None] = mapped_column(ForeignKey("jury_scorecards.id"), nullable=True)
+    # use_alter + name breaks the evidence <-> jury_scorecards circular FK for DDL
+    # ordering (jury_scorecards.evidence_id -> evidence.id closes the cycle): the
+    # constraint is emitted as a deferred ALTER after both tables exist. Kun #5.
+    consensus_scorecard_id: Mapped[int | None] = mapped_column(
+        ForeignKey("jury_scorecards.id", use_alter=True, name="fk_evidence_consensus_scorecard"),
+        nullable=True,
+    )
     relevance: Mapped[float | None] = mapped_column(Float, nullable=True)
     entailment: Mapped[float | None] = mapped_column(Float, nullable=True)
     rigor: Mapped[float | None] = mapped_column(Float, nullable=True)
