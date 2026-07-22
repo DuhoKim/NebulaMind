@@ -11,63 +11,173 @@
       "cycle": 1,
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
-      "feedbackKind": { "verdict": "REVISE", "categories": ["G2 non-circularity", "G3 calibration", "detection-framing"] },
+      "feedbackKind": {
+        "verdict": "REVISE",
+        "categories": [
+          "G2 non-circularity",
+          "G3 calibration",
+          "detection-framing"
+        ]
+      },
       "feedbackText": "G2 FAIL — the confirming set is not disjoint from the hypothesis-forming set (both lean on the same ~4 lensed z>7 anchors). G3 FAIL — cross-sample O/H is not on one declared scale; unclear the deficit survives the ~0.24 dex inter-scale offset. Adjust the detection framing.",
-      "changed": { "summary": "Restricted the analysis to a single Te-consistent scale; reframed as a selection-bounded consistency result, explicitly not a detection." },
+      "changed": {
+        "summary": "Restricted the analysis to a single Te-consistent scale; reframed as a selection-bounded consistency result, explicitly not a detection."
+      },
       "timestamp": "2026-07-20T14:29:00Z"
     },
     {
       "cycle": 2,
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
-      "feedbackKind": { "verdict": "ACCEPT-review-ready", "categories": ["G2 non-circularity", "G3 calibration", "G6 honest-label"] },
+      "feedbackKind": {
+        "verdict": "ACCEPT-review-ready",
+        "categories": [
+          "G2 non-circularity",
+          "G3 calibration",
+          "G6 honest-label"
+        ]
+      },
       "feedbackText": "G3 PASS (Te-consistent scale, no mixed strong-line calibrations). G2 PASS-as-bounded-descriptive (no external confirmation sample; framed as selection-bounded). G6 PASS. Caveat: small sample (N=6).",
-      "changed": { "summary": "Reframe accepted; deficit held as bounded-descriptive with the small-N caveat." },
+      "changed": {
+        "summary": "Reframe accepted; deficit held as bounded-descriptive with the small-N caveat."
+      },
       "timestamp": "2026-07-20T15:26:00Z"
     },
     {
       "feedbackSource": "deep-research",
       "feedbackBy": "Tori (crew) · Gemini Deep Research",
-      "feedbackKind": { "verdict": "DOWNGRADE → REVISE", "categories": ["independent anchors", "lensing systematic"] },
+      "feedbackKind": {
+        "verdict": "DOWNGRADE → REVISE",
+        "categories": [
+          "independent anchors",
+          "lensing systematic"
+        ]
+      },
       "feedbackText": "DR1: genuinely independent UNLENSED field anchors now exist (Pollock+2026, Cullen+2025, Isobe+2026). Material issue: the 'clean' direct-Te subset (ERO=SMACS0723, GLASS=Abell2744) is lens-contaminated — only CEERS is field — so the −0.47 dex deficit carries an unaccounted differential-magnification systematic. Re-derive on unlensed field anchors.",
-      "changed": { "summary": "Added the lensing caveat and a re-derivation plan; flagged an unlensed data pull as required before human-review-ready." },
+      "changed": {
+        "summary": "Added the lensing caveat and a re-derivation plan; flagged an unlensed data pull as required before human-review-ready."
+      },
       "timestamp": "2026-07-20T17:15:00Z"
     },
     {
       "cycle": 3,
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
-      "feedbackKind": { "verdict": "ACCEPT-review-ready (upgraded)", "categories": ["G2 non-circularity", "G3 calibration", "G6 honest-label", "overclaim"] },
+      "feedbackKind": {
+        "verdict": "ACCEPT-review-ready (upgraded)",
+        "categories": [
+          "G2 non-circularity",
+          "G3 calibration",
+          "G6 honest-label",
+          "overclaim"
+        ]
+      },
       "feedbackText": "Re-refereed after the unlensed re-derivation: G2 PASS (independent unlensed sample), G3 PASS, G6 PASS; the ~22σ formal value is acknowledged as NOT a detection (systematic-limited). Upgraded from REVISE.",
-      "changed": { "summary": "Pulled Pollock+2026 (N=5 strictly unlensed field, z=9.3–9.9); re-derived deficit = −0.69±0.03 dex, leave-one-out spread 0.04 dex — lensing systematic removed and the deficit confirmed on a second independent sample." },
+      "changed": {
+        "summary": "Pulled Pollock+2026 (N=5 strictly unlensed field, z=9.3–9.9); re-derived deficit = −0.69±0.03 dex, leave-one-out spread 0.04 dex — lensing systematic removed and the deficit confirmed on a second independent sample."
+      },
       "timestamp": "2026-07-20T23:15:00Z"
     },
     {
       "cycle": 4,
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
-      "feedbackKind": { "verdict": "ACCEPT (hardened)", "categories": ["anchor-robustness"] },
+      "feedbackKind": {
+        "verdict": "ACCEPT (hardened)",
+        "categories": [
+          "anchor-robustness"
+        ]
+      },
       "feedbackText": "Anchor-robustness pass: re-anchoring on Andrews & Martini 2013 (direct-Te local MZR measured down to logM~7.4, not extrapolated) gives −0.645 dex vs −0.687 against Curti+2020 — an anchor systematic of only 0.042 dex.",
-      "changed": { "summary": "Added the AM13 re-anchoring; the local-MZR-extrapolation caveat is resolved (Δ0.04 dex). Recompiled." },
+      "changed": {
+        "summary": "Added the AM13 re-anchoring; the local-MZR-extrapolation caveat is resolved (Δ0.04 dex). Recompiled."
+      },
       "timestamp": "2026-07-21T03:20:00Z"
     },
     {
       "cycle": 5,
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
-      "feedbackKind": { "verdict": "OVERCLAIM flag → fixed", "categories": ["overclaim", "detection-discipline"] },
+      "feedbackKind": {
+        "verdict": "OVERCLAIM flag → fixed",
+        "categories": [
+          "overclaim",
+          "detection-discipline"
+        ]
+      },
       "feedbackText": "Overclaim flag: asserting a z~9–10 'normalization deficit' from Isobe+2026, whose stack spans z=4–10. Detection-discipline PASS (no detection claim). After repeated flags on an already-bounded statement, the claim was reduced to bare-factual per the 'astrosage advisory, not a gate' bright line.",
-      "changed": { "summary": "Softened Isobe to a bare-factual statement (12+log O/H = 7.62 at logM=8 over z=4–10; the z~9–10-specific value rests on Pollock); no inference beyond the data. Recompiled." },
+      "changed": {
+        "summary": "Softened Isobe to a bare-factual statement (12+log O/H = 7.62 at logM=8 over z=4–10; the z~9–10-specific value rests on Pollock); no inference beyond the data. Recompiled."
+      },
       "timestamp": "2026-07-21T03:55:00Z"
     },
     {
       "feedbackSource": "author-analysis",
       "feedbackBy": "overnight run",
-      "feedbackKind": { "verdict": "significance quantified", "categories": ["Te-scale sensitivity"] },
+      "feedbackKind": {
+        "verdict": "significance quantified",
+        "categories": [
+          "Te-scale sensitivity"
+        ]
+      },
       "feedbackText": "Te-scale Monte-Carlo (N=20000): shifting all O/H by a common N(0,0.15 dex) systematic, the sign persists ~100% and the effective significance is ≈4.5σ (not the formal ~22σ); the magnitude (0.3–0.5+ dex) is Te-scale-limited.",
-      "changed": { "summary": "Added the quantified significance floor to the Discussion (replaces the hand-wavy 'systematic-limited'). Recompiled — final state." },
+      "changed": {
+        "summary": "Added the quantified significance floor to the Discussion (replaces the hand-wavy 'systematic-limited'). Recompiled — final state."
+      },
       "timestamp": "2026-07-21T04:40:00Z"
+    },
+    {
+      "feedbackSource": "author-analysis",
+      "feedbackBy": "overnight run (continuation)",
+      "feedbackKind": {
+        "verdict": "error budget quantified",
+        "categories": [
+          "systematic budget",
+          "weighted fit",
+          "no trend"
+        ]
+      },
+      "feedbackText": "Consolidated the scattered systematics into one formal error budget: inverse-variance-weighted deficit -0.68±0.03 dex; total ±0.16 dex (Te-scale 0.15 dominant); bootstrap 95% CI [-0.82,-0.55], P(deficit<0)=100%. Within the sample there is no significant trend of the offset with stellar mass (1.1σ) or redshift (0.6σ) — a pure normalization offset at unchanged slope.",
+      "changed": {
+        "summary": "Added Table 1 (systematic error budget) and the normalization-offset statement to the Discussion."
+      },
+      "timestamp": "2026-07-21T15:15:00Z"
+    },
+    {
+      "feedbackSource": "author-analysis",
+      "feedbackBy": "arXiv pull (Curti+2023)",
+      "feedbackKind": {
+        "verdict": "sample grown to N=6",
+        "categories": [
+          "independent anchor",
+          "highest-z"
+        ]
+      },
+      "feedbackText": "Extended the unlensed direct-Te sample to z=10.6 with GN-z11 (12+log O/H=7.82±0.35). The sign is confirmed at the highest redshift; the population deficit sits at -0.64 to -0.68 dex. Honest: adding a higher-O/H, large-error point softens the central value and significance slightly — not cherry-picked.",
+      "changed": {
+        "summary": "Added GN-z11 to the sample and the Curti+2023 reference; sign confirmed across z=9.3-10.6 and two programs."
+      },
+      "timestamp": "2026-07-21T15:50:00Z"
+    },
+    {
+      "cycle": 6,
+      "feedbackSource": "referee-model",
+      "feedbackBy": "astrosage-70b",
+      "feedbackKind": {
+        "verdict": "REVISE → ACCEPT",
+        "categories": [
+          "detection-discipline",
+          "overclaim"
+        ]
+      },
+      "feedbackText": "Re-refereed the integrated error-budget section. Flagged 'effective significance ~4σ / sign secure in 100%' as reading like a formal detection — the paper's core discipline is that it is not one. After removing that redundant sentence (§4 already states the ~22σ → ~4.5σ deflation and Table 1 shows the ±0.16 dex budget), re-refereed: all checks PASS, detection-discipline now PASS.",
+      "changed": {
+        "summary": "Removed the detection-adjacent significance sentence and recompiled; verdict cleared to ACCEPT-as-human-review-ready."
+      },
+      "timestamp": "2026-07-22T02:30:00Z"
     }
   ],
-  "humanFeedback": { "captured": false }
+  "humanFeedback": {
+    "captured": false
+  }
 }
