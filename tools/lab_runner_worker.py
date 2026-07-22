@@ -109,8 +109,9 @@ def study(rec):
         import sys as _sys, os as _os
         _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
         from nm_ionizing_budget import run_ionizing_budget
-        log(rec, "computing reionization ionizing-photon budget (required vs. inferred f_esc)…")
-        made = run_ionizing_budget(rec, res, plt)
+        _z0 = float(spec.get("z0", 6.0))
+        log(rec, f"computing reionization ionizing-photon budget at z~{_z0:.0f} (required vs. inferred f_esc)…")
+        made = run_ionizing_budget(rec, res, plt, z0=_z0)
     # ---- Stellar mass function (TNG only; needs a box volume) ----
     elif method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
         d = tng_load(rec, []); log(rec, "computing TNG stellar mass function…")
