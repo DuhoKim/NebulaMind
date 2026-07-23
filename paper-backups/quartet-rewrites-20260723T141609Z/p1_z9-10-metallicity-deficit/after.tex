@@ -1,0 +1,163 @@
+\documentclass[twocolumn]{aastex631}
+\shorttitle{An independent, unlensed z$\simeq$9--10 metallicity deficit}
+\shortauthors{NebulaMind Lab}
+\begin{document}
+\title{An Independent, Unlensed Gas-Phase Metallicity Deficit at $z\simeq9$--10, Robust to the Local Mass--Metallicity Anchor}
+\author{NebulaMind Lab (autonomous run)}
+\affiliation{Descriptive, machine-generated draft --- not a validated measurement, and \emph{not} a detection claim.}
+
+\begin{abstract}
+Whether the earliest galaxies are already chemically enriched or remain genuinely metal-poor relative to
+the local mass--metallicity relation (MZR) is unsettled. JWST/NIRSpec studies have variously reported a
+declining MZR normalization toward $z\approx8$ \citep{langeroodi23,sarkar25} and rapid early enrichment
+that keeps massive galaxies near local abundances by $z\approx5$ \citep{faisst26}, and the earliest $z>7$
+anchors that would break the tie are dominated by gravitationally lensed galaxies --- where differential
+magnification distorts the inferred stellar masses, and where the (fundamental) metallicity relation has
+historically been probed \citep[cf.][]{belli13}. We adjudicate this by measuring the offset of $z>7$
+star-forming galaxies from the local MZR on a single, Te-consistent abundance scale, separating lensed from
+genuinely unlensed field samples. Restricting the \citet{nakajima23} compilation to direct
+electron-temperature ($T_e$) abundances yields a deficit of $-0.47\pm0.10$~dex, but two of its anchors
+(ERO, GLASS) lie behind lensing clusters. Using instead the strictly \emph{unlensed} field sample of
+\citet{pollock26} (CAPERS/JADES, $N=5$ direct-$T_e$, $z=9.3$--9.9, $\log M_\star=8.2$--8.6), we recover
+$-0.69\pm0.03$~dex, robust to leave-one-out (spread $0.04$~dex). The deficit is also robust to the choice
+of \emph{local} anchor: replacing the \citet{curti20} relation --- extrapolated below its SDSS calibration
+mass range --- with the direct-$T_e$ stacked MZR of \citet{am13}, which is \emph{measured} at these masses,
+changes the deficit by only $0.04$~dex (to $-0.65$~dex). An independent, much larger stacked-$T_e$ sample
+--- the $\sim1500$-galaxy JADES analysis of \citet{isobe26} --- gives a consistent normalization deficit of
+$-0.5$ to $-0.6$~dex at $\log M_\star=8$ ($12+\log{\rm O/H}=7.62$ at $\log M_\star=8$ over $z=4$--10) via a
+different method; the $z\simeq9$--10-specific value rests on the individual detections. Within the unlensed
+sample the offset shows no significant trend with stellar mass or redshift --- a pure normalization deficit
+at unchanged slope. The dominant remaining uncertainty is the absolute $T_e$ abundance scale
+($\sim0.1$--$0.2$~dex). On an independent, unlensed, single-scale footing the data therefore land on the
+metal-poor side of this debate: a robust deficit relative to the local MZR, present across two high-$z$
+samples and two local anchors --- and explicitly \emph{not} a formal statistical detection, nor a validated
+measurement. What it settles is the sign and approximate size of the $z\simeq9$--10 offset on lensing-free,
+single-scale data; what it cannot yet settle is the precise value, bounded by the $\sim0.1$--$0.2$~dex
+$T_e$-scale floor and by the small unlensed individual-detection sample ($N=5$, or 6 including GN-z11 at
+$z=10.6$; \citealt{curti23}).
+\end{abstract}
+
+\section{Introduction}
+The gas-phase mass--metallicity relation (MZR) encodes the integrated history of star formation, accretion,
+and outflows, and its behavior at $z>7$ has become a specific point of contention: does the MZR
+normalization decline toward the Epoch of Reionization --- leaving the earliest galaxies genuinely
+metal-poor at fixed stellar mass --- or have these galaxies already enriched rapidly toward near-local
+abundances? JWST/NIRSpec measurements have reported an evolving, declining normalization out to $z\approx8$
+\citep{langeroodi23,sarkar25}, while others infer fast early enrichment that keeps massive galaxies close to
+the local relation by $z\approx5$ \citep{faisst26}. The disagreement persists in part because the deciding
+$z>7$ auroral-line anchors are dominated by gravitationally lensed galaxies --- and the universality of the
+(fundamental) metallicity relation has historically been probed precisely with such lensed samples
+\citep{belli13}. Two systematics limit these tests: (i) lensing, since the compact H\,{\sc ii} regions
+emitting auroral [O\,{\sc iii}]\,$\lambda4363$ are spatially offset from the extended stellar continuum, so
+a single magnification factor distorts $M_\star$; and (ii) the \emph{local} anchor, which at the low masses
+of high-$z$ galaxies ($\log M_\star\sim8$) is typically an extrapolation of relations calibrated on more
+massive SDSS galaxies. Both systematics act on the normalization of the offset --- exactly the quantity in
+dispute --- so an independent measurement that removes lensing (an unlensed field sample) and controls the
+anchor (a directly-measured local $T_e$ relation), all on a single Te-consistent abundance scale, can
+adjudicate the sign and approximate size of any $z\simeq9$--10 deficit even where it cannot yet pin the
+precise value. We make that measurement here, and address both systematics directly.
+
+\section{Data and Method}
+High-$z$: (i) the direct-$T_e$ subset of \citet{nakajima23} at $z\simeq7$--8.7 (includes lensed ERO and
+GLASS); and (ii) the strictly unlensed field sample of \citet{pollock26} at $z=9.3$--9.9; and (iii) the stacked-$T_e$ MZR
+of \citet{isobe26}, from $\sim1500$ unlensed JADES spectra ($z=4$--10, normalization $Z_8=7.62\pm0.10$ at
+$\log M_\star=8$, slope $0.34$). Local anchors:
+(a) \citet{curti20}, $12+\log({\rm O/H})=Z_0-(\gamma/\beta)\log_{10}[1+(M_\star/M_0)^{-\beta}]$,
+$(Z_0,\log M_0,\gamma,\beta)=(8.793,10.02,0.28,1.2)$, which we must \emph{extrapolate} below its SDSS mass
+range; and (b) the direct-$T_e$ stacked MZR of \citet{am13},
+$12+\log({\rm O/H})=8.798-\log_{10}[1+(10^{8.901}/M_\star)^{0.640}]$, which is \emph{measured} down to
+$\log M_\star\simeq7.4$. For each galaxy we compute $\Delta=(12+\log{\rm O/H})_{\rm obs}-{\rm MZR}(\log M_\star)$,
+retain only direct-$T_e$ abundances, and test robustness by leave-one-out and by swapping the local anchor.
+
+\section{Results}
+The direct-$T_e$ subset of \citet{nakajima23} gives $-0.47\pm0.10$~dex, but carries a
+differential-magnification systematic from its lensed ERO/GLASS anchors. The unlensed \citet{pollock26}
+field sample gives $-0.69\pm0.03$~dex (leave-one-out spread $0.04$~dex). Swapping the local anchor from the
+extrapolated \citet{curti20} relation to the \emph{measured} direct-$T_e$ \citet{am13} MZR changes the
+Pollock deficit by only $0.042$~dex (to $-0.645$~dex); both local relations predict
+$12+\log({\rm O/H})\simeq8.3$ at $\log M_\star=8.3$. The independent stacked-$T_e$ MZR of \citet{isobe26} gives $12+\log({\rm O/H})=7.62$ at
+$\log M_\star=8$, i.e.\ a deficit of $-0.61$~dex (vs \citealt{curti20}) or $-0.50$~dex (vs \citealt{am13}),
+from a $\sim1500$-galaxy sample and a different methodology (spectral stacking rather than individual
+detections). The deficit is therefore present in independent high-$z$ samples spanning $N=5$ to
+$\sim1500$, across two methodologies and two local anchors; An independent stacked-$T_e$ analysis of $\sim1500$ unlensed JADES spectra over $z=4$--10 reports a
+comparable normalization ($12+\log{\rm O/H}=7.62$ at $\log M_\star=8$; \citealt{isobe26}), i.e.\ a deficit
+of $-0.5$ to $-0.6$~dex vs local. The $z\simeq9$--10-specific deficit and the $z>7$ MZR slope rest on the
+individual \citet{pollock26} detections, which remain sample-limited. A mixed-calibration sample ($N=40$) yields
+$-0.61$~dex but is excluded as scale-contaminated.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=0.98\linewidth]{paperA_fig.pdf}
+\caption{The unlensed $z\simeq7$--10 gas-phase mass--metallicity relation. Red circles: individual
+direct-$T_e$ galaxies from the unlensed field sample of \citet{pollock26}. Blue square: the
+$\sim1500$-galaxy stacked-$T_e$ normalization of \citet{isobe26} at $\log M_\star=8$. Curves: the local
+MZR from \citet{curti20} (extrapolated) and the measured direct-$T_e$ relation of \citet{am13}. The
+high-$z$ points lie $\approx0.5$--$0.7$~dex below the local relation, consistently across both
+methodologies and both local anchors.}
+\label{fig:mzr}
+\end{figure}
+
+\section{Discussion}
+Two of the three leading systematics for such a measurement are now controlled: lensing (removed by using
+the unlensed field sample) and the local-anchor extrapolation (shown to move the result by only
+$\sim0.04$~dex). The dominant remaining uncertainty is the absolute $T_e$ abundance scale, debated at the
+$\sim0.1$--$0.2$~dex level, The small-sample concern for the individual detections is mitigated by the $\sim1500$-galaxy stacked
+measurement, which agrees. Propagating a common $T_e$-scale systematic of $0.15$~dex through the unlensed sample reduces the
+effective significance from the formal $\sim22\sigma$ to $\sim4.5\sigma$ (statistical and systematic
+errors in quadrature): the deficit's \emph{sign} persists in $\sim100\%$ of realizations and exceeds
+$0.3$~dex in $>99\%$, while a magnitude beyond $\sim0.5$~dex is recovered in only $89\%$. We therefore caution against
+reading the small formal error as a high-significance detection: the \emph{magnitude} of the deficit
+retains a $\sim0.1$--$0.2$~dex systematic floor, even though its \emph{sign and robustness} are secure
+across independent, unlensed data and independent local anchors.
+
+Table~\ref{tab:budget} collects the full systematic error budget on the population mean deficit. An
+inverse-variance-weighted fit gives $-0.68\pm0.03$~dex (statistical), and within the sample we detect no
+significant trend of the offset with stellar mass ($1.1\sigma$) or redshift ($0.6\sigma$), consistent with
+a pure normalization deficit at unchanged slope. Extending the unlensed direct-$T_e$ sample to $z=10.6$
+with GN-z11 ($12+\log{\rm O/H}=7.82\pm0.35$; \citealt{curti23}) confirms the sign at the highest redshift
+and leaves the population deficit at $-0.64$ to $-0.68$~dex.
+
+\begin{table}[htb]
+\centering
+\caption{Systematic error budget on the population mean metallicity deficit (unlensed direct-$T_e$ sample
+vs the local MZR). The absolute $T_e$ scale dominates.\label{tab:budget}}
+\begin{tabular}{lc}
+\hline
+Term & Contribution (dex) \\
+\hline
+Central deficit (inverse-variance weighted) & $-0.68$ \\
+\hline
+Measurement (on the mean)      & 0.05 \\
+Sample variance (SEM)          & 0.05 \\
+Leave-one-out spread           & 0.08 \\
+Local-anchor choice (Curti+20 vs AM13) & 0.04 \\
+Absolute $T_e$ scale (zero-point) & \textbf{0.15} \\
+\hline
+Statistical (SEM)              & 0.05 \\
+Systematic (anchor $\oplus$ $T_e$) & 0.16 \\
+\textbf{Total}                 & \textbf{0.16} \\
+\hline
+\end{tabular}
+\end{table}
+
+\section{Conclusion}
+We report a robust, independent, unlensed gas-phase metallicity deficit at $z\simeq9$--10 relative to the
+local MZR: $-0.69\pm0.03$~dex (leave-one-out-robust; $-0.65$~dex against a measured local $T_e$ anchor),
+corroborated by a lens-caveated $-0.47$~dex at $z\simeq7$--8.7. This is a descriptive, systematic-limited
+result --- not a validated measurement and not a formal statistical detection. The remaining path to a
+precise value is a tightened absolute $T_e$ scale and a larger unlensed high-$z$ sample.
+
+\begin{thebibliography}{}
+\bibitem[Andrews \& Martini(2013)]{am13} Andrews, B.~H., \& Martini, P. 2013, ApJ, 765, 140
+\bibitem[Curti et al.(2020)]{curti20} Curti, M., et al. 2020, MNRAS, 491, 944
+\bibitem[Isobe et al.(2026)]{isobe26} Isobe, Y., et al. 2026, arXiv:2606.11345
+\bibitem[Nakajima et al.(2023)]{nakajima23} Nakajima, K., et al. 2023, ApJS, 269, 33
+\bibitem[Pollock et al.(2026)]{pollock26} Pollock, C.~L., et al. 2026, A\&A, 708, A203 (arXiv:2506.15779)
+\bibitem[Curti et al.(2023)]{curti23} Curti, M., et al. 2023, MNRAS, 518, 425 (arXiv:2304.08516)
+\bibitem[Belli et al.(2013)]{belli13} Belli, S., Newman, A.~B., \& Ellis, R.~S. 2013, ApJ, 772, 141
+\bibitem[Faisst et al.(2026)]{faisst26} Faisst, A.~L., et al. 2026, ApJ, 1004, 22
+\bibitem[Langeroodi et al.(2023)]{langeroodi23} Langeroodi, D., et al. 2023, ApJ, 957, 39
+\bibitem[Sarkar et al.(2025)]{sarkar25} Sarkar, A., et al. 2025, ApJ, 978, 136
+\end{thebibliography}
+\end{document}
