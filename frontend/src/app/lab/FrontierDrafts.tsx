@@ -14,6 +14,15 @@ export type Draft = { title: string; sub: string; pages: string; pdf: string; up
 
 export const FRONTIER: Draft[] = [
   {
+    title: "The reionization photon-budget “crisis” is set by ξ_ion and the star-formation-rate density, not the data",
+    sub: "Solving for the LyC escape fraction required of star-forming galaxies to close the reionization ionizing budget across a 232-point (z=5–12 × 8 systematic-corner) grid. The required f_esc rises steeply with redshift and crosses the proxy-inferred value (~6%) at a crisis-onset redshift spanning z≈5–8.75 across defensible assumptions, exceeding the physical ceiling f_esc=1 anywhere from z≈8.5 to never. Both literature positions — “crisis” and “galaxies suffice” — fall out of the same envelope, so the verdict is dominated by ξ_ion and the SFRD, not the data.",
+    pages: "synthesis",
+    pdf: "/agent-reports/research-frontiers/reionization-fesc-budget-landscape.pdf",
+    updated: "2026-07-23 03:00",
+    verdict: "REVIEW-READY",
+    review: "/agent-reports/research-frontiers/reionization-fesc-budget-landscape_review_loop.md",
+  },
+  {
     title: "Galaxy scaling relations from z≈0 to the JWST frontier",
     sub: "The star-forming main sequence and the mass–metallicity relation anchored on ~5×10⁵ SDSS galaxies, then confronted with JWST out to the frontier.",
     pages: "3 pp",
