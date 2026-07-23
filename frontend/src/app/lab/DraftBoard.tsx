@@ -326,12 +326,16 @@ function DraftCard({ it }: { it: Item }) {
   return (
     <div className={`db-lrow${open ? " open" : ""}${it.track === "flagship" ? " pb-flag" : ""}`}>
       <div className="db-lrow-head">
+        <span className="db-lrow-meritcol">
+          {merit != null
+            ? <span className="db-lrow-merit" data-tier={tier} title="independent scientific-merit (DR + Kun, originality × significance) — advisory, not validated; expand for the breakdown">Merit {merit.toFixed(1)}</span>
+            : <span className="db-lrow-nomerit" title="not scored — only curated manuscripts get a merit score">—</span>}
+        </span>
         <button type="button" className="db-lrow-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
           <span className="db-lrow-caret" data-open={open}>▸</span>
           <span className="db-lrow-title">{it.title}</span>
         </button>
         <span className="db-lrow-meta">
-          {merit != null && <span className="db-lrow-merit" data-tier={tier} title="independent scientific-merit (DR + Kun, originality × significance) — advisory, not validated; expand for the breakdown">Merit {merit.toFixed(1)}</span>}
           <span className="db-lrow-by" data-prod={it.production} title={it.production === "hand" ? "hand-guided by the crew" : "produced by the autonomous pipeline"}>{PROD_LABEL[it.production]}</span>
           <span className="pb-chip db-lrow-chip" style={{ borderColor: vc, color: vc }}>
             {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
@@ -655,6 +659,8 @@ const DB_CSS = `
 .db-lrow{border:1px solid var(--lab-line);border-radius:9px;background:var(--lab-panel);overflow:hidden}
 .db-lrow.pb-flag{border-color:color-mix(in srgb,var(--lab-accent) 40%,var(--lab-line))}
 .db-lrow-head{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem}
+.db-lrow-meritcol{flex:0 0 5rem;display:flex;align-items:center}
+.db-lrow-nomerit{color:var(--lab-line);font-family:ui-monospace,monospace;font-size:.85rem;padding-left:.55rem}
 .db-lrow-btn{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:.55rem;background:transparent;border:none;cursor:pointer;text-align:left;font:inherit;padding:0}
 .db-lrow-caret{flex-shrink:0;color:var(--lab-soft);font-size:.72rem;transition:transform .15s}
 .db-lrow-caret[data-open="true"]{transform:rotate(90deg)}
