@@ -10,9 +10,8 @@ import { SUBNAV_VIDEOS } from "./subnavVideos";
 import { SCATTER_CLUSTERS, SCATTER_POINTS, SCATTER_ACTIVITY, ACTIVITY_MIN, ACTIVITY_MAX } from "./clusterScatter";
 import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN_USE, type Band } from "./dataLandscape";
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
-import PipelineBoard from "./PipelineBoard";
-import FlagshipStudies, { FLAGSHIP } from "./FlagshipStudies";
-import FrontierDrafts, { FRONTIER } from "./FrontierDrafts";
+import { FLAGSHIP } from "./FlagshipStudies";
+import { FRONTIER } from "./FrontierDrafts";
 import DraftBoard from "./DraftBoard";
 import DebateAxisMap from "./DebateAxisMap";
 
@@ -1482,17 +1481,17 @@ function PaperView() {
 
       {/* Output tracks */}
       <div className="pt-tracks">
-        <button className="pt-track" onClick={() => select("paper", "flagship")}>
-          <b>Flagship studies →</b>
-          <span>The hand-guided, curated papers that went the full distance. Few, deep, complete — open the manuscripts.</span>
+        <button className="pt-track" onClick={() => select("paper", "progress")}>
+          <b>The paper board →</b>
+          <span>Every draft the Lab holds, on one board — sorted by how far each got toward a human sign-off. None has one yet.</span>
         </button>
-        <button className="pt-track" onClick={() => select("paper", "frontier")}>
-          <b>Frontier drafts →</b>
-          <span>Multi-page pipeline drafts, one per top frontier — scaling relations, the massive-galaxy tension, MZR/FMR, sim validation.</span>
+        <button className="pt-track" onClick={() => select("paper", "progress")}>
+          <b>Browse by frontier →</b>
+          <span>Regroup the same papers under the ranked frontiers — and see which top-ranked frontiers still have no study at all.</span>
         </button>
-        <button className="pt-track" onClick={() => select("paper", "pipeline")}>
-          <b>Pipeline runs →</b>
-          <span>The fully-automated track, live from the run pipeline. Many, fast, high-attrition — most stop early, 0 validated.</span>
+        <button className="pt-track" onClick={() => select("paper", "progress")}>
+          <b>Filter by how it was made →</b>
+          <span>Hand-guided or fully autonomous, single-measurement note or multi-page manuscript — now a filter, not a separate shelf.</span>
         </button>
       </div>
 
@@ -1881,17 +1880,8 @@ export default function LabStages() {
                   <span className="cfg-sub-k">{k}</span><span className="cfg-sub-v">{v}</span>
                 </div>
               ))}
-              {tab === "paper" && sub === "progress" && (
+              {tab === "paper" && sub !== "how" && (
                 <div style={{ padding: ".2rem .9rem 1rem" }}><DraftBoard /></div>
-              )}
-              {tab === "paper" && sub === "flagship" && (
-                <div style={{ padding: ".2rem .9rem 1rem" }}><FlagshipStudies /></div>
-              )}
-              {tab === "paper" && sub === "frontier" && (
-                <div style={{ padding: ".2rem .9rem 1rem" }}><FrontierDrafts /></div>
-              )}
-              {tab === "paper" && sub === "pipeline" && (
-                <div style={{ padding: ".2rem .9rem 1rem" }}><PipelineBoard /></div>
               )}
             </div>
           );

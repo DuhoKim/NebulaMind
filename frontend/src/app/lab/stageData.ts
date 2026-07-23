@@ -73,10 +73,7 @@ export const RESEARCH_ITEMS: SubItem[] = [
 ];
 
 export const PAPER_ITEMS: SubItem[] = [
-  { value: "progress", label: "Draft board", sub: "every draft · where it stands" },
-  { value: "flagship", label: "Flagship studies", sub: "hand-guided" },
-  { value: "frontier", label: "Frontier drafts", sub: "pipeline studies" },
-  { value: "pipeline", label: "Pipeline runs", sub: "automated · live board" },
+  { value: "progress", label: "Paper board", sub: "every paper · one board, by status or frontier" },
   { value: "how", label: "How papers are made", sub: "the method", rows: [
     ["Draft", "The study’s real numbers fill a journal-style AASTeX manuscript (the AAS aastex631 class) — title, abstract, method, the figure, results, honest caveats — compiled to PDF with tectonic."],
     ["Referee", "An automated referee (astrosage-70b) issues a verdict — ACCEPT / MINOR / MAJOR / REJECT. On MAJOR/REJECT the author revises: softening overclaims, adding caveats, never inventing numbers, then re-reviews until it holds."],
