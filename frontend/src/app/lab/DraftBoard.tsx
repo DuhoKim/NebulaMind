@@ -616,6 +616,8 @@ const DB_CSS = `
 .db-sect-sub{color:var(--lab-soft);font-weight:400;text-transform:none;letter-spacing:0}
 .db-bar-gate{background:repeating-linear-gradient(45deg,#3a4260,#3a4260 4px,#2a3145 4px,#2a3145 8px)!important}
 .db .pb-runs{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
+/* One line per card on the board — every summary (curated + pipeline) clamps to a single line; full text is in the PDF. */
+.db .pb-run-summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:.4rem 0 .5rem}
 .db-rcard{display:flex;flex-direction:column}
 .db-track-chip{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.06rem .5rem;white-space:nowrap}
 .db-prod,.db-depth{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid var(--lab-line);color:var(--lab-soft)}
