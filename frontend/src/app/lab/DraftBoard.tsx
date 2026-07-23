@@ -212,6 +212,9 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
   if (h.err) return <div className="dh-wrap"><div className="dh-note">Couldn&rsquo;t load the referee log ({h.err}).</div></div>;
   if (!h.data) return null;
   const { model, revisions, refereeCycles, humanCaptured, topic, topicSource, final } = h.data;
+  // If every step came from the same person, name them once (in the banner) and
+  // show each step as just its directive → what changed, not a repeated tag.
+  const uniformActor = revisions.length > 0 && revisions.every((r) => r.source === revisions[0].source && r.by === revisions[0].by);
   const allOpen = revisions.length > 0 && openSet.size === revisions.length;
   const toggleAll = () => setOpenSet(allOpen ? new Set() : new Set(revisions.map((_, i) => i)));
   const toggleOne = (i: number) =>
@@ -253,14 +256,15 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
               <div className="dh-body">
                 <button type="button" className="dh-nodehead" onClick={() => toggleOne(i)} aria-expanded={open}>
                   <span className="dh-ncaret" data-open={open}>▸</span>
-                  <span className="dh-src" data-kind={r.source}>{SOURCE_LABEL[r.source] || r.source}</span>
-                  <span className="dh-by">{r.by}</span>
+                  {uniformActor
+                    ? <span className="dh-dir">{r.feedback}</span>
+                    : <><span className="dh-src" data-kind={r.source}>{SOURCE_LABEL[r.source] || r.source}</span><span className="dh-by">{r.by}</span></>}
                   {r.verdict && <span className="dh-verdict" style={{ color: tone.dot, borderColor: tone.border, background: tone.bg }}>{r.verdict}</span>}
                   {r.cycle != null && <span className="dh-cycle">cycle {r.cycle}</span>}
                 </button>
                 {open && (
                   <div className="dh-detail">
-                    <p className="dh-fb">{r.feedback}</p>
+                    {!uniformActor && <p className="dh-fb">{r.feedback}</p>}
                     {r.categories.length > 0 && <div className="dh-cats">{r.categories.map((c) => <span className="dh-cat" key={c}>{c}</span>)}</div>}
                     {r.changed && (
                       <div className="dh-response">
@@ -535,6 +539,7 @@ const DB_CSS = `
 .dh-src[data-kind="human"]{color:#e0a458}
 .dh-cycle{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft);margin-left:auto}
 .dh-by{font-size:.66rem;color:var(--lab-soft);font-family:ui-monospace,monospace}
+.dh-dir{font-size:.82rem;color:var(--lab-ink);font-weight:550;flex:1 1 60%;min-width:0;line-height:1.42}
 .dh-detail{margin-top:.5rem}
 .dh-verdict{display:inline-block;font-family:ui-monospace,monospace;font-size:.66rem;border:1px solid;border-radius:7px;padding:.06rem .5rem;margin:0}
 .dh-delta{font-family:ui-monospace,monospace;font-size:.7rem;color:var(--lab-soft);margin:0 0 .4rem}
