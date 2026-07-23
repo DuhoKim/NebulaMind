@@ -25,10 +25,15 @@ def triage(rec):
     st = rec.get("status")
     grounded = bool(rec.get("lit_grounded"))
     verdict = (res.get("review_verdict") or "").upper()
+    # Non-circularity gate binds on any study that reports it: the f_esc budget
+    # exposes it under res["fesc"], the alpha-knee under a top-level res["knee"].
     fesc = res.get("fesc") or {}
     noncirc = fesc.get("noncircular_robust")
+    if noncirc is None:
+        noncirc = res.get("noncircular_robust")
+    gated = (res.get("fesc") is not None) or (res.get("knee") is not None)
     ok = (st == "done") and grounded and verdict in ("ACCEPT", "MINOR")
-    if fesc:
+    if gated:
         ok = ok and bool(noncirc)
     label = "REVIEW" if ok else ("SHELVE" if st and st.startswith(("done", "gated")) else "FAILED")
     return {"status": st, "grounded": grounded, "verdict": verdict or None,

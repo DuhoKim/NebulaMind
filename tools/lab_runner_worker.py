@@ -112,6 +112,16 @@ def study(rec):
         _z0 = float(spec.get("z0", 6.0))
         log(rec, f"computing reionization ionizing-photon budget at z~{_z0:.0f} (required vs. inferred f_esc)…")
         made = run_ionizing_budget(rec, res, plt, z0=_z0)
+    # ---- Age-resolved alpha-knee (APOGEE 3-table join; real survey pull) ----
+    elif method == "alpha-knee-age-radius":
+        import sys as _sys, os as _os
+        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+        from nm_alpha_knee import run_alpha_knee, plot_knee
+        log(rec, "building age-resolved alpha-knee (APOGEE apogeeDistMass x apogeeStar x aspcapStar)…")
+        ak = run_alpha_knee(spec, logfn=lambda m: log(rec, m))
+        res.update(ak)
+        plot_knee(res, plt)
+        made = True
     # ---- Stellar mass function (TNG only; needs a box volume) ----
     elif method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
         d = tng_load(rec, []); log(rec, "computing TNG stellar mass function…")
