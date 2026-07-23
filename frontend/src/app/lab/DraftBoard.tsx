@@ -311,48 +311,63 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
   );
 }
 
+// One row per paper. The row (always visible) is a single line — caret + title +
+// production + verdict chip + PDF + revision-log. Clicking the title expands the
+// full detail (summary, methods, figure, stage track, referee); the human-history
+// revision log opens inline via "log ▸". Detail stays one click away, never lost.
 function DraftCard({ it }: { it: Item }) {
   const h = useRevisionLog(it.review ?? null);
+  const [open, setOpen] = useState(false);
+  const vc = vcolor(it.verdict);
   return (
-    <div className={`pb-run db-rcard${it.track === "flagship" ? " pb-flag" : ""}`}>
-      <div className="pb-run-top">
-        <span className="pb-run-title">{it.title}</span>
-        <span className="pb-chip" style={{ borderColor: vcolor(it.verdict), color: vcolor(it.verdict) }}>
-          {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
-        </span>
-      </div>
-      <div className="pb-run-chips">
-        <span className="db-prod" data-prod={it.production} title={it.production === "hand" ? "hand-guided by the crew" : "produced by the autonomous pipeline"}>{PROD_LABEL[it.production]}</span>
-        <span className="db-depth" title={it.depth === "manuscript" ? "multi-page AASTeX manuscript" : "single-measurement note"}>{DEPTH_LABEL[it.depth]}</span>
-        {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
-        {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
-        {it.grounded != null && (
-          <span className={`db-ground${it.grounded ? " on" : ""}`} title={it.grounding || (it.grounded ? "literature-grounded" : "not grounded")}>
-            {it.grounded ? "grounded" : "not grounded"}
+    <div className={`db-lrow${open ? " open" : ""}${it.track === "flagship" ? " pb-flag" : ""}`}>
+      <div className="db-lrow-head">
+        <button type="button" className="db-lrow-btn" onClick={() => setOpen((o) => !o)} aria-expanded={open}>
+          <span className="db-lrow-caret" data-open={open}>▸</span>
+          <span className="db-lrow-title">{it.title}</span>
+        </button>
+        <span className="db-lrow-meta">
+          <span className="db-lrow-by" data-prod={it.production} title={it.production === "hand" ? "hand-guided by the crew" : "produced by the autonomous pipeline"}>{PROD_LABEL[it.production]}</span>
+          <span className="pb-chip db-lrow-chip" style={{ borderColor: vc, color: vc }}>
+            {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
           </span>
-        )}
-      </div>
-      {it.note && <p className="pb-run-summary">{it.note}</p>}
-      <MethodChips methods={it.methods} />
-      {it.figure && (
-        <>
-          <a href={it.figure} target="_blank" rel="noopener noreferrer" className="db-thumb">
-            <img src={it.figure} loading="lazy" alt={`Draft figure from automated run ${it.title} — not validated`} />
-          </a>
-          <p className="db-figcap">draft figure — not validated</p>
-        </>
-      )}
-      <StageTrack stage={it.stage} />
-      <div className="db-row-foot">
-        <span className="db-links">
-          {it.pdf ? <a href={it.pdf} target="_blank" rel="noopener noreferrer">PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
-          {it.pdf && it.updated && <span className="db-updated" title="last updated">upd. {fmtUpd(it.updated)}</span>}
-          {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
-          {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
-          {it.review && <button type="button" className={`dh-toggle${h.open ? " on" : ""}`} onClick={h.toggle} aria-expanded={h.open}>revision log <span className="dh-caret">▸</span></button>}
+          {it.pdf ? <a className="db-lrow-pdf" href={it.pdf} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
+          {it.review && <button type="button" className={`db-lrow-log${h.open ? " on" : ""}`} onClick={(e) => { e.stopPropagation(); h.toggle(); }} aria-expanded={h.open}>log ▸</button>}
         </span>
-        <span className="db-tag">descriptive — not validated</span>
       </div>
+      {open && (
+        <div className="db-lrow-detail">
+          {it.note && <p className="pb-run-summary">{it.note}</p>}
+          <div className="pb-run-chips">
+            <span className="db-depth" title={it.depth === "manuscript" ? "multi-page AASTeX manuscript" : "single-measurement note"}>{DEPTH_LABEL[it.depth]}</span>
+            {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
+            {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
+            {it.grounded != null && (
+              <span className={`db-ground${it.grounded ? " on" : ""}`} title={it.grounding || (it.grounded ? "literature-grounded" : "not grounded")}>
+                {it.grounded ? "grounded" : "not grounded"}
+              </span>
+            )}
+          </div>
+          <MethodChips methods={it.methods} />
+          {it.figure && (
+            <>
+              <a href={it.figure} target="_blank" rel="noopener noreferrer" className="db-thumb">
+                <img src={it.figure} loading="lazy" alt={`Draft figure from automated run ${it.title} — not validated`} />
+              </a>
+              <p className="db-figcap">draft figure — not validated</p>
+            </>
+          )}
+          <StageTrack stage={it.stage} />
+          <div className="db-row-foot">
+            <span className="db-links">
+              {it.pdf && it.updated && <span className="db-updated" title="last updated">upd. {fmtUpd(it.updated)}</span>}
+              {it.figure && <a href={it.figure} target="_blank" rel="noopener noreferrer">figure ↗</a>}
+              {it.review && <a href={it.review} target="_blank" rel="noopener noreferrer">referee ↗</a>}
+            </span>
+            <span className="db-tag">descriptive — not validated</span>
+          </div>
+        </div>
+      )}
       {h.open && <RevisionLog h={h} />}
     </div>
   );
@@ -615,10 +630,28 @@ const DB_CSS = `
 .db-note b{color:var(--lab-accent2);font-style:normal}
 .db-sect-sub{color:var(--lab-soft);font-weight:400;text-transform:none;letter-spacing:0}
 .db-bar-gate{background:repeating-linear-gradient(45deg,#3a4260,#3a4260 4px,#2a3145 4px,#2a3145 8px)!important}
-.db .pb-runs{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
-/* One line per card on the board — every summary (curated + pipeline) clamps to a single line; full text is in the PDF. */
-.db .pb-run-summary{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin:.4rem 0 .5rem}
+/* Compact list — one row per paper; the card grid becomes a single-column stack. */
+.db .pb-runs{display:flex;flex-direction:column;gap:.4rem}
 .db-rcard{display:flex;flex-direction:column}
+.db-lrow{border:1px solid var(--lab-line);border-radius:9px;background:var(--lab-panel);overflow:hidden}
+.db-lrow.pb-flag{border-color:color-mix(in srgb,var(--lab-accent) 40%,var(--lab-line))}
+.db-lrow-head{display:flex;align-items:center;gap:.6rem;padding:.5rem .7rem}
+.db-lrow-btn{flex:1 1 auto;min-width:0;display:flex;align-items:center;gap:.55rem;background:transparent;border:none;cursor:pointer;text-align:left;font:inherit;padding:0}
+.db-lrow-caret{flex-shrink:0;color:var(--lab-soft);font-size:.72rem;transition:transform .15s}
+.db-lrow-caret[data-open="true"]{transform:rotate(90deg)}
+.db-lrow-title{min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;font-size:.9rem;color:var(--lab-ink)}
+.db-lrow-btn:hover .db-lrow-title{color:var(--lab-accent)}
+.db-lrow-meta{display:flex;align-items:center;gap:.7rem;flex-shrink:0;font-family:ui-monospace,monospace;font-size:.7rem}
+.db-lrow-by{text-transform:uppercase;letter-spacing:.04em;color:var(--lab-soft);white-space:nowrap}
+.db-lrow-by[data-prod="hand"]{color:var(--lab-accent)}
+.db-lrow-chip{font-size:.58rem;padding:.05rem .45rem}
+.db-lrow-pdf{color:var(--lab-accent);text-decoration:none}
+.db-lrow-pdf:hover{text-decoration:underline}
+.db-lrow-log{background:transparent;border:1px solid var(--lab-line);color:var(--lab-soft);font:inherit;font-family:ui-monospace,monospace;font-size:.66rem;padding:.08rem .45rem;border-radius:6px;cursor:pointer;white-space:nowrap}
+.db-lrow-log:hover,.db-lrow-log.on{color:var(--lab-ink);border-color:var(--lab-accent)}
+.db-lrow-detail{padding:.1rem .7rem .65rem;border-top:1px solid var(--lab-line)}
+.db-lrow-detail .db-thumb{margin-top:.5rem}
+@media(max-width:600px){.db-lrow-by,.db-lrow-chip{display:none}}
 .db-track-chip{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.06rem .5rem;white-space:nowrap}
 .db-prod,.db-depth{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid var(--lab-line);color:var(--lab-soft)}
 .db-prod[data-prod="hand"]{border-color:var(--lab-accent);color:var(--lab-accent)}
