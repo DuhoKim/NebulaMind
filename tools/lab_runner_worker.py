@@ -104,8 +104,16 @@ def study(rec):
     res = {"data_sources": data, "method": method}
     plt.figure(figsize=(5.6, 4.3)); made = False
 
+    # ---- Reionization ionizing-photon budget (f_esc closure; no survey pull) ----
+    if method == "ionizing-photon-budget":
+        import sys as _sys, os as _os
+        _sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+        from nm_ionizing_budget import run_ionizing_budget
+        _z0 = float(spec.get("z0", 6.0))
+        log(rec, f"computing reionization ionizing-photon budget at z~{_z0:.0f} (required vs. inferred f_esc)…")
+        made = run_ionizing_budget(rec, res, plt, z0=_z0)
     # ---- Stellar mass function (TNG only; needs a box volume) ----
-    if method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
+    elif method in ("stellar-mass-function", "sf-efficiency-baryon-budget") and use_tng:
         d = tng_load(rec, []); log(rec, "computing TNG stellar mass function…")
         ms = d["mstar"]; sel = (d["flag"] == 1) & (ms > 0); lgm = np.log10(ms[sel])
         b = np.arange(8.5, 11.8, 0.2); c = 0.5 * (b[:-1] + b[1:]); n, _ = np.histogram(lgm, bins=b)
@@ -230,12 +238,16 @@ def draft_body(rec):
             "\n\nREAL PRIOR LITERATURE (retrieved from NASA ADS and full-text-grounded on arXiv; each "
             "passage is quoted from the cited paper). You MAY cite these in the Introduction and position "
             "your Result against them using their [Key] tags -- but do NOT copy any numeric value from them "
-            "into your Result paragraph; your Result may state ONLY the single given measurement. Cite "
-            "honestly; if a passage does not fit, omit it.\n" + ctx["cite_block"] + "\n"
+            "into your Result paragraph; your Result may state ONLY the single given measurement. Cite a "
+            "paper ONLY for a statement that its quoted passage DIRECTLY supports; if the passage does not "
+            "directly support the sentence, OMIT the citation rather than attaching it for general framing. "
+            "Prefer fewer, well-supported citations.\n" + ctx["cite_block"] + "\n"
         )
+    prov = rec["result"].get("provenance")
+    dataline = prov if prov else f"Data: {', '.join(spec.get('data_sources', []))}."
     prompt = (
         "You are an astronomer writing the body of a short research note.\n"
-        f"Topic: {spec.get('topic')}. Data: {', '.join(spec.get('data_sources', []))}. "
+        f"Topic: {spec.get('topic')}. {dataline} "
         f"Method: {spec.get('method')}.\n"
         f"The ONLY quantitative result you may state is exactly: {summ}\n"
         + litblock +
@@ -310,7 +322,7 @@ def make_aastex(rec, body=None):
     rid = rec["id"]; out = RUNS / rid; res = rec["result"]; spec = rec["spec"]
     log(rec, "compiling AASTeX manuscript (PDF)...")
     summ = res.get("summary", "")
-    title = summ.split(" -- ")[0].split(" — ")[0].strip().rstrip(".") or "A galaxy-evolution study"
+    title = res.get("title") or summ.split(" -- ")[0].split(" — ")[0].strip().rstrip(".") or "A galaxy-evolution study"
     data = ", ".join(spec.get("data_sources", []))
     fig = (out / "result.png").exists()
     figblock = (r"\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{"
