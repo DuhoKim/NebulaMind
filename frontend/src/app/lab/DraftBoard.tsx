@@ -67,13 +67,13 @@ const BUCKETS: { key: BucketKey; label: string; sub: string }[] = [
   { key: "revisions", label: "Refereed — revisions requested", sub: "the automated referee asked for changes (MINOR / MAJOR) before it would clear." },
   { key: "drafted", label: "Drafted — not yet refereed", sub: "a compiled PDF exists; no referee verdict recorded yet." },
   { key: "progress", label: "In progress", sub: "still computing or drafting — no compiled manuscript yet. The bulk of automated runs." },
-  { key: "parked", label: "Parked — referee rejected", sub: "hit REJECT and wasn’t carried further." },
+  { key: "parked", label: "Parked / withdrawn — not proceeding as-is", sub: "referee-rejected, or a claim withdrawn on further analysis and folded into another paper." },
   { key: "validated", label: "Human-validated — the final gate", sub: "a human scientist vouches for the result. None yet — shown honestly, not hidden. (An automated “REVIEW-CLEARED” verdict is a referee-software pass, not this.)" },
 ];
 function bucketOf(it: Item): BucketKey {
   if (it.stage >= 5) return "validated";
   const v = (it.verdict || "").toUpperCase();
-  if (/REJECT|\bFAIL\b/.test(v)) return "parked";
+  if (/REJECT|\bFAIL\b|WITHDRAWN|FOLDED/.test(v)) return "parked";
   if (/REVIEW-READY|REVIEW-CLEARED|ACCEPT|CLEAR|READY/.test(v)) return "review-ready";
   if (/MINOR|MAJOR|REVISE/.test(v)) return "revisions";
   if (it.stage >= 3) return "drafted";
