@@ -211,43 +211,40 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
   if (h.err === "none") return <div className="dh-wrap"><div className="dh-note">No review recorded — this run stopped before referee review. No revisions exist.</div></div>;
   if (h.err) return <div className="dh-wrap"><div className="dh-note">Couldn&rsquo;t load the referee log ({h.err}).</div></div>;
   if (!h.data) return null;
-  const { model, revisions, refereeCycles, humanCaptured, topic, topicSource, final } = h.data;
-  // If every step came from the same person, name them once (in the banner) and
-  // show each step as just its directive → what changed, not a repeated tag.
-  const uniformActor = revisions.length > 0 && revisions.every((r) => r.source === revisions[0].source && r.by === revisions[0].by);
-  const allOpen = revisions.length > 0 && openSet.size === revisions.length;
-  const toggleAll = () => setOpenSet(allOpen ? new Set() : new Set(revisions.map((_, i) => i)));
+  const { revisions, topic, topicSource, final } = h.data;
+  // Human-interaction log: only the researcher's own directions appear here — the
+  // machine referee / analysis detail lives behind the "referee" link. A draft with
+  // no human input reads as empty (honestly); any future change the researcher
+  // directs is appended to this paper's history and shows up here automatically.
+  const humanRevs = revisions.filter((r) => r.source === "human");
+  const uniformActor = humanRevs.length > 0 && humanRevs.every((r) => r.by === humanRevs[0].by);
+  const allOpen = humanRevs.length > 0 && openSet.size === humanRevs.length;
+  const toggleAll = () => setOpenSet(allOpen ? new Set() : new Set(humanRevs.map((_, i) => i)));
   const toggleOne = (i: number) =>
     setOpenSet((prev) => { const n = new Set(prev); if (n.has(i)) n.delete(i); else n.add(i); return n; });
+  if (humanRevs.length === 0) {
+    return (
+      <div className="dh-wrap">
+        <p className="dh-banner">This log records how <b>your</b> directions shaped the draft.</p>
+        <p className="dh-note">No human interaction with this draft — it was machine-produced. The automated referee detail is behind the <b>referee</b> link. Any change you direct will be recorded here.</p>
+      </div>
+    );
+  }
   return (
     <div className="dh-wrap">
       {topic && <p className="dh-lineage">Seeded from the <b>{topicSource || "frontier"}</b> · topic: {topic}</p>}
-      <p className="dh-banner">
-        {humanCaptured
-          ? (refereeCycles === 0
-            ? <>This is the <b>human-direction</b> history — the calls that shaped this paper, oldest first, each tagged by who weighed in. Not validated by a human scientist or journal referee.</>
-            : <>This history mixes <b>automated referee</b> ({model}), gate checks, and <b>human</b> review — each step below is tagged by who weighed in. Still <b>not validated</b> by a human scientist or journal referee.</>)
-          : <>Automated referee (<b>{model}</b>) — unedited machine-generated feedback. Not a human or journal referee; the paper is <b>not validated</b>.</>}
-      </p>
-      <p className="dh-state">
-        {humanCaptured
-          ? (refereeCycles === 0
-            ? `Human-directed throughout — ${revisions.length} step${revisions.length === 1 ? "" : "s"} below, oldest first: how the lead's calls improved the paper. Any automated-referee verdict is advisory and noted at the end; the paper is not journal-validated.`
-            : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}, plus human and analysis steps — the full improvement arc is below, oldest first. Human-checked along the way, but not journal-validated.`)
-          : refereeCycles === 0 ? "The referee ran but logged no cycle."
-          : refereeCycles === 1 && revisions.length === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
-          : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}${revisions.length - refereeCycles > 0 ? `, plus ${revisions.length - refereeCycles} other input${revisions.length - refereeCycles === 1 ? "" : "s"} (deep research / analysis)` : ""}. The revisions below are the model’s own — no human reviewed any cycle.`}
-      </p>
+      <p className="dh-banner">This is the <b>human-direction</b> history — how your calls shaped this draft, oldest first. Not validated by a human scientist or journal referee.</p>
+      <p className="dh-state">{humanRevs.length} human direction{humanRevs.length === 1 ? "" : "s"} recorded — each shows what you said &rarr; what it changed. Machine referee &amp; analysis steps aren&rsquo;t shown here; the referee link has those.</p>
       <div className="dh-legend-row">
-        <p className="dh-legend">Each step: <b>who weighed in</b> → their <b>verdict</b> → <b>what it changed</b>. Oldest first — <b>click a step to expand it</b>.</p>
-        {revisions.length > 1 && (
+        <p className="dh-legend">Oldest first — <b>click a step to expand it</b>.</p>
+        {humanRevs.length > 1 && (
           <button type="button" className="dh-expandall" onClick={toggleAll} aria-expanded={allOpen}>
             {allOpen ? "collapse all" : "expand all"}
           </button>
         )}
       </div>
       <ol className="dh-timeline">
-        {revisions.map((r, i) => {
+        {humanRevs.map((r, i) => {
           const tone = verdictTone(r.verdict);
           const open = openSet.has(i);
           return (
@@ -280,7 +277,7 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
         })}
       </ol>
       {final && <details className="dh-draft dh-final"><summary>final manuscript body</summary><div className="dh-excerpt">{final}</div></details>}
-      <p className="dh-human">Human feedback: <b>{humanCaptured ? "recorded above." : "not captured."}</b> {humanCaptured ? "A person has reviewed this draft." : "No person has reviewed this draft — its absence is real, not pending."}</p>
+      <p className="dh-human">These are your recorded directions on this draft. It remains descriptive — not validated by a human scientist or journal referee.</p>
     </div>
   );
 }
