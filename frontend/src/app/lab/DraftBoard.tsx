@@ -16,7 +16,7 @@ import { RawStyle } from "./rawStyle";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { FRONTIERS } from "./frontiersData";
-import { PAPER_SCORES, meritOf } from "./paperScores";
+import { PAPER_SCORES, meritOf, EVALUATORS } from "./paperScores";
 import { MethodChips } from "./methodLinks";
 
 type Run = {
@@ -351,14 +351,24 @@ function DraftCard({ it }: { it: Item }) {
             <div className="db-merit">
               <div className="db-merit-head">
                 <span className="db-merit-score" data-tier={tier}>Merit {merit.toFixed(1)}<span>/10</span></span>
-                <span className="db-merit-cap">independent scientific-merit · DR + Kun, originality × significance · advisory, not validated</span>
+                <span className="db-merit-cap">independent scientific-merit · DR + Quartet (5 evaluators), originality × significance · advisory, not validated</span>
               </div>
-              <div className="db-merit-grid">
-                <div className="db-merit-axis"><span className="db-merit-k">Originality</span><span className="db-merit-v">DR {score.originality.dr} · Kun {score.originality.kun}</span></div>
-                <div className="db-merit-axis"><span className="db-merit-k">Significance</span><span className="db-merit-v">DR {score.significance.dr} · Kun {score.significance.kun}</span></div>
+              <div className="db-merit-table">
+                <div className="db-merit-trow db-merit-thead"><span>evaluator</span><span>orig</span><span>signif</span><span className="db-merit-lens">lens</span></div>
+                {EVALUATORS.map((ev) => (
+                  <div className="db-merit-trow" key={ev.key}>
+                    <span className="db-merit-ev">{ev.label}</span>
+                    <span className="db-merit-n">{score.scores[ev.key].originality}</span>
+                    <span className="db-merit-n">{score.scores[ev.key].significance}</span>
+                    <span className="db-merit-lens">{ev.lens}</span>
+                  </div>
+                ))}
               </div>
-              <p className="db-merit-note"><b>DR</b>{score.drNote}</p>
-              <p className="db-merit-note"><b>Kun</b>{score.kunNote}</p>
+              <div className="db-merit-notes">
+                {EVALUATORS.map((ev) => (
+                  <p className="db-merit-note" key={ev.key}><b>{ev.label}</b>{score.scores[ev.key].note}</p>
+                ))}
+              </div>
             </div>
           )}
           <div className="pb-run-chips">
@@ -686,10 +696,16 @@ const DB_CSS = `
 .db-merit-score[data-tier="mid"]{color:#8b93ff}
 .db-merit-score[data-tier="lo"]{color:#e0a458}
 .db-merit-cap{font-size:.66rem;color:var(--lab-soft);font-style:italic}
-.db-merit-grid{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:.4rem}
-.db-merit-axis{display:flex;flex-direction:column;gap:.12rem}
-.db-merit-k{font-family:ui-monospace,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;color:var(--lab-accent2)}
-.db-merit-v{font-family:ui-monospace,monospace;font-size:.82rem;color:var(--lab-ink);font-variant-numeric:tabular-nums}
+.db-merit-table{margin:.1rem 0 .55rem;font-family:ui-monospace,monospace}
+.db-merit-trow{display:grid;grid-template-columns:3.4rem 2.6rem 3.2rem 1fr;align-items:center;gap:.4rem;padding:.16rem 0;border-bottom:1px solid var(--lab-line)}
+.db-merit-trow:last-child{border-bottom:none}
+.db-merit-thead{font-size:.56rem;text-transform:uppercase;letter-spacing:.06em;color:var(--lab-soft)}
+.db-merit-thead .db-merit-lens{color:var(--lab-soft)}
+.db-merit-ev{font-size:.72rem;font-weight:700;color:var(--lab-ink)}
+.db-merit-n{font-size:.8rem;color:var(--lab-ink);font-variant-numeric:tabular-nums;text-align:center}
+.db-merit-lens{font-size:.64rem;color:var(--lab-soft)}
+.db-merit-notes{display:flex;flex-direction:column;gap:.2rem}
+@media(max-width:520px){.db-merit-trow{grid-template-columns:3.2rem 2.4rem 3rem}.db-merit-lens{display:none}}
 .db-merit-note{font-size:.78rem;line-height:1.5;color:var(--lab-soft);margin:.35rem 0 0}
 .db-merit-note b{color:var(--lab-ink);font-family:ui-monospace,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;margin-right:.4rem}
 .db-lrow-detail{padding:.1rem .7rem .65rem;border-top:1px solid var(--lab-line)}

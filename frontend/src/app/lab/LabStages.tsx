@@ -12,7 +12,7 @@ import { LANDSCAPE, GROUPS, BAND_META, BAND_ORDER, STATUS_META, STATUS_ORDER, IN
 import { MEASUREMENTS, RESEARCH_GROUPS, VERDICT_META, SOURCE_META, DISPERSION, type Source } from "./researchCatalog";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
-import { PAPER_SCORES, meritOf } from "./paperScores";
+import { meritOf, axisMeans } from "./paperScores";
 import DraftBoard from "./DraftBoard";
 import DebateAxisMap from "./DebateAxisMap";
 
@@ -739,8 +739,8 @@ function SettledVsContested() {
 // study worth doing" (originality × significance). Built from the curated papers
 // + paperScores; advisory, not validated. Full per-axis breakdown is on the board.
 const MERIT_RANKED = [...FLAGSHIP.map((f) => ({ title: f.title, pdf: f.pdf })), ...FRONTIER.map((f) => ({ title: f.title, pdf: f.pdf }))]
-  .map((p) => ({ ...p, s: PAPER_SCORES[p.pdf], merit: meritOf(p.pdf) }))
-  .filter((p): p is { title: string; pdf: string; s: NonNullable<typeof p.s>; merit: number } => p.merit != null && !!p.s)
+  .map((p) => ({ ...p, merit: meritOf(p.pdf), means: axisMeans(p.pdf) }))
+  .filter((p): p is { title: string; pdf: string; merit: number; means: { orig: number; sig: number } } => p.merit != null && p.means != null)
   .sort((a, b) => b.merit - a.merit);
 const meritColor = (m: number) => (m >= 6 ? "var(--lab-accent2)" : m >= 4 ? "#8b93ff" : "#e0a458");
 
@@ -829,21 +829,21 @@ function RankingView() {
         <p className="cch-note">Getting this honest took five passes, each removing one way to be fooled: counting <b>words</b> → mistaking <b>popularity</b> for disagreement → mistaking cosmic <b>evolution</b> for a fight → mistaking the <b>mass</b> sequence for one → and finally mining <b>stellar masses from full-text tables</b> to test gas metallicity properly. That last pass deflated a false signal <i>and</i> found a real one: an early-universe (z&gt;7) metallicity disagreement, right where JWST is looking.</p>
       </div>
       <div className="corpus-block">
-        <div className="cch-h">Papers ranked by scientific merit · DR + Kun</div>
-        <p className="cch-note">A companion ranking. The list above ranks <b>frontiers</b> by how contested they are — which questions are worth attacking. This ranks the Lab&rsquo;s own <b>papers</b> by whether the study was worth doing: <b>originality × significance</b>, scored independently by <b>DR</b> (literature-grounded) and <b>Kun</b> (adversarial). Advisory and automated — the full per-axis DR-vs-Kun breakdown and reasons live on the <b>Paper</b> board; nothing here is human-validated.</p>
+        <div className="cch-h">Papers ranked by scientific merit · DR + Quartet</div>
+        <p className="cch-note">A companion ranking. The list above ranks <b>frontiers</b> by how contested they are — which questions are worth attacking. This ranks the Lab&rsquo;s own <b>papers</b> by whether the study was worth doing: <b>originality × significance</b>, scored independently by a five-member panel — <b>DR</b> (literature-grounded) plus the <b>Quartet</b> (Hwao · Tori · Kun · Goru), each through a distinct lens. Advisory and automated — the full per-evaluator breakdown and reasons live on the <b>Paper</b> board; nothing here is human-validated.</p>
         <div className="embed-lb">
           {MERIT_RANKED.map((p, i) => (
             <div className="clu-row" key={p.pdf}>
               <span className="clu-label">
                 <b>{i + 1}. <a href={p.pdf} target="_blank" rel="noopener noreferrer" style={{ color: "var(--lab-ink)" }}>{p.title}</a></b>
-                <span className="clu-kw">originality DR {p.s.originality.dr} / Kun {p.s.originality.kun} · significance DR {p.s.significance.dr} / Kun {p.s.significance.kun}</span>
+                <span className="clu-kw">originality {p.means.orig.toFixed(1)} · significance {p.means.sig.toFixed(1)} · panel mean of DR + Quartet (5 evaluators)</span>
               </span>
               <span className="elb-bar"><i style={{ width: `${(p.merit / 10) * 100}%`, background: meritColor(p.merit) }} /></span>
               <span className="elb-score" style={{ color: meritColor(p.merit) }}>{p.merit.toFixed(1)}</span>
             </div>
           ))}
         </div>
-        <p className="cch-note"><b>TNG calibration ≠ validation</b> leads on method originality (both evaluators rate its two-level differencing the sharpest of the six); the withdrawn scaling-relations draft and the methods-only MZR framework floor. <b>Nothing reaches 8</b> — every draft re-measures or synthesizes an already-live debate, an honest ceiling. Open a paper on the <b>Paper</b> board for the grounded DR-vs-Kun reasoning.</p>
+        <p className="cch-note"><b>TNG calibration ≠ validation</b> leads on method originality (the panel rates its two-level differencing the sharpest of the six), with the z9–10 deficit close behind; the withdrawn scaling-relations draft and the methods-only MZR framework floor. The five lenses spread — <b>Kun</b> grades hardest, <b>Tori</b> most generously on framing — and <b>nothing reaches 8</b>, an honest ceiling. Open a paper on the <b>Paper</b> board for each evaluator&rsquo;s grounded reasoning.</p>
       </div>
     </div>
   );
