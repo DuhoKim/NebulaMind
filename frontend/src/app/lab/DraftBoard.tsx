@@ -221,12 +221,16 @@ function RevisionLog({ h }: { h: ReturnType<typeof useRevisionLog> }) {
       {topic && <p className="dh-lineage">Seeded from the <b>{topicSource || "frontier"}</b> · topic: {topic}</p>}
       <p className="dh-banner">
         {humanCaptured
-          ? <>This history mixes <b>automated referee</b> ({model}), gate checks, and <b>human</b> review — each step below is tagged by who weighed in. Still <b>not validated</b> by a human scientist or journal referee.</>
+          ? (refereeCycles === 0
+            ? <>This is the <b>human-direction</b> history — the calls that shaped this paper, oldest first, each tagged by who weighed in. Not validated by a human scientist or journal referee.</>
+            : <>This history mixes <b>automated referee</b> ({model}), gate checks, and <b>human</b> review — each step below is tagged by who weighed in. Still <b>not validated</b> by a human scientist or journal referee.</>)
           : <>Automated referee (<b>{model}</b>) — unedited machine-generated feedback. Not a human or journal referee; the paper is <b>not validated</b>.</>}
       </p>
       <p className="dh-state">
         {humanCaptured
-          ? `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}, plus human and analysis steps — the full improvement arc is below, oldest first. Human-checked along the way, but not journal-validated.`
+          ? (refereeCycles === 0
+            ? `Human-directed throughout — ${revisions.length} step${revisions.length === 1 ? "" : "s"} below, oldest first: how the lead's calls improved the paper. Any automated-referee verdict is advisory and noted at the end; the paper is not journal-validated.`
+            : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}, plus human and analysis steps — the full improvement arc is below, oldest first. Human-checked along the way, but not journal-validated.`)
           : refereeCycles === 0 ? "The referee ran but logged no cycle."
           : refereeCycles === 1 && revisions.length === 1 ? "One automated review pass — the draft was not revised after it. A single machine read, not an iterative review."
           : `${refereeCycles} automated referee ${refereeCycles === 1 ? "pass" : "passes"} by ${model}${revisions.length - refereeCycles > 0 ? `, plus ${revisions.length - refereeCycles} other input${revisions.length - refereeCycles === 1 ? "" : "s"} (deep research / analysis)` : ""}. The revisions below are the model’s own — no human reviewed any cycle.`}
