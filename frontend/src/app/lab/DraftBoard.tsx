@@ -16,6 +16,7 @@ import { RawStyle } from "./rawStyle";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { FRONTIERS } from "./frontiersData";
+import { PAPER_SCORES, meritOf } from "./paperScores";
 import { MethodChips } from "./methodLinks";
 
 type Run = {
@@ -319,6 +320,9 @@ function DraftCard({ it }: { it: Item }) {
   const h = useRevisionLog(it.review ?? null);
   const [open, setOpen] = useState(false);
   const vc = vcolor(it.verdict);
+  const score = it.pdf ? PAPER_SCORES[it.pdf] : undefined;
+  const merit = meritOf(it.pdf);
+  const tier = merit == null ? "" : merit >= 6 ? "hi" : merit >= 4 ? "mid" : "lo";
   return (
     <div className={`db-lrow${open ? " open" : ""}${it.track === "flagship" ? " pb-flag" : ""}`}>
       <div className="db-lrow-head">
@@ -327,6 +331,7 @@ function DraftCard({ it }: { it: Item }) {
           <span className="db-lrow-title">{it.title}</span>
         </button>
         <span className="db-lrow-meta">
+          {merit != null && <span className="db-lrow-merit" data-tier={tier} title="independent scientific-merit (DR + Kun, originality × significance) — advisory, not validated; expand for the breakdown">Merit {merit.toFixed(1)}</span>}
           <span className="db-lrow-by" data-prod={it.production} title={it.production === "hand" ? "hand-guided by the crew" : "produced by the autonomous pipeline"}>{PROD_LABEL[it.production]}</span>
           <span className="pb-chip db-lrow-chip" style={{ borderColor: vc, color: vc }}>
             {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
@@ -338,6 +343,20 @@ function DraftCard({ it }: { it: Item }) {
       {open && (
         <div className="db-lrow-detail">
           {it.note && <p className="pb-run-summary">{it.note}</p>}
+          {score && merit != null && (
+            <div className="db-merit">
+              <div className="db-merit-head">
+                <span className="db-merit-score" data-tier={tier}>Merit {merit.toFixed(1)}<span>/10</span></span>
+                <span className="db-merit-cap">independent scientific-merit · DR + Kun, originality × significance · advisory, not validated</span>
+              </div>
+              <div className="db-merit-grid">
+                <div className="db-merit-axis"><span className="db-merit-k">Originality</span><span className="db-merit-v">DR {score.originality.dr} · Kun {score.originality.kun}</span></div>
+                <div className="db-merit-axis"><span className="db-merit-k">Significance</span><span className="db-merit-v">DR {score.significance.dr} · Kun {score.significance.kun}</span></div>
+              </div>
+              <p className="db-merit-note"><b>DR</b>{score.drNote}</p>
+              <p className="db-merit-note"><b>Kun</b>{score.kunNote}</p>
+            </div>
+          )}
           <div className="pb-run-chips">
             <span className="db-depth" title={it.depth === "manuscript" ? "multi-page AASTeX manuscript" : "single-measurement note"}>{DEPTH_LABEL[it.depth]}</span>
             {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
@@ -649,6 +668,24 @@ const DB_CSS = `
 .db-lrow-pdf:hover{text-decoration:underline}
 .db-lrow-log{background:transparent;border:1px solid var(--lab-line);color:var(--lab-soft);font:inherit;font-family:ui-monospace,monospace;font-size:.66rem;padding:.08rem .45rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .db-lrow-log:hover,.db-lrow-log.on{color:var(--lab-ink);border-color:var(--lab-accent)}
+.db-lrow-merit{font-family:ui-monospace,monospace;font-size:.62rem;font-weight:700;letter-spacing:.02em;padding:.08rem .5rem;border-radius:999px;border:1px solid;white-space:nowrap}
+.db-lrow-merit[data-tier="hi"]{color:var(--lab-accent2);border-color:color-mix(in srgb,var(--lab-accent2) 45%,transparent);background:rgba(74,214,196,.1)}
+.db-lrow-merit[data-tier="mid"]{color:#8b93ff;border-color:rgba(139,147,255,.45);background:rgba(139,147,255,.1)}
+.db-lrow-merit[data-tier="lo"]{color:#e0a458;border-color:rgba(224,164,88,.45);background:rgba(224,164,88,.1)}
+.db-merit{margin:.55rem 0 .3rem;padding:.6rem .75rem;background:#0a0d17;border:1px solid var(--lab-line);border-radius:9px}
+.db-merit-head{display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;margin-bottom:.5rem}
+.db-merit-score{font-family:ui-monospace,monospace;font-size:1rem;font-weight:780}
+.db-merit-score>span{font-size:.68rem;color:var(--lab-soft);font-weight:400;margin-left:.08rem}
+.db-merit-score[data-tier="hi"]{color:var(--lab-accent2)}
+.db-merit-score[data-tier="mid"]{color:#8b93ff}
+.db-merit-score[data-tier="lo"]{color:#e0a458}
+.db-merit-cap{font-size:.66rem;color:var(--lab-soft);font-style:italic}
+.db-merit-grid{display:flex;gap:1.4rem;flex-wrap:wrap;margin-bottom:.4rem}
+.db-merit-axis{display:flex;flex-direction:column;gap:.12rem}
+.db-merit-k{font-family:ui-monospace,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.06em;color:var(--lab-accent2)}
+.db-merit-v{font-family:ui-monospace,monospace;font-size:.82rem;color:var(--lab-ink);font-variant-numeric:tabular-nums}
+.db-merit-note{font-size:.78rem;line-height:1.5;color:var(--lab-soft);margin:.35rem 0 0}
+.db-merit-note b{color:var(--lab-ink);font-family:ui-monospace,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;margin-right:.4rem}
 .db-lrow-detail{padding:.1rem .7rem .65rem;border-top:1px solid var(--lab-line)}
 .db-lrow-detail .db-thumb{margin-top:.5rem}
 @media(max-width:600px){.db-lrow-by,.db-lrow-chip{display:none}}
