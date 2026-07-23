@@ -15,7 +15,7 @@ export type Flagship = { title: string; summary: string; meta: string; verdict: 
 export const FLAGSHIP: Flagship[] = [
   {
     title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z≈9–10",
-    summary: "On a single Te-consistent scale, the unlensed z=9.3–10.6 field sample (Pollock+26 + GN-z11, N=6 direct-Te) sits −0.68±0.03 dex below the local mass–metallicity relation (inverse-variance-weighted) — with no mass or redshift trend (a pure normalization offset), robust to leave-one-out and local-anchor choice. Full systematic budget ±0.16 dex, Te-scale-dominated (~4σ, sign secure). Explicitly NOT a formal statistical detection.",
+    summary: "An unlensed z≈9–10 field sample sits −0.68 dex below the local mass–metallicity relation on a single Te scale — a robust normalization deficit, explicitly not a formal detection.",
     meta: "Nakajima+23 direct-Te subset · Pollock+26 unlensed CAPERS/JADES + GN-z11 (z=10.6) · cross-checked vs Isobe+26 (~1500 gal) · systematic error budget ±0.16 dex, abs. Te scale (0.15) dominant",
     verdict: "REVIEW-READY",
     pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",

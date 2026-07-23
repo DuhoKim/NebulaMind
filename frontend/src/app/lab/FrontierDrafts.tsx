@@ -15,7 +15,7 @@ export type Draft = { title: string; sub: string; pages: string; pdf: string; up
 export const FRONTIER: Draft[] = [
   {
     title: "The reionization photon-budget “crisis” is set by ξ_ion and the star-formation-rate density, not the data",
-    sub: "Solving for the LyC escape fraction required of star-forming galaxies to close the reionization ionizing budget across a 232-point (z=5–12 × 8 systematic-corner) grid. The required f_esc rises steeply with redshift and crosses the proxy-inferred value (~6%) at a crisis-onset redshift spanning z≈5–8.75 across defensible assumptions, exceeding the physical ceiling f_esc=1 anywhere from z≈8.5 to never. Both literature positions — “crisis” and “galaxies suffice” — fall out of the same envelope, so the verdict is dominated by ξ_ion and the SFRD, not the data.",
+    sub: "Across a 232-point grid, the LyC escape fraction needed to close reionization is set by ξ_ion and the SFRD, not the data — both the “crisis” and “galaxies suffice” camps fall out of the same envelope.",
     pages: "synthesis",
     pdf: "/agent-reports/research-frontiers/reionization-fesc-budget-landscape.pdf",
     updated: "2026-07-23 03:00",
@@ -25,7 +25,7 @@ export const FRONTIER: Draft[] = [
   },
   {
     title: "Galaxy scaling relations from z≈0 to the JWST frontier",
-    sub: "Reframed — the paper’s main claim is withdrawn. On regeneration the crew showed the apparent z<6 star-forming-main-sequence “elevation” is largely an emission-line selection artifact (~40–60% at z<6; pure selection not excluded below z≈6), so the “rapid early enrichment” reading is not earned. Only the z>6 residual survives; the metallicity deficit defers to the flagship z≈9–10 study, and the selection forward-model is folded into the TNG confrontation below. Not a standalone result.",
+    sub: "Main claim withdrawn: the apparent z<6 main-sequence elevation is largely an emission-line selection artifact. Folded into #6 / #1 — not a standalone result.",
     pages: "4 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
     updated: "2026-07-23 20:35",
@@ -36,7 +36,7 @@ export const FRONTIER: Draft[] = [
   },
   {
     title: "The z≈4–6 massive-galaxy abundance is consistent with IllustrisTNG once the stellar-mass budget and aperture basis are accounted for",
-    sub: "The z>4 “too massive, too early” excess, re-examined like-for-like. Pinning the TNG aperture to the observed total-mass basis (+0.13 dex, from real TNG100-1 catalogs) leaves a 0.31 dex excess erased by a 0.20 dex shift — ~0.4× an itemized 0.46–0.55 dex systematic budget, so no robust tension at z≈5; the unshifted abundance already sits at the fiducial ΛCDM efficiency (ε≈0.20), making this a test of TNG’s calibration, not ΛCDM. z≈7–9 is honestly outside budget (0.72 dex, photometric), and the spectroscopic quiescent z>6 excess (~2 dex) is the one genuine residual.",
+    sub: "On a matched total-mass basis the JWST massive-galaxy excess needs only a 0.20 dex shift and already sits at the fiducial ΛCDM efficiency — a test of TNG’s calibration, not new physics.",
     pages: "4 pp",
     pdf: "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf",
     updated: "2026-07-23 20:14",
@@ -47,7 +47,7 @@ export const FRONTIER: Draft[] = [
   },
   {
     title: "Disentangling aperture and calibration systematics in the gas-phase MZR: a practitioner’s framework",
-    sub: "A methods/review synthesis separating the two systematics that get conflated in MZR comparisons: calibration-scale offsets (up to ~0.7 dex) and aperture bias (>0.15 dex below ~20% covering fraction), plus DIG contamination. Recommends single-scale reporting, covering-fraction floors, and IFS ground truth.",
+    sub: "A practitioner’s framework separating calibration-scale offsets from aperture bias in gas-phase MZR comparisons — single-scale reporting, covering-fraction floors, IFS ground truth.",
     pages: "review",
     pdf: "/agent-reports/research-frontiers/mzr-aperture-calibration-framework.pdf",
     updated: "2026-07-21 12:41",
@@ -58,7 +58,7 @@ export const FRONTIER: Draft[] = [
   },
   {
     title: "Calibration is not validation: confronting IllustrisTNG with observed scaling-relation evolution",
-    sub: "The simulation tested by its predictions away from its z≈0 calibration point, SDSS→JWST. TNG over-evolves the star-forming main sequence — a +0.41/+0.49 dex gap at z≈4.7/5.4 that is a conservative lower bound: de-biasing the emission-line selection can only widen it (to +0.46/+0.83 dex, up to ~+1.1 in the aggressive corner; sign robust across all 9 configs). Placing TNG on the observed total-mass basis (+0.13 dex aperture correction) cancels in the internal-evolution differencing, so the result is robust to it; the apparent metallicity discrepancy dissolves on a matched Te scale.",
+    sub: "TNG over-evolves the star-forming main sequence — a discrepancy that de-biasing the emission-line selection only widens (a conservative lower bound), and that is robust to the +0.13 dex mass-basis fix.",
     pages: "4 pp",
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
     updated: "2026-07-23 20:29",
