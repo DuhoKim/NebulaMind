@@ -14,6 +14,7 @@ import PipelineBoard from "./PipelineBoard";
 import FlagshipStudies, { FLAGSHIP } from "./FlagshipStudies";
 import FrontierDrafts, { FRONTIER } from "./FrontierDrafts";
 import DraftBoard from "./DraftBoard";
+import DebateAxisMap from "./DebateAxisMap";
 
 const MAXSCORE = Math.max(...FRONTIERS.map((f) => f.score));
 
@@ -1856,6 +1857,7 @@ export default function LabStages() {
             {step.value === "clustering" && <ClusteringView />}
             {step.value === "overlay" && <OverlayView />}
             {step.value === "ranking" && <RankingView />}
+            {step.value === "debate-map" && <DebateAxisMap />}
             <SubnavVideo step={step.value} />
             </>)}
           </div>
