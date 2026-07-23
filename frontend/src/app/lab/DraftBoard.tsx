@@ -15,6 +15,7 @@ import { PB_CSS } from "./PipelineBoard";
 import { RawStyle } from "./rawStyle";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
+import { FRONTIERS } from "./frontiersData";
 import { MethodChips } from "./methodLinks";
 
 type Run = {
@@ -32,24 +33,52 @@ type Run = {
   lit_grounding?: string | null;
 };
 type Track = "flagship" | "frontier" | "pipeline";
+type Production = "hand" | "auto";
+type Depth = "note" | "manuscript";
 type Item = {
-  title: string; track: Track; stage: number; verdict: string | null; pdf: string | null; note: string;
+  title: string; track: Track; production: Production; depth: Depth; frontier?: number | null;
+  stage: number; verdict: string | null; pdf: string | null; note: string;
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
   updated?: string | null; methods?: string[] | null; grounded?: boolean | null; grounding?: string | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
-const TRACK_META: Record<Track, { label: string; blurb: string }> = {
-  flagship: { label: "Flagship", blurb: "hand-guided by the crew — the full forward-model + referee loop" },
-  frontier: { label: "Frontier drafts", blurb: "autonomous multi-page manuscripts, one per top frontier" },
-  pipeline: { label: "Pipeline runs", blurb: "the fully-automated, high-attrition track (live)" },
-};
+const PROD_LABEL: Record<Production, string> = { hand: "hand-guided", auto: "autonomous" };
+const DEPTH_LABEL: Record<Depth, string> = { note: "measurement note", manuscript: "manuscript" };
+// Topic facet labels, keyed by the same method tags carried on each item (RESEARCH_ITEMS).
+const TOPIC_LABEL: Record<string, string> = { mzr: "MZR", ms: "Main sequence", smf: "Mass function", simobs: "Sim vs obs", eff: "SF efficiency" };
 const VC: Record<string, string> = { ACCEPT: "#4ad6c4", MINOR: "#e0a458", MAJOR: "#e0774f", REJECT: "#f47272" };
 const vcolor = (v: string | null) => (v ? VC[v.toUpperCase()] ?? "#9aa3b8" : "#9aa3b8");
 const isDemo = (r: Run) => !r.created_utc || /demo/i.test(r.id);
 const prettyMethod = (m: string | null) =>
   (m ?? "study").split("-").map((w) => (w ? w[0].toUpperCase() + w.slice(1) : w)).join(" ");
 const VORDER = ["ACCEPT", "REVIEW-READY", "REVIEW-CLEARED", "MINOR", "MAJOR", "REJECT", "no verdict yet"];
+
+// ── Lifecycle buckets — the default grouping ─────────────────────────────────
+// Every paper falls in exactly one bucket, keyed off its furthest-reached stage
+// and its automated-referee verdict. Ordered most-actionable first. The final
+// "Validated" bucket is a HUMAN sign-off — always empty today, shown honestly as
+// the target rather than hidden. Note: an automated REVIEW-CLEARED verdict is a
+// referee-software pass, NOT human validation — it lands in "review-ready", never
+// in "validated".
+type BucketKey = "review-ready" | "revisions" | "drafted" | "progress" | "parked" | "validated";
+const BUCKETS: { key: BucketKey; label: string; sub: string }[] = [
+  { key: "review-ready", label: "Review-ready — awaiting human sign-off", sub: "compiled, with an automated-referee pass — the most mature work the Lab makes. Still zero human review." },
+  { key: "revisions", label: "Refereed — revisions requested", sub: "the automated referee asked for changes (MINOR / MAJOR) before it would clear." },
+  { key: "drafted", label: "Drafted — not yet refereed", sub: "a compiled PDF exists; no referee verdict recorded yet." },
+  { key: "progress", label: "In progress", sub: "still computing or drafting — no compiled manuscript yet. The bulk of automated runs." },
+  { key: "parked", label: "Parked — referee rejected", sub: "hit REJECT and wasn’t carried further." },
+  { key: "validated", label: "Human-validated — the final gate", sub: "a human scientist vouches for the result. None yet — shown honestly, not hidden. (An automated “REVIEW-CLEARED” verdict is a referee-software pass, not this.)" },
+];
+function bucketOf(it: Item): BucketKey {
+  if (it.stage >= 5) return "validated";
+  const v = (it.verdict || "").toUpperCase();
+  if (/REJECT|\bFAIL\b/.test(v)) return "parked";
+  if (/REVIEW-READY|REVIEW-CLEARED|ACCEPT|CLEAR|READY/.test(v)) return "review-ready";
+  if (/MINOR|MAJOR|REVISE/.test(v)) return "revisions";
+  if (it.stage >= 3) return "drafted";
+  return "progress";
+}
 
 // Format an "updated" value for display: show the date and, when present, the
 // time (HH:MM). Accepts "YYYY-MM-DD", "YYYY-MM-DD HH:MM", or ISO "…THH:MM:SSZ".
@@ -293,10 +322,11 @@ function DraftCard({ it }: { it: Item }) {
         </span>
       </div>
       <div className="pb-run-chips">
-        <span className="db-track-chip">{TRACK_META[it.track].label}</span>
+        <span className="db-prod" data-prod={it.production} title={it.production === "hand" ? "hand-guided by the crew" : "produced by the autonomous pipeline"}>{PROD_LABEL[it.production]}</span>
+        <span className="db-depth" title={it.depth === "manuscript" ? "multi-page AASTeX manuscript" : "single-measurement note"}>{DEPTH_LABEL[it.depth]}</span>
         {it.sources?.map((s) => <span className="pb-src" key={s}>{s.toUpperCase()}</span>)}
         {it.cycles != null && <span className="pb-src pb-src-cyc">{it.cycles} review cycle{it.cycles === 1 ? "" : "s"}</span>}
-        {it.track === "pipeline" && it.grounded != null && (
+        {it.grounded != null && (
           <span className={`db-ground${it.grounded ? " on" : ""}`} title={it.grounding || (it.grounded ? "literature-grounded" : "not grounded")}>
             {it.grounded ? "grounded" : "not grounded"}
           </span>
@@ -328,9 +358,68 @@ function DraftCard({ it }: { it: Item }) {
   );
 }
 
+// Frontier grouping — the same papers regrouped under their ranked frontier
+// cluster (from frontiersData), highest-controversy first, plus the top-ranked
+// tractable frontiers that still have NO study, surfaced as visible open work.
+function FrontierGroups({ filtered }: { filtered: Item[] }) {
+  const byCluster = new Map<number, Item[]>();
+  const unassigned: Item[] = [];
+  for (const it of filtered) {
+    if (it.frontier == null) { unassigned.push(it); continue; }
+    const a = byCluster.get(it.frontier) ?? [];
+    a.push(it);
+    byCluster.set(it.frontier, a);
+  }
+  const meta = (id: number) => FRONTIERS.find((f) => f.cluster === id);
+  const withPapers = Array.from(byCluster.keys())
+    .map((id) => ({ id, m: meta(id), rows: byCluster.get(id)! }))
+    .sort((a, b) => (b.m?.scoreV1 ?? 0) - (a.m?.scoreV1 ?? 0));
+  const covered = new Set(byCluster.keys());
+  const open = FRONTIERS.filter((f) => f.tractable === 1 && !covered.has(f.cluster))
+    .sort((a, b) => b.scoreV1 - a.scoreV1)
+    .slice(0, 8);
+  return (
+    <>
+      {withPapers.map(({ id, m, rows }) => (
+        <div key={id} className="ub-bucket">
+          <p className="pb-sect">{m?.name ?? `Cluster ${id}`}
+            <span className="db-sect-sub"> · frontier #{id}{m ? ` · controversy ${m.scoreV1.toFixed(2)}` : ""}</span>
+            <span className="ub-bcount">{rows.length}</span></p>
+          <div className="pb-runs">{rows.map((it, i) => <DraftCard it={it} key={`${id}-${i}`} />)}</div>
+        </div>
+      ))}
+      {unassigned.length > 0 && (
+        <div className="ub-bucket">
+          <p className="pb-sect">Not tied to a curated frontier <span className="db-sect-sub">· single-measurement pipeline runs</span> <span className="ub-bcount">{unassigned.length}</span></p>
+          <div className="pb-runs">{unassigned.map((it, i) => <DraftCard it={it} key={`u-${i}`} />)}</div>
+        </div>
+      )}
+      {open.length > 0 && (
+        <div className="ub-bucket">
+          <p className="pb-sect">Open frontiers — no study yet <span className="db-sect-sub">· top-ranked, tractable, still untouched</span></p>
+          <p className="db-note" style={{ marginTop: 0 }}>The Lab holds drafts on just <b>{covered.size}</b> of the 57 ranked clusters. These are the highest-controversy frontiers it hasn’t attacked yet — visible work, not gaps to hide.</p>
+          <div className="ub-open">
+            {open.map((f) => (
+              <div className="ub-openrow" key={f.cluster}>
+                <span className="ub-openname">{f.name}</span>
+                <span className="ub-openmeta">#{f.cluster} · controversy {f.scoreV1.toFixed(2)}</span>
+                <span className="ub-opentag">no study yet</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
 export default function DraftBoard() {
   const [runs, setRuns] = useState<Run[] | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [groupBy, setGroupBy] = useState<"status" | "frontier">("status");
+  const [prod, setProd] = useState<"all" | Production>("all");
+  const [topic, setTopic] = useState<string>("all");
+  const [ground, setGround] = useState<"all" | "grounded" | "notgrounded">("all");
 
   useEffect(() => {
     let alive = true;
@@ -345,16 +434,23 @@ export default function DraftBoard() {
   if (!runs) return <div className="pb db"><RawStyle css={PB_CSS} /><RawStyle css={DB_CSS} /><div className="pb-state">Loading the draft board…</div></div>;
 
   const items: Item[] = [];
-  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
-  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
+  for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
+  for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", production: "auto", depth: "manuscript", frontier: f.frontier ?? null, stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
     items.push({
-      title: prettyMethod(r.method), track: "pipeline", stage, verdict: r.review_verdict, pdf: r.pdf_url, note: r.summary ?? "—",
+      title: prettyMethod(r.method), track: "pipeline", production: "auto", depth: "note", frontier: null, stage, verdict: r.review_verdict, pdf: r.pdf_url, note: r.summary ?? "—",
       id: r.id, method: r.method, sources: r.data_sources, cycles: r.review_cycles, figure: r.figure_url, review: r.review_url, updated: r.created_utc,
       grounded: r.lit_grounded ?? null, grounding: r.lit_grounding ?? null,
     });
   }
+
+  const topicsAvail = Array.from(new Set(items.flatMap((i) => i.methods ?? []))).filter((m) => TOPIC_LABEL[m]);
+  const filtered = items.filter((i) =>
+    (prod === "all" || i.production === prod) &&
+    (topic === "all" || (i.methods ?? []).includes(topic)) &&
+    (ground === "all" || (ground === "grounded" ? i.grounded === true : i.grounded === false))
+  );
 
   const total = items.length;
   const withPdf = items.filter((i) => i.stage >= 3).length;
@@ -373,7 +469,6 @@ export default function DraftBoard() {
   const halt = STAGES.map((label, si) => ({ label, si, n: items.filter((i) => i.stage === si + 1).length })).filter((h) => h.n > 0);
   const hmax = Math.max(1, ...halt.map((h) => h.n));
 
-  const byTrack: Track[] = ["flagship", "frontier", "pipeline"];
   const pipeRows = items.filter((i) => i.track === "pipeline");
 
   return (
@@ -385,12 +480,12 @@ export default function DraftBoard() {
         <div className="pb-kpi"><b>{total}</b><span>drafts tracked</span></div>
         <div className="pb-kpi"><b>{withPdf}</b><span>compiled to PDF</span></div>
         <div className="pb-kpi"><b>{refereed}</b><span>refereed</span></div>
-        <div className="pb-kpi pb-kpi-zero"><b>{cleared}</b><span>cleared / validated</span></div>
+        <div className="pb-kpi pb-kpi-zero"><b>{cleared}</b><span>human-validated</span></div>
       </div>
       <p className="pb-lede">
-        Where <b>every draft</b> stands, across all three tracks. Each walks the same pipeline —
-        <b> computed → drafted → compiled → refereed → cleared</b> — and every one is <b>descriptive, not validated</b>:
-        the final gate is a human sign-off, and <b>none has passed it</b>.
+        Where <b>every paper</b> stands — one board, no separate tracks. Group by <b>status</b> (how far each got toward a
+        human sign-off) or by <b>frontier</b> (which ranked open questions have a study, and which don’t). Every paper is
+        <b> descriptive, not validated</b>: the final gate is a human sign-off, and <b>none — {cleared} — has passed it</b>.
       </p>
 
       <p className="pb-sect">Pipeline funnel — drafts reaching each stage</p>
@@ -429,18 +524,65 @@ export default function DraftBoard() {
       </div>
       <p className="db-note">Only the <b>referee</b> gate is instrumented in this pipeline&rsquo;s API — the internal cockpit&rsquo;s novelty / expected-value / citation gates aren&rsquo;t exposed here, so they&rsquo;re deliberately absent rather than guessed.</p>
 
-      {byTrack.map((tk) => {
-        const rows = items.filter((i) => i.track === tk);
-        if (!rows.length) return null;
-        return (
-          <div key={tk}>
-            <p className="pb-sect">{TRACK_META[tk].label} <span className="db-sect-sub">· {TRACK_META[tk].blurb}</span></p>
-            <div className="pb-runs">
-              {rows.map((it, i) => <DraftCard it={it} key={`${tk}-${i}`} />)}
+      <div className="ub-controls">
+        <div className="ub-group">
+          <span className="ub-glabel">Group by</span>
+          <div className="ub-seg">
+            {([["status", "Status"], ["frontier", "Frontier"]] as const).map(([v, l]) => (
+              <button type="button" key={v} className={`ub-segb${groupBy === v ? " on" : ""}`} onClick={() => setGroupBy(v)}>{l}</button>
+            ))}
+          </div>
+        </div>
+        <div className="ub-group">
+          <span className="ub-glabel">Made by</span>
+          <div className="ub-seg">
+            {([["all", "All"], ["hand", "Hand-guided"], ["auto", "Autonomous"]] as const).map(([v, l]) => (
+              <button type="button" key={v} className={`ub-segb${prod === v ? " on" : ""}`} onClick={() => setProd(v)}>{l}</button>
+            ))}
+          </div>
+        </div>
+        {topicsAvail.length > 0 && (
+          <div className="ub-group">
+            <span className="ub-glabel">Topic</span>
+            <div className="ub-seg">
+              <button type="button" className={`ub-segb${topic === "all" ? " on" : ""}`} onClick={() => setTopic("all")}>All</button>
+              {topicsAvail.map((m) => (
+                <button type="button" key={m} className={`ub-segb${topic === m ? " on" : ""}`} onClick={() => setTopic(m)}>{TOPIC_LABEL[m]}</button>
+              ))}
             </div>
           </div>
-        );
-      })}
+        )}
+        <div className="ub-group">
+          <span className="ub-glabel">Grounding</span>
+          <div className="ub-seg">
+            {([["all", "All"], ["grounded", "Grounded"], ["notgrounded", "Not grounded"]] as const).map(([v, l]) => (
+              <button type="button" key={v} className={`ub-segb${ground === v ? " on" : ""}`} onClick={() => setGround(v)}>{l}</button>
+            ))}
+          </div>
+        </div>
+        <span className="ub-count">{filtered.length} of {items.length} shown</span>
+      </div>
+
+      {filtered.length === 0 ? (
+        <p className="ub-empty">No paper matches these filters. Clear one to see more.</p>
+      ) : groupBy === "status" ? (
+        BUCKETS.map((b) => {
+          const rows = filtered.filter((i) => bucketOf(i) === b.key);
+          if (b.key !== "validated" && rows.length === 0) return null;
+          return (
+            <div key={b.key} className="ub-bucket">
+              <p className="pb-sect">{b.label} <span className="db-sect-sub">· {b.sub}</span> <span className="ub-bcount">{rows.length}</span></p>
+              {rows.length === 0 ? (
+                <p className="ub-empty">Nothing has passed human review — this section is empty <b>by design</b>, the honest target the whole board is measured against.</p>
+              ) : (
+                <div className="pb-runs">{rows.map((it, i) => <DraftCard it={it} key={`${b.key}-${i}`} />)}</div>
+              )}
+            </div>
+          );
+        })
+      ) : (
+        <FrontierGroups filtered={filtered} />
+      )}
 
       <p className="pb-sect">All pipeline runs</p>
       <div className="db-table-wrap">
@@ -476,6 +618,27 @@ const DB_CSS = `
 .db .pb-runs{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 .db-rcard{display:flex;flex-direction:column}
 .db-track-chip{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.06rem .5rem;white-space:nowrap}
+.db-prod,.db-depth{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid var(--lab-line);color:var(--lab-soft)}
+.db-prod[data-prod="hand"]{border-color:var(--lab-accent);color:var(--lab-accent)}
+.db-depth{border-style:dashed}
+/* Unified-board controls */
+.ub-controls{display:flex;flex-wrap:wrap;align-items:flex-end;gap:.55rem 1.1rem;margin:.2rem 0 1.1rem;padding:.7rem .85rem;background:var(--lab-panel);border:1px solid var(--lab-line);border-radius:12px}
+.ub-group{display:flex;flex-direction:column;gap:.3rem}
+.ub-glabel{font-family:ui-monospace,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.08em;color:var(--lab-accent2)}
+.ub-seg{display:inline-flex;gap:.25rem;flex-wrap:wrap}
+.ub-segb{font-family:ui-monospace,monospace;font-size:.68rem;letter-spacing:.02em;color:var(--lab-soft);background:transparent;border:1px solid var(--lab-line);border-radius:7px;padding:.16rem .55rem;cursor:pointer;white-space:nowrap}
+.ub-segb:hover{color:var(--lab-ink);border-color:var(--lab-accent)}
+.ub-segb.on{color:#0a0d17;background:var(--lab-accent);border-color:var(--lab-accent);font-weight:600}
+.ub-count{margin-left:auto;align-self:center;font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft);white-space:nowrap}
+.ub-bucket{margin-top:.2rem}
+.ub-bcount{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.02rem .5rem;margin-left:.15rem}
+.ub-empty{font-size:.82rem;line-height:1.55;color:var(--lab-soft);margin:.2rem 0 1rem;padding:.7rem .85rem;border:1px dashed rgba(74,214,196,.4);border-radius:10px;background:rgba(74,214,196,.05)}
+.ub-empty b{color:var(--lab-accent2)}
+.ub-open{display:flex;flex-direction:column;gap:.4rem;margin-top:.2rem}
+.ub-openrow{display:flex;align-items:center;gap:.7rem;flex-wrap:wrap;padding:.5rem .75rem;border:1px dashed var(--lab-line);border-radius:9px;background:#0a0d17}
+.ub-openname{font-size:.84rem;color:var(--lab-ink);flex:1 1 60%;min-width:12rem}
+.ub-openmeta{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-soft)}
+.ub-opentag{font-family:ui-monospace,monospace;font-size:.58rem;text-transform:uppercase;letter-spacing:.05em;color:#e0a458;border:1px solid rgba(224,164,88,.45);border-radius:999px;padding:.05rem .5rem;white-space:nowrap}
 .db-ground{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid #e0a458;color:#e0a458;background:rgba(224,164,88,.09);cursor:help}
 .db-ground.on{border-color:var(--lab-accent2);color:var(--lab-accent2);background:rgba(74,214,196,.1)}
 .db-thumb{display:block;margin:.1rem 0 .25rem;border:1px solid var(--lab-line);border-radius:8px;overflow:hidden;max-width:200px}

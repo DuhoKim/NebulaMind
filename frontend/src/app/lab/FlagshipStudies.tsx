@@ -10,7 +10,7 @@ import { PaperVideo } from "./PaperVideo";
 import { PAPER_VIDEOS } from "./paperVideos";
 import { RawStyle } from "./rawStyle";
 
-export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[] };
+export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[]; frontier?: number };
 
 export const FLAGSHIP: Flagship[] = [
   {
@@ -22,6 +22,7 @@ export const FLAGSHIP: Flagship[] = [
     updated: "2026-07-22 11:26",
     review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
     methods: ["mzr"],
+    frontier: 41,
   },
 ];
 

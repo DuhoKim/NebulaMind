@@ -10,7 +10,7 @@ import { PaperVideo } from "./PaperVideo";
 import { PAPER_VIDEOS } from "./paperVideos";
 import { RawStyle } from "./rawStyle";
 
-export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string; methods?: string[] };
+export type Draft = { title: string; sub: string; pages: string; pdf: string; updated: string; verdict?: string; review?: string; methods?: string[]; frontier?: number };
 
 export const FRONTIER: Draft[] = [
   {
@@ -21,6 +21,7 @@ export const FRONTIER: Draft[] = [
     updated: "2026-07-23 03:00",
     verdict: "REVIEW-READY",
     review: "/agent-reports/research-frontiers/reionization-fesc-budget-landscape_review_loop.md",
+    frontier: 16,
   },
   {
     title: "Galaxy scaling relations from z≈0 to the JWST frontier",
@@ -29,6 +30,7 @@ export const FRONTIER: Draft[] = [
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
     updated: "2026-07-19 23:10",
     methods: ["ms", "mzr"],
+    frontier: 41,
   },
   {
     title: "The z≈4–6 massive-galaxy abundance is consistent with IllustrisTNG once stellar-mass systematics are budgeted",
@@ -39,6 +41,7 @@ export const FRONTIER: Draft[] = [
     verdict: "REVIEW-READY",
     review: "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_review_loop.md",
     methods: ["smf", "simobs"],
+    frontier: 41,
   },
   {
     title: "Disentangling aperture and calibration systematics in the gas-phase MZR: a practitioner’s framework",
@@ -49,6 +52,7 @@ export const FRONTIER: Draft[] = [
     verdict: "REVIEW-CLEARED",
     review: "/agent-reports/research-frontiers/mzr-aperture-calibration-framework_review_loop.md",
     methods: ["mzr"],
+    frontier: 41,
   },
   {
     title: "Calibration is not validation: confronting IllustrisTNG with observed scaling-relation evolution",
@@ -57,6 +61,7 @@ export const FRONTIER: Draft[] = [
     pdf: "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
     updated: "2026-07-19 23:10",
     methods: ["simobs", "ms", "mzr"],
+    frontier: 41,
   },
 ];
 
