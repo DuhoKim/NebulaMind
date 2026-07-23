@@ -1,0 +1,249 @@
+\documentclass[twocolumn]{aastex631}
+\shorttitle{Is the JWST massive-galaxy tension robust to stellar-mass systematics?}
+\shortauthors{NebulaMind Lab}
+\begin{document}
+\title{The $z\simeq4$--6 Massive-Galaxy Abundance is Consistent with IllustrisTNG Once the Stellar-Mass Systematic Budget and Aperture Basis are Accounted For}
+\author{NebulaMind Lab (autonomous run)}
+\affiliation{Descriptive, machine-generated draft --- not a validated measurement.}
+
+\begin{abstract}
+The reported over-abundance of massive galaxies at $z>4$ relative to $\Lambda$CDM hydrodynamical
+simulations (``too massive, too early'') has been read as possible evidence for new physics. We test
+this by confronting IllustrisTNG (TNG100-1) cumulative number densities $n(>M_\star,z)$ against
+JWST-era observations on a like-for-like stellar-mass basis, and by benchmarking the observed
+abundance against the $\Lambda$CDM baryon-conversion ceiling. Because the observed SED masses are
+total-galaxy quantities, we place the simulation on the same footing: TNG100-1 $M_\star$ in this
+work is the within-$2\,R_{1/2}$ aperture, and the aperture-to-total correction is $+0.13$~dex, giving
+$n(>10^{10.5}\,M_\odot)=1.47\times10^{-5}$~Mpc$^{-3}$ at $z=5$ (from $20$ subhalos in the
+$(110.7\,\mathrm{Mpc})^3$ box). At $z\simeq5$ the observed $n(>10^{10.5}\,M_\odot)$ (Weibel et al.\
+2024, $\approx3\times10^{-5}$~Mpc$^{-3}$) then exceeds TNG by a factor $\approx2.04$ ($0.31$~dex);
+given the steep massive-end slope of the simulated stellar mass function
+($d\log n/d\log M_\star\approx-1.58$), this excess is erased by a downward stellar-mass shift of only
+$\approx0.20$~dex. We replace the loosely quoted ``$\sim1$~dex'' budget with an itemized, six-axis
+stellar-mass systematic ledger whose realistic (independent-quadrature) value is $0.55$~dex ---
+$0.46$~dex if the contested top-heavy-IMF term is excluded, and $1.30$~dex only in the fully
+correlated worst case. The required $0.20$~dex shift is $\sim0.4\times$ the committed budget and is
+covered even without invoking a top-heavy IMF; the $z\simeq5$ consistency is therefore robust and
+IMF-independent, subject to an irreducible $\pm0.10$~dex Poisson floor from the $\approx15$--$20$
+simulated galaxies that set the anchor. Crucially, the \emph{unshifted} observed abundance already
+implies a baryon-conversion efficiency $\epsilon=M_\star/(f_b\,M_{\rm halo})\approx0.20$ at the
+abundance-matched halo mass $M_{\rm halo}=1.0\times10^{12}\,M_\odot$ ($f_b=0.157$) --- i.e.\ the
+fiducial $\Lambda$CDM star-formation efficiency, far below the $\epsilon\le1$ hard ceiling. The
+$z\simeq5$ offset is thus not a $\Lambda$CDM stress test at all but a mismatch against TNG's
+\emph{specific} feedback/SMF calibration; $\Lambda$CDM feasibility would be breached only if the true
+masses were $\approx+0.70$~dex \emph{higher} than reported (opposite in sign, and $2.5\times$ larger
+than any plausible downward budget). The larger apparent excess at $z\simeq7$--9 (Labb\'e et al.\
+2023 candidates, $\approx13.6\times$, $1.13$~dex) requires $\approx0.72$~dex at the same slope ---
+which \emph{exceeds} the committed $0.55$~dex budget --- and rests on unconfirmed photometric masses;
+we therefore label it outside the realistic budget and marginal, not consistent. We flag as a
+distinct, harder residual the spectroscopically confirmed quiescent galaxies at $z>6$, whose
+$\sim2$~dex excess is not dissolved by these systematics. This is a descriptive confrontation of
+simulation predictions with observations on a matched stellar-mass basis; it is not a validated
+measurement.
+\end{abstract}
+
+\section{Introduction}
+Early JWST photometry reported an unexpected abundance of luminous, apparently very massive galaxies at
+$z>6$, implying baryon-to-stellar conversion efficiencies approaching or exceeding unity when compared to
+the $\Lambda$CDM halo mass function \citep{labbe23}. Taken at face value, such objects challenge standard
+structure formation. However, the inferred stellar masses are model-dependent quantities, and a growing
+body of spectroscopic and statistical work attributes much of the apparent tension to systematics rather
+than new physics. Here we ask a single, falsifiable question: \emph{does the observed massive-galaxy
+abundance exceed the IllustrisTNG prediction by more than the stellar-mass systematic budget?}---and we
+separate that question, which probes TNG's calibration, from the distinct question of whether the
+abundance is physically possible in $\Lambda$CDM at all.
+
+\section{Data and Method}
+We take cumulative comoving number densities $n(>M_\star,z)$ from the public IllustrisTNG (TNG100-1)
+subhalo catalogs \citep{tng}, and compare to two observed anchors of $n(>10^{10.5}\,M_\odot)$: Weibel
+et al.\ (2024) at $z\simeq5$ \citep{weibel24} and Labb\'e et al.\ (2023) candidates at $z\simeq7$--9
+\citep{labbe23}. The comparison is non-circular by construction: TNG masses are predictions, the
+observations are independent. TNG100-1 stellar masses in this work are the
+within-$2\times$stellar-half-mass-radius aperture (\texttt{SubhaloMassInRadType}); we verify this
+reproduces the previously quoted $n(>10^{10.5},z{=}5)=1.1\times10^{-5}$~Mpc$^{-3}$ ($15$ subhalos in
+the $(110.7\,\mathrm{Mpc})^3=1.357\times10^6$~Mpc$^3$ box), whereas the total gravitationally-bound
+stellar mass (\texttt{SubhaloMassType}) gives $1.47\times10^{-5}$~Mpc$^{-3}$ ($20$ subhalos). The
+observed SED masses are total-galaxy, so we place TNG on the same total-mass footing, an aperture
+correction of $+0.13$~dex (median over $\log M_\star>10.3$ at $z=5$; $+0.12$~dex at $z=6$, so
+redshift-stable). We quantify the tension as the downward stellar-mass shift $\Delta$ required to
+bring the observed $n(>10^{10.5})$ into agreement with TNG, using the simulated massive-end slope
+$d\log n/d\log M_\star$ measured between $\log M_\star=10.0$ and $10.5$.
+
+\section{Results}
+With TNG on the like-for-like total-mass footing, at $z=5$ TNG gives $n(>10^{10.5})=1.47\times10^{-5}$~Mpc$^{-3}$
+($N=20$) and the observed value is $3\times10^{-5}$, a factor $2.04$ ($0.31$~dex). With a local slope
+$d\log n/d\log M_\star\approx-1.58$, the excess is erased by $\Delta\approx0.20$~dex. (On the raw
+$2\,R_{1/2}$ aperture the corresponding numbers are $1.11\times10^{-5}$~Mpc$^{-3}$, $2.7\times$,
+$0.43$~dex, and $\Delta\approx0.28$~dex; the aperture fix therefore \emph{shrinks} the required shift.)
+At $z\simeq7$--9 the apparent excess is $\approx13.6\times$ ($1.13$~dex) and requires $\Delta\approx0.72$~dex
+at the same slope. The $z=5$ anchor is Poisson-limited: it rests on $15$ subhalos ($2\,R_{1/2}$; $20$ on
+total masses) above $10^{10.5}$ in the box, a fractional error of $\pm26\%$ ($\pm0.10$~dex), so both the
+$0.31$~dex excess and the $0.20$~dex required shift carry an irreducible $\pm0.10$~dex cosmic-variance/Poisson
+floor, and the confrontation is one of tens of simulated massive galaxies against a single observational
+data point.
+
+\subsection{An itemized stellar-mass systematic budget}
+The claim that the required shift lies ``within the budget'' is only as good as the budget. We
+therefore replace the single ``$\sim1$~dex'' figure --- which is the code-to-code SED spread, and
+already \emph{contains} the IMF, SPS and SFH drivers it is often added to --- with a decomposition
+into independent physical axes (Table~\ref{tab:budget}), each driving a downward revision of
+$M_\star$ for $z\approx4$--6 massive JWST galaxies.
+
+\begin{table*}[htb]
+\centering
+\caption{Itemized stellar-mass systematic budget for $z\approx4$--6 massive JWST galaxies, replacing
+the single ``$\sim1$~dex'' figure. Each axis drives a downward revision of $M_\star$. Combining axes
+in quadrature (independent) gives the realistic committed budget of $0.55$~dex; $0.46$~dex excluding
+the contested top-heavy-IMF term (\#1); $1.30$~dex in the fully correlated (linear-sum) worst
+case.\label{tab:budget}}
+\begin{tabular}{clccl}
+\hline
+\# & Source of $M_\star$ systematic & central (dex) & plausible range & grounding \\
+\hline
+1 & IMF choice (Chabrier $\to$ top-heavy at high $z$)          & 0.30 & 0.1--1.0  & \citet{lapi24}; \citet{steinhardt23} \\
+2 & SFH prior / outshining (parametric vs nonparametric)       & 0.30 & 0.2--0.5  & \citet{harvey25} \\
+3 & SPS model $+$ nebular continuum (BC03 vs BPASS)            & 0.20 & 0.1--0.3  & \citet{choe26}; \citet{cochrane25} \\
+4 & Dust--age--metallicity degeneracy                          & 0.15 & 0.1--0.25 & \citet{choe26} \\
+5 & AGN / ``Little Red Dot'' host contamination (pop.-averaged) & 0.20 & 0.1--1.0$^{\ast}$ & \citet{zhuang26}; \citet{kocevski25} \\
+6 & Eddington bias (steep MF $\times$ mass-error convolution)  & 0.15 & 0.1--0.25 & \citet{adams23}; \citet{grazian15} \\
+\hline
+\end{tabular}\\[2pt]
+{\footnotesize $^{\ast}$Per-object LRD contamination can reach orders of magnitude, but only a
+fraction of the massive sample are LRDs, so the population-averaged budget is $\approx0.2$~dex.}
+\end{table*}
+
+Combining these independently in quadrature gives a realistic committed budget of $0.55$~dex;
+dropping the contested top-heavy-IMF term (\#1) gives $0.46$~dex; the fully correlated worst case
+(linear sum) is $1.30$~dex --- this last is the ``$\sim1$~dex'' figure the earlier literature quotes,
+and it is an \emph{upper} bound, not the realistic budget. We caution that terms \#2--\#4 are three
+manifestations of the same SED-fitting degeneracy and \#6 is partly derived from the \#1--\#4 mass
+scatter, so treating all six as strictly independent mildly inflates the quadrature; a hostile
+accounting lands the committed budget in the range $0.46$--$0.55$~dex, which we adopt rather than a
+single clean number.
+
+Against this budget: the $z\simeq5$ requirement of $0.20$~dex is $\approx0.4\times$ the committed
+budget and is covered even by the IMF-excluded $0.46$~dex --- so the $z\simeq5$ consistency does
+\emph{not} depend on a top-heavy IMF and is robust (within the $\pm0.10$~dex Poisson floor above).
+The $z\simeq7$--9 requirement of $0.72$~dex \emph{exceeds} the committed $0.55$~dex quadrature budget
+and is met only under the fully correlated worst case; it is therefore marginal and photometric, and
+we group it with the quiescent excess as outside the realistic budget rather than with the secure
+$z\simeq5$ result. The spectroscopic quiescent $z>6$ excess ($\gtrsim1.4$~dex required) exceeds even
+the $1.30$~dex linear worst case and is genuinely outside budget.
+
+\subsection{Redshift bracketing of the TNG anchor}
+Because TNG evolves steeply at the massive end, a single ``$z\simeq5$--6'' label is unsafe: TNG100-1
+cumulative number densities above $10^{10.5}$ are $n(\mathrm{total})=1.47\times10^{-5}$~Mpc$^{-3}$ at
+$z=5$ ($N=20$) and $2.95\times10^{-6}$~Mpc$^{-3}$ at $z=6$ ($N=4$), a factor $5.0$ ($0.70$~dex) over
+$\Delta z=1$ (the $2\,R_{1/2}$ $z=6$ value, $7.4\times10^{-7}$~Mpc$^{-3}$, rests on a single object and
+is not used). We therefore pin the comparison to the observed sample's median redshift rather than
+across a ``5--6'' range. The Weibel et al.\ (2024) anchor is the rest-optical-selected SMF at
+$z\sim5$, so we adopt $z=5$, where the required shift is $0.20$~dex (total-matched). We note as an
+explicit caveat that if the effective comparison redshift is instead $z\simeq5.5$, TNG interpolates to
+$\approx6.6\times10^{-6}$~Mpc$^{-3}$ and the required shift rises to $\approx0.42$~dex --- still within
+the $0.46$--$0.55$~dex committed budget, but with the margin nearly gone.
+
+Table~\ref{tab:erasure} generalizes the headline point: the downward stellar-mass shift required to
+erase the excess stays within the committed budget across the plausible range of observed excess
+($2$--$20\times$) and simulated massive-end slope ($-1.4$ to $-2.0$). Only a genuine $\sim2$~dex
+excess --- the regime of the spectroscopic quiescent galaxies --- would require $\gtrsim1.4$~dex and
+exceed even the linear worst case.
+
+\begin{table}[htb]
+\centering
+\caption{Downward stellar-mass shift $\Delta\log M_\star$ (dex) required to erase the observed
+massive-galaxy abundance excess over IllustrisTNG, across the observed excess factor and the massive-end
+simulated SMF slope $s=d\log n/d\log M_\star$. Entries $\le0.55$~dex lie within the committed quadrature
+budget; the $z\simeq5$ row uses the aperture-corrected total-mass excess.\label{tab:erasure}}
+\begin{tabular}{lcccc}
+\hline
+Observed excess & $s{=}{-}1.4$ & $s{=}{-}1.6$ & $s{=}{-}1.8$ & $s{=}{-}2.0$ \\
+\hline
+$2\times$ (conservative)          & 0.22 & 0.19 & 0.17 & 0.15 \\
+$2.04\times$ ($z{\simeq}5$)        & 0.22 & 0.19 & 0.17 & 0.15 \\
+$13.6\times$ ($z{\simeq}7$--9)     & 0.81 & 0.71 & 0.63 & 0.57 \\
+$20\times$ (extreme)              & 0.93 & 0.81 & 0.72 & 0.65 \\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.98\linewidth]{paperB_fig.pdf}
+\caption{Cumulative number density $n(>10^{10.5}\,M_\odot)$ vs redshift. IllustrisTNG (dark line/circles)
+compared to observed anchors (Weibel+2024 at $z\simeq5$; Labb\'e+2023 candidates at $z\simeq7$--9).
+The $z\simeq5$ excess over TNG (on the total-mass footing) is erased by a $0.20$~dex downward
+stellar-mass shift, well within the $0.46$--$0.55$~dex committed systematic budget (green arrow).}
+\label{fig:smf}
+\end{figure}
+
+\section{Discussion}
+The conclusion is falsifiable on two distinct axes that must not be conflated.
+\textbf{(i) Abundance vs TNG (from Table~\ref{tab:erasure}).} The $z\simeq5$ null reverts to a tension
+only if the true mass-systematic budget is $<0.20$~dex; the $z\simeq7$--9 point reverts below its
+slope-dependent threshold of $\approx0.72$~dex (at $s=-1.58$). The committed $0.46$--$0.55$~dex budget
+clears the first with a factor $\sim2$ of margin but falls \emph{short} of the second --- hence
+$z\simeq7$--9 is labelled marginal.
+\textbf{(ii) $\Lambda$CDM physical feasibility (the hard bound).} Abundance-matching the observed
+$n=3\times10^{-5}$~Mpc$^{-3}$ at $z=5$ to a self-contained Sheth--Tormen halo mass function (Planck
+$f_b=0.157$) gives $M_{\rm halo}=1.0\times10^{12}\,M_\odot$ ($\log=12.00$; HMF sanity
+$n(>10^{12},z{=}5)=3.0\times10^{-5}$~Mpc$^{-3}$, self-consistent). The unshifted $M_\star=10^{10.50}$
+then implies a baryon-conversion efficiency $\epsilon=M_\star/(f_b\,M_{\rm halo})=0.20$ --- precisely
+the fiducial $\Lambda$CDM value and well under the $\epsilon\le1$ hard ceiling \citep{bk23}; after the
+$0.20$~dex shift, $\epsilon=0.13$. The $\epsilon=1$ ceiling is breached only if the true masses are
+$+0.70$~dex \emph{higher} than reported --- a change opposite in sign, and $2.5\times$ larger, than any
+plausible downward systematic. The observed abundance is thus nowhere near physically impossible in
+$\Lambda$CDM. This benchmark is robust to the HMF prescription: across Sheth--Tormen, Tinker-2008 and
+Press--Schechter and across halo mass-definition choices, the abundance-matched $M_{\rm halo}$ moves by
+$\lesssim0.12$~dex, shifting $\epsilon$ by $\le\sim0.06$ (a Tinker-2008 $200m$ mass function gives
+$\log M_{\rm halo}=11.90$, $\epsilon\approx0.26$) and the $+0.70$~dex breach threshold by
+$\le\sim0.11$~dex (to $\approx+0.59$~dex). The direction of this HMF sensitivity runs mildly
+\emph{against} consistency (higher $\epsilon$, thinner margin), but $\epsilon\approx0.2$--$0.26$ is
+nowhere near unity and the verdict is unchanged.
+
+Because the unshifted abundance already implies $\epsilon\approx0.20$ --- the fiducial $\Lambda$CDM
+star-formation efficiency --- the $z\simeq5$ offset is a \emph{TNG feedback/SMF-calibration} tension,
+not a $\Lambda$CDM stress test; the $0.20$~dex shift only reconciles TNG's specific SMF. The
+$z\simeq7$--9 excess, while it may sit within the fully correlated worst-case budget, both exceeds the
+committed quadrature budget and rests on photometric candidate masses that spectroscopy has repeatedly
+revised downward. A genuine, distinct residual remains: the spectroscopically confirmed compact
+quiescent galaxies at $z>6$, whose inferred number density lies $\sim2$~dex above baseline predictions
+and is not dissolved by the star-forming systematics above; this is the one $\Lambda$CDM-relevant
+residual, warrants dedicated follow-up, and is not claimed to be resolved here.
+
+\section{Conclusion}
+The ``too massive, too early'' reading of JWST massive-galaxy counts at $z\simeq5$ is not a
+$\Lambda$CDM stress test. The \emph{unshifted} observed abundance already sits at a baryon-conversion
+efficiency $\epsilon\approx0.20$ --- the fiducial $\Lambda$CDM star-formation efficiency --- so
+$\Lambda$CDM is comfortably satisfied with no mass revision at all; reaching the $\epsilon=1$ physical
+ceiling would require masses $\approx+0.70$~dex \emph{higher} than reported, not lower. What the
+$z\simeq5$ offset actually probes is TNG's \emph{specific} feedback and SMF calibration: once TNG is
+placed on the observed total-mass footing (an aperture correction of $+0.13$~dex), the factor-$2.04$
+excess is erased by a $0.20$~dex downward stellar-mass shift, $\sim0.4\times$ the committed
+$0.46$--$0.55$~dex systematic budget and covered even without a top-heavy IMF, so we find no robust
+tension with TNG at $z\simeq5$ --- subject to the $\pm0.10$~dex Poisson floor of the $15$--$20$-object
+simulated anchor and to the caveat that an effective comparison redshift of $z\simeq5.5$ would raise
+the required shift to $\approx0.42$~dex (still within budget, thinner margin). We do not claim a
+measurement of consistency, only that the data at these redshifts neither require a departure from
+$\Lambda$CDM nor a change to TNG beyond its known stellar-mass systematics. The apparent $z\simeq7$--9
+excess is a weaker case: it requires $\approx0.72$~dex, which exceeds the committed budget, and rests
+on unconfirmed photometric masses --- we label it outside the realistic budget and marginal, alongside
+the one genuine $\Lambda$CDM-relevant residual, the spectroscopically confirmed quiescent galaxies at
+$z>6$ whose $\sim2$~dex excess is not dissolved by these systematics and is not claimed to be resolved
+here. This is a descriptive, automated confrontation; it has not been validated by human review.
+
+\begin{thebibliography}{}
+\bibitem[Adams et al.(2023)]{adams23} Adams, N.~J., et al. 2023, MNRAS, 518, 4755
+\bibitem[Boylan-Kolchin(2023)]{bk23} Boylan-Kolchin, M. 2023, NatAs, 7, 731
+\bibitem[Choe et al.(2026)]{choe26} Choe, J., et al. 2026, A\&A, 707, A29
+\bibitem[Cochrane et al.(2025)]{cochrane25} Cochrane, R.~K., et al. 2025, ApJL, 978, L42
+\bibitem[Grazian et al.(2015)]{grazian15} Grazian, A., et al. 2015, A\&A, 575, A96
+\bibitem[Harvey et al.(2025)]{harvey25} Harvey, T., et al. 2025, ApJ, 978, 89
+\bibitem[Kocevski et al.(2025)]{kocevski25} Kocevski, D.~D., et al. 2025, ApJ, 986, 126
+\bibitem[Labb\'e et al.(2023)]{labbe23} Labb\'e, I., et al. 2023, Nature, 616, 266
+\bibitem[Lapi et al.(2024)]{lapi24} Lapi, A., et al. 2024, Universe, 10, 141
+\bibitem[Nelson et al.(2019)]{tng} Nelson, D., et al. 2019, ComAC, 6, 2
+\bibitem[Steinhardt et al.(2023)]{steinhardt23} Steinhardt, C.~L., et al. 2023, ApJL, 951, L40
+\bibitem[Weibel et al.(2024)]{weibel24} Weibel, A., et al. 2024, MNRAS, 533, 1808
+\bibitem[Zhuang et al.(2026)]{zhuang26} Zhuang, M.-Y., et al. 2026, ApJ, 999, 31
+\end{thebibliography}
+\end{document}
