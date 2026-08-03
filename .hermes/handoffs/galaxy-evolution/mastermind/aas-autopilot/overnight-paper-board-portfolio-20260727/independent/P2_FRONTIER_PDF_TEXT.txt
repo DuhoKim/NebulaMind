@@ -1,0 +1,122 @@
+  Draft version July 23, 2026
+  Typeset using LATEX twocolumn style in AASTeX631
+
+
+
+
+The reionization photon-budget “crisis” is a statement about ξion and the star-formation-rate density:
+                              a systematic escape-fraction landscape
+                                       NebulaMind Lab (autonomous pipeline)1
+                                         1 NebulaMind Lab, https://lab.nebulamind.net
+
+
+
+                                                        ABSTRACT
+          We ask whether star-forming galaxies alone can supply the ionizing photons required to reionize
+        the Universe, and show that the answer is governed almost entirely by two adopted quantities—the
+        ionizing-photon production eﬀiciency ξion and the cosmic star-formation-rate density (SFRD)—rather
+        than by the escape fraction itself. Using the standard reionization-maintenance criterion, we solve for
+        the Lyman-continuum escape fraction fesc required of star-forming galaxies to balance recombinations
+        across 5 ≤ z ≤ 12, propagating a grid of systematic assumptions (ξion , IGM clumping, LzLCS proxy
+        calibration, and SFRD normalization) by Monte Carlo. The required fesc rises steeply with redshift
+        and crosses the indirect-proxy-inferred value (≈ 6%) at a “crisis-onset” redshift that ranges from z ≈ 5
+        to z ≈ 8.75 across defensible assumptions; it exceeds the physical ceiling fesc = 1 at z ≈ 8.5 in the most
+        pessimistic corner, but never within 5 ≤ z ≤ 12 in the most optimistic. Under fiducial assumptions
+        the budget closes to z ≈ 6.5 and becomes unphysical by z ≈ 10.75. We conclude that the apparent
+        “photon-budget crisis” is not a robust observational result but a restatement of the adopted ξion and
+        SFRD priors: the same data admit both closure and a severe shortfall. This is a descriptive, automated
+        study; it has not been validated by a human referee, uses no new survey data, and is not peer-reviewed.
+
+                 1. INTRODUCTION                                   explicit by computing the full systematic landscape of
+  Reionization was largely complete by z ≈ 5.3, but                the required escape fraction, rather than a single point
+which sources supplied the ionizing budget remains de-             estimate, and by asking where—if anywhere—a genuine
+bated. A recurring claim is a “photon-budget crisis”:              shortfall is robust.
+the ionizing output of known star-forming galaxies ap-
+                                                                                         2. METHOD
+pears insuﬀicient to drive and maintain reionization,
+implying a shortfall that must be made up by addi-                   We adopt the reionization-maintenance criterion, in
+tional sources or by unexpectedly high escape fractions            which the comoving ionizing emissivity balances recom-
+(Muñoz et al. 2024; Davies et al. 2021). Competing                 binations, ṅion = ⟨nH ⟩/trec , with t−1
+                                                                                                         rec = C αB nH (z) (1 +
+analyses argue that star-forming galaxies suﬀice once              Y /4X) (case-B, T = 2 × 104 K; Robertson et al. 2015).
+realistic ingredient values are adopted (Duncan & Con-             Solving ṅion = fesc ξion ρSFR /κUV for the escape frac-
+selice 2015; Madau 2017). The comoving ionizing emis-              tion gives the value fesc (z) required to close the bud-
+sivity of galaxies is ṅion = fesc ξion ρUV , where ρUV is         get. Inputs are literature-anchored and fixed—no survey
+the non-ionizing UV luminosity density (proportional to            catalog is queried: the SFRD is the Madau & Dickin-
+the SFRD), ξion is the ionizing-photon production eﬀi-             son (2014) analytic fit; the fiducial ionizing eﬀiciency
+ciency, and fesc is the Lyman-continuum escape fraction            is log ξion = 25.5 ± 0.15 (Simmonds et al. 2024); the
+(Robertson et al. 2015). Of these, fesc is the least di-           clumping factor is C ∈ [2, 5]; and κUV = 1.15 × 10−28 .
+rectly constrained: at z > 6 the intergalactic medium is           The proxy-inferred population escape fraction is taken
+opaque to Lyman-continuum photons, so fesc is inferred             from the LzLCS O32 and β calibrations (Chisholm et
+indirectly from low-redshift-calibrated proxies (the O32           al. 2022; Flury et al. 2022), with a median of ≈ 6%
+ratio, the UV continuum slope β; Chisholm et al. 2022;             and 0.4–0.45 dex scatter. We evaluate a grid spanning
+Flury et al. 2022), whose transportability to z > 6 is             5 ≤ z ≤ 12 in steps of 0.25 crossed with eight systematic
+uncertain. Because published “required-fesc ” values are           corners (a fiducial case; “crisis” and “optimistic” corners
+quoted under a single choice of ξion and SFRD, the dis-            that push all systematics pessimistically or optimisti-
+agreement in the literature is, to first order, a disagree-        cally; and single-axis variants isolating ξion , clumping,
+ment in those two priors. Here we make that dependence             the O32/β calibration, and a JWST-enhanced SFRD).
+                                                                   At each of 232 grid points a 4 × 104 -sample Monte Carlo
+2
+
+propagates the joint systematic uncertainty. As a non-        fraction is inferred entirely from indirect, low-redshift-
+circularity check we recompute the conclusion using the       calibrated proxies; if fesc genuinely rises toward high
+O32-only and β-only calibrations separately; the qual-
+itative closure/shortfall verdict is unchanged by that
+swap at all redshifts. Finally we impose the physical
+bound fesc ≤ 1: where the required value exceeds unity,
+star-forming galaxies cannot maintain reionization at
+any escape fraction.
+
+
+                      3. RESULTS
+   Figure 1 shows the required escape fraction as a func-
+tion of redshift for all eight systematic corners. The
+required fesc rises steeply with redshift—driven by the
+(1+ z)3 growth of the recombination rate and the falling
+SFRD—in every corner. Under fiducial assumptions it
+is 0.048 at z = 6, 0.21 at z = 8, and 0.685 at z = 10,        Figure 1. Escape fraction required of star-forming galax-
+crossing the proxy-inferred value (≈ 0.06) at a crisis-       ies to close the reionization ionizing budget versus redshift,
+onset redshift z ≈ 6.5 and the physical ceiling fesc = 1      for eight systematic corners (grey band: full envelope). The
+at z ≈ 10.75. Across the systematic corners the crisis-       dash-dotted line is the indirect-proxy-inferred value; the dot-
+onset redshift spans z ≈ 5.0 (the “crisis” corner: low        ted line is the physical ceiling fesc = 1. The redshift at which
+ξion , high clumping, β calibration, no SFRD enhance-         each corner crosses the inferred value (crisis onset) and unity
+ment) to z ≈ 8.75 (the “optimistic” corner: high ξion ,       (galaxies-cannot) varies by several redshift units across de-
+                                                              fensible assumptions.
+low clumping, O32 calibration, JWST-enhanced SFRD).
+The unphysical boundary (fesc > 1) ranges from z ≈ 8.5
+in the crisis corner to never (within 5 ≤ z ≤ 12) in the      redshift, as some models predict, the crisis-onset would
+optimistic and JWST-high-SFRD corners. The domi-              move to higher z than any corner here captures, and only
+nant levers are ξion and the SFRD normalization; the          direct high-redshift Lyman-continuum or ξion measure-
+choice of proxy calibration (O32 versus β) shifts the         ments can settle it. Second, the maintenance criterion
+inferred value only modestly and does not change the          assumes ionization equilibrium rather than integrating
+qualitative picture.                                          the full reionization history, which sets the normaliza-
+                                                              tion of the required emissivity. Neither limitation alters
+                                                              the central result—that the closure verdict is dominated
+                    4. DISCUSSION                             by ξion and the SFRD, not by fesc —but both caution
+   The two positions in the literature—that star-forming      against reading any single crisis-onset redshift as defini-
+galaxies fall short (Muñoz et al. 2024; Davies et al. 2021)   tive.
+and that they suﬀice (Duncan & Conselice 2015)—are
+both recovered within our systematic envelope: they cor-                             5. CAVEATS
+respond to pessimistic and optimistic choices of ξion and        This is an automated, descriptive study and has not
+the SFRD, respectively. The data therefore do not ro-         been validated by a human referee. The proxy-inferred
+bustly favour either. What would break the degener-           escape fraction is held redshift-independent; a genuinely
+acy is not a better escape-fraction proxy but tighter         rising fesc (z), as some models predict, would delay the
+constraints on the two dominant ingredients: direct           crisis onset. We adopt a single SFRD parameteriza-
+ξion measurements from hydrogen recombination lines           tion; the JWST high-redshift SFRD is itself contested
+at high redshift, independent SFRD normalizations, and        and is bracketed here only by the enhancement corner.
+lower-redshift Lyman-continuum anchors to test proxy          The maintenance criterion assumes ionization equilib-
+transportability. Practically, a stated “photon-budget        rium rather than integrating the full reionization his-
+crisis” should always be accompanied by the assumed           tory. All escape fractions are inferred from indirect,
+ξion and SFRD, since the crisis-onset redshift moves          low-redshift-calibrated proxies; no direct z > 6 Lyman-
+by ∼ 3.5 redshift units as those assumptions vary over        continuum detection is used. Required values exceeding
+their plausible ranges. We stress two structural limita-      unity are reported as a diagnostic of the shortfall magni-
+tions that bound the interpretation. First, the escape        tude and are physically inadmissible as escape fractions.
+                                                                                                            3
+
+                                                   REFERENCES
+Chisholm, J., et al. 2022, MNRAS, 517, 5104               Madau, P., & Dickinson, M. 2014, ARA&A, 52, 415
+Davies, F. B., et al. 2021, ApJ, 918, L35                 Muñoz, J. B., et al. 2024, MNRAS, 535, L37
+Duncan, K., & Conselice, C. J. 2015, MNRAS, 451, 2030     Robertson, B. E., et al. 2015, ApJ, 802, L19
+Flury, S. R., et al. 2022, ApJ, 930, 126                  Simmonds, C., et al. 2024, MNRAS, 527, 6139
+Madau, P. 2017, ApJ, 851, 50
+

@@ -1,0 +1,191 @@
+{
+  "canonical_packet_released": false,
+  "captured_utc": "2026-07-16T02:27:59.171085Z",
+  "conversation_deleted": false,
+  "identity": {
+    "captured_title": "You are the Deep Research source-base reviewer for NebulaMind's galaxy-evolution wiki rebuild. Queue item 10 of 20 Core review: Conroy, Charlie (2013), Annual Review of Astronomy and Astrophysics, volume 51, pages 393-455, \"Modeling the Panchromatic Spectral Energy Distributions of Galaxies.\" Verified review identity to confirm: DOI 10.1146/annurev-astro-082812-141017; arXiv 1301.7095; ADS bibcode 2013ARA&A..51..393C. Mission purpose Build a large, authoritative, advisory source base from this review so three independent methods can later build galaxy-evolution wiki pages from zero. Extract its bounded synthesis and harvest important primary papers it actually cites. This is not live-wiki prose and authorizes no database, trust, claim, evidence, deployment, publication, git, account-setting, or conversation-deletion action beyond this one Deep Research run. Temporal and topical boundary - Use the 2013 review and primary literature it actually cites. - Do not promote post-2013 papers as if the review cited them. - Maintain the queue's non-AGN focus. Exclude AGN SED templates, torus/accretion-disk physics, and AGN-only inference papers from the core harvest. - Later sources and AGN-centered sources may appear only in DO_NOT_USE_UNVERIFIED. Scientific scope 1. Forward stellar-population synthesis: stellar evolution tracks/isochrones, stellar spectral libraries, IMF, binaries where covered, metallicity and abundance patterns. 2. Composite populations: star-formation histories, chemical enrichment, dust attenuation/emission, energy balance, and nebular-continuum/line boundaries where covered. 3. Panchromatic SED information from FUV through FIR, including photometry versus spectroscopy and integrated versus resolved measurements. 4. Inference of stellar mass, current and past SFR, mass-weighted/light-weighted age, metallicity, abundance pattern, dust mass/properties, and IMF. 5. Degeneracies: age-metallicity-dust, outshining, TP-AGB and other uncertain phases, horizontal branch/blue stragglers, stochastic sampling, and model mismatch. 6. Empirical calibrations and priors: mass-to-light ratios, colors, spectral indices, attenuation laws, star-formation histories, SPS model comparisons, and Bayesian fitting. 7. Galaxy-evolution consequences: stellar-mass functions, cosmic stellar-mass density, quiescent versus star-forming populations, inferred growth histories, and cross-survey comparability. Required output 1. Review identity and scope map - Confirm exact title, author, year, journal, DOI, arXiv, and ADS bibcode. - Map authorized territory and explicit exclusions. - Preserve wavelength, spectral resolution, population age, metallicity, abundance pattern, IMF, SFH parameterization, dust geometry/law, photometric calibration, redshift, galaxy selection, SPS code/library, and prior boundaries. 2. Established findings - At least 12 atomic entries [REV10-E01], ... - Include role, epistemic_type, one bounded finding, physical/sample/model boundary, review topic basis, confidence note, and source keys. - Allowed epistemic types: observation | analytic_theory | hydrodynamic_simulation | semi_analytic_model | calibration | review_synthesis. - Never convert an SPS-dependent inference into a direct observation. 3. Open debates and tensions - At least 8 entries [REV10-D01], ... - Include competing positions, why unresolved in 2013, boundaries, and source keys. - Include: TP-AGB strength; IMF universality/variation; flexible versus parametric SFHs; dust law and geometry; age-metallicity-dust degeneracy; stellar-mass accuracy; SFR timescale/calibration; and optical-only versus panchromatic constraints. 4. Key measurements, model benchmarks, and calibrations - At least 8 entries [REV10-N01], ... - Include exact value/equation when the review supplies it; units; wavelength/age/IMF/SFH/dust/model assumptions; whether observed, assumed, calibrated, or predicted; caveat; and source keys. - Useful targets: IMF conversion offsets; recycled mass fraction; typical stellar-mass uncertainty; mass-to-light sensitivity; age-metallicity degeneracy; UV/Halpha/IR SFR timescales; TP-AGB-sensitive ages; and energy-balance relations. Include only values bound to cited sources and review context. 5. What remained unknown in 2013 - At least 6 entries [REV10-U01], ... with the gap, why it matters, needed observation/model test, and source keys. 6. Primary-citation harvest - Harvest 40-80 important PRIMARY papers actually cited by Conroy 2013. - Balance across stellar-evolution tracks, empirical/theoretical spectral libraries, classic and modern SPS models, IMF constraints, SFH recovery, dust attenuation/emission, stellar-mass/SFR calibrations, spectral indices, resolved populations, and SPS-driven galaxy-demographic results. - Supporting reviews/books may be listed separately but must not count toward the primary total. - Exclude post-2013, uncited search results, aggregators, and AGN-only papers. - One physical paper per source key; no duplicates. - IDs [REV10-P001], [REV10-P002], ... - Each row: [REV10-PNNN] Authors (year, journal) | title=exact title | DOI:value-or-none; arXiv:value-or-none; ADS:value | role=measurement|analytic_theory|hydrodynamic_simulation|semi_analytic_model|calibration | review_locator=section/topic | one-line boundary - If an identifier or review membership is uncertain, quarantine the row rather than making it usable. Composite identifier discipline - First author/year/title/DOI/arXiv/ADS must identify the same physical paper. - The paper must actually appear in the review bibliography. - Never splice neighboring reference identifiers. - Use none when an identifier genuinely does not exist. - Calibration rows must name the IMF, stellar library/tracks, population age/metallicity, wavelength, SFH, dust assumptions, and applicable sample where relevant. 7. DO_NOT_USE_UNVERIFIED - Quarantine uncertain, cross-wired, uncited, post-2013, AGN-centered, model-collapsing, or overbroad items. - Format: UNCITED_NOT_USABLE | candidate or claim | supplied identifier/context | exclusion reason - Explicitly quarantine claims that SED-derived mass/SFR/age is model-free, one color uniquely fixes age or metallicity, one attenuation law is universal, one IMF is proven universal, one SPS code is uniquely correct, optical-only fits determine dust emission, or matching one SED validates one unique SFH. - Quarantine post-2013/JWST/ML browsing results. 8. Review and source identity ledger - Repeat review as [REV10-R00] with DOI/arXiv/ADS. - Repeat every usable primary and supporting row with author/year/journal, DOI, arXiv, ADS, role, and boundary. - No load-bearing source may be absent from this ledger. Quality bar - Advisory source base, not polished wiki prose. - Prefer explicit wavelength, population, IMF, SFH, dust, library, model, redshift, and sample boundaries over broad claims. - Preserve observed flux versus SPS-inferred quantities, light-weighted versus mass-weighted properties, and calibration versus prediction. - Every source key in findings/debates/measurements/unknowns must resolve in the usable ledger. - End exactly: REVIEW_BASE_10_DR_COMPLETE_REFERENCE_ONLY",
+    "conversation_id": "6d16b718151e357b",
+    "conversation_path": "/app/6d16b718151e357b",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "0fde687b0dd14a221b6c4b75634c820af673494193e38b5c394ba77eb593d471",
+    "prompt_sha256": "c40193005d83bce620828846375ac1762355cb4e6184c5b0b7b3259dfe4d7d6e",
+    "submit_account_lease_id": "L00937",
+    "submit_utc": "2026-07-16T02:10:20.254173Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING",
+  "output_quality": {
+    "debate_count": 0,
+    "do_not_use_present": false,
+    "established_count": 0,
+    "headings_present": false,
+    "measurement_count": 0,
+    "pass": false,
+    "primary_harvest_count": 0,
+    "review_ads_present": false,
+    "review_arxiv_present": false,
+    "review_doi_present": false,
+    "terminal_marker_present": true,
+    "unknown_count": 0
+  },
+  "packet_sha256": "f2ef4349874ae974f537ef25de06505c20a86f5d5471a2af2cdee621c531177d",
+  "queue_item": 10,
+  "raw_packet_sha256": "f2ef4349874ae974f537ef25de06505c20a86f5d5471a2af2cdee621c531177d",
+  "result_chars": 26743,
+  "result_text_sha256": "880153823586bcc4308701417ae17d409b85358d53e8d97189bd8f5746fb7a0b",
+  "run_id": "REVIEW_BASE_10_CONROY_2013",
+  "source_anchor_count": 37,
+  "source_anchors": [
+    {
+      "href": "https://arxiv.org/abs/1301.7095",
+      "label": "arxiv.org [1301.7095] Modeling the Panchromatic Spectral Energy Distributions of Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.semanticscholar.org/paper/Modeling-the-Panchromatic-Spectral-Energy-of-Conroy/22cb4b8a2db945d5bc95a0ee6c966f9b44a785a0",
+      "label": "semanticscholar.org Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Semantic Scholar Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/paper.pdf",
+      "label": "ned.ipac.caltech.edu Modeling the Panchromatic Spectral Energy Distributions of Galaxies Opens in a new window"
+    },
+    {
+      "href": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1088%2F0004-637x%2F815%2F2%2F133",
+      "label": "oamonitor.ireland.openaire.eu ULTRAVIOLET RADIATIVE TRANSFER MODELING OF NEARBY Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/frames.html",
+      "label": "ned.ipac.caltech.edu Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/389351152_The_Spectral_Energy_Distributions_of_Galaxies",
+      "label": "researchgate.net (PDF) The Spectral Energy Distributions of Galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy1.html",
+      "label": "ned.ipac.caltech.edu introduction - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy2.html",
+      "label": "ned.ipac.caltech.edu Overview of the stellar population synthesis - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://i.astro.tsinghua.edu.cn/~xbai/teaching/StudentSeminar2017F/20171020_RuiLiming_SPS.pdf",
+      "label": "i.astro.tsinghua.edu.cn stellar population synthesis Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy3.html",
+      "label": "ned.ipac.caltech.edu mass-to-light ratios & stellar masses - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy4.html",
+      "label": "ned.ipac.caltech.edu star formation rates, histories, & stellar ages - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy7.html",
+      "label": "ned.ipac.caltech.edu the initial mass function - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Courteau/paper.pdf",
+      "label": "ned.ipac.caltech.edu arXiv:1309.3276v2 [astro-ph.CO] 28 Apr 2014 - NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://www.preprints.org/manuscript/202606.1722",
+      "label": "preprints.org From Starlight Synthesis to Chemo-Kinematic Tomography: A Unified Galactic Reconstruction Framework - Preprints.org Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy5.html",
+      "label": "ned.ipac.caltech.edu stellar metallicities & abundance patterns - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1308.1099",
+      "label": "arxiv.org arXiv:1308.1099v2 [astro-ph.CO] 20 Aug 2013 Opens in a new window"
+    },
+    {
+      "href": "https://www.emergentmind.com/topics/panchromatic-stellar-seds",
+      "label": "emergentmind.com Panchromatic Stellar SEDs Analysis - Emergent Mind Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy6.html",
+      "label": "ned.ipac.caltech.edu Total Dust Attenuation - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy_refs.html",
+      "label": "ned.ipac.caltech.edu Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.12156v2",
+      "label": "arxiv.org Quenching of Star Formation in Massive Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1407.6044",
+      "label": "arxiv.org arXiv:1407.6044v2 [astro-ph.CO] 15 Jun 2018 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2603.29340",
+      "label": "arxiv.org An innovative alternative to traditional funding streams for extragalactic astronomy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://wiki.helsinki.fi/xwiki/bin/view/astjourn/Astrophysics%20journal%20club/",
+      "label": "wiki.helsinki.fi Astrophysics journal club - XWiki - University of Helsinki Wiki Opens in a new window"
+    },
+    {
+      "href": "https://amsdottorato.unibo.it/id/eprint/13121/1/Tomasetti_Elena_tesi.pdf",
+      "label": "amsdottorato.unibo.it Probing the Expansion History of the Universe through Cosmic Time - AMS Tesi di Dottorato Opens in a new window"
+    },
+    {
+      "href": "https://www.sissa.it/ap/phdsection/AlumniThesis/Lara%20Pantoni.pdf",
+      "label": "sissa.it High-redshift Dusty Star-Forming Galaxies: a panchromatic approach to constrain massive - SISSA Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2601.22281",
+      "label": "arxiv.org Editorial: Mass and Angular Momentum Transport of Rapidly Rotating Hot Stars - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept14/Conroy/Conroy8.html",
+      "label": "ned.ipac.caltech.edu concluding remarks - Modeling the Panchromatic Spectral Energy Distributions of Galaxies - Charlie Conroy Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.03500v2",
+      "label": "arxiv.org Interpreting Galaxy Physical Properties Using Stellar Population Synthesis - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://scoap3-prod-backend.s3.cern.ch/media/harvested_files/10.1016/j.physletb.2026.140243/main.pdf",
+      "label": "scoap3-prod-backend.s3.cern.ch Phenomenological constraints on QCD transport with quantified theory uncertainties - CERN Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/cosmic-x-ray-surveys-of-distant-active-galaxies-the-14irc2pexp.pdf",
+      "label": "scispace.com Cosmic X-ray Surveys of Distant Active Galaxies: The Demographics, Physics, and Ecology of Growing Supermassive Black Holes - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2005.01759",
+      "label": "arxiv.org Applications of Stellar Population Synthesis in the Distant Universe - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2212.05007",
+      "label": "arxiv.org Constraining galactic baryon cycle using the galaxy stellar-to-halo mass relations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2510.25876",
+      "label": "arxiv.org analytic solutions for chemical evolution models with metallicity-dependent yields - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/549/1/stag764/8664323",
+      "label": "academic.oup.com pop-cosmos: star formation over 12 Gyr from generative modelling of a deep infrared-selected galaxy catalogue - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2410.17698v3",
+      "label": "arxiv.org ProGeny II: the impact of libraries and model configurations on inferred galaxy properties in SED fitting - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/392004915_Modeling_the_Ages_and_Chemical_Abundances_of_Elliptical_Galaxies",
+      "label": "researchgate.net Modeling the Ages and Chemical Abundances of Elliptical Galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10644558",
+      "label": "par.nsf.gov Modeling the Ages and Chemical Abundances of Elliptical Galaxies - NSF PAR Opens in a new window"
+    }
+  ]
+}

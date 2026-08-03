@@ -1,0 +1,406 @@
+{
+  "canonical_packet_released": false,
+  "captured_utc": "2026-07-15T12:32:24.847476Z",
+  "conversation_deleted": false,
+  "identity": {
+    "captured_title": "You are the Deep Research source-base reviewer for NebulaMind's galaxy-evolution wiki rebuild. Queue item 01 of 20 Core review: Kennicutt, Robert C. Jr. & Evans, Neal J. II (2012), Annual Review of Astronomy and Astrophysics, volume 50, \"Star Formation in the Milky Way and Nearby Galaxies.\" Known review identity to confirm, not merely repeat: DOI 10.1146/annurev-astro-081811-125610; arXiv 1204.3552; ADS bibcode 2012ARA&A..50..531K. Mission purpose Build a large, authoritative, advisory source base from this review so three independent methods can later build galaxy-evolution wiki pages from zero. Extract the review's own bounded synthesis and harvest the important primary papers it cites. This is not live-wiki prose and authorizes no database, trust, claim, evidence, deployment, publication, or account mutation beyond this one Deep Research run. Temporal boundary - The source base for this item is the 2012 review and primary literature it actually cites. - Do not introduce post-2012 papers as if the review cited them. - If a later source is useful only to detect a correction, place it in DO_NOT_USE_UNVERIFIED and state that it is outside this item's citation-harvest boundary. Scientific scope 1. Definitions and efficiencies of star formation from cloud to galaxy scales. 2. Star-formation-rate tracers and calibrations: ionizing/recombination lines, UV, infrared, radio, X-ray where relevant, hybrid indicators, timescales, dust attenuation, metallicity, IMF, stochastic sampling, and spatial-scale limits. 3. Initial mass functions only insofar as they control SFR conversions and stellar-population inferences. 4. Star-formation laws: integrated and resolved Kennicutt-Schmidt relations; HI, H2, total gas, and dense gas kept distinct; surface-density thresholds; disk versus starburst regimes. 5. Milky Way and nearby-galaxy molecular clouds, cloud lifetimes, efficiencies per free-fall time, dense-gas thresholds, clustering, and environmental variation. 6. Feedback, turbulence, gravitational instability, cloud formation/destruction, and theoretical interpretations, each labeled as observation, model, or review synthesis. 7. Known review-era tensions and unknowns. Do not retrofit conclusions from later literature. Composite citation identity rule Treat author + year + title + journal + DOI + arXiv + ADS bibcode as one identity. Every identifier supplied in a usable row must resolve to the same physical paper. A DOI, arXiv ID, or bibcode that resolves to a different real paper is contamination, not partial success. If exact identity cannot be confirmed, quarantine the item as UNCITED_NOT_USABLE. It is acceptable to omit an identifier type genuinely absent from the authoritative record; never guess one. Evidence hierarchy - Use the review as orientation and synthesis. - For every load-bearing finding, debate position, and number, include at least one important primary source that the review cites. - Prefer foundational or representative primary measurements over derivative summaries. - Keep observational results, calibrations, and theoretical/model claims epistemically distinct. - Preserve sample, tracer, IMF, metallicity, spatial-resolution, redshift, and conversion-factor boundaries. - Do not use the review's citation count or authority to rescue an overbroad claim. Return exactly these eight sections. ## 1. Review identity and scope map Confirm the review's composite identity. Then list its major sections/themes and what each can and cannot support for a galaxy-evolution evidence base. ## 2. Established findings At least 12 entries, IDs [REV01-E01], [REV01-E02], ... Each entry: - role: established - epistemic_type: observation|calibration|theory|review_synthesis - atomic finding - scope/boundary - review basis: section/topic and, where available, page/figure/table - confidence note - source keys: review plus at least one harvested primary source ## 3. Open debates and tensions At least 8 entries, IDs [REV01-D01], [REV01-D02], ... Each entry: - role: debate - debate_topic - competing positions - why unresolved as of the review's 2012 boundary - measurement/model/sample boundary - source keys representing more than one side where available ## 4. Key measurements and calibrations At least 8 entries, IDs [REV01-N01], [REV01-N02], ... Each entry: - role: measurement - metric or calibration and value/range - sample, tracer, instrument/method, spatial scale, and IMF - systematic caveat - primary source keys Do not blend incompatible IMF choices, gas phases, apertures, or SFR timescales. ## 5. What remained unknown in 2012 At least 6 entries, IDs [REV01-U01], [REV01-U02], ... Each entry: - role: future - gap - why it mattered - observation/model needed - review and primary source keys defining the gap ## 6. Primary-citation harvest Harvest 40-80 important primary papers actually cited by Kennicutt & Evans 2012. Balance the harvest across: - SFR indicators and calibrations; - resolved and integrated star-formation laws; - HI/H2/total/dense-gas measurements; - Milky Way and nearby molecular clouds; - IMF and stellar-population conversion assumptions; - turbulence, gravity, efficiency, and feedback models; - dwarf/low-metallicity and starburst boundaries. One physical row per source. Exact row format: [REV01-P001] Authors (year, journal) | title=<exact title> | DOI:<verified DOI if available>; arXiv:<verified ID if available>; ADS:<verified bibcode> | role=measurement|calibration|debate|theory|caveat|future | review_locator=<section/page/figure/table or topic-level locator> | one-line claim boundary Every harvested row must have an exact title, ADS bibcode, and every available reconciled DOI/arXiv identifier. Do not concatenate rows. Do not cite web pages, search snippets, theses, conference abstracts, or later papers as primary harvest items. ## 7. DO_NOT_USE_UNVERIFIED List every unresolved, cross-wired, outside-date, secondary-only, or overbroad item. Exact form: UNCITED_NOT_USABLE | proposed source or claim | unresolved/cross-wired identifier or locator | reason Include any claim that treats depletion time as a guaranteed future clock, conflates HI/H2/total/dense gas, treats one SFR calibration as IMF- or metallicity-independent, or converts a model mechanism into observational prevalence. ## 8. Review and source identity ledger First give the verified review row, then repeat one concise identity row for every usable primary source key. Exact row format: SourceKey | Authors (year, journal) | DOI:<doi if available>; arXiv:<id if available>; ADS:<bibcode> | role=review|measurement|calibration|debate|theory|caveat|future | one-line boundary Self-check before returning: - review identity matches Kennicutt & Evans 2012 across DOI/arXiv/ADS; - at least 12 established, 8 debates, 8 measurements, 6 unknowns; - 40-80 unique primary-citation rows actually cited by the review; - every claim source key exists in the final ledger; - every supplied DOI/arXiv/ADS tuple names one physical paper; - no post-2012 paper is promoted as a review-cited primary source; - no AGN-centered result is promoted as a core finding; - DO_NOT_USE_UNVERIFIED is present; - final line exactly: REVIEW_BASE_01_DR_COMPLETE_REFERENCE_ONLY Advisory source discovery only. Do not write live-wiki prose and do not authorize any mutation.",
+    "conversation_id": "c242f04a990ac26d",
+    "conversation_path": "/app/c242f04a990ac26d",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "002c8250ceb0e8b92d9b7c2df279deee9b4b918643967c0a69dddb5b636073f3",
+    "prompt_sha256": "71096ccd00dc520a6e0c9a86447e73591b0b43fa26d4229147ad505eaf2df988",
+    "submit_account_lease_id": "L00601",
+    "submit_utc": "2026-07-15T12:17:04.271812Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING",
+  "output_quality": {
+    "debate_count": 8,
+    "do_not_use_present": true,
+    "established_count": 12,
+    "headings_present": true,
+    "measurement_count": 8,
+    "pass": true,
+    "primary_harvest_count": 63,
+    "review_ads_present": true,
+    "review_arxiv_present": true,
+    "review_doi_present": true,
+    "terminal_marker_present": true,
+    "unknown_count": 6
+  },
+  "queue_item": 1,
+  "raw_packet_sha256": "8a778bc16d31b928866c9df397fcb57515d7841406ed1c760322a16e185df568",
+  "result_chars": 60854,
+  "result_text_sha256": "ad09becbedf82d1334b1c13ce31453f513c5c56d1fe020adab8fefdfe08bfa3f",
+  "run_id": "REVIEW_BASE_01_KENNICUTT_EVANS_2012",
+  "source_anchor_count": 91,
+  "source_anchors": [
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/paper.pdf",
+      "label": "ned.ipac.caltech.edu star formation in the milky way and nearby galaxies Opens in a new window"
+    },
+    {
+      "href": "https://www.as.utexas.edu/~sj/a386c-papers/kennicutt-evans-araa.2012.pdf",
+      "label": "as.utexas.edu Star Formation in the Milky Way and Nearby Galaxies - University of Texas at Austin Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt3.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/224040079_Star_Formation_in_the_Milky_Way_and_Nearby_Galaxies",
+      "label": "researchgate.net Star Formation in the Milky Way and Nearby Galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt6.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt7.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt4.html",
+      "label": "ned.ipac.caltech.edu Opens in a new window"
+    },
+    {
+      "href": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2019.00007/full",
+      "label": "frontiersin.org The Role of Magnetic Fields in Setting the Star Formation Rate and the Initial Mass Function Opens in a new window"
+    },
+    {
+      "href": "https://www.preprints.org/manuscript/202606.1571",
+      "label": "preprints.org Star Formation Efficiency and Class I Protostellar Timescales in ATLASGAL Dense Clumps Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/366136489_Discovery_and_properties_of_the_earliest_galaxies_with_confirmed_distances",
+      "label": "researchgate.net Discovery and properties of the earliest galaxies with confirmed distances - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://royalsocietypublishing.org/rsos/article/7/12/200556/95459/High-redshift-star-formation-in-the-Atacama-large",
+      "label": "royalsocietypublishing.org High-redshift star formation in the Atacama large millimetre/submillimetre array era Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/paper.pdf",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/papers/connecting-dense-gas-tracers-of-star-formation-in-our-galaxy-44f3cgnwc1",
+      "label": "scispace.com (PDF) Connecting Dense Gas Tracers of Star Formation in our Galaxy to High-z Star Formation (2005) | Jingwen Wu | 433 Citations - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2023.1246978/full",
+      "label": "frontiersin.org Dense gas star formation efficiency and the LHCN (4\u22123)\u2032/LHCO+(4\u22123)\u2032 ratio: insights from a statistical study of infrared bright star-forming galaxies - Frontiers Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt2.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://www.mpi-hd.mpg.de/astrophysik/HEA/conferences/GCworkshop2011/workshop2011/Programme_files/GCworkshopTalks/heidelberg_2011_strong.pdf",
+      "label": "mpi-hd.mpg.de The cosmic-ray, gamma-ray, radio connection in the Galaxy - Max-Planck-Institut f\u00fcr Kernphysik Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.08453",
+      "label": "arxiv.org HETDEX [O II] galaxies at z\u22640.48: Volume-limited samples and their power spectra - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.ndl.ethernet.edu.et/bitstream/123456789/68331/1/56.pdf",
+      "label": "ndl.ethernet.edu.et Cosmic Rays in Star-Forming Environments Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/236635079_Cosmological_Magnetic_Fields_Their_Generation_Evolution_and_Observation",
+      "label": "researchgate.net Cosmological Magnetic Fields: Their Generation, Evolution and Observation Opens in a new window"
+    },
+    {
+      "href": "https://journals.eco-vector.com/0004-6299/article/view/699450",
+      "label": "journals.eco-vector.com INTERSTELLAR MEDIUM IN EXTREMELY HIGH STAR FORMATION REGIONS: A PROSPECT OF OBSERVATIONS ON THE \u201cMILLIMETRON\u201d SPACE OBSERVATORY - Vasiliev - Astronomy Reports - Eco-Vector Journals Portal Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.11308v2",
+      "label": "arxiv.org pop-cosmos: Disentangling galaxy properties from observables using data-driven approaches - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.07068v1",
+      "label": "arxiv.org Unveiling the Milky Way with a Gaia DR3 census of OB-type stars within 2 kpc. I. Tracing local Galactic structure, massive star-forming regions and core-collapse supernova progenitors - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstw3011",
+      "label": "oamonitor.ireland.openaire.eu (Star)bursts of FIRE: observational signatures of bursty star Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.22161v1",
+      "label": "arxiv.org Blue-tilted Runnings and the JWST Early Galaxy Tension - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/star-formation-in-interacting-galaxy-systems-uvit-imaging-of-ngc-7252-and-ngc-5291/A08EC7E48514221FDA9EA94A1227F48D",
+      "label": "cambridge.org Star formation in interacting galaxy systems: UVIT imaging of NGC 7252 and NGC 5291 | Publications of the Astronomical Society of Australia - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/524057/file/524057_Fulltext.pdf",
+      "label": "research.chalmers.se Bird's-eye view of molecular clouds in the Milky Way - research.chalmers.se Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1302.1196",
+      "label": "arxiv.org Star Formation in the Milky Way. The Infrared View. - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://rencontresduvietnam.org/conferences/2017/sfde2017/wp-content/uploads/2016/07/Gao_SFDE17l.pdf",
+      "label": "rencontresduvietnam.org The Star Formation Laws in Galaxies Near & Far - Rencontres du Vietnam Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/534/2/1043/7740789",
+      "label": "academic.oup.com Gravity or turbulence? \u2013 VI. The physics behind the Kennicutt\u2013Schmidt relation | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-aa-50-082812-100001",
+      "label": "annualreviews.org Preface | Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev.aa.31.090193.003043",
+      "label": "annualreviews.org Galactic Structure Surveys and the Evolution of the Milky Way - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-astro-082708-101734",
+      "label": "annualreviews.org Physical Properties and Environments of Nearby Galaxies - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/doi/10.1146/annurev-astro-082214-122514",
+      "label": "annualreviews.org Exploring the Universe | Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-astro-082214-122324",
+      "label": "annualreviews.org Molecular Clouds in the Milky Way | Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.diva-portal.org/smash/get/diva2:1869282/FULLTEXT01.pdf",
+      "label": "diva-portal.org CO Excitation of nearby Star-Forming Galaxies - DiVA portal Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2512.23157v2",
+      "label": "arxiv.org The GLASS-JWST Early Release Science Program. V. H\ud835\udefc luminosity functions at \ud835\udc67\u223c1.3 and \ud835\udc67\u223c2.0 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://dokumen.pub/star-formation-rates-of-galaxies-1107184169-9781107184169.html",
+      "label": "dokumen.pub Star-Formation Rates of Galaxies 1107184169, 9781107184169 - DOKUMEN.PUB Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2404.16984v2",
+      "label": "arxiv.org Milky Way and Nearby Galaxies Science with the Single Aperture Large Telescope for Universe Studies (SALTUS) Space Observatory - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt_refs.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt_contents.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/frames.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/547/1/stag281/8472644",
+      "label": "academic.oup.com Connecting star formation in the Milky Way and nearby galaxies \u2013 II. An observationally driven analytical model for predicting cloud-scale star formation rates - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-astro-081811-125610",
+      "label": "annualreviews.org Star Formation in the Milky Way and Nearby Galaxies | Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Kennicutt/Kennicutt5.html",
+      "label": "ned.ipac.caltech.edu Star Formation in the Milky Way and Nearby Galaxies - Robert C. Kennicutt, Jr. & Neal J. Evans II Opens in a new window"
+    },
+    {
+      "href": "https://www.journalofyoungphysicists.org/post/magnetic-field-structure-and-young-stellar-populations-in-the-irregular-galaxy-ngc-4449",
+      "label": "journalofyoungphysicists.org Magnetic Field Structure and Young Stellar Populations in the Irregular Galaxy NGC 4449 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1204.3552",
+      "label": "arxiv.org [1204.3552] Star Formation in the Milky Way and Nearby Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/astro-ph/9712213",
+      "label": "arxiv.org [astro-ph/9712213] The Global Schmidt Law in Star Forming Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/international-journal-of-astrobiology/article/copernicanism-and-the-typicality-in-time/FED4E3E5028F48A295D9BB2926F7FF37",
+      "label": "cambridge.org Copernicanism and the typicality in time | International Journal of Astrobiology | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2075-4434/14/2/22",
+      "label": "mdpi.com The MOND Depth Index and Dynamical Maturity Clock: Toward a Universal Classification of Galaxies and Star Clusters - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2604.14092v2",
+      "label": "arxiv.org Radial Distributions of Star Formation and Gas-phase Metallicity in Spiral\u2013Elliptical Galaxy Pairs - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC4887991/",
+      "label": "pmc.ncbi.nlm.nih.gov Kennicutt-Schmidt Law in the Central Region of NGC 4321 as Seen by ALMA - PMC Opens in a new window"
+    },
+    {
+      "href": "https://www.preprints.org/frontend/manuscript/9327e5ad383b7d0de6dc2d3a295d9f6d/download_pub",
+      "label": "preprints.org Star Formation Efficiency and Class I Protostellar Timescales in ATLASGAL Dense Clumps - Preprints.org Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2075-4434/12/2/18",
+      "label": "mdpi.com Astrochemistry of the Molecular Gas in Dusty Star-Forming Galaxies at the Cosmic Noon Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/29009/1/Jeffreson-Sarah-2020.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Dissertation submitted to the Combined Faculty of Natural Sciences and Mathematics of Heidelberg University, Germany for the deg Opens in a new window"
+    },
+    {
+      "href": "https://amsdottorato.unibo.it/id/eprint/8355/1/Sacchi_tesi.pdf",
+      "label": "amsdottorato.unibo.it ALMA MATER STUDIORUM UNIVERSIT\u00c0 DEGLI STUDI DI BOLOGNA ASTROFISICA - AMS Tesi di Dottorato Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/26665/1/thesisPRINT.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Stellar Feedback and the Self-Regulation of Star Formation in Giant Molecular Clouds Opens in a new window"
+    },
+    {
+      "href": "https://ndl.ethernet.edu.et/bitstream/123456789/75685/1/314.pdf",
+      "label": "ndl.ethernet.edu.et Star Formation in Galaxy Evolution: Connecting Numerical Models to Reality - National Academic Digital Library of Ethiopia Opens in a new window"
+    },
+    {
+      "href": "https://profiles.arizona.edu/person/yshirley",
+      "label": "profiles.arizona.edu Yancy L Shirley | UA Profiles Opens in a new window"
+    },
+    {
+      "href": "https://galaxiesbook.org/references.html",
+      "label": "galaxiesbook.org References - Dynamics and Astrophysics of Galaxies Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12287688/",
+      "label": "pmc.ncbi.nlm.nih.gov Atacama Large Aperture Submillimeter Telescope (AtLAST) science: Gas and dust in nearby galaxies - PMC Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/5A14AE2FF9ECAD9C73713CB219F7A816/S132335802510088Xa.pdf/probing-the-resolved-k-s-relation-in-nearby-galaxies-insights-from-uvit-and-alma-observations.pdf",
+      "label": "cambridge.org Probing the resolved K-S relation in nearby galaxies: Insights from UVIT and ALMA observations - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://iris.sissa.it/retrieve/71342cb5-257c-4e73-b603-d44aaa447022/Perrotta24.pdf",
+      "label": "iris.sissa.it Astrochemistry of the Molecular Gas in Dusty Star-Forming Galaxies at the Cosmic Noon - IRIS Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC7813222/",
+      "label": "pmc.ncbi.nlm.nih.gov High-redshift star formation in the Atacama large millimetre/submillimetre array era - PMC Opens in a new window"
+    },
+    {
+      "href": "https://www.diva-portal.org/smash/get/diva2:1548184/FULLTEXT01.pdf",
+      "label": "diva-portal.org Molecular gas and ionizing radiation in star-forming galaxies - Diva-portal.org Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6544524/",
+      "label": "pmc.ncbi.nlm.nih.gov Fast and inefficient star formation due to short-lived molecular clouds and rapid feedback - PMC Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/0810.2556",
+      "label": "arxiv.org [0810.2556] The Star Formation Efficiency in Nearby Galaxies: Measuring Where Gas Forms Stars Effectively - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1612.05275",
+      "label": "arxiv.org Molecular Gas in the Outskirts - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1088%2F0004-637x%2F815%2F2%2F103",
+      "label": "oamonitor.ireland.openaire.eu DENSE GAS FRACTION AND STAR FORMATION EFFICIENCY Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/Chen_refs.html",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - Hsiao-Wen Chen Opens in a new window"
+    },
+    {
+      "href": "https://open-research-europe.ec.europa.eu/articles/4-148",
+      "label": "open-research-europe.ec.europa.eu Atacama Large Aperture Submillimeter Telescope (AtLAST) science: Gas and dust in nearby galaxies. - Open Research Europe Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/404551136_Molecular_clouds_at_the_edge_of_the_Galaxy_II_Physical_properties_and_scaling_relations",
+      "label": "researchgate.net Molecular clouds at the edge of the Galaxy. II. Physical properties and scaling relations | Request PDF - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://fermi.gsfc.nasa.gov/science/mtgs/symposia/2011/program/session2/Casandjian.pdf",
+      "label": "fermi.gsfc.nasa.gov Galactic Diffuse Emission: Models and Interpretation - Fermi Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2011/krumholz11b.pdf",
+      "label": "mso.anu.edu.au WHICH PHASE OF THE INTERSTELLAR MEDIUM CORRELATES WITH THE STAR FORMATION RATE? - Research School of Astronomy & Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1106.2098",
+      "label": "arxiv.org The metallicity dependence of the CO \u2192 H2 conversion factor in z\u22651 star forming galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://indico.in2p3.fr/event/2632/attachments/20137/24745/jballet_LPNHE_0210.pdf",
+      "label": "indico.in2p3.fr The \u03b3-ray sky after one year of the Fermi satellite - IN2P3 Events Directory (Indico) Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept12/Calzetti/Calzetti_refs.html",
+      "label": "ned.ipac.caltech.edu Star Formation Rate Indicators - Daniela Calzetti Opens in a new window"
+    },
+    {
+      "href": "https://docta.ucm.es/bitstreams/4bd1348b-5f21-43f5-a403-8cdae8759676/download",
+      "label": "docta.ucm.es Local luminous infrared galaxies: Spatially resolved mid-infrared Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/astro-ph/0606186",
+      "label": "arxiv.org [astro-ph/0606186] Near-Infrared and Star-forming properties of Local Luminous Infrared Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1005.0971",
+      "label": "arxiv.org arXiv:1005.0971v1 [astro-ph.GA] 6 May 2010 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/astro-ph/0610616",
+      "label": "arxiv.org arXiv:astro-ph/0610616v1 20 Oct 2006 Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10344234",
+      "label": "par.nsf.gov A hard X-ray view of luminous and ultra-luminous infrared galaxies in GOALS \u2013 I. AGN obscuration along the merger sequence - NSF PAR Opens in a new window"
+    },
+    {
+      "href": "https://www.eaobservatory.org/jcmt/science/jcmt-notable-papers/",
+      "label": "eaobservatory.org JCMT Notable Papers \u2013 James Clerk Maxwell Telescope Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/234193646_Submillimeter_continuum_observations_of_Rho_Ophiuchi_A_-_The_candidate_protostar_VLA_1623_and_prestellar_clumps",
+      "label": "researchgate.net (PDF) Submillimeter continuum observations of Rho Ophiuchi A - The candidate protostar VLA 1623 and prestellar clumps - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://www.eas-journal.org/articles/eas/ref/2011/06/eas1151011/eas1151011.html",
+      "label": "eas-journal.org Small-scale properties of low-mass Class 0 protostars: digging into the memory of accretion processes | EAS Publications Series Opens in a new window"
+    },
+    {
+      "href": "http://www.eaobservatory.org/JCMT/science/publications/pubs-1993.html",
+      "label": "eaobservatory.org JCMT refereed publication list for 1993 Opens in a new window"
+    },
+    {
+      "href": "https://ntrs.nasa.gov/api/citations/20200003040/downloads/20200003040.pdf",
+      "label": "ntrs.nasa.gov Detection of Photospheric Features in the Near-Infrared Spectrum of a Class 0 Protostar Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/305/1/143/3082385/305-1-143.pdf",
+      "label": "academic.oup.com The initial conditions of isolated star formation -- III. Millimetre continuum mapping of pre-stellar cores Opens in a new window"
+    },
+    {
+      "href": "https://cdsarc.cds.unistra.fr/viz-bin/cat/J/A+A/447/221",
+      "label": "cdsarc.cds.unistra.fr Dust continuum emission from IRAS sources : J/A+A/447/221 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/a/beltran_m_1",
+      "label": "arxiv.org Maria T. Beltran's articles on arXiv Opens in a new window"
+    },
+    {
+      "href": "https://people.ira.inaf.it/brand/papers/Edinburgh2018-poster.pdf",
+      "label": "people.ira.inaf.it Fragmentation properties of massive protocluster gas clumps: an ALMA study - INAF Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/509964/file/509964_Fulltext.pdf",
+      "label": "research.chalmers.se Fragmentation properties of massive protocluster gas clumps: an ALMA study - research.chalmers.se Opens in a new window"
+    }
+  ]
+}

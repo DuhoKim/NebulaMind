@@ -1,0 +1,34 @@
+{
+  "mission_id": "GALAXY_REVIEW_BASE_DR_20260715",
+  "policy": "A review whose local composite-ID verification requires a non-approvable command is marked RAW_DEFERRED and does not halt later queue items. Hwao finalizes deferred reviews manually.",
+  "updated_utc": "2026-07-16T00:13:48Z",
+  "items": [
+    {
+      "queue_item": 6,
+      "review": "Tacconi, Genzel & Sternberg 2020 — The Evolution of the Star-Forming Interstellar Medium Across Cosmic Time",
+      "status": "RAW_DEFERRED_FOR_HWAO_MANUAL_FINALIZATION",
+      "raw_packet_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area_review_06_tacconi_genzel_sternberg_2020_DR_RAW_PACKET.md",
+      "raw_packet_sha256": "05ec1de623c780302ea473c17af9b5519e94e7dcb3abfc113bbf8a800408d7d6",
+      "review_identity_status": "PASS_ADS_CROSSREF_ARXIV",
+      "dr_execution": {
+        "conversation_id": "901a6142feada8f1",
+        "one_prompt": true,
+        "one_start": true,
+        "submit_utc": "2026-07-15T16:14:26.427986Z",
+        "research_start_utc": "2026-07-15T16:15:02.907519Z",
+        "challenge": false,
+        "failure": false
+      },
+      "deferred_reason": "The lane cannot approve the local raw-source extraction command required for bibliography verification. This was not an account throttle or challenge.",
+      "actions_not_taken": [
+        "no additional account action",
+        "no prompt resend",
+        "no second Start",
+        "no canonical release",
+        "no wiki/database/trust/deployment/publication/git write",
+        "no conversation deletion"
+      ],
+      "manual_next_action": "Hwao performs composite-ID and review-bibliography reconciliation, then builds and validates the canonical packet."
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "marker": "NEBULAMIND_V3_GESTURE_POSE_QA",
+  "approved_pose": {
+    "id": "open_palm",
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/identity/presenter_c_gesture_open_palm.png",
+    "sha256": "797e3263fcecb18b80a7793659a806f1cb57f17051a16e8e2b1fb6566a70c427",
+    "checks": ["identity continuity pass", "frontality pass", "mouth visibility pass", "hand anatomy pass", "crop margin pass"]
+  },
+  "rejected_pose": {
+    "id": "counting",
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/identity/presenter_c_gesture_counting.png",
+    "reason": "Gesture is visually ambiguous and does not read as a clean count."
+  },
+  "animation_gate": "Run short full-frame exact-audio lip-sync and verify that the hand/body remain stable."
+}

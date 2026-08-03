@@ -1,0 +1,222 @@
+{
+  "checks": {
+    "claim_2913_parent_replaced": true,
+    "claim_2921_parent_replaced": true,
+    "claim_2948_exists": true,
+    "dependency_rows_for_target_evidence": 0,
+    "evidence_26678_on_2948": true,
+    "evidence_26679_on_2948": true,
+    "evidence_26694_on_2546": true
+  },
+  "claim_evidence_counts": [
+    {
+      "claim_id": 2546,
+      "evidence_ids": [
+        26694
+      ],
+      "n": 1
+    },
+    {
+      "claim_id": 2948,
+      "evidence_ids": [
+        26678,
+        26679
+      ],
+      "n": 2
+    }
+  ],
+  "claims": [
+    {
+      "created_at": "2026-06-15 16:41:37.567556",
+      "id": 2546,
+      "order_idx": 417,
+      "page_id": 57,
+      "rewrite_status": null,
+      "section": "Star Formation, Quenching & Color Bimodality",
+      "text": "The growth of central stellar mass density is linked to mass quenching.",
+      "trust_level": "0.5",
+      "trust_score": 0.0,
+      "updated_at": "2026-06-15 16:41:37.567556"
+    },
+    {
+      "created_at": "2026-06-20 03:15:43.927423",
+      "id": 2913,
+      "order_idx": 8,
+      "page_id": 57,
+      "rewrite_status": "parent_replaced",
+      "section": "Retrieval-Complete Evidence Claims",
+      "text": "the quenching of star formation in massive galaxies by AGN feedback at $z\\sim2$ is a rapid process.",
+      "trust_level": "reported",
+      "trust_score": 0.2,
+      "updated_at": "2026-07-04 14:10:34.818330"
+    },
+    {
+      "created_at": "2026-06-20 03:15:43.927423",
+      "id": 2921,
+      "order_idx": 16,
+      "page_id": 57,
+      "rewrite_status": "parent_replaced",
+      "section": "Retrieval-Complete Evidence Claims",
+      "text": "the growth of central stellar mass density is linked to mass quenching.",
+      "trust_level": "reported",
+      "trust_score": 0.2,
+      "updated_at": "2026-07-04 14:10:34.818330"
+    },
+    {
+      "created_at": "2026-07-04 14:10:34.818330",
+      "id": 2948,
+      "order_idx": 738,
+      "page_id": 57,
+      "rewrite_status": null,
+      "section": "AGN Feedback & Quenching",
+      "text": "In selected massive galaxies at cosmic noon (roughly z\u22481.5\u20133), star formation can shut down rapidly, with AGN activity or AGN feedback implicated in some observations and simulations; this remains a sample- and model-dependent pathway rather than a universal z\u223c2 quenching rule.",
+      "trust_level": "reported",
+      "trust_score": 0.2,
+      "updated_at": "2026-07-04 14:10:34.818330"
+    }
+  ],
+  "dependencies": {
+    "evidence_comments": [],
+    "evidence_element_links": [],
+    "evidence_votes": [],
+    "jury_scorecards": []
+  },
+  "evidence": [
+    {
+      "ads_bibcode": null,
+      "arxiv_id": "2605.31052v1",
+      "claim_id": 2948,
+      "confidence": null,
+      "created_at": "2026-06-20 03:15:43.927423",
+      "doi": null,
+      "entailment": null,
+      "evidence_status": "production_active",
+      "id": 26678,
+      "quality": 0.5,
+      "relevance": null,
+      "rigor": null,
+      "source_channel": "page57_seed_fix4_20260620",
+      "stance": "supports",
+      "stance_jury_run_at": null,
+      "status": "active",
+      "title": "Unveiling the population of massive quenched galaxies at $z\\ge2$ in the COLIBRE simulations -- II. The role of AGN feedback and environment on their emergence",
+      "url": "http://arxiv.org/abs/2605.31052v1",
+      "verified_at": "2026-06-20 03:15:43.927423",
+      "year": null
+    },
+    {
+      "ads_bibcode": null,
+      "arxiv_id": "2210.03747v2",
+      "claim_id": 2948,
+      "confidence": null,
+      "created_at": "2026-06-20 03:15:43.927423",
+      "doi": null,
+      "entailment": null,
+      "evidence_status": "production_active",
+      "id": 26679,
+      "quality": 0.5,
+      "relevance": null,
+      "rigor": null,
+      "source_channel": "page57_seed_fix4_20260620",
+      "stance": "supports",
+      "stance_jury_run_at": null,
+      "status": "active",
+      "title": "Rapid Quenching of Galaxies at Cosmic Noon",
+      "url": "http://arxiv.org/abs/2210.03747v2",
+      "verified_at": "2026-06-20 03:15:43.927423",
+      "year": null
+    },
+    {
+      "ads_bibcode": null,
+      "arxiv_id": "1308.5224v1",
+      "claim_id": 2546,
+      "confidence": null,
+      "created_at": "2026-06-20 03:15:43.927423",
+      "doi": null,
+      "entailment": null,
+      "evidence_status": "production_active",
+      "id": 26694,
+      "quality": 0.5,
+      "relevance": null,
+      "rigor": null,
+      "source_channel": "page57_seed_fix4_20260620",
+      "stance": "supports",
+      "stance_jury_run_at": null,
+      "status": "active",
+      "title": "A Link Between Star Formation Quenching and Inner Stellar Mass Density in SDSS Central Galaxies",
+      "url": "http://arxiv.org/abs/1308.5224v1",
+      "verified_at": "2026-06-20 03:15:43.927423",
+      "year": null
+    }
+  ],
+  "expected_prior_executed_state": {
+    "claim_2913_rewrite_status": "parent_replaced",
+    "claim_2921_rewrite_status": "parent_replaced",
+    "claim_2948_exists": true,
+    "evidence_26678_claim_id": 2948,
+    "evidence_26679_claim_id": 2948,
+    "evidence_26694_claim_id": 2546
+  },
+  "overall_current_state_matches_prior_execution": true,
+  "page_versions_latest": [
+    {
+      "content_len": 15000,
+      "content_md5": "b97223f91897e8f8541b9c26c744ebb7",
+      "created_at": "2026-07-04 06:21:12.468148",
+      "id": 6204,
+      "page_id": 57,
+      "version_num": 1710
+    },
+    {
+      "content_len": 14077,
+      "content_md5": "265e92569f0eb2336e8f31af90a1f359",
+      "created_at": "2026-07-02 07:33:12",
+      "id": 6202,
+      "page_id": 57,
+      "version_num": 1709
+    },
+    {
+      "content_len": 13325,
+      "content_md5": "44246441dbb083afad2dda6f05adf54e",
+      "created_at": "2026-06-21 07:14:22.958714",
+      "id": 6197,
+      "page_id": 57,
+      "version_num": 1708
+    }
+  ],
+  "scope": "READ_ONLY_CURRENT_STATE_FOR_2913_2921_DISPOSITIONS_NO_SQL_APPLY_ARTIFACT",
+  "snapshot_utc": "2026-07-05T14:57:32Z",
+  "target_claim_ids": [
+    2913,
+    2921,
+    2546,
+    2948
+  ],
+  "target_evidence_ids": [
+    26678,
+    26679,
+    26694
+  ],
+  "trust_audit_recent_for_claims": [
+    {
+      "error": "ProgrammingError('(psycopg2.errors.UndefinedColumn) column \"old_trust_level\" does not exist\\nLINE 1: SELECT id, claim_id, trigger, old_trust_level, new_trust_lev...\\n                                      ^\\n')"
+    }
+  ],
+  "wiki_page_57": [
+    {
+      "content_len": 15000,
+      "content_md5": "b97223f91897e8f8541b9c26c744ebb7",
+      "id": 57,
+      "slug": "galaxy-evolution",
+      "title": "Galaxy Evolution",
+      "updated_at": "2026-07-05 11:39:15.565738"
+    }
+  ],
+  "zero_mutation_ledger": {
+    "db_writes": 0,
+    "git_commit_push_merge": 0,
+    "prose_wiki_publish": 0,
+    "rollback": 0,
+    "sql_apply_artifacts_created": 0
+  }
+}

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="report-marker" content="PAPER_BOARD_AUDIT_REPORT_20260728_V1">
+  <title>Paper Board Portfolio Audit · 28 July 2026</title>
+  <style>
+    :root { color-scheme: dark; --bg:#09111f; --panel:#101b2e; --panel2:#0d1728; --text:#edf4ff; --muted:#9fb0c8; --line:#243550; --cyan:#6ad7ff; --green:#69e6a6; --amber:#ffc76a; --red:#ff8294; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at top right,#142846 0,#09111f 38rem); color:var(--text); font:16px/1.6 ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    main { width:min(1160px,calc(100% - 32px)); margin:0 auto; padding:40px 0 72px; }
+    h1,h2,h3 { line-height:1.2; letter-spacing:-.02em; }
+    h1 { font-size:clamp(2.2rem,5vw,4.4rem); margin:.3rem 0 1rem; max-width:18ch; }
+    h2 { margin:2.4rem 0 1rem; font-size:1.55rem; }
+    h3 { margin:.2rem 0 .65rem; font-size:1.15rem; }
+    p { margin:.55rem 0; }
+    a { color:var(--cyan); }
+    .eyebrow { color:var(--cyan); font-weight:800; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem; }
+    .lede { color:#cbd8eb; font-size:1.13rem; max-width:76ch; }
+    .badges,.metrics,.cards,.lanes { display:grid; gap:12px; }
+    .badges { display:flex; flex-wrap:wrap; margin:20px 0; }
+    .badge { border:1px solid var(--line); border-radius:999px; padding:6px 11px; color:var(--muted); background:#0b1627; font-size:.85rem; }
+    .badge.ok { color:var(--green); border-color:#235c49; }
+    .badge.warn { color:var(--amber); border-color:#6a5225; }
+    .badge.stop { color:var(--red); border-color:#6e3441; }
+    .metrics { grid-template-columns:repeat(4,minmax(0,1fr)); margin:24px 0 30px; }
+    .metric,.card,.lane,.notice { border:1px solid var(--line); border-radius:16px; background:linear-gradient(180deg,var(--panel),var(--panel2)); }
+    .metric { padding:18px; }
+    .metric strong { display:block; font-size:2rem; line-height:1; color:var(--cyan); }
+    .metric span { color:var(--muted); font-size:.86rem; }
+    .cards { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    .card { padding:21px; border-top-width:4px; }
+    .card.red { border-top-color:var(--red); }
+    .card.amber { border-top-color:var(--amber); }
+    .status { font:700 .78rem/1.2 ui-monospace,SFMono-Regular,Menlo,monospace; color:var(--amber); word-break:break-word; }
+    .card ul,.notice ul { padding-left:1.2rem; margin:.7rem 0 0; }
+    .card li,.notice li { margin:.35rem 0; }
+    .maximum { margin-top:1rem; padding:.75rem .9rem; border-left:3px solid var(--cyan); background:#0b1729; color:#dce9fb; }
+    .notice { padding:20px 22px; margin:16px 0; }
+    .notice strong { color:var(--green); }
+    .lanes { grid-template-columns:repeat(4,minmax(0,1fr)); }
+    .lane { padding:16px; }
+    .lane b { color:var(--cyan); }
+    .lane span { color:var(--muted); display:block; }
+    table { width:100%; border-collapse:collapse; }
+    th,td { border-bottom:1px solid var(--line); padding:10px 8px; text-align:left; vertical-align:top; }
+    th { color:#c7d8ee; }
+    .table-wrap { overflow:auto; border:1px solid var(--line); border-radius:14px; padding:0 10px; background:#0b1525; }
+    footer { margin-top:40px; color:var(--muted); border-top:1px solid var(--line); padding-top:20px; }
+    code { color:#d8f2ff; background:#12233a; padding:.1rem .3rem; border-radius:5px; }
+    .no-phrase { margin-top:24px; border:1px solid #315b54; background:#0d2927; color:#b6f4da; padding:14px 16px; border-radius:12px; font-weight:800; text-align:center; letter-spacing:.06em; }
+    @media (max-width:850px) { .metrics,.cards,.lanes { grid-template-columns:1fr; } main { width:min(100% - 22px,1160px); padding-top:24px; } }
+  </style>
+</head>
+<body>
+<main>
+  <!-- PAPER_BOARD_AUDIT_REPORT_20260728_V1 -->
+  <div class="eyebrow">NebulaMind · Paper Board integrity audit</div>
+  <h1>Three promising papers, three different integrity problems.</h1>
+  <p class="lede">An automated overnight board reviewed the highest-priority TNG validation draft, a massive-galaxy abundance paper, and an escape-fraction research pair. The work finished early because the evidence had settled. No paper or board record was changed.</p>
+  <div class="badges">
+    <span class="badge ok">Audit complete with findings</span>
+    <span class="badge warn">Automated review only</span>
+    <span class="badge stop">Human validation: 0</span>
+    <span class="badge">Observed 27 July 2026 · 22:48 KST</span>
+  </div>
+
+  <section class="metrics" aria-label="portfolio baseline">
+    <div class="metric"><strong>13</strong><span>visible Paper Board items</span></div>
+    <div class="metric"><strong>3</strong><span>priority packets audited</span></div>
+    <div class="metric"><strong>9</strong><span>primary and cross-review lanes</span></div>
+    <div class="metric"><strong>0</strong><span>papers or board records changed</span></div>
+  </section>
+
+  <section class="notice">
+    <h2>Bottom line</h2>
+    <p><strong>P0 has an internal manuscript contradiction. P1 has reproducible arithmetic but missing source support and visible layout/state defects. P2 has a zero-denominator citation gate and unproven lineage.</strong></p>
+    <p>These are integrity findings, not corrected papers. Every conclusion below remains advisory until a qualified human reviews the science and sources.</p>
+  </section>
+
+  <h2>Packet outcomes</h2>
+  <section class="cards">
+    <article class="card red">
+      <div class="status">P0 · CORRECTION LEDGER ONLY</div>
+      <h3>TNG validation</h3>
+      <p>The star-formation result survives with provenance caveats. The metallicity conclusion does not.</p>
+      <ul>
+        <li>The served figure and Results retain the unmatched-scale ≈−0.50 versus −0.25, factor-two state.</li>
+        <li>The Abstract and Conclusion instead claim a matched-scale analysis missing from Methods, Results, figures, and Discussion.</li>
+        <li>The public review link returns 404; one load-bearing citation is cross-wired.</li>
+      </ul>
+      <div class="maximum"><b>Surviving scope:</b> the +0.41/+0.49 dex SFMS over-evolution gap is internally consistent as a conservative lower bound, with source caveats.</div>
+    </article>
+
+    <article class="card amber">
+      <div class="status">P1 · CLAIMS REQUIRE NARROWING</div>
+      <h3>Massive-galaxy abundance</h3>
+      <p>The count-to-shift arithmetic reproduces. The evidence and representation do not support the paper's strongest wording.</p>
+      <ul>
+        <li>No direct observed primary-source cumulative-density row is pinned for the headline <code>n(&gt;M★)</code> anchor.</li>
+        <li>Figure 1 says 0.28 dex while its caption says 0.20 dex; Table 1 clips citations at the page edge.</li>
+        <li>Systematic terms mix populations and correlated SED effects; manuscript-reported TNG counts were not regenerated.</li>
+      </ul>
+      <div class="maximum"><b>Surviving scope:</b> at exactly z=5, the claimed anchor and reported TNG counts imply a 0.20–0.28 dex footing-dependent shift; this suggests but does not prove no robust TNG tension. z≈5.5 is marginal.</div>
+    </article>
+
+    <article class="card red">
+      <div class="status">P2 · LINEAGE UNRESOLVED</div>
+      <h3>Escape-fraction pair</h3>
+      <p>The citation gap is real. The relationship between the pipeline run and frontier synthesis is plausible but mechanically unproven.</p>
+      <ul>
+        <li>The citation gate checked 0 claims. “0 unsupported” is therefore vacuous; enumerated positive passages are also 0.</li>
+        <li>Chisholm and Flury identities require correction; the pipeline's Simmonds shorthand is cross-wired.</li>
+        <li>The pipeline abstract implies JWST data use while its provenance explicitly says no survey catalog data was used.</li>
+      </ul>
+      <div class="maximum"><b>Relationship:</b> likely supporting precursor with strong topical and numerical continuity; direct derivation chain not established.</div>
+    </article>
+  </section>
+
+  <h2>Exact source-identity corrections</h2>
+  <div class="table-wrap">
+    <table>
+      <thead><tr><th>Source</th><th>Adjudicated identity</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Chisholm+22</td><td><code>2022MNRAS.517.5104C</code>, MNRAS 517, 5104</td><td>Primary table's 515.4265C entry is false and must not be reused.</td></tr>
+        <tr><td>Flury+22</td><td><code>2022ApJ...930..126F</code>, LzLCS II</td><td>Exact printed diagnostic-role reference; LzLCS I is related but different.</td></tr>
+        <tr><td>Simmonds+24</td><td>Frontier: <code>2024MNRAS.527.6139S</code></td><td>Frontier resolved; pipeline quarantined because two same-year candidates appear in its novelty gate.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>How the review was controlled</h2>
+  <section class="lanes">
+    <div class="lane"><b>Hwao / Fable</b><span>Coordinator and final adjudicator; conclusions waited for receipts.</span></div>
+    <div class="lane"><b>Lana</b><span>Primary P0 science review; P1/P2 scientific cross-review.</span></div>
+    <div class="lane"><b>Kun</b><span>Primary P1 audit; P0/P2 adversarial and custody cross-review.</span></div>
+    <div class="lane"><b>Goru</b><span>Primary P2 census; P0/P1 mechanical cross-review.</span></div>
+  </section>
+  <section class="notice">
+    <ul>
+      <li>Every packet had one primary and two reviewers who did not review their own primary work.</li>
+      <li>All coordinator/lane manifests passed; all structured outputs parsed.</li>
+      <li>All 12 public source conditions matched the frozen baseline; 26 protected local input hashes were unchanged.</li>
+      <li>Rendered P0 and P1 defects were independently checked rather than inferred from text extraction alone.</li>
+      <li>Automated “ACCEPT” labels were treated as advisory, never as human review.</li>
+    </ul>
+  </section>
+
+  <h2>Resource and safety record</h2>
+  <div class="table-wrap">
+    <table>
+      <tbody>
+        <tr><th>Subscription snapshot</th><td>Fable 34% of current 5-hour window / 12% weekly; Codex 1% weekly; Gemini 1.4% current / 1.3% weekly.</td></tr>
+        <tr><th>Public scope</th><td>This new standalone report only. No existing report, paper, PDF, card, Lab run, cockpit, or wiki artifact was replaced.</td></tr>
+        <tr><th>Mutations</th><td>Database/wiki 0 · service deploy 0 · authorized controlled frontend restart 1 · project source 0 · Git actions 0.</td></tr>
+        <tr><th>Account surfaces</th><td>No login, CAPTCHA, payment, OAuth, token, or secret flow was entered.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Public source artifacts</h2>
+  <ul>
+    <li><a href="https://nebulamind.net/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf">P0 served TNG-validation PDF</a> — review link missing at audit time.</li>
+    <li><a href="https://nebulamind.net/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf">P1 served massive-abundance PDF</a></li>
+    <li><a href="https://nebulamind.net/agent-reports/research-frontiers/reionization-fesc-budget-landscape.pdf">P2 frontier escape-fraction PDF</a></li>
+    <li><a href="https://nebulamind.net/api/lab/runs/fesc002/artifact/draft.pdf">P2 supporting pipeline PDF</a></li>
+  </ul>
+
+  <h2>Held repair queue</h2>
+  <ol>
+    <li>P0: align or retract the matched-metallicity claim; repair citations, count, review link, and Figure 2.</li>
+    <li>P1: pin direct cumulative evidence; regenerate the figure legend/arrow and clipped table; apply narrower z=5 wording.</li>
+    <li>P2: repair the pipeline reference/provenance/novelty state and produce a derivation receipt before considering lineage promotion.</li>
+  </ol>
+  <p>Those repairs require separate future approval. This report does not authorize them.</p>
+
+  <div class="no-phrase">NO ACTIVE EXECUTION PHRASE</div>
+  <footer>
+    <p><b>Report marker:</b> PAPER_BOARD_AUDIT_REPORT_20260728_V1</p>
+    <p>Generated from immutable receipts and source checks. Automated review only; not human validation or peer review.</p>
+  </footer>
+</main>
+</body>
+</html>

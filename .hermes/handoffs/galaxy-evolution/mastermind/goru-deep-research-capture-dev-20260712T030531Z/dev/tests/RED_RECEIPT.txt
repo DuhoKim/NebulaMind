@@ -1,0 +1,101 @@
+/Users/duhokim/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+FFFFFFFF                                                                 [100%]
+=================================== FAILURES ===================================
+___________________________ test_12_classifications ____________________________
+
+    def test_12_classifications():
+        for fx_name, expected in FIXTURES.items():
+            fx_path = os.path.join(FIXTURE_DIR, fx_name)
+            verdict = wait_and_extract.parse_dom_fixture(fx_path, "target_123", MARKER)
+    
+>           assert verdict['state'] == expected['state'], f"Mismatch in state for {fx_name}"
+E           TypeError: 'NoneType' object is not subscriptable
+
+dev/tests/test_wait_and_extract.py:31: TypeError
+_______________________ test_exact_requested_target_echo _______________________
+
+    def test_exact_requested_target_echo():
+        verdict = wait_and_extract.parse_dom_fixture(os.path.join(FIXTURE_DIR, "fx_composer_idle.html"), "conv_abc", MARKER)
+>       assert verdict['target_id'] == "conv_abc"
+E       TypeError: 'NoneType' object is not subscriptable
+
+dev/tests/test_wait_and_extract.py:47: TypeError
+____________________________ test_unknown_hard_stop ____________________________
+
+    def test_unknown_hard_stop():
+        # Provide a garbage HTML to force UNKNOWN state
+        garbage_path = os.path.join(FIXTURE_DIR, "fx_garbage.html")
+        with open(garbage_path, 'w') as f:
+            f.write("<html><body>Nothing recognizable</body></html>")
+    
+        verdict = wait_and_extract.parse_dom_fixture(garbage_path, "conv_unknown", MARKER)
+>       assert verdict['state'] == "UNKNOWN"
+E       TypeError: 'NoneType' object is not subscriptable
+
+dev/tests/test_wait_and_extract.py:56: TypeError
+___________________ test_marker_exactly_once_final_captured ____________________
+
+    def test_marker_exactly_once_final_captured():
+        # From oracle, fx_complete_ok should be CAPTURED
+        verdict = wait_and_extract.parse_dom_fixture(os.path.join(FIXTURE_DIR, "fx_complete_ok.html"), "conv_1", MARKER)
+>       assert verdict['verdict_class'] == "CAPTURED_OK"
+E       TypeError: 'NoneType' object is not subscriptable
+
+dev/tests/test_wait_and_extract.py:64: TypeError
+______________________ test_deterministic_distinct_bodies ______________________
+
+    def test_deterministic_distinct_bodies():
+        v1 = wait_and_extract.parse_dom_fixture(os.path.join(FIXTURE_DIR, "fx_complete_ok.html"), "conv_1", MARKER)
+        v2 = wait_and_extract.parse_dom_fixture(os.path.join(FIXTURE_DIR, "fx_complete_ok.html"), "conv_1", MARKER)
+    
+        v3 = wait_and_extract.parse_dom_fixture(os.path.join(FIXTURE_DIR, "fx_complete_marker_missing.html"), "conv_1", MARKER)
+    
+>       assert v1['extracted_body_sha256'] == v2['extracted_body_sha256']
+E       TypeError: 'NoneType' object is not subscriptable
+
+dev/tests/test_wait_and_extract.py:74: TypeError
+____________________________ test_immutable_receipt ____________________________
+
+    def test_immutable_receipt():
+        # Mock writing a file and securing it
+        tmp_path = "/tmp/test_body_receipt.md"
+        with open(tmp_path, "w") as f:
+            f.write("Test body")
+    
+        receipt = wait_and_extract.write_capture_receipt(tmp_path)
+>       assert 'sha256' in receipt
+E       TypeError: argument of type 'NoneType' is not iterable
+
+dev/tests/test_wait_and_extract.py:84: TypeError
+___________________________ test_refusing_overwrite ____________________________
+
+    def test_refusing_overwrite():
+        tmp_path = "/tmp/test_body_overwrite.md"
+        with open(tmp_path, "w") as f:
+            f.write("Old body")
+    
+        # Should raise error if target file exists
+        with pytest.raises(Exception, match="exists|overwrite"):
+>           wait_and_extract.save_body("New body", tmp_path)
+E           Failed: DID NOT RAISE <class 'Exception'>
+
+dev/tests/test_wait_and_extract.py:99: Failed
+____________________ test_live_capture_boundary_raises_held ____________________
+
+    def test_live_capture_boundary_raises_held():
+        with pytest.raises(Exception, match="HELD"):
+>           wait_and_extract.live_capture_boundary()
+E           Failed: DID NOT RAISE <class 'Exception'>
+
+dev/tests/test_wait_and_extract.py:105: Failed
+=========================== short test summary info ============================
+FAILED dev/tests/test_wait_and_extract.py::test_12_classifications - TypeErro...
+FAILED dev/tests/test_wait_and_extract.py::test_exact_requested_target_echo
+FAILED dev/tests/test_wait_and_extract.py::test_unknown_hard_stop - TypeError...
+FAILED dev/tests/test_wait_and_extract.py::test_marker_exactly_once_final_captured
+FAILED dev/tests/test_wait_and_extract.py::test_deterministic_distinct_bodies
+FAILED dev/tests/test_wait_and_extract.py::test_immutable_receipt - TypeError...
+FAILED dev/tests/test_wait_and_extract.py::test_refusing_overwrite - Failed: ...
+FAILED dev/tests/test_wait_and_extract.py::test_live_capture_boundary_raises_held
+8 failed in 0.04s

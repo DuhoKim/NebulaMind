@@ -1,0 +1,325 @@
+Simba Simulation Repository
+Simba
+Toggle navigation
+Home
+About
+Data
+Team
+Media
+Welcome to the
+Simba
+Project Repository
+Here you'll find information about 
+									the
+Simba
+galaxy formation simulations, along
+									with snapshots and galaxy/halo catalogs.
+MORE INFORMATION
+About
+Simba
+Simba
+is a state-of-the-art suite of galaxy formation simulations for exploring the co-evolution of galaxies, black holes, and intergalactic gas within a cosmological context.
+Simba
+employs novel multi-scale prescriptions for key physical processes governing galaxy evolution:
+Gizmo
+with Meshless Finite Mass hydrodynamics
+Grackle
+cooling including on-the-fly self-shielding
+H2-based star formation and 11-element chemistry
+Two-phase decoupled winds based on
+FIRE
+simulations
+Torque-limited and Bondi black hole accretion
+AGN jets, radiative winds, and X-ray feedback
+On-the-fly dust production and destruction
+Simba
+, tuned only to match the galaxy stellar mass function evolution and the M-sigma relation, reproduces a wide range of observations including:
+Galaxy color and stellar-to-halo mass bimodality
+Galaxy-black hole co-evolution
+Galaxy atomic and molecular contents
+Group and cluster X-ray scaling relations
+The Lyman alpha forest at low redshifts
+AGN luminosity functions
+Dust-to-gas ratios out to high redshifts
+Low-redshift CGM absorption lines
+Sub-millimetre galaxy number counts
+Many of these successes are unique to
+Simba
+, making it among the most advanced simulations to explore galaxy evolution and baryon cycling within cosmologically-evolving ecosystems.
+Publications
+Galaxies (12)
+Glowacki et al. (2021)
+: Evolution of Tully-Fisher via linewidths
+Li et al. (2021)
+: Extinction curves in MW-like galaxies
+Lovell et al. (2020)
+: SMG 850 micron number counts
+Lower et al. (2020)
+: How well can SED fitting measure stellar mass?
+Leung et al. (2020)
+: [CII] in Epoch of Reionization galaxies
+Davé et al. (2020)
+: HI and H2 properties vs. x[COLD]GASS
+Glowacki et al. (2020)
+: Baryonic Tully-Fisher relation
+Appleby et al. (2020)
+: sSFR and gas profiles in the green valley
+Wu et al. (2020)
+: EoR galaxies in the JWST era
+Rodiguez Montero et al. (2019)
+: Mergers, starbursts, and quenching
+Li et al. (2019)
+: Dust properties in Simba from z=0-6
+Davé et al. (2019)
+: Introducing Simba: Basic predictions
+Black holes and AGN (3)
+Thomas et al. (2021)
+: Radio galaxies in Simba
+Habouzit et al. (2021)
+: BHs in hydro sims
+Thomas et al. (2019)
+: Galaxy-BH co-evolution
+Groups and Clusters (1)
+Robson et al. (2020)
+: X-ray scaling relations
+Circumgalactic and Intergalactic Media (4)
+Appleby et al. (2021)
+: CGM in Simba vs. COS-Halos/COS-Dwarfs
+Sorini et al. (2020)
+: Constraining feedback using CGM HI
+Hassan et al. (2020)
+: Damped Lyman alpha systems in Simba & TD
+Christiansen et al. (2020)
+: Solving the Photon Underproduction Crisis
+Halos and Cosmic Web (6)
+Cui et al. (2021)
+: The origin of color bimodality (Nature Astro)
+Villaescusa-Navarro et al. (2021)
+: CAMELS
+Moews et al. (2021)
+: Inserting galaxies into halos via ML
+Kraljic et al. (2020)
+: Connectivity and galaxy properties
+Borrow et al. (2020)
+: Inter-lagrangian transfer
+Kraljic et al. (2020)
+: Spin alignments of galaxies and filaments
+Observational Comparisons (10)
+Dickey et al. (2021)
+: Isolated quenched galaxies
+Williams et al. (2021)
+: Molecular gas in z~1.5 galaxies from ALMA
+Florez et al. (2021)
+: AGN at Cosmic Noon
+Katsianis et al. (2021)
+: sSFR function and quenching
+Donevski et al. (2020)
+: Dust-to-gas in dusty ALMA galaxies
+Mamon et al. (2020)
+: Very young galaxies in SDSS
+Iyer et al. (2020)
+: Variability of galaxy star formation histories
+Sherman et al. (2020)
+: Quiescent galaxies at cosmic noon
+Carnall et al. (2019)
+: SFH of quiescent galaxies at z~1 in VANDELS
+Cullen et al. (2019)
+: Stellar metallicities at z~3 in VANDELS
+Simba
+Data
+Simba
+snapshots and galaxy catalogs are available for each of 151 output redshifts from z=20 to z=0.
+The hdf5
+Caesar
+catalogs contain many cross-matched galaxy & halo physical properties, photometry in 130+ FSPS bands, and progenitor/descendant links. To work with these catalogs, it's best to install
+Caesar
+.
+All files are listed by snapshot number.
+outputs.txt
+shows the mapping of [a z snap#]. In Caesar, you can get the nearest snapshot number to a desired redshift via:
+snapnum,snapz=caesar.progen.z_to_snap(redshift)
+.
+Getting the data:
+Clicking on the run name below (e.g. s50) will take you to the directory of
+snapshots
+for that run.
+Clicking on the associated description will take you to the directory of
+galaxy catalogs
+.
+Flagship Run
+100 Mpc/h box, 2x1024^3 particles.
+s50
+:
+Full
+Simba
+physics
+Feedback Variants
+50 Mpc/h box, 2x512^3 particles.
+s50
+:
+Full
+Simba
+physics
+s50nox
+:
+No X-ray AGN feedback
+s50nojet
+:
+No X-ray or jet feedback
+s50noagn
+:
+No AGN feedback
+s50nofb
+:
+No SF or AGN feedback
+High-Res Run
+25 Mpc/h box, 2x512^3 particles.
+s50
+:
+Full
+Simba
+physics
+Note: Galaxy catalogs are subject to periodic updates.  This repository contains the latest public versions.
+The
+Simba
+Team
+Meet the
+Simba
+team! We are a loosely-connected group spread across three+ continents.
+Everyone
+Edinburgh
+Cape Town
+Florida
+CCA
+Affiliates
+Romeel Davé
+×
+Close
+Romeel Davé
+Who Am I?
+Professor (University of Edinburgh). I'm interested in a range of galaxy evolution-related science.  I'm
+Simba
+project PI.
+Close
+Desika Narayanan
+×
+Close
+Desika Narayanan
+Who Am I?
+Faculty, University of Florida.  I'm interested in dust and ISM physics in galaxies within a cosmological context.
+Close
+Daniel Angl&eacutes-Alc&aacutezar
+×
+Close
+Daniel Angl&eacutes-Alc&aacutezar
+Who Am I?
+Faculty, University of Connecticut and Center for Computational Astrophysics (Simons Foundation). I'm interested in the growth and evolution of supermassive black holes.
+Close
+Ed Elson
+×
+Close
+Ed Elson
+Who Am I?
+Faculty, University of the Western Cape, Cape Town.  I am interested in HI galaxy science with South Africa's new MeerKAT array.
+Close
+Students@Florida
+×
+Close
+Students@Florida
+Who Are We?
+Karolina Garcia (PhD):
+Powderday RT.
+Prerak Garg (PhD, graduated):
+Modeling emission lines.
+Sidney Lower (PhD):
+SED fitting and post-starbursts galaxies.
+Sankalp Gilda (PhD):
+Machine Learning/Next-gen SED fitting software.
+Close
+Postdocs@Edinburgh
+×
+Close
+Postdocs@Edinburgh
+Who Are We?
+Weiguang Cui:
+Galaxy clusters, galaxy/halo connection, The 300 Simulations, ELUCID-Simba
+Daniele Sorini:
+Lyman alpha forest as a test of cosmology and galaxy feedback physics
+Close
+Students@Edinburgh
+×
+Close
+Students@Edinburgh
+Who Are We?
+Dylan Robson (PhD):
+X-ray properties of groups and clusters.
+Gennaro Di Pietro (PhD):
+TARANIS radiative transfer in Gizmo/Simba.
+Sarah Appleby (PhD):
+Galaxy profiles and CGM absorption.
+Tianyi Yang (PhD):
+Sunyaev-Zeldovich predictions.
+Ewan Jones (PhD):
+Improving Grackle for Simba.
+Fred Jennings (PhD):
+Group zoom simulations.
+Kevin Lo (PhD):
+Machine learning to populate N-body sims.
+Lawrence Bradley (MPhys):
+OVI/OVII/OVIII absorbers in Simba.
+Euan Newlands (MPhys):
+Orientation effects in CGM absorption.
+Katelin Donaldson (MPhys):
+Missing halo baryons via particle tracking.
+Lucie Scharr (MPhys):
+How feedback impacts cosmic star formation history.
+Close
+Affiliates
+×
+Close
+Affiliated Students
+Who Are We?
+Chris Lovell
+(postdoc, Hertfordshire): Sub-millimetre galaxies in Simba
+Sultan Hassan
+(postdoc, CCA): 21cm EoR, EoR galaxies, Damped Ly-a systems
+Katarina Kraljic
+(postdoc, Marseilles): Cosmic web and galaxy evolution
+Lamiya Mowla
+(postdoc, Toronto): Simba+Powderday predictions for JWST, ALMA, etc
+Nicole Thomas
+(postdoc, Durham): Radio AGN in Simba, MIGHTEE
+Ben Moews
+(postdoc, CMU): Machine learning using Simba
+Josh Borrow
+(postdoc, MIT): Baryonic flows on large scales, Simba/Swift development
+Yirui Zheng
+(PhD, St Andrews): Post-starbursts galaxies.
+Doug Rennehan
+(PhD, Victoria): Galaxy clusters, Simba/Kiara/Swift code development
+Curro Rodriguez Montero
+(PhD, Oxford): Mergers and quenching, post-starbursts galaxies.
+Renier Hough
+(PhD, NWU): Next-gen metallicity models in Simba
+Pratyush Kumar Das
+(India): Machine learning to populate N-body sims.
+Hollis Akins
+(Grinnell/Florida): UVJ selection in simulations.
+Close
+Multimedia
+Cool images coming soon!
+The Simba team
+Awesome movies any day now!
+The Simba team
+Amazing science plots being generated now!
+The Simba team
+Contact Us
+Name
+Subject
+Message
+Please let us know if you have any comments, suggestions, or requests.
+- The Simba Team
+Website by
+Romeel Davé
+Copyright © 2015 Template by
+webthemez.com

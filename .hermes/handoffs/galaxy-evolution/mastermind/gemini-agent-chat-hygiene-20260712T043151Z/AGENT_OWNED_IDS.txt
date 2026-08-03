@@ -1,0 +1,30 @@
+# Agent-owned Gemini conversation IDs — provenance-backed allowlist (Set 1)
+# Source: rampage base (gemini-web-rampage-20260711T052300Z) + extension
+# (gemini-web-rampage-extension-20260711T064115Z) WAVE_LEDGER "research started" rows.
+# Each ID is agent-created by our workflow. Duho-owned chats are NOT in this list and must not be touched.
+# Format: run_label | conversation_id | source_ledger
+# ---- rampage base ----
+R1   | /app/6c4c30f49a4738f1 | rampage-base
+R2   | /app/1035fcc7d9e1234a | rampage-base
+R3   | /app/7d8319249ac4668e | rampage-base
+R4   | /app/114dc49761321d3d | rampage-base
+R5   | /app/495e25aae563fc3f | rampage-base
+R6   | /app/031d2205005fb5b0 | rampage-base
+R3b  | /app/a5dad2bc444bd267 | rampage-base wave3
+R5b  | /app/3def089b3fae7c85 | rampage-base wave3
+R6b  | /app/df1130a60e87a46f | rampage-base wave3
+R1b  | /app/d387892caa2d0dc3 | rampage-base wave4
+R2b  | /app/f27534b7999a2052 | rampage-base wave4
+R4b  | /app/8a4ab3087378cb11 | rampage-base wave4
+# ---- extension ----
+R7   | /app/c17ed32ba8bbd82a | extension wave5
+R8   | /app/00fe88fed728f84a | extension wave5
+R9   | /app/4c996c6137949da1 | extension wave5
+R10  | /app/75f028429769b59b | extension wave6
+R11  | /app/425c8d966ecceaae | extension wave6
+R12  | /app/a7a48ccd3b91ffff | extension wave6
+R13  | /app/25ba93497633661d | extension wave7
+R14  | /app/28b23fbf2386908c | extension wave7
+# ---- Set 2 (weekend macro ~94 chats): NOT listed here; derive from macro logs and
+#      confirm agent-owned per chat before any action (see SCOPE_AND_ACK.md). ----
+# Total Set 1: 20 provenance-backed IDs.

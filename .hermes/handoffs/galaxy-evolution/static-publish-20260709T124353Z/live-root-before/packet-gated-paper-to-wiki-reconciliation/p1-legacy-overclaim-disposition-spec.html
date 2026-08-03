@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1 legacy overclaim disposition spec · Galaxy Evolution PGR</title><style>:root{color-scheme:dark}body{margin:0;background:#06101e;color:#edf6ff;font:16px/1.6 -apple-system,BlinkMacSystemFont,Segoe UI,sans-serif}main{max-width:1080px;margin:0 auto;padding:32px 18px 64px}.hero{border:1px solid rgba(98,214,239,.34);border-radius:24px;padding:26px;background:linear-gradient(135deg,rgba(8,24,42,.98),rgba(14,31,54,.84));box-shadow:0 22px 65px rgba(0,0,0,.30)}.eyebrow{color:#62d6ef;text-transform:uppercase;letter-spacing:.14em;font-weight:800;font-size:12px}h1{font-size:clamp(28px,5vw,46px);line-height:1.05;margin:8px 0 12px}h2{margin:30px 0 10px;color:#e8fbff}.lead{font-size:18px;color:#cfe4f6}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:18px}.card,.button{border:1px solid rgba(169,189,212,.27);border-radius:18px;padding:16px;background:rgba(8,24,42,.64)}.button{display:block;text-decoration:none;color:#edf6ff}.button b{display:block}.button span,.muted{display:block;color:#a9bdd4;font-size:13px;margin-top:4px}.status{display:inline-block;padding:4px 10px;border-radius:999px;border:1px solid rgba(98,214,239,.40);color:#9bdcff;font-size:13px;font-weight:800}.safety{border-color:rgba(34,197,94,.38);background:rgba(4,40,26,.35)}.warn{border-color:rgba(255,209,102,.42);background:rgba(70,50,10,.28)}.danger{border-color:rgba(255,107,107,.45);background:rgba(70,20,25,.30)}code{color:#a7f3d0}a{color:#9bdcff}table{width:100%;border-collapse:collapse;margin-top:12px}th,td{border-bottom:1px solid rgba(169,189,212,.18);padding:10px;text-align:left;vertical-align:top}th{color:#9bdcff}.pill{display:inline-block;padding:3px 9px;border-radius:999px;border:1px solid rgba(169,189,212,.30);color:#cfe4f6;font-size:12px;margin:2px 4px 2px 0}ol,ul{padding-left:22px}.marker{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:#9bb3cc;word-break:break-all}.choice{border-left:3px solid #62d6ef;padding-left:12px;margin:10px 0}.small{font-size:13px;color:#a9bdd4}</style></head>
+<body data-marker="GALAXY_EVOLUTION_PGR_P1_DISPOSITION_SPEC_20260706T101547Z" data-safety="NO_ACTIVE_EXECUTION_PHRASE"><main>
+<section class="hero">
+  <div class="eyebrow">Packet-gated reconciliation · P1 blocker spec</div>
+  <h1>Legacy overclaim disposition spec</h1>
+  <p class="lead">This public spec records the first safe docs-only step for the Packet-gated reconciliation lane: decide how to handle legacy AGN feedback claims that contradict the newer scoped successors before any Galaxy Evolution prose packet opens.</p>
+  <p><span class="status">spec prepared · no execution</span> <span class="pill">GALAXY_EVOLUTION_PGR_P1_DISPOSITION_SPEC_20260706T101547Z</span> <span class="pill">NO ACTIVE EXECUTION PHRASE</span></p>
+  <div class="grid">
+    <a class="button" href="/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/index.html"><b>Back to PGR workspace</b><span>Method directory and links.</span></a>
+    <a class="button" href="/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/wiki-page.html"><b>PGR wiki draft</b><span>Still a static draft; no replacement prose has been written.</span></a>
+    <a class="button" href="/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/quintet.html"><b>PGR Quintet</b><span>Scoped Hwao/Lana/Goru/Kun/Tori roles for this method.</span></a>
+  </div>
+</section>
+
+<section class="card danger">
+  <h2>Plain-English decision needed</h2>
+  <p><b>Do not write final Galaxy Evolution prose yet.</b> The AGN successor claims 2942–2947 are scoped and usable in isolation, but page-level prose is blocked because older adjacent claims still say broader things with stronger-looking certainty badges.</p>
+  <p>The P1 decision is: for each legacy overclaim below, should it be recast to scoped wording, retired/hidden from reader-facing surfaces, or held with an explicit warning until a later exact packet?</p>
+</section>
+
+<section class="card">
+  <h2>Inputs used</h2>
+  <ul>
+    <li><code>docs/hwao_debate_map_refresh_20260706T002104Z/DEBATE_MAP_REFRESH.md</code> — Hwao synthesis: page-level prose is blocked until P1 and P2 clear.</li>
+    <li><code>docs/hwao_debate_map_refresh_20260706T002104Z/LANA_DEBATE_MAP_SCIENCE.md</code> — Lana science layer: legacy 2298/2299/2924 directly contradict scoped successors 2945/2946.</li>
+    <li><code>docs/hwao_debate_map_refresh_20260706T002104Z/TORI_READONLY_EXTRACT.md</code> and <code>debate_map_data.json</code> — read-only counts and claim facts.</li>
+    <li>Hwao coordinator decision marker <code>HWAO_NEXT_METHOD_DECISION_20260706T100918Z</code>: execute this P1 spec as a static/docs-only PGR artifact, do not run DMW/source-first yet.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>P1 target claims</h2>
+  <table><thead><tr><th>Claim</th><th>Current section</th><th>Current wording</th><th>Why it blocks prose</th><th>Decision options</th></tr></thead><tbody>
+    <tr><td><b>2298</b><br><span class="small">trust: consensus; score 0.2196; evidence 25998</span></td><td>Star Formation, Quenching &amp; Color Bimodality</td><td>AGN feedback heats the gas reservoirs of massive galaxies.</td><td>Broad heating wording conflicts with successor 2946, which says maintenance/heating support is model-dependent or simulation-bounded rather than measured prevalence.</td><td>Recast to scoped/model-bounded wording; or retire/hide if no safe source-position survives; or hold behind warning pending exact packet.</td></tr>
+    <tr><td><b>2299</b><br><span class="small">trust: accepted; score 0.3241; evidence 25999, 30631</span></td><td>Star Formation, Quenching &amp; Color Bimodality</td><td>AGN feedback expels gas from the reservoirs of massive galaxies.</td><td>Broad expulsion wording conflicts with successor 2945, which says gas removal alone cannot explain every quenching pathway and retained reservoirs/low star-formation efficiency remain visible.</td><td>Recast to selected-system / scoped reservoir language; or retire/hide; or hold with explicit caution until source positions are accepted.</td></tr>
+    <tr><td><b>2924</b><br><span class="small">trust: consensus 0.8; status: parent_replaced; evidence 26704–26707</span></td><td>Retrieval-Complete Evidence Claims</td><td>AGN feedback heats the gas reservoirs of massive galaxies.</td><td>Already marked parent_replaced but still displays a high consensus badge. It can make a retired broad claim look stronger than the scoped replacement.</td><td>Finish retirement/display removal; or map to a narrower successor only after exact source-position review; do not leave as visible consensus.</td></tr>
+  </tbody></table>
+</section>
+
+<section class="card warn">
+  <h2>Flags that travel with P1 but are not fixed here</h2>
+  <ul>
+    <li><b>2924:</b> <code>parent_replaced</code> yet still displays <code>consensus 0.8</code>; this is a display/readiness hazard.</li>
+    <li><b>2298:</b> <code>consensus</code> label sits on score <code>0.2196</code>; do not let the badge overstate certainty.</li>
+    <li><b>2546:</b> trust level is the literal string <code>"0.5"</code>; data bug / P4 territory. Note it here; do not fix it in this P1 spec.</li>
+  </ul>
+</section>
+
+<section class="card">
+  <h2>Allowed future route choices</h2>
+  <div class="choice"><b>Route A — recast/scoped replacement.</b> Keep the topic only if a later exact packet rewrites it to match the scoped successors and preserves evidence provenance.</div>
+  <div class="choice"><b>Route R — retire or hide from reader-facing surfaces.</b> Use when the old claim is superseded, too broad, or cannot be safely supported at its current certainty level.</div>
+  <div class="choice"><b>Route H — hold with explicit warning.</b> Use only if the row cannot yet be recast or retired without another source-position decision; it must not render as settled reader-facing prose.</div>
+  <p class="small">This page does not choose a route for the user. It narrows the decision so a later exact packet can be drafted only after route choices are known.</p>
+</section>
+
+<section class="card">
+  <h2>P2 note — 2929 remains separate and held</h2>
+  <p>The related P2 blocker is the 14 active evidence rows still attached to parent-replaced claim 2929. Hwao's held spec records the current route recommendation: 13 rows retire-with-audit, while voted row 28060 is the strongest move/merge candidate to successor 2942 with its vote preserved, if source adequacy holds.</p>
+  <p><b>No P2 packet was generated here.</b> P2 still needs the user's route confirmation or adjustment before any exact packet is prepared.</p>
+</section>
+
+<section class="card safety">
+  <h2>Safety ledger</h2>
+  <table><tbody>
+    <tr><td>Active phrase</td><td><code>NO ACTIVE EXECUTION PHRASE</code></td></tr>
+    <tr><td>DB writes / SQL / apply / rollback</td><td>0 — none authored or run.</td></tr>
+    <tr><td>Trust recompute / live wiki publish / page_versions</td><td>0 — not in scope.</td></tr>
+    <tr><td>Backend/API restart / deploy / git mutation</td><td>0 — not in scope.</td></tr>
+    <tr><td>Goru/Gemini/GCP spend</td><td>0 — Hwao said it was not necessary for this step.</td></tr>
+    <tr><td>Prose packet</td><td>Closed until P1 and P2 clear.</td></tr>
+  </tbody></table>
+  <p class="marker">GALAXY_EVOLUTION_PGR_P1_DISPOSITION_SPEC_20260706T101547Z · updated 2026-07-06T10:15:47Z · standing directory marker GALAXY_EVOLUTION_METHOD_DIRECTORIES_QUINTET_20260706T0928Z</p>
+</section>
+</main></body></html>

@@ -1,0 +1,159 @@
+{
+  "audited_by": "lana",
+  "packet": "P0-tng-validation",
+  "audited_at_kst": "2026-07-27T22:30+09:00",
+  "reviewed_artifact_sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+  "representations": {
+    "rendered_pages": "pdftoppm 150dpi PNGs of all 4 served pages + 300dpi Figure 2 crop, visually inspected (_tmp_audit/served_page-*.png)",
+    "text_extraction": "pdftotext -layout (_tmp_audit/served_layout.txt)",
+    "figures": "Figure 1 (2 panels), Figure 2 (2 panels) inspected at readable resolution incl. axes, legends, in-panel annotations, captions",
+    "history_json": "input/served-history.json (human-direction record)",
+    "board_card": "input/FrontierDrafts.tsx FRONTIER[4]",
+    "secondary_copy": "input/secondary-3page-source.pdf (July 17 revision, 3 pp)",
+    "advisory_scores": "input/paperScores.ts notes (context only)"
+  },
+  "claims": [
+    {
+      "id": "C1",
+      "claim": "TNG z~0 SFMS calibration residual -0.30 dex (low)",
+      "abstract": "present",
+      "method": "present (two-level differencing defined)",
+      "results": "present (S3, Fig.1)",
+      "figures": "Fig.1 left + Fig.2 left annotation 'TNG z=0 is 0.30 dex low'",
+      "discussion": "consistent",
+      "conclusion": "implied (removing z~0 residuals)",
+      "board_card": "n/a",
+      "secondary_copy": "identical",
+      "state": "CONSISTENT"
+    },
+    {
+      "id": "C2",
+      "claim": "TNG z~0 MZR calibration residual +0.12 dex (high)",
+      "abstract": "present",
+      "results": "present (S3, Fig.1 right; caption says ~0.1 dex)",
+      "figures": "Fig.2 right blue z=0 point at +0.12",
+      "discussion": "consistent",
+      "conclusion": "implied",
+      "secondary_copy": "identical",
+      "state": "CONSISTENT"
+    },
+    {
+      "id": "C6",
+      "claim": "SFMS over-evolution gap +0.41/+0.49 dex at z~4.7/5.4, a conservative lower bound",
+      "abstract": "present",
+      "method": "supported (two-level differencing)",
+      "results": "present with full arithmetic chain (raw +0.99/+1.15/+1.30; internal +1.30/+1.45/+1.61; obs +0.89/+0.96)",
+      "figures": "Fig.2 left panel series match all quoted values; caption states +0.41/+0.49 and lower-bound",
+      "discussion": "consistent",
+      "conclusion": "present",
+      "board_card": "present ('a conservative lower bound')",
+      "history_json": "present (revision 2 summary)",
+      "secondary_copy": "ABSENT (gap not yet quantified in July 17 copy)",
+      "state": "CONSISTENT"
+    },
+    {
+      "id": "C7",
+      "claim": "Selection-debiasing envelope: gap widens to +0.46/+0.83 dex sample-matched, up to ~+1.1 dex, sign robust across all 9 (sigma, Flim) configurations",
+      "abstract": "present",
+      "method": "present (Hbeta flux-floor forward model; sigma in {0.30,0.45,0.60}, Flim in {1,3,10}e-19; Kennicutt L(Ha)->SFR, L(Hb)=L(Ha)/2.86, dL(z)^2)",
+      "results": "present, explicitly quoted as envelope not point estimate (degenerate in Etrue, Flim, sigma)",
+      "figures": "NOT plotted (text-only; Fig.2 red series remains un-debiased, caption declares red an upper bound)",
+      "discussion": "present",
+      "conclusion": "present",
+      "board_card": "present ('de-biasing ... only widens')",
+      "history_json": "present",
+      "secondary_copy": "ABSENT (only qualitative selection caveat)",
+      "state": "CONSISTENT_TEXT__NOT_PLOTTED"
+    },
+    {
+      "id": "C8",
+      "claim": "TNG 2R1/2-aperture mass is +0.13 dex below total bound mass (z=5; +0.12 at z=6, redshift-stable); cancels in internal differencing; removes ~0.08 dex of raw SFMS offset",
+      "abstract": "present",
+      "method": "present (median over logM*>10.3 at z=5, 16-84% +0.09/+0.16, real group catalogues)",
+      "results": "present ('Robustness to the mass definition')",
+      "figures": "not plotted (no matched-mass series); acceptable, stated as cancelling",
+      "discussion": "present",
+      "conclusion": "present",
+      "board_card": "present ('robust to the +0.13 dex mass-basis fix')",
+      "history_json": "present",
+      "secondary_copy": "ABSENT (only qualitative 'aperture-matched mass is needed')",
+      "state": "CONSISTENT"
+    },
+    {
+      "id": "C9",
+      "claim": "MZR (unmatched scales): TNG internal -0.23/-0.25/-0.25 dex vs obs ~-0.50 dex; factor ~2 under-evolution; ~0.25 dex too metal-rich",
+      "abstract": "ABSENT (abstract instead reports matched-scale numbers)",
+      "results": "present (S3 'Metallicity: TNG under-evolves')",
+      "figures": "Fig.2 right panel matches exactly; annotation 'obs -0.50 vs TNG internal -0.25 -> factor ~2 (not 3-4x); also a calib-scale caveat'",
+      "discussion": "present ('leaves a real but factor-of-~2 (not 3-4) shortfall')",
+      "conclusion": "ABSENT (conclusion instead reports matched-scale consistency)",
+      "secondary_copy": "identical",
+      "state": "PRESENT_BODY_ONLY__CONFLICTS_WITH_C11"
+    },
+    {
+      "id": "C11",
+      "claim": "Matched Te-anchored scale: SDSS anchor recomputed via PP04 O3N2 from 2.0e5 galaxies, removing ~0.24 dex Tremonti offset; obs deficit becomes ~-0.40 dex; TNG internal -0.27 dex; factor ~1.5; within residual 0.1-0.15 dex systematic; hence not significant / chemical evolution CONSISTENT",
+      "abstract": "present (strong, uncaveated beyond 'residual systematic')",
+      "method": "ABSENT (no PP04 recomputation procedure anywhere in S2)",
+      "results": "ABSENT (S3 reports only unmatched-scale numbers)",
+      "figures": "ABSENT (no Te-anchored/PP04 series or -0.40/-0.27 points in Fig.2; annotation still says factor ~2)",
+      "discussion": "CONTRADICTED (S4: scales 'are on different scales'; 'a definitive result requires re-deriving all three on a single calibration'; result labelled 'suggestive')",
+      "conclusion": "present ('consistent ... (~1.5x, <~0.15 dex)')",
+      "history_json": "claimed as landed ('showed the apparent metallicity discrepancy dissolves on a matched Te-anchored scale')",
+      "secondary_copy": "same contradiction (abstract claim present July 17 with same unsupported state)",
+      "state": "CONTRADICTED"
+    },
+    {
+      "id": "C12",
+      "claim": "Abundance scales are unmatched, definitive result requires re-derivation, metallicity result 'suggestive'",
+      "abstract": "ABSENT",
+      "discussion": "present (dominant-caveat paragraph)",
+      "figures": "supported (annotation 'also a calib-scale caveat')",
+      "conclusion": "ABSENT (contradicted by 'consistent ... once abundance scales are matched')",
+      "secondary_copy": "identical",
+      "state": "PRESENT__CONFLICTS_WITH_C11"
+    },
+    {
+      "id": "C13",
+      "claim": "Sample sizes and scope: SDSS N=4.9e5; TNG ~3e4; PP04 subset 2.0e5; N=965 TNG at z=6; JWST z=3.8-8.9 (Nakajima) + z=3-6 (Lisiecki); claims quoted at z~4.7/5.4",
+      "abstract": "present (~3e4, ~5e5, 2.0e5, z=4-6)",
+      "method": "present (4.9e5, z=3.8-8.9, z=3-6)",
+      "results": "z~4.7/5.4 medians",
+      "discussion": "N=965 at z=6",
+      "secondary_copy": "identical",
+      "state": "PARTIALLY_VERIFIABLE (see NUMERIC_INVARIANTS.json)"
+    },
+    {
+      "id": "C14",
+      "claim": "Status framing: automated, non-human-validated, descriptive discrepancy + conservative lower bound, not a validated measurement",
+      "abstract": "present",
+      "conclusion": "present",
+      "board_card": "present ('descriptive draft - not validated, not published' + draft chip)",
+      "history_json": "present ('Descriptive - not validated')",
+      "secondary_copy": "weaker version present",
+      "state": "CONSISTENT"
+    }
+  ],
+  "defect_classification": {
+    "capture_caused": [
+      "pdftotext -layout interleaves two-column body text with figure text on page 3 (reading-order artifact only; no content lost; verified against rendered pages)",
+      "Minor glyph artifacts in extraction (ligature 'sufficient', unicode minus signs); no semantic loss"
+    ],
+    "manuscript_caused": [
+      "C11 vs C9/C12: abstract+conclusion assert a completed matched-Te-scale MZR analysis and 'consistent' verdict that the methods, results, discussion, and figures do not contain and actively contradict (THE core defect; present in both revisions)",
+      "Abstract TNG internal metallicity -0.27 dex vs results -0.23/-0.25/-0.25 dex: internal evolution is scale-independent by construction, so the -0.27 value has no derivation anywhere in the manuscript",
+      "Lisiecki et al. citation: printed identity (2025, A&A, 708, A235) resolves to Lisiecki et al. 2026, a quiescent-galaxy photometric-selection paper that cannot supply z=3-6 star-forming scaling-relation medians (identity + role FAIL)",
+      "PP04 (Pettini & Pagel 2004) load-bearing calibration cited in abstract but absent from REFERENCES",
+      "Kennicutt SFR calibration cited in S2 but absent from REFERENCES",
+      "Fig.2 right annotation and caption ('factor ~2') never updated to reflect the abstract's claimed matched-scale result"
+    ],
+    "validator_or_review_link_caused": [
+      "Configured review URL returns HTTP 404 (baseline 2026-07-27T13:02Z and live re-check ~22:15 KST); board card still links it; no review file exists on the rich public root. Artifact-integrity defect. No automated verdict may be inferred from the human-direction history JSON."
+    ],
+    "unresolved": [
+      "Whether any PP04-O3N2 recomputation artifact exists outside this packet (Lab records not in pinned inputs) - cannot be established from this lane; its absence from the manuscript itself is established",
+      "Actual provenance of the z=3-6 'supplement' medians given the failed Lisiecki identity (the companion paper referenced is the WITHDRAWN high-z scaling-relations draft)",
+      "TNG sample count '~3e4' vs the plan-corrected invariant TNG=23,722 for the adjacent C2 packet (same TNG100-1 selection not provable from pinned inputs)"
+    ]
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "status": "RAW_INVENTORY_COMPLETE",
+  "owner": "Yui",
+  "mission_id": "GALAXY_REVIEW_BASE_DR_20260715",
+  "queue_item": 6,
+  "custody": {
+    "raw_packet_sha256": "05ec1de623c780302ea473c17af9b5519e94e7dcb3abfc113bbf8a800408d7d6",
+    "raw_metadata_sha256": "b8b510e776830d869f83f0bf21c74a1b303c4f1b3bab3bd4bc74a482617900c4",
+    "raw_result_text_sha256": "bfd901e7afd71a3135806925a60fb62811bb034533e9a1a3d8197f9f8732c84b",
+    "prompt_sha256": "53b863eca55533e053da49ebe600e779a79eb53fa0d6c5645e5365b52ba77672",
+    "takeover_ack_sha256": "ab3d234892a5064130a755b4b13087fc47df09acb4c0bc913154b6c79329af3d"
+  },
+  "physical_source_rows": {
+    "harvest_count": 45,
+    "ledger_count": 45,
+    "keys_match_between_harvest_and_ledger": true,
+    "contiguous_key_range": "REV06-P001..REV06-P045",
+    "claim_referenced_count": 39,
+    "claim_referenced_keys": [
+      "REV06-P001", "REV06-P002", "REV06-P003", "REV06-P004", "REV06-P005", "REV06-P006", "REV06-P007", "REV06-P008", "REV06-P009", "REV06-P010", "REV06-P011", "REV06-P012", "REV06-P014", "REV06-P015", "REV06-P016", "REV06-P017", "REV06-P018", "REV06-P019", "REV06-P020", "REV06-P021", "REV06-P022", "REV06-P023", "REV06-P024", "REV06-P025", "REV06-P026", "REV06-P027", "REV06-P028", "REV06-P029", "REV06-P030", "REV06-P031", "REV06-P032", "REV06-P033", "REV06-P034", "REV06-P035", "REV06-P037", "REV06-P038", "REV06-P039", "REV06-P043", "REV06-P044"
+    ],
+    "unreferenced_by_atomic_claim_sections": [
+      "REV06-P013", "REV06-P036", "REV06-P040", "REV06-P041", "REV06-P042", "REV06-P045"
+    ],
+    "raw_role_review_synthesis": [
+      "REV06-P006", "REV06-P017", "REV06-P040"
+    ],
+    "candidate_primary_count_before_reconciliation": 42,
+    "candidate_supporting_count_before_reconciliation": 3
+  },
+  "atomic_sections": {
+    "established": 12,
+    "debates": 8,
+    "measurements": 8,
+    "unknowns": 6,
+    "all_source_keys_resolve_to_physical_rows": true
+  },
+  "identifier_shape": {
+    "malformed_rows": [],
+    "duplicate_non_none_doi": [],
+    "duplicate_non_none_arxiv": [],
+    "duplicate_ads": [],
+    "post_2020_physical_rows": [],
+    "rows_with_doi_none": 9,
+    "rows_with_arxiv_none": 0,
+    "rows_with_ads_none": 0
+  },
+  "raw_packet_defects_requiring_canonical_rebuild": [
+    "formula and symbol text is visibly mangled in narrative and several row boundaries",
+    "the captured external-anchor list contains extensive post-2020 and unrelated browsing spillover and is not bibliography-membership evidence",
+    "review_synthesis roles are mixed into the primary-harvest numbering and must be separated",
+    "composite identifiers and review-bibliography membership remain independently unverified",
+    "metadata reported headings_present=false even though numbered section headings exist in the saved raw packet"
+  ],
+  "safety": {
+    "raw_packet_modified": false,
+    "browser_or_account_action": false,
+    "live_wiki_db_trust_write": false,
+    "deploy_restart": false,
+    "git_write": false,
+    "publication": false,
+    "other_agents_used_after_owner_redirect": false
+  },
+  "next_action": "Acquire and pin the review's complete authoritative bibliography, then reconcile each physical source row against it and authoritative composite identifiers."
+}

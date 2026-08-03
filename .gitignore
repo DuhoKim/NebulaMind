@@ -31,3 +31,28 @@ frontend/tsconfig.tsbuildinfo
 
 # statically-served agent report artifacts (PDFs, ops snapshots); disk-only, not versioned
 frontend/public/agent-reports/
+
+# ── .hermes coordination layer: track the project's memory (text receipts/boards/plans),
+#    not the data lake (media, caches, datasets, vendored deps stay on disk, receipt-pinned)
+.hermes/**
+!.hermes/**/
+!.hermes/**/*.md
+!.hermes/**/*.json
+!.hermes/**/*.txt
+!.hermes/**/*.html
+!.hermes/**/*.yaml
+!.hermes/**/*.yml
+# re-excluded even though text-typed:
+.hermes/**/fulltext_cache/**
+.hermes/**/build-stage/**
+.hermes/**/.deps/**
+.hermes/**/_tmp_*
+.hermes/logs/**
+.hermes/tmp/**
+.hermes/backups/**
+.hermes/handoffs/galaxy-evolution/mastermind/autopilot-events.jsonl
+.hermes/handoffs/galaxy-evolution/research-frontiers-20260716/corpus_astrophGA.json
+.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/testset.json
+# hot runtime state — rewritten continuously by live services; never track
+.hermes/state/**
+.hermes/**/autopilot-status.json

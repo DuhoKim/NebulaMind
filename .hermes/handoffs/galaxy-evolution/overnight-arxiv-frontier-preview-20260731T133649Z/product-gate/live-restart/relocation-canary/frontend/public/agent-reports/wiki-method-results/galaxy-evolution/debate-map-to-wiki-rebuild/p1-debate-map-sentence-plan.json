@@ -1,0 +1,102 @@
+{
+  "marker": "GALAXY_EVOLUTION_METHOD3_P1_SENTENCE_PLAN_20260706T145501Z",
+  "approval_phrase_received": "APPROVE METHOD3 P1 DOCS-ONLY DEBATE-MAP SENTENCE PLAN",
+  "execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "scope": "Method3 docs-only debate-map sentence plan; no citation binding, claim-chip binding, product/wiki publish, DB, runtime, git, cloud/API, shared-parent, or cross-method writes.",
+  "method_baseline": "Start from the research-status/debate map; draft the reader-facing sentence plan before binding citations or claim chips.",
+  "source_basis": [
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/hwao_debate_map_refresh_20260706T002104Z/debate_map_data.json",
+      "run_id": "hwao_debate_map_refresh_20260706T002104Z",
+      "summary": {
+        "atlas_rows": 397,
+        "focus_claims": 63,
+        "unique_sources": 203,
+        "wave2_pins": 5
+      },
+      "hard_locks": {
+        "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+        "db_writes": 0,
+        "git_deploy_restart": 0,
+        "prose_wiki_publish": 0,
+        "sql_apply_artifacts": 0
+      }
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/baseline_step6_status_debate_map_20260703T0954Z/artifacts/status_debate_map.json",
+      "marker": "BASELINE_STEP6_STATUS_DEBATE_MAP_FINAL_DRAFT_20260703T1000Z",
+      "status": "FINAL_DRAFT_PATCHED_AFTER_GORU_BLOCKER_PENDING_RECHECK",
+      "coverage": {
+        "axis_count": 7,
+        "ledger_entry_count": 16,
+        "stance_row_count": 45
+      }
+    }
+  ],
+  "debate_axes": [
+    {
+      "axis_id": "mechanism_ejective_feedback",
+      "status": "widely_supported",
+      "reader_point": "AGN/SMBH feedback can affect gas in scoped contexts.",
+      "guard": "Do not make it universal."
+    },
+    {
+      "axis_id": "outflow_prevalence_frequency",
+      "status": "emerging_sample_limited",
+      "reader_point": "AGN-associated outflow signatures appear in selected samples.",
+      "guard": "Do not turn selected-sample or single-case results into population-wide rates."
+    },
+    {
+      "axis_id": "dominance_debate",
+      "status": "actively_debated",
+      "reader_point": "AGN feedback is one quenching axis among several.",
+      "guard": "Do not call it the dominant cause without narrow later binding."
+    },
+    {
+      "axis_id": "maintenance_heating_prevention",
+      "status": "contradicted_or_model_dependent",
+      "reader_point": "Preventive/maintenance heating is distinct from ejective feedback.",
+      "guard": "Do not use simulations/models as observed prevalence."
+    },
+    {
+      "axis_id": "reservoir_response",
+      "status": "actively_debated",
+      "reader_point": "Central depletion and retained reservoirs/low SFE both matter.",
+      "guard": "Do not imply gas removal explains every quenching pathway."
+    },
+    {
+      "axis_id": "alternatives_countercases",
+      "status": "widely_supported",
+      "reader_point": "Non-AGN pathways must remain visible.",
+      "guard": "Do not collapse alternatives into AGN feedback."
+    },
+    {
+      "axis_id": "simulation_model_scope",
+      "status": "contradicted_or_model_dependent",
+      "reader_point": "Simulations test mechanisms under assumptions.",
+      "guard": "Do not render simulations as observed population facts."
+    }
+  ],
+  "sentence_plan": [
+    {"id": "S01", "role": "Orientation", "planned_reader_point": "Galaxy evolution is the coupled history of stars, gas, black holes, halos, and environments.", "guard": "No one-cause framing."},
+    {"id": "S02", "role": "Quenching frame", "planned_reader_point": "Quenching is a central, multi-channel transition in galaxy evolution.", "guard": "Use can involve / can be regulated by, not single-cause certainty."},
+    {"id": "S03", "role": "Scoped AGN mechanism", "planned_reader_point": "AGN/SMBH feedback can affect gas through jets, winds, turbulence, heating, or starvation in selected systems.", "guard": "Keep selected-system scope visible."},
+    {"id": "S04", "role": "Outflow evidence", "planned_reader_point": "Molecular, ionized, or neutral outflows are observed in selected AGN-host or massive-galaxy samples.", "guard": "Sample/tracer/redshift dependent; no population-wide rate."},
+    {"id": "S05", "role": "Mode distinction", "planned_reader_point": "Ejective/outflow feedback differs from preventive or maintenance heating.", "guard": "Do not conflate physical modes."},
+    {"id": "S06", "role": "Reservoir caution", "planned_reader_point": "Central depletion, retained reservoirs, and low star-formation efficiency complicate gas-removal stories.", "guard": "Do not generalize central-kpc depletion to universal galaxy-wide gas absence."},
+    {"id": "S07", "role": "Dominance debate", "planned_reader_point": "AGN feedback can matter, but dominance over other quenching channels is context-dependent and debated.", "guard": "No unqualified dominant-cause language."},
+    {"id": "S08", "role": "Alternatives", "planned_reader_point": "Central structure, halo/environment/satellite effects, strangulation, stripping, stellar feedback, recycling, gas retention, and low SFE remain part of the map.", "guard": "Alternatives are not throwaway caveats."},
+    {"id": "S09", "role": "Redshift/sample scope", "planned_reader_point": "Rapid shutdown in selected massive or cosmic-noon systems is important but sample- and model-dependent.", "guard": "No universal high-redshift rule."},
+    {"id": "S10", "role": "Simulation scope", "planned_reader_point": "Simulations help test mechanisms and assumptions.", "guard": "Do not present simulations as direct observed prevalence."},
+    {"id": "S11", "role": "Reader takeaway", "planned_reader_point": "The safest synthesis is a context-dependent, multi-channel account of quenching and galaxy evolution.", "guard": "Use context-dependent / sample-dependent / multi-channel."},
+    {"id": "S12", "role": "Open questions", "planned_reader_point": "Prevalence, dominance, reservoir response, and maintenance heating remain live questions for later binding.", "guard": "Uncertainty is a result, not a failure."}
+  ],
+  "next_review_split": {
+    "Hwao-DMW": "decide whether this sentence order is the Method3 plan of record",
+    "Lana-DMW": "review semantic accuracy, reader clarity, and overclaim risk",
+    "Goru-DMW": "check all seven debate axes are represented and markers/hard stops are present",
+    "Kun-DMW": "check reproducibility from named source files and method briefs",
+    "Tori-DMW": "verify files, markers, and safety ledger"
+  },
+  "stop_state": "P1 complete as docs-only sentence plan; later prose/citation/claim-chip/product gates remain locked."
+}

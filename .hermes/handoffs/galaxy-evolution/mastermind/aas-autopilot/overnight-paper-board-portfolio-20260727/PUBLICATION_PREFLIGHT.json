@@ -1,0 +1,67 @@
+{
+  "observed_at_utc": "2026-07-27T13:51:44.031944+00:00",
+  "status": "PASS",
+  "marker": "PAPER_BOARD_AUDIT_REPORT_20260728_V1",
+  "candidate": {
+    "label": "PAPER_BOARD_AUDIT_REPORT.html",
+    "bytes": 12221,
+    "sha256": "ea96ec76d95e9530eede0c5f2eaad5bdb8db667c7f6b1f400c791cfd956b3c7a"
+  },
+  "public_target": {
+    "label": "overnight-paper-board-portfolio-20260728.html",
+    "url": "https://nebulamind.net/agent-reports/paper-board-audits/overnight-paper-board-portfolio-20260728.html",
+    "exists_before_copy": false
+  },
+  "checks": {
+    "candidate_exists": true,
+    "target_absent_before_copy": true,
+    "global_stop_absent": true,
+    "content_freeze_absent": true,
+    "html_tag_present": true,
+    "scripts_zero": true,
+    "forms_zero": true,
+    "images_zero": true,
+    "links_https_only": true,
+    "required_strings": {
+      "PAPER_BOARD_AUDIT_REPORT_20260728_V1": true,
+      "NO ACTIVE EXECUTION PHRASE": true,
+      "Human validation: 0": true,
+      "P0 · CORRECTION LEDGER ONLY": true,
+      "P1 · CLAIMS REQUIRE NARROWING": true,
+      "P2 · LINEAGE UNRESOLVED": true
+    },
+    "forbidden_strings": {
+      "/Users/": false,
+      ".hermes": false,
+      "NebulaMind-origin-main-live": false,
+      "<script": false,
+      "<form": false,
+      "action=": false,
+      "fetch(": false,
+      "XMLHttpRequest": false,
+      "WebSocket": false,
+      "sendBeacon": false,
+      "APPROVE EXECUTE": false
+    },
+    "private_path_absent": true,
+    "dependency_free": true
+  },
+  "allowed_operation": "Create exactly one new standalone static report at the absent target. Do not modify any existing artifact.",
+  "blocked_operations": [
+    "paper/PDF/card/Lab replacement",
+    "cockpit/wiki/DB mutation",
+    "service deploy/restart",
+    "project source edit",
+    "Git action"
+  ],
+  "post_preflight_activation": {
+    "restart_separately_authorized": true,
+    "restart_count": 1,
+    "service_deploy_build_config_routing_actions": 0,
+    "final_origin_bytes": 12257,
+    "final_origin_sha256": "0d1ec2e6db585f53c6bc21aa5e430abce9537b34ce2a9b13fdc6245d20b9ce10",
+    "clean_url_status": 200,
+    "existing_app_lab_api_status": 200,
+    "served_representation": "PASS"
+  }
+}

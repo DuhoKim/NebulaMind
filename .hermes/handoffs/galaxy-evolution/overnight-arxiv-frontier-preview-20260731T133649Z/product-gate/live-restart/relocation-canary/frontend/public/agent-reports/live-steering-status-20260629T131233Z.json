@@ -1,0 +1,139 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T13:12:33Z",
+  "updated_at_kst": "2026-06-29 22:12:33 KST",
+  "source": "Hermes Agent scoped backend runtime deploy for PR #68 and PR #69",
+  "current_action": "LIVE. PR #68/#69 arXiv URL normalization was scoped-deployed to the running backend/API and verified publicly. Malformed arXiv abs URL counts are now zero on citations and fact-sources.",
+  "mode": "PR68_PR69_URL_NORMALIZATION_LIVE_VERIFIED",
+  "prs": {
+    "pr67": {
+      "number": 67,
+      "state": "MERGED_AND_LIVE",
+      "merge_commit_short": "ad87039",
+      "purpose": "read-only source-surface fallback"
+    },
+    "pr68": {
+      "number": 68,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/68",
+      "state": "MERGED_AND_LIVE",
+      "merge_commit_short": "e2d6e81",
+      "purpose": "normalize Evidence.url-derived arXiv source URLs"
+    },
+    "pr69": {
+      "number": 69,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/69",
+      "state": "MERGED_AND_LIVE",
+      "merge_commit_short": "cc4ced2",
+      "purpose": "normalize materialized and inline /fact-sources reference_url values read-time only"
+    }
+  },
+  "runtime": {
+    "checkout": "/Users/duhokim/NebulaMind/NebulaMind",
+    "backend_cwd": "/Users/duhokim/NebulaMind/NebulaMind/backend",
+    "branch": "feat/surveys-atlas-ia-p1-20260627",
+    "runtime_head": "ac0608c",
+    "origin_main": "cc4ced2",
+    "deploy_method": "scoped patches from PR #68 and PR #69 merge commits, applied to dirty runtime checkout; no reset/stash",
+    "backup_dir": "/Users/duhokim/NebulaMind/deploy-backups/pr68-pr69-runtime-20260629T130910Z",
+    "patch_dir": "/Users/duhokim/NebulaMind/deploy-patches/pr68-pr69-runtime-20260629T130910Z",
+    "old_backend_pid": "14990",
+    "new_backend_pid": "20187",
+    "health_endpoint": "http://127.0.0.1:8000/api/stats returned HTTP 200 after 2s",
+    "scoped_dirty_after_deploy": [
+      "M backend/app/routers/pages.py",
+      "?? backend/tests/test_page_source_surface_fallbacks.py",
+      "?? docs/galaxy_v2_source_surface_reconciliation_20260629.md"
+    ]
+  },
+  "live_probe": {
+    "before_deploy": {
+      "citations_count": 102,
+      "citations_malformed_arxiv_abs_count": 16,
+      "fact_sources_count": 8,
+      "fact_sources_malformed_arxiv_abs_count": 2
+    },
+    "after_deploy_localhost": {
+      "citations_status": 200,
+      "citations_count": 102,
+      "citations_malformed_arxiv_abs_count": 0,
+      "citations_normalized_1712_count": 5,
+      "fact_sources_status": 200,
+      "fact_sources_count": 8,
+      "fact_sources_malformed_arxiv_abs_count": 0,
+      "fact_sources_normalized_1712_count": 2
+    },
+    "after_deploy_public": {
+      "citations_status": 200,
+      "citations_count": 102,
+      "citations_malformed_arxiv_abs_count": 0,
+      "citations_normalized_1712_count": 5,
+      "fact_sources_status": 200,
+      "fact_sources_count": 8,
+      "fact_sources_malformed_arxiv_abs_count": 0,
+      "fact_sources_normalized_1712_count": 2
+    },
+    "sample_normalized_url": "https://arxiv.org/abs/1712.04452"
+  },
+  "db_no_write_evidence": {
+    "page_citation_links_before": 1351,
+    "page_citation_links_after": 1351,
+    "fact_sources_before": 391,
+    "fact_sources_after": 391,
+    "production_db_writes": 0,
+    "migrations": 0,
+    "backfills": 0,
+    "readiness_or_promotion_changes": 0
+  },
+  "verification": [
+    "Runtime py_compile passed for app/routers/pages.py and tests/test_page_source_surface_fallbacks.py",
+    "Runtime fallback test file: 8 passed",
+    "Runtime related page/source API bundle: 18 passed",
+    "Runtime backend tests directory: 327 passed",
+    "Runtime git diff --check for pages.py: pass",
+    "Changed read-route write-marker scan: no db.add/db.commit/db.delete/INSERT/UPDATE/DELETE markers",
+    "Touched-file secret scan: no findings",
+    "Local and public citations probes: HTTP 200, 102 rows, malformed arXiv abs URLs 16 -> 0",
+    "Local and public fact-sources probes: HTTP 200, 8 rows, malformed arXiv abs URLs 2 -> 0",
+    "Source table counts unchanged: page_citation_links 1351 -> 1351; fact_sources 391 -> 391"
+  ],
+  "what_did_not_happen": [
+    "No production DB writes.",
+    "No migrations.",
+    "No backfills.",
+    "No readiness/promotion flag changes.",
+    "No runtime checkout reset/stash/rebase.",
+    "No frontend/product deploy; frontend report service may be refreshed only to serve this cockpit."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Safest",
+      "name": "Monitor live source surfaces",
+      "risk": "Read-only",
+      "steering": "STEER: monitor live citations/fact-sources URL normalization and source-table counts; no DB writes."
+    },
+    {
+      "level": "Safe code-only",
+      "name": "Optional cleanup PR for runtime/repo hygiene",
+      "risk": "Code-only, non-production until merged/deployed",
+      "steering": "STEER: prepare a hygiene plan for reconciling the dirty runtime checkout with origin/main; do not reset runtime or write DB."
+    },
+    {
+      "level": "High risk locked",
+      "name": "Source-table backfill",
+      "risk": "Production data mutation",
+      "steering": "Requires backup/dry-run/exact-diff packet and exact APPROVE EXECUTE phrase."
+    },
+    {
+      "level": "Very high risk locked",
+      "name": "Readiness/promotion changes",
+      "risk": "Product trust/readiness mutation",
+      "steering": "Requires separate GO/NO-GO packet and explicit approval."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "note": "Frontend report/static-file service refreshed only to serve cockpit/status artifacts; backend/API product deploy was already completed separately as PID 14990 -> 20187.",
+    "frontend_old_pid": "19318",
+    "frontend_new_pid": "20487"
+  }
+}

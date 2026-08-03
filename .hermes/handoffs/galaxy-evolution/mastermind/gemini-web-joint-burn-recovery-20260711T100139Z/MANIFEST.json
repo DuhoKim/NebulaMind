@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "packet_id": "gemini-web-joint-burn-recovery-20260711T100139Z",
+  "role": "Tori+Goru joint Gemini Web Deep Research burn recovery - single-canary packet, NOT_ARMED pending manual Google verification clearance",
+  "author": "Hwao (coordinator only; packet generation, no browsing/launch/dispatch)",
+  "brief_of_record": {"file": "HWAO_JOINT_RUN_REQUEST.md", "sha256": "9c78e1493170e2356042eaf12ed3f1908a14712020ab83005d3813017a5cd54a"},
+  "commissioned_utc": "2026-07-11T10:01:39Z",
+  "packet_written_utc": "2026-07-11T10:06:02Z",
+  "state": {
+    "current": "NOT_ARMED",
+    "marker": "JOINT_NOT_ARMED_VERIFICATION_PENDING_20260711T100139Z",
+    "reason": "Google unusual-traffic verification hard stop standing (extension packet closed on RAMPAGE_EXT_HARD_STOP_VERIFICATION_20260711T093749Z); not manually cleared",
+    "supersedes_not_resumes": "../gemini-web-rampage-extension-20260711T064115Z (stays closed)"
+  },
+  "arming_preconditions_all_required": [
+    "explicit Duho confirmation that the Google unusual-traffic verification was manually cleared (artifact path/quote + UTC in ledger; no agent ever touches a verification/CAPTCHA surface)",
+    "fresh post-confirmation trusted evidence set: evidence/account_identity_<UTC>.json + evidence/model_mode_<UTC>.json (Pro + Deep Research offered) + evidence/quota_arming_<UTC>.json",
+    "no hard-stop trigger present; displayed used% < 60; >=60 min to nominal weekly reset (~2026-07-11T17:23Z, Duho-confirmed)",
+    "prompts/C1.md sha256 matches this manifest",
+    "TORI_ACK and GORU_ACK ledger rows present (quintet protocol, no solo lanes)",
+    "then write JOINT_ARMED_<UTC>Z; ledger row order authoritative - later HARD_STOP overrides earlier ARMED"
+  ],
+  "roles": {
+    "hwao": "coordinator/packet author only",
+    "tori": "SOLE browser writer/launcher, exact-tab custodian, capture/receipt verifier, hard-stop executor",
+    "goru": "LOCAL-ONLY mechanical helper under goru/ (topic dedupe vs 15 valid reports, prompt schema validation, expected-marker map, receipt/count/hash checks); banned from Chrome/System Events/Playwright/cookies/profiles/login/CAPTCHA/verification/Gemini Web/network-to-Google"
+  },
+  "hard_stop_triggers": ["unusual-traffic page", "verification/CAPTCHA", "login/account wall", "model/mode uncertainty", "capture-target uncertainty", "TCC denial (never bypass; ScreenCapture TCC remains DENIED)", "quota-source uncertainty", "billing/upsell interstitial", "operator doubt", "weekly reset", "displayed used% >= 80 or run-count cap even if meter non-responsive"],
+  "runs": [
+    {
+      "id": "C1",
+      "prompt": "prompts/C1.md",
+      "sha256": "adeaa369f9eb82b2090e8c9232f3752ef45ce997fef858f0873c230c1626d265",
+      "req_id": "REQ_JOINT_C1_20260711T100139Z",
+      "completion_marker": "GEMINI_WEB_JOINT_C1_OUTPUT_DONE_20260711T100139Z",
+      "topic": "simulation calibration provenance / out-of-sample validation ledger",
+      "non_overlap": "not covered by any of the 15 valid rampage reports (base R1,R2,R3,R4,R3b,R5b,R6b,R1b,R2b,R4b; extension R7,R8,R9,R10,R12); extension R15 authored this topic but never launched; fresh REQ/marker, not a VOID retry; VOID topics R11/R13/R14 deliberately not chosen"
+    }
+  ],
+  "run_policy": {
+    "run_count_cap": 1,
+    "concurrency": "sequential only under this packet; future packets may allow at most two concurrent only with explicit proven safe slot behavior, starts staggered >=90s",
+    "launch_flow": "new conversation, record exact conversation URL/tab identity immediately, tab-scoped composer input only, positively confirm Pro + Deep Research, submit once, plan snapshot, Start research once, positively verify active server state (no stable active control => hard stop, never re-click)",
+    "banned_mechanisms": ["global paste", "global Enter/keystroke injection", "Chrome activate/focus hijack", "acting on first/focused Gemini tab", "cookies or __Secure-1PSID handling", "undocumented/private APIs", "cloned profiles", "headless/stealth browsers", "Playwright or new automation stacks", "billing/API enablement"],
+    "retry_policy": "one launch per prompt; no retry of VOID; only packet-authorized interaction is ONE neutral 'continue' iff visible mid-generation truncation (logged); non-steering reload of the same conversation URL permitted solely to resolve stale DOM before capture (logged)",
+    "marker_rule": "marker exactly once AND standalone final nonblank line of body.md, else VOID",
+    "quota_evidence": "fresh extractor reading before and after the run; stop rules apply even if meter displays non-responsive 1%"
+  },
+  "capture_set": ["runs/c1/prompt_submitted.md (byte-copy, sha256 must match this manifest)", "runs/c1/plan_snapshot.md (or absence noted in meta.md)", "runs/c1/body.md", "runs/c1/meta.md (model label, conversation URL, UTC start/end, operator=Tori, arming marker, meter_status, reload/continue log, anomalies)", "runs/c1/CAPTURE_RECEIPT.md (wc -c + shasum -a 256 of every file)", "runs/c1/RUN_CAPTURED_C1 xor RUN_VOID_C1 (+VOID_REASON.md)"],
+  "goru_tasks_local_only": ["goru/TOPIC_DEDUPE.md (94 weekend-macro topics vs the 15 VALID reports; 93 identical-hash macro outputs are invalid/audit-only and prove no coverage)", "goru/PROMPT_SCHEMA_CHECK.md (C1-C8 fields, sentinels, marker vs manifest)", "goru/EXPECTED_MARKERS.json", "goru/RECEIPT_CHECK.md (post-capture hash/count/marker recheck; mismatch => VOID-pending-review, escalate, never edit captures)"],
+  "files": {
+    "DIRECTION.md": "d6ab96bfb9204148f1a7696d019595686ef88f68a84c950efa2de0713e83de3a",
+    "WAVE_LEDGER.md": "4d9a2a813738197469f7c8251b02d2295298311bea236436a48d27c04098db51 (seed rows; append-only thereafter)"
+  },
+  "markers": {
+    "ready": "HWAO_JOINT_RUN_PACKET_READY_20260711T100139Z",
+    "not_armed": "JOINT_NOT_ARMED_VERIFICATION_PENDING_20260711T100139Z",
+    "armed": "JOINT_ARMED_<UTC>Z",
+    "hard_stop_pattern": "JOINT_HARD_STOP_<REASON>_<UTC>Z + HARD_STOP_REASON.md",
+    "normal_end": "JOINT_C1_DONE_<UTC>Z"
+  },
+  "locks": {
+    "outputs": "raw/advisory under runs/ only; no adjudication/integration/harvesting during generation; all IDs QUARANTINED_PENDING_LOCAL_CHECK; all prior quarantines remain in force; the 93 macro outputs are invalid/audit-only forever (never ingest or cite)",
+    "no_writes": ["DB", "wiki", "candidates", "SPRINT_STATUS", "runner/runtime PID 45665", "git", "publish/deploy", "cron", "cloud/GCP", "billing", "account", "credentials", "extensions"],
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-web-joint-burn-recovery-20260711T100139Z/ (temp files as _tmp_* inside)",
+    "secrets": "no .env/secret/cookie material anywhere; never ask for or handle verification codes/credentials"
+  },
+  "adjudication": "post-close only, separate quintet-reviewed brief; nothing from C1 influences any writer slot, wiki, or candidate before that pass"
+}

@@ -1,0 +1,7 @@
+# YUI brief — Flow-side correspondent + non-interference witness (ACK required)
+
+Packet: `studio-simultaneous-web-viability-test-20260714T034720Z` · Issued by Hwao (run captain). First engagement: write `briefs/acks/YUI_ACK.md` acknowledging this brief, the quintet protocols (no solo lanes; lane-scoped temp files `_tmp_*`; never free-text tmux send-keys), and the ledger/STOP rules below — BEFORE any participation.
+
+Role: relay, recorder, receipt verifier, user-facing status reporter for the Flow side. NOT a browser writer; no lease implied. Core duty — **non-interference witness**: before and after every rung pass, confirm by READ-ONLY observation that the user's active Flow window and the default Chrome profile were untouched (window present, no focus theft recorded against it, default-profile singleton files' mtimes consistent with non-use by us — existence/mtime only, NEVER profile contents), and countersign each rung receipt with `receipts/YUI_NONINTERFERENCE_c<N>_pass<K>.md`. Log observations as ledger entries (actor `yui`) — the ledger is the only shared state; never coordinate state peer-to-peer with Tori. Write areas: `receipts/YUI_*`, `briefs/acks/YUI_ACK.md`, ledger appends. Prohibitions: no browser/desktop/cua actions; no credential/cookie/history/content reads; no lane re-scoping. STOP authority: yes — on ANY Flow-window/default-Chrome anomaly, prompt, challenge, or doubt, declare immediately (ledger + freeze path); resume is Duho-only.
+
+YUI_VIABILITY_BRIEF_ISSUED_20260714T034720Z

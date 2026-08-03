@@ -1,0 +1,115 @@
+{
+  "commands": {
+    "diff_check": {
+      "live_returncode": 0,
+      "worktree_returncode": 0
+    },
+    "frontend_build": {
+      "command": "npm run build",
+      "returncode": 0,
+      "summary": "Next.js 14.2.35 compiled successfully; lint/type checks passed; 44/44 static pages generated; /lab build succeeded",
+      "workdir": "/Users/duhokim/NebulaMind/NebulaMind/frontend"
+    },
+    "ranking_tests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 backend/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_overnight_frontier_preview.py",
+      "returncode": 0,
+      "summary": "13 passed in 0.06s"
+    },
+    "rollback_dry_run": {
+      "expected_refusal": "Refusing rollback without --execute",
+      "returncode": 1,
+      "syntax": "ok"
+    }
+  },
+  "external_public_probe": {
+    "observed_copy": "The map below is being re-derived on the newly expanded corpus.",
+    "result": "extracted",
+    "title": "The pipeline \u2014 NebulaMind",
+    "tool": "web_extract",
+    "url": "https://nebulamind.net/lab"
+  },
+  "local_public_route": {
+    "bytes": 66814,
+    "status": 200,
+    "url": "http://127.0.0.1:3000/lab"
+  },
+  "protected_siblings": {
+    "live_LabStages": {
+      "bytes": 126747,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/LabStages.tsx",
+      "sha256": "31a08a0ff5ab36a3f43ef493c6e1a2da99e86bce7f8aaf7d4808839316eb361d"
+    },
+    "live_paperScores": {
+      "bytes": 15358,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/paperScores.ts",
+      "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+    },
+    "worktree_LabStages": {
+      "bytes": 126747,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/LabStages.tsx",
+      "sha256": "31a08a0ff5ab36a3f43ef493c6e1a2da99e86bce7f8aaf7d4808839316eb361d"
+    },
+    "worktree_paperScores": {
+      "bytes": 15358,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/paperScores.ts",
+      "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+    }
+  },
+  "rank_movements": {
+    "31": "8 -> 9",
+    "40": "10 -> 11",
+    "51": "9 -> 8",
+    "54": "11 -> 10"
+  },
+  "review_holds": [],
+  "running_live_build": {
+    "build_id": "t-iRxR98ZKuZzWRYYpD8z",
+    "js_files": 200,
+    "markers": {
+      "1306 papers": 2,
+      "1316 papers": 0,
+      "661 papers": 2,
+      "674 papers": 0
+    }
+  },
+  "runtime_process_unchanged": [
+    "2538 2026\ub144  7\uc6d4 28\uc77c \ud654\uc694\uc77c 15\uc2dc 09\ubd84 13\ucd08 /bin/bash -c cd /Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend && /opt/homebrew/bin/node node_modules/.bin/next start -p 3000",
+    " 2652 2026\ub144  7\uc6d4 28\uc77c \ud654\uc694\uc77c 15\uc2dc 09\ubd84 13\ucd08 next-server (v14.2.35)"
+  ],
+  "schema_version": 1,
+  "settlement": "SOURCE_AND_NONLIVE_BUILD_VERIFIED_PUBLIC_BUILD_STALE_RESTART_NOT_AUTHORIZED",
+  "status": "SOURCE_APPLIED_BUILD_VERIFIED_RESTART_REQUIRED",
+  "targets": {
+    "canonical_rerank": {
+      "bytes": 50328,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontier_map_v3_reranked.json",
+      "sha256": "ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac"
+    },
+    "canonical_staging_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontiersData.v3.staging.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36"
+    },
+    "live_frontend_source_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36"
+    },
+    "worktree_frontend_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36"
+    }
+  },
+  "verified_at_utc": "2026-07-31T15:31:37Z",
+  "verified_nonlive_build": {
+    "build_id": "XnoxXJxF59h1wHZWWxYf9",
+    "js_files": 200,
+    "markers": {
+      "1306 papers": 0,
+      "1316 papers": 2,
+      "661 papers": 0,
+      "674 papers": 2
+    }
+  }
+}

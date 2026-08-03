@@ -1,0 +1,18 @@
+[
+  {
+    "TableName": "Table1",
+    "Rows": [
+      {
+        "n": 11288
+      }
+    ]
+  },
+  {
+    "TableName": "SqlQuery",
+    "Rows": [
+      {
+        "query": "SELECT COUNT(*) n FROM SpecObj s JOIN galSpecInfo i ON s.specObjID=i.specObjID JOIN PhotoObj p ON s.bestObjID=p.objID JOIN galSpecExtra x ON s.specObjID=x.specObjID JOIN galSpecLine l ON s.specObjID=l.specObjID WHERE s.class='GALAXY' AND s.z BETWEEN 0.02 AND 0.12 AND x.lgm_tot_p50>=11 AND x.lgm_tot_p50<=12.5 AND x.specsfr_tot_p50>=-14 AND x.specsfr_tot_p50<-11 AND l.h_alpha_flux_err>0 AND l.h_beta_flux_err>0 AND l.oiii_5007_flux_err>0 AND l.nii_6584_flux_err>0 AND l.h_alpha_flux>=3*l.h_alpha_flux_err AND l.h_beta_flux>=3*l.h_beta_flux_err AND l.oiii_5007_flux>=3*l.oiii_5007_flux_err AND l.nii_6584_flux>=3*l.nii_6584_flux_err"
+      }
+    ]
+  }
+]

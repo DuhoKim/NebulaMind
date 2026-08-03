@@ -1,0 +1,120 @@
+{
+  "index": 5,
+  "captured_url": "https://arxiv.org/abs/1407.7040",
+  "ledger_rows": [
+    6
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:14:53Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 5,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/1407.7040",
+      "final_url": "https://arxiv.org/abs/1407.7040",
+      "status": 200,
+      "bytes": 50456,
+      "sha256": "11e240e9d9266cdcdfe50ee1808b3e12e75b28897eae0bfb396feef60c1c9433",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx05_initial_11e240e9d926.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:14:55Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 5,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/1407.7040",
+      "final_url": "https://arxiv.org/pdf/1407.7040",
+      "status": 200,
+      "bytes": 4832764,
+      "sha256": "034de9072711b90ebf6602fb84fd1fb21dc4fc2d089be2d542b8ce0682121346",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx05_arxiv_pdf_034de9072711.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:14:58Z",
+      "method": "GET",
+      "host": "doi.org",
+      "index": 5,
+      "label": "doi",
+      "purpose": "doi_primary_resolution",
+      "requested_url": "https://doi.org/10.1093/mnras/stu2058",
+      "final_url": "https://academic.oup.com/mnras/article/446/1/521/1316115/The-EAGLE-project-simulating-the-evolution-and",
+      "status": 403,
+      "bytes": 5960,
+      "sha256": "35e836ab1739167b7950f49ec10cf9a874008ac488a80f7ba6a68f8d411f39a2",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx05_doi_35e836ab1739.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:14:58Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 5,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1407.7040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1407.7040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 3818,
+      "sha256": "0a63651157aac6a60f2de66600a9ba30ed260ca65bbbcf95800e36a82e7b2fd7",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx05_ads_0a63651157aa.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The EAGLE project: Simulating the evolution and assembly of galaxies and their environments",
+      "doi": "10.1093/mnras/stu2058",
+      "arxiv_id": "1407.7040",
+      "pdf_url": "https://arxiv.org/pdf/1407.7040",
+      "text_path": "sources/text/idx05_initial_7a9a7903e44f.txt",
+      "text_sha256": "7a9a7903e44f3a7dd98fd6330ac53a69a49fb54efe50e354d34fa51527dba85a",
+      "text_chars": 6202
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "1407.7040",
+      "pdf_url": "",
+      "text_path": "sources/text/idx05_arxiv_pdf_89d00b7eeb18.txt",
+      "text_sha256": "89d00b7eeb18dabe250bd5e908c550b73aa77c1a5fb9cfa9cddc7db5fa90e050",
+      "text_chars": 211393,
+      "pdf_pages": 38
+    },
+    {
+      "label": "doi",
+      "title": "Just a moment...",
+      "doi": "10.1093/mnras/stu2058",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx05_doi_05f8bdf19ca6.txt",
+      "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+      "text_chars": 58
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx05_ads_2a6fd51f37fe.txt",
+      "text_sha256": "2a6fd51f37fe4481f8c5bfc7f5ae083c7437fec40bc5c7f0377ae75e00bae0c9",
+      "text_chars": 4380
+    }
+  ]
+}

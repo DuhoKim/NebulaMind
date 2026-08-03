@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="description" content="Michael Tremmel's Personal Webpage" />
+	<meta name="keywords" content="Tremmel, Michael, Astronomy, Astrophysics, Supermassive Black Holes" />
+	<meta name="author" content="Michael Tremmel" />
+	<link rel="stylesheet" type="text/css" href="../andreas07.css" title="andreas07" media="screen,projection" />
+	<title>Michael Tremmel</title>
+</head>
+
+<body>
+<div id="wrap">
+
+<div id="leftside">
+	<h1>Research</h1>
+	<h3><a class="active" href="romulus.html">The Romulus Simulations</a></h3>
+    <h3><a href="SMBHdynamics.html">SMBH Dynamics</a></h3>
+    <h3><a href="feedback.html">AGN Feedback and Galaxy Quenching</a></h3>
+    <h3><a href="clustersandgroups.html">Galaxy Evolution in Dense Environments</a></h3>
+
+	<div id="menu">
+        <a href="../index.html">Home</a>
+		<a href="../aboutme.html">About Me</a>
+		<a class="active" href="../research.html">Research</a>
+		<a href="../code.html">Code</a>
+		<a href="../teaching.html">Teaching</a>
+        <a href="../media.html">Media</a>
+	</div>
+
+	<!--<h3>Version info:</h3>
+	<p>v2.1 - Sep 11, 2012</p>-->
+</div>
+
+<div id="extras">
+    <h2>Relevant Papers</h2>
+    <ul>
+        <li><a href="https://arxiv.org/abs/1607.02151">Romulus Intro Paper</a></li>
+        <li><a href="https://arxiv.org/abs/1501.07609">Dynamical Friction Prescription</a></li>
+        <li><a href="https://arxiv.org/abs/1708.07126">Formation of Close SMBH Pairs</a></li>
+    </ul>
+	<h2>Useful Links</h2>
+	<ul>
+		<li><a href="http://adsabs.harvard.edu/cgi-bin/abs_connect?author=Tremmel,+Michael&aut_syn=YES&return_req=no_params">My ADS Listing</a></li>
+		<li><a href="../cv/cv_michaeltremmel.pdf">Curriculum Vitae</a></li>
+		<li><a href="https://github.com/mtremmel">My Github Page</a></li>
+	</ul>
+    <h2>Contact Info</h2>
+	<ul>
+		<li>email: michael "dot" tremmel "at" yale.edu</li>
+		<li>twitter: @MichaelTremmel</li>
+		<li><a href="https://astronomy.yale.edu/people/michael-tremmel">my Yale page</a></li>
+	</ul>
+</div>
+
+<div id="content">
+	<h1>The Romulus Simulations</h1>
+    <h2>High resolution cosmological simulations with improved supermassive black hole physics</h2>
+    <!--<embed src="media/Romulus.MRIz2.mpg" autostart="true" height="30" width="144"> </embed>-->
+    <figure>
+  		<img src="img/romulus/Romulus_Gas.png"
+			 title="A snapshot of gas temperature within a slab taken out of the Romulus25 simulation"
+			 width="500" alt="gas temperature Romulus">
+  		<figcaption>
+            Large-scale Structure in Romulus.
+            <font size="-2">
+			A map of the gas temperature (hot = red, cold = blue) taken from a slab of the Romulus25 cosmological
+            volume. Patches of hot gas exist around massive galaxies in part due to feedback from active galactic
+            nuclei powered by supermassive black holes.
+            </font>
+		</figcaption>
+	</figure>
+    <h3> Overview </h3>
+	<p>
+        The Romulus simulations are large-scale cosmological simulations with resolution on par
+        with the highest resolution simulations of this type run to date. The simulations are run with the most
+        current cosmological parameters. Our flagship simulation is Romulus25, a uniform cosmological volume
+        of 25 Mpc per side (about 80 million light  years). Romulus25 provides a sample of <b>1000s of galaxies ranging
+        from dwarf galaxies to massive galaxies at the centers of small groups</b>.
+        We are currently running a suite of zoom-in simulations
+        (cosmological simulations focusing on the formation of only a single object,
+        rather than a large volume) of massive galaxy groups and clusters (10<sup>13</sup> to 10<sup>15</sup> M<sub>sol</sub>)
+        to compliment the dataset provided by Romulus25. The first and most impressive of these is
+        <a href="clustersandgroups.html">RomulusC</a>, the highest resolution cosmological simulation ever done of a galaxy cluster.
+        All together, the Romulus simulations will allow us to explore galaxy evolution in a variety of environments.
+	</p>
+    <h3> A novel implementation of SMBH physics </h3>
+	<p>
+        An important and unique strength of the Romulus simulations is the careful implementation of SMBH physics, designed
+        to provide a physically motivated sub-grid model for SMBH formation, dynamics, growth, and feedback that will
+        be suited to study questions relevant to modern and future observations of SMBHs and active galactic nuclei (AGN).
+    </p>
+    <p>
+        <b>Seeding SMBHs in the early Universe based on gas properties </b> allows Romulus to predict where and when
+        SMBHs grow independent of any assumptions about what galaxies they exist in. It also allows us to follow SMBH
+        growth at early times and in a variety of environments, including dwarf and satellite galaxies.
+    </p>
+
+    <p>
+        <b>An accretion model that accounts for angular momentum support</b> is crucial for modeling SMBH growth in
+        disk-dominated galaxies. By connecting accretion to the gas kinematics, Romulus can give us a better picture
+        of the different modes of SMBH growth (e.g. growth within disk galaxies vs actively merging galaxies).
+    </p>
+
+    <p>
+        <b>Accounting for unresolved dynamical friction</b> acting on SMBHs allows Romulus to accurately track
+        the orbital evolution of SMBHs within galaxies to sub-kpc accuracy. This is crucial for understanding phases of SMBH
+        growth during perturvative events like mergers. It is also important for modeling when and where SMBHs will
+        form binaries and potentially merge to better interpret and predict results from future gravitational wave
+        missions like LISA.
+    </p>
+
+    <p>
+        <b>A careful implementation of feedback</b>, combined with improved hydrodynamics and high resolution,
+        allows for an accurate representation
+        of how SMBHs interact not only with their immediate environment, but the host galaxy as a whole.
+        Our model is able to avoid any ad hoc prescriptions for wind or "bubble" formation that often require heavy handed
+        assumptions about the nature of SMBH feedback.
+    </p>
+
+    <figure>
+  		<img src="img/dynamics/DFmodel_compare.png"
+			 title="My new dynamical friction model allows us to track SMBH orbital evolution in cosmological simulations"
+			 width="450" alt="Dynamical Friction Model">
+  		<figcaption>
+            Dynamical Friction At Work.
+            <font size="-2">
+			    A comparison that shows why the model for dynamical friction I've developed is an important improvement over
+                previous approaches. These plots show the results of test simulations examining the orbital evolution
+                of a SMBH conducted at the same resolution as the Romulus simulations. The theoretical prediction is that the SMBH should sink
+                to the center in a few billion years (Gyr). The model with the dynamical friction correction (<b>blue</b>)
+                does very well. The model with no correction (<b>cyan</b>) fails to sink after 6 billion years. The <b>red</b>
+                line represents what we would find were we to use the same methods normally employed by large cosmological
+                simulations lke Illustris (the SMBH unrealistically sinks immediately to the center)
+            </font>
+		</figcaption>
+	</figure>
+
+    <h3>Using Romulus Data</h3>
+    <p>
+        While the data from the simulations are not publicly available, we are very open to anyone working with it.
+        We store a variety of halo properties within the <a href="https://pynbody.github.io/tangos/">TANGOS</a> database framework (also have a look
+        at the <a href="https://arxiv.org/abs/1803.00010">paper</a> that <a href="#">Andrew Pontzen</a> and I recently wrote). It is easy to access
+        properties and profiles of all galaxies and their evolution through time in each simulation via either a python
+        or web-based interface. <b>If you would like to analyze this data, please contact me personally.</b>
+    </p>
+
+
+    <p class="credits">&copy; 2018 <a href="#">Michael Tremmel</a> | Based on the template design by <a href="http://andreasviklund.com/">Andreas Viklund</a></p>
+
+</div>
+
+</div>
+</body>
+</html>

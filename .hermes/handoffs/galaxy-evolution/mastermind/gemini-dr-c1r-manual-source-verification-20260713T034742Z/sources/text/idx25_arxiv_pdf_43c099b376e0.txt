@@ -1,0 +1,3241 @@
+arXiv:1603.02702v2  [astro-ph.CO]  7 Nov 2016
+Mon. Not. R. Astron. Soc. 000, 1–34 (2016)
+Printed 8 November 2016
+(MN LATEX style ﬁle v2.2)
+The BAHAMAS project: Calibrated hydrodynamical
+simulations for large-scale structure cosmology
+Ian G. McCarthy1⋆, Joop Schaye2, Simeon Bird3, Amandine M. C Le Brun4
+1Astrophysics Research Institute, Liverpool John Moores University, 146 Brownlow Hill, Liverpool L3 5RF
+2Leiden Observatory, Leiden University, P. O. Box 9513, 2300 RA Leiden, the Netherlands
+3Department of Physics and Astronomy, Johns Hopkins University, 3400 N. Charles Street, Baltimore, MD 21218, USA
+4Laboratoire AIM, IRFU/Service d’Astrophysique – CEA/DRF – CNRS – Universit´e Paris Diderot, Bˆat. 709, CEA-Saclay,
+91191 Gif-sur-Yvette Cedex, France
+Accepted ... Received ...
+ABSTRACT
+The evolution of the large-scale distribution of matter is sensitive to a variety of funda-
+mental parameters that characterise the dark matter, dark energy, and other aspects
+of our cosmological framework. Since the majority of the mass density is in the form of
+dark matter that cannot be directly observed, to do cosmology with large-scale struc-
+ture one must use observable (baryonic) quantities that trace the underlying matter
+distribution in a (hopefully) predictable way. However, recent numerical studies have
+demonstrated that the mapping between observable and total mass, as well as the
+total mass itself, are sensitive to unresolved feedback processes associated with galaxy
+formation, motivating explicit calibration of the feedback eﬃciencies. Here we con-
+struct a new suite of large-volume cosmological hydrodynamical simulations (called
+BAHAMAS, for BAryons and HAloes of MAssive Systems) where subgrid models of
+stellar and Active Galactic Nucleus (AGN) feedback have been calibrated to repro-
+duce the present-day galaxy stellar mass function and the hot gas mass fractions of
+groups and clusters in order to ensure the eﬀects of feedback on the overall matter
+distribution are broadly correct. We show that the calibrated simulations reproduce
+an unprecedentedly wide range of properties of massive systems, including the various
+observed mappings between galaxies, hot gas, total mass, and black holes, and repre-
+sent a signiﬁcant advance in our ability to mitigate the primary systematic uncertainty
+in most present large-scale structure tests.
+Key words:
+galaxies: clusters: general, cosmology: theory, large-scale structure of
+Universe, galaxies: haloes
+1
+INTRODUCTION
+The evolution of the large-scale distribution of matter is
+highly sensitive to a variety of fundamental cosmological pa-
+rameters that control the growth rate of structure, such as
+the total matter density (Ωm), the amplitude (σ8) and spec-
+tral index (ns) of density ﬂuctuations, and the evolution of
+dark energy. However, since the majority of the mass density
+is in the form of dark matter, it is not directly observable and
+one must instead use observable (baryonic) quantities that
+trace the underlying matter distribution in some fashion. A
+wide variety of such indirect probes of the matter distribu-
+tion have been proposed over the years, including measure-
+ments of the Lyman-alpha forest, galaxy cluster counts, the
+thermal Sunyaev-Zel’dovich (SZ) eﬀect, weak gravitational
+⋆E-mail:i.g.mccarthy@ljmu.ac.uk
+lensing of galaxies (cosmic shear) and of the cosmic mi-
+crowave background (CMB lensing), galaxy clustering, and
+redshift space distortions. The past few years have seen ma-
+jor advances in the precision with which measurements of
+these large-scale structure (LSS) probes are being made.
+With the quality and quantity of observations of
+LSS rapidly improving, some interesting (possible) ten-
+sions between the analysis of the CMB and diﬀerent low-
+redshift LSS tests have recently arisen (e.g., Beutler et al.
+2014; Planck Collaboration et al. 2015a,b). While there may
+still be relevant observational uncertainties at play (e.g.,
+Addison et al. 2016), increased focus is being placed on the
+degree of precision with which the various LSS signatures
+(e.g., the predicted galaxy cluster number counts, the cos-
+mic shear shape correlation functions) can be theoretically
+predicted for a given cosmology.
+Most LSS tests probe into the non-linear regime and
+c⃝2016 RAS
+
+
+2
+I. G. McCarthy et al.
+therefore require detailed cosmological simulations to help
+calibrate the theoretical modelling. The employed cosmo-
+logical simulations usually only model collisionless matter.
+However, it is becoming increasingly clear that to obtain
+precise predictions, one must model not only the dark mat-
+ter but also the baryons, since they form a non-negligible
+fraction of the mass density. In particular, energetic feed-
+back processes associated with star formation and black
+hole growth can heat and expel gas from collapsed struc-
+tures (e.g., McCarthy et al. 2011) and modify the large-scale
+distribution of matter (e.g., van Daalen et al. 2011, 2014;
+Velliscig et al. 2014). Note that the extent of the eﬀect is not
+simply that some fraction of the baryons are removed; there
+is also a corresponding large-scale expansion (or ‘back reac-
+tion’) of the dark matter and a slowing of the accretion rate
+of new matter (e.g., van Daalen et al. 2011; Sawala et al.
+2013).
+Cosmological hydrodynamical simulations are the only
+method which can follow all the relevant matter components
+and self-consistently capture the eﬀects of feedback. How-
+ever, such simulations have had a notoriously diﬃcult time
+in reproducing key observables, such as the galaxy stellar
+mass function. In the context of LSS cosmology, obtaining
+the correct total baryon fraction (stars+gas, noting that hot
+gas normally dominates the baryon budget of massive sys-
+tems) is arguably even more important, since this is a ‘zeroth
+order’ requirement for ensuring that the feedback eﬀects on
+the matter distribution are of the correct magnitude (e.g.,
+Semboloni et al. 2011).
+A number of recent simulation studies have highlighted
+the sensitivity of the galaxy formation eﬃciency to the
+details of the subgrid prescriptions for feedback, particularly
+stellar feedback (e.g., Schaye et al. 2010; Scannapieco et al.
+2012;
+Haas et al.
+2013;
+Puchwein & Springel
+2013;
+Vogelsberger et al.
+2013;
+Crain et al.
+2015),
+while
+the
+OverWhelmingly Large Simulations (OWLS) project of
+Schaye et al. (2010) and cosmo-OWLS, its extension to
+larger volumes (Le Brun et al. 2014; McCarthy et al. 2014),
+have shown that a similar predicament holds for the gas
+content of massive dark matter haloes (groups and clusters).
+On large scales and for massive haloes, the sensitivity is
+tied more closely to the details of the AGN feedback as
+opposed to that of stellar feedback (see McCarthy et al.
+2011; Le Brun et al. 2014).
+This lack of ab initio predictive power for the stellar and
+gaseous fractions of collapsed systems means that in general
+the subgrid models for feedback must be calibrated in order
+to reproduce these observations1 (Schaye et al. 2015). As-
+suming this can be achieved, the realism of the model may
+then be tested by looking at other independent observables
+and at trends with redshift, environment, etc. At present,
+however, we are unaware of any self-consistent cosmological
+hydrodynamical simulations that simultaneously reproduce
+the stellar and hot gas content for a representative popula-
+tion that spans the full range of massive haloes (Mhalo ∼
+1 A more long-term and ultimately more desirable path is to
+simulate the feedback physics directly, and thus rid ourselves of
+the degrees of freedom in current subgrid models. However, the
+dynamic range required to do this is still far too demanding at
+present, particularly in the context of cosmological simulations
+needed for the study of large-scale structure.
+1012−15 M⊙). [Note that some of the (cosmo)OWLS simula-
+tions approximately reproduced the observed gas fractions
+and stellar masses but for a smaller dynamic range.] Con-
+structing a simple model which can achieve this, while pass-
+ing a variety of other important independent tests, is the
+primary aim of the present study.
+In particular, we construct a new set of large-volume
+(400 Mpc/h on a side) cosmological hydrodynamical sim-
+ulations that may be used to aid the cosmological inter-
+pretation of LSS tests, building on previous work from
+the OWLS/cosmo-OWLS projects. Speciﬁcally, those stud-
+ies explored the eﬀects of systematically varying the impor-
+tant parameters of the subgrid feedback models on the stel-
+lar and hot gas properties of haloes. As already discussed,
+one arrives at the inevitable conclusion that the feedback
+eﬃciency(ies) in current simulations must be calibrated to
+reproduce the observed stellar and hot gas content. Our
+new simulation program, dubbed bahamas (for BAryons
+and HAloes of MAssive Systems), takes exactly this route.
+Speciﬁcally, we calibrate a simple subgrid model of feed-
+back to reproduce the hot gas mass fractions of local mas-
+sive haloes (over the range log10[M500/M⊙] = 13.0 −15.0),
+the present-day galaxy stellar mass function (over the range
+log10[M∗/M⊙] = 10.0−12.0), and the amplitude of the z = 0
+stellar mass−black hole mass relation. We then explore the
+realism of the model by comparing the predictions of the
+simulations to a wide range of observables over a large range
+of mass, spatial, and time scales. We show that the simu-
+lations do a remarkable job at capturing the properties of
+massive systems.
+The paper is organized as follows. In Section 2 we de-
+scribe the simulations and our calibration strategy. In Sec-
+tion 3 we examine the predictions of the calibrated model
+for the relation between present-day galaxies and their host
+dark matter haloes, including the separate contributions of
+centrals and satellites, the spatial distributions of stellar
+mass, and the dynamics of satellite population in massive
+haloes. Section 4 examines the evolution of basic galaxy
+properties, including the galaxy stellar mass function and
+the star formation rates. Section 5 explores the hot gas
+properties of groups and clusters, including the integrated
+and radial X-ray and SZ eﬀect properties. Section 6 explores
+the galaxy−hot gas connection, comparing the simulations
+to recent X-ray, SZ, and weak lensing stacking analyses of
+massive galaxies. Section 7 examines black hole and quasar
+properties. Finally, in Section 8 we summarize our results.
+For consistency with the simulations, we adopt a ﬂat
+ΛCDM cosmology with WMAP 9-year based cosmological
+parameters throughout and halo masses are speciﬁed in M⊙
+(not h−1 M⊙).
+2
+SIMULATIONS
+2.1
+Simulation characteristics
+As we are interested in the properties of massive dark
+matter haloes (corresponding to massive galaxies
+and
+groups and clusters of galaxies), large volumes are re-
+quired in order to simulate representative populations. Fol-
+lowing cosmo-OWLS, our production runs consist of 400
+Mpc/h on a side periodic boxes. We use updated ini-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+3
+tial conditions based on the maximum-likelihood cosmo-
+logical parameters derived from the WMAP 9-year data
+(Hinshaw et al. 2013) {Ωm, Ωb, ΩΛ, σ8, ns, h} = {0.2793,
+0.0463, 0.7207, 0.821, 0.972, 0.700} and the Planck 2013
+data (Planck Collaboration et al. 2014) = {0.3175, 0.0490,
+0.6825, 0.834, 0.9624, 0.6711}. We use the Boltzmann code
+CAMB2 (Lewis et al. 2000; April 2014 version) to compute
+the transfer function and a modiﬁed version of V. Springel’s
+software package N-GenIC3 to make the initial conditions, at
+a starting redshift of z = 127. N-GenIC has been modiﬁed
+by S. Bird to include second-order Lagrangian Perturbation
+Theory (2LPT) corrections and support for massive neutri-
+nos4 (which we will consider in future studies). We will only
+present the results of the WMAP runs here, but we will
+comment on any signiﬁcant diﬀerences in the corresponding
+Planck runs.
+The full production runs presented here have 2 × 10243
+particles, yielding dark matter and (initial) baryon particle
+masses of ≈3.85 × 109 h−1 M⊙(4.45 × 109 h−1 M⊙) and
+≈7.66×108 h−1 M⊙(8.12×108 h−1 M⊙), respectively for a
+WMAP-9 (Planck) cosmology. The gravitational softening
+length is ﬁxed to 4 kpc/h in physical coordinates below z = 3
+and ﬁxed in comoving coordinates at higher redshifts.
+As the hydrodynamic code and the subgrid physics pre-
+scriptions used here have not been modiﬁed from those used
+previously for the OWLS and cosmo-OWLS projects, and
+are described in detail in previous papers, we present only
+a brief description below. Note that while the basic subgrid
+modules have not been modiﬁed, we adopt diﬀerent feedback
+parameter values here in order to calibrate the simulations
+to reproduce the stellar and hot gas content of dark matter
+haloes. Our calibration strategy is described in Section 2.2.
+The
+simulations
+were
+carried
+out
+with
+a
+ver-
+sion
+of
+the
+Lagrangian
+TreePM-SPH
+code
+gadget-3
+(last described in Springel 2005), which has been ex-
+tended to include new ‘subgrid’ physics. Radiative cool-
+ing/heating rates are computed element by element fol-
+lowing Wiersma, Schaye, & Smith (2009), interpolating the
+rates as a function of density, temperature and red-
+shift from pre-computed tables generated with cloudy
+(last
+described
+in
+Ferland et al.
+1998). The
+rates ac-
+count for heating/cooling due to the primary CMB and
+a Haardt & Madau (2001) ultra-violet/X-ray photoionizing
+background. ‘Reionization’ is modelled by simply switching
+on the background at z = 9. Star formation (SF) is imple-
+mented following the prescription of Schaye & Dalla Vecchia
+(2008). The simulations lack the resolution and detailed
+physics to directly follow the cold interstellar medium (ISM),
+so an eﬀective equation of state is imposed with P ∝ρ4/3
+for gas with nH > n∗
+H where n∗
+H = 0.1 cm−3. Gas ex-
+ceeding this density threshold is available for star forma-
+tion (implemented stochastically), at a pressure-dependent
+rate that reproduces the observed Kennicutt-Schmidt law by
+construction (see Schaye & Dalla Vecchia 2008). Stellar evo-
+lution and chemical enrichment are implemented using the
+model of Wiersma et al. (2009), which computes the timed-
+release of 11 elements (H, He, C, N, O, Ne, Mg, Si, S, Ca and
+2 http://camb.info/
+3 http://www.mpa-garching.mpg.de/gadget/
+4 https://github.com/sbird/S-GenIC
+Fe; i.e., all of the important ones for radiative cooling losses)
+due to Type Ia and Type II supernovae (SNe) and winds
+from massive stars and Asymptotic Giant Branch (AGB)
+stars.
+Feedback from star formation is implemented using the
+kinetic wind model of Dalla Vecchia & Schaye (2008). In
+this model, neighbouring gas particles are given a veloc-
+ity kick. Note that kicked particles are never hydrodynami-
+cally ‘decoupled’ the from surrounding gas. Hence, there is
+the potential for the entrainment of a large fraction of the
+gas surrounding the wind directly kicked particles. Previous
+OWLS/cosmo-OWLS runs adopted a mass-loading factor
+ηw = 2 and a wind velocity vw = 600 km/s by default, cor-
+responding to using approximately 40% of the energy avail-
+able from Type II supernovae assuming a Chabrier (2003)
+IMF (which the simulations adopt). This results in simula-
+tions that neglected AGN feedback approximately reproduc-
+ing the peak of the observed cosmic star formation history at
+z ∼1 −3 (Schaye et al. 2010). As we will show below, leav-
+ing these parameter values ﬁxed while including the eﬀects
+of AGN feedback, which appears necessary to reproduce
+the hot gas properties of groups/clusters (McCarthy et al.
+2010), results in lower-than-observed galaxy formation eﬃ-
+ciencies for haloes with masses similar to the Milky Way’s
+(M200 ∼1012 M⊙). This is not completely unexpected, as
+Schaye et al. already showed that the inclusion of AGN feed-
+back, while leaving the star formation feedback parameter
+values ﬁxed, results in a cosmic star formation history that
+lies below the observed trend (see their Fig. 18). Note, how-
+ever, that the galaxy formation eﬃciency is quite sensitive
+to the adopted parameter values for stellar feedback; even
+variations in the wind mass-loading and wind velocity at
+ﬁxed energy (i.e., ηwv2
+w = constant) can have a signiﬁcant
+eﬀect on the star formation histories of galaxies (see Fig. 14
+of Schaye et al. 2010 and Fig. 4 of Haas et al. 2013). (This
+sensitivity is not so surprising, because changing the wind
+velocity changes how much material can escape the halo,
+and thus the amount of re-accretion.) Therefore, it should
+be possible, at least in principle, to reproduce the galaxy
+formation eﬃciency in the presence of AGN feedback, by
+lowering the eﬃciency of stellar feedback. We discuss this
+possibility further below.
+Accretion onto and mergers of supermassive black
+holes (SMBHs) and the resulting AGN feedback is imple-
+mented using the subgrid prescription of Booth & Schaye
+(2009), which is a modiﬁed version of the model of
+Springel, Di Matteo, & Hernquist (2005). Here we describe
+the main parameters of the model and guidance we have
+taken in setting their values.
+At present we do not have a detailed theoretical pic-
+ture of how the ﬁrst massive BHs formed. Most current
+models of SMBHs implemented in cosmological simula-
+tions therefore bypass this issue and simply inject BH
+‘seed mass’ particles into dark matter haloes (identiﬁed us-
+ing a standard Friends-of-Friends, or FoF, algorithm) on-
+the-ﬂy during the simulation, as originally employed by
+Springel, Di Matteo, & Hernquist (2005). Naively, specify-
+ing exactly how this is done may not seem particularly rele-
+vant as the BHs generally have negligible dynamical impact
+on galaxies and dark matter haloes. However, the feedback
+they induce can (and generally will) have profound eﬀects,
+particularly on the observable baryonic component. There-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+4
+I. G. McCarthy et al.
+fore, rough guidance from observations (while also taking
+numerical limitations into consideration) is sometimes taken
+to specify a minimum halo mass, or alternatively a minimum
+galaxy stellar mass, into which BH seeds are placed. For ex-
+ample, it may be desirable to have the simulations roughly
+reproduce the break in the galaxy stellar mass function, in
+which case the BHs could be injected somewhat below the
+mass scale5 corresponding to M ∗(i.e., Mhalo ∼1012 M⊙).
+Given that our simulations are of relatively low resolution,
+we cannot ‘resolve’ haloes much lower than this mass in any
+case. Here we follow Booth & Schaye (2009) and inject BH
+seed particles in FoF groups with at least 100 DM particles
+(corresponding to a FoF halo mass of ∼5 × 1011 M⊙) but
+show in Appendix A the eﬀects of increasing the minimum
+halo mass for BH seed injection.
+Once seeded6, BHs grow via Eddington-limited gas ac-
+cretion, at a rate which is proportional to the Bondi-Hoyle-
+Lyttleton rate, as well as through mergers with other BHs.
+As the simulations do not directly model the cold ISM, they
+will generally underestimate the accretion rate onto the BH
+by a large factor. Springel et al. and many subsequent stud-
+ies that have adopted this model scaled the Bondi rate up
+by a constant factor α ≈100. In the Booth & Schaye (2009)
+model, however, α is a power-law function of the local den-
+sity for gas above the SF threshold, n∗
+H. The power-law ex-
+ponent β is set to 2 and the power-law is normalised so that
+α = 1 for densities equal to the SF threshold, so that at low
+densities, which can be resolved and for which no cold phase
+is expected, the accretion rate is the unmodiﬁed Bondi rate.
+We use the Booth & Schaye (2009) model by default, but
+explore the eﬀects of varying the accretion rate boost factor
+later.
+Following Booth & Schaye (2009), a fraction, ǫ, of the
+rest mass energy of accreted gas is used to heat a num-
+ber (nheat) of neighbouring gas particles, by increasing their
+temperature by a pre-speciﬁed level, ∆Theat. BHs store ‘ac-
+cretion energy’ in a reservoir until it is suﬃciently large to
+heat the nheat particles by ∆Theat. These two parameters
+are chosen to broadly ensure that the heated gas has a suf-
+ﬁciently long cooling time (and therefore does not strongly
+suﬀer from artiﬁcial numerical radiative cooling losses due
+to poor mass resolution; see, e.g., Dalla Vecchia & Schaye
+2012) and that the time needed to have a feedback event
+is shorter than the Salpeter time for Eddington-limited ac-
+cretion. However, these criteria alone do not precisely pin
+5 The BH seeds can in fact be placed in much lower mass haloes,
+so long as the accretion model ensures ineﬃcient growth at low
+halo masses (e.g., Schaye et al. 2015).
+6 Note that early on in their evolution, when the BH particle
+mass is similar to (or smaller than) the simulation mass resolu-
+tion, the BH will not dominate the local dynamics and could
+potentially wander from the centre of its parent halo. In or-
+der to avoid this, Booth & Schaye (2009) follow the prescription
+of Springel, Di Matteo, & Hernquist (2005), which calculates the
+potential energies of all of the gas particles within the vicinity of
+the BH and repositions the BH on top of the gas particle with
+the minimum potential energy (see Booth & Schaye 2009 for de-
+tails). This repositioning process is halted after the mass of the
+BH particle exceeds 10 times the initial gas particle mass in the
+simulation, as the BH dominates the local potential after this
+point.
+down the heating temperature or heated gas mass and,
+as shown by Le Brun et al. (2014) (hereafter L14; see also
+Schaye et al. 2015), even relatively minor changes in ∆Theat
+can have a signiﬁcant impact on the hot gas properties (par-
+ticularly the gas mass fraction and quantities that depend
+on it, such as the X-ray luminosity and thermal Sunyaev-
+Zel’dovich ﬂux) of groups and clusters. Therefore, calibra-
+tion of the heating temperature (and to a far lesser ex-
+tent of the heated gas mass) is required to reproduce the
+observed hot gas content. For reference, Booth & Schaye
+(2009) adopted ∆Theat = 108 K and nheat = 1 which
+McCarthy et al. (2010) and L14 later showed does a rea-
+sonable job of reproducing the ICM gas mass fraction of
+groups and clusters when using the ﬁducial stellar feedback
+parameter values discussed above.
+Note that for a ﬁxed value of nheat (i.e., ﬁxed heated
+gas mass), increasing (decreasing) the heating temperature
+leads to more (less) bursty and energetic AGN feedback, as
+more (less) time is required for the BHs to accrete enough
+mass to heat neighbouring gas by a larger (smaller) amount.
+Finally, the feedback eﬃciency is ǫ ≡ǫrǫf, where ǫr =
+0.1 is the radiative eﬃciency and ǫf is the fraction of ǫr that
+couples to neighbouring gas. Booth & Schaye (2009) (see
+also Booth & Schaye 2010, L14, Schaye et al. 2015) have
+shown that adopting ǫf = 0.15 results in a good match be-
+tween the OWLS (cosmo-OWLS) simulations and the nor-
+malisations of the z = 0 relations between BH mass and
+halo mass and velocity dispersion (the slopes are naturally
+reproduced), as well as to the observed cosmic BH density.
+In general, the choice of the eﬃciency is inconsequential for
+galaxy properties other than the black hole mass, so long
+as it is non-zero (see Booth & Schaye 2009, 2010 and Ap-
+pendix A of the present study). This owes to the fact that
+AGN feedback quickly establishes a self-regulating scenario.
+In Section 2.2 and Appendix A we show the eﬀects of
+systematically varying the main parameters of the AGN ac-
+cretion/feedback models (i.e., the minimum halo mass for
+BH seed injection, ∆Theat, nheat, ǫf, and the boost factor
+α applied to the Bondi accretion rate) on the galaxy stellar
+mass function.
+Note that haloes are identiﬁed by using a standard
+friends-of-friends (FoF) percolation algorithm on the dark
+matter particles with a typical value of the linking length
+in units of the mean interparticle separation (b=0.2). The
+baryonic content of the haloes is identiﬁed by locating the
+nearest DM particle to each baryonic (i.e. gas or star) par-
+ticle and associating it with the FoF group of the DM parti-
+cle. Artiﬁcial haloes are removed by performing an unbind-
+ing calculation with the subfind algorithm (Springel et al.
+2001; Dolag et al. 2009): any FoF halo that does not have
+at least one self-bound substructure (a ‘subhalo’) is removed
+from the FoF groups list. We deﬁne the central galaxy as the
+baryonic component belonging to the most massive subhalo
+in a FoF group, whereas satellite galaxies belong to the other
+(less massive) subhaloes in a FoF group.
+2.2
+Calibration Strategy
+Recent numerical work has demonstrated the sensitivity of
+the predicted baryonic properties of the haloes to the imple-
+mentation of subgrid prescriptions for feedback processes.
+This has motivated some recent works to explicitly calibrate
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+5
+Figure 1. The z = 0.1 GSMF for the cosmo-OWLS runs pre-
+sented in L14 in a Planck 2013 cosmology. A 3-D aperture of
+30 kpc (physical) is adopted when calculating the stellar masses
+of the simulated galaxies. All of the models have too few galax-
+ies with 10 ≲log10[M∗/M⊙] ≲11, compared to recent SDSS
+and GAMA observations. In addition, neglect of AGN feedback
+(the ‘REF’ model) results in far too many massive galaxies. In-
+clusion of AGN feedback resolves this problem, a result which is
+independent of the choice of AGN heating temperature (i.e., how
+violent/bursty the heating events are).
+the subgrid feedback to reproduce key observables, while us-
+ing other independent observables as tests of the realism of
+the model. Two of the more notable examples of this strat-
+egy are the Illustris (Vogelsberger et al. 2013) and EAGLE
+(Schaye et al. 2015) projects. These studies were focused on
+simulating the main galaxy population at high resolution
+and both suitably calibrated their feedback on important
+aspects of the galaxy population. In the case of EAGLE,
+the feedback was calibrated on the local galaxy stellar mass
+function and the size−stellar mass relation of galaxies (see
+Crain et al. 2015).
+As we are interested in tests of cosmology using large-
+scale structure, rather than simulating the galaxy popula-
+tion in ﬁne detail, our calibration strategy will diﬀer from
+that of EAGLE and Illustris. In particular, the crucial prop-
+erty that dictates how much the total matter power spec-
+trum (which is what large-scale structure tests probe) has
+been modiﬁed by baryon physics is the total baryon fraction
+of haloes, which is dominated by stellar mass and especially
+hot gas. Our calibration strategy will therefore be aimed
+at reproducing the observed stellar and hot gas masses of
+haloes. Note that the stellar and hot gas masses are also key
+for setting the magnitude of many of the other observable
+properties (e.g., luminosities and metallicities of galaxies,
+metal content and overall thermodynamic state of the ICM
+in groups and clusters). To our knowledge, bahamas is a
+ﬁrst attempt to calibrate the feedback on the total baryon
+content of haloes and is the ﬁrst study to explicitly calibrate
+the feedback on the observed properties of massive haloes.
+Our approach is as follows. We previously demonstrated
+that a subset of the models with AGN feedback in the
+OWLS/cosmo-OWLS projects reproduces a wide variety
+of properties of the hot gas in groups and clusters (see
+McCarthy et al. 2010 and L14), as well as of the ‘optical’
+properties of the BCG. Given this success and the fact
+that we now wish to carry out simulations of similar res-
+olution, we will use these simulations as our starting point.
+We will ﬁrst examine the overall stellar mass distribution
+(the galaxy stellar mass function, GSMF) of the various
+cosmo-OWLS models. As discussed above (Section 2.1), we
+anticipate an over-suppression of star formation in haloes
+with Mhalo ∼1012M⊙for these models. We will examine to
+what extent a simple adjustment of the eﬃciency of stellar
+feedback can rectify this issue, or whether more complicated
+expressions for the eﬃciency are required. Having calibrated
+the stellar feedback to reproduce the GSMF, we will investi-
+gate how the ICM properties are aﬀected (if at all). If there is
+signiﬁcant “crosstalk” between the hot gas and stellar prop-
+erties, such that adjusting the feedback parameter values
+to aﬀect one has a similarly large eﬀect on the other, then
+this could make simultaneous calibration an involved and
+expensive task. If, on the other hand, the coupling is rela-
+tively weak, a simple re-calibration of the AGN model to ﬁt
+the group/cluster gas fractions may be all that is required.
+2.3
+The galaxy stellar mass function
+We begin in Fig. 1 by examining the GSMF of the cosmo-
+OWLS runs presented in L14. The GSMF is deﬁned as the
+number of galaxies (including both centrals and satellites)
+per unit comoving Megaparsec per decade in stellar mass;
+i.e., φ(M∗) ≡dn/dlog10M∗. Following Schaye et al. (2015),
+an aperture of 30 kpc (physical) is adopted when calculating
+the stellar masses of the simulated galaxies here, but we
+explore in Appendix B the eﬀects of varying the aperture
+size and compare with recent observations that do likewise.
+In short, the stellar masses of the most massive galaxies are
+sensitive to the choice of aperture (due to the presence of
+intracluster light), both in the simulations and observations,
+and a 30 kpc aperture is reasonable for standard ‘pipeline
+analysis’.
+Fig. 1 shows that the cosmo-OWLS models consistently
+have too few galaxies with log10[M∗/M⊙] < 11 compared
+to recent SDSS and GAMA observations. In addition, ne-
+glect of AGN feedback (the ‘REF’ model) results in far
+too many massive galaxies (log10[M∗/M⊙] ≳11.5). Interest-
+ingly, AGN feedback resolves this overcooling problem and
+the resulting GSMF matches the observations at the high-
+mass end very well, a result which is nearly independent
+of the choice of AGN heating temperature (i.e., how vio-
+lent/bursty the heating events are). This latter result con-
+trasts with the very strong dependence of the hot gas mass
+fractions on the heating temperature found in L14 (see their
+Fig. 3); a result that we exploit later on when calibrating
+the AGN feedback.
+The fact that all of the cosmo-OWLS models under-
+predict the abundance of galaxies with log10[M∗/M⊙] < 11
+suggests that the stellar feedback is overly eﬃcient, since this
+is the only aspect of the feedback in common between the
+diﬀerent models. We now seek to alter the feedback param-
+eter values to produce a better match to the GSMF at these
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+6
+I. G. McCarthy et al.
+Figure 2. The eﬀects of varying the wind velocity of stellar feedback on the local GSMF (left panel) and the stellar mass fraction−halo
+mass relation (right panel; for central galaxies only). The stellar mass fraction of observed central galaxies in the right panel has been
+determined using abundance matching. Dropping the wind velocity from the cosmo-OWLS value of 600 km/s to ≈300 km/s resolves
+most of the problem with the underabundance of ∼M∗galaxies. However, it is not possible to perfectly match the data (particularly
+the knee of the GSMF) using a ﬁxed velocity while leaving the parameters of the AGN feedback model at their cosmo-OWLS values.
+masses while still retaining a similarly good match to the hot
+gas properties of groups and clusters found by L14 for their
+‘AGN 8.0’ model. We therefore start from this model and
+experiment with systematically lowering the stellar feedback
+wind velocity while keeping all other aspects of the model
+ﬁxed, including the stellar feedback mass-loading. Therefore,
+by lowering the velocity we are also lowering the fraction of
+the available stellar feedback energy which couples to the
+gas.
+In the left panel of Fig. 2 we show the results of lower-
+ing the stellar feedback wind velocity on the GSMF. These
+test runs, which adopt a WMAP 9-year cosmology, were
+performed in a smaller 100 Mpc/h on a side box, adopt-
+ing the same resolution as for the full 400 Mpc/h produc-
+tion runs presented later. Lowering the wind velocity in-
+deed has the desired eﬀect of increasing the abundance of
+galaxies at low to intermediate stellar masses. A wind ve-
+locity of vw ≈300 km/s does a reasonable job of reproduc-
+ing the abundance of the lowest-mass galaxies under con-
+sideration (log10[M∗/M⊙] ∼10). However, no single value
+of the wind velocity results in a perfect match to the ob-
+served GSMF. In particular, tuning to match the lowest
+mass galaxies results in a slight overabundance of galaxies
+at log10[M∗/M⊙] ∼10.5 −11.5. This issue is more clearly
+visible in the right panel of Fig. 2, which shows that haloes
+with masses of M200 ∼1012 M⊙have somewhat higher stel-
+lar mass fractions than inferred from abundance matching
+results. We point out that we did not examine the stellar
+mass fractions while attempting to calibrate the feedback
+(we examined only the local GSMF and the hot gas frac-
+tions of groups and clusters), but found in retrospect that
+it more clearly demonstrates this particular issue.
+To rectify the overabundance of galaxies at intermedi-
+ate stellar masses we could adopt a more complicated de-
+pendence of the stellar feedback eﬃciency on either global
+or local properties, which might be appealed to on either nu-
+merical or physical grounds (see discussion in Schaye et al.
+2015). Alternatively, we can ﬁx the stellar feedback wind ve-
+locity to reproduce the abundance of the lowest mass galax-
+ies and use the freedom in the AGN feedback model to ad-
+dress the issue. We opt for the latter (simpler) approach here
+in the ﬁrst instance7.
+As discussed in Section 2.1, there are ﬁve main pa-
+rameters in the AGN model that can be varied: the min-
+imum halo mass for BH seed injection, ∆Theat, nheat, ǫf,
+and the boost factor applied to the Bondi accretion rate
+(α). In Appendix A, we show that the GSMF is only very
+weakly dependent on the feedback eﬃciency ǫf (see also
+Booth & Schaye 2009) and the heating temperature ∆Theat
+(see also Fig. 1), so adjustment of these parameters cannot
+resolve the overabundance issue at intermediate masses. We
+therefore leave ǫf = 0.15, which was shown previously to
+result in a good match to the normalisation of various local
+BH scaling relations. We also leave the heating temperature
+ﬁxed at ∆Theat = 108 K for the moment but return to this
+parameter later.
+We also show in Appendix A that the GSMF is sensi-
+tive to both the minimum halo mass for BH seeding and the
+7 Detailed comparisons to the demographics of the observed AGN
+population (e.g., the evolution of luminosity functions, quasar
+clustering, etc.) may oﬀer an interesting set of orthogonal con-
+straints on the AGN feedback model that may help to determine
+the eﬀective halo mass where AGN feedback starts to dominate
+over that of stellar feedback. We plan to examine this possibility
+in future work.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+7
+Figure 3. The eﬀect of varying the mass of gas heated (char-
+acterised by nheat, the number of gas particles heated per feed-
+back event) by AGN feedback on the local GSMF. Here we adopt
+a wind velocity of 300 km/s for the feedback from star forma-
+tion. Heating ≈10 −30 particles, corresponding to a gas mass of
+≈1 −3 × 1010 M⊙, yields an excellent match to the GSMF over
+the full range of masses considered here. Henceforth we adopt
+nheat = 20.
+scaling factor, α, applied to the Bondi accretion rate. Resolu-
+tion considerations prevent us from exploiting the former to
+provide a solution to the overabundance problem, as we can
+only reliably increase the minimum mass scale for BH seed-
+ing, which makes the problem signiﬁcantly worse. Adopting
+a somewhat diﬀerent density dependence to the Bondi boost
+factor from that used by default by Booth & Schaye (2009)
+(they adopted α ∝ρβ where β = 2) is a more promising pos-
+sibility. However, by changing the boost factor signiﬁcantly
+there is a possibility that the previously obtained agree-
+ment with the observed BH scaling relations would be neg-
+atively aﬀected. While reproducing the amplitude of these
+scaling relations is not strictly necessary (it is the feedback
+that counts not the BH masses), it is nevertheless desirable.
+We therefore retain the accretion scaling factor dependence
+adopted by Booth & Schaye (2009).
+The last AGN feedback parameter is the mass of gas
+heated by the AGN, expressed here in terms of the number
+of gas particles heated, nheat. In Fig. 3 we show the eﬀect of
+increasing the heated gas mass (note that nheat = 1 corre-
+sponds to a heated gas mass of ≈1.1 × 109 M⊙). Note that
+by increasing the number of gas particles that are heated
+while keeping the heating temperature ∆Theat ﬁxed, implies
+that the AGN heating events are more energetic as we in-
+crease nheat (the same energy is injected into each particle
+but more particles are heated). Increasing the heated gas
+mass to a value of ≈1 −3 × 1010 M⊙(nheat ≈10 −30) has
+the desired eﬀect of reducing the abundance of intermediate
+stellar mass galaxies while only have a relatively small eﬀect
+at much higher or lower masses. Varying nheat also has a rel-
+Figure 4. The eﬀect of lowering the wind velocity from stellar
+feedback and increasing the mass of gas heated by AGN on the hot
+gas mass fractions of groups and clusters. The gas mass fractions
+and halo masses for the simulations have been estimated in an
+observational manner meant to mimic standard X-ray analyses
+(see L14 for details), in order to make a like-with-like comparison
+to the observational data. The gas fractions are slightly lower than
+observed, which is due to the fact that more of the gas has ended
+up in stars compared to the AGN models explored in cosmo-
+OWLS. A slight reduction in the AGN heating temperature (from
+108 K to 107.8 K) yields a better match to the gas fractions while
+leaving the quality of the match to the GSMF unchanged.
+atively small eﬀect on the gas mass fractions (see Appendix
+A). We adopt nheat = 20 henceforth.
+2.4
+Group and cluster gas fractions
+Having adjusted the stellar and AGN feedback parameter
+values to better reproduce the local GSMF, we ask what ef-
+fect this has on the hot gas content of massive groups and
+clusters. In Fig. 4 we show the hot gas mass fraction as a
+function of halo mass (M500,X−ray) and compare to recent
+X-ray measurements. We use the synthetic X-ray pipeline
+described in L14 (see also Section 5.1) to process the simu-
+lations in order to make a like-with-like comparison to the
+X-ray data. (Note, however, that we have not attempted to
+select the simulated clusters in an observational way, but
+instead analyse a purely mass-selected sample.) The sparse-
+ness of the simulated sample is due to the relatively small
+box size of 100 Mpc/h that we are using for calibration pur-
+poses. However, it is suﬃciently large to get a sense of the
+level of overall agreement between the new model and the
+observations.
+Using the default heating temperature of ∆Theat = 108
+K, which worked well in McCarthy et al. (2010) and L14
+in terms of comparisons to a large variety of hot gas diag-
+nostics, we see a small over-suppression of the gas fraction
+compared to observations. This is easy to understand: the
+reduction of the eﬃciency of stellar feedback (to better re-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+8
+I. G. McCarthy et al.
+Figure 5. The ﬁnal calibrated local GSMF and hot gas mass fraction−halo mass trend, extracted from four independent 400 Mpc/h box
+realizations. In the right panel the red curves (solid curve represents the median, dashed curves enclose 68% of the population) represent
+the relation derived from a synthetic X-ray analysis of a mass-limited sample (all haloes with M500,true > 1013 M⊙). The dot-dashed
+cyan curve represents the true relation (i.e., not processed through synthetic X-ray observations). The new model reproduces both key
+observational diagnostics remarkably well.
+Simulation
+vw
+ηw
+ǫr
+ǫf
+∆Theat
+nheat
+accretion model
+min FoF mass for BH seeding
+cosmo-OWLS (agn 8.0)
+600 km/s
+2
+0.1
+0.15
+108.0 K
+1
+Booth & Schaye (2009)
+100 DM particles
+bahamas
+300 km/s
+2
+0.1
+0.15
+107.8 K
+20
+Booth & Schaye (2009)
+100 DM particles
+Table 1. Comparison of the cosmo-OWLS ‘AGN 8.0’ model parameter values and the new calibrated model. vw and ηw are the stellar
+feedback wind velocity and mass-loading, respectively. ǫr is the BH radiative eﬃciency and ǫf is the fraction thereof which couples to
+neighbouring gas. ∆Theat is the temperature jump applied to nheat neighbouring gas particles during AGN feedback.
+produce the low-mass end of the GSMF) has resulted in a
+higher fraction of baryons being locked up in stars in the pro-
+genitors of groups and clusters. Consequently, the mass of
+baryons remaining in the form of hot gas has been reduced.
+However, a small reduction in the AGN heating temperature
+to ∆Theat = 107.8 K re-establishes the good agreement with
+the observed gas fractions and while having essentially no
+eﬀect on the GSMF (see Appendix A).
+2.5
+BAHAMAS
+In Table 1 we summarize the adjustments made to the ﬁdu-
+cial ‘AGN 8.0’ cosmo-OWLS model (which is identical to the
+OWLS model ‘AGN’) to reproduce the local GSMF while
+retaining a good match to the hot gas fractions of groups
+and clusters. We henceforth refer to the calibrated model as
+bahamas (for BAryons and HAloes of MAssive Systems).
+With a viable model in hand, we have run much
+larger volumes (L400N1024) in both the WMAP 9-year and
+Planck 2013 cosmologies. For the WMAP cosmology we
+have run four independent realizations (i.e., using diﬀerent
+random phases when generating the initial conditions) and
+when presenting results for that cosmology we combine the
+results from the four volumes.
+In Fig. 5 we compare the ﬁnal calibrated local GSMF
+and group/clusters hot gas mass fractions with the data de-
+rived from the large volume (i.e., production) runs. For the
+hot gas mass fraction comparison, in addition to the results
+for the synthetic X-ray analysis applied to a mass-limited
+sample (all haloes with true M500,c > 1013 M⊙; red curves),
+we also show the true relation (i.e., not processed through
+an X-ray pipeline and applied to the full mass-limited sam-
+ple; dot-dashed cyan curve). The comparison to the true
+relation is useful because it indicates the degree to which
+X-ray-inferred quantities are biased (e.g., due to the com-
+mon assumption of hydrostatic equilibrium, gas clumping,
+spectroscopic temperature).
+The agreement with both the GSMF and the hot gas
+mass fractions is remarkably good8 We stress here the sim-
+plicity of our calibrated model: the parameters governing
+8 The scatter at ∼1013.5 M⊙appears to be somewhat un-
+derestimated by the simulations, but we again note that we
+have not attempted to select the simulated clusters in an ob-
+servational way. Flux-limited X-ray surveys, such as those of
+Lovisari, Reiprich, & Schellenberger (2015), may preferentially
+select systems with higher than average gas fractions near the
+ﬂux limit (i.e., in the group regime), for example.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+9
+Figure 6. The z = 0.1 f∗−M200 and f∗−M∗relations for central galaxies compared with abundance matching and stacked weak lens-
+ing/satellite kinematics, respectively. Abundance matching measures ⟨log10 M∗⟩(M200), while stacked weak lensing/satellite kinematics
+measures ⟨M200⟩(M∗). Analysed in the same way, the calibrated model reproduces the two relations well, implying the underlying
+M∗−M200 (including its intrinsic scatter) is also recovered reasonably well. The simulations also qualitatively reproduce the observed
+diﬀerence in halo mass at ﬁxed stellar mass for observed early-type and late-type galaxies (i.e., ETGs have a larger mean halo mass at
+ﬁxed stellar mass compared to LTGs for stellar masses of ∼1011 M⊙).
+the eﬃciencies9 of stellar and AGN feedback are single, ﬁxed
+values. The fact that the model closely reproduces the ob-
+served baryon content of collapsed systems over a couple
+of orders of magnitude in halo mass is therefore non-trivial
+and was certainly not guaranteed. For example, we did not
+have to invoke complicated functions for the stellar or AGN
+feedback eﬃciencies to reproduce the shapes of the GSMF
+or the gas fraction−halo mass trends. In fact, the latter ap-
+pears to come out naturally from our models that include
+AGN feedback (i.e., it is diﬃcult to avoid).
+We do not claim to have identiﬁed a unique solution.
+Furthermore, we note that the results above regarding the
+parameter dependence of the stellar and hot gas fractions
+may not hold at much higher resolution. However, we have
+achieved our main requirements at the present resolution
+(the baryon content of massive systems) and we can test
+the realism of the model against independent observations,
+as we do immediately below. In Appendix C we present a
+numerical convergence study, showing that the simulations
+are not strongly aﬀected by resolution for the massive haloes
+we are generally focused on here.
+3
+THE GALAXY−HALO CONNECTION
+In this section we examine the partitioning of stellar mass
+as a function of halo mass, the contribution of centrals and
+9 Here we use the term eﬃciency to refer to the overall eﬀective-
+ness of the feedback.
+satellites, and the large-scale spatial and kinematic distri-
+butions of galaxies. We compare with recent observations of
+the local Universe.
+3.1
+Stellar mass fractions of central galaxies
+In
+Fig.
+6
+we
+examine
+the
+stellar
+mass
+fractions
+of
+central
+galaxies
+as
+a
+function
+of
+halo
+mass
+(left
+panel)
+and
+stellar
+mass
+(right
+panel).
+In
+the
+left
+panel we compare to the recent abundance matching
+(AM) results of Behroozi, Wechsler, & Conroy (2013) and
+Moster, Naab, & White (2013). AM usually constrains the
+mean of the log of the stellar mass in bins of halo mass [i.e.,
+⟨log10 M∗⟩(Mhalo)] so this is the quantity we compute from
+the simulations. Where necessary we have converted the AM
+halo masses to a common halo mass deﬁnition, M200,c, by
+adopting the mass−concentration relation from the simula-
+tions10 and assuming an NFW proﬁle.
+The agreement between the mean relation from ba-
+hamas and those derived from the AM measurements is
+excellent. Small diﬀerences are present at the high-mass
+end which could be due to a variety of eﬀects, includ-
+ing diﬀerences in the eﬀective apertures used to derive the
+stellar masses and diﬀerences in the underlying halo mass
+functions (AM techniques adopt mass functions from dark
+10 We have not ﬁt a parametric model to the mass−concentration
+relation, but have instead computed the median concentration in
+bins of halo mass. We then interpolate the concentration from
+this relation given a halo mass. For a power law ﬁt to the high-
+mass end of the mass−concentration relation from bahamas, see
+Henson et al. (2016).
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+10
+I. G. McCarthy et al.
+matter only simulations, which in general will diﬀer from
+those derived from hydrodynamical simulations at the tens
+of percent level due to gas expulsion by stellar and AGN
+feedback; e.g., Sawala et al. 2013; Cui, Borgani, & Murante
+2014; Velliscig et al. 2014; Cusworth et al. 2014). Note also
+that Fig. 6 examines the trend for central galaxies only, while
+the GSMF includes both centrals and satellites. Therefore
+it is possible in principle to reproduce the GSMF without
+reproducing the stellar mass fraction−halo mass trend if the
+satellite population diﬀers signiﬁcantly between the simula-
+tions and the observations.
+Another relevant issue is that AM techniques must as-
+sume something about the intrinsic scatter in the stellar
+mass at ﬁxed halo mass, which is something we have no di-
+rect control over in the simulations. This can be particualrly
+important at high masses, due to the steepness of the mass
+function. On this point, it is interesting to note that the
+scatter in the simulations (dashed red curves) appears to
+be signiﬁcantly larger than adopted in many previous AM
+studies. For example, Moster, Naab, & White (2013) adopt
+a ﬁxed scatter of 0.15 dex in stellar mass, whereas the me-
+dian scatter in bahamas is 0.24 dex and declines with in-
+creasing halo mass (e.g., the scatter is 0.30, 0.22, and 0.20
+dex at M200/M⊙= 1013,1014, and 1015). Calibrating the
+models to match the GSMF therefore does not uniquely de-
+termine the scatter. An independent constraint on the scat-
+ter can be made by comparing the predictions to measure-
+ments of galaxy clustering (which we do below) and to mea-
+surements of galaxy-galaxy lensing (which we intend to do
+in a future study). Interestingly, the recent Halo Occupation
+Distribution (HOD) models of Leauthaud et al. (2012) and
+Zu & Mandelbaum (2015), which have been calibrated to
+reproduce these three independent and complementary ob-
+servables, derive scatters of 0.23 and 0.22 dex, respectively,
+consistent with bahamas.
+In the right panel of Fig. 6 we examine the stellar
+mass fractions in bins of stellar mass for central galaxies
+and compare to recent stacked weak (galaxy-galaxy) lensing
+and stacked satellite kinematics, hereafter WLSK. In con-
+trast to AM, stacked WLSK derives the mean halo mass (or
+mean of the log of halo mass) in bins of stellar mass; i.e.,
+⟨Mhalo⟩(M∗). This is an alternative way to compare the stel-
+lar mass fractions and one which is sensitive to the level of
+intrinsic scatter in the stellar mass−halo mass relation.
+The two shaded regions in the right panel of Fig. 6
+correspond to the stellar mass fraction trends for late-type
+(LTGs) and early-type (ETGs) galaxies in Dutton et al.
+(2010). Dutton et al. compiled WLSK measurements from
+a variety of previous studies (WL: Mandelbaum et al.
+2006, 2008; Schulz et al. 2010; SK: Conroy et al. 2007;
+Klypin & Prada 2009; More et al. 2011) and took care to
+scale the stellar masses from these studies to a common
+Chabrier IMF and to adopt a common halo mass deﬁnition
+(M200,c; see Dutton et al. 2010 for more details). The shaded
+regions roughly encapsulate the diﬀerences in the relations
+derived from the diﬀerent WLSK studies and therefore gives
+some handle on the systematic error involved (which gener-
+ally exceeds the statistical error from any individual study).
+The solid red curve represents the mean trend pre-
+dicted by the simulation for all central galaxies. However,
+observations show that the galaxy formation eﬃciency at
+ﬁxed stellar mass depends on the type of galaxy being
+considered (i.e., disc or elliptical; see Mandelbaum et al.
+2015 for a recent comparison of diﬀerent observational re-
+sults). To test whether simulated galaxies display such a
+trend, we split them into either ‘star-forming’ or ‘passive’
+categories using a threshold in the speciﬁc star formation
+rate11 (sSFR ≡SFR/M∗) of 10−11yr−1, which corresponds
+roughly to the dip in the observed bimodal sSFR distribu-
+tion (e.g., Wetzel, Tinker, & Conroy 2012). We compute the
+SFR within a 30 kpc aperture for each simulated galaxy.
+The dashed blue and dot-dashed cyan curves in the right
+panel of Fig. 6 show the mean relations for the simulated
+star-forming and passive galaxies, respectively. Here we see
+that, indeed, passive galaxies have larger mean halo masses
+(and thus lower stellar mass fractions) compared to star-
+forming galaxies of the same stellar mass (M∗∼1011 M⊙).
+There is also reasonably good qualitative agreement with
+the observed trends for ETGs and LTGs (i.e., within the
+systematic errors).
+3.2
+Stellar mass content of groups and clusters
+3.2.1
+Integrated stellar mass fractions
+In Fig. 7 we plot the integrated stellar mass fractions
+of local (z ≈0.1) galaxy groups and clusters and com-
+pare with a variety of observational measurements, assum-
+ing a Chabrier IMF throughout. The black semi-circles
+and squares represent the results of Gonzalez et al. (2013)
+and Kravtsov, Vikhlinin, & Meshscheryakov (2014), respec-
+tively, who have made integrated stellar mass measure-
+ments of individual, nearby clusters with hydrostatic mod-
+elling of high-quality X-ray observations being used to esti-
+mate the halo mass. The ﬁlled black circles correspond to
+the best-ﬁt power-law relation derived by Budzynski et al.
+(2014) from an image stacking analysis of a large sample
+of optically-selected SDSS clusters. They derived the stellar
+mass fractions in four halo mass bins, using an empirically-
+calibrated richness−X-ray temperature−hydrostatic M500
+relation to estimate halo mass. The vertical error bars on the
+Budzynski et al. measurements correspond to the estimate of
+Leauthaud et al. (2012) of the (non-IMF) systematic uncer-
+tainty in the stellar mass estimates due to, e.g., diﬀerences
+in stellar population modelling. Although we plot these error
+bars on the Budzynski data points only, they apply equally
+well to all other data points shown in Fig. 7.
+Common
+to
+the
+Gonzalez et al.
+(2013),
+Kravtsov, Vikhlinin, & Meshscheryakov
+(2014),
+and
+Budzynski et al. (2014) studies is the inclusion of intr-
+acluster light (ICL) and the use of X-ray observations
+(assuming hydrostatic equilibrium) to derive the halo
+mass. The black dashed curve shows the HOD modelling
+results of Zu & Mandelbaum (2015) for SDSS data (see
+also Leauthaud et al. 2012 for HOD modelling of COSMOS
+data, which yields very similar results), where their HOD
+models have been constrained to reproduce the observed
+11 The relatively low resolution of our simulations prevents us
+from being able to reliably classify the simulated galaxies as ETGs
+or LTGs on the basis of stellar morphology. Note that in any
+case some of the observational WLSK studies used colour (which
+should closely track sSFR) rather than morphology to divide their
+samples.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+11
+Figure 7. The integrated stellar mass fraction of local groups
+and clusters within r500
+compared with SDSS observations
+of nearby individual clusters with X-ray halo mass estimates
+(Gonzalez et al.
+2013;
+Kravtsov, Vikhlinin, & Meshscheryakov
+2014), stacked SDSS imaging of a large sample of optically-
+selected groups with X-ray halo mass estimates (Budzynski et al.
+2014), and HOD modelling of SDSS data (Zu & Mandelbaum
+2015). The simulated groups have been processed with syn-
+thetic X-ray observations to measure a halo mass and ra-
+dius in an observational manner (solid red curve represents
+the median and dashed red curves enclose 68% of the popula-
+tion), but we also show the median relatios for the true rela-
+tion (dot-dashed cyan, not processed through synthetic X-ray
+observations). Note that the simulations and observations of
+Gonzalez et al. (2013), Kravtsov, Vikhlinin, & Meshscheryakov
+(2014), and Budzynski et al. (2014) include intracluster light
+(ICL), whereas the HOD modelling results do not. Overall the in-
+tegrated stellar mass fractions are reproduced very well in terms
+of the normalisation. The observational studies disagree with one
+another over the shape of the trend (see Budzynski et al. 2014 for
+further discussion), with the simulation predictions most closely
+resembling the statisical HOD-derived measurements.
+galaxy-galaxy lensing signal and galaxy clustering in bins
+of stellar mass, as well as the shape of the galaxy stellar
+mass function. Unlike the previously mentioned studies,
+the halo masses here are not measured (and do not assume
+hydrostatic equilibrium) but are inferred from the model.
+The inconsistency in the way the halo masses are derived
+between the studies might be a cause for concern for this
+comparison, but a comparison of the solid red and dashed
+blue curves in Fig. 7 shows that only a small diﬀerence ex-
+ists for the simulation predictions when we use true masses
+as opposed to hydrostatic ones. Note that for consistency
+we have scaled all the stellar masses to a Chabrier IMF
+and have converted the halo masses of Zu & Mandelbaum
+(2015) from M200,m to M500,c assuming an NFW proﬁle
+and the mass-concentration relation from the simulations.
+There is good agreement between the predictions of the
+simulations and the observational measurements in terms
+of amplitude: f∗,500 ≈0.01 −0.03 for groups and clusters.
+Figure 8. The fractional contribution to the total stellar mass
+from central and satellite galaxies as a function of halo mass (here
+deﬁned as M200,m) at z = 0.1 compared to the HOD model re-
+sults for SDSS data of Zu & Mandelbaum (2015). The agreement
+between the simulations and the HOD constraints is remarkably
+good.
+When compared with the observed hot gas mass fraction (see
+right panel of Fig. 5), one immediately concludes that the
+hot gas dominates over the stellar mass in groups and clus-
+ters (see also Appendix C). It is only when one approaches
+halo masses of ∼1013 M⊙and lower that the stellar mass
+becomes a sigiﬁfcant fraction of the total baryon budget.
+While
+the
+normalization
+of
+the
+stellar
+mass
+fraction−halo mass relation is reproduced by the sim-
+ulations, the picture regarding the shape of the relation is
+less clear. This is because the observational studies do not
+agree with one another, with the results from statistical
+analyses of large samples suggesting ﬂat or mildly varying
+stellar mass fractions, while the studies based on individual
+clusters suggest a much steeper trend. Interestingly, the
+simulations predict a reasonably large spread in the stellar
+mass fraction at ﬁxed halo mass (thin dashed lines), with a
+median scatter of 0.16 dex. Note that much of this scatter is
+due to the scatter in the relation between X-ray hydrostatic
+mass and true halo mass, as we ﬁnd that the scatter in
+the true stellar mass fraction (within the true r500) is only
+0.07 dex on its own. Given that the scatter is reasonably
+large, this could mean that selection eﬀects can potentially
+play a role for the studies based on small numbers of
+individual clusters and could potentially reconcile the
+diﬀerent observational ﬁndings. We suggest that the use of
+realistic mock galaxy catalogs and folding in of the precise
+selection functions of the diﬀerent studies is a promising
+way to test this hypothesis.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+12
+I. G. McCarthy et al.
+3.2.2
+Relative contributions of centrals and satellites
+We have just shown that the predicted overall stellar con-
+tent of massive dark matter haloes agrees well with observa-
+tions. Here we examine whether the simulations reproduce
+the relative contributions of centrals and satellites to the to-
+tal stellar content. We restrict our analysis to systems with
+masses exceeding M200,m > 1013 M⊙, since our simulations
+do not have suﬃcient mass resolution to resolve the typical
+satellites (in a mass-weighted sense) of lower-mass haloes.
+In Fig. 8 we show the fractional contributions of cen-
+tral and satellite galaxies to the total stellar mass in galax-
+ies (within r200,m) as a function of halo mass, deﬁned
+here as M200,m, at z
+= 0.1 and compare the predic-
+tions of the simulations with the HOD modelling results of
+Zu & Mandelbaum (2015). For consistency, we exclude the
+ICL from this comparison since the observational data used
+to constrain the HOD model does not include this compo-
+nent. Stellar masses are computed within a 30 kpc aperture
+for galaxies within r200,m of the host halo.
+The simulations predict a rapidly rising increase in the
+fractional contribution to the total stellar mass from satel-
+lites with increasing halo mass. Satellites begin to domi-
+nate over centrals at a halo mass of log10[M200,m/M⊙] ≈
+13.2−13.3 (corresponding to log10[M500,c/M⊙] ≈13.0). The
+agreement between the median relation from the simulations
+and the HOD modelling results is remarkably good, particu-
+larly given the fact that nothing other than the local GSMF
+was used to calibrate the stellar content of systems in the
+simulations. The simulations also predict a large degree of
+system-to-system scatter in the relative contributions of cen-
+trals and satellites in the group regime which can hopefully
+be tested with future observations.
+3.2.3
+Spatial distribution of satellites in clusters
+In the previous subsections we showed that the ba-
+hamas simulations reproduce the observed overall stellar
+mass content of massive dark matter haloes reasonably well,
+including the breakdown by centrals vs. satellites. How does
+the predicted spatial distribution of stellar mass in massive
+haloes compare with observations?
+Previous observational studies have found that both the
+number density (typically above some luminosity thresh-
+old) and the total stellar mass density of satellite galax-
+ies in local massive clusters can be relatively well de-
+scribed with an NFW distribution, but with a concentra-
+tion parameter (c200 ≡r200/rs, where rs is the scale ra-
+dius) that is typically a factor of ∼2-3 lower than that
+predicted (and observed) for the underlying dark mat-
+ter mass density proﬁle (e.g., Carlberg, Yee, & Ellingson
+1997; Lin, Mohr, & Stanford 2004; Budzynski et al. 2012;
+van der Burg et al. 2015). Here we compare with the recent
+low-redshift observational measurements of the radial dis-
+tribution of the stellar mass density in satellites of massive
+clusters of van der Burg et al. (2015, hereafter V15) from
+the Multi-Epoch Nearby Cluster Survey (MENeaCS) and
+the Canadian Cluster Comparison Project (CCCP) cluster
+samples.
+To make a consistent comparison to the measurements
+of V15 we must ﬁrst select a suitable sample of simulated
+massive clusters, noting that the sample of V15 includes only
+Figure 9. The z
+=
+0.1 stacked stellar mass density pro-
+ﬁles of satellite galaxies in massive clusters, compared with
+the best-ﬁtting NFW proﬁle to the CCCP/MENeaCS sample
+(van der Burg et al. 2015). We select a subset of high-mass sim-
+ulated clusters with the same mean M500 as the observational
+sample. The black curve represents the best-ﬁt NFW proﬁle of
+van der Burg et al. (2015) (c200 = 2.03), with the dotted portion
+of the curve indicating the region where the ﬁt ceases to be a
+good description of the data. For comparison, the long-dashed
+blue curve represents an NFW distribution with a concentration
+c200 = 4 (which is typical of the underlying dark matter distribu-
+tion for systems of this mass; see Henson et al. 2016), normalised
+to match the best-ﬁt to the data at r200. The red curve repre-
+sents the prediction for a sample simulated clusters with the same
+mean halo mass as the observed sample. Similar to the case of ob-
+served clusters, the satellite distribution of the simulated clusters
+is more extended (c200 ≈2) than that of the underlying dark
+matter (typically c200 ≈4 −5 at these masses).
+very massive clusters. Speciﬁcally, we use the estimated ve-
+locity dispersions of the observed clusters (see Table 1 of
+V15) together with stacked maxBCG velocity dispersion-
+weak lensing calibration (see Section 3.3 below) to estimate
+the mean M500,c for the observed sample, ﬁnding ⟨M500,c⟩≈
+6.2×1014 M⊙. We then simply impose a minimum halo mass
+cut for the simulated clusters of M500,c ≈3.4×1014 M⊙such
+that the mean value for the selected simulation population
+matches that of the observed sample. This selection crite-
+rion yields 148 clusters from the four independent simula-
+tion volumes, with a maximum mass of M500,c ≈2.4 × 1015
+M⊙. Following V15, we derive the mean stellar mass density
+by stacking the satellite catalogs of the cluster sample, nor-
+malising the satellite cluster-centric distances by r200 prior
+to stacking.
+In Fig. 9 we compare the observed and predicted stacked
+stellar mass density proﬁles. Note that we have used the
+best-ﬁt NFW parameters quoted by V15 to deproject their
+2D surface mass density proﬁle into a 3-D mass density pro-
+ﬁle, for comparison with the simulations. We adopt a mim-
+imum satellite stellar mass of log10 M∗/M⊙> 9.5, which is
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+13
+Figure 10. The z = 0.1 stacked velocity dispersion−M500 re-
+lation of galaxy groups and clusters, compared with the best-ﬁt
+power-law to SDSS observations (maxBCG). The observed rela-
+tion combines the best-ﬁt power-law to the stacked weak lens-
+ing halo mass−richness relation (Rozo et al. 2009) with the best-
+ﬁt power-law to the stacked velocity dispersion−richness relation
+(Becker et al. 2007). We compute and combine these relations in
+the same way using the simulations. Overall, the simulated rela-
+tion agrees remarkably well with the observed relation, with both
+showing clear evidence of a negative velocity bias with respect to
+the underlying dark matter distribution.
+similar to the observational sample has a completeness limit
+(note that the result is not sensitive to this choice, so long
+as the mimimum mass is below the break in the galaxy stel-
+lar mass function). Overall, the simulations reproduce the
+shape and normalisation of the observed stellar mass den-
+sity proﬁle reasonably well. There are hints of a discrepancy
+within ≈0.1r200, but it is unclear if this is a real eﬀect (e.g.,
+due to enhanced stripping of satellites in the simulations
+compared to real clusters) or issues with robustly identify-
+ing substructures at such high background densities (see,
+e.g., Muldrew, Pearce, & Power 2011). In any case, over the
+vast majority of the cluster volume the simulated satellites
+have a similar spatial distribution to the observed satellite
+population without having performed any calibration (it is
+not clear how you could easily calibrate this in any case).
+We ﬁt the simulated stellar mass density proﬁle over
+the radial range 0.1 ⩽r/r200 ⩽1 with an NFW distribu-
+tion and, similar to what is found from observations of local
+clusters, infer a concentration c200 ≈1.8. For reference, V15
+ﬁnd a best-ﬁt concentration of c200 = 2.03 ± 0.2.
+3.3
+Dynamics of cluster satellite galaxies
+We have so far considered the stellar content of massive
+systems, including the breakdown into contributions from
+centrals and satellites and how the satellites are distributed
+spatially in massive systems. An interesting complementary
+test of the realism of the simulated massive systems is dy-
+namics of the orbiting satellite population, which we now
+examine.
+One
+of
+the
+largest
+and
+most
+well
+characterised
+group
+and
+cluster
+samples
+presently
+available
+is
+the
+optically-selected maxBCG sample (Koester et al. 2007).
+We combine the best-ﬁt power-law to the stacked velocity
+dispersion−richness relation from Becker et al. (2007) with
+the best-ﬁt power-law to the stacked weak lensing−richness
+relation of Rozo et al. (2009) to derive an observed veloc-
+ity dispersion−halo mass relation. Note that because there
+is intrinsic scatter in both the mass−richness and veloc-
+ity dispersion−richness relations, one must be careful to
+compare the same quantities for the simulations and ob-
+servations. Speciﬁcally, Becker et al. (2007) derive the mean
+of the log of the velocity dispersion in richness bins; i.e.,
+⟨log σgal,1D⟩(N), while Rozo et al. (2009) derive the mean
+halo mass in richness bins; i.e., ⟨M500,c⟩(N) (see Appendix
+A of Rozo et al.). To make a like-with-like comparison,
+we compute the stacked velocity dispersion−richness rela-
+tion and M500,c−richness relations from the simulations in
+the same way. We use a simple richness estimate for the
+simulated clusters, which is the number of satellites with
+M∗> 5 × 109 M⊙within r500,c. The velocity dispersion is
+calculated simply as the RMS of the 1D peculiar velocity
+distribution of these satellites. The results are insensitive to
+other reasonable choices for the stellar mass threshold or
+host aperture (e.g., M∗> 1010 M⊙and/or r < r200,c).
+In Fig. 10 we compare the predicted and observed
+σgal,1D−M500,c relations. The black solid transitioning to
+dashed line represents the combined stacked relations from
+the maxBCG studies. The dashed portion of the curve
+represents an extrapolation of the stacked weak lensing
+mass−richness relation from a richness of 10 down to a rich-
+ness of 3 (i.e., the stacked velocity dispersions were mea-
+sured down to a richness of 3, but the weak lensing anal-
+ysis was limited to richnesses ⩾10). The horizontal error
+bars represent the 0.1 dex systematic error estimate of Rozo
+et al. on the stacked weak lensing masses. The solid red
+curve represents the combined stacked relation from the
+simulations. Note that for the simulations we also derived
+⟨log σgal,1D⟩(M500,c) (not shown), as opposed to combin-
+ing ⟨log σgal,1D⟩(N) and ⟨M500,c⟩(N), and ﬁnd a virtually
+identical relation, implying that the precise richness deﬁ-
+nition is unimportant. The dashed red curves enclose the
+central 68% of the σgal,1D distribution in halo mass bins.
+The thick dashed blue and dot-dashed cyan curves (which
+are nearly on top of each other) correspond to the mean ve-
+locity dispersion−halo mass relations using the dark matter
+particles within r500 for our hydrodynamical simulations and
+for the corresponding dark matter-only simulation (respec-
+tively). These relations are virtually identical to that pre-
+viously derived by Evrard et al. (2008) based on a suite of
+dark matter-only simulations (after converting their masses
+from M200,c into M500,c).
+Overall, the simulated relation agrees well with the ob-
+served relation, reproducing the observed trend over an or-
+der of magnitude in halo mass. There are indications of a
+slight discrepancy for the highest-mass clusters, whose origin
+is likely tied to the adoption of pure power laws to describe
+the relations richness, velocity dispersion, and stacked lens-
+ing mass in the observations. Interestingly, the simulated
+and observed satellite galaxy populations show clear evi-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+14
+I. G. McCarthy et al.
+Figure 11. The z = 0.1 projected stellar mass autocorrela-
+tion function compared to SDSS measurements by Li & White
+(2009). The dashed and dot-dashed red curves show the simula-
+tion predictions for diﬀerent choices of aperture when computing
+the stellar masses of the simulated galaxies (30 and 100 kpc, re-
+spectively), while the solid red curve represents the autocorrela-
+tion derived from randomly-selected star particles. The observed
+function is reproduced very well on large scales, while on small
+scales the level of agreement depends on the choice of aperture
+and tracer.
+dence of a negative velocity bias with respect to the under-
+lying dark matter distribution.
+3.4
+Stellar mass autocorrelation function
+A ﬁnal test we carry out on the distribution of stellar mass
+at low redshift is that of the projected stellar mass autocor-
+relation function. This is similar to the 2-point correlation
+function of galaxies (‘galaxy clustering’), but with a stellar
+mass weighting applied to each galaxy when counting galaxy
+pairs. The clustering and autocorrelations serve as impor-
+tant independent checks on the models for a number of rea-
+sons. First, since the clustering signal depends strongly on
+halo mass (with high-mass haloes being much more strongly
+clustered than low-mass haloes), the stellar mass autocorre-
+lation, or galaxy clustering in bins of stellar mass, is sensitive
+to the stellar mass−halo mass relation, including its scatter
+and the relative contribution of centrals and satellites. These
+correlation functions are also sensitive to the spatial distri-
+bution of satellites around centrals (probed by the ‘1-halo’
+term of the correlation function which dominates small pro-
+jected separations), as well as to the underlying cosmology
+(probed by the ‘2-halo’ term which dominates large separa-
+tions).
+Here we compare to the z ≈0.1 stellar mass autocor-
+relation derived from the SDSS by Li & White (2009). We
+reproduce their methods (described in their Section 4) as
+closely as possible, using the same autocorrelation function
+estimator and method for generating the random galaxy cat-
+alog, and by adopting the same line of sight and projected
+distance binning strategies.
+In Fig. 11 we compare the predicted and observed auto-
+correlations. The red dashed and dot-dashed curves repre-
+sent the autocorrelations derived from the simulated galaxy
+catalogs for 30 and 100 kpc apertures, respectively. For com-
+parison, the solid red line shows the autocorrelation of star
+particles in the simulation, derived by randomly selecting 5%
+of the star particles in the simulation and applying the same
+methods used for the galaxy catalog (using the star particle
+masses as weights). The black points with error bars con-
+nected by a solid black curve represent the measurements of
+Li & White (2009).
+The predictions agree very well with the data at large
+projected separations (rP > 1 Mpc/h) and are fairly insensi-
+tive to the choice of aperture or whether one uses the distri-
+bution of stars instead of the distribution of galaxies. This is
+an important consistency check of the previous results. ba-
+hamas performs at least as well as previous studies based on
+semi-analytic models (e.g., Campbell et al. 2015) or subhalo
+abundance matching (e.g., Conroy, Wechsler, & Kravtsov
+2006) but without having been calibrated to do so.
+At small radii, the choice of aperture becomes impor-
+tant. For our standard aperture choice of 30 kpc, for exam-
+ple, the predicted autocorrelation undershoots the observa-
+tions somewhat (by ≈50% at 0.1 Mpc/h). As this part of the
+function is dominated by satellite galaxies, this may signal a
+deﬁcit of satellites at small projected separations, similar to
+that suggested by Fig. 9. Whether this is a real eﬀect (due
+to overly-eﬃcient tidal stripping) or is due to deﬁciencies in
+the identiﬁcation of substructures at close separations is not
+easy to tell. Going to higher resolution simulations should
+address both of these issues at the same time.
+Interestingly, the autocorrelation of star particles (solid
+red) exceeds the observed autocorrelation of galaxies. We
+should expect the star particle autocorrelation to provide an
+upper bound, since it samples all of the stellar mass in the
+simulation, including unidentiﬁed substructures and stellar
+mass erroneous assigned to the central galaxy, but also gen-
+uinely unbound (and typically not observed) stellar mass
+such as that is responsible for the ICL. The fact that the star
+particle correlation function lies in excess of the observed
+autocorrelation therefore suggests that the discrepancy be-
+tween the predicted and observed galaxy autocorrelations is
+not a fundamental one; i.e., we should expect the dashed
+and solid red curves to bracket the data (which they do) if
+the simulations have approximately the correct underlying
+stellar mass distribution.
+4
+EVOLUTION OF THE STELLAR UNIVERSE
+We have constructed a simple model that reproduces many
+of the key diagnostics of the distribution of stellar mass in
+the local Universe. While some of the diagnostics we ex-
+amined were not independent of the local GSMF on which
+the feedback model was calibrated (such as the stellar mass
+fractions of central galaxies), other tests were (such as the
+satellite spatial distribution and kinematics, the stellar mass
+autocorrelation, and the contribution of centrals and satel-
+lites to the total stellar mass content). Further independent
+tests of the model can be made by looking at the evolution
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+15
+Figure 12. Evolution of the cosmic stellar mass density. The
+solid red curve represents the predictions of the simulations
+using the ﬁducial 30 kpc aperture, while the long-dashed red
+curve corresponds to the total stellar mass in subhaloes. The
+dot-dashed red curve represents the case of a 30 kpc aper-
+ture but with the observational mass limits of Muzzin et al.
+(2013) imposed on the simulations. For comparison, we show re-
+cent GAMA (Baldry et al. 2012) and SDSS (Li & White 2009;
+Moustakas et al. 2013) local measurements along with higher red-
+shift data from the ZFOURGE/CANDELS (Tomczak et al. 2014)
+and UltraVISTA/zCOSMOS (Muzzin et al. 2013; Ilbert et al.
+2013) surveys. Note that for the observational data beyond z ≈2
+(lookback time of ∼10 Gyr) the estimate of ρ∗is really a
+lower limit, since the surveys are not sensitive to galaxies with
+M∗≲1010 M⊙(with the precise limit varying with redshift,
+whether the galaxy is star forming, and the survey details) and
+do not attempt to account for their contribution to the total stel-
+lar mass density. The agreement with the observed evolution of
+the cosmic stellar mass density is good.
+of galaxies. Here we focus on just a few basic tests, leaving a
+more detailed comparison with high-redshift measurements
+for future work. In particular, we examine here the evolu-
+tion of the GSMF and the overall cosmic stellar mass density
+(Section 4.1), as well as the evolution of the star formation
+rates of galaxies and the cosmic star formation rate density
+(Section 4.2).
+4.1
+Evolution of stellar mass
+In Fig. 12 we show the evolution of the cosmic stellar mass
+density, which is deﬁned as the sum of the stellar mass
+of all galaxies per unit comoving volume. We show the
+results for the ﬁducial 30 kpc aperture (solid red curve)
+as well as for the total (long-dashed red; i.e., all stellar
+mass bound to subhaloes in the simulations), integrating
+the simulations down to a stellar mass of 5 × 109 M⊙.
+For comparison, we show recent local measurements from
+GAMA (Baldry et al. 2012) and SDSS (Li & White 2009;
+Moustakas et al. 2013) along with high-z data from the
+ZFOURGE/CANDELS (Tomczak et al. 2014) and Ultra-
+VISTA/zCOSMOS (Muzzin et al. 2013; Ilbert et al. 2013)
+surveys. Note that at z ≳2 the surveys will generally miss a
+non-negligible fraction of the total stellar mass density due
+to the increasing stellar mass completeness limits with in-
+creasing redshift. To get a rough idea of how this impacts
+the results, we have imposed the quoted stellar mass lim-
+its of Muzzin et al. (2013) as a function of redshift on the
+simulated population12 (dot-dashed red curves).
+Below z ≈2 (lookback time of ≈10 Gyr) the observa-
+tional estimates of ρ∗are expected to be robust to complete-
+ness issues. Over this range of redshifts, the bahamas sim-
+ulations reproduce the observed total stellar mass density
+evolution well when we adopt the 30 kpc aperture (i.e., ap-
+propriate for comparisons to the observations). We note that
+approximatetly 30% of total stellar mass density within the
+30 kpc aperture is contributed by low-mass galaxies with
+log10[M∗/M⊙] ⩽10.5 locally, increasing up to two-thirds of
+the total by z ∼2. A comparison with the total stellar mass
+density without imposing an aperture shows that at late
+times there is a signiﬁcant contribution from stellar mass
+distributed over large spatial scales (e.g., in the ICL), which
+is qualitatively consistent with that found in other recent
+simulations (e.g., Puchwein & Springel 2013; Furlong et al.
+2015).
+At higher redshifts (z ≳1), the predicted trend (solid
+red curve) lies slightly above the observations. However, we
+note that observational surveys can probe only relatively
+massive galaxies at high redshift, and one should account
+for this selection eﬀect when comparing the simulations and
+observations. We can see that with a simple accounting of
+the stellar mass limits of Muzzin et al. (2013) (dot-dashed
+curve; i.e., we integrate the simulations down to the galaxy
+stellar mass completeness limits of Muzzin et al. 2013) that
+most of the small discrepancy at high-z is indeed probably
+due to observational completeness issues.
+We now turn to the evolution of the GSMF. Note that
+the cosmic stellar mass density at a given redshift, ρ∗(z),
+is derived by simply integrating over the GSMF at that
+redshift. It is therefore interesting to see if the simulations,
+which reproduce the integrated stellar mass density reason-
+ably well, also reproduce the detailed distribution of galaxy
+masses as a function of redshift.
+In Fig. 13 we compare the predicted GSMF with
+observations over a range of redshifts. The black data
+points represent the UltraVISTA/zCOSMOS measurements
+of Muzzin et al. (2013). Note that observations measure the
+GSMF in redshift intervals (e.g., 0.2 < z < 0.5) whereas
+the simulations sample the GSMF at discrete redshifts (in
+snapshots). We therefore plot the predicted GSMF at two
+diﬀerent redshifts that bracket the observational ranges (or-
+ange and red curves represent the lower and upper redshifts,
+respectively). For reference, the dotted cyan curve in each
+panel represents the simulation GSMF at z = 0.1.
+For stellar masses of log10[M∗/M⊙] ≳10.5 the predic-
+tions are in reasonably good agreement with the observed
+12 Speciﬁcally, for a snapshot at a given redshift we integrate the
+stellar masses of all simulated galaxies above the observational
+stellar mass limit, where the latter is derived by interpolating the
+stellar mass limit vs. redshift data of Muzzin et al. (2013).
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+16
+I. G. McCarthy et al.
+Figure 13. Evolution of the GSMF. The black data points represent the UltraVISTA/zCOSMOS measurements of Muzzin et al. (2013).
+Note that observational measurements of the GSMF span redshift ranges whereas the simulation data is output at discrete redshifts
+(snapshots). The solid curves represent the predictions of the simulations at various redshifts, with the lower (orange) and upper (red)
+redshifts bracketing the observational ranges. For reference, the dotted cyan curve in each panel represents the simulated z = 0.1
+GSMF. For log10[M∗/M⊙] ≳10.5 the predictions are in reasonably good agreement with the observed evolution, with a deﬁcit of the
+most massive galaxies at the highest redshifts. At lower stellar masses (i.e., near the resolution limit), the simulations overpredict the
+abundance, particularly at 1 < z < 2.
+evolution. There is an indication of a deﬁcit of massive
+galaxies at the highest redshifts. (At ﬁxed abundance, this
+implies the most-massive simulated galaxies at high red-
+shift are up to 0.2 dex less massive than observed.). At
+log10[M∗/M⊙] ≲10.5, the simulations strongly overpredict
+the observed abundance at z ≳1.
+Examining the various panels (compare the oﬀset of the
+solid red and orange curves with respect to the dotted cyan
+curve), one can see that the abundance of the simulated low-
+mass galaxies has not changed signiﬁcantly since z ≈2. A
+likely explanation for this behaviour is that these systems
+suﬀer from ineﬃcient feedback which is plausibly due to poor
+sampling/mass resolution in the simulations. That is, before
+feedback can have a signiﬁcant impact on its surroundings
+there must be suﬃcient sources of feedback present. The ﬁrst
+generation of star formation in the simulations therefore has
+no chance of being regulated by feedback and therefore if
+the mass resolution is too low this will result in overcooling
+near the resolution limit (see Schaye et al. 2015 for further
+discussion).
+The magnitude of the oﬀsets between the simulations
+and observations at low and high masses is, however, rel-
+atively modest and the level of agreement over this mass
+range is as good as that reported for other recent (generally
+much higher resolution) simulation studies such as EAGLE
+(see Furlong et al. 2015) and Illustris (see Genel et al. 2014).
+4.2
+Evolution of star formation rates
+We now turn to the evolution of star formation rates. In
+Fig. 14 we show the evolution of the cosmic star formation
+rate density (SFRD), deﬁned as the total star formation rate
+(i.e., summed over all star forming gas particles in the sim-
+ulation) per unit comoving volume. We show the results for
+the ﬁducial 30 kpc aperture (solid red curve), but we note
+that changing the aperture has essentially no eﬀect on the re-
+sult since all of the star formation is located near the centers
+of dark matter (sub)haloes. For comparison, we show a range
+of recent measurements which use diﬀerent SFR tracers, in-
+cluding Rodighiero et al. (2010) (IR), Karim et al. (2011)
+(radio), Cucciati et al. (2012) (UV), Bouwens et al. (2012)
+(UV), and Burgarella et al. (2013) (IR+UV). We have ad-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+17
+Figure 14. Evolution of the cosmic star formation rate den-
+sity (SFRD). The solid red curve represents the predictions of
+the simulations. For comparison, we show recent measurements
+from Rodighiero et al. (2010) (IR), Karim et al. (2011) (radio),
+Cucciati et al. (2012) (UV), Bouwens et al. (2012) (UV), and
+Burgarella et al. (2013) (IR+UV). The simulations qualitatively
+reproduce the observed cosmic SFRD trend, but they underpre-
+dict the peak at z ≈2 somewhat and overpredict the SFRD at
+late times. Evidently these diﬀerences are not suﬃciently large to
+have had signiﬁcant eﬀects on the predicted stellar mass evolution
+(see Figs. 12 and 13).
+justed the measured SFRs to correspond to a Chabrier IMF.
+Generally speaking there is good consistency between the
+diﬀerent studies in spite of the fact that they use diﬀerent
+tracers, although it should be noted that the employed scal-
+ings between luminosity and SFR have all been calibrated
+on essentially the same local galaxies (Kennicutt 1998).
+On a qualitative level, the simulations show a similar
+trend to the observations, with rates increasing strongly be-
+tween z ≈9 and z ≈3, eﬀectively plateauing between z ≈3
+and z ≈1, and then declining towards the present day. In
+detail, however, the simulations underpredict the peak of the
+SFRD somewhat and signiﬁcantly overpredict the SFRD at
+late times. Interestingly, there are no large oﬀsets with re-
+spect to the observed evolution of the stellar mass density
+(see Fig. 12). This may be because the SFRs are just gen-
+erally lower at low redshifts and the issue only arises fairly
+late (z ≲0.5), so that the increase in stellar mass over that
+already formed prior to z ≈0.5 is relatively small. While
+rectifying this problem would be desirable, it is not essen-
+tial for our purposes. Our aim is to calibrate the feedback
+so that the simulated haloes have approximately the cor-
+rect stellar and hot gas mass fractions in order to ensure
+that the eﬀects of feedback on the underlying total matter
+distribution have been (approximately) correctly captured.
+Finally, we turn to the evolution of the distribution of
+SFRs. Speciﬁcally, in Fig. 15 we compare the observed and
+predicted mean sSFR in bins of stellar mass with the radio
+stacking results of Karim et al. (2011). Karim et al. (2011)
+derived two estimates of the mean sSFR in bins of stellar
+mass, one corresponding to the total (mass-selected) sam-
+ple (black solid curves) and the other corresponding to just
+the star forming population (black dashed curves). We com-
+pute the corresponding curves for the simulations (thick red
+curves), using a threshold of 10−11 yr−1 in sSFR to separate
+between star forming and not. In addition to computing the
+mean sSFR-M∗relation for the simulations, we also show
+the distribution as a set of orange contours, which trace the
+log of the number density of simulated galaxies in (logarith-
+mic) bins of sSFR and M∗.
+The simulations successfully reproduce the observed
+mild trend (slope) between the sSFR and M∗(which does
+not evolve signiﬁcantly with redshift), as well as the magni-
+tude of the oﬀset between the relations of the star forming
+and total populations. However, it is evident that they un-
+derpredict the rate of evolution of the amplitude of the rela-
+tion for the star forming main sequence compared to what is
+measured observationally. This is fully consistent with (and
+in fact drives) the diﬀerences between the predicted and ob-
+served cosmic SFRDs in Fig. 14.
+A simple explanation for why the simulations overpre-
+dict the star formation rates at late times, is that the calibra-
+tion to the z = 0 GSMF forces them to compensate for the
+lower than observed star formation rates near the peak of the
+cosmic SFRD at z ≈2. If the star formation rates at higher
+redshifts are lower than observed (due, e.g., to an incom-
+plete/inaccurate feedback model and/or relatively poor res-
+olution), then there must be more late time star formation to
+end up with the correct distribution of stellar masses today.
+However, this discussion leaves aside the apparent relatively
+good agreement with the observed evolution of the stellar
+mass density in Fig. 12. Clearly, further exploration of these
+issues is warranted and we leave this for future work, noting
+that the level of overall agreement between the predicted
+and observed evolution of stellar masses and star formation
+rates is comparable with other recent simulation campaigns
+done in much smaller volumes but with signiﬁcantly higher
+numerical resolution.
+5
+THE HOT GAS−HALO CONNECTION
+In this section we explore the hot gas properties of mas-
+sive dark matter haloes, making comparisons to recent X-ray
+and thermal Sunyaev-Zel’dovich (SZ) eﬀect measurements.
+Although we have made comparisons involving all of the
+observables explored in L14 using the new calibrated ba-
+hamas model, we present only a subset of them here (ar-
+guably the most important tests). We note, however, that
+the new calibrated model performs at least as well as the
+successful ‘AGN 8.0’ model of L14 for all of the other ob-
+servables explored in that study but with the important
+advantage of also reproducing key properties of the galaxy
+population, as demonstrated in Sections 3 and 4. A comple-
+mentary test of the model, to close the loop, is to compare
+the predicted and observed relations between galaxies and
+their hot gas haloes, which we will present in Section 6.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+18
+I. G. McCarthy et al.
+Figure 15. Evolution of the sSFR-M∗relation. The thick black curves correspond to the mean relations of Karim et al. (2011) derived
+from stacking of radio data (solid is for all galaxies and dashed corresponds to star forming galaxies). The thick red curves represent
+the predicted mean relations for all (solid) and star forming (dashed) galaxies, while the thin orange contours delineate the (log of the)
+number density of galaxies in bins of (sSFR,M∗). While generally reproducing the observed mild slope between the sSFR and M∗(as well
+as the oﬀset between the relations for the star forming and total galaxy populations), the simulations underpredict the rate of evolution
+of the amplitude of the star forming main sequence, consistent with the cosmic SFRD comparison in Fig. 14.
+5.1
+Synthetic X-ray observations
+We use our synthetic observation pipeline (described in de-
+tail in L14) to post-process the simulations to make like-
+with-like comparisons to X-ray observations. We provide a
+brief description of the pipeline here and refer the reader to
+L14 for a more detailed description.
+For each gas particle within a group/cluster we compute
+a 0.5–10.0 keV band X-ray spectrum using the Astrophysical
+Plasma Emission Code (APEC; Smith et al. 2001) with up-
+dated atomic data and calculations from the AtomDB v2.0.2
+(Foster et al. 2012). The spectrum of each gas particle is
+computed using the particle’s density, temperature, and full
+abundance information. Note that we exclude cold gas below
+105 K which contributes negligibly to the total X-ray emis-
+sion. We also exclude any (hot or cold) gas which is bound
+to satellites, as observers also typically excise substructures
+from X-ray data. Note that the smallest subhaloes that can
+be resolved in the simulations have total masses ∼1011 M⊙.
+We measure gas density, temperature, and metallicity
+proﬁles for each simulated system in an observationally-
+motivated way, by ﬁtting single-temperature APEC models
+with a metallicity that is a ﬁxed fraction of Solar to spatially-
+resolved X-ray spectra in radial bins. The radial bins are
+spaced logarithmically and we use between 10-20 bins within
+r500, similar to what is possible for relatively deep Chan-
+dra observations of nearby systems. To more closely mimic
+the actual data quality and analysis, the cluster and model
+spectra are multiplied by the eﬀective area energy curve of
+Chandra, subjected to Galactic absorption due to HI with a
+typical column density of 2 × 1020 cm2, and re-binned to an
+energy resolution of 150 eV. The single-temperature model
+spectra are ﬁtted to the cluster spectra using the mpfit
+least-squares package in idl (Markwardt 2009).
+In addition to deriving proﬁles, we also derive global
+system X-ray temperatures and metallicities by following
+the above procedure but using only a single radial bin: ei-
+ther [0–1]r500 (‘uncorrected’) or [0.15–1]r500 (‘cooling ﬂow-
+corrected’). System X-ray luminosities within r500 are com-
+puted in the soft 0.5 −2.0 keV band by summing the lumi-
+nosities of the individual particles within that radius.
+When making comparisons to X-ray-derived mass mea-
+surements, we employ a hydrostatic mass analysis of the
+simulated systems using the measured gas density and tem-
+perature proﬁles inferred from the synthetic X-ray anal-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+19
+Figure 16. The X-ray luminosity−halo mass and X-ray luminosity−temperature relations of groups and clusters, compared to local
+X-ray samples. The red curves (solid represents the median and dashed enclose 68% of the population) represent the relations derived
+from a synthetic X-ray analysis of a mass-limited sample (all haloes with M500,true > 1013 M⊙). The cyan curve represents the true
+relation (i.e., not processed through synthetic X-ray observations). The two observed scaling relations (both their median and scatter)
+are recovered very well.
+ysis described above. Speciﬁcally, we ﬁt the density and
+temperature proﬁles using the functional forms proposed
+by Vikhlinin et al. (2006) and assume hydrostatic equilib-
+rium to derive the hydrostatic mass proﬁle. We will use
+the subscript ‘X-ray’ to denote quantities inferred from
+synthetic observations under the assumption of hydrostatic
+equilibrium. Consistent with the ﬁndings of previous studies
+(e.g., Rasia et al. 2006; Nagai, Vikhlinin, & Kravtsov 2007;
+Battaglia et al. 2013; L14; Biﬃet al. 2016; Henson et al.
+2016), we measure a median hydrostatic X-ray to true mass
+ratio of 0.84 within r500 for all systems with a true mass
+exceeding 1013 M⊙. Note, however, that the intrinsic scat-
+ter about this ratio is signiﬁcant, with a standard deviation
+of ≈40%. Generally one can therefore not simply adopt a
+single value for the bias, as this will neglect the scattering
+between mass bins.
+5.2
+X-ray scaling relations
+In Fig. 16 we compare the predicted X-ray luminosity−halo
+mass (left panel) and X-ray luminosity−temperature (right
+panel) relations with that of local X-ray-selected groups
+and clusters
+(Osmond & Ponman
+2004; Vikhlinin et al.
+2009; Pratt et al. 2009; Lovisari, Reiprich, & Schellenberger
+2015). X-ray luminosities are computed in the 0.5-2.0 keV
+band. Note that even though we compute the X-ray quan-
+tities in an observational manner, we do not select13 the
+13 Occasionally observational X-ray studies focus on systems
+with a “relaxed” X-ray morphology; i.e., systems that appear to
+be more or less circularly symmetric. We have elected not to se-
+lect a relaxed subset of simulated clusters for comparison to the
+simulated clusters in the same way as the observed sys-
+tems, which may be particularly relevant for group sam-
+ples (Lovisari, Reiprich, & Schellenberger 2015), where gen-
+erally only the X-ray-brightest systems will have estimates
+of mass and temperature available. We plot the results
+for all simulated systems with a hydrostatic X-ray mass
+M500,X−ray > 1013 M⊙, of which there are 51,964 systems
+distributed over the four independent cosmological volumes.
+The bahamas simulation reproduces the two observed
+X-ray scaling relations well over approximately 3 orders of
+magnitude in X-ray luminosity (or two in halo mass and 1.5
+in temperature), although there is an indication of a mild
+over-prediction of the X-ray luminosities at the very highest
+masses and temperatures (see also Barnes et al. 2016). The
+instrinsic scatter of the relations are also reasonably well
+recovered.
+In
+Fig.
+17
+we
+compare
+the
+predicted
+YX−halo
+mass relation with that of local X-ray-selected groups
+observations for the following reasons: i) there is no unique and
+well-deﬁned observational deﬁnition of what it means to be re-
+laxed (e.g., how close to symmetric must the X-ray morphology
+be?); ii) in any case, observational studies do not just select based
+on relaxation state but also on other important criteria (e.g., sur-
+face brightness); iii) the relation between observational diagnos-
+tics and simulation diagnostics of relaxation is murky; and iv)
+we have found that when adopting a simple “simulator’s” relax-
+ation diagnostic (speciﬁcally, the kinetic-to-thermal energy ratio
+of the ICM) that there were only very minor diﬀerences in the
+resulting scaling relations and proﬁles when selecting the relaxed
+subsample compared to selecting all systems. For these reasons,
+we have not focused on a relaxed subsample for comparison to
+the observations.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+20
+I. G. McCarthy et al.
+Figure 17. The YX−halo mass relations of groups and clusters,
+compared to local X-ray samples (YX is deﬁned as the product of
+the gas mass and core-excised temperature of the ICM). The red
+curves (solid represents the median and dashed enclose 68% of the
+population) represent the relations derived from a synthetic X-
+ray analysis of a mass-limited sample (all haloes with M500,true >
+1013 M⊙). The cyan curve represents the true relation (i.e., not
+processed through synthetic X-ray observations). The observed
+scaling relation (including median and scatter) is recovered well.
+and
+clusters
+(Vikhlinin et al.
+2006;
+Sun et al.
+2009;
+Pratt et al.
+2009;
+Planck Collaboration et al.
+2012;
+Lovisari, Reiprich, & Schellenberger
+2015).
+Note
+that
+YX is deﬁned as the product of the (hot) gas mass within
+r500 and the (core-excised) temperature measured within
+[0.15 −1.0]r500 and is often adopted as a total mass
+proxy due to its low intrinsic scatter with halo mass
+(Kravtsov, Vikhlinin, & Nagai 2006).
+The simulations reproduced the observed YX−halo
+mass relation over approximately two orders of magnitude
+in halo mass (3 in YX). There is perhaps an indication
+of a slight underestimate of the YX for the lowest-mass
+groups compared to Lovisari, Reiprich, & Schellenberger
+(2015) but, as already noted, we have not selected the sim-
+ulated groups/clusters in an observational way.
+Power law ﬁts (including errors and intrinsic scatter) to
+the above X-ray scaling relations, as well as to other com-
+binations of these variables, can be found in Barnes et al.
+(2016), who do a combined analysis of bahamas and the
+MACSIS suite of zoomed high-mass cluster simulations
+(which uses the bahamas calibrated feedback model and
+adopts the same cosmology).
+Evidently, calibrating the feedback to reproduce the ob-
+served gas mass fraction (see Fig. 5) is all that is required for
+the model to reproduce these and other related scaling rela-
+tions simultaneously (the simulations reproduce the various
+combinations of hydrostatic mass, temperature, gas mass,
+X-ray luminosity and YX). This is non-trivial, particularly
+in the case of X-ray luminosity, since it is primarily set by
+the density of gas in the very central regions, whereas most
+of the gas mass within r500 is at much larger radii.
+Using the OWLS AGN model McCarthy et al. (2011),
+presented a simple picture for why there is such a close phys-
+ical connection between the small-scale (e.g., X-ray luminos-
+ity) and large-scale (e.g., total gas mass) properties of the
+ICM. Speciﬁcally, they showed that the vast majority of the
+gas expulsion done by AGN feedback occurred at high red-
+shift in the progenitors of groups and clusters, during the
+peak of cosmic black hole accretion/growth. This ‘quasar
+mode’ feedback eﬃciently ejects the lowest-entropy (highest-
+density) gas from the progenitors, which otherwise would
+have signiﬁcantly cooled and formed stars and/or ended up
+in the highest-density regions of the ICM (convective sta-
+bility demands this). By contrast, the hot gas that ends up
+forming the ICM in groups and clusters at the present time
+is that which was not signiﬁcantly aﬀected by this mode of
+feedback. Its density distribution (and therefore X-ray lumi-
+nosity) is set primarily by the entropy acquired via gravita-
+tional shock heating during accretion, with late time ‘radio
+mode’ AGN feedback eﬀectively preserving this conﬁgura-
+tion. Thus, it is the eﬀectiveness of the quasar mode feed-
+back which dictates precisely how much of the low-entropy
+gas ends up in the central ICM today. By calibrating the
+feedback to reproduce the overall gas fractions, we are eﬀec-
+tively calibrating the amount of low-entropy gas that gets
+removed from the system and this is likely why the central
+regions are also faithfully reproduced by the simulations (we
+show radial distributions below).
+5.3
+SZ scaling relations
+We now move on to a comparison of the hot gas proper-
+ties at larger scales, speciﬁcally with SZ eﬀect observations
+from Planck. In Fig. 18 we compare the predicted integrated
+SZ ﬂux (YSZ)−halo mass relation with that derived from
+the most recent version of the Planck second catalog of SZ
+sources14 (Union catalog v2.08; Planck Collaboration et al.
+2015b).
+As a reminder, the integrated SZ ﬂux within a 3-D ra-
+dius R is deﬁned as:
+YSZ(< R) DA(z)2 =
+σT
+mec2
+Z R
+0
+Pe(r)dV
+(1)
+where DA is the angular diameter distance of the cluster, σT
+is the Thomson cross-section, c the speed of light, me the
+electron rest-mass and Pe = nekBTe is the electron pressure
+with kB being the Boltzmann constant. Thus, the integrated
+Compton y parameter (SZ ‘ﬂux’) is directly proportional to
+the total thermal energy of the hot gas.
+From the Planck catalog we select local clusters with
+z < 0.25, which are not heavily IR contaminated by cold
+gas clumps in the Galaxy (IR FLAG= 0), that have a neural
+network quality ﬂag of Q NEURAL> 0.4 (the recommended
+quality threshold), and that have a M500 estimate. These
+cuts reduce the original number of 1653 clusters down to a
+sample of 616 clusters. The catalog provides estimates of the
+integrated SZ ﬂux within 5r500 [YSZ(< 5r500) in arcmin2].
+Note that the mass estimate, and the corresponding adopted
+14 http://pla.esac.esa.int/pla/
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+21
+Figure 18. The predicted local SZ ﬂux−halo mass relation com-
+pared with that derived for local clusters (z < 0.25) from the
+Planck second catalog of SZ sources (the PSZ2 Union catalog,
+Planck Collaboration et al. 2015b). The red curves (solid repre-
+sents the median and the dashed enclose 68% of the population)
+represents the relation derived from the simulation of a mass-
+limited sample (all haloes with M500,true > 1013 M⊙). In ac-
+cordance with the observational analysis, we use (synthetic) X-
+ray observations to derive the halo mass and the aperture within
+which the SZ ﬂux is calculated. The dot-dashed cyan curve rep-
+resents the true SZ ﬂux−halo mass relation from the simulation,
+using the true 5r500 aperture to derive the SZ ﬂux. The observed
+relation is reproduced well by the simulations when they are anal-
+ysed in a like-with-like fashion to the observational data.
+aperture 5r500 within which the SZ ﬂux is measured, are
+derived by adopting the X-ray YX−M500 scaling relation of
+Arnaud et al. (2010). We scale the observed SZ ﬂuxes by the
+square of the angular diameter distance of each cluster to
+remove the explicit redshift dependence of the SZ ‘ﬂux’. Fur-
+thermore, we apply a self-similar scaling of E(z)−2/3 [where
+E(z) ≡H(z)/H0 =
+p
+Ωm(1 + z)3 + ΩΛ ] to account for the
+variation in the mean density of clusters as a function of red-
+shift, which is just due to the evolution of the background
+critical density. Note, however that, since we have selected
+only local clusters, scaling the SZ ﬂuxes by D2
+AE(z)−2/3 has
+only a small eﬀect on the resulting YSZ(< 5r500)−M500 rela-
+tion, apart from the overall amplitude shift. The ﬁlled black
+circles with error bars in Fig. 18 correspond to the median
+and 1-sigma intrisinc scatter of the Planck clusters.
+To make a fair comparison to the observations, we use
+our synthetic X-ray pipeline to estimate a hydrostatic mass
+M500 and use the corresponding value of 5r500 as the aper-
+ture within which we compute the integrated SZ ﬂux. Note
+that it is traditionally more common for observational SZ
+studies to quote values of YSZ within r500 rather than within
+the actual measurement aperture (which is 5r500 in the case
+of Planck), mainly for historical reasons (e.g., comparison to
+X-ray properties). However, Le Brun, McCarthy, & Melin
+(2015) have shown that the conversion between the mea-
+sured ﬂux and that within r500 can be sensitive to the
+assumed radial pressure distribution. For the case of low-
+resolution Planck measurements in particular, the potential
+bias introduced in the conversion can be severe for groups
+and low-mass clusters. We therefore avoid making compar-
+isons to derived ﬂuxes within r500, which is generally not
+resolved by Planck, and instead compare ﬂuxes within the
+actual apertures.
+The Planck sample is primarily composed of massive
+systems, with M500 greater than a few times 1014 M⊙. Over
+this range, the predicted median SZ ﬂux−M500 relation from
+the simulation agrees well with that derived from the sim-
+ulations, and the intrinsic scatters about the observed and
+predicted relations are comparable.
+5.4
+Hot gas proﬁles
+We have shown that the bahamas simulations reproduce
+the integrated ICM properties of local clusters. What about
+the radial distribution of the hot gas? In Fig. 19 we com-
+pare the predicted and observed hot gas density proﬁles of
+groups (left panel) and clusters (right panel). We use our
+synthetic X-ray pipeline to derive spatially-resolved gas den-
+sity proﬁles and hydrostatic modelling to measure r500 and
+M500 for the simulated systems. Note that since the gas
+content is a relatively strong function of halo mass for both
+the real and simulated systems (see Fig. 5) it is important
+to compare objects of the same mass. We therefore impose
+minimum and maximum halo mass cuts so that the me-
+dian hydrostatic mass M500 matches that of the observed
+samples we are comparing to. Speciﬁcally, for comparison to
+the Croston et al. (2008) REXCESS cluster sample we se-
+lect all simulated clusters with a hydrostatic X-ray mass of
+M500,X−ray > 2 × 1014 M⊙(of which there are 166 from the
+four independent volumes), yielding a median X-ray mass of
+≈2.6 × 1014 M⊙. For comparison to the Sun et al. (2009)
+group sample we select all simulated clusters with a hydro-
+static X-ray mass of 5.25×1013 < M500,X−ray/M⊙< 2×1014
+(of which there are 526 from the four independent cosmolog-
+ical volumes), yielding a median mass of ≈7.9 × 1013 M⊙.
+Note that to reduce the dynamic range on the y-axis, we
+scale the gas density proﬁles by r2.
+The simulations reproduce the observed gas density pro-
+ﬁles (median and intrinsic scatter) for both the group and
+cluster samples remarkably well over the full range of ob-
+served radii. While reasonable agreement should be expected
+at large radii, given that this is where most of the gas mass
+is located and that the feedback has been calibrated to re-
+produce the gas fractions within r500, the agreement down
+to small radii (including the system-to-system scatter) was
+certainly not guaranteed.
+We can also compare to the observed (electron) pressure
+distribution of the hot gas, the volume integral of which gives
+the integrated SZ ﬂux. In Fig. 20 we compare the predicted
+and observed hot gas pressure proﬁles of groups (left panel)
+and clusters (right panel). As in the comparison to the gas
+density proﬁles, we measure the pressure in the simulations
+in an observational way (i.e., by deriving the electron density
+and temperature through synthetic spatially-resolved X-ray
+spectroscopy) and select a subset of systems that have the
+same median mass as the observational samples (Sun et al.
+2011 in the case of groups and Arnaud et al. 2010 and
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+22
+I. G. McCarthy et al.
+Figure 19. Hot gas density proﬁles of galaxy groups (left) and clusters (right) compared with local X-ray samples. The red curves (solid
+represents the median and the dashed enclose 68% of the population) represent the predicted gas density proﬁles for a sample of systems
+which have the same median halo mass as the observational samples (Sun et al. 2009 in the case of groups and Croston et al. 2008 for
+clusters). The ﬁlled black circles with error bars represent the median and 1-sigma intrinsic scatter for the observational samples. The
+observed proﬁles, including the intrinsic scatter, are reproduced remarkably well.
+Figure 20. Hot gas pressure proﬁles of galaxy groups (left) and clusters (right) compared with local samples. The red curves
+(solid=median and dashed enclose 68% of the population) represent the predicted gas pressure proﬁles for a sample of systems which
+have the same median halo mass as the observational samples (Sun et al. 2011 in the case of groups and Arnaud et al. 2010 for clus-
+ters). In the left panel the ﬁlled black circles with error bars represent the median and 1-sigma intrinsic scatter for the group sample
+of Sun et al. In the right panel the dashed green curve represents the ‘universal pressure proﬁle’ of Arnaud et al. (2010), derived from
+a local X-ray sample, while the solid black curve represents the best-ﬁt to combined X-ray+SZ stacked observations of local clusters
+(Planck Collaboration et al. 2013a). Note that in the latter case the inclusion of SZ data allows one to measure the pressure proﬁles
+out to much larger radii than is possible with typical X-ray observations. The simulations slightly underpredict the gas pressure in the
+central regions of groups, but otherwise they reproduce the pressure distribution of the hot gas quite well.
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+23
+Planck Collaboration et al. 2013a for clusters). Note that
+the Planck Collaboration et al. (2013a) result is based on
+a combined SZ+X-ray stacking analysis of nearby systems
+which are reasonably well resolved by Planck. We scale the
+pressures by r2 to reduce the dynamic range on the y-axis.
+The agreement in the cluster regime is very good over
+the full range of radii (which extends well beyond r500
+for the observations thanks to the SZ stacking). A similar
+level of agreement is also seen for the group comparison
+at radii beyond ≈0.3r500. Inside ≈0.3r300 the simulations
+slightly underpredict the measurements of Sun et al. (2011),
+as also found previously by McCarthy et al. (2014). And yet
+there is excellent agreement with the gas density proﬁles of
+Sun et al. (2009) (which is based on the same group sample
+and data). The density and pressure are not physically inde-
+pendent from each other; hydrostatic equilibrium relates the
+two via the total mass density distribution. Thus, matching
+one thermodynamic variable but not the other implies that
+either the total mass distributions for the simulated and ob-
+served groups diﬀer, or else that the level of non-thermal
+pressure support in the centers of the simulated groups ex-
+ceeds that of the groups in the observational sample (so that
+the simulated clusters maintain a somewhat lower central
+thermal temperature). However, it should be borne in mind
+that the level of deviation we are talking about, in terms of
+the central pressure distribution of groups, is relatively mi-
+nor (less than 50%) and that there is still signiﬁcant overlap
+in the simulated and observed populations (i.e., the intrinsic
+scatters overlap each other).
+Recently, Barnes et al. (2016) have compared the com-
+bined bahamas+MACSIS suite with the observed radial
+proﬁles (pressure, density, etc.) of SPT-selected massive
+clusters at z ∼1, ﬁnding excellent agreement with the ob-
+served evolution.
+Note that in the above analysis, we have focused on
+the gas density and pressure proﬁles, rather than on the
+temperature and entropy proﬁles, which are also commonly
+presented in observational studies. Through the ideal gas
+law and the adiabatic equation of state, however, only two
+of the four thermodynamic variables are independent. We
+have focused on the gas density because of its link to the
+redistribution of mass in haloes (which has implications
+for large-scale structure cosmology) and on the pressure,
+since we have independent constraints on this quantity from
+Sunyaev-Zel’dovich eﬀect observations. One can infer from
+Figs. 19 and 20, however, that the simulations reproduce the
+observed temperature and entropy proﬁles very well, except
+in the very inner regions of groups, where the simulated tem-
+peratures and entropies have a median value that lies slightly
+below what is observed (i.e., consistent with the pressure).
+6
+THE GALAXY −- HOT GAS CONNECTION
+In Sections 3 and 5, we have shown that the bahamas sim-
+ulations reproduce key observed relations between stellar
+properties and total halo mass and between hot gas proper-
+ties and total halo mass, respectively, of local systems. On
+this basis, one might conclude that the simulations should
+therefore also match relations between stellar and hot gas
+properties. However, this is not guaranteed for a number of
+reasons. Current X-ray and SZ studies of individual sys-
+tems are generally conﬁned to relatively massive groups
+and clusters (M500 ≳5 × 1013 M⊙); we do not yet know
+whether the simulations faithfully reproduce the hot gas
+properties of more typical lower-mass systems. Capturing
+these systems correctly is important since they are rele-
+vant for cosmological studies of large-scale structure, such
+as cosmic shear and the SZ power spectrum, where haloes
+of masses ∼1013 M⊙contribute signiﬁcantly to the ob-
+served signal (e.g., Battaglia et al. 2012; McCarthy et al.
+2014; Battaglia, Hill, & Murray 2015; Hojjati et al. 2015).
+Furthermore, in the case of groups, only the X-ray-brightest
+systems can be studied in any detail on a per system ba-
+sis, which could signiﬁcantly bias our view of the hot gas
+component of these systems if there is signiﬁcant intrinsic
+scatter in the hot gas properties of massive dark matter
+haloes. In addition, while we have produced synthetic X-ray
+observations and derived hydrostatic masses for consistent
+comparison with X-ray and SZ observations, there could be
+an inconsistency in this comparison if the level of hydrostatic
+bias present in the simulations diﬀers signiﬁcantly from that
+of real systems.
+To overcome these issues we would ideally like to make
+comparisons between the predictions of the simulations and
+observations of the relations between the hot gas and stellar
+properties of representative populations over a wide range
+of (true) halo masses. However, as already noted, hot gas
+studies of individual systems are limited to relatively mas-
+sive haloes. Thus, to proceed further down the mass function
+stacking/binning is required to boost the SZ/X-ray signal-
+to-noise ratio. The advent of surveys that cover a large frac-
+tion of the sky (and thus provide hundreds of thousands of
+potential stacking targets), such as Planck (SZ), ROSAT
+(X-ray), and SDSS (optical) now make this possible.
+Two recent studies that have exploited these surveys
+for this purpose are Planck Collaboration et al. (2013b)
+and Anderson et al. (2015) (see also Greco et al. 2015).
+Planck Collaboration et al. (2013b) deﬁned a sample of
+SDSS ‘locally brighest galaxies’ (LBGs) - galaxies which are
+brighter than some apparent magnitude limit (r < 17.7)
+and are intrinsically brighter than all other galaxies within
+a projected 1 Mpc aperture and within 1000 km/s in red-
+shift space. With the aid of a semi-analytic galaxy forma-
+tion model (Guo et al. 2011, 2013) they demonstrated that
+these selection criteria are quite good at minimizing the
+contamination due to satellite (sub)haloes. These authors
+then stacked the Planck SZ signal in bins of stellar mass,
+robustly detecting the hot gas down to a stellar mass of
+∼1011 M⊙(but see Greco et al. 2015 who argue that dust
+emission may contaminate several of the lowest mass bins),
+allowing them to measure the integrated YSZ−stellar mass
+relation above this mass. Using the same sample of LBGs,
+Anderson et al. (2015) stacked ROSAT All-Sky Survey data
+in bins of stellar mass and obtained a clear detection of the
+hot gas down to a similar limiting stellar mass. They mea-
+sured the stacked X-ray luminosity−stellar mass relation.
+Using the Guo et al. model, the two studies were then able
+to determine the relations between the SZ ﬂux and X-ray lu-
+minosity and halo mass, ﬁnding that simple power laws de-
+scribe the relations remarkably well, with the SZ−halo mass
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+24
+I. G. McCarthy et al.
+Figure 21. The stacked SZ ﬂux−stellar mass and SZ ﬂux−halo mass relations, compared with the results of stacking SDSS locally
+brightest galaxies (LBGs) from Planck Collaboration et al. (2013b). The solid red curves give the mean SZ ﬂux in bins of stellar mass
+(left panel) and halo mass (right panel), while the dashed red curves enclose the central 68% of the population. True halo masses are
+used for the simulated relation (i.e., not processed through synthetic X-ray observations), as the halo masses for the observed relation (in
+the right panel) have been determined from stacked weak lensing analyses (Wang et al. 2016) which are assumed here to be unbiased.
+Both trends are recovered remarkably well. Note that the mean SZ ﬂux−stellar mass relation has a much higher amplitude than the
+median relation, due to the steeper than linear relation of SZ ﬂux with halo mass and the scatter in the stellar mass−halo mass relation
+(i.e., high-mass haloes in a given stellar mass bin dominate the recovered mean SZ ﬂux).
+relation having close to a self-similar scaling15 while the X-
+ray luminosity−halo mass relation is signiﬁcantly steeper
+than self-similar.
+Taken together, these results imply that the gas must
+be more spatially extended/puﬀed up in groups relative
+to clusters, which is consistent with the ﬁndings of previ-
+ous studies of X-ray bright systems (e.g., Sun et al. 2009)
+and the predictions of simulations with eﬃcient AGN
+feedback (e.g., McCarthy et al. 2010; Battaglia et al. 2010;
+Planelles et al. 2014; L14). Recently, Wang et al. (2016) per-
+formed a stacked weak lensing analysis of the LBG sample,
+allowing for a direct (i.e., nearly model independent) mea-
+surement of the relations between the SZ ﬂux, X-ray lu-
+minosity, and total halo mass (assuming the weak lensing
+masses to be unbiased). Here we compare the predictions of
+the bahamas simulations with the results of these studies.
+In the left panel of Fig. 21 we compare the predicted
+mean SZ ﬂux−stellar mass relation, i.e., ⟨Y (< 5r500)⟩(M∗),
+with that measured by Planck Collaboration et al. (2013b).
+Note that we have converted the SZ ﬂuxes reported in
+Planck Collaboration et al. (2013b) from Y (< r500) back
+into the actual measured ﬂux Y (< 5r500) by multiply-
+15 As already noted, the integrated SZ ﬂux, although quoted
+within an aperture of r500, is really measured within a much
+larger aperture of 5r500 due to the limited spatial resolution of
+Planck. This strongly reduces the sensitivity of the SZ signal to
+non-gravitational processes that occur within dark matter haloes
+(e.g., AGN feedback), yielding a close to self-similar scaling. See
+Le Brun, McCarthy, & Melin (2015) for further discussion.
+ing by a constant factor of 1.796 (this corresponds to
+the ratio of Y (<
+5r500)/Y (<
+r500) assuming the uni-
+versal pressure proﬁle of Arnaud et al. 2010, derived by
+Planck Collaboration et al. 2013b) and, in doing so, eﬀec-
+tively removed the dependence of the measured ﬂux on
+the spatial template (the universal pressure proﬁle) in their
+matched ﬁlter. For the simulations we directly measure the
+integrated ﬂux within 5r500. The agreement between the
+predicted and observed relations is good. This is remark-
+able considering how important the role of intrinsic scat-
+ter is: the dashed red curves enclose 68% of the population
+and the median SZ ﬂux−stellar mass relation has a much
+lower amplitude than the mean relation (which is what is
+recovered by stacking analyses). The origin of the large dif-
+ference between the predicted median and mean relations
+is the large range of halo masses that corresponds to any
+given stellar mass bin, coupled with the fact that the SZ
+ﬂux scales steeply with halo mass as M 5/3
+500 . The net result is
+that the high (halo) mass tail in any stellar mass bin has a
+disproportionately large eﬀect on the stacked relation. The
+fact that the predicted and observed stacked relations agree
+as well as they do is therefore another indication that the
+scatter in the stellar mass−halo mass relation is realistic.
+In the right panel of Fig. 21 we compare to the
+SZ ﬂux−halo mass relation of Planck Collaboration et al.
+(2013b). We have boosted
+the amplitude
+of the
+ob-
+served relation by a constant factor 1.35 to take into
+account the diﬀerence between the mean eﬀective halo
+mass estimated using the Guo et al. model (derived in
+Planck Collaboration et al. 2013b) and that measured em-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+25
+Figure 22. The stacked LX−M∗and LX−M500 relations, compared with the ROSAT stacking results of SDSS LBGs by Anderson et al.
+(2015). The solid red curves give the mean total soft X-ray luminosity in bins of stellar mass (left panel) and halo mass (right panel),
+while the dashed red curves enclose the central 68% of the population. True halo masses are used for the simulated relation (i.e., not
+processed through synthetic X-ray observations), as the halo masses for the observed relation (in right panel) have been determined
+from stacked weak lensing analyses (Wang et al. 2016) which are assumed here to be unbiased. Both simulated relations are shifted
+slightly in amplitude with respect to the observed relations, perhaps indicating an inconsistency in the relation derived from X-ray and
+optically-selected samples (note that there is no such amplitude oﬀset in Fig. 16).
+pirically for the same LBG sample by Wang et al. (2016) via
+stacked weak lensing analyses. The agreement in slope and
+amplitude is remarkably good.
+Note that in Fig. 21 we are using true estimates of M500
+and r500, whereas in Fig. 18 we used hydrostatic masses and
+their corresponding apertures for a consistent comparison
+with individual Planck clusters where the masses were es-
+timated using an X-ray hydrostatic mass scaling relation.
+The fact that the predicted relations agree with observed
+relations in amplitude in the two comparisons may there-
+fore suggest that the level of hydrostatic bias in the simula-
+tions (which has a median value of nearly 20% within r500
+- see Section 5.1; see also Henson et al. 2016) is also realis-
+tic. This statement assumes that the stacked weak lensing
+measurements are eﬀectively unbiased.
+In the left panel of Fig. 22 we compare the pre-
+dicted mean X-ray luminosity−stellar mass relation, i.e.,
+⟨LX(< r500)⟩(M∗), with that measured by Anderson et al.
+(2015). Speciﬁcally, we compare to their measured (rest-
+frame) 0.5-2.0 keV ‘total’ luminosities (Table 3 of that
+study). For the simulations, we compute the luminosities
+within the same band, summing the luminosities of all of
+the individual particles within r500. (The choice of aperture
+has a very small eﬀect on the result, since the X-ray emission
+is dominated by the central regions.) The predicted mean re-
+lation has a very similar slope to the observed relation, but
+is oﬀset slightly in amplitude by ≈0.3 dex. Given the sen-
+sitivity of the predicted mean relation to the scatter in the
+stellar mass−halo mass relation and the sensitivity of the
+LX−halo mass relation to subgrid physics (see, e.g., L14,
+Le Brun, McCarthy, & Melin 2015), this is still an impres-
+sive level of agreement.
+We might, however, have expected even better agree-
+ment given the excellent consistency of the SZ relations in
+Figs. 18 and 21 (which suggest that the stellar mass−halo
+mass relation and the level of hydrostatic bias in the
+simulations are realistic) and the agreement with the
+LX−M500,X−ray relation of individual X-ray-selected sys-
+tems (see the left panel of Fig. 16). Examining the right
+panel of Fig. 22, which compares the predicted and observed
+mean X-ray luminosity−halo mass relations (where we have
+boosted the amplitude of the Anderson et al. result, by 40%,
+in accordance with Wang et al. 2016), shows a similar oﬀset
+in amplitude to the X-ray luminosity−stellar mass relation.
+This then suggests that there is an inconsistency in the mea-
+surements of the X-ray luminosity−halo mass relations of
+individual, X-ray-selected systems and that inferred from
+the optically-selected stacking analysis of Anderson et al.
+(2015), which cannot easily be remedied by appealing to
+diﬀerences in the halo mass deﬁnition or estimation (i.e.,
+the diﬀerences appear due to the X-ray luminosity estima-
+tion). Detailed intercomparisons of the observational sam-
+ples would clearly be beneﬁcial in the future.
+7
+PROPERTIES OF BLACK HOLES AND
+QUASARS
+We ﬁnish the comparison to observational data by explor-
+ing here how well the simulations reproduce the observed
+local scalings between black hole mass and galaxy proper-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+26
+I. G. McCarthy et al.
+Figure 23. Relations between central black hole mass and stellar velocity dispersion (left panel) and stellar mass (right panel). The red
+curves show the trend for the full simulated population (includes highly star forming galaxies), while the cyan and blue curves show the
+relations for passive and star-forming galaxies separately. Overall, the predicted relations agree broadly with the observed relations when
+an appropriate selection is applied to the simulated galaxies.
+ties, as well as the observed evolution of the quasar lumi-
+nosity function. The latter is a particularly interesting test,
+since we have previously shown (McCarthy et al. 2011) that
+high-z quasars do the lion’s share of the work in setting the
+present-day properties of the hot gas.
+In Fig. 23 we examine the relations between black hole
+mass and galaxy velocity dispersion (left panel) and stel-
+lar mass (right panel) and compare to observational data
+compiled by McConnell & Ma (2013). For the simulations,
+we analyse central galaxies/subhaloes only. The velocity dis-
+persion is computed as the RMS of the 1D peculiar velocity
+of star particles within a 30 kpc aperture (we average the
+three independent 1D velocity dispersions), while the stellar
+mass is that within a 3-D aperture of 30 kpc. Note that for
+the observed systems in the right panel what is measured is
+not strictly the total stellar mass, but the dynamical bulge
+mass. However, since this comparison is limited to observed
+early-type galaxies, the stellar mass in the bulge component
+should be dominant. Furthermore, dark matter is not ex-
+pected to contribute signiﬁcantly to the dynamical mass at
+such small radii (e.g., within the bulge half-light radius).
+In the left panel of Fig. 23 we see that the overall am-
+plitude of the predicted MBH−σ∗is in reasonable agree-
+ment with the observational data. This is consistent with
+the previous ﬁndings of Booth & Schaye (2009) and L14.
+Booth & Schaye (2009, 2010) showed that the amplitude of
+the BH scaling relations scales with the (inverse of the) feed-
+back eﬃciency ǫf and found that a value of ǫf = 0.15 yields
+a good match to the observed black hole masses, which we
+verify here. The agreement with the data is therefore not a
+success of the model, but a result of calibration.
+Examining the trend more closely (solid red curve),
+however, suggests that there may be a slight diﬀerence in
+slope, particularly at low σ∗. It has been noted in previ-
+ous observational studies that the black hole mass is not
+solely a function of the velocity dispersion, but also depends
+on the morphology of the galaxy (e.g., Graham et al. 2001;
+Graham & Driver 2007). Indeed, the spiral galaxies (trian-
+gles) in McConnell & Ma (2013) appear to follow a relation
+that has a lower amplitude compared to that which the ellip-
+ticals follow. S0s lie somewhere in between. Due to the rela-
+tively low resolution of the bahamas simulations, we cannot
+reliably split the simulated galaxies into discs or ellipticals.
+However, we can split them by star-forming / passive based
+on their present (speciﬁc) star formation rates, which may be
+a reasonable proxy for morphology (see Fig. 6 and associated
+text). When we do so, we do see a minor bifurcation of the
+median MBH−σ∗relations (solid blue and cyan curves), in
+the same sense as the observations. Interestingly, the scatter
+towards lower BH masses is signiﬁcantly larger for the star-
+forming population and encompasses most of the observed
+systems.
+In the right panel of Fig. 23 we see that the choice of
+galaxy type (passive or star-forming) has an even larger ef-
+fect on the predicted MBH−M∗relation. In particular, BHs
+are on average more massive in passive galaxies compared
+to star-forming galaxies of the same stellar mass16. Only the
+early-type galaxies in McConnell & Ma (2013) have mass es-
+timates. When we select passive simulated galaxies for com-
+16 Note that this result mirrors the trends seen in Fig. 6 (right
+panel), where it was demonstrated that the mean halo masses of
+passive galaxies are higher than those of star-forming galaxies of
+the same stellar mass. The similarity of these trends indicates that
+the BH mass is more tightly correlated with the total halo mass
+than with the stellar mass in the simulations, as was explicitly
+shown previously by Booth & Schaye (2010).
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+27
+Figure 24. Evolution of the bolometric quasar luminosity function, compared with the analysis of Hopkins, Richards, & Hernquist
+(2007). There is reasonable qualitative agreement. In detail, the simulations slightly overpredict the abundance of bright quasars at low-z
+and underpredict the knee at z ∼1 −2, similar to the cosmic SFRD history (see Fig. 14).
+parison, we ﬁnd the predicted relation to be in reasonable
+agreement with the observed relation.
+Finally, in Fig. 24 we compare the predicted evolution of
+the quasar luminosity function to that derived from a large
+suite of multiwavelength observations compiled and mod-
+elled by Hopkins, Richards, & Hernquist (2007). For the
+simulations we compute the bolometric luminosity of each
+BH particle as Lbol = ǫr(1 −ǫf) ˙MBHc2, where
+˙MBH is the
+instantaneous accretion rate and the (1 −ǫf) factor takes
+into account that a fraction of the radiated rest mass energy
+goes into doing feedback. Note that we select all BH parti-
+cles and hence do not impose any constraints on Eddington
+ratio.
+Hopkins, Richards, & Hernquist
+(2007)
+compiled
+a
+large suite of observational determinations of the quasar lu-
+minosity function at many diﬀerent wavelengths. Using spec-
+tral modelling they combined the results into a consistent
+determination of the bolometric luminosity function, that
+accounts for the eﬀects of absorption, over a wide range in
+redshift. Although Hopkins, Richards, & Hernquist (2007)
+also give luminosity functions in diﬀerent bands (X-ray, IR,
+etc.), the simulations can only reliably predict the bolomet-
+ric luminosities, since we do not model the detailed accretion
+disc physics nor the interaction of the emitted radiation with
+local gas.
+Overall, the agreement between the predicted and ob-
+served luminosities functions is quite good. In particular,
+for z < 1 the simulations reproduce the data very well.
+When considering the simplicity of the accretion model in
+the simulations (as well as the simpliﬁed treaments of feed-
+back physics), the level of agreement seems all the more im-
+pressive. However, in detail the predicted luminosities ap-
+pear too low near the knee of the luminosity function at
+z ≈1 −2. This may signal that the gas fractions of the
+galaxies hosting these quasars are somewhat lower than in
+reality. Alternatively, the bolometric corrections applied to
+the observational data may be overestimated. Indeed, in a
+future study (Koulouridis et al., in prep) we will show that
+adopting more recent bolometric correction determinations
+results in a much improved match to the observed evolution
+of the quasar luminosity function.
+8
+SUMMARY AND DISCUSSION
+In this study we have presented a new set of large-volume
+cosmological smoothed particle hydrodynamics simulations
+called bahamas (for BAryons and HAloes of MAssive Sys-
+tems). The simulations presented here use 2×10243 particles
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+28
+I. G. McCarthy et al.
+in a 400 Mpc/h on a side, and assume either a WMAP 9-
+year or a Planck 2013 cosmology.
+These simulations are a direct descendant of the
+OverWhelmingly Large Simulations (OWLS) and cosmo-
+OWLS projects (Schaye et al. 2010; Le Brun et al. 2014;
+McCarthy et al. 2014). Where the bahamas project diﬀers
+from these studies is in its explicit attempt to calibrate
+the feedback parameters to match some key observables (as
+also employed in the recent EAGLE simulation program),
+whereas the OWLS and cosmo-OWLS simply explored the
+eﬀects of varying the parameters. We have used the knowl-
+edge gleaned from the experimentation in the OWLS and
+cosmo-OWLS projects to derive a simple feedback model
+calibrated to reproduce the present-day baryon content of
+massive systems, speciﬁcally the galaxy stellar mass func-
+tion (over the range log10[M∗/M⊙] = 10.0 −12.0) and the
+hot gas mass fraction−halo mass relation of galaxy groups
+and clusters (over the range log10[M500/M⊙] = 13.0 −15.0;
+see Fig. 5). We note that the black hole feedback eﬃciency
+was also calibrated (by Booth & Schaye 2009) to reproduce
+the amplitude of the black hole mass−stellar mass relation,
+by adjusting the feedback eﬃciency, ǫf. (The feedback eﬃ-
+ciency is unimportant for anything other than the black hole
+masses though.)
+We have focused on the baryon content because our
+(eventual) aim is to use the simulations to aid the cosmo-
+logical interpretation of large-scale structure tests, such as
+cosmic shear, cluster counts, Sunyaev-Zel’dovich map statis-
+tics, etc., which probe into the non-linear regime and may be
+sensitive to the back reaction of baryons on the dark matter.
+We thus want to ensure that the degree of back reaction, as
+well as the relations between observables and total matter,
+are properly captured by the simulations.
+We point out that the stellar and AGN feedback mod-
+els were not calibrated simultaneously. The stellar feedback
+wind velocity was adjusted to reproduce the observed abun-
+dance of the lowest-mass galaxies we examine (Fig. 2), while
+the mass of gas heated by AGN was adjusted to better re-
+produce the knee of the galaxy stellar mass function (Fig. 3).
+The AGN heating temperature was separately calibrated to
+reproduce the amplitude of the hot gas mass fraction−halo
+mass relation of local groups and clusters (Fig. 4). It is inter-
+esting that it is possible to construct models that reproduce
+the observed galaxy stellar mass function but that fail to
+reproduce the observed hot gas properties of massive galax-
+ies/clusters and vice-versa (i.e. the stellar and hot gas prop-
+erties are ‘decoupled’).
+It should be noted that we did not examine any other
+observables during the calibration process. Furthermore, we
+highlight the simplicity of our ﬁnal calibrated model: the
+parameters governing the eﬃciencies of the AGN and stel-
+lar feedback are constants. We speculate that such a simple
+model is possible here because of the relatively low resolu-
+tion we are working at (a consequence of the large volumes
+we are simulating) and that we are not attempting to match
+galaxies with M∗< 1010 M⊙. We do not claim to have found
+a unique solution even at this resolution, but we have iden-
+tiﬁed a simple model which satisﬁes our requirements (the
+baryon content of massive systems) and whose realism can
+be tested against independent observations.
+After calibrating the model, we compared the predic-
+tions of the model to a wide range of observational con-
+straints, both locally and at higher redshifts. From these
+comparisons we deduce the following:
+• The simulations reproduce the observed stellar mass
+fractions of central galaxies, including the dependence on
+galaxy type (see Fig. 6). They also reproduce the ampli-
+tude of the relation between the integrated stellar mass frac-
+tion (i.e., including satellites and intracluster light) and halo
+mass for local groups and clusters (Fig. 7). The shape of the
+dependence of the integrated stellar mass fraction on halo
+mass, however, diﬀers signiﬁcantly between diﬀerent obser-
+vational studies, so the level of agreement is less clear here
+(the simulations fall in the middle of the observed trends in
+terms of slope).
+• The Halo Occupation Distribution-inferred fractional
+contribution of centrals and satellites to the integrated
+stellar
+mass
+fractions
+as
+a
+function
+of
+halo
+mass
+(Zu & Mandelbaum 2015) is reproduced remarkably well
+(Fig. 8), as is the observed spatial distribution of stellar
+mass (in satellites) in massive clusters (Fig. 9).
+• The observed dynamics of satellite galaxies as a func-
+tion of halo mass (from maxBCG) is also recovered, with
+strong evidence for a negative velocity bias of the satellite
+galaxies with respect to the underlying dark matter distri-
+bution (Fig. 10).
+• The simulations reproduce the observed local stellar
+mass autocorrelation function from SDSS well on large scales
+(> 1 Mpc), while on small scales the level of agreement de-
+pends on the choice of aperture (Fig. 11). To our knowledge
+this is the ﬁrst time cosmological hydrodynamical simula-
+tions have been shown to reproduce the observed clustering
+of stellar mass.
+• We have compared the simulations to the observed evo-
+lution of the cosmic stellar mass density (Fig. 12), as well as
+the observed evolution of the galaxy stellar mass function
+(Fig. 13). The integrated stellar mass density is recovered
+reasonably well. For z ≳0.5 the simulations overpredict
+the abundance of galaxies with stellar masses ∼1010 M⊙
+(about the resolution limit) and they slightly underpredict
+the abundance of the most massive galaxies at the highest
+redshifts (z ≈3).
+• The simulations qualitatively reproduce the observed
+evolution of the star formation rates (Figs. 14 and 15), but
+they somewhat underpredict the peak at z ≈2 −4 and
+signiﬁcantly overpredict the star formation rates of galaxies
+at z ≲0.5.
+• We have compared the simulations to the observed X-
+ray and SZ scalings of local groups and clusters (in a like-
+with-like fashion using virtual X-ray observations), including
+the X-ray luminosity−and YX−halo mass scalings (Fig. 16)
+and the integrated SZ ﬂux−halo mass relation (Fig. 18).
+The simulations reproduce these relations well. They also
+reproduce the observed radial density and pressure proﬁles
+for groups and clusters (Figs. 19 and 20), apart from slightly
+underestimating (by ≲0.15 dex) the pressure/temperature
+in the inner regions of groups.
+• The simulations match the observed stacked mean
+SZ ﬂux−stellar mass and SZ ﬂux−halo mass relations for
+optically-selected SDSS ‘locally brightest galaxies’ (LBGs)
+of
+Planck Collaboration et al.
+(2013b)
+and
+Wang et al.
+(2016) very well (Fig. 21). The agreement with the former
+suggests that the scatter in the stellar mass−halo mass re-
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+29
+lation (0.24 dex median) is realistic, as the mean SZ-stellar
+mass relation is strongly aﬀected by the tail of the stellar
+mass−halo mass relation. Furthermore, the consistency of
+the SZ ﬂux−halo mass estimates using X-ray hydrostatic
+masses (Fig. 18) and stacked weak lensing (Fig. 21) sug-
+gests that the level of ‘hydrostatic bias’ in the simulations
+(median of ≈20%) is also realistic.
+• The
+simulations
+predict
+stacked
+mean
+X-ray
+luminosity−stellar mass and −halo mass relations that are
+very similar to those recently measured by Anderson et al.
+(2015) and Wang et al. (2016), with a nearly identical slope
+but a slight amplitude oﬀset of ≈0.3 dex (Fig. 22). No
+such oﬀset is seen in the comparison to individual X-ray
+systems however (see Fig. 16), suggesting that there is some
+diﬀerence in the observed X-ray luminosities.
+• The observed local relations between black hole mass
+and velocity dispersion and stellar mass are reasonably well
+recovered (Fig. 23).
+• Lastly, the observed evolution of the bolometric quasar
+luminosity function is reproduced for z ≲1. The simulations
+underpredict the knee of the luminosity function at z ≈1−2.
+To our knowledge, bahamas represents the ﬁrst set of
+cosmological hydrodynamical simulations to simultaneously
+reproduce the observed hot gas and stellar properties of mas-
+sive systems with such precision and for such a wide range
+of observables. The level of agreement is even more remark-
+able given the simplicity of the model and the fact that we
+did not calibrate on (or even examine) anything other than
+the local galaxy stellar mass function and the X-ray-based
+gas mass fractions of local groups and clusters. Nevertheless,
+there is still signiﬁcant room for improvement, particularly
+at higher redshifts (e.g., evolution of star formation rates
+and quasar luminosities).
+With a realistic model for the dominant baryonic com-
+ponents of massive haloes in a self-consistent cosmological
+context in hand, we are now in a position to make strong pre-
+dictions for a variety of large-scale structure measurements,
+including the SZ power spectrum, cluster number counts,
+cosmic shear, CMB lensing, galaxy-galaxy lensing, redshift-
+space distortions, etc. and to examine in detail the recently
+reported claims of tensions between the cosmological con-
+straints from these measurements with the Planck con-
+straints from the analysis of the primary CMB. The latter
+will be the subject of our next study.
+Finally, we note that bahamas has recently been com-
+plemented by a suite of zoom simulations of very massive
+clusters (called MACSIS), which was run using the same
+feedback model calibrated here and run at the same numer-
+ical resolution (see Barnes et al. 2016; Henson et al. 2016).
+The combination of bahamas and MACSIS allows one to
+probe a very large dynamic range in halo mass, which is not
+accessible to either suite individually.
+ACKNOWLEDGEMENTS
+The authors would like to thank Johnny Greco, Cheng Li,
+Ming Sun, and Ying Zu for providing their observational
+data in electronic format. IGM thanks Simon White for help-
+ful discussions. IGM is supported by a STFC Advanced Fel-
+lowship. JS acknowledges support from ERC grant 278594
+- GasAroundGalaxies and from the Netherlands Organi-
+sation for Scientiﬁc Research (NWO) through VICI grant
+639.043.409. SB was supported by NASA through Einstein
+Postdoctoral Fellowship Award Number PF5-160133. AM-
+CLB acknowledges support from the French Agence Na-
+tionale de la Recherche under grant ANR-11-BS56-015.
+This work used the DiRAC Data Centric system at
+Durham University, operated by the Institute for Compu-
+tational Cosmology on behalf of the STFC DiRAC HPC
+Facility (www.dirac.ac.uk). This equipment was funded by
+BIS National E-infrastructure capital grant ST/K00042X/1,
+STFC capital grants ST/H008519/1 and ST/K00087X/1,
+STFC
+DiRAC
+Operations
+grant
+ST/K003267/1
+and
+Durham University. DiRAC is part of the National E-
+Infrastructure.
+REFERENCES
+Addison G. E., Huang Y., Watts D. J., Bennett C. L.,
+Halpern M., Hinshaw G., Weiland J. L., 2016, ApJ, 818,
+132
+Anderson M. E., Gaspari M., White S. D. M., Wang W.,
+Dai X., 2015, MNRAS, 449, 3806
+Arnaud M., Pratt G. W., Piﬀaretti R., B¨ohringer H., Cros-
+ton J. H., Pointecouteau E., 2010, A&A, 517, A92
+Baldry I. K., et al., 2012, MNRAS, 421, 621
+Barnes D. J., Kay S. T., Henson M. A., McCarthy
+I. G., Schaye J., Jenkins A., 2016, MNRAS, submitted
+(arXiv:1607.04569)
+Battaglia N., Bond J. R., Pfrommer C., Sievers J. L., Si-
+jacki D., 2010, ApJ, 725, 91
+Battaglia N., Bond J. R., Pfrommer C., Sievers J. L., 2012,
+ApJ, 758, 75
+Battaglia N., Bond J. R., Pfrommer C., Sievers J. L., 2013,
+ApJ, 777, 123
+Battaglia N., Hill J. C., Murray N., 2015, ApJ, 812, 154
+Becker M. R., et al., 2007, ApJ, 669, 905
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770,
+57
+Bernardi M., Meert A., Sheth R. K., Vikram V., Huertas-
+Company M., Mei S., Shankar F., 2013, MNRAS, 436,
+697
+Beutler F., et al., 2014, MNRAS, 444, 3501
+BiﬃV., et al., 2016, ApJ, 827, 112
+Booth C. M., Schaye J., 2009, MNRAS, 398, 53
+Booth C. M., Schaye J., 2010, MNRAS, 405, L1
+Bourne M. A., Zubovas K., Nayakshin S., 2015, MNRAS,
+453, 1829
+Bouwens R. J., et al., 2012, ApJ, 754, 83
+Bruzual, G. Charlot, S. 2003, MNRAS, 344, 1000
+Budzynski J. M., Koposov S. E., McCarthy I. G., McGee
+S. L., Belokurov V., 2012, MNRAS, 423, 104
+Budzynski J. M., Koposov S. E., McCarthy I. G., Belokurov
+V., 2014, MNRAS, 437, 1362
+Burgarella D., et al., 2013, A&A, 554, A70
+Campbell D. J. R., et al., 2015, MNRAS, 452, 852
+Carlberg R. G., Yee H. K. C., Ellingson E., 1997, ApJ, 478,
+462
+Chabrier, G. 2003, PASP, 115, 763
+Conroy C., Wechsler R. H., Kravtsov A. V., 2006, ApJ,
+647, 201
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+30
+I. G. McCarthy et al.
+Conroy, C. et al. 2007, ApJ, 654, 153
+Crain R. A., et al., 2015, MNRAS, 450, 1937
+Croston J. H., et al., 2008, A&A, 487, 431
+Cucciati O., et al., 2012, A&A, 539, A31
+Cui W., Borgani S., Murante G., 2014, MNRAS, 441, 1769
+Cusworth S. J., Kay S. T., Battye R. A., Thomas P. A.,
+2014, MNRAS, 439, 2485
+Dalla Vecchia C., Schaye J., 2008, MNRAS, 387, 1431
+Dalla Vecchia C., Schaye J., 2012, MNRAS, 426, 140
+Dolag K., Borgani S., Murante G., Springel V., 2009, MN-
+RAS, 399, 497
+Dutton, A. A., Conroy, C., van den Bosch, F. C., Prada,
+F., & More, S. 2010, MNRAS, 407, 2
+Evrard A. E., et al., 2008, ApJ, 672, 122
+Ferland G. J., Korista K. T., Verner D. A., Ferguson J. W.,
+Kingdon J. B., Verner E. M., 1998, PASP, 110, 761
+Foster A. R., Ji L., Smith R. K., Brickhouse N. S., 2012,
+ApJ, 756, 128
+Furlong M., et al., 2015, MNRAS, 450, 4486
+Genel S., et al., 2014, MNRAS, 445, 175
+Gonzalez A. H., Sivanandam S., ZabludoﬀA. I., Zaritsky
+D., 2013, ApJ, 778, 14
+Graham A. W., Driver S. P., 2007, ApJ, 655, 77
+Graham A. W., Erwin P., Caon N., Trujillo I., 2001, ApJ,
+563, L11
+Greco J. P., Hill J. C., Spergel D. N., Battaglia N., 2015,
+ApJ, 808, 151
+Guo Q., et al., 2011, MNRAS, 413, 101
+Guo Q., White S., Angulo R. E., Henriques B., Lemson G.,
+Boylan-Kolchin M., Thomas P., Short C., 2013, MNRAS,
+428, 1351
+Haardt F., Madau P., 2001, cghr.conf, 64
+Haas M. R., Schaye J., Booth C. M., Dalla Vecchia C.,
+Springel V., Theuns T., Wiersma R. P. C., 2013, MNRAS,
+435, 2931
+Hahn
+O.,
+Martizzi
+D.,
+Wu
+H.-Y.,
+Evrard
+A.
+E.,
+Teyssier R., Wechsler R. H., 2015, MNRAS, submitted
+(arXiv:1509.04289)
+Henson M. A., Barnes D. J., Kay S. T., McCarthy I. G.,
+Schaye J., 2016, MNRAS, submitted (arXiv:1607.08550)
+Hinshaw, G., Larson, D., Komatsu, E., et al. 2013, ApJS,
+208, 19
+Hojjati A., McCarthy I. G., Harnois-Deraps J., Ma Y.-Z.,
+Van Waerbeke L., Hinshaw G., Le Brun A. M. C., 2015,
+JCAP, 10, 047
+Hopkins P. F., Kereˇs D., O˜norbe J., Faucher-Gigu`ere C.-
+A., Quataert E., Murray N., Bullock J. S., 2014, MNRAS,
+445, 581
+Hopkins P. F., Richards G. T., Hernquist L., 2007, ApJ,
+654, 731
+Ilbert O., et al., 2013, A&A, 556, A55
+Karim A., et al., 2011, ApJ, 730, 61
+Kennicutt R. C., Jr., 1998, ARA&A, 36, 189
+Klypin, A., & Prada, F. 2009, ApJ, 690, 1488
+Koester B. P., et al., 2007, ApJ, 660, 239
+Kravtsov A. V., Vikhlinin A., Nagai D., 2006, ApJ, 650,
+128
+Kravtsov A., Vikhlinin A., Meshscheryakov A., 2014, ApJ,
+submitted (arXiv:1401.7329)
+Le Brun A. M. C., McCarthy I. G., Schaye J., Ponman
+T. J., 2014, MNRAS, 441, 1270
+Le Brun A. M. C., McCarthy I. G., Melin J.-B., 2015, MN-
+RAS, 451, 3868
+Leauthaud A., et al., 2012, ApJ, 744, 159
+Lewis, A., Challinor, A., & Lasenby, A. 2000, ApJ, 538, 473
+Li C., White S. D. M., 2009, MNRAS, 398, 2177
+Lin Y.-T., Mohr J. J., Stanford S. A., 2004, ApJ, 610, 745
+Lovisari L., Reiprich T. H., Schellenberger G., 2015, A&A,
+573, A118
+Mandelbaum, R., Seljak, U., Kauﬀmann, G., Hirata, C. M.,
+& Brinkmann, J. 2006, MNRAS, 368, 715
+Mandelbaum, R., Seljak, U., & Hirata, C. M. 2008, JCAP,
+8, 6
+Mandelbaum R., Wang W., Zu Y., White S., Henriques B.,
+More S., 2015, MNRAS, submitted (arXiv:1509.06762)
+Markwardt, C. B., 2009, in Astronomical Society of the
+Paciﬁc Conference Series, Vol. 411, Astronomical Data
+Analysis Software and Systems XVIII, Bohlender, D. A.,
+Durand, D., Dowler, P., eds., p. 251
+McCarthy I. G., et al., 2010, MNRAS, 406, 822
+McCarthy I. G., Schaye J., Bower R. G., Ponman T. J.,
+Booth C. M., Dalla Vecchia C., Springel V., 2011, MN-
+RAS, 412, 1965
+McCarthy I. G., Schaye J., Font A. S., Theuns T., Frenk
+C. S., Crain R. A., Dalla Vecchia C., 2012, MNRAS, 427,
+379
+McCarthy I. G., Le Brun A. M. C., Schaye J., Holder G. P.,
+2014, MNRAS, 440, 3645
+McConnell N. J., Ma C.-P., 2013, ApJ, 764, 184
+More, S., van den Bosch, F. C., Cacciato, M., et al. 2011,
+MNRAS, 410, 210
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS,
+428, 3121
+Moustakas J., et al., 2013, ApJ, 767, 50
+Muldrew S. I., Pearce F. R., Power C., 2011, MNRAS, 410,
+2617
+Muzzin A., et al., 2013, ApJ, 777, 18
+Nagai D., Vikhlinin A., Kravtsov A. V., 2007, ApJ, 655, 98
+Osmond J. P. F., Ponman T. J., 2004, MNRAS, 350, 1511
+Planck Collaboration, et al., 2012, A&A, 543, A102
+Planck Collaboration V, et al., 2013a, A&A, 550, A131
+Planck Collaboration, et al., 2013b, A&A, 557, A52
+Planck Collaboration XVI et al. 2014, A&A, 571, A16
+Planck Collaboration XIII, et al., 2015, A&A, submitted
+(arXiv:1502.01598)
+Planck Collaboration XXIV, et al., 2015, A&A, submitted
+(arXiv:1502.01597)
+Planelles S., Borgani S., Fabjan D., Killedar M., Murante
+G., Granato G. L., Ragone-Figueroa C., Dolag K., 2014,
+MNRAS, 438, 195
+Pratt G. W., Croston J. H., Arnaud M., B¨ohringer H.,
+2009, A&A, 498, 361
+Puchwein E., Springel V., 2013, MNRAS, 428, 2966
+Rasia E., et al., 2006, MNRAS, 369, 2013
+Rodighiero G., et al., 2010, A&A, 515, A8
+Rozo E., et al., 2009, ApJ, 699, 768
+Sawala T., Frenk C. S., Crain R. A., Jenkins A., Schaye J.,
+Theuns T., Zavala J., 2013, MNRAS, 431, 1366
+Scannapieco C., et al., 2012, MNRAS, 423, 1726
+Schaye J., Dalla Vecchia C., 2008, MNRAS, 383, 1210
+Schaye, J., Dalla Vecchia, C., Booth, C. M., et al. 2010,
+MNRAS, 402, 1536
+Schaye J., et al., 2015, MNRAS, 446, 521
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+31
+Schulz, A. E., Mandelbaum, R., & Padmanabhan, N. 2010,
+MNRAS, 408, 1463
+Semboloni E., Hoekstra H., Schaye J., van Daalen M. P.,
+McCarthy I. G., 2011, MNRAS, 417, 2020
+Smith R. K., Brickhouse N. S., Liedahl D. A., Raymond
+J. C., 2001, ApJ, 556, L91
+Springel V., White S. D. M., Tormen G., Kauﬀmann G.,
+2001, MNRAS, 328, 726
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS,
+361, 776
+Springel V., 2005, MNRAS, 364, 1105
+Stinson G. S., Brook C., Macci`o A. V., Wadsley J., Quinn
+T. R., Couchman H. M. P., 2013, MNRAS, 428, 129
+Stott J. P., Collins C. A., Burke C., Hamilton-Morris V.,
+Smith G. P., 2011, MNRAS, 414, 445
+Sun M., Voit G. M., Donahue M., Jones C., Forman W.,
+Vikhlinin A., 2009, ApJ, 693, 1142
+Sun M., Sehgal N., Voit G. M., Donahue M., Jones C.,
+Forman W., Vikhlinin A., Sarazin C., 2011, ApJ, 727, L49
+Tomczak A. R., et al., 2014, ApJ, 783, 85
+van Daalen M. P., Schaye J., Booth C. M., Dalla Vecchia
+C., 2011, MNRAS, 415, 3649
+van Daalen M. P., Schaye J., McCarthy I. G., Booth C. M.,
+Dalla Vecchia C., 2014, MNRAS, 440, 2997
+van der Burg R. F. J., Hoekstra H., Muzzin A., Sif´on C.,
+Balogh M. L., McGee S. L., 2015, A&A, 577, A19
+Velliscig M., van Daalen M. P., Schaye J., McCarthy I. G.,
+Cacciato M., Le Brun A. M. C., Dalla Vecchia C., 2014,
+MNRAS, 442, 2641
+Vikhlinin A., Kravtsov A., Forman W., Jones C., Marke-
+vitch M., Murray S. S., Van Speybroeck L., 2006, ApJ,
+640, 691
+Vikhlinin A., et al., 2009, ApJ, 692, 1060
+Vogelsberger M., Genel S., Sijacki D., Torrey P., Springel
+V., Hernquist L., 2013, MNRAS, 436, 3031
+Vogelsberger M., et al., 2014, MNRAS, 444, 1518
+Wang W., White S. D. M., Mandelbaum R., Henriques B.,
+Anderson M. E., Han J., 2016, MNRAS, 456, 2301
+Wetzel A. R., Tinker J. L., Conroy C., 2012, MNRAS, 424,
+232
+Wiersma R. P. C., Schaye J., Smith B. D., 2009, MNRAS,
+393, 99
+Wiersma R. P. C., Schaye J., Theuns T., Dalla Vecchia C.,
+Tornatore L., 2009, MNRAS, 399, 574
+Wilkins S. M., Trentham N., Hopkins A. M., 2008, MN-
+RAS, 385, 687
+Zu Y., Mandelbaum R., 2015, MNRAS, 454, 1161
+APPENDIX A: CALIBRATING THE AGN
+FEEDBACK MODEL
+In Fig. A1 we explore the dependencies of the predicted
+galaxy stellar mass function on the various parameters of the
+subgrid AGN feedback model of Booth & Schaye (2009). In
+particular, we explore varying the feedback eﬃciency (ǫf),
+the accretion model ‘boost’ factor (and its possible depen-
+dence on density), the minimum halo mass for BH seed in-
+jection, and the AGN heating temperature (note that the
+eﬀects of varying the mass of heated gas is explored in Fig. 3
+in the main text).
+Figure A2. The eﬀect of varying the mass of gas heated (charac-
+terised by nheat, the number of gas particles heated per feedback
+event) by AGN feedback on the local gas mass fraction−halo mass
+relation. Here we adopt a wind velocity of 300 km/s for feed-
+back from star formation and an AGN heating temperature of
+∆Theat = 108 K. Varying the mass of heated gas has a modest
+eﬀect on the gas fractions of low-mass systems, while leaving the
+gas fractions of high-mass systems relatively unaﬀected. Note that
+even changing the heated gas mass by a factor of 30 has a smaller
+eﬀect on the gas fractions than varying the heating temperature
+by only 0.2 dex (see Fig. 4).
+The predictions are generally insensitive to the feed-
+back eﬃciency and the AGN heating temperature, but are
+sensitive to the minimum halo mass into which BH seeds
+are injected as well as to the value of the accretion ‘boost’
+factor and its assumed dependence on the local gas density.
+The relatively low resolution of these simulations prevents
+us from injecting the BHs at lower masses, while going to
+higher masses worsens the agreement with the observations.
+In terms of the accretion boost factor, models with a de-
+pendence on the local gas density (i.e., constant β models)
+tend to perform better than constant α models in terms
+of the shape of the GSMF. We could therefore adjust β to
+help better reproduce the GSMF. However, we have instead
+elected to vary the mass of heated gas and leave β = 2 as in
+Booth & Schaye (2009).
+In Fig. A2 we show the eﬀect of varying the mass of
+heated gas on the gas mass fractions of groups and clusters.
+At high masses, where the gas fractions are rising steadily
+towards the universal mean, the eﬀect of varying the mass
+of heated gas is mininal. This is because, to zeroth order,
+whether gas remains bound to the system is set by the ratio
+of ∆Theat/Tvir. If the heating temperature is relatively low,
+gas will not be ejected from the system no matter how much
+is heated. On the other hand, if the heating temperature
+is suﬃciently high to result in signiﬁcant expulsion (as for
+the gas in systems with M500 ≲1014 M⊙here), then the
+choice of heated gas mass does have a slight eﬀect on the
+gas fractions. But note that the sensitivity to the choice of
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+32
+I. G. McCarthy et al.
+Figure A1. The eﬀect of varying the AGN feedback eﬃciency ǫf (top left panel), BH accretion model (top right panel), the minimum
+halo mass for BH seed injection (bottom left panel), and the AGN heating temperature (bottom right panel) on the local GSMF. The
+GSMF is insensitive to the choice of ǫf and heating temperature, as found previously (e.g., Booth & Schaye 2009; Le Brun et al. 2014;
+Schaye et al. 2015). Varying the minimum halo mass for BH seed injection aﬀects the knee of the GSMF. The relatively low resolution
+of these simulations prevents us from injecting the BHs at lower masses, while going to higher masses worsens the agreement with the
+observations. The GSMF does depend on the choice of accretion model, with constant β models performing better in terms of the shape
+of the GSMF. For convenience/simplicity we adopt the Booth & Schaye (2009) ﬁducial model (constant β = 2).
+the mass of heated gas is much lower than to the choice
+of the heating temperature: a change of a factor 30 in the
+heated gas mass aﬀects the gas fractions at about the same
+level (or slightly less than) as a change of only 0.2 dex in
+the heating temperature. We have therefore elected to ﬁx
+the heated mass of gas using the knee of the GSMF and to
+calibrate the gas fractions using the heating temperature.
+APPENDIX B: IMPORTANCE OF APERTURE
+STELLAR MASSES
+In Fig. B1 we show the dependence of the predicted galaxy
+stellar mass function on the adopted aperture. Shown are
+the results for apertures of 30 and 100 physical kpc (solid
+red and short-dashed orange curves), as well as the total
+bound stellar mass (long-dashed green curve). The choice
+of aperture becomes signiﬁcant for log10 M∗/M⊙≳10.7, as
+also found by Schaye et al. (2015).
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+33
+Figure B1. Dependence of the predicted present-day galaxy stel-
+lar mass function on the adopted aperture. Shown are the re-
+sults for 3-D apertures of 30 and 100 physical kpc (solid red
+and short-dashed orange curves), as well as the total bound stel-
+lar mass (long-dashed green curve). The dot-dashed cyan curve
+shows the resulting GSMF when an observationally-motivated 2-
+D Petrosian analysis is applied to the simulated galaxies. The dot-
+dashed blue curve shows the GSMF when we use the same galaxy
+selection criteria as in the Petrosian analysis but instead use a 3-
+D 30 kpc aperture (see text for details). Adopting a 3-D 30 kpc
+aperture results in a GSMF that is quite similar to that derived
+by employing a Petrosian analysis, in agreement with the ﬁnd-
+ings of Schaye et al. (2015). For comparison, we show the SDSS
+galaxy stellar mass functions measured by Bernardi et al. (2013)
+assuming diﬀerent parametric forms for the light proﬁle, which
+has a large eﬀect at the massive end due to the presence of an
+extended component (i.e., intracluster light). The ‘cmodel’ case
+corresponds to typical SDSS ‘pipeline’ results.
+Observationally, one does not typically measure the lu-
+minosity/stellar mass within a ﬁxed 3-D radius but instead
+either deﬁnes the luminosity/mass within some adapative
+2-D radius chosen to enclose a certain fraction of the total
+light (as in the Petrosian system) or, alternatively, a para-
+metric model is ﬁtted to the light proﬁle and integrated out
+to some suﬃciently large radius to get a converged total
+luminosity/mass. In the case of SDSS-based studies, both
+Petrosian and so-called ‘cmodel’ luminosities (the cmodel
+corresponds to the best-ﬁt linear combination of an expo-
+nential + de Vaucouleurs model to the light proﬁles) are
+widely used. Bernardi et al. (2013) have shown that these
+two methods give very similar results. Schaye et al. (2015)
+have shown that a 3-D 30 kpc aperture yields stellar mass
+estimates for the simulated galaxies that are very similar to
+those derived by applying a Petrosian analysis to 2-D im-
+ages of the simulated galaxies. Here we repeat this test for
+the bahamas simulations.
+The dot-dashed cyan curve in Fig. B1 represents the
+results of applying a Petrosian analysis of the simulated
+galaxies. Speciﬁcally, we compute stellar surface mass den-
+sity proﬁles for each simulated galaxy and deﬁne the Pet-
+rosian radius as that which the local surface mass density is
+0.2 times the mean surface mass density within that radius.
+The associated Petrosian stellar mass is derived by sum-
+ming the mass within twice the Petrosian radius. The cor-
+respondence between the Petrosian-based GSMF and that
+derived using a 30 kpc aperture is quite good, in agreement
+with the results of Schaye et al. (2015). There is a small
+departure in the results of the two analyses at the largest
+masses, where adopting the Petrosian estimate results in a
+somewhat higher stellar mass at ﬁxed abundance (or higher
+abundance at ﬁxed stellar mass). At low stellar masses of
+log10 M∗/M⊙≲10.4 there is a strong decline but this is ar-
+tiﬁcal; we have found that we cannot reliably estimate the
+Petrosian radius for systems with less than ∼50 stellar par-
+ticles, so we just exclude these systems from our Petrosian
+analysis. The dot-dashed blue curve shows the GSMF when
+we apply the same selection to our 30 kpc analysis, which
+shows good agreement with the Petrosian-based results.
+It should
+be
+noted, however, that Bernardi et al.
+(2013)
+(see
+also
+Kravtsov, Vikhlinin, & Meshscheryakov
+2014) have shown that both Petrosian and cmodel lumi-
+nosities typically underestimate the total light of the most
+massive galaxies, which are preferentially found at the cen-
+ters of galaxy groups and clusters. Such systems often have
+an important extended component (commonly referred to as
+‘intracluster light’) that is not captured well by the cmodel
+or Petrosian estimates. Bernardi et al. (2013) have explored
+the eﬀect of adopting alternative parameterisations of the
+stellar light proﬁle on the total stellar mass estimation. The
+most ﬂexible/accurate parametric model they consider is a
+combined Sersic+exponential model (SerExp). When adopt-
+ing this parameterisation they indeed ﬁnd that the stellar
+masses are boosted, by up to 0.2 dex (compare the solid
+and dashed black curves in Fig. B1). We ﬁnd a similar boost
+for the simulated galaxies when we apply a larger physical
+aperture of 100 kpc, which is comparable to the half-light
+radii of the most massive systems when the ICL component
+is included in the ﬁt (e.g., Stott et al. 2011).
+APPENDIX C: RESOLUTION STUDY
+Here we examine the numerical convergence of the baryon
+content of haloes (see Fig. C1). For this test, we compare
+three simulations run in 100 Mpc/h boxes. One is run at the
+same resolution as the production runs presented in the main
+paper (L100N256, equivalent to L400N1024). The other two
+are run with 8 times better mass resolution (L100N512,
+which we refer to as ‘high res.’). For one of the high-res. runs
+we have left the subgrid feedback parameters unchanged
+with respect to the ﬁducial resolution model, representing a
+‘strong’ convergence test in the terminology of Schaye et al.
+(2015). In the other high-res. run we have adjusted the feed-
+back parameters (discussed below) to re-establish a virtually
+identical ﬁt to the galaxy stellar mass function as obtained
+in the ﬁducial resolution model, representing a ‘weak’ con-
+vergence test.
+In the strong convergence test, when we increase the
+mass resolution by a factor of 8, we also increase the num-
+ber of particles heated by AGN by this same factor, there-
+fore preserving the mass of gas that is heated. Furthermore,
+black holes are seeded in haloes with a minimum number
+c⃝2016 RAS, MNRAS 000, 1–34
+
+
+34
+I. G. McCarthy et al.
+of FOF particles equal to 800 instead of 100, preserving
+the minimum halo mass where BHs are injected. We also
+increase the number of SPH smoothing neighbours by a fac-
+tor of 8 (to 384), so that gas properties are determined by
+smoothing over a similar mass/volume as in the ﬁducial res-
+olution case. (This also results in the metal enrichment being
+distributed over a similar mass/volume in the ﬁducial and
+high-res. simulations, as the enrichment is distributed over
+the SPH smoothing kernel.) The AGN heating temperature
+and feedback eﬃciency are the same in both the ﬁducial
+and high-res. simulations, as are the stellar feedback wind
+velocity and mass loading.
+Note that it is perhaps more traditional to ﬁx the num-
+ber of resolution elements (particles) in the kernel rather
+than masses/volumes in convergence studies. This is reason-
+able in the context of dark matter only simulations, where
+(scale-free) gravity is the only relevant force. However, in
+hydrodynamical simulations many critical scales exist, the
+most important of which are the scales associated with sub-
+grid feedback. If the subgrid physics is tied directly to the
+resolution of the simulation (e.g., feedback heats a ﬁxed
+number of resolution elements), then by changing the res-
+olution of the simulation we are changing these scales. If
+one changes these important scales, then one should not
+necessarily expect to achieve good convergence, as the en-
+ergy is being injected in a diﬀerent way. This motivates
+us to ﬁx the physical feedback scales when changing the
+resolution of our simulations. Note that it has previously
+been explicitly demonstrated that ﬁxing the physical scales
+(mass/volume) associated with AGN feedback results in
+much better strong convergence than that obtained by ﬁxing
+the number of resolution elements subjected to AGN feed-
+back (Bourne, Zubovas, & Nayakshin 2015), which is what
+one expects based on the above discussion.
+A comparison of the solid and dashed curves in Fig. C1
+suggests that the strong convergence is relatively good in
+the simulations. This is particularly the case at high masses
+(log10[M200/M⊙] > 13.0), where both the stellar and baryon
+fractions do not change by more than ≈10% when changing
+the resolution. However, at lower masses the convergence is
+less good, in that by increasing the resolution the stellar
+masses of the lowest-mass (log10[M200/M⊙] ≲12.0) haloes
+increases by up to 40%. This is associated with a signiﬁcant
+decrease in the gas fractions at slightly higher halo masses
+(log10[M200/M⊙] ≈12.0 −12.5). The increase in the stellar
+mass fractions of the lowest-mass haloes is not unexpected,
+since one requires several generations of star particles to
+be formed before stellar feedback becomes eﬀective (e.g.,
+McCarthy et al. 2012; Schaye et al. 2015).
+One can increase the eﬃciency of the feedback to re-
+store the agreement with the observed stellar mass fractions
+at the lowest masses (dot-dashed red curve). To achieve
+this, we have simply increased the stellar feedback mass-
+loading (from 2 to 6) and lowered the minimum halo mass
+for BH seeding (to a factor of 8 below the ﬁducial reso-
+lution run). Restoring this agreement to the stellar mass
+fractions also yields gas fractions for the high-mass haloes
+(log [M200/M⊙] > 13.0) in excellent agreement with the
+ﬁducial resolution. However, the predicted gas fractions of
+lower-mass haloes (log [M200/M⊙] ≈12.0 −12.5) are still
+lower than that for the ﬁducial resolution run. We speculate
+that this is because the increased feedback has resulted in
+Figure C1. The total stellar (red curves) and baryon (cyan
+curves) mass fractions of central haloes vs. total halo mass as
+a function of resolution. The solid curves correspond to the ﬁdu-
+cial resolution used in the production runs presented in the main
+study. The dashed curves correspond to a run with a factor of
+8 better mass resolution while leaving the feedback parameters
+unchanged (see text). This represents a strong convergence test.
+The dot-dashed curves correspond to a high-resolution simulation
+where the stellar and AGN feedback have been recalibrated to re-
+produce the observed galaxy stellar mass function similarly well
+as in the ﬁducial resolution run.
+more gas being ejected from these haloes, but that the in-
+creased feedback is insuﬃcient to induce extra ejection from
+more massive group/cluster haloes.
+We conclude that while the strong convergence is al-
+ready quite good for massive haloes, this is not the case
+for lower-mass haloes. While we are interested mainly in
+high-mass haloes and large-scale structure, it is also impor-
+tant to get the stellar mass fractions of lower-mass systems
+correct, as galaxies are often used as tracers of large-scale
+structure. We have shown that a simple re-adjustment of the
+feedback parameters can re-establish the agreement with the
+stellar mass fractions of low-mass haloes and that this ac-
+tually improves the convergence of the baryon fractions of
+massive haloes, so that it is virtually identical to those for
+our observationally-calibrated ﬁducial resolution run.
+c⃝2016 RAS, MNRAS 000, 1–34

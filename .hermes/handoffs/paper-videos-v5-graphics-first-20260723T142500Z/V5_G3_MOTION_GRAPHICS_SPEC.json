@@ -1,0 +1,87 @@
+{
+  "marker": "NEBULAMIND_V5_G3_MOTION_GRAPHICS_SPEC_V1",
+  "key": "z9-metallicity",
+  "gate": "V5-G3 released by Duho (safest interpretation on record: motion-graphics canary on Mac Studio, no faces; warm research-office setting reserved for later presenter intro/outro only — G3 build itself is the next bounded Tori step AFTER this spec+signoff; this turn writes spec+signoff only).",
+  "hard_bans_this_gate": ["presenter", "face", "office image or any office asset", "audio/video build this turn", "YouTube/visibility/site/DB/git/runtime/cockpit"],
+  "host": {
+    "hostname": "Duhoui-MacStudio.local",
+    "ffmpeg": "/opt/homebrew/bin/ffmpeg",
+    "ffprobe": "/opt/homebrew/bin/ffprobe",
+    "imaging": "PIL + numpy + matplotlib (cv2 absent on Studio — do not import cv2; compositing via PIL, assembly via FFmpeg)",
+    "python_requires": ["PIL", "numpy", "matplotlib"]
+  },
+  "source_locks": {
+    "storyboard": "V5_G2_Z9_STORYBOARD.json (accounting-amended, signed; sentences byte-locked)",
+    "cold_reader_result": "V5_G2_COLD_READER_RESULT.json (8/8 PASS)",
+    "fig1_crop_abs": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v4-intro-plots-20260723T120045Z/sources-v4/figures/z9-metallicity-figure-1-vector-crop.png",
+    "fig1_sha256": "8d1575a7e2cc173504290face69385aec4e7ac6e48df19ddb002cc78ef39b14e",
+    "hash_lock_rule": "Verify fig1 sha256 before any frame render; abort the build on mismatch. Record the verified hash in the build receipt."
+  },
+  "canary_selection": {
+    "included_storyboard_rows_in_cut_order": [12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 24, 25, 26, 27, 28, 29],
+    "excluded_and_why": {
+      "1-11": "intro/meaning/question/obstacle/method block — not needed to test motion mechanics; presenter rows 1-2 banned in G3 anyway",
+      "23": "GN-z11 text chip — optional content, saves ~9 s; text-card mechanics already tested by rows 28-29",
+      "30-31": "recap + presenter outro — presenter banned in G3"
+    },
+    "coherence_note": "Rows 20-21 (CG_D conceptual stack) are retained so row 22's byte-locked phrase 'that stack' keeps its antecedent — sentences may not be edited, so coherence is preserved by selection, not rewording.",
+    "coverage_of_required_minimums": {
+      "conceptual_with_exact_label": "CG_D (rows 20-21) and CG_E (rows 24-27), each visibly bearing the exact label 'CONCEPTUAL — illustration, not data'",
+      "figure1_progression": "rows 12-19 + 22 = axes → curves → red points → −0.69 gap → anchor swap → blue stack (VS1→VS6, all six states)",
+      "uncertainty_separation": "rows 24-27 on the split CG_E (see design rule below)",
+      "non_detection_boundary": "rows 28-29 verbatim"
+    }
+  },
+  "plan_totals": {
+    "sentences": 17,
+    "words": 201,
+    "planned_speech_seconds": 90.1,
+    "inter_sentence_pause_seconds": 1.0,
+    "planned_total_seconds": 106.1,
+    "planned_delivered_wpm": 113.7,
+    "contract": {"max_seconds": 150, "wpm": [105, 125]}
+  },
+  "audio_contract_when_built": "Per-sentence am_michael (Kokoro-82M ONNX) at model_speed 1.0, exact byte-locked storyboard sentences, 1.0 s inter-sentence silences, 16 LUFS-reference mastering as in V5-G1. Any wording deviation voids the sign-off.",
+  "canary_timeline_rebased_seconds": [
+    {"row": 12, "start": 0.0, "end": 3.1},
+    {"row": 13, "start": 4.1, "end": 9.9},
+    {"row": 14, "start": 10.9, "end": 14.0},
+    {"row": 15, "start": 15.0, "end": 19.0},
+    {"row": 16, "start": 20.0, "end": 25.8},
+    {"row": 17, "start": 26.8, "end": 33.9},
+    {"row": 18, "start": 34.9, "end": 41.6},
+    {"row": 19, "start": 42.6, "end": 47.1},
+    {"row": 20, "start": 48.1, "end": 50.8},
+    {"row": 21, "start": 51.8, "end": 56.7},
+    {"row": 22, "start": 57.7, "end": 66.6},
+    {"row": 24, "start": 67.6, "end": 70.3},
+    {"row": 25, "start": 71.3, "end": 79.8},
+    {"row": 26, "start": 80.8, "end": 87.5},
+    {"row": 27, "start": 88.5, "end": 93.0},
+    {"row": 28, "start": 94.0, "end": 102.0},
+    {"row": 29, "start": 103.0, "end": 106.1}
+  ],
+  "action_rule": "One action per sentence, exactly as named in the storyboard rows; action onset within ±0.3 s of the rebased sentence start; no sentence on a frozen frame, no action without its sentence.",
+  "cg_e_design_rule_binding": {
+    "origin": "V5_G2_COLD_READER_RESULT.json reader note, bound by Duho relay",
+    "rule": "CG_E renders as a visibly SPLIT panel with a divider: LEFT sub-panel 'Calibration systematic' — 0.1–0.2 dex band bar with the 0.69 dex deficit bar beside it for comparison (rows 25-26 act here); RIGHT sub-panel 'Sample size' — five discrete galaxy markers (row 27 acts here). The two limitations must never blend into one graphic.",
+    "no_invented_significance": "No sigma, p-value, confidence percentage, or detection language anywhere on any graphic.",
+    "boundary_retained": "Rows 28-29 boundary card verbatim, warning-styled."
+  },
+  "render_targets": {
+    "resolution": [2560, 1440],
+    "fps": 30,
+    "output_dir": "canary-g3/",
+    "video_name": "NEBULAMIND_Z9_V5_G3_MOTION_CANARY.mp4",
+    "receipts": ["canary-g3/V5_G3_BUILD_RECEIPT.json", "canary-g3/V5_G3_QA.json"]
+  },
+  "qa": {
+    "coordinate_view_state_qa": "Pin each VS1-VS6 window in normalized crop coordinates and record them in the build receipt. In VS3 and VS4 all five red points must be fully inside frame; overlay bounding boxes (brackets, labels) must not intersect the recorded point regions or the blue square in VS6. Manual pin once, then assert programmatically per frame.",
+    "label_readability_qa": "All rendered text ≥22 px height at 2560×1440, including axis annotations and the exact conceptual label 'CONCEPTUAL — illustration, not data' on every CG_D/CG_E frame; record measured pixel heights.",
+    "freeze_frame_qa": "Export one frame at every sentence midpoint and one at every action onset (34 frames), sha-listed in the receipt. Assert: correct view state visible per spec; adjacent evidence sentences never show identical frames (pixel-diff > threshold across VS transitions); zero frames contain a face, presenter, or office imagery (asset manifest must contain none by construction).",
+    "sync_qa": "Measured action onsets within ±0.3 s of rebased sentence starts; audio==sentence text (per-sentence STT or exact synthesis-text receipt); delivered WPM in [105,125]; total ≤150 s.",
+    "hash_qa": "fig1 sha256 verified pre-render; all output shas recorded.",
+    "boundary_qa": "Rows 28-29 text verbatim on the boundary card."
+  },
+  "after_sign": "Next bounded step (separate from this turn): Tori builds the G3 canary on Duhoui-MacStudio.local exactly per this spec, writes the two receipts, stops for Duho watch. On Duho approval → V5-G4 full z9 V5 canary (presenter intro/outro with the reserved warm research-office setting enters ONLY at G4, after gesture-loop-ban compliance is shown)."
+}

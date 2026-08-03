@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NebulaMind live steering cockpit — board divided mode</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg:#05070d; --panel:#0d1424; --panel2:#111c30; --ink:#eef5ff; --muted:#9fb0ca; --line:rgba(159,176,202,.22);
+  --blue:#66b7ff; --green:#48d597; --amber:#f5c869; --red:#ff6b8a; --violet:#b89cff; --cyan:#73f0ff;
+}
+*{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,sans-serif;background:radial-gradient(circle at 12% -8%,rgba(102,183,255,.18),transparent 32rem),radial-gradient(circle at 88% 4%,rgba(184,156,255,.15),transparent 30rem),linear-gradient(180deg,#05070d,#08101f 42%,#05070d);color:var(--ink)}
+a{color:#a9d8ff;text-decoration:none} a:hover{text-decoration:underline} .shell{max-width:1240px;margin:0 auto;padding:34px 22px 64px}
+.hero{display:grid;grid-template-columns:1.1fr .9fr;gap:18px;align-items:stretch} .card{background:linear-gradient(180deg,rgba(16,25,44,.96),rgba(9,15,27,.96));border:1px solid var(--line);border-radius:26px;box-shadow:0 24px 80px rgba(0,0,0,.38)} .main{padding:30px} .side{padding:22px}
+.eyebrow{color:var(--cyan);text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:900} h1{font-size:clamp(38px,5.6vw,68px);line-height:.94;letter-spacing:-.058em;margin:14px 0 18px} h2{font-size:25px;margin:0 0 16px;letter-spacing:-.035em} h3{margin:0 0 6px;font-size:17px} p{color:var(--muted);line-height:1.56} .lede{font-size:18px;max-width:840px} .links{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px} .links a{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:rgba(255,255,255,.045)}
+.mode{display:grid;gap:12px} .mode-card{padding:16px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04)} .mode-card b{display:block;font-size:28px;line-height:1;color:var(--green);margin-bottom:7px} .mode-card span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.1em}
+.banner{margin:18px 0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px} .banner div{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035)} .banner b{display:block;font-size:20px;color:var(--green)} .banner span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.section{padding:22px;margin-top:18px} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px} .wrap-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px} .wrap-card{padding:14px;border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.035)} .wrap-card b{display:block;color:var(--blue);font-size:21px} .wrap-card span{display:block;margin-top:5px} .wrap-card em{display:block;margin-top:8px;color:var(--green);font-style:normal;font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+.lanes{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px} .lane-card{padding:16px;border:1px solid var(--line);border-radius:18px;background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.025))} .lane-top{display:flex;align-items:start;justify-content:space-between;gap:8px} .lane-card p{margin:9px 0;color:#d5e5fb} .lane-card small{color:var(--muted);line-height:1.45;display:block}
+.option-card{border:1px solid var(--line);border-radius:22px;padding:18px;background:rgba(255,255,255,.037);margin-bottom:14px} .option-card.recommended{border-color:rgba(72,213,151,.52);box-shadow:0 0 0 1px rgba(72,213,151,.13) inset} .option-head{display:flex;align-items:start;justify-content:space-between;gap:12px} .option-head p{margin:0} .burden-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:14px 0} .burden-grid div{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(0,0,0,.16)} .burden-grid b{display:block;color:var(--ink);margin-bottom:5px} .burden-grid span{color:var(--muted);font-size:13px;line-height:1.45}
+button{border:0;border-radius:12px;padding:10px 13px;background:#dcecff;color:#061424;font-weight:900;cursor:pointer} code{display:block;white-space:normal;word-break:break-word;color:#d7e7ff;background:rgba(0,0,0,.25);border:1px solid var(--line);padding:10px;border-radius:12px;font-size:12px;margin-top:8px}
+.step{display:grid;grid-template-columns:22px 1fr;gap:12px;padding:13px 0;border-top:1px solid var(--line)} .step:first-of-type{border-top:0} .dot{width:12px;height:12px;border-radius:50%;margin-top:6px;background:var(--muted);box-shadow:0 0 0 5px rgba(159,176,202,.08)} .done .dot{background:var(--green)} .active .dot{background:var(--cyan)} .ready .dot{background:var(--blue)} .locked .dot{background:var(--red)} .step p{margin:0}
+.chip{display:inline-flex;align-items:center;white-space:nowrap;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:900;text-transform:uppercase;letter-spacing:.06em;border:1px solid var(--line);color:var(--muted)} .chip.done,.chip.recommended{color:#022914;background:var(--green);border-color:transparent} .chip.active{color:#031923;background:var(--cyan);border-color:transparent} .chip.ready,.chip.high-leverage{color:#041b32;background:var(--blue);border-color:transparent} .chip.ambitious{color:#1d1033;background:var(--violet);border-color:transparent} .chip.locked{color:#360512;background:var(--red);border-color:transparent} .chip.available,.chip.status{color:#dce8ff;background:rgba(255,255,255,.08)}
+table{width:100%;border-collapse:collapse} td{border-top:1px solid var(--line);padding:10px 8px;color:var(--muted);vertical-align:top} td:first-child{color:var(--ink);font-weight:800} td b{color:var(--green)} .footer{color:var(--muted);margin-top:18px;font-size:13px} .marker{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#9fe7ff;background:rgba(115,240,255,.08);border:1px solid rgba(115,240,255,.25);padding:2px 6px;border-radius:8px}
+.pulse{display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 0 rgba(72,213,151,.7);animation:pulse 1.8s infinite;margin-right:8px} @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(72,213,151,0)}100%{box-shadow:0 0 0 0 rgba(72,213,151,0)}}
+@media(max-width:980px){.hero,.grid2{grid-template-columns:1fr}.lanes{grid-template-columns:repeat(2,minmax(0,1fr))}.banner,.wrap-grid,.burden-grid{grid-template-columns:1fr 1fr}} @media(max-width:620px){.shell{padding:18px 12px 42px}.lanes,.banner,.wrap-grid,.burden-grid{grid-template-columns:1fr} h1{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="hero">
+    <main class="card main">
+      <div class="eyebrow"><span class="pulse"></span>Live steering cockpit</div>
+      <h1>Guarded path wrapped. Board-divided mode is now default.</h1>
+      <p class="lede">The solo-fast chapter shipped PR #39 through PR #44. The next meaningful slice should split burden visibly: Hermes captains, Lana challenges or implements, Goru verifies mechanics, and this board shows steering before work starts.</p>
+      <p><span class="marker">GUARDED_PATH_WRAPPED</span> <span class="marker">BOARD_DIVIDED_DEFAULT_ACTIVE</span></p>
+      <div class="links"><a href="https://nebulamind.net/agent-reports/live-steering-cockpit.html">Live progress dashboard</a><a href="https://nebulamind.net/agent-reports/live-steering-status.json">Latest status JSON</a><a href="https://nebulamind.net/wiki/galaxy-evolution-v2">Live Galaxy page</a><a href="https://github.com/DuhoKim/NebulaMind/pull/44">PR #44</a><a href="https://github.com/DuhoKim/NebulaMind/pull/43">PR #43</a><a href="https://github.com/DuhoKim/NebulaMind/pull/42">PR #42</a><a href="https://github.com/DuhoKim/NebulaMind/pull/41">PR #41</a><a href="https://github.com/DuhoKim/NebulaMind/pull/40">PR #40</a><a href="https://github.com/DuhoKim/NebulaMind/pull/39">PR #39</a></div>
+    </main>
+    <aside class="card side">
+      <div class="mode">
+        <div class="mode-card"><b>673eb9e</b><span>origin/main after guarded path</span></div>
+        <div class="mode-card"><b>6 PRs</b><span>closed in solo-fast chapter</span></div>
+        <div class="mode-card"><b>4 lanes</b><span>Hermes + Lana + Goru + board</span></div>
+        <div class="mode-card"><b>0 DB</b><span>writes/migrations remain locked</span></div>
+      </div>
+      <p><strong>Current action:</strong> <span id="currentAction">GUARDED_PATH_WRAPPED: PR #39-#44 are closed as the guarded solo-fast chapter. BOARD_DIVIDED_DEFAULT_ACTIVE: next slice should split burden across Hermes, Lana, Goru, and the cockpit board.</span></p>
+      <p><strong>Updated:</strong> <span id="updatedAt">2026-06-28 16:33:18 KST</span></p>
+    </aside>
+  </section>
+
+  <section class="banner">
+    <div><b>wrapped</b><span>guarded solo-fast path</span></div>
+    <div><b>active</b><span>board-divided default</span></div>
+    <div><b>ready</b><span>Lana/Goru lanes discovered</span></div>
+    <div><b>locked</b><span>production mutation gates</span></div>
+  </section>
+
+  <section class="card section">
+    <h2>Guarded path wrap-up</h2>
+    <p>These are closed as completed guarded-path work. No extra wrap-up action is needed before the next steering command.</p>
+    <div class="wrap-grid"><article class="wrap-card"><b>PR #39</b><span>Evidence vote cockpit</span><em>merged + live</em></article><article class="wrap-card"><b>PR #40</b><span>Counter-evidence claim badges</span><em>merged + live</em></article><article class="wrap-card"><b>PR #41</b><span>Source trace hover cards</span><em>merged + live</em></article><article class="wrap-card"><b>PR #42</b><span>Claim mini-map hover cards</span><em>merged + live</em></article><article class="wrap-card"><b>PR #43</b><span>Evidence vote cockpit visual polish</span><em>merged + live</em></article><article class="wrap-card"><b>PR #44</b><span>Hover-card cross-links</span><em>merged + live</em></article></div>
+  </section>
+
+  <section class="card section">
+    <h2>Default burden split for the next slice</h2>
+    <div class="lanes"><article class="lane-card"><div class="lane-top"><h3>Hermes</h3><span class="chip status">captain</span></div><p>slice shaping, clean worktree, TDD gate, integration, PR/merge/runtime/dashboard, independent verification</p><small>owns final evidence; never delegates final truth</small></article><article class="lane-card"><div class="lane-top"><h3>Lana</h3><span class="chip status">reasoning lane</span></div><p>implementation pressure, architecture/product challenge, code review, edge cases, higher-leverage alternatives</p><small>no DB writes, migrations, restarts, deploys, pushes, or broad permission grants without explicit scope</small></article><article class="lane-card"><div class="lane-top"><h3>Goru</h3><span class="chip status">mechanical verifier</span></div><p>file surface maps, exact grep/count checks, package-script inventory, marker/chunk verification, mailbox reports</p><small>stays inside assigned scope; no unrelated brain/scratch/secret paths</small></article><article class="lane-card"><div class="lane-top"><h3>Cockpit board</h3><span class="chip status">steering surface</span></div><p>shows current mode, split of burden, live proof, and copyable steering commands before the next slice starts</p><small>public board is read-only; buttons only copy text</small></article></div>
+  </section>
+
+  <section class="grid2">
+    <div class="card section">
+      <h2>Mode transition checklist</h2>
+      <article class="step done"><div class="dot"></div><div><h3>Guarded path wrapped <span class="chip done">done</span></h3><p>PR #39-#44 are merged/live and explicitly closed as the solo-fast chapter.</p></div></article><article class="step active"><div class="dot"></div><div><h3>Board-divided default mode active <span class="chip active">active</span></h3><p>Next slice should visibly split burden across Hermes, Lana, Goru, and this cockpit board before coding starts.</p></div></article><article class="step ready"><div class="dot"></div><div><h3>Hermes captain lane <span class="chip ready">ready</span></h3><p>Responsible for scope, worktree, TDD gate, PR/merge/runtime, and independent final verification.</p></div></article><article class="step ready"><div class="dot"></div><div><h3>Lana reasoning lane <span class="chip ready">ready</span></h3><p>Should carry implementation/review/challenge burden for the next meaningful slice.</p></div></article><article class="step ready"><div class="dot"></div><div><h3>Goru mechanical verifier lane <span class="chip ready">ready</span></h3><p>Should carry exact file maps, marker/count checks, package-script inventory, and build/chunk verification burden.</p></div></article><article class="step locked"><div class="dot"></div><div><h3>Production mutation lock <span class="chip locked">locked</span></h3><p>No DB writes, migrations, backend contract changes, destructive cleanup, or risky service actions without explicit approval.</p></div></article>
+    </div>
+    <div class="card section">
+      <h2>Steering options</h2>
+      <article class="option-card recommended">
+  <div class="option-head"><div><h3>Tighten evidence card density</h3><p>Make the evidence panel faster to scan by compressing status/source/vote metadata without hiding the paper text.</p></div><span class="chip recommended">recommended</span></div>
+  <div class="burden-grid"><div><b>Hermes</b><span>Create clean worktree, define RED density smoke, integrate final diff, run full frontend/build/pre-push gates, PR/merge/runtime sync.</span></div><div><b>Lana</b><span>Challenge hierarchy and card semantics; review whether the density improves scan speed without burying caution labels.</span></div><div><b>Goru</b><span>Map all evidence-card fields/tests/scripts and verify stable data-testid/visible marker coverage before merge.</span></div></div>
+  <button data-copy="STEER: tighten evidence card density next; board-divided mode, frontend-first, TDD, PR/merge if verified.">Copy steering command</button>
+  <code>STEER: tighten evidence card density next; board-divided mode, frontend-first, TDD, PR/merge if verified.</code>
+</article><article class="option-card high-leverage">
+  <div class="option-head"><div><h3>Make runtime sync safer</h3><p>The recent wins needed manual scoped copies into the non-git runtime tree. A verified sync script reduces live-update risk.</p></div><span class="chip high-leverage">high-leverage</span></div>
+  <div class="burden-grid"><div><b>Hermes</b><span>Specify the script contract, write RED script tests, integrate into repo, verify on dry-run and one real scoped copy only after merge.</span></div><div><b>Lana</b><span>Review failure modes: partial copy, stale build, accidental broad rsync, rollback/backup naming, and launchd restart safety.</span></div><div><b>Goru</b><span>Mechanical file-list and checksum checks between source worktree and runtime tree; verify backups and marker counts.</span></div></div>
+  <button data-copy="STEER: make runtime sync safer next; board-divided mode, TDD for the script, PR/merge if verified.">Copy steering command</button>
+  <code>STEER: make runtime sync safer next; board-divided mode, TDD for the script, PR/merge if verified.</code>
+</article><article class="option-card ready">
+  <div class="option-head"><div><h3>Harden hover-card keyboard UX</h3><p>The hover cards now have richer links; next risk is focus/blur/click behavior under keyboard and assistive-tech use.</p></div><span class="chip ready">ready</span></div>
+  <div class="burden-grid"><div><b>Hermes</b><span>Add frontend-first keyboard smoke tests and integrate small UX fixes; verify chunk markers and public route.</span></div><div><b>Lana</b><span>Review interaction semantics: tooltip vs dialog, focus retention, Esc/blur behavior, and accidental panel toggles.</span></div><div><b>Goru</b><span>Check every new interactive marker, aria attribute, and route link appears in the built wiki chunk.</span></div></div>
+  <button data-copy="STEER: harden hover-card keyboard UX next; board-divided mode, frontend-first, TDD, PR/merge if verified.">Copy steering command</button>
+  <code>STEER: harden hover-card keyboard UX next; board-divided mode, frontend-first, TDD, PR/merge if verified.</code>
+</article><article class="option-card ambitious">
+  <div class="option-head"><div><h3>Pick a bolder visible slice</h3><p>Use the board-divided pattern for a less obvious product leap: a stronger claim-to-evidence navigation loop or evidence-map orientation layer.</p></div><span class="chip ambitious">ambitious</span></div>
+  <div class="burden-grid"><div><b>Hermes</b><span>Frame a one-PR frontend slice and keep scope safe; do not start production mutation paths.</span></div><div><b>Lana</b><span>Generate/challenge the bold UX concept and cut it down to a verifiable PR-sized implementation.</span></div><div><b>Goru</b><span>Inventory current route/API/component surfaces and list exact acceptance markers before code starts.</span></div></div>
+  <button data-copy="STEER: choose a bolder visible wiki UX slice next; board-divided mode, frontend-first, TDD, PR/merge if verified.">Copy steering command</button>
+  <code>STEER: choose a bolder visible wiki UX slice next; board-divided mode, frontend-first, TDD, PR/merge if verified.</code>
+</article><article class="option-card available">
+  <div class="option-head"><div><h3>Pause for manual inspection</h3><p>Use this if you want to inspect the live page and cockpit before more code starts.</p></div><span class="chip available">available</span></div>
+  <div class="burden-grid"><div><b>Hermes</b><span>Hold position and avoid starting a new slice.</span></div><div><b>Lana</b><span>No new brief.</span></div><div><b>Goru</b><span>No new brief.</span></div></div>
+  <button data-copy="STEER: pause after guarded-path wrap-up; do not start the next slice yet.">Copy steering command</button>
+  <code>STEER: pause after guarded-path wrap-up; do not start the next slice yet.</code>
+</article>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h2>Latest verification evidence</h2>
+    <table><tr><td>RED test: hover-card cross-links absent</td><td><b>EXPECTED FAIL</b></td><td>npm run test:source-trace-hover failed because trace.crossLinks was undefined</td></tr><tr><td>GREEN test: hover-card cross-links</td><td><b>PASS</b></td><td>npm run test:source-trace-hover; npm run test:claim-minimap-hover</td></tr><tr><td>Hover-card cross-links local verification</td><td><b>PASS</b></td><td>focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3016 chunk probe</td></tr><tr><td>PR #44 opened</td><td><b>OPEN</b></td><td>https://github.com/DuhoKim/NebulaMind/pull/44</td></tr><tr><td>PR #44 merge</td><td><b>MERGED</b></td><td>673eb9e feat: add hover-card cross-links (#44)</td></tr><tr><td>GREEN source trace cross-links</td><td><b>PASS</b></td><td>npm run test:source-trace-hover</td></tr><tr><td>GREEN claim mini-map cross-links</td><td><b>PASS</b></td><td>npm run test:claim-minimap-hover</td></tr><tr><td>Frontend smoke bundle</td><td><b>PASS</b></td><td>evidence panel, wiki trust visibility, evidence status, trust history, surveys atlas IA</td></tr><tr><td>Local route/chunk probe</td><td><b>PASS</b></td><td>port 3016 wiki JS contained source-trace-cross-links and claim-mini-map cross-link markers</td></tr><tr><td>Runtime public probe</td><td><b>PASS</b></td><td>https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains hover-card cross-link markers</td></tr><tr><td>Guarded path wrap-up board update</td><td><b>WRITTEN</b></td><td>live-steering-status.json and live-steering-cockpit.html regenerated with GUARDED_PATH_WRAPPED and BOARD_DIVIDED_DEFAULT_ACTIVE markers</td></tr><tr><td>Lana/Goru session discovery</td><td><b>AVAILABLE</b></td><td>tmux shows lana-claude and goru-agy sessions available for next board-divided slice</td></tr></table>
+  </section>
+
+  <section class="card section">
+    <h2>Safety locks that still hold</h2>
+    <p>No production DB writes, no migrations, no backend/API contract changes, no destructive cleanup, no trust/badge/prose apply path. A future steering command can approve one of those only by naming the preflight/apply packet explicitly.</p>
+  </section>
+
+  <p class="footer">Generated 2026-06-28 16:33:18 KST from live tool output. Timestamped copies: live-steering-cockpit-20260628T073318Z.html and live-steering-status-20260628T073318Z.json. Buttons only copy text; they do not execute actions from the public page.</p>
+</div>
+<script>
+async function refreshStatus(){
+  try{
+    const r=await fetch('/agent-reports/live-steering-status.json?ts='+Date.now(),{cache:'no-store'});
+    const d=await r.json();
+    document.getElementById('currentAction').textContent=d.current_action||'';
+    document.getElementById('updatedAt').textContent=d.updated_at_kst||d.updated_at_utc||'unknown';
+  }catch(e){}
+}
+document.querySelectorAll('button[data-copy]').forEach(b=>b.addEventListener('click',async()=>{
+  const original='Copy steering command';
+  const t=b.getAttribute('data-copy');
+  try{await navigator.clipboard.writeText(t); b.textContent='Copied';}
+  catch(e){b.textContent='Copy failed — select command below';}
+  setTimeout(()=>b.textContent=original,1400);
+}));
+refreshStatus(); setInterval(refreshStatus,15000);
+</script>
+</body>
+</html>

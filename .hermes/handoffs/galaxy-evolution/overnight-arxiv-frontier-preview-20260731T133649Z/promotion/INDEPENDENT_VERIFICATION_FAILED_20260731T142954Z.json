@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "status": "SUPERSEDED_VERIFIER_FAILURE_PRESERVED",
+  "original_status": "INDEPENDENT_VERIFICATION_FAILED",
+  "original_verified_at_utc": "2026-07-31T14:29:54.450585+00:00",
+  "original_verifier_sha256": "884e0fd65f7677f6c6ac54f6f332c537a9737e64156363e37929a209c4d94f4f",
+  "original_check_count": 21,
+  "passed_checks_before_failure": 20,
+  "failed_check": "ranking_constants_ranks_and_holds",
+  "failure_class": "VERIFIER_BASELINE_SELECTION_ERROR",
+  "failure_reason": "The first independent verifier compared rank movement against shadow_engine/frontier_map_v3.json, the immutable base map, instead of the canonical prior rerank at engine/frontier_map_v3_reranked.json that the runner actually used.",
+  "observed_false_mismatches": [
+    {
+      "cluster": 17,
+      "incorrect_expected": {"currentRank": 18, "delta": 1, "deltaPapers": 5, "previousRank": 19},
+      "actual_and_correct": {"currentRank": 18, "delta": 0, "deltaPapers": 5, "previousRank": 18}
+    },
+    {
+      "cluster": 46,
+      "incorrect_expected": {"currentRank": 19, "delta": -1, "deltaPapers": 2, "previousRank": 18},
+      "actual_and_correct": {"currentRank": 19, "delta": 0, "deltaPapers": 2, "previousRank": 19}
+    },
+    {
+      "cluster": 29,
+      "incorrect_expected": {"currentRank": 22, "delta": 1, "deltaPapers": 9, "previousRank": 23},
+      "actual_and_correct": {"currentRank": 22, "delta": 0, "deltaPapers": 9, "previousRank": 22}
+    },
+    {
+      "cluster": 10,
+      "incorrect_expected": {"currentRank": 23, "delta": -1, "deltaPapers": 1, "previousRank": 22},
+      "actual_and_correct": {"currentRank": 23, "delta": 0, "deltaPapers": 1, "previousRank": 23}
+    }
+  ],
+  "disposition": "Verifier corrected to use the canonical prior rerank and rerun from scratch. The corrected run passed all 23 checks and 13 tests. This was not a corpus, promotion, or canonical-data failure.",
+  "superseded_by": "INDEPENDENT_VERIFICATION.json",
+  "superseding_verification_sha256": "bd05d04be0bc912a53395ef24598fe1d14ce9f5e3859a45b2d3f27a99718115d"
+}

@@ -1,0 +1,149 @@
+{
+  "observed_at_utc": "2026-07-27T13:02:48.292514+00:00",
+  "source": {
+    "api": "https://nebulamind.net/api/lab/runs",
+    "static_files": [
+      "frontend/src/app/lab/FlagshipStudies.tsx",
+      "frontend/src/app/lab/FrontierDrafts.tsx",
+      "frontend/src/app/lab/DraftBoard.tsx"
+    ]
+  },
+  "counts": {
+    "visible_total": 13,
+    "flagship": 1,
+    "frontier": 5,
+    "pipeline_visible": 7,
+    "pipeline_api_total": 9,
+    "pipeline_demo_hidden": 2,
+    "compiled_pdf": 10,
+    "refereed_stage": 7,
+    "human_validated": 0
+  },
+  "items": [
+    {
+      "track": "flagship",
+      "title": "An Independent, Unlensed Gas-Phase Metallicity Deficit at z≈9–10",
+      "pdf": "/studies/z9-10-unlensed-metallicity-deficit.pdf",
+      "review": "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
+      "verdict": "REVIEW-READY",
+      "source_file": "frontend/src/app/lab/FlagshipStudies.tsx"
+    },
+    {
+      "track": "frontier",
+      "title": "The reionization photon-budget “crisis” is set by ξ_ion and the star-formation-rate density, not the data",
+      "pdf": "/agent-reports/research-frontiers/reionization-fesc-budget-landscape.pdf",
+      "review": "/agent-reports/research-frontiers/reionization-fesc-budget-landscape_review_loop.md",
+      "verdict": "REVIEW-READY",
+      "source_file": "frontend/src/app/lab/FrontierDrafts.tsx"
+    },
+    {
+      "track": "frontier",
+      "title": "Galaxy scaling relations from z≈0 to the JWST frontier",
+      "pdf": "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf",
+      "review": "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft_review_loop.md",
+      "verdict": "WITHDRAWN",
+      "source_file": "frontend/src/app/lab/FrontierDrafts.tsx"
+    },
+    {
+      "track": "frontier",
+      "title": "The z≈4–6 massive-galaxy abundance is consistent with IllustrisTNG once the stellar-mass budget and aperture basis are accounted for",
+      "pdf": "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf",
+      "review": "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_review_loop.md",
+      "verdict": "REVIEW-READY",
+      "source_file": "frontend/src/app/lab/FrontierDrafts.tsx"
+    },
+    {
+      "track": "frontier",
+      "title": "Disentangling aperture and calibration systematics in the gas-phase MZR: a practitioner’s framework",
+      "pdf": "/agent-reports/research-frontiers/mzr-aperture-calibration-framework.pdf",
+      "review": "/agent-reports/research-frontiers/mzr-aperture-calibration-framework_review_loop.md",
+      "verdict": "REVIEW-CLEARED",
+      "source_file": "frontend/src/app/lab/FrontierDrafts.tsx"
+    },
+    {
+      "track": "frontier",
+      "title": "Calibration is not validation: confronting IllustrisTNG with observed scaling-relation evolution",
+      "pdf": "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
+      "review": "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft_review_loop.md",
+      "verdict": null,
+      "source_file": "frontend/src/app/lab/FrontierDrafts.tsx"
+    },
+    {
+      "track": "pipeline",
+      "id": "c2v2e2e0726a",
+      "title": "mass-metallicity",
+      "pdf": "/api/lab/runs/c2v2e2e0726a/artifact/draft.pdf",
+      "review": null,
+      "verdict": null,
+      "lit_grounded": false,
+      "created_utc": "2026-07-26T16:56:25Z",
+      "summary": "[AI-draft] [forced-demo] [TENSION] [unresolved-calibration] Mass-metallicity relation - median relations for TNG100 (23,722 gals) and SDSS (120,000 gals); TNG uses SF-weighted gas metallicity to O/H (solar-scaled). This is an AI-assembled draft: not submitted, not peer-reviewed. It was assembled from existing source-run artifacts with no fresh data run (forced-demo lineage: gated-e2e-demo, spec.force=true). The TNG-vs-SDSS comparison carries an expected-value TENSION and rests on an unresolved-calibration O/H scale; it is NOT a physical interpretation and cannot be interpreted as physical until a common calibration is established."
+    },
+    {
+      "track": "pipeline",
+      "id": "fesc002",
+      "title": "ionizing-photon-budget",
+      "pdf": "/api/lab/runs/fesc002/artifact/draft.pdf",
+      "review": "/api/lab/runs/fesc002/artifact/review_loop.md",
+      "verdict": "MINOR",
+      "lit_grounded": true,
+      "created_utc": "2026-07-23T02:00:00Z",
+      "summary": "Reionization ionizing-photon-budget reconciliation at z~6: star-forming galaxies require f_esc=0.048 (+0.048/-0.025) to close the budget (Madau-Dickinson SFRD, log xi_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f_esc=0.062 (+0.108/-0.039) from LzLCS O32/beta calibrations. Median delta(required-inferred)=-0.012 dex-frac (16-84%: -0.119 to +0.043); 41% of the systematic MC shows a shortfall. Conclusion: the budget CLOSES within the systematic, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi_ion x clumping x proxy-calibration systematic, not by statistics."
+    },
+    {
+      "track": "pipeline",
+      "id": "2958462772b2",
+      "title": "mass-metallicity",
+      "pdf": "/api/lab/runs/2958462772b2/artifact/draft.pdf",
+      "review": "/api/lab/runs/2958462772b2/artifact/review_loop.md",
+      "verdict": "MINOR",
+      "lit_grounded": false,
+      "created_utc": "2026-07-17T09:47:30.429095Z",
+      "summary": "Mass–metallicity relation — median relations for SDSS (120,000 gals)."
+    },
+    {
+      "track": "pipeline",
+      "id": "7cb504ea7ad3",
+      "title": "stellar-mass-function",
+      "pdf": "/api/lab/runs/7cb504ea7ad3/artifact/draft.pdf",
+      "review": "/api/lab/runs/7cb504ea7ad3/artifact/review.md",
+      "verdict": null,
+      "lit_grounded": false,
+      "created_utc": "2026-07-17T09:39:59.918965Z",
+      "summary": "IllustrisTNG (TNG100-1, z=0) stellar mass function from 203,524 galaxies in a (111 Mpc)³ box; n(>10¹⁰·⁵M⊙)=1.49e-03 Mpc⁻³."
+    },
+    {
+      "track": "pipeline",
+      "id": "d8de519cb9c9",
+      "title": "mass-metallicity",
+      "pdf": null,
+      "review": null,
+      "verdict": null,
+      "lit_grounded": false,
+      "created_utc": "2026-07-17T09:20:58.872370Z",
+      "summary": "Mass–metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity → O/H (solar-scaled)."
+    },
+    {
+      "track": "pipeline",
+      "id": "2ab3c92eea8a",
+      "title": "scaling-relation-evolution",
+      "pdf": null,
+      "review": null,
+      "verdict": null,
+      "lit_grounded": false,
+      "created_utc": "2026-07-17T09:13:08.864691Z",
+      "summary": "Star-forming main sequence — median relations for TNG100 (23,060 gals)."
+    },
+    {
+      "track": "pipeline",
+      "id": "e2f3b038f8dd",
+      "title": "scaling-relation-evolution",
+      "pdf": null,
+      "review": null,
+      "verdict": null,
+      "lit_grounded": false,
+      "created_utc": "2026-07-17T09:06:12.028337Z",
+      "summary": "Mass–metallicity relation from 80,000 SDSS star-forming galaxies. 12+log(O/H) rises from 8.57 at logM⋆=9.0 to 9.05 at logM⋆=10.5, flattening at the massive end."
+    }
+  ]
+}

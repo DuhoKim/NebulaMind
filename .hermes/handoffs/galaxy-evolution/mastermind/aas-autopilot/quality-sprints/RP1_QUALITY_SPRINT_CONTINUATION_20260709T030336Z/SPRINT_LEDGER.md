@@ -1,0 +1,107 @@
+- 2026-07-09T03:05:00Z / 2026-07-09 12:05:00 KST — sprint started
+- 2026-07-09T03:05:00Z / 2026-07-09 12:05:00 KST — cycle 1: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_20260709T020653Z/candidates/cycle_08_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_01_package
+- 2026-07-09T03:07:11Z / 2026-07-09 12:07:11 KST — cycle 1: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:11:16Z / 2026-07-09 12:11:16 KST — cycle 1: integrator finished exit=0
+- 2026-07-09T03:11:21Z / 2026-07-09 12:11:21 KST — cycle 1: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:11:21Z / 2026-07-09 12:11:21 KST — cycle 2: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_01_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_02_package
+- 2026-07-09T03:14:10Z / 2026-07-09 12:14:10 KST — cycle 2: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:18:44Z / 2026-07-09 12:18:44 KST — cycle 2: integrator finished exit=0
+- 2026-07-09T03:18:49Z / 2026-07-09 12:18:49 KST — cycle 2: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:18:49Z / 2026-07-09 12:18:49 KST — cycle 3: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_02_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_03_package
+- 2026-07-09T03:20:44Z / 2026-07-09 12:20:44 KST — cycle 3: review lanes finished; lane exits [1, 1, 0]; mechanical figures=10
+- 2026-07-09T03:23:51Z / 2026-07-09 12:23:51 KST — cycle 3: integrator finished exit=0
+- 2026-07-09T03:23:56Z / 2026-07-09 12:23:56 KST — cycle 3: audit fatal_failures=1; compile_ok=[True, True]
+- 2026-07-09T03:23:56Z / 2026-07-09 12:23:56 KST — cycle 4: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_03_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_04_package
+- 2026-07-09T03:26:55Z / 2026-07-09 12:26:55 KST — cycle 4: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:31:56Z / 2026-07-09 12:31:56 KST — cycle 4: integrator finished exit=0
+- 2026-07-09T03:32:01Z / 2026-07-09 12:32:01 KST — cycle 4: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:32:01Z / 2026-07-09 12:32:01 KST — cycle 5: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_04_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_05_package
+- 2026-07-09T03:34:11Z / 2026-07-09 12:34:11 KST — cycle 5: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:37:02Z / 2026-07-09 12:37:02 KST — cycle 5: integrator finished exit=0
+- 2026-07-09T03:37:07Z / 2026-07-09 12:37:07 KST — cycle 5: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:37:07Z / 2026-07-09 12:37:07 KST — cycle 6: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_05_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_06_package
+- 2026-07-09T03:39:39Z / 2026-07-09 12:39:39 KST — cycle 6: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:41:40Z / 2026-07-09 12:41:40 KST — cycle 6: integrator finished exit=0
+- 2026-07-09T03:41:45Z / 2026-07-09 12:41:45 KST — cycle 6: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:41:45Z / 2026-07-09 12:41:45 KST — cycle 7: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_06_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_07_package
+- 2026-07-09T03:44:14Z / 2026-07-09 12:44:14 KST — cycle 7: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:48:02Z / 2026-07-09 12:48:02 KST — cycle 7: integrator finished exit=0
+- 2026-07-09T03:48:07Z / 2026-07-09 12:48:07 KST — cycle 7: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:48:07Z / 2026-07-09 12:48:07 KST — cycle 8: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_07_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_08_package
+- 2026-07-09T03:50:06Z / 2026-07-09 12:50:06 KST — cycle 8: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:54:11Z / 2026-07-09 12:54:11 KST — cycle 8: integrator finished exit=0
+- 2026-07-09T03:54:16Z / 2026-07-09 12:54:16 KST — cycle 8: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T03:54:16Z / 2026-07-09 12:54:16 KST — cycle 9: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_08_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_09_package
+- 2026-07-09T03:57:08Z / 2026-07-09 12:57:08 KST — cycle 9: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T03:59:57Z / 2026-07-09 12:59:57 KST — cycle 9: integrator finished exit=0
+- 2026-07-09T04:00:02Z / 2026-07-09 13:00:02 KST — cycle 9: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:00:02Z / 2026-07-09 13:00:02 KST — cycle 10: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_09_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_10_package
+- 2026-07-09T04:02:22Z / 2026-07-09 13:02:22 KST — cycle 10: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:05:06Z / 2026-07-09 13:05:06 KST — cycle 10: integrator finished exit=0
+- 2026-07-09T04:05:11Z / 2026-07-09 13:05:11 KST — cycle 10: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:05:11Z / 2026-07-09 13:05:11 KST — cycle 11: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_10_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_11_package
+- 2026-07-09T04:07:54Z / 2026-07-09 13:07:54 KST — cycle 11: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:17:14Z / 2026-07-09 13:17:14 KST — cycle 11: integrator finished exit=0
+- 2026-07-09T04:17:19Z / 2026-07-09 13:17:19 KST — cycle 11: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:17:19Z / 2026-07-09 13:17:19 KST — cycle 12: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_11_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_12_package
+- 2026-07-09T04:19:57Z / 2026-07-09 13:19:57 KST — cycle 12: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:22:41Z / 2026-07-09 13:22:41 KST — cycle 12: integrator finished exit=0
+- 2026-07-09T04:22:46Z / 2026-07-09 13:22:46 KST — cycle 12: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:22:46Z / 2026-07-09 13:22:46 KST — cycle 13: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_12_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_13_package
+- 2026-07-09T04:25:38Z / 2026-07-09 13:25:38 KST — cycle 13: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:30:18Z / 2026-07-09 13:30:18 KST — cycle 13: integrator finished exit=0
+- 2026-07-09T04:30:23Z / 2026-07-09 13:30:23 KST — cycle 13: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:30:23Z / 2026-07-09 13:30:23 KST — cycle 14: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_13_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_14_package
+- 2026-07-09T04:33:32Z / 2026-07-09 13:33:32 KST — cycle 14: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:35:50Z / 2026-07-09 13:35:50 KST — cycle 14: integrator finished exit=0
+- 2026-07-09T04:35:55Z / 2026-07-09 13:35:55 KST — cycle 14: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:35:55Z / 2026-07-09 13:35:55 KST — cycle 15: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_14_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_15_package
+- 2026-07-09T04:38:46Z / 2026-07-09 13:38:46 KST — cycle 15: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:42:04Z / 2026-07-09 13:42:04 KST — cycle 15: integrator finished exit=0
+- 2026-07-09T04:42:09Z / 2026-07-09 13:42:09 KST — cycle 15: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:42:09Z / 2026-07-09 13:42:09 KST — cycle 16: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_15_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_16_package
+- 2026-07-09T04:44:15Z / 2026-07-09 13:44:15 KST — cycle 16: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:49:05Z / 2026-07-09 13:49:05 KST — cycle 16: integrator finished exit=0
+- 2026-07-09T04:49:11Z / 2026-07-09 13:49:11 KST — cycle 16: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:49:11Z / 2026-07-09 13:49:11 KST — cycle 17: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_16_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_17_package
+- 2026-07-09T04:52:05Z / 2026-07-09 13:52:05 KST — cycle 17: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T04:56:25Z / 2026-07-09 13:56:25 KST — cycle 17: integrator finished exit=0
+- 2026-07-09T04:56:31Z / 2026-07-09 13:56:31 KST — cycle 17: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T04:56:31Z / 2026-07-09 13:56:31 KST — cycle 18: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_17_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_18_package
+- 2026-07-09T04:58:58Z / 2026-07-09 13:58:58 KST — cycle 18: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T05:04:53Z / 2026-07-09 14:04:53 KST — cycle 18: integrator finished exit=0
+- 2026-07-09T05:04:58Z / 2026-07-09 14:04:58 KST — cycle 18: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:04:58Z / 2026-07-09 14:04:58 KST — cycle 19: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_18_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_19_package
+- 2026-07-09T05:07:16Z / 2026-07-09 14:07:16 KST — cycle 19: review lanes finished; lane exits [1, 1, 0]; mechanical figures=10
+- 2026-07-09T05:10:18Z / 2026-07-09 14:10:18 KST — cycle 19: integrator finished exit=0
+- 2026-07-09T05:10:23Z / 2026-07-09 14:10:23 KST — cycle 19: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:10:23Z / 2026-07-09 14:10:23 KST — cycle 20: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_19_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_20_package
+- 2026-07-09T05:13:04Z / 2026-07-09 14:13:04 KST — cycle 20: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T05:19:33Z / 2026-07-09 14:19:33 KST — cycle 20: integrator finished exit=0
+- 2026-07-09T05:19:38Z / 2026-07-09 14:19:38 KST — cycle 20: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:19:38Z / 2026-07-09 14:19:38 KST — cycle 21: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_20_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package
+- 2026-07-09T05:22:17Z / 2026-07-09 14:22:17 KST — cycle 21: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T05:27:37Z / 2026-07-09 14:27:37 KST — cycle 21: integrator finished exit=0
+- 2026-07-09T05:27:42Z / 2026-07-09 14:27:42 KST — cycle 21: audit fatal_failures=1; compile_ok=[True, True]
+- 2026-07-09T05:27:42Z / 2026-07-09 14:27:42 KST — cycle 22: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package
+- 2026-07-09T05:30:03Z / 2026-07-09 14:30:03 KST — cycle 22: review lanes finished; lane exits [1, 1, 0]; mechanical figures=10
+- 2026-07-09T05:31:42Z / 2026-07-09 14:31:42 KST — cycle 22: integrator finished exit=0
+- 2026-07-09T05:31:47Z / 2026-07-09 14:31:47 KST — cycle 22: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:31:47Z / 2026-07-09 14:31:47 KST — cycle 23: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_23_package
+- 2026-07-09T05:34:29Z / 2026-07-09 14:34:29 KST — cycle 23: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T05:38:31Z / 2026-07-09 14:38:31 KST — cycle 23: integrator finished exit=0
+- 2026-07-09T05:38:36Z / 2026-07-09 14:38:36 KST — cycle 23: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:38:36Z / 2026-07-09 14:38:36 KST — cycle 24: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_23_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_24_package
+- 2026-07-09T05:41:36Z / 2026-07-09 14:41:36 KST — cycle 24: review lanes finished; lane exits [1, 1, 0]; mechanical figures=10
+- 2026-07-09T05:43:34Z / 2026-07-09 14:43:34 KST — cycle 24: integrator finished exit=0
+- 2026-07-09T05:43:39Z / 2026-07-09 14:43:39 KST — cycle 24: audit fatal_failures=0; compile_ok=[True, True]
+- 2026-07-09T05:43:39Z / 2026-07-09 14:43:39 KST — cycle 25: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_24_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_25_package
+- 2026-07-09T05:45:45Z / 2026-07-09 14:45:45 KST — cycle 25: review lanes finished; lane exits [1, 1, 0]; mechanical figures=10
+- 2026-07-09T05:47:50Z / 2026-07-09 14:47:50 KST — cycle 25: integrator finished exit=0
+- 2026-07-09T05:47:56Z / 2026-07-09 14:47:56 KST — cycle 25: audit fatal_failures=1; compile_ok=[True, True]
+- 2026-07-09T05:47:56Z / 2026-07-09 14:47:56 KST — cycle 26: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_25_package to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_26_package
+- 2026-07-09T05:50:55Z / 2026-07-09 14:50:55 KST — cycle 26: review lanes finished; lane exits [0, 0, 0]; mechanical figures=10
+- 2026-07-09T05:55:01Z / 2026-07-09 14:55:01 KST — cycle 26: integrator finished exit=0
+- 2026-07-09T05:55:07Z / 2026-07-09 14:55:07 KST — cycle 26: audit fatal_failures=1; compile_ok=[True, True]
+- 2026-07-09T05:55:07Z / 2026-07-09 14:55:07 KST — sprint completed
+- 2026-07-09T05:58:54Z final guardrail cleanup: candidate=/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/final_guardrail_cleanup_package; fatal_failures=0; exact guard phrase inserted; PDFs recompiled.

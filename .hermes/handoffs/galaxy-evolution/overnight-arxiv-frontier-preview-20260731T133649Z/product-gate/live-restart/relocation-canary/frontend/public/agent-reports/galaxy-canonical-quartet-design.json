@@ -1,0 +1,207 @@
+{
+  "canonical_spine": [
+    {
+      "h2": "Overview: Galaxy Evolution as a Regulated Baryon Cycle",
+      "order": 1,
+      "source": "V1 thesis + V2 reader orientation"
+    },
+    {
+      "h2": "Dark Matter Halos & Structure Formation",
+      "order": 2,
+      "source": "V1 halo/baryon efficiency + V2 high-z/JWST caveat"
+    },
+    {
+      "h2": "Gas Supply, Star Formation & Feedback",
+      "order": 3,
+      "source": "V1 gas cycle + V2 depletion/regulation distinctions"
+    },
+    {
+      "h2": "AGN Feedback & Quenching",
+      "order": 4,
+      "source": "V1 maintenance-feedback prose + V2 mode/phase conditionality"
+    },
+    {
+      "h2": "Environment, Morphology & Structural Growth",
+      "order": 5,
+      "source": "V1 ram pressure/S0/mergers + V2 satellites/cosmic web"
+    },
+    {
+      "h2": "Chemical Enrichment & Cosmic Timing",
+      "order": 6,
+      "source": "V1-only asset; preserve"
+    },
+    {
+      "h2": "High-Redshift & Reionization Frontier",
+      "order": 7,
+      "source": "V1 reionization claims, slimmed; massive-galaxy tension moved to \u00a72"
+    },
+    {
+      "h2": "Observational Evidence & Surveys",
+      "order": 8,
+      "source": "V2 graft; organize by uncertainty reduced, not mission list"
+    },
+    {
+      "h2": "Synthesis & Open Tensions",
+      "order": 9,
+      "source": "V2 closer + V1 honest gaps"
+    }
+  ],
+  "created_utc": "2026-07-02T06:38:37Z",
+  "current_content_verification": {
+    "counts_unchanged_vs_baseline": {
+      "57": {
+        "claim_count": true,
+        "content_len": true,
+        "latest_version": true
+      },
+      "58": {
+        "claim_count": true,
+        "content_len": true,
+        "latest_version": true
+      }
+    },
+    "current_pages": [
+      {
+        "claim_count": 721,
+        "content_len": 13325,
+        "content_sha256": "07f8d96919ea13ff0a313102a1861f5c10e8a2401d99302122512c987ce5f289",
+        "evidence_count": 223,
+        "evidence_vote_count": 683,
+        "fact_source_count": 3,
+        "id": 57,
+        "latest_version_num": 1708,
+        "page_citation_link_count": 8,
+        "page_version_rows": 1709,
+        "slug": "galaxy-evolution",
+        "title": "Galaxy Evolution",
+        "updated_at": "2026-07-02T06:15:46.811221"
+      },
+      {
+        "claim_count": 8,
+        "content_len": 10265,
+        "content_sha256": "ab6502e572a6189b173b9be934a2f812091d5004a5cc2102211464bc4747190c",
+        "evidence_count": 138,
+        "evidence_vote_count": 8,
+        "fact_source_count": 0,
+        "id": 58,
+        "latest_version_num": 7,
+        "page_citation_link_count": 0,
+        "page_version_rows": 7,
+        "slug": "galaxy-evolution-v2",
+        "title": "Galaxy Evolution (Intro-Synthesis V2 Pilot)",
+        "updated_at": "2026-06-27T18:03:19"
+      }
+    ],
+    "hashes_unchanged_vs_baseline": {
+      "57": true,
+      "58": true
+    },
+    "note": "page 57 updated_at metadata drift pre-existed this integrated report; content hash/latest version/claim counts are unchanged."
+  },
+  "hard_no_auto_merge": [
+    "No blind replacement of page 57 with V2 prose",
+    "No automatic trust-label normalization",
+    "No evidence stance rewrites",
+    "No deletion of page 58 or histories",
+    "No hero_facts resurrection",
+    "No marker-history rewrites",
+    "No new evidence rows just because prose lacks citations",
+    "No two simultaneous EXECUTE phrases for different mutation packets"
+  ],
+  "intended_db_page_change_classes": [
+    {
+      "class": "content_publish",
+      "expected_change": "replace content with approved merged canonical markdown; keep slug/title canonical",
+      "requires": "publish preflight + explicit APPROVE PUBLISH",
+      "target": "wiki_pages id=57"
+    },
+    {
+      "class": "version_insert",
+      "expected_change": "insert new version row with merged content/source_note",
+      "requires": "same publish preflight",
+      "target": "page_versions page_id=57"
+    },
+    {
+      "class": "claim_rehome_optional",
+      "expected_change": "if preview accepts them, update page_id to 57 and canonical section/order placements; preserve evidence/votes by claim_id",
+      "requires": "row-level backup/exact diff/rollback; explicit inclusion in publish packet",
+      "target": "claims ids 2929-2936 currently page_id=58"
+    },
+    {
+      "class": "retirement_banner_optional",
+      "expected_change": "replace V2 content with archived/superseded banner pointing to canonical page; retitle if desired",
+      "requires": "same or separate exact-diff packet; no delete",
+      "target": "wiki_pages id=58 and page_versions page_id=58"
+    },
+    {
+      "class": "redirect_later",
+      "expected_change": "301/alias to galaxy-evolution if supported",
+      "requires": "separate source/runtime approval, tests, deploy/restart gate",
+      "target": "runtime/router/source for galaxy-evolution-v2"
+    },
+    {
+      "class": "claim_backlog_noop",
+      "expected_change": "no automatic rewrite/remap in canonical merge",
+      "requires": "separate triage campaign",
+      "target": "remaining V1 claim graph, especially 526 zero-evidence trust 0.5 and 377 open-question bucket"
+    }
+  ],
+  "marker": "GALAXY_CANONICAL_QUARTET_DESIGN_COMPLETE_20260702",
+  "mode": "READ_ONLY_QUARTET_DESIGN_COMPLETE",
+  "next_recommended_phrase": "APPROVE GALAXY CANONICAL MERGE PREVIEW PACKET: Build a docs-only preview packet that merges Galaxy Evolution V1 (page 57) and V2 (page 58) into one canonical draft on slug galaxy-evolution: spine map, merged prose draft with normalized claim markers, claim re-homing table for claims 2929-2936, page 58 retirement banner draft, and explicit exclusion list. Write docs/JSONL/Markdown artifacts in one new directory only. No DB writes, SQL mutations, migrations, deploy/restart, git writes, runtime source edits, secrets, OpenClaw, or deletes. Timebox 3 hours; galaxy execution remains queued behind the pages-5/19/23 exact-diff EXECUTE.",
+  "page_inventory": {
+    "page57_v1": {
+      "citation_links": 8,
+      "claim_markers_permissive": 22,
+      "claims": 721,
+      "evidence_rows": 223,
+      "evidence_votes": 683,
+      "fact_sources": 3,
+      "slug": "galaxy-evolution",
+      "strict_markers_goru": 22
+    },
+    "page58_v2": {
+      "citation_links": 0,
+      "claim_markers_permissive": 8,
+      "claims": 8,
+      "evidence_rows": 138,
+      "evidence_votes": 8,
+      "fact_sources": 0,
+      "marker_trap": "V2 markers use leading-space open tags; permissive scan sees 8, strict V1-style parser sees 0.",
+      "slug": "galaxy-evolution-v2",
+      "strict_markers_goru": 0
+    }
+  },
+  "preview_packet_should_contain": [
+    "spine map",
+    "merged prose draft",
+    "normalized claim-marker map",
+    "V1 surfaced-chip preservation map",
+    "V2 claims 2929-2936 re-homing table",
+    "page 58 retirement banner draft",
+    "explicit exclusion/no-auto-merge list",
+    "rendered review HTML if static serving allows",
+    "manifest with hashes"
+  ],
+  "quartet_consensus": {
+    "canonical_identity": "page 57 / slug galaxy-evolution / title Galaxy Evolution",
+    "not_a_rewrite_of_721": "Only surfaced/load-bearing claims are placed in prose; the full page-57 claim graph remains provenance/backlog unless separately triaged.",
+    "strategy": "refactor page 57 in place; absorb useful V2 assets; do not promote page 58 or create a third entity",
+    "v2_role": "donor/workbench, then superseded/archived after approved publish"
+  },
+  "safety": {
+    "apply_sql_generated": false,
+    "db_writes_executed_by_this_design": 0,
+    "deploy_restart": 0,
+    "git_commit_push_merge": 0,
+    "page_publish_executed": false,
+    "runtime_source_edits": 0
+  },
+  "source_reports": {
+    "fable": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/galaxy-canonical-quartet-20260702T063000Z/fable_grand_design.md",
+    "goru_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/galaxy-canonical-quartet-20260702T063000Z/goru_mechanical_map.json",
+    "goru_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/galaxy-canonical-quartet-20260702T063000Z/goru_mechanical_map.md",
+    "hermes": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/galaxy-canonical-quartet-20260702T063000Z/hermes_synthesis.md",
+    "lana": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/galaxy-canonical-quartet-20260702T063000Z/lana_structure_report.md"
+  }
+}

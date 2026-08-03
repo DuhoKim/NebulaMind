@@ -1,0 +1,7 @@
+Applied the section-level cleanup without changing any measured values or association-only boundaries.
+
+- Flagship: added an explicit note that completeness at the `z=0.12` edge is not claimed as uniform, and clarified why variance-normalized Euclidean matching was used instead of Mahalanobis distance in [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_10_package/flagship_rp1/aastex/rp1_flagship_polished.tex).
+- Supplement: anchored the 55-arcsec fiber-collision warning to the SDSS targeting paper, added a concrete limitation note on the S/N versus mass-completeness interaction, and inserted the Strauss et al. 2002 reference in [supplementary_denominator_atlas.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_10_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex).
+- Custody manifest was inspected first and remains the provenance anchor in [REAL_DATA_SOURCE_CUSTODY.json](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_10_package/provenance/REAL_DATA_SOURCE_CUSTODY.json).
+
+JOURNAL_LEVEL_PASS: YES

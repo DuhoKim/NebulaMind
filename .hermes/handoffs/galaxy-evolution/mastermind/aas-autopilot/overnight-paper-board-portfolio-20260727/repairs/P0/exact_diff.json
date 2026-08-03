@@ -1,0 +1,143 @@
+{
+  "generated_at": "2026-07-28T00:39:18.694833+09:00",
+  "status": "PREPARED_ONLY_NOT_EXECUTED__SOURCE_AUTHORITY_REPIN_REQUIRED",
+  "marker": "P0_EXACT_DIFF_PACKET_READY_20260728",
+  "selected_science_branch": "RETRACT_UNSUPPORTED_MATCHED_SCALE_CLAIM__PRESERVE_UNMATCHED_SUGGESTIVE_STATE",
+  "served_pdf": {
+    "bytes": 132831,
+    "sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+    "public_status": 200
+  },
+  "closed_world_changes": [
+    {
+      "path": "paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+      "operation": "modify",
+      "current": {
+        "bytes": 16456,
+        "sha256": "de4b6140d0af6ad68d5077999cc393da09958fa7c469d4ec8015a1c28c608039"
+      },
+      "proposed": {
+        "bytes": 16177,
+        "sha256": "74158be9b03e928a7d9b8dc9cb517c96d835f06a4c0506436a458bf5ba598f01"
+      }
+    },
+    {
+      "path": "frontend/src/app/lab/FrontierDrafts.tsx",
+      "operation": "modify",
+      "current": {
+        "bytes": 5791,
+        "sha256": "071a8cb092513c23cdc5ffb7f886d696f9d2ffed758084352b536aed3ec862c2"
+      },
+      "proposed": {
+        "bytes": 5689,
+        "sha256": "9a3fb228170a14ef1b9c46c8b1d1573cb30f96ad8051d855bdeda25d5fa4ad2f"
+      }
+    },
+    {
+      "path": "frontend/src/app/lab/paperScores.ts",
+      "operation": "modify",
+      "current": {
+        "bytes": 15358,
+        "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+      },
+      "proposed": {
+        "bytes": 15520,
+        "sha256": "ede4d3bc6a213b7c47b631f31ed7b504a38fcfc1d4a3f0cc0f47b205f5765d19"
+      }
+    },
+    {
+      "path": "frontend/scripts/test-p0-correction-state.mjs",
+      "operation": "create",
+      "current": null,
+      "proposed": {
+        "bytes": 2181,
+        "sha256": "2f01f88c00d22c955ff16fb34bdf085ec340ec008bf1a242d5018d631cbfe869"
+      }
+    }
+  ],
+  "patches": {
+    "red_test_only.patch": {
+      "bytes": 2448,
+      "sha256": "126c260c10d9ee400bdc16350fcd650df21eec6c8d2f090c6ff112cd35942fdc"
+    },
+    "green_source_only.patch": {
+      "bytes": 28452,
+      "sha256": "d909d6c2b8635d07a5ea2b0c17c78ffbc30678c3533b895d8b534d7a4d24e4cc"
+    },
+    "exact_diff.patch": {
+      "bytes": 30900,
+      "sha256": "75217eec8652117ae76aabaf36d109927aacae4f2dda47b46630f56edc9393d7"
+    }
+  },
+  "strict_sequence": [
+    {
+      "step": 1,
+      "action": "apply red_test_only.patch",
+      "expected": "adds only source-level contract test"
+    },
+    {
+      "step": 2,
+      "action": "run node frontend/scripts/test-p0-correction-state.mjs",
+      "expected": "RED assertion on stale P0 claim state; syntax/path failure is invalid"
+    },
+    {
+      "step": 3,
+      "action": "apply green_source_only.patch",
+      "expected": "only three existing source representations change"
+    },
+    {
+      "step": 4,
+      "action": "rerun focused test",
+      "expected": "P0_CORRECTION_STATE_PASS"
+    },
+    {
+      "step": 5,
+      "action": "compile candidate TeX in isolated temporary directory",
+      "expected": "tectonic exit 0; no unresolved citations"
+    },
+    {
+      "step": 6,
+      "action": "extract/render all pages",
+      "expected": "structural and visual acceptance"
+    },
+    {
+      "step": 7,
+      "action": "fresh no-self-review",
+      "expected": "Lana/Kun/Goru receipts against pinned candidate hashes"
+    }
+  ],
+  "source_authority": {
+    "candidate": "paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+    "classification": "SERVE_MATCHING_STANDALONE_SOURCE_SNAPSHOT",
+    "apply_blocker": "explicit repin or a different canonical generator is required before source apply",
+    "stale_forbidden_target": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/research-frontiers-20260716/topic3/tng_draft.tex"
+  },
+  "figure_files": {
+    "fig_tng_planes.pdf": {
+      "operation": "none",
+      "sha256": "90bb9742228ff74dcf8ebf45cf4ca4a249ac628ede5254ba635563fd3b537e70"
+    },
+    "fig_tng_vs_jwst.pdf": {
+      "operation": "none",
+      "sha256": "5ef7a5ba52e565cc73b16afc28cae5c8f1de03a0565277e2cc3d7614c482b0a0"
+    }
+  },
+  "history_json": {
+    "operation": "none",
+    "sha256": "f879ca9b1d4f7bbec120b22d5e4e87901a3c0ab7430cb4159d6860aab4f7314f",
+    "reason": "preserve human-direction history as intended-but-not-landed record"
+  },
+  "side_effect_ledger": {
+    "packet_files_written": true,
+    "packet_path_resolution_incident": "One new SOURCE_IDENTITY_CHECK.md initially resolved under the live repository's .hermes path; it and all empty directories were immediately removed. Final live-repository residue is zero and no source/public/tracked file changed.",
+    "source_files_modified": 0,
+    "tests_executed": 0,
+    "tex_compiles": 0,
+    "pdf_renders": 0,
+    "public_writes": 0,
+    "lab_db_wiki_writes": 0,
+    "service_deploy_restart": 0,
+    "git_actions": 0
+  },
+  "next_gate": "APPROVE APPLY P0 EXACT-DIFF PACKET <manifest-sha256>; REPIN SERVE-MATCHING after.tex AS THE CANDIDATE SOURCE; RUN RED/GREEN + TECTONIC + RENDER REVIEW; NO PUBLICATION, RESTART, OR GIT."
+}

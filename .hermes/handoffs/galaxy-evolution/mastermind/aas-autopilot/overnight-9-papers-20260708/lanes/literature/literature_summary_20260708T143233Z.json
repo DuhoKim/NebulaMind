@@ -1,0 +1,56 @@
+{
+  "marker": "LITERATURE_SOURCE_TICK_20260708T143233Z",
+  "utc": "2026-07-08T14:32:33Z",
+  "lane": "literature/source-grounding",
+  "targets": [
+    "M1 RP-2 — SDSS density proxy for environmental quenching",
+    "M1 RP-3 — optical-AGN denominator for maintenance-heating follow-up",
+    "M2 P1 — high-excitation optical AGN denominator for outflow escape/recycling tests"
+  ],
+  "artifact_paths": {
+    "packet_md": "lanes/literature/literature_source_packet_20260708T143233Z.md",
+    "sources_jsonl": "lanes/literature/literature_sources_20260708T143233Z.jsonl",
+    "tick_md": "lanes/literature/ticks/LITERATURE_TICK_20260708T143233Z.md"
+  },
+  "source_records": 21,
+  "source_methods": {
+    "arxiv_api_records": 20,
+    "crossref_api_records": 1,
+    "semantic_scholar_status": "attempted unauthenticated searches; HTTP 429; not used",
+    "web_tool_status": "not configured; no credentials or billing changes attempted"
+  },
+  "support_class_counts": {
+    "supports_actual_data_or_method": 7,
+    "supports_actual_result_interpretation": 2,
+    "mixed_target_stratification_and_future_data": 1,
+    "motivates_future_data_only": 8,
+    "status_motivation_only": 3
+  },
+  "main_verdict": "The Wave-1 manuscripts should cite SDSS/BPT/demarcation/catalog sources for actual optical pilot measurements, and cite physical AGN/environment/outflow literature only as status or follow-up motivation unless the missing non-SDSS observables are added.",
+  "overclaim_guards": [
+    "M1 RP-2: nearest-neighbour density proxy is not halo mass, central/satellite status, or causal environmental quenching.",
+    "M1 RP-3: optical BPT AGN fraction is not radio jet power, X-ray cavity power, cooling luminosity, or duty-cycle balance.",
+    "M2 P1: high-excitation optical AGN count is not outflow velocity, escape velocity, molecular/neutral gas phase coverage, recycling time, or escape fraction."
+  ],
+  "recommended_later_integration_actions": [
+    "Add Abdurro'uf et al. 2021 DR17 citation to all Wave-1 manuscripts.",
+    "Add Brinchmann et al. 2003/2004 for catalog sSFR context where sSFR is central.",
+    "Add Peng 2010 and Baldry 2006 to M1 RP-2 as scoped interpretation anchors; Wetzel 2012/2013 only as future central/satellite/group-catalog motivation.",
+    "Add Best 2005 to M1 RP-3 as SDSS-radio demographic bridge; McNamara & Nulsen 2007/2012 only as future X-ray/radio heating/cooling anchors.",
+    "Add Kewley 2006 to M2 P1 for high-excitation/classification caveats; Cicone/Fiore/Carniani/Veilleux/Fabian only as motivation for resolved multiphase follow-up.",
+    "Before final M2 P1 methods text, inspect the analysis code for the exact high-excitation criterion; JSON summary is insufficient."
+  ],
+  "safety": {
+    "public_pages_changed": false,
+    "live_roots_changed": false,
+    "product_db_or_api_changed": false,
+    "page_versions_changed": false,
+    "trust_changed": false,
+    "deploy_or_restart": false,
+    "git_changed": false,
+    "billing_oauth_credentials_changed": false,
+    "external_submission": false,
+    "new_cron_jobs": false,
+    "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE"
+  }
+}

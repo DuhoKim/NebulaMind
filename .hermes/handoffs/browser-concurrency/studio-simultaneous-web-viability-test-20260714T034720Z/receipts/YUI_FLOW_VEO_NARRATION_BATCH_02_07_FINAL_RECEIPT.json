@@ -1,0 +1,165 @@
+{
+  "artifact_verification": {
+    "all_selected_files_verified": true,
+    "brief_hash_match": true,
+    "media_contract": {
+      "audio_codec": "aac",
+      "duration_seconds": 8.0,
+      "fps": "24/1",
+      "height": 720,
+      "video_codec": "h264",
+      "width": 1280
+    },
+    "reference_hash_match": true,
+    "rejected_files_verified": true,
+    "selected_artifacts": [
+      {
+        "bytes": 13683873,
+        "clip_num": 2,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_02.mp4",
+        "sha256": "6f262352dbef41ca15a81567c2ec233f333dc71f02207c7ed0126e1337fd6d15"
+      },
+      {
+        "bytes": 6127099,
+        "clip_num": 3,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_03.mp4",
+        "sha256": "3cab5eb30066b1864803d1229b669a07e175f8fd8d32e95cef9ebae2e15a7837"
+      },
+      {
+        "bytes": 7943259,
+        "clip_num": 4,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_04.mp4",
+        "sha256": "b769b7b66fc26c63ce51969c1d322d2f7b991294c8e7caa6944e0d3d4c87add5"
+      },
+      {
+        "bytes": 4883453,
+        "clip_num": 5,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_05.mp4",
+        "sha256": "6e4687229008978df94b61fc2f954331048b85175f87beb26583744f38bff9a1"
+      },
+      {
+        "bytes": 7369205,
+        "clip_num": 6,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_06.mp4",
+        "sha256": "15e5c31cff0b003ff306b3ea6a9af93774e516ba09862d558ce01a4b8a6d4aca"
+      },
+      {
+        "bytes": 5794831,
+        "clip_num": 7,
+        "path": "/Users/duhokim/HermesOps/scripts/clips/narration/vo_07.mp4",
+        "sha256": "a239778fcee520a4c68d7058859324b0c6d73ccea87d3836b38e6596df220b26"
+      }
+    ]
+  },
+  "completed_utc": "2026-07-14T15:18:15Z",
+  "credits": {
+    "calculated_cost": 800,
+    "calculation": "8 serialized submits x 100 displayed credits",
+    "displayed_cost_per_submit": 100,
+    "manifest_cost_match": true,
+    "post_balance_observed": null,
+    "post_balance_reason": "Not read: a separate bounded character experiment is stopped at a macOS labs.google permission dialog.",
+    "submit_count": 8
+  },
+  "created_utc": "2026-07-14T16:17:32Z",
+  "lease_cleanup": {
+    "broker_frozen": false,
+    "own_live_lease_count": 0,
+    "own_live_leases": []
+  },
+  "ledger": {
+    "direct_append_performed": false,
+    "path": "ledger/RUN_LEDGER.jsonl",
+    "verification": "VERIFY_OK OK (2456 entries)"
+  },
+  "manifest": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/browser-concurrency/studio-simultaneous-web-viability-test-20260714T034720Z/receipts/YUI_FLOW_VEO_NARRATION_BATCH_02_07_MANIFEST.json",
+    "sha256": "67c627d5e9fb9964ac1df7546ab10a619352c6696bd37c679222a213ea90304f",
+    "status": "completed_with_quality_failures"
+  },
+  "next_action": "Do not use vo_06 in production. Its one authorized retry is exhausted. Replace or manually edit vo_06 only under a new user approval; the other selected clips may proceed after normal editorial review.",
+  "quality": {
+    "release_ready": false,
+    "selected_clip_results": [
+      {
+        "clip_num": 2,
+        "quality_pass": true,
+        "single_clean_narrator_supported": true,
+        "voice_consistency_pass": true,
+        "wording_pass": true
+      },
+      {
+        "clip_num": 3,
+        "quality_pass": true,
+        "single_clean_narrator_supported": true,
+        "voice_consistency_pass": true,
+        "wording_pass": true
+      },
+      {
+        "clip_num": 4,
+        "quality_pass": true,
+        "single_clean_narrator_supported": true,
+        "voice_consistency_pass": true,
+        "wording_pass": true
+      },
+      {
+        "clip_num": 5,
+        "quality_pass": true,
+        "single_clean_narrator_supported": true,
+        "voice_consistency_pass": true,
+        "wording_pass": true
+      },
+      {
+        "clip_num": 6,
+        "quality_pass": false,
+        "single_clean_narrator_supported": true,
+        "voice_consistency_pass": true,
+        "wording_pass": false
+      },
+      {
+        "clip_num": 7,
+        "quality_pass": true,
+        "single_clean_narrator_supported": false,
+        "voice_consistency_pass": true,
+        "wording_pass": true
+      }
+    ],
+    "single_clean_narrator_unsupported_clips": [
+      7
+    ],
+    "usable_selected_clips": [
+      2,
+      3,
+      4,
+      5,
+      7
+    ],
+    "voice_gate_failure_clips": [],
+    "voice_gate_scope": "Broad automated acoustic-outlier comparison against vo_test_01; not human speaker verification.",
+    "wording_failure_clips": [
+      6
+    ]
+  },
+  "receipt_type": "YUI_FLOW_VEO_NARRATION_BATCH_02_07_FINAL_VERIFICATION",
+  "retries": {
+    "vo_06": {
+      "attempt_1_selected_transcript": "The result is a living encyclopedia, TEGA, evidence-linked, self-correcting and always growing.",
+      "attempt_2_rejected_transcript": "The result is a living encyclopedia, PORBA. Evidence-linked, self-correcting, and always growing.",
+      "retry_exhausted": true,
+      "selected_attempt": 1,
+      "verdict": "Both attempts add an unintended utterance after encyclopedia; attempt 1 is the less-bad preserved artifact but fails wording."
+    },
+    "vo_07": {
+      "attempt_1_selected_transcript": "The cosmos, mapped, sourced, and understood by AI. Explore it at nebulamind.net.",
+      "attempt_2_rejected_reason": "Dropped the initial word 'The'.",
+      "retry_exhausted": true,
+      "selected_attempt": 1,
+      "verdict": "Selected attempt 1 has exact semantic wording after normalizing spoken 'nebula mind dot net' and written 'NebulaMind.net'."
+    }
+  },
+  "tests": {
+    "command": "python3 -m unittest canaries/test_yui_flow_narration_batch.py -v",
+    "passed": 9,
+    "result": "OK"
+  }
+}

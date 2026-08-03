@@ -1,0 +1,73 @@
+{
+  "status": "classified_frontend_wiki_clean_pr_plan_completed",
+  "updated_at_utc": "2026-06-29T14:35:06Z",
+  "updated_at_kst": "2026-06-29 23:35:06 KST",
+  "plain_english_summary": "Plan only: do not copy stale wiki page diffs. Clean main already has trust visibility. The only plausible draft PR is Page58 label-upload helper/route/test from a clean origin/main worktree.",
+  "running_backend_pid": "25075",
+  "running_backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "clean_candidate_serving_backend": true,
+  "db_counts_before": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_counts_after": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_count_drift": {
+    "page_citation_links": 0,
+    "fact_sources": 0
+  },
+  "code_changes_made": 0,
+  "deploys": 0,
+  "backend_restarts": 0,
+  "db_writes": 0,
+  "recommended_pr": {
+    "title": "feat(frontend): add guarded Page58 label upload route",
+    "mode": "draft PR only",
+    "expected_files": [
+      "frontend/src/lib/agentReportUpload.ts",
+      "frontend/src/app/agent-reports/page58-label-upload/submit/route.ts",
+      "frontend/scripts/test-agent-report-upload.mjs",
+      "frontend/scripts/test-page58-label-upload-route-contract.mjs",
+      "frontend/package.json"
+    ],
+    "excluded_files": [
+      "frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+      "frontend/src/app/wiki/[slug]/sources/WikiSourcesClient.tsx",
+      "frontend/src/app/wiki/[slug]/trustVisibility.ts",
+      "wiki_schema.md",
+      "frontend/public/agent-reports/**"
+    ]
+  },
+  "artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/frontend-wiki-clean-pr-plan-20260629T143506Z",
+    "plan": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/frontend-wiki-clean-pr-plan-20260629T143506Z/classified-frontend-wiki-clean-pr-plan.md",
+    "inspection": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/frontend-wiki-clean-pr-plan-20260629T143506Z/frontend-wiki-plan-inspection.json",
+    "manifest": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/frontend-wiki-clean-pr-plan-20260629T143506Z/MANIFEST.json",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/frontend-wiki-clean-pr-plan-20260629T143506Z/SHA256SUMS"
+  },
+  "next_approval": "STEER: create draft clean PR for Page58 label-upload route with TDD; no merge, no deploy, no DB writes.",
+  "future_options": [
+    {
+      "option": "Create draft clean PR for Page58 label-upload route",
+      "risk": "Medium / code-only draft PR; filesystem-write route but no DB writes",
+      "approval": "STEER: create draft clean PR for Page58 label-upload route with TDD; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Prepare clean PR plan for Atlas IA/surveys polish",
+      "risk": "Medium / planning only",
+      "approval": "STEER: prepare clean PR plan for Atlas IA surveys polish from old runtime branch; no code changes, no deploy, no DB writes."
+    },
+    {
+      "option": "Continue clean-candidate monitor",
+      "risk": "Low / read-only",
+      "approval": "STEER: continue clean-candidate source-surface monitor; no DB writes."
+    },
+    {
+      "option": "Cleanup old runtime duplicates/residue",
+      "risk": "High / destructive filesystem cleanup",
+      "approval": "LOCKED \u2014 requires backup plus exact cleanup approval after useful-work decisions."
+    }
+  ]
+}

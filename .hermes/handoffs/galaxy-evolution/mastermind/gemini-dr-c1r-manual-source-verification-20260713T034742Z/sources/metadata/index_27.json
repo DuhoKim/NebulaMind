@@ -1,0 +1,82 @@
+{
+  "index": 27,
+  "captured_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+  "ledger_rows": [
+    33
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:53Z",
+      "method": "GET",
+      "host": "oamonitor.ireland.openaire.eu",
+      "index": 27,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+      "final_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+      "status": 200,
+      "bytes": 908319,
+      "sha256": "80444c7be9d0ce28ded603b4c5da617789e04902de7a4daeec27f153e31d3228",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx27_initial_80444c7be9d0.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "requested_url": "https://doi.org/10.1093/mnras/stx3040",
+      "status": 0,
+      "error": "host_stopped_after_3_failures",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "utc": "2026-07-13T04:15:56Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 27,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stx3040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stx3040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 3271,
+      "sha256": "ec0ee607ff2969afaff19d1cda9dd44388dfb793f9bfd7c9caa67758c66606c5",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx27_ads_ec0ee607ff29.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "First results from the IllustrisTNG simulations: the galaxy colour bimodality",
+      "doi": "10.1093/mnras/stx3040",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx27_initial_aa2ac04461b9.txt",
+      "text_sha256": "aa2ac04461b98b95cb7492af10d24ea4c1a1c1488316a9e8886c999f5d2a6ae4",
+      "text_chars": 11242
+    },
+    {
+      "label": "doi",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "",
+      "text_sha256": "",
+      "text_chars": 0
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "10.1093/mnras/stx3040",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx27_ads_a6748f46ee33.txt",
+      "text_sha256": "a6748f46ee33b6067fd2054f6a55e8a7e029161c1bf51b596c9c50914f4c76f6",
+      "text_chars": 3708
+    }
+  ]
+}

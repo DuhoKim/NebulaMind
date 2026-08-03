@@ -1,0 +1,602 @@
+{
+  "advisory_only": true,
+  "broad_non_agn": true,
+  "captured_utc": "2026-07-15T10:24:24.667176Z",
+  "conversation_cleanup_authorized": false,
+  "conversation_deleted": false,
+  "distinct_from_area1_mzr": true,
+  "identity": {
+    "captured_title": "You are the Deep Research source-discovery reviewer for NebulaMind's galaxy-evolution wiki expansion, Area 2. Topic: broad, non-AGN galaxy chemical evolution. This area is about enrichment process and history, not a duplicate of Area 1's mass-metallicity scaling-relation map. Purpose: produce an advisory, trust-ready evidence map that a separate Hwao lane may later convert into live wiki claims. Do not mutate any wiki, database, trust score, or prose. Coverage requirements 1. Chemical enrichment history over cosmic time and measured metallicity evolution with redshift. 2. Nucleosynthetic channels and delay times: core-collapse supernovae, Type Ia supernovae, AGB stars, neutron-capture channels where relevant, and which elements/ratios they affect. 3. Abundance-ratio diagnostics and their limits: [alpha/Fe] versus [Fe/H], [N/O], [C/O], star-formation timescale, IMF, delayed enrichment, gas flows, and metallicity-dependent yields. 4. Radial gas-phase and stellar metallicity gradients in disks, their scatter, redshift evolution, mixing, migration, and interaction sensitivity. 5. Chemical-evolution models: closed-box, simple/leaky-box, effective yield, inflow, outflow, metal loading, recycling, equilibrium/gas-regulator models, and where each approximation fails. 6. The classic G-dwarf problem and why infall/pre-enrichment/other extensions are invoked. 7. The fundamental metallicity relation only where it diagnoses enrichment, dilution, inflow, or outflow. Do not duplicate the Area 1 scaling-law treatment. 8. Measurement and interpretation caveats: gas-phase versus stellar metallicity, element-specific versus total metallicity, strong-line/direct-method abundance scales, abundance-pattern assumptions, aperture/resolution, and sample selection. Hard scientific boundaries - Broad galaxy evolution, not AGN-framed. Exclude AGN/NLR abundance work from usable findings. - Keep gas-phase, stellar, global/fiber, and spatially resolved measurements distinct. - Do not present a simulation/model interpretation as direct observational proof. - Do not turn one galaxy, one environment, or a selected high-redshift sample into a universal prevalence statement. - Prefer 2020-2025 work where it adds real value, while retaining foundational sources such as Tinsley/Matteucci/Pagel-era chemical-evolution work when they remain the strongest basis. - Reviews may orient the map, but each load-bearing finding or debate position should include primary literature where possible. Citation identity protocol \u2014 mandatory Before admitting a source, resolve an authoritative ADS, DOI, journal, or arXiv record and identity-match title, first author, author set, publication year, and journal. Treat DOI, arXiv, and ADS fields as one composite identity. If you provide multiple identifiers, every one must resolve to the same paper. Never combine identifiers from different records. Never infer a DOI or arXiv identifier from a search snippet. For every usable source, use exactly: `Authors (year, journal) | DOI:<doi if verified>; arXiv:<id if verified>; ADS:<bibcode if verified> | role=established|debate|caveat|future | one-line claim boundary` It is acceptable to omit an identifier type that the authoritative record does not supply. It is not acceptable to guess one. Every usable row must include at least one authoritative resolvable identifier, preferably ADS plus every reconciled DOI/arXiv identifier available. If identity or claim support is uncertain, do not use the source. Put it in `DO_NOT_USE_UNVERIFIED` as: `UNCITED_NOT_USABLE | alleged source | unresolved identifier or locator | reason` Output exactly these sections and IDs ## 1. Established findings Use `CHEM-E01`, `CHEM-E02`, ... Each finding must include: - `role: established` - one atomic finding - scope/boundary: redshift, population, abundance type/element, method, aperture/resolution, and whether observational, model-based, or review synthesis - confidence note - one or more verified source rows Cover the full topic matrix; do not collapse it into the MZR. ## 2. Open debates and tensions Use `CHEM-D01`, `CHEM-D02`, ... and `role: debate`. For each include: - `debate_topic` - competing positions - why unresolved - source/sample/calibration boundaries - verified source rows supporting the competing sides where available Required debate axes include at least: IMF/yield dependence; Type Ia delay-time/progenitor interpretation; inflow versus outflow/recycling dominance; radial-gradient evolution direction; [alpha/Fe] as a timescale diagnostic versus IMF/metallicity/yield degeneracy; primary/secondary nitrogen and N/O interpretation. ## 3. Key measurements and numbers Use `CHEM-N01`, `CHEM-N02`, ... Each number/trend must state survey/instrument, sample or mass/redshift range, abundance diagnostic or stellar-population method, aperture/resolution, uncertainty when reported, and a verified source row. Do not recompute values. ## 4. What remains unknown Use `CHEM-U01`, `CHEM-U02`, ... and `role: future`. State the genuine gap and the observation/model comparison needed to resolve it. Cite only when a verified source explicitly frames the gap. ## 5. DO_NOT_USE_UNVERIFIED List every encountered unresolved, conflicting, AGN-centric, snippet-corrupted, or claim-mismatched source as `UNCITED_NOT_USABLE`. If none, state `NONE \u2014 all cited sources passed identity and claim-boundary checks`. ## 6. Source identity ledger One deduplicated row per usable source. For each include: - exact source row in the mandatory format - resolved title - linked `CHEM-*` IDs - verification route - epistemic type: primary observation, stellar-population inference, nucleosynthetic-yield/model, simulation/model, calibration/method, or review/status synthesis End with the literal line: CHEM_DR_PACKET_COMPLETE_REFERENCE_ONLY Do not add prose after that marker. Do not edit any live system. Return only this advisory evidence packet.",
+    "conversation_id": "2ac7b49f57f07194",
+    "conversation_path": "/app/2ac7b49f57f07194",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "9b4cc65759de6d7ac82a7ea18b9a5735ca2761bac45d3b1cad13bcffa409f95f",
+    "prompt_sha256": "e6c4fc0f8d78c9c17309b313c8fcab13fde377d0356c26234ed2a981db417490",
+    "submit_account_lease_id": "L00586",
+    "submit_utc": "2026-07-15T10:12:57.869134Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING_TORI_LOCAL_RECONCILIATION",
+  "output_quality": {
+    "ads_count": 15,
+    "arxiv_count": 6,
+    "coverage": {
+      "abundance_ratios": true,
+      "flow_models": true,
+      "g_dwarf": true,
+      "nucleosynthetic_timescales": true,
+      "radial_gradients": true
+    },
+    "debate_ids": 5,
+    "do_not_use_section_present": true,
+    "doi_count": 14,
+    "established_ids": 8,
+    "measurement_ids": 0,
+    "pass": false,
+    "required_format_source_line_count": 16,
+    "semantic_headings_present": true,
+    "terminal_marker_present": true,
+    "uncited_not_usable_protocol_present": true,
+    "unknown_ids": 3
+  },
+  "packet_sha256": "5a877ee469067716f7c11bc8e3bc6ad1a25e7c5cf41ca6527713490c6bb7313e",
+  "result_chars": 40402,
+  "result_text_sha256": "23c39302b19b38e06ee793c1a43f1a0433c0aa3f8a643a58e945e66c4a371d6d",
+  "run_id": "WIKI_AREA2_CHEM_DR_20260715",
+  "source_anchor_count": 137,
+  "source_anchors": [
+    {
+      "href": "https://dokumen.pub/chemical-evolution-of-galaxies-978-3-642-22490-4-3642224903-978-3-642-22491-1.html",
+      "label": "dokumen.pub Chemical evolution of galaxies 978-3-642-22490-4, 3642224903, 978-3-642-22491-1 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/448/3/2126/1090540",
+      "label": "academic.oup.com Understanding chemical evolution in resolved galaxies \u2013 I. The local star fraction\u2013metallicity relation | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2604.06318v1",
+      "label": "arxiv.org Introducing sapphire: Towards Hybrid Physics-Informed, Data-Driven Modeling of Galaxy Formation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://doi.org/10.1051/0004-6361/202556597",
+      "label": "doi.org Rapid, out-of-equilibrium metal enrichment indicated by a flat mass-metallicity relation at z \u223c 6 from NIRCam grism spectroscopy | Astronomy & Astrophysics (A&A) - DOI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/516/1/1275/6673440",
+      "label": "academic.oup.com SDSS-IV MaNGA: the chemical co-evolution of gas and stars in spiral galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://connectsci.au/as/article/29/4/447/117532/Type-Ia-Supernova-Rates-and-the-Progenitor-Problem",
+      "label": "connectsci.au Type-Ia Supernova Rates and the Progenitor Problem: A Review - ConnectSci Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2412.01766v1",
+      "label": "arxiv.org Type Ia supernova progenitors: a contemporary view of a long-standing puzzle - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/426/4/3282/1017965",
+      "label": "academic.oup.com delay-time distribution of Type Ia supernovae from Sloan II - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/typeia-supernova-rates-and-the-progenitor-problem-a-review/7E4AB6A714BF2FBE92DEA13AAFDF1E0D",
+      "label": "cambridge.org Type-Ia Supernova Rates and the Progenitor Problem: A Review | Publications of the Astronomical Society of Australia | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March15/Karakas/paper.pdf",
+      "label": "ned.ipac.caltech.edu Nucleosynthesis and stellar yields of low and intermediate-mass single stars Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/proceedings-of-the-international-astronomical-union/article/stellar-yields-theory-and-observations/C0789127B583CF00D69044F29843FF5F",
+      "label": "cambridge.org Stellar yields \u2013 theory and observations | Proceedings of the International Astronomical Union | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/dawes-review-2-nucleosynthesis-and-stellar-yields-of-low-and-intermediatemass-single-stars/59DFD9C086C70D153511319ACF918A18",
+      "label": "cambridge.org The Dawes Review 2: Nucleosynthesis and Stellar Yields of Low- and Intermediate-Mass Single Stars | Publications of the Astronomical Society of Australia - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/477/1/421/4935172",
+      "label": "academic.oup.com Heavy-element yields and abundances of asymptotic giant branch models with a Small Magellanic Cloud metallicity | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://en.wikipedia.org/wiki/R-process",
+      "label": "en.wikipedia.org r-process - Wikipedia Opens in a new window"
+    },
+    {
+      "href": "https://www.astro.princeton.edu/~burrows/classes/514/papers/cowan.r-process.phys.repts.pdf",
+      "label": "astro.princeton.edu THE R-PROCESS AND NUCLEOCHRONOLOGY John J. COWAN Friedrich-Karl THIELEMANN and James W. TRURAN - Astrophysical Sciences Opens in a new window"
+    },
+    {
+      "href": "https://ntrs.nasa.gov/api/citations/19980007188/downloads/19980007188.pdf",
+      "label": "ntrs.nasa.gov THE r-, s-, AND p-PROCESSES IN NUCLEOSYNTHESIS Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2218-1997/11/7/229",
+      "label": "mdpi.com Recent Advances in Understanding R-Process Nucleosynthesis in Metal-Poor Stars and Stellar Systems - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://www.repository.cam.ac.uk/bitstreams/b6b7e879-e1a5-4867-a70b-4e72d38c8d3a/download",
+      "label": "repository.cam.ac.uk Nitrogen and oxygen abundances in the Local Universe - University of Cambridge Opens in a new window"
+    },
+    {
+      "href": "https://uhra.herts.ac.uk/id/eprint/6449/2/stw532.pdf",
+      "label": "uhra.herts.ac.uk Nitrogen and oxygen abundances in the Local Universe - University of Hertfordshire Research Archive Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/458/4/3466/2613822",
+      "label": "academic.oup.com Nitrogen and oxygen abundances in the Local Universe - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/365208779_The_evolution_of_CNO_elements_in_galaxies",
+      "label": "researchgate.net The evolution of CNO elements in galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://espace.library.uq.edu.au/view/UQ:aebbdb0/UQaebbdb0_OA.pdf",
+      "label": "espace.library.uq.edu.au The SAMI Galaxy Survey: reconciling strong emission line metallicity diagnostics using metallicity gradients - UQ eSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.29623v1",
+      "label": "arxiv.org MAMMOTH-Grism: Gas-phase Metallicity Gradients of Star-forming Galaxies in Protocluster Environments at Cosmic Noon - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://sami-survey.org/system/files/papers/739/sami_metion.pdf",
+      "label": "sami-survey.org Spatially Resolved Metallicity and Ionization Mapping - The SAMI Galaxy Survey Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2508.00988v2",
+      "label": "arxiv.org Challenges to the Two-Infall Scenario by Large Stellar Age Catalogs - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2410.13256v1",
+      "label": "arxiv.org The Milky Way Radial Metallicity Gradient as an Equilibrium Phenomenon: Why Old Stars are Metal-Rich - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.star.uclan.ac.uk/~vpd/Publications/mnras426.pdf",
+      "label": "star.uclan.ac.uk Radial migration in disc galaxies I. Transient spiral structure and dynamics - Jeremiah Horrocks Institute Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/473/1/867/4222624",
+      "label": "academic.oup.com Metallicity gradient of the thick disc progenitor at high redshift - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://knowledge.lancashire.ac.uk/id/eprint/10918/",
+      "label": "knowledge.lancashire.ac.uk Constraining sub-grid physics with high-redshift spatially-resolved metallicity distributions - Lancashire Online Knowledge Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/433/2/1425/1749733",
+      "label": "academic.oup.com fundamental relation between the metallicity, gas content and stellar mass of local galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/430/4/2891/1101320",
+      "label": "academic.oup.com physics of the fundamental metallicity relation | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/408/4/2115/1418549",
+      "label": "academic.oup.com A fundamental relation between mass, star formation rate and metallicity in local and high-redshift galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2014/forbes14a.pdf",
+      "label": "mso.anu.edu.au On the origin of the fundamental metallicity relation and the scatter in galaxy scaling relations - Research School of Astronomy & Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/359055413_Evolution_of_Stars_and_Gas_in_Galaxies",
+      "label": "researchgate.net (PDF) Evolution of Stars and Gas in Galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/402/1/173/1030305",
+      "label": "academic.oup.com Galactic chemical evolution in hierarchical formation models \u2013 I. Early-type galaxies in the local Universe - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/388/1/39/40635345/mnras_388_1_39.pdf",
+      "label": "academic.oup.com I. A composition-dependent SPH model for chemical evolution and cooling Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/259124179_Nucleosynthesis_And_Chemical_Evolution_Of_Galaxies",
+      "label": "researchgate.net Nucleosynthesis And Chemical Evolution Of Galaxies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://doi.org/10.1051/0004-6361/202660189",
+      "label": "doi.org Gaia-Sausage-Enceladus: Lithium evolution from early red-giant-branch and main-sequence stars | Astronomy & Astrophysics (A&A) - DOI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/485/1/1384/5322187",
+      "label": "academic.oup.com Chemical evolution of disc galaxies from cosmological simulations | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/522/4/5415/7150705",
+      "label": "academic.oup.com Inhomogeneous Galactic chemical evolution: modelling ultra-faint dwarf galaxies of the Large Magellanic Cloud | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arts.units.it/retrieve/e3596548-7326-4f55-914a-d34225ae3648/Thesis_Molero.pdf",
+      "label": "arts.units.it Chemical evolution of neutron capture elements in different environments - ArTS Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/549/3/stag1019/8698768",
+      "label": "academic.oup.com MAUVE\u2013MUSE: when metallicity follows or fights star formation \u2013 a mass-dependent inversion in Virgo galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.diva-portal.org/smash/get/diva2:1462769/ATTACHMENT01.pdf",
+      "label": "diva-portal.org The emerging phase of young star clusters ... - Diva-Portal.org Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/both-starvation-and-outflows-drive-galaxy-quenching-3wj3ttqeqv.pdf",
+      "label": "scispace.com Both starvation and outflows drive galaxy quenching - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/519/1/1149/6884142",
+      "label": "academic.oup.com The metallicity's fundamental dependence on both local and global galactic quantities Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/414/2/1263/977267",
+      "label": "academic.oup.com metallicity of the long GRB hosts and the fundamental metallicity relation of low-mass galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2310.06785",
+      "label": "arxiv.org arXiv:2310.06785v1 [astro-ph.GA] 10 Oct 2023 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/462/2/1329/2589499",
+      "label": "academic.oup.com The role of gas infall in the evolution of disc galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/428/2/1766/1009974",
+      "label": "academic.oup.com empirical prediction for stellar metallicity distributions in nearby galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9410007/",
+      "label": "pmc.ncbi.nlm.nih.gov Multiple Facets of Nitrogen: From Atmospheric Gas to Indispensable Agricultural Input - PMC Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/477/1/56/4919639",
+      "label": "academic.oup.com Cosmological evolution of the nitrogen abundance - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://acp.copernicus.org/articles/15/4399/2015/acp-15-4399-2015-relations.html",
+      "label": "acp.copernicus.org Compilation of Henry's law constants (version 4.0) for water as solvent - Copernicus ACP Opens in a new window"
+    },
+    {
+      "href": "https://pubs.acs.org/doi/10.1021/acs.analchem.5b04740",
+      "label": "pubs.acs.org Speciation of Nitrogen-Bearing Species Using Negative and Positive Secondary Ion Spectra with Nano Secondary Ion Mass Spectrometry | Analytical Chemistry - ACS Publications Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/372/3/1069/972971",
+      "label": "academic.oup.com nitrogen-to-oxygen evolution in galaxies: the role of the star formation rate | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/277674797_Equilibrium_and_Transport_Properties_of_Primary_Secondary_and_Tertiary_Amines_by_Molecular_Simulation",
+      "label": "researchgate.net Equilibrium and Transport Properties of Primary, Secondary and Tertiary Amines by Molecular Simulation - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/479/3/3563/5045036",
+      "label": "academic.oup.com rate of Type-Ia supernovae in galaxy clusters and the delay-time distribution out to redshift 1.75 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://digital.csic.es/bitstream/10261/399870/1/2014ApJ...783...28G.pdf",
+      "label": "digital.csic.es TYPE-IA SUPERNOVA RATES TO REDSHIFT 2.4 FROM CLASH - Digital CSIC Opens in a new window"
+    },
+    {
+      "href": "https://doi.org/10.1051/0004-6361/202038443",
+      "label": "doi.org A closer look at non-interacting He stars as a channel for producing the old population of type Ia supernovae | Astronomy & Astrophysics (A&A) - DOI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/542/4/3181/8247988",
+      "label": "academic.oup.com Metallicity of active galactic nuclei from ultraviolet and optical emission lines \u2013 II. Revisiting the C43 metallicity calibration and its implications | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/385750533_The_Multi-Scale_Multi-Phase_Circumgalactic_Medium_Observed_and_Simulated",
+      "label": "researchgate.net The Multi-Scale Multi-Phase Circumgalactic Medium: Observed and Simulated Opens in a new window"
+    },
+    {
+      "href": "https://arts.units.it/retrieve/03474fc1-3079-44d5-ac95-69957b6c0c57/Tesi_definitiva_AliceDamiano.pdf",
+      "label": "arts.units.it UNIVERSIT\u00c0 DEGLI STUDI DI TRIESTE - ArTS Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2303.12458",
+      "label": "arxiv.org Nucleosynthesis in jet-driven and jet-associated supernovae - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2508.18369",
+      "label": "arxiv.org A Uniform Analysis of Gas-phase Metallicity Evolution with 1-3 Gyr Time Sampling over the Past 12 Billion Years - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2510.08997",
+      "label": "arxiv.org Galaxy Metallicity Gradients in the Reionization Epoch from the FIRE-2 Simulations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/396457553_Galaxy_Metallicity_Gradients_in_the_Reionization_Epoch_from_the_FIRE-2_Simulations",
+      "label": "researchgate.net Galaxy Metallicity Gradients in the Reionization Epoch from the FIRE-2 Simulations Opens in a new window"
+    },
+    {
+      "href": "https://lss.fnal.gov/archive/2026/pub/fermilab-pub-26-0170-ppd.pdf",
+      "label": "lss.fnal.gov Extremely Metal-Poor Galaxies in DESI DR1 - Fermilab | Technical Publications Opens in a new window"
+    },
+    {
+      "href": "https://repository.ubn.ru.nl/bitstream/handle/2066/298588/298588.pdf",
+      "label": "repository.ubn.ru.nl The cosmic buildup of dust and metals - Accurate abundances from GRB-selected star-forming galaxies at 1.7 \\&lt; - Radboud Repository Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1910.09730",
+      "label": "arxiv.org [1910.09730] Understanding Galaxy Evolution through Emission Lines - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2510.04771v2",
+      "label": "arxiv.org A GLIMPSE into the very faint end of the H\ud835\udefd+[O iii]\ud835\udf06\u2062\ud835\udf06\u20624960,5008 luminosity function at z\u223c7-9 behind Abell S1063 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2604.22460v1",
+      "label": "arxiv.org Spatially resolved metallicity and ionization in the merging system Gz9p3 at z=9.3 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.30410v1",
+      "label": "arxiv.org RUBIES: The Evolution of the Ionization Parameter from 0 < z < 9 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.12024v1",
+      "label": "arxiv.org Galaxy mergers drive enhancements in ionization states - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.05295v1",
+      "label": "arxiv.org Toward Unbiased Abundance Measurements in Inhomogeneous H ii Regions - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/491194/3/PhD_Thesis_Hao_Fu_final_corrected_PDF_A-3.pdf",
+      "label": "eprints.soton.ac.uk Modelling galaxy and black hole evolution via DECODE - ePrints Soton - University of Southampton Opens in a new window"
+    },
+    {
+      "href": "https://amsdottorato.unibo.it/id/eprint/11412/1/phd_thesis_final.pdf",
+      "label": "amsdottorato.unibo.it ASTROFISICA - AMS Tesi di Dottorato Opens in a new window"
+    },
+    {
+      "href": "https://research.iac.es/preprints/files/PP24033.pdf",
+      "label": "research.iac.es Observational Tests of AGN Feedback: An Overview of Approaches and Interpretation Opens in a new window"
+    },
+    {
+      "href": "https://mdpi-res.com/bookfiles/book/12468/MultiPhase_Fueling_and_Feedback_Processes_in_Jetted_AGN.pdf?v=1774001777",
+      "label": "mdpi-res.com Multi-Phase Fueling and Feedback Processes in Jetted AGN - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2603.15899v1",
+      "label": "arxiv.org SN 2025adpq: A Type Ia supernova in a collisional ring formed during a major galaxy merger - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ir.library.osaka-u.ac.jp/repo/ouka/all/96417/34336_Dissertation.pdf",
+      "label": "ir.library.osaka-u.ac.jp Physically-motivated feedback models and the IGM metal enrichment in cosmological hydrodynamic simulations Opens in a new window"
+    },
+    {
+      "href": "https://sirrah.troja.mff.cuni.cz/~davok/Zhiqiang_Yan_PhD.pdf",
+      "label": "sirrah.troja.mff.cuni.cz Zhiqiang Yan Chemical evolution of galaxies with an environment-dependent stellar initial mass function - Sirrah Opens in a new window"
+    },
+    {
+      "href": "https://www.imprs-astro.mpg.de/sites/default/files/soraisam_monika.pdf",
+      "label": "imprs-astro.mpg.de Novae \u2013 a theoretical and observational study - IMPRS on Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://teses.usp.br/teses/disponiveis/14/14131/tde-07032025-172736/publico/thesis_glimberg_2024_FINAL.pdf",
+      "label": "teses.usp.br DWARF GALAXIES GALORE - Teses USP Opens in a new window"
+    },
+    {
+      "href": "https://digital.csic.es/bitstream/10261/429428/1/2026MNRAS.548ag560A.pdf",
+      "label": "digital.csic.es I: Metallicity calibrations in AGNs with X-ray luminosity as the primary inp - Digital CSIC Opens in a new window"
+    },
+    {
+      "href": "http://cdsarc.u-strasbg.fr/viz-bin/qcat?J/A+A/550/A115",
+      "label": "cdsarc.u-strasbg.fr Oxygen abundances and properties of galaxies : J/A+A/550/A115 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/526/3/3504/7303288",
+      "label": "academic.oup.com High-redshift metallicity calibrations for JWST spectra: insights from line emission in cosmological simulations | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2603.19181v3",
+      "label": "arxiv.org Metallicity calibrations in AGNs with X-ray luminosity as the primary input parameter - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/proceedings-of-the-international-astronomical-union/article/agb-stars-remaining-problems/7B7A682526720A972997159E0672C193",
+      "label": "cambridge.org AGB Stars: Remaining Problems | Proceedings of the International Astronomical Union | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://upcommons.upc.edu/bitstreams/380b8c27-1b06-4dc7-a307-7e380170f555/download",
+      "label": "upcommons.upc.edu Super-AGB Stars and their role as Electron Capture Supernova progenitors - UPC Commons Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/the-gaia-eso-survey-the-n-o-abundance-ratio-in-the-milky-way-41e7o5i40m.pdf",
+      "label": "scispace.com The Gaia-ESO Survey: the N/O abundance ratio in the Milky Way. - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://home.ifa.hawaii.edu/users/kud/research_papers/evo_4.pdf",
+      "label": "home.ifa.hawaii.edu Evolution and star formation history of NGC 300 from a chemical evolution model with radial gas inflows - Institute for Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/520/1/782/7005237",
+      "label": "academic.oup.com Empirical constraints on the nucleosynthesis of nitrogen - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/529/4/3301/7623617",
+      "label": "academic.oup.com Metal-poor star formation at z > 6 with JWST: new insight into hard radiation fields and nitrogen enrichment on 20 pc scales - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/540/4/2991/8155085",
+      "label": "academic.oup.com JWST EXCELS survey: direct estimates of C, N, and O abundances in two relatively metal-rich galaxies at z \u2243 5 | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://backend.orbit.dtu.dk/ws/files/397662973/aa51731-24.pdf",
+      "label": "backend.orbit.dtu.dk Insight into the starburst nature of Galaxy GN-z11 with JWST MIRI spectroscopy Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/523/3/3516/7185828",
+      "label": "academic.oup.com Nitrogen enhancements 440 Myr after the big bang: supersolar N/O, a tidal disruption event, or a dense stellar cluster in GN-z11? - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/545/3/staf2110/8343310",
+      "label": "academic.oup.com Connecting JWST discovered N/O-enhanced galaxies to globular clusters: evidence from chemical imprints | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/2302.10142",
+      "label": "arxiv.org [2302.10142] Nitrogen enhancements 440 Myr after the Big Bang: super-solar N/O, a tidal disruption event or a dense stellar cluster in GN-z11? - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://en.wikipedia.org/wiki/(%CE%B1/Fe)_versus_(Fe/H)_diagram",
+      "label": "en.wikipedia.org (\u03b1/Fe) versus (Fe/H) diagram - Wikipedia Opens in a new window"
+    },
+    {
+      "href": "https://anthrowiki.at/Kosmologie",
+      "label": "anthrowiki.at Kosmologie - AnthroWiki Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/499/1/1424/33882849/staa2940.pdf",
+      "label": "academic.oup.com Supernovae and their host galaxies \u2013 VII. The diversity of Type Ia supernova progenitors - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.09848v1",
+      "label": "arxiv.org Do we understand the star formation history of the universe? - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/447141/1/Philip_Grylls_UoS_Thesis_for_Award.pdf",
+      "label": "eprints.soton.ac.uk Growing self consistent galaxies in empirically modelled environments using steel - ePrints Soton - University of Southampton Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0002-9194-5071",
+      "label": "orcid.org Sean Moran - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://www.sron.nl/en/publications/",
+      "label": "sron.nl Publications - SRON Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2601.11466v2",
+      "label": "arxiv.org Pseudo Little Red Dot: an Active Black Hole Embedded in a Dense and Dusty, Metal-Poor Starburst Galaxy at z=5.96 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0002-3073-5871",
+      "label": "orcid.org Shiyin Shen - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://thesis.caltech.edu/17588/4/Foote_thesis.pdf",
+      "label": "thesis.caltech.edu High-Sensitivity Superconducting Detectors for Far-Infrared Space Astrophysics - CaltechTHESIS Opens in a new window"
+    },
+    {
+      "href": "https://en.wikipedia.org/wiki/List_of_the_most_distant_astronomical_objects",
+      "label": "en.wikipedia.org List of the most distant astronomical objects - Wikipedia Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2505.06359v2",
+      "label": "arxiv.org JWST/NIRSpec Observations of High Ionization Emission Lines in Galaxies at High Redshift Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2507.08245v3",
+      "label": "arxiv.org The JWST Spectroscopic Properties of Galaxies at z=9-14 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/host-galaxy-of-frb-20171020a-revisited/8AD259E2F54E68D52205D503BD0E4558",
+      "label": "cambridge.org The host galaxy of FRB 20171020A revisited | Publications of the Astronomical Society of Australia | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/476205/1/thesis_edited_pdfa_3b.pdf",
+      "label": "eprints.soton.ac.uk The Selection, Analysis and Implications of Rare AGN in Large Surveys - ePrints Soton - University of Southampton Opens in a new window"
+    },
+    {
+      "href": "https://openaccess.inaf.it/entities/publication/cc358efb-a0a6-40c8-b0e0-b6194b8af6d6",
+      "label": "openaccess.inaf.it The mass-metallicity and the fundamental metallicity relation Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2411.07988v1",
+      "label": "arxiv.org The Multi-Scale Multi-Phase Circumgalactic Medium: Observed and Simulated Lecture notes for the 52nd (March 2023) Saas-Fee Advanced School, Switzerland. - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2504.01852v1",
+      "label": "arxiv.org Deciphering the Nature of Virgil: An Obscured AGN Lurking Within an Apparently Normal Lyman-\ud835\udefc Emitter During Cosmic Reionization - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://repositum.tuwien.at/bitstream/20.500.12708/204111/1/Lechner%20Peter%20-%202024%20-%20JWST%20NIRCam%20wide%20field%20slitless%20spectroscopy%20on%20the...pdf",
+      "label": "repositum.tuwien.at JWST NIRCam Wide Field Slitless Spectroscopy on the Lensing Cluster Abell 2744: Emission Line Detection for 5 - reposiTUm Opens in a new window"
+    },
+    {
+      "href": "https://www.scribd.com/document/574115973/allwords-withdigits",
+      "label": "scribd.com Online Project Management System | PDF | Breastfeeding | Breast Milk - Scribd Opens in a new window"
+    },
+    {
+      "href": "https://heasarc.gsfc.nasa.gov/docs/xmm/xmmbib_rc.html",
+      "label": "heasarc.gsfc.nasa.gov XMM Bibliography sorted by Reverse Chronology - HEASARC Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/466/4/4780/2893462",
+      "label": "academic.oup.com Why do high-redshift galaxies show diverse gas-phase metallicity gradients? | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2601.17148v2",
+      "label": "arxiv.org Direct Abundance Maps and Radial Metallicity Gradients of two Galaxies at z\u223c4-5 in the GARDEN Survey - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2604.07076v1",
+      "label": "arxiv.org Metal Mayhem at z\u223c7\u2062\"\u2013\"\u206210: Diversity and Evolution of Gas-Phase Metallicity Gradients Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/figure/Balmer-index-ratio-vs-Fe4383-a-horizontal-branch-diagnostic-diagram-Worthey-1994_fig1_45851584",
+      "label": "researchgate.net Balmer index ratio vs. Fe4383, a horizontal branch diagnostic diagram.... - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2601.17246v2",
+      "label": "arxiv.org The r-Process: History, Required Conditions, Astrophysical Sites, and Observations - arXiv Opens in a new window"
+    },
+    {
+      "href": "http://www.nhn.ou.edu/~cowan/austin.pdf",
+      "label": "nhn.ou.edu 1 Stellar Abundances: The r-Process and Supernovae - Department of Physics and Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://eprints.whiterose.ac.uk/id/eprint/241464/1/BOWIE-ALIGN%20Sub-solar%20CO%20ratio%20and%20metallicity%20atmosphere%20of.pdf",
+      "label": "eprints.whiterose.ac.uk BOWIE-ALIGN: Sub-solar C/O ratio and metallicity atmosphere of the misaligned hot Jupiter HAT-P-30b - White Rose Research Online Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2023/sharda23a.pdf",
+      "label": "mso.anu.edu.au The impact of carbon and oxygen abundances on the metal-poor initial mass function - Research School of Astronomy & Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1902.05352",
+      "label": "arxiv.org Carbon star wind models at solar and sub-solar metallicities: a comparative study - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0001-9276-7062",
+      "label": "orcid.org Lester Sandles - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/pages/biblio/1580293",
+      "label": "osti.gov Both starvation and outflows drive galaxy quenching (Journal Article Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/papers/the-evolution-of-the-elemental-abundances-in-the-gas-and-1gopl19jes?citations_page=11",
+      "label": "scispace.com The Evolution of the Elemental Abundances in the Gas and Dust Phases of the Galaxy (1997) | Eli Dwek | 492 Citations - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/papers/on-the-cosmic-origins-of-carbon-nitrogen-4t4usbdwqj?citations_page=5",
+      "label": "scispace.com On The Cosmic Origins Of Carbon & Nitrogen (2001) | R.B.C. Henry Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/362837472_SDSS-IV_MaNGA_the_chemical_co-evolution_of_gas_and_stars_in_spiral_galaxies",
+      "label": "researchgate.net (PDF) SDSS-IV MaNGA: the chemical co-evolution of gas and stars Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1102.2234",
+      "label": "arxiv.org arXiv:1102.2234v1 [astro-ph.CO] 10 Feb 2011 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/417/1/580/3029518/mnras0417-0580.pdf",
+      "label": "academic.oup.com Chemical evolution during gas-rich galaxy interactions Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/416/3/2182/2857560/mnras0416-2182.pdf",
+      "label": "academic.oup.com The impact of gas inflows on star formation rates and metallicities in barred galaxies Opens in a new window"
+    },
+    {
+      "href": "https://www.roe.ac.uk/~pnb/papers/hizels_kmos2.pdf",
+      "label": "roe.ac.uk A relationship between specific star formation rate and metallicity gradient within z \u223c 1 galaxies from KMOS-HiZELS - The Royal Observatory, Edinburgh Opens in a new window"
+    },
+    {
+      "href": "https://ouci.dntb.gov.ua/en/works/leaXRrgl/",
+      "label": "ouci.dntb.gov.ua Monte Carlo method for calculating oxygen abundances and their uncertainties from strong-line flux measurements - OUCI Opens in a new window"
+    }
+  ],
+  "topic": "broad galaxy chemical evolution",
+  "wiki_write_performed": false
+}

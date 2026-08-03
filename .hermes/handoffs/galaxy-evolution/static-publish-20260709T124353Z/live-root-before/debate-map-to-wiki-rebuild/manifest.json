@@ -1,0 +1,131 @@
+{
+  "cockpit": {
+    "baseline": "Start from the research-status/debate map; draft the reader-facing sentence plan before binding citations or claim chips.",
+    "execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+    "last_approved_phrase": "APPROVE METHOD3 P1 DOCS-ONLY DEBATE-MAP SENTENCE PLAN",
+    "marker": "GALAXY_EVOLUTION_METHOD3_VISIBLE_NEXT_ACTION_20260706T154047Z",
+    "next_action_phrase": "APPROVE HWAO METHOD3 ROLE-TABLE SAME-FORMAT WIKI OUTPUT PACKET",
+    "recommended_next_action": "Hwao issues a Method3 role-table packet for same-format NebulaMind wiki output; Tori only relays/records/verifies.",
+    "scope": "Method3-local static docs and handoff notes only",
+    "status": "p1_reviewed_role_table_same_format_gate_waiting_for_hwao_packet_visible_phrase_above_fold",
+    "visible_phrase_location": "top hero banner above the navigation cards",
+    "visible_timestamp": {
+      "kst": "2026-07-07T00:40:47+0900",
+      "utc": "2026-07-06T15:40:47Z"
+    }
+  },
+  "created_utc": "2026-07-06T09:25:59Z",
+  "marker": "GALAXY_EVOLUTION_METHOD3_VISIBLE_NEXT_ACTION_20260706T154047Z",
+  "method": {
+    "first_step": "Map the strongest settled/debated/challenged positions, then draft a sentence plan before binding citations or claim chips.",
+    "label": "Debate-map-to-wiki rebuild",
+    "num": "3",
+    "rule": "Begin from the research-status and debate map, then rebuild the wiki page sentence by sentence around what readers need to know and what remains debated.",
+    "short": "DMW",
+    "slug": "debate-map-to-wiki-rebuild",
+    "status": "9-H2 confirmed — M3 P1.5 GO issued",
+    "title": "Debate-map-to-wiki rebuild",
+    "wiki_goal": "A Galaxy Evolution page that foregrounds the live scientific debate map, turning consensus, accepted, debated, and challenged points into clear reader-facing prose."
+  },
+  "p1_sentence_plan": {
+    "artifact_json": "p1-debate-map-sentence-plan.json",
+    "artifact_markdown": "p1-debate-map-sentence-plan.md",
+    "axis_count": 7,
+    "marker": "GALAXY_EVOLUTION_METHOD3_P1_SENTENCE_PLAN_20260706T145501Z",
+    "sentence_count": 12,
+    "source_basis": [
+      "docs/hwao_debate_map_refresh_20260706T002104Z/debate_map_data.json",
+      "docs/baseline_step6_status_debate_map_20260703T0954Z/artifacts/status_debate_map.json"
+    ],
+    "state": "complete_docs_only_pending_review"
+  },
+  "public_paths": {
+    "directory": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/index.html",
+    "p1_sentence_plan_json": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/p1-debate-map-sentence-plan.json",
+    "p1_sentence_plan_md": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/p1-debate-map-sentence-plan.md",
+    "quintet": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/quintet.html",
+    "wiki_page": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/wiki-page.html"
+  },
+  "quintet": [
+    {
+      "agent": "Hwao",
+      "lane": "Coordinator/planner",
+      "responsibility": "sets lane goal, order, stop conditions, and final method verdict",
+      "scoped_name": "Hwao-DMW"
+    },
+    {
+      "agent": "Lana",
+      "lane": "Science/prose reviewer",
+      "responsibility": "checks semantic accuracy, reader-facing clarity, and overclaim risk",
+      "scoped_name": "Lana-DMW"
+    },
+    {
+      "agent": "Goru",
+      "lane": "Mechanical validator",
+      "responsibility": "checks paths, counts, citation/source coverage, markers, and no-go rows",
+      "scoped_name": "Goru-DMW"
+    },
+    {
+      "agent": "Kun",
+      "lane": "Reproducibility reviewer",
+      "responsibility": "checks whether another agent can reproduce the method from files and briefs",
+      "scoped_name": "Kun-DMW"
+    },
+    {
+      "agent": "Tori",
+      "lane": "Relay/verifier",
+      "responsibility": "records instructions, updates public surfaces, verifies files/routes, and keeps safety ledgers",
+      "scoped_name": "Tori-DMW"
+    }
+  ],
+  "safety": {
+    "active_execution_phrase": null,
+    "backend_api_restart": 0,
+    "db_writes": 0,
+    "live_wiki_publish": 0,
+    "phrase": "NO ACTIVE EXECUTION PHRASE"
+  },
+  "ultra_format_gate": {
+    "hard_stops": [
+      "no live wiki publish",
+      "no DB/page_versions/SQL",
+      "no deploy/restart/trust recompute",
+      "no git commit/push/merge",
+      "no cloud/API/GCP/billing/account/payment/credits actions",
+      "no browser automation",
+      "no cross-method/shared-parent edits"
+    ],
+    "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/ULTRA_USAGE_AND_WIKI_FORMAT_ROLE_TABLE_PACKET_20260707.md",
+    "packet_marker": "ULTRA_USAGE_AND_WIKI_FORMAT_ROLE_TABLE_PACKET_20260707",
+    "role_table": {
+      "Goru": "mechanical validation: counts, maps, locks, checklists, measurable checks",
+      "Hwao/Fable": "coordinator and planner; divides work and sequences the next packet",
+      "Kun": "reproducibility / implementation check",
+      "Lana": "high-reasoning science/design/review pressure",
+      "Tori/Hermes": "relay, recorder, receipt verifier, bounded tool executor; not captain"
+    },
+    "same_format_requirement": "Each method wiki output must match the current NebulaMind Galaxy Evolution article format: Markdown article, # Galaxy Evolution title, opening provenance/claim-chip blockquote, current H2 skeleton, sparse claim chips, citation marker compatibility, sources/history compatibility, and no hero_facts unless separately requested.",
+    "ultra_usage_rule": "Ultra/Gemini/Antigravity is supervised second-opinion capacity only and is not authorized for solo use here."
+  },
+  "updated_kst": "2026-07-07T00:40:47+0900",
+  "updated_utc": "2026-07-07T00:28:50Z",
+  "status": "9-H2 confirmed — M3 P1.5 GO issued",
+  "next_action": "9-H2 confirmed: Method3 Hwao continues method-local docs/static P1.5 work under HWAO_DIRECTOR_GO_M3_P15_20260707T004129Z.md. P2/P3 remain gated.",
+  "go_marker": "HWAO_DIRECTOR_GO_M3_P15_20260707T004129Z",
+  "last_updated_utc": "2026-07-07T00:58:30Z",
+  "cockpit_marker": "USER_CONFIRM_9H2_WORK_RESUMED_COCKPIT_20260707T005127Z",
+  "execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "human_decision": {
+    "status": "CLOSED_9H2_CONFIRMED_WORK_RESUMED",
+    "summary": "User confirmed 9-H2 for all methods; method-local docs/static work resumed. Hard rails remain closed.",
+    "policy_correction": "Hwao/Tori self-resolve routine read-only counting/reconciliation conflicts; user gates are reserved for substantive or risky actions."
+  },
+  "summary": "9-H2 confirmed for all methods; method work resumed under Hwao GO packets. NO ACTIVE EXECUTION PHRASE.",
+  "confirmed_work_resumed": {
+    "status": "CLOSED_9H2_CONFIRMED_WORK_RESUMED",
+    "summary": "9-H2 confirmed; method-local docs/static work resumed. Hard rails remain closed.",
+    "policy_correction": "Hwao/Tori self-resolve routine low-risk read-only counting/reconciliation conflicts; user gates are reserved for substantive or risky actions.",
+    "marker": "USER_CONFIRM_9H2_WORK_RESUMED_COCKPIT_20260707T005127Z",
+    "updated_utc": "2026-07-07T00:58:30Z"
+  }
+}

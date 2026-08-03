@@ -1,0 +1,489 @@
+{
+  "active_execution_phrase": null,
+  "active_target": {
+    "content_sha256": "e07af50d6e44bec53b75869a4d93dc230d9dd2129a3854ce3eb3f5b4ec52203f",
+    "page_id": 57,
+    "slug": "galaxy-evolution",
+    "title": "Galaxy Evolution",
+    "version_num": 1710
+  },
+  "approval_gate": {
+    "completed": "6 pins across sources 2605.31052v1, 2210.03747v2, and 1308.5224v1; local checker PASS; lane reviews PASS.",
+    "excludes": "No SQL/apply files, no DB writes, no trust recompute, no prose/wiki/page_versions publish, no deploy/restart, no git commit/push/merge, no rollback.",
+    "next_write_gate": "Fresh exact packet required for any future mutation.",
+    "scope": "2913/2921 disposition revalidation plus full-text pinning/source-hardening.",
+    "status": "COMPLETE_DOCS_ONLY_NO_ACTIVE_EXECUTION_PHRASE"
+  },
+  "artifacts": [
+    {
+      "label": "Execution result — trust recompute",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/trust_recompute_execution_20260705T134109Z.json"
+    },
+    {
+      "label": "Independent delayed verification — PASS",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/independent_post_execute_delayed_verify_20260705T134109Z.json"
+    },
+    {
+      "label": "Lana method/cockpit verification — PASS",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/lana_method_cockpit_verify_20260705T133500Z.json"
+    },
+    {
+      "label": "Goru mechanical precheck report",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/execute_2929_trust_recompute_20260705T133500Z/GORU_REPORT.md"
+    },
+    {
+      "label": "Original staged approval packet",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/APPROVAL_PACKET.md"
+    }
+  ],
+  "b2_state": "APPLIED_VALIDATED",
+  "b3_state": "APPLIED_VALIDATED",
+  "baseline": {
+    "primitive": "papers → claim/status ledger → research-status/debate map → prose → derived claims/evidence/trust",
+    "summary": "The 2929 evidence remap and follow-on trust recompute are both executed and verified. The trust map now matches the evidence binding: 2929 dropped to unverified; 2942/2944/2945 remain debated, 2946 reported, 2943/2947 accepted. Article prose/page version stayed unchanged.",
+    "title": "THE BASELINE — still the source of truth"
+  },
+  "baseline_steps": [
+    {
+      "body": "Canonical V1 Galaxy Evolution page 57 remains the active target. The Gemini web/operator work is a side toolchain and did not change Baseline scope.",
+      "status": "PASS_SCOPE_SEPARATED",
+      "step": 0,
+      "title": "Scope lock"
+    },
+    {
+      "body": "Source coverage remains cumulative; remaining held 2929 evidence rows require source-position decisions before any future evidence packet.",
+      "status": "PARTIAL",
+      "step": 1,
+      "title": "Corpus and source inventory"
+    },
+    {
+      "body": "Paper identities and bibliographic metadata are available for current AGN-feedback rows, but not declared complete for the whole page.",
+      "status": "PARTIAL",
+      "step": 2,
+      "title": "Paper metadata intake"
+    },
+    {
+      "body": "The 2929 held-row source-position / human-adjudication queue is complete at 36/36 docs-only decisions.",
+      "status": "PASS_DOCS_ONLY_36_OF_36",
+      "step": 3,
+      "title": "Source positions"
+    },
+    {
+      "body": "2913/2921 exact write executed and verified earlier; rollback remains a separate rollback-only gate.",
+      "status": "PASS_EXECUTED_AND_VERIFIED",
+      "step": 4,
+      "title": "Claim/status ledger"
+    },
+    {
+      "body": "Approved guarded SQL executed and verified: 22 evidence rows moved from 2929 to 2942–2947 with stance supports; 14 rows remain archival on 2929.",
+      "status": "PASS_EXECUTED_AND_VERIFIED",
+      "step": 5,
+      "title": "Evidence bindings"
+    },
+    {
+      "body": "Approved trust recompute ran once for 2929 and 2942–2947. Audit trigger g2929_hwao_trust_20260705T122901Z inserted exactly 7 rows (91666–91672).",
+      "status": "PASS_EXECUTED_AND_VERIFIED",
+      "step": 6,
+      "title": "Research-status/debate map"
+    },
+    {
+      "body": "Semantic caps held after recompute: 2942/2944/2945 debated, 2946 reported, 2943/2947 accepted; 2929 is unverified.",
+      "status": "POST_EXECUTION_VERIFIED",
+      "step": 7,
+      "title": "Wording/status caps"
+    },
+    {
+      "body": "Post-recompute prose-delta gate reviewed by Hwao/Lana: no immediate prose/wiki/page_versions publish is needed. Page prose remains intentionally unchanged.",
+      "status": "PASS_NO_DELTA_NEEDED",
+      "step": 8,
+      "title": "Docs-only prose preview"
+    },
+    {
+      "body": "The staged 7-claim trust recompute packet executed and verified; the execution phrase is consumed and retired.",
+      "status": "EXECUTED_AND_CLOSED_NO_ACTIVE_PHRASE",
+      "step": 9,
+      "title": "Product exact packets"
+    },
+    {
+      "body": "Final page completion still needs separate docs-first disposition/pinning/prose gates. Next recommended workstream is 2913/2921 dispositions.",
+      "status": "NOT_FINAL_PAGE_COMPLETE",
+      "step": 10,
+      "title": "Wiki/product completion gate"
+    }
+  ],
+  "claim_layer_status": [
+    {
+      "item": "2929",
+      "status": "EXECUTED: consensus → unverified @ -0.1377142691005783; hidden parent/archival source claim; 14 active neutral evidence rows remain."
+    },
+    {
+      "item": "2942",
+      "status": "EXECUTED: debated @ 0.5843091809649359; mixed_debated cap preserved."
+    },
+    {
+      "item": "2943",
+      "status": "EXECUTED: accepted @ 0.671238755562193."
+    },
+    {
+      "item": "2944",
+      "status": "EXECUTED: debated @ 0.44999965464543834; mixed_debated cap preserved."
+    },
+    {
+      "item": "2945",
+      "status": "EXECUTED: debated @ 0.4497127084811921; mixed_debated cap preserved."
+    },
+    {
+      "item": "2946",
+      "status": "EXECUTED: reported @ 0.4495498190036284; model_bounded cap preserved."
+    },
+    {
+      "item": "2947",
+      "status": "EXECUTED: accepted @ 0.670098280953222."
+    },
+    {
+      "item": "Trust audit",
+      "status": "Exactly 7 packet-trigger rows inserted: 91666–91672; no trigger leakage."
+    },
+    {
+      "item": "Article/prose",
+      "status": "UNCHANGED: page 57 md5 b97223f91897e8f8541b9c26c744ebb7; no page_versions write."
+    }
+  ],
+  "coordination": "Hwao/Fable plans and coordinates; Lana reviews methods/cockpit clarity; Goru checks mechanical counts/locks; Kun verifies reproducibility/boundaries; Tori records receipts and publishes verified cockpit updates.",
+  "copyable_state": "NO ACTIVE EXECUTION PHRASE — 2913/2921 dispositions verified complete and docs-only full-text pinning packet complete; no SQL/apply/prose/git/rollback action active.",
+  "db_execution": {
+    "archival_no_write_rows_remaining_on_2929": 14,
+    "current_counts": {
+      "2929": 14,
+      "2942": 7,
+      "2943": 15,
+      "2944": 16,
+      "2945": 9,
+      "2946": 9,
+      "2947": 10
+    },
+    "db_rows_updated": 22,
+    "executed_at_utc": "2026-07-05T12:02:07Z",
+    "git_commit_push_merge": false,
+    "note": "Prior step, complete. Receipts held off-cockpit; the consumed remap phrase is retired and not displayed.",
+    "prose_publish_executed": 0,
+    "runtime_deploy_restart": false,
+    "status": "REMAP DONE & VERIFIED — 36/36 decisions applied",
+    "trust_recompute_executed": 0,
+    "wiki_pages_or_page_versions_written": 0
+  },
+  "docs_2929_audit": {
+    "active_execution_phrase": "consumed_or_superseded_by_current_gate — see active_execution_phrase",
+    "artifact_validation_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/validation/post_trust_execution_artifact_validation_20260705T013021Z.json",
+    "db_writes_executed_by_this_audit": 0,
+    "expected_state_ok": true,
+    "handoff_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/reports/2929_DOCS_ONLY_REVALIDATION_HANDOFF.md",
+    "held_2929_count": 36,
+    "held_comment_count": 0,
+    "held_element_link_count": 0,
+    "held_jury_count": 0,
+    "held_vote_count": 6,
+    "held_voted_evidence_ids": [
+      28060,
+      28091,
+      28095,
+      28111,
+      28141,
+      28155
+    ],
+    "manifest_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/artifacts/manifest.json",
+    "moved_rows_exact": "29770/29776/29791 -> 2943; 29792 -> 2945",
+    "next_safe_gate": "source-position / human-adjudication queue for 36 held rows",
+    "page57_latest_version": 1710,
+    "page57_md5": "b97223f91897e8f8541b9c26c744ebb7",
+    "prose_wiki_publish_executed_by_this_audit": 0,
+    "report_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/reports/2929_EVIDENCE_REMAP_DOCS_ONLY_AUDIT.md",
+    "sql_apply_files_generated": 0,
+    "status": "DOCS_ONLY_AUDIT_REVALIDATED_AFTER_2942_2947_TRUST_EXECUTION_NO_ACTIVE_EXECUTION_PHRASE",
+    "trust_recompute_executed_by_this_audit": 0,
+    "validation_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/validation/post_trust_execution_readonly_revalidation_20260705T013021Z.json"
+  },
+  "docs_2929_completion": {
+    "active_execution_phrase": "consumed_or_superseded_by_current_gate — see active_execution_phrase",
+    "archival_no_write_rows": 14,
+    "packet_review_status": "PRODUCT_DB_WIKI_PREFLIGHT_REVIEWED_ONLY_NOT_EXECUTED",
+    "status": "DOCS_ONLY_SOURCE_POSITION_COMPLETE_36_OF_36",
+    "update_rows_if_later_approved": 22
+  },
+  "docs_first_2913_2921": {
+    "checker_status": "PASS",
+    "completed_at_utc": "2026-07-05T15:30:07Z",
+    "db_writes": 0,
+    "final_synthesis_path": ".hermes/handoffs/2913_2921_docs_first_20260705T143217Z/FINAL_SYNTHESIS.md",
+    "pin_count": 6,
+    "prose_wiki_publish": 0,
+    "source_count": 3,
+    "sql_apply_artifacts": 0,
+    "status": "COMPLETE_DOCS_ONLY_FULL_TEXT_PINNING_DONE",
+    "surviving_claim_ids": [
+      2948,
+      2546
+    ],
+    "target_evidence_ids": [
+      26678,
+      26679,
+      26694
+    ],
+    "target_ids": [
+      2913,
+      2921
+    ]
+  },
+  "excluded_actions": [
+    "rollback execution",
+    "wiki_pages.content update",
+    "page_versions insert/update",
+    "page citation/fact-source writes",
+    "evidence/evidence_votes/evidence_comments/evidence_element_links writes",
+    "jury_scorecards writes",
+    "runtime deploy/restart",
+    "git commit/push/merge",
+    "cron/cloud/account/secret changes",
+    "Gemini API/GCP/Vertex/billing"
+  ],
+  "hero": {
+    "headline": "2913/2921 dispositions verified; full-text pins complete",
+    "kicker": "NebulaMind Galaxy · docs-first source hardening",
+    "lead": "The 2913/2921 disposition state is current and complete. The follow-on full-text pinning pass now anchors the surviving claim/evidence links to exact local source spans with hashes and offsets. No SQL/apply or production mutation occurred.",
+    "pills": [
+      "COMPLETE",
+      "Docs-only",
+      "6 full-text pins",
+      "3 sources hashed",
+      "Lane PASS",
+      "No SQL/apply",
+      "No active phrase",
+      "Fresh packet required for writes"
+    ]
+  },
+  "html_title": "NebulaMind — 2913/2921 docs-first pinning complete",
+  "lane_board": [
+    {
+      "detail": "Coordinated verdict: dispositions complete; full-text pinning/source-hardening is the safe next artifact.",
+      "lane": "Hwao/Fable",
+      "status": "PASS"
+    },
+    {
+      "detail": "Science/source review and final quote adequacy review passed; all six prior pinning gaps closed.",
+      "lane": "Lana",
+      "status": "PASS"
+    },
+    {
+      "detail": "Mechanical checks passed: snapshot, packet dimensions, checker PASS, no-SQL/no-active locks.",
+      "lane": "Goru",
+      "status": "PASS"
+    },
+    {
+      "detail": "Reproducibility checks passed: source hashes, exact quote offsets, blocked-artifact sweep, deterministic checker.",
+      "lane": "Kun",
+      "status": "PASS"
+    },
+    {
+      "detail": "Advisory prompt copied/opened; output capture optional and non-blocking.",
+      "lane": "Gemini web/app",
+      "status": "OPTIONAL_PROMPT_READY"
+    },
+    {
+      "detail": "Synthesized final docs-only packet and public cockpit; no mutation performed.",
+      "lane": "Tori",
+      "status": "COMPLETE_AND_VERIFIED"
+    }
+  ],
+  "lane_board_meta": {
+    "run_id": "overnight_2942_2947_quintet_hardening_20260704T170510Z",
+    "target_duration_hours": 8
+  },
+  "latest_result": {
+    "cards": [
+      {
+        "body": "Fresh read-only snapshot confirms 2913 and 2921 are parent_replaced; evidence 26678/26679 points to 2948 and 26694 points to 2546; dependencies are zero.",
+        "title": "Disposition state",
+        "tone": "ok"
+      },
+      {
+        "body": "Completed 6 quote pins with page/line/offset, source hashes, modality tags, and caveat notes for 2605.31052v1, 2210.03747v2, and 1308.5224v1.",
+        "title": "Full-text pins",
+        "tone": "ok"
+      },
+      {
+        "body": "No SQL/apply, DB write, prose/wiki publish, git, deploy, restart, trust recompute, or rollback. Public phrase remains NO ACTIVE EXECUTION PHRASE.",
+        "title": "Locks",
+        "tone": "warn"
+      }
+    ],
+    "title": "2913/2921 docs-first pinning complete"
+  },
+  "marker": "GALAXY_2913_2921_DOCS_FIRST_PINNING_COMPLETE_20260705T143217Z",
+  "mobile_summary": "2913/2921 docs-first complete: dispositions verified, 6 full-text pins complete, lanes PASS. No SQL/apply and no active phrase.",
+  "mode": "DOCS_FIRST_2913_2921_PINNING_COMPLETE_NO_SQL_APPLY",
+  "next_move": {
+    "later": [
+      "Future exact packet only if a DB/prose/git/rollback action is explicitly requested.",
+      "No execution phrase active.",
+      "Gemini web/app output is advisory and optional; local pins already pass."
+    ],
+    "recommended": "Either integrate the optional Gemini web/app advisory output if captured, or move to the next docs-first queue/pinning target. Any mutation needs a future exact packet."
+  },
+  "next_recommended_action": "Use the pinning packet as source-hardening evidence; optionally integrate Gemini web advisory output if captured. Any DB/prose/git/rollback action still needs a fresh exact packet.",
+  "packet_status": "COMPLETE_DOCS_ONLY_NO_SQL_APPLY_NO_ACTIVE_EXECUTION_PHRASE",
+  "plain_english_result": "2913/2921 dispositions were already complete and the fresh read-only snapshot still matches. The docs-only full-text pinning/source-hardening pass is now complete with 6 exact quote pins across 3 sources. No production mutation occurred.",
+  "prevention": {
+    "context": "The cockpit now separates Baseline product state from the Gemini/computer_use capacity side track so a green toolchain result cannot be mistaken for page completion.",
+    "rules": [
+      "Do not call the Galaxy Evolution page complete until Step 10 gates pass.",
+      "Do not use prompt-only capture as success; marker must be in generated assistant output.",
+      "Do not expand Gemini web/computer_use into unattended loops.",
+      "Do not unlock SQL/DB/prose/runtime/git from this cockpit; require a fresh exact approval packet.",
+      "Do not leave the local computer_use bypass patch invisible; keep it on the board until resolved."
+    ]
+  },
+  "prose_delta_gate": {
+    "db_writes": 0,
+    "decided_at_utc": "2026-07-05T14:09:32Z",
+    "hwao_verdict": "No immediate reader-facing prose delta; no packet needed unless later wording scan finds hard-coded old trust wording.",
+    "lana_verdict": "No immediate prose delta; 2942–2947 labels unchanged and 2929 is hidden/held parent; proceed to 2913/2921 or full-text pinning.",
+    "next": "2913/2921 dispositions docs-first",
+    "page_versions_write": 0,
+    "prose_wiki_publish": 0,
+    "status": "CLOSED_NO_IMMEDIATE_PROSE_PUBLISH"
+  },
+  "public_api_after": {
+    "page57_latest_version": 1710,
+    "page57_md5": "b97223f91897e8f8541b9c26c744ebb7",
+    "page_id": 57,
+    "served_prose_changed_by_this_tick": false,
+    "slug": "galaxy-evolution",
+    "visible_claims_verified": "2942 debated, 2943 accepted, 2944 debated, 2945 debated, 2946 reported, 2947 accepted; 2929 hidden parent not in visible claims API"
+  },
+  "queue_progress": "2929 evidence remap + trust recompute executed/verified; remaining work is separate prose/no-delta decision and other claim dispositions.",
+  "quintet_prevention": {
+    "fable": "DONE_dissent_recommends_trust_recompute_first",
+    "goru": "DONE_mechanical_checklist",
+    "kun": "DONE_visible_cli_restored_red_phase_review",
+    "lana": "DONE_recommends_2913_2921_first",
+    "status": "integrated_for_baseline_refresh"
+  },
+  "quintet_usage_plan": {
+    "api_gcp_billing": "locked unless separately approved",
+    "gemini_web": "supervised one-packet advisory second opinions only",
+    "goru": "mechanical counts, markers, enums, exact paths, no-write checks",
+    "hwao_fable": "coordinate and plan batches; use sparingly for high-level decision gates",
+    "kun": "reproducibility and implementation-boundary checks",
+    "lana": "high-reasoning review of row decisions and cockpit wording",
+    "tori": "receipts, canonical cockpit update, public verification"
+  },
+  "rollback": {
+    "available": true,
+    "displayed": false,
+    "executed": false,
+    "note": "Rollback script and phrase are pinned in the local packet, but no rollback is active or public. Use only after separate rollback approval."
+  },
+  "safety_ledger": [
+    {
+      "item": "Active execution phrase",
+      "status": "NO ACTIVE EXECUTION PHRASE"
+    },
+    {
+      "item": "SQL/apply artifacts",
+      "status": "0 / NOT CREATED"
+    },
+    {
+      "item": "DB writes/trust recompute",
+      "status": "0 / NOT AUTHORIZED"
+    },
+    {
+      "item": "Prose/wiki/page_versions publish",
+      "status": "0 / NOT AUTHORIZED"
+    },
+    {
+      "item": "Git/deploy/restart/rollback",
+      "status": "0 / LOCKED"
+    },
+    {
+      "item": "Full-text pins",
+      "status": "6 pins complete, checker PASS"
+    },
+    {
+      "item": "Gemini web/app",
+      "status": "Advisory prompt ready; no API/GCP/billing/secret/account actions"
+    }
+  ],
+  "schema_version": "stable-cockpit-canonical.v1",
+  "source_position_queue": {
+    "b3_result_line": "Batch B3 applied and validated — 16 of 36 rows decided. From the galaxy-groups paper: two spans attach to claim 2946 (one on model-dependence, one flagging observational X-ray-cavity heating for the standing gap card), one to claim 2942 (regime-scope thesis); three redundant/mismatched spans stay archival to avoid over-weighting one source. 20 rows remain; next is batch B4 (two papers, 8 rows). Nothing needs your action; SQL stays locked until all 36 are decided and you approve a new packet.",
+    "b3_rows": [
+      28123,
+      28127,
+      28139,
+      28143,
+      28151,
+      28158
+    ],
+    "completed_rows": [
+      28060,
+      28091,
+      28095,
+      28111,
+      28141,
+      28155,
+      28087,
+      28108,
+      28133,
+      28074,
+      28123,
+      28127,
+      28139,
+      28143,
+      28151,
+      28158
+    ],
+    "marker": "GALAXY_2929_B3_APPLIED_16_OF_36_20260705T044944Z",
+    "next_milestone": "Prose-delta/no-delta decision, then 2913/2921 or full-text pinning.",
+    "progress": "36/36 source decisions applied before remap; trust recompute now executed as a separate gate.",
+    "sql_lock": "Evidence remap SQL is consumed; new SQL/DB/prose/rollback needs a fresh gate.",
+    "state": "REMAP_AND_TRUST_RECOMPUTE_EXECUTED_VERIFIED"
+  },
+  "sql_lock": "No active SQL phrase; new DB/prose/rollback/git actions need fresh explicit approval.",
+  "trust_recompute_execution": {
+    "active_phrase_retired": true,
+    "delayed_verify_path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/independent_post_execute_delayed_verify_20260705T134109Z.json",
+    "direct_write_scope": [
+      "claims.trust_level",
+      "claims.trust_score",
+      "claims.trust_score_updated_at",
+      "trust_audit_log"
+    ],
+    "executed_at_utc": "2026-07-05T13:41:09Z",
+    "execution_result_path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/trust_recompute_execution_20260705T134109Z.json",
+    "git_commit_push_merge": false,
+    "inserted_audit_ids": [
+      91666,
+      91667,
+      91668,
+      91669,
+      91670,
+      91671,
+      91672
+    ],
+    "lana_verify_path": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/execution_results/lana_method_cockpit_verify_20260705T133500Z.json",
+    "runtime_deploy_restart": false,
+    "status": "EXECUTED_AND_VERIFIED",
+    "target_claim_ids": [
+      2929,
+      2942,
+      2943,
+      2944,
+      2945,
+      2946,
+      2947
+    ],
+    "trigger": "g2929_hwao_trust_20260705T122901Z",
+    "wiki_prose_publish_executed": 0
+  },
+  "updated_at_utc": "2026-07-05T15:30:07Z"
+}

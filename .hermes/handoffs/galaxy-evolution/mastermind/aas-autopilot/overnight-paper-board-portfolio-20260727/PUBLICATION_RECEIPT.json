@@ -1,0 +1,68 @@
+{
+  "status": "PUBLISHED_AND_SERVED_VERIFIED",
+  "observed_at": "2026-07-28T00:02:00+09:00",
+  "marker": "OVERNIGHT_PB_PUBLICATION_SERVED_VERIFIED_20260728",
+  "report_marker": "PAPER_BOARD_AUDIT_REPORT_20260728_V1",
+  "candidate": {
+    "path": ".hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-paper-board-portfolio-20260727/public/PAPER_BOARD_AUDIT_REPORT.html",
+    "bytes": 12257,
+    "sha256": "0d1ec2e6db585f53c6bc21aa5e430abce9537b34ce2a9b13fdc6245d20b9ce10"
+  },
+  "canonical_staged_source": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/paper-board-audits/overnight-paper-board-portfolio-20260728.html",
+    "new_file_only": true,
+    "existing_artifact_replaced": false,
+    "bytes": 12257,
+    "sha256": "0d1ec2e6db585f53c6bc21aa5e430abce9537b34ce2a9b13fdc6245d20b9ce10",
+    "matches_candidate": true
+  },
+  "clean_public_url": "https://nebulamind.net/agent-reports/paper-board-audits/overnight-paper-board-portfolio-20260728.html",
+  "served_verification": {
+    "web_extract": "HTTP 200; expected title, complete report text, and all three packet outcomes present",
+    "browser": "HTTP 200; title, status badges, four metrics, Bottom line, all three packet cards, source table, controls, safety record, links, held queue, and no-active phrase rendered without clipping, overlap, or missing glyphs",
+    "direct_http": "HTTP 200 text/html; 13,554 edge bytes after Cloudflare injection",
+    "local_origin": "HTTP 200 text/html; 12,257 bytes; SHA-256 0d1ec2e6db585f53c6bc21aa5e430abce9537b34ce2a9b13fdc6245d20b9ce10",
+    "edge_transformation": "Cloudflare injects its standard Insights beacon and challenge script. The canonical/origin report contains no script, form, iframe, event handler, or action surface.",
+    "markers": "report marker ×3; no-active phrase ×1; P0/P1/P2 status strings ×1 each; private path leakage 0"
+  },
+  "static_mirror_attempt": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/.next/static/paper-board-audits/overnight-paper-board-portfolio-20260728.html",
+    "hash_matched_candidate": true,
+    "served_result": "HTTP 404",
+    "cleanup": "removed after failed verification"
+  },
+  "restart_gate": {
+    "required": true,
+    "authorized": true,
+    "authorization_received_at": "2026-07-27T23:59:00+09:00",
+    "action_taken": "launchctl kickstart -k gui/501/com.nebulamind.frontend",
+    "started_at": "2026-07-28T00:00:51+09:00",
+    "ready_at": "2026-07-28T00:00:53+09:00",
+    "old_pid": 82773,
+    "new_pid": 29257,
+    "existing_routes_after": {
+      "/": 200,
+      "/lab": 200,
+      "/api/lab/runs": 200
+    },
+    "clean_report_after": 200,
+    "exact_gate": "APPROVE ONE CONTROLLED NEXT RESTART FOR THE STAGED PAPER-BOARD AUDIT REPORT; VERIFY APP HEALTH + CLEAN URL; NO OTHER DEPLOYMENT."
+  },
+  "run_specific_cron_cleanup": {
+    "removed": [
+      "6fec03a7ddac",
+      "4b8fee3be07f",
+      "6233a5adf472",
+      "c1b0013c5fa4"
+    ],
+    "reason": "Research and integration completed early; duplicate synthesis/publication and unnecessary quota burn were disarmed."
+  },
+  "boundary": {
+    "paper_pdf_card_lab_replacements": 0,
+    "cockpit_wiki_db_writes": 0,
+    "service_deploy_actions": 0,
+    "authorized_frontend_restart_actions": 1,
+    "git_actions": 0,
+    "login_captcha_payment_oauth_secret_actions": 0
+  }
+}

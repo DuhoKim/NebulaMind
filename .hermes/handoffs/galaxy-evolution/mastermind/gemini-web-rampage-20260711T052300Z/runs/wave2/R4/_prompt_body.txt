@@ -1,0 +1,63 @@
+# Deep Research request — Reservoir depletion vs suppressed star-formation efficiency in quenched galaxies
+
+**Request ID:** `REQ_RAMPAGE_R4_20260711T052300Z`
+**Role:** Literature analyst for a galaxy-evolution research journal. Published work only; no
+access to the project's internal results.
+
+**Question:** For quenched, quenching, green-valley, and post-starburst galaxies, what published
+evidence discriminates between (a) reservoir removal/depletion/starvation and (b) retained gas
+forming stars inefficiently (suppressed SFE), and what does each study's own analysis say limits
+that discrimination?
+
+**Required deliverables (markdown sections, in order):**
+1. `## Evidence table` — one row per study/sample (favor 2018+; earlier anchors labeled):
+   `Study (citation) | Sample + selection | Gas tracer (CO transition / dust / HI) & conversion assumptions | Aperture (central kpc vs global) | f_gas result ± unc | t_dep or SFE result ± unc | Study's own reading: depletion / low-SFE / mixed / inconclusive | Key caveats`
+2. `## Decomposition ledger` — how each study splits ΔsSFR into Δf_gas vs ΔSFE; which systematics
+   each names (αCO in quenched hosts, SFR-tracer timescale mismatch, aperture, non-detections/
+   stacking, morphological k-corrections of the sample).
+3. `## Central vs global` — studies distinguishing central-kpc depletion from galaxy-wide gas loss;
+   what each concludes and over what radius, with the explicit note where central results were
+   extrapolated.
+4. `## Population fractions` — any published fractions of quenched systems that are gas-poor vs
+   gas-rich-but-inefficient, each with all four qualifiers (tracer + selection + denominator + z
+   range) and its selection biases as stated by the source; `NONE_FOUND` if none exists.
+5. `## AGN association tests` — published tests linking either scenario to AGN presence/history,
+   reported strictly as each study's claim.
+6. `## What would discriminate` — discriminating measurements the literature itself proposes
+   (attributed), plus stated feasibility limits.
+
+**Binding output contract:**
+- C1 (meta header). ONE self-contained markdown report body starting with:
+
+      # Rampage R4 answer — REQ_RAMPAGE_R4_20260711T052300Z
+      Run date (UTC): <YYYY-MM-DDTHH:MM:SSZ>
+      Model: <model/product self-identification>
+      Evidence rows: <N>
+
+- C2 (structure). Exactly the six numbered sections above, in order; empty fields say `NONE_FOUND`,
+  never silently omitted, never padded.
+- C3 (uncertainty). Every number carries the source's uncertainty or
+  `UNCERTAINTY_NOT_QUOTED_BY_SOURCE`. Never invent error bars.
+- C4 (citation labeling). Every study/number carries a checkable citation (arXiv ID, DOI, ADS
+  bibcode, or URL) on the same line, or `UNCITED_NOT_USABLE`.
+- C5 (wording contract). Own-voice settled/causal register banned (case-insensitive):
+  establish(es/ed/ing), proves, proven, confirms that, settles, settled question, resolves the
+  debate, definitively, conclusively, is now known, "demonstrates that … causes". The
+  depletion-vs-SFE question must be presented as open; individual studies' verdicts are attributed
+  claims. Suppressed star formation must never be equated with a depleted reservoir in your own voice.
+- C6 (estimand labels). Simulation medians, matched-control offsets, and absolute single-object
+  values are unlike estimands: label non-commensurable; no "consistent with" across unlike
+  estimands; four qualifiers on every fraction.
+- C7 (links ledger). Final content section `## Links ledger`:
+  `<short name> | <citation or UNCITED_NOT_USABLE> | QUARANTINED_PENDING_LOCAL_CHECK`.
+- C8 (completion marker). The exact string
+
+      GEMINI_WEB_RAMPAGE_R4_OUTPUT_DONE_20260711T052300Z
+
+  must appear exactly once, as the standalone final non-empty line of the report body. A marker
+  only in a chat-UI element counts as ABSENT and the run is rejected.
+
+**Safety locks:**
+- Output is advisory only. Not accepted evidence, not product claim binding.
+- Do not present generated DOI/ADS/arXiv IDs as verified; all IDs are quarantined pending local check.
+- Do not propose edits to any local artifact; produce this report body only.

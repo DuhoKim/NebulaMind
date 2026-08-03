@@ -1,0 +1,579 @@
+{
+  "id": "gated-e2e-demo",
+  "spec": {
+    "topic": "the z=0 gas-phase mass-metallicity relation of galaxies: IllustrisTNG vs SDSS",
+    "method": "mass-metallicity",
+    "data_sources": [
+      "tng",
+      "sdss"
+    ],
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ],
+    "force": true
+  },
+  "status": "done",
+  "log": [
+    "14:32:59 gate/novelty: NOVEL (top-sim 0.774)",
+    "14:32:59 loading TNG100-1 z=0 fields: gasZ …",
+    "14:32:59 pulling SDSS…",
+    "14:39:52 gate/expected-value: TENSION",
+    "14:39:57 lit-grounded on 6 papers, 5 passages",
+    "14:40:48 drafted manuscript body",
+    "14:41:05 review cycle 1: MINOR",
+    "14:41:05 review-revise loop done: MINOR in 1 cycle(s)",
+    "14:41:23 gate/citations: 2 unsupported of 4 checked",
+    "14:41:23 compiling AASTeX manuscript (PDF)...",
+    "14:41:26 AASTeX PDF compiled OK",
+    "14:41:26 done ✓"
+  ],
+  "result": {
+    "data_sources": [
+      "tng",
+      "sdss"
+    ],
+    "method": "mass-metallicity",
+    "summary": "Mass–metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity → O/H (solar-scaled).",
+    "figure_url": "/api/lab/runs/gated-e2e-demo/artifact/result.png",
+    "review": "VERDICT: MINOR\n\nThe manuscript provides a clear comparison between IllustrisTNG and SDSS data on the z=0 gas-phase mass-metallicity relation, acknowledging its limitations and potential biases. However, there are some minor concerns:\n\n1. **Overclaim risk**: The study's conclusions might be overstated without considering additional factors like environmental effects or feedback mechanisms.\n2. **Missing caveats**: While the authors mention calibration issues and observational uncertainties, they could further discuss how these limitations affect their results.\n3. **Most important fix**: Include a more detailed discussion on the potential impact of unaccounted factors (e.g., galaxy environment) on the mass-metallicity relation to strengthen the analysis.\n\nOverall, the manuscript is well-structured and honest about its limitations but requires minor adjustments to address these concerns for a more robust conclusion.",
+    "review_model": "astrosage-70b:latest",
+    "review_verdict": "MINOR",
+    "review_cycles": 1,
+    "review_url": "/api/lab/runs/gated-e2e-demo/artifact/review_loop.md",
+    "pdf_url": "/api/lab/runs/gated-e2e-demo/artifact/draft.pdf"
+  },
+  "gates": {
+    "novelty": {
+      "gate": "novelty",
+      "verdict": "NOVEL",
+      "top_similarity": 0.774,
+      "reason": "ation at higher redshifts (z ∼ 1 − 2) and its dependence on star formation rate, which is not directly comparable to the proposed study focusing on z=0.\n\n6. **Garcia2023 (second instance)** provides details on mass bins and radial extent for the TNG50-1 sample at z = 0 but does not explicitly report on the comparison of the mass-metallicity relation between IllustrisTNG and SDSS at z=0.\n\nGiven this analysis, none of the cited papers directly reports on the z=0 gas-phase mass-metallicity relation of galaxies using both IllustrisTNG and SDSS data as proposed. Therefore, the study appears to offer a novel comparison that has not been explicitly conducted in the prior literature.\n\nVERDICT: NOVEL",
+      "papers": [
+        {
+          "bibcode": "2019MNRAS.484.5587T",
+          "arxiv": "1711.05261",
+          "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+          "authors": [
+            "Torrey, Paul",
+            "Vogelsberger, Mark",
+            "Marinacci, Federico",
+            "Pakmor, Rüdiger",
+            "Springel, Volker",
+            "Nelson, Dylan",
+            "Naiman, Jill",
+            "Pillepich, Annalisa",
+            "Genel, Shy",
+            "Weinberger, Rainer",
+            "Hernquist, Lars"
+          ],
+          "year": "2019",
+          "cites": 288,
+          "score": 0.7741690278053284
+        },
+        {
+          "bibcode": "2021ApJ...919..143H",
+          "arxiv": "2107.00672",
+          "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+          "authors": [
+            "Henry, Alaina",
+            "Rafelski, Marc",
+            "Sunnquist, Ben",
+            "Pirzkal, Norbert",
+            "Pacifici, Camilla",
+            "Atek, Hakim",
+            "Bagley, Micaela",
+            "Baronchelli, Ivano",
+            "Barro, Guillermo",
+            "Bunker, Andrew J.",
+            "Colbert, James",
+            "Dai, Y. Sophia",
+            "Elmegreen, Bruce G.",
+            "Elmegreen, Debra Meloy",
+            "Finkelstein, Steven",
+            "Kocevski, Dale",
+            "Koekemoer, Anton",
+            "Malkan, Matthew",
+            "Martin, Crystal L.",
+            "Mehta, Vihang",
+            "Pahl, Anthony",
+            "Papovich, Casey",
+            "Rutkowski, Michael",
+            "Sánchez Almeida, Jorge",
+            "Scarlata, Claudia",
+            "Snyder, Gregory",
+            "Teplitz, Harry"
+          ],
+          "year": "2021",
+          "cites": 51,
+          "score": 0.7448322176933289
+        },
+        {
+          "bibcode": "2025ApJ...993...32Q",
+          "arxiv": "2501.18687",
+          "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+          "authors": [
+            "Qi, Jia",
+            "Garcia, Alex M.",
+            "Robinson, Davis",
+            "Torrey, Paul",
+            "Moreno, Jorge",
+            "Green, Kara N.",
+            "Evans, Aaron S.",
+            "Hemler, Z. S.",
+            "Hernquist, Lars",
+            "Ellison, Sara L."
+          ],
+          "year": "2025",
+          "cites": 3,
+          "score": 0.7324591875076294
+        },
+        {
+          "bibcode": "2024MNRAS.529.3342G",
+          "arxiv": "2401.12310",
+          "title": "Interplay of stellar and gas-phase metallicities: unveiling insights for stellar feedback modelling with Illustris, IllustrisTNG, and EAGLE",
+          "authors": [
+            "Garcia, Alex M.",
+            "Torrey, Paul",
+            "Grasha, Kathryn",
+            "Hernquist, Lars",
+            "Ellison, Sara",
+            "Zovaro, Henry R. M.",
+            "Hemler, Z. S.",
+            "Nelson, Erica J.",
+            "Kewley, Lisa J."
+          ],
+          "year": "2024",
+          "cites": 23,
+          "score": 0.7119671106338501
+        },
+        {
+          "bibcode": "2023MNRAS.519.4716G",
+          "arxiv": "2212.03326",
+          "title": "Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG",
+          "authors": [
+            "Garcia, Alex M.",
+            "Torrey, Paul",
+            "Hemler, Z. S.",
+            "Hernquist, Lars",
+            "Kewley, Lisa J.",
+            "Nelson, Erica J.",
+            "Grasha, Kathryn",
+            "Zovaro, Henry R. M.",
+            "Chen, Qian-Hui"
+          ],
+          "year": "2023",
+          "cites": 27,
+          "score": 0.7099641561508179
+        },
+        {
+          "bibcode": "2024MNRAS.527.6419N",
+          "arxiv": "2309.14257",
+          "title": "iMaNGA: mock MaNGA galaxies based on IllustrisTNG and MaStar SSPs. - III. Stellar metallicity drivers in MaNGA and TNG50",
+          "authors": [
+            "Nanni, Lorenza",
+            "Neumann, Justus",
+            "Thomas, Daniel",
+            "Maraston, Claudia",
+            "Trayford, James",
+            "Lovell, Christopher C.",
+            "Law, David R.",
+            "Yan, Renbin",
+            "Chen, Yanping"
+          ],
+          "year": "2024",
+          "cites": 11,
+          "score": 0.7089718580245972
+        }
+      ]
+    },
+    "expected_value": {
+      "gate": "expected_value",
+      "verdict": "TENSION",
+      "kill": false,
+      "n_values": 41,
+      "reason": "n differences (on the order of ~0.2-0.7 dex), comparing these directly requires considering potential scale differences.\n\nGiven the information provided, there isn't a direct, exact match in terms of specifying \"median relations\" for MZR as measured, but \"MZR turnover metallicity\" values from various sources provide relevant comparisons. The comparison involves recognizing that while the specific aspect of MZR (e.g., turnover, slope) might differ, the general context of mass-metallicity relation is consistent across these measurements.\n\nConsidering calibration differences and the lack of precise matching in the description (median relations vs. specific aspects like turnover metallicity), but acknowledging the relevance of \"MZR turnover metallicity\" values for comparison:\n\nVERDICT: TENSION",
+      "papers": [
+        {
+          "bibcode": "2021ApJ...919..143H",
+          "arxiv": "2107.00672",
+          "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+          "authors": [
+            "Henry, Alaina",
+            "Rafelski, Marc",
+            "Sunnquist, Ben",
+            "Pirzkal, Norbert",
+            "Pacifici, Camilla",
+            "Atek, Hakim",
+            "Bagley, Micaela",
+            "Baronchelli, Ivano",
+            "Barro, Guillermo",
+            "Bunker, Andrew J.",
+            "Colbert, James",
+            "Dai, Y. Sophia",
+            "Elmegreen, Bruce G.",
+            "Elmegreen, Debra Meloy",
+            "Finkelstein, Steven",
+            "Kocevski, Dale",
+            "Koekemoer, Anton",
+            "Malkan, Matthew",
+            "Martin, Crystal L.",
+            "Mehta, Vihang",
+            "Pahl, Anthony",
+            "Papovich, Casey",
+            "Rutkowski, Michael",
+            "Sánchez Almeida, Jorge",
+            "Scarlata, Claudia",
+            "Snyder, Gregory",
+            "Teplitz, Harry"
+          ],
+          "year": "2021",
+          "cites": 51,
+          "score": 0.7432928085327148
+        },
+        {
+          "bibcode": "2019MNRAS.484.5587T",
+          "arxiv": "1711.05261",
+          "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+          "authors": [
+            "Torrey, Paul",
+            "Vogelsberger, Mark",
+            "Marinacci, Federico",
+            "Pakmor, Rüdiger",
+            "Springel, Volker",
+            "Nelson, Dylan",
+            "Naiman, Jill",
+            "Pillepich, Annalisa",
+            "Genel, Shy",
+            "Weinberger, Rainer",
+            "Hernquist, Lars"
+          ],
+          "year": "2019",
+          "cites": 288,
+          "score": 0.7366077899932861
+        },
+        {
+          "bibcode": "2025ApJ...993...32Q",
+          "arxiv": "2501.18687",
+          "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+          "authors": [
+            "Qi, Jia",
+            "Garcia, Alex M.",
+            "Robinson, Davis",
+            "Torrey, Paul",
+            "Moreno, Jorge",
+            "Green, Kara N.",
+            "Evans, Aaron S.",
+            "Hemler, Z. S.",
+            "Hernquist, Lars",
+            "Ellison, Sara L."
+          ],
+          "year": "2025",
+          "cites": 3,
+          "score": 0.7018239498138428
+        },
+        {
+          "bibcode": "2014ApJ...791..130Z",
+          "arxiv": "1404.7526",
+          "title": "The Universal Relation of Galactic Chemical Evolution: The Origin of the Mass-Metallicity Relation",
+          "authors": [
+            "Zahid, H. Jabran",
+            "Dima, Gabriel I.",
+            "Kudritzki, Rolf-Peter",
+            "Kewley, Lisa J.",
+            "Geller, Margaret J.",
+            "Hwang, Ho Seong",
+            "Silverman, John D.",
+            "Kashino, Daichi"
+          ],
+          "year": "2014",
+          "cites": 316,
+          "score": 0.6866456270217896
+        },
+        {
+          "bibcode": "2016MNRAS.456.2140M",
+          "arxiv": "1504.02097",
+          "title": "The origin and evolution of the galaxy mass-metallicity relation",
+          "authors": [
+            "Ma, Xiangcheng",
+            "Hopkins, Philip F.",
+            "Faucher-Giguère, Claude-André",
+            "Zolman, Nick",
+            "Muratov, Alexander L.",
+            "Kereš, Dušan",
+            "Quataert, Eliot"
+          ],
+          "year": "2016",
+          "cites": 450,
+          "score": 0.6806620359420776
+        },
+        {
+          "bibcode": "2013MNRAS.433L..35L",
+          "arxiv": "1304.3889",
+          "title": "Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.",
+          "authors": [
+            "Lara-Lopez, M. A.",
+            "Hopkins, A. M.",
+            "Lopez-Sanchez, A. R.",
+            "Brough, S.",
+            "Colless, M.",
+            "Bland-Hawthorn, J.",
+            "Driver, S.",
+            "Foster, C.",
+            "Liske, J.",
+            "Loveday, J.",
+            "Robotham, A. S. G.",
+            "Sharp, R. G.",
+            "Steele, O.",
+            "Taylor, E. N."
+          ],
+          "year": "2013",
+          "cites": 55,
+          "score": 0.6774289011955261
+        },
+        {
+          "bibcode": "2026ApJ..1000..109J",
+          "arxiv": "2508.18369",
+          "title": "A Uniform Analysis of Gas-phase Metallicity Evolution with 1─3 Gyr Time Sampling over the Past 12 Gyr",
+          "authors": [
+            "Jain, Shweta",
+            "Sanders, Ryan L.",
+            "Khostovan, Ali Ahmad",
+            "Jones, Tucker",
+            "Shapley, Alice E.",
+            "Reddy, Naveen A.",
+            "Garcia, Alex M.",
+            "Torrey, Paul",
+            "Coil, Alison"
+          ],
+          "year": "2026",
+          "cites": 10,
+          "score": 0.6772202849388123
+        }
+      ]
+    },
+    "citation_entailment": {
+      "gate": "citation_entailment",
+      "checked": 4,
+      "n_unsupported": 2,
+      "unsupported": [
+        {
+          "key": "Torrey2019",
+          "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+          "supported": false,
+          "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS TORREY'S WORK ON THE EVOLUTION OF THE MASS-METALLICITY RELATION IN ILLUSTRISTNG, BUT DOES NOT MENTION QI2025 OR THEIR EXA"
+        },
+        {
+          "key": "Guo2016",
+          "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+          "supported": false,
+          "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS GUO'S STUDY, BUT NOT GARCIA'S ANALYSIS OF GAS-PHASE METALLICITY BREAK RADII."
+        }
+      ],
+      "all": [
+        {
+          "key": "Torrey2019",
+          "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+          "supported": false,
+          "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS TORREY'S WORK ON THE EVOLUTION OF THE MASS-METALLICITY RELATION IN ILLUSTRISTNG, BUT DOES NOT MENTION QI2025 OR THEIR EXA"
+        },
+        {
+          "key": "Qi2025",
+          "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+          "supported": true,
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS QI (LIKELY \"QI2025\") EXAMINING STAR FORMATION RATES IN TNG50 AND ALSO MENTIONS PAUL TORREY (LIKELY RELATED TO \"TORREY2019\"), PROV"
+        },
+        {
+          "key": "Guo2016",
+          "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+          "supported": false,
+          "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS GUO'S STUDY, BUT NOT GARCIA'S ANALYSIS OF GAS-PHASE METALLICITY BREAK RADII."
+        },
+        {
+          "key": "Garcia2023",
+          "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+          "supported": true,
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS \"GAS-PHASE METALLICITY BREAK RADII OF STAR-FORMING GALAXIES IN ILLUSTRISTNG\" WHICH IS THE SAME FACT AS THE CLAIM ABOUT GARCIA'S A"
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    "result.png",
+    "review_loop.md",
+    "draft.pdf",
+    "history.json"
+  ],
+  "lit_refs": [
+    "2019MNRAS.484.5587T",
+    "2021ApJ...919..143H",
+    "2025ApJ...993...32Q",
+    "2013MNRAS.433L..35L",
+    "2023MNRAS.519.4716G",
+    "2016ApJ...822..103G"
+  ],
+  "lit_reflist": [
+    "[Qi2025] Qi et al. (2025). Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50. bibcode 2025ApJ...993...32Q",
+    "[Torrey2019] Torrey et al. (2019). The evolution of the mass-metallicity relation and its scatter in IllustrisTNG. bibcode 2019MNRAS.484.5587T",
+    "[Garcia2023] Garcia et al. (2023). Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG. bibcode 2023MNRAS.519.4716G",
+    "[Guo2016] Guo et al. (2016). Stellar Mass-Gas-phase Metallicity Relation at 0.5 ≤ z ≤ 0.7: A Power Law with Increasing Scatter toward the Low-mass Regime. bibcode 2016ApJ...822..103G",
+    "[LaraLopez2013] Lara-Lopez et al. (2013). Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.. bibcode 2013MNRAS.433L..35L"
+  ],
+  "lit_papers": [
+    {
+      "bibcode": "2019MNRAS.484.5587T",
+      "arxiv": "1711.05261",
+      "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+      "authors": [
+        "Torrey, Paul",
+        "Vogelsberger, Mark",
+        "Marinacci, Federico",
+        "Pakmor, Rüdiger",
+        "Springel, Volker",
+        "Nelson, Dylan",
+        "Naiman, Jill",
+        "Pillepich, Annalisa",
+        "Genel, Shy",
+        "Weinberger, Rainer",
+        "Hernquist, Lars"
+      ],
+      "year": "2019",
+      "cites": 288,
+      "score": 0.7550148367881775
+    },
+    {
+      "bibcode": "2021ApJ...919..143H",
+      "arxiv": "2107.00672",
+      "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+      "authors": [
+        "Henry, Alaina",
+        "Rafelski, Marc",
+        "Sunnquist, Ben",
+        "Pirzkal, Norbert",
+        "Pacifici, Camilla",
+        "Atek, Hakim",
+        "Bagley, Micaela",
+        "Baronchelli, Ivano",
+        "Barro, Guillermo",
+        "Bunker, Andrew J.",
+        "Colbert, James",
+        "Dai, Y. Sophia",
+        "Elmegreen, Bruce G.",
+        "Elmegreen, Debra Meloy",
+        "Finkelstein, Steven",
+        "Kocevski, Dale",
+        "Koekemoer, Anton",
+        "Malkan, Matthew",
+        "Martin, Crystal L.",
+        "Mehta, Vihang",
+        "Pahl, Anthony",
+        "Papovich, Casey",
+        "Rutkowski, Michael",
+        "Sánchez Almeida, Jorge",
+        "Scarlata, Claudia",
+        "Snyder, Gregory",
+        "Teplitz, Harry"
+      ],
+      "year": "2021",
+      "cites": 51,
+      "score": 0.7471012473106384
+    },
+    {
+      "bibcode": "2025ApJ...993...32Q",
+      "arxiv": "2501.18687",
+      "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+      "authors": [
+        "Qi, Jia",
+        "Garcia, Alex M.",
+        "Robinson, Davis",
+        "Torrey, Paul",
+        "Moreno, Jorge",
+        "Green, Kara N.",
+        "Evans, Aaron S.",
+        "Hemler, Z. S.",
+        "Hernquist, Lars",
+        "Ellison, Sara L."
+      ],
+      "year": "2025",
+      "cites": 3,
+      "score": 0.7101145386695862
+    },
+    {
+      "bibcode": "2013MNRAS.433L..35L",
+      "arxiv": "1304.3889",
+      "title": "Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.",
+      "authors": [
+        "Lara-Lopez, M. A.",
+        "Hopkins, A. M.",
+        "Lopez-Sanchez, A. R.",
+        "Brough, S.",
+        "Colless, M.",
+        "Bland-Hawthorn, J.",
+        "Driver, S.",
+        "Foster, C.",
+        "Liske, J.",
+        "Loveday, J.",
+        "Robotham, A. S. G.",
+        "Sharp, R. G.",
+        "Steele, O.",
+        "Taylor, E. N."
+      ],
+      "year": "2013",
+      "cites": 55,
+      "score": 0.6940224170684814
+    },
+    {
+      "bibcode": "2023MNRAS.519.4716G",
+      "arxiv": "2212.03326",
+      "title": "Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG",
+      "authors": [
+        "Garcia, Alex M.",
+        "Torrey, Paul",
+        "Hemler, Z. S.",
+        "Hernquist, Lars",
+        "Kewley, Lisa J.",
+        "Nelson, Erica J.",
+        "Grasha, Kathryn",
+        "Zovaro, Henry R. M.",
+        "Chen, Qian-Hui"
+      ],
+      "year": "2023",
+      "cites": 27,
+      "score": 0.6899098753929138
+    },
+    {
+      "bibcode": "2016ApJ...822..103G",
+      "arxiv": "1603.04863",
+      "title": "Stellar Mass-Gas-phase Metallicity Relation at 0.5 ≤ z ≤ 0.7: A Power Law with Increasing Scatter toward the Low-mass Regime",
+      "authors": [
+        "Guo, Yicheng",
+        "Koo, David C.",
+        "Lu, Yu",
+        "Forbes, John C.",
+        "Rafelski, Marc",
+        "Trump, Jonathan R.",
+        "Amorín, Ricardo",
+        "Barro, Guillermo",
+        "Davé, Romeel",
+        "Faber, S. M.",
+        "Hathi, Nimish P.",
+        "Yesuf, Hassen",
+        "Cooper, Michael C.",
+        "Dekel, Avishai",
+        "Guhathakurta, Puragra",
+        "Kirby, Evan N.",
+        "Koekemoer, Anton M.",
+        "Pérez-González, Pablo G.",
+        "Lin, Lihwai",
+        "Newman, Jeffery A.",
+        "Primack, Joel R.",
+        "Rosario, David J.",
+        "Willmer, Christopher N. A.",
+        "Yan, Renbin"
+      ],
+      "year": "2016",
+      "cites": 53,
+      "score": 0.6891254186630249
+    }
+  ]
+}

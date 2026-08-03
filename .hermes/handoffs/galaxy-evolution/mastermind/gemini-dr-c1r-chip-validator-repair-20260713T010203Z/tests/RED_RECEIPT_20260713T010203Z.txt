@@ -1,0 +1,17 @@
+C1r chip-aware capture + validator repair — RED receipt
+Packet: gemini-dr-c1r-chip-validator-repair-20260713T010203Z
+Observed: 2026-07-13T01:38:25Z
+
+Custody guard:
+- tests/test_t0_custody.py: 3 passed
+
+Expected RED:
+- node tests/test_capture_v2.mjs: exit 1; expected schema V2, baseline returned V1
+- pytest tests/test_validator_v2.py: exit 1; 7 failed because baseline validator lacked typed V2 findings
+- pytest tests/test_integration_v2.py: exit 1; baseline capture schema V1
+
+No syntax or import error caused RED. Goru's incorrect second-pass fixture facts were preserved as invalid; the deterministic Tori fixture generator and later Kun countersign supersede them under Hwao's written adjudication.
+
+Authoritative narrative receipt: receipts/RED.md
+
+C1R_REPAIR_TDD_RED_20260713T010203Z

@@ -1,0 +1,104 @@
+{
+  "schema": "NM_GATE_B_ADS_OUP_RESOLUTION_V1",
+  "index": 22,
+  "captured_url": "https://academic.oup.com/mnras/article/526/4/6103/7291940",
+  "ads_query": "bibstem:MNRAS volume:526 page:6103",
+  "ads_record": {
+    "utc": "2026-07-13T04:23:29Z",
+    "method": "GET",
+    "host": "api.adsabs.harvard.edu",
+    "index": 22,
+    "label": "ads_oup_resolve",
+    "purpose": "read_only_bibliographic_resolution",
+    "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=bibstem%3AMNRAS%20volume%3A526%20page%3A6103&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cvolume%2Cpage%2Cproperty&rows=5",
+    "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=bibstem%3AMNRAS%20volume%3A526%20page%3A6103&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cvolume%2Cpage%2Cproperty&rows=5",
+    "status": 200,
+    "bytes": 3227,
+    "sha256": "dbc6368d9bc87004fbec0200e7a43cf785d1ba1d60c0ff54d4c7d7447c4a1112",
+    "content_type": "application/json",
+    "raw_path": "sources/raw/idx22_ads_oup_resolve_dbc6368d9bc8.json",
+    "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+    "cache_reuse": false
+  },
+  "num_found": 1,
+  "selected_doc": {
+    "bibcode": "2023MNRAS.526.6103K",
+    "abstract": "To fully take advantage of the data provided by large-scale structure surveys, we need to quantify the potential impact of baryonic effects, such as feedback from active galactic nuclei (AGN) and star formation, on cosmological observables. In simulations, feedback processes originate on scales that remain unresolved. Therefore, they need to be sourced via subgrid models that contain free parameters. We use machine learning to calibrate the AGN and stellar feedback models for the FLAMINGO (Fullhydro Large-scale structure simulations with All-sky Mapping for the Interpretation of Next Generation Observations) cosmological hydrodynamical simulations. Using Gaussian process emulators trained on Latin hypercubes of 32 smaller volume simulations, we model how the galaxy stellar mass function (SMF) and cluster gas fractions change as a function of the subgrid parameters. The emulators are then fit to observational data, allowing for the inclusion of potential observational biases. We apply our method to the three different FLAMINGO resolutions, spanning a factor of 64 in particle mass, recovering the observed relations within the respective resolved mass ranges. We also use the emulators, which link changes in subgrid parameters to changes in observables, to find models that skirt or exceed the observationally allowed range for cluster gas fractions and the SMF. Our method enables us to define model variations in terms of the data that they are calibrated to rather than the values of specific subgrid parameters. This approach is useful, because subgrid parameters are typically not directly linked to particular observables, and predictions for a specific observable are influenced by multiple subgrid parameters.",
+    "author": [
+      "Kugel, Roi",
+      "Schaye, Joop",
+      "Schaller, Matthieu",
+      "Helly, John C.",
+      "Braspenning, Joey",
+      "Elbers, Willem",
+      "Frenk, Carlos S.",
+      "McCarthy, Ian G.",
+      "Kwan, Juliana",
+      "Salcido, Jaime",
+      "van Daalen, Marcel P.",
+      "Vandenbroucke, Bert",
+      "Bahé, Yannick M.",
+      "Borrow, Josh",
+      "Chaikin, Evgenii",
+      "Huško, Filip",
+      "Jenkins, Adrian",
+      "Lacey, Cedric G.",
+      "Nobels, Folkert S. J.",
+      "Vernon, Ian"
+    ],
+    "doi": [
+      "10.1093/mnras/stad2540",
+      "10.48550/arXiv.2306.05492"
+    ],
+    "identifier": [
+      "2023arXiv230605492K",
+      "10.48550/arXiv.2306.05492",
+      "10.1093/mnras/stad2540",
+      "2023MNRAS.526.6103K",
+      "2023MNRAS.tmp.2891K",
+      "arXiv:2306.05492"
+    ],
+    "page": [
+      "6103"
+    ],
+    "pub": "Monthly Notices of the Royal Astronomical Society",
+    "title": [
+      "FLAMINGO: calibrating large cosmological hydrodynamical simulations with machine learning"
+    ],
+    "volume": "526",
+    "year": "2023",
+    "property": [
+      "ARTICLE",
+      "EPRINT_OPENACCESS",
+      "ESOURCE",
+      "OPENACCESS",
+      "PMC_OPENACCESS",
+      "PUB_OPENACCESS",
+      "REFEREED"
+    ]
+  },
+  "arxiv_id": "2306.05492",
+  "pdf_record": {
+    "utc": "2026-07-13T04:23:30Z",
+    "method": "GET",
+    "host": "arxiv.org",
+    "index": 22,
+    "label": "ads_arxiv_pdf",
+    "purpose": "primary_full_text",
+    "requested_url": "https://arxiv.org/pdf/2306.05492",
+    "final_url": "https://arxiv.org/pdf/2306.05492",
+    "status": 200,
+    "bytes": 1871628,
+    "sha256": "d3b3f16b8e1db42629477ffbaa6c5a19a4a5789dcfba53cf045e6c5ee6f48f96",
+    "content_type": "application/pdf",
+    "raw_path": "sources/raw/idx22_ads_arxiv_pdf_d3b3f16b8e1d.pdf",
+    "auth": "NONE",
+    "cache_reuse": false
+  },
+  "pdf_text": {
+    "text_path": "sources/text/idx22_ads_arxiv_pdf_1deb93030367.txt",
+    "text_chars": 131593,
+    "text_sha256": "1deb930303671de25cf77337dae2cfaa045ba1e98ecc068a593f695ac480582b",
+    "pages": 24
+  }
+}

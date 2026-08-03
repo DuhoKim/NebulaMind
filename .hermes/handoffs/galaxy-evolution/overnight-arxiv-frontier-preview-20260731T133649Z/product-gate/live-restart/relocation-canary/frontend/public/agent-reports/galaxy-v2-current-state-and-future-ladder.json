@@ -1,0 +1,128 @@
+{
+  "counts": {
+    "arxiv_papers": 2514,
+    "arxiv_wiki_evidence_candidates": 151,
+    "arxiv_wiki_feed_runs": 19,
+    "claims": 1305,
+    "evidence": 11816,
+    "evidence_element_links": 173,
+    "evidence_votes": 2592,
+    "fact_sources": 391,
+    "page_citation_links": 1351,
+    "page_versions": 5784,
+    "wiki_pages": 44
+  },
+  "endpoint_results": [
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "citations",
+      "rows": 138
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "fact_sources",
+      "rows": 8
+    }
+  ],
+  "future_ladder": [
+    {
+      "action": "Freeze and explain the auto-jury drift: inspect Celery/jury schedules, produce a no-write report of the 18+ votes on packet evidence, and decide whether to hold or clean them.",
+      "approval": "STEER: inspect auto-jury vote drift; no DB writes, no service changes.",
+      "risk": "SAFE / read-only"
+    },
+    {
+      "action": "Review the 36 inserted papers row-by-row: titles, abstracts, claim fit, duplicate risk, and which ones deserve human review first.",
+      "approval": "STEER: create Galaxy V2 inserted-evidence audit queue; no DB writes.",
+      "risk": "SAFE / read-only"
+    },
+    {
+      "action": "Generate wiki prose preview only: draft new Galaxy V2 paragraphs and source annotations from the 36 evidence rows, but do not publish them.",
+      "approval": "STEER: prepare Galaxy V2 prose preview from inserted evidence; no DB writes.",
+      "risk": "SAFE / read-only"
+    },
+    {
+      "action": "Deploy/sync PR #70 frontend upload route only, no DB writes, so future human labels can be uploaded cleanly.",
+      "approval": "STEER: deploy PR #70 frontend route with scoped runtime sync; no DB writes.",
+      "risk": "LOW / reversible runtime"
+    },
+    {
+      "action": "If the auto-jury votes were not intended, prepare an exact rollback packet for only those jury vote rows; stop at approval.",
+      "approval": "STEER: prepare auto-jury vote cleanup preflight; no DB writes.",
+      "risk": "MEDIUM / cleanup write"
+    },
+    {
+      "action": "Prepare a second narrow evidence-write packet from the remaining overnight background-context/full-text candidates after more filtering.",
+      "approval": "STEER: prepare next evidence preflight from remaining overnight candidates; no DB writes.",
+      "risk": "MEDIUM / evidence pipeline"
+    },
+    {
+      "action": "Publish curated Galaxy V2 prose/source-surface changes to wiki page versions after preview, backup, exact diff, rollback, and explicit APPROVE PUBLISH gate.",
+      "approval": "STEER: prepare Galaxy V2 visible publish preflight; no DB writes.",
+      "risk": "HIGH / visible publish"
+    },
+    {
+      "action": "Run trust/relevance recalibration or evidence-vote promotion from AI/jury outputs. This can change badges/readiness and should require human audit first.",
+      "approval": "Only after audit: prepare threshold/vote mutation preflight.",
+      "risk": "VERY HIGH / calibration mutation"
+    },
+    {
+      "action": "Autonomous bulk DB-ingest plus auto-votes plus prose publish without per-packet review. Fast, but risks polluting trust/evidence and visible wiki state.",
+      "approval": "Not recommended; would require a new explicit broad-risk approval.",
+      "risk": "DANGEROUS / do not default"
+    }
+  ],
+  "packet_candidate_rows": 36,
+  "packet_evidence_rows": 36,
+  "packet_id": "galaxy_v2_overnight_evidence_preflight_20260630T013756Z",
+  "packet_run": {
+    "id": 23,
+    "status": "promoted"
+  },
+  "packet_vote_rows_observed_after_execution": 22,
+  "page58_materialized_tables": {
+    "active_evidence_page58": 138,
+    "fact_sources_page58": 0,
+    "page_citation_links_page58": 0,
+    "page_versions_page58": 7
+  },
+  "plain_english_summary": "Galaxy V2 now has the 36 overnight papers in the production evidence ledger. The live citations API shows them through evidence fallback. Page prose, claims, fact-source rows, and citation-link rows were not directly changed. A background Celery/jury worker has started adding jury votes to the new evidence, which was outside the approved packet scope and should be investigated before more mutation work.",
+  "recommended_next": {
+    "action": "Freeze and explain the auto-jury drift: inspect Celery/jury schedules, produce a no-write report of the 18+ votes on packet evidence, and decide whether to hold or clean them.",
+    "approval": "STEER: inspect auto-jury vote drift; no DB writes, no service changes.",
+    "risk": "SAFE / read-only"
+  },
+  "status": "EXECUTED_WITH_AUTO_JURY_DRIFT_FLAG",
+  "updated_at_utc": "2026-06-30T02:05:09Z",
+  "voted_packet_evidence": [
+    {
+      "evidence_id": 29757,
+      "first_vote_at": "2026-06-30 02:00:02.097454",
+      "last_vote_at": "2026-06-30 02:00:02.097454",
+      "title": "The Role of Gas Stripping in the Quenching of Satellite Galaxies Using SHARK v2.0",
+      "vote_count": 6
+    },
+    {
+      "evidence_id": 29758,
+      "first_vote_at": "2026-06-30 02:01:32.104121",
+      "last_vote_at": "2026-06-30 02:01:32.104121",
+      "title": "Galaxy Populations in Groups and Clusters: II. Conditional Luminosity Functions at Redshifts from z ~ 1 to z ~ 0",
+      "vote_count": 6
+    },
+    {
+      "evidence_id": 29759,
+      "first_vote_at": "2026-06-30 02:03:02.116403",
+      "last_vote_at": "2026-06-30 02:03:02.116403",
+      "title": "Are Recently Quenched Ellipticals Truly Isolated Centrals?",
+      "vote_count": 6
+    },
+    {
+      "evidence_id": 29760,
+      "first_vote_at": "2026-06-30 02:04:32.123867",
+      "last_vote_at": "2026-06-30 02:04:32.123867",
+      "title": "Galaxy evolution in the cosmic web: the relative impact of nodes and filaments in the EAGLE simulation",
+      "vote_count": 4
+    }
+  ]
+}

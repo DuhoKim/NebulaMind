@@ -1,0 +1,360 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galaxy Evolution · Method3 wiki-format preview</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f8fafc;
+    --panel: #ffffff;
+    --ink: #111827;
+    --muted: #64748b;
+    --line: #e2e8f0;
+    --soft: #f1f5f9;
+    --accent: #2563eb;
+    --accent-soft: #dbeafe;
+    --good: #16a34a;
+    --warn: #ca8a04;
+    --max: 64rem;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  a { color: inherit; }
+  .page {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 2.25rem 1rem 5rem;
+  }
+  .method-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+  }
+  .method-chip,
+  .provenance-chip,
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: var(--panel);
+    padding: 0.32rem 0.66rem;
+    white-space: nowrap;
+  }
+  .method-chip strong,
+  .provenance-chip strong { color: var(--ink); font-weight: 650; }
+  .header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.4rem;
+  }
+  .header h1 {
+    margin: 0 0 0.35rem;
+    font-size: clamp(2rem, 4vw, 3.15rem);
+    line-height: 1.05;
+    letter-spacing: 0;
+  }
+  .slug {
+    color: var(--muted);
+    font-size: 0.9rem;
+    margin-bottom: 0.85rem;
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .trust-summary {
+    margin: 1rem 0 0;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    padding: 0.85rem 1rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  .method-links {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.7rem;
+    margin: 1.15rem 0 1.35rem;
+  }
+  .method-links a {
+    display: block;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    padding: 0.85rem;
+    text-decoration: none;
+  }
+  .method-links span {
+    display: block;
+    color: var(--muted);
+    font-size: 0.78rem;
+    margin-top: 0.2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 56rem) 240px;
+    gap: 2rem;
+    align-items: start;
+  }
+  .article {
+    min-width: 0;
+  }
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    margin: 0 0 1.2rem;
+    padding: 0.75rem;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel);
+  }
+  .segmented {
+    display: inline-flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--soft);
+  }
+  .segmented span {
+    padding: 0.34rem 0.7rem;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+  .segmented span.active {
+    background: var(--accent);
+    color: white;
+  }
+  .toggle {
+    padding: 0.34rem 0.68rem;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    color: var(--muted);
+    font-size: 0.82rem;
+    background: var(--soft);
+  }
+  .content {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: clamp(1.15rem, 2.5vw, 2rem);
+  }
+  blockquote {
+    margin: 0 0 1.35rem;
+    padding: 0.9rem 1.05rem;
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    color: #334155;
+    border-radius: 0 10px 10px 0;
+  }
+  .content h2 {
+    margin: 2.1rem 0 0.8rem;
+    padding-top: 1.15rem;
+    border-top: 1px solid var(--line);
+    font-size: 1.35rem;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  .content h2:first-of-type {
+    margin-top: 1.1rem;
+  }
+  .content p {
+    margin: 0 0 1rem;
+  }
+  .toc {
+    position: sticky;
+    top: 1rem;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 14px;
+    padding: 0.85rem;
+  }
+  .toc h2 {
+    margin: 0 0 0.65rem;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+  }
+  .toc a {
+    display: block;
+    padding: 0.42rem 0.3rem;
+    border-radius: 8px;
+    color: #334155;
+    text-decoration: none;
+    font-size: 0.86rem;
+    line-height: 1.25;
+  }
+  .toc a:hover { background: var(--soft); color: var(--accent); }
+  .preview-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.85rem;
+  }
+  .preview-actions a {
+    flex: 1;
+    text-align: center;
+    border: 1px dashed #cbd5e1;
+    border-radius: 10px;
+    padding: 0.5rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.78rem;
+    cursor: default;
+  }
+  .mobile-contents {
+    display: none;
+    margin-bottom: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    padding: 0.8rem;
+    color: var(--muted);
+  }
+  code {
+    font-size: 0.86em;
+    background: var(--soft);
+    border-radius: 5px;
+    padding: 0.08rem 0.25rem;
+  }
+  footer {
+    margin-top: 2rem;
+    color: var(--muted);
+    font-size: 0.78rem;
+  }
+  @media (max-width: 900px) {
+    .page { max-width: 56rem; }
+    .grid { display: block; }
+    .toc { display: none; }
+    .mobile-contents { display: block; }
+    .method-links { grid-template-columns: 1fr; }
+    .method-bar { align-items: flex-start; flex-direction: column; }
+  }
+</style>
+</head>
+<body>
+<main class="page" data-packet-marker="HWAO_SAME_FORMAT_REBUILD_PACKET_20260707T064500Z">
+  <div class="method-bar" aria-label="Preview shell metadata">
+    <span class="method-chip"><strong>Method3</strong> Debate-map-to-wiki rebuild</span>
+    <span class="method-chip">Static wiki-format preview · no apply</span>
+  </div>
+
+  <header class="header">
+    <h1>Galaxy Evolution</h1>
+    <div class="slug">slug: galaxy-evolution</div>
+    <div class="header-row">
+      <span class="provenance-chip"><strong>Provenance</strong> Method3 local draft</span>
+      <span class="pill">0 claim markers</span>
+      <span class="pill">0 cite markers</span>
+      <span class="pill">P2 non-binding</span>
+    </div>
+    <div class="trust-summary">
+      Trust summary preview: no claim chips are bound in this Method3 P2 scope. Evidence and claim binding remain deferred.
+    </div>
+  </header>
+
+  <nav class="method-links" aria-label="Galaxy Evolution method result pages">
+    <a href="../index.html">Method3 index<span>Local method workspace</span></a>
+    <a href="#" aria-disabled="true">History<span>Preview only; live route disabled</span></a>
+    <a href="#" aria-disabled="true">Sources<span>Preview only; live route disabled</span></a>
+  </nav>
+
+  <div class="mobile-contents">Contents rail is shown beside the article on wider screens.</div>
+
+  <div class="grid">
+    <article class="article">
+      <div class="controls" aria-label="Static reader and evidence controls">
+        <div class="segmented" aria-label="Reader evidence mode">
+          <span class="active">Reader</span>
+          <span>Evidence</span>
+        </div>
+        <span class="toggle">Reduce highlights</span>
+        <span class="toggle">Citation chips off</span>
+        <span class="toggle">Research questions</span>
+      </div>
+
+      <section class="content" aria-label="Wiki article content">
+        <blockquote>
+          <p>Highlighted claim chips mark statements with provenance in the underlying claim/evidence layer. They are used sparingly here: the page is a narrative synthesis first, with the fuller evidence graph available through the linked claim surfaces.</p>
+        </blockquote>
+
+        <h2 id="overview-galaxy-evolution-as-a-regulated-baryon-cycle">Overview: Galaxy Evolution as a Regulated Baryon Cycle</h2>
+        <p>Galaxy evolution is the coupled history of stars, gas, supermassive black holes, dark matter halos, and environments, not the action of any single master cause. The productive way to read the field is as a regulated baryon cycle: halos assemble and draw in gas, galaxies turn only part of that gas into stars, stellar and black-hole feedback return energy and enriched material to the surrounding medium, and a set of quenching processes eventually slows or halts star formation.</p>
+        <p>Within that cycle, quenching — the transition from actively star-forming to passive — is a central event, and it is best presented as a multi-channel process rather than a single switch. Star formation can be regulated or shut down by internal, mass-linked processes and by external, environment-linked processes, and which channel appears to dominate depends on how a sample is selected, on redshift, and on how quenching is measured. The page that follows is organized around that causal structure and around what remains debated: what supplies the gas, what regulates its conversion into stars, what shuts galaxies down, and which observations separate internal feedback from external processing.</p>
+
+        <h2 id="dark-matter-halos-structure-formation">Dark Matter Halos &amp; Structure Formation</h2>
+        <p>Dark matter halos set the gravitational stage for galaxy formation, but halo mass alone does not fix how efficiently baryons become stars. A galaxy's halo mass and its assembly history both appear to regulate gas accretion and the later suppression of star formation, and there is evidence that a feedback mechanism beyond stellar feedback becomes important in halos above the mass of peak star-formation efficiency. Halo assembly history, and not only present-day halo mass, appears to shape galaxy properties, so similar halos can be routed to different visible outcomes.</p>
+        <p>How much of central-galaxy quenching is set by the halo, and how much by central or black-hole properties, is an active and unresolved debate rather than a settled ordering. One line of analysis argues that the dark matter halo plays the dominant role in quenching central galaxies, with the halo-mass correlation primary; another treats that correlation as secondary to central properties such as velocity dispersion, bulge mass, and black hole mass, and related work couples black-hole growth to the central gas structure of the host halo through accretion. This section is deliberately scoped to halo-mass regulation and halo assembly; the broader cosmological growth of large-scale structure is not resolved here, and the halo-versus-central question is left open as a live debate with named positions on both sides.</p>
+
+        <h2 id="gas-supply-star-formation-feedback">Gas Supply, Star Formation &amp; Feedback</h2>
+        <p>The gas cycle links accretion, the interstellar medium, the circumgalactic medium, and later recycling, and star formation tracks the usable cold-gas supply together with the timescale on which inflow replenishes it. Stellar feedback is the clearest bridge from local star formation to galaxy-scale regulation: it drives outflows and, especially in lower-mass halos, helps set how much accreted gas is converted into stars, while recycling of previously ejected material and the retention or loss of metals feed back into the supply available for later star formation.</p>
+        <p>Reservoir evidence should be read carefully, because a shortage of star formation is not the same as a shortage of gas. Some quenched or quiescent systems show central, kiloparsec-scale depletion of their molecular reservoirs, while others retain substantial gas but form stars inefficiently — a low star-formation-efficiency state rather than an empty reservoir. The distinction that matters for a reader is between central depletion and galaxy-wide gas absence: expulsion or consumption of central gas does not by itself imply that a galaxy has been stripped of its reservoirs. Keeping true reservoir loss, suppressed inflow, turbulent or morphological stabilization, and environment-specific stripping as separate possibilities is part of an honest account here.</p>
+
+        <h2 id="agn-feedback-quenching">AGN Feedback &amp; Quenching</h2>
+        <p>Active galactic nuclei and their central supermassive black holes are a real regulatory channel, but the careful statement is conditional. In selected systems, AGN and SMBH feedback can regulate or reduce star formation through jets, winds, turbulence, circumgalactic heating, and starvation — where "starvation" here means an internal, preventive suppression of the gas supply, to be kept distinct from the environmental stripping and strangulation discussed in the next section. The sign and strength of the effect depend on feedback mode and gas phase, and locally positive feedback can occur. The language should stay at "can," "may," and "in selected systems"; this corpus does not support the statement that AGN feedback generically quenches galaxies or empties their reservoirs.</p>
+        <p>The observational grounding for AGN feedback is strongest for outflows. Molecular, ionized, and neutral outflows are observed in selected AGN-host and massive-galaxy samples, but their inferred frequencies are tracer-, selection-, and redshift-specific: a fraction measured with one tracer and one selection should not be merged into a single population-wide rate, and a single striking case is an example rather than a prevalence anchor. It is also important to separate physical modes. Ejective or outflow feedback is not the same as preventive or maintenance-mode heating; in this corpus, maintenance and preventive heating are best rendered as model-dependent — supported in simulations rather than established as an observed galaxy-scale prevalence — and they should be neither upgraded to observed fact nor dismissed as contradicted.</p>
+        <p>Whether AGN feedback dominates quenching relative to other channels is genuinely debated, and this page renders that as a debate map rather than a verdict. AGN feedback is one important axis alongside halo and environmental processing, central structure, gas supply, and stellar feedback. Central observables — velocity dispersion, bulge mass, and central black hole mass — correlate with central-galaxy quenching, but they are best read as coupled, correlational predictors rather than independent causal switches. The stronger synthesis is that jets, winds, and hot-halo heating can reduce the cooling that would otherwise refuel star formation, without requiring every AGN episode to quench its host.</p>
+
+        <h2 id="environment-morphology-structural-growth">Environment, Morphology &amp; Structural Growth</h2>
+        <p>Environment reshapes galaxies by stripping, starving, perturbing, and merging them, and these environmental channels belong inside the explanation rather than in a footnote. After infall into groups or clusters, satellite galaxies can undergo environmental quenching, and the relevant mechanisms include ram-pressure and tidal stripping and environmental strangulation — the gradual cutoff of a fresh gas supply, which is distinct from the internal, AGN-driven starvation described above. Dense environments do not act through a single channel, gas retention in some infalling systems shows that removal is not automatic, and the dominant environmental channel is system-dependent.</p>
+        <p>Structural growth and morphology accompany these processes. Morphological transformation and structural growth — including mergers, the growth of central stellar mass and bulges, and size evolution — track quenching without, on their own, proving a particular quenching cause. Galaxy scaling relations and the redshift evolution of galaxy sizes provide fundamental tests of galaxy-formation models, and the growth of supermassive black holes is closely linked to the assembly of their host galaxies. As in the AGN section, black-hole and bulge correlations are treated as predictors of quenching, not as demonstrated causal channels; morphology and structure are read here as coupled outcomes of the same regulated cycle.</p>
+
+        <h2 id="chemical-enrichment-cosmic-timing">Chemical Enrichment &amp; Cosmic Timing</h2>
+        <p>Chemical enrichment records the integrated history of star formation, inflow, and outflow, and metallicity scaling relations act as both clocks and regulators. The mass-metallicity relation links a galaxy's stellar mass to its gas-phase oxygen abundance, with a modest intrinsic scatter measured at cosmic noon, and the related fundamental metallicity relation appears roughly stable — to about a tenth of a dex in oxygen abundance — from the local universe out to <span class="math">$z\sim2.3$</span>. The normalization of the mass-metallicity relation evolves with redshift, and what drives its scatter is itself debated, with proposed contributions from variations in feedback-driven outflow rates and from differences in gas-accretion efficiency. These statements should carry their redshift scope, roughly <span class="math">$z\sim0-2.3$</span>, rather than being generalized to all epochs; this corpus supports the scaling relations and their evolution, not a broad, universal chemical-evolution narrative.</p>
+        <p>Cosmic timing is the complementary reading. The distributions of stellar ages in recently quenched galaxies indicate a variety of quenching histories rather than one shared timeline, and spatially resolved measurements show radial structure in stellar populations and in gas-phase metallicity — for example, older central and younger outer regions in some massive galaxies. Read together, enrichment and stellar-age evidence explain why galaxies can arrive at the same observed class by different routes, and why when a galaxy formed and enriched is as important as how much mass it now has.</p>
+
+        <h2 id="high-redshift-reionization-frontier">High-Redshift &amp; Reionization Frontier</h2>
+        <p>Two distinct high-redshift regimes matter here, and they should not be blurred together. At cosmic noon, roughly <span class="math">$z\sim1.5-3$</span>, some massive galaxies appear to shut down quickly, and AGN-linked rapid quenching near <span class="math">$z\sim2$</span> is discussed as one fast channel; these results are important but sample- and model-dependent, and selected cases at cosmic noon should not be turned into a universal high-redshift rule.</p>
+        <p>The reionization-era frontier, at higher redshift still, is presented here as a set of open debates with named competing positions rather than settled findings. One debate concerns the ionizing-photon budget: whether star-forming galaxies alone supplied enough photons to reionize the intergalactic medium, or whether faint AGN contributed a significant share, with strong emission-line galaxies near <span class="math">$z\sim7$</span> and faint-AGN demographics both on the table. A separate and lower-redshift question — the sources of helium II reionization near <span class="math">$z\sim3$</span> — should be kept distinct from hydrogen reionization at <span class="math">$z\gt 6$</span>; there, bright quasars alone appear insufficient, and the relative role of faint AGN versus stellar sources is unresolved. A third frontier is the population of very high-redshift, <span class="math">$z\gt 10$</span> galaxies whose inferred stellar masses sit uncomfortably high against standard halo-abundance expectations; competing explanations — a top-heavy initial mass function, enhanced baryon-conversion efficiency in early halos, and bursty star formation — remain live, and this tension is best presented as unresolved rather than as a falsification of the cosmological frame. Early black-hole seeding and the cold-gas reservoirs of <span class="math">$z\gt 6$</span> quasars round out a frontier defined more by open questions than by consensus.</p>
+
+        <h2 id="observational-evidence-surveys">Observational Evidence &amp; Surveys</h2>
+        <p>The evidence base is multi-wavelength and strongly redshift-dependent, and each observing mode reduces a specific physical ambiguity. Rest-frame optical and near-infrared spectra constrain stellar populations, nebular lines, metallicities, and dust; submillimetre and radio data trace molecular and atomic gas and dust-obscured star formation; X-ray and radio signatures identify AGN power and hot atmospheres; and integral-field spectroscopy maps outflows, rotation, turbulence, and spatially resolved quenching. Wide imaging and spectroscopic surveys connect individual mechanisms to population statistics and to large-scale environment. The purpose of naming facilities is not to catalog missions but to connect each observing mode to a mechanism-level uncertainty it can address.</p>
+        <p>Simulations sit alongside these observations as tests of mechanisms and assumptions, and their claims should be labeled as such. Statements that rest on a particular simulation or model — for example, maintenance-mode heating prevalence, the survival of cold streams in hot halos, or the scaling of feedback efficiency — are best prefaced with "in simulations" or "in this model," because a simulation-only result establishes what a model can produce under its assumptions, not an observed population frequency. Keeping the observational and model-based statements separate is part of reading this section honestly, and it is a prerequisite for any later, careful binding of specific claims to evidence.</p>
+
+        <h2 id="synthesis-open-tensions">Synthesis &amp; Open Tensions</h2>
+        <p>Current evidence supports a context-dependent, multi-channel account of galaxy evolution rather than a single-cause story. Halo growth creates the gravitational setting; gas accretion and recycling provide fuel; stellar and AGN feedback regulate how efficiently that fuel becomes stars; and groups, clusters, and cosmic-web geometry alter the boundary conditions after infall. AGN feedback, gas supply, internal structure, halo and environmental processing, and observational selection all appear in the map, and their relative importance shifts with mass, redshift, and environment.</p>
+        <p>The open frontier is not whether any one mechanism matters but when each dominates and how strongly it couples to observable gas phases. The prevalence and population-wide frequency of AGN outflows, the dominance of AGN feedback relative to other channels, the response of gas reservoirs to feedback, and the status of maintenance and preventive heating all remain actively debated. The abundance of very massive galaxies in early samples, the survival of cold streams in hot halos, the scaling of feedback efficiency in simulations, and the source budget for reionization are the tensions most in need of clean evidence. Here, uncertainty is reported as a useful result rather than as a failure of the page: these are the places where careful, sourced binding of claims should happen next.</p>
+      </section>
+    </article>
+
+    <aside class="toc" aria-label="Contents">
+      <h3>Contents</h3>
+      <a href="#overview-galaxy-evolution-as-a-regulated-baryon-cycle">Overview: Galaxy Evolution as a Regulated Baryon Cycle</a>
+      <a href="#dark-matter-halos-structure-formation">Dark Matter Halos &amp; Structure Formation</a>
+      <a href="#gas-supply-star-formation-feedback">Gas Supply, Star Formation &amp; Feedback</a>
+      <a href="#agn-feedback-quenching">AGN Feedback &amp; Quenching</a>
+      <a href="#environment-morphology-structural-growth">Environment, Morphology &amp; Structural Growth</a>
+      <a href="#chemical-enrichment-cosmic-timing">Chemical Enrichment &amp; Cosmic Timing</a>
+      <a href="#high-redshift-reionization-frontier">High-Redshift &amp; Reionization Frontier</a>
+      <a href="#observational-evidence-surveys">Observational Evidence &amp; Surveys</a>
+      <a href="#synthesis-open-tensions">Synthesis &amp; Open Tensions</a>
+      <div class="preview-actions">
+        <a href="#" aria-disabled="true">History</a>
+        <a href="#" aria-disabled="true">Sources</a>
+      </div>
+    </aside>
+  </div>
+
+  <footer>
+    <code>HWAO_SAME_FORMAT_REBUILD_PACKET_20260707T064500Z</code> · Static preview shell only. Method label and controls are shell chrome, not article content.
+  </footer>
+</main>
+</body>
+</html>

@@ -1,0 +1,151 @@
+{
+  "runs": [
+    {
+      "id": "c2v2e2e0726a",
+      "summary": "[AI-draft] [forced-demo] [TENSION] [unresolved-calibration] Mass-metallicity relation - median relations for TNG100 (23,722 gals) and SDSS (120,000 gals); TNG uses SF-weighted gas metallicity to O/H (solar-scaled). This is an AI-assembled draft: not submitted, not peer-reviewed. It was assembled from existing source-run artifacts with no fresh data run (forced-demo lineage: gated-e2e-demo, spec.force=true). The TNG-vs-SDSS comparison carries an expected-value TENSION and rests on an unresolved-calibration O/H scale; it is NOT a physical interpretation and cannot be interpreted as physical until a common calibration is established.",
+      "method": "mass-metallicity",
+      "data_sources": [
+        "tng",
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/c2v2e2e0726a/artifact/result.png",
+      "pdf_url": "/api/lab/runs/c2v2e2e0726a/artifact/draft.pdf",
+      "review_url": null,
+      "review_verdict": null,
+      "review_cycles": null,
+      "created_utc": "2026-07-26T16:56:25Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "fesc002",
+      "summary": "Reionization ionizing-photon-budget reconciliation at z~6: star-forming galaxies require f_esc=0.048 (+0.048/-0.025) to close the budget (Madau-Dickinson SFRD, log xi_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f_esc=0.062 (+0.108/-0.039) from LzLCS O32/beta calibrations. Median delta(required-inferred)=-0.012 dex-frac (16-84%: -0.119 to +0.043); 41% of the systematic MC shows a shortfall. Conclusion: the budget CLOSES within the systematic, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi_ion x clumping x proxy-calibration systematic, not by statistics.",
+      "method": "ionizing-photon-budget",
+      "data_sources": [
+        "jwst"
+      ],
+      "figure_url": "/api/lab/runs/fesc002/artifact/result.png",
+      "pdf_url": "/api/lab/runs/fesc002/artifact/draft.pdf",
+      "review_url": "/api/lab/runs/fesc002/artifact/review_loop.md",
+      "review_verdict": "MINOR",
+      "review_cycles": 1,
+      "created_utc": "2026-07-23T02:00:00Z",
+      "lit_grounded": true,
+      "lit_grounding": "grounded on 6 papers, 5 passages"
+    },
+    {
+      "id": "2958462772b2",
+      "summary": "Mass–metallicity relation — median relations for SDSS (120,000 gals).",
+      "method": "mass-metallicity",
+      "data_sources": [
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/2958462772b2/artifact/result.png",
+      "pdf_url": "/api/lab/runs/2958462772b2/artifact/draft.pdf",
+      "review_url": "/api/lab/runs/2958462772b2/artifact/review_loop.md",
+      "review_verdict": "MINOR",
+      "review_cycles": 1,
+      "created_utc": "2026-07-17T09:47:30.429095Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "7cb504ea7ad3",
+      "summary": "IllustrisTNG (TNG100-1, z=0) stellar mass function from 203,524 galaxies in a (111 Mpc)³ box; n(>10¹⁰·⁵M⊙)=1.49e-03 Mpc⁻³.",
+      "method": "stellar-mass-function",
+      "data_sources": [
+        "tng"
+      ],
+      "figure_url": "/api/lab/runs/7cb504ea7ad3/artifact/result.png",
+      "pdf_url": "/api/lab/runs/7cb504ea7ad3/artifact/draft.pdf",
+      "review_url": "/api/lab/runs/7cb504ea7ad3/artifact/review.md",
+      "review_verdict": null,
+      "review_cycles": null,
+      "created_utc": "2026-07-17T09:39:59.918965Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "d8de519cb9c9",
+      "summary": "Mass–metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity → O/H (solar-scaled).",
+      "method": "mass-metallicity",
+      "data_sources": [
+        "tng",
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/d8de519cb9c9/artifact/result.png",
+      "pdf_url": null,
+      "review_url": null,
+      "review_verdict": null,
+      "review_cycles": null,
+      "created_utc": "2026-07-17T09:20:58.872370Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "2ab3c92eea8a",
+      "summary": "Star-forming main sequence — median relations for TNG100 (23,060 gals).",
+      "method": "scaling-relation-evolution",
+      "data_sources": [
+        "tng"
+      ],
+      "figure_url": "/api/lab/runs/2ab3c92eea8a/artifact/result.png",
+      "pdf_url": null,
+      "review_url": null,
+      "review_verdict": null,
+      "review_cycles": null,
+      "created_utc": "2026-07-17T09:13:08.864691Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "e2f3b038f8dd",
+      "summary": "Mass–metallicity relation from 80,000 SDSS star-forming galaxies. 12+log(O/H) rises from 8.57 at logM⋆=9.0 to 9.05 at logM⋆=10.5, flattening at the massive end.",
+      "method": "scaling-relation-evolution",
+      "data_sources": [
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/e2f3b038f8dd/artifact/mzr.png",
+      "pdf_url": null,
+      "review_url": null,
+      "review_verdict": null,
+      "review_cycles": null,
+      "created_utc": "2026-07-17T09:06:12.028337Z",
+      "lit_grounded": false,
+      "lit_grounding": "not grounded (no literature retrieval recorded)"
+    },
+    {
+      "id": "gated-halt-demo",
+      "summary": "Star-forming main sequence — median relations for SDSS (120,000 gals).",
+      "method": "main-sequence",
+      "data_sources": [
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/gated-halt-demo/artifact/result.png",
+      "pdf_url": "/api/lab/runs/gated-halt-demo/artifact/draft.pdf",
+      "review_url": "/api/lab/runs/gated-halt-demo/artifact/review_loop.md",
+      "review_verdict": "MINOR",
+      "review_cycles": 1,
+      "created_utc": null,
+      "lit_grounded": true,
+      "lit_grounding": "grounded on 6 paper(s)"
+    },
+    {
+      "id": "gated-e2e-demo",
+      "summary": "Mass–metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity → O/H (solar-scaled).",
+      "method": "mass-metallicity",
+      "data_sources": [
+        "tng",
+        "sdss"
+      ],
+      "figure_url": "/api/lab/runs/gated-e2e-demo/artifact/result.png",
+      "pdf_url": "/api/lab/runs/gated-e2e-demo/artifact/draft.pdf",
+      "review_url": "/api/lab/runs/gated-e2e-demo/artifact/review_loop.md",
+      "review_verdict": "MINOR",
+      "review_cycles": 1,
+      "created_utc": null,
+      "lit_grounded": true,
+      "lit_grounding": "grounded on 6 paper(s)"
+    }
+  ]
+}

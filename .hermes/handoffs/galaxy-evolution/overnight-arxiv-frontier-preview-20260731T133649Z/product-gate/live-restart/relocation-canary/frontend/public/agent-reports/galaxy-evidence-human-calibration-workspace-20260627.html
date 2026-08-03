@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galaxy Evidence Human Calibration Workspace — 20260627</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #0d1b2f;
+      --panel-2: #10243d;
+      --panel-3: #132a47;
+      --line: rgba(148, 163, 184, 0.22);
+      --line-strong: rgba(191, 219, 254, 0.42);
+      --text: #eef6ff;
+      --muted: #9fb0c7;
+      --blue: #60a5fa;
+      --green: #3ddc97;
+      --amber: #fbbf24;
+      --red: #fb7185;
+      --violet: #a78bfa;
+      --cyan: #22d3ee;
+      --shadow: 0 26px 80px rgba(0,0,0,.36);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 9% -10%, rgba(96,165,250,.28), transparent 28rem),
+        radial-gradient(circle at 92% 0%, rgba(61,220,151,.16), transparent 30rem),
+        linear-gradient(180deg, #07111f 0%, #08111d 55%, #050914 100%);
+      color: var(--text);
+      font-family: var(--sans);
+      line-height: 1.55;
+    }
+    a { color: #bfdbfe; }
+    button, input, select, textarea { font: inherit; color: var(--text); }
+    button, .button, input[type="file"]::file-selector-button {
+      border: 1px solid var(--line);
+      background: rgba(148,163,184,.10);
+      border-radius: 999px;
+      min-height: 42px;
+      padding: 9px 13px;
+      color: var(--text);
+      text-decoration: none;
+      cursor: pointer;
+      font-weight: 760;
+      font-size: 13px;
+    }
+    button:hover, .button:hover { border-color: var(--line-strong); background: rgba(148,163,184,.16); }
+    button.primary, .button.primary { background: rgba(61,220,151,.14); border-color: rgba(61,220,151,.42); color: #bbf7d0; }
+    button.warn, .button.warn { background: rgba(251,191,36,.12); border-color: rgba(251,191,36,.38); color: #fde68a; }
+    button.danger { background: rgba(251,113,133,.11); border-color: rgba(251,113,133,.35); color: #fecdd3; }
+    .wrap { max-width: 1380px; margin: 0 auto; padding: 30px 18px 82px; }
+    .hero, .panel, .sample, .message {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13,27,47,.92), rgba(8,18,33,.88));
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+    .hero { padding: 28px; margin-bottom: 14px; }
+    .eyebrow { font: 850 11px/1 var(--mono); color: var(--cyan); text-transform: uppercase; letter-spacing: .14em; }
+    h1, h2, h3 { letter-spacing: -.04em; line-height: 1.05; }
+    h1 { font-size: clamp(36px, 6vw, 78px); max-width: 13ch; margin: 12px 0; }
+    h2 { margin: 0 0 12px; font-size: clamp(23px, 3vw, 34px); }
+    h3 { margin: 0 0 8px; }
+    p { color: var(--muted); }
+    .sub { max-width: 100ch; font-size: 17px; }
+    .actions, .row, .chips, .metrics, .toolbar { display: flex; flex-wrap: wrap; gap: 9px; align-items: center; }
+    .badge, .pill, .mini-pill {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 5px 8px;
+      color: #dbeafe;
+      background: rgba(96,165,250,.10);
+      font: 760 12px/1.1 var(--mono);
+    }
+    .badge.lock, .pill.lock { color: #fecdd3; background: rgba(251,113,133,.11); border-color: rgba(251,113,133,.36); }
+    .badge.good, .pill.good { color: #bbf7d0; background: rgba(61,220,151,.12); border-color: rgba(61,220,151,.34); }
+    .badge.warn, .pill.warn { color: #fde68a; background: rgba(251,191,36,.11); border-color: rgba(251,191,36,.34); }
+    .panel { padding: 18px; margin-top: 14px; box-shadow: none; }
+    .cards { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .card { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: rgba(255,255,255,.045); min-height: 104px; }
+    .value { display:block; margin-top:8px; font: 850 30px/1 var(--mono); }
+    .label { color: var(--muted); font: 780 11px/1.15 var(--mono); text-transform: uppercase; letter-spacing: .09em; }
+    .twocol { display:grid; grid-template-columns: .92fr 1.08fr; gap: 14px; }
+    .steps { counter-reset: step; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+    .steps li { counter-increment: step; border: 1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.035); border-radius: 16px; padding: 12px 12px 12px 46px; color: var(--muted); position: relative; }
+    .steps li:before { content: counter(step); position:absolute; left:12px; top:12px; width:24px; height:24px; border-radius:999px; display:grid; place-items:center; background:rgba(96,165,250,.18); color:white; font: 850 12px/1 var(--mono); }
+    .rubric { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 10px; }
+    .rubric article, .claim-box, details, .field-grid, .toolbar-panel, .export-panel { border:1px solid rgba(255,255,255,.09); background: rgba(255,255,255,.035); border-radius: 16px; padding: 12px; }
+    code { color:#dbeafe; background:rgba(96,165,250,.10); border:1px solid rgba(96,165,250,.24); border-radius:7px; padding:1px 5px; font-family:var(--mono); }
+    .toolbar-panel { margin: 14px 0; }
+    input[type="search"], select, textarea { border:1px solid var(--line); background:#071424; border-radius: 13px; padding: 10px 12px; }
+    input[type="search"] { min-width: min(420px, 100%); flex: 1 1 360px; }
+    select { min-width: 180px; }
+    .progress-wrap { display:flex; flex-direction:column; gap:6px; flex:1 1 300px; min-width:260px; }
+    .bar { height:10px; border-radius:999px; overflow:hidden; background:rgba(148,163,184,.16); }
+    .bar span { display:block; width:0%; height:100%; background:linear-gradient(90deg,var(--blue),var(--green)); transition:width .18s ease; }
+    .message { margin: 12px 0; padding: 10px 12px; min-height: 42px; color: var(--muted); box-shadow:none; }
+    .sample-list { display:grid; gap: 12px; }
+    .sample { padding: 18px; scroll-margin-top: 24px; }
+    .sample.reviewed { border-color: rgba(61,220,151,.36); background: linear-gradient(180deg, rgba(61,220,151,.06), rgba(8,18,33,.88)); }
+    .sample.incomplete { border-color: rgba(251,191,36,.34); }
+    .sample-head { display:flex; flex-wrap:wrap; align-items:flex-start; justify-content:space-between; gap:10px; }
+    .sample-title { display:flex; flex-wrap:wrap; align-items:center; gap:8px; }
+    .mini { color: var(--muted); font-size: 13px; }
+    .pair { display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+    .claim-box strong { display:block; margin-bottom: 7px; color: #fff; }
+    .claim-box p { margin: 0; }
+    .assistant { border: 1px solid rgba(167,139,250,.25); background: rgba(167,139,250,.08); border-radius: 16px; padding: 12px; }
+    .assistant strong { color:#ede9fe; }
+    details { margin: 10px 0; }
+    summary { cursor: pointer; color:#dbeafe; font-weight: 780; }
+    pre { white-space: pre-wrap; overflow:auto; color:#cfe0ff; font:12px/1.45 var(--mono); }
+    .field-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; margin-top:12px; }
+    fieldset { margin:0; border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:10px; min-width:0; }
+    legend { color: var(--muted); font-size: 12px; padding: 0 5px; }
+    fieldset.required legend:after { content: " *"; color: var(--amber); }
+    fieldset.optional legend:after { content: " optional"; color: var(--muted); font-weight: 500; }
+    .choice-row { display:flex; flex-wrap:wrap; gap:7px; margin-top:7px; }
+    .choice {
+      min-height: 38px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.045);
+      color: var(--muted);
+      padding: 7px 10px;
+      cursor: pointer;
+      text-align: left;
+    }
+    .choice.selected { color:#fff; border-color: rgba(96,165,250,.55); background: rgba(96,165,250,.18); box-shadow: inset 0 0 0 1px rgba(96,165,250,.14); }
+    .choice.support.selected { border-color: rgba(61,220,151,.55); background: rgba(61,220,151,.14); }
+    .choice.weak.selected { border-color: rgba(251,113,133,.55); background: rgba(251,113,133,.14); }
+    .choice.nuance.selected { border-color: rgba(251,191,36,.55); background: rgba(251,191,36,.13); }
+    textarea { width:100%; min-height: 86px; resize: vertical; }
+    .wide { grid-column: 1 / -1; }
+    .mini-actions { display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap; margin-top: 12px; }
+    .hidden { display:none !important; }
+    .empty { padding:28px; text-align:center; color: var(--muted); border:1px dashed var(--line); border-radius:22px; background:rgba(255,255,255,.025); }
+    @media (max-width: 980px) { .cards, .twocol, .rubric, .pair, .field-grid { grid-template-columns:1fr; } input[type="search"] { min-width:100%; } }
+    @media print { body { background:white; color:#111; } .actions,.toolbar-panel,.message,.mini-actions,.export-panel { display:none !important; } .hero,.panel,.sample { box-shadow:none; border-color:#ddd; break-inside: avoid; } p,.mini,.label,.pill,.badge { color:#333; } }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">NebulaMind · Galaxy Evolution · human calibration workspace</div>
+      <div class="actions" aria-label="Safety status">
+        <span class="badge lock">Review only · no writes</span>
+        <span class="badge lock">No apply / publish / badge changes</span>
+        <span class="badge warn">Assistant triage is not human-gold</span>
+        <span class="badge good">Autosaves locally in this browser</span>
+      </div>
+      <h1>Label the priority rows here.</h1>
+      <p class="sub">This fillable workspace turns the 28 Galaxy evidence priority-triage rows into one clear human decision per row. Use it to create human/Papa calibration labels, then export the filled CSV or JSON for post-label analysis. Nothing here writes to the database or changes the public Galaxy page.</p>
+      <div class="actions">
+        <a class="button primary" href="#label-rows">Start labeling</a>
+        <button type="button" class="primary" id="exportCsvTop">Export filled CSV</button>
+        <button type="button" id="exportJsonTop">Export filled JSON</button>
+        <label class="button" for="importJsonTop">Import prior JSON</label>
+        <input id="importJsonTop" type="file" accept="application/json,.json" hidden>
+        <button type="button" class="warn" id="copyNextActionTop">Copy safe next action</button>
+        <a class="button" href="./galaxy-evidence-priority-triage-20260627.html">Open source triage</a>
+        <a class="button" href="./morning-review-20260627.html">Back to morning dashboard</a>
+      </div>
+    </section>
+
+    <section class="panel" aria-label="Current labeling status">
+      <div class="cards">
+        <div class="card"><div class="label">Samples total</div><span class="value" id="totalCount">28</span><p>Selected high-risk / nuance rows from 102 evidence rows.</p></div>
+        <div class="card"><div class="label">Reviewed</div><span class="value" id="reviewedCount">0</span><p>Rows with a human final decision.</p></div>
+        <div class="card"><div class="label">Remaining</div><span class="value" id="remainingCount">28</span><p>Use <code>unsure</code> instead of guessing.</p></div>
+        <div class="card"><div class="label">Write/apply/publish</div><span class="value">LOCKED</span><p>DB writes: <code>0</code>; no_apply: <code>true</code>.</p></div>
+      </div>
+      <div class="progress-wrap" style="margin-top:14px">
+        <div class="bar" aria-label="Labeling progress"><span id="progressBar"></span></div>
+        <div class="label" id="progressText">0/28 reviewed · labels saved in browser localStorage only</div>
+      </div>
+    </section>
+
+    <section class="panel twocol">
+      <div>
+        <h2>How to calibrate</h2>
+        <ol class="steps">
+          <li>Read the base claim and the evidence sentence side by side.</li>
+          <li>Use the assistant recommendation only as a hint, not as authority.</li>
+          <li>Pick exactly one <b>Human final decision</b>. If unsure, choose <code>unsure</code> and write why.</li>
+          <li>Optionally add source-family/dedupe and threshold notes where they matter.</li>
+          <li>Export filled CSV/JSON and return it for post-label readiness analysis. Do not use this page as write approval.</li>
+        </ol>
+      </div>
+      <div>
+        <h2>Rubric quick reference</h2>
+        <div class="rubric">
+          <article><b>Count as support</b><p>The evidence directly supports the base claim and can count as a pro/supporting row after dedupe.</p></article>
+          <article><b>Count as weakening</b><p>The evidence directly contradicts or materially weakens the base claim. High-risk if it touches consensus.</p></article>
+          <article><b>Nuance only</b><p>The evidence is relevant but mainly limits, qualifies, or refines the wording; do not count as a clean vote.</p></article>
+          <article><b>Drop no effect</b><p>The evidence is unrelated, too generic, duplicate-only, metadata noise, or below useful threshold.</p></article>
+          <article><b>Route as new claim</b><p>The evidence is useful astronomy content, but it belongs under a different/new claim rather than this base claim.</p></article>
+          <article><b>Needs rerun / unsure</b><p>Use for ambiguous, low-context, or threshold-sensitive cases. Human uncertainty should block writes, not force a guess.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="toolbar-panel" aria-label="Filters and exports">
+      <div class="toolbar">
+        <input id="search" type="search" placeholder="Search claim, evidence, rationale, source, arXiv…" aria-label="Search rows">
+        <select id="claimFilter" aria-label="Filter by base claim"><option value="">All claims</option><option value="2929">Claim 2929</option><option value="2930">Claim 2930</option><option value="2931">Claim 2931</option><option value="2932">Claim 2932</option><option value="2933">Claim 2933</option><option value="2934">Claim 2934</option></select>
+        <select id="recFilter" aria-label="Filter by assistant recommendation"><option value="">All assistant recommendations</option><option value="count_as_support">count as support</option><option value="count_as_weakening">count as weakening</option><option value="drop_no_effect">drop no effect</option><option value="nuance_only">nuance only</option><option value="route_as_new_claim">route as new claim</option></select>
+        <select id="riskFilter" aria-label="Filter by risk tag"><option value="">All risk tags</option><option value="consensus_label_needs_human_support_check">consensus label needs human support check</option><option value="debated_label_needs_direction_check">debated label needs direction check</option><option value="high_impact_claim">high impact claim</option><option value="metadata_cleanup_needed">metadata cleanup needed</option><option value="nuance_or_counter_language_present">nuance or counter language present</option><option value="same_source_repeated_within_claim">same source repeated within claim</option></select>
+        <select id="reviewFilter" aria-label="Filter by review state"><option value="">All review states</option><option value="reviewed">Reviewed</option><option value="unreviewed">Unreviewed</option><option value="incomplete">Incomplete</option></select>
+        <button type="button" id="clearFilters">Clear filters</button>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <div class="pill good">support hints: 4</div>
+        <div class="pill lock">weakening hints: 4</div>
+        <div class="pill warn">nuance hints: 10</div>
+        <div class="pill">drop hints: 8</div>
+        <div class="pill">new-claim hints: 2</div>
+        <div class="pill lock">consensus rows: 18</div>
+        <div class="pill">debated rows: 10</div>
+      </div>
+      <div class="message" id="statusMessage">Ready. Label choices autosave only in this browser.</div>
+    </section>
+
+    <section class="export-panel" aria-label="Safe export actions">
+      <h2>Safe export only</h2>
+      <p>No button on this page applies labels to production. The only portable result is the file you export.</p>
+      <div class="actions">
+        <button type="button" class="primary" id="exportCsvBottom">Export filled CSV</button>
+        <button type="button" id="exportJsonBottom">Export filled JSON</button>
+        <label class="button" for="importJsonBottom">Import prior JSON</label>
+        <input id="importJsonBottom" type="file" accept="application/json,.json" hidden>
+        <button type="button" class="warn" id="copyNextActionBottom">Copy post-label analysis prompt</button>
+        <button type="button" class="danger" id="clearAllLabels">Clear local labels</button>
+      </div>
+    </section>
+
+    <section id="label-rows" class="panel">
+      <div class="sample-head">
+        <div>
+          <h2>Rows to label</h2>
+          <p class="sub">Each card has one required final decision. Optional diagnostics are included so the export can support threshold/dedupe analysis without adding cognitive load.</p>
+        </div>
+        <div class="pill" id="visibleCount">0 visible</div>
+      </div>
+      <div id="sampleList" class="sample-list" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Audit footer</h2>
+      <p>Source packet: <code>galaxy-evidence-review-20260627.json</code>. Triage status: <code>assistant triage, not human-gold</code>. Generated source time: <code>2026-06-27T03:48:18+00:00</code>. Workspace generated: <code>2026-06-27T07:58:24Z</code>. Live worktree artifact path: <code>/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/galaxy-evidence-human-calibration-workspace-20260627.html</code>.</p>
+      <p>GO after labeling: post-label calibration readiness analysis and, if needed, another read-only tranche. NO-GO from this page alone: DB writes, prose edits, public badge/trust changes, threshold retune, or claiming human-gold completion without exported labels.</p>
+    </section>
+  </main>
+
+  <script id="packet-data" type="application/json">{"packet_kind": "galaxy_evidence_priority_triage_packet", "review_only": true, "no_apply": true, "db_write_count": 0, "authoritative_status": "assistant triage, not human-gold", "generated_at_utc": "2026-06-27T03:48:18+00:00", "source_packet": "galaxy-evidence-review-20260627.json", "public_page": "https://nebulamind.net/wiki/galaxy-evolution-v2", "triage_scope": "28 nuance/counter/high-risk rows selected from 102-row Galaxy evidence packet; no DB/content writes.", "page_invariants": {"before": {"id": 58, "slug": "galaxy-evolution-v2", "version_num": 4, "content_length": 11855, "content_sha256": "af8a8c739c55a4a85b298ec0d62683f5b2f03b38fc5ecf3f14bdfcea176b0055", "claim_count": 8}, "after": {"id": 58, "slug": "galaxy-evolution-v2", "version_num": 4, "content_length": 11855, "content_sha256": "af8a8c739c55a4a85b298ec0d62683f5b2f03b38fc5ecf3f14bdfcea176b0055", "claim_count": 8}, "unchanged": true}, "source_summary": {"claim_count": 8, "evidence_row_count": 102, "trust_counts": {"consensus": 3, "debated": 5}, "machine_stance_counts": {"none": 102}, "risk_counts": {"consensus_label_needs_human_support_check": 61, "same_source_repeated_within_claim": 64, "metadata_cleanup_needed": 76, "high_impact_claim": 77, "nuance_or_counter_language_present": 28, "debated_label_needs_direction_check": 41}, "all_rows_have_zero_votes": true, "all_machine_stance_none": true}, "summary": {"source_rows": 102, "priority_rows": 28, "assistant_recommendation_counts": {"nuance_only": 10, "drop_no_effect": 8, "count_as_support": 4, "route_as_new_claim": 2, "count_as_weakening": 4}, "claims_touched": [2929, 2930, 2931, 2932, 2933, 2934], "consensus_priority_rows": 18, "debated_priority_rows": 10}, "claim_impacts": [{"claim_id": 2929, "claim_trust": "consensus", "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "assistant_counts": {"nuance_only": 6, "drop_no_effect": 1}, "likely_state_if_accepted": "unchanged_pending_human_gold", "concern": ""}, {"claim_id": 2930, "claim_trust": "consensus", "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "assistant_counts": {"drop_no_effect": 4, "count_as_support": 3}, "likely_state_if_accepted": "possible_support_after_dedupe_and_human_confirmation", "concern": "Support-looking rows still need dedupe/source-family review."}, {"claim_id": 2931, "claim_trust": "debated", "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "assistant_counts": {"nuance_only": 1, "route_as_new_claim": 2, "drop_no_effect": 1, "count_as_support": 1}, "likely_state_if_accepted": "possible_support_after_dedupe_and_human_confirmation", "concern": "Support-looking rows still need dedupe/source-family review."}, {"claim_id": 2932, "claim_trust": "debated", "claim_text": "Galaxy environment correlates with morphological transformation and color evolution, with dense regions hosting predominantly quenched early-type systems.", "assistant_counts": {"count_as_weakening": 2, "nuance_only": 1}, "likely_state_if_accepted": "unchanged_pending_human_gold", "concern": ""}, {"claim_id": 2933, "claim_trust": "debated", "claim_text": "Environmental quenching signatures, including ram-pressure stripping, are observed at high redshift, linking environment to rapid quenching in the early Universe.", "assistant_counts": {"count_as_weakening": 1, "nuance_only": 1}, "likely_state_if_accepted": "unchanged_pending_human_gold", "concern": ""}, {"claim_id": 2934, "claim_trust": "consensus", "claim_text": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.", "assistant_counts": {"count_as_weakening": 1, "nuance_only": 1, "drop_no_effect": 2}, "likely_state_if_accepted": "consensus_should_remain_blocked_for_human_recheck", "concern": "At least one Hermes-assisted weakening recommendation touches a consensus claim."}], "priority_rows": [{"sample_id": "c2929-e28066", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 3, "evidence_id": 28066, "paper_title": "arXiv:2512.05584", "authors": "", "year": null, "arxiv_id": "2512.05584v2", "url": "https://arxiv.org/abs/2512.05584", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-007] We find that although the launch velocity of outflows in massive galaxies is higher, the gas cannot travel further than 100 kpc before falling back into the galaxy.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "medium", "assistant_rationale": "Outflow speed is acknowledged, but fallback within ~100 kpc weakens a simple “ejects gas into CGM / starvation” reading. Treat as a qualifier, not a full support vote.", "production_note": "possible weakening of unqualified ejection/starvation wording", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2929-e28074", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 7, "evidence_id": 28074, "paper_title": "Surveying the Whirlpool at Arcseconds with NOEMA (SWAN). IV. Extent of active galactic nucleus feedback on the interstellar medium", "authors": "Unknown Authors", "year": 2026, "arxiv_id": "2604.15438", "url": "https://arxiv.org/abs/2604.15438", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-015] Unlike multiple indicators of kinetic feedback, the AGN is not in a radiative efficient mode of feedback, based on Chandra and the Nuclear Spectroscopic Telescope Array (NuSTAR) observations that point to a Compton thick accretion with an Eddington ratio of 10 4 10^{4} ( Brightman2018ANuSTAR ) .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "low", "assistant_rationale": "Mode-specific AGN observation says the source is not radiatively efficient despite kinetic indicators; it does not directly establish galaxy-scale quenching.", "production_note": "do not count as direct support without surrounding paper context", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2929-e28082", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 11, "evidence_id": 28082, "paper_title": "arXiv:1507.06366", "authors": "", "year": null, "arxiv_id": "1507.06366v1", "url": "https://arxiv.org/abs/1507.06366", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-023] It is widely believed that “feedback” from massive stars is responsible for the demise of GMCs , but exactly how this works is still poorly understood.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "high", "assistant_rationale": "This is about massive-star feedback and GMC demise, not AGN feedback quenching by outflows or CGM heating.", "production_note": "exclude from AGN claim support count", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2929-e28087", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 14, "evidence_id": 28087, "paper_title": "arXiv:2009.11175", "authors": "", "year": null, "arxiv_id": "2009.11175v1", "url": "https://arxiv.org/abs/2009.11175", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-029] However, the AGN feedback effect is likely to be complex, involving a range of physical mechanisms on different spatial scales.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "high", "assistant_rationale": "The row explicitly says AGN feedback is complex and multi-scale; it supports caution around mechanism specificity, not the full consensus statement.", "production_note": "keep as caveat/source for nuanced prose", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2929-e28088", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 15, "evidence_id": 28088, "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations", "authors": "Aleyna Döven, Mohammadreza Ayromlou, Cristiano Porciani", "year": 2026, "arxiv_id": "2605.03008v1", "url": "https://arxiv.org/abs/2605.03008", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-030] Stellar feedback can regulate star formation in low- and intermediate-mass systems, but is generally insufficient to fully quench high-mass galaxies (Ciotti et al. , 1991 ; Springel and Hernquist, 2003 ) .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "medium", "assistant_rationale": "Stellar feedback being insufficient in high-mass galaxies indirectly motivates AGN feedback, but does not itself show AGN outflows eject/hear CGM gas.", "production_note": "possible background support only; not a direct stance row", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2929-e28095", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 18, "evidence_id": 28095, "paper_title": "arXiv:2009.11175", "authors": "", "year": null, "arxiv_id": "2009.11175v1", "url": "https://arxiv.org/abs/2009.11175", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-038] Although this feedback mode is often linked to winds driven by the radiation pressure of the central AGN (King & Pounds, 2015 ) , relativistic jets may play a significant role, even in cases in which the radio luminosity is relatively modest ( L 1.4 ​ GHz < 10 24 subscript 𝐿 1.4 GHz superscript 10 24 L_{1.4\\leavevmode\\nobreak\\ \\rm{GHz}}<10^{24} W Hz -1 ).", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "medium", "assistant_rationale": "Relativistic jets may matter even when radio luminosity is modest; this broadens the mechanism beyond radiation-pressure winds rather than directly proving starvation.", "production_note": "use as mechanism diversity nuance", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2929-e28108", "claim_id": 2929, "claim_order": 1, "claim_text": "Internal AGN feedback processes drive powerful outflows that eject gas or heat circumgalactic gas, quenching star formation via starvation.", "claim_trust": "consensus", "claim_evidence_count": 36, "claim_con_count": 0, "evidence_n": 19, "evidence_id": 28108, "paper_title": "arXiv:2009.11175", "authors": "", "year": null, "arxiv_id": "2009.11175v1", "url": "https://arxiv.org/abs/2009.11175", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-051] However, we do not yet fully understand how this feedback mechanism – jets acting on the cooler phases of the ISM – works in detail; there also remain considerable uncertainties about the masses and kinetic powers of the resulting jet-induced outflows, and the extent to which they can truly affect the evolution of the host galaxies.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "high", "assistant_rationale": "The row emphasizes uncertainty about jet-induced outflows and whether they truly affect host evolution. This should block overconfident support.", "production_note": "high-priority human review before any consensus support count", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2930-e28092", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 7, "evidence_id": 28092, "paper_title": "arXiv:arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880", "url": "https://arxiv.org/abs/arXiv:0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-034] We do not remove this indirect cold mode accretion but since some of the sub-resolution SKID identified groups are also cold clouds, we also remove all the gas that was accreted from progenitors below our resolution limit of 64 particles to make the effect of cloud removal more extreme.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "high", "assistant_rationale": "This describes an intentionally extreme simulation treatment of unresolved cold clumps, not an observational or calibrated statement that real gas removal suppresses star formation.", "production_note": "exclude or route to simulation-method caveat", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2930-e28093", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 8, "evidence_id": 28093, "paper_title": "arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880v2", "url": "https://arxiv.org/abs/0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-035] We do not remove this indirect cold mode accretion but since some of the sub-resolution SKID identified groups are also cold clouds, we also remove all the gas that was accreted from progenitors below our resolution limit of 64 particles to make the effect of cloud removal more extreme.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "high", "assistant_rationale": "Duplicate/source-version of the same cold-clump removal method note; not a direct evidence row for the claim.", "production_note": "dedupe with c2930-e28092 and exclude from support", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2930-e28097", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 9, "evidence_id": 28097, "paper_title": "arXiv:arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880", "url": "https://arxiv.org/abs/arXiv:0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-040] 2.2 Removing cold mode accretion in massive galaxies In K09, we showed that in Gadget-2 simulations massive halos contain many cold clumps of gas that are not identified by SKID as galaxies.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "medium", "assistant_rationale": "The row is essentially a section/method heading about removing cold-mode accretion in simulations; it lacks a stance-bearing result.", "production_note": "do not count as support", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2930-e28098", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 10, "evidence_id": 28098, "paper_title": "arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880v2", "url": "https://arxiv.org/abs/0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-041] 2.2 Removing cold mode accretion in massive galaxies In K09, we showed that in Gadget-2 simulations massive halos contain many cold clumps of gas that are not identified by SKID as galaxies.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "medium", "assistant_rationale": "Duplicate/source-version of a method/section note; lacks direct support for gas depletion suppressing star formation.", "production_note": "dedupe with c2930-e28097", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2930-e28101", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 11, "evidence_id": 28101, "paper_title": "arXiv:arXiv:2109.04488", "authors": "", "year": null, "arxiv_id": "2109.04488", "url": "https://arxiv.org/abs/arXiv:2109.04488", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-044] After an initial transient phase, this simple model reaches a quasi-equilibrium state in which the star formation rate is set by the condition that feedback expels all of the accreting gas that is not transformed into stars.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_support", "assistant_confidence": "medium", "assistant_rationale": "The row says feedback expels accreting gas not transformed into stars and sets a quasi-equilibrium SFR, matching gas supply suppression.", "production_note": "candidate support if source/context confirms feedback/gas-supply framing", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_pro"}, {"sample_id": "c2930-e28103", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 12, "evidence_id": 28103, "paper_title": "arXiv:arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880", "url": "https://arxiv.org/abs/arXiv:0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-046] These winds not only suppress galaxy masses in low-mass halos, but are also necessary to enrich the intergalactic medium with metals as observed.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_support", "assistant_confidence": "medium", "assistant_rationale": "The row says winds suppress galaxy masses and enrich the IGM, consistent with gas removal affecting galaxy growth.", "production_note": "candidate support, but dedupe with c2930-e28104/source-version", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_pro"}, {"sample_id": "c2930-e28104", "claim_id": 2930, "claim_order": 2, "claim_text": "Gas removal and depletion, including disrupted accretion and stripping of circumgalactic reservoirs, suppress star formation by reducing cold gas supply.", "claim_trust": "consensus", "claim_evidence_count": 18, "claim_con_count": 0, "evidence_n": 13, "evidence_id": 28104, "paper_title": "arXiv:0901.1880", "authors": "", "year": null, "arxiv_id": "0901.1880v2", "url": "https://arxiv.org/abs/0901.1880", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-047] These winds not only suppress galaxy masses in low-mass halos, but are also necessary to enrich the intergalactic medium with metals as observed.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_support", "assistant_confidence": "medium", "assistant_rationale": "Same substantive statement as c2930-e28103 with a cleaner arXiv id; supports wind-driven suppression but should be deduped.", "production_note": "candidate support; keep one of c2930-e28103/c2930-e28104", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_pro"}, {"sample_id": "c2931-e28099", "claim_id": 2931, "claim_order": 3, "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "claim_trust": "debated", "claim_evidence_count": 16, "claim_con_count": 0, "evidence_n": 4, "evidence_id": 28099, "paper_title": "arXiv:1308.5224", "authors": "", "year": null, "arxiv_id": "1308.5224v1", "url": "https://arxiv.org/abs/1308.5224", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-042] Thus, in showing a strong correlation between quenching and inner mass surface density (Section 3 ), we do not conclude that high mass density definitively causes quenching, but rather only that it tends to predict it.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "high", "assistant_rationale": "The source explicitly warns that high mass density predicts quenching but does not prove causation. This is a caveat to “mass as primary driver.”", "production_note": "use as causal-caution caveat", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2931-e28100", "claim_id": 2931, "claim_order": 3, "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "claim_trust": "debated", "claim_evidence_count": 16, "claim_con_count": 0, "evidence_n": 5, "evidence_id": 28100, "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations", "authors": "Aleyna Döven, Mohammadreza Ayromlou, Cristiano Porciani", "year": 2026, "arxiv_id": "2605.03008v1", "url": "https://arxiv.org/abs/2605.03008", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-043] Using the L-GALAXIES semi-analytic model, Vani et al. ( 2025 ) showed that although the quiescent stellar mass function is reasonably reproduced at low- z z , discrepancies grow rapidly toward earlier epochs: high-mass quenched galaxies ( M ⋆ ≳ 10 10.5 ) ({M_{\\star}}\\gtrsim 10^{10.5}) are strongly underabundant by z ∼ 3 z\\sim 3 and are largely absent beyond z ∼ 3 z\\sim 3 –3.5, motivating a reassessment of quenching models.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "route_as_new_claim", "assistant_confidence": "medium", "assistant_rationale": "This is a high-redshift model failure/tension about massive quenched galaxies, not a direct mass-vs-environment separability test.", "production_note": "route to high-z model tension / calibration bucket", "human_action_derived_if_accepted": "route_emergent", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2931-e28106", "claim_id": 2931, "claim_order": 3, "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "claim_trust": "debated", "claim_evidence_count": 16, "claim_con_count": 0, "evidence_n": 6, "evidence_id": 28106, "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations", "authors": "Aleyna Döven, Mohammadreza Ayromlou, Cristiano Porciani", "year": 2026, "arxiv_id": "2605.03008v1", "url": "https://arxiv.org/abs/2605.03008", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-049] TNG300 , despite its volume being nearly ten times larger than SIMBA , does not predict any quenched galaxies in the relevant stellar mass range.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "route_as_new_claim", "assistant_confidence": "medium", "assistant_rationale": "TNG300 lacking quenched galaxies in the relevant mass range is a simulation tension, not direct support for primary-mass/secondary-environment regulation.", "production_note": "route to high-z model tension / simulation discrepancy", "human_action_derived_if_accepted": "route_emergent", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2931-e28113", "claim_id": 2931, "claim_order": 3, "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "claim_trust": "debated", "claim_evidence_count": 16, "claim_con_count": 0, "evidence_n": 7, "evidence_id": 28113, "paper_title": "Small and Complex II: Characterizing the Disk and Stellar Envelope of Edge-on $z \\sim 0$ Massive Compact Galaxies", "authors": "[\"A. Schnorr-M\\\\\\\"uller, K. Slodkowski Clerici, F. Pinna, R. Merib-Dias, M. Trevisan, T. V. Ricci, F. Ferrari, A. C. Santiago-Menezes, W. L. Becker, F. Palacios\"]", "year": 2026, "arxiv_id": "2605.25075", "url": "https://arxiv.org/abs/2605.25075", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-056] Some overlap exists in the stellar mass–effective radius plane, but excluding the overlapping galaxies does not significantly impact our results.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "medium", "assistant_rationale": "Overlap in stellar mass–effective radius plane is too indirect for the claim about mass and environment drivers.", "production_note": "exclude unless full paper context links it back", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2931-e28161", "claim_id": 2931, "claim_order": 3, "claim_text": "Galaxy quenching is jointly regulated by stellar mass as the primary driver and environment as a secondary modulator, with separable effects.", "claim_trust": "debated", "claim_evidence_count": 16, "claim_con_count": 0, "evidence_n": 16, "evidence_id": 28161, "paper_title": "arXiv:1308.5224", "authors": "", "year": null, "arxiv_id": "1308.5224v1", "url": "https://arxiv.org/abs/1308.5224", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-128] For example, below a critical stellar mass, M ∗ ∼ 3 × 10 10 ​ M ⊙ similar-to subscript 𝑀 3 superscript 10 10 subscript 𝑀 direct-product M_{*}\\sim 3\\times 10^{10}\\,M_{\\odot} , galaxies typically are young and actively forming stars, while above this value, galaxies are predominantly old and not star-forming (Kauffmann et al., 2003b ) .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_support", "assistant_confidence": "medium", "assistant_rationale": "The row states a stellar-mass threshold below/above which galaxies are generally star-forming vs old/not star-forming, directly supporting a mass-linked quenching component.", "production_note": "candidate support for mass-driver portion only", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_pro"}, {"sample_id": "c2932-e28064", "claim_id": 2932, "claim_order": 4, "claim_text": "Galaxy environment correlates with morphological transformation and color evolution, with dense regions hosting predominantly quenched early-type systems.", "claim_trust": "debated", "claim_evidence_count": 12, "claim_con_count": 0, "evidence_n": 1, "evidence_id": 28064, "paper_title": "arXiv:1509.05779", "authors": "", "year": null, "arxiv_id": "1509.05779v2", "url": "https://arxiv.org/abs/1509.05779", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-005] However, Schawinski et al. ( 2014 ) showed that selecting transitioning objects based on color leads to an overestimation of morphologically transforming objects, as the majority of green valley objects are not those undergoing the rapid morphological transformation from spiral to elliptical, but were mainly spiral galaxies that were undergoing secular evolution.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_weakening", "assistant_confidence": "high", "assistant_rationale": "The row says color-selected transition objects overestimate morphological transformation; this weakens a simple morphology/color evolution correlation.", "production_note": "human re-review before keeping as debated support", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_con"}, {"sample_id": "c2932-e28086", "claim_id": 2932, "claim_order": 4, "claim_text": "Galaxy environment correlates with morphological transformation and color evolution, with dense regions hosting predominantly quenched early-type systems.", "claim_trust": "debated", "claim_evidence_count": 12, "claim_con_count": 0, "evidence_n": 2, "evidence_id": 28086, "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations", "authors": "Aleyna Döven, Mohammadreza Ayromlou, Cristiano Porciani", "year": 2026, "arxiv_id": "2605.03008v1", "url": "https://arxiv.org/abs/2605.03008", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-028] Simulated galaxies with UVJ colours consistent with the observed quenched systems are found among both centrals and satellites, although centrals dominate.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "nuance_or_counter_language_present"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "medium", "assistant_rationale": "Quenched analogues occur among centrals and satellites, with centrals dominating; this qualifies a dense-environment interpretation.", "production_note": "use as nuance against over-environmental reading", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2932-e28105", "claim_id": 2932, "claim_order": 4, "claim_text": "Galaxy environment correlates with morphological transformation and color evolution, with dense regions hosting predominantly quenched early-type systems.", "claim_trust": "debated", "claim_evidence_count": 12, "claim_con_count": 0, "evidence_n": 3, "evidence_id": 28105, "paper_title": "arXiv:1509.05779", "authors": "", "year": null, "arxiv_id": "1509.05779v2", "url": "https://arxiv.org/abs/1509.05779", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-048] This shows that removing all star-forming material before transitioning is not a requirement in a galaxy’s transformation from blue to red.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "same_source_repeated_within_claim", "metadata_cleanup_needed", "nuance_or_counter_language_present"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_weakening", "assistant_confidence": "medium", "assistant_rationale": "The row says removing all star-forming material is not required for blue-to-red transformation, weakening a strong environmental/morphological transformation story.", "production_note": "candidate weakening/caveat", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_con"}, {"sample_id": "c2933-e28079", "claim_id": 2933, "claim_order": 5, "claim_text": "Environmental quenching signatures, including ram-pressure stripping, are observed at high redshift, linking environment to rapid quenching in the early Universe.", "claim_trust": "debated", "claim_evidence_count": 8, "claim_con_count": 0, "evidence_n": 1, "evidence_id": 28079, "paper_title": "arXiv:arXiv:1712.04452", "authors": "", "year": null, "arxiv_id": "1712.04452", "url": "https://arxiv.org/abs/arXiv:1712.04452", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-020] The results of Abramson et al. ( 2016 ) however show that it is not necessary to assume a change in quenching mechanism to obtain early-time rapid and late-time slower quenching.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "metadata_cleanup_needed", "nuance_or_counter_language_present"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_weakening", "assistant_confidence": "medium", "assistant_rationale": "The row says early rapid and late slow quenching can be obtained without assuming a change in quenching mechanism, which weakens an environment-linked high-redshift rapid-quenching interpretation.", "production_note": "candidate weakening/caveat", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_con"}, {"sample_id": "c2933-e28090", "claim_id": 2933, "claim_order": 5, "claim_text": "Environmental quenching signatures, including ram-pressure stripping, are observed at high redshift, linking environment to rapid quenching in the early Universe.", "claim_trust": "debated", "claim_evidence_count": 8, "claim_con_count": 0, "evidence_n": 2, "evidence_id": 28090, "paper_title": "arXiv:1308.5224", "authors": "", "year": null, "arxiv_id": "1308.5224v1", "url": "https://arxiv.org/abs/1308.5224", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-032] However, they may represent the dominant quenching channel in the early universe (e.g., Whitaker et al., 2012 ; Barro et al., 2013 ) .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["debated_label_needs_direction_check", "metadata_cleanup_needed", "nuance_or_counter_language_present"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "low", "assistant_rationale": "The phrase “they may represent the dominant quenching channel” is too ambiguous without antecedent context, despite possible early-Universe relevance.", "production_note": "requires full-paper/context review before support", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2934-e28061", "claim_id": 2934, "claim_order": 6, "claim_text": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.", "claim_trust": "consensus", "claim_evidence_count": 7, "claim_con_count": 0, "evidence_n": 1, "evidence_id": 28061, "paper_title": "The role of environment and AGN feedback in quenching local galaxies: Comparing cosmological hydrodynamical simulations to the SDSS", "authors": "[\"Paul H. Goubert\", \"Asa F. L. Bluck\", \"Joanna M. Piotrowska\", \"Roberto Maiolino\"]", "year": 2024, "arxiv_id": "2401.12953", "url": "https://arxiv.org/abs/2401.12953", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-001] In Bluck et al. ( 2020b ) , the quiescence of high mass satellites is shown to behave much like centrals, i.e. exhibiting a strong correlation with central velocity dispersion, although with the notable difference of a weak secondary dependence on environmental parameters.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "count_as_weakening", "assistant_confidence": "high", "assistant_rationale": "High-mass satellites behaving much like centrals, with only weak environmental dependence, weakens the claim’s satellite/environment distinctness.", "production_note": "high-priority human re-review before consensus count", "human_action_derived_if_accepted": "keep_vote", "should_count_derived_if_accepted": "yes_con"}, {"sample_id": "c2934-e28067", "claim_id": 2934, "claim_order": 6, "claim_text": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.", "claim_trust": "consensus", "claim_evidence_count": 7, "claim_con_count": 0, "evidence_n": 2, "evidence_id": 28067, "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations", "authors": "Aleyna Döven, Mohammadreza Ayromlou, Cristiano Porciani", "year": 2026, "arxiv_id": "2605.03008v1", "url": "https://arxiv.org/abs/2605.03008", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-008] Although environmental quenching is most efficient for satellite galaxies, central galaxies, particularly those located in the vicinity of high-mass halos, can also lose gas and quench through ram-pressure stripping by the surrounding hot gas (Wetzel et al. , 2012 ; Ayromlou et al. , 2021b ) .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "same_source_repeated_within_claim", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "nuance_only", "assistant_confidence": "high", "assistant_rationale": "The row supports satellite efficiency but also says some centrals near high-mass halos can lose gas/quench by ram pressure; it qualifies “distinct from centrals.”", "production_note": "use as nuance, not clean support", "human_action_derived_if_accepted": "refine_base_sentence", "should_count_derived_if_accepted": "refine_only"}, {"sample_id": "c2934-e28094", "claim_id": 2934, "claim_order": 6, "claim_text": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.", "claim_trust": "consensus", "claim_evidence_count": 7, "claim_con_count": 0, "evidence_n": 4, "evidence_id": 28094, "paper_title": "arXiv:arXiv:1712.04452", "authors": "", "year": null, "arxiv_id": "1712.04452", "url": "https://arxiv.org/abs/arXiv:1712.04452", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-036] Under this paradigm, we should not necessarily expect to observe the imprints of quenching processes in the properties of quiescent galaxies.", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "medium", "assistant_rationale": "The row says quiescent galaxies may not preserve imprints of quenching processes; it does not directly support post-infall satellite quenching.", "production_note": "exclude or route to observability caveat", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}, {"sample_id": "c2934-e28112", "claim_id": 2934, "claim_order": 6, "claim_text": "Satellite galaxies experience environmental quenching after infall into groups or clusters, distinct from mass-driven quenching in centrals.", "claim_trust": "consensus", "claim_evidence_count": 7, "claim_con_count": 0, "evidence_n": 5, "evidence_id": 28112, "paper_title": "arXiv:0906.2900", "authors": "", "year": null, "arxiv_id": "0906.2900v2", "url": "https://arxiv.org/abs/0906.2900", "summary": "[page58_neutral_seed_v1 gold_id=stance2b-055] Subsequent accretion of satellite galaxies observed around some z ∼ similar-to \\sim 2 radio galaxies is likely not sufficient to significantly alter these properties [ 19 , 21 ] .", "machine_stance": "none", "status": "active", "votes_agree": 0, "votes_disagree": 0, "comments_count": 0, "relevance": null, "entailment": null, "rigor": null, "confidence": null, "quality_v2": null, "risk_tags": ["consensus_label_needs_human_support_check", "metadata_cleanup_needed", "nuance_or_counter_language_present", "high_impact_claim"], "machine_bucket": "needs_human_direction", "human_final_decision": "", "human_action_derived": "", "should_count_derived": "", "review_notes": "", "completion_source": "Hermes-assisted triage, not human-gold", "assistant_recommendation": "drop_no_effect", "assistant_confidence": "medium", "assistant_rationale": "Subsequent accretion of satellites around high-z radio galaxies is not direct evidence for satellite environmental quenching after infall.", "production_note": "exclude from support count", "human_action_derived_if_accepted": "drop", "should_count_derived_if_accepted": "no_op"}], "safety_gates": {"go": ["human/Papa review of this triage", "export/compare decisions", "read-only rerun or expanded audit packet"], "no_go": ["DB writes", "page prose mutation", "public badge/trust changes", "threshold/tau retune", "final calibration claims"]}, "next_recommendation": "Human/Papa should review the 28-row priority triage, especially consensus rows with assistant count_as_weakening/drop recommendations, then upload/confirm human-gold decisions before any apply/write packet."}</script>
+  <script>
+    const PACKET = JSON.parse(document.getElementById('packet-data').textContent);
+    const rows = PACKET.priority_rows || [];
+    const STORAGE_KEY = 'nebulamind.galaxyEvidenceHumanCalibration.v20260627';
+    const REQUIRED_FIELDS = ['human_final_decision'];
+    const DECISIONS = {
+      count_as_support: { label: 'Count as support', action: 'keep_vote', should_count: 'yes_pro', klass: 'support' },
+      count_as_weakening: { label: 'Count as weakening', action: 'keep_vote', should_count: 'yes_con', klass: 'weak' },
+      nuance_only: { label: 'Nuance only', action: 'refine_base_sentence', should_count: 'refine_only', klass: 'nuance' },
+      drop_no_effect: { label: 'Drop / no effect', action: 'drop', should_count: 'no_op', klass: 'drop' },
+      route_as_new_claim: { label: 'Route as new claim', action: 'route_emergent', should_count: 'no_op', klass: 'route' },
+      needs_rerun_or_more_calibration: { label: 'Needs rerun / more calibration', action: 'rerun_or_expand_calibration', should_count: 'unclear', klass: 'nuance' },
+      unsure: { label: 'Unsure', action: 'unclear', should_count: 'unclear', klass: 'drop' }
+    };
+    const OPTIONAL_FIELDS = {
+      human_source_family_dedupe: ['unique_use_once','same_source_but_ok','same_source_dedupe','duplicate_do_not_count','metadata_cleanup_needed','unclear'],
+      human_threshold_action: ['safe_above_threshold','borderline_needs_rerun','below_threshold','not_applicable','unclear'],
+      human_reviewer_confidence: ['high','medium','low','unclear']
+    };
+    let labels = loadLabels();
+
+    function esc(value) {
+      return String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    }
+    function slug(value) { return String(value ?? '').replace(/[^a-zA-Z0-9_-]/g, '-'); }
+    function loadLabels() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'); }
+      catch (err) { return {}; }
+    }
+    function saveLabels() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(labels));
+      updateStats();
+    }
+    function labelFor(sampleId) {
+      if (!labels[sampleId]) labels[sampleId] = { sample_id: sampleId };
+      return labels[sampleId];
+    }
+    function rowCompletion(sampleId) {
+      const label = labels[sampleId] || {};
+      const filled = REQUIRED_FIELDS.filter(field => label[field]).length;
+      return { filled, total: REQUIRED_FIELDS.length, reviewed: filled === REQUIRED_FIELDS.length };
+    }
+    function derived(label) {
+      const decision = DECISIONS[label.human_final_decision] || { action: '', should_count: '' };
+      return { human_action_derived: decision.action, should_count_derived: decision.should_count };
+    }
+    function decisionClass(value) { return (DECISIONS[value] && DECISIONS[value].klass) || ''; }
+    function haystack(row) {
+      return [row.sample_id,row.claim_id,row.claim_text,row.claim_trust,row.evidence_id,row.paper_title,row.authors,row.year,row.arxiv_id,row.summary,row.assistant_recommendation,row.assistant_confidence,row.assistant_rationale,row.production_note,(row.risk_tags || []).join(' ')].join(' ').toLowerCase();
+    }
+    function passesFilters(row) {
+      const q = document.getElementById('search').value.trim().toLowerCase();
+      const claim = document.getElementById('claimFilter').value;
+      const rec = document.getElementById('recFilter').value;
+      const risk = document.getElementById('riskFilter').value;
+      const review = document.getElementById('reviewFilter').value;
+      const completion = rowCompletion(row.sample_id);
+      if (q && !haystack(row).includes(q)) return false;
+      if (claim && String(row.claim_id) !== claim) return false;
+      if (rec && row.assistant_recommendation !== rec) return false;
+      if (risk && !(row.risk_tags || []).includes(risk)) return false;
+      if (review === 'reviewed' && !completion.reviewed) return false;
+      if ((review === 'unreviewed' || review === 'incomplete') && completion.reviewed) return false;
+      return true;
+    }
+    function chipList(values, kind) {
+      return (values || []).map(v => `<span class="pill ${kind || ''}">${esc(String(v).replaceAll('_',' '))}</span>`).join('');
+    }
+    function makeChoiceButtons(sampleId, field, options, selected) {
+      return options.map(value => `<button type="button" class="choice ${decisionClass(value)} ${selected === value ? 'selected' : ''}" data-sample-id="${esc(sampleId)}" data-field="${esc(field)}" data-value="${esc(value)}">${esc((DECISIONS[value]?.label || value).replaceAll('_',' '))}</button>`).join('');
+    }
+    function renderRow(row) {
+      const label = labels[row.sample_id] || {};
+      const completion = rowCompletion(row.sample_id);
+      const d = derived(label);
+      const finalOptions = Object.keys(DECISIONS);
+      const sourceUrl = row.url ? `<a href="${esc(row.url)}" target="_blank" rel="noreferrer">source</a>` : 'source missing';
+      return `<article class="sample ${completion.reviewed ? 'reviewed' : 'incomplete'}" id="row-${slug(row.sample_id)}" data-row-sample="${esc(row.sample_id)}">
+        <div class="sample-head">
+          <div class="sample-title">
+            <span class="pill good">${esc(row.sample_id)}</span>
+            <span class="pill">claim ${esc(row.claim_id)} · evidence ${esc(row.evidence_id)}</span>
+            <span class="pill ${row.claim_trust === 'consensus' ? 'lock' : ''}">${esc(row.claim_trust)}</span>
+            <span class="pill warn">${esc(row.assistant_recommendation.replaceAll('_',' '))}</span>
+          </div>
+          <div class="pill ${completion.reviewed ? 'good' : 'warn'}">${completion.filled}/${completion.total} required</div>
+        </div>
+        <div class="pair">
+          <div class="claim-box"><strong>Base claim</strong><p>${esc(row.claim_text)}</p><p class="mini">Claim order ${esc(row.claim_order)} · current trust ${esc(row.claim_trust)} · evidence rows ${esc(row.claim_evidence_count)} · con count ${esc(row.claim_con_count)}</p></div>
+          <div class="claim-box"><strong>Evidence sentence</strong><p>${esc(row.summary)}</p><p class="mini">${esc(row.paper_title || '(untitled source)')} · ${esc(row.arxiv_id || 'no arXiv id')} · ${sourceUrl}</p></div>
+        </div>
+        <div class="assistant">
+          <p><strong>Assistant triage hint:</strong> ${esc(row.assistant_recommendation.replaceAll('_',' '))} · confidence ${esc(row.assistant_confidence)}. <span class="mini">This is not human-gold.</span></p>
+          <p>${esc(row.assistant_rationale)}</p>
+          <p class="mini"><b>Production note:</b> ${esc(row.production_note || 'none')}</p>
+          <div class="chips">${chipList(row.risk_tags, 'warn')}</div>
+        </div>
+        <details>
+          <summary>Machine/provenance details</summary>
+          <pre>${esc(JSON.stringify({
+            paper_title: row.paper_title,
+            authors: row.authors,
+            year: row.year,
+            arxiv_id: row.arxiv_id,
+            machine_stance: row.machine_stance,
+            status: row.status,
+            votes_agree: row.votes_agree,
+            votes_disagree: row.votes_disagree,
+            relevance: row.relevance,
+            entailment: row.entailment,
+            rigor: row.rigor,
+            confidence: row.confidence,
+            quality_v2: row.quality_v2,
+            completion_source: row.completion_source,
+            assistant_derived_if_accepted: row.human_action_derived_if_accepted + ' / ' + row.should_count_derived_if_accepted
+          }, null, 2))}</pre>
+        </details>
+        <div class="field-grid">
+          <fieldset class="required wide">
+            <legend>Human final decision</legend>
+            <div class="choice-row">${makeChoiceButtons(row.sample_id, 'human_final_decision', finalOptions, label.human_final_decision)}</div>
+            <p class="mini">Derived export columns now: <code>${esc(d.human_action_derived || 'not set')}</code> / <code>${esc(d.should_count_derived || 'not set')}</code>.</p>
+          </fieldset>
+          <fieldset class="optional">
+            <legend>Source-family / dedupe</legend>
+            <div class="choice-row">${makeChoiceButtons(row.sample_id, 'human_source_family_dedupe', OPTIONAL_FIELDS.human_source_family_dedupe, label.human_source_family_dedupe)}</div>
+          </fieldset>
+          <fieldset class="optional">
+            <legend>Threshold action</legend>
+            <div class="choice-row">${makeChoiceButtons(row.sample_id, 'human_threshold_action', OPTIONAL_FIELDS.human_threshold_action, label.human_threshold_action)}</div>
+          </fieldset>
+          <fieldset class="optional">
+            <legend>Reviewer confidence</legend>
+            <div class="choice-row">${makeChoiceButtons(row.sample_id, 'human_reviewer_confidence', OPTIONAL_FIELDS.human_reviewer_confidence, label.human_reviewer_confidence)}</div>
+          </fieldset>
+          <fieldset class="optional wide">
+            <legend>Human notes</legend>
+            <textarea data-sample-id="${esc(row.sample_id)}" data-notes-field="human_notes" placeholder="Optional: why this should count/drop/route, or what makes it unclear…">${esc(label.human_notes || '')}</textarea>
+          </fieldset>
+        </div>
+        <div class="mini-actions">
+          <span class="mini">Autosaved locally: ${esc(label.reviewed_at || 'not yet')}</span>
+          <button type="button" class="danger" data-clear-row="${esc(row.sample_id)}">Clear this row label</button>
+        </div>
+      </article>`;
+    }
+    function render() {
+      const visible = rows.filter(passesFilters);
+      const list = document.getElementById('sampleList');
+      list.innerHTML = visible.length ? visible.map(renderRow).join('') : '<div class="empty">No rows match these filters.</div>';
+      document.getElementById('visibleCount').textContent = `${visible.length} visible`;
+      bindRowControls();
+      updateStats();
+    }
+    function bindRowControls() {
+      document.querySelectorAll('[data-field][data-sample-id]').forEach(button => {
+        button.addEventListener('click', () => {
+          const sampleId = button.dataset.sampleId;
+          const field = button.dataset.field;
+          const value = button.dataset.value;
+          const label = labelFor(sampleId);
+          label[field] = label[field] === value ? '' : value;
+          label.reviewed_at = new Date().toISOString();
+          saveLabels();
+          render();
+          setMessage(`Saved ${sampleId}: ${field} = ${label[field] || 'cleared'}`);
+        });
+      });
+      document.querySelectorAll('textarea[data-notes-field]').forEach(textarea => {
+        textarea.addEventListener('input', () => {
+          const label = labelFor(textarea.dataset.sampleId);
+          label[textarea.dataset.notesField] = textarea.value;
+          label.reviewed_at = new Date().toISOString();
+          saveLabels();
+        });
+      });
+      document.querySelectorAll('[data-clear-row]').forEach(button => {
+        button.addEventListener('click', () => {
+          delete labels[button.dataset.clearRow];
+          saveLabels();
+          render();
+          setMessage(`Cleared local labels for ${button.dataset.clearRow}.`);
+        });
+      });
+    }
+    function updateStats() {
+      const reviewed = rows.filter(row => rowCompletion(row.sample_id).reviewed).length;
+      const remaining = rows.length - reviewed;
+      const pct = rows.length ? Math.round((reviewed / rows.length) * 100) : 0;
+      document.getElementById('reviewedCount').textContent = String(reviewed);
+      document.getElementById('remainingCount').textContent = String(remaining);
+      document.getElementById('progressBar').style.width = pct + '%';
+      document.getElementById('progressText').textContent = `${reviewed}/${rows.length} reviewed · ${remaining} remaining · labels saved in browser localStorage only`;
+    }
+    function setMessage(text) { document.getElementById('statusMessage').textContent = text; }
+    function enrichedRows() {
+      return rows.map(row => {
+        const label = labels[row.sample_id] || { sample_id: row.sample_id };
+        const d = derived(label);
+        return {
+          ...row,
+          human_final_decision: label.human_final_decision || '',
+          human_action_derived: d.human_action_derived,
+          should_count_derived: d.should_count_derived,
+          human_source_family_dedupe: label.human_source_family_dedupe || '',
+          human_threshold_action: label.human_threshold_action || '',
+          human_reviewer_confidence: label.human_reviewer_confidence || '',
+          human_notes: label.human_notes || '',
+          reviewed_at: label.reviewed_at || '',
+          human_review_status: rowCompletion(row.sample_id).reviewed ? 'reviewed' : 'incomplete'
+        };
+      });
+    }
+    function countsByDecision() {
+      return enrichedRows().reduce((acc, row) => {
+        const key = row.human_final_decision || 'unlabeled';
+        acc[key] = (acc[key] || 0) + 1;
+        return acc;
+      }, {});
+    }
+    function exportObject() {
+      const reviewed = rows.filter(row => rowCompletion(row.sample_id).reviewed).length;
+      return {
+        packet_kind: 'galaxy_evidence_human_calibration_labels',
+        review_only: true,
+        no_apply: true,
+        source_packet: 'galaxy-evidence-priority-triage-20260627.json',
+        source_authoritative_status: PACKET.authoritative_status,
+        exported_at_utc: new Date().toISOString(),
+        required_fields: REQUIRED_FIELDS,
+        counts: { total_rows: rows.length, reviewed_rows: reviewed, remaining_rows: rows.length - reviewed, decisions: countsByDecision() },
+        labels_by_sample_id: labels,
+        rows: enrichedRows()
+      };
+    }
+    function csvCell(value) {
+      return '"' + String(value ?? '').replaceAll('"','""') + '"';
+    }
+    function download(name, text, type) {
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([text], { type }));
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    }
+    function exportJson() {
+      download('galaxy-evidence-human-calibration-labels-20260627.json', JSON.stringify(exportObject(), null, 2), 'application/json');
+      setMessage('Exported filled JSON. Return that file for post-label calibration analysis.');
+    }
+    function exportCsv() {
+      const cols = ['sample_id','claim_id','claim_order','claim_trust','evidence_id','paper_title','authors','year','arxiv_id','url','summary','risk_tags','assistant_recommendation','assistant_confidence','assistant_rationale','production_note','human_final_decision','human_action_derived','should_count_derived','human_source_family_dedupe','human_threshold_action','human_reviewer_confidence','human_notes','reviewed_at','human_review_status'];
+      const lines = [cols.join(',')].concat(enrichedRows().map(row => cols.map(col => csvCell(col === 'risk_tags' ? (row.risk_tags || []).join('|') : row[col])).join(',')));
+      download('galaxy-evidence-human-calibration-labels-20260627.csv', lines.join(String.fromCharCode(10)), 'text/csv');
+      setMessage('Exported filled CSV. Return that file for post-label calibration analysis.');
+    }
+    function importJsonFile(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const imported = JSON.parse(String(reader.result || '{}'));
+          if (imported.labels_by_sample_id) labels = imported.labels_by_sample_id;
+          else if (imported.labels) labels = imported.labels;
+          else throw new Error('No labels_by_sample_id found');
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(labels));
+          render();
+          setMessage('Imported labels JSON and saved it to this browser.');
+        } catch (err) {
+          setMessage('Import failed: ' + err.message);
+        }
+      };
+      reader.readAsText(file);
+    }
+    function copyText(text) {
+      if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(text);
+      const textarea = document.createElement('textarea');
+      textarea.value = text;
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      textarea.remove();
+      return Promise.resolve();
+    }
+    function copyNextAction() {
+      const text = 'Use the exported Galaxy evidence human calibration JSON/CSV to run a post-label readiness analysis. Treat the labels as review input only; do not write to the DB, edit Galaxy prose, change trust badges, or retune thresholds without a separate backup/rollback/diff approval packet.';
+      copyText(text).then(() => setMessage('Copied safe next-action prompt.')).catch(err => setMessage('Copy failed: ' + err.message));
+    }
+    function clearFilters() {
+      ['search','claimFilter','recFilter','riskFilter','reviewFilter'].forEach(id => document.getElementById(id).value = '');
+      render();
+      setMessage('Cleared filters.');
+    }
+    function clearAllLabels() {
+      if (!confirm('Clear all local labels for this workspace in this browser? This does not touch exported files.')) return;
+      labels = {};
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+      setMessage('Cleared all local labels in this browser.');
+    }
+    function init() {
+      ['search','claimFilter','recFilter','riskFilter','reviewFilter'].forEach(id => document.getElementById(id).addEventListener('input', render));
+      document.getElementById('clearFilters').addEventListener('click', clearFilters);
+      ['exportCsvTop','exportCsvBottom'].forEach(id => document.getElementById(id).addEventListener('click', exportCsv));
+      ['exportJsonTop','exportJsonBottom'].forEach(id => document.getElementById(id).addEventListener('click', exportJson));
+      ['copyNextActionTop','copyNextActionBottom'].forEach(id => document.getElementById(id).addEventListener('click', copyNextAction));
+      ['importJsonTop','importJsonBottom'].forEach(id => document.getElementById(id).addEventListener('change', event => event.target.files[0] && importJsonFile(event.target.files[0])));
+      document.getElementById('clearAllLabels').addEventListener('click', clearAllLabels);
+      render();
+      window.GalaxyCalibrationWorkspace = { rows, labels, STORAGE_KEY, REQUIRED_FIELDS, exportObject, render, clearFilters };
+    }
+    init();
+  </script>
+</body>
+</html>

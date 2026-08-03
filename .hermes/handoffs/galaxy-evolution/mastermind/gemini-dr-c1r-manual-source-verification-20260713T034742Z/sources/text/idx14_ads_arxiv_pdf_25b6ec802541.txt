@@ -1,0 +1,2406 @@
+Mon. Not. R. Astron. Soc. 000, 1–21 (2015)
+Printed 29 June 2017
+(MN LATEX style ﬁle v2.2)
+The Romulus Cosmological Simulations: A Physical Approach to
+the Formation, Dynamics and Accretion Models of SMBHs
+M. Tremmel1⋆, M. Karcher2, F. Governato1, M. Volonteri 3, T. R. Quinn1,
+A. Pontzen4, L. Anderson1, J. Bellovary5
+1Astronomy Department, University of Washington, Box 351580, Seattle, WA, 98195-1580
+2Statistics Department, University of Washington Seattle, WA, 98195-1580
+3Sorbonne Universitès, UPMC Univ Paris 6 et CNRS, UMR 7095, Institut d‘Astrophysique de Paris, 98 bis bd Arago, 75014 Paris, France
+4 Department of Physics and Astronomy, University College London, 132 Hampstead Road, London, NW1 2PS, United Kingdom
+5 Department of Physics, Queensborough Community College, 222-05, 56th Avenue, Bayside, NY 11364
+29 June 2017
+ABSTRACT
+We present a novel implementation of supermassive black hole (SMBH) formation, dy-
+namics, and accretion in the massively parallel tree+SPH code, ChaNGa. This approach im-
+proves the modeling of SMBHs in fully cosmological simulations, allowing for a more de-
+tailed analysis of SMBH-galaxy co-evolution throughout cosmic time. Our scheme includes
+novel, physically motivated models for SMBH formation, dynamics and sinking timescales
+within galaxies, and SMBH accretion of rotationally supported gas. The sub-grid parameters
+that regulate star formation (SF) and feedback from SMBHs and SNe are optimized against a
+comprehensive set of z = 0 galaxy scaling relations using a novel, multi-dimensional param-
+eter search. We have incorporated our new SMBH implementation and parameter optimiza-
+tion into a new set of high resolution, large-scale cosmological simulations called Romulus.
+We present initial results from our ﬂagship simulation, Romulus25, showing that our SMBH
+model results in SF eﬃciency, SMBH masses, and global SF and SMBH accretion histories
+at high redshift that are consistent with observations. We discuss the importance of SMBH
+physics in shaping the evolution of massive galaxies and show how SMBH feedback is much
+more eﬀective at regulating star formation compared to SNe feedback in this regime. Further,
+we show how each aspect of our SMBH model impacts this evolution compared to more com-
+mon approaches. Finally, we present a science application of this scheme studying the prop-
+erties and time evolution of an example dual AGN system, highlighting how our approach
+allows simulations to better study galaxy interactions and SMBH mergers in the context of
+galaxy-BH co-evolution.
+Key words: Supermassive black holes: cosmological simulations: Numerical Methods
+1
+INTRODUCTION
+Supermassive Black Holes (SMBHs) are ubiquitous in galaxies
+across a wide range of masses. SMBHs are observed not only in
+massive galaxies (e.g. Gehren et al. 1984; Kormendy & Richstone
+1995; Kormendy & Ho 2013) but also in small, bulge-less disk
+galaxies (Shields et al. 2008; Filippenko & Ho 2003) as well as
+dwarfs (Reines et al. 2011; Reines & Deller 2012; Reines et al.
+2013; Moran et al. 2014). Accreting SMBHs lead to extremely en-
+ergetic events throughout cosmic time, including luminous z > 6
+quasars powered by SMBHs with masses as high as 109 M⊙(Fan
+et al. 2001; Mortlock et al. 2011).
+⋆email: mjt29@uw.edu
+Despite their importance to galaxy evolution theory, under-
+standing how these black holes form, the mechanisms that regu-
+late their growth, and in what ways they aﬀect their host galaxies
+are still open areas of study. Empirical scaling relations between
+SMBH mass and the stellar mass and velocity dispersion of their
+host galaxies are indicative of co-eval growth (Häring & Rix 2004;
+Gültekin & et al. 2009; Schramm & Silverman 2013; Kormendy
+& Ho 2013; Volonteri & Bellovary 2012). While there have been
+attempts to quantify the evolution of this relationship (e.g. Alexan-
+der et al. 2008; Bennert et al. 2011; Bongiorno et al. 2014; Sun
+et al. 2015), these high redshift observations can be highly biased
+(Lauer et al. 2007) and cannot eﬀectively probe lower mass galax-
+ies and black holes. There is also evidence that the relationships
+break down at low redshift for lower mass, star forming galax-
+ies (Reines & Volonteri 2015). Thus, understanding the genesis of
+© 2015 RAS
+arXiv:1607.02151v4  [astro-ph.GA]  27 Jun 2017
+
+
+2
+M. Tremmel et al.
+these empirical relations and their mass dependency requires pre-
+dictions from simulations that accurately follow SMBH growth in
+low mass (Mvir < 1010M⊙) halos at both high and low redshift.
+Previous works have been fundamental in showing how en-
+ergy from SMBH feedback is necessary to shape the bright end of
+the galaxy luminosity function, quench the formation of bulges in
+ﬁeld galaxies, and support a close causal connection between early
+rapid growth, galaxy mergers, and QSO and AGN activity (Di Mat-
+teo et al. 2005; Teyssier et al. 2011; Sijacki et al. 2015; Schaye
+et al. 2015; Bonoli et al. 2016; Volonteri et al. 2016a). With spa-
+tial resolutions of the order of 10s to 100s of pc, physical processes
+involved in SMBH accretion, feedback, and dynamics are necessar-
+ily implemented in cosmological simulations via sub-grid prescrip-
+tions, under the broad assumption that conditions at the smallest
+resolved scale drive the SMBH evolution at much smaller scales.
+However, the simpliﬁcations inherent in these sub-grid models
+can hinder our understanding of the connection between galaxy and
+SMBH evolution and growth, in particular our ability to predict the
+merging rate of binary SMBHs and how the inﬂow of gas onto the
+host galaxy (Bellovary et al. 2013) feeds their growth. For exam-
+ple, a common treatment of SMBH dynamics is to assume they are
+always stable at the center of their host galaxies, often obtained by
+shifting a SMBH towards the nearest potential minimum (Sijacki
+et al. 2015), a process we refer to as ‘advection’. This approach fails
+to capture the Gyr timescale of sinking orbits for black holes dur-
+ing satellite accretions or galaxy mergers (Governato et al. 1994;
+Taﬀoni et al. 2003; Tremmel et al. 2015) resulting in an unrealistic
+coupling of SMBH and galaxy mergers, as well as artiﬁcially high
+accretion rates during these perturbing events. Furthermore, SMBH
+accretion is commonly calculated via a boosted Bondi-Hoyle pre-
+scription (e.g. Booth & Schaye 2009), but the assumptions of this
+approach break down for gas supported by rotation rather than in-
+ternal pressure (Hopkins & Quataert 2010). Finally, SMBH ‘seeds’
+have often been placed based on the host halo mass irrespective of
+the local gas properties (Bonoli et al. 2016). This approach leads
+to a protracted epoch of SMBH formation and an occupation prob-
+ability artiﬁcially connected to the observed population of active
+SMBHs, rather than to physically motivated models of SMBH for-
+mation, which predict seeds that form at very high redshift (Begel-
+man et al. 2006; Volonteri 2012).
+The main goal of this Paper is to present a set of novel imple-
+mentations of SMBH physics, improving on the way SMBH for-
+mation, dynamics, and accretion are handled with sub-grid models
+in cosmological simulations. Speciﬁcally we:
+• Connect SMBH seed formation to dense, very low metallicity
+gas which allows us to predict the SMBH population in both high
+mass galaxies and dwarf galaxies.
+• Incorporate the sub-grid model for dynamical friction pre-
+sented in Tremmel et al. (2015) so that SMBHs experience real-
+istic dynamical evolution, allowing us to predict SMBH dynamics,
+the frequency and mass ratio distribution of SMBH mergers, and
+SMBH growth during galaxy interactions.
+• Introduce a new sub-grid model for SMBH accretion that nat-
+urally accounts for the angular momentum support of nearby gas
+at resolved scales. This creates a more physical picture of how,
+when, and where SMBHs grow compared to the more common
+Bondi-Hoyle prescription, while avoiding the additional assump-
+tions and free parameters required by other current methods (e.g.
+Rosas-Guevara et al. 2015; Anglés-Alcázar et al. 2017).
+We also outline a novel approach to constrain ‘free’ parame-
+ters within simulations, speciﬁcally those that govern star forma-
+tion and stellar feedback as well as SMBH growth and feedback.
+Due to the computational cost, simulation studies have often relied
+on rerunning a small number of large volumes while only chang-
+ing one parameter at a time (e.g. Schaye et al. 2015), only rarely
+running grids of simpliﬁed models (Governato et al. 2007). In this
+work we use a quantitative and eﬃcient strategy, based on a large
+number of ‘zoomed-in’ cosmological simulations, to decide the op-
+timal combination of sub-grid SF and SMBH related parameters for
+a given set of physical modules and resolution. This general strat-
+egy is not speciﬁc to our simulations and can be easily applied to
+any set of free parameters that govern any relevant physical pro-
+cesses.
+In §2 we describe the simulations and in §3 we discuss the
+sub-grid parameter optimization technique. We describe the sub-
+grid models for star formation and feedback in §4 and our novel
+approach to SMBH physics in §5. In §6 we present results from our
+ﬂagship 25 Mpc volume, in §7 we discuss the role of SMBH feed-
+back in limiting star formation compared to SN feedback alone,
+and in §8 we show how more common implementations of SMBH
+physics result in appreciably diﬀerent galaxies compared to our im-
+plementation. Finally, in §9 we present an example that illustrates
+how our SMBH implementation allows us to study dual AGN in
+unprecedented detail and in §10 we summarize our results. In Ap-
+pendix A and B we discuss the rationale behind our sub-grid pa-
+rameter optimization approach and explain our model for post pro-
+cessing dust absorption.
+2
+THE ROMULUS SIMULATIONS
+2.1
+ChaNGa
+The simulations are run using the new Tree + SPH code ChaNGa
+(Menon et al. 2015), which includes standard physics modules pre-
+viously used in GASOLINE (Wadsley et al. 2004, 2008; Stinson
+et al. 2006; Shen et al. 2010) such as a cosmic UV background,
+star formation,‘blastwave’ SN feedback and low temperature metal
+cooling. The ‘blastwave’ implementation of SN feedback is a well
+tested approach that has been shown to reliably reproduce observ-
+able properties of galaxies, including cored dark matter proﬁles in
+dwarf galaxies (Governato et al. 2010). This is distinct from ‘su-
+per bubbles’ (Keller et al. 2014), a newer approach to SN feedback
+that will be implemented in future simulations.. The SPH imple-
+mentation includes thermal diﬀusion (Shen et al. 2010) and elim-
+inates artiﬁcial gas surface tension through the use of a geomet-
+ric mean density in the SPH force expression (Ritchie & Thomas
+2001; Menon et al. 2015; Governato et al. 2015). This update accu-
+rately simulates shearing ﬂows with Kelvin-Helmholtz instabilities.
+Our ﬂagship simulation, Romulus25, used up to 100,000 cores with
+good scaling. ChaNGa (Menon et al. 2015) is part of the AGORA
+(Kim et al. 2014) code comparison collaboration.
+2.2
+Simulation Properties
+In addition to our ﬂagship 25 Mpc per side uniform, periodic vol-
+ume simulation (Romulus25), we are currently running a set of
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+3
+three zoom-in cluster simulations (RomulusC) comprising halos of
+mass 1014 −1015 M⊙as well as a 50 Mpc per side uniform volume
+(Romulus50). Both Romulus25 and RomulusC will be run to z = 0
+and Romulus50 will be run to z = 2. See Table 1 for a list of sim-
+ulations and parameters. We use Romulus25 for the analysis in this
+paper because it provides a large, uniform sample of low redshift
+galaxies. Smaller 8 Mpc uniform volume simulations are also used
+for our comparative studies (see §7 and §8).
+The simulations are run assuming a ΛCDM cosmology fol-
+lowing the most recent results from Planck (Ω0 = 0.3086, Λ =
+0.6914, h= 0.67, σ8 = 0.77; Planck Collaboration et al. 2015) and
+at the same resolution, with a Plummer equivalent force softening
+of 250 pc. Unlike many similar cosmological runs, the dark mat-
+ter distribution is oversampled, such that we simulate 3.375 times
+more dark matter particles than gas particles, resulting in a dark
+matter particle mass of 3.39 × 105 M⊙and gas particle mass of
+2.12 × 105 M⊙. This is an important shift from the standard ap-
+proach of simulating the same number of gas and dark matter parti-
+cles, as it allows us to decrease numerical noise and allow for more
+accurate black hole dynamics (Tremmel et al. 2015). Our mass res-
+olution is better than recent large volume simulations (Sijacki et al.
+2015; Volonteri et al. 2016a) and our force resolution is compara-
+ble to the highest resolution runs of the EAGLES series (Schaye
+et al. 2015). Spline force softening converges to a Newtonian force
+at scales twice the gravitational softening, ϵg.
+In order to showcase the results of our model and compare
+with other common SMBH implementations, we also run a series
+of 8 Mpc per side uniform volume simulations with diﬀerent real-
+izations of SMBH physics, as well as a simulation with no SMBHs
+and an enhanced SN feedback eﬃciency. These smaller simula-
+tions (e.g. Romulus8) have the same cosmology and resolution as
+our main Romulus dataset. Romulus25, along with the 8 Mpc runs,
+make up the data used in the analysis presented in this Paper. For a
+complete list of simulations, see Table 1.
+2.3
+Halo and Galaxy Extraction
+For all simulations referred to in this work, we use the Amiga Halo
+Finder (Knollmann & Knebe 2009) to extract individual halos. We
+calculate galaxy properties based on all of the particles within a
+given halo. However, for a better ‘apples-to-apples’ comparison
+with observational results, we utilize the corrections from Munshi
+et al. (2013) to account for the mass of stars missed in observations
+and the baryonic eﬀects on halo mass not accounted for in dark
+matter only (DMO) simulations. These corrections have been cali-
+brated for halos with virial mass 108 −1012M⊙and are shown to be
+roughly constant across this range. Speciﬁcally, M⋆,obs = 0.6 M⋆,sim
+and Mvir,sim =0.8 Mvir,DMO. We apply these corrections to halos with
+Mvir as large as 1013M⊙. In these halos, such corrections are partic-
+ularly necessary, as ∼40% of stars exist far from halo center, either
+in an extended stellar halo or in satellite galaxies, and would not be
+included in observational estimates for stellar mass.
+3
+SUB-GRID PARAMETERS OPTIMIZATION
+In ChaNGa, SF and SMBH physics are regulated through a series
+of sub-grid prescriptions that parameterize unresolved physics into
+several free parameters. In order to set these parameters to their
+optimal values we employ a quantitative optimization technique to
+map out the suitability of the parameter space and near-converge on
+the ‘best’ parameters. The idea of this approach is similar to that of
+Bower et al. (2010), but tailored speciﬁcally for more complicated
+simulations where only a few galaxies can be run with 10s of dif-
+ferent parameter combinations. A summary of the procedure is the
+following (see Appendix A for a more detailed description):
+(i) We simulate a large number of sets of 4 ‘zoomed-in’ galaxies
+(Governato et al. 2007, 2009) at the same resolution as Romulus,
+with halo masses ranging from 1010.5 to 1012 M⊙, with dozens of
+diﬀerent sub-grid parameter realizations.
+(ii) We compare the properties of the resulting galaxies to local
+empirical scaling relations, grading each parameter set accordingly
+based on the logarithmic distance of each galaxy from the rela-
+tion.The score of each parameter realization is then the sum of the
+distance (in log space) of each halo from each empirical relation.
+(iii) The procedure is repeated, each time sampling in more de-
+tail around the best graded models until a best set of parameters is
+converged upon. The Kriging algorithm (see Appendix A) is used
+to eﬃciently explore parameter space and determine convergence.
+A ﬁrst set of simulations was run with only SF physics and
+with higher weight placed on reproducing the observed properties
+of lower mass galaxies, where the eﬀect of SMBH physics should
+be less important. The parameters searched were the local SF eﬃ-
+ciency, the density threshold for SF, and the fraction of SN energy
+coupled to the surrounding gas (see §4). Once the best SF parame-
+ters were identiﬁed (with the SN eﬃciency being the most impor-
+tant overall), a second set of galaxies was run including SMBHs
+physics, leaving the SF parameters unchanged but varying 1) the
+SMBH accretion and 2) energy coupling eﬃciencies (see §5.3).
+For results from the SF parameter search, we point the reader to
+Appendix A and Anderson et al. (2017).
+The z=0 relations used to grade the galaxy sets were: 1) The
+stellar mass - halo mass relation, 2) The HI gas fraction as a func-
+tion of stellar mass1, 3) The galaxy speciﬁc angular momentum
+vs stellar mass, and 4) The SMBH mass vs stellar mass (SMBHs
+only). The ﬁrst two scaling relations (Moster et al. 2013; Cannon
+et al. 2011; Haynes et al. 2011) allow us to respectively constrain
+the SF eﬃciency over the whole Hubble time, and the low redshift
+gas depletion time (i.e the recent SF rates). Our simulations follow
+the HI abundance of gas so MHI is derived explicitly from the to-
+tal gas content of each halo. The relationship between stellar mass,
+angular momentum, and morphology (Obreschkow & Glazebrook
+2014) is a useful proxy of galaxy sizes as well as the removal of low
+angular momentum gas through feedback processes. The MBH-M⋆
+relation (Schramm & Silverman 2013) is a ﬁnal test speciﬁc for
+SMBH physics. These four scaling relations control several fun-
+damental aspects of galaxy formation connected to the regulation
+of SF, angular momentum evolution, and the growth of SMBHs.
+Taken together they provide useful, low-z constraints to our model
+without unconsciously biasing our eﬀort to reproduce one speciﬁc
+scaling relation. For the sake of simplicity and to avoid biasing the
+analysis, we use just the raw logarithmic distance from each re-
+lation to determine the plausibility of each parameter set, imple-
+menting no weighting between diﬀerent relations. However, we do
+exclude the dwarf galaxy from the morphological and SMBH rela-
+tions, as explained in Appendix A.
+When applied to setting three star formation parameters, the
+1 ALFALFA data from private correspondence with Jessica Rosenberg.
+© 2015 RAS, MNRAS 000, 1–21
+
+
+4
+M. Tremmel et al.
+technique was able to converge with little user input after 27 re-
+alizations (a total of 80 simulations; see Appendix A). For two
+SMBH parameters, we were able to ﬁnd a suitable parameter set
+after 12 realizations (a total of 48 simulations; see §5.5).
+This ‘zoomed-in’ approach to parameter optimization allows
+us to eﬃciently explore the parameter space without having to sim-
+ulate as many parameter realizations as would be required for a
+standard random-walk Markov-chain. It presents several advan-
+tages over shutting oﬀor including individual physics modules
+(Genel et al. 2014) or to running a small cosmological volume mul-
+tiple times (Schaye et al. 2015, 2010), the main issue being that
+running large simulations, particularly those at high resolution, is
+computationally expensive and will result in only a very limited pa-
+rameter space exploration. Using this approach, the non linear ef-
+fect of changing more than one parameter at a time can now be fol-
+lowed and the search for best parameters can cover the mass range
+of the ﬁnal, large scale simulation (which tend to have more mas-
+sive halos than small test volumes). Finally the set of zoomed-in
+runs provides a useful post main run framework to understand sig-
+niﬁcant deviations from observed properties of galaxies or SMBHs
+should they emerge from the production runs.
+4
+STAR FORMATION PHYSICS
+As in our standard implementation (Stinson et al. 2006) for runs at
+this resolution, star formation (SF) is regulated by:
+(i) the normalization of the SF eﬃciency, c⋆, used to calculate
+the probability of creating a star particle from gas with dynamical
+time tdyn and characteristic star formation time, ∆t, assumed to be
+106 yr
+p = mgas
+mstar
+(1 −e−c⋆∆t/tdyn),
+(1)
+(ii) The fraction of SNe energy that is coupled to the ISM
+(iii) the minimum density (n⋆) and maximum temperature (T⋆)
+thresholds beyond which cold gas is allowed to form stars.
+The ﬁnal values adopted for these three sub-grid parameters are:
+• SF eﬃciency c⋆= 0.15
+• Gas temperature threshold, T⋆= 104 K
+• Gas density threshold, n⋆= 0.2 mp/cc)
+• SNe energy coupling eﬃciency, ϵS N, of 75%
+SN feedback adopts the ‘blastwave’ implementation (Stinson
+et al. 2006). Gas cooling is regulated by metal abundance as in
+Guedes et al. (2011) and SPH hydrodynamics and thermal and
+metal diﬀusion are described in Shen et al. (2010) and Governato
+et al. (2015). Our simulations do not include H2 cooling as their res-
+olution is not suﬃcient to model individual star forming regions.
+We use a Kroupa IMF (Kroupa 2001), with the associated metal
+yields.
+It is important to note that without SMBH feedback, param-
+eters that work the best for dwarf galaxies based on our grading
+criteria (see §3) are diﬀerent from those that work best for higher
+mass galaxies. The parameters used here represent those that grade
+the highest when dwarf galaxy results are more heavily weighted.
+The idea is to start with a SF model that performs very well at low
+masses and allow SMBH physics to create better results for high
+mass galaxies.
+Table 1. Physics implementations in diﬀerent simulations presented in this
+Paper.
+Name
+Box Size
+Accretiona
+SMBH
+ϵc
+S N
+Run to
+(Mpc)
+Dynamicsb
+z =
+Romulus8
+8
+Bondi+AM
+Dyn. Frict.
+0.75
+0.5
+Romulus25
+25
+Bondi+AM
+Dyn. Frict.
+0.75
+0
+RomulusC
+N/A
+Bondi+AM
+Dyn. Frict.
+0.75
+0
+Romulus50
+50
+Bondi+AM
+Dyn. Frict.
+0.75
+2
+Advect
+8
+Bondi+AM
+Advection
+0.75
+0.5
+Bondi
+8
+Bondi
+Dyn. Frict.
+0.75
+0.5
+highSN
+8
+N/A
+N/A
+2.0
+0.5
+a Bondi+AM denotes the implementation described in this work
+b ‘Advection’ denotes method utilized in Sijacki et al. (2007) and ‘Dyn.
+Frict’ is that from Tremmel et al. (2015)
+c how much energy per SN is coupled to gas (in units of 1051ergs) All
+the runs have identical particle mass, force resolution and numerical
+parameters.
+One 8 Mpc cosmological simulation was also run, with ϵS N=2
+(see Table 1). Note that ϵS N=2 can be justiﬁed by implying a top
+heavy IMF or contribution from ‘early feedback’ (Governato et al.
+2015). During our parameter search we found that this run pro-
+duced galaxies in 1012 M⊙halos that better matched observed rela-
+tions, at the expense of dwarf galaxies. However, strong SNe feed-
+back alone still results in too much star formation at late times (see
+§7). We ﬁnd the inclusion of SMBH feedback as described below is
+necessary to reproduce the ‘bend’ in the M⋆- Mhalo relation at high
+halo masses while maintaining realistic dwarf galaxy properties.
+5
+MODELING BLACK HOLE PHYSICS
+5.1
+Seed Formation
+Unlike SMBH seeding methods directly tied to halo mass thresh-
+olds that are often utilized in other large cosmological volume sim-
+ulations (e.g. Di Matteo et al. 2003; Sijacki et al. 2015; Schaye et al.
+2015), our approach allows for a more realistic seeding at high red-
+shift without any a priori assumptions regarding halo occupation
+fraction.
+Instead, SMBH seed formation is connected to the physical
+state of the gas by converting a gas particle already selected to form
+a star (see §4) into a SMBH seed instead if it has:
+• Low mass fraction of metals (Z < 3 × 10−4)
+• Density 15 times that of the SF threshold (3 mp/cc)
+• Temperature between 9500 K and 10000 K
+These criteria ensure that black holes form only from gas that a) is
+collapsing quickly (i.e. faster than the star formation timescale as it
+has not been turned into a star already) while b) cooling relatively
+slowly, approximating formation cites predicted for SMBH seed
+formation Begelman et al. (2006); Volonteri (2012)
+The criteria above were not chosen via an extensive param-
+eter search. Rather, they were empirically derived via analysis of
+star forming gas particles in high redshift volume simulations. The
+model limits SMBH growth to the highest density peaks in the early
+Universe with high Jeans mass. This is a marked improvement over
+stochastic formation from star forming gas, resulting in seed forma-
+tion that occurs in environments that are diﬀerent than the average
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+5
+0
+1
+2
+3
+4
+5
+6
+7
+Seed Formation Time (Gyr)
+0.1
+0.2
+0.3
+0.4
+Fraction of BH Seeds
+Romulus25
+Form with Mvir > 7e+10
+Figure 1. Seed Formation Times. The distribution of black hole seed for-
+mation times using our approach applied to a 25 Mpc run (Romulus25;
+blue line) compared to the seed formation if we applied a threshold halo
+mass criterion similar to other common approaches to seed formation in
+large simulation of this type (Di Matteo et al. 2003; Sijacki et al. 2015;
+Schaye et al. 2015). Using our scheme, black hole seeds form much earlier,
+the vast majority forming within the ﬁrst Gyr of the simulation, similar to
+the expected formation epoch for SMBHs (Volonteri 2012). We compare
+to the halo threshold scheme, meant to approximate that used in Sijacki
+et al. (2015), where halos are seeded once a halo reaches a critical mass of
+7 × 1010M⊙. Using this, black holes are seeded at much later times, even in
+the most massive halos, which would cause the earliest periods of SMBH
+growth to be missed.
+unenriched star forming region, as seen in higher resolution tests of
+SMBH formation sites (Agarwal et al. 2014; Habouzit et al. 2017).
+Because we are following conditions of gas at resolved scales (i.e.
+hundreds of pc), these criteria are designed to capture the regions
+where SMBH seeds should exist and then be able to grow quickly
+to large masses, regardless of the speciﬁcs of the true formation
+mechanism at unresolved scales.
+The metallicity threshold of 3 × 10−4 was chosen to select gas
+that had seen very little chemical evolution. We found that choosing
+more strict (lower) metallicity criteria or colder gas, biases SMBH
+formation away from the densest regions of the early Universe, an
+undesired outcome due to the ﬁnite resolution of our runs, that we
+speciﬁcally decided to avoid. SF will often form stars nearly simul-
+taneously with SMBH particles. As stars form and massive stars
+give oﬀstellar winds and SNe explode, metal rich gas permeates
+throughout the halo and beyond, eﬀectively shutting down any po-
+tential seed formation within the parent halo as well as nearby ha-
+los. Metal diﬀusion in SPH codes is explicitly regulated by a dif-
+fusion equation; here we follow the implementation in Shen et al.
+(2010) with coeﬃcients for both metal and thermal diﬀusion both
+set to 0.03, which give realistic values for galaxy metallicity gradi-
+ents in high resolution dwarfs (Brooks et al., in preparation.).
+Once formed, the SMBH seed mass is set to 106 M⊙. To at-
+tain this mass, the newly formed SMBH accretes as much mass
+as it needs from surrounding gas particles (total mass is then ex-
+plicitly conserved), representing rapid, unresolved growth. The ini-
+tial mass, while somewhat higher than most theoretical estimates
+(Johnson et al. 2012; Volonteri 2012), is motivated by the fact that
+much of the early growth onto SMBH seeds, or the exotic objects
+that may proceed them, can exceed 0.1 M⊙yr−1 and be governed
+by the environment and physical processes well below the resolu-
+tion limit of our simulations (e.g. Hosokawa et al. 2013; Schleicher
+et al. 2013). In reality, SMBH seeds would likely attain a spec-
+trum of masses early on, but since such processes are unresolved,
+we cannot diﬀerentiate between where a larger SMBH seed should
+grow. This mass is also suﬃciently large compared to our DM and
+gas particle masses that the dynamics of all SMBHs will be well
+resolved (Tremmel et al. 2015). We veriﬁed that even with this ini-
+tial mass, SMBH seeds that exist in unfavorable environments (i.e.
+dwarf galaxies) naturally have limited growth, with about 50% of
+SMBH seeds having less than 10% mass growth over a Hubble
+time. We also verify that SMBHs that grow to more than 107 M⊙
+have grown enough through accretion to be insensitive to initial
+conditions.
+In much of our future analysis, including that presented in §6,
+we take growth occurring in SMBHs with mass less than 110% of
+their initial mass as still undergoing their initial growth phases, a
+process which has not yet been observed and the physics of which
+is highly uncertain. Therefore, we will exclude these systems from
+analysis where appropriate.
+Figure 1 plots the distribution of formation times of all SMBH
+seeds formed using the above approach within the Romulus25 vol-
+ume. As a comparison, we plot the distribution of seed formation
+times we would have using a halo mass threshold of 7 × 1010 M⊙.
+This is meant to approximate a more common seeding mechanism
+utilized in other large cosmological simulations. Speciﬁcally, our
+threshold approximates that from the Illustris Simulation (Genel
+et al. 2014; Sijacki et al. 2015). Our approach forms SMBHs much
+earlier, closer to what would be expected in SMBH seed formation
+scenarios (Volonteri 2010, 2012; Habouzit et al. 2017). We note that
+similar halo threshold techniques that have lower threshold masses
+will form seeds earlier, though they will still have a more substan-
+tial tail toward low redshift formation times. In Romulus25 SMBH
+seeds still form out to low redshift in some rare cases within small,
+unenriched halos. These SMBHs constitute a very small fraction
+(<<1%) of the overall SMBH population in the simulation.
+5.2
+Black Hole Mergers
+SMBHs are allowed to merge based on the same criteria as
+Bellovary et al. (2011). Once SMBHs become closer than two
+softening lengths in relative distance, they merge if they have low
+enough relative velocities such that they would be considered grav-
+itationally bound to one another, i.e. 1
+2∆v < ∆a · ∆r, where ∆v, ∆a,
+and ∆r are the relative velocity, acceleration, and distance vectors
+between two SMBH particles.
+5.3
+Black Hole Dynamics
+Dynamical friction (DF), the force exerted by the gravitational
+wake caused by a massive object moving in an extended medium
+(Chandrasekhar 1943; Binney & Tremaine 2008) causes the orbits
+of SMBHs to decay towards the center of massive galaxies (Gov-
+ernato et al. 1994; Kazantzidis et al. 2005). However, this eﬀect is
+diﬃcult to resolve in cosmological simulations due to numerical
+noise and limited gravitational force resolution. Our implementa-
+tion includes a sub-grid approach for modeling unresolved dynam-
+ical friction that has been shown to produce realistically sinking
+SMBHs (Tremmel et al. 2015) . This allows us to follow the dy-
+namics of SMBHs without assuming they should always be stable
+at the centers of galaxies. As described in detail in Tremmel et al.
+© 2015 RAS, MNRAS 000, 1–21
+
+
+6
+M. Tremmel et al.
+(2015) our approach assumes that within ϵg from the black hole the
+velocity distribution is isotropic, giving Chandrasekhar’s dynami-
+cal friction formula (Chandrasekhar 1943) for a BH of mass M and
+surrounding particle mass ma with velocity distribution f(v).
+aDF = −4πG2MmalnΛvBH
+v3
+BH
+Z vBH
+0
+dvav2
+a f(va).
+(2)
+The velocities of the BH and surrounding particles (vBH and va re-
+spectively) are both taken relative to the local center of mass veloc-
+ity within the smoothing kernel and lnΛ is the Coulomb logarithm.
+This equation can be further simpliﬁed by substituting the integral
+for ρ(< vBH), which is the density of particles moving slower than
+the black hole.
+aDF = −4πG2Mρ(< vBH)lnΛvBH
+v3
+BH
+.
+(3)
+Taking lnΛ ∼ln( bmax
+bmin ), we set bmax = ϵg to avoid double count-
+ing frictional forces that are already occurring on larger scales,
+which are well resolved due to the high mass and spatial reso-
+lution of our simulations. We take the minimum impact parame-
+ter, bmin to be the 90◦deﬂection radius, with a lower limit set to
+the Schwarzschild Radius, RS ch. The calculation is done using 64
+collision-less particles (i.e. dark matter and star particles) closest to
+the black hole, with velocities taken relative to the COM velocity
+of all 64 particles.
+A common technique in cosmological simulations is to repo-
+sition or push the SMBH along its local potential gradient (e.g.
+Di Matteo et al. 2005; Sijacki et al. 2007, 2015). However, these
+techniques (broadly referred to as ‘advection’ from here on) fail to
+property reﬂect what is often a signiﬁcant characteristic timescale
+for sinking SMBHs (see Tremmel et al. 2015, and references
+therein). During galaxy mergers, ‘advection’ techniques will result
+in a nearly immediate SMBH merger. It also prevents SMBHs from
+becoming perturbed away from galactic center, which can aﬀect
+SMBH growth during galaxy interactions and mergers
+With our approach instead, we are able to resolve the dynam-
+ics of SMBHs during and after galaxy mergers down to sub-kpc
+scales. The merger rates of SMBHs will be realistically decoupled
+from galaxy mergers. This will result in realistic SMBH growth
+and new predictions for gravitational wave observations. Our ap-
+proach will also naturally produce dual and oﬀset AGN down to
+sub-kpc distances, allowing us to study and understand these tran-
+sient events in a broader evolutionary context (see §9).
+5.4
+Accretion and feedback
+Black holes are allowed to grow by accreting mass from nearby gas
+particles. Energy from accretion is then isotropically imparted to
+the 32 nearest gas particles, distributing the energy among them ac-
+cording to the smoothing kernel. To ensure that the feedback energy
+is realistically dissipated, gas particles that receive energy from a
+SMBH are not allowed to cool for a time equal to the timestep of
+the SMBH (typically 103 to 104 yrs), which is meant to represent
+the continuous transfer of energy during each SMBH timestep. This
+is a similar technique that is used in the Blastwave supernova feed-
+back prescription, though here we utilize a diﬀerent cooling shut-
+oﬀtime meant to approximate the continuous accretion and subse-
+quent feedback that should occur during a timestep. The amount of
+energy coupled to surrounding gas particles is given by
+E = ϵrϵ f ˙Mc2dt,
+(4)
+where the radiative eﬃciency, ϵr, is assumed to be 10% and the
+eﬃciency that energy couples to gas, ϵf is set to 2% (see below
+for discussion on free parameter calibration). The accretion rate is
+assumed to be constant throughout one black hole timestep, dt.
+The underlying assumption of these approaches is that the
+state of the gas at the smallest resolved scales drives the evolution
+of the unresolved physics on timescales relevant to the simulation.
+The accretion rate,
+˙M, is estimated via a modiﬁed Bondi-
+Hoyle prescription applied to the smoothed properties of the 32
+nearest gas particles. The initial derivation of our approach is ex-
+actly the same as Bondi accretion. If we deﬁne some accretion ra-
+dius, R, relative to the SMBH beyond which gas is bound to the
+black hole, and assume that mass continuity is roughly upheld on
+long time scales, the accretion rate onto the SMBH should be sim-
+ilar to the rate of mass ﬂowing through a spherical surface of that
+radius:
+˙M ∼πR2ρv.
+(5)
+Here v is the characteristic velocity of gas through the surface and
+ρ is the density of the ambient gas. In Bondi-Hoyle accretion, the
+calculation of the accretion radius, R, balances the SMBH’s gravi-
+tational potential and both the internal and bulk kinetic energies of
+the gas. In order to avoid underestimating the accretion rate due to
+resolution eﬀects when calculating the density and temperature of
+nearby gas, we apply a density dependent boost factor to this ac-
+cretion rate, following the prescription of (Booth & Schaye 2009)
+where the standard Bondi rate is multiplied by a density dependent
+factor,
+ ngas
+n∗
+β, where β is a free parameter and n∗is the star forma-
+tion density threshold.
+However, even with a well motivated (but often poorly con-
+strained) density boost, Bondi-Hoyle accretion is unable to account
+for angular momentum support, which often dominates the dynam-
+ics of cold gas at resolved scales, as in the disks of star forming
+galaxies (Hopkins & Quataert 2010, 2011). Past eﬀorts have fo-
+cused on sub-grid models for angular momentum transport on sub-
+galactic scales (Anglés-Alcázar et al. 2017) or within the SMBH’s
+accretion torus (Rosas-Guevara et al. 2015).
+To take advantage of the improved spatial resolution of mod-
+ern simulations, we implement an accretion algorithm that ac-
+counts for the angular momentum of gas at resolved scales. Our
+approach avoids any additional assumptions of sub-grid physics or
+free parameters beyond those required by the conventional Bondi-
+Hoyle prescription. Namely that the accretion rate, averaged over
+timescales relevant to the simulation, is a direct consequence of
+mass ﬂux across the accretion radius, deﬁned as the radial distance
+at which the gravitational potential of the SMBH balances the in-
+ternal and bulk energetics of the gas as measured at the smallest
+resolved scales of the simulation.
+In the reference frame of rotating gas, angular momentum
+provides an eﬀectively lower gravitational potential such that
+Uef f (r) ∼−GM
+r
++ j(r)2
+2r2 , where j(r) is the angular momentum per
+unit mass of the gas at distance r from the SMBH. We can replace
+j(r)2/r2 with v2
+θ, the rotational velocity of the surrounding gas. It is
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+7
+Figure 2. SMBH Parameter Optimization. Results from the search for optimal free parameters related to SMBH accretion and feedback. 12 realizations of
+accretion boost factor (β) and feedback eﬃciency (ϵ f ) for SMBHs were run, each with four zoomed in runs of galaxies. All of the models are shown in light
+grey points and the best ﬁtting model (the one that best matches overall to the four relations shown) is in blue. Each model is compared to diﬀerent empirical
+relations governing star formation eﬃciency (upper left, Moster et al. 2013), angular momentum (upper right, Obreschkow & Glazebrook 2014), HI content
+(lower left, derived from SHIELD and ALFALFA data, see Cannon et al. 2011; Haynes et al. 2011) and black hole growth (lower left, Schramm & Silverman
+2013). The thin dashed lines represent 1 −σ errors. The thick dashed lines represent where each relation has been extrapolated beyond observations. The blue
+points have the parameters, β = 2, ϵf = 0.02, which are what we implement in the Romulus models as well as the other simulations listed in Table 1. Note
+that for the angular momentum and SMBH mass tests, the dwarf galaxy was excluded. The former is due to the fact that angular momentum decomposition
+is diﬃcult for a galaxy of this size. The latter is because observed SMBH masses are uncertain for dwarf galaxies and in our simulations, including in these
+parameter search runs, not every dwarf galaxy forms a SMBH.
+important to note that vθ is distinct from the bulk velocity, which we
+will refer to as vbulk, in the Bondi-Hoyle formula, which accounts
+for a ﬂow of gas, not a coherent rotational motion.
+If the dominant motion of the gas is rotational rather than a
+bulk ﬂow, we can use the eﬀective potential above and solve for R,
+ignoring order unity terms, such that the eﬀective potential balances
+with the thermal energy of the gas, i.e Uef f ∼c2
+s. By deﬁnition
+the tangential motion must not contribute to the mass ﬂux through
+our area. Returning to the simple equation for ˙M above we get the
+following relation.
+˙M ∼π(GM)2ρcs
+(v2
+θ + c2
+s)2 .
+(6)
+Note that we do not assume vθ is constant on unresolved
+scales, only that its value should inform the radius, R, at which
+the gravity of the SMBH dominates the gas dynamics. This is sim-
+ilar to the original Bondi-Hoyle formalism, where the energetics of
+gas far from the black hole are used to approximate the accretion
+radius. In this case, vθ encapsulates the amount of angular momen-
+tum support the gas has on the smallest resolved scales, translating
+to a smaller accretion radius and therefore lower accretion rate.
+To avoid uncertainties in particle dynamics below the force
+softening scale, we calculate the speciﬁc angular momentum, j, rel-
+ative to a target black hole for gas particles that are between 3 and
+4 softening lengths away (with our spline kernel softening, New-
+tonian forces are followed exactly at 2 ϵg). We then calculate the
+tangential velocity that gas one softening length,ϵg, away from the
+SMBH would have if the angular momentum on the larger scales
+was conserved, vθ(ϵg) ∼j/ϵg. The smallest relative velocity of the
+32 gas particles closest to the SMBH, which we take as a proxy to
+vbulk, is compared to vθ. If vθ > vbulk we use equation (6) to calcu-
+late ˙M. Otherwise, we use the normal Bondi rate. Both calculations
+include the density-dependent boost factor, resulting in:
+˙M = α ×
+
+π(GM)2ρ
+(v2
+bulk+c2s)3/2
+if vbulk > vθ
+π(GM)2ρcs
+(v2
+θ+c2s)2
+if vbulk < vθ
+; α =
+
+
+n
+nth,∗
+β
+if n ⩾nth,∗
+1
+if n < nth,⋆
+.
+(7)
+Unlike Rosas-Guevara et al. (2015), we do not implement a
+viscosity parameter in our accretion rate calculation. This was an
+explicit choice made to avoid the inclusion of an additional free
+parameter and is justiﬁed by the fact that we are not attempting
+to approximate the behavior of an accretion torus, as in Rosas-
+Guevara et al. (2015), where viscous timescales can be more crit-
+© 2015 RAS, MNRAS 000, 1–21
+
+
+8
+M. Tremmel et al.
+1010
+1011
+1012
+1013
+Mvir [M ⊙]
+10-4
+10-3
+10-2
+10-1
+M ∗/Mvir
+Romulus25
+Moster+ 13
+Kravtsov+ 14
+Figure 3. Stellar Mass Halo Mass (SMHM) Relation. Data from Romu-
+lus25 at z = 0.25 is shown in blue, plotted against two abundance matching
+relations from Moster et al. (2013) and Kravtsov et al. (2014). Any halo at
+least partially within the virial radius of a larger halo is not counted in this
+analysis in order to exclude satellites and interacting systems. The grey re-
+gion shows the error in the Moster et al. (2013) relation, calculated from the
+errors reported for the best ﬁt parameters. The stellar and virial masses for
+each halo are corrected to make them more directly comparable to observa-
+tions following Munshi et al. (2013) (see §2.3). Our results match well with
+those from abundance matching. Of particular interest are the high mass
+galaxies (Mvir > 1012M⊙), which indicate that SMBH feedback is correctly
+regulating their growth.
+ical. Still, there is uncertainty in the normalization of equation (7)
+when vθ >> cs, which will be explored in future work. It should
+also be noted that equation (7) is not continuous at vbulk = vθ.
+We ﬁnd this eﬀect is sub-dominant compared to variations in den-
+sity and velocity inherent to discreet calculations. This is shown in
+practice in ﬁgure 14, where our approach produces a less bursty
+accretion history in MW-mass halos compared to normal Bondi ac-
+cretion.
+For the density dependent boost factor, we compare the local
+density to the star formation density threshold, n∗, meant to rep-
+resent the limit beyond which the simulation fails to resolve the
+multiphase ISM. The exponent β is a free parameter which we take
+to have a value of 2 (see next section). Equation (7) is then com-
+pared to the Eddington rate, ˙Medd(M), given the SMBH’s mass at
+time t such that ˙MBH,final(t) = min( ˙M(t), ˙Medd(MBH(t) ) ).
+5.5
+Calibration of SMBH Free Parameters
+Our model of SMBH accretion and feedback has two free param-
+eters controlling the accretion rate (β) and the eﬃciency at which
+radiated energy is transferred to surrounding gas (ϵ f ). In a similar
+approach as for the star formation parameters (see §3 and Appendix
+A) we run 48 zoom-in cosmological simulations, in identical sets
+of four galaxies ranging from dwarf to Milky Way masses over sev-
+eral choices of these two parameters. Each set of simulations was
+run using the same set of star formation parameters, optimized in a
+separate parameter search without SMBH physics (see section 3).
+This ensures that we start with a model that performs as well as
+possible before the inclusion of SMBH physics. Figure 2 shows the
+results of this search graphically. We tested values for β between
+1.5 and 3 and values for ϵ f between 0.005 and 0.1. Our param-
+eter space exploration was guided by the Kriging algorithm (see
+109
+1010
+1011
+1012
+M⋆[M⊙]
+106
+107
+108
+109
+1010
+MBH [M⊙]
+Schramm+Silverman 13
+Romulus25
+Figure 4. The SMBH Mass Stellar Mass Relation. Each point plots the
+mass of the largest black hole in each galaxy against each galaxy’s stellar
+mass, corrected by a factor of 0.6 from the total stellar mass in each halo
+(see §2.3). Also shown is the empirical relation from Schramm & Silverman
+(2013), where the grey region represents the 1−σ scatter and the dashed part
+of the line is where the relation has been extrapolated past observations. The
+overall match to the data is good, particularly at higher masses. High mass
+galaxies tend to exhibit less scatter and lie near the relation, though slightly
+biased toward higher mass SMBHs. Less massive systems show a broader
+scatter in black hole mass. The relation from Schramm & Silverman (2013)
+was derived from higher mass galaxies and there is evidence that smaller,
+star forming galaxies lie on diﬀerent relations (Reines & Volonteri 2015;
+Savorgnan et al. 2016)
+Appendix A). Each parameter set was graded in the same way as
+described in §3, each galaxy being compared to each scaling rela-
+tion. Changing the parameters just for SMBH physics has enough
+of an aﬀect to clearly isolate a ‘best’ set of parameters, i.e. the one
+in which the summed deviation of each galaxy from each scaling
+relation was the least. We ﬁnd that the model that performs the best
+overall has β = 2.0 and ϵ f = 0.02 and we adopted those values
+for all the production runs. While no explicit assumption has been
+made in the model for the mass scale at which SMBH feedback
+becomes important, the dwarf galaxy stellar mass and HI content
+exhibit minimal dependence on SMBH model nor a dependence on
+the inclusion of SMBHs at all, as several iterations of the dwarf
+galaxy simulation never form a central SMBH.
+6
+FIRST RESULTS FROM ROMULUS25: THE BUILD-UP
+OF STARS AND BLACK HOLES
+In this section we present initial results from our ﬂagship Romu-
+lus25 uniform volume simulation, run to z = 0. It should be noted
+that such a small volume will miss some of the eﬀects of large-scale
+structure and will not include the population of satellite galaxies in
+large halos. We see this eﬀect most strongly in regards to down-
+sizing of both star formation and SMBH accretion (see below). In
+future work, we will include the cluster simulations in our analy-
+sis as well. Within the scope of this paper, we ﬁnd the Romulus25
+simulation to be suﬃcient as a proof of concept that our method
+produces realistic galaxies and SMBHs at z = 0.
+Figure 3 shows the stellar mass halo mass (SMHM) relation-
+ship in Romulus25 at z = 0 after removing all satellite galaxies from
+the sample. Our results are consistent with results from Moster
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+9
+c
+3
+Figure 5. Cosmic Star Formation History. The solid blue line shows the
+total cosmic star formation history in Romulus25 plotted against a ﬁt to
+observation data from (Behroozi et al. 2013) as well as recent high redshift
+observations (Kistler et al. 2013; Duncan et al. 2014). The grey region repre-
+sents the spread in observational data for diﬀerent redshift bins, as reported
+by Behroozi et al. (2013). Romulus25 accurately reproduces the evolution
+of the cosmic star formation rate density at high redshift, reaching a max-
+imum at z = 2 and declining toward lower redshift. The overproduction of
+stars at low redshift, which is in stark contrast with observations, is due to
+only a handful of high SFR systems, a result of our relatively small volume.
+A 25 Mpc volume lacks larger systems that would better sample the eﬀect
+of cosmic downsizing at late times. At z > 5 a signiﬁcant portion (50%-
+90%) of star formation in Romulus25 occurs galaxies with stellar masses
+less than 108 M⊙, a regime where the observed luminosity function is not
+well constrained (Anderson et al. 2017).
+et al. (2013), which our model has been calibrated to reproduce, as
+well as Kravtsov et al. (2014) for halos spanning more than three
+decades in mass. It should be noted that while these results are in
+part due to our parameter calibration, the results for high mass halos
+(Mvir > 1012 M⊙) have not been calibrated and can be considered
+predictions of our model. At Mvir > 1012.5, the Romulus25 halos
+match better to the Kravtsov et al. (2014) results. As discussed in
+§2.3, we utilize the corrections from Munshi et al. (2013) for the
+stellar and virial masses to attain a more ‘apples-to-apples’ compar-
+ison. The correction, particularly when applied to larger group-size
+halos, accounts for the mass that exists in extended stellar halos and
+satellites.
+Figure 4 plots the mass of SMBHs in Romulus25 against the
+stellar masses of their host galaxies, again applying the correc-
+tion from Munshi et al. (2013). Satellite galaxies have also been
+removed from this sample. This is another empirical relation that
+we had used to constrain our sub-grid model, so the fact that the
+simulation data matches the relation from Schramm & Silverman
+(2013) is a success of our parameter search technique. High mass
+galaxies show less scatter than low mass galaxies, but are slightly
+biased to higher SMBH mass compared to the empirical relation.
+At low mass, we see a lot of scatter, both above and below the re-
+lation. While it is beyond the scope of this paper to examine in
+detail the nature of this scatter, it follows from recent observations
+that low mass, star forming galaxies have signiﬁcantly more scatter
+in SMBH mass than higher mass galaxies, indicative that not all
+galaxies should lie on the same relation (Reines & Volonteri 2015;
+Savorgnan et al. 2016). The signiﬁcant scatter above the relation
+could be explained by tidal stripping (Volonteri et al. 2008, 2016a;
+0
+1
+2
+3
+4
+5
+Redshift
+104
+105
+106
+ρacc [M ⊙ cMpc−3 ]
+Romulus25, Lbol >1e43 ergs/s
+Romulus25, Lbol >1e44 ergs/s
+Romulus25, Lbol >1e45 ergs/s
+Lacy+ 15
+Hopkins+ 07
+Figure 6. SMBH Accretion History. The cumulative mass density accu-
+mulated in luminous SMBH accretion events in Romulus25 across cosmic
+time. SMBH growth is faster at high redshift and slows down at later times.
+Higher luminosity systems (Lbol > 1044 ergs/s) account for 50-80% of the
+accreted mass density at all times. The late time evolution at z < 1 is driven
+by a small number (∼1 −5) of systems with Lbol > 1045 ergs/s. These
+results are consistent with the integration of AGN luminosity functions out
+to high redshift (Lacy et al. 2015, shown as the grey region for a range
+of diﬀerent values of radiative eﬃciency). Also shown are the results from
+Hopkins et al. (2007), which are the result of diﬀerent assumptions regard-
+ing absorption and bolometric corrections.
+Barber et al. 2016), but we have removed satellite galaxies, making
+this connection less obvious. Likely it is due to stochastic SMBH
+growth in smaller galaxies. We will explore this further in future
+work.
+The parameter search was meant to ensure that stars and
+SMBHs form and grow in the correct places. This is achieved in
+Romulus out to mass scales beyond those that the parameter search
+probed. Of particular interest are the high mass halos (Mvir > 1012
+M⊙) that were not explicitly constrained with our parameter search
+and represent the regime in which feedback from SMBHs dom-
+inates stellar feedback in regulating star formation (Croton et al.
+2006; Keller et al. 2016). The fact that these halos produce galax-
+ies with stellar masses very similar to abundance matching results
+as well as SMBH masses that are consistent with empirical scaling
+relations is a very promising result. How and when the growth of
+stars and SMBHs occur in Romulus25 is also a testable prediction
+of the model.
+Figure 5 shows the cosmic star formation history in Romu-
+lus25, which matches nicely with observations at high (z > 2) red-
+shift, reaching a maximum just before z = 2 and then dropping
+oﬀaccordingly toward z = 0. At high redshift (z > 5), we ﬁnd the
+bulk of star formation is occurring in small galaxies (M⋆< 108
+M⊙), likely missed by high redshift observations (Anderson et al.
+2017). This explains why Romulsu25 lies above the derived star
+formation history from Behroozi et al. (2013) but is more similar
+to estimates using more recent data that are more sensitive to lower
+mass galaxies. At low redshift (z < 2) Romulus25 lies far above
+the observed star formation rates. This overproduction of stars at
+low redshift is due to only a handful of high SFR systems, a re-
+sult of our relatively small volume which does not properly sample
+the higher density environments needed to recover the behavior of
+cosmic downsizing at late times.
+Figure 6 plots the cumulative mass density accumulated in lu-
+minous SMBH accretion events across time. We only include data
+© 2015 RAS, MNRAS 000, 1–21
+
+
+10
+M. Tremmel et al.
+Figure 7. Mock Images of Stars in the largest galaxy from the Romulus8, HighSN, Bondi, and Advect simulations at z = 0.5. The virial mass of the host halo
+is ∼2 × 1012 M⊙. On average, galaxies of this size should be quenched by this time (Papovich et al. 2015). Colors are based on the contribution of diﬀerent
+bands within each pixel using U (blue), V (green), J (red) assuming a Kroupa IMF, so young stars look blue and older stars look yellow. These images are
+indicative of the importance of physically motivated SMBH physics implementations on the evolution of large galaxies. It is clear that the inclusion of only
+SN feedback (HighSN) is not enough to quench the galaxy. SMBH feedback is able to quench in all cases, but the morphology and star formation history (see
+ﬁgure 9) are noticeably aﬀected by the details of the implementation.
+from SMBHs with mass greater than 110% of their initial seed
+mass (see §5.1). We verify that excluding these systems does not
+substantially change our results. The cuts in luminosity are meant
+to not only show the contribution of diﬀerent varieties of active
+SMBHs, but also ensure that we only sample the portion of the
+luminosity function that can be accurately constrained by obser-
+vations. We verify that for each luminosity cut, the contribution
+from low Eddington ratio SMBHs, where accretion is thought to
+become radiatively ineﬃcient (λ fedd < 0.01) is negligible. At early
+times, the black hole population grows more rapidly, slowing as it
+gets to lower redshifts. At all times the overall growth is dominated
+(∼50 −80%) by the more luminous SMBHs (Lbol > 1044 ergs/s).
+Below z = 1, a signiﬁcant fraction of this growth is taking place in a
+small number (1-5) of very luminous SMBHs (Lbol > 1045 ergs/s).
+This is similar to the eﬀect we see with star formation, where our
+small volume is unable to appropriately sample AGN downsizing.
+The overall growth of the black hole population in Romulus25
+is consistent with observations. The grey region is from Lacy et al.
+(2015) and is obtained from integrating the observed AGN lumi-
+nosity function between z = 0 and z = 5 assuming a radiative ef-
+ﬁciency, ϵr between 0.06 (upper limit) and 0.18 (lower limit) and
+the data points with error bars are from Hopkins et al. (2007). The
+data from Lacy et al. (2015) were obtained from Spitzer observa-
+tions in the mid-infrared. This makes them less sensitive to absorp-
+tion, which can signiﬁcantly impact optical and X-ray observations
+across all redshifts (Treister et al. 2010; Lansbury et al. 2015; Buch-
+ner et al. 2015; Lacy et al. 2015). However, the data from Lacy
+et al. (2015) are poorly constrained at redshifts higher than ∼2,
+which is why we limit this region to z < 2. The higher luminos-
+ity data from Romulus25 (Lbol > 1044 ergs/s) ﬁts well with both
+observational data sets shown. The divergence away from the Hop-
+kins et al. (2007) data at z < 1 is due to a small number of bright
+SMBHs, a consequence of our relatively small volume. Bolometric
+luminosities less than 1044 ergs/s represent a regime in which the
+observed luminosity functions are poorly constrained, particularly
+at high redshift, and sensitive to assumptions regarding the redshift
+and luminosity dependencies of absorption and bolometric correc-
+tion (Merloni 2016).
+These initial results show that Romulus25 1) produces galax-
+ies with stellar and black hole masses that are consistent with ob-
+servations at low redshift (Figures 3 and 4) and 2) produces high
+redshift star formation and SMBH accretion histories that are con-
+sistent with observations, where diﬀerences arising at low redshift
+(z < 2) are due to our small volume not being able to properly
+capture downsizing for high mass galaxies. These results show the
+strength of both our SMBH sub-grid model and our method for
+free parameter calibration. We leave the analysis of gas content and
+kinematics in Romulus for future work.
+7
+BLACK HOLE FEEDBACK COMPARED TO STELLAR
+FEEDBACK
+In this section, we wish to explore the diﬀerences in SMBH and
+supernovae (SN) feedback mechanisms. It is often possible to tune
+parameters in order to reproduce observations of galaxies of a cer-
+tain mass. During our parameter search (see §3 and Appendix A)
+we found that the models for star formation and SN feedback with-
+out SMBHs that produced the most realistic galaxies in MW-mass
+halos did not work well in reproducing realistic smaller galaxies.
+However, in this section we go beyond this to show that SMBH
+feedback is not only a crucial ingredient for reproducing scaling
+relations across all mass scales, it also has important consequences
+for reproducing the evolution of galaxies. In this case, we focus on
+MW-mass halos (Mvir ∼1012 M⊙).
+We compare two 8 Mpc uniform volume simulations, Romu-
+lus8 and HighSN (see Table 1), in order to gain insight into how
+the addition of extra feedback in the form of black holes compares
+to simply increasing the eﬃciency of SN feedback. The feedback
+eﬃciency in HighSN was chosen based oﬀof the value we found
+to best reproduce scaling relations for galaxies in 1012 M⊙halos.
+The simulations are run to z = 0.5 to avoid some of the biases such
+a small volume will introduce into the evolution at later times.
+Figure 8 shows the stellar mass halo mass relationship for the
+two simulations, plotted against the z = 0.5 best ﬁt relationship
+from Moster et al. (2013), applying the correction to stellar and
+halo masses from Munshi et al. (2013). The Romulus8 model ﬁts
+the data well. The highSN model drastically under-produces stars
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+11
+1011
+1012
+Mvir [M ⊙]
+10-4
+10-3
+10-2
+10-1
+M ∗/Mvir
+Moster+ 13, z = 0.50
+Romulus8
+HighSN
+Figure 8. How Feedback from SMBHs and SN Affect SF Efficiency. The
+SMHM relation for the Romulus8 (blue) and HighSN (orange) simulations.
+Increasing the eﬃciency of stellar feedback to produce stellar masses that
+match observations for higher mass galaxies (HighSN) causes and under-
+production of stars in low mass systems. The high mass galaxies match the
+observed relations well in the HighSN simulation, but this success is mis-
+leading, as the galaxies maintain signiﬁcant star formation through the end
+of the simulation (see ﬁgures 7 and 9). The inclusion of black hole feedback
+combined with a lower stellar feedback eﬃciency (see table 1) produces re-
+alistic stellar masses in halos ranging from dwarfs to MW-mass.
+in intermediate mass halos. This is, of course, due to the fact that
+SN feedback is much more eﬃcient in lower mass halos that ex-
+hibit a shallower potential well (Governato et al. 2010; Brook et al.
+2011). Such high eﬃciencies are necessary, however, to reproduce
+observed stellar masses in higher mass halos without SMBH feed-
+back. Because SMBH growth naturally depends on the host galaxy
+mass, SMBH feedback is able to preferentially limit the growth of
+higher mass galaxies, while not quenching the star formation in low
+mass halos.
+Figure 9 shows the star formation history of the most massive
+halo (Mvir(z = 0) ∼2 × 1012M⊙) in the volume for each simulation.
+While the ﬁnal stellar masses are within realistic bounds in both
+simulations, the galaxy in Romulus8 has very low star formation
+by the end of the simulation while the same galaxy in highSN fails
+to quench. The majority of galaxies (70-80%) in this mass range
+should be quenched by z = 0.5 (Papovich et al. 2015).
+Figure 10 shows the color evolution of the two most massive
+galaxies in the simulations run with SMBH physics (Romulus8)
+compared to that run only with enhanced SN feedback (HighSN).
+The galaxies show diﬀerent color evolution, with Romulus8 fol-
+lowing much more closely the results from the CANDELS and
+ZFOURGE data (Papovich et al. 2015). Colors from stellar emis-
+sion are calculated using tables generated from population synthe-
+sis models using http://stev.oapd.inaf.it/cgi-bin/cmd (Marigo et al.
+2008; Girardi et al. 2010). Dust is accounted for using a simple ap-
+proach based on metallicity and cold gas content of a galaxy (see
+Appendix B). In the highSN simulation, the colors of the galax-
+ies remain dominated by dust at late times, never falling into the
+‘quenched’ regime. The color evolution also fails to follow the evo-
+lutionary path seen in the multi-epoch observations.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Time [Gyr]
+0
+5
+10
+15
+20
+25
+30
+35
+40
+SFR [M ⊙ yr−1 ]
+Romulus8
+High SN
+Figure 9. SMBHs and Galaxy Quenching. The star formation rate as a
+function of time for the most massive halo in the 8 Mpc volume, run with
+both the Romulus8 and HighSN models. The halo mass is consistent with
+being a Milky Way progenitor. The star formation histories are similar up
+until about 2 Gyr prior to the end of the simulation. While the enhanced SN
+feedback is able to make stellar masses consistent with observations (see
+Figure 8) the feedback from stars alone is unable to turn oﬀstar formation
+at late times, which is expected for systems of this mass (Papovich et al.
+2015). With lower SN feedback but the inclusion of black hole accretion
+and feedback (Romulus8), the galaxy is able to attain both a realistic stellar
+mass and have star formation quench before z = 0.5.
+SMBH feedback, because it is more concentrated than SN
+feedback, is able to drive more powerful winds, which can disrupt
+inﬂowing material and lead to galaxy quenching (Volonteri et al.
+2016b; Pontzen et al. 2017). Here we have shown that this eﬀect is
+important for reproducing the observed evolution of MW-mass pro-
+genitor galaxies. One of the failures of simulations without SMBH
+feedback is the inability to quench galaxies in MW-mass halos,
+something that our SMBH model is able to produce. Quenching
+galaxies in halos of ∼1012 M⊙has generally been challenging for
+modern cosmological simulations (e.g. Bluck et al. 2016).
+8
+RESULTS FROM DIFFERENT BLACK HOLE
+PHYSICS IMPLEMENTATIONS
+In this section we compare our implementation for SMBH dynam-
+ics and accretion (model Romulus8) against more common imple-
+mentations found in large cosmological simulations (models Bondi
+and Advect). It is instructive to note that our parameter optimiza-
+tion was done using our SMBH implementation. While it may be
+possible to ﬁnd a combination of parameters that create galaxies
+that fall on various empirical relations using these other models,
+the point of this section is to explore the eﬀects that the additional
+physics our implementation includes have on galaxy evolution.
+We are again using a smaller 8 Mpc uniform volume realiza-
+tions of our main simulation suite. Figure 11 shows the SMHM
+relationship of the three simulations. The high mass end of the re-
+lationship is the only part noticeably aﬀected by the diﬀerent mod-
+els, indicating that a lack of SMBH growth in low mass galaxies is a
+natural consequence of the environment and not greatly aﬀected by
+choice of sub-grid SMBH physics. Both aspects of our implemen-
+tation (described in section 3) work to soften the eﬀect of SMBHs
+on their host galaxy, as both Advect and Bondi have lower stellar
+masses at a given halo mass.
+© 2015 RAS, MNRAS 000, 1–21
+
+
+12
+M. Tremmel et al.
+0.0
+0.5
+1.0
+1.5
+2.0
+U-V color
+Papovich+ 14 MW
+M31
+Romulus8
+3
+2
+1
+0.5
+Redshift
+0.0
+0.5
+1.0
+1.5
+2.0
+V-J color
+0.0
+0.5
+1.0
+1.5
+2.0
+Papovich+ 14 MW
+M31
+High SN
+Figure 10. A Color-Color History of MW halos in the Romulus8 and
+HighSN simulations with a simple prescription for the average dust at-
+tenuation (see Appendix B). Darker points represent lower redshifts. The
+observed data points (black) are from CANDELS and ZFOURGE, using
+abundance matching techniques to deﬁne Milky Way and M31 progenitors
+across cosmic time (Papovich et al. 2015). In Romulus8 (blue), the two
+Milky Way progenitors follow closely the average observed evolution, be-
+coming quenched by z = 0.5. In the HighSN simulation (orange), the galaxy
+remains in the realm where color is dominated by dust attenuation and ulti-
+mately fails to quench by z = 0.5. Without black hole feedback, Milky Way
+mass halos remain very gaseous and dusty, with star formation continuing
+at high levels.
+Synthetic images of the stars in the central galaxy of the most
+massive halo in the volume are shown in Figure 7, where a clear dis-
+tinction between the three models can be seen. In Figure 12, we plot
+the star formation history of the most massive halo in the volume
+and the luminosity of the brightest black hole in that halo through-
+out time, averaged over 50 Myr intervals. While the star formation
+histories are quite diﬀerent between models, the accretion history
+of black holes in the halo are not strikingly diﬀerent and at later
+times the Romulus8 model is the most active of the three.
+The important diﬀerence in how black holes regulate the star
+formation of their host galaxies occurs at high redshift. Figure 13
+plots the cumulative energy output of black holes within the central
+galaxy, tracking the halo backward in time along its main progeni-
+tor branch. The energies are reported relative to that in the Romu-
+lus8 model. We ﬁnd that both Bondi and Advect experience more
+activity during the ﬁrst several billion years of the simulation. The
+implications from this are 1) early black hole activity can have im-
+portant consequences for later galaxy evolution and 2) black hole
+dynamics and angular momentum limited accretion play an impor-
+tant role in determining accretion in the early Universe. It makes
+sense that the former is true, as the environment in which the black
+holes are active is diﬀerent, namely the host halo is smaller, which
+would allow feedback from black holes to play a more drastic role
+in shaping the host galaxy. At early times, the black holes will ex-
+ist in smaller galaxies that are undergoing more interactions, thus
+the black holes are more likely to become perturbed away from the
+galaxy center if they are allowed. In addition, at earlier times, when
+star formation is climbing toward its peak, one would expect to see
+more cold, disk dominated galaxies.
+The black hole model not only aﬀects where and when accre-
+tion takes place, but also how the accretion rate varies on smaller
+timescales. Figure 14 plots the standard deviation of the accretion
+rate for the most massive black hole in the most massive halo of the
+simulation, taken over intervals of 50 Myr and normalized by the
+average accretion rate throughout that time. For the entire simula-
+tion, both Advect and Bondi experience a signiﬁcantly more bursty
+accretion history. So, while the smoothed accretion rate may look
+relatively similar between the models (see ﬁgure 12) there is a more
+bursty process occurring on smaller timescales. For Advect, the
+cause is numerical, as repositioning each timestep can cause the
+black hole to feel numerical noise, as the location of the poten-
+tial minimum ﬂuctuates (Wurster & Thacker 2013; Tremmel et al.
+2015). In the Bondi simulation, the reason for such bursty accre-
+tion is that, without regulation, the accretion rate will rise quickly
+with gas density, which in turn will create a stronger feedback event
+that will drive gas back temporarily. The black hole then waits for
+the gas to relax again and the process continues. Including the gas
+dynamics in the accretion calculation softens this process because
+dense gas tends to also be in a disk, which will feel rotational sup-
+port.
+A future paper is planned to look in more detail of the rel-
+ative eﬀects of angular momentum limited accretion and stellar
+feedback on the evolution of Milky Way and sub-Milky-Way mass
+galaxies. Within the scope of this paper, the important result is that
+both black hole dynamics and angular momentum regulated accre-
+tion have an appreciable eﬀect on galaxy evolution for galaxies in
+higher mass halos (Mvir > 1011.5).
+9
+APPLICATION: UNDERSTANDING DUAL AGN IN A
+LARGER CONTEXT
+Dual AGN, systems with multiple active black holes, are beginning
+to be observed in the local Universe (Comerford et al. 2011, 2013,
+2015) and represent an important regime for studies of SMBH-
+galaxy co-evolution, as they are a transient state possibly connected
+to a recent or on-going galaxy merger. Being able to reproduce such
+systems in simulations is necessary in order to gain a theoretical un-
+derstanding of their place in the broader context of SMBH-galaxy
+co-evolution. Some important work has already been done to that
+end (Van Wassenhove et al. 2012; Hirschmann et al. 2014; Stein-
+born et al. 2016) and the methods presented in this paper represent
+the logical next step.
+Our approach to black hole physics is particularly well suited
+for realistically modeling dual AGN because we are able to accu-
+rately follow the dynamics of black holes within their host galaxies
+as they get perturbed away from center or fall into a new host fol-
+lowing a galaxy merger event. We are able to track the black hole
+orbits to an accuracy of the simulation’s resolution limit (250 pc)
+and without making assumptions regarding the larger scale struc-
+ture of the galaxy or halo in which the black hole resides. We are
+therefore not only able to create dual AGN down to a separation
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+13
+1011
+1012
+Mvir [M ⊙]
+10-4
+10-3
+10-2
+10-1
+M ∗/Mvir
+Moster+ 13, z = 0.50
+Romulus8
+Bondi
+Advect
+Figure 11. The Effect of SMBH Implementation on SF Efficiency. Same as
+Figure 8 but for the Romulus8, Advect, and Bondi simulations. The stellar
+mass halo mass relation changes little between the simulations for low mass
+halos, but noticeable diﬀerences can be seen for halos with virial masses
+above ∼2 × 1011M⊙. SMBHs do exist in smaller halos in this simula-
+tion (see section 3.1) but, regardless of the SMBH physics implemented,
+small galaxies will not experience much black hole growth or feedback. For
+higher mass galaxies, artiﬁcial advection and Bondi accretion not limited
+by gas dynamics work to increase the eﬀect of SMBHs on star formation
+compared to our implementation utilized in the Romulus8 simulation.
+of < 1 kpc, we can follow the evolution of the system accurately
+throughout the parent system’s evolution.
+An example of dual AGN created using our approach, taken
+from the Romulus8 simulation during the last major merger of the
+most massive halo in the volume, is shown in Figure 15 (the same
+halo used for analysis in the previous two sections; see Figures 7, 9,
+and others in §7 and §8). We show 5 snapshots in time of a single
+galaxy merger that results in three instances of a dual AGN with
+separations of ∼50 kpc, ∼12 kpc, and ∼1.5 kpc. These are pro-
+genitor events leading up to a black hole merger and the quenching
+of the host galaxy, which by the end of the simulation has halo and
+stellar masses similar to the Milky Way. By looking at each snap-
+shot, we gain insight into how the simulation is evolving. The entire
+process takes less than 1.5 Gyr from the initial dual AGN event un-
+til black hole merger. Two of these dual AGN events (snapshots 2
+and 3 on the plot) look analogous to systems found by Comerford
+et al. (2015). When searching for these events, we deﬁned ‘active’
+to mean a bolometric luminosity of more than 1043 ergs/s.
+To give the events more context, we plot the black hole lumi-
+nosity as a function of star formation rate for the merging galaxies
+in each snapshot (Figure 15). The smaller galaxy is in the process
+of being stripped by the larger galaxy. The original baryonic masses
+of the galaxies before the merger was M1/M2 ∼1.2 and the ratio of
+black hole masses was MBH,1/MBH,2 ∼0.5, where the less massive
+galaxy, denoted by 2, is the one that is being stripped and the one
+that hosts the more massive black hole.
+The stripped galaxy is clearly in the process of being quenched
+by a combination of its environment and the active black hole
+within it. As the galaxies get closer, the black holes become more
+0
+5
+10
+15
+20
+25
+30
+SFR [M ⊙ yr−1 ]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Time (Gyr)
+10
+42
+10
+43
+10
+44
+Max Lbol,BH (ergs/s)
+Romulus8
+Bondi
+Advect
+Figure 12. The Effect of SMBH Implementation on the SF History of
+Massive Galaxies (Top) The star formation history of the most massive
+halo in the 8 Mpc simulations, taken from the total stellar population of
+the galaxy at z = 0.5. A clear diﬀerence can be seen between Romulus8
+(blue), Advect (red) and Bondi (green). (Bottom) For the same galaxy, the
+luminosity of the most luminous black hole across time within the galaxy’s
+main progenitor branch. At later times Romulus8 has more active black
+holes. The values of luminosity are averaged over 50 Myr intervals. The
+strong dip in the red curve is due to the active black hole instantaneously
+transferring between two halos during a major merger.
+active. The star formation rate of the larger galaxy remains roughly
+constant while the stripped galaxy is further quenched. Through-
+out the interaction, the black hole activity and star formation rate
+of the more massive galaxy matches well with the relation derived
+from observations of z = 1-2 galaxies (Mullaney et al. 2012). The
+stripped galaxy always lies above the relation. After the two galax-
+ies merge, the black hole originally in the stripped galaxy becomes
+even more active, with a luminosity much higher than expected
+given the star formation rate in its new host. After the black holes
+merge, the central black hole remains very active and the galaxy
+moves further to the left on the plot as it quenches. This merger
+event, over the course of ∼1.5 Gyr and resulting in diﬀerent in-
+stances of dual AGN, is the progenitor to a newly quenched galaxy.
+The heightened black hole activity corresponds with the quick de-
+cay of the star formation rate over the next billion years.
+In the example given here from the Romulus8 simulation, we
+show that the Dual AGN event is a direct result of a major merger
+taking place between the galaxies. The black hole in the smaller
+galaxy becomes active as its galaxy quenches, with activity increas-
+ing as it moves closer to the more massive galaxy. In this case,
+having multiple black holes was indicative of a future black hole
+merger and would result in the quenching of what originally was a
+gas rich, star forming galaxy.
+This is only one example, but it shows the level of detail with
+which we can approach the problem of Dual AGN. It is also indica-
+tive that these systems are not necessarily very rare across cosmic
+© 2015 RAS, MNRAS 000, 1–21
+
+
+14
+M. Tremmel et al.
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Time (Gyr)
+0
+1
+2
+3
+4
+5
+Ratio Cum. BH Energy Output
+Advect/Romulus8
+Bondi/Romulus8
+Figure 13. The Cumulative Energy Output from SMBHs within the most
+massive halo in the 8 Mpc simulations. The Advect (red) and Bondi (green)
+models compared with Romulus8 across cosmic time. During the ﬁrst 4
+Gyr of the simulation, the Romulus8 halo experiences less feedback from
+SMBHs.
+time, as we were able to generate a relatively long lived event in a
+volume of only 578 Mpc3. In a future paper we will search both the
+25 Mpc volume (Romulus25) and the cluster (RomulusC) for Dual
+AGN events across cosmic time, giving us a much larger sample to
+look at and understand better the physical processes necessary to
+generate Dual AGN.
+10
+SUMMARY
+In this Paper, we present a novel approach for modeling SMBH
+formation, dynamics, and feedback that represents a marked im-
+provement over currently common approaches utilized in most cos-
+mological simulation to date. Our approach, combined with a new
+method of parameter optimization, has been applied to a new set of
+cosmological simulations called Romulus.
+We presented the initial results from our ﬂagship simula-
+tion, Romulus25, showing that our model reproduces the observed
+SMHM and MBH-M⋆relations for z = 0 galaxies. We also show that
+both the star formation and SMBH accretion histories are consis-
+tent with observations at high redshift, though both suﬀer from our
+small volume’s inability to capture cosmic downsizing. Using a set
+of smaller simulations, we also show how SMBH physics is a nec-
+essary component for quenching star formation in massive galaxies
+and reproducing the observed evolution of MW-mass galaxies. We
+also show that our implementation gives appreciably diﬀerent re-
+sults for galaxies in massive (1012 M⊙) halos compared with more
+common approaches. This highlights not only the importance of in-
+cluding SMBH physics in cosmological simulations, but also that
+the details of the implementation are imprinted on the evolution of
+massive galaxies.
+Finally, we present an illustrative example of how our imple-
+mentation will result not only in realistic SMBH mergers, but also
+allow us to study the dual AGN that may often precede such events
+with unprecedented detail. This will be explored more thoroughly
+in future work, but represents an important proof of concept that
+our model will provide new data to put transient events such as
+dual AGN and SMBH mergers into a broader context.
+The Romulus simulation suite, with resolution on par with the
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+Time (Gyr)
+0
+2
+4
+6
+8
+10
+12
+14
+σ(
+˙
+MBH)/ <
+˙
+MBH >50Myr
+Advect
+Bondi
+Romulus8
+Figure 14. The ‘Burstiness’ of SMBH Accretion for the most massive
+black hole in the most massive halo in the three 8 Mpc simulations: Romu-
+lus8 (blue), Advect(red), and Bondi (green), deﬁned to be the ratio of the
+standard deviation to the mean accretion rate over 50 Myr timescales. In
+both Advect and Bondi we see that the black hole experiences a much more
+bursty accretion history.
+highest resolution cosmological simulations run to date, will pro-
+vide a crucial dataset with which to study the evolution of galaxies
+with halo mass 109 −1013 M⊙. The inclusion of RomulusC and Ro-
+mulus50 will provide further insight into galaxy evolution in rarer,
+high density regions not sampled by Romulus25 alone. The high
+resolution of these simulations is necessary not only to study the
+structure of galaxies, but also to properly follow the dynamics of
+SMBHs (Tremmel et al. 2015). The SMBH implementation we pre-
+sented in this Paper will allow SMBHs to form in the early Universe
+and exist in both large galaxies and dwarfs, while ensuring that they
+respond realistically to their changing environment. This is the ﬁrst
+set of simulations of this size and resolution to simultaneously pro-
+vide physically motivated sub-grid models for SMBH formation
+(§5.1) and dynamics (§5.2 and Tremmel et al. 2015) while also
+accounting for resolution eﬀects (Booth & Schaye 2009) and dy-
+namically supported gas (§5.3) when calculating SMBH accretion.
+Romulus represents a natural next step for cosmological simula-
+tions to provide more detailed insight into the evolving structure
+of galaxies, the co-evolution of galaxies and SMBHs, and transient
+events such as Dual AGN and SMBH mergers.
+ACKNOWLEDGMENTS
+We would like to thank Richard Bower, the referee, for their helpful
+and thorough comments. FG, TQ, and Lauren Anderson were par-
+tially supported by NSF award AST-1311956 and HST award AR-
+13264. FG, TQ and MT were partially supported by NSF award
+AST-1514868. AP was supported by the Royal Society. This re-
+search is part of the Blue Waters sustained-petascale computing
+project, which is supported by the National Science Foundation
+(awards OCI-0725070 and ACI-1238993) and the state of Illinois.
+Blue Waters is a joint eﬀort of the University of Illinois at Urbana-
+Champaign and its National Center for Supercomputing Applica-
+tions. This work is also part of a PRAC allocation support by the
+National Science Foundation (award number OCI-1144357). MV
+acknowledges funding from the European Research Council un-
+der the European Community’s Seventh Framework Programme
+(FP7/2007-2013 Grant Agreement no. 614199, project ‘BLACK’).
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+15
+1
+2
+3
+4
+1
+2
+3
+5
+5
+3
+2
+1
+4
+Figure 15. The Evolution of Dual AGN The evolution a merging galaxy pair and resulting remnant galaxy in terms of star formation rate and black hole
+luminosity. Thumbnails showing the stars of the galaxies are shown along with each data point set. The diﬀerent colored points in each thumbnail represent
+the positions of the active black hole(s) at each time. The data points and thumbnails shown were chosen to encapsulate several important phases of evolution:
+1) the beginning of the interaction, when the smaller galaxy has just entered the virial radius of the larger galaxy and is being stripped and environmentally
+quenched 2) the end of the galaxy merger phase, where there are two distinct galaxies, but the smaller one has been completely stripped. 3) the remnant
+resulting from the galaxy merger, still with two separate, bright black holes 4) just after the two black holes merge. 5) the merger remnant after it has been
+given time to relax, showing the galaxy quenching under the inﬂuence of a single, still very active black hole.
+Much of the analysis done in this work was done using the Pynbody
+package (Pontzen et al. 2013)
+REFERENCES
+Agarwal B., Dalla Vecchia C., Johnson J. L., Khochfar S.,
+Paardekooper J.-P., 2014, MNRAS, 443, 648
+Alexander D. M. et al., 2008, AJ, 135, 1968
+Anderson L., Governato F., Karcher M., Quinn T., Wadsley J.,
+2017, MNRAS, 468, 4077
+Anglés-Alcázar D., Davé R., Faucher-Giguère C.-A., Özel F.,
+Hopkins P. F., 2017, MNRAS, 464, 2840
+Barber C., Schaye J., Bower R. G., Crain R. A., Schaller M., The-
+uns T., 2016, MNRAS, 460, 1147
+Begelman M. C., Volonteri M., Rees M. J., 2006, MNRAS, 370,
+289
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770, 57
+Bellovary J., Brooks A., Volonteri M., Governato F., Quinn T.,
+Wadsley J., 2013, ApJ, 779, 136
+Bellovary J., Volonteri M., Governato F., Shen S., Quinn T., Wad-
+sley J., 2011, ApJ, 742, 13
+Bennert V. N., Auger M. W., Treu T., Woo J.-H., Malkan M. A.,
+2011, ApJ, 742, 107
+Benson A. J., 2014, MNRAS, 444, 2599
+Binney J., Tremaine S., 2008, Galactic Dynamics: Second Edi-
+tion. Princeton University Press
+Bluck A. F. L. et al., 2016, MNRAS, 462, 2559
+Bongiorno A. et al., 2014, MNRAS, 443, 2077
+Bonoli S., Mayer L., Kazantzidis S., Madau P., Bellovary J., Gov-
+ernato F., 2016, MNRAS, 459, 2603
+© 2015 RAS, MNRAS 000, 1–21
+
+
+16
+M. Tremmel et al.
+Booth C. M., Schaye J., 2009, MNRAS, 398, 53
+Bower R. G., Vernon I., Goldstein M., Benson A. J., Lacey C. G.,
+Baugh C. M., Cole S., Frenk C. S., 2010, MNRAS, 407, 2017
+Brook C. B. et al., 2011, MNRAS, 415, 1051
+Buchner J. et al., 2015, ApJ, 802, 89
+Calzetti D., 2001, PASP, 113, 1449
+Calzetti D., Armus L., Bohlin R. C., Kinney A. L., Koornneef J.,
+Storchi-Bergmann T., 2000, ApJ, 533, 682
+Cannon J. M. et al., 2011, ApJ, 739, L22
+Chandrasekhar S., 1943, ApJ, 97, 255
+Comerford J. M., Pooley D., Barrows R. S., Greene J. E., Zakam-
+ska N. L., Madejski G. M., Cooper M. C., 2015, ApJ, 806, 219
+Comerford J. M., Pooley D., Gerke B. F., Madejski G. M., 2011,
+ApJ, 737, L19
+Comerford J. M., Schluns K., Greene J. E., Cool R. J., 2013, ApJ,
+777, 64
+Croton D. J. et al., 2006, MNRAS, 365, 11
+Di Matteo T., Croft R. A. C., Springel V., Hernquist L., 2003, ApJ,
+593, 56
+Di Matteo T., Springel V., Hernquist L., 2005, Nature, 433, 604
+Draine B. T. et al., 2007, ApJ, 663, 866
+Duncan K. et al., 2014, MNRAS, 444, 2960
+Fan X. et al., 2001, AJ, 122, 2833
+Filippenko A. V., Ho L. C., 2003, ApJ, 588, L13
+Gehren T., Fried J., Wehinger P. A., WyckoﬀS., 1984, ApJ, 278,
+11
+Genel S. et al., 2014, MNRAS, 445, 175
+Girardi L. et al., 2010, ApJ, 724, 1030
+Governato F. et al., 2010, Nature, 463, 203
+Governato F. et al., 2009, MNRAS, 398, 312
+Governato F., Colpi M., Maraschi L., 1994, MNRAS, 271, 317
+Governato F. et al., 2015, MNRAS, 448, 792
+Governato F., Willman B., Mayer L., Brooks A., Stinson G.,
+Valenzuela O., Wadsley J., Quinn T., 2007, MNRAS, 374, 1479
+Guedes J., Callegari S., Madau P., Mayer L., 2011, ApJ, 742, 76
+Gültekin K., et al., 2009, ApJ, 698, 198
+Habouzit M., Volonteri M., Dubois Y., 2017, MNRAS, 468, 3935
+Häring N., Rix H.-W., 2004, ApJ, 604, L89
+Haynes M. P. et al., 2011, AJ, 142, 170
+Hirschmann M., Dolag K., Saro A., Bachmann L., Borgani S.,
+Burkert A., 2014, MNRAS, 442, 2304
+Hopkins P. F., Quataert E., 2010, MNRAS, 407, 1529
+Hopkins P. F., Quataert E., 2011, MNRAS, 415, 1027
+Hopkins P. F., Richards G. T., Hernquist L., 2007, ApJ, 654, 731
+Hosokawa T., Yorke H. W., Inayoshi K., Omukai K., Yoshida N.,
+2013, ApJ, 778, 178
+Johnson J. L., Whalen D. J., Fryer C. L., Li H., 2012, ApJ, 750,
+66
+Kazantzidis S. et al., 2005, ApJ, 623, L67
+Keller B. W., Wadsley J., Benincasa S. M., Couchman H. M. P.,
+2014, MNRAS, 442, 3013
+Keller B. W., Wadsley J., Couchman H. M. P., 2016, MNRAS,
+463, 1431
+Kim J.-h. et al., 2014, ApJS, 210, 14
+Kistler M. D., Yuksel H., Hopkins A. M., 2013, ArXiv:1305.1630
+Knollmann S. R., Knebe A., 2009, ApJS, 182, 608
+Kormendy J., Ho L. C., 2013, ARA&A, 51, 511
+Kormendy J., Richstone D., 1995, 33, 581
+Kravtsov
+A.,
+Vikhlinin
+A.,
+Meshscheryakov
+A.,
+2014,
+ArXiv:1401.7329
+Kroupa P., 2001, MNRAS, 322, 231
+Lacy M., Ridgway S. E., Sajina A., Petric A. O., Gates E. L.,
+Urrutia T., Storrie-Lombardi L. J., 2015, ApJ, 802, 102
+Lansbury G. B. et al., 2015, ApJ, 809, 115
+Lauer T. R., Tremaine S., Richstone D., Faber S. M., 2007, ApJ,
+670, 249
+MacKay D. J., 1998, NATO ASI Series F Computer and Systems
+Sciences, 168, 133
+Marigo P., Girardi L., Bressan A., Groenewegen M. A. T., Silva
+L., Granato G. L., 2008, A&A, 482, 883
+Menon H., Wesolowski L., Zheng G., Jetley P., Kale L., Quinn T.,
+Governato F., 2015, Comp. Astrophysics and Cosmology, 2, 1
+Merloni A., 2016, in Lecture Notes in Physics, Berlin Springer
+Verlag, Vol. 905, Lecture Notes in Physics, Berlin Springer Ver-
+lag, Haardt F., Gorini V., Moschella U., Treves A., Colpi M.,
+eds., p. 101
+Monaco P., Theuns T., Taﬀoni G., Governato F., Quinn T., Stadel
+J., 2002, ApJ, 564, 8
+Moran E. C., Shahinyan K., Sugarman H. R., Vélez D. O., Era-
+cleous M., 2014, AJ, 148, 136
+Mortlock D. J. et al., 2011, Nature, 474, 616
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS, 428, 3121
+Mullaney J. R. et al., 2012, ApJ, 753, L30
+Munshi F. et al., 2013, ApJ, 766, 56
+Nozawa T., Kozasa T., Umeda H., Maeda K., Nomoto K., 2003,
+ApJ, 598, 785
+Obreschkow D., Glazebrook K., 2014, ApJ, 784, 26
+Papovich C. et al., 2015, ApJ, 803, 26
+Planck Collaboration et al., 2015, ArXiv:1502.01589
+Pontzen A., Roškar R., Stinson G., Woods R., 2013, pynbody:
+N-Body/SPH analysis for python. Astrophysics Source Code Li-
+brary
+Pontzen A., Tremmel M., Roth N., Peiris H. V., Saintonge A.,
+Volonteri M., Quinn T., Governato F., 2017, MNRAS, 465, 547
+Reines A. E., Comastri A., 2016, PASA, 33, e054
+Reines A. E., Deller A. T., 2012, ApJ, 750, L24
+Reines A. E., Greene J. E., Geha M., 2013, ApJ, 775, 116
+Reines A. E., SivakoﬀG. R., Johnson K. E., Brogan C. L., 2011,
+Nature, 470, 66
+Reines A. E., Volonteri M., 2015, ApJ, 813, 82
+Ritchie B. W., Thomas P. A., 2001, MNRAS, 323, 743
+Rosas-Guevara Y. M. et al., 2015, MNRAS, 454, 1038
+Ruiz A. N. et al., 2015, ApJ, 801, 139
+Savorgnan G. A. D., Graham A. W., Marconi A., Sani E., 2016,
+ApJ, 817, 21
+Schaye J. et al., 2015, MNRAS, 446, 521
+Schaye J. et al., 2010, MNRAS, 402, 1536
+Schleicher D. R. G., Palla F., Ferrara A., Galli D., Latif M., 2013,
+A&A, 558, A59
+Schramm M., Silverman J. D., 2013, ApJ, 767, 13
+Shen S., Wadsley J., Stinson G., 2010, MNRAS, 407, 1581
+Shields J. C., Walcher C. J., Böker T., Ho L. C., Rix H.-W., van
+der Marel R. P., 2008, in IAU Symposium, Vol. 245, IAU Sym-
+posium, Bureau M., Athanassoula E., Barbuy B., eds., pp. 259–
+260
+Shimizu I., Yoshida N., Okamoto T., 2011, MNRAS, 418, 2273
+Sijacki D., Springel V., Di Matteo T., Hernquist L., 2007, MN-
+RAS, 380, 877
+Sijacki D., Vogelsberger M., Genel S., Springel V., Torrey P., Sny-
+der G. F., Nelson D., Hernquist L., 2015, MNRAS, 452, 575
+Somerville R. S., Hopkins P. F., Cox T. J., Robertson B. E., Hern-
+quist L., 2008, MNRAS, 391, 481
+Steinborn L. K., Dolag K., Comerford J. M., Hirschmann M., Re-
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+17
+mus R.-S., Teklu A. F., 2016, MNRAS, 458, 1013
+Stinson G., Seth A., Katz N., Wadsley J., Governato F., Quinn T.,
+2006, MNRAS, 373, 1074
+Sun M. et al., 2015, ApJ, 802, 14
+Taﬀoni G., Mayer L., Colpi M., Governato F., 2003, MNRAS,
+341, 434
+Teyssier R., Moore B., Martizzi D., Dubois Y., Mayer L., 2011,
+MNRAS, 414, 195
+Todini P., Ferrara A., 2001, MNRAS, 325, 726
+Treister E., Urry C. M., Schawinski K., Cardamone C. N., Sanders
+D. B., 2010, ApJ, 722, L238
+Tremmel M., Governato F., Volonteri M., Quinn T. R., 2015, MN-
+RAS, 451, 1868
+Van Wassenhove S., Volonteri M., Mayer L., Dotti M., Bellovary
+J., Callegari S., 2012, ApJ, 748, L7
+Volonteri M., 2010, A&A Rev., 18, 279
+Volonteri M., 2012, Science, 337, 544
+Volonteri M., Bellovary J., 2012, Reports on Progress in Physics,
+75, 124901
+Volonteri M., Dubois Y., Pichon C., Devriendt J., 2016a, ArXiv:
+1602.01941
+Volonteri M., Haardt F., Gültekin K., 2008, MNRAS, 384, 1387
+Volonteri M., Habouzit M., Pacucci F., Tremmel M., 2016b, in
+IAU Symposium, Vol. 319, Galaxies at High Redshift and Their
+Evolution Over Cosmic Time, Kaviraj S., ed., pp. 72–79
+Wadsley J. W., Stadel J., Quinn T., 2004, New Astronomy, 9, 137
+Wadsley J. W., Veeravalli G., Couchman H. M. P., 2008, MNRAS,
+387, 427
+Wurster J., Thacker R. J., 2013, MNRAS, 431, 2513
+This paper has been typeset from a TEX/ LATEX ﬁle prepared by the
+author.
+APPENDIX A: QUANTITATIVE PARAMETER SEARCH
+FOR SF AND SMBHS PHYSICS
+Large simulations require proportionally vast computational re-
+sources and face two main problems: limited force and mass reso-
+lution and the extensive need for sub- grid physics, as the modeling
+of physical processes happening below the resolved scales. Exam-
+ples for such sub-grid physics parameters are the density at which
+SF should form, the fraction of energy form SNe and SMBHs that
+couples to the surrounding gas the speed at which metals diﬀuse
+in the Intergalactic medium (IGM). Note that the same points hold
+even in simulations that claim no free parameters, for numerical
+parameters such as the precision of the step integration, the value
+of the force softening or the adopted IMF.
+A common problem in simulations has been how to design
+an eﬃcient strategy to quantitatively optimize, in a statistically
+controlled way these physical, but poorly constrained parameters,
+hence optimizing the results for the chosen physical model (Gover-
+nato et al. 2007). A similar problem is faced by the so-called semi
+analytical models (Monaco et al. 2002; Somerville et al. 2008).
+However parameter searches for SAM are computationally cheaper
+and can be performed using diﬀerent statistical approaches such
+as emulation (Bower et al. 2010), Monte Carlo Markov Chain
+(MCMC) (Benson 2014) or Particle Swarm Optimization (Ruiz
+et al. 2015).
+As described in §3, in this work we have implemented a novel
+optimization technique to optimally choose sub-grid parameters as-
+sociated with the implementations of 1) SF and SNe feedback and
+then 2) SMBHs accretion and feedback. To optimize the SF and
+SNe feedback parameters we proceeded in the way described in
+§2.2. Here we describe in a more detail some of the choices we
+made and the so–called Kriging techniques (see below) that we
+used to map out the suitability of the parameter space explored.
+The kriging algorithm penalizes parameter values that lead to sim-
+ulations that deviate from the properties of real galaxies and then
+searches for parameter values that instead minimize this deviation.
+Runs are repeated with the same galaxies set, but with the updated
+parameters until the desired ‘convergence’ to the SF values listed
+in §4.
+To summarize, our approach introduces a number of desirable
+qualities compared when only a limited number of experiments,
+as typical of numerical simulations, can be carried out. It presents
+several advantages over shutting oﬀor including individual physics
+modules (Genel et al. 2014) or to running a small cosmological vol-
+ume multiple times (Schaye et al. 2015, 2010). Namely the non lin-
+ear eﬀect of changing more than one parameter at the time can now
+be followed (Schaye et al. 2015) and the search for best parame-
+ters can cover a mass range similar to that of the ﬁnal, large scale
+simulation (which tend to have more massive halos than small test
+volumes).
+• 1) Minimal resources are wasted in ’bad’ regions of parameter
+space.
+• 2) There is no need to wait for convergence, every simulation
+is useful immediately (unlike Markov chain Monte Carlo and many
+optimization techniques) and
+• 3) Kriging is robust to changes in model choice and penaliza-
+tion/weighting methods as suitability values can easily be recalcu-
+lated.
+Figure A1 illustrates the results of this process, showing im-
+ages of the stars of a disk galaxy at z=0 using the best, poor, and
+worst star formation parameters.
+A1
+Grading Parameter Realizations
+Each parameter set realization is graded against a set of z = 0 empir-
+ical scaling relations that govern star formation eﬃciency (Moster
+et al. 2013), the gas depletion time (Cannon et al. 2011; Haynes
+et al. 2011), galaxy size and angular momentum (Obreschkow &
+Glazebrook 2014), and SMBH growth (Schramm & Silverman
+2013). The stellar mass fraction for our simulated galaxies is ob-
+tained following (Munshi et al. 2013), a procedure that includes the
+eﬀects of a ﬁxed aperture and the under-weighting of older, redder
+stellar populations. The HI fractions are measured directly from
+the simulations, which track the HI content of each gas particle. To
+calculate the bulge to disk ratio, galaxies are decomposed into their
+diﬀerent dynamical components based on the energy and angular
+momentum of each particle. Then the total angular momentum is
+calculated from every star particle not considered to be dynami-
+cally a part of the halo. Black hole masses are taken directly from
+the most massive black hole in each halo.
+The SMHM relation constrains the SF eﬃciency over the
+whole Hubble time. SF eﬃciency also aﬀects many other struc-
+tural relations such as the M⋆-Vpeak, and the stellar mass - metal-
+licity relation. The Jstar/M⋆relation and the HI/stellar mass rela-
+tion were included as good proxies of the eﬀect of feedback pro-
+© 2015 RAS, MNRAS 000, 1–21
+
+
+18
+M. Tremmel et al.
+20
+10
+0
+10
+20
+x [kpc]
+20
+10
+0
+10
+20
+y [kpc]
+Run 26
+20
+10
+0
+10
+20
+x [kpc]
+Run 8
+20
+10
+0
+10
+20
+x [kpc]
+Run 27
+Figure A1. Kriging Parameter Search in Practice. Here we show three realizations of our zoomed-in run of a 1011.5 M⊙halo at z = 0. From left to right
+we show the best parameter set, a poor set, and the worst set based on our grading criteria. See Table 1 for the parameters for each of these simulations. This
+illustrates that the parameters we chose and the way we varied them throughout our search has a clear eﬀect on galaxy properties. In this case, run 26 has a
+clear thin disk, run 8 has a more diﬀuse disk and run 27 fails to form a thin disk at all. Our approach is able to thoroughly and eﬃciently search through the
+allowed parameter space and arrive at a set of parameters that results in realistic galaxies.
+cesses on low redshift SF and the angular momentum distribution
+and size of a galaxy. Finally the MBH-M⋆is an important constraint
+on SMBHs processes, in particular the coeval growth of stars and
+SMBHs within galaxies. These grading choices are by no means
+unique, but allow us to be conﬁdent in the success of a given pa-
+rameter set in creating galaxies that match what is observed in the
+local Universe, while still leaving room to make predictions for the
+evolution of various galaxy properties over cosmic time.
+A2
+Finding the Optimal Parameters
+In order to avoid a 5-dimensional parameter space calculation, we
+ﬁrst performed the full analysis, using the Kriging technique, on
+galaxies with no SMBH physics. This allowed us to converge upon
+the set of SF parameters that created the most realistic galaxies pos-
+sible without the inclusion of SMBHs. A series of 27 parameter re-
+alizations (see Table 1) was run for sets of 3 halos with z = 0 virial
+masses of 1010.5, 1011.5, and 1012 M⊙. Each set was graded by sum-
+ming up the logarithmic distance of each galaxy from each scaling
+relation, though the angular momentum of the dwarf galaxy was ex-
+cluded due to the fact that the dynamical decomposition technique
+becomes unreliable at low masses. Each galaxy is weighted evenly
+in the ﬁnal grade for each parameter realization. The best model
+converged upon by this approach is marked with a star in Table 1.
+Once the SF parameters were chosen, another set of 12 sim-
+ulations were run with SMBH physics to ﬁnd the best parameters
+for accretion and feedback strength (see §5.4). The same general
+approach was used, though a more hands-on approach was used to
+dictate how we traversed the available parameter space (see below).
+Because SMBH physics is thought to preferentially aﬀect more
+massive galaxies, we include a fourth halo, with virial mass 1012
+M⊙, in each set of simulations. When grading each parameter set,
+the average deviation of these two halos is used instead of their in-
+dividual deviations. Again, each galaxy is weighted evenly though
+the dwarf galaxy is again excluded from the SMBH relation due
+to the fact that the fraction of dwarfs hosting a central SMBH is
+not well known (see Volonteri (2010) for theoretical arguments and
+(Reines & Comastri 2016) for an observational review). Further-
+more, as noted in section 5.5, the inclusion of a SMBH does not
+have a signiﬁcant impact on the scaling relationships.
+A3
+The Kriging Approach to Parameter Search
+The Kriging Approach allows us to eﬃciently traverse parameter
+space and know when we have converged on the ‘best’ set of pa-
+rameters without the use of a large number of simulations as would
+be required of other techniques such as MCMC.
+MCMC requires 1) a joint prior distribution on the parameter
+space, from which initial points can be drawn, 2) a likelihood func-
+tion describing the distribution of the observables given a particular
+parameter set, and 3) a proposal distribution that generates the next
+parameter values to examine, given the current values. MCMC then
+uses these functions to iterate over the parameter space, deciding
+whether or not to jump to the next point depending on how likely
+the next point is to explain the data relative to the current values.
+After a very large number of iterations (sometimes millions), the
+accepted points become a sample from the posterior distribution of
+parameter values given the observables, and useful inferences can
+thereby be derived, including point estimates of the best parame-
+ter values, and 95% credible regions for where the best parameter
+values may lie.
+Because cosmological simulations consume a large amount of
+computing resources, simulating so many iterations is not possi-
+ble. Our approach trades the unattainable statistical properties of
+MCMC for the ability to make direct use of human expertise and
+intuition, the ﬂexibility to adapt to changing measures of ﬁtness,
+and keeping the certainty of knowing that every iteration makes
+a distinguishable contribution to our knowledge of the parameter
+space. While we lose access to the posterior distribution (i.e. a full
+sampling and ranking of parameter space), that is not really neces-
+sary. Instead, we gain an eﬃcient means of ﬁnding the region of the
+parameter space that produces the most realistic galaxies, which is
+our goal.
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+19
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+−15
+−10
+−5
+0
+Suitability
+G
+G
+G
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+−15
+−10
+−5
+0
+G
+G
+G
+G
+−4
+−3
+−2
+−1
+0
+1
+2
+3
+−15
+−10
+−5
+0
+G
+G
+G
+G
+−1
+0
+1
+2
+3
+−1
+0
+1
+2
+3
+X
+Y
+G
+G
+G
+G
+G
+−1
+0
+1
+2
+3
+−1
+0
+1
+2
+3
+X
+G
+G
+G
+G
+G
+G
+−1
+0
+1
+2
+3
+−1
+0
+1
+2
+3
+X
+G
+G
+G
+G
+G
+G
+Figure A2. Kriging parameter optimization technique example. Two iterations of the Kriging search algorithm on a 1-dimensional example (ﬁrst row) and
+a 2-dimensional example (second row). In the 1-dimensional scenario, we are attempting to optimize the suitability function −x2, shown as the dashed gray
+line. The algorithm starts by interpolating a pseudo-conﬁdence manifold from two known points (ﬁlled points), and ﬁnding the greatest value (unﬁlled point).
+The algorithm then calculates the true suitability value for that point, and repeats the process. The 2-dimensional scenario is similar—we attempt to optimize
+the suitability function −x2. Here, the pseudo-conﬁdence manifold is shown as a heatmap, with red/darker representing lower suitability and white/brighter
+representing higher suitability. The point selection and evaluation process (ﬁlled and unﬁlled points) is identical to the 1-dimensional scenario.
+We achieve all this by adapting Gaussian process Kriging
+techniques into a more intelligent and eﬃcient grid search al-
+gorithm (see Figure A2). We start by constructing a suitability
+function—a function that takes in a simulation and compares it to
+observed relationships and returns a score describing how realistic
+the simulation is (see above).
+Using the following formula (MacKay 1998), we then interpo-
+late the suitability function between all of our simulated points and
+put pseudo-conﬁdence bounds around where the suitability func-
+tion will actually fall. We see,
+f∗|X∗, X, f ∼N(K(X∗, X)K(X, X)−1f,
+K(X∗, X∗) −K(X∗, X)K(X, X)−1K(X, X∗)),
+where X is the matrix of already-simulated parameter values, f is
+the corresponding vector of known suitability values, X∗is a matrix
+of new parameter values that we wish to examine, f∗is the corre-
+sponding as yet unknown suitabilities, and K(·, ·) is a covariance
+matrix derived from a pre-speciﬁed covariance function k(x1, x2).
+Since we aren’t seeking statistical properties, only utilitar-
+ian properties, we don’t estimate the covariance scale so much as
+choose one that spreads the ﬁrst few suggested points away from
+the initial points, in our case a 99% ‘pseudo conﬁdence surface’
+with covariance scale of 1, meant to ensure parameter space is
+widely sampled. Since it is a suggestion algorithm rather than a
+statistical method, the covariance scale can even be adjusted freely
+before or after points have been selected and tested.
+If we wish to take a hands-oﬀapproach, we would then ex-
+amine the upper pseudo-conﬁdence manifold, and instruct the al-
+gorithm to ﬁnd the point with the highest potential suitability (at a
+ﬁxed conﬁdence level), and then numerically simulate that point.
+This is the approach we used for the initial search where we opti-
+mized the SF parameters (see above). However, if human intuition
+can be suﬃcient, we may also examine the pseudo-conﬁdence man-
+ifold manually and select the next point ourselves without concern
+over losing statistical rigor. This is the approach we used for tuning
+the SMBHs parameters. One complication is that in regions of the
+parameter space where the Kriging process is extrapolating rather
+than interpolating, the conﬁdence regions become extraordinarily
+wide, leading a naive algorithm to always select an extrapolated
+point. This has at least two solutions. One is to restrict any automa-
+tion to the convex hull of already simulated points and use manual
+intervention to select points outside the convex hull if it becomes
+clear that such a point would make a good candidate. The second is
+to only calculate the Kriging bounds for a predeﬁned, a priori rea-
+sonable region of the parameter space. The algorithm will quickly
+explore the outer boundary and then turn inward. From experience
+we learned that a good approach is to start the parameter explo-
+ration from a coarse grid of parameters values, including a range
+over which simulations will provide ’bad’ results (e.g testing SN
+© 2015 RAS, MNRAS 000, 1–21
+
+
+20
+M. Tremmel et al.
+Run
+n⋆
+c⋆
+ϵSN
+1
+1.000
+0.2000
+2.000
+2
+0.100
+0.1000
+1.000
+3
+0.100
+0.1000
+4.000
+4
+0.100
+0.4000
+1.000
+5
+0.100
+0.4000
+4.000
+6
+4.000
+0.1000
+1.000
+7
+4.000
+0.1000
+4.000
+8
+4.000
+0.4000
+1.000
+9
+4.000
+0.4000
+4.000
+10
+0.1
+0.1
+1.5
+11
+0.1
+0.1
+2.0
+12
+0.1
+0.2
+1.0
+13
+0.1
+0.2
+1.5
+14
+0.1
+0.2
+2.0
+15
+1.0
+0.1
+1.0
+16
+1.0
+0.1
+1.5
+17
+1.0
+0.1
+2.0
+18
+1.0
+0.2
+1.0
+19
+1.0
+0.2
+1.5
+20
+0.05
+0.05
+0.5
+21
+0.05
+0.05
+1.5
+22
+0.05
+0.15
+0.5
+23
+0.05
+0.15
+1.5
+24
+0.2
+0.05
+0.5
+25
+0.2
+0.05
+1.5
+26*
+0.2
+0.15
+0.5
+27
+0.2
+0.15
+1.5
+Table A1. Example set of parameter space realizations. The free parame-
+ters tested are the SN eﬃciency, ϵSN, the threshold density for star forma-
+tion, n⋆, and the star formation eﬃciency, c⋆. Diﬀerent sets of parameters
+chosen based on the Kriging technique until a ‘best’ set of parameters is
+converged upon (run 26 here). Note that these runs were done with lower
+DM mass resolution compared to Romulus (see text).
+eﬃciency ranging from 0 to 4, values that will surely over and un-
+der produce stars). An option for future work would be to include
+higher-z constraints from the progenitors of massive present day
+halos, this would allow to constraint the high end of the present
+day galaxy stellar mass function using a limited amount of compu-
+tational resources.
+A sample result of this process is in Table 1. By starting with a
+coarse grid of values for each of our 3 parameters, we utilize Krig-
+ing to traverse parameter space. After each iteration, Kriging sees
+both the current ‘best’ point and the algorithm will then run a simu-
+lation in a region not yet well enough constrained. With time, each
+parameter space realization gets closer to the ‘best’ values until
+Kriging tells us it has suﬃciently converged. Regions of parameter
+space that behave the worst are then sampled much less often while
+regions nearby the ‘best’ parameter set are sampled in more detail.
+The results presented in Table 1 are from simulations that do not
+oversample DM particles and therefore have lower mass resolution
+for DM than the Romulus simulations. We ﬁnd that this increased
+resolution results in higher star formation in dwarf galaxies. Thus,
+the Romulus simulations use the values from run 26, but with a
+higher SN eﬃciency of 0.75, a combination we ﬁnd results in ﬁnal
+properties very similar to run 26 in Table 1.
+APPENDIX B: DUST EXTINCTION APPROXIMATION
+When comparing the colors of simulated galaxies to observations, it
+is important to account for dust attenuation. Because we only care
+about the average attenuation across all lines of sight integrated
+over all stars in a given galaxy, we utilize a simple ‘spherical cow’
+approach similar to Shimizu et al. (2011).
+For a given dust distribution, the amount of attenuation can
+be calculated at any wavelength using the Calzetti Law (Calzetti
+et al. 2000), but ﬁrst it must be properly normalized. For this, it is
+convenient to use far UV light, since the extinction cross section is
+roughly equal to the dust grain size. We choose 1600 Angstroms as
+our normalizing far UV wavelength. We then make the assumption
+that the dust is uniformly distributed in a sheet around the stars,
+which allows us to relate the dust extinction by a simple function
+of the dust optical depth (Calzetti 2001).
+Aλ ∼
+τλ
+0.921
+(B1)
+This is obviously not true in reality, but is not a bad assump-
+tion if we think of this calculation as an average over all lines of
+sight. Assuming spherical symmetry also makes the optical depth a
+simple function of average dust properties.
+τλ =
+Z
+σd(λ)n(r)r ∼σd(λ)Σd
+mp
+(B2)
+In the above equation σd is the dust cross section, Σd is the
+column density, and mp is the mass per dust grain. When dealing
+with far UV light, the cross section is just the cross sectional area of
+the average dust particle. Because we are not accounting for struc-
+ture within the gas, we can use instead estimate the average column
+density using the total mass, Md of dust within the galaxy and the
+half mass radius, R1/2,d of the dust.
+Σd ∼(1/2)Md
+πR2
+1/2,d
+(B3)
+The total mass in dust for a halo is given by the following
+relation from Draine et al. (2007) summed over the HI mass, mHI,i
+of every gas particle in a halo. We follow Shimizu et al. (2011) and
+normalize instead to the solar metallicity, rather than galactic O/H
+values as in the original paper.
+Md ∼
+Ngas
+X
+i=1
+0.01 Z
+Z⊙
+mHI,i
+(B4)
+These equations, put together with the physical properties of
+dust grains and applied to 1600 Angstroms, gives us A1600, which
+we can use to set the normalization of the Calzetti Law. We take
+the dust particle size to be 0.1µm and density to be 2.5g/cc (Todini
+& Ferrara 2001; Nozawa et al. 2003). We cap A1600 at a value of 2,
+given that more advanced dust models show that attenuation devi-
+ates signiﬁcantly from its linear relationship with optical depth as
+column densities increase due to the fact that dustier systems will
+tend to be clumpier (Calzetti 2001). This normalization, combined
+with our adopted value of Rv = 4.0, gives us the ability to estimate
+the dust attenuation at any wavelength. When dealing with bands of
+© 2015 RAS, MNRAS 000, 1–21
+
+
+The Romulus Simulations
+21
+wavelengths, we calculate attenuation using the central wavelength
+of the band.
+© 2015 RAS, MNRAS 000, 1–21

@@ -1,0 +1,99 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T12:51:31Z",
+  "updated_at_kst": "2026-06-29 21:51:31 KST",
+  "source": "Hermes Agent PR #68 merge refresh",
+  "current_action": "PR #68 MERGED TO MAIN. arXiv source URL normalization is in GitHub main but not deployed to the running backend/API yet.",
+  "prs": {
+    "pr67": {
+      "number": 67,
+      "state": "MERGED_AND_LIVE",
+      "merge_commit_short": "ad87039",
+      "purpose": "read-only source-surface fallback"
+    },
+    "pr68": {
+      "number": 68,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/68",
+      "state": "MERGED",
+      "merged_at": "2026-06-29T12:50:48Z",
+      "merge_commit": "e2d6e8117b3f43d11407ccc04ba9c56160270ee0",
+      "merge_commit_short": "e2d6e81",
+      "head_branch": "fix/normalize-arxiv-source-urls-20260629",
+      "remote_head_branch_deleted": true,
+      "changed_files": 2,
+      "squash_parent_count": 1
+    }
+  },
+  "repo": {
+    "origin_main": "e2d6e81",
+    "previous_origin_main": "ad87039",
+    "worktree": "/Users/duhokim/NebulaMind/worktrees/normalize-arxiv-source-urls-20260629",
+    "local_branch": "fix/normalize-arxiv-source-urls-20260629",
+    "local_branch_head": "0b6e773",
+    "merged": true,
+    "deployed": false,
+    "backend_api_restarted_for_pr68": false,
+    "production_db_writes": 0,
+    "migrations": 0,
+    "backfills": 0,
+    "promotion_or_readiness_flag_changes": 0
+  },
+  "live_probe_after_pr68_merge_before_deploy": {
+    "public_citations_status": 200,
+    "public_citations_count": 102,
+    "public_citations_malformed_arxiv_abs_count": 16,
+    "public_fact_sources_status": 200,
+    "public_fact_sources_count": 8,
+    "public_fact_sources_malformed_arxiv_abs_count": 2,
+    "meaning": "PR #68 is merged in GitHub main, but the running backend/API still serves the old URL rendering until a scoped runtime deploy/restart is approved."
+  },
+  "verification": [
+    "TDD RED observed: new regression failed before implementation on https://arxiv.org/abs/arXiv:1712.04452",
+    "Focused GREEN regression passed after implementation",
+    "py_compile changed files: pass",
+    "fallback test file: 6 passed",
+    "related page/source API bundle: 16 passed",
+    "backend tests directory: 325 passed",
+    "pre-push smoke script: 49 passed before push and again in git pre-push hook",
+    "git diff --check: pass",
+    "changed read-route write scan: no write markers",
+    "value-safe secret scan of touched files: no findings",
+    "local Ollama independent review: pass, no blockers/warnings/suggestions",
+    "PR #68 mergeable; no GitHub checks reported",
+    "PR #68 squash-merged; merge commit parent count 1; remote head branch deleted"
+  ],
+  "known_existing_test_collection_issue": "Plain backend pytest -q still collects scripts/legacy and fails on pre-existing NoneType errors unrelated to this diff; pytest tests -q and pre-push smoke passed.",
+  "what_did_not_happen": [
+    "No backend/API deploy for PR #68.",
+    "No backend/API restart for PR #68.",
+    "No production DB writes.",
+    "No migrations.",
+    "No backfills.",
+    "No readiness/promotion flag changes."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Next operational step, requires explicit approval",
+      "name": "Deploy/restart backend/API PR #68 scoped patch",
+      "risk": "Moderate operational risk: live backend/API code restart, no intended data writes",
+      "steering": "STEER: deploy/restart backend/API for PR #68 arXiv URL normalization only; live-probe citations and fact-sources; no DB writes."
+    },
+    {
+      "level": "Then",
+      "name": "Live probe URL cleanup",
+      "risk": "Read-only verification",
+      "steering": "STEER: verify malformed arXiv URL counts drop on live source-surface endpoints and update cockpit; no DB writes."
+    },
+    {
+      "level": "Still locked",
+      "name": "Backfill or promotion work",
+      "risk": "Production data/product trust risk",
+      "steering": "Requires separate backup/dry-run/exact-diff or GO/NO-GO packet."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "note": "Frontend report/static-file service refreshed only to serve this cockpit/status artifact; backend/API PR #68 deploy remains locked."
+  },
+  "mode": "SOURCE_URL_NORMALIZATION_PR68_MERGED_DEPLOY_LOCKED"
+}

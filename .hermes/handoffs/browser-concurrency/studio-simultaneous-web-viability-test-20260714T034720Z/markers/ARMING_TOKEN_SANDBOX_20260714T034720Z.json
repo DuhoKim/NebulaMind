@@ -1,0 +1,22 @@
+{
+  "token": "ARMING_TOKEN_SANDBOX_20260714T034720Z",
+  "packet": "studio-simultaneous-web-viability-test-20260714T034720Z",
+  "authorizes": [
+    "SM-1 leased parallel DOM/CDP sandbox run (canaries/run_sm1.py) — 3 passes",
+    "XM-1 broker probe (canaries/xm1_broker_probe.py) — no browser",
+    "XM-1 cross-host sandbox run (canaries/xm1_cross_host.py) — 3 passes"
+  ],
+  "scope_limits": [
+    "isolated non-default sandbox profiles only; about:blank / inert targets only",
+    "no account, sign-in, security/permission/2FA/CAPTCHA handling",
+    "no default Chrome profile, no user Flow window",
+    "no Flow or Deep Research submission; no AI-credit/quota spend",
+    "no C4 authenticated execution; no Phase IV live overlap",
+    "no cua-driver install on Mac Pro; DR lane DOM/CDP-only",
+    "no DB/deploy/git/publication/billing/cron/unrelated browser actions",
+    "authenticated SSH only (StrictHostKeyChecking=yes); no unauthenticated listener"
+  ],
+  "arming_rule": "Presence of this token is NECESSARY but NOT SUFFICIENT: the standing USER_DIRECTION_ARCHITECTURE_EVALUATION.md supplies Duho's execution authorization, and a harness runs only when invoked with --armed <this path> after renewed Tori pre-run safety approval of the final code. This token does not itself start anything.",
+  "created_by": "hwao",
+  "created_context": "2026-07-14 architecture-evaluation session; written before execution approval"
+}

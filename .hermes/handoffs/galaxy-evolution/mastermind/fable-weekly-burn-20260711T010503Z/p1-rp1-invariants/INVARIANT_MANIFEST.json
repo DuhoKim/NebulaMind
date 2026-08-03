@@ -1,0 +1,1543 @@
+{
+  "marker": "FABLE_BURN_P1_INVARIANT_MANIFEST_20260711T010503Z",
+  "generated_utc": "2026-07-11T02:05:49Z",
+  "generated_by": "Fable burn lane A (P1), pane %184, brief HWAO_FABLE_BURN_P1_BRIEF_20260711T010503Z",
+  "base_package": "candidates/cycle_05_package",
+  "base_package_abs": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_05_package",
+  "base_files": {
+    "flagship": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+    "supplement": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex"
+  },
+  "audit_reference": {
+    "cycle_05_audit": "candidates/cycle_05_package/CYCLE_05_tables_figures_AUDIT.json",
+    "cycle_05_numeric_invariants_missing": [],
+    "note": "Cycle 5 is the last package with empty integrity_blockers; its strings are the audit-canonical carry targets."
+  },
+  "check_rule": "A candidate rewrite of a base file PASSES this manifest iff, for every entry with that file: (1) the candidate contains exact_string at least occurrences_expected times (substring match for match_mode=substring; for match_mode=numeric_token, match exact_string only where not adjacent to another digit, comma or dot); and (2) no near-miss variant of a ci_interval / point_estimate / fraction / table_row entry appears (same context, different digits). Line numbers are cycle-5 anchors for humans; matching is line-independent. Numbers are carried character-for-character from the base package; any intentional numeric change must be declared out-of-band and this manifest regenerated.",
+  "exclusions": [
+    "citation metadata: years, volumes, pages, DOIs, ADS bibcodes, arXiv ids in \\bibitem entries and inline citation years like 'Kauffmann et al. (2003)' - bibliography churn is tracked separately, not as numeric invariants",
+    "LaTeX layout dimensions (0.72/0.86\\textwidth, column specs) and document class version (aastex631)",
+    "document-structure cross-references ('Supplement Sections 5.1 and 5.7', figure/table numbers)",
+    "digits inside catalog/quantity/file identifiers (R90/R50, petroR50/petroR90, lgm_tot_p50, specsfr_tot_p50, galSpecExtra, fig-bpt.pdf, topic-01..08.pdf, m1_rp2..m3_p3 artifact codes) - carried implicitly by table_row and run_identifier entries where they matter",
+    "spelled-out numbers ('four-line', 'eight entries', 'two variables') - not numerals; treated as prose"
+  ],
+  "known_rounding_anomalies": [
+    {
+      "entry": "FLG-CI95",
+      "canonical": "[-1.334,-1.283]",
+      "artifact_nearest_rounding": "[-1.334,-1.282]",
+      "explanation": "Raw bootstrap CI is [-1.3341385500000003, -1.2821399375]; nearest 3-dp rounding of the upper bound is -1.282. The audit invariant list and cycle-5 text carry -1.283. Rewriters that re-derive from the artifact emit -1.282 and fail the audit."
+    },
+    {
+      "entry": "SUP-ROW-188",
+      "canonical": "... & 2.830 \\\\",
+      "artifact_nearest_rounding": "2.831",
+      "explanation": "Raw median_u_minus_r for the (11.0-12.5, 0.02-0.05) cell is 2.83066; nearest 3-dp rounding is 2.831. Cycle-5 carries 2.830 (truncation); every other cell in the table is nearest-rounded."
+    }
+  ],
+  "entry_count": 105,
+  "entries": [
+    {
+      "id": "FLG-60000",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 13,
+      "exact_string": "60,000",
+      "kind": "count",
+      "allowed_context": "fixed 60,000-galaxy optical-emission-line cache / 60,000-row cache / 60,000-galaxy subset",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        19,
+        22,
+        31,
+        34,
+        36,
+        70,
+        74,
+        75,
+        78
+      ],
+      "occurrences_expected": 11
+    },
+    {
+      "id": "FLG-8146",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 13,
+      "exact_string": "8,146",
+      "kind": "count",
+      "allowed_context": "matched pairs; broad optical BPT-selected targets; 8,146 of 8,146 matched",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        36,
+        39,
+        57,
+        74
+      ],
+      "occurrences_expected": 9
+    },
+    {
+      "id": "FLG-8146-BRACED",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 65,
+      "exact_string": "8{,}146",
+      "kind": "count",
+      "allowed_context": "N=8{,}146 pairs (figure caption LaTeX form)",
+      "match_mode": "substring",
+      "lines": [
+        65
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-MEDIAN-OFFSET",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 13,
+      "exact_string": "-1.309",
+      "kind": "point_estimate",
+      "allowed_context": "median Delta log sSFR (target minus matched control), dex",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        50,
+        57,
+        65,
+        74
+      ],
+      "occurrences_expected": 6,
+      "artifact_full_precision": -1.3088869999999995,
+      "artifact_field": "matched_delta_log_sSFR_median_dex"
+    },
+    {
+      "id": "FLG-CI95",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 13,
+      "exact_string": "[-1.334,-1.283]",
+      "kind": "ci_interval",
+      "allowed_context": "bootstrap 95% confidence interval on the median offset, dex",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        57,
+        65,
+        74
+      ],
+      "occurrences_expected": 4,
+      "components": [
+        "-1.334",
+        "-1.283"
+      ],
+      "artifact_full_precision": [
+        -1.3341385500000003,
+        -1.2821399375
+      ],
+      "artifact_field": "matched_delta_log_sSFR_median_ci95_bootstrap",
+      "rounding_anomaly": true,
+      "note": "AUDIT-CANONICAL STRING. Upper bound -1.283 does NOT equal nearest-rounding of the raw artifact value -1.2821399375 (nearest = -1.282). Carry -1.283 verbatim; do not re-derive. See RCA_NUMERIC_DRIFT.md."
+    },
+    {
+      "id": "FLG-CI-LEVEL",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 13,
+      "exact_string": "95\\%",
+      "kind": "percent",
+      "allowed_context": "bootstrap confidence level (95%)",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        50,
+        55,
+        65,
+        74
+      ],
+      "occurrences_expected": 5
+    },
+    {
+      "id": "FLG-PARENT",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 31,
+      "exact_string": "249,917",
+      "kind": "count",
+      "allowed_context": "strict four-line S/N>=3 eligible parent count",
+      "match_mode": "substring",
+      "lines": [
+        31
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-COVERAGE",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 31,
+      "exact_string": "24.0\\%",
+      "kind": "percent",
+      "allowed_context": "cache coverage of strict parent (selection-context diagnostic)",
+      "match_mode": "substring",
+      "lines": [
+        31
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-ZRANGE",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 22,
+      "exact_string": "0.02<z<0.12",
+      "kind": "redshift_range",
+      "allowed_context": "sample redshift restriction",
+      "match_mode": "substring",
+      "lines": [
+        22,
+        32
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "FLG-KPC",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 25,
+      "exact_string": "1.2--6.5",
+      "kind": "physical_range",
+      "allowed_context": "kpc subtended by the 3-arcsec fiber over the redshift interval",
+      "match_mode": "substring",
+      "lines": [
+        25,
+        32
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "FLG-FIBER",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 25,
+      "exact_string": "3-arcsec",
+      "kind": "aperture",
+      "allowed_context": "SDSS fiber aperture",
+      "match_mode": "substring",
+      "lines": [
+        25,
+        32,
+        33
+      ],
+      "occurrences_expected": 4
+    },
+    {
+      "id": "FLG-SNCUT",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 31,
+      "exact_string": "S/N$\\geq3$",
+      "kind": "threshold",
+      "allowed_context": "four-line signal-to-noise cut",
+      "match_mode": "substring",
+      "lines": [
+        31,
+        57
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "FLG-SF",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "39,553",
+      "kind": "count",
+      "allowed_context": "star-forming galaxies in the analysis denominator",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": 39553,
+      "artifact_field": "bpt_counts.star-forming"
+    },
+    {
+      "id": "FLG-COMP",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "12,234",
+      "kind": "count",
+      "allowed_context": "intermediate/composite galaxies in the denominator",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": 12234,
+      "artifact_field": "bpt_counts.intermediate"
+    },
+    {
+      "id": "FLG-UNCLASS",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "67",
+      "kind": "count",
+      "allowed_context": "unclassified objects retained in denominator counts",
+      "match_mode": "numeric_token",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 2,
+      "artifact_full_precision": 67,
+      "artifact_field": "bpt_counts.unclassified"
+    },
+    {
+      "id": "FLG-COVERAGE-PCT",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "100\\%",
+      "kind": "percent",
+      "allowed_context": "target coverage (8,146 of 8,146 targets matched)",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-SEP-LOGM",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "0.0045",
+      "kind": "dex",
+      "allowed_context": "median absolute matching separation in log M*",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": 0.0044599999999999085,
+      "artifact_field": "match_abs_delta_logM_median"
+    },
+    {
+      "id": "FLG-SEP-Z",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "0.00021",
+      "kind": "other",
+      "allowed_context": "median absolute matching separation in redshift",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": 0.00021079499999999973,
+      "artifact_field": "match_abs_delta_z_median"
+    },
+    {
+      "id": "FLG-OIII",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "\\lambda5007",
+      "kind": "wavelength_identifier",
+      "allowed_context": "[O III] 5007 emission line",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-NII",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 39,
+      "exact_string": "\\lambda6584",
+      "kind": "wavelength_identifier",
+      "allowed_context": "[N II] 6584 emission line",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "FLG-RUNID",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 19,
+      "exact_string": "SDSS\\_AGN\\_SFR\\_PILOT\\_20260708T122000Z",
+      "kind": "run_identifier",
+      "allowed_context": "custody run family for the flagship result",
+      "match_mode": "substring",
+      "lines": [
+        19,
+        59
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "FLG-DR17",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 8,
+      "exact_string": "DR17",
+      "kind": "release_identifier",
+      "allowed_context": "SDSS data release 17",
+      "match_mode": "substring",
+      "lines": [
+        8,
+        10,
+        13,
+        19,
+        31,
+        45,
+        78
+      ],
+      "occurrences_expected": 7
+    },
+    {
+      "id": "SUP-60000",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 13,
+      "exact_string": "60,000",
+      "kind": "count",
+      "allowed_context": "shared 60,000-galaxy / 60,000-row selection-limited cache",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        19,
+        22,
+        32,
+        48,
+        59,
+        61,
+        92,
+        114,
+        147,
+        152,
+        195,
+        208
+      ],
+      "occurrences_expected": 15
+    },
+    {
+      "id": "SUP-8146",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 32,
+      "exact_string": "8,146",
+      "kind": "count",
+      "allowed_context": "flagship matched-pair file row count",
+      "match_mode": "substring",
+      "lines": [
+        32
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-PARENT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 22,
+      "exact_string": "249,917",
+      "kind": "count",
+      "allowed_context": "strict four-line S/N>=3 parent count",
+      "match_mode": "substring",
+      "lines": [
+        22
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-COVERAGE",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 13,
+      "exact_string": "24.0\\%",
+      "kind": "percent",
+      "allowed_context": "contextual cache coverage of strict parent",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        22
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-SNCUT-A",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 13,
+      "exact_string": "S/N$\\geq3$",
+      "kind": "threshold",
+      "allowed_context": "four-line S/N cut (abstract / shared-limitations form)",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        22
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-SNCUT-B",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 136,
+      "exact_string": "S/N$\\geq$3",
+      "kind": "threshold",
+      "allowed_context": "S/N cut (mass-bin subsection spacing variant)",
+      "match_mode": "substring",
+      "lines": [
+        136
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ZRANGE",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 13,
+      "exact_string": "0.02<z<0.12",
+      "kind": "redshift_range",
+      "allowed_context": "sample redshift restriction",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        93
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-FCOLL",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 13,
+      "exact_string": "55-arcsec",
+      "kind": "aperture",
+      "allowed_context": "SDSS fiber-collision angular limit",
+      "match_mode": "substring",
+      "lines": [
+        13,
+        24,
+        93
+      ],
+      "occurrences_expected": 4
+    },
+    {
+      "id": "SUP-FIBER",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 24,
+      "exact_string": "3-arcsec",
+      "kind": "aperture",
+      "allowed_context": "SDSS fiber aperture",
+      "match_mode": "substring",
+      "lines": [
+        24
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-NEIGHBOR-ORD",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 59,
+      "exact_string": "10th",
+      "kind": "method_parameter",
+      "allowed_context": "10th-neighbor projected rank index",
+      "match_mode": "substring",
+      "lines": [
+        59,
+        91,
+        92,
+        93,
+        97,
+        124
+      ],
+      "occurrences_expected": 8
+    },
+    {
+      "id": "SUP-ENV-HI",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "0.230",
+      "kind": "fraction",
+      "allowed_context": "high-index-quartile low-sSFR emission-line fraction",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-HI-RATIO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "3,456/15,000",
+      "kind": "fraction",
+      "allowed_context": "high-index quartile count ratio",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-LO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "0.181",
+      "kind": "fraction",
+      "allowed_context": "low-index-quartile low-sSFR emission-line fraction",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-LO-RATIO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "2,710/15,000",
+      "kind": "fraction",
+      "allowed_context": "low-index quartile count ratio",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-CI",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "[0.041, 0.059]",
+      "kind": "ci_interval",
+      "allowed_context": "bootstrap high-minus-low interval (environment baseline)",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-COEF",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "0.032 +/- 0.004",
+      "kind": "point_estimate",
+      "allowed_context": "high-index linear-probability coefficient at fixed mass/redshift",
+      "match_mode": "substring",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ENV-PP",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 92,
+      "exact_string": "3.2",
+      "kind": "percent",
+      "allowed_context": "approximate percentage-point increase in low-sSFR incidence",
+      "match_mode": "numeric_token",
+      "lines": [
+        92
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-15000",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 59,
+      "exact_string": "15,000",
+      "kind": "count",
+      "allowed_context": "galaxies per neighbor-index quartile",
+      "match_mode": "substring",
+      "lines": [
+        59,
+        92
+      ],
+      "occurrences_expected": 3
+    },
+    {
+      "id": "SUP-MASSCUT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 103,
+      "exact_string": "10.8",
+      "kind": "threshold",
+      "allowed_context": "massive-subset cut log M* >= 10.8",
+      "match_mode": "numeric_token",
+      "lines": [
+        103,
+        158
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-MASSIVE-N",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 60,
+      "exact_string": "9,298",
+      "kind": "count",
+      "allowed_context": "massive emission-line galaxies (log M* >= 10.8)",
+      "match_mode": "substring",
+      "lines": [
+        60,
+        103
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-MASSIVE-LOWSSFR-N",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 60,
+      "exact_string": "5,695",
+      "kind": "count",
+      "allowed_context": "low-sSFR objects within the massive subset",
+      "match_mode": "substring",
+      "lines": [
+        60,
+        103
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-BPT-FRAC-MASSIVE",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 103,
+      "exact_string": "0.430",
+      "kind": "fraction",
+      "allowed_context": "broad optical BPT-selected fraction in the massive subset (also appears as a sim-vector cell value)",
+      "match_mode": "substring",
+      "lines": [
+        103,
+        185
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-BPT-FRAC-MASSIVE-LOWSSFR",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 103,
+      "exact_string": "0.607",
+      "kind": "fraction",
+      "allowed_context": "broad optical BPT-selected fraction among massive low-sSFR objects",
+      "match_mode": "substring",
+      "lines": [
+        103
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-HIEXC-N",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 61,
+      "exact_string": "4,440",
+      "kind": "count",
+      "allowed_context": "high-excitation broad optical BPT-selected candidates",
+      "match_mode": "substring",
+      "lines": [
+        61,
+        114
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-HIEXC-FRAC",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 114,
+      "exact_string": "0.074",
+      "kind": "fraction",
+      "allowed_context": "high-excitation candidate fraction of 60,000",
+      "match_mode": "substring",
+      "lines": [
+        114
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-HIEXC-SSFR",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 114,
+      "exact_string": "-11.53",
+      "kind": "dex",
+      "allowed_context": "median log sSFR of high-excitation subset",
+      "match_mode": "substring",
+      "lines": [
+        114
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-FULL-SSFR",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 114,
+      "exact_string": "-10.14",
+      "kind": "dex",
+      "allowed_context": "median log sSFR of full denominator",
+      "match_mode": "substring",
+      "lines": [
+        114
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-JET-HI",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 125,
+      "exact_string": "0.509",
+      "kind": "fraction",
+      "allowed_context": "high-index-quartile broad optical BPT-selected fraction (massive hosts)",
+      "match_mode": "substring",
+      "lines": [
+        125
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-JET-LO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 125,
+      "exact_string": "0.367",
+      "kind": "fraction",
+      "allowed_context": "low-index-quartile broad optical BPT-selected fraction (massive hosts)",
+      "match_mode": "substring",
+      "lines": [
+        125
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-JET-CI",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 125,
+      "exact_string": "[0.112, 0.170]",
+      "kind": "ci_interval",
+      "allowed_context": "bootstrap high-minus-low interval (radio-jet environment baseline)",
+      "match_mode": "substring",
+      "lines": [
+        125
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-MASSBIN-INT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 136,
+      "exact_string": "[11.0,12.5]",
+      "kind": "range",
+      "allowed_context": "first stellar-mass bin with low-sSFR fraction above 0.5",
+      "match_mode": "substring",
+      "lines": [
+        136
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-MASSBIN-DASH",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 136,
+      "exact_string": "11.0--12.5",
+      "kind": "range",
+      "allowed_context": "11.0--12.5 stellar-mass bin (prose and table rows)",
+      "match_mode": "substring",
+      "lines": [
+        136,
+        188,
+        189,
+        190
+      ],
+      "occurrences_expected": 4
+    },
+    {
+      "id": "SUP-BPT-PEAK",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 136,
+      "exact_string": "0.520",
+      "kind": "fraction",
+      "allowed_context": "broad optical BPT-selected incidence peak in the 11.0--12.5 bin (also the upper end of the 0.003-0.520 span)",
+      "match_mode": "substring",
+      "lines": [
+        136,
+        169
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-HALF",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 136,
+      "exact_string": "0.5",
+      "kind": "threshold",
+      "allowed_context": "low-sSFR fraction threshold defining the transition bin",
+      "match_mode": "numeric_token",
+      "lines": [
+        136
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-TRACER-LO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 64,
+      "exact_string": "0.136",
+      "kind": "fraction",
+      "allowed_context": "narrowest tracer prevalence",
+      "match_mode": "substring",
+      "lines": [
+        64,
+        147
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-TRACER-HI",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 64,
+      "exact_string": "0.418",
+      "kind": "fraction",
+      "allowed_context": "widest tracer prevalence",
+      "match_mode": "substring",
+      "lines": [
+        64,
+        147
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-TRACER-RATIO",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 147,
+      "exact_string": "3.1",
+      "kind": "ratio",
+      "allowed_context": "widest-to-narrowest prevalence ratio",
+      "match_mode": "numeric_token",
+      "lines": [
+        147
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-GAS-N",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 65,
+      "exact_string": "6,729",
+      "kind": "count",
+      "allowed_context": "massive low-sSFR gas-depletion denominator",
+      "match_mode": "substring",
+      "lines": [
+        65,
+        158
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-GAS-BPT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 158,
+      "exact_string": "0.549",
+      "kind": "fraction",
+      "allowed_context": "broad optical BPT-selected fraction of gas-depletion denominator",
+      "match_mode": "substring",
+      "lines": [
+        158
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-GAS-LHA",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 158,
+      "exact_string": "40.061",
+      "kind": "luminosity",
+      "allowed_context": "median log L_Halpha proxy (erg/s)",
+      "match_mode": "substring",
+      "lines": [
+        158
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-GAS-DEX",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 158,
+      "exact_string": "0.66",
+      "kind": "dex",
+      "allowed_context": "H-alpha proxy offset vs massive star-forming galaxies, dex",
+      "match_mode": "numeric_token",
+      "lines": [
+        158
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-SPAN-QUENCH",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 169,
+      "exact_string": "0.005-0.729",
+      "kind": "range",
+      "allowed_context": "low-sSFR fraction span across mass bins (artifact-anchored)",
+      "match_mode": "substring",
+      "lines": [
+        169
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": [
+        0.005283204324855633,
+        0.7292338209769402
+      ],
+      "artifact_field": "m3_p3 quenched_fraction_range",
+      "note": "Anchored to the m3_p3 artifact result bullet 'Across mass bins ... span 0.005-0.729'. Cycle 6 replaced this with a table-derived span 0.001-0.856; see RCA."
+    },
+    {
+      "id": "SUP-SPAN-BPT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 169,
+      "exact_string": "0.003-0.520",
+      "kind": "range",
+      "allowed_context": "broad optical BPT-selected fraction span across mass bins (artifact-anchored)",
+      "match_mode": "substring",
+      "lines": [
+        169
+      ],
+      "occurrences_expected": 1,
+      "artifact_full_precision": [
+        0.0027030347708563705,
+        0.5202082816761716
+      ],
+      "artifact_field": "m3_p3 agn_fraction_range",
+      "note": "Anchored to the m3_p3 artifact result bullet. Cycle 6 replaced this with a table-derived span 0.001-0.610; see RCA."
+    },
+    {
+      "id": "SUP-CELLS",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 42,
+      "exact_string": "15",
+      "kind": "count",
+      "allowed_context": "mass-redshift cells in the simulation target vector",
+      "match_mode": "numeric_token",
+      "lines": [
+        42,
+        63,
+        66,
+        169
+      ],
+      "occurrences_expected": 4
+    },
+    {
+      "id": "SUP-CELL-MIN",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 22,
+      "exact_string": "50",
+      "kind": "threshold",
+      "allowed_context": "minimum cell occupancy n >= 50",
+      "match_mode": "numeric_token",
+      "lines": [
+        22,
+        63,
+        66,
+        169
+      ],
+      "occurrences_expected": 5
+    },
+    {
+      "id": "SUP-60K",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 64,
+      "exact_string": "60k",
+      "kind": "count",
+      "allowed_context": "shorthand for the 60,000-galaxy sample (atlas summary row)",
+      "match_mode": "substring",
+      "lines": [
+        64
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-RUNID-TOPICS",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 39,
+      "exact_string": "SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z",
+      "kind": "run_identifier",
+      "allowed_context": "custody run family for the eight topic artifacts",
+      "match_mode": "substring",
+      "lines": [
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        48
+      ],
+      "occurrences_expected": 9
+    },
+    {
+      "id": "SUP-RUNID-PILOT",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 48,
+      "exact_string": "SDSS\\_AGN\\_SFR\\_PILOT\\_20260708T122000Z",
+      "kind": "run_identifier",
+      "allowed_context": "custody run family for the flagship result",
+      "match_mode": "substring",
+      "lines": [
+        48
+      ],
+      "occurrences_expected": 2
+    },
+    {
+      "id": "SUP-SHA-RESULTS",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 48,
+      "exact_string": "668ad7a67290600ff5028ae587d32ef239a09bd8627a480539f37e1927d659df",
+      "kind": "sha256",
+      "allowed_context": "SHA-256 of flagship analysis_results.json (provenance tablecomments)",
+      "match_mode": "substring",
+      "lines": [
+        48
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-SHA-PAIRS",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 48,
+      "exact_string": "4ea53af867cccccb2b68b81557ff84fe90ec3f13e0512ffbdc977fa7216996fd",
+      "kind": "sha256",
+      "allowed_context": "SHA-256 of matched_agn_sf_pairs.csv (provenance tablecomments)",
+      "match_mode": "substring",
+      "lines": [
+        48
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-DR17",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 10,
+      "exact_string": "DR17",
+      "kind": "release_identifier",
+      "allowed_context": "SDSS data release 17",
+      "match_mode": "substring",
+      "lines": [
+        10,
+        13,
+        19,
+        208
+      ],
+      "occurrences_expected": 4
+    },
+    {
+      "id": "FLG-ROW-057",
+      "file": "flagship_rp1/aastex/rp1_flagship_polished.tex",
+      "line": 57,
+      "exact_string": "Broad optical BPT-selected targets, S/N$\\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.283] & Preferred association estimate \\\\",
+      "kind": "table_row",
+      "allowed_context": "preferred matched-control result row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        57
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-039",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 39,
+      "exact_string": "Relative neighbor-count baseline & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m1\\_rp2\\_environment\\_quenching/analysis\\_results.json} & \\texttt{c0421620f67f3c227955affa3f4c1876cb85f8b31874d219f2cd2e35a7f9cec0} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        39
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-040",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 40,
+      "exact_string": "Maintenance-heating denominator & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m1\\_rp3\\_maintenance\\_heating/analysis\\_results.json} & \\texttt{06291f82c3fbe0f7fe84f7249568882ca4fa44972bcc25a55e367ef1fdcc7e6e} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        40
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-041",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 41,
+      "exact_string": "Resolved-kinematics follow-up denominator & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m2\\_p1\\_outflow\\_escape\\_recycling/analysis\\_results.json} & \\texttt{44b2407aa691d64fd6de22eb49a8c0a185c86bb1f3b538c7bf066e904d0a3210} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        41
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-042",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 42,
+      "exact_string": "Radio-jet environment baseline & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m2\\_p2\\_radio\\_jet\\_environment/analysis\\_results.json} & \\texttt{4e1ff701bb5b98af4945d5adad2e543e00005e1ab3907e8fae7d15e70c93e351} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        42
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-043",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 43,
+      "exact_string": "Stellar-mass selection diagnostic & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m2\\_p3\\_feedback\\_transition\\_mass/analysis\\_results.json} & \\texttt{204ec46dc838e5e69a34b4dc2f790cb0b5e0f7fc1cb4eaa71f830779a2c92b67} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        43
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-044",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 44,
+      "exact_string": "Tracer-threshold census & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m3\\_p1\\_multiphase\\_census/analysis\\_results.json} & \\texttt{e711563011102657b6d5cab279c1b2ab7ed087dfc734e50932ad4edfe90d0683} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        44
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-045",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 45,
+      "exact_string": "Low-sSFR optical denominator & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m3\\_p2\\_gas\\_depletion\\_efficiency/analysis\\_results.json} & \\texttt{42965b6f359c23b56098f5f9845561f4a4a2ba81e1e00df09fbae4acf3bcc2d9} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        45
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-046",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 46,
+      "exact_string": "Simulation target vector & \\texttt{SDSS\\_REMAINING\\_TOPIC\\_PILOTS\\_20260708T125828Z} & \\texttt{m3\\_p3\\_simulation\\_validation/analysis\\_results.json} & \\texttt{6f289f8c68da425eb3d8005e673bf5c5c02cf917eaa2bc6feedd053535de8f52} \\\\",
+      "kind": "table_row",
+      "allowed_context": "custody provenance-map row (Table 1)",
+      "match_mode": "substring",
+      "lines": [
+        46
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-059",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 59,
+      "exact_string": "Environment & low-sSFR vs.\\ 10th-neighbor rank (60,000 total; 15,000 per quartile) & \\texttt{m1\\_rp2} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        59
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-060",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 60,
+      "exact_string": "Maintenance heating & broad optical BPT-selected hosts in massive low-sSFR galaxies (9,298 massive; 5,695 low-sSFR) & \\texttt{m1\\_rp3} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        60
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-061",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 61,
+      "exact_string": "Outflow kinematics & high-excitation broad optical BPT-selected subset (4,440/60,000) & \\texttt{m2\\_p1} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        61
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-062",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 62,
+      "exact_string": "Env.\\ jets & neighbor-rank-stratified broad optical BPT-selected fraction in massive hosts & \\texttt{m2\\_p2} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        62
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-063",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 63,
+      "exact_string": "Mass bin & low-sSFR and broad optical BPT-selected incidence by $M_\\star$ bin (15 cells with $n\\geq50$) & \\texttt{m2\\_p3} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        63
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-064",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 64,
+      "exact_string": "Tracer census & tracer prevalence in 60k sample (0.136 to 0.418) & \\texttt{m3\\_p1} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        64
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-065",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 65,
+      "exact_string": "Gas depletion & gas-depletion low-sSFR baseline; H$\\alpha$ proxy (6,729 galaxies) & \\texttt{m3\\_p2} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        65
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-066",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 66,
+      "exact_string": "Simulation vector & mass-redshift target vector (15 cells with $n\\geq50$) & \\texttt{m3\\_p3} \\\\",
+      "kind": "table_row",
+      "allowed_context": "atlas summary row (Table 2)",
+      "match_mode": "substring",
+      "lines": [
+        66
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-176",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 176,
+      "exact_string": "8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 1.532 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        176
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-177",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 177,
+      "exact_string": "8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 1.379 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        177
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-178",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 178,
+      "exact_string": "8.0--9.5 & 0.08--0.12 & 300 & 0.007 & 0.010 & 1.045 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        178
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-179",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 179,
+      "exact_string": "9.5--10.0 & 0.02--0.05 & 3,607 & 0.061 & 0.030 & 1.854 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        179
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-180",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 180,
+      "exact_string": "9.5--10.0 & 0.05--0.08 & 6,059 & 0.013 & 0.008 & 1.696 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        180
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-181",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 181,
+      "exact_string": "9.5--10.0 & 0.08--0.12 & 2,187 & 0.003 & 0.001 & 1.516 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        181
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-182",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 182,
+      "exact_string": "10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        182
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-183",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 183,
+      "exact_string": "10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        183
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-184",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 184,
+      "exact_string": "10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        184
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-185",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 185,
+      "exact_string": "10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        185
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-186",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 186,
+      "exact_string": "10.5--11.0 & 0.05--0.08 & 5,083 & 0.451 & 0.297 & 2.580 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        186
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-187",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 187,
+      "exact_string": "10.5--11.0 & 0.08--0.12 & 9,861 & 0.326 & 0.209 & 2.455 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        187
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-188",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 188,
+      "exact_string": "11.0--12.5 & 0.02--0.05 & 390 & 0.856 & 0.610 & 2.830 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        188
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-189",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 189,
+      "exact_string": "11.0--12.5 & 0.05--0.08 & 1,199 & 0.805 & 0.563 & 2.851 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        189
+      ],
+      "occurrences_expected": 1
+    },
+    {
+      "id": "SUP-ROW-190",
+      "file": "supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex",
+      "line": 190,
+      "exact_string": "11.0--12.5 & 0.08--0.12 & 2,444 & 0.672 & 0.485 & 2.838 \\\\",
+      "kind": "table_row",
+      "allowed_context": "simulation target-vector row (Table 4)",
+      "match_mode": "substring",
+      "lines": [
+        190
+      ],
+      "occurrences_expected": 1
+    }
+  ],
+  "snapshot_sha256": {
+    "candidates/cycle_05_package/CYCLE_05_tables_figures_AUDIT.json": "79d6dd688fedaf95101fa4ce2f164244726a1c35cf0db8443c8024512a8c0178",
+    "candidates/cycle_05_package/flagship_rp1/aastex/rp1_flagship_polished.tex": "63b3920e158ba3be3a78ac0fcf771a979ccf43afe1a8759eda921e1f35ae9384",
+    "candidates/cycle_05_package/provenance/REAL_DATA_SOURCE_CUSTODY.json": "92c0f786c6ba2ded5f7e036cc3c775c43d3f71567223bd28f5d3f1a158d50c6d",
+    "candidates/cycle_05_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex": "a4e3d66c5d4fdffe969d5520636f89d963beece6f44246dd68aa3e98673cdc71",
+    "candidates/cycle_06_package/CYCLE_06_literature_AUDIT.json": "8080d24568c089c44d9e3b821068882a1f45d87441ad45573aaf6fd33f5fa4d1",
+    "candidates/cycle_06_package/flagship_rp1/aastex/rp1_flagship_polished.tex": "55c497ffcc00c56953ab84a2ebb1bc2e375c6d68523958b733cc51439fe09c80",
+    "candidates/cycle_06_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex": "38bb60c135eec8c7cecc0b39cfbd55cced65f00cdbbb00922cefa5b87c450d05",
+    "candidates/cycle_07_package/CYCLE_07_introduction_AUDIT.json": "51204dd2b1027e3be25b57385a8367cd9f52bd45c0a3a3d06425c4a9e213c034",
+    "candidates/cycle_07_package/flagship_rp1/aastex/rp1_flagship_polished.tex": "5fc4fea3fa270472f9d2885b68ac1c97c8292111b60d73f275a41adb101c963b",
+    "candidates/cycle_07_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex": "9e99adc72d1a0b939253a8ae337ea0d620fcccc3dc8e279133a0b177689ac0fb",
+    "runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/analysis_results.json": "668ad7a67290600ff5028ae587d32ef239a09bd8627a480539f37e1927d659df",
+    "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/analysis_results.json": "6f289f8c68da425eb3d8005e673bf5c5c02cf917eaa2bc6feedd053535de8f52"
+  }
+}

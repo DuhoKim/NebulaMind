@@ -1,0 +1,51 @@
+{
+  "marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_DEEPENING_20260708T043427Z",
+  "artifact": "cross-method-coverage-map",
+  "generated_by": "Hwao-director (user-assigned cross-method synthesis)",
+  "generated_note": "Derived from verified method deepening candidates + local ledgers. No invented data. The three trust scales are NOT comparable and must not be summed, averaged, or ranked across methods.",
+  "non_comparable": true,
+  "methods": {
+    "M1_packet_gated": {
+      "claim_chips": 30,
+      "evidence_bound": 3,
+      "bound_claim_ids": [2946, 2931, 2929],
+      "unbound_local": 27,
+      "trust_scale": "local page-inventory status (e.g. reported/debated/unverified) for bound chips; unbound-local chips are product-DB-gated (unknown here, not high-trust)",
+      "external_links": "arxiv.org only, present verbatim in local inventory",
+      "candidate_html": "../packet-gated-paper-to-wiki-reconciliation/prose-evidence-trust-deepening-20260708T043427Z/wiki-prose-evidence-trust-deepening-20260708T043427Z.html",
+      "sha256_16": "641f483cc85014c3",
+      "bytes": 38174
+    },
+    "M2_source_first": {
+      "claims": 6,
+      "claim_ids": [2942, 2943, 2944, 2945, 2946, 2947],
+      "trust_scale": "source-first adjudication per evidence row: accepted / accepted_limited / rejected / excluded",
+      "cite_unmatched": 7,
+      "note_28060": "accepted_limited caution with no current target claim (anti-overclaim only)",
+      "candidate_html": "../source-first-paper-adjudication/prose-evidence-trust-deepening-20260708T043427Z/wiki-prose-evidence-trust-deepening-20260708T043427Z.html",
+      "sha256_16": "e1806a75e5571241",
+      "bytes": 28700
+    },
+    "M3_debate_map": {
+      "product_claim_markers": 0,
+      "docs_only": true,
+      "trust_scale": "debate-map axis status: widely_supported / emerging_sample_limited / actively_debated / contradicted_or_model_dependent / scoped-coverage-extension",
+      "p3_binding": "CLOSED gate",
+      "unmatched_or_pending": ["2915/2921/2913 v1709-only", "2133->2605.22497 missing", "2374 garbled", "PENDING_RECHECK"],
+      "candidate_html": "../debate-map-to-wiki-rebuild/prose-evidence-trust-deepening-20260708T043427Z/wiki-prose-evidence-trust-deepening-20260708T043427Z.html",
+      "sha256_16": "4748b590aa5e4b53",
+      "bytes": 23993
+    }
+  },
+  "static_safe": true,
+  "no_invent": true,
+  "no_apply": true,
+  "gates_closed": [
+    "live-root mirror",
+    ":3000 restart",
+    "product DB/SQL, /api/pages, page_versions, product-wiki publish",
+    "M1 27-chip product claim/evidence binding",
+    "M3 P3 claim/citation binding",
+    "git, cockpit/global, cloud/OAuth/secrets, browser, cron"
+  ]
+}

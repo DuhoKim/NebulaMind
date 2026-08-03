@@ -1,0 +1,53 @@
+{
+  "schema": "NM_GEMINI_C1R_VALIDATOR_RECEIPT_V1",
+  "packet": "gemini-dr-revised-canary-20260712T045317Z",
+  "created_utc": "2026-07-12T05:46:28Z",
+  "amended_utc": "2026-07-12T05:58:04Z",
+  "state": "VALIDATOR_GREEN_PROMPT_READY_NOT_ARMED",
+  "tests": {
+    "python": {
+      "command": "PYTHONWARNINGS=ignore PYTHONPATH=. python3 -m pytest tests -q",
+      "result": "37 passed in 0.10s"
+    },
+    "structured_capture": {
+      "command": "node tests/test_structured_capture.js && node --check structured_capture.js",
+      "result": "structured capture fixture passed; syntax valid"
+    }
+  },
+  "fixture_gates": {
+    "closed_failed_c1": {
+      "body_sha256": "9933638616c9fc4dfb8306849f1ed91bf2d008f819c2623b831aec672da347d3",
+      "matches_immutable_capture": true,
+      "overall": "FAIL",
+      "deterministic_fail_count": 112,
+      "manual_review_count": 24,
+      "check_sha256": "bab35f344408c42ef58b6de3f9f2cf903960c8fe9815823fafe2600a69ef95bb"
+    },
+    "clean_c1r": {
+      "overall": "MANUAL_REVIEW_REQUIRED",
+      "deterministic_fail_count": 0,
+      "manual_review_count": 1,
+      "check_sha256": "d3928d3b78a8e2b549afe7986660f4bdc75ad4f289d004ca5e1dde8059d19d4d"
+    }
+  },
+  "hashes": {
+    "prompt/C1r.md": "fffac44fbf6e9abe3afb1f8f34f3a9e3e7688991f319c4927459fb29ac00e1ef",
+    "postmortem/POSTMORTEM.md": "2ea8a6cf7ce85a4c61618e86f035c7759a8df7597ca9e8a8f1259d51d3fac6ea",
+    "postmortem/INDEPENDENT_AUDIT_ADDENDUM.md": "f3d58e45ce5960a5b2426539eb8ca980ef6ecd532a3ae199a5185cb5ee4c85e4",
+    "validator/validator.py": "67aa2a2d904a18a5ede42c93e33c22091797d55f042ae61fee732ad259cc5f5f",
+    "validator/structured_capture.js": "ca23943a5068289b4893e60ed2153a54a87f60b380c451c1d26565546984a0c8",
+    "validator/run_validator.py": "933408d4d8a3539b046a4bd279545f00d96c83d979fbee133cb9a5efee12b309",
+    "validator/contract_spec.json": "bd6bb54607c6e5c1d2cc0c52fbfedf6cf65f7afba0815fb7273e13a7b018a896",
+    "validator/tests/test_validator.py": "32983fac90f72d286ef8010da51d661d94cf897ae06f21f95b353a0777fab574",
+    "validator/tests/test_c1r_contract.py": "63d1add61ee5576f640e7d043897a401742013085e26728df2a1dac05140b35b",
+    "validator/tests/test_cli.py": "6d7d24fa22ef522ba54eb47403101ab696011634a436b52f64a2133353f613fb",
+    "validator/tests/test_structured_capture.js": "8acac0b6b6cc73ec2ae9efdd053d46d73709b35a7b574ae185189a990a3e43e0"
+  },
+  "acceptance": {
+    "deterministic_validator": "GREEN",
+    "prompt": "READY_TO_PIN",
+    "structured_dom_dual_capture": "GREEN",
+    "live_arming": "NOT_ARMED",
+    "semantic_acceptance_rule": "A live result with zero deterministic failures remains MANUAL_REVIEW_REQUIRED until Tori completes a clause-by-clause manual audit."
+  }
+}

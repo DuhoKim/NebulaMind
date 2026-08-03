@@ -1,0 +1,105 @@
+{
+  "marker": "NEBULAMIND_V5_G1_VOICE_CANARY_SPEC_V1",
+  "key": "z9-metallicity",
+  "written_utc": "2026-07-23T15:35:00Z",
+  "gate": "V5-G1 only (released by Duho). No animation, video, facial work, or public action. Audio build is Tori's next bounded step after this spec is signed.",
+  "voice_contract": {
+    "voice": "Kokoro-82M ONNX am_michael",
+    "model_speed": 1.0,
+    "synthesis": "per-sentence synthesis; concatenate with inserted inter-sentence silences",
+    "inter_sentence_pause_seconds": [0.6, 1.0],
+    "pause_note": "Tune pauses inside this range to land delivered WPM in band; natural Kokoro pace at speed 1.0 is ~134 raw WPM, so pauses carry the slowdown — the model speed is not changed.",
+    "loudness": "match V3 pipeline post-processing (16 LUFS reference master)"
+  },
+  "passage_budget": {
+    "word_count": 108,
+    "contract_range_words": [85, 110],
+    "raw_speech_estimate_seconds": 48.2,
+    "expected_total_seconds": [53, 57],
+    "contract_duration_seconds": [45, 60],
+    "expected_delivered_wpm": 118,
+    "contract_delivered_wpm": [105, 125]
+  },
+  "sentences": [
+    {
+      "n": 1,
+      "text": "A galaxy's oxygen abundance is how much oxygen its gas holds.",
+      "words": 11,
+      "role": "plain-language definition before any formal method",
+      "anchors": ["sources-v4/z9-metallicity.md:23-26"]
+    },
+    {
+      "n": 2,
+      "text": "Stars forge that oxygen, so it grows as galaxies build stars.",
+      "words": 11,
+      "role": "causal oxygen-clock logic",
+      "anchors": ["sources-v4/z9-metallicity.md:23-26", "sources-v4/z9-metallicity.md:63"]
+    },
+    {
+      "n": 3,
+      "text": "This paper asks whether galaxies at redshift nine to ten had already reached nearby levels.",
+      "words": 15,
+      "role": "the redshift-nine-to-ten question",
+      "anchors": ["sources-v4/z9-metallicity.md:26-33"]
+    },
+    {
+      "n": 4,
+      "text": "Answering is tricky, because gravitational lensing can distort galaxy masses, and the nearby benchmark is extrapolated.",
+      "words": 16,
+      "role": "why lensing and benchmark choices matter",
+      "anchors": ["sources-v4/z9-metallicity.md:26-31", "sources-v4/z9-metallicity.md:73-74", "sources-v4/z9-metallicity.md:94-96"]
+    },
+    {
+      "n": 5,
+      "text": "So the paper uses five strictly unlensed galaxies, measured by the direct electron-temperature method.",
+      "words": 14,
+      "role": "sample + method, no superlative",
+      "anchors": ["sources-v4/z9-metallicity.md:33"]
+    },
+    {
+      "n": 6,
+      "text": "The result: their oxygen sits near one fifth of the nearby benchmark.",
+      "words": 12,
+      "role": "central result, plain form first",
+      "anchors": ["sources-v4/z9-metallicity.md:34", "sources-v4/z9-metallicity.md:96"]
+    },
+    {
+      "n": 7,
+      "text": "In logarithmic units, that is zero point six nine dex lower.",
+      "words": 11,
+      "role": "optional dex form, after the plain form",
+      "anchors": ["sources-v4/z9-metallicity.md:34"]
+    },
+    {
+      "n": 8,
+      "text": "The sample is small, and the absolute abundance scale stays uncertain.",
+      "words": 11,
+      "role": "small-sample + absolute-scale uncertainty",
+      "anchors": ["sources-v4/z9-metallicity.md:101-102", "sources-v4/z9-metallicity.md:43", "sources-v4/z9-metallicity.md:113"]
+    },
+    {
+      "n": 9,
+      "text": "This is not a formal statistical detection.",
+      "words": 7,
+      "role": "verbatim boundary",
+      "anchors": ["sources-v4/z9-metallicity.md:43", "sources-v4/z9-metallicity.md:135"]
+    }
+  ],
+  "acceptance_checks": [
+    "Synthesized text equals the nine sentences above byte-for-byte, in order, nothing added or dropped.",
+    "Word count 108 within [85, 110].",
+    "Total audio duration within [45, 60] s.",
+    "Delivered WPM (words / total duration) within [105, 125].",
+    "Voice am_michael, model_speed 1.0 unchanged; slowdown achieved only via inter-sentence pauses in [0.6, 1.0] s.",
+    "Per-sentence WAVs + concatenated master + durations + shas recorded in a lane receipt (V5_G1_AUDIO_RECEIPT.json).",
+    "No animation, video, lip-sync, upload, or public action of any kind."
+  ],
+  "avoid_list_enforced": [
+    "no cosmic-age conversion",
+    "no clear-answer language",
+    "no method superlatives",
+    "no cover-page wording",
+    "no invented values (every number anchored)"
+  ],
+  "after_pass": "Duho ear-check of the canary audio; then V5-G2 cold-reader comprehension per V5_CORRECTION_BRIEF.md. Facial animation remains prohibited until V5-G1 and V5-G2 both pass."
+}

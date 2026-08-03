@@ -1,0 +1,278 @@
+{
+  "schema_version": "overnight_forward_scout.v1",
+  "title": "Overnight forward scout — 2026-06-29",
+  "generated_at_utc": "2026-06-28T16:52:43Z",
+  "generated_at_kst": "2026-06-29 01:52:43 KST",
+  "mode": "non_interactive_cron",
+  "baseline": {
+    "repo_root_inspected_read_only": "/Users/duhokim/NebulaMind/NebulaMind",
+    "origin_main_before": {
+      "sha": "5d3186ce737fbbbbe31ba436e4cb324532472543",
+      "short_sha": "5d3186c",
+      "subject": "feat: add global paper directory (#63)",
+      "committed_at": "2026-06-29 01:24:44 +0900"
+    },
+    "origin_main_after": {
+      "sha": "ea9b6666d3ef3f4668b54d04c9e5cf238f254d88",
+      "short_sha": "ea9b666",
+      "subject": "feat: add paper profile detail (#65)"
+    },
+    "open_prs_at_start": [],
+    "open_prs_after": [],
+    "primary_checkout": {
+      "branch": "feat/surveys-atlas-ia-p1-20260627",
+      "head_short_sha": "ac0608c",
+      "dirty_entries_count": 163,
+      "touched_by_this_run": false,
+      "status_summary_first_entries": [
+        "M backend/app/routers/pages.py",
+        "M backend/app/services/model_canary.py",
+        "A backend/tests/test_model_canary.py",
+        "M frontend/package.json",
+        "M frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+        "M frontend/src/app/wiki/[slug]/sources/WikiSourcesClient.tsx",
+        "M wiki_schema.md",
+        "?? .hermes/",
+        "?? backend/tests/test_cross_page_paper_footprint_api.py",
+        "?? backend/tests/test_global_paper_directory_api.py"
+      ]
+    },
+    "recent_wiki_surface_context": [
+      "PR #63 global paper directory/search",
+      "PR #62 triage queue safety polish",
+      "PR #61 evidence triage studio",
+      "PR #60 cross-page paper footprint",
+      "PR #59 paper footprint modal"
+    ]
+  },
+  "actions_taken": [
+    "Created isolated clean worktree /Users/duhokim/NebulaMind/worktrees/wiki-browser-smoke-report-20260629 from origin/main.",
+    "Used strict TDD: added a RED contract probe for a missing dedicated browser UX smoke/report command, observed it fail on missing package script/wrapper, then implemented the minimal wrapper and package scripts.",
+    "Added frontend/scripts/test-wiki-browser-ux-smoke.mjs, a wrapper around the existing smoke:wiki-stacked-popover-browser command that emits WIKI_BROWSER_UX_SMOKE_OK and WIKI_BROWSER_UX_SMOKE_JSON with schema wiki_browser_ux_smoke.v1.",
+    "Added frontend/scripts/test-wiki-browser-ux-smoke-contract.mjs to lock the parseable dashboard contract and confirm test:wiki-ux-smoke remains source-only/fast.",
+    "Added package scripts smoke:wiki-browser-ux:contract, smoke:wiki-browser-ux, and smoke:wiki-browser-ux:build. Did not add browser/build work to test:wiki-ux-smoke.",
+    "Committed, pushed, opened PR #64, verified the GitHub-side diff was 3 scoped frontend files, and squash-merged after local verification and GitHub mergeability were green.",
+    "gh pr merge completed the remote squash merge but failed local checkout cleanup because main is already used by another worktree; verified PR state=MERGED and merge commit, then deleted the remote feature branch manually with the required PYTHON hook env."
+  ],
+  "pull_request": {
+    "number": 64,
+    "url": "https://github.com/DuhoKim/NebulaMind/pull/64",
+    "title": "test: add wiki browser UX smoke summary",
+    "state": "MERGED",
+    "merged_at": "2026-06-28T16:51:41Z",
+    "merge_commit": "ea25eff607d6574d879828f3a5ef0932244c4360",
+    "merge_commit_short": "ea25eff",
+    "changed_files": [
+      "frontend/package.json",
+      "frontend/scripts/test-wiki-browser-ux-smoke-contract.mjs",
+      "frontend/scripts/test-wiki-browser-ux-smoke.mjs"
+    ],
+    "github_mergeable_before_merge": "MERGEABLE",
+    "status_checks": "no checks reported on the branch",
+    "remote_feature_branch_deleted": true,
+    "squash_merge_parent_count": 1
+  },
+  "verification": [
+    {
+      "command": "node frontend/scripts/test-wiki-browser-ux-smoke-contract.mjs",
+      "phase": "RED",
+      "result": "failed as expected before implementation",
+      "evidence": "AssertionError: Browser UX aggregate should be a dedicated smoke command; actual undefined, expected node scripts/test-wiki-browser-ux-smoke.mjs"
+    },
+    {
+      "command": "npm run --silent smoke:wiki-browser-ux:contract",
+      "result": "PASS",
+      "evidence": "wiki_browser_ux_smoke_contract_ok"
+    },
+    {
+      "command": "npm run --silent test:wiki-ux-smoke",
+      "result": "PASS",
+      "evidence": "WIKI_UX_SMOKE_OK passed=12/12 failed=0 duration_ms=3361"
+    },
+    {
+      "command": "npx tsc --noEmit",
+      "result": "PASS",
+      "evidence": "exit 0"
+    },
+    {
+      "command": "npm run build",
+      "result": "PASS",
+      "evidence": "Next.js build compiled successfully and generated 41 static pages"
+    },
+    {
+      "command": "npm run --silent smoke:wiki-browser-ux",
+      "result": "PASS",
+      "evidence": "WIKI_BROWSER_UX_SMOKE_OK passed=4/4 failed=0 duration_ms=28229; emitted WIKI_BROWSER_UX_SMOKE_JSON schema wiki_browser_ux_smoke.v1"
+    },
+    {
+      "command": "PYTHON=/Users/duhokim/NebulaMind/NebulaMind/backend/.venv/bin/python scripts/smoke_pre_push.sh",
+      "result": "PASS",
+      "evidence": "49 passed in 3.33s before push; 49 passed in 3.28s during push; 49 passed in 3.26s during remote branch deletion"
+    },
+    {
+      "command": "gh pr diff 64 --name-only",
+      "result": "PASS",
+      "evidence": "Only frontend/package.json and the two new browser-smoke scripts were in the PR diff"
+    },
+    {
+      "command": "gh pr view 64 --json state,mergedAt,mergeCommit",
+      "result": "PASS",
+      "evidence": "state MERGED; merge commit ea25eff607d6574d879828f3a5ef0932244c4360"
+    }
+  ],
+  "runtime_publication": {
+    "runtime_frontend_tree": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend",
+    "report_json": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/overnight-forward-scout-20260629.json",
+    "report_html": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/overnight-forward-scout-20260629.html",
+    "status_json": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/live-steering-status.json",
+    "cockpit_html": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/live-steering-cockpit.html",
+    "runtime_backup": null,
+    "service_restart": "com.nebulamind.frontend restarted once after the newly created public report filename initially returned 404 from next start; no merged application code was synced.",
+    "served_urls_expected": {
+      "local_html": "http://127.0.0.1:3000/agent-reports/overnight-forward-scout-20260629.html",
+      "local_json": "http://127.0.0.1:3000/agent-reports/overnight-forward-scout-20260629.json",
+      "public_html": "https://nebulamind.net/agent-reports/overnight-forward-scout-20260629.html",
+      "public_json": "https://nebulamind.net/agent-reports/overnight-forward-scout-20260629.json"
+    },
+    "served_verification": {
+      "local_html": "200 marker=yes bytes=8382",
+      "local_json": "200 marker=yes bytes=9241",
+      "local_cockpit": "200 marker=yes bytes=3781",
+      "local_status_json": "200 marker=yes bytes=3174",
+      "public_html": "200 marker=yes bytes=9301",
+      "public_json": "200 marker=yes bytes=9241",
+      "public_cockpit": "200 marker=yes bytes=4700",
+      "public_status_json": "200 marker=yes bytes=3174"
+    }
+  },
+  "safety": {
+    "production_db_writes": 0,
+    "sql_or_migrations_touched": false,
+    "secrets_touched": false,
+    "destructive_data_changes": false,
+    "primary_dirty_branch_modified": false,
+    "runtime_served_code_synced": false,
+    "runtime_restart_performed": true,
+    "runtime_restart_reason": "new public report filenames returned 404 from next start until com.nebulamind.frontend was restarted; no merged application code sync was needed",
+    "other_hermes_profiles_modified": false
+  },
+  "blockers_or_notes": [
+    "No open PRs or failing GitHub checks existed at baseline.",
+    "New public report filenames initially returned 404 from the already-running Next.js service, so com.nebulamind.frontend was restarted once. Local and public report/status URLs then returned HTTP 200 with expected markers.",
+    "The browser smoke passed; its upstream cleanup logged 'chrome page-atlas-ranking required SIGKILL during cleanup' but exited 0 and emitted the expected OK/JSON summary.",
+    "The isolated feature worktree remains on the local squash source branch whose remote branch is deleted; origin/main is authoritative at ea25eff. Primary checkout remains dirty and untouched.",
+    "Follow-up check found PR #65 had merged after the overnight report but frontend runtime was stale; synced scoped PR #65 frontend files and verified public static route. Backend paper-profile API remains held because live backend checkout is dirty and was not modified."
+  ],
+  "next_recommended_moves": [
+    "Use the new WIKI_BROWSER_UX_SMOKE_JSON line in future dashboards/cockpits to show browser-level wiki UX health next to the existing source-only WIKI_UX_SMOKE_JSON.",
+    "If more overnight work is desired, the next non-destructive frontend slice could consume this JSON in a generated public dashboard section, but only after another RED contract probe.",
+    "Keep production DB / label-apply / migration paths locked until explicit approval and backup/rollback readiness are confirmed."
+  ],
+  "followup_completion_after_user_check": {
+    "updated_at_utc": "2026-06-29T02:18:36Z",
+    "updated_at_local": "2026-06-29T11:18:36+09:00",
+    "status": "PR64 complete; PR65 merged; PR65 frontend runtime sync completed in this session; backend paper-profile API held because live backend checkout is dirty and was not modified without explicit approval.",
+    "latest_origin_main": "ea9b6666d3ef3f4668b54d04c9e5cf238f254d88",
+    "latest_origin_main_subject": "feat: add paper profile detail (#65)",
+    "additional_pull_request": {
+      "number": 65,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/65",
+      "title": "feat: add paper profile detail",
+      "state": "MERGED",
+      "merge_commit": "ea9b6666d3ef3f4668b54d04c9e5cf238f254d88",
+      "runtime_frontend_synced": true,
+      "runtime_backend_synced": false,
+      "backend_hold_reason": "backend/app/routers/pages.py in the live primary checkout is dirty and differs from origin/main; preserving dirty state per overnight constraints."
+    },
+    "runtime_frontend_sync": {
+      "backup": "/Users/duhokim/NebulaMind/runtime-file-backups/pr65-paper-profile-frontend-20260629T111601KST",
+      "synced_files": [
+        "frontend/package.json",
+        "frontend/scripts/test-global-paper-directory.mjs",
+        "frontend/scripts/test-paper-profile-detail.mjs",
+        "frontend/scripts/test-wiki-ux-smoke.mjs",
+        "frontend/scripts/test-wiki-browser-ux-smoke-contract.mjs",
+        "frontend/scripts/test-wiki-browser-ux-smoke.mjs",
+        "frontend/src/app/wiki/papers/GlobalPaperDirectoryClient.tsx",
+        "frontend/src/app/wiki/papers/[paperId]/PaperProfileClient.tsx",
+        "frontend/src/app/wiki/papers/[paperId]/page.tsx",
+        "frontend/src/app/wiki/papers/[paperId]/paperProfile.ts",
+        "frontend/src/app/wiki/papers/globalPaperDirectory.ts",
+        "frontend/src/app/wiki/papers/profile-fixture/page.tsx"
+      ],
+      "frontend_restart": "launchctl kickstart -k gui/$(id -u)/com.nebulamind.frontend"
+    },
+    "verification": [
+      "npm run test:paper-profile-detail -> paper_profile_detail_ok",
+      "npm run test:global-paper-directory -> global_paper_directory_ok",
+      "npm run test:wiki-ux-smoke -> WIKI_UX_SMOKE_OK passed=13/13 failed=0",
+      "npm run smoke:wiki-browser-ux:contract -> wiki_browser_ux_smoke_contract_ok",
+      "npx tsc --noEmit -> exit 0",
+      "npm run build -> success, 42 static pages including /wiki/papers/profile-fixture",
+      "npm run smoke:wiki-browser-ux -> WIKI_BROWSER_UX_SMOKE_OK passed=4/4 failed=0",
+      "local/public /wiki/papers/profile-fixture -> HTTP 200 with paper-profile chunk markers",
+      "local/public /wiki/papers -> HTTP 200",
+      "local/public overnight report -> HTTP 200"
+    ],
+    "remaining_hold": "Dynamic paper profile API /api/pages/paper-profile is not activated in the live backend because doing so would require editing/restarting a dirty primary backend checkout. Static fixture and frontend route are live."
+  },
+  "wrap_holds_completion": {
+    "updated_at_utc": "2026-06-29T02:31:24Z",
+    "updated_at_local": "2026-06-29T11:31:24+09:00",
+    "status": "COMPLETE",
+    "summary": "Remaining backend hold resolved after explicit user approval. Dynamic paper-profile API is live locally and publicly; frontend static/dynamic paper profile routes are live; no DB writes or migrations executed.",
+    "pull_requests": [
+      {
+        "number": 64,
+        "url": "https://github.com/DuhoKim/NebulaMind/pull/64",
+        "merge_commit": "ea25eff607d6574d879828f3a5ef0932244c4360"
+      },
+      {
+        "number": 65,
+        "url": "https://github.com/DuhoKim/NebulaMind/pull/65",
+        "merge_commit": "ea9b6666d3ef3f4668b54d04c9e5cf238f254d88"
+      }
+    ],
+    "backend_runtime_patch": {
+      "backup": "/Users/duhokim/NebulaMind/runtime-file-backups/pr65-backend-paper-profile-20260629T112908KST",
+      "files": [
+        "backend/app/routers/pages.py",
+        "backend/tests/test_paper_profile_api.py",
+        "backend/tests/test_global_paper_directory_api.py"
+      ],
+      "changes": [
+        "Added PR #65 paper-profile helper functions and /api/pages/paper-profile route into dirty live backend file.",
+        "Added profile_id/profile_href to /api/pages/paper-directory items.",
+        "Synced PR #65 backend tests for paper profile and global paper directory."
+      ],
+      "preserved_dirty_checkout": true
+    },
+    "frontend_runtime_backup": "/Users/duhokim/NebulaMind/runtime-file-backups/pr65-paper-profile-frontend-20260629T111601KST",
+    "service_restarts": [
+      "com.nebulamind.backend",
+      "com.nebulamind.frontend earlier for PR #65 frontend files"
+    ],
+    "verification": [
+      "python3 -m py_compile backend/app/routers/pages.py -> pass",
+      "backend AST route check -> get_paper_profile present at line 376",
+      "pytest tests/test_paper_profile_api.py tests/test_global_paper_directory_api.py -q -> 6 passed",
+      "launchctl kickstart -k gui/$(id -u)/com.nebulamind.backend -> backend restarted on port 8000",
+      "local backend /api/pages/paper-directory?limit=3 -> 200, items include profile_id/profile_href",
+      "local backend /api/pages/paper-profile?paper_id=<real profile_id> -> 200, schema paper_profile.v1",
+      "local frontend proxy /api/pages/paper-profile -> 200",
+      "public https://nebulamind.net/api/pages/paper-profile -> 200",
+      "local/public dynamic route /wiki/papers/arxiv%3A2512.16290v1 -> 200 with paper-profile chunk markers",
+      "scripts/smoke_pre_push.sh with PYTHON=/Users/duhokim/NebulaMind/NebulaMind/backend/.venv/bin/python -> 49 passed"
+    ],
+    "safety": {
+      "db_writes_executed": 0,
+      "migrations_executed": 0,
+      "sql_executed": 0,
+      "secrets_touched": false,
+      "production_data_mutations": 0,
+      "destructive_cleanup": 0
+    },
+    "remaining_holds": []
+  },
+  "final_status": "COMPLETE_NO_REMAINING_HOLDS"
+}

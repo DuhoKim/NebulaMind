@@ -1,0 +1,77 @@
+{
+  "analysis_rows": 60000,
+  "bpt_counts": {
+    "agn": 8146,
+    "intermediate": 12234,
+    "star-forming": 39553,
+    "unclassified": 67
+  },
+  "data_release": "SDSS DR17 SkyServer via astroquery.sdss",
+  "files": {
+    "analysis_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+    "figure1_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure1_bpt.pdf",
+    "figure2_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure2_matched_offsets.pdf",
+    "matched_pairs_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/matched_agn_sf_pairs.csv",
+    "raw_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/sdss_dr17_emission_line_sample.csv"
+  },
+  "group_medians": {
+    "agn": {
+      "median_logM": 10.79099,
+      "median_log_sSFR": -11.769829999999999,
+      "median_u_minus_r": 2.7576649999999994,
+      "median_z": 0.075976265,
+      "n": 8146
+    },
+    "intermediate": {
+      "median_logM": 10.62895,
+      "median_log_sSFR": -10.8564,
+      "median_u_minus_r": 2.5431500000000007,
+      "median_z": 0.079609505,
+      "n": 12234
+    },
+    "star-forming": {
+      "median_logM": 10.01737,
+      "median_log_sSFR": -9.909236,
+      "median_u_minus_r": 1.814429999999998,
+      "median_z": 0.06887668,
+      "n": 39553
+    },
+    "unclassified": {
+      "median_logM": 10.87501,
+      "median_log_sSFR": -12.06685,
+      "median_u_minus_r": 2.8580700000000014,
+      "median_z": 0.08311625,
+      "n": 67
+    }
+  },
+  "match_abs_delta_logM_median": 0.0044599999999999085,
+  "match_abs_delta_z_median": 0.00021079499999999973,
+  "match_distance_scaled_median": 0.013706693336996863,
+  "matched_delta_log_sSFR_mean_ci95_bootstrap": [
+    -1.2194772019150502,
+    -1.1835793853118095
+  ],
+  "matched_delta_log_sSFR_mean_dex": -1.201557615885097,
+  "matched_delta_log_sSFR_median_ci95_bootstrap": [
+    -1.3341385500000003,
+    -1.2821399375
+  ],
+  "matched_delta_log_sSFR_median_dex": -1.3088869999999995,
+  "matched_pairs": 8146,
+  "ols_adjusted_for_logM_z": {
+    "coef_is_agn_ci95": [
+      -1.2103153323534461,
+      -1.1873688115826728
+    ],
+    "coef_is_agn_log_sSFR_dex": -1.1988420719680595,
+    "coef_is_agn_se": 0.005853704278258507,
+    "coef_logM": -0.6590074792789541,
+    "coef_z": 6.926838817644406,
+    "n_regression": 47699
+  },
+  "query_top_n": 60000,
+  "raw_rows": 60000,
+  "revision_marker": "AUTOPILOT_RESEARCH_TOPICS_PROFESSIONAL_GEMINI_ASSIST_PASS_20260708T120000Z",
+  "run_id": "SDSS_AGN_SFR_PILOT_20260708T122000Z",
+  "safety": "read-only public SDSS query; local artifact writes only; no DB/API/page_versions/live wiki publish/deploy/git/cron"
+}

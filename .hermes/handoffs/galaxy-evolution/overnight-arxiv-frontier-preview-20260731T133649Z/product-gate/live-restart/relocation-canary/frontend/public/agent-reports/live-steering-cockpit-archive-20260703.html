@@ -1,0 +1,486 @@
+<!doctype html><html lang='en'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><meta name='color-scheme' content='dark'><title>NebulaMind Live Steering Cockpit</title><style>
+body{margin:0;padding:22px;background:#06111f;color:#edf4ff;font:16px/1.5 -apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}.wrap{max-width:1180px;margin:auto}.card{background:#101b2b;border:1px solid #29415f;border-radius:18px;padding:18px;margin:14px 0}.grid,.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}.lane,.option{background:#07101d;border:1px solid #29415f;border-radius:14px;padding:14px}.pill{display:inline-block;padding:4px 10px;margin:2px;border-radius:999px;font-weight:850;font-size:12px}.green{background:#153823;color:#57d68d}.amber{background:#413515;color:#ffd166}.red{background:#421820;color:#ff6b7a}.blue{background:#102944;color:#7bb7ff}.purple{background:#271f42;color:#b9a7ff}textarea{width:100%;min-height:120px;background:#050b14;color:#edf4ff;border:1px solid #29415f;border-radius:10px;padding:10px}button{padding:10px 14px;border-radius:10px;background:#102944;color:#fff;border:1px solid #7bb7ff;font-weight:800}code{background:#050b14;padding:2px 6px;border-radius:6px}a{color:#7bb7ff}.danger{border:2px solid #ff6b7a;background:#20101a}.ok{border:2px solid #57d68d}
+</style></head><body>
+
+<section id="mission-2299-sourcefill-v2-executed-verified" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#dcfce7;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">EXECUTED AND VERIFIED — 2299 source-fill v2</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_2299_SOURCEFILL_V2_EXECUTED_AND_VERIFIED_20260703T012406Z</code></p>
+  <p><strong>State:</strong> <code>EXECUTED_AND_VERIFIED</code>; rollback executed: <code>0</code>.</p>
+  <p><strong>Committed writes:</strong> +1 evidence row (<code>30631</code>), claim <code>2299</code> trust recompute to accepted / <code>0.3240769195502869</code>, +1 audit row (<code>90511</code>).</p>
+  <p><strong>Explicit non-effects:</strong> no evidence_votes, no wiki_pages/page_versions, no page prose/UI publish, no deploy/restart/git write.</p>
+  <p><strong>Verification:</strong> guarded execution <code>EXECUTED_AND_VERIFIED</code>; independent DB verification PASS; Lana countersign PASS; Goru exact-key recheck PASS.</p>
+  <p><strong>Caveat:</strong> accepted score is thin (+0.024 above threshold) and load-bearing on one abstract-only / AI-draft source-fill row; later jury vote or second human-gold/full-text source recommended.</p>
+  <p><strong>Rollback if later needed:</strong> <code>ROLLBACK P57 2299 SOURCEFILL V2 0034</code></p>
+  <p><strong>Final report:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2299_sourcefill_v2_packet_20260703T003424Z/EXECUTION_FINAL.md</code></p>
+</section>
+
+
+
+
+
+
+<section id="mission-page57-trust-v2-executed-verified" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#dcfce7;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">EXECUTED AND VERIFIED — page57 trust v2 recompute</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_TRUST_V2_EXECUTED_AND_VERIFIED_20260703T000217Z</code></p>
+  <p><strong>Execution result:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_trust_recompute_v2_trigger_fix_packet_20260702T164209Z/execution_results/trust_recompute_execution_20260702T235509Z.json</code></p>
+  <p><strong>Targets:</strong> <code>2181, 2220, 2274, 2737</code>; <strong>held unchanged:</strong> <code>2299</code>.</p>
+  <p><strong>Audit rows:</strong> <code>90500, 90501, 90502, 90503</code> with trigger <code>p57_trust_four_153238</code>.</p>
+  <p><strong>Reader-visible level change:</strong> <code>none</code>. No page/prose/UI publish occurred.</p>
+  <p><strong>Rollback available:</strong> <code>ROLLBACK P57 TRUST V2 1627</code>.</p>
+</section>
+
+
+
+
+
+
+
+
+
+
+<section id="mission-page57-trust-recompute-execution-failed-rolled-back" style="margin:16px 0;padding:16px;border:3px solid #ef4444;border-radius:14px;background:#450a0a;color:#fee2e2;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">FAILED_ROLLED_BACK — Galaxy page57 trust recompute execution</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_TRUST_RECOMPUTE_EXECUTION_FAILED_ROLLED_BACK_TRIGGER_TOO_LONG_20260702T162809Z</code></p>
+  <p><strong>Persisted DB changes:</strong> <code>0</code>. Target rows unchanged; packet trigger rows empty.</p>
+  <p><strong>Blocker:</strong> packet trigger exceeded <code>trust_audit_log.trigger</code> varchar(40).</p>
+  <p><strong>Report:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_trust_recompute_write_packet_20260702T153238Z/EXECUTION_FAILED_FINAL.md</code></p>
+  <p><strong>Recommended next:</strong> <code>APPROVE P57 TRUST V2 TRIGGER FIX PREP 1627</code></p>
+</section>
+
+
+
+
+<section id="mission-page57-trust-recompute-write-packet-awaiting-execution" style="margin:16px 0;padding:16px;border:3px solid #f59e0b;border-radius:14px;background:#451a03;color:#fffbeb;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">AWAITING EXPLICIT EXECUTION APPROVAL — Galaxy page57 trust recompute write packet</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_TRUST_RECOMPUTE_WRITE_PACKET_AWAITING_EXECUTION_APPROVAL_20260702T155322Z</code></p>
+  <p><strong>Status:</strong> packet built/reviewed; DB writes and recompute executions remain <code>0</code>.</p>
+  <p><strong>Scope:</strong> claims <code>2181, 2220, 2274, 2737</code>; claim <code>2299</code> held.</p>
+  <p><strong>Execution phrase:</strong> <code>EXECUTE P57 TRUST FOUR 153238</code></p>
+  <p><strong>Fresh pre-execute ack required before script run:</strong> Goru live-fingerprint recheck + Lana/Fable clear-to-execute.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_trust_recompute_write_packet_20260702T153238Z/WRITE_PACKET_FINAL.md</code></p>
+</section>
+
+
+
+
+<section id="mission-page57-trust-recompute-preflight-final" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#dcfce7;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Galaxy page57 trust recompute preflight</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_TRUST_RECOMPUTE_PREFLIGHT_COMPLETE_20260702T151932Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_trust_recompute_preflight_20260702T145402Z/TRUST_RECOMPUTE_PREFLIGHT_PACKET_FINAL.md</code></p>
+  <p><strong>Result:</strong> manual guarded recompute needed; four-claim prep recommended; claim 2299 held because recompute projects accepted→unverified under current formula.</p>
+  <p><strong>Safety:</strong> DB writes 0 · trust recompute executions 0 · apply SQL 0 · EXECUTE phrase 0.</p>
+  <pre style="white-space:pre-wrap;background:#021c0d;padding:10px;border-radius:8px;">Recommended next:
+APPROVE GALAXY PAGE57 TRUST RECOMPUTE WRITE PACKET PREP FOUR CLAIMS HOLD 2299 READONLY 1503</pre>
+</section>
+
+
+<section id="mission-page57-trust-recompute-preflight-running" style="margin:16px 0;padding:16px;border:3px solid #38bdf8;border-radius:14px;background:#082f49;color:#e0f2fe;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">RUNNING — Galaxy page57 trust recompute preflight</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_TRUST_RECOMPUTE_PREFLIGHT_RUNNING_20260702T145402Z</code></p>
+  <p><strong>Approval:</strong> <code>APPROVE GALAXY PAGE57 TRUST RECOMPUTE PREFLIGHT READONLY 1435</code></p>
+  <p><strong>Run dir:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_trust_recompute_preflight_20260702T145402Z</code></p>
+  <p>Docs-only/read-only preflight for claims 2181, 2220, 2274, 2299, 2737: discover manual vs automatic recompute, capture current baselines, expected post-recompute direction, and next gate. No trust write, no recompute execution, no apply SQL.</p>
+</section>
+
+
+<section id="mission-galaxy-claim-backlog-scoping-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#dcfce7;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Galaxy claim backlog scoping</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_CLAIM_BACKLOG_SCOPING_COMPLETE_20260702T144623Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_claim_backlog_scoping_20260702T143028Z/CLAIM_BACKLOG_SCOPING_PACKET_FINAL.md</code></p>
+  <p><strong>Inventory:</strong> 14 items (P0=2, P1=6, P2=4, P3=2); page57 snapshot 729 claims / 361 evidence / 526 zero-evidence / 8 active challenge-refutes / 29 mismatch rows / 18 duplicate groups.</p>
+  <p><strong>Lanes:</strong> Goru PASS, Lana PASS_WITH_REORDERING_RECOMMENDATION integrated, Fable PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION.</p>
+  <p><strong>Safety:</strong> DB writes 0; SQL mutations 0; apply SQL 0; EXECUTE phrases minted 0.</p>
+  <p><strong>Recommended next:</strong> <code>APPROVE GALAXY PAGE57 TRUST RECOMPUTE PREFLIGHT READONLY 1435</code></p>
+</section>
+
+
+
+
+<section id="mission-page57-stance-executed-verified" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#dcfce7;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">EXECUTED AND VERIFIED — Galaxy page57 stance cleanup</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_STANCE_EXECUTED_AND_VERIFIED_20260702T142347Z</code></p>
+  <p><strong>Executed UTC:</strong> <code>20260702T141411Z</code></p>
+  <p><strong>Final report:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_stance_write_packet_20260702T133041Z/EXECUTION_FINAL.md</code></p>
+  <p><strong>DB write:</strong> 7 <code>evidence.stance</code> rows updated; claims/votes/page/prose/UI/deploy untouched.</p>
+  <ul>
+    <li>supports: 25806, 25999, 28967</li>
+    <li>neutral: 25834, 25835</li>
+    <li>none: 28965, 28966</li>
+  </ul>
+  <p><strong>Verification:</strong> apply helper EXECUTED_AND_VERIFIED; Hermes row-level POST_EXECUTION_VERIFIED; Goru exact-key recheck PASS; Lana PASS no rollback needed.</p>
+  <p><strong>Rollback:</strong> available but not needed. Phrase only if later required: <code>ROLLBACK P57 STANCE 133041</code></p>
+  <p><strong>Follow-up:</strong> trust scores have not recomputed yet; prepare a separate trust-recompute packet if visible derived trust should update for claims 2181, 2220, 2274, 2299, 2737.</p>
+</section>
+
+
+
+
+
+
+
+
+<section id="mission-1245-page57-stance-exact-diff-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Galaxy page57 stance exact-diff PREP (read-only)</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_STANCE_EXACT_DIFF_PREP_COMPLETE_20260702T132611Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Exact PREP:</strong> 7 rows; all current <code>challenges</code> → proposed 3 <code>supports</code>, 2 <code>neutral</code>, 2 <code>none</code>.</p>
+  <p><strong>Lanes:</strong> Goru recheck PASS; Lana 7/7 accept; Fable PASS.</p>
+  <p><strong>No write gate:</strong> no executable SQL, no apply artifact, no execution approval phrase, no DB/product mutation.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_stance_exact_diff_prep_20260702T131029Z/PAGE57_STANCE_EXACT_DIFF_PREP_PACKET_FINAL.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Next operator decision — no DB writes authorized by this block</h3>
+    <textarea id="decisionPage57ExactDiffPrep" readonly style="width:100%;min-height:320px;">PAGE57 STANCE EXACT-DIFF PREP DECISION (authorizes NO DB writes):
+choose one line, delete the rest:
+
+APPROVE GALAXY PAGE57 STANCE WRITE PACKET 1315   (packet-recommended; Fable-endorsed)
+  = prepare the separate row-level write preflight packet for the 7 accepted stance
+    changes only: fresh production backup, exact before→after diff, drift guards,
+    guarded apply SQL, rollback SQL, verification queries, page-pin assertion, and
+    a packet-specific APPROVE-TO-RUN phrase minted inside that packet for separate
+    operator paste. Preparation stops before execution; nothing runs under this line.
+
+APPROVE 2926 NUANCE DRAFT READONLY 1315
+  = defer the write packet; draft the docs-only content/nuance review for surfaced
+    claim 2926 (cited source says proto-GCs are not dominant reionization sources).
+
+HOLD PAGE57 STANCE PREP 1315
+  = keep this PREP packet as the standing record; no further preparation.
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('decisionPage57ExactDiffPrep').value)">Copy decision block</button>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1215-page57-stance-audit-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Galaxy page57 stance audit (read-only)</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_PAGE57_STANCE_AUDIT_COMPLETE_20260702T130551Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Rows:</strong> 15 classified — 7 false/off-topic PREP candidates, 5 true challenges preserve, 2 quarantine, 1 partial.</p>
+  <p><strong>Calibration:</strong> summary-contradiction heuristic was backwards on 2922/2934; source-read required before any corpus action.</p>
+  <p><strong>Fable recommended next:</strong> <code>APPROVE GALAXY PAGE57 STANCE EXACT-DIFF PREP READONLY 1245</code></p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product mutation under this approval.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_page57_stance_audit_20260702T124152Z/PAGE57_STANCE_AUDIT_PACKET_FINAL.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Next operator decision — docs-only / no DB writes</h3>
+    <textarea id="decisionPage57StanceAudit" readonly style="width:100%;min-height:320px;">PAGE57 STANCE AUDIT DECISION (docs-only; authorizes NO DB writes):
+choose one line, delete the rest:
+
+APPROVE GALAXY PAGE57 STANCE EXACT-DIFF PREP READONLY 1245   (packet-recommended; Fable-endorsed)
+  = docs-only exact-diff PREP for the 7 confirmed false/off-topic rows: per-row
+    before→after stance diff, row-level backup plan, rollback plan, and a
+    per-row human-confirm checklist; queue as owned backlog cards: quarantine
+    handling for 26084/26088, the 2926 live-content nuance review, and the
+    26701/29777 wrong-auto-summary corrections. No apply SQL, no EXECUTE.
+
+APPROVE PREP PLUS 2926 NUANCE DRAFT 1245   (Fable-suggested extension)
+  = everything above, plus a docs-only draft of the 2926 nuance correction
+    (proto-GC primacy overstatement vs its cited source) for operator review.
+
+HOLD PAGE57 STANCE AUDIT 1245
+  = keep this classification packet as the standing record; no PREP work.
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('decisionPage57StanceAudit').value)">Copy decision block</button>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1152-stance-audit-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — stance-audit scoping (read-only)</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_STANCE_AUDIT_SCOPING_COMPLETE_20260702T123719Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Finding:</strong> false <code>challenges</code> pattern is real, but 913 candidates are a triage superset, not a cleanup set. Do not bulk-flip.</p>
+  <p><strong>Counts:</strong> all-corpus 11,816 evidence rows / 1,037 challenge-like / 913 candidates; Galaxy page 57 361 evidence rows / 15 challenge-like candidates.</p>
+  <p><strong>Fable recommended next:</strong> <code>APPROVE GALAXY PAGE57 STANCE AUDIT READONLY 1215</code></p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product mutation under this approval.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_stance_audit_scoping_20260702T121713Z/STANCE_AUDIT_SCOPING_PACKET_FINAL.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Next operator decision — docs-only / no DB writes</h3>
+    <textarea id="decisionStanceAudit" readonly style="width:100%;min-height:360px;">STANCE AUDIT DECISION (docs-only; authorizes NO DB writes):
+choose one line, delete the rest:
+
+APPROVE GALAXY PAGE57 STANCE AUDIT READONLY 1215   (Fable-recommended; the packet&#x27;s own recommendation)
+  = read-only source-read of the 15 Galaxy page-57 rows; classify each as
+    true_challenge / false_stance / quarantine; produce a docs-only exact-diff
+    PREP for confirmed-false rows only; measure per-bucket false-positive rates
+    to calibrate any later corpus pass. No writes, no EXECUTE, no apply SQL.
+
+APPROVE CORPUS HIGH CONFIDENCE SCOPING ONLY 1215
+  = defer the Galaxy deep-read; instead a read-only scoping pass over the ~136
+    corpus-wide internal-contradiction rows (vote/summary) to size that bucket.
+    Scoping only — no PREP, no writes. (Sequencing note: the packet argues, and
+    Fable agrees, that Galaxy-15 should come first to calibrate error rates.)
+
+HOLD STANCE AUDIT 1215
+  = keep this scoping packet as the standing record; no further audit work.
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('decisionStanceAudit').value)">Copy decision block</button>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1150-2181-2299-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — 2181 / 2299 trust-conflict read-only review</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_2181_2299_TRUST_CONFLICTS_COMPLETE_20260702T121311Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Finding:</strong> both accepted labels survive. The conflicts are stance-label artifacts, not true downgrade evidence.</p>
+  <p><strong>2181:</strong> vetted support +6/−0; three challenge rows are 0-vote noise/off-topic/supportive. <strong>2299:</strong> sole challenge row actually supports AGN gas expulsion/outflows; negative trust score is a stance artifact.</p>
+  <p><strong>Fable recommended next:</strong> <code>ACCEPT PLUS STANCE AUDIT SCOPING 1152</code></p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product mutation under this approval.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2181_2299_trust_conflicts_20260702T115202Z/2181_2299_TRUST_CONFLICT_PACKET_FINAL.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Next operator decision — docs-only / no DB writes</h3>
+    <textarea id="decision21812299" readonly style="width:100%;min-height:360px;">2181/2299 DECISION (docs-only; authorizes NO DB writes):
+choose one line, delete the rest:
+
+ACCEPT STANCE CLEANUP QUEUE 1152
+  = adopt the findings as the decision of record: keep both claims `accepted`;
+    queue the stance-cleanup exact-diff packet (re-stance 28965→neutral/unrelated,
+    28966→unrelated, 28967→supports-or-neutral, 25999→supports; optional jury
+    re-vote on the 0-vote rows; optional second-source fill for 2299) as the
+    next write-gate candidate — prepared later under the hardened runbook with
+    its own EXECUTE phrase.
+
+ACCEPT PLUS STANCE AUDIT SCOPING 1152   (Fable-recommended)
+  = everything above, plus authorize a read-only corpus-wide scoping scan of the
+    systemic false-`challenges` pattern (keyword-collision on &quot;challenge(s)/
+    debated&quot;, 0-vote stance rows, stance-vs-summary self-contradictions) to size
+    the contamination before stance counts feed any readiness computation.
+
+HOLD 2181 2299 1152
+  = no action; keep this packet as the standing record.
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('decision21812299').value)">Copy decision block</button>
+    <p style="font-size:12px;opacity:.85;">Any stance cleanup, re-vote, trust recompute, or evidence addition requires a later exact-diff packet and fresh EXECUTE phrase.</p>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1131-2557-reconcile-accepted" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">ACCEPTED — 2557 → live 2917 reconcile recommendation</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_2557_RECONCILE_RECOMMENDATION_ACCEPTED_20260702T114936Z</code></p>
+  <p><strong>Operator phrase:</strong> <code>ACCEPT RECONCILE RECOMMENDATION 1131</code></p>
+  <p><strong>Decision of record:</strong> escalate live 2917 for proportionate context/contradiction review; retain broad wording for now; no trust change; defer 2557 retirement to a later exact-diff packet; queue 26084 integrity cleanup.</p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product mutation authorized.</p>
+  <p><strong>Accepted record:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2557_live_refute_reconcile_20260702T113108Z/ACCEPTED_RECONCILE_RECOMMENDATION_1131.md</code></p>
+  <p><strong>Next recommended read-only phrase:</strong> <code>APPROVE 2181 2299 TRUST CONFLICTS READONLY 1150</code></p>
+</section>
+
+
+<section id="mission-1125-2557-refute-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — 2557 → live 2917 refute reconciliation</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_2557_LIVE_REFUTE_RECONCILE_COMPLETE_20260702T114521Z</code></p>
+  <p><strong>State:</strong> <code>PASS_SURFACE_TO_OPERATOR_AWAITING_DECISION</code></p>
+  <p><strong>Finding:</strong> 2557 and live 2917 are byte-identical. Evidence 26084 is a valid challenge/weakening to central-property dominance, not a full refute of the broad influence wording. It applies to live 2917 as nuance/context, but row 26084 is quarantined/provenance-suspect and must not be propagated directly.</p>
+  <p><strong>Recommendation:</strong> escalate 2917 for proportionate context review; retain broad claim for now; no trust downgrade; retire duplicate 2557 only in a later exact-diff packet; queue 26084 integrity cleanup.</p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product publication under this approval.</p>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2557_live_refute_reconcile_20260702T113108Z/2557_LIVE_REFUTE_RECONCILE_PACKET_FINAL.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Next operator decision — docs-only / no DB writes</h3>
+    <textarea id="decision2557" readonly style="width:100%;min-height:300px;">2557→2917 DECISION (docs-only; authorizes NO DB writes):
+choose one line, delete the rest:
+
+ACCEPT RECONCILE RECOMMENDATION 1131
+  = adopt the packet as the decision of record: escalate live 2917 for a
+    proportionate contradiction/context review driven by paper 2512.16290v1;
+    retain the broad claim wording; no trust change to 2917; 2557 retirement
+    deferred to a later exact-diff write packet that preserves the tension
+    record; queue the 26084 stance/summary/quarantine integrity cleanup as
+    an owned backlog card.
+
+ACCEPT PLUS NUANCE DRAFT 1131
+  = everything above, plus authorize a docs-only preview draft of the optional
+    one-clause nuance for 2917 (&quot;though whether central properties or halo
+    mass causally dominate remains debated&quot;) for review before any write is
+    considered.
+
+HOLD 2557 2917 1131
+  = no action; keep this packet as the standing record.
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('decision2557').value)">Copy decision block</button>
+    <p style="font-size:12px;opacity:.85;">Any eventual edit/retire/trust/evidence cleanup requires a later exact-diff packet and fresh EXECUTE phrase.</p>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1040-tranche1-snippet-complete" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Tranche-1 snippet verification + human review</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_TRANCHE1_SNIPPET_HUMAN_REVIEW_COMPLETE_20260702T112411Z</code></p>
+  <p><strong>State:</strong> <code>AWAITING_HUMAN_DECISIONS</code> · Fable: <code>PASS_AWAITING_HUMAN_DECISIONS</code></p>
+  <p><strong>Snippet result:</strong> 0/6 verified as written · 4 partial (2251, 2365, 2717, 2721) · 2 source gaps (2184, 2270) · product/write GO count 0.</p>
+  <p><strong>Highest-priority human calls:</strong> (1) reconcile 2557 refute against live surfaced claim 2917; (2) resolve accepted-label vs challenging-evidence conflicts on 2181 and 2299.</p>
+  <p><strong>No write gate:</strong> no apply SQL, no EXECUTE phrase, no DB/product publication under this approval.</p>
+  <p><strong>Packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_tranche1_snippet_verify_20260702T105047Z/TRANCHE1_SNIPPET_PACKET.md</code></p>
+  <p><strong>Human sheet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_tranche1_snippet_verify_20260702T105047Z/TRANCHE1_HUMAN_DECISION_SHEET.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Paste-back decision block — docs-only / no DB writes</h3>
+    <textarea id="tranche1HumanDecisionBlock" readonly style="width:100%;min-height:260px;">TRANCHE1 HUMAN DECISIONS (docs-only; no DB writes authorized):
+2557: refute-valid-escalate-to-2917 | refute-invalid-retire-2557 | need-more-evidence
+2181: downgrade-trust-and-defer | label-is-human-locked
+2299: downgrade-trust-and-defer | label-is-human-locked
+2184: reroute-defer-resource | retire
+2270: reroute-defer-resource | retire
+2251: soften-wording-docs-candidate | require-HI-source
+2365: drop-maximized-qualifier | require-maximization-source
+2717: reframe-cosmic-web-tidal | require-halo-property-source
+2721: soften-to-ISM-cluster | require-molecular-jellyfish-source
+2588: survivor-2444 | survivor-2588
+2799+2817: survivor-2781 | nominate-other
+2132 2135 2136 2138 2142 2143: approve-defer-harvest-then-adjudicate
+2220 2274 2737: approve-defer-contradiction-adjudication
+</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('tranche1HumanDecisionBlock').value)">Copy decision block</button>
+    <p style="font-size:12px;opacity:.85;">Keep one option per line, delete alternatives, add notes if needed. This selects dispositions only; any write needs a later exact-diff packet and fresh EXECUTE phrase.</p>
+  </div>
+</section>
+
+
+
+
+<section id="mission-1000-claim-backlog-final" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">COMPLETE — Galaxy claim backlog scoping</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_CLAIM_BACKLOG_SCOPING_COMPLETE_20260702T104023Z</code></p>
+  <p><strong>Fable decision:</strong> <code>PASS_SURFACE_TO_OPERATOR</code>. The packet is inert and ready for operator steering.</p>
+  <p><strong>Mechanical profile:</strong> 729 claims · 30 surfaced · 699 unsurfaced · 526 placeholder/zero-evidence · API visible 729 · page v1709/md5 <code>265e92569f0eb2336e8f31af90a1f359</code>.</p>
+  <p><strong>Tranche-1 inert proposal:</strong> 27 claims — 6 promote candidates, 8 retire/merge, 13 defer, 15 human-adjudication flags.</p>
+  <p><strong>Important:</strong> no write gate exists: no EXECUTE phrase, no apply SQL, no INSERT/UPDATE/DELETE plan.</p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">NEXT APPROVAL — read-only/docs-only</h3>
+    <textarea id="tranche1SnippetApproval" readonly style="width:100%;min-height:48px;">APPROVE TRANCHE1 SNIPPET VERIFY AND HUMAN REVIEW 1040</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('tranche1SnippetApproval').value)">Copy approval text</button>
+    <p style="font-size:12px;opacity:.85;">Authorizes read-only snippet verification + human decision sheet only. No DB writes, SQL mutation, rollback, deploy/restart, git writes, or runtime source edits.</p>
+  </div>
+  <p><strong>Final packet:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_claim_backlog_scoping_20260702T101316Z/SCOPING_DECISION_PACKET_FINAL.md</code></p>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="mission-0903-fable-next-move-final" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">FABLE DECISION — next move selected</h2>
+  <p><strong>Marker:</strong> <code>FABLE_OVERSEE_RESULT_NEXT_MOVE_COMPLETE_20260702T100055Z</code></p>
+  <p><strong>Result verdict:</strong> Galaxy marker normalization stands; no rollback recommended.</p>
+  <p><strong>Next move:</strong> <code>NEXT_MOVE_GALAXY_CLAIM_BACKLOG_SCOPING</code></p>
+  <p><strong>Fable choice:</strong> one docs-only/read-only Galaxy claim backlog scoping gate: profile all 729 page-57 claims, evidence/trust/readiness strata, surfaced vs unsurfaced status, propose tranche 1 (~20–30 claims), and codify the hardened mutation runbook before any future write.</p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">APPROVAL PHRASE FOR FABLE'S NEXT MOVE</h3>
+    <textarea id="fableNextMoveApproval" readonly style="width:100%;min-height:48px;">APPROVE GALAXY CLAIM BACKLOG SCOPING 1000</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('fableNextMoveApproval').value)">Copy approval text</button>
+    <p style="font-size:12px;opacity:.85;">This authorizes docs-only/read-only scoping and cockpit checkpoints. It does not authorize DB writes, rollback, SQL mutation, deploy/restart, git writes, or runtime source edits.</p>
+  </div>
+  <p><strong>Lane plan:</strong> Hermes captain/cockpit; Goru mechanical claim profile; Lana adversarial tranche criteria; Fable one review before operator decision.</p>
+  <p><strong>Fable report:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_marker_normalization_execution_20260702T093507Z/lane_reports/fable_oversee_result_next_move_20260702T095729Z.md</code></p>
+</section>
+
+
+
+
+<section id="mission-0903-postexec-board-audit-final" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">POST-EXECUTION BOARD AUDIT COMPLETE — accept and hold</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_MARKER_NORMALIZATION_POSTEXEC_BOARD_AUDIT_COMPLETE_20260702T094947Z</code></p>
+  <p><strong>Fact of record:</strong> the write had already executed before the process correction: 17 Galaxy Evolution page-57 <code>claims.text</code> updates; DB 17/17 after-md5; public claims endpoint 17/17 after-md5.</p>
+  <p><strong>Board verdict:</strong> Fable PASS_ACCEPT_HOLD; Lana PASS_ACCEPT_HOLD with independent live GET; Goru corrected recheck PASS. No rollback recommended.</p>
+  <p><strong>Process defects recorded:</strong> cached lane reports after resume; broad resume phrase not explicitly mapped to packet execute phrase before write; psql→app-driver fallback without fresh Goru method countersign; updated_at stamped with packet time not execution time.</p>
+  <p><strong>Safety after correction:</strong> additional DB writes 0 · rollback 0 · SQL mutations 0 · deploy/restart 0 · git writes 0.</p>
+  <p><strong>Final audit:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_marker_normalization_execution_20260702T093507Z/POST_EXECUTION_BOARD_AUDIT_FINAL.md</code></p>
+</section>
+
+
+
+
+
+
+<section id="mission-0903-galaxy-marker-normalization-final" style="margin:16px 0;padding:16px;border:3px solid #22c55e;border-radius:14px;background:#052e16;color:#ecfdf5;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;">
+  <h2 style="margin:0 0 8px 0;">EXECUTED AND VERIFIED — Galaxy marker normalization</h2>
+  <p><strong>Marker:</strong> <code>GALAXY_MARKER_NORMALIZATION_EXECUTED_AND_VERIFIED_20260702T093846Z</code></p>
+  <p><strong>Scope executed:</strong> Galaxy Evolution only · page 57 · <code>claims.text</code> · 17 rows.</p>
+  <p><strong>Quartet gate:</strong> Fable prior strategy report verified; Lana adversarial PASS verified; Lana SQL-narrowing PASS preserved verified; Goru mechanical recheck PASS verified. Hermes re-ran checksums, read-only DB/API preconditions, stored guarded SQL, and post-verification.</p>
+  <p><strong>Pre-execute:</strong> 17 before-md5 matches · 0 after-md5 matches · page version 1709 · content md5 <code>265e92569f0eb2336e8f31af90a1f359</code>.</p>
+  <p><strong>Post-execute:</strong> 17 after-md5 matches · 0 before-md5 matches · 17 exact after-text matches.</p>
+  <p><strong>Public/API:</strong> page version 1709 · content md5 <code>265e92569f0eb2336e8f31af90a1f359</code> · public claims endpoint target after-md5 17/17.</p>
+  <p><strong>Out-of-scope mutations:</strong> page content 0 · page_versions 0 · evidence/evidence_votes 0 · trust/jury 0 · deploy/restart 0 · git writes 0. Table count changes: <code>{}</code></p>
+  <p><strong>Run artifacts:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_marker_normalization_execution_20260702T093507Z</code></p>
+  <p><strong>Execution result:</strong> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_marker_normalization_execution_20260702T093507Z/EXECUTION_RESULT_20260702T093846Z.md</code></p>
+  <div style="padding:12px;border:2px solid #86efac;border-radius:10px;background:#064e3b;margin:12px 0;">
+    <h3 style="margin:0 0 8px 0;">Rollback phrase — only if you want to revert this executed normalization</h3>
+    <textarea id="galaxyMarkerNormRollback" readonly style="width:100%;min-height:48px;">ROLLBACK GALAXY MARKER NORMALIZATION 0903</textarea>
+    <button onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('galaxyMarkerNormRollback').value)">Copy ROLLBACK text</button>
+    <p style="font-size:12px;opacity:.85;">Rollback SQL: <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_marker_normalization_preflight_20260702T090333Z/sql/rollback_claim_text_normalization.sql</code></p>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class='wrap'>
+<header class='card ok'><p><span class='pill green'>EXECUTED_AND_VERIFIED</span><span class='pill blue'>GALAXY EVOLUTION ONLY</span><span class='pill green'>17 CLAIMS.TEXT UPDATED</span><span class='pill purple'>QUARTET GATED</span></p><h1>NebulaMind Live Steering Cockpit</h1><p>Updated: <code>2026-07-02T09:40:42Z</code></p><p><code>GALAXY_MARKER_NORMALIZATION_EXECUTED_AND_VERIFIED_20260702T093846Z</code></p><p>Stable URL: <a href='/agent-reports/live-steering-cockpit.html'>https://nebulamind.net/agent-reports/live-steering-cockpit.html</a></p></header>
+
+
+
+
+
+
+<section class='card ok' id='galaxy-post-publish-board-mode'>
+  <h2>Mission resumption running: docs-only publication packet prep</h2>
+  <p><span class='pill green'>invalidated stale non-Galaxy mission phrase removed ACCEPTED</span><span class='pill blue'>HERMES CAPTAIN</span><span class='pill amber'>INVENTORY STARTING</span><span class='pill red'>NO MUTATION</span></p>
+  <p>Updated: <code>2026-07-02T08:16:58Z</code></p>
+  <p><code>MISSION_RESUMPTION_GATE_RUNNING_20260702T081658Z</code></p>
+  <p>Galaxy canonical work is verified and held. The board is now returning to the main mission: paper → claim/evidence → contradiction → trust/readiness → cited prose.</p>
+  <div class='grid'>
+    <div class='option'><h3>Run directory</h3><p><code>/Users/duhokim/NebulaMind/NebulaMind/docs/mission_resumption_20260702T081658Z</code></p></div>
+    <div class='option'><h3>Current phase</h3><p>Read-only inventory of paper-correction workstream and fresh GET-only live-page snapshots.</p></div>
+    <div class='option'><h3>Prior packet</h3><p>Read-only only:<br><code>/Users/duhokim/NebulaMind/NebulaMind/docs/paper_product_wiki_exact_diff_20260702T054507Z</code></p></div>
+    <div class='option'><h3>Hard stops</h3><p>No DB writes, SQL mutations, rollback execution, deploy/restart, git writes, runtime source edits, secrets, OpenClaw, or deletes.</p></div>
+  </div>
+  <h3>Operator board</h3>
+  <div class='board'>
+    <article class='lane'><h3>Hermes</h3><span class='pill blue'>CAPTAIN / INVENTORY</span><p>Creates run packet, captures live GET-only hashes, assembles non-executing packet, owns cockpit checkpoints.</p></article>
+    <article class='lane'><h3>Goru</h3><span class='pill amber'>QUEUED</span><p>Mechanical hash/anchor/diff/rollback checks after inventory snapshot.</p></article>
+    <article class='lane'><h3>Lana</h3><span class='pill amber'>QUEUED</span><p>Adversarial review after packet assembly.</p></article>
+    <article class='lane'><h3>Fable</h3><span class='pill green'>DONE</span><p>Recommended this gate; report verified after scope correction.</p></article>
+  </div>
+  <h3>Current hold while running</h3>
+  <textarea id='missionHold' readonly>HOLD MISSION RESUMPTION: Continue only docs-only inventory/packet preparation and cockpit checkpoints. No DB writes, SQL mutations, rollback execution, deploy/restart, git commit/push/merge, runtime source edits, secrets, OpenClaw, or deletes.</textarea>
+  <p><button onclick="copyText('missionHold',this)">Copy hold phrase</button></p>
+</section>
+
+<section class='card' id='historical-prepublish-cards-retired'>
+  <h2>Historical cards retired from active view</h2>
+  <p><span class='pill amber'>STALE APPROVALS REMOVED</span> Previous Galaxy/Fable approval cards are archived in timestamped backups. Current active state is mission-resumption running above.</p>
+  <p><code>MISSION_RESUMPTION_GATE_RUNNING_20260702T081658Z</code></p>
+</section>
+
+<section class='card'><h2>Live status JSON</h2><p><a href='/agent-reports/live-steering-status.json'>/agent-reports/live-steering-status.json</a></p><pre id='status'>Loading…</pre></section>
+<script>function copyText(id,btn){const e=document.getElementById(id);e.focus();e.select();navigator.clipboard.writeText(e.value).then(()=>{let o=btn.textContent;btn.textContent='Copied';setTimeout(()=>btn.textContent=o,1200)}).catch(()=>document.execCommand('copy'))}async function r(){try{let x=await fetch('/agent-reports/live-steering-status.json?ts='+Date.now(),{cache:'no-store'});document.getElementById('status').textContent=JSON.stringify(await x.json(),null,2)}catch(e){document.getElementById('status').textContent='status fetch failed: '+e}}r();setInterval(r,20000)</script>
+</div></body></html>

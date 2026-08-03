@@ -1,0 +1,11 @@
+Here's my plan to tackle that topic. Let me know if you need to make changes.
+ Galaxy Evolution Research Data Request 
+Research Websites
+(1) Search academic databases (such as ADS or arXiv) for literature on the redshift evolution of the quiescent/quenched fraction of galaxies at a fixed stellar mass (E1), extracting the specific quiescence criterion, values, uncertainties, and exact citations for each internally consistent series.
+(2) Investigate the molecular gas fraction and depletion time versus redshift in the literature, isolating findings into the quiescent population (E2, noting tracer and conversion factors) and the star-forming population scaling relations (E3, explicitly noting the compilation baseline used).
+(3) Find studies measuring AGN activity across different redshifts, specifically focusing on AGN-driven outflow incidence at matched selection (E4, specifying the tracer) and the Radio-AGN fraction at fixed stellar or halo mass (E5), ensuring data points within series are either from the same survey or explicitly harmonized.
+(4) Look for literature detailing the Mass-Metallicity Relation (MZR) or Fundamental Metallicity Relation (FMR) normalization and scatter versus redshift (E6) up to z~2.3, noting any claimed findings beyond this limit to strictly flag them as labeled leads outside the locally anchored scope.
+(5) Analyze the gathered literature to identify instances of 'definition drift', documenting cases where narratives merge points with differing definitions and citing the specific papers on each side.
+(6) Search for published criticisms of mixed-estimand evolution claims in galaxy evolution literature to build a 'violations gallery', noting the mixed-estimand citation and the critic's stated reasoning.
+(7) Synthesize the findings to formulate 'commensurable envelope summaries' capturing the evolution range supported exclusively by single-estimand series, while explicitly identifying quantities or redshift ranges that lack single-estimand series to label as gaps.
+(8) Compile all findings into the strictly requested markdown structure, ensuring rigorous adherence to the wording contract by avoiding banned causal terminology, formatting citations and uncertainties exactly as instructed, and appending the required completion marker as the absolute final standalone line.

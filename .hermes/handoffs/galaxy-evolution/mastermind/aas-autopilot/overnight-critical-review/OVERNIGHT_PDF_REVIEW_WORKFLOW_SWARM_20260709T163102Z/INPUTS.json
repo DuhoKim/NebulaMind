@@ -1,0 +1,81 @@
+{
+  "active_sprint": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z",
+  "integrated_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z",
+  "lanes": [
+    {
+      "frequency": 1,
+      "model": "Gemini 3.1 Pro (Low)",
+      "name": "hwao_director",
+      "provider": "agy",
+      "role": "Hwao/Fable director: prioritize paper-quality work, decide what should feed writer pilots, and keep scope honest."
+    },
+    {
+      "frequency": 1,
+      "model": "Gemini 3.1 Pro (High)",
+      "name": "gemini_deep_pdf_critic",
+      "provider": "agy",
+      "role": "Gemini Deep Research critic: strict astronomy/AAS-style review of all 9 PDFs and research-topic manuscripts."
+    },
+    {
+      "frequency": 1,
+      "model": "Gemini 3.5 Flash (Low)",
+      "name": "gemini_flash_factcheck",
+      "provider": "agy",
+      "role": "Goru/Gemini low-usage fact-check: citation display, source-role, no-overclaim, and missing-observable scan."
+    },
+    {
+      "frequency": 1,
+      "model": "GPT-OSS 120B (Medium)",
+      "name": "gptoss_skeptic",
+      "provider": "agy",
+      "role": "Low-usage local/open model skeptic: adversarial read for unclear logic, structure, and workflow risk."
+    },
+    {
+      "frequency": 2,
+      "model": "Claude Sonnet 4.6 (Thinking)",
+      "name": "claude_lana_manuscript",
+      "provider": "agy",
+      "role": "Lana-style manuscript reviewer: polish priorities, journal-readiness, reader experience, and exact safe rewrites."
+    },
+    {
+      "frequency": 1,
+      "model": "gpt-5.4-mini",
+      "name": "codex_kun_repro",
+      "provider": "codex",
+      "role": "Kun/Codex read-only reproducibility, TeX, provenance, and no-mock-data audit."
+    },
+    {
+      "frequency": 1,
+      "model": "Gemini 3.5 Flash (Medium)",
+      "name": "workflow_scrutiny",
+      "provider": "agy",
+      "role": "Independent workflow auditor: scrutinize wiki -> topics -> manuscript/PDF -> public-link pipeline and propose system improvements."
+    }
+  ],
+  "live_public_wiki_root": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/wiki-method-results/galaxy-evolution",
+  "public_wiki_root": "/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/wiki-method-results/galaxy-evolution",
+  "publishability_handoff": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/publishability-loops/PUBLISHABLE_9_PDFS_DEEP_RESEARCH_LOOP_20260709T162008Z/FINAL_POST_FIX_HANDOFF.md",
+  "publishable_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/publishability-loops/PUBLISHABLE_9_PDFS_DEEP_RESEARCH_LOOP_20260709T162008Z/candidates/cycle_01_nine_papers",
+  "real_data_rules": [
+    "Never use mock, synthetic, fake, placeholder, or toy data as manuscript evidence.",
+    "Never invent numbers, sample sizes, citations, URLs, DOIs, arXiv IDs, ADS bibcodes, figure results, or table values.",
+    "Every quantitative claim must trace to real local artifacts or checkable public sources.",
+    "Absent data must be written as absent/future real-data requirements, not inferred as results.",
+    "RP-1 stays association-only; papers 2-9 stay SDSS optical denominator/proxy data notes unless new real data are inventoried."
+  ],
+  "run_id": "OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z",
+  "safety_locks": [
+    "write only under this overnight run root and its copied candidate packages",
+    "review lanes write reports only; only the candidate-copy integrator edits candidate-copy TeX",
+    "no public-linked PDF replacement",
+    "no public/live frontend or static root edits",
+    "no DB, SQL, /api/pages, page_versions, wiki publish, trust recompute, or data mutation",
+    "no deploy/restart",
+    "no git commit/push/merge/rebase/history rewrite",
+    "no cron creation/update/removal",
+    "no billing/cloud/OAuth/API-key/account changes and no credential/token/cookie reads",
+    "no external manuscript submission"
+  ],
+  "start_utc": "2026-07-09T16:31:02Z",
+  "target_end_utc": "2026-07-10T02:31:02Z"
+}

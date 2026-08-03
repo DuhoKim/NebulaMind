@@ -1,0 +1,86 @@
+{
+  "timestamp_utc": "20260708T182812Z",
+  "lane": "lana",
+  "marker": "LANA_MANUSCRIPT_TICK_20260708T182812Z",
+  "scope": "Wave-1 selection-function and exact-definition cleanup drafts for M1 RP-2, M1 RP-3, and M2 P1; public-linked manuscripts/PDFs were not overwritten.",
+  "source_read_confirmation": {
+    "brief": "OVERNIGHT_BRIEF.md",
+    "swarm_board": "SWARM_BOARD.md",
+    "all_9_current_aastex_sources_read_by_lane_tick": true,
+    "all_9_analysis_json_read_by_lane_tick": true,
+    "additional_sources": [
+      "lanes/hwao/HWAO_DIRECTOR_TICK_20260708T181425Z.md",
+      "lanes/literature/literature_source_packet_20260708T143233Z.md",
+      "lanes/tori/selection-function-attrition/20260708T155514Z/selection_function_attrition_summary_20260708T155514Z.json",
+      "lanes/goru/tables/high_excitation_denominators_20260708T162615Z.csv",
+      "lanes/goru/tables/bpt_class_sensitivity_matched_offsets_20260708T162615Z.csv",
+      "lanes/external-cli/EXTERNAL_CLI_TICK_20260708T165503Z.md"
+    ]
+  },
+  "drafts": [
+    {
+      "paper_slug": "m1_rp2_environment_quenching",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m1_rp2_environment_quenching/m1_rp2_environment_quenching_lana_selection_definitions_revision_20260708T182812Z.tex",
+      "changes_md": "lanes/lana/revision-drafts/m1_rp2_environment_quenching/CHANGES_20260708T182812Z.md",
+      "compile_exit_code": 0,
+      "compile_log": "lanes/lana/revision-drafts/m1_rp2_environment_quenching/compile_20260708T182812Z.log",
+      "pdf": "lanes/lana/revision-drafts/m1_rp2_environment_quenching/m1_rp2_environment_quenching_lana_selection_definitions_revision_20260708T182812Z.pdf",
+      "pdf_bytes": 91596,
+      "pdf_sha256": "9cff0e5590dda8f59f729df76f1058cd0509cf47963a5dcbbcdd2a8f36324c38",
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "- Added universal selection-function disclosure: 249,917 strict public SDSS four-line S/N>=3 rows, 60,000 cached `TOP 60000` rows, 24.0% coverage, and sSFR-dependent line retention.",
+        "- Inserted exact quenched definition from preserved code: `specsfr_tot_p50 < -11.0`.",
+        "- Made the 10th-nearest-neighbour density calculation portable and explicitly non-causal/non-halo-calibrated.",
+        "- Added Peng/Baldry context and Wetzel/Goubert future-data guards without treating them as proof of environmental quenching.",
+        "- Replaced placeholder threshold/caption notes with manuscript-ready tables and guarded discussion text."
+      ]
+    },
+    {
+      "paper_slug": "m1_rp3_maintenance_heating",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m1_rp3_maintenance_heating/m1_rp3_maintenance_heating_lana_selection_definitions_revision_20260708T182812Z.tex",
+      "changes_md": "lanes/lana/revision-drafts/m1_rp3_maintenance_heating/CHANGES_20260708T182812Z.md",
+      "compile_exit_code": 0,
+      "compile_log": "lanes/lana/revision-drafts/m1_rp3_maintenance_heating/compile_20260708T182812Z.log",
+      "pdf": "lanes/lana/revision-drafts/m1_rp3_maintenance_heating/m1_rp3_maintenance_heating_lana_selection_definitions_revision_20260708T182812Z.pdf",
+      "pdf_bytes": 85720,
+      "pdf_sha256": "c99331a8bfaf175163d7b1f3c7488b1b2bc667156437e7b05e1889a5628c05fb",
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "- Demoted title/framing to an optical BPT-AGN denominator for X-ray/radio follow-up, not maintenance-heating evidence.",
+        "- Added universal selection-function disclosure plus a massive-host attrition table: 85,225 public mass-selected, 35,482 public S/N>=3, 9,298 cached for logM>=10.8.",
+        "- Inserted exact operational definitions: `lgm_tot_p50 >= 10.8` and `specsfr_tot_p50 < -11.0`.",
+        "- Preserved BPT AGN fraction results (0.430 massive; 0.607 massive low-sSFR) while labeling intervals as target-planning approximations.",
+        "- Added radio/X-ray/cavity literature only as future-data and missing-measurement context."
+      ]
+    },
+    {
+      "paper_slug": "m2_p1_outflow_escape_recycling",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m2_p1_outflow_escape_recycling/m2_p1_outflow_escape_recycling_lana_selection_definitions_revision_20260708T182812Z.tex",
+      "changes_md": "lanes/lana/revision-drafts/m2_p1_outflow_escape_recycling/CHANGES_20260708T182812Z.md",
+      "compile_exit_code": 0,
+      "compile_log": "lanes/lana/revision-drafts/m2_p1_outflow_escape_recycling/compile_20260708T182812Z.log",
+      "pdf": "lanes/lana/revision-drafts/m2_p1_outflow_escape_recycling/m2_p1_outflow_escape_recycling_lana_selection_definitions_revision_20260708T182812Z.pdf",
+      "pdf_bytes": 330750,
+      "pdf_sha256": "531a2494834b2c0194a69d537dae8be047be4020671dc1642ba40c36d961b3a9",
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "- Replaced the previous missing-criterion note with the exact high-excitation definition: recomputed BPT AGN and log([OIII]/Hb)>0.25.",
+        "- Added universal selection-function disclosure for the capped SDSS four-line denominator.",
+        "- Added candidate-definition sensitivity table and S/N matched-offset robustness table from Goru outputs.",
+        "- Made the median sSFR contrast explicitly descriptive/no-causal and added guards against escape/recycling overclaiming.",
+        "- Integrated outflow/multiphase citations only as future-observable requirements, not evidence for the SDSS result."
+      ]
+    }
+  ],
+  "safety": "Lane-local files only, plus the required one-line OVERNIGHT_LEDGER.md append performed after verification. No public pages, live roots, product DB, API/pages, page_versions, trust, deploy/restart, git, billing, OAuth, external submission, or new cron jobs."
+}

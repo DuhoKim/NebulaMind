@@ -1,0 +1,88 @@
+{
+  "marker": "NEBULAMIND_V5_G2_COLD_READER_PASS",
+  "completed_at_utc": "2026-07-23T16:58:38Z",
+  "gate": "V5-G2 paper-naive closed-book comprehension",
+  "delegation": {
+    "id": "deleg_3fd814f9",
+    "status": "completed",
+    "duration_seconds": 21.55,
+    "api_calls": 2,
+    "reader_contract": "Read only the sanitized packet; no adjacent files, paper, web, history, or answer key; answer from memory without reopening."
+  },
+  "lineage": {
+    "storyboard": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v5-graphics-first-20260723T142500Z/V5_G2_Z9_STORYBOARD.json",
+    "storyboard_sha256": "4ff525782afeeee7d8462c18f45ba16cf6fdabe1fe739dea2a5d84246165c33e",
+    "sanitized_packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v5-graphics-first-20260723T142500Z/V5_G2_COLD_READER_PACKET.md",
+    "sanitized_packet_sha256": "8b5e6efc4029cf26e58b4ee37688707b3216bb0f5f41fa992897aaecb1a2296b",
+    "preflight": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v5-graphics-first-20260723T142500Z/V5_G2_COLD_READER_PREFLIGHT.json",
+    "preflight_sha256": "f6689a0b31f5794888c46584abf731b4a73c32da08f1c271975783aa233e4007"
+  },
+  "pass_rule": "At least 7 of 8 substantively correct, with Q8 mandatory.",
+  "reader_answers": [
+    {
+      "question": 1,
+      "answer": "The gas-phase oxygen abundance of galaxies, measured on a consistent electron-temperature scale.",
+      "grade": "PASS",
+      "rationale": "Correctly identifies the measured physical quantity and scale."
+    },
+    {
+      "question": 2,
+      "answer": "Whether galaxies at redshift roughly 9–10 had already reached the oxygen abundance seen in nearby galaxies.",
+      "grade": "PASS",
+      "rationale": "Matches the signed main question."
+    },
+    {
+      "question": 3,
+      "answer": "Gravitational lensing can magnify galaxies and bias or distort their inferred stellar masses. Using only unlensed systems avoids that complication.",
+      "grade": "PASS",
+      "rationale": "Correctly explains the lensing-selection rationale."
+    },
+    {
+      "question": 4,
+      "answer": "The figure plots stellar mass horizontally and gas oxygen abundance vertically, together with nearby benchmark relations. All five galaxies lie below those relations, at about one-fifth of the nearby oxygen level—an average shortfall of roughly 0.69 dex.",
+      "grade": "PASS",
+      "rationale": "Correct axes, point location, intuitive ratio, and dex shortfall."
+    },
+    {
+      "question": 5,
+      "answer": "The conclusion barely changes. A benchmark directly measured at the relevant masses still gives a shortfall of about 0.65 dex.",
+      "grade": "PASS",
+      "rationale": "Correctly recalls the benchmark-swap robustness result."
+    },
+    {
+      "question": 6,
+      "answer": "A stacked measurement of roughly 1,500 fainter galaxies also falls about 0.5–0.6 dex below the nearby relation. GN-z11 points in the same direction, though with greater uncertainty.",
+      "grade": "PASS",
+      "rationale": "Correctly identifies the independent stack and acceptable GN-z11 directional cross-check."
+    },
+    {
+      "question": 7,
+      "answer": "The main systematic uncertainty is the debated absolute calibration of temperature-based oxygen abundances, at around 0.1–0.2 dex. The sample of only five galaxies is an additional limitation.",
+      "grade": "PASS",
+      "rationale": "Correctly distinguishes the abundance-scale systematic from the sample-size limitation."
+    },
+    {
+      "question": 8,
+      "answer": "It does not claim a formal statistical detection or a validated, peer-reviewed conclusion.",
+      "grade": "PASS_MANDATORY",
+      "rationale": "Mandatory non-detection and validation boundary is understood."
+    }
+  ],
+  "score": {
+    "correct": 8,
+    "total": 8,
+    "mandatory_q8": "PASS",
+    "overall": "PASS"
+  },
+  "reader_confidence": "high",
+  "reader_confusing_points": "The packet does not quantify the statistical significance or clearly rank the calibration uncertainty against the small-sample limitation.",
+  "design_note_for_v5_g3": "Keep the uncertainty graphic visually separating the 0.1–0.2 dex abundance-scale systematic from the five-galaxy sample limitation. Do not invent a significance value; retain the explicit non-detection boundary.",
+  "release": {
+    "v5_g3_motion_graphics_canary_no_faces": "ELIGIBLE_AFTER_NEW_USER_RELEASE",
+    "facial_animation": false,
+    "full_video_build": false,
+    "youtube_or_visibility": false,
+    "website_or_cockpit": false,
+    "database_git_runtime": false
+  }
+}

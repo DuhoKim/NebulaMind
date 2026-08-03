@@ -1,0 +1,491 @@
+{
+  "id": "ovl4668891",
+  "spec": {
+    "topic": "reionization-photon-budget",
+    "topic_source": "overnight-loop",
+    "data_sources": [
+      "jwst"
+    ],
+    "method": "ionizing-photon-budget",
+    "z0": 7.75,
+    "corner": "o32",
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ],
+    "force": true,
+    "proxy": "o32"
+  },
+  "status": "done",
+  "created_utc": "2026-07-22T22:45:11Z",
+  "log": [
+    "queued by overnight loop",
+    "07:45:47 gate/novelty: NOVEL (top-sim 0.784)",
+    "07:45:47 computing reionization ionizing-photon budget at z~8 (required vs. inferred f_esc)\u2026",
+    "07:46:17 gate/expected-value: TENSION",
+    "07:46:18 lit-grounded on 6 papers, 5 passages",
+    "07:47:07 drafted manuscript body",
+    "07:47:25 review cycle 1: MINOR",
+    "07:47:25 review-revise loop done: MINOR in 1 cycle(s)",
+    "07:47:53 gate/citations: 2 unsupported of 2 checked",
+    "07:47:53 compiling AASTeX manuscript (PDF)...",
+    "07:47:55 AASTeX PDF compiled OK",
+    "07:47:55 done \u2713"
+  ],
+  "artifacts": [
+    "result.png",
+    "review_loop.md",
+    "draft.pdf"
+  ],
+  "result": {
+    "data_sources": [
+      "jwst"
+    ],
+    "method": "ionizing-photon-budget",
+    "summary": "Reionization ionizing-photon-budget reconciliation at z~8: star-forming galaxies require f_esc=0.178 (+0.179/-0.091) to close the budget (Madau-Dickinson SFRD, log xi_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f_esc=0.080 (+0.146/-0.051) from LzLCS O32/beta calibrations. Median delta(required-inferred)=+0.083 dex-frac (16-84%: -0.065 to +0.265); 73% of the systematic MC shows a shortfall. Conclusion: the budget CLOSES within the systematic, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi_ion x clumping x proxy-calibration systematic, not by statistics.",
+    "fesc": {
+      "z": 7.75,
+      "f_required": [
+        0.08681048182965515,
+        0.1777485881971059,
+        0.35684918269085075
+      ],
+      "f_inferred": [
+        0.028787069964691124,
+        0.07958747611912781,
+        0.22584166008164577
+      ],
+      "delta": [
+        -0.06451387756063778,
+        0.08328323754717924,
+        0.26477199515126165
+      ],
+      "frac_shortfall": 0.7348,
+      "noncircular_robust": true,
+      "delta_O32": 0.08308091627871234,
+      "delta_beta": 0.11417269087050784,
+      "corner": "o32"
+    },
+    "title": "The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z~8 (o32 systematic corner)",
+    "provenance": "Literature-anchored budget calculation \u2014 NO survey catalog data is used. The cosmic SFRD is the Madau & Dickinson (2014) analytic fitting function; xi_ion and the O32/beta f_esc proxy calibrations are adopted published values (LzLCS: Chisholm+22, Flury+22; Simmonds+24). Do NOT state or imply that this study uses JWST, SDSS, or TNG observational/catalog data \u2014 it is a systematics reconciliation over published literature values.",
+    "figure_url": "/api/lab/runs/ovl4668891/artifact/result.png",
+    "review": "VERDICT: MINOR\n\nThe manuscript presents a rigorous analysis of the ionizing photon budget during reionization using established literature values. However, there are some minor concerns regarding overclaim risks and missing caveats:\n\n1. Correctness/Overclaim Risks:\n   - The assumption that star-forming galaxies alone can account for the entire reionization process might be an oversimplification.\n   \n2. Missing Caveats:\n   - The potential impact of active galactic nuclei (AGN) on the ionizing photon budget is not discussed.\n\nThe single most important fix would be to explicitly address the role of AGN in contributing to the ionizing photon budget and how it may affect the required escape fraction for star-forming galaxies. This addition will strengthen the analysis and provide a more comprehensive understanding of the reionization process.",
+    "review_model": "astrosage-70b:latest",
+    "review_verdict": "MINOR",
+    "review_cycles": 1,
+    "review_url": "/api/lab/runs/ovl4668891/artifact/review_loop.md",
+    "pdf_url": "/api/lab/runs/ovl4668891/artifact/draft.pdf"
+  },
+  "gates": {
+    "novelty": {
+      "gate": "novelty",
+      "verdict": "NOVEL",
+      "top_similarity": 0.784,
+      "reason": "cers of ionising photons, potentially driving reionisation. While they discuss ionizing photon production, the specific measurement of reionization-photon-budget via ionizing-photon-budget using JWST data is not explicitly mentioned.\n\nGiven this analysis, none of the papers directly report measuring the reionization-photon-budget via an ionizing-photon-budget method specifically using JWST data as proposed. While some papers discuss related topics such as photon budget crises or the role of galaxies in producing ionizing photons during the epoch of reionization, they either use different datasets (e.g., JADES) or do not explicitly focus on the same measurement with JWST data.\n\nVERDICT: NOVEL",
+      "papers": [
+        {
+          "bibcode": "2024MNRAS.535L..37M",
+          "arxiv": "2404.07250",
+          "title": "Reionization after JWST: a photon budget crisis?",
+          "authors": [
+            "Mu\u00f1oz, Julian B.",
+            "Mirocha, Jordan",
+            "Chisholm, John",
+            "Furlanetto, Steven R.",
+            "Mason, Charlotte"
+          ],
+          "year": "2024",
+          "cites": 130,
+          "score": 0.7842265367507935
+        },
+        {
+          "bibcode": "2024MNRAS.535.2998S",
+          "arxiv": "2409.01286",
+          "title": "Ionizing properties of galaxies in JADES for a stellar mass complete sample: resolving the cosmic ionizing photon budget crisis at the Epoch of Reionization",
+          "authors": [
+            "Simmonds, C.",
+            "Tacchella, S.",
+            "Hainline, K.",
+            "Johnson, B. D.",
+            "Pusk\u00e1s, D.",
+            "Robertson, B.",
+            "Baker, W. M.",
+            "Bhatawdekar, R.",
+            "Boyett, K.",
+            "Bunker, A. J.",
+            "Cargile, P. A.",
+            "Carniani, S.",
+            "Chevallard, J.",
+            "Curti, M.",
+            "Curtis-Lake, E.",
+            "Ji, Z.",
+            "Jones, G. C.",
+            "Kumari, N.",
+            "Laseter, I.",
+            "Maiolino, R.",
+            "Maseda, M. V.",
+            "Rinaldi, P.",
+            "Stoffers, A.",
+            "\u00dcbler, H.",
+            "Villanueva, N. C.",
+            "Williams, C. C.",
+            "Willott, C.",
+            "Witstok, J.",
+            "Zhu, Y."
+          ],
+          "year": "2024",
+          "cites": 107,
+          "score": 0.7705462574958801
+        },
+        {
+          "bibcode": "2025MNRAS.537.2273C",
+          "arxiv": "2405.09720",
+          "title": "Inferring the ionizing photon contributions of high-redshift galaxies to reionization with JWST NIRCam photometry",
+          "authors": [
+            "Choustikov, Nicholas",
+            "Stiskalek, Richard",
+            "Saxena, Aayush",
+            "Katz, Harley",
+            "Devriendt, Julien",
+            "Slyz, Adrianne"
+          ],
+          "year": "2025",
+          "cites": 18,
+          "score": 0.7443621158599854
+        },
+        {
+          "bibcode": "2015MNRAS.451.2030D",
+          "arxiv": "1505.01846",
+          "title": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10",
+          "authors": [
+            "Duncan, Kenneth",
+            "Conselice, Christopher J."
+          ],
+          "year": "2015",
+          "cites": 87,
+          "score": 0.7238396406173706
+        },
+        {
+          "bibcode": "2024MNRAS.527.6139S",
+          "arxiv": "2310.01112",
+          "title": "Low-mass bursty galaxies in JADES efficiently produce ionizing photons and could represent the main drivers of reionization",
+          "authors": [
+            "Simmonds, C.",
+            "Tacchella, S.",
+            "Hainline, K.",
+            "Johnson, B. D.",
+            "McClymont, W.",
+            "Robertson, B.",
+            "Saxena, A.",
+            "Sun, F.",
+            "Witten, C.",
+            "Baker, W. M.",
+            "Bhatawdekar, R.",
+            "Boyett, K.",
+            "Bunker, A. J.",
+            "Charlot, S.",
+            "Curtis-Lake, E.",
+            "Egami, E.",
+            "Eisenstein, D. J.",
+            "Hausen, R.",
+            "Maiolino, R.",
+            "Maseda, M. V.",
+            "Scholtz, J.",
+            "Williams, C. C.",
+            "Willott, C.",
+            "Witstok, J."
+          ],
+          "year": "2024",
+          "cites": 137,
+          "score": 0.7110471129417419
+        },
+        {
+          "bibcode": "2026ApJ..1003....7B",
+          "arxiv": "2511.19600",
+          "title": "Toward Reconciling Reionization with JWST: The Role of Bright Galaxies and Strong Feedback",
+          "authors": [
+            "Bera, Ankita",
+            "Hassan, Sultan",
+            "Feldmann, Robert",
+            "Dav\u00e9, Romeel",
+            "Finlator, Kristian"
+          ],
+          "year": "2026",
+          "cites": 2,
+          "score": 0.7065238952636719
+        }
+      ]
+    },
+    "expected_value": {
+      "gate": "expected_value",
+      "verdict": "TENSION",
+      "kill": false,
+      "n_values": 10,
+      "reason": "t.\n\nStep 2 - COMPARE: The measured result is f_esc=0.178 (+0.179/-0.091), which can be compared to the expected values:\n- 0.179-0.5098 from Mitra2013, which overlaps with the measured value.\n- 5% or log(f_esc) from Wyithe2010, which translates to f_esc=0.05. This is lower than the measured result, but considering the calibration and context differences, it might not be a significant discrepancy.\n- log(f_esc): -1.35 from Wyithe2010, which translates to f_esc=0.045. Similar to the previous point, this is lower than the measured result.\n\nGiven the overlap with Mitra2013's expected range and considering calibration differences, the measured result does not drastically contradict any of the listed values but shows some tension due to the differences in calibration and context.\n\nVERDICT: TENSION",
+      "papers": [
+        {
+          "bibcode": "2013MNRAS.428L...1M",
+          "arxiv": "1207.3803",
+          "title": "The escape fraction of ionizing photons from high-redshift galaxies from data-constrained reionization models",
+          "authors": [
+            "Mitra, Sourav",
+            "Ferrara, Andrea",
+            "Choudhury, T. Roy"
+          ],
+          "year": "2013",
+          "cites": 96,
+          "score": 0.7210730314254761
+        },
+        {
+          "bibcode": "2020ApJ...892..109N",
+          "arxiv": "1907.13130",
+          "title": "Rapid Reionization by the Oligarchs: The Case for Massive, UV-bright, Star-forming Galaxies with High Escape Fractions",
+          "authors": [
+            "Naidu, Rohan P.",
+            "Tacchella, Sandro",
+            "Mason, Charlotte A.",
+            "Bose, Sownak",
+            "Oesch, Pascal A.",
+            "Conroy, Charlie"
+          ],
+          "year": "2020",
+          "cites": 346,
+          "score": 0.7027660608291626
+        },
+        {
+          "bibcode": "2024MNRAS.535L..37M",
+          "arxiv": "2404.07250",
+          "title": "Reionization after JWST: a photon budget crisis?",
+          "authors": [
+            "Mu\u00f1oz, Julian B.",
+            "Mirocha, Jordan",
+            "Chisholm, John",
+            "Furlanetto, Steven R.",
+            "Mason, Charlotte"
+          ],
+          "year": "2024",
+          "cites": 130,
+          "score": 0.7004382014274597
+        },
+        {
+          "bibcode": "2012ApJ...758...93F",
+          "arxiv": "1206.0735",
+          "title": "CANDELS: The Contribution of the Observed Galaxy Population to Cosmic Reionization",
+          "authors": [
+            "Finkelstein, Steven L.",
+            "Papovich, Casey",
+            "Ryan, Russell E.",
+            "Pawlik, Andreas H.",
+            "Dickinson, Mark",
+            "Ferguson, Henry C.",
+            "Finlator, Kristian",
+            "Koekemoer, Anton M.",
+            "Giavalisco, Mauro",
+            "Cooray, Asantha",
+            "Dunlop, James S.",
+            "Faber, Sandy M.",
+            "Grogin, Norman A.",
+            "Kocevski, Dale D.",
+            "Newman, Jeffrey A."
+          ],
+          "year": "2012",
+          "cites": 205,
+          "score": 0.6968062520027161
+        },
+        {
+          "bibcode": "2011ApJ...731...20F",
+          "arxiv": "1006.3519",
+          "title": "The Effect of Galactic Properties on the Escape Fraction of Ionizing Photons",
+          "authors": [
+            "Fernandez, Elizabeth R.",
+            "Shull, J. Michael"
+          ],
+          "year": "2011",
+          "cites": 68,
+          "score": 0.69125896692276
+        },
+        {
+          "bibcode": "2022MNRAS.516.2062P",
+          "arxiv": "2202.00016",
+          "title": "Searching for the connection between ionizing-photon escape and the surface density of star formation at z   3",
+          "authors": [
+            "Pahl, Anthony J.",
+            "Shapley, Alice",
+            "Steidel, Charles C.",
+            "Reddy, Naveen A.",
+            "Chen, Yuguang"
+          ],
+          "year": "2022",
+          "cites": 11,
+          "score": 0.6887431144714355
+        },
+        {
+          "bibcode": "2010MNRAS.401.2561W",
+          "arxiv": "0908.0193",
+          "title": "Determining the escape fraction of ionizing photons during reionization with the GRB-derived star formation rate",
+          "authors": [
+            "Wyithe, J. S. B.",
+            "Hopkins, A. M.",
+            "Kistler, M. D.",
+            "Y\u00fcksel, H.",
+            "Beacom, J. F."
+          ],
+          "year": "2010",
+          "cites": 40,
+          "score": 0.688552975654602
+        }
+      ]
+    },
+    "citation_entailment": {
+      "gate": "citation_entailment",
+      "checked": 2,
+      "adversarial": true,
+      "n_unsupported": 2,
+      "unsupported": [
+        {
+          "key": "Park2022",
+          "sentence": "Previous works have explored various approaches to address this problem, including calibrating excursion set reionization models [Park2022] and analyzing the galaxy ionizing photon",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Calibrating excursion set reionization models to approximately conserve ionizing photons Jaehong Park, 1 Bradley Greig, 2,3 Andrei Mesinger, 4 1 School of Physics, Korea Institute for Advanced Study (KIAS), 85 Hoegiro, Dongdaemun-gu, Seoul 02455, Republic of Korea 2 ARC Centre of Excellence for All-",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS CALIBRATING EXCURSION SET REIONIZATION MODELS BY JAEHONG PARK, WHICH MATCHES THE CLAIM."
+        },
+        {
+          "key": "Duncan2015",
+          "sentence": "Previous works have explored various approaches to address this problem, including calibrating excursion set reionization models [Park2022] and analyzing the galaxy ionizing photon",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10 \ud835\udc67 10 z<10 Kenneth Duncan 1 and Christopher J. Conselice 1 1 University of Nottingham, School of Physics & Astronomy, Nottingham NG7 2RD E-mail: ppxkd@nottingham.ac.uk Abstract We present a new analysis of the ionizing emiss",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS ANALYZING THE GALAXY IONIZING PHOTON BUDGET AT Z < 10, WHICH MATCHES ONE OF THE APPROACHES MENTIONED IN THE CLAIM (DUNC"
+        }
+      ],
+      "spot_audit": null,
+      "all": [
+        {
+          "key": "Park2022",
+          "sentence": "Previous works have explored various approaches to address this problem, including calibrating excursion set reionization models [Park2022] and analyzing the galaxy ionizing photon",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Calibrating excursion set reionization models to approximately conserve ionizing photons Jaehong Park, 1 Bradley Greig, 2,3 Andrei Mesinger, 4 1 School of Physics, Korea Institute for Advanced Study (KIAS), 85 Hoegiro, Dongdaemun-gu, Seoul 02455, Republic of Korea 2 ARC Centre of Excellence for All-",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS CALIBRATING EXCURSION SET REIONIZATION MODELS BY JAEHONG PARK, WHICH MATCHES THE CLAIM."
+        },
+        {
+          "key": "Duncan2015",
+          "sentence": "Previous works have explored various approaches to address this problem, including calibrating excursion set reionization models [Park2022] and analyzing the galaxy ionizing photon",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10 \ud835\udc67 10 z<10 Kenneth Duncan 1 and Christopher J. Conselice 1 1 University of Nottingham, School of Physics & Astronomy, Nottingham NG7 2RD E-mail: ppxkd@nottingham.ac.uk Abstract We present a new analysis of the ionizing emiss",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS ANALYZING THE GALAXY IONIZING PHOTON BUDGET AT Z < 10, WHICH MATCHES ONE OF THE APPROACHES MENTIONED IN THE CLAIM (DUNC"
+        }
+      ]
+    }
+  },
+  "lit_refs": [
+    "2015MNRAS.451.2030D",
+    "2021ApJ...918L..35D",
+    "2024MNRAS.535L..37M",
+    "2020MNRAS.496.4342L",
+    "2017ApJ...851...50M",
+    "2022MNRAS.517..192P"
+  ],
+  "lit_reflist": [
+    "[Muoz2024] Mu\u00f1oz et al. (2024). Reionization after JWST: a photon budget crisis?. bibcode 2024MNRAS.535L..37M",
+    "[Park2022] Park et al. (2022). Calibrating excursion set reionization models to approximately conserve ionizing photons. bibcode 2022MNRAS.517..192P",
+    "[Duncan2015] Duncan et al. (2015). Powering reionization: assessing the galaxy ionizing photon budget at z < 10. bibcode 2015MNRAS.451.2030D",
+    "[Davies2021] Davies et al. (2021). The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources. bibcode 2021ApJ...918L..35D",
+    "[Madau2017] Madau (2017). Cosmic Reionization after Planck and before JWST: An Analytic Approach. bibcode 2017ApJ...851...50M"
+  ],
+  "lit_papers": [
+    {
+      "bibcode": "2015MNRAS.451.2030D",
+      "arxiv": "1505.01846",
+      "title": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10",
+      "authors": [
+        "Duncan, Kenneth",
+        "Conselice, Christopher J."
+      ],
+      "year": "2015",
+      "cites": 87,
+      "score": 0.6873655319213867
+    },
+    {
+      "bibcode": "2021ApJ...918L..35D",
+      "arxiv": "2105.10518",
+      "title": "The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources",
+      "authors": [
+        "Davies, Frederick B.",
+        "Bosman, Sarah E. I.",
+        "Furlanetto, Steven R.",
+        "Becker, George D.",
+        "D'Aloisio, Anson"
+      ],
+      "year": "2021",
+      "cites": 51,
+      "score": 0.6724658012390137
+    },
+    {
+      "bibcode": "2024MNRAS.535L..37M",
+      "arxiv": "2404.07250",
+      "title": "Reionization after JWST: a photon budget crisis?",
+      "authors": [
+        "Mu\u00f1oz, Julian B.",
+        "Mirocha, Jordan",
+        "Chisholm, John",
+        "Furlanetto, Steven R.",
+        "Mason, Charlotte"
+      ],
+      "year": "2024",
+      "cites": 130,
+      "score": 0.6724181175231934
+    },
+    {
+      "bibcode": "2020MNRAS.496.4342L",
+      "arxiv": "2001.07785",
+      "title": "Galactic ionizing photon budget during the epoch of reionization in the Cosmic Dawn II simulation",
+      "authors": [
+        "Lewis, Joseph S. W.",
+        "Ocvirk, Pierre",
+        "Aubert, Dominique",
+        "Sorce, Jenny G.",
+        "Shapiro, Paul R.",
+        "Deparis, Nicolas",
+        "Dawoodbhoy, Taha",
+        "Teyssier, Romain",
+        "Yepes, Gustavo",
+        "Gottl\u00f6ber, Stefan",
+        "Ahn, Kyungjin",
+        "Iliev, Ilian T.",
+        "Chardin, Jonathan"
+      ],
+      "year": "2020",
+      "cites": 52,
+      "score": 0.6567302942276001
+    },
+    {
+      "bibcode": "2017ApJ...851...50M",
+      "arxiv": "1710.07636",
+      "title": "Cosmic Reionization after Planck and before JWST: An Analytic Approach",
+      "authors": [
+        "Madau, Piero"
+      ],
+      "year": "2017",
+      "cites": 64,
+      "score": 0.6503502726554871
+    },
+    {
+      "bibcode": "2022MNRAS.517..192P",
+      "arxiv": "2112.05184",
+      "title": "Calibrating excursion set reionization models to approximately conserve ionizing photons",
+      "authors": [
+        "Park, Jaehong",
+        "Greig, Bradley",
+        "Mesinger, Andrei"
+      ],
+      "year": "2022",
+      "cites": 7,
+      "score": 0.6446638107299805
+    }
+  ],
+  "lit_grounded": true,
+  "lit_grounding": "grounded on 6 papers, 5 passages"
+}

@@ -1,0 +1,62 @@
+{
+  "status": "dirty_runtime_checkout_classified",
+  "updated_at_utc": "2026-06-29T14:23:18Z",
+  "updated_at_kst": "2026-06-29 23:23:18 KST",
+  "runtime_path": "/Users/duhokim/NebulaMind/NebulaMind",
+  "running_backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "running_backend_pid": "25075",
+  "clean_candidate_serving_backend": true,
+  "tracked_dirty_count": 7,
+  "untracked_individual_file_count": 476,
+  "tracked_category_counts": {
+    "backend source: local whitespace-only delta versus clean main": 1,
+    "already covered by clean main/candidate": 2,
+    "possible useful old frontend/wiki work, not live backend": 4
+  },
+  "untracked_category_counts": {
+    "Hermes plan/report artifact": 5,
+    "misc untracked artifact": 1,
+    "already in clean main/candidate (untracked duplicate)": 5,
+    "documentation/report artifact": 240,
+    "generated public cockpit/report artifact": 154,
+    "frontend misc artifact": 68,
+    "possible runtime-only source work": 3
+  },
+  "db_counts_before": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_counts_after": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_count_drift": {
+    "page_citation_links": 0,
+    "fact_sources": 0
+  },
+  "db_write_count_for_classification": 0,
+  "report_artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/dirty-runtime-classification-20260629T142318Z",
+    "json": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/dirty-runtime-classification-20260629T142318Z/dirty-runtime-classification.json",
+    "markdown": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/dirty-runtime-classification-20260629T142318Z/dirty-runtime-classification.md",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/dirty-runtime-classification-20260629T142318Z/SHA256SUMS"
+  },
+  "future_options": [
+    {
+      "option": "Prepare archive/PR decision matrix",
+      "approval": "STEER: prepare archive and PR decision matrix for classified dirty runtime artifacts; no deletion, no reset, no DB writes."
+    },
+    {
+      "option": "Extract useful frontend/wiki work into clean PR plan",
+      "approval": "STEER: prepare clean PR plan for classified frontend/wiki runtime work; no code changes, no deploy, no DB writes."
+    },
+    {
+      "option": "Continue live clean-candidate monitor",
+      "approval": "STEER: continue clean-candidate source-surface monitor; no DB writes."
+    },
+    {
+      "option": "Cleanup duplicates/generated artifacts",
+      "approval": "LOCKED \u2014 requires backup plus exact cleanup approval after reviewing this classification."
+    }
+  ]
+}

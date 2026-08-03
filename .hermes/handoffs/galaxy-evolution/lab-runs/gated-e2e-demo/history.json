@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "runId": "gated-e2e-demo",
+  "model": "astrosage-70b:latest",
+  "converged": "MINOR",
+  "createdUtc": null,
+  "lineage": {
+    "topicSource": null,
+    "topic": "the z=0 gas-phase mass-metallicity relation of galaxies: IllustrisTNG vs SDSS",
+    "parentRunId": null
+  },
+  "revisions": [
+    {
+      "cycle": 1,
+      "feedbackSource": "referee-model",
+      "feedbackBy": "astrosage-70b:latest",
+      "feedbackKind": {
+        "verdict": "MINOR",
+        "categories": [
+          "overclaim",
+          "caveats",
+          "calibration",
+          "selection",
+          "comparison",
+          "statistics"
+        ]
+      },
+      "feedbackText": "The manuscript provides a clear comparison between IllustrisTNG and SDSS data on the z=0 gas-phase mass-metallicity relation, acknowledging its limitations and potential biases. However, there are some minor concerns:\n\n1. **Overclaim risk**: The study's conclusions might be overstated without considering additional factors like environmental effects or feedback mechanisms.\n2. **Missing caveats**: While the authors mention calibration issues and observational uncertainties, they could further discuss how these limitations affect their results.\n3. **Most important fix**: Include a more detailed discussion on the potential impact of unaccounted factors (e.g., galaxy environment) on the mass-metallicity relation to strengthen the analysis.\n\nOverall, the manuscript is well-structured and honest about its limitations but requires minor adjustments to address these concerns for a more robust conclusion.",
+      "changed": {
+        "summary": "first automated pass — draft not yet revised",
+        "diffStat": null
+      },
+      "timestamp": null
+    }
+  ],
+  "humanFeedback": {
+    "captured": false,
+    "events": []
+  },
+  "gates": {
+    "captured": false,
+    "events": [],
+    "note": "novelty / expected-value / citation gates are not instrumented in this pipeline"
+  }
+}

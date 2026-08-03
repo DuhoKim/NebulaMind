@@ -1,0 +1,1225 @@
+{
+  "created_utc": "2026-07-08T13:30:55.729701+00:00",
+  "marker": "OVERNIGHT_9_PAPERS_QUALITY_INVENTORY_20260708T132720Z",
+  "papers": [
+    {
+      "analysis_keys": [
+        "analysis_rows",
+        "bpt_counts",
+        "data_release",
+        "files",
+        "group_medians",
+        "match_abs_delta_logM_median",
+        "match_abs_delta_z_median",
+        "match_distance_scaled_median",
+        "matched_delta_log_sSFR_mean_ci95_bootstrap",
+        "matched_delta_log_sSFR_mean_dex",
+        "matched_delta_log_sSFR_median_ci95_bootstrap",
+        "matched_delta_log_sSFR_median_dex",
+        "matched_pairs",
+        "ols_adjusted_for_logM_z",
+        "query_top_n",
+        "raw_rows",
+        "revision_marker",
+        "run_id",
+        "safety"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "rp-1",
+      "compile_log": {
+        "bytes": 1381,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 86693,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure1_bpt.pdf",
+          "sha256": "99cc2411c43dcd41895d6cb55234648a8b8ffc498eaf8ffeea8ec534c119b999"
+        },
+        {
+          "bytes": 78775,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure2_matched_offsets.pdf",
+          "sha256": "83d16bcbeada88091c5c68a4fd98fd96af9d3b8971bd361a55d0f1b16ca95661"
+        }
+      ],
+      "full_proposal_requires": null,
+      "manifest_short_title": "SDSS AGN/sSFR matched-control pilot",
+      "manifest_title": "A Matched-Control SDSS DR17 Pilot Test of Specific Star Formation in Optical AGN Hosts",
+      "method": "packet-gated-paper-to-wiki-reconciliation",
+      "pdf": {
+        "bytes": 234931,
+        "exists": true,
+        "manifest_bytes": 234931,
+        "manifest_sha256": "7f2832413b354023be6375e3a8c2bf4a9658c0791f9167a5056a9c5fc19d8e75",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/aastex/sdss_agn_sfr_pilot_aas.pdf",
+        "sha256": "7f2832413b354023be6375e3a8c2bf4a9658c0791f9167a5056a9c5fc19d8e75",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": null,
+      "quality_flags": [
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": null,
+      "slug": "m1_rp1_agn_sfr_matched_control",
+      "tex": {
+        "abstract_preview": "We execute a bounded pilot version of a proposed galaxy-evolution study: whether optically selected active galactic nucleus (AGN) hosts show a star-formation deficit relative to matched inactive emission-line galaxies. Using a public Sloan Digital Sky Survey \u2026",
+        "abstract_words": 179,
+        "bibitem_count": 5,
+        "bibkeys": [
+          "baldwin1981",
+          "brinchmann2004",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 11470,
+        "cite_key_count": 3,
+        "cite_keys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001"
+        ],
+        "deluxetable_environments": 1,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 2,
+        "guard_patterns_hit": [
+          "not\\s+(?:a\\s+)?causal",
+          "association\\s+(?:measurement|pilot)"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 2,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/aastex/sdss_agn_sfr_pilot_aas.tex",
+        "section_count": 7,
+        "sections": [
+          "Introduction",
+          "Data and Sample",
+          "Classification and Matched-Control Test",
+          "Results",
+          "Discussion",
+          "Conclusions",
+          "Reproducibility and Safety Note"
+        ],
+        "shorttitle": "SDSS Optical AGN sSFR Pilot",
+        "table_environments": 0,
+        "title": "A Matched-Control SDSS DR17 Pilot Test of Specific Star Formation in Optical AGN Hosts",
+        "topic_literature_terms_in_text": [
+          "environment",
+          "quenching",
+          "heating",
+          "molecular",
+          "depletion",
+          "feedback"
+        ],
+        "word_count_rough": 1023
+      }
+    },
+    {
+      "analysis_keys": [
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "high_density_quenched",
+        "high_minus_low_ci",
+        "interpretation_guard",
+        "low_density_quenched",
+        "lpm_high_density_coeff",
+        "lpm_high_density_se",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "rp-2",
+      "compile_log": {
+        "bytes": 1733,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/aastex/compile.log",
+        "warning_marker_count": 14
+      },
+      "figures": [
+        {
+          "bytes": 14881,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/figures/m1_rp2_environment_quenching_figure1.pdf",
+          "sha256": "1fd192eed0643ae73b54e06c311117fb6c3241c1f952bade758e56e32fe02d9f"
+        }
+      ],
+      "full_proposal_requires": "group catalogues, robust central/satellite labels, halo masses, morphology, and multi-redshift selection functions.",
+      "manifest_short_title": "SDSS density proxy for environmental quenching",
+      "manifest_title": "Separating internal and environmental quenching across stellar mass, halo mass, and redshift",
+      "method": "packet-gated-paper-to-wiki-reconciliation",
+      "pdf": {
+        "bytes": 59070,
+        "exists": true,
+        "manifest_bytes": 59070,
+        "manifest_sha256": "8eb4ae352e8b626829931d07587e7e38bc13a7bd3127d68d3aacacc38d44a339",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_aas.pdf",
+        "sha256": "8eb4ae352e8b626829931d07587e7e38bc13a7bd3127d68d3aacacc38d44a339",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "Does a nearest-neighbour density proxy add quenched-fraction information beyond stellar mass in the SDSS emission-line sample?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.",
+        "The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).",
+        "The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].",
+        "A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004."
+      ],
+      "slug": "m1_rp2_environment_quenching",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Separating internal and environmental quenching across stellar mass, halo mass, and redshift''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass\u2026",
+        "abstract_words": 77,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4200,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "SDSS density proxy for environmental quenching",
+        "table_environments": 0,
+        "title": "SDSS density proxy for environmental quenching: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "environment",
+          "quenching",
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 378
+      }
+    },
+    {
+      "analysis_keys": [
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "interpretation_guard",
+        "massive_agn_fraction",
+        "massive_quenched_agn_fraction",
+        "massive_quenched_rows",
+        "massive_rows",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "rp-3",
+      "compile_log": {
+        "bytes": 1704,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/aastex/compile.log",
+        "warning_marker_count": 14
+      },
+      "figures": [
+        {
+          "bytes": 14966,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/figures/m1_rp3_maintenance_heating_figure1.pdf",
+          "sha256": "596db86bacb484ebec5750f3ef41ceb490d5b7c8a870b0c5cb4638f2aab92fe8"
+        }
+      ],
+      "full_proposal_requires": "X-ray cavity/cooling-luminosity measurements, radio jet powers, halo-selected parent catalogues, and nondetection modelling.",
+      "manifest_short_title": "Optical-AGN denominator for maintenance-heating follow-up",
+      "manifest_title": "Empirical duty-cycle constraints on AGN maintenance heating in massive halos",
+      "method": "packet-gated-paper-to-wiki-reconciliation",
+      "pdf": {
+        "bytes": 59204,
+        "exists": true,
+        "manifest_bytes": 59204,
+        "manifest_sha256": "8a28f6a793de28384731209761d8c312ada7795ee44bd647510835e0fbdef86d",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_aas.pdf",
+        "sha256": "8a28f6a793de28384731209761d8c312ada7795ee44bd647510835e0fbdef86d",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "Among massive, low-sSFR SDSS emission-line galaxies, what optical AGN fraction is available as a denominator for X-ray/radio maintenance-heating follow-up?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "The massive subset (logM >= 10.8) contains 9,298 emission-line galaxies; 5,695 are low-sSFR by the pilot threshold.",
+        "The optical BPT AGN fraction is 0.430 in the massive subset and 0.607 among massive low-sSFR objects.",
+        "This provides an optical duty-cycle denominator for X-ray/radio maintenance-heating follow-up, not a heating-to-cooling measurement."
+      ],
+      "slug": "m1_rp3_maintenance_heating",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Empirical duty-cycle constraints on AGN maintenance heating in massive halos''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, \u2026",
+        "abstract_words": 79,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4150,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "Optical-AGN denominator for maintenance-heating follow-up",
+        "table_environments": 0,
+        "title": "Optical-AGN denominator for maintenance-heating follow-up: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 379
+      }
+    },
+    {
+      "analysis_keys": [
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "high_excitation_agn",
+        "interpretation_guard",
+        "median_log_sSFR_all",
+        "median_log_sSFR_high_excitation",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p1",
+      "compile_log": {
+        "bytes": 1539,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 247680,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/figures/m2_p1_outflow_escape_recycling_figure1.pdf",
+          "sha256": "31e5c88cd1e02bf868b18000814317477bbdf14cbbbb95b8f1708f0f107f4670"
+        }
+      ],
+      "full_proposal_requires": "resolved outflow velocities, halo potentials, molecular/ionized/neutral gas phases, and CGM recycling tracers.",
+      "manifest_short_title": "SDSS high-excitation AGN denominator for outflow escape tests",
+      "manifest_title": "Escape versus recycling: the fate of AGN-driven multiphase outflows",
+      "method": "source-first-paper-adjudication",
+      "pdf": {
+        "bytes": 288385,
+        "exists": true,
+        "manifest_bytes": 288385,
+        "manifest_sha256": "9314edd75a413aca99c2939f678b3f9341f1c326ccab8a6cef0af5d4850bd756",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_aas.pdf",
+        "sha256": "9314edd75a413aca99c2939f678b3f9341f1c326ccab8a6cef0af5d4850bd756",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "How large is the SDSS high-excitation optical-AGN denominator that would need resolved kinematics to test escape versus recycling?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074).",
+        "Their median log sSFR is -11.53, compared with -10.14 for the full denominator.",
+        "SDSS does not measure escape velocity or multiphase outflow velocities here; the pilot supplies a denominator for resolved follow-up rather than an escape/recycling result."
+      ],
+      "slug": "m2_p1_outflow_escape_recycling",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Escape versus recycling: the fate of AGN-driven multiphase outflows''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, photometr\u2026",
+        "abstract_words": 77,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4111,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "SDSS high-excitation AGN denominator for outflow escape tests",
+        "table_environments": 0,
+        "title": "SDSS high-excitation AGN denominator for outflow escape tests: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "maintenance",
+          "heating",
+          "outflow",
+          "escape",
+          "recycling",
+          "radio",
+          "jet",
+          "multiphase",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 379
+      }
+    },
+    {
+      "analysis_keys": [
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "high_density_massive_agn",
+        "high_minus_low_ci",
+        "interpretation_guard",
+        "low_density_massive_agn",
+        "massive_rows",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p2",
+      "compile_log": {
+        "bytes": 1501,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 15267,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/figures/m2_p2_radio_jet_environment_figure1.pdf",
+          "sha256": "8bd1b0248cf0939fb2ba0a64155586b3f13a0dc2eff581e2ab63ae750481694c"
+        }
+      ],
+      "full_proposal_requires": "radio jet morphology/age, cavity or shock energetics, hot-gas density, and calibrated jet-power estimates.",
+      "manifest_short_title": "Environment proxy for optical AGN in massive SDSS hosts",
+      "manifest_title": "Environmental dependence of radio-jet coupling efficiency in galaxy gas",
+      "method": "source-first-paper-adjudication",
+      "pdf": {
+        "bytes": 58906,
+        "exists": true,
+        "manifest_bytes": 58906,
+        "manifest_sha256": "f5c19b612a5120832618c4c37cd6b9d35cdf4046f982730ce4d2ece1bc8ddd89",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_aas.pdf",
+        "sha256": "f5c19b612a5120832618c4c37cd6b9d35cdf4046f982730ce4d2ece1bc8ddd89",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "Does a local-density proxy modulate the optical AGN fraction in massive SDSS hosts, motivating environment-stratified radio/X-ray jet-coupling follow-up?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "Among massive hosts, the high-density quartile has optical AGN fraction 0.509; the low-density quartile has 0.367.",
+        "The bootstrap high-minus-low interval is [0.112, 0.170].",
+        "This is an optical/environment denominator for radio-jet coupling work; it does not measure radio jet power or coupling efficiency."
+      ],
+      "slug": "m2_p2_radio_jet_environment",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Environmental dependence of radio-jet coupling efficiency in galaxy gas''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, photo\u2026",
+        "abstract_words": 77,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4076,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "Environment proxy for optical AGN in massive SDSS hosts",
+        "table_environments": 0,
+        "title": "Environment proxy for optical AGN in massive SDSS hosts: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "environment",
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 375
+      }
+    },
+    {
+      "analysis_keys": [
+        "agn_fraction_by_mass",
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "interpretation_guard",
+        "mass_bin_labels",
+        "method",
+        "peak_agn_fraction",
+        "peak_agn_mass_bin",
+        "pilot_question",
+        "proposal_title",
+        "quenched_fraction_by_mass",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample",
+        "transition_mass_bin_quenched_fraction_gt_0p5"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p3_feedback_transition_mass/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p3",
+      "compile_log": {
+        "bytes": 1538,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p3_feedback_transition_mass/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 14913,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p3_feedback_transition_mass/figures/m2_p3_feedback_transition_mass_figure1.pdf",
+          "sha256": "725dfb62948db7d4b868eef7b18ba9739ad814d821cc507d3a19c53c556943f9"
+        }
+      ],
+      "full_proposal_requires": "gas fractions, baryon deficits, halo masses, stellar-feedback observables, and high-redshift extensions.",
+      "manifest_short_title": "SDSS mass transition in quenching and optical AGN incidence",
+      "manifest_title": "Locating the transition from stellar-feedback to AGN-feedback regulation",
+      "method": "source-first-paper-adjudication",
+      "pdf": {
+        "bytes": 58387,
+        "exists": true,
+        "manifest_bytes": 58387,
+        "manifest_sha256": "e7969f69e82bc1c52bb4bf7ccb7675d449d815b1db9cab2d37d8f2e2952e1103",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_aas.pdf",
+        "sha256": "e7969f69e82bc1c52bb4bf7ccb7675d449d815b1db9cab2d37d8f2e2952e1103",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "At what stellar-mass scale do quenched fraction and optical AGN incidence rise in the same SDSS denominator?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "The first stellar-mass bin with quenched fraction above 0.5 is 11.0-12.5.",
+        "The optical AGN fraction peaks in the 11.0-12.5 bin at 0.520.",
+        "The result is an optical transition diagnostic; gas fractions and baryon deficits are needed before assigning the transition to stellar or AGN feedback."
+      ],
+      "slug": "m2_p3_feedback_transition_mass",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Locating the transition from stellar-feedback to AGN-feedback regulation''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, phot\u2026",
+        "abstract_words": 75,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4026,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "SDSS mass transition in quenching and optical AGN incidence",
+        "table_environments": 0,
+        "title": "SDSS mass transition in quenching and optical AGN incidence: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "quenching",
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "transition",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 372
+      }
+    },
+    {
+      "analysis_keys": [
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "interpretation_guard",
+        "method",
+        "pilot_question",
+        "prevalence_ratio_widest_to_narrowest",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample",
+        "tracer_prevalence"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p1",
+      "compile_log": {
+        "bytes": 1452,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 16341,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/figures/m3_p1_multiphase_census_figure1.pdf",
+          "sha256": "abfc743a35167e4247288ffe0571531f839989078861f94c2fa49ed9914d79f2"
+        }
+      ],
+      "full_proposal_requires": "ionized, molecular, neutral, and X-ray/radio tracers measured over the same parent denominator and aperture model.",
+      "manifest_short_title": "Common-denominator optical tracer census in SDSS",
+      "manifest_title": "A multiphase, common-denominator census of AGN-driven outflows",
+      "method": "debate-map-to-wiki-rebuild",
+      "pdf": {
+        "bytes": 59116,
+        "exists": true,
+        "manifest_bytes": 59116,
+        "manifest_sha256": "9ea6ab6c74bf655d3fbc7c016e7a34bedccb7038bde80b2acbfa8b375a6c24ba",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_aas.pdf",
+        "sha256": "9ea6ab6c74bf655d3fbc7c016e7a34bedccb7038bde80b2acbfa8b375a6c24ba",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "How strongly do simple optical tracer definitions change the inferred AGN/feedback-candidate prevalence in one common SDSS denominator?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418.",
+        "The widest-to-narrowest prevalence ratio is 3.1, before adding molecular, neutral, or X-ray/radio phases.",
+        "This demonstrates why a common-denominator multiphase census is required; it does not measure molecular or neutral outflow rates."
+      ],
+      "slug": "m3_p1_multiphase_census",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``A multiphase, common-denominator census of AGN-driven outflows''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, photometry, an\u2026",
+        "abstract_words": 74,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4087,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "Common-denominator optical tracer census in SDSS",
+        "table_environments": 0,
+        "title": "Common-denominator optical tracer census in SDSS: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "maintenance",
+          "heating",
+          "outflow",
+          "escape",
+          "radio",
+          "jet",
+          "multiphase",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 378
+      }
+    },
+    {
+      "analysis_keys": [
+        "agn_fraction_in_denominator",
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "interpretation_guard",
+        "massive_transition_quenched_rows",
+        "median_log_lha_denominator",
+        "median_log_lha_offset_vs_massive_sf",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p2",
+      "compile_log": {
+        "bytes": 1763,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/aastex/compile.log",
+        "warning_marker_count": 14
+      },
+      "figures": [
+        {
+          "bytes": 139945,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/figures/m3_p2_gas_depletion_efficiency_figure1.pdf",
+          "sha256": "a20bf97de10b49f6c662f5e6c7f403d935b8615abf1c8dc9daddc7174f861d4a"
+        }
+      ],
+      "full_proposal_requires": "CO or dust-based molecular gas masses, aperture-matched SFRs, morphology, and environment labels.",
+      "manifest_short_title": "Optical denominator for gas-fraction versus efficiency tests",
+      "manifest_title": "Distinguishing molecular-gas depletion from suppressed star-formation efficiency in quenched galaxies",
+      "method": "debate-map-to-wiki-rebuild",
+      "pdf": {
+        "bytes": 182955,
+        "exists": true,
+        "manifest_bytes": 182955,
+        "manifest_sha256": "c0fb9f91ef31a771d70e36973c88b7cfb368755a859e2aad3d78fdad54938b20",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_aas.pdf",
+        "sha256": "c0fb9f91ef31a771d70e36973c88b7cfb368755a859e2aad3d78fdad54938b20",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "How many massive quenched or transitioning SDSS galaxies with valid emission-line measurements are available as a denominator for CO gas-fraction/depletion-time follow-up?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "The massive transition/quenched denominator contains 6,729 galaxies in the SDSS emission-line sample.",
+        "Its optical BPT AGN fraction is 0.549; median log H-alpha luminosity proxy is 40.06.",
+        "The median H-alpha luminosity proxy is -0.66 dex offset from massive star-forming emission-line galaxies.",
+        "SDSS optical data cannot distinguish molecular-gas depletion from reduced star-formation efficiency; this paper identifies the CO follow-up denominator and optical baseline."
+      ],
+      "slug": "m3_p2_gas_depletion_efficiency",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Distinguishing molecular-gas depletion from suppressed star-formation efficiency in quenched galaxies''. The analysis uses a public SDSS DR17 emission-line galaxy sample with ste\u2026",
+        "abstract_words": 81,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4297,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "Optical denominator for gas-fraction versus efficiency tests",
+        "table_environments": 0,
+        "title": "Optical denominator for gas-fraction versus efficiency tests: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "environment",
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "transition",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 396
+      }
+    },
+    {
+      "analysis_keys": [
+        "agn_fraction_range",
+        "card_id",
+        "figure_pdf",
+        "full_proposal_requires",
+        "interpretation_guard",
+        "method",
+        "pilot_question",
+        "proposal_title",
+        "quenched_fraction_range",
+        "result_bullets",
+        "run_id",
+        "sample_rows",
+        "short_title",
+        "slug",
+        "source_sample",
+        "target_vector_cells"
+      ],
+      "analysis_results_exists": true,
+      "analysis_results_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/analysis_results.json",
+      "analysis_sample_rows": 60000,
+      "card_id": "p3",
+      "compile_log": {
+        "bytes": 1499,
+        "exists": true,
+        "fatal_error_markers": [],
+        "looks_successful": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/aastex/compile.log",
+        "warning_marker_count": 12
+      },
+      "figures": [
+        {
+          "bytes": 16385,
+          "exists": true,
+          "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/figures/m3_p3_simulation_validation_figure1.pdf",
+          "sha256": "eef8a9b385dfb97aa0cef8df24f363712f28140f8988a6a2b6cac169f1b8d61d"
+        }
+      ],
+      "full_proposal_requires": "simulation mocks passed through the SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models.",
+      "manifest_short_title": "SDSS target vector for feedback-model validation",
+      "manifest_title": "Forward-modelled validation of cosmological feedback prescriptions",
+      "method": "debate-map-to-wiki-rebuild",
+      "pdf": {
+        "bytes": 59768,
+        "exists": true,
+        "manifest_bytes": 59768,
+        "manifest_sha256": "9a9752cfd0eb4545e977c656dde56b001ed7b3bae30a78f2195255cf446bb266",
+        "matches_manifest_bytes": true,
+        "matches_manifest_sha256": true,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_aas.pdf",
+        "sha256": "9a9752cfd0eb4545e977c656dde56b001ed7b3bae30a78f2195255cf446bb266",
+        "starts_with_pdf_magic": true
+      },
+      "pilot_question": "What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation?",
+      "quality_flags": [
+        "minimal_bibliography_topic_specific_literature_gap",
+        "no_manuscript_result_table",
+        "thin_manuscript_requires_expansion"
+      ],
+      "recommended_next": [
+        "Add topic-specific review/status/source anchors beyond the generic SDSS/BPT citations.",
+        "Add a compact result/proxy-limit/reproducibility table in AASTeX.",
+        "Expand methods/results/discussion with exact sample definitions, proxy limits, and next-data requirements."
+      ],
+      "result_bullets": [
+        "The pilot writes 15 mass-redshift cells with n >= 50 as a compact validation vector.",
+        "Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.",
+        "The output is an observed target vector for simulation forward modelling, not a direct simulation comparison."
+      ],
+      "slug": "m3_p3_simulation_validation",
+      "tex": {
+        "abstract_preview": "We execute a bounded actual-data pilot for the Galaxy Evolution research topic ``Forward-modelled validation of cosmological feedback prescriptions''. The analysis uses a public SDSS DR17 emission-line galaxy sample with stellar-mass, specific-SFR, photometry\u2026",
+        "abstract_words": 78,
+        "bibitem_count": 4,
+        "bibkeys": [
+          "baldwin1981",
+          "kauffmann2003",
+          "kewley2001",
+          "york2000"
+        ],
+        "bytes": 4043,
+        "cite_key_count": 0,
+        "cite_keys": [],
+        "deluxetable_environments": 0,
+        "documentclass_aastex": true,
+        "exists": true,
+        "figure_environments": 1,
+        "guard_patterns_hit": [
+          "not\\s+as\\s+a\\s+full\\s+causal\\s+test",
+          "does\\s+not\\s+by\\s+itself\\s+establish",
+          "proxy\\s+or\\s+denominator",
+          "full\\s+proposal\\s+requires"
+        ],
+        "has_interpretation_guard": true,
+        "has_reproducibility_section": true,
+        "has_scope_or_guard_section": true,
+        "includegraphics_count": 1,
+        "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_aas.tex",
+        "section_count": 5,
+        "sections": [
+          "Scope",
+          "Data and Measurements",
+          "Pilot Result",
+          "Interpretation Guard",
+          "Reproducibility"
+        ],
+        "shorttitle": "SDSS target vector for feedback-model validation",
+        "table_environments": 0,
+        "title": "SDSS target vector for feedback-model validation: an SDSS DR17 pilot",
+        "topic_literature_terms_in_text": [
+          "maintenance",
+          "heating",
+          "escape",
+          "radio",
+          "jet",
+          "molecular",
+          "depletion",
+          "efficiency",
+          "simulation",
+          "feedback"
+        ],
+        "word_count_rough": 374
+      }
+    }
+  ],
+  "safety_ledger": {
+    "local_artifact_writes_only_under": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708",
+    "prohibited_actions_not_performed": [
+      "NebulaMind/product DB",
+      "/api/pages",
+      "page_versions",
+      "wiki publish",
+      "trust recompute",
+      "deploy/restart",
+      "git commit/push/merge/rebase",
+      "cron creation",
+      "billing/cloud/OAuth/API-key changes"
+    ]
+  },
+  "scope": "local read-only inventory of the 9 active Galaxy Evolution AAS pilot manuscripts and run artifacts",
+  "source_sample_profile": {
+    "bytes": 20342898,
+    "columns": [
+      "specObjID",
+      "z",
+      "ra",
+      "dec",
+      "bptclass",
+      "lgm_tot_p50",
+      "sfr_tot_p50",
+      "specsfr_tot_p50",
+      "modelMag_u",
+      "modelMag_g",
+      "modelMag_r",
+      "h_alpha_flux",
+      "h_alpha_flux_err",
+      "h_beta_flux",
+      "h_beta_flux_err",
+      "oiii_5007_flux",
+      "oiii_5007_flux_err",
+      "nii_6584_flux",
+      "nii_6584_flux_err",
+      "sn_ha",
+      "sn_hb",
+      "sn_oiii",
+      "sn_nii",
+      "log_nii_ha",
+      "log_oiii_hb",
+      "u_minus_r",
+      "g_minus_r",
+      "bpt_label"
+    ],
+    "exists": true,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+    "rows": 60000,
+    "sample_class_counts": {
+      "-1": 1171,
+      "1": 32459,
+      "2": 9808,
+      "3": 7247,
+      "4": 3452,
+      "5": 5863
+    },
+    "sha256": "6f982fa5778c3900239149b28729f701390fe393a164b95236229adc1e422883"
+  },
+  "summary": {
+    "analysis_results_json_present": 9,
+    "compile_logs_without_fatal_markers": 9,
+    "minimal_bibliography_le_4_bibitems": 8,
+    "papers_total": 9,
+    "pdf_exists_and_magic_ok": 9,
+    "pdf_sha_matches_manifest_where_recorded": 9,
+    "thin_manuscript_lt_1400_words": 9,
+    "with_any_result_table": 1,
+    "with_interpretation_guard": 9
+  }
+}

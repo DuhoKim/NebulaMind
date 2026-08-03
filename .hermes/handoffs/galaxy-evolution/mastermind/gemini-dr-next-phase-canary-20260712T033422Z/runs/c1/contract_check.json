@@ -1,0 +1,38 @@
+{
+  "schema": "NM_DR_C1_LOCAL_CONTRACT_CHECK_V2",
+  "representation": "Rendered answer-body innerText; Markdown heading marks are removed by Gemini rendering, while section labels and order are preserved.",
+  "body_bytes": 35679,
+  "body_sha256": "9933638616c9fc4dfb8306849f1ed91bf2d008f819c2623b831aec672da347d3",
+  "required_header_rendered": true,
+  "marker_count": 1,
+  "marker_final_nonblank": true,
+  "required_sections_in_order": [
+    "Calibration ledger",
+    "Out-of-sample validation ledger",
+    "Double-counting warnings",
+    "Feedback-relevant observables map",
+    "Gaps",
+    "Links ledger"
+  ],
+  "required_section_order_pass": true,
+  "links_ledger_rows": 33,
+  "links_ledger_rows_quarantined": 33,
+  "links_ledger_quarantine_pass": true,
+  "binding_contract_accept": false,
+  "failure_reasons": [
+    {
+      "contract": "C5 wording contract",
+      "body_line": 117,
+      "evidence": "Gemini own-voice prose ends with 'before dynamic and virial equilibrium is firmly established.'",
+      "reason": "C1 bans establish(es/ed/ing), case-insensitive."
+    },
+    {
+      "contract": "C4 citation labeling",
+      "body_line": 129,
+      "evidence": "A paragraph attributes a critical analysis of FLAMINGO data releases without a checkable citation on that line and without UNCITED_NOT_USABLE.",
+      "reason": "C1 requires a same-line citation or UNCITED_NOT_USABLE for every such statement."
+    }
+  ],
+  "scientific_source_verification": "NOT_PERFORMED_ADVISORY_ONLY",
+  "decision": "C1_FAILED_CONTRACT_NO_RETRY"
+}

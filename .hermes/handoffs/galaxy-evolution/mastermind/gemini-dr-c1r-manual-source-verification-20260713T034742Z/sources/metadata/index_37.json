@@ -1,0 +1,110 @@
+{
+  "index": 37,
+  "captured_url": "https://arxiv.org/abs/2509.07960",
+  "ledger_rows": [
+    45
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:16:22Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 37,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/2509.07960",
+      "final_url": "https://arxiv.org/abs/2509.07960",
+      "status": 200,
+      "bytes": 47984,
+      "sha256": "0cc567b96be1139dc6b26bee111484d48d492da4f355196e6f1afbd5e09d72ce",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx37_initial_0cc567b96be1.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:16:24Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 37,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2509.07960",
+      "final_url": "https://arxiv.org/pdf/2509.07960",
+      "status": 200,
+      "bytes": 2116560,
+      "sha256": "0132ef4a83d2155acbcc72bd056df68730eb4f8b3bfb055f7801b977d6545ac6",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx37_arxiv_pdf_0132ef4a83d2.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "requested_url": "https://doi.org/10.1093/mnras/stag740",
+      "status": 0,
+      "error": "host_stopped_after_3_failures",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "utc": "2026-07-13T04:16:25Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 37,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.07960%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.07960%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 3764,
+      "sha256": "4cc35604733feebb3789973d15dc7040520234fdcd7f412b25ae7fddab7f3c5c",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx37_ads_4cc35604733f.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The evolution of the galaxy stellar mass function and star formation rates in the COLIBRE simulations from redshift 17 to 0",
+      "doi": "10.1093/mnras/stag740",
+      "arxiv_id": "2509.07960",
+      "pdf_url": "https://arxiv.org/pdf/2509.07960",
+      "text_path": "sources/text/idx37_initial_26b62c68e83f.txt",
+      "text_sha256": "26b62c68e83f522c02316230bfa3cba945935a680371d05bcca64c5050a5ddaa",
+      "text_chars": 5960
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2509.07960",
+      "pdf_url": "",
+      "text_path": "sources/text/idx37_arxiv_pdf_abc4d28d4750.txt",
+      "text_sha256": "abc4d28d4750d2bf9302bc39bde899bf604eee501715cc5eb5c87f00cc3e12d8",
+      "text_chars": 196322,
+      "pdf_pages": 37
+    },
+    {
+      "label": "doi",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "",
+      "text_sha256": "",
+      "text_chars": 0
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx37_ads_d36f837c83ee.txt",
+      "text_sha256": "d36f837c83ee5de1fd44924fac3104a8f3d77a1ee2eda3d78ea567c9bb6010f7",
+      "text_chars": 4261
+    }
+  ]
+}

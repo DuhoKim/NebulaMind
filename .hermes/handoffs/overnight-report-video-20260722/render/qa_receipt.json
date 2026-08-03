@@ -1,0 +1,156 @@
+{
+  "marker": "NEBULAMIND_OVERNIGHT_REPORT_V1_QA_COMPLETE",
+  "status": "LOCAL_MASTER_COMPLETE_AWAITING_USER_REVIEW_AND_UPLOAD_APPROVAL",
+  "created_kst": "2026-07-22T11:44:44.532190+09:00",
+  "output": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/NEBULAMIND_OVERNIGHT_REPORT_V1_FEMALE_VOICE_EXACT_LIPSYNC.mp4",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "index": 0,
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_frames": "1764"
+      },
+      {
+        "index": 1,
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "r_frame_rate": "0/0",
+        "nb_frames": "3447"
+      }
+    ],
+    "format": {
+      "duration": "73.500000",
+      "size": "13175323"
+    }
+  },
+  "duration_seconds": 73.5,
+  "video_frames": 1764,
+  "decode_passes": [
+    {
+      "pass": 1,
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "pass": 2,
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "pass": 3,
+      "returncode": 0,
+      "stderr": ""
+    },
+    {
+      "pass": 4,
+      "returncode": 0,
+      "stderr": ""
+    }
+  ],
+  "pitch": {
+    "median_f0_hz": 172.0,
+    "voiced_frames": 1593,
+    "female_voice_gate": true
+  },
+  "captions": {
+    "cue_count": 21,
+    "expected_cue_count": 21,
+    "exact_narration_text": true,
+    "line_limit_42": true,
+    "max_two_lines": true,
+    "monotonic_nonoverlap": true,
+    "within_master_duration": true,
+    "pass": true
+  },
+  "temporal_review": {
+    "frames_sampled": 24,
+    "sample_times_seconds": [
+      1.0,
+      4.109,
+      7.217,
+      10.326,
+      13.435,
+      16.543,
+      19.652,
+      22.761,
+      25.87,
+      28.978,
+      32.087,
+      35.196,
+      38.304,
+      41.413,
+      44.522,
+      47.63,
+      50.739,
+      53.848,
+      56.957,
+      60.065,
+      63.174,
+      66.283,
+      69.391,
+      72.5
+    ],
+    "sheet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/qa/temporal_24_sheet.png",
+    "mean_luminance_range": [
+      11.03,
+      30.25
+    ],
+    "presenter_variance_range": [
+      2892.1,
+      3129.9
+    ],
+    "nonblank_gate": true
+  },
+  "boundary_review": {
+    "frames_sampled": 10,
+    "times_seconds": [
+      10.42,
+      10.58,
+      23.42,
+      23.58,
+      35.92,
+      36.08,
+      47.92,
+      48.08,
+      62.42,
+      62.58
+    ],
+    "sheet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/qa/boundary_10_sheet.png"
+  },
+  "audio_levels": {
+    "returncode": 0,
+    "mean_volume": "-18.5 dB",
+    "max_volume": "-3.8 dB"
+  },
+  "talking_head_duration_seconds": 73.5,
+  "maximum_timing_adjustment": 1.022454,
+  "automated_gates": {
+    "duration_73_5": true,
+    "resolution_1280x720": true,
+    "frame_rate_24": true,
+    "frame_count_1764": true,
+    "decode_pass_4": true,
+    "female_pitch": true,
+    "caption_contract": true,
+    "temporal_nonblank": true,
+    "exact_driver_duration": true,
+    "natural_timing": true,
+    "audio_decode": true
+  },
+  "automated_pass": true,
+  "manual_visual_review": "PASS_24_TEMPORAL_PLUS_10_BOUNDARY_FRAMES_IDENTITY_LAYOUT_MOUTH_VARIATION_AND_GOP_CONTINUITY",
+  "publication": {
+    "uploaded": false,
+    "website_changed": false,
+    "production_embed_manifest_changed": false,
+    "gate": "Explicit user approval required after local review."
+  }
+}

@@ -1,0 +1,75 @@
+{
+  "schema": "NM_DR_C1_FINAL_RECEIPT_V1",
+  "packet": "gemini-dr-next-phase-canary-20260712T033422Z",
+  "finished_utc": "2026-07-12T04:21:38Z",
+  "status": "C1_FAILED_CONTRACT_NO_RETRY",
+  "accepted_advisory_only": false,
+  "conversation_url": "https://gemini.google.com/app/2a740cecf5a00763",
+  "conversation_id": "2a740cecf5a00763",
+  "model_mode": "Pro",
+  "deep_research": true,
+  "actions": {
+    "prompt_submit_count": 1,
+    "human_start_count": 1,
+    "tori_start_count": 0,
+    "followup_count": 0,
+    "retry_count": 0
+  },
+  "state_timestamps": {
+    "running_first_recorded_utc": "2026-07-12T04:10:14Z",
+    "monitor_running_utc": "2026-07-12T04:11:07Z",
+    "complete_utc": "2026-07-12T04:16:39Z",
+    "postflight_quota_utc": "2026-07-12T04:19:15Z"
+  },
+  "capture": {
+    "body_bytes": 35679,
+    "body_sha256": "9933638616c9fc4dfb8306849f1ed91bf2d008f819c2623b831aec672da347d3",
+    "links_unique_count": 143,
+    "links_sha256": "61c4f2ac589485848f94ce90d91d01d1c909bde0a694d63500a06770daad06c8",
+    "chat_completion_sha256": "9c38d30fabc5d05ec70055bf7dc271b0d19a5b2c757c8768ae8df98fe2600028",
+    "marker": "GEMINI_WEB_JOINT_C1_OUTPUT_DONE_20260711T100139Z",
+    "marker_count": 1,
+    "marker_final_nonblank": true
+  },
+  "contract": {
+    "check_sha256": "66313c361440257906fa1524a05d7eee8c32e6ccb4a497fad90bcd7497e746a6",
+    "required_section_order_pass": true,
+    "links_ledger_rows": 33,
+    "links_ledger_quarantine_pass": true,
+    "failure_reasons": [
+      "C5: own-voice banned form 'established' at rendered body line 117",
+      "C4: critique claim at rendered body line 129 lacks same-line checkable citation or UNCITED_NOT_USABLE"
+    ]
+  },
+  "quota": {
+    "preflight_used_pct": 2.0,
+    "postflight_used_pct": 2.0,
+    "observed_delta_pct": 0.0,
+    "postflight_headroom_pct": 98.0,
+    "postflight_lane": "burn",
+    "postflight_source_signal": "scoped-text"
+  },
+  "custody_sha256": {
+    "prompt_packet": "adeaa369f9eb82b2090e8c9232f3752ef45ce997fef858f0873c230c1626d265",
+    "prompt_payload": "cbd5085e434a1a65a91d1c9ace6cbf36bdc49da7f79a8070f91c89cc9d95a79e",
+    "composer_verification": "f01bdf3bf6ae3355981c3c9f5a78dfd2f9fb50f615dd1a0f5f520546dcee371d",
+    "target": "f6e5d7d5066d10ee5c42e2950e980ef988535c33ee58b6f39cc72642c0176531",
+    "model_mode": "637a1ce8d2dcacbc5a42ac632654ae9da51ac4a1a50128402a59f96ceb0dc213",
+    "plan": "928431c64f43befa4d84073ac21e0ded35a4e2f4079b5bce33b5a9ac611afb49",
+    "human_start": "d1804255c2b74465142d0d188e370f4c98a8cf53cfc7bef6e1e300e355c91cc4",
+    "monitor": "55e3c9ecb99ee447e49829f61c9fbd7a7e840b5602d9f431666b9ad8cfed1e1d",
+    "quota_preflight": "70131842bb9ce97f21d28a7f5a5e3a63e6ada1b511d64a5999791991974ceaeb",
+    "quota_postflight": "709f0fcc06ce7bab53c47ffc3a5d31958b26c4103e42d7f6f85fa14b76aa0992",
+    "adapter": "85c543b7043af914c318999fc763b32ac2678460610c94bd4c8df99b31f269b2"
+  },
+  "safety": {
+    "verification_bypass": false,
+    "account_action": false,
+    "database_write": false,
+    "deploy": false,
+    "git_action": false,
+    "publication": false,
+    "second_start": false,
+    "further_gemini_action_allowed": false
+  }
+}

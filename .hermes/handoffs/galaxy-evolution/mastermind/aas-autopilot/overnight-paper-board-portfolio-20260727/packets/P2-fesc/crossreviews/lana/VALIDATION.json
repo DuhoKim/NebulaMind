@@ -1,0 +1,125 @@
+{
+  "lane": "lana",
+  "packet": "P2-fesc",
+  "marker": "P2_LANA_CROSSREVIEW_COMPLETE_20260727",
+  "disposition": "ISSUES",
+  "input_audit": {
+    "brief_read": true,
+    "manifest_files_checked": 27,
+    "sha256_byte_mismatches": 0,
+    "stop_files_found": false,
+    "pdf_evidence_path": "pinned tori extractions of hash-verified PDFs; no external fetch required"
+  },
+  "citation_gate_truth": {
+    "checked": 0,
+    "n_unsupported": 0,
+    "positive_passage_evidence_in_packet": 0,
+    "zero_claim_truth_preserved": true,
+    "note": "'lit-grounded on 6 papers, 5 passages' is a grounding claim, not entailment; '0 unsupported of 0 checked' is vacuous"
+  },
+  "claim_status_adjudication": {
+    "established_assumptions": [
+      "Madau & Dickinson 2014 analytic SFRD fit",
+      "log xi_ion = 25.5 +/- 0.15 (adopted; normalization simultaneously the dominant debated lever)",
+      "clumping C in [2,5]; kappa_UV = 1.15e-28; case-B maintenance criterion (Robertson+15)"
+    ],
+    "model_outputs": [
+      "f_required = 0.048 (+0.048/-0.025) at z=6; 41% MC shortfall fraction (fesc002)",
+      "232-point grid; crisis-onset z ~ 5.0-8.75; fesc=1 crossing z ~ 8.5 to never; fiducial closure to z ~ 6.5 (frontier)"
+    ],
+    "proxy_inferred": [
+      "f_inferred = 0.062 (+0.108/-0.039) from LzLCS O32/beta calibrations, transported redshift-independent to z>6"
+    ],
+    "debated_inputs": [
+      "photon-budget sufficiency vs crisis",
+      "xi_ion normalization",
+      "JWST high-z SFRD normalization",
+      "proxy transportability to z>6"
+    ],
+    "unknowns": [
+      "direct f_esc at z >~ 6 (IGM opaque; no direct LyC detection used)",
+      "true fesc(z) evolution"
+    ],
+    "do_not_use": [
+      "any claim that the study uses JWST, SDSS, or TNG observational/catalog data"
+    ],
+    "goru_ledger_verdict": "directionally sound; xi_ion established-vs-debated nuance flagged"
+  },
+  "scope_boundaries": {
+    "maintenance_vs_integrated_history": "intact; both artifacts state equilibrium maintenance criterion, no integrated-history claim exists",
+    "indirect_proxy_vs_direct_fesc": "intact; non-circularity swap tests calibration choice, not directness"
+  },
+  "provenance_contradiction": {
+    "status": "CONFIRMED_LIVE_CONTRADICTION",
+    "defect": "pipeline PDF abstract: 'Generated autonomously from public data (jwst)'",
+    "truth": "provenance field: NO survey catalog data used; body: literature values only",
+    "origin": "spec.data_sources=['jwst'] leaks into served abstract",
+    "handling": "preserve, do not normalize; repair is out of scope tonight",
+    "kun_coverage_gap": true
+  },
+  "identity_adjudication": {
+    "Chisholm+22": {
+      "verdict": "PATCH_REQUIRED_CONFIRMED",
+      "correct_bibcode": "2022MNRAS.517.5104C",
+      "goru_recorded": "2022MNRAS.515.4265C",
+      "evidence": "frontier PDF prints MNRAS 517, 5104; Tori found Goru's ADS path 404s"
+    },
+    "Flury+22": {
+      "verdict": "ROLE_PATCH_REQUIRED_CONFIRMED",
+      "cited_entry": "2022ApJ...930..126F (LzLCS II, diagnostics; ApJ 930, 126 as printed)",
+      "goru_main_row": "2022ApJS..260....1F (LzLCS I, survey) — real paper, wrong entry for the printed citation and diagnostic role"
+    },
+    "Simmonds+24": {
+      "verdict": "SPLIT_STATUS",
+      "frontier_identity": "RESOLVED: 2024MNRAS.527.6139S (printed MNRAS 527, 6139)",
+      "pipeline_identity": "QUARANTINED: bare 'Simmonds+24' cross-wired between 2024MNRAS.527.6139S and 2024MNRAS.535.2998S in the novelty gate",
+      "open_item": "whether log xi_ion=25.5+/-0.15 actually appears in 2024MNRAS.527.6139S is unverifiable from packet evidence"
+    }
+  },
+  "frontier_citation_vs_pipeline_crosswire": {
+    "frontier": "clean identity-complete references for all three calibration sources",
+    "pipeline": "prose-cites all three, omits all from reflist and lit_refs; Lewis20 in lit_refs but not reflist; goru counts re-verified (9/5/6/4/3)"
+  },
+  "lineage_adjudication": {
+    "goru_recommended": "CANONICAL_PLUS_SUPPORTING",
+    "kun_recommended": "UNRESOLVED",
+    "lana_verdict": "UNRESOLVED",
+    "continuity_evidence": "human-history direction, matching fiducial numbers (0.048 @ z=6; ~6% inferred), identical inputs",
+    "missing_for_promotion": "code/commit/run derivation chain or artifact-build receipt; history JSON never names fesc002",
+    "narrative": "likely supporting precursor; strong topical and numerical continuity; derivation chain mechanically unproven",
+    "promotion_gate": "derivation receipt or explicit integration-owner acceptance of human-history narrative"
+  },
+  "new_findings": [
+    {
+      "id": "novelty_gate_premise_contradiction",
+      "severity": "overclaim_vector",
+      "summary": "NOVEL verdict premised on 'using JWST data' which the run's own provenance forbids stating; novelty vs the true literature-anchored estimand never adjudicated"
+    },
+    {
+      "id": "shortfall_is_real_wording_hazard",
+      "severity": "rollup_wording",
+      "summary": "LINEAGE_MATRIX copies 'landscape mapping where the shortfall is real'; locational 'where' reads out of context as asserting a real shortfall, the opposite of the frontier conclusion"
+    },
+    {
+      "id": "frontier_review_state_understated",
+      "severity": "status_inflation",
+      "summary": "LINEAGE_MATRIX 'ACCEPT in 1 cycle' omits the initial MAJOR verdict and the advisory-only referee status"
+    },
+    {
+      "id": "five_passages_claim_only",
+      "severity": "evidence_class",
+      "summary": "PASSAGE_SUPPORT_LEDGER 'exact_support_passages,5' transcribes the run-log claim; zero passages are enumerated anywhere in the packet"
+    }
+  ],
+  "lane_verdicts": {
+    "goru_primary": "core findings correct; patches required (Chisholm identity, Flury role, relationship overclaim) plus wording hazards",
+    "kun_crossreview": "all corrections confirmed; one coverage gap (public-data-jwst contradiction unmentioned)",
+    "tori_check": "fully consistent; Simmonds split and preserve-contradiction adjudications adopted"
+  },
+  "mutation_scope": {
+    "worked_only_in_directory": true,
+    "immutable_inputs_modified": false,
+    "paper_public_project_db_wiki_service_cockpit_git_writes": 0,
+    "external_network_access": "none required"
+  }
+}

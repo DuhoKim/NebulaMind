@@ -1,0 +1,142 @@
+- 2026-07-09T16:31:02Z / 2026-07-10 01:31:02 KST — overnight PDF review + workflow scrutiny swarm started
+- 2026-07-09T16:31:02Z / 2026-07-10 01:31:02 KST — cycle 1: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/publishability-loops/PUBLISHABLE_9_PDFS_DEEP_RESEARCH_LOOP_20260709T162008Z/candidates/cycle_01_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_01_nine_papers
+- 2026-07-09T16:31:24Z / 2026-07-10 01:31:24 KST — cycle 1: compile-before 9/9 ok
+- 2026-07-09T16:38:28Z / 2026-07-10 01:38:28 KST — cycle 1: lane reports finished (6 lanes)
+- 2026-07-09T16:38:28Z / 2026-07-10 01:38:28 KST — cycle 1: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_01.md
+- 2026-07-09T16:43:23Z / 2026-07-10 01:43:23 KST — cycle 1: integrator finished exit=0
+- 2026-07-09T16:43:45Z / 2026-07-10 01:43:45 KST — cycle 1: compile-after 9/9 ok fatal=[]
+- 2026-07-09T16:43:45Z / 2026-07-10 01:43:45 KST — cycle 1: sleeping 480s before next cycle
+- 2026-07-09T16:51:44Z / 2026-07-10 01:51:44 KST — cycle 2: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_01_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_02_nine_papers
+- 2026-07-09T16:52:06Z / 2026-07-10 01:52:06 KST — cycle 2: compile-before 9/9 ok
+- 2026-07-09T17:01:21Z / 2026-07-10 02:01:21 KST — cycle 2: lane reports finished (7 lanes)
+- 2026-07-09T17:01:21Z / 2026-07-10 02:01:21 KST — cycle 2: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_02.md
+- 2026-07-09T17:05:24Z / 2026-07-10 02:05:24 KST — cycle 2: integrator finished exit=0
+- 2026-07-09T17:05:45Z / 2026-07-10 02:05:45 KST — cycle 2: compile-after 9/9 ok fatal=[]
+- 2026-07-09T17:05:45Z / 2026-07-10 02:05:45 KST — cycle 2: sleeping 480s before next cycle
+- 2026-07-09T17:13:45Z / 2026-07-10 02:13:45 KST — cycle 3: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_02_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_03_nine_papers
+- 2026-07-09T17:14:07Z / 2026-07-10 02:14:07 KST — cycle 3: compile-before 9/9 ok
+- 2026-07-09T17:21:08Z / 2026-07-10 02:21:08 KST — cycle 3: lane reports finished (6 lanes)
+- 2026-07-09T17:21:08Z / 2026-07-10 02:21:08 KST — cycle 3: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_03.md
+- 2026-07-09T17:26:17Z / 2026-07-10 02:26:17 KST — cycle 3: integrator finished exit=0
+- 2026-07-09T17:26:38Z / 2026-07-10 02:26:38 KST — cycle 3: compile-after 9/9 ok fatal=[]
+- 2026-07-09T17:26:38Z / 2026-07-10 02:26:38 KST — cycle 3: sleeping 480s before next cycle
+- 2026-07-09T17:34:38Z / 2026-07-10 02:34:38 KST — cycle 4: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_03_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_04_nine_papers
+- 2026-07-09T17:35:00Z / 2026-07-10 02:35:00 KST — cycle 4: compile-before 9/9 ok
+- 2026-07-09T17:48:05Z / 2026-07-10 02:48:05 KST — cycle 4: lane reports finished (7 lanes)
+- 2026-07-09T17:48:05Z / 2026-07-10 02:48:05 KST — cycle 4: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_04.md
+- 2026-07-09T17:57:52Z / 2026-07-10 02:57:52 KST — cycle 4: integrator finished exit=0
+- 2026-07-09T17:58:13Z / 2026-07-10 02:58:13 KST — cycle 4: compile-after 9/9 ok fatal=[]
+- 2026-07-09T17:58:13Z / 2026-07-10 02:58:13 KST — cycle 4: sleeping 480s before next cycle
+- 2026-07-09T18:06:13Z / 2026-07-10 03:06:13 KST — cycle 5: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_04_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_05_nine_papers
+- 2026-07-09T18:06:35Z / 2026-07-10 03:06:35 KST — cycle 5: compile-before 9/9 ok
+- 2026-07-09T18:10:56Z / 2026-07-10 03:10:56 KST — cycle 5: lane reports finished (6 lanes)
+- 2026-07-09T18:10:56Z / 2026-07-10 03:10:56 KST — cycle 5: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_05.md
+- 2026-07-09T18:25:27Z / 2026-07-10 03:25:27 KST — cycle 5: integrator finished exit=0
+- 2026-07-09T18:25:48Z / 2026-07-10 03:25:48 KST — cycle 5: compile-after 9/9 ok fatal=[]
+- 2026-07-09T18:25:48Z / 2026-07-10 03:25:48 KST — cycle 5: sleeping 480s before next cycle
+- 2026-07-09T18:33:48Z / 2026-07-10 03:33:48 KST — cycle 6: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_05_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_06_nine_papers
+- 2026-07-09T18:34:10Z / 2026-07-10 03:34:10 KST — cycle 6: compile-before 9/9 ok
+- 2026-07-09T18:40:38Z / 2026-07-10 03:40:38 KST — cycle 6: lane reports finished (7 lanes)
+- 2026-07-09T18:40:38Z / 2026-07-10 03:40:38 KST — cycle 6: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_06.md
+- 2026-07-09T18:47:32Z / 2026-07-10 03:47:32 KST — cycle 6: integrator finished exit=0
+- 2026-07-09T18:47:53Z / 2026-07-10 03:47:53 KST — cycle 6: compile-after 9/9 ok fatal=[]
+- 2026-07-09T18:47:53Z / 2026-07-10 03:47:53 KST — cycle 6: sleeping 480s before next cycle
+- 2026-07-09T18:55:53Z / 2026-07-10 03:55:53 KST — cycle 7: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_06_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_07_nine_papers
+- 2026-07-09T18:56:15Z / 2026-07-10 03:56:15 KST — cycle 7: compile-before 9/9 ok
+- 2026-07-09T19:02:10Z / 2026-07-10 04:02:10 KST — cycle 7: lane reports finished (6 lanes)
+- 2026-07-09T19:02:10Z / 2026-07-10 04:02:10 KST — cycle 7: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_07.md
+- 2026-07-09T19:07:34Z / 2026-07-10 04:07:34 KST — cycle 7: integrator finished exit=0
+- 2026-07-09T19:07:57Z / 2026-07-10 04:07:57 KST — cycle 7: compile-after 9/9 ok fatal=[]
+- 2026-07-09T19:07:57Z / 2026-07-10 04:07:57 KST — cycle 7: sleeping 480s before next cycle
+- 2026-07-09T19:15:57Z / 2026-07-10 04:15:57 KST — cycle 8: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_07_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_08_nine_papers
+- 2026-07-09T19:16:17Z / 2026-07-10 04:16:17 KST — cycle 8: compile-before 9/9 ok
+- 2026-07-09T19:23:12Z / 2026-07-10 04:23:12 KST — cycle 8: lane reports finished (7 lanes)
+- 2026-07-09T19:23:12Z / 2026-07-10 04:23:12 KST — cycle 8: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_08.md
+- 2026-07-09T19:30:03Z / 2026-07-10 04:30:03 KST — cycle 8: integrator finished exit=0
+- 2026-07-09T19:30:24Z / 2026-07-10 04:30:24 KST — cycle 8: compile-after 9/9 ok fatal=[]
+- 2026-07-09T19:30:24Z / 2026-07-10 04:30:24 KST — cycle 8: sleeping 480s before next cycle
+- 2026-07-09T19:38:24Z / 2026-07-10 04:38:24 KST — cycle 9: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_08_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_09_nine_papers
+- 2026-07-09T19:38:45Z / 2026-07-10 04:38:45 KST — cycle 9: compile-before 9/9 ok
+- 2026-07-09T19:44:50Z / 2026-07-10 04:44:50 KST — cycle 9: lane reports finished (6 lanes)
+- 2026-07-09T19:44:50Z / 2026-07-10 04:44:50 KST — cycle 9: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_09.md
+- 2026-07-09T19:47:32Z / 2026-07-10 04:47:32 KST — cycle 9: integrator finished exit=0
+- 2026-07-09T19:47:53Z / 2026-07-10 04:47:53 KST — cycle 9: compile-after 9/9 ok fatal=[]
+- 2026-07-09T19:47:53Z / 2026-07-10 04:47:53 KST — cycle 9: sleeping 480s before next cycle
+- 2026-07-09T19:55:53Z / 2026-07-10 04:55:53 KST — cycle 10: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_09_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_10_nine_papers
+- 2026-07-09T19:56:14Z / 2026-07-10 04:56:14 KST — cycle 10: compile-before 9/9 ok
+- 2026-07-09T20:08:00Z / 2026-07-10 05:08:00 KST — cycle 10: lane reports finished (7 lanes)
+- 2026-07-09T20:08:00Z / 2026-07-10 05:08:00 KST — cycle 10: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_10.md
+- 2026-07-09T20:17:14Z / 2026-07-10 05:17:14 KST — cycle 10: integrator finished exit=0
+- 2026-07-09T20:17:35Z / 2026-07-10 05:17:35 KST — cycle 10: compile-after 9/9 ok fatal=[]
+- 2026-07-09T20:17:35Z / 2026-07-10 05:17:35 KST — cycle 10: sleeping 480s before next cycle
+- 2026-07-09T20:25:35Z / 2026-07-10 05:25:35 KST — cycle 11: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_10_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_11_nine_papers
+- 2026-07-09T20:25:56Z / 2026-07-10 05:25:56 KST — cycle 11: compile-before 9/9 ok
+- 2026-07-09T20:34:30Z / 2026-07-10 05:34:30 KST — cycle 11: lane reports finished (6 lanes)
+- 2026-07-09T20:34:30Z / 2026-07-10 05:34:30 KST — cycle 11: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_11.md
+- 2026-07-09T20:39:38Z / 2026-07-10 05:39:38 KST — cycle 11: integrator finished exit=0
+- 2026-07-09T20:40:00Z / 2026-07-10 05:40:00 KST — cycle 11: compile-after 9/9 ok fatal=[]
+- 2026-07-09T20:40:00Z / 2026-07-10 05:40:00 KST — cycle 11: sleeping 480s before next cycle
+- 2026-07-09T20:48:00Z / 2026-07-10 05:48:00 KST — cycle 12: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_11_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_12_nine_papers
+- 2026-07-09T20:48:21Z / 2026-07-10 05:48:21 KST — cycle 12: compile-before 9/9 ok
+- 2026-07-09T20:56:03Z / 2026-07-10 05:56:03 KST — cycle 12: lane reports finished (7 lanes)
+- 2026-07-09T20:56:03Z / 2026-07-10 05:56:03 KST — cycle 12: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_12.md
+- 2026-07-09T21:02:48Z / 2026-07-10 06:02:48 KST — cycle 12: integrator finished exit=0
+- 2026-07-09T21:03:09Z / 2026-07-10 06:03:09 KST — cycle 12: compile-after 9/9 ok fatal=[]
+- 2026-07-09T21:03:09Z / 2026-07-10 06:03:09 KST — cycle 12: sleeping 480s before next cycle
+- 2026-07-09T21:11:09Z / 2026-07-10 06:11:09 KST — cycle 13: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_12_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_13_nine_papers
+- 2026-07-09T21:11:30Z / 2026-07-10 06:11:30 KST — cycle 13: compile-before 9/9 ok
+- 2026-07-09T21:19:46Z / 2026-07-10 06:19:46 KST — cycle 13: lane reports finished (6 lanes)
+- 2026-07-09T21:19:46Z / 2026-07-10 06:19:46 KST — cycle 13: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_13.md
+- 2026-07-09T21:23:50Z / 2026-07-10 06:23:50 KST — cycle 13: integrator finished exit=0
+- 2026-07-09T21:24:11Z / 2026-07-10 06:24:11 KST — cycle 13: compile-after 9/9 ok fatal=[]
+- 2026-07-09T21:24:11Z / 2026-07-10 06:24:11 KST — cycle 13: sleeping 480s before next cycle
+- 2026-07-09T21:32:11Z / 2026-07-10 06:32:11 KST — cycle 14: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_13_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_14_nine_papers
+- 2026-07-09T21:32:32Z / 2026-07-10 06:32:32 KST — cycle 14: compile-before 9/9 ok
+- 2026-07-09T21:39:48Z / 2026-07-10 06:39:48 KST — cycle 14: lane reports finished (7 lanes)
+- 2026-07-09T21:39:48Z / 2026-07-10 06:39:48 KST — cycle 14: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_14.md
+- 2026-07-09T21:48:32Z / 2026-07-10 06:48:32 KST — cycle 14: integrator finished exit=0
+- 2026-07-09T21:48:53Z / 2026-07-10 06:48:53 KST — cycle 14: compile-after 9/9 ok fatal=[]
+- 2026-07-09T21:48:53Z / 2026-07-10 06:48:53 KST — cycle 14: sleeping 480s before next cycle
+- 2026-07-09T21:56:53Z / 2026-07-10 06:56:53 KST — cycle 15: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_14_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_15_nine_papers
+- 2026-07-09T21:57:13Z / 2026-07-10 06:57:13 KST — cycle 15: compile-before 9/9 ok
+- 2026-07-09T22:02:59Z / 2026-07-10 07:02:59 KST — cycle 15: lane reports finished (6 lanes)
+- 2026-07-09T22:02:59Z / 2026-07-10 07:02:59 KST — cycle 15: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_15.md
+- 2026-07-09T22:08:45Z / 2026-07-10 07:08:45 KST — cycle 15: integrator finished exit=0
+- 2026-07-09T22:09:06Z / 2026-07-10 07:09:06 KST — cycle 15: compile-after 9/9 ok fatal=[]
+- 2026-07-09T22:09:06Z / 2026-07-10 07:09:06 KST — cycle 15: sleeping 480s before next cycle
+- 2026-07-09T22:17:06Z / 2026-07-10 07:17:06 KST — cycle 16: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_15_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_16_nine_papers
+- 2026-07-09T22:17:27Z / 2026-07-10 07:17:27 KST — cycle 16: compile-before 9/9 ok
+- 2026-07-09T22:25:36Z / 2026-07-10 07:25:36 KST — cycle 16: lane reports finished (7 lanes)
+- 2026-07-09T22:25:36Z / 2026-07-10 07:25:36 KST — cycle 16: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_16.md
+- 2026-07-09T22:28:55Z / 2026-07-10 07:28:55 KST — cycle 16: integrator finished exit=0
+- 2026-07-09T22:29:16Z / 2026-07-10 07:29:16 KST — cycle 16: compile-after 9/9 ok fatal=[]
+- 2026-07-09T22:29:16Z / 2026-07-10 07:29:16 KST — cycle 16: sleeping 480s before next cycle
+- 2026-07-09T22:37:16Z / 2026-07-10 07:37:16 KST — cycle 17: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_16_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_17_nine_papers
+- 2026-07-09T22:37:37Z / 2026-07-10 07:37:37 KST — cycle 17: compile-before 9/9 ok
+- 2026-07-09T22:43:24Z / 2026-07-10 07:43:24 KST — cycle 17: lane reports finished (6 lanes)
+- 2026-07-09T22:43:24Z / 2026-07-10 07:43:24 KST — cycle 17: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_17.md
+- 2026-07-09T22:50:00Z / 2026-07-10 07:50:00 KST — cycle 17: integrator finished exit=0
+- 2026-07-09T22:50:20Z / 2026-07-10 07:50:20 KST — cycle 17: compile-after 9/9 ok fatal=[]
+- 2026-07-09T22:50:20Z / 2026-07-10 07:50:20 KST — cycle 17: sleeping 480s before next cycle
+- 2026-07-09T22:58:20Z / 2026-07-10 07:58:20 KST — cycle 18: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_17_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_18_nine_papers
+- 2026-07-09T22:58:41Z / 2026-07-10 07:58:41 KST — cycle 18: compile-before 9/9 ok
+- 2026-07-09T23:05:17Z / 2026-07-10 08:05:17 KST — cycle 18: lane reports finished (7 lanes)
+- 2026-07-09T23:05:17Z / 2026-07-10 08:05:17 KST — cycle 18: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_18.md
+- 2026-07-09T23:20:32Z / 2026-07-10 08:20:32 KST — cycle 18: integrator finished exit=0
+- 2026-07-09T23:20:53Z / 2026-07-10 08:20:53 KST — cycle 18: compile-after 9/9 ok fatal=[]
+- 2026-07-09T23:20:53Z / 2026-07-10 08:20:53 KST — cycle 18: sleeping 480s before next cycle
+- 2026-07-09T23:28:53Z / 2026-07-10 08:28:53 KST — cycle 19: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_18_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_19_nine_papers
+- 2026-07-09T23:29:14Z / 2026-07-10 08:29:14 KST — cycle 19: compile-before 9/9 ok
+- 2026-07-09T23:34:48Z / 2026-07-10 08:34:48 KST — cycle 19: lane reports finished (6 lanes)
+- 2026-07-09T23:34:48Z / 2026-07-10 08:34:48 KST — cycle 19: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_19.md
+- 2026-07-09T23:44:15Z / 2026-07-10 08:44:15 KST — cycle 19: integrator finished exit=0
+- 2026-07-09T23:44:36Z / 2026-07-10 08:44:36 KST — cycle 19: compile-after 9/9 ok fatal=[]
+- 2026-07-09T23:44:36Z / 2026-07-10 08:44:36 KST — cycle 19: sleeping 480s before next cycle
+- 2026-07-09T23:52:36Z / 2026-07-10 08:52:36 KST — cycle 20: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_19_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/candidates/cycle_20_nine_papers
+- 2026-07-09T23:52:57Z / 2026-07-10 08:52:57 KST — cycle 20: compile-before 9/9 ok
+- 2026-07-10T00:01:28Z / 2026-07-10 09:01:28 KST — cycle 20: lane reports finished (7 lanes)
+- 2026-07-10T00:01:28Z / 2026-07-10 09:01:28 KST — cycle 20: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-critical-review/OVERNIGHT_PDF_REVIEW_WORKFLOW_SWARM_20260709T163102Z/feeds/PDF_WRITING_FEED_CYCLE_20.md
+- 2026-07-10T00:12:56Z / 2026-07-10 09:12:56 KST — cycle 20: integrator finished exit=0
+- 2026-07-10T00:13:17Z / 2026-07-10 09:13:17 KST — cycle 20: compile-after 9/9 ok fatal=[]
+- 2026-07-10T00:13:17Z / 2026-07-10 09:13:17 KST — cycle 20: sleeping 480s before next cycle
+- 2026-07-10T00:21:41Z / 2026-07-10 09:21:41 KST — overnight swarm completed

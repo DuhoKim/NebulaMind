@@ -1,0 +1,11 @@
+I've put together a research plan. If you need to update it in any way, let me know.
+ Galaxy Quenching: Depletion vs. SFE 
+Research Websites
+(1) Search academic databases (such as NASA ADS, arXiv, Google Scholar) for papers published in 2018 or later concerning gas reservoir depletion versus suppressed star-formation efficiency (SFE) in quenched, quenching, green-valley, and post-starburst galaxies.
+(2) Extract the required details for the evidence table from each paper: citation (DOI/arXiv/ADS), sample selection, gas tracer used (CO, dust, HI), conversion assumptions (e.g., alpha_CO), aperture (central kpc vs global), f_gas results with uncertainties, t_dep/SFE results with uncertainties, the study's overall conclusion, and any stated caveats.
+(3) Analyze each study to record how the specific star formation rate offset (Delta_sSFR) is decomposed into gas fraction (Delta_f_gas) and star formation efficiency (Delta_SFE), taking note of identified systematic uncertainties like timescale mismatch, aperture effects, or morphological k-corrections.
+(4) Identify any studies that explicitly differentiate central-kpc gas depletion from global galaxy-wide gas loss, extracting their conclusions, the measured radius, and marking where central results were extrapolated.
+(5) Search the collected literature for explicit population fractions of quenched systems that are categorized as gas-poor versus gas-rich-but-inefficient, noting the gas tracer, selection method, denominator, redshift range, and selection biases for each.
+(6) Document any published tests or explicit claims from these studies linking the presence or history of Active Galactic Nuclei (AGN) to either the reservoir depletion or the suppressed SFE scenarios.
+(7) Compile proposed discriminating measurements from the literature that aim to resolve the depletion vs. suppressed SFE question, ensuring to include the stated observational or theoretical feasibility limits.
+(8) Assemble all extracted information into the strictly required Markdown report format with the 6 mandatory sections, meta header, link ledger, and exact completion marker, adhering perfectly to all wording constraints, estimand labels, and uncertainty formatting.

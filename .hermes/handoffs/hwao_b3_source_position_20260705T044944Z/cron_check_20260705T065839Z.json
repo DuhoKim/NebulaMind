@@ -1,0 +1,66 @@
+{
+  "checked_at_utc": "2026-07-05T06:58:39Z",
+  "status": "PASS",
+  "mode": "LOCAL_ONLY_CRON_VERIFICATION",
+  "role_contract": {
+    "hwao_coordinates_plans": true,
+    "tori_relay_record_verify_only": true,
+    "tori_did_not_choose_or_announce_next_move": true,
+    "tori_did_not_dispatch_lanes": true,
+    "tori_did_not_update_public_cockpit": true
+  },
+  "scope": {
+    "queue_dir": "docs/galaxy_2929_source_position_queue_20260705T013911Z",
+    "handoff_dir": ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z",
+    "public_marker_expected": "GALAXY_2929_B3_APPLIED_16_OF_36_20260705T044944Z"
+  },
+  "queue_state": {
+    "total_rows": 36,
+    "adjudicated_docs_only_count": 16,
+    "adjudicated_docs_only_ids": [28060, 28091, 28095, 28111, 28141, 28155, 28087, 28108, 28133, 28074, 28123, 28127, 28139, 28143, 28151, 28158],
+    "remaining_pending_count": 20,
+    "remaining_pending_ids_observed": [28062, 28066, 28069, 28070, 28073, 28075, 28076, 28080, 28082, 28083, 28084, 28088, 28089, 28110, 28114, 28118, 28131, 28140, 28144, 28148],
+    "b3_decisions_preserved": {
+      "28123": {"decision": "relink", "target_claim_id": 2946, "source_position": "accepted_limited", "role": "support-limited model-dependence"},
+      "28127": {"decision": "leave_archival", "target_claim_id": null, "source_position": "rejected", "role": "redundant"},
+      "28139": {"decision": "leave_archival", "target_claim_id": null, "source_position": "rejected", "role": "redundant"},
+      "28143": {"decision": "leave_archival", "target_claim_id": null, "source_position": "rejected", "role": "scope mismatch"},
+      "28151": {"decision": "relink", "target_claim_id": 2942, "source_position": "accepted_limited", "role": "support-limited"},
+      "28158": {"decision": "relink", "target_claim_id": 2946, "source_position": "accepted_limited", "gap_card_relevant": "observational_maintenance_heating"}
+    }
+  },
+  "verification_checks": {
+    "post_edit_validation_b3_pass_true": true,
+    "post_edit_validation_row_counts_36_all_formats": true,
+    "post_edit_validation_lock_checks_no_sql_apply_dml": true,
+    "kun_checker_pass_true": true,
+    "kun_checker_queue_artifacts_no_sql_apply_rollback": true,
+    "queue_dir_sql_files_found": 0,
+    "queue_dir_apply_files_found": 0,
+    "queue_dir_rollback_files_found": 0,
+    "public_marker_found_in_current_frontend_files": true,
+    "public_marker_found_in_origin_main_live_files": true,
+    "public_marker_found_in_hermesops_cockpit_files": true,
+    "latest_execution_phrase_current_frontend": "NO ACTIVE EXECUTION PHRASE",
+    "latest_execution_phrase_origin_main_live": "NO ACTIVE EXECUTION PHRASE",
+    "latest_execution_phrase_hermesops_cockpit": "NO ACTIVE EXECUTION PHRASE"
+  },
+  "locks_preserved": {
+    "sql_locked_until_36_of_36_decisions_and_new_operator_packet": true,
+    "db_queries_connections": 0,
+    "db_writes": 0,
+    "sql_files_created": 0,
+    "apply_rollback_files_created": 0,
+    "trust_recompute": 0,
+    "prose_wiki_publish": 0,
+    "runtime_deploy_restart": false,
+    "git_write_push_merge": false,
+    "public_cockpit_mutations": 0,
+    "queue_file_mutations_by_this_cron": 0,
+    "local_checkpoint_files_written_by_this_cron": 2
+  },
+  "notes": [
+    "This cron job did not start B4, dispatch helper lanes, query a DB, create SQL/apply/rollback files, or mutate the public cockpit.",
+    "Existing public files were read only for marker/phrase checks."
+  ]
+}

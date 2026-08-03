@@ -1,0 +1,103 @@
+{
+  "lane": "kun",
+  "packet": "P1-massive-abundance",
+  "artifact_identity": {
+    "served_pdf": {
+      "path": "input/served-p1.pdf",
+      "bytes": 123312,
+      "sha256": "189a2764a0b8e310802fb31bd53db3a64be49ac6411fe5f5b38af62cefa23f5d",
+      "pages": 4,
+      "creation_date": "2026-07-23T20:13:18+09:00",
+      "public_url": "https://nebulamind.net/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf",
+      "public_last_modified": "Thu, 23 Jul 2026 11:14:03 GMT",
+      "public_etag": "W/\"1e1b0-19f8eaeb939\""
+    },
+    "served_review": {
+      "path": "input/served-review.md",
+      "bytes": 1869,
+      "sha256": "330fe138acf79cf3bd4d3c43c7fe6a3026b111708db70a0efd02fa4254d818e0",
+      "public_url": "https://nebulamind.net/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_review_loop.md"
+    },
+    "served_history": {
+      "path": "input/served-history.json",
+      "bytes": 1547,
+      "sha256": "d072698ef6efab8cb0ae039bd36aa97a2bddf525a848204fcf65e0cbb1d2b8b9",
+      "public_url": "https://nebulamind.net/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics_history.json"
+    }
+  },
+  "source_access_attestation": {
+    "immutable_inputs_read": [
+      "input/BRIEF.md",
+      "input/FrontierDrafts.tsx",
+      "input/INPUT_MANIFEST.json",
+      "input/PLAN.md",
+      "input/PUBLIC_ARTIFACT_IDENTITY.json",
+      "input/SWARM_BOARD.md",
+      "input/deep-research-high-z-report-audit.md",
+      "input/external-scientific-review-reconciliation.md",
+      "input/high-redshift-abundance-matching-audit.md",
+      "input/paperScores.ts",
+      "input/served-history.json",
+      "input/served-p1.pdf",
+      "input/served-review.md"
+    ],
+    "pdf_text_extracted": true,
+    "pdf_visual_page_checked": "page 3 rendered from pinned input/served-p1.pdf; Figure 1 arrow label inspected",
+    "public_primary_sources_checked": [
+      "Weibel et al. 2024 MNRAS 533, 1808, DOI 10.1093/mnras/stae1891",
+      "Labbé et al. 2023 Nature 616, 266, DOI 10.1038/s41586-023-05786-2",
+      "Boylan-Kolchin 2023 Nature Astronomy 7, 731, DOI 10.1038/s41550-023-01937-7",
+      "Nelson et al. 2019 Computational Astrophysics and Cosmology 6, 2",
+      "Illustris/TNG public data forum definitions for SubhaloMassInRadType and SubhaloMassType"
+    ],
+    "access_limits": [
+      "No login, CAPTCHA, payment, OAuth, account, secret, or unusual-traffic prompt was used.",
+      "Nature full text for Labbé et al. was paywalled in browser preview; only accessible metadata/abstract/data-availability and linked public facts were used.",
+      "No live TNG catalog query or manuscript/source rewrite was performed."
+    ]
+  },
+  "grades": {
+    "query_coverage": {
+      "grade": "PARTIAL",
+      "reason": "The served draft asks the right comparison question and covers aperture, mass-systematic budget, baryon-ceiling proxy, z~7-9 candidates, and z>6 quiescent residual. It does not demonstrate a complete primary-source cumulative-density audit for every row."
+    },
+    "statistic_identity": {
+      "grade": "PARTIAL",
+      "reason": "The draft correctly frames the headline as n(>M*) and separates baryon-conversion proxy from TNG calibration in prose, but it uses Weibel SMF/Schechter evidence and Labbé candidate/stellar-mass-density evidence as plotted cumulative-density anchors without explicit primary-source n(>10^10.5) rows."
+    },
+    "population_commensurability": {
+      "grade": "PARTIAL",
+      "reason": "The conclusion mostly narrows to z~5 total/rest-optical-selected population and keeps z>6 quiescent residual separate, but Table 1 systematics are drawn from mixed object, population, redshift, and SED classes; UV-red dominance is not propagated as a separate comparison population."
+    },
+    "simulation_commensurability": {
+      "grade": "PARTIAL",
+      "reason": "The manuscript explicitly reconciles TNG 2Rhalf and all-bound stellar masses, counts, and aperture correction, matching observed total-mass footing in concept. However, it uses TNG100-1 only, does not document central/satellite/selection occupancy, lacks direct mock-observed SED masses, and its named-TNG convention statement is partly local-calculation rather than primary-source-published."
+    },
+    "primary_source_support": {
+      "grade": "FAIL",
+      "reason": "The audit requires explicit n(>M*) support. The cited observation source support visible here is SMF/Schechter/differential or candidate-density support, not a primary-source table of cumulative n(>10^10.5) with all required uncertainty and selection fields."
+    },
+    "source_version": {
+      "grade": "PARTIAL",
+      "reason": "The public artifact identity and published Weibel/Labbé/Boylan-Kolchin identities are pinned. Several 2025-2026 systematic-budget references could not be version-verified within this lane beyond the served bibliography and must remain unresolved rather than accepted."
+    },
+    "claim_strength": {
+      "grade": "PARTIAL",
+      "reason": "A narrow claim that the z~5 offset is not a LambdaCDM impossibility and is plausibly removable by ~0.2 dex mass shifts is defensible as a descriptive audit. The stronger 'robust and IMF-independent consistency with TNG' wording is not revision-ready without explicit cumulative-density primary support, population-specific systematics, and volume/cosmic-variance propagation."
+    }
+  },
+  "threshold_reconciliation": {
+    "historical_0_28_dex": {
+      "artifact_or_version": "Cycle 1/review-loop and the rendered Figure 1 arrow label in the served PDF",
+      "basis": "Raw TNG 2 x stellar-half-mass-radius aperture: n=1.11e-5 Mpc^-3 from 15 subhalos; observed/TNG excess ~2.7x, log excess ~0.43 dex; using slope |s|~1.58 gives delta log M* ~0.27-0.28 dex."
+    },
+    "later_0_20_dex": {
+      "artifact_or_version": "History revision and served PDF abstract/results/caption/conclusion after total-mass basis correction",
+      "basis": "All-bound/total TNG stellar mass footing: n=1.47e-5 Mpc^-3 from 20 subhalos; observed/TNG excess 2.04x, log excess 0.31 dex; 0.31/1.58 = 0.20 dex."
+    },
+    "landing_status": "PARTLY_LANDED",
+    "residual": "The prose and Figure 1 caption now state 0.20 dex, but the plotted arrow annotation still says 0.28 dex. The failed old figure label is preserved as a representation defect."
+  },
+  "overall_disposition": "PARTIAL__CLAIMS_REQUIRE_NARROWING",
+  "marker": "P1_KUN_PRIMARY_COMPLETE_20260727"
+}

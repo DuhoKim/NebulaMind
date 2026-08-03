@@ -1,0 +1,38 @@
+{
+ "epoch_counter": 2,
+ "frozen": false,
+ "leases": {
+  "L00001": {
+   "epoch": 1,
+   "granted_at": 1784010492.443341,
+   "heartbeat_interval": 60.0,
+   "holder": "pro-probe",
+   "kind": "target",
+   "last_heartbeat": 1784010492.443342,
+   "lease_id": "L00001",
+   "mode": "write",
+   "scope": {
+    "host_id": "macpro",
+    "user_data_dir": "/pro/probe/p1"
+   },
+   "state": "released",
+   "ttl": 300.0
+  },
+  "L00002": {
+   "epoch": 2,
+   "granted_at": 1784010492.448669,
+   "heartbeat_interval": 0.3,
+   "holder": "pro-probe-live",
+   "kind": "target",
+   "last_heartbeat": 1784010492.448669,
+   "lease_id": "L00002",
+   "mode": "write",
+   "scope": {
+    "host_id": "macpro",
+    "user_data_dir": "/pro/probe/p2"
+   },
+   "state": "live",
+   "ttl": 30.0
+  }
+ }
+}

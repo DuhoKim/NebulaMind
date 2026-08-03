@@ -1,0 +1,771 @@
+{
+  "advisory_only": true,
+  "broad_non_agn": true,
+  "captured_utc": "2026-07-15T11:29:03.275745Z",
+  "conversation_cleanup_authorized": false,
+  "conversation_deleted": false,
+  "distinct_from_areas1_2": true,
+  "identity": {
+    "captured_title": "You are the Deep Research source-discovery reviewer for NebulaMind's galaxy-evolution wiki expansion, Area 3. Topic: broad, non-AGN gas depletion and star-formation efficiency in galaxy evolution. This area is about cold-gas reservoirs, gas consumption, star-formation laws, and gas-related quenching processes. It is distinct from Area 1's mass-metallicity relation and Area 2's chemical-enrichment history. Purpose: produce an advisory, trust-ready evidence map that a separate Hwao lane may later pass through ADS verification and a jury before live-wiki integration. Do not mutate any wiki, database, trust score, claim catalog, or prose. Coverage requirements 1. Cold-gas content: HI atomic gas, H2 molecular gas, total cold gas, and gas fractions versus stellar mass, specific SFR/main-sequence offset, redshift, and environment. 2. Measurement boundaries: 21-cm HI, CO rotational lines, dust-continuum gas estimates, the CO-to-H2 conversion factor alpha_CO/X_CO, excitation corrections, helium conventions, aperture/stacking, non-detections, and sample selection. 3. Molecular depletion time t_dep,mol = M_H2/SFR and SFE_mol = SFR/M_H2: representative local and high-redshift measurements, dependence on main-sequence offset, stellar mass, redshift, morphology, metallicity, and environment. 4. Do not merge molecular depletion time, HI depletion time, and total-gas depletion time. Keep global and spatially resolved measurements distinct. 5. Star-formation laws: Kennicutt-Schmidt relations for total gas and molecular gas; integrated versus resolved slopes; disk versus starburst sequences; dense-gas formulations; scale dependence and cloud-to-cloud scatter. 6. Quenching language: distinguish reduced gas supply/starvation, ordinary consumption or exhaustion, reduced SFE/morphological stabilization, rapid removal/stripping, feedback-driven expulsion, heating, and maintenance. The presence of little gas does not identify which process removed or prevented it. 7. Gas-regulator/equilibrium models only where they connect inflow, gas mass, depletion time, outflow loading, recycling, and SFR. Label models as models. 8. Cosmic evolution: molecular-gas fractions and cosmic H2 density from PHIBSS, ASPECS, COLDz, xCOLD GASS and other primary survey results. Distinguish blind versus targeted samples, CO versus dust estimates, and cosmic-variance/completeness corrections. 9. Current status through 2025 where useful, but keep foundational Kennicutt, Bigiel, Leroy, Saintonge, Tacconi, Genzel, Walter, Decarli and related sources where strongest. Do not cite 2026 or future-dated search results. Hard scientific boundaries - Broad galaxy evolution, not AGN-framed. Exclude AGN-selected samples and AGN feedback claims from usable findings unless a mixed sample explicitly removes AGN and the claim is not about AGN. - Keep HI, H2, total gas, dense gas, and ionized gas distinct. - Keep gas fraction, depletion time, SFE, main-sequence offset, and quenching status distinct. - Never call t_dep a literal prediction that a galaxy will exhaust all gas after that time; inflow, outflow, recycling, phase conversion, and time-variable SFR break that interpretation. - A correlation between low gas fraction and quiescence does not prove gas exhaustion caused quenching. - Every simulation or analytic-model statement must be labeled as theory/model and paired with an observational boundary when used. - Preserve diagnostic, tracer, conversion-factor, redshift, mass, environment, and resolution limits. Citation identity rule Every usable source must be a real astronomy paper. Treat author + year + title + journal + DOI + arXiv + ADS bibcode as one composite identity. If you supply multiple identifiers, every identifier must resolve to the same paper. Do not borrow a DOI or arXiv ID from a neighboring citation. If exact identity cannot be confirmed, place the item only in DO_NOT_USE_UNVERIFIED as: UNCITED_NOT_USABLE | proposed citation | unresolved identifier or claim | reason Prefer primary survey/measurement papers for numerical claims and reviews only for orientation. Aim for 20\u201335 unique verified sources, balanced across local HI/H2, resolved star-formation laws, high-redshift gas scaling, cosmic H2 density, quenching process, and measurement caveats. Return exactly these six sections. ## 1. Established findings At least 10 entries. Use IDs [GAS-E01], [GAS-E02], ... For each: - role: established - finding - scope/boundary - evidence - confidence note - sources: verified source keys ## 2. Open debates and tensions At least 7 entries. Use IDs [GAS-D01], [GAS-D02], ... For each: - role: debate - debate_topic - competing positions - why unresolved - source/sample/calibration boundaries - sources representing the competing evidence Include real tensions such as: - nearly constant versus evolving depletion time after main-sequence normalization; - one versus two star-formation sequences and continuous versus bimodal starburst behavior; - linear versus super-linear molecular/total-gas star-formation-law slopes; - supply starvation versus SFE suppression versus gas removal in quenching; - environment effects on HI, H2, and SFE; - CO conversion/excitation versus dust-based gas-mass systematics; - the magnitude and peak redshift of cosmic H2 density. ## 3. Key measurements and numbers At least 7 entries. Use IDs [GAS-N01], [GAS-N02], ... For each: - role: measurement - metric and value/range - sample, redshift, tracer, instrument/survey, and method - conversion/calibration caveat - primary verified source Do not blend incompatible definitions. ## 4. What remains unknown At least 5 entries. Use IDs [GAS-U01], [GAS-U02], ... For each: - role: future - gap - why it matters - observation/model needed - sources defining the gap ## 5. DO_NOT_USE_UNVERIFIED List every unresolved citation, identifier tuple, future-dated result, AGN-centric item, non-primary fragment, and overbroad claim. Include at minimum: - any source without a reconcilable DOI/arXiv/ADS identity; - any number whose tracer, gas definition, IMF, alpha_CO, excitation, or sample is unclear; - any claim that equates depletion time with literal guaranteed exhaustion; - any claim that low gas alone proves a quenching mechanism. If an item has no verified citation, label it UNCITED_NOT_USABLE and do not reuse it elsewhere. ## 6. Source identity ledger One physical row per unique usable source, never concatenated. Exact row format: Authors (year, journal) | DOI:<doi if available>; arXiv:<id if available>; ADS:<bibcode> | role=orientation|established|measurement|debate|caveat|future|theory | one-line claim boundary Before returning, self-check: - at least 10 GAS-E, 7 GAS-D, 7 GAS-N, 5 GAS-U; - at least 20 unique physical source rows; - each usable claim cites only a row in the source ledger; - every supplied identifier in each row belongs to the same paper; - HI/H2/total gas and global/resolved quantities remain distinct; - no AGN-centered finding is usable; - DO_NOT_USE_UNVERIFIED is present; - final line exactly: GAS_DR_PACKET_COMPLETE_REFERENCE_ONLY This is source discovery and role classification only. Do not produce live-wiki copy and do not authorize any mutation.",
+    "conversation_id": "2c3158b4b3b80663",
+    "conversation_path": "/app/2c3158b4b3b80663",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "6a67d946b187a8697117d97c4230802ab77654b78d89dae091cdaba1ba5486ee",
+    "prompt_sha256": "32f52bfdc7a50b0f3d97616d0ba45f7d39c241129f31b77603218268bef6e662",
+    "submit_account_lease_id": "L00594",
+    "submit_utc": "2026-07-15T11:17:40.274280Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING_TORI_LOCAL_RECONCILIATION",
+  "output_quality": {
+    "ads_count": 25,
+    "arxiv_count": 25,
+    "coverage": {
+      "conversion_caveats": true,
+      "cosmic_gas": true,
+      "depletion_sfe": true,
+      "hi_h2_distinct": true,
+      "quenching_modes": true,
+      "star_formation_law": true
+    },
+    "debate_ids": 7,
+    "do_not_use_section_present": true,
+    "doi_count": 25,
+    "established_ids": 11,
+    "measurement_ids": 7,
+    "pass": true,
+    "required_format_source_line_count": 25,
+    "semantic_headings_present": true,
+    "terminal_marker_present": true,
+    "uncited_not_usable_protocol_present": true,
+    "unknown_ids": 5
+  },
+  "packet_sha256": "17addc6dd3d13850ceef6b844d1264f5cc3167bbccc86ffd11fae963a5501fed",
+  "result_chars": 44275,
+  "result_text_sha256": "f696b9d77178a3196640f1597d5804f39deb8339af8080a0cefec80b429ad7c6",
+  "run_id": "WIKI_AREA3_GAS_DR_20260715",
+  "source_anchor_count": 179,
+  "source_anchors": [
+    {
+      "href": "https://orcid.org/0000-0003-4357-3450",
+      "label": "orcid.org Amelie Saintonge - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1710.02157",
+      "label": "arxiv.org [1710.02157] xCOLD GASS: the complete IRAM-30m legacy survey of molecular gas for galaxy evolution studies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2304.04465",
+      "label": "arxiv.org arXiv:2304.04465v1 [astro-ph.GA] 10 Apr 2023 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2211.09969",
+      "label": "arxiv.org arXiv:2211.09969v1 [astro-ph.GA] 18 Nov 2022 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/518/1/353/6823712",
+      "label": "academic.oup.com Cold gas mass measurements for the era of large optical spectroscopic surveys | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1812.08180",
+      "label": "arxiv.org [1812.08180] PHIBSS2: survey design and z=0.5-0.8 results. Molecular gas reservoirs during the winding-down of star formation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1702.01140",
+      "label": "arxiv.org [1702.01140] PHIBSS: Unified Scaling Relations of Gas Depletion Time and Molecular Gas Fractions - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/544/3/2777/8261520",
+      "label": "academic.oup.com Evolution of gas velocity dispersion in discs from z \u223c 8 to z \u223c 0.5 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "http://ned.ipac.caltech.edu/level5/March18/Combes/paper.pdf",
+      "label": "ned.ipac.caltech.edu arXiv:1806.06712v1 [astro-ph.GA] 18 Jun 2018 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/2002.08640",
+      "label": "arxiv.org [2002.08640] The ALMA Spectroscopic Survey in the HUDF: The Cosmic Dust and Gas Mass Densities in Galaxies up to $z\\sim3$ - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2008.08087",
+      "label": "arxiv.org arXiv:2008.08087v1 [astro-ph.GA] 18 Aug 2020 Opens in a new window"
+    },
+    {
+      "href": "https://ricerca.sns.it/bitstream/11384/115529/1/2202.00697.pdf",
+      "label": "ricerca.sns.it AGN impact on the molecular gas in galactic centers as probed by CO lines Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/2009.10744",
+      "label": "arxiv.org [2009.10744] The ALMA Spectroscopic Survey in the HUDF: Multi-band constraints on line luminosity functions and the cosmic density of molecular gas - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/549/3/stag924/8704346",
+      "label": "academic.oup.com Direct detection of cool molecular gas in a star-forming galaxy at z=7.31 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1808.04371",
+      "label": "arxiv.org [1808.04371] COLDz: Shape of the CO Luminosity Function at High Redshift and the Cold Gas History of the Universe - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1910.12883",
+      "label": "arxiv.org [1910.12883] Automated Mining of the ALMA Archive in the COSMOS Field (A3COSMOS): II. Cold Molecular Gas Evolution out to Redshift 6 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2502.06538v1",
+      "label": "arxiv.org ADF22-WEB: Detection of a molecular gas reservoir in a massive quiescent galaxy located in a z\u22483 proto-cluster core - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://research.iac.es/preprints/files/PP24083.pdf",
+      "label": "research.iac.es An ALMA CO(1-0) survey of the 2Jy sample: large and massive molecular disks in radio AGN host galaxies Opens in a new window"
+    },
+    {
+      "href": "https://doi.org/10.1051/0004-6361/202557654",
+      "label": "doi.org REBELS-IFU: Linking damped Lyman-\u03b1 absorption to [C II] emission and dust content in the Epoch of Reonisation | Astronomy & Astrophysics (A&A) - DOI Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2506.13852",
+      "label": "arxiv.org Overmassive black holes in the early Universe can be explained by gas-rich, dark matter-dominated galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.pure.ed.ac.uk/ws/files/331405338/2012.01433v1.pdf",
+      "label": "pure.ed.ac.uk ALMA measures rapidly depleted molecular gas reservoirs in massive quiescent galaxies at z~1.5 - Account Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2407.01889v1",
+      "label": "arxiv.org ALMA reveals spatially-resolved properties of molecular gas in the host galaxy of FRB 20191001A at z = 0.2340 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2102.07881",
+      "label": "arxiv.org arXiv:2102.07881v1 [astro-ph.GA] 15 Feb 2021 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1802.02373",
+      "label": "arxiv.org [1802.02373] xGASS: Total cold gas scaling relations and molecular-to-atomic gas ratios of galaxies in the local Universe - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/466/4/4795/2903848",
+      "label": "academic.oup.com xGASS: gas-rich central galaxies in small groups and their connections to cosmic web gas feeding - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1810.12158",
+      "label": "arxiv.org [1810.12158] Atomic hydrogen in IllustrisTNG galaxies: the impact of environment parallelled with local 21-cm surveys - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2511.18227",
+      "label": "arxiv.org Tracing Quenching in Nearby Galaxies Through Inner Surface Mass Density and Cold Gas Content - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/478/3/3447/4995926",
+      "label": "academic.oup.com Enhanced atomic gas fractions in recently merged galaxies: quenching is not a result of post-merger gas exhaustion | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/530/1/597/7637225",
+      "label": "academic.oup.com Cloud-scale molecular gas properties of the ANTENNAE merger: a comparative study with PHANGS-ALMA galaxies and NGC 3256 | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2109.04491v3",
+      "label": "arxiv.org Stellar structures, molecular gas, and star formation across the PHANGS sample of nearby galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/519/1/1068/6862107",
+      "label": "academic.oup.com Multiphase magnetic fields in the galaxy NGC 3627 | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.kiss.caltech.edu/papers/starform/papers/2101.02855.pdf",
+      "label": "kiss.caltech.edu arXiv:2101.02855v1 [astro-ph.GA] 8 Jan 2021 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2507.13498v2",
+      "label": "arxiv.org ALMA FACTS III. High-Resolution CO(2-1)/CO(1-0) Maps of Twelve Nearby Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/0810.2556",
+      "label": "arxiv.org [0810.2556] The Star Formation Efficiency in Nearby Galaxies: Measuring Where Gas Forms Stars Effectively - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6544524/",
+      "label": "pmc.ncbi.nlm.nih.gov Fast and inefficient star formation due to short-lived molecular clouds and rapid feedback - PMC Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/paper.pdf",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/33195/1/pp_JKim_thesis2_print_pdfa.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Quantifying the environmental dependence of the molecular cloud lifecycle in 54 main sequence galaxies Opens in a new window"
+    },
+    {
+      "href": "https://open-research-europe.ec.europa.eu/articles/4-148",
+      "label": "open-research-europe.ec.europa.eu Atacama Large Aperture Submillimeter Telescope (AtLAST) science: Gas and dust in nearby galaxies. - Open Research Europe Opens in a new window"
+    },
+    {
+      "href": "https://www.nu.to.infn.it/Other_Astrophysics/",
+      "label": "nu.to.infn.it Astronomy and Astrophysics - Neutrino Unbound - INFN Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/447141/1/Philip_Grylls_UoS_Thesis_for_Award.pdf",
+      "label": "eprints.soton.ac.uk Growing self consistent galaxies in empirically modelled environments using steel - ePrints Soton - University of Southampton Opens in a new window"
+    },
+    {
+      "href": "https://arts.units.it/retrieve/03474fc1-3079-44d5-ac95-69957b6c0c57/Tesi_definitiva_AliceDamiano.pdf",
+      "label": "arts.units.it UNIVERSIT\u00c0 DEGLI STUDI DI TRIESTE - ArTS Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/385750533_The_Multi-Scale_Multi-Phase_Circumgalactic_Medium_Observed_and_Simulated",
+      "label": "researchgate.net The Multi-Scale Multi-Phase Circumgalactic Medium: Observed and Simulated Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0003-4678-3939",
+      "label": "orcid.org Axel Weiss - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2504.02990v1",
+      "label": "arxiv.org Disk-Star Alignment I: Pre-Main-Sequence Stellar Parameters and the Statistical Alignment Between Disks and Stellar Rotation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.eso.org/public/archives/releases/sciencepapers/eso2606/eso2606a.pdf",
+      "label": "eso.org Magnetic field strengths of hot giant exoplanets consistent with Solar System values - ESO.org Opens in a new window"
+    },
+    {
+      "href": "https://www.asj.or.jp/jp/activities/geppou/item/117_4all.pdf",
+      "label": "asj.or.jp \u3088\u3046\u3084\u304f\u5207\u308a\u62d3\u304b\u308c\u305f X\u7dda\u504f\u5149\u5929\u6587\u5b66 - \u65e5\u672c\u5929\u6587\u5b66\u4f1a Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2411.07988v1",
+      "label": "arxiv.org The Multi-Scale Multi-Phase Circumgalactic Medium: Observed and Simulated Lecture notes for the 52nd (March 2023) Saas-Fee Advanced School, Switzerland. - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://purehost.bath.ac.uk/ws/files/148440037/Saintonge2016_arXiv.pdf",
+      "label": "purehost.bath.ac.uk Saintonge, A, Catinella, B, Cortese, L, Genzel, R, Giovanelli, R, Haynes, MP - Alternative formats If you require this document in an alternative format, please contact: openaccess@bath.ac.uk - University of Bath Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/415/1/32/988888",
+      "label": "academic.oup.com COLD GASS, an IRAM legacy survey of molecular gas in massive galaxies \u2013 I. Relations between H 2 , H i, stellar content and structural properties - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/415/1/32/17328290/mnras0415-0032.pdf",
+      "label": "academic.oup.com COLD GASS, an IRAM legacy survey of molecular gas in massive galaxies \u2013 I. Relations between H2, HI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/415/1/61/988902",
+      "label": "academic.oup.com COLD GASS, an IRAM legacy survey of molecular gas in massive galaxies \u2013 II. The non-universality of the molecular gas depletion time-scale - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1103.1642",
+      "label": "arxiv.org [1103.1642] COLD GASS, an IRAM legacy survey of molecular gas in massive galaxies: I. Relations between H2, HI, stellar content and structural properties - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.scielo.org.mx/scielo.php?pid=S0185-11012018000200443&script=sci_arttext_plus&tlng=en",
+      "label": "scielo.org.mx The HI and H2-to-stellar mass correlations of late-and early-type galaxies and their consistency with the observational mass functions - SciELO M\u00e9xico Opens in a new window"
+    },
+    {
+      "href": "https://www.pure.ed.ac.uk/ws/files/82473486/57675098Dave_1802.02373.pdf",
+      "label": "pure.ed.ac.uk xGASS: total cold gas scaling relations and molecular-to-atomic gas ratios of galaxies in the local Universe - Account Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/397934523_Tracing_Quenching_in_Nearby_Galaxies_Through_Inner_Surface_Mass_Density_and_Cold_Gas_Content",
+      "label": "researchgate.net Tracing Quenching in Nearby Galaxies Through Inner Surface Mass Density and Cold Gas Content - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1304.3492",
+      "label": "arxiv.org Estimating gas masses and dust-to-gas ratios from optical spectroscopy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2406.04242",
+      "label": "arxiv.org arXiv:2406.04242v1 [astro-ph.GA] 6 Jun 2024 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2509.16459v1",
+      "label": "arxiv.org The Hidden Life of Stars: Embedded Beginnings to AGB Endings in the PHANGS-JWST Sample. I. Catalog of Mid-IR Sources - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://sophiastuber.de/publications/",
+      "label": "sophiastuber.de Publications and talks \u2013 Dr. Sophia Stuber Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2602.02789",
+      "label": "arxiv.org Molecular Gas Morphological Analogues for the Milky Way - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/537/2/915/7973007",
+      "label": "academic.oup.com Interacting galaxies in the IllustrisTNG simulations \u2013 VIII. Pericentric star formation rate enhancements are driven both by increased fuelling and efficiency - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2511.16720v1",
+      "label": "arxiv.org The CO\u2013to\u2013H 2 conversion factor in the Milky Way's central parsec - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/467/1/699/10493717/stx118.pdf",
+      "label": "academic.oup.com Effects of dust evolution on the abundances of CO and H2 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2511.16720",
+      "label": "arxiv.org The CO-to-H$_2$ conversion factor in the Milky Way's central parsec - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.ioa.s.u-tokyo.ac.jp/~sofue/news/2023-mn-FUGIN_X12CO13CO_paper-II.pdf",
+      "label": "ioa.s.u-tokyo.ac.jp The CO-to-H2 Conversion Factor of the Galactic Giant Molecular Clouds using CO isotopologues: the high-resolution XCO maps Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/532/2/1948/7693730",
+      "label": "academic.oup.com Predictions for CO emission and the CO-to-H 2 conversion factor in galaxy simulations with non-equilibrium chemistry - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://elthateng.github.io/files/NGC_3351_Paper_accepted.pdf",
+      "label": "elthateng.github.io Molecular Gas Properties and CO-to-H2 Conversion Factors in the Central Kiloparsec of NGC 3351 Opens in a new window"
+    },
+    {
+      "href": "https://lss.fnal.gov/archive/2025/pub/fermilab-pub-25-0906-ppd.pdf",
+      "label": "lss.fnal.gov A Comprehensive Characterization of Galaxy-cool CGM Connections at z<0.4 with DESI Year 1 Data FERMILAB-PUB-25-0906-PPD arXiv:2503.11139 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2307.07078",
+      "label": "arxiv.org arXiv:2307.07078v2 [astro-ph.GA] 2 Aug 2023 Opens in a new window"
+    },
+    {
+      "href": "https://edoc.ub.uni-muenchen.de/26557/1/Hamanowicz_Aleksandra.pdf",
+      "label": "edoc.ub.uni-muenchen.de The 3D view on cosmic baryon cycle Opens in a new window"
+    },
+    {
+      "href": "http://www.eso.org/~hkuntsch/papers/MNRAS_516_5618.pdf",
+      "label": "eso.org MUSE-ALMA haloes VII: survey science goals \\& design, data processing and final catalogues - ESO.org Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2504.20299",
+      "label": "arxiv.org The Cosmic Evolution of CIV Absorbers at $1.4<z<4.5 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://edoc.ub.uni-muenchen.de/31456/1/Szakacs_Roland.pdf",
+      "label": "edoc.ub.uni-muenchen.de Cool and Cold Gas within and surrounding Galaxies - Elektronische Hochschulschriften der LMU M\u00fcnchen Opens in a new window"
+    },
+    {
+      "href": "https://scholarlypublications.universiteitleiden.nl/access/item%3A4180055/download",
+      "label": "scholarlypublications.universiteitleiden.nl H I content at cosmic noon: a millimetre-wavelength perspective - Scholarly Publications Leiden University Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1909.08624",
+      "label": "arxiv.org ALMACAL VI: Molecular gas mass density across cosmic time via a blind search for intervening molecular absorbers - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/533/4/3937/7722018",
+      "label": "academic.oup.com H i content at cosmic noon \u2013 a millimetre-wavelength perspective - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/figure/Current-COMAP-constraint-on-r-H2-thick-bar-with-downward-arrow-in-relation-to-past_fig3_361978977",
+      "label": "researchgate.net Current COMAP constraint on \u03c1 H2 (thick bar with downward arrow) in... - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://openaccess.inaf.it/bitstreams/5cc5b367-a3d0-4dd3-a824-55d35fc8236d/download",
+      "label": "openaccess.inaf.it Atomic and molecular gas from the epoch of reionization down to redshift 2 - OA@INAF Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/548/1/stag485/8514461",
+      "label": "academic.oup.com EMBERS I: low-redshift post-starburst galaxies are frequently depleted in molecular gas relative to star-forming progenitors - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/386634734_xCOLD_GASS_the_complete_IRAM-30m_legacy_survey_of_molecular_gas_for_galaxy_evolution_studies",
+      "label": "researchgate.net xCOLD GASS: the complete IRAM-30m legacy survey of molecular gas for galaxy evolution studies - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/550467/file/550467_Fulltext.pdf",
+      "label": "research.chalmers.se Vz-GAL: Probing Cold Molecular Gas in Dusty Star-forming Galaxies at z=1-6 - research.chalmers.se Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/548/3/stag660/8644293",
+      "label": "academic.oup.com WALLABY pilot survey: H i depletion times within the stellar discs of nearby galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2602.21500v1",
+      "label": "arxiv.org 1 Introduction Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/molecular-gas-contents-and-scaling-relations-for-massive-58imyhjwmb.pdf",
+      "label": "scispace.com Molecular gas contents and scaling relations for massive ... - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://edoc.ub.uni-muenchen.de/24712/1/Uebler_Hannah_D_N.pdf",
+      "label": "edoc.ub.uni-muenchen.de Galaxy Kinematics during the Peak Epoch of Cosmic Star Formation Opens in a new window"
+    },
+    {
+      "href": "https://purehost.bath.ac.uk/ws/files/167885572/Tacconi2018_arXiv.pdf",
+      "label": "purehost.bath.ac.uk Alternative formats If you require this document in an alternative format, please contact: openaccess@bath.ac.uk Opens in a new window"
+    },
+    {
+      "href": "https://profiles.arizona.edu/person/bjweiner",
+      "label": "profiles.arizona.edu Benjamin J Weiner | UA Profiles - The University of Arizona Opens in a new window"
+    },
+    {
+      "href": "https://www.boa.unimib.it/retrieve/3b588d80-b3ed-481b-b3c1-b7dea9f62ce5/Izquierdo-Villalba-2024-Black%20Holes-preprint.pdf",
+      "label": "boa.unimib.it Massive Black Holes in Galactic Nuclei - Milano-Bicocca Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/346309820_The_Evolution_of_the_Baryons_Associated_with_Galaxies_Averaged_over_Cosmic_Time_and_Space",
+      "label": "researchgate.net The Evolution of the Baryons Associated with Galaxies Averaged over Cosmic Time and Space - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/servlets/purl/3021878",
+      "label": "osti.gov F er mil a b - OSTI Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2311.10056v2",
+      "label": "arxiv.org 1 A Foreword by the Curators of this Community Paper - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://lss.fnal.gov/archive/2026/pub/fermilab-pub-26-0139-v.pdf",
+      "label": "lss.fnal.gov F er mil a b Opens in a new window"
+    },
+    {
+      "href": "https://www.eso.org/sci/libraries/telbib_info/AR/ESOStaffPapers2020.pdf",
+      "label": "eso.org ESO Staff Publications (2020) Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/0810.2541",
+      "label": "arxiv.org [0810.2541] The Star Formation Law in Nearby Galaxies on Sub-Kpc Scales - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/Chen_refs.html",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - Hsiao-Wen Chen Opens in a new window"
+    },
+    {
+      "href": "https://sfb1601.astro.uni-koeln.de/projects/projectb/b3/",
+      "label": "sfb1601.astro.uni-koeln.de Project B3 - SFB 1601 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1612.05275",
+      "label": "arxiv.org Molecular Gas in the Outskirts - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.preprints.org/manuscript/202606.1571",
+      "label": "preprints.org Star Formation Efficiency and Class I Protostellar Timescales in ATLASGAL Dense Clumps Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/547/4/stag527/8526388",
+      "label": "academic.oup.com NEATH \u2013 V. The relationship between line emission from dense gas tracers and the star formation rate - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2005.06656",
+      "label": "arxiv.org Spatially Resolved Molecular Gas Properties of Host Galaxy of Type I Superluminous Supernova SN 2017egm - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2303.05574",
+      "label": "arxiv.org arXiv:2303.05574v2 [astro-ph.GA] 13 Mar 2023 Opens in a new window"
+    },
+    {
+      "href": "https://www.mpia.de/5504464/walter_aspecs_2020.pdf",
+      "label": "mpia.de The Evolution of the Baryons Associated with Galaxies Averaged over Cosmic Time and Space Opens in a new window"
+    },
+    {
+      "href": "https://research.rug.nl/files/84971136/Variations_in_the_Star_Formation_Efficiency_of_the_Dense_Molecular_Gas_across_the_Disks.pdf",
+      "label": "research.rug.nl Variations in the Star Formation Efficiency of the Dense Molecular Gas across the Disks of Star-forming Galaxies - the University of Groningen research portal Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2310.16037",
+      "label": "arxiv.org arXiv:2310.16037v2 [astro-ph.GA] 24 Nov 2023 Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/504598/file/504598_Fulltext.pdf",
+      "label": "research.chalmers.se Resolving the ISM at the Peak of Cosmic Star Formation with ALMA: The Distribution of CO and Dust Continuum in z \u223c2.5 Submillimeter Galaxies Opens in a new window"
+    },
+    {
+      "href": "https://oar.princeton.edu/bitstream/88435/pr10c4sj8q/1/Leroy_2015_ApJ_801_25.pdf",
+      "label": "oar.princeton.edu ALMA REVEALS THE MOLECULAR MEDIUM FUELING THE NEAREST NUCLEAR STARBURST Opens in a new window"
+    },
+    {
+      "href": "http://ned.ipac.caltech.edu/level5/Sept13/Recchi/paper.pdf",
+      "label": "ned.ipac.caltech.edu arXiv:1310.4932v1 [astro-ph.CO] 18 Oct 2013 Opens in a new window"
+    },
+    {
+      "href": "https://orbit.dtu.dk/files/441907811/2511.08829v2.pdf",
+      "label": "orbit.dtu.dk Gas excitation of post-SB galaxies at 0.6 < z < 1.3 - DTU Research Database Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/386676487_An_ALMA_view_of_star_formation_efficiency_suppression_in_early-type_galaxies_after_gas-rich_minor_mergers",
+      "label": "researchgate.net An ALMA view of star formation efficiency suppression in early-type galaxies after gas-rich minor mergers - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2507.18614v2",
+      "label": "arxiv.org Galaxy quenching across the Cosmic Web: disentangling mass and environment with SDSS DR18 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2405.19401v2",
+      "label": "arxiv.org Measurement of the gas consumption history of a massive quiescent galaxy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2206.07763",
+      "label": "arxiv.org arXiv:2206.07763v2 [astro-ph.GA] 27 Jul 2022 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1908.04306",
+      "label": "arxiv.org arXiv:1908.04306v1 [astro-ph.GA] 12 Aug 2019 Opens in a new window"
+    },
+    {
+      "href": "https://radio.kasi.re.kr/files/02%20%EB%B0%B1%EC%A4%80%ED%98%84_Shim_2025_ApJ_985_107.pdf",
+      "label": "radio.kasi.re.kr Possibility of Using 3.3 \u03bcm Polycyclic Aromatic Hydrocarbon Luminosity as a Molecular Gas Mass Estimator - Radio Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1704.05243",
+      "label": "arxiv.org Estimating the baryonic masses of face-on spiral galaxies from stellar kinematics - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10561236",
+      "label": "par.nsf.gov Modelling Stochastic Star Formation History of Dwarf Galaxies in GRUMPY Opens in a new window"
+    },
+    {
+      "href": "https://ntrs.nasa.gov/api/citations/20140008911/downloads/20140008911.pdf",
+      "label": "ntrs.nasa.gov HERSCHEL-ATLAS: A BINARY HyLIRG PINPOINTING A CLUSTER OF STARBURSTING PROTOELLIPTICALS Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2312.08959v1",
+      "label": "arxiv.org The kinematics of massive high-redshift dusty star-forming galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2407.11125",
+      "label": "arxiv.org arXiv:2407.11125v3 [astro-ph.GA] 10 Dec 2024 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/546/1/staf2283/8407243",
+      "label": "academic.oup.com Cloud properties and star formation in M31 | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.ioa.s.u-tokyo.ac.jp/~sofue/news/2020-pasj-FUGIN-VI-kohno+W43-GMC.pdf",
+      "label": "ioa.s.u-tokyo.ac.jp FOREST Unbiased Galactic plane Imaging survey with the Nobeyama 45 m telescope (FUGIN). VI. Dense gas and mini-starbursts in the W43 giant molecular cloud complex - Institute of Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2208.01663",
+      "label": "arxiv.org arXiv:2208.01663v1 [astro-ph.GA] 2 Aug 2022 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2604.09353",
+      "label": "arxiv.org Constraining the Molecular Kennicutt-Schmidt Relation with Multi-Transition CO Observations of Nearby Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2304.09832",
+      "label": "arxiv.org arXiv:2304.09832v2 [astro-ph.GA] 26 Feb 2024 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1906.07458",
+      "label": "arxiv.org arXiv:1906.07458v2 [astro-ph.GA] 17 Jul 2019 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2311.00025",
+      "label": "arxiv.org arXiv:2311.00025v1 [astro-ph.GA] 31 Oct 2023 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2012.09447",
+      "label": "arxiv.org arXiv:2012.09447v1 [astro-ph.GA] 17 Dec 2020 Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/probing-the-relationship-between-early-star-formation-and-co-4kryfvrzer.pdf",
+      "label": "scispace.com arXiv:2404.12482v1 [astro-ph.GA] 18 Apr 2024 - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2308.11717",
+      "label": "arxiv.org arXiv:2308.11717v2 [astro-ph.GA] 30 Oct 2023 Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/337590114_The_ALMaQUEST_Survey_III_Scatter_in_the_resolved_star_forming_main_sequence_is_primarily_due_to_variations_in_star_formation_efficiency",
+      "label": "researchgate.net The ALMaQUEST Survey: III. Scatter in the resolved star forming Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2006.13612",
+      "label": "arxiv.org The high molecular gas content, and the efficient conversion of Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2302.12267",
+      "label": "arxiv.org arXiv:2302.12267v1 [astro-ph.GA] 23 Feb 2023 Opens in a new window"
+    },
+    {
+      "href": "https://sites.astro.caltech.edu/~lah/review/lowmassstarformation_Megeath_2022PASP.pdf",
+      "label": "sites.astro.caltech.edu Low Mass Stars as Tracers of Star and Cluster Formation - Caltech Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2312.01854",
+      "label": "arxiv.org arXiv:2312.01854v1 [astro-ph.GA] 4 Dec 2023 Opens in a new window"
+    },
+    {
+      "href": "https://kups.ub.uni-koeln.de/63885/1/Dissertation_Shashwata.pdf",
+      "label": "kups.ub.uni-koeln.de Morphology, fragmentation, and dynamic balance: an investigation into early stages of structure formation in molecular clouds - Universit\u00e4t zu K\u00f6ln Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/391612991_Structure_and_Fragmentation_Scale_of_a_Massive_Star-forming_Filament_in_NGC_6334_High-resolution_Mid-infrared_Absorption_Imaging_with_JWST",
+      "label": "researchgate.net Structure and Fragmentation Scale of a Massive Star-forming Filament in NGC 6334: High-resolution Mid-infrared Absorption Imaging with JWST - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/23788/1/thesis_jimenezdonaire.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Dissertation in Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://www.ndl.ethernet.edu.et/bitstream/123456789/68331/1/56.pdf",
+      "label": "ndl.ethernet.edu.et Cosmic Rays in Star-Forming Environments Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2502.02497",
+      "label": "arxiv.org arXiv:2502.02497v1 [astro-ph.GA] 4 Feb 2025 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1706.03005",
+      "label": "arxiv.org arXiv:1706.03005v2 [astro-ph.GA] 31 Aug 2017 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2512.09889",
+      "label": "arxiv.org Clumpy, dense gas in the outflow of NGC 1266 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1210.7723",
+      "label": "arxiv.org arXiv:1210.7723v1 [astro-ph.GA] 29 Oct 2012 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2305.13436",
+      "label": "arxiv.org arXiv:2305.13436v2 [astro-ph.GA] 26 May 2023 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2512.04891",
+      "label": "arxiv.org The MALATANG survey: star formation, dense gas, and AGN feedback in NGC 1068 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.pure.ed.ac.uk/ws/files/75485287/1702.04729.pdf",
+      "label": "pure.ed.ac.uk Evolution of Interstellar Medium, Star Formation, and Accretion at High Redshift - Account Opens in a new window"
+    },
+    {
+      "href": "https://backend.orbit.dtu.dk/ws/portalfiles/portal/413151947/PhD_Thesis.pdf",
+      "label": "backend.orbit.dtu.dk Tracing the Life Cycle of Galaxies across Cosmic Time A Story of Life and Death - DTU Inside Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2211.01526",
+      "label": "arxiv.org arXiv:2211.01526v1 [astro-ph.GA] 3 Nov 2022 Opens in a new window"
+    },
+    {
+      "href": "https://oro.open.ac.uk/81226/1/81226AAM.pdf",
+      "label": "oro.open.ac.uk ORIGINAL UNEDITED MANUSCRIPT - Open Research Online Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/538121/file/538121_Fulltext.pdf",
+      "label": "research.chalmers.se Average dust, gas, and star-formation properties of cluster and field galaxies from stacking analysis - research.chalmers.se Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/5A14AE2FF9ECAD9C73713CB219F7A816/S132335802510088Xa.pdf/probing-the-resolved-k-s-relation-in-nearby-galaxies-insights-from-uvit-and-alma-observations.pdf",
+      "label": "cambridge.org Probing the resolved K-S relation in nearby galaxies: Insights from UVIT and ALMA observations - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/440/4/3370/1113695",
+      "label": "academic.oup.com What controls star formation in the central 500 pc of the Galaxy? - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/340981145_The_Molecular_Cloud_Lifecycle",
+      "label": "researchgate.net (PDF) The Molecular Cloud Lifecycle - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/470/4/4750/3883753",
+      "label": "academic.oup.com Deriving a multivariate \u03b1CO conversion function using the [C ii]/CO (1\u22120) ratio and its application to molecular gas scaling relations | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2405.20803v1",
+      "label": "arxiv.org Star formation across cosmic time - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/393905048_The_EDGE-CALIFA_Survey_An_integral_field_unit-based_integrated_molecular_gas_database_for_galaxy_evolution_studies_in_the_Local_Universe",
+      "label": "researchgate.net The EDGE-CALIFA Survey: An integral field unit-based integrated molecular gas database for galaxy evolution studies in the Local Universe - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0002-1485-9401",
+      "label": "orcid.org Linda Tacconi - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2512.05213",
+      "label": "arxiv.org GA-NIFS: A smouldering disk galaxy undergoing ordered rotation at z=4.26 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10164479",
+      "label": "par.nsf.gov The ALPINE\u2212ALMA [CII] Survey: On the nature of an extremely obscured serendipitous galaxy Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1611.00367",
+      "label": "arxiv.org The Galaxy End Sequence - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://sami-survey.org/system/files/papers/701/kross_dispersions_accepted.pdf",
+      "label": "sami-survey.org The KMOS Redshift One Spectroscopic Survey (KROSS): the origin of disk turbulence in \u03b6 \u2248 1 star-forming galaxies Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1703.05764",
+      "label": "arxiv.org ALMA reveals starburst-like interstellar medium conditions in a compact star-forming galaxy at z \u223c 2 using [CI] and CO - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/the-co-to-h-2-conversion-factor-in-the-barred-spiral-galaxy-3rsxl0eslx.pdf",
+      "label": "scispace.com arXiv:2404.14503v1 [astro-ph.GA] 22 Apr 2024 - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1212.1208",
+      "label": "arxiv.org [1212.1208] The CO-to-H2 Conversion Factor and Dust-to-Gas Ratio on Kiloparsec Scales in Nearby Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1504.01453",
+      "label": "arxiv.org The Weak Carbon Monoxide Emission In An Extremely Metal Poor Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2405.09685v1",
+      "label": "arxiv.org The Metallicity Dependence of PAH Emission in Galaxies I: Insights from Deep Radial Spitzer Spectroscopy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2105.02916",
+      "label": "arxiv.org The EDGE-CALIFA Survey: Central molecular gas depletion in AGN host galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2510.05214",
+      "label": "arxiv.org Resolved Profiles of Stellar Mass, Star Formation Rate, and Predicted CO-to-H$_2$ Conversion Factor Across Thousands of Local Ga - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2501.01289",
+      "label": "arxiv.org arXiv:2501.01289v1 [astro-ph.GA] 2 Jan 2025 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2302.07808",
+      "label": "arxiv.org arXiv:2302.07808v1 [astro-ph.GA] 15 Feb 2023 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.23662v1",
+      "label": "arxiv.org Gas Fraction and Depletion Time Drive the Main-Sequence Scatter in Massive Galaxies at z\u223c1.5 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2212.10657",
+      "label": "arxiv.org The impact of gas accretion and AGN feedback on the scatter of the mass-metallicity relation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://indico.dfa.unipd.it/event/913/attachments/1059/2121/2309.05937.pdf",
+      "label": "indico.dfa.unipd.it arXiv:2309.05937v1 [astro-ph.GA] 12 Sep 2023 - DFA Indico Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/535/3/2341/7881573",
+      "label": "academic.oup.com The atomic gas sequence and mass\u2013metallicity relation from dwarfs to massive galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2306.16441",
+      "label": "arxiv.org arXiv:2306.16441v1 [astro-ph.GA] 28 Jun 2023 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2502.14031",
+      "label": "arxiv.org arXiv:2502.14031v2 [astro-ph.GA] 1 May 2025 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1903.11081",
+      "label": "arxiv.org The VANDELS survey: the stellar metallicities of star-forming galaxies at 2.5 < z < 5.0 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.09829v1",
+      "label": "arxiv.org Stardust Galaxies at z\u00bf9: A Dust-Origin Transition Behind the Excess of UV-Bright Galaxies Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/489/1/1397/5543226",
+      "label": "academic.oup.com On the dust temperatures of high-redshift galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2605.19661",
+      "label": "arxiv.org COSMOS-Web: Star formation along the early Hubble sequence and the evolution of dust over the redshift range 0<z<12 - arXiv Opens in a new window"
+    }
+  ],
+  "topic": "gas depletion and star-formation efficiency",
+  "wiki_write_performed": false
+}

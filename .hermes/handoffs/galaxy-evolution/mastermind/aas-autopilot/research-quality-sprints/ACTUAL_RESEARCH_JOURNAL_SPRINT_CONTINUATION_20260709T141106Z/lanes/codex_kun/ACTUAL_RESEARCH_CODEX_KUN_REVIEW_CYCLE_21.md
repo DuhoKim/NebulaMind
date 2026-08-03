@@ -1,0 +1,2731 @@
+# codex-kun-readonly-cycle-21
+Started UTC: 2026-07-09T16:53:30Z
+CWD: /Users/duhokim/NebulaMind/NebulaMind
+Command head: ['codex', 'exec', '-m', 'gpt-5.4-mini', '--sandbox', 'read-only', '--cd', '/Users/duhokim/NebulaMind/NebulaMind']
+
+Reading additional input from stdin...
+OpenAI Codex v0.143.0
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind
+model: gpt-5.4-mini
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019f47cc-7895-7ea0-bd5e-daf046bd31d3
+--------
+user
+Review this local manuscript package in read-only mode.
+
+Output marker: ACTUAL_RESEARCH_CODEX_KUN_REVIEW_CYCLE_21
+
+You are Kun/Codex: reproducibility, TeX, provenance, and no-mock-data audit.
+
+Read only these roots unless needed for harmless metadata checks:
+- candidate package: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package
+- real-data inventory: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json
+- integrated context: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z
+- original real-data runs: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs
+
+Tasks:
+- inspect TeX/prose for compile risks and journal-paper weaknesses
+- verify that numeric claims remain traceable to real local files or cited public sources
+- check core invariants: 8,146 pairs; -1.309 dex; [-1.334,-1.283]; 60,000 cached rows; 249,917 strict parent; 24.0% coverage
+- scan for forbidden use of mock/synthetic/fake/placeholder/toy data
+- recommend safe candidate-only edits for the integrator
+
+Forbidden: file edits, public/live edits, DB/API/wiki/trust/deploy/git/cron/billing/OAuth/account changes, external submission, credential reads.
+
+codex
+I’m going to inspect the candidate package, the integrated context, and the real-data inventory for compile risks, provenance traceability, and any synthetic-data language. I’ll verify the invariant numbers against local files and then return only safe candidate-only edits for the integrator.
+exec
+/bin/zsh -lc "find /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z -maxdepth 2 -type f | sed 's#"'^#/##'"' | head -n 200" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "pwd && rg --files /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package | sed 's#"'^#/##'"' | head -n 200" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+sed: 1: "s#^#/##
+": bad flag in substitute command: '#'
+
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind
+sed: 1: "s#^#/##
+": bad flag in substitute command: '#'
+
+codex
+The first pass hit shell constraints, so I’m switching to simple one-line commands and direct file reads. Next I’m locating the manuscript files and extracting the key numbers from the inventory and the package itself.
+exec
+/bin/zsh -lc 'rg --files /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package | head -n 200' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_22_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/PACKAGE_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_22_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/figures/fig-matched-offsets.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/figures/fig-bpt.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/PACKAGE_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/PACKAGE_MANIFEST_PRECOMPILE.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/README.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_24_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-02.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-03.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-01.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-04.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-05.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-07.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-06.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-08.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.pdf
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_22_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_22_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_22_SUMMARY.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_QUALITY_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_QUALITY_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_24_REVIEW_RESPONSE.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.md
+
+exec
+/bin/zsh -lc 'find /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z -maxdepth 2 -type f | head -n 200' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/FLAGSHIP_REVIEW_DECISION_20260709T013510Z.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/README.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_AUDIT.md
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_AUDIT.json
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json'; data=json.load(open(p)); print(type(data).__name__); print(list(data)[:20] if isinstance(data,dict) else 'non-dict'); print(data.keys() if isinstance(data,dict) else '')\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+dict
+['counts', 'created_utc', 'csv_files', 'cycle', 'integrated_root', 'integrated_tex_summaries', 'json_files', 'overnight_root', 'pdf_files', 'real_data_policy', 'source_package', 'sprint_id']
+dict_keys(['counts', 'created_utc', 'csv_files', 'cycle', 'integrated_root', 'integrated_tex_summaries', 'json_files', 'overnight_root', 'pdf_files', 'real_data_policy', 'source_package', 'sprint_id'])
+
+codex
+I’ve located the flagship TeX, the supplementary atlas TeX, and the inventory manifest. I’m now checking the manuscript text for compile hazards, provenance gaps, and whether the core counts are internally consistent with the local inventory and integrated handoff.
+exec
+/bin/zsh -lc "rg -n \"8146|8,146|1\\.309|1\\.334|1\\.283|60000|60,000|249917|249,917|24\\.0%|24%|synthetic|mock|fake|placeholder|toy|simulated\" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/data/source_analysis_results.json:32:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/data/source_analysis_results.json:38:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_REVIEW_RESPONSE.md:4:- In [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_16_package/flagship_rp1/aastex/rp1_flagship_polished.tex), I streamlined the abstract so the 60,000-row cap is described once as a capped subset, not repeatedly as a "pilot sample".
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:190:We present a local, selection-aware SDSS DR17 pilot measuring the association between broad optical BPT classification and catalog specific star-formation rate. The analysis uses a capped 60,000-row emission-line cache drawn from a strict public four-line S/N$\geq3$ parent of {fmt(selection['strict_sdss_sn_ge_3_total'])} galaxies. Broad BPT optical AGN hosts are matched to star-forming controls in stellar mass and redshift. The preferred matched comparison yields {fmt(base['matched_pairs'])} pairs and a median $\Delta\log {{\rm sSFR}}$ of {fmt(base['median_delta_log_sSFR'])} dex, with a bootstrap interval of [{fmt(base.get('median_delta_ci95_low'))},{fmt(base.get('median_delta_ci95_high'))}] dex. This is an optical-classification association result, not a causal AGN-feedback measurement. Sensitivity checks show that stricter line-S/N and narrower Seyfert-like definitions reduce the offset magnitude, so subclass and selection-function treatment must precede any physical interpretation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:249:RP-1 should be the flagship paper from the current local package. It should be polished further as a concise, selection-aware association paper. The other eight active topics should be packaged as a supplementary denominator/proxy atlas, not as independent causal feedback papers, because their original claims require radio, X-ray, CO/HI, resolved outflow, halo/group, or simulation-mock observables not present in the current SDSS-only analysis.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:294:This supplement packages the eight non-flagship Galaxy Evolution drafts as denominator/proxy notes rather than standalone physical-feedback papers. All notes share the same capped 60,000-row SDSS DR17 optical emission-line cache and the same selection-function caveats. The atlas preserves useful follow-up targets--environment proxies, optical AGN denominators, transition-mass vectors, tracer-threshold censuses, gas-follow-up denominators, and simulation target vectors--while explicitly refusing claims that require radio, X-ray, molecular/neutral gas, resolved outflow, halo/group, or simulation-mock data not analyzed here.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_REVIEW_RESPONSE.md:6:- Flagship abstract now front-loads the morphology and 3-arcsec fiber aperture caveat while preserving the same 8,146 pair result and `-1.309 dex` median offset.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_REVIEW_RESPONSE.md:8:- Flagship interpretation now keeps the result at the denominator-level association boundary while retaining the same `-1.309 dex` to `-0.763 dex` sensitivity comparison.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_REVIEW_RESPONSE.md:9:- Supplement abstract now states that the 60,000-row cache is an arbitrary, non-random pilot cap, and Section 3.1 now folds the 55-arcsec fiber-collision correction into the missing-observables list.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_REVIEW_RESPONSE.md:17:- Any attempt to add morphology, aperture-matched SFRs, CO/HI, X-ray, radio, halo/group, outflow, or simulation-mock measurements not present in this package.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:28:    "The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:34:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:56:\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_REVIEW_RESPONSE.md:7:- In [`flagship_rp1/aastex/rp1_flagship_polished.tex`](./flagship_rp1/aastex/rp1_flagship_polished.tex), I clarified that the 60,000-row cap is a local pilot subset used to validate the workflow within a fixed cache budget.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_REVIEW_RESPONSE.md:11:- In [`supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex`](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex), I reworded the 60,000-row cap description to say it is a local, non-random pilot cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_REVIEW_RESPONSE.md:17:- I did not change any numeric results, including 8,146 pairs, -1.309 dex, [-1.334, -1.283], 60,000 cached rows, 249,917 parent rows, or 24.0% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/FLAGSHIP_REVIEW_DECISION_20260709T013510Z.md:30:- The result is strong enough to polish locally: median delta log sSFR = -1.309 dex for 8,146 matched pairs, with bootstrap interval [-1.334, -1.283] dex.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/FLAGSHIP_REVIEW_DECISION_20260709T013510Z.md:49:- `m3_p3_simulation_validation`: lacks forward-modelled simulation mocks.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json:178:      "agn": 8146,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json:184:    "cached_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json:187:      "sn_ge_3": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json:190:    "strict_public_sn_ge_3_total": 249917
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:76:- Cached row-level table: 60,000 rows.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:77:- Strict public four-line S/N>=3 eligible parent: 249,917 rows.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:78:- Cached coverage of strict public parent: 24.0%.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:91:  - matched pairs: 8,146
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:92:  - median delta log sSFR: -1.309 dex
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:93:  - 95% bootstrap interval: [-1.334, -1.283] dex
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_HANDOFF.md:164:- explicitly state that the 60,000-row cache is capped and non-random;
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:8:  "full_proposal_requires": "simulation mocks passed through the SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:23:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:47:      "median_u_minus_r": 1.0446000000000009,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:11:    "Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:16:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:23:      "k": 8146,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:24:      "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:30:      "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:36:      "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:42:      "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/data/source_analysis_results.json:48:      "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/data/source_analysis_results.json:8:    "n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/data/source_analysis_results.json:18:    "High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074).",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/data/source_analysis_results.json:23:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/data/source_analysis_results.json:25:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/data/source_analysis_results.json:29:  "sample_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_REVIEW_RESPONSE.md:5:- Tightened the flagship abstract so it states the capped `60k`-row pilot cache, the `8,146` matched pairs, the `-1.309 dex` median offset, and the `-0.763 dex` Seyfert-like sensitivity result without the earlier defensive repetition.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_REVIEW_RESPONSE.md:8:- Split the flagship conclusion citations into role-separated groups: radio/X-ray maintenance heating, CO/HI gas follow-up, outflow/kinematics, simulation-mock comparisons, and environment/context references.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_REVIEW_RESPONSE.md:17:- Any attempt to add morphology matching, aperture-matched SFRs, halo/group catalogs, CO/HI, X-ray, radio, or simulation-mock observables that are not present in this package.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/FINAL_HANDOFF.md:84:- Main number: 8,146 matched pairs, median delta log sSFR = -1.309 dex, bootstrap interval [-1.334, -1.283] dex.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/FINAL_HANDOFF.md:86:- Required caveat: the cached 60,000-row table is capped/non-random and covers 24.0% of the strict public four-line S/N>=3 parent.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex:56:\item High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074).
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:70:SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page. The full proposal requires: simulation mocks passed through the SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:72:Simulation suites and mock-observation methods define the future comparison problem; no simulation mock has been forward-modelled or ranked in this pilot \citep{tng2019,eagle2015,simba2019,imanga2023,donnari2021,dubois2013,dubois2016}.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex:56:\item Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_REVIEW_RESPONSE.md:5:- Clarified in both TeX files that the 60,000-row cache is a computational, non-random pilot cap rather than a physical selection threshold.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_REVIEW_RESPONSE.md:13:- I did not alter the 8,146 pair count, the -1.309 dex and -0.763 dex offsets, the [-1.334,-1.283] interval, the 60,000 cached rows, the 249,917 strict parent count, or the 24.0% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_REVIEW_RESPONSE.md:18:- The remaining morphology, gas-phase, environment, and mock-observation requirements still need new data if they are to be promoted beyond association-only or baseline language.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_RESPONSE.md:20:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_RESPONSE.md:6:- Added an explicit warning that the 60,000-row cache cap is non-random and non-extrapolatable to the SDSS volume.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_RESPONSE.md:8:- Added an explicit no-mock-data statement to the flagship data-availability section.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_RESPONSE.md:10:- Added an explicit no-mock-data statement to the supplement data-availability section and to the CO/HI follow-up note.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_RESPONSE.md:20:- No mock, synthetic, placeholder, or toy data were added.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_RESPONSE.md:27:- I checked the edited prose for the banned mock/synthetic language and for the main causal overstatements targeted by the review.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:2:  "analysis_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:4:    "agn": 8146,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:23:      "n": 8146
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:56:    -1.3341385500000003,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:60:  "matched_pairs": 8146,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:72:  "query_top_n": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json:73:  "raw_rows": 60000,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_REVIEW_RESPONSE.md:6:- Flagship abstract and conclusion now say the result is an association paper, not a causal study, while preserving the same 8,146-pair result, `-1.309 dex` median offset, and `[-1.334,-1.283]` bootstrap interval.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:13:We present a local, selection-aware SDSS DR17 pilot measuring the association between broad optical BPT classification and catalog specific star-formation rate. The analysis uses a capped 60,000-row emission-line cache drawn from a strict public four-line S/N$\geq3$ parent of 249,917 galaxies. Broad BPT optical AGN hosts are matched to star-forming controls in stellar mass and redshift. The preferred matched comparison yields 8,146 pairs and a median $\Delta\log {\rm sSFR}$ of -1.309 dex, with a bootstrap interval of [-1.334,-1.283] dex. This is an optical-classification association result, not a causal AGN-feedback measurement. Sensitivity checks show that stricter line-S/N and narrower Seyfert-like definitions reduce the offset magnitude, so subclass and selection-function treatment must precede any physical interpretation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:24:The data backbone is public SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates \citep{york2000,sdssdr17,brinchmann2004}. The cached analysis table is capped at 60,000 rows and ordered by \texttt{specObjID}; it is not a random sample. The strict public four-line S/N$\geq3$ eligible parent contains 249,917 rows, so the cache covers 24.0\% of that strict parent.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:34:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:35:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:45:BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ using standard demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. The cached denominator contains 39,553 star-forming galaxies, 12,234 intermediate/composite galaxies, 8,146 broad optical AGN, and 67 unclassified objects. Each broad optical AGN host is matched to the nearest star-forming control in standardized $(\log M_\star,z)$ space, with replacement. Matching is not performed in morphology, aperture fraction, halo mass, gas mass, AGN luminosity, or duty-cycle phase; these missing dimensions define follow-up requirements.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:62:Broad BPT AGN, S/N$\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.283] & Preferred association estimate \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:82:RP-1 should be the flagship paper from the current local package. It should be polished further as a concise, selection-aware association paper. The other eight active topics should be packaged as a supplementary denominator/proxy atlas, not as independent causal feedback papers, because their original claims require radio, X-ray, CO/HI, resolved outflow, halo/group, or simulation-mock observables not present in the current SDSS-only analysis.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_REVIEW_RESPONSE.md:19:- Any stronger claim about feedback, quenching, or outflow physics still requires new morphology, aperture, multiwavelength, or mock-observation data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_REVIEW_RESPONSE.md:6:- In the flagship abstract/context, I kept the numeric results unchanged and bound the `-1.309 dex` result more tightly to the fiber-centered aperture caveat.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_REVIEW_RESPONSE.md:15:- I did not alter any core numeric claims: `8,146` matched pairs, `-1.309 dex`, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict parent rows, or `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_RESPONSE.md:10:- Tightened the flagship abstract to be shorter and clearer while preserving the same real-data claims, the 8,146-pair result, the -1.309 dex median offset, the [-1.334,-1.283] interval, and the 60,000-row cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_RESPONSE.md:23:- No mock, synthetic, placeholder, or toy data language was added beyond the existing real-data guardrails.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_REVIEW_RESPONSE.md:8:- Added the matched-pair count to the flagship Figure 2 caption: `N=8,146` pairs.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_REVIEW_RESPONSE.md:9:- Kept the flagship numeric results unchanged: `8,146` pairs, `-1.309 dex`, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict parent, and `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_26_REVIEW_RESPONSE.md:18:- Running the flagship on the full `249,917`-galaxy parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_RESPONSE.md:23:- The preserved numeric invariants remain: 8,146 pairs, -1.309 dex, [-1.334, -1.283], 60,000 cached rows, 249,917 strict parent, and 24.0% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_RESPONSE.md:5:- Kept all existing numeric invariants unchanged in the flagship: `8,146` pairs, `-1.309` dex, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict parent, and `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_ACTUAL_RESEARCH_RESPONSE.md:12:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_REVIEW_RESPONSE.md:7:- In [`flagship_rp1/aastex/rp1_flagship_polished.tex`](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_12_package/flagship_rp1/aastex/rp1_flagship_polished.tex), I clarified that the 60,000-row pilot cache is sequentially selected by `specObjID`, which is the source of the non-random cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_REVIEW_RESPONSE.md:9:- In the flagship Interpretation section, I added an explicit statement that the reduction from `-1.309 dex` to `-0.763 dex` is a practical estimate of LINER-like/retired-galaxy contamination within this cache, not evidence for a different feedback mechanism.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_REVIEW_RESPONSE.md:15:- I did not alter any core claims or numeric results, including `8,146` pairs, `-1.309 dex`, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict-parent rows, or `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:35:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:36:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:53:BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ line ratios using the standard Baldwin--Phillips--Terlevich diagram and Kauffmann/Kewley demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. The cached analysis table contains 39,553 star-forming galaxies, 12,234 intermediate/composite objects, 8,146 broad optical AGN, and 67 unclassified objects.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:58:\item Broad BPT optical AGN vs. star-forming controls at S/N$\geq3$: $N=8,146$ matched pairs, median $\Delta\log {\rm sSFR}=-1.309$ dex with 95\% bootstrap interval $[-1.334,-1.283]$ dex.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_REVIEW_RESPONSE.md:6:- Tightened the flagship matched-control caveat to state that the `-1.309 dex` offset is a relative fiber-aperture comparison, not a global quenching measurement.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_REVIEW_RESPONSE.md:8:- Revised the supplement abstract to state that the `60,000`-row cache is an arbitrary pilot-query cap, not a physical or volume-limited selection effect.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_RESPONSE.md:4:- Updated [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_20_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L95) with a short `Data Availability` block that states the manuscript uses public SDSS DR17 / MPA-JHU-style tables only and rejects mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_RESPONSE.md:5:- Updated [supplementary_denominator_atlas.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_20_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L156) with the same provenance / no-mock `Data Availability` block.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_RESPONSE.md:9:- No numeric invariant was changed. The manuscript values `8,146` pairs, `-1.309` dex, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict parent rows, and `24.0%` coverage were left intact.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_RESPONSE.md:19:- The package already satisfies the core numerical invariants and the review reports did not identify compile blockers or mock-data use.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_RESPONSE.md:7:- Clarified the 60,000-row cap as a local workflow-validation and cache-budgeting limit, not a science-tuning choice.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_RESPONSE.md:12:- I did not introduce any mock, synthetic, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_RESPONSE.md:16:- The manuscript already carried the key safety language for the 60,000-row cache cap, the 249,917-row strict parent, the 8,146-pair preferred comparison, and the -1.309 dex / [-1.334, -1.283] dex result, so those were preserved verbatim.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_RESPONSE.md:10:  - the `8,146` pairs, `-1.309` dex median offset, and `[-1.334,-1.283]` interval were preserved.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_RESPONSE.md:17:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/FINAL_HANDOFF.md:84:- Main number: 8,146 matched pairs, median delta log sSFR = -1.309 dex, bootstrap interval [-1.334, -1.283] dex.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/FINAL_HANDOFF.md:86:- Required caveat: the cached 60,000-row table is capped/non-random and covers 24.0% of the strict public four-line S/N>=3 parent.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_09_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_RESPONSE.md:4:- Updated the RP-1 abstract to state that the `-1.309 dex` offset is highly degenerate with the mass-morphology relation because morphology is not controlled in the match.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_RESPONSE.md:13:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_RESPONSE.md:20:- The core invariants were left intact: `8,146` matched pairs, `-1.309 dex`, `[-1.334,-1.283]`, `60,000` cached rows, `249,917` strict parent, and `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_REVIEW_RESPONSE.md:6:- Strengthened the RP-1 matching and interpretation sections so the -1.309 dex offset is explicitly described as vulnerable to bulge-dominated versus disk-dominated structural mismatch, not just fiber coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_REVIEW_RESPONSE.md:12:- Strengthened the flagship aperture caveat so the -1.309 dex offset is explicitly framed as possibly partial or entirely driven by comparing bulge-dominated broad-BPT hosts to disk-dominated controls under a fixed 3-arcsec fiber.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_06_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_RESPONSE.md:4:- Tightened the flagship abstract wording so the $-1.309$ dex offset is explicitly described as heavily degenerate with the mass-morphology relation when morphology is not controlled.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_RESPONSE.md:6:- Reworked the supplement introduction to frame the atlas as a causal-mechanism placeholder only in the future-data sense, not as a current physical result.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_RESPONSE.md:7:- Renamed the supplement's shared section to `Shared denominator limitations` and added one consolidated paragraph covering the shared 60,000-row cache cap, the strict S/N selection bias, the 3-arcsec fiber limitation, and the 55-arcsec fiber-collision bias.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_RESPONSE.md:19:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:13:This supplement packages the eight non-flagship Galaxy Evolution drafts as denominator/proxy notes rather than standalone physical-feedback papers. All notes share the same capped 60,000-row SDSS DR17 optical emission-line cache and the same selection-function caveats. The atlas preserves useful follow-up targets--environment proxies, optical AGN denominators, transition-mass vectors, tracer-threshold censuses, gas-follow-up denominators, and simulation target vectors--while explicitly refusing claims that require radio, X-ray, molecular/neutral gas, resolved outflow, halo/group, or simulation-mock data not analyzed here.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:22:The atlas uses the same cached public-data backbone as the flagship: 60,000 cached rows from a strict public four-line S/N$\geq3$ parent of 249,917 rows, i.e. 24.0\% cached coverage. The four-line selection is sSFR-dependent and the cache is capped/non-random, so all counts and fractions are conditional denominators rather than population-complete measurements.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:32:four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:33:four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:46:\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:93:\item High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074).
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:162:\item Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:215:\textbf{Missing observables for the full proposal.} simulation mocks passed through the SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_02_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_REVIEW_RESPONSE.md:7:- Added explicit interpretation in the flagship result section that the -0.763 dex Seyfert-like subset indicates the broader -1.309 dex offset is driven in part by the LINER/retired low-ionization tail.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_REVIEW_RESPONSE.md:17:- Adding new facility data, mock-observation products, or new citations.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_REVIEW_RESPONSE.md:7:- Revised the robustness discussion so the shift from `-1.309 dex` to `-0.763 dex` is framed as a change in the emission-line denominator and subclass definition, not as a purity or causal upgrade.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_08_REVIEW_RESPONSE.md:24:- CO/HI, outflow, or simulation-mock additions needed for physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_REVIEW_RESPONSE.md:4:- Reworded the flagship abstract and data-selection text to call the 60,000-object limit a `computational pilot cap` and to state explicitly that it is an arbitrary cache limit, not a physically motivated or volume-complete subset.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_23_REVIEW_RESPONSE.md:5:- Kept all numeric results, figure paths, and core association claims unchanged, including `8,146` pairs, `-1.309` dex, `[-1.334,-1.283]`, `-0.763` dex, and `24.0%` coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_ACTUAL_RESEARCH_RESPONSE.md:10:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_REVIEW_RESPONSE.md:16:- No numeric values were changed, including 8,146 pairs, -1.309 dex, [-1.334,-1.283], 60,000 cached rows, 249,917 strict parent rows, or 24.0% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_RESPONSE.md:12:- No mock, synthetic, placeholder, or toy data language was added beyond the existing no-mock statements.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_12_ACTUAL_RESEARCH_RESPONSE.md:16:- The manuscripts already satisfy the hard no-mock and association-only boundaries; the edits only make those boundaries more explicit for journal-readiness.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_03_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:5:- Reworded the flagship matched-control discussion to avoid `global quenching threshold` language and to frame the `-1.309 dex` result as a selection-limited association.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:13:- I did not rerun the analysis on the full `249,917`-row parent sample or change the `60,000`-row pilot cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:14:- I did not add CO/HI, radio, X-ray, resolved-outflow, halo, or simulation-mock data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:18:- `8,146` matched pairs
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:19:- `-1.309 dex` preferred offset
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:20:- `[-1.334,-1.283]` bootstrap interval
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:21:- `60,000` cached rows
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:22:- `249,917` strict parent rows
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_REVIEW_RESPONSE.md:23:- `24.0%` cache coverage
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_25_REVIEW_RESPONSE.md:24:- The package still contains the same core quantitative claims: 8,146 matched pairs, median \(\Delta\log {\rm sSFR}=-1.309\) dex, confidence interval \([-1.334,-1.283]\) dex, 60,000 cached rows, 249,917 strict-parent rows, and 24.0\% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_RESPONSE.md:12:- I did not introduce any mock, synthetic, placeholder, toy, or invented data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:13:This supplement is the companion to the selection-aware SDSS BPT/sSFR pilot study and organizes eight SDSS DR17 denominator and proxy notes into one coherent, association-only optical baseline atlas. It is a follow-up target list built around the same 60,000-galaxy computational pilot cap and selection-function caveats, so all counts and fractions remain conditional on the SDSS optical selection used here. Because \texttt{specObjID} ordering follows SDSS targeting and plate/MJD bookkeeping, this cap is not a random sky sample and introduces survey-plate and sky-coverage bias. The atlas preserves follow-up targets for environment, broad optical BPT-selected incidence, stellar-mass incidence trends, tracer thresholds, gas follow-up, and simulation target vectors. Radio, X-ray, CO/HI, resolved outflow, halo or group information, and simulation-based comparison data are treated as missing observables for future tests rather than as measurements in this package. The sample coverage is 24.0\% of the strict four-line S/N$\geq3$ parent. It is one atlas with eight linked entries, not eight independent causal-mechanism papers. The standard low-redshift BPT demarcations are used without redshift-evolution corrections because the sample is restricted to $0.02<z<0.12$. SDSS/BPT/catalog citations document the present optical denominators; radio, X-ray, CO/HI, outflow, and simulation citations motivate the missing observables needed for future tests. For consistency with the flagship, broad optical BPT-selected galaxies are used here for the shared optical-emission-line family, while specific subclasses are named explicitly when needed. Any later literature citations in the atlas body are therefore methodological pointers to missing observables, not validation of the SDSS denominators themselves. \textbf{This atlas provides observational baselines only; it is a selection-biased optical denominator and follow-up checklist, not a causal-mechanism test, and it cannot independently confirm or refute causal models of feedback without the integration of the listed missing observables.}
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:22:The atlas uses the same analyzed public-data backbone as the main paper: 60,000 galaxies in a computational pilot cap from a strict public four-line S/N$\geq3$ parent of 249,917 galaxies, i.e. 24.0\% sample coverage. The four-line selection is sSFR-dependent and the sample is capped and non-random, so all counts and fractions are conditional denominators rather than population-complete measurements. The galaxy-by-galaxy stellar masses and catalog sSFR values are taken from the public MPA-JHU-style \texttt{galSpecExtra} table after the same SDSS joins used in the flagship \citep{sdssdr17,brinchmann2004,york2000}. The SDSS/BPT/catalog references support these observed denominators; the later multiwavelength and simulation references only mark the follow-up measurements that are still missing. The 60,000-row cache is an arbitrary computational pilot cap, not a physical selection threshold.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:36:four BPT lines with valid flux measurements (\texttt{ivar} $> 0$) & 373,445 & 60,000 & 74.5\% \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:37:four BPT lines S/N>=3 & 249,917 & 60,000 & 49.9\% \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:52:Environment & low-sSFR vs.\ 10th-neighbor rank (60,000 total; 15,000 per quartile) & group catalogs; central/satellite labels; halo mass; fiber-collision correction & environment test \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:54:Outflow kinematics & high-excitation broad optical BPT-selected subset (4,440/60,000) & resolved velocities; halo potentials; multiphase gas; CGM tracers & kinematic follow-up \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:68:We establish a relative neighbor-count baseline within the emission-line denominator that can later be joined to group catalogs and halo masses. The 10th-neighbor index is the rank of the 10th nearest companion in projected sky separation within this redshift-limited sample; it is an internal ordinal rank within this selection-biased sample and does not map to physical environmental volume density or halo density. Because no additional line-of-sight velocity window is imposed beyond the redshift slice, the statistic is especially susceptible to projection effects. The projected-neighbor ranking is computed within the full $0.02<z<0.12$ redshift slice, with no additional line-of-sight velocity window imposed beyond those sample limits. The SDSS 55-arcsec fiber-collision limit systematically removes close neighbors in dense regions, so the 10th-neighbor proxy is biased before any physical interpretation is attempted. We emphasize that the SDSS 55-arcsec fiber collision limit systematically biases this index in dense environments, precluding its use as a physical density metric without forward-modeled corrections. The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbor index. The high-index quartile has a low-sSFR emission-line fraction of 0.230 (3,456/15,000), while the low-index quartile has 0.181 (2,710/15,000). The bootstrap high-minus-low interval is [0.041, 0.059], and a linear probability model adjusted for log stellar mass and redshift gives a high-index coefficient of 0.032 +/- 0.004 coefficient uncertainty. The follow-up ingredients are group catalogues, robust central/satellite labels, halo masses, a spectroscopic fiber-collision correction at the 55-arcsec scale, morphology, and multi-redshift selection functions. Within this selection-biased emission-line sample, the 10th-neighbor statistic is only a relative local rank, not a physical volume density and not a substitute for central/satellite labels or a volume-complete halo-density measurement. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:89:We isolate the high-excitation broad optical BPT-selected denominator that resolved kinematics would need to test escape versus recycling. High-excitation broad optical BPT-selected candidates number 4,440 of 60,000 emission-line galaxies (0.074). Their median \(\log {\rm sSFR}\) is -11.53, compared with -10.14 for the full denominator. SDSS does not measure escape velocity or multiphase outflow velocities here; the note supplies a denominator for resolved follow-up rather than an escape or recycling result. The follow-up ingredients are resolved outflow velocities, halo potentials, molecular, ionized, and neutral gas phases, and CGM recycling tracers. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:122:We compare optical tracer choices against one shared denominator before any multiphase census is attempted. Simple optical tracer definitions change the inferred broad optical BPT-selected prevalence within one common SDSS denominator. Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418. The widest-to-narrowest prevalence ratio is 3.1 before adding molecular, neutral, X-ray, or radio phases. This demonstrates why a common-denominator multiphase census is required; it does not measure molecular or neutral outflow rates. The follow-up ingredients are ionized, molecular, and neutral tracers, X-ray or radio tracers, a shared parent denominator, and a consistent aperture model. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:127:\caption{SDSS optical emission-line denominator: prevalence of alternative tracer definitions within the 60,000-galaxy sample. This is a baseline for future multiphase work.}
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:133:We define the denominator for CO/HI gas-fraction and depletion-time follow-up. Using the gas-depletion note's low-sSFR baseline, the massive low-sSFR denominator contains 6,729 galaxies in the SDSS emission-line sample. Its broad optical BPT-selected fraction is 0.549, and the median H-alpha luminosity proxy is \(\log (L_{\mathrm{H}\alpha}/\mathrm{erg\,s^{-1}}) = 40.06\). Here the H-alpha luminosity proxy is the aperture-corrected \texttt{galSpecExtra} catalog value, not raw fiber flux. The median H-alpha luminosity proxy is 0.66 dex lower than in massive star-forming emission-line galaxies. SDSS optical data alone cannot distinguish bulk molecular-gas depletion from localized reductions in star-formation efficiency or measure total cold-gas mass \citep{tacconi2018}; this note identifies the CO/HI follow-up denominator and optical baseline required for spatially resolved gas tests. The follow-up ingredients are CO or dust-based molecular gas masses \citep[e.g., xCOLD GASS;][]{xcoldgass2017}, atomic hydrogen masses \citep[e.g., xGASS;][]{xgass2018}, aperture-matched SFRs, morphology, and environment labels, together with radio, X-ray, and IFU observables that are still missing here. As with any H$\alpha$-based proxy, residual dust attenuation and stellar-absorption systematics can still affect the optical denominator, so this value should be read as a line-luminosity proxy rather than a direct total cold-gas-mass measurement. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference. No mock, synthetic, fake, placeholder, or toy data were used in compiling this atlas.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:144:We provide a compact observed target vector for forward modelling. The pilot writes 15 mass-redshift cells with \(n \geq 50\) as a compact comparison vector for low-sSFR fraction, broad optical BPT-selected incidence, and colour versus mass and redshift. Across mass bins, low-sSFR fractions span 0.005-0.729, and broad optical BPT-selected fractions span 0.003-0.520. The follow-up ingredients are simulations \citep{eagle2015} passed through the exact optical S/N and fiber-aperture selection function used here, including the sequential 60,000-row \texttt{specObjID} cache cap, then through the SDSS, MaNGA, ALMA, X-ray, and radio selection functions, together with aperture models and noise models. Without those matched selection steps, any simulation comparison is not a valid test. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:157:This atlas uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The 60,000-row cache is derived from the public catalog joins and selection thresholds described above, and all eight notes remain conditional on the optical-selection denominators summarized in this atlas. No mock, synthetic, fake, placeholder, or toy data were used.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_RESPONSE.md:8:- Preserved the supplement as a denominator/proxy atlas with the same real-data-only scope, missing-observable framing, and no-mock-data policy.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_RESPONSE.md:16:- No mock, synthetic, fake, placeholder, or toy data were introduced.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_05_ACTUAL_RESEARCH_RESPONSE.md:19:- The flagship still reports the same checked invariants: 8,146 matched pairs, median $\Delta\log {\rm sSFR} = -1.309$ dex, bootstrap interval [-1.334, -1.283] dex, 60,000 cached rows, 249,917 strict four-line S/N$\geq3$ parent rows, and 24.0\% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_RESPONSE.md:8:- I preserved the existing association-only boundary, the capped 60,000-row cache framing, the 24.0% coverage statement, the 8,146-pair result, and the -1.309 dex / [-1.334, -1.283] / -0.763 dex values exactly as written.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_RESPONSE.md:11:- No mock, synthetic, fake, placeholder, or toy data were added.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_RESPONSE.md:6:- Tightened the flagship abstract to emphasize the real-data boundary, the non-random 60,000-row cache cap, and the fact that the supplement is a follow-up target list rather than a standalone mechanism paper.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_RESPONSE.md:8:- Kept the core numeric invariants unchanged: 8,146 pairs, -1.309 dex, [-1.334, -1.283], 60,000 cached rows, 249,917 strict parent, and 24.0% coverage.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_RESPONSE.md:15:- I did not add mock, synthetic, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_16_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_13_REVIEW_RESPONSE.md:16:- I did not change any numeric results, including `8,146` pairs, `-1.309` dex, `[-1.334,-1.283]` dex, `60,000`, `249,917`, or `24.0%`.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_20_REVIEW_RESPONSE.md:4:- Recast the abstract and opening framing into a more affirmative observational tone while keeping the same 8,146-pair result, the -1.309 dex median offset, the [-1.334, -1.283] dex interval, and the 60,000-row cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_07_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.json:4:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.json:5:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.json:35:      "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_04_ACTUAL_RESEARCH_SUMMARY.json:36:      "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.md:14:- forbidden mock/synthetic data-use hits flagship: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.md:15:- forbidden mock/synthetic data-use hits supplement: []
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_19_ACTUAL_RESEARCH_AUDIT.md:20:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_11_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_18_REVIEW_RESPONSE.md:20:- I did not attempt to resolve the morphology/aperture question, the volume-complete parent-sample question, or any multiwavelength validation claim, because those require new observations or a re-run without the 60,000-row cap.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_15_REVIEW_RESPONSE.md:5:- In [rp1_flagship_polished.tex](./flagship_rp1/aastex/rp1_flagship_polished.tex), I added an explicit note that the 60,000-row `specObjID` cap is non-random and introduces survey-plate and sky-coverage bias.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_RESPONSE.md:14:- I did not introduce mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_17_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_01_ACTUAL_RESEARCH_SUMMARY.md:18:- Never use mock, synthetic, fake, placeholder, or toy data.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.json:3:  "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.json:4:  "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.json:34:    "bad_mock_or_synthetic_data_use_flagship": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_10_ACTUAL_RESEARCH_AUDIT.json:35:    "bad_mock_or_synthetic_data_use_supplement": [],
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:13:We present a selection-aware SDSS DR17 matched-control pilot that measures the association between broad optical BPT-selected galaxies and catalog specific star-formation rate. The analysis is limited by the SDSS 3-arcsec fiber aperture and by a non-random 60,000-galaxy computational pilot cap sequentially selected by \texttt{specObjID} from a strict public four-line S/N$\geq3$ parent of 249,917 galaxies; the cap is a local workflow limit, not a physically motivated or volume-complete subsample. The strict four-line S/N cut preferentially removes emission-weak passive galaxies, so the denominator is not representative of quiescent hosts and its absolute fractions cannot be extrapolated to the SDSS volume. Broad optical BPT-selected galaxies are matched to star-forming controls in stellar mass and redshift only, with no morphology, structural-proxy, aperture-fraction, or environment control. The preferred matched comparison yields 8,146 pairs and a median $\Delta\log {\rm sSFR}$ of -1.309 dex, with a bootstrap 95\% confidence interval of [-1.334,-1.283] dex; stricter line-S/N and Seyfert-like subsets reduce the offset magnitude to -0.763 dex. Because morphology and structural proxies are not controlled, this offset remains degenerate with the mass-morphology relation. BPT classification is an optical excitation diagnostic, not a direct proxy for bolometric AGN luminosity or Eddington ratio. This result is association-only, not causal. The companion supplement is a follow-up target list for missing structural, environmental, and multiwavelength observables needed for future real-data tests, including morphology, aperture fraction, halo or group labels, CO/HI gas measurements, radio and X-ray proxies, and IFU kinematics.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:19:This paper addresses a narrow association-only question within a low-redshift SDSS DR17 optical emission-line denominator: do broad optical BPT-selected galaxies have lower catalog sSFR than mass--redshift matched star-forming controls? We observe a negative catalog-sSFR offset within the analyzed denominator. The result is not a causal claim or inference; it is an association in a capped optical sample and does not test AGN-driven quenching, molecular gas depletion, radio-mode maintenance heating, or outflow escape/recycling in this dataset. The 60,000-galaxy computational pilot cap is an arbitrary cache limit rather than a volume-complete census, so it is not normalized into a luminosity or mass function. The cap is retained for local workflow validation and cache budgeting, not to tune the science result.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:28:The data backbone is public SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates \citep{york2000,sdssdr17,brinchmann2004}. The pilot analysis sample is a 60,000-galaxy computational pilot cap selected sequentially by \texttt{specObjID}. It is a local pilot subset used to validate the analysis workflow and establish the relative association within an arbitrary fixed cache budget, not a volume-limited census. Because \texttt{specObjID} ordering follows SDSS targeting and plate/MJD bookkeeping, this cap is not a random sky sample and introduces survey-plate and sky-coverage bias. The strict public four-line S/N$\geq3$ eligible parent contains 249,917 galaxies, so the pilot sample covers 24.0\% of that strict parent. Because the cap is fixed and non-volume-limited, it cannot be used to derive absolute volume densities, luminosity functions, or any population-normalized abundance.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:41:four BPT lines with valid flux measurements (\texttt{ivar} $> 0$) & 373,445 & 60,000 & 74.5\% \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:42:four BPT lines S/N>=3 & 249,917 & 60,000 & 49.9\% \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:52:BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ using standard demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006} (see Figure~\ref{fig:bpt}). The analysis denominator contains 39,553 star-forming galaxies, 12,234 intermediate/composite galaxies, 8,146 broad optical BPT-selected targets, and 67 unclassified objects. The 67 unclassified objects are retained in the denominator counts for completeness but excluded from the matched control pairing. Here, the star-forming control pool is defined as objects below the Kauffmann et al.\ (2003) demarcation. Each broad optical BPT-selected galaxy is matched to the nearest star-forming control by variance-normalized Euclidean distance in standardized $(\log M_\star,z)$ space, with replacement. In the preferred estimate, this yields 100\% target coverage (8,146 of 8,146 targets matched), and the unrestricted Euclidean match has median absolute separations of 0.0045 dex in $\log M_\star$ and 0.00021 in redshift, so the association still inherits any mismatch in structure or fiber coverage between the two populations. Matching is not performed in morphology, aperture fraction, halo mass, gas mass, AGN luminosity, or duty-cycle phase; these missing dimensions define follow-up requirements. The preferred estimate does not impose a maximum mass--redshift caliper; the caliper row in Table~\ref{tab:robust} is a sensitivity variant. The moderate mass--redshift caliper sensitivity variant uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:64:\par\noindent\textbf{Morphology and aperture caveat.} A median $\Delta\log {\rm sSFR}$ (target minus matched control) of -1.309 dex is observed within this fiber-centered matched comparison. Because the spectroscopy samples only the central 3-arcsec region (1.2--6.5 kpc here) and the match does not control morphology, structural proxies, or aperture fraction, the observed sSFR offset is highly degenerate with the known mass--morphology relation and the transition from disk-dominated to bulge-dominated systems, including bulge prominence or central velocity dispersion effects \citep{schawinski2010,bluck2014,belfiore2016}. The lack of concentration-index or \texttt{fracDeV}-style structural matching limits the result's ability to separate bulge-driven quenching from excitation-linked suppression. Single-fiber measurements cannot separate galaxy-wide changes from purely central gradients, an ambiguity that requires spatially resolved integral-field spectroscopy to resolve \citep{penny2018,cheung2016}. The robustness interval in Table~\ref{tab:robust} is a 95\% confidence interval on the median offset.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:71:Broad optical BPT-selected targets, S/N$\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.283] & Preferred association estimate \\
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:77:\tablecomments{$\Delta\log {\rm sSFR}$ is target minus matched star-forming control. The moderate mass--redshift caliper uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$, and it leaves the median offset essentially unchanged at -1.318 dex for 7,867 pairs. The Seyfert-like proxy uses the Kewley et al.\ (2006) high-excitation demarcation, which excludes a portion of the LINER-like low-ionization tail by construction. The drop from -1.309 dex to -0.763 dex therefore reflects the narrower emission-line denominator and the removal of a LINER-like, retired, bulge-dominated tail by construction. All values are conditional on the optical emission-line denominator.}
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:88:The result is directly measured in the capped sample and remains falsifiable within the stated denominator. The matched-offset distribution is shown in Figure~\ref{fig:offsets}. The median offset persists under a moderate mass--redshift caliper, which is already reflected by the 7,867-pair, -1.318 dex sensitivity row. Because the comparison is still fiber-centered and selection-limited, this interpretation remains a denominator-level association statement rather than a galaxy-wide causal inference. At the same time, the S/N$\geq10$ and Seyfert-like proxy variants reduce the magnitude from -1.309 dex to -0.763 dex (Table~\ref{tab:robust}), a reduction of $>0.5$ dex. The Kewley et al.\ (2006) demarcation explicitly removes the retired/LINER-like low-ionization tail, so the larger -1.309 dex offset reflects in part that broader low-ionization branch rather than solely Seyfert-like excitation. The reduction in offset magnitude for stricter S/N and Seyfert-like subsets does not remove the morphology/aperture caveat: if the broad optical BPT-selected sample is more bulge-dominated than the star-forming controls, the -1.309 dex offset can be biased high relative to a galaxy-wide star-formation comparison. Matching on mass and redshift alone leaves morphology uncontrolled, and the fixed 3-arcsec fiber can under-sample extended disk star formation at low redshift; this is a known source of central-to-global mismatch \citep[e.g.,][]{harrison2017,ellison2021}. The central-kiloparsec aperture restriction is one reason this remains a local association rather than a galaxy-wide star-formation measurement. The most robust conclusion is therefore: broad optical BPT classification is associated with lower catalog sSFR in this fixed-size, SpecObjID-capped 60,000-galaxy pilot sample. Any causal star-formation change interpretation requires additional real data, including morphology and aperture controls, Seyfert/LINER separation, AGN luminosity or Eddington proxy, gas mass, environment, and time-domain/duty-cycle modelling.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:92:RP-1 is a selection-aware pilot association paper. Its key results are the preferred -1.309 dex offset, the persistence of the offset under a moderate mass--redshift caliper, and the reduction from -1.309 dex to -0.763 dex under stricter line-S/N and Seyfert-like subsets. The accompanying \emph{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up} is a denominator/proxy atlas and follow-up target list for the missing-observable requirements of future real-data tests. See the supplement's neighbor-rank/fiber-collision and CO/HI entries for the clearest examples of the remaining constraints.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:96:This paper uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The 60,000-row cache is derived from the public catalog joins and selection thresholds described above, and the manuscript conclusions remain conditional on the optical-emission-line denominator. No mock, synthetic, fake, placeholder, or toy data were used.
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json'; d=json.load(open(p)); print(json.dumps(d['counts'], indent=2, sort_keys=True)); print('csv_files', len(d['csv_files'])); print('json_files', len(d['json_files'])); print('pdf_files', len(d['pdf_files'])); print('tex_summaries', len(d['integrated_tex_summaries']));\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "csv_files": 35,
+  "integrated_tex_files": 9,
+  "json_files": 167,
+  "pdf_files": 43
+}
+csv_files 35
+json_files 167
+pdf_files 43
+tex_summaries 9
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json'; d=json.load(open(p)); print(d.keys()); print(json.dumps(d, indent=2)[:5000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+dict_keys(['created_utc', 'papers', 'run_id', 'scope', 'shared_counts', 'source_artifacts'])
+{
+  "created_utc": "2026-07-09T01:28:04Z",
+  "papers": [
+    {
+      "expected_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.pdf",
+      "figures": [
+        {
+          "bytes": 86693,
+          "dest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/figures/fig-bpt.pdf",
+          "exists": true,
+          "sha256": "99cc2411c43dcd41895d6cb55234648a8b8ffc498eaf8ffeea8ec534c119b999",
+          "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure1_bpt.pdf"
+        },
+        {
+          "bytes": 78775,
+          "dest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/figures/fig-matched-offsets.pdf",
+          "exists": true,
+          "sha256": "83d16bcbeada88091c5c68a4fd98fd96af9d3b8971bd361a55d0f1b16ca95661",
+          "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure2_matched_offsets.pdf"
+        }
+      ],
+      "index": 1,
+      "slug": "m1_rp1_sdss_agn_sfr",
+      "source_results_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json",
+      "status": "flagship short-paper draft",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex",
+      "title": "Optical AGN Hosts and Catalog Specific Star Formation in SDSS DR17: a Selection-Aware Matched-Control Pilot"
+    },
+    {
+      "expected_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.pdf",
+      "figures": [
+        {
+          "bytes": 14881,
+          "dest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/figures/fig-topic.pdf",
+          "exists": true,
+          "sha256": "1fd192eed0643ae73b54e06c311117fb6c3241c1f952bade758e56e32fe02d9f",
+          "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/figures/m1_rp2_environment_quenching_figure1.pdf"
+        }
+      ],
+      "index": 2,
+      "slug": "m1_rp2_environment_quenching",
+      "source_results_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json",
+      "status": "guarded proxy/denominator draft",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex",
+      "title": "SDSS density proxy for environmental quenching: selection-aware SDSS optical proxy integration"
+    },
+    {
+      "expected_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.pdf",
+      "figures": [
+        {
+          "bytes": 14966,
+          "dest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/figures/fig-topic.pdf",
+          "exists": true,
+          "sha256": "596db86bacb484ebec5750f3ef41ceb490d5b7c8a870b0c5cb4638f2aab92fe8",
+          "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/figures/m1_rp3_maintenance_heating_figure1.pdf"
+        }
+      ],
+      "index": 3,
+      "slug": "m1_rp3_maintenance_heating",
+      "source_results_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintena
+
+codex
+I have the shared counts and the flagship manuscript text. Next I’m checking for LaTeX-level breakage, unresolved citations/labels, and whether the manuscript’s quantitative claims point back to the manifest or source-analysis JSON rather than floating in prose.
+exec
+/bin/zsh -lc "sed -n '1,220p' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS optical AGN/sSFR matched-control pilot}
+\shortauthors{NebulaMind local integration}
+\begin{document}
+
+\title{Optical AGN Hosts and Catalog Specific Star Formation in SDSS DR17: a Selection-Aware Matched-Control Pilot}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible integration run; public SDSS DR17 data only}
+
+\begin{abstract}
+We integrate the strongest Galaxy Evolution pilot into a selection-aware short-paper draft: a matched-control comparison of catalog specific star formation in broad BPT optical AGN hosts and star-forming controls in SDSS DR17. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a flagship short-paper draft. No public page, live root, database, deployment, git, or external submission action is part of this run.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Purpose and claim contract}\label{sec:purpose}
+This is the flagship local integration draft. It tests an optical-classification-associated catalog-sSFR offset, not causal AGN feedback, gas depletion, or halo maintenance heating.
+
+The claim contract is intentionally conservative. Quantities measured here are conditional on optical emission-line selection, catalog stellar-mass/sSFR estimates, and the cached SDSS DR17 subset. Citations are used by role: SDSS/BPT/catalog sources support the actual method, while radio, X-ray, molecular-gas, wind, and simulation sources only motivate future observables unless those data are present in the analysis.
+
+
+\section{Shared parent sample and selection function}\label{sec:shared-selection}
+All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+
+Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+
+
+\section{Flagship integrated result: optical AGN and catalog sSFR}\label{sec:rp1-result}
+BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ line ratios using the standard Baldwin--Phillips--Terlevich diagram and Kauffmann/Kewley demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. The cached analysis table contains 39,553 star-forming galaxies, 12,234 intermediate/composite objects, 8,146 broad optical AGN, and 67 unclassified objects.
+
+The preferred estimator matches every broad optical AGN host to the nearest star-forming control in standardized $(\log M_\star,z)$ space, with replacement. This is an association design; controls are not matched in morphology, halo mass, gas mass, aperture scale, AGN luminosity, or duty-cycle phase.
+
+\begin{itemize}
+\item Broad BPT optical AGN vs. star-forming controls at S/N$\geq3$: $N=8,146$ matched pairs, median $\Delta\log {\rm sSFR}=-1.309$ dex with 95\% bootstrap interval $[-1.334,-1.283]$ dex.
+\item Moderate mass-redshift caliper $|\Delta\log M_\star|\leq0.05$, $|\Delta z|\leq0.002$: $N=7,867$ retained pairs (96.6\% target coverage), median offset -1.318 dex.
+\item A deterministic no-replacement diagnostic uses $N=7,419$ pairs and gives median offset -1.446 dex, but with visibly poorer mass balance; it is a stress test, not the preferred estimator.
+\item Raising the line-S/N threshold to 10 leaves $N=1,530$ matched pairs and reduces the median offset to -0.744 dex, showing sensitivity to the emission-line selection function.
+\item A narrower [N II] Seyfert-like proxy gives $N=2,114$ pairs and median offset -0.763 dex, reinforcing that subclass definitions change the effect size.
+\end{itemize}
+
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.73\textwidth]{../figures/fig-bpt.pdf}
+\caption{BPT line-ratio diagram for the cached SDSS DR17 optical emission-line subset used by the flagship RP-1 integration. This figure verifies the measured line-ratio denominator and broad optical classification; it does not by itself identify causal AGN feedback.}
+\label{fig:bpt}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/fig-matched-offsets.pdf}
+\caption{Matched-pair catalog-sSFR offsets for broad BPT optical AGN hosts minus nearest star-forming controls in stellar-mass--redshift space. The large negative offset is robust within the optical emission-line subset but remains selection- and subclass-dependent.}
+\label{fig:offsets}
+\end{figure*}
+
+
+\section{Reproducibility and safety}\label{sec:repro}
+This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+
+\section{Conclusion}\label{sec:conclusion}
+The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+
+\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+\bibitem[Stasinska et al.(2008)]{stasinska2008} Stasinska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+\bibitem[Stasinska et al.(2015)]{stasinska2015} Stasinska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodre, L. 2015, MNRAS, 449, 559
+\end{thebibliography}
+
+\end{document}
+
+exec
+/bin/zsh -lc "sed -n '1,240p' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS density proxy for environmental quenching}
+\shortauthors{NebulaMind local integration}
+\begin{document}
+
+\title{SDSS density proxy for environmental quenching: selection-aware SDSS optical proxy integration}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible integration run; public SDSS DR17 data only}
+
+\begin{abstract}
+We integrate the active proposal 'Separating internal and environmental quenching across stellar mass, halo mass, and redshift' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Purpose and claim contract}\label{sec:purpose}
+This draft preserves the active proposal title, 'Separating internal and environmental quenching across stellar mass, halo mass, and redshift', but narrows the supported claim to the cached SDSS optical measurement named in the results. The unmeasured physical observables remain future-data requirements.
+
+The claim contract is intentionally conservative. Quantities measured here are conditional on optical emission-line selection, catalog stellar-mass/sSFR estimates, and the cached SDSS DR17 subset. Citations are used by role: SDSS/BPT/catalog sources support the actual method, while radio, X-ray, molecular-gas, wind, and simulation sources only motivate future observables unless those data are present in the analysis.
+
+
+\section{Shared parent sample and selection function}\label{sec:shared-selection}
+All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+
+Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+
+
+\section{Topic-specific optical denominator or proxy result}\label{sec:topic-result}
+The consolidated proposal question is: Does a nearest-neighbour density proxy add quenched-fraction information beyond stellar mass in the SDSS emission-line sample? The integrated manuscript deliberately demotes the claim to the directly measured SDSS quantity. It is not a full physical-feedback test.
+
+\begin{itemize}
+\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+\item The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).
+\item The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].
+\item A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004.
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+\caption{Topic-specific SDSS DR17 optical denominator/proxy diagnostic for packet-gated-paper-to-wiki-reconciliation rp-2. The caption is intentionally narrow: this figure summarizes the cached optical result used for target definition or denominator design, not the unmeasured multi-survey physical claim.}
+\label{fig:topic}
+\end{figure}
+
+\section{Interpretation and missing observables}\label{sec:missing}
+SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page. The full proposal requires: group catalogues, robust central/satellite labels, halo masses, morphology, and multi-redshift selection functions.
+
+Mass and environment are known separable axes in low-redshift galaxy evolution, but a real environmental-quenching analysis requires group/halo and central-satellite information beyond this nearest-neighbour proxy \citep{peng2010,baldry2006,wetzel2013,goubert2024}.
+
+
+\section{Reproducibility and safety}\label{sec:repro}
+This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+
+\section{Conclusion}\label{sec:conclusion}
+The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+
+\bibitem[Baldry et al.(2006)]{baldry2006} Baldry, I.~K., Balogh, M.~L., Bower, R.~G., et al. 2006, MNRAS, 373, 469
+\bibitem[Goubert et al.(2024)]{goubert2024} Goubert, P.~H., Bluck, A.~F.~L., Piotrowska, J.~M., \& Maiolino, R. 2024, arXiv:2401.12953
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+\end{thebibliography}
+
+\end{document}
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:8000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "analysis_rows": 60000,
+  "bpt_counts": {
+    "agn": 8146,
+    "intermediate": 12234,
+    "star-forming": 39553,
+    "unclassified": 67
+  },
+  "data_release": "SDSS DR17 SkyServer via astroquery.sdss",
+  "files": {
+    "analysis_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+    "figure1_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure1_bpt.pdf",
+    "figure2_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/figures/figure2_matched_offsets.pdf",
+    "matched_pairs_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/matched_agn_sf_pairs.csv",
+    "raw_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/sdss_dr17_emission_line_sample.csv"
+  },
+  "group_medians": {
+    "agn": {
+      "median_logM": 10.79099,
+      "median_log_sSFR": -11.769829999999999,
+      "median_u_minus_r": 2.7576649999999994,
+      "median_z": 0.075976265,
+      "n": 8146
+    },
+    "intermediate": {
+      "median_logM": 10.62895,
+      "median_log_sSFR": -10.8564,
+      "median_u_minus_r": 2.5431500000000007,
+      "median_z": 0.079609505,
+      "n": 12234
+    },
+    "star-forming": {
+      "median_logM": 10.01737,
+      "median_log_sSFR": -9.909236,
+      "median_u_minus_r": 1.814429999999998,
+      "median_z": 0.06887668,
+      "n": 39553
+    },
+    "unclassified": {
+      "median_logM": 10.87501,
+      "median_log_sSFR": -12.06685,
+      "median_u_minus_r": 2.8580700000000014,
+      "median_z": 0.08311625,
+      "n": 67
+    }
+  },
+  "match_abs_delta_logM_median": 0.0044599999999999085,
+  "match_abs_delta_z_median": 0.00021079499999999973,
+  "match_distance_scaled_median": 0.013706693336996863,
+  "matched_delta_log_sSFR_mean_ci95_bootstrap": [
+    -1.2194772019150502,
+    -1.1835793853118095
+  ],
+  "matched_delta_log_sSFR_mean_dex": -1.201557615885097,
+  "matched_delta_log_sSFR_median_ci95_bootstrap": [
+    -1.3341385500000003,
+    -1.2821399375
+  ],
+  "matched_delta_log_sSFR_median_dex": -1.3088869999999995,
+  "matched_pairs": 8146,
+  "ols_adjusted_for_logM_z": {
+    "coef_is_agn_ci95": [
+      -1.2103153323534461,
+      -1.1873688115826728
+    ],
+    "coef_is_agn_log_sSFR_dex": -1.1988420719680595,
+    "coef_is_agn_se": 0.005853704278258507,
+    "coef_logM": -0.6590074792789541,
+    "coef_z": 6.926838817644406,
+    "n_regression": 47699
+  },
+  "query_top_n": 60000,
+  "raw_rows": 60000,
+  "revision_marker": "AUTOPILOT_RESEARCH_TOPICS_PROFESSIONAL_GEMINI_ASSIST_PASS_20260708T120000Z",
+  "run_id": "SDSS_AGN_SFR_PILOT_20260708T122000Z",
+  "safety": "read-only public SDSS query; local artifact writes only; no DB/API/page_versions/live wiki publish/deploy/git/cron"
+}
+
+codex
+The flagship draft has good local traceability for the main result: the 8,146 pairs and the median/CI are present in the source-analysis JSON, and the 60,000/249,917 denominator numbers are mirrored in the manifest and manuscript. I’m now checking for any unsupported numerical claims, file-path risks, or unsupported citation keys that could break compile or weaken provenance.
+exec
+/bin/zsh -lc "python -c \"from pathlib import Path; p=Path('/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex'); import re; txt=p.read_text(); keys=re.findall(r'\\\\citep\\{(["'^}]+)'"\\}', txt); print('citep_keys', keys); print('includes', re.findall(r'\\\\includegraphics\\[["'^'"\\]]*\\]\\{(["'^}]+)'"\\}', txt));\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json'; d=json.load(open(p)); print(json.dumps(d['counts'], indent=2, sort_keys=True)); print('source_package', d['source_package']); print('integrated_root', d['integrated_root']); print('real_data_policy', d['real_data_policy']);\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json'; d=json.load(open(p)); print(json.dumps(d['shared_counts'], indent=2, sort_keys=True));\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "bpt_counts": {
+    "agn": 8146,
+    "intermediate": 12234,
+    "star-forming": 39553,
+    "unclassified": 67
+  },
+  "cached_coverage": 0.24007970646254556,
+  "cached_rows": 60000,
+  "sn_threshold_counts": {
+    "sn_ge_10": 22311,
+    "sn_ge_3": 60000,
+    "sn_ge_5": 42446
+  },
+  "strict_public_sn_ge_3_total": 249917
+}
+
+ exited 1 in 0ms:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 216, in findall
+    return _compile(pattern, flags).findall(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 294, in _compile
+    p = _compiler.compile(pattern, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_compiler.py", line 745, in compile
+    p = _parser.parse(p, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 989, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 464, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 548, in _parse
+    code = _escape(source, this, state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 447, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.error: bad escape \c at position 0
+
+ succeeded in 0ms:
+{
+  "csv_files": 35,
+  "integrated_tex_files": 9,
+  "json_files": 167,
+  "pdf_files": 43
+}
+source_package /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_20260709T131026Z/candidates/cycle_06_package
+integrated_root /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z
+real_data_policy ['Never use mock, synthetic, fake, placeholder, or toy data.', 'Do not invent numeric values, sample sizes, citations, URLs, DOIs, arXiv IDs, ADS bibcodes, or figure results.', 'New quantitative claims must be traceable to the real local SDSS artifacts inventoried by this sprint or to a cited public source with URL/DOI/arXiv/ADS metadata.', "If a value is not present in the local real-data inventory or a cited public source, write 'not measured here' or 'needs real data'.", 'Literature-only sources may motivate future work; they do not become measured NebulaMind results.', 'The RP-1 flagship remains an optical SDSS/BPT association pilot unless real additional observables are supplied.']
+
+exec
+/bin/zsh -lc "python -c \"from pathlib import Path; p=Path('/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex'); import re; txt=p.read_text(); keys=re.findall(r'\\\\citep\\{(["'^}]+)'"\\}', txt); print('citep_keys', keys); print('includes', re.findall(r'\\\\includegraphics\\[["'^'"\\]]*\\]\\{(["'^}]+)'"\\}', txt));\"" in /Users/duhokim/NebulaMind/NebulaMind
+ exited 1 in 0ms:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 216, in findall
+    return _compile(pattern, flags).findall(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 294, in _compile
+    p = _compiler.compile(pattern, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_compiler.py", line 745, in compile
+    p = _parser.parse(p, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 989, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 464, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 548, in _parse
+    code = _escape(source, this, state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 447, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.error: bad escape \c at position 0
+
+codex
+I’ve confirmed the core result numerically against the local source-analysis JSON and the integration manifest. The remaining work is to separate real manuscript issues from already-documented guardrails, especially around unsupported causal language, citation provenance, and any TeX constructs that could fail in AASTeX.
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/PACKAGE_AUDIT.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_21_QUALITY_AUDIT.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"from pathlib import Path; import re; p=Path('/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex'); txt=p.read_text(); print('labels', re.findall(r'\\\\label\\{(["'^}]+)'"\\}', txt)); print('refs', re.findall(r'\\\\ref\\{(["'^}]+)'"\\}', txt));\"" in /Users/duhokim/NebulaMind/NebulaMind
+ exited 1 in 0ms:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 216, in findall
+    return _compile(pattern, flags).findall(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 294, in _compile
+    p = _compiler.compile(pattern, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_compiler.py", line 745, in compile
+    p = _parser.parse(p, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 989, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 464, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 548, in _parse
+    code = _escape(source, this, state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 447, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.error: bad escape \l at position 0
+
+ succeeded in 0ms:
+{
+  "audit_utc": "2026-07-09T05:27:42Z",
+  "candidate": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package",
+  "compile_results": [
+    {
+      "bad_markers": [],
+      "header": "%PDF",
+      "log": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.quality.compile.log",
+      "ok": true,
+      "pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.pdf",
+      "pdf_bytes": 259003,
+      "returncode": 0,
+      "sha256": "dd174880f11568d57bea67cc93acfaae2860f9c35083f21915ae3d19dc802b0a",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex"
+    },
+    {
+      "bad_markers": [],
+      "header": "%PDF",
+      "log": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.quality.compile.log",
+      "ok": true,
+      "pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.pdf",
+      "pdf_bytes": 548750,
+      "returncode": 0,
+      "sha256": "999e07da2f74ea285f0ea094ddf718ab0cdcd938c8a961cfe9bcdf9742778248",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex"
+    }
+  ],
+  "cycle": 21,
+  "fatal_failures": [
+    {
+      "missing_flagship_phrases": [
+        "not a causal"
+      ]
+    }
+  ],
+  "figures": [
+    {
+      "bytes": 86693,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/flagship_rp1/figures/fig-bpt.pdf",
+      "sha256": "99cc2411c43dcd41895d6cb55234648a8b8ffc498eaf8ffeea8ec534c119b999"
+    },
+    {
+      "bytes": 78775,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/flagship_rp1/figures/fig-matched-offsets.pdf",
+      "sha256": "83d16bcbeada88091c5c68a4fd98fd96af9d3b8971bd361a55d0f1b16ca95661"
+    },
+    {
+      "bytes": 16385,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-08.pdf",
+      "sha256": "eef8a9b385dfb97aa0cef8df24f363712f28140f8988a6a2b6cac169f1b8d61d"
+    },
+    {
+      "bytes": 16341,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-06.pdf",
+      "sha256": "abfc743a35167e4247288ffe0571531f839989078861f94c2fa49ed9914d79f2"
+    },
+    {
+      "bytes": 139945,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-07.pdf",
+      "sha256": "a20bf97de10b49f6c662f5e6c7f403d935b8615abf1c8dc9daddc7174f861d4a"
+    },
+    {
+      "bytes": 14913,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-05.pdf",
+      "sha256": "725dfb62948db7d4b868eef7b18ba9739ad814d821cc507d3a19c53c556943f9"
+    },
+    {
+      "bytes": 15267,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-04.pdf",
+      "sha256": "8bd1b0248cf0939fb2ba0a64155586b3f13a0dc2eff581e2ab63ae750481694c"
+    },
+    {
+      "bytes": 14881,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-01.pdf",
+      "sha256": "1fd192eed0643ae73b54e06c311117fb6c3241c1f952bade758e56e32fe02d9f"
+    },
+    {
+      "bytes": 247680,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-03.pdf",
+      "sha256": "31e5c88cd1e02bf868b18000814317477bbdf14cbbbb95b8f1708f0f107f4670"
+    },
+    {
+      "bytes": 14966,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_21_package/supplementary_denominator_atlas/figures/topic-02.pdf",
+      "sha256": "596db86bacb484ebec5750f3ef41ceb490d5b7c8a870b0c5cb4638f2aab92fe8"
+    }
+  ],
+  "flagship_required_missing": [
+    "not a causal"
+  ],
+  "numeric_invariants_missing_flagship": [],
+  "supplement_required_missing": []
+}
+
+ succeeded in 0ms:
+{
+  "audit_utc": "2026-07-09T01:41:23Z",
+  "counts": {
+    "fatal_failures": 0,
+    "figures_ok": 10,
+    "logs_ok": 2,
+    "outputs": 2,
+    "pdfs_ok": 2,
+    "total_figures": 10
+  },
+  "failures": [],
+  "figures": [
+    {
+      "bytes": 86693,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/figures/fig-bpt.pdf",
+      "sha256": "99cc2411c43dcd41895d6cb55234648a8b8ffc498eaf8ffeea8ec534c119b999"
+    },
+    {
+      "bytes": 78775,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/figures/fig-matched-offsets.pdf",
+      "sha256": "83d16bcbeada88091c5c68a4fd98fd96af9d3b8971bd361a55d0f1b16ca95661"
+    },
+    {
+      "bytes": 14881,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-01.pdf",
+      "sha256": "1fd192eed0643ae73b54e06c311117fb6c3241c1f952bade758e56e32fe02d9f"
+    },
+    {
+      "bytes": 14966,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-02.pdf",
+      "sha256": "596db86bacb484ebec5750f3ef41ceb490d5b7c8a870b0c5cb4638f2aab92fe8"
+    },
+    {
+      "bytes": 247680,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-03.pdf",
+      "sha256": "31e5c88cd1e02bf868b18000814317477bbdf14cbbbb95b8f1708f0f107f4670"
+    },
+    {
+      "bytes": 15267,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-04.pdf",
+      "sha256": "8bd1b0248cf0939fb2ba0a64155586b3f13a0dc2eff581e2ab63ae750481694c"
+    },
+    {
+      "bytes": 14913,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-05.pdf",
+      "sha256": "725dfb62948db7d4b868eef7b18ba9739ad814d821cc507d3a19c53c556943f9"
+    },
+    {
+      "bytes": 16341,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-06.pdf",
+      "sha256": "abfc743a35167e4247288ffe0571531f839989078861f94c2fa49ed9914d79f2"
+    },
+    {
+      "bytes": 139945,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-07.pdf",
+      "sha256": "a20bf97de10b49f6c662f5e6c7f403d935b8615abf1c8dc9daddc7174f861d4a"
+    },
+    {
+      "bytes": 16385,
+      "exists": true,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/figures/topic-08.pdf",
+      "sha256": "eef8a9b385dfb97aa0cef8df24f363712f28140f8988a6a2b6cac169f1b8d61d"
+    }
+  ],
+  "outputs": [
+    {
+      "caption_count": 2,
+      "compile_error_lines": [],
+      "compile_log": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.compile.log",
+      "compile_warning_count": 10,
+      "includegraphics_count": 2,
+      "label": "flagship",
+      "missing_required_phrases": [],
+      "pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.pdf",
+      "pdf_bytes": 236847,
+      "pdf_header": "%PDF",
+      "pdf_sha256": "3392f53534d8452ebb3db4191dff7855ebb13428dff768d45d847be9d5d8efac",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex"
+    },
+    {
+      "caption_count": 8,
+      "compile_error_lines": [],
+      "compile_log": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.compile.log",
+      "compile_warning_count": 19,
+      "includegraphics_count": 8,
+      "label": "supplement",
+      "missing_required_phrases": [],
+      "pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.pdf",
+      "pdf_bytes": 527135,
+      "pdf_header": "%PDF",
+      "pdf_sha256": "403a69d8fcf02c56bd3266db0de0363ea9c45c659d5a305861cfba7144b705e2",
+      "tex": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex"
+    }
+  ],
+  "package_id": "RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z"
+}
+
+exec
+/bin/zsh -lc "python -c \"from pathlib import Path; import re; p=Path('/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex'); txt=p.read_text(); print('labels', re.findall(r'\\\\label\\{(["'^}]+)'"\\}', txt)); print('refs', re.findall(r'\\\\ref\\{(["'^}]+)'"\\}', txt));\"" in /Users/duhokim/NebulaMind/NebulaMind
+ exited 1 in 0ms:
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 216, in findall
+    return _compile(pattern, flags).findall(string)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/__init__.py", line 294, in _compile
+    p = _compiler.compile(pattern, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_compiler.py", line 745, in compile
+    p = _parser.parse(p, flags)
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 989, in parse
+    p = _parse_sub(source, state, flags & SRE_FLAG_VERBOSE, 0)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 464, in _parse_sub
+    itemsappend(_parse(source, state, verbose, nested + 1,
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 548, in _parse
+    code = _escape(source, this, state)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/duhokim/.local/share/uv/python/cpython-3.11.15-macos-aarch64-none/lib/python3.11/re/_parser.py", line 447, in _escape
+    raise source.error("bad escape %s" % escape, len(escape))
+re.error: bad escape \l at position 0
+
+codex
+The package audit shows both PDFs compile, but there are TeX warnings. I’m reading the compile logs to see whether they’re just layout warnings or whether they point to unresolved citations, float issues, or missing references that would be worth a candidate-only cleanup.
+exec
+/bin/zsh -lc 'rg -n "Warning|undefined|Undefined|Overfull|Underfull|LaTeX Warning|Citation|Reference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.compile.log' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+3:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+4:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+7:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+8:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+11:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+12:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+exec
+/bin/zsh -lc 'rg -n "Warning|undefined|Undefined|Overfull|Underfull|LaTeX Warning|Citation|Reference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.compile.log' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+3:warning: supplementary_denominator_atlas.tex:43: Underfull \hbox (badness 1701) in paragraph at lines 42--43
+4:warning: supplementary_denominator_atlas.tex:47: Underfull \hbox (badness 1337) in paragraph at lines 46--47
+5:warning: supplementary_denominator_atlas.tex:100: Underfull \hbox (badness 2042) in paragraph at lines 99--100
+6:warning: supplementary_denominator_atlas.tex:159: Underfull \hbox (badness 1062) in paragraph at lines 158--159
+7:warning: supplementary_denominator_atlas.tex:186: Underfull \hbox (badness 2057) in paragraph at lines 185--186
+8:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 10000) in paragraph at lines 215--216
+9:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 6300) in paragraph at lines 215--216
+10:warning: supplementary_denominator_atlas.tex:232: Underfull \hbox (badness 10000) in paragraph at lines 231--232
+13:warning: supplementary_denominator_atlas.tex:43: Underfull \hbox (badness 1701) in paragraph at lines 42--43
+14:warning: supplementary_denominator_atlas.tex:47: Underfull \hbox (badness 1337) in paragraph at lines 46--47
+15:warning: supplementary_denominator_atlas.tex:100: Underfull \hbox (badness 2042) in paragraph at lines 99--100
+16:warning: supplementary_denominator_atlas.tex:159: Underfull \hbox (badness 1062) in paragraph at lines 158--159
+17:warning: supplementary_denominator_atlas.tex:186: Underfull \hbox (badness 2057) in paragraph at lines 185--186
+18:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 10000) in paragraph at lines 215--216
+19:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 6300) in paragraph at lines 215--216
+20:warning: supplementary_denominator_atlas.tex:232: Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+exec
+/bin/zsh -lc 'rg -n "Warning|undefined|Undefined|Overfull|Underfull|LaTeX Warning|Citation|Reference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.compile.log' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+3:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+4:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+7:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+8:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+11:warning: rp1_flagship_polished.tex:25: Underfull \hbox (badness 1342) in paragraph at lines 24--25
+12:warning: rp1_flagship_polished.tex:86: Underfull \hbox (badness 10000) in paragraph at lines 85--86
+
+exec
+/bin/zsh -lc 'rg -n "Warning|undefined|Undefined|Overfull|Underfull|LaTeX Warning|Citation|Reference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.compile.log' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+3:warning: supplementary_denominator_atlas.tex:43: Underfull \hbox (badness 1701) in paragraph at lines 42--43
+4:warning: supplementary_denominator_atlas.tex:47: Underfull \hbox (badness 1337) in paragraph at lines 46--47
+5:warning: supplementary_denominator_atlas.tex:100: Underfull \hbox (badness 2042) in paragraph at lines 99--100
+6:warning: supplementary_denominator_atlas.tex:159: Underfull \hbox (badness 1062) in paragraph at lines 158--159
+7:warning: supplementary_denominator_atlas.tex:186: Underfull \hbox (badness 2057) in paragraph at lines 185--186
+8:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 10000) in paragraph at lines 215--216
+9:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 6300) in paragraph at lines 215--216
+10:warning: supplementary_denominator_atlas.tex:232: Underfull \hbox (badness 10000) in paragraph at lines 231--232
+13:warning: supplementary_denominator_atlas.tex:43: Underfull \hbox (badness 1701) in paragraph at lines 42--43
+14:warning: supplementary_denominator_atlas.tex:47: Underfull \hbox (badness 1337) in paragraph at lines 46--47
+15:warning: supplementary_denominator_atlas.tex:100: Underfull \hbox (badness 2042) in paragraph at lines 99--100
+16:warning: supplementary_denominator_atlas.tex:159: Underfull \hbox (badness 1062) in paragraph at lines 158--159
+17:warning: supplementary_denominator_atlas.tex:186: Underfull \hbox (badness 2057) in paragraph at lines 185--186
+18:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 10000) in paragraph at lines 215--216
+19:warning: supplementary_denominator_atlas.tex:216: Underfull \hbox (badness 6300) in paragraph at lines 215--216
+20:warning: supplementary_denominator_atlas.tex:232: Underfull \hbox (badness 10000) in paragraph at lines 231--232
+
+codex
+I’ve ruled out hard compile failures. The only TeX issues in the logs are underfull boxes, which are cosmetic. I’m now checking the two manuscript `.tex` files themselves for any prohibited synthetic-data language or overreaching claims that still survived the integration pass.
+exec
+/bin/zsh -lc "nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex | sed -n '20,110p'" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc 'rg -n "mock|synthetic|fake|placeholder|toy|simulated|causal|volume-complete|random|not a causal|not causal" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+    20	
+    21	The claim contract is intentionally conservative. Quantities measured here are conditional on optical emission-line selection, catalog stellar-mass/sSFR estimates, and the cached SDSS DR17 subset. Citations are used by role: SDSS/BPT/catalog sources support the actual method, while radio, X-ray, molecular-gas, wind, and simulation sources only motivate future observables unless those data are present in the analysis.
+    22	
+    23	
+    24	\section{Shared parent sample and selection function}\label{sec:shared-selection}
+    25	All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+    26	
+    27	\begin{deluxetable*}{lrrr}
+    28	\tabletypesize{\scriptsize}
+    29	\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+    30	\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+    31	\startdata
+    32	SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+    33	plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+    34	plus galSpecLine join & 416,554 & -- & 0.831 \\
+    35	four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+    36	four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+    37	four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+    38	four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+    39	\enddata
+    40	\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+    41	\end{deluxetable*}
+    42	
+    43	The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+    44	
+    45	Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+    46	
+    47	
+    48	\section{Measurements}\label{sec:measurements}
+    49	The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+    50	
+    51	
+    52	\section{Flagship integrated result: optical AGN and catalog sSFR}\label{sec:rp1-result}
+    53	BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ line ratios using the standard Baldwin--Phillips--Terlevich diagram and Kauffmann/Kewley demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. The cached analysis table contains 39,553 star-forming galaxies, 12,234 intermediate/composite objects, 8,146 broad optical AGN, and 67 unclassified objects.
+    54	
+    55	The preferred estimator matches every broad optical AGN host to the nearest star-forming control in standardized $(\log M_\star,z)$ space, with replacement. This is an association design; controls are not matched in morphology, halo mass, gas mass, aperture scale, AGN luminosity, or duty-cycle phase.
+    56	
+    57	\begin{itemize}
+    58	\item Broad BPT optical AGN vs. star-forming controls at S/N$\geq3$: $N=8,146$ matched pairs, median $\Delta\log {\rm sSFR}=-1.309$ dex with 95\% bootstrap interval $[-1.334,-1.283]$ dex.
+    59	\item Moderate mass-redshift caliper $|\Delta\log M_\star|\leq0.05$, $|\Delta z|\leq0.002$: $N=7,867$ retained pairs (96.6\% target coverage), median offset -1.318 dex.
+    60	\item A deterministic no-replacement diagnostic uses $N=7,419$ pairs and gives median offset -1.446 dex, but with visibly poorer mass balance; it is a stress test, not the preferred estimator.
+    61	\item Raising the line-S/N threshold to 10 leaves $N=1,530$ matched pairs and reduces the median offset to -0.744 dex, showing sensitivity to the emission-line selection function.
+    62	\item A narrower [N II] Seyfert-like proxy gives $N=2,114$ pairs and median offset -0.763 dex, reinforcing that subclass definitions change the effect size.
+    63	\end{itemize}
+    64	
+    65	
+    66	\begin{figure*}
+    67	\centering
+    68	\includegraphics[width=0.73\textwidth]{../figures/fig-bpt.pdf}
+    69	\caption{BPT line-ratio diagram for the cached SDSS DR17 optical emission-line subset used by the flagship RP-1 integration. This figure verifies the measured line-ratio denominator and broad optical classification; it does not by itself identify causal AGN feedback.}
+    70	\label{fig:bpt}
+    71	\end{figure*}
+    72	
+    73	\begin{figure*}
+    74	\centering
+    75	\includegraphics[width=0.86\textwidth]{../figures/fig-matched-offsets.pdf}
+    76	\caption{Matched-pair catalog-sSFR offsets for broad BPT optical AGN hosts minus nearest star-forming controls in stellar-mass--redshift space. The large negative offset is robust within the optical emission-line subset but remains selection- and subclass-dependent.}
+    77	\label{fig:offsets}
+    78	\end{figure*}
+    79	
+    80	
+    81	\section{Reproducibility and safety}\label{sec:repro}
+    82	This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+    83	
+    84	\section{Conclusion}\label{sec:conclusion}
+    85	The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+    86	
+    87	
+    88	\begin{thebibliography}{}
+    89	\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+    90	\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    91	\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+    92	\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+    93	\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+    94	\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+    95	\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+    96	\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+    97	
+    98	\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+    99	\bibitem[Stasinska et al.(2008)]{stasinska2008} Stasinska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+   100	\bibitem[Stasinska et al.(2015)]{stasinska2015} Stasinska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodre, L. 2015, MNRAS, 449, 559
+   101	\end{thebibliography}
+   102	
+   103	\end{document}
+
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:80:The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:19:This is the flagship local integration draft. It tests an optical-classification-associated catalog-sSFR offset, not causal AGN feedback, gas depletion, or halo maintenance heating.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:25:All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:69:\caption{BPT line-ratio diagram for the cached SDSS DR17 optical emission-line subset used by the flagship RP-1 integration. This figure verifies the measured line-ratio denominator and broad optical classification; it does not by itself identify causal AGN feedback.}
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:85:The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+
+exec
+/bin/zsh -lc "nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex | sed -n '20,120p'" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+    20	
+    21	The claim contract is intentionally conservative. Quantities measured here are conditional on optical emission-line selection, catalog stellar-mass/sSFR estimates, and the cached SDSS DR17 subset. Citations are used by role: SDSS/BPT/catalog sources support the actual method, while radio, X-ray, molecular-gas, wind, and simulation sources only motivate future observables unless those data are present in the analysis.
+    22	
+    23	
+    24	\section{Shared parent sample and selection function}\label{sec:shared-selection}
+    25	All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+    26	
+    27	\begin{deluxetable*}{lrrr}
+    28	\tabletypesize{\scriptsize}
+    29	\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+    30	\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+    31	\startdata
+    32	SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+    33	plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+    34	plus galSpecLine join & 416,554 & -- & 0.831 \\
+    35	four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+    36	four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+    37	four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+    38	four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+    39	\enddata
+    40	\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+    41	\end{deluxetable*}
+    42	
+    43	The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+    44	
+    45	Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+    46	
+    47	
+    48	\section{Measurements}\label{sec:measurements}
+    49	The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+    50	
+    51	
+    52	\section{Topic-specific optical denominator or proxy result}\label{sec:topic-result}
+    53	The consolidated proposal question is: Does a nearest-neighbour density proxy add quenched-fraction information beyond stellar mass in the SDSS emission-line sample? The integrated manuscript deliberately demotes the claim to the directly measured SDSS quantity. It is not a full physical-feedback test.
+    54	
+    55	\begin{itemize}
+    56	\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+    57	\item The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).
+    58	\item The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].
+    59	\item A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004.
+    60	\end{itemize}
+    61	
+    62	
+    63	\begin{figure}
+    64	\centering
+    65	\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+    66	\caption{Topic-specific SDSS DR17 optical denominator/proxy diagnostic for packet-gated-paper-to-wiki-reconciliation rp-2. The caption is intentionally narrow: this figure summarizes the cached optical result used for target definition or denominator design, not the unmeasured multi-survey physical claim.}
+    67	\label{fig:topic}
+    68	\end{figure}
+    69	
+    70	\section{Interpretation and missing observables}\label{sec:missing}
+    71	SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page. The full proposal requires: group catalogues, robust central/satellite labels, halo masses, morphology, and multi-redshift selection functions.
+    72	
+    73	Mass and environment are known separable axes in low-redshift galaxy evolution, but a real environmental-quenching analysis requires group/halo and central-satellite information beyond this nearest-neighbour proxy \citep{peng2010,baldry2006,wetzel2013,goubert2024}.
+    74	
+    75	
+    76	\section{Reproducibility and safety}\label{sec:repro}
+    77	This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+    78	
+    79	\section{Conclusion}\label{sec:conclusion}
+    80	The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+    81	
+    82	
+    83	\begin{thebibliography}{}
+    84	\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+    85	\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    86	\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+    87	\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+    88	\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+    89	\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+    90	\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+    91	\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+    92	
+    93	\bibitem[Baldry et al.(2006)]{baldry2006} Baldry, I.~K., Balogh, M.~L., Bower, R.~G., et al. 2006, MNRAS, 373, 469
+    94	\bibitem[Goubert et al.(2024)]{goubert2024} Goubert, P.~H., Bluck, A.~F.~L., Piotrowska, J.~M., \& Maiolino, R. 2024, arXiv:2401.12953
+    95	\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+    96	\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+    97	\end{thebibliography}
+    98	
+    99	\end{document}
+
+codex
+I’ve got the likely review points now. Before I write the findings, I’m checking one last provenance detail: whether the supplement’s density/quenching numbers live in a local results JSON, or whether they’re only embedded in prose and therefore a traceability gap for the integrator.
+exec
+/bin/zsh -lc "rg -n \"3,456|2710|0\\.230|0\\.181|0\\.041|0\\.059|0\\.032|10th-neighbour|quenched fraction|high-density\" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/data/source_analysis_results.json:27:    "Among massive hosts, the high-density quartile has optical AGN fraction 0.509; the low-density quartile has 0.367.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex:56:\item Among massive hosts, the high-density quartile has optical AGN fraction 0.509; the low-density quartile has 0.367.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/data/source_analysis_results.json:23:  "pilot_question": "At what stellar-mass scale do quenched fraction and optical AGN incidence rise in the same SDSS denominator?",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/data/source_analysis_results.json:33:    "The first stellar-mass bin with quenched fraction above 0.5 is 11.0-12.5.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:53:The consolidated proposal question is: At what stellar-mass scale do quenched fraction and optical AGN incidence rise in the same SDSS denominator? The integrated manuscript deliberately demotes the claim to the directly measured SDSS quantity. It is not a full physical-feedback test.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:56:\item The first stellar-mass bin with quenched fraction above 0.5 is 11.0-12.5.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:6:    "fraction": 0.2304,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:13:    0.059135
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:18:    "k": 2710,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:22:  "lpm_high_density_coeff": 0.03249480778035638,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:28:    "The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:29:    "The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:30:    "The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json:31:    "A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004."
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:56:\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:57:\item The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:58:\item The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:59:\item A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:11:  "pilot_question": "What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation?",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:19:    "Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.",
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/CYCLE_14_ACTUAL_RESEARCH_RESPONSE.md:15:- Added a clearer projection-effect warning to the 10th-neighbor section and clarified the reported `0.032 +/- 0.004` as coefficient uncertainty.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:53:The consolidated proposal question is: What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation? The integrated manuscript deliberately demotes the claim to the directly measured SDSS quantity. It is not a full physical-feedback test.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:57:\item Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:68:We establish a relative neighbor-count baseline within the emission-line denominator that can later be joined to group catalogs and halo masses. The 10th-neighbor index is the rank of the 10th nearest companion in projected sky separation within this redshift-limited sample; it is an internal ordinal rank within this selection-biased sample and does not map to physical environmental volume density or halo density. Because no additional line-of-sight velocity window is imposed beyond the redshift slice, the statistic is especially susceptible to projection effects. The projected-neighbor ranking is computed within the full $0.02<z<0.12$ redshift slice, with no additional line-of-sight velocity window imposed beyond those sample limits. The SDSS 55-arcsec fiber-collision limit systematically removes close neighbors in dense regions, so the 10th-neighbor proxy is biased before any physical interpretation is attempted. We emphasize that the SDSS 55-arcsec fiber collision limit systematically biases this index in dense environments, precluding its use as a physical density metric without forward-modeled corrections. The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbor index. The high-index quartile has a low-sSFR emission-line fraction of 0.230 (3,456/15,000), while the low-index quartile has 0.181 (2,710/15,000). The bootstrap high-minus-low interval is [0.041, 0.059], and a linear probability model adjusted for log stellar mass and redshift gives a high-index coefficient of 0.032 +/- 0.004 coefficient uncertainty. The follow-up ingredients are group catalogues, robust central/satellite labels, halo masses, a spectroscopic fiber-collision correction at the 55-arcsec scale, morphology, and multi-redshift selection functions. Within this selection-biased emission-line sample, the 10th-neighbor statistic is only a relative local rank, not a physical volume density and not a substitute for central/satellite labels or a volume-complete halo-density measurement. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:46:\item The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:47:\item The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:48:\item The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:49:\item A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:116:\item Among massive hosts, the high-density quartile has optical AGN fraction 0.509; the low-density quartile has 0.367.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:135:\textbf{Measured SDSS question.} At what stellar-mass scale do quenched fraction and optical AGN incidence rise in the same SDSS denominator?
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:139:\item The first stellar-mass bin with quenched fraction above 0.5 is 11.0-12.5.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:205:\textbf{Measured SDSS question.} What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation?
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex:210:\item Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.
+
+exec
+/bin/zsh -lc "find /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z -name 'source_analysis_results.json' | wc -l" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+       9
+
+exec
+/bin/zsh -lc "python -c \"import json,glob,os; base='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z';
+for path in glob.glob(base+'/**/data/source_analysis_results.json', recursive=True):
+    d=json.load(open(path));
+    txt=json.dumps(d)
+    if any(s in txt for s in ['0.230','0.181','0.041','0.059','0.032','3456','2710','10th-neighbour','quenched']):
+        print(path)
+        print(txt[:1200])
+        break
+\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/data/source_analysis_results.json
+{"card_id": "rp-3", "figure_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/figures/m1_rp3_maintenance_heating_figure1.pdf", "full_proposal_requires": "X-ray cavity/cooling-luminosity measurements, radio jet powers, halo-selected parent catalogues, and nondetection modelling.", "interpretation_guard": "SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page.", "massive_agn_fraction": {"fraction": 0.4298773929877393, "k": 3997, "n": 9298, "se": 0.005134068554795429}, "massive_quenched_agn_fraction": {"fraction": 0.6073748902546093, "k": 3459, "n": 5695, "se": 0.006470987903713825}, "massive_quenched_rows": 5695, "massive_rows": 9298, "method": "packet-gated-paper-to-wiki-reconciliation", "pilot_question": "Among massive, low-sSFR SDSS emission-line galaxies, what optical AGN fraction is available as a denominator for X-ray/radio maintenance-heating follow-up?", "proposal_title": "Empirical duty-cycle constraints on AGN maintenance heating in massive halos", "result_bullets": ["The massive subset (logM >= 10.8)
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/data/source_analysis_results.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:10000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "card_id": "rp-2",
+  "figure_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/figures/m1_rp2_environment_quenching_figure1.pdf",
+  "full_proposal_requires": "group catalogues, robust central/satellite labels, halo masses, morphology, and multi-redshift selection functions.",
+  "high_density_quenched": {
+    "fraction": 0.2304,
+    "k": 3456,
+    "n": 15000,
+    "se": 0.003438176260752203
+  },
+  "high_minus_low_ci": [
+    0.04059666666666669,
+    0.059135
+  ],
+  "interpretation_guard": "SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page.",
+  "low_density_quenched": {
+    "fraction": 0.18066666666666667,
+    "k": 2710,
+    "n": 15000,
+    "se": 0.0031414033193486656
+  },
+  "lpm_high_density_coeff": 0.03249480778035638,
+  "lpm_high_density_se": 0.003707733046841099,
+  "method": "packet-gated-paper-to-wiki-reconciliation",
+  "pilot_question": "Does a nearest-neighbour density proxy add quenched-fraction information beyond stellar mass in the SDSS emission-line sample?",
+  "proposal_title": "Separating internal and environmental quenching across stellar mass, halo mass, and redshift",
+  "result_bullets": [
+    "The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy.",
+    "The high-density quartile has quenched fraction 0.230 (3,456/15,000); the low-density quartile has 0.181 (2,710/15,000).",
+    "The bootstrap high-minus-low quenched-fraction interval is [0.041, 0.059].",
+    "A linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004."
+  ],
+  "run_id": "SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z",
+  "sample_rows": 60000,
+  "short_title": "SDSS density proxy for environmental quenching",
+  "slug": "m1_rp2_environment_quenching",
+  "source_sample": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv"
+}
+
+exec
+/bin/zsh -lc "nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex | sed -n '200,240p'" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+exec
+/bin/zsh -lc "nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex | sed -n '80,92p'" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+    80	
+    81	\section{Reproducibility and safety}\label{sec:repro}
+    82	This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+    83	
+    84	\section{Conclusion}\label{sec:conclusion}
+    85	The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+    86	
+    87	
+    88	\begin{thebibliography}{}
+    89	\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+    90	\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    91	\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+    92	\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json'; d=json.load(open(p)); print(json.dumps(d['integrated_tex_summaries'], indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+[
+  {
+    "abstract": "We integrate the strongest Galaxy Evolution pilot into a selection-aware short-paper draft: a matched-control comparison of catalog specific star formation in broad BPT optical AGN hosts and star-forming controls in SDSS DR17. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a flagship short-paper draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9666,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex",
+    "sha256": "69409b90a0479f23a84991da03dc514daec083c93145505a4b4d2dd8ca58e51b",
+    "title": "Optical AGN Hosts and Catalog Specific Star Formation in SDSS DR17: a Selection-Aware Matched-Control Pilot"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Separating internal and environmental quenching across stellar mass, halo mass, and redshift' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9257,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex",
+    "sha256": "6f879108b0889194069d7f56cfa194433db87cb751ec50a51e758652f06c2de2",
+    "title": "SDSS density proxy for environmental quenching: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Empirical duty-cycle constraints on AGN maintenance heating in massive halos' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9253,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.tex",
+    "sha256": "0cab9f8bd9614a68ed067043f211be6f4d0372ca97c8d41004b3c9fb49da9583",
+    "title": "Optical-AGN denominator for maintenance-heating follow-up: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Escape versus recycling: the fate of AGN-driven multiphase outflows' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9180,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex",
+    "sha256": "53136bb1594ca816064601098db5378e48d276d2ed27561911c7560201d2c90f",
+    "title": "SDSS high-excitation AGN denominator for outflow escape tests: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Environmental dependence of radio-jet coupling efficiency in galaxy gas' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9039,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex",
+    "sha256": "560b68a8e59f35d9195c18216618a5491d3683cb13120c06ce10a27ad2b23e4e",
+    "title": "Environment proxy for optical AGN in massive SDSS hosts: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Locating the transition from stellar-feedback to AGN-feedback regulation' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9247,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex",
+    "sha256": "b7916767462d58a17c5aa36371e5857d802fa6c685ffddb23f326dcd817495b3",
+    "title": "SDSS mass transition in quenching and optical AGN incidence: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'A multiphase, common-denominator census of AGN-driven outflows' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9303,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex",
+    "sha256": "24c8adf2a69c03a0c942f1c10c9ee873d1cd2450d4e63e0c8449954995063204",
+    "title": "Common-denominator optical tracer census in SDSS: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Distinguishing molecular-gas depletion from suppressed star-formation efficiency in quenched galaxies' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9313,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_integrated.tex",
+    "sha256": "c5ac387b4b6aea82f434889b58cc9ea99896e1fbc8c3390ba6950babbde54c9d",
+    "title": "Optical denominator for gas-fraction versus efficiency tests: selection-aware SDSS optical proxy integration"
+  },
+  {
+    "abstract": "We integrate the active proposal 'Forward-modelled validation of cosmological feedback prescriptions' as a guarded SDSS DR17 optical denominator/proxy draft rather than as a completed physical-feedback paper. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a guarded SDSS optical proxy/denominator draft. No public page, live root, database, deployment, git, or external submission action is part of this run.",
+    "bytes": 9357,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex",
+    "sha256": "1486032a4182c2203a5a3f18546e712b7a9489a8b357a085f98b0b5ae0d48784",
+    "title": "SDSS target vector for feedback-model validation: selection-aware SDSS optical proxy integration"
+  }
+]
+
+codex
+I’ve confirmed the main scientific counts, but I want to close the loop on the representativeness diagnostics too. Those percentage-difference claims need a local provenance trail just like the headline 8,146/−1.309 result.
+exec
+/bin/zsh -lc "rg -n \"2\\.03|1\\.63|0\\.58|cached-minus-public|representativeness diagnostic|marginal checks|redshift, stellar-mass, or sSFR bin\" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/05_m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/06_m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:213:The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps {pct(selection['ssfr_low_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-12<\log {{\rm sSFR}}<-11$ parent bin but {pct(selection['ssfr_star_forming_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-10<\log {{\rm sSFR}}<-9.5$ bin. Cached-versus-public marginal checks show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are {fmt(red['max_abs_fraction_difference_pp'],2)}, {fmt(mass['max_abs_fraction_difference_pp'],2)}, and {fmt(ssfr['max_abs_fraction_difference_pp'],2)} percentage points, respectively. That check is reassuring but does not remove the capped-cache limitation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json:105:      "quenched_fraction": 0.5810026385224274,
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/03_m1_rp3_maintenance_heating/aastex/m1_rp3_maintenance_heating_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/04_m2_p1_outflow_escape_recycling/aastex/m2_p1_outflow_escape_recycling_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/08_m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/decision-package/RP1_FLAGSHIP_WITH_SUPPLEMENT_20260709T013510Z/flagship_rp1/aastex/rp1_flagship_polished.tex:42:The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Cached-versus-public marginal checks show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are 2.03, -1.63, and -0.58 percentage points, respectively. That check is reassuring but does not remove the capped-cache limitation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex:49:The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Marginal distribution checks between the pilot sample and the full public parent show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are 2.03, -1.63, and -0.58 percentage points, respectively. That check is reassuring but does not remove the fixed-size-sample limitation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/07_m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+exec
+/bin/zsh -lc "rg -n \"representativeness|fraction difference|2\\.03|1\\.63|0\\.58|bin\" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:13:We integrate the strongest Galaxy Evolution pilot into a selection-aware short-paper draft: a matched-control comparison of catalog specific star formation in broad BPT optical AGN hosts and star-forming controls in SDSS DR17. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a flagship short-paper draft. No public page, live root, database, deployment, git, or external submission action is part of this run.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:43:The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:82:This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json'; d=json.load(open(p)); print(d.keys());\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json,glob; base='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z';
+for path in glob.glob(base+'/**/data/source_analysis_results.json', recursive=True):
+    d=json.load(open(path));
+    txt=json.dumps(d)
+    if '2.03' in txt or '1.63' in txt or '0.58' in txt or 'cached-minus-public' in txt:
+        print(path)
+        print(txt[:3000])
+        break
+\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+dict_keys(['analysis_rows', 'bpt_counts', 'data_release', 'files', 'group_medians', 'match_abs_delta_logM_median', 'match_abs_delta_z_median', 'match_distance_scaled_median', 'matched_delta_log_sSFR_mean_ci95_bootstrap', 'matched_delta_log_sSFR_mean_dex', 'matched_delta_log_sSFR_median_ci95_bootstrap', 'matched_delta_log_sSFR_median_dex', 'matched_pairs', 'ols_adjusted_for_logM_z', 'query_top_n', 'raw_rows', 'revision_marker', 'run_id', 'safety'])
+
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/09_m3_p3_simulation_validation/data/source_analysis_results.json
+{"agn_fraction_range": [0.0027030347708563705, 0.5202082816761716], "card_id": "p3", "figure_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/figures/m3_p3_simulation_validation_figure1.pdf", "full_proposal_requires": "simulation mocks passed through the SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models.", "interpretation_guard": "SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page.", "method": "debate-map-to-wiki-rebuild", "pilot_question": "What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation?", "proposal_title": "Forward-modelled validation of cosmological feedback prescriptions", "quenched_fraction_range": [0.005283204324855633, 0.7292338209769402], "result_bullets": ["The pilot writes 15 mass-redshift cells with n >= 50 as a compact validation vector.", "Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.", "The output is an observed target vector for simulation forward modelling, not a direct simulation comparison."], "run_id": "SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z", "sample_rows": 60000, "short_title": "SDSS target vector for feedback-model validation", "slug": "m3_p3_simulation_validation", "source_sample": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv", "target_vector_cells": [{"agn_fraction": 0.002902757619738752, "mass_bin": "8.0-9.5", "median_u_minus_r": 1.5324300000000015, "n": 6201, "quenched_fraction": 0.006450572488308337, "z_bin": "0.02-0.05"}, {"agn_fraction": 0.0006105006105006105, "mass_bin": "8.0-9.5", "median_u_minus_r": 1.378694999999999, "n": 1638, "quenched_fraction": 0.0006105006105006105, "z_bin": "0.05-0.08"}, {"agn_fraction": 0.01, "mass_bin": "8.0-9.5", "median_u_minus_r": 1.0446000000000009, "n": 300, "quenched_fraction": 0.006666666666666667, "z_bin": "0.08-0.12"}, {"agn_fraction": 0.030219018574993067, "mass_bin": "9.5-10.0", "median_u_minus_r": 1.8540899999999991, "n": 3607, "quenched_fraction": 0.06099251455503188, "z_bin": "0.02-0.05"}, {"agn_fraction": 0.008417230566100017, "mass_bin": "9.5-10.0", "median_u_minus_r": 1.6964299999999994, "n": 6059, "quenched_fraction": 0.013038455190625516, "z_bin": "0.05-0.08"}, {"agn_fraction": 0.0013717421124828531, "mass_bin": "9.5-10.0", "median_u_minus_r": 1.5156199999999984, "n": 2187, "quenched_fraction": 0.003200731595793324, "z_bin": "0.08-0.12"}, {"agn_fraction": 0.15361242403781228, "mass_bin": "10.0-10.5", "median_u_minus_r": 2.2637100000000006, "n": 2962, "quenched_fraction": 0.25557056043214044, "z_bin": "0.02-0.05"}, {"agn_fraction": 0.09022556390977443, "mass_bin": "10.0-10.5", "median_u_minus_r":
+
+exec
+/bin/zsh -lc 'rg -n "max_abs_fraction_difference_pp|cached_vs_public|representativeness|fraction_difference_pp|fraction difference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:213:The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps {pct(selection['ssfr_low_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-12<\log {{\rm sSFR}}<-11$ parent bin but {pct(selection['ssfr_star_forming_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-10<\log {{\rm sSFR}}<-9.5$ bin. Cached-versus-public marginal checks show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are {fmt(red['max_abs_fraction_difference_pp'],2)}, {fmt(mass['max_abs_fraction_difference_pp'],2)}, and {fmt(ssfr['max_abs_fraction_difference_pp'],2)} percentage points, respectively. That check is reassuring but does not remove the capped-cache limitation.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py:331:    represent = read_json(Path(manifest["source_artifacts"]["representativeness_json"]))
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:13:We integrate the strongest Galaxy Evolution pilot into a selection-aware short-paper draft: a matched-control comparison of catalog specific star formation in broad BPT optical AGN hosts and star-forming controls in SDSS DR17. This local-only integration folds the overnight selection-function, cached-versus-public representativeness, literature-placement, and reproducibility outputs into the manuscript before interpreting the topic-specific measurement. The resulting status is a flagship short-paper draft. No public page, live root, database, deployment, git, or external submission action is part of this run.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:45:Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex:82:This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+
+exec
+/bin/zsh -lc "sed -n '180,230p' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/build_flagship_decision_package.py" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc 'rg -n "max_abs_fraction_difference_pp|cached_vs_public|representativeness|fraction_difference_pp|fraction difference" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/candidates/cycle_21_package/flagship_rp1/aastex/rp1_flagship_polished.tex' in /Users/duhokim/NebulaMind/NebulaMind
+ exited 1 in 0ms:
+ succeeded in 0ms:
+\usepackage{{booktabs}}
+\shorttitle{{Selection-aware SDSS optical AGN/sSFR pilot}}
+\shortauthors{{NebulaMind local decision package}}
+\begin{{document}}
+
+\title{{Optical AGN Hosts and Catalog Specific Star Formation in SDSS DR17: A Selection-Aware Matched-Control Pilot}}
+\author{{NebulaMind Research Autopilot}}
+\affiliation{{Local reproducible decision package; public SDSS DR17 data only}}
+
+\begin{{abstract}}
+We present a local, selection-aware SDSS DR17 pilot measuring the association between broad optical BPT classification and catalog specific star-formation rate. The analysis uses a capped 60,000-row emission-line cache drawn from a strict public four-line S/N$\geq3$ parent of {fmt(selection['strict_sdss_sn_ge_3_total'])} galaxies. Broad BPT optical AGN hosts are matched to star-forming controls in stellar mass and redshift. The preferred matched comparison yields {fmt(base['matched_pairs'])} pairs and a median $\Delta\log {{\rm sSFR}}$ of {fmt(base['median_delta_log_sSFR'])} dex, with a bootstrap interval of [{fmt(base.get('median_delta_ci95_low'))},{fmt(base.get('median_delta_ci95_high'))}] dex. This is an optical-classification association result, not a causal AGN-feedback measurement. Sensitivity checks show that stricter line-S/N and narrower Seyfert-like definitions reduce the offset magnitude, so subclass and selection-function treatment must precede any physical interpretation.
+\end{{abstract}}
+
+\keywords{{galaxies: active --- galaxies: star formation --- galaxies: evolution --- surveys --- methods: statistical}}
+
+\section{{Question and claim boundary}}
+This polished local draft is the flagship output from the nine-paper Galaxy Evolution integration. It asks a narrow question: within a low-redshift SDSS DR17 optical emission-line denominator, do broad BPT optical AGN hosts have lower catalog sSFR than mass--redshift matched star-forming controls? The answer is yes for the cached denominator analyzed here. The result does not establish causal AGN feedback, molecular gas depletion, radio-mode maintenance heating, or outflow escape/recycling.
+
+The claim boundary is part of the result. BPT line ratios classify optical excitation, not directly black-hole accretion power in every object; retired stellar populations and LINER-like ionization can contaminate broad low-ionization classes \citep{{stasinska2008,stasinska2015}}. Therefore the paper uses the phrase ``broad optical BPT AGN'' and treats stronger Seyfert-like cuts as a sensitivity check rather than as an interchangeable label.
+
+\section{{Data and shared selection}}
+The data backbone is public SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates \citep{{york2000,sdssdr17,brinchmann2004}}. The cached analysis table is capped at {fmt(selection['cached_rows'])} rows and ordered by \texttt{{specObjID}}; it is not a random sample. The strict public four-line S/N$\geq3$ eligible parent contains {fmt(selection['strict_sdss_sn_ge_3_total'])} rows, so the cache covers {pct(selection['cached_coverage_of_strict_sdss_sn_ge_3'])}\% of that strict parent.
+
+\begin{{deluxetable*}}{{lrrr}}
+\tabletypesize{{\scriptsize}}
+\tablecaption{{Selection cascade for the flagship denominator.\label{{tab:selection}}}}
+\tablehead{{\colhead{{Selection stage}} & \colhead{{Public DR17 rows}} & \colhead{{Cached rows}} & \colhead{{Retention vs. spectro-z parent}}}}
+\startdata
+{selection_table(selection)}
+\enddata
+\tablecomments{{Counts are read-only public SDSS DR17 count queries plus the local cached CSV. Cached rows are shown only where the cache applies.}}
+\end{{deluxetable*}}
+
+The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps {pct(selection['ssfr_low_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-12<\log {{\rm sSFR}}<-11$ parent bin but {pct(selection['ssfr_star_forming_bin_reference']['sn_ge_3_retention_vs_parent'], 1)}\% of the $-10<\log {{\rm sSFR}}<-9.5$ bin. Cached-versus-public marginal checks show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are {fmt(red['max_abs_fraction_difference_pp'],2)}, {fmt(mass['max_abs_fraction_difference_pp'],2)}, and {fmt(ssfr['max_abs_fraction_difference_pp'],2)} percentage points, respectively. That check is reassuring but does not remove the capped-cache limitation.
+
+\section{{Classification and matching}}
+BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ using standard demarcations \citep{{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}}. The cached denominator contains {fmt(rp1['bpt_counts']['star-forming'])} star-forming galaxies, {fmt(rp1['bpt_counts']['intermediate'])} intermediate/composite galaxies, {fmt(rp1['bpt_counts']['agn'])} broad optical AGN, and {fmt(rp1['bpt_counts']['unclassified'])} unclassified objects. Each broad optical AGN host is matched to the nearest star-forming control in standardized $(\log M_\star,z)$ space, with replacement. Matching is not performed in morphology, aperture fraction, halo mass, gas mass, AGN luminosity, or duty-cycle phase; these missing dimensions define follow-up requirements.
+
+\begin{{figure*}}
+\centering
+\includegraphics[width=0.72\textwidth]{{../figures/fig-bpt.pdf}}
+\caption{{BPT line-ratio diagram for the cached SDSS DR17 denominator. The diagram verifies the optical-excitation classes used for matching; it does not by itself prove accretion-driven feedback.}}
+\label{{fig:bpt}}
+\end{{figure*}}
+
+\section{{Matched-control result}}
+The preferred broad-BPT comparison gives a large negative catalog-sSFR offset for the optical AGN hosts relative to star-forming controls.
+
+\begin{{deluxetable*}}{{lrrrr}}
+\tabletypesize{{\scriptsize}}
+\tablecaption{{Robustness ladder for matched catalog-sSFR offsets.\label{{tab:robust}}}}
+
+exec
+/bin/zsh -lc "python -c \"import json,glob,os; base='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z';
+for path in glob.glob(base+'/**/representativeness*.json', recursive=True):
+    print(path)
+\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/INTEGRATION_MANIFEST_PRECOMPILE.json'; d=json.load(open(p)); print(json.dumps(d['source_artifacts'], indent=2)[:8000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+ succeeded in 0ms:
+{
+  "batch_manifest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/ALL_REMAINING_TOPIC_PILOTS_MANIFEST.json",
+  "goru_bpt_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_stratified_bpt_robustness_20260708T162615Z.json",
+  "goru_matching_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_matching_control_robustness_20260708T205859Z.json",
+  "goru_regression_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_regression_bin_sensitivity_20260708T183643Z.json",
+  "representativeness_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/cached-public-representativeness/20260708T220242Z/cached_public_representativeness_summary_20260708T220242Z.json",
+  "rp1_run": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z",
+  "selection_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_function_attrition_summary_20260708T155514Z.json"
+}
+
+exec
+/bin/zsh -lc "python -c \"import json,glob; base='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z';
+for path in glob.glob(base+'/**/data/*.json', recursive=True):
+    if 'represent' in path.lower(): print(path)
+\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_function_attrition_summary_20260708T155514Z.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/cached-public-representativeness/20260708T220242Z/cached_public_representativeness_summary_20260708T220242Z.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "cached_coverage_of_strict_sdss_sn_ge_3": 0.24007970646254556,
+  "cached_rows": 60000,
+  "files": {
+    "aastex_table_fragment": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_attrition_table_fragment_20260708T155514Z.tex",
+    "m3_p2_massive_low_ssfr_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/m3_p2_massive_low_ssfr_attrition_20260708T155514Z.csv",
+    "m3_p3_small_cell_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/m3_p3_small_cell_attrition_20260708T155514Z.csv",
+    "massive_host_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/massive_host_attrition_m1rp3_m2p2_20260708T155514Z.csv",
+    "selection_stage_counts_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/selection_stage_counts_20260708T155514Z.csv",
+    "ssfr_bin_line_selection_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/ssfr_bin_line_selection_attrition_20260708T155514Z.csv",
+    "summary_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_function_attrition_summary_20260708T155514Z.md"
+  },
+  "m3_p2_default_denominator": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2517341961418732,
+    "cached_sn_ge_3_count": 10270,
+    "guard": "This is an emission-line selected optical denominator, not a gas mass or SFE measurement.",
+    "mass_cut_logM_ge": 10.6,
+    "paper": "M3 P2 gas-depletion/SFE denominator",
+    "sdss_parent_mass_ssfr_count": 121533,
+    "sdss_sn_ge_3_count": 40797,
+    "sn_ge_3_retention_vs_parent": 0.33568660363851793,
+    "ssfr_cut_log_ssfr_lt": -10.7
+  },
+  "m3_p2_strict_denominator": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2605421686746988,
+    "cached_sn_ge_3_count": 2941,
+    "guard": "This is an emission-line selected optical denominator, not a gas mass or SFE measurement.",
+    "mass_cut_logM_ge": 11.0,
+    "paper": "M3 P2 gas-depletion/SFE denominator",
+    "sdss_parent_mass_ssfr_count": 33125,
+    "sdss_sn_ge_3_count": 11288,
+    "sn_ge_3_retention_vs_parent": 0.34076981132075473,
+    "ssfr_cut_log_ssfr_lt": -11.0
+  },
+  "m3_p3_small_cell_count": 2,
+  "marker": "SELECTION_FUNCTION_ATTRITION_TICK_20260708T155514Z",
+  "safety": "Read-only public SDSS counts plus local file reads; lane-local artifact writes only. No product DB/API/page_versions/live wiki/deploy/git/cron/billing/OAuth/external submission changes.",
+  "sdss_endpoint": "https://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch",
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "ssfr_low_bin_reference": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.24458948814840262,
+    "cached_sn_ge_3_count": 7832,
+    "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+    "sdss_parent_count": 95424,
+    "sdss_sn_ge_3_count": 32021,
+    "sn_ge_3_retention_vs_parent": 0.33556547619047616,
+    "ssfr_bin": "-12.0_to_-11.0"
+  },
+  "ssfr_star_forming_bin_reference": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2359388315500426,
+    "cached_sn_ge_3_count": 19934,
+    "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+    "sdss_parent_count": 89075,
+    "sdss_sn_ge_3_count": 84488,
+    "sn_ge_3_retention_vs_parent": 0.948504069604266,
+    "ssfr_bin": "-10.0_to_-9.5"
+  },
+  "stage_counts": [
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": "",
+      "retention_vs_spectro_z_parent": 1.0,
+      "sdss_dr17_count": 501060,
+      "stage_key": "spectro_galaxy_z_window",
+      "stage_label": "SpecObj GALAXY, 0.02<z<0.12"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.8313455474394285,
+      "retention_vs_spectro_z_parent": 0.8313455474394285,
+      "sdss_dr17_count": 416554,
+      "stage_key": "join_complete_mass_ssfr_bounds",
+      "stage_label": "plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 1.0,
+      "retention_vs_spectro_z_parent": 0.8313455474394285,
+      "sdss_dr17_count": 416554,
+      "stage_key": "join_complete_with_line_table",
+      "stage_label": "plus galSpecLine join"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.16066622929748692,
+      "cached_sample_count_at_matching_stage": 60000,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.896510416416599,
+      "retention_vs_spectro_z_parent": 0.7453099429210075,
+      "sdss_dr17_count": 373445,
+      "stage_key": "positive_four_bpt_fluxes_and_errors",
+      "stage_label": "four BPT lines positive with positive errors"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.24007970646254556,
+      "cached_sample_count_at_matching_stage": 60000,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.6692203671223339,
+      "retention_vs_spectro_z_parent": 0.4987765936215224,
+      "sdss_dr17_count": 249917,
+      "stage_key": "sn_ge_3_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=3"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.2404559179257094,
+      "cached_sample_count_at_matching_stage": 42446,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.7063265003981322,
+      "retention_vs_spectro_z_parent": 0.35229912585319123,
+      "sdss_dr17_count": 176523,
+      "stage_key": "sn_ge_5_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=5"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.24312396478075146,
+      "cached_sample_count_at_matching_stage": 22311,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.5198642669793738,
+      "retention_vs_spectro_z_parent": 0.1831477268191434,
+      "sdss_dr17_count": 91768,
+      "stage_key": "sn_ge_10_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=10"
+    }
+  ],
+  "strict_sdss_sn_ge_3_total": 249917,
+  "timestamp_utc": "20260708T155514Z"
+}
+
+ succeeded in 0ms:
+{
+  "cached_total": 60000,
+  "dimension_summary": {
+    "redshift": {
+      "highest_cached_coverage": 0.2532406354569377,
+      "highest_cached_coverage_bin": "0.080-0.120",
+      "lowest_cached_coverage": 0.2286326084315393,
+      "lowest_cached_coverage_bin": "0.020-0.050",
+      "max_abs_fraction_difference_bin": "0.080-0.120",
+      "max_abs_fraction_difference_pp": 2.025532776881922
+    },
+    "ssfr": {
+      "highest_cached_coverage": 0.26226101413133834,
+      "highest_cached_coverage_bin": "-9.0--7.0",
+      "lowest_cached_coverage": 0.23132440935167478,
+      "lowest_cached_coverage_bin": "-9.5--9.0",
+      "max_abs_fraction_difference_bin": "-10.0--9.5",
+      "max_abs_fraction_difference_pp": -0.5830903993459147
+    },
+    "stellar_mass": {
+      "highest_cached_coverage": 0.2668740074113288,
+      "highest_cached_coverage_bin": "11.0-12.5",
+      "lowest_cached_coverage": 0.21435343692388728,
+      "lowest_cached_coverage_bin": "8.0-9.5",
+      "max_abs_fraction_difference_bin": "8.0-9.5",
+      "max_abs_fraction_difference_pp": -1.6280440906380922
+    }
+  },
+  "flagged_bins": [],
+  "global_cached_coverage": 0.24007970646254556,
+  "marginal_rows": [
+    {
+      "bin_label": "0.020-0.050",
+      "cached_count": 15055,
+      "cached_coverage_of_public_bin": 0.2286326084315393,
+      "cached_fraction": 0.2509166666666667,
+      "dimension": "redshift",
+      "fraction_difference_pp": -1.256280851909497,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.26347947518576165,
+      "public_sn3_count": 65848,
+      "representation_ratio_cached_frac_over_public_frac": 0.9523195933564169
+    },
+    {
+      "bin_label": "0.050-0.080",
+      "cached_count": 21560,
+      "cached_coverage_of_public_bin": 0.23504785993066307,
+      "cached_fraction": 0.35933333333333334,
+      "dimension": "redshift",
+      "fraction_difference_pp": -0.769251924972425,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.3670258525830576,
+      "public_sn3_count": 91726,
+      "representation_ratio_cached_frac_over_public_frac": 0.9790409335048587
+    },
+    {
+      "bin_label": "0.080-0.120",
+      "cached_count": 23385,
+      "cached_coverage_of_public_bin": 0.2532406354569377,
+      "cached_fraction": 0.38975,
+      "dimension": "redshift",
+      "fraction_difference_pp": 2.025532776881922,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.36949467223118077,
+      "public_sn3_count": 92343,
+      "representation_ratio_cached_frac_over_public_frac": 1.054818998191525
+    },
+    {
+      "bin_label": "8.0-9.5",
+      "cached_count": 8139,
+      "cached_coverage_of_public_bin": 0.21435343692388728,
+      "cached_fraction": 0.13565,
+      "dimension": "stellar_mass",
+      "fraction_difference_pp": -1.6280440906380922,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.15193044090638091,
+      "public_sn3_count": 37970,
+      "representation_ratio_cached_frac_over_public_frac": 0.8928427982617856
+    },
+    {
+      "bin_label": "9.5-10.0",
+      "cached_count": 11853,
+      "cached_coverage_of_public_bin": 0.23355665024630543,
+      "cached_fraction": 0.19755,
+      "dimension": "stellar_mass",
+      "fraction_difference_pp": -0.5517418382903122,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.20306741838290313,
+      "public_sn3_count": 50750,
+      "representation_ratio_cached_frac_over_public_frac": 0.9728296226600985
+    },
+    {
+      "bin_label": "10.0-10.5",
+      "cached_count": 19135,
+      "cached_coverage_of_public_bin": 0.239820025316773,
+      "cached_fraction": 0.3189166666666667,
+      "dimension": "stellar_mass",
+      "fraction_difference_pp": -0.034532831566747024,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.31926199498233415,
+      "public_sn3_count": 79789,
+      "representation_ratio_cached_frac_over_public_frac": 0.9989183544515325
+    },
+    {
+      "bin_label": "10.5-11.0",
+      "cached_count": 16840,
+      "cached_coverage_of_public_bin": 0.254012308434898,
+      "cached_fraction": 0.2806666666666667,
+      "dimension": "stellar_mass",
+      "fraction_difference_pp": 1.5394596339318,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.2652720703273487,
+      "public_sn3_count": 66296,
+      "representation_ratio_cached_frac_over_public_frac": 1.058033234785407
+    },
+    {
+      "bin_label": "11.0-12.5",
+      "cached_count": 4033,
+      "cached_coverage_of_public_bin": 0.2668740074113288,
+      "cached_fraction": 0.06721666666666666,
+      "dimension": "stellar_mass",
+      "fraction_difference_pp": 0.674859126563352,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.06046807540103314,
+      "public_sn3_count": 15112,
+      "representation_ratio_cached_frac_over_public_frac": 1.111605855170284
+    },
+    {
+      "bin_label": "-14.0--12.0",
+      "cached_count": 4578,
+      "cached_coverage_of_public_bin": 0.24258160237388723,
+      "cached_fraction": 0.0763,
+      "dimension": "ssfr",
+      "fraction_difference_pp": 0.0786929660647348,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.07551307033935266,
+      "public_sn3_count": 18872,
+      "representation_ratio_cached_frac_over_public_frac": 1.0104211053412464
+    },
+    {
+      "bin_label": "-12.0--11.0",
+      "cached_count": 7832,
+      "cached_coverage_of_public_bin": 0.24458948814840262,
+      "cached_fraction": 0.13053333333333333,
+      "dimension": "ssfr",
+      "fraction_difference_pp": 0.24067953227138172,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.12812653801061952,
+      "public_sn3_count": 32021,
+      "representation_ratio_cached_frac_over_public_frac": 1.0187845184930724
+    },
+    {
+      "bin_label": "-11.0--10.5",
+      "cached_count": 7292,
+      "cached_coverage_of_public_bin": 0.24598569693698555,
+      "cached_fraction": 0.12153333333333333,
+      "dimension": "ssfr",
+      "fraction_difference_pp": 0.29179530270716514,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.11861538030626168,
+      "public_sn3_count": 29644,
+      "representation_ratio_cached_frac_over_public_frac": 1.0246001236900104
+    },
+    {
+      "bin_label": "-10.5--10.0",
+      "cached_count": 15983,
+      "cached_coverage_of_public_bin": 0.2411618257261411,
+      "cached_fraction": 0.26638333333333336,
+      "dimension": "ssfr",
+      "fraction_difference_pp": 0.11952909032465486,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.2651880424300868,
+      "public_sn3_count": 66275,
+      "representation_ratio_cached_frac_over_public_frac": 1.0045073333333334
+    },
+    {
+      "bin_label": "-10.0--9.5",
+      "cached_count": 19934,
+      "cached_coverage_of_public_bin": 0.2359388315500426,
+      "cached_fraction": 0.3322333333333333,
+      "dimension": "ssfr",
+      "fraction_difference_pp": -0.5830903993459147,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.33806423732679247,
+      "public_sn3_count": 84488,
+      "representation_ratio_cached_frac_over_public_frac": 0.9827520827415334
+    },
+    {
+      "bin_label": "-9.5--9.0",
+      "cached_count": 3750,
+      "cached_coverage_of_public_bin": 0.23132440935167478,
+      "cached_fraction": 0.0625,
+      "dimension": "ssfr",
+      "fraction_difference_pp": -0.2365535357738771,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.06486553535773877,
+      "public_sn3_count": 16211,
+      "representation_ratio_cached_frac_over_public_frac": 0.9635317068657084
+    },
+    {
+      "bin_label": "-9.0--7.0",
+      "cached_count": 631,
+      "cached_coverage_of_public_bin": 0.26226101413133834,
+      "cached_fraction": 0.010516666666666667,
+      "dimension": "ssfr",
+      "fraction_difference_pp": 0.08894704375185906,
+      "guard": "Selection-function diagnostic only; not an astrophysical effect measurement.",
+      "public_fraction": 0.009627196229148077,
+      "public_sn3_count": 2406,
+      "representation_ratio_cached_frac_over_public_frac": 1.0923914311443614
+    }
+  ],
+  "marker": "CACHED_PUBLIC_REPRESENTATIVENESS_20260708T220242Z",
+  "public_total": 249917,
+  "safety": "Read-only public SDSS DR17 count queries plus local cached-CSV reads; wrote lane-local artifacts under overnight-9-papers-20260708/lanes/tori/cached-public-representativeness plus the required tick report and ledger append. No product DB/API/page_versions/wiki publish/live mirror/deploy/restart/git/extra-cron/billing/OAuth/external submission changes.",
+  "sdss_endpoint": "https://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch",
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "timestamp_utc": "20260708T220242Z",
+  "verification": {
+    "bin_sums_equal_public_total": true,
+    "cached_bin_sums_equal_cached_total": true,
+    "cached_sums_by_dimension": {
+      "redshift": 60000,
+      "ssfr": 60000,
+      "stellar_mass": 60000
+    },
+    "figure_outputs_nonzero": true,
+    "manifest_artifact_count": 0,
+    "public_sums_by_dimension": {
+      "redshift": 249917,
+      "ssfr": 249917,
+      "stellar_mass": 249917
+    },
+    "raw_json_count": 16,
+    "raw_sql_count": 16
+  }
+}
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_matching_control_robustness_20260708T205859Z.json'; d=json.load(open(p)); print(json.dumps(d, indent=2)[:12000])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+{
+  "key_results": {
+    "m2p1_high_excitation_sn3_nearest_replacement": {
+      "caliper_name": "none",
+      "caliper_note": "no caliper; all nearest-neighbour pairs",
+      "control_n": 39553,
+      "controls_reused_ge2": 772,
+      "effective_control_n_inverse_simpson": 2054.3559816590246,
+      "match_abs_delta_logM_median": 0.003960000000000186,
+      "match_abs_delta_logM_p95": 0.022302999999999528,
+      "match_abs_delta_z_median": 0.00018703500000000206,
+      "match_abs_delta_z_p95": 0.001176847000000007,
+      "match_distance_scaled_median": 0.012075844927083152,
+      "match_distance_scaled_p90": 0.04155020095691121,
+      "match_distance_scaled_p95": 0.06243250034986344,
+      "matched_pairs": 4440,
+      "matching_scheme": "nearest_replacement",
+      "max_control_reuse": 13,
+      "mean_delta_ci95_high": -1.0583252117342343,
+      "mean_delta_ci95_low": -1.102125984268018,
+      "mean_delta_log_sSFR": -1.0801522407657658,
+      "median_delta_ci95_high": -1.1031399999999998,
+      "median_delta_ci95_low": -1.176790750000001,
+      "median_delta_log_sSFR": -1.13591,
+      "pair_assignments_to_reused_controls_fraction": 0.4783783783783784,
+      "paper_scope": "M2 P1",
+      "proxy_guard": "SDSS optical emission-line/sSFR matched-control association only; no causal AGN feedback, gas-depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "share_delta_negative": 0.8975225225225225,
+      "smd_logM_target_minus_control": 0.003377612400730808,
+      "smd_z_target_minus_control": -0.00020822363405957993,
+      "sn_min_ge": 3,
+      "source_rows_after_sn_cut": 60000,
+      "target_coverage_fraction": 1.0,
+      "target_definition": "BPT AGN with log([O III]/Hbeta)>0.25 versus BPT star-forming controls",
+      "target_n": 4440,
+      "target_variant": "high_excitation_ygt0p25",
+      "unique_controls_used": 3088
+    },
+    "rp1_baseline_bpt_agn_sn3_nearest_replacement": {
+      "caliper_name": "none",
+      "caliper_note": "no caliper; all nearest-neighbour pairs",
+      "control_n": 39553,
+      "controls_reused_ge2": 1508,
+      "effective_control_n_inverse_simpson": 1999.3165411268453,
+      "match_abs_delta_logM_median": 0.0044599999999999085,
+      "match_abs_delta_logM_p95": 0.028670000000000417,
+      "match_abs_delta_z_median": 0.00021079499999999973,
+      "match_abs_delta_z_p95": 0.0013774300000000007,
+      "match_distance_scaled_median": 0.013706693336996863,
+      "match_distance_scaled_p90": 0.052168723572271126,
+      "match_distance_scaled_p95": 0.07667284664342151,
+      "matched_pairs": 8146,
+      "matching_scheme": "nearest_replacement",
+      "max_control_reuse": 26,
+      "mean_delta_ci95_high": -1.1851196505278665,
+      "mean_delta_ci95_low": -1.2194835160968573,
+      "mean_delta_log_sSFR": -1.201557615885097,
+      "median_delta_ci95_high": -1.2829999999999995,
+      "median_delta_ci95_low": -1.3341600000000007,
+      "median_delta_log_sSFR": -1.3088869999999995,
+      "pair_assignments_to_reused_controls_fraction": 0.6647434323594402,
+      "paper_scope": "M1 RP-1",
+      "proxy_guard": "SDSS optical emission-line/sSFR matched-control association only; no causal AGN feedback, gas-depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "share_delta_negative": 0.9157868892708078,
+      "smd_logM_target_minus_control": 0.005163353028704056,
+      "smd_z_target_minus_control": -0.00046257972578916354,
+      "sn_min_ge": 3,
+      "source_rows_after_sn_cut": 60000,
+      "target_coverage_fraction": 1.0,
+      "target_definition": "BPT AGN versus BPT star-forming controls",
+      "target_n": 8146,
+      "target_variant": "bpt_agn",
+      "unique_controls_used": 4239
+    },
+    "rp1_greedy_without_replacement": {
+      "caliper_name": "none",
+      "caliper_note": "deterministic greedy no-replacement diagnostic; not a global optimal assignment",
+      "control_n": 39553,
+      "controls_reused_ge2": 0,
+      "effective_control_n_inverse_simpson": 7419.0,
+      "match_abs_delta_logM_median": 0.13155000000000072,
+      "match_abs_delta_logM_p95": 0.3875909999999987,
+      "match_abs_delta_z_median": 0.0009723300000000074,
+      "match_abs_delta_z_p95": 0.006354014999999997,
+      "match_distance_scaled_median": 0.24910271108359103,
+      "match_distance_scaled_p90": 0.6238501587177301,
+      "match_distance_scaled_p95": 0.7302690026782371,
+      "matched_pairs": 7419,
+      "matching_scheme": "greedy_without_replacement_hard_first_k1024",
+      "max_control_reuse": 1,
+      "mean_delta_ci95_high": -1.3216905263613696,
+      "mean_delta_ci95_low": -1.3575263056712497,
+      "mean_delta_log_sSFR": -1.3391233535516915,
+      "median_delta_ci95_high": -1.4218010000000003,
+      "median_delta_ci95_low": -1.4668399999999995,
+      "median_delta_log_sSFR": -1.446250000000001,
+      "pair_assignments_to_reused_controls_fraction": 0.0,
+      "paper_scope": "M1 RP-1",
+      "proxy_guard": "SDSS optical emission-line/sSFR matched-control association only; no causal AGN feedback, gas-depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "share_delta_negative": 0.9464887451138968,
+      "smd_logM_target_minus_control": 0.45187225203365194,
+      "smd_z_target_minus_control": -0.06124057997591267,
+      "sn_min_ge": 3,
+      "source_rows_after_sn_cut": 60000,
+      "target_coverage_fraction": 0.9107537441689173,
+      "target_definition": "BPT AGN versus BPT star-forming controls",
+      "target_n": 8146,
+      "target_variant": "bpt_agn",
+      "unique_controls_used": 7419
+    },
+    "rp1_mass_z_moderate_caliper": {
+      "caliper_name": "mass_z_moderate",
+      "caliper_note": "abs(delta logM)<=0.05 and abs(delta z)<=0.002",
+      "control_n": 39553,
+      "controls_reused_ge2": 1499,
+      "effective_control_n_inverse_simpson": 2196.6171783496006,
+      "match_abs_delta_logM_median": 0.0042799999999996174,
+      "match_abs_delta_logM_p95": 0.02339700000000011,
+      "match_abs_delta_z_median": 0.00020175000000000054,
+      "match_abs_delta_z_p95": 0.0010815100000000034,
+      "match_distance_scaled_median": 0.013226689090975977,
+      "match_distance_scaled_p90": 0.04343494101142401,
+      "match_distance_scaled_p95": 0.05806259403237075,
+      "matched_pairs": 7867,
+      "matching_scheme": "nearest_replacement",
+      "max_control_reuse": 17,
+      "mean_delta_ci95_high": -1.192555415463328,
+      "mean_delta_ci95_low": -1.227388326112241,
+      "mean_delta_log_sSFR": -1.2098612303292233,
+      "median_delta_ci95_high": -1.289244250000001,
+      "median_delta_ci95_low": -1.3387827499999998,
+      "median_delta_log_sSFR": -1.31832,
+      "pair_assignments_to_reused_controls_fraction": 0.6528536926401424,
+      "paper_scope": "M1 RP-1",
+      "proxy_guard": "SDSS optical emission-line/sSFR matched-control association only; no causal AGN feedback, gas-depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "share_delta_negative": 0.9189017414516334,
+      "smd_logM_target_minus_control": 0.0028831656579782878,
+      "smd_z_target_minus_control": -0.00027136291180906096,
+      "sn_min_ge": 3,
+      "source_rows_after_sn_cut": 60000,
+      "target_coverage_fraction": 0.9657500613798183,
+      "target_definition": "BPT AGN versus BPT star-forming controls",
+      "target_n": 8146,
+      "target_variant": "bpt_agn",
+      "unique_controls_used": 4230
+    }
+  },
+  "marker": "GORU_MATCHING_CONTROL_ROBUSTNESS_TICK_20260708T205859Z",
+  "outputs": {
+    "caliper_sensitivity_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/matched_control_caliper_sensitivity_20260708T205859Z.pdf",
+    "caliper_sensitivity_png": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/matched_control_caliper_sensitivity_20260708T205859Z.png",
+    "control_reuse_distribution_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/control_reuse_distribution_20260708T205859Z.csv",
+    "control_reuse_histogram_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/control_reuse_histogram_20260708T205859Z.pdf",
+    "control_reuse_histogram_png": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/control_reuse_histogram_20260708T205859Z.png",
+    "inventory_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/goru_matching_control_inventory_20260708T205859Z.csv",
+    "matching_caliper_sensitivity_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/matched_control_caliper_sensitivity_20260708T205859Z.csv",
+    "paper_ready_matching_rows_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/paper_ready_matching_rows_20260708T205859Z.csv",
+    "summary_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_matching_control_robustness_20260708T205859Z.json",
+    "tick_report_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/ticks/GORU_TICK_20260708T205859Z.md"
+  },
+  "proxy_limits": "SDSS optical emission-line/sSFR matched-control association only; no causal AGN feedback, gas-depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+  "row_counts": {
+    "control_reuse_distribution": 6,
+    "inventory": 9,
+    "matching_caliper_sensitivity": 90,
+    "paper_ready_matching_rows": 9
+  },
+  "safety": "Read cached SDSS/local artifacts only; wrote under lanes/goru only. No DB/API/page_versions/wiki publish/live mirror/deploy/restart/git/cron/billing/OAuth/external submission.",
+  "sn_threshold_counts": {
+    "sn_ge_10": 22311,
+    "sn_ge_3": 60000,
+    "sn_ge_5": 42446
+  },
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "source_results_analysis_rows": 60000,
+  "source_results_bpt_counts": {
+    "agn": 8146,
+    "intermediate": 12234,
+    "star-forming": 39553,
+    "unclassified": 67
+  },
+  "source_rows": 60000,
+  "timestamp_utc": "20260708T205859Z"
+}
+
+codex
+I have enough provenance now. I’m taking one final look at the long paragraphs that triggered the underfull-box warnings so I can distinguish cosmetic TeX cleanup from actual manuscript problems in the review.
+exec
+/bin/zsh -lc 'wc -l /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex && nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex | tail -n 40' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+      99 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex
+    60	\end{itemize}
+    61	
+    62	
+    63	\begin{figure}
+    64	\centering
+    65	\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+    66	\caption{Topic-specific SDSS DR17 optical denominator/proxy diagnostic for packet-gated-paper-to-wiki-reconciliation rp-2. The caption is intentionally narrow: this figure summarizes the cached optical result used for target definition or denominator design, not the unmeasured multi-survey physical claim.}
+    67	\label{fig:topic}
+    68	\end{figure}
+    69	
+    70	\section{Interpretation and missing observables}\label{sec:missing}
+    71	SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page. The full proposal requires: group catalogues, robust central/satellite labels, halo masses, morphology, and multi-redshift selection functions.
+    72	
+    73	Mass and environment are known separable axes in low-redshift galaxy evolution, but a real environmental-quenching analysis requires group/halo and central-satellite information beyond this nearest-neighbour proxy \citep{peng2010,baldry2006,wetzel2013,goubert2024}.
+    74	
+    75	
+    76	\section{Reproducibility and safety}\label{sec:repro}
+    77	This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+    78	
+    79	\section{Conclusion}\label{sec:conclusion}
+    80	The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+    81	
+    82	
+    83	\begin{thebibliography}{}
+    84	\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+    85	\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    86	\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+    87	\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+    88	\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+    89	\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+    90	\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+    91	\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+    92	
+    93	\bibitem[Baldry et al.(2006)]{baldry2006} Baldry, I.~K., Balogh, M.~L., Bower, R.~G., et al. 2006, MNRAS, 373, 469
+    94	\bibitem[Goubert et al.(2024)]{goubert2024} Goubert, P.~H., Bluck, A.~F.~L., Piotrowska, J.~M., \& Maiolino, R. 2024, arXiv:2401.12953
+    95	\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+    96	\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+    97	\end{thebibliography}
+    98	
+    99	\end{document}
+
+exec
+/bin/zsh -lc 'wc -l /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex && nl -ba /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex | tail -n 30' in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+     103 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex
+    74	\centering
+    75	\includegraphics[width=0.86\textwidth]{../figures/fig-matched-offsets.pdf}
+    76	\caption{Matched-pair catalog-sSFR offsets for broad BPT optical AGN hosts minus nearest star-forming controls in stellar-mass--redshift space. The large negative offset is robust within the optical emission-line subset but remains selection- and subclass-dependent.}
+    77	\label{fig:offsets}
+    78	\end{figure*}
+    79	
+    80	
+    81	\section{Reproducibility and safety}\label{sec:repro}
+    82	This manuscript was generated by local integration run \texttt{INTEGRATED\_9\_PAPERS\_20260709T012051Z}. Inputs are the original RP-1 SDSS query/run directory, the eight-topic SDSS remaining-topic manifest, the overnight shared selection-function packet, the cached-versus-public representativeness packet, Goru robustness outputs, and literature/source placement packets. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+    83	
+    84	\section{Conclusion}\label{sec:conclusion}
+    85	The integration improves the paper package by putting denominator honesty before results. For RP-1, the strongest outcome is a plausible short-paper association draft: broad optical BPT AGN hosts in this capped SDSS emission-line subset have lower catalog sSFR than mass--redshift matched star-forming controls, with robustness caveats. For the other active topics, the correct packaging is a guarded denominator/proxy suite, not eight independent causal feedback papers.
+    86	
+    87	
+    88	\begin{thebibliography}{}
+    89	\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+    90	\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    91	\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+    92	\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+    93	\bibitem[Kauffmann et al.(2003b)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 33
+    94	\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+    95	\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+    96	\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+    97	
+    98	\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+    99	\bibitem[Stasinska et al.(2008)]{stasinska2008} Stasinska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+   100	\bibitem[Stasinska et al.(2015)]{stasinska2015} Stasinska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodre, L. 2015, MNRAS, 449, 559
+   101	\end{thebibliography}
+   102	
+   103	\end{document}
+
+exec
+/bin/zsh -lc "python -c \"import json; p='/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_SPRINT_CONTINUATION_20260709T141106Z/real-data-inventory/REAL_DATA_INVENTORY_CYCLE_21.json'; d=json.load(open(p)); print(d['integrated_tex_summaries'][0]['path']); print(d['integrated_tex_summaries'][1]['path'])\"" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/01_m1_rp1_sdss_agn_sfr/aastex/m1_rp1_sdss_agn_sfr_integrated.tex
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z/02_m1_rp2_environment_quenching/aastex/m1_rp2_environment_quenching_integrated.tex
+
+codex
+**Findings**
+- Medium: both manuscripts still contain internal pipeline/provenance language that is fine for a handoff package but weak for a journal-facing draft. In the flagship, the abstract and conclusion talk about the local integration run and “all nine integrated drafts” instead of staying fully manuscript-centric ([m1_rp1_sdss_agn_sfr_integrated.tex:13](<absolute path not shown here>), [m1_rp1_sdss_agn_sfr_integrated.tex:82](<absolute path not shown here>), [m1_rp1_sdss_agn_sfr_integrated.tex:85](<absolute path not shown here>)). The supplement does the same with “packet-gated-paper-to-wiki-reconciliation” language and a local run-ID sentence ([m1_rp2_environment_quenching_integrated.tex:66](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:77](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:80](<absolute path not shown here>)). Safe candidate-only edit: move run IDs and workflow references to metadata or an appendix note, not the main prose.
+
+- Low: compile is clean, but there are only underfull `\hbox` warnings, no fatal TeX errors. The flagship warning is driven by the long concluding paragraph ([m1_rp1_sdss_agn_sfr_integrated.tex:85](<absolute path not shown here>)); the supplement has several long lines that trigger the same cosmetic issue ([m1_rp2_environment_quenching_integrated.tex:43](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:47](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:100](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:159](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:186](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:216](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:232](<absolute path not shown here>)). Safe candidate-only edit: split those sentences/paragraphs and use `\pm` instead of `+/-` where applicable.
+
+**Traceability**
+- Pass: the flagship headline numbers are locally traceable. `8,146` pairs and `-1.309` dex with the bootstrap interval are in the RP-1 source-analysis JSON, and the same file records the matching diagnostics ([`01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json`](<absolute path not shown here>)).
+- Pass: the denominator invariants are locally traceable. `60,000` cached rows, `249,917` strict parent rows, and `24.0%` coverage are in the integration manifest and real-data inventory ([`INTEGRATION_MANIFEST_PRECOMPILE.json`](<absolute path not shown here>), [`REAL_DATA_INVENTORY_CYCLE_21.json`](<absolute path not shown here>)).
+- Pass: the representative-selection diagnostics in the flagship are traceable to the cached/public representativeness JSON. The exact values are `2.0255`, `-1.6280`, and `-0.5831` percentage points in the redshift, stellar-mass, and sSFR bins ([`cached_public_representativeness_summary_20260708T220242Z.json`](<absolute path not shown here>)).
+- Pass: the RP-2 numbers are traceable. `3,456/15,000`, `2,710/15,000`, `[0.041, 0.059]`, and `0.032 +/- 0.004` are in the RP-2 source-analysis JSON ([`02_m1_rp2_environment_quenching/data/source_analysis_results.json`](<absolute path not shown here>)).
+- Pass: I did not find forbidden `mock` / `synthetic` / `fake` / `placeholder` / `toy` language in the actual manuscript TeX files. The matches are confined to audit/history files, not the submitted manuscript text.
+
+**Recommendation**
+- Keep the scientific content.
+- Strip or relocate internal integration prose from the abstract/conclusion.
+- Do a small TeX polish pass for the long lines and `+/-` formatting.
+
+
+tokens used
+100,561
+**Findings**
+- Medium: both manuscripts still contain internal pipeline/provenance language that is fine for a handoff package but weak for a journal-facing draft. In the flagship, the abstract and conclusion talk about the local integration run and “all nine integrated drafts” instead of staying fully manuscript-centric ([m1_rp1_sdss_agn_sfr_integrated.tex:13](<absolute path not shown here>), [m1_rp1_sdss_agn_sfr_integrated.tex:82](<absolute path not shown here>), [m1_rp1_sdss_agn_sfr_integrated.tex:85](<absolute path not shown here>)). The supplement does the same with “packet-gated-paper-to-wiki-reconciliation” language and a local run-ID sentence ([m1_rp2_environment_quenching_integrated.tex:66](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:77](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:80](<absolute path not shown here>)). Safe candidate-only edit: move run IDs and workflow references to metadata or an appendix note, not the main prose.
+
+- Low: compile is clean, but there are only underfull `\hbox` warnings, no fatal TeX errors. The flagship warning is driven by the long concluding paragraph ([m1_rp1_sdss_agn_sfr_integrated.tex:85](<absolute path not shown here>)); the supplement has several long lines that trigger the same cosmetic issue ([m1_rp2_environment_quenching_integrated.tex:43](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:47](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:100](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:159](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:186](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:216](<absolute path not shown here>), [m1_rp2_environment_quenching_integrated.tex:232](<absolute path not shown here>)). Safe candidate-only edit: split those sentences/paragraphs and use `\pm` instead of `+/-` where applicable.
+
+**Traceability**
+- Pass: the flagship headline numbers are locally traceable. `8,146` pairs and `-1.309` dex with the bootstrap interval are in the RP-1 source-analysis JSON, and the same file records the matching diagnostics ([`01_m1_rp1_sdss_agn_sfr/data/source_analysis_results.json`](<absolute path not shown here>)).
+- Pass: the denominator invariants are locally traceable. `60,000` cached rows, `249,917` strict parent rows, and `24.0%` coverage are in the integration manifest and real-data inventory ([`INTEGRATION_MANIFEST_PRECOMPILE.json`](<absolute path not shown here>), [`REAL_DATA_INVENTORY_CYCLE_21.json`](<absolute path not shown here>)).
+- Pass: the representative-selection diagnostics in the flagship are traceable to the cached/public representativeness JSON. The exact values are `2.0255`, `-1.6280`, and `-0.5831` percentage points in the redshift, stellar-mass, and sSFR bins ([`cached_public_representativeness_summary_20260708T220242Z.json`](<absolute path not shown here>)).
+- Pass: the RP-2 numbers are traceable. `3,456/15,000`, `2,710/15,000`, `[0.041, 0.059]`, and `0.032 +/- 0.004` are in the RP-2 source-analysis JSON ([`02_m1_rp2_environment_quenching/data/source_analysis_results.json`](<absolute path not shown here>)).
+- Pass: I did not find forbidden `mock` / `synthetic` / `fake` / `placeholder` / `toy` language in the actual manuscript TeX files. The matches are confined to audit/history files, not the submitted manuscript text.
+
+**Recommendation**
+- Keep the scientific content.
+- Strip or relocate internal integration prose from the abstract/conclusion.
+- Do a small TeX polish pass for the long lines and `+/-` formatting.
+
+
+
+
+# command_result
+exit_code=0
+elapsed_s=260.1
+timed_out=False
+finished_utc=2026-07-09T16:57:50Z

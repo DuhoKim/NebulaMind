@@ -1,0 +1,55 @@
+{
+  "marker": "MAIN_DECISION_GATE_20260706T053859Z",
+  "status": "DECISION_HELPER_NO_ACTIVE_EXECUTION_PHRASE",
+  "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "db_writes_executed": 0,
+  "sql_execution_count": 0,
+  "trust_recompute_count": 0,
+  "prose_publish_count": 0,
+  "git_deploy_restart_count": 0,
+  "main_decision": "Choose the next gate: stay prepared-only while stopping/containing Google-credit burn, or intentionally activate exactly one local packet/spec lane next.",
+  "recommended_now": "Fix/contain the Google-credit burn first, keep all NebulaMind DB writes unarmed, then choose P2/P5/spec sequencing when the billing source is quiet.",
+  "options": [
+    {
+      "id": "A",
+      "label": "Recommended immediate choice",
+      "decision": "Keep NO ACTIVE EXECUTION PHRASE and pause/contain Google/Gemini credit burn first.",
+      "what_happens": "No DB write. No SQL. No prose publish. After credit source is quiet, choose P2/P5/P1/P3/P4 sequencing with a clear head."
+    },
+    {
+      "id": "B",
+      "label": "Execute P2 later",
+      "decision": "After local review, execute only the P2 / 2929 disposition packet.",
+      "what_happens": "Requires the exact local phrase from p2_2929_disposition/APPROVAL_PACKET.md. Future follow-on trust recompute likely owed. Phrase is not exposed on this page."
+    },
+    {
+      "id": "C",
+      "label": "Execute P5 later",
+      "decision": "After local review, execute only the P5 / 2931 dedupe packet.",
+      "what_happens": "Requires the exact local phrase from p5_2931_dedupe/APPROVAL_PACKET.md. Route M preserves distinct snippets. Phrase is not exposed on this page."
+    },
+    {
+      "id": "D",
+      "label": "No DB write; choose spec path",
+      "decision": "Do not execute packets. Decide P1/P3/P4 wording/repair lanes first.",
+      "what_happens": "Docs/code/preflight only. Choose P1 overclaim routes, P3 2572 wording, and P4 DB recompute-vs-frontend guard."
+    }
+  ],
+  "credit_investigation_snapshot": {
+    "active_suspects": [
+      "tmux pane goru-agy running /Users/duhokim/.local/bin/agy --model Gemini 3.1 Pro (High)",
+      "three standalone /opt/homebrew/bin/gemini --skip-trust node process pairs under the tmux server, cwd NebulaMind"
+    ],
+    "not_seen": [
+      "Hermes main model is openai-codex/gpt-5.5, not Gemini",
+      "Hermes .env has no GOOGLE_API_KEY/GEMINI_API_KEY/GOOGLE_CLOUD_PROJECT entries",
+      "Hermes cron jobs are paused/completed, not running",
+      "gcloud and ccusage are not installed in this shell"
+    ]
+  },
+  "paths": {
+    "packet_root": "/Users/duhokim/NebulaMind/NebulaMind/docs/hwao_morning_prepared_packets_20260706T0308Z",
+    "spec_root": "/Users/duhokim/NebulaMind/NebulaMind/docs/hwao_morning_blocker_specs_20260706T0308Z",
+    "review_receipt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/autonomy_continue_20260706T002104Z/TORI_LOCAL_PACKET_AND_SPEC_REVIEW_20260706T053320Z.md"
+  }
+}

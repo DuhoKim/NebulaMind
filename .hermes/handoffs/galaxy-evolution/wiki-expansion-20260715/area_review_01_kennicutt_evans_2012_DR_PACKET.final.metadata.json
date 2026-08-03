@@ -1,0 +1,79 @@
+{
+  "status": "READY_FOR_HWAO_REVIEW",
+  "mission_id": "GALAXY_REVIEW_BASE_DR_20260715",
+  "queue_item": 1,
+  "review": "Kennicutt & Evans 2012 — Star Formation in the Milky Way and Nearby Galaxies",
+  "review_identity": {
+    "doi": "10.1146/annurev-astro-081811-125610",
+    "arxiv": "1204.3552",
+    "ads_bibcode": "2012ARA&A..50..531K",
+    "status": "PASS_ADS_CROSSREF_ARXIV"
+  },
+  "account_actions": {
+    "prompt_submit_utc": "2026-07-15T12:17:04.271812Z",
+    "prompt_submit_lease_id": "L00601",
+    "research_start_utc": "2026-07-15T12:17:51.425950Z",
+    "research_start_lease_id": "L00604",
+    "result_captured_utc": "2026-07-15T12:32:24.847476Z",
+    "prompt_submissions": 1,
+    "research_starts": 1,
+    "retry": false,
+    "soft_throttle": false,
+    "challenge": false
+  },
+  "local_post_save_exception": {
+    "class": "KeyError",
+    "key": "packet_sha256",
+    "classification": "POST_CUSTODY_TERMINAL_RECEIPT_DEFECT",
+    "account_retry_required": false,
+    "raw_custody_was_complete_before_exception": true,
+    "runner_fixed_for_future_items": true
+  },
+  "verification": {
+    "status": "PASS",
+    "verified_primary_sources": 43,
+    "corrected_raw_composite_rows": 25,
+    "phantom_source_keys_quarantined": 20,
+    "do_not_use_rows": 54,
+    "method": "Review bibliography membership through Crossref and the authoritative NED review references; exact public ADS route/title plus Crossref DOI and arXiv export composite verification",
+    "ads_api_claimed_locally": false,
+    "live_wiki_gate": "Hwao ADS API verifier and jury"
+  },
+  "counts": {
+    "scope_map_entries": 7,
+    "established_findings": 12,
+    "open_debates": 8,
+    "measurements": 8,
+    "unknowns": 6,
+    "primary_harvest": 43
+  },
+  "artifacts": {
+    "canonical_packet": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area_review_01_kennicutt_evans_2012_DR_PACKET.md",
+      "sha256": "a9e651078a522de51478b09cc1fdce7c3fceddd04431283d3d3f19f84ebfb0d9"
+    },
+    "raw_packet": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area_review_01_kennicutt_evans_2012_DR_RAW_PACKET.md",
+      "sha256": "8a778bc16d31b928866c9df397fcb57515d7841406ed1c760322a16e185df568",
+      "raw_result_sha256": "ad09becbedf82d1334b1c13ce31453f513c5c56d1fe020adab8fefdfe08bfa3f"
+    },
+    "registry": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area_review_01_kennicutt_evans_2012_CURATED_SOURCE_REGISTRY.json",
+      "sha256": "236fad70e867e171263fecf7d0d122f41e1d7e3b624ae3fa2c9e0db13e06d986"
+    },
+    "validation": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area_review_01_kennicutt_evans_2012_DR_PACKET_VALIDATION.json",
+      "sha256": "e3458188b9b47e139430ee3a7fd90c034f66b2b2f7d7713a4194f58a8ac2add9"
+    }
+  },
+  "finalized_utc": "2026-07-15T12:50:52Z",
+  "safety": {
+    "advisory_only": true,
+    "wiki_write": false,
+    "database_write": false,
+    "trust_mutation": false,
+    "deploy_or_publish": false,
+    "git_write": false,
+    "conversation_deleted": false
+  }
+}

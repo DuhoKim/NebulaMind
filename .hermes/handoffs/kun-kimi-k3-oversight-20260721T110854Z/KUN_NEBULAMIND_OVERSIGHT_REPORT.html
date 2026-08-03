@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="Kun Kimi K3 independent oversight report for NebulaMind, 21 July 2026.">
+  <title>Kun · NebulaMind Oversight Report</title>
+  <style>
+    :root {
+      --canvas: #071019;
+      --canvas-2: #0b1621;
+      --surface: #101d29;
+      --surface-2: #132331;
+      --ink: #edf5f7;
+      --muted: #9eb0ba;
+      --faint: #718690;
+      --line: #263946;
+      --line-strong: #355160;
+      --cyan: #61d4d0;
+      --cyan-soft: rgba(97, 212, 208, .11);
+      --blue: #78aef8;
+      --amber: #f2bd69;
+      --amber-soft: rgba(242, 189, 105, .11);
+      --green: #79d69e;
+      --red: #ed8e8e;
+      --radius: 14px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .24);
+      font-synthesis: none;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.68;
+      text-rendering: optimizeLegibility;
+    }
+    a { color: var(--cyan); text-decoration-color: rgba(97, 212, 208, .42); text-underline-offset: 3px; }
+    a:hover { text-decoration-color: var(--cyan); }
+    code, pre { font-family: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; }
+
+    .hero {
+      border-bottom: 1px solid var(--line);
+      background: var(--canvas-2);
+    }
+    .hero-inner {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 66px 0 42px;
+    }
+    .eyebrow {
+      margin: 0 0 14px;
+      color: var(--cyan);
+      font-size: 12px;
+      font-weight: 760;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+    .hero h1 {
+      max-width: 850px;
+      margin: 0;
+      color: #f7fbfc;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+      font-size: clamp(42px, 6vw, 76px);
+      font-weight: 520;
+      letter-spacing: -.045em;
+      line-height: .98;
+      text-wrap: balance;
+    }
+    .hero-summary {
+      max-width: 760px;
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+      text-wrap: pretty;
+    }
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 36px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--line);
+      box-shadow: var(--shadow);
+    }
+    .metric { min-height: 102px; padding: 20px 22px; background: var(--surface); }
+    .metric span { display: block; color: var(--faint); font-size: 11px; font-weight: 760; letter-spacing: .12em; text-transform: uppercase; }
+    .metric strong { display: block; margin-top: 7px; color: var(--ink); font-size: 18px; line-height: 1.3; }
+    .metric strong.attention { color: var(--amber); }
+
+    .shell {
+      display: grid;
+      grid-template-columns: 245px minmax(0, 790px);
+      gap: 60px;
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 52px 0 100px;
+    }
+    .toc { position: relative; }
+    .toc-inner { position: sticky; top: 24px; }
+    .toc-label { margin: 0 0 14px; color: var(--faint); font-size: 11px; font-weight: 760; letter-spacing: .14em; text-transform: uppercase; }
+    .toc ul { margin: 0; padding: 0; list-style: none; }
+    .toc li { margin: 0; }
+    .toc li ul { display: none; }
+    .toc a {
+      display: block;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(38, 57, 70, .55);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.35;
+      text-decoration: none;
+    }
+    .toc a:hover { color: var(--cyan); }
+    .source-note { margin-top: 24px; color: var(--faint); font-size: 11px; line-height: 1.55; overflow-wrap: anywhere; }
+
+    article { min-width: 0; }
+    article > h1 {
+      margin: 0 0 28px;
+      font-family: ui-serif, Georgia, Cambria, "Times New Roman", serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 540;
+      letter-spacing: -.025em;
+      line-height: 1.12;
+    }
+    article h2 {
+      scroll-margin-top: 24px;
+      margin: 72px 0 22px;
+      padding-top: 19px;
+      border-top: 1px solid var(--line-strong);
+      color: var(--ink);
+      font-size: 25px;
+      letter-spacing: -.02em;
+      line-height: 1.2;
+      text-wrap: balance;
+    }
+    article h3 { margin: 34px 0 12px; color: var(--blue); font-size: 18px; }
+    article p { margin: 0 0 19px; color: #d4e0e5; text-wrap: pretty; }
+    article strong { color: #f5f9fa; font-weight: 720; }
+    article ul, article ol { margin: 18px 0 24px; padding-left: 1.45em; }
+    article li { margin: 9px 0; padding-left: .25em; color: #d4e0e5; }
+    article li::marker { color: var(--cyan); font-weight: 700; }
+    article ol > li::marker { color: var(--amber); }
+    article code {
+      padding: .13em .38em;
+      border: 1px solid rgba(53, 81, 96, .72);
+      border-radius: 5px;
+      background: #0a151e;
+      color: #bfe8e5;
+      font-size: .88em;
+      overflow-wrap: anywhere;
+    }
+    article pre {
+      overflow-x: auto;
+      margin: 24px 0;
+      padding: 18px 20px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #061019;
+      color: #c9dcdf;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    article pre code { padding: 0; border: 0; background: transparent; color: inherit; }
+    article blockquote { margin: 26px 0; padding: 4px 0 4px 20px; border-left: 3px solid var(--cyan); color: var(--muted); }
+    article hr { margin: 44px 0; border: 0; border-top: 1px solid var(--line); }
+    article table { width: 100%; margin: 25px 0; border-collapse: collapse; font-size: 14px; }
+    article th, article td { padding: 11px 13px; border: 1px solid var(--line); text-align: left; vertical-align: top; }
+    article th { background: var(--surface-2); color: var(--ink); }
+    article td { color: #cbd9dd; }
+
+    .verdict-line {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: fit-content;
+      margin: 0 0 24px !important;
+      padding: 10px 14px;
+      border: 1px solid rgba(242, 189, 105, .45);
+      border-radius: 999px;
+      background: var(--amber-soft);
+      color: var(--amber) !important;
+      font-size: 13px;
+      letter-spacing: .08em;
+    }
+    .verdict-line strong { color: var(--amber); }
+    .verdict-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--amber); box-shadow: 0 0 0 4px rgba(242, 189, 105, .12); }
+    .receipt-marker {
+      margin: 20px 0 32px;
+      padding: 16px 18px;
+      border: 1px solid rgba(97, 212, 208, .33);
+      border-radius: 10px;
+      background: var(--cyan-soft);
+    }
+    .receipt-marker span { display: block; margin-bottom: 6px; color: var(--cyan); font-size: 11px; font-weight: 760; letter-spacing: .12em; text-transform: uppercase; }
+    .receipt-marker code { padding: 0; border: 0; background: transparent; color: #c7ece9; font-size: 11px; }
+
+    .footer { border-top: 1px solid var(--line); background: var(--canvas-2); }
+    .footer-inner { width: min(1180px, calc(100% - 40px)); margin: 0 auto; padding: 30px 0 36px; color: var(--faint); font-size: 12px; }
+    .footer strong { color: var(--muted); }
+
+    @media (max-width: 900px) {
+      .meta-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .shell { grid-template-columns: 1fr; gap: 42px; }
+      .toc-inner { position: static; }
+      .toc ul { columns: 2; column-gap: 28px; }
+      .toc li { break-inside: avoid; }
+      .source-note { display: none; }
+    }
+    @media (max-width: 580px) {
+      .hero-inner { width: min(100% - 28px, 1180px); padding-top: 44px; }
+      .meta-strip { grid-template-columns: 1fr; }
+      .metric { min-height: 82px; }
+      .shell { width: min(100% - 28px, 1180px); padding-top: 36px; }
+      .toc ul { columns: 1; }
+      article h2 { margin-top: 56px; }
+    }
+
+    @media print {
+      :root { --canvas: #fff; --canvas-2: #fff; --surface: #f4f7f8; --surface-2: #eef3f4; --ink: #14222a; --muted: #485b65; --faint: #657780; --line: #ccd7dc; --line-strong: #9eafb7; --cyan: #126d70; --blue: #245f9e; --amber: #8a5711; }
+      body { background: #fff; color: #14222a; font-size: 11pt; }
+      .hero-inner, .shell, .footer-inner { width: 100%; }
+      .hero-inner { padding-top: 20px; }
+      .hero h1 { font-size: 34pt; }
+      .shell { display: block; padding-top: 28px; }
+      .toc { display: none; }
+      article p, article li { color: #263a44; }
+      article h2 { break-after: avoid; page-break-after: avoid; }
+      article pre, .receipt-marker, .verdict-line { break-inside: avoid; }
+      article code { color: #1f5f60; background: #f3f6f7; }
+      .meta-strip { box-shadow: none; }
+      .metric { background: #f4f7f8; }
+      a { color: #126d70; }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">NebulaMind · Independent Oversight · 21 July 2026</p>
+      <h1>Kun’s general oversight report</h1>
+      <p class="hero-summary">An evidence-based review of project coherence, source-of-truth boundaries, engineering health, operational gates, and the highest-value next actions.</p>
+      <div class="meta-strip" aria-label="Report summary">
+        <div class="metric"><span>Executive verdict</span><strong class="attention">Healthy with risks</strong></div>
+        <div class="metric"><span>Model route</span><strong>Nous · Kimi K3</strong></div>
+        <div class="metric"><span>Branch position</span><strong>6 ahead · 66 behind</strong></div>
+        <div class="metric"><span>Working tree</span><strong>20 modified · 360 untracked</strong></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="shell">
+    <aside class="toc" aria-label="Report contents">
+      <div class="toc-inner">
+        <p class="toc-label">Contents</p>
+        <div class="toc">
+<ul>
+<li><a href="#1-executive-verdict">1. Executive verdict</a></li>
+<li><a href="#2-what-nebulamind-currently-is">2. What NebulaMind currently is</a></li>
+<li><a href="#3-what-is-working-well">3. What is working well</a></li>
+<li><a href="#4-top-risksblockers-ordered-by-severity">4. Top risks/blockers, ordered by severity</a></li>
+<li><a href="#5-architecture-and-source-of-truth-map">5. Architecture and source-of-truth map</a></li>
+<li><a href="#6-evidencetrust-assessment">6. Evidence/trust assessment</a></li>
+<li><a href="#7-engineeringreproducibility-assessment">7. Engineering/reproducibility assessment</a></li>
+<li><a href="#8-operationalsafety-gate-assessment">8. Operational/safety-gate assessment</a></li>
+<li><a href="#9-prioritized-next-actions-owner-action-expected-evidence-gate">9. Prioritized next actions (owner / action / expected evidence / gate)</a></li>
+<li><a href="#10-evidence-ledger-what-was-actually-inspected">10. Evidence ledger — what was actually inspected</a></li>
+<li><a href="#11-uncertainties-and-what-kun-deliberately-did-not-inspect">11. Uncertainties and what Kun deliberately did not inspect</a></li>
+<li><a href="#12-modelroute-note">12. Model/route note</a></li>
+</ul>
+</div>
+
+
+        <p class="source-note"><strong>Source fidelity</strong><br>This HTML renders the complete Markdown report without changing its claims or recommendations.<br><br>/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/kun-kimi-k3-oversight-20260721T110854Z/KUN_NEBULAMIND_OVERSIGHT_REPORT.md</p>
+      </div>
+    </aside>
+
+    <main>
+      <article>
+        <h1 id="kun-nebulamind-oversight-report-2026-07-21">KUN NEBULAMIND OVERSIGHT REPORT — 2026-07-21</h1>
+<p>Task ID: <code>kun-kimi-k3-oversight-20260721T110854Z</code>
+Coordinator: Hwao/Fable
+Reviewer: Kun on Hermes via Nous Portal route <code>moonshotai/kimi-k3</code>
+Date: 2026-07-21</p>
+<div class="receipt-marker" role="note"><span>Verified receipt marker</span><code>KUN_KIMI_K3_NEBULAMIND_OVERSIGHT_COMPLETE_20260721T110854Z</code></div>
+<hr>
+<h2 id="1-executive-verdict">1. Executive verdict</h2>
+<p class="verdict-line"><span class="verdict-dot" aria-hidden="true"></span><strong>HEALTHY_WITH_RISKS</strong></p>
+<p>NebulaMind is an active, multi-surface AI-built astronomy wiki and research lab with a coherent canonical doctrine (ledger-primary paper distillation), a working FastAPI+Next.js product, a live public mirror, and an unusually disciplined handoff/receipt culture. Focused tests executed in this pass all passed. The principal risks are (a) a heavily dirty working tree with 20 modified and ~360 untracked files mixing product code, experiments, and junk; (b) the working branch (<code>feat/surveys-atlas-ia-p1-20260627</code>) is 6 commits ahead of and 66 commits behind <code>origin/main</code>, while the separately cloned live mirror <code>NebulaMind-origin-main-live</code> sits clean on <code>main</code> — meaning the development checkout and the served product are meaningfully diverged and the development branch is stale relative to its own origin; and (c) the canonical Baseline (paper→ledger→map→prose) pipeline remains in pre-implementation/docs-only state with DB/prose gates correctly held, so the flagship research mission has not yet crossed into verified production execution. No safety-gate violations were observed; receipts show gates being respected.</p>
+<h2 id="2-what-nebulamind-currently-is">2. What NebulaMind currently is</h2>
+<p>Verified from <code>README.md</code>, <code>wiki_schema.md</code>, backend/frontend layout, and live handoffs:</p>
+<ul>
+<li><strong>Product:</strong> An astronomy wiki ("AstroBotPedia") built and maintained by AI agents. FastAPI backend (port 8000, ~35 routers: pages, claims, jury, council, edits, wiki, surveys, lab_runner, qa, graph, etc.), Next.js frontend (port 3000: wiki, surveys, ideas, lab, council, explore, agents, benchmark, news, calendar, directory), PostgreSQL+Redis, Celery agent loop, and an MCP server exposing the knowledge base to external AI clients. Agent governance: editors propose <code>EditProposal</code>s, reviewers vote (≥3 approvals auto-apply), jury tasks review evidence stances, everything versioned in <code>PageVersion</code>.</li>
+<li><strong>Research mission ("The Baseline"):</strong> Turn large volumes of published papers into trustworthy prose without losing scope, uncertainty, contradiction, or provenance. Canonical primitive (<code>.hermes/plans/2026-07-01_205807-paper-prose-distillation-roadmap.md</code>, board <code>paper-prose-distillation-board.md</code>): <code>papers -&gt; claim/status ledger -&gt; research-status/debate map -&gt; prose -&gt; derived claims/evidence/trust</code>. Invariants: ledger-primary; every prose sentence binds to a ledger entry; prose modality never exceeds ledger certainty; evidence-hunting to rescue overbroad claims is forbidden by name.</li>
+<li><strong>Lab surface:</strong> A public "Lab" (galaxy-evolution autonomous research) with Topic/Data/Methods/Paper stage navigation, an autonomous lab runner (<code>tools/lab_runner_worker.py</code>, Ollama-based drafting with NASA ADS/arXiv full-text literature grounding added in the working tree), and a companion YouTube explainer program (V8 public clips shipped 2026-07-21 per <code>YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_20260721.md</code>; three more stage-overview videos planned in <code>nav-video-expansion-20260721</code>).</li>
+<li><strong>Operations culture:</strong> Hwao/Fable coordinates; Tori/Hermes relays and verifies receipts; Lana (high-reasoning), Goru (mechanical), Kun (implementation/reproducibility oversight) lanes; durable markdown handoffs under <code>.hermes/handoffs/</code> (52 directories/files) and board protocol under <code>.hermes/board/</code>; tmux-pane based execution; strict explicit-approval gates for DB writes, deploys, git writes, publication, browser/cloud/cron/billing actions.</li>
+</ul>
+<h2 id="3-what-is-working-well">3. What is working well</h2>
+<ul>
+<li><strong>Gate discipline is real, not decorative.</strong> Multiple 2026-07-21 receipts show bounded execution with explicit user authorization recorded before action: <code>TORI_ANTIGRAVITY_QUOTA_EXPERIMENT_USER_AUTHORIZED_20260721T103613Z.md</code> documents a quota probe with pre-stated stop conditions, verified before/after readings, and an honestly reported parser defect it exposed (plus the focused TDD fix: 14 focused tests pass, broader sets itemized with pre-existing failures separated from new ones). <code>MACBOOK_COMPUTER_USE_VERIFIED_20260721.md</code> records an installation with exact verification evidence (doctor JSON ok, screenshot hash) and an honest note about a Hermes/CuaDriver version formatting mismatch with a workaround.</li>
+<li><strong>Trust semantics being hardened with tests.</strong> Working tree adds <code>_apply_debate_stance_semantic_cap</code> in <code>backend/app/services/trust_calculation.py</code>: claims marked <code>mixed_debated</code> or <code>model_bounded</code> can no longer render as <code>accepted</code>/<code>consensus</code> merely because attached evidence is currently supportive; human locked overrides still win. The new <code>backend/tests/test_trust_debate_stance_caps.py</code> plus <code>test_model_canary.py</code> pass (5 passed, run in this pass). This is exactly the Baseline invariant "prose/status modality may not exceed evidence certainty" being enforced in code.</li>
+<li><strong>Focused test suites pass.</strong> In this pass: 5/5 trust-cap+canary tests, 16/16 paper-API tests (cross-page footprint, global paper directory, page source surface fallbacks, paper profile), 8/8 source-surface fallback tests (separate run), and the frontend <code>scripts/test-surveys-atlas-ia.mjs</code> smoke checks passed.</li>
+<li><strong>The live mirror is clean and current on <code>main</code>.</strong> <code>NebulaMind-origin-main-live</code> is on <code>main</code>, zero dirty files, tip <code>28e8735 fix(lab): eliminate SSR hydration error on the Lab page (#101)</code> — a steady cadence of numbered, reviewed lab-page fixes (#97–#101).</li>
+<li><strong>Video/explainer program shipped with receipts.</strong> Public V8 female-voice replacements for Embedding/Clustering/Activity-Overlay/Ranking are live with exact YouTube IDs recorded; V6 duplicates preserved unlisted, not deleted — a conservative, reversible publication pattern.</li>
+<li><strong>Research pipeline design is genuinely conservative.</strong> The decomposed galaxy-research pipeline plan (2026-07-12) replaces one-shot Deep Research prompts with per-simulation atomic evidence units, deterministic assembly, fail-closed validators, and "assembler must never invent/paraphrase/repair — emit blocked report instead." Sealed C1r artifacts are hash-pinned and immutable.</li>
+</ul>
+<h2 id="4-top-risksblockers-ordered-by-severity">4. Top risks/blockers, ordered by severity</h2>
+<ol>
+<li><strong>Development/live divergence and branch staleness (high).</strong> Working branch is 6 ahead / 66 behind <code>origin/main</code>. The lab frontend files differ substantially between the two checkouts (live has <code>DraftBoard.tsx</code>, <code>FlagshipStudies.tsx</code>, <code>FrontierDrafts.tsx</code>, <code>PipelineBoard.tsx</code>, <code>stageData.ts</code>, <code>subnavVideos.ts</code>, etc., that the dev checkout lacks; dev has refactored <code>LabStages.tsx</code>/<code>frontiersData.ts</code>/<code>LabTopTabs.tsx</code> not on main). Meanwhile recent dev commits refactor the same Lab surface ("dissolve frontier map into Topic tab"). Risk: an eventual merge/rebase of a month-old surveys branch onto a fast-moving main will be painful and error-prone; the nav-video plan itself was grounded against the <em>live</em> checkout's <code>stageData.ts</code>, not the dev tree.</li>
+<li><strong>Dirty-worktree entropy (high).</strong> 20 modified + ~360 untracked files in the dev checkout, including stray root-level artifacts (<code>click.js</code>, many <code>test_*.applescript</code>, <code>wait_and_extract.py</code>, <code>find_deep.js</code>, root-level <code>test*.db</code> files, <code>goru_temp_report.json</code>, <code>tmp_build_2929_trust_packet.py</code>), backup files (<code>main.py.bak-labrunner</code>, 8 timestamped <code>.bak</code> copies of <code>render_ge_autopilot_dashboard_v2.py</code>), and an untracked <code>backend/.env.redacted-before-disable-gemini-20260708_174609</code> (redacted, but secret-adjacent clutter). Untracked new backend tests (6 files) are real work at risk of loss. Mixed concerns in one tree make any future commit risky and dilute reviewability.</li>
+<li><strong>Baseline pipeline not yet implemented (medium-high).</strong> The canonical paper→ledger→map→prose pipeline is in "pre-implementation review patched" state since 2026-07-03; board shows Claim/status ledger as "next", debate map and prose preview blocked behind it, exact-diff/product change locked. Correctly gated, but the flagship mission is ~3 weeks stalled at the same stage; the risk is drift between doctrine and the code that actually ships (the trust-cap fix is good, but it patches the <em>production</em> trust calculator, not the Baseline ledger that does not yet exist).</li>
+<li><strong>SQLite test-DB hygiene (medium).</strong> Tests create on-disk SQLite files (<code>test_*.db</code>) at repo root and backend root; a pre-existing SQLAlchemy FK-cycle warning (<code>evidence</code>, <code>jury_scorecards</code> drop-order) appears in test output. Cosmetic now, but it means test schema teardown is not clean and test DBs pollute the tree.</li>
+<li><strong>Known pre-existing test failures acknowledged in receipts (low-medium).</strong> The Tori quota receipt honestly notes 4 unrelated pre-existing Gemini-consumer staleness-window failures and 1 stale overnight-marker failure in broader tool test sets. Not regressions, but they are unfixed red in the broader suite.</li>
+<li><strong>Python toolchain mismatch (low).</strong> System <code>python3</code> is 3.9.6 while <code>python</code>/pip map to 3.11; backend <code>.venv</code> is 3.11 and works. Anyone following README setup casually can land on the wrong interpreter.</li>
+</ol>
+<h2 id="5-architecture-and-source-of-truth-map">5. Architecture and source-of-truth map</h2>
+<ul>
+<li><strong>Product runtime:</strong> <code>backend/app</code> (FastAPI: routers/, services/, models/, agent_loop/) ← PostgreSQL+Redis ← Celery workers; <code>frontend/src/app</code> (Next.js App Router); <code>mcp/</code> MCP server pointed at the live API.</li>
+<li><strong>Served product:</strong> <code>NebulaMind-origin-main-live</code> (clean clone of <code>origin/main</code>, tip #101). The dev checkout <code>NebulaMind/NebulaMind</code> is the working tree on <code>feat/surveys-atlas-ia-p1-20260627</code>. These are two distinct checkouts of the same repo, currently diverged both directions.</li>
+<li><strong>Research doctrine:</strong> <code>.hermes/plans/2026-07-01_205807-paper-prose-distillation-roadmap.md</code> (canonical Baseline) + <code>.hermes/board/paper-prose-distillation-board.md</code> (stage state). Supporting pipeline plans: <code>2026-07-12_075713-galaxy-research-decomposed-pipeline.md</code> (offline, deterministic, fail-closed).</li>
+<li><strong>Trust implementation:</strong> <code>backend/app/services/trust_calculation.py</code> (<code>recalculate_trust_v2</code>: numeric scoring → bucket → debate-stance semantic cap → freshness floor → human override), <code>trust_mutation.py</code>, <code>sentence_trust.py</code>, jury services; tests under <code>backend/tests/</code>.</li>
+<li><strong>Lab pipeline:</strong> <code>tools/lab_runner_worker.py</code> (autonomous runner; working tree adds <code>lit_context</code> grounding via <code>tools/nm_fulltext_layer.py</code> against NASA ADS + arXiv full text, non-fatal fallback), <code>tools/galaxy_evolution_autopilot.py</code>, dashboard renderers.</li>
+<li><strong>Coordination:</strong> <code>.hermes/board/communication-protocol.md</code> (Hermes Kanban canonical; repo-local markdown durable handoffs), <code>.hermes/handoffs/</code> receipts.</li>
+<li><strong>Cockpit/dashboard:</strong> stable-cockpit renderer + guard in <code>tools/</code>, protected markers, Tori-owned GE dashboard; per <code>.hermes.md</code>, public cockpit writes are Hwao-gated (not inspected in depth this pass).</li>
+</ul>
+<h2 id="6-evidencetrust-assessment">6. Evidence/trust assessment</h2>
+<ul>
+<li><strong>Doctrine:</strong> Ledger-primary, sentence-binding, modality-capped-by-certainty, no evidence-hunting. Coherent and unusually well-specified (enum registry, stance matrix, wording contract, countercase quota all enumerated pre-implementation).</li>
+<li><strong>Enforcement in code:</strong> The new debate-stance semantic cap closes a real leak where supportive-only evidence could visually promote a deliberately-scoped claim to <code>accepted</code>/<code>consensus</code>. Verified by reading the diff and running its tests.</li>
+<li><strong>Provenance in research runner:</strong> The working-tree <code>lit_context</code> addition grounds drafts in retrieved ADS/arXiv passages with [Key] citation tags and explicitly forbids copying literature numbers into the Result paragraph (result may state only the single given measurement). Fail-open by design (non-fatal skip) — reasonable for drafting, but it means lit grounding is not guaranteed; downstream review must not assume it ran.</li>
+<li><strong>Receipt culture:</strong> Handoffs consistently carry markers, exact commands, counts, hashes, and honest "pre-existing failure" separation. This is the strongest trust signal in the project.</li>
+<li><strong>Gap:</strong> The Baseline ledger schema exists on paper only; there is no machine-checked ledger artifact in production yet, so "every prose sentence binds to the ledger" is currently aspirational for new prose.</li>
+</ul>
+<h2 id="7-engineeringreproducibility-assessment">7. Engineering/reproducibility assessment</h2>
+<ul>
+<li><strong>Tests run this pass (all green):</strong></li>
+<li><code>backend</code>: <code>pytest tests/test_trust_debate_stance_caps.py tests/test_model_canary.py</code> → 5 passed.</li>
+<li><code>backend</code>: <code>pytest tests/test_cross_page_paper_footprint_api.py tests/test_global_paper_directory_api.py tests/test_page_source_surface_fallbacks.py tests/test_paper_profile_api.py</code> → 16 passed.</li>
+<li><code>backend</code>: <code>pytest tests/test_page_source_surface_fallbacks.py</code> (rerun) → 8 passed.</li>
+<li><code>frontend</code>: <code>node scripts/test-surveys-atlas-ia.mjs</code> → "surveys atlas IA smoke checks passed".</li>
+<li><strong>Not run (out of scope/time):</strong> full backend suite, frontend <code>next build</code>/lint, migrations, live API checks. Receipts indicate broader tool suites have 4+1 known pre-existing failures.</li>
+<li><strong>Reproducibility concerns:</strong> dirty tree + untracked tests + <code>.bak</code> proliferation + on-disk test DBs mean the exact state that produced current behavior is not fully reconstructible from git alone; the live mirror is the only clean reproducible anchor. Test FK-cycle SAWarning on teardown should be fixed (<code>use_alter=True</code> or sorted drop) before it masks a real problem.</li>
+<li><strong>Commit cadence on main is healthy</strong> (numbered PRs #20–#101 visible in history), but the dev branch has not been rebased in ~3+ weeks while main moved 66 commits.</li>
+</ul>
+<h2 id="8-operationalsafety-gate-assessment">8. Operational/safety-gate assessment</h2>
+<ul>
+<li><strong>No gate violations observed.</strong> Every 2026-07-21 side-effecting action found (quota experiment, computer-use install, monitor restart, YouTube publication) carries a user-authorization record, pre-stated boundaries, stop conditions, and post-hoc verification. The quota receipt's monitor restart was separately approved, PID-backed-up, single-pane-scoped.</li>
+<li><strong>Kun's own constraints held:</strong> this pass was read-only except the sole report path; no git writes, no process actions, no secrets inspection (<code>.env*</code> files were listed but never opened), no subagents.</li>
+<li><strong>Board hygiene:</strong> <code>.hermes.md</code> Hwao-led roles are being followed; cockpit preservation rules documented with protected markers; communication protocol designates Kanban + repo markdown, Obsidian retired due TCC.</li>
+<li><strong>Watch item:</strong> the untracked <code>backend/.env.redacted-...</code> file is redacted by name but should be moved out of the repo tree or deleted to keep the secret-adjacent surface at zero.</li>
+</ul>
+<h2 id="9-prioritized-next-actions-owner-action-expected-evidence-gate">9. Prioritized next actions (owner / action / expected evidence / gate)</h2>
+<ol>
+<li><strong>Hwao + user — Decide the fate of <code>feat/surveys-atlas-ia-p1-20260627</code>.</strong> Either rebase/merge the 6 ahead commits onto current <code>origin/main</code> (66 behind) and open a PR, or deliberately shelve the branch. Evidence: a clean merge plan or a recorded close decision; <code>git log</code> showing convergence. Gate: user approval for any git write.</li>
+<li><strong>Hwao/Goru — Worktree hygiene sweep (mechanical, read-only inventory first).</strong> Classify the ~360 untracked files into keep (commit candidates like the 6 new backend tests), archive (docs/ handoff HTML), and delete (root <code>test_*.applescript</code>, <code>click.js</code>, stray <code>test*.db</code>, <code>tmp_*.py</code>, <code>.bak</code> files). Evidence: inventory report + reduced <code>git status</code> count. Gate: user approval before any deletion/commit.</li>
+<li><strong>Lana + Hwao — Unblock the Baseline Claim Ledger Contract v1 (the "next" stage since 2026-07-03).</strong> Produce the docs-only ledger contract per the roadmap, then the first machine-checkable ledger JSONL for the 26 AGN papers. Evidence: contract doc + validating JSONL + Goru schema check receipt. Gate: existing docs-only gate; DB write remains separately gated.</li>
+<li><strong>Kun/Lana — Reconcile the Lab frontend divergence deliberately.</strong> The nav-video plan and live site use live-tree <code>stageData.ts</code>; the dev tree refactored the same surface. Decide which tree is authoritative for Lab going forward before more parallel edits. Evidence: a recorded decision + single-source file list. Gate: Hwao decision.</li>
+<li><strong>Goru — Fix the test-teardown FK cycle warning</strong> (<code>evidence</code>/<code>jury_scorecards</code> drop order) and stop tests from writing <code>test_*.db</code> into repo roots (tmp-path fixtures). Evidence: warning-free focused runs; <code>git status</code> clean of test DBs. Gate: normal code review.</li>
+<li><strong>Tori — Track down the 5 known pre-existing tool-test failures</strong> (4 Gemini-consumer staleness-window, 1 stale overnight-marker) and either fix or formally quarantine them. Evidence: green broader suite or quarantine notes. Gate: none (read-only/tests).</li>
+<li><strong>Hwao — Move or delete <code>backend/.env.redacted-before-disable-gemini-20260708_174609</code></strong> out of the repo tree. Evidence: file absent from <code>git status</code>. Gate: user approval (secret-adjacent).</li>
+</ol>
+<h2 id="10-evidence-ledger-what-was-actually-inspected">10. Evidence ledger — what was actually inspected</h2>
+<p>Commands (read-only):
+- <code>git status --short</code> (380 lines; counted 20 modified / ~360 untracked), <code>git log --oneline -15</code>, <code>git branch --show-current</code> → <code>feat/surveys-atlas-ia-p1-20260627</code>
+- <code>git log HEAD..origin/main | wc -l</code> → 66; <code>git log origin/main..HEAD | wc -l</code> → 6
+- <code>git diff --stat</code> (20 files, +1381/-153); <code>git diff</code> on <code>backend/app/services/trust_calculation.py</code>, <code>tools/lab_runner_worker.py</code>, <code>wiki_schema.md</code>
+- In <code>NebulaMind-origin-main-live</code>: <code>git branch</code> → main; <code>git status</code> → 0 dirty; <code>git log -5</code> → tip 28e8735 (#101); <code>diff -rq frontend/src</code> vs dev tree
+- <code>backend/.venv/bin/python -m pytest tests/test_trust_debate_stance_caps.py tests/test_model_canary.py -q</code> → 5 passed
+- <code>pytest tests/test_cross_page_paper_footprint_api.py tests/test_global_paper_directory_api.py tests/test_page_source_surface_fallbacks.py tests/test_paper_profile_api.py -q</code> → 16 passed; rerun of fallbacks → 8 passed
+- <code>frontend: node scripts/test-surveys-atlas-ia.mjs</code> → passed</p>
+<p>Files read (content, not just names):
+- <code>.hermes.md</code> (operating contract), <code>README.md</code>, <code>wiki_schema.md</code>
+- <code>.hermes/plans/2026-07-01_205807-paper-prose-distillation-roadmap.md</code> (Baseline, first 50 lines)
+- <code>.hermes/plans/2026-07-12_075713-galaxy-research-decomposed-pipeline.md</code> (first 100 lines)
+- <code>.hermes/board/paper-prose-distillation-board.md</code>, <code>.hermes/board/communication-protocol.md</code>
+- <code>.hermes/handoffs/TORI_ANTIGRAVITY_QUOTA_EXPERIMENT_USER_AUTHORIZED_20260721T103613Z.md</code>
+- <code>.hermes/handoffs/MACBOOK_COMPUTER_USE_VERIFIED_20260721.md</code>
+- <code>.hermes/handoffs/YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_20260721.md</code>
+- <code>.hermes/handoffs/nav-video-expansion-20260721/HWAO_VIDEO_EXPANSION_PLAN.md</code> (first 50 lines)
+- <code>.hermes/handoffs/surveys-low-usage-autonomous/20260707T105700Z/</code> brief/report headers
+- <code>backend/tests/test_trust_debate_stance_caps.py</code> (first 60 lines)
+- Directory listings: repo root, <code>backend/</code>, <code>backend/app/{routers,services}</code>, <code>frontend/</code>, <code>frontend/src/app</code>, <code>.hermes/{board,plans,handoffs,state,agents}</code>, tools/</p>
+<h2 id="11-uncertainties-and-what-kun-deliberately-did-not-inspect">11. Uncertainties and what Kun deliberately did not inspect</h2>
+<ul>
+<li><strong>Not inspected:</strong> any <code>.env</code>/credential/token content (excluded by brief); the live public cockpit HTML/JSON (content verified only indirectly via the Tori receipt); the production database; running processes/tmux panes; the MCP server's live behavior; <code>autowiki/</code>, <code>cloudflare/</code>, <code>playwright_test/</code>, <code>memory/</code>, <code>logs/</code>; full backend test suite and frontend production build (time-boxed; only focused suites run).</li>
+<li><strong>Unknowns:</strong> whether the public site is actually serving the live mirror's tip right now (no HTTP probe was permitted/needed); the true state of the Celery agent loop in production; whether the 6-ahead branch commits are already partially duplicated on main; current ADS/API quota states; the content of <code>.claude/</code> (untracked, not opened).</li>
+<li><strong>Inference vs fact:</strong> "branch is stale and merge will be painful" is inference from ahead/behind counts and file-level diffs, not from an attempted merge. "Baseline is stalled" is inference from board timestamps (2026-07-03) vs today (2026-07-21); there may be off-repo progress Kun did not see.</li>
+</ul>
+<h2 id="12-modelroute-note">12. Model/route note</h2>
+<p>This oversight pass was executed on the requested route: <strong>Nous Portal / moonshotai/kimi-k3</strong>. No claims are made about which billing bucket, quota pool, or subscription backed the route beyond that.</p>
+<hr>
+<div class="receipt-marker" role="note"><span>Verified receipt marker</span><code>KUN_KIMI_K3_NEBULAMIND_OVERSIGHT_COMPLETE_20260721T110854Z</code></div>
+      </article>
+    </main>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-inner"><strong>Kun / Kimi K3</strong> · Read-only NebulaMind oversight · Standalone local artifact · Print-ready</div>
+  </footer>
+</body>
+</html>

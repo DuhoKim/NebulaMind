@@ -1,0 +1,96 @@
+/Users/duhokim/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+FFFFFFFFF                                                                [100%]
+=================================== FAILURES ===================================
+_____________________________ test_build_js_probe ______________________________
+
+    def test_build_js_probe():
+        probe = build_js_probe()
+>       assert isinstance(probe, str)
+E       assert False
+E        +  where False = isinstance(None, str)
+
+phaseA/adapter/tests/test_adapter.py:6: AssertionError
+_____________________________ test_classify_login ______________________________
+
+    def test_classify_login():
+        signal = {"url": "https://accounts.google.com/login", "title": "Sign in", "counts": {}}
+>       assert classify_signal(signal) == "LOGIN_WALL"
+E       AssertionError: assert None == 'LOGIN_WALL'
+E        +  where None = classify_signal({'counts': {}, 'title': 'Sign in', 'url': 'https://accounts.google.com/login'})
+
+phaseA/adapter/tests/test_adapter.py:13: AssertionError
+__________________________ test_classify_verification __________________________
+
+    def test_classify_verification():
+        signal = {"url": "https://gemini.google.com/app", "title": "Gemini", "counts": {"verification_iframe": 1}}
+>       assert classify_signal(signal) == "VERIFICATION_WALL"
+E       AssertionError: assert None == 'VERIFICATION_WALL'
+E        +  where None = classify_signal({'counts': {'verification_iframe': 1}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app'})
+
+phaseA/adapter/tests/test_adapter.py:17: AssertionError
+____________________________ test_classify_billing _____________________________
+
+    def test_classify_billing():
+        signal = {"url": "https://gemini.google.com/app", "title": "Gemini", "counts": {"billing_upgrade": 1}}
+>       assert classify_signal(signal) == "BILLING_WALL"
+E       AssertionError: assert None == 'BILLING_WALL'
+E        +  where None = classify_signal({'counts': {'billing_upgrade': 1}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app'})
+
+phaseA/adapter/tests/test_adapter.py:25: AssertionError
+____________________________ test_classify_running _____________________________
+
+    def test_classify_running():
+        signal = {"url": "https://gemini.google.com/app/123", "title": "Gemini", "counts": {"running_stop": 1}}
+>       assert classify_signal(signal) == "RUNNING"
+E       AssertionError: assert None == 'RUNNING'
+E        +  where None = classify_signal({'counts': {'running_stop': 1}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app/123'})
+
+phaseA/adapter/tests/test_adapter.py:29: AssertionError
+___________________________ test_classify_plan_ready ___________________________
+
+    def test_classify_plan_ready():
+        signal = {"url": "https://gemini.google.com/app", "title": "Gemini", "counts": {"plan": 1, "start_control": 1, "running_stop": 0}}
+>       assert classify_signal(signal) == "PLAN_READY"
+E       AssertionError: assert None == 'PLAN_READY'
+E        +  where None = classify_signal({'counts': {'plan': 1, 'running_stop': 0, 'start_control': 1}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app'})
+
+phaseA/adapter/tests/test_adapter.py:33: AssertionError
+____________________________ test_classify_complete ____________________________
+
+    def test_classify_complete():
+        signal = {"url": "https://gemini.google.com/app/123", "title": "Gemini", "counts": {"complete": 1, "answer_body": 1, "links": 1, "running_stop": 0}}
+>       assert classify_signal(signal) == "COMPLETE"
+E       AssertionError: assert None == 'COMPLETE'
+E        +  where None = classify_signal({'counts': {'answer_body': 1, 'complete': 1, 'links': 1, 'running_stop': 0}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app/123'})
+
+phaseA/adapter/tests/test_adapter.py:37: AssertionError
+_________________________ test_classify_pro_dr_active __________________________
+
+    def test_classify_pro_dr_active():
+        signal = {"url": "https://gemini.google.com/app", "title": "Gemini", "counts": {"composer": 1, "pro_mode": 1, "deep_research_active": 1, "plan": 0, "running_stop": 0}}
+>       assert classify_signal(signal) == "DR_ACTIVE"
+E       AssertionError: assert None == 'DR_ACTIVE'
+E        +  where None = classify_signal({'counts': {'composer': 1, 'deep_research_active': 1, 'plan': 0, 'pro_mode': 1, ...}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app'})
+
+phaseA/adapter/tests/test_adapter.py:41: AssertionError
+____________________________ test_classify_unknown _____________________________
+
+    def test_classify_unknown():
+        signal = {"url": "https://gemini.google.com/app", "title": "Gemini", "counts": {}}
+>       assert classify_signal(signal) == "UNKNOWN"
+E       AssertionError: assert None == 'UNKNOWN'
+E        +  where None = classify_signal({'counts': {}, 'title': 'Gemini', 'url': 'https://gemini.google.com/app'})
+
+phaseA/adapter/tests/test_adapter.py:45: AssertionError
+=========================== short test summary info ============================
+FAILED phaseA/adapter/tests/test_adapter.py::test_build_js_probe - assert False
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_login - AssertionE...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_verification - Ass...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_billing - Assertio...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_running - Assertio...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_plan_ready - Asser...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_complete - Asserti...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_pro_dr_active - As...
+FAILED phaseA/adapter/tests/test_adapter.py::test_classify_unknown - Assertio...
+9 failed in 0.04s

@@ -1,0 +1,44 @@
+{
+  "marker": "LAB_PIPELINE_EXPLAINER_QUEUE_V1",
+  "created_utc": "2026-07-17T12:28:24Z",
+  "updated_utc": "2026-07-17T12:28:24Z",
+  "status": "QUEUED_WAITING_FOR_VIDEO2_TERMINAL_SUCCESS",
+  "start_now": false,
+  "brief_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/video-briefs/lab-pipeline-explainer-brief.md",
+  "dependency": {
+    "name": "frontier-methodology Video-2",
+    "state_path": "/Users/duhokim/HermesOps/scripts/clips/method2_sfa/FRONTIER_METHODOLOGY_VIDEO2_CHARON_RECOVERY_STATE.json",
+    "required_final_status": "SUCCESS",
+    "observed_final_status": "HOLD_ALL_TICKS_NO_SUBMIT",
+    "observed_reason": "All scheduled ticks ended without a controllable active Flow tab; no account action occurred",
+    "observed_submissions": 0,
+    "gate": "Do not begin Lab pipeline generation until Video-2 has a terminal successful card URL and its account-submission/poll work is complete."
+  },
+  "production": {
+    "duration_target_seconds": "60-62",
+    "aspect_ratio": "16:9",
+    "beats": 10,
+    "visual_style": "informative Lab-native infographic; cosmic material only as a dim backdrop",
+    "palette": {
+      "background": "#0a0d17",
+      "accent": "#7c86ff",
+      "accent_2": "#4ad6c4"
+    },
+    "voice": "same locked VO voice as the methodology video",
+    "character": "reuse the research cartographer reference for beats 1 and 10 if retained",
+    "text_frames": "Nano Banana Pro for beats 1-2 and 4-10; never rely on Veo/Omni for legible text",
+    "flow_account_rule": "serialize every credit-spending submit through the account-submission lease",
+    "human_gate": "Duho must attach the cartographer reference frame and Nano Banana Pro infographic ingredients through the native file dialog, then confirm Create is enabled before any submit."
+  },
+  "deliverables": {
+    "required": [
+      "final self-hostable 16:9 MP4"
+    ],
+    "optional": [
+      "9:16 social cut",
+      "10-15 second silent 16:9 hero loop"
+    ],
+    "handoff": "Return the finished MP4 to Claude Code; Claude Code will place it in the Lab frontend public assets and wire the Lab hero."
+  },
+  "next_action": "Hwao/Yui should first recover and settle Video-2. After Video-2 terminal success, prepare the ten Nano Banana Pro storyboard frames and request Duho's manual ingredient attachments before the first Lab-pipeline Flow submit."
+}

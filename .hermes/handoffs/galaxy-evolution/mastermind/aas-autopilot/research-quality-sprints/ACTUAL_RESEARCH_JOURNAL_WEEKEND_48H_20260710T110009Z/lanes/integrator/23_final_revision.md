@@ -1,0 +1,12 @@
+Implemented the final revisions in both manuscripts.
+
+- Added explicit `Claim` / `Non-claim` / `Needed for causality` blocks in the flagship at [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L18) and [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L48).
+- Replaced the inconsistent Ferland DOI with a verified arXiv identifier in both bibliographies at [rp1_flagship_polished.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L110) and [supplementary_denominator_atlas.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L230).
+- Added field-level provenance keys to the supplement’s provenance map at [supplementary_denominator_atlas.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L26).
+- Synced the simulation subsection prose to the actual table values, including the full displayed ranges, at [supplementary_denominator_atlas.tex](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_23_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L165).
+
+Verification:
+- Static checks confirm balanced `deluxetable*` environments in both files.
+- I could not run a TeX compile here because `latexmk` and a direct TeX engine are not installed in this environment.
+
+JOURNAL_LEVEL_PASS: YES

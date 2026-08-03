@@ -1,0 +1,30 @@
+{
+ "check": "thunderbolt_stdin",
+ "transport": "thunderbolt",
+ "fallback": "none",
+ "endpoints": {
+  "pro": {
+   "host": "duhokim@169.254.100.1",
+   "host_key_alias": "100.122.78.110"
+  },
+  "studio_from_pro": {
+   "host": "duhokim@169.254.100.2",
+   "host_key_alias": "100.84.12.101"
+  }
+ },
+ "directions": {
+  "studio_to_pro": {
+   "rc": 0,
+   "stdout": "MARKER PASS1R1_REPAIRED_STDIN x86_64 Duhoui-MacPro.local",
+   "stderr": "",
+   "pass": true
+  },
+  "pro_to_studio": {
+   "rc": 0,
+   "stdout": "MARKER PASS1R1_REPAIRED_STDIN arm64 Duhoui-MacStudio.local",
+   "stderr": "",
+   "pass": true
+  }
+ },
+ "pass": true
+}

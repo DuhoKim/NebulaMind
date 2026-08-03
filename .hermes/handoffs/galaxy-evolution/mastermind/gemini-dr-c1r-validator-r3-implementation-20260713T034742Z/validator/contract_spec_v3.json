@@ -1,0 +1,55 @@
+{
+  "schema": "NM_GEMINI_C1R_CONTRACT_V3",
+  "contract_revision": "r3-draft-gate-a-implementation",
+  "r3_policies": {
+    "section_1_typed_calibration_target_prefix": "CALIBRATION_TARGET_DESCRIPTION:",
+    "section_2_authoritative_citation_role": "citation",
+    "section_2_empty_citation_hard_fail": true,
+    "gap_parent_field": "parent_path",
+    "one_gap_per_parent_paragraph": true,
+    "arxiv_url_variants_canonicalized": true,
+    "near_duplicates_require_manual_review": true
+  },
+  "req_id": "REQ_JOINT_C1R_20260712T045317Z",
+  "title": "Joint C1R answer — REQ_JOINT_C1R_20260712T045317Z",
+  "model": "Gemini Pro (selected UI mode; backend version not exposed)",
+  "marker": "GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+  "final_marker": "GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+  "bidirectional_c7": true,
+  "banned_tokens": [
+    "hero_facts"
+  ],
+  "expected_sections": [
+    "1. Calibration ledger",
+    "2. Out-of-sample validation ledger",
+    "3. Double-counting warnings",
+    "4. Feedback-relevant observables map",
+    "5. Gaps",
+    "Links ledger"
+  ],
+  "section_columns": {
+    "1. Calibration ledger": [
+      "simulation",
+      "calibration_target",
+      "feedback_params",
+      "emergent",
+      "notes"
+    ],
+    "2. Out-of-sample validation ledger": [
+      "simulation",
+      "observable",
+      "result",
+      "comparability",
+      "overlap",
+      "citation"
+    ],
+    "4. Feedback-relevant observables map": [
+      "simulation",
+      "quenched_fractions",
+      "gas_fractions",
+      "outflow_demographics",
+      "hot_halo_cavity",
+      "radio_agn_incidence"
+    ]
+  }
+}

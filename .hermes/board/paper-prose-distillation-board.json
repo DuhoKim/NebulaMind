@@ -1,0 +1,125 @@
+{
+  "updated_kst": "2026-07-01 20:58:07 KST",
+  "updated_utc": "2026-07-01T11:58:07Z",
+  "mode": "BOARD_ASSEMBLED_FOR_PAPER_PROSE_DISTILLATION",
+  "marker": "PAPER_PROSE_DISTILLATION_BOARD_V1",
+  "mission": "Turn large volumes of published papers into clear, trustworthy prose: claims, evidence, contradictions, and readiness/trust summaries with citations.",
+  "north_star": [
+    "Papers processed into structured claim/evidence records per day.",
+    "Share of claims grounded by cited evidence spans, not generic summaries.",
+    "Share of papers/claims with explicit support/counter/neutral stance labels.",
+    "Contradictions surfaced with enough context for a human to adjudicate.",
+    "Final prose paragraphs accepted as clear, cited, uncertainty-aware, and useful."
+  ],
+  "feature_gate": "UI/runtime features wait unless they directly increase ingestion throughput, evidence quality, contradiction finding, trust/readiness scoring, or final prose synthesis.",
+  "lanes": [
+    {
+      "id": "L1",
+      "name": "Corpus intake and inventory",
+      "owner": "Goru mechanical lane, Hermes verifies",
+      "state": "next",
+      "goal": "Know what papers exist, which ones have metadata gaps, and which tranche should be processed first.",
+      "first_cards": [
+        "Inventory current paper universe and counts without DB writes.",
+        "Rank candidate tranches by relevance, metadata completeness, and contradiction potential.",
+        "Produce a 25-paper pilot manifest with stable IDs and source URLs."
+      ],
+      "done_when": "A manifest exists with paper_id/arxiv/doi/title/year/source_url plus reason-for-inclusion and known gaps."
+    },
+    {
+      "id": "L2",
+      "name": "Paper-to-claim extraction",
+      "owner": "Lana reasoning lane, Hermes verifies schema",
+      "state": "next",
+      "goal": "Convert each paper into atomic claims and evidence snippets that can be checked later.",
+      "first_cards": [
+        "Define the distillation JSONL contract: paper, claim, evidence_span, stance, uncertainty, limitations.",
+        "Run a small manual/guided extraction on 3 papers to calibrate claim granularity.",
+        "Record failure modes: vague claim, missing method, unsupported conclusion, duplicate claim."
+      ],
+      "done_when": "Each pilot paper has 3-8 atomic claims with quoted/located evidence snippets and caveats."
+    },
+    {
+      "id": "L3",
+      "name": "Contradiction and trust/readiness",
+      "owner": "Lana plus Goru cross-check",
+      "state": "next",
+      "goal": "Find where papers agree, disagree, or are too weak to support prose.",
+      "first_cards": [
+        "Build a stance matrix over pilot claims: support / counter / mixed / insufficient.",
+        "Create contradiction cards with the exact papers and claim text involved.",
+        "Assign readiness labels: ready for prose, needs adjudication, needs more evidence, reject/low confidence."
+      ],
+      "done_when": "Every synthesis candidate has a readiness label and a reason, with unresolved contradictions explicit."
+    },
+    {
+      "id": "L4",
+      "name": "Prose synthesis",
+      "owner": "Hermes drafts, Lana reviews",
+      "state": "next",
+      "goal": "Turn structured evidence into readable, cited paragraphs without overstating certainty.",
+      "first_cards": [
+        "Design paragraph templates: what is known, what is disputed, why it matters, readiness/caveat.",
+        "Draft 5 prose examples from the pilot tranche with citations to paper IDs and evidence snippets.",
+        "Review for overclaiming, missing caveats, and human readability."
+      ],
+      "done_when": "At least 5 concise prose blocks are citation-backed, uncertainty-aware, and reviewable by a human."
+    },
+    {
+      "id": "L5",
+      "name": "Evaluation and human adjudication",
+      "owner": "Hermes board, Goru metrics, human final judgment",
+      "state": "next",
+      "goal": "Measure whether the distillation is actually reliable and useful.",
+      "first_cards": [
+        "Create a rubric: groundedness, contradiction handling, citation precision, clarity, uncertainty.",
+        "Score pilot outputs and list the top recurring defects.",
+        "Define stop/go thresholds before any DB publication or product surface work."
+      ],
+      "done_when": "A pilot scorecard says what passed, what failed, and what must improve before scale-up."
+    },
+    {
+      "id": "L6",
+      "name": "Product/UI only as support",
+      "owner": "Hermes gatekeeper",
+      "state": "gated",
+      "goal": "Use UI only to expose corpus/prose progress or let humans review evidence faster.",
+      "first_cards": [
+        "Keep current PR #72 paper surfaces as support tools.",
+        "Do not start new feature work unless it unblocks one of L1-L5.",
+        "Any deploy/restart remains separately approval-gated."
+      ],
+      "done_when": "Every feature request names the distillation bottleneck it removes and the metric it improves."
+    }
+  ],
+  "cadence": {
+    "today": "Assemble board and choose the first non-mutating pilot path.",
+    "48_hours": "Inventory corpus and produce 25-paper pilot manifest plus extraction schema.",
+    "one_week": "Produce 25-paper pilot artifacts: structured claims/evidence/contradictions and 5-10 prose drafts.",
+    "two_weeks": "Score pilot, fix pipeline defects, then decide whether to scale to 100+ papers or build review UI."
+  },
+  "approvals": [
+    {
+      "label": "Read-only board pilot",
+      "phrase": "APPROVE PAPER DISTILLATION BOARD READ-ONLY PILOT: Run a read-only corpus/prose readiness pass that inventories current papers, claim/evidence coverage, contradiction gaps, and prose-output candidates; write only docs/JSONL/report artifacts under .hermes or docs; do not deploy/restart, write DB rows, run migrations, change production config, use OpenClaw relay, or commit/push/merge without separate approval."
+    },
+    {
+      "label": "Offline 25-paper pilot artifacts",
+      "phrase": "APPROVE PAPER DISTILLATION PILOT ARTIFACTS: Build an offline 25-paper pilot packet with paper summaries, extracted claims, evidence snippets, contradiction notes, trust/readiness labels, and concise cited prose drafts as docs/JSONL/Markdown only. No DB writes, no migrations, no deploy/restart, no production config changes, no OpenClaw relay, no commit/push/merge without separate approval."
+    },
+    {
+      "label": "Overnight non-mutating paper-distillation run",
+      "phrase": "APPROVE OVERNIGHT PAPER DISTILLATION RUN: Spend up to 8-12 hours on non-mutating paper-distillation work: corpus inventory, extraction schema, 25-paper pilot artifacts, contradiction/trust rubric, and cockpit checkpoints. Write docs/JSONL/Markdown only; no DB writes, migrations, deploy/restart, production config changes, OpenClaw relay, or branch/PR/merge unless separately approved."
+    }
+  ],
+  "safety": [
+    "No DB writes without separate explicit approval.",
+    "No migrations without separate explicit approval.",
+    "No deploy/restart without separate explicit approval.",
+    "No production config changes.",
+    "No OpenClaw relay.",
+    "No commit/push/merge unless separately approved.",
+    "No broad runtime git cleanup.",
+    "Feature/UI work remains gated by the paper-prose mission."
+  ]
+}

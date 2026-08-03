@@ -1,0 +1,30 @@
+{
+  "lane": "lana",
+  "packet": "P0-tng-validation",
+  "status": "DONE",
+  "started_at": "2026-07-27T13:06:56Z",
+  "completed_at": "2026-07-27T13:19:30Z",
+  "files": [
+    "ARTIFACT_IDENTITY.md",
+    "REPRESENTATION_MATRIX.json",
+    "SECTION_CLAIM_LEDGER.md",
+    "NUMERIC_INVARIANTS.json",
+    "CITATION_AND_REVIEW_LINK_AUDIT.md",
+    "LANA_SCIENCE_REVIEW.md",
+    "RECEIPT.json"
+  ],
+  "source_access_attestation": "Directly accessed the pinned served PDF (input/served-p0.pdf); recomputed SHA-256 086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef matching both the input manifest and the public-fetch baseline receipt (200, ETag W/\"206df-19f8ebca74d\", Last-Modified 2026-07-23T11:29:16 GMT); ran pdfinfo + pdftotext; rendered all 4 pages to PNG (150 dpi, plus 300 dpi Figure 2 crop) and visually inspected every page, both figures, all axes/legends/annotations/captions. Secondary 3-page copy identically accessed and hashed (f037d89d...75d6). All 10 input-manifest hashes re-verified, one shasum invocation per file, all matching. External identity checks performed via public WebSearch/WebFetch (ADS, aanda.org) with no login/CAPTCHA/payment prompts encountered; live re-check of the review URL returned 404; a local curl HEAD was denied by lane permissions and not retried (fallback: pinned baseline receipt of 22:02 KST). Review is a line-level review of the exact pinned bytes, not prompt-conditioned.",
+  "stop_files_checked": {
+    "files": [
+      "GLOBAL_STOP_OVERNIGHT_PB_20260727.md",
+      "CONTENT_FREEZE_OVERNIGHT_PB_20260727.md"
+    ],
+    "checks": [
+      {"at_kst": "2026-07-27T22:06", "phase": "start", "result": "absent - proceed"},
+      {"at_kst": "2026-07-27T22:14", "phase": "mid-run", "result": "absent - proceed"},
+      {"at_kst": "2026-07-27T22:18", "phase": "pre-receipt", "result": "absent - proceed"}
+    ]
+  },
+  "disposition": "MZR_STATE_CONTRADICTORY__CORRECTION_LEDGER_ONLY",
+  "marker": "P0_LANA_PRIMARY_COMPLETE_20260727"
+}

@@ -1,0 +1,537 @@
+{
+  "active_execution_phrase": null,
+  "active_target": {
+    "content_sha256": "e07af50d6e44bec53b75869a4d93dc230d9dd2129a3854ce3eb3f5b4ec52203f",
+    "page_id": 57,
+    "slug": "galaxy-evolution",
+    "title": "Galaxy Evolution",
+    "version_num": 1710
+  },
+  "b2_state": "APPLIED_VALIDATED",
+  "baseline_steps": [
+    {
+      "body": "Canonical V1 Galaxy Evolution page 57 remains the active target; pilot/V2 and unrelated pages stay out of scope.",
+      "status": "PASS",
+      "step": 0,
+      "title": "Scope lock"
+    },
+    {
+      "body": "Source coverage remains cumulative; remaining held 2929 evidence rows require source-position decisions before any future evidence packet.",
+      "status": "PARTIAL",
+      "step": 1,
+      "title": "Corpus and source inventory"
+    },
+    {
+      "body": "Paper identities and bibliographic metadata are available for current AGN-feedback rows, but not declared complete for the whole page.",
+      "status": "PARTIAL",
+      "step": 2,
+      "title": "Paper metadata intake"
+    },
+    {
+      "body": "Next safe work is a docs-only source-position / human-adjudication queue for 36 held 2929 rows; no apply SQL.",
+      "status": "NEXT_DOCS_ONLY_GATE",
+      "step": 3,
+      "title": "Source positions"
+    },
+    {
+      "body": "2913/2921 exact write executed and verified earlier; rollback remains a separate rollback-only gate.",
+      "status": "PASS_EXECUTED_AND_VERIFIED",
+      "step": 4,
+      "title": "Claim/status ledger"
+    },
+    {
+      "body": "2929 exact remap previously moved 4 support rows; 36 neutral/held rows remain on hidden parent and are held for human/source-position adjudication.",
+      "status": "DOCS_ONLY_AUDIT_REVALIDATED",
+      "step": 5,
+      "title": "Evidence bindings"
+    },
+    {
+      "body": "2942–2947 trust fields now match the executed semantic-cap state; six fresh trigger audit rows remain present.",
+      "status": "PASS_EXECUTED_AND_VERIFIED",
+      "step": 6,
+      "title": "Research-status/debate map"
+    },
+    {
+      "body": "Semantic caps are reflected in trust rows/audit notes: 2942/2944/2945 debated, 2946 reported, 2943/2947 accepted.",
+      "status": "POST_EXECUTION_READONLY_VERIFIED",
+      "step": 7,
+      "title": "Wording/status caps"
+    },
+    {
+      "body": "Prose/wiki publish remains excluded and requires a later separate packet if wanted.",
+      "status": "LOCKED_SEPARATE_GATE",
+      "step": 8,
+      "title": "Docs-only prose preview"
+    },
+    {
+      "body": "No active execution phrase exists. Any future evidence, trust, rollback, or prose action requires a fresh exact packet/gate.",
+      "status": "NO_ACTIVE_EXECUTION_PHRASE",
+      "step": 9,
+      "title": "Product exact packets"
+    },
+    {
+      "body": "Final wiki/product pass still needs later approved exact changes, served-page verification, and rollback availability; this tick did not publish prose.",
+      "status": "NOT_READY",
+      "step": 10,
+      "title": "Wiki/product completion gate"
+    }
+  ],
+  "canonical_source_sha256": "9e1b5dfd0e63cb569e251fa3d1131478be74c065a4ce53ffda1cb1267a491135",
+  "canonical_state": {
+    "active_execution_phrase": null,
+    "active_target": {
+      "content_sha256": "e07af50d6e44bec53b75869a4d93dc230d9dd2129a3854ce3eb3f5b4ec52203f",
+      "page_id": 57,
+      "slug": "galaxy-evolution",
+      "title": "Galaxy Evolution",
+      "version_num": 1710
+    },
+    "approval_gate": {
+      "excludes": "Rollback, further trust recompute, evidence/vote/jury writes, prose/wiki publish, runtime deploy/restart, and git commit/push/merge remain separate gates.",
+      "next_safe_gate": "Docs-only source-position / human-adjudication queue for the 36 held 2929 evidence rows.",
+      "scope": "No active DB/trust/rollback/prose/runtime/git action is authorized by this cockpit.",
+      "status": "NO_ACTIVE_EXECUTION_PHRASE"
+    },
+    "artifacts": [
+      {
+        "label": "Tori B2 post-edit validation",
+        "path": ".hermes/handoffs/hwao_b2_source_position_20260705T041354Z/post_edit_validation_b2.json"
+      },
+      {
+        "label": "Kun B2 checker results",
+        "path": ".hermes/handoffs/hwao_b2_source_position_20260705T041354Z/kun_queue_checker_results_b2_post_apply.json"
+      },
+      {
+        "label": "Hwao B2 edit gate",
+        "path": ".hermes/handoffs/hwao_b2_source_position_20260705T041354Z/HWAO_B2_EDIT_GATE.md"
+      },
+      {
+        "label": "Lana B2 proposal",
+        "path": ".hermes/handoffs/hwao_b2_source_position_20260705T041354Z/LANA_B2_PROPOSAL.md"
+      },
+      {
+        "label": "Post-execution continuation checkpoint JSON",
+        "path": "docs/execution_2942_2947_trust_recompute_approved_20260704T180848Z/post/post_execution_continuation_checkpoint_20260705T015028Z.json"
+      },
+      {
+        "label": "Post-execution continuation log",
+        "path": "docs/execution_2942_2947_trust_recompute_approved_20260704T180848Z/POST_EXECUTION_CONTINUATION.md"
+      },
+      {
+        "label": "2929 docs-only revalidation handoff",
+        "path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/reports/2929_DOCS_ONLY_REVALIDATION_HANDOFF.md"
+      },
+      {
+        "label": "Baseline refresh run",
+        "path": "docs/galaxy_baseline_cockpit_refresh_20260704T122043Z/"
+      },
+      {
+        "label": "Canonical renderer",
+        "path": "tools/stable_cockpit_renderer.py"
+      },
+      {
+        "label": "Renderer tests",
+        "path": "tests/test_stable_cockpit_renderer.py"
+      },
+      {
+        "label": "2915 execution report",
+        "path": "docs/galaxy_2915_execution_and_cockpit_prevention_20260704T113605Z/reports/2915_EXECUTION_AND_COCKPIT_PREVENTION_REPORT.md"
+      },
+      {
+        "label": "Lana baseline design",
+        "path": "docs/galaxy_baseline_cockpit_refresh_20260704T122043Z/reports/lana_baseline_cockpit_design.md"
+      }
+    ],
+    "b2_state": "APPLIED_VALIDATED",
+    "baseline": {
+      "primitive": "papers → claim/status ledger → research-status/debate map → prose → derived claims/evidence/trust",
+      "summary": "The approved 2942–2947 trust recompute already executed and remains verified. This continuation tick only rechecked DB state/read-only invariants and kept the 2929 evidence-remap audit as docs-only human-adjudication work.",
+      "title": "Baseline trust/status gate: recompute executed; evidence audit held docs-only"
+    },
+    "baseline_steps": [
+      {
+        "body": "Canonical V1 Galaxy Evolution page 57 remains the active target; pilot/V2 and unrelated pages stay out of scope.",
+        "status": "PASS",
+        "step": 0,
+        "title": "Scope lock"
+      },
+      {
+        "body": "Source coverage remains cumulative; remaining held 2929 evidence rows require source-position decisions before any future evidence packet.",
+        "status": "PARTIAL",
+        "step": 1,
+        "title": "Corpus and source inventory"
+      },
+      {
+        "body": "Paper identities and bibliographic metadata are available for current AGN-feedback rows, but not declared complete for the whole page.",
+        "status": "PARTIAL",
+        "step": 2,
+        "title": "Paper metadata intake"
+      },
+      {
+        "body": "Next safe work is a docs-only source-position / human-adjudication queue for 36 held 2929 rows; no apply SQL.",
+        "status": "NEXT_DOCS_ONLY_GATE",
+        "step": 3,
+        "title": "Source positions"
+      },
+      {
+        "body": "2913/2921 exact write executed and verified earlier; rollback remains a separate rollback-only gate.",
+        "status": "PASS_EXECUTED_AND_VERIFIED",
+        "step": 4,
+        "title": "Claim/status ledger"
+      },
+      {
+        "body": "2929 exact remap previously moved 4 support rows; 36 neutral/held rows remain on hidden parent and are held for human/source-position adjudication.",
+        "status": "DOCS_ONLY_AUDIT_REVALIDATED",
+        "step": 5,
+        "title": "Evidence bindings"
+      },
+      {
+        "body": "2942–2947 trust fields now match the executed semantic-cap state; six fresh trigger audit rows remain present.",
+        "status": "PASS_EXECUTED_AND_VERIFIED",
+        "step": 6,
+        "title": "Research-status/debate map"
+      },
+      {
+        "body": "Semantic caps are reflected in trust rows/audit notes: 2942/2944/2945 debated, 2946 reported, 2943/2947 accepted.",
+        "status": "POST_EXECUTION_READONLY_VERIFIED",
+        "step": 7,
+        "title": "Wording/status caps"
+      },
+      {
+        "body": "Prose/wiki publish remains excluded and requires a later separate packet if wanted.",
+        "status": "LOCKED_SEPARATE_GATE",
+        "step": 8,
+        "title": "Docs-only prose preview"
+      },
+      {
+        "body": "No active execution phrase exists. Any future evidence, trust, rollback, or prose action requires a fresh exact packet/gate.",
+        "status": "NO_ACTIVE_EXECUTION_PHRASE",
+        "step": 9,
+        "title": "Product exact packets"
+      },
+      {
+        "body": "Final wiki/product pass still needs later approved exact changes, served-page verification, and rollback availability; this tick did not publish prose.",
+        "status": "NOT_READY",
+        "step": 10,
+        "title": "Wiki/product completion gate"
+      }
+    ],
+    "claim_layer_status": [
+      {
+        "item": "2942–2947",
+        "status": "EXECUTED_AND_VERIFIED: trust fields match executed semantic-cap state; trigger audit rows 6."
+      },
+      {
+        "item": "2942",
+        "status": "debated @ 0.40335751064120035; cap note mixed_debated preserved."
+      },
+      {
+        "item": "2943",
+        "status": "accepted @ 0.44990358039326167."
+      },
+      {
+        "item": "2944",
+        "status": "debated @ 0.4499974481620262; cap note mixed_debated preserved."
+      },
+      {
+        "item": "2945",
+        "status": "debated @ 0.44891108245763184; cap note mixed_debated preserved."
+      },
+      {
+        "item": "2946",
+        "status": "reported @ 0.4466841840905076; cap note model_bounded preserved."
+      },
+      {
+        "item": "2947",
+        "status": "accepted @ 0.41899932390040995."
+      },
+      {
+        "item": "2929",
+        "status": "hidden parent; 36 held neutral evidence rows require source-position/human adjudication; no direct docs-audit relink."
+      },
+      {
+        "item": "2913/2921",
+        "status": "earlier exact write remains executed and verified; no action this tick."
+      }
+    ],
+    "coordination": "Hwao plans/assembles; Tori relays/executes",
+    "copyable_state": "NO ACTIVE EXECUTION PHRASE — B2 is applied and validated docs-only; SQL remains locked until 36/36 source/human decisions plus a new operator-approved packet.",
+    "db_execution": {
+      "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+      "current_docs_gate": "2929 source-position queue helper QA patch applied",
+      "db_writes_executed_by_current_queue": 0,
+      "git_commit_push_merge": false,
+      "prose_publish_executed_by_current_queue": 0,
+      "runtime_deploy_restart": false,
+      "sql_apply_files_generated_by_current_queue": 0,
+      "status": "NO_ACTIVE_EXECUTION_PHRASE_HELPER_QA_PATCHED_QUEUE_ONLY",
+      "trust_recompute_executed_by_current_queue": 0
+    },
+    "docs_2929_audit": {
+      "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+      "artifact_validation_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/validation/post_trust_execution_artifact_validation_20260705T013021Z.json",
+      "db_writes_executed_by_this_audit": 0,
+      "expected_state_ok": true,
+      "handoff_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/reports/2929_DOCS_ONLY_REVALIDATION_HANDOFF.md",
+      "held_2929_count": 36,
+      "held_comment_count": 0,
+      "held_element_link_count": 0,
+      "held_jury_count": 0,
+      "held_vote_count": 6,
+      "held_voted_evidence_ids": [
+        28060,
+        28091,
+        28095,
+        28111,
+        28141,
+        28155
+      ],
+      "manifest_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/artifacts/manifest.json",
+      "moved_rows_exact": "29770/29776/29791 -> 2943; 29792 -> 2945",
+      "next_safe_gate": "source-position / human-adjudication queue for 36 held rows",
+      "page57_latest_version": 1710,
+      "page57_md5": "b97223f91897e8f8541b9c26c744ebb7",
+      "prose_wiki_publish_executed_by_this_audit": 0,
+      "report_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/reports/2929_EVIDENCE_REMAP_DOCS_ONLY_AUDIT.md",
+      "sql_apply_files_generated": 0,
+      "status": "DOCS_ONLY_AUDIT_REVALIDATED_AFTER_2942_2947_TRUST_EXECUTION_NO_ACTIVE_EXECUTION_PHRASE",
+      "trust_recompute_executed_by_this_audit": 0,
+      "validation_path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/validation/post_trust_execution_readonly_revalidation_20260705T013021Z.json"
+    },
+    "excluded_actions": [
+      "SQL",
+      "DB queries/connections",
+      "DB writes",
+      "apply/rollback files",
+      "trust recompute",
+      "prose/wiki publish",
+      "runtime deploy/restart",
+      "git write/push/merge",
+      "execution phrase"
+    ],
+    "hero": {
+      "headline": "Batch B2 applied and validated — 10 of 36 rows decided",
+      "kicker": "NebulaMind Galaxy · docs-only source-position queue",
+      "lead": "The retired-2929 evidence cleanup is still documents-only. Ten rows now have human/source decisions; 26 remain. SQL, database writes, product publish, runtime deploy, and git writes remain locked.",
+      "pills": [
+        "B2 applied",
+        "10/36 decided",
+        "26 pending",
+        "SQL locked",
+        "NO ACTIVE EXECUTION PHRASE"
+      ]
+    },
+    "html_title": "NebulaMind — 2929 queue helper QA applied",
+    "lane_board": [
+      {
+        "detail": "B2 edit gate issued; B2 completed. Hwao recommends B3 next.",
+        "lane": "Hwao / Fable",
+        "status": "PASS_GATE_DONE"
+      },
+      {
+        "detail": "B2 source-position proposal written and accepted.",
+        "lane": "Lana / Claude",
+        "status": "DONE"
+      },
+      {
+        "detail": "Read-only queue checker ready and post-apply PASS.",
+        "lane": "Kun / Codex",
+        "status": "DONE"
+      },
+      {
+        "detail": "Mechanical validation PASS.",
+        "lane": "Goru / Agy",
+        "status": "PASS"
+      },
+      {
+        "detail": "Applied Hwao-gated docs edits, ran validation, updating cockpit/receipts.",
+        "lane": "Tori / Hermes",
+        "status": "VERIFYING"
+      }
+    ],
+    "lane_board_meta": {
+      "run_id": "overnight_2942_2947_quintet_hardening_20260704T170510Z",
+      "target_duration_hours": 8
+    },
+    "latest_result": {
+      "cards": [
+        {
+          "body": "Batch B2 applied and validated — 10 of 36 rows decided. (28087 → claim 2942, support-limited · 28108 → claim 2947, caution-limited · 28133 → archival · 28074 → claim 2942, support-limited.) 26 rows remain; next is batch B3 (six rows, one paper). Nothing needs your action; SQL stays locked until all 36 are decided and you approve a new packet.",
+          "title": "Batch B2 applied and validated — 10 of 36 rows decided",
+          "tone": "ok"
+        },
+        {
+          "body": "No database writes are possible in this phase. SQL stays locked until all 36 decisions are complete and the operator approves a new packet. Phrase state remains NO ACTIVE EXECUTION PHRASE.",
+          "title": "Safety boundary",
+          "tone": "ok"
+        },
+        {
+          "body": "Hwao recommends B3 next: six rows from arXiv 2403.17145. It stays under the same Lana → Goru/Kun → Hwao gate → Tori docs-only apply pattern.",
+          "title": "Next batch identified, not a SQL gate",
+          "tone": "warn"
+        }
+      ],
+      "title": "Current truth — B2 validated"
+    },
+    "marker": "GALAXY_2929_B2_APPLIED_10_OF_36_20260705T041354Z",
+    "mobile_summary": "36 pending decisions; 6 vote-dependent rows first; helper QA fields patched; no rows moved; no SQL; NO ACTIVE EXECUTION PHRASE.",
+    "mode": "DOCS_ONLY_SOURCE_POSITION_B2_APPLIED_VALIDATED_HWAO_COORDINATED",
+    "next_move": {
+      "later": [
+        "At 36/36, Hwao assembles a completion review before any SQL packet request."
+      ],
+      "recommended": "B2 is complete docs-only. Hwao recommends B3 next under the same no-SQL, no-product-mutation lane order."
+    },
+    "next_recommended_action": "No user action needed now. Hwao recommends B3 next, but no SQL or product mutation is allowed.",
+    "no_active_execution_phrase": true,
+    "packet_status": "B2_APPLIED_VALIDATED_10_OF_36_DOCS_ONLY_NO_SQL",
+    "plain_english_result": "2929 source-position queue: 10/36 rows are now decided docs-only; 26 remain; SQL remains locked.",
+    "prevention": {
+      "context": "This page is intentionally Baseline-first. Renderer infrastructure is present only as a safety rail; it is not the hero of the cockpit.",
+      "rules": [
+        "Stable cockpit updates use canonical JSON and the renderer only.",
+        "The Baseline roadmap is a required stable-route section.",
+        "Packet/review pages remain timestamped detail artifacts and cannot replace the stable route.",
+        "Science/data actions remain separate packets with fresh approval phrases.",
+        "Guard checks public HTML and local/live locked files before handoff."
+      ],
+      "title": "Stable route discipline"
+    },
+    "public_api_after": {
+      "page57_latest_version": 1710,
+      "page57_md5": "b97223f91897e8f8541b9c26c744ebb7",
+      "page_id": 57,
+      "served_prose_changed_by_this_tick": false,
+      "slug": "galaxy-evolution"
+    },
+    "queue_progress": "10/36 decided, 26 pending",
+    "quintet_prevention": {
+      "fable": "DONE_dissent_recommends_trust_recompute_first",
+      "goru": "DONE_mechanical_checklist",
+      "kun": "DONE_visible_cli_restored_red_phase_review",
+      "lana": "DONE_recommends_2913_2921_first",
+      "status": "integrated_for_baseline_refresh"
+    },
+    "rollback": {
+      "approval_required": "Rollback phrase is only relevant if this fresh packet is later executed.",
+      "available": true,
+      "executed": false,
+      "path": "docs/galaxy_2942_2947_trust_recompute_readiness_fresh_20260704T164723Z/scripts/rollback_trust_recompute_packet.py"
+    },
+    "safety_ledger": [
+      {
+        "item": "DB writes / DB queries",
+        "status": "0 — locked until 36/36 decisions plus a new operator-approved packet"
+      },
+      {
+        "item": "SQL/apply/rollback files",
+        "status": "0 — not allowed during B2 source-position decisions"
+      },
+      {
+        "item": "Runtime deploy/restart",
+        "status": "false — cockpit static refresh only"
+      },
+      {
+        "item": "Git write/push/merge",
+        "status": "false"
+      },
+      {
+        "item": "Public cockpit mutation",
+        "status": "static status line only, Hwao/user-directed, rich markers preserved"
+      },
+      {
+        "item": "Active execution phrase",
+        "status": "NO ACTIVE EXECUTION PHRASE"
+      }
+    ],
+    "schema_version": "stable-cockpit-canonical.v1",
+    "source_position_queue": {
+      "b2_result_line": "Batch B2 applied and validated — 10 of 36 rows decided. (28087 → claim 2942, support-limited · 28108 → claim 2947, caution-limited · 28133 → archival · 28074 → claim 2942, support-limited.) 26 rows remain; next is batch B3 (six rows, one paper). Nothing needs your action; SQL stays locked until all 36 are decided and you approve a new packet.",
+      "b2_rows": [
+        28087,
+        28108,
+        28133,
+        28074
+      ],
+      "completed_rows": [
+        28060,
+        28091,
+        28095,
+        28111,
+        28141,
+        28155,
+        28087,
+        28108,
+        28133,
+        28074
+      ],
+      "marker": "GALAXY_2929_B2_APPLIED_10_OF_36_20260705T041354Z",
+      "next_milestone": "B3 is the next Hwao-recommended batch, but SQL remains locked until 36/36.",
+      "progress": "10/36 decided, 26 pending",
+      "sql_lock": "No SQL/DB/apply until all 36 rows have completed human/source decisions and a new operator-approved packet exists.",
+      "state": "B2_APPLIED_VALIDATED"
+    },
+    "sql_lock": "until 36/36 + new operator-approved packet",
+    "updated_at_utc": "2026-07-05T04:37:55Z"
+  },
+  "coordination": "Hwao plans/assembles; Tori relays/executes",
+  "copyable_state": "NO ACTIVE EXECUTION PHRASE — B2 is applied and validated docs-only; SQL remains locked until 36/36 source/human decisions plus a new operator-approved packet.",
+  "db_execution": {
+    "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+    "current_docs_gate": "2929 source-position queue helper QA patch applied",
+    "db_writes_executed_by_current_queue": 0,
+    "git_commit_push_merge": false,
+    "prose_publish_executed_by_current_queue": 0,
+    "runtime_deploy_restart": false,
+    "sql_apply_files_generated_by_current_queue": 0,
+    "status": "NO_ACTIVE_EXECUTION_PHRASE_HELPER_QA_PATCHED_QUEUE_ONLY",
+    "trust_recompute_executed_by_current_queue": 0
+  },
+  "excluded_actions": [
+    "SQL",
+    "DB queries/connections",
+    "DB writes",
+    "apply/rollback files",
+    "trust recompute",
+    "prose/wiki publish",
+    "runtime deploy/restart",
+    "git write/push/merge",
+    "execution phrase"
+  ],
+  "marker": "GALAXY_2929_B2_APPLIED_10_OF_36_20260705T041354Z",
+  "mode": "DOCS_ONLY_SOURCE_POSITION_B2_APPLIED_VALIDATED_HWAO_COORDINATED",
+  "next_recommended_action": "No user action needed now. Hwao recommends B3 next, but no SQL or product mutation is allowed.",
+  "no_active_execution_phrase": true,
+  "packet_status": "B2_APPLIED_VALIDATED_10_OF_36_DOCS_ONLY_NO_SQL",
+  "plain_english_result": "2929 source-position queue: 10/36 rows are now decided docs-only; 26 remain; SQL remains locked.",
+  "public_api_after": {
+    "page57_latest_version": 1710,
+    "page57_md5": "b97223f91897e8f8541b9c26c744ebb7",
+    "page_id": 57,
+    "served_prose_changed_by_this_tick": false,
+    "slug": "galaxy-evolution"
+  },
+  "queue_progress": "10/36 decided, 26 pending",
+  "quintet_prevention": {
+    "fable": "DONE_dissent_recommends_trust_recompute_first",
+    "goru": "DONE_mechanical_checklist",
+    "kun": "DONE_visible_cli_restored_red_phase_review",
+    "lana": "DONE_recommends_2913_2921_first",
+    "status": "integrated_for_baseline_refresh"
+  },
+  "rendered_by": "tools/stable_cockpit_renderer.py",
+  "rollback": {
+    "approval_required": "Rollback phrase is only relevant if this fresh packet is later executed.",
+    "available": true,
+    "executed": false,
+    "path": "docs/galaxy_2942_2947_trust_recompute_readiness_fresh_20260704T164723Z/scripts/rollback_trust_recompute_packet.py"
+  },
+  "sql_lock": "until 36/36 + new operator-approved packet",
+  "stable_cockpit_contract": {
+    "sentinel": "RICH_BASELINE_STABLE_COCKPIT_V1",
+    "source": "stable-cockpit-canonical.json",
+    "stable_route_is_not_packet_page": true,
+    "template": "tools/templates/stable-cockpit-template.html"
+  },
+  "updated_at_utc": "2026-07-05T04:37:55Z"
+}

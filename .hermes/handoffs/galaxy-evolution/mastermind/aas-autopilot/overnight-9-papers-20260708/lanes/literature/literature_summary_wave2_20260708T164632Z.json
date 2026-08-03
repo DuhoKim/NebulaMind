@@ -1,0 +1,44 @@
+{
+  "credentials_used": false,
+  "duplicate_dedupe_keys": [],
+  "local": "2026-07-09 01:46:32 KST",
+  "marker": "LITERATURE_SOURCE_WAVE2_20260708T164632Z",
+  "missing_arxiv_records": [],
+  "outputs": {
+    "jsonl": "literature_sources_wave2_20260708T164632Z.jsonl",
+    "packet_md": "literature_source_packet_wave2_20260708T164632Z.md",
+    "summary_json": "literature_summary_wave2_20260708T164632Z.json",
+    "tick_md": "ticks/LITERATURE_TICK_20260708T164632Z.md"
+  },
+  "public_sources_used": [
+    "arXiv export API"
+  ],
+  "raw_payloads": {
+    "m2_p2_radio_jet_environment": "raw_payloads/20260708T164632Z/m2_p2_radio_jet_environment_arxiv_id_list.xml",
+    "m3_p2_gas_depletion_efficiency": "raw_payloads/20260708T164632Z/m3_p2_gas_depletion_efficiency_arxiv_id_list.xml",
+    "m3_p3_simulation_validation": "raw_payloads/20260708T164632Z/m3_p3_simulation_validation_arxiv_id_list.xml",
+    "semantic_scholar_status": "raw_payloads/20260708T164632Z/semantic_scholar_status_check.json"
+  },
+  "records_by_paper": {
+    "m2_p2_radio_jet_environment": 3,
+    "m3_p2_gas_depletion_efficiency": 4,
+    "m3_p3_simulation_validation": 5
+  },
+  "records_total": 12,
+  "safety": {
+    "no_deploy_restart_git_billing_oauth_cron_or_external_submission": true,
+    "no_page_versions_or_trust": true,
+    "no_product_db_or_api": true,
+    "no_public_pages": true,
+    "wrote_only_under_literature_lane_except_ledger_append_required_by_user": true
+  },
+  "scope": "Wave-2 public source grounding for M2 P2, M3 P2, and M3 P3 only; no manuscript/public/prose edits.",
+  "semantic_scholar": {
+    "attempted": true,
+    "error": "HTTPError: HTTP Error 429: ",
+    "status": 429,
+    "url": "https://api.semanticscholar.org/graph/v1/paper/arXiv:2009.11175?fields=title,authors,year,citationCount,externalIds",
+    "used_credentials": false
+  },
+  "utc": "2026-07-08T16:46:32Z"
+}

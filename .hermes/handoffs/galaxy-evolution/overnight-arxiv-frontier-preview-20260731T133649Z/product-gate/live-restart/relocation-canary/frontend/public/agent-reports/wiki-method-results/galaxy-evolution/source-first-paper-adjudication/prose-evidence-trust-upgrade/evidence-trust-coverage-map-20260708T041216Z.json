@@ -1,0 +1,290 @@
+{
+  "marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_WIKI_UPGRADE_20260708T041216Z",
+  "parent_marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_WIKI_UPGRADE_20260708T041216Z",
+  "resource_seed_marker": "PROSE_UPGRADE_RESOURCE_SEED_20260708T041216Z",
+  "method": "method2-source-first-paper-adjudication",
+  "trust_scale": "method-local source-first adjudication status (ACCEPTED/ACCEPTED-LIMITED/EXCLUDED/REJECTED); NOT product DB trust; not shared with M1/M3",
+  "no_invention": "all IDs from existing P1/S2 ledger; 0 product cite IDs; 7 cite-unmatched groups",
+  "totals": {
+    "claims": 6,
+    "accepted_full": 2,
+    "accepted_limited": 19,
+    "cited_positions": 21,
+    "per_claim_box_sum": 21,
+    "legacy_embedded_accepted_limited": 20,
+    "legacy_embedded_cited_positions": 22,
+    "per_claim_note": "array-derived per-claim boxes sum to 21; 28060 is accepted-limited with target None and is carried as a no-claim caveat, not claim support",
+    "excluded": 2,
+    "rejected": 12,
+    "cite_unmatched_groups": 7,
+    "numeric_product_cites": 0
+  },
+  "claims": [
+    {
+      "id": "2942",
+      "title": "AGN feedback is scoped, not universal",
+      "trust": "qualified",
+      "evidence": [
+        {
+          "id": "28087",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2009.11175"
+        },
+        {
+          "id": "28151",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2403.17145"
+        },
+        {
+          "id": "28074",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2604.15438"
+        },
+        {
+          "id": "28155",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2604.15438"
+        }
+      ]
+    },
+    {
+      "id": "2943",
+      "title": "AGN outflows can remove or suppress star-forming gas",
+      "trust": "observation-anchored",
+      "evidence": [
+        {
+          "id": "28141",
+          "kind": "support",
+          "status": "ACCEPTED",
+          "arxiv": "1706.08987"
+        },
+        {
+          "id": "28144",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2508.06707"
+        },
+        {
+          "id": "28148",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2604.22922"
+        },
+        {
+          "id": "28140",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2111.01801"
+        },
+        {
+          "id": "28091",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2604.15438"
+        },
+        {
+          "id": "28133",
+          "kind": "excluded",
+          "status": "EXCLUDED",
+          "arxiv": "2009.11175"
+        }
+      ]
+    },
+    {
+      "id": "2944",
+      "title": "Stellar feedback is a real but limited alternative",
+      "trust": "qualified",
+      "evidence": [
+        {
+          "id": "28069",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2512.05584"
+        },
+        {
+          "id": "28073",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2512.05584"
+        },
+        {
+          "id": "28088",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2605.03008"
+        }
+      ]
+    },
+    {
+      "id": "2945",
+      "title": "Gas removal competes with recycling",
+      "trust": "caution",
+      "evidence": [
+        {
+          "id": "28066",
+          "kind": "caution",
+          "status": "LIMITED",
+          "arxiv": "2512.05584"
+        },
+        {
+          "id": "28075",
+          "kind": "caution",
+          "status": "LIMITED",
+          "arxiv": "0901.1880"
+        }
+      ]
+    },
+    {
+      "id": "2946",
+      "title": "Maintenance heating is real but model-dependent",
+      "trust": "model-dependent",
+      "evidence": [
+        {
+          "id": "28089",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2508.06707"
+        },
+        {
+          "id": "28123",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2403.17145"
+        },
+        {
+          "id": "28158",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "2403.17145"
+        }
+      ]
+    },
+    {
+      "id": "2947",
+      "title": "A kinetic, radio-mode channel operates in massive systems",
+      "trust": "qualified",
+      "evidence": [
+        {
+          "id": "28095",
+          "kind": "support",
+          "status": "ACCEPTED",
+          "arxiv": "2009.11175"
+        },
+        {
+          "id": "28131",
+          "kind": "support",
+          "status": "LIMITED",
+          "arxiv": "0901.1880"
+        },
+        {
+          "id": "28108",
+          "kind": "caution",
+          "status": "LIMITED",
+          "arxiv": "2009.11175"
+        },
+        {
+          "id": "28062",
+          "kind": "caution",
+          "status": "LIMITED",
+          "arxiv": "2508.06707"
+        },
+        {
+          "id": "28111",
+          "kind": "excluded",
+          "status": "EXCLUDED",
+          "arxiv": "2009.11175"
+        }
+      ]
+    }
+  ],
+  "standalone_caution": {
+    "id": "28060",
+    "status": "ACCEPTED-LIMITED",
+    "target_claim": null,
+    "arxiv": "2604.15438"
+  },
+  "excluded": [
+    {
+      "id": "28133",
+      "arxiv": "2009.11175",
+      "claim": "2943",
+      "reason": "held out by adjudication note F1 \u2014 background-only; measures how to count outflows, not that they quench"
+    },
+    {
+      "id": "28111",
+      "arxiv": "2009.11175",
+      "claim": "2947",
+      "reason": "held out by adjudication note F3 \u2014 a second support row from the same review paper; kept out to avoid single-source stacking"
+    }
+  ],
+  "rejected": [
+    {
+      "id": "28070",
+      "arxiv": "2512.05584",
+      "reason": "duplicate of stronger same-source rows"
+    },
+    {
+      "id": "28076",
+      "arxiv": "2512.21927",
+      "reason": "Perseus superbubble \u2014 stellar, not AGN"
+    },
+    {
+      "id": "28080",
+      "arxiv": "2512.21927",
+      "reason": "local superbubble fragmentation \u2014 background"
+    },
+    {
+      "id": "28082",
+      "arxiv": "1507.06366",
+      "reason": "GMC-scale radiation feedback \u2014 sub-galactic"
+    },
+    {
+      "id": "28083",
+      "arxiv": "2512.21927",
+      "reason": "stellar-feedback structures \u2014 context only"
+    },
+    {
+      "id": "28084",
+      "arxiv": "2512.21927",
+      "reason": "cloud-scale stellar feedback \u2014 generic"
+    },
+    {
+      "id": "28110",
+      "arxiv": "0901.1880",
+      "reason": "duplicate of the low-z winds caution already kept"
+    },
+    {
+      "id": "28114",
+      "arxiv": "1203.2926",
+      "reason": "radiation pressure in young clusters \u2014 off-target"
+    },
+    {
+      "id": "28118",
+      "arxiv": "1203.2926",
+      "reason": "radiation-force implementation detail"
+    },
+    {
+      "id": "28127",
+      "arxiv": "2403.17145",
+      "reason": "standard cooling+AGN cycle \u2014 same-paper overload"
+    },
+    {
+      "id": "28139",
+      "arxiv": "2403.17145",
+      "reason": "group-study setup background"
+    },
+    {
+      "id": "28143",
+      "arxiv": "2403.17145",
+      "reason": "AGN clearing group-sized halos \u2014 not the massive-galaxy claim"
+    }
+  ],
+  "local_links": [
+    "../p1-source-position-ledger.html",
+    "../p2-claim-status-ledger.html"
+  ]
+}

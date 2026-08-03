@@ -1,0 +1,191 @@
+FlatHUB
+Processing...
+One moment, please. The data you requested is being retrieved.
+Cancel
+Collections
+Milky Way
+Cosmological Galaxy Formation Simulations
+Cosmological Dark Matter-Only Simulations
+CANDELS
+Semi-Analytic Forecasts
+Catalogs
+AGORA
+FIRE
+Gaia DR2
+Gaia DR3
+Gr8 Stars
+Illustris
+IllustrisTNG
+EAGLE
+CAMELS
+CANDELS
+SC-SAM
+UniverseMachine
+Lu-SAM
+SC-SAM JWST wide-field
+SC-SAM JWST deep-field
+SC-SAM ultra-wide
+SAPFIRE: Streams on FIRE
+About
+Unsupported Browser
+Flathub requires an up-to-date web browser to make sure that you can use all of the features. Please consider using one of the preferred browsers: Google Chrome, Mozilla Firefox, Apple Safari.
+FIRE Simulations
+Project summary
+The
+FIRE (Feedback In Realistic Environments)
+project, introduced in
+Hopkins et al. (2014)
+,
+              seeks to improve the predictive power of simulations of galaxy formation, by developing
+              cosmological simulations that resolve the interstellar medium of individual galaxies, while implementing
+              the major channels of stellar feedback as directly as possible from stellar evolution models, all in
+              realistic cosmological environments. FIRE simulations typically zoom in on a region around a single
+              primary galaxy or group of galaxies, to achieve parsec-scale resolution within a cosmological context. For
+              more details see the
+FIRE homepage
+.
+This is the main page for accessing publicly available FIRE-2 simulation data,
+              which currently comprises 119 different simulations. These data are in HDF5 file format.
+Documentation
+Wetzel et al. (2023)
+is the primary documentation (and primary citation) for FIRE-2 public data.
+              It describes Data Release 1 (DR1), including explanations of the physical models that go into the FIRE-2 simulations,
+              the contents of snapshots, the catalogs of (sub)halos and their galaxies, and various analysis tools
+Wetzel et al. (2025)
+describes the new data in Data Release 2 (DR2), including simulations with physics variations, and halo merger trees
+Hopkins et al. (2018)
+describes the FIRE-2 physics model used to generate these simulations
+Hopkins 2015
+and
+this website
+describe the publicly-available Gizmo code used to generate the FIRE simulations
+This page
+provides more detailed documentation of the contents of Gizmo snapshots files
+License and citing
+We release FIRE-2 data under the
+Creative Commons BY 4.0
+license. If you use these data, we request that you cite as follows:
+“We use the publicly-available FIRE-2 cosmological zoom-in simulations
+              (
+Wetzel et al. 2023
+,
+2025
+),
+              from the Feedback In Realistic Environments (FIRE) project, generated using the Gizmo code
+(Hopkins 2015)
+and the FIRE-2 physics model
+(Hopkins et al. 2018)
+."
+We also request users to cite the individual published article(s) that introduced each simulation used, as listed in Tables 1, 2, 3 in
+Wetzel et al. (2023)
+for the simulations first released in Data Release 1, or as listed in
+Wetzel et al. (2025)
+for the simulations first released in Data Release 2. See also below.
+Contents
+Core suite to z = 0
+The Core suite comprises 20 simulations that zoom in on 14 Milky Way-mass galaxies, 5 SMC/LMC-mass
+              galaxies, and 4 lower-mass galaxies, including 1 ultrafaint. For each simulation, we include all 601
+              snapshots across z = 0 − 99, catalogs of (sub)halos and their galaxies at all snapshots and full
+              merger trees, and files for tracking star and gas particles across snapshots. For all star particles
+              at z = 0, we also include a files that list their 3-D formation coordinates,
+              and an "ex-situ" flag to indicate if they formed outside of the primary galaxy.
+              For the Milky Way-mass galaxies, we also include catalogs of stellar streams and various representations
+              of the gravitational potential.
+The following articles introduced each of these simulations. Anyone using a given simulation also should cite that article.
+m09, m10q, m10v
+(Wheeler et al. 2019)
+m11b
+(Chan et al. 2018)
+m11d, m11e, m11h, m11i
+(El-Badry et al. 2018)
+m11q, m12m
+(Hopkins et al. 2018)
+m12i
+(Wetzel et al. 2016)
+m12z, m12b, m12c
+(Garrison-Kimmel et al. 2019a)
+m12f, m12_elvis_RomeoJuliet, m12_elvis_ThelmaLouise
+(Garrison-Kimmel et al. 2017)
+m12_elvis_RomulusRemus
+(Garrison-Kimmel et al. 2019b)
+m12r, m12w
+(Samuel et al. 2020)
+For a subset of Core simulations to z = 0, we also include the following physics variations:
+Dark Matter Only
+(19 simulations): model only dark matter (cite the work that
+              introduced the corresponding baryonic simulation, as listed above and in Table 1 of
+Wetzel et al. 2023
+)
+Later Reionization
+(4 simulations): use an updated ultraviolet background, which undergoes later
+              cosmic reionization at z = 7.8, instead of at z ~ 10 as in other FIRE-2 simulations (introduced in/cite
+Gandhi et al. 2022
+for m09,
+Wetzel et al. 2025
+for m12f, m12i, m12m)
+MHD+
+(16 simulations): include magnetohydrodynamics, as well as anisotropic conduction and
+              viscosity in gas (introduced in/cite
+Hopkins et al. 2020
+)
+Cosmic Ray
+(14 simulations): in addition to MHD+, these model the injection, transport, and
+              feedback of cosmic rays from supernovae, assuming a constant diffusion coefficient (introduced in/cite
+Hopkins et al. 2020
+)
+Massive Halo suite to z = 1
+The Massive Halo suite comprises 8 massive galaxies: A1, A2, A4, A8 from
+Anglés-Alcázar et al. (2017)
+,
+              and B1, B2, C1, C2 from
+Cochrane et al. (2023)
+,
+              all run to z = 1. We selected these halos from the FIRE-1 MassiveFIRE suite
+              (
+Feldmann et al. 2016
+,
+2017
+).
+              Each simulation includes 278 snapshots across z = 1 - 99.
+              These halos have masses \(M_{\rm halo} = 10^{12-13.5} M_{\odot}\) at z = 1.
+              Four simulations (A1, A2, A4, A8) include massive black hole growth, but none of these
+              simulations include AGN feedback, which results in overly massive galaxies with ultra-dense nuclear
+              stellar distributions at late times. Anyone using these simulations should cite
+Anglés-Alcázar et al. (2017)
+and/or
+Cochrane et al. (2023)
+.
+High Redshift suite to z = 5
+This suite comprises 34 simulations that target halos with \(M_{\rm halo} = 10^{9-12} M_{\odot}\) at z = 5 - 9, from
+Ma et al. (2018)
+,
+Ma et al. (2019)
+,
+Ma et al. (2020)
+.
+              All simulations start at z = 99.
+              22 of them are run to z = 5 (68 snapshots), 6 are run to z = 7 (42 snaphots),
+              and 6 are run to z = 9 (27 snasphots). In addition to the primary galaxy, there are many
+              lower-mass galaxies within each zoom-in region, so the High Redshift suite contains thousands of resolved
+              galaxies at each snapshot. Anyone using these simulations should the Ma et al. articles above.
+Cosmological Boxes to z = 0
+This suite comprises 4 dark-matter-only cosmological boxes that we used to generate zoom-in initial
+              conditions for many (but not all) of the FIRE simulations. These boxes have comoving side lengths of 86
+              Mpc, 108 Mpc, 136 Mpc, and 172 Mpc, and each each one differs in mass resolution by a factor of 2.
+              Anyone using these cosmological boxes should cite
+Wetzel et al. (2025)
+.
+Python analysis tools
+GizmoAnalysis python package to read and analyze FIRE snapshots
+HaloAnalysis python package to read and analyze catalogs of (sub)halos/galaxies and merger trees
+Accessing data
+To explore and download FIRE data, use this Globus ID, or click the "Browse" link to
+                browse the avaiable data in your web browser.
+Globus ID:
+d41e7ead-0fca-4715-bc72-24630cebe04b
+Display Name:
+FIRE2 Public Release
+Browse
+Home
+Catalogs
+Github

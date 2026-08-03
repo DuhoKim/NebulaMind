@@ -1,0 +1,26 @@
+{
+  "marker": "NEBULAMIND_V3_MALE_PRESENTER_SELECTION_LOCKED",
+  "status": "REJECTED_BY_USER",
+  "rejection_reason": "Onyx demo sounded coarse and slow.",
+  "downstream_invalidation": "All Onyx-driven SadTalker animation and captions are canary-only and forbidden from the V3 batch.",
+  "selected_character": {
+    "id": "character_a",
+    "description": "fictional Black male astronomer, cinematic and authoritative",
+    "identity_master": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/identity/candidate_a_black_male_astronomer.png",
+    "sha256": "4a872d97ff437d9a9ffbbc9dfd4a938602de9bea0b481baeb33dc2f824db588f"
+  },
+  "selected_voice": {
+    "voice": "onyx",
+    "presentation": "male-coded, cinematic and authoritative",
+    "provider": "OpenAI via Nous managed audio gateway",
+    "model": "gpt-4o-mini-tts",
+    "speed": 0.85,
+    "review_master": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/voice_canaries/onyx_review_16lufs.wav",
+    "review_sha256": "d845c71a44d5ceb3349fbe7586160dba8f536ae8f3173f2be2e08082e71929df",
+    "duration_seconds": 56.813,
+    "words_per_minute": 127.8,
+    "final_policy": "Use per-scene synthesis/retiming to target 105–125 WPM without replacing the selected voice identity."
+  },
+  "user_selection": "Character A + Onyx (cinematic/authoritative)",
+  "downstream_rule": "Any voice or wording change invalidates the generated face animation and captions."
+}

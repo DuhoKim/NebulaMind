@@ -1,0 +1,65 @@
+{
+  "index": 21,
+  "captured_url": "https://flamingo.strw.leidenuniv.nl/",
+  "ledger_rows": [
+    25
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:41Z",
+      "method": "GET",
+      "host": "flamingo.strw.leidenuniv.nl",
+      "index": 21,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://flamingo.strw.leidenuniv.nl/",
+      "final_url": "https://flamingo.strw.leidenuniv.nl/",
+      "status": 200,
+      "bytes": 7015,
+      "sha256": "1dd02b972c786a1cbdc4915659adb971b8af29e138a54a53de1571dc77b91488",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx21_initial_1dd02b972c78.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:43Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 21,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22The%20FLAMINGO%20project%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22The%20FLAMINGO%20project%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 14892,
+      "sha256": "770f75246553e7b5d776ae2b3ffd5c6b0f1a2e584e18ae574a74002b186d73fe",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx21_ads_770f75246553.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The FLAMINGO project",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx21_initial_8aa289441b5b.txt",
+      "text_sha256": "8aa289441b5ba3d44d5c7a7d0307f6b6329740fbbf038a8cbd9f14b69853f641",
+      "text_chars": 2973
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx21_ads_4c720afb7acd.txt",
+      "text_sha256": "4c720afb7acdce38b3c3bad516b27815c3bf72fc5b620ce7b30a3fa48926be26",
+      "text_chars": 17093
+    }
+  ]
+}

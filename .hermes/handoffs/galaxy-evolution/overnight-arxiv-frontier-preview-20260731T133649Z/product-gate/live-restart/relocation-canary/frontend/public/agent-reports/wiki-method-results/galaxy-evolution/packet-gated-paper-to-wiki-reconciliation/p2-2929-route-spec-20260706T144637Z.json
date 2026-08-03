@@ -1,0 +1,172 @@
+{
+  "marker": "GALAXY_EVOLUTION_PGR_P2_2929_ROUTE_SPEC_20260706T144637Z",
+  "created_utc": "2026-07-06T14:46:37Z",
+  "status": "prepared_static_docs_only_no_execution",
+  "method": "Method1 / PGR / packet-gated paper-to-wiki reconciliation",
+  "approval_phrase_accepted": "APPROVE METHOD1 P2 DOCS-ONLY 2929 ROUTE SPEC",
+  "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "safety": {
+    "db_writes": 0,
+    "sql_apply_rollback": 0,
+    "trust_recompute": 0,
+    "live_wiki_or_page_versions": 0,
+    "deploy_restart": 0,
+    "git_commit_push_merge": 0,
+    "prod_cloud_api_mutation": 0,
+    "cross_method_or_shared_parent_writes": 0
+  },
+  "p2_scope": {
+    "claim_id": 2929,
+    "claim_rewrite_status": "parent_replaced",
+    "target_row_count": 14,
+    "target_evidence_ids": [
+      28060,
+      28070,
+      28076,
+      28080,
+      28082,
+      28083,
+      28084,
+      28110,
+      28114,
+      28118,
+      28127,
+      28133,
+      28139,
+      28143
+    ],
+    "route_recommendation": "14/14 remain archival/no visible successor in this Method1 route spec; preserve audit reasons; voted row 28060 keeps vote custody and is not silently deleted or moved.",
+    "not_a_db_packet": true
+  },
+  "route_counts": {
+    "archive_vote_preserved": 1,
+    "archive_no_visible_successor_or_duplicate_scope_mismatch": 13,
+    "move_to_successor_now": 0,
+    "delete_now": 0
+  },
+  "input_artifacts_read": [
+    "frontend/public/.../packet-gated-paper-to-wiki-reconciliation/p1-legacy-overclaim-disposition-spec.html",
+    "frontend/public/.../packet-gated-paper-to-wiki-reconciliation/pgr-current-page-inventory-20260706T130610Z.md",
+    "docs/hwao_overnight_db_packet_prep_20260705T1615Z/EVIDENCE_DISPOSITION_2929_PARENT_REPLACED_SPEC.md",
+    "docs/hwao_overnight_db_packet_prep_20260705T1615Z/DB_PACKET_PREP_TARGETS.md",
+    "docs/galaxy_2929_source_position_queue_20260705T013911Z/reports/2929_SOURCE_POSITION_QUEUE_FINAL_HANDOFF.md",
+    "docs/galaxy_2929_product_db_wiki_exact_diff_preflight_20260705T110725Z/reports/2929_PRODUCT_DB_WIKI_EXACT_DIFF_PREFLIGHT.md",
+    "docs/galaxy_2929_product_db_wiki_exact_diff_preflight_20260705T110725Z/diff/exact_diff_summary.csv"
+  ],
+  "rows": [
+    {
+      "evidence_id": 28060,
+      "source": "2604.15438",
+      "title": "Surveying the Whirlpool at Arcseconds with NOEMA (SWAN). IV. Extent of active galactic nucleus feedback on the interstellar medium",
+      "votes": 1,
+      "route": "archive_vote_preserved",
+      "reason": "The line is about AGN feedback helping star formation by compression, which is a caution/opposite-side row for current quenching successors; preserve the vote and keep archival unless a future positive-feedback claim is separately created."
+    },
+    {
+      "evidence_id": 28070,
+      "source": "2512.05584v2",
+      "title": "arXiv:2512.05584",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "General stellar-feedback gas-ejection model background; duplicates stronger same-source evidence already routed elsewhere and should not inflate a visible successor."
+    },
+    {
+      "evidence_id": 28076,
+      "source": "2512.21927v1",
+      "title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Milky Way/Perseus-Arm superbubble source; local stellar/supernova feedback, not AGN quenching evidence."
+    },
+    {
+      "evidence_id": 28080,
+      "source": "2512.21927v1",
+      "title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Local stellar superbubble fragmentation/star-formation-cycle material; background only, not clean successor support."
+    },
+    {
+      "evidence_id": 28082,
+      "source": "1507.06366v1",
+      "title": "arXiv:1507.06366",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Young-star-cluster/GMC radiation feedback; sub-galactic stellar feedback, not AGN/quenching evidence."
+    },
+    {
+      "evidence_id": 28083,
+      "source": "2512.21927v1",
+      "title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Stellar-feedback-driven disk-galaxy structure context; not target-specific AGN/quenching support."
+    },
+    {
+      "evidence_id": 28084,
+      "source": "2512.21927v1",
+      "title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Generic cloud-scale stellar feedback and star-formation efficiency material; not scoped successor support."
+    },
+    {
+      "evidence_id": 28110,
+      "source": "0901.1880",
+      "title": "arXiv:arXiv:0901.1880",
+      "votes": 0,
+      "route": "archive_duplicate_or_weaker",
+      "reason": "Repeats low-redshift winds-insufficient caution already represented by a stronger same-source row; archive to avoid double-counting."
+    },
+    {
+      "evidence_id": 28114,
+      "source": "1203.2926v2",
+      "title": "arXiv:1203.2926",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Radiation pressure from young stars in clusters/starburst disks; star-cluster feedback background, not AGN/quenching successor evidence."
+    },
+    {
+      "evidence_id": 28118,
+      "source": "1203.2926v2",
+      "title": "arXiv:1203.2926",
+      "votes": 0,
+      "route": "archive_no_visible_successor",
+      "reason": "Simulation implementation detail for radiation force on star-forming clumps; not evidence for visible successor wording."
+    },
+    {
+      "evidence_id": 28127,
+      "source": "2403.17145v1",
+      "title": "arXiv:2403.17145",
+      "votes": 0,
+      "route": "archive_duplicate_or_weaker",
+      "reason": "Standard cooling-then-AGN cycle line; maintenance/heating claim already has stronger same-paper lines."
+    },
+    {
+      "evidence_id": 28133,
+      "source": "2009.11175v1",
+      "title": "arXiv:2009.11175",
+      "votes": 0,
+      "route": "archive_topic_only",
+      "reason": "Outflow-number measurement/methodology row; related in topic only, not support for star-formation shutdown."
+    },
+    {
+      "evidence_id": 28139,
+      "source": "2403.17145v1",
+      "title": "arXiv:2403.17145",
+      "votes": 0,
+      "route": "archive_duplicate_or_weaker",
+      "reason": "General setup for why groups are useful to study feedback; overlaps stronger same-paper rows."
+    },
+    {
+      "evidence_id": 28143,
+      "source": "2403.17145v1",
+      "title": "arXiv:2403.17145",
+      "votes": 0,
+      "route": "archive_scope_mismatch",
+      "reason": "Small/group-sized halo gas blowout line; not the massive-galaxy outflow claim and already covered more cleanly elsewhere."
+    }
+  ],
+  "next_method_phrase": "APPROVE METHOD1 P3 DOCS-ONLY 2572 2573 PRIMACY WORDING SPEC",
+  "next_method_phrase_scope": "P3 docs-only Method1-local static/handoff docs only; no mutation/execution."
+}

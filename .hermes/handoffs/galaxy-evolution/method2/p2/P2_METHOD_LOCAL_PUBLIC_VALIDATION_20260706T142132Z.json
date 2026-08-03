@@ -1,0 +1,75 @@
+{
+  "approval_phrase_consumed": "APPROVE METHOD2 P2 DOCS-ONLY CLAIM-STATUS LEDGER FROM ACCEPTED SOURCE POSITIONS",
+  "checks": {
+    "all_claim_units_primary": true,
+    "all_local_artifacts_exist": true,
+    "index_contains_p2_marker_next_safety_link": true,
+    "json_files_parse": true,
+    "live_public_routes_show_p2_marker": false,
+    "manifest_contains_p2_marker_next_safety": true,
+    "p2_html_contains_marker_next_safety": true,
+    "p2_validation_pass": true,
+    "safety_zero_mutation_recorded": true,
+    "summary_counts_match": true
+  },
+  "counts": {
+    "accepted_or_limited_but_not_claim_support_eligible": 2,
+    "citation_role_mappings": 22,
+    "claim_ids": [
+      2942,
+      2943,
+      2944,
+      2945,
+      2946,
+      2947
+    ],
+    "claim_units": 6,
+    "no_go_gap_ledger_rows": 32,
+    "p1_accepted_file_rows": 24,
+    "p1_rejected_rows_preserved": 12,
+    "support_eligible_source_positions": 22
+  },
+  "live_route_status": {
+    "live_index": {
+      "body_sample": "<!doctype html><html lang=\"en\"><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>Galaxy Evolution · Source-f",
+      "contains_next_phrase": false,
+      "contains_p2_marker": false,
+      "contains_safety": true,
+      "status": 200,
+      "url": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/index.html"
+    },
+    "live_p2_html": {
+      "contains_next_phrase": false,
+      "contains_p2_marker": false,
+      "contains_safety": false,
+      "error": "HTTP Error 404: Not Found",
+      "status": 404,
+      "url": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/p2-claim-status-ledger.html"
+    },
+    "live_p2_summary": {
+      "contains_next_phrase": false,
+      "contains_p2_marker": false,
+      "contains_safety": false,
+      "error": "HTTP Error 404: Not Found",
+      "status": 404,
+      "url": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/p2-claim-status-ledger-summary.json"
+    }
+  },
+  "marker": "GALAXY_EVOLUTION_METHOD2_P2_CLAIM_STATUS_LEDGER_20260706T142132Z",
+  "next_safe_docs_only_phrase": "APPROVE METHOD2 P3 DOCS-ONLY WIKI PROSE PACKET FROM CLAIM-STATUS LEDGER",
+  "result": "PASS_LOCAL_PUBLIC_STALE",
+  "safety_ledger": {
+    "backend_api_service_restart": 0,
+    "cross_method_or_shared_parent_edits": 0,
+    "db_writes": 0,
+    "deploy_publish_runtime": 0,
+    "git_commit_push_merge": 0,
+    "live_wiki_page_versions_publish": 0,
+    "migrations": 0,
+    "prod_cloud_api_mutation": 0,
+    "sql_apply_or_rollback": 0,
+    "trust_recompute": 0,
+    "writes_limited_to_method2_roots": true
+  },
+  "safety_phrase": "NO ACTIVE EXECUTION PHRASE"
+}

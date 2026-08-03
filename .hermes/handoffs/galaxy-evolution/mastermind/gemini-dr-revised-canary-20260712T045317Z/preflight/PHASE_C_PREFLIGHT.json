@@ -1,0 +1,45 @@
+{
+  "schema": "NM_GEMINI_C1R_PHASE_C_PREFLIGHT_V1",
+  "packet": "gemini-dr-revised-canary-20260712T045317Z",
+  "checked_utc": "2026-07-12T05:50:23Z",
+  "result": "NOT_ARMED_READ_CHANNEL_LOSS",
+  "local_gates": {
+    "packet_ready": true,
+    "tori_ack": true,
+    "goru_ack": true,
+    "postmortem_done": true,
+    "validator_green": true,
+    "c1r_prompt_pinned": true,
+    "closed_packet_immutable": true
+  },
+  "live_gates": {
+    "computer_use_capture": {
+      "passed": false,
+      "evidence": "capture returned 0x0, zero elements"
+    },
+    "computer_use_apps": {
+      "passed": false,
+      "evidence": "list_apps returned zero apps"
+    },
+    "managed_browser_authenticated_gemini": {
+      "passed": false,
+      "evidence": "Gemini rendered Sign in controls and Flash mode; session is isolated and unauthenticated"
+    },
+    "exact_target_custody": false,
+    "verification_clear": null,
+    "pro_mode_confirmed": false,
+    "deep_research_confirmed": false,
+    "fresh_quota_below_80_percent": null
+  },
+  "side_effects": {
+    "login_attempted": false,
+    "prompt_submitted": false,
+    "conversation_created": false,
+    "start_clicked_by_tori": false,
+    "start_clicked_by_duho": false,
+    "quota_burn_started": false,
+    "cleanup_required": false
+  },
+  "required_next_action": "Restore the authenticated macOS computer-use read channel. Run `hermes computer-use doctor` and share the output. Do not sign in through the managed browser and do not bypass verification.",
+  "arming": false
+}

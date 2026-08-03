@@ -1,0 +1,44 @@
+{
+  "schema": "NM_DR_PHASEA_SELECTOR_PROBE_V1",
+  "captured_utc": "2026-07-12T03:43:00Z",
+  "extractor_id": "tori_tab_scoped_chrome_execute_js_v1",
+  "mode": "READ_ONLY_ZERO_ACTIONS",
+  "tabs": {
+    "completed_research": {
+      "window_id": 1819256177,
+      "tab_index": 1,
+      "url": "https://gemini.google.com/app/a70838d8e117de1d",
+      "selectors": {
+        "composer": {"selector": "[role='textbox'][aria-label='Enter a prompt for Gemini']", "found": true},
+        "pro_mode": {"selector": "[data-test-id='bard-mode-menu-button'][aria-label^='Open mode picker, currently Pro']", "found": true},
+        "deep_research_active": {"selector": "[aria-label='Deselect Deep research'],[data-test-id='deselect-drawer-item-gem-button']", "found": true},
+        "plan": {"selector": "[data-test-id='research-steps'],[aria-label='More research plan details']", "found": true},
+        "start_control": {"selector": "button[aria-label='Start research'],[data-test-id='confirm-button']", "found": true, "state": "disabled_completed_history"},
+        "running_stop": {"selector": "button[aria-label='Stop research'],button[aria-label='Stop response'],[data-test-id='stop-response-button']", "found": false, "state": "not_running"},
+        "complete": {"selector": ".response-footer.complete,[data-test-id='gem-processing-card'].completed", "found": true},
+        "answer_body": {"selector": "#extended-response-markdown-content", "found": true},
+        "links": {"selector": "[data-test-id='browse-web-item-link']", "found": true}
+      }
+    },
+    "clean_app": {
+      "window_id": 1819255858,
+      "tab_index": 1,
+      "url": "https://gemini.google.com/app",
+      "selectors": {
+        "composer": {"found": true},
+        "pro_mode": {"found": true},
+        "deep_research_active": {"found": true},
+        "verification_node": {"selector": "iframe[src*='recaptcha' i],[data-sitekey],textarea[name='g-recaptcha-response']", "found": false},
+        "login_node": {"selector": "input[type='password']", "found": false},
+        "billing_node": {"selector": "visible dialog/control with exact Upgrade|Subscribe|Purchase|Buy label", "found": false}
+      }
+    }
+  },
+  "adapter_finding": {
+    "broad_body_text_wall_detection": "REJECTED_FALSE_POSITIVE",
+    "reason": "Completed report prose can contain words such as verification; wall detection must use URL and visible wall-control structure, not report text.",
+    "unresolved_positive_evidence": ["running_stop_active_state", "active_verification_wall", "active_billing_wall", "active_login_wall"],
+    "gate_conflict": "G-A2 asks all wall and running selectors to be FOUND while G-A3 forbids state-changing actions and the current page is clean/completed."
+  },
+  "attestation": "No click, focus change, typing, navigation, reload, submission, toggle, Start action, account action, or verification interaction occurred. No report body was persisted in this evidence file."
+}

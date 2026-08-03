@@ -1,0 +1,44 @@
+{
+  "lane": "hwao-final-rollup",
+  "status": "COMPLETE",
+  "started_at": "2026-07-27T13:31:30Z",
+  "completed_at": "2026-07-27T13:45:27Z",
+  "files": [
+    "P0_HWAO_DISPOSITION.md",
+    "P1_HWAO_DISPOSITION.md",
+    "P2_HWAO_DISPOSITION.md",
+    "HWAO_PORTFOLIO_ROLLUP.md",
+    "RECEIPT.json"
+  ],
+  "receipts_reviewed": [
+    {"path": "input/P0/lana/RECEIPT.json", "marker": "P0_LANA_PRIMARY_COMPLETE_20260727", "disposition": "MZR_STATE_CONTRADICTORY__CORRECTION_LEDGER_ONLY"},
+    {"path": "input/P0/kun/RECEIPT.json", "marker": "P0_KUN_CROSSREVIEW_COMPLETE_20260727", "disposition": "ISSUES"},
+    {"path": "input/P0/goru/RECEIPT.json", "marker": "P0_GORU_CROSSREVIEW_COMPLETE_20260727", "disposition": "PASS (mechanical, advisory)"},
+    {"path": "input/P1/kun/RECEIPT.json", "marker": "P1_KUN_PRIMARY_COMPLETE_20260727", "disposition": "PARTIAL__CLAIMS_REQUIRE_NARROWING"},
+    {"path": "input/P1/lana/RECEIPT.json", "marker": "P1_LANA_CROSSREVIEW_COMPLETE_20260727", "disposition": "PASS_WITH_PATCHES"},
+    {"path": "input/P1/goru/RECEIPT.json", "marker": "P1_GORU_CROSSREVIEW_COMPLETE_20260727", "disposition": "PASS (mechanical, advisory)"},
+    {"path": "input/P2/goru/RECEIPT.json", "marker": "P2_GORU_PRIMARY_COMPLETE_20260727", "disposition": "citation gaps mechanically real; CANONICAL_PLUS_SUPPORTING recommendation rejected by adjudication"},
+    {"path": "input/P2/kun/RECEIPT.json", "marker": "P2_KUN_CROSSREVIEW_COMPLETE_20260727", "disposition": "ISSUES"},
+    {"path": "input/P2/lana/RECEIPT.json", "marker": "P2_LANA_CROSSREVIEW_COMPLETE_20260727", "disposition": "ISSUES"},
+    {"path": "input/TORI_BROWSER_SOURCE_CHECK.md", "marker": "TORI_INDEPENDENT_SOURCE_IDENTITY_CHECK_20260727", "disposition": "P2_GORU_PRIMARY_REQUIRES_PATCHES; P0/P1 representation defects independently confirmed"},
+    {"path": "input/VALIDATION_T1.json", "marker": null, "disposition": "public identity 12/12 as expected; hwao missing-file rows adjudicated validator path-resolution false positive (all files verified present at root-relative/lane-input paths)"},
+    {"path": "input/BASELINE_RECEIPT.json", "marker": null, "disposition": "PASS_WITH_EXPECTED_P0_REVIEW_404"}
+  ],
+  "input_manifest_verification": {"files_checked": 48, "sha256_mismatches": 0, "size_mismatches": 0},
+  "stop_files_checked": {
+    "files": ["GLOBAL_STOP_OVERNIGHT_PB_20260727.md", "CONTENT_FREEZE_OVERNIGHT_PB_20260727.md"],
+    "checks": [
+      {"at_utc": "2026-07-27T13:33:00Z", "at_kst": "2026-07-27T22:33", "phase": "start-before-adjudication", "result": "absent - proceed"},
+      {"at_utc": "2026-07-27T13:42:02Z", "at_kst": "2026-07-27T22:42", "phase": "before-writing-dispositions", "result": "absent - proceed"},
+      {"at_utc": "2026-07-27T13:45:27Z", "at_kst": "2026-07-27T22:45", "phase": "pre-receipt", "result": "absent - proceed"}
+    ]
+  },
+  "dispositions": {
+    "P0": "MZR_STATE_CONTRADICTORY__CORRECTION_LEDGER_ONLY (upheld; SFMS chain survives with caveats; matched-Te MZR claims do not; no manuscript revision)",
+    "P1": "PARTIAL__CLAIMS_REQUIRE_NARROWING (upheld with Lana patches P-1..P-4; primary-source n(>M*) FAIL is the blocker; no manuscript revision)",
+    "P2": "lineage UNRESOLVED; CANONICAL_PLUS_SUPPORTING rejected; zero-denominator citation gate, identity patches, and public-data-(jwst) contradiction preserved; no artifact revision"
+  },
+  "publication_recommendation": "PROCEED_WITH_SINGLE_AUDIT_REPORT_ONLY: one new public Paper Board audit report carrying the three dispositions and all preserved defects unsoftened, explicitly non-human-validated, additive only; conditional on Tori's integration preflight passing and stop files remaining absent. No other publication, replacement, or mutation.",
+  "boundary_statement": "Wrote only the five listed files inside lanes/hwao/final-rollup/. No primary/reviewer file edited; no paper, PDF, card, Lab, cockpit, wiki, DB, service, project-source, or Git mutation; no publication performed.",
+  "marker": "HWAO_PB_FINAL_ROLLUP_COMPLETE_20260727"
+}

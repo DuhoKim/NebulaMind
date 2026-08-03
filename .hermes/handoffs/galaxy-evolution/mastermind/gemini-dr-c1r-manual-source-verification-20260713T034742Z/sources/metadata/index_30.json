@@ -1,0 +1,121 @@
+{
+  "index": 30,
+  "captured_url": "https://arxiv.org/abs/2410.19905",
+  "ledger_rows": [
+    37
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:16:00Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 30,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/2410.19905",
+      "final_url": "https://arxiv.org/abs/2410.19905",
+      "status": 200,
+      "bytes": 47361,
+      "sha256": "9fb2be93c76a9b5133ca29e2349df1bcef3eba3eeaa75f69e2f99dc346fbca8b",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx30_initial_9fb2be93c76a.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:16:03Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 30,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2410.19905",
+      "final_url": "https://arxiv.org/pdf/2410.19905",
+      "status": 200,
+      "bytes": 1200967,
+      "sha256": "23275a659186c1eb1f99467d51b178290dd30cdc2927593906e264c5e92780f2",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx30_arxiv_pdf_23275a659186.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:16:03Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 30,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2410.19905",
+      "final_url": "https://arxiv.org/pdf/2410.19905",
+      "status": 200,
+      "bytes": 1200967,
+      "sha256": "23275a659186c1eb1f99467d51b178290dd30cdc2927593906e264c5e92780f2",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx30_arxiv_pdf_23275a659186.pdf",
+      "auth": "NONE",
+      "cache_reuse": true
+    },
+    {
+      "utc": "2026-07-13T04:16:03Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 30,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.19905%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.19905%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 3221,
+      "sha256": "faf7dc28de050806e2ba8537cc847dc594ad87300ede060a597297585becf05b",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx30_ads_faf7dc28de05.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "FLAMINGO: combining kinetic SZ effect and galaxy-galaxy lensing measurements to gauge the impact of feedback on large-scale structure",
+      "doi": "",
+      "arxiv_id": "2410.19905",
+      "pdf_url": "https://arxiv.org/pdf/2410.19905",
+      "text_path": "sources/text/idx30_initial_da81d8be9746.txt",
+      "text_sha256": "da81d8be97464a2cc93927de2f60a06e2dd25ae209d25712762ae8eafb766c18",
+      "text_chars": 5865
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2410.19905",
+      "pdf_url": "",
+      "text_path": "sources/text/idx30_arxiv_pdf_52b392ee4747.txt",
+      "text_sha256": "52b392ee4747a81c7f6971bbfa6dba2d055c2676a1ff22b566fa2236de1f5440",
+      "text_chars": 128172,
+      "pdf_pages": 21
+    },
+    {
+      "label": "publisher_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2410.19905",
+      "pdf_url": "",
+      "text_path": "sources/text/idx30_publisher_pdf_52b392ee4747.txt",
+      "text_sha256": "52b392ee4747a81c7f6971bbfa6dba2d055c2676a1ff22b566fa2236de1f5440",
+      "text_chars": 128172,
+      "pdf_pages": 21
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx30_ads_848a857f99e4.txt",
+      "text_sha256": "848a857f99e4053e958588cf65af5065ea6b98d1e8360697c0a4c63081f407f0",
+      "text_chars": 3753
+    }
+  ]
+}

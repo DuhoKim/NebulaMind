@@ -1,0 +1,95 @@
+{
+  "crossreview_target": "kun_p1_primary_scientific_scope",
+  "reviewer": "lana",
+  "disposition": "PASS_WITH_PATCHES",
+  "custody": {
+    "manifest_files_rehashed": 24,
+    "sha256_mismatches": 0,
+    "served_pdf_sha256": "189a2764a0b8e310802fb31bd53db3a64be49ac6411fe5f5b38af62cefa23f5d",
+    "local_snapshot_equals_public_fetch_identity": true,
+    "board_card_consistent": true
+  },
+  "brief_questions": {
+    "estimand_commensurability": {
+      "kun_grade": "PARTIAL",
+      "lana_verdict": "CONFIRMED_PARTIAL",
+      "note": "All-bound (SubhaloMassType) 'total-mass footing' is an upper bracket, not a demonstrated match to SED total-galaxy masses; required shift honestly spans 0.20-0.28 dex across footings."
+    },
+    "explicit_cumulative_density_support": {
+      "kun_grade": "FAIL",
+      "lana_verdict": "CONFIRMED_FAIL_PRESERVED",
+      "note": "Observed anchor ~3e-5 Mpc^-3 is asserted without a pinned primary n(>10^10.5) row; 0 explicit observed cumulative rows (matches Goru count)."
+    },
+    "population_separation": {
+      "kun_grade": "PARTIAL",
+      "lana_verdict": "CONFIRMED_PARTIAL",
+      "note": "Prose separates total/candidate/quiescent correctly; Table 1 budget mixes populations and asserts (does not measure) the LRD fraction; centrals/satellites unseparated."
+    },
+    "dex_state_assignment_0_28_vs_0_20": {
+      "kun_finding": "PARTLY_LANDED",
+      "lana_verdict": "CONFIRMED",
+      "recomputed": {
+        "n_N15": 1.106e-5,
+        "n_N20": 1.474e-5,
+        "excess_2rhalf": 2.713,
+        "excess_allbound": 2.035,
+        "shift_2rhalf_dex": 0.273,
+        "shift_allbound_dex": 0.196
+      }
+    },
+    "residual_figure_label": {
+      "kun_finding": "stale 0.28 dex arrow in Figure 1",
+      "lana_verdict": "CONFIRMED_REAL",
+      "independent_method": "embedded text-layer extraction of sha-pinned PDF page 3: annotation 'erased by 0.28 dex' coexists with 0.20 dex caption",
+      "new_minor_finding": "Figure 1 legend label 'Weibel+2024 (z 5--6)' contradicts the draft's own Section 3.2 z=5 pinning argument."
+    },
+    "systematic_budget_covariance": {
+      "kun_finding": "quadrature inflated by covariance; maxima must not enter population budget",
+      "lana_verdict": "CONFIRMED_WITH_SHARPENING",
+      "sharpening": "Covariance inflation favors the draft (larger budget). z=5 headline (0.20 dex) survives a deflated correlation-aware budget; the z~5.5 caveat (0.42 dex) does NOT and must be demoted from 'still within budget' to marginal."
+    },
+    "kun_narrow_wording_strength": {
+      "lana_verdict": "SLIGHTLY_TOO_STRONG",
+      "patches": [
+        "State required shift as 0.20-0.28 dex depending on simulation mass footing (all-bound vs 2xRhalf).",
+        "Pin to z=5 exactly and add: at effective z~5.5 the required shift rises to ~0.4 dex and is at best marginally covered."
+      ]
+    },
+    "source_identity_version": {
+      "kun_grade": "PARTIAL",
+      "lana_verdict": "CONFIRMED_PARTIAL",
+      "load_bearing_identities_cross_checked": [
+        "Weibel et al. 2024 MNRAS 533 1808 DOI 10.1093/mnras/stae1891",
+        "Labbe et al. 2023 Nature 616 266 DOI 10.1038/s41586-023-05786-2",
+        "Boylan-Kolchin 2023 NatAs 7 731 DOI 10.1038/s41550-023-01937-7",
+        "Nelson et al. 2019 ComAC 6 2",
+        "Adams et al. 2023 MNRAS 518 4755",
+        "Grazian et al. 2015 A&A 575 A96"
+      ],
+      "unverified_versions_preserved": [
+        "Lapi 2024", "Steinhardt 2023", "Harvey 2025", "Cochrane 2025", "Kocevski 2025", "Choe 2026", "Zhuang 2026"
+      ]
+    }
+  },
+  "numeric_verification": {
+    "all_16_table2_entries": "match",
+    "quadrature_budget": "0.552 / 0.464 no-IMF / 1.30 linear — match",
+    "epsilon_benchmark": "0.201 unshifted, 0.127 shifted, +0.696 dex breach — match",
+    "z5p5_interpolation": "6.585e-6 Mpc^-3 -> 0.417 dex — match",
+    "labbe_shift": "log(13.6)/1.58 = 0.717 — match",
+    "poisson_floor": "1/sqrt(15)=0.258, log(1.26)=0.100 — match"
+  },
+  "preserved_states": {
+    "overall_primary_disposition": "PARTIAL__CLAIMS_REQUIRE_NARROWING",
+    "primary_source_support_blocker": "FAIL",
+    "figure_landing": "PARTLY_LANDED",
+    "goru_crossreview": "PASS (mechanical scope) — no conflict"
+  },
+  "patches": [
+    {"id": "P-1", "type": "wording", "text": "Add 0.20-0.28 dex footing bracket to Kun's narrow claim."},
+    {"id": "P-2", "type": "wording", "text": "Pin claim to z=5 and add z~5.5 marginality sentence."},
+    {"id": "P-3", "type": "figure", "text": "Fix 'Weibel+2024 (z 5--6)' legend label together with the stale 0.28 dex arrow."},
+    {"id": "P-4", "type": "framing", "text": "Demote z~5.5 'still within budget' to marginal; covariance-inflated quadrature is favorable, not hostile, accounting."}
+  ],
+  "marker": "P1_LANA_CROSSREVIEW_COMPLETE_20260727"
+}

@@ -1,0 +1,106 @@
+{
+  "marker": "NEBULAMIND_PAPER_V3_MUSETALK_PRESENTER_COMPLETE",
+  "completed_at_utc": "2026-07-23T11:11:16Z",
+  "key": "z9-metallicity",
+  "gesture_source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/omni/gemini_omni_gesture_raw.mp4",
+  "gesture_source_sha256": "8c42f1fcf238c961bdb5950308861602e78fa3aaf6f6b66300c38cf19c0aaa8f",
+  "face_boxes": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/omni/musetalk_face_boxes.json",
+  "face_boxes_sha256": "c79e3f689b5960a8e65ba3b197abb279bdbd70ae20ca6e836b37dcbc9757ae92",
+  "audio": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/batch/z9-metallicity/audio/z9-metallicity_MICHAEL_V3_MASTER.wav",
+  "audio_sha256": "c922c470eda6c0303e9202759aca84c3de0be9b3392037e19706ff642d08a476",
+  "model": "/Users/duhokim/HermesOps/tools/musetalk-mlx/dist/MuseTalk-1.5-MLX-q4",
+  "model_hashes": {
+    "config.json": "ba919fbdecb9834fc1c3e0b08234c8e8dce53910a22cb1c43e006038c69255b9",
+    "unet.safetensors": "7a66b9f65d98e29eb7ecd4dac034331075d125ba00e1cdc704999ef404b60f1b",
+    "vae.safetensors": "2a7670782dbe0ab66c40833dfd431b193375f0bdfc7c2daf76f5bc4e59070f98",
+    "whisper_encoder.safetensors": "c04baf7220bbc73393eeba74b6224398ce56caad60e4e0a0f4c28af3180836d3"
+  },
+  "fps": 24,
+  "frames": 3674,
+  "duration_seconds": 153.083333,
+  "render_seconds": 207.748,
+  "batch_size": 8,
+  "frame0_repair": "source frame 0 and box 0 replaced by frame 1",
+  "source_motion": "scene-phased variable-speed ping-pong of the approved six-second gesture source",
+  "scene_source_ranges": [
+    {
+      "scene": 1,
+      "output_start_frame": 0,
+      "output_end_frame": 389,
+      "source_phase": 0,
+      "source_speed": 0.83
+    },
+    {
+      "scene": 2,
+      "output_start_frame": 389,
+      "output_end_frame": 793,
+      "source_phase": 71,
+      "source_speed": 1.02
+    },
+    {
+      "scene": 3,
+      "output_start_frame": 793,
+      "output_end_frame": 1190,
+      "source_phase": 143,
+      "source_speed": 1.15
+    },
+    {
+      "scene": 4,
+      "output_start_frame": 1190,
+      "output_end_frame": 1696,
+      "source_phase": 34,
+      "source_speed": 0.91
+    },
+    {
+      "scene": 5,
+      "output_start_frame": 1696,
+      "output_end_frame": 2140,
+      "source_phase": 188,
+      "source_speed": 1.08
+    },
+    {
+      "scene": 6,
+      "output_start_frame": 2140,
+      "output_end_frame": 2646,
+      "source_phase": 106,
+      "source_speed": 0.87
+    },
+    {
+      "scene": 7,
+      "output_start_frame": 2646,
+      "output_end_frame": 3146,
+      "source_phase": 236,
+      "source_speed": 1.12
+    },
+    {
+      "scene": 8,
+      "output_start_frame": 3146,
+      "output_end_frame": 3674,
+      "source_phase": 52,
+      "source_speed": 0.96
+    }
+  ],
+  "paste_back": "tight perioral ellipse centered (128,190), radii (78,50), Gaussian sigma 6",
+  "output": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/batch/z9-metallicity/presenter/z9-metallicity_MICHAEL_MUSETALK_MLX_V3.mp4",
+  "output_sha256": "deaa7d0c0dac00aa88ecaa23470bb233d99c4836c1db31b6524a631ef3f324e9",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_read_frames": "3674"
+      }
+    ],
+    "format": {
+      "duration": "153.083333",
+      "size": "73758851",
+      "bit_rate": "3854572"
+    }
+  },
+  "publication_state": "local V3 build only; not uploaded"
+}

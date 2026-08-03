@@ -1,0 +1,81 @@
+{
+  "status": "READY_FOR_HWAO_REVIEW",
+  "advisory_only": true,
+  "broad_non_agn": true,
+  "distinct_from_areas1_2": true,
+  "run_id": "WIKI_AREA3_GAS_DR_20260715",
+  "conversation_id": "2c3158b4b3b80663",
+  "human_gap": {
+    "anchor": "Area 2 verified-final ledger event",
+    "anchor_utc": "2026-07-15T10:57:36Z",
+    "not_before_utc": "2026-07-15T11:17:36Z",
+    "passed_utc": "2026-07-15T11:17:36.091824Z",
+    "minimum_minutes": 20
+  },
+  "submission": {
+    "prompt_submit_utc": "2026-07-15T11:17:40.274280Z",
+    "research_start_utc": "2026-07-15T11:18:44.893674Z",
+    "result_captured_utc": "2026-07-15T11:29:03.275745Z",
+    "prompt_submit_account_lease_id": "L00594",
+    "research_start_account_lease_id": "L00597",
+    "research_start_mode": "confirmed_button",
+    "first_unaccepted": false,
+    "soft_throttle": false,
+    "google_sorry_or_challenge": false,
+    "retry_performed": false
+  },
+  "finalized_utc": "2026-07-15T11:43:29Z",
+  "counts": {
+    "established_findings": 12,
+    "open_debates": 7,
+    "measurements": 7,
+    "unknowns": 5,
+    "do_not_use_quarantines": 21,
+    "verified_sources": 25,
+    "corrected_raw_identifier_tuples": 11
+  },
+  "verification": {
+    "status": "PASS",
+    "source_count": 25,
+    "pass_count": 25,
+    "fail_count": 0,
+    "method": "Exact public ADS abstract routes/titles plus Crossref DOI metadata plus arXiv export metadata. Every promoted DOI/arXiv/ADS tuple resolves to the same title and first author.",
+    "ads_api_claimed_locally": false,
+    "live_wiki_gate": "Hwao ADS API verifier and jury"
+  },
+  "artifacts": {
+    "brief": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_DR_BRIEF.md",
+      "sha256": "ae6715ab4dcb20bf92286a11f76591894f0df59f4beb622b16e3c46d9da39255"
+    },
+    "prompt": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_DR_PROMPT.md",
+      "sha256": "6a67d946b187a8697117d97c4230802ab77654b78d89dae091cdaba1ba5486ee"
+    },
+    "raw_packet": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_DR_RAW_PACKET.md",
+      "sha256": "17addc6dd3d13850ceef6b844d1264f5cc3167bbccc86ffd11fae963a5501fed",
+      "raw_result_sha256": "f696b9d77178a3196640f1597d5804f39deb8339af8080a0cefec80b429ad7c6"
+    },
+    "final_packet": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_DR_PACKET.md",
+      "sha256": "c61ed62f6be260ae2bc6ad65ecd8357cf91a824ec74bf0416eddc84157556164"
+    },
+    "registry": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_CURATED_SOURCE_REGISTRY.json",
+      "sha256": "960b6c1b49f05699b9798ea89ddf5a914a17c2de0f553490b43c3582f4294d91"
+    },
+    "validation": {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/wiki-expansion-20260715/area3_gas_depletion_DR_PACKET_VALIDATION.json",
+      "sha256": "eb8b78e1bbcf5d779c5d4caf041c104ae6a048c2ea6401d2cabe0c9ca23f74a9"
+    }
+  },
+  "safety": {
+    "wiki_write": false,
+    "database_write": false,
+    "trust_mutation": false,
+    "deploy_or_publish": false,
+    "git_write": false,
+    "conversation_deleted": false
+  }
+}

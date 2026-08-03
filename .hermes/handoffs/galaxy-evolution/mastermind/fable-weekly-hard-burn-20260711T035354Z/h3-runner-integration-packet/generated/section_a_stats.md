@@ -1,0 +1,7 @@
+- Manifest entries: 105 total = 23 flagship + 82 supplement; 97 substring-mode + 8 numeric_token-mode.
+- Already covered by the live 6-entry list (presence-level, flagship only): 5 manifest entries.
+- Proposed NEW audit entries: 17 flagship + 75 supplement (0 exact-duplicate strings removed; 8 numeric_token entries routed to the manifest gate instead of the audit list; 15 of the new entries are presence-implied by a longer proposed entry and retained anyway).
+- Proposed list sizes: NUMERIC_INVARIANTS 6 -> 23; SUPPLEMENT_NUMERIC_INVARIANTS 0 -> 75.
+- Reverse check (live entry -> manifest): `8,146` -> FLG-8146; `-1.309` -> FLG-MEDIAN-OFFSET; `[-1.334,-1.283]` -> FLG-CI95; `249,917` -> FLG-PARENT; `60,000` -> FLG-60000; `24.0` -> substring of FLG-COVERAGE
+- Cross-validation against cycle-5 snapshot TeX: 105/105 entries verified (substring entries: exact occurrence count; numeric_token entries: presence).
+- PROBLEMS: 0 (none)

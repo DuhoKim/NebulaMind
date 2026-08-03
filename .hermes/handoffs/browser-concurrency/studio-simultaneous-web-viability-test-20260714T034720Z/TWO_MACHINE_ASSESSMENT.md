@@ -1,0 +1,42 @@
+# TWO_MACHINE_ASSESSMENT — Flow/DR split across Mac Studio + Mac Pro (HOLD review)
+
+Packet: `studio-simultaneous-web-viability-test-20260714T034720Z` · Captain's design assessment under the standing C0 HOLD. Assessment only: no install, config, browser, account, or profile action taken; the run ledger is deliberately NOT appended while the preserve-as-is HOLD stands (this file will be hash-journaled at resume). Facts of record supplied by Duho: Studio = arm64, macOS 26.5.2, Chrome + cua-driver present, GUI user active, Flow lane established. Mac Pro (100.122.78.110) = x86_64, macOS 26.5.2, GUI active, Chrome 150 present/running, Hermes at `~/.local/bin/hermes` with Codex auth, **cua-driver absent**. Link: 0% loss, ~1.7 ms RTT.
+
+## 1. Preferred assignment: **Flow = Studio, DR = Mac Pro** — agreed, and not close
+
+- **Flow stays where its stack lives.** The Flow lane, its (to-be-rewritten) driver, and the only cua-driver installation are on the Studio; the inverse assignment would demand a desktop-automation stack on the Pro that does not exist there (install = held action, and unnecessary).
+- **DR fits the Pro because cua absence aligns with the intended path — as policy, not impossibility.** The DR side's target architecture is already DOM/CDP-first (r3/broker design; Cua 0.7.1's own guidance routes browser-tab work to CDP). cua-driver absence does NOT structurally prevent desktop writes — AppleScript/System Events and other tooling exist on any macOS — so the Pro lane is a **policy-enforced DOM/CDP-only lane**: desktop-write tooling is contractually banned there, any desktop write would still require the (broker-held) desktop-control lease it will never be granted, and Tori's receipts must show zero desktop-path actions. Evidence capture is **CDP-native only** (`Page.captureScreenshot` per target); no other capture mechanism is used unless explicitly gated later. No cua install required or requested.
+- **Hermes CLI + Codex auth on the Pro is an available bootstrap, not an active perch:** the gateway is currently stopped and active Hermes sessions = 0, so Tori's Pro-side residency requires a (later, gated) activation step. Yui remains the Flow-side witness on the Studio. Correspondent-per-machine still matches correspondent-per-product exactly once that bootstrap is gated on.
+- Architecture note: arm64 vs x86_64 is immaterial to the design (both run current Chrome; CDP is architecture-agnostic); the 1.7 ms / 0%-loss link is comfortably sufficient for lease/heartbeat traffic.
+
+## 2. Risks the split removes (structural, no longer policy-managed)
+
+1. **Cross-side desktop contention — eliminated.** The Cua 0.7.1 shared screen/keyboard/pointer/AX/recording constraint is per-machine; with one product per machine, the two sides can no longer contend for a desktop at all. The machine-wide desktop-control lease becomes per-machine (and on the Pro side should never be granted at all — the DR lane is policy-locked to DOM/CDP; the lease requirement still applies there as the enforcement backstop, since AppleScript/System Events remain technically possible).
+2. **Profile-singleton and user-data-dir collisions — impossible across hosts.**
+3. **Crash/update blast radius — isolated.** A Chrome crash or bundle auto-update on one host cannot touch the other (previously PARTIAL/UNKNOWN within one machine).
+4. **Bridge-loss coupling — isolated.** The unexplained Studio R1/R2 bridge losses can no longer take the DR side down; the Pro side does not even hold a cua bridge.
+5. **Focus/clipboard/keystroke theft across sides — impossible.** Yui's non-interference witness duty narrows to Studio-local automation only.
+6. **Host resource contention (CPU/GPU/RAM/downloads) — separated.**
+
+## 3. What remains — the account plane, plus one new risk the split introduces
+
+- **Account-wide quota (VERIFIED)** — one pool regardless of machines; unchanged.
+- **Same-account concurrent-submission support (UNKNOWN)** — unchanged; the **account-submission lease must therefore become cross-machine**: one logical broker authority (recommend: broker lives on the Studio, the captain's host; Pro lanes acquire/heartbeat leases over the link), never two independent brokers. **The current broker has no cross-machine transport** — an authenticated, fail-closed transport (SSH-wrapped channel; no open unauthenticated port, ever) must exist before any cross-machine lease is possible (see RT1 precondition).
+- **Challenge scope (UNKNOWN); egress measured DISTINCT.** Tori's completed public-egress comparison (performed without printing addresses) returned `same_public_egress=False` at measurement time — so the earlier shared-egress assumption is replaced: the two hosts presently have distinct public egress. This narrows the egress dimension of the freeze but changes nothing on the account dimension: challenge scope for Flow/Gemini remains UNKNOWN, so **a challenge on either host still freezes BOTH sides via the same-account rule**, requiring working cross-machine freeze propagation regardless. Egress is a measured fact, not a permanent property — re-verify at each readiness rung.
+- **NEW risk: network split-brain.** Two hosts can partition. Mitigation is the design we already have, extended: single broker authority + single ledger (on the Studio), all Pro actions valid only under a live, heartbeat-fresh lease, and **fail-closed on link loss** — a Pro lane that cannot reach the broker stops immediately (exactly the bridge-loss rule, applied to the network); it never proceeds unleased. At 1.7 ms RTT, heartbeat intervals of seconds give enormous margin.
+- Clock skew between hosts: measured **0 s** at Tori's check; broker-epoch ordering (already the rule) still governs all receipt ordering rather than wall-clock comparison, so any future drift stays a nuisance, not a hazard.
+
+## 4. Smallest staged readiness test (design only; every rung gated, HOLD stands)
+
+**RT0 — control-plane reachability (read-only, no config):** from the Studio, verify Pro reachability over the existing Hermes/SSH channel, record both hosts' fingerprints (arch, OS, Chrome version, cua presence/absence), measure RTT and clock skew. All outputs written on the Studio into this packet. *No Pro-side writes, no browser, no config.*
+**RT1 — cross-machine lease round-trip + partition drill (no browser):** **precondition (gated build step): the broker currently has no cross-machine transport — an authenticated, fail-closed SSH-wrapped transport must be implemented and reviewed first, with no open unauthenticated port at any time; a Pro lane that cannot authenticate or reach the broker performs no action.** Then: the Pro lane acquires a test target lease from the Studio broker, heartbeats, acts (no-op `check()`), releases; then a deliberate heartbeat drop simulates partition and must produce fail-closed stop on the Pro side plus lease expiry on the broker — the split-brain proof. 3 comparable passes.
+**RT2 — per-machine soaks:** Studio keeps the original C0 dual-bridge soak (cua present there); Pro runs a no-browser telemetry soak (process census + broker heartbeat stability). 3 passes each.
+**RT3 — sandbox browser rungs, then the cross-machine drill:** per-machine C2/C3 analogues on fresh non-default sandbox profiles (Pro side DOM/CDP-only with CDP-native screenshots); then **C3-X**: one DOM/CDP writer per machine acting in parallel, a submission-lease serialization drill with zero real submissions, and a cross-machine freeze drill (STOP declared on one host must freeze the other within a declared threshold, broker-verified). 3 passes; C4 semantics unchanged (prepare-only; live overlap remains Phase IV, separately gated).
+
+RT0 is the only rung executable without touching any held or gated surface; even it awaits your go. RT1+ require lifting the HOLD and a recorded rung-entry; RT3 additionally inherits the existing browser-launch gating.
+
+## 5. Captain's recommendation
+
+Adopt **Flow = Studio, DR = Mac Pro** with a single Studio-hosted broker/ledger and cross-machine lease/freeze semantics; amend `HWAO_EXECUTION_PLAN.md` to the RT ladder above if you choose the split (the amendment itself I will write only on your word, since it re-scopes lanes). The split removes every machine-local contention risk and leaves exactly the account-plane controls we already designed — which is the strongest possible position going into a future Phase IV. C0 remains on HOLD; nothing has been started, installed, configured, or touched.
+
+HWAO_TWO_MACHINE_ASSESSMENT_20260714T034720Z

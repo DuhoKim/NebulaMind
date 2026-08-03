@@ -1,0 +1,69 @@
+{
+  "cache_age_label": "0s",
+  "cache_state": "fresh",
+  "cards": [
+    {
+      "activity": "1,097,658,727 tokens in 7d",
+      "detail": "270 sessions \u00b7 23,428 tool calls \u00b7 model gpt-5.5",
+      "kind": "local-analytics",
+      "lanes_active": 4,
+      "lanes_total": 4,
+      "name": "Hermes / Tori",
+      "percent": null,
+      "percent_label": "quota percent not exposed",
+      "source": "hermes insights --days 7 (local session DB)",
+      "status": "measured"
+    },
+    {
+      "activity": "0/7 active panes",
+      "detail": "4 Anthropic/Hermes credentials visible \u00b7 local stats cache stale / not a live limit (2026-02-12)",
+      "kind": "subscription-lane",
+      "lanes_active": 0,
+      "lanes_total": 7,
+      "name": "Claude Code / Hwao+Lana",
+      "percent": null,
+      "percent_label": "not exposed by safe CLI",
+      "source": "tmux pane state + hermes auth list + .claude stats metadata only",
+      "status": "authenticated"
+    },
+    {
+      "activity": "0/4 active panes",
+      "detail": "agy/Gemini subscription lane observed through tmux; no safe local percent-limit API found",
+      "kind": "subscription-lane",
+      "lanes_active": 0,
+      "lanes_total": 4,
+      "name": "Goru / Antigravity Gemini",
+      "percent": null,
+      "percent_label": "not exposed by safe CLI",
+      "source": "tmux pane state only",
+      "status": "running"
+    },
+    {
+      "activity": "0/3 active panes",
+      "detail": "1 OpenAI Codex credential visible \u00b7 local doctor has no quota percent field",
+      "kind": "subscription-lane",
+      "lanes_active": 0,
+      "lanes_total": 3,
+      "name": "Kun / Codex CLI",
+      "percent": null,
+      "percent_label": "not exposed by safe CLI",
+      "source": "tmux pane state + hermes auth list",
+      "status": "authenticated"
+    }
+  ],
+  "exact_limit_percent_sources": 0,
+  "generated_at": "2026-07-07T10:30:34Z",
+  "marker": "GE_USAGE_LIMIT_MONITOR_V1",
+  "notes": [
+    "Percent gauges show only provider-reported percentages. If a safe local CLI does not expose a quota percent, the dashboard says 'not exposed' instead of guessing.",
+    "This monitor reads local status/metadata only. It does not open provider web pages, call billing APIs, print tokens, or inspect credential files.",
+    "Exact Claude/Codex/Gemini plan-limit percentages still require a provider UI or an approved provider-specific safe source."
+  ],
+  "sources": {
+    "claude_daemon_workers": 0,
+    "claude_stats_last_computed": "2026-02-12",
+    "hermes_auth_list_ok": true,
+    "hermes_insights_ok": true,
+    "usage_cache_path": "/Users/duhokim/HermesOps/cockpit/ge-autopilot-usage-cache.json"
+  }
+}

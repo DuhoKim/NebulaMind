@@ -1,0 +1,15 @@
+Independent ASR QA transcript
+Model: faster-whisper base.en, CPU int8
+Source: kun_tori_progress_female_narration.wav
+
+Raw transcript:
+
+Cohen's oversight report rated the project healthy, with risks. One correction changed the plan. Claim Ledger Contract Version 1 had already passed. The team would preserve and reconcile finished work, not rebuild it. Phase 0 preserved the contract, 36 files, 16 ledger entries, 45 evidence spans, 45 stance rows, and 26 unique BIB codes. Source and backup digests and modification times matched, with zero validation errors. Phase 1 classified all 380 work tree entries before touching anything, 222 keep commit, 130 archive, 18 deletion candidates, and 10 unknown. Nothing moved or deleted. Phases 2 and 3 chose rework piecemeal. Surveys would be rebuilt on current main, the wiki fix re-applied, the back-end runner held for a product decision, superseded lab front-end commits abandoned, for intent patches preserved all 20 modified files. Corey's role was custody and receipt verification. In the surveys unit, three independent fail-close reviews produce two honest failures, then one unconditional pass across all 10 acceptance items. Wayo closed the unit on that stronger evidence. The passing V2 stays frozen and uncommitted. Cohen's latest check passed the corrected Phase 4 scope, 18 test database files, and 10 cache directories split into two in ordinary future scope in eight held. Safety counters stayed at zero. Cleanup scope is defined but clean up, get landing database work, status map work, run time and publication remain gated.
+
+Assessment:
+
+- Semantic content, counts, review order, frozen/uncommitted state, and held-gate boundary were recovered.
+- Custom proper nouns were rendered by the generic ASR model as ordinary English variants: `Kun` → `Cohen`, `Tori` → `Corey`, `Hwao` → `Wayo`, and `Git` → `get`.
+- The canonical spellings remain visible in the burned-in captions and SRT.
+- `four intent patches` was transcribed as `for intent patches`; the on-screen card and captions show the correct numeral and spelling.
+- Verdict: semantic audio sanity PASS with expected custom-name ASR substitutions; caption contract is authoritative for names.

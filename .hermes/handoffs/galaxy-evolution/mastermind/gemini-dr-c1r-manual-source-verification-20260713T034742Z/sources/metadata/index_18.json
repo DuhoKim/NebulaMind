@@ -1,0 +1,121 @@
+{
+  "index": 18,
+  "captured_url": "https://arxiv.org/abs/2605.13843",
+  "ledger_rows": [
+    22
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:29Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 18,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/2605.13843",
+      "final_url": "https://arxiv.org/abs/2605.13843",
+      "status": 200,
+      "bytes": 43766,
+      "sha256": "41fa0f042cfcbeee80dc8e84878b47dc3fa770d19e215eba0467e004bbea46f3",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx18_initial_41fa0f042cfc.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:31Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 18,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2605.13843",
+      "final_url": "https://arxiv.org/pdf/2605.13843",
+      "status": 200,
+      "bytes": 5093961,
+      "sha256": "e2d6c75815b2eadbe911e336e50634a6858b237e55facee84eecff4ba5c8b86a",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx18_arxiv_pdf_e2d6c75815b2.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:31Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 18,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2605.13843",
+      "final_url": "https://arxiv.org/pdf/2605.13843",
+      "status": 200,
+      "bytes": 5093961,
+      "sha256": "e2d6c75815b2eadbe911e336e50634a6858b237e55facee84eecff4ba5c8b86a",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx18_arxiv_pdf_e2d6c75815b2.pdf",
+      "auth": "NONE",
+      "cache_reuse": true
+    },
+    {
+      "utc": "2026-07-13T04:15:33Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 18,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2605.13843%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2605.13843%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 2207,
+      "sha256": "7df739d3be9b9b8108675d7721c601f66f88c2fb9ff90d461e8dbf7210efd192",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx18_ads_7df739d3be9b.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The Galaxy Luminosity Functions in ASTRID: Predictions for LSST",
+      "doi": "",
+      "arxiv_id": "2605.13843",
+      "pdf_url": "https://arxiv.org/pdf/2605.13843",
+      "text_path": "sources/text/idx18_initial_9c85c014fa03.txt",
+      "text_sha256": "9c85c014fa03e9bea377bbae0b8230a1ad40fd09565ce5b78a41a923e642f95b",
+      "text_chars": 4878
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2605.13843",
+      "pdf_url": "",
+      "text_path": "sources/text/idx18_arxiv_pdf_22dac0005cf8.txt",
+      "text_sha256": "22dac0005cf835358c6d61f4874c04d51d185fa6422c5d5dfd33781eba1ed376",
+      "text_chars": 60376,
+      "pdf_pages": 17
+    },
+    {
+      "label": "publisher_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2605.13843",
+      "pdf_url": "",
+      "text_path": "sources/text/idx18_publisher_pdf_22dac0005cf8.txt",
+      "text_sha256": "22dac0005cf835358c6d61f4874c04d51d185fa6422c5d5dfd33781eba1ed376",
+      "text_chars": 60376,
+      "pdf_pages": 17
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx18_ads_be846d94a077.txt",
+      "text_sha256": "be846d94a0770221d11018c7fcf6a3f676e660c8cd33717c6d125d5877591564",
+      "text_chars": 2639
+    }
+  ]
+}

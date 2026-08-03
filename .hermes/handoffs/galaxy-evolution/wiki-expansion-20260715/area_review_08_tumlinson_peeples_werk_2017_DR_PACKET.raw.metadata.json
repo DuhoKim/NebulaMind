@@ -1,0 +1,563 @@
+{
+  "canonical_packet_released": false,
+  "captured_utc": "2026-07-16T01:08:50.241799Z",
+  "conversation_deleted": false,
+  "identity": {
+    "captured_title": "You are the Deep Research source-base reviewer for NebulaMind's galaxy-evolution wiki rebuild. Queue item 08 of 20 Core review: Tumlinson, Jason; Peeples, Molly S.; & Werk, Jessica K. (2017), Annual Review of Astronomy and Astrophysics, volume 55, pages 389-432, \"The Circumgalactic Medium.\" Verified review identity to confirm: DOI 10.1146/annurev-astro-091916-055240; arXiv 1709.09180; ADS bibcode 2017ARA&A..55..389T. Mission purpose Build a large, authoritative, advisory source base from this review so three independent methods can later build galaxy-evolution wiki pages from zero. Extract its bounded synthesis and harvest important primary papers it actually cites. This is not live-wiki prose and authorizes no database, trust, claim, evidence, deployment, publication, git, account-setting, or conversation-deletion action beyond this one Deep Research run. Temporal and topical boundary - Use the 2017 review and primary literature it actually cites. - Do not promote post-2017 papers as if the review cited them. - Maintain the queue's non-AGN focus. Exclude AGN fueling, accretion-disk physics, AGN demographics, and AGN-only feedback papers from the core harvest. - Later sources and AGN-centered sources may appear only in DO_NOT_USE_UNVERIFIED. Scientific scope 1. Definition and physical boundaries of the CGM: outside the stellar disk/ISM and inside the virial radius; distinguish CGM, ISM, IGM, intragroup, and intracluster gas. 2. Multiphase structure from cool neutral/low-ion gas through photoionized and collisionally ionized plasma; temperature, density, pressure, and ionization boundaries. 3. Absorption-line probes using background quasars and galaxies: HI, Mg II, Si II/III/IV, C II/III/IV, O VI, Ne VIII, and other ions. 4. Emission, X-ray, Sunyaev-Zeldovich, ram-pressure, satellite, and other complementary constraints where the review covers them. 5. Covering fractions, column-density distributions, equivalent widths, impact parameter, halo mass, stellar mass, star-formation state, azimuth, and redshift dependencies. 6. CGM mass, metals, baryon fractions, ionization corrections, metallicity distributions, and the missing-baryon/missing-metals relationship. 7. Inflow, outflow, recycling, mixing, cooling, precipitation, cloud survival, stripping, and feedback signatures, without claiming one tracer uniquely identifies a flow direction. 8. COS-Halos and other major low-redshift surveys; high-redshift CGM measurements; simulations and analytic models used for interpretation. Required output 1. Review identity and scope map - Confirm exact title, authors, year, journal, DOI, arXiv, and ADS bibcode. - Map authorized territory and explicit exclusions. - Preserve halo radius, galaxy selection, impact parameter, redshift, ion, ionization model, temperature, density, metallicity, and cosmological boundaries. 2. Established findings - At least 12 atomic entries [REV08-E01], ... - Include role, epistemic_type, one bounded finding, physical/sample/tracer boundary, review topic basis, confidence note, and source keys. - Allowed epistemic types: observation | analytic_theory | hydrodynamic_simulation | semi_analytic_model | calibration | review_synthesis. - Never equate one ion with total gas mass or one sightline with the full halo. 3. Open debates and tensions - At least 8 entries [REV08-D01], ... - Include competing positions, why unresolved in 2017, boundaries, and source keys. - Include: cool-cloud survival; O VI ionization and temperature; CGM baryon closure; metallicity and origin degeneracy; inflow versus outflow identification; hydrostatic versus dynamic halos; feedback-model dependence; and simulation-observation comparison. 4. Key measurements, model benchmarks, and calibrations - At least 8 entries [REV08-N01], ... - Include exact value/equation when the review supplies it; units; ion/tracer/sample/redshift/halo-radius/ionization assumptions; whether observed, assumed, calibrated, or predicted; caveat; and source keys. - Useful targets: virial-temperature scaling; characteristic halo/CGM radial boundaries; COS-Halos HI and O VI covering/column behavior; inferred cool-gas mass; oxygen or metal mass; baryon fractions; cooling times; mass-loading or recycling constraints. Include only values bound to cited sources and review context. 5. What remained unknown in 2017 - At least 6 entries [REV08-U01], ... with the gap, why it matters, needed observation/model test, and source keys. 6. Primary-citation harvest - Harvest 40-80 important PRIMARY papers actually cited by Tumlinson, Peeples & Werk 2017. - Balance across low-z and high-z absorber surveys, COS-Halos, CGM metallicity and ionization work, O VI/Ne VIII/hot-gas measurements, halo-mass and galaxy-property trends, inflow/outflow constraints, cloud physics, simulations, and analytic models. - Supporting reviews/books may be listed separately but must not count toward the primary total. - Exclude post-2017, uncited search results, aggregators, and AGN-only papers. - One physical paper per source key; no duplicates. - IDs [REV08-P001], [REV08-P002], ... - Each row: [REV08-PNNN] Authors (year, journal) | title=exact title | DOI:value-or-none; arXiv:value-or-none; ADS:value | role=measurement|analytic_theory|hydrodynamic_simulation|semi_analytic_model|calibration | review_locator=section/topic | one-line boundary - If an identifier or review membership is uncertain, quarantine the row rather than making it usable. Composite identifier discipline - First author/year/title/DOI/arXiv/ADS must identify the same physical paper. - The paper must actually appear in the review bibliography. - Never splice neighboring reference identifiers. - Use none when an identifier genuinely does not exist. - Measurement rows must name ion/tracer, galaxy selection, impact parameter or halo radius, redshift, and ionization assumptions where relevant. 7. DO_NOT_USE_UNVERIFIED - Quarantine uncertain, cross-wired, uncited, post-2017, AGN-centered, phase-collapsing, or overbroad items. - Format: UNCITED_NOT_USABLE | candidate or claim | supplied identifier/context | exclusion reason - Explicitly quarantine claims that one ion traces all CGM gas, O VI uniquely identifies one temperature/origin, every absorber is inflow or outflow, one halo closes the cosmic baryon budget, or matching one column profile validates one unique feedback model. - Quarantine post-2017/JWST/ML browsing results. 8. Review and source identity ledger - Repeat review as [REV08-R00] with DOI/arXiv/ADS. - Repeat every usable primary and supporting row with author/year/journal, DOI, arXiv, ADS, role, and boundary. - No load-bearing source may be absent from this ledger. Quality bar - Advisory source base, not polished wiki prose. - Prefer explicit ion, phase, halo-radius, galaxy-selection, and model boundaries over broad claims. - Preserve observed versus inferred, calibrated versus predicted, and column density versus total mass. - Every source key in findings/debates/measurements/unknowns must resolve in the usable ledger. - End exactly: REVIEW_BASE_08_DR_COMPLETE_REFERENCE_ONLY",
+    "conversation_id": "12f42180ef3af67f",
+    "conversation_path": "/app/12f42180ef3af67f",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "e89e4ef28cf1b1180172299356e94751be77e6a802042a654c33780498a03e9d",
+    "prompt_sha256": "c9d4763fb307cffe253a87ec5843dbaf6d832f9bd8063cd7b62cc20e1b7b49f2",
+    "submit_account_lease_id": "L00923",
+    "submit_utc": "2026-07-16T00:56:06.627441Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING",
+  "output_quality": {
+    "debate_count": 8,
+    "do_not_use_present": true,
+    "established_count": 14,
+    "headings_present": false,
+    "measurement_count": 8,
+    "pass": false,
+    "primary_harvest_count": 73,
+    "review_ads_present": false,
+    "review_arxiv_present": false,
+    "review_doi_present": false,
+    "terminal_marker_present": true,
+    "unknown_count": 6
+  },
+  "packet_sha256": "52e4ad29f227ef9bf04e2de7417b0969fb0c35d353838f32a6c6e92353267adf",
+  "queue_item": 8,
+  "raw_packet_sha256": "52e4ad29f227ef9bf04e2de7417b0969fb0c35d353838f32a6c6e92353267adf",
+  "result_chars": 65511,
+  "result_text_sha256": "6c0a57e8848e0e902e3ebc91d1d11932bae6afe0698f53a1275fe800b8b5281f",
+  "run_id": "REVIEW_BASE_08_TUMLINSON_PEEPLES_WERK_2017",
+  "source_anchor_count": 130,
+  "source_anchors": [
+    {
+      "href": "https://ar5iv.labs.arxiv.org/html/1709.09180",
+      "label": "ar5iv.labs.arxiv.org [1709.09180] The Circumgalactic Medium - ar5iv - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1709.09180",
+      "label": "arxiv.org [1709.09180] The Circumgalactic Medium - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/493/1/1461/5728519",
+      "label": "academic.oup.com Properties of the simulated circumgalactic medium - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson4.html",
+      "label": "ned.ipac.caltech.edu Opens in a new window"
+    },
+    {
+      "href": "https://cpb-us-e1.wpmucdn.com/sites.northwestern.edu/dist/f/2214/files/2018/08/werk-NWCGM2018-2h3mrqu.pdf",
+      "label": "cpb-us-e1.wpmucdn.com The Circumgalactic Medium - CDN Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson3.html",
+      "label": "ned.ipac.caltech.edu how we study the cgm - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/doi/pdf/10.1146/annurev-astro-021820-120014",
+      "label": "annualreviews.org The Cosmic Baryon and Metal Cycles - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson5.html",
+      "label": "ned.ipac.caltech.edu the baryonic mass distribution of the cgm - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1403.0947",
+      "label": "arxiv.org arXiv:1403.0947v2 [astro-ph.CO] 7 Aug 2014 Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/not-so-heavy-metals-black-hole-feedback-enriches-the-45yxng1spk.pdf",
+      "label": "scispace.com Not So Heavy Metals: Black Hole Feedback Enriches The Circumgalactic Medium - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1404.6540",
+      "label": "arxiv.org arXiv:1404.6540v2 [astro-ph.GA] 16 Feb 2015 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/444/2/1260/24039497/stu1418.pdf",
+      "label": "academic.oup.com Tracing inflows and outflows with absorption lines in circumgalactic gas - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson8.html",
+      "label": "ned.ipac.caltech.edu the paradox of quenching - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://cris.unibo.it/bitstream/11585/959689/1/Zhang_2024_ApJ_962_15.pdf",
+      "label": "cris.unibo.it and High-velocity O vi in Milky Way-like Galaxies: The Role of Stellar Feedback Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/460/2/2157/2609032",
+      "label": "academic.oup.com Bimodality of low-redshift circumgalactic O vi in non-equilibrium eagle zoom simulations | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/0706.1214",
+      "label": "arxiv.org [0706.1214] A High-Resolution Survey of Low-Redshift QSO Absorption Lines: Statistics and Physical Conditions of O VI Absorbers - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2606.24735",
+      "label": "arxiv.org The dependence of Circumgalactic Medium properties on halo assembly histories in the IllustrisTNG simulations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1910.09554",
+      "label": "arxiv.org arXiv:1910.09554v2 [astro-ph.GA] 5 Feb 2020 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/459/2/1745/2594965",
+      "label": "academic.oup.com Baryon cycling in the low-redshift circumgalactic medium: a comparison of simulations to the COS-Halos survey - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson_refs.html",
+      "label": "ned.ipac.caltech.edu The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/etdeweb/biblio/22365244",
+      "label": "osti.gov The COS-Halos survey: physical conditions and baryonic mass in the low-redshift circumgalactic medium (Journal Article) | ETDEWEB - OSTI.GOV Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1403.0947",
+      "label": "arxiv.org [1403.0947] The COS-Halos Survey: Physical Conditions and Baryonic Mass in the Low-Redshift Circumgalactic Medium - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1310.2253",
+      "label": "arxiv.org arXiv:1310.2253v2 [astro-ph.CO] 3 Mar 2014 Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson7.html",
+      "label": "ned.ipac.caltech.edu inflows, outflows, and recycling - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/444/2/1260/990658",
+      "label": "academic.oup.com Tracing inflows and outflows with absorption lines in circumgalactic gas - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://kspa.soe.ucsc.edu/sites/default/files/Lochhaas%20Report.pdf",
+      "label": "kspa.soe.ucsc.edu Properties of the Simulated Circumgalactic Medium - Kavli Summer Program in Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnrasl/article/482/1/L85/5126365",
+      "label": "academic.oup.com Cosmological simulations of the circumgalactic medium with 1 kpc resolution: enhanced H i column densities | Monthly Notices of the Royal Astronomical Society - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.06744v1",
+      "label": "arxiv.org CRexit observed: probing cosmic ray transport in the circumgalactic medium with absorption line spectra - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://search.proquest.com/openview/576ae50ba3e0f9d27630fad199795e89/1?pq-origsite=gscholar&cbl=18750&diss=y",
+      "label": "search.proquest.com The Absorption and Emission of Neutral Hydrogen Around High-Redshift Star-Forming Galaxies - ProQuest Opens in a new window"
+    },
+    {
+      "href": "https://en.wikipedia.org/wiki/Warm%E2%80%93hot_intergalactic_medium",
+      "label": "en.wikipedia.org Warm\u2013hot intergalactic medium - Wikipedia Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-astro-052920-125203",
+      "label": "annualreviews.org Key Physical Processes in the Circumgalactic Medium - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/10.1146/annurev-astro-021022-043545?TRACK=RSS",
+      "label": "annualreviews.org The Cold Interstellar Medium of Galaxies in the Local Universe - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/541/3/2471/8182613",
+      "label": "academic.oup.com Understanding gas mixing in the circumgalactic medium - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "http://proceedings.sf2a.eu/2024/2024sf2a.conf.137R.pdf",
+      "label": "proceedings.sf2a.eu EXPLORING THE SUBTLETIES OF FEEDBACK PROCESSES THROUGH THE CGM IN GALAXY SIMULATIONS - of /proceedings - SF2A Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2603.28862v1",
+      "label": "arxiv.org Enhanced Multiphase Circumgalactic Medium and Gas Cycling in Galaxy Mergers - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/373225297_Key_Physical_Processes_in_the_Circumgalactic_Medium",
+      "label": "researchgate.net Key Physical Processes in the Circumgalactic Medium - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2408.14344v2",
+      "label": "arxiv.org On the origin of the 10\u2077 K hot emitting gas in the Circumgalactic medium of the Milky Way Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/545/3/staf2080/8341077",
+      "label": "academic.oup.com MUSEQuBES: the column density, covering fraction, mass, and environmental dependence of cool H i gas around low-redshift galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://researchonline.ljmu.ac.uk/id/eprint/4170/",
+      "label": "researchonline.ljmu.ac.uk Bimodality of low-redshift circumgalactic O vi in non-equilibrium eagle zoom simulations. Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/47822044_The_filling_factor_of_intergalactic_metals_at_redshift_z_3_The_filling_factor_of_intergalactic_metals",
+      "label": "researchgate.net The filling factor of intergalactic metals at redshift z= 3 - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/468/4/4170/3073711",
+      "label": "academic.oup.com Metal flows of the circumgalactic medium, and the metal budget in galactic haloes - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/500/1/1476/5925367",
+      "label": "academic.oup.com changing circumgalactic medium over the last 10 Gyr \u2013 I. Physical and dynamical properties | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.04793v1",
+      "label": "arxiv.org Cooler Phases of the Circumgalactic Medium Are More Centrally Concentrated: Constraints from Multiphase Absorption Lines - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.24735v1",
+      "label": "arxiv.org The dependence of Circumgalactic Medium properties on halo assembly histories in the IllustrisTNG simulations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.spiedigitallibrary.org/journals/Journal-of-Astronomical-Telescopes-Instruments-and-Systems/volume-11/issue-04/042213/Mapping-galactic-winds-and-small-scale-structure-in-the-circumgalactic/10.1117/1.JATIS.11.4.042213.full",
+      "label": "spiedigitallibrary.org Mapping galactic winds and small-scale structure in the circumgalactic medium with Habitable Worlds Observatory - SPIE Digital Library Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/488/1/1248/5525100",
+      "label": "academic.oup.com origins of the circumgalactic medium in the FIRE simulations - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/541/1/601/8173841",
+      "label": "academic.oup.com Circumgalactic medium of quasar host galaxies at 0.4 z 0.8 probed by strong Mg ii absorption - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.04793v2",
+      "label": "arxiv.org Cooler Phases of the Circumgalactic Medium Are More Centrally Concentrated: Constraints from Multiphase Absorption Lines - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/496/3/3142/5859968",
+      "label": "academic.oup.com Constraining magnetic fields in the circumgalactic medium - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2606.00164",
+      "label": "arxiv.org Astronomical Advantages of a Boost Mission to Facilitate HST Science into the 2030s: Imaging the Circumgalactic Medium of Galaxi - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.spiedigitallibrary.org/journals/Journal-of-Astronomical-Telescopes-Instruments-and-Systems/volume-11/issue-04/042213/Mapping-galactic-winds-and-small-scale-structure-in-the-circumgalactic/10.1117/1.JATIS.11.4.042213.pdf",
+      "label": "spiedigitallibrary.org Mapping galactic winds and small-scale structure in the circumgalactic medium with Habitable Worlds Observatory - SPIE Digital Library Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2512.03845",
+      "label": "arxiv.org Tracing the Cosmic Evolution of the Cool Circumgalactic Medium of Luminous Red Galaxies with DESI Year 1 Data - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/doi/10.1146/annurev-astro-091916-055240",
+      "label": "annualreviews.org The Circumgalactic Medium - Annual Reviews Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/331768685_Understanding_the_circumgalactic_medium_is_critical_for_understanding_galaxy_evolution",
+      "label": "researchgate.net Understanding the circumgalactic medium is critical for understanding galaxy evolution Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson_contents.html",
+      "label": "ned.ipac.caltech.edu The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson1.html",
+      "label": "ned.ipac.caltech.edu a very brief history - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/frames.html",
+      "label": "ned.ipac.caltech.edu The Circumgalactic Medium Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Figures/",
+      "label": "ned.ipac.caltech.edu Index of /level5/March18/Tumlinson/Figures - Caltech Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson2.html",
+      "label": "ned.ipac.caltech.edu galaxies in gaseous halos - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson9.html",
+      "label": "ned.ipac.caltech.edu open problems, future prospects, and final thoughts - The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/March18/Tumlinson/Tumlinson6.html",
+      "label": "ned.ipac.caltech.edu The Circumgalactic Medium - Jason Tumlinson et al. Opens in a new window"
+    },
+    {
+      "href": "https://www.research.ed.ac.uk/en/publications/the-cos-halos-survey-rationale-design-and-a-census-of-circumgalac/",
+      "label": "research.ed.ac.uk The COS-Halos Survey: Rationale, Design, and a Census of Opens in a new window"
+    },
+    {
+      "href": "https://experts.colorado.edu/display/pubid_118098",
+      "label": "experts.colorado.edu THE COS-HALOS SURVEY: RATIONALE, DESIGN, AND A Opens in a new window"
+    },
+    {
+      "href": "https://explore.openaire.eu/search/result?pid=10.1088/0004-637x/777/1/59",
+      "label": "explore.openaire.eu THE COS-HALOS SURVEY: RATIONALE, DESIGN, AND A Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/pages/biblio/1544050",
+      "label": "osti.gov Trident: A Universal Tool for Generating Synthetic Absorption Opens in a new window"
+    },
+    {
+      "href": "https://www.frontiersin.org/journals/astronomy-and-space-sciences/articles/10.3389/fspas.2023.1155865/full",
+      "label": "frontiersin.org Formation of multiphase plasma in galactic haloes and an analogy to solar plasma - Frontiers Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2606.05310",
+      "label": "arxiv.org A Decade to Map the Diffuse Universe: FRB-QSO Pairs with HST/COS Spectroscopy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/pages/biblio/2425310",
+      "label": "osti.gov The Anisotropic Circumgalactic Medium of Massive Early-type Galaxies - OSTI Opens in a new window"
+    },
+    {
+      "href": "https://www.sciencenews.org/article/cosmic-cloak-controls-galaxy-future-coming-focus",
+      "label": "sciencenews.org The ecosystem that controls a galaxy's future is coming into focus - Science News Opens in a new window"
+    },
+    {
+      "href": "http://surveygizmoresponseuploads.s3.amazonaws.com/fileuploads/623127/4458621/250-496a94279390506f5873c04f588b7bc0_BurchettJosephN.pdf",
+      "label": "surveygizmoresponseuploads.s3.amazonaws.com Astro2020 Science White Paper Ultraviolet Perspectives on Diffuse Gas in the Largest Cosmic Structures - AWS Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2409.16952v2",
+      "label": "arxiv.org 1 A full account and partition of the missing baryons. We show the distribution of extragalactic dispersion measure and redshift of localized FRBs in our sample, over half of which are sources recently discovered by the DSA-110. The heatmap corresponds to a likelihood function P\u2062(DM_{e\u2062x} - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.repository.cam.ac.uk/bitstreams/23daf796-06ee-49a7-b1d6-f928203930c1/download",
+      "label": "repository.cam.ac.uk JCAP10(2025)051 - University of Cambridge Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2409.16952",
+      "label": "arxiv.org A gas-rich cosmic web revealed by the partitioning of the missing baryons - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://boa.unimib.it/retrieve/e39773b6-094a-35a3-e053-3a05fe0aac26/Lehner_2016_ApJ_833_283.pdf",
+      "label": "boa.unimib.it THE COSMIC EVOLUTION OF THE METALLICITY DISTRIBUTION OF IONIZED GAS TRACED BY LYMAN LIMIT SYSTEMS Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1302.5424",
+      "label": "arxiv.org [1302.5424] The Bimodal Metallicity Distribution of the Cool Circumgalactic Medium at z<1 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2409.01645",
+      "label": "arxiv.org arXiv:2409.01645v1 [astro-ph.GA] 3 Sep 2024 Opens in a new window"
+    },
+    {
+      "href": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2015/05/STScI-01EVSR6FZ95QTXADCQPXGSXQZK.pdf",
+      "label": "assets.science.nasa.gov EVIDENCE FOR A MASSIVE, EXTENDED CIRCUMGALACTIC MEDIUM AROUND THE ANDROMEDA GALAXY* - NASA Opens in a new window"
+    },
+    {
+      "href": "https://www.boa.unimib.it/retrieve/89734d50-4791-4457-ac8c-778a65f59cbe/Lehner-2022-ApJ-VoR.pdf",
+      "label": "boa.unimib.it KODIAQ-Z: Metals and Baryons in the Cool Intergalactic and Circumgalactic Gas at 2.2 \u2272 z \u2272 3.6 - Milano-Bicocca Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10688926",
+      "label": "par.nsf.gov Highly Ionized Gas in the Zone of Avoidance: Using the CIViL Survey to Pinpoint Physical Conditions of Gaseous Halos Opens in a new window"
+    },
+    {
+      "href": "https://scholarlypublications.universiteitleiden.nl/access/item%3A4291094/view",
+      "label": "scholarlypublications.universiteitleiden.nl MUSEQuBES: the kinematics of O VI-bearing gas in and around low- redshift galaxies - Scholarly Publications Leiden University Opens in a new window"
+    },
+    {
+      "href": "https://uwcscholar.uwc.ac.za/bitstreams/b37d5511-7109-4249-a05b-e95e1489b49e/download",
+      "label": "uwcscholar.uwc.ac.za THE COS-HALOS SURVEY: RATIONALE, DESIGN, AND A CENSUS OF CIRCUMGALACTIC NEUTRAL HYDROGEN - UWCScholar Opens in a new window"
+    },
+    {
+      "href": "https://repository.arizona.edu/bitstream/10150/621229/1/Bowen_2016_ApJ_826_50.pdf",
+      "label": "repository.arizona.edu THE STRUCTURE OF THE CIRCUMGALACTIC MEDIUM OF GALAXIES: COOL ACCRETION INFLOW AROUND NGC 1097 Opens in a new window"
+    },
+    {
+      "href": "https://assets.science.nasa.gov/content/dam/science/missions/hubble/releases/2017/03/STScI-01EVSR22X9NZVBNPP0ZVNX4JKK.pdf",
+      "label": "assets.science.nasa.gov MAPPING THE NUCLEAR OUTFLOW OF THE MILKY WAY: STUDYING THE KINEMATICS AND SPATIAL EXTENT OF THE NORTHERN FERMI BUBBLE - NASA Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/400108932_Differential_Accretion_of_Ionized_Low-velocity_Gas_at_the_Milky_Way's_Disk-Halo_Interface",
+      "label": "researchgate.net Differential Accretion of Ionized Low-velocity Gas at the Milky Way's Disk\u2013Halo Interface Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2501.17940v1",
+      "label": "arxiv.org Spatially Resolved Circumgalactic Medium Around a Star-Forming Galaxy Driving a Galactic Outflow at z\u22480.8 - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://doi.org/10.1051/0004-6361/202557875",
+      "label": "doi.org First statistical constraints on galactic-scale outflow properties traced by their extended Mg II emission with MUSE | Astronomy & Astrophysics (A&A) - DOI Opens in a new window"
+    },
+    {
+      "href": "https://orcid.org/0000-0001-7069-4026",
+      "label": "orcid.org Activities - ORCID Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1106.0616",
+      "label": "arxiv.org [1106.0616] The radial and azimuthal profiles of Mg II absorption around 0.5 < z < 0.9 zCOSMOS galaxies of different colors, masses and environments - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/Chen_refs.html",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - Hsiao-Wen Chen Opens in a new window"
+    },
+    {
+      "href": "https://www.eso.org/sci/libraries/telbib_info/AR/ESO_AnnualReport_publications2011.pdf",
+      "label": "eso.org Publications - ESO.org Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/484/2/2257/5256659",
+      "label": "academic.oup.com Characterizing circumgalactic gas around massive ellipticals at z \u223c 0.4 \u2013 II. Physical properties and elemental abundances | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "http://www.eso.org/~hkuntsch/papers/MNRAS_519_931.pdf",
+      "label": "eso.org MUSE-ALMA Haloes - VIII. Statistical study of circumgalactic medium gas - ESO Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/368842459_DESI_survey_validation_data_in_the_COSMOSHSC_field_Cool_gas_trace_main_sequence_star-forming_galaxies_at_the_cosmic_noon",
+      "label": "researchgate.net (PDF) DESI survey validation data in the COSMOS/HSC field: Cool gas trace main sequence star-forming galaxies at the cosmic noon - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2408.07984v1",
+      "label": "arxiv.org Gravitational Lensing Reveals Cool Gas within 10-20 kpc around a Quiescent Galaxy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2602.13394",
+      "label": "arxiv.org ARCHITECTS II: Impact of subgrid physics on the observable properties of the circumgalactic medium - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/485/1/648/5300129",
+      "label": "academic.oup.com Probing Galactic haloes with fast radio bursts | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "http://physics.snu.ac.kr/cosmo/agora/AGORA_PaperVI_CGM_gamma_3.pdf",
+      "label": "physics.snu.ac.kr The AGORA High-resolution Galaxy Simulations Comparison Project. VI: Similarities and Differences in the Circumgalactic Medium A Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2503.02947",
+      "label": "arxiv.org Evidence for a hot galactic halo around the Andromeda Galaxy using fast radio bursts along two sightlines. - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2301.03502",
+      "label": "arxiv.org arXiv:2301.03502v2 [astro-ph.GA] 8 Feb 2023 Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11801050/",
+      "label": "pmc.ncbi.nlm.nih.gov A MUSE source-blind survey for emission from the circumgalactic medium - PMC Opens in a new window"
+    },
+    {
+      "href": "https://amslaurea.unibo.it/id/eprint/12824/1/Tesi.pdf",
+      "label": "amslaurea.unibo.it Kinematics of the circumgalactic medium in early-type galaxies - AMS Laurea Opens in a new window"
+    },
+    {
+      "href": "https://open-research-europe.ec.europa.eu/articles/4-117",
+      "label": "open-research-europe.ec.europa.eu Atacama Large Aperture Submillimeter Telescope (AtLAST) science: The hidden circumgalactic medium. - Open Research Europe Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/384364496_A_gas_rich_cosmic_web_revealed_by_partitioning_the_missing_baryons",
+      "label": "researchgate.net A gas rich cosmic web revealed by partitioning the missing baryons - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1507.02374",
+      "label": "arxiv.org REVIEW - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Chen/paper.pdf",
+      "label": "ned.ipac.caltech.edu Outskirts of Distant Galaxies In Absorption - NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2075-4434/6/4/114",
+      "label": "mdpi.com A Review of the Theory of Galactic Winds Driven by Stellar Feedback - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://lss.fnal.gov/archive/2025/pub/fermilab-pub-25-0894-ppd.pdf",
+      "label": "lss.fnal.gov Tracing the Cosmic Evolution of the Cool Circumgalactic Medium of Luminous Red Galaxies with DESI Year 1 Data FERMILAB-PUB-25-0894-PPD arXiv:2512.03845 Opens in a new window"
+    },
+    {
+      "href": "https://backend.orbit.dtu.dk/ws/files/311432236/Heintz_2023_ApJL_944_L30_1_.pdf",
+      "label": "backend.orbit.dtu.dk The Gas and Stellar Content of a Metal-poor Galaxy at z = 8.496 as Revealed by JWST and ALMA Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2507.14572",
+      "label": "arxiv.org Metallicity fluctuation statistics in the interstellar medium and young stars -- II. Elemental cross-correlations and the struct - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/453/4/4337/2593703",
+      "label": "academic.oup.com Star formation in semi-analytic galaxy formation models with multiphase gas - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2305.07672",
+      "label": "arxiv.org arXiv:2305.07672v1 [astro-ph.GA] 11 May 2023 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/468/2/1505/3051671",
+      "label": "academic.oup.com Simulating the dust content of galaxies: successes and failures - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://boa.unimib.it/retrieve/d3c573c7-fcea-45b9-9968-3a430fc7318a/Trayford%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf",
+      "label": "boa.unimib.it Modelling the evolution and influence of dust in cosmological simulations that include the cold phase of the interstellar medium - Milano-Bicocca Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2075-4434/13/3/64",
+      "label": "mdpi.com Dust at the Cosmic Dawn - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1106.1646",
+      "label": "arxiv.org Empirical determination of the shape of dust attenuation curves in star-forming galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://digital.csic.es/bitstream/10261/420762/1/rebels7.pdf",
+      "label": "digital.csic.es REBELS-IFU: dust build-up in massive galaxies at redshift 7 | Digital CSIC Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10101457",
+      "label": "par.nsf.gov How Gas Accretion Feeds Galactic Disks Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/544/1/255/8277510",
+      "label": "academic.oup.com Ultrastrong Mg ii absorbers trace both inflowing and outflowing gas: insights from dual down-the-barrel and quasar sightlines - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/cosedges-corotation-and-kinematic-stratification-of-the-multiphase-cgm-around-edgeon-galaxies/FEDFFD9343BF4D73D72A49FB8D27D5CA",
+      "label": "cambridge.org COS-EDGES: Co-rotation and kinematic stratification of the multi-phase CGM around edge-on galaxies | Publications of the Astronomical Society of Australia - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2408.11914",
+      "label": "arxiv.org arXiv:2408.11914v1 [astro-ph.GA] 21 Aug 2024 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2606.12686",
+      "label": "arxiv.org Unprecedented Constraints on Gas Flows at High Redshift Using Deep JWST/NIRSpec Observations from the LyC22, EXCELS, and AURORA - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/muse-gas-flow-and-wind-megaflow-i-first-muse-results-on-1tp8qd1l67.pdf",
+      "label": "scispace.com Muse Gas Flow and Wind (MEGAFLOW). I. First MUSE Results on Background Quasars - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1304.6716",
+      "label": "arxiv.org [1304.6716] MAGIICAT I. The MgII Absorber-Galaxy Catalog - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1211.1380",
+      "label": "arxiv.org [1211.1380] MAGIICAT II. General Characteristics of the MgII Absorbing Circumgalactic Medium - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/543/4/3345/8251690",
+      "label": "academic.oup.com Turbulence-dominated CGM: the origin of UV absorbers with equivalent widths of \u223c1 \u00c5 | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/FEDFFD9343BF4D73D72A49FB8D27D5CA/S132335802510091Xa.pdf/cos-edges-co-rotation-and-kinematic-stratification-of-the-multi-phase-cgm-around-edge-on-galaxies.pdf",
+      "label": "cambridge.org Co-rotation and kinematic stratification of the multi-phase CGM around edge-on galaxies - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://bib-pubdb1.desy.de/record/155875/files/DESY-2013-01493.pdf",
+      "label": "bib-pubdb1.desy.de A Search for Gamma-ray Imprints of Annihilating Dark Matter in the Galaxy, and the Astrophysical Implications of Ultra-light Fun - PUBDB Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2403.02374",
+      "label": "arxiv.org arXiv:2403.02374v2 [astro-ph.GA] 7 Sep 2024 Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2512.10163",
+      "label": "arxiv.org Discovery of Weak O VI Absorption in Underdense Regions of the Low-Redshift Intergalactic Medium - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/509/3/4330/6433660",
+      "label": "academic.oup.com Improving blazar redshift constraints with the edge of the Ly \u03b1 forest: 1ES 1553+113 and implications for observations of the WHIM | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    }
+  ]
+}

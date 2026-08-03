@@ -1,0 +1,93 @@
+{
+  "marker": "HWAO_TORI_KUN_IMPLEMENTATION_REPORT_VIDEO_QA_PASS_V2",
+  "completed_at_utc": "2026-07-22T15:29:56Z",
+  "status": "PASS",
+  "media": {
+    "duration_seconds": 100.0,
+    "resolution": "1280x720",
+    "frame_rate": "30/1",
+    "frames_decoded": 3000,
+    "video_codec": "H.264 High",
+    "pixel_format": "yuv420p",
+    "audio_codec": "AAC LC",
+    "audio_sample_rate": 48000,
+    "audio_channels": 2,
+    "faststart": true,
+    "full_decode": "PASS",
+    "black_intervals_over_0_8_seconds": 0,
+    "bytes": 5152713,
+    "sha256": "6c7a6480e10e3a57d074784447f1ca9520dba38599e107f66a7510ec558a3716"
+  },
+  "audio": {
+    "voice": "en-US-EmmaNeural",
+    "voice_gender": "Female",
+    "scene_synthesis_rates": ["+20%"],
+    "per_scene_atempo_range": [0.983381, 1.066298],
+    "music": "none",
+    "mean_volume_db": -19.2,
+    "max_volume_db": -4.5,
+    "intentional_silence": {
+      "opening": "0.000-3.479",
+      "scene_boundary_ranges_seconds": "0.930-0.980",
+      "outro": "96.531-100.011"
+    },
+    "presenter_policy": "Approved synthetic Flow astronomer appears only during silent opening and outro; no visible narration or false lip-sync."
+  },
+  "captions": {
+    "external_srt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/hwao-tori-kun-implementation-report-video-20260722T151933Z/HWAO_TORI_KUN_IMPLEMENTATION_REPORT_V2.srt",
+    "cue_count": 22,
+    "first_start_seconds": 3.35,
+    "last_end_seconds": 96.8,
+    "monotonic_nonoverlap": true,
+    "required_phrases_missing": [],
+    "forbidden_implications_present": [],
+    "sha256": "cedabda88ed7fda469624b51aaa7b979c92d29c7fb94c31b7021c9e684c38e2a"
+  },
+  "semantics": {
+    "source_records": 8,
+    "source_drift": [],
+    "status_supersession": "V1's pre-execution cleanup/map wording is superseded by later guarded-deletion and map-build receipts.",
+    "required_boundaries_present": [
+      "Hwao preservation-first coordination",
+      "Tori custody and fail-closed Surveys review chain",
+      "guarded deletion exact sets and retained protections",
+      "Kun four-axis map exact validator metrics",
+      "private artifact with manual Share pending",
+      "Surveys landing, map wiring, prose, DB/runtime, and publication remain separate gates"
+    ],
+    "independent_asr": {
+      "engine": "faster-whisper base.en",
+      "language": "en",
+      "language_probability": 1.0,
+      "segments": 26,
+      "result": "Complete semantic arc recovered through 96.53 seconds.",
+      "caveat": "Small-model phonetic substitutions affected custom names Hwao/Kun and technical words pytest/prose; burned-in captions and SRT retain canonical spellings and are authoritative.",
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/hwao-tori-kun-implementation-report-video-20260722T151933Z/qa/asr_base_en.txt",
+      "sha256": "0c27f22533634288b05c6b94a1c23b58805407a12abcbd23f6093b118b99d082"
+    }
+  },
+  "visual_qa": {
+    "encoded_scene_midpoints": 8,
+    "scene_order": "PASS",
+    "opening_and_closing_presenter_only": "PASS",
+    "clipping_or_collisions": "none",
+    "dense_full_resolution_scenes_checked": [3, 4, 5, 6],
+    "guarded_deletion_status": "clear",
+    "map_metrics_status": "clear",
+    "private_manual_share_boundary": "unambiguous",
+    "verified_vs_future_gates_boundary": "unambiguous",
+    "encoded_contact_sheet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/hwao-tori-kun-implementation-report-video-20260722T151933Z/qa/encoded_scene_midpoints.png",
+    "encoded_contact_sheet_sha256": "9f42c2adfabb6409da190f460be36dfdff4ad37fd7c5e6919b8960c589841eef"
+  },
+  "provenance": {
+    "renderer": "Pillow + ffmpeg through validated V1 adapter",
+    "new_generative_video_calls": "none",
+    "presenter_asset": "saved synthetic Flow astronomer master portrait",
+    "plan_sha256": "f6ba5de0ce0de5018bf166102b6a85d1e5175a4a054526f70c159ef799b722a2",
+    "source_freeze_sha256": "1d0cded95e785679870c4ddb71b2ed8158b8dcead3520dd2531d3386c870df92",
+    "builder_sha256": "eb2b87a32133cc60d3ca25667e469616ba2630b20f766f98133cfafb2c4229ee",
+    "build_receipt_sha256": "c7520d03852764135f9cedc4210cf9d8058295dca92a9da89f722ceb4068396c",
+    "narration_sha256": "3b32467e9d22f7e9c1f35a5bf217c2115588747ce22fbd03121e1bfbff38c043"
+  },
+  "publication_state": "Local review only. No upload, share, publication, website/cockpit change, deploy/restart, DB action, or Git write was performed for this video."
+}

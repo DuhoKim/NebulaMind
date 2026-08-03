@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NebulaMind big picture — trust map</title><style>
+:root{
+  color-scheme:dark;
+  --bg:#07111f;--panel:#0f1d30;--panel2:#0a1727;--line:#263a55;--text:#edf4ff;--muted:#9fb2cf;
+  --blue:#7bb7ff;--green:#57d68d;--amber:#ffd166;--red:#ff6b7a;--violet:#b9a7ff;--cyan:#68e1fd;
+  --shadow:0 18px 50px rgba(0,0,0,.34);--radius:18px;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{margin:0;background:radial-gradient(circle at 12% 0%,#18325a 0,#07111f 38%,#040914 100%);color:var(--text);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Inter,Arial,sans-serif;}
+a{color:var(--blue);text-decoration:none} a:hover{text-decoration:underline}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 22px 60px}.hero{padding:26px 0 16px}.eyebrow{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:999px;border:1px solid var(--line);padding:5px 10px;font-size:12px;font-weight:800;letter-spacing:.02em}.green{color:var(--green);background:rgba(87,214,141,.12);border-color:rgba(87,214,141,.35)}.blue{color:var(--blue);background:rgba(123,183,255,.12);border-color:rgba(123,183,255,.35)}.amber{color:var(--amber);background:rgba(255,209,102,.12);border-color:rgba(255,209,102,.35)}.red{color:var(--red);background:rgba(255,107,122,.12);border-color:rgba(255,107,122,.35)}.violet{color:var(--violet);background:rgba(185,167,255,.12);border-color:rgba(185,167,255,.35)}
+h1{font-size:clamp(32px,5vw,58px);line-height:1.03;margin:0 0 12px;letter-spacing:-.045em}.lead{font-size:clamp(18px,2.3vw,23px);color:#c8d6eb;max-width:920px;margin:0 0 16px}.muted{color:var(--muted)}.small{font-size:13px}.nav{position:sticky;top:0;z-index:5;backdrop-filter:blur(14px);background:rgba(4,9,20,.75);border-bottom:1px solid rgba(38,58,85,.7)}.nav-inner{max-width:1180px;margin:0 auto;padding:10px 22px;display:flex;gap:10px;flex-wrap:wrap;align-items:center}.nav a{font-size:13px;font-weight:800;color:#cfe1ff;border:1px solid #28405f;border-radius:999px;padding:7px 11px;background:rgba(15,29,48,.72)}.nav a.active{border-color:rgba(123,183,255,.75);background:rgba(123,183,255,.15);color:white}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}.two{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.card{background:linear-gradient(180deg,rgba(15,29,48,.96),rgba(10,23,39,.92));border:1px solid var(--line);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow)}.card h2,.card h3{margin:0 0 10px}.card h2{font-size:24px;letter-spacing:-.02em}.card h3{font-size:18px}.card p{margin:.3rem 0 .7rem}.card ul,.card ol{margin:.5rem 0 0;padding-left:1.25rem}.card li{margin:.35rem 0}.callout{border:1px solid rgba(255,209,102,.35);background:rgba(255,209,102,.08);border-radius:14px;padding:14px}.status-table{width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px}.status-table th,.status-table td{border-bottom:1px solid #223652;padding:11px 10px;text-align:left;vertical-align:top}.status-table th{color:#dce9ff;background:#0b1a2c;font-size:13px}.status-table td{color:#c7d7ec}.stage{display:flex;gap:12px;align-items:flex-start;margin:12px 0}.num{min-width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:rgba(123,183,255,.16);border:1px solid rgba(123,183,255,.45);font-weight:900;color:#eaf3ff}.footer{margin-top:28px;padding-top:18px;border-top:1px solid var(--line);color:#8092ae;font-size:13px}.diagram{width:100%;height:auto;display:block;background:#07101d;border:1px solid #20344f;border-radius:16px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:#07101d;border:1px solid #263852;border-radius:8px;padding:2px 6px;color:#eaf1ff}.approval{width:100%;min-height:72px;border-radius:12px;background:#07101d;border:1px solid #28405f;color:#eaf3ff;padding:10px;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}.button{display:inline-flex;align-items:center;justify-content:center;border:1px solid rgba(123,183,255,.55);background:#102944;color:white;border-radius:10px;padding:10px 13px;font-weight:800;cursor:pointer;margin-top:8px}.mini{font-size:12px;color:#93a7c3}.legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.legend span{font-size:12px;border:1px solid var(--line);border-radius:999px;padding:4px 8px;color:#c8d8ef}@media(max-width:860px){.two{grid-template-columns:1fr}.wrap{padding:20px 14px 48px}.nav-inner{padding:9px 14px}.card{padding:15px}}
+</style></head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <a href="index.html" >Overview</a>
+  <a href="trust-map.html" class="active">Trust map</a>
+  <a href="current-slice.html" >Current slice</a>
+  <a href="gates.html" >Permission gates</a>
+  <a href="glossary.html" >Glossary</a>
+  <a href="../live-steering-cockpit.html">Stable cockpit</a>
+</div></nav>
+<main class="wrap">
+<section class="hero"><div class="eyebrow"><span class="pill green">Trust layer</span><span class="pill blue">Claim-level view</span></div><h1>The big idea: claims should carry their evidence.</h1><p class="lead">A page is not just prose. It is a set of claims. Each claim should be connected to papers, votes, disagreements, and a visible trust label.</p></section>
+
+<svg class="diagram" viewBox="0 0 1080 560" role="img" aria-label="Claim trust pipeline from raw papers to visible trust badges">
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#57d68d"/></marker></defs>
+  <rect width="1080" height="560" fill="#07101d"/>
+  <g stroke="#57d68d" stroke-width="3" marker-end="url(#a)" fill="none"><path d="M190 160H340"/><path d="M500 160H650"/><path d="M810 160H960"/><path d="M540 260V365"/><path d="M540 430C540 480 445 498 360 498"/><path d="M540 430C540 480 635 498 720 498"/></g>
+  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif" text-anchor="middle">
+    <rect x="42" y="95" width="150" height="130" rx="18" fill="rgba(123,183,255,.12)" stroke="#7bb7ff"/><text x="117" y="138" fill="#fff" font-size="18" font-weight="800">Paper</text><text x="117" y="166" fill="#a9bdd9" font-size="13">what the source</text><text x="117" y="186" fill="#a9bdd9" font-size="13">actually says</text>
+    <rect x="340" y="95" width="165" height="130" rx="18" fill="rgba(87,214,141,.12)" stroke="#57d68d"/><text x="423" y="138" fill="#fff" font-size="18" font-weight="800">Claim</text><text x="423" y="166" fill="#a9bdd9" font-size="13">one sentence</text><text x="423" y="186" fill="#a9bdd9" font-size="13">we can judge</text>
+    <rect x="650" y="95" width="165" height="130" rx="18" fill="rgba(255,209,102,.12)" stroke="#ffd166"/><text x="733" y="138" fill="#fff" font-size="18" font-weight="800">Evidence row</text><text x="733" y="166" fill="#a9bdd9" font-size="13">support / counter</text><text x="733" y="186" fill="#a9bdd9" font-size="13">with provenance</text>
+    <rect x="930" y="95" width="110" height="130" rx="18" fill="rgba(185,167,255,.12)" stroke="#b9a7ff"/><text x="985" y="138" fill="#fff" font-size="18" font-weight="800">Vote</text><text x="985" y="166" fill="#a9bdd9" font-size="13">agents/humans</text><text x="985" y="186" fill="#a9bdd9" font-size="13">disagree?</text>
+    <rect x="395" y="330" width="290" height="105" rx="18" fill="rgba(104,225,253,.10)" stroke="#68e1fd"/><text x="540" y="370" fill="#fff" font-size="20" font-weight="850">Trust badge on the page</text><text x="540" y="399" fill="#a9bdd9" font-size="14">Consensus · Accepted · Debated · Challenged · Unverified</text>
+    <rect x="230" y="470" width="260" height="58" rx="14" fill="rgba(255,209,102,.10)" stroke="#ffd166"/><text x="360" y="505" fill="#fff" font-size="16" font-weight="800">Ready to show readers?</text>
+    <rect x="590" y="470" width="260" height="58" rx="14" fill="rgba(255,107,122,.10)" stroke="#ff6b7a"/><text x="720" y="505" fill="#fff" font-size="16" font-weight="800">Needs human/source review?</text>
+  </g>
+</svg>
+<section class="grid" style="margin-top:18px">
+  <article class="card"><h2>Paper</h2><p>The actual source material: arXiv papers, DOI papers, or other references. This is the ground truth we want visible.</p></article>
+  <article class="card"><h2>Claim</h2><p>A specific sentence or idea in the wiki. Example: “environment affects galaxy quenching.” Claims are small enough to judge.</p></article>
+  <article class="card"><h2>Evidence</h2><p>A paper can support, weaken, contradict, or only loosely relate to a claim. We need both support and counter-pressure.</p></article>
+  <article class="card"><h2>Trust badge</h2><p>A simple reader-facing label: consensus, accepted, debated, challenged, or unverified. It is a signpost, not a final verdict.</p></article>
+</section>
+<section class="card" style="margin-top:18px"><h2>Why this matters</h2><p>If we only generate better prose, readers still cannot tell which sentences are solid and which are disputed. If we expose the evidence map, readers and operators can see where the system is confident, where it is uncertain, and where human review matters.</p></section>
+<footer class="footer">Updated 2026-06-30 23:54 KST / 2026-06-30T14:54:42Z. Static explanation artifact only: no deploy, no restart, no DB writes, no migrations, no commit/push.</footer></main>
+<script>
+function copyText(id, btn){const el=document.getElementById(id); if(!el) return; el.select(); navigator.clipboard?.writeText(el.value).then(()=>{btn.textContent='Copied';setTimeout(()=>btn.textContent='Copy approval text',1800)}).catch(()=>document.execCommand('copy'));}
+</script></body></html>

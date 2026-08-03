@@ -1,0 +1,3642 @@
+Mon. Not. R. Astron. Soc. 000, 000–000 (0000)
+Printed November 1, 2017
+(MN LATEX style ﬁle v2.2)
+Simulating Galaxy Formation with the IllustrisTNG Model
+Annalisa Pillepich1,2⋆, Volker Springel3,4, Dylan Nelson5, Shy Genel6,7,
+Jill Naiman2, R¨udiger Pakmor3, Lars Hernquist2, Paul Torrey8, Mark Vogelsberger8†,
+Rainer Weinberger3, and Federico Marinacci8
+1Max-Planck-Institut f¨ur Astronomie, K¨onigstuhl 17, 69117 Heidelberg, Germany
+2Harvard–Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138
+3Heidelberg Institute for Theoretical Studies, Schloss-Wolfsbrunnenweg 35, D-69118 Heidelberg, Germany
+4Zentrum f¨ur Astronomie der Universit¨at Heidelberg, ARI, M¨onchhofstr. 12-14, D-69120 Heidelberg, Germany
+5Max-Planck-Institut f¨ur Astrophysik, Karl-Schwarzschild-Str. 1, 85741 Garching, Germany
+6Center for Computational Astrophysics, Flatiron Institute, 162 Fifth Avenue, New York, NY 10010, USA
+7Columbia Astrophysics Laboratory, Columbia University, 550 West 120th Street, New York, NY 10027, USA
+8Department of Physics, Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+November 1, 2017
+ABSTRACT
+We introduce an updated physical model to simulate the formation and evolution of galaxies
+in cosmological, large-scale gravity+magnetohydrodynamical simulations with the moving
+mesh code AREPO. The overall framework builds upon the successes of the Illustris galaxy
+formation model, and includes prescriptions for star formation, stellar evolution, chemical
+enrichment, primordial and metal-line cooling of the gas, stellar feedback with galactic out-
+ﬂows, and black hole formation, growth and multi-mode feedback. In this paper we give a
+comprehensive description of the physical and numerical advances which form the core of the
+IllustrisTNG (The Next Generation) framework. We focus on the revised implementation of
+the galactic winds, of which we modify the directionality, velocity, thermal content, and en-
+ergy scalings, and explore its effects on the galaxy population. As described in earlier works,
+the model also includes a new black hole driven kinetic feedback at low accretion rates, mag-
+netohydrodynamics, and improvements to the numerical scheme. Using a suite of (25 Mpc
+h−1)3 cosmological boxes we assess the outcome of the new model at our ﬁducial resolution.
+The presence of a self-consistently ampliﬁed magnetic ﬁeld is shown to have an important
+impact on the stellar content of 1012 M⊙haloes and above. Finally, we demonstrate that the
+new galactic winds promise to solve key problems identiﬁed in Illustris in matching observa-
+tional constraints and affecting the stellar content and sizes of the low mass end of the galaxy
+population.
+Key words: galaxies: formation – galaxies: evolution – methods: numerical
+1
+INTRODUCTION
+To model ab initio the variety of galaxies that are observed across
+cosmic time is one of the greatest – and most distant – challenges
+for theoretical astrophysics. Galaxies today range in mass from a
+few thousand to a few trillion solar masses (e.g. Baldry, Glazebrook
+& Driver 2008; Baldry et al. 2012; Bernardi et al. 2013; D’Souza,
+Vegetti & Kauffmann 2015), extend in size from a fraction to tens
+of kilo-parsecs (Shen et al. 2003; Baldry et al. 2012), and span a
+diverse morphological mix (e.g. Lintott et al. 2008; Kelvin et al.
+2012; Kartaltepe et al. 2015). Galaxies can reside in heteroge-
+⋆E-mail: pillepich@mpia-hd.mpg.de
+† Alfred P. Sloan Fellow
+neous environments – in isolation, or as members of rich groups
+and clusters (e.g. Ferrarese et al. 2012). They are expected to be
+self-gravitating systems of stars and gas embedded in halos of dark
+matter (Ostriker & Peebles 1973; White & Rees 1978; Mo, Mao &
+White 1998), and their distribution throughout space traces a cos-
+mic web deﬁned by ﬁlaments, nodes, sheets, and voids of matter
+(Colless 1999; Abazajian et al. 2003; Massey et al. 2007).
+Within the current ΛCold Dark Matter (ΛCDM) cosmological
+paradigm (Hinshaw et al. 2013; The Planck Collaboration 2016),
+the highly clustered large-scale structure of the Universe today
+arose from 13.8 billion years of evolution, starting from a nearly-
+homogeneous distribution of matter in the early universe (Smoot
+et al. 1991). This cosmic topology, emerging through the mass-
+dominant presence of cold dark matter (CDM), fuels individual
+c⃝0000 RAS
+arXiv:1703.02970v2  [astro-ph.GA]  31 Oct 2017
+
+
+2
+Pillepich et al.
+galaxies with cosmic gas, imparts gravitational torques and forces,
+and leads to a bottom-up or “hierarchical” growth, with smaller
+objects collapsing earlier by gravitational-instability and then later
+merging to form progressively more massive systems. In turn, this
+cosmological environment and its hierarchical growth are inter-
+twined with the astrophysical processes that deﬁne galaxies on
+scales of kilo-parsecs and below. These include the formation of
+the dense molecular clouds and stars (Heyer & Dame 2015); the
+evolution of stellar populations, their winds and energetic feedback
+(Smith 2014); the explosions of supernovae (Nomoto, Kobayashi
+& Tominaga 2013); the formation of supermassive black holes and
+the interaction of matter and radiation at their accretion disks (Yuan
+& Narayan 2014; King & Pounds 2015); cooling, heating, radia-
+tion, and other microphysical processes in the turbulent, magne-
+tized, multi-phase interstellar medium (McKee & Ostriker 2007;
+Ostriker 2009; Kennicutt & Evans 2012; Naab & Ostriker 2016);
+and the driving of galactic outﬂows of gas, energy, and heavy ele-
+ments into the circum- and inter-galactic media (Putman, Peek &
+Joung 2012).
+The complex interplay among this diverse ensemble of physi-
+cal processes, acting across a wide range of spatial and time scales,
+ultimately governs the formation and transformation of galaxies
+through cosmic time, regulating their stellar content, star forma-
+tion activity, gas content, heavy-element composition, morpholog-
+ical structure, and impact on their surroundings. And yet, thus far,
+advances in numerical astrophysics have proceeded on two paral-
+lel tracks: either through targeted modeling of speciﬁc phenom-
+ena on the scale of a single galaxy or smaller; or by attempt-
+ing to reproduce the integral properties of entire populations of
+galaxies by including a large portion of the aforementioned pro-
+cesses within the large-scale structure arising from the now well-
+constrained initial conditions of the Universe (e.g. Somerville &
+Dav´e 2015). Our present efforts follow the latter, top-down ap-
+proach. This idea of simulating large cosmological volumes has
+been pioneered by gravity-only cosmological simulations, which
+are now a well-understood tool undertaken at massive scale (e.g.
+Springel et al. 2005; Kuhlen, Vogelsberger & Angulo 2012; Kim
+et al. 2014; Skillman et al. 2014) and coupled with ever-more
+comprehensive semi-analytical models for galaxy formation (from
+Kauffmann, White & Guiderdoni 1993; Springel et al. 2001 to Ben-
+son 2012; Henriques et al. 2015; Lacey et al. 2016; Croton et al.
+2016).
+In the past few years, projects such as Eagle (Schaye
+et al. 2015), Horizon-AGN (Dubois et al. 2014), MassiveBlack-II
+(Khandai et al. 2015), and the Illustris simulations (Vogelsberger
+et al. 2014b,c; Genel et al. 2014; Sijacki et al. 2015) have demon-
+strated that hydrodynamical simulations of structure formation at
+kilo-parsec spatial resolution can reasonably reproduce the basic
+structural properties and scaling relations of observed galaxies. To-
+gether with simulations of individual galaxies at even higher reso-
+lutions (e.g. Guedes et al. 2011; Stinson et al. 2013; Hopkins et al.
+2014; Wang et al. 2015; Grand et al. 2017; Agertz & Kravtsov
+2016; Wetzel et al. 2016), these calculations have provided new in-
+sights into the processes underpinning galaxy formation. They open
+new areas for exploration which are otherwise inaccessible to sim-
+pler modeling techniques. At the same time, they have highlighted
+the need for ongoing improvements in both the numerics and physi-
+cal models required for cosmological hydrodynamical simulations.
+In this paper, we present an updated physical model for sim-
+ulating the formation and evolution of galaxies in cosmological,
+large-scale gravity + magnetohydrodynamical simulations with the
+moving mesh code AREPO (Springel 2010). The overarching phi-
+losophy of the current efforts follows directly from the success-
+ful Illustris project (www.illustris-project.org). We seek an effec-
+tive theory of galaxy formation, which will then allow us to utilize
+cosmological simulations as laboratories to explore a large variety
+of astrophysical questions. In practice, we search for an ensemble
+of numerically approximated physical processes which collectively
+produce a galaxy population in good agreement with a selected
+set of observational constraints (e.g. the cosmic star formation rate
+density and/or the stellar mass content of galaxies at z = 0). We im-
+pose this requirement by simulating thousands or tens of thousands
+of galaxies across wide ranges of mass, redshift, assembly history,
+and environment. To do so demands cosmological volumes with at
+least tens of Mpc per side, as well as the necessity of a subgrid
+treatment for phenomena acting on scales smaller than 102 −103
+parsecs. Properties of the simulation which have not been directly
+used to calibrate against observations, and which are not comprised
+by any simpliﬁcations required of the subgrid modeling, are then
+predictive in nature.
+The motivations for an extension of the Illustris galaxy for-
+mation model are multifold. 1) We want to bring together under
+a consistent framework a series of improvements to the numer-
+ical techniques implemented in the AREPO code, particularly to
+the hydrodynamical methods. 2) We want to include new physics
+in large-scale cosmological simulations for galaxy formation, par-
+ticularly the ampliﬁcation and evolution of a seed magnetic ﬁeld
+(Dolag & Stasyszyn 2009; Pakmor, Bauer & Springel 2011; Hop-
+kins & Raives 2016; Mocz et al. 2016) and the effects of ≳kpc-
+scale gas outﬂows triggered by supermassive black holes at the
+center of galaxies (Dubois & Teyssier 2010; Dubois et al. 2012;
+Choi et al. 2012, 2014, 2015; Weinberger et al. 2017). 3) We want
+to address the most important tensions between the outcome of the
+Illustris simulation and observational constraints.
+In fact, Illustris has demonstrated good agreement with a
+broad number of observational scaling relations and galaxy prop-
+erties at low and intermediate redshifts (Vogelsberger et al. 2014b;
+Sijacki et al. 2015; Torrey et al. 2015; Snyder et al. 2015; Sales
+et al. 2015; Genel et al. 2014). However, important shortcomings
+have also been identiﬁed. These include: 1) a too mild decline in
+the cosmic star formation rate density at z ≲1; 2) a too high stellar
+mass function at z < 1 both at the high (≳1011.5M⊙) and the
+low (≲1010M⊙) mass end with correspondingly too high stellar
+mass fractions in these mass ranges; 3) a possibly excessive number
+of galaxies with blue star forming rings; 4) an underestimated to-
+tal gas fraction within R500c in halos with M500c ∼1013−14M⊙,
+and consequently too low bolometric X-ray luminosities in the hot
+coronae of elliptical galaxies and Sunyaev-Zeldovich signals from
+Illustris clusters; 5) too large stellar sizes of galaxies (a factor of a
+few larger than observed for Mstars ≲1010.7M⊙); and 6) galaxy
+color distributions without a strong bimodality between red and
+blue galaxies as observed (see Nelson et al. 2015, for a full com-
+pendium).
+In a previous companion paper (Weinberger et al. 2017) we
+have shown that a new implementation of feedback from black
+holes (BHs), most importantly a change of feedback injection at
+low accretion rates in the form of a kinetic, super massive BH
+driven wind, promises to alleviate many of the discrepancies iden-
+tiﬁed in comparison to observational data at the massive end of
+the halo mass function (≳1013 −1014M⊙). In this paper, we
+focus on intermediate and low- mass galaxies (halos of a few
+1010 −1013M⊙), giving a comprehensive description of all up-
+dates and additions since Illustris that constitute the The Next Gen-
+eration Illustris (hereafter, IllustrisTNG or simply TNG) model. In
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+3
+Section 2 we begin with the overall approach of our galaxy physics
+model (Section 2.1). We give an overview of the advances in the nu-
+merical techniques (Section 2.2), and describe the modiﬁcations to
+the galactic wind feedback and to the stellar evolution and chemical
+enrichment schemes (Section 2.3). In Section 3 and in Appendices
+A and B, we run a large suite of 25 Mpc h−1 cosmological volume
+simulations in order to discuss the properties of the galaxy popula-
+tion which result from the ﬁducial TNG model, the dependence of
+the model on its physical parameters, and the effects of resolution.
+We conclude and summarize in Section 4.
+2
+THE TNG MODEL
+2.1
+Overview
+2.1.1
+Gravity and Hydrodynamics
+Our galaxy formation model is built upon the cosmological sim-
+ulation code AREPO (Springel 2010). AREPO solves the coupled
+equations of ideal magneto-hydrodynamics and self-gravity. Grav-
+itational forces are calculated with a Tree-Particle-Mesh (Tree-PM)
+scheme, while the solution of the magneto-hydrodynamical equa-
+tions are obtained in a quasi-Lagrangian fashion. For cosmolog-
+ical simulations, gravity is treated in a fully Newtonian frame-
+work using periodic boundary conditions. The solution of the Gen-
+eral Relativity equations (i.e. the Friedman-Lemaitre-Robertson-
+Walker equations with null curvature) determine the expansion (or
+contraction) of space as a function of cosmic time. Spatial quan-
+tities and coordinates are expressed in comoving units, where the
+mapping between the scale factor a and cosmic time depends on
+the adopted cosmological parameter values.
+The Tree-PM scheme is a synthesis of the particle-mesh
+method and the tree algorithm (Xu 1995; Bode, Ostriker & Xu
+2000; Bagla 2002), where the gravitational potential is explicitly
+split in Fourier space into a long-range and a short-range part. The
+short-range forces are evaluated using a hierarchical multipole ex-
+pansion based on an oct-tree (Barnes & Hut 1986; Hernquist &
+Katz 1989), modiﬁed by a short-range cut-off factor. Long range
+forces are calculated from the potential obtained with the Fast-
+Fourier-Transformation (FFT) mesh technique, using cloud-in-cell
+deposition to construct the mass density ﬁeld on a uniform Carte-
+sian grid.
+For (magneto-)hydrodynamics (MHD), the code employs the
+ﬁnite volume method on an unstructured, moving, Voronoi tessel-
+lation of the simulation domain. The Voronoi cells track the con-
+served quantities of the ﬂuid: mass, momentum, energy, and cell-
+averaged magnetic ﬁeld in the case of MHD. They are evolved
+in time using Godunov’s method and a directionally unsplit sec-
+ond order scheme that solves Riemann problems at the cell inter-
+faces (Springel 2010). Gas cells evolve on a hierarchy of individual
+timesteps. A fundamental strength of the code is that the generat-
+ing points of the Voronoi mesh are allowed to move in time, with a
+velocity close to the local ﬂuid velocity ﬁeld (corrected to maintain
+mesh regularity). The AREPO code therefore implements an Arbi-
+trary Lagrangian-Eulerian (ALE) scheme. The mesh has no pre-
+ferred direction or Cartesian grid structure, with a naturally adap-
+tive resolution in both space and time.
+2.1.2
+The Model Foundation: the Illustris framework
+Given this numerical basis, an effective theory for galaxy forma-
+tion and evolution further requires the modelling of several key as-
+trophysical processes. These include star formation, stellar evolu-
+tion, chemical enrichment, primordial and metal-line gas cooling,
+stellar feedback driven galactic outﬂows, and super massive black
+hole (SMBHs) formation, growth, and feedback. However, the spa-
+tial (and mass) resolution of cosmological large-scale simulations
+remains larger than the typical spatial (and mass) scales of the tur-
+bulent inter-stellar medium and, in particular, of the physical sites
+of star formation and black hole collapse. Therefore, these crucial
+baryonic processes are implemented in a ‘subgrid’ manner. Inspired
+by the outcome of observations and small-scale theoretical mod-
+els, these effective models for processes on unresolved scales are
+formulated and integrated with the resolved hydrodynamical and
+gravitational scales and operate within the evolving cosmological
+context.
+The galaxy physics model we present in this paper builds di-
+rectly upon the framework used for the Illustris simulation (Vogels-
+berger et al. 2014b,c; Genel et al. 2014; Sijacki et al. 2015). Here
+we brieﬂy summarize the general features of the Illustris setup, be-
+fore describing the core modiﬁcations that deﬁne our new model.
+We refer the reader to the previous methods papers, Vogelsberger
+et al. (2013) and Torrey et al. (2014) for implementation details and
+explorations of the initial model.
+Owing to resolution limits in our simulations, star forma-
+tion and pressurization of the multi-phase interstellar medium
+(ISM) are treated following the Springel & Hernquist (2003)
+model. Speciﬁcally, gas above a star formation density threshold
+of nH ≃0.1 cm−3 forms stars stochastically following the empiri-
+cally deﬁned Kennicutt-Schmidt relation and assuming a Chabrier
+(Chabrier 2003) initial mass function. Pressurization from unre-
+solved supernovae is included for star forming gas using a two-
+phase, effective equation of state model. Stellar populations evolve
+and return mass and metals to their ambient ISM via supernovae
+of Type Ia and Type II and asymptotic giant branch (AGB) stars
+according to tabulated mass and metal yields. Here, we do not in-
+clude the ejection of winds from other stellar evolutionary phases
+as AGB winds dominate the mass loss. We follow the production
+and subsequent evolution of nine elements (H, He, C, N, O, Ne,
+Mg, Si, and Fe).
+Metal enriched gas radiatively cools in the presence of a
+redshift-dependent, spatially uniform, ionizing UV background ra-
+diation ﬁeld, with corrections for self-shielding in the dense inter-
+stellar medium (ISM Katz, Hernquist & Weinberg 1992; Faucher-
+Gigu`ere et al. 2009)1. The cooling contribution from metal lines is
+included using pre-calculated values as a function of density, tem-
+perature, metallicity, and redshift (Wiersma, Schaye & Smith 2009;
+Smith, Sigurdsson & Abel 2008), without actually computing line-
+by-line cooling with individual cell abundance ratios. Cooling is
+further modulated by the radiation ﬁeld of nearby AGN, by super-
+imposing the UV background with the radiation ﬁeld of AGNs, as
+described in Vogelsberger et al. (2013).
+SMBHs form in sufﬁciently massive haloes, accrete gas from
+surrounding gas, and inject feedback energy into their environment.
+In the Illustris model (but differently from the TNG model), for an
+accretion rate below 5 per cent of the Eddington rate, a radio-mode
+model injects highly bursty thermal energy into large, ∼50 kpc
+‘bubbles’ which are displaced away from the central galaxy (Sijacki
+et al. 2007). Above this accretion rate, a quasar-mode model injects
+1 We note that in all Illustris and TNG simulations the UV background is
+instantaneously switched on at z = 6 instead of following the gradual build
+up at higher redshifts as prescribed by Faucher-Gigu`ere et al. (2009).
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+4
+Pillepich et al.
+thermal energy into the immediately surrounding gas, with a lower
+coupling efﬁciency and continuously in time (Springel, Di Matteo
+& Hernquist 2005; Di Matteo, Springel & Hernquist 2005).
+Finally, feedback associated with star formation is assumed to
+drive galactic scale outﬂows. These outﬂows are launched directly
+from star-forming gas, with an assigned wind velocity that scales
+with the local dark matter velocity dispersion. The wind mass load-
+ing is determined from the available SN energy and desired wind
+speed, while the wind metal content is taken as a constant fraction
+of the ISM value. In practice, this model is implemented with a ki-
+netic wind scheme where wind particles are stochastically spawned
+and hydrodynamically decoupled until they leave the local ISM.
+Outside of the dense ISM wind particles hydrodynamically recou-
+ple, allowing them to deposit their mass, momentum, metals, and
+thermal energy content.
+2.2
+Improvements to the Numerical Framework
+Several key numerical improvements that underpin the TNG model
+have been implemented in the AREPO code (Springel 2010) since
+the Illustris simulation. We brieﬂy summarize them here.
+2.2.1
+Magnetohydrodynamics
+A notable addition in the TNG model is a the inclusion of mag-
+netic ﬁelds. The TNG model employs cell-centered magnetic ﬁelds
+to solve the equations of ideal magneto-hydrodynamics (Pakmor,
+Bauer & Springel 2011) combined with an approximate HLLD
+(Harten-Lax-van Leer with contact and Alfv´en mode) Riemann
+solver (Miyoshi & Kusano 2005). It uses the 8-wave Powell clean-
+ing scheme to maintain the divergence constraint for the mag-
+netic ﬁeld (Pakmor & Springel 2013) and introduces an additional
+timestep criterion that limits the size of the Powell source terms to
+increase the accuracy and robustness of the scheme. This approach
+has been tested and benchmarked on idealized test cases (Pakmor
+& Springel 2013) as well as cosmological galaxy simulations (Pak-
+mor, Marinacci & Springel 2014) and cosmological volumes (Mari-
+nacci et al. 2015). In simulations with magnetic ﬁelds, a small spa-
+tially homogeneous initial seed ﬁeld is applied with a uniform ﬁeld
+strength in an arbitrary orientation. Redshift zero results have been
+shown to be invariant to both the strength and direction of the seed
+ﬁeld provided the seed is sufﬁciently small (Pakmor, Marinacci &
+Springel 2014; Marinacci et al. 2015, and Section 3.4).
+2.2.2
+Spatial Gradient Estimator
+Each Voronoi gas cell has a set of primitive variables, e.g. density,
+velocity, pressure, and magnetic ﬁeld. By construction, the prim-
+itive variables are volume-averaged quantities: they can be calcu-
+lated from the corresponding conserved quantities given the vol-
+ume of the cell. In addition, the spatial gradients of the primitive
+variables are needed to linearly reconstruct their values at the cell
+faces in order to obtain a spatially second order scheme. However,
+the accuracy of the original Green-Gauss method to estimate gra-
+dients can decline for irregular geometries, i.e. whenever the cen-
+ter of mass of a cell is signiﬁcantly offset from the position of its
+mesh-generating point. For this reason, the Green-Gauss method
+has been replaced with a least-squares ﬁt (LSF) method (Pakmor
+et al. 2016). This LSF method improves the accuracy of estimated
+gradients and guarantees that the gradient estimate is always ﬁrst
+order accurate, even for extreme mesh geometries.
+2.2.3
+Time Integration
+In both the gravity and hydrodynamics calculations AREPO em-
+ploys a highly adaptive time integration scheme. All cells and par-
+ticles are evolved on individual timesteps which are organized in a
+nested binary hierarchy of factors of two. The original AREPO code,
+as well as the Illustris simulation employed a MUSCL-Hancock
+time integration scheme (van Leer 1977; Springel 2010). However,
+this scheme does not take changes of the mesh geometry during
+a timestep fully into account and therefore is in general only ﬁrst
+order accurate for moving meshes. Therefore, it has been replaced
+with an approach following Heun’s method, a second-order Runge-
+Kutta scheme (Pakmor et al. 2016). Together with the improved
+gradient estimates, the new time integration scheme especially im-
+proves the conservation of angular momentum (although the latter
+is mainly relevant in idealized test problems rather than the sig-
+niﬁcantly more complex cosmological simulations presented here).
+In doing so it avoids an expensive additional reconstruction of the
+Voronoi mesh at the mid-timestep point, which would otherwise
+be required to achieve second order convergence in time. The new
+scheme also retains individual time-stepping for all particles and
+cells.
+Still, it is challenging to maintain high efﬁciency of the code
+during the smallest timesteps, when only a few particles or cells are
+active. In the context of the tree-gravity solver in AREPO, this has
+motivated the development of a new method using a particle set de-
+composition based on a recursive splitting of the N-body Hamilto-
+nian into short and long timescale systems (inspired by Pelupessy,
+J¨anes & Portegies Zwart 2012). Consequently, the forces required
+to integrate the rapidly evolving particles can be computed without
+constructing the full gravity tree, leading to signiﬁcantly improved
+parallel efﬁciency. A full description of this scheme is outside the
+present scope and will be presented in future work (Springel et al.
+in prep).
+2.2.4
+Advection of Passive Scalars (Metal Abundances)
+Our model follows the total mass fraction of elements heavier than
+Helium in each gas cell and stellar particle – the metallicity, Z. In
+the gas this ﬁeld acts as a passive scalar which is advected between
+cells with the mass. However, this advection was treated entirely
+independently from the individual elemental abundances, leading
+to various inconsistencies as detailed in Nelson et al. 2015 (Sec
+6.1). Therefore, in addition to the evolution of the previous nine
+individual species (H, He, C, N, O, Ne, Mg, Si, and Fe) we now
+also follow a tenth pseudo ‘other metals’ element which represents
+the sum of all metals that are not otherwise individually tracked. We
+use this ﬁeld to guarantee that the sum of the mass fractions always
+adds up to unity for all ﬂux exchanges and dynamically calculate
+the total metallicity from the mass fractions of all elements heavier
+than He. This is done by normalizing individually the extrapolated
+abundances at cell interfaces before they enter the Riemann solver
+(Fryxell, M¨uller & Arnett 1989).
+Similarly, we previously initialized only the hydrogen and he-
+lium mass fractions to a nonzero value, 0.76 and 0.24 respectively,
+at the start of the simulation. This choice, together with small nu-
+merical errors in individual element advection, led to a small frac-
+tion of gas cells and stars with unrealistically small or even negative
+metal abundance values. To avoid this, we now initialize the cells
+with a metallicity ﬂoor for all individual metals (and ‘other met-
+als’) at a mass fraction of 10−10. The galaxy population statistics
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+5
+studied in this paper (see next Sections) are robust to the precise
+value to which the metals are initialized.
+2.2.5
+Resolution and Softening Choices
+In a hydrodynamical galaxy formation simulation such as Illustris
+we include several types of resolution elements: collisionless dark-
+matter and stellar particles, gas cells, black-hole sink particles, and
+short-lived wind particles. They all interact gravitationally, each
+softened independently on potentially different spatial scales. For
+dark matter, star, and wind particles we adopt a ﬁxed comoving
+softening value until z = 1, after which it is ﬁxed to its physical
+redshift one value. We note that in Illustris, this did not apply to
+DM particles, such that at z = 0 dark matter had twice the soft-
+ening length as stars. For the comoving value we roughly take, in
+every simulation, ϵDM,stars = Lbox/N 1/3
+DM/40. This is the small-
+est choice that avoids signiﬁcant collisional effects in small dark
+matter halos and a spurious heating of the gas by dark matter parti-
+cles. For the cosmological volumes presented here, these values are
+listed in Table A1. The quoted values, ϵ, are Plummer-equivalent
+spline softening, where the gravitational potential at zero lag for
+a test mass m is −G × m/ϵ and the gravitational forces become
+Newtonian at a separation 2.8 × ϵ.
+We treat Voronoi cells as point masses at the position of their
+centers of mass. They use an adaptive gravitational softening of
+ϵgas = 2.5rcell where the effective cell radius rcell is derived from
+the total volume of the Voronoi cell approximating it as a sphere.
+We then enforce a minimum gas softening ϵmin
+gas that is 8 times
+smaller than the comoving value of the collisionless component (in
+Illustris this was taken as 2 times smaller than the stellar soften-
+ing). For technical reasons, the adaptive gas softenings are chosen
+from a discrete spectrum increasing from this minimum by factors
+of 1.2 up to 64 total values. The softening for each black hole is
+chosen as ϵBH = ϵDM,stars(mBH/mDM)1/3, similarly restricted
+to a discrete list spaced by factors of 1.7 and increasing from the
+collisionless softening.
+Besides the softenings, two additional numerical parameters
+may be scaled with resolution. The ﬁrst is the black hole kernel-
+weighted neighbor number nngb of Weinberger et al. (2017), that
+deﬁnes the BH accretion and feedback region. We now scale this
+as ∝m−1/3
+baryon, whereas in Illustris this was scaled as ∝m−1
+baryon.
+The second is the stellar enrichment neighbor number Nenrich (see
+Vogelsberger et al. 2013) for the return of metals from the stars
+to the ISM. We now keep this ﬁxed with resolution, whereas in
+Illustris this was also scaled as ∝m−1
+baryon. The scaling choices
+of Illustris imply that the baryon mass - and so the approximate
+spatial extent - impacted by the associated physics is constant with
+resolution. The new choices are primarily made to avoid extremely
+low neighbor numbers for low resolution simulations, and we have
+veriﬁed that these scaling changes have no relevant impact on our
+results2. All other parameters of the TNG model are kept constant
+with respect to changes in the numerical resolution.
+2.3
+Improvements of the TNG Galaxy Formation Model
+The main modiﬁcations to the Illustris galaxy physics model are
+concentrated in three areas:
+2 We have veriﬁed that no galaxy integral properties, including all those
+explored herein, are affected in any measurable way by different values of
+enrichment neighbor number (32, 64, 128) at ﬁxed resolution (L25n512).
+• the growth and feedback of supermassive black holes,
+• the galactic winds,
+• and the stellar evolution and gas chemical enrichment.
+In the following subsections we give a full description of the imple-
+mented changes. Table 1 provides a concise summary of the main
+new features, with ﬁducial values of the model parameters as de-
+scribed in Section 3.2.
+2.3.1
+Formation, Growth and Feedback of Black Holes
+In the low-accretion state, the new approach employs a kinetic
+AGN feedback model which produces black hole-driven winds.
+This replaces the previous feedback model in the low-accretion
+mode known as the bubble model (Sijacki et al. 2007). The BH-
+driven wind is motivated by recent theoretical arguments for the
+inﬂow/outﬂow solutions of advection dominated accretion ﬂows
+(ADAFs) in this regime (see Yuan & Narayan 2014, for a review).
+At high accretion rates, the TNG model invokes a thermal feedback
+that heats gas surrounding the BH, as was also employed in Illus-
+tris (Springel, Di Matteo & Hernquist 2005; Di Matteo, Springel &
+Hernquist 2005). In the new model, we remove the α boost fac-
+tor in the formulation of the Bondi-Hoyle accretion rate for the
+BH sinks. To guard against a slow early growth, we modify the
+choice of the initial black hole seed mass, which is increased to
+8×105 h−1M⊙. All details related to the seeding, growth and feed-
+back of black holes in the TNG model, including their impact on
+the galaxy population, are given in the companion paper by Wein-
+berger et al. (2017). We also summarize the key details in Table
+1. As a reminder, BH positioning and merging are implemented
+similarly as in Illustris. Namely, BHs are (re)positioned to their
+local potential minima, i.e. searched within a sphere of a kernel-
+weighted number of neighboring gas cells, n, with n ﬁxed to 1000
+in TNG (instead of nngb in Illustris). A BH merges with another if
+it is found within the accretion/feedback region of the other. As dis-
+cussed in Weinberger et al. (2017), the new AGN feedback model is
+responsible for the quenching of galaxies residing in intermediate
+and high mass haloes (∼1012 −1014M⊙), and for the production
+of a population of red and passive galaxies at late times.
+2.3.2
+Galactic Winds
+The TNG model for galactic-scale, star formation-driven, kinetic
+winds is reﬁned in several ways with respect to the approach de-
+scribed in Vogelsberger et al. (2013) and Torrey et al. (2014). As
+in Illustris, wind particles inherit the properties of the gas cell from
+which they are launched (in proportion to the fraction of mass con-
+verted into wind), including their thermal energy.
+Differently from Illustris, winds are now injected isotropically.
+In the Illustris model, the initial direction of the wind particles was
+a random orientation along the direction given by ⃗v ×∇Φ, where ⃗v
+and ∇Φ are the velocity and acceleration of the gas cell of origin in
+the rest frame of the hosting friends-of-friends halo. In this ‘bipo-
+lar winds’ approach wind particles are ejected preferentially along
+e.g. the rotation axis of a spinning object. In the new model, for
+simplicity, we abandon this directionality and assign wind particles
+an initial velocity in random directions: ‘isotropic winds’. Even in
+this case, winds will naturally propagate along the direction of least
+resistance and thereby show characteristic patterns of gas motion,
+such as large-scale galactic fountains around massive star-forming
+disks (see Section 3.2 as well as Springel & Hernquist 2003).
+The initial speed of wind particles is also modiﬁed. As in the
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+6
+Pillepich et al.
+Illustris
+Model features
+TNG
+Technical Reference
+MHD
+no
+magnetohydrodynamics (MHD)
+yes: Powell ∇· B cleaning
+Pakmor, Bauer & Springel 2011
+-
+Seed B ﬁeld strength
+1.6 × 10−10 phys Gauss at z = 127
+Pakmor & Springel 2013
+-
+Seed B ﬁeld conﬁguration
+uniform in random direction
+Pakmor & Springel 2013
+BHs and BH Feedback
+1 × 105h−1M⊙
+BH Seed Mass
+8 × 105h−1M⊙
+Weinberger et al. 2017
+5 × 1010h−1M⊙
+FoF Halo Mass for BH seeding
+5 × 1010h−1M⊙
+Vogelsberger et al. 2013
+α = 100 Boosted Bondi-Hoyle
+BH Accretion
+Un-boosted Bondi-Hoyle (w/ vA)
+Weinberger et al. 2017
+parent gas cell, Eddington limited
+BH Accretion
+nearby cells, Eddington limited
+Weinberger et al. 2017
+ﬁxed to local potential minimum
+BH Positioning
+ﬁxed to local potential minimum
+Vogelsberger et al. 2013
+Two: “Quasar/Radio”
+BH Feedback Modes
+Two: “High/Low Accretion State”
+Weinberger et al. 2017
+Thermal Injection around BHs
+High-Accr-Rate Feedback
+Thermal Injection around BHs
+Weinberger et al. 2017
+Thermal ‘Bubbles’ in the ICM
+Low-Accr-Rate Feedback
+BH-driven kinetic wind
+Weinberger et al. 2017
+constant: 0.05
+Low/High Accretion Transition: χ
+BH-mass dependent, ⩽0.1
+Weinberger et al. 2017
+0.2
+Radiative efﬁciency: ϵr
+0.2
+Weinberger et al. 2017
+ϵfϵr, with ϵf = 0.05
+High-Accr-Rate Feedback Factor
+ϵfϵr, with ϵf = 0.1
+Weinberger et al. 2017
+ϵmϵr, with ϵm = 0.35
+Low-Accr-Rate Feedback Factor
+ϵf,kin ⩽0.2
+Weinberger et al. 2017
+yes
+Radiative BH Feedback
+yes
+Vogelsberger et al. 2013
+Galactic Winds
+non local, from sf-ing gas
+General Approach
+non local, from sf-ing gas
+Vogelsberger et al. 2013
+bipolar
+Directionality
+isotropic
+this paper
+cold
+Thermal Content
+warm
+this paper
+∝local σDM
+Injection Velocity
+∝local σDM with H(z) scaling
+this paper
+-
+Injection Mass Loading
+gas-metallicity (Z) dependent
+this paper
+no
+Injection Velocity Floor
+yes: 350 km s−1
+this paper
+3.7
+Wind Velocity Factor: κw
+7.4
+this paper
+1.09
+Wind Energy Factor: ew
+3.6
+this paper
+-
+Thermal Fraction: τw
+0.1
+this paper
+-
+Z-dependence Reduction Factor: fw,Z
+0.25
+this paper
+-
+Z-dependence Reference Metallicity: Zw,Z
+0.002
+this paper
+-
+Z-dependence Reduction Power: γw,Z
+2
+this paper
+0.4
+Metal loading of wind particles: γw
+0.4
+Vogelsberger et al. 2013
+Stellar Evolution
+Chabrier 2003
+IMF
+Chabrier 2003
+Vogelsberger et al. 2013
+[6, 100] M⊙
+[min, max] SNII Mass
+[8, 100] M⊙
+this paper
+see Table 2
+Yield Tables
+see Table 2
+this paper
+at every star timestep
+ISM Chemical Enrichment
+time/stellar mass discrete
+this paper
+Metal Advection
+gradient extrapolation
+Advection Scheme
+same + renormalization
+this paper
+0
+Initialization Metal Fractions
+10−10 at z = 127
+this paper
+H, He, C, N, O, Ne, Mg, Si, Fe
+Tracked Element Scalars
+same 9 + other metals
+this paper
+-
+Metal Tagging
+from SNIa, SNII, AGB separately
+Naiman et al. (2017)
+-
+Iron Tagging
+from SNIa and SNII separately
+Naiman et al. (2017)
+-
+r-processes
+from NS-NS mergers
+Naiman et al. (2017)
+Table 1. Overview of the differences between the new TNG galaxy formation physics model and the original Illustris simulation model, including the ﬁducial
+values of all parameters (see text for details). The references for the new model are the present paper, together with Weinberger et al. 2017, while the main
+references for the original Illustris model are Vogelsberger et al. 2013 and Torrey et al. 2014. References in the last column provide a technical description of
+the feature implementation and (ideally/often/if possible) also a study of its effects on cosmological galaxy populations. Prescriptions for star formation and
+the treatment of the unresolved ISM in TNG remain unchanged with respect to Illustris (Springel & Hernquist 2003).
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+7
+Illustris model, the TNG model launches wind particles with an
+initial speed that scales with the the local, one-dimensional dark
+matter velocity dispersion σDM (as in Eq. (14) of Oppenheimer &
+Dav´e 2006; Oppenheimer & Dav´e 2008; Vogelsberger et al. 2013),
+measured with a weighted kernel over the N = 64 nearest DM
+particles. In addition, the TNG model now (i) introduces an addi-
+tional redshift-dependent factor for the wind velocities and (ii) sets
+a minimum wind velocity, vw,min, such that:
+vw = max
+"
+κw σDM
+ H0
+H(z)
+1/3
+, vw,min
+#
+(1)
+where κw is a multiplicative dimensionless factor. The chosen red-
+shift dependence of the wind velocity implies that the wind veloc-
+ity and the growth of the virial halo mass have the same scaling
+with redshift (we demonstrate this in Section 3.2.1). This choice of
+redshift-independent wind velocities at ﬁxed halo mass is inspired
+by the results of semi-analytical models, where a similar approach
+was needed to reproduce observed stellar mass functions and rest-
+frame B- and K-band luminosity functions across redshift (Hen-
+riques et al. 2013).
+The wind velocity ﬂoor (whose effects on the gaseous haloes
+have already been investigated by Bird et al. 2014; Suresh et al.
+2015, within the Illustris model) prevents wind mass loading fac-
+tors in low-mass haloes from becoming unphysically large (e.g.
+Zahid et al. 2014; Schroetter et al. 2016, for a recent compila-
+tion of observations, that however pertain outﬂow measurements
+at some radial distance from the galaxy centers and hence are not
+directly comparable to our choices at injection). Indeed, it is phys-
+ically plausible that there is an upper limit to the amount of mass
+that can be entrained by a supernova (or a group of neighbouring
+supernovae in a superbubble), and hence the wind speed cannot be-
+come arbitrarily small in low-mass haloes. We note that, by ﬁxing
+the injection velocity at high redshift, our Hubble factor scaling
+implies larger wind velocities at recent times and across all halo
+masses. It thereby increases the effectiveness of the galactic winds
+at suppressing low-redshift star formation. Simultaneously, because
+vw,min imposes a ﬂoor almost exclusively in low-mass galaxies,
+the TNG stellar feedback is also more effective at high redshift
+(we show both aspects in Section 3.4.1). Some mechanism to cre-
+ate more effective wind feedback at higher redshifts has been ad-
+vocated in many galaxy formation models and implemented in a
+variety of ways (Murray, Quataert & Thompson 2010; Hopkins,
+Quataert & Murray 2011; Stinson et al. 2013; Sales et al. 2014). Fi-
+nally, a wind velocity ﬂoor impacting low-mass galaxies has been
+introduced recently also by Dav´e, Thompson & Hopkins 2016 in
+their implementation of launched outﬂows.
+Once the wind injection velocity is determined, the wind mass
+loading factor in turn depends on the speciﬁc energy available for
+wind generation, ew (or egyw in the formalism of Vogelsberger
+et al. 2013), which in our framework is tied to the energy released
+by SNII per formed stellar mass. The TNG model contains two
+modiﬁcations wrt Illustris affecting the available wind energy: (i)
+some given fraction of this energy is thermal, via a parameter τw;
+and (ii) the wind energy depends on the metallicity of the star-
+forming gas cell, such that galactic winds are weaker in higher-
+metallicity environments. Taken together, the mass loading factor
+at injection is:
+ηw ≡
+˙Mw
+˙MSFR
+= 2
+v2w
+ew(1 −τw)
+(2)
+where ˙Mw denotes the rate of gas mass to be converted into wind
+particles and ˙MSFR the instantaneous, local star-formation rate.
+The wind energy available to a star-forming gas cell with
+metallicity Z is given by:
+ew
+=
+ew
+
+fw,Z +
+1 −fw,Z
+1 + (Z/Zw,ref)γw,Z
+
+× NSNII ESNII,51 1051 erg M−1
+⊙,
+(3)
+similar to the parameterization by Schaye et al. (2015).
+Here, ESNII,51 denotes the available energy per core collapse
+supernovae in units of 1051 erg, which we take equal to unity (as in
+the Illustris model). NSNII is the number of SNII per formed stellar
+mass (in solar mass units) and depends on the shape of the IMF and
+the mass limits for core-collapse supernovae (see Section 2.3.3).
+The wind energy factor ew is a dimensionless free parameter of the
+model, while the metallicity dependence implies that
+ηw
+∝
+2
+v2w
+ew fw,Z (1 −τw) for Z ≫Zw,ref
+ηw
+∝
+2
+v2w
+ew (1 −τw) for Z ≪Zw,ref.
+(4)
+Namely, the new scaling reduces by a factor fw,Z the energy
+at injection for gas cells with metallicities much larger than a
+reference value Zw,ref (see Figure B2 for a visual representa-
+tion of the effect). For the TNG ﬁducial choice of the param-
+eter values (Zw,ref
+= 0.002, γw,Z
+= 2, fw,Z
+= 0.25, and
+ew = 3.6), the effective wind mass loading factor at injection is
+ηw = (2/v2
+w) 0.9 (1 −τw)NSNII ESNII,511051erg M−1
+⊙for gas
+metallicities similar to solar (Z ∼0.02). In comparison, the Illus-
+tris model gives ηw = (2/v2
+w) 1.09 NSNII ESNII,511051erg M−1
+⊙.
+In practice, the wind energy in Eq. (2) varies in the range ew =
+[3.6, 0.9] × NSNII1051erg M−1
+⊙, according to the gas metallicity.
+Because the majority of the stars in the Universe is made in MW-
+like galaxies and given that the average metallicity of star-forming
+gas in (z = 0) TNG MW-like galaxies is about Z = 0.015 −0.02,
+in our model the bulk of the galactic winds is launched with ener-
+gies very close to ew = 1 NSNII1051erg M−1
+⊙(see again Figure B2
+for reference), in agreement with the qualitative expectations for
+the energy available from core-collapse SNe. Eq. (2) here follows
+directly from Eq. (15) of Vogelsberger et al. (2013) assuming no
+momentum-driven winds.
+By allowing the galactic winds to carry some (additional) ther-
+mal energy, we avoid spurious star formation and other artifacts
+where the wind particles hydrodynamically recouple, as already
+done by Marinacci, Pakmor & Springel (2014); Grand et al. (2017).
+We also allow wind particles to radiatively cool as they travel, their
+effective density adopted from the nearest gas cell and including
+self-shielding corrections. As we demonstrate later, a τw > 0 frac-
+tion of thermal energy can signiﬁcantly impact the overall stellar
+mass content of galaxies at all times.
+The reduction of the available wind energy with metallicity is
+motivated by the idea that higher metallicity galaxies may imply
+larger radiative cooling losses of the supernova energy (see also
+Schaye et al. 2015; Martizzi, Faucher-Gigu`ere & Quataert 2015).
+Additionally, the evolution, mass-loss, and end states of SNII pro-
+genitors may themselves depend on metallicity (Smartt 2009), in
+turn affecting the amount of energy released into the ISM per core
+collapse. Given our choice not to change the effective, overall wind
+energy at injection in metallicity environments typical of L⋆galax-
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+8
+Pillepich et al.
+ies, the metallicity modulation again implies that winds in lower-
+mass galaxies are stronger in the new model than in Illustris.
+The conditions for wind re-coupling are invariant with respect
+to the Illustris model, i.e. a wind particle is donated to the gas cell
+in which it is currently located once either it falls below a certain
+density (0.05× the density threshold for star formation) or a maxi-
+mum travel time has elapsed (0.025× the current Hubble time). In
+practice, the time condition is almost never exercised and the typi-
+cal travel length of the wind while being decoupled is at most a few
+kpc. Finally, we have not modiﬁed any choice compared to Illustris
+in relation to the metal loading of the winds.
+To summarize, the total energy release rate available to drive
+galactic winds depends on the instantaneous star-formation rate as:
+˙Ew =
+˙Mw v2
+w
+2 (1 −τw) = ew
+˙MSFR,
+(5)
+where all terms depend on spatial location within a galaxy and on
+time. However, even at ﬁxed wind energy rate, the actual effective-
+ness of the winds at preventing star formation across a galaxy life
+time depends on the properties of the wind particles at injection, i.e.
+their velocity, thermal content, speciﬁc energy, or even the number
+of wind particles spawned per given mass loading factor (within
+the limits of the cells (de-)reﬁnement scheme). Such properties ul-
+timately determine the characteristics of the galactic outﬂows, in-
+cluding time scales for gas recycling and gas mass return to the
+galaxy. While not the main focus of this paper, in Appendix B we
+quantify the effects of different galactic wind parameterizations on
+the galaxy populations.
+2.3.3
+Stellar Evolution and Chemical Enrichment
+Stellar particles represent a population of stars with the same birth
+time (single-age stellar population) and with an initial mass func-
+tion given by Chabrier (2003). These populations are allowed to
+evolve and age, with a return of mass and individual elements to the
+surrounding inter-stellar medium. As described by Vogelsberger
+et al. (2013) and following Wiersma et al. (2009), the mass and
+metal return of a stellar particle is tracked as a function of time, by
+following the evolution of stars through three stellar phases: asymp-
+totic giant branch (AGB) stars, core collapse supernovae (SNII) and
+supernovae Type-Ia (SNIa). In the TNG model, we assume stars
+pass through an AGB phase in the mass range 1 −8M⊙, and core
+collapse supernovae are the fate of stars between 8 and 100 M⊙,
+while in Illustris the minimum mass for SNII was 6 M⊙. This
+was in practice dictated by the lack of available elemental yields
+for massive AGB stars. Although the minimum mass for core col-
+lapse supernovae is not known precisely, it is typically thought
+to be roughly 8 M⊙or slightly higher (Smartt 2009; Ibeling &
+Heger 2013; Woosley & Heger 2015), making this update impor-
+tant. Given the Chabrier 2003 IMF, a minimum mass limit for SNII
+of 8 M⊙implies 0.0118 stars going off as core collapse supernova
+per formed stellar mass in M⊙, a decrease by 30 per cent in the fac-
+tor NSNII of Eq. (3) with respect to the choice with 6 M⊙(0.0173
+M−1
+⊙). The upper mass limit of SNII progenitors is also uncertain
+(Jennings et al. 2014), although the precise value is largely unim-
+portant for our purposes.
+For reasons of computational efﬁciency, we change the time
+integration of mass and metal return from stars to their surrounding
+gas. Previously, every star at every timestep searched for nearby
+gas cells and then donate a minute amount of mass and metals.
+Now, we discretize this process more coarsely in time, such that
+this only occurs if the total mass fraction relative to the star mass
+exceeds 0.0001 or if the star age is less than 100 Myr, to ensure we
+capture quickly evolving young stellar populations. Therefore, the
+yields are integrated over a time interval corresponding to the time
+since the last enrichment event, rather than the dynamical timestep
+itself. We have veriﬁed that this change makes no qualitative or
+quantitative impact on the simulation results, as desired, except for
+saving computation time.
+2.3.4
+Updated Yield Tables
+In the TNG model we update our choices for the elemental mass
+yields of stars from the literature. Tabulated stellar yields are uncer-
+tain, often incomplete at needed stellar mass or metallicity ranges,
+and continuously updated in the literature: here we opt for a series
+of choices which are overall more consistent with observed abun-
+dance ratios, speciﬁcally for Milky Way-like galaxies. In practice,
+construction of the yield tables requires a combination of data from
+several different sources, in diverse ranges of stellar masses and
+metallicities, and based on a variety of methods, all summarized in
+Table 2.
+We extend the AGB tables from their original 1 −6 M⊙mass
+range to 1−7.5 M⊙. We do this by using the Karakas (2010) yields
+for the metallicity values Z ∈[0.0001, 0.004, 0.008, 0.02] and for
+masses between 1 and 6 M⊙. For masses of 7 and 7.5 M⊙we use
+the Doherty et al. (2014) yields with Z ∈[0.004, 0.008, 0.02], and
+supplement this with the Fishlock et al. (2014) data at 7 M⊙and
+Z = 0.001, extrapolated down to Z = 0.0001. An interpolation
+across masses gives us the ﬁnal values for 7.5 M⊙and Z = 0.0001
+AGB metal return.
+With respect to the Illustris choices, the largest update is
+to the SNII tables, which now extend from 8 to 120 M⊙, over
+Z ∈[0, 0.001, 0.004, 0.02]. For the mass range 13 −40 M⊙, we
+use yields from Kobayashi et al. (2006). To extend this mass range
+to lower and higher masses we supplement the Kobayashi mod-
+els with those by Portinari, Chiosi & Bressan (1998), extrapolated
+from their metallicity range of [0.0004, 0.004, 0.008, 0.02, 0.05] to
+the metallicity range of the Kobayashi data. To obtain yield ratios
+consistent with Kobayashi, we renormalize all our models such that
+the IMF-weighted yield ratios at each metallicity are equal to those
+from the Kobayashi mass range models alone. For consistency with
+previous work, we also renormalize our yields such that the total
+ejected mass is the same as in the Illustris yield tables which were
+taken fully from Portinari, Chiosi & Bressan (1998).
+The SNIa yields have been changed to the “W7” model from
+Nomoto et al. (1997) to be consistent with other groups, however
+this leads to only minor changes in the yields. In fact, all SNIa
+yields are independent of mass and metallicity, and are injected
+with a simple delay time distribution (DTD). We also note that,
+solving an issue identiﬁed by Marinacci et al. (2014), we have cor-
+rected the upper limit of the normalization integral for the SNIa de-
+lay time distribution from inﬁnite to the Hubble time. This makes
+the total number of SNIa consistent with the prescriptions given by
+Maoz, Mannucci & Brandt (2012) and with the choice for the SNIa
+rate normalization constant of N0 = 1.3 × 10−3M−1
+⊙. In the TNG
+model, the effective total number of SNIa per stellar mass formed is
+larger by about a factor of 2 than in Illustris, if all other parameters
+are kept as in the Illustris model.
+In Figure 1 we diagnose the net yield changes, showing the
+stellar mass fraction by chemical species returned to the ISM in
+a Hubble time, per stellar mass formed, at Solar metallicity. Wide
+bars represent the new TNG model, while thin bars show the ﬁdu-
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+9
+Illustris Tables
+TNG Tables
+AGB
+Karakas (2010)
+Karakas (2010)
+[1 −6] M⊙, Z ∈[0.0001, 0.004, 0.008, 0.02]
+[1 −6] M⊙, Z ∈[0.0001, 0.004, 0.008, 0.02]
+Doherty et al. (2014)
+[7.0, 7.5] M⊙, Z ∈[0.004, 0.008, 0.02]
+Fishlock et al. (2014)
+[7.0] M⊙, Z ∈[0.001]
+SNII
+Portinari, Chiosi & Bressan (1998)
+Kobayashi et al. (2006)
+[6 −120] M⊙, Z ∈[0.0004, 0.004, 0.008, 0.02, 0.05]
+[13 −40] M⊙, Z ∈[0, 0.001, 0.004, 0.02]
+Portinari, Chiosi & Bressan (1998)
+[6 −13, 40 −120] M⊙, Z ∈[0.0004, 0.004, 0.008, 0.02, 0.05]
+SNIa
+Travaglio et al. (2004)
+Nomoto et al. (1997), W7
+Thielemann et al. (2003)
+Table 2. Overview of the choices for the stellar yield tables compiled from the literature in the Illustris versus the TNG model. In the new model, the minimum
+mass for SNII is raised to 8M⊙. To simultaneously use the yields proposed by Kobayashi et al 2006 and Portinari et al. 1998, SNII yields are renormalized
+such that the IMF-weighted yield ratios at each metallicity are equal to those from the Kobayashi mass range models alone (see text for details).
+H
+He
+C
+N
+O
+Ne
+Mg
+Si
+Fe
+-1
+0
+1
+2
+Ratio -1
+TNG model to Illustris Model
+H
+He
+C
+N
+O
+Ne
+Mg
+Si
+Fe
+-1
+0
+1
+2
+Ratio -1
+TNG yields to Illustris yields
+H
+He
+C
+N
+O
+Ne
+Mg
+Si
+Fe
+10-5
+10-4
+10-3
+10-2
+10-1
+Returned Stellar Mass Fraction
+fiducial TNG (wide) vs fiducial Illustris (narrow)
+Total Return
+SNII
+AGB
+SNIa
+Figure 1. Top: Fraction of mass returned to the ISM in a Hubble time per stellar mass formed at Solar metallicity. Two sets of bars compare results from the
+TNG model (wide bars) and the Illustris model (thin bars). Hydrogen and Helium dominate the stellar return in total mass. SNII dominate the metal return of
+essentially all elements considered here, but for Nitrogen and Iron, for which AGB and SNIa are, respectively, at par. Middle: ratio between the two models
+in linear scale to highlight the differences. These comparisons take into accounts all changes to the enrichment process. Namely, the different yield tables, the
+increased minimum mass for SNII, and the updated SNIa normalization factor. The differences from the yield tables alone are reported in the bottom panel,
+which account for most of the changes in metal return for SNII. Modiﬁcations from Illustris to TNG for SNIa are due to the more consistent normalization
+factor to the SNIa DTD, for all species but Magnesium.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+10
+Pillepich et al.
+cial Illustris model. Different columns refer to different enrichment
+channels: all together, or separated by SNII, AGB, and SNIa alone.
+This comparison includes all changes to the enrichment (shown
+through ratios in the middle panel): the different yield input as
+per Table 2, the different minimum mass for SNII, and the differ-
+ent SNIa normalization factor. The last is responsible for the in-
+creased metal fractions in the SNIa channel from Illustris to the
+TNG model. On the other hand, changes due solely to the updated
+yields (shown through ratios in the bottom panel) are small for
+SNIa, of the order of a few percent, with the notable exception of
+Magnesium. The different metal mass fractions returned by core-
+collapse supernovae between the two models are mostly due to the
+changes in the underlying yield tables: the enrichment of Neon and
+Magnesium can be different by up to a factor of 2.5 because of the
+modiﬁcations detailed in Table 2. Finally, the ∼10 per cent-level
+increase in the mass returned by AGB stars is due to the fact that in
+TNG AGB stars can be as massive as 8 M⊙instead of 6 M⊙.
+2.3.5
+Star Formation in the Presence of Magnetic Fields
+As a ﬁnal point of clariﬁcation, we comment on the treatment of
+the magnetic ﬁeld for star-forming gas. Four distinct events can
+take place: (i) a gas cell can convert entirely into a star, (ii) a gas
+cell can convert entirely into a wind, (iii) a gas cell can spawn a
+star with a fraction of its mass, and (iv) a gas cell can spawn a wind
+with a fraction of its mass. In practice, for the types of simulations
+presented here, the former two cases dominate over the latter two.
+In the ﬁrst two cases, the originating cell is removed from the
+Voronoi mesh. The neighboring cell volumes then ﬁll the evacu-
+ated space and – although their conservative variables remain the
+same – their primitive variables, including magnetic ﬁeld strength,
+decrease in proportion to the volume increase. We are therefore as-
+suming that the corresponding magnetic ﬁeld ﬂux is locked up into
+the star (or wind) and removed from the gas. This follows Pak-
+mor, Marinacci & Springel (2014) who found that, compared to
+not removing the B-ﬁeld (as done instead in Pakmor & Springel
+2013), this choice gives somewhat smaller magnetic ﬁeld strengths
+in galaxies, by at most a few tens of percent.
+In the latter two cases, when only a fraction of the originating
+gas cell mass is used to spawn a new star or wind particle, we leave
+the magnetic ﬁeld as well as the magnetic energy of the gas cell
+unchanged (in the same manner as e.g. Dubois & Teyssier 2010;
+Pakmor & Springel 2013). This has the advantage of not introduc-
+ing any additional divergence error or change in the local magnetic
+ﬁeld topology. The mass, (non-magnetic) total energy, and momen-
+tum of the originating gas cell is reduced by the corresponding mass
+fraction of the newly spawned particle.3
+These aspects of the model are non-trivial and relate directly
+to unresolved physical effects. For the mass resolution we can af-
+ford, each star particle represents approximately one or more stellar
+populations formed within a molecular cloud. The magnetic ﬁeld
+3 In fact, a ﬁnal complication exists for case (iv), where a gas cell spawns a
+wind with only a fraction of its mass. Although the magnetic energy of the
+gas cell is unchanged, the total energy – including the magnetic component
+– is rescaled as the fractional mass loss. This implies a transfer of thermal to
+magnetic energy, because the total energy decrease is larger than it would
+have been in the absence of MHD. This inconsistency is resolved going
+forward, such that case (iv) follows the more obvious behavior of case (iii),
+although for concreteness we note that this resolution has not been applied
+to any of the simulations of the present work.
+dynamics in such a cloud is complex, and it may be that the mag-
+netic ﬁeld surrounding or within a molecular cloud is ampliﬁed dur-
+ing star formation (Schober et al. 2012), likely through turbulence
+(Federrath et al. 2011). On the other hand, it is possible that star
+formation depletes the magnetic energy of a molecular cloud. This
+could occur if part of the magnetic ﬁeld was locked up in stars, or
+removed from the cloud through e.g. ambipolar diffusion or tur-
+bulent reconnection (Shu 1983; Santos-Lima et al. 2010). For the
+present model we therefore adopt the rather simple approach de-
+scribed above.
+2.4
+Additional Code Features
+The simulation code incorporates a number of on-the-ﬂy analysis
+routines which produce rich data beyond particle level informa-
+tion. These include the SUBFIND and FOF algorithms to iden-
+tify haloes and subhaloes (Springel et al. 2005; Dolag et al. 2009);
+a custom output strategy, whereby particle information is ordered
+on disk according to its hierarchical group membership, allow-
+ing for rapid retrieval and query; a Monte Carlo tracer particle
+scheme (Genel et al. 2013), which actively follows the ﬂow of a
+large number of “tracer particles” and enables the reconstruction
+of Lagrangian ﬂuid element histories; and the application of stel-
+lar population synthesis models to derive broad-band luminosities
+for the stellar particles (Vogelsberger et al. 2013). The TNG code-
+base includes a new, differentiated output approach that optimizes
+disk usage by writing snapshots covering different data ﬁelds, at
+different times, and covering different spatial volumes according to
+three types: full, mini, and subbox snapshots. The TNG model also
+includes a series of novel code capabilities:
+2.4.1
+Shock Finder
+A cosmological shock ﬁnder has been developed for the AREPO
+code (Schaal & Springel 2015): it uses a ray-tracing method in the
+Voronoi mesh to identify shock surfaces and measure their prop-
+erties, and it can be used on-the-ﬂy as a simulation runs. Its func-
+tioning and application have already been demonstrated on the Il-
+lustris simulation data (Schaal et al. 2016) and new non-radiative
+test cases (Weinberger et al. 2017). By including this component
+we measure the dissipated energy rate – the amount of kinetic en-
+ergy irreversibly transformed into thermal energy – and the Mach
+number of every gas cell at each output.
+2.4.2
+Metal Tagging
+In addition to following the production and evolution of the 9 indi-
+vidual species, we now separately follow the production and mix-
+ing of the sum of all metals produced by AGB stars, SNIa and SNII,
+respectively. These are recorded as mass fractions in both gas and
+stars, in the exact same way as the 9 individual species. In addition,
+we now also keep track of the iron mass separately produced by
+SNIa and SNII, which is then also followed as it advects through-
+out the gas over time. More details on the implementation details,
+and demonstration of their scientiﬁc application, will be shown in
+an upcoming paper (Naiman et al. 2017).
+2.4.3
+Neutron-Star Mergers and r-processes
+We include the injection of r-process material from neutron stars -
+neutron star (NSNS) mergers by modeling such infrequent events in
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+11
+a similar fashion as with SNIa. Following the method of Shen et al.
+(2015), we use a power-law delay time distribution (Piran 1992;
+Kalogera et al. 2001) with the same DTD index (1.12) but with a
+different cut off time scale and normalization as compared to the
+SNIa DTD (see Naiman et al. 2017, for more details). The delay
+time distribution is used to probabilistically determine the number
+of NSNS mergers (if any) which occur in the stellar particles. These
+merger events would then return mass and metals to the surround-
+ing gas. To maintain consistency with the previous method, any
+NSNS material is treated as a tracer and does not add to the dy-
+namical mass (total nor by species) of the receiving gas cells. This
+is not an issue because the NSNS merger ejecta mass is negligi-
+ble. In practice, we derive the total metal mass produced by NSNS
+by using yields re-scaled from the SNIa tables, and track this as a
+single additional property for both gas cells and stars. The details
+of this implementation and the methods to extract an estimate of
+the production of Europium, as a specimen of r-process material, is
+presented by Naiman et al. (2017).
+3
+PERFORMANCE OF THE TNG MODEL
+We demonstrate the effectiveness of the model introduced in the
+previous Sections, as well as its dependence on the associated
+parameters, with a suite of cosmological simulations in uniform
+boxes. In the following we show the outcome of the model and
+its variations on a handful of galaxy population observables which
+solely depend on the integral stellar content of galaxies: the star
+formation rate density as a function of cosmic time (SFRD), the
+galaxy stellar mass function at z = 0 (GSMF) and the present-
+day stellar-to-halo mass relation (SMHM). These are the quantities
+which were used to calibrate the parameters of the Illustris model.
+However, in order to improve upon the identiﬁed issues with the
+original model, we also now evaluate: the BH mass to galaxy or
+halo mass relation, the halo gas fraction, and the galaxy stellar
+sizes. In all cases we include observational constraints intended
+only as rough guidelines. We postpone to future work a quantita-
+tively robust and consistent comparison between simulated galaxies
+and observations.
+3.1
+Cosmological Test Simulations: Setup
+We run a number of cosmological simulations of a periodic box 25
+h−1Mpc on a side with the AREPO code (d203ec8) and cosmo-
+logical parameters consistent with the most recent Planck results
+(The Planck Collaboration 2016, Ωm = 0.31, ΩL = 0.69, Ωb =
+0.0486, h = 0.677, σ8 = 0.8159, ns = 0.97). Variations of the
+model are carried out on a realization with (512)3 dark-matter par-
+ticles and initially (512)3 gas cells. This resolution corresponds
+to modern large-scale cosmological simulations such as Horizon-
+AGN, Illustris, Eagle (Dubois et al. 2014; Vogelsberger et al.
+2014b; Schaye et al. 2015): an average gas-cell and stellar par-
+ticle mass of ≃106 M⊙, DM particle mass of ≃107 M⊙, and
+stellar/DM softening lengths of ∼500 −1000 pc at z = 0. The
+exact values are given in Appendix A, speciﬁcally Table A1, where
+we also consider the effects of resolution and the convergence be-
+havior of our model. The simulations are evolved to the present
+epoch from z = 127 initial conditions. These have been obtained
+with the code N-GENIC (Springel et al. 2005) by applying the
+Zel’dovich approximation on a glass distribution of particles with
+a linear matter transfer function computed using the CAMB code
+(Lewis, Challinor & Lasenby 2000).
+In order to simulate a representative volume and minimize
+sample variance, we have selected the realization with care.
+Namely, we have drawn 10 random realizations of the initial den-
+sity ﬁeld and evolved low-resolution gravity-only versions to the
+current epoch. We have chosen the realization exhibiting a cumu-
+lative dark matter halo mass function at z = 0 that is closest to
+the average one across realizations, via a χ2-minimization across
+the widest halo mass range allowed by resolution. In fact, we note
+(but do not show here) that such choice does not guarantee that
+the resulting galaxy population is unaffected by sample variance
+nor, therefore, that it is a representative sample. However, it at least
+minimizes usually large variations arising from the underlying DM
+density ﬁeld.
+The simulation box we study in this paper (L25n512) contains
+at the current epoch 9 haloes with total mass (M200c
+4) exceeding
+1013M⊙, about 40 Milky-Way like central haloes (6 × 1011M⊙⩽
+M200c ⩽2×1012M⊙), and about 1500 luminous galaxies (among
+centrals and satellites) resolved with at least 100 stellar particles.
+While the most massive object does not reach ∼5 × 1013M⊙, the
+chosen volume size is still well suited to study the galaxy popula-
+tion at the low-mass end of the galaxy mass function, which is the
+main scope of this paper.
+3.2
+Fiducial Implementation
+In this Section we show the outcome of our TNG model in its
+ﬁducial implementation at our nominal resolution (L25n512). The
+choices and parameter values which deﬁne the TNG ﬁducial im-
+plementation are summarized in Table 1, where they are shown in
+comparison to the Illustris ﬁducial setup. In the following sections
+we explore the parameter choices and dependencies in depth. Com-
+parisons to the outcome at lower resolution are given and discussed
+in Appendix A. A visual presentation of the richness of the model
+outcome is shown in Figures 2 and 3. In the ﬁrst, projections of
+various ﬁelds across the whole simulated box ∼37 Mpc on a side
+are given at z = 0. The top panels depict DM, gas, and stellar
+mass density projections. As a demonstration of new information,
+in the lower panels we show intensity of the magnetic ﬁeld, the gas
+Mach number, and the kinetic energy dissipation via shocks. Fig-
+ure 3, on the other hand, shows a random collection of galaxies,
+depicted with stellar luminosity projections in stamps of 74 kpc
+per side. Broadly speaking, the TNG model continues to repro-
+duce a diverse galaxy population in terms of stellar morphologies
+and galaxy types, which is a basic requirement for any theoretical
+model for galaxy formation.
+A more quantitative assessment of the galaxy population de-
+mographics is provided in Figure 4, for the Illustris-like resolution
+box L25n512. Black curves and data points refer to the ﬁducial
+TNG implementation. Red curves denote the outcome of the Illus-
+tris model, also realized on the same L25n512 box, with the Planck
+cosmology, and according to prescriptions in the left column of Ta-
+ble 1. The left panels show observables related to the stellar content
+of galaxies: 1) the global star-formation rate density as a function
+of time (SFRD); 2) the current galaxy stellar mass function; and
+3) the stellar-to-halo mass relation at z = 0, in terms of M200c.
+These are the quantities we have used to calibrate the TNG model,
+as done by Vogelsberger et al. (2013). The three quantities on the
+right column are: 1) the BH mass vs stellar or halo mass relation;
+4 M∆c denotes the mass enclosed in a sphere whose mean density is ∆
+times the critical density of the universe at the time the halo is considered.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+12
+Pillepich et al.
+Figure 2. Qualitative inspection of the L25n512 volume run with the ﬁducial TNG model showing the large scale structure at z = 0. Top row: column density
+of dark matter, gas and stellar mass. Bottom row: mass-weighted projected average of magnetic ﬁeld strength, gas Mach number, and kinetic energy dissipation
+rate via shocks, to highlight the new diagnostic capabilities.
+2) the halo gas fraction within R500c; and 3) the stellar half-mass
+radii of galaxies. During our implementation of the TNG model, we
+have additionally kept these three quantities under consideration, in
+order to discriminate among model realizations which appear sim-
+ilarly acceptable at reproducing the stellar content of galaxies, and
+in order to solve some of the issues identiﬁed in the Illustris simu-
+lation.
+In these as well as all subsequent galaxy/halo property plots,
+gray shaded areas and data points represent a selection of currently
+available observations: we show them here as visual guidelines, not
+as robust quantitative comparisons.
+Broadly speaking, we observe the following relative changes
+in TNG with respect to Illustris: (i) the SFRD is lower at late times
+and the peak shifts to higher redshifts; (ii) the GSMF is signiﬁcantly
+suppressed at the low mass end and slightly at the high mass end;
+(iii) the SMHM relation is lower overall and has a more well de-
+ﬁned peak; (iv) the BH to galaxy mass relation is somewhat higher
+and essentially a powerlaw in the median; (v) the halo gas fractions
+are lower for low mass halos and higher for high mass halos; and
+(vi) the galaxy sizes for low mass objects are much smaller and the
+relation becomes ﬂat for galaxies below 1010M⊙. In broad com-
+parison to the observations, keeping in mind the limited volume
+and the tensions identiﬁed for the Illustris model in the full Illustris
+volume (Nelson et al. 2015), we ﬁnd that: (i) the z = 0 SFRD is im-
+proved, while the z = 2 SFRD may be slightly low; (ii) the GSMF
+at the low and high mass ends is much improved, and essentially
+unchanged at the knee; (iii) the SMHM shape and normalization
+is improved, although the value at the peak decreases slightly; (iv)
+black hole masses are larger at ﬁxed stellar mass and the relation
+between black hole and galaxy masses is a power law over a larger
+mass range, although we do not here model bulge masses in any
+way (for the differences resulting in modeling the bulge see Volon-
+teri et al. 2016; Weinberger et al. 2017); (v) the halo gas fractions
+at the group scale are in much better agreement; and (vi) the low-
+mass galaxy sizes are also now well within the rough observational
+constraints.
+Note that in deciding the TNG model parameters we have
+not performed a parameter search via ﬁtting of the simulated out-
+come to such observational curves. Instead, the approach we have
+adopted to calibrate the TNG model was intentionally simple, pri-
+marily because several issues would complicate any actual ﬁne
+tuning methodology. First, it has been demonstrated that in order
+to consistently compare simulated to observed astronomical data,
+the simulated raw data of synthetic galaxies must be transformed
+into realistic mock observations (Overzier et al. 2013; Torrey et al.
+2015; Snyder et al. 2015; ZuHone & Kowalik 2016; Camps et al.
+2016; Bottrell et al. 2017a,b). Second, as demonstrated by Genel
+et al. (2014) and mentioned in Section 3.1, the sample variance of
+the galaxy population due to the limited volume of a simulation
+test box is not negligible and could potentially offset the result of a
+rigorous ﬁne tuning to the observational data. Finally, the outcome
+of our method is not fully resolution independent at the resolutions
+reached here (see Appendix A). All these considerations, together
+with the computational costs of simulating large volumes at ﬁxed
+resolution, make it conceptually challenging and practically pro-
+hibitive to identify the best model parameter values via a ﬁt to a
+selection of galaxy observables.
+Instead, we have proceeded as follows. First, we have chosen
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+13
+FNSF
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+FNSF
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+ORJ0star 
+Figure 3. Qualitative inspection of the L25n512 volume run with the ﬁducial TNG model: a random sample of ﬁfteen z = 0 galaxies selected to have halo
+mass greater than 1012 M⊙. These include a mix of spheroid-type and disk-type systems, where the top ﬁfteen panels are face-on, and the bottom ﬁfteen
+panels are the same galaxies edge-on. Each is shown in projected stellar light combining three wide optical NIRCam ﬁlters (f200w, f115w, and f070w) from
+JWST. The TNG model still reproduces a diverse galaxy population, which is a basic requirement for any theoretical model for galaxy formation. Stellar
+masses are in M⊙units.
+the most striking observational tensions with observations iden-
+tiﬁed in the Illustris simulation (see Introduction). We have then
+made educated guesses as to how e.g. the velocity and energy wind
+scaling needed to be modiﬁed in order to alleviate such tensions
+(see Section 2.3.2). Next, we have run the same test cosmologi-
+cal volumes with the ﬁducial Illustris model and with a series of
+perturbation of the TNG model. Finally, we have chosen an im-
+plementation and parameter set that simultaneously alleviates the
+largest number of targeted tensions while demonstrating good over-
+all agreement with benchmark observables.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+14
+Pillepich et al.
+0
+2
+4
+6
+8
+10
+redshift
+10-2
+10-1
+SFRD [ M sun  yr-1  Mpc-3]
+Behroozi et al. 2013 (comp)
+Oesch et al. 2015 (comp)
+ fiducial TNG
+ fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+106
+107
+108
+109
+Black-Hole Mass [Msun] [ all subhaloes ]
+McConnell & Ma 2013 (comp)
+McConnell & Ma 2013 (fit MBH - Mbulge)
+Kormendy & Ho 2013 (fit MBH - Mbulge)
+ fiducial TNG
+ fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 30 kpc ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ fiducial TNG
+ fiducial Illustris
+1011
+1012
+1013
+Total Halo Mass [ < r500c ] [ Msun ]
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+Gas Fraction [< r500c]
+Giodini et al. 2009 (z<0.2)
+Lovisari et al. 2015
++b / +m
+ fiducial TNG
+ fiducial Illustris
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 30 kpc ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ fiducial TNG
+ fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+100
+101
+102
+Galaxy Size [kpc] [ r1/2, stars ] [ all subhaloes ]
+Shen et al. 2003 (SDSS Re, late)
+Shen et al. 2003 (SDSS Re, early)
+Baldry et al. 2012 (GAMA Re, red - circles)
+Baldry et al. 2012 (GAMA Re, blue - diamonds)
+ fiducial TNG
+ fiducial Illustris
+Figure 4. Quantitative properties of the ﬁducial model via galaxy population statistics at z = 0 (unless otherwise stated). The black line shows the result of
+the ﬁducial TNG L25n512 simulation, while the red line shows the original Illustris model outcome on the same volume. We always give running medians
+(but for the cosmic star-formation rate density as a function of redshift - top left panel). Individual galaxies are shown as data points only for the ﬁducial TNG
+run L25n512. When aperture deﬁnitions are needed to measure e.g. stellar masses, they are denoted in each panel. Gray curves, shaded areas, and ﬁlled large
+symbols represent observational data or empirical constraints: Behroozi, Wechsler & Conroy 2013; Oesch et al. 2015; Baldry, Glazebrook & Driver 2008;
+Baldry et al. 2012; Bernardi et al. 2013; D’Souza, Vegetti & Kauffmann 2015; Moster, Naab & White 2013; Kormendy & Ho 2013; McConnell & Ma 2013;
+Giodini et al. 2009; Lovisari, Reiprich & Schellenberger 2015; Shen et al. 2003. We note that the comparison to observational data is only intended as rough
+guideline, as we are not applying any observational mock post processing to our simulated galaxies.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+15
+10 ckpc
+log Mstar = 9.9
+log Mstar = 9.8
+log Mstar = 9.2
+log Mstar = 9.6
+log Mstar = 9.8
+log Mstar = 9.7
+log Mstar = 9.4
+log Mstar = 9.7
+Gas Column Density [log Msun kpc−2]
+7.2
+7.6
+7.9
+8.2
+8.6
+Gas Velocity Magnitude [km/s]
+0
+112
+225
+337
+450
+Figure 5. Galactic wind morphologies: gas mass density projection with overlaid gas velocity streamlines, with colour indicating velocity. We show a random
+selection of four galaxies from L25n512 having halo masses ≃1011.5 M⊙. Each is seen edge-on at z = 2. Top row: gas patterns in the TNG ﬁducial model
+where wind particles are launched with random directions from the star forming gas cells (isotropic winds); Bottom row: matching galaxies simulated with
+the Illustris model, where the directionality of the winds is instead bipolar.
+3.2.1
+Characteristics of the galactic winds
+As described in Section 2.3.2 the TNG wind particles are launched
+isotropically. As we show in Figure 5 for a selection of galaxies
+extracted from the ﬁducial realization at z = 2 of the L25n512
+box, this in practice still corresponds to non spherically-symmetric
+gas patterns around disk-like galaxies. The wind mass, although
+launched from the star forming gas with random orientations, still
+propagates along the trajectories of least resistance. Large-scale
+galactic fountains naturally emerge both with isotropic winds (TNG
+ﬁducial choice, top panels) as well as with bipolar winds (Illustris
+ﬁducial choice, bottom panels). In fact, irregular gas ﬂow patterns
+can also be found in both cases, especially in regimes where out-
+ﬂows also depend on the central BH activity.
+The wind velocity in the TNG model is determined by the
+local one-dimensional DM velocity dispersion with a normaliza-
+tion factor κw = 7.4 and the velocity ﬂoor imposed at vw,min =
+350km s−1. The wind velocity is modulated in time via the Hubble
+factor, and the choice of κw = 7.4 corresponds to a velocity mul-
+tiplicative factor of about κw = 3.7 at z ∼5, which is the Illustris
+ﬁducial choice across time (see Table 1). In Figure 6 (left panel)
+we show the ranges of velocity values at which the wind particles
+are ejected at z = 0 as a function of total halo mass. Each data
+point gives the average velocity of wind particles at injection for
+a single galaxy, excluding satellites. Error bars denote the 5th and
+95th percentiles of the wind velocity distribution within a random
+selection of individual galaxies. Solid curves show running medi-
+ans as a function of halo mass. Black symbols and curves represent
+the TNG model for the L25n512 run, red symbols the same mea-
+surements for the Illustris model.
+First, we see that in both models, galactic winds within a given
+galaxy launch with a range of velocities, which can span a couple
+of hundreds km s−1 for MW-like galaxies at z = 0 (5th - 95th
+percentiles of the velocity distribution). The scatter within galaxies
+is similar to the scatter around the average galaxy wind velocity,
+however it can be much larger in the case of non central galaxies
+(not shown). Secondly, the average wind velocity at ﬁxed redshift
+scales roughly like a power of the halo mass, vw ∝(halo mass)1/3,
+as for Illustris and above halo masses of ×1011M⊙. Dashed thin
+lines in Figure 6 give best ﬁts (ﬁxed power factor = 1/3) to the
+galaxy average wind properties,
+vw = κw × 110 km s−1
+ M200c
+1012M⊙
+1/3
+,
+(6)
+where 110 km s−1 is approximately the ambient 1D velocity dis-
+persion around star forming gas in Milky Way-like haloes at z = 0.
+Thirdly, the minimum wind velocity ﬂoor affects mostly the typi-
+cal wind speed of low-mass galaxies, both at z = 0 and at higher
+redshifts. While the average DM velocity dispersion in haloes
+is larger at higher redshifts, the redshift-dependent wind-speed-
+scaling (κw(H0/H(z))1/3) is smaller prior to z = 0. The com-
+bination of the two effects makes the importance of the minimum
+velocity ﬂoor at higher redshifts greater than what can be seen di-
+rectly in left panel of Figure 6, at least for low mass galaxies.
+From the right panel of Figure 6, we see that in the new TNG
+scheme winds are faster than in Illustris at all times up to z ∼5
+and at all halo masses. The mean galaxy wind velocity, averaged
+across galaxies in the same halo mass bin (large symbols), exhibits
+by construction a trend with redshift which is similar to the time
+evolution of the virial halo mass – that is, the black curves are more
+or less ﬂat, and this makes the TNG winds faster than Illustris at all
+times. The imposed wind velocity ﬂoor results in wind velocities
+at injection of 350 km s−1 for haloes smaller than ∼1011M⊙at
+essentially all redshifts.
+At z = 0, the effective mass loading factor of the winds in the
+TNG model is lower than in Illustris. Figure 7, left panel, shows
+the measurement of the wind mass loading as per Eq. (2), averaged
+across the star-forming gas cells of galaxies as a function of halo
+mass, but assuming cold winds. In the TNG model, however, winds
+are given a 10 per cent thermal energy content, such that the actual
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+16
+Pillepich et al.
+1010
+1011
+1012
+1013
+Total Halo Mass [Msun][M200c]
+102
+103
+Wind Velocity at Injection [km/s]
+TNG Minimum Wind Velocity
+/ M1/3
+z = 0, centrals only
+ fiducial Illustris
+ fiducial TNG
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+Redshift
+102
+103
+Wind Velocity at Injection [km/s]
+ no TNG Minimum imposed
+/ M200c(redshift)
+1.0e+10 solar masses
+2.0e+11 solar masses
+1.0e+12 solar masses
+Figure 6. Characteristics of the galactic winds at injection: initial velocities of wind particles at launch, as a function of halo mass at z = 0 (left) and as a
+function of redshift in bins of halo mass (right). The black (red) color shows the ﬁducial TNG (Illustris) model performed on the L25n512 box. In the left
+panel, errorbars denote the 5th and 95th percentiles of the wind velocity distribution within individual galaxies. The solid curves are running medians as a
+function of halo mass of the galaxy average wind velocities. TNG winds are faster than Illustris winds at injection (at all z ≲4 −5): κw = 7.4 in TNG vs
+3.6 in Illustris, in addition to the minimum velocity ﬂoor. In the right panel, symbols show the average wind velocities as a function of time, averaged across
+galaxies in three bins of total halo mass (within a factor of 2 around 1010, 2 × 1011, and 1012M⊙). The TNG velocity parameters of Eq. (1) are chosen such
+that they match the Illustris model at z ∼5. The Hubble scaling forces the evolution of the wind velocities in haloes to be similar to the evolution of halo
+mass (black curves are essentially horizontal). The TNG velocity ﬂoor raises the wind velocity of galaxies in haloes ≲1011M⊙essentially across all times.
+Note that these wind velocities do not equal the velocity of actual gas outﬂows at larger radius, and therefore cannot be compared directly to observations.
+1010
+1011
+1012
+1013
+Total Halo Mass [Msun][M200c]
+100
+101
+102
+Wind Mass Loading at Injection
+max due to TNG Minimum Wind Velocity
+/ M-5/6
+/ M-2/3
+z = 0, centrals only
+ fiducial TNG
+ fiducial Illustris
+0
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+4
+Redshift
+100
+101
+102
+Wind Mass Loading at Injection
+centrals only
+1.0e+10 solar masses
+2.0e+11 solar masses
+1.0e+12 solar masses
+Figure 7. Characteristics of the galactic winds at injection: effective wind mass loading factors in the TNG (black) and Illustris (red) ﬁducial models as a
+function of halo mass at z = 0 (left) and as a function of redshift in bins of halo mass (right). Symbols are as in Figure 6. The wind mass loading factor is
+generally deﬁned as η = ˙Mout/SFR, i.e. it is the ratio between the outward ﬂux of gas and the galaxy star formation rate. Here instead we show the effective
+mass loadings of the wind particles at injection as deﬁned in Eq. (2), but without accounting for the fraction of wind thermal energy: in TNG, the thermal
+fraction τw is 10 per cent (in Illustris winds are cold), and therefore the black dots are in fact 10 per cent higher than the actual TNG ﬁducial case. The plotted
+values do not correspond to a measurable mass loading factor at any larger radius, and therefore cannot be compared directly to observations.
+TNG wind mass loading is lower by an additional ten per cent than
+the black symbols reported in Figure 7. We have chosen the param-
+eters for the wind energy, ew in Eq. 3, and metallicity-dependent
+scaling from Eq. 2 so that the wind energy in galaxies with average
+Solar gas metallicity is within 20 per cent of the typical wind en-
+ergy factor of Illustris winds in similar galaxies (see Figure B2 for
+clarity). However, the larger TNG wind velocity factor κw makes
+the effective TNG wind mass loading lower at equal wind energy,
+while the metallicity dependence introduces a modulation with halo
+mass. Taken together, these choices result in a slightly steeper trend
+of the effective wind mass loading at z = 0 as a function of halo
+mass in TNG than in Illustris. The minimum wind velocity imposes
+a maximum to the wind mass loading at injection that at z = 0 oc-
+curs at about η = 30-40. At z = 0, dashed thin lines denote best ﬁts
+to the Illustris and TNG wind loading at injection (two-parameters
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+17
+ﬁt):
+ηw ≃5.9
+ M200c
+1012M⊙
+−2/3
+for Illustris
+ηw ≃1.5
+ M200c
+1012M⊙
+−5/6
+for TNG.
+The redshift evolution at ﬁxed halo mass (Figure 7, right
+panel) is such that for haloes below about a few 1010M⊙, the TNG
+effective wind loading are lower than in Illustris at essentially all
+redshifts, even though winds in those haloes are faster. For galaxies
+residing in more massive haloes, TNG winds are weaker at lower
+redshifts and stronger at earlier times, with a transition depending
+on halo mass.
+We emphasize that the input choices for the wind particles at
+injection cannot easily be mapped into properties of gas outﬂows
+around galaxies. The latter are the ones to be adopted as a natu-
+ral test bed of the model against observational constraints, not the
+characteristics of the wind particles once they are spawned from
+the star-forming gas from the innermost regions of galaxies. Fur-
+thermore, even deriving the effective wind properties at injection
+corresponding to a given model is not straightforward, and can fur-
+ther lead to ill-posed comparisons. Effective wind properties should
+instead be directly measured in the simulation, as we have done
+here. We postpone to future work the task of measuring the phys-
+ical state and properties of gas outﬂows in order to make a robust
+connection to observations (e.g. Veilleux, Cecil & Bland-Hawthorn
+2005, for a review) and other simulated galaxies based on different
+implementations of the stellar feedback (e.g. Muratov et al. 2015;
+Christensen et al. 2016).
+3.3
+The model at various levels of complexity
+Before quantifying the sensitivity of the TNG model to its most im-
+portant parameter values, we give an overview of the effects of the
+key model ingredients: the presence or absence of magnetic ﬁelds,
+galactic winds, and BH feedback. The galaxy properties are shown
+in Figure 8. The labels “no B ﬁelds” (blue), “no galactic winds”
+(orange), and “no BHs/feedback” (green) all refer to runs identical
+to the TNG ﬁducial setup but for the absence of the indicated mech-
+anism.5 Black and red curves refer to the ﬁducial TNG and Illustris
+runs, as from Figure 4. For reference, and in the bottom left panel
+only, we also provide the outcome of a run where the low-accretion
+BH-driven wind is switched off (green dotted curve), i.e. when only
+the thermal injection feedback around the BH occurs.
+The case without magnetic ﬁelds is implemented by adopt-
+ing a vanishing initial magnetic ﬁeld seed.6 Noticeably, magnetic
+ﬁelds clearly have an effect on haloes ≳1012M⊙at z = 0 and
+in general at low redshifts (z ≲3). This is not in contradiction
+with the ﬁndings of Pakmor & Springel (2013); Pakmor, Marinacci
+& Springel (2014); Pakmor et al. (2017) who have not detected
+a signiﬁcant effect in their sample of MW-like galaxies realized
+with a slightly different galaxy physics model. While the effect on
+5 In the case of no galactic winds, we also switch off metal-line cooling to
+avoid runaway star formation: including the metal-line cooling contribution
+does not alter the qualitative statements we provide.
+6 We have checked, but do not show, that the results are unchanged if the
+code is run disabling MHD functionality altogether. In this case the exact
+Riemann solver (instead of the HLLD solver) is used, as adopted in the
+Illustris model.
+this halo mass scale is small, the large statistical sample available
+for our TNG model shows that the presence of cosmic magnetic
+ﬁelds suppresses the total star formation at low redshifts (top left
+panel), as well as for large halo masses at the current epoch (mid-
+dle and lower left panels). Including MHD increases the stellar
+sizes for galaxies above 2 × 1010M⊙, although this is driven by
+the lower stellar masses in the TNG model at ﬁxed halo mass. On
+the other hand, the presence of the magnetic ﬁelds affects the total
+gas content within low mass haloes, raising the gas fraction below
+Mhalo ∼1012M⊙.
+By comparing to the runs without galactic winds and BH feed-
+back (orange and green lines, respectively), it is clear that the
+galactic winds have a signiﬁcant impact on stellar mass content
+across all halo mass scales we probe here, and at all times. The
+effects of the BH feedback are noticeable in the stellar masses at
+the current epoch above a threshold halo mass scale of roughly
+1 −2 × 1011M⊙: the suppression of the central stellar mass due
+to the BH feedback as a whole reaches a factor larger than two for
+haloes with a total mass of a few 1012M⊙. Beyond 2 × 1012M⊙
+this suppression at z = 0 is predominantly due to the effects of the
+BH-driven wind feedback in the low-accretion states (solid green
+vs dotted green vs black curves, bottom left panel), in agreement
+with what already shown by Weinberger et al. (2017). In the TNG
+ﬁducial model, the BH-driven wind has no effect on the z = 0 stel-
+lar fractions below the peak of SF efﬁciency ( Mhalo ∼1012 M⊙),
+whereas this is not the case for the BH high-accretion thermal feed-
+back mode, which continues to play a role down to ∼1011M⊙. In
+order to reconcile the stellar content of simulated galaxies with ob-
+servational constraints, it has been commonly proposed that stel-
+lar feedback is needed below L∗galaxies, while feedback from
+the central SMBH is needed for more massive haloes (e.g. Croton
+et al. 2006). In our model, the ultimate stellar content of galax-
+ies depends on a combination of the two feedback mechanisms,
+not only at L∗but also towards both lower and higher masses. As
+we discuss later, the mass scales over which stellar feedback dom-
+inates BH feedback (and low-accretion BH feedback dominates
+high-accretion BH feedback) are model dependent, and indeed dif-
+fer between the Illustris and TNG models. In the TNG model, stel-
+lar feedback is responsible for regulating the global star formation
+rate density down to the z ∼2 −3 peak; and only at redshifts
+z ≲4 does BH feedback lead to a noticeable reduction of the global
+SFRD. On the other hand, BH feedback is needed to establish an
+appropriately peaked and non-monotonic stellar-to-halo mass rela-
+tion, as well as to shape the knee in the galaxy stellar mass function.
+The location of such a peak and knee, and how pronounced they in
+turn appear, depends on speciﬁc choices for the combined model
+parameters.
+In the top right panel of Figure 8 we see that the presence
+of galactic winds slows down the growth of black holes in halos
+below 1012M⊙. We show the relation as a function of halo mass
+in order to exclude the effects of the large stellar mass discrepan-
+cies across models. A somewhat similar effect has been seen in
+the Eagle model (Bower et al. 2017) where it was attributed to the
+removal of gas from small galaxies due to stellar feedback. How-
+ever, in our model, a steep transition to the median BH-halo mass
+relation is still present, and it is simply shifted to lower masses.
+Conversely, the presence of magnetic ﬁelds generally leads to more
+massive black holes for a given halo mass. We reiterate that in
+the TNG model we modify the Bondi-Hoyle-Lyttleton formula for
+the gas accretion onto the BH in the presence of magnetic ﬁelds.
+Speciﬁcally, the accretion rate inversely depends on an effective gas
+sound speed that takes into account both thermal and magnetic sig-
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+18
+Pillepich et al.
+0
+2
+4
+6
+8
+10
+redshift
+10-2
+10-1
+SFRD [ M sun  yr-1  Mpc-3]
+Behroozi et al. 2013 (comp)
+Oesch et al. 2015 (comp)
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+ no BHs/feedback
+1011
+1012
+1013
+Total Halo Mass [ Msun ]
+106
+107
+108
+109
+Black-Hole Mass [Msun] [ all subhaloes ]
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+ no BHs/feedback
+1011
+1012
+1013
+Total Halo Mass [ < r500c ] [ Msun ]
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+Gas Fraction [< r500c]
+Giodini et al. 2009
+Lovisari et al. 2015
++b / +m
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+ no BHs/feedback
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 2 rstars,1/2 ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+ no BHs/feedback
+ no BH kinetic feedback
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+100
+101
+102
+Galaxy Size [kpc] [ r1/2, stars ] [ all subhaloes ]
+Shen et al. 2003 (SDSS Re, late)
+Shen et al. 2003 (SDSS Re, early)
+Baldry et al. 2012 (GAMA Re, red - circles)
+Baldry et al. 2012 (GAMA Re, blue - diamonds)
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no galactic winds
+ no BHs/feedback
+Figure 8. The galaxy population at L25n512 resolution for different choices in the galaxy physics model. The labels “no B ﬁelds” (blue), “no galactic winds”
+(orange), and “no BHs/feedback” (green) all refer to runs identical to the TNG ﬁducial setup but for the absence of the indicated mechanism. The red curves
+denote the Illustris model outcome in the same cosmological volume and with the same cosmology as TNG ﬁducial. For reference, and only in the bottom left
+panel, the dotted green curve shows the outcome of a run where only the low-accretion BH feedback is turned off (dotted green). Symbols and annotations are
+as in Figure 4, but stellar masses are measured within twice the stellar half-mass radius in every panel.
+nal propagation, the latter expressed in terms of the Alfv´en speed
+(see Section 2.1 of Weinberger et al. 2017). We note, but do not
+show here, that removing this dependence of the BH accretion on
+the magnetic Alfv´en speed also reduces the growth lag of BHs in
+haloes around 1011M⊙, similarly to the removal of galactic winds.
+This is the only other perturbation to the model we ﬁnd to exhibit
+such an effect, although it is very small and does not correspond to
+any appreciable change in stellar masses.
+The trend of gas mass fraction within R500c as a function of
+halo mass strongly depends on the presence and characteristics of
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+19
+all feedback mechanisms (center right panel). In the TNG model,
+the AGN feedback is responsible for setting up a transition just be-
+low 1012M⊙, above which the gas fraction suddenly drops, before
+rising again towards group and cluster-size objects. The Illustris
+and Eagle models exhibit very different trends of the gas fraction
+within haloes, the former producing a non-monotonic function at
+masses ≳1011M⊙(red curve in Figure 8; also Genel et al. 2014)
+and the latter having a monotonically rising gas fraction across the
+whole mass range between 1011M⊙and a few ×1014M⊙(Fig-
+ure 3 of Schaller et al. 2015). Given the strikingly different trends
+for the different model perturbations, we argue that the amount of
+gas mass (cold and hot, ionized and neutral) retained within the
+virial radius (R500c) of haloes as a function of halo mass could be
+one of the most powerful observational constraints to discriminate
+among competing galaxy formation feedback models that appear
+degenerate with respect to approximately recovering the observed
+galaxy stellar mass function. Altering the gas fraction in group and
+cluster-size haloes was one of the main motivations to modify the
+AGN feedback mechanism from Illustris (red curve) to TNG (black
+curve). However, an even more useful constraint may be the gas
+fraction of MW-mass haloes and below.
+Finally, the galaxy sizes reveal a clear and intriguing phe-
+nomenon (lower right panel). Galactic winds predominantly deter-
+mine the spatial extent of galaxies in haloes below 1012M⊙, mak-
+ing them signiﬁcantly more extended. On the other hand, it is the
+BH feedback which enlarges the half mass radii of galaxies at the
+high mass end, leading to the steep slope above Milky Way masses
+(see also e.g. Crain et al. 2015). We ﬁnd that high- and low-state
+accretion modes contribute in a similar fashion to the increase of
+galaxy sizes at the high mass end, and without each of them or BH
+feedback altogether the size-mass relation is nearly ﬂat. However,
+in Appendix B, Figure B1, we show how changes to individual pa-
+rameters of the galactic winds can still impact the exact shape of the
+galaxy size-mass relation, as well as the location of the size upturn.
+3.4
+Effects of Model Parameters and Choices
+Before exploring the sensitivity of our model to variations of the
+most important physical parameters, we state a number of broad
+conclusions that our tests have demonstrated but that we do not
+explicitly show in this paper:
+(i) The changes implemented to the stellar yields (Section 2.3.4,
+Table 2 and Figure 1, bottom panel) do not lead to any noticeable
+difference in the galaxy/halo properties examined thus far. The new
+yield tables have been constructed so that the total mass ejected
+by SNII is unchanged, with SNII dominating the cumulative metal
+production and resulting in about just 20 per cent difference be-
+tween the new and Illustris tables. Therefore, the new yield choices
+do not impact signiﬁcantly the overall gas cooling and subsequent
+star formation. However the abundances of individual species as
+well as their spatial gradients will differ because of the different
+yields, and possibly even more so because of the differences in the
+SNII mass limits (see below) and SNIa normalization.
+(ii) The discrete enrichment scheme (Section 2.3.3), as opposed
+to a return of metals at every timestep from stars to their surround-
+ing gas, has no relevant effect on the galaxy and/or halo properties
+we have studied far.
+(iii) The increase of the minimum mass for core-collapse
+supernovae from 6 (Illustris) to 8 M⊙(TNG) has on the other hand
+a non negligible impact, and indeed the TNG ﬁducial parameters
+– chieﬂy of the galactic wind feedback – have been chosen to
+take this into account. In particular, the smaller minimum mass
+of SNII in Illustris implies a larger number of stars going off as
+core-collapse supernovae per formed stellar mas (NSNII = 0.0173
+vs 0.0118 SNII M−1
+⊙). This results in ∼46 per cent larger effective
+wind loading factors and hence more efﬁcient galactic winds at
+all times and masses, in Illustris vs TNG for the same choice of
+the other parameters. Consequently, with 6 M⊙as minimum SNII
+mass instead of 8 M⊙, the star-formation rate density is lower at
+z ≳1 (up to 50 per cent more suppressed) and galaxies in haloes
+≲1012M⊙are 20-30 per cent less massive at z = 0.
+(iv) Finally, varying the initial magnetic ﬁeld seed in the range
+10−8 −10−21 physical Gauss does not have any relevant effect
+on the galaxy population at z = 0 (in agreement with Marinacci
+et al. 2015). We recall that in the ﬁducial setup, the magnetic ﬁeld
+is seeded at z = 127 with a strength of 10−14 comoving Gauss,
+equivalent to about 10−10 physical Gauss. This is within observa-
+tional constraints on the primordial magnetic ﬁeld strength (Planck
+Collaboration 2016).
+3.4.1
+Galactic Winds: Scalings
+To better understand how the TNG model functions, we quanti-
+tatively demonstrate how the simulated galaxy/halo properties de-
+pend on the chosen values of the model parameters, focused specif-
+ically on the novel aspects of the galactic winds. In Appendix B we
+show perturbations to the wind total energy, thermal energy, and ve-
+locity (‘stronger’, ‘faster’, ‘warmer’, ‘cold’, and ‘no velocity ﬂoor’
+winds). These are even more basic changes, some of which can be
+equally important to those explored below. However, they do not
+represent new aspects of the TNG model or newly implemented
+changes (and were explored already for the Illustris model in Vo-
+gelsberger et al. 2013; Bird et al. 2014; Suresh et al. 2015, although
+for different galaxy properties), so we postpone those results and
+their discussion to the Appendix.
+As summarized in Table 1 and discussed in Section 3.2.1, the
+ﬁducial wind parameters are chosen so that a) the wind velocity in
+haloes is equivalent to that of the previous Illustris model at red-
+shift z = 5 (see Eq. 1), while they are overall faster at z < 5; b) the
+wind energy parameter ew is such that the wind energy in galax-
+ies with average Solar gas metallicity is comparable to the value
+adopted in Illustris (see Eqs. 2 and 3, and Figure B2); and c) a ﬂoor
+to the minimum wind velocity is enforced at 350 km s−1 (see Eq. 1
+and Figure 6). Overall, the new winds are faster, warmer, and have
+smaller mass loading at z = 0 for intermediate and massive galax-
+ies. In addition, for galaxies less massive than the Milky Way their
+relative efﬁciency is higher (Figures 6, 7).
+The effects of these scalings in the velocity and energy of the
+TNG winds are shown in Figure 9, focusing on the stellar content
+of galaxies (the corresponding parameter variations are described
+in Table B1): these test cases are designed to recover the Illustris
+wind parameterization, i.e. by choosing the parameter changes that
+are most in line with the Illustris model in the absence of each in-
+dividual scaling. Perturbations on the implementations of the TNG
+wind scaling are studied in Appendix B. In Figure 9, we also show
+the outcome of the ﬁducial TNG model except with the entire wind
+model returned to its parameterization in Illustris (“Illustris winds”,
+brown curve): this in practice corresponds to the case with all the
+TNG scalings studied in Figure 9 turned off.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+20
+Pillepich et al.
+0
+2
+4
+6
+8
+10
+redshift
+10-2
+10-1
+SFRD [ M sun  yr-1  Mpc-3]
+Behroozi et al. 2013 (comp)
+Oesch et al. 2015 (comp)
+ fiducial TNG
+ no Z-dependent wind energy
+ no z-dependent wind velocity
+ no wind vel floor
+ not isotropic winds
+ Illustris winds
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ fiducial TNG
+ no Z-dependent wind energy
+ no z-dependent wind velocity
+ no wind vel floor
+ not isotropic winds
+ Illustris winds
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 2 rstars,1/2 ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ fiducial TNG
+ no Z-dependent wind energy
+ no z-dependent wind velocity
+ no wind vel floor
+ not isotropic winds
+ Illustris winds
+ Illustris winds with SNII > 6 Msun
+Figure 9. Stellar content with the ﬁducial TNG model (black) and several
+variations, where we remove each of the new features of the galactic winds
+one at a time. These are: no metallicity scaling of wind energy (magenta),
+no redshift scaling of wind velocity (purple), no velocity ﬂoor (orange), and
+no changed/isotropic directionality (green). The brown curves are the TNG
+model where the galactic winds (only) are exactly as in Illustris. In all solid
+curves, the minimum mass for SNII remains larger, i.e. is set to the TNG
+ﬁducial value of 8 M⊙. For comparison, and only in the bottom panel, the
+dotted brown curve shows the same ‘Illustris winds’ variation but with the
+minimum SNII mass also reset to its Illustris value. Parameter choices for all
+the runs in this Figure are reported in Table B1. Symbols and annotations
+are as in Figure 4, but here stellar masses are measured within twice the
+stellar half-mass radius.
+We observe that: 1) the redshift-dependent velocity scaling
+(black vs purple curves) makes the TNG winds faster than Il-
+lustris at recent times, producing the different shape of the star
+formation rate density with redshift and resulting in less mas-
+sive galaxies at z = 0 in haloes of masses around 1011M⊙and
+above. In fact, the shape of the galaxy stellar mass function without
+the redshift-dependent velocity scaling interestingly resembles the
+early ﬁndings from the GIMIC simulation (Crain et al. 2009). 2)
+The metallicity-dependent wind mass loading (magenta vs black)
+and the minimum velocity ﬂoor (orange vs black), on the other
+hand, are responsible for the intended changes at the low-mass end
+of the galaxy population at the current epoch. They both lead to
+a higher relative efﬁciency of the wind feedback in low-mass sys-
+tems, by suppressing their star formation more in comparison to
+Milky Way-sized galaxies. This can be seen in the shape of the
+z = 0 galaxy stellar mass function before the knee, and in the
+steep rise of the TNG ﬁducial model of the stellar-to-halo mass
+relation towards the peak. 3) However, these two modiﬁcations to
+the original Illustris winds have starkly different consequences at
+high redshifts (see top panel), with their net impact on the global
+star formation at z ≳5 roughly counteracting each other. 4) The
+directionality of the winds at injection has weaker effects on the
+stellar content of galaxies, leading to a 10-20 per cent suppression
+of M⋆around the Milky Way-mass scale for directional winds with
+respect to the isotropic case. 7
+It is clear from Figure 9 that Illustris-like winds adopted within
+the TNG model (brown curves vs black) are not effective enough at
+suppressing star formation in galaxies, across the whole mass and
+redshift range. In particular, galaxies populating 1012M⊙haloes at
+z = 0 (bottom panel) are a factor 2-3 more massive in this case
+than with the full TNG (or Illustris) ﬁducial model. One possible
+culprit is the increase in the minimum mass for core-collapse super-
+novae. The parameterization of the TNG galactic winds has indeed
+been chosen to account for this change, in practice by making them
+faster rather than increasing their energy. However, Illustris-winds
+adopted within the TNG model with 6 rather than 8 M⊙for the
+minimum SNII mass still produce overly massive galaxies, partic-
+ularly at the peak of stellar efﬁciency and towards lower masses
+(dotted brown curve, bottom panel).
+It is difﬁcult to adopt the comparison between the Illustris and
+TNG galactic winds to indirectly compare the relative efﬁciency of
+the Illustris and TNG BH models with respect to the suppression
+of stellar mass growth. Firstly, the various galactic wind param-
+eterizations impact the BH growth differently (see Figures 8 and
+B1, top right panels) and hence affect indirectly the efﬁciency of
+the concurrent BH feedback. Secondly, the relative effectiveness of
+the two BH models depends sensitively on the physical parameters
+adopted for each. Keeping this in mind, we ﬁnd that the old Illus-
+tris BH model was more aggressive than the TNG implementation
+at suppressing star formation at intermediate masses (including at
+L⋆). In the ﬁducial conﬁgurations and with respect to the no black
+hole cases, Illustris BH feedback suppresses the stellar masses of
+1012M⊙haloes by about a factor 2.5 in comparison to about a fac-
+tor of 1.3-1.5 in the TNG model (from Figure 15 in Vogelsberger
+et al. 2013, accounting for resolution effects in comparison to Fig-
+ure 8 bottom right panel in this paper). The strength of galactic
+winds in this mass regime is correspondingly larger in TNG in or-
+7 Although we do not show it here, the TNG wind energy and velocity
+adjustments do impact the BH masses and halo gas fractions at ﬁxed halo
+masses; however, they do not not modify the stellar radii of galaxies.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+21
+der to counterbalance this change. Both Illustris and the TNG BH
+models impact the stellar mass of galaxies in haloes as small as
+1 −2 × 1011 M⊙. Simultaneously, the smallest halo mass above
+which the low-accretion rate feedback modiﬁes stellar mass is dif-
+ferent by about an order of magnitude between the two models:
+1011 M⊙in comparison to about 1012 M⊙in Illustris and TNG re-
+spectively, with the Illustris quasar mode barely having any effect.
+However, the differential impact between the two models clariﬁes
+that this halo mass scale is model dependent. Indeed, we could have
+shifted this transition point by appropriately redistributing the bur-
+den of stellar mass control between the low- and high-accretion rate
+BH feedback below the 1012M⊙scale or from the winds onto the
+black holes. It is clear, then, that the optimal choices for wind as
+well as black hole feedback strongly depend on the whole ensem-
+ble of galaxy formation mechanisms incorporated into the model.
+4
+SUMMARY AND DISCUSSION
+In this paper we have described the implementation and perfor-
+mance of the IllustrisTNG model (TNG, The Next Generation), an
+updated ensemble of numerical routines to form and evolve galax-
+ies in large scale gravo-magneto-hydrodynamical simulations with
+the moving mesh code AREPO. The TNG physics and general ap-
+proach derive from the galaxy formation model (Vogelsberger et al.
+2013; Torrey et al. 2014) that has been used to run the Illustris sim-
+ulation (Vogelsberger et al. 2014b,c; Genel et al. 2014; Sijacki et al.
+2015).
+Both models therefore include the numerical solution of the
+gravitational interactions among different resolution elements (gas,
+dark matter, stars, and black holes); the solution of the (mag-
+neto)hydrodynamical equations for the gaseous component; a treat-
+ment of the most important radiative cooling and heating processes;
+a mechanism for the conversion of gas into stars; stellar evolution
+and subsequent chemical enrichment of the interstellar, circum-
+galactic and intergalactic medium; outﬂows of gas from the star-
+forming regions of galaxies; and the formation, growth, and en-
+ergetic feedback of supermassive black holes in distinct low- and
+high-accretion rate states.
+In developing the TNG model we have pursued three simul-
+taneous goals: to bring together under a consistent framework the
+improvements implemented in AREPO to the accuracy and robust-
+ness of the underlying numerical methods; to introduce new, rich
+physics; and to address the key deﬁciencies of the previous model.
+The main numerical updates are summarized in Section 2.2
+and include an improved estimator for spatial gradients across gas
+cells, a more efﬁcient gravity solver and time integration scheme,
+and a more consistent advection of the passive scalars. Together,
+these changes give a more accurate and better convergent hydrody-
+namical scheme, and will allow us to pursue even more ambitious
+simulations in the future.
+The principal new physics in the TNG model are the inclu-
+sion of MHD (see Section 2.2.1 and references therein) and a dual-
+mode, thermal and kinetic black hole feedback model (see the com-
+panion paper by Weinberger et al. 2017). The new kinetic BH feed-
+back has been shown to alleviate some of the discrepancies iden-
+tiﬁed in Illustris in comparison to observations at the high end of
+the halo mass function (≳1012 −1014M⊙), in particular regulat-
+ing the stellar content of massive galaxies while preserving realistic
+halo gas fractions.
+In fact, in confronting the problems identiﬁed in Illustris (see
+Introduction), we aim to open new physical regimes which were
+impossible to robustly study in previous simulations. These include
+not only massive haloes emitting at X-ray wavelengths, but also the
+galaxies occupying the transitional green valley, and the properties
+of low-mass dwarfs, including cluster satellite populations. In this
+paper, we have focused on the intermediate and low mass end of the
+galaxy population (halo masses of a few 1010 −1013M⊙) and have
+presented an updated model for the galactic winds feedback, by
+modifying their directionality, thermal content, velocity and energy
+scalings (Section 2.3.2). We have also updated our reference yield
+tables (Table 2 and Figure 1) and adjusted some stellar evolution
+choices (Section 2.3.3).
+The TNG galactic winds (whose implementation and scalings
+largely follow those of Springel & Hernquist 2003; Oppenheimer
+& Dav´e 2006; Oppenheimer & Dav´e 2008; Vogelsberger et al.
+2013) are now launched isotropically from the star-forming regions
+of galaxies, bringing a simpliﬁcation to the modeling that by it-
+self does not signiﬁcantly affect galaxies, qualitatively (Figure 5)
+nor quantitatively (Figure 9). Simultaneously, we better capture the
+rich complexity of the physical mechanisms governing galactic out-
+ﬂows, allowing the wind energy to depend on the metallicity of the
+ambient gas (Figures 7 and B2; and Schaye et al. 2015). Finally,
+TNG winds are launched with a velocity that depends on the local
+velocity dispersion subject to a minimum ﬂoor (350 km s−1) and
+further modulated in redshift following the evolution of the halo
+virial mass (Figure 6).
+To calibrate the model and determine its free parameters, we
+have simulated a series of cosmological volumes, exploring a col-
+lection of variations in the physical and numerical schemes. In this
+paper we have given a sense of these explorations by showing per-
+turbations about the ﬁducial TNG model (Figures 8, 9, B1, B2, B3).
+To arrive at this ﬁnal parameterization, we have eventually retained
+the implementation and parameter set that simultaneously allevi-
+ated the largest number of examined tensions in comparison to
+the analogous galaxy population realized with the ﬁducial Illustris
+setup, while demonstrating an overall satisfactory agreement with
+benchmark observational constraints.8 The principal outcomes of
+the model on our (37 Mpc)3 test volume are given in Figure 4. A
+summary of the differences between the TNG and Illustris setups,
+both schematic and quantitative, is given in Table 1.
+As suggested by Figure 4, our comparison between the two
+models, as well as between TNG and key observational results, has
+focused on the integral properties of galaxies, particularly their stel-
+lar content at z = 0 (galaxy stellar mass function and stellar to
+halo mass relation), in addition to the star formation rate density
+versus time, the current BH mass to galaxy mass relation, the halo
+gas fraction within R500c, and the stellar half-mass radii (sizes) of
+galaxies. As a result of the new scalings and in combination with
+the functioning of the new BH feedback, TNG galactic winds are
+overall faster and more effective than Illustris winds at preventing
+star formation at all masses and times (see Figure 9 and related dis-
+cussion). Moreover, we have obtained a higher relative efﬁciency
+of wind feedback in low-mass systems, by suppressing their star
+formation more in comparison to Milky Way-sized galaxies. As
+a result, TNG galaxies exhibit a signiﬁcantly suppressed z = 0
+galaxy stellar mass function at the low mass end, while the “knee”
+remains unaltered. They also show a more pronounced peak in the
+present day stellar-to-halo mass relation, although the overall nor-
+8 The exploration of the TNG model undertaken here was carried out after
+the model was ﬁnalized, and is not meant as a documentation of the actual
+process undertaken to calibrate the model.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+22
+Pillepich et al.
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+100
+101
+102
+Galaxy Size [kpc] [ r1/2, stars ] [ all subhaloes ]
+Shen+ 2003 (SDSS Re, late)
+Shen+ 2003 (SDSS Re, early)
+Baldry+ 2012 (GAMA Re, red - circles)
+Baldry+ 2012 (GAMA Re, blue - diamonds)
+ fiducial TNG
+ fiducial Illustris
+ no B fields
+ no Z/z-dependent winds + no vel floor
+ not isotropic winds
+ Illustris winds
+Figure 10. Galaxy sizes (stellar half mass radii) as a function of stellar mass
+at z = 0. The ﬁducial TNG model (black) is compared to cases with: no
+MHD (blue), no metallicity or Hubble related wind scalings (orange), and
+no change to wind directionality, i.e. reverting to bipolar winds (green). We
+also include the ﬁducial TNG model, except with all wind-related aspects
+equal to Illustris (dark red), and the ﬁducial Illustris outcome itself (red).
+While no single change to the winds produces the observed dramatic de-
+crease in galaxy sizes, the new TNG wind model as a whole does.
+malization is lower. Simultaneously, the TNG model still appears
+to produce a reasonable mix of morphological types (shown qual-
+itatively in Figure 3), a reasonable trend of black hole mass with
+galaxy mass, and total halo gas fractions at the group scale in much
+better agreement with observations.
+Galaxy Sizes
+In Figure 4 we have also shown that galaxy sizes in the TNG model
+are about a factor of two smaller than in the ﬁducial Illustris model
+for galaxies with stellar mass below ∼1010M⊙. This puts them
+qualitatively at the right magnitude as compared to z = 0 obser-
+vations, improving upon the previous result. In Figure 8 we have
+further demonstrated that the sizes below this mass scale are es-
+sentially controlled by our galactic winds. We have not, however,
+provided an explanation for exactly which components of the new
+wind model are responsible for this improvement. Indeed, this turns
+out to arise only through a combination of several changes.
+In Figure 10 we show galaxy stellar half-mass radii as a func-
+tion of stellar mass, including several perturbations to the ﬁducial
+TNG model which have the largest impact. In particular, both the
+original Illustris model (red) and the full TNG model except with
+an ‘Illustris winds’ prescription (dark red) give consistent results:
+much larger sizes at low mass. None of our four principal mod-
+iﬁcations to the winds – directionality, velocity ﬂoor, metallicity-
+dependent energy, and Hubble-dependent velocity – succeed indi-
+vidually to affect this change (see also bottom right panel of Fig-
+ures B1). The last three of these changes, taken all together (orange
+line), lead to signiﬁcant improvement, although indeed this change
+is larger by far than the sum of their three individual effects. Alone,
+switching the wind directionality between isotropic and bipolar has
+negligible impact (green line). Yet, combining the directionality
+change with the three other adjustments just discussed (by deﬁni-
+tion, the dark red line) yields the entirety of our improvement in the
+size-mass relation at low masses. This rather puzzling result points
+towards a non-trivial coupling between at least three, and possibly
+all four, of our main changes to the wind model: we postpone a
+more detailed investigation to future work. For completeness, we
+also include the impact of excluding MHD on the sizes (blue line),
+which of all the perturbations explored in this paper is the only ad-
+ditional change to play any noticeable role here.
+The Impact of Magnetic Fields
+A remarkable addition to the TNG galaxy formation model is
+the self consistent ampliﬁcation and subsequent evolution of a
+primordially-seeded magnetic ﬁeld, which will open up many new
+astrophysical regimes and questions for scientiﬁc exploration. We
+have seen early hints that magnetic ﬁelds can indeed play an im-
+portant role in cosmological simulations of galaxy formation, to
+a sufﬁcient degree that excluding MHD may represent a serious
+model deﬁciency. For example, in Figure 8 we have demonstrated
+that magnetic ﬁelds have a non-negligible impact on larger halos,
+≳1012M⊙, suppressing their ﬁnal stellar content by z = 0 by
+up to 30-80 per cent. The inclusion of MHD also suppresses the
+cosmic SFRD at low redshifts (z ≲3), while increasing the gas
+content in haloes below 1012M⊙.
+In certain regimes, the impact of MHD can be as large as the
+differences between the ﬁducial Illustris and TNG models them-
+selves. This is likely driven by the fact, seen in Figure 8 (top right
+panel), that galaxies of all masses host more massive BHs in the
+presence of magnetic ﬁelds. The feedback associated with this ad-
+ditional accretion energy hampers star formation across cosmic
+time. Interestingly, the shift in the z = 0 BH to halo/galaxy mass
+relation extends across a large range of galaxy masses, i.e. also for
+haloes below ∼1012M⊙. This suggests a more general interaction
+between the magnetic ﬁelds and black holes, which we speculate
+arises from an enhancement of the gas accretion onto the BHs in
+the presence of a more highly pressurized interstellar medium. A
+targeted study is needed to properly understand such mechanism in
+the TNG model and to make a quantitative comparison to the ﬁnd-
+ings of Marinacci et al. (2015) and Pakmor et al. (2017) who have
+quantiﬁed the balance among magnetic, thermal and kinetic energy
+in the ISM and gaseous haloes of samples of galaxies simulated
+with the Illustris and Auriga (Grand et al. 2017) models, respec-
+tively.
+Open Issues and Future Directions
+By combining the results of this paper with those explored in the
+companion study, Weinberger et al. (2017), we have addressed ﬁve
+of the main six shortcomings of the Illustris model enumerated in
+the Introduction. These are all related to the overall baryon mass
+content of galaxies and their haloes. Although Figures 3 and 5
+have given a preview of the structural properties of galaxies formed
+within the TNG model, a quantitative assessment remains needed
+on sub-galaxy scales. This will enable us also to robustly answer the
+remaining failure of the previous model: an excess of star forming
+rings in fragmenting galactic disks. We note that, in initial assess-
+ment, the latter phenomenon is reduced in TNG.
+Additionally, while we have discussed the resolution conver-
+gence of both the ﬁducial Illustris and TNG models in Appendix
+B, the dependence of some model predictions on numerical res-
+olution remains a fundamental challenge of hydrodynamical cos-
+mological simulations for galaxy formation, and one still wanting
+for a satisfactory solution. Similarly, we caution against the over-
+interpretation of speciﬁc choices and parameter values adopted in
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+23
+our model. Care is required to connect any model parameter di-
+rectly to a particular physical value, either in observations or other
+theoretical models. As in all such simulations, model parameters
+cannot be separated from the particular details of their numeri-
+cal implementation. By construction, they have also been deﬁned
+within the scope of, and only in relation with the other components
+of, a multi-scale effective theory for galaxy formation, which com-
+bines a diverse set of physics. As a concrete example, we have con-
+sidered in some detail the properties of TNG galactic winds at in-
+jection. These are the direct consequences of the model inputs con-
+volved with the cosmological context. However, these initial wind
+properties will differ from the phenomenology of galactic outﬂows
+measured at several kilo-parsec or larger scales away from galaxy
+centers. Similarly, several unexpected aspects of the simulations
+still need to be understood in detail. These include the impact of
+MHD on the evolution of massive galaxies and their surrounding
+gaseous haloes; the emergence of less extended galaxies and their
+size evolution across redshifts; and ﬁnally and rather crucially, the
+effects of the modiﬁcations introduced with the TNG model to the
+stellar and gas metallicities and elemental compositions of galax-
+ies.
+The demonstration of the improvements of the TNG model
+discussed in this paper constitute only a preliminary analysis. Much
+larger simulated volumes are necessary for an adequate assessment.
+These will give us robust statistical power to quantify trends in the
+galaxy population as a whole, as well as the ability to make state-
+ments about the rarest and/or most massive objects in the Universe.
+Moving beyond ‘average’ galaxy populations, we can then start
+to understand the physical origin of galaxy-to-galaxy variations,
+and so the mechanisms behind different evolutionary pathways and
+their culmination in the observed galaxy diversity of today. At the
+same time, more sophisticated analyses of the simulated galaxies
+are required. Only then can we rigorously assess the validity of the
+TNG model in comparison to observational data, while also hav-
+ing conﬁdence as we leverage the model in astrophysical regimes
+over which it has never been directly calibrated, or indeed even
+ever run at all. To this end a new series of large volume cosmologi-
+cal simulations, the “IllustrisTNG project”, will be undertaken and
+introduced in future publications.
+As a concluding remark, we show in Figure 11 the gas distri-
+bution and its properties on the large scales of the entire box used
+for all the tests herein. Each row shows a different model variation:
+ﬁducial TNG, ﬁducial Illustris, TNG without MHD, TNG without
+galactic winds, and TNG without BHs. While our galaxy forma-
+tion models have always been tested and calibrated by focusing on
+the integral stellar properties of galaxies, no constraint whatsoever
+has been applied to the distribution of the cosmic gas. On the one
+hand, we have already demonstrated that the fraction of total gas
+mass retained within haloes can strongly discriminate among mod-
+els: this is certainly the case for group and cluster size haloes, but
+even more so for haloes of 1012M⊙and below. Figure 11 further
+provides a sense of how much the topology, thermodynamic, and
+chemical enrichment of Mpc-scale gas and beyond depend on the
+entire underlying galaxy formation model. The differences between
+the TNG and Illustris models can be as dramatic, if not more so,
+than the differences between the ﬁducial model and the cases when
+either galactic winds or black holes are entirely excluded. The gas
+maps in Figure 11, justaxposed against the quantitative evaluation
+of the galaxy properties in Figure 8, provide a visual demonstration
+of the multi-scale, multi-physics nature of the problems we have
+been tackling in this paper: they encapsulate the rationale for ever
+more comprehensive, self consistent theories for galaxy physics in
+the full cosmological context.
+ACKNOWLEDGEMENTS
+AP thanks Jan Rybizki and Enrico Ramirez-Ruiz for useful conver-
+sations on the yield tables and chemical enrichment. The Flatiron
+Institute is supported by the Simons Foundation. VS, RW, and RP
+acknowledge support through the European Research Council un-
+der ERC-StG grant EXAGAL-308037 and would like to thank the
+Klaus Tschira Foundation. MV acknowledges support through an
+MIT RSC award and the support of the Alfred P. Sloan Founda-
+tion. Simulations were run on the Hydra and Draco supercomput-
+ers at the Max Planck Computing and Data Facility (MPCDF, for-
+merly known as RZG) in Garching near Munich and on the Hazel-
+Hen Cray XC40-system at the High Performance Computing Cen-
+ter Stuttgart as part of project GCS-ILLU of the Gauss Centre for
+Supercomputing (GCS).
+References
+Abazajian K. et al., 2003, AJ, 126, 2081
+Agertz O., Kravtsov A. V., 2016, ApJ, 824, 79
+Bagla J. S., 2002, Journal of Astrophysics and Astronomy, 23, 185
+Baldry I. K. et al., 2012, MNRAS, 421, 621
+Baldry I. K., Glazebrook K., Driver S. P., 2008, MNRAS, 388,
+945
+Barnes J., Hut P., 1986, Nature (ISSN 0028-0836), 324, 446
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770, 57
+Benson A. J., 2012, New Astronomy, 17, 175
+Bernardi M., Meert A., Sheth R. K., Vikram V., Huertas-Company
+M., Mei S., Shankar F., 2013, MNRAS, 436, 697
+Bird S., Vogelsberger M., Haehnelt M., Sijacki D., Genel S., Tor-
+rey P., Springel V., Hernquist L., 2014, MNRAS, 445, 2313
+Bode P., Ostriker J. P., Xu G., 2000, ApJS, 128, 561
+Bottrell C., Torrey P., Simard L., Ellison S. L., 2017a, MNRAS,
+467, 1033
+Bottrell C., Torrey P., Simard L., Ellison S. L., 2017b, MNRAS,
+467, 2879
+Bower R. G., Schaye J., Frenk C. S., Theuns T., Schaller M., Crain
+R. A., McAlpine S., 2017, MNRAS, 465, 32
+Camps P., Trayford J. W., Baes M., Theuns T., Schaller M.,
+Schaye J., 2016, MNRAS, 462, 1057
+Chabrier G., 2003, The Publications of the Astronomical Society
+of the Paciﬁc, 115, 763
+Choi E., Naab T., Ostriker J. P., Johansson P. H., Moster B. P.,
+2014, MNRAS, 442, 440
+Choi E., Ostriker J. P., Naab T., Johansson P. H., 2012, ApJ, 754,
+125
+Choi E., Ostriker J. P., Naab T., Oser L., Moster B. P., 2015, MN-
+RAS, 449, 4105
+Christensen C. R., Dav´e R., Governato F., Pontzen A., Brooks A.,
+Munshi F., Quinn T., Wadsley J., 2016, ApJ, 824, 57
+Colless M., 1999, Roy Soc of London Phil Tr A, 357, 105
+Crain R. A. et al., 2015, MNRAS, 450, 1937
+Crain R. A. et al., 2009, MNRAS, 399, 1773
+Croton D. J. et al., 2006, MNRAS, 365, 11
+Croton D. J. et al., 2016, ApJS, 222, 22
+Dav´e R., Thompson R., Hopkins P. F., 2016, MNRAS, 462, 3265
+Di Matteo T., Springel V., Hernquist L., 2005, Nature, 433, 604
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+24
+Pillepich et al.
+Figure 11. Projections of gas properties (column density, mass-weighted temperature, mass-weighted metallicity, and neutral hydrogen column density) on
+the large scales of the full 25 Mpc h−1 box. We show different choices of the galaxy formation model, one per row, from top to bottom: the TNG ﬁducial
+model, the Illustris ﬁducial model, the TNG model without magnetic ﬁelds, the TNG model without BHs and their feedback, and the TNG model without
+galactic winds. These correspond to the ﬁve variations shown quantitatively in Figure 8. Colour scales are kept ﬁxed across rows, so that a direct comparison
+is possible.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+25
+Doherty C. L., Gil-Pons P., Lau H. H. B., Lattanzio J. C., Siess L.,
+Campbell S. W., 2014, MNRAS, 441, 582
+Dolag K., Borgani S., Murante G., Springel V., 2009, MNRAS,
+399, 497
+Dolag K., Stasyszyn F., 2009, MNRAS, 398, 1678
+D’Souza R., Vegetti S., Kauffmann G., 2015, MNRAS, 454, 4027
+Dubois Y., Devriendt J., Slyz A., Teyssier R., 2012, MNRAS, 420,
+2662
+Dubois Y. et al., 2014, MNRAS, 444, 1453
+Dubois Y., Teyssier R., 2010, A&A, 523, A72
+Faucher-Gigu`ere C.-A., Lidz A., Zaldarriaga M., Hernquist L.,
+2009, ApJ, 703, 1416
+Federrath C., Sur S., Schleicher D. R. G., Banerjee R., Klessen
+R. S., 2011, ApJ, 731, 62
+Ferrarese L. et al., 2012, ApJS, 200, 4
+Fishlock C. K., Karakas A. I., Lugaro M., Yong D., 2014, ApJ,
+797, 44
+Fryxell B. A., M¨uller E., Arnett W. D., 1989, Hydrodynamics and
+nuclear burning. MPA Green Report 449, Max-Planck-Institut
+f¨ur Astrophysik, Garching
+Genel S., Vogelsberger M., Nelson D., Sijacki D., Springel V.,
+Hernquist L., 2013, MNRAS, 435, 1426
+Genel S. et al., 2014, MNRAS, 445, 175
+Giodini S. et al., 2009, ApJ, 703, 982
+Grand R. J. J. et al., 2017, MNRAS, 467, stx071
+Guedes J., Callegari S., Madau P., Mayer L., 2011, ApJ, 742, 76
+Henriques B., White S., Thomas P., Angulo R., Guo Q., Lemson
+G., Springel V., Overzier R., 2015, MNRAS, 451, 2663
+Henriques B. M. B., White S. D. M., Thomas P. A., Angulo R. E.,
+Guo Q., Lemson G., Springel V., 2013, MNRAS, 431, 3373
+Hernquist L., Katz N., 1989, Astrophysical Journal Supplement
+Series (ISSN 0067-0049), 70, 419
+Heyer M., Dame T. M., 2015, ARA&A, 53, 583
+Hinshaw G. et al., 2013, ApJS, 208, 19
+Hopkins P. F., Kereˇs D., O˜norbe J., Faucher-Gigu`ere C.-A.,
+Quataert E., Murray N., Bullock J. S., 2014, MNRAS, 445, 581
+Hopkins P. F., Quataert E., Murray N., 2011, MNRAS, 417, 950
+Hopkins P. F., Raives M. J., 2016, MNRAS, 455, 51
+Ibeling D., Heger A., 2013, ApJ, 765, 43
+Jennings Z. G., Williams B. F., Murphy J. W., Dalcanton J. J.,
+Gilbert K. M., Dolphin A. E., Weisz D. R., Fouesneau M., 2014,
+ApJ, 795, 170
+Kalogera V., Narayan R., Spergel D. N., Taylor J. H., 2001, ApJ,
+556, 340
+Karakas A. I., 2010, MNRAS, 403, 1413
+Kartaltepe J. S. et al., 2015, ApJS, 221, 11
+Katz N., Hernquist L., Weinberg D. H., 1992, Astrophysical Jour-
+nal, 399, L109
+Kauffmann G., White S. D. M., Guiderdoni B., 1993, MNRAS,
+264, 201
+Kelvin L. S. et al., 2012, MNRAS, 421, 1007
+Kennicutt R. C., Evans N. J., 2012, ARA&A, 50, 531
+Khandai N., Di Matteo T., Croft R., Wilkins S., Feng Y., Tucker
+E., DeGraf C., Liu M.-S., 2015, MNRAS, 450, 1349
+Kim J.-h. et al., 2014, ApJS, 210, 14
+King A., Pounds K., 2015, ARA&A, 53, 115
+Kobayashi C., Umeda H., Nomoto K., Tominaga N., Ohkubo T.,
+2006, ApJ, 653, 1145
+Kormendy J., Ho L. C., 2013, ARA&A, 51, 511
+Kuhlen M., Vogelsberger M., Angulo R., 2012, Physics of the
+Dark Universe, 1, 50
+Lacey C. G. et al., 2016, MNRAS, 462, 3854
+Lewis A., Challinor A., Lasenby A., 2000, ApJ, 538, 473
+Lintott C. J. et al., 2008, MNRAS, 389, 1179
+Lovisari L., Reiprich T. H., Schellenberger G., 2015, A&A, 573,
+A118
+Maoz D., Mannucci F., Brandt T. D., 2012, MNRAS, 426, 3282
+Marinacci F., Pakmor R., Springel V., 2014, MNRAS, 437, 1750
+Marinacci F., Pakmor R., Springel V., Simpson C. M., 2014, MN-
+RAS, 442, 3745
+Marinacci F., Vogelsberger M., Mocz P., Pakmor R., 2015, MN-
+RAS, 453, 3999
+Martizzi D., Faucher-Gigu`ere C.-A., Quataert E., 2015, MNRAS,
+450, 504
+Massey R. et al., 2007, ApJS, 172, 239
+McConnell N. J., Ma C.-P., 2013, ApJ, 764, 184
+McKee C. F., Ostriker E. C., 2007, ARA&A, 45, 565
+Miyoshi T., Kusano K., 2005, Journal of Computational Physics,
+208, 315
+Mo H. J., Mao S., White S. D. M., 1998, MNRAS, 295, 319
+Mocz P., Pakmor R., Springel V., Vogelsberger M., Marinacci F.,
+Hernquist L., 2016, MNRAS, 463, 477
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS, 428, 3121
+Muratov A. L., Kereˇs D., Faucher-Gigu`ere C.-A., Hopkins P. F.,
+Quataert E., Murray N., 2015, MNRAS, 454, 2691
+Murray N., Quataert E., Thompson T. A., 2010, ApJ, 709, 191
+Naab T., Ostriker J. P., 2016, arXiv.org, arXiv:1612.06891
+Naiman J. P. et al., 2017, ArXiv e-prints
+Nelson D. et al., 2015, Astronomy and Computing, 13, 12
+Nomoto K., Iwamoto K., Nakasato N., Thielemann F. K., Brach-
+witz F., Tsujimoto T., Kubo Y., Kishimoto N., 1997, Nuclear
+Physics A, 621, 467
+Nomoto K., Kobayashi C., Tominaga N., 2013, ARA&A, 51, 457
+Oesch P. A., Bouwens R. J., Illingworth G. D., Franx M., Ammons
+S. M., van Dokkum P. G., Trenti M., Labbe I., 2015, ApJ, 808,
+104
+Oppenheimer B. D., Dav´e R., 2006, MNRAS, 373, 1265
+Oppenheimer B. D., Dav´e R., 2008, MNRAS, 387, 577
+Ostriker E. C., 2009, ”The Evolving ISM in the Milky Way and
+Nearby Galaxies
+Ostriker J. P., Peebles P. J. E., 1973, Astrophysical Journal, 186,
+467
+Overzier R., Lemson G., Angulo R. E., Bertin E., Blaizot J., Hen-
+riques B. M. B., Marleau G. D., White S. D. M., 2013, MNRAS,
+428, 778
+Pakmor R., Bauer A., Springel V., 2011, MNRAS, 418, 1392
+Pakmor R. et al., 2017, arXiv.org, arXiv:1701.07028
+Pakmor R., Marinacci F., Springel V., 2014, ApJ Letters, 783, L20
+Pakmor R., Springel V., 2013, MNRAS, 432, 176
+Pakmor R., Springel V., Bauer A., Mocz P., Munoz D. J., Ohlmann
+S. T., Schaal K., Zhu C., 2016, MNRAS, 455, 1134
+Pelupessy F. I., J¨anes J., Portegies Zwart S., 2012, New Astron-
+omy, 17, 711
+Piran T., 1992, ApJ Letters, 389, L45
+Planck Collaboration, 2016, A&A, 594, A19
+Portinari L., Chiosi C., Bressan A., 1998, A&A, 334, 505
+Putman M. E., Peek J. E. G., Joung M. R., 2012, ARA&A, 50,
+491
+Sales L. V., Marinacci F., Springel V., Petkova M., 2014, MNRAS,
+439, 2990
+Sales L. V. et al., 2015, MNRAS: Letters, 447, L6
+Santos-Lima R., Lazarian A., de Gouveia Dal Pino E. M., Cho J.,
+2010, ApJ, 714, 442
+Schaal K., Springel V., 2015, MNRAS, 446, 3992
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+26
+Pillepich et al.
+Schaal K. et al., 2016, MNRAS, 461, 4441
+Schaller M. et al., 2015, MNRAS, 451, 1247
+Schaye J. et al., 2015, MNRAS, 446, 521
+Schober J., Schleicher D., Federrath C., Glover S., Klessen R. S.,
+Banerjee R., 2012, ApJ, 754, 99
+Schroetter I. et al., 2016, ApJ, 833, 39
+Shen S., Cooke R. J., Ramirez-Ruiz E., Madau P., Mayer L.,
+Guedes J., 2015, ApJ, 807, 115
+Shen S., Mo H. J., White S. D. M., Blanton M. R., Kauffmann G.,
+Voges W., Brinkmann J., Csabai I., 2003, Monthly Notice of the
+Royal Astronomical Society, 343, 978
+Shu F. H., 1983, ApJ, 273, 202
+Sijacki D., Springel V., Di Matteo T., Hernquist L., 2007, MN-
+RAS, 380, 877
+Sijacki D., Vogelsberger M., Genel S., Springel V., Torrey P., Sny-
+der G. F., Nelson D., Hernquist L., 2015, MNRAS, 452, 575
+Skillman S. W., Warren M. S., Turk M. J., Wechsler R. H., Holz
+D. E., Sutter P. M., 2014, ArXiv e-prints
+Smartt S. J., 2009, ARA&A, 47, 63
+Smith B., Sigurdsson S., Abel T., 2008, MNRAS, 385, 1443
+Smith N., 2014, ARA&A, 52, 487
+Smoot G. F. et al., 1991, Infrared and radio astronomy, 11, 193
+Snyder G. F. et al., 2015, MNRAS, 454, 1886
+Somerville R. S., Dav´e R., 2015, ARA&A, 53, 51
+Springel V., 2010, MNRAS, 401, 791
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS, 361, 776
+Springel V., Hernquist L., 2003, Monthly Notice of the Royal As-
+tronomical Society, 339, 289
+Springel V. et al., 2005, Nature, 435, 629
+Springel V., White S. D. M., Tormen G., Kauffmann G., 2001,
+MNRAS, 328, 726
+Stinson G. S., Brook C., Macci`o A. V., Wadsley J., Quinn T. R.,
+Couchman H. M. P., 2013, MNRAS, 428, 129
+Suresh J., Bird S., Vogelsberger M., Genel S., Torrey P., Sijacki
+D., Springel V., Hernquist L., 2015, MNRAS, 448, 895
+The Planck Collaboration, 2016, A&A, 594, A13
+Thielemann F. K. et al., 2003, Nuclear Physics A, 718, 139
+Torrey P. et al., 2015, MNRAS, 447, 2753
+Torrey P., Vogelsberger M., Genel S., Sijacki D., Springel V.,
+Hernquist L., 2014, MNRAS, 438, 1985
+Travaglio C., Hillebrandt W., Reinecke M., Thielemann F. K.,
+2004, A&A, 425, 1029
+van Leer B., 1977, J. Comput. Phys., 23, 276
+Veilleux S., Cecil G., Bland-Hawthorn J., 2005, ARAA, 43, 769
+Vogelsberger M., Genel S., Sijacki D., Torrey P., Springel V.,
+Hernquist L., 2013, MNRAS, 436, 3031
+Vogelsberger M., Genel S., Sijacki D., Torrey P., Springel V.,
+Hernquist L., 2014a, MNRAS, 438, 3607
+Vogelsberger M. et al., 2014b, Nature, 509, 177
+Vogelsberger M. et al., 2014c, MNRAS, 444, 1518
+Volonteri M., Dubois Y., Pichon C., Devriendt J., 2016, MNRAS,
+460, 2979
+Wang L., Dutton A. A., Stinson G. S., Maccio A. V., Penzo C.,
+Kang X., Keller B. W., Wadsley J., 2015, MNRAS, 454, 83
+Weinberger R. et al., 2017, MNRAS, 465, 3291
+Wetzel A. R., Hopkins P. F., Kim J.-h., Faucher-Gigu`ere C.-A.,
+Kereˇs D., Quataert E., 2016, ApJ Letters, 827, L23
+White S. D. M., Rees M. J., 1978, MNRAS, 183, 341
+Wiersma R. P. C., Schaye J., Smith B. D., 2009, MNRAS, 393, 99
+Wiersma R. P. C., Schaye J., Theuns T., Dalla Vecchia C., Torna-
+tore L., 2009, MNRAS, 399, 574
+Woosley S. E., Heger A., 2015, ApJ, 810, 34
+Xu G., 1995, Astrophysical Journal Supplement v.98, 98, 355
+Yuan F., Narayan R., 2014, ARA&A, 52, 529
+Zahid H. J., Torrey P., Vogelsberger M., Hernquist L., Kewley L.,
+Dav´e R., 2014, Astrophysics and Space Science, 349, 873
+ZuHone J. A., Kowalik K., 2016, arXiv.org, arXiv:1609.04121
+APPENDIX A: RESOLUTION DEPENDENCE IN TNG
+Throughout this paper we have exclusively shown results from
+our ﬁducial L25n512 volume (Illustris-1 equivalent resolution, i.e.
+within a factor of 2 in particle mass resolution), whereas here we
+consider the effects of changing resolution. To do so we run real-
+izations with 8 and 64 times lower mass resolution, corresponding
+to factors of 2 and 4 larger gravitational softening lengths. The nu-
+merical parameters of this resolution series are given in Table A1.
+The physical properties of the gas component, which in the simula-
+tion are Voronoi cells of various masses and sizes, are provided in
+Figure A1. We emphasize that gas cell masses (i.e. the mass reso-
+lution of a simulation) and gas cell sizes (i.e. the spatial resolution
+of a simulation) both form continuous distributions, not necessarily
+well described by a single number. The gravitational softening of
+the gas cells is adaptive, cascading down to very small values in
+high density environments, which we truncate by imposing a ﬂoor
+at a minimum softening value denoted in the table as ϵmin
+gas . The gas
+cell masses also form a distribution peaked about their mean value
+and allowed to vary by a factor of two in either direction.
+Using this resolution series, in Figure A2 we explore the con-
+vergence properties of our model (blue lines), giving also a direct
+comparison to the convergence behavior of the previous Illustris
+model (red lines). We see that higher resolution results in larger
+galaxy stellar masses at ﬁxed halo mass – the normalization of the
+stellar mass function increases correspondingly, as does the over-
+all cosmic SFRD. Many of the other galaxy population statistics
+exhibit a similar qualitative trend, i.e. monotonically larger values
+with increasing numerical resolution. These include: BH masses for
+galaxy stellar masses ≲1010M⊙, and galaxy stellar and gas metal-
+licity at ﬁxed galaxy stellar mass (not shown). On the other hand,
+the halo gas fraction as a function of halo mass is stable against
+resolution change at essentially all accessible halo masses. Galaxy
+sizes exhibit an inverse trend at ﬁxed stellar mass: at progressively
+better spatial and mass resolution galaxies are less extended, and
+we can demonstrate (although we do not show here) that what sets
+galaxy sizes is not simply the imposition of a numerical ﬂoor due
+the smaller gravitational softening lengths chosen for the differ-
+ent matter species. Stellar masses at z = 0 are consistent between
+L25n256 and L25n512 in haloes with total mass ≳2 × 1012 M⊙,
+i.e. haloes with at least 50,000 resolution elements. The rate at
+which our method converges, and the regimes in which it is con-
+verged at a given resolution, depends on both the observable and
+on the mass scale.
+The dominant effects of resolution can be understood by ref-
+erence to the implementation of star formation and the treatment of
+star-forming gas in our model. We use an effective characterization
+of the inter-stellar medium whereby stars form stochastically on a
+given time scale (tsfr) from gas cells that exceed a given density
+threshold (nsfr, see Springel & Hernquist 2003 and Vogelsberger
+et al. 2013 for details). The SF parameters are ﬁxed across resolu-
+tions, with ρsfr ≃0.1 neutral hydrogen atoms per cubic cm, and
+tsfr = 2.2 Gyr. However, progressively better spatial resolution
+leads to the sampling of ever higher gas density regions, allowing
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+27
+105
+106
+107
+108
+109
+Masses [Msun]
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+fraction of resolution elements
+GasCells
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+10-2
+10-1
+100
+101
+102
+103
+Sizes [kpc]
+100
+102
+104
+106
+108
+# resolution elements
+density > 106 Msun/kpc3
+GasCells
+L25n512 fiducial TNG: min grav softening
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+Figure A1. Effective resolution of the gas cells in the simulations adopted in this work. Left: distribution of the z = 0 mass per gas cell, across the
+simulated volume, for three different resolutions. Gas cells are reﬁned/de-reﬁned such that the mass of the cells is kept within a factor of 2 of a speciﬁed
+target mass mtarget. This is in practice simply the mean baryon mass in the initial conditions. For example, in L25n512, mtarget = 2.4 × 106M⊙. Right:
+z = 0 distribution of gas cell radii (sizes), derived from the Voronoi cell volumes assuming each is a sphere. For the L25n512 resolution only, a dotted blue
+distribution depicts the sizes of gas cells in high density environments ( > 106 M⊙kpc−3 ∼0.1cm−3, about our star-formation density threshold). For
+reference, a vertical dotted line denotes the minimum gravitational softening length imposed to the gas cells at L25n512 resolution.
+mDM
+¯mstars
+ϵcom,z>1
+DM,stars
+ϵz⩽1
+DM,stars
+ϵmin
+gas
+[M⊙]
+[M⊙]
+[kpc]
+[kpc]
+[kpc]
+L25n512
+1.2 × 107
+1.6 × 106
+1.48
+0.74
+0.18
+L25n256
+9.9 × 107
+1.3 × 107
+2.95
+1.48
+0.37
+L25n128
+7.9 × 108
+1.1 × 108
+5.90
+2.95
+0.74
+Illustris-1
+6.3 × 106
+8.3 × 105
+1.42
+0.71
+0.71
+Illustris-2
+5.0 × 107
+7.2 × 106
+2.84
+1.42
+1.42
+Illustris-3
+4.0 × 108
+6.0 × 107
+5.68
+2.84
+2.84
+Table A1. Numerical characteristics and resolution parameters of the cosmological simulations adopted in this work. All volumes have the same box size,
+25 Mpc h−1 ∼37 Mpc, and share the same initial random realization of the density ﬁeld. Unless otherwise stated, we always show results from L25n512
+conﬁgurations, which have a resolution similar to Illustris-1 (within a factor of 2 in mass resolution). DM particles have all the same mass at ﬁxed resolution,
+while all other baryonic components exhibit a distribution in particle or cell mass: ¯mstars denotes the median stellar particle mass today. Plummer-equivalent
+gravitational softening lengths are denoted by ϵ. In TNG, the gravitational softenings for all particle types are comoving kpc (with value equal to that of the
+DM) down to z = 1, after which they are ﬁxed in physical space to their z = 1 values (in Illustris, this treatment is not applied to the DM particles, such that
+at z = 0, the DM particles have double the softening length as the reported values for the stars). For comparison, the three lower rows give the same values
+for the Illustris simulation series, performed in a volume of ≃100 Mpc on a side and with WMAP9 cosmology (www.illustris-project.org).
+more gas mass to become eligible for star formation and to be re-
+solved at higher densities, accelerating the rate at which it is turned
+into stars. This is an inevitable result of cosmological collapse and
+galaxy formation.
+Since galactic winds are tied directly to the SFR, feedback in-
+creases correspondingly and naturally balances part of the resolu-
+tion effects of star formation. Residual resolution trends can how-
+ever only be avoided at much better spatial and mass resolutions
+than the ones typically achievable in full cosmological volumes,
+and only in those cases when all the involved feedback mechanisms
+are numerially converged. In fact, the self-regulation between star
+formation and stellar feedback can be compromised by any reso-
+lution dependence of the feedback mechanism itself. The interac-
+tion of galactic winds with ambient halo gas and the emergence of
+galactic fountain ﬂows is a prime example of how the actual way
+in which a physical feedback mechanism functions, or not, may
+depend sensitively on numerical resolution.
+Our approach is such that the galaxy formation physics
+choices and parameters are not changed as a function of mass and
+spatial resolution; details of our numerical choices related to res-
+olution scalings were given in Section 2.2.5. This approach could
+be described as “imposing strong resolution convergence” in the
+discussion of Schaye et al. (2015), and we prefer it to the alter-
+native “weak resolution convergence” where parameters are inten-
+tionally re-scaled as a function of numerical resolution in an at-
+tempt to obtain less variable results. We prefer the ﬁrst approach
+for the following reasons: 1) it allows an in principle arbitrary re-
+duction of numerical truncation errors in the model predictions and
+thus a separation of the numerical and physical limitations of the
+modelling; 2) it simpliﬁes the model tuning procedure; and 3) our
+approach has been shown to provide strongly converged results at
+sufﬁciently high resolution (see, e.g. Marinacci, Pakmor & Springel
+2014; Grand et al. 2017). While the latter is not yet reached at the
+resolutions studied in this paper, we are conﬁdent that this can be
+achieved with the present incarnation of our methodology as well.
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+28
+Pillepich et al.
+0
+2
+4
+6
+8
+10
+redshift
+10-2
+10-1
+SFRD [ M sun  yr-1  Mpc-3]
+Behroozi et al. 2013 (comp)
+Oesch et al. 2015 (comp)
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+106
+107
+108
+109
+Black-Hole Mass [Msun] [ all subhaloes ]
+McConnell & Ma 2013 (comp)
+McConnell & Ma 2013 (fit MBH - Mbulge)
+Kormendy & Ho 2013 (fit MBH - Mbulge)
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 30 kpc ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+1011
+1012
+1013
+Total Halo Mass [ < r500c ] [ Msun ]
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+Gas Fraction [< r500c]
+Giodini et al. 2009
+Lovisari et al. 2015
++b / +m
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 30 kpc ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+100
+101
+102
+Galaxy Size [kpc] [ r1/2, stars ] [ all subhaloes ]
+Shen et al. 2003 (SDSS Re, late)
+Shen et al. 2003 (SDSS Re, early)
+Baldry et al. 2012 (GAMA Re, red - circles)
+Baldry et al. 2012 (GAMA Re, blue - diamonds)
+ L25n128 fiducial TNG
+ L25n256 fiducial TNG
+ L25n512 fiducial TNG
+ L25n128 fiducial Illustris
+ L25n256 fiducial Illustris
+ L25n512 fiducial Illustris
+Figure A2. Resolution dependence of the TNG and Illustris models in their ﬁducial implementations. The numerical characteristics of the L25n128, L25n256,
+and L25n512 boxes are listed in Table A1. Solid curves denote running medians (but for the cosmic star-formation rate density as a function of cosmic times -
+top left panel). Individual galaxies are shown as data points only for the high-resolution run L25n512 in the TNG ﬁducial model. Gray shaded area represent
+observational data, for reference.
+APPENDIX B: ADDITIONAL DETAILS ON THE
+GALACTIC WIND CHANGES
+In the main text we have focused on the dependencies of the galaxy
+population properties with respect to the inclusion, or not, of var-
+ious model components (‘on’/‘off’ choices). Here we instead ex-
+amine the dependence of the galaxy population properties on the
+speciﬁc values of the most important physical parameters. Each of
+the test runs is listed in Table B1, and in every case we evolve the
+usual L25n512 box to z = 0.
+Figure B1 demonstrates an aspect of the model we have
+already alluded to: that by increasing either the wind energy
+(“stronger winds”) or wind velocity (“faster winds”), star forma-
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+29
+0
+2
+4
+6
+8
+10
+redshift
+10-2
+10-1
+SFRD [ M sun  yr-1  Mpc-3]
+Behroozi et al. 2013 (comp)
+Oesch et al. 2015 (comp)
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+106
+107
+108
+109
+Black-Hole Mass [Msun] [ all subhaloes ]
+McConnell & Ma 2013 (comp)
+McConnell & Ma 2013 (fit MBH - Mbulge)
+Kormendy & Ho 2013 (fit MBH - Mbulge)
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+1011
+1012
+1013
+Total Halo Mass [ < r500c ] [ Msun ]
+0
+0.02
+0.04
+0.06
+0.08
+0.1
+0.12
+0.14
+0.16
+0.18
+0.2
+Gas Fraction [< r500c]
+Giodini et al. 2009
+Lovisari et al. 2015
++b / +m
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 2 rstars,1/2 ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ]
+100
+101
+102
+Galaxy Size [kpc] [ r1/2, stars ] [ all subhaloes ]
+Shen et al. 2003 (SDSS Re, late)
+Shen et al. 2003 (SDSS Re, early)
+Baldry et al. 2012 (GAMA Re, red - circles)
+Baldry et al. 2012 (GAMA Re, blue - diamonds)
+ fiducial TNG
+ stronger winds (x2)
+ faster winds (x2)
+ faster winds (fiducial loading)
+ warmer winds
+ cold winds
+ no wind vel floor
+Figure B1. The galaxy population at L25n512 resolution for different choices in the TNG wind implementation. Different curves show the outcome of the
+TNG model for alternative values of model parameters, according to Table B1. The “ﬁducial TNG” and the “no wind vel ﬂoor” curves are the same as in
+Figure 9, while we also include the impact of either stronger or faster winds, as well as warm versus cold winds.
+tion is efﬁciently reduced across all masses and redshifts (all three
+left panels). In fact, injecting faster winds is more effective at pre-
+venting SF than injecting more wind mass. Because ηw ∝1/v2
+w, an
+increase by a factor of two in the velocity corresponds to a reduc-
+tion by a factor of four in the mass loading (“faster winds” of Fig-
+ure B1, green curves). Despite that, faster winds still produce less
+massive galaxies in haloes larger than ∼1012M⊙than winds with
+a factor of two larger mass loadings. In comparison, winds a factor
+of 2 faster than ﬁducial, but where the wind effective mass load-
+ing is kept to the ﬁducial value by raising the wind energy factor
+(“faster winds (ﬁducial loading)” of Figure B1, light green curves)
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+30
+Pillepich et al.
+Run Name
+Parameter(s) of Interest
+Fiducial Value
+Variation Value
+ﬁducial TNG
+all
+see Table 1 (right column)
+-
+ﬁducial Illustris
+all
+see Table 1 (left column)
+-
+no BHs/feedback
+all black hole-related
+see Table 1 (second section)
+-
+no galactic winds
+all wind-related
+see Table 1 (third section)
+-
+no B ﬁelds
+seed B ﬁeld strength
+1.6 × 10−10 Gauss at z = 127
+0 Gauss
+no Z-dependent wind energy
+ew , fZ,w
+3.6, 0.25
+0.9, 0.0
+no z-dependent wind velocity
+no H(z) dependence in Eq. (1), kw
+7.4
+3.7
+no wind vel ﬂoor
+wind velocity ﬂoor: vw,min
+350 km s−1
+0 km s−1
+no Z/z-dependent winds + no vel ﬂoor
+all three previous modiﬁcations together
+(see above)
+(see above)
+not isotropic winds
+direction of wind particles at injection
+random
+along to ⃗v × ∇Φ
+Illustris winds
+many
+see Table 1
+see Table 1
+Illustris winds (SNII > 6 Msun)
+many, also setting MSNII
+min
+= 6M⊙
+see Table 1
+see Table 1
+stronger winds (x2)
+wind energy factor: ew
+3.6
+7.2
+faster winds (x2)
+wind velocity factor: κw
+7.4
+14.8
+faster winds (ﬁducial loading)
+wind energy and velocity factors: ew , κw
+3.6, 7.4
+14.4, 14.8
+warmer winds
+thermal fraction: τw
+0.1
+0.5
+cold winds
+thermal fraction: τw
+0.1
+0.0
+Z-dependence: smaller Zref
+reference metallicity: Zw,Z
+0.002
+0.001
+Z-dependence: larger Zref
+reference metallicity: Zw,Z
+0.002
+0.004
+Z-dependence: shallower
+reduction power: γw,Z
+2.0
+1.0
+Z-dependence: steeper
+reduction power: γw,Z
+2.0
+3.0
+Z-dependence: weaker reduction at high Z
+reduction factor: fZ,w
+0.25
+0.5
+Z-dependence: stronger reduction at high Z
+reduction factor: fZ,w
+0.25
+0.125
+min wind vel = 300 km s−1
+wind velocity ﬂoor: vw,min
+350 km s−1
+300 km s−1
+min wind vel = 400 km s−1
+wind velocity ﬂoor: vw,min
+350 km s−1
+400 km s−1
+Table B1. Summary of the different model variations shown in this work to explore the effectiveness of the TNG model. All runs have been performed on the
+volume L25n512 with the same initial conditions and at the same resolution. Unless otherwise stated, we have always changed one parameter/choice at a time
+with respect to the TNG ﬁducial implementation.
+10-5
+10-4
+10-3
+10-2
+10-1
+100
+Gas Metallicity
+0.5
+1
+1.5
+2
+2.5
+3
+3.5
+Wind Energy egyw [NSNII ESNII,51 1051 erg / Msun]
+fiducial Illustris
+solar value
+ fiducial TNG
+ winds: Z-dependence: smaller Zref
+ winds: Z-dependence: larger Zref
+ winds: Z-dependence: shallower
+ winds: Z-dependence: steeper
+ winds: Z-dependence: smaller reduction
+ winds: Z-dependence: larger reduction
+1011
+1012
+1013
+Mhalo [ Msun ] [ M200c ]
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+Mstars[ < 2 rstars,1/2 ] / Mhalo (+b / +m)-1
+Moster et al. 2013
+Behroozi et al. 2013
+ fiducial TNG
+ winds: Z-dependence: smaller Zref
+ winds: Z-dependence: larger Zref
+ winds: Z-dependence: shallower
+ winds: Z-dependence: steeper
+ winds: Z-dependence: smaller reduction
+ winds: Z-dependence: larger reduction
+Figure B2. The stellar mass to halo mass relation at L25n512 resolution for different choices in the TNG metallicity-dependent modulation of the wind energy.
+Left panel: the functional form of the metallicity dependence of the ew parameter of Eq. 3. Right panel: the z = 0 stellar-to-halo mass relation. We contrast
+the ﬁducial model (black) with symmetric changes, to both higher and lower values, of the reference metallicity Zw,Z (blue lines), reduction power γw,Z
+(orange lines), and high-Z reduction factor fZ,w (purple lines).
+c⃝0000 RAS, MNRAS 000, 000–000
+
+
+TNG Model
+31
+108
+109
+1010
+1011
+Galaxy Stellar Mass [ Msun ] [ < 2 rstars,1/2 ] 
+10-3
+10-2
+) [ Mpc-3 dex-1 ]
+Baldry et al. 2008 (SDSS, z~0)
+Baldry et al. 2012 (GAMA, z<0.05)
+Bernardi et al. 2013 (SDSS)
+D Souza et al. 2015 (SDSS, z~0.1)
+ fiducial TNG
+ no wind vel floor
+ min wind vel = 300 km/s
+ min wind vel = 400 km/s
+Figure B3. Impact of the minimum galactic wind velocity on the stellar
+mass content of galaxies. Speciﬁcally, the z = 0 stellar mass function
+(GSMF) is shown in comparison to the same observations as in previous
+ﬁgures. This minimum velocity lowers the normalization of the GSMF left
+of the knee.
+return in all regimes much smaller stellar masses than the ﬁducial
+run and the faster and stronger wind cases.
+With larger speeds at injection, gas outﬂows from galaxies can
+more easily exceed the escape velocity of their host halo. By even-
+tually leaving the host potential well, gas recycling onto the galaxy
+is reduced, and the available gas reservoir for subsequent star for-
+mation is not replenished. This picture is consistent with the mea-
+sured gas fractions within the halo (middle right panel), which are
+reduced in the “faster winds” case at all masses below 2×1012M⊙.
+Indeed, if we consider the same increase of the wind speed but hold
+the mass loading ﬁxed, the gas fractions are also suppressed with
+respect to the ﬁducial case below 2×1012M⊙, and so are the stellar
+masses in all regimes (green light curves).
+The amount of wind thermal energy also impacts the stellar
+mass content of galaxies: here we show the case of cold winds (as
+in Illustris, where wind particles have no thermal energy compo-
+nent) and warmer winds with the thermal energy fraction increased
+from 10 per cent to 50 per cent. The latter is the value adopted for
+an early generation of MW-zoom simulations (Marinacci, Pakmor
+& Springel 2014) and for the Auriga galaxies (Grand et al. 2017).
+From Eq. 2 it is apparent that giving a non-zero thermal energy to
+the wind reduces the effective wind mass loading, with the velocity
+remaining unchanged. Nevertheless, we see that with a 50 per cent
+wind split between thermal and kinetic, galaxies are substantially
+less massive at essentially all halo masses. As with faster winds,
+halo gas fractions are also reduced. Indeed, the impact of 50 per
+cent thermal ‘warm’ winds is qualitatively similar to a factor of two
+‘faster’ winds, and based on the restricted observables we explore
+here, the two are likely interchangeable for an intermediate case
+between ﬁducial and faster. Conversely, entirely cold winds pro-
+duce slightly more massive galaxies across halo mass together with
+an increase of gas fractions below L⋆. Physically, it may be that
+the effects of both warmer and faster winds resemble each other
+because they contribute similarly to an increased buoyancy, or ef-
+fective pressure, of the outﬂow with respect to the gravitational po-
+tential and the ambient hot halo gas.
+Galaxy sizes do not appear to be affected in any signiﬁcant
+way by changes to the wind parameter values in galaxies below
+1010M⊙, even though from Figure 8 it is manifest that galaxy sizes
+in that same regime are fully due to the functioning of the galactic
+feedback as a whole. At the high mass end, the largest modiﬁca-
+tions to the galaxy sizes at ﬁxed stellar mass are due to the under-
+lying modiﬁcations to the galaxy stellar masses.
+The metallicity dependent energy modulation is crucial to im-
+prove the shape of the z = 0 galaxy GSMF and SMHM rela-
+tions (as shown in Figure 9), primarily modifying the low-mass
+galaxy population, as intended. However, its exact implementation
+depends strongly on the adopted parameters, particularly the ef-
+fective reduction factor achieved at high metallicity. In Figure B2
+we explore the new metallicity dependence of the TNG winds fur-
+ther. The shape, location, and asymptotic normalization of the wind
+energy parameter ew as a result of the metallicity modulation are
+varied. We note that the two changes to the normalization or reduc-
+tion factor (purple curves) are needed to assess the relative impact
+of the Z-dependence on Milky Way-mass versus lower mass galax-
+ies, which is otherwise ﬁxed. The detailed shape of the stellar-to-
+halo mass relation is sensitive to the metallicity dependence of the
+wind energy. The peak height, largely independent of the overall
+shape, varies weakly with the Z-transition shape (broader or nar-
+rower, corresponding to smaller or larger values for the power fac-
+tor γw,Z in Eq. 3). The peak position shifts to lower (higher) Mhalo
+as the reference metallicity Zw,Z decreases (increases). The overall
+reduction at high metallicity with respect to the low-Z wind energy
+has a similar impact. At otherwise ﬁxed ﬁducial model, the physi-
+cal processes which we encapsulate in this metallicity dependence
+are fairly constrained by the abundance matching results.
+Finally, Figure B1 demonstrates that the minimum wind ve-
+locity ﬂoor contributes to reduced gas fractions within haloes ≲
+1012M⊙, one of the most striking features that distinguishes the
+TNG from the Illustris model. At very early times (high redshifts)
+the velocity ﬂoor also boosts the global SFRD arising from newly
+forming halos. Its primary impact, however, is the suppression of
+the z = 0 stellar mass function at the low-mass end. Here the exact
+value of vw,min plays a minor role: in Figure B3 we explore the
+impact of the velocity ﬂoor value in the TNG wind model. Stel-
+lar masses below the knee are differentially suppressed, the im-
+pact being largest for the smallest galaxies. The exact threshold,
+350 km s−1, leads to qualitatively the same behavior as a choice
+of either 300 or 400 km s−1, although the maximum stellar mass
+affected shifts correspondingly to lower or higher values. This be-
+havior is driven by competition between the weak dependence of
+vw ∝M 1/3
+halo (Eq. 6) and the strong dependence of M⋆−Mhalo at
+these low masses. Any vw,min ̸= 0 which succeeds to modify stel-
+lar masses at all, then has a large impact across much of the GSMF:
+this effective parameter could be constrained by tight observational
+constraints on the low-end z = 0 mass function combined with
+higher resolution simulations.
+c⃝0000 RAS, MNRAS 000, 000–000

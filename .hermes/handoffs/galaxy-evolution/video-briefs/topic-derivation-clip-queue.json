@@ -1,0 +1,54 @@
+{
+  "marker": "TOPIC_DERIVATION_CLIP_QUEUE_V1",
+  "created_utc": "2026-07-17T13:42:15Z",
+  "updated_utc": "2026-07-18T02:09:05Z",
+  "status": "READY_NEXT_WAITING_FOR_NANO_INGREDIENT_AUTHORING",
+  "start_now": false,
+  "brief_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/video-briefs/topic-derivation-clip-brief.md",
+  "dependencies": {
+    "video2": {
+      "state_path": "/Users/duhokim/HermesOps/scripts/clips/method2_sfa/FRONTIER_METHODOLOGY_VIDEO2_REARM_STATE.json",
+      "required_final_status": "SUCCESS",
+      "observed_final_status": "SUCCESS_LATE_SETTLEMENT",
+      "observed_reason": "Exact card 8e73ae03 recovered from a stale root Failed/Oops state, played the full 8 seconds without media error, and was downloaded and verified as H.264/AAC 1280x720."
+    },
+    "control_plane": {
+      "required": "Exact Flow tab identity and browser control are readable and writable under broker leases without Apple Events/TCC failure.",
+      "observed": "Healthy in the interactive broker-gated session: exact Flow tab, Apple Events, signed-in DOM, and challenge gate verified."
+    },
+    "gate": "Do not begin authoring or Flow generation until Video-2 is settled and the Flow control plane is healthy, unless Duho/Hwao issues a new explicit reprioritization gate."
+  },
+  "production": {
+    "duration_seconds": 8,
+    "aspect_ratio": "16:9",
+    "output_count": "1x",
+    "audio": "silent; no VO, music, subtitles, or other audio",
+    "loop": "seamless; final ranked-frontier state dissolves back to the opening paper grid",
+    "visual_sequence": [
+      "12,000 papers",
+      "embed to vectors",
+      "32 clusters",
+      "ranked frontiers"
+    ],
+    "palette": {
+      "background": "#0a0d17",
+      "accent": "#7c86ff",
+      "accent_2": "#4ad6c4"
+    },
+    "character": "none",
+    "text_policy": "All four monospace labels must come from Nano Banana Pro ingredient frames; never rely on Omni/Veo-rendered text.",
+    "flow_account_rule": "No account action while queued. When unblocked, serialize any credit-spending submit through the account-submission lease and require the exact enabled Create gate.",
+    "human_gate": "Duho attaches Nano Banana Pro label ingredients through the native file dialog and confirms the composer is ready before any submit."
+  },
+  "deliverables": {
+    "required": [
+      "16:9 H.264 silent MP4, approximately 8 seconds, seamless loop"
+    ],
+    "optional": [
+      "WebM/VP9 copy",
+      "frame-1 PNG poster"
+    ],
+    "handoff": "Return artifacts to Claude Code for self-hosting in the Lab Topic tab cfg-viz slot, replacing the current native SVG."
+  },
+  "next_action": "Video-2 and the interactive control-plane dependencies are satisfied. Keep Flow generation stopped until the Nano Banana Pro label ingredients are authored and Duho completes the native file-dialog attachment; then request the explicit final submit trigger and use one broker-gated 8s/16:9/1x generation."
+}

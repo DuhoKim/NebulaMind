@@ -1,0 +1,209 @@
+{
+  "schema_version": 1,
+  "status": "PASS",
+  "validated_at_utc": "2026-08-03T03:03:26Z",
+  "counts": {
+    "checks": 31,
+    "failed": 0,
+    "usable_sources": 35,
+    "primary_sources": 33,
+    "supporting_reviews": 2,
+    "quarantined_sources": 10,
+    "retained_claims": 27,
+    "claim_prefixes": {
+      "REV06-E": 11,
+      "REV06-D": 7,
+      "REV06-N": 6,
+      "REV06-U": 3
+    }
+  },
+  "artifact_sha256": {
+    "raw": "05ec1de623c780302ea473c17af9b5519e94e7dcb3abfc113bbf8a800408d7d6",
+    "inventory": "6b1428d9f427e0c47b2e8f3ad6f2515224d4cc8dc37a6b37a4fb3a144aabdf6a",
+    "bibliography_receipt": "b406d0a45ccadce5d00d45aa13ac4395b959921c6ef9108aafc06e19fd41d989",
+    "membership": "6bd98b6693265bbb9952b0c8e6d36bdb738881cae8f67dd34535e3dc0df397d0",
+    "identity": "e3d3f934e03ec8b625810a175677649fd16bd8b995a0cc9fffa756a8eedfd3df",
+    "classification": "d1dacd2b7bad2e69051c337b53a20a05858852608c8aef5fbf316472af705a0e",
+    "canonical": "3b995079feda2084c5dc48182044e2d2f8d9f8465dda0f9d09abed99fa732cd3"
+  },
+  "checks": [
+    {
+      "name": "raw_packet_hash_matches_inventory",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "authoritative_pdf_hash_matches_receipt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "bibliography_extract_hash_matches_receipt",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "membership_source_count_45",
+      "passed": true,
+      "detail": 45
+    },
+    {
+      "name": "membership_disposition_counts",
+      "passed": true,
+      "detail": {
+        "EXACT_BIBLIOGRAPHY_MEMBER": 35,
+        "NOT_FOUND_IN_REVIEW_BIBLIOGRAPHY": 8,
+        "SURNAME_YEAR_PRESENT_BUT_COMPOSITE_MISMATCH": 2
+      }
+    },
+    {
+      "name": "identity_disposition_counts",
+      "passed": true,
+      "detail": {
+        "QUARANTINE_NOT_EXACT_REVIEW_BIBLIOGRAPHY_MEMBER": 10,
+        "USABLE_COMPOSITE_VERIFIED": 35
+      }
+    },
+    {
+      "name": "usable_source_count_35",
+      "passed": true,
+      "detail": 35
+    },
+    {
+      "name": "quarantined_source_count_10",
+      "passed": true,
+      "detail": 10
+    },
+    {
+      "name": "all_usable_composite_checks_pass",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_post_2020_usable_source",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "canonical_doi_present_and_unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "canonical_arxiv_present_and_unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "ads_identifiers_unique",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "classification_key_set_complete",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "role_counts",
+      "passed": true,
+      "detail": {
+        "primary_empirical": 24,
+        "supporting_review": 2,
+        "primary_model": 7,
+        "primary_simulation": 2,
+        "quarantined_contamination": 10
+      }
+    },
+    {
+      "name": "every_usable_source_has_topic_scope",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "claim_count_REV06-E",
+      "passed": true,
+      "detail": 11
+    },
+    {
+      "name": "claim_count_REV06-D",
+      "passed": true,
+      "detail": 7
+    },
+    {
+      "name": "claim_count_REV06-N",
+      "passed": true,
+      "detail": 6
+    },
+    {
+      "name": "claim_count_REV06-U",
+      "passed": true,
+      "detail": 3
+    },
+    {
+      "name": "retained_claim_keys_unique_27",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "excluded_claim_keys_absent_from_claim_sections",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "no_quarantined_source_cited_by_retained_claim",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "all_claim_sources_resolve_to_usable_ledger",
+      "passed": true,
+      "detail": []
+    },
+    {
+      "name": "canonical_primary_rows_33",
+      "passed": true,
+      "detail": 33
+    },
+    {
+      "name": "canonical_supporting_review_rows_2",
+      "passed": true,
+      "detail": 2
+    },
+    {
+      "name": "canonical_quarantine_rows_10",
+      "passed": true,
+      "detail": 10
+    },
+    {
+      "name": "canonical_usable_ledger_key_set_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "canonical_quarantine_key_set_exact",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "polluted_raw_anchor_tokens_absent",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "name": "safety_receipt_complete",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "failed_checks": [],
+  "safety": {
+    "network_operations_performed_by_validator": 0,
+    "browser_or_account_action": false,
+    "live_wiki_db_trust_write": false,
+    "deploy_restart": false,
+    "git_write": false,
+    "publication": false,
+    "other_agents_or_hwao_interrupted": false
+  }
+}

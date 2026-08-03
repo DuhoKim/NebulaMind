@@ -1,0 +1,25 @@
+{
+  "request_id": "JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z",
+  "verdict": "rejected_retain_verified_source_leads_only",
+  "automatic_fallback_applied": true,
+  "checks": {
+    "all_nine_headings_present": true,
+    "all_nine_headings_in_order": true,
+    "only_eight_allowed_urls_used": true,
+    "marker_count_in_report_body": 0,
+    "marker_count_in_chat_completion": 1,
+    "chat_marker_is_final_line": true,
+    "fixed_estimand_present_exactly_once": true,
+    "ellison_minus_006_present": true,
+    "ellison_minus_012_marked_retracted": true,
+    "uncited_not_usable_label_count": 26,
+    "raw_value_commensurability_claim_present": false,
+    "prohibited_establishes_empirical_baseline_count": 1
+  },
+  "blocking_failures": [
+    "The corrected report body does not contain the required completion marker; the marker appears only in the separate chat completion component.",
+    "The corrected report still says the association establishes an empirical baseline, despite the mandatory prohibition on saying the statistic establishes a diagnostic or interpretive conclusion."
+  ],
+  "further_gemini_submissions_allowed_for_this_packet": false,
+  "candidate_or_runner_write_performed": false
+}

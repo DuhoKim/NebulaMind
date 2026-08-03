@@ -1,0 +1,110 @@
+{
+  "index": 25,
+  "captured_url": "https://arxiv.org/abs/1603.02702",
+  "ledger_rows": [
+    30
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:49Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 25,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/1603.02702",
+      "final_url": "https://arxiv.org/abs/1603.02702",
+      "status": 200,
+      "bytes": 45907,
+      "sha256": "109e6cac80fb3c2b4ad536d6507879aeee802f92177782a76c96d819a0859a0b",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx25_initial_109e6cac80fb.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:51Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 25,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/1603.02702",
+      "final_url": "https://arxiv.org/pdf/1603.02702",
+      "status": 200,
+      "bytes": 1478141,
+      "sha256": "eb3f3db3924917fcdcca12a58a4dc791c63eb5abc9b494077cbcfaae1dd1f023",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx25_arxiv_pdf_eb3f3db39249.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "requested_url": "https://doi.org/10.1093/mnras/stw2792",
+      "status": 0,
+      "error": "host_stopped_after_3_failures",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "utc": "2026-07-13T04:15:52Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 25,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1603.02702%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1603.02702%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 2652,
+      "sha256": "c37e432785eadbecf749ce507d75f192f52412d8994a7f651c9c125827b03003",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx25_ads_c37e432785ea.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The BAHAMAS project: Calibrated hydrodynamical simulations for large-scale structure cosmology",
+      "doi": "10.1093/mnras/stw2792",
+      "arxiv_id": "1603.02702",
+      "pdf_url": "https://arxiv.org/pdf/1603.02702",
+      "text_path": "sources/text/idx25_initial_d509873c707b.txt",
+      "text_sha256": "d509873c707b5d2926196ce935b23d1db6edfd788b8872bfc955d1413979da7d",
+      "text_chars": 5481
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "1603.02702",
+      "pdf_url": "",
+      "text_path": "sources/text/idx25_arxiv_pdf_43c099b376e0.txt",
+      "text_sha256": "43c099b376e0f140ffd6cddb7a22a5ded44009fa5a0c9e8879a3b79893db8963",
+      "text_chars": 167362,
+      "pdf_pages": 34
+    },
+    {
+      "label": "doi",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "",
+      "text_sha256": "",
+      "text_chars": 0
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx25_ads_b1a68c325b78.txt",
+      "text_sha256": "b1a68c325b783a4e10678c47cd5f998594a792352815552d46f8129ac97ecb97",
+      "text_chars": 3074
+    }
+  ]
+}

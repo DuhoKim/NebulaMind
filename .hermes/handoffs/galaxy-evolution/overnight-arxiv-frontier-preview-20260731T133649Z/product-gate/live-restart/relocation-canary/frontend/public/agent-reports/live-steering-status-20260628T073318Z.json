@@ -1,0 +1,531 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-28T07:33:18Z",
+  "updated_at_kst": "2026-06-28 16:33:18 KST",
+  "source": "Hermes Agent live workflow status",
+  "current_action": "GUARDED_PATH_WRAPPED: PR #39-#44 are closed as the guarded solo-fast chapter. BOARD_DIVIDED_DEFAULT_ACTIVE: next slice should split burden across Hermes, Lana, Goru, and the cockpit board.",
+  "runtime": {
+    "frontend_service": "running",
+    "public_wiki_probe": "200",
+    "public_cockpit_probe": "pending verification after write",
+    "public_chunk_markers": [
+      "source-trace-cross-links",
+      "Open source index",
+      "Open paper",
+      "claim-mini-map-open-evidence-map",
+      "claim-mini-map-jump-to-claim"
+    ]
+  },
+  "repo": {
+    "origin_main": "673eb9e",
+    "origin_main_full": "673eb9e41d045ee9bb429396b00898dca805267a",
+    "latest_merged_pr": {
+      "number": 44,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/44",
+      "state": "MERGED",
+      "mergedAt": "2026-06-28T07:15:58Z",
+      "mergeCommit": {
+        "oid": "673eb9e41d045ee9bb429396b00898dca805267a"
+      }
+    }
+  },
+  "safety": {
+    "production_db_writes_from_this_dashboard": 0,
+    "migrations": 0,
+    "backend_api_changes": 0,
+    "deploys": "frontend runtime was already running; this update changes only static cockpit JSON/HTML",
+    "explicit_approval_required_for": [
+      "production DB writes",
+      "trust/badge/prose apply paths",
+      "schema migrations",
+      "destructive cleanup",
+      "service-risk actions beyond frontend static/dashboard refresh"
+    ]
+  },
+  "milestones": [
+    {
+      "state": "done",
+      "label": "Guarded path wrapped",
+      "detail": "PR #39-#44 are merged/live and explicitly closed as the solo-fast chapter."
+    },
+    {
+      "state": "active",
+      "label": "Board-divided default mode active",
+      "detail": "Next slice should visibly split burden across Hermes, Lana, Goru, and this cockpit board before coding starts."
+    },
+    {
+      "state": "ready",
+      "label": "Hermes captain lane",
+      "detail": "Responsible for scope, worktree, TDD gate, PR/merge/runtime, and independent final verification."
+    },
+    {
+      "state": "ready",
+      "label": "Lana reasoning lane",
+      "detail": "Should carry implementation/review/challenge burden for the next meaningful slice."
+    },
+    {
+      "state": "ready",
+      "label": "Goru mechanical verifier lane",
+      "detail": "Should carry exact file maps, marker/count checks, package-script inventory, and build/chunk verification burden."
+    },
+    {
+      "state": "locked",
+      "label": "Production mutation lock",
+      "detail": "No DB writes, migrations, backend contract changes, destructive cleanup, or risky service actions without explicit approval."
+    }
+  ],
+  "verification": [
+    {
+      "check": "PR #39",
+      "result": "MERGED",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "check": "origin/main",
+      "result": "e501d89",
+      "evidence": "verified after squash merge"
+    },
+    {
+      "check": "frontend tests/build",
+      "result": "PASS",
+      "evidence": "test:evidence-panel-copy, test:evidence-status, test:wiki-trust-visibility, tsc, next build"
+    },
+    {
+      "check": "pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed"
+    },
+    {
+      "check": "public cockpit chunk",
+      "result": "PASS",
+      "evidence": "Evidence vote cockpit text found in deployed JS chunk"
+    },
+    {
+      "check": "RED test: inline countering badge",
+      "result": "EXPECTED FAIL",
+      "evidence": "test:wiki-trust-visibility saw missing · 1 countering copy"
+    },
+    {
+      "check": "GREEN test/build bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence/status/trust-history/surveys smokes, tsc, next build, local page chunk probe"
+    },
+    {
+      "check": "PR #40 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "check": "PR #40 merge",
+      "result": "MERGED",
+      "evidence": "c5f3c51 feat: show counter-evidence on wiki claim badges (#40)"
+    },
+    {
+      "check": "Runtime PR #40 tests/build",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence panel/status smokes, tsc, Next build"
+    },
+    {
+      "check": "Public wiki JS chunk",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains countering + Open evidence map for"
+    },
+    {
+      "check": "Frontend service",
+      "result": "RUNNING",
+      "evidence": "launchd com.nebulamind.frontend restarted; port 3000 listener pid verified"
+    },
+    {
+      "check": "RED test: source trace hover helper missing",
+      "result": "EXPECTED FAIL",
+      "evidence": "source trace hover helper should exist"
+    },
+    {
+      "check": "GREEN test: source trace hover cards",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover"
+    },
+    {
+      "check": "Source trace local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3013 chunk probe"
+    },
+    {
+      "check": "PR #41 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/41"
+    },
+    {
+      "check": "PR #41 merge",
+      "result": "MERGED",
+      "evidence": "a29fc60 feat: add source trace hover cards (#41)"
+    },
+    {
+      "check": "RED test: source trace helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "node scripts/test-source-trace-hover.mjs failed: source trace hover helper should exist"
+    },
+    {
+      "check": "GREEN source trace smoke",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence panel copy, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "TypeScript/build",
+      "result": "PASS",
+      "evidence": "npx tsc --noEmit; npm run build generated 35 static pages"
+    },
+    {
+      "check": "Pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed with explicit backend venv Python"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains Source trace hover markers"
+    },
+    {
+      "check": "RED test: claim mini-map helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "claim mini-map hover helper should exist"
+    },
+    {
+      "check": "GREEN test: claim mini-map hover",
+      "result": "PASS",
+      "evidence": "npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Claim mini-map local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3014 chunk probe"
+    },
+    {
+      "check": "PR #42 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/42"
+    },
+    {
+      "check": "PR #42 merge",
+      "result": "MERGED",
+      "evidence": "70e41dc feat: add claim mini-map hover cards (#42)"
+    },
+    {
+      "check": "RED test: claim mini-map helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "node scripts/test-claim-minimap-hover.mjs failed: claim mini-map hover helper should exist"
+    },
+    {
+      "check": "GREEN claim mini-map smoke",
+      "result": "PASS",
+      "evidence": "npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, source trace hover, evidence panel copy, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains Claim mini-map hover markers"
+    },
+    {
+      "check": "RED test: cockpit visual helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "buildEvidenceVoteCockpitVisuals was undefined in npm run test:evidence-panel-copy"
+    },
+    {
+      "check": "GREEN test: cockpit visual polish",
+      "result": "PASS",
+      "evidence": "npm run test:evidence-panel-copy"
+    },
+    {
+      "check": "Evidence cockpit local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3015 chunk probe"
+    },
+    {
+      "check": "PR #43 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/43"
+    },
+    {
+      "check": "PR #43 merge",
+      "result": "MERGED",
+      "evidence": "a2aafec feat: polish evidence vote cockpit visuals (#43)"
+    },
+    {
+      "check": "RED test: cockpit visual helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "npm run test:evidence-panel-copy failed: buildEvidenceVoteCockpitVisuals was undefined"
+    },
+    {
+      "check": "GREEN evidence cockpit smoke",
+      "result": "PASS",
+      "evidence": "npm run test:evidence-panel-copy"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, source trace hover, claim minimap hover, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains Evidence cockpit polish markers"
+    },
+    {
+      "check": "RED test: hover-card cross-links absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "npm run test:source-trace-hover failed because trace.crossLinks was undefined"
+    },
+    {
+      "check": "GREEN test: hover-card cross-links",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover; npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Hover-card cross-links local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3016 chunk probe"
+    },
+    {
+      "check": "PR #44 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/44"
+    },
+    {
+      "check": "PR #44 merge",
+      "result": "MERGED",
+      "evidence": "673eb9e feat: add hover-card cross-links (#44)"
+    },
+    {
+      "check": "GREEN source trace cross-links",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover"
+    },
+    {
+      "check": "GREEN claim mini-map cross-links",
+      "result": "PASS",
+      "evidence": "npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "evidence panel, wiki trust visibility, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "Local route/chunk probe",
+      "result": "PASS",
+      "evidence": "port 3016 wiki JS contained source-trace-cross-links and claim-mini-map cross-link markers"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains hover-card cross-link markers"
+    },
+    {
+      "check": "Guarded path wrap-up board update",
+      "result": "WRITTEN",
+      "evidence": "live-steering-status.json and live-steering-cockpit.html regenerated with GUARDED_PATH_WRAPPED and BOARD_DIVIDED_DEFAULT_ACTIVE markers"
+    },
+    {
+      "check": "Lana/Goru session discovery",
+      "result": "AVAILABLE",
+      "evidence": "tmux shows lana-claude and goru-agy sessions available for next board-divided slice"
+    }
+  ],
+  "next_moves": [
+    {
+      "id": "evidence-card-density",
+      "readiness": "ready",
+      "title": "Tighten evidence card density",
+      "why": "Make the evidence panel faster to scan by grouping quality/status/source metadata without hiding paper text.",
+      "copy_command": "STEER: tighten evidence card density next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "runtime-sync-safety",
+      "readiness": "ready",
+      "title": "Make runtime sync safer",
+      "why": "We keep manually copying scoped files into a non-git runtime tree; a verified sync script would reduce live-update risk.",
+      "copy_command": "STEER: make runtime sync safer next; TDD for the script, PR/merge if verified."
+    },
+    {
+      "id": "claim-hover-a11y",
+      "readiness": "ready",
+      "title": "Harden hover-card keyboard UX",
+      "why": "Add deeper source-level and browser checks around hover/focus/click transitions for the new cross-links.",
+      "copy_command": "STEER: harden hover-card keyboard UX next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "pause",
+      "readiness": "available",
+      "title": "Pause for manual inspection",
+      "why": "Use this if you want to inspect the live page/dashboard before more code.",
+      "copy_command": "STEER: pause after PR #44; do not start the next slice yet."
+    }
+  ],
+  "links": [
+    {
+      "label": "Live progress dashboard",
+      "url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html"
+    },
+    {
+      "label": "Latest status JSON",
+      "url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+    },
+    {
+      "label": "Live Galaxy page",
+      "url": "https://nebulamind.net/wiki/galaxy-evolution-v2"
+    },
+    {
+      "label": "PR #44",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/44"
+    },
+    {
+      "label": "PR #43",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/43"
+    },
+    {
+      "label": "PR #42",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/42"
+    },
+    {
+      "label": "PR #41",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/41"
+    },
+    {
+      "label": "PR #40",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "label": "PR #39",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    }
+  ],
+  "active_worktree": "/Users/duhokim/NebulaMind/worktrees/wiki-hover-card-crosslinks-20260628",
+  "active_branch": "wiki-hover-card-crosslinks-20260628 (merged; local worktree retained)",
+  "active_commit": "0244770",
+  "mode_transition": {
+    "previous_mode": "guarded solo-fast: Hermes carried implementation, verification, PR, runtime, and dashboard burden while preserving hard safety locks",
+    "new_default_mode": "board-divided ambitious execution: Hermes captains, Lana challenges/implements/reviews, Goru verifies mechanics, cockpit exposes steering before work starts",
+    "state": "active",
+    "activated_at_utc": "2026-06-28T07:33:18Z"
+  },
+  "default_operating_model": [
+    {
+      "lane": "Hermes",
+      "status": "captain",
+      "burden": "slice shaping, clean worktree, TDD gate, integration, PR/merge/runtime/dashboard, independent verification",
+      "guardrail": "owns final evidence; never delegates final truth"
+    },
+    {
+      "lane": "Lana",
+      "status": "reasoning lane",
+      "burden": "implementation pressure, architecture/product challenge, code review, edge cases, higher-leverage alternatives",
+      "guardrail": "no DB writes, migrations, restarts, deploys, pushes, or broad permission grants without explicit scope"
+    },
+    {
+      "lane": "Goru",
+      "status": "mechanical verifier",
+      "burden": "file surface maps, exact grep/count checks, package-script inventory, marker/chunk verification, mailbox reports",
+      "guardrail": "stays inside assigned scope; no unrelated brain/scratch/secret paths"
+    },
+    {
+      "lane": "Cockpit board",
+      "status": "steering surface",
+      "burden": "shows current mode, split of burden, live proof, and copyable steering commands before the next slice starts",
+      "guardrail": "public board is read-only; buttons only copy text"
+    }
+  ],
+  "guarded_path_wrapup": [
+    {
+      "pr": 39,
+      "label": "Evidence vote cockpit",
+      "result": "merged + live"
+    },
+    {
+      "pr": 40,
+      "label": "Counter-evidence claim badges",
+      "result": "merged + live"
+    },
+    {
+      "pr": 41,
+      "label": "Source trace hover cards",
+      "result": "merged + live"
+    },
+    {
+      "pr": 42,
+      "label": "Claim mini-map hover cards",
+      "result": "merged + live"
+    },
+    {
+      "pr": 43,
+      "label": "Evidence vote cockpit visual polish",
+      "result": "merged + live"
+    },
+    {
+      "pr": 44,
+      "label": "Hover-card cross-links",
+      "result": "merged + live"
+    }
+  ],
+  "steering_options": [
+    {
+      "id": "evidence-card-density",
+      "title": "Tighten evidence card density",
+      "readiness": "recommended",
+      "why": "Make the evidence panel faster to scan by compressing status/source/vote metadata without hiding the paper text.",
+      "hermes": "Create clean worktree, define RED density smoke, integrate final diff, run full frontend/build/pre-push gates, PR/merge/runtime sync.",
+      "lana": "Challenge hierarchy and card semantics; review whether the density improves scan speed without burying caution labels.",
+      "goru": "Map all evidence-card fields/tests/scripts and verify stable data-testid/visible marker coverage before merge.",
+      "copy_command": "STEER: tighten evidence card density next; board-divided mode, frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "runtime-sync-safety",
+      "title": "Make runtime sync safer",
+      "readiness": "high-leverage",
+      "why": "The recent wins needed manual scoped copies into the non-git runtime tree. A verified sync script reduces live-update risk.",
+      "hermes": "Specify the script contract, write RED script tests, integrate into repo, verify on dry-run and one real scoped copy only after merge.",
+      "lana": "Review failure modes: partial copy, stale build, accidental broad rsync, rollback/backup naming, and launchd restart safety.",
+      "goru": "Mechanical file-list and checksum checks between source worktree and runtime tree; verify backups and marker counts.",
+      "copy_command": "STEER: make runtime sync safer next; board-divided mode, TDD for the script, PR/merge if verified."
+    },
+    {
+      "id": "hover-card-keyboard-ux",
+      "title": "Harden hover-card keyboard UX",
+      "readiness": "ready",
+      "why": "The hover cards now have richer links; next risk is focus/blur/click behavior under keyboard and assistive-tech use.",
+      "hermes": "Add frontend-first keyboard smoke tests and integrate small UX fixes; verify chunk markers and public route.",
+      "lana": "Review interaction semantics: tooltip vs dialog, focus retention, Esc/blur behavior, and accidental panel toggles.",
+      "goru": "Check every new interactive marker, aria attribute, and route link appears in the built wiki chunk.",
+      "copy_command": "STEER: harden hover-card keyboard UX next; board-divided mode, frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "next-visible-wow",
+      "title": "Pick a bolder visible slice",
+      "readiness": "ambitious",
+      "why": "Use the board-divided pattern for a less obvious product leap: a stronger claim-to-evidence navigation loop or evidence-map orientation layer.",
+      "hermes": "Frame a one-PR frontend slice and keep scope safe; do not start production mutation paths.",
+      "lana": "Generate/challenge the bold UX concept and cut it down to a verifiable PR-sized implementation.",
+      "goru": "Inventory current route/API/component surfaces and list exact acceptance markers before code starts.",
+      "copy_command": "STEER: choose a bolder visible wiki UX slice next; board-divided mode, frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "pause-inspect",
+      "title": "Pause for manual inspection",
+      "readiness": "available",
+      "why": "Use this if you want to inspect the live page and cockpit before more code starts.",
+      "hermes": "Hold position and avoid starting a new slice.",
+      "lana": "No new brief.",
+      "goru": "No new brief.",
+      "copy_command": "STEER: pause after guarded-path wrap-up; do not start the next slice yet."
+    }
+  ]
+}

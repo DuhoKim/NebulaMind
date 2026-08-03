@@ -1,0 +1,40 @@
+{
+  "schema": "NM_DR_C1R_EXACT_ID_CLEANUP_V1",
+  "completed_utc": "2026-07-12T07:22:06Z",
+  "action": "PERMANENT_DELETE_FROM_GEMINI_HISTORY",
+  "artifact_first": true,
+  "target": {
+    "conversation_id": "697c774077a6e527",
+    "conversation_url": "https://gemini.google.com/app/697c774077a6e527",
+    "matched_href": "/app/697c774077a6e527",
+    "matched_live_title": "Galaxy Simulation Calibration vs Validation"
+  },
+  "custody_before_delete": {
+    "body_sha256": "8a130c5a6fc1b1f5d534888d3fb20806230b8b4c7737cb00f9bfb18ad0d6bc00",
+    "structured_capture_sha256": "2d10e34a46c609b713d980ded746c8bf4f1214ea7213603535cd3c7e271ec468",
+    "validator_result_sha256": "34f525a58b1c71d237b1723fc42bfab5acfaf631e9b25175a703462e108c91f4",
+    "pre_cleanup_receipt_sha256": "54d119d8b64ab120cb29e8baa06ad9c9dd1cb43e09cc2810c817da72fbeaaa2a"
+  },
+  "browser_path": {
+    "owner": "Tori",
+    "cleanup_window_id": 1819256177,
+    "cleanup_tab_index": 1,
+    "cleanup_tab_url": "https://gemini.google.com/app",
+    "reason": "The canary tab's Recents list remained unhydrated. The untouched authenticated home tab had a healthy mounted history and positively matched the exact href and ID.",
+    "exact_row_menu_opened": true,
+    "delete_menu_item_count": 1,
+    "confirmation_dialog_text": "Delete chat?",
+    "confirmation_delete_count": 1,
+    "non_target_conversation_action_count": 0
+  },
+  "verification": {
+    "checks": 2,
+    "exact_href_count_each_check": [0, 0],
+    "attribute_id_hit_count_each_check": [0, 0],
+    "open_dialog_count_each_check": [0, 0],
+    "open_menu_count_each_check": [0, 0],
+    "mounted_history_menu_count_each_check": [660, 660],
+    "per_id_removal_verified": true
+  },
+  "status": "COMPLETED"
+}

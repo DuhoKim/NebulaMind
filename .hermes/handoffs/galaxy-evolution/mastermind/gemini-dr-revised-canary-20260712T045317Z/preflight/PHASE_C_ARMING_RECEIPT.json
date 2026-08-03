@@ -1,0 +1,63 @@
+{
+  "schema": "NM_GEMINI_C1R_PHASE_C_ARMING_V1",
+  "packet": "gemini-dr-revised-canary-20260712T045317Z",
+  "armed_utc": "2026-07-12T06:13:36Z",
+  "decision": "ARM",
+  "authorization": {
+    "user_approval": "Duho approved the revised live canary and then resumed with `continue` after the process relaunch.",
+    "hwao_direction": "Record durable Goru ACK, then arm C1R.",
+    "start_invariant": "One Duho Start; zero Tori/Goru Start. Tori may submit the prompt but must stop at PLAN_READY for Duho's manual Start."
+  },
+  "browser_owner": {
+    "owner": "Tori",
+    "channel": "tab-scoped Chrome Apple Events execute-javascript adapter",
+    "computer_use_wrapper": "unavailable after relaunch (0x0/zero apps); healthy cua-driver doctor recorded separately",
+    "window_id": 1819255858,
+    "tab_index": 1,
+    "url": "https://gemini.google.com/app",
+    "title": "Google Gemini",
+    "exact_target_state": "clean authenticated home before submission",
+    "other_home_tabs_untouched": true
+  },
+  "ui_gates": {
+    "composer_count": 1,
+    "pro_mode_count": 1,
+    "deep_research_active_count": 2,
+    "verification_wall_count": 0,
+    "login_wall_count": 0,
+    "billing_wall_count": 0,
+    "running_count": 0,
+    "answer_body_count": 0,
+    "classification": "DR_ACTIVE"
+  },
+  "quota": {
+    "usage_window_id": 1819256177,
+    "usage_tab_index": 2,
+    "source_url": "https://gemini.google.com/usage",
+    "source_signal": "scoped-text",
+    "used_pct": 3,
+    "headroom_pct": 97,
+    "hard_stop_pct": 80,
+    "reset_label": "Resets Jul 14 at 9:59 AM",
+    "reset_at_utc": "2026-07-14T00:59:00Z",
+    "minutes_to_reset": 2565,
+    "gate": "PASS"
+  },
+  "custody": {
+    "manifest_sha256": "5d955e1728d868ee488a3707b04f274d54b8b42fed83f4bced16f5b9bc9fc29a",
+    "prompt_sha256": "fffac44fbf6e9abe3afb1f8f34f3a9e3e7688991f319c4927459fb29ac00e1ef",
+    "validator_receipt_sha256": "7f6dfcc14a896198f02e344496143dd0c8ca5f31e1ecaf2056baafa89a7a17dc",
+    "tori_ack_sha256": "1dc05ef679cc8cd0e12e74fc47d0dcfd30da33ab0b1679bcf5a4c0db35475d99",
+    "goru_ack_sha256": "07f6ade0dd10fb5fa9f1c1498d4644a25fb8a9f171c876bf2ed6aabe8b869fb3",
+    "goru_ack_marker": "GORU_C1R_ROLE_ACK_DONE_20260712T045317Z",
+    "validator_tests": "37 Python plus structured-DOM Node GREEN",
+    "gate": "PASS"
+  },
+  "side_effects_before_arm": {
+    "prompt_submit_count": 0,
+    "start_count": 0,
+    "conversation_created": false,
+    "quota_burn_observed": false
+  },
+  "next_action": "Transition to DR_C1R_ARMED_20260712T061336Z, submit the exact pinned prompt once, establish exact conversation custody, and stop at PLAN_READY for Duho's one manual Start."
+}

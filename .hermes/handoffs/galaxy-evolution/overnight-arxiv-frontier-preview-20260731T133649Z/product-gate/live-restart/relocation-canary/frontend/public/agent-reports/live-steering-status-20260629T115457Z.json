@@ -1,0 +1,88 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T11:54:57Z",
+  "updated_at_kst": "2026-06-29 20:54:57 KST",
+  "source": "Hermes Agent PR #67 merged refresh",
+  "current_action": "PR #67 MERGED TO MAIN. Backend/API deploy is still locked; live API probes still show old empty source surfaces until runtime is updated.",
+  "pr": {
+    "number": 67,
+    "url": "https://github.com/DuhoKim/NebulaMind/pull/67",
+    "title": "fix: expose page source fallback surfaces",
+    "state": "MERGED",
+    "merged_at": "2026-06-29T11:53:30Z",
+    "merge_commit": "ad87039cfd0535b945af4a293c8bbc0aaf38952e",
+    "merge_commit_short": "ad87039",
+    "head_branch": "fix/source-surface-fallback-20260629",
+    "remote_head_branch_deleted": true,
+    "squash_parent_count": 1,
+    "changed_files": 3
+  },
+  "repo": {
+    "origin_main": "ad87039",
+    "previous_origin_main": "e56c465",
+    "source_worktree": "/Users/duhokim/NebulaMind/worktrees/source-surface-fallback-pr-20260629",
+    "local_review_branch": "fix/source-surface-fallback-20260629",
+    "local_review_branch_head": "b27b5d6",
+    "merged": true,
+    "deployed": false,
+    "backend_api_restarted_for_code": false,
+    "production_db_writes": 0,
+    "migrations": 0,
+    "backfills": 0,
+    "promotion_or_readiness_flag_changes": 0
+  },
+  "live_probe_after_merge": {
+    "citations_endpoint_status": 200,
+    "citations_count": 0,
+    "fact_sources_endpoint_status": 200,
+    "fact_sources_count": 0,
+    "meaning": "Remote main has the fix, but live backend/API runtime has not been updated yet."
+  },
+  "verification": [
+    "PR #67 was open/draft/mergeable with exactly 3 files before merge",
+    "final py_compile changed Python files: pass",
+    "final fallback tests: 5 passed",
+    "final related page/source API bundle: 15 passed",
+    "git diff --check: pass",
+    "diff-scoped security scan: no findings",
+    "changed read-route scan: no DB write markers",
+    "PR marked ready then squash-merged",
+    "merge commit parent count: 1",
+    "origin/main now points at ad87039",
+    "remote PR head branch deleted",
+    "live post-merge read-only probes still show citations=0 and fact_sources=0 because backend/API deploy is locked"
+  ],
+  "what_did_not_happen": [
+    "No backend/API deploy.",
+    "No backend/API restart for product code.",
+    "No production DB writes.",
+    "No migrations.",
+    "No backfill of page_citation_links or fact_sources.",
+    "No coverage_ready or promotion_eligible changes."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Next operational step, requires explicit approval",
+      "name": "Deploy/restart backend/API read-only fallback",
+      "risk": "Moderate operational risk: live backend/API code rollout, no intended data writes",
+      "steering": "STEER: deploy/restart backend/API for PR #67 read-only fallback only; live-probe citations and fact-sources; no DB writes."
+    },
+    {
+      "level": "Then",
+      "name": "Live probe and cockpit refresh",
+      "risk": "Read-only verification",
+      "steering": "STEER: run live source-surface probes after backend/API deploy and update cockpit; no DB writes."
+    },
+    {
+      "level": "Later/high risk",
+      "name": "Backfill or promotion work",
+      "risk": "Production data/product trust risk",
+      "steering": "Requires separate explicit approval with backup/dry-run/GO-NO-GO packet."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": false,
+    "note": "Report files written; frontend static-file service may be refreshed only to serve the new timestamped report. Backend/API product code remains undeployed."
+  },
+  "mode": "SOURCE_SURFACE_PR67_MERGED_DEPLOY_LOCKED"
+}

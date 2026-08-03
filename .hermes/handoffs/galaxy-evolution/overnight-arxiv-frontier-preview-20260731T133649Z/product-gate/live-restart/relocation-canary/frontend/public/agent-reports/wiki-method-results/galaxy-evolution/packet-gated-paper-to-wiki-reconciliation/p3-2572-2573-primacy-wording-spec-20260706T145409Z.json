@@ -1,0 +1,84 @@
+{
+  "marker": "GALAXY_EVOLUTION_PGR_P3_2572_2573_PRIMACY_WORDING_SPEC_20260706T145409Z",
+  "created_utc": "2026-07-06T14:54:09Z",
+  "status": "prepared_static_docs_only_no_execution",
+  "method": "Method1 / PGR / packet-gated paper-to-wiki reconciliation",
+  "approval_phrase_accepted": "APPROVE METHOD1 P3 DOCS-ONLY 2572 2573 PRIMACY WORDING SPEC",
+  "previous_method_phrase": "APPROVE METHOD1 P2 DOCS-ONLY 2929 ROUTE SPEC",
+  "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "safety": {
+    "db_writes": 0,
+    "sql_apply_rollback": 0,
+    "migration": 0,
+    "trust_recompute": 0,
+    "live_wiki_or_page_versions": 0,
+    "deploy_publish_restart": 0,
+    "git_commit_push_merge": 0,
+    "prod_cloud_api_mutation": 0,
+    "cross_method_or_shared_parent_writes": 0
+  },
+  "p3_scope": {
+    "target_claim": 2572,
+    "context_claim_preserve_distinct": 2573,
+    "selected_route": "recast_2572_to_cautious_guard_wording_docs_only_spec",
+    "selected_wording": "Central galaxy quenching should not be treated as primarily driven by central properties such as velocity dispersion, bulge mass, or black-hole mass unless halo-mass effects have been separated.",
+    "rejected_alternative": "Central properties such as velocity dispersion, bulge mass, and black-hole mass are the primary predictors of central-galaxy quenching, rather than halo mass.",
+    "2573_route": "leave_untouched_and_distinct; no merge, rewrite, or evidence move in this spec",
+    "trust_timing": "stage any trust recompute separately after P4 guard; none here",
+    "not_a_db_packet": true
+  },
+  "before_state": {
+    "2572": {
+      "text": "Quenching in central galaxies correlates with central properties like velocity dispersion, bulge mass, and black hole mass.",
+      "trust": "challenged",
+      "score": -0.333,
+      "visible_evidence_count": 1,
+      "evidence": [
+        {
+          "evidence_id": 26088,
+          "arxiv_id": "2512.16290v1",
+          "stance": "refutes",
+          "votes": "six counter-votes recorded in prior P3 docs/preflight",
+          "role": "guarding/primacy counter-evidence"
+        }
+      ]
+    },
+    "2573": {
+      "text": "The correlation between central galaxy quenching and halo mass is secondary.",
+      "trust": "unverified",
+      "score": 0.111,
+      "visible_evidence_count": 1,
+      "evidence": [
+        {
+          "evidence_id": 26089,
+          "arxiv_id": "2401.12953",
+          "stance": "neutral",
+          "role": "halo-secondary comparison proposition"
+        }
+      ]
+    }
+  },
+  "rationale": [
+    "The old 2572 wording asserts a bare central-property correlation; a halo-mass-primacy paper does not refute the existence of a correlation.",
+    "The challenged/refutes state becomes coherent when 2572 is treated as a predictor-primacy guard rather than a denial of correlations.",
+    "2573 already carries the halo-secondary proposition and must remain separate from the 2572 recast.",
+    "The user-selected P3 route from the prior decision board is cautious guard wording, not the stricter directly refutable claim."
+  ],
+  "future_packet_requirements": [
+    "Fresh before-state capture for claims 2572 and 2573 at packet time.",
+    "Verify claim 2572 text still equals the current before-state text before any future exact write packet.",
+    "Verify evidence 26088 remains attached to 2572 with stance=refutes and vote/dependency custody intact.",
+    "Verify 2573 remains distinct and is not rewritten, merged, or evidence-moved by the 2572 packet.",
+    "If public route and claim-history route disagree, route to P4 consistency handling first.",
+    "Any future exact write packet needs its own fresh approval; this P3 docs-only spec authorizes no mutation."
+  ],
+  "input_artifacts_read": [
+    "docs/hwao_morning_blocker_specs_20260706T0308Z/P3_2572_PRIMACY_RECAST_SPEC.md",
+    "frontend/public/agent-reports/p1-p3-wording-decisions.html",
+    "docs/hwao_p1_p3_readonly_preflight_20260706T0750Z/P1_P3_READONLY_PREFLIGHT_PACKET.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/pgr-current-page-inventory-20260706T130610Z.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/p2-2929-route-spec-20260706T144637Z.md"
+  ],
+  "next_method_phrase": "APPROVE METHOD1 P4 DOCS-ONLY TRUST LEVEL ROUTE-CONSISTENCY GUARD SPEC",
+  "next_method_phrase_scope": "Method1-local P4 docs/static/handoff spec only; no DB/SQL/trust/live wiki/page_versions/deploy/restart/git/prod/cloud/API/cross-method/shared-parent writes."
+}

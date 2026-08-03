@@ -1,0 +1,80 @@
+{
+  "marker": "NEBULAMIND_OVERNIGHT_REPORT_V1_LOCAL_DELIVERY_READY",
+  "created_kst": "2026-07-22T11:45:49.060892+09:00",
+  "source_marker": "GE_AUTOPILOT_OVERNIGHT_20260719_CORPUS_GATES_DONE",
+  "video": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/NEBULAMIND_OVERNIGHT_REPORT_V1_FEMALE_VOICE_EXACT_LIPSYNC.mp4",
+  "video_bytes": 13175323,
+  "video_sha256": "d54764f39ca8ebd7b798fb3cf5c7bf5331b289efd5f0ba7e0b9b05375c7a01d9",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_frames": "1764"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 2,
+        "r_frame_rate": "0/0",
+        "nb_frames": "3447"
+      }
+    ],
+    "format": {
+      "duration": "73.500000",
+      "size": "13175323"
+    }
+  },
+  "srt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/NEBULAMIND_OVERNIGHT_REPORT_V1_FEMALE_VOICE_EXACT_LIPSYNC.srt",
+  "srt_bytes": 1880,
+  "srt_sha256": "e768aff4521565107a3c27b97388ee55ab35788a211fab71250e3bffa8a3d71d",
+  "driver_audio": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/driver_audio/overnight_report_female_exact_narration_73s.wav",
+  "driver_sha256": "9f07f019cb2c10e3cc5f1e9790594e2dbcc913dc31affb3a60f215ace725a418",
+  "presenter_identity": "/Users/duhokim/HermesOps/scripts/clips/subnav_flow_lipsync_v7/canary/flow_master_shoulder_crop_768x1024.png",
+  "presenter_identity_sha256": "ddd3df2e758c2bab3d4d1a0a11eb9c87537e5818110bd8d2c0bf060b6aa0d1da",
+  "build_receipt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/build_receipt.json",
+  "build_receipt_sha256": "12c25ca8fd3ccac7a0e5a9fbb03e29f01971217bd9b598f96f2b202e99ef293f",
+  "qa_receipt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/overnight-report-video-20260722/render/qa_receipt.json",
+  "qa_receipt_sha256": "ce1d95867badd509ddc099cc77056b1ae85d5355b6e42388ba8fafb62de64970",
+  "qa_marker": "NEBULAMIND_OVERNIGHT_REPORT_V1_QA_COMPLETE",
+  "qa_status": "LOCAL_MASTER_COMPLETE_AWAITING_USER_REVIEW_AND_UPLOAD_APPROVAL",
+  "warning_level_decode": {
+    "video_returncode": 0,
+    "video_stderr": "",
+    "audio_returncode": 0,
+    "audio_stderr": "",
+    "pass": true
+  },
+  "content_boundary": {
+    "papers_auto_generated": 0,
+    "next_step": "end-to-end gated study runs",
+    "execution_phrase": "NONE ARMED",
+    "dynamic_cards_excluded": [
+      "Usage quota",
+      "Flow / Veo credits"
+    ],
+    "topic_visual": "uniform 57-item count grid; no invented UMAP geometry or proportional inflow values"
+  },
+  "provenance": {
+    "narration": "Edge TTS en-US-EmmaNeural",
+    "presenter": "local SadTalker exact-audio animation of accepted synthetic astronomer identity",
+    "graphics": "Pillow",
+    "compositor": "ffmpeg",
+    "new_generative_video_calls": "none",
+    "background": "reused atmospheric NebulaMind footage"
+  },
+  "publication": {
+    "uploaded": false,
+    "visibility_changed": false,
+    "website_changed": false,
+    "deployed": false,
+    "git_action": false,
+    "next_gate": "User review; any upload or integration requires separate explicit approval."
+  }
+}

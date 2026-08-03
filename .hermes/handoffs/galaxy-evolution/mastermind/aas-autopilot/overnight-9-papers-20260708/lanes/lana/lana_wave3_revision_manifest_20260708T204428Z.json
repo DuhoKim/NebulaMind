@@ -1,0 +1,167 @@
+{
+  "timestamp_utc": "20260708T204428Z",
+  "lane": "lana",
+  "marker": "LANA_WAVE3_FLAGSHIP_CONTROL_SUITE_REVISION_20260708T204428Z",
+  "scope": "Wave-3 Lana manuscript revisions for M1 RP-1, M2 P3, and M3 P1; all lane-local; current linked manuscripts/PDFs not overwritten.",
+  "source_read_confirmation": {
+    "brief": "OVERNIGHT_BRIEF.md",
+    "swarm_board": "SWARM_BOARD.md",
+    "all_9_current_aastex_sources_read_by_lane_tick": true,
+    "all_9_analysis_json_read_by_lane_tick": true,
+    "additional_sources": [
+      "lanes/hwao/HWAO_DIRECTOR_TICK_20260708T202049Z.md",
+      "lanes/tori/revision-drafts/rp1_robustness_selection/20260708T181833Z/",
+      "lanes/tori/revision-drafts/m2p3_m3p1_selection_ci/20260708T193507Z/",
+      "lanes/literature/literature_source_packet_wave3_missing_active9_20260708T170557Z.md",
+      "lanes/external-cli/EXTERNAL_CLI_TICK_20260708T190158Z.md",
+      "lanes/goru/tables/bpt_class_sensitivity_matched_offsets_20260708T162615Z.csv",
+      "lanes/goru/tables/paper_table_candidate_rows_20260708T183643Z.csv"
+    ]
+  },
+  "new_analysis_artifacts": {
+    "rp1_control_baseline_diagnostics_csv": "artifacts/rp1_control_baseline_diagnostics_20260708T204428Z.csv",
+    "rp1_control_support_json": "artifacts/rp1_control_support_20260708T204428Z.json"
+  },
+  "rp1_control_baseline_summary": [
+    {
+      "label": "BPT AGN vs BPT star-forming (preserved original pairs)",
+      "target_n": 8146,
+      "control_n": 39553,
+      "matched_pairs": 8146,
+      "unique_controls": 4239,
+      "max_reuse": 26,
+      "p95_reuse": 5.0,
+      "median_delta": -1.3088869999999995,
+      "ci_low": -1.3341744000000002,
+      "ci_high": -1.282136825,
+      "mean_delta": -1.201557615885097,
+      "median_abs_dlogM": 0.0044599999999999085,
+      "median_abs_dz": 0.00021079499999999973,
+      "median_dist_scaled": 0.013706693336996801,
+      "p90_dist_scaled": 0.05216872357227105,
+      "p95_dist_scaled": 0.07667284664342142,
+      "p99_dist_scaled": 0.15283037248420078,
+      "frac_dist_gt_0p05": 0.10667812423275227,
+      "frac_dist_gt_0p10": 0.027866437515344955
+    },
+    {
+      "label": "BPT AGN vs all non-AGN emission-line controls",
+      "target_n": 8146,
+      "control_n": 51854,
+      "matched_pairs": 8146,
+      "unique_controls": 6013,
+      "max_reuse": 8,
+      "p95_reuse": 3.0,
+      "median_delta": -0.8593935000000004,
+      "ci_low": -0.8893299999999993,
+      "ci_high": -0.8270800000000005,
+      "mean_delta": -0.7786347445371962,
+      "median_abs_dlogM": 0.003049999999999997,
+      "median_abs_dz": 0.00012969500000000606,
+      "median_dist_scaled": 0.00853369481165912,
+      "p90_dist_scaled": 0.02360825669373625,
+      "p95_dist_scaled": 0.03344885044929534,
+      "p99_dist_scaled": 0.07563447932779048,
+      "frac_dist_gt_0p05": 0.02271053277682298,
+      "frac_dist_gt_0p10": 0.005033145101890499
+    },
+    {
+      "label": "BPT AGN vs low-sSFR non-AGN emission-line controls",
+      "target_n": 8146,
+      "control_n": 5986,
+      "matched_pairs": 8146,
+      "unique_controls": 3992,
+      "max_reuse": 11,
+      "p95_reuse": 5.0,
+      "median_delta": -0.0012799999999995038,
+      "ci_low": -0.024154999999999482,
+      "ci_high": 0.02338537499999948,
+      "mean_delta": 0.0602683713479008,
+      "median_abs_dlogM": 0.004659999999999442,
+      "median_abs_dz": 0.0003174050000000015,
+      "median_dist_scaled": 0.021831128257859097,
+      "p90_dist_scaled": 0.05028381708474401,
+      "p95_dist_scaled": 0.06850046130422088,
+      "p99_dist_scaled": 0.13745821941799627,
+      "frac_dist_gt_0p05": 0.10152221949423029,
+      "frac_dist_gt_0p10": 0.020623618954087895
+    },
+    {
+      "label": "BPT AGN vs intermediate/unclassified non-SF controls",
+      "target_n": 8146,
+      "control_n": 12301,
+      "matched_pairs": 8146,
+      "unique_controls": 5254,
+      "max_reuse": 8,
+      "p95_reuse": 3.0,
+      "median_delta": -0.5140950000000011,
+      "ci_low": -0.543809500000001,
+      "ci_high": -0.48957850000000014,
+      "mean_delta": -0.4915952433095998,
+      "median_abs_dlogM": 0.0032199999999988904,
+      "median_abs_dz": 0.00023091999999999904,
+      "median_dist_scaled": 0.015949930368137185,
+      "p90_dist_scaled": 0.039135047801327635,
+      "p95_dist_scaled": 0.05486631647432494,
+      "p99_dist_scaled": 0.12226196334292855,
+      "frac_dist_gt_0p05": 0.059538423766265655,
+      "frac_dist_gt_0p10": 0.015222194942302971
+    }
+  ],
+  "rp1_support_summary": {
+    "agn_total": 8146,
+    "sf_control_total": 39553,
+    "agn_outside_sf_logM_support": 1,
+    "agn_outside_sf_z_support": 1,
+    "sf_logM_range": [
+      8.002708,
+      12.21866
+    ],
+    "sf_z_range": [
+      0.02000161,
+      0.1199929
+    ]
+  },
+  "drafts": [
+    {
+      "paper_slug": "m1_rp1_sdss_agn_sfr",
+      "source_base": ".hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/revision-drafts/rp1_robustness_selection/20260708T181833Z/aastex/sdss_agn_sfr_pilot_rp1_robustness_selection_20260708T181833Z.tex",
+      "changes_md": "revision-drafts/m1_rp1_sdss_agn_sfr/CHANGES_20260708T204428Z.md",
+      "tex": "revision-drafts/m1_rp1_sdss_agn_sfr/aastex/sdss_agn_sfr_pilot_lana_control_baseline_20260708T204428Z.tex",
+      "pdf": null,
+      "compile_log": "revision-drafts/m1_rp1_sdss_agn_sfr/aastex/compile_20260708T204428Z.log",
+      "compile_exit_code": 1,
+      "pdf_bytes": 0,
+      "pdf_sha256": null,
+      "pdf_starts_with_pdf": false,
+      "fatal_markers": []
+    },
+    {
+      "paper_slug": "m2_p3_feedback_transition_mass",
+      "source_base": ".hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/revision-drafts/m2p3_m3p1_selection_ci/20260708T193507Z/aastex/m2_p3_feedback_transition_mass_selection_ci_20260708T193507Z.tex",
+      "changes_md": "revision-drafts/m2_p3_feedback_transition_mass/CHANGES_20260708T204428Z.md",
+      "tex": "revision-drafts/m2_p3_feedback_transition_mass/aastex/m2_p3_feedback_transition_mass_lana_claim_contract_20260708T204428Z.tex",
+      "pdf": null,
+      "compile_log": "revision-drafts/m2_p3_feedback_transition_mass/aastex/compile_20260708T204428Z.log",
+      "compile_exit_code": 1,
+      "pdf_bytes": 0,
+      "pdf_sha256": null,
+      "pdf_starts_with_pdf": false,
+      "fatal_markers": []
+    },
+    {
+      "paper_slug": "m3_p1_multiphase_census",
+      "source_base": ".hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/revision-drafts/m2p3_m3p1_selection_ci/20260708T193507Z/aastex/m3_p1_multiphase_census_selection_ci_20260708T193507Z.tex",
+      "changes_md": "revision-drafts/m3_p1_multiphase_census/CHANGES_20260708T204428Z.md",
+      "tex": "revision-drafts/m3_p1_multiphase_census/aastex/m3_p1_multiphase_census_lana_threshold_contract_20260708T204428Z.tex",
+      "pdf": null,
+      "compile_log": "revision-drafts/m3_p1_multiphase_census/aastex/compile_20260708T204428Z.log",
+      "compile_exit_code": 1,
+      "pdf_bytes": 0,
+      "pdf_sha256": null,
+      "pdf_starts_with_pdf": false,
+      "fatal_markers": []
+    }
+  ],
+  "safety": "Lane-local revision drafts/artifacts only, plus required one-line OVERNIGHT_LEDGER.md append. No public pages, live roots, product DB, API/pages, page_versions, trust, deploy/restart, git, billing, OAuth, external submission, or new cron jobs."
+}

@@ -1,0 +1,2003 @@
+MNRAS 000, 1–13 (2025)
+Preprint 15 August 2025
+Compiled using MNRAS LATEX style file v3.2
+The impact of galaxy bias on cross-correlation tomography
+Sara Maleubre,1★Matteo Zennaro,1 David Alonso,1 Ian G McCarthy,2 Matthieu Schaller,3,4 and Joop Schaye3
+1Department of Physics, University of Oxford, Denys Wilkinson Building, Keble Road, Oxford OX1 3RH, United Kingdom
+2Astrophysics Research Institute, Liverpool John Moores University, 146 Brownlow Hill, Liverpool L3 5RF, United Kingdom
+3Leiden Observatory, Leiden University, PO Box 9513, NL-2300 RA Leiden, the Netherlands
+4Lorentz Institute for Theoretical Physics, Leiden University, PO box 9506, 2300 RA Leiden, the Netherlands
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+The cross-correlation of galaxies at different redshifts with other tracers of the large-scale structure can be used to reconstruct
+the cosmic mean of key physical quantities, and their evolution over billions of years, at high precision. However, a correct
+interpretation of these measurements must ensure that they are independent of the clustering properties of the galaxy sample used.
+In this paper we explore different prescriptions to extract tomographic reconstruction measurements and use the FLAMINGO
+hydrodynamic simulations to show that a robust estimator, independent of the small-scale galaxy bias, can be constructed.
+We focus on the tomographic reconstruction of the halo bias-weighted electron pressure ⟨𝑏𝑃𝑒⟩and star-formation density
+⟨𝑏𝜌SFR⟩, which can be reconstructed from tomographic analysis of Sunyaev-Zel’dovich and cosmic infrared background maps,
+respectively. We show that these quantities can be reconstructed with an accuracy of 1-3% over a wide range of redshifts, using
+different galaxy samples. We also show that these measurements can be accurately interpreted using the halo model, assuming
+a sufficiently reliable model can be constructed for the halo mass function, large-scale halo bias, and for the dependence of the
+physical quantities being reconstructed on halo mass.
+Key words: cosmology: large-scale structure of the Universe – methods: numerical – galaxies: formation
+1 INTRODUCTION
+Galaxies are biased tracers of the underlying fluctuations in the matter
+density. In general, the abundance of galaxies of a given type at
+different points in space is strongly correlated with the density of
+matter and, on sufficiently large scales, both overdensities can be
+linearly related via
+𝛿𝑔≃𝑏𝑔𝛿𝑚,
+(1)
+where 𝑏𝑔is the linear galaxy bias parameter, and 𝛿𝑔and 𝛿𝑚are the
+galaxy and matter overdensities. On small scales, however, the galaxy
+bias relation becomes significantly more complicated and difficult to
+model. Non-linear, non-local, and stochastic contributions become
+important, and their impact on galaxy clustering statistics is difficult
+to predict with high accuracy (Desjacques et al. 2018; Zennaro et al.
+2022; Kokron et al. 2022).
+Galaxies are also local large-scale structure (LSS) tracers: their
+abundance at a given redshift tracks the matter overdensity, as well
+as any other physical quantity correlated with it, at the same redshift.
+This makes it possible to use the cross-correlation of galaxies with
+different projected tracers of the matter fluctuations to reconstruct
+the redshift dependence of interesting quantities, in a technique com-
+monly called “tomography” or “tomographic reconstruction” (New-
+man 2008; McQuinn & White 2013; Chiang et al. 2019). In broad
+terms, the large-scale amplitude of the cross-correlation between
+galaxies and a given LSS tracer 𝑈depends on the bias-weighted
+★E-mail: sara.maleubremolinero@physics.ox.ac.uk
+average of 𝑈, ⟨𝑏𝑈⟩1, and on the clustering properties of the galaxies
+used in the analysis. The auto-correlation of these galaxies can then
+be used to constrain the galaxy bias relation, resulting in a measure-
+ment of ⟨𝑏𝑈⟩.
+This technique has been widely used for multiple science purposes.
+In the “CMB lensing tomography” approach, cross-correlations with
+maps of the Cosmic Microwave Background lensing convergence
+have been used to reconstruct the growth of structure as a function
+of time (Krolewski et al. 2021; White et al. 2022; Piccirilli et al.
+2024; Qu et al. 2025). Cross-correlations with maps of the thermal
+Sunyaev-Zel’dovich effect (tSZ) have been used to reconstruct the
+bias-weighted mean electron pressure ⟨𝑏𝑃𝑒⟩, which can be used to
+study the thermodynamics of the intergalactic medium, as well as the
+amplitude of matter fluctuations (Vikram et al. 2017; Pandey et al.
+2019; Koukoufilippas et al. 2020; Chiang et al. 2020; Chen et al.
+2023; Sánchez et al. 2023). The same approach can also be used to
+measure the bias-weighted star formation rate density ⟨𝑏𝜌SFR⟩, as
+shown by (Yan et al. 2022; Jego et al. 2023b; Yan et al. 2024; Chiang
+et al. 2025). Cross-correlation with intensity maps at different wave-
+lengths have also been used to reconstruct other key physical quan-
+tities, including the radio, ultraviolet, and gamma-ray background
+(Chiang et al. 2019; Paopiamsap et al. 2024; Todarello et al. 2024).
+Finally, the same principle is behind the so-called “clustering red-
+shifts” approach: cross-correlations between galaxy samples with
+1 Note that this “bias weighting” refers to the bias of the dark matter haloes
+populated by 𝑈, and not to the bias of the galaxies used in the cross-
+correlation.
+© 2025 The Authors
+arXiv:2508.05319v2  [astro-ph.CO]  14 Aug 2025
+
+
+2
+S. Maleubre et al.
+known redshifts, and samples with uncertain redshifts can be used
+to reconstruct the redshift distribution of the latter (Newman 2008;
+Matthews & Newman 2010; McQuinn & White 2013; Schmidt et al.
+2013; Ménard et al. 2013).
+In spite of the broad applicability of tomographic reconstruction,
+and its ability to recover model-independent measurements of inter-
+esting physical quantities, two outstanding questions have limited its
+use in cosmological analysis:
+• Are the estimated values of ⟨𝑏𝑈⟩unbiased, and independent of
+the clustering properties of the galaxy sample used to measure it?
+• Can the measured values of ⟨𝑏𝑈⟩be interpreted from more
+fundamental descriptions (e.g. through the halo model)?
+Answering these questions is important for several reasons. First,
+past efforts at tomographic reconstruction have often made use of
+relatively small scales in order to boost the sensitivity of the resulting
+measurements (Chiang et al. 2025) (this is particularly common in the
+case of clustering redshifts (Chiang et al. 2020; Gatti et al. 2022)).
+However, on these scales, galaxy bias can be significantly scale-
+dependent, affecting the shape of galaxy auto- and cross-correlations
+in different ways, and potentially biasing the recovered quantities.
+Second, an unbiased measurement of e.g. ⟨𝑏𝑃𝑒⟩is not immediately
+useful unless theoretical predictions can be built for it in terms of
+both cosmology and gas thermodynamics. Although this has been
+addressed in e.g. Young et al. (2021) in the particular case of tSZ
+tomography, a more general study has not been carried out yet.
+This paper addresses these two questions, finding that they can
+both be answered in the affirmative assuming suitable estimators
+and scale ranges are used. To do so, we will select different galaxy
+samples within the FLAMINGO suite of hydrodynamical simulations,
+taking advantage of their large simulation volume to probe the re-
+alistic correlation between matter, galaxies, and different baryonic
+properties over a wide range of linear and non-linear scales. We will
+apply a tomographic reconstruction estimator to all of these sam-
+ples, using their auto-correlation and cross-correlation with various
+LSS fields 𝑈. In particular, we will target the matter overdensity, the
+thermal gas pressure, and the star formation-rate density. We will
+then assess the ability of the estimator to recover consistent and un-
+biased measurements of ⟨𝑏𝑈⟩, and the possibility of interpreting the
+measurements in the context of the halo model.
+This paper is structured as follows. Section 2 introduces the the-
+oretical background of tomographic reconstruction. The simulations
+used, including the different galaxy samples and LSS quantities ex-
+tracted from them, are described in Section 3. Our results are pre-
+sented in Section 4, including an assessment of the robustness of
+⟨𝑏𝑈⟩measurements to small-scale galaxy bias, and their theoretical
+interpretation. Finally, Section 5 summarises our findings.
+2 TOMOGRAPHY AND GALAXY BIAS
+2.1 Cross-correlation-based tomography
+Consider a projected field 𝑢( ˆn) defined on the celestial sphere, where
+ˆn is a directional unit vector, tracing a three-dimensional physical
+quantity 𝑈(x, 𝑧)2 through a projection integral of the form
+𝑢( ˆn) =
+∫
+𝑑𝜒𝑞𝑢(𝜒) 𝑈(𝜒ˆn, 𝑧(𝜒)),
+(2)
+2 Note that we use redshift 𝑧as an effective time variable.
+where 𝑞𝑢(𝜒) is a known radial (comoving distance) kernel. Multiple
+examples of such fields exist in cosmology and astrophysics. Here
+we will consider the following:
+• The CMB lensing convergence field (Lewis & Challinor 2006)
+is a projected tracer of the matter overdensity (𝑈= 𝛿𝑚):
+𝜅( ˆn) =
+∫
+𝑑𝜒𝑞𝜅(𝜒) 𝛿𝑚(𝜒ˆn, 𝑧(𝜒)),
+(3)
+where the lensing kernel is
+𝑞𝜒(𝜒) ≡3
+2 𝐻2
+0Ω𝑚(1 + 𝑧)𝜒𝜒LSS −𝜒
+𝜒LSS
+.
+(4)
+Here Ω𝑚and 𝐻0 are the cosmic non-relativistic matter fraction
+and the Hubble parameter, respectively, and 𝜒LSS is the comoving
+distance to the last-scattering surface.
+• The thermal Sunyaev-Zel’dovich effect (Carlstrom et al. 2002)
+Compton-𝑦parameter is a projected tracer of the thermal electron
+pressure 𝑃𝑒:
+𝑦( ˆn) =
+∫
+𝑑𝜒𝑞𝑦(𝜒) 𝑃𝑒(𝜒ˆn, 𝑧(𝜒)),
+𝑞𝑦(𝜒) ≡
+𝜎𝑇
+𝑚𝑒𝑐2
+1
+1 + 𝑧,
+(5)
+where 𝜎𝑇and 𝑚𝑒are the Thomson scattering cross section and the
+electron mass, respectively, and 𝑐is the speed of light.
+• The Cosmic Infrared Background intensity at a given ob-
+served frequency 𝐼𝜈is sourced by dust emission in star-forming
+galaxies, and is thus a tracer of the star formation-rate (SFR) density
+𝜌SFR (Maniyar et al. 2021):
+𝐼𝜈( ˆn) =
+∫
+𝑑𝜒𝑞CIB,𝜈(𝜒) 𝜌SFR(𝜒ˆn, 𝑧(𝜒)),
+(6)
+where the radial kernel is
+𝑞CIB,𝜈(𝜒) ≡𝜒2 𝑆eff
+𝜈(𝑧)
+𝐾
+.
+(7)
+Here 𝐾is the calibration constant relating far infrared luminosity and
+SFR (sometimes called the “Kennicut constant” (Kennicutt 1998)),
+and 𝑆eff
+𝜈(𝑧) is the mean flux of infrared sources at redshift 𝑧nor-
+malised to unit luminosity (see e.g. Maniyar et al. 2021).
+In addition to these, consider the projected overdensity of galaxies
+Δ𝑔( ˆn) =
+∫
+𝑑𝜒𝑞𝑔(𝜒) 𝛿𝑔(𝜒ˆn, 𝑧(𝜒)),
+𝑞𝑔(𝜒) ≡𝐻(𝑧)
+𝑐
+𝑝(𝑧)
+(8)
+where 𝛿𝑔is the 3D galaxy overdensity, 𝐻(𝑧) is the expansion rate
+at redshift 𝑧, and 𝑝(𝑧) is the redshift distribution of the galaxies.
+It is often possible to obtain reasonably accurate measurements for
+galaxy redshifts, and thus well-localised samples can be selected, in
+which case 𝑝(𝑧) is a compact function centered at a mean redshift
+¯𝑧𝑔.
+The angular power spectrum between any two projected quantities,
+𝑢and 𝑣, is given by
+𝐶𝑢𝑣
+ℓ
+=
+∫
+𝑑𝜒
+𝜒2 𝑞𝑢(𝜒) 𝑞𝑣(𝜒) 𝑃𝑈𝑉
+
+𝑘= ℓ+ 1/2
+𝜒
+, 𝑧(𝜒)
+
+,
+(9)
+where 𝑃𝑈𝑉(𝑘, 𝑧) is the three-dimensional power spectrum between
+the two 3D quantities, 𝑈and 𝑉, that the projected quantities trace.
+The halo model (Seljak 2000; Peacock & Smith 2000; Cooray
+& Sheth 2002) provides a useful framework to make predictions
+for the power spectrum of general LSS tracers. A key prediction of
+this model is that, on sufficiently large scales, the power spectrum
+𝑃𝑈𝑉(𝑘, 𝑧) can be approximated as
+𝑃𝑈𝑉(𝑘, 𝑧) ≃⟨𝑏𝑈(𝑧)⟩⟨𝑏𝑉(𝑧)⟩𝑃𝑚𝑚(𝑘, 𝑧),
+(10)
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+3
+where 𝑃𝑚𝑚(𝑘, 𝑧) is the matter power spectrum, and we have defined
+the bias-weighted average:
+⟨𝑏𝑈⟩=
+∫
+𝑑𝑀𝑛(𝑀) 𝑏ℎ(𝑀) ˜𝑈(𝑀),
+(11)
+where 𝑛(𝑀) is the halo mass function, 𝑏ℎ(𝑀) is the linear halo bias,
+and ˜𝑈(𝑀) is the average integral of the halo profile for the physical
+quantity 𝑈over volume, for halos of mass 𝑀:
+˜𝑈(𝑀) ≡4𝜋
+∫∞
+0
+𝑑𝑟𝑟2 𝑈(𝑟|𝑀),
+(12)
+where 𝑈(𝑟|𝑀) is the halo profile. ⟨𝑏𝑈⟩is thus the cosmic average
+value of 𝑈weighted by the linear bias of the haloes it populates. This
+is an interesting quantity to measure, as it can complement other
+measurements of the unweighted cosmic average ⟨𝑈⟩, by providing
+a handle on the mass dependence of 𝑈. Note that, although we have
+used the matter power spectrum in Equation 10, the simplest halo
+model prediction uses the linear matter power spectrum instead.
+Both agree on sufficiently large scales, although we will explore
+different options for 𝑃𝑚𝑚(𝑘, 𝑧) when building robust tomographic
+reconstruction estimators in Section 2.2.
+Consider now the cross-correlation between galaxies at a given
+mean redshift ¯𝑧𝑔, and a projected field 𝑢, 𝐶𝑔𝑢
+ℓ, and the galaxy auto-
+correlation 𝐶𝑔𝑔
+ℓ. As discussed above, on sufficiently large scales, and
+assuming that the width of the galaxy redshift distribution is much
+smaller than the timescales over which cosmological quantities and
+biases vary significantly, we can model these two power spectra as:
+𝐶𝑔𝑢
+ℓ
+≃𝑏𝑔⟨𝑏𝑈⟩¯𝑧𝑔𝑇𝑔𝑢
+ℓ,
+𝐶𝑔𝑔
+ℓ
+≃𝑏2
+𝑔𝑇𝑔𝑔
+ℓ
+,
+(13)
+where the template angular power spectra 𝑇𝑔𝑢
+ℓ
+and 𝑇𝑔𝑔
+ℓ
+are
+𝑇𝑥𝑦
+ℓ
+≡
+∫
+𝑑𝜒
+𝜒2 𝑞𝑥(𝜒) 𝑞𝑦(𝜒) 𝑃𝑚𝑚
+ℓ+ 1/2
+𝜒
+, 𝑧(𝜒)
+
+.
+(14)
+Since these templates depend only on the known radial kernels, and
+on cosmological parameters, the amplitudes of 𝐶𝑔𝑢
+ℓ
+and 𝐶𝑔𝑔
+ℓ
+can be
+used, in combination, to measure ⟨𝑏𝑈⟩at the redshift of the galaxies,
+in addition to the galaxy bias 𝑏𝑔.
+Although we have defined ⟨𝑏𝑈⟩as a bias-weighted average in
+Equation 11, as predicted by the halo model, this quantity can be
+more generally interpreted as the relative clustering amplitude of the
+quantity 𝑈with respect to the matter overdensity. Quantitatively, this
+could be defined as in e.g. Young et al. (2021); Chen et al. (2024):
+⟨𝑏𝑈⟩= lim
+𝑘→0
+𝑃𝑈𝑚(𝑘, 𝑧)
+𝑃𝑚𝑚(𝑘, 𝑧) .
+(15)
+We will refer to this model as “large scale approximation” (LSA),
+hereafter.
+Ultimately, we need to be able to connect the measured amplitude
+parameter ⟨𝑏𝑈⟩with the clustering of both 𝑈and 𝛿𝑚, with as little
+dependence as possible on the unknown clustering of the galaxies
+used to make the measurement.
+2.2 Tomographic reconstruction estimators
+Consider now the problem of estimating ⟨𝑏𝑈⟩from real measure-
+ments of the galaxy auto-correlation and its cross-correlation with
+the relevant LSS tracer. For simplicity, we will address this problem
+directly at the level of the 3D power spectra 𝑃𝑥𝑦(𝑘), since these
+measurements are straightforward to make in simulations, and the
+radial projection onto 𝐶ℓs does not introduce any additional rele-
+vant complications (assuming that the galaxy redshift distribution is
+compact and well known).
+Let ˆ𝑃𝑔𝑔(𝑘) and ˆ𝑃𝑔𝑈(𝑘) be measurements of the the auto- and
+cross-correlations, made at a discrete set of wavenumbers 𝑘. A simple
+ansatz to model these measurements would be
+ˆ𝑃𝑔𝑔(𝑘) = 𝑏2
+𝑔˜𝑃𝑚𝑚(𝑘),
+ˆ𝑃𝑔𝑈(𝑘) = 𝑏𝑔⟨𝑏𝑈⟩˜𝑃𝑚𝑚(𝑘),
+(16)
+where ˜𝑃𝑚𝑚(𝑘) is a suitable fixed template for the matter power
+spectrum. The values of 𝑏𝑔and ⟨𝑏𝑈⟩can then be determined by
+fitting the measured power spectra to this model.
+This model can be improved by adding a constant term in ˆ𝑃𝑔𝑔(𝑘) to
+account for the presence of shot noise in the galaxy auto-correlation.
+For sufficiently dense samples, this term would only be relevant at
+large values of 𝑘, but in general shot noise can impact all scales. At
+the same time, we may include a similar term for ˆ𝑃𝑔𝑈(𝑘). While
+in principle shot noise would not affect these cross-correlations, at
+intermediate scales this term would be able to absorb the small-scale
+contribution to ˆ𝑃𝑔𝑈(𝑘) from pairs of points within the same dark-
+matter halo (i.e. the “1-halo” contribution, in the language of the halo
+model), as well as any other sources of uncorrelated noise in either
+spectrum. The extended model would then read (Jego et al. 2023b):
+ˆ𝑃𝑔𝑔(𝑘) = 𝑏2
+𝑔˜𝑃𝑚𝑚(𝑘) + 𝑁𝑔𝑔,
+(17)
+ˆ𝑃𝑔𝑈(𝑘) = 𝑏𝑔⟨𝑏𝑈⟩˜𝑃𝑚𝑚(𝑘) + 𝑁𝑔𝑈,
+(18)
+where 𝑁𝑔𝑔and 𝑁𝑔𝑢are now two additional free parameters to be
+included in the fit. We will refer to this model as “linear model” or
+𝑛max = 0 (in reference of the more general model explained below).
+Finally, we may further enhance the model by adding terms that
+could absorb the impact of non-linear biasing in both 𝛿𝑔and 𝑈.
+Assuming these deviations to be slow-varying in 𝑘space, this could
+be achieved through a polynominal expansion in 𝑘. Here we will
+consider adding terms of the form ∝𝑘2𝑛˜𝑃𝑚𝑚(𝑘) which, for values
+of 𝑛≥1, lead to contributions that are relevant at increasingly small
+scales, where we expect deviations from linear bias to become more
+relevant. The most general model we will use here to estimate ⟨𝑏𝑈⟩
+is thus
+ˆ𝑃𝑔𝑔(𝑘) = 𝑏2
+𝑔˜𝑃𝑚𝑚(𝑘) +
+𝑛max
+∑︁
+𝑛=1
+𝐴𝑛
+𝑔𝑔𝑘2𝑛˜𝑃𝑚𝑚(𝑘) + 𝑁𝑔𝑔,
+(19)
+ˆ𝑃𝑔𝑈(𝑘) = 𝑏𝑔⟨𝑏𝑈⟩˜𝑃𝑚𝑚(𝑘) +
+𝑛max
+∑︁
+𝑛=1
+𝐴𝑛
+𝑔𝑈𝑘2𝑛˜𝑃𝑚𝑚(𝑘) + 𝑁𝑔𝑈,
+(20)
+where 𝐴𝑛𝑔𝑔and 𝐴𝑛
+𝑔𝑈are additional free amplitude parameters. The
+simplicity of this model allows us to obtain fast analytical estimates
+for all free parameters, as described in Appendix A.
+The final ingredient of this estimator is the template ˜𝑃𝑚𝑚(𝑘) used
+in lieu of the matter power spectrum. Here we will consider four
+different options:
+• The dark-matter only (DMO) linear matter power spectrum.
+• The DMO non-linear power spectrum calculated via the
+HALOFIT parametrisation of (Takahashi et al. 2012).
+• The DMO non-linear power spectrum calculated through the
+Baccoemu emulator (Angulo et al. 2021).
+• The matter power spectrum estimated from the same simulation
+used to measure ˆ𝑃𝑔𝑔and ˆ𝑃𝑔𝑈. This will include, for example, the
+impact of baryonic effects (Schaller et al. 2024a).
+The first three options represent viable choices in a realistic data
+analysis scenario, and differ in the level of accuracy with which they
+predict the true underlying matter power spectrum. The fourth option
+is clearly unrealistic, as the true matter power spectrum is not directly
+observable, but the resulting constraints on ⟨𝑏𝑈⟩represent the best
+possible scenario, unaffected by inaccuracies in the model of the
+matter power spectrum.
+MNRAS 000, 1–13 (2025)
+
+
+4
+S. Maleubre et al.
+This defines the most general cross-correlation-based estimator
+of ⟨𝑏𝑈⟩we will use in this work. We will apply this estimator in
+Section 4 to different galaxy samples, and quantify the consistency
+of the resulting ⟨𝑏𝑈⟩measurements. Rather than only comparing
+the values found for different galaxy samples among themselves, we
+will compare these with a “true” value, independent of any galaxy
+clustering properties. Instead of predicting ⟨𝑏𝑈⟩according to the
+halo model, using Equation 11, we will define its reference value
+as the value found by the estimator defined above using the matter
+overdensity instead of the overdensity of any galaxy sample (i.e.
+using ˆ𝑃𝑚𝑚(𝑘) and ˆ𝑃𝑚𝑈(𝑘) measured from the simulation instead
+of ˆ𝑃𝑔𝑔(𝑘) and ˆ𝑃𝑔𝑈(𝑘)). This will allow us to ascertain if the ⟨𝑏𝑈⟩
+estimated from galaxies agrees with a universal definition of ⟨𝑏𝑈⟩
+that only depends on the clustering of matter and of the tracer 𝑈.
+2.3 The halo model prediction
+Once we have established the agreement between the value of ⟨𝑏𝑈⟩
+estimated from galaxies, and its reference value estimated from the
+matter field, we will turn to the question of whether this reference
+value agrees with the halo model prediction for ⟨𝑏𝑈⟩. This theoretical
+prediction can be calculated by solving the integral in Equation 11,
+using existing parametrisations for the halo mass function (HMF) and
+halo bias (e.g. (Tinker et al. 2008, 2010; Despali et al. 2016; Ondaro-
+Mallea et al. 2024)), as well as a model for the halo mass dependence
+of 𝑈. However, the resulting estimate of 11 would be subject to
+the inaccuracies in these parametrisations (Knebe et al. 2011), as
+well as differences in the halo mass dependence of hydrodynamical
+quantities (e.g thermal energy or SFR) in FLAMINGO and in existing
+models based on first principles or other simulation suites. Instead, we
+will estimate the halo model prediction by implementing Equation 11
+directly in the simulation:
+⟨𝑏𝑈⟩HM =
+1
+𝑉box
+∑︁
+ℎ
+𝑏ℎ
+∑︁
+𝑖∈ℎ
+˜𝑈𝑖.
+(21)
+Here, the index ℎruns over all haloes resolved in the simulation,
+while 𝑖runs over all simulation particles identified as belonging to
+halo ℎ. 𝑏ℎis the linear halo bias for the ℎ-th halo, which we calculate
+in three different ways:
+• 𝑏ℎcalculated directly from the simulation. We estimate the
+value of 𝑏ℎusing the estimator of ⟨𝑏𝑈⟩described in the previous
+section (Eqs. 19 and 20), with ˆ𝑃𝑚𝑚(𝑘) instead of ˆ𝑃𝑔𝑔(𝑘), and the
+matter-halo cross-spectrum, ˆ𝑃𝑚ℎ(𝑘|𝑀ℎ), instead of ˆ𝑃𝑔𝑈(𝑘). See
+Section 3.2 for a full description.
+• 𝑏ℎcalculated from Tinker et al. (2010).
+• 𝑏ℎcalculated using the Peak-Background Split (PBS) frame-
+work with the HMF in Despali et al. (2016)
+• 𝑏ℎcalculated using PBS and the HMF in Ondaro-Mallea et al.
+(2024)
+Finally, ˜𝑈𝑖is the value of the 𝑈field integrated over the effective vol-
+ume of the 𝑖-th particle. To estimate its value for each halo, Í
+𝑖∈ℎ˜𝑈𝑖,
+we proceed as follows:
+• For the case𝑈= 𝜌SFR, ˜𝑈𝑖is simply the total SFR assigned to the
+particle. Thus, we use the total SFR for each halo in the FLAMINGO
+halo catalogue. This is calculated by combining all particles assigned
+to the halo according to a spherical overdensity mass definition with
+an overdensity Δ = 200 times larger than the critical density.
+• For the case of 𝑈= 𝑃𝑒, we calculate Í
+𝑖∈ℎ˜𝑈𝑖from the values of
+the Compton-𝑦parameter assigned to each halo in the FLAMINGO
+catalogues. As described in McCarthy et al. (2017), the volume-
+integrated integrated pressure in this case is given by
+˜𝑃𝑒,ℎ= 𝑦ℎ𝑑2
+𝐴(𝑧) 𝑚𝑒𝑐2
+𝜎𝑇
+,
+(22)
+where 𝑑𝐴is the angular distance to the redshift of the corresponding
+snapshot, and 𝑦ℎis the Compton-𝑦parameter of the halo, calculated
+by summing over all particles assigned to it. Unlike in the case of
+SFR, the tSZ signal receives significant contribution from gas at
+distances beyond the virial radius of the halo (McCarthy et al. 2014).
+To ensure that this contribution is included in our calculation, in this
+case we include all particles within a sphere of radius 5 × 𝑅500𝑐,
+where 𝑅500𝑐is the spherical overdensity radius of the halo with an
+overdensity of Δ = 500 times the critical density. Note that this may
+lead to double-counting of particles lying within the spheres of more
+than one halo, as discussed in Section 4.2.3.
+3 SIMULATIONS
+We employ the state-of-the-art FLAMINGO simulations (Schaye et al.
+2023; Kugel et al. 2023), one of the largest sets of gravity-only (GrO)
+and hydrodynamical simulations with cosmological volumes ever
+produced. They are calibrated such that the stellar and AGN feedback
+models reproduce the observed 𝑧= 0 galaxy stellar mass function and
+cluster gas fractions, shown to reproduce cluster scaling relations and
+thermodynamic profiles (Braspenning et al. 2024). The simulations
+were run with the SWIFT code (Schaller et al. 2024b), using the
+SPHENIX smoothed-particle hydrodynamic scheme (Borrow et al.
+2022).
+We focus on the fiducial simulation of the set. This has a cosmol-
+ogy, dubbed D3A, based on the results of the DES-Y3 3x2point
+analysis, including all external constraints (Abbott et al. 2022).
+That is, it assumes a flat geometry, a total matter density param-
+eter Ωm = 0.306, a baryon density parameter Ωb = 0.0486, and
+a neutrino component with total mass 𝑀𝜈= 0.06 eV. The power
+law index of primordial scalar perturbations is 𝑛s = 0.967 and
+the amplitude of the primordial power spectrum on a pivot scale
+𝑘pivot = 0.05 Mpc−1 is 𝐴s = 2.099 × 10−9. This corresponds to
+a standard deviation of linear perturbations (smoothed on spheres
+of radius 8 ℎ−1 Mpc) at 𝑧= 0 of 𝜎8,tot = 0.807 when considering
+perturbations in total matter or 𝜎8,cb = 0.811 when considering only
+cold matter perturbations (CDM + baryons). The Hubble parameter
+at redshift zero is 𝐻0 = 68.1 km s−1 Mpc−1. The fiducial simulation
+we employ simultaneously evolves 18003 dark-matter particles, an
+equal number of initial gas particles, and 10003 neutrino particles
+in a comoving box of side 𝐿box = 1000 Mpc. The mass of each
+dark-matter particle is 𝑀DM = 5.65 × 109 M⊙, and the initial mass
+of the gas particle is 𝑀gas = 1.07 × 109 M⊙. The particles are ini-
+tialised at 𝑧= 31 using 3-fluid third-order Lagrangian perturbation
+theory. Cosmic variance is partially suppressed by enforcing a fixed
+amplitude initial power spectrum (matching the ensemble average)
+on scales (𝑘𝐿box)2 < 1025. The simulations have been post pro-
+cessed to identify dark matter haloes, their substructures, and galax-
+ies with their respective properties. We use haloes identified with an
+updated version (Forouhar Moreno et al. 2025) of the Hierarchical
+Bound Tracing algorithm, HBT (Han et al. 2018). Galaxy properties
+are computed with a FLAMINGO-specific tool called SOAP, Spherical
+Overdensity and Aperture processor (see Schaye et al. 2023, for de-
+tails). Specifically, we use galaxy properties computed by SOAP in
+apertures of 50 kpc, excluding unbound particles.
+The different galaxy-types used in our analysis have been selected
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+5
+by a cumulative-bin in stellar-mass, 𝑀∗. We sort galaxies in the
+simulation in decreasing order of 𝑀∗, and select the first 𝑁galax-
+ies, with 𝑁= 𝑛𝑉box. We create three bins with number-densities3
+¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3. Note that we used the fiducial
+simulation with 𝐿box = 1000 Mpc, instead of the larger-box simula-
+tion, with 𝐿box = 2800 Mpc, in order to facilitate a direct comparison
+with the results presented in Zennaro et al. (2024), which used the
+same galaxy samples used here. We have tested that the results pre-
+sented here are not affected by this choice, by comparing the PS of
+the two simulations at the scales of interest.
+3.1 𝑃(𝑘) estimation
+We calculate new power spectra, independent from FLAMINGO, for
+all tracers: simulation particles, halos and galaxies. For all of them
+we use an FFT grid with 𝑛𝑔= 5123 cubic cells covering the whole
+simulated volume, and a Triangular Shape Cloud (TSC) mass assign-
+ment. This corresponds to a Nyquist frequency of 𝑘𝑁= 1.61 Mpc−1.
+Although this corresponds to a moderate spatial resolution, it is suf-
+ficient for the tomography estimators we will explore here, which
+employ relatively large scales. We use a logarithmic spacing from
+the fundamental mode to 𝑘𝑁, sampling 𝑛𝑔/4 bins. The final prod-
+uct is corrected for aliasing following Angulo et al. (2008); Sato &
+Matsubara (2011); Takahashi et al. (2012).
+To construct the U maps from simulated particles, that will then
+be cross-correlated with 𝛿𝑔to create ˆ𝑃𝑔𝑈(𝑘), we proceed as follows:
+• 𝑈= 𝛿𝑚, we just add the masses of all particle types in the
+simulation (dark matter, gas, stars and neutrinos) at each grid point,
+and divide by the mean mass per cell.
+• 𝑈= 𝜌SFR: in addition to the TSC weights, each gas particle is
+weighted by its SFR. The total SFR in each cell is then divided by
+the comoving cell volume.
+• 𝑈= 𝑃𝑒: the comoving thermal pressure is calculated by adding
+the total thermal energy of all particles in each cell and dividing by
+its comoving volume. As described in Mead et al. (2020), this is
+achieved by weighting each particle by the quantity
+˜𝑃𝑒,𝑖= 𝑘𝐵𝑛𝑒,𝑖𝑇𝑒,𝑖
+𝑉𝑖
+𝑉cell
+,
+(23)
+where 𝑘𝐵is the Boltzmann constant, 𝑛𝑒,𝑖is the electron number
+density for the 𝑖-th gas particle, 𝑇𝑒,𝑖is its electron temperature, and
+𝑉𝑖= 𝑚𝑖/𝜌𝑖is the SPH volume element of the particle. The comoving
+cell volume is simply 𝑉cell = (𝐿box/𝑛𝑔)3.
+3.2 𝑏ℎestimation
+In order to calculate the halo model prediction ⟨𝑏𝑈⟩HM from Equa-
+tion 21, we need to estimate the halo bias 𝑏ℎas a function of mass.
+Although we will test the performance of parametrisations present in
+the literature (Tinker et al. 2010; Despali et al. 2016; Ondaro-Mallea
+et al. 2024), we also infer its value directly from the simulation. This
+will ensure that any differences between ⟨𝑏𝑈⟩HM and the value of
+⟨𝑏𝑈⟩estimated from the data are not due to inaccuracies in the halo
+bias parametrisations, or to completeness issues for low mass haloes
+in FLAMINGO, rather than a genuine failure of the halo model.
+We measure 𝑏ℎ(𝑀, 𝑧) by dividing the FLAMINGO halo catalogue
+in 5 different mass bins at each snapshot. We bin haloes according
+3 Note that, confusingly, we use “ℎ-inverse” units to define the galaxy sam-
+ples used here, as opposed to “non-ℎ” units used elsewhere in this work. This
+is to match the same galaxy samples used in Zennaro et al. (2024).
+to their spherical overdensity mass, with an overdensity parameter
+Δ = 200, defined with respect to the critical density. We use adjacent
+logarithmic mass bins with edges:
+log10(𝑀200𝑐/𝑀⊙) = [8, 11, 12, 13, 14, 17].
+(24)
+In each mass bin, we construct maps of the halo overdensity
+and estimate its cross-correlation with the matter overdensity field
+ˆ𝑃𝑚ℎ(𝑘, 𝑧|𝑀). We then use this in combination with a measurement
+of the matter power spectrum ˆ𝑃𝑚𝑚(𝑘, 𝑧) to estimate the halo bias 𝑏ℎ
+using the same fiducial prescription we will use in Section 4 to esti-
+mate ⟨𝑏𝑈⟩. The prescription is based on the model in Equations 19
+and 20, with 𝑛max = 1, setting 𝑏𝑔→1 and ⟨𝑏𝑈⟩→𝑏ℎ, and using
+scales up to a maximum wavenumber 𝑘max = 0.3Mpc−1.
+Once 𝑏ℎhas been estimated in each mass bin, we build a linear
+interpolating function associating the measured values of 𝑏ℎwith the
+median mass in each bin. We then assign a value of 𝑏ℎto each halo in
+the simulation by evaluating this function at the corresponding halo
+mass 𝑀200𝑐. Note that the first mass bin above is highly incomplete.
+Nevertheless, the method used here to measure 𝑏ℎaccounts for the
+impact of this inconsistency in the effective halo bias at low masses.
+4 RESULTS
+In this section we will first study the robustness of the procedure
+described in Section 2.2 to reconstruct ⟨𝑏𝑈⟩from galaxy cross-
+correlations, and select a fiducial version of this procedure simul-
+taneously optimising the precision and robustness of the recovered
+⟨𝑏𝑈⟩. In doing this, we will also evaluate our ability to account for the
+dependence of the reconstructed values on cosmological parameters.
+We will then apply our chosen prescription to the recovery of ⟨𝑏𝑃𝑒⟩
+and ⟨𝑏𝜌SFR⟩from FLAMINGO, verifying that consistent values can
+be obtained with different galaxy samples, and compare the result
+with existing measurements from real data. Finally, we will turn to
+the interpretability of the recovered ⟨𝑏𝑈⟩in terms of the halo model.
+4.1 Validation of the model
+4.1.1 Bias modelling and scale cuts
+Our first task is to determine the range of validity of the bias model
+described by Equations 19 and 20 and used to extract measurements
+of ⟨𝑏𝑈⟩, as a function of galaxy type, 𝑛max, and of the smallest
+scale used 𝑘max. To do so, we will test the model against a known
+solution, by setting 𝑈= 𝛿𝑚, the matter overdensity. Label the cor-
+responding bias-weighted quantity in this case ⟨𝑏𝑚⟩, an unbiased
+estimator should recover the value ⟨𝑏𝑚⟩= 1. As a power spectrum
+template, ˜𝑃𝑚𝑚(𝑘), we used the true matter power spectrum of the
+hydrodynamical simulation being analysed, in order to factor out un-
+certainties related with this choice, which we will study in detail in
+the next section.
+Figure 1 shows the value of ⟨𝑏𝑈⟩estimated from our three different
+galaxy samples (blue, orange, and green points for the samples with
+number densities ¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3, respectively).
+Results are shown as a function of 𝑘max, for the linear bias model
+with 𝑛max = 0 (top panels), and for the quadratic model (𝑛max = 1,
+bottom panels). Results are shown for the snapshots at 𝑧= 0 and
+𝑧= 1.5 (left and right, respectively). We find that, as expected, the
+quadratic model is significantly more stable than the linear model,
+particularly at low redshifts. We find that the latter is able to obtain
+unbiased results across different samples up to scales 𝑘max > 0.3 −
+0.5Mpc−1, whereas the linear model breaks down dramatically at
+MNRAS 000, 1–13 (2025)
+
+
+6
+S. Maleubre et al.
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.96
+0.98
+1.00
+1.02
+1.04
+bm
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.96
+0.98
+1.00
+1.02
+1.04
+bm
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=1.5
+(a) Linear bias model, corresponding to Equations 19 and 20 with 𝑛max = 0.
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+1.15
+bm
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+1.15
+bm
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=1.5
+(b) Quadratic model, corresponding to Equations 19 and 20 with 𝑛max = 1.
+Figure 1. Deviation from theoretical prediction in the value of ⟨𝑏𝑚⟩as a function of 𝑘max, and for two different redshifts (𝑧= 0, 1.5 in the left and right panels,
+respectively). Results are shown for three stellar mass-selected samples, with number densities ¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3 (blue, orange, and green
+points, respectively). The top and bottom panels show the results for two different choices of 𝑛max, which defines the bias model used to fit the data according
+to Equations 19 and 20.
+𝑘max = 0.15 −0.25Mpc−1. This, as we will see in Section 4.2 is also
+comparable to the performance achieved when recovering ⟨𝑏𝜌SFR⟩
+and ⟨𝑏𝑃𝑒⟩.
+Increasing 𝑛max leads to increased stability in the recovered value
+of ⟨𝑏𝑈⟩, and robustness against deviations from a purely linear bias
+relation in both 𝛿𝑔and 𝑈. However, this comes at the cost of larger
+statistical uncertainties. It is therefore interesting to study if an op-
+timal value of 𝑛max can be found that minimises the error in the
+resulting measurement of ⟨𝑏𝑈⟩within the range of scales for which
+the estimator remains sufficiently unbiased. Figure 2 shows the re-
+sults of inferring ⟨𝑏𝑚⟩as a function of 𝑘max for different values of
+𝑛max ∈{0, 1, 2}. The results shown were obtained for the galaxy
+sample with ¯𝑛= 10−2 ℎ3 Mpc−3 at an intermediate redshift 𝑧= 0.8,
+but the same qualitative results are obtained for other galaxy-redshift
+combinations. The top panel shows the difference in the recovered
+value of ⟨𝑏𝑚⟩with respect to the theoretical expectation of ⟨𝑏𝑚⟩= 1
+as a fraction of the statistical uncertainties. the horizontal dashed line
+marks the points at which the estimator recovers a bias of ∼0.5𝜎4,
+with the vertical dotted lines signalling the scale cut 𝑘max at which
+this happens. The bottom panel then shows the error with which
+⟨𝑏𝑚⟩is recovered, with the dotted lines showing the error achieved
+at the corresponding 𝑘max. We can see that, while the uncertainties
+for 𝑛max = 0 are consistently lower than for 𝑛max = 1 or 2 at any
+given 𝑘max, the fact that 𝑛max = 1 can recover unbiased results while
+pushing to smaller scales allows it to outperform 𝑛max = 0. In turn,
+while 𝑛max = 2 allows us to use even smaller scales while remaining
+unbiased, it does not outperform 𝑛max = 1. Given this, we choose
+𝑛max = 1 as the fiducial bias model defining our estimator for ⟨𝑏𝑈⟩,
+balancing precision and robustness against non-linear biasing. With
+4 Note that this benchmark (a bias in ⟨𝑏𝑚⟩equal to half the statistical
+uncertainties) is relatively arbitrary, as 𝜎(⟨𝑏𝑚⟩) is largely determined by
+the size of the simulation box. We use it here only to highlight the trade-off
+between precision and accuracy when selecting a value of 𝑛max. Elsewhere
+in this work, we will use the fractional bias on ⟨𝑏𝑈⟩as a metric to quantify
+the performance of a given estimator.
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+7
+0.0
+0.5
+1.0
+[ bm
+1]/ ( bm )
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+10
+3
+10
+2
+10
+1
+( bm )
+nmax = 0
+nmax = 1
+nmax = 2
+Figure 2. Top panel: deviation from the theoretical prediction in the value of
+⟨𝑏𝑚⟩, relative to the statistical uncertainties in this quantity, as a function of
+𝑘max. Results are shown for bias models with 𝑛max = 0, 1, and 2 (red, blue,
+and yellow contours, respectively). The dotted lines mark the scales at which
+the bias in ⟨𝑏𝑚⟩exceed 0.5𝜎. Bottom panel: uncertainty on the recovered
+⟨𝑏𝑚⟩as a function of 𝑘max for the same bias models, with the dotted lines
+marking the smallest uncertainty achieved by each model within the range
+of 𝑘max for which it remains unbiased. All results are shown for the galaxy
+sample with density ¯𝑛= 10−2 ℎ3 Mpc−3 at an intermediate redshift 𝑧= 0.8.
+this choice, as we will show also in the cases of ⟨𝑏𝑃𝑒⟩and ⟨𝑏𝜌SFR⟩,
+we will in general be able to obtained largely unbiased constraints
+using scales up to 𝑘max = 0.3 Mpc−1.
+4.1.2 Power spectrum template
+Another variable defining our estimator of ⟨𝑏𝑈⟩is the choice of
+power spectrum template ˜𝑃𝑚𝑚(𝑘) used to fit the data. The previous
+analysis has been done using the spectrum measured directly from the
+simulation ˜𝑃sim
+𝑚𝑚(𝑘). This is obviously not available when applying
+this estimator to real data, and a model predicting ˜𝑃𝑚𝑚(𝑘) must be
+used. In Figure 3 we test the robustness of our results with respect to
+the choice of template, exploring the three other templates described
+in Section 2.2: the linear power spectrum, the HALOFIT prediction for
+the non-linear matter power spectrum, and the result of the Baccoemu
+emulator for the same quantity. The results shown were obtained for
+our fiducial bias model with 𝑛max = 1, and we present them for the
+𝑧= 0 and 𝑧= 1.5 snapshots (top and bottom panels).
+We find that both HALOFIT and Baccoemu are able to obtain unbi-
+ased constraints on ⟨𝑏𝑚⟩for all galaxy samples up to relatively small
+scales (certainly within the range 𝑘max ≤0.3). Even the linear matter
+power spectrum recovers relatively accurate constraints, although the
+results are substantially less stable, particularly for the most massive
+galaxy sample explored (¯𝑛= 10−4 ℎ3 Mpc−3) at high redshifts. Thus
+we find that a relatively naive prediction for the matter power spec-
+trum, such as HALOFIT, is sufficient to recover robust constraints on
+⟨𝑏𝑈⟩, with the free parameters of our bias model able to absorb the
+small-scale inaccuracies of this prediction. It is also interesting to
+note that, although the simulated data contains baryonic effects, here
+we use the power spectrum of only the cold matter components (dark
+matter and baryons) in the absence of baryonic feedback. The bias
+model is again flexible enough to absorb these effects and yield an
+unbiased estimate of ⟨𝑏𝑈⟩.
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+1.15
+bm / bm sim
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=0.0
+Linear
+Halofit
+BaccoEmu
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+1.15
+bm / bm sim
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=1.5
+Linear
+Halofit
+BaccoEmu
+Figure 3. Estimation of ⟨𝑏𝑚⟩in the quadratic model (i.e. 𝑛max = 1) with
+𝑃(𝑘) from linear-theory, and non-linear HALOFIT and Baccoemu results
+(star, squared and circle, respectively), as a function of 𝑘max for two different
+redshifts (𝑧= 0, 1.5). We study galaxies selected in order of decreasing stellar
+mass, with the different colours (blue, orange, and green) corresponding to
+different number densities, namely ¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3.
+Table 1. Cosmological parameters used to quantify the cosmology depen-
+dence of the tomographic estimator developed here. The fiducial cosmology
+corresponds to that of the FLAMINGO simulation analysed here.
+Name
+𝜎8
+Ω𝑚
+𝑛𝑠
+Fiducial
+0.8069
+0.3060
+0.967
+Low 𝜎8
+0.7499
+0.3060
+0.967
+Low Ω𝑚
+0.8071
+0.27
+0.967
+High Ω𝑚
+0.8071
+0.344
+0.967
+Low 𝑛𝑠
+0.8069
+0.3060
+1.0
+4.1.3 Dependence on the fiducial cosmology
+Although we have shown that the estimator is relatively robust to the
+choice of power spectrum template, this has been under the assump-
+tion that this template was created assuming a cosmological model
+that matches that of the data. This is not possible in practice, and it is
+therefore important to characterise the dependence of the estimated
+⟨𝑏𝑈⟩on the true cosmological parameters, which in general differ
+from those used to generate the 𝑃(𝑘) template.
+Let us consider a simple scenario in which the only parame-
+MNRAS 000, 1–13 (2025)
+
+
+8
+S. Maleubre et al.
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.2
+0.1
+0.0
+0.1
+0.2
+bm
+bm fid
+Low 
+8
+Low 
+m
+High 
+m
+High ns
+corrected
+z=0.8
+Figure 4. Comparison between the inferred values of ⟨𝑏𝑚⟩obtained when
+using a ˜𝑃𝑚𝑚(𝑘) with a different cosmology from the fiducial (that of the
+galaxy measurements). The analysis uses 𝑛max = 1, ˜𝑃𝑚𝑚(𝑘) from Bac-
+coEmu, and only the matter distribution (baseline fit) is shown. The corrected
+values are obtained by applying Equation 28 to the starred values, showing
+the validity of the model up to the limit scales (𝑘max < 0.3Mpc−1). The
+shaded area corresponds to the uncertainty in ⟨𝑏𝑚⟩fid
+ter mismatch is in the value of the amplitude of matter fluctua-
+tions, 𝜎8, such that, on the large scales we use to measure ⟨𝑏𝑈⟩,
+˜𝑃𝑚𝑚(𝑘) = ( ˜𝜎8/𝜎8)2𝑃𝑚𝑚(𝑘), where 𝑃𝑚𝑚(𝑘) is the true underly-
+ing power spectrum, and ˜𝜎8 is the value of 𝜎8 assumed to generate
+˜𝑃𝑚𝑚(𝑘). On large scales we can equate the 𝑔𝑔and 𝑔𝑈spectra to
+ˆ𝑃𝑔𝑔(𝑘) = ˆ𝑏2
+𝑔˜𝑃𝑚𝑚(𝑘) = 𝑏2
+𝑔𝑃𝑚𝑚(𝑘)
+(25)
+ˆ𝑃𝑔𝑈(𝑘) = ˆ𝑏𝑔
+ˆ
+⟨𝑏𝑈⟩˜𝑃𝑚𝑚(𝑘) = 𝑏𝑔⟨𝑏𝑈⟩𝑃𝑚𝑚(𝑘),
+(26)
+where hatted quantities (e.g. ˆ𝑃) are those estimated from the data.
+Solving for
+ˆ
+⟨𝑏𝑈⟩, we find that its dependence on the true value of 𝜎8
+is, unsurprisingly
+ˆ
+⟨𝑏𝑈⟩= 𝜎8
+˜𝜎8
+⟨𝑏𝑈⟩.
+(27)
+In practice, a general shift in cosmological parameters will result in
+changes in both the amplitude and the shape of the power spectrum
+template. We can, however, assume that the additional terms in our
+generic bias model (𝑁𝑥𝑦and 𝐴𝑛𝑥𝑦in Equation 20) will be able
+to absorb most of the change in the power spectrum shape while
+recovering the small-scale behaviour of the measured spectra, while
+𝑏𝑔and ⟨𝑏𝑈⟩capture the overall amplitude of the power spectrum
+on large-scales. With this intuition in mind we will use the following
+ansatz to capture the cosmology dependence of the estimated value
+of ⟨𝑏𝑈⟩, by generalising Equation 27 to
+ˆ
+⟨𝑏𝑈⟩= 𝜎(𝑘𝐿)
+˜𝜎(𝑘𝐿) ⟨𝑏𝑈⟩,
+(28)
+where 𝜎(𝑘𝐿) is the variance of the matter overdensity on wavenum-
+bers smaller than 𝑘𝐿:
+𝜎(𝑘𝐿) =
+ 1
+2𝜋2
+∫𝑘𝐿
+0
+𝑑𝑘𝑘2 𝑃𝑚𝑚(𝑘)
+1/2
+,
+(29)
+and ˜𝜎(𝑘𝐿) is the same quantity calculated for the power spectrum
+template ˜𝑃𝑚𝑚(𝑘) used in the estimator. We will use a default value
+of 𝑘𝐿= 0.07 ℎMpc−1.
+To validate this ansatz, we reanalyse the simulation data used to
+infer ⟨𝑏𝑚⟩using matter power spectrum templates generated us-
+ing cosmologies that differ from the fiducial model (i.e. the fiducial
+FLAMINGO cosmology). In particular, we tested cosmologies with a
+lower value of 𝜎8, lower and higher values of Ω𝑚, and a higher value
+of the scalar spectral index 𝑛𝑠. The specific values used are listed
+in Table 1. Note that these parameter variations are substantially
+larger than the current uncertainties on these parameters from CMB
+data. The results of this analysis are shown in Figure 4. The figure
+shows the values of ⟨𝑏𝑚⟩, for the baseline marker (the matter den-
+sity), recovered using power spectrum templates for each cosmology
+(star markers), as well as the same measurements corrected for the
+cosmology-dependent factor in Equation 28 (empty square markers).
+We can see that the large scatter between different cosmologies is sig-
+nificantly reduced after applying the cosmology-dependent scaling
+factor, recovering the value of ⟨𝑏𝑚⟩inferred with the unbiased power
+spectrum template within 1𝜎in all cases, within the regime of valid-
+ity of our estimator (𝑘max ≤0.3 ℎMpc−1). Interestingly, the low-Ω𝑚
+cosmology displays the largest disagreement after this correction. It
+is likely possible to develop a more precise scheme to account for
+the cosmology dependence of our measurements. However, since the
+main aim of this paper is to present a scheme for tomographic re-
+construction that is robust to the clustering properties of the galaxy
+samples used, we leave such a study for future work.
+4.2 Tomographic reconstruction of baryonic properties
+Having tested the robustness of the tomographic estimator of ⟨𝑏𝑈⟩in
+the previous section, we now apply it to the reconstruction of baryonic
+properties, namely the bias-weighted electron pressure ⟨𝑏𝑃𝑒⟩and
+SFR density ⟨𝑏𝜌SFR⟩. The two aims of this section will be:
+(i) To test the consistency of the estimated ⟨𝑏𝑈⟩across different
+galaxy samples, and its agreement with the underlying true value
+(see below). We will do this in Sections 4.2.1 and 4.2.2.
+(ii) To study the possibility of interpreting the recovered values of
+⟨𝑏𝑈⟩from first principles, using the halo model, and to quantify the
+limitations of this approach. This will be discussed in Section 4.2.3.
+To assess the unbiasedness of ⟨𝑏𝑈⟩estimated from galaxy cross-
+correlations in Sections 4.2.1 and 4.2.2, we will consider its true
+underlying value to be that obtained by applying the same estimator
+to correlations involving the matter overdensity. While this definition
+is not provided in terms of fundamental ingredients (describing e.g.
+the detailed relation between matter, gas pressure, and SFR), the
+value of ⟨𝑏𝑈⟩thus constructed is a well-defined quantity that can be
+constructed from either a simulation or a sufficiently accurate model
+of the matter-matter and matter-𝑈power spectra. Section 4.2.3 will
+then determine the halo model’s accuracy in predicting this quantity.
+Based on the results shown in the previous section, in what follows
+we will use our tomographic estimator with 𝑛max = 1 (i.e. including
+scale-dependent biasing terms proportional to 𝑘2 ˜𝑃𝑚𝑚(𝑘)), employ-
+ing as template the matter power spectrum measured in FLAMINGO.
+For this choice, we determined that the estimator remains robust up
+to scales 𝑘max ≃0.3 Mpc−1 in the case of ⟨𝑏𝑚⟩, and we will now
+study if this is also the case for ⟨𝑏𝑃𝑒⟩and ⟨𝑏𝜌SFR⟩.
+4.2.1 Estimating ⟨𝑏𝜌SFR⟩
+We start by applying the tomographic reconstruction estimator to
+cross-correlations between the galaxy overdensity and 3D maps
+of the SFR density (as a proxy for CIB cross-correlations). Fig-
+ure 5 shows the relative difference between the value of ⟨𝑏𝜌SFR⟩
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+9
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.100
+0.075
+0.050
+0.025
+0.000
+0.025
+0.050
+0.075
+0.100
+b
+SFR / b
+SFR matter
+1
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=0.8
+Figure 5. Estimation of ⟨𝑏𝜌SFR⟩, using the quadratic model (𝑛max = 1),
+as a function of 𝑘max for two different redshifts (𝑧= 0, 1.5). We study
+galaxies selected in order of decreasing stellar mass, with the different colours
+(red, blue, green) corresponding to different number densities, namely ¯𝑛=
+{10−2, 10−3, 10−4} ℎ3Mpc−3.
+0.05
+0.10
+0.15
+0.20
+b
+SFR [M yr
+1Mpc
+3]
+Large-scale approx.
+matter
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+2.5
+0.0
+2.5
+% diff.
+Figure 6. Best-fit results of ⟨𝑏𝜌SFR⟩from the quadratic model (𝑛max =
+1) as a function of redshift, with 𝑃(𝑘, 𝑧) = 𝑃𝑚𝑚,sim, at scales 𝑘max =
+0.3Mpc−1. We study galaxies selected in order of decreasing stellar mass,
+with the different colours (blue, orange, and green) corresponding to different
+number densities, namely ¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3. We compare
+the results obtained from these samples with that found using the matter
+overdensity. Purple squares correspond to values computed from the large-
+scale approximation model, using scales 𝑘< 0.15Mpc−1. The bottom panel
+shows the percent relative difference between the values recovered from the
+matter field and the different galaxy samples.
+reconstructed from galaxy cross-correlations and the true value esti-
+mated from the cross-correlation with the matter overdensity. Results
+are presented as a function of the maximum wavenumber included
+in the analysis 𝑘max, for our three galaxy samples, with densities
+¯𝑛= {10−2, 10−3, 10−4} ℎ3Mpc−3, and at an intermediate redshift
+𝑧= 0.8. We find that our estimator is able to recover a value
+of ⟨𝑏𝜌SFR⟩that is consistent across galaxy samples and unbiased
+within 1𝜎when using scales 𝑘< 𝑘max = 0.3 Mpc−1. This regime
+of validity is similar to that found in the case of ⟨𝑏𝑚⟩, in Section
+4.1. Furthermore, in this range of scales, we are able to obtain an
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+kmax [Mpc
+1]
+0.15
+0.10
+0.05
+0.00
+0.05
+0.10
+0.15
+bPe / bPe matter
+1
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+z=0.8
+Figure 7. Same as Figure 5, but for ⟨𝑏𝑃𝑒⟩.
+unbiased estimate of ⟨𝑏𝜌SFR⟩, accurate at the ∼1% level, within
+1𝜎for the statistical uncertainties corresponding to the FLAMINGO
+simulation and, more importantly, much smaller than the statistical
+uncertainties in real data (see Fig. 9 and Jego et al. 2023b).
+This result is also consistent across different redshifts. Figure 6
+shows the value of ⟨𝑏𝜌SFR⟩found using our fiducial estimator with
+𝑘max = 0.3 Mpc−1 for different FLAMINGO snapshots, spanning the
+redshift range 𝑧< 1.5. The results are shown for the three differ-
+ent galaxy samples (blue, green, and orange colours), as well as the
+true value estimated from the cross-correlation with the matter over-
+density (in black). The estimates of ⟨𝑏𝜌SFR⟩from different galaxy
+samples agree with each other and with the truth across all redshifts,
+with percent-level accuracy. The mean relative deviation is 1.2%,
+with the largest deviation, corresponding to ¯𝑛= 10−4 ℎ3 Mpc−3
+sample at the highest redshift being 3%.
+For context, Figure 6 shows the result of estimating ⟨𝑏𝜌SFR⟩us-
+ing the large-scale approximation of Equation 15. In this case, we
+measure 𝑃𝑚𝑚(𝑘) and 𝑃𝑚𝜌SFR (𝑘) from the simulation, take the ratio
+of both measurements, and estimate ⟨𝑏𝜌SFR⟩LSA as the average of
+this ratio on scales 𝑘< 0.15 Mpc−1. We see that, in this case, the
+LSA is in fact an excellent approximation to the value of ⟨𝑏𝜌SFR⟩
+calculated through our fiducial estimator. This is not a trivial state-
+ment, as scale-dependent and stochastic biasing in the SFR density
+field could induce a bias in the value of ⟨𝑏𝜌SFR⟩inferred through the
+LSA estimator.
+4.2.2 Estimating ⟨𝑏𝑃𝑒⟩
+We repeat the same procedure on cross-correlations involving maps
+of the thermal electron pressure, constructed as described in Section
+3.1, in order to estimate ⟨𝑏𝑃𝑒⟩. This is interesting, not only because
+this is a quantity that can be measured from cross-correlations with
+maps of the tSZ effect, but because inhomogeneities in the thermal
+gas pressure and the SFR density have markedly different cluster-
+ing properties that could affect the performance of the tomographic
+reconstruction estimator. While star formation efficiency peaks at in-
+termediate halo masses (log(𝑀/𝑀⊙) ∼12 Moster et al. 2018; Jego
+et al. 2023a; Maniyar et al. 2021), thermal energy scales strongly
+with halo mass, and thus thermal pressure maps are dominated by
+the contribution of a small number of massive haloes (Bolliet 2018).
+Both quantities thus probe different cosmic density environments,
+MNRAS 000, 1–13 (2025)
+
+
+10
+S. Maleubre et al.
+0.2
+0.3
+0.4
+0.5
+bPe [meVcm
+3]
+Large-scale approx.
+matter
+n = 10
+2h3Mpc
+3
+n = 10
+3h3Mpc
+3
+n = 10
+4h3Mpc
+3
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+2.5
+0.0
+2.5
+% diff.
+Figure 8. Same as Figure 6, but for ⟨𝑏𝑃𝑒⟩.
+affecting their their effective scale-dependent and stochastic bias re-
+lation.
+In Figure 7 we show the relative difference between the values of
+⟨𝑏𝑃𝑒⟩recovered from our fiducial estimator for the three different
+galaxy samples, and the true value recovered using the matter in-
+stead of galaxy overdensity. The results are shown as a function of
+𝑘max for the snapshot at redshift 𝑧= 0.8. As in the case of ⟨𝑏𝑚⟩
+and ⟨𝑏𝜌SFR⟩, we find that the estimator is robust against non-linear
+galaxy biasing up to scales 𝑘> 0.3 Mpc−1, beyond which the es-
+timates from different galaxy samples start to differ significantly. It
+is interesting to note that the relative statistical uncertainties of the
+⟨𝑏𝑃𝑒⟩measurements are noticeably larger than those of ⟨𝑏𝜌SFR⟩
+(see Figure 5). This may be a consequence of the aforementioned
+dominant contribution to 𝑃𝑒from sparse massive haloes, raising the
+effective shot noise contribution to the cross-spectrum measurement.
+This result holds across different redshifts, as demonstrated by
+Figure 8, which shows the value of ⟨𝑏𝑃𝑒⟩recovered for the dif-
+ferent galaxy samples, as well as the true value, for the different
+redshift snapshots studied here, using scales up to 𝑘max = 0.3. The
+average relative difference with respect to the truth across all the
+recovered values is approximately 1.2%, with the largest difference
+being 2%, again corresponding to the ¯𝑛= 10−4 ℎ3 Mpc−3 sample
+at the highest redshift probed. As in the previous section, we also
+show the prediction based on the large-scale approximation, calcu-
+lated as described above. In this case, however, we find that the LSA
+significantly overpredicts the value of ⟨𝑏𝑃𝑒⟩at all redshifts. This is
+not entirely surprising: as mentioned above, the strong influence of
+massive haloes in the pressure map means that the matter-pressure
+cross-correlation receives a large 1-halo contribution (see e.g. Fig. 2
+of Mead et al. 2020), which acts as an effective shot noise-like term
+on large scales. Unlike our estimator, the LSA does not account for
+this component, leading to an over-estimation of the true large-scale
+amplitude governed by ⟨𝑏𝑃𝑒⟩.
+4.2.3 Theoretical interpretation of tomographic reconstruction
+So far we have compared our estimator of ⟨𝑏𝑈⟩using galaxy cross
+correlation against its true value, having defined the latter as “the
+result of applying our estimator to correlations involving the matter
+overdensity”. Although this is a well-defined quantity, requiring only
+a physical model for the 𝑃𝑚𝑚(𝑘) and 𝑃𝑚𝑈(𝑘) power spectra, in
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+1.6
+z
+0.1
+0.2
+0.3
+0.4
+0.5
+bPe [meVcm
+3]
+bO21gr
+h
+bD16
+h
+bT10
+h
+bsim
+h
+This work
+Polynomial fit O(3)
+Koukoufilippas et al. 2020
+Chiang et al. 2020
+0.00
+0.25
+0.50
+0.75
+1.00
+1.25
+1.50
+1.75
+z
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+b
+SFR [M yr
+1Mpc
+3]
+bO21gr
+h
+bD16
+h
+bT10
+h
+bsim
+h
+This work
+Polynomial fit O(3)
+Jego et al. 2022
+Figure 9. Comparison of ⟨𝑏𝑈⟩= ⟨𝑏𝑃𝑒⟩and ⟨𝑏𝜌SFR⟩as a function of
+redshift for: galaxies (black) and their polynomial linear fit (black dotted
+line), halo-bias weighted models: Tinker et al. (2010) - blue -, Despali et al.
+(2016) - orange -, and Ondaro-Mallea et al. (2024) - purple -, and different
+real data (see refs in legend).
+terms of both cosmology and the astrophysics of the 𝑈field, it is
+interesting to explore whether a more direct theoretical prediction of
+⟨𝑏𝑈⟩can be constructed, independent of the specific definition of
+our estimator.
+This can potentially be achieved via the halo model, which predicts
+⟨𝑏𝑈⟩to be given by Equation 11. The halo model prediction depends
+on three quantities, all of which are, to some extent, uncertain:
+• The halo mass function 𝑛(𝑀), which depends not only on the
+chosen halo mass definition, but also on the specific halo finder used
+to estimate it from simulations (Knebe et al. 2011; Maleubre et al.
+2024; Forouhar Moreno et al. 2025).
+• The linear halo bias 𝑏ℎ(𝑀), which compounds the same sources
+of uncertainty as 𝑛(𝑀) in addition to potential departures from the
+predictions of the peak-background split, or the specific method used
+to estimate it in simulations.
+• A mass-observable relation describing ¯𝑈(𝑀) (defined in Equa-
+tion 12). In most cases this will involve a model for the astrophysics
+of 𝑈, which should be sufficiently accurate or flexible, but will also
+be affected by uncertainties in the choice of halo definition and its
+boundaries.
+We would like to separate the potential inaccuracies of the halo
+model prediction caused by uncertainties in the 𝑛(𝑀) and 𝑏ℎ(𝑀)
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+11
+parametrisations, as well as those due to incomplete astrophysical
+models describing ¯𝑈(𝑀), from those arising from non-linear halo
+biasing and assembly bias. While the former sources of error may be
+addressed by a more careful design of the models describing these
+quantities, the latter point to problems in the core assumptions of
+the vanilla halo model that would require the introduction of new
+ingredients. To that end, we will aim to use the abundance, linear
+clustering bias, and mass-observable relations measured directly in
+FLAMINGO, instead of choosing any particular parametrisation. We
+will achieve this by writing Equation 11 as a sum over the contribution
+of all haloes in the simulation, as given in Equation 21, with the halo
+bias 𝑏ℎmeasured directly from the simulation as described in Section
+3.2.
+Figure 9 shows the halo model prediction for ⟨𝑏𝑃𝑒⟩and ⟨𝑏𝜌SFR⟩
+(top and bottom panels, respectively) as a function of redshift, to-
+gether with the measurements of ⟨𝑏𝑈⟩extracted using our fiducial
+estimator with 𝑘max = 0.3 Mpc−1 (results are shown for the matter
+density). In the case of ⟨𝑏𝜌SFR⟩we see that the halo model using the
+halo bias measured directly in FLAMINGO is able to accurately pre-
+dict our measurements at all redshifts. The largest relative difference
+with respect to the measurements is < 2% at the highest redshift.
+In the case of ⟨𝑏𝑃𝑒⟩we see that the halo model is again precise at
+low redshifts, but becomes increasingly inaccurate beyond 𝑧≃0.6,
+consistently overpredicting the measurements.
+As we discussed in Section 2.3 (see also McCarthy et al. (2017)),
+a significant contribution to the pressure map comes from gas in the
+outskirts of haloes, which motivated us to calculate the total pressure
+integrated over the halo volume defined as a sphere with radius
+𝑅= 5 × 𝑅500. However, if the density of haloes that significantly
+contribute to the pressure map is sufficiently high, this procedure has
+the risk of double-counting the contribution from simulation particles
+simultaneously assigned to different haloes within their 5 × 𝑅500
+spheres. The total comoving volume occupied by these spheres at
+𝑧= 1.5 is approximately three times larger than at 𝑧= 0, significantly
+increasing the fraction of doubly-counted particles. We verified that
+using smaller radii to calculate the volume-integrated pressure had
+a strong effect on the result, particularly at high redshifts. We thus
+conclude that the definition of halo boundaries may be a major source
+of uncertainty for the halo model predictions of ⟨𝑏𝑃𝑒⟩, particularly
+at high redshifts.
+It is also interesting to place these differences in the context of
+the theoretical uncertainties associated with the halo model when
+using existing parametrisations to model its different ingredients. As
+a way to quantify this, Figure 9 shows the halo model predictions
+obtained by replacing the halo bias measured directly in FLAMINGO
+with various fitting functions. Namely, we use the parametrisation of
+𝑏ℎpresented in Tinker et al. (2010), as well as the halo bias derived
+from the mass function parametrisations of Despali et al. (2016) and
+Ondaro-Mallea et al. (2024), assuming a relation between both quan-
+tities given by the peak-background split (Mo & White 1996). We
+see that using different bias parametrisations leads to differences in
+the prediction of ⟨𝑏𝑈⟩that are larger than the differences between
+our fiducial halo model predictions and our measurements. A more
+detailed discussion of the differences between these halo bias pre-
+scriptions is presented in Section B. Therefore, the inaccuracy of
+the halo model in predicting ⟨𝑏𝑈⟩is likely dominated by the the-
+oretical uncertainty in existing parametrisations of the halo model
+ingredients, rather than in the core assumptions of the halo model
+itself.
+Finally, Figure 9 also shows some of the existing measurements of
+⟨𝑏𝜌SFR⟩from Jego et al. (2023a), and ⟨𝑏𝑃𝑒⟩from Koukoufilippas
+et al. (2020) and Chiang et al. (2020). The FLAMINGO predictions
+for both of these quantities appear to be in qualitatively good agree-
+ment with these measurements. Although a comparison of ⟨𝑏𝑃𝑒⟩
+measurements against predictions from hydrodynamical simulations
+was presented in Chen et al. (2024), this is the first time, to our
+knowledge, that a similar comparison has been made for ⟨𝑏𝜌SFR⟩.
+A more detailed study of the predictions from other simulations in
+the FLAMINGO suite, as well as other simulations and theoretical
+frameworks, against existing measurements could therefore be used
+to place constraints on both cosmology and the astrophysics of galaxy
+formation and the intergalactic medium. Once applied to real data,
+the methodology proposed and validated in this work will ensure that
+any measurements used in this comparison will be robust against un-
+certainties in the clustering properties of the galaxies used to extract
+them.
+5 CONCLUSIONS
+Tomographic reconstruction, the analysis of the cross-correlation
+between galaxies and projected tracers of other LSS probes, in con-
+junction with the auto-correlation of these galaxies, can be used to
+obtain precise measurement of the cosmic average of key physical
+properties weighted by the halo bias. The resulting measurements
+can be used to constrain both cosmological parameters and models
+describing the baryonic components of the cosmic density field. In
+this paper, we have investigated the possibility of designing a tomo-
+graphic reconstruction estimator that is robust against the complex
+clustering properties of the galaxies used in the analysis, as well as
+some of the challenges that must be tackled when interpreting the
+resulting measurements.
+We have demonstrated that such an estimator can in fact be con-
+structed, able to recover unbiased estimates of ⟨𝑏𝑈⟩with percent-
+level accuracy. The method consists of modelling both the galaxy
+auto-correlation and its cross-correlation with the tracer 𝑈as a
+linear combination of three terms: a linearly-biased component, a
+white noise-like component, and a scale-dependent bias component
+proportional to 𝑘2. The amplitudes of the linearly-biased contri-
+butions for both 𝑃𝑔𝑔(𝑘) and 𝑃𝑔𝑈(𝑘), extracted using only scales
+𝑘< 𝑘max = 0.3 Mpc−1, can then be combined to obtain a reliable
+measurement of ⟨𝑏𝑈⟩that is independent of the small-scale clus-
+tering of the galaxies used. We have also shown that the recovered
+constraints on ⟨𝑏𝑈⟩are robust against uncertainties in the template
+used to describe the matter power spectrum, and simple parametrisa-
+tions such as HALOFIT are sufficient to obtain accurate measurements.
+Furthermore, we have demonstrated that the dependence of the esti-
+mated ⟨𝑏𝑈⟩on the cosmological model chosen to generate the matter
+power spectrum template can be taken into account through a simple
+rescaling of the measurements (see Section 4.1.3).
+Applying this estimator to cross-correlations between galaxies and
+maps of the electron thermal pressure and the star-formation rate
+density, we have shown that unbiased measurements of ⟨𝑏𝑃𝑒⟩and
+⟨𝑏𝜌SFR⟩can be obtained. Furthermore, we have shown that, while
+these measurements can be accurately interpreted within the halo
+model framework, the reliability of the halo model predictions de-
+pends critically on the accuracy with which its ingredients (namely
+halo abundances, linear halo bias, and a physical model describing the
+halo-observable relation) may be parametrised. Alternatively, accu-
+rate predictions may be obtained given a model for the matter-matter
+and matter-𝑈power spectrum, derived from either simulations or
+first principles.
+The results presented here should be broadly applicable to the to-
+mographic reconstruction of other astrophysical quantities, such as
+MNRAS 000, 1–13 (2025)
+
+
+12
+S. Maleubre et al.
+the cosmic radio (Todarello et al. 2024), infrared (Chiang et al. 2025),
+ultraviolet (Chiang et al. 2019), gamma-ray (Paopiamsap et al. 2024),
+neutrino (Ouellette & Holder 2024), and gravitational wave (Alonso
+et al. 2024) backgrounds. This estimator could also be applied to the
+study of CMB lensing tomography, as an alternative approach to re-
+construct the growth history independently of the small-scale galaxy
+bias. Finally, the same principles could be applied within the cluster-
+ing redshifts approach, using the cross-correlation of spectroscopic
+and photometric galaxies, to reconstruct the bias-weighted redshift
+distribution of the latter.
+ACKNOWLEDGEMENTS
+We would like to thank Raul Angulo, and Jaime Salcido for use-
+ful comments. SMM, MZ, and DA acknowledge support from the
+Beecroft Trust.
+This work used the DiRAC@Durham facility managed by the In-
+stitute for Computational Cosmology on behalf of the STFC DiRAC
+HPC Facility (www.dirac.ac.uk). The equipment was funded
+by BEIS capital funding via STFC capital grants ST/K00042X/1,
+ST/P002293/1, ST/R002371/1 and ST/S002502/1, Durham Univer-
+sity and STFC operations grant ST/R000832/1. DiRAC is part of the
+National e-Infrastructure.
+This work was also supported by the Science and Technology
+Facilities Council (grant number ST/Y002733/1)
+DATA AVAILABILITY
+Any power spectrum measurement used for this paper and not al-
+ready available in the FLAMINGO data release5 can be provided upon
+request.
+REFERENCES
+Abbott T. M. C., et al., 2022, Phys. Rev. D, 105, 023520
+Alonso D., Nikjoo M., Renzini A. I., Bellini E., Ferreira P. G., 2024, Phys.
+Rev. D, 110, 103544
+Angulo R. E., Baugh C. M., Frenk C. S., Lacey C. G., 2008, MNRAS, 383,
+755
+Angulo R. E., Zennaro M., Contreras S., Aricò G., Pellejero-Ibañez M.,
+Stücker J., 2021, MNRAS, 507, 5869
+Bolliet B., 2018, arXiv e-prints, p. arXiv:1806.04786
+Borrow J., Schaller M., Bower R. G., Schaye J., 2022, MNRAS, 511, 2367
+Braspenning J., et al., 2024, Mon. Not. Roy. Astron. Soc., 533, 2656
+Carlstrom J. E., Holder G. P., Reese E. D., 2002, ARA&A, 40, 643
+Chen Z., Zhang P., Yang X., 2023, ApJ, 953, 188
+Chen Z., et al., 2024, Phys. Rev. D, 109, 063513
+Chiang Y.-K., Ménard B., Schiminovich D., 2019, ApJ, 877, 150
+Chiang Y.-K., Makiya R., Ménard B., Komatsu E., 2020, ApJ, 902, 56
+Chiang
+Y.-K.,
+Makiya
+R.,
+Ménard
+B.,
+2025,
+arXiv
+e-prints,
+p.
+arXiv:2504.05384
+Cooray A., Sheth R., 2002, Phys. Rep., 372, 1
+Desjacques V., Jeong D., Schmidt F., 2018, Phys. Rep., 733, 1
+Despali G., Giocoli C., Angulo R. E., Tormen G., Sheth R. K., Baso G.,
+Moscardini L., 2016, MNRAS, 456, 2486
+Forouhar Moreno V. J., Helly J., McGibbon R., Schaye J., Schaller M., Han
+J., Kugel R., 2025, arXiv e-prints, p. arXiv:2502.06932
+Gatti M., et al., 2022, MNRAS, 510, 1223
+5 https://flamingo.strw.leidenuniv.nl/power_spectra.html
+Han J., Cole S., Frenk C. S., Benitez-Llambay A., Helly J., 2018, MNRAS,
+474, 604
+Jego B., Alonso D., García-García C., Ruiz-Zapatero J., 2023a, MNRAS,
+520, 583
+Jego B., Ruiz-Zapatero J., García-García C., Koukoufilippas N., Alonso D.,
+2023b, MNRAS, 520, 1895
+Kennicutt Jr. R. C., 1998, ARA&A, 36, 189
+Knebe A., et al., 2011, MNRAS, 415, 2293
+Kokron N., DeRose J., Chen S.-F., White M., Wechsler R. H., 2022, MNRAS,
+514, 2198
+Koukoufilippas N., Alonso D., Bilicki M., Peacock J. A., 2020, MNRAS,
+491, 5464
+Krolewski A., Ferraro S., White M., 2021, J. Cosmology Astropart. Phys.,
+2021, 028
+Kugel R., et al., 2023, MNRAS, 526, 6103
+Lewis A., Challinor A., 2006, Phys. Rep., 429, 1
+Maleubre S., Eisenstein D. J., Garrison L. H., Joyce M., 2024, Mon. Not. Roy.
+Astron. Soc., 527, 5603
+Maniyar A., Béthermin M., Lagache G., 2021, A&A, 645, A40
+Matthews D. J., Newman J. A., 2010, ApJ, 721, 456
+McCarthy I. G., Brun A. M. C. L., Schaye J., Holder G. P., 2014, Mon. Not.
+Roy. Astron. Soc., 440, 3645
+McCarthy I. G., Schaye J., Bird S., Le Brun A. M. C., 2017, MNRAS, 465,
+2936
+McQuinn M., White M., 2013, MNRAS, 433, 2857
+Mead A. J., Tröster T., Heymans C., Van Waerbeke L., McCarthy I. G., 2020,
+A&A, 641, A130
+Ménard B., Scranton R., Schmidt S., Morrison C., Jeong D., Budavari T.,
+Rahman M., 2013, arXiv e-prints, p. arXiv:1303.4722
+Mo H. J., White S. D. M., 1996, MNRAS, 282, 347
+Moster B. P., Naab T., White S. D. M., 2018, MNRAS, 477, 1822
+Newman J. A., 2008, ApJ, 684, 88
+Ondaro-Mallea L., Angulo R. E., Zennaro M., Contreras S., Aricò G., 2024,
+MNRAS, 532, 438
+Ouellette A., Holder G., 2024, Phys. Rev. D, 110, 103025
+Pandey S., et al., 2019, Phys. Rev. D, 100, 063519
+Paopiamsap A., Alonso D., Bartlett D. J., Bilicki M., 2024, Phys. Rev. D,
+109, 103517
+Peacock J. A., Smith R. E., 2000, MNRAS, 318, 1144
+Piccirilli G., Fabbian G., Alonso D., Storey-Fisher K., Carron J., Lewis A.,
+García-García C., 2024, J. Cosmology Astropart. Phys., 2024, 012
+Qu F. J., et al., 2025, Phys. Rev. D, 111, 103503
+Sánchez J., et al., 2023, MNRAS, 522, 3163
+Sato M., Matsubara T., 2011, Phys. Rev. D, 84, 043501
+Schaller M., Schaye J., Kugel R., Broxterman J. C., van Daalen M. P., 2024a,
+arXiv e-prints, p. arXiv:2410.17109
+Schaller M., et al., 2024b, MNRAS, 530, 2378
+Schaye J., et al., 2023, MNRAS, 526, 4978
+Schmidt S. J., Ménard B., Scranton R., Morrison C., McBride C. K., 2013,
+MNRAS, 431, 3307
+Seljak U., 2000, MNRAS, 318, 203
+Takahashi R., Sato M., Nishimichi T., Taruya A., Oguri M., 2012, ApJ, 761,
+152
+Tinker J., Kravtsov A. V., Klypin A., Abazajian K., Warren M., Yepes G.,
+Gottlöber S., Holz D. E., 2008, ApJ, 688, 709
+Tinker J. L., Robertson B. E., Kravtsov A. V., Klypin A., Warren M. S., Yepes
+G., Gottlöber S., 2010, ApJ, 724, 878
+Todarello E., et al., 2024, MNRAS, 530, 2994
+Vikram V., Lidz A., Jain B., 2017, MNRAS, 467, 2315
+White M., et al., 2022, J. Cosmology Astropart. Phys., 2022, 007
+Yan Z., van Waerbeke L., Wright A. H., Bilicki M., Gu S., Hildebrandt H.,
+Maniyar A. S., Tröster T., 2022, A&A, 665, A52
+Yan Z., Maniyar A. S., van Waerbeke L., 2024, J. Cosmology Astropart.
+Phys., 2024, 058
+Young S., Komatsu E., Dolag K., 2021, Phys. Rev. D, 104, 083538
+Zennaro M., Angulo R. E., Contreras S., Pellejero-Ibáñez M., Maion F., 2022,
+MNRAS, 514, 5443
+Zennaro M., et al., 2024, arXiv e-prints, p. arXiv:2412.08623
+MNRAS 000, 1–13 (2025)
+
+
+The impact of galaxy bias on cross-correlation tomography
+13
+APPENDIX A: PARAMETER INFERENCE
+This appendix describes, in detail, the procedure used to obtain es-
+timates of ⟨𝑏𝑈⟩from the auto- and cross-correlation measurements
+extracted from the simulations.
+Let d ≡  ˆ𝑃𝑔𝑔(𝑘), ˆ𝑃𝑔𝑈(𝑘) be a vector containing the measure-
+ments of the galaxy auto-spectrum and the cross-spectrum with an-
+other LSS tracer 𝑈. We will assume these measurements to have
+been made in a discrete set of 𝑘bins, ®𝑘covering a range of scales
+𝑘min < 𝑘𝑖< 𝑘max. Let C be the covariance matrix of these mea-
+surements. For simplicity, we will estimate C to be diagonal across
+different 𝑘bins, and to take the form:
+Cov   ˆ𝑃𝑤𝑥(𝑘𝑖), ˆ𝑃𝑦𝑧(𝑘𝑗) =
+𝛿𝑖𝑗
+𝑁𝑘
+
+𝑃𝑤𝑦(𝑘𝑖)𝑃𝑥𝑧(𝑘𝑖) + 𝑃𝑤𝑧(𝑘𝑖)𝑃𝑥𝑦(𝑘𝑖)
+
+, (A1)
+where 𝑁𝑘is the number of independent Fourier modes over which the
+fields involved have been measured that fall within the corresponding
+𝑘bin. This estimate of the statistical uncertainties does not represent
+the actual scatter of the power spectrum measurements made from
+the FLAMINGO simulations. On the one hand, the expression above
+is only accurate for Gaussian fields. On the other hand, the initial
+conditions of the fiducial FLAMINGO simulation used here were
+generated with fixed amplitudes for modes with 𝑘< 0.05 Mpc−1 to
+reduce the impact of large-scale cosmic variance. Nevertheless, al-
+though the estimate above is likely an under-estimation of the true sta-
+tistical uncertainties, it should provide a sufficiently accurate scheme
+to weight the different 𝑘-modes entering the estimator, as well as the
+level of correlation between the different power spectra.
+To extract constraints on the free parameters of our model ®𝜃, we
+may define the Gaussian log-likelihood
+−2 log 𝑝(d| ®𝜃) = 𝜒2( ®𝜃) ≡
+
+d −t( ®𝜃)
+𝑇
+C−1 
+d −t( ®𝜃)
+
+.
+(A2)
+Here t(𝜃) is the theoretical prediction. Inspecting Equations 19 and
+20, we may write t as
+t( ®𝜃) = T ®𝜃,
+(A3)
+where the parameter vector is
+®𝜃= (𝑁𝑔𝑔, 𝑁𝑔𝑈, 𝐴0
+𝑔𝑔, 𝐴0
+𝑔𝑈, 𝐴1
+𝑔𝑔, 𝐴1
+𝑔𝑈, ...),
+(A4)
+and the template matrix T takes the form:
+T =
+ 
+®1
+®0
+˜𝑃(®𝑘)
+®0
+®𝑘2 ˜𝑃(®𝑘)
+®0
+· · ·
+®0
+®1
+®0
+˜𝑃(®𝑘)
+®0
+®𝑘2 ˜𝑃(®𝑘)
+· · ·
+!
+,
+(A5)
+where ®1 and ®0 are arrays of ones and zeros with the same size as
+®𝑘, and ˜𝑃(®𝑘) and ®𝑘2 ˜𝑃(®𝑘) are arrays containing the values of the
+power spectrum template ˜𝑃𝑚𝑚(𝑘), and of 𝑘2 ˜𝑃𝑚𝑚(𝑘) in each 𝑘
+bin. Thus, the first two columns of T correspond to the white noise
+components of ˆ𝑃𝑔𝑔and ˆ𝑃𝑔𝑈. The next two columns correspond to
+the linear-bias contributions, with 𝐴0𝑔𝑔= 𝑏2𝑔and 𝐴0
+𝑔𝑈= 𝑏𝑔⟨𝑏𝑈⟩. All
+subsequent columns correspond to the polynomial expansion terms
+in Equations 19 and 20, aimed at absorbing the impact of non-linear
+biasing.
+Since the log-likelihood is a quadratic function of the parameters,
+we can obtain analytical estimates of the best-fit parameter values
+®𝜃BF and their statistical uncertainties (i.e. their covariance C𝜃≡
+⟨( ®𝜃−®𝜃BF)( ®𝜃−®𝜃BF)𝑇⟩). These are given by:
+C−1
+𝜃
+= T𝑇C−1T,
+®𝜃BF = C𝜃T𝑇C−1d.
+(A6)
+Once ®𝜃BF is calculated, the values of 𝑏𝑔and ⟨𝑏𝑈⟩can be estimated
+from the best-fit amplitudes 𝐴0𝑔𝑔and 𝐴0
+𝑔𝑈as
+𝑏𝑔=
+√︃
+𝐴0𝑔𝑔,
+⟨𝑏𝑈⟩=
+𝐴0
+𝑔𝑈
+√︃
+𝐴0𝑔𝑔
+.
+(A7)
+The uncertainties on the measured 𝑏𝑔and ⟨𝑏𝑈⟩can also be cal-
+culated analytically in terms of the covariance of ®𝜃, using linearised
+error propagation, assuming the relative error of the estimated 𝑏𝑔is
+small:
+Var(𝑏𝑔) =
+Var(𝐴0𝑔𝑔)
+4𝐴0𝑔𝑔
+,
+(A8)
+Var(⟨𝑏𝑈⟩) =
+Var(𝐴0
+𝑔𝑈)
+(𝐴0𝑔𝑔)2
++
+(𝐴0
+𝑔𝑈)2
+4(𝐴0𝑔𝑔)4 Var(𝐴0
+𝑔𝑔)
+−
+𝐴0
+𝑔𝑈
+(𝐴0𝑔𝑔)3 Cov(𝐴0
+𝑔𝑔, 𝐴0
+𝑔𝑈),
+(A9)
+Cov(𝑏𝑔, ⟨𝑏𝑈⟩) =
+Cov(𝐴0𝑔𝑔, 𝐴0
+𝑔𝑈)
+2𝐴0𝑔𝑔
+−
+𝐴2
+𝑔𝑈
+4(𝐴0𝑔𝑔)2 Var(𝐴0
+𝑔𝑔).
+(A10)
+This approximation can be easily avoided if necessary. To do so,
+we may simply treat the measured values of 𝐴0𝑔𝑔and 𝐴0
+𝑔𝑈as data,
+fitting them to a model with free parameters 𝑏𝑔and ⟨𝑏𝑈⟩using a
+Gaussian likelihood with a covariance matrix constructed from C𝜃.
+Since this is a simple 2D model, the resulting likelihood is easy to
+sample efficiently through a variety of methods. We find that the
+approximate expressions above are sufficiently accurate for all the
+cases explored in this paper.
+APPENDIX B: IMPORTANCE ON THE ACCURACY OF 𝐵𝐻
+This appendix contains extra figures showing the differences be-
+tween halo-bias models as a function of redshift and halo-mass bins
+explored in this paper, in connection with the the results in Sec-
+tion 3.2.
+Figure B1 shows the differences in the value of the halo-bias ⟨𝑏ℎ⟩,
+estimated from 3 different models in the literature (Tinker et al.
+2010; Despali et al. 2016; Ondaro-Mallea et al. 2024) as well as
+measured directly from the simulation, for the 5 different halo-mass
+bins explored in this paper. We can see that there is no consistent
+result among them, and that their variations are in line with those
+observed in Figure 9. Given the fact that we cannot really justify the
+use of one model over the other, we decided to apply our method
+for estimating ⟨𝑏𝑈⟩to ⟨𝑏ℎ⟩, and use the measured bias from the
+simulation directly in our analysis. As seen in the main text, this is
+also the prescription leading to the best results.
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+MNRAS 000, 1–13 (2025)
+
+
+14
+S. Maleubre et al.
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+0.7
+0.8
+0.9
+1.0
+1.1
+1.2
+1.3
+bh
+log10 [M200c/M ] = 10.91
+bO21gr
+h
+bT10
+h
+bD16
+h
+bsim
+h
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+0.7
+0.8
+0.9
+1.0
+1.1
+1.2
+1.3
+1.4
+bh
+log10 [M200c/M ] = 11.33
+bO21gr
+h
+bT10
+h
+bD16
+h
+bsim
+h
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+0.8
+1.0
+1.2
+1.4
+1.6
+1.8
+2.0
+bh
+log10 [M200c/M ] = 12.26
+bO21gr
+h
+bT10
+h
+bD16
+h
+bsim
+h
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+1.5
+2.0
+2.5
+3.0
+3.5
+bh
+log10 [M200c/M ] = 13.26
+bO21gr
+h
+bT10
+h
+bD16
+h
+bsim
+h
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+1.4
+z
+2
+3
+4
+5
+6
+7
+8
+bh
+log10 [M200c/M ] = 14.18
+bO21gr
+h
+bT10
+h
+bD16
+h
+bsim
+h
+Figure B1. Halo-bias results from Tinker et al. (2010) - blue -, Despali et al. (2016) - orange -, and Ondaro-Mallea et al. (2024) - purple -, as well as the result
+estimated directly from the simulation following an adapted version of Equations 19 and 20 - red -. We show the values of ⟨𝑏ℎ⟩as a function of redshift for the
+5 mass-bins studied in the main text (and label with the value of the median mass of each bin)
+MNRAS 000, 1–13 (2025)

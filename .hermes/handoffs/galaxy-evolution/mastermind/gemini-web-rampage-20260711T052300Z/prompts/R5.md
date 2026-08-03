@@ -1,0 +1,78 @@
+# R5 — Maintenance-heating duty cycle: observational determinations (Card-4 depth run)
+
+Run ID: `RAMPAGE_R5` · REQ: `REQ_RAMPAGE_R5_20260711T052300Z` · Wave 2
+Non-duplication: R1 critiques the cards; R2 collects headline numbers. R5 assembles the full
+published record of maintenance-mode (radio-mode/kinetic) AGN heating duty-cycle determinations and
+their systematics. Output is raw/advisory; no local integration during the rampage.
+
+Paste everything BETWEEN the sentinel lines (sentinels and code fence excluded). No other
+instructions, no follow-up steering; at most ONE neutral "continue" if visibly truncated, logged.
+
+-----BEGIN PASTE REQ_RAMPAGE_R5_20260711T052300Z-----
+```markdown
+# Deep Research request — Observational determinations of the AGN maintenance-heating duty cycle
+
+**Request ID:** `REQ_RAMPAGE_R5_20260711T052300Z`
+**Role:** Literature analyst for a galaxy-evolution research journal. Published work only; no
+access to the project's internal results.
+
+**Question:** What duty-cycle determinations exist for maintenance-mode (radio-mode / kinetic /
+jet-driven) AGN heating — in clusters, groups, and massive galaxies — and how do the methods,
+selections, and systematics differ? Treat "maintenance heating balances cooling" strictly as a
+hypothesis under test, not a settled result.
+
+**Required deliverables (markdown sections, in order):**
+1. `## Duty-cycle table` — one row per determination (favor 2018+; seminal anchors labeled):
+   `Study (citation) | Method (X-ray cavities / radio-AGN fraction / bubble recurrence / SZ / other) | Environment (cluster/group/galaxy) & halo- or stellar-mass range | Selection | Duty cycle ± unc | Timescale assumptions (bubble ages, buoyancy, spectral ages) | z range | Caveats named by the study`
+2. `## Energy-balance ledger` — published P_cav vs L_cool (or equivalent heating-vs-cooling)
+   comparisons: sample, mass range, balance ratio ± unc, duty-cycle treatment, 4pV/enthalpy and
+   projection systematics as stated by the source.
+3. `## Mass regime coverage` — where determinations exist vs are missing (rich clusters vs groups
+   vs individual massive galaxies vs the crucial low-halo-mass end); explicit `GAP:` lines with
+   citations or `NONE_FOUND`.
+4. `## Instrument-era changes` — what eROSITA / LOFAR / MeerKAT / uGMRT-era population studies add
+   or contradict relative to Chandra-era cavity work, as attributed claims.
+5. `## Disagreements` — direct conflicts between published duty-cycle or balance results, quoted
+   with both sides' numbers and stated reasons; do not adjudicate.
+6. `## Discriminating tests` — measurements the literature itself proposes to pin the duty cycle at
+   galaxy (not cluster) scale, each with the proposer's feasibility statement. Note where
+   JWST/ALMA are marginal and which instrument family is the relevant one — that is a first-class
+   answer here.
+
+**Binding output contract:**
+- C1 (meta header). ONE self-contained markdown report body starting with:
+
+      # Rampage R5 answer — REQ_RAMPAGE_R5_20260711T052300Z
+      Run date (UTC): <YYYY-MM-DDTHH:MM:SSZ>
+      Model: <model/product self-identification>
+      Duty-cycle rows: <N>
+
+- C2 (structure). Exactly the six numbered sections above, in order; empty fields say `NONE_FOUND`,
+  never silently omitted, never padded.
+- C3 (uncertainty). Every number carries the source's uncertainty or
+  `UNCERTAINTY_NOT_QUOTED_BY_SOURCE`. Never invent error bars.
+- C4 (citation labeling). Every study/number carries a checkable citation (arXiv ID, DOI, ADS
+  bibcode, or URL) on the same line, or `UNCITED_NOT_USABLE`.
+- C5 (wording contract). Own-voice settled/causal register banned (case-insensitive):
+  establish(es/ed/ing), proves, proven, confirms that, settles, settled question, resolves the
+  debate, definitively, conclusively, is now known, "demonstrates that … causes". Never state in
+  your own voice that radio-mode heating is observationally confirmed to balance cooling; cluster
+  cavity statistics must not be scope-inflated to galaxy-population prevalence.
+- C6 (estimand labels). Duty cycles from different selections/methods/mass ranges are unlike
+  estimands unless the sources themselves harmonize them: label non-commensurable; four qualifiers
+  (tracer/method + selection + denominator + z range) on every fraction.
+- C7 (links ledger). Final content section `## Links ledger`:
+  `<short name> | <citation or UNCITED_NOT_USABLE> | QUARANTINED_PENDING_LOCAL_CHECK`.
+- C8 (completion marker). The exact string
+
+      GEMINI_WEB_RAMPAGE_R5_OUTPUT_DONE_20260711T052300Z
+
+  must appear exactly once, as the standalone final non-empty line of the report body. A marker
+  only in a chat-UI element counts as ABSENT and the run is rejected.
+
+**Safety locks:**
+- Output is advisory only. Not accepted evidence, not product claim binding.
+- Do not present generated DOI/ADS/arXiv IDs as verified; all IDs are quarantined pending local check.
+- Do not propose edits to any local artifact; produce this report body only.
+```
+-----END PASTE REQ_RAMPAGE_R5_20260711T052300Z-----

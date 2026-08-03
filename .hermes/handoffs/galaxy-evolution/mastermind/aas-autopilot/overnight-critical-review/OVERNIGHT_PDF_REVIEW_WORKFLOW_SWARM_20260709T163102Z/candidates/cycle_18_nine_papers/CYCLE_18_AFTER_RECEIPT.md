@@ -1,0 +1,13 @@
+# Cycle 18 after receipt
+
+created_utc: 2026-07-09T23:20:53Z
+
+- `01_m1_rp1_sdss_agn_sfr` ok=True bytes=232814 sha256=5cc61dbe98926269b217d8c2b2bf51aa75e08b0a256c7b6d7766b2cac454fb72
+- `02_m1_rp2_environment_quenching` ok=True bytes=87014 sha256=6e2c9bf7d55de31cde1d6e90eb0cbd0beea1a50debef97f553eb5e0aab8fdb61
+- `03_m1_rp3_maintenance_heating` ok=True bytes=85376 sha256=62c17761c3fc181380a42fb11da65b1370f76c748fa519d801c96b5910808688
+- `04_m2_p1_outflow_escape_recycling` ok=True bytes=316743 sha256=dcd9b67900170311ebed27f06263baba5ad8d3c363933db6bb180ce9edb94da7
+- `05_m2_p2_radio_jet_environment` ok=True bytes=85121 sha256=55e5cf6638735079eed38f9977f2db24c504c3660b066f4200beb5fe8bb95e63
+- `06_m2_p3_feedback_transition_mass` ok=True bytes=90183 sha256=c9c6f8e1497df91872d1fc7950266e50c260416ca0357ea9ef86033d4d638134
+- `07_m3_p1_multiphase_census` ok=True bytes=83480 sha256=9503fe8ff89483d80c26829cdce1c9c4c62e6eb907dd4e79f6822dc16fdea80f
+- `08_m3_p2_gas_depletion_efficiency` ok=True bytes=215066 sha256=3cf494a6003c4f87bb754610c4fc895a7b4d1f3969cbeaf1d19c871cf8f02570
+- `09_m3_p3_simulation_validation` ok=True bytes=92073 sha256=a84eb37d9dcb82a25acaa308924309577f87b856425844c7f8f87debe541a24d

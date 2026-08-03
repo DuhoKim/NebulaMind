@@ -1,0 +1,23 @@
+PAPER A:
+(1) OVERCLAIM: PASS
+(2) DETECTION-DISCIPLINE: FLAG - The text mentions "effective significance of ~4 sigma" and "secure in 100% of bootstrap realizations," which implies a formal statistical detection.
+(3) HONEST-LABEL: PASS
+(4) INTERNAL CONSISTENCY: PASS
+
+VERDICT: REVISE - Remove or rephrase the language suggesting a formal statistical detection to maintain consistency with the paper's existing statement.
+
+PAPER B:
+(1) OVERCLAIM: PASS
+(2) DETECTION-DISCIPLINE: PASS
+(3) HONEST-LABEL: PASS
+(4) INTERNAL CONSISTENCY: PASS
+
+VERDICT: ACCEPT-as-human-review-ready - The added section is consistent with the paper's existing results and does not overclaim or present a formal statistical detection.
+
+================= FINAL OUTCOME (after revision) =================
+Paper A: pass 1 = REVISE (detection-discipline FLAG on "~4sigma effective significance / sign secure 100%").
+  Fix: removed that redundant sentence (sec 4 already states the ~22sigma -> ~4.5sigma deflation; Table 1 shows the budget).
+  pass 2 = ACCEPT-as-human-review-ready (all four checks PASS, detection-discipline now PASS).
+Paper B: pass 1 = ACCEPT-as-human-review-ready (all PASS).
+Referee: astrosage-70b (advisory, not a gate). Both manuscripts recompiled after the revision.
+Framing preserved: both remain descriptive, not validated (0 human sign-offs).

@@ -1,0 +1,90 @@
+{
+  "status": "clean_candidate_monitor_completed",
+  "updated_at_utc": "2026-06-29T14:11:59Z",
+  "updated_at_kst": "2026-06-29 23:11:59 KST",
+  "monitor_window": {
+    "started_at_utc": "2026-06-29T14:11:03Z",
+    "finished_at_utc": "2026-06-29T14:11:48Z",
+    "snapshot_count": 3,
+    "approx_interval_seconds": 20
+  },
+  "runtime": {
+    "backend_pid_start": "25075",
+    "backend_pid_finish": "25075",
+    "backend_pid_changed": false,
+    "backend_process_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+    "plist_working_directory": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+    "candidate_head": "cc4ced2a6e69e9222805c080ce700e91517e6093",
+    "candidate_status_clean": true,
+    "backend_on_clean_candidate": true
+  },
+  "live_source_surfaces": {
+    "public_citations": {
+      "status": 200,
+      "bytes": 57397,
+      "kind": "citations",
+      "rows": 102,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 5,
+      "source_surface_counts": {
+        "unspecified": 102
+      }
+    },
+    "public_fact_sources": {
+      "status": 200,
+      "bytes": 5001,
+      "kind": "fact_sources",
+      "rows": 8,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 2,
+      "source_surface_counts": {
+        "claim_evidence_fallback": 8
+      }
+    },
+    "local_citations": {
+      "status": 200,
+      "bytes": 57397,
+      "kind": "citations",
+      "rows": 102,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 5,
+      "source_surface_counts": {
+        "unspecified": 102
+      }
+    },
+    "local_fact_sources": {
+      "status": 200,
+      "bytes": 5001,
+      "kind": "fact_sources",
+      "rows": 8,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 2,
+      "source_surface_counts": {
+        "claim_evidence_fallback": 8
+      }
+    }
+  },
+  "db_counts_start": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_counts_finish": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_count_drift_over_window": {
+    "page_citation_links": 0,
+    "fact_sources": 0
+  },
+  "db_write_count_for_monitor": 0,
+  "migrations": 0,
+  "backfills": 0,
+  "readiness_or_promotion_changes": 0,
+  "backend_restart_or_deploy_during_monitor": 0,
+  "monitor_artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z",
+    "json": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z/monitor-clean-candidate-source-surfaces.json",
+    "markdown": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z/monitor-clean-candidate-source-surfaces.md"
+  },
+  "next_recommended": "Continue periodic read-only monitoring or classify remaining dirty runtime checkout artifacts; no DB writes."
+}

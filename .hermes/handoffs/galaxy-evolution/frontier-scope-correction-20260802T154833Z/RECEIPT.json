@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "status": "SOURCE_APPLIED_BUILT_CANARY_VERIFIED_RESTART_REQUIRED",
+  "created_at_utc": "2026-08-02T16:23:52Z",
+  "run_id": "frontier-scope-correction-20260802T154833Z",
+  "source_authority": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend",
+  "final_patch": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/REVIEW_PATCH_V5.patch",
+    "sha256": "889e0cf06b0e0a768706cdb14c791a363486f0884ef4a60a5ea1bd17d4624cac",
+    "canonical_newer_worktree_apply_check": "PASS_NOT_APPLIED"
+  },
+  "manifest": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/MANIFEST.json",
+    "sha256": "b01dafed5cd86d65babe06e63d3fb6aff307084ac0959f018e61d3423ac97006"
+  },
+  "scope": {
+    "corpus": "PRESERVED_BROAD_57_CLUSTER_GA_CO",
+    "core_count": 8,
+    "adjacent_count": 26,
+    "out_of_scope_count": 23,
+    "core_cluster_ids": [
+      17,
+      19,
+      27,
+      35,
+      40,
+      41,
+      46,
+      56
+    ],
+    "strict_core_rank_order": [
+      41,
+      40,
+      35,
+      19,
+      56,
+      17,
+      46,
+      27
+    ],
+    "unknown_cluster_behavior": "out_of_scope"
+  },
+  "curated_pdf_scope": {
+    "core_pdfs": 5,
+    "core_cluster": 41,
+    "adjacent_pdfs": 1,
+    "adjacent_cluster": 16,
+    "out_of_scope_pdfs": 0
+  },
+  "verification": {
+    "focused_test": "PASS",
+    "typescript": "PASS",
+    "isolated_build": "PASS",
+    "canary_hydrated_dom": "PASS",
+    "visual": "PASS",
+    "independent_review": "PASS",
+    "review_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/INDEPENDENT_REVIEW_V5.json",
+    "review_sha256": "d2e371b068d402059133ab2ddc6a58949a8d75994763c16ecfefe94a8c1a1a46",
+    "screenshot_sha256": "c395ca4c7f68669e9d4f3e318638c3fd361af4274f18dcab789b1f945b553ee8",
+    "hydrated_dom_sha256": "4c377daad147d90a0a8bf3f58390029e5118cb6bff39530c30da7197e75f39a7",
+    "rollback_patch_reverse_check": "PASS"
+  },
+  "runtime": {
+    "active_build_id": "lFt_UDNPmeNh2DCabbYZX",
+    "active_build_tree": {
+      "sha256": "e1766cf49178097a42b542559d61d241ee4ce1ae26208d08e43ee982715ffde2",
+      "files": 437,
+      "bytes": 233138726
+    },
+    "candidate_build_id": "aNNAOJzzSRMQDzgANAtuv",
+    "candidate_build_tree": {
+      "sha256": "c70106d85e7c41a6422e43f27596c0643c6e479035bed56595fe461b3e44b556",
+      "files": 423,
+      "bytes": 234668009
+    },
+    "production_http_3000": 200,
+    "production_source_scope_code_applied": true,
+    "production_runtime_scope_build_active": false,
+    "restart_required": true,
+    "canary_port_3011": "CLOSED"
+  },
+  "known_unrelated_baseline": {
+    "test_paper_videos": "FAIL_PREEXISTING",
+    "reason": "existing reionization PDF lacks approved video binding; inputs unchanged from HEAD"
+  },
+  "safety_ledger": {
+    "db_writes": 0,
+    "git_writes": 0,
+    "git_commits": 0,
+    "deploy_restart_actions": 0,
+    "scheduler_writes": 0,
+    "cockpit_writes": 0,
+    "pdf_mutations": 0
+  },
+  "closed_gates": [
+    "CANONICAL_NEWER_WORKTREE_APPLY_NOT_APPROVED_OR_EXECUTED",
+    "GIT_COMMIT_PUSH_MERGE_NOT_APPROVED_OR_EXECUTED",
+    "LIVE_BUILD_SWAP_RESTART_NOT_APPROVED_OR_EXECUTED"
+  ]
+}

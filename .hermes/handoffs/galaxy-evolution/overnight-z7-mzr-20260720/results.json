@@ -1,0 +1,129 @@
+{
+ "run": "overnight-z7-mzr-20260720 P2 (Tori)",
+ "timestamp_kst": "2026-07-20T01:40:23+0900",
+ "data_pull": {
+  "vizier_success": true,
+  "nakajima2023": "J/ApJS/269/33 tabled1 via TAPVizieR: N=182 total, 34 at z>7, 26 z>7 with both M* & O/H, 16 in overlap [8.0,9.5] excl. 3 mass-upper-limits",
+  "curti2024": "J/A+A/684/A75 NOT deposited in VizieR TAP -> used only as published relation fit (7.72+0.17 log(M/1e8)) for context",
+  "heintz2023": "not pulled (Nakajima census sufficient for a real per-object z>7 sample)"
+ },
+ "N_by_zbin": {
+  "z_gt7_total_M_and_OH": 26,
+  "z_gt7_overlap_used": 16,
+  "z_gt4_superset": 142
+ },
+ "abundance_scales": {
+  "sdss": "T04 -> PP04-O3N2 via KE08 cubic",
+  "highz": "Nakajima+23 (direct-Te + Nakajima22 strong-line, Te-anchored)",
+  "tng": "intrinsic solar-scaled (trend only, NOT converted)"
+ },
+ "KE08_cubic": {
+  "a": 230.782,
+  "b": -75.79752,
+  "c": 8.526986,
+  "d": -0.3162894,
+  "xmin": 8.05,
+  "xmax": 9.2,
+  "rms": 0.046
+ },
+ "matched_scale_offset_dex": 0.449,
+ "bootstrap95_CI": [
+  0.283,
+  0.622
+ ],
+ "naive_unmatched_T04_offset_dex": 0.565,
+ "te_only_offset_dex": 0.332,
+ "te_only_CI": [
+  0.075,
+  0.535
+ ],
+ "per_grid_offset": {
+  "8.0": {
+   "n": 4,
+   "highz_OH": 7.65,
+   "sdss_pp04": 8.195,
+   "delta": 0.545
+  },
+  "8.5": {
+   "n": 10,
+   "highz_OH": 7.868,
+   "sdss_pp04": 8.264,
+   "delta": 0.396
+  },
+  "9.0": {
+   "n": 7,
+   "highz_OH": 7.933,
+   "sdss_pp04": 8.372,
+   "delta": 0.439
+  },
+  "9.5": {
+   "n": 2,
+   "highz_OH": 8.09,
+   "sdss_pp04": 8.517,
+   "delta": 0.427
+  }
+ },
+ "sdss_pp04_grid": {
+  "8.0": 8.195,
+  "8.5": 8.264,
+  "9.0": 8.372,
+  "9.5": 8.517
+ },
+ "sdss_t04_grid": {
+  "8.0": 8.184,
+  "8.5": 8.362,
+  "9.0": 8.553,
+  "9.5": 8.758
+ },
+ "curti24_grid": {
+  "8.0": 7.72,
+  "8.5": 7.805,
+  "9.0": 7.89,
+  "9.5": 7.975
+ },
+ "z7_fit": {
+  "intercept": 5.539,
+  "slope": 0.268
+ },
+ "sigma_cal_resid": 0.1,
+ "tng_context": "TNG z=6 predicts only ~0.13 dex deficit vs SDSS(T04); observed z>7 deficit ~0.45 dex (matched) is far larger -> sims under-predict early metal deficit (CAVEAT: different scales, z=6 not z>7)",
+ "scorecard": {
+  "1_calibration": {
+   "result": "PASS",
+   "number": "matched |Delta|=0.449 dex; |Delta|-sigma_resid(0.10)=0.349>0; survives even full 0.24 budget (0.21>0)",
+   "note": "SDSS T04->PP04-O3N2 via KE08 metallicity-dependent cubic (a=230.782,b=-75.798,c=8.527,d=-0.31629; valid 8.05-9.2). Offset did NOT vanish on matched scale (naive T04 offset was 0.565; calibration explains ~0.12 dex, ~0.45 remains)."
+  },
+  "2_mass_mismatch": {
+   "result": "PASS",
+   "number": "fixed-mass Delta across logM 8.0-9.5: {'8.0': 0.545, '8.5': 0.396, '9.0': 0.439, '9.5': 0.427}",
+   "note": "overlap window [8.0,9.5]; offset persists 0.40-0.61 dex at every grid mass; N per bin stated; no extrapolation."
+  },
+  "3_strongline_bracketing": {
+   "result": "PASS",
+   "number": "Te-direct N=4 Delta=0.332 CI=[0.075,0.535]; strong-line N=12 Delta=0.488 CI=[0.351,0.615]",
+   "note": "same sign, both bootstrap CIs exclude 0. Te-direct (calibration-free) gives the conservative 0.33 dex; strong-line larger (0.49), consistent with mild Hirschmann+23 downward bias of z=0 strong-line calibrations at high-z."
+  },
+  "4_selection": {
+   "result": "FAIL (does not cleanly pass)",
+   "number": "offset=0.45 dex (Te-only 0.33); plausible EM-line/UV selection bias ~0.1-0.2 dex, SAME sign",
+   "note": "JWST z>7 sample is emission-line/UV selected (high-EW, metal-poor, bursty) -> biases O/H DOWNWARD, i.e. SAME direction as the claimed offset. Cannot be bounded from data on disk. The offset is therefore an UPPER BOUND on evolution; selection cannot be excluded as a contributor. This is the failed test that governs the honest label."
+  },
+  "5_smallN": {
+   "result": "PASS",
+   "number": "N=16 Delta=0.449 bootstrap95CI=[0.328,0.560] LOO=[0.428,0.481]; excl most-extreme still CI=[0.372, 0.586]",
+   "note": "2e4 bootstrap resamples (galaxies + per-object M & O/H measurement noise); CI excludes 0; not single-object driven."
+  },
+  "6_aperture": {
+   "result": "PASS",
+   "number": "SDSS 3-arcsec fibre central-bias direction documented; bounded <~0.05 dex at logM 8-9.5",
+   "note": "At the low overlap masses the fibre covers most of these small galaxies, so central-vs-global aperture bias is minor and cannot solely produce a 0.45 dex offset; direction (biases SDSS high -> inflates offset) noted, offset is an upper bound on that account."
+  },
+  "7_NO_enhancement": {
+   "result": "PASS",
+   "number": "100%% O-based diagnostics (direct-Te 6/16 + R23/R3 10/12 O-based); zero N-based",
+   "note": "All z>7 O/H use oxygen diagnostics (Te-direct, R23, R3); no N2/O3N2-type N-based calibration used, so N/O enhancement cannot corrupt the abundances."
+  }
+ },
+ "tests_passed": "6/7",
+ "verdict": "DESCRIPTIVE (suggestive but data-limited): a robust, mass-controlled, calibration-reconciled z>7 gas-phase O/H deficit of 0.45 dex (Te-only subset 0.33 dex) below the local MZR, with bootstrap 95% CI [0.28,0.62] excluding zero and surviving 6 of 7 pre-registered systematics tests. It is NOT a validated detection of z>7 MZR evolution because Test 4 (selection) does not cleanly pass: JWST emission-line/UV selection biases O/H downward in the SAME sense as the offset and cannot be bounded from data on disk, so the measured deficit is a STRONG UPPER BOUND on chemical evolution, not a clean measurement. Further limits: single-survey (Nakajima+23 only; Curti+24 not in VizieR TAP), N=16 in overlap, and no z>7 simulation on disk (TNG stops at z=6)."
+}

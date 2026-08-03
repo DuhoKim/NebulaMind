@@ -1,0 +1,73 @@
+{
+  "status": "SOURCE_APPLIED_BUILT_CANARY_VERIFIED_NOT_DEPLOYED_V5_REVIEWED_RESTART_REQUIRED",
+  "generated_at_utc": "2026-08-02T16:18:31Z",
+  "tdd": {
+    "red_1": "missing scope module",
+    "red_2": "rank tooltip used broad rank",
+    "red_3": "scientific review found permissive taxonomy and stale adjacent-study claims",
+    "red_4": "UI implied nonexistent backend study queue",
+    "final_green": "galaxy_frontier_scope_ok"
+  },
+  "checks": {
+    "focused_test": "PASS",
+    "typescript_no_emit": "PASS",
+    "isolated_next_build": "PASS",
+    "git_diff_check": "PASS",
+    "v5_rollback_patch_reverse_check": "PASS",
+    "cached_diff_empty": "PASS",
+    "production_http_3000": "200",
+    "canary_3011_after_test": "CLOSED"
+  },
+  "adjacent_baseline": {
+    "test_paper_videos": "PREEXISTING_FAIL",
+    "reason": "existing reionization PDF lacks approved video binding",
+    "failure_inputs_unchanged_from_HEAD": true
+  },
+  "build": {
+    "active_production_id": "lFt_UDNPmeNh2DCabbYZX",
+    "candidate_id": "aNNAOJzzSRMQDzgANAtuv",
+    "candidate_chunk_sha256": "9e33566fbd5df3608d3a970a6345894ab23e6852fe9d927098e774fb3f040960",
+    "candidate_core_heading_count": 1,
+    "active_chunk_sha256": "624b91e427b700fd63b48d2887ae9587ebe378ab2e21f960d93eae3f75a1e1ff",
+    "active_core_heading_count": 0,
+    "active_old_heading_count": 1
+  },
+  "rendered_canary": {
+    "hydrated_dom": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/canary-ranking-v5-hydrated.html",
+    "hydrated_dom_sha256": "4c377daad147d90a0a8bf3f58390029e5118cb6bff39530c30da7197e75f39a7",
+    "strict_core_order": [
+      41,
+      40,
+      35,
+      19,
+      56,
+      17,
+      46,
+      27
+    ],
+    "study_shortlist_copy_present": true,
+    "nonexistent_queue_copy_absent": true,
+    "separate_core_plus_adjacent_shortlist_present": true,
+    "screenshot": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/canary-ranking-v5.png",
+    "screenshot_sha256": "c395ca4c7f68669e9d4f3e318638c3fd361af4274f18dcab789b1f945b553ee8",
+    "screenshot_bytes": 843307,
+    "screenshot_width": 1440,
+    "screenshot_height": 5000,
+    "visual_layout": "NO_OBVIOUS_FAILURE"
+  },
+  "patch": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/REVIEW_PATCH_V5.patch",
+    "sha256": "889e0cf06b0e0a768706cdb14c791a363486f0884ef4a60a5ea1bd17d4624cac"
+  },
+  "safety": {
+    "git_writes": 0,
+    "db_writes": 0,
+    "deploy_restart_actions": 0,
+    "public_cockpit_writes": 0
+  },
+  "independent_review": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/INDEPENDENT_REVIEW_V5.json",
+    "status": "PASS",
+    "patch_sha256": "889e0cf06b0e0a768706cdb14c791a363486f0884ef4a60a5ea1bd17d4624cac"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "schema": "NM_GEMINI_C1R_CONTRACT_V2",
+  "req_id": "REQ_JOINT_C1R_20260712T045317Z",
+  "title": "Joint C1R answer — REQ_JOINT_C1R_20260712T045317Z",
+  "model": "Gemini Pro (selected UI mode; backend version not exposed)",
+  "marker": "GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+  "final_marker": "GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+  "bidirectional_c7": true,
+  "banned_tokens": [
+    "hero_facts"
+  ],
+  "expected_sections": [
+    "1. Calibration ledger",
+    "2. Out-of-sample validation ledger",
+    "3. Double-counting warnings",
+    "4. Feedback-relevant observables map",
+    "5. Gaps",
+    "Links ledger"
+  ],
+  "section_columns": {
+    "1. Calibration ledger": [
+      "simulation",
+      "calibration_target",
+      "feedback_params",
+      "emergent",
+      "notes"
+    ],
+    "2. Out-of-sample validation ledger": [
+      "simulation",
+      "observable",
+      "result",
+      "comparability",
+      "overlap",
+      "citation"
+    ],
+    "4. Feedback-relevant observables map": [
+      "simulation",
+      "quenched_fractions",
+      "gas_fractions",
+      "outflow_demographics",
+      "hot_halo_cavity",
+      "radio_agn_incidence"
+    ]
+  }
+}

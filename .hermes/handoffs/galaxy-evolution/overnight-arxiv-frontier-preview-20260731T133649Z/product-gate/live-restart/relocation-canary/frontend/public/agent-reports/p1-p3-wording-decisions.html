@@ -1,0 +1,469 @@
+<!doctype html>
+<html lang="en" data-marker="LANA_P1_P3_WORDING_DECISIONS_HTML_20260706T0704Z" data-decision-marker="USER_P1_P3_WORDING_DECISIONS_RECEIVED_20260706T074535Z">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1/P3 Wording Decisions</title>
+<style>
+:root{
+  --bg:#07111f; --panel:#0d1f34; --panel2:#0a1728; --sub:#0b1b30;
+  --ink:#edf6ff; --muted:#9fb6d0; --line:#28486c; --line2:#1c3652;
+  --accent:#9fd1ff; --good:#6ee7b7; --good-line:#1f6f52; --good-bg:#0c2a22;
+  --warn-bg:#2f2100; --warn-line:#9f7700; --warn-ink:#ffe8aa;
+  --bad:#ff9a9a; --bad-line:#7a2b2b; --bad-bg:#2a1414;
+  --alt:#c9b6ff; --alt-line:#4a3d7a; --alt-bg:#191434;
+}
+*{box-sizing:border-box}
+body{font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:var(--bg);color:var(--ink);margin:0}
+h1,h2,h3,h4{line-height:1.25;margin:0 0 .5em}
+h1{font-size:26px;letter-spacing:.2px}
+h2{font-size:20px}
+h3{font-size:17px}
+p{margin:0 0 .8em}
+a{color:var(--accent)}
+code{font:13px/1.4 ui-monospace,SFMono-Regular,Menlo,monospace;background:#0a1a2e;border:1px solid var(--line2);border-radius:6px;padding:1px 6px;color:#cfe6ff}
+small{color:var(--muted)}
+
+header{background:linear-gradient(180deg,#102846,#0b1c31);border-bottom:1px solid var(--line);padding:22px 20px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+.eyebrow{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin:0 0 6px}
+.badges{margin:14px 0 0;display:flex;flex-wrap:wrap;gap:8px}
+.badges span{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:#122a49;color:#d8ecff;font-size:12.5px;font-weight:600}
+.badges .safe{border-color:var(--good-line);background:var(--good-bg);color:var(--good)}
+.badges .zero{font-family:ui-monospace,Menlo,monospace;font-weight:500}
+.marker{margin-top:12px;font:12px/1.5 ui-monospace,Menlo,monospace;color:#7fa8cf;word-break:break-all}
+
+main{padding:26px 0 90px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px;margin:0 0 22px}
+.card>h2:first-child{margin-top:0}
+.notice{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:14px 16px;margin:0 0 22px}
+.notice b{color:#fff3cf}
+.lede{color:#dbe9fa}
+
+.section-title{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:8px 0 16px}
+.section-title .tag{font:12px/1 ui-monospace,Menlo,monospace;padding:5px 9px;border-radius:7px;border:1px solid var(--line);background:#122a49;color:#bfe0ff}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+
+.claim{background:var(--panel2);border:1px solid var(--line2);border-radius:12px;padding:18px;margin:0 0 18px}
+.claim:last-child{margin-bottom:0}
+.claim-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.cid{font:13px/1 ui-monospace,Menlo,monospace;font-weight:700;padding:5px 9px;border-radius:7px;background:#13294a;border:1px solid var(--line);color:#cfe6ff}
+.pill{font-size:11.5px;padding:3px 8px;border-radius:999px;border:1px solid var(--line2);color:var(--muted)}
+.pill.state{border-color:var(--warn-line);color:var(--warn-ink);background:#241a02}
+
+.field{margin:12px 0}
+.field .lbl{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+blockquote{margin:0;padding:12px 14px;border-left:3px solid var(--line);background:#0a1728;border-radius:0 8px 8px 0;color:#e7f2ff}
+blockquote.current{border-left-color:#5b7fa6}
+blockquote.draft{border-left-color:var(--good);background:var(--good-bg)}
+blockquote.strict{border-left-color:var(--alt);background:var(--alt-bg)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line2);border-radius:10px;margin:12px 0}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:13.5px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line2);vertical-align:top}
+th{background:#0c1e35;color:#bcd4ee;font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:ui-monospace,Menlo,monospace}
+.mono{font-family:ui-monospace,Menlo,monospace}
+
+.decision{margin-top:16px;border-top:1px dashed var(--line2);padding-top:14px}
+.decision .dhead{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14px;margin-bottom:10px}
+.decision .dhead .num{font:12px/1 ui-monospace,Menlo,monospace;background:#13294a;border:1px solid var(--line);color:#cfe6ff;border-radius:6px;padding:4px 7px}
+.chips{display:flex;flex-direction:column;gap:9px}
+.chip{display:flex;gap:11px;align-items:flex-start;text-align:left;width:100%;cursor:pointer;background:var(--sub);border:1px solid var(--line2);border-radius:10px;padding:11px 13px;color:var(--ink);font:inherit;transition:border-color .12s,background .12s,box-shadow .12s}
+.chip:hover{border-color:var(--line)}
+.chip:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.chip .mark{flex:0 0 auto;width:18px;height:18px;margin-top:1px;border-radius:50%;border:2px solid var(--line);display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:transparent}
+.chip .body{flex:1}
+.chip .kind{display:inline-block;font-size:10.5px;letter-spacing:.8px;text-transform:uppercase;font-weight:700;padding:2px 7px;border-radius:999px;margin-bottom:5px}
+.chip .txt{font-size:13.5px;color:#dfeafa}
+.chip[data-kind=rec] .kind{background:var(--good-bg);border:1px solid var(--good-line);color:var(--good)}
+.chip[data-kind=alt] .kind{background:var(--alt-bg);border:1px solid var(--alt-line);color:var(--alt)}
+.chip[data-kind=rej] .kind{background:var(--bad-bg);border:1px solid var(--bad-line);color:var(--bad)}
+.chip[data-kind=hold] .kind{background:#122a49;border:1px solid var(--line);color:#bfe0ff}
+.chip.is-selected{background:#0e2740;border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.chip.is-selected .mark{border-color:var(--accent);background:var(--accent);color:#06263f}
+.chip[data-kind=rec].is-selected{background:#0d3327;border-color:var(--good);box-shadow:inset 0 0 0 1px var(--good)}
+.chip[data-kind=rec].is-selected .mark{border-color:var(--good);background:var(--good)}
+
+.progress{position:sticky;top:0;z-index:5;background:rgba(11,28,49,.94);backdrop-filter:blur(6px);border:1px solid var(--line);border-radius:12px;padding:12px 16px;margin:0 0 22px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.progress .bar{flex:1;min-width:160px;height:8px;border-radius:999px;background:#0a1728;border:1px solid var(--line2);overflow:hidden}
+.progress .bar>i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--good));transition:width .25s}
+.progress .count{font:13px/1 ui-monospace,Menlo,monospace;color:#cfe6ff;white-space:nowrap}
+.btn{cursor:pointer;font:13px/1 inherit;font-weight:600;border-radius:9px;padding:9px 14px;border:1px solid var(--line);background:#122a49;color:#d8ecff}
+.btn:hover{border-color:var(--accent)}
+.btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+.checklist{list-style:none;margin:0;padding:0}
+.checklist li{display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-bottom:1px solid var(--line2)}
+.checklist li:last-child{border-bottom:none}
+.checklist .dot{flex:0 0 auto;width:20px;height:20px;border-radius:50%;border:2px solid var(--line);margin-top:2px;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:transparent}
+.checklist li.done .dot{border-color:var(--good);background:var(--good);color:#06261c}
+.checklist .q{font-weight:600}
+.checklist .pick{display:block;margin-top:3px;font-size:13.5px;color:var(--muted)}
+.checklist li.done .pick{color:var(--good)}
+
+.footer{color:var(--muted);font-size:13px;border-top:1px solid var(--line2);margin-top:26px;padding-top:18px}
+.footer code{font-size:12px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;margin:2px 0 0;font-size:12.5px;color:var(--muted)}
+.legend .k{display:inline-flex;align-items:center;gap:6px}
+.legend .sw{width:11px;height:11px;border-radius:3px;display:inline-block}
+.sw.rec{background:var(--good)}.sw.alt{background:var(--alt)}.sw.rej{background:var(--bad)}.sw.hold{background:var(--accent)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">NebulaMind · Operator decision board</p>
+    <h1>P1 / P3 Wording Decisions</h1>
+    <p class="lede" style="margin:6px 0 0;max-width:70ch">Read-only board for Duho to choose wording directions for the P1 legacy overclaims (2298 / 2299 / 2924) and the P3 primacy recast (2572). Selections here are local notes only &mdash; they change nothing in the database.</p>
+    <div class="badges">
+      <span class="safe">NO ACTIVE EXECUTION PHRASE</span>
+      <span class="zero">DB writes: 0</span>
+      <span class="zero">SQL execution: 0</span>
+      <span class="zero">Trust recompute: 0</span>
+      <span class="zero">Prose/wiki publish: 0</span>
+    </div>
+    <p class="marker">Marker: LANA_P1_P3_WORDING_DECISIONS_HTML_20260706T0704Z</p>
+  </div>
+</header>
+
+<main>
+<div class="wrap">
+
+  <div class="notice">
+    <b>This page is a decision board, not an execution gate.</b> Nothing here writes to the database, runs SQL, recomputes trust, or publishes prose/wiki. Choosing an option only records a local wording preference (in your browser) so a future packet can be drafted. Any future DB or prose packet that acts on these choices <b>requires a separate, explicit local approval later</b> &mdash; this page deliberately provides no approval phrase, and the active state stays <b>NO ACTIVE EXECUTION PHRASE</b>.
+  </div>
+
+  <!-- OFFICIAL PASTED DECISION SNAPSHOT START -->
+  <div class="card" id="official-pasted-decisions" data-official-decision-marker="USER_P1_P3_WORDING_DECISIONS_RECEIVED_20260706T074535Z" style="border-color:var(--good-line);background:linear-gradient(180deg,#0d3327,#0d1f34)">
+    <div class="section-title" style="margin-top:0"><h2 style="margin:0">Choices received from Duho</h2><span class="tag">USER_P1_P3_WORDING_DECISIONS_RECEIVED_20260706T074535Z</span></div>
+    <p class="lede">These are the choices Duho pasted back from the browser checklist. This is wording direction only; it is <b>not</b> authorization for DB writes, SQL/apply/rollback, trust recompute, prose/wiki publish, deploy, git, or backend/API work.</p>
+    <ol style="margin:12px 0 0;padding-left:22px;color:#e7f2ff">
+        <li><b>P1 / 2298:</b> Recast 2298 to scoped wording, or retire into 2946.</li>
+        <li><b>P1 / 2299:</b> Recast 2299 to scoped wording, or re-parent into 2945.</li>
+        <li><b>P1 / 2924:</b> Finish display cleanup: if parent_replaced, hide legacy display and label as replaced.</li>
+        <li><b>P3 / 2572:</b> Use cautious guard wording.</li>
+        <li><b>Trust timing:</b> Stage trust recompute as a separate packet after P4 guard.</li>
+    </ol>
+    <p style="margin:14px 0 0"><small>Active state remains <b>NO ACTIVE EXECUTION PHRASE</b>. A future packet must be prepared and separately approved before any write path.</small></p>
+  </div>
+  <!-- OFFICIAL PASTED DECISION SNAPSHOT END -->
+
+  <!-- HWAO READONLY PREFLIGHT SNAPSHOT START -->
+  <div class="card" id="hwao-readonly-preflight" data-hwao-preflight-marker="HWAO_P1_P3_READONLY_PREFLIGHT_PUBLIC_20260706T0758Z" style="border-color:var(--accent);background:linear-gradient(180deg,#102846,#0d1f34)">
+    <div class="section-title" style="margin-top:0"><h2 style="margin:0">Hwao read-only preflight prepared</h2><span class="tag">HWAO_P1_P3_READONLY_PREFLIGHT_PUBLIC_20260706T0758Z</span></div>
+    <p class="lede">Hwao prepared the local read-only preflight packet from the exact choices above. It is a planning packet only: no SQL, no database writes, no trust recompute, no prose/wiki publish, no deploy/git, and no active execution phrase.</p>
+    <ul style="margin:12px 0 0;padding-left:22px;color:#e7f2ff">
+      <li><b>Packet:</b> <code>docs/hwao_p1_p3_readonly_preflight_20260706T0750Z/P1_P3_READONLY_PREFLIGHT_PACKET.md</code></li>
+      <li><b>Hwao report:</b> <code>.hermes/handoffs/autonomy_continue_20260706T002104Z/HWAO_P1_P3_READONLY_PREFLIGHT_REPORT_20260706T0750Z.md</code></li>
+      <li><b>Status:</b> <code>READONLY_LOCAL_PREFLIGHT_NOT_EXECUTABLE</code></li>
+      <li><b>Marker:</b> <code>HWAO_P1_P3_READONLY_PREFLIGHT_PACKET_20260706T0750Z</code></li>
+    </ul>
+    <p style="margin:14px 0 0"><small>Next safe move, if requested: review the local packet or ask Hwao/Lana/Kun/Goru for read-only review. Any exact write packet would be a separate future step.</small></p>
+  </div>
+  <!-- HWAO READONLY PREFLIGHT SNAPSHOT END -->
+
+  <!-- PLAIN ENGLISH -->
+  <div class="card">
+    <h2>Plain-English summary</h2>
+    <p class="lede">Three old galaxy-evolution claims say AGN (black-hole) feedback broadly <b>heats</b> (2298 &amp; its hidden duplicate 2924) or <b>expels</b> (2299) gas from the reservoirs of massive galaxies. That language sounds like a settled, universal mechanism &mdash; but the attached evidence is simulation- or system-specific, and our newer, more careful successor claims (2945 / 2946) say this support must stay conditional. This board asks you to pick how to soften or retire each one.</p>
+    <p class="lede">Separately, claim <b>2572</b> currently states a plain correlation, yet its one pinned paper actually argues that <b>halo mass</b> &mdash; not central properties &mdash; is the primary driver. So the claim reads as contradicted by its own <span class="mono">refutes</span> evidence. You choose either a cautious re-wording (a guard against over-claiming primacy) or a stricter, openly-disputed version. Claim 2573 stays separate.</p>
+    <p style="margin-bottom:0"><small>Everything below is reversible thinking on paper. No mutation is proposed or performed by this page.</small></p>
+  </div>
+
+  <!-- PROGRESS -->
+  <div class="progress" role="status" aria-live="polite">
+    <span class="count" id="count">0 of 5 directions marked</span>
+    <span class="bar"><i id="barfill"></i></span>
+    <button class="btn" id="reset" type="button">Clear my selections</button>
+  </div>
+
+  <!-- P1 / P3 COLUMNS -->
+  <div class="grid">
+
+    <!-- ============ P1 COLUMN ============ -->
+    <section>
+      <div class="section-title">
+        <h2 style="margin:0">P1 &mdash; Legacy overclaims</h2>
+        <span class="tag">2298 · 2299 · 2924</span>
+      </div>
+
+      <!-- context table -->
+      <div class="card" style="margin-bottom:18px">
+        <h3 style="margin-top:0">Before-state snapshot</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th class="num">Claim</th><th>Visible / API text</th><th>Visible trust</th><th>Audit / history</th><th class="num">Ev.</th></tr></thead>
+            <tbody>
+              <tr><td class="num">2298</td><td>AGN feedback heats the gas reservoirs of massive galaxies.</td><td>consensus</td><td>unverified / 0.22</td><td class="num">1</td></tr>
+              <tr><td class="num">2299</td><td>AGN feedback expels gas from the reservoirs of massive galaxies.</td><td>accepted</td><td>accepted / 0.324</td><td class="num">2</td></tr>
+              <tr><td class="num">2924</td><td>AGN feedback heats the gas reservoirs of massive galaxies. <small>(hidden duplicate of 2298)</small></td><td>consensus</td><td>unavailable / empty</td><td class="num">4</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:12px 0 0"><small><b>Caution boundary (successors):</b> 2945 &mdash; gas-reservoir language requires caution (debated / 0.45). 2946 &mdash; preventive/maintenance feedback support is model- or simulation-bounded (reported / 0.45). Legacy claims must not imply AGN heating/expulsion is a universal or dominant quenching explanation.</small></p>
+      </div>
+
+      <!-- 2298 -->
+      <div class="claim">
+        <div class="claim-head"><span class="cid">2298</span><span class="pill">broad heating claim</span><span class="pill state">visible vs audit mismatch · P4-guard</span></div>
+        <div class="field">
+          <div class="lbl">Current text</div>
+          <blockquote class="current">AGN feedback heats the gas reservoirs of massive galaxies.</blockquote>
+        </div>
+        <div class="field">
+          <div class="lbl">Draft scoped wording (from spec)</div>
+          <blockquote class="draft">In simulations and some massive-galaxy or circumgalactic contexts, AGN/SMBH feedback can heat or thermally regulate gas, but current source support is model- or system-bounded rather than a universal quenching prevalence result.</blockquote>
+        </div>
+        <div class="decision" data-decision="d2298">
+          <div class="dhead"><span class="num">Decision 1</span> 2298 route</div>
+          <div class="chips">
+            <button class="chip" type="button" data-kind="rec" data-value="recast" data-label="Recast 2298 to scoped wording (or retire into 2946)">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Recommended</span><span class="txt">Recast to the scoped draft wording in place, or retire into 2946.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="alt" data-value="retire" data-label="Retire 2298; re-parent evidence under 2946">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Alternative</span><span class="txt">Retire 2298 and re-parent / reuse its evidence under 2946 if the row is source-appropriate.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="rej" data-value="keep" data-label="Keep 2298 broad claim unchanged">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Reject</span><span class="txt">Keep the current consensus-looking broad claim unchanged.</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2299 -->
+      <div class="claim">
+        <div class="claim-head"><span class="cid">2299</span><span class="pill">broad gas-expulsion claim</span></div>
+        <div class="field">
+          <div class="lbl">Current text</div>
+          <blockquote class="current">AGN feedback expels gas from the reservoirs of massive galaxies.</blockquote>
+        </div>
+        <div class="field">
+          <div class="lbl">Draft scoped wording (from spec)</div>
+          <blockquote class="draft">AGN-driven outflows can expel, heat, or compress surrounding gas in some systems, so gas expulsion is one possible quenching/regulation channel, not a universal explanation for gas-reservoir loss.</blockquote>
+        </div>
+        <div class="decision" data-decision="d2299">
+          <div class="dhead"><span class="num">Decision 2</span> 2299 route</div>
+          <div class="chips">
+            <button class="chip" type="button" data-kind="rec" data-value="recast" data-label="Recast 2299 to scoped wording (or re-parent into 2945)">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Recommended</span><span class="txt">Recast to the scoped draft wording, or re-parent into 2945.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="alt" data-value="mechanism" data-label="Keep 2299 as low/moderate-certainty mechanism claim, revised">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Alternative</span><span class="txt">Keep 2299 only as a low/moderate-certainty mechanism claim after revising wording and displaying trust consistently.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="rej" data-value="keep" data-label="Leave 2299 broad accepted claim unchanged">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Reject</span><span class="txt">Leave it as a broad accepted gas-reservoir expulsion claim while successor 2945 stays debated / cautious.</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2924 -->
+      <div class="claim">
+        <div class="claim-head"><span class="cid">2924</span><span class="pill">hidden duplicate of 2298</span><span class="pill state">endpoint-visible · display-state blocker</span></div>
+        <div class="field">
+          <div class="lbl">The situation</div>
+          <p style="margin:0"><small>2924 duplicates 2298&rsquo;s broad heating language and looks like a replaced / hidden retrieval-era claim. It is <b>not</b> in <code>/api/pages/galaxy-evolution/claims</code>, yet <code>/api/claims/2924/evidence</code> still resolves with 4 evidence rows and consensus-like state; old snapshots mark it <span class="mono">parent_replaced</span> / consensus 0.8. Decide whether this is intended audit behavior or stale display state.</small></p>
+        </div>
+        <div class="decision" data-decision="d2924">
+          <div class="dhead"><span class="num">Decision 3</span> 2924 endpoint / display handling</div>
+          <div class="chips">
+            <button class="chip" type="button" data-kind="rec" data-value="cleanup" data-label="Finish display cleanup: if parent_replaced, hide legacy display & label as replaced">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Recommended</span><span class="txt">Finish replacement/display cleanup: if <span class="mono">parent_replaced</span>, hide/suppress the legacy display and preserve evidence only through scoped successors; if endpoints intentionally expose hidden claims, label it as replaced rather than showing ordinary consensus.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="alt" data-value="retire" data-label="Retire 2924 after backing up its 4 evidence rows to 2946/2945">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Alternative</span><span class="txt">Explicitly retire 2924 after backing up its four evidence rows and mapping any source-worthy rows to 2946 / 2945.</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="rej" data-value="leave" data-label="Leave 2924 endpoint-visible consensus duplicate">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Reject</span><span class="txt">Leave an endpoint-visible consensus 0.8 duplicate of the overbroad heating claim.</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ============ P3 COLUMN ============ -->
+    <section>
+      <div class="section-title">
+        <h2 style="margin:0">P3 &mdash; Primacy recast</h2>
+        <span class="tag">2572 · preserve 2573</span>
+      </div>
+
+      <!-- context table -->
+      <div class="card" style="margin-bottom:18px">
+        <h3 style="margin-top:0">Before-state snapshot</h3>
+        <div class="tablewrap">
+          <table>
+            <thead><tr><th class="num">Claim</th><th>Visible / API text</th><th>Visible trust</th><th>Audit / history</th><th class="num">Ev.</th></tr></thead>
+            <tbody>
+              <tr><td class="num">2572</td><td>Quenching in central galaxies correlates with central properties like velocity dispersion, bulge mass, and black hole mass.</td><td>challenged</td><td>challenged / &minus;0.333</td><td class="num">1</td></tr>
+              <tr><td class="num">2573</td><td>The correlation between central galaxy quenching and halo mass is secondary.</td><td>unverified</td><td>unverified / 0.111</td><td class="num">1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="margin:12px 0 0"><small><b>Mismatch:</b> 2572&rsquo;s pinned evidence 26088 (<span class="mono">2512.16290v1</span>) is <span class="mono">refutes</span> with six counter-votes &mdash; but a paper arguing halo mass dominates does not refute that a correlation <i>exists</i>; at most it refutes the <i>primacy</i> reading. The recast moves the claim onto the proposition actually in dispute.</small></p>
+      </div>
+
+      <!-- 2572 -->
+      <div class="claim">
+        <div class="claim-head"><span class="cid">2572</span><span class="pill">predictor-primacy proposition</span><span class="pill state">challenged / &minus;0.333</span></div>
+        <div class="field">
+          <div class="lbl">Current text</div>
+          <blockquote class="current">Quenching in central galaxies correlates with central properties like velocity dispersion, bulge mass, and black hole mass.</blockquote>
+        </div>
+        <div class="field">
+          <div class="lbl">Recommended cautious wording</div>
+          <blockquote class="draft">Central galaxy quenching should not be treated as primarily driven by central properties such as velocity dispersion, bulge mass, or black-hole mass unless halo-mass effects have been separated.</blockquote>
+          <p style="margin:8px 0 0"><small>Keeps 26088 as a guarding row; the <span class="mono">challenged</span> state reads as a live dispute over interpretation/priority rather than a denial of observed correlations.</small></p>
+        </div>
+        <div class="field">
+          <div class="lbl">Stricter alternative (directly refutable)</div>
+          <blockquote class="strict">Central properties such as velocity dispersion, bulge mass, and black-hole mass are the primary predictors of central-galaxy quenching, rather than halo mass.</blockquote>
+          <p style="margin:8px 0 0"><small>Makes 26088&rsquo;s <span class="mono">refutes</span> stance mechanically straightforward, but is more assertive &mdash; better as an explicit disputed claim.</small></p>
+        </div>
+        <div class="decision" data-decision="d2572">
+          <div class="dhead"><span class="num">Decision 4</span> 2572 wording &mdash; cautious guard vs assertive disputed claim</div>
+          <div class="chips">
+            <button class="chip" type="button" data-kind="rec" data-value="cautious" data-label="2572: cautious guard wording">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Recommended</span><span class="txt">Cautious guard wording &mdash; &ldquo;should not be treated as primarily driven &hellip; unless halo-mass effects have been separated.&rdquo;</span></span>
+            </button>
+            <button class="chip" type="button" data-kind="alt" data-value="strict" data-label="2572: stricter, openly-disputed wording">
+              <span class="mark">&#10003;</span><span class="body"><span class="kind">Stricter</span><span class="txt">Assertive disputed claim &mdash; &ldquo;central properties &hellip; are the primary predictors &hellip; rather than halo mass.&rdquo;</span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2573 note -->
+      <div class="claim">
+        <div class="claim-head"><span class="cid">2573</span><span class="pill">keep separate</span></div>
+        <p style="margin:0"><small>2573 (&ldquo;the correlation between central galaxy quenching and halo mass is secondary&rdquo;) already covers the halo-secondary proposition. <b>Preserve it separately</b> &mdash; do not let a 2572 recast rewrite or duplicate it. On the <span class="mono">centrals_quenching_predictor</span> axis, 2572 holds the central-property-primacy/caution slot and 2573 holds the halo-secondary slot; keep evidence 26088 pinned to 2572 with vote/dependency custody exact. Any later paired cleanup of 2573 is a separate decision, not part of this board.</small></p>
+      </div>
+
+    </section>
+
+  </div><!-- /grid -->
+
+  <!-- CROSS-CUTTING: TRUST RECOMPUTE TIMING -->
+  <div class="card">
+    <div class="section-title" style="margin-top:0">
+      <h2 style="margin:0">Cross-cutting</h2>
+      <span class="tag">applies to any future P1/P3 packet</span>
+    </div>
+    <div class="claim" style="margin:0">
+      <div class="claim-head"><span class="cid">Trust</span><span class="pill">recompute timing</span></div>
+      <p style="margin:0 0 4px"><small>2298 already shows a visible-vs-audit trust mismatch, so trust recompute interacts with the P4 route-consistency guard. Decide when a future packet should recompute/redisplay trust after any recast or retire.</small></p>
+      <div class="decision" data-decision="dtrust">
+        <div class="dhead"><span class="num">Decision 5</span> When does trust recompute happen?</div>
+        <div class="chips">
+          <button class="chip" type="button" data-kind="rec" data-value="afterp4" data-label="Trust recompute: stage as a separate packet after P4 guard">
+            <span class="mark">&#10003;</span><span class="body"><span class="kind">Cautious default</span><span class="txt">Stage trust recompute as a separate packet <b>after</b> P4 guard decisions, once public and history routes are proven to agree.</span></span>
+          </button>
+          <button class="chip" type="button" data-kind="hold" data-value="sametime" data-label="Trust recompute: immediately in the same recast/retire packet">
+            <span class="mark">&#10003;</span><span class="body"><span class="kind">Alternative</span><span class="txt">Recompute trust immediately, in the same future packet as the recast / retire action.</span></span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DECISION CHECKLIST -->
+  <div class="card">
+    <h2>Decision checklist</h2>
+    <p><small>Live mirror of your selections above. Marks fill in as you choose. This is a worksheet &mdash; it does not submit or apply anything.</small></p>
+    <ul class="checklist" id="checklist">
+      <li data-for="d2298"><span class="dot">&#10003;</span><div><span class="q">1 &middot; Choose the P1 2298 route.</span><span class="pick" data-pick>Not yet chosen</span></div></li>
+      <li data-for="d2299"><span class="dot">&#10003;</span><div><span class="q">2 &middot; Choose the P1 2299 route.</span><span class="pick" data-pick>Not yet chosen</span></div></li>
+      <li data-for="d2924"><span class="dot">&#10003;</span><div><span class="q">3 &middot; Choose the 2924 endpoint / display handling.</span><span class="pick" data-pick>Not yet chosen</span></div></li>
+      <li data-for="d2572"><span class="dot">&#10003;</span><div><span class="q">4 &middot; Choose P3 cautious vs stricter wording for 2572.</span><span class="pick" data-pick>Not yet chosen</span></div></li>
+      <li data-for="dtrust"><span class="dot">&#10003;</span><div><span class="q">5 &middot; Choose whether future trust recompute waits for P4.</span><span class="pick" data-pick>Not yet chosen</span></div></li>
+    </ul>
+    <p style="margin:16px 0 0"><small>When you have marked the directions you want, a future DB/prose packet can be drafted to carry them out. That packet stays read-only until a <b>separate, explicit local approval</b> is given later &mdash; there is no approval phrase on this page, and the current state remains <b>NO ACTIVE EXECUTION PHRASE</b>.</small></p>
+  </div>
+
+  <div class="footer">
+    <p class="legend">
+      <span class="k"><span class="sw rec"></span> Recommended / cautious default</span>
+      <span class="k"><span class="sw alt"></span> Alternative / stricter</span>
+      <span class="k"><span class="sw rej"></span> Reject</span>
+      <span class="k"><span class="sw hold"></span> Selected</span>
+    </p>
+    <p style="margin-top:12px">Sources (read-only): <code>docs/hwao_morning_blocker_specs_20260706T0308Z/P1_LEGACY_OVERCLAIMS_2298_2299_2924_SPEC.md</code> &middot; <code>docs/hwao_morning_blocker_specs_20260706T0308Z/P3_2572_PRIMACY_RECAST_SPEC.md</code></p>
+    <p>Lane: Lana &middot; static public operator HTML only &middot; no DB / SQL / trust recompute / prose publish / product-code change / git / deploy / GCP.</p>
+    <p style="margin-bottom:0">Marker: <code>LANA_P1_P3_WORDING_DECISIONS_HTML_20260706T0704Z</code></p>
+  </div>
+
+</div><!-- /wrap -->
+</main>
+
+<script>
+(function(){
+  "use strict";
+  var KEY = "nm_p1p3_wording_decisions_v1";
+  var IDS = ["d2298","d2299","d2924","d2572","dtrust"];
+  var state = {};
+  try { state = JSON.parse(localStorage.getItem(KEY) || "{}") || {}; } catch(e){ state = {}; }
+
+  function save(){ try { localStorage.setItem(KEY, JSON.stringify(state)); } catch(e){} }
+
+  function render(){
+    var chosen = 0;
+    IDS.forEach(function(id){
+      var block = document.querySelector('.decision[data-decision="'+id+'"]');
+      var picked = state[id];
+      if (block){
+        block.querySelectorAll('.chip').forEach(function(chip){
+          var on = chip.getAttribute('data-value') === picked;
+          chip.classList.toggle('is-selected', on);
+          chip.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+      }
+      var li = document.querySelector('.checklist li[data-for="'+id+'"]');
+      if (li){
+        var pickEl = li.querySelector('[data-pick]');
+        if (picked){
+          chosen++;
+          li.classList.add('done');
+          var src = block ? block.querySelector('.chip[data-value="'+picked+'"]') : null;
+          pickEl.textContent = src ? src.getAttribute('data-label') : picked;
+        } else {
+          li.classList.remove('done');
+          pickEl.textContent = "Not yet chosen";
+        }
+      }
+    });
+    var count = document.getElementById('count');
+    if (count) count.textContent = chosen + " of " + IDS.length + " directions marked";
+    var fill = document.getElementById('barfill');
+    if (fill) fill.style.width = Math.round((chosen/IDS.length)*100) + "%";
+  }
+
+  document.querySelectorAll('.decision').forEach(function(block){
+    var id = block.getAttribute('data-decision');
+    block.querySelectorAll('.chip').forEach(function(chip){
+      chip.setAttribute('aria-pressed','false');
+      chip.addEventListener('click', function(){
+        var val = chip.getAttribute('data-value');
+        if (state[id] === val) { delete state[id]; }   // click again to unset
+        else { state[id] = val; }
+        save();
+        render();
+      });
+    });
+  });
+
+  var reset = document.getElementById('reset');
+  if (reset) reset.addEventListener('click', function(){
+    state = {}; save(); render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+{
+  "responseHeader": {
+    "status": 0,
+    "QTime": 9,
+    "params": {
+      "q": "identifier:\"arXiv:2509.04067\"",
+      "fl": "bibcode,title,abstract,doi,identifier,author,year,pub,property",
+      "start": "0",
+      "memAllowed": "800",
+      "internal_logging_params": "X-Amzn-Trace-Id=Root=1-6a546690-5bec5c1b079dd57c4917f910",
+      "timeAllowed": "20000",
+      "rows": "5",
+      "wt": "json"
+    }
+  },
+  "response": {
+    "numFound": 1,
+    "start": 0,
+    "numFoundExact": true,
+    "docs": [
+      {
+        "bibcode": "2026MNRAS.548ag300C",
+        "abstract": "We present the calibration of stellar and active galactic nucleus (AGN) feedback in the subgrid model for the new COLIBRE hydrodynamical simulations of galaxy formation. COLIBRE directly simulates the multiphase interstellar medium and the evolution of dust grains, which is coupled to the chemistry. COLIBRE is calibrated at three resolutions: particle masses of <inline-formula><tex-math>$m_{\\rm gas} \\approx m_{\\rm dm} \\sim 10^7$</tex-math></inline-formula> (m7), <inline-formula><tex-math>$10^6$</tex-math></inline-formula> (m6), and <inline-formula><tex-math>$10^5\\,\\mathrm{M_\\odot }$</tex-math></inline-formula> (m5). To calibrate the COLIBRE feedback at m7 resolution, we run Latin hypercubes of <inline-formula><tex-math>$\\approx 200$</tex-math></inline-formula> simulations that vary up to four subgrid parameters in cosmological volumes of (<inline-formula><tex-math>$50\\,\\mathrm{cMpc})^{3}$</tex-math></inline-formula>. We train Gaussian process emulators on these simulations to predict the <inline-formula><tex-math>$z=0$</tex-math></inline-formula> galaxy stellar mass function (GSMF) and size─stellar mass relation (SSMR) as functions of the model parameters, which we then fit to observations. The trained emulators not only provide the best-fitting parameter values but also enable us to investigate how different aspects of the prescriptions for supernova and AGN feedback affect the predictions. In particular, we demonstrate that while the observed <inline-formula><tex-math>$z=0$</tex-math></inline-formula> GSMF and SSMR can be matched individually with a relatively simple supernova feedback model, simultaneously reproducing both necessitates a more sophisticated prescription. We show that the calibrated m7 COLIBRE model not only reproduces the calibration target observables, but also matches various other galaxy properties to which the model was not calibrated. Finally, we apply the calibrated m7 model to the m6 and m5 resolutions and, after slight manual adjustments of the subgrid parameters, achieve a similar level of agreement with the observed <inline-formula><tex-math>$z=0$</tex-math></inline-formula> GSMF and SSMR.",
+        "author": [
+          "Chaikin, Evgenii",
+          "Schaye, Joop",
+          "Schaller, Matthieu",
+          "Ploeckinger, Sylvia",
+          "Bahé, Yannick M.",
+          "Benítez-Llambay, Alejandro",
+          "Correa, Camila",
+          "Forouhar Moreno, Victor J.",
+          "Frenk, Carlos S.",
+          "Huško, Filip",
+          "Kugel, Roi",
+          "McGibbon, Robert",
+          "Richings, Alexander J.",
+          "Trayford, James W.",
+          "Borrow, Josh",
+          "Crain, Robert A.",
+          "Helly, John C.",
+          "Lacey, Cedric G.",
+          "Ludlow, Aaron",
+          "Nobels, Folkert S. J."
+        ],
+        "doi": [
+          "10.1093/mnras/stag300",
+          "10.48550/arXiv.2509.04067"
+        ],
+        "identifier": [
+          "2025arXiv250904067C",
+          "10.1093/mnras/stag300",
+          "2026MNRAS.548ag300C",
+          "arXiv:2509.04067",
+          "2026MNRAS.548g.300C",
+          "10.48550/arXiv.2509.04067"
+        ],
+        "pub": "Monthly Notices of the Royal Astronomical Society",
+        "title": [
+          "COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase"
+        ],
+        "year": "2026",
+        "property": [
+          "ARTICLE",
+          "DATA",
+          "EPRINT_OPENACCESS",
+          "ESOURCE",
+          "OPENACCESS",
+          "PUB_OPENACCESS",
+          "REFEREED"
+        ]
+      }
+    ]
+  },
+  "allocatedBytes": 2121392,
+  "filtered": "true"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": 1,
+  "packet_id": "gemini-dr-next-phase-canary-20260712T033422Z",
+  "role": "Deep Research next phase: (A) Tori read-only real-DOM adapter evidence/selector validation, then (B) conditional single supervised C1 canary",
+  "author": "Hwao (coordinator only; packet generation, no browsing/dispatch/execution)",
+  "commissioned": "Duho direction 2026-07-12 (proceed; supervision minimal)",
+  "packet_written_utc": "2026-07-12T03:34:22Z",
+  "supervisory_budget": {
+    "duho_only": ["clear login/verification/CAPTCHA if the surface demands it (human-only, never a bypass)", "the single Start-research click (this packet's policy: the one 'go' is human)"],
+    "tori": ["exact-target custody", "fresh consumer quota-burn preflight", "compose/select/submit-to-plan", "read-only monitor + capture", "immutable receipt", "finally-style post-run quota refresh", "hard stops"],
+    "hard_rules": ["no verification bypass", "exactly one Start-research ever", "no DB/product/git/deploy/cron writes"]
+  },
+  "phases": {
+    "A_readonly_dom_validation": "prove all critical + wall selectors resolve against real Gemini DOM, zero actions; gated first on a trusted tab-scoped read-only DOM read channel existing (else BLOCKED/stop, no bypass)",
+    "B_conditional_c1_canary": "only after Phase A validated + full arming gate; one conversation, one submit, one human Start, read-only monitor/capture, immutable receipt, finally quota refresh"
+  },
+  "custody_pins": {
+    "c1_prompt": {"path": "../gemini-web-joint-burn-recovery-20260711T100139Z/prompts/C1.md", "sha256": "adeaa369f9eb82b2090e8c9232f3752ef45ce997fef858f0873c230c1626d265", "marker": "GEMINI_WEB_JOINT_C1_OUTPUT_DONE_20260711T100139Z"},
+    "validated_tool": {"path": "../goru-deep-research-capture-dev-20260712T030531Z/dev/wait_and_extract.py", "sha256": "c42df80e39228f32c48d97efdc78df09ad1db98a8fa8bc13fec64cf1a196c49b", "review_sha256": "cc8b2a4b7021d7b152b34e39e66f9f68e111a53de717e3c39613f0c76919d062", "status": "LOCAL_CORE_PASS (live DOM adapter exercised read-only in Phase A behind un-invoked boundary)"}
+  },
+  "acceptance_gates": {
+    "G-A1": "trusted tab-scoped read-only DOM mechanism exists (else DR_PHASEA_BLOCKED_NO_READ_CHANNEL, stop)",
+    "G-A2": "all critical selectors (composer, DR-toggle+active, plan, start-control, running/stop, complete, answer-body, marker/links region) AND all wall selectors (verification/CAPTCHA, billing, login) FOUND with stability notes",
+    "G-A3": "zero actions taken in Phase A (attested)",
+    "G-B1": "Phase A validated + verification clear + quota preflight <80% (or non-responsive logged) + C1/tool sha match + TORI_ACK+GORU_ACK + >=60min to reset => DR_C1_ARMED",
+    "G-B2": "exact-target custody; Pro+Deep Research confirmed; one submit; exactly one HUMAN Start; active state verified (ack-no-control => hard stop); marker once + final non-blank line; immutable receipt; pre+post quota hashed"
+  },
+  "arming_markers": {
+    "ready": "HWAO_DR_NEXT_PHASE_PACKET_READY_20260712T033422Z",
+    "initial_state": "DR_NEXT_PHASE_NOT_ARMED_20260712T033422Z",
+    "phaseA_blocked": "DR_PHASEA_BLOCKED_NO_READ_CHANNEL_<UTC>",
+    "phaseA_verdict": ["DR_PHASEA_SELECTORS_VALIDATED_<UTC>", "DR_PHASEA_SELECTORS_FAILED_<UTC>"],
+    "phaseB_arm": ["DR_C1_ARMED_<UTC>", "DR_C1_NOT_ARMED_<REASON>_<UTC>"],
+    "run_outcome": ["runs/c1/RUN_CAPTURED_C1", "runs/c1/RUN_VOID_C1"],
+    "terminal": ["DR_C1_DONE_<UTC>", "DR_HARD_STOP_<REASON>_<UTC>"]
+  },
+  "hard_stops": ["unusual-traffic/verification/CAPTCHA reappears", "login/account wall", "billing/upsell", "model/mode uncertainty", "capture-target uncertainty", "quota-source uncertainty or real reading >=80%", "read-channel loss", "TCC denial (never bypass)", "any second-Start pressure", "operator doubt", "weekly reset"],
+  "locks": {
+    "goru": "LOCAL-ONLY; no live/browser/System Events/network; may author adapter code behind an un-invoked boundary only",
+    "quarantine": "tools/gemini_deep_research_driver.py + tools/R15_prompt.txt never imported/executed; all external IDs QUARANTINED_PENDING_LOCAL_CHECK",
+    "no_writes": ["DB", "product/frontend", "wiki", "candidates", "SPRINT_STATUS", "runner/runtime", "git", "deploy", "cron", "cloud", "billing", "account", "credentials", "extensions"],
+    "no_bypass_tech": ["cookies/__Secure-1PSID", "undocumented APIs", "cloned profiles", "headless/stealth", "Playwright", "screenshot-TCC bypass"],
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-next-phase-canary-20260712T033422Z/"
+  },
+  "run_scope": "C1 ONLY; exactly one launch; no C2/C3; no retry of VOID; at most one packet-authorized neutral truncation-continue (not a Start)"
+}

@@ -1,0 +1,106 @@
+{
+  "approval": {
+    "normalized_gate": "APPLY FRONTIER RANKING PREVIEW overnight-arxiv-frontier-preview-20260731T133649Z ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac",
+    "source": "contextual natural-language approval"
+  },
+  "coordinator_relay": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/HWAO_GATE_C_RELAY.md",
+    "result": "HWAO_PANES_BLOCKED_NOT_LOGGED_IN"
+  },
+  "excluded": [
+    "DB/SQL/API mutation",
+    "curated RANK_TOPICS edit",
+    "paper-merit leaderboard edit",
+    "cockpit change",
+    "scheduler/cron/LaunchAgent change",
+    "Git add/commit/push/merge",
+    "deploy/restart",
+    "external submission"
+  ],
+  "git": {
+    "live_branch": "main",
+    "live_head": "6553874e08a943cb4c461c84136dc0185efc5719",
+    "live_status_line_count": 2,
+    "live_status_sha256": "ef42e86d205e5b6cb2e60db879f1254c573befcb72b08b1cc353bfb8d26c7f4d",
+    "scoped_paths_clean": true,
+    "worktree_head": "4a9d62862ff57be180368010ea093b38dc51b473",
+    "worktree_status_line_count": 345,
+    "worktree_status_sha256": "8123e2392303843770b21e39fe0278bf0fdca1e9fd8f0de8768d48fe370da9b6"
+  },
+  "preview_json_sha256": "ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac",
+  "preview_ts_sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+  "promotion_receipt_sha256": "65a5117e54c0e46eb11189e1559ef195a922d3c88a4a77b7feff79eaa5a460fe",
+  "protected_siblings": {
+    "live_LabStages": {
+      "bytes": 126747,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/LabStages.tsx",
+      "sha256": "31a08a0ff5ab36a3f43ef493c6e1a2da99e86bce7f8aaf7d4808839316eb361d"
+    },
+    "live_paperScores": {
+      "bytes": 15358,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/paperScores.ts",
+      "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+    },
+    "worktree_LabStages": {
+      "bytes": 126747,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/LabStages.tsx",
+      "sha256": "31a08a0ff5ab36a3f43ef493c6e1a2da99e86bce7f8aaf7d4808839316eb361d"
+    },
+    "worktree_paperScores": {
+      "bytes": 15358,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/paperScores.ts",
+      "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+    }
+  },
+  "public_runtime": {
+    "process_observed": [
+      "2538 /bin/bash -c cd /Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend && /opt/homebrew/bin/node node_modules/.bin/next start -p 3000",
+      " 2652 next-server (v14.2.35)",
+      "62888 /bin/bash -c source /var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/hermes-snap-2d0ad3d6fd98.sh >/dev/null 2>&1 || true\\012builtin cd -- /Users/duhokim/NebulaMind/NebulaMind || exit 126\\012eval 'ps -axo pid=,command= | /usr/bin/python3 -c '\\''import sys; [print(x.rstrip()) for x in sys.stdin if \"next start -p 3000\" in x or \"next-server (v14.2.35)\" in x]'\\'''\\012__hermes_ec=$?\\012umask 077\\012{ export -p > /var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/hermes-snap-2d0ad3d6fd98.sh.tmp.$BASHPID && mv -f /var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/hermes-snap-2d0ad3d6fd98.sh.tmp.$BASHPID /var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/hermes-snap-2d0ad3d6fd98.sh; } 2>/dev/null || rm -f /var/folders/64/71dstw0j1gd_n58lsxnhl3p80000gn/T/hermes-snap-2d0ad3d6fd98.sh.tmp.$BASHPID 2>/dev/null || true\\012printf '\\n__HERMES_CWD_2d0ad3d6fd98__%s__HERMES_CWD_2d0ad3d6fd98__\\n' \"$(pwd -P)\"\\012exit $__hermes_ec",
+      "62890 /Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python -c import sys; [print(x.rstrip()) for x in sys.stdin if \"next start -p 3000\" in x or \"next-server (v14.2.35)\" in x]"
+    ],
+    "restart_authorized": false,
+    "source_update_requires_restart_to_become_live": true
+  },
+  "run_id": "overnight-arxiv-frontier-preview-20260731T133649Z",
+  "schema_version": 1,
+  "status": "PRE_APPLY_LOCKED",
+  "targets": {
+    "canonical_rerank": {
+      "after_bytes": 50328,
+      "after_sha256": "ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac",
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/canonical_frontier_map_v3_reranked.json",
+      "before_bytes": 50327,
+      "before_sha256": "bfa25b3b3dd77e3b8886c566494d3c56e2bbb3e63d0706af79db1af80b05ecd0",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontier_map_v3_reranked.preview.json",
+      "target": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontier_map_v3_reranked.json"
+    },
+    "canonical_staging_ts": {
+      "after_bytes": 38735,
+      "after_sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/canonical_frontiersData.v3.staging.ts",
+      "before_bytes": 38730,
+      "before_sha256": "c92554435de3444a1b70662637e9c5ac83a72cad9cfc75fb2781b72c84fb52e4",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts",
+      "target": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontiersData.v3.staging.ts"
+    },
+    "live_frontend_source_ts": {
+      "after_bytes": 38735,
+      "after_sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/live_frontiersData.ts",
+      "before_bytes": 36798,
+      "before_sha256": "4d07f80decee9fbd375d92835a4706afc891bc13d86f6e0adf780f73032426cd",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts",
+      "target": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/frontiersData.ts"
+    },
+    "worktree_frontend_ts": {
+      "after_bytes": 38735,
+      "after_sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/worktree_frontiersData.ts",
+      "before_bytes": 36798,
+      "before_sha256": "4d07f80decee9fbd375d92835a4706afc891bc13d86f6e0adf780f73032426cd",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts",
+      "target": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/frontiersData.ts"
+    }
+  }
+}

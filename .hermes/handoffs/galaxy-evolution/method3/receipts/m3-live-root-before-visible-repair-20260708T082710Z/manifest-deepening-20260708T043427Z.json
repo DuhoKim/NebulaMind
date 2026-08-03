@@ -1,0 +1,70 @@
+{
+  "marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_DEEPENING_20260708T043427Z",
+  "seed_marker": "DEEPENING_RESOURCE_SEED_20260708T043427Z",
+  "earliest_finalization_utc": "2026-07-08T06:34:40Z",
+  "manifest_status": "PROGRESS_CANDIDATE_NOT_FINAL_NO_APPLY_PACKET",
+  "role": "Kun/Codex Method3 deterministic build-or-verify lane",
+  "reason_for_generation": "Hwao deepening progress existed, while Goru deepening audit reported v2 candidate absent. Kun generated an additive deterministic v2 candidate from first-pass Method3 files and local debate-map/status artifacts.",
+  "created_files": [
+    {
+      "path": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-deepening-20260708T043427Z/wiki-prose-evidence-trust-deepening-20260708T043427Z.html",
+      "sha256": "4748b590aa5e4b53e48f5f196a6e286945903ab7cc0b0ba6ea8feeb92a6a9a0c",
+      "purpose": "Static same-format v2 HTML preview with deep trust legend, local provenance, and gap ledger",
+      "checksum_refreshed": "2026-07-08T06:06Z — Hwao cycle 7 restored 9 per-section evidence-basis navigation links (#s1..#s9); prior sha256 cc91605a... superseded"
+    },
+    {
+      "path": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-deepening-20260708T043427Z/page-content-prose-evidence-trust-deepening-20260708T043427Z.md",
+      "sha256": "61caeaf65e05aa2dcc26b5cc5c92fed4dfe15631e9cded009237d4ad1ea3b53b",
+      "purpose": "Markdown page body for Method3 v2 prose and trust deepening"
+    },
+    {
+      "path": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-deepening-20260708T043427Z/evidence-trust-coverage-map-deepening-20260708T043427Z.json",
+      "sha256": "39a9bf2ed1f3e3540048d14a86eba8e026b6f231c878dd45f21c5f8c1b6fbed4",
+      "purpose": "Machine-readable v2 coverage map with axis reader guards, status movement criteria, trace ledger IDs, and known gaps"
+    },
+    {
+      "path": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-deepening-20260708T043427Z/manifest-deepening-20260708T043427Z.json",
+      "sha256": "self-excluded; compute after creation if needed",
+      "purpose": "Progress candidate manifest"
+    }
+  ],
+  "input_basis": [
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-upgrade/wiki-prose-evidence-trust-upgrade-20260708T041216Z.html",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-upgrade/page-content-prose-evidence-trust-upgrade-20260708T041216Z.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/prose-evidence-trust-upgrade/evidence-trust-coverage-map-20260708T041216Z.json",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/evidence-trust-rebuild/evidence-basis-20260708T014205Z.md",
+    "docs/baseline_step6_status_debate_map_20260703T0954Z/artifacts/status_debate_map.json",
+    "docs/hwao_debate_map_refresh_20260706T002104Z/debate_map_data.json",
+    "docs/hwao_overnight_pinning_atlas_20260705T153533Z/evidence_source_inventory.json",
+    ".hermes/handoffs/galaxy-evolution/method3/autopilot/HWAO_M3_DEEPENING_PROGRESS_20260708T043427Z.md",
+    ".hermes/handoffs/galaxy-evolution/method3/autopilot/DEEPENING_GORU_M3_AUDIT_20260708T043427Z.md"
+  ],
+  "deepening_features": [
+    "10-section Markdown and HTML candidate including a dedicated Evidence Status & Known Gaps section",
+    "7-axis trust legend with reader guards and status movement criteria",
+    "Local trace ledger IDs and representative bibcodes surfaced as provenance text",
+    "MOSDEF 17 percent and JWST 46 percent outflow examples kept separate with sample/tracer caveats",
+    "Simulation-only and maintenance-heating claims kept model-dependent",
+    "Unmatched items and PENDING_RECHECK caveat preserved"
+  ],
+  "static_checks_recorded": {
+    "coverage_json_parsed": "PASS",
+    "candidate_files_exist": "PASS",
+    "markdown_h2_count": 10,
+    "html_article_anchor_count": 10,
+    "forbidden_product_binding_marker_scan": "PASS",
+    "forbidden_live_or_dynamic_scan": "PASS",
+    "external_url_scan": "PASS"
+  },
+  "scope_guards": {
+    "docs_only": true,
+    "live_apply": false,
+    "product_binding": false,
+    "live_root_touched": false,
+    "git_used": false,
+    "browser_used": false,
+    "db_or_api_used": false,
+    "cloud_or_oauth_used": false,
+    "restart_or_deploy_used": false
+  }
+}

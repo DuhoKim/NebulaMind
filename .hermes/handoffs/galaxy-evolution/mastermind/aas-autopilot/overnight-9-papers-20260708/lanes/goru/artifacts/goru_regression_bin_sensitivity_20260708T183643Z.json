@@ -1,0 +1,92 @@
+{
+  "key_results": {
+    "m2p2_k10_massive_sn3_high_minus_low_bpt_agn_fraction": {
+      "ci95_high": 0.1701279992904231,
+      "ci95_low": 0.11371695740038575,
+      "k": null,
+      "metric": "massive_high_minus_low_density_bpt_agn_fraction",
+      "n": 4610,
+      "note": "Optical AGN/density denominator only; no radio jet measurement.",
+      "proxy_guard": "SDSS optical emission-line/color/sSFR proxy or denominator only; no causal AGN feedback, gas-depletion, radio-jet coupling, escape/recycling, X-ray maintenance-heating, or simulation-validation proof.",
+      "topic": "m2_p2_radio_jet_environment",
+      "topic_label": "M2 P2 \u2014 environment proxy for optical AGN in massive hosts",
+      "value": 0.141868468845828,
+      "variant": "mass_ge_10.8_k10_sn_ge_3"
+    },
+    "m3p3_usable_target_vector_cells": {
+      "ci95_high": null,
+      "ci95_low": null,
+      "k": 15,
+      "metric": "usable_mass_redshift_target_vector_cells",
+      "n": 15,
+      "note": "Observed SDSS target-vector cells only; no simulation comparison.",
+      "proxy_guard": "SDSS optical emission-line/color/sSFR proxy or denominator only; no causal AGN feedback, gas-depletion, radio-jet coupling, escape/recycling, X-ray maintenance-heating, or simulation-validation proof.",
+      "topic": "m3_p3_simulation_validation",
+      "topic_label": "M3 P3 \u2014 SDSS target vector for feedback-model validation",
+      "value": 15,
+      "variant": "broad_mass_z3_sn_ge_3_n_ge_50"
+    },
+    "rp1_sn3_matched_delta_log_sSFR": {
+      "ci95_high": -1.2829999999999995,
+      "ci95_low": -1.3341600000000007,
+      "k": 8146,
+      "metric": "matched_median_delta_log_sSFR_target_minus_sf",
+      "n": 8146,
+      "note": "Nearest-neighbour matched in logM,z; association only.",
+      "proxy_guard": "SDSS optical emission-line/color/sSFR proxy or denominator only; no causal AGN feedback, gas-depletion, radio-jet coupling, escape/recycling, X-ray maintenance-heating, or simulation-validation proof.",
+      "topic": "m1_rp1_agn_sfr",
+      "topic_label": "M1 RP-1 \u2014 SDSS AGN/sSFR matched-control pilot",
+      "value": -1.3088869999999995,
+      "variant": "bpt_agn_vs_sf_sn_ge_3"
+    },
+    "rp2_k10_sn3_high_minus_low_quenched_fraction": {
+      "ci95_high": 0.059468333333333324,
+      "ci95_low": 0.03993333333333332,
+      "k": null,
+      "metric": "high_minus_low_density_quenched_fraction",
+      "n": 30000,
+      "note": "Nearest-neighbour density quartiles only; no halo/group catalogue.",
+      "proxy_guard": "SDSS optical emission-line/color/sSFR proxy or denominator only; no causal AGN feedback, gas-depletion, radio-jet coupling, escape/recycling, X-ray maintenance-heating, or simulation-validation proof.",
+      "topic": "m1_rp2_environment_quenching",
+      "topic_label": "M1 RP-2 \u2014 SDSS density proxy for environmental quenching",
+      "value": 0.049733333333333324,
+      "variant": "k10_sn_ge_3"
+    }
+  },
+  "marker": "GORU_REGRESSION_BIN_SENSITIVITY_TICK_20260708T183643Z",
+  "outputs": {
+    "alternate_bin_target_vector_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/alternate_mass_redshift_sn_target_vector_20260708T183643Z.csv",
+    "inventory_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/goru_tick_output_inventory_20260708T183643Z.csv",
+    "paper_table_candidates_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/paper_table_candidate_rows_20260708T183643Z.csv",
+    "regression_coefficient_sensitivity_pdf": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/regression_coefficient_sensitivity_20260708T183643Z.pdf",
+    "regression_coefficient_sensitivity_png": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/regression_coefficient_sensitivity_20260708T183643Z.png",
+    "regression_sensitivity_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/regression_lpm_sensitivity_20260708T183643Z.csv",
+    "summary_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_regression_bin_sensitivity_20260708T183643Z.json",
+    "tick_report_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/ticks/GORU_TICK_20260708T183643Z.md",
+    "topic_bootstrap_summary_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/topic_bootstrap_summary_20260708T183643Z.csv"
+  },
+  "proxy_limits": "SDSS optical emission-line/color/sSFR proxy or denominator only; no causal AGN feedback, gas-depletion, radio-jet coupling, escape/recycling, X-ray maintenance-heating, or simulation-validation proof.",
+  "row_counts": {
+    "alternate_bin_target_vector": 198,
+    "inventory": 8,
+    "paper_table_candidates": 35,
+    "regression_sensitivity": 63,
+    "topic_bootstrap_summary": 84
+  },
+  "safety": "Read cached SDSS/local artifacts only; wrote under lanes/goru only. No DB/API/page_versions/wiki publish/live mirror/deploy/restart/git/cron/billing/OAuth/external submission.",
+  "sn_threshold_counts": {
+    "sn_ge_10": 22311,
+    "sn_ge_3": 60000,
+    "sn_ge_5": 42446
+  },
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "source_results_analysis_rows": 60000,
+  "source_results_bpt_counts": {
+    "agn": 8146,
+    "intermediate": 12234,
+    "star-forming": 39553,
+    "unclassified": 67
+  },
+  "source_rows": 60000,
+  "timestamp_utc": "20260708T183643Z"
+}

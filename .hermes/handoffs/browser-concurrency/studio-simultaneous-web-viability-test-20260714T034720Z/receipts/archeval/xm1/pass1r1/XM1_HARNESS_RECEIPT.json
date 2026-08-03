@@ -1,0 +1,31 @@
+{
+ "xm1": "run",
+ "pass_id": "1r1",
+ "transport_id": "thunderbolt-pass1r1",
+ "transport": {
+  "mode": "thunderbolt",
+  "fallback": "none",
+  "pro": {
+   "host": "duhokim@169.254.100.1",
+   "host_key_alias": "100.122.78.110"
+  },
+  "local_forward_port": 5592,
+  "probe_receipt": "XM1_BROKER_PROBE_THUNDERBOLT_PASS1R1_RECEIPT.json"
+ },
+ "teardown": {
+  "pro_controller": {
+   "stopped": true,
+   "teardown": "term-clean"
+  },
+  "pro_controller_exit": 0,
+  "writerA": "term-clean"
+ },
+ "drills": {
+  "freeze_denies_both": true,
+  "partition_failclosed": true
+ },
+ "node_exit": 0,
+ "remote_controller_sha256": "8dd1188c15deeac5526fc8ad7640cdd6f3f5ba5692dddc14af3eaa5f73673eec",
+ "node_stdout": "{\"rung\":\"XM-1\",\"pass\":true,\"inflight_overlap_pairs\":22}",
+ "broker_ledger": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/browser-concurrency/studio-simultaneous-web-viability-test-20260714T034720Z/receipts/archeval/xm1/pass1r1/broker_ledger.jsonl"
+}

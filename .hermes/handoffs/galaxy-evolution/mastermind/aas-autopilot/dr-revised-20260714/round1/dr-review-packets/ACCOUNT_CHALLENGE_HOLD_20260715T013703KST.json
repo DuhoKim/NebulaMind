@@ -1,0 +1,44 @@
+{
+  "status": "ACCOUNT_CHALLENGE_HOLD",
+  "detected_kst": "2026-07-15T01:37:03+09:00",
+  "detected_utc": "2026-07-14T16:37:03Z",
+  "phase": "paper_03 unaccepted-Start retry preflight",
+  "target_id": "C92443095EE9116210C178D855DF3329",
+  "challenge": {
+    "host": "www.google.com",
+    "path": "/sorry/index",
+    "classification": "real Google account / unusual-traffic challenge",
+    "captcha_or_challenge_interaction_attempted": false,
+    "sign_in_attempted": false,
+    "challenge_bypass_attempted": false
+  },
+  "broker": {
+    "frozen": true,
+    "live_leases": [],
+    "freeze_declared_by": "tori",
+    "freeze_reason": "REAL GOOGLE ACCOUNT CHALLENGE: exact DR target redirected to google.com/sorry during paper_03 retry preflight; STOP and hold for Duho; no challenge interaction attempted"
+  },
+  "processes": {
+    "dr_runner_active": false,
+    "dr_recovery_active": false,
+    "dr_watcher_active": false
+  },
+  "round1_dr_review_statuses": {
+    "paper_01": "completed",
+    "paper_02": "completed",
+    "paper_03": "failed",
+    "paper_04": "failed",
+    "paper_05": "failed",
+    "paper_06": "failed",
+    "paper_07": "failed",
+    "paper_08": "failed",
+    "paper_09": "completed"
+  },
+  "failure_class_for_papers_03_08": "Start research acceptance not positively confirmed",
+  "diagnosis_before_challenge": "Each of papers 03-08 remained at its exact-owned generated research plan with one enabled Start research control and no terminal result; no duplicate prompt was submitted.",
+  "ledger_verification": "OK (2566 entries)",
+  "resume_policy": "Do not reset, navigate, click, submit, or resume until Duho explicitly clears the account-challenge hold.",
+  "hard_stop_kst": "2026-07-15T10:00:00+09:00",
+  "drafts_only": true,
+  "protected_mutation_performed": false
+}
