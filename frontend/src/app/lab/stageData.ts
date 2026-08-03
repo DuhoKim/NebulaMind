@@ -12,7 +12,7 @@ export const TOPIC_ITEMS: SubItem[] = [
   { value: "overlay", label: "4 · Activity overlay", sub: "where it’s unsettled",
     desc: "We light up the same map by what’s still being argued about — how hard the field is still citing each topic shows which are live frontiers and which have settled." },
   { value: "ranking", label: "5 · Ranking", sub: "frontiers rise to the top",
-    desc: "We rank topics by disagreement, not popularity: where independent measurements of the same thing (matched by redshift and galaxy mass) fail to agree, the field has an open question worth attacking. JWST high-z, black-hole accretion, LyC escape and quenching rise to the top and become the studies." },
+    desc: "We rank topics by disagreement, not popularity: where independent measurements of the same thing (matched by redshift and galaxy mass) fail to agree, the field has an open question worth attacking. Only hand-reviewed core Galaxy Evolution clusters enter the ranked study shortlist; adjacent probes stay visible as context." },
   { value: "debate-map", label: "Debate map", sub: "settled vs debated, per claim",
     desc: "One level deeper than the frontier map: within a research area, we sort the individual claims onto debate axes and keep the counter-evidence attached to each. Shown here for AGN feedback — a curated, descriptive scaffold, not a live query." },
 ];

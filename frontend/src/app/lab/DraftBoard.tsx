@@ -16,6 +16,7 @@ import { RawStyle } from "./rawStyle";
 import { FLAGSHIP } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { FRONTIERS } from "./frontiersData";
+import { coreGalaxyEvolutionFrontiers, galaxyEvolutionScope, isCoreGalaxyEvolutionFrontier } from "./frontierScope";
 import { PAPER_SCORES, meritOf, EVALUATORS } from "./paperScores";
 import { MethodChips } from "./methodLinks";
 
@@ -406,9 +407,9 @@ function DraftCard({ it }: { it: Item }) {
   );
 }
 
-// Frontier grouping — the same papers regrouped under their ranked frontier
+// Frontier grouping — the same papers regrouped under their core Galaxy Evolution frontier
 // cluster (from frontiersData), highest-controversy first, plus the top-ranked
-// tractable frontiers that still have NO study, surfaced as visible open work.
+// core frontiers that still have NO study, surfaced as visible open work.
 function FrontierGroups({ filtered }: { filtered: Item[] }) {
   const byCluster = new Map<number, Item[]>();
   const unassigned: Item[] = [];
@@ -420,18 +421,18 @@ function FrontierGroups({ filtered }: { filtered: Item[] }) {
   }
   const meta = (id: number) => FRONTIERS.find((f) => f.cluster === id);
   const withPapers = Array.from(byCluster.keys())
-    .map((id) => ({ id, m: meta(id), rows: byCluster.get(id)! }))
+    .map((id) => ({ id, m: meta(id), rows: byCluster.get(id)!, scope: galaxyEvolutionScope(id) }))
     .sort((a, b) => (b.m?.scoreV1 ?? 0) - (a.m?.scoreV1 ?? 0));
   const covered = new Set(byCluster.keys());
-  const open = FRONTIERS.filter((f) => f.tractable === 1 && !covered.has(f.cluster))
-    .sort((a, b) => b.scoreV1 - a.scoreV1)
-    .slice(0, 8);
+  const coveredCore = new Set(Array.from(covered).filter(isCoreGalaxyEvolutionFrontier));
+  const coreFrontiers = coreGalaxyEvolutionFrontiers(FRONTIERS);
+  const open = coreFrontiers.filter((f) => !coveredCore.has(f.cluster)).slice(0, 8);
   return (
     <>
-      {withPapers.map(({ id, m, rows }) => (
+      {withPapers.map(({ id, m, rows, scope }) => (
         <div key={id} className="ub-bucket">
           <p className="pb-sect">{m?.name ?? `Cluster ${id}`}
-            <span className="db-sect-sub"> · frontier #{id}{m ? ` · controversy ${m.scoreV1.toFixed(2)}` : ""}</span>
+            <span className="db-sect-sub" data-scope={scope}> · {scope === "core" ? "core Galaxy Evolution" : scope === "adjacent" ? "adjacent · supporting" : "outside Galaxy Evolution scope"} · frontier #{id}{m ? ` · controversy ${m.scoreV1.toFixed(2)}` : ""}</span>
             <span className="ub-bcount">{rows.length}</span></p>
           <div className="pb-runs">{rows.map((it, i) => <DraftCard it={it} key={`${id}-${i}`} />)}</div>
         </div>
@@ -444,8 +445,8 @@ function FrontierGroups({ filtered }: { filtered: Item[] }) {
       )}
       {open.length > 0 && (
         <div className="ub-bucket">
-          <p className="pb-sect">Open frontiers — no study yet <span className="db-sect-sub">· top-ranked, tractable, still untouched</span></p>
-          <p className="db-note" style={{ marginTop: 0 }}>The Lab holds drafts on just <b>{covered.size}</b> of the 57 ranked clusters. These are the highest-controversy frontiers it hasn’t attacked yet — visible work, not gaps to hide.</p>
+          <p className="pb-sect">Open core Galaxy Evolution frontiers — no study yet <span className="db-sect-sub">· top-ranked, in-scope, still untouched</span></p>
+          <p className="db-note" style={{ marginTop: 0 }}>The Lab holds drafts on just <b>{coveredCore.size}</b> of the {coreFrontiers.length} core Galaxy Evolution clusters. These are the highest-controversy in-scope frontiers it hasn’t attacked yet — visible work, not gaps to hide.</p>
           <div className="ub-open">
             {open.map((f) => (
               <div className="ub-openrow" key={f.cluster}>

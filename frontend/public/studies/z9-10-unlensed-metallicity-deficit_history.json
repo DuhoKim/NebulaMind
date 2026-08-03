@@ -4,7 +4,7 @@
   "converged": true,
   "lineage": {
     "topicSource": "frontier: high-z MZR (JWST)",
-    "topic": "gas-phase mass–metallicity deficit at z>7"
+    "topic": "gas-phase mass\u2013metallicity deficit at z>7"
   },
   "revisions": [
     {
@@ -19,7 +19,7 @@
           "detection-framing"
         ]
       },
-      "feedbackText": "G2 FAIL — the confirming set is not disjoint from the hypothesis-forming set (both lean on the same ~4 lensed z>7 anchors). G3 FAIL — cross-sample O/H is not on one declared scale; unclear the deficit survives the ~0.24 dex inter-scale offset. Adjust the detection framing.",
+      "feedbackText": "G2 FAIL \u2014 the confirming set is not disjoint from the hypothesis-forming set (both lean on the same ~4 lensed z>7 anchors). G3 FAIL \u2014 cross-sample O/H is not on one declared scale; unclear the deficit survives the ~0.24 dex inter-scale offset. Adjust the detection framing.",
       "changed": {
         "summary": "Restricted the analysis to a single Te-consistent scale; reframed as a selection-bounded consistency result, explicitly not a detection."
       },
@@ -45,15 +45,15 @@
     },
     {
       "feedbackSource": "deep-research",
-      "feedbackBy": "Tori (crew) · Gemini Deep Research",
+      "feedbackBy": "Tori (crew) \u00b7 Gemini Deep Research",
       "feedbackKind": {
-        "verdict": "DOWNGRADE → REVISE",
+        "verdict": "DOWNGRADE \u2192 REVISE",
         "categories": [
           "independent anchors",
           "lensing systematic"
         ]
       },
-      "feedbackText": "DR1: genuinely independent UNLENSED field anchors now exist (Pollock+2026, Cullen+2025, Isobe+2026). Material issue: the 'clean' direct-Te subset (ERO=SMACS0723, GLASS=Abell2744) is lens-contaminated — only CEERS is field — so the −0.47 dex deficit carries an unaccounted differential-magnification systematic. Re-derive on unlensed field anchors.",
+      "feedbackText": "DR1: genuinely independent UNLENSED field anchors now exist (Pollock+2026, Cullen+2025, Isobe+2026). Material issue: the 'clean' direct-Te subset (ERO=SMACS0723, GLASS=Abell2744) is lens-contaminated \u2014 only CEERS is field \u2014 so the \u22120.47 dex deficit carries an unaccounted differential-magnification systematic. Re-derive on unlensed field anchors.",
       "changed": {
         "summary": "Added the lensing caveat and a re-derivation plan; flagged an unlensed data pull as required before human-review-ready."
       },
@@ -72,9 +72,9 @@
           "overclaim"
         ]
       },
-      "feedbackText": "Re-refereed after the unlensed re-derivation: G2 PASS (independent unlensed sample), G3 PASS, G6 PASS; the ~22σ formal value is acknowledged as NOT a detection (systematic-limited). Upgraded from REVISE.",
+      "feedbackText": "Re-refereed after the unlensed re-derivation: G2 PASS (independent unlensed sample), G3 PASS, G6 PASS; the ~22\u03c3 formal value is acknowledged as NOT a detection (systematic-limited). Upgraded from REVISE.",
       "changed": {
-        "summary": "Pulled Pollock+2026 (N=5 strictly unlensed field, z=9.3–9.9); re-derived deficit = −0.69±0.03 dex, leave-one-out spread 0.04 dex — lensing systematic removed and the deficit confirmed on a second independent sample."
+        "summary": "Pulled Pollock+2026 (N=5 strictly unlensed field, z=9.3\u20139.9); re-derived deficit = \u22120.69\u00b10.03 dex, leave-one-out spread 0.04 dex \u2014 lensing systematic removed and the deficit confirmed on a second independent sample."
       },
       "timestamp": "2026-07-20T23:15:00Z"
     },
@@ -88,9 +88,9 @@
           "anchor-robustness"
         ]
       },
-      "feedbackText": "Anchor-robustness pass: re-anchoring on Andrews & Martini 2013 (direct-Te local MZR measured down to logM~7.4, not extrapolated) gives −0.645 dex vs −0.687 against Curti+2020 — an anchor systematic of only 0.042 dex.",
+      "feedbackText": "Anchor-robustness pass: re-anchoring on Andrews & Martini 2013 (direct-Te local MZR measured down to logM~7.4, not extrapolated) gives \u22120.645 dex vs \u22120.687 against Curti+2020 \u2014 an anchor systematic of only 0.042 dex.",
       "changed": {
-        "summary": "Added the AM13 re-anchoring; the local-MZR-extrapolation caveat is resolved (Δ0.04 dex). Recompiled."
+        "summary": "Added the AM13 re-anchoring; the local-MZR-extrapolation caveat is resolved (\u03940.04 dex). Recompiled."
       },
       "timestamp": "2026-07-21T03:20:00Z"
     },
@@ -99,15 +99,15 @@
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
       "feedbackKind": {
-        "verdict": "OVERCLAIM flag → fixed",
+        "verdict": "OVERCLAIM flag \u2192 fixed",
         "categories": [
           "overclaim",
           "detection-discipline"
         ]
       },
-      "feedbackText": "Overclaim flag: asserting a z~9–10 'normalization deficit' from Isobe+2026, whose stack spans z=4–10. Detection-discipline PASS (no detection claim). After repeated flags on an already-bounded statement, the claim was reduced to bare-factual per the 'astrosage advisory, not a gate' bright line.",
+      "feedbackText": "Overclaim flag: asserting a z~9\u201310 'normalization deficit' from Isobe+2026, whose stack spans z=4\u201310. Detection-discipline PASS (no detection claim). After repeated flags on an already-bounded statement, the claim was reduced to bare-factual per the 'astrosage advisory, not a gate' bright line.",
       "changed": {
-        "summary": "Softened Isobe to a bare-factual statement (12+log O/H = 7.62 at logM=8 over z=4–10; the z~9–10-specific value rests on Pollock); no inference beyond the data. Recompiled."
+        "summary": "Softened Isobe to a bare-factual statement (12+log O/H = 7.62 at logM=8 over z=4\u201310; the z~9\u201310-specific value rests on Pollock); no inference beyond the data. Recompiled."
       },
       "timestamp": "2026-07-21T03:55:00Z"
     },
@@ -120,9 +120,9 @@
           "Te-scale sensitivity"
         ]
       },
-      "feedbackText": "Te-scale Monte-Carlo (N=20000): shifting all O/H by a common N(0,0.15 dex) systematic, the sign persists ~100% and the effective significance is ≈4.5σ (not the formal ~22σ); the magnitude (0.3–0.5+ dex) is Te-scale-limited.",
+      "feedbackText": "Te-scale Monte-Carlo (N=20000): shifting all O/H by a common N(0,0.15 dex) systematic, the sign persists ~100% and the effective significance is \u22484.5\u03c3 (not the formal ~22\u03c3); the magnitude (0.3\u20130.5+ dex) is Te-scale-limited.",
       "changed": {
-        "summary": "Added the quantified significance floor to the Discussion (replaces the hand-wavy 'systematic-limited'). Recompiled — final state."
+        "summary": "Added the quantified significance floor to the Discussion (replaces the hand-wavy 'systematic-limited'). Recompiled \u2014 final state."
       },
       "timestamp": "2026-07-21T04:40:00Z"
     },
@@ -137,7 +137,7 @@
           "no trend"
         ]
       },
-      "feedbackText": "Consolidated the scattered systematics into one formal error budget: inverse-variance-weighted deficit -0.68±0.03 dex; total ±0.16 dex (Te-scale 0.15 dominant); bootstrap 95% CI [-0.82,-0.55], P(deficit<0)=100%. Within the sample there is no significant trend of the offset with stellar mass (1.1σ) or redshift (0.6σ) — a pure normalization offset at unchanged slope.",
+      "feedbackText": "Consolidated the scattered systematics into one formal error budget: inverse-variance-weighted deficit -0.68\u00b10.03 dex; total \u00b10.16 dex (Te-scale 0.15 dominant); bootstrap 95% CI [-0.82,-0.55], P(deficit<0)=100%. Within the sample there is no significant trend of the offset with stellar mass (1.1\u03c3) or redshift (0.6\u03c3) \u2014 a pure normalization offset at unchanged slope.",
       "changed": {
         "summary": "Added Table 1 (systematic error budget) and the normalization-offset statement to the Discussion."
       },
@@ -153,7 +153,7 @@
           "highest-z"
         ]
       },
-      "feedbackText": "Extended the unlensed direct-Te sample to z=10.6 with GN-z11 (12+log O/H=7.82±0.35). The sign is confirmed at the highest redshift; the population deficit sits at -0.64 to -0.68 dex. Honest: adding a higher-O/H, large-error point softens the central value and significance slightly — not cherry-picked.",
+      "feedbackText": "Extended the unlensed direct-Te sample to z=10.6 with GN-z11 (12+log O/H=7.82\u00b10.35). The sign is confirmed at the highest redshift; the population deficit sits at -0.64 to -0.68 dex. Honest: adding a higher-O/H, large-error point softens the central value and significance slightly \u2014 not cherry-picked.",
       "changed": {
         "summary": "Added GN-z11 to the sample and the Curti+2023 reference; sign confirmed across z=9.3-10.6 and two programs."
       },
@@ -164,20 +164,44 @@
       "feedbackSource": "referee-model",
       "feedbackBy": "astrosage-70b",
       "feedbackKind": {
-        "verdict": "REVISE → ACCEPT",
+        "verdict": "REVISE \u2192 ACCEPT",
         "categories": [
           "detection-discipline",
           "overclaim"
         ]
       },
-      "feedbackText": "Re-refereed the integrated error-budget section. Flagged 'effective significance ~4σ / sign secure in 100%' as reading like a formal detection — the paper's core discipline is that it is not one. After removing that redundant sentence (§4 already states the ~22σ → ~4.5σ deflation and Table 1 shows the ±0.16 dex budget), re-refereed: all checks PASS, detection-discipline now PASS.",
+      "feedbackText": "Re-refereed the integrated error-budget section. Flagged 'effective significance ~4\u03c3 / sign secure in 100%' as reading like a formal detection \u2014 the paper's core discipline is that it is not one. After removing that redundant sentence (\u00a74 already states the ~22\u03c3 \u2192 ~4.5\u03c3 deflation and Table 1 shows the \u00b10.16 dex budget), re-refereed: all checks PASS, detection-discipline now PASS.",
       "changed": {
         "summary": "Removed the detection-adjacent significance sentence and recompiled; verdict cleared to ACCEPT-as-human-review-ready."
       },
       "timestamp": "2026-07-22T02:30:00Z"
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "lead researcher",
+      "feedbackKind": {
+        "verdict": "COMMISSIONED",
+        "categories": []
+      },
+      "feedbackText": "Run automatic research on the top-ranked frontier topics and generate the paper drafts.",
+      "changed": {
+        "summary": "This study was auto-produced from the high-z mass-metallicity frontier \u2014 a full forward-model + referee loop then ran (machine detail behind the referee link)."
+      }
+    },
+    {
+      "feedbackSource": "human",
+      "feedbackBy": "lead researcher",
+      "feedbackKind": {
+        "verdict": "FRAMING",
+        "categories": []
+      },
+      "feedbackText": "apply the #1 reframe",
+      "changed": {
+        "summary": "Reframed the abstract and introduction to open with the contested question the measurement adjudicates \u2014 are the earliest galaxies already chemically enriched or genuinely metal-poor (Langeroodi 2023 / Sarkar 2025 vs Faisst 2026; lensed-anchor ambiguity per Belli 2013). No result, number, or claim-strength changed; the deficit values and the 'not a formal statistical detection / not a validated measurement' clauses are retained. PDF recompiled and redeployed."
+      }
     }
   ],
   "humanFeedback": {
-    "captured": false
+    "captured": true
   }
 }
