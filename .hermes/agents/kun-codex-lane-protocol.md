@@ -1,10 +1,14 @@
 # Kun — Codex lane protocol [RETIRED 2026-08-03]
 
 > **RETIRED per Duho, 2026-08-03: "Let's retire Codex Kun, and use Goru for Codex."**
-> The Codex CLI engine described below is now **Goru's** lane; brief Codex work to Goru.
-> Kun now runs on Kimi K3 via Nous Portal (`hermes chat --provider nous -m moonshotai/kimi-k3`)
-> and remains the adversarial critic/oversight seat. The mechanics below (CLI paths, wrapper,
-> sandbox flags, stdout-not-file salvage) stay valid for the engine — under Goru's name.
+> Meaning (clarified by Duho 2026-08-04): Kun's former Codex-lane WORK moves to **Goru, who stays
+> on Antigravity/Gemini** — the Codex ENGINE itself is retired/unassigned (subscription remains
+> authed; use only on Duho's explicit word). An earlier reading of this banner sent one task
+> (PR #130) through `codex exec` under Goru's name; the work was verified, the engine attribution
+> was wrong. Kun now runs on Kimi K3 via Nous Portal
+> (`hermes chat --provider nous -m moonshotai/kimi-k3`) and remains the adversarial critic seat.
+> The mechanics below (CLI paths, wrapper, sandbox flags, stdout-not-file salvage) are kept for
+> reference should the Codex engine ever be reactivated.
 
 Status: installed and authenticated locally on 2026-07-03.
 Lane name: `Kun`.
