@@ -1,0 +1,2074 @@
++        for track in tracks
++    )
++
++
++def update_description_for_public(youtube, video_id: str)
+-> None:
++    row = u.video(youtube, video_id, "snippet")
++    snippet = row["snippet"]
++    description = snippet.get("description", "")
++    if description.startswith(OLD_PREFIX):
++        description = PUBLIC_PREFIX + description[len(OLD_
+PREFIX) :]
++    if "unlisted" in description.lower() or description.st
+artswith(OLD_PREFIX):
++        raise RuntimeError(f"Stale privacy/review wording
+remains for {video_id}")
++    payload = {
++        "title": snippet["title"],
++        "description": description,
++        "categoryId": snippet.get("categoryId", "28"),
++        "tags": snippet.get("tags", []),
++    }
++    for key in ("defaultLanguage", "defaultAudioLanguage")
+:
++        if key in snippet:
++            payload[key] = snippet[key]
++    youtube.videos().update(
++        part="snippet", body={"id": video_id, "snippet": p
+ayload}
++    ).execute()
++
++
++def set_privacy(youtube, video_id: str, privacy: str) -> N
+one:
++    current = u.video(youtube, video_id, "status")["status
+"]
++    youtube.videos().update(
++        part="status",
++        body={
++            "id": video_id,
++            "status": {
++                "privacyStatus": privacy,
++                "license": current.get("license", "youtube
+"),
++                "embeddable": current.get("embeddable", Tr
+ue),
++                "publicStatsViewable": current.get("public
+StatsViewable", True),
++                "selfDeclaredMadeForKids": current.get(
++                    "selfDeclaredMadeForKids", False
++                ),
++            },
++        },
++    ).execute()
++
+… omitted 114 diff line(s) across 1 additional file(s)/sect
+ion(s)
+  │ 💻 $         python /tmp/publish_v8_public.py  16.0s
+  │ 📄 fetch     www.youtube.com +3  13.0s
+  │ 💻 $         python - <<'PY' import json,sys from pathl
+ib import Path base=Path('/Users/duhokim/HermesOps/scripts/
+clips/subnav_flow_female_voice_v8') sys.path.insert(0,str(b
+ase)) import upload_unlisted_after_reset as u y=u.youtube()
+ groups={'v8_public':['1vjXzWa9JAY','RbjFCiX2i3k','cp8-I5XR
+P9s','1tG5cuTcPXI'],'v7_unlisted':['aLSzDjzDROE','_wrDkugKv
+xc','IacECZ5sNZo','33T6jxwGj-g'],'v6_public':['piNaIKTedHQ'
+,'W-yygXqtWGU','08jp5bcTHko','T0cZOaQAPaM']} for group,ids
+in groups.items(): rows=y.videos().list(part='snippet,statu
+s,processingDetails',id=','.join(ids)).execute().get('items
+',[]) by={r['id']:r for r in rows} print(json.dumps({'group
+':group,'videos':[{'id':vid,'privacy':by[vid]['status']['pr
+ivacyStatus'],'processing':by[vid].get('processingDetails',
+{}).get('processingStatus'),'title':by[vid]['snippet']['tit
+le']} for vid in ids]},ensure_ascii=False)) PY  0.7s
+  │ 📋 plan      update 7/8 ✓  0.0s
+  │ ✍️  write     /Users/duhokim/NebulaMind/NebulaMind/.her
+mes/handoffs/YOUTUBE_V8_PUBLICATION_COMPLETE_20260721.md  0
+.1s
+  ┊ review diff
+a/.hermes/handoffs/YOUTUBE_V8_PUBLICATION_COMPLETE_20260721
+.md → b/.hermes/handoffs/YOUTUBE_V8_PUBLICATION_COMPLETE_20
+260721.md
+@@ -0,0 +1,32 @@
++# NebulaMind V8 YouTube public-publication receipt
++
++Marker: `V8_FEMALE_VOICE_PUBLICATION_COMPLETE_20260721`
++
++## Public V8 videos
++
++- Embedding: `https://youtu.be/1vjXzWa9JAY`
++- Clustering: `https://youtu.be/RbjFCiX2i3k`
++- Activity Overlay: `https://youtu.be/cp8-I5XRP9s`
++- Ranking: `https://youtu.be/1tG5cuTcPXI`
++
++## Verification
++
++All four exact V8 IDs were independently verified as:
++
++- authenticated privacy: `public`
++- processing: `succeeded`
++- embeddable: `true`
++- prepared English manual caption track: `serving`
++- signed-out YouTube oEmbed: resolves with the intended Ne
+bulaMind title
++- description: public-facing copy contains no `Unlisted` w
+ording and no stale `review edition` prefix
++
++## Preserved state
++
++- Rejected V7 male-voice copies remain Unlisted.
++- Existing V6 videos remain Public.
++- No YouTube video was deleted.
++- No website link, manifest, deployment, or cockpit was ch
+anged.
++- The public channel therefore currently contains both the
+ V6 and V8 versions until a separate replacement/unlisting
+request is approved.
++
++Canonical machine-readable checkpoint:
++`/Users/duhokim/HermesOps/scripts/clips/subnav_flow_female
+_voice_v8/youtube_review_checkpoint.json`
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/YOU
+TUBE_V8_UNLISTED_REVIEW_UPLOADS_COMPLETE_20260721.md → b//U
+sers/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/YOUTUBE
+_V8_UNLISTED_REVIEW_UPLOADS_COMPLETE_20260721.md
+@@ -1,4 +1,7 @@
+ # NebulaMind V8 YouTube review-copy receipt
++
++Superseded: the user subsequently approved Public publicat
+ion. Final receipt:
++`/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/YOU
+TUBE_V8_PUBLICATION_COMPLETE_20260721.md`
+
+ Marker: `V8_FEMALE_VOICE_UNLISTED_REVIEW_UPLOADS_COMPLETE_
+20260721`
+
+  │ 📋 plan      update 8/8 ✓  0.0s
+  │ 🔎 grep      FOUR_V8_FEMALE_VOICE_VIDEOS_PUBLIC|FOUR_MA
+NUAL_ENGLISH_V8_TRACKS_SERVING|published_at|"privacy": "pub
+lic"  0.1s
+  │ 📖 read      youtube_review_checkpoint.json  0.1s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/subnav_flow_female
+_voice_v8/youtube_review_checkpoint.json → b//Users/duhokim
+/HermesOps/scripts/clips/subnav_flow_female_voice_v8/youtub
+e_review_checkpoint.json
+@@ -1,5 +1,5 @@
+ {
+-  "marker": "NEBULAMIND_V8_FEMALE_VOICE_UNLISTED_REVIEW_UP
+LOAD",
++  "marker": "NEBULAMIND_V8_FEMALE_VOICE_PUBLICATION",
+   "status": "FOUR_V8_FEMALE_VOICE_VIDEOS_PUBLIC",
+   "voice": {
+     "name": "en-US-EmmaNeural",
+
+╭─ ⚕ Hermes ───────────────────────────────────────────────
+──────────────╮
+    Done. All four V8 female-voice videos are now Public:
+
+    - Embedding: https://youtu.be/1vjXzWa9JAY
+    - Clustering: https://youtu.be/RbjFCiX2i3k
+    - Activity Overlay: https://youtu.be/cp8-I5XRP9s
+    - Ranking: https://youtu.be/1tG5cuTcPXI
+
+    Verified:
+
+    - Privacy: Public
+    - Processing: succeeded
+    - Manual English captions: serving
+    - Signed-out YouTube links and titles: resolving correc
+tly
+    - Public descriptions: stale “review edition” wording r
+emoved
+    - Rejected V7 copies: remain Unlisted
+
+    The older V6 videos remain Public, so both V6 and V8 cu
+rrently
+    appear publicly. No website links or deployments were c
+hanged.
+
+    Receipt:
+    `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/
+YOUTUBE_V8_PU
+    BLICATION_COMPLETE_20260721.md`
+╰──────────────────────────────────────────────────────────
+──────────────╯
+  💾 Self-improvement review: Patched SKILL.md in skill 'yo
+utube-channel-operations' (1 replacement).
+
+────────────────────────────────────────
+● no more video?
+────────────────────────────────────────
+
+  │ 💻 $         python - <<'PY' import json,sys from colle
+ctions import Counter from pathlib import Path base=Path('/
+Users/duhokim/HermesOps/scripts/clips/subnav_flow_female_vo
+ice_v8') sys.path.insert(0,str(base)) import upload_unliste
+d_after_reset as u y=u.youtube() ch=y.channels().list(part=
+'snippet,contentDetails',mine=True).execute()['items'][0] p
+laylist=ch['contentDetails']['relatedPlaylists']['uploads']
+ ids=[] + 1 command  1.6s
+  │ 💻 $         python - <<'PY' import json,sys from pathl
+ib import Path base=Path('/Users/duhokim/HermesOps/scripts/
+clips/subnav_flow_female_voice_v8') sys.path.insert(0,str(b
+ase)) import upload_unlisted_after_reset as u y=u.youtube()
+ + 1 command  0.5s
+  │ 📄 fetch     www.youtube.com +1  9.5s
+  │ 💻 $         python - <<'PY' import json,sys,time from
+pathlib import Path base=Path('/Users/duhokim/HermesOps/scr
+ipts/clips/subnav_flow_female_voice_v8') sys.path.insert(0,
+str(base)) import upload_unlisted_after_reset as u y=u.yout
+ube() + 2 commands  16.4s
+  │ 💻 $         python - <<'PY' import json,sys,time from
+collections import Counter from pathlib import Path base=Pa
+th('/Users/duhokim/HermesOps/scripts/clips/subnav_flow_fema
+le_voice_v8') sys.path.insert(0,str(base)) import upload_un
+listed_after_reset as u y=u.youtube() + 6 commands  1.1s
+
+╭─ ⚕ Hermes ──────────────────────────────────────────────╮
+    If you mean the V8 batch: there are exactly four
+    videos, and all four are now Public.
+
+    Live channel inventory:
+
+    - 49 total uploads
+    - 10 Public
+    - 39 Unlisted
+
+    The 10 Public videos are:
+
+    - 4 new V8 female-voice videos
+    - 4 older V6 versions
+    - 2 other NebulaMind videos:
+      - Topic / Corpus
+      - AI Scientist for Galaxy Evolution
+
+    The four rejected V7 male-voice videos remain
+    Unlisted. YouTube briefly showed a propagation
+    mismatch for Ranking, but it has now settled as
+    Public and appears in the uploads playlist.
+╰─────────────────────────────────────────────────────────╯
+
+────────────────────────────────────────
+● it seems some are redundent
+────────────────────────────────────────
+
+  │ 💻 $         python - <<'PY' import json,sys from pathl
+ib import Path base=Path('/Users/duhokim/HermesOps/scripts/
+clips/subnav_flow_female_voice_v8') sys.path.insert(0,str(b
+ase)) import upload_unlisted_after_reset as u y=u.youtube()
+ pairs={ 'embedding':('piNaIKTedHQ','1vjXzWa9JAY'), 'cluste
+ring':('W-yygXqtWGU','RbjFCiX2i3k'), 'overlay':('08jp5bcTHk
+o','cp8-I5XRP9s'), 'ranking':('T0cZOaQAPaM','1tG5cuTcPXI')}
+ ids=[v for pair in pairs.values() for v in pair] rows=y.vi
+deos().list(part='snippet,status,contentDetails,processingD
+etails',id=','.join(ids)).execute().get('items',[]) by={r['
+id']:r for r in rows} for topic,(old,new) in pairs.items():
+ out={'topic':topic} for label,vid in [('old_v6',old),('new
+_v8',new)]: r=by[vid] + 1 command  0.5s
+
+(clarify timed out after 120s — agent will decide)
+  │ ⚡ clarify   How should I clean up the redundant YouTub
+e lineup?  120.7s
+  │ 📋 plan      update 8/11 ✓  0.0s
+  │ ✍️  write     /tmp/reconcile_youtube_clean_v8_lineup.py
+  0.2s
+  ┊ review diff
+a//tmp/reconcile_youtube_clean_v8_lineup.py → b//tmp/reconc
+ile_youtube_clean_v8_lineup.py
+@@ -0,0 +1,227 @@
++#!/usr/bin/env python3
++from __future__ import annotations
++
++import json
++import sys
++import time
++from datetime import datetime
++from pathlib import Path
++
++BASE = Path("/Users/duhokim/HermesOps/scripts/clips/subnav
+_flow_female_voice_v8")
++sys.path.insert(0, str(BASE))
++import upload_unlisted_after_reset as u  # noqa: E402
++
++PAIRS = {
++    "embedding": {"v6": "piNaIKTedHQ", "v8": "1vjXzWa9JAY"
+},
++    "clustering": {"v6": "W-yygXqtWGU", "v8": "RbjFCiX2i3k
+"},
++    "overlay": {"v6": "08jp5bcTHko", "v8": "cp8-I5XRP9s"},
++    "ranking": {"v6": "T0cZOaQAPaM", "v8": "1tG5cuTcPXI"},
++}
++UNIQUE_PUBLIC = ["oMA-H1m5yZQ", "aa4SLbMn1z4"]
++CAPTION_NAME = "English (manual V8)"
++
++
++def get_rows(youtube, ids: list[str], parts: str) -> dict[
+str, dict]:
++    rows = youtube.videos().list(part=parts, id=",".join(i
+ds)).execute().get(
++        "items", []
++    )
++    return {row["id"]: row for row in rows}
++
++
++def set_privacy(youtube, video_id: str, privacy: str) -> N
+one:
++    current = u.video(youtube, video_id, "status")["status
+"]
++    if current.get("privacyStatus") == privacy:
++        return
++    youtube.videos().update(
++        part="status",
++        body={
++            "id": video_id,
++            "status": {
++                "privacyStatus": privacy,
++                "license": current.get("license", "youtube
+"),
++                "embeddable": current.get("embeddable", Tr
+ue),
++                "publicStatsViewable": current.get("public
+StatsViewable", True),
++                "selfDeclaredMadeForKids": current.get(
++                    "selfDeclaredMadeForKids", False
++                ),
++            },
++        },
++    ).execute()
++
++
++def manual_caption_serving(youtube, video_id: str) -> bool
+:
++    tracks = youtube.captions().list(part="snippet", video
+Id=video_id).execute().get(
++        "items", []
++    )
++    return any(
++        track["snippet"].get("language") == "en"
++        and track["snippet"].get("trackKind") != "asr"
++        and track["snippet"].get("name") == CAPTION_NAME
++        and track["snippet"].get("status") == "serving"
++        and not track["snippet"].get("isDraft", False)
++        for track in tracks
++    )
++
++
++def main() -> None:
++    youtube = u.youtube()
++    v8_ids = [pair["v8"] for pair in PAIRS.values()]
++    v6_ids = [pair["v6"] for pair in PAIRS.values()]
++
++    # Readiness gate: every replacement must be processed,
+ embeddable, and carry
++    # its prepared manual caption track before any older c
+opy is changed.
++    rows = get_rows(
++        youtube, v8_ids, "snippet,status,processingDetails
+,contentDetails"
++    )
++    for topic, pair in PAIRS.items():
++        row = rows[pair["v8"]]
++        checks = {
+… omitted 149 diff line(s) across 1 additional file(s)/sect
+ion(s)
+  │ 💻 $         python /tmp/reconcile_youtube_clean_v8_lin
+eup.py  138.3s
+  │ 💻 $         python3 - <<'PY' import subprocess,json ou
+t=subprocess.check_output(['ps','-axo','pid=,lstart=,comman
+d='],text=True) terms=('youtube','upload_v8','publish_v8','
+reconcile_youtube','upload_unlisted_after_reset','googleapi
+client') for line in out.splitlines(): if any(t.lower() in
+line.lower() for t in terms): print(line) PY printf '\nLAUN
+CHCTL_MATCHES\n' python3 - <<'PY' import subprocess out=sub
+process.check_output(['launchctl','list'],text=True) for li
+ne in out.splitlines(): if any(t in line.lower() for t in (
+'youtube','nebulamind','v8','upload')): print(line) PY  0.3
+s
+  │ ⏰ cron      listing  0.0s
+  │ 🔎 grep      1tG5cuTcPXI|FOUR_V8_FEMALE_VOICE|privacySt
+atus.?[=:].?["']unlisted  0.2s
+  │ 💻 $         python - <<'PY' import json,sys,time from
+collections import Counter from pathlib import Path base=Pa
+th('/Users/duhokim/HermesOps/scripts/clips/subnav_flow_fema
+le_voice_v8') sys.path.insert(0,str(base)) import upload_un
+listed_after_reset as u y=u.youtube() v8=['1vjXzWa9JAY','Rb
+jFCiX2i3k','cp8-I5XRP9s','1tG5cuTcPXI'] + 8 commands  21.4s
+  │ 📄 fetch     www.youtube.com +3  9.6s
+  │ 📄 fetch     www.youtube.com +1  8.0s
+  │ ✍️  write     /Users/duhokim/NebulaMind/NebulaMind/.her
+mes/handoffs/YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_202
+60721.md  0.1s
+  ┊ review diff
+a/.hermes/handoffs/YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINE
+UP_20260721.md → b/.hermes/handoffs/YOUTUBE_V8_PUBLIC_V6_UN
+LISTED_CLEAN_LINEUP_20260721.md
+@@ -0,0 +1,42 @@
++# NebulaMind YouTube clean-lineup receipt
++
++Marker: `V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_20260721`
++
++## Final intended lineup
++
++Public V8 female-voice replacements:
++
++- Embedding: `https://youtu.be/1vjXzWa9JAY`
++- Clustering: `https://youtu.be/RbjFCiX2i3k`
++- Activity Overlay: `https://youtu.be/cp8-I5XRP9s`
++- Ranking: `https://youtu.be/1tG5cuTcPXI`
++
++Unlisted V6 duplicates, preserved and not deleted:
++
++- Embedding: `piNaIKTedHQ`
++- Clustering: `W-yygXqtWGU`
++- Activity Overlay: `08jp5bcTHko`
++- Ranking: `T0cZOaQAPaM`
++
++Unique older Public videos preserved:
++
++- Topic / Corpus: `oMA-H1m5yZQ`
++- AI Scientist for Galaxy Evolution: `aa4SLbMn1z4`
++
++## Verification
++
++- Each V8 video is processed, embeddable, and has its prep
+ared English manual caption track serving.
++- All four V8 IDs remained Public through a sustained six-
+poll gate before any V6 change.
++- After the V6 changes, three consecutive delayed exact ow
+ner reads returned all four V8 Public and all four V6 Unlis
+ted.
++- All four V8 signed-out oEmbed URLs resolve with the inte
+nded NebulaMind titles.
++- The signed-out Ranking watch page is accessible and play
+s despite a temporary YouTube uploads-playlist replica lag.
++- No local process, LaunchAgent, or scheduled Hermes job w
+as changing YouTube visibility.
++
++## Safety result
++
++- No video was deleted.
++- Rejected V7 male-voice copies remain Unlisted.
++- No website link, manifest, deployment, or cockpit was ch
+anged.
++
++Canonical checkpoint:
++`/Users/duhokim/HermesOps/scripts/clips/subnav_flow_female
+_voice_v8/youtube_review_checkpoint.json`
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/YOU
+TUBE_V8_PUBLICATION_COMPLETE_20260721.md → b//Users/duhokim
+/NebulaMind/NebulaMind/.hermes/handoffs/YOUTUBE_V8_PUBLICAT
+ION_COMPLETE_20260721.md
+@@ -1,4 +1,7 @@
+ # NebulaMind V8 YouTube public-publication receipt
++
++Superseded: the redundant V6 copies were subsequently move
+d to Unlisted without deletion. Final lineup receipt:
++`/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/YOU
+TUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_20260721.md`
+
+ Marker: `V8_FEMALE_VOICE_PUBLICATION_COMPLETE_20260721`
+
+  │ 📋 plan      update 11/11 ✓  0.0s
+  │ 📖 read      YOUTUBE_V8_PUBLICATION_COMPLETE_20260721.m
+d  0.1s
+  │ 📖 read      YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP
+_20260721.md  0.1s
+  │ 📖 read      youtube_review_checkpoint.json L1-260  0.1
+s
+
+╭─ ⚕ Hermes ──────────────────────────────────────────────╮
+    Yes—the four older V6 videos duplicated the four V8
+    versions. I cleaned the lineup non-destructively:
+
+    - 4 V8 female-voice videos: Public
+    - 4 redundant V6 videos: Unlisted
+    - 2 unique older videos: still Public
+    - Rejected V7 videos: remain Unlisted
+    - Deleted: none
+
+    YouTube’s channel-list replica may briefly lag on
+    the Ranking video, but its exact owner state and
+    signed-out watch page verify as Public.
+
+    Receipt:
+    `/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoff
+    s/YOUTUBE_V8_PUBLIC_V6_UNLISTED_CLEAN_LINEUP_20260721
+    .md`
+╰─────────────────────────────────────────────────────────╯
+  💾 Self-improvement review: Patched SKILL.md in skill 'yo
+utube-channel-operations' (1 replacement). · Patched refere
+nces/browser-to-api-reconciliation.md in skill 'youtube-cha
+nnel-operations' (1 replacement). · Skill updated
+
+────────────────────────────────────────
+● generate vidoes for remained parts also. should we change
+the character for each Nav?
+────────────────────────────────────────
+
+  │ 📚 skill     deterministic-explainer-video-production
+0.0s
+  │ 📚 skill     repo-product-ui-triage  0.0s
+  │ 📚 skill     mac-studio-lana-goru-tmux-bridge  0.0s
+  │ 📋 plan      5 task(s)  0.0s
+  │ 🔎 grep      Embedding|Clustering|Activity Overlay|Rank
+ing|Topic / Corpus|Topic|Corpus  1.1s
+  │ 🔎 find      *SUBNAV*  0.1s
+  │ 🔎 find      *delivery*.json  0.1s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 5 command
+s  0.1s
+  │ 🔎 find      *communication-protocol*  1.3s
+  │ 🔎 grep      Activity Overlay|Research Frontiers Rise|1
+20,676 Papers|Topic / Corpus|sub-navigation|subnav  0.5s
+  │ 🔎 find      *.tsx  0.3s
+  │ 🔎 find      *topic*  0.1s
+  │ 📖 read      communication-protocol.md  0.1s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 6 command
+s  0.1s
+  │ 📖 read      LabTopTabs.tsx  0.1s
+  │ 📖 read      LabStages.tsx  0.2s
+  │ 📖 read      page.tsx  0.1s
+  │ 🔎 find      *  0.2s
+  │ 🔎 find      *.py  0.2s
+  │ 📖 read      labTabStore.ts  0.1s
+  │ 📄 fetch     nebulamind.net  4.3s
+  │ 📖 read      build_topic_corpus_v1.py  0.2s
+  │ 📖 read      build_flow_female_voice_v8.py  0.1s
+  │ 📖 read      run_female_talking_heads_v8.py  0.1s
+  │ 🔎 find      labTabStore.ts  32.8s
+  │ 🔎 find      LabStages.tsx  32.5s
+  │ 🔎 grep      120,676|qwen3-embedding-4b|The data source
+s|The analysis methods|The outputs produced  0.1s [Path not
+ found: /Users/duhokim/NebulaMind-ori...]
+  │ 💻 $         python3 - <<'PY' import subprocess,json ou
+t=subprocess.check_output(['ps','-axo','pid=,command='],tex
+t=True) for line in out.splitlines(): if any(t in line for
+t in ('next dev','next start','npm run','frontend','nebulam
+ind')): print(line) PY  0.2s
+  │ 📖 read      labTabStore.ts  0.1s
+  │ 📖 read      LabStages.tsx  0.1s
+  │ 📖 read      page.tsx  0.1s
+  │ 🔎 find      *  0.1s
+  │ 📖 read      stageData.ts  0.1s
+  │ 📖 read      subnavVideos.ts  0.1s
+  │ 🔎 grep      tab === "data"|tab === "research"|tab ===
+"paper"|SubnavVideo|currentSub|useSub  0.1s
+  │ 🔎 grep      DataLandscape|Research|Paper|PipelineBoard
+|FlagshipStudies|FrontierDrafts|DraftBoard  0.1s
+  │ ✍️  write     /Users/duhokim/NebulaMind/NebulaMind/.her
+mes/handoffs/nav-video-expansion-20260721/HWAO_VIDEO_EXPANS
+ION_BRIEF.md  0.1s
+  ┊ review diff
+a/.hermes/handoffs/nav-video-expansion-20260721/HWAO_VIDEO_
+EXPANSION_BRIEF.md → b/.hermes/handoffs/nav-video-expansion
+-20260721/HWAO_VIDEO_EXPANSION_BRIEF.md
+@@ -0,0 +1,94 @@
++# Hwao brief — remaining NebulaMind Lab navigation videos
++
++Task: `nav-video-expansion-20260721`
++Lane: Hwao/Fable coordinator
++Status: READY_FOR_PLAN
++
++## User direction
++
++The user said: “generate videos for remained parts also. s
+hould we change the character for each Nav?”
++
++Interpret this as a request to extend the current narrated
+ Lab explainer series beyond Topic, while deciding the pres
+enter-character continuity before rendering.
++
++## Source of truth
++
++Use the currently served production root, not the stale wo
+rking checkout:
++
++- `/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/f
+rontend/src/app/lab/labTabStore.ts`
++- `/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/f
+rontend/src/app/lab/stageData.ts`
++- `/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/f
+rontend/src/app/lab/LabStages.tsx`
++- live page: `https://nebulamind.net/lab`
++
++Existing media implementation and verified V8 style:
++
++- `/Users/duhokim/HermesOps/scripts/clips/subnav_flow_fema
+le_voice_v8/`
++- saved presenter master: `/Users/duhokim/HermesOps/script
+s/clips/character/master_portrait.png`
++- current voice: `en-US-EmmaNeural`, clearly female
++- current format: 1280×720, about 73.5 seconds, six scene-
+aligned narration paragraphs, exact-audio talking presenter
+, manual SRT, light ambient music
++
++## Current coverage
++
++Topic is already covered by:
++
++- Corpus overview (`oMA-H1m5yZQ`)
++- Embedding V8 (`1vjXzWa9JAY`)
++- Clustering V8 (`RbjFCiX2i3k`)
++- Activity Overlay V8 (`cp8-I5XRP9s`)
++- Ranking V8 (`1tG5cuTcPXI`)
++
++Production’s `subnavVideos.ts` is stale and is not authori
+ty for current YouTube state. Updating it or any delivery m
+anifest is outside this brief.
++
++## Remaining production navigation
++
++Top-level stages:
++
++1. Data — four subitems: SDSS, JWST, COSMOS2020, Illustris
+TNG.
++2. Methods — five subitems: star-forming main sequence, ma
+ss–metallicity relation, stellar mass function, SF efficien
+cy/baryon budget, simulation vs observation.
++3. Paper — five subitems: draft board, flagship studies, f
+rontier drafts, pipeline runs, how papers are made.
++
++## Decision requested from Hwao
++
++Write a coordination plan that decides:
++
++1. Scope: three 60–75 second stage-overview videos (recomm
+ended) versus fourteen per-subitem videos. Explain why the
+chosen scope matches the actual top navigation and avoids r
+epetitive channel uploads.
++2. Character system: whether to keep one established femal
+e astronomer identity across all stages or introduce differ
+ent identities. Recommended direction: same face and female
+ voice as the recognizable series anchor; change wardrobe/a
+ccent palette/framing/background and specialty cues per sta
+ge, not the person.
++3. Exact creative variants if continuity is chosen:
++   - Data: observational astronomer; cool teal/blue; teles
+cope/archive/catalog cues.
++   - Methods: computational astrophysicist; violet/indigo;
+ equations, plots, simulation cues.
++   - Paper: research editor/referee; warm gold; manuscript
+, citation, review-loop cues.
++4. One acceptance matrix per planned video: purpose, curre
+nt source claims, six scene beats, narration boundaries, pr
+esenter treatment, voice, captions, duration, local QA, and
+ separate publication gate.
++5. Explicitly identify claims that require more live-sourc
+e inspection before narration is final.
++
++## Safety and ownership
++
++This is a planning-only Hwao task.
++
++Allowed:
++
++- read the production Lab source files listed above;
++- read existing V8 scripts/receipts;
++- write only the requested plan file.
++
++Not allowed:
++
++- no rendering;
++- no image/video generation calls;
++- no YouTube upload or visibility change;
++- no website/source/manifest edits;
++- no DB/API writes;
+… omitted 16 diff line(s) across 1 additional file(s)/secti
+on(s)
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 7 command
+s  5.3s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 7 command
+s  15.3s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 9 command
+s  25.2s
+📦 Pre-API compression: ~280,016 tokens near the context/ou
+tput limit. Compacting before the next model call.
+🗜️ Compacting context — summarizing earlier conversation so
+ I can continue...
+⚠️  Session compressed 11 times — accuracy may degrade. Con
+sider /new to start fresh.
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 6 command
+s  25.2s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 5 command
+s  40.2s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 5 command
+s  60.1s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 5 command
+s  35.1s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 5 command
+s  60.1s
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 6 command
+s  12.2s
+  │ 📖 read      HWAO_VIDEO_EXPANSION_PLAN.md  0.1s
+  │ 📖 read      generate_female_narration_v8.py  0.1s
+  │ 📖 read      female_narration_receipt.json  0.2s
+  │ 📖 read      qa_receipt.json  0.1s
+  │ 🔎 grep      qa_receipt|decode_pass|median_f0|temporal_
+frames  0.1s
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport importlib.util, json, shutil checks = { 'edge_tts': P
+ath('/Users/duhokim/.hermes/hermes-agent/venv/bin/edge-tts'
+).exists(), 'sadtalker_python': Path('/Users/duhokim/Hermes
+Ops/tools/SadTalker/.venv/bin/python').exists(), 'sadtalker
+_inference': Path('/Users/duhokim/HermesOps/tools/SadTalker
+/inference.py').exists(), 'presenter_source': Path('/Users/
+duhokim/HermesOps/scripts/clips/subnav_flow_lipsync_v7/cana
+ry/flow_master_shoulder_crop_768x1024.png').exists(), 'pres
+enter_master': Path('/Users/duhokim/HermesOps/scripts/clips
+/character/master_portrait.png').exists(), 'presenter_mask'
+: Path('/Users/duhokim/HermesOps/scripts/clips/subnav_flow_
+female_voice_v8/canary/presenter_feather_mask_320x340.png')
+.exists(), 'ambient_music': Path('/Users/duhokim/HermesOps/
+scripts/clips/subnav_flow_female_voice_v8/original_cosmic_a
+mbient_73s.wav').exists(), 'ffmpeg': shutil.which('ffmpeg')
+, 'ffprobe': shutil.which('ffprobe'), 'python': shutil.whic
+h('python'), 'PIL': importlib.util.find_spec('PIL') is not
+None, 'numpy': importlib.util.find_spec('numpy') is not Non
+e, } du=shutil.disk_usage('/Users/duhokim/HermesOps') check
+s['disk_free_gb']=round(du.free/1024**3,2) print(json.dumps
+(checks,indent=2)) PY  0.1s
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/stage_content.py  0.2s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/stage_content.py → b//Users/duhokim/HermesOps/scripts/
+clips/lab_stage_overviews_v9/stage_content.py
+@@ -0,0 +1,46 @@
++#!/usr/bin/env python3
++"""Source-grounded content contract for the remaining Lab
+stage explainers."""
++
++DURATION = 73.5
++TOPIC_ORDER = ("data", "methods", "paper")
++
++SCENE_BOUNDARIES = {
++    "data": [0.0, 10.8, 22.8, 34.6, 46.7, 59.0, 73.5],
++    "methods": [0.0, 10.8, 22.8, 34.9, 47.2, 59.4, 73.5],
++    "paper": [0.0, 10.5, 22.0, 33.0, 44.8, 58.2, 73.5],
++}
++
++NARRATION = {
++    "data": [
++        "Data is where a research frontier meets reality.
+NebulaMind combines four complementary sources, spanning ne
+arby galaxies to the early universe, then asks a simulation
+ to reproduce the same measurements. These are inputs, not
+results.",
++        "SDSS supplies the local redshift-zero anchor: rou
+ghly a million galaxy spectra, queried through SkyServer DR
+18 and matched catalogs. Its masses, star-formation rates,
+emission lines, and metallicities define the benchmark ever
+y distant sample must meet.",
++        "JWST extends the ladder to redshifts four through
+ ten. NIRSpec observations reveal early chemical evolution,
+ while published CEERS and massive-galaxy catalogs test the
+ high-redshift frontier. Small samples, selection effects,
+and stretched calibrations remain visible caveats.",
++        "COSMOS2020 bridges the middle with about 1.7 mill
+ion photometric galaxies and stellar masses reaching redshi
+ft five. It tracks mass assembly across cosmic time, but ph
+otometric-redshift scatter and incomplete volume correction
+s limit precision.",
++        "IllustrisTNG provides the controlled comparison.
+NebulaMind reads TNG100 group catalogs at redshifts zero, f
+our, five, and six, then computes the same relations measur
+ed in the surveys. Calibration is not validation; the simul
+ation must face data away from its tuning points.",
++        "Together, the sources form one redshift ladder: S
+DSS anchors the present, COSMOS and JWST reach backward, an
+d TNG supplies a prediction. Before comparison, metallicity
+ scales are reconciled, including the roughly 0.24-dex Trem
+onti offset. Honest inputs make honest tests.",
++    ],
++    "methods": [
++        "Methods turn those data sources into fair tests.
+NebulaMind applies the same recipe to observations and simu
+lations, on matched scales, so a remaining gap can point to
+ physics instead of a changed measuring rule.",
++        "The star-forming main sequence measures median st
+ar-formation rate in stellar-mass bins. Repeating the same
+fit across redshift tracks how the relation rises through c
+osmic time without selecting only the most dramatic galaxie
+s.",
++        "The mass-metallicity relation measures oxygen abu
+ndance against stellar mass. A matched abundance scale supp
+orts cross-survey comparison, while the fundamental metalli
+city relation adds star formation and checks whether an app
+arent trend is physical or an aperture artifact.",
++        "The stellar mass function counts galaxies per mas
+s interval and comoving volume. The baryon-budget test then
+ compares stellar mass with the baryons available in a halo
+, asking whether very early massive-galaxy counts are physi
+cally possible.",
++        "Simulation versus observation is the sharpest con
+frontation. NebulaMind computes each relation identically i
+n IllustrisTNG and the surveys, then overlays them on a mat
+ched scale. The purpose is to expose departures, not to dec
+lare a verdict in advance.",
++        "The honesty floor is simple: medians replace cher
+ry-picked examples, calibrations are matched, and caveats s
+tay beside the result. These methods produce descriptive me
+asurements for review; they do not become validated scienti
+fic claims merely because a pipeline computed them.",
++    ],
++    "paper": [
++        "Paper is where every output and its status become
+ visible. The draft board shows what exists, where each stu
+dy stands, and whether it came from a hand-guided flagship
+effort or the automated frontier pipeline.",
++        "Flagship studies receive direct scientific guidan
+ce. Frontier drafts follow the repeatable pipeline. Keeping
+ those lanes separate makes authorship, review depth, and c
+onfidence visible instead of presenting every PDF as equall
+y mature.",
++        "The pipeline-run board exposes the automated path
+ itself: data retrieval, measurement, figures, drafting, an
+d review. A failed or unfinished stage remains visible, so
+the final document never hides how it was produced.",
++        "A draft begins with real measured numbers and fig
+ures. They fill a journal-style AASTeX manuscript, includin
+g methods, results, and caveats, and Tectonic compiles the
+source into a reproducible PDF.",
++        "An automated referee then returns ACCEPT, MINOR,
+MAJOR, or REJECT. Major problems trigger revision, never in
+vented numbers. A novelty gate asks whether the result is n
+ew, and a citation-entailment gate checks whether every ref
+erence supports its attached claim.",
++        "The label matters most: bounded automated results
+ are descriptive, not validated measurements, until human r
+eview clears them. Even a MINOR verdict means small fixes r
+emain; it is not publication acceptance. The board preserve
+s that boundary in public.",
++    ],
++}
++
++SOURCE_CONTRACT = {
++    "production_stage_data": "/Users/duhokim/NebulaMind/Ne
+bulaMind-origin-main-live/frontend/src/app/lab/stageData.ts
+",
++    "production_lab_stages": "/Users/duhokim/NebulaMind/Ne
+bulaMind-origin-main-live/frontend/src/app/lab/LabStages.ts
+x",
++    "hwao_plan": "/Users/duhokim/NebulaMind/NebulaMind/.he
+rmes/handoffs/nav-video-expansion-20260721/HWAO_VIDEO_EXPAN
+SION_PLAN.md",
++    "character_strategy": "same female astronomer identity
+ and voice; stage-specific set, palette, and specialty cues
+",
++    "publication_gate": "local masters only; no upload, vi
+sibility, website, manifest, deploy, DB, or git mutation",
++}
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/generate_stage_narration_v9.py  0.1s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/generate_stage_narration_v9.py → b//Users/duhokim/Herm
+esOps/scripts/clips/lab_stage_overviews_v9/generate_stage_n
+arration_v9.py
+@@ -0,0 +1,131 @@
++#!/usr/bin/env python3
++"""Generate scene-aligned female narration for Data, Metho
+ds, and Paper."""
++from __future__ import annotations
++
++import json
++import subprocess
++from pathlib import Path
++
++from stage_content import DURATION, NARRATION, SCENE_BOUND
+ARIES, SOURCE_CONTRACT, TOPIC_ORDER
++
++BASE = Path(__file__).resolve().parent
++EDGE_TTS = Path("/Users/duhokim/.hermes/hermes-agent/venv/
+bin/edge-tts")
++VOICE = "en-US-EmmaNeural"
++INITIAL_RATE_PERCENT = 38
++SPEECH_START = 0.35
++SPEECH_END_PAD = 0.20
++RAW = BASE / "narration_raw"
++SCENES = BASE / "narration_scenes"
++DRIVERS = BASE / "driver_audio"
++for directory in (RAW, SCENES, DRIVERS):
++    directory.mkdir(parents=True, exist_ok=True)
++
++
++def probe(path: Path) -> float:
++    return float(subprocess.check_output([
++        "ffprobe", "-v", "error", "-show_entries", "format
+=duration",
++        "-of", "default=nk=1:nw=1", str(path),
++    ], text=True).strip())
++
++
++def render_scene(topic: str, index: int, text: str, durati
+on: float) -> dict:
++    scene = SCENES / f"{topic}_{index:02d}_female_exact.wa
+v"
++    target_speech = duration - SPEECH_START - SPEECH_END_P
+AD
++
++    def synthesize(rate_percent: int):
++        rate = f"{rate_percent:+d}%"
++        path = RAW / f"{topic}_{index:02d}_{VOICE}_rate_{r
+ate_percent:+d}.mp3"
++        subprocess.run([
++            str(EDGE_TTS), "--voice", VOICE, f"--rate={rat
+e}",
++            "--text", text, "--write-media", str(path),
++        ], check=True)
++        raw_seconds = probe(path)
++        return path, raw_seconds, raw_seconds / target_spe
+ech, rate
++
++    raw, raw_duration, tempo, actual_rate = synthesize(INI
+TIAL_RATE_PERCENT)
++    if not 0.90 <= tempo <= 1.10:
++        derived = round((tempo * (1 + INITIAL_RATE_PERCENT
+ / 100) - 1) * 100)
++        derived = max(-20, min(70, derived))
++        raw, raw_duration, tempo, actual_rate = synthesize
+(derived)
++    if tempo < 0.85:
++        tempo = 1.0
++    if tempo > 1.15:
++        raise RuntimeError(
++            f"{topic} scene {index}: timing adjustment {te
+mpo:.3f} is outside natural range"
++        )
++
++    filt = (
++        f"[1:a]atempo={tempo:.8f},adelay={int(SPEECH_START
+ * 1000)}ms:all=1,"
++        f"aresample=16000[voice];[0:a][voice]amix=inputs=2
+:duration=first:normalize=0,"
++        f"alimiter=limit=.95[out]"
++    )
++    subprocess.run([
++        "ffmpeg", "-y", "-v", "error",
++        "-f", "lavfi", "-t", f"{duration:.6f}", "-i", "anu
+llsrc=r=16000:cl=mono",
++        "-i", str(raw), "-filter_complex", filt, "-map", "
+[out]",
++        "-ac", "1", "-ar", "16000", "-t", f"{duration:.6f}
+",
++        "-c:a", "pcm_s16le", str(scene),
++    ], check=True)
++    actual = raw_duration / tempo
++    return {
++        "topic": topic,
++        "scene": index,
++        "text": text,
++        "scene_duration": round(duration, 6),
++        "raw_duration": round(raw_duration, 6),
++        "target_speech_duration": round(target_speech, 6),
++        "synthesis_rate": actual_rate,
++        "atempo": round(tempo, 6),
+… omitted 53 diff line(s) across 1 additional file(s)/secti
+on(s)
+  │ 💻 $         python generate_stage_narration_v9.py  80.
+7s
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/run_stage_talking_heads_v9.py  0.2s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/run_stage_talking_heads_v9.py → b//Users/duhokim/Herme
+sOps/scripts/clips/lab_stage_overviews_v9/run_stage_talking
+_heads_v9.py
+@@ -0,0 +1,80 @@
++#!/usr/bin/env python3
++"""Generate exact-audio talking heads for the remaining La
+b stage explainers."""
++from __future__ import annotations
++
++import json
++import os
++import shutil
++import subprocess
++import time
++from pathlib import Path
++
++from stage_content import TOPIC_ORDER
++
++SADTALKER = Path("/Users/duhokim/HermesOps/tools/SadTalker
+")
++PYTHON = SADTALKER / ".venv/bin/python"
++INFERENCE = SADTALKER / "inference.py"
++BASE = Path(__file__).resolve().parent
++SOURCE = Path(
++    "/Users/duhokim/HermesOps/scripts/clips/subnav_flow_li
+psync_v7/"
++    "canary/flow_master_shoulder_crop_768x1024.png"
++)
++
++
++def probe(path: Path) -> dict:
++    return json.loads(subprocess.check_output([
++        "ffprobe", "-v", "error", "-show_entries",
++        "format=duration,size:stream=codec_name,width,heig
+ht,r_frame_rate",
++        "-of", "json", str(path),
++    ], text=True))
++
++
++def main() -> None:
++    env = os.environ.copy()
++    env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
++    receipts = []
++    for topic in TOPIC_ORDER:
++        driver = BASE / f"driver_audio/{topic}_female_exac
+t_narration_73s.wav"
++        result_dir = BASE / f"talking_heads/{topic}_256"
++        result_dir.mkdir(parents=True, exist_ok=True)
++        before = {p.resolve() for p in result_dir.glob("*.
+mp4")}
++        started = time.time()
++        cmd = [
++            str(PYTHON), str(INFERENCE),
++            "--driven_audio", str(driver),
++            "--source_image", str(SOURCE),
++            "--result_dir", str(result_dir),
++            "--still", "--preprocess", "crop", "--size", "
+256",
++            "--batch_size", "4", "--expression_scale", "0.
+72",
++        ]
++        subprocess.run(cmd, cwd=SADTALKER, env=env, check=
+True)
++        candidates = [p for p in result_dir.glob("*.mp4")
+if p.resolve() not in before]
++        if not candidates:
++            candidates = list(result_dir.glob("*.mp4"))
++        if not candidates:
++            raise RuntimeError(f"No output video for {topi
+c}")
++        source = max(candidates, key=lambda p: p.stat().st
+_mtime)
++        canonical = BASE / f"talking_heads/{topic}.mp4"
++        canonical.parent.mkdir(parents=True, exist_ok=True
+)
++        shutil.copy2(source, canonical)
++        item = {
++            "topic": topic,
++            "source": str(source),
++            "canonical": str(canonical),
++            "elapsed_seconds": round(time.time() - started
+, 2),
++            "probe": probe(canonical),
++        }
++        receipts.append(item)
++        print(json.dumps(item), flush=True)
++    receipt = {
++        "marker": "NEBULAMIND_V9_REMAINING_NAV_TALKING_HEA
+DS_COMPLETE",
++        "source_identity": str(SOURCE),
++        "complete": receipts,
++    }
++    path = BASE / "talking_head_receipt.json"
++    path.write_text(json.dumps(receipt, indent=2) + "\n",
+encoding="utf-8")
++    print(json.dumps(receipt))
++
++
+… omitted 2 diff line(s) across 1 additional file(s)/sectio
+n(s)
+  │ 💻 $         python run_stage_talking_heads_v9.py  0.1s
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/build_stage_overviews_v9.py  0.2s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -0,0 +1,545 @@
++#!/usr/bin/env python3
++"""Build three source-grounded remaining-stage explainers
+in the established V8 style."""
++from __future__ import annotations
++
++import json
++import math
++import random
++import shutil
++import subprocess
++import tempfile
++from pathlib import Path
++
++from PIL import Image, ImageDraw, ImageFont
++
++from stage_content import DURATION, NARRATION, SCENE_BOUND
+ARIES, SOURCE_CONTRACT, TOPIC_ORDER
++
++BASE = Path(__file__).resolve().parent
++V8_BASE = Path("/Users/duhokim/HermesOps/scripts/clips/sub
+nav_flow_female_voice_v8")
++PRESENTER_MASK = V8_BASE / "canary/presenter_feather_mask_
+320x340.png"
++AMBIENT = V8_BASE / "original_cosmic_ambient_73s.wav"
++TALKING_HEADS = {k: BASE / f"talking_heads/{k}.mp4" for k
+in TOPIC_ORDER}
++DRIVER_AUDIO = {k: BASE / f"driver_audio/{k}_female_exact_
+narration_73s.wav" for k in TOPIC_ORDER}
++NARRATION_RECEIPT = BASE / "female_narration_receipt.json"
++SOURCES = [
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_01_h
+q.mp4"),
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_03_h
+q.mp4"),
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_05_h
+q.mp4"),
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_07_h
+q.mp4"),
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_09_h
+q.mp4"),
++    Path("/Users/duhokim/HermesOps/scripts/clips/clip_11_h
+q.mp4"),
++]
++
++W, H, FPS = 1280, 720, 24
++FONT_REG = Path("/System/Library/Fonts/Supplemental/Arial.
+ttf")
++FONT_BOLD = Path("/System/Library/Fonts/Supplemental/Arial
+ Bold.ttf")
++WHITE = (242, 247, 255, 255)
++MUTED = (178, 194, 220, 255)
++TEAL = (78, 226, 214, 255)
++BLUE = (56, 189, 248, 255)
++INDIGO = (124, 134, 255, 255)
++PURPLE = (190, 130, 255, 255)
++GOLD = (224, 164, 88, 255)
++RED = (255, 118, 118, 255)
++GREEN = (108, 225, 147, 255)
++BG = (4, 8, 25, 224)
++PANEL = (8, 16, 42, 238)
++BORDER = (80, 113, 168, 190)
++
++STAGE_META = {
++    "data": {
++        "label": "DATA",
++        "persona": "OBSERVATIONAL ASTRONOMER",
++        "accent": TEAL,
++        "accent2": BLUE,
++        "output": "NEBULAMIND_SUBNAV_DATA_V9_FEMALE_VOICE_
+EXACT_LIPSYNC.mp4",
++        "guide": [
++            "Four sources, one ladder.", "Anchor the local
+ universe.",
++            "Reach the early frontier.", "Bridge cosmic ti
+me.",
++            "Test the simulation.", "Match scales first.",
++        ],
++    },
++    "methods": {
++        "label": "METHODS",
++        "persona": "COMPUTATIONAL ASTROPHYSICIST",
++        "accent": INDIGO,
++        "accent2": PURPLE,
++        "output": "NEBULAMIND_SUBNAV_METHODS_V9_FEMALE_VOI
+CE_EXACT_LIPSYNC.mp4",
++        "guide": [
++            "Use one measuring rule.", "Track star formati
+on.",
++            "Track chemical growth.", "Count mass and bary
+ons.",
++            "Confront model with data.", "Keep the honesty
+ floor.",
++        ],
++    },
++    "paper": {
++        "label": "PAPER",
++        "persona": "RESEARCH EDITOR / REFEREE",
++        "accent": GOLD,
++        "accent2": TEAL,
+… omitted 467 diff line(s) across 1 additional file(s)/sect
+ion(s)
+  │ ⚙️  proc      poll proc_337f4fb  0.0s
+  │ 💻 $         python - <<'PY' import importlib.util,json
+,shutil print(json.dumps({ 'librosa': importlib.util.find_s
+pec('librosa') is not None, 'soundfile': importlib.util.fin
+d_spec('soundfile') is not None, 'aubio_python': importlib.
+util.find_spec('aubio') is not None, 'aubio_cli': shutil.wh
+ich('aubio'), 'ffmpeg': shutil.which('ffmpeg'), },indent=2)
+) PY  0.1s
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport wave,numpy as np,json def pitch(path): with wave.open
+(str(path),'rb') as wf: sr=wf.getframerate() + 13 commands
+ 2.2s
+  │ 💻 $         python - <<'PY' from pathlib import Path f
+rom PIL import Image,ImageDraw import build_stage_overviews
+_v9 as b out=Path('qa') + 2 commands  2.0s
+  │ 👁️  vision    Review this 6-scene Data explainer design
+ sheet (2 columns x 3 rows). Check for clipped/overlapping
+text, unreadable text, broken visual geometry, inconsistent
+ hierarchy, and whether the teal observational-astronomy id
+entity is coherent. Return concrete issues by scene number
+and overall pass/fail.  1.0s
+  │ 👁️  vision    Review this 6-scene Methods explainer des
+ign sheet (2 columns x 3 rows). Check for clipped/overlappi
+ng text, unreadable text, broken charts/geometry, inconsist
+ent hierarchy, and whether the indigo computational-astroph
+ysics identity is coherent. Return concrete issues by scene
+ number and overall pass/fail.  1.0s
+  │ 👁️  vision    Review this 6-scene Paper explainer desig
+n sheet (2 columns x 3 rows). Check for clipped/overlapping
+ text, unreadable text, broken arrows/geometry, inconsisten
+t hierarchy, and whether the gold research-editor identity
+is coherent. Return concrete issues by scene number and ove
+rall pass/fail.  1.0s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -278,10 +278,10 @@
+         text(draw, (577, 350), "SAME", 25, INDIGO, True, a
+nchor="mm")
+         text(draw, (577, 393), "MEASURING", 25, WHITE, Tru
+e, anchor="mm")
+         text(draw, (577, 436), "RECIPE", 25, PURPLE, True,
+ anchor="mm")
+-        arrow(draw, (715, 390), (900, 390), TEAL, 4)
+-        text(draw, (825, 345), "FAIR", 22, TEAL, True, anc
+hor="mm")
+-        text(draw, (825, 390), "PHYSICS", 22, WHITE, True,
+ anchor="mm")
+-        text(draw, (825, 435), "GAP", 22, GOLD, True, anch
+or="mm")
++        text(draw, (825, 335), "FAIR", 22, TEAL, True, anc
+hor="mm")
++        text(draw, (825, 380), "PHYSICS", 22, WHITE, True,
+ anchor="mm")
++        text(draw, (825, 425), "GAP", 22, GOLD, True, anch
+or="mm")
++        arrow(draw, (715, 475), (900, 475), TEAL, 4)
+     elif idx == 2:
+         relation_axes(draw, (110, 245, 900, 555), "stellar
+ mass", "star formation rate", TEAL, seed=22, curve=0.75)
+         panel(draw, (590, 235, 900, 300), fill=(9, 19, 49,
+ 236), outline=TEAL, radius=14, width=2)
+@@ -305,7 +305,7 @@
+         panel(draw, (525, 225, 940, 580), fill=(8, 18, 42,
+ 238), outline=GOLD, radius=20, width=3)
+         text(draw, (732, 265), "BARYON BUDGET", 21, GOLD,
+True, anchor="mm")
+         panel(draw, (580, 325, 885, 430), fill=(14, 25, 55
+, 245), outline=GOLD, radius=18, width=2)
+-        text(draw, (732, 378), "M★ ÷ ( f_b × M_halo )", 25
+, WHITE, True, anchor="mm")
++        text(draw, (732, 378), "Mstar ÷ ( f_b × Mhalo )",
+25, WHITE, True, anchor="mm")
+         text(draw, (732, 480), "Can the halo supply enough
+ baryons?", 17, MUTED, True, anchor="mm")
+     elif idx == 5:
+         panel(draw, (75, 220, 940, 590), fill=(8, 18, 42,
+238), outline=INDIGO, radius=20, width=3)
+@@ -335,7 +335,8 @@
+         for i, (head, note, color) in enumerate(checks):
+             y = 225 + i * 84
+             panel(draw, (95, y, 900, y + 64), fill=(9, 19,
+ 49, 242), outline=color, radius=14, width=2)
+-            text(draw, (125, y + 18), "✓", 23, color, True
+)
++            draw.line((122, y + 34, 131, y + 43), fill=col
+or, width=4)
++            draw.line((131, y + 43, 148, y + 22), fill=col
+or, width=4)
+             text(draw, (170, y + 14), head, 18, WHITE, Tru
+e)
+             text(draw, (420, y + 16), note, 16, MUTED)
+         panel(draw, (200, 580, 800, 630), fill=(38, 27, 16
+, 242), outline=GOLD, radius=14, width=2)
+  │ 💻 $         python - <<'PY' from pathlib import Path f
+rom PIL import Image import importlib import build_stage_ov
+erviews_v9 as b importlib.reload(b) frames=[b.render_scene(
+'methods',i).convert('RGB').resize((640,360),Image.Resampli
+ng.LANCZOS) for i in range(1,7)] sheet=Image.new('RGB',(128
+0,1080),(4,8,25)) for i,im in enumerate(frames):sheet.paste
+(im,((i%2)*640,(i//2)*360)) path=Path('qa/methods_scene_des
+ign_sheet_v2.png') + 2 commands  0.4s
+  │ 👁️  vision    Verify the three previously identified Me
+thods design defects are fixed: scene 1 arrow no longer cro
+sses label text; scene 4 formula has no missing-glyph boxes
+; scene 6 uses real drawn checkmarks. Also check for any re
+maining clipping/overlap. Return pass/fail and exact issues
+ only.  0.0s
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/qa_stage_overviews_v9.py  0.2s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/qa_stage_overviews_v9.py → b//Users/duhokim/HermesOps/
+scripts/clips/lab_stage_overviews_v9/qa_stage_overviews_v9.
+py
+@@ -0,0 +1,249 @@
++#!/usr/bin/env python3
++"""Automated and temporal-sampling QA for the three remain
+ing Lab stage masters."""
++from __future__ import annotations
++
++import json
++import re
++import subprocess
++import tempfile
++import wave
++from datetime import datetime
++from pathlib import Path
++from zoneinfo import ZoneInfo
++
++import numpy as np
++from PIL import Image, ImageStat
++
++from stage_content import DURATION, NARRATION, TOPIC_ORDER
++
++BASE = Path(__file__).resolve().parent
++QA_DIR = BASE / "qa"
++QA_DIR.mkdir(parents=True, exist_ok=True)
++OUTPUTS = {
++    "data": BASE / "NEBULAMIND_SUBNAV_DATA_V9_FEMALE_VOICE
+_EXACT_LIPSYNC.mp4",
++    "methods": BASE / "NEBULAMIND_SUBNAV_METHODS_V9_FEMALE
+_VOICE_EXACT_LIPSYNC.mp4",
++    "paper": BASE / "NEBULAMIND_SUBNAV_PAPER_V9_FEMALE_VOI
+CE_EXACT_LIPSYNC.mp4",
++}
++SRTS = {stage: BASE / f"{stage}_female_exact_lipsync_v9.sr
+t" for stage in TOPIC_ORDER}
++DRIVERS = {stage: BASE / f"driver_audio/{stage}_female_exa
+ct_narration_73s.wav" for stage in TOPIC_ORDER}
++TALKING_HEADS = {stage: BASE / f"talking_heads/{stage}.mp4
+" for stage in TOPIC_ORDER}
++
++
++def probe(path: Path) -> dict:
++    return json.loads(subprocess.check_output([
++        "ffprobe", "-v", "error", "-show_entries",
++        "format=duration,size:stream=index,codec_type,code
+c_name,width,height,r_frame_rate,nb_frames,sample_rate,chan
+nels",
++        "-of", "json", str(path),
++    ], text=True))
++
++
++def video_stream(info: dict) -> dict:
++    return next(stream for stream in info["streams"] if st
+ream["codec_type"] == "video")
++
++
++def decode_four_times(path: Path) -> list[dict]:
++    rows = []
++    for index in range(1, 5):
++        result = subprocess.run([
++            "ffmpeg", "-v", "error", "-i", str(path),
++            "-map", "0:v:0", "-f", "null", "-",
++        ], capture_output=True, text=True)
++        rows.append({
++            "pass": index,
++            "returncode": result.returncode,
++            "stderr": result.stderr.strip(),
++        })
++    return rows
++
++
++def driver_pitch(path: Path) -> dict:
++    with wave.open(str(path), "rb") as reader:
++        sample_rate = reader.getframerate()
++        channels = reader.getnchannels()
++        signal = np.frombuffer(reader.readframes(reader.ge
+tnframes()), dtype="<i2").astype(np.float32) / 32768.0
++    if channels > 1:
++        signal = signal.reshape(-1, channels).mean(axis=1)
++    frame = int(0.05 * sample_rate)
++    hop = int(0.02 * sample_rate)
++    low_lag = sample_rate // 300
++    high_lag = sample_rate // 80
++    frames, energies = [], []
++    for start in range(0, len(signal) - frame, hop):
++        segment = signal[start:start + frame]
++        frames.append(segment)
++        energies.append(float(np.sqrt(np.mean(segment * se
+gment))))
++    threshold = max(0.003, float(np.percentile(energies, 4
+5)))
++    values = []
++    window = np.hanning(frame)
++    for segment, energy in zip(frames, energies):
+… omitted 171 diff line(s) across 1 additional file(s)/sect
+ion(s)
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/qa_stage_overviews_v9.py → b//Users/duhokim/HermesOps/
+scripts/clips/lab_stage_overviews_v9/qa_stage_overviews_v9.
+py
+@@ -152,11 +152,11 @@
+             luminance.append(float(ImageStat.Stat(image.co
+nvert("L")).mean[0]))
+             presenter = image.crop((945, 350, 1279, 719)).
+convert("L")
+             presenter_variance.append(float(ImageStat.Stat
+(presenter).var[0]))
+-    sheet = Image.new("RGB", (1280, 720), (4, 8, 25))
++    sheet = Image.new("RGB", (1280, 1080), (4, 8, 25))
+     thumb_size = (320, 180)
+     for index, frame in enumerate(frames):
+         thumb = frame.resize(thumb_size, Image.Resampling.
+LANCZOS)
+-        sheet.paste(thumb, ((index % 4) * 320, (index // 4
+) * 120))
++        sheet.paste(thumb, ((index % 4) * 320, (index // 4
+) * 180))
+     sheet_path = QA_DIR / f"{stage}_temporal_24_sheet.png"
+     sheet.save(sheet_path)
+     return {
+  │ ⚙️  proc      poll proc_337f4fb  0.0s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/run_stage_talking_heads_v9.py → b//Users/duhokim/Herme
+sOps/scripts/clips/lab_stage_overviews_v9/run_stage_talking
+_heads_v9.py
+@@ -6,6 +6,7 @@
+ import os
+ import shutil
+ import subprocess
++import sys
+ import time
+ from pathlib import Path
+
+@@ -30,10 +31,14 @@
+
+
+ def main() -> None:
++    topics = tuple(sys.argv[1:]) or TOPIC_ORDER
++    unknown = [topic for topic in topics if topic not in T
+OPIC_ORDER]
++    if unknown:
++        raise SystemExit(f"Unknown stage(s): {unknown}")
+     env = os.environ.copy()
+     env["PYTORCH_ENABLE_MPS_FALLBACK"] = "1"
+     receipts = []
+-    for topic in TOPIC_ORDER:
++    for topic in topics:
+         driver = BASE / f"driver_audio/{topic}_female_exac
+t_narration_73s.wav"
+         result_dir = BASE / f"talking_heads/{topic}_256"
+         result_dir.mkdir(parents=True, exist_ok=True)
+  │ ⚙️  proc      wait proc_337f4fb  60.0s
+  │ ⚙️  proc      kill proc_337f4fb  0.1s
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport json,subprocess base=Path('.') rows={} for stage in (
+'data','methods','paper'): p=base/f'talking_heads/{stage}.m
+p4' rows[stage]={'exists':p.exists(),'size':p.stat().st_siz
+e if p.exists() else 0} if p.exists(): rows[stage]['duratio
+n']=float(subprocess.check_output(['ffprobe','-v','error','
+-show_entries','format=duration','-of','default=nk=1:nw=1',
+str(p)],text=True)) print(json.dumps(rows,indent=2)) PY  0.
+2s
+  │ 💻 $         python run_stage_talking_heads_v9.py paper
+  0.1s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -7,6 +7,7 @@
+ import random
+ import shutil
+ import subprocess
++import sys
+ import tempfile
+ from pathlib import Path
+
+@@ -522,23 +523,33 @@
+
+
+ def main() -> None:
+-    required = SOURCES + list(TALKING_HEADS.values()) + li
+st(DRIVER_AUDIO.values()) + [PRESENTER_MASK, AMBIENT, NARRA
+TION_RECEIPT]
++    stages = tuple(sys.argv[1:]) or TOPIC_ORDER
++    unknown = [stage for stage in stages if stage not in T
+OPIC_ORDER]
++    if unknown:
++        raise SystemExit(f"Unknown stage(s): {unknown}")
++    required = SOURCES + [TALKING_HEADS[stage] for stage i
+n stages] + [DRIVER_AUDIO[stage] for stage in stages] + [PR
+ESENTER_MASK, AMBIENT, NARRATION_RECEIPT]
+     for path in required:
+         if not path.exists():
+             raise FileNotFoundError(path)
+     work = Path(tempfile.mkdtemp(prefix="nm_lab_stage_v9_"
+))
+     try:
+-        outputs = [build_stage(stage, work) for stage in T
+OPIC_ORDER]
++        new_outputs = [build_stage(stage, work) for stage
+in stages]
+     finally:
+         shutil.rmtree(work, ignore_errors=True)
++    receipt_path = BASE / "build_receipt.json"
++    prior_outputs = []
++    if receipt_path.exists():
++        prior_outputs = json.loads(receipt_path.read_text(
+encoding="utf-8")).get("outputs", [])
++    merged = {item["stage"]: item for item in prior_output
+s}
++    merged.update({item["stage"]: item for item in new_out
+puts})
++    outputs = [merged[stage] for stage in TOPIC_ORDER if s
+tage in merged]
+     receipt = {
+         "marker": "NEBULAMIND_V9_REMAINING_NAV_LOCAL_MASTE
+RS_BUILT",
+         "character_strategy": SOURCE_CONTRACT["character_s
+trategy"],
+         "publication_gate": SOURCE_CONTRACT["publication_g
+ate"],
+         "outputs": outputs,
+     }
+-    path = BASE / "build_receipt.json"
+-    path.write_text(json.dumps(receipt, indent=2, ensure_a
+scii=False) + "\n", encoding="utf-8")
++    receipt_path.write_text(json.dumps(receipt, indent=2,
+ensure_ascii=False) + "\n", encoding="utf-8")
+     print(json.dumps(receipt, ensure_ascii=False))
+
+
+  │ 💻 $         python build_stage_overviews_v9.py data  1
+5.1s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -499,6 +499,7 @@
+     run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-
+safe", "0", "-i", str(concat), "-c", "copy", str(visual)])
+     output = BASE / STAGE_META[stage]["output"]
+     audio_filter = (
++        "[0:v]trim=end_frame=1764,setpts=PTS-STARTPTS[v];"
+         f"[1:a]loudnorm=I=-16:TP=-1.5:LRA=7,apad,atrim=dur
+ation={DURATION}[voice];"
+         f"[2:a]volume=.15,afade=t=in:st=0:d=1.5,afade=t=ou
+t:st=71.0:d=2.5,"
+         f"atrim=duration={DURATION}[music];"
+@@ -507,8 +508,9 @@
+     run([
+         "ffmpeg", "-y", "-v", "error", "-i", str(visual),
+         "-i", str(DRIVER_AUDIO[stage]), "-i", str(AMBIENT)
+,
+-        "-filter_complex", audio_filter, "-map", "0:v:0",
+"-map", "[a]",
+-        "-c:v", "copy", "-c:a", "aac", "-b:a", "192k", "-a
+r", "48000",
++        "-filter_complex", audio_filter, "-map", "[v]", "-
+map", "[a]",
++        "-c:v", "libx264", "-preset", "veryfast", "-crf",
+"18", "-pix_fmt", "yuv420p", "-r", "24",
++        "-c:a", "aac", "-b:a", "192k", "-ar", "48000",
+         "-t", str(DURATION), "-movflags", "+faststart", st
+r(output),
+     ])
+     srt = write_srt(stage)
+  │ 💻 $         python build_stage_overviews_v9.py data  1
+5.5s
+  │ 💻 $         python build_stage_overviews_v9.py methods
+  4.2s [exit 1]
+  │ 🔧 patch       0.4s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -470,7 +470,9 @@
+         render_scene(stage, idx).save(overlay)
+         source = SOURCES[(idx - 1) % len(SOURCES)]
+         segment = work / f"{stage}_{idx}.mp4"
+-        offset = (idx * 2.1 + (0.7 if stage == "methods" e
+lse 1.4 if stage == "paper" else 0)) % 7.0
++        offset = round((idx * 2.1 + (0.7 if stage == "meth
+ods" else 1.4 if stage == "paper" else 0)) % 7.0, 6)
++        if abs(offset) < 0.000001:
++            offset = 0.0
+         filt = (
+             "[0:v]scale=1280:720:force_original_aspect_rat
+io=increase,crop=1280:720,"
+             "fps=24,eq=brightness=-0.34:saturation=0.65,bo
+xblur=2:1[bg];"
+  │ 💻 $         python build_stage_overviews_v9.py methods
+  15.4s
+  │ ⚙️  proc      poll proc_b79a2f6  0.0s
+  │ ⚙️  proc      wait proc_b79a2f6  60.0s
+  │ ⚙️  proc      wait proc_b79a2f6  0.0s
+  │ 💻 $         python build_stage_overviews_v9.py paper
+15.4s
+  │ 💻 $         python qa_stage_overviews_v9.py  13.1s
+  │ 👁️  vision    This is a 4-column x 6-row contact sheet
+of 24 evenly spaced frames from the final 73.5s Data video.
+ Inspect every frame. Verify: same female presenter identit
+y throughout; no identity drift, duplicate/extra faces, cli
+pping, corruption, black/blank frames, missing overlays, or
+ unreadable/colliding scene text; mouth/expression states v
+ary across samples (supporting animated speech); stage pale
+tte is coherent. Return PASS/FAIL and list exact frame/row-
+column defects only.  0.0s
+  │ 👁️  vision    This is a 4-column x 6-row contact sheet
+of 24 evenly spaced frames from the final 73.5s Methods vid
+eo. Inspect every frame. Verify: same female presenter iden
+tity throughout; no identity drift, duplicate/extra faces,
+clipping, corruption, black/blank frames, missing overlays,
+ or unreadable/colliding scene text; mouth/expression state
+s vary across samples; the corrected scene-1 arrow, scene-4
+ formula, and scene-6 checkmarks remain correct in final co
+mposite. Return PASS/FAIL and exact defects only.  0.0s
+  │ 👁️  vision    This is a 4-column x 6-row contact sheet
+of 24 evenly spaced frames from the final 73.5s Paper video
+. Inspect every frame. Verify: same female presenter identi
+ty throughout; no identity drift, duplicate/extra faces, cl
+ipping, corruption, black/blank frames, missing overlays, o
+r unreadable/colliding scene text; mouth/expression states
+vary across samples; stage palette and review-loop visuals
+are coherent. Return PASS/FAIL and exact defects only.  0.0
+s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/qa_receipt.json → b//Users/duhokim/HermesOps/scripts/c
+lips/lab_stage_overviews_v9/qa_receipt.json
+@@ -1,6 +1,6 @@
+ {
+-  "marker": "NEBULAMIND_V9_REMAINING_NAV_AUTOMATED_QA_COMP
+LETE",
+-  "status": "AWAITING_MANUAL_72_FRAME_VISION_REVIEW",
++  "marker": "NEBULAMIND_V9_REMAINING_NAV_QA_COMPLETE",
++  "status": "THREE_LOCAL_MASTERS_COMPLETE_AWAITING_REVIEW_
+UPLOAD_APPROVAL",
+   "created_kst": "2026-07-21T20:04:39.504933+09:00",
+   "voice": {
+     "name": "en-US-EmmaNeural",
+  │ 🔧 patch     /Users/duhokim/HermesOps/scripts/clips/lab
+_stage_overviews_v9/qa_receipt.json  0.2s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/qa_receipt.json → b//Users/duhokim/HermesOps/scripts/c
+lips/lab_stage_overviews_v9/qa_receipt.json
+@@ -133,7 +133,7 @@
+         "exact_audio_driver_link": true
+       },
+       "automated_pass": true,
+-      "manual_visual_review": "PENDING_VISION_REVIEW"
++      "manual_visual_review": "PASS_24_TEMPORAL_FRAMES_IDE
+NTITY_LAYOUT_AND_MOUTH_VARIATION"
+     },
+     "methods": {
+       "output": "/Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/NEBULAMIND_SUBNAV_METHODS_V9_FEMALE_VO
+ICE_EXACT_LIPSYNC.mp4",
+@@ -258,7 +258,7 @@
+         "exact_audio_driver_link": true
+       },
+       "automated_pass": true,
+-      "manual_visual_review": "PENDING_VISION_REVIEW"
++      "manual_visual_review": "PASS_24_TEMPORAL_FRAMES_IDE
+NTITY_LAYOUT_AND_MOUTH_VARIATION"
+     },
+     "paper": {
+       "output": "/Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/NEBULAMIND_SUBNAV_PAPER_V9_FEMALE_VOIC
+E_EXACT_LIPSYNC.mp4",
+@@ -383,7 +383,7 @@
+         "exact_audio_driver_link": true
+       },
+       "automated_pass": true,
+-      "manual_visual_review": "PENDING_VISION_REVIEW"
++      "manual_visual_review": "PASS_24_TEMPORAL_FRAMES_IDE
+NTITY_LAYOUT_AND_MOUTH_VARIATION"
+     }
+   },
+   "publication": {
+  │ 🐍 exec      from hermes_tools import terminal, write_f
+ile  0.6s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/delivery_manifest.json → b//Users/duhokim/HermesOps/sc
+ripts/clips/lab_stage_overviews_v9/delivery_manifest.json
+@@ -106,7 +106,7 @@
+     "uploaded": false,
+     "visibility_changed": false,
+     "website_changed": false,
+-    "delivery_manifest_changed": false,
++    "production_embed_manifest_changed": false,
+     "next_gate": "User review and explicit upload approval
+; unlisted is the default review visibility."
+   }
+ }
+  │ ✍️  write     /Users/duhokim/HermesOps/scripts/clips/la
+b_stage_overviews_v9/README.md  0.1s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/README.md → b//Users/duhokim/HermesOps/scripts/clips/l
+ab_stage_overviews_v9/README.md
+@@ -0,0 +1,65 @@
++# NebulaMind remaining Lab stage videos — local production
++
++Marker: `NEBULAMIND_V9_REMAINING_NAV_LOCAL_DELIVERY_READY`
++
++## Scope
++
++Three overview videos match the three uncovered top-level
+Lab navigation stages:
++
++- Data
++- Methods
++- Paper
++
++The 14 dropdown subitems are represented as scenes inside
+those three overviews; they are not 14 repetitive uploads.
++
++## Character system
++
++Keep one recognizable series host:
++
++- same established female astronomer identity;
++- same `en-US-EmmaNeural` female voice;
++- Data: teal/blue observational-astronomy set;
++- Methods: indigo/violet computational-astrophysics set;
++- Paper: gold editorial/referee set.
++
++## Review masters
++
++- `NEBULAMIND_SUBNAV_DATA_V9_FEMALE_VOICE_EXACT_LIPSYNC.mp
+4`
++- `NEBULAMIND_SUBNAV_METHODS_V9_FEMALE_VOICE_EXACT_LIPSYNC
+.mp4`
++- `NEBULAMIND_SUBNAV_PAPER_V9_FEMALE_VOICE_EXACT_LIPSYNC.m
+p4`
++
++Each has a scene-aligned `.srt` file in this directory.
++
++## QA
++
++See:
++
++- `qa_receipt.json`
++- `delivery_manifest.json`
++- `qa/*_temporal_24_sheet.png`
++
++Verified per master:
++
++- 73.500 seconds;
++- 1,764 frames;
++- 1280×720 at 24 fps;
++- four clean video decode passes;
++- exact six-cue caption contract;
++- female narration median pitch 175.8–177.8 Hz;
++- 24 temporal frames visually reviewed; 72 total;
++- stable presenter identity and varied speaking expression
+s.
++
++## Reproduce
++
++```sh
++python generate_stage_narration_v9.py
++python run_stage_talking_heads_v9.py data methods paper
++python build_stage_overviews_v9.py data methods paper
++python qa_stage_overviews_v9.py
++```
++
++The runners also accept one stage at a time for safe resum
+e.
++
++## Hard gate
++
++These are local review masters only. Nothing was uploaded,
+ published, embedded, deployed, or added to the production
+video manifest. YouTube upload and website embedding requir
+e separate explicit approval.
+  │ ✍️  write     /Users/duhokim/NebulaMind/NebulaMind/.her
+mes/handoffs/nav-video-expansion-20260721/TORI_V9_LOCAL_REN
+DER_RECEIPT.md  0.2s
+  ┊ review diff
+a/.hermes/handoffs/nav-video-expansion-20260721/TORI_V9_LOC
+AL_RENDER_RECEIPT.md → b/.hermes/handoffs/nav-video-expansi
+on-20260721/TORI_V9_LOCAL_RENDER_RECEIPT.md
+@@ -0,0 +1,72 @@
++# Tori receipt — remaining Lab navigation videos rendered
+locally
++
++Marker: `TORI_V9_REMAINING_NAV_LOCAL_RENDER_COMPLETE_20260
+721`
++
++## Happened
++
++The user asked to generate videos for the remaining Lab na
+vigation and asked whether the character should change for
+each Nav.
++
++Hwao coordinated first and wrote `HWAO_VIDEO_EXPANSION_PLA
+N.md` with marker `HWAO_NAV_VIDEO_EXPANSION_PLAN_COMPLETE_2
+0260721`.
++
++The current served Lab source was used as truth. It define
+s four top stages: Topic, Data, Methods, and Paper. Topic a
+lready has five videos. Data, Methods, and Paper were the r
+emaining top stages.
++
++## Character decision
++
++Do not replace the character per Nav.
++
++The same established female astronomer remains the recogni
+zable host and uses the same clearly female Emma narration.
+ The set changes by stage:
++
++- Data — teal/blue observational astronomer;
++- Methods — indigo/violet computational astrophysicist;
++- Paper — warm-gold research editor/referee.
++
++This preserves series recognition while giving each Nav a
+distinct visual identity.
++
++## Result
++
++Three local exact-audio review masters were generated:
++
++- Data: `/Users/duhokim/HermesOps/scripts/clips/lab_stage_
+overviews_v9/NEBULAMIND_SUBNAV_DATA_V9_FEMALE_VOICE_EXACT_L
+IPSYNC.mp4`
++- Methods: `/Users/duhokim/HermesOps/scripts/clips/lab_sta
+ge_overviews_v9/NEBULAMIND_SUBNAV_METHODS_V9_FEMALE_VOICE_E
+XACT_LIPSYNC.mp4`
++- Paper: `/Users/duhokim/HermesOps/scripts/clips/lab_stage
+_overviews_v9/NEBULAMIND_SUBNAV_PAPER_V9_FEMALE_VOICE_EXACT
+_LIPSYNC.mp4`
++
++Scene-aligned SRT files, generation scripts, build receipt
+s, contact sheets, QA receipt, and hash-pinned delivery man
+ifest are in:
++
++`/Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/`
++
++## Verification
++
++All three masters passed:
++
++- exact duration: 73.500 seconds;
++- exact frame count: 1,764;
++- 1280×720 H.264 video at 24 fps with AAC audio;
++- four full clean decode passes per master;
++- exact six-cue caption text and timing;
++- calibrated female driver pitch: Data 175.8 Hz, Methods 1
+77.8 Hz, Paper 177.8 Hz;
++- 24 evenly spaced visual samples per master, 72 total;
++- one stable female identity, varied speaking expressions,
+ no duplicate faces, corruption, black frames, clipped over
+lays, or unresolved Methods glyph/arrow issues.
++
++QA marker: `NEBULAMIND_V9_REMAINING_NAV_QA_COMPLETE`
++
++Delivery marker: `NEBULAMIND_V9_REMAINING_NAV_LOCAL_DELIVE
+RY_READY`
++
++## Changes and gates
++
++Changed locally:
++
++- created the three video masters, three SRT files, produc
+tion scripts, QA artifacts, and receipts;
++- created this handoff and the Hwao planning receipt.
++
++Not changed:
++
++- no YouTube upload or visibility mutation;
++- no website or `subnavVideos.ts` edit;
++- no production embed/delivery-manifest edit;
++- no deploy/restart;
++- no DB/API write;
++- no git commit or push.
++
++## Exact next action
++
++Review the three local masters. If approved, authorize upl
+oading them as Unlisted review copies. Public visibility an
+d website embedding remain separate explicit gates.
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport subprocess,re,json base=Path('/Users/duhokim/HermesOp
+s/scripts/clips/lab_stage_overviews_v9') rows={} for stage
+in ('DATA','METHODS','PAPER'): p=base/f'NEBULAMIND_SUBNAV_{
+stage}_V9_FEMALE_VOICE_EXACT_LIPSYNC.mp4' r=subprocess.run(
+['ffmpeg','-hide_banner','-i',str(p),'-map','0:a:0','-af','
+volumedetect','-f','null','-'],capture_output=True,text=Tru
+e) mean=re.search(r'mean_volume: ([^ ]+ dB)',r.stderr) + 1
+command  0.5s
+  │ 📖 read      qa_receipt.json  0.1s
+  │ 📖 read      delivery_manifest.json  0.1s
+  │ 📖 read      TORI_V9_LOCAL_RENDER_RECEIPT.md  0.1s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/qa_receipt.json → b//Users/duhokim/HermesOps/scripts/c
+lips/lab_stage_overviews_v9/qa_receipt.json
+@@ -389,7 +389,7 @@
+   "publication": {
+     "uploaded": false,
+     "website_changed": false,
+-    "manifest_changed": false,
++    "production_embed_manifest_changed": false,
+     "gate": "Explicit user approval required after local v
+isual review."
+   }
+ }
+  │ 💻 $         TMUXBIN=/opt/homebrew/bin/tmux + 8 command
+s  0.1s
+  │ 📋 plan      update 5/5 ✓  0.0s
+  │ 📚 skill     deterministic-explainer-video-production
+0.0s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/run_stage_talking_heads_v9.py → b//Users/duhokim/Herme
+sOps/scripts/clips/lab_stage_overviews_v9/run_stage_talking
+_heads_v9.py
+@@ -61,7 +61,15 @@
+         source = max(candidates, key=lambda p: p.stat().st
+_mtime)
+         canonical = BASE / f"talking_heads/{topic}.mp4"
+         canonical.parent.mkdir(parents=True, exist_ok=True
+)
+-        shutil.copy2(source, canonical)
++        normalized = canonical.with_suffix(".normalized.mp
+4")
++        subprocess.run([
++            "ffmpeg", "-y", "-v", "error", "-i", str(sourc
+e),
++            "-vf", "fps=24,tpad=stop_mode=clone:stop_durat
+ion=0.1,trim=duration=73.5,setpts=PTS-STARTPTS",
++            "-an", "-frames:v", "1764", "-c:v", "libx264",
+ "-preset", "veryfast",
++            "-crf", "18", "-pix_fmt", "yuv420p", "-r", "24
+", "-movflags", "+faststart",
++            str(normalized),
++        ], check=True)
++        normalized.replace(canonical)
+         item = {
+             "topic": topic,
+             "source": str(source),
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport subprocess,json base=Path('talking_heads') rows={} fo
+r stage in ('data','methods','paper'): src=base/f'{stage}.m
+p4' + 1 command  1.2s
+  │ 💻 $         python build_stage_overviews_v9.py data me
+thods paper  44.7s
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport subprocess,json base=Path('/Users/duhokim/HermesOps/s
+cripts/clips') rows={} for n in (1,3,5,7,9,11): p=base/f'cl
+ip_{n:02d}_hq.mp4' r=subprocess.run(['ffmpeg','-v','warning
+','-i',str(p),'-map','0:v:0','-f','null','-'],capture_outpu
+t=True,text=True) rows[p.name]={'returncode':r.returncode,'
+warnings':[line for line in r.stderr.splitlines() if line.s
+trip()]} print(json.dumps(rows,indent=2)) PY  1.1s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -495,10 +495,17 @@
+             "-pix_fmt", "yuv420p", "-r", "24", str(segment
+),
+         ])
+         segments.append(segment)
+-    concat = work / f"{stage}_concat.txt"
+-    concat.write_text("".join(f"file '{p}'\n" for p in seg
+ments), encoding="utf-8")
+     visual = work / f"{stage}_visual.mp4"
+-    run(["ffmpeg", "-y", "-v", "error", "-f", "concat", "-
+safe", "0", "-i", str(concat), "-c", "copy", str(visual)])
++    concat_inputs = []
++    for segment in segments:
++        concat_inputs.extend(["-i", str(segment)])
++    concat_filter = "".join(f"[{index}:v]" for index in ra
+nge(len(segments))) + f"concat=n={len(segments)}:v=1:a=0[v]
+"
++    run([
++        "ffmpeg", "-y", "-v", "error", *concat_inputs,
++        "-filter_complex", concat_filter, "-map", "[v]",
++        "-c:v", "libx264", "-preset", "veryfast", "-crf",
+"18",
++        "-pix_fmt", "yuv420p", "-r", "24", str(visual),
++    ])
+     output = BASE / STAGE_META[stage]["output"]
+     audio_filter = (
+         "[0:v]trim=end_frame=1764,setpts=PTS-STARTPTS[v];"
+  │ 💻 $         python build_stage_overviews_v9.py data  1
+6.1s
+  │ 💻 $         python - <<'PY' from pathlib import Path i
+mport subprocess,json base=Path('.') rows={} for stage in (
+'data','methods','paper'): p=base/f'NEBULAMIND_SUBNAV_{stag
+e.upper()}_V9_FEMALE_VOICE_EXACT_LIPSYNC.mp4' r=subprocess.
+run(['ffmpeg','-v','warning','-i',str(p),'-map','0:v:0','-f
+','null','-'],capture_output=True,text=True) rows[stage]={'
+returncode':r.returncode,'warnings':[x for x in r.stderr.sp
+litlines() if x.strip()]} print(json.dumps(rows,indent=2))
+PY  0.9s
+  │ 🔧 patch       0.4s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -474,7 +474,7 @@
+         if abs(offset) < 0.000001:
+             offset = 0.0
+         filt = (
+-            "[0:v]scale=1280:720:force_original_aspect_rat
+io=increase,crop=1280:720,"
++            f"[0:v]trim=start={offset},setpts=PTS-STARTPTS
+,scale=1280:720:force_original_aspect_ratio=increase,crop=1
+280:720,"
+             "fps=24,eq=brightness=-0.34:saturation=0.65,bo
+xblur=2:1[bg];"
+             f"[1:v]format=rgba,fade=t=in:st=0:d=0.65:alpha
+=1,"
+             f"fade=t=out:st={scene_duration - 0.65}:d=0.65
+:alpha=1[ov];"
+@@ -487,8 +487,8 @@
+             "[bg][ov]overlay=0:0:format=auto[base];[base][
+presenter]overlay=945:350:format=auto"
+         )
+         run([
+-            "ffmpeg", "-y", "-v", "error", "-stream_loop",
+ "-1", "-ss", str(offset),
+-            "-i", str(source), "-loop", "1", "-i", str(ove
+rlay),
++            "ffmpeg", "-y", "-v", "error", "-stream_loop",
+ "-1", "-i", str(source),
++            "-loop", "1", "-i", str(overlay),
+             "-i", str(TALKING_HEADS[stage]), "-loop", "1",
+ "-i", str(PRESENTER_MASK),
+             "-filter_complex", filt, "-t", str(scene_durat
+ion), "-an",
+             "-c:v", "libx264", "-preset", "veryfast", "-cr
+f", "18",
+  │ 💻 $         python build_stage_overviews_v9.py data  1
+6.2s
+  │ 🔧 patch       0.3s
+  ┊ review diff
+a//Users/duhokim/HermesOps/scripts/clips/lab_stage_overview
+s_v9/build_stage_overviews_v9.py → b//Users/duhokim/HermesO
+ps/scripts/clips/lab_stage_overviews_v9/build_stage_overvie
+ws_v9.py
+@@ -508,7 +508,7 @@
+     ])
+     output = BASE / STAGE_META[stage]["output"]
+     audio_filter = (
+-        "[0:v]trim=end_frame=1764,setpts=PTS-STARTPTS[v];"
++        "[0:v]tpad=stop_mode=clone:stop_duration=0.1,trim=
+end_frame=1764,setpts=PTS-STARTPTS[v];"
+         f"[1:a]loudnorm=I=-16:TP=-1.5:LRA=7,apad,atrim=dur
+ation={DURATION}[voice];"
+         f"[2:a]volume=.15,afade=t=in:st=0:d=1.5,afade=t=ou
+t:st=71.0:d=2.5,"
+         f"atrim=duration={DURATION}[music];"
+ ⚕ gpt-5.6-sol · 58% · 🗜️ 11 · 7.4d
+───────────────────────────────────────────────────────────
+⚕ msg=interrupt · /queue · /bg · /steer · Ctrl+C cancel

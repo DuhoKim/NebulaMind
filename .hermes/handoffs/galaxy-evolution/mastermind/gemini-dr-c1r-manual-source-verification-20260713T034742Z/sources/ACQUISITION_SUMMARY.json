@@ -1,0 +1,2705 @@
+{
+  "schema": "NM_GATE_B_SOURCE_ACQUISITION_SUMMARY_V1",
+  "completed_utc": "2026-07-13T04:16:26Z",
+  "method": "GET-only; local-first routes; no verdicts",
+  "ads_token_present_boolean": true,
+  "fetch_budget": 200,
+  "fetches_made": 65,
+  "unique_source_indices": 37,
+  "manual_routes": 73,
+  "status_counts": {
+    "0": 20,
+    "200": 57,
+    "403": 7,
+    "404": 1
+  },
+  "host_failures": {
+    "academic.oup.com": 3,
+    "api.adsabs.harvard.edu": 0,
+    "www.tng-project.org": 0,
+    "arxiv.org": 1,
+    "doi.org": 3,
+    "researchportal.port.ac.uk": 0,
+    "www.research.ed.ac.uk": 0,
+    "simba.roe.ac.uk": 0,
+    "fire.northwestern.edu": 0,
+    "flathub.flatironinstitute.org": 0,
+    "mtremmel.github.io": 0,
+    "flamingo.strw.leidenuniv.nl": 0,
+    "oamonitor.ireland.openaire.eu": 0,
+    "www.cambridge.org": 0,
+    "boa.unimib.it": 1
+  },
+  "results": [
+    {
+      "index": 1,
+      "captured_url": "https://academic.oup.com/mnras/article/473/3/4077/4494369",
+      "ledger_rows": [
+        1
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:46Z",
+          "method": "GET",
+          "host": "academic.oup.com",
+          "index": 1,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://academic.oup.com/mnras/article/473/3/4077/4494369",
+          "final_url": "https://academic.oup.com/mnras/article/473/3/4077/4494369",
+          "status": 403,
+          "bytes": 5758,
+          "sha256": "ab316f1d03213a0dae0e8cc63dd377c6c79bbc9fe65d72a66ad5a87a072765e8",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx01_initial_ab316f1d0321.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:46Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 1,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 11603,
+          "sha256": "d8dd035aaa03e2d73409674e0e247f7c182cdd007d08316df447aced8118d370",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx01_ads_d8dd035aaa03.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Just a moment...",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx01_initial_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx01_ads_046310c7bc81.txt",
+          "text_sha256": "046310c7bc8103ba388e10e101bbc0e7fe44d9ba78b70e23eaf6a69fce43d068",
+          "text_chars": 14876
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "captured_url": "https://www.tng-project.org/data/docs/background/",
+      "ledger_rows": [
+        2
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:48Z",
+          "method": "GET",
+          "host": "www.tng-project.org",
+          "index": 2,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://www.tng-project.org/data/docs/background/",
+          "final_url": "https://www.tng-project.org/data/docs/background/",
+          "status": 200,
+          "bytes": 74440,
+          "sha256": "668cdcd6ebff6de7390956a27d026d7a8d4539d7676447632ea8f80862965e46",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx02_initial_668cdcd6ebff.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:50Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 2,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22IllustrisTNG%20-%20Data%20Access%20-%20Background%20and%20Important%20Details%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22IllustrisTNG%20-%20Data%20Access%20-%20Background%20and%20Important%20Details%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 506,
+          "sha256": "a1e62d3d84056c7cfd517f0ddf3b48d778511c6f618a74f23cfe1255c83f8bf9",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx02_ads_a1e62d3d8405.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "IllustrisTNG - Data Access - Background and Important Details",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx02_initial_7d3531a083bc.txt",
+          "text_sha256": "7d3531a083bc654bacc6b0c59ac8ee8dfe9239464c95d14f8df1dff9efb6746e",
+          "text_chars": 58145
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx02_ads_480ae03d6cf9.txt",
+          "text_sha256": "480ae03d6cf933323e9ffde64821847798423ffc906f0ec02390bb53de22e1a4",
+          "text_chars": 606
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "captured_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+      "ledger_rows": [
+        3,
+        4
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:51Z",
+          "method": "GET",
+          "host": "academic.oup.com",
+          "index": 3,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+          "final_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+          "status": 403,
+          "bytes": 5755,
+          "sha256": "a41632976aedfdf31d3b6d2acfa35b35d8965367f9aed3d99d7b791c7fa00a32",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx03_initial_a41632976aed.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:46Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 1,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 11603,
+          "sha256": "d8dd035aaa03e2d73409674e0e247f7c182cdd007d08316df447aced8118d370",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx01_ads_d8dd035aaa03.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": true
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Just a moment...",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx03_initial_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "captured_url": "https://academic.oup.com/mnras/article/450/2/1937/984366",
+      "ledger_rows": [
+        5,
+        7
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:53Z",
+          "method": "GET",
+          "host": "academic.oup.com",
+          "index": 4,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://academic.oup.com/mnras/article/450/2/1937/984366",
+          "final_url": "https://academic.oup.com/mnras/article/450/2/1937/984366",
+          "status": 403,
+          "bytes": 5755,
+          "sha256": "91692a11ed2ff9e96a235f6a9e7ee4bbb853bd6513163c30c7e94a308c474475",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx04_initial_91692a11ed2f.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:46Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 1,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 11603,
+          "sha256": "d8dd035aaa03e2d73409674e0e247f7c182cdd007d08316df447aced8118d370",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx01_ads_d8dd035aaa03.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": true
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Just a moment...",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx04_initial_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "captured_url": "https://arxiv.org/abs/1407.7040",
+      "ledger_rows": [
+        6
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:53Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 5,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/1407.7040",
+          "final_url": "https://arxiv.org/abs/1407.7040",
+          "status": 200,
+          "bytes": 50456,
+          "sha256": "11e240e9d9266cdcdfe50ee1808b3e12e75b28897eae0bfb396feef60c1c9433",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx05_initial_11e240e9d926.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:55Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 5,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/1407.7040",
+          "final_url": "https://arxiv.org/pdf/1407.7040",
+          "status": 200,
+          "bytes": 4832764,
+          "sha256": "034de9072711b90ebf6602fb84fd1fb21dc4fc2d089be2d542b8ce0682121346",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx05_arxiv_pdf_034de9072711.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:58Z",
+          "method": "GET",
+          "host": "doi.org",
+          "index": 5,
+          "label": "doi",
+          "purpose": "doi_primary_resolution",
+          "requested_url": "https://doi.org/10.1093/mnras/stu2058",
+          "final_url": "https://academic.oup.com/mnras/article/446/1/521/1316115/The-EAGLE-project-simulating-the-evolution-and",
+          "status": 403,
+          "bytes": 5960,
+          "sha256": "35e836ab1739167b7950f49ec10cf9a874008ac488a80f7ba6a68f8d411f39a2",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx05_doi_35e836ab1739.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:14:58Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 5,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1407.7040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1407.7040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3818,
+          "sha256": "0a63651157aac6a60f2de66600a9ba30ed260ca65bbbcf95800e36a82e7b2fd7",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx05_ads_0a63651157aa.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The EAGLE project: Simulating the evolution and assembly of galaxies and their environments",
+          "doi": "10.1093/mnras/stu2058",
+          "arxiv_id": "1407.7040",
+          "pdf_url": "https://arxiv.org/pdf/1407.7040",
+          "text_path": "sources/text/idx05_initial_7a9a7903e44f.txt",
+          "text_sha256": "7a9a7903e44f3a7dd98fd6330ac53a69a49fb54efe50e354d34fa51527dba85a",
+          "text_chars": 6202
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "1407.7040",
+          "pdf_url": "",
+          "text_path": "sources/text/idx05_arxiv_pdf_89d00b7eeb18.txt",
+          "text_sha256": "89d00b7eeb18dabe250bd5e908c550b73aa77c1a5fb9cfa9cddc7db5fa90e050",
+          "text_chars": 211393,
+          "pdf_pages": 38
+        },
+        {
+          "label": "doi",
+          "title": "Just a moment...",
+          "doi": "10.1093/mnras/stu2058",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx05_doi_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx05_ads_2a6fd51f37fe.txt",
+          "text_sha256": "2a6fd51f37fe4481f8c5bfc7f5ae083c7437fec40bc5c7f0377ae75e00bae0c9",
+          "text_chars": 4380
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "captured_url": "https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/",
+      "ledger_rows": [
+        8
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:14:59Z",
+          "method": "GET",
+          "host": "researchportal.port.ac.uk",
+          "index": 6,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/",
+          "final_url": "https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/",
+          "status": 200,
+          "bytes": 63580,
+          "sha256": "4c20090c9c068efce03aabd1db91b0885e5b5300183ce722f193ec4e47cd0307",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx06_initial_4c20090c9c06.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:01Z",
+          "method": "GET",
+          "host": "doi.org",
+          "index": 6,
+          "label": "doi",
+          "purpose": "doi_primary_resolution",
+          "requested_url": "https://doi.org/10.1093/mnras/stv725",
+          "final_url": "https://academic.oup.com/mnras/article/450/2/1937/984366/The-EAGLE-simulations-of-galaxy-formation",
+          "status": 403,
+          "bytes": 5945,
+          "sha256": "5fe00d3807f0074ca092890f1872e41e1e73c8b3f2a0c4daeb68db35d7f0d85d",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx06_doi_5fe00d3807f0.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:02Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 6,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stv725%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stv725%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3052,
+          "sha256": "8d53dfe0985fef4d47aa7a0bdde9cf08a2a27c07f45ca1e77dc94639583521d6",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx06_ads_8d53dfe0985f.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The EAGLE simulations of galaxy formation: calibration of subgrid physics and model variations",
+          "doi": "10.1093/mnras/stv725",
+          "arxiv_id": "",
+          "pdf_url": "https://researchportal.port.ac.uk/files/43201839/stv725.pdf",
+          "text_path": "sources/text/idx06_initial_a46f5a82972c.txt",
+          "text_sha256": "a46f5a82972c7dbfccc173f0619a20c467981ffe5dfabe3f6c029508fb7c1f9f",
+          "text_chars": 13727
+        },
+        {
+          "label": "doi",
+          "title": "Just a moment...",
+          "doi": "10.1093/mnras/stv725",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx06_doi_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "10.1093/mnras/stv725",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx06_ads_4847d36715e9.txt",
+          "text_sha256": "4847d36715e98ec074de7963d2430f22c7b5d52e6367fa09ba34c89c89941d41",
+          "text_chars": 3564
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "captured_url": "https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/",
+      "ledger_rows": [
+        9
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:03Z",
+          "method": "GET",
+          "host": "www.research.ed.ac.uk",
+          "index": 7,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/",
+          "final_url": "https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/",
+          "status": 200,
+          "bytes": 61484,
+          "sha256": "d57a6dcd92cb2796990b3b4c42716711097de0f1e5ef0fcf57efeeece1fff665",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx07_initial_d57a6dcd92cb.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:05Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 7,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/http://arxiv.org/abs/1901.10203v2",
+          "final_url": "https://arxiv.org/pdf/http://arxiv.org/abs/1901.10203v2",
+          "status": 404,
+          "bytes": 8337,
+          "sha256": "e1c5f7fa07953c5ae26e9af732788318d4125baa8e6bb9a2ad426937f2e4516d",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx07_arxiv_pdf_e1c5f7fa0795.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:05Z",
+          "method": "GET",
+          "host": "doi.org",
+          "index": 7,
+          "label": "doi",
+          "purpose": "doi_primary_resolution",
+          "requested_url": "https://doi.org/10.1093/mnras/stz937",
+          "final_url": "https://academic.oup.com/mnras/article/486/2/2827/5426823",
+          "status": 403,
+          "bytes": 5758,
+          "sha256": "1e170032bff5ca9db1367a5b932c500c0340526addf6ba8d23ccfb739c93f393",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx07_doi_1e170032bff5.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:06Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 7,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3Ahttp%3A//arxiv.org/abs/1901.10203v2%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3Ahttp%3A//arxiv.org/abs/1901.10203v2%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 489,
+          "sha256": "c632d3fa58837b993ce39156d1c4d18e497e3fb3bc583807b150b0a3da0539e2",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx07_ads_c632d3fa5883.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "SIMBA: Cosmological simulations with black hole growth and feedback",
+          "doi": "10.1093/mnras/stz937",
+          "arxiv_id": "http://arxiv.org/abs/1901.10203v2",
+          "pdf_url": "https://www.research.ed.ac.uk/files/81933432/1901.10203.pdf",
+          "text_path": "sources/text/idx07_initial_7ae2ad024fca.txt",
+          "text_sha256": "7ae2ad024fcab3cdab7dbc0be8e3ea6a377135bce392b98005d18c7ad1a2c205",
+          "text_chars": 10934
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "404 Not Found | arXiv e-print repository",
+          "doi": "",
+          "arxiv_id": "1901.10203",
+          "pdf_url": "",
+          "text_path": "sources/text/idx07_arxiv_pdf_14fb07c947e0.txt",
+          "text_sha256": "14fb07c947e04b02df4dd2452ddefc75df085e25ee61740726b9a79cc4f7298c",
+          "text_chars": 610
+        },
+        {
+          "label": "doi",
+          "title": "Just a moment...",
+          "doi": "10.1093/mnras/stz937",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx07_doi_05f8bdf19ca6.txt",
+          "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+          "text_chars": 58
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "1901.10203",
+          "pdf_url": "",
+          "text_path": "sources/text/idx07_ads_2052f8b9ae5f.txt",
+          "text_sha256": "2052f8b9ae5fa73e7f5b7fc69d4ace8c2dc9a36651cdd765ebd3e34a1a675a64",
+          "text_chars": 589
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "captured_url": "http://simba.roe.ac.uk/",
+      "ledger_rows": [
+        10,
+        12
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:07Z",
+          "method": "GET",
+          "host": "simba.roe.ac.uk",
+          "index": 8,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "http://simba.roe.ac.uk/",
+          "final_url": "http://simba.roe.ac.uk/",
+          "status": 200,
+          "bytes": 48174,
+          "sha256": "dfb11c49f2108bc60d090f6ed4cd441eecf9c81b3dc33350adbf295385670a75",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx08_initial_dfb11c49f210.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:09Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 8,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Simba%20Simulation%20Repository%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Simba%20Simulation%20Repository%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 473,
+          "sha256": "8dd7b2f2b286535ed5da792ba9c8c2e98b5c9b6c0beab8ef7e034a47b0142fdc",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx08_ads_8dd7b2f2b286.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Simba Simulation Repository",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx08_initial_f9dd283f502e.txt",
+          "text_sha256": "f9dd283f502e2ed212a855b8d14a48ba6b636110ca921e5c9e38ccce8c9a6ca8",
+          "text_chars": 8502
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx08_ads_fa21f8f9a04e.txt",
+          "text_sha256": "fa21f8f9a04e74b9c3009165d9a1d1e96959c6a7744a50cccfc1d4c5933032f9",
+          "text_chars": 573
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "captured_url": "https://academic.oup.com/mnras/article/486/2/2827/5426823",
+      "ledger_rows": [
+        11
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/486/2/2827/5426823",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "captured_url": "https://academic.oup.com/mnras/article/497/1/146/5866845",
+      "ledger_rows": [
+        13,
+        35,
+        46
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/497/1/146/5866845",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "captured_url": "https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/",
+      "ledger_rows": [
+        16
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:10Z",
+          "method": "GET",
+          "host": "fire.northwestern.edu",
+          "index": 11,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/",
+          "final_url": "https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/",
+          "status": 200,
+          "bytes": 35202,
+          "sha256": "c892df3b796c433f0e9891ded92ee9fb62b791fe65dbef66bb540aed0a86b7e6",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx11_initial_c892df3b796c.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:12Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 11,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FIRE-2%20Simulations%3A%20Physics%20versus%20Numerics%20in%20Galaxy%20Formation%20%7C%20FIRE%3A%20Feedback%20In%20Realistic%20Environments%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FIRE-2%20Simulations%3A%20Physics%20versus%20Numerics%20in%20Galaxy%20Formation%20%7C%20FIRE%3A%20Feedback%20In%20Realistic%20Environments%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 551,
+          "sha256": "ad771554ca0993afd98945af92281b268e760fc9635203281a14d56d7c4d1cc3",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx11_ads_ad771554ca09.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "FIRE-2 Simulations: Physics versus Numerics in Galaxy Formation | FIRE: Feedback In Realistic Environments",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx11_initial_28df96774aa0.txt",
+          "text_sha256": "28df96774aa0a9a6555aadef134bf5ac14ba894aa21fa1b9a4b2c5a0a4ec31ff",
+          "text_chars": 3378
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx11_ads_c6cb7420f6e2.txt",
+          "text_sha256": "c6cb7420f6e2cfedc209ca2aebc76c0fc1312e68bf9a4095938e2427b1cf9c03",
+          "text_chars": 651
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "captured_url": "https://academic.oup.com/mnras/article/480/1/800/5046474",
+      "ledger_rows": [
+        14
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/480/1/800/5046474",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "captured_url": "https://flathub.flatironinstitute.org/fire",
+      "ledger_rows": [
+        15
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:13Z",
+          "method": "GET",
+          "host": "flathub.flatironinstitute.org",
+          "index": 13,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://flathub.flatironinstitute.org/fire",
+          "final_url": "https://flathub.flatironinstitute.org/fire",
+          "status": 200,
+          "bytes": 20678,
+          "sha256": "0b06349124ed558f52613a9a4d2952ed09b000bbf822b7f35f5458c5360343df",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx13_initial_0b06349124ed.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:15Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 13,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FlatHUB%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FlatHUB%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2010,
+          "sha256": "83af649919f1ec2402f574f1e83770cdf42715814db640cd5bb993d558e4d1ac",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx13_ads_83af649919f1.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "FlatHUB",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx13_initial_3f590aba4aa8.txt",
+          "text_sha256": "3f590aba4aa89204166b27ffb95210d8edcdd7ffa5681224a1e9ca7f81093698",
+          "text_chars": 7863
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx13_ads_8a35c267191d.txt",
+          "text_sha256": "8a35c267191df0a0336db6583896b5fbc0528443bc19a74b77b95f3e8e35d7f1",
+          "text_chars": 2645
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "captured_url": "https://academic.oup.com/mnras/article/470/1/1121/3828081",
+      "ledger_rows": [
+        17,
+        19
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/470/1/1121/3828081",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "captured_url": "https://arxiv.org/abs/1607.02151",
+      "ledger_rows": [
+        18
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:16Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 15,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/1607.02151",
+          "final_url": "https://arxiv.org/abs/1607.02151",
+          "status": 200,
+          "bytes": 47180,
+          "sha256": "d2a57d28328faa5effc38f9ff75ab1f28d4f5ea3b00fc1bddfc9013a9da02c9e",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx15_initial_d2a57d28328f.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:18Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 15,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/1607.02151",
+          "final_url": "https://arxiv.org/pdf/1607.02151",
+          "status": 200,
+          "bytes": 5143281,
+          "sha256": "7668892fda0b1fb4fc70be36ecc681ee9aa26ce6c78f7931fb17968bd63ca3c9",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx15_arxiv_pdf_7668892fda0b.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stx1160",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:20Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 15,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1607.02151%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1607.02151%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2890,
+          "sha256": "a3d008cb0a878a1a27e38b82752757d21cc87c932762bd5a93a9be2cddf845a1",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx15_ads_a3d008cb0a87.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The Romulus Cosmological Simulations: A Physical Approach to the Formation, Dynamics and Accretion Models of SMBHs",
+          "doi": "10.1093/mnras/stx1160",
+          "arxiv_id": "1607.02151",
+          "pdf_url": "https://arxiv.org/pdf/1607.02151",
+          "text_path": "sources/text/idx15_initial_7eed71924a48.txt",
+          "text_sha256": "7eed71924a488c01375a3d9f428d9bfd709b32d47e35da6a91de234d5a1b6438",
+          "text_chars": 5809
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "1607.02151",
+          "pdf_url": "",
+          "text_path": "sources/text/idx15_arxiv_pdf_25b6ec802541.txt",
+          "text_sha256": "25b6ec802541954a6dc06cea06d7212b44d6e99f08c754088354a9c2637a44cb",
+          "text_chars": 109844,
+          "pdf_pages": 21
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx15_ads_118e127db4f4.txt",
+          "text_sha256": "118e127db4f49ba56a1f18ad2c51d07b225d50e4e1f9a99b8cd6f818e2578d43",
+          "text_chars": 3372
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "captured_url": "https://mtremmel.github.io/research/romulus.html",
+      "ledger_rows": [
+        20
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:21Z",
+          "method": "GET",
+          "host": "mtremmel.github.io",
+          "index": 16,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://mtremmel.github.io/research/romulus.html",
+          "final_url": "https://mtremmel.github.io/research/romulus.html",
+          "status": 200,
+          "bytes": 8494,
+          "sha256": "4bbe5ee1469f0cd3061c5e198db2dd36a528962f6980c6ccd11587797bcc00e6",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx16_initial_4bbe5ee1469f.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:23Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 16,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Michael%20Tremmel%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Michael%20Tremmel%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 460,
+          "sha256": "2c29210bfa480056bc76d85b6c0de2c3cff6779b7764d3f023795eab8ac21faf",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx16_ads_2c29210bfa48.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Michael Tremmel",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx16_initial_3235d4e56657.txt",
+          "text_sha256": "3235d4e5665777624f808c41546b76f976fef2fdf689005dc330ad6e01500a83",
+          "text_chars": 5317
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx16_ads_94c750dfc8e0.txt",
+          "text_sha256": "94c750dfc8e0f3f49ecff469a1fc6d5f92f05e3e1abe53f473eb9a3d68578787",
+          "text_chars": 560
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "captured_url": "https://arxiv.org/abs/2111.01160",
+      "ledger_rows": [
+        21
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:24Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 17,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2111.01160",
+          "final_url": "https://arxiv.org/abs/2111.01160",
+          "status": 200,
+          "bytes": 44527,
+          "sha256": "a6fdcbd077d680b66582c62d5b77979d67331f4c46218c28e6aee100ee466761",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx17_initial_a6fdcbd077d6.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:26Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 17,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2111.01160",
+          "final_url": "https://arxiv.org/pdf/2111.01160",
+          "status": 200,
+          "bytes": 1482506,
+          "sha256": "2a58eb87fa11c37ab4fa73dd1aba35e47dae302e0de0695abce13c156517fc1c",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx17_arxiv_pdf_2a58eb87fa11.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stac648",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:27Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 17,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2111.01160%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2111.01160%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2420,
+          "sha256": "03fc6640fbcd0bc60cfed1b1bd5a24d20abb2b3b1a6bd59c94968cc9a85bd012",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx17_ads_03fc6640fbcd.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The ASTRID Simulation: Galaxy Formation and Reionization",
+          "doi": "10.1093/mnras/stac648",
+          "arxiv_id": "2111.01160",
+          "pdf_url": "https://arxiv.org/pdf/2111.01160",
+          "text_path": "sources/text/idx17_initial_c013079023bf.txt",
+          "text_sha256": "c013079023bf7d319d7f6e37e7f1306199c4dd303b607e184e08223a89f87b71",
+          "text_chars": 4969
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2111.01160",
+          "pdf_url": "",
+          "text_path": "sources/text/idx17_arxiv_pdf_18b8e59fbff6.txt",
+          "text_sha256": "18b8e59fbff6ada680ac93d214503b0a987ec2cb5d5197f5e987b8f352c3838f",
+          "text_chars": 77660,
+          "pdf_pages": 15
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx17_ads_e2126a3166b0.txt",
+          "text_sha256": "e2126a3166b0888b0b89902153832df777d2aa0dd5150119b7d2bbb319dd1f4c",
+          "text_chars": 2877
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "captured_url": "https://arxiv.org/abs/2605.13843",
+      "ledger_rows": [
+        22
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:29Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 18,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2605.13843",
+          "final_url": "https://arxiv.org/abs/2605.13843",
+          "status": 200,
+          "bytes": 43766,
+          "sha256": "41fa0f042cfcbeee80dc8e84878b47dc3fa770d19e215eba0467e004bbea46f3",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx18_initial_41fa0f042cfc.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:31Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 18,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2605.13843",
+          "final_url": "https://arxiv.org/pdf/2605.13843",
+          "status": 200,
+          "bytes": 5093961,
+          "sha256": "e2d6c75815b2eadbe911e336e50634a6858b237e55facee84eecff4ba5c8b86a",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx18_arxiv_pdf_e2d6c75815b2.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:31Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 18,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2605.13843",
+          "final_url": "https://arxiv.org/pdf/2605.13843",
+          "status": 200,
+          "bytes": 5093961,
+          "sha256": "e2d6c75815b2eadbe911e336e50634a6858b237e55facee84eecff4ba5c8b86a",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx18_arxiv_pdf_e2d6c75815b2.pdf",
+          "auth": "NONE",
+          "cache_reuse": true
+        },
+        {
+          "utc": "2026-07-13T04:15:33Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 18,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2605.13843%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2605.13843%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2207,
+          "sha256": "7df739d3be9b9b8108675d7721c601f66f88c2fb9ff90d461e8dbf7210efd192",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx18_ads_7df739d3be9b.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The Galaxy Luminosity Functions in ASTRID: Predictions for LSST",
+          "doi": "",
+          "arxiv_id": "2605.13843",
+          "pdf_url": "https://arxiv.org/pdf/2605.13843",
+          "text_path": "sources/text/idx18_initial_9c85c014fa03.txt",
+          "text_sha256": "9c85c014fa03e9bea377bbae0b8230a1ad40fd09565ce5b78a41a923e642f95b",
+          "text_chars": 4878
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2605.13843",
+          "pdf_url": "",
+          "text_path": "sources/text/idx18_arxiv_pdf_22dac0005cf8.txt",
+          "text_sha256": "22dac0005cf835358c6d61f4874c04d51d185fa6422c5d5dfd33781eba1ed376",
+          "text_chars": 60376,
+          "pdf_pages": 17
+        },
+        {
+          "label": "publisher_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2605.13843",
+          "pdf_url": "",
+          "text_path": "sources/text/idx18_publisher_pdf_22dac0005cf8.txt",
+          "text_sha256": "22dac0005cf835358c6d61f4874c04d51d185fa6422c5d5dfd33781eba1ed376",
+          "text_chars": 60376,
+          "pdf_pages": 17
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx18_ads_be846d94a077.txt",
+          "text_sha256": "be846d94a0770221d11018c7fcf6a3f676e660c8cd33717c6d125d5877591564",
+          "text_chars": 2639
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "captured_url": "https://academic.oup.com/mnras/article/512/3/3703/6546174",
+      "ledger_rows": [
+        23
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/512/3/3703/6546174",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "captured_url": "https://arxiv.org/abs/2110.14154",
+      "ledger_rows": [
+        24
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:35Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 20,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2110.14154",
+          "final_url": "https://arxiv.org/abs/2110.14154",
+          "status": 200,
+          "bytes": 46572,
+          "sha256": "641a1ef8299772b07f1a3e43a5877c483cd413a6593c57cfeb5f5689bae75375",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx20_initial_641a1ef82997.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:37Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 20,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2110.14154",
+          "final_url": "https://arxiv.org/pdf/2110.14154",
+          "status": 200,
+          "bytes": 9622346,
+          "sha256": "b9691b7f3f0419c46f80db2f2c17cc0c200c80ab7107f3fe7904bd1d8080cf89",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx20_arxiv_pdf_b9691b7f3f04.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stac351",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:40Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 20,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2110.14154%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2110.14154%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3062,
+          "sha256": "aca8284624d687d1f9bc601df569f75635c755b1ba2d9f3a3196b31bd086e326",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx20_ads_aca8284624d6.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The ASTRID simulation: the evolution of Supermassive Black Holes",
+          "doi": "10.1093/mnras/stac351",
+          "arxiv_id": "2110.14154",
+          "pdf_url": "https://arxiv.org/pdf/2110.14154",
+          "text_path": "sources/text/idx20_initial_839f45a0b19a.txt",
+          "text_sha256": "839f45a0b19affa6f8e60ef9169660e4e724eddbb6551492919d968b394a843c",
+          "text_chars": 5481
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2110.14154",
+          "pdf_url": "",
+          "text_path": "sources/text/idx20_arxiv_pdf_aa70f2516679.txt",
+          "text_sha256": "aa70f251667929ae42297505ca72df6220f56f5190620855b0bf694b14528385",
+          "text_chars": 122334,
+          "pdf_pages": 23
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx20_ads_aaa386e5df9b.txt",
+          "text_sha256": "aaa386e5df9bed9bb1e1a004ef535bd552871198ef2a851456031e09174b366c",
+          "text_chars": 3539
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "captured_url": "https://flamingo.strw.leidenuniv.nl/",
+      "ledger_rows": [
+        25
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:41Z",
+          "method": "GET",
+          "host": "flamingo.strw.leidenuniv.nl",
+          "index": 21,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://flamingo.strw.leidenuniv.nl/",
+          "final_url": "https://flamingo.strw.leidenuniv.nl/",
+          "status": 200,
+          "bytes": 7015,
+          "sha256": "1dd02b972c786a1cbdc4915659adb971b8af29e138a54a53de1571dc77b91488",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx21_initial_1dd02b972c78.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:43Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 21,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22The%20FLAMINGO%20project%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22The%20FLAMINGO%20project%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 14892,
+          "sha256": "770f75246553e7b5d776ae2b3ffd5c6b0f1a2e584e18ae574a74002b186d73fe",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx21_ads_770f75246553.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The FLAMINGO project",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx21_initial_8aa289441b5b.txt",
+          "text_sha256": "8aa289441b5ba3d44d5c7a7d0307f6b6329740fbbf038a8cbd9f14b69853f641",
+          "text_chars": 2973
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx21_ads_4c720afb7acd.txt",
+          "text_sha256": "4c720afb7acdce38b3c3bad516b27815c3bf72fc5b620ce7b30a3fa48926be26",
+          "text_chars": 17093
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "captured_url": "https://academic.oup.com/mnras/article/526/4/6103/7291940",
+      "ledger_rows": [
+        26,
+        27,
+        41
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/526/4/6103/7291940",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "captured_url": "https://academic.oup.com/mnras/article/545/2/staf2125/8361503",
+      "ledger_rows": [
+        28
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/545/2/staf2125/8361503",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "captured_url": "https://arxiv.org/abs/2601.15851",
+      "ledger_rows": [
+        29
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:44Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 24,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2601.15851",
+          "final_url": "https://arxiv.org/abs/2601.15851",
+          "status": 200,
+          "bytes": 44896,
+          "sha256": "17b12f138a71ee296de861b27e4f4f22c453aa9085aa4b32030534f6f4df975d",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx24_initial_17b12f138a71.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:46Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 24,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2601.15851",
+          "final_url": "https://arxiv.org/pdf/2601.15851",
+          "status": 200,
+          "bytes": 1928681,
+          "sha256": "d8a3ef12203beb074a450a854696e50186988bc669c74793ad57d5062c62bf76",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx24_arxiv_pdf_d8a3ef12203b.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:46Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 24,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2601.15851",
+          "final_url": "https://arxiv.org/pdf/2601.15851",
+          "status": 200,
+          "bytes": 1928681,
+          "sha256": "d8a3ef12203beb074a450a854696e50186988bc669c74793ad57d5062c62bf76",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx24_arxiv_pdf_d8a3ef12203b.pdf",
+          "auth": "NONE",
+          "cache_reuse": true
+        },
+        {
+          "utc": "2026-07-13T04:15:47Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 24,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2601.15851%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2601.15851%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2731,
+          "sha256": "dddfb25769d7aaa25040abc9ff4d37f3266d6d5129949690ed71957759a2c9ea",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx24_ads_dddfb25769d7.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "Intrinsic alignments in the FLAMINGO simulations with two-point statistics",
+          "doi": "",
+          "arxiv_id": "2601.15851",
+          "pdf_url": "https://arxiv.org/pdf/2601.15851",
+          "text_path": "sources/text/idx24_initial_033abc139155.txt",
+          "text_sha256": "033abc13915583efe2ca8c3d3785d522e8b609f6294dafbc7601962b9c62d821",
+          "text_chars": 5344
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2601.15851",
+          "pdf_url": "",
+          "text_path": "sources/text/idx24_arxiv_pdf_1b0a65339c29.txt",
+          "text_sha256": "1b0a65339c2939565e76ed02806b79eb9481b9aa38805bbc2bf6c8c88d52751b",
+          "text_chars": 91557,
+          "pdf_pages": 17
+        },
+        {
+          "label": "publisher_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2601.15851",
+          "pdf_url": "",
+          "text_path": "sources/text/idx24_publisher_pdf_1b0a65339c29.txt",
+          "text_sha256": "1b0a65339c2939565e76ed02806b79eb9481b9aa38805bbc2bf6c8c88d52751b",
+          "text_chars": 91557,
+          "pdf_pages": 17
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx24_ads_dcd26c66f46c.txt",
+          "text_sha256": "dcd26c66f46c75085b3a812d72e068c95240bf3398ba7f346586c4ddc359b421",
+          "text_chars": 3123
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "captured_url": "https://arxiv.org/abs/1603.02702",
+      "ledger_rows": [
+        30
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:49Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 25,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/1603.02702",
+          "final_url": "https://arxiv.org/abs/1603.02702",
+          "status": 200,
+          "bytes": 45907,
+          "sha256": "109e6cac80fb3c2b4ad536d6507879aeee802f92177782a76c96d819a0859a0b",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx25_initial_109e6cac80fb.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:15:51Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 25,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/1603.02702",
+          "final_url": "https://arxiv.org/pdf/1603.02702",
+          "status": 200,
+          "bytes": 1478141,
+          "sha256": "eb3f3db3924917fcdcca12a58a4dc791c63eb5abc9b494077cbcfaae1dd1f023",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx25_arxiv_pdf_eb3f3db39249.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stw2792",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:52Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 25,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1603.02702%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1603.02702%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 2652,
+          "sha256": "c37e432785eadbecf749ce507d75f192f52412d8994a7f651c9c125827b03003",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx25_ads_c37e432785ea.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The BAHAMAS project: Calibrated hydrodynamical simulations for large-scale structure cosmology",
+          "doi": "10.1093/mnras/stw2792",
+          "arxiv_id": "1603.02702",
+          "pdf_url": "https://arxiv.org/pdf/1603.02702",
+          "text_path": "sources/text/idx25_initial_d509873c707b.txt",
+          "text_sha256": "d509873c707b5d2926196ce935b23d1db6edfd788b8872bfc955d1413979da7d",
+          "text_chars": 5481
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "1603.02702",
+          "pdf_url": "",
+          "text_path": "sources/text/idx25_arxiv_pdf_43c099b376e0.txt",
+          "text_sha256": "43c099b376e0f140ffd6cddb7a22a5ded44009fa5a0c9e8879a3b79893db8963",
+          "text_chars": 167362,
+          "pdf_pages": 34
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx25_ads_b1a68c325b78.txt",
+          "text_sha256": "b1a68c325b783a4e10678c47cd5f998594a792352815552d46f8129ac97ecb97",
+          "text_chars": 3074
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "captured_url": "https://academic.oup.com/mnras/article/465/3/2936/2417021",
+      "ledger_rows": [
+        31,
+        32
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/465/3/2936/2417021",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "captured_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+      "ledger_rows": [
+        33
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:53Z",
+          "method": "GET",
+          "host": "oamonitor.ireland.openaire.eu",
+          "index": 27,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+          "final_url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040",
+          "status": 200,
+          "bytes": 908319,
+          "sha256": "80444c7be9d0ce28ded603b4c5da617789e04902de7a4daeec27f153e31d3228",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx27_initial_80444c7be9d0.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stx3040",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:56Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 27,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stx3040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1093/mnras/stx3040%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3271,
+          "sha256": "ec0ee607ff2969afaff19d1cda9dd44388dfb793f9bfd7c9caa67758c66606c5",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx27_ads_ec0ee607ff29.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "First results from the IllustrisTNG simulations: the galaxy colour bimodality",
+          "doi": "10.1093/mnras/stx3040",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx27_initial_aa2ac04461b9.txt",
+          "text_sha256": "aa2ac04461b98b95cb7492af10d24ea4c1a1c1488316a9e8886c999f5d2a6ae4",
+          "text_chars": 11242
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "10.1093/mnras/stx3040",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx27_ads_a6748f46ee33.txt",
+          "text_sha256": "a6748f46ee33b6067fd2054f6a55e8a7e029161c1bf51b596c9c50914f4c76f6",
+          "text_chars": 3708
+        }
+      ]
+    },
+    {
+      "index": 28,
+      "captured_url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC",
+      "ledger_rows": [
+        34
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:15:57Z",
+          "method": "GET",
+          "host": "www.cambridge.org",
+          "index": 28,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC",
+          "final_url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC",
+          "status": 200,
+          "bytes": 1444623,
+          "sha256": "0b0f04800fbb3d02ed77f3fb93269ce551a3a4d39338b06adaac299098af3936",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx28_initial_0b0f04800fbb.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1017/pasa.2016.21",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:15:59Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 28,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1017/pasa.2016.21%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=doi%3A%2210.1017/pasa.2016.21%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3613,
+          "sha256": "46b1f565209d22bdbbeccd9b30eae2c9bb3373a1c50d79de2a61bda9d36df1d7",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx28_ads_46b1f565209d.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The Relation between Star-Formation Rate and Stellar Mass of Galaxies at z ~ 1–4",
+          "doi": "10.1017/pasa.2016.21",
+          "arxiv_id": "",
+          "pdf_url": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/2AAB84B2524F5870838E5BCC736A18DC/S1323358016000217a.pdf/div-class-title-the-relation-between-star-formation-rate-and-stellar-mass-of-galaxies-at-em-class-italic-z-em-1-4-div.pdf",
+          "text_path": "sources/text/idx28_initial_1f9556a68ac5.txt",
+          "text_sha256": "1f9556a68ac5d63bcf3f6aeffa63bbb2d591fcf4332fd23cddcbd9d355553b57",
+          "text_chars": 133579
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "10.1017/pasa.2016.21",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx28_ads_60704b8821e0.txt",
+          "text_sha256": "60704b8821e0c23123f9f3c81c85c1d38b57edb43f5121a889d801dc006be70d",
+          "text_chars": 4005
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "captured_url": "https://academic.oup.com/mnras/article-abstract/470/1/1121/3828081",
+      "ledger_rows": [
+        36
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article-abstract/470/1/1121/3828081",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 30,
+      "captured_url": "https://arxiv.org/abs/2410.19905",
+      "ledger_rows": [
+        37
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:00Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 30,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2410.19905",
+          "final_url": "https://arxiv.org/abs/2410.19905",
+          "status": 200,
+          "bytes": 47361,
+          "sha256": "9fb2be93c76a9b5133ca29e2349df1bcef3eba3eeaa75f69e2f99dc346fbca8b",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx30_initial_9fb2be93c76a.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:03Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 30,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2410.19905",
+          "final_url": "https://arxiv.org/pdf/2410.19905",
+          "status": 200,
+          "bytes": 1200967,
+          "sha256": "23275a659186c1eb1f99467d51b178290dd30cdc2927593906e264c5e92780f2",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx30_arxiv_pdf_23275a659186.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:03Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 30,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2410.19905",
+          "final_url": "https://arxiv.org/pdf/2410.19905",
+          "status": 200,
+          "bytes": 1200967,
+          "sha256": "23275a659186c1eb1f99467d51b178290dd30cdc2927593906e264c5e92780f2",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx30_arxiv_pdf_23275a659186.pdf",
+          "auth": "NONE",
+          "cache_reuse": true
+        },
+        {
+          "utc": "2026-07-13T04:16:03Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 30,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.19905%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.19905%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3221,
+          "sha256": "faf7dc28de050806e2ba8537cc847dc594ad87300ede060a597297585becf05b",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx30_ads_faf7dc28de05.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "FLAMINGO: combining kinetic SZ effect and galaxy-galaxy lensing measurements to gauge the impact of feedback on large-scale structure",
+          "doi": "",
+          "arxiv_id": "2410.19905",
+          "pdf_url": "https://arxiv.org/pdf/2410.19905",
+          "text_path": "sources/text/idx30_initial_da81d8be9746.txt",
+          "text_sha256": "da81d8be97464a2cc93927de2f60a06e2dd25ae209d25712762ae8eafb766c18",
+          "text_chars": 5865
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2410.19905",
+          "pdf_url": "",
+          "text_path": "sources/text/idx30_arxiv_pdf_52b392ee4747.txt",
+          "text_sha256": "52b392ee4747a81c7f6971bbfa6dba2d055c2676a1ff22b566fa2236de1f5440",
+          "text_chars": 128172,
+          "pdf_pages": 21
+        },
+        {
+          "label": "publisher_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2410.19905",
+          "pdf_url": "",
+          "text_path": "sources/text/idx30_publisher_pdf_52b392ee4747.txt",
+          "text_sha256": "52b392ee4747a81c7f6971bbfa6dba2d055c2676a1ff22b566fa2236de1f5440",
+          "text_chars": 128172,
+          "pdf_pages": 21
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx30_ads_848a857f99e4.txt",
+          "text_sha256": "848a857f99e4053e958588cf65af5065ea6b98d1e8360697c0a4c63081f407f0",
+          "text_chars": 3753
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "captured_url": "https://arxiv.org/abs/2410.17109",
+      "ledger_rows": [
+        38
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:05Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 31,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2410.17109",
+          "final_url": "https://arxiv.org/abs/2410.17109",
+          "status": 200,
+          "bytes": 47213,
+          "sha256": "fa96bf61a97326b5b328c5fd79843cb5d22e0e507a25e589d931f348cfec9c1c",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx31_initial_fa96bf61a973.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:07Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 31,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2410.17109",
+          "final_url": "https://arxiv.org/pdf/2410.17109",
+          "status": 200,
+          "bytes": 1637396,
+          "sha256": "d4ccea035baa590cd1d5449941951c52c9a27db6dab9f7f65d5653942e23dec0",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx31_arxiv_pdf_d4ccea035baa.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/staf569",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:16:08Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 31,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.17109%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2410.17109%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3357,
+          "sha256": "20d9836010d69126ffaa9f052468483f81eee7bffd01a88f9c4a8175ba5d2676",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx31_ads_20d9836010d6.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The FLAMINGO project: Baryon effects on the matter power spectrum",
+          "doi": "10.1093/mnras/staf569",
+          "arxiv_id": "2410.17109",
+          "pdf_url": "https://arxiv.org/pdf/2410.17109",
+          "text_path": "sources/text/idx31_initial_9b242d8216b1.txt",
+          "text_sha256": "9b242d8216b11a499f9a6ff5aa9f4a7862d75c39f392a6d796b7ec17243b6c58",
+          "text_chars": 5875
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2410.17109",
+          "pdf_url": "",
+          "text_path": "sources/text/idx31_arxiv_pdf_5e0713962fc4.txt",
+          "text_sha256": "5e0713962fc4bcaf4aa852832af8baca81eff7d14bc6a7c56439150ddf996812",
+          "text_chars": 83977,
+          "pdf_pages": 15
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx31_ads_67150846bfcd.txt",
+          "text_sha256": "67150846bfcdacf905c057fad3131d41036b4f0e6463ad4ff704ff4a89801742",
+          "text_chars": 3799
+        }
+      ]
+    },
+    {
+      "index": 32,
+      "captured_url": "https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf",
+      "ledger_rows": [
+        39
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:09Z",
+          "method": "GET",
+          "host": "boa.unimib.it",
+          "index": 32,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf",
+          "final_url": "https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf",
+          "status": 403,
+          "bytes": 6252,
+          "sha256": "175b96cf41dc20ac83623b9bd9ecc230310cb1fcc54aef227bc244c81e036e78",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx32_initial_175b96cf41dc.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx32_initial_d74d12c3026f.txt",
+          "text_sha256": "d74d12c3026fe5f8ff3224c522ed3ec8d0bcafeaed085c907a4468c8b0412835",
+          "text_chars": 42,
+          "pdf_pages": 1
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "captured_url": "https://arxiv.org/abs/2509.04067",
+      "ledger_rows": [
+        40
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:12Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 33,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2509.04067",
+          "final_url": "https://arxiv.org/abs/2509.04067",
+          "status": 200,
+          "bytes": 49601,
+          "sha256": "9da6bb2e5d03bb001cc34560f0e61a7eeb73cfd096a5ebfec3a952e3995ecabf",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx33_initial_9da6bb2e5d03.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:14Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 33,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2509.04067",
+          "final_url": "https://arxiv.org/pdf/2509.04067",
+          "status": 200,
+          "bytes": 1945653,
+          "sha256": "6ca021ca1f9a90a4681fc96224474fc403e60ad59b9f1c086cb3ee4f195c6908",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx33_arxiv_pdf_6ca021ca1f9a.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stag300",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:16:15Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 33,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.04067%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.04067%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3642,
+          "sha256": "f7d2a56ebecd9963868cb8ea33ec11952aa6faff66fe216f1cc9c7ad062314ce",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx33_ads_f7d2a56ebecd.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase",
+          "doi": "10.1093/mnras/stag300",
+          "arxiv_id": "2509.04067",
+          "pdf_url": "https://arxiv.org/pdf/2509.04067",
+          "text_path": "sources/text/idx33_initial_4004f4984465.txt",
+          "text_sha256": "4004f498446543d1b8909faa6e19ff3f679629db7f7df8a7f33700b8e5d842f1",
+          "text_chars": 6098
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2509.04067",
+          "pdf_url": "",
+          "text_path": "sources/text/idx33_arxiv_pdf_220c99637437.txt",
+          "text_sha256": "220c9963743713353d789638d7b392b6f14b2bd77b9e4482749f5131d3b2a63b",
+          "text_chars": 232709,
+          "pdf_pages": 41
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx33_ads_2c68b94d9b92.txt",
+          "text_sha256": "2c68b94d9b92716e025dcd9504dc02cc99ae64f7af52e7ddb6a6da726dfbb275",
+          "text_chars": 4224
+        }
+      ]
+    },
+    {
+      "index": 34,
+      "captured_url": "https://academic.oup.com/mnras/article/478/2/2618/4993329",
+      "ledger_rows": [
+        42
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/478/2/2618/4993329",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "captured_url": "https://academic.oup.com/mnras/article/511/4/6126/6520457",
+      "ledger_rows": [
+        43
+      ],
+      "records": [
+        {
+          "requested_url": "https://academic.oup.com/mnras/article/511/4/6126/6520457",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "captured_url": "https://arxiv.org/abs/2508.04907",
+      "ledger_rows": [
+        44
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:17Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 36,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2508.04907",
+          "final_url": "https://arxiv.org/abs/2508.04907",
+          "status": 200,
+          "bytes": 44378,
+          "sha256": "8a191eabd62ce74a2fcb0a444a43c8a8afa42e5ba0d9b17f1384a3b4c4c74aa5",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx36_initial_8a191eabd62c.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:19Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 36,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2508.04907",
+          "final_url": "https://arxiv.org/pdf/2508.04907",
+          "status": 200,
+          "bytes": 2286645,
+          "sha256": "f60fafe1c40a1fcd7cfc07472a2d12056c7a399875fa7b1ae1175b1f63210e2d",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx36_arxiv_pdf_f60fafe1c40a.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:19Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 36,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2508.04907",
+          "final_url": "https://arxiv.org/pdf/2508.04907",
+          "status": 200,
+          "bytes": 2286645,
+          "sha256": "f60fafe1c40a1fcd7cfc07472a2d12056c7a399875fa7b1ae1175b1f63210e2d",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx36_arxiv_pdf_f60fafe1c40a.pdf",
+          "auth": "NONE",
+          "cache_reuse": true
+        },
+        {
+          "utc": "2026-07-13T04:16:20Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 36,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2508.04907%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2508.04907%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3128,
+          "sha256": "fc1bcb0de87a88a9e3554e844f20fa245c6b931e0b1f45f50b5f3d3413dc44c5",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx36_ads_fc1bcb0de87a.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "AGN Feedback Models and AGN Demographics I: Radio-Mode AGN in EAGLE, SIMBA and TNG100 are Inconsistent with Observations",
+          "doi": "",
+          "arxiv_id": "2508.04907",
+          "pdf_url": "https://arxiv.org/pdf/2508.04907",
+          "text_path": "sources/text/idx36_initial_ad4290f8ca1b.txt",
+          "text_sha256": "ad4290f8ca1bdf077f4f9b7b3c36f3fb392a430160142bb61fe21f07c784b7a0",
+          "text_chars": 5413
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2508.04907",
+          "pdf_url": "",
+          "text_path": "sources/text/idx36_arxiv_pdf_807ae389556d.txt",
+          "text_sha256": "807ae389556d43cd13ab4a02860b928eff1a575e8701319eb4596508bf11f0f4",
+          "text_chars": 77690,
+          "pdf_pages": 24
+        },
+        {
+          "label": "publisher_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2508.04907",
+          "pdf_url": "",
+          "text_path": "sources/text/idx36_publisher_pdf_807ae389556d.txt",
+          "text_sha256": "807ae389556d43cd13ab4a02860b928eff1a575e8701319eb4596508bf11f0f4",
+          "text_chars": 77690,
+          "pdf_pages": 24
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx36_ads_70ae807034be.txt",
+          "text_sha256": "70ae807034be2c2a849fb31a7184b8821b167b161fc25883fe72f8b72483c5b4",
+          "text_chars": 3495
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "captured_url": "https://arxiv.org/abs/2509.07960",
+      "ledger_rows": [
+        45
+      ],
+      "records": [
+        {
+          "utc": "2026-07-13T04:16:22Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 37,
+          "label": "initial",
+          "purpose": "captured_citation_url",
+          "requested_url": "https://arxiv.org/abs/2509.07960",
+          "final_url": "https://arxiv.org/abs/2509.07960",
+          "status": 200,
+          "bytes": 47984,
+          "sha256": "0cc567b96be1139dc6b26bee111484d48d492da4f355196e6f1afbd5e09d72ce",
+          "content_type": "text/html",
+          "raw_path": "sources/raw/idx37_initial_0cc567b96be1.html",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "utc": "2026-07-13T04:16:24Z",
+          "method": "GET",
+          "host": "arxiv.org",
+          "index": 37,
+          "label": "arxiv_pdf",
+          "purpose": "primary_full_text",
+          "requested_url": "https://arxiv.org/pdf/2509.07960",
+          "final_url": "https://arxiv.org/pdf/2509.07960",
+          "status": 200,
+          "bytes": 2116560,
+          "sha256": "0132ef4a83d2155acbcc72bd056df68730eb4f8b3bfb055f7801b977d6545ac6",
+          "content_type": "application/pdf",
+          "raw_path": "sources/raw/idx37_arxiv_pdf_0132ef4a83d2.pdf",
+          "auth": "NONE",
+          "cache_reuse": false
+        },
+        {
+          "requested_url": "https://doi.org/10.1093/mnras/stag740",
+          "status": 0,
+          "error": "host_stopped_after_3_failures",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "utc": "2026-07-13T04:16:25Z",
+          "method": "GET",
+          "host": "api.adsabs.harvard.edu",
+          "index": 37,
+          "label": "ads",
+          "purpose": "read_only_metadata",
+          "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.07960%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.07960%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+          "status": 200,
+          "bytes": 3764,
+          "sha256": "4cc35604733feebb3789973d15dc7040520234fdcd7f412b25ae7fddab7f3c5c",
+          "content_type": "application/json",
+          "raw_path": "sources/raw/idx37_ads_4cc35604733f.json",
+          "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+          "cache_reuse": false
+        }
+      ],
+      "extracts": [
+        {
+          "label": "initial",
+          "title": "The evolution of the galaxy stellar mass function and star formation rates in the COLIBRE simulations from redshift 17 to 0",
+          "doi": "10.1093/mnras/stag740",
+          "arxiv_id": "2509.07960",
+          "pdf_url": "https://arxiv.org/pdf/2509.07960",
+          "text_path": "sources/text/idx37_initial_26b62c68e83f.txt",
+          "text_sha256": "26b62c68e83f522c02316230bfa3cba945935a680371d05bcca64c5050a5ddaa",
+          "text_chars": 5960
+        },
+        {
+          "label": "arxiv_pdf",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "2509.07960",
+          "pdf_url": "",
+          "text_path": "sources/text/idx37_arxiv_pdf_abc4d28d4750.txt",
+          "text_sha256": "abc4d28d4750d2bf9302bc39bde899bf604eee501715cc5eb5c87f00cc3e12d8",
+          "text_chars": 196322,
+          "pdf_pages": 37
+        },
+        {
+          "label": "doi",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "",
+          "text_sha256": "",
+          "text_chars": 0
+        },
+        {
+          "label": "ads",
+          "title": "",
+          "doi": "",
+          "arxiv_id": "",
+          "pdf_url": "",
+          "text_path": "sources/text/idx37_ads_d36f837c83ee.txt",
+          "text_sha256": "d36f837c83ee5de1fd44924fac3104a8f3d77a1ee2eda3d78ea567c9bb6010f7",
+          "text_chars": 4261
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "marker": "NEBULAMIND_Z9_AUDIO_COMPREHENSION_CANARY_QA_V2",
+  "generated_at": "2026-07-23T03:40:35Z",
+  "status": "TECHNICAL_QA_PASS_HUMAN_LISTENING_REQUIRED",
+  "source": {
+    "paper_key": "z9-metallicity",
+    "pdf_sha256": "7b12f8af4a5b173d1c09d4190df145cfdafa2c628cca8c6262858c9f1f76c3f9",
+    "live_pdf_verified_identical": true,
+    "script_marker": "NEBULAMIND_Z9_AUDIO_COMPREHENSION_CANARY_SCRIPT_V2",
+    "script_words": 101,
+    "plain_language_translation": "0.7 dex is stated first as roughly five times lower"
+  },
+  "synthesis": {
+    "provider": "openai_managed_nous_gateway",
+    "model": "gpt-4o-mini-tts",
+    "provider_speed": 0.8,
+    "post_synthesis_tempo": 1.0,
+    "review_format": "pcm_s16le_wav",
+    "sample_rate_hz": 24000,
+    "channels": 1,
+    "bit_rate_bps": 384000,
+    "global_tts_config_modified": false
+  },
+  "candidates": [
+    {
+      "voice": "nova",
+      "file": "Z9_AUDIO_CANARY_NOVA_V2_REVIEW.wav",
+      "sha256": "19be3015db0e48d93d4da24d26976516327f1e5da8e533cf8bb23cf48be69e9f",
+      "duration_seconds": 52.296083,
+      "effective_wpm": 115.9,
+      "integrated_lufs": -16.17,
+      "true_peak_dbtp": -1.9,
+      "lra_lu": 4.2,
+      "local_asr_language_probability": 1.0,
+      "raw_wer_percent": 3.96,
+      "semantic_wer_percent": 0.99,
+      "pace_gate": "PASS",
+      "encoding_gate": "PASS",
+      "loudness_gate": "PASS",
+      "independent_asr_gate": "PASS"
+    },
+    {
+      "voice": "shimmer",
+      "file": "Z9_AUDIO_CANARY_SHIMMER_V2_REVIEW.wav",
+      "sha256": "986bf177d4834067fd263397d910fa40afa11f963d58ab0b3830769d2a91433a",
+      "duration_seconds": 54.176708,
+      "effective_wpm": 111.9,
+      "integrated_lufs": -16.11,
+      "true_peak_dbtp": -1.96,
+      "lra_lu": 3.0,
+      "local_asr_language_probability": 1.0,
+      "raw_wer_percent": 2.97,
+      "semantic_wer_percent": 0.99,
+      "pace_gate": "PASS",
+      "encoding_gate": "PASS",
+      "loudness_gate": "PASS",
+      "independent_asr_gate": "PASS"
+    }
+  ],
+  "technical_preference": {
+    "voice": "shimmer",
+    "basis": "Slower natural delivery and lower raw local-ASR word error rate; subjective voice quality remains a user listening decision."
+  },
+  "human_listening_gate": "PENDING_USER_SELECTION",
+  "full_v2_video_build": "NOT_STARTED_PENDING_VOICE_SELECTION",
+  "public_mutations": {
+    "youtube": false,
+    "website": false,
+    "embeds": false,
+    "unlisting": false,
+    "deployment": false,
+    "git": false
+  }
+}

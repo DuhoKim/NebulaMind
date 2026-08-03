@@ -1,0 +1,98 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T11:28:50Z",
+  "updated_at_kst": "2026-06-29 20:28:50 KST",
+  "source": "Hermes Agent plain-English cockpit refresh after source-surface fallback commit",
+  "current_action": "LOCAL FIX READY, NOT LIVE: page source surfaces now have a verified local fallback commit, but it has not been pushed, PR-opened, merged, deployed, or restarted.",
+  "repo": {
+    "source_worktree": "/Users/duhokim/NebulaMind/worktrees/lit-expansion-readiness-galaxy-v2-20260629",
+    "branch": "artifacts/galaxy-v2-layer2-baseline-20260629",
+    "head": "ea3286b",
+    "head_subject": "fix: expose page source fallback surfaces",
+    "ahead_of_origin_main": 8,
+    "behind_origin_main": 0,
+    "worktree_clean": true,
+    "pushed": false,
+    "pr_opened": false,
+    "merged": false,
+    "deployed": false,
+    "service_restarted": false,
+    "service_restart_scope_note": "No backend/API service restart for source-surface code; only frontend report static-file serving was refreshed."
+  },
+  "plain_words": {
+    "short_version": "The code now has a safe local fix so the Galaxy V2 page can show source links from already indexed claim/evidence rows when older materialized citation/source tables are empty. This is verified locally but not live yet.",
+    "what_changed": [
+      "/citations keeps page_citation_links when they exist, otherwise reads existing claim/evidence rows.",
+      "/fact-sources keeps fact_sources rows first, then inline hero_facts[].source, then existing claim/evidence rows.",
+      "The fallback does not insert rows, edit page content, mutate related_pages, or promote anything."
+    ],
+    "what_did_not_happen": [
+      "No production DB writes.",
+      "No migrations.",
+      "No service restart.",
+      "No deploy.",
+      "No claim creation or coverage_ready/promotion changes."
+    ]
+  },
+  "verification": [
+    "py_compile changed Python files: pass",
+    "new inline hero_facts source coverage: 1 passed",
+    "fallback test file: 5 passed",
+    "related page/source API bundle: 15 passed",
+    "git diff --check: pass",
+    "diff-scoped security scan: no findings",
+    "changed read-route scan: no DB write markers",
+    "local Ollama/Qwen review: pass",
+    "background reviewer: pass with non-blocking suggestions only"
+  ],
+  "future_ladder": [
+    {
+      "level": "Safest",
+      "name": "Observe only",
+      "risk": "No code or live changes",
+      "direction": "Read cockpit, inspect local commit/doc, run read-only probes again. Best if you want confidence before touching GitHub or runtime."
+    },
+    {
+      "level": "Safe",
+      "name": "Create clean narrow branch and open draft PR",
+      "risk": "Publishes code for review but does not affect live site",
+      "direction": "Do not PR the whole 8-commit artifact branch by accident. Create a clean branch from origin/main with only the source-surface fix/test/doc patch, open a draft PR, let CI/review run, keep deploy locked."
+    },
+    {
+      "level": "Low controlled risk",
+      "name": "PR review and merge after green checks",
+      "risk": "Changes main branch but still no direct DB mutation",
+      "direction": "Use normal PR workflow on the clean scoped branch; merge only after targeted tests, CI, and reviewer pass."
+    },
+    {
+      "level": "Moderate operational risk",
+      "name": "Deploy/restart API for read-only fallback",
+      "risk": "Live service restart/code rollout, but still no intended data writes",
+      "direction": "After merge, update runtime checkout, restart only the backend/API service, and probe /citations and /fact-sources until live source surfaces are green."
+    },
+    {
+      "level": "High data risk",
+      "name": "Backfill materialized source tables",
+      "risk": "Writes page_citation_links/fact_sources to production",
+      "direction": "Only after backup and explicit approval. First write dry-run SQL/report, then tiny scoped apply, then verify row counts and rollback path."
+    },
+    {
+      "level": "Very high product risk",
+      "name": "Promotion/readiness unlock",
+      "risk": "Changes coverage_ready/promotion_eligible or runs promoter paths that affect user-visible trust/readiness",
+      "direction": "Require GO/NO-GO packet, human calibration, backup, and explicit approval before any apply path."
+    },
+    {
+      "level": "Most dangerous",
+      "name": "Schema/destructive cleanup of linkage mismatches",
+      "risk": "Migrations, deletes/dedupes, or overwriting related_pages can corrupt provenance if wrong",
+      "direction": "Treat as production data mutation: snapshot, migration tests, dry run, restore test, signed approval, tiny batch, live audit."
+    }
+  ],
+  "mode": "SOURCE_SURFACE_LOCAL_FIX_READY_NOT_DEPLOYED",
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "frontend_launchd_label": "com.nebulamind.frontend",
+    "note": "Frontend service refreshed only to serve the updated cockpit/timestamped static files; backend/API code was not deployed or restarted."
+  }
+}

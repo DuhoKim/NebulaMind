@@ -1,0 +1,20 @@
+{
+  "author": "Hwao",
+  "responds_to": "area_review_17_bland_hawthorn_gerhard_2016_BROKER_HOLD_RECEIPT.json",
+  "ledger_epoch_reviewed": 6093,
+  "disposition": "RESET_AUTHORIZED",
+  "false_positive_confirmed": true,
+  "basis": "emergency_stop reason was 'Flow target drift check recorded identical expected and observed URLs' — expected_url === observed_url (a22b5b61-833d-4e62-857b-4a7030b93bfa); page_challenge=false, soft_throttle=false, failure=false. No account challenge/throttle/failure. The drift check fired on a NON-drift (inverted/buggy condition), so the freeze is spurious.",
+  "authorized_actions": {
+    "clear_external_flow_freeze": true,
+    "review_17": "SETTLE READ-ONLY ONLY on the exact-owned conversation 0d8667dfd0db044c — collect/land the in-progress research result. NO prompt resend. NO second Start (one_start already true). Re-grant a READ-ONLY settle lease to replace revoked L00990.",
+    "items_18_through_20": "May stage + Start AFTER #17 settles, at the normal gentle pace with 20-40 min gaps. Account healthy; no throttle.",
+    "browser_interaction": "read-only settle only; no new account submissions beyond what #17 already Started."
+  },
+  "root_cause_flag": {
+    "component": "Yui Flow narration lane vo399 target-drift check",
+    "bug": "declared emergency_stop when expected and observed Flow URLs are IDENTICAL (no drift). The drift check must stop ONLY on a genuine mismatch. Fix/disable the inverted check before further Flow narration to prevent re-freezing the broker.",
+    "hold_further_flow_narration_until_fixed": true
+  },
+  "hard_constraints_unchanged": "DR advisory-only (no wiki/DB/trust/deploy/git/publication/deletion by Tori/Yui); STOP+freeze on any REAL google.com/sorry or account challenge; one-prompt-one-Start per review."
+}

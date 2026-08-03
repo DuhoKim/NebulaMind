@@ -1,0 +1,188 @@
+/Users/duhokim/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020
+  warnings.warn(
+.FF....FF..F.FFF...FFFFF.....                                            [100%]
+=================================== FAILURES ===================================
+___________________________ test_c1_header_wrong_req ___________________________
+
+    def test_c1_header_wrong_req():
+        spec = {"req_id": "REQ_C1r_123", "model": "Gemini 1.5 Pro"}
+        txt = "Joint C1 answer — REQ_WRONG\nRun date (UTC): 2026\nModel: Gemini 1.5 Pro\nSimulations covered: 1"
+        res = validate_document(txt, {"blocks": [create_block("1", "heading", txt)]}, spec=spec)
+>       assert get_findings(res, "C1", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'HEADER_OK', 'evidence': 'Header elements found', 'source_refs': [], ...}, {'cl...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C1', 'FAIL')
+
+tests/test_validator.py:30: AssertionError
+__________________________ test_c1_header_wrong_model __________________________
+
+    def test_c1_header_wrong_model():
+        spec = {"req_id": "REQ_C1r_123", "model": "Gemini 1.5 Pro"}
+        txt = "Joint C1 answer — REQ_C1r_123\nRun date (UTC): 2026\nModel: ChatGPT\nSimulations covered: 1"
+        res = validate_document(txt, {"blocks": [create_block("1", "heading", txt)]}, spec=spec)
+>       assert get_findings(res, "C1", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'HEADER_OK', 'evidence': 'Header elements found', 'source_refs': [], ...}, {'cl...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C1', 'FAIL')
+
+tests/test_validator.py:36: AssertionError
+____________________________ test_c2_gap_has_token _____________________________
+
+    def test_c2_gap_has_token():
+        txt = "GAP: We found no data. ASSERTED_ABSENCE_NOT_SYSTEMATICALLY_VERIFIED"
+        struct = {"blocks": [create_block("1", "paragraph", txt)]}
+        res = validate_document(txt, struct)
+>       assert not get_findings(res, "C2", "FAIL")
+E       assert not [{'clause': 'C2', 'code': 'BAD_STRUCTURE', 'evidence': "Order bad or missing: {'Links ledger', 'Out-of-sample validati...eedback-relevant observables map', 'Gaps', 'Double-counting warnings', 'Calibration ledger'}", 'source_refs': [], ...}]
+E        +  where [{'clause': 'C2', 'code': 'BAD_STRUCTURE', 'evidence': "Order bad or missing: {'Links ledger', 'Out-of-sample validati...eedback-relevant observables map', 'Gaps', 'Double-counting warnings', 'Calibration ledger'}", 'source_refs': [], ...}] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C2', 'FAIL')
+
+tests/test_validator.py:66: AssertionError
+_______________________ test_c3_scientific_bare_quantity _______________________
+
+    def test_c3_scientific_bare_quantity():
+        txt = "The distance is 2 km."
+        res = validate_document(txt, {"blocks": [create_block("1", "paragraph", txt)]})
+>       assert get_findings(res, "C3", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C3', 'FAIL')
+
+tests/test_validator.py:71: AssertionError
+_______________________ test_c3_uncertainty_token_manual _______________________
+
+    def test_c3_uncertainty_token_manual():
+        txt = "The distance is 2 km UNCERTAINTY_NOT_QUOTED_BY_SOURCE."
+        res = validate_document(txt, {"blocks": [create_block("1", "paragraph", txt)]})
+>       assert get_findings(res, "C3", "MANUAL_REVIEW_REQUIRED")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C3', 'MANUAL_REVIEW_REQUIRED')
+
+tests/test_validator.py:86: AssertionError
+_________________________ test_c4_generic_prose_passes _________________________
+
+    def test_c4_generic_prose_passes():
+        txt = "Galaxies are very large systems composed of stars, gas, and dark matter that interact over time." # no keywords
+        res = validate_document(txt, {"blocks": [create_block("1", "paragraph", txt)]})
+>       assert not get_findings(res, "C4", "FAIL")
+E       AssertionError: assert not [{'clause': 'C4', 'code': 'UNCITED_CLAIM', 'evidence': 'Galaxies are very large systems composed of stars,', 'source_refs': [], ...}]
+E        +  where [{'clause': 'C4', 'code': 'UNCITED_CLAIM', 'evidence': 'Galaxies are very large systems composed of stars,', 'source_refs': [], ...}] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C4', 'FAIL')
+
+tests/test_validator.py:97: AssertionError
+_______________________ test_c4_same_cell_citation_pass ________________________
+
+    def test_c4_same_cell_citation_pass():
+        txt = ""
+        struct = {"blocks": [create_block("1", "table_row", txt, cells=[
+            {"text": "Sim1"}, {"text": "calibrated on mass [http://a.com]", "links": [{"url": "http://a.com"}]}
+        ])]}
+        res = validate_document(txt, struct)
+>       assert not get_findings(res, "C4", "FAIL")
+E       AssertionError: assert not [{'clause': 'C4', 'code': 'UNCITED_CELL_CLAIM', 'evidence': 'calibrated on mass [http://a.com]', 'source_refs': [], ...}]
+E        +  where [{'clause': 'C4', 'code': 'UNCITED_CELL_CLAIM', 'evidence': 'calibrated on mass [http://a.com]', 'source_refs': [], ...}] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C4', 'FAIL')
+
+tests/test_validator.py:105: AssertionError
+_______________________ test_c4_same_cell_citation_fail ________________________
+
+    def test_c4_same_cell_citation_fail():
+        txt = ""
+        struct = {"blocks": [create_block("1", "table_row", txt, cells=[
+            {"text": "calibrated on mass"}, {"text": "[http://a.com]", "links": [{"url": "http://a.com"}]}
+        ])]}
+        res = validate_document(txt, struct)
+>       assert get_findings(res, "C4", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C4', 'FAIL')
+
+tests/test_validator.py:113: AssertionError
+_____________________ test_c6_comparability_cell_unmatched _____________________
+
+    def test_c6_comparability_cell_unmatched():
+        txt = "Out-of-sample validation ledger"
+        struct = {"blocks": [
+            create_block("h", "heading", txt),
+            create_block("r", "table_row", "", cells=[
+                {"text": "Sim1"}, {"text": "Obs"}, {"text": "NON_COMMENSURABLE_UNMATCHED_SELECTIONS Tension"}
+            ])
+        ]}
+        res = validate_document(txt, struct)
+>       assert get_findings(res, "C6", "MANUAL_REVIEW_REQUIRED")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C6', 'MANUAL_REVIEW_REQUIRED')
+
+tests/test_validator.py:145: AssertionError
+______________________ test_c6_comparability_cell_missing ______________________
+
+    def test_c6_comparability_cell_missing():
+        txt = "Out-of-sample validation ledger"
+        struct = {"blocks": [
+            create_block("h", "heading", txt),
+            create_block("r", "table_row", "", cells=[
+                {"text": "Sim1"}, {"text": "Obs"}, {"text": "Agreement without comparability"}
+            ])
+        ]}
+        res = validate_document(txt, struct)
+>       assert get_findings(res, "C6", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C6', 'FAIL')
+
+tests/test_validator.py:157: AssertionError
+________________________ test_c6_fractions_tags_missing ________________________
+
+    def test_c6_fractions_tags_missing():
+        txt = "Feedback-relevant observables map"
+        struct = {"blocks": [
+            create_block("h", "heading", txt),
+            create_block("r", "table_row", "", cells=[
+                {"text": "Sim1"}, {"text": "Quenched fractions: CALIBRATED"}
+            ])
+        ]}
+        res = validate_document(txt, struct)
+>       assert get_findings(res, "C6", "FAIL")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C6', 'FAIL')
+
+tests/test_validator.py:168: AssertionError
+_________________________ test_c6_fractions_tags_pass __________________________
+
+    def test_c6_fractions_tags_pass():
+        txt = "Feedback-relevant observables map"
+        struct = {"blocks": [
+            create_block("h", "heading", txt),
+            create_block("r", "table_row", "", cells=[
+                {"text": "Sim1"}, {"text": "Quenched fractions: CALIBRATED (TRACER=NOT_APPLICABLE; SELECTION=NOT_APPLICABLE; DENOMINATOR=NOT_APPLICABLE; REDSHIFT=NOT_APPLICABLE)"}
+            ])
+        ]}
+        res = validate_document(txt, struct)
+        assert not get_findings(res, "C6", "FAIL")
+>       assert get_findings(res, "C6", "MANUAL_REVIEW_REQUIRED")
+E       AssertionError: assert []
+E        +  where [] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...': [], ...}, {'clause': 'C6', 'code': 'NO_C6_ISSUES', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C6', 'MANUAL_REVIEW_REQUIRED')
+
+tests/test_validator.py:180: AssertionError
+_________________________ test_c7_arxiv_normalization __________________________
+
+    def test_c7_arxiv_normalization():
+        txt = "See [https://arxiv.org/abs/1234.56789v2]"
+        struct = {"blocks": [
+            create_block("1", "paragraph", txt, links=[{"url": "https://arxiv.org/abs/1234.56789v2"}]),
+            create_block("2", "heading", "Links ledger"),
+            create_block("3", "paragraph", "123 | https://arxiv.org/html/1234.56789v3 | QUARANTINED", links=[{"url": "https://arxiv.org/html/1234.56789v3"}])
+        ]}
+        res = validate_document(txt, struct)
+>       assert not get_findings(res, "C7", "FAIL")
+E       assert not [{'clause': 'C7', 'code': 'MISSING_FROM_LEDGER', 'evidence': "{'https://arxiv.org/abs/1234.56789'}", 'source_refs': [], ...}]
+E        +  where [{'clause': 'C7', 'code': 'MISSING_FROM_LEDGER', 'evidence': "{'https://arxiv.org/abs/1234.56789'}", 'source_refs': [], ...}] = get_findings({'findings': [{'clause': 'C1', 'code': 'MISSING_HEADER_ELEMENTS', 'evidence': 'Missing run date, model, or sims covere...[], ...}, {'clause': 'C5', 'code': 'NO_BANNED_WORDS', 'evidence': '', 'source_refs': [], ...}, ...], 'overall': 'FAIL'}, 'C7', 'FAIL')
+
+tests/test_validator.py:190: AssertionError
+=========================== short test summary info ============================
+FAILED tests/test_validator.py::test_c1_header_wrong_req - AssertionError: as...
+FAILED tests/test_validator.py::test_c1_header_wrong_model - AssertionError: ...
+FAILED tests/test_validator.py::test_c2_gap_has_token - assert not [{'clause'...
+FAILED tests/test_validator.py::test_c3_scientific_bare_quantity - AssertionE...
+FAILED tests/test_validator.py::test_c3_uncertainty_token_manual - AssertionE...
+FAILED tests/test_validator.py::test_c4_generic_prose_passes - AssertionError...
+FAILED tests/test_validator.py::test_c4_same_cell_citation_pass - AssertionEr...
+FAILED tests/test_validator.py::test_c4_same_cell_citation_fail - AssertionEr...
+FAILED tests/test_validator.py::test_c6_comparability_cell_unmatched - Assert...
+FAILED tests/test_validator.py::test_c6_comparability_cell_missing - Assertio...
+FAILED tests/test_validator.py::test_c6_fractions_tags_missing - AssertionErr...
+FAILED tests/test_validator.py::test_c6_fractions_tags_pass - AssertionError:...
+FAILED tests/test_validator.py::test_c7_arxiv_normalization - assert not [{'c...
+13 failed, 16 passed in 0.09s

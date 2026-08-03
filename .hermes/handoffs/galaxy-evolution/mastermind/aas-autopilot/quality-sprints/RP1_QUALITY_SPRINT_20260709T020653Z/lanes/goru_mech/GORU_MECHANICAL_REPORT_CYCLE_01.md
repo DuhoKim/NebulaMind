@@ -1,0 +1,36 @@
+# Goru mechanical report cycle 1
+
+Marker: `GORU_MECHANICAL_REPORT_CYCLE_01`
+
+## Counts
+- flagship includegraphics: 2
+- supplement includegraphics: 8
+- flagship captions: 2
+- supplement captions: 8
+- figures found: 10
+
+## Missing required phrases
+- flagship: ['non-random']
+- supplement: ['not as independent causal', 'CO/HI']
+
+## Missing numeric invariants in flagship
+- []
+
+## Suspicious claim phrase scan
+- flagship: ['causal AGN feedback', 'outflow escape', 'molecular gas depletion']
+- supplement: ['outflow escape']
+
+## PDF receipts
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_20260709T020653Z/candidates/cycle_01_package/flagship_rp1/aastex/rp1_flagship_polished.pdf exists=True bytes=236847 header=%PDF sha256=3392f53534d8452ebb3db4191dff7855ebb13428dff768d45d847be9d5d8efac
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_20260709T020653Z/candidates/cycle_01_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.pdf exists=True bytes=527135 header=%PDF sha256=403a69d8fcf02c56bd3266db0de0363ea9c45c659d5a305861cfba7144b705e2
+
+## Safety
+- no public pages or live roots
+- no public PDF replacement
+- no database, SQL, /api/pages, page_versions, wiki publish, or trust recompute
+- no deploy/restart
+- no git commit/push/merge/rebase
+- no cron creation/update
+- no billing/cloud/OAuth/API-key/account changes
+- no external manuscript submission
+- no credential/token/cookie reads

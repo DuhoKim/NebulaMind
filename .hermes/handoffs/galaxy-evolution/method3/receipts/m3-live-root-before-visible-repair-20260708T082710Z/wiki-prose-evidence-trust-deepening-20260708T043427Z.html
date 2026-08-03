@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Galaxy Evolution - Method3 v2 docs-only deepening</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f7f8fb;
+    --panel: #ffffff;
+    --ink: #111827;
+    --muted: #5f6b7a;
+    --line: #d8dee8;
+    --soft: #eef2f7;
+    --blue: #1d4ed8;
+    --green: #15803d;
+    --amber: #a16207;
+    --red: #b91c1c;
+    --violet: #6d28d9;
+    --max: 1180px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 16px/1.68 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  a { color: var(--blue); }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 28px 18px 56px; }
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 18px;
+    margin-bottom: 18px;
+  }
+  .bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--line);
+    background: var(--panel);
+    border-radius: 999px;
+    padding: 4px 10px;
+    white-space: nowrap;
+  }
+  h1 { margin: 0 0 8px; font-size: clamp(34px, 5vw, 56px); line-height: 1.05; letter-spacing: 0; }
+  .lede { max-width: 860px; color: #334155; margin: 0; font-size: 17px; }
+  .grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 290px;
+    gap: 24px;
+    align-items: start;
+  }
+  main {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: clamp(18px, 3vw, 34px);
+    min-width: 0;
+  }
+  aside {
+    position: sticky;
+    top: 16px;
+    display: grid;
+    gap: 12px;
+  }
+  .box {
+    background: var(--panel);
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 14px;
+  }
+  .box h2, .box h3 { margin: 0 0 8px; font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .toc a { display: block; text-decoration: none; color: #334155; padding: 5px 0; font-size: 14px; line-height: 1.25; }
+  .toc a:hover { color: var(--blue); }
+  blockquote {
+    margin: 0 0 18px;
+    padding: 12px 14px;
+    border-left: 4px solid var(--blue);
+    background: #eff6ff;
+    border-radius: 0 8px 8px 0;
+    color: #334155;
+  }
+  main h2 {
+    margin: 34px 0 10px;
+    padding-top: 18px;
+    border-top: 1px solid var(--line);
+    font-size: 25px;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+  main h2:first-of-type { margin-top: 16px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 16px 22px; padding: 0; }
+  li { margin: 0 0 8px; }
+  code {
+    background: var(--soft);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 1px 5px;
+    font-size: .92em;
+  }
+  .trust {
+    display: grid;
+    gap: 6px;
+    border: 1px solid var(--line);
+    background: #fafafa;
+    border-radius: 8px;
+    padding: 12px;
+    margin: 10px 0 16px;
+    color: #334155;
+    font-size: 14px;
+  }
+  .axis-grid { display: grid; gap: 8px; }
+  .axis {
+    border: 1px solid var(--line);
+    border-radius: 8px;
+    padding: 10px;
+    background: #fbfdff;
+  }
+  .axis b { display: block; margin-bottom: 3px; }
+  .tag { display: inline-flex; border-radius: 999px; padding: 2px 8px; font-size: 12px; border: 1px solid var(--line); background: var(--soft); color: #334155; }
+  .ok { color: var(--green); }
+  .warn { color: var(--amber); }
+  .debate { color: var(--violet); }
+  .model { color: var(--red); }
+  .meta { color: var(--muted); font-size: 13px; }
+  footer { max-width: var(--max); margin: 0 auto; padding: 0 18px 36px; color: var(--muted); font-size: 13px; }
+  @media (max-width: 920px) {
+    .grid { grid-template-columns: 1fr; }
+    aside { position: static; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="bar">
+      <span class="pill">Method3 v2</span>
+      <span class="pill">docs-only deepening candidate</span>
+      <span class="pill">0 product binding</span>
+      <span class="pill">not final before 2026-07-08T06:34:40Z</span>
+    </div>
+    <h1>Galaxy Evolution</h1>
+    <p class="lede">A prose-rich, locally reproducible Method3 candidate that explains galaxy evolution as a regulated baryon cycle while exposing debate-map trust labels, reader guards, provenance IDs, and known gaps.</p>
+  </header>
+
+  <div class="grid">
+    <main>
+      <blockquote>This Method3 v2 candidate is a docs-only debate-map narrative. It deepens prose, provenance, and trust explanations without creating product claim chips, citation chips, product evidence bindings, or live-page visibility.</blockquote>
+      <blockquote><b>Trust scope.</b> Trust labels are debate-map status labels, not product trust scores. The source basis remains local: first-pass Method3 artifacts, the evidence basis, the status debate map, the debate-map refresh, and the local source inventory. P3 product binding remains closed. The PENDING_RECHECK caveat and unmatched-item disclosures are preserved.</blockquote>
+
+      <section class="box" aria-label="Deep trust legend">
+        <h2>Deep Trust Legend</h2>
+        <div class="axis-grid">
+          <div class="axis"><b><span class="ok">widely_supported</span> - mechanism_ejective_feedback</b> AGN can drive ejective/depletion feedback in selected systems. Reader guard: do not generalize to universal AGN quenching. Trace IDs include <code>clc_agn_001_ejective_mechanism_selected_systems</code> and <code>clc_agn2299_001_mechanism</code>.</div>
+          <div class="axis"><b><span class="warn">emerging_sample_limited</span> - outflow_prevalence_frequency</b> Fractions stay attached to tracer, selection, and epoch. MOSDEF 17 percent ionized outflows and JWST 46 percent Na I D excess absorption are separate scoped measurements, not one prevalence range.</div>
+          <div class="axis"><b><span class="debate">actively_debated</span> - dominance_debate</b> Do not render a winner. AGN feedback is one important axis among central, halo, environment, satellite, reservoir, stripping, strangulation, and stellar-feedback pathways.</div>
+          <div class="axis"><b><span class="model">model-dependent</span> - maintenance_heating_prevention</b> Maintenance or preventive heating is model-dependent in this corpus unless later P3 adds accepted observational rows.</div>
+          <div class="axis"><b><span class="debate">actively_debated</span> - reservoir_response</b> Expulsion does not necessarily empty reservoirs. Central-kiloparsec depletion must be distinguished from global gas removal.</div>
+          <div class="axis"><b><span class="ok">widely_supported</span> - alternatives_countercases</b> Non-AGN channels are part of the explanation, not an uncertainty footnote.</div>
+          <div class="axis"><b><span class="model">model-dependent</span> - simulation_model_scope</b> Simulation-only rows cannot establish observed prevalence, observed maintenance heating, or observed reservoir depletion.</div>
+        </div>
+      </section>
+
+      <section class="box" aria-label="Local provenance navigation">
+        <h3>Local Provenance Navigation</h3>
+        <p class="meta">Per-section links to the local evidence-basis ledger (docs-only; the IDs are provenance, unbound to product cite IDs; P3 binding closed). Restores per-section navigation dropped in an earlier refinement; anchors verified present.</p>
+        <div class="axis-grid">
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s1">Overview: Regulated Baryon Cycle &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s2">Dark Matter Halos &amp; Structure Formation &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s3">Gas Supply, Star Formation &amp; Feedback &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s4">AGN Feedback &amp; Quenching &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s5">Environment, Morphology &amp; Structural Growth &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s6">Chemical Enrichment &amp; Cosmic Timing &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s7">High-Redshift &amp; Reionization Frontier &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s8">Observational Evidence &amp; Surveys &rarr; evidence basis</a>
+          <a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md#s9">Synthesis &amp; Open Tensions &rarr; evidence basis</a>
+        </div>
+      </section>
+
+      <h2 id="overview">Overview: Galaxy Evolution as a Regulated Baryon Cycle</h2>
+      <div class="trust"><b>Deepened trust framing:</b> multi-channel synthesis anchored to <code>alternatives_countercases</code> and all seven local debate axes.<br><b>Reader guard:</b> alternative channels are part of the explanation, not an uncertainty footnote.<br><b>Status movement:</b> broader corpus review would need to show that a named alternative is out of scope for this page question.</div>
+      <p>Galaxy evolution is the coupled history of halos, gas, stars, black holes, metals, and environments. A durable wiki page should not imply that galaxy evolution is solved by one quenching channel or one favored observable. The clearer synthesis is a regulated baryon cycle: dark matter halos acquire and heat gas; galaxies convert only part of that gas into stars; stellar feedback, black-hole activity, and environmental processing return energy and enriched material to surrounding reservoirs; and quenching slows or halts star formation through several channels whose importance changes with mass, redshift, structure, and selection.</p>
+      <p>The debate-map framing controls the page's verbs. Widely supported mechanisms can be written as real channels, active debates must remain debates, sample-limited frequencies must carry sample and tracer context, and simulation-only mechanisms must stay model-dependent.</p>
+
+      <h2 id="halos">Dark Matter Halos &amp; Structure Formation</h2>
+      <div class="trust"><b>Deepened trust framing:</b> scoped coverage extension; halo mass and assembly are locally supported, while broad cosmological structure formation remains outside this rebuilt evidence pass.<br><b>Reader guard:</b> halo mass can frame regulation, but it cannot be rendered as the only quenching predictor.<br><b>Status movement:</b> matched causal work decomposing halo, central, black-hole, gas, and environment predictors would narrow the halo-versus-central debate.</div>
+      <p>Dark matter halos set the gravitational boundary conditions for galaxy formation. Their mass and assembly history affect gas accretion, virial heating, recycling, satellite infall, and whether feedback energy escapes or remains coupled to the circumgalactic medium. Halo assembly belongs early in the page because it shapes what later baryonic mechanisms can do.</p>
+      <p>The deeper caution is that halo mass is not a universal explanation for visible galaxy state. Similar halo masses can host galaxies with different star-formation histories, central densities, gas reservoirs, and environments. The local debate map treats central black-hole, bulge, and velocity-dispersion predictors as real axes that can compete with or qualify halo-mass explanations.</p>
+
+      <h2 id="gas">Gas Supply, Star Formation &amp; Feedback</h2>
+      <div class="trust"><b>Deepened trust framing:</b> reservoir response is actively debated; non-AGN alternatives and retained-gas qualifiers are required context.<br><b>Reader guard:</b> expulsion does not necessarily empty reservoirs; central depletion must be kept distinct from global gas loss.<br><b>Status movement:</b> global gas-reservoir studies linked to AGN stage, star-formation efficiency, and resolved depletion could separate retained reservoirs from central-local depletion.</div>
+      <p>The gas cycle links accretion, star formation, stellar feedback, recycling, and quenching. Star formation requires usable cold gas, but the presence of gas is not equivalent to efficient star formation. Some systems can retain reservoirs and still form stars slowly; others show central kiloparsec depletion; still others lose or heat gas through environmental and feedback channels.</p>
+      <p>The <code>reservoir_response</code> axis records both retained-gas or low-SFE qualifiers and central-kiloparsec depletion evidence. That combination makes the reservoir question active, not settled. A reproducible page must avoid claims that feedback empties all reservoirs unless a later product-binding pass supplies direct, global, population-level support.</p>
+
+      <h2 id="agn">AGN Feedback &amp; Quenching</h2>
+      <div class="trust"><b>Deepened trust framing:</b> ejective/depletion mechanism is widely supported in selected systems; outflow prevalence is emerging and sample-limited; dominance is actively debated; maintenance heating is model-dependent in this corpus.<br><b>Reader guard:</b> use "can", "may", and "in selected systems"; do not say AGN generally quenches galaxies or empties reservoirs.<br><b>Status movement:</b> selection-controlled observational samples linking AGN-driven removal or heating to later star-formation suppression could sharpen mechanism status.</div>
+      <p>AGN feedback is real, but the reproducible version is conditional. The <code>mechanism_ejective_feedback</code> axis supports that AGN activity can drive outflows capable of removing or depleting star-forming fuel in selected massive or AGN-host galaxies. Representative local bibcodes include <code>2014A&amp;A...562A..21C</code>, <code>2024MNRAS.528.4976D</code>, <code>2024NatAs...8.1443D</code>, and <code>2012MNRAS.420.2662D</code>. That is enough to describe an important mechanism, but not enough to claim universal quenching.</p>
+      <p>Outflow frequency needs more care. The ledger records a MOSDEF z = 1.4-3.8 AGN sample with 17 percent ionized outflows and one JWST massive z ~ 2 sample with 46 percent excess Na I D absorption, half of absorption profiles blueshifted. Those are two different scoped measurements. They should never be merged into one prevalence number.</p>
+      <p>The dominance question remains open. The <code>dominance_debate</code> axis blocks a winner, and <code>maintenance_heating_prevention</code> keeps preventive heating model-dependent in this corpus unless later accepted observational rows are bound.</p>
+
+      <h2 id="environment">Environment, Morphology &amp; Structural Growth</h2>
+      <div class="trust"><b>Deepened trust framing:</b> environmental pathways are widely supported; morphology and structural growth remain scoped and correlational unless later evidence narrows causality.<br><b>Reader guard:</b> environmental strangulation is separate from internal AGN starvation; structural correlations are predictors, not automatically causes.<br><b>Status movement:</b> matched samples separating group, cluster, satellite, central, halo, bulge, and black-hole predictors would reduce ambiguity.</div>
+      <p>Environment changes galaxies by stripping, starving, perturbing, and merging them. After infall into groups or clusters, satellites can be affected by ram pressure, tidal processing, strangulation, and changes in gas supply. Those pathways are real alternatives to internal AGN feedback and need to appear in the explanation itself.</p>
+      <p>Bulge growth, central stellar density, velocity dispersion, size evolution, mergers, and black-hole mass often track quenching. Tracking is not proof of a single independent cause. This candidate carries the known caveat that claim <code>2133</code> resolves locally, but source <code>2605.22497</code> is missing from the listed set.</p>
+
+      <h2 id="chemical">Chemical Enrichment &amp; Cosmic Timing</h2>
+      <div class="trust"><b>Deepened trust framing:</b> scoped coverage extension; strongest local basis is the mass-metallicity relation, the fundamental metallicity relation, and stellar-age or abundance timing.<br><b>Reader guard:</b> redshift scope travels with the statement; do not generalize z ~ 0-2.3 FMR language to all epochs.<br><b>Status movement:</b> broader product-bound chemical-evolution rows across more epochs would be needed for a universal enrichment narrative.</div>
+      <p>Chemical enrichment records how gas has been accreted, processed into stars, enriched, expelled, recycled, or diluted. Metallicity is therefore both a clock and a regulator. The local basis supports mass-metallicity and fundamental-metallicity-relation language around the local universe through cosmic noon, with the strongest stability statement roughly scoped to z ~ 0-2.3.</p>
+      <p>The page should preserve distributional timing rather than imply one timeline. Massive systems may have older central populations and younger outskirts; recently quenched galaxies can preserve different formation timescales; metallicity normalization can evolve with redshift.</p>
+
+      <h2 id="high-redshift">High-Redshift &amp; Reionization Frontier</h2>
+      <div class="trust"><b>Deepened trust framing:</b> cosmic-noon shutdown remains sample- and model-dependent; reionization and z &gt; 10 mass tension remain open frontier debates.<br><b>Reader guard:</b> do not conflate hydrogen reionization at z &gt; 6 with helium II reionization near z ~ 3; present z &gt; 10 tensions as constraints, not conclusions.<br><b>Status movement:</b> better constrained stellar masses, dust, IMF, burst histories, baryon-conversion efficiencies, halo abundances, and photon escape fractions would narrow these frontiers.</div>
+      <p>High-redshift galaxy evolution contains several regimes. At cosmic noon, roughly z ~ 1.5-3, some massive galaxies appear to shut down rapidly, and AGN-linked explanations are discussed as possible fast channels. That is sample- and model-dependent evidence, not a universal high-redshift rule.</p>
+      <p>The reionization frontier remains open. The page can describe competing ionizing-photon budgets while keeping helium II reionization near z ~ 3 distinct from hydrogen reionization at z &gt; 6. JWST-era z &gt; 10 massive-galaxy tensions should be written as tensions with possible explanations, not conclusions. Claim <code>2374</code> remains unbound because the local text is garbled.</p>
+
+      <h2 id="observational">Observational Evidence &amp; Surveys</h2>
+      <div class="trust"><b>Deepened trust framing:</b> evidence-method framing; simulation claims remain model-dependent unless observation-linked validation is bound later.<br><b>Reader guard:</b> simulation-only rows cannot establish observed prevalence, observed maintenance heating, or observed reservoir depletion.<br><b>Status movement:</b> observation-linked validation of predicted outflow rates, heating signatures, and quenching outcomes in unbiased samples could raise individual simulation-backed claims.</div>
+      <p>The evidence base is multi-wavelength and redshift-dependent. Rest-frame optical and near-infrared data constrain stellar populations, nebular lines, metallicities, and dust. Submillimetre and radio data trace molecular or atomic gas and obscured star formation. X-ray and radio signatures can reveal AGN power, hot atmospheres, cavities, and jets. Integral-field spectroscopy maps resolved kinematics, outflows, turbulence, gradients, and central-versus-global quenching.</p>
+      <p>Simulations belong beside observations but not inside observational prevalence claims. The <code>simulation_model_scope</code> axis supports mechanisms under named model assumptions and blocks simple observed-frequency language.</p>
+
+      <h2 id="synthesis">Synthesis &amp; Open Tensions</h2>
+      <div class="trust"><b>Deepened trust framing:</b> all seven axes converge on a context-dependent, multi-channel synthesis.<br><b>Reader guard:</b> do not render a winner for mechanism dominance; do not hide uncertainty outside the topic paragraphs.<br><b>Status movement:</b> P3 binding with accepted claim rows, clean source IDs, and fresh mechanical checks could convert selected local provenance statements into product evidence.</div>
+      <p>The page's strongest supported conclusion is not a single cause; it is a structured map of interacting causes. Halos set boundary conditions. Gas supply and recycling provide fuel. Stellar feedback regulates lower-mass systems and can drive counterexample outflows. AGN feedback can remove or deplete gas in selected systems. Environment adds stripping, strangulation, satellite, and group or cluster pathways. Structure and central predictors track quenching while leaving causal ranking open.</p>
+      <p>The open tensions are equally important: outflow prevalence, AGN dominance, retained reservoirs, central versus global depletion, preventive maintenance heating, z &gt; 10 mass tensions, ionizing-photon budgets, and simulation-to-observation transfer.</p>
+
+      <h2 id="gaps">Evidence Status &amp; Known Gaps</h2>
+      <div class="trust"><b>Deepened trust framing:</b> explicit gap ledger; no silent upgrade of unresolved rows.<br><b>Reader guard:</b> unresolved rows must remain visible until repaired or removed by a later P3 binding pass.</div>
+      <ul>
+        <li><code>2915</code>, <code>2921</code>, and <code>2913</code> are body-only AGN-related IDs in the first-pass ledger context and should be re-resolved before product binding.</li>
+        <li><code>2133</code> resolves locally, but source <code>2605.22497</code> is missing from the listed set; P3 should add a clean source row or restrict the sentence.</li>
+        <li><code>2374</code> has garbled claim text for an early-black-hole-seeding clause and is not treated as product evidence.</li>
+        <li><code>FINAL_DRAFT_PATCHED_AFTER_GORU_BLOCKER_PENDING_RECHECK</code> remains a baseline caveat.</li>
+      </ul>
+      <p class="meta">This is a working-repo static candidate. It does not imply live visibility, static mirroring, publication, or product evidence binding.</p>
+    </main>
+
+    <aside>
+      <section class="box toc">
+        <h3>Contents</h3>
+        <a href="#overview">Overview</a>
+        <a href="#halos">Dark Matter Halos</a>
+        <a href="#gas">Gas Supply</a>
+        <a href="#agn">AGN Feedback</a>
+        <a href="#environment">Environment &amp; Structure</a>
+        <a href="#chemical">Chemical Timing</a>
+        <a href="#high-redshift">High Redshift</a>
+        <a href="#observational">Observational Evidence</a>
+        <a href="#synthesis">Synthesis</a>
+        <a href="#gaps">Known Gaps</a>
+      </section>
+      <section class="box">
+        <h3>Local Artifacts</h3>
+        <p class="meta"><a href="page-content-prose-evidence-trust-deepening-20260708T043427Z.md">Markdown body</a></p>
+        <p class="meta"><a href="evidence-trust-coverage-map-deepening-20260708T043427Z.json">Coverage map</a></p>
+        <p class="meta"><a href="manifest-deepening-20260708T043427Z.json">Manifest</a></p>
+        <p class="meta"><a href="../evidence-trust-rebuild/evidence-basis-20260708T014205Z.md">Prior evidence basis</a></p>
+      </section>
+      <section class="box">
+        <h3>Safety</h3>
+        <p class="meta">Static HTML only. No scripts, no live calls, no product binding, no external URLs, no live-root mirror.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+<footer>
+  Method3 debate-map-to-wiki rebuild. Parent marker AUTOPILOT_PROSE_EVIDENCE_TRUST_DEEPENING_20260708T043427Z. Seed DEEPENING_RESOURCE_SEED_20260708T043427Z. Candidate progress artifact only before 2026-07-08T06:34:40Z.
+</footer>
+</body>
+</html>

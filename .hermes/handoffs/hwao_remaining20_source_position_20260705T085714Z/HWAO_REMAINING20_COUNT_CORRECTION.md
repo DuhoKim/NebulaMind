@@ -1,0 +1,30 @@
+**PASS_AMENDED_COUNTS** — the queue data is correct; the error was in the original edit gate's prose totals, not in Tori's apply. Tori is cleared to finish receipts/cockpit with the actual final enum totals: **relink=17, route_kinetic_radio=5, leave_archival=14, pending=0**, preserving every row-level decision already approved. No further edits to the four queue files are authorized or needed under this ruling.
+
+## What I verified independently on disk
+
+- Snapshot `snapshots/pre_remaining20_20260705T0900Z/` confirms the pre-pass state: relink=8, leave_archival=5, route_kinetic_radio=3, pending=20 (16 completed, 20 pending).
+- Current queue JSONL: 36/36 rows `completed_docs_only_source_position_human_adjudication`, decisions relink=17, leave_archival=14, route_kinetic_radio=5, zero pending.
+- All 20 edited rows match the approved decision table exactly — no deviations, including route_kinetic_radio on 28062 and 28131.
+- All 20 rows are stamped `human_reviewer: HWAO_REMAINING20_EDIT_GATE_20260705T085714Z` as the edit gate instructed.
+- Arithmetic closes: snapshot (5/8/3) + approved pass (9/9/2) = 14/17/5 = the disk state, summing to 36.
+
+## Root cause
+
+The original gate's finals line (relink=18, route_kinetic_radio=4) implicitly assumed the 16 pre-existing rows were 9 relink / 2 route_kinetic_radio, when the snapshot shows they were 8 / 3. The gate's own per-pass contribution line ("9 / 2 / 9") and its row table were correct and are what Tori applied. Since post-apply validation confirmed all 16 non-target rows are byte-unchanged across all four formats, the disk totals govern. The three failed validation checks (`json_counts`, `csv_counts`, `markdown_counts`) are exactly this erroneous expectation and nothing else; with amended expected totals the validation is green.
+
+## Amended cockpit completion text
+
+```
+HWAO remaining-20 complete: galaxy-2929 source-position queue is 36/36 decided docs-only. This pass closed all 20 pending rows (B4–B8): 11 accepted_limited (2943: 28140, 28144, 28148; 2944: 28069, 28073, 28088; 2945: 28066, 28075; 2946: 28089; 2947: 28062, 28131) and 9 leave_archival (28070, 28076, 28080, 28082, 28083, 28084, 28110, 28114, 28118). All four queue formats (json/jsonl/csv/md) updated; final enum totals relink=17, route_kinetic_radio=5, leave_archival=14, pending=0. Hard locks held throughout: no SQL/apply/rollback, no DB read/write, no trust recompute, no prose/wiki publish, no deploy/restart, no git, no cron/cloud/account/secret; Gemini web quota unused. Product/DB publication remains NO-GO pending a later exact-diff packet.
+
+HWAO_REMAINING20_EDIT_GATE_20260705T085714Z
+HWAO_REMAINING20_COUNT_CORRECTION_20260705T103310Z
+```
+
+Receipts should cite both markers — the edit gate remains the row-level authority; this ruling amends only the derived totals.
+
+## Still in force
+
+All eight caveats from the edit gate carry into receipts unchanged (same-source stacking of 28069/28073 on 2944, thin spans on 28131/28140/28148, 28076 stays rejected from 2947, abstract-level verification caps, the malformed arXiv URL on 28110/28131 deferred to a later cleanup pass). All hard locks hold: no SQL/apply/rollback, no DB writes, no trust recompute, no publish/deploy/git; Gemini web quota remains unused and reserved. Product/DB evidence binding stays NO-GO until a later exact-diff packet.
+
+HWAO_REMAINING20_COUNT_CORRECTION_20260705T103310Z

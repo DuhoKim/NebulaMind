@@ -1,0 +1,186 @@
+{
+  "accepted_coverage_matrix": {
+    "m1_rp1_sdss_agn_sfr": {
+      "boundary": "Actual SDSS DR17 emission-line matched-control association; not causal AGN-feedback proof and not a complete quiescent-galaxy census.",
+      "label": "M1 RP-1 — SDSS AGN/sSFR matched-control pilot",
+      "target_roles": [
+        "actual_data_or_method",
+        "scoped_interpretation",
+        "overclaim_guard"
+      ]
+    },
+    "m2_p3_feedback_transition_mass": {
+      "boundary": "Actual SDSS mass-bin quenched-fraction / optical-BPT-AGN incidence diagnostic; no gas fractions, halo masses, baryon deficits, or causal stellar-vs-AGN feedback separation.",
+      "label": "M2 P3 — mass transition in quenching and optical AGN incidence",
+      "target_roles": [
+        "actual_data_or_method",
+        "status_or_debate_context",
+        "future_data_guard"
+      ]
+    },
+    "m3_p1_multiphase_census": {
+      "boundary": "Actual SDSS optical tracer denominator only; no molecular/neutral/X-ray/radio common-denominator outflow rates or kinetic powers measured.",
+      "label": "M3 P1 — common-denominator optical tracer census",
+      "target_roles": [
+        "actual_data_or_method",
+        "multiphase_status_context",
+        "future_data_guard"
+      ]
+    }
+  },
+  "ads_credentials_used": true,
+  "arxiv_fetch_errors": {},
+  "availability_counts": {
+    "ads_abstract": 17,
+    "ads_arxiv_available_from_identifier_entries": 17,
+    "ads_bibcode": 17,
+    "ads_identifier_entries": 17,
+    "authors": 17,
+    "doi": 17,
+    "year": 17
+  },
+  "coverage_category_counts": {
+    "m1_rp1_sdss_agn_sfr": {
+      "actual_data_provenance": 1,
+      "agn_sfr_context": 1,
+      "optical_agn_classification_method": 1,
+      "retired_liner_overclaim_guard": 1,
+      "sfr_stellar_property_method": 1
+    },
+    "m2_p3_feedback_transition_mass": {
+      "actual_data_provenance": 1,
+      "black_hole_mass_debate_guard": 1,
+      "galaxy_bimodality_context": 1,
+      "halo_shock_heating_model_context": 1,
+      "mass_environment_quenching_context": 1,
+      "stellar_mass_method": 1,
+      "stellar_mass_transition_context": 1
+    },
+    "m3_p1_multiphase_census": {
+      "actual_data_provenance": 1,
+      "agn_wind_scaling_future_data": 1,
+      "molecular_outflow_future_data": 1,
+      "multiphase_case_study_guard": 1,
+      "multiphase_outflow_review": 1,
+      "neutral_ionized_phase_mismatch_guard": 1,
+      "optical_agn_classification_method": 1,
+      "star_formation_wind_review_guard": 1
+    }
+  },
+  "coverage_ready": {
+    "m1_rp1_sdss_agn_sfr": {
+      "missing_target_roles": [],
+      "observed_roles": [
+        "actual_data_or_method",
+        "overclaim_guard",
+        "scoped_interpretation"
+      ],
+      "ready_for_local_integration_review": true,
+      "target_roles": [
+        "actual_data_or_method",
+        "scoped_interpretation",
+        "overclaim_guard"
+      ]
+    },
+    "m2_p3_feedback_transition_mass": {
+      "missing_target_roles": [],
+      "observed_roles": [
+        "actual_data_or_method",
+        "future_data_guard",
+        "status_or_debate_context"
+      ],
+      "ready_for_local_integration_review": true,
+      "target_roles": [
+        "actual_data_or_method",
+        "status_or_debate_context",
+        "future_data_guard"
+      ]
+    },
+    "m3_p1_multiphase_census": {
+      "missing_target_roles": [],
+      "observed_roles": [
+        "actual_data_or_method",
+        "future_data_guard",
+        "multiphase_status_context"
+      ],
+      "ready_for_local_integration_review": true,
+      "target_roles": [
+        "actual_data_or_method",
+        "multiphase_status_context",
+        "future_data_guard"
+      ]
+    }
+  },
+  "deduplicated_candidate_records_total": 17,
+  "duplicate_dedupe_keys": [],
+  "gate": "SOURCE_GROUNDING_PACKET_READY_FOR_LOCAL_CITATION_INTEGRATION_REVIEW_ONLY",
+  "gate_caveat": "Does not authorize public/wiki/prose publication, DB/API/page_versions/trust, deploy/restart, git operations, or external submission.",
+  "local": "2026-07-09 02:05:57 KST",
+  "marker": "LITERATURE_SOURCE_WAVE3_MISSING_ACTIVE9_20260708T170557Z",
+  "missing_ads_records": [],
+  "outputs": {
+    "goru_validation_json": "lanes/goru/artifacts/goru_literature_wave3_validation_20260708T170557Z.json",
+    "goru_validation_md": "lanes/goru/ticks/GORU_LITERATURE_WAVE3_VALIDATE_20260708T170557Z.md",
+    "jsonl": "lanes/literature/literature_sources_wave3_missing_active9_20260708T170557Z.jsonl",
+    "packet_md": "lanes/literature/literature_source_packet_wave3_missing_active9_20260708T170557Z.md",
+    "summary_json": "lanes/literature/literature_summary_wave3_missing_active9_20260708T170557Z.json",
+    "tick_md": "ticks/TICK_20260708T170557Z.md"
+  },
+  "public_sources_used": [
+    "NASA ADS API",
+    "arXiv export API",
+    "Semantic Scholar status probe"
+  ],
+  "raw_payloads": {
+    "ads_by_paper": {
+      "m1_rp1_sdss_agn_sfr": "lanes/literature/raw_payloads/20260708T170557Z/m1_rp1_sdss_agn_sfr_ads_identifier_payloads.json",
+      "m2_p3_feedback_transition_mass": "lanes/literature/raw_payloads/20260708T170557Z/m2_p3_feedback_transition_mass_ads_identifier_payloads.json",
+      "m3_p1_multiphase_census": "lanes/literature/raw_payloads/20260708T170557Z/m3_p1_multiphase_census_ads_identifier_payloads.json"
+    },
+    "arxiv_by_paper": {
+      "m1_rp1_sdss_agn_sfr": "lanes/literature/raw_payloads/20260708T170557Z/m1_rp1_sdss_agn_sfr_arxiv_id_list.xml",
+      "m2_p3_feedback_transition_mass": "lanes/literature/raw_payloads/20260708T170557Z/m2_p3_feedback_transition_mass_arxiv_id_list.xml",
+      "m3_p1_multiphase_census": "lanes/literature/raw_payloads/20260708T170557Z/m3_p1_multiphase_census_arxiv_id_list.xml"
+    },
+    "semantic_scholar_status": "lanes/literature/raw_payloads/20260708T170557Z/semantic_scholar_status_check.json"
+  },
+  "records_by_paper_role_credit": {
+    "m1_rp1_sdss_agn_sfr": 5,
+    "m2_p3_feedback_transition_mass": 7,
+    "m3_p1_multiphase_census": 8
+  },
+  "records_total": 17,
+  "role_credit_counts": {
+    "m1_rp1_sdss_agn_sfr": {
+      "actual_data_or_method": 3,
+      "overclaim_guard": 1,
+      "scoped_interpretation": 1
+    },
+    "m2_p3_feedback_transition_mass": {
+      "actual_data_or_method": 2,
+      "future_data_guard": 2,
+      "status_or_debate_context": 3
+    },
+    "m3_p1_multiphase_census": {
+      "actual_data_or_method": 2,
+      "future_data_guard": 4,
+      "multiphase_status_context": 2
+    }
+  },
+  "safety": {
+    "local_artifacts_only_under_overnight_root_except_reading_ads_token_env": true,
+    "no_deploy_restart_git_billing_oauth_cron_or_external_submission": true,
+    "no_product_db_sql_api_pages_or_page_versions": true,
+    "no_public_pages_or_live_roots": true,
+    "no_trust_recompute": true
+  },
+  "scope": "Wave-3 source grounding for active-9 papers not covered by prior literature packets: M1 RP-1, M2 P3, and M3 P1. No manuscript/public/prose edits.",
+  "semantic_scholar": {
+    "attempted": true,
+    "error": "HTTPError: HTTP Error 429: ",
+    "status": 429,
+    "url": "https://api.semanticscholar.org/graph/v1/paper/arXiv:2112.02026?fields=title,authors,year,citationCount,externalIds",
+    "used_credentials": false
+  },
+  "utc": "2026-07-08T17:05:57Z"
+}

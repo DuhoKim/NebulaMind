@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "packet_id": "gemini-web-rampage-extension-20260711T064115Z",
+  "role": "Post-Wave-4 extension packet: 9 new Gemini Web Deep Research sidecars for the original 48h research-journal pilot and Method-3 debate-map/wiki work",
+  "author": "Hwao (coordinator only; packet generation, no browsing/dispatch)",
+  "base_packet": "../gemini-web-rampage-20260711T052300Z",
+  "commissioned_utc": "2026-07-11T06:41:15Z",
+  "packet_written_utc": "2026-07-11T07:17:46Z",
+  "authority": {
+    "scope": "DUHO_GEMINI_WEB_WIKI_RESEARCH_ARTIFACT_SCOPE_20260711T004710Z",
+    "fresh_approval": "Duho direction 20260711T064115Z (commissioning message)",
+    "relation_to_base": "sanctioned continuation required by base DIRECTION s5 no-improvisation clause; base packet and its in-flight Wave 4 are untouched"
+  },
+  "arming_preconditions_all_required": [
+    "base runs/wave4 R1b,R2b,R4b each terminal (RUN_CAPTURED xor RUN_VOID)",
+    "fresh post-Wave-4 quota extract per evidence protocol shows used% < 60",
+    "no stop condition; >=60 min to nominal reset (~2026-07-11T17:23Z, operator-confirmed) per wave",
+    "write EXTENSION_ARMED_<UTC>Z (else RAMPAGE_EXT_NOT_ARMED_<QUOTA|WAVE4_OPEN|STOP|RESET>_<UTC>Z) before any launch"
+  ],
+  "quota_policy": {
+    "meter_observation_at_commissioning": "app-compute meter pinned at 1% through nine authenticated Pro+Deep Research launches (base ledger waves 1-3; wave 4 in flight)",
+    "meter_non_responsive_clause": "if fresh post-Wave-4 extract still reads 1%, ledger event METER_NON_RESPONSIVE; launches proceed under conservative 20pp-per-wave projection (used% + 20 <= 80, fresh extract before each wave); record verbatim that successful Deep Research runs may not charge the displayed app-compute bucket and the 60-75% displayed-burn target may be unreachable; run-count cap is the effective bound",
+    "responsive_meter_gate": "used% + max(observed per-wave delta, 20) <= 80 per wave; crossing 60% => finish current wave then stop",
+    "useful_target_pct": [60, 75],
+    "hard_stop_pct": 80,
+    "hard_stops": ["quota>=80% (or projected)", "billing/upsell/upgrade interstitial", "account-verification demand", "safety issue or operator doubt", "weekly reset"]
+  },
+  "evidence_protocol": {
+    "screencapture_tcc": "DENIED - must not be bypassed (no screencapture/tccutil/System Settings/third-party capture)",
+    "quota_evidence": "trusted chrome-auto extractor files under evidence/: usage-page URL as loaded + UTC + DOM-scoped usage text + extractor identity; sha256 recorded in WAVE_LEDGER.md; any missing field => INVALID => fail closed",
+    "capture_standard": "extractor-pulled conversation text + conversation URL + UTC; per-run CAPTURE_RECEIPT.md with wc -c and shasum -a 256; captured files immutable"
+  },
+  "waves": {
+    "wave5": ["R7", "R8", "R9"],
+    "wave6": ["R10", "R11", "R12"],
+    "wave7": ["R13", "R14", "R15"],
+    "concurrency": "3 conversations per wave, starts staggered >=60s; fresh gate extract before each wave",
+    "run_count_cap": 9,
+    "retry_policy": "one launch per prompt; no replicates; no retry of VOIDs; only packet-authorized interaction is ONE neutral 'continue' iff generation visibly truncates mid-stream (logged in meta.md); completed body without marker = VOID, no follow-up",
+    "beyond_wave7": "nothing launches without a new Hwao packet"
+  },
+  "runs": [
+    {"id": "R7",  "wave": 5, "prompt": "prompts/R7.md",  "sha256": "59bd4a0d88b768975dc93d5429fc86c595c74c73441899b3acca8b123cee3f6f", "topic": "survey-feasibility dossier for six-card decision criteria (published specs, depths, program stats)", "req_id": "REQ_RAMPAGE_R7_20260711T064115Z",  "completion_marker": "GEMINI_WEB_RAMPAGE_R7_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R8",  "wave": 5, "prompt": "prompts/R8.md",  "sha256": "58caf87c3ecd3b9237eb1be8c9f45e7c99310e3a107ecf9259ad094f80f993b6", "topic": "matched-estimand redshift-evolution tables E1-E6 (single-estimand series only)", "req_id": "REQ_RAMPAGE_R8_20260711T064115Z",  "completion_marker": "GEMINI_WEB_RAMPAGE_R8_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R9",  "wave": 5, "prompt": "prompts/R9.md",  "sha256": "ac5bbeb9e6bda823a9a12c0dd4988aade477ede97f94f6b821f8d69ff1f1006b", "topic": "maintenance heating at low halo mass (<~10^13.5 Msun)", "req_id": "REQ_RAMPAGE_R9_20260711T064115Z",  "completion_marker": "GEMINI_WEB_RAMPAGE_R9_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R10", "wave": 6, "prompt": "prompts/R10.md", "sha256": "01b31592db7aae97f5fdccf424095aaf36887e1d59cd9bdaab4045e7f6278d8d", "topic": "tracer/aperture harmonization methods + published before/after shifts", "req_id": "REQ_RAMPAGE_R10_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R10_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R11", "wave": 6, "prompt": "prompts/R11.md", "sha256": "e66aa132c6cb1fef4ef86b135d3ede2ec14bd7f68f9715512babcc246003088f", "topic": "contradiction map (CONTRA entries, domains D1-D6) for Method-3 debate-map", "req_id": "REQ_RAMPAGE_R11_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R11_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R12", "wave": 6, "prompt": "prompts/R12.md", "sha256": "709798a9fabfa655159c81195f7198e4a26b5ff0c6158feca3a38a6435fd34a2", "topic": "source-identifier verification strategies (methods survey for quarantine pipeline)", "req_id": "REQ_RAMPAGE_R12_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R12_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R13", "wave": 7, "prompt": "prompts/R13.md", "sha256": "f8b80ff8738ff5c5e98983ec433a27c68f0f27b900d87c0fee873dc62eb4a555", "topic": "high-z quiescent frontier census (z>=3 confirmed objects, gas limits, timescales)", "req_id": "REQ_RAMPAGE_R13_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R13_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R14", "wave": 7, "prompt": "prompts/R14.md", "sha256": "0d8816b05d49f8cc3e3a91d09f6668435a03e44733497c142cd6028f6397b50b", "topic": "quenching-predictor head-to-head census (structure vs BH vs halo vs environment)", "req_id": "REQ_RAMPAGE_R14_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R14_OUTPUT_DONE_20260711T064115Z"},
+    {"id": "R15", "wave": 7, "prompt": "prompts/R15.md", "sha256": "6fdb5c362446a67f1e4f80e365262cc3fe2077ce1812d82cf7529029408bc85e", "topic": "simulation calibration provenance / out-of-sample validation ledger", "req_id": "REQ_RAMPAGE_R15_20260711T064115Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R15_OUTPUT_DONE_20260711T064115Z"}
+  ],
+  "prompt_contract_common": ["checkable citations (arXiv/DOI/ADS/URL) or UNCITED_NOT_USABLE", "uncertainty on every number or UNCERTAINTY_NOT_QUOTED_BY_SOURCE", "banned settled/causal own-voice register", "four-qualifier + non-commensurability rules", "links ledger with QUARANTINED_PENDING_LOCAL_CHECK", "NONE_FOUND empty-field device", "single self-contained markdown body", "exact completion marker as FINAL non-empty line + end-of-prompt reminder + explicit ban on trailing text (hardening after base R5/R6 marker-absent VOIDs)"],
+  "files": {
+    "DIRECTION.md": "7017abec65aaadeb646ca35c05b422a88a3a5115663fa4ec6b3281dc70e6845d",
+    "WAVE_LEDGER.md": "8db07bd6de3f27982ac3841ba7b8072223d7c9c1eda1d68edb736c6d8657836a (seed row only; append-only thereafter)"
+  },
+  "run_capture_set": ["prompt_submitted.md (byte-copy of prompts/R<n>.md, sha256 must match this manifest)", "plan_snapshot.md (or absence noted in meta.md)", "body.md", "meta.md (incl. meter_status and arming-marker reference)", "CAPTURE_RECEIPT.md", "RUN_CAPTURED_R<n> xor RUN_VOID_R<n> (+VOID_REASON.md)"],
+  "markers": {
+    "ready": "HWAO_GEMINI_WEB_RAMPAGE_EXTENSION_READY_20260711T064115Z",
+    "armed": "EXTENSION_ARMED_<UTC>Z",
+    "not_armed_pattern": "RAMPAGE_EXT_NOT_ARMED_<QUOTA|WAVE4_OPEN|STOP|RESET>_<UTC>Z",
+    "hard_stop_pattern": "RAMPAGE_EXT_HARD_STOP_<QUOTA|BILLING|VERIFICATION|SAFETY|RESET>_<UTC>Z + HARD_STOP_REASON.md",
+    "normal_end": "RAMPAGE_EXT_COMPLETE_<UTC>Z"
+  },
+  "locks": {
+    "outputs": "raw/advisory under runs/ only; no adjudication/integration/harvesting/lead-triage during generation; all IDs QUARANTINED_PENDING_LOCAL_CHECK; existing wave-1..4 quarantines remain in force",
+    "no_writes": ["DB", "wiki", "candidates", "SPRINT_STATUS", "runner PID 45665 / any runtime (no signals/env/config)", "git", "publish/deploy", "cron", "cloud/GCP", "billing", "account", "credentials", "extensions"],
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-web-rampage-extension-20260711T064115Z/ (temp files as _tmp_* inside)"
+  },
+  "adjudication": "post-generation only, separate quintet-reviewed brief; nothing from R7-R15 influences any writer slot, wiki, or candidate before that pass"
+}

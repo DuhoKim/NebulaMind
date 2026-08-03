@@ -1,0 +1,64 @@
+{
+  "marker": "PAPER_DISTILLATION_READONLY_PILOT_RESULT_V1",
+  "updated_utc": "2026-07-01T12:26:48Z",
+  "updated_kst": "2026-07-01 21:26:48 KST",
+  "status": "read_only_pilot_complete",
+  "summary": {
+    "total_pages": 44,
+    "visible_claims": 1305,
+    "total_evidence_rows": "11816",
+    "unique_papers": 1483,
+    "indexed_evidence_rows_visible_claims": "11816",
+    "claims_with_evidence": "714",
+    "claims_without_evidence": "591",
+    "pages_with_evidence": "44",
+    "unique_arxiv_papers": "1483",
+    "unique_doi_or_arxiv_doi_papers": "1237",
+    "unique_papers_with_stable_identifier": "1483",
+    "unique_papers_without_stable_identifier": "0",
+    "support_evidence_rows": "10500",
+    "counter_evidence_rows": "1040",
+    "neutral_evidence_rows": "276",
+    "active_evidence_rows": "11816",
+    "verified_evidence_rows": "11682",
+    "peer_reviewed_evidence_rows": "11210",
+    "evidence_rows_without_summary_or_abstract": "3"
+  },
+  "paper_triage_counts": [
+    {
+      "triage_status": "needs_adjudication",
+      "paper_count": 1035
+    },
+    {
+      "triage_status": "ready_to_review",
+      "paper_count": 359
+    },
+    {
+      "triage_status": "needs_source",
+      "paper_count": 89
+    }
+  ],
+  "artifact_paths": {
+    "summary_json": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_summary.json",
+    "pilot_manifest_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_paper_manifest.jsonl",
+    "contradiction_gaps_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_contradiction_gaps.jsonl",
+    "prose_candidates_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_prose_candidates.jsonl",
+    "source_gaps_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_source_gaps.jsonl",
+    "page_readiness_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_page_readiness.jsonl",
+    "schema_json": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z_distillation_schema.json",
+    "report_md": "/Users/duhokim/NebulaMind/NebulaMind/docs/paper_prose_readiness_pilot_20260701T122648Z.md",
+    "handoff": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-prose-readiness-pilot-20260701T122648Z.md",
+    "board_latest_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/board/paper-prose-readiness-pilot-latest.json"
+  },
+  "next_approval_phrase": "APPROVE PAPER DISTILLATION PILOT ARTIFACTS: Build an offline 25-paper pilot packet with paper summaries, extracted claims, evidence snippets, contradiction notes, trust/readiness labels, and concise cited prose drafts as docs/JSONL/Markdown only. No DB writes, no migrations, no deploy/restart, no production config changes, no OpenClaw relay, no commit/push/merge without separate approval.",
+  "safety_ledger": [
+    "No DB writes: SQL used BEGIN READ ONLY and ROLLBACK.",
+    "No migrations.",
+    "No deploy or service restart.",
+    "No production config changes.",
+    "No OpenClaw relay.",
+    "No commit, push, or merge.",
+    "No runtime source edits.",
+    "Wrote only docs/.hermes report artifacts."
+  ]
+}

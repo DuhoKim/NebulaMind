@@ -1,0 +1,76 @@
+{
+  "status": "pr70_validation_fix_pushed_ready_for_merge_decision",
+  "updated_at_utc": "2026-06-29T15:37:04Z",
+  "updated_at_kst": "2026-06-30 00:37:04 KST",
+  "plain_english_summary": "PR #70 blocker is fixed and pushed. Malformed label rows are now rejected per row. PR remains open/draft; no merge/deploy/DB writes happened. Ready for explicit ready-and-merge approval or another read-only review.",
+  "pr_url": "https://github.com/DuhoKim/NebulaMind/pull/70",
+  "pr_number": 70,
+  "is_draft": true,
+  "mergeable": "MERGEABLE",
+  "head": "606bb5f353d0b2cc1b27c701c1f22e57e47af2ed",
+  "ready_for_merge_decision": true,
+  "known_blockers": [],
+  "verification": [
+    "Branch worktree verified clean before edits and clean again after push.",
+    "PR #70 branch matched GitHub before work: head 9c942c24b5f45e4fe3d30c51594272eb906c9f78.",
+    "RED observed: malformed split JSON row test failed first with true !== false.",
+    "GREEN implemented: JSON rows now require sample_id and decision/action on the same row; labels_by_sample_id entries are checked; CSV data rows now require sample_id and a decision/action value.",
+    "Focused tests passed: npm run test:agent-report-upload and npm run test:page58-label-upload-route-contract.",
+    "Regression tests passed: wiki trust visibility, source trace hover, claim minimap hover, paper claim flight deck, cross-page paper footprint.",
+    "npm run build passed; route /agent-reports/page58-label-upload/submit was included.",
+    "Alternate-port route smoke on 3029 passed: wrong token 401; malformed split JSON 400; malformed CSV 400; valid CSV 200; token reuse 410; metadata has no absolute_path; stored filename has no path traversal.",
+    "Diff-scoped static scans found no added-line hardcoded secret, shell/eval/exec, pickle, or SQL string-format issue; changed-file secret pattern scan found no files.",
+    "Independent local Ollama review passed with no security concerns and no logic errors.",
+    "Pre-push smoke passed before push: 49 passed.",
+    "Git pre-push hook also passed during push: 49 passed.",
+    "GitHub PR #70 now points at 606bb5f353d0b2cc1b27c701c1f22e57e47af2ed; PR remains open/draft and mergeable.",
+    "Runtime backend unchanged: PID 25075, cwd clean candidate.",
+    "DB counts unchanged: page_citation_links=1351, fact_sources=391."
+  ],
+  "notes": [
+    "No GitHub CI checks are configured/reported for this branch; local verification is the gate.",
+    "The PR is still draft because this step was explicitly no-merge/no-deploy/no-DB-write."
+  ],
+  "backend_pid": "25075",
+  "backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "db_counts": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_writes": 0,
+  "deploys": 0,
+  "backend_restarts": 0,
+  "merges": 0,
+  "artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-validation-fix-pushed-20260629T153704Z",
+    "manifest": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-validation-fix-pushed-20260629T153704Z/pr70-validation-fix-pushed.json",
+    "report": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-validation-fix-pushed-20260629T153704Z/pr70-validation-fix-pushed.md",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-validation-fix-pushed-20260629T153704Z/SHA256SUMS"
+  },
+  "future_options": [
+    {
+      "option": "Recommended: mark PR #70 ready and squash-merge",
+      "plain_english": "Move the fixed draft PR out of draft and merge it into GitHub main. This still does not deploy or write DB rows.",
+      "risk": "Medium GitHub main change; no deploy/DB writes",
+      "approval": "STEER: mark PR #70 ready and squash-merge; no deploy, no DB writes."
+    },
+    {
+      "option": "Read-only: re-review current PR head",
+      "plain_english": "Repeat the merge-decision review on commit 606bb5f without merging.",
+      "risk": "Low/read-only",
+      "approval": "STEER: re-review PR #70 current head and prepare merge decision; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Hold PR #70 as draft",
+      "plain_english": "Leave the fixed PR open and draft for later.",
+      "risk": "Lowest; no changes",
+      "approval": "STEER: hold PR #70 as draft; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Locked after merge: deploy/sync runtime",
+      "plain_english": "Only relevant after PR #70 is merged; would require a separate scoped frontend/runtime sync approval.",
+      "risk": "Locked until merge",
+      "approval": "STEER: after PR #70 is merged, prepare scoped runtime deploy plan; no DB writes."
+    }
+  ]
+}

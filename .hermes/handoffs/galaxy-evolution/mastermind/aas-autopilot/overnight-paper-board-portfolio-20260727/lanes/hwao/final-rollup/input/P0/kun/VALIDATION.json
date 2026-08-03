@@ -1,0 +1,143 @@
+{
+  "marker": "P0_KUN_CROSSREVIEW_COMPLETE_20260727",
+  "lane": "P0-kun",
+  "packet": "P0-tng-validation",
+  "disposition": "ISSUES",
+  "validated_at_utc": "2026-07-27T13:29:00Z",
+  "scope": "Cross-review of Lana primary P0 artifact/representation custody and claim-consistency audit from immutable inputs only.",
+  "checks": {
+    "brief_read": true,
+    "all_immutable_inputs_read": true,
+    "json_parsing": {
+      "status": "PASS",
+      "files": [
+        "input/INPUT_MANIFEST.json",
+        "input/source/INPUT_MANIFEST.json",
+        "input/source/PUBLIC_ARTIFACT_IDENTITY.json",
+        "input/source/served-history.json",
+        "input/primary/RECEIPT.json",
+        "input/primary/REPRESENTATION_MATRIX.json",
+        "input/primary/NUMERIC_INVARIANTS.json"
+      ]
+    },
+    "input_hash_custody": {
+      "status": "PASS",
+      "note": "All files listed in input/INPUT_MANIFEST.json matched their recorded SHA-256 values."
+    },
+    "output_hash_custody": {
+      "status": "PASS",
+      "note": "Output files were created only in the lane directory. CROSSREVIEW.md and VALIDATION.json byte/hash values are recorded in RECEIPT.json; RECEIPT.json is self-referential and therefore records its own hash as not applicable."
+    },
+    "served_vs_secondary_identity": {
+      "status": "PASS",
+      "served_pdf": {
+        "path": "input/source/served-p0.pdf",
+        "bytes": 132831,
+        "sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+        "pages": 4,
+        "creation_date": "Thu Jul 23 20:28:34 2026 KST"
+      },
+      "secondary_pdf": {
+        "path": "input/source/secondary-3page-source.pdf",
+        "bytes": 120426,
+        "sha256": "f037d89d210130d464e3ddbc2390b020aa3ffeebabab272357102691190f75d6",
+        "pages": 3,
+        "creation_date": "Fri Jul 17 00:57:00 2026 KST"
+      },
+      "not_interchangeable": true
+    },
+    "section_state_labels": {
+      "abstract": "ISSUES_FOR_MZR__SFMS_PASS",
+      "method": "MZR_PP04_ABSENT__SFMS_PASS",
+      "results": "BODY_REPORTS_UNMATCHED_MZR_FACTOR_2__SFMS_PASS",
+      "figures": "FIG2_RIGHT_UNMATCHED_MZR_FACTOR_2__SFMS_PASS",
+      "discussion": "MZR_SUGGESTIVE_REDERIVATION_REQUIRED__SFMS_PASS",
+      "conclusion": "MZR_MATCHED_SCALE_CONSISTENCY_REASSERTED__SFMS_PASS"
+    },
+    "review_link_404_handling": {
+      "status": "PASS",
+      "baseline_status": 404,
+      "source": "input/source/PUBLIC_ARTIFACT_IDENTITY.json",
+      "board_card_still_links_review": true,
+      "history_to_verdict_inference": false
+    },
+    "history_to_verdict_inference": {
+      "status": "PASS",
+      "note": "served-history.json is human-directed context only; no automated verdict inferred."
+    },
+    "rendered_pdf_vs_extracted_text": {
+      "status": "PASS",
+      "note": "Rendered page inspection confirms the MZR contradiction and Figure 2 state visible in the PDF, not caused by pdftotext ordering."
+    },
+    "capture_caused_false_defect": {
+      "status": "PASS",
+      "found": false
+    },
+    "numeric_arithmetic": {
+      "status": "PASS_WITH_MZR_ISSUE",
+      "verified": {
+        "sfms_gap_z4p7": "1.30 - 0.89 = 0.41",
+        "sfms_gap_z5p4": "1.45 - 0.96 = 0.49",
+        "mass_basis_raw_plane_effect": "0.61 * 0.13 = 0.0793 ~= 0.08",
+        "unmatched_mzr_factor": "0.50 / 0.25 = 2",
+        "naive_mzr_factor": "0.50 / 0.13 = 3.846 ~= 3-4",
+        "matched_claim_ratio": "0.40 / 0.27 = 1.48 ~= 1.5"
+      },
+      "challenged": {
+        "matched_observed_deficit": "-0.50 + 0.24 = -0.26, not -0.40, absent another stated ingredient",
+        "matched_tng_internal": "-0.27 is not derived from body values -0.23/-0.25/-0.25 and should not depend on SDSS anchor recalibration"
+      }
+    },
+    "lisiecki_identity_failure": {
+      "status": "UPHELD",
+      "note": "A&A 708 A235 resolves to Lisiecki et al. 2026 quiescent-galaxy photometric-selection work, not the claimed 2025 z=3-6 star-forming scaling-relations supplement."
+    },
+    "mzr_contradiction": {
+      "status": "UPHELD",
+      "note": "Abstract/conclusion assert matched-scale consistency; methods/results/figures/discussion do not contain the matched-scale analysis and preserve the unmatched-scale suggestive/factor-about-2 state."
+    },
+    "write_boundary": {
+      "status": "PASS",
+      "wrote_only": [
+        "CROSSREVIEW.md",
+        "VALIDATION.json",
+        "RECEIPT.json"
+      ],
+      "temporary_outputs": [
+        "/tmp/kun_served_p0.txt",
+        "/tmp/kun_secondary.txt",
+        "/tmp/kun_p0_render/",
+        "/tmp/kun_p0_render_secondary/"
+      ]
+    }
+  },
+  "issues": [
+    {
+      "severity": "P0",
+      "id": "MZR_MATCHED_SCALE_CONTRADICTION",
+      "finding": "The served artifact's MZR consistency claim is contradicted by its own body and figures."
+    },
+    {
+      "severity": "P0",
+      "id": "REVIEW_LINK_404",
+      "finding": "The board card links a P0 review URL recorded as HTTP 404."
+    },
+    {
+      "severity": "P1",
+      "id": "LISIECKI_CITATION_IDENTITY_ROLE_FAIL",
+      "finding": "The Lisiecki citation resolves to the wrong paper and cannot support the claimed supplement medians."
+    },
+    {
+      "severity": "P1",
+      "id": "MISSING_LOAD_BEARING_REFERENCES",
+      "finding": "PP04 and Kennicutt are cited in load-bearing roles but absent from references."
+    }
+  ],
+  "lana_primary_crossreview": {
+    "custody_claims_supported": true,
+    "sfms_survival_supported": true,
+    "mzr_contradiction_supported": true,
+    "review_link_defect_supported": true,
+    "overstatements_found_in_primary": false
+  }
+}

@@ -1,0 +1,607 @@
+{
+  "canonical_packet_released": false,
+  "captured_utc": "2026-07-15T14:51:18.208877Z",
+  "conversation_deleted": false,
+  "identity": {
+    "captured_title": "You are the Deep Research source-base reviewer for NebulaMind's galaxy-evolution wiki rebuild. Queue item 04 of 20 Core review: Naab, Thorsten & Ostriker, Jeremiah P. (2017), Annual Review of Astronomy and Astrophysics, volume 55, \"Theoretical Challenges in Galaxy Formation.\" Verified review identity to confirm: DOI 10.1146/annurev-astro-081913-040019; arXiv 1612.06891; ADS bibcode 2017ARA&A..55...59N. Mission purpose Build a large, authoritative, advisory source base from this review so three independent methods can later build galaxy-evolution wiki pages from zero. Extract the review's bounded synthesis and harvest important primary papers it actually cites. This is not live-wiki prose and authorizes no database, trust, claim, evidence, deployment, publication, or account mutation beyond this one Deep Research run. Temporal and topical boundary - Use the 2017 review and primary literature it actually cites. - Do not promote post-2017 papers as if the review cited them. - Maintain the queue's non-AGN focus. Black-hole feedback may be described only as a bounded galaxy-scale subresolution ingredient. Quarantine accretion-disk, jet, black-hole demographic, and AGN-only primary papers from the core harvest. - Later sources and AGN-centered sources may appear only in DO_NOT_USE_UNVERIFIED as out-of-bound context. Scientific scope 1. Why galaxy-formation models require resolved inflow/outflow accounting and subresolution models. 2. The multiphase ISM: density/temperature structure, cooling and heating, molecular gas, turbulence, gravity, and cloud formation/disruption. 3. Star-formation laws and efficiencies from cloud to galactic scales; how cosmological models implement them. 4. Stellar feedback channels: photoionization, radiation pressure, stellar winds, supernovae, cosmic rays, and their scale coupling. 5. Superbubbles, galactic fountains, winds, mass loading, metal transport, recycling, and the ISM-CGM interface. 6. Numerical methods, resolution, convergence, overcooling, stochastic/thermal/kinetic injection, delayed cooling, decoupled winds, and explicit-feedback models. 7. Model successes and degeneracies: what galaxy statistics were calibrated, what was predicted, and what remained non-unique. 8. Observational benchmarks for gas, star formation, outflows, baryon conversion efficiency, and CGM reservoirs. 9. Bounded discussion of black-hole feedback only where the review treats it as a galaxy-scale model ingredient; no AGN microphysics harvest. Required output 1. Review identity and scope map - Confirm title, authors, year, journal, DOI, arXiv, and ADS bibcode. - Map the scientific territory the review covers. - State what the source base authorizes and what it does not. - Preserve distinctions among observation, analytic theory, simulation, and review synthesis. 2. Established findings - At least 12 atomic entries. - Give IDs [REV04-E01], [REV04-E02], ... - For every entry include: - role: established - epistemic_type: observation | analytic_theory | hydrodynamic_simulation | semi_analytic_model | calibration | review_synthesis - one bounded finding - mass, redshift, phase, environmental, numerical, and/or resolution boundary - review section/topic basis - confidence note - source keys - Do not turn a successful calibrated prescription into proof of a unique mechanism. 3. Open debates and tensions - At least 8 entries with IDs [REV04-D01], ... - Include competing positions, why unresolved in 2017, relevant model/observational boundaries, and source keys. - Include: star-formation efficiency control; dominant stellar-feedback channels; thermal versus kinetic coupling; explicit versus effective feedback; wind mass loading and recycling; cosmic-ray and magnetic support; physical versus numerical convergence; and calibration degeneracy. 4. Key measurements, model benchmarks, and calibrations - At least 8 entries with IDs [REV04-N01], ... - Include exact value or equation when the review supplies it; units; IMF/cosmology/phase/redshift/sample; whether observed, assumed, calibrated, or predicted; caveat; and source keys. - Useful targets include star-formation efficiencies, depletion times, supernova energy/rates, momentum budgets, cooling radii, mass-loading scalings, baryon conversion efficiencies, outflow velocities, and CGM gas/metal constraints. Include only values you can bind to a cited source and review context. 5. What remained unknown in 2017 - At least 6 entries with IDs [REV04-U01], ... - State the gap, why it matters, and the observation/model/numerical test needed. 6. Primary-citation harvest - Harvest 40-80 important PRIMARY papers actually cited by Naab & Ostriker 2017. - Prefer primary observations, analytic theory, controlled numerical experiments, hydrodynamic simulations, and model implementations. - Supporting reviews may be listed separately but must not count toward the primary total. - Exclude post-2017 papers, uncited search results, source aggregators, and AGN-microphysics papers from usable rows. - One physical paper per source key; no duplicate physical paper under multiple keys. - Use IDs [REV04-P001], [REV04-P002], ... - Each row must be: [REV04-PNNN] Authors (year, journal) | title=exact title | DOI:value-or-none; arXiv:value-or-none; ADS:value | role=measurement|analytic_theory|hydrodynamic_simulation|semi_analytic_model|calibration | review_locator=section/topic | one-line boundary - Cite the exact review location where practical. - If an identifier is uncertain, put the row in DO_NOT_USE_UNVERIFIED, not the usable harvest. Identifier discipline A usable source identity is composite: - first author and year agree; - title agrees; - DOI resolves to that title/authorship where available; - arXiv resolves to that title/authorship where available; - ADS bibcode resolves to that same physical paper; - the paper is actually in the review bibliography. Never splice identifiers from neighboring references. Never infer a DOI from title resemblance alone. Use none when an identifier genuinely does not exist. 7. DO_NOT_USE_UNVERIFIED - Quarantine every uncertain, cross-wired, uncited, post-2017, AGN-centered, or overbroad item. - Format: UNCITED_NOT_USABLE | candidate or claim | supplied identifier/context | exclusion reason - Explicitly quarantine claims that numerical convergence proves physical correctness, matching one tuned statistic validates a feedback mechanism, one feedback channel dominates universally, or subgrid prescriptions are first-principles predictions. - Quarantine post-2017/JWST/ML follow-up sources captured by browsing. 8. Review and source identity ledger - Repeat the review as [REV04-R00] with DOI/arXiv/ADS. - Repeat every usable primary and supporting row with author/year/journal, DOI, arXiv, ADS, role, and one-line boundary. - No source may be load-bearing unless it appears in this ledger. Quality bar - Advisory source base, not polished wiki prose. - Prefer explicit scope boundaries to broad narrative claims. - Preserve model versus observational evidence and calibrated versus predicted quantities. - Never use words such as proved, universally, exact, or definitive where the review supports only model-dependent or empirical agreement. - Ensure source keys used in findings/debates/measurements/unknowns resolve in the final usable ledger. - End with exactly: REVIEW_BASE_04_DR_COMPLETE_REFERENCE_ONLY",
+    "conversation_id": "04b76d6352f3a20f",
+    "conversation_path": "/app/04b76d6352f3a20f",
+    "identity_evidence": {
+      "evidence": "exact_route_plus_visible_history_row"
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "daf19dd347c90d858dc9495725d6eae27f39ef022dbe60e8fe20a9205fc3c192",
+    "prompt_sha256": "119cd3ec051b4859275d0216c16493b5fc47ba7dd99f0227c82ef48eef5f136e",
+    "submit_account_lease_id": "L00665",
+    "submit_utc": "2026-07-15T14:27:43.013428Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "independent_identifier_verification_status": "PENDING",
+  "output_quality": {
+    "debate_count": 8,
+    "do_not_use_present": true,
+    "established_count": 12,
+    "headings_present": false,
+    "measurement_count": 8,
+    "pass": false,
+    "primary_harvest_count": 50,
+    "review_ads_present": false,
+    "review_arxiv_present": false,
+    "review_doi_present": false,
+    "terminal_marker_present": true,
+    "unknown_count": 6
+  },
+  "packet_sha256": "69860881137f7c919f2bc9be32f149eace280672df093870ff63abb8f54e9af0",
+  "queue_item": 4,
+  "raw_packet_sha256": "69860881137f7c919f2bc9be32f149eace280672df093870ff63abb8f54e9af0",
+  "result_chars": 65051,
+  "result_text_sha256": "3b817e6a0b813d2faad449bdd827b89c02bcc128007638c32e6cd8516dfab16a",
+  "run_id": "REVIEW_BASE_04_NAAB_OSTRIKER_2017",
+  "source_anchor_count": 141,
+  "source_anchors": [
+    {
+      "href": "https://wwwmpa.mpa-garching.mpg.de/HydroSims/Magneticum/Preprints/Voids_Dynamics.pdf",
+      "label": "wwwmpa.mpa-garching.mpg.de Why Cosmic Voids Matter: Nonlinear Structure & Linear Dynamics - MPA Garching Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1710.04658",
+      "label": "arxiv.org The influence of Massive Black Hole Binaries on the Morphology of Merger Remnants - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/468/1/751/3051676",
+      "label": "academic.oup.com Active galactic nuclei feedback, quiescence and circumgalactic medium metal enrichment in early-type galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/araa.html",
+      "label": "ned.ipac.caltech.edu annual reviews of astronomy and astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Naab/frames.html",
+      "label": "ned.ipac.caltech.edu Theoretical Challenges in Galaxy Formation - Thorsten Naab and Jeremiah P. Ostriker Opens in a new window"
+    },
+    {
+      "href": "http://ned.ipac.caltech.edu/help/nedhistory.html",
+      "label": "ned.ipac.caltech.edu NED History - NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/Documents/Overview/History",
+      "label": "ned.ipac.caltech.edu Archived Release Notes - About NED | NASA/IPAC Extragalactic Database Opens in a new window"
+    },
+    {
+      "href": "https://www.astro.sunysb.edu/fwalter/PHY688/Kaltenegger_annurev-astro-082214-122238.pdf",
+      "label": "astro.sunysb.edu How to Characterize Habitable Worlds and Signs of Life - Stony Brook Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://crossfield.ku.edu/A691_2022B/linsky2017_chromospheres.pdf",
+      "label": "crossfield.ku.edu Stellar Model Chromospheres and Spectroscopic Diagnostics Opens in a new window"
+    },
+    {
+      "href": "http://www.bo.astro.it/~vignali/Astrofisica_Alte_Energie/AA2019-20/Compact_Objects/ULX/papers/kaaret17_ULX_review.pdf",
+      "label": "bo.astro.it Ultraluminous X-Ray Sources Opens in a new window"
+    },
+    {
+      "href": "https://ml4physicalsciences.github.io/2024/files/NeurIPS_ML4PS_2024_83.pdf",
+      "label": "ml4physicalsciences.github.io First High-Resolution Galaxy Simulations Accelerated by a 3D Surrogate Model for Supernovae - Machine Learning and the Physical Sciences Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1612.06891",
+      "label": "arxiv.org [1612.06891] Theoretical Challenges in Galaxy Formation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://oar.princeton.edu/bitstream/88435/pr1jd4pp7p/1/2201.04142v1.pdf",
+      "label": "oar.princeton.edu Breaking baryon-cosmology degeneracy with the electron density power spectrum Opens in a new window"
+    },
+    {
+      "href": "https://www.cpt.univ-mrs.fr/~cosmo/EC2025/index.php?page=program",
+      "label": "cpt.univ-mrs.fr EC16 \u2014 Program Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2404.08050v1",
+      "label": "arxiv.org 1 Introduction - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://ar5iv.labs.arxiv.org/html/1612.06891",
+      "label": "ar5iv.labs.arxiv.org [1612.06891] Theoretical Challenges in Galaxy Formation - ar5iv Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/30269/1/Gensior_PhD_thesis_pub.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Gensior_PhD_thesis_pub.pdf - Heidelberg University Opens in a new window"
+    },
+    {
+      "href": "https://www.nu.to.infn.it/Other_Astrophysics/",
+      "label": "nu.to.infn.it Astronomy and Astrophysics - Neutrino Unbound - INFN Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/470/4/4698/3871367",
+      "label": "academic.oup.com cosmic baryon cycle and galaxy mass assembly in the FIRE simulations - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/403905806_Understanding_the_regulation_of_star_formation_within_TNG100_galaxies_on_kpc-scales_using_machine_learning_I_Global_versus_local",
+      "label": "researchgate.net Understanding the regulation of star formation within TNG100 galaxies on kpc-scales using machine learning I: Global versus local - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2507.08925v1",
+      "label": "arxiv.org Chapter 0 Cosmological Simulations of Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://matthewmumpower.com/static/publications/connecting-rib-facilities.pdf",
+      "label": "matthewmumpower.com \u0433-Process Nucleosynthesis: Connecting Rare-Isotope Beam Facilities with the Cosmos - Matthew Mumpower Opens in a new window"
+    },
+    {
+      "href": "https://research.iac.es/preprints/files/PP24033.pdf",
+      "label": "research.iac.es Observational Tests of AGN Feedback: An Overview of Approaches and Interpretation Opens in a new window"
+    },
+    {
+      "href": "https://www.mdpi.com/2075-4434/6/4/114",
+      "label": "mdpi.com A Review of the Theory of Galactic Winds Driven by Stellar Feedback - MDPI Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/344958803_simba_Cosmological_simulations_with_black_hole_growth_and_feedback",
+      "label": "researchgate.net simba: Cosmological simulations with black hole growth and feedback - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://edoc.ub.uni-muenchen.de/24712/1/Uebler_Hannah_D_N.pdf",
+      "label": "edoc.ub.uni-muenchen.de Galaxy Kinematics during the Peak Epoch of Cosmic Star Formation Opens in a new window"
+    },
+    {
+      "href": "https://kups.ub.uni-koeln.de/8442/1/Derigs_fonts_embedded_no_Acknowledgements.pdf",
+      "label": "kups.ub.uni-koeln.de Ideal GLM-MHD - a new mathematical model for simulating astrophysical plasmas - Universit\u00e4t zu K\u00f6ln Opens in a new window"
+    },
+    {
+      "href": "https://cris.unibo.it/bitstream/11585/799379/4/1909.07976.pdf",
+      "label": "cris.unibo.it Cosmological Simulations of Galaxy Formation - Alma Mater Studiorum Universit\u00e0 di Bologna Archivio istituzionale della ricerca Opens in a new window"
+    },
+    {
+      "href": "https://www.annualreviews.org/content/journals/astro/55/1",
+      "label": "annualreviews.org Volume 55, 2017 | Annual Review of Astronomy and Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Naab/Naab1.html",
+      "label": "ned.ipac.caltech.edu Theoretical Challenges in Galaxy Formation - Thorsten Naab and Jeremiah P. Ostriker Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2606.10022v1",
+      "label": "arxiv.org Learning the Universe with PRFM-vol: Introducing a new subgrid model for star formation in cosmological simulations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2604.06318v1",
+      "label": "arxiv.org Introducing sapphire: Towards Hybrid Physics-Informed, Data-Driven Modeling of Galaxy Formation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/502442/1/2502.12764v1.pdf",
+      "label": "eprints.soton.ac.uk arXiv:2502.12764v1 [astro-ph.GA] 18 Feb 2025 - ePrints Soton - University of Southampton Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/311805639_Theoretical_Challenges_in_Galaxy_Formation",
+      "label": "researchgate.net Theoretical Challenges in Galaxy Formation | Request PDF - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Naab/Naab2.html",
+      "label": "ned.ipac.caltech.edu Theoretical Challenges in Galaxy Formation - Thorsten Naab and Jeremiah P. Ostriker Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.08846v1",
+      "label": "arxiv.org Mitigating the overcooling problem with sink-based bursty star formation in a high-z dwarf galaxy - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC6544524/",
+      "label": "pmc.ncbi.nlm.nih.gov Fast and inefficient star formation due to short-lived molecular clouds and rapid feedback - PMC Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Naab/paper.pdf",
+      "label": "ned.ipac.caltech.edu Theoretical Challenges in Galaxy Formation Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/478/1/302/4980956",
+      "label": "academic.oup.com Supernova feedback in numerical simulations of galaxy formation: separating physics from numerics | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/279737884_The_energy_and_momentum_input_of_supernova_explosions_in_structured_and_ionized_molecular_clouds",
+      "label": "researchgate.net The energy and momentum input of supernova explosions in structured and ionized molecular clouds - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://ned.ipac.caltech.edu/level5/Sept17/Naab/Naab3.html",
+      "label": "ned.ipac.caltech.edu Theoretical Challenges in Galaxy Formation - Thorsten Naab and Jeremiah P. Ostriker Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1601.03399",
+      "label": "arxiv.org Supernova feedback in a local vertically stratified medium: interstellar turbulence and galactic winds - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://uwcscholar.uwc.ac.za/bitstreams/574a163f-163f-440f-8360-4f9d998178d0/download",
+      "label": "uwcscholar.uwc.ac.za arXiv:2405.19227v2 [astro-ph.GA] 6 Jun 2024 - UWCScholar Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/456/4/3432/1029803",
+      "label": "academic.oup.com SILCC (SImulating the LifeCycle of molecular Clouds) project \u2013 II. Dynamical evolution of the supernova-driven ISM and the launching of outflows - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/480/3/3511/5067325",
+      "label": "academic.oup.com SILCC project \u2013 V. The impact of magnetic fields on the chemistry and the formation of molecular clouds | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/454/1/238/3924820/stv1975.pdf",
+      "label": "academic.oup.com The SILCC (SImulating the LifeCycle of molecular Clouds) project \u2013 I. Chemical evolution of the supernova-driven ISM - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/454/1/238/1133035",
+      "label": "academic.oup.com SILCC (SImulating the LifeCycle of molecular Clouds) project \u2013 I. Chemical evolution of the supernova-driven ISM | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.arxiv.org/pdf/1510.06563v1.pdf",
+      "label": "arxiv.org arXiv:1510.06563v1 [astro-ph.GA] 22 Oct 2015 Opens in a new window"
+    },
+    {
+      "href": "https://www.osti.gov/biblio/2395992",
+      "label": "osti.gov Properties of molecular clumps and cores in colliding magnetized flows - OSTI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/459/3/2311/8106320/stw745.pdf",
+      "label": "academic.oup.com Supernova feedback in a local vertically stratified medium: interstellar turbulence and galactic winds - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/459/3/2311/2595161",
+      "label": "academic.oup.com Supernova feedback in a local vertically stratified medium: interstellar turbulence and galactic winds | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1601.03399",
+      "label": "arxiv.org [1601.03399] Supernova feedback in a local vertically stratified medium: interstellar turbulence and galactic winds - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://openaccess.inaf.it/bitstreams/3b83cc15-ded0-4ab4-aca0-22b8e5c34786/download",
+      "label": "openaccess.inaf.it Negative and positive feedback from a supernova remnant with SHREC: a detailed study of the shocked gas in IC443 - OA@INAF Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/450/1/504/998665",
+      "label": "academic.oup.com Supernova feedback in an inhomogeneous interstellar medium - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/478/1/302/24971782/sty994.pdf",
+      "label": "academic.oup.com Supernova feedback in numerical simulations of galaxy formation - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.semanticscholar.org/paper/The-energy-and-momentum-input-of-supernova-in-and-Walch-Naab/91b8d2164048b8496d7ab5c80d8cd42c7996a3b7",
+      "label": "semanticscholar.org The energy and momentum input of supernova explosions in structured and ionized molecular clouds - Semantic Scholar Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/463/3/3129/2646636",
+      "label": "academic.oup.com Feedback in Clouds II: UV photoionization and the first supernova in a massive cloud | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ouci.dntb.gov.ua/works/988DRKq9/",
+      "label": "ouci.dntb.gov.ua Connecting stellar and galactic scales: Energetic feedback from stellar wind bubbles to supernova remnants - OUCI Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/460/2/2157/2609032",
+      "label": "academic.oup.com Bimodality of low-redshift circumgalactic O vi in non-equilibrium eagle zoom simulations | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1401.5799",
+      "label": "arxiv.org arXiv:1401.5799v2 [astro-ph.CO] 25 Feb 2014 Opens in a new window"
+    },
+    {
+      "href": "https://scholarlypublications.universiteitleiden.nl/access/item%3A2908157/view",
+      "label": "scholarlypublications.universiteitleiden.nl Flickering AGN can explain the strong circumgalactic O VI observed by COS-Halos - Scholarly Publications Leiden University Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1609.00012",
+      "label": "arxiv.org arXiv:1609.00012v2 [astro-ph.GA] 15 Nov 2016 Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/501/4/5575/6022218",
+      "label": "academic.oup.com Most of the cool CGM of star-forming galaxies is not produced by supernova feedback - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2506.13851v3",
+      "label": "arxiv.org Contents - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/419/4/3060/9505935/mnras0419-3060.pdf",
+      "label": "academic.oup.com A SINFONI integral field spectroscopy survey for galaxy counterparts to damped Lyman \u03b1 systems Opens in a new window"
+    },
+    {
+      "href": "https://thesis.caltech.edu/5767/1/thesis_milan.pdf",
+      "label": "thesis.caltech.edu Lyman Continuum and Lyman \u03b1 Emission from Galaxies at High Redshift Opens in a new window"
+    },
+    {
+      "href": "https://knowledge.lancashire.ac.uk/id/eprint/46071/1/Friedman_2023_ApJ_946_34.pdf",
+      "label": "knowledge.lancashire.ac.uk A High-precision Survey of the D/H Ratio in the Nearby Interstellar Medium Opens in a new window"
+    },
+    {
+      "href": "https://digital.csic.es/bitstream/10261/381503/1/Empirical-Framework_Lehmer.pdf",
+      "label": "digital.csic.es An Empirical Framework Characterizing the Metallicity and Star-formation History Dependence of X-Ray Binary Population Formation Opens in a new window"
+    },
+    {
+      "href": "https://research.chalmers.se/publication/544484/file/544484_Fulltext.pdf",
+      "label": "research.chalmers.se ALMA Detection of [O <sc>iii</sc>] 88 <i>\u03bc</i>m at <i>z</i>=12.33: Exploring the Nature and - research.chalmers.se Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10105535",
+      "label": "par.nsf.gov Cosmic ray feedback in the FIRE simulations: constraining cosmic ray propagation with GeV gamma ray emission - NSF PAR Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2605.26238v1",
+      "label": "arxiv.org Star Formation, Cosmic Ray Transport, and Multiphase Outflows in Tigress++ Simulations - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/488/3/3716/5530789",
+      "label": "academic.oup.com Cosmic ray feedback in the FIRE simulations: constraining cosmic ray propagation with GeV \u03b3-ray emission - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2607.06744v1",
+      "label": "arxiv.org CRexit observed: probing cosmic ray transport in the circumgalactic medium with absorption line spectra - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/407206909_Resolving_Star_Cluster_Formation_in_Galaxy_Simulations_with_Cosmic_Ray_Feedback",
+      "label": "researchgate.net Resolving Star Cluster Formation in Galaxy Simulations with Cosmic Ray Feedback Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1405.3749",
+      "label": "arxiv.org [1405.3749] Introducing the Illustris Project: the evolution of galaxy populations across cosmic time - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/444/2/1518/24040116/stu1536.pdf",
+      "label": "academic.oup.com Introducing the Illustris Project: simulating the coevolution of dark and visible matter in the Universe - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/1405.2921",
+      "label": "arxiv.org [1405.2921] Introducing the Illustris Project: Simulating the coevolution of dark and visible matter in the Universe - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/444/2/1518/1749887",
+      "label": "academic.oup.com Introducing the Illustris Project: simulating the coevolution of dark and visible matter in the Universe - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://dspace.mit.edu/bitstreams/12e18e0c-e8d1-423e-b1b7-997ecbdd46fc/download",
+      "label": "dspace.mit.edu Introducing the Illustris Project: simulating the coevolution of dark and visible matter in the Universe - DSpace@MIT Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/262989604_Introducing_the_Illustris_Project_Simulating_the_coevolution_of_dark_and_visible_matter_in_the_Universe",
+      "label": "researchgate.net Introducing the Illustris Project: Simulating the coevolution of dark and visible matter in the Universe - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2307.13072",
+      "label": "arxiv.org Non-Equilibrium Abundances Treated Holistically (NEATH): the molecular composition of star-forming clouds - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://wwwmpa.mpa-garching.mpg.de/mpa/publications/preprints/pp2014/MPA3760.pdf",
+      "label": "wwwmpa.mpa-garching.mpg.de The SILCC (SImulating the LifeCycle of molecular Clouds) project: I. Chemical evolution of the supernova-driven ISM - MPA Garching Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/the-co-to-h2-conversion-factor-26tvppkvj7.pdf",
+      "label": "scispace.com The CO-to-H2 Conversion Factor - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/proceedings-of-the-international-astronomical-union/article/chemical-evolution-of-turbulent-multiphase-molecular-clouds/53030C1A1877154EB9967C71FE73A6C9",
+      "label": "cambridge.org Chemical Evolution of Turbulent Multiphase Molecular Clouds | Proceedings of the International Astronomical Union - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/1205.5567",
+      "label": "arxiv.org Implementing Molecular Hydrogen in Hydrodynamic Simulations of Galaxy Formation - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://dash.harvard.edu/bitstreams/197f2139-9365-4ff0-9d18-d43b52398cbd/download",
+      "label": "dash.harvard.edu A general model for the CO-H2 conversion factor in galaxies with applications to the star formation law - DASH (Harvard) Opens in a new window"
+    },
+    {
+      "href": "https://ora.ox.ac.uk/objects/uuid:cf936ac0-940a-4a95-b652-f7b96323e475/files/mf4614f019db9774319c57576e7877a5e",
+      "label": "ora.ox.ac.uk A detailed study of feedback from a massive star - Oxford University Research Archive Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/2510.05202",
+      "label": "arxiv.org A systematic meta-analysis of physical parameters of Galactic supernova remnants - arXiv Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/526/1/1112/7271805",
+      "label": "academic.oup.com Detection of optical emission from the supernova remnant G7.7\u20133.7 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.researchgate.net/publication/360618467_Shocking_interactions_of_supernova_remnants_with_atomic_and_molecular_clouds_--_the_interplay_between_shocks_thermal_instability_and_gravity_in_the_large_cloud_regime",
+      "label": "researchgate.net Shocking interactions of supernova remnants with atomic and molecular clouds -- the interplay between shocks, thermal instability and gravity in the large cloud regime - ResearchGate Opens in a new window"
+    },
+    {
+      "href": "https://openaccess.inaf.it/bitstreams/3c06880e-f626-4754-b6e4-93edf3f1b6ea/download",
+      "label": "openaccess.inaf.it Publication Year 2022 Acceptance in OA 2023-02-06T15:09:51Z Title Grammage of cosmic rays in the proximity of supernova remnants Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/547/3/stag410/8501210",
+      "label": "academic.oup.com Kinematics of supernova remnants in the galaxy NGC 6946 - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://par.nsf.gov/servlets/purl/10587239",
+      "label": "par.nsf.gov Bursty Star Formation in Dwarfs is Sensitive to Numerical Choices in Supernova Feedback Models Opens in a new window"
+    },
+    {
+      "href": "https://www.research-collection.ethz.ch/bitstreams/78a06b8f-69b9-43a7-b04e-96159f988f96/download",
+      "label": "research-collection.ethz.ch I. Turbulent multiphase ISM in Milky Way simulations with SNe feedback from stellar clusters Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article-pdf/445/1/581/18473138/stu1738.pdf",
+      "label": "academic.oup.com Galaxies on FIRE (Feedback In Realistic Environments): stellar feedback explains cosmologically inefficient star formation - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/373/3/1074/1061683",
+      "label": "academic.oup.com Star formation and feedback in smoothed particle hydrodynamic simulations \u2013 I. Isolated galaxies | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/the-satin-project-i-turbulent-multiphase-ism-in-milky-way-2u1l1pqb.pdf",
+      "label": "scispace.com I. Turbulent multiphase ISM in Milky Way simulations with SNe feedback from stellar clusters - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://ndl.ethernet.edu.et/bitstream/123456789/31300/1/A.G.G.M.%20Tielens.pdf",
+      "label": "ndl.ethernet.edu.et The Physics and Chemistry of the Interstellar Medium - National Academic Digital Library of Ethiopia Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/386/2/642/1055232",
+      "label": "academic.oup.com Simulating anisotropic thermal conduction in supernova remnants \u2013 II. Implications for the interstellar medium | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://dspace.uevora.pt/rdpc/bitstream/10174/5645/1/2009SSRv...143..263Breitschwerdt%2BdeAvillez.pdf",
+      "label": "dspace.uevora.pt What Physical Processes Drive the Interstellar Medium in the Local Bubble? Opens in a new window"
+    },
+    {
+      "href": "https://oar.princeton.edu/bitstream/88435/pr1p26q34s/1/Kim_2017_ApJ_834_25.pdf",
+      "label": "oar.princeton.edu SUPERBUBBLES IN THE MULTIPHASE ISM AND THE LOADING OF GALACTIC WINDS Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2021/jeffreson21b.pdf",
+      "label": "mso.anu.edu.au Momentum feedback from marginally resolved HII regions in isolated disc galaxies Opens in a new window"
+    },
+    {
+      "href": "https://www.sternwarte.uni-erlangen.de/docs/theses/2024-11_Shukla.pdf",
+      "label": "sternwarte.uni-erlangen.de X-ray Evolution of Supernova Remnants in the Large Magellanic Cloud - Dr. Karl Remeis-Sternwarte Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/abs/0710.2102",
+      "label": "arxiv.org [0710.2102] Molecular Hydrogen and Global Star Formation Relations in Galaxies - arXiv Opens in a new window"
+    },
+    {
+      "href": "http://www.eso.org/~hkuntsch/papers/MNRAS_432_1914.pdf",
+      "label": "eso.org The ATLAS3D project \u2013 XXII. Low-efficiency star formation in early-type galaxies: hydrodynamic models and observations - ESO.org Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/417/2/950/983715",
+      "label": "academic.oup.com Self-regulated star formation in galaxies via momentum input from massive stars | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/534/2/1043/7740789",
+      "label": "academic.oup.com Gravity or turbulence? \u2013 VI. The physics behind the Kennicutt\u2013Schmidt relation | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2012/krumholz12a.pdf",
+      "label": "mso.anu.edu.au A UNIVERSAL, LOCAL STAR FORMATION LAW IN GALACTIC CLOUDS, NEARBY GALAXIES, HIGH-REDSHIFT DISKS, AND STARBURSTS Opens in a new window"
+    },
+    {
+      "href": "https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S0185-11012020000100039",
+      "label": "scielo.org.mx Star Formation Rate in Late-Type Galaxies: I- The H\u03b1 and FUV Integrated Values - SciELO M\u00e9xico Opens in a new window"
+    },
+    {
+      "href": "https://eprints.lib.hokudai.ac.jp/repo/huscap/all/61705/Yusuke_Fujimoto.pdf",
+      "label": "eprints.lib.hokudai.ac.jp Title Formation and evolution of giant molecular clouds in a barred Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC10730010/",
+      "label": "pmc.ncbi.nlm.nih.gov Cosmic ray feedback in galaxies and galaxy clusters - PMC Opens in a new window"
+    },
+    {
+      "href": "https://archiv.ub.uni-heidelberg.de/volltextserver/26665/1/thesisPRINT.pdf",
+      "label": "archiv.ub.uni-heidelberg.de Stellar Feedback and the Self-Regulation of Star Formation in Giant Molecular Clouds Opens in a new window"
+    },
+    {
+      "href": "https://ndl.ethernet.edu.et/bitstream/123456789/75685/1/314.pdf",
+      "label": "ndl.ethernet.edu.et Star Formation in Galaxy Evolution: Connecting Numerical Models to Reality - National Academic Digital Library of Ethiopia Opens in a new window"
+    },
+    {
+      "href": "https://pmc.ncbi.nlm.nih.gov/articles/PMC9166885/",
+      "label": "pmc.ncbi.nlm.nih.gov Exploring the link between star and planet formation with Ariel - PMC Opens in a new window"
+    },
+    {
+      "href": "https://researchonline.ljmu.ac.uk/id/eprint/19352/1/stw601.pdf",
+      "label": "researchonline.ljmu.ac.uk Vertical disc heating in Milky Way-sized galaxies in a cosmological context - LJMU Research Online Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/523/4/6336/7198128",
+      "label": "academic.oup.com SATIN project \u2013 I. Turbulent multiphase ISM in Milky Way simulations with SNe feedback from stellar clusters - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/487/3/4393/5510435",
+      "label": "academic.oup.com The failure of stellar feedback, magnetic fields, conduction, and morphological quenching in maintaining red galaxies - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/395/1/160/1079146",
+      "label": "academic.oup.com Galaxies in a simulated \u039bCDM Universe \u2013 I. Cold mode and hot cores | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/product/D83C8CF131E620C0DF98EFFD38FA4EEB",
+      "label": "cambridge.org The Formation of Globular Clusters and of The Stars Within Them | Symposium - International Astronomical Union | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "http://prints.iiap.res.in/jspui/bitstream/2248/8537/1/Investigating%20the%20Disk%20%E2%80%93%20Halo%20Connection%20using%20Numerical%20Simulations.pdf",
+      "label": "prints.iiap.res.in Investigating the Disk \u2013 Halo Connection using Numerical Opens in a new window"
+    },
+    {
+      "href": "https://eprints.soton.ac.uk/497183/1/PhD_Thesis-1.pdf",
+      "label": "eprints.soton.ac.uk University of Southampton Research Repository Opens in a new window"
+    },
+    {
+      "href": "http://ndl.ethernet.edu.et/bitstream/123456789/65602/1/68.pdf",
+      "label": "ndl.ethernet.edu.et Galaxies and their Masks - National Academic Digital Library of Ethiopia Opens in a new window"
+    },
+    {
+      "href": "https://www.mso.anu.edu.au/~krumholz/publications/2012/kuhlen12a.pdf",
+      "label": "mso.anu.edu.au DWARF GALAXY FORMATION WITH H2-REGULATED STAR FORMATION - Research School of Astronomy & Astrophysics Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/473/3/4077/4494369",
+      "label": "academic.oup.com Simulating galaxy formation with the IllustrisTNG model | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/548/4/staf2154/8667673",
+      "label": "academic.oup.com Build-up and survival of the disc: from numerical models of galaxy formation to the Milky Way | Monthly Notices of the Royal Astronomical Society | Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://journals.jps.jp/doi/pdf/10.7566/JPSCP.14.010101",
+      "label": "journals.jps.jp Challenges in Cosmology from the Big Bang to Dark Energy, Dark Matter and Galaxy Formation - JPS Journals Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/pdf/0707.1856",
+      "label": "arxiv.org arXiv:0707.1856v1 [astro-ph] 12 Jul 2007 Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/on-the-redshift-evolution-of-the-spin-parameter-in-cosmological-simulations/214DD33CFFF7FB491830210AD7B0433E",
+      "label": "cambridge.org On the redshift evolution of the spin parameter in cosmological simulations | Publications of the Astronomical Society of Australia - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://www.mpe.mpg.de/~saglia/journals_pdf/lipka2024a.pdf",
+      "label": "mpe.mpg.de The VIRUS-dE Survey. I. Stars in Dwarf Elliptical Galaxies\u20143D Dynamics and Radially Resolved Stellar Initial Mass Functions - Max-Planck-Institut f\u00fcr extraterrestrische Physik Opens in a new window"
+    },
+    {
+      "href": "https://academicworks.cuny.edu/cgi/viewcontent.cgi?article=2295&context=ny_pubs",
+      "label": "academicworks.cuny.edu Can We Discover Physical Models Using Machine Learning? A Case Study of Galaxy Sizes Opens in a new window"
+    },
+    {
+      "href": "https://cds.cern.ch/record/2960545/files/document.pdf",
+      "label": "cds.cern.ch Disentangling the Impact of Halo-to-halo Variance and Baryonic Feedback on Milky Way Dark Matter Opens in a new window"
+    },
+    {
+      "href": "https://sites.astro.caltech.edu/~ccs/ay124/kormendy_araa_2004_secular.pdf",
+      "label": "sites.astro.caltech.edu SECULAR EVOLUTION AND THE FORMATION OF PSEUDOBULGES IN DISK GALAXIES - Caltech Astronomy Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/526/3/4157/7283171",
+      "label": "academic.oup.com The influence of subhaloes on host halo properties - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://openaccess.inaf.it/bitstreams/d8dc330a-a896-4741-a610-9947001d157c/download",
+      "label": "openaccess.inaf.it Publication Year 2017 Acceptance in OA 2021-02-08T11:38:42Z Title Angular momentum evolution of galaxies over the past 10 Gyr: a Opens in a new window"
+    },
+    {
+      "href": "https://scispace.com/pdf/using-angular-momentum-maps-to-detect-kinematically-distinct-30o4fo7x66.pdf",
+      "label": "scispace.com Using angular momentum maps to detect kinematically ... - SciSpace Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/dynamical-aspects-of-galactic-habitability-in-nbody-simulations/F30579B2A92B295976D7A9A0BC2F4B64",
+      "label": "cambridge.org Dynamical aspects of Galactic habitability in N-body simulations | Publications of the Astronomical Society of Australia | Cambridge Core Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/513/1/693/6528923",
+      "label": "academic.oup.com Emergence of galactic morphologies at cosmic dawn: input from numerical modelling - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://www.cambridge.org/core/services/aop-cambridge-core/content/view/5A14AE2FF9ECAD9C73713CB219F7A816/S132335802510088Xa.pdf/probing-the-resolved-k-s-relation-in-nearby-galaxies-insights-from-uvit-and-alma-observations.pdf",
+      "label": "cambridge.org Probing the resolved K-S relation in nearby galaxies: Insights from UVIT and ALMA observations - Cambridge University Press & Assessment Opens in a new window"
+    },
+    {
+      "href": "https://academic.oup.com/mnras/article/527/4/11095/7491064",
+      "label": "academic.oup.com Dissecting cosmological filaments at high redshifts: emergence of spaghetti-type flow inside DM haloes - Oxford Academic Opens in a new window"
+    },
+    {
+      "href": "https://ir.library.osaka-u.ac.jp/repo/ouka/all/96417/34336_Dissertation.pdf",
+      "label": "ir.library.osaka-u.ac.jp Physically-motivated feedback models and the IGM metal enrichment in cosmological hydrodynamic simulations Opens in a new window"
+    },
+    {
+      "href": "https://arxiv.org/html/2502.06954v1",
+      "label": "arxiv.org Chapter 0 Hydrodynamic methods and sub-resolution models for cosmological simulations Opens in a new window"
+    }
+  ]
+}

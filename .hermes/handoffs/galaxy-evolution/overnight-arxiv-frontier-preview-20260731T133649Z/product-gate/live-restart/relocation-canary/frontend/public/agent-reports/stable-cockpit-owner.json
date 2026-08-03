@@ -1,0 +1,33 @@
+{
+  "contract": {
+    "minimum_bytes": 12000,
+    "minimum_sections": 7,
+    "must_have": [
+      "THE BASELINE",
+      "papers \u2192 claim/status ledger \u2192 research-status/debate map \u2192 prose \u2192 derived claims/evidence/trust",
+      "USER_CONFIRM_9H2_WORK_RESUMED_COCKPIT_20260707T005127Z",
+      "RICH_BASELINE_STABLE_COCKPIT_V1",
+      "id=\"operator-board\"",
+      "id=\"baseline-steps\"",
+      "id=\"latest-result\"",
+      "id=\"lane-board\"",
+      "id=\"safety-ledger\""
+    ],
+    "must_not_have": [
+      "Galaxy claim-layer reconciliation monitor",
+      "<div id=\"baseline\"></div>",
+      "GALAXY_EVOLUTION_AUTONOMOUS_QUINTET_HARDENING",
+      "APPROVE EXECUTE baseline_step9e_claim_id_guarded_sql_packet",
+      "APPROVE EXECUTE galaxy_claim_layer_reconciliation_preflight",
+      "Exact Packet Review",
+      "id=\"execution-gate\""
+    ],
+    "route": "live-steering-cockpit.html",
+    "run_specific_monitors": "Write timestamped/latest monitor pages only; do not write live-steering-cockpit.html.",
+    "single_writer_rule": "Only tools/stable_cockpit_guard.py may intentionally unlock/lock the stable route."
+  },
+  "locked_at_utc": "2026-07-31T15:42:37Z",
+  "marker": "USER_CONFIRM_9H2_WORK_RESUMED_COCKPIT_20260707T005127Z",
+  "owner": "stable_cockpit_guard",
+  "reason": "PROVIDER_USAGE_REALTIME_MONITOR_V1: safe provider usage realtime refresh"
+}

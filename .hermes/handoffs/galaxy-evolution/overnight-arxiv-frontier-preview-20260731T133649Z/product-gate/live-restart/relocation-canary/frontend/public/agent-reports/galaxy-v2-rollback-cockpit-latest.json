@@ -1,0 +1,64 @@
+{
+  "generated_at_utc": "2026-06-30T04:26:18.143129Z",
+  "public_report_url": "https://nebulamind.net/agent-reports/galaxy-v2-rollback-cockpit-20260630T042618Z.html",
+  "public_latest_url": "https://nebulamind.net/agent-reports/galaxy-v2-rollback-cockpit-latest.html",
+  "public_state_json_url": "https://nebulamind.net/agent-reports/galaxy-v2-rollback-cockpit-20260630T042618Z.json",
+  "status": "ROLLED_BACK_AND_HELD",
+  "db_writes_executed_by_this_public_report": 0,
+  "service_changes_executed_by_this_public_report": 1,
+  "public_static_report_written": true,
+  "packet_evidence_rows_retained": 36,
+  "judged_rows_after_rollback": 0,
+  "unjudged_rows_after_rollback": 36,
+  "packet_evidence_votes_remaining": 0,
+  "packet_jury_scorecards_remaining": 0,
+  "trust_audit_rows_preserved": 36,
+  "packet_celery_active_reserved_scheduled": [
+    0,
+    0,
+    0
+  ],
+  "durable_hold_present": true,
+  "packet_evidence_ids_all_held": true,
+  "held_evidence_ids_count": 83,
+  "next_options": [
+    {
+      "rank": 1,
+      "label": "Recommended",
+      "title": "30-minute no-write drift watch + cockpit refresh",
+      "writes": 0
+    },
+    {
+      "rank": 2,
+      "label": "Code safety",
+      "title": "Prevent future packet evidence from auto-entering stance jury unintentionally",
+      "writes": 0
+    },
+    {
+      "rank": 3,
+      "label": "Review path",
+      "title": "Human review packet before reintroducing votes or scorecards",
+      "writes": 0
+    },
+    {
+      "rank": 4,
+      "label": "Later",
+      "title": "Separate service/config packet to unhold rows after policy is decided",
+      "writes": "approval required"
+    },
+    {
+      "rank": 5,
+      "label": "Optional",
+      "title": "Read-only visible/API/UI baseline check",
+      "writes": 0
+    },
+    {
+      "rank": 6,
+      "label": "Not recommended",
+      "title": "Delete trust-audit rows",
+      "writes": "separate cleanup packet required"
+    }
+  ],
+  "service_change_scope": "frontend static report server refresh only; no backend, Celery, DB, or public content DB change",
+  "verification_note": "Public report files were written before frontend static server refresh because Next production did not serve newly added public files until restart."
+}

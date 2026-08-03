@@ -1,0 +1,112 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T11:38:26Z",
+  "updated_at_kst": "2026-06-29 20:38:26 KST",
+  "source": "Hermes Agent PR-open refresh for source-surface fallback",
+  "current_action": "DRAFT PR OPEN: clean scoped PR #67 contains only the source-surface fallback fix/test/doc. Backend/API deploy and all data writes remain locked.",
+  "pr": {
+    "number": 67,
+    "url": "https://github.com/DuhoKim/NebulaMind/pull/67",
+    "title": "fix: expose page source fallback surfaces",
+    "state": "OPEN",
+    "draft": true,
+    "mergeable": "MERGEABLE",
+    "changed_files": 3,
+    "additions": 558,
+    "deletions": 53,
+    "status_checks": "no checks reported"
+  },
+  "repo": {
+    "source_worktree": "/Users/duhokim/NebulaMind/worktrees/source-surface-fallback-pr-20260629",
+    "branch": "fix/source-surface-fallback-20260629",
+    "head": "b27b5d6",
+    "base": "origin/main",
+    "base_head": "e56c465",
+    "ahead_of_origin_main": 1,
+    "behind_origin_main": 0,
+    "worktree_clean": true,
+    "pushed": true,
+    "pr_opened": true,
+    "merged": false,
+    "deployed": false,
+    "backend_api_restarted_for_code": false
+  },
+  "plain_words": {
+    "short_version": "Recommended sequence is now at the safe review stage: a clean narrow draft PR is open. It contains only the source-surface fallback code, tests, and reconciliation doc. It has not been merged or deployed.",
+    "what_changed": [
+      "Created clean branch from origin/main instead of using the 8-commit artifact branch.",
+      "Cherry-picked only the scoped source-surface fallback commit.",
+      "Verified on the clean branch and opened draft PR #67."
+    ],
+    "what_did_not_happen": [
+      "No production DB writes.",
+      "No migrations.",
+      "No backend/API deploy or backend/API restart.",
+      "No merge to main.",
+      "No promoter or readiness flag changes."
+    ]
+  },
+  "verification": [
+    "clean branch created from origin/main",
+    "PR diff has exactly 3 files",
+    "py_compile changed Python files: pass",
+    "inline hero_facts source test: 1 passed",
+    "fallback test file: 5 passed",
+    "related page/source API bundle: 15 passed",
+    "git diff --check: pass",
+    "diff-scoped security scan: no findings",
+    "changed read-route scan: no DB write markers",
+    "independent local Qwen/Ollama review: pass",
+    "pre-push smoke: 49 passed",
+    "GitHub PR #67: open draft, mergeable, no checks reported"
+  ],
+  "locked_next_steps": [
+    "Do not deploy/restart backend/API until explicit approval.",
+    "Do not backfill page_citation_links or fact_sources from this PR.",
+    "Do not set coverage_ready or promotion_eligible.",
+    "Next safe action is review PR #67 and mark ready/merge only if approved."
+  ],
+  "future_ladder": [
+    {
+      "level": "Current safe stage",
+      "name": "Review draft PR #67",
+      "risk": "No live/runtime/data change",
+      "direction": "Inspect the 3-file diff and PR body. If happy, mark ready for review or merge after checks."
+    },
+    {
+      "level": "Low controlled risk",
+      "name": "Mark PR ready and merge after review",
+      "risk": "Changes main branch only",
+      "direction": "Only after review. Still no runtime/API effect until deployment."
+    },
+    {
+      "level": "Moderate operational risk",
+      "name": "Deploy/restart API read-only fallback",
+      "risk": "Live backend/API rollout",
+      "direction": "After merge, update backend runtime and restart API only, then probe live /citations and /fact-sources."
+    },
+    {
+      "level": "High data risk",
+      "name": "Backfill materialized source tables",
+      "risk": "Production DB writes",
+      "direction": "Requires backup, dry-run counts, tiny scoped apply, rollback plan, explicit approval."
+    },
+    {
+      "level": "Very high product risk",
+      "name": "Promotion/readiness unlock",
+      "risk": "Changes project readiness/trust decisions",
+      "direction": "Requires GO/NO-GO packet and human calibration; no apply without explicit approval."
+    },
+    {
+      "level": "Most dangerous",
+      "name": "Schema/destructive linkage cleanup",
+      "risk": "Migrations/deletes/overwrites can corrupt provenance",
+      "direction": "Requires snapshot, restore test, migration tests, staged apply, signed approval."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": false,
+    "note": "Report files written; frontend static-file service may be refreshed only to serve the new timestamped report. Backend/API code is not deployed or restarted."
+  },
+  "mode": "SOURCE_SURFACE_DRAFT_PR_OPEN_DEPLOY_LOCKED"
+}

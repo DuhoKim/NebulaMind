@@ -1,0 +1,2 @@
+# Revision notes for paper_06
+Preserved invariants exactly, mechanically verified invariant span lines. ZERO new sources added. Folded physical caveats directly into Section 5/5.1 using existing sources (piotrowska2022, bluck2023, peng2010, peng2012) to clarify that instantaneous optical classification is a selection variable, and the mass-bin association cannot separate internal from environmental trends.

@@ -1,0 +1,48 @@
+{
+  "id": "c2v2e2e0726a",
+  "spec": {
+    "topic": "the z=0 gas-phase mass-metallicity relation of galaxies: IllustrisTNG vs SDSS",
+    "topic_source": "overnight-paper-board-c2-v2",
+    "data_sources": ["tng", "sdss"],
+    "method": "mass-metallicity",
+    "outputs": ["aastex-draft"],
+    "force": true
+  },
+  "status": "done",
+  "created_utc": "2026-07-26T16:56:25Z",
+  "log": [
+    "assembled from existing source-run artifacts (gated-e2e-demo); no fresh data run",
+    "isolated AI candidate C2 V2; forced-demo lineage (spec.force=true)",
+    "citation split applied; O/H-scale / TENSION / provenance caveats retained",
+    "AASTeX manuscript compiled locally (tectonic, rc=0)",
+    "done ✓ (AI-draft; not submitted; not peer-reviewed)"
+  ],
+  "artifacts": ["draft.pdf", "draft.tex", "result.png"],
+  "result": {
+    "data_sources": ["tng", "sdss"],
+    "method": "mass-metallicity",
+    "summary": "[AI-draft] [forced-demo] [TENSION] [unresolved-calibration] Mass-metallicity relation - median relations for TNG100 (23,722 gals) and SDSS (120,000 gals); TNG uses SF-weighted gas metallicity to O/H (solar-scaled). This is an AI-assembled draft: not submitted, not peer-reviewed. It was assembled from existing source-run artifacts with no fresh data run (forced-demo lineage: gated-e2e-demo, spec.force=true). The TNG-vs-SDSS comparison carries an expected-value TENSION and rests on an unresolved-calibration O/H scale; it is NOT a physical interpretation and cannot be interpreted as physical until a common calibration is established.",
+    "figure_url": "/api/lab/runs/c2v2e2e0726a/artifact/result.png",
+    "pdf_url": "/api/lab/runs/c2v2e2e0726a/artifact/draft.pdf"
+  },
+  "provenance": {
+    "packet_id": "NM-C2V2-20260727-A",
+    "ai_draft": true,
+    "not_submitted": true,
+    "not_peer_reviewed": true,
+    "fresh_data_run": false,
+    "forced_demo_lineage": true,
+    "source_run": "gated-e2e-demo",
+    "spec_force": true,
+    "sibling_precursor": "d8de519cb9c9 (independent AASTeX draft queued, never compiled)",
+    "expected_value_verdict": "TENSION",
+    "oh_scale": "unresolved-calibration",
+    "physical_interpretation": false,
+    "labels": ["AI-draft", "forced-demo", "TENSION", "unresolved-calibration"],
+    "candidate_v2_source": {
+      "candidate_pdf_sha256": "ac59ac609bab9c1fdbd74bab27920bdf6de70eac9721a066bdc74dc71384d08d",
+      "candidate_tex_sha256": "bb77d38d294792f44b05a2011774c6bbb3dbcf0dfc24adf3cb0c5bd5d52e7ee6",
+      "result_png_sha256": "ed83a8250b4a7a2ba969751f3519253f7a2e386080de239bd06e66baa9f82639"
+    }
+  }
+}

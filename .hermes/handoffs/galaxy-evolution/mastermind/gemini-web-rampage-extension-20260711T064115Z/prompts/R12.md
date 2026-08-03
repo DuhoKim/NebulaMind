@@ -1,0 +1,85 @@
+# R12 — Source-identifier verification strategies (for the quarantine pipeline)
+
+Run ID: `RAMPAGE_R12` · REQ: `REQ_RAMPAGE_R12_20260711T064115Z` · Wave 6
+Non-duplication: every base run *produces* quarantined IDs; nothing yet informs how the local
+verification queue should *check* them. R12 is a cited methods survey to design that pipeline.
+Its output is itself quarantined advisory — adopting any practice happens under a separate brief.
+
+Paste everything BETWEEN the sentinel lines (sentinels and code fence excluded). No steering.
+Single neutral "continue" ONLY on visible mid-generation truncation (packet-authorized, logged);
+otherwise no follow-ups of any kind.
+
+-----BEGIN PASTE REQ_RAMPAGE_R12_20260711T064115Z-----
+```markdown
+# Deep Research request — Verification strategies for scholarly identifiers supplied by AI systems
+
+**Request ID:** `REQ_RAMPAGE_R12_20260711T064115Z`
+**Role:** Methods analyst for a research program that quarantines every AI-supplied citation
+(DOI/arXiv/ADS bibcode/URL) pending local verification. Compile the published/documented state of
+the art for verifying such identifiers at scale. Report only documented facts and published
+findings; you have no access to the program's internals.
+
+**Required deliverables (markdown sections, in order):**
+1. `## Resolver and registry inventory` — one row per service (DOI resolution & content
+   negotiation, Crossref REST, DataCite, NASA/SAO ADS API, arXiv API & OAI-PMH, OpenAlex,
+   Semantic Scholar, PubMed where relevant):
+   `Service | What it authoritatively verifies | Query pattern (documented) | Rate limits / auth requirements (documented) | Failure modes (documented) | Citation/URL to official docs`
+2. `## Fabrication-rate findings` — published studies measuring AI/LLM citation fabrication or
+   error rates (any discipline): study, model class, task, fabrication/error rate ± unc,
+   detection method, citation.
+3. `## Retraction and errata surfaces` — documented ways to detect retracted/withdrawn/erratum'd
+   sources (Retraction Watch database & its Crossref integration, publisher feeds), with coverage
+   caveats as documented.
+4. `## Matching heuristics` — published/documented approaches for confirming an identifier matches
+   the claimed work (title/author/year fuzzy matching, bibcode structure rules, arXiv-version vs
+   journal-version pitfalls, DOI prefix sanity), each cited.
+5. `## Pipeline patterns` — documented fail-closed verification pipeline designs from scholarly-
+   integrity, library-science, or reproducibility literature (attributed): stages, ordering,
+   quarantine/promotion rules as the sources describe them.
+6. `## Known gaps` — `GAP:` lines: identifier classes or failure modes with no good documented
+   check (e.g. plausible-but-wrong page ranges, preprint/journal mismatches), cited or `NONE_FOUND`.
+7. `## Synthesis (model-generated, advisory)` — clearly labeled as your synthesis: a candidate
+   check-order for a fail-closed local pipeline, each step justified by a citation from sections
+   1–5. No step may require credentials the sources say are paid/restricted without flagging it.
+
+**Binding output contract:**
+- C1 (meta header). ONE self-contained markdown report body starting with:
+
+      # Rampage R12 answer — REQ_RAMPAGE_R12_20260711T064115Z
+      Run date (UTC): <YYYY-MM-DDTHH:MM:SSZ>
+      Model: <model/product self-identification>
+      Services inventoried: <N>
+
+- C2 (structure). Exactly the seven numbered sections above, in order; empty fields say
+  `NONE_FOUND`, never silently omitted, never padded.
+- C3 (uncertainty). Every rate/number carries the source's uncertainty or
+  `UNCERTAINTY_NOT_QUOTED_BY_SOURCE`. Never invent numbers.
+- C4 (citation labeling). Every service spec, finding, or practice carries a checkable citation
+  (arXiv ID, DOI, or URL — official API documentation URLs count) on the same line, or
+  `UNCITED_NOT_USABLE`.
+- C5 (wording contract). Own-voice settled/causal register banned (case-insensitive):
+  establish(es/ed/ing), proves, proven, confirms that, settles, settled question, resolves the
+  debate, definitively, conclusively, is now known, "demonstrates that … causes". Section 7 is the
+  only place for your own synthesis and must stay labeled as such.
+- C6 (estimand labels). Fabrication rates from different models/tasks/years are non-commensurable:
+  label them; never average across studies.
+- C7 (links ledger). Final content section `## Links ledger`, one line per cited item:
+  `<short name> | <citation or UNCITED_NOT_USABLE> | QUARANTINED_PENDING_LOCAL_CHECK`.
+- C8 (completion marker). The exact string
+
+      GEMINI_WEB_RAMPAGE_R12_OUTPUT_DONE_20260711T064115Z
+
+  must appear exactly once, as the standalone FINAL non-empty line of the report body. Nothing may
+  follow it — no "End of Report", no sign-off. A marker only in a chat-UI element counts as ABSENT
+  and the run is rejected.
+
+**Safety locks:**
+- Output is advisory only. Not accepted evidence, not product claim binding; the program will not
+  execute any verification step from this report without separate approval.
+- Do not present generated DOI/ADS/arXiv IDs as verified; all IDs are quarantined pending local check.
+- Do not propose edits to any local artifact; produce this report body only.
+
+Final reminder: the last non-empty line of your report must be exactly
+`GEMINI_WEB_RAMPAGE_R12_OUTPUT_DONE_20260711T064115Z` with no text after it.
+```
+-----END PASTE REQ_RAMPAGE_R12_20260711T064115Z-----

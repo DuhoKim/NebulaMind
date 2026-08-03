@@ -1,0 +1,1817 @@
+MNRAS 000, 1–15 (2025)
+Preprint 30 April 2025
+Compiled using MNRAS LATEX style file v3.0
+The FLAMINGO project: Baryon effects on the matter power spectrum
+Matthieu Schaller
+1,2⋆, Joop Schaye 2, Roi Kugel 2, Jeger C. Broxterman 1,2 & Marcel P. van Daalen 2
+1Lorentz Institute for Theoretical Physics, Leiden University, PO Box 9506, NL-2300 RA Leiden, The Netherlands
+2Leiden Observatory, Leiden University, PO Box 9513, NL-2300 RA Leiden, The Netherlands
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+The effect of baryon physics associated with galaxy formation onto the large-scale matter distribution of the Universe is a key
+uncertainty in the theoretical modelling required for the interpretation of Stage IV cosmology surveys. We use the FLAMINGO
+suite of simulations to study the baryon response due to galaxy formation of the total matter power spectrum. We find that it
+is only well converged for simulation volumes in excess of 2003 Mpc3. We report results for simulations of varying feedback
+intensity, which either match the X-ray inferred gas fractions in clusters and the z = 0 stellar mass function, or shifted versions
+of the data, as well as for different implementations of AGN feedback. We package our results in the form of a Gaussian process
+emulator which can rapidly reproduce all the simulations’ predictions to better than one per cent up to the comoving wavenumber
+k = 10 h·Mpc−1 and up to z = 3 for all the feedback models present in the FLAMINGO suite. We find that the response becomes
+stronger, the range of scales affected increases, and the position of the minimum of the response moves to smaller scales as
+the redshift decreases. We find that lower gas fractions in groups and clusters lead to a stronger response and that the use of
+collimated jets instead of thermally driven winds for AGN feedback enhances the effect. Lowering the stellar masses at fixed
+cluster gas fractions also increases the magnitude of the response. We find only a small (one per cent at k < 10 h · Mpc−1)
+dependence of our results on the background cosmology, but a wider range of cosmology variations will be needed to confirm
+this result. The response we obtain for our strongest feedback models is compatible with some of the recent analyses combining
+weak lensing with external data. Such a response is, however, in strong tension with the X-ray inferred gas fractions in clusters
+used to calibrate the FLAMINGO model.
+Key words: large-scale structure of Universe – cosmology: theory – methods: numerical
+1 INTRODUCTION
+Over nearly three decades, our standard model of cosmology, the
+ΛCDM model, has received substantial scrutiny from the commu-
+nity and successfully passed a multitude of stress tests (see e.g. Do-
+delson & Schmidt 2020; Lahav & Liddle 2022). This vast program,
+designed to find faults in the model, understand its limitations, and
+identify possible extensions is continuing in this decade with ex-
+ceedingly demanding precision tests, generally grouped under the
+“Stage IV cosmology probe” label. Many of these tests are focusing
+on the growth of the large scale structure (LSS) and are providing in-
+dependent constraints from the geometric probes, such as the baryon
+acoustic oscillations (BAO) or Type 1a supernovae, or the analysis
+of fluctuations of the cosmic microwave background (CMB). Most
+of these programs were designed to shed some light on the nature
+of both dark matter and dark energy as well as to explore some of
+the tensions currently emerging between orthogonal probes (see e.g.
+Abdalla et al. 2022).
+The many different LSS tests (e.g. cosmic shear, galaxy cluster-
+ing, redshift-space distortions, CMB lensing, Sunyaev–Zel’dovich
+power spectra, and combinations thereof) probe the matter content
+of the Universe and its distribution across many different length-
+scales and at multiple epochs throughout cosmic time. As the scales
+⋆E-mail: mschaller@lorentz.leidenuniv.nl
+probed become smaller with each generation of instruments, the
+challenge of making accurate theoretical predictions grows. Many
+of the probes mentioned above are now exploiting information well
+into the non-linear regime, where perturbation theory is not suffi-
+cient anymore. The main approach used over the last twenty years
+has been to resort to the “halo model” analytic formalism (e.g. Sel-
+jak 2000; Smith et al. 2003; Asgari et al. 2023) itself (usually) cal-
+ibrated on the results of N-body simulations (e.g. Takahashi et al.
+2012; Mead et al. 2016). More recently, the ability to run a suffi-
+ciently large number of cosmological simulations has allowed an
+alternative approach based on the direct interpolation between simu-
+lations (typically via emulators) to predict many quantities required
+for data analysis (e.g. Heitmann et al. 2016; Lawrence et al. 2017;
+DeRose et al. 2019; Euclid Collaboration et al. 2019; Bocquet et al.
+2020; Angulo et al. 2021; Storey-Fisher et al. 2024).
+Both the halo model and emulators trained on pure N-body sim-
+ulations would suffice if the scales probed were not affected by the
+behaviour of baryons. Whilst on large scales, k ≲0.1 h·Mpc−1, the
+joint baryon and dark matter fluid behaves similarly to a pure dark
+matter model (with initial conditions accounting for BAO), studies
+based on simulations including hydrodynamics and galaxy forma-
+tion effects have shown that the matter field on smaller scales devi-
+ates significantly from the pure N-body predictions (e.g. van Daalen
+et al. 2011, 2020; Schneider & Teyssier 2015; Mummery et al. 2017;
+Springel et al. 2018; Salcido et al. 2023; Pakmor et al. 2023; Schaye
+© 2025 The Authors
+arXiv:2410.17109v2  [astro-ph.CO]  29 Apr 2025
+
+
+2
+M. Schaller et al.
+et al. 2023; Wang & He 2024) and that neglecting this effect will
+result in catastrophic systematic errors (e.g. Semboloni et al. 2011).
+The amplitude of the baryonic effect depends on uncertain feedback
+processes and is thus difficult to predict. However, the amplitude is
+understood to depend on observables such as the baryonic content
+of groups and clusters (e.g. Semboloni et al. 2011, 2013; van Daalen
+& Schaye 2015; Chisari et al. 2019; van Daalen et al. 2020; Mead
+et al. 2020; Salcido et al. 2023; van Loon & van Daalen 2024) and
+halo models reproducing these observables confirm the importance
+of baryon effects (Debackere et al. 2020). The modelling of these
+deviations, commonly referred to as “baryon effects”, is crucial for
+the interpretation of future surveys probing the matter distribution
+deep into the non-linear regime.
+Thanks to its speed and flexibility, the community’s preferred ap-
+proach thus far, has been to use relatively simple analytic prescrip-
+tions to correct the predictions of N-body simulations (e.g. Schnei-
+der & Teyssier 2015; Aricò et al. 2021) or halo models (e.g. Mead
+et al. 2021). These correction procedures themselves come with free
+parameters which could, in principle, be marginalised over when in-
+ferring cosmological information from survey data (e.g. Asgari et al.
+2021; Aricò et al. 2023; Bigwood et al. 2024). Whilst being power-
+ful, these extended halo models and other “baryonification” proce-
+dures also come with some drawbacks. The most important ones
+being the relatively simple nature of the models and the implicit as-
+sumption that the baryon physics is independent of the chosen back-
+ground cosmology (however, see Aricò et al. 2021 for a model go-
+ing beyond this assumption). These models also do not come with a
+clear ab-initio prediction for the strength of the correction required,
+though attempts have been made to link some of their parameters
+to observables to restrict the range of valid input parameters (e.g.
+Schneider & Teyssier 2015; Mead et al. 2020; Debackere et al. 2020;
+Schneider et al. 2022; Tröster et al. 2022; Aricò et al. 2023; Ferreira
+et al. 2024).
+An alternative approach is to exploit hydrodynamical simulations.
+Their cost is much larger than the evaluation of corrective methods,
+but recent advances have allowed for large suites of simulations that
+vary the input parameters of their sub-grid models to be run (e.g. Le
+Brun et al. 2014; McCarthy et al. 2017; Villaescusa-Navarro et al.
+2021; Salcido et al. 2023; Schaye et al. 2023). Among the advan-
+tages of this approach are the self-consistent nature of the modelling
+and the relative ease with which the simulated data can be connected
+to observables.
+Whilst knowing and understanding the exact feedback mecha-
+nisms in galaxies would provide an ab-initio prediction for the prop-
+erties of groups and clusters and thus of the baryon effect on the
+matter power spectrum, this is far beyond our current understanding
+of galaxy formation. Numerical simulations thus come with sub-grid
+recipes which are calibrated to match specific observables. The nat-
+ural choice, based on the discussion above, is to target the gas or
+baryon fractions in groups and clusters of galaxies. The BAHAMAS
+(McCarthy et al. 2017), FABLE (Henden et al. 2018), and ANTILLES
+(Salcido et al. 2023) projects all took this approach to set the value
+of their free parameters. Thanks to the rather large simulation vol-
+umes probed, the effects of galaxy formation on the matter power
+spectrum from the COSMO-OWLS (Le Brun et al. 2014) and BA-
+HAMAS simulations are often used as references for the range of pos-
+sible outcomes (e.g. Amon & Efstathiou 2022; Preston et al. 2023).
+They have also been used as input to some of the simpler corrective
+models described above (e.g. Mead et al. 2021; Aricò et al. 2023).
+Running large suites of simulations varying parameters around the
+best-fitting model is possible, but a more efficient approach to re-
+strict the plausible parameter space is to build on the work of van
+Daalen et al. (2020). By analysing virtually all simulations from the
+literature at the time and building on the results from Semboloni
+et al. (2011, 2013), they formalised robustly the connection between
+group and cluster baryonic content and the effect of baryons on the
+matter power spectrum. Salcido et al. (2023) built on this idea to con-
+struct an emulator trained on the 400 simulations of their ANTILLES
+suite to predict the baryonic response of the matter power spectrum
+as a function of various combinations of cluster properties. Their
+emulation approach relating the unknown effect to some (almost)
+observable quantities allows to use their tool in cosmology infer-
+ence (thanks to its speed) whilst providing meaningful data-driven
+priors.
+In this study, we follow similar steps using the FLAMINGO suite
+of cosmological simulations (Schaye et al. 2023; Kugel et al. 2023).
+These simulations cover much larger simulated volumes than the
+ANTILLES suite and have been calibrated, using modern machine-
+learning-based techniques, to reproduce the observed gas fractions
+in groups and clusters. Whilst the connection to the power spectrum
+is less direct for the gas fraction, it is more easily observable than
+the total baryon fraction and the gas fraction is typically much larger
+than the stellar fraction for the relevant halo masses. The FLAMINGO
+simulations have been shown to reproduce a series of observables of
+the cluster population (Schaye et al. 2023; Braspenning et al. 2024;
+Kay et al. 2024) and thus offer a good baseline for the understanding
+of the effect of baryons on the matter power spectrum. Furthermore,
+the use of variations of the base model, where the observables have
+been shifted in a systematic fashion (Kugel et al. 2023), allows for
+a direct connection between the baryonic response and the observ-
+ables the simulations were calibrated to. Additionally, the simula-
+tions themselves have already been used to investigate the role of
+baryons on the so-called S8 tension (McCarthy et al. 2023, 2024;
+Elbers et al. 2025). In this paper, we construct a simple and fast
+Gaussian process emulator (for an introduction, see Rasmussen &
+Williams 2006) predicting the baryon effects on the power spectrum
+as a function of redshift and simulation calibration targets. By pub-
+licly releasing our emulator, we provide a simple and efficient way
+of incorporating the results of the FLAMINGO suite of simulations
+in analysis pipelines of upcoming surveys.
+This paper is organised as follows. In Sec. 2, we introduce the
+simulation model used and verify the convergence of the results with
+the simulation volume. In Sec. 3, we describe the procedure used to
+construct our baryon response emulator and validate it. In Sec. 4, we
+explore some results obtained using the emulator. Finally, we offer
+some conclusions in Sec. 5.
+2 SIMULATIONS & POWER-SPECTRA MEASUREMENTS
+In this section, we present the simulations used for this study
+(Sec. 2.1), describe how the matter power spectra are measured
+(Sec. 2.2) and analyse the convergence of the results (Sec. 2.3).
+2.1 The FLAMINGO suite of simulations
+The FLAMINGO simulations and the strategy used to calibrate their
+free parameters to match relevant observables are described in
+Schaye et al. (2023) and Kugel et al. (2023). We provide here a brief
+summary of the key components.
+The simulations were performed using the SWIFT simulation code
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+3
+(Schaller et al. 2024)1, a fully open-source coupled cosmology, grav-
+ity, hydrodynamics, neutrino and galaxy formation code. The gravity
+is solved using a 4th-order fast-multipole-method (see e.g. Cheng
+et al. 1999) coupled to a Particle-Mesh method in Fourier space
+for the long-range interactions using the splitting method of Bagla
+& Ray (2003). Cosmological neutrinos are evolved using the δf-
+method of Elbers et al. (2021). The equations of hydrodynamics
+are evolved using the SPHENIX (Borrow et al. 2022) flavour of
+Smoothed Particle Hydrodynamics.
+The hydrodynamical simulations include subgrid prescriptions for
+radiative cooling following Ploeckinger & Schaye (2020), an en-
+tropy floor at high densities and star formation using the method
+of Schaye & Dalla Vecchia (2008), stellar feedback using kinetic
+winds (Dalla Vecchia & Schaye 2008; Chaikin et al. 2022), and the
+chemical enrichment model of Wiersma et al. (2009). Supermassive
+black holes and thermally driven AGN feedback are modelled fol-
+lowing Springel et al. (2005), Booth & Schaye (2009) and Bahé et al.
+(2022). The models with “jet” AGN feedback (see below) alterna-
+tively use the method of Huško et al. (2022) to produce feedback
+using collimated jets.
+As is the case in all galaxy formation models, the simulations of
+the FLAMINGO suite have free parameters in their subgrid recipes.
+The approach chosen for this project to calibrate the feedback pa-
+rameters was to construct a Gaussian process emulator, trained on a
+Latin hypercube of simulations, to predict the observables as a func-
+tion of the subgrid parameters. This emulator was then used to cal-
+ibrate the models against observational data, as presented in detail
+by Kugel et al. (2023). The simulations were chosen to reproduce
+the z = 0 galaxy stellar mass function as well as the gas fractions
+in groups and clusters inferred from X-ray and weak-lensing data.
+This choice is similar to the one made for the BAHAMAS simula-
+tions (McCarthy et al. 2017) but using a more systematic approach
+via the emulator.
+Besides its added objectivity over calibration by hand, the use of
+an emulator to set the free parameters of the model offers an addi-
+tional advantage: the possibility to rapidly generate simulated mod-
+els where the data is shifted by particular amounts with respect to
+observations. In the case of the cluster gas fractions, we created dif-
+ferent models where the observed gas fractions are shifted up and
+down compared to the results by ±Nσ, where σ is the scatter in the
+data (see Kugel et al. 2023, for the exact definitions). Once the emu-
+lator has been fitted to these shifted data points, we run a full simula-
+tion using the predicted subgrid parameter values. These simulations
+are labelled as “fgas±Nσ” in Table 1. Similarly, we generated mod-
+els fitting shifted versions of the stellar mass function, effectively
+lowering/increasing the mass of every galaxy by ±Nσ, where, σ is
+the systematic error on the measurements. These runs are labelled
+as “M∗± Nσ” in Table 1. Finally, we ran two simulations using the
+jet model of AGN for two different shifts of the gas fractions. These
+runs are labelled as “Jets fgas±Nσ” in Table 1.
+Outside of the tests in Sec. 4.3, the simulations used in this
+study adopt as values of the cosmological parameters the maxi-
+mum likelihood values from the DES year 3 data release (Abbott
+et al. 2022) combined with external probes (their “3×2pt + All Ext.”
+model: Ωm = 0.306, Ωb = 0.0486, σ8 = 0.807, h = 0.681, ns =
+0.967,Pmνc2 = 0.06eV). The initial conditions (ICs) were gener-
+ated using the MONOFONIC code (Hahn et al. 2021; Elbers et al.
+2022) using a 3-fluid formalism with a separate transfer function
+1 Publicly available, including the exact version used for the FLAMINGO
+simulations, at www.swiftsim.com.
+Table 1. The nine different simulations of the FLAMINGO suite used in this
+study. All models assume the same cosmology and were run in 1 Gpc3 vol-
+umes using the same initial conditions. The first column gives the simulation
+names used by Schaye et al. (2023). The next two columns give the amount
+by which the gas fractions or stellar masses were shifted when calibrating
+the model. The last column indicates whether the model was run with the
+fiducial (thermal isotropic) AGN model or with the collimated jet implemen-
+tation. The last three columns are the three parameters used as input to our
+baryon response emulator.
+Simulation name
+fgas ±Nσ
+M∗±Nσ
+Jet fraction
+fgas+2σ
++2
+0
+0%
+L1_m9 (fgas+0σ)
+0
+0
+0%
+fgas−2σ
+-2
+0
+0%
+fgas−4σ
+-4
+0
+0%
+fgas−8σ
+-8
+0
+0%
+M∗−σ
+0
+-1
+0%
+M∗−σ fgas−4σ
+-4
+-1
+0%
+Jets
+0
+0
+100%
+Jets fgas−4σ
+-4
+0
+100%
+for each of the dark matter, gas, and neutrinos. The ICs used par-
+tially fixed modes (Angulo & Pontzen 2016), setting the amplitudes
+of modes with (kL)2 < 1025 to the mean variance, where L is the
+side-length of the simulated box and k the modes’ wave-number.
+The multi-fluid approach (Rampf et al. 2021) used by MONO-
+FONIC allows to obtain a perfect match of the gravity-only and full-
+hydrodynamics power spectrum on the largest scales.
+2.2 Measurements of power-spectra and baryonic response
+The measurement of power spectra is performed over the course of
+the simulation at 122 different times between z = 30 and z = 0. At
+z < 3, we obtain a power spectrum measurement after every redshift
+interval ∆z = 0.05.
+For each computation, we deposit the particles on a regular grid of
+size 2563 using a triangular-shaped-clouds approach which is self-
+consistently compensated in Fourier space (see e.g. Jing 2005). Once
+the density field is computed, we compute its power spectrum using
+a fast-Fourier transform. To reach k-modes beyond the spacing of
+the base grid, we use the foldings technique of Jenkins et al. (1998)
+with a folding factor of 4 between iterations and use 7 iterations.
+This allows us to measure the matter power spectrum up to scales
+k > 1000 h·Mpc−1, much beyond the needs of this project.
+We measure the total matter power spectrum (i.e. the sum of the
+gas, dark matter, stars, black holes, and neutrinos) in the hydrody-
+namical simulations and perform the same computation in the dark-
+matter-only simulations, where the matter field is represented by a
+single type of particle. By using the same grid and folding settings
+between all the runs, we obtain measurements in the same bins in k-
+space and can thus simply obtain the matter power spectrum ratios,
+i.e. the baryonic effect on the power spectrum, by dividing the two
+spectra2.
+The z = 0 baryonic responses for the simulations listed in Table 1
+were already presented by Schaye et al. 2023 (their Fig. 22) and
+compared to the results of the BAHAMAS (McCarthy et al. 2017)
+and MILLENNIUM-TNG (Pakmor et al. 2023) predictions. Schaye
+2 The raw matter power-spectra for all the simulations of the FLAMINGO
+suite have been made publicly available on the website of the project:
+https://flamingo.strw.leidenuniv.nl/.
+MNRAS 000, 1–15 (2025)
+
+
+4
+M. Schaller et al.
+10−1
+100
+101
+0.85
+0.90
+0.95
+1.00
+R(k) = P(k)/PDMO(k) [−]
+z = 0.00
+z = 0.00
+L = 50 Mpc
+L = 100 Mpc
+L = 200 Mpc
+L = 400 Mpc
+L = 1000 Mpc
+L = 2800 Mpc
+10−1
+100
+101
+0.85
+0.90
+0.95
+1.00
+R(k) = P(k)/PDMO(k) [−]
+z = 1.00
+L = 50 Mpc
+L = 100 Mpc
+L = 200 Mpc
+L = 400 Mpc
+L = 1000 Mpc
+L = 2800 Mpc
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.98
+1.0
+1.02
+R(k)/R2800Mpc(k) [−]
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.98
+1.0
+1.02
+R(k)/R2800Mpc(k) [−]
+1
+10
+100
+Wavelength λ [Mpc]
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 1. Top: The baryonic response at redshift z = 0 (left) and z = 1 (right) for the fiducial FLAMINGO model extracted from simulations with different volumes,
+labelled by the box side length. Bottom: The ratio of the response in each simulation to the response obtained in the largest simulation (L = 2800 Mpc). The
+shaded regions correspond to fractional errors of 0.5 and 1 per cent respectively. At both redshifts, the results are converged at the 1 per cent level for simulations
+with volumes in excess of 2003 Mpc3 up to k ≈10 h·Mpc−1. Simulations with a side-length of 400 Mpc are not converged to better than 0.5 per cent even on
+scales k ≈1 h·Mpc−1, with a larger deviation at higher redshift. Note also the reduction in the level of noise when larger simulation volumes are used.
+et al. (2023) also showed that the results of the various FLAMINGO
+runs are in excellent agreement with the model of van Daalen et al.
+(2020) relating the baryonic response to the mean baryon fraction in
+clusters of mass M500c = 1014 M⊙, where M500c is the mass within
+a radius enclosing a spherical overdensity 500 times larger than the
+critical density of the Universe.
+We note that the simulations using the “jet” implementation of
+AGN feedback displayed a response slightly smaller than unity
+(0.9968) on the largest scales (see the bottom right panel of Fig.
+22 of Schaye et al. 2023). As the response in the k-range affected
+by feedback is much larger than this difference and since this small
+offset creates artifacts for the emulator construction, we decided to
+renormalise the response of the jet models in what follows.
+2.3 Convergence test with simulation volume
+As the effect of baryon physics on the matter power spectrum is
+thought to be driven by haloes of different masses for the different k
+modes (see e.g. Semboloni et al. 2011; van Daalen et al. 2020; De-
+backere et al. 2020; Mead et al. 2020; Salcido et al. 2023; van Loon
+& van Daalen 2024), it is important to ensure that the haloes respon-
+sible are well sampled in the simulation volume used for the analysis
+and are not affected by cosmic variance. To verify this, we present
+the baryonic response of the matter power spectrum at z = 0 and
+z = 1 for different simulations in the FLAMINGO suite using exactly
+the same galaxy formation model and at fixed resolution in Fig. 1.
+We use the fiducial FLAMINGO model here (i.e. “fgas+0σ, M∗+0σ,
+0% jets”, labelled as the “L1_m9” model in Table 1) but we veri-
+fied that the results are similar for other models. The different line
+colours correspond to simulations using cubic volumes whose side-
+lengths are indicated in the figure and range from 50 Mpc to 2.8 Gpc
+(the “L2p8_m9” model of Schaye et al. 2023).
+For volumes with side-length in excess of 200 Mpc at z = 0, we
+find that the baryonic response is converged at the 2 per cent level
+for the entire range of k values probed by current and upcoming
+surveys. A convergence to better than 0.5 per cent is only achieved
+for the simulation with a 1 Gpc side-length. At z = 1 (right panel),
+the convergence at the 1 per cent level is also achieved for volumes
+> 2003 Mpc3. However, at a more precise level, the simulations are
+further from the converged result on larger scales than at z = 0. As
+smaller k values are affected by haloes of larger masses, this differ-
+ence in convergence can be interpreted as the absence of the rarer
+objects at higher redshift. In the analysis that follows, we will make
+use of simulations with a volume of 1 Gpc3, well within the regime
+where the results are converged.
+Based on this simulation volume analysis, we caution that matter
+power spectrum responses extracted from simulations such as IL-
+LUSTRIS (Vogelsberger et al. 2014), EAGLE (Schaye et al. 2015),
+HORIZON-AGN (Chisari et al. 2018), SIMBA (Davé et al. 2019),
+and CAMELS (Delgado et al. 2023) — all using simulated volumes
+≲1003 Mpc3 — are likely not converged. Furthermore, if the dif-
+ference from a converged result in these models has the same sign
+as we find in the FLAMINGO runs, one could expect the results of
+these studies to have overestimated the baryonic response of these
+models at k < 4 h·Mpc−1. On the other hand, from our analysis the
+response reported for the TNG model (Springel et al. 2018) would
+be converged for their largest volume (≈3003 Mpc3). This is con-
+firmed by the results of the MILLENNIUM-TNG simulations, using
+a very similar model in a 7403 Mpc3 volume, reported by Pakmor
+et al. (2023). We note that if the baryonic response is dominated by
+the activity in haloes of lower mass than in FLAMINGO (as in e.g.
+EAGLE or TNG), the response might be converged in smaller vol-
+umes already as the number density of the haloes responsible will be
+less affected by cosmic variance than for our model.
+The results of our convergence tests here are consistent with the
+findings of van Daalen et al. (2011) who found that the total matter
+power spectra at z = 0 are not converged in hydrodynamical simula-
+tions with volumes < (100/h Mpc)3 (their appendix A) and of van
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+5
+Daalen et al. (2020) who found the response to be converged only
+for volumes ≳(100/h Mpc)3 (their Appendix A).
+3 GAUSSIAN PROCESS EMULATOR
+In this section, we describe the procedure used to construct our
+power spectrum response emulator (Sec. 3.1) and the validation
+steps we performed to assess its quality (Sec. 3.2).
+3.1 Construction of the emulator
+To construct our emulator, we make use of the nine runs listed in Ta-
+ble 1 and measure the baryonic response as described in Sec. 2.2. We
+measure the ratio R(k) = P(k)/PDMO(k) for 31 values of k logarith-
+mically spaced between 10−1.5 and 101.5 h · Mpc−1 (i.e. ∆log10 k =
+0.1) at seven different redshifts (z = 0.,0.5,1.0,1.5,2.0,2.5, and 3.0).
+We thus have a coarse representation of R as a function of five in-
+put numbers: k, z, and the three model parameters used to describe
+the baryonic physic in the simulations (fgas±Nσ, M∗± Nσ, and jet
+fraction) as given in Table 1. Note that even though our simulations
+are with the fiducial AGN model or the jet-based AGN model, we
+treat the AGN model as a continuous number going from 0% jet to
+100% jet. Similarly, we do not restrict the emulator to only accept
+input parameter values within the range where it was trained. Whilst
+these are somewhat uncertain interpolations and extrapolations, we
+prefer to be able to cover a wide range of scenarios with our model,
+even if some of them may not be reproduced by actual simulations.
+We then train the Gaussian process emulator provided by the pub-
+licly available python package SWIFTEMULATOR 3 (Kugel & Bor-
+row 2022), itself an overlay specialised in scaling relations extracted
+from simulations of the commonly used GEORGE4 package (Am-
+bikasaran et al. 2015).
+The emulator was trained on a small number of k bins to reduce
+the amount of internal data generated and speed up the prediction
+process. As we will show below, the number of bins we used is suffi-
+cient to achieve better than 1 per cent relative accuracy for the range
+of input parameters relevant to our application. We note that we just
+used the tools above as-is and that no specific hyper-parameter tun-
+ing was necessary. The only hyper-parameter choice made was to
+force the emulator to assume a mean model of R(k) = 1 ∀k and em-
+ulate the difference from this imposed model rather than letting the
+emulator freely choose a mean R(k) — typically a polynomial —
+around which to emulate differences.
+When using the emulator to make predictions, we use the
+quadruplet (z, fgas±Nσ, M∗± Nσ, jet fraction) to get the values of
+R at the 31 points along the k-axis defined above. We then use spline
+interpolation to compute R at the exact k values of interest. By
+predicting the value of R for all the 31 k-bins at the same time, we
+can more rapidly return R(k) for a range of k values at once, which
+is the most common scenario. As we empirically have R(k) = 1 for
+all k < 10−1.5 h · Mpc−1 in our models, we extend our emulator to
+simply return R = 1 on all scales larger than the training range. This
+effectively allows us to predict the baryonic response in the range
+k ∈(−∞,101.5] h · Mpc−1, meaning that our emulator can easily be
+coupled to other tools predicting PDMO(k) to obtain a P(k) including
+baryon effects over the whole range of scales relevant to current
+3 https://swiftemulator.readthedocs.io/
+4 https://george.readthedocs.io/
+cosmological analysis needs.
+We note that the entire prediction step described above takes
+approximatively 1 ms to be performed on a single compute core.
+This implies that our emulator can be used in cosmology model
+inference searches (e.g. using an MCMC sampler) without leading
+to problematic time overheads. It could also be used as a simple
+extension to the commonly used Boltzmann solvers such as CAMB
+(Lewis et al. 2000) or CLASS (Lesgourgues 2011) on top of their
+already-implemented non-linear extensions such as HALOFIT (e.g.
+Smith et al. 2003).
+The emulator can also optionally return an estimate of the
+variance for its predictions (See Sec. II.A of Ambikasaran et al.
+2015 for the exact definition). This can be useful to estimate the
+confidence of the emulator in a given part of the parameter space.
+As we will show below, this variance is overestimated for low
+values of k as we did not attempt to force the emulator to always
+return R = 1 at values of k close to our largest scale bins.
+Our emulator is distributed publicly in the form of a python
+package named FLAMINGOBARYONRESPONSEEMULATOR and
+will be made available on the FLAMINGO project web-page5 or
+directly via the PyPi package index upon acceptance of this
+manuscript for publication. Comprehensive documentation and us-
+age examples are provided on the web-page.
+3.2 Verification and accuracy
+Before exploring the results, we start by assessing the quality of the
+emulator’s predictions for the data points it was trained on.
+In Fig. 2, we show the baryon response for our fiducial model
+(fgas+0σ, M∗+0σ, jet 0%) at 21 different redshifts and for 61 dif-
+ferent values of k. Recall that we only trained on 7 redshifts and 31
+bins in k. For each redshift, the dots indicate the raw results from the
+simulation whilst the lines show the predictions of the emulator. In
+the bottom panel, we present the ratio between the raw simulation
+results and the emulator predictions, with the grey shaded regions
+indicating 0.5 and 1 per cent differences respectively.
+Before discussing the performance of the emulator, we analyse
+the evolution with redshift of the response. We find that the re-
+sponse becomes stronger as the simulation evolves. The position of
+the minimum of the response moves from k = 6 h·Mpc−1 at z = 2 to
+k = 10 h·Mpc−1 at z = 0. The range of scales affected by baryons also
+increases with decreasing redshift. At z = 2, the response is negligi-
+ble up to scales k ≈1 h · Mpc−1, with the departure from unity (i.e.
+no response) shifting to k ≈0.1 h·Mpc−1 by z = 0.
+Turning now to the verification of our model, we find that for all
+redshifts shown and for all k < 10 h·Mpc−1, the emulator described
+above can reproduce the simulation data with an accuracy better than
+1 per cent. At larger values of k, we find that the emulator is less
+accurate but still returns an answer with a relative error better than 2
+per cent.
+In Fig. 3, we show the performance of the emulator for the other
+models it was trained on. We arbitrarily picked z = 0.5 for the
+figure but verified that the results are identical at other redshifts.
+The conclusion here is similar to the one for the previous exercise:
+the emulator reaches a relative accuracy better than 1 per cent for
+k < 10 h·Mpc−1 and degrades to around 2 per cent on smaller scales.
+5 https://flamingo.strw.leidenuniv.nl/
+MNRAS 000, 1–15 (2025)
+
+
+6
+M. Schaller et al.
+10−1
+100
+101
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+fgas + 0σ
+M∗+ 0σ
+JET 0%
+z = 0.0
+z = 0.1
+z = 0.2
+z = 0.3
+z = 0.4
+z = 0.5
+z = 0.6
+z = 0.7
+z = 0.8
+z = 0.9
+z = 1.0
+z = 1.1
+z = 1.2
+z = 1.3
+z = 1.4
+z = 1.5
+z = 1.6
+z = 1.7
+z = 1.8
+z = 1.9
+z = 2.0
+10−1
+100
+101
+Mode k [h · Mpc−1]
+0.98
+1.0
+1.02
+Emu./Sim.
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 2. The accuracy of the baryonic response emulator for the FLAMINGO
+fiducial model (“L1_m9”) as a function of redshift. The coloured dots show
+the raw power spectra ratios measured directly from the simulations at 21 dif-
+ferent redshifts. The lines show the emulator predictions for the correspond-
+ing redshifts. Note that the emulator was only trained on data at an interval
+∆z = 0.5. The vertical dotted lines indicate the k-range over which the em-
+ulator was trained. The bottom panel shows the ratio between the emulator
+prediction and the raw simulation output. The shaded regions correspond to
+fractional errors of 0.5 and 1 per cent respectively. For all redshifts and for
+all k < 10 h·Mpc−1, the emulator is accurate to better than 1 per cent.
+To be more quantitative, we measured the relative difference be-
+tween the emulator predictions and the raw simulation results for
+all z ≤3 at which we have data and for all nine feedback mod-
+els. We recorded the maximal error reached and found that at k <
+10 h · Mpc−1, this never exceeds 1.1 per cent. At k < 3 h · Mpc and
+for 0 ≤z ≤3, the most relevant range for current cosmology mea-
+surements, the relative error of the emulator is always smaller than
+0.25 per cent.
+We can thus conclude that the emulator designed in the previ-
+ous section faithfully reproduces the raw simulation results. Unless
+stated otherwise, the rest of this paper will only use the emulator to
+show results and not the raw simulation data.
+3.3 Alternative description of input parameters
+As discussed in Sec. 2.1 and more thoroughly in Kugel et al. (2023),
+the FLAMINGO simulations were calibrated to match the inferred
+gas fractions from a combined data set of X-ray and weak-lensing.
+We then uniformly shifted the data by a certain number of σ and cal-
+ibrated the model to match these shifted data sets. The “fgas±Nσ”
+input parameter of our emulator corresponds to the σ-shift with re-
+spect to the original data set used by Kugel et al. (2023). Instead of
+referring to models defined with respect to a fixed data set, it may be
+advantageous to instead use the absolute gas fractions in groups or
+clusters as the input parameter of the emulator.
+10−1
+100
+101
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.50
+fgas −8σ
+fgas −4σ
+fgas −2σ
+L1 m9
+fgas + 2σ
+Jets fgas −4σ
+Jets
+M∗−σ + fgas −4σ
+M∗−σ
+10−1
+100
+101
+Mode k [h · Mpc−1]
+0.98
+1.0
+1.02
+Emu./Sim.
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 3. The accuracy of the baryonic response emulator for the FLAMINGO
+feedback variations (the runs listed in Table 1 with the line colours match-
+ing the convention of Schaye et al. 2023) it was trained on at z = 0.5. The
+coloured dots show the raw power spectra ratios measured directly from the
+simulations. The lines show the emulator predictions for the corresponding
+model. The vertical dotted lines indicate the k-range over which the emu-
+lator was trained. The bottom panel shows the ratio between the emulator
+prediction and the raw simulation output. The shaded regions correspond to
+fractional errors of 0.5 and 1 per cent respectively. For all the models and for
+all k < 10 h·Mpc−1, the emulator is accurate to better than 1 per cent.
+van Daalen et al. (2020) showed that across many galaxy forma-
+tion models, a tight relationship exists between the baryon fraction
+in a certain halo mass bin and the baryonic response at a fixed scale
+k. Different halo masses then dominate the effect at different k val-
+ues (see also van Loon & van Daalen 2024). Using these fractions is
+thus a meaningful input parameter that can also be directly related
+to observables. Similarly, the response emulator from the ANTILLES
+suite (Salcido et al. 2023) also uses the baryon fraction (either at a
+fixed halo mass or across a range of masses) as input to their model.
+However, given the limited range of models varying the stellar frac-
+tions in the FLAMINGO suite, we choose to instead use the gas frac-
+tions as a the parameter we vary and leave the exploration of more
+general variations where we alter both the stellar and gas factions
+(and thus the baryon fractions) to a future study.
+As various observational data sets are able to constrain the gas
+fractions in different halo masses and because the FLAMINGO sim-
+ulations may not necessarily match the trend with mass of all these
+observations, we decided not to pre-define a specific halo mass for
+which the gas fraction is used as input to our model. We, instead,
+choose to present the connection between the gas fraction at z = 0
+and the actual input parameter “fgas±Nσ” in Fig. 4 and let users of
+our package decide based on their available observational input data
+which halo mass best suits their needs.
+In Fig. 4, we show, using different line colours for each halo mass,
+the mapping between the gas fractions in the simulation at that halo
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+7
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+fgas(< R500c)/(Ωb/Ωm) [−]
+−8
+−6
+−4
+−2
+0
+2
+fgas Nσ
+M500c/M⊙=
+1013.00
+1013.25
+1013.50
+1013.75
+1014.00
+1014.25
+1014.50
+1014.75
+1015.00
+Thermal feedback
+Jet feedback
+Figure 4. The value of the “fgas±Nσ” input parameter to our emulator as a
+function of the z = 0 gas fraction within R500c of the simulated clusters for
+different halo masses (different line colours). The solid lines correspond to
+the values extracted from the simulations with the thermal AGN model whilst
+the dashed lines show the values for the simulations exploiting the jet-based
+AGN model.
+mass and the input parameter “fgas±Nσ” of our emulator. We use
+M500c as our halo mass definition and report the gas fractions (nor-
+malised by the cosmic mean) within the corresponding over-density
+radius R500c. This choice was made to match the radii commonly
+used by cluster studies. The dashed lines correspond to the simula-
+tions using the jet AGN implementation. Note that since this model
+was only run for two different values of “fgas±Nσ”, the mapping at
+more extreme values is not available.
+For intermediate masses, M500c ∼1014M⊙, the two models for
+AGN feedback agree (i.e. the solid and dashed lines overlap). This
+is largely a consequence of the calibration effort as this is the
+mass range that was the most constraining in the data set used by
+Kugel et al. (2023). At higher, and especially at lower masses, the
+two models start to differ. This, in turn, leads to differences in the
+baryonic response these models generate for a fixed “fgas±Nσ”,
+as can be seen in Fig. 3 when comparing the “Jets” and “L1_m9”
+models (both using “fgas+0σ”) or the two models calibrated to
+“fgas−4σ”.
+One can then use Fig. 4 and the gas fractions obtained from ob-
+served data sets to set a prior on the range of values our parameter
+“fgas±Nσ” can take; for instance when attempting to marginalise
+over baryon effects for cosmology inference.
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.00
+M∗+0σ
+JET 0%
+fgas−10σ
+fgas−8σ
+fgas−6σ
+fgas−4σ
+fgas−3σ
+fgas−2σ
+fgas−1σ
+fgas+0σ
+fgas+1σ
+fgas+2σ
+fgas+3σ
+fgas+4σ
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 5. Predictions of the FLAMINGO baryon response emulator at redshift
+zero for different models using thermal AGN feedback deviating from the X-
+ray inferred gas fractions the simulations were designed to reproduce and
+expressed as the number of sigma discrepancy between the calibrated gas
+fraction and the data. The variables kept fixed in the emulator are displayed
+on the top left. The dots correspond to raw data from the simulations with
+the solid lines showing the emulator prediction at the same value of “fgas ±
+Nσ”. The dashed lines show the emulator predictions for interpolation or
+extrapolation beyond the simulations used for its construction. The shaded
+regions show the 2-sigma uncertainty of the emulator prediction.
+4 RESULTS
+Having demonstrated that the emulator we built is sufficiently accu-
+rate, we now turn to the exploration of some of the baryonic response
+predictions of the FLAMINGO model.
+4.1 The baryonic response in FLAMINGO
+In this section, we present a selection of results at z = 0 by varying
+the emulator’s input parameters one by one.
+4.1.1 Varying the gas fraction for the thermal AGN model
+We start by studying the effect of changing the “fgas±Nσ” param-
+eter for the purely thermal AGN model while keeping the stellar
+masses at their fiducial values. In Fig. 5, we vary this parameter from
+−10 to +4, i.e. going from a model that would lead to gas fractions in
+clusters 10σ below the data used for calibration to a model 4σ above
+it. The different line colours correspond to the responses for the dif-
+ferent parameter values. We use solid lines to indicate models for
+which we have a simulation and which were thus part of the training
+set. For these, we additionally show using dots the actual simulation
+data. The dashed lines correspond to the emulator’s predictions for
+parameter combinations where no simulation currently exist. They
+are thus interpolations or extrapolations beyond the training set. Fi-
+nally, we indicate using a shaded region the 2σ error estimate on
+the prediction reported by the emulator (for a formal definition see
+Ambikasaran et al. 2015).
+As can be seen, the response becomes larger as the value of the
+MNRAS 000, 1–15 (2025)
+
+
+8
+M. Schaller et al.
+parameter “fgas±Nσ” decreases. This is, in agreement with previ-
+ous studies linking the baryon content of clusters to the intensity
+of the response in simulations (e.g. Semboloni et al. 2011, 2013;
+van Daalen et al. 2020; Salcido et al. 2023) or from empirical/phe-
+nomenological models (e.g. Schneider et al. 2019; Debackere et al.
+2020; Aricò et al. 2021; Mead et al. 2021). At values of “fgas±Nσ”
+below −8, the change in the response becomes smaller and the
+predicted response overall reaches a saturation value; meaning the
+FLAMINGO model cannot produce an even stronger response when
+only this parameter is changed. We note, however, that we have not
+run a simulation at that point; this is an extrapolation from the emu-
+lator only.
+Similarly, at values of the parameter much above the training
+regime, we find that the predicted response from the emulator flirts
+with the unity line, in a likely unphysical manner. Whilst understand-
+ing the behaviour of the model in this regime could lead to valuable
+physical insights, we choose not to spend more time in this area as
+the match to observations and cosmological data sets seems to re-
+quire a response that is typically stronger than our fiducial model
+(e.g. McCarthy et al. 2024), let alone models overshooting the gas
+fraction data we calibrated to.
+Note also the position of the minimum of the response. For the
+values of “fgas±Nσ” explored here, we find that the minimum stays
+in the range k = 8 to 10 h · Mpc−1 with a weak dependence on
+“fgas±Nσ”. To first order, the input parameter changes the normali-
+sation of the response without changing the affected range of k. It is
+instructive to compare this to Fig. 2 where we see that the position
+of the minimum does decrease systematically with redshift.
+4.1.2 Varying the gas fraction for the jet AGN model
+We now repeat the exercise of varying “fgas±Nσ” but for the model
+with “100% jet”. In terms of the 3D parameter space of inputs to our
+emulator, we are exploring the same directional vector as above but
+starting from a position shifted along the jet fraction axis. The result
+of this exercise is displayed in Fig. 6 where we used the same line
+style convention as in the previous figure.
+As can be seen, the size of the shaded regions indicating the em-
+ulator uncertainty is significantly larger than for the thermal AGN
+model (i.e. 0% jet). This stems from the fact that we have only two
+runs (the two solid lines in the figure) using the jet AGN model and
+the predictions made in this area of the parameter space are thus
+more uncertain, especially when extrapolating beyond the training
+range. Note also that we do not show the “fgas−10σ” and “fgas+4σ”
+predictions as their large uncertainties make them lose any signifi-
+cance. The uncertainty at low k is strongly overestimated as all phys-
+ical models have to return to unity in that regime; at least for the
+range of parameters explored here. This large uncertainty is a conse-
+quence of keeping our emulator simple with no physical insights that
+would allow it to return a more physically-motivated uncertainty in
+the low-k regime. It is possible that a different choice of mean model
+for the emulator would have led to a smaller error estimate. We do,
+however, prefer to keep the model as shown here; the level of un-
+certainty that is acceptable will be application-dependent. We thus
+leave the choice of what to use to users of the emulator.
+Overall, the baryonic response obtained for our model with 100%
+jet shows a stronger dependence on the input parameter value
+than for the equivalent model with 0% jet. For negative values of
+“fgasNσ”, the response is stronger and for positive values it is
+weaker than in the thermal AGN case. However, the k-range affected
+and the position of the minimum are similar.
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.00
+M∗+0σ
+JET 100%
+fgas−8σ
+fgas−6σ
+fgas−4σ
+fgas−3σ
+fgas−2σ
+fgas−1σ
+fgas+0σ
+fgas+1σ
+fgas+2σ
+fgas+3σ
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 6. Same as Fig. 5 but for the model using the AGN jet model. For
+“fgas ± Nσ” values beyond the training range, the emulator returns a large
+uncertainty, even at low values of k. The prediction error is there largely
+overestimated, mainly due to the fact that there are only two simulations
+sampling this part of the parameter space. At fixed value of “fgas ± Nσ”,
+the emulator predicts a larger response than in the case with purely thermal
+AGN.
+4.1.3 Interpolating between AGN models
+The impact of the choice of AGN model is clear from the previous
+two figures. As we constructed our emulator with the formally bi-
+nary jet model option6 replaced by a continuous fraction, we can
+explore the effect of changing the model. We show this in Fig. 7,
+where we vary the jet fraction for the case of “fgas−4σ”. We picked
+this value of the gas fractions for the figure as it shows a larger dif-
+ference between models than for the fiducial “fgas+0σ” but the ef-
+fect is similar at other values. We note that there is no simple way to
+generate an actual FLAMINGO simulation that has a jet fraction other
+than 0% or 100%. The results shown here are purely an interpolation
+constructed from the emulation.
+As can be seen from the figure, the response is stronger for a larger
+jet fraction. This is consistent with the gas fractions shown in Fig. 4,
+with the halo masses, at the relevant k-scale, most responsible for
+the response displaying a lower gas fraction in the jet model (dashed
+lines). The uncertainty reported by the emulator is here again quite
+large, largely because only two actual simulations span this dimen-
+sion of the training set. The uncertainty at low-k is also likely over-
+estimated given that all models are expected to return to unity there.
+4.1.4 Varying the stellar fractions in the model
+Having explored the first two dimensions of the parameter cube, we
+now turn to the variation of the last input parameter, the change in
+the z = 0 stellar masses. This corresponds to models where the mass
+of every galaxy is lowered/increased by a certain number of σ from
+the original data (GAMA DR4, Driver et al. 2022) that the fiducial
+6 Simulations only exist with the jet model or without it. No simulation with
+a fractional jet mechanism exist.
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+9
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.00
+fgas−4σ
+M∗+0σ
+JET 0%
+JET 25%
+JET 50%
+JET 75%
+JET 100%
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 7. Same as Fig. 5 but for predictions of the FLAMINGO baryon re-
+sponse emulator when the fraction of AGN work done by the jet model is
+varied between 0% and 100%, here for models fitting the gas fraction data
+shifted by −4σ. Note that simulations have only been performed at the two
+extremes of the jet fraction range.
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.00
+fgas+0σ
+JET 100%
+M∗−3.0σ
+M∗−2.0σ
+M∗−1.0σ
+M∗−0.5σ
+M∗+0.0σ
+M∗+1.0σ
+M∗+2.0σ
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 8. Same as Fig. 5 but varying the fit to the z = 0 stellar mass function
+whilst keeping the gas fraction in clusters fixed to the fiducial value.
+FLAMINGO simulations were calibrated to. We show the effect of
+this parameter in Fig. 8, where we adopt the same line style con-
+vention as for the last three figures. Along this axis, the number of
+actual training points is again very small (two) so the emulator’s pre-
+dictions become rapidly very uncertain. The uncertainty on the ob-
+served data is, however, much smaller here than for gas fractions and
+this does leave us with less freedom to drastically change the amount
+of stellar mass formed overall in our simulations. The effect of this
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.90
+0.95
+1.00
+1.05
+1.10
+(P(k)/PDMO(k))z=1/(P(k)/PDMO(k))z=0 [−]
+M∗+0σ
+JET 0%
+fgas+2σ
+fgas+0σ
+fgas−2σ
+fgas−4σ
+fgas−6σ
+fgas−8σ
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 9. The ratio of the baryon response at redshift z = 1 and z = 0 for
+models with different values of the “fgas ± Nσ” value, as indicated in the
+legend. Note the smaller range of the vertical axis used here. Models with no
+redshift evolution of the response would display a flat line on this figure. The
+models with lower gas fractions in clusters, i.e. with more intense feedback,
+show a stronger evolution with redshift of the predicted baryonic response.
+parameter is smaller than the changes in the gas fractions studied
+above. The uncertainty on the stellar masses in the data only signif-
+icantly impacts the baryonic response for k > 1 h · Mpc−1. At fixed
+gas fraction in clusters, we find that a lower stellar mass function
+leads to stronger baryonic response. This is in line with expectations
+as it requires the stars and the AGN to provide more feedback to
+suppress the formation of stars in the objects on top of the feedback
+required to obtain the requested gas fraction.
+As discussed in Sec. 3.3, a future improvement of our emulator
+will be to offer more variations of both the gas and stellar fractions
+independently to have a broader coverage of the possible baryon
+fraction in clusters, akin to the model of Salcido et al. (2023). We
+leave these improvements for a future release of more FLAMINGO
+simulations extending the parameter space in these directions.
+4.2 Evolution with redshift
+In the previous subsection, we focused on the results at z = 0. As
+most of the cosmology surveys use data at higher redshifts and use
+many bins or bins spanning a wide redshift range, it is interesting to
+quantify the evolution of the response with redshift. Our emulator
+was trained with data from the simulations up to z = 3, a range be-
+yond sufficient for all current and upcoming surveys. It can thus be
+directly used in the analysis of survey data.
+The evolution of the response, in particular of the k-range af-
+fected and of the position of the minimum of the response, with
+redshift for our fiducial model was already presented in Fig. 2. Be-
+sides this base case, exploring the full range of models discussed
+in Sec. 4.1 across all redshifts would extend our study too much,
+we thus restrict our evolution analysis here to the simple question
+of whether models with stronger feedback also display a stronger
+evolution in time. To measure this, we take the baryonic response at
+z = 1 and compare it to the response at z = 0 for different values of
+MNRAS 000, 1–15 (2025)
+
+
+10
+M. Schaller et al.
+the “fgas±Nσ” parameter. The result of this experiment is displayed
+in Fig. 9 where we show the ratio between the two responses. The
+different coloured lines correspond to different values of “fgas±Nσ”
+(i.e. different feedback strengths). Models displaying no evolution in
+their response between z = 1 and 0 would be shown as a horizontal
+line of value 1. The further a model is from this line (in either direc-
+tion), the more redshift evolution is found. As can be expected, the
+stronger the feedback response at z = 0 (i.e. the smaller the value of
+“fgas±Nσ”), the stronger the evolution. The responses for different
+feedback strengths thus look more similar at higher redshift. As the
+response is mainly driven by the AGN-induced gas flows in large
+haloes (e.g. van Daalen et al. 2011), we can qualitatively understand
+this trend by the need of massive galaxies to first form and by the
+time it later takes for the expelled gas to reach large distances.
+We note that we have verified that the same trend holds for models
+using a jet fraction > 0 or a different “M∗± Nσ” value.
+4.3 Dependence on the cosmological model
+The emulator was trained on simulations that all assume the same
+background cosmology. If the emulator is to be used in cosmology
+inference using survey data, this would imply that we assume that
+the response is independent of the cosmology chosen. Whilst verify-
+ing this assumption is a critical task, it is beyond the scope of this pa-
+per and of the current range of simulations present in the FLAMINGO
+suite.
+Elbers et al. (2025) explored the correlation between cosmo-
+logical model and baryonic response in the FLAMINGO simula-
+tions, especially in the context of neutrino mass variations. They
+found a small dependence, which they were able to explain using
+the changes in the halo mass-concentration relation induced by the
+changes in the cosmology. We do not repeat this exercise here, but
+we complement it with an analysis of an additional two simulations
+using the “lensing cosmology” (LS8) cosmological model (Ωm =
+0.305, Ωb = 0.0473, σ8 = 0.760, h = 0.682, ns = 0.965, Pmνc2 =
+0.06 eV) of Amon & Efstathiou (2022). We ran two simulations
+with this background cosmology. The first one using the “fgas+0σ”
+baryon physics model and the second one using the “fgas−8σ” one.
+These two models largely bracket the responses we obtained in the
+FLAMINGO suite. We then compare the baryonic responses pre-
+dicted by these simulations to the predictions of the emulator that
+was trained on the fiducial cosmology7.
+We show this comparison in Fig. 10. The emulator predictions
+(trained only on our fiducial cosmology) are shown as solid lines
+whilst the raw simulation data is displayed using dashed lines. The
+bottom panel shows the ratio between the two to highlight the differ-
+ences. For both feedback models (different colours), we find that the
+relative difference between the emulator predictions (trained on our
+fiducial cosmology) and the raw simulation data is smaller than 1 per
+cent for all k < 10 h·Mpc−1. This indicates that the baryon response
+in FLAMINGO is only slightly affected by the choice of cosmologi-
+cal model. The figure shows this comparison at z = 0 but we verified
+that the same conclusion holds also at higher z.
+Interpreting this result in the light of the analytic model of Elbers
+et al. (2025), we can understand the small difference due to cos-
+mology as coming from the small change in the mass-concentration
+relation of haloes between our fiducial cosmology and the LS8 one
+7 Note that the response for the raw LS8 simulations was obtained by tak-
+ing the ratio of the matter power-spectrum with respect to the matter power
+spectrum in a DMO simulation using the same cosmology.
+10−1
+100
+101
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0.00
+M∗+0σ
+JET 0%
+LS8 cosmology
+fgas−8σ
+fgas+0σ
+Emu. trained on ﬁducial cosmology
+Sim. using LS8 cosmology
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.98
+1.0
+1.02
+Emu./Sim.
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 10. Comparison of the matter power spectrum baryonic response
+from our emulator (solid line) trained on our runs using our fiducial cos-
+mology to the responses obtained from simulations using our low S 8 (LS8)
+cosmology (dashed lines). The bottom panel shows the ratio of the predic-
+tion of the emulator, trained on our fiducial cosmology model only, to the
+two simulations we have run using the LS8 cosmology. The shaded regions
+indicate < 0.5 and < 1 per cent relative difference with respect to the raw sim-
+ulation prediction. For the relevant range of k-scales and for the two models
+which span a wide range of possible responses within the FLAMINGO suite,
+we find that the cosmology dependence of the baryonic response is below 1
+per cent of the total signal.
+(as expected from models of the concentration such as Correa et al.
+2015). From the analysis of Elbers et al. (2025), we do expect to
+find larger differences (up to a few percent at k = 10 h · Mpc−1) for
+variations within ΛCDM that affect the mass-concentration relation
+more (see their Sec. 4). Note that one would also expect a depen-
+dency of the response on the ratio Ωb/Ωm. Large variations in this
+ratio are not present in the current set of FLAMINGO simulations.
+We leave the full exploration of the cosmological dependence of
+the power spectrum response to a future study, where we will expand
+the emulator to also predict the response as a function of cosmolog-
+ical parameters.
+4.4 Comparison to other studies
+We conclude our description of the baryonic response in FLAMINGO
+with a comparison of our model to results from other simulations
+and models. We restrict our analysis to z = 0 but understanding the
+evolution of the response with time will be important for current and
+future surveys where data from a wide range of redshifts enters the
+analysis.
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+11
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.65
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0
+Simba
+Illustris
+EAGLE
+FABLE
+Horizon-AGN
+Millennium-TNG
+BAHAMAS-∆T7.6
+BAHAMAS-∆T7.8
+BAHAMAS-∆T8.0
+Cosmo-OWLS-AGN-∆T8.0
+Cosmo-OWLS-AGN-∆T8.3
+Cosmo-OWLS-AGN-∆T8.5
+Cosmo-OWLS-AGN-∆T8.7
+FLAMINGO : fgas+3σ,M∗+0σ,JET 0%
+FLAMINGO : fgas+0σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 100%
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 11. Comparison of the z = 0 matter power spectrum baryonic response
+in four FLAMINGO models (from our emulator) to the response obtained in a
+selection of simulations from the literature (see text for details). Depending
+on the input parameters, the response returned by the FLAMINGO emulator
+can be similar to many published models; only the models with the strongest
+feedback are beyond the range of our emulator. Of particular interest are
+the two models at “fgas−8σ” using the thermal and jet models which closely
+resemble the COSMO-OWLS models with ∆TAGN = 8.3 and 8.5 respectively
+that are often used in the literature as representatives of the baryonic response
+in hydrodynamical simulations.
+4.4.1 Comparison to hydrodynamical simulations
+In Fig. 11 we compare four models extracted from our emulator to a
+selection of simulations from the literature. We use here the compi-
+lation of homogenised data from van Daalen et al. (2020), expanded
+to more recent runs. In particular, we show the results from SIMBA
+(Davé et al. 2019), ILLUSTRIS (Vogelsberger et al. 2014), EAGLE
+(Schaye et al. 2015), FABLE (Henden et al. 2018), HORIZON-AGN
+(Chisari et al. 2018), MILLENNIUM-TNG (Pakmor et al. 2023),
+three variations of BAHAMAS (McCarthy et al. 2017), and four
+variations of COSMO-OWLS (Le Brun et al. 2014). Note that, as
+discussed in Sec. 2.3, some of these simulations exploited volumes
+that are likely too small to produce converged results.
+As can be seen, the range of predictions from all these models is
+relatively broad, as is the baryon fraction in clusters they predict (van
+Daalen et al. 2020). Nevertheless, our emulator can cover a large
+range of models with its predictions. Only the two most extreme
+models (ILLUSTRIS and COSMO-OWLS-AGN-∆T8.7) are beyond
+the reach of our emulator, and likely of what the FLAMINGO family
+of simulations can produce without alterations to the physics.
+It is interesting to note that our models with “fgas−8σ” using the
+thermal and jet models closely resemble the COSMO-OWLS mod-
+els with ∆TAGN = 8.3 and 8.5 respectively. The latter of these two
+models is often used as a representative of a large baryonic response
+when analysing data sets (e.g. Mead et al. 2020; Amon & Efstathiou
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+fgas+0σ
+M∗+0σ
+JET 0%
+z = 0.0
+z = 0.5
+z = 1.0
+z = 1.5
+z = 2.0
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.98
+1.0
+1.02
+SP(k)/Emu.
+1
+10
+100
+Wavelength λ [Mpc]
+FLAMINGO emul.
+SP(k) using M500c
+Figure 12. Comparison of the matter power spectrum baryonic response at
+different redshifts in the fiducial FLAMINGO simulation from our emula-
+tor (solid lines) to the one predicted by the SP(k) model of Salcido et al.
+(2023) fitted to the true M500c - baryon fraction relation extracted from the
+FLAMINGO halo catalogs (dashed lines). The bottom panel shows the ratio
+between the SP(k) model and our emulator.
+2022; Preston et al. 2023; Bigwood et al. 2024). Fine tuning of the
+parameters of the emulator could likely lead to our model matching
+other simulations shown here. We thus conclude that our family of
+models and the emulator constructed on top of it are able to cover
+almost the entire range of predictions from the literature. Missing
+the strongest responses is, however, possibly a limitation as recent
+studies seem to suggest stronger responses are required to explain
+the data (Amon & Efstathiou 2022; Preston et al. 2023), in particu-
+lar kSZ observations (Bigwood et al. 2024; Hadzhiyska et al. 2024;
+McCarthy et al. 2024) and the tSZ power spectrum (McCarthy et al.
+2014, 2018, 2023).
+With its connection to gas fractions at specific halo masses
+(Fig. 4), our emulator can be meaningfully be related to observables.
+These can in turn be used to provide a prior on the range of re-
+sponses compatible with the data. The more meaningful labelling of
+the models via “fgas±Nσ”, as compared to a label based on subgrid
+parameter values, helps in this respect.
+4.4.2 Comparison to the ANTILLES suite
+Using the ANTILLES suite of 400 simulations run with the OWLS
+model, Salcido et al. (2023) constructed a model, “SP(k)”, predicting
+the baryonic response using the baryon fraction in groups and clus-
+ters as input parameter to their model. Their much wider range of
+simulations allows them to encompass a much wider range of pos-
+sible responses than we can with our FLAMINGO-based emulator.
+They offer multiple versions ranging in complexity of the input go-
+ing from a single parameter to providing the fractions over a range
+MNRAS 000, 1–15 (2025)
+
+
+12
+M. Schaller et al.
+of halo masses. We use this latter version here to compare to our
+models. Specifically, we measured the baryon fractions as a func-
+tion of halo mass (note the difference with the gas fractions we used
+in Fig. 4) for our fiducial FLAMINGO model and used them as an
+input to their model. The resulting response is shown for five dif-
+ferent redshifts in Fig. 12 alongside the response obtained from our
+emulator.
+As can be seen, despite using the exact baryon fractions of the
+simulations as input, the SP(k) model predictions do not match
+the FLAMINGO results. They predict a stronger response at k ≈
+1 h·Mpc−1 and a weaker one at k > 3 h·Mpc−1, in particular at low
+redshift. This indicates that knowing the baryon fraction in haloes
+is not a sufficient condition to obtain the baryonic response. Indeed,
+Debackere et al. (2020) used a halo model to show that the baryon
+fraction beyond R500c is important.
+The FLAMINGO and ANTILLES simulations do not have the same
+stellar fraction in their haloes and this likely explains part of the dif-
+ference here. Note that it may be possible to explore our emulator to
+match SP(k) more closely. One could, for instance, lower “M∗±Nσ”
+whilst increasing “fgas±Nσ” in order to maintain the same baryon
+fraction in haloes. However, as we do not have predictions for the
+stellar fractions as a function of these parameters, we leave this ex-
+ercise for a future study with a more comprehensive emulator. This
+simple comparison nevertheless indicates that predicting the bary-
+onic response using a single number (e.g. the baryon or gas fraction)
+per halo mass bin may not be sufficient and more complex models
+will have to be constructed in the future.
+4.4.3 Can FLAMINGO feedback solve the S 8 tension?
+Over the last few years, precision tests of the ΛCDM mod-
+els, particularly those exploiting low-redshift weak-lensing and
+large-scale structure probes, have reported measurements of S 8 ≡
+σ8
+√Ωm/0.3 in conflict with the value inferred from the primary
+CMB anisotropies and BAO experiments. Depending on the data
+sets and their analysis, this so-called tension can reach 3σ (Hey-
+mans et al. 2021; Abbott et al. 2022; Amon et al. 2023; Miyatake
+et al. 2023; McCarthy et al. 2023; Terasawa et al. 2025).
+Among the different solutions put forward to solve this tension,
+the possibility that (baryon and galactic feedback) physics on the
+scales of groups and clusters contributes to the non-linear effects on
+the range of scales on which the power spectrum is probed is an in-
+teresting proposition as it does not require an alteration of the back-
+ground cosmological model. We explore here whether the response
+obtained in the FLAMINGO model is compatible with the required
+baryon-induced non-linear solution to the tension.
+Amon & Efstathiou (2022) constructed a toy model for the ef-
+fect of baryons, inspired by the functional form obtained from the
+HMCODE2020 (Mead et al. 2020), and constrained it to reconcile
+the weak-lensing shear analysis of the KiDS-1000 survey and the
+primary CMB anisotropy data. Using a similar approach, Preston
+et al. (2023) combined the DES year 3 shear data to the CMB data
+to also constrain the required non-linear power spectrum changes.
+Both these constraints are shown as, respectively, the blue and ma-
+genta shaded regions in the right panel of Fig. 13 (see also Ferreira
+et al. 2024, for an analysis combining DES lensing to ROSAT X-ray
+all-sky photon counts). A parallel approach is to exploit the weak-
+lensing data alone in combination with a halo model or emulator for
+the baryonic response. The analysis of Aricò et al. (2023) and Big-
+wood et al. (2024), both exploiting the DES year 3 data but with
+different emulators — BACCO (Aricò et al. 2021), BCEMU (Giri
+& Schneider 2021), respectively — and different analysis pipelines,
+are shown as shaded regions in the left panel of Fig. 13 alongside the
+results of García-García et al. (2024) also using the BACCO emu-
+lator but combining data from DES, KiDS and HSC. The results of
+Terasawa et al. (2025) exploiting HSC data and the HMCODE2020
+halo model are also shown. Finally, additional datasets informing the
+emulators or models on the gaseous content of haloes can be used.
+The constraints of Bigwood et al. (2024) including kSZ data from
+ACT are shown in the right panel of Fig. 13 (see also Schneider
+et al. 2022). In both panels, we show the response obtained for four
+models spanning the range of FLAMINGO emulator input parameter
+values.
+As can be seen, the more extreme models in the FLAMINGO
+suite are compatible with some of the inferred baryonic responses in
+these studies. In particular, both “fgas−8σ” models (i.e. with ther-
+mal AGN and with collimated jet AGN) are within the ranges de-
+manded by the analysis of Bigwood et al. 2024 (with or without
+added kSZ constraints). Interestingly, these FLAMINGO models dis-
+play gas fractions that are in strong tension with the gas fractions
+in groups and clusters inferred from joint X-ray and weak-lensing
+analyses (Kugel et al. 2023). Putting aside the option of systematic
+error or selection effects affecting either data sets, this could indicate
+that more complex physics, for instance more advanced feedback
+models, are required in simulations to jointly match the X-ray and
+kSZ measurements (see also Hadzhiyska et al. 2024; McCarthy et al.
+2024). On the other hand, the constraints of Terasawa et al. (2025)
+and García-García et al. (2024), both inferring mild baryonic effects,
+are well within the range of models available within the FLAMINGO
+suite.
+The constraints on the power spectrum response derived by Amon
+& Efstathiou (2022) and to a lesser extent Preston et al. (2023), as
+well as the range k ≲0.5 h · Mpc−1 of the constraints from Aricò
+et al. (2023), are out of reach of our emulator and likely of what
+can be achieved using the FLAMINGO model without altering the
+sub-grid models. If the Universe does look like a FLAMINGO model
+with extreme feedback (e.g. “fgas−8σ”), the tension between the
+CMB and the low-redshift small-scale probes would nevertheless be
+reduced, though a more quantitative analysis of this change is left
+for future studies. Note, however, that the S 8 tension also manifests
+itself in other probes not related to weak-lensing, such as in the ther-
+mal SZ power spectrum (see e.g. McCarthy et al. 2014, 2018, 2023)
+and that altering the small-scale matter power spectrum may not be
+sufficient.
+5 CONCLUSIONS
+In this study, we used the hydrodynamical simulations from the
+FLAMINGO project (Schaye et al. 2023; Kugel et al. 2023) and ex-
+tracted their total matter power spectra, which were then compared
+to ones taken from the dark matter only counterparts of the sim-
+ulations. By taking the ratio of the two matter power spectra, we
+obtained the baryonic response of the matter power spectrum gen-
+erated by baryonic physics associated with galaxy formation. We
+then constructed a Gaussian process emulator using four parame-
+ters: the redshift and the three parameters describing baryon physics
+of the simulations as input parameters to reproduce the simulated
+baryonic response in the range of scales k = 10−1.5 −101.5 h·Mpc−1
+and redshift range z = 0 −3, sufficient for all current and planned
+large-scale structure probes. These parameters are the offset of the
+gas fractions in clusters with respect to the simulation calibration
+data (“fgas±Nσ”), the offset of the galaxy masses used for the cal-
+ibration (“M∗± Nσ”) and the fraction of AGN feedback output in
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+13
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0
+Aric`o+23 (DES WL)
+Bigwood+24 (DES WL)
+Terasawa+24 (HSC WL)
+Garc´ıa-Garc´ıa+24 (DES+KiDS+HSC WL)
+FLAMINGO : fgas+3σ,M∗+0σ,JET 0%
+FLAMINGO : fgas+0σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 100%
+10−1
+100
+101
+Mode k [h·Mpc−1]
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00
+1.05
+1.10
+P(k)/PDMO(k) [−]
+z = 0
+Amon+22 (KiDS WL+CMB)
+Preston+23 (DES WL+CMB)
+Bigwood+24 (DES WL+ACT kSZ)
+FLAMINGO : fgas+3σ,M∗+0σ,JET 0%
+FLAMINGO : fgas+0σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 0%
+FLAMINGO : fgas−8σ,M∗+0σ,JET 100%
+1
+10
+100
+Wavelength λ [Mpc]
+1
+10
+100
+Wavelength λ [Mpc]
+Figure 13. Comparison of the z = 0 matter power spectrum baryonic response in four FLAMINGO models (from our emulator) to the response inferred from the
+analyses of different weak-lensing cosmology probes combined with a halo model or a baryonification model. The right panel shows analyses where in addition
+either primary CMB anisotropy data or kSZ data was used to infer the response (see text for details). Note the reduced k-range plotted here compared to the
+previous figures.
+the form of collimated jets. We then explored the accuracy of the
+emulator thus constructed and the general predictions for the bary-
+onic response in the FLAMINGO simulations. Our findings can be
+summarised as follows:
+• The baryonic response at z = 0 and z = 1 is converged to bet-
+ter than 1 per cent only for simulations using volumes in excess
+of 2003 Mpc3. A convergence to better than 0.5 per cent is only
+achieved for volumes larger than 4003 Mpc3 and the higher redshift
+results display a difference with respect to the converged answer on
+larger k-scales than at lower redshift (Fig. 1).
+• The emulator constructed from nine FLAMINGO models is able
+to reproduce the results of the simulations with a relative error of less
+than 1 per cent for scales up to k = 10 h·Mpc−1 and for all redshifts
+up to z = 3 (Figs. 2 & 3).
+• The emulator requires less than 1 ms per invocation on a single
+compute core to provide the response at all k values. It can thus
+be used as part of a model inference exercise for surveys without
+penalty.
+• The “fgas±Nσ” input parameter to our model can be related
+to the gas fraction in groups/clusters and this latter quantity can be
+extracted from observations to serve as prior on the range of inputs to
+our emulator. The mapping between the two quantities for different
+halo masses is given in Fig. 4.
+• We find the baryonic response to be stronger for models with
+lower gas fractions in groups and clusters (parameter “fgas±Nσ”,
+Fig. 5 & 6) and for lower stellar fractions (Fig. 8).
+• The response is stronger, at fixed gas fractions in clusters,
+for the models using collimated AGN over thermal AGN feedback
+(Fig. 7).
+• The baryonic response is stronger at lower redshift with the
+range of k-scales affected growing as the redshift decreases. Simul-
+taneously, the position of the minimum of the response moves to
+larger k (Fig. 2).
+• Models with stronger feedback (and thus a stronger response)
+display a larger evolution in their response between z = 1 and z = 0
+(Fig. 9).
+• The dependence of the response on the cosmological model is
+small (< 1 per cent for all relevant k, Fig. 10) but we only probed
+two specific cosmological models, leaving room for a stronger de-
+pendence when other parameters are changed.
+• By varying its input parameters, our emulator can cover a wide
+range of responses found in simulations from the literature (Fig. 11)
+except the most extreme models. The connection between our in-
+put parameters and the gas fraction in haloes also allows for a more
+physically meaningful description of the response, compared with
+the use of subgrid parameter values.
+• Comparing our model to the model obtained from the AN-
+TILLES simulations, we find that, even when using the simulated
+baryon fractions as input parameters, the SP(k) model does not
+match our results (Fig. 12). This indicates that more than one pa-
+rameter is necessary to describe the baryonic response.
+• When comparing our emulator to the constraints on the bary-
+onic response derived from either the analysis of weak-lensing with
+halo models, baryonification models, or when combined with addi-
+tional datasets, we find that the most extreme FLAMINGO models
+can match some of these constraints (Fig. 13). These models are,
+however, in tension with the cluster X-ray data used to constrain our
+fiducial model.
+We plan to extend our emulator in the future to provide more
+independent variations in the gas and stellar fractions in clusters as
+well as including changes in cosmological parameters. This latter
+improvement will allow us to break free from the assumption that
+the baryonic response is separable from cosmology.
+MNRAS 000, 1–15 (2025)
+
+
+14
+M. Schaller et al.
+The emulator in its present form should nevertheless be sufficient
+for the analysis of current cosmological surveys where the separa-
+bility assumption is still commonly made.
+ACKNOWLEDGEMENTS
+We thank Josh Borrow for merging, packaging, and releasing
+changes to the SWIFTEMULATOR package facilitating the construc-
+tion and use of our emulator.
+This work used the DiRAC@Durham facility managed by the Insti-
+tute for Computational Cosmology on behalf of the STFC DiRAC
+HPC Facility (www.dirac.ac.uk). The equipment was funded
+by BEIS capital funding via STFC capital grants ST/K00042X/1,
+ST/P002293/1, ST/R002371/1 and ST/S002502/1, Durham Univer-
+sity and STFC operations grant ST/R000832/1. DiRAC is part of the
+National e-Infrastructure.
+DATA AVAILABILITY
+The model introduced in this paper will be made fully publicly avail-
+able on the FLAMINGO project’s web-page8 upon publication of this
+manuscript. The raw matter power spectra used to construct the em-
+ulator are available on the same website.
+The full FLAMINGO simulation data will eventually be made
+publicly available, though we note that the data volume (several
+petabytes) may prohibit us from simply placing the raw data on a
+server. In the meantime, people interested in using the simulations
+are encouraged to contact the corresponding author.
+REFERENCES
+Abbott T. M. C., et al., 2022, Phys. Rev. D, 105, 023520
+Abdalla E., et al., 2022, Journal of High Energy Astrophysics, 34, 49
+Ambikasaran S., Foreman-Mackey D., Greengard L., Hogg D. W., O’Neil
+M., 2015, IEEE Transactions on Pattern Analysis and Machine Intelli-
+gence, 38, 252
+Amon A., Efstathiou G., 2022, MNRAS, 516, 5355
+Amon A., et al., 2023, MNRAS, 518, 477
+Angulo R. E., Pontzen A., 2016, MNRAS, 462, L1
+Angulo R. E., Zennaro M., Contreras S., Aricò G., Pellejero-Ibañez M.,
+Stücker J., 2021, MNRAS, 507, 5869
+Aricò G., Angulo R. E., Contreras S., Ondaro-Mallea L., Pellejero-Ibañez
+M., Zennaro M., 2021, MNRAS, 506, 4070
+Aricò G., Angulo R. E., Zennaro M., Contreras S., Chen A., Hernández-
+Monteagudo C., 2023, A&A, 678, A109
+Asgari M., et al., 2021, A&A, 645, A104
+Asgari M., Mead A. J., Heymans C., 2023, The Open Journal of Astro-
+physics, 6, 39
+Bagla J. S., Ray S., 2003, New Astron., 8, 665
+Bahé Y. M., et al., 2022, MNRAS, 516, 167
+Bigwood L., et al., 2024, MNRAS, 534, 655
+Bocquet S., Heitmann K., Habib S., Lawrence E., Uram T., Frontiere N.,
+Pope A., Finkel H., 2020, ApJ, 901, 5
+Booth C. M., Schaye J., 2009, MNRAS, 398, 53
+Borrow J., Schaller M., Bower R. G., Schaye J., 2022, MNRAS, 511, 2367
+Braspenning J., et al., 2024, MNRAS, 533, 2656
+Chaikin E., Schaye J., Schaller M., Bahé Y. M., Nobels F. S. J., Ploeckinger
+S., 2022, MNRAS, 514, 249
+Cheng H., Greengard L., Rokhlin V., 1999, Journal of Computational
+Physics, 155, 468
+8 https://flamingo.strw.leidenuniv.nl/
+Chisari N. E., et al., 2018, MNRAS, 480, 3962
+Chisari N. E., et al., 2019, The Open Journal of Astrophysics, 2, 4
+Correa C. A., Wyithe J. S. B., Schaye J., Duffy A. R., 2015, MNRAS, 452,
+1217
+van Daalen M. P., Schaye J., 2015, MNRAS, 452, 2247
+van Daalen M. P., Schaye J., Booth C. M., Dalla Vecchia C., 2011, MNRAS,
+415, 3649
+van Daalen M. P., McCarthy I. G., Schaye J., 2020, MNRAS, 491, 2424
+Dalla Vecchia C., Schaye J., 2008, MNRAS, 387, 1431
+Davé R., Anglés-Alcázar D., Narayanan D., Li Q., Rafieferantsoa M. H.,
+Appleby S., 2019, MNRAS, 486, 2827
+DeRose J., et al., 2019, ApJ, 875, 69
+Debackere S. N. B., Schaye J., Hoekstra H., 2020, MNRAS, 492, 2285
+Delgado A. M., et al., 2023, MNRAS, 526, 5306
+Dodelson S., Schmidt F., 2020, Modern Cosmology. Academic press,
+doi:10.1016/C2017-0-01943-2
+Driver S. P., et al., 2022, MNRAS, 513, 439
+Elbers W., Frenk C. S., Jenkins A., Li B., Pascoli S., 2021, MNRAS, 507,
+2614
+Elbers W., Frenk C. S., Jenkins A., Li B., Pascoli S., 2022, MNRAS, 516,
+3821
+Elbers W., et al., 2025, MNRAS, 537, 2160
+Euclid Collaboration et al., 2019, MNRAS, 484, 5509
+Ferreira T., Alonso D., Garcia-Garcia C., Chisari N. E., 2024, Phys.
+Rev. Lett., 133, 051001
+García-García C., Zennaro M., Aricò G., Alonso D., Angulo R. E., 2024,
+J. Cosmology Astropart. Phys., 2024, 024
+Giri S. K., Schneider A., 2021, J. Cosmology Astropart. Phys., 2021, 046
+Hadzhiyska B., et al., 2024, arXiv e-prints, p. arXiv:2407.07152
+Hahn O., Rampf C., Uhlemann C., 2021, MNRAS, 503, 426
+Heitmann K., et al., 2016, ApJ, 820, 108
+Henden N. A., Puchwein E., Shen S., Sijacki D., 2018, MNRAS, 479, 5385
+Heymans C., et al., 2021, A&A, 646, A140
+Huško F., Lacey C. G., Schaye J., Schaller M., Nobels F. S. J., 2022, MN-
+RAS, 516, 3750
+Jenkins A., et al., 1998, ApJ, 499, 20
+Jing Y. P., 2005, ApJ, 620, 559
+Kay S. T., Braspenning J., Chluba J., Helly J. C., Kugel R., Schaller M.,
+Schaye J., 2024, MNRAS, 534, 251
+Kugel R., Borrow J., 2022, The Journal of Open Source Software, 7, 4240
+Kugel R., et al., 2023, MNRAS, 526, 6103
+Lahav O., Liddle A. R., 2022, arXiv e-prints, p. arXiv:2201.08666
+Lawrence E., et al., 2017, ApJ, 847, 50
+Le Brun A. M. C., McCarthy I. G., Schaye J., Ponman T. J., 2014, MNRAS,
+441, 1270
+Lesgourgues J., 2011, arXiv e-prints, p. arXiv:1104.2932
+Lewis A., Challinor A., Lasenby A., 2000, ApJ, 538, 473
+van Loon M. L., van Daalen M. P., 2024, MNRAS, 528, 4623
+McCarthy I. G., Le Brun A. M. C., Schaye J., Holder G. P., 2014, MNRAS,
+440, 3645
+McCarthy I. G., Schaye J., Bird S., Le Brun A. M. C., 2017, MNRAS, 465,
+2936
+McCarthy I. G., Bird S., Schaye J., Harnois-Deraps J., Font A. S., van Waer-
+beke L., 2018, MNRAS, 476, 2999
+McCarthy I. G., et al., 2023, MNRAS, 526, 5494
+McCarthy I. G., et al., 2024, arXiv e-prints, p. arXiv:2410.19905
+Mead A. J., Heymans C., Lombriser L., Peacock J. A., Steele O. I., Winther
+H. A., 2016, MNRAS, 459, 1468
+Mead A. J., Tröster T., Heymans C., Van Waerbeke L., McCarthy I. G., 2020,
+A&A, 641, A130
+Mead A. J., Brieden S., Tröster T., Heymans C., 2021, MNRAS, 502, 1401
+Miyatake H., et al., 2023, Phys. Rev. D, 108, 123517
+Mummery B. O., McCarthy I. G., Bird S., Schaye J., 2017, MNRAS, 471,
+227
+Pakmor R., et al., 2023, MNRAS, 524, 2539
+Ploeckinger S., Schaye J., 2020, MNRAS, 497, 4857
+Preston C., Amon A., Efstathiou G., 2023, MNRAS, 525, 5554
+Rampf C., Uhlemann C., Hahn O., 2021, MNRAS, 503, 406
+MNRAS 000, 1–15 (2025)
+
+
+Baryonic matter power spectrum suppression in FLAMINGO
+15
+Rasmussen C. E., Williams C. K. I., 2006, Gaussian Processes for Machine
+Learning. MIT press Cambridge, MA
+Salcido J., McCarthy I. G., Kwan J., Upadhye A., Font A. S., 2023, MNRAS,
+523, 2247
+Schaller M., et al., 2024, MNRAS, 530, 2378
+Schaye J., Dalla Vecchia C., 2008, MNRAS, 383, 1210
+Schaye J., et al., 2015, MNRAS, 446, 521
+Schaye J., et al., 2023, MNRAS, 526, 4978
+Schneider A., Teyssier R., 2015, J. Cosmology Astropart. Phys., 2015, 049
+Schneider A., Teyssier R., Stadel J., Chisari N. E., Le Brun A. M. C., Amara
+A., Refregier A., 2019, J. Cosmology Astropart. Phys., 2019, 020
+Schneider A., Giri S. K., Amodeo S., Refregier A., 2022, MNRAS, 514, 3802
+Seljak U., 2000, MNRAS, 318, 203
+Semboloni E., Hoekstra H., Schaye J., van Daalen M. P., McCarthy I. G.,
+2011, MNRAS, 417, 2020
+Semboloni E., Hoekstra H., Schaye J., 2013, MNRAS, 434, 148
+Smith R. E., et al., 2003, MNRAS, 341, 1311
+Springel V., Di Matteo T., Hernquist L., 2005, ApJ, 620, L79
+Springel V., et al., 2018, MNRAS, 475, 676
+Storey-Fisher K., Tinker J. L., Zhai Z., DeRose J., Wechsler R. H., Banerjee
+A., 2024, ApJ, 961, 208
+Takahashi R., Sato M., Nishimichi T., Taruya A., Oguri M., 2012, ApJ, 761,
+152
+Terasawa R., et al., 2025, Phys. Rev. D, 111, 063509
+Tröster T., et al., 2022, A&A, 660, A27
+Villaescusa-Navarro F., et al., 2021, ApJ, 915, 71
+Vogelsberger M., et al., 2014, MNRAS, 444, 1518
+Wang Y., He P., 2024, MNRAS, 528, 3797
+Wiersma R. P. C., Schaye J., Theuns T., Dalla Vecchia C., Tornatore L., 2009,
+MNRAS, 399, 574
+This paper has been typeset from a TEX/LATEX file prepared by the author.
+MNRAS 000, 1–15 (2025)

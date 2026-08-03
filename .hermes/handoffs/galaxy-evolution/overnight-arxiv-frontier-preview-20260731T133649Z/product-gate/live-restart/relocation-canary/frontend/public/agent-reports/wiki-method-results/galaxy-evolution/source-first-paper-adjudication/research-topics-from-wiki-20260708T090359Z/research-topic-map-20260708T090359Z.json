@@ -1,0 +1,146 @@
+{
+  "marker": "AUTOPILOT_RESEARCH_TOPICS_PROFESSIONAL_GEMINI_ASSIST_PASS_20260708T120000Z",
+  "gemini_advisory_marker": "GEMINI_AGY_FALLBACK_CURRENT_RT_PROFESSIONALIZATION_20260708T120000Z",
+  "method": "M2",
+  "kind": "professional-research-prospectus",
+  "proposal_count": 3,
+  "proposals": [
+    {
+      "id": "P1",
+      "title": "Escape versus recycling: the fate of AGN-driven multiphase outflows",
+      "hypothesis": "A substantial fraction of AGN-driven outflowing gas remains gravitationally bound and recycles through the circumgalactic medium, limiting the permanence of feedback-driven gas removal.",
+      "prior_evidence": [
+        {
+          "statement": "Quasar observations show AGN feedback acting on molecular gas reservoirs at high redshift, but such detections do not determine whether gas escapes the halo.",
+          "links": [
+            {
+              "label": "quasar molecular-gas reservoirs",
+              "href": "https://arxiv.org/abs/1706.08987",
+              "title": "AGN feedback on molecular gas reservoirs in quasars at z~2.4"
+            }
+          ]
+        },
+        {
+          "statement": "Stellar-feedback work on baryon deficiency in low-mass galaxies provides a boundary condition for non-AGN removal channels that must not be confused with AGN-driven escape.",
+          "links": [
+            {
+              "label": "stellar feedback and baryon deficiency",
+              "href": "https://arxiv.org/abs/2512.05584",
+              "title": "Stellar feedback drives the baryon deficiency in low-mass galaxies"
+            }
+          ]
+        },
+        {
+          "statement": "Simulated galaxy feedback constraints highlight that gas removal, recycling, and observable baryon fractions depend on halo scale.",
+          "links": [
+            {
+              "label": "simulated observable feedback constraints",
+              "href": "https://arxiv.org/abs/0901.1880",
+              "title": "Galaxies in a simulated \u039bCDM universe II: observable properties and constraints on feedback"
+            }
+          ]
+        }
+      ],
+      "remaining_uncertainty": "The escaped fraction of multiphase outflows is unmeasured across a representative mass/redshift sample; an outflow detection is not equivalent to permanent quenching.",
+      "data_plan": "AGN hosts and inactive controls spanning stellar mass and redshift; MUSE/MaNGA ionized-gas kinematics, ALMA CO and [C II] for cold gas, JWST/NIRSpec for z>2 outflow tracers, and CGM absorption where available to track recycling.",
+      "decision_criterion": "Compare outflow velocity distributions with halo escape velocities inferred from dynamical/halo-mass estimates, then model escaped versus bound/recycling fractions as a function of stellar mass, halo mass, and redshift. A high escaped fraction at fixed denominator supports permanent-removal feedback; a low escaped fraction supports recycling-limited regulation.",
+      "limitations": "Projection, phase conversion, and uncertain halo potentials can dominate the escaped-fraction error budget."
+    },
+    {
+      "id": "P2",
+      "title": "Environmental dependence of radio-jet coupling efficiency in galaxy gas",
+      "hypothesis": "The fraction of radio-jet mechanical power deposited into the multiphase interstellar or circumgalactic medium varies systematically with ambient gas density and host environment.",
+      "prior_evidence": [
+        {
+          "statement": "Young radio galaxies show AGN-driven outflows and provide an empirical route to estimating feedback efficiency.",
+          "links": [
+            {
+              "label": "young radio galaxies and feedback efficiency",
+              "href": "https://arxiv.org/abs/2009.11175",
+              "title": "AGN-driven outflows and feedback efficiency in young radio galaxies"
+            }
+          ]
+        },
+        {
+          "statement": "Local M51-scale NOEMA data show how jet/AGN activity can affect molecular ISM structure at high spatial resolution, motivating a broader population test.",
+          "links": [
+            {
+              "label": "SWAN IV molecular ISM feedback",
+              "href": "https://arxiv.org/abs/2604.15438",
+              "title": "SWAN IV: Extent of AGN feedback on the interstellar medium in M51"
+            }
+          ]
+        },
+        {
+          "statement": "Galaxy-group feedback studies identify the group regime as a strong testbed for coupling between radio activity and hot gas.",
+          "links": [
+            {
+              "label": "group-scale AGN feedback",
+              "href": "https://arxiv.org/abs/2403.17145",
+              "title": "Galaxy groups as the ultimate probe of AGN feedback"
+            }
+          ]
+        }
+      ],
+      "remaining_uncertainty": "Radio luminosity is not a direct coupling-efficiency measurement; the key unknown is the distribution of deposited energy relative to jet power across host gas conditions.",
+      "data_plan": "VLA/LOFAR/MeerKAT for jet morphology and radio spectral ages; Chandra for cavities/shocks/hot gas; MUSE/MaNGA for ionized-gas shock diagnostics; ALMA CO for molecular disturbances; environment from group catalogues.",
+      "decision_criterion": "Estimate jet power and gas work/thermal response in the same apertures, then regress coupling efficiency on gas density, environment, and jet age. A robust environmental dependence requires efficiency differences larger than radio-power calibration uncertainties.",
+      "limitations": "Radio-to-jet-power conversions are uncertain; coupling estimates must be reported with systematic floors."
+    },
+    {
+      "id": "P3",
+      "title": "Locating the transition from stellar-feedback to AGN-feedback regulation",
+      "hypothesis": "There is a stellar/halo-mass regime where stellar-feedback momentum and energy budgets cease to explain gas loss or quiescence, and AGN-linked observables become necessary to reproduce the measured quenched fraction and baryon deficit.",
+      "prior_evidence": [
+        {
+          "statement": "Low-mass baryon deficiency attributed to stellar feedback provides the low-mass endpoint of the transition problem.",
+          "links": [
+            {
+              "label": "stellar-feedback baryon deficiency",
+              "href": "https://arxiv.org/abs/2512.05584",
+              "title": "Stellar feedback drives the baryon deficiency in low-mass galaxies"
+            }
+          ]
+        },
+        {
+          "statement": "High-redshift environmental-quenching simulations emphasize that quenching mechanisms vary with mass and redshift, not only with local observables.",
+          "links": [
+            {
+              "label": "high-redshift environmental quenching simulations",
+              "href": "https://arxiv.org/abs/2605.03008",
+              "title": "Environmental quenching of high-redshift galaxies: interpreting JWST observations with simulations"
+            }
+          ]
+        },
+        {
+          "statement": "Simulated observable-property constraints show why feedback-regime boundaries must be tested against measured baryonic properties.",
+          "links": [
+            {
+              "label": "feedback constraints in simulated galaxies",
+              "href": "https://arxiv.org/abs/0901.1880",
+              "title": "Galaxies in a simulated \u039bCDM universe II: observable properties and constraints on feedback"
+            }
+          ]
+        }
+      ],
+      "remaining_uncertainty": "The observational crossover mass between stellar-feedback-dominated regulation and AGN-linked regulation is not cleanly measured with the same denominator and gas observables.",
+      "data_plan": "DESI/GAMA/COSMOS parent samples with stellar mass and halo proxy; ALFALFA/FASHI HI and ALMA CO gas fractions; optical/IR SFRs; X-ray/radio AGN indicators; JWST for high-redshift extension.",
+      "decision_criterion": "Fit a broken-slope or transition model for gas fraction, baryon deficit, and quenched fraction as functions of stellar/halo mass while including AGN incidence and stellar-feedback proxies. The transition is credible only if the AGN-linked term improves predictive power above the stellar-feedback model at high mass.",
+      "limitations": "Halo-mass uncertainties and selection functions can smear the transition; results should be framed as a probability surface, not a single universal mass."
+    }
+  ],
+  "methods_appendix": [
+    "The previous evidence-traceability card is a methods programme. It should remain in a separate audit appendix and not compete with astrophysical proposals."
+  ],
+  "safety": "docs/static no-apply; no product DB/API/page_versions/live wiki publish/deploy/git",
+  "title": "Galaxy Evolution \u2014 Research proposals on outflows and feedback regimes",
+  "reader_facing_summary": "This page presents three proposal-style research programmes on outflow fate, jet coupling, and the transition from stellar-feedback to AGN-linked regulation. The proposals are framed around measurable observables, matched denominators, and explicit decision criteria.",
+  "section_labels": [
+    "Hypothesis / objective",
+    "Prior evidence and constraints",
+    "Remaining uncertainty",
+    "Survey/data plan",
+    "Analysis/test and decision criterion",
+    "Limitations and wording guardrails"
+  ]
+}

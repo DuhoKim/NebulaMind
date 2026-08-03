@@ -1,0 +1,28 @@
+{
+  "artifact": "next safe slices packet",
+  "run_id": "next_safe_slices_20260701T005115Z",
+  "generated_kst": "2026-07-01 09:51:15 KST",
+  "generated_utc": "2026-07-01T00:51:15Z",
+  "status": "completed",
+  "public_candidate": "/agent-reports/big-picture/next-safe-slices.html",
+  "local_root": "/Users/duhokim/HermesOps/reports/2026-07-01/next_safe_slices_20260701T005115Z",
+  "packets": {
+    "claim_2929": "/Users/duhokim/HermesOps/reports/2026-07-01/next_safe_slices_20260701T005115Z/claim_2929_second_review_intake.md",
+    "source_surface_preflight": "/Users/duhokim/HermesOps/reports/2026-07-01/next_safe_slices_20260701T005115Z/source_surface_deploy_preflight_checklist.md",
+    "frontend_wiki_papers_route_design": "/Users/duhokim/HermesOps/reports/2026-07-01/next_safe_slices_20260701T005115Z/frontend_wiki_papers_route_design.md",
+    "frontend_route_design_plan": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/plans/2026-07-01_095115-wiki-papers-route-design.md"
+  },
+  "safety": {
+    "backend_api_restart": false,
+    "deploy": false,
+    "db_writes": 0,
+    "migrations": 0,
+    "git_writes": 0,
+    "commit_push_pr_merge": false
+  },
+  "approvals": {
+    "claim_2929": "APPROVE CLAIM-2929 SECOND-REVIEW INTAKE: Use the read-only intake packet to prepare human adjudication questions for mixed support/weakening AGN-feedback anchors. No deploy, no restart, no DB writes, no migrations, no commit/push/PR/merge.",
+    "source_surface_preflight": "APPROVE SOURCE-SURFACE PREFLIGHT ONLY: Refresh the source-surface deploy preflight checklist and run read-only/local validation only. No deploy, no restart, no DB writes, no migrations, no commit/push/PR/merge.",
+    "route_implementation": "APPROVE IMPLEMENT FRONTEND WIKI PAPERS ROUTE: Implement the /wiki/papers directory/profile frontend route from the approved design plan, with tests, but no backend API changes, no DB writes, no migrations, no deploy/restart, and no commit/push/PR/merge unless separately approved."
+  }
+}

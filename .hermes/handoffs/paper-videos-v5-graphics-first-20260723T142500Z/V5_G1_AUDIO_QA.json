@@ -1,0 +1,68 @@
+{
+  "marker": "NEBULAMIND_V5_G1_AUDIO_QA_PASS",
+  "completed_at_utc": "2026-07-23T15:51:19Z",
+  "gate": "V5-G1 voice canary only",
+  "master": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v5-graphics-first-20260723T142500Z/V5_G1_Z9_MICHAEL_LISTENING_CANARY.wav",
+  "master_sha256": "07c6a1683461356834bf7173d4a899f2ba98f5e28d384701bac41a4ed41362bf",
+  "media": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "pcm_s24le",
+        "codec_type": "audio",
+        "sample_fmt": "s32",
+        "sample_rate": "48000",
+        "channels": 1,
+        "bits_per_sample": 24
+      }
+    ],
+    "format": {
+      "duration": "55.637333",
+      "size": "8011878"
+    }
+  },
+  "duration_seconds": 55.637333,
+  "delivered_wpm": 116.469,
+  "loudness": {
+    "integrated_lufs": -16.68,
+    "true_peak_dbtp": -2.26,
+    "lra_lu": 2.8
+  },
+  "language": "en",
+  "language_probability": 1,
+  "raw_wer_percent_diagnostic": 8.182,
+  "semantic_wer_percent": 0.0,
+  "critical_terms": [
+    "oxygen",
+    "redshift",
+    "lensing",
+    "benchmark",
+    "unlensed",
+    "electron",
+    "fifth",
+    "dex",
+    "uncertain",
+    "detection"
+  ],
+  "critical_terms_status": "PASS",
+  "transcript": "A galaxy's oxygen abundance is how much oxygen its gas holds. Stars forge that oxygen, so it grows as galaxies build stars. This paper asks whether galaxies at Redshift 9 to 10 had already reached nearby levels. Answering is tricky because gravitational lensing can distort galaxy masses, and the nearby benchmark is extrapolated. So the paper uses five strictly un-lensed galaxies measured by the direct electron temperature method. The result, their oxygen sits near one-fifth of the nearby benchmark. In logarithmic units, that is 0.69 decks lower. The sample is small, and the absolute abundance scale stays uncertain. This is not a formal statistical detection.",
+  "transcript_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v5-graphics-first-20260723T142500Z/V5_G1_Z9_MICHAEL_ASR.txt",
+  "transcript_sha256": "4685b0d0decca5b5770c72a0c3c60b0622bc6cb2acaa7028b0579ac74c72137d",
+  "checks": {
+    "full_decode": "PASS",
+    "lossless_pcm_24bit_48khz_mono": "PASS",
+    "spec_and_master_hash_lineage": "PASS",
+    "english_language_confidence": "PASS",
+    "semantic_wer_at_most_8_percent": "PASS",
+    "spoken_critical_terms": "PASS"
+  },
+  "human_listening_gate": "PENDING_DUHO_EAR_CHECK",
+  "note": "Metrics do not certify naturalness or coherence; Duho must review the exact WAV before V5-G2 or any animation.",
+  "video_created": false,
+  "animation_created": false,
+  "youtube_mutation": false,
+  "visibility_mutation": false,
+  "website_mutation": false,
+  "git_mutation": false
+}

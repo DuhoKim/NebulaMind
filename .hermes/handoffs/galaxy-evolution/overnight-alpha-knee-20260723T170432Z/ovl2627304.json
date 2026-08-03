@@ -1,0 +1,850 @@
+{
+  "id": "ovl2627304",
+  "spec": {
+    "topic": "age-resolved-alpha-knee",
+    "topic_source": "overnight-loop",
+    "data_sources": [
+      "apogee"
+    ],
+    "method": "alpha-knee-age-radius",
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ],
+    "force": true,
+    "ra_hours": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "signs": [
+      "+",
+      "-"
+    ],
+    "pace_s": 7.0,
+    "rg_edges": [
+      0,
+      3,
+      5,
+      7,
+      9,
+      11,
+      13,
+      15
+    ],
+    "age_edges": [
+      1,
+      3,
+      5,
+      7,
+      9,
+      11,
+      14
+    ],
+    "R0": 8.122,
+    "snr_min": 70,
+    "alpha_element": "mg",
+    "flag_strictness": "strict",
+    "min_n_cell": 40,
+    "n_boot": 100,
+    "ridge_pct": 75.0,
+    "seed": 20260724,
+    "corner": "core_mg_strict_r75"
+  },
+  "status": "done",
+  "created_utc": "2026-07-23T17:26:28Z",
+  "log": [
+    "queued by overnight loop",
+    "02:27:13 gate/novelty: NOVEL (top-sim 0.735)",
+    "02:27:13 building age-resolved alpha-knee (APOGEE apogeeDistMass x apogeeStar x aspcapStar)\u2026",
+    "02:27:13 alpha-knee: pulled 1/48 sky chunks, 9,153 joined rows so far",
+    "02:27:14 alpha-knee: pulled 7/48 sky chunks, 39,222 joined rows so far",
+    "02:27:14 alpha-knee: pulled 13/48 sky chunks, 103,104 joined rows so far",
+    "02:27:15 alpha-knee: pulled 19/48 sky chunks, 162,207 joined rows so far",
+    "02:27:16 alpha-knee: pulled 25/48 sky chunks, 183,998 joined rows so far",
+    "02:27:16 alpha-knee: pulled 31/48 sky chunks, 214,069 joined rows so far",
+    "02:27:17 alpha-knee: pulled 37/48 sky chunks, 285,771 joined rows so far",
+    "02:27:18 alpha-knee: pulled 43/48 sky chunks, 367,409 joined rows so far",
+    "02:27:18 alpha-knee: pulled 48/48 sky chunks, 383,763 joined rows so far",
+    "02:27:21 alpha-knee: 330,028 giants pass flag/quality cuts (of 383,763 joined)",
+    "02:28:04 gate/expected-value: TENSION",
+    "02:28:06 lit-grounded on 6 papers, 5 passages",
+    "02:28:56 drafted manuscript body",
+    "02:29:15 review cycle 1: MINOR",
+    "02:29:15 review-revise loop done: MINOR in 1 cycle(s)",
+    "02:29:50 gate/citations: 2 unsupported of 2 checked",
+    "02:29:50 compiling AASTeX manuscript (PDF)...",
+    "02:29:52 AASTeX PDF compiled OK",
+    "02:29:52 done \u2713"
+  ],
+  "artifacts": [
+    "result.png",
+    "review_loop.md",
+    "draft.pdf"
+  ],
+  "result": {
+    "data_sources": [
+      "apogee"
+    ],
+    "method": "alpha-knee-age-radius",
+    "knee": -0.5005693690392861,
+    "noncircular_robust": true,
+    "n_stars": 330028,
+    "n_cells_fit": 34,
+    "grid": {
+      "rg_centers": [
+        1.5,
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0,
+        14.0
+      ],
+      "age_centers": [
+        2.0,
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.5
+      ],
+      "knee": [
+        [
+          -0.5402659857142856,
+          -0.6593869714285714,
+          -0.6786197,
+          -0.34269694285714297,
+          -0.4483686642857143,
+          -0.6061762321428571
+        ],
+        [
+          -0.5555978607142855,
+          -0.5557371464285714,
+          -0.5637658035714284,
+          -0.35046199999999994,
+          -0.3878644107142858,
+          -0.5030785237928577
+        ],
+        [
+          -0.7151410214285714,
+          -0.7096962571428571,
+          -0.5876374285714285,
+          -0.4980602142857144,
+          -0.41918384642857137,
+          -0.3228967857142857
+        ],
+        [
+          -0.6428133857142857,
+          null,
+          -0.6929602142857143,
+          -0.40219772857142866,
+          -0.3043661285714284,
+          -0.41389800000000004
+        ],
+        [
+          -0.6461805825,
+          -0.4859123214285715,
+          null,
+          -0.3194335714285713,
+          -0.43797739285714304,
+          -0.5557430535714285
+        ],
+        [
+          -0.39878381714285727,
+          -0.49259431557142846,
+          null,
+          -0.20891295357142858,
+          -0.5096487142857145,
+          null
+        ],
+        [
+          null,
+          -0.3288508892857144,
+          null,
+          -0.6495087964285713,
+          null,
+          null
+        ]
+      ],
+      "knee_err": [
+        [
+          0.048982221127028026,
+          0.059422817987071865,
+          0.021435952706649802,
+          0.027958468974035495,
+          0.05970713322546116,
+          0.05209156337216891
+        ],
+        [
+          0.06157633004945807,
+          0.012805084646077486,
+          0.020859826306384586,
+          0.04021170036143653,
+          0.05344921398887318,
+          0.07365243140782358
+        ],
+        [
+          0.021165547280535383,
+          0.04180189780104982,
+          0.04583506637795918,
+          0.03867538558154374,
+          0.027944378111005027,
+          0.06206219577467772
+        ],
+        [
+          0.01202186961382461,
+          null,
+          0.010046259426479095,
+          0.03574136340334993,
+          0.04661102842702235,
+          0.06329465590348808
+        ],
+        [
+          0.054586102603746724,
+          0.023026548104048195,
+          null,
+          0.006757781029488122,
+          0.08529586883741402,
+          0.14412489283413815
+        ],
+        [
+          0.02274994328068121,
+          0.025556605866109736,
+          null,
+          0.17200480459378886,
+          0.1556047918019758,
+          null
+        ],
+        [
+          null,
+          0.09373665885109861,
+          null,
+          0.11486394002547307,
+          null,
+          null
+        ]
+      ],
+      "n": [
+        [
+          1133,
+          3013,
+          8028,
+          4664,
+          2038,
+          1402
+        ],
+        [
+          1512,
+          3084,
+          6102,
+          7327,
+          2754,
+          1139
+        ],
+        [
+          5020,
+          6859,
+          8866,
+          11225,
+          3780,
+          1108
+        ],
+        [
+          20689,
+          31582,
+          31241,
+          30905,
+          8429,
+          1572
+        ],
+        [
+          21502,
+          23351,
+          16579,
+          11851,
+          2547,
+          518
+        ],
+        [
+          11307,
+          9495,
+          5817,
+          2630,
+          487,
+          165
+        ],
+        [
+          3463,
+          2508,
+          1292,
+          414,
+          82,
+          39
+        ]
+      ]
+    },
+    "gradients": {
+      "dknee_dage": [
+        0.03543395083531082,
+        0.0075883442498685645
+      ],
+      "dknee_dRg": [
+        0.020913661607790464,
+        0.006741823751744862
+      ],
+      "dknee_dage_swap": [
+        0.05439778547247464,
+        0.007992441147705412
+      ],
+      "dknee_dRg_swap": [
+        0.01969629913815586,
+        0.007103950424656625
+      ]
+    },
+    "summary": "Age-resolved alpha-knee from an APOGEE (DR18) 3-table join of 330,028 giants (apogeeDistMass C/N ages + distances, apogeeStar Galactic coordinates, aspcapStar [Fe/H]-[MG/Fe]). The [Fe/H]_knee is located per (R_g x age) cell with a broken-line ridge fit (bootstrap error) in 34 populated cells; median [Fe/H]_knee = -0.50. Gradients: d[Fe/H]_knee/d(age)|_R_g = +0.0354+/-0.0076 dex/Gyr; d[Fe/H]_knee/dR_g|_age = +0.0209+/-0.0067 dex/kpc. Non-circularity: the age-gradient sign HOLDS under the abundance-scale swap ([Fe/H]->[M/H], [MG/Fe]->[alpha/M]).",
+    "title": "An age dependence of the Galactic alpha-knee across galactocentric radius",
+    "provenance": "Real SDSS DR18 APOGEE catalog data via SkyServer raw-HTTP (no astroquery). Three tables (apogeeDistMass, apogeeStar, aspcapStar) are pulled as bare columns, chunked by sky region with pacing + retry/backoff + disk cache, and joined in-process on APOGEE_ID; flag/quality cuts (STAR_BAD, per-element flags, SNR, abundance errors, 1-14 Gyr ages) are applied in Python. R_g is computed from glon/glat/distance with R0=8.122 kpc. Ages are spectroscopic C/N (data-driven) and carry the known C/N-age systematics; the alpha-knee and its gradients are the reported quantities, and the non-circularity test swaps the abundance calibration scale, not the data set.",
+    "figure_url": "/api/lab/runs/ovl2627304/artifact/result.png",
+    "review": "VERDICT: MINOR\n\nThe manuscript presents a thorough investigation into the age-resolved alpha-knee using APOGEE data, with well-documented methods and caveats. However, there are some minor concerns:\n\n1. Overclaim risk: The study's reliance on spectroscopic C/N ages may lead to systematic errors, which could affect the accuracy of the results.\n2. Missing caveat: The authors should address potential uncertainties in the Galactocentric radius calculation due to distance measurement errors or assumptions about R0.\n3. Most important fix: Provide a more detailed discussion on how the automated selection and uncalibrated measurements may impact the robustness of the findings, and consider including sensitivity analyses to quantify these effects.\n\nOverall, the manuscript is well-structured and contributes valuable insights into the alpha-knee's age dependence. With minor revisions addressing these concerns, it can be strengthened further.",
+    "review_model": "astrosage-70b:latest",
+    "review_verdict": "MINOR",
+    "review_cycles": 1,
+    "review_url": "/api/lab/runs/ovl2627304/artifact/review_loop.md",
+    "pdf_url": "/api/lab/runs/ovl2627304/artifact/draft.pdf"
+  },
+  "gates": {
+    "novelty": {
+      "gate": "novelty",
+      "verdict": "NOVEL",
+      "top_similarity": 0.735,
+      "reason": "ved ages for stars, including metallicities and \u03b1-enhancements. However, they still do not directly discuss an \"age-resolved-alpha-knee\" or a method similar to \"alpha-knee-age-radius.\"\n\n5. **Lagarde2021**: This paper does not seem to directly address any of the specific topics mentioned in the proposed study (age-resolved-alpha-knee, alpha-knee-age-radius method on APOGEE).\n\nGiven this analysis, none of the passages explicitly report a measurement of \"age-resolved-alpha-knee\" via an \"alpha-knee-age-radius\" method on APOGEE data. While some papers discuss ages and alpha elements in the context of APOGEE data, they do not appear to combine these elements in the manner proposed.\n\nVERDICT: NOVEL",
+      "papers": [
+        {
+          "bibcode": "2016ApJ...817...40F",
+          "arxiv": "1511.04088",
+          "title": "Determining Ages of APOGEE Giants with Known Distances",
+          "authors": [
+            "Feuillet, Diane K.",
+            "Bovy, Jo",
+            "Holtzman, Jon",
+            "Girardi, L\u00e9o",
+            "MacDonald, Nick",
+            "Majewski, Steven R.",
+            "Nidever, David L."
+          ],
+          "year": "2016",
+          "cites": 61,
+          "score": 0.7351350784301758
+        },
+        {
+          "bibcode": "2021AJ....161..100W",
+          "arxiv": "2102.03377",
+          "title": "An Intermediate-age Alpha-rich Galactic Population in K2",
+          "authors": [
+            "Warfield, Jack T.",
+            "Zinn, Joel C.",
+            "Pinsonneault, Marc H.",
+            "Johnson, Jennifer A.",
+            "Stello, Dennis",
+            "Elsworth, Yvonne",
+            "Garc\u00eda, Rafael A.",
+            "Kallinger, Thomas",
+            "Mathur, Savita",
+            "Mosser, Beno\u00eet",
+            "Beaton, Rachael L.",
+            "Garc\u00eda-Hern\u00e1ndez, D. A."
+          ],
+          "year": "2021",
+          "cites": 23,
+          "score": 0.7241339683532715
+        },
+        {
+          "bibcode": "2021A&A...654A..13L",
+          "arxiv": "2106.15616",
+          "title": "Deciphering the evolution of the Milky Way discs: Gaia APOGEE Kepler giant stars and the Besan\u00e7on Galaxy Model",
+          "authors": [
+            "Lagarde, N.",
+            "Reyl\u00e9, C.",
+            "Chiappini, C.",
+            "Mor, R.",
+            "Anders, F.",
+            "Figueras, F.",
+            "Miglio, A.",
+            "Romero-G\u00f3mez, M.",
+            "Antoja, T.",
+            "Cabral, N.",
+            "Salomon, J.-B.",
+            "Robin, A. C.",
+            "Bienaym\u00e9, O.",
+            "Soubiran, C.",
+            "Cornu, D.",
+            "Montillaud, J."
+          ],
+          "year": "2021",
+          "cites": 29,
+          "score": 0.7189630270004272
+        },
+        {
+          "bibcode": "2017MNRAS.471.3057M",
+          "arxiv": "1706.00018",
+          "title": "The age-metallicity structure of the Milky Way disc using APOGEE",
+          "authors": [
+            "Mackereth, J. Ted",
+            "Bovy, Jo",
+            "Schiavon, Ricardo P.",
+            "Zasowski, Gail",
+            "Cunha, Katia",
+            "Frinchaboy, Peter M.",
+            "Garc\u00eda Perez, Ana E.",
+            "Hayden, Michael R.",
+            "Holtzman, Jon",
+            "Majewski, Steven R.",
+            "M\u00e9sz\u00e1ros, Szabolcs",
+            "Nidever, David L.",
+            "Pinsonneault, Marc",
+            "Shetrone, Matthew D."
+          ],
+          "year": "2017",
+          "cites": 180,
+          "score": 0.7165902853012085
+        },
+        {
+          "bibcode": "2020ApJ...888...43C",
+          "arxiv": "1911.04518",
+          "title": "Chemical Evolution in the Milky Way: Rotation-based Ages for APOGEE-Kepler Cool Dwarf Stars",
+          "authors": [
+            "Claytor, Zachary R.",
+            "van Saders, Jennifer L.",
+            "Santos, \u00c2ngela R. G.",
+            "Garc\u00eda, Rafael A.",
+            "Mathur, Savita",
+            "Tayar, Jamie",
+            "Pinsonneault, Marc H.",
+            "Shetrone, Matthew"
+          ],
+          "year": "2020",
+          "cites": 73,
+          "score": 0.716474175453186
+        },
+        {
+          "bibcode": "2023A&A...678A.158A",
+          "arxiv": "2304.08276",
+          "title": "Spectroscopic age estimates for APOGEE red-giant stars: Precise spatial and kinematic trends with age in the Galactic disc",
+          "authors": [
+            "Anders, F.",
+            "Gispert, P.",
+            "Ratcliffe, B.",
+            "Chiappini, C.",
+            "Minchev, I.",
+            "Nepal, S.",
+            "Queiroz, A. B. A.",
+            "Amarante, J. A. S.",
+            "Antoja, T.",
+            "Casali, G.",
+            "Casamiquela, L.",
+            "Khalatyan, A.",
+            "Miglio, A.",
+            "Perottoni, H.",
+            "Schultheis, M."
+          ],
+          "year": "2023",
+          "cites": 75,
+          "score": 0.7153501510620117
+        }
+      ]
+    },
+    "expected_value": {
+      "gate": "expected_value",
+      "verdict": "TENSION",
+      "kill": false,
+      "n_values": 17,
+      "reason": " and are a measure of metallicity.\n\nStep 2 - COMPARE: The median [Fe/H]_knee value from the measurement is -0.50 dex. In contrast, the expected [Fe/H] value from Lagarde2021 for the thin disc is 0.03 dex. This indicates a significant difference in the metallicity values between the measured result and the expected value.\n\nConsidering the units are the same (dex), and acknowledging that different metallicity scales can have legitimate offsets due to calibration differences, we observe a substantial discrepancy here. The difference between -0.50 dex and 0.03 dex is about 0.53 dex, which falls within the range where scale differences could be considered but leans towards being on the higher end of what might be expected from calibration variations alone.\n\nGiven this context:\n\nVERDICT: TENSION",
+      "papers": [
+        {
+          "bibcode": "2023ApJ...954..124I",
+          "arxiv": "2307.13887",
+          "title": "A Tale of Two Disks: Mapping the Milky Way with the Final Data Release of APOGEE",
+          "authors": [
+            "Imig, Julie",
+            "Price, Cathryn",
+            "Holtzman, Jon A.",
+            "Stone-Martinez, Alexander",
+            "Majewski, Steven R.",
+            "Weinberg, David H.",
+            "Johnson, Jennifer A.",
+            "Allende Prieto, Carlos",
+            "Beaton, Rachael L.",
+            "Beers, Timothy C.",
+            "Bizyaev, Dmitry",
+            "Blanton, Michael R.",
+            "Brownstein, Joel R.",
+            "Cunha, Katia",
+            "Fern\u00e1ndez-Trincado, Jos\u00e9 G.",
+            "Feuillet, Diane K.",
+            "Hasselquist, Sten",
+            "Hayes, Christian R.",
+            "J\u00f6nsson, Henrik",
+            "Lane, Richard R.",
+            "Lian, Jianhui",
+            "M\u00e9sz\u00e1ros, Szabolcs",
+            "Nidever, David L.",
+            "Robin, Annie C.",
+            "Shetrone, Matthew",
+            "Smith, Verne",
+            "Wilson, John C."
+          ],
+          "year": "2023",
+          "cites": 85,
+          "score": 0.7525746822357178
+        },
+        {
+          "bibcode": "2017MNRAS.471.3057M",
+          "arxiv": "1706.00018",
+          "title": "The age-metallicity structure of the Milky Way disc using APOGEE",
+          "authors": [
+            "Mackereth, J. Ted",
+            "Bovy, Jo",
+            "Schiavon, Ricardo P.",
+            "Zasowski, Gail",
+            "Cunha, Katia",
+            "Frinchaboy, Peter M.",
+            "Garc\u00eda Perez, Ana E.",
+            "Hayden, Michael R.",
+            "Holtzman, Jon",
+            "Majewski, Steven R.",
+            "M\u00e9sz\u00e1ros, Szabolcs",
+            "Nidever, David L.",
+            "Pinsonneault, Marc",
+            "Shetrone, Matthew D."
+          ],
+          "year": "2017",
+          "cites": 180,
+          "score": 0.7486522197723389
+        },
+        {
+          "bibcode": "2016ApJ...817...40F",
+          "arxiv": "1511.04088",
+          "title": "Determining Ages of APOGEE Giants with Known Distances",
+          "authors": [
+            "Feuillet, Diane K.",
+            "Bovy, Jo",
+            "Holtzman, Jon",
+            "Girardi, L\u00e9o",
+            "MacDonald, Nick",
+            "Majewski, Steven R.",
+            "Nidever, David L."
+          ],
+          "year": "2016",
+          "cites": 61,
+          "score": 0.7386875748634338
+        },
+        {
+          "bibcode": "2023A&A...678A.158A",
+          "arxiv": "2304.08276",
+          "title": "Spectroscopic age estimates for APOGEE red-giant stars: Precise spatial and kinematic trends with age in the Galactic disc",
+          "authors": [
+            "Anders, F.",
+            "Gispert, P.",
+            "Ratcliffe, B.",
+            "Chiappini, C.",
+            "Minchev, I.",
+            "Nepal, S.",
+            "Queiroz, A. B. A.",
+            "Amarante, J. A. S.",
+            "Antoja, T.",
+            "Casali, G.",
+            "Casamiquela, L.",
+            "Khalatyan, A.",
+            "Miglio, A.",
+            "Perottoni, H.",
+            "Schultheis, M."
+          ],
+          "year": "2023",
+          "cites": 75,
+          "score": 0.7329079508781433
+        },
+        {
+          "bibcode": "2021A&A...654A..13L",
+          "arxiv": "2106.15616",
+          "title": "Deciphering the evolution of the Milky Way discs: Gaia APOGEE Kepler giant stars and the Besan\u00e7on Galaxy Model",
+          "authors": [
+            "Lagarde, N.",
+            "Reyl\u00e9, C.",
+            "Chiappini, C.",
+            "Mor, R.",
+            "Anders, F.",
+            "Figueras, F.",
+            "Miglio, A.",
+            "Romero-G\u00f3mez, M.",
+            "Antoja, T.",
+            "Cabral, N.",
+            "Salomon, J.-B.",
+            "Robin, A. C.",
+            "Bienaym\u00e9, O.",
+            "Soubiran, C.",
+            "Cornu, D.",
+            "Montillaud, J."
+          ],
+          "year": "2021",
+          "cites": 29,
+          "score": 0.7291737794876099
+        },
+        {
+          "bibcode": "2016AN....337..922C",
+          "arxiv": "1601.03099",
+          "title": "Chemical abundance gradients from open clusters in the Milky Way disk: Results from the APOGEE survey",
+          "authors": [
+            "Cunha, K.",
+            "Frinchaboy, P. M.",
+            "Souto, D.",
+            "Thompson, B.",
+            "Zasowski, G.",
+            "Allende Prieto, C.",
+            "Carrera, R.",
+            "Chiappini, C.",
+            "Donor, J.",
+            "Garc\u00eda-Hern\u00e1ndez, D. A.",
+            "Garc\u00eda P\u00e9rez, A. E.",
+            "Hayden, M. R.",
+            "Holtzman, J.",
+            "Jackson, K. M.",
+            "Johnson, J. A.",
+            "Majewski, S. R.",
+            "M\u00e9sz\u00e1ros, S.",
+            "Meyer, B.",
+            "Nidever, D. L.",
+            "O'Connell, J.",
+            "Schiavon, R. P.",
+            "Schultheis, M.",
+            "Shetrone, M.",
+            "Simmons, A.",
+            "Smith, V. V.",
+            "et al."
+          ],
+          "year": "2016",
+          "cites": 55,
+          "score": 0.7262191772460938
+        },
+        {
+          "bibcode": "2018MNRAS.477.2326F",
+          "arxiv": "1803.06352",
+          "title": "Age-resolved chemistry of red giants in the solar neighbourhood",
+          "authors": [
+            "Feuillet, Diane K.",
+            "Bovy, Jo",
+            "Holtzman, Jon",
+            "Weinberg, David H.",
+            "Garc\u00eda-Hern\u00e1ndez, D.",
+            "Hearty, Fred R.",
+            "Majewski, Steven R.",
+            "Roman-Lopes, Alexandre",
+            "Rybizki, Jan",
+            "Zamora, Olga"
+          ],
+          "year": "2018",
+          "cites": 81,
+          "score": 0.7165803909301758
+        }
+      ]
+    },
+    "citation_entailment": {
+      "gate": "citation_entailment",
+      "checked": 2,
+      "adversarial": true,
+      "n_unsupported": 2,
+      "unsupported": [
+        {
+          "key": "Claytor2020",
+          "sentence": "Previous works have explored various aspects of this topic, such as the role of rotation-based ages for APOGEE-Kepler cool dwarf stars [Claytor2020] and the identification of young",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Chemical Evolution in the Milky Way: Rotation-based ages for APOGEE- Kepler cool dwarf stars Zachary R. Claytor Institute for Astronomy, University of Hawai\u2019i, 2680 Woodlawn Drive, Honolulu, HI 96822, USA Jennifer L. van Saders Institute for Astronomy, University of Hawai\u2019i, 2680 Woodlawn Drive, Hon",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS \"ROTATION-BASED AGES FOR APOGEE-KEPLER COOL DWARF STARS\" WHICH MATCHES THE TOPIC MENTIONED IN THE CLAIM AS EXPLORED BY "
+        },
+        {
+          "key": "Grisoni2024",
+          "sentence": "Previous works have explored various aspects of this topic, such as the role of rotation-based ages for APOGEE-Kepler cool dwarf stars [Claytor2020] and the identification of young",
+          "supported": false,
+          "adversarial_ok": null,
+          "passage": "1 1 institutetext: Department of Physics & Astronomy, University of Bologna, Via Gobetti 93/2, 40129 Bologna, Italy 2 2 institutetext: INAF, Osservatorio Astronomico di Trieste, via G.B. Tiepolo 11, I-34131, Trieste, Italy 2 2 email: valeria.grisoni@inaf.it 3 3 institutetext: Leibniz-Institut fur As",
+          "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR SPECIFIC STUDIES LIKE CLAYTOR2020 OR GRISONI2024."
+        }
+      ],
+      "spot_audit": null,
+      "all": [
+        {
+          "key": "Claytor2020",
+          "sentence": "Previous works have explored various aspects of this topic, such as the role of rotation-based ages for APOGEE-Kepler cool dwarf stars [Claytor2020] and the identification of young",
+          "supported": false,
+          "adversarial_ok": false,
+          "passage": "Chemical Evolution in the Milky Way: Rotation-based ages for APOGEE- Kepler cool dwarf stars Zachary R. Claytor Institute for Astronomy, University of Hawai\u2019i, 2680 Woodlawn Drive, Honolulu, HI 96822, USA Jennifer L. van Saders Institute for Astronomy, University of Hawai\u2019i, 2680 Woodlawn Drive, Hon",
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS \"ROTATION-BASED AGES FOR APOGEE-KEPLER COOL DWARF STARS\" WHICH MATCHES THE TOPIC MENTIONED IN THE CLAIM AS EXPLORED BY "
+        },
+        {
+          "key": "Grisoni2024",
+          "sentence": "Previous works have explored various aspects of this topic, such as the role of rotation-based ages for APOGEE-Kepler cool dwarf stars [Claytor2020] and the identification of young",
+          "supported": false,
+          "adversarial_ok": null,
+          "passage": "1 1 institutetext: Department of Physics & Astronomy, University of Bologna, Via Gobetti 93/2, 40129 Bologna, Italy 2 2 institutetext: INAF, Osservatorio Astronomico di Trieste, via G.B. Tiepolo 11, I-34131, Trieste, Italy 2 2 email: valeria.grisoni@inaf.it 3 3 institutetext: Leibniz-Institut fur As",
+          "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR SPECIFIC STUDIES LIKE CLAYTOR2020 OR GRISONI2024."
+        }
+      ]
+    }
+  },
+  "lit_refs": [
+    "2018ApJ...860...95S",
+    "2021AJ....161..100W",
+    "2024A&A...690A.323V",
+    "2024A&A...683A.111G",
+    "2020ApJ...888...43C",
+    "2024A&A...685A.150V"
+  ],
+  "lit_reflist": [
+    "[Claytor2020] Claytor et al. (2020). Chemical Evolution in the Milky Way: Rotation-based Ages for APOGEE-Kepler Cool Dwarf Stars. bibcode 2020ApJ...888...43C",
+    "[Grisoni2024] Grisoni et al. (2024). K2 results for \"young\" \u03b1-rich stars in the Galaxy. bibcode 2024A&A...683A.111G",
+    "[Valle2024] Valle et al. (2024). Stellar model tests and age determination for RGB stars from the APO-K2 catalogue. bibcode 2024A&A...690A.323V",
+    "[Warfield2021] Warfield et al. (2021). An Intermediate-age Alpha-rich Galactic Population in K2. bibcode 2021AJ....161..100W"
+  ],
+  "lit_papers": [
+    {
+      "bibcode": "2018ApJ...860...95S",
+      "arxiv": "1805.01486",
+      "title": "On the Use of the Main-sequence Knee (Saddle) to Measure Globular Cluster Ages",
+      "authors": [
+        "Saracino, S.",
+        "Dalessandro, E.",
+        "Ferraro, F. R.",
+        "Lanzoni, B.",
+        "Origlia, L.",
+        "Salaris, M.",
+        "Pietrinferni, A.",
+        "Geisler, D.",
+        "Kalirai, J. S.",
+        "Correnti, M.",
+        "Cohen, R. E.",
+        "Mauro, F.",
+        "Villanova, S.",
+        "Moni Bidin, C."
+      ],
+      "year": "2018",
+      "cites": 12,
+      "score": 0.556573748588562
+    },
+    {
+      "bibcode": "2021AJ....161..100W",
+      "arxiv": "2102.03377",
+      "title": "An Intermediate-age Alpha-rich Galactic Population in K2",
+      "authors": [
+        "Warfield, Jack T.",
+        "Zinn, Joel C.",
+        "Pinsonneault, Marc H.",
+        "Johnson, Jennifer A.",
+        "Stello, Dennis",
+        "Elsworth, Yvonne",
+        "Garc\u00eda, Rafael A.",
+        "Kallinger, Thomas",
+        "Mathur, Savita",
+        "Mosser, Beno\u00eet",
+        "Beaton, Rachael L.",
+        "Garc\u00eda-Hern\u00e1ndez, D. A."
+      ],
+      "year": "2021",
+      "cites": 23,
+      "score": 0.5368171334266663
+    },
+    {
+      "bibcode": "2024A&A...690A.323V",
+      "arxiv": "2408.14900",
+      "title": "Stellar model tests and age determination for RGB stars from the APO-K2 catalogue",
+      "authors": [
+        "Valle, G.",
+        "Dell'Omodarme, M.",
+        "Prada Moroni, P. G.",
+        "Degl'Innocenti, S."
+      ],
+      "year": "2024",
+      "cites": 8,
+      "score": 0.5312628149986267
+    },
+    {
+      "bibcode": "2024A&A...683A.111G",
+      "arxiv": "2312.07091",
+      "title": "K2 results for \"young\" \u03b1-rich stars in the Galaxy",
+      "authors": [
+        "Grisoni, V.",
+        "Chiappini, C.",
+        "Miglio, A.",
+        "Brogaard, K.",
+        "Casali, G.",
+        "Willett, E.",
+        "Montalb\u00e1n, J.",
+        "Stokholm, A.",
+        "Thomsen, J. S.",
+        "Tailo, M.",
+        "Matteuzzi, M.",
+        "Valentini, M.",
+        "Elsworth, Y.",
+        "Mosser, B."
+      ],
+      "year": "2024",
+      "cites": 27,
+      "score": 0.5122692584991455
+    },
+    {
+      "bibcode": "2020ApJ...888...43C",
+      "arxiv": "1911.04518",
+      "title": "Chemical Evolution in the Milky Way: Rotation-based Ages for APOGEE-Kepler Cool Dwarf Stars",
+      "authors": [
+        "Claytor, Zachary R.",
+        "van Saders, Jennifer L.",
+        "Santos, \u00c2ngela R. G.",
+        "Garc\u00eda, Rafael A.",
+        "Mathur, Savita",
+        "Tayar, Jamie",
+        "Pinsonneault, Marc H.",
+        "Shetrone, Matthew"
+      ],
+      "year": "2020",
+      "cites": 73,
+      "score": 0.5076981782913208
+    },
+    {
+      "bibcode": "2024A&A...685A.150V",
+      "arxiv": "2403.03070",
+      "title": "Impact of \u03b1 enhancement on the asteroseismic age determination of field stars. Application to the APO-K2 catalogue",
+      "authors": [
+        "Valle, G.",
+        "Dell'Omodarme, M.",
+        "Prada Moroni, P. G.",
+        "Degl'Innocenti, S."
+      ],
+      "year": "2024",
+      "cites": 6,
+      "score": 0.5054142475128174
+    }
+  ],
+  "lit_grounded": true,
+  "lit_grounding": "grounded on 6 papers, 5 passages"
+}

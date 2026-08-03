@@ -1,0 +1,68 @@
+# Deep Research request — Evidence for AGN maintenance heating in low-mass halos (M_halo ≲ 10^13.5 M_sun)
+
+**Request ID:** `REQ_RAMPAGE_R9_20260711T064115Z`
+**Role:** Literature analyst for a galaxy-evolution research journal. Published work only; no
+access to the project's internal results. Treat "maintenance heating keeps low-mass halos hot"
+strictly as a hypothesis under test.
+
+**Scope:** individual massive galaxies and poor groups (halo masses ≲ 10^13.5 M_sun, down to
+~10^12); rich clusters are OUT of scope except as explicitly labeled extrapolation anchors.
+
+**Required deliverables (markdown sections, in order):**
+1. `## Hot-atmosphere detections and limits` — X-ray coronae/atmospheres of individual ellipticals,
+   lenticulars, and massive spirals in this halo range: one row per study/sample:
+   `Study (citation) | Sample + selection | Halo/stellar mass range | Detection or upper limit (L_X, T, extent) ± unc | Instrument | Caveats named by the study`
+   Include eROSITA stacking constraints with their selection functions.
+2. `## Radio-AGN incidence at these masses` — radio-AGN fractions in central galaxies of this halo
+   range (per survey, per luminosity threshold), with all four qualifiers per fraction.
+3. `## Energetics ledger` — published jet/cavity/turbulence heating estimates vs cooling estimates
+   for low-mass systems (individual detections and population arguments), each with the study's
+   own uncertainty and duty-cycle treatment; note where cavity calorimetry was NOT possible and
+   what proxy was used instead.
+4. `## Cluster-to-low-mass extrapolations` — published arguments importing cluster duty cycles to
+   low-mass halos, quoted as attributed claims with their stated assumptions; published pushback.
+5. `## Alternative maintenance channels` — non-AGN heating candidates the literature weighs at
+   these masses (SNe Ia, gravitational/virialization heating, magnetic/CR support), attributed.
+6. `## Disagreements` — direct conflicts (same estimand) in this regime, both sides quoted.
+7. `## Discriminating tests` — proposed observations the literature itself says would decide the
+   low-mass maintenance question (with the proposer's feasibility statement); note where JWST/ALMA
+   are marginal and which instrument family is the relevant one.
+
+**Binding output contract:**
+- C1 (meta header). ONE self-contained markdown report body starting with:
+
+      # Rampage R9 answer — REQ_RAMPAGE_R9_20260711T064115Z
+      Run date (UTC): <YYYY-MM-DDTHH:MM:SSZ>
+      Model: <model/product self-identification>
+      Evidence rows: <N>
+
+- C2 (structure). Exactly the seven numbered sections above, in order; empty fields say
+  `NONE_FOUND`, never silently omitted, never padded.
+- C3 (uncertainty). Every number carries the source's uncertainty or
+  `UNCERTAINTY_NOT_QUOTED_BY_SOURCE`. Never invent error bars.
+- C4 (citation labeling). Every study/number carries a checkable citation (arXiv ID, DOI, ADS
+  bibcode, or URL) on the same line, or `UNCITED_NOT_USABLE`.
+- C5 (wording contract). Own-voice settled/causal register banned (case-insensitive):
+  establish(es/ed/ing), proves, proven, confirms that, settles, settled question, resolves the
+  debate, definitively, conclusively, is now known, "demonstrates that … causes". Never state in
+  your own voice that maintenance heating is observationally confirmed at any mass; cluster results
+  must not be scope-inflated to this regime.
+- C6 (estimand labels). Fractions and balance ratios from different selections/methods/mass ranges
+  are non-commensurable unless the sources harmonize them; four qualifiers on every fraction.
+- C7 (links ledger). Final content section `## Links ledger`, one line per cited item:
+  `<short name> | <citation or UNCITED_NOT_USABLE> | QUARANTINED_PENDING_LOCAL_CHECK`.
+- C8 (completion marker). The exact string
+
+      GEMINI_WEB_RAMPAGE_R9_OUTPUT_DONE_20260711T064115Z
+
+  must appear exactly once, as the standalone FINAL non-empty line of the report body. Nothing may
+  follow it — no "End of Report", no sign-off. A marker only in a chat-UI element counts as ABSENT
+  and the run is rejected.
+
+**Safety locks:**
+- Output is advisory only. Not accepted evidence, not product claim binding.
+- Do not present generated DOI/ADS/arXiv IDs as verified; all IDs are quarantined pending local check.
+- Do not propose edits to any local artifact; produce this report body only.
+
+Final reminder: the last non-empty line of your report must be exactly
+`GEMINI_WEB_RAMPAGE_R9_OUTPUT_DONE_20260711T064115Z` with no text after it.

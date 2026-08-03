@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex,nofollow" />
+<title>NebulaMind Live Steering Cockpit — plain words</title>
+<style>
+:root{color-scheme:dark;--bg:#050914;--panel:#0e1728;--panel2:#111d32;--ink:#eef6ff;--muted:#9fb0c7;--line:rgba(159,176,199,.24);--green:#58d68d;--cyan:#67e8f9;--blue:#8ab4ff;--amber:#f5c86b;--orange:#fb923c;--red:#fb7185;--violet:#c4b5fd}
+*{box-sizing:border-box} body{margin:0;font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"SF Pro Text",Inter,Segoe UI,sans-serif;background:radial-gradient(circle at 8% -10%,rgba(103,232,249,.14),transparent 32rem),radial-gradient(circle at 96% 4%,rgba(251,113,133,.13),transparent 30rem),linear-gradient(180deg,#050914,#071120 46%,#050914);color:var(--ink)}
+a{color:#a7dcff;text-decoration:none} a:hover{text-decoration:underline} .shell{max-width:1220px;margin:0 auto;padding:34px 20px 68px} .card{background:linear-gradient(180deg,rgba(17,29,50,.96),rgba(9,15,28,.98));border:1px solid var(--line);border-radius:24px;box-shadow:0 22px 70px rgba(0,0,0,.35)}
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:18px;align-items:stretch} .main{padding:30px} .side{padding:22px} .eyebrow{color:var(--cyan);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:900} h1{font-size:clamp(36px,5.2vw,64px);line-height:.96;letter-spacing:-.055em;margin:14px 0 16px} h2{font-size:25px;letter-spacing:-.03em;margin:0 0 14px} h3{margin:0 0 6px;font-size:17px} p{color:var(--muted);line-height:1.58} .lede{font-size:18px;max-width:820px} .section{padding:22px;margin-top:18px} .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px} .pillrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:16px} .pill{border:1px solid var(--line);border-radius:999px;padding:8px 11px;background:rgba(255,255,255,.045);font-size:13px;color:#dcecff} .metric{padding:15px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.04);margin-bottom:10px} .metric b{display:block;font-size:27px;color:var(--green)} .metric span{display:block;color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.08em} .banner{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px} .banner .card{padding:16px} .banner b{display:block;font-size:22px} .ok{color:var(--green)} .hold{color:var(--amber)} .stop{color:var(--red)} .plain{font-size:20px;color:#dcecff;line-height:1.5}
+ul{margin:10px 0 0;padding-left:20px;color:var(--muted);line-height:1.55} li{margin:6px 0} code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#d8ecff;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:8px;padding:2px 6px} .state{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px} .state div{border:1px solid var(--line);border-radius:16px;padding:13px;background:rgba(255,255,255,.035)} .state b{display:block;color:#fff} .state span{color:var(--muted);font-size:13px} .ladder{display:grid;gap:12px} .move{display:grid;grid-template-columns:150px 1fr;gap:14px;border:1px solid var(--line);border-radius:20px;padding:16px;background:rgba(255,255,255,.035)} .move .risk{font-weight:900;text-transform:uppercase;letter-spacing:.08em;font-size:12px} .safe{color:var(--green)} .safe2{color:var(--cyan)} .low{color:var(--blue)} .mid{color:var(--amber)} .high{color:var(--orange)} .danger{color:var(--red)} .violet{color:var(--violet)} button{border:0;border-radius:12px;padding:10px 13px;background:#dcecff;color:#061424;font-weight:900;cursor:pointer} .copy{display:block;margin-top:10px;white-space:normal;word-break:break-word;font-size:12px} table{width:100%;border-collapse:collapse} td{border-top:1px solid var(--line);padding:10px 8px;color:var(--muted);vertical-align:top} td:first-child{color:var(--ink);font-weight:800} .footer{font-size:13px;color:var(--muted);margin-top:18px} .warn{border-color:rgba(245,200,107,.45);background:rgba(245,200,107,.08)}
+@media(max-width:900px){.hero,.grid2,.state{grid-template-columns:1fr}.banner{grid-template-columns:1fr 1fr}.move{grid-template-columns:1fr}} @media(max-width:560px){.shell{padding:18px 12px 42px}.banner{grid-template-columns:1fr}h1{font-size:38px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="hero">
+    <main class="card main">
+      <div class="eyebrow">Live steering cockpit · plain words</div>
+      <h1>Local fix is ready. It is not live yet.</h1>
+      <p class="lede">We fixed the source-display problem in local code: when old citation/source side tables are empty, the Galaxy page can now show source links from the claim/evidence data that already exists. Nothing was written to production, and nothing was deployed.</p>
+      <div class="pillrow"><span class="pill">commit <code>ea3286b</code></span><span class="pill">branch <code>artifacts/galaxy-v2-layer2-baseline-20260629</code></span><span class="pill">tests: <code>15 passed</code></span><span class="pill">DB writes: <code>0</code></span></div>
+    </main>
+    <aside class="card side">
+      <div class="metric"><b>ready locally</b><span>source-surface fallback</span></div>
+      <div class="metric"><b>not pushed</b><span>no PR, merge, API deploy/restart</span></div>
+      <div class="metric"><b>locked</b><span>promotion/data writes</span></div>
+      <p><strong>Updated:</strong> 2026-06-29 20:28:50 KST</p>
+      <p><strong>Latest status JSON:</strong> <a href="/agent-reports/live-steering-status.json">live-steering-status.json</a></p>
+    </aside>
+  </section>
+
+  <section class="banner">
+    <div class="card"><b class="ok">0</b><span>production DB writes</span></div>
+    <div class="card"><b class="ok">0</b><span>migrations/promoter runs</span></div>
+    <div class="card"><b class="hold">8 ahead</b><span>local branch vs origin/main</span></div>
+    <div class="card"><b class="stop">not live</b><span>deploy/restart still gated</span></div>
+  </section>
+
+  <section class="grid2">
+    <article class="card section">
+      <h2>What changed, in plain words</h2>
+      <p class="plain">Before: the live Galaxy page could look source-empty because two helper tables were empty. After this local fix: the page can fall back to the claim/evidence records that already prove which papers support the page.</p>
+      <ul>
+        <li><code>/citations</code> still uses <code>page_citation_links</code> first. If that is empty, it reads existing claim/evidence rows.</li>
+        <li><code>/fact-sources</code> still uses <code>fact_sources</code> first, then inline <code>hero_facts[].source</code>, then existing claim/evidence rows.</li>
+        <li>The fallback only reads existing data. It does not backfill, promote, edit, or mutate anything.</li>
+      </ul>
+    </article>
+    <article class="card section warn">
+      <h2>What did not happen</h2>
+      <ul>
+        <li>No production database writes.</li>
+        <li>No claims created.</li>
+        <li>No <code>coverage_ready</code> or promotion flags changed.</li>
+        <li>No <code>arxiv_papers.related_pages</code> mutation.</li>
+        <li>No backend/API deploy or backend/API restart for this code, so <code>nebulamind.net</code> does not reflect the source-surface fix yet. The frontend report service was refreshed only so this cockpit and timestamped report files would serve publicly.</li>
+      </ul>
+    </article>
+  </section>
+
+  <section class="card section">
+    <h2>Current state</h2>
+    <div class="state">
+      <div><b>Source worktree</b><span>/Users/duhokim/NebulaMind/worktrees/lit-expansion-readiness-galaxy-v2-20260629</span></div>
+      <div><b>Commit</b><span><code>ea3286b</code> fix: expose page source fallback surfaces</span></div>
+      <div><b>Verification</b><span>py_compile pass; fallback tests 5 passed; related page/source bundle 15 passed; reviewer pass.</span></div>
+      <div><b>Live/public report note</b><span>This cockpit update changes report files only. Product code was not copied to runtime in this step.</span></div>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h2>Future work ladder: safest to most dangerous</h2>
+    <div class="ladder">
+      <article class="move"><div class="risk safe">Safest</div><div><h3>Observe only</h3><p>Read the cockpit, inspect the local commit/doc, and rerun read-only probes. No GitHub change, no runtime change, no data change.</p><button data-copy="STEER: observe only; no push, no deploy, no DB writes. Rerun read-only source-surface probes and summarize.">Copy steering command</button><code class="copy">STEER: observe only; no push, no deploy, no DB writes. Rerun read-only source-surface probes and summarize.</code></div></article>
+      <article class="move"><div class="risk safe2">Safe</div><div><h3>Create a clean narrow branch and open a draft PR</h3><p>Publishes only the source-surface fix for review, but does not change the live service. Because the current artifact branch is 8 commits ahead, the safest PR path is a clean branch from origin/main with just this scoped patch.</p><button data-copy="STEER: create a clean source-surface-fallback branch from origin/main, apply only the scoped fix/test/doc, open a draft PR; do not deploy or restart backend/API.">Copy steering command</button><code class="copy">STEER: create a clean source-surface-fallback branch from origin/main, apply only the scoped fix/test/doc, open a draft PR; do not deploy or restart backend/API.</code></div></article>
+      <article class="move"><div class="risk low">Low controlled risk</div><div><h3>Merge after green checks</h3><p>Changes main branch after CI/review, still with no production DB write. This makes the code ready for deployment but does not itself prove the live API changed.</p><button data-copy="STEER: run PR review/CI and merge source-surface fallback only if green; keep deploy locked.">Copy steering command</button><code class="copy">STEER: run PR review/CI and merge source-surface fallback only if green; keep deploy locked.</code></div></article>
+      <article class="move"><div class="risk mid">Moderate</div><div><h3>Deploy/restart the API for the read-only fallback</h3><p>Operational risk: live service restart/code rollout. Data risk remains low if we only deploy the read-only fallback and then probe <code>/citations</code> and <code>/fact-sources</code>.</p><button data-copy="STEER: after merge, deploy/restart only the API read-only fallback; run live source-surface probes; no DB writes.">Copy steering command</button><code class="copy">STEER: after merge, deploy/restart only the API read-only fallback; run live source-surface probes; no DB writes.</code></div></article>
+      <article class="move"><div class="risk high">High</div><div><h3>Backfill materialized source tables</h3><p>This writes production rows into <code>page_citation_links</code> or <code>fact_sources</code>. Require backup, dry-run counts, tiny scoped apply, rollback notes, and explicit approval.</p><button data-copy="STEER: prepare a no-apply backfill packet for page_citation_links/fact_sources; do not execute writes.">Copy steering command</button><code class="copy">STEER: prepare a no-apply backfill packet for page_citation_links/fact_sources; do not execute writes.</code></div></article>
+      <article class="move"><div class="risk danger">Very dangerous</div><div><h3>Promotion/readiness unlock</h3><p>Changes <code>coverage_ready</code>, <code>promotion_eligible</code>, or promoter decisions. This can change what the project treats as ready. Needs human GO/NO-GO and calibration.</p><button data-copy="STEER: build a promotion GO/NO-GO packet only; no promotion flags, no promoter run, no writes.">Copy steering command</button><code class="copy">STEER: build a promotion GO/NO-GO packet only; no promotion flags, no promoter run, no writes.</code></div></article>
+      <article class="move"><div class="risk violet">Most dangerous</div><div><h3>Schema/destructive linkage cleanup</h3><p>Migrations, deletes, dedupes, or overwriting <code>related_pages</code> can corrupt provenance if wrong. Only consider after snapshot, restore test, migration tests, staged apply, and signed approval.</p><button data-copy="STEER: prepare destructive linkage cleanup preflight only; snapshot/restore/migration tests required; no apply.">Copy steering command</button><code class="copy">STEER: prepare destructive linkage cleanup preflight only; snapshot/restore/migration tests required; no apply.</code></div></article>
+    </div>
+  </section>
+
+  <section class="card section">
+    <h2>Verification receipts</h2>
+    <table>
+      <tr><td>Fallback test file</td><td><strong>5 passed</strong></td></tr>
+      <tr><td>Related page/source API bundle</td><td><strong>15 passed</strong></td></tr>
+      <tr><td>Security/write scan</td><td><strong>No findings; no write markers in changed read routes</strong></td></tr>
+      <tr><td>Independent review</td><td><strong>Passed</strong> local Qwen + delayed background reviewer</td></tr>
+      <tr><td>Live effect</td><td><strong>Not live yet</strong>; needs push/PR/merge/backend deploy/restart path</td></tr>
+    </table>
+  </section>
+
+  <p class="footer">Generated 2026-06-29 20:28:50 KST. Timestamped copies: <a href="/agent-reports/live-steering-cockpit-20260629T112850Z.html">live-steering-cockpit-20260629T112850Z.html</a> and <a href="/agent-reports/live-steering-status-20260629T112850Z.json">live-steering-status-20260629T112850Z.json</a>. Buttons only copy text; they do not execute actions.</p>
+</div>
+<script>
+document.querySelectorAll('button[data-copy]').forEach(b=>b.addEventListener('click',async()=>{const original='Copy steering command';const t=b.getAttribute('data-copy');try{await navigator.clipboard.writeText(t);b.textContent='Copied';}catch(e){b.textContent='Copy failed — select command below';}setTimeout(()=>b.textContent=original,1400);}));
+</script>
+</body>
+</html>

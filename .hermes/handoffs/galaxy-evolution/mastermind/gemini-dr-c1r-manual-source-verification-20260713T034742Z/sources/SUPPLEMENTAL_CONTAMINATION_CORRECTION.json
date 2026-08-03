@@ -1,0 +1,68 @@
+{
+  "affected_source_indices": [
+    1,
+    3,
+    4
+  ],
+  "correct_authoritative_candidates": {
+    "1": "sources/text/idx01_ads_arxiv_pdf_53e97c8fb569.txt",
+    "3": "sources/text/idx03_ads_arxiv_pdf_de08eb9603b8.txt",
+    "4": "sources/text/idx04_ads_arxiv_pdf_5c5d9e3f3474.txt"
+  },
+  "custody_policy": "Files and GET log records are retained for audit but are forbidden as evidence. Catalog and downstream candidate-path lists must exclude them.",
+  "invalid_arxiv_id": "2006.04822",
+  "invalid_work_title": "The anomalous magnetic moment of the muon in the Standard Model",
+  "quarantined_metadata_paths": [
+    "sources/metadata/index_01_supplemental.json",
+    "sources/metadata/index_03_supplemental.json",
+    "sources/metadata/index_04_supplemental.json"
+  ],
+  "quarantined_raw_paths": [
+    "sources/raw/idx01_supplemental_arxiv_pdf_39c2718bcca4.pdf"
+  ],
+  "quarantined_text_paths": [
+    "sources/text/idx01_supplemental_arxiv_pdf_89976fa297d0.txt"
+  ],
+  "removed_catalog_candidates": [
+    {
+      "content_type": "application/pdf",
+      "evidence_tier": "T2_FULL_TEXT",
+      "label": "SUPPLEMENTAL_ARXIV",
+      "raw_path": "sources/raw/idx01_supplemental_arxiv_pdf_39c2718bcca4.pdf",
+      "raw_sha256": "39c2718bcca4e3bd9f992b08c98ba22fdd1b14933a7c88b43862c705eacffd89",
+      "source_index": 1,
+      "status": 200,
+      "text_chars": 732752,
+      "text_path": "sources/text/idx01_supplemental_arxiv_pdf_89976fa297d0.txt",
+      "text_sha256": "89976fa297d09c6cb1e6d0af8f731e7654620e20a81f7d878775fa908e36c195"
+    },
+    {
+      "content_type": "application/pdf",
+      "evidence_tier": "T2_FULL_TEXT",
+      "label": "SUPPLEMENTAL_ARXIV",
+      "raw_path": "sources/raw/idx01_supplemental_arxiv_pdf_39c2718bcca4.pdf",
+      "raw_sha256": "39c2718bcca4e3bd9f992b08c98ba22fdd1b14933a7c88b43862c705eacffd89",
+      "source_index": 3,
+      "status": 200,
+      "text_chars": 732752,
+      "text_path": "sources/text/idx01_supplemental_arxiv_pdf_89976fa297d0.txt",
+      "text_sha256": "89976fa297d09c6cb1e6d0af8f731e7654620e20a81f7d878775fa908e36c195"
+    },
+    {
+      "content_type": "application/pdf",
+      "evidence_tier": "T2_FULL_TEXT",
+      "label": "SUPPLEMENTAL_ARXIV",
+      "raw_path": "sources/raw/idx01_supplemental_arxiv_pdf_39c2718bcca4.pdf",
+      "raw_sha256": "39c2718bcca4e3bd9f992b08c98ba22fdd1b14933a7c88b43862c705eacffd89",
+      "source_index": 4,
+      "status": 200,
+      "text_chars": 732752,
+      "text_path": "sources/text/idx01_supplemental_arxiv_pdf_89976fa297d0.txt",
+      "text_sha256": "89976fa297d09c6cb1e6d0af8f731e7654620e20a81f7d878775fa908e36c195"
+    }
+  ],
+  "root_cause": "The supplemental resolver accepted a spurious ADS result from an OUP 403/Cloudflare page title and selected arXiv:2006.04822 (muon anomalous magnetic moment) for source indices 1, 3, and 4. Correct OUP bibliographic resolution had independently fetched the proper full texts.",
+  "schema": "NM_GATE_B_SUPPLEMENTAL_CONTAMINATION_CORRECTION_V1",
+  "scientific_verdict_impact": "No verdict or matched span depended on the quarantined text; Lana quotations for affected entries came from the correct first candidate. Evidence-path lists require cleanup before B-P4.",
+  "status": "CORRECTED_BEFORE_B_P4"
+}

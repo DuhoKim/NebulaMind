@@ -1,0 +1,175 @@
+{
+  "marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_DEEPENING_20260708T043427Z",
+  "seed_marker": "DEEPENING_RESOURCE_SEED_20260708T043427Z",
+  "status": "candidate_progress_not_final",
+  "earliest_finalization_utc": "2026-07-08T06:34:40Z",
+  "method": "M1-packet-gated-paper-to-wiki-reconciliation",
+  "source_first_pass_html": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/prose-evidence-trust-upgrade/wiki-prose-evidence-trust-upgrade-20260708T041216Z.html",
+  "source_first_pass_md": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/prose-evidence-trust-upgrade/page-content-prose-evidence-trust-upgrade-20260708T041216Z.md",
+  "source_bindings": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/evidence-trust-rebuild/evidence-trust-bindings-20260708T014205Z.md.json",
+  "claim_count": 30,
+  "bound_count": 3,
+  "unbound_local_count": 27,
+  "evidence_rows_total": 43,
+  "distinct_papers_total": 26,
+  "bound_claim_ids": [
+    "2931",
+    "2929",
+    "2946"
+  ],
+  "unbound_local_ids": [
+    2905,
+    2906,
+    2907,
+    2908,
+    2909,
+    2910,
+    2911,
+    2912,
+    2913,
+    2914,
+    2915,
+    2916,
+    2917,
+    2918,
+    2919,
+    2920,
+    2921,
+    2922,
+    2923,
+    2925,
+    2926,
+    2930,
+    2932,
+    2933,
+    2934,
+    2935,
+    2936
+  ],
+  "per_claim": {
+    "2931": {
+      "trust_level": "debated",
+      "trust_score": 0.3375,
+      "stance_counts": {
+        "none": 16,
+        "supports": 4
+      },
+      "evidence_rows": 20,
+      "distinct_papers": 13,
+      "evidence_ids": [
+        28063,
+        28068,
+        28096,
+        28099,
+        28100,
+        28106,
+        28113,
+        28116,
+        28128,
+        28130,
+        28132,
+        28137,
+        28147,
+        28154,
+        28159,
+        28161,
+        29784,
+        29767,
+        29787,
+        29790
+      ],
+      "normalized_arxiv_ids": [
+        "0901.1880",
+        "1308.5224",
+        "1712.04452",
+        "2401.12953",
+        "2501.00986",
+        "2511.02964",
+        "2603.18292",
+        "2604.15438",
+        "2605.03008",
+        "2605.25075",
+        "2605.31052",
+        "2606.03652",
+        "2606.25367"
+      ],
+      "caution": "Caution: this is debated rather than settled. Four rows are supporting, but the majority are none-stance/context rows, so the prose should keep sample selection, redshift, and measurement dependence visible."
+    },
+    "2929": {
+      "trust_level": "unverified",
+      "trust_score": -0.1377142691005783,
+      "stance_counts": {
+        "none": 14
+      },
+      "evidence_rows": 14,
+      "distinct_papers": 8,
+      "evidence_ids": [
+        28060,
+        28070,
+        28076,
+        28080,
+        28082,
+        28083,
+        28084,
+        28110,
+        28114,
+        28118,
+        28127,
+        28133,
+        28139,
+        28143
+      ],
+      "normalized_arxiv_ids": [
+        "0901.1880",
+        "1203.2926",
+        "1507.06366",
+        "2009.11175",
+        "2403.17145",
+        "2512.05584",
+        "2512.21927",
+        "2604.15438"
+      ],
+      "caution": "Caution: all 14 local rows are stance `none` (0 supporting and 0 refuting rows in this binding), with one displayed vote-disagree row and several archive/context rows. Read this box as provenance context for why the claim remains unverified, not as direct support for the prose sentence."
+    },
+    "2946": {
+      "trust_level": "reported",
+      "trust_score": 0.4495498190036284,
+      "stance_counts": {
+        "supports": 9
+      },
+      "evidence_rows": 9,
+      "distinct_papers": 8,
+      "evidence_ids": [
+        30780,
+        30781,
+        30782,
+        30783,
+        30784,
+        30785,
+        28089,
+        28123,
+        28158
+      ],
+      "normalized_arxiv_ids": [
+        "1108.0110",
+        "1301.3092",
+        "1301.3130",
+        "1606.03086",
+        "2008.00005",
+        "2112.07672",
+        "2403.17145",
+        "2508.06707"
+      ],
+      "caution": "Caution: this is reported/model-bounded support. The nine local rows support a maintenance-heating framing, but the claim should not be upgraded to consensus or broad measured prevalence."
+    }
+  },
+  "determinism": {
+    "normalization": "lowercase arxiv_id/url/title fallback; strip https://arxiv.org/abs/, arXiv: prefix, and trailing version suffix vN"
+  },
+  "limitations": [
+    "no invented evidence/cite/claim/source IDs",
+    "no product DB/API/page_versions access",
+    "no live wiki publication",
+    "27 chips remain local-unbound in this candidate"
+  ]
+}

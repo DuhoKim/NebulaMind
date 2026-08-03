@@ -1,0 +1,30 @@
+{
+  "schema": "NM_DR_C1R_MANUAL_REVIEW_GATE_V1",
+  "reviewed_utc": "2026-07-12T07:11:38Z",
+  "conversation_url": "https://gemini.google.com/app/697c774077a6e527",
+  "body_sha256": "8a130c5a6fc1b1f5d534888d3fb20806230b8b4c7737cb00f9bfb18ad0d6bc00",
+  "validator_result_sha256": "34f525a58b1c71d237b1723fc42bfab5acfaf631e9b25175a703462e108c91f4",
+  "eligibility": "NOT_ELIGIBLE",
+  "reason": "The binding deterministic gate failed with 54 mechanical failures. Acceptance requires deterministic PASS before clause-by-clause manual semantic PASS; manual review cannot cure mechanical failures.",
+  "deterministic_summary": {
+    "overall": "FAIL",
+    "fail_count": 54,
+    "manual_review_required_count": 28,
+    "pass_count": 3,
+    "passing_clauses": ["C1", "C5", "C8"],
+    "failing_clauses": {
+      "C2": ["8 EMPTY_TABLE_CELL", "1 BAD_STRUCTURE"],
+      "C4": ["33 UNCITED_CELL_CLAIM", "2 UNCITED_CLAIM"],
+      "C6": ["3 MISSING_QUALIFIER", "6 UNLABELED_COMPARISON"],
+      "C7": ["1 MISSING_FROM_BODY"]
+    }
+  },
+  "manual_status": {
+    "C3": "NOT_REVIEWED_AFTER_DETERMINISTIC_FAIL",
+    "C4": "NOT_REVIEWED_AFTER_DETERMINISTIC_FAIL",
+    "C6": "NOT_REVIEWED_AFTER_DETERMINISTIC_FAIL"
+  },
+  "acceptance": "FAIL_CLOSED",
+  "follow_up_allowed": false,
+  "retry_allowed": false
+}

@@ -1,0 +1,436 @@
+{
+  "observed_at_utc": "2026-07-27T13:29:08.791406+00:00",
+  "lanes": {
+    "hwao": {
+      "exists": true,
+      "receipt": {
+        "status": "ACCEPTED",
+        "marker": "HWAO_PB_COORDINATOR_ACCEPTED_20260727",
+        "disposition": null
+      },
+      "input_manifest": {
+        "checked": 9,
+        "mismatches": [
+          {
+            "path": "PLAN.md",
+            "error": "missing"
+          },
+          {
+            "path": "EXECUTION_ACCEPTANCE.md",
+            "error": "missing"
+          },
+          {
+            "path": "SWARM_BOARD.md",
+            "error": "missing"
+          },
+          {
+            "path": "PORTFOLIO_BOARD_SNAPSHOT.json",
+            "error": "missing"
+          },
+          {
+            "path": "BASELINE_RECEIPT.json",
+            "error": "missing"
+          },
+          {
+            "path": "BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "P0_BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "P1_BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "P2_BRIEF.md",
+            "error": "missing"
+          }
+        ],
+        "status": "FAIL"
+      },
+      "parse": {
+        "json": 1,
+        "jsonl_rows": 0,
+        "csv_rows": 0
+      },
+      "errors": [
+        "missing_receipt_file:lanes/hwao/DIRECTOR_ACCEPTANCE.md",
+        "missing_receipt_file:lanes/hwao/RECEIPT.json"
+      ]
+    },
+    "p0_lana": {
+      "exists": true,
+      "receipt": {
+        "status": "DONE",
+        "marker": "P0_LANA_PRIMARY_COMPLETE_20260727",
+        "disposition": "MZR_STATE_CONTRADICTORY__CORRECTION_LEDGER_ONLY"
+      },
+      "input_manifest": {
+        "checked": 11,
+        "mismatches": [
+          {
+            "path": "served-p0.pdf",
+            "error": "missing"
+          },
+          {
+            "path": "served-history.json",
+            "error": "missing"
+          },
+          {
+            "path": "PUBLIC_ARTIFACT_IDENTITY.json",
+            "error": "missing"
+          },
+          {
+            "path": "secondary-3page-source.pdf",
+            "error": "missing"
+          },
+          {
+            "path": "FrontierDrafts.tsx",
+            "error": "missing"
+          },
+          {
+            "path": "paperScores.ts",
+            "error": "missing"
+          },
+          {
+            "path": "PLAN.md",
+            "error": "missing"
+          },
+          {
+            "path": "BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "SWARM_BOARD.md",
+            "error": "missing"
+          },
+          {
+            "path": "representation-boundary-auditing.md",
+            "error": "missing"
+          },
+          {
+            "path": "external-scientific-review-reconciliation.md",
+            "error": "missing"
+          }
+        ],
+        "status": "FAIL"
+      },
+      "parse": {
+        "json": 3,
+        "jsonl_rows": 0,
+        "csv_rows": 0
+      },
+      "errors": []
+    },
+    "p1_kun": {
+      "exists": true,
+      "receipt": {
+        "status": "complete",
+        "marker": "P1_KUN_PRIMARY_COMPLETE_20260727",
+        "disposition": "PARTIAL__CLAIMS_REQUIRE_NARROWING"
+      },
+      "input_manifest": {
+        "checked": 12,
+        "mismatches": [
+          {
+            "path": "served-p1.pdf",
+            "error": "missing"
+          },
+          {
+            "path": "served-review.md",
+            "error": "missing"
+          },
+          {
+            "path": "served-history.json",
+            "error": "missing"
+          },
+          {
+            "path": "PUBLIC_ARTIFACT_IDENTITY.json",
+            "error": "missing"
+          },
+          {
+            "path": "FrontierDrafts.tsx",
+            "error": "missing"
+          },
+          {
+            "path": "paperScores.ts",
+            "error": "missing"
+          },
+          {
+            "path": "PLAN.md",
+            "error": "missing"
+          },
+          {
+            "path": "BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "SWARM_BOARD.md",
+            "error": "missing"
+          },
+          {
+            "path": "high-redshift-abundance-matching-audit.md",
+            "error": "missing"
+          },
+          {
+            "path": "deep-research-high-z-report-audit.md",
+            "error": "missing"
+          },
+          {
+            "path": "external-scientific-review-reconciliation.md",
+            "error": "missing"
+          }
+        ],
+        "status": "FAIL"
+      },
+      "parse": {
+        "json": 2,
+        "jsonl_rows": 0,
+        "csv_rows": 14
+      },
+      "errors": []
+    },
+    "p2_goru": {
+      "exists": true,
+      "receipt": {
+        "status": "complete",
+        "marker": "P2_GORU_PRIMARY_COMPLETE_20260727",
+        "disposition": "Citation gaps confirmed mechanically real; dependencies bypass entailment gates."
+      },
+      "input_manifest": {
+        "checked": 12,
+        "mismatches": [
+          {
+            "path": "frontier.pdf",
+            "error": "missing"
+          },
+          {
+            "path": "frontier-review.md",
+            "error": "missing"
+          },
+          {
+            "path": "frontier-history.json",
+            "error": "missing"
+          },
+          {
+            "path": "pipeline-fesc002.pdf",
+            "error": "missing"
+          },
+          {
+            "path": "pipeline-review.md",
+            "error": "missing"
+          },
+          {
+            "path": "pipeline-live.json",
+            "error": "missing"
+          },
+          {
+            "path": "fesc002-local.json",
+            "error": "missing"
+          },
+          {
+            "path": "PUBLIC_ARTIFACT_IDENTITY.json",
+            "error": "missing"
+          },
+          {
+            "path": "PLAN.md",
+            "error": "missing"
+          },
+          {
+            "path": "BRIEF.md",
+            "error": "missing"
+          },
+          {
+            "path": "SWARM_BOARD.md",
+            "error": "missing"
+          },
+          {
+            "path": "external-scientific-review-reconciliation.md",
+            "error": "missing"
+          }
+        ],
+        "status": "FAIL"
+      },
+      "parse": {
+        "json": 3,
+        "jsonl_rows": 7,
+        "csv_rows": 10
+      },
+      "errors": []
+    },
+    "p1_goru_x": {
+      "exists": true,
+      "receipt": {
+        "status": "complete",
+        "marker": "P1_GORU_CROSSREVIEW_COMPLETE_20260727",
+        "disposition": "PASS"
+      },
+      "input_manifest": {
+        "checked": 21,
+        "mismatches": [],
+        "status": "PASS"
+      },
+      "parse": {
+        "json": 2,
+        "jsonl_rows": 0,
+        "csv_rows": 0
+      },
+      "errors": []
+    },
+    "p2_kun_x": {
+      "exists": true,
+      "receipt": {
+        "status": "complete",
+        "marker": "P2_KUN_CROSSREVIEW_COMPLETE_20260727",
+        "disposition": "ISSUES: preserve Goru's zero-entailment citation gap; patch Chisholm+22 identity, narrow Flury+22 role, and downgrade lineage relationship to UNRESOLVED unless stronger derivation evidence is supplied."
+      },
+      "input_manifest": {
+        "checked": 21,
+        "mismatches": [],
+        "status": "PASS"
+      },
+      "parse": {
+        "json": 2,
+        "jsonl_rows": 0,
+        "csv_rows": 0
+      },
+      "errors": []
+    }
+  },
+  "public_identity": {
+    "p0_pdf": {
+      "expected_status": 200,
+      "expected_sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+      "status": 200,
+      "bytes": 132831,
+      "sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+      "identity_match": true
+    },
+    "p0_review": {
+      "expected_status": 404,
+      "expected_sha256": "4ce84022ed1c0787fa77bb92549620a3c74dbd148a42c15956143e2f839e9a82",
+      "status": 404,
+      "bytes": 22147,
+      "sha256": "b15b06cc51f83bb1297e4879d4dde1343154b3372f3f6eac06ef8bbb0faadc20",
+      "identity_match": true
+    },
+    "p0_history": {
+      "expected_status": 200,
+      "expected_sha256": "f879ca9b1d4f7bbec120b22d5e4e87901a3c0ab7430cb4159d6860aab4f7314f",
+      "status": 200,
+      "bytes": 1394,
+      "sha256": "f879ca9b1d4f7bbec120b22d5e4e87901a3c0ab7430cb4159d6860aab4f7314f",
+      "identity_match": true
+    },
+    "p1_pdf": {
+      "expected_status": 200,
+      "expected_sha256": "189a2764a0b8e310802fb31bd53db3a64be49ac6411fe5f5b38af62cefa23f5d",
+      "status": 200,
+      "bytes": 123312,
+      "sha256": "189a2764a0b8e310802fb31bd53db3a64be49ac6411fe5f5b38af62cefa23f5d",
+      "identity_match": true
+    },
+    "p1_review": {
+      "expected_status": 200,
+      "expected_sha256": "330fe138acf79cf3bd4d3c43c7fe6a3026b111708db70a0efd02fa4254d818e0",
+      "status": 200,
+      "bytes": 1869,
+      "sha256": "330fe138acf79cf3bd4d3c43c7fe6a3026b111708db70a0efd02fa4254d818e0",
+      "identity_match": true
+    },
+    "p1_history": {
+      "expected_status": 200,
+      "expected_sha256": "d072698ef6efab8cb0ae039bd36aa97a2bddf525a848204fcf65e0cbb1d2b8b9",
+      "status": 200,
+      "bytes": 1547,
+      "sha256": "d072698ef6efab8cb0ae039bd36aa97a2bddf525a848204fcf65e0cbb1d2b8b9",
+      "identity_match": true
+    },
+    "p2_frontier_pdf": {
+      "expected_status": 200,
+      "expected_sha256": "3a2f84eda45af22aa0a6f3ad73e171b39234ad4e383c51e82cbb6ce97fdd37ef",
+      "status": 200,
+      "bytes": 160454,
+      "sha256": "3a2f84eda45af22aa0a6f3ad73e171b39234ad4e383c51e82cbb6ce97fdd37ef",
+      "identity_match": true
+    },
+    "p2_frontier_review": {
+      "expected_status": 200,
+      "expected_sha256": "46871e71974ceced9d52cc35b907c6514beac387212608dcafadc64dfa682bac",
+      "status": 200,
+      "bytes": 1290,
+      "sha256": "46871e71974ceced9d52cc35b907c6514beac387212608dcafadc64dfa682bac",
+      "identity_match": true
+    },
+    "p2_frontier_history": {
+      "expected_status": 200,
+      "expected_sha256": "1cd7b140e0cc0db9858882df5ee487cc6602651622e400147ef5fa8f494a1c60",
+      "status": 200,
+      "bytes": 2026,
+      "sha256": "1cd7b140e0cc0db9858882df5ee487cc6602651622e400147ef5fa8f494a1c60",
+      "identity_match": true
+    },
+    "p2_pipeline_json": {
+      "expected_status": 200,
+      "expected_sha256": "841f7483fbb125104b1810a00a1a8c811976f03695e5cd86834a1e931f7dc3cb",
+      "status": 200,
+      "bytes": 13141,
+      "sha256": "841f7483fbb125104b1810a00a1a8c811976f03695e5cd86834a1e931f7dc3cb",
+      "identity_match": true
+    },
+    "p2_pipeline_pdf": {
+      "expected_status": 200,
+      "expected_sha256": "bf044999e47bb8cba613da8bf26e6db507683daaf66a6ff1690836e80cdba43f",
+      "status": 200,
+      "bytes": 86033,
+      "sha256": "bf044999e47bb8cba613da8bf26e6db507683daaf66a6ff1690836e80cdba43f",
+      "identity_match": true
+    },
+    "p2_pipeline_review": {
+      "expected_status": 200,
+      "expected_sha256": "6ab97751df3319e1f031a87c1cf5468bf8ea7babd89d9b4a8c6c6448a99b740c",
+      "status": 200,
+      "bytes": 5800,
+      "sha256": "6ab97751df3319e1f031a87c1cf5468bf8ea7babd89d9b4a8c6c6448a99b740c",
+      "identity_match": true
+    }
+  },
+  "arithmetic": {
+    "p0_sfms_gaps": [
+      0.41000000000000003,
+      0.49
+    ],
+    "p0_aperture_raw_effect": 0.0793,
+    "p0_factor_matched": 1.4814814814814814,
+    "p0_factor_body": 2.0,
+    "p0_naive_factor": 3.846153846153846,
+    "p1_volume_mpc3": 1356572.043,
+    "p1_n15": 1.1057282270706503e-05,
+    "p1_n20": 1.474304302760867e-05,
+    "p1_n4": 2.948608605521734e-06,
+    "p1_ratio_raw": 2.7131440860000002,
+    "p1_raw_shift_dex": 0.27434991031655037,
+    "p1_ratio_total": 2.0348580645000003,
+    "p1_total_shift_dex": 0.19527476056446186,
+    "p1_poisson_frac_n15": 0.2581988897471611,
+    "p1_poisson_frac_n20": 0.22360679774997896
+  },
+  "p2_structural": {
+    "lit_refs_count": 6,
+    "lit_reflist_count": 5,
+    "lit_passages_count": 0,
+    "citation_checked": 0,
+    "citation_all_count": 0,
+    "novelty_simmonds_bibcodes": [
+      "2024MNRAS.535.2998S",
+      "2024MNRAS.527.6139S"
+    ]
+  },
+  "errors": [
+    "hwao:missing_receipt_file:lanes/hwao/DIRECTOR_ACCEPTANCE.md",
+    "hwao:missing_receipt_file:lanes/hwao/RECEIPT.json"
+  ],
+  "status": "FAIL"
+}

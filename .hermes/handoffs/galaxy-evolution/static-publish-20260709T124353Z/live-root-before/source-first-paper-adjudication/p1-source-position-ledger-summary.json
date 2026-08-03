@@ -1,0 +1,378 @@
+{
+  "approval_phrase_consumed": "APPROVE METHOD2 P1 DOCS-ONLY SOURCE-POSITION LEDGER",
+  "artifacts": {
+    "handoff_accepted_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/method2/p1/P1_ACCEPTED_SOURCE_POSITIONS_20260706T142132Z.jsonl",
+    "handoff_ledger_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/method2/p1/P1_SOURCE_POSITION_LEDGER_20260706T142132Z.jsonl",
+    "handoff_packet_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/method2/p1/P1_SOURCE_POSITION_LEDGER_PACKET_20260706T142132Z.md",
+    "handoff_rejected_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/method2/p1/P1_REJECTED_SOURCE_POSITIONS_20260706T142132Z.jsonl",
+    "handoff_summary_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/method2/p1/P1_SOURCE_POSITION_LEDGER_SUMMARY_20260706T142132Z.json",
+    "public_html": "/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/p1-source-position-ledger.html",
+    "public_ledger_jsonl": "/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/p1-source-position-ledger.jsonl",
+    "public_summary_json": "/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/p1-source-position-ledger-summary.json"
+  },
+  "counts": {
+    "accepted": 2,
+    "accepted_limited": 22,
+    "accepted_or_limited_total": 24,
+    "accepted_target_claim_id_counts": {
+      "2942": 4,
+      "2943": 6,
+      "2944": 3,
+      "2945": 2,
+      "2946": 3,
+      "2947": 5,
+      "None": 13
+    },
+    "human_decision_counts": {
+      "leave_archival": 14,
+      "relink": 17,
+      "route_kinetic_radio": 5
+    },
+    "rejected": 12,
+    "source_group_count": 13,
+    "total_rows": 36,
+    "verification_status_counts": {
+      "abstract_only_verified": 28,
+      "docs_verified": 7,
+      "source_record_verified": 1
+    }
+  },
+  "input_artifact_read_only": "/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2929_source_position_queue_20260705T013911Z/queue/source_position_human_adjudication_queue.jsonl",
+  "marker": "GALAXY_EVOLUTION_METHOD2_P1_SOURCE_POSITION_LEDGER_20260706T142132Z",
+  "method": "Method2/SFA/source-first paper adjudication",
+  "method_baseline": "Start from papers/source positions; only accepted or accepted-limited source roles may support public wiki sentences.",
+  "next_safe_docs_only_phrase": "APPROVE METHOD2 P2 DOCS-ONLY CLAIM-STATUS LEDGER FROM ACCEPTED SOURCE POSITIONS",
+  "safety_ledger": {
+    "backend_api_service_restart": 0,
+    "cross_method_or_shared_parent_edits": 0,
+    "db_writes": 0,
+    "deploy_publish_runtime": 0,
+    "git_commit_push_merge": 0,
+    "live_wiki_page_versions_publish": 0,
+    "migrations": 0,
+    "prod_cloud_api_mutation": 0,
+    "sql_apply_or_rollback": 0,
+    "trust_recompute": 0,
+    "writes_limited_to_method2_roots": true
+  },
+  "safety_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "source_groups": [
+    {
+      "accepted_or_limited_row_ids": [
+        28075,
+        28131
+      ],
+      "arxiv_ids": [
+        "0901.1880",
+        "0901.1880v2"
+      ],
+      "paper_title": "arXiv:0901.1880",
+      "rejected_row_ids": [
+        28110
+      ],
+      "row_ids": [
+        28075,
+        28110,
+        28131
+      ],
+      "source_group_key": "arxiv:0901.1880",
+      "status_counts": {
+        "accepted_limited": 2,
+        "rejected": 1
+      },
+      "target_claim_ids": [
+        2945,
+        2947
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [],
+      "arxiv_ids": [
+        "1203.2926v2"
+      ],
+      "paper_title": "arXiv:1203.2926",
+      "rejected_row_ids": [
+        28114,
+        28118
+      ],
+      "row_ids": [
+        28114,
+        28118
+      ],
+      "source_group_key": "arxiv:1203.2926",
+      "status_counts": {
+        "rejected": 2
+      },
+      "target_claim_ids": []
+    },
+    {
+      "accepted_or_limited_row_ids": [],
+      "arxiv_ids": [
+        "1507.06366v1"
+      ],
+      "paper_title": "arXiv:1507.06366",
+      "rejected_row_ids": [
+        28082
+      ],
+      "row_ids": [
+        28082
+      ],
+      "source_group_key": "arxiv:1507.06366",
+      "status_counts": {
+        "rejected": 1
+      },
+      "target_claim_ids": []
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28141
+      ],
+      "arxiv_ids": [
+        "1706.08987v2"
+      ],
+      "paper_title": "arXiv:1706.08987",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28141
+      ],
+      "source_group_key": "arxiv:1706.08987",
+      "status_counts": {
+        "accepted": 1
+      },
+      "target_claim_ids": [
+        2943
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28087,
+        28095,
+        28108,
+        28111,
+        28133
+      ],
+      "arxiv_ids": [
+        "2009.11175v1"
+      ],
+      "paper_title": "arXiv:2009.11175",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28087,
+        28095,
+        28108,
+        28111,
+        28133
+      ],
+      "source_group_key": "arxiv:2009.11175",
+      "status_counts": {
+        "accepted": 1,
+        "accepted_limited": 4
+      },
+      "target_claim_ids": [
+        2942,
+        2943,
+        2947
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28140
+      ],
+      "arxiv_ids": [
+        "2111.01801v2"
+      ],
+      "paper_title": "arXiv:2111.01801",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28140
+      ],
+      "source_group_key": "arxiv:2111.01801",
+      "status_counts": {
+        "accepted_limited": 1
+      },
+      "target_claim_ids": [
+        2943
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28123,
+        28151,
+        28158
+      ],
+      "arxiv_ids": [
+        "2403.17145v1"
+      ],
+      "paper_title": "arXiv:2403.17145",
+      "rejected_row_ids": [
+        28127,
+        28139,
+        28143
+      ],
+      "row_ids": [
+        28123,
+        28127,
+        28139,
+        28143,
+        28151,
+        28158
+      ],
+      "source_group_key": "arxiv:2403.17145",
+      "status_counts": {
+        "accepted_limited": 3,
+        "rejected": 3
+      },
+      "target_claim_ids": [
+        2942,
+        2946
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28062,
+        28089,
+        28144
+      ],
+      "arxiv_ids": [
+        "2508.06707v1"
+      ],
+      "paper_title": "arXiv:2508.06707",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28062,
+        28089,
+        28144
+      ],
+      "source_group_key": "arxiv:2508.06707",
+      "status_counts": {
+        "accepted_limited": 3
+      },
+      "target_claim_ids": [
+        2943,
+        2946,
+        2947
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28066,
+        28069,
+        28073
+      ],
+      "arxiv_ids": [
+        "2512.05584v2"
+      ],
+      "paper_title": "arXiv:2512.05584",
+      "rejected_row_ids": [
+        28070
+      ],
+      "row_ids": [
+        28066,
+        28069,
+        28070,
+        28073
+      ],
+      "source_group_key": "arxiv:2512.05584",
+      "status_counts": {
+        "accepted_limited": 3,
+        "rejected": 1
+      },
+      "target_claim_ids": [
+        2944,
+        2945
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [],
+      "arxiv_ids": [
+        "2512.21927v1"
+      ],
+      "paper_title": "A large, long-lived, slowly-expanding superbubble across the Perseus Arm",
+      "rejected_row_ids": [
+        28076,
+        28080,
+        28083,
+        28084
+      ],
+      "row_ids": [
+        28076,
+        28080,
+        28083,
+        28084
+      ],
+      "source_group_key": "arxiv:2512.21927",
+      "status_counts": {
+        "rejected": 4
+      },
+      "target_claim_ids": []
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28060,
+        28074,
+        28091,
+        28155
+      ],
+      "arxiv_ids": [
+        "2604.15438"
+      ],
+      "paper_title": "Surveying the Whirlpool at Arcseconds with NOEMA (SWAN). IV. Extent of active galactic nucleus feedback on the interstellar medium",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28060,
+        28074,
+        28091,
+        28155
+      ],
+      "source_group_key": "arxiv:2604.15438",
+      "status_counts": {
+        "accepted_limited": 4
+      },
+      "target_claim_ids": [
+        2942,
+        2943
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28148
+      ],
+      "arxiv_ids": [
+        "2604.22922"
+      ],
+      "paper_title": "Discovery of ultra-fast outflows with v$_{\\rm out}>0.3 \\rm c$ in local bright active galactic nuclei",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28148
+      ],
+      "source_group_key": "arxiv:2604.22922",
+      "status_counts": {
+        "accepted_limited": 1
+      },
+      "target_claim_ids": [
+        2943
+      ]
+    },
+    {
+      "accepted_or_limited_row_ids": [
+        28088
+      ],
+      "arxiv_ids": [
+        "2605.03008v1"
+      ],
+      "paper_title": "Environmental Quenching of High-Redshift Galaxies: Interpreting JWST Observations with Simulations",
+      "rejected_row_ids": [],
+      "row_ids": [
+        28088
+      ],
+      "source_group_key": "arxiv:2605.03008",
+      "status_counts": {
+        "accepted_limited": 1
+      },
+      "target_claim_ids": [
+        2944
+      ]
+    }
+  ],
+  "stop_state": "P1 docs-only source-position ledger complete; P2 claim/status ledger not started."
+}

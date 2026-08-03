@@ -1,0 +1,86 @@
+{
+  "db_mutation_executed": true,
+  "endpoint_results": [
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "local_citations",
+      "rows": 138,
+      "url": "http://127.0.0.1:8000/api/pages/galaxy-evolution-v2/citations"
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "local_fact_sources",
+      "rows": 8,
+      "url": "http://127.0.0.1:8000/api/pages/galaxy-evolution-v2/fact-sources"
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "public_frontend_citations",
+      "rows": 138,
+      "url": "https://nebulamind.net/api/pages/galaxy-evolution-v2/citations"
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "public_frontend_fact_sources",
+      "rows": 8,
+      "url": "https://nebulamind.net/api/pages/galaxy-evolution-v2/fact-sources"
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "public_api_citations",
+      "rows": 138,
+      "url": "https://api.nebulamind.net/api/pages/galaxy-evolution-v2/citations"
+    },
+    {
+      "http": 200,
+      "malformed_arxiv_urls": 0,
+      "name": "public_api_fact_sources",
+      "rows": 8,
+      "url": "https://api.nebulamind.net/api/pages/galaxy-evolution-v2/fact-sources"
+    }
+  ],
+  "excluded_write_counts": {
+    "claims": 0,
+    "evidence_element_links": 0,
+    "evidence_votes": 0,
+    "fact_sources": 0,
+    "page_citation_links": 0,
+    "page_versions": 0,
+    "wiki_pages": 0
+  },
+  "executed_at_utc": "2026-06-30T01:54:04Z",
+  "inserted_counts": {
+    "arxiv_papers": 34,
+    "arxiv_wiki_evidence_candidates": 36,
+    "arxiv_wiki_feed_runs": 1,
+    "evidence": 36
+  },
+  "inserted_evidence_id_range": [
+    29757,
+    29792
+  ],
+  "packet_dir": "/Users/duhokim/NebulaMind/overnight-paper-harvest/20260629T161100Z/db-write-preflight-20260630T013756Z",
+  "packet_id": "galaxy_v2_overnight_evidence_preflight_20260630T013756Z",
+  "post_counts": {
+    "arxiv_papers": 2514,
+    "arxiv_wiki_evidence_candidates": 151,
+    "arxiv_wiki_feed_runs": 19,
+    "claims": 1305,
+    "evidence": 11816,
+    "evidence_element_links": 173,
+    "evidence_votes": 2570,
+    "fact_sources": 391,
+    "page_citation_links": 1351,
+    "page_versions": 5784,
+    "wiki_pages": 44
+  },
+  "rollback_command": "/Users/duhokim/NebulaMind/NebulaMind/backend/.venv/bin/python /Users/duhokim/NebulaMind/overnight-paper-harvest/20260629T161100Z/db-write-preflight-20260630T013756Z/rollback_db_write.py --packet-id galaxy_v2_overnight_evidence_preflight_20260630T013756Z --execute",
+  "run_id": 23,
+  "status": "EXECUTED_AND_VERIFIED",
+  "verified_at_utc": "2026-06-30T01:57:12Z"
+}

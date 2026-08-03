@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NebulaMind V3 male presenter canaries</title>
+<style>
+:root{color-scheme:dark;--bg:#07111f;--panel:#0d1b2d;--line:#1d4767;--cyan:#58d7ff;--muted:#a8bdd0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0,#12304a 0,transparent 33%),var(--bg);color:#f1f7fb;font:16px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:1180px;margin:auto;padding:32px}h1{margin:0 0 4px;font-size:32px}h2{font-size:21px;margin:0 0 12px}.kicker{color:var(--cyan);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:12px}.note{color:var(--muted);margin:0 0 26px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.card{background:rgba(13,27,45,.94);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 18px 50px #0006}.portrait{width:100%;height:570px;object-fit:cover;object-position:center 25%;border-radius:12px;background:#030a10}.tag{display:inline-block;color:#bdefff;background:#12354b;border:1px solid #276b8d;border-radius:999px;padding:4px 10px;font-size:12px;margin-right:6px}.voices{margin-top:22px;display:grid;gap:14px}.voice{display:grid;grid-template-columns:150px 1fr 150px;align-items:center;gap:16px;background:rgba(13,27,45,.94);border:1px solid var(--line);border-radius:15px;padding:16px}.voice strong{font-size:19px}.meta{color:var(--muted);font-size:13px}audio{width:100%}.safe{margin-top:22px;padding:14px 16px;border-left:4px solid var(--cyan);background:#0b2234;color:#cce9f7}@media(max-width:800px){.grid{grid-template-columns:1fr}.voice{grid-template-columns:1fr}.portrait{height:500px}}
+</style>
+</head>
+<body><main class="wrap">
+<div class="kicker">Local canary review · no publication</div>
+<h1>NebulaMind V3 male presenter</h1>
+<p class="note">Choose one fictional identity and one male voice. The selected exact audio will then drive a real lip-sync scene canary.</p>
+<section class="grid">
+<article class="card"><h2>Character A · cinematic</h2><img class="portrait" src="identity/candidate_a_black_male_astronomer.png" alt="Fictional Black male astronomer candidate"><p><span class="tag">Commanding</span><span class="tag">Close framing</span><span class="tag">Short beard</span></p><p class="meta">Front-facing; clear mouth; strongest visual presence. Static identity QA: PASS.</p></article>
+<article class="card"><h2>Character B · warm mentor</h2><img class="portrait" src="identity/candidate_b_east_asian_male_astronomer.png" alt="Fictional East Asian male astronomer candidate"><p><span class="tag">Approachable</span><span class="tag">More crop margin</span><span class="tag">Clean-shaven</span></p><p class="meta">Front-facing; clear mouth; relaxed senior-scientist presence. Static identity QA: PASS.</p></article>
+</section>
+<section class="voices">
+<article class="voice"><div><strong>Onyx</strong><div class="meta">56.8 s · 127.8 WPM</div></div><audio controls preload="metadata" src="voice_canaries/onyx_review_16lufs.wav"></audio><div class="meta">Deep, authoritative candidate</div></article>
+<article class="voice"><div><strong>Echo</strong><div class="meta">56.6 s · 128.2 WPM</div></div><audio controls preload="metadata" src="voice_canaries/echo_review_16lufs.wav"></audio><div class="meta">Clear, conversational candidate</div></article>
+<article class="voice"><div><strong>Ash</strong><div class="meta">60.5 s · 120.0 WPM</div></div><audio controls preload="metadata" src="voice_canaries/ash_review_16lufs.wav"></audio><div class="meta">Measured, natural teaching pace</div></article>
+</section>
+<div class="safe">V1 and V2 remain public and unchanged. Website embeds are unchanged. This page only reviews local identity and voice canaries.</div>
+</main></body></html>

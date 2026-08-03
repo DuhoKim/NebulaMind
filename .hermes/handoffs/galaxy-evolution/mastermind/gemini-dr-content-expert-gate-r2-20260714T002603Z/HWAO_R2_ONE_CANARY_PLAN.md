@@ -1,0 +1,38 @@
+# HWAO_R2_ONE_CANARY_PLAN — superseding plan for the one Deep Research content canary
+
+Packet: `gemini-dr-content-expert-gate-r2-20260714T002603Z` · **Supersedes, does not resume,** `gemini-dr-content-expert-gate-20260713T160239Z` (closed NOT_ARMED with its attempt history preserved; now an immutable input of record). Status: **NOT ARMED**. This pass is plan-only: no browser/network action. All hard boundaries of `USER_DIRECTION_AND_R2_BOUNDARIES.md` bind verbatim.
+
+## 0. Why R2 exists (one paragraph of record)
+
+The R1 stop chain worked exactly as designed: Goru caught the prompt-boundary defect (corrected, attempt-1 history preserved), local preflight went GREEN, the fresh Tori process recovered the computer-use bridge (Chrome capture 1375×1568, one authenticated Gemini tab, account surface Duho Kim / Ultra), and Tori then hard-stopped NOT_ARMED because the composer showed `Flash-Lite` with Deep Research unselected — R1 §6 forbade any adjustment-and-proceed. That prohibition was a contract gap, not an account anomaly: using Deep Research necessarily requires a reversible pre-submit mode/model selection. R2 revises **only** that pre-submit configuration/arming contract (§5). Everything else carries unchanged.
+
+## 1. Target, rationale, inputs, validation — carried unchanged
+
+- **Target:** the eight-entry comparability cluster M066–M073 plus its in-cluster citation-quality corrections (rows 1, 4, 7, 8), for the reasons pinned in R1 `HWAO_ONE_CANARY_PLAN.md` §1 (load-bearing for r3 C6; content truth, not validator mechanics; bounded 8 rows / 7 sources; DR-shaped; contamination-free).
+- **Input records:** identical to R1 §2 (Gate B `VERDICTS.jsonl` `a4821a54…7b3f`, `ROUTE_MAP.json` `1fb3165d…4442`, `SOURCE_INDEX_MAP.json` `5b56a549…58cf`, `EVIDENCE_CATALOG.json` `71de8129…fc6b`, local `sources/text/idx{10,11,15,20,27,28,30}_*`, sealed body.md `8a130c5a…bc00` S2 rows, suspect flags of record), **plus** the complete R1 packet (its preflight receipts and marker state) as immutable custody history.
+- **Validation clauses V1–V9:** identical to R1 §4, including V9 capture via the accepted Gate A chip-aware `structured_capture_v3.js` (sha256 `dd2a9670…a924`), fail-closed chip→URL recovery, and rejection-without-retry on any V-clause failure.
+- **Roles:** identical — Hwao plan/coordination only; **Tori sole browser owner** (the recovered fresh Tori process remains the one and only browser owner); Goru local-only preflight; Kun reproducibility rerun of V1–V9; Lana post-capture content review against the local Gate B evidence texts. Answer remains ADVISORY ONLY; no verdict/prose/wiki/trust/ledger auto-application; every ID stays `QUARANTINED_PENDING_LOCAL_CHECK`.
+
+## 2. Prompt — carried byte-for-byte (file is the sole paste source)
+
+The paste source of record is a **byte copy** of the R1 frozen prompt into this packet: `prompt/GE_COMPARABILITY_CANARY.md`, SHA-256 **`4d57fd71b49e74760cc1be1acc6fb50ce1e777b4c43907612830b346b471f42a`** — re-verified by Hwao against the R1 file during this planning pass and equal to the R2-direction pin. Goru's R2 preflight must verify: copied-file hash == pin == R1 file hash; exactly eight numbered comparisons; final non-empty line is the completion marker. This plan deliberately does **not** re-embed the prompt text — transcription drift is the failure mode the hash exists to prevent. The in-prompt Request ID and completion marker retain their original timestamps by construction (byte-for-byte carry). The completion marker is referred to here only indirectly: it is the R1 frozen prompt's final non-empty line, pinned by the prompt hash above; V1 requires it exactly once as the standalone final non-empty line of the answer body. Its literal string appears nowhere in this packet except the frozen prompt file (per the §6 uniqueness lint); packet-level markers below use the R2 timestamp.
+
+## 3–4. Custody, quota, hard stops — carried unchanged
+
+Single browser, single profile, single authenticated tab/conversation, single composer paste (hash-equality check pre-submit), **one submission, one start, no retry**, no concurrent drivers or duplicate tabs, one neutral logged "continue" permitted on visible truncation only. Quota evidence pre/post via usage-surface screenshots into `runs/canary/screenshots/` with values in `meta.md`. Hard stops unchanged and absolute: usage ≥80%; billing/upsell interstitial; account-verification or unusual-traffic challenge; CAPTCHA; login wall; uncertain tab identity; operator doubt — each ⇒ NOT_ARMED (pre-submit) or capture-partial + `CANARY_VOID_20260714T002603Z` (mid-run). No account/OAuth/billing action, no alternate profile, no API fallback, no parallel research, ever.
+
+## 5. REVISED pre-submit UI configuration / arming contract (the sole R2 revision)
+
+Replacing R1 §6's "wrong mode or model ⇒ NOT_ARMED with no adjustment-and-proceed":
+
+1. **One bounded configuration sequence, exactly once, in this order,** performed by Tori in the already-authenticated Gemini UI: (a) select **Deep Research** mode; (b) select the **highest available Gemini model tier compatible with Deep Research**; (c) select **maximum thinking/effort** if the UI exposes such a control. These are reversible composer selections only — nothing else may be clicked, changed, or dismissed.
+2. **New conversation/tab:** permitted **only if** the Gemini UI requires one to enter Deep Research mode; at most one; its exact identity (conversation URL) is pinned in `meta.md` **after mode selection and before paste**.
+3. **Then verify, with screenshots and recorded UI labels:** Deep Research active; model tier as selected; thinking control state; quota value; tab identity; composer empty before paste. Verification is a stop-and-check, not a fix-loop.
+4. **No second configuration attempt.** If after the one sequence the verified state is wrong, or any required control is unavailable or ambiguous, or any selection triggers login/verification/billing/upsell/unusual-traffic/CAPTCHA, or the operator has any doubt ⇒ **NOT_ARMED**, write the blocker receipt, stop. Reconfiguration loops are prohibited; a failed configuration is a report, not a retry.
+5. **Arming:** with Goru R2 preflight GREEN and every §5.3 verification GREEN and zero hard-stop triggers, the standing user direction ("for the content use Deep Research", re-affirmed in the R2 boundaries) is **sufficient to arm without a further approval round-trip** (R1 §11 carried). Tori replaces `markers/NOT_ARMED_20260714T002603Z` with `markers/TORI_ARMED_20260714T002603Z` immediately before the single submission. Paste-equality (composer text vs frozen file hash) is the last check before submit.
+
+## 6. Sequence, capture set, and terminal markers
+
+Goru R2 preflight (`GORU_R2_PREFLIGHT_GREEN_20260714T002603Z` or NOT_GREEN; local-only: byte-copy hash chain, eight-row check, marker-string uniqueness across this packet, checklist freeze) → Tori §5 configuration + verification → arming → one submission → supervised run → capture into `runs/canary/` exactly as R1 §9 (body.md, rendered_body.html, structured_capture_v3.json, validation_result.json + VALIDATION_CHECKLIST.md, meta.md, screenshots/, CAPTURE_RECEIPT.md with per-file sha256, RUN_RECEIPT.json) → exactly one of `CANARY_CAPTURED_20260714T002603Z` / `CANARY_VOID_20260714T002603Z` → Kun V1–V9 reproducible rerun → Lana content review (`LANA_CONTENT_REVIEW.md`, per-row against local Gate B texts, expert-queue dispositions) → Hwao synthesis. A VOID or V-clause-rejected run is not retried under this packet; any fresh attempt requires a new packet and a fresh user gate.
+
+HWAO_CONTENT_DR_R2_PLAN_DONE

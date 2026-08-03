@@ -1,0 +1,19 @@
+{
+  "status": "BROKER_CUSTODY_HOLD_EXTERNAL_FLOW_FREEZE",
+  "mission_id": "GALAXY_REVIEW_BASE_DR_20260715",
+  "queue_item": 17,
+  "review": "Bland-Hawthorn & Gerhard 2016 — The Galaxy in Context",
+  "review_identity": {"doi": "10.1146/annurev-astro-081915-023441", "arxiv": "1602.07702", "ads_bibcode": "2016ARA&A..54..529B", "status": "PASS_ADS_CROSSREF_ARXIV"},
+  "exact_owned_conversation": {"conversation_id": "0d8667dfd0db044c", "conversation_path": "/app/0d8667dfd0db044c", "prompt_sha256": "c80877eba8df0985c036de9a3b2b523f608197edacf47141325644c21fe56bbb", "submit_utc": "2026-07-16T06:16:44.729590Z", "research_start_utc": "2026-07-16T06:17:56.507441Z", "one_prompt": true, "one_start": true, "retry_performed": false},
+  "review_17_observations_before_hold": {"research_active": true, "page_challenge": false, "soft_throttle": false, "failure": false, "last_message_lengths": [1542, 161], "raw_packet_landed": false},
+  "external_freeze": {"ledger_epoch": 6093, "utc": "2026-07-16T06:27:50Z", "declared_by": "yui", "lane": "Flow narration vo399 attempt1", "event_type": "emergency_stop", "reason": "Flow target drift check recorded identical expected and observed URLs", "expected_url": "https://labs.google/fx/tools/flow/project/a22b5b61-833d-4e62-857b-4a7030b93bfa", "observed_url": "https://labs.google/fx/tools/flow/project/a22b5b61-833d-4e62-857b-4a7030b93bfa", "review_17_caused_freeze": false, "revoked_review_17_read_lease": "L00990"},
+  "broker_state": {"frozen": true, "live_leases": []},
+  "artifacts": {"prompt_sha256": "e4245eb8a4303d0126dff7d184e50f65fc9215d1d5bf25c900adf572fbed125c", "failure_sha256": "7bed97b6af3febe19e7387b9e459d311f17f2d5bec522aa3e9e6f1c577fee9f5", "state_sha256": "f805be07ec2ed43f019a15a6452eadcf4483808ac07bbd8a23fc1691cad2758a", "manifest_sha256": "ec966a1674caab123a241e86fa3a117688b74b26d999dde3f8de2180b6793ed4", "queue_sha256": "7f9384766bdc5dd7473f7265018344ba6067e9b612cdbe77d59a7adf7ffc3f5b"},
+  "queue_stopped": true,
+  "items_18_through_20_staged_or_started": false,
+  "required_disposition": "Hwao/Yui review and explicitly clear or retain the external Flow freeze. If reset is authorized, settle the exact-owned review_base_17 route read-only; do not resend the prompt and do not click Start again. Only after raw custody and canonical verification may the queue resume.",
+  "live_mutations_performed": false,
+  "wiki_or_db_write_performed": false,
+  "conversation_deleted": false,
+  "recorded_utc": "2026-07-16T06:31:39Z"
+}

@@ -1,0 +1,40 @@
+{
+  "marker": "NEBULAMIND_V5_STUDIO_HOST_OFFICE_SETTING_DECISION_V1",
+  "recorded_at_utc": "2026-07-24T07:14:48Z",
+  "user_direction": "switch to Studio, office setting?",
+  "selected_interpretation_after_clarification_timeout": "Run V5-G3 on the Mac Studio host; reserve the office setting for a later presenter gate.",
+  "execution_host": {
+    "hostname": "Duhoui-MacStudio.local",
+    "address": "100.84.12.101",
+    "project_root": "/Users/duhokim/NebulaMind/NebulaMind",
+    "status": "READY",
+    "verified": {
+      "v5_lane_present": true,
+      "signed_storyboard_present": true,
+      "g2_pass_receipt_present": true,
+      "figure1_crop_present": true,
+      "ffmpeg": "/opt/homebrew/bin/ffmpeg",
+      "ffprobe": "/opt/homebrew/bin/ffprobe",
+      "kokoro_environment_present": true,
+      "pil_numpy_matplotlib_present": true,
+      "opencv_present": false
+    },
+    "implementation_constraint": "Use PIL, NumPy, Matplotlib, and FFmpeg; do not require OpenCV. Use explicit Homebrew FFmpeg paths because the non-interactive SSH PATH does not expose them."
+  },
+  "v5_g3": {
+    "released": true,
+    "scope": "Local no-face motion-graphics canary on Mac Studio",
+    "presenter": false,
+    "office_environment": false,
+    "youtube_or_visibility": false,
+    "website_or_cockpit": false,
+    "database_git_runtime": false
+  },
+  "later_presenter_gate": {
+    "office_setting": "Warm modern research office with neutral daylight, restrained astronomy graphics, clean shelves or whiteboard, no corporate logos, no sci-fi laboratory styling, and no visual clutter.",
+    "presenter_limits": "At most 15 seconds in the introduction and 10 seconds in the ending.",
+    "gesture_rule": "No reusable short hand-motion loop; either distinct bounded gestures or hands out of frame.",
+    "science_scene_rule": "Science remains full-screen plots and graphics; the office presenter does not remain on screen during evidence explanation.",
+    "status": "RESERVED_NOT_RELEASED"
+  }
+}

@@ -1,0 +1,303 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-28T06:31:31Z",
+  "updated_at_kst": "2026-06-28 15:31:31 KST",
+  "source": "Hermes Agent live workflow status",
+  "current_action": "PR #42 is merged and live: claim trust badges now expose compact Claim mini-map hover cards. Ready for your next steering choice.",
+  "runtime": {
+    "frontend_service": "running",
+    "public_wiki_probe": "200",
+    "public_chunk_markers": [
+      "Claim mini-map",
+      "claim-mini-map-hover-card",
+      "aria-describedby",
+      "Click for full evidence map"
+    ]
+  },
+  "repo": {
+    "origin_main": "70e41dc",
+    "origin_main_full": "70e41dcd7aa698d7726e3fa426de6c50d51c7194",
+    "latest_merged_pr": {
+      "number": 42,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/42",
+      "state": "MERGED",
+      "mergedAt": "2026-06-28T06:28:12Z",
+      "mergeCommit": {
+        "oid": "70e41dcd7aa698d7726e3fa426de6c50d51c7194"
+      }
+    }
+  },
+  "safety": {
+    "production_db_writes_from_this_dashboard": 0,
+    "migrations": 0,
+    "deploys": "frontend runtime restart only; no backend/service migration",
+    "explicit_approval_required_for": [
+      "production DB writes",
+      "trust/badge/prose apply paths",
+      "schema migrations",
+      "destructive cleanup"
+    ]
+  },
+  "milestones": [
+    {
+      "state": "done",
+      "label": "PR #39 merged + live",
+      "detail": "Evidence vote cockpit is live in the wiki evidence panel."
+    },
+    {
+      "state": "done",
+      "label": "PR #40 merged + live",
+      "detail": "Inline claim badges expose countering evidence counts, e.g. Debated · 16 sources · 1 countering."
+    },
+    {
+      "state": "done",
+      "label": "PR #41 merged + live",
+      "detail": "Inline citation badges open Source trace hover cards with evidence id, paper title, byline, summary, and arXiv/DOI/link locator."
+    },
+    {
+      "state": "done",
+      "label": "PR #42 merged + live",
+      "detail": "Inline claim badges open Claim mini-map hover cards with support/counter/unresolved counts and a compact segmented evidence bar."
+    },
+    {
+      "state": "done",
+      "label": "Runtime frontend refreshed",
+      "detail": "Scoped files copied to the non-git runtime tree, runtime tests/build passed, launchd frontend restarted, public chunk verified."
+    },
+    {
+      "state": "ready",
+      "label": "Next visible slice ready",
+      "detail": "Recommended next: visual polish the Evidence vote cockpit or add a source-trace/claim-card cross-link from hover cards."
+    },
+    {
+      "state": "locked",
+      "label": "Production data mutation",
+      "detail": "Still locked unless Duho explicitly approves a named preflight/apply packet."
+    }
+  ],
+  "verification": [
+    {
+      "check": "PR #39",
+      "result": "MERGED",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "check": "origin/main",
+      "result": "e501d89",
+      "evidence": "verified after squash merge"
+    },
+    {
+      "check": "frontend tests/build",
+      "result": "PASS",
+      "evidence": "test:evidence-panel-copy, test:evidence-status, test:wiki-trust-visibility, tsc, next build"
+    },
+    {
+      "check": "pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed"
+    },
+    {
+      "check": "public cockpit chunk",
+      "result": "PASS",
+      "evidence": "Evidence vote cockpit text found in deployed JS chunk"
+    },
+    {
+      "check": "RED test: inline countering badge",
+      "result": "EXPECTED FAIL",
+      "evidence": "test:wiki-trust-visibility saw missing · 1 countering copy"
+    },
+    {
+      "check": "GREEN test/build bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence/status/trust-history/surveys smokes, tsc, next build, local page chunk probe"
+    },
+    {
+      "check": "PR #40 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "check": "PR #40 merge",
+      "result": "MERGED",
+      "evidence": "c5f3c51 feat: show counter-evidence on wiki claim badges (#40)"
+    },
+    {
+      "check": "Runtime PR #40 tests/build",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence panel/status smokes, tsc, Next build"
+    },
+    {
+      "check": "Public wiki JS chunk",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains countering + Open evidence map for"
+    },
+    {
+      "check": "Frontend service",
+      "result": "RUNNING",
+      "evidence": "launchd com.nebulamind.frontend restarted; port 3000 listener pid verified"
+    },
+    {
+      "check": "RED test: source trace hover helper missing",
+      "result": "EXPECTED FAIL",
+      "evidence": "source trace hover helper should exist"
+    },
+    {
+      "check": "GREEN test: source trace hover cards",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover"
+    },
+    {
+      "check": "Source trace local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3013 chunk probe"
+    },
+    {
+      "check": "PR #41 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/41"
+    },
+    {
+      "check": "PR #41 merge",
+      "result": "MERGED",
+      "evidence": "a29fc60 feat: add source trace hover cards (#41)"
+    },
+    {
+      "check": "RED test: source trace helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "node scripts/test-source-trace-hover.mjs failed: source trace hover helper should exist"
+    },
+    {
+      "check": "GREEN source trace smoke",
+      "result": "PASS",
+      "evidence": "npm run test:source-trace-hover"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence panel copy, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "TypeScript/build",
+      "result": "PASS",
+      "evidence": "npx tsc --noEmit; npm run build generated 35 static pages"
+    },
+    {
+      "check": "Pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed with explicit backend venv Python"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains Source trace hover markers"
+    },
+    {
+      "check": "RED test: claim mini-map helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "claim mini-map hover helper should exist"
+    },
+    {
+      "check": "GREEN test: claim mini-map hover",
+      "result": "PASS",
+      "evidence": "npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Claim mini-map local verification",
+      "result": "PASS",
+      "evidence": "focused RED/GREEN, frontend smoke bundle, tsc, Next build, local port 3014 chunk probe"
+    },
+    {
+      "check": "PR #42 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/42"
+    },
+    {
+      "check": "PR #42 merge",
+      "result": "MERGED",
+      "evidence": "70e41dc feat: add claim mini-map hover cards (#42)"
+    },
+    {
+      "check": "RED test: claim mini-map helper absent",
+      "result": "EXPECTED FAIL",
+      "evidence": "node scripts/test-claim-minimap-hover.mjs failed: claim mini-map hover helper should exist"
+    },
+    {
+      "check": "GREEN claim mini-map smoke",
+      "result": "PASS",
+      "evidence": "npm run test:claim-minimap-hover"
+    },
+    {
+      "check": "Frontend smoke bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, source trace hover, evidence panel copy, evidence status, trust history, surveys atlas IA"
+    },
+    {
+      "check": "Runtime public probe",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains Claim mini-map hover markers"
+    }
+  ],
+  "next_moves": [
+    {
+      "id": "cockpit-visual-polish",
+      "readiness": "ready",
+      "title": "Polish Evidence vote cockpit visuals",
+      "why": "Make the support/weakening/unresolved signal easier to judge at a glance with bars, stronger hierarchy, and less explanatory text.",
+      "copy_command": "STEER: polish Evidence vote cockpit visuals next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "hover-crosslinks",
+      "readiness": "ready",
+      "title": "Cross-link hover cards to evidence/source panels",
+      "why": "Turn the mini-map and source trace cards into stronger navigation: hover for preview, click specific rows to jump into the full evidence map/source list.",
+      "copy_command": "STEER: add hover-card cross-links next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "runtime-hygiene",
+      "readiness": "ready",
+      "title": "Runtime sync safety script",
+      "why": "The served runtime tree is non-git and manually synced for scoped files; a verified script would reduce future live-update risk.",
+      "copy_command": "STEER: make runtime sync safer next; TDD for the script, PR/merge if verified."
+    },
+    {
+      "id": "pause",
+      "readiness": "available",
+      "title": "Pause for manual inspection",
+      "why": "Use this if you want to inspect the live page/dashboard before more code.",
+      "copy_command": "STEER: pause after PR #42; do not start the next slice yet."
+    }
+  ],
+  "links": [
+    {
+      "label": "Live progress dashboard",
+      "url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html"
+    },
+    {
+      "label": "PR #42",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/42"
+    },
+    {
+      "label": "PR #41",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/41"
+    },
+    {
+      "label": "PR #40",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "label": "PR #39",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "label": "Live Galaxy page",
+      "url": "https://nebulamind.net/wiki/galaxy-evolution-v2"
+    },
+    {
+      "label": "Latest status JSON",
+      "url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+    }
+  ],
+  "active_worktree": "/Users/duhokim/NebulaMind/worktrees/wiki-claim-minimap-hover-20260628",
+  "active_branch": "wiki-claim-minimap-hover-20260628 (merged; local worktree retained)",
+  "active_commit": "0697061"
+}

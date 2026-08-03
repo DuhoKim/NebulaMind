@@ -1,0 +1,80 @@
+{
+  "timestamp_utc": "20260708T161724Z",
+  "lane": "lana",
+  "marker": "LANA_MANUSCRIPT_TICK_20260708T161724Z",
+  "scope": "Lane-local selection-disclosure manuscript revision drafts for Hwao-priority Wave-2 blocker papers; public-linked manuscripts and PDFs were not overwritten.",
+  "source_read_confirmation": {
+    "brief": "overnight-9-papers-20260708/OVERNIGHT_BRIEF.md",
+    "swarm_board": "overnight-9-papers-20260708/SWARM_BOARD.md",
+    "all_9_analysis_json_read": true,
+    "all_9_current_aastex_sources_read": true,
+    "additional_lane_artifacts_read": [
+      "lanes/hwao/HWAO_DIRECTOR_TICK_20260708T160831Z.md",
+      "lanes/external-cli/EXTERNAL_CLI_TICK_20260708T144120Z.md",
+      "lanes/tori/wave2-result-table-drafts/20260708T143512Z/*",
+      "lanes/tori/selection-function-attrition/20260708T155514Z/*",
+      "lanes/goru/tables/topic_metric_robustness_20260708T141459Z.csv",
+      "lanes/goru/tables/simulation_target_vector_cells_20260708T141459Z.csv"
+    ]
+  },
+  "drafts": [
+    {
+      "paper_slug": "m2_p2_radio_jet_environment",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/aastex/m2_p2_radio_jet_environment_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m2_p2_radio_jet_environment/m2_p2_radio_jet_environment_lana_selection_revision.tex",
+      "changes_md": "lanes/lana/revision-drafts/m2_p2_radio_jet_environment/CHANGES.md",
+      "compiled_pdf": "lanes/lana/revision-drafts/m2_p2_radio_jet_environment/m2_p2_radio_jet_environment_lana_selection_revision.pdf",
+      "compile_log": "lanes/lana/revision-drafts/m2_p2_radio_jet_environment/compile.log",
+      "pdf_bytes": 86879,
+      "pdf_sha256": "4c88639af9a993dbb7807c2703f330c3d1a23bee90b141c4f06c4ca5314902ba",
+      "compile_exit_code": 0,
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "Added selection-function disclosure for 249917 public S/N>=3 eligible rows versus 60000 cached rows.",
+        "Added massive-host public/SN/cached counts: 85225 / 35482 / 9298.",
+        "Inserted k=5/10/20 density-scale result table and softened scale wording."
+      ]
+    },
+    {
+      "paper_slug": "m3_p2_gas_depletion_efficiency",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/aastex/m3_p2_gas_depletion_efficiency_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m3_p2_gas_depletion_efficiency/m3_p2_gas_depletion_efficiency_lana_selection_revision.tex",
+      "changes_md": "lanes/lana/revision-drafts/m3_p2_gas_depletion_efficiency/CHANGES.md",
+      "compiled_pdf": "lanes/lana/revision-drafts/m3_p2_gas_depletion_efficiency/m3_p2_gas_depletion_efficiency_lana_selection_revision.pdf",
+      "compile_log": "lanes/lana/revision-drafts/m3_p2_gas_depletion_efficiency/compile.log",
+      "pdf_bytes": 211486,
+      "pdf_sha256": "d18a75ee4b5fe9a40bc9f7d17231692880e4e1c232abc3b9cf75120dd717ac7b",
+      "compile_exit_code": 0,
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "Reframed as emission-line-detected massive low-sSFR follow-up denominator, not gas-depletion/SFE evidence.",
+        "Added default and strict parent/SN/cached counts: 121533/40797/10270 and 33125/11288/2941.",
+        "Added six-row threshold grid with cached coverage, BPT AGN fraction uncertainties, and H-alpha optical proxy."
+      ]
+    },
+    {
+      "paper_slug": "m3_p3_simulation_validation",
+      "source_tex": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/aastex/m3_p3_simulation_validation_aas.tex",
+      "source_json": "runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/analysis_results.json",
+      "draft_tex": "lanes/lana/revision-drafts/m3_p3_simulation_validation/m3_p3_simulation_validation_lana_selection_revision.tex",
+      "changes_md": "lanes/lana/revision-drafts/m3_p3_simulation_validation/CHANGES.md",
+      "compiled_pdf": "lanes/lana/revision-drafts/m3_p3_simulation_validation/m3_p3_simulation_validation_lana_selection_revision.pdf",
+      "compile_log": "lanes/lana/revision-drafts/m3_p3_simulation_validation/compile.log",
+      "pdf_bytes": 95713,
+      "pdf_sha256": "9eea5dd91c41afb375939cbf6a67b71043f12e2bdcda93beab825fdb2a815973",
+      "compile_exit_code": 0,
+      "pdf_starts_with_pdf": true,
+      "fatal_markers": [],
+      "primary_changes": [
+        "Reframed as selection-flagged observed target vector, not simulation validation.",
+        "Added definitions for f_Q, f_BPT AGN, and high-excitation AGN.",
+        "Added small-cell caution table and N<500 flags in the 15-cell vector."
+      ]
+    }
+  ],
+  "safety": "Lane-local files only except the required one-line OVERNIGHT_LEDGER.md append. No public pages, live roots, product DB, API/pages, page_versions, trust, deploy/restart, git, billing, OAuth, external submission, or new cron jobs."
+}

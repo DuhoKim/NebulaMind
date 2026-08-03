@@ -1,0 +1,60 @@
+{
+  "schema": "NM_DR_C1R_PRE_CLEANUP_RECEIPT_V1",
+  "packet": "gemini-dr-revised-canary-20260712T045317Z",
+  "terminal_utc": "2026-07-12T07:11:38Z",
+  "state": "RUN_FAILED",
+  "acceptance": "FAIL_CLOSED",
+  "conversation": {
+    "url": "https://gemini.google.com/app/697c774077a6e527",
+    "id": "697c774077a6e527",
+    "window_id": 1819255858,
+    "tab_index": 1,
+    "prompt_submit_count": 1,
+    "human_start_count": 1,
+    "tori_start_count": 0,
+    "follow_up_count": 0,
+    "retry_count": 0
+  },
+  "capture": {
+    "report_root_selector": ".markdown.markdown-main-panel",
+    "report_root_count": 1,
+    "marker_count": 1,
+    "marker_final_nonblank": true,
+    "files": {
+      "prompt_submitted.md": {"sha256": "fffac44fbf6e9abe3afb1f8f34f3a9e3e7688991f319c4927459fb29ac00e1ef", "bytes": 9965},
+      "body.md": {"sha256": "8a130c5a6fc1b1f5d534888d3fb20806230b8b4c7737cb00f9bfb18ad0d6bc00", "bytes": 25963},
+      "rendered_body.html": {"sha256": "78ed129c47daf9300d9ed319aa1ffe95bbb0d1810a223733afaf48c4372f2bbc", "bytes": 221150},
+      "structured_capture.json": {"sha256": "2d10e34a46c609b713d980ded746c8bf4f1214ea7213603535cd3c7e271ec468", "bytes": 96222},
+      "capture_metadata.json": {"sha256": "d48d644d2dbf72bf9a7158c32ea307b7de62b75c4bb191b1ebf5e4ffed58a412", "bytes": 202},
+      "validator_result.json": {"sha256": "34f525a58b1c71d237b1723fc42bfab5acfaf631e9b25175a703462e108c91f4", "bytes": 21556},
+      "manual_review_gate.json": {"sha256": "b9522943dfd6c3c8788ec881abdb376f2de5661420ada76b1ce188e62dc95d5b", "bytes": 1284},
+      "quota_postflight.json": {"sha256": "7ffdc56b30f53d38199a735cb9e1d22bf893625f0641e32293fd1090c4d64ceb", "bytes": 476}
+    }
+  },
+  "validator": {
+    "overall": "FAIL",
+    "fail": 54,
+    "manual_review_required": 28,
+    "pass": 3,
+    "passing_clauses": ["C1", "C5", "C8"],
+    "mechanical_failures": {
+      "C2": {"EMPTY_TABLE_CELL": 8, "BAD_STRUCTURE": 1},
+      "C4": {"UNCITED_CELL_CLAIM": 33, "UNCITED_CLAIM": 2},
+      "C6": {"MISSING_QUALIFIER": 3, "UNLABELED_COMPARISON": 6},
+      "C7": {"MISSING_FROM_BODY": 1}
+    }
+  },
+  "quota": {
+    "preflight_used_pct": 3,
+    "postflight_used_pct": 3,
+    "observed_delta_pct": 0,
+    "source": "https://gemini.google.com/usage"
+  },
+  "cleanup": {
+    "status": "PENDING_ARTIFACT_FIRST_EXACT_ID_DELETE",
+    "exact_id": "697c774077a6e527",
+    "broad_cleanup_forbidden": true
+  },
+  "retry_allowed": false,
+  "follow_up_allowed": false
+}

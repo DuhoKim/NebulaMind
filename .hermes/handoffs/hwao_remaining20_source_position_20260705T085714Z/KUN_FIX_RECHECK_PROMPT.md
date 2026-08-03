@@ -1,0 +1,1 @@
+KUN FIX RECHECK. You blocked only 28066 due to a wrong duplicate/stacking metadata note saying 28110 was same-source. Review only the corrected 28066 line below. Return PASS if fixed, otherwise BLOCKED with exact reason. No tools/edits. Marker KUN_REMAINING20_FIX_RECHECK_20260705T085714Z.

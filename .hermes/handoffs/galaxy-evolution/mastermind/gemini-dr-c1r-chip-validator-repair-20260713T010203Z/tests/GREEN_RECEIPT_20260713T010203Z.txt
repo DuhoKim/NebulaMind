@@ -1,0 +1,19 @@
+C1r chip-aware capture + validator repair — GREEN receipt
+Packet: gemini-dr-c1r-chip-validator-repair-20260713T010203Z
+
+Final rev2 harness verification:
+- capture/structured_capture_v2.js import check: PASS
+- capture/run_capture_v2.mjs syntax check: PASS
+- node tests/test_capture_v2.mjs: PASS; T1–T6 contract passed
+- pytest tests: PASS; 11 passed
+- repeated capture outputs: byte-identical
+- repeated validator outputs: byte-identical
+- sealed custody: 78/78 files unchanged
+- temp cleanup: no packet-root or receipts _tmp_run_all remains after the harness
+
+T14 expectation change was not silent: HWAO_T14_DEVIATION_ADJUDICATION.md and design/LANA_T14_COUNTERSIGN.md approve the FLAMINGO detector clarification and amend the pinned residue to include the SIMBA numeric-fraction qualifier failure.
+
+Independent final gate: receipts/KUN_GREEN_GATE.md rev2
+Write-scope audit: receipts/KUN_WRITE_SCOPE_AUDIT.md rev2
+
+C1R_REPAIR_TDD_GREEN_20260713T010203Z

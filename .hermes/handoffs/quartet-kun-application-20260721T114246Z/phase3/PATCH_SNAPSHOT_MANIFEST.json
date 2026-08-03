@@ -1,0 +1,79 @@
+{
+  "schema": "nebula.phase3.dirty_intent_patch_manifest",
+  "version": 1,
+  "task_id": "quartet-kun-application-20260721T114246Z-phase3.2",
+  "source_branch": "feat/surveys-atlas-ia-p1-20260627",
+  "source_head": "826e73381cb7870954bbd7f041a618408385a80a",
+  "baseline": "HEAD",
+  "tracked_modified_path_count": 20,
+  "partition": {
+    "overlap_with_branch_commits": 5,
+    "disjoint_from_branch_commits": 15,
+    "additional_modified_survey_components_inside_disjoint_set": 6,
+    "total_unique_paths": 20
+  },
+  "patches": [
+    {
+      "file": "SURVEYS_DIRTY_INTENT.patch",
+      "paths": [
+        "frontend/package.json",
+        "frontend/scripts/test-surveys-atlas-ia.mjs",
+        "frontend/src/components/surveys/ChartView.tsx",
+        "frontend/src/components/surveys/SurveysView.tsx",
+        "frontend/src/app/surveys/[slug]/SurveyDetailClient.tsx",
+        "frontend/src/components/surveys/BandSpectrumStrip.tsx",
+        "frontend/src/components/surveys/FilterSheet.tsx",
+        "frontend/src/components/surveys/PlotB.tsx",
+        "frontend/src/components/surveys/SurveyCard.tsx",
+        "frontend/src/components/surveys/SurveyPeek.tsx"
+      ],
+      "path_count": 10,
+      "bytes": 29332,
+      "sha256": "f083c5d388567a24ca4c69c77140a563e2bcbe39e2c9c4a7f12435c7972a927b"
+    },
+    {
+      "file": "LAB_RUNNER_WORKER_DIRTY_INTENT.patch",
+      "paths": [
+        "tools/lab_runner_worker.py"
+      ],
+      "path_count": 1,
+      "bytes": 6951,
+      "sha256": "6669c584c0ee1e34cb5a943fcbf5c056c1a9d780eef4eb6b674b4e8a8f8a1bb4"
+    },
+    {
+      "file": "BACKEND_WIKI_DIRTY_INTENT.patch",
+      "paths": [
+        "backend/app/routers/pages.py",
+        "backend/app/services/model_canary.py",
+        "backend/app/services/trust_calculation.py",
+        "frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+        "wiki_schema.md"
+      ],
+      "path_count": 5,
+      "bytes": 55002,
+      "sha256": "4e1da5b582f4c70cbb4fa709fbf7c033931de1102ee2e3da6ab1211a6d814128"
+    },
+    {
+      "file": "IDEAS_NAV_DIRTY_INTENT.patch",
+      "paths": [
+        "frontend/src/app/components/NavBar.tsx",
+        "frontend/src/app/ideas/IdeasIndexClient.tsx",
+        "frontend/src/app/ideas/page.tsx",
+        "frontend/src/app/page.tsx"
+      ],
+      "path_count": 4,
+      "bytes": 10940,
+      "sha256": "a696975d0760a649a6ba8e8629225391b3b180bfff19baa690f3b9da5ebd39ce"
+    }
+  ],
+  "safety": {
+    "git_writes": 0,
+    "branch_actions": 0,
+    "worktree_actions": 0,
+    "stash_reset": 0,
+    "source_product_edits": 0,
+    "env_content_reads": 0
+  },
+  "note": "Patches are read-only git diff snapshots against HEAD. The six additional survey components are a subset of the 15 disjoint modified tracked paths, not new untracked files.",
+  "marker": "TORI_PHASE3_DIRTY_INTENT_SNAPSHOTS_COMPLETE_20260721"
+}

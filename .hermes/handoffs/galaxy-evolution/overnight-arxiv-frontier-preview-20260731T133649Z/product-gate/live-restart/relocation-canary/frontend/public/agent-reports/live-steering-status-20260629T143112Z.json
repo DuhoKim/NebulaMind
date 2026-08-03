@@ -1,0 +1,175 @@
+{
+  "status": "archive_pr_decision_matrix_completed",
+  "updated_at_utc": "2026-06-29T14:31:12Z",
+  "updated_at_kst": "2026-06-29 23:31:12 KST",
+  "running_backend_pid": "25075",
+  "running_backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "clean_candidate_serving_backend": true,
+  "old_runtime_dirty_counts": {
+    "tracked": 7,
+    "untracked_individual": 476
+  },
+  "db_counts_before": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_counts_after": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_count_drift": {
+    "page_citation_links": 0,
+    "fact_sources": 0
+  },
+  "db_write_count_for_matrix": 0,
+  "decision_rows": [
+    {
+      "id": "A",
+      "bucket": "Live backend / clean candidate",
+      "contents": [
+        "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+        "commit cc4ced2a6e69e9222805c080ce700e91517e6093"
+      ],
+      "classification": "Current production backend source of truth",
+      "recommended_decision": "Keep as live backend; continue read-only monitoring when needed.",
+      "archive_action": "None now. Already clean candidate.",
+      "pr_action": "None.",
+      "risk": "Low",
+      "blocked_until": "Not blocked.",
+      "next_phrase": "STEER: continue clean-candidate source-surface monitor; no DB writes.",
+      "db_writes": "0",
+      "deletion_reset": "No"
+    },
+    {
+      "id": "B",
+      "bucket": "Old runtime branch-only committed Atlas IA/surveys work",
+      "contents": [
+        "ac0608c feat(surveys): polish Atlas IA",
+        "frontend/package.json",
+        "frontend/scripts/test-surveys-atlas-ia.mjs",
+        "frontend/src/app/surveys/page.tsx",
+        "frontend/src/components/surveys/*.tsx",
+        "frontend/src/components/surveys/plotting.ts"
+      ],
+      "classification": "Potentially useful product/UI work, but not merged to clean main and no longer serving backend.",
+      "recommended_decision": "Preserve and evaluate as its own clean PR candidate, not as runtime state.",
+      "archive_action": "Keep old checkout and existing snapshot; optionally create a later read-only patch bundle for review.",
+      "pr_action": "If wanted, create a fresh branch from origin/main and cherry-pick/apply only the Atlas IA slice with tests. Do not PR the dirty runtime branch directly.",
+      "risk": "Medium because it is real frontend product code and may conflict with 41 main commits.",
+      "blocked_until": "Needs explicit clean-PR planning approval; no cleanup before backup.",
+      "next_phrase": "STEER: prepare clean PR plan for Atlas IA surveys polish from old runtime branch; no code changes, no deploy, no DB writes.",
+      "db_writes": "0",
+      "deletion_reset": "No"
+    },
+    {
+      "id": "C",
+      "bucket": "Old runtime wiki/trust/frontend dirty work",
+      "contents": [
+        "frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+        "frontend/src/app/wiki/[slug]/sources/WikiSourcesClient.tsx",
+        "frontend/src/app/wiki/[slug]/trustVisibility.ts",
+        "frontend/src/lib/agentReportUpload.ts",
+        "frontend/src/app/agent-reports/page58-label-upload/submit/route.ts",
+        "wiki_schema.md"
+      ],
+      "classification": "Potentially useful but mixed frontend/wiki/report-upload work. Not live backend; not safe to clean blindly.",
+      "recommended_decision": "Review as a separate clean-PR planning slice before any archive/cleanup.",
+      "archive_action": "Preserve in old checkout and matrix artifacts. No delete.",
+      "pr_action": "Prepare a clean PR plan that splits wiki/trust visibility from report-upload tooling if both are still useful.",
+      "risk": "Medium: could include UI behavior and report upload route changes; needs review and tests.",
+      "blocked_until": "Needs explicit clean-PR planning approval.",
+      "next_phrase": "STEER: prepare clean PR plan for classified frontend/wiki runtime work; no code changes, no deploy, no DB writes.",
+      "db_writes": "0",
+      "deletion_reset": "No"
+    },
+    {
+      "id": "D",
+      "bucket": "Already-covered duplicate source/test files",
+      "contents": [
+        "backend/app/services/model_canary.py",
+        "backend/tests/test_model_canary.py",
+        "backend/tests/test_cross_page_paper_footprint_api.py",
+        "backend/tests/test_global_paper_directory_api.py",
+        "backend/tests/test_page_source_surface_fallbacks.py",
+        "backend/tests/test_paper_profile_api.py",
+        "docs/galaxy_v2_source_surface_reconciliation_20260629.md"
+      ],
+      "classification": "Content already exists in clean main/candidate. No PR value.",
+      "recommended_decision": "Mark as future cleanup candidates only after backup and exact cleanup approval.",
+      "archive_action": "Covered by snapshot/classification. Could include in cleanup packet manifest.",
+      "pr_action": "None.",
+      "risk": "Low if backed up, but deletion/reset still destructive and remains locked.",
+      "blocked_until": "Locked until cleanup packet approval.",
+      "next_phrase": "LOCKED \u2014 after backup, use an exact cleanup approval packet; do not act from generic proceed.",
+      "db_writes": "0",
+      "deletion_reset": "Locked"
+    },
+    {
+      "id": "E",
+      "bucket": "Backend residue in old checkout",
+      "contents": [
+        "backend/app/routers/pages.py"
+      ],
+      "classification": "Old checkout residue; versus origin/main it is only one deletion. Live backend already uses clean candidate.",
+      "recommended_decision": "No product work to save; future cleanup candidate only.",
+      "archive_action": "Covered by snapshot/classification. Keep until cleanup packet.",
+      "pr_action": "None.",
+      "risk": "Low if backed up, but cleanup/reset still locked.",
+      "blocked_until": "Locked until cleanup packet approval.",
+      "next_phrase": "LOCKED \u2014 include in exact cleanup packet only after backup review.",
+      "db_writes": "0",
+      "deletion_reset": "Locked"
+    },
+    {
+      "id": "F",
+      "bucket": "Generated reports, docs, cockpit/public artifacts, Hermes plans",
+      "contents": [
+        "docs/** mostly report artifacts",
+        "frontend/public/agent-reports/**",
+        ".hermes/plans/**",
+        "runtime hygiene/report outputs"
+      ],
+      "classification": "Operational history and generated reporting, not product source by default.",
+      "recommended_decision": "Archive/preserve; do not PR wholesale. Promote only selected durable docs by explicit request.",
+      "archive_action": "Prepare an archive manifest/bundle plan before any deletion.",
+      "pr_action": "Only selected docs, not the entire generated set.",
+      "risk": "Low-to-medium: easy to lose useful audit history if cleaned casually.",
+      "blocked_until": "Needs archive-retention decision before cleanup.",
+      "next_phrase": "STEER: prepare read-only archive manifest for generated runtime reports; no deletion, no reset, no DB writes.",
+      "db_writes": "0",
+      "deletion_reset": "No"
+    }
+  ],
+  "recommended_sequence": [
+    {
+      "step": 1,
+      "name": "Plan clean PR for frontend/wiki work",
+      "why": "It is the only dirty bucket with obvious possible product value and it is not safe to delete blindly.",
+      "approval": "STEER: prepare clean PR plan for classified frontend/wiki runtime work; no code changes, no deploy, no DB writes."
+    },
+    {
+      "step": 2,
+      "name": "Plan clean PR for Atlas IA/surveys polish",
+      "why": "The branch-only commit is coherent product work, but must be rebased/extracted onto current origin/main, not PR\u2019d from dirty runtime.",
+      "approval": "STEER: prepare clean PR plan for Atlas IA surveys polish from old runtime branch; no code changes, no deploy, no DB writes."
+    },
+    {
+      "step": 3,
+      "name": "Prepare archive manifest for generated reports/docs",
+      "why": "Most untracked files are audit/report artifacts; preserve useful history before cleanup.",
+      "approval": "STEER: prepare read-only archive manifest for generated runtime reports; no deletion, no reset, no DB writes."
+    },
+    {
+      "step": 4,
+      "name": "Prepare exact cleanup packet for duplicates/residue",
+      "why": "Only after the useful work and audit artifacts are accounted for should cleanup be considered.",
+      "approval": "LOCKED \u2014 requires backup plus exact cleanup approval after matrix review."
+    }
+  ],
+  "report_artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/archive-pr-decision-matrix-20260629T143112Z",
+    "json": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/archive-pr-decision-matrix-20260629T143112Z/archive-pr-decision-matrix.json",
+    "markdown": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/archive-pr-decision-matrix-20260629T143112Z/archive-pr-decision-matrix.md",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/archive-pr-decision-matrix-20260629T143112Z/SHA256SUMS"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "checked_at_utc": "2026-07-05T05:51:09Z",
+  "status": "PASS",
+  "scope": "LOCAL_ONLY_B3_CHECKPOINT_AFTER_HWAO_COORDINATOR_TRANSITION",
+  "role_contract": {
+    "hwao_fable": "coordinator_planner",
+    "tori_hermes": "relay_recorder_receipt_verifier_bounded_executor",
+    "honored": true,
+    "notes": "No B4 start, no helper dispatch, no next-move announcement, no cockpit mutation."
+  },
+  "current_public_cockpit_marker_expected": "GALAXY_2929_B3_APPLIED_16_OF_36_20260705T044944Z",
+  "artifacts_checked": {
+    "b3_receipts": ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z/TORI_B3_EDIT_RECEIPTS.md",
+    "post_edit_validation": ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z/post_edit_validation_b3.json",
+    "kun_checker_result": ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z/kun_queue_checker_results_b3_post_apply.json",
+    "queue_dir": "docs/galaxy_2929_source_position_queue_20260705T013911Z"
+  },
+  "validation_results": {
+    "post_edit_validation_b3_pass": true,
+    "kun_queue_checker_results_b3_post_apply_pass": true,
+    "queue_row_counts": {
+      "json": 36,
+      "jsonl": 36,
+      "csv": 36,
+      "markdown": 36
+    },
+    "decided_count": 16,
+    "pending_count": 20,
+    "decided_rows": [28060, 28074, 28087, 28091, 28095, 28108, 28111, 28123, 28127, 28133, 28139, 28141, 28143, 28151, 28155, 28158],
+    "pending_rows": [28062, 28066, 28069, 28070, 28073, 28075, 28076, 28080, 28082, 28083, 28084, 28088, 28089, 28110, 28114, 28118, 28131, 28140, 28144, 28148],
+    "forbidden_sql_apply_rollback_files_in_queue_dir": [],
+    "current_public_files_checked_existing_only": {
+      "frontend_public_agent_reports": {
+        "marker_present_in_cockpit_status_mobile_copy": true,
+        "latest_execution_phrase": "NO ACTIVE EXECUTION PHRASE"
+      },
+      "hermesops_cockpit": {
+        "marker_present_in_cockpit_status_mobile_copy": true,
+        "latest_execution_phrase": "NO ACTIVE EXECUTION PHRASE"
+      },
+      "note": "Local file reads only; no public repair/rewrite and no HTTP probe was run by this cron checkpoint."
+    }
+  },
+  "b3_decisions_preserved": {
+    "28123": "relink -> 2946, support-limited model-dependence",
+    "28127": "leave_archival, rejected redundant",
+    "28139": "leave_archival, rejected redundant",
+    "28143": "leave_archival, rejected scope mismatch",
+    "28151": "relink -> 2942, support-limited",
+    "28158": "relink -> 2946, support-limited; gap_card_relevant=observational_maintenance_heating"
+  },
+  "locks_preserved": {
+    "db_queries_connections": 0,
+    "db_writes": 0,
+    "sql_files_created": 0,
+    "apply_or_rollback_files_created": 0,
+    "trust_recompute": 0,
+    "prose_wiki_publish": 0,
+    "runtime_deploy_restart": false,
+    "git_write_push_merge": false,
+    "public_cockpit_mutation": false,
+    "new_cron_jobs_scheduled": 0,
+    "sql_locked_until": "36/36 rows have completed human/source decisions and a new operator-approved packet exists"
+  },
+  "local_checkpoint_files_written_by_this_cron": [
+    ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z/cron_check_20260705T055109Z.json",
+    ".hermes/handoffs/hwao_b3_source_position_20260705T044944Z/cron_check_20260705T055109Z.md"
+  ],
+  "errors": []
+}

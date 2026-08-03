@@ -1,0 +1,2881 @@
+Mon. Not. R. Astron. Soc. 000, 1–26 (2011)
+Printed 6 April 2015
+(MN LATEX style ﬁle v2.2)
+The EAGLE simulations of galaxy formation: calibration of subgrid
+physics and model variations
+Robert A. Crain1,2⋆, Joop Schaye1, Richard G. Bower3, Michelle Furlong3,
+Matthieu Schaller3, Tom Theuns3, Claudio Dalla Vecchia4,5, Carlos S. Frenk3,
+Ian G. McCarthy2, John C. Helly3, Adrian Jenkins3, Yetli M. Rosas-Guevara6,
+Simon D. M. White7 and James W. Trayford3
+1Leiden Observatory, Leiden University, PO Box 9513, 2300 RA Leiden, the Netherlands
+2Astrophysics Research Institute, Liverpool John Moores University, 146 Brownlow Hill, Liverpool, L3 5RF
+3Institute for Computational Cosmology, Department of Physics, University of Durham, South Road, Durham, DH1 3LE
+4Instituto de Astrof´ısica de Canarias, C/V´ıa L´actea s/n, 38205 La Laguna, Tenerife, Spain
+5Departamento de Astrof´ısica, Universidad de La Laguna, Av. del Astrof´ısico Franciso S´anchez s/n, 38206 La Laguna, Tenerife, Spain
+6CRAL, Observatoire de Lyon, Universit´e Lyon 1, 9 Avenue Ch. Andr´e, F-69561 Saint Genis Laval Cedex, France
+7Max-Planck-Institut f¨ur Astrophysik, Karl-Schwarzschild-Str. 1, D-85748 Garching, Germany
+6 April 2015
+ABSTRACT
+We present results from thirteen cosmological simulations that explore the parameter space
+of the “Evolution and Assembly of GaLaxies and their Environments” (EAGLE) simulation
+project. Four of the simulations follow the evolution of a periodic cube L = 50 cMpc on a
+side, and each employs a different subgrid model of the energetic feedback associated with
+star formation. The relevant parameters were adjusted so that the simulations each reproduce
+the observed galaxy stellar mass function at z = 0.1. Three of the simulations fail to form
+disc galaxies as extended as observed, and we show analytically that this is a consequence of
+numerical radiative losses that reduce the efﬁciency of stellar feedback in high-density gas.
+Such losses are greatly reduced in the fourth simulation - the EAGLE reference model - by
+injecting more energy in higher density gas. This model produces galaxies with the observed
+size distribution, and also reproduces many galaxy scaling relations. In the remaining nine
+simulations, a single parameter or process of the reference model was varied at a time. We
+ﬁnd that the properties of galaxies with stellar mass ≲M ⋆(the “knee” of the galaxy stellar
+mass function) are largely governed by feedback associated with star formation, while those of
+more massive galaxies are also controlled by feedback from accretion onto their central black
+holes. Both processes must be efﬁcient in order to reproduce the observed galaxy population.
+In general, simulations that have been calibrated to reproduce the low-redshift galaxy stellar
+mass function will still not form realistic galaxies, but the additional requirement that galaxy
+sizes be acceptable leads to agreement with a large range of observables.
+Key words: cosmology: theory – galaxies:formation – galaxies: evolution – galaxies: haloes
+1
+INTRODUCTION
+The formation, assembly and evolution of cosmic structures is or-
+chestrated by gravitational collapse. The non-linearity of this pro-
+cess precludes a fully-predictive analytic theory of structure for-
+mation, requiring that the confrontation of theoretical expectations
+with observational measurements must generally proceed via nu-
+merical simulations. The predictions of cosmological simulations
+based on the prevailing Λ-cold dark matter (ΛCDM) paradigm, in
+⋆E-mail: r.a.crain@ljmu.ac.uk
+the regime where those outcomes are determined primarily by grav-
+itational forces, have been corroborated by a diverse range of ob-
+servational tests. These include, but are not limited to, cosmic shear
+induced by large-scale structure (e.g. Fu et al. 2008), the abundance
+of brightest cluster galaxies (BCGs, e.g. Rozo et al. 2010), tests of
+the cosmic expansion rate (e.g. Blake et al. 2011a) and the distance-
+redshift relation (e.g. Blake et al. 2011b), redshift-space distortions
+of the 2-point correlation function (e.g. Beutler et al. 2012) and
+the luminosity-distance relation of type Ia supernovae (e.g. Suzuki
+et al. 2012).
+The formation and evolution of galaxies is governed ulti-
+arXiv:1501.01311v2  [astro-ph.GA]  3 Apr 2015
+
+
+2
+R.A.Crain et al.
+mately, however, by the interaction of the diverse physical pro-
+cesses that, in addition to gravity, inﬂuence baryonic matter. The
+inclusion of these processes in simulations is recognised as a major
+challenge, owing both to the complexity of the physical processes,
+and the difﬁculty of developing numerical algorithms able to ac-
+curately model their effects in a computationally efﬁcient manner.
+This challenge has, by and large, impeded cosmological hydrody-
+namical simulations from yielding galaxy populations whose prop-
+erties are consistent with observational measurements. Although
+imperfect models can prove instructive, greater conﬁdence is gen-
+erally ascribed to those that more accurately resemble the observed
+Universe. Moreover, the reproduction of key observables is often a
+prerequisite for testing particular aspects of galaxy formation the-
+ory. For example, when wishing to study the evolution of angular
+momentum in disc galaxies, a model that reproduces their observed
+size and rotation velocity is clearly desirable.
+The reproduction of these particular diagnostics has in fact
+become a cause c´el`ebre for the simulation community, owing to
+the long-standing need to address the closely related “overcooling”
+(Cole 1991; White & Frenk 1991; Blanchard et al. 1992; Balogh
+et al. 2001) and “angular momentum” (Katz & Gunn 1991; Navarro
+& White 1994) problems. In the absence of feedback, gas efﬁ-
+ciently radiates the heat it acquires from thermalising its gravita-
+tional potential. This excess dissipation has two principal conse-
+quences: i) the fraction of gas that is converted into stars by the
+present epoch is much higher than observed, and ii) the forma-
+tion and coalescence of dense clumps spuriously drains angular
+momentum from the baryons. Simulated galaxies therefore form
+too many stars (and do so too early), they are more compact than
+observed, and they exhibit insufﬁcient rotational support. The in-
+clusion of prescriptions for energetic feedback processes in mod-
+els has been shown to alleviate these problems (Abadi et al. 2003;
+Sommer-Larsen et al. 2003; Springel & Hernquist 2003), and has
+enabled several groups to conduct simulations of the ΛCDM cos-
+mogony that form galaxies with sizes and rotation curves that are,
+for particular galaxy masses, consistent with observational mea-
+surements (e.g. Governato et al. 2004; Okamoto et al. 2005; Sales
+et al. 2010; Guedes et al. 2011; McCarthy et al. 2012; Brook et al.
+2012; Munshi et al. 2013; Aumer et al. 2013; Marinacci et al. 2014).
+In spite of this success, the detailed behaviour of the multi-
+phase interstellar medium (ISM) when subject to energetic feed-
+back remains ill-understood, and the community has yet to con-
+verge on unique solutions to the overcooling and angular momen-
+tum problems (Scannapieco et al. 2012). The principal uncertainty
+is arguably one of accounting. Firstly, it is not known what are the
+energy, momentum and mass ﬂuxes incident upon the ISM and star-
+forming complexes therein (but see Lopez et al. 2011; Rosen et al.
+2014), due to mechanisms such as radiation pressure and winds
+from O-class stars, asymptotic giant branch (AGB) stars and active
+galactic nuclei (AGN); the photoionisation and photoelectric heat-
+ing of HII regions by radiation associated with stars (including X-
+ray binaries) and the accretion discs of black holes (BHs); and ther-
+monuclear and core collapse supernovae (SNe). A second, often
+overlooked issue is that it is unknown what fraction of the incident
+energy is dissipated by radiative processes and thermal conduction
+(e.g. Orlando et al. 2005), and what fraction of the incident momen-
+tum is lost due to cancellation. Estimating these initial “losses” is a
+long-standing problem in the study of the ISM, not least because of
+the extreme resolution and dynamic range demands of the problem:
+the losses are typically established on scales signiﬁcantly smaller
+than a parsec (e.g. Mellema et al. 2002; Fragile et al. 2004; Yirak
+et al. 2010). This is at least three orders of magnitude smaller than
+the typical size of an ISM resolution element in simulations of large
+cosmological volumes.
+Since these losses cannot be modelled directly by cosmolog-
+ical simulations, their impact on resolved scales must be incorpo-
+rated into phenomenological “subgrid” treatments that approximate
+the action of unresolved processes, and couple them to resolved
+scales1. The implementation and parametrisation of subgrid rou-
+tines is therefore the greatest source of uncertainty in cosmological
+simulations, and adjustment of these characteristics can result in the
+dramatic alteration of simulation outcomes (Okamoto et al. 2005;
+Schaye et al. 2010; Haas et al. 2013a,b; Scannapieco et al. 2012;
+Vogelsberger et al. 2013; Le Brun et al. 2014; Torrey et al. 2014).
+Until small-scale losses can be accurately computed and appropri-
+ately incorporated into subgrid routines, it will remain impossible
+to formulate a truly predictive cosmological simulation that can, for
+example, yield ab initio estimates of the stellar mass of galaxies or
+the mass of their central BH.
+In a companion paper, Schaye et al. (2015, hereafter S15) ar-
+gue that the appropriate methodology is therefore to calibrate the
+parameters of subgrid routines, in order that simulations reproduce
+well characterised observables. The calibrated observables them-
+selves cannot then be advanced as predictions of the model, but
+those not considered during the calibration can reasonably be con-
+sidered as consequences of the implemented astrophysics. An ob-
+vious advantage of this approach is that, by ensuring that key prop-
+erties of the galaxy population are reproduced, simulations can be
+used to address the widest range of problems. A related advantage
+is that, since any alteration to the resolution of a calculation will in
+general necessitate a recalibration of the model, the adopted sub-
+grid routines need not sacriﬁce physical detail in order to realise
+numerical convergence.
+Adopting this philosophy, S15 introduced the “Evolution and
+Assembly of GaLaxies and their Environments” (EAGLE) project,
+a suite of cosmological hydrodynamical simulations of the ΛCDM
+cosmogony conducted by the Virgo Consortium2. Feedback from
+star formation and AGN is implemented thermally, such that out-
+ﬂows develop as a result of pressure gradients and without the need
+to impose winds ‘by hand’, for example by specifying their veloc-
+ity and mass loading with respect to the star formation rate. The
+parameters of the subgrid routines governing feedback associated
+with star formation and the growth of BHs are calibrated to repro-
+duce the observed z = 0.1 galaxy stellar mass function (GSMF)
+and the relation between the mass of galaxies and their central
+BH, respectively, whilst also seeking to yield galaxies with sizes
+(i.e. effective radius) similar to those observed. S15 focussed on
+the EAGLE reference model (“Ref”), and a complementary model
+designed to meet the calibration criteria at higher resolution (“Re-
+cal”)3. Besides demonstrating that cosmological simulations can
+be calibrated to reproduce these diagnostics successfully with un-
+precedented accuracy, the study showed that the simulations repro-
+duce a diverse and representative set of low-redshift observables
+that were not considered during the calibration process. In a sepa-
+rate paper, Furlong et al. (2014) show that the EAGLE simulations
+1 We refer to losses on these scales as “subgrid losses”. Losses induced
+by processes acting on scales that are resolved by cosmological simulations
+can also be signiﬁcant, and dependent upon the subgrid implementation; we
+term these “macroscopic losses”.
+2 See also http://eagle.strw.leidenuniv.nl and http://icc.dur.ac.uk/Eagle
+3 S15 also introduced a third model that better reproduces the observed
+properties of intragroup gas at intermediate resolution by adopting a higher
+AGN heating temperature (“AGNdT9”).
+
+
+EAGLE: calibration and model variations
+3
+also broadly reproduce the observed GSMF as early as z = 7, and
+accurately track its evolution to the present day.
+This paper introduces many more simulations from the EA-
+GLE project. The key aims of this study are to illustrate the reasons
+for the parametrisation adopted by the EAGLE reference model,
+and the sensitivity of its outcomes to the variation of the key sub-
+grid parameters. The simulations explored here are naturally di-
+vided into two categories. The ﬁrst comprises four simulations cal-
+ibrated to yield the z = 0.1 GSMF and central BH masses as a
+function of galaxy stellar mass. The models, one of which is the
+EAGLE reference model, differ in terms of the adopted subgrid
+efﬁciency of feedback associated with star formation, and the fash-
+ion by which this efﬁciency depends (if at all) upon the properties
+of the local environment. The successful reproduction of the cali-
+bration diagnostics by each of the models highlights that these ob-
+servables alone do not identify a unique “solution”, and indicates
+that complementary constraints are necessary to break modelling
+degeneracies and, potentially, motivate the inclusion of additional
+complexity.
+The second category comprises simulations each featuring a
+variation of a single subgrid parameter value with respect to the
+reference model. These calculations enable an examination of the
+role of these parameters in a fashion similar to the OWLS project
+(Schaye et al. 2010), and highlight the sensitivity of outcomes to
+the variation of these parameters. In common with complementary
+studies, these simulations indicate that the properties of the simu-
+lated galaxy population are most sensitive to the subgrid parameters
+governing the efﬁciency of energy feedback (Schaye et al. 2010;
+Scannapieco et al. 2012; Haas et al. 2013a,b; Vogelsberger et al.
+2013).
+This paper is structured as follows. The simulation initial con-
+ditions, and the algorithms used to evolve them, are described in
+§2. The parametrisation of the four models that are calibrated to re-
+produce the z = 0.1 GSMF is described in §3. Results from these
+simulations, which serve as a motivation for the development of
+the reference model, are presented in §4, where results from simu-
+lations featuring single-parameter variations of the reference model
+are also shown. Finally, the results are summarised and discussed
+in §5.
+2
+SIMULATIONS AND SUBGRID PHYSICS
+This section comprises an overview of the simulation setup and
+subgrid physics implementation. It includes similar information to
+Sections 3 & 4 of S15, so readers familiar with the simulations may
+wish to skip this section. A relatively comprehensive description
+of the subgrid implementations of star formation and feedback is
+retained here, because these details are a necessary foundation for
+later sections.
+The cosmological parameters assumed by the EAGLE sim-
+ulations are those recently inferred by the Planck Collaboration
+(2014a,b), the key parameters being Ωm = 0.307, ΩΛ = 0.693,
+Ωb = 0.04825, h = 0.6777 and σ8 = 0.8288. Initial conditions
+adopting these parameters were generated using a transfer function
+created with the CAMB software (Lewis et al. 2000), the 2nd-order
+Lagrangian perturbation theory method of Jenkins (2010), and the
+Gaussian white noise ﬁeld Panphasia (Jenkins 2013; Jenkins &
+Booth 2013). A complete description of the generation of the initial
+conditions is provided in Appendix B of S15, and the tools neces-
+sary to generate them independently are available online4.
+The simulations were evolved by a modiﬁed version of the
+N-body TreePM smoothed particle hydrodynamics (SPH) code
+GADGET3, last described by Springel (2005). The modiﬁcations
+comprise updates to the hydrodynamics algorithm and the time-
+stepping criteria, and the addition of subgrid routines governing
+the phenomenological implementation of processes occurring on
+scales below the resolution limit of the simulations. The updates
+to the hydrodynamics algorithm, which we collectively refer to as
+“Anarchy” (Dalla Vecchia in prep.), comprise an implementation
+of the pressure-entropy formulation of SPH derived by Hopkins
+(2013), the artiﬁcial viscosity switch proposed by Cullen & Dehnen
+(2010), an artiﬁcial conduction switch similar to that proposed by
+Price (2008), the C2 smoothing kernel of Wendland (1995), and the
+time-step limiter of Durier & Dalla Vecchia (2012).
+The subgrid routines represent an evolution of those used for
+the GIMIC (Crain et al. 2009), OWLS (Schaye et al. 2010) and
+cosmo-OWLS (Le Brun et al. 2014) projects, and include element-
+by-element radiative cooling and photoionisation heating for 11
+species, star formation, stellar mass loss, energy feedback from star
+formation, gas accretion onto and mergers of BHs, and AGN feed-
+back. The key updates with respect to the routines used by OWLS
+are the inclusion of a metallicity dependence in the star formation
+law, the implementation of energy feedback associated with star
+formation via stochastic thermal heating, and the inclusion of a vis-
+cous transport limit on the BH accretion rate.
+S15 introduced the resolution nomenclature of the EAGLE
+project. “Intermediate-resolution” simulations have particle masses
+corresponding to an L = 100 comoving Mpc (hereafter cMpc)
+volume realised with 2 × 15043 particles (an equal number of
+baryonic and dark matter particles), such that the initial gas par-
+ticle mass is mg = 1.81 × 106 M⊙, and the mass of dark mat-
+ter particles is mdm = 9.70 × 106 M⊙. The Plummer-equivalent
+gravitational softening length is ﬁxed in comoving units to 1/25
+of the mean interparticle separation (2.66 comoving kpc, here-
+after ckpc) until z = 2.8, and in proper units (0.70 proper kpc,
+hereafter pkpc) at later times. The intermediate-resolution simu-
+lations marginally resolve the Jeans scales at the star formation
+threshold (nH ≃10−1 cm−3) in the warm (T ≃104 K) ISM.
+“High-resolution” simulations adopt particle masses and softening
+lengths that are smaller by factors of eight and two, respectively.
+The SPH kernel size, speciﬁcally its support radius, is limited to
+a minimum of one-tenth of the gravitational softening scale. This
+study focusses on intermediate-resolution simulations using vol-
+umes of side L = 25, 50 and 100 cMpc, which therefore comprise
+2 × 3763, 2 × 7523 and 2 × 15043 particles, respectively.
+Galaxies and their host haloes are identiﬁed by a multi-stage
+process, beginning with the application of the friends-of-friends
+(FoF) algorithm (Davis et al. 1985) to the dark matter particle distri-
+bution, with a linking length of b = 0.2 times the mean interparticle
+separation. Gas, star and BH particles are associated with the FoF
+group, if any, of their nearest neighbour dark matter particle. The
+SUBFIND algorithm (Springel et al. 2001; Dolag et al. 2009) is
+then used to identify self-bound substructures, or subhaloes, within
+the full particle distribution (gas, stars, BHs and dark matter) of
+FoF haloes. The subhalo comprising the particle with the minimum
+gravitational potential, which is almost exclusively the most mas-
+sive subhalo, is deﬁned as the central subhalo, the remainder being
+4 See http://eagle.strw.leidenuniv.nl.
+
+
+4
+R.A.Crain et al.
+satellite subhaloes. The coordinate of the particle with the mini-
+mum potential also deﬁnes the position of the halo, about which
+is computed the spherical overdensity (SO; Lacey & Cole 1994)
+mass, M200, for the adopted density contrast of 200 times the crit-
+ical density, ρc. Satellite subhaloes separated from their central
+galaxy by less than the minimum of 3 pkpc and the stellar half-
+mass radius of the central galaxy are merged into the latter; this
+step eliminates a small number of low-mass subhaloes dominated
+by single, high-density gas particles or BHs. Finally, when quoting
+the properties of galaxies (e.g. stellar mass, star formation rate),
+only those subhalo particles within a spherical aperture of radius
+30 pkpc are considered. S15 (their Figure 6) demonstrated that this
+practice yields stellar masses comparable to those recovered within
+a projected circular aperture with the Petrosian radius at z = 0.1.
+2.1
+Radiative processes
+Radiative cooling and heating rates are computed on an element-
+by-element basis by interpolating tables, generated with CLOUDY
+(version 07.02, Ferland et al. 1998), that specify cooling rates as
+a function of density, temperature and redshift, under the assump-
+tion that the gas is optically thin, is in ionisation equilibrium, and
+is exposed to the cosmic microwave background and a spatially-
+uniform, temporally-evolving Haardt & Madau (2001) UV/X-ray
+background (for further details, see Wiersma et al. 2009a). The
+UV/X-ray background is imposed instantaneously at z = 11.5. To
+account for enhanced photoheating rates (relative to the optically
+thin rates assumed here) during the epochs of reionisation, 2 eV
+per proton mass is injected, rapidly heating gas to ∼104 K. This
+is done instantaneously at z = 11.5 (consistent with Planck con-
+straints) for HI reionisation, but for HeII the energy injection is dis-
+tributed in redshift with a Gaussian function centred about z = 3.5
+with a width of σ(z) = 0.5. This ensures that the thermal evolution
+of the intergalactic medium mimics that inferred by Schaye et al.
+(2000).
+2.2
+The ISM and star formation
+Simulations of large cosmological volumes lack, in general, the
+resolution and physics to model the cold (T
+≪104 K) inter-
+stellar gas phase from which molecular clouds and stars form. A
+global temperature ﬂoor, Teos(ρ) is therefore imposed, correspond-
+ing to a polytropic equation of state, Peos ∝ργeos, normalised
+to Teos = 8000 K at nH = 0.1 cm−3. A ﬁducial polytrope of
+γeos = 4/3 is adopted, since this ensures that the Jeans mass, and
+the ratio of the Jeans length to the SPH support radius, are inde-
+pendent of density, thus inhibiting spurious fragmentation (Schaye
+& Dalla Vecchia 2008). The effect of varying γeos is explored in
+§ 4.2, where simulations conducted using isothermal (γeos = 1)
+and adiabatic (γeos = 5/3) equations of state are examined.
+A second temperature ﬂoor of 8000 K is imposed for gas with
+nH > 10−5 cm−3, which prevents metal-rich gas from cooling
+to very low temperatures, since the physical processes required to
+model dense, low-temperature gas are not included here. This ﬂoor
+does not apply to low-density (i.e. intergalactic) gas, since such gas
+cools adiabatically and is modelled accurately by the hydrodynam-
+ics scheme.
+Star formation is implemented stochastically, based on the
+pressure law scheme of Schaye & Dalla Vecchia (2008). Under the
+(reasonable) assumption that star-forming gas is self-gravitating,
+the observed Kennicutt-Schmidt star formation law (Kennicutt
+1998),
+˙Σ⋆= A
+
+Σg
+1 M⊙pc−2
+n
+,
+(1)
+where Σ⋆and Σg are the surface density density of stars and gas,
+respectively, can be expressed as:
+˙m∗= mgA
+ 1 M⊙pc−2−n  γ
+GfgP
+(n−1)/2
+,
+(2)
+where mg is the gas particle mass, γ = 5/3 is the ratio of speciﬁc
+heats (and should not be confused with γeos), G is the gravitational
+constant, fg is the mass fraction in gas (assumed to be unity), and
+P is the total pressure. This pressure law implementation is ad-
+vantageous for two reasons. Firstly, the free parameters of the star
+formation law (A, n) are speciﬁed explicitly by observations: the
+values A = 1.515 × 10−4 M⊙yr−1 kpc−2 and n = 1.4 (n = 2
+for nH > 103 cm−3) are adopted, where the value of A has been
+adjusted from that reported by Kennicutt (1998) to convert from the
+Salpeter initial stellar mass function (IMF) to the Chabrier (2003)
+form adopted by the simulations. Secondly, this implementation
+guarantees that the observed Kennicutt-Schmidt relation is repro-
+duced for any equation of state (i.e. any combination of Teos and
+γeos) applied to star-forming gas. This is in contrast to volumet-
+ric star formation laws, which must be recalibrated whenever the
+equation of state is altered.
+Star formation occurs only in cold, dense gas, requiring that
+a density threshold for star formation, n⋆
+H, be imposed. Since the
+transition from a warm, neutral phase to a cold, molecular one
+occurs at lower densities and pressures in metal-rich (and hence
+dust-rich) gas, we adopt the metallicity-dependent star formation
+threshold proposed by Schaye (2004), which was implemented in
+the OWLS simulation “SFTHRESHZ”:
+n⋆
+H(Z) = min
+"
+0.1 cm−3
+
+Z
+0.002
+−0.64
+, 10 cm−3
+#
+(3)
+where Z is the gas metallicity. Hydrogen number density, nH, is
+related to the overall gas density, ρ, via nH ≡Xρ/mH, where X
+is the hydrogen mass fraction and mH is the mass of a hydrogen
+atom. To examine the effects, if any, of adopting this metallicity-
+dependent threshold, the EAGLE suite includes a simulation that
+adopts a constant threshold of n⋆
+H = 0.1 cm−3, which was the
+ﬁducial approach of OWLS. In both cases, to prevent star formation
+in low-overdensity gas at high redshift, star-forming gas is required
+to have an overdensity δ > 57.7.
+2.3
+Stellar evolution and mass loss
+The implementation of stellar evolution and mass loss is based
+upon that described by Wiersma et al. (2009b). Star particles are
+treated as simple stellar populations (SSPs) with an IMF of the form
+proposed by Chabrier (2003), spanning the range 0.1 −100 M⊙.
+At each time step and for each stellar particle, those stellar masses
+reaching the end of the main sequence phase are identiﬁed using
+metallicity-dependent lifetimes, and the fraction of the initial parti-
+cle mass reaching this evolutionary stage is used, together with the
+particle initial elemental abundances and nucleosynthetic yield ta-
+bles, to compute the mass of each element that is lost through winds
+from AGB stars, winds from massive stars, and type II SNe. Eleven
+elements are tracked, and the mass and energy lost through type Ia
+SNe is also computed, assuming the rate of type Ia SNe per unit
+stellar mass is speciﬁed by an empirically-motivated exponential
+delay function.
+
+
+EAGLE: calibration and model variations
+5
+2.4
+Energy feedback from star formation
+Stars inject energy and momentum into the ISM via stellar winds,
+radiation, and SNe. These processes are particularly important for
+massive, short-lived stars and, if star formation is sufﬁciently vig-
+orous, the associated feedback can drive large-scale galactic out-
+ﬂows (e.g. Veilleux et al. 2005). At present, simulations of large
+cosmological volumes lack the resolution necessary to model the
+self-consistent development of outﬂows from feedback injected on
+the scales of individual star clusters, and must appeal to a subgrid
+treatment.
+In the simplest implementation of energy feedback by thermal
+heating, the energy produced at each timestep by a star particle is
+distributed to a number of its neighbouring hydrodynamic resolu-
+tion elements, supplementing their internal energy. Dalla Vecchia
+& Schaye (2012, see also Dalla Vecchia & Schaye 2008, Creasey
+et al. 2011, Keller et al. 2014 and Creasey et al. 2015) argue that the
+feedback energy (canonically ∼1051 erg per 100 M⊙for a stan-
+dard IMF if considering SNe as the sole energy source) is initially
+distributed over too much mass: the mass of at least one resolution
+element, O(104 −107) M⊙, rather than that of the actual ejecta,
+O(100 −101) M⊙. The resulting temperature increment is then far
+smaller than in reality, and by extension the radiative cooling time
+of the heated gas is much too short. Pressure gradients established
+by the heating are too shallow and, perhaps more importantly, are
+typically erased on a (radiative) timescale shorter than the sound
+crossing time of a resolution element.
+The EAGLE simulations adopt the stochastic thermal feed-
+back scheme of Dalla Vecchia & Schaye (2012), in which the tem-
+perature increment, ∆TSF, of heated resolution elements is speci-
+ﬁed. Besides enabling one to mitigate the problem described above,
+a stochastic implementation of feedback is advantageous because it
+enables the quantity of energy injected per feedback event to be
+speciﬁed, even if the mean quantity of energy injected per unit
+stellar mass formed is ﬁxed. Having speciﬁed ∆TSF, the proba-
+bility that a resolution element neighbouring a young star particle
+is heated, is determined by the fraction of the energy budget that
+is available for feedback5. For consistency with the nomenclature
+introduced by Dalla Vecchia & Schaye (2012), we refer to this frac-
+tion as fth.
+We adopt the convention that fth = 1 equates to an ex-
+pectation value of the injected energy of 1.736 × 1049 erg M−1
+⊙
+(8.73 × 1015 erg g−1) of stellar mass formed. This corresponds to
+the energy available from type II SNe resulting from a Chabrier
+IMF, subject to two assumptions. Firstly, that 6 −100 M⊙stars are
+the progenitors of type II SNe (6 −8 M⊙stars explode as elec-
+tron capture supernovae in models with convective overshoot; e.g.
+Chiosi et al. 1992), and secondly that each SN liberates 1051 erg.
+We inject energy once for each star particle, when it reaches an age
+of 30 Myr.
+For thermal feedback to be effective, the pressure gradient es-
+tablished by the heating must be able to perform work on the gas
+(via sound waves, or shocks for supersonic ﬂows) on a timescale
+that is shorter than that required to erase the gradient via radiative
+cooling. By comparing the sound crossing and cooling timescales
+5 Durier & Dalla Vecchia (2012) show that implementations of kinetic and
+thermal feedback converge to similar solutions in the limit that the cool-
+ing time is long. We adopt a thermal implementation here for consistency
+with our AGN feedback implementation, and because numerical tests indi-
+cate that it is less susceptible to problems stemming from poor numerical
+sampling of outﬂows.
+for heated resolution elements, Dalla Vecchia & Schaye (2012) de-
+rived an estimate for the maximum gas density, nH,tc, at which
+their stochastic heating scheme can be efﬁcient (their equation 18),
+nH,tc ∼10 cm−3
+
+T
+107.5 K
+3/2 
+mg
+106 M⊙
+−1/2
+,
+(4)
+where T > ∆TSF is the post-heating temperature. For simplic-
+ity, the cooling is assumed to be Bremsstrahlung-dominated, so the
+value of nH,tc will be over-estimated in the temperature regime
+where (metal-)line cooling dominates (T ≪107 K). S15 noted that
+some stars do form in the EAGLE simulations from gas with den-
+sity greater than the critical value, in which case the spurious (nu-
+merical) radiative losses are signiﬁcant. In the case of such losses
+being signiﬁcant, the energy budget used to reproduce the GSMF
+in the simulation will likely be an overestimate of that required in
+Nature.
+Equation 4 indicates that numerical losses associated with
+stars forming from high-density gas can be mitigated by appeal-
+ing to a higher heating temperature, ∆TSF. However, this is not an
+ideal solution. For a ﬁxed quantity of feedback energy per stellar
+mass formed (i.e. constant fth), the probability that a star particle
+triggers a heating event is inversely proportional to ∆TSF. Based
+on the energy budget described above, the expectation value of the
+number of resolution elements (in this case, SPH particles) heated
+by a star particle is speciﬁed by Dalla Vecchia & Schaye (2012,
+equation 8) as:
+⟨Nheat⟩≈1.3fth
+ ∆TSF
+107.5 K
+−1
+.
+(5)
+In the regime of ∆TSF ≫107.5 K, the probability of heating a
+single resolution element becomes small, leading to poor sampling
+of the feedback cycle. We therefore only consider models adopting
+∆TSF = 107.5 K.
+If ∆TSF is sufﬁciently high to ensure that numerical losses
+are small, the physical efﬁciency of feedback can be controlled by
+adjusting fth. This mechanism is a means of modelling the sub-
+grid radiative losses that are not addressed by our simple treatment
+of the ISM. Because these losses should depend on the physical
+conditions in the ISM, there is physical motivation to specify fth
+as a function of the local properties of the gas. Primarily, it is the
+freedom to adjust fth that enables the simulations to be calibrated.
+2.5
+Black holes and AGN feedback
+Feedback associated with the growth of BHs is an essential ingredi-
+ent of the EAGLE simulations. Besides regulating the growth of the
+BHs, AGN feedback quenches star formation in massive galaxies
+and shapes the gas proﬁles of their host haloes. The implementa-
+tion adopted here consists of two elements, namely i) a prescription
+for seeding galaxies with BHs and for following their growth via
+mergers and gas accretion, and ii) a prescription for coupling the
+radiated energy, liberated by BH growth, to the ISM. The method
+for the former is based on that introduced by Springel et al. (2005)
+and modiﬁed by Booth & Schaye (2009) and Rosas-Guevara et al.
+(2013), while the method for the latter is similar to that described
+by Booth & Schaye (2009).
+Following Springel et al. (2005), seed BHs are placed at the
+centre of every halo more massive than 1010 M⊙/h that does not
+already contain a BH. Candidate haloes are identiﬁed by running a
+FoF algorithm with linking length b = 0.2 on the dark matter dis-
+tribution. When a seed is required, the highest density gas particle
+
+
+6
+R.A.Crain et al.
+is converted into a collisionless BH particle, inheriting the parti-
+cle mass and acquiring a subgrid BH mass mBH = 105 M⊙/h
+which, for the intermediate resolution simulations considered here,
+is smaller than the initial gas particle mass by a factor of 12.3. Cal-
+culations of BH properties are therefore functions of mBH, whilst
+gravitational interactions are computed using the particle mass.
+When the subgrid BH mass exceeds the particle mass, BH particles
+stochastically accrete neighbouring gas particles such that particle
+and subgrid BH masses grow in concert. BHs are prevented from
+“wandering” out of their parent haloes by forcing those with mass
+< 100mg to migrate towards the position of the minimum of the
+gravitational potential in their halo.
+BHs are merged if separated by a distance that is smaller than
+both the BH kernel size, hBH, and three gravitational softening
+lengths, and if their relative velocity is smaller than the circular ve-
+locity at the distance hBH, vrel <
+p
+GmBH/hBH, where hBH and
+mBH are, respectively, the SPH kernel size and the subgrid mass
+of the most massive BH in the pair. The relative velocity thresh-
+old prevents BHs from merging during the initial stages of galaxy
+mergers.
+2.5.1
+Gas accretion onto black holes
+The gas accretion rate, ˙maccr, is speciﬁed by the minimum of the
+Eddington rate,
+˙mEdd = 4πGmBHmp
+ϵrσTc
+,
+(6)
+and
+˙maccr = min
+ ˙mBondi[(cs/Vφ)3/Cvisc], ˙mBondi
+
+,
+(7)
+where ˙mBondi is the Bondi-Hoyle (1944) rate applicable to spheri-
+cally symmetric accretion,
+˙mBondi = 4πG2m2
+BHρ
+(c2s + v2)3/2 .
+(8)
+Here mp is the proton mass, σT the Thomson cross section, c the
+speed of light, ϵr the radiative efﬁciency of the accretion disc, and v
+the relative velocity of the BH and the gas. Finally, Vφ is the circu-
+lation speed of the gas around the BH computed using equation 16
+of Rosas-Guevara et al. (2013) and Cvisc is a free parameter related
+to the viscosity of a notional subgrid accretion disc. The growth of
+the BH is speciﬁed by
+˙mBH = (1 −ϵr) ˙maccr.
+(9)
+We assume a radiative efﬁciency of ϵr
+=
+0.1. The factor
+(cs/Vφ)3/Cvisc by which the Bondi rate is multiplied in equation
+7 is equivalent to the ratio of the Bondi and viscous time scales
+(see Rosas-Guevara et al. 2013). The critical ratio of Vφ/cs above
+which angular momentum is assumed to suppress the accretion rate
+scales as C−1/3
+visc . Larger values of Cvisc therefore correspond to a
+lower subgrid kinetic viscosity, and so act to delay the growth of
+BHs by gas accretion and, by extension, the onset of quenching by
+AGN feedback.
+2.5.2
+AGN feedback
+A single mode of AGN feedback is adopted, whereby energy is
+injected thermally and stochastically, in a manner analogous to en-
+ergy feedback from star formation (see § 2.4). The energy injection
+rate is ϵfϵr ˙maccrc2, where ϵf is the fraction of the radiated energy
+that couples to the ISM. In common with the efﬁciency of feed-
+back associated with star formation, fth, the value of ϵf must be
+chosen by calibrating to observations. Because of self-regulation,
+the value of ϵf only affects the masses of BHs (Booth & Schaye
+2009), which vary inversely with ϵf, and it has little effect on the
+stellar mass of galaxies (provided its value is non-zero). The pa-
+rameter ϵf can be calibrated by ensuring the normalisation of the
+observed relation between BH mass and stellar mass is reproduced
+at z = 0. Although implemented as a single heating mode, Mc-
+Carthy et al. (2011) demonstrate that this scheme mimics quiescent
+‘radio’-like and vigorous ‘quasar’-like AGN modes when the BH
+accretion rate is a small (≪1) or large (∼1) fraction of the Ed-
+dington rate, respectively.
+S15 demonstrated that the efﬁciency adopted by OWLS, ϵf =
+0.15, remains a suitable choice at the higher resolution of EAGLE.
+Therefore, a fraction ϵfϵr = 0.015 of the accreted rest mass en-
+ergy is coupled to the local ISM as feedback. Each BH maintains
+a “reservoir” of feedback energy, EBH. After each time step ∆t,
+an energy ϵfϵr ˙maccrc2∆t is added to the reservoir. Once a BH has
+stored sufﬁcient energy to heat at least one ﬂuid element of mass
+mg, it becomes eligible to heat, stochastically, its SPH neighbours
+by increasing their temperature by ∆TAGN. For each neighbour the
+heating probability is
+P =
+EBH
+∆ϵAGNNngb ⟨mg⟩,
+(10)
+where ∆ϵAGN is the change in internal energy per unit mass cor-
+responding to the temperature increment, ∆TAGN (the parameter
+∆TAGN is converted into ∆ϵAGN assuming a fully ionised gas of
+primordial composition), Nngb is the number of gas neighbours of
+the BH and ⟨mg⟩is their mean mass. The value of EBH is then
+reduced by the expectation value of the injected energy. The time
+step of the BHs is limited to aim for probabilities P < 0.3.
+Larger values of ∆TAGN yield more energetic feedback
+events, generally resulting in reduced radiative losses (as per equa-
+tion 4). However, larger values also make the feedback more inter-
+mittent. In general, the ambient density of gas local to the central
+BH of galaxies is greater than that of star-forming gas distributed
+throughout their discs, so a higher heating temperature is required
+to minimise numerical losses6. The EAGLE reference model pre-
+sented by S15 adopts ∆TAGN = 108.5 K. In that study an alterna-
+tive intermediate-resolution model was also presented (model “AG-
+NdT9”) which, by appealing to ∆TAGN = 109 K, was found to
+more accurately reproduce the observed gas fractions and X-ray
+luminosities of galaxy groups. This higher temperature increment
+was also found to be necessary in high-resolution simulations, since
+they resolve higher ambient densities close to BHs and hence ex-
+hibit higher cooling rates.
+The values of the relevant subgrid parameters adopted by all
+simulations featured in this study are listed in Table 1.
+3
+CALIBRATED SIMULATIONS
+As discussed by S15 (see their § 2), if subgrid models for energy
+feedback offer an incomplete description of the processes they are
+6 BHs are in principle able to inject feedback energy at all times, unlike
+star particles which inject prompt feedback only once. The AGN feedback
+cycle can therefore remain well sampled for higher heating temperatures
+than is the case for star formation feedback, as long as the interval between
+heating events is shorter than a Salpeter time (Booth & Schaye 2009).
+
+
+EAGLE: calibration and model variations
+7
+Identiﬁer
+Side length
+N
+γeos
+n⋆
+H
+fth-scaling
+fth,max
+fth,min
+nH,0
+nn
+Cvisc/2π
+∆TAGN
+[ cMpc]
+[cm−3]
+[cm−3]
+log10 [K]
+Calibrated models
+FBconst
+50
+752
+4/3
+Eq. 3
+−
+1.0
+1.0
+−
+−
+103
+8.5
+FBσ
+50
+752
+4/3
+Eq. 3
+σ2
+DM
+3.0
+0.3
+−
+−
+102
+8.5
+FBZ
+50
+752
+4/3
+Eq. 3
+Z
+3.0
+0.3
+−
+−
+102
+8.5
+Ref (FBZρ)
+50
+752
+4/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+8.5
+Ref variations
+eos1
+25
+376
+1
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+8.5
+eos5/3
+25
+376
+5/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+8.5
+FixedSfThresh
+25
+376
+4/3
+0.1
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+8.5
+WeakFB
+25
+376
+4/3
+Eq. 3
+Z, ρ
+1.5
+0.15
+0.67
+2/ ln 10
+100
+8.5
+StrongFB
+25
+376
+4/3
+Eq. 3
+Z, ρ
+6.0
+0.6
+0.67
+2/ ln 10
+100
+8.5
+ViscLo
+50
+752
+4/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+102
+8.5
+ViscHi
+50
+752
+4/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+10−2
+8.5
+AGNdT8
+50
+752
+4/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+8.0
+AGNdT9
+50
+752
+4/3
+Eq. 3
+Z, ρ
+3.0
+0.3
+0.67
+2/ ln 10
+100
+9.0
+Table 1. Parameters that are varied in the simulations. Columns are: the side length of the volume (L) and the particle number per species (i.e. gas, DM) per
+dimension (N), the power law slope of the polytropic equation of state (γeos), the star formation density threshold (n⋆
+H), the scaling variable of the efﬁciency
+of star formation feedback (fth), the asymptotic maximum and minimum values of fth, the Ref model’s density term denominator (nH,0) and exponent
+(nn) from equation 14, the subgrid accretion disc viscosity parameter (Cvisc) from equation 7, and the temperature increment of stochastic AGN heating
+(∆TAGN). The upper section comprises the four models that have been calibrated to reproduce the z = 0.1 GSMF, and the lower section comprises models
+featuring a single-parameter variations of Ref (varied parameter highlighted in bold). All models also adopt nZ = 2/ ln 10 with the exceptions of FBσ, for
+which the parameter nZ is replaced by nT with the same numerical value (see equation 12), and FBconst, for which the parameter is inapplicable.
+designed to model, are subject to numerical losses, or if the out-
+comes of the prescriptions are sensitive to resolution, then the true
+efﬁciencies of feedback processes cannot be predicted from ﬁrst
+principles. It was therefore argued that cosmological hydrodynami-
+cal simulations are presently unable to yield ab initio predictions of
+the stellar mass of galaxies, nor the mass of their central BH. Sub-
+grid parameters should therefore be calibrated such that simulations
+reproduce desired diagnostic quantities, stellar and BH masses be-
+ing germane examples.
+The optimal approach to calibrating subgrid models is not un-
+ambiguous, since there can be multiple measurable outcomes that
+are sensitive to the adjustment of subgrid parameters, some or all
+of which might reasonably be considered valid constraints. For ex-
+ample, in the case of feedback efﬁciencies, one might calibrate the
+model to reproduce the velocity and/or mass loading of outﬂowing
+gas. However, these quantities remain ill-characterised observation-
+ally, and are sensitive to the physical scale on which they are mea-
+sured (which is generally not even well known). Reproducing the
+properties of outﬂows on a particular spatial scale offers no guar-
+antee that they are reproduced on other scales, since, for example,
+the interaction of outﬂows with the circumgalactic medium may be
+inadequately modelled. The choice of calibration diagnostic(s) is
+therefore somewhat arbitrary, but some choices can be more read-
+ily motivated. Clearly, it is necessary that any diagnostic be well
+characterised observationally on the scales resolved by the simu-
+lation. Perhaps the most elegant example is the star formation law
+which, on the ∼102 pc scales we follow in the ISM, can be accu-
+rately represented by the Kennicutt-Schmidt relation; as described
+in § 2.2, the free parameters of the subgrid star formation law are
+unambiguously prescribed by observations. In addition, it is desir-
+able to confront calibrated models with complementary observa-
+tional constraints, to minimise the risk of overlooking modelling
+degeneracies.
+We chose to calibrate the feedback simulations to the z = 0.1
+GSMF, a practice commonly adopted by the semi-analytic galaxy
+formation modelling community. Low-redshift galaxy surveys en-
+able the GSMF to be characterised in the local Universe across ﬁve
+decades in mass scale, with a precision that is, assuming a univer-
+sal IMF, limited primarily by systematic uncertainties in the stellar
+evolution models used to infer the masses (Conroy et al. 2009; Pforr
+et al. 2012, but see Taylor et al. 2011), peculiar velocity corrections
+for faint galaxies (e.g. Baldry et al. 2012), and the method used
+to subtract the sky background from bright galaxies (e.g. Bernardi
+et al. 2013; Kravtsov et al. 2014). An additional motivation for ap-
+pealing to the GSMF as the calibration diagnostic is that its re-
+production by the simulations is a prerequisite for examination of
+many observable scaling relations.
+Whilst calibrating the simulations, attention was also paid to
+the sizes of galaxies. As with the calibration diagnostic, this choice
+is somewhat arbitrary, but it is readily motivated since the formation
+of unrealistically compact or extended galaxies would limit the util-
+ity of the simulations and likely indicate physical and/or numerical
+inaccuracies. The formation of disc galaxies with realistic sizes in
+cosmological simulations has proven to be a non-trivial challenge,
+leading to the identiﬁcation and rectiﬁcation of many shortcomings
+of numerical techniques (e.g. Sommer-Larsen et al. 1999; Ritchie &
+Thomas 2001; Marri & White 2003; Okamoto et al. 2003; Agertz
+et al. 2007; Springel 2010; Hopkins 2013, 2014). In terms of the
+physics of galaxy assembly, Navarro & White (1994) identiﬁed the
+transfer of angular momentum from cold, dense clumps of baryons
+to the non-dissipative dark matter residing at the outskirts of galaxy
+haloes as the major concern. In a comprehensive simulation com-
+parison project, Scannapieco et al. (2012) highlighted that the angu-
+lar momentum problem (and also the overcooling problem) remains
+without a consistent solution, and therefore that galaxy sizes cannot
+yet be uniquely predicted, even when the assembly history of their
+parent halo is fully speciﬁed. It cannot be assumed that the sizes
+of galaxy discs will be accurately reproduced by simulations, even
+
+
+8
+R.A.Crain et al.
+if they successfully reproduce a suitable calibration diagnostic. For
+this reason, we require a model to reproduce both the GSMF and
+the observed size-mass relation of disc galaxies7 at low-redshift, in
+order for the calibration process to be deemed successful.
+The subgrid model governing feedback associated with star
+formation in EAGLE is primarily dependent upon the IMF, fth and
+∆TSF. A universal IMF is adopted throughout, and the adoption of
+a ﬁxed ∆TSF = 107.5 K was motivated in § 2.4. Therefore, energy
+feedback associated with star formation is calibrated exclusively
+by varying fth, the fraction of the total available energy from type
+II SNe that couples to the ISM. The main effect on the GSMF of
+increasing (decreasing) fth is to lower (raise) its normalisation in
+terms of the comoving number density of galaxies with stellar mass
+below the “knee” of the Schechter (1976) function (demonstrated
+in § 4.2.3).
+The subgrid model governing AGN feedback in EAGLE is pri-
+marily dependent upon ϵf, Cvisc and ∆TAGN. The retention of the
+AGN feedback efﬁciency adopted by OWLS (ϵf = 0.15) was mo-
+tivated in § 2.5.2. In contrast to ∆TSF, whose value is ﬁxed by the
+need to suppress numerical radiative losses and to adequately sam-
+ple the feedback process, the freedom to adjust ∆TAGN, which de-
+termines the energetics and intermittency of AGN feedback events,
+can be motivated. We therefore explore simulations with different
+AGN heating temperatures but, in terms of the calibration of galaxy
+properties, ∆TAGN only (weakly) affects the stellar mass of galax-
+ies with M⋆≳1011 M⊙(it does, however, impact markedly upon
+the properties of the intragroup and intracluster media, e.g. Le Brun
+et al. 2014; Schaye et al. 2015). For the purposes of reproducing the
+present-day GSMF, AGN feedback is primarily calibrated by vary-
+ing Cvisc, which broadly governs the mass scale at which AGN
+feedback becomes efﬁcient. Since this mass scale is weakly depen-
+dent upon Cvisc, models can adopt values of this parameter that
+differ by orders of magnitude.
+The calibration of phenomenological components of galaxy
+formation models is a practice that was established during the de-
+velopment of the ﬁrst generation of semi-analytic galaxy formation
+models8 (Kauffmann et al. 1993; Cole et al. 1994; Somerville &
+Primack 1999; Cole et al. 2000; Hatton et al. 2003). Semi-analytic
+models are built upon the framework of dark matter halo merger
+trees, so the parameters they adopt for governing feedback must be
+coupled to simpliﬁed models for the structure of galaxies and their
+interstellar and circumgalactic media. In contrast, hydrodynamical
+simulations enable feedback properties to be speciﬁed, if so de-
+sired, based on the physical conditions local to newly formed star
+particles.
+Thus far the capability to specify feedback parameters in this
+fashion has only been exploited by a limited number of groups,
+each using a very similar feedback implementation: kinetically-
+driven winds that are launched outside of the ISM (by decoupling
+the wind particles from hydrodynamic forces), and whose proper-
+ties are imposed by specifying their initial velocity and mass load-
+ing factor (η =
+˙Mwind/ ˙M⋆) as a function of the properties of the
+dark matter environment, for example the gravitational potential
+or velocity dispersion. Simulations adopting this implementation
+7 The size evolution of both late- and early-type galaxies will be explored
+in detail in a forthcoming paper (Furlong et al. in prep).
+8 Modern semi-analytic models often adopt distribution sampling tech-
+niques to efﬁciently calibrate their many free parameters (Kampakoglou
+et al. 2008; Henriques et al. 2009; Bower et al. 2010; Lu et al. 2012; Mutch
+et al. 2013; Henriques et al. 2013, 2014).
+have been used to investigate the establishment of the GSMF (Op-
+penheimer et al. 2010; Puchwein & Springel 2013; Vogelsberger
+et al. 2013) and the formation of disc galaxies similar to the Milky
+Way (Marinacci et al. 2014), to examine the observed properties of
+some intergalactic absorption systems (Oppenheimer & Dav´e 2006,
+2009; Vogelsberger et al. 2014b) and to reproduce the Local Group
+satellite population (Okamoto et al. 2010).
+This implementation is well-motivated since, by temporarily
+decoupling winds and specifying their properties as a function of
+dark matter properties, it affords simulations the best opportunity
+to achieve numerical convergence. However, it precludes the full
+exploitation of the hydrodynamics calculation. The physical prop-
+erties of outﬂows are almost certainly dependent upon the local
+(baryonic) conditions of the ISM, and these properties are avail-
+able to use as inputs to subgrid feedback models. Since the phi-
+losophy adopted for the EAGLE project is to calibrate the feedback
+scheme, the convergence demands placed upon the adopted subgrid
+models are relaxed, presenting the appealing opportunity to couple
+the value of subgrid parameters (e.g. fth) to the baryonic properties
+of the local ISM9.
+3.1
+Calibrating the star formation feedback efﬁciency
+The role of fth in shaping the z = 0.1 GSMF is investigated in
+this section. Examination of the previous generation of simulations
+upon which the EAGLE project is based indicates that AGN feed-
+back is a necessary ingredient for regulating the growth of mas-
+sive galaxies (Crain et al. 2009; Schaye et al. 2010; Haas et al.
+2013a) and establishing the gas-phase properties of galaxy groups
+(McCarthy et al. 2010, 2011; Le Brun et al. 2014). Four calibrated
+simulations are explored, each featuring energy feedback associ-
+ated with both star formation and the growth of BHs. All four sim-
+ulations adopt ∆TAGN = 108.5 K, and each features a constant
+value of Cvisc that is allowed to differ between simulations such
+that, when combined with the function specifying fth, the result-
+ing z = 0.1 GSMF features a break close to the observed scale of
+M ⋆∼1010.5 M⊙.
+In three of the models, asymptotic efﬁciencies of fth,max = 3
+and fth,min = 0.3 are used. Values greater than unity can be mo-
+tivated physically, since there are sources of energy feedback other
+than type II SNe, and indeed such sources are often invoked in sim-
+ulations of galaxy formation, for example stellar winds and radia-
+tion pressure (Stinson et al. 2013; Hopkins et al. 2014) or cosmic
+rays (Jubelgas et al. 2008; Booth et al. 2013). However the pri-
+mary motivation for appealing to fth > 1 here is to offset numer-
+ical losses that result from the ﬁnite resolution of the simulations.
+There are two means by which ﬁnite resolution introduces artiﬁcial
+losses. The ﬁrst, as discussed in §2.4 (equation 4), being that there
+exists a maximum density above which stochastic thermal feedback
+is inefﬁcient, because the pressure gradient established by feedback
+is erased by radiative cooling before it is able to exert mechanical
+work on the gas. The second stems from the inability of large cos-
+mological simulations to model the formation of the earliest gen-
+eration of stars. As discussed by Haas et al. (2013a), this means
+that the ﬁrst generation of galaxies that form in simulations do so
+9 S15 introduced the nomenclature “weak convergence” to describe the
+consistency of simulation outcomes in the case that subgrid parameters are
+recalibrated when the resolution is changed, as opposed to “strong conver-
+gence” in the case of holding the parameters ﬁxed.
+
+
+EAGLE: calibration and model variations
+9
+Figure 1. The fraction of the energy budget due to type II SNe feedback
+that is used for thermal heating, fth, in the FBconst, FBσ, FBZ and Ref
+models. The FBconst model, represented by the dashed grey line, adopts
+fth = 1, independent of local conditions. fth declines smoothly as a func-
+tion of TDM in the FBσ model (equation 12), and as a function of Z in the
+FBZ model (equation 13). The upper axis is aligned and scaled such that
+both FBσ (upper axis) and FBZ (lower axis) are described by the dark blue
+curve (no physical correspondence between TDM and Z is implied by this
+alignment). The Ref model adds a density dependence to FBZ (equation
+14), such that for stars forming from gas with nH < nH,0 the fth function
+is shifted to lower values (e.g. cyan curve for nH = nH,0/3) and vice versa
+(e.g. red curve for nH = 3nH,0).
+within haloes that have not been subject to feedback, and hence ex-
+hibit unrealistically high gas fractions and star formation efﬁcien-
+cies. Appealing to fth > 1 for these galaxies partially compensates
+for this unavoidable shortcoming.
+FBconst
+The simplest model injects into the ISM a ﬁxed quantity of energy
+per unit stellar mass formed, independent of local conditions. This
+value corresponds to the total energy liberated by type II SNe, i.e.
+fth = 1. The adopted subgrid viscosity parameter for BH accretion
+is Cvisc = 2π × 103. Although the injected energy is independent
+of local conditions, scale-dependent macroscopic radiative losses
+can nonetheless develop self-consistently, for example due to dif-
+ferences in the metallicity (and hence cooling rate) of outﬂowing
+gas, the ram pressure at the disc-CGM interface, or the depth of
+the potential well. This model therefore provides a baseline against
+which it is possible to assess the degree to which the overall phys-
+ical losses need to be established by calibrating losses on subgrid
+scales. Because fth = 1 represents the uncalibrated case, there
+is no reason to expect that FBconst will reproduce the observed
+z = 0.1 GSMF. However, we will see later that it does do so, but
+fails to reproduce the observed sizes of disc galaxies.
+FBσ
+This model adopts the popular convention of prescribing feed-
+back parameters according to local conditions inferred from neigh-
+bouring dark matter particles (Oppenheimer & Dav´e 2006, 2008;
+Okamoto et al. 2010; Oppenheimer et al. 2010; Puchwein &
+Springel 2013; Vogelsberger et al. 2013; Khandai et al. 2014; Vo-
+gelsberger et al. 2014a). However, because these studies all adopt
+kinetically-driven outﬂows imposed outside of the ISM, and spec-
+ify the properties of the outﬂows by imposing a mass loading and
+initial wind velocity, our implementation is signiﬁcantly differ-
+ent. Rather than specifying the properties of the outﬂows, sim-
+ilar behaviour on macroscopic scales is sought as an outcome
+of the stochastic heating implementation, by calibrating the efﬁ-
+ciency, fth, as a function of σ2
+DM. The latter is the square of the
+3-dimensional velocity dispersion of dark matter particles within
+the smoothing kernel of a star particle at the instant it is born, and
+is a proxy for the characteristic virial scale of the star particle’s
+environment,
+TDM = µmpσ2
+DM
+3k
+≃(4 × 105 K)µ
+
+σDM
+100 kms−1
+2
+.
+(11)
+For simplicity, we assume at all times the mean molecular weight
+of a fully ionized gas with primordial composition, µ = 0.591.
+The ﬁt to the z = 0.1 GSMF for this model is achieved with a
+slightly higher subgrid viscosity for BH accretion than is the case
+for FBconst, Cvisc = 2π × 102.
+Since the properties of star formation-driven outﬂows are
+linked to the state of local dark matter only via gravitational forces,
+no physical motivation for fth(TDM) is sought. The adopted func-
+tional form simply maximises the feedback efﬁciency (by minimis-
+ing putative subgrid radiative losses) in low-mass galaxies, whilst
+reducing the feedback efﬁciency in more massive counterparts,
+where the conversion of gas into stars is known to be most ef-
+ﬁcient (e.g. Eke et al. 2005; Behroozi et al. 2013; Moster et al.
+2013). At higher masses still, AGN feedback is assumed to domi-
+nate the regulation of star formation, so a low star formation feed-
+back efﬁciency for high-dispersion environments is reasonable. The
+adopted functional form of fth is a logistic (sigmoid) function of
+log10 TDM,
+fth = fth,min + fth,max −fth,min
+1 +
+
+TDM
+105 K
+nT ,
+(12)
+shown in Figure 1 (dark blue curve, corresponding to the upper
+x-axis). The function asymptotes to fth,max and fth,min in the
+limits TDM ≪105 K and TDM ≫105 K, respectively, and
+varies smoothly between these limits about TDM = 105 K (or
+σDM ≃65 km s−1). The parameter nT > 0 controls how rapidly
+fth varies as the dark matter “temperature” scale deviates from
+105 K. The rather unnatural value nT = 2/ ln 10 ≃0.87 follows
+from an early implementation of the functional form adopted in the
+feedback routine; an exponent of unity would yield similar results.
+FBZ
+Adjusting the subgrid radiative losses with the metallicity of the
+ISM assigns a physical basis to the functional form of fth. Phys-
+ical losses associated with star formation feedback10 are likely to
+be more signiﬁcant when the metallicity is sufﬁcient for cooling
+from metal lines to dominate over the contribution from H and He.
+For temperatures 105 K < T < 107 K, characteristic of outﬂow-
+ing gas in the simulations, the transition is expected to occur at
+10 A metallicity dependence for ϵf (§ 2.5.2) is not explored, because metals
+are not expected to dominate the radiative losses at the higher temperatures
+associated with AGN feedback.
+
+
+10
+R.A.Crain et al.
+Z ∼0.1 Z⊙(Wiersma et al. 2009b). This qualitative behaviour
+is captured by the same functional form as equation 12, replacing
+(TDM,nT,105 K) with (Z,nZ,0.1 Z⊙) to obtain,
+fth = fth,min + fth,max −fth,min
+1 +
+
+Z
+0.1 Z⊙
+nZ ,
+(13)
+where Z⊙= 0.0127 is the solar metallicity (Allende Prieto et al.
+2001) and nZ = nT = 2/ ln 10. This function corresponds to
+the dark blue curve and the lower x-axis in Figure 1, with fth
+asymptoting to fth,max and fth,min in the limits Z ≪0.1 Z⊙and
+Z ≫0.1 Z⊙, respectively. Since galaxies tend to follow a tight re-
+lation between their mass and metallicity, the feedback efﬁciency
+is, as in FBσ, greatest for low-mass galaxies. Moreover, because
+metallicity characteristically decreases with redshift at ﬁxed stel-
+lar mass, the feedback efﬁciency is weighted towards early cos-
+mic epochs. This helps to partially decouple the growth of galaxies
+from the growth of their parent halo, which is thought to be a nec-
+essary condition for reproducing the observed number density evo-
+lution of low-mass galaxies in a CDM cosmogony (e.g. Weinmann
+et al. 2012; Henriques et al. 2013; Mitchell et al. 2014; White et al.
+2014). The subgrid viscosity parameter for AGN is the same as per
+FBσ, Cvisc = 2π × 102.
+Ref (equivalently, FBZρ)
+A signiﬁcant fraction of the star particles in the FBσ and FBZ mod-
+els form at densities greater than nH,tc, the critical density above
+which feedback energy is quickly radiated away (equation 4). The
+feedback associated with these high-density star formation events
+is therefore numerically inefﬁcient. The consequences of this over-
+cooling are explored later in § 4.1. The overestimated losses can be
+compensated by introducing a density dependence in the expres-
+sion for fth:
+fth = fth,min +
+fth,max −fth,min
+1 +
+
+Z
+0.1 Z⊙
+nZ  nH,birth
+nH,0
+−nn ,
+(14)
+where nH,birth is the density of a gas particle at the instant it is
+converted into a star particle. The feedback efﬁciency therefore in-
+creases with density at ﬁxed metallicity, whilst respecting the orig-
+inal asymptotic values. The choice of nH,0 = 0.67 cm−3 was
+guided by a suite of small test simulations, which also indicated
+that the adoption of nn = nZ is sufﬁcient to reproduce the z = 0.1
+GSMF. The effect of the additional density term is illustrated in
+Figure 1, where it can be seen that for nH = nH,0 the functional
+form adopted by Ref is identical to that of FBZ, but the fth curve
+is shifted to lower (higher) values for stars forming from lower
+(higher) density gas. Only the shift to higher fth for higher density
+gas (at ﬁxed metallicity) is required to offset numerical losses, but
+for simplicity we choose to include the shift to lower efﬁciency at
+low density that is implied by the adopted function. Such a density
+dependence may also have a physical basis: because the star for-
+mation law has a supra-linear dependence on surface density, the
+feedback energy injection rate per unit volume increases with den-
+sity. At ﬁxed density, a higher energy injection rate corresponds to
+higher temperatures and longer cooling times. Therefore, feedback
+associated with clustered star formation is expected to lead to lower
+radiative losses (e.g. Heiles 1990; Creasey et al. 2013; Krause et al.
+2013; Nath & Shchekinov 2013; Roy et al. 2013; Keller et al. 2014),
+and vice-versa. The density-dependent feedback efﬁciency adopted
+here (equation 14) ensures that, when integrating over all star for-
+mation events in the simulation, the mean and median values of fth
+remain close to unity (they are 1.06 and 0.70, respectively, for Ref-
+L0100N1504). The subgrid viscosity parameter for BH accretion is
+lower in Ref than in the other calibrated models, Cvisc = 2π×100.
+4
+RESULTS
+This section begins with an examination of the calibrated simula-
+tions. In §4.2, simulations featuring single parameter variations to
+the reference model are brieﬂy introduced, and the impact of the
+changes on the resulting galaxy population are explored.
+4.1
+Examination of the calibrated simulations
+We begin by examining the models calibrated to reproduce the
+z = 0.1 GSMF. Besides the GSMF, the evolution of the comoving
+stellar mass density of each simulation is examined, as are the sizes
+and speciﬁc star formation rates (SSFRs) of galaxies at z = 0.1. As
+discussed by S15, the GSMF and galaxy sizes were used for the cal-
+ibration process, so are not presented as predictions. Although the
+model parameters were not adjusted in order to improve the corre-
+spondence between the simulated and observed SSFRs, the former
+were inspected throughout the calibration process, and hence the
+predictions of the SSFRs are not “blind”. The aim of this exercise
+is to examine how different implementations of physical processes
+impact upon the properties of galaxies and their environments. As
+part of this procedure, the conditions of the ISM from which stars
+are born are also explored.
+4.1.1
+The galaxy stellar mass function
+The z = 0.1 GSMFs of the four calibrated simulations, FBconst
+(red curve), FBσ (green), FBZ (cyan) and Ref (dark blue), run us-
+ing L050N0752 initial conditions, are shown in the left-hand panel
+of Figure 2. The right-hand panel also shows the GSMF of the ref-
+erence model at intermediate resolution in a L = 100 cMpc vol-
+ume (Ref-L100N1504, red curve), which was introduced by S15,
+and in a smaller L = 25 cMpc realisation (Ref-L025N376, green),
+which is used in §4.2 as a baseline against which to compare sev-
+eral single parameter variations of the reference model. Maintain-
+ing the convention established by S15, curves are drawn with dot-
+ted lines where galaxies are less massive than 100 (initial mass,
+mg) baryonic particles, as resolution tests (presented in S15) indi-
+cate that sampling errors due to ﬁnite resolution are signiﬁcant in
+this regime. At the high-mass end, curves are drawn with dashed
+lines where the GSMF is sampled by fewer than 10 galaxies per
+(∆log10 M∗= 0.2) bin. Data points represent the GSMF in-
+ferred from the Sloan Digital Sky Survey (Li & White 2009, SDSS,
+ﬁlled circles) and the Galaxy and Mass Assembly (Baldry et al.
+2012, GAMA, open circles) survey. In both cases, the data have
+been adjusted for consistency with the value of the Hubble param-
+eter adopted by the simulations. GAMA measurements on scales
+M⋆< 108 M⊙are drawn as lower limits, since the data are ex-
+pected to be incomplete at the typical surface brightness associated
+with these galaxies (Baldry et al. 2012).
+In the range of stellar masses where the mass resolution and
+volume of the simulation enable a robust measurement of the
+GSMF (108 < M⋆≲1011 M⊙), the number density of galaxies at
+ﬁxed stellar mass produced by each of the four calibrated models
+is consistent with the observational data to < 0.31 dex. This pre-
+cision is comparable to the systematic uncertainty associated with
+spectrophotometric techniques for inferring galaxy stellar masses,
+
+
+EAGLE: calibration and model variations
+11
+Figure 2. Left: The z = 0.1 GSMF of the calibrated L050N0752 simulations, FBconst (red), FBσ (green), FBZ (cyan) and Ref (dark blue). Curves are drawn
+with dotted lines where galaxies are comprised of fewer than 100 star particles, and dashed lines where the GSMF is sampled by fewer than 10 galaxies
+per bin. Data points show measurements with 1σ error bars from the SDSS (Li & White 2009, ﬁlled circles) and GAMA (Baldry et al. 2012, open circles)
+surveys. The simulations each reproduce the observed number density of galaxies at ﬁxed mass to < 0.31 dex, a precision unprecedented for hydrodynamical
+simulations. Right: To illustrate convergence as the simulation volume is varied, the Ref model at intermediate resolution is shown in volumes of L = 25, 50
+and 100 cMpc. The Ref-L050N0752 (dark blue) and Ref-L100N1504 (red) GSMFs are consistent for M⋆≲1011.5 M⊙. The GSMF of Ref-L025N0376 is
+consistent with that of its larger counterparts for M⋆< 109.5 M⊙, but samples large-scale structures poorly owing to its small volume, imprinting “wiggles”
+on the GSMF.
+indicating that a more precise reproduction of the GSMF may be
+unwarranted11 (e.g. Conroy et al. 2009; Pforr et al. 2012). This de-
+gree of consistency with observational data is typical of that associ-
+ated with semi-analytic galaxy formation models. The reproduction
+of z = 0.1 GSMF by multiple cosmological hydrodynamical sim-
+ulations featuring feedback efﬁciencies governed by such distinct
+schemes is unprecedented in the literature (see also Fig. 5 of S15).
+The detailed confrontation of the EAGLE reference model
+with observational data presented by S15 was based on the Ref-
+L100N1504 simulation. Since running multiple L100N1504 sim-
+ulations is, at present, computationally prohibitive, the calibrated
+models have been run with L050N0752 initial conditions. It is
+therefore necessary to conﬁrm that the Ref-L050N0752 simu-
+lation yields a GSMF that is consistent with that of its L =
+100 cMpc counterpart. Comparison of the Ref-L050N0752 and
+Ref-L100N1504 curves in the right-hand panel of Figure 2 indi-
+cates that the GSMFs of these simulations are consistent to a high
+precision (< 0.063 dex at ﬁxed stellar mass) over the range for
+which both simulations are well sampled (M⋆≲1011.5 M⊙).
+An L = 50 cMpc volume is therefore sufﬁcient to capture the
+effects of subgrid physics on all but the most massive galax-
+ies seen in observational surveys of the local Universe. The Ref-
+L025N0376 simulation tracks its larger counterparts on scales of
+M⋆< 109.5 M⊙, but lacks the volume required to sample more
+massive scales precisely, as is clear from the “wiggles” imprinted
+on the GSMF.
+We do not explore resolution convergence here; S15 demon-
+strated the strong convergence behaviour of the z = 0.1 GSMF
+for the reference model, and established that recalibration of the
+subgrid parameters enables competitive and well-understood weak
+11 The GSMF is also impacted upon by other systematic effects, such as
+completeness and extinction corrections, and background subtraction.
+convergence behaviour for a broad range of observational diagnos-
+tics.
+4.1.2
+Galaxy sizes
+Following McCarthy et al. (2012), we characterise the morphology
+of galaxies by ﬁtting S´ersic proﬁles to their projected, azimuthally-
+averaged surface density proﬁles. The size of a galaxy is then
+equated to its effective radius, R50, the radius enclosing 50 per-
+cent of the stellar mass when the proﬁle is integrated to inﬁnity.
+The scaling of this quantity with stellar mass for disc galaxies is
+shown in Figure 3. As in Shen et al. (2003), whose size measure-
+ments from SDSS data are overplotted, disc galaxies are deﬁned to
+be those with S´ersic indices ns < 2.5. The binned median is plotted
+for each calibrated simulation. Dashed lines are used where the me-
+dian is sampled by fewer than 10 galaxies, and a dotted linestyle is
+used for bins corresponding to stellar masses < 600mg; this scale
+was shown by S15 to be the minimum for which size measurements
+are robust. In the regime between the limits of sufﬁcient resolution
+and adequate galaxy sampling, the 1σ (i.e. 16th to 84th percentile)
+scatter about the median of Ref is shown as a blue shaded region.
+The reference model tracks the observed relation closely, with
+the medians of the simulation and the observational measurements
+being offset by 0.1 −0.2 dex. This offset is comparable to the
+systematic offset between the median of those data and the me-
+dian sizes measured by Baldry et al. (2012) based on GAMA ob-
+servations of blue galaxies (deﬁned using an r-band magnitude-
+dependent colour threshold). Also shown in Figure 3 are the size
+measurements presented by S15 for the larger Ref-L100N1504 vol-
+ume (yellow curve) demonstrating that galaxy sizes are unaffected
+by the volume of the simulation, as expected. In contrast to Ref,
+the FBconst, FBσ and FBZ models are inconsistent with the ob-
+served size-mass relation. Galaxies with M⋆≳1010 M⊙cease to
+
+
+12
+R.A.Crain et al.
+Figure 4. Face-on (left) and edge-on (right) projections, at z = 0.1, of the galaxy formed within the same M200 ∼1012 M⊙halo in the four simulations that
+were calibrated to reproduce the present-day GSMF. Each image subtends a ﬁeld of view of 100 pkpc, and is a composite of SDSS u-, g- and r-band emission
+maps generated with the radiative transfer software SKIRT. The overall size of the optical envelope of the galaxy is similar in each case, but the distribution and
+dynamics of the stars differ markedly between Ref and the other models. In the latter, the galaxy forms an unrealistically compact bulge component at early
+epochs and exhibits too little ongoing star formation (blue-coloured concentrations) in the extended disc. Consequently, only in Ref does the galaxy exhibit an
+effective radius, R50, that is consistent with the observed size-mass relation for disc galaxies.
+follow the observed relation between size and mass, and become
+much too compact, with median sizes only a few times the gravi-
+tational softening scale (ϵprop = 0.7 pkpc). For this reason, these
+models are not considered satisfactory when applying the EAGLE
+calibration criteria. We note that the measurements of both Shen
+et al. (2003) and Baldry et al. (2012) are based on r-band photom-
+etry, and that isophotal radii are sensitive to the band in which they
+are measured. Lange et al. (2015) recently exploited the multiband
+photometry of the GAMA survey to assess the magnitude of this
+sensitivity, concluding that the observed size of disc galaxies of
+mass M⋆= 1010 M⊙is typically only ∼10 percent smaller in
+the Ks-band (the best proxy for the true stellar mass distribution)
+than in the r-band. We can therefore be conﬁdent that our con-
+clusions here are unlikely to be strongly affected by, for example,
+attenuation by interstellar dust. Detailed tests of mock observations
+derived by coupling EAGLE to the SKIRT radiative transfer algo-
+rithm (Baes et al. 2011) will be presented in a forthcoming study
+(Trayford et al. in prep).
+The calibrated simulations adopt identical initial conditions,
+enabling galaxies to be compared individually as well as statisti-
+cally. In Figure 4, the galaxy that forms within the same dark matter
+halo is shown for each of the calibrated simulations at z = 0.1. The
+halo was selected at random from those with mass in the Ref simu-
+lation 8×1011 M⊙< M200 < 2×1012 M⊙. In each simulation, it
+therefore hosts a galaxy whose stellar mass (M⋆∼2 × 1010 M⊙)
+corresponds to the minimum of the size-mass relation exhibited by
+the FBconst, FBσ and FBZ simulations. Each image subtends a
+ﬁeld of view 100 pkpc on a side, and is a composite comprised
+of monochromatic SDSS u-, g-, and r-band emission maps. The
+maps were generated with SKIRT (Baes et al. 2011), which con-
+siders the photometric properties of the stellar populations and the
+estimated dust distribution, the latter being inferred from the pre-
+dicted metallicity of the ISM. The same mapping between physical
+ﬂux and pixel luminosity is adopted in each panel. The galaxy is
+shown face-on (left-hand panels) and edge-on (right-hand panels),
+oriented about the angular momentum vector of the star particles
+comprising the galaxy.
+Visual inspection indicates that the outer envelope of the
+galaxy, corresponding to an r-band surface brightness of µr ∼
+28 mag arcsec−2, is similar in each simulation. However, the dis-
+tribution of stars within that radius differs markedly between Ref
+and the other models, and this strongly inﬂuences the effective ra-
+dius. In the FBconst, FBσ and FBZ simulations, the galaxy forms
+a massive, compact bulge that dominates the overall stellar dis-
+tribution. In the Ref simulation the star-forming disc component,
+seen clearly in the face-on images as blue-coloured concentrations
+distributed over all radii, comprises a greater fraction of the mass.
+Based on a dynamical decomposition similar to the orbital circu-
+larity method of Abadi et al. (2003), the bulge-to-total ratio of the
+galaxy in the FBconst, FBσ, FBZ and Ref simulations is 0.47, 0.43,
+0.50 and 0.30, respectively.
+Many studies in the literature conclude that the ability of a
+hydrodynamical simulation to reproduce, approximately, the low-
+redshift GSMF (or, in the case of ‘zoom’ simulations, the M⋆−
+Mhalo relation as inferred by e.g. subhalo abundance matching)
+to be a metric of success, without comparing to the observed size
+of galaxies (e.g. Okamoto et al. 2010; Oppenheimer et al. 2010;
+Munshi et al. 2013; Puchwein & Springel 2013; Vogelsberger et al.
+2013). However the reproduction here of the observed z = 0.1
+GSMF with a number of models that yield unrealistically compact
+
+
+EAGLE: calibration and model variations
+13
+Figure 3. The sizes, at z = 0.1, of disc galaxies in the four simulations that
+were calibrated to reproduce the present-day GSMF. Sizes from the Ref-
+L100N1504 (presented by S15) are also shown (yellow curve), to demon-
+strate consistency between volumes. Size, R50, is deﬁned as the half-mass
+radius (in proper kpc) of a S´ersic proﬁle ﬁt to the projected, azimuthally-
+averaged stellar surface density proﬁle of a galaxy, and those with S´ersic
+index ns < 2.5 are considered disc galaxies. Curves show the binned me-
+dian sizes, and are drawn with dotted lines below a mass scale of 600mg,
+and a dashed linestyle where sampled by fewer than 10 galaxies per bin.
+The 1σ scatter about the median of Ref is denoted by the blue shaded re-
+gion. The solid and dotted grey lines show the median and 1σ scatter of
+sizes for ns < 2.5 galaxies inferred from SDSS data by Shen et al. (2003),
+whilst grey data points and error bars show sizes of blue galaxies inferred
+by Baldry et al. (2012) from GAMA data. Only the Ref model successfully
+reproduces the observed GSMF and galaxy sizes at z = 0.1.
+galaxies, highlights the importance of simultaneously calibrating
+models with observational diagnostics that are complementary to
+the GSMF. In Sections 4.1.3, 4.1.4 and 4.1.5 we turn to the ex-
+amination of diagnostics that were not considered during the cal-
+ibration process. It is shown that models that yield unrealistically
+compact galaxies also fail to reproduce the observed star formation
+history and present-day speciﬁc star formation rate of the galaxy
+population. We demonstrate that the formation of compact galax-
+ies is a consequence of numerical radiative losses becoming severe
+in high density gas, thus artiﬁcially suppressing the efﬁciency of
+energy feedback.
+4.1.3
+Comoving stellar mass density
+By construction, the calibrated simulations yield similar volumetric
+stellar mass densities at z = 0.1. The evolution of stellar mass den-
+sity in the four simulations can differ, however, because the history
+of energy injection from feedback varies between the models. Fig-
+ure 5 shows the evolution of the comoving, instantaneous12 stellar
+mass density in the four calibrated L050N0752 simulations. The
+total comoving density of stars in each simulation is shown; in a
+companion paper, Furlong et al. (2014) excluded diffuse intraclus-
+ter light (by considering only those stars within 30 pkpc of galac-
+tic centres) to mimick observational measurements, and recovered
+12 Stellar evolution mass loss by star particles is accounted for.
+Figure 5. The evolution of the comoving stellar mass density of the cali-
+brated EAGLE models. Data points correspond to measurements from sev-
+eral observational surveys spanning 0 < z < 4 (see text for details). Al-
+though the models each broadly reproduce the observed GSMF at z = 0.1,
+they exhibit markedly different star formation histories, and the FBconst
+model in particular forms too much stellar mass at early times. Taking the
+observations at face value, only the Ref model is broadly consistent with
+the observational constraints for z ≲2.
+densities in the Ref-L100N1504 simulation that were lower by ap-
+proximately 20 percent for z ≲1.
+Data points represent the comoving stellar mass density in-
+ferred from a number of complementary observational analyses.
+Where necessary, the data have been adjusted to adopt the same
+IMF and Hubble parameter as the simulations. The ﬁlled and open
+circles at z ∼0.1 represent the integration of the SDSS (Li &
+White 2009) and GAMA (Baldry et al. 2012) GSMFs shown in
+Figure 2, respectively. Diamonds represent measurements over the
+redshift interval 0.1 < z < 0.9 inferred from a combined sam-
+ple of SDSS and PRIMUS data presented by Moustakas et al.
+(2013), triangles represent measurements over the redshift inter-
+val 0.2 < z < 4 inferred from UltraVISTA data by Muzzin et al.
+(2013), and squares represent measurements over the redshift inter-
+val 0.625 < z < 2.25 inferred from ZFOURGE data by Tomczak
+et al. (2014). Data from surveys that overlap in redshift interval
+are shown in order to illustrate, broadly, the degree of systematic
+uncertainty and ﬁeld-to-ﬁeld variance in the measurements.
+The stellar mass densities of the four simulations are consis-
+tent to ≲0.1 dex at z = 0.1. The FBconst simulation, however,
+forms stars too rapidly at early epochs. The stellar mass density
+inferred from observations at z ∼1 is in place in this simula-
+tion prior to z = 2, whilst the evolution at intermediate redshifts
+(1 ≲z ≲3) is, by necessity, then too weak. The models that al-
+low the star formation feedback efﬁciency to vary as a function of
+the local environment track the observed build up of stellar mass
+more accurately, since they typically inject more energy (per unit
+stellar mass formed) into star-forming regions in low-mass galax-
+ies (which dominate at high redshift), than is the case for FBconst.
+However, the FBσ and FBZ models remain inconsistent with the
+observational measurements at z > 1, and only the Ref model
+broadly reproduces these out to z ∼2.
+
+
+14
+R.A.Crain et al.
+4.1.4
+Speciﬁc star formation rates
+The markedly different evolution of the comoving stellar mass den-
+sity in the calibrated simulations is indicative of similar differ-
+ences between the models in terms of the star formation rates of
+star-forming galaxies at z = 0.1. The relation between the SSFR
+( ˙M⋆/M⋆) and stellar mass at z = 0.1 is adopted as the diagnostic
+with which to compare the models; the evolution of the SSFR of
+Ref is explored by Furlong et al. (2014). Figure 6 shows the me-
+dian SSFR of star-forming galaxies, as a function of stellar mass,
+at z = 0.1 for the four calibrated simulations. As per Figure 2,
+the median curve is drawn with a dashed linestyle when sampled
+by fewer than 10 galaxies per bin. The diagonal dotted line indi-
+cates the SSFR corresponding to 10 star-forming gas particles at a
+gas density of nH = 0.1 cm−3; at SSFRs below this limit, sam-
+pling limitations are signiﬁcant and median curves are drawn with
+a dotted linestyle. In the regime between the limits of sufﬁcient
+resolution and adequate galaxy sampling, the 1σ scatter about the
+median is shown for Ref as a blue shaded region. The horizon-
+tal dashed line denotes the threshold SSFR of 10−2 Gyr−1, that
+was adopted to separate star-forming from passive galaxies. Data
+points represent SSFR measurements of star-forming galaxies in-
+ferred from SDSS-Stripe 82 data (Gilbank et al. 2010, squares) and
+the GAMA survey (Bauer et al. 2013, circles).
+S15 demonstrated that, at M⋆
+∼
+1011 M⊙, the Ref-
+L100N1504 simulation exhibits SSFRs very similar to those ob-
+served, but at lower masses the simulated SSFRs are systematically
+lower than observed by up to ∼0.3 dex. This remains the case for
+Ref-L050N0752. However, as shown by S15, the discrepancy for
+low mass galaxies is much smaller for the Recal-L025N0752 sim-
+ulation, indicating that our high-resolution simulations are better
+able to reproduce the star formation properties of low-mass galax-
+ies. The FBZ model behaves similarly to Ref. The FBconst and
+FBσ models also exhibit SSFRs similar to those observed in mas-
+sive galaxies, but at 109 M⊙they are ∼0.7 dex lower than ob-
+served.
+In the framework of equilibrium galaxy formation models (e.g
+Finlator & Dav´e 2008; Schaye et al. 2010; Dav´e et al. 2012; Mi-
+tra et al. 2014), the gas inﬂow rate onto galaxies is balanced by
+the combined sinks of star formation and ejective feedback, and
+the speciﬁc inﬂow rate (at ﬁxed redshift) which is a weak func-
+tion of halo mass (Dekel et al. 2009; Fakhouri et al. 2010; van de
+Voort et al. 2011; Correa et al. 2014). Since the calibrated sim-
+ulations each broadly reproduce the observed GSMF, galaxies of
+ﬁxed stellar mass occupy similarly massive haloes in each case: at
+z = 0.1, the median halo mass associated with galaxies of stellar
+mass M⋆= 109 M⊙in the Ref simulation is offset from that of the
+FBconst simulation by < 0.1 dex. This leaves differences in the
+mass reaccretion rate and the efﬁciency of preventive feedback as
+prime candidates for establishing an offset in the present-day SSFR
+of low-mass galaxies.
+It is indeed likely that the reaccretion of ejected gas is sensi-
+tive to the details of the feedback (e.g. Oppenheimer et al. 2010;
+Brook et al. 2014) and almost certainly plays a role in shaping the
+present-day SSFR of galaxies, particularly so at the mass scale cor-
+responding to M ⋆. We intend to explore this process in detail in
+a forthcoming study (Crain et al. in prep). The efﬁciency of pre-
+ventive feedback is, by construction, a distinguishing feature of
+the four calibrated models, and one that is simple to explore. Ex-
+amination of the median value of fth associated with star forma-
+tion events over the gigayear preceding z = 0.1 for galaxies of
+M⋆∼109 M⊙shows marked differences: for the FBconst, FBσ,
+Figure 6. The median speciﬁc star formation rate, ˙M⋆/M⋆, of star-forming
+galaxies as a function of stellar mass at z = 0.1, of the calibrated EAGLE
+simulations. The diagonal dotted line corresponds to the SSFR of 10 gas
+particles at nH = 0.1 cm−3, below which sampling effects are signiﬁcant
+and medians are drawn with a dotted linestyle. The 1σ scatter about the
+median of Ref is denoted by the blue shaded region. The dashed horizontal
+line denotes the SSFR separating star-forming and passive galaxies. Data
+points with error bars correspond to the median and 1σ scatter of the SSFR
+of star-forming galaxies inferred from SDSS-Stripe 82 data by Gilbank et al.
+(2010, squares) and GAMA data by Bauer et al. (2013, circles).
+FBZ and Ref models, the values are 1, 1.04, 0.58 and 0.35, re-
+spectively. The star formation rate required to produce sufﬁciently
+strong outﬂows from star formation feedback scales inversely with
+these efﬁciencies, and thus the Ref model correspondingly exhibits
+the highest SSFR at z = 0.1.
+4.1.5
+The birth conditions of stars
+The properties of simulated galaxies are clearly sensitive to the
+adopted functional form of fth. Galaxy sizes, which encode infor-
+mation related to the state of the gas from which stars were born,
+are the clearest discriminator of the models explored here, indicat-
+ing a connection between the stucture of the ISM and the efﬁcacy
+of feedback.
+When star particles are born, we record the density of their
+parent gas particle, enabling an examination of the physical condi-
+tions of the gas from which all stars in the simulations were born.
+The EAGLE simulations treat star-forming gas as a single-phase
+ﬂuid, therefore the SPH density of star-forming particles can be
+considered as the mass-weighted average of the densities of cold,
+dense molecular clouds and of the warm, ionised medium with
+which they maintain a pressure equilibrium. Pressure is therefore
+a more physically meaningful property of star-forming gas in the
+simulations, and it is possible to recover the birth pressure of stars
+from their birth density under the reasonable assumption that their
+parent gas particle resided on the Jeans-limiting pressure ﬂoor at
+the time of conversion13.
+Figure 7 shows the differential distribution of ISM pressures
+13 Particles within 0.5 dex of the temperature associated with the pressure
+ﬂoor (see § 2.2) are eligible to form stars.
+
+
+EAGLE: calibration and model variations
+15
+Figure 7. Differential distribution of the pressure of ﬂuid elements (i.e.
+SPH particles) at the instant they were converted to star particles, for all
+star particles formed prior to z = 6 (dotted curves), z = 2 (dashed)
+and z = 0.1 (solid). The upper axis shows the ratio of the correspond-
+ing density to the critical density for numerically efﬁcient feedback (equa-
+tion 4). At high redshift, most stars form from metal-poor gas with a pres-
+sure corresponding to the maximum star formation threshold (equation 3),
+P/k ∼105.5 K cm−3, though in the FBconst model a signiﬁcant frac-
+tion of stars has already formed from gas with nH ≫nH,tc. As the ISM
+becomes enriched, the threshold drops and stars are able to form at lower
+ISM densities. However at z ≲6 spurious numerical losses in the FBconst,
+FBσ and FBZ simulations result in the rapid build up of a second peak at
+high-pressure. The development of this peak is suppressed in the Ref sim-
+ulation owing to the greater efﬁciency of feedback at higher density (for
+ﬁxed metallicity), which ensures that the majority of stars are able to yield
+numerically efﬁcient feedback.
+(normalised by Boltzmann’s constant, k) at the instant of their for-
+mation, of star particles formed in the calibrated simulations prior
+to z = 6 (dotted curves), z = 2 (dashed curves) and z = 0.1 (solid
+curves). The upper axis indicates the corresponding ratio of the gas
+particle density to the critical density for which stochastic thermal
+heating associated with star formation is efﬁcient (nH,tc, equation
+4). Examination of this ratio affords us a means by which to test
+for numerical overcooling on an event-by-event basis. At high red-
+shift, most stars form from low-metallicity gas, and are hence sub-
+ject to a high-star formation density threshold (equation 3). The
+maximum of this threshold is nH = 10 cm−3, corresponding to
+P/k ∼105.5 K cm−3 for our choice of Jeans limiting equation of
+state. Many stars form from gas with pressures close to this thresh-
+old value.
+A signiﬁcant fraction of stars also form from higher-pressure
+gas in the FBconst simulation prior to z = 6. The formation of
+stars from gas with nH > nH,tc leads to artiﬁcial radiative losses.
+As discussed in §3.1, the fact that the ﬁrst galaxies whose forma-
+tion can be captured by the simulations are associated with haloes
+that have not been subject to feedback, means that they exhibit arti-
+ﬁcially high gas fractions and star formation efﬁciencies. This ini-
+tial problem has the potential to set in train a cycle of overcool-
+ing: the artiﬁcially rapid initial formation of stars over-enriches the
+ISM with efﬁcient coolants, promoting further cooling losses and
+enabling dissipation to higher densities. Stars subsequently form-
+ing from this gas yield numerically inefﬁcient thermal feedback
+Figure 8. The birth pressure of star particles, as a function of galactocen-
+tric radius, for galaxies with stellar mass 10 < log10 M⋆/ M⊙< 10.5
+at z = 0.1. Solid curves denote the binned median, and the blue shaded
+region corresponds to the 1σ scatter about the median of Ref. The dotted
+vertical line shows the gravitational softening scale. The highest pressures
+correspond to stars formed in galactic centres, so numerically inefﬁcient
+feedback in the FBconst, FBσ and FBZ models leads to the formation of un-
+realistically massive central spheroids. Conversely, the suppression of high
+birth densities in Ref yields effective radii that are consistent with obser-
+vations. The convergence of the birth pressure proﬁles for r ≳4 pkpc
+indicates that differences in the heating rate of gas (i.e. fth) between the
+models are conﬁned to galactic centres.
+(because nH > nH,tc), so the gas fraction and star formation ef-
+ﬁciency of the halo remain artiﬁcially high. An initial numerical
+shortcoming therefore has the potential to trigger unrealistic phys-
+ical losses that themselves promote further numerical losses. This
+cycle can lead to a strong overestimate of the severity of radiative
+losses.
+The adoption of f max
+th
+= 3 for stars forming in low-velocity
+dispersion (FBσ) and low-metallicity (FBZ, Ref) environments ef-
+fectively eliminates the initial phase of the problem; at z = 6, by
+which time the simulations comprise tens of thousands of star parti-
+cles, the fraction of stars formed from high-pressure gas is small for
+the FBσ, FBZ and Ref simulations. As the ISM becomes enriched
+with metals, the typical star formation threshold drops and a peak in
+the distribution of birth densities develops at P/k ∼103.5 K cm−3
+(nH ∼0.3 cm−3) in each of the calibrated simulations. This in-
+jection of additional energy into nascent galaxies is, however, in-
+sufﬁcient to arrest the onset of subsequent numerical losses. At
+z ≲6, the birth pressure distribution of the FBσ and FBZ sim-
+ulations (in addition to that of FBconst) develops a second peak
+at P/k ∼107.5 K cm−3, corresponding to nH ∼250 cm−3. At
+such high density, resolution elements heated to 107.5 K cool be-
+fore they can expand, rendering thermal feedback numerically in-
+efﬁcient. The fraction of stars formed from gas with nH > nH,tc
+offers a simple estimate of the severity of this numerical overcool-
+ing; for stars formed prior to z = 0.1 the fractions for the FBconst,
+FBσ, FBZ and Ref simulations are 0.55, 0.56, 0.61 and 0.25, re-
+spectively.
+The suppression of the high-pressure peak in the distribution
+of birth pressures exhibited by the Ref simulation is achieved by
+adding a density-dependence to the star formation feedback efﬁ-
+
+
+16
+R.A.Crain et al.
+ciency function (equation 14). It ensures that star formation feed-
+back remains efﬁcient when stars form from relatively dense gas,
+preventing the build-up of the highest pressures within the ISM. A
+density dependence of this sort can also be motivated on physical
+grounds (e.g. Heiles 1990; Creasey et al. 2013; Krause et al. 2013;
+Nath & Shchekinov 2013; Roy et al. 2013; Keller et al. 2014), but
+our main motivation is to combat the numerical problems described
+above.
+Figure 8 shows the median birth pressure of stars as a func-
+tion of their galactocentric radius at z = 0.1, for galaxies with stel-
+lar mass in the interval 1010 < M⋆/ M⊙< 1010.5. This interval
+corresponds to the mass scale at which the difference in sizes be-
+tween Ref and the FBconst, FBσ and FBZ models is greatest. The
+blue shaded region shows the 1σ scatter about the median of Ref,
+and the vertical dotted line denotes the gravitational softening scale
+of 0.7 pkpc. The correpondence between numerically inefﬁcient
+feedback and the formation of unrealistically compact galaxies is
+clear: the highest birth pressures are exhibited by stars residing in
+the centres of galaxies. The reduction of star formation from gas
+with P/k ≳105.5 K cm−3 in the Ref simulation therefore prefer-
+entially suppresses the formation of compact galactic bulges, and
+enables the formation of galaxies with effective radii that are con-
+sistent with the observed size-mass relation. The median birth pres-
+sure proﬁles converge above a characteristic radius of r ∼4 pkpc,
+indicating that the difference in heating rates between the simula-
+tion (due to differences in the adopted functional form of fth) is
+only signiﬁcant within the centres of galaxies.
+4.2
+Variations of the Reference model
+The Ref model demonstrates that it is possible to calibrate a model
+that satisfactorily reproduces the GSMF and the observed sizes of
+galaxies at z = 0.1. It is important to quantify the sensitivity of
+the outcomes of this model to variation of its key subgrid parame-
+ters14. This is achieved by conducting a series of simulations within
+which the value of a single parameter is varied from that adopted
+by Ref, as listed in the lower section of Table 1. Parameters gov-
+erning the ISM, star formation and the efﬁciency of star forma-
+tion feedback are tested using relatively inexpensive L025N0376
+simulations. Those governing the AGN feedback are tested with
+L050N0752 simulations, since the effects of changing these pa-
+rameters are most clearly imprinted upon the properties of massive
+galaxies and their environments. The effects of reasonable changes
+can vary markedly from parameter to parameter, so we focus here
+only on properties of the galaxy population that shift signiﬁcantly
+from those of the corresponding Ref simulation. Simulations where
+the variation does have a signiﬁcant effect are likely to yield a
+galaxy population that is no longer an accurate representation of
+the observed Universe.
+4.2.1
+ISM equation of state
+The simulations adopting isothermal (γeos = 1, “eos1”) and adia-
+batic (γeos = 5/3, “eos5/3”) equations of state are examined in this
+section. Steeper slopes, i.e. higher values of γeos, yield higher ISM
+pressures as the volume density is increased, and hence a shorter
+gas consumption time at ﬁxed density (assuming a star formation
+law with n > 1, which is the case here) and a suppression of the
+14 The effects of changes to the hydrodynamics and time-stepping schemes
+will be explored in a forthcoming companion paper (Schaller et al. in prep).
+Figure 9. The ratio of the stellar mass to halo mass of central galaxies, as
+a function of stellar mass and normalised by the cosmic baryon fraction, in
+L0025N0376 simulations adopting γeos = 1 (eos1, green), 4/3 (Ref, dark
+blue) and 5/3 (eos5/3, red). Curves show the binned median ratios, and are
+drawn with dotted lines below the mass scale corresponding to 100 baryonic
+particles, and a dashed line where sampled by fewer than 10 galaxies per
+bin. The 1σ scatter about the median of Ref is denoted by the blue shaded
+region. Dark and light grey lines represent the abundance matching relations
+of Behroozi et al. (2013) and Moster et al. (2013), respectively.
+development of high ISM densities. For 4/3 < γeos < 2, the Jeans
+conditions indicate that gas is able to collapse without fragmenting.
+Steeper slopes inhibit collapse, whilst shallower slopes may lead to
+artiﬁcial fragmentation (e.g. Bate & Burkert 1997; Schaye & Dalla
+Vecchia 2008).
+The effects of varying γeos were previously explored in ide-
+alised disc galaxy simulations by Schaye & Dalla Vecchia (2008)
+and in the OWLS cosmological simulations by Schaye et al. (2010)
+and Haas et al. (2013b). These studies concluded that, as long as
+the index was maintained between values of unity and 5/3, the pri-
+mary effect of varying γeos is upon the visual appearance of the
+disc, with the higher pressures associated with stiffer equations of
+state yielding smoother gas distributions and larger scale heights.
+Otherwise, differences due to variations in γeos were found to be
+minimal, and this was attributed to the fact that the pressure-law
+implementation of star formation adopted by OWLS (and EAGLE,
+§ 2.2) reproduces the observed star formation law, irrespective of
+γeos.
+Figure 9 shows the ratio of the stellar mass of central galaxies
+to the mass of their host halo, normalised by the cosmic average
+baryon fraction (Ωb/Ωm = 0.157), and plotted as a function of
+stellar mass. The dark and light grey lines represent the median stel-
+lar mass-to-halo mass ratios inferred from the abundance match-
+ing algorithms of Behroozi et al. (2013) and Moster et al. (2013),
+respectively. For low-mass galaxies, the conclusion that the prop-
+erties of galaxies are largely insensitive to γeos is consistent with
+EAGLE. Changing γeos does, however, have a signiﬁcant impact
+on the most massive galaxies since, in contrast to the OWLS ref-
+erence model, the EAGLE reference model includes treatments of
+the growth of BHs and the associated AGN feedback. In the regime
+that the local sound speed is large compared to the relative velocity
+of the central BH and the surrounding gas (cs ≫v), the accre-
+
+
+EAGLE: calibration and model variations
+17
+tion rate (equation 7) onto the BH is inversely proportional to the
+cube of the ISM sound speed. For a polytropic equation of state,
+the sound speed c2
+s ∝P/ρ ∝ργeos−1, so it is clear that a stiffer
+equation of state for the ISM will yield a greater sound speed at
+ﬁxed density, and so reduce the accretion rate onto the BH.
+Adopting an isothermal (adiabatic) equation of state leads to
+galaxies with M⋆≳2 × 1010 M⊙exhibiting a median BH mass
+that is approximately 0.3 dex larger (smaller) than that of Ref. This
+difference in BH mass, and the associated difference in the rates of
+BH accretion and AGN feedback, translates into signiﬁcant differ-
+ences in the mass of gas converted to stars by z = 0.1 in halos
+of mass M200 ≳1012 M⊙, as shown in Figure 9. The efﬁciency
+of AGN feedback is therefore sensitive to the assumed polytrope
+γeos, and variation of the latter would require a recalibration of
+the subgrid BH viscosity parameter, Cvisc, to recover the observed
+GSMF15.
+4.2.2
+Star formation threshold
+A simulation adopting a constant density threshold for star for-
+mation of n⋆
+H = 0.1 cm−3 (“FixedSfThresh”), as used by de-
+fault in the OWLS and GIMIC projects, is used to examine the
+role of the dependence of the star formation density threshold,
+n⋆
+H(Z) on metallicity, as implemented in Ref. The use of constant
+and metallicity-dependent density thresholds for star formation was
+also investigated using the OWLS simulations by Schaye et al.
+(2010) and Haas et al. (2013b). As in that study, the low-redshift
+galaxy population exhibits no signiﬁcant differences between sim-
+ulations run with a constant density threshold of n⋆
+H = 0.1 cm−3
+and the metallicity-dependent threshold described by equation 3,
+therefore we do not show comparisons of these simulations here.
+This can be understood by appealing to self-regulation arguments
+(Schaye et al. 2010).
+4.2.3
+Star formation feedback efﬁciency
+There is a growing consensus, based on analyses of cosmological
+simulations, that galaxy formation and evolution is governed pri-
+marily by the regulation of the supply of gas to the ISM, rather than
+the detailed physics of interstellar gas itself (e.g. Rasera & Teyssier
+2006; Bouch´e et al. 2010; Schaye et al. 2010; Dutton et al. 2010;
+Dav´e et al. 2012; Haas et al. 2013a,b; Vogelsberger et al. 2013).
+In general, it is feedback that regulates this fuel supply, so it is
+reasonable to expect that changing the efﬁciency of star formation
+feedback will have a signiﬁcant impact on many characteristics of
+the galaxy population. This can be gauged by inspection of Figure
+10, which shows the effect, on a broad range of galaxy scaling rela-
+tions, of scaling the fth function adopted by the Ref model (equa-
+tion 14) by factors of 0.5 (WeakFB) and 2 (StrongFB). The asymp-
+totic efﬁciencies of these models are therefore f min
+th
+= (0.15, 0.6)
+and f max
+th
+= (1.5, 6.0), respectively. The median efﬁciency associ-
+ated with all star particles formed prior to z = 0.1 in the WeakFB,
+Ref and StrongFB L0025N0376 simulations are 0.38, 0.63 and
+1.22, respectively.
+As in the previous plots, binned medians are shown (WeakFB:
+green curve, Ref: dark blue curve, StrongFB: red curve), drawn
+with a dotted linestyle below the estimated resolution limit, speciﬁc
+15 In principle, it is possible to construct a model of BH growth that, like
+the star formation implementation (equation 2), is independent of γeos. This
+would require that the accretion rate be speciﬁed as a function of pressure.
+to each diagnostic, and a dashed linestyle where there are fewer
+than 10 galaxies per bin. Where appropriate, the 1σ scatter about
+the median of Ref is shown as a blue shaded region. The panels
+are labelled (a) to (i) in row-by-row and top-to-bottom order, show-
+ing (source of observational data in parentheses): (a) the GSMF
+(Baldry et al. 2012); (b) the stellar mass to halo mass ratio of cen-
+tral galaxies (Behroozi et al. 2013); (c) the stellar half-mass radius
+(Shen et al. 2003), (d) the maximum circular velocity, which we
+adopt as a proxy for the Tully-Fisher relation (Avila-Reese et al.
+2008), (e) the speciﬁc star formation rate of star-forming galax-
+ies (Bauer et al. 2013); (f) the fraction of galaxies that are pas-
+sive (Moustakas et al. 2013); (g) the central BH mass (McConnell
+& Ma 2013); (h) the metallicity of star-forming gas (Zahid et al.
+2014), and (i) the metallicity of stars (Gallazzi et al. 2005). For
+more details concerning the observations and their comparison with
+the simulations, see S15.
+Inspection of the panels highlights that relatively small
+changes (i.e. factor 2) to the value of fth adopted by Ref has a
+dramatic impact upon the properties of the z = 0.1 galaxy popula-
+tion. Panel (a) shows that a lower (higher) star formation feedback
+efﬁciency corresponds to a greater (lesser) abundance of galaxies
+with masses below M ⋆, the scale corresponding to the “knee” of
+the Schechter (1976) function. The cause of this shift of number
+densities is clear from inspection of the stellar mass to halo mass
+relation, (b). The form of the median relation is similar in all three
+cases, but with a signiﬁcant normalisation offset: in the WeakFB
+(StrongFB) model, galaxies acquire a lower (higher) characteristic
+value of fth throughout their growth. In the framework of equilib-
+rium models, this requires a higher (lower) SFR to produce sufﬁ-
+ciently strong outﬂows to balance the inﬂow of gas and, by z = 0.1,
+leads to galaxies of a ﬁxed stellar mass becoming associated with
+less (more) massive dark matter haloes, with respect to Ref. Since
+the dark matter halo mass function is particularly steep (e.g. Jenk-
+ins et al. 2001), even a small change to the relation between stellar
+mass and halo mass impacts signiﬁcantly upon the number density
+of galaxies at a ﬁxed stellar mass. Even on more massive scales,
+the adoption of very efﬁcient star formation feedback dramatically
+reduces the abundance of galaxies, although on these scales the
+adoption of inefﬁcient star formation feedback does not result in a
+commensurate increase in the abundance of galaxies. As explored
+below, in the absence of efﬁcient star formation feedback, BHs sim-
+ply grow more massive (at ﬁxed halo mass) in order to liberate the
+energy required to achieve self-regulation.
+The shift of the typical halo mass associated with galaxies of
+ﬁxed stellar mass, as the feedback efﬁciency is varied, impacts sig-
+niﬁcantly upon galaxy scaling relations, as we explore below. In
+general, the following panels highlight the importance of populat-
+ing haloes with galaxies of the correct stellar mass, whether “by-
+hand” in empirical models such as the halo occupation distribution
+or abundance matching methodologies, or as a result of the imple-
+mented baryon physics in semi-analytic and hydrodynamic simula-
+tions.
+The connection between feedback and the sizes of galaxies
+was highlighted in Sections 4.1.2 and 4.1.5. Consistent with that
+discussion, the impact of the star formation feedback efﬁciency
+upon the sizes of galaxies is evident in panel (c). As per Figure
+3, only galaxies for which the best-ﬁtting S´ersic proﬁle has in-
+dex ns < 2.5 are considered. At ﬁxed stellar mass, the WeakFB
+(StrongFB) model yields smaller (larger) galaxies, with respect to
+Ref. The adoption of WeakFB leads to signiﬁcant overcooling (in
+a physical sense), and results in artiﬁcially compact galaxies. In
+the regime of less signiﬁcant overcooling, the efﬁciency of feed-
+
+
+18
+R.A.Crain et al.
+Figure 10. Galaxy scaling relations at z = 0.1 of L0025N0376 simulations adopting star formation feedback decribed by equation 14 (Ref, dark blue), and
+this function scaled by factors of 0.5 (WeakFB, green) and 2 (StrongFB, red). With the exception of panels (a) and (f), the curves show binned medians, and
+the blue shaded region corresponds to the 1σ scatter about the median of Ref. Curves are drawn with dotted lines below the estimated resolution limit of each
+diagnostic, and with dashed lines where sampled by fewer than 10 galaxies per bin. The panels show (a) the galaxy stellar mass function; (b) the stellar mass
+to halo mass ratio of central galaxies; (c) the stellar half-mass radius, (d) the maximum circular velocity, (e) the speciﬁc star formation rate of star-forming
+galaxies; (f) the fraction of galaxies that are passive; (g) the central BH mass; (h) the metallicity of star-forming gas, and (i) the metallicity of stars. The source
+of the observational data (dark grey) for each panel is given in § 4.2.3.
+
+
+EAGLE: calibration and model variations
+19
+back still impacts upon galaxy sizes: feedback preferentially ejects
+the lowest angular momentum gas in galaxies (e.g. Brook et al.
+2011, 2012), so the heating (and concomitant ejection) of more gas
+per unit stellar mass formed in the StrongFB model with respect to
+Ref increases the median angular momentum of the ISM gas that
+remains to form stars, leading to the formation of more extended
+galaxies.
+Panel (d) shows the maximum circular velocity of haloes,
+Vmax = max (
+p
+GM(< r)/r), as a function of the stellar mass of
+their central galaxies. This is a close relative of the Tully & Fisher
+(1977) relation exhibited by disc galaxies, so once again only those
+galaxies with ns < 2.5 are plotted. Changing the efﬁciency of star
+formation feedback impacts upon both the zero-point and the slope
+of the relation. The zero-point is affected since, as in (b), for a broad
+range of halo masses, the primary effect of changing the efﬁciency
+is to change the stellar mass that is associated with a given halo
+mass (see also McCarthy et al. 2012). To ﬁrst order Vmax is a rea-
+sonable proxy for halo mass, so changing the star formation feed-
+back efﬁciency essentially shifts the stellar mass associated with a
+ﬁxed Vmax, i.e. translates the median curves left-to-right. However,
+the slope also changes because star formation feedback impacts
+most signiﬁcantly upon low-mass galaxies, as is also clear from
+inspection of (b). Moreover, in high-mass galaxies weak feedback
+can result in an increase of Vmax due to the formation of compact
+bulges.
+The SSFR as a function of stellar mass is shown in panel (e),
+and highlights that the adoption of weaker (stronger) star formation
+feedback leads to lower (higher) SSFR at ﬁxed stellar mass. At ﬁrst
+glance this may appear to contradict the interpretation of the rela-
+tions presented in Figure 6 (see § 4.1.4), where we concluded that
+the weaker feedback at low redshift in Ref (with respect to FBconst,
+for example) enabled low-mass galaxies to achieve a higher SSFR.
+There is, however, an important distinction with respect to the cal-
+ibrated simulations: galaxies of a ﬁxed stellar mass in the WeakFB
+and StrongFB models are not associated with haloes of a similar
+mass to their counterparts in Ref. The association of galaxies of
+ﬁxed stellar mass with less (more) massive haloes in the WeakFB
+(StrongFB) model leads to them experiencing lower (higher) infall
+rates (both from the cosmological accretion of intergalactic gas,
+and the reaccretion of ejected material). Increasing the efﬁciency
+of feedback enables galaxies to balance a ﬁxed net inﬂow rate at a
+lower SFR, but this is insufﬁcient to compensate for the increased
+inﬂow rate that stems from being associated with a more massive
+halo. A related symptom of the different SSFRs seen when varying
+the feedback efﬁciency, is a signiﬁcant shift of the fraction of galax-
+ies that are passive (SSFR < 10−2 Gyr−1) at z = 0.1, as shown
+in panel (f). The impact of changing the star formation feedback
+efﬁciency is not a simple shift in the normalisation of passive frac-
+tion as a function of stellar mass, since approximately half of all
+galaxies in the stellar mass range examined are classiﬁed as pas-
+sive in WeakFB. In contrast, very few galaxies with stellar mass
+M⋆∼1010 M⊙are passive in StrongFB, whilst at higher masses
+the StrongFB model converges on the relation realised by Ref. The
+adoption of weak star formation feedback results in a dramatically
+greater passive fraction for two reasons. Firstly, galaxies consume
+a greater fraction of their low entropy gas for star formation, and do
+so at early times, reducing the reservoir of cold gas available for star
+formation at the present epoch. The second, and more important ef-
+fect, is that changing the efﬁciency of star formation feedback also
+impacts upon the relationship between the masses of galaxies and
+their central BHs, as shown in panel (g).
+The signiﬁcantly higher (lower) normalisation of the MBH −
+M⋆relation in WeakFB (StrongFB) with respect to Ref may ap-
+pear, at ﬁrst glance, to be counter-intuitive. Using OWLS simula-
+tions featuring the Booth & Schaye (2009) implementation of AGN
+feedback, Booth & Schaye (2010) concluded that the mass of BHs
+is established primarily by the mass of their host dark matter halo,
+with a secondary dependence upon the concentration of the halo.
+Na¨ıvely, one might therefore expect that galaxies of ﬁxed stellar
+mass would host less (more) massive BHs, with respect to Ref,
+in WeakFB (StrongFB), since they reside in lower- (higher-) mass
+haloes. However, this reasoning neglects another consequence of
+changing the star formation feedback efﬁciency: in order to achieve
+self-regulation, BHs in the WeakFB (StrongFB) case must com-
+pensate for the lower (higher) star formation feedback efﬁciency
+by liberating more (less) AGN feedback energy. Since we adopt a
+ﬁxed feedback efﬁciency for AGN, ϵf = 0.15, BHs can only adjust
+their energy output by growing at different rates and hence yielding
+MBH −M⋆relations that are offset from that of Ref at z = 0.1.
+Note that in the WeakFB case, no upturn is seen in the MBH −M⋆
+relation at intermediate mass scales, since the lack of stellar feed-
+back enables BHs hosted by low-mass galaxies to reach the mass at
+which their growth becomes regulated, or even quenched, by AGN
+feedback.
+Finally, panels (h) and (i) show the metallicities of the ISM
+(speciﬁcally, star-forming particles) and stars, respectively, as a
+function of stellar mass. At the low- and intermediate-mass scales,
+the simple shift in the normalisation of the relations as a function
+of the adopted stellar feedback efﬁciency indicates that the outﬂows
+driven by this mechanism eject metal-rich gas from galaxies, pre-
+venting galaxies from acquiring the metallicity expected in the sim-
+ple “closed box” chemical evolution scenario. The convergence of
+the median relations for the three models at high metallicity in-
+dicates that the ejection of metal-rich gas in massive galaxies is
+less efﬁcient than at low masses, and/or is not driven primarily by
+star formation feedback (see also e.g. de Rossi et al. 2007; Dav´e
+et al. 2011; Obreja et al. 2014; Creasey et al. 2015). The observa-
+tion of a similar anti-correlation between baryonic mass and metal-
+loss in local galaxies is widely perceived as convincing evidence
+for the ubiquity of outﬂows, and of their efﬁciency as a mechanism
+to transport metals away from the ISM (e.g. Tremonti et al. 2004;
+Zahid et al. 2014).
+In summary, the efﬁciency of feedback associated with star
+formation has a strong effect on a broad range of galaxy scaling re-
+lations. This is primarily, but not exclusively, because factor of two
+changes to the efﬁciency signiﬁcantly alter the relationship between
+stellar mass and halo mass. The changes seen in the properties of
+the z = 0.1 EAGLE galaxy population as a result of such changes
+are, for several key scaling relations, at a level that is signiﬁcantly
+greater than the observational uncertainty.
+4.2.4
+Subgrid accretion disc viscosity
+The parameter Cvisc is related to the inverse of the viscosity of a no-
+tional subgrid accretion disc, and has two effects. Firstly, it governs
+the angular momentum scale at which the accretion switches from
+the relatively inefﬁcient viscosity-limited regime to the Bondi-
+limited regime (with both cases being subject to the Eddington
+limit). Secondly, it governs the rate at which gas transits through the
+accretion disc when the viscosity-limited regime applies. A higher
+subgrid viscosity, which corresponds to a lower value of the viscos-
+ity parameter Cvisc, therefore leads to an earlier onset of the dom-
+inance of AGN feedback, and a greater energy injection rate when
+in the viscosity-limited regime. Figure 11 shows the z = 0.1 scal-
+
+
+20
+R.A.Crain et al.
+Figure 11. Galaxy scaling relations at z = 0.1 in L0050N0752 simulations adopting Cvisc = 2π × 102 (ViscLo, green), Cvisc = 2π × 100 (Ref, dark
+blue), and Cvisc = 2π ×10−2 (ViscHi, red). Curves show binned medians, and the blue shaded region corresponds to the 1σ scatter about the median of Ref.
+Curves are drawn with dotted lines below the estimated resolution limit of each diagnostic, and dotted lines where sampled by fewer than 10 galaxies per bin.
+The panels show (a) the MBH −M⋆relation, (b) the stellar mass to halo mass ratio of central galaxies; (c) the effective radius of disc galaxies as a function
+of stellar mass. Details of the observational measurements (dark grey) are provided in § 4.2.3.
+ing relations that are most signiﬁcantly affected as Cvisc is varied
+by factors of 102 (ViscLo) and 10−2 (ViscHi), respectively, from
+the value adopted by Ref. These are (a) the MBH −M⋆relation,
+(b) the stellar mass to halo mass ratio of central galaxies, and (c)
+the effective radius as a function of stellar mass.
+The MBH−M⋆relation exhibits three distinct regimes: an ini-
+tial slow and inefﬁcient growth from the seed mass (105 h−1 M⊙),
+followed by a period of rapid growth of the BH towards the
+observed high-mass scaling relation and, ﬁnally, steadier growth
+along the scaling relation. The slow initial growth stems from sev-
+eral physical causes. Growth by mergers with seed mass BHs is
+inefﬁcient, simply because the integrated mass of seeds encoun-
+tered by any given BH is small (see Figure 4 of Booth & Schaye
+2009). Growth by gas accretion is also initially inefﬁcient, ﬁrstly
+because the Bondi rate scales strongly with BH mass (∝M 2
+BH),
+and secondly because the rotational support of the ISM in low-
+mass galaxies is sufﬁcient to maintain the angular momentum of
+gas close to the BH above the accretion threshold introduced by
+Rosas-Guevara et al. (2013). The signiﬁcance of the latter is clear
+from inspection of panel (a), which shows that the characteristic
+mass at which BHs begin to grow efﬁciently is sensitive to Cvisc.
+This scale is M⋆∼1010 M⊙in Ref, whilst in the ViscLo and Vis-
+cHi models it is shifted to M⋆∼1010.3 M⊙and M⋆∼109 M⊙,
+respectively.
+Once gas accretion is efﬁcient, BHs grow rapidly, because the
+feedback liberated by their growth is initially unable to regulate the
+accretion rate. Once sufﬁciently massive, however, BHs become
+able to regulate, or even quench, their own growth by gas accretion.
+In this regime, the gas that does accrete onto BHs has relatively low
+speciﬁc angular momentum (Rosas-Guevara et al. 2013). There-
+fore the stellar mass at which BHs arrive on the scaling relation
+is less sensitive to Cvisc than the stellar mass at which BHs begin
+to accrete efﬁciently. The slope of the MBH −M⋆relation in the
+regime of efﬁcient growth is hence sensitive to Cvisc, being signiﬁ-
+cantly steeper (shallower) than Ref for ViscLo (ViscHi). However,
+the three simulations do not converge to the same relation, indicat-
+ing that accretion onto the BH remains (partially) viscosity-limited
+in even the most massive BHs. In the most massive galaxies, poorly
+sampled by the L = 50 cMpc volumes used here, the growth of
+BHs is likely dominated by mergers.
+The role of the subgrid viscosity as a means to calibrate the
+simulations is clear from panel (b). By shifting the stellar mass
+scale at which BHs begin to self-regulate, the assumed viscosity
+effectively controls the halo mass scale at which AGN feedback
+becomes signiﬁcant. The amplitude of the baryon conversion efﬁ-
+ciency, and the halo mass scale at which the peak occurs, are there-
+fore sensitive to the viscosity; appealing to lower (higher) viscosity
+increases (decreases) both the amplitude and halo mass scale of the
+peak stellar mass to halo mass ratio (see also Rosas-Guevara et al.
+2013).
+In the previous section, we concluded that the size of low-to-
+intermediate mass galaxies is sensitive to the efﬁciency of feedback
+associated with star formation (i.e. fth). Star formation in more
+massive galaxies is regulated primarily by AGN feedback, so their
+sizes are more sensitive to the parameters governing AGN feed-
+back, as shown in panel (c). Delaying the onset of efﬁcient AGN
+feedback with a low subgrid viscosity results in the delivery of gas
+to the ISM being countered by star formation feedback alone. A
+greater fraction of the stars in massive galaxies form from particu-
+larly dense, metal-rich gas that, as discussed in § 4.1.5, is not con-
+ducive to the realisation of numerically efﬁcient feedback. Some
+degree of overcooling is therefore to be expected, a symptom of
+which is the formation of a massive, compact bulge component
+that reduces the effective radius of the galaxy. As for adjustments
+to fth, the change in the typical halo mass associated with galaxies
+of a ﬁxed stellar mass also affects the sizes of galaxies, but here the
+effect is weaker, and limited to massive galaxies.
+4.2.5
+AGN heating temperature
+The crucial role of the AGN heating temperature in EAGLE was ex-
+plored in part by S15, who presented results from a L0050N0752
+simulation adopting ∆TAGN = 109 K. They concluded that the
+higher heating temperature, which yields more energetic but less
+frequent AGN feedback episodes, was necessary to reproduce the
+gas fractions and X-ray luminosities of galaxy groups. Recently, Le
+
+
+EAGLE: calibration and model variations
+21
+Figure 12. As per Figure 11, but varying the AGN heating temperature, ∆TAGN, instead of the subgrid viscosity. The curves correspond to ∆TAGN = 108 K
+(AGNdT8, green), ∆TAGN = 108.5 K (Ref, dark blue), and ∆TAGN = 109 K (AGNdT9, red).
+Brun et al. (2014) used the cosmo-OWLS simulation suite to con-
+duct a systematic examination of the properties of galaxy groups in
+response to variation of ∆TAGN. They too concluded that a higher
+heating temperature yields more efﬁcient AGN feedback.
+In Figure 12, we again show the MBH −M⋆relation, baryon
+conversion efﬁciency and the size of galaxies at z = 0.1, this
+time for simulations adopting ∆TAGN = 108 K (“AGNdT8”)
+and ∆TAGN = 109 K (“AGNdT9”), besides Ref which adopts
+∆TAGN = 108.5 K. The trends appear qualitatively similar to
+those resulting from changes to the subgrid viscosity, but there are
+important differences. Variation of the heating temperature does not
+affect the galaxy stellar mass scale at which BHs begin to grow to-
+wards the observed MBH −M⋆relation. Therefore, the halo mass
+scale at which the baryon conversion efﬁciency peaks is also inde-
+pendent of the heating temperature.
+However, once a central BH is sufﬁciently massive to impact
+upon its environment, the macroscopic efﬁciency (which should not
+be confused with the subgrid efﬁciency, ϵf) of the associated AGN
+feedback is sensitive to the adopted heating temperature. The less
+frequent but more energetic heating events associated with a higher
+heating temperature are more effective at regulating star formation
+in massive galaxies, and as a result the peak baryon conversion ef-
+ﬁciency is higher (lower) in the AGNdT8 (AGNdT9) model, with
+repect to Ref. Since the mass of BHs in the simulation is established
+to ﬁrst order by halo mass (Booth & Schaye 2010), the shift in halo
+mass associated with galaxies of stellar mass M⋆≳1010 M⊙es-
+tablishes the offset in the MBH−M⋆relation above this mass scale.
+The behaviour of the size-mass relation in response to varia-
+tion of the AGN heating temperature, panel (c), is consistent with
+that resulting from variation of the star formation feedback efﬁ-
+ciency (Figure 10) and the subgrid viscosity (Figure 11). The re-
+duced efﬁcacy of AGN feedback when a lower heating temperature
+is adopted leads to the formation of more compact galaxies, since a
+greater fraction of stars are able to form from gas whose density is
+higher than the critical density for numerically efﬁcient feedback,
+nH,tc (equation 4).
+5
+SUMMARY AND DISCUSSION
+This study presents results derived from simulations from the “Evo-
+lution and Assembly of GaLaxies and their Environment” (EA-
+GLE) project. The simulations adopt cosmological parameters that
+are guided by recent results from the Planck satellite, were realised
+with a force resolution of 0.7 pkpc for z < 3 (better at higher red-
+shift), and adopt a baryonic particle mass of 1.8 × 106 M⊙. They
+were conducted with a version of the GADGET3 software that in-
+corporates modiﬁed implementations of SPH, time stepping and
+subgrid models governing cooling, star formation, stellar evolu-
+tion, feedback from star formation, gas accretion onto and merg-
+ers of BHs, and AGN feedback. These simulations complement the
+three introduced in a companion paper by S15, which also included
+simulations with higher resolution than the intermediate-resolution
+simulations presented here. The EAGLE suite of simulations also
+includes very-high resolution ‘zoom’ simulations of cosmological
+environments similar to the Local Group (Sawala et al. 2014a,b).
+S15 discussed the implications of the crucial role played by
+subgrid routines in cosmological simulations, concluding that cos-
+mological simulations are at present unable to estimate the efﬁ-
+ciency of feedback processes from ﬁrst principles, and thus cannot
+predict stellar and BH masses. The optimal recourse is therefore
+to calibrate the parameters of subgrid routines to ensure that sim-
+ulations reproduce well-characterised observables, for example the
+stellar mass function of galaxies. The introduction of several new
+simulations here enables a clear illustration of the motivation for
+the parametrisation adopted by the EAGLE reference model. The
+additional simulations also enable an exploration of the sensitivity
+of the outcomes of the reference model to the variation of its key
+subgrid parameters.
+The EAGLE simulations each adopt the stochastic thermal
+feedback scheme of Dalla Vecchia & Schaye (2012), whereby ﬂuid
+elements are stochastically heated to a pre-speciﬁed heating tem-
+perature, and the appropriate time-averaged energy injection rate
+is achieved by adjusting the heating probability. This scheme miti-
+gates a common problem in cosmological simulations, namely that
+the energy injected as feedback at each timestep is usually radiated
+away before the gas is able to expand. Moreover, this scheme en-
+ables the quantity of energy per feedback event to be speciﬁed, ir-
+respective of the time-averaged energy injection rate. In the case of
+
+
+22
+R.A.Crain et al.
+feedback associated with star formation, SPH neighbours of newly-
+formed star particles are heated to ∆TSF = 107.5 K, and the proba-
+bility of heating is determined by the fraction of the energy budget
+that is available for feedback, fth. We adopt the convention that
+fth = 1 corresponds to an expectation value of the injected energy
+of 1.736 × 1049 erg M−1
+⊙
+(or 8.73 × 1015 erg g−1), the energy
+expected from type II supernovae associated with a Chabrier IMF,
+assuming each SN liberates 1051 erg. For this energy budget and
+heating temperature, ∼1.3 ﬂuid elements are expected to be heated
+by each newly-formed star particle (equation 5).
+Four of the simulations presented here, referred to as the ‘cal-
+ibrated simulations’ (§3), adopt different functional forms for fth.
+The efﬁciency of the subgrid star formation feedback that each sim-
+ulation assumes, and the fashion in which this depends upon the
+properties of the local environment, is different in each case. The
+calibrated simulations are realised within a cubic comoving cos-
+mological volume of L = 50 cMpc on a side, and each reproduces
+the observed z = 0.1 GSMF to within ≲0.3 dex over the range
+108.2 ≲M⋆≲1011.2 M⊙(Figure 2). This precision is similar to
+that typically attained by semi-analytic galaxy formation models,
+and is unprecedented for hydrodynamical simulations. The GSMF
+realised in each case is not presented as a prediction, because the
+subgrid feedback parameters were calibrated using the observa-
+tions. Nevertheless, the reproduction of the observed GSMF rep-
+resents a signiﬁcant advance. The computational expense of cali-
+brating large hydrodynamical simulations precludes an exhaustive
+exploration of the available parameter space, so success was not
+guaranteed, and indeed there was no guarantee that the adopted
+subgrid models could reproduce the observations for any values of
+their parameters. More practically, the availability of hydrodynami-
+cal simulations that reproduce the demographics of the local galaxy
+population enables a diverse range of problems to be addressed,
+many of which have previously been limited to investigation with
+semi-analytic models.
+This development adds to recent progress towards the repro-
+duction of the observed z = 0.1 GSMF (or, in the case of ‘zoom’
+simulations, the M⋆−Mhalo relation) in hydrodynamical simula-
+tions (e.g. Okamoto et al. 2010; Oppenheimer et al. 2010; Munshi
+et al. 2013; Puchwein & Springel 2013; Vogelsberger et al. 2013;
+Hopkins et al. 2014; Vogelsberger et al. 2014a). Success in this re-
+gard is typically interpreted as an indication that a particular feed-
+back implementation is reasonable. However, the reproduction here
+of the observed z = 0.1 GSMF, with a number of models that yield
+unrealistically compact galaxies, highlights that the simultaneous
+comparison of simulated galaxies with complementary diagnostics,
+such as the observed sizes of galaxies, is necessary to ensure the ac-
+curate reproduction of a broad range of galaxy scaling relations16.
+For example, the FBconst model, which adopts fth = 1 irre-
+spective of local conditions, yields a cosmic star formation history
+that is weighted too strongly to early cosmic epochs, resulting in
+the formation of galaxies that are too compact and too quiescent
+at the present epoch. The dominant cause of the shortcomings of
+the FBconst model (and also the FBσ and FBZ models) is spu-
+rious, numerical radiative losses that artiﬁcially suppress the im-
+pact of energy feedback. Because (at a ﬁxed resolution and heating
+16 Hopkins et al. (2014) examined the size of galaxies in the FIRE ‘zoom’
+simulations, concluding they are consistent with observations, whilst the
+Illustris team recently posted a preprint examining their size-mass relation,
+concluding that their ∼L⋆galaxies are larger than observed by a factor of
+∼2 (Snyder et al. 2015).
+temperature) the cooling time of a hydrodynamic resolution ele-
+ment decreases more rapidly with increasing density (∝n−1
+H ) than
+does its sound crossing time (∝n−1/3
+H
+), there exists a threshold
+density above which a resolution element radiates away injected
+heat before it can expand (Dalla Vecchia & Schaye 2012). At inter-
+mediate resolution, approximately half of all stars in the FBconst
+model form from gas with density above this threshold, resulting
+in the formation of galaxies that are too old, too passive and too
+compact. This demonstrates that it is possible to resolve the over-
+cooling problem at the halo scale (i.e. ensuring that haloes form
+galaxies whose masses are consistent with constraints from, for ex-
+ample, abundance matching techniques) without addressing the an-
+gular momentum problem, and hence still yielding a galaxy popu-
+lation that is clearly unrealistic.
+The problem is, partially, a consequence of the inability of
+cosmological simulations to resolve the formation of the ﬁrst stars.
+The ﬁrst galaxies whose formation can be captured are necessar-
+ily associated with haloes that have not yet been subject to inter-
+nal feedback processes, exhibiting unrealistically high gas fractions
+and star formation efﬁciencies, and potentially triggering a cycle of
+overestimated radiative losses. The FBσ and FBZ simulations, for
+which fth increases with decreasing dark matter velocity disper-
+sion and metallicity, respectively, successfully interrupt this cycle
+by appealing to fth > 1 for stars forming within nascent galax-
+ies. However, this modiﬁcation alone is insufﬁcient to inhibit the
+onset of numerical overcooling. The comoving stellar mass den-
+sity of these simulations rises much more rapidly than observed
+at early cosmic epochs, indicating that star formation is initially
+too efﬁcient, and must decline (too) strongly at later times in order
+to reproduce the observed stellar mass density, and the GSMF, at
+z = 0.1. As in FBconst, galaxies in these simulations exhibit mas-
+sive, compact bulges that are a classic signature of overcooling.
+The suppression of numerical losses is crucial not only to en-
+sure that the growth of galaxies is appropriately regulated, but also
+to minimise the risk of misinterpretation. If signiﬁcant numerical
+losses are overlooked, the macroscopic efﬁciency of feedback (as
+adopted in a particular simulation) will be underestimated. The en-
+ergy budget then required for outﬂows to balance inﬂows, and so
+to reproduce a realistic galaxy population, will be overestimated.
+Spurious conclusions are then easily drawn. For example, if numer-
+ical losses associated with star formation feedback are overlooked,
+one might conclude that the shallow faint end of the GSMF can
+only be reproduced by appealing to non-standard solutions such
+as a top-heavy IMF, gravitational preheating or the adoption of a
+warm dark matter (WDM) cosmogony. In the case of more mas-
+sive galaxies, overlooking numerical losses might lead to the in-
+ference that very efﬁcient AGN feedback is necessary to regulate
+star formation. These conclusions may of course be reasonable, but
+they should only be inferred from the analysis of simulations with
+demonstrably insigniﬁcant numerical radiative losses.
+The ideal solution to the numerical overcooling problem ex-
+hibited by the FBconst, FBσ and FBZ simulations is to appeal to
+higher resolution. The critical density for efﬁcient feedback scales
+nH,tc ∝m−1/2
+g
+. Moreover, the improved sampling afforded by
+higher resolution justiﬁes the adoption of a higher heating temper-
+ature, which implies a lower heating probability per newly-formed
+star particle. This is an effective means of increasing the critical
+density, since nH,tc ∝T 3/2. The computational cost of higher
+resolution is currently prohibitive, however, particularly since the
+calibration of subgrid parameters requires that “production” sim-
+ulations are preceded by a suite of smaller exploratory runs. Ex-
+
+
+EAGLE: calibration and model variations
+23
+perience from the calibration of the EAGLE simulations indicates
+that volumes of at least L = 25 cMpc are necessary in order to
+adequately sample the population of galaxies of stellar mass corre-
+sponding to the knee of the GSMF, whose properties are particu-
+larly sensitive to the subgrid parameters governing feedback from
+both star formation and AGN.
+Our solution is to adopt a star formation feedback efﬁciency
+that increases with density at ﬁxed metallicity. This inhibits the
+ISM from reaching the high densities at which our stochastic ther-
+mal heating scheme becomes numerically inefﬁcient. This criti-
+cal density, nH,tc ∼10 cm−3, is much greater than the density
+at which a cold interstellar phase is expected to develop (nH ∼
+0.1 cm−3, e.g. Schaye 2004). We do not include such a phase in
+our simulations, since they lack the resolution required to model
+it accurately. The simulations treat the mutiphase ISM as a single-
+phase medium that is subject to a polytropic equation of state; in re-
+ality, losses within a cold phase would be signiﬁcantly higher than
+those expected from this volume-averaged representation, but much
+of the energy injected by feedback is likely to be channelled into
+the hot, diffuse phase of the ISM whose radiative losses will, con-
+versely, be much lower. Moreover, the formation of a cold, clumpy
+ISM phase would also lead to more clustered star formation, and
+higher-temperature outﬂows with relatively low radiative losses.
+Clearly, the simulations cannot model radiative losses accurately
+for gas with nH ≫0.1 cm−3, and the adoption of a density depen-
+dence for fth can be justiﬁed.
+This scheme enables the EAGLE reference model to be cali-
+brated to reproduce the GSMF, and the size-mass relation of disc
+galaxies, as observed at z = 0.1. This model therefore resolves
+the overcooling problem at all radii within galaxies, supressing the
+formation of unrealistically massive bulge components and allevi-
+ating the angular momentum problem. S15 further demonstrated
+that, with the same calibration, many other observed properties of
+galaxies at z = 0.1 are reproduced, for example speciﬁc star for-
+mation rates, passive fractions, BH masses, rotation velocities and
+metallicities, in addition to the number density of intergalactic ab-
+sorption systems. Furlong et al. (2014) demonstrated that the EA-
+GLE reference model also reproduces the observed evolution of the
+comoving stellar mass density and galaxy speciﬁc star formation
+rates.
+Integrating over all feedback events associated with star
+formation, the median subgrid feedback efﬁciency in the Ref-
+L050N0752 and Ref-L100N1504 simulations is fth = 0.65 and
+0.70, respectively, in spite of this model appealing to fth > 1 when
+stars are born from high-density gas. The similarity of these values
+to the expected energy budget, i.e. that the median efﬁciency is of
+order unity, might be considered remarkable. Choosing to calibrate
+the simulations affords the freedom to adopt values much greater or
+much less than unity if such values are required in order to repro-
+duce the calibration diagnostics. That such values did not prove to
+be necessary is a non-trivial outcome. It indicates that the radiative
+losses that shape the properties of the galaxy population and their
+environments are established primarily on scales that are “macro-
+scopic” in the context of cosmological simulations.
+Having calibrated a model that enables the GSMF and sizes of
+galaxies to be reproduced at z = 0.1, we have explored the sensi-
+tivity of galaxy properties and scaling relations to variation of the
+key parameters of the subgrid routines. In general, the properties of
+the galaxy population are insensitive to the adopted star formation
+threshold. Similarly, when self-regulation is dominated by star for-
+mation feedback, the properties of galaxies are largely insensitive
+to the details of the ISM, as was also found by Schaye et al. (2010)
+and Haas et al. (2013b). The properties of more massive galaxies,
+whose growth is regulated by AGN feedback, are however sensitive
+to the assumed equation of state of the ISM, because the accretion
+rate onto BHs (and hence the liberation of energy as AGN feed-
+back) is inversely proportional to the cube of the local sound speed
+which, for gas subject to a polytropic equation of state, scales as
+c2
+s ∝ργeos−1.
+The properties of galaxies are in general sensitive to the value
+of any parameter that affects energetic feedback processes. In com-
+mon with the ﬁndings of many semi-analytic (e.g. Benson et al.
+2003; Bower et al. 2006; Croton et al. 2006; Somerville et al. 2008;
+Bower et al. 2012) and hydrodynamical (e.g. Haas et al. 2013a;
+Puchwein & Springel 2013; Vogelsberger et al. 2013; Khandai
+et al. 2014; Vogelsberger et al. 2014a) simulations, the properties of
+galaxies with stellar mass ≲M ⋆at z = 0.1 are largely governed by
+feedback associated with star formation, whilst those of more mas-
+sive galaxies are governed by feedback associated with the growth
+of BHs. Feedback regulates the conversion of gas into stars, such
+that, at ﬁxed halo mass, galaxy stellar masses are lower. More ef-
+ﬁcient feedback therefore results in the association of galaxies of
+ﬁxed stellar mass with more massive haloes. It also fosters the for-
+mation of more extended galaxies, by preferentially ejecting gas
+with the low angular momentum from the ISM.
+Some consequences of more efﬁcient feedback are less intu-
+itive. For example, more efﬁcient star formation feedback results
+in higher speciﬁc star formation rates at z = 0.1. This is because
+galaxies of a ﬁxed stellar mass are hosted by more massive haloes,
+so experience a greater cosmological accretion rate and must in-
+crease their SFR to achieve self-regulation. By extension, more ef-
+ﬁcient feedback also leads to reduced passive fractions at z = 0.1.
+It is also potentially counter-intuitive that more efﬁcient feedback,
+in spite of associating galaxies of ﬁxed stellar mass with more mas-
+sive haloes, results in lower central BH masses. This can also be
+explained in terms of self-regulation: more efﬁcient star formation
+feedback enables inﬂows to be balanced without the need for the
+strong AGN feedback that accompanies rapid BH growth.
+We have not studied simulations in which the subgrid efﬁ-
+ciency of AGN feedback, ϵf, has been varied, since, as demon-
+strated by Booth & Schaye (2009, 2010), this only affects the mass
+of BHs. However, effects similar to the variation of fth do accom-
+pany the variation of the subgrid viscosity, Cvisc, and the AGN
+heating temperature, ∆TAGN. A higher viscosity enables BHs to
+begin accreting efﬁciently at a lower mass, boosting the mass of
+BHs at ﬁxed stellar mass, particularly so for the low-mass galax-
+ies whose BHs grow primary by viscosity-limited gas accretion
+(Rosas-Guevara et al. 2013). It also results in the formation of more
+extended massive galaxies, since the earlier onset of AGN feedback
+enables the removal of a greater fraction of low angular momentum
+gas from their ISM. A higher heating temperature, despite mak-
+ing heating events more intermittent, boosts the efﬁciency of AGN
+feedback in a fashion similar to increasing fth for star formation
+feedback. Because BH mass is established, to ﬁrst order, by halo
+mass (Booth & Schaye 2010), the resulting shift in the halo mass
+associated with a galaxies of ﬁxed stellar mass results in a simi-
+lar shift of BH masses, and fosters the formation of more extended
+galaxies.
+Ultimately, the corroboration of our conclusions requires sim-
+ulations with sufﬁcient resolution and physical detail to enable ab
+initio prediction of energy and momentum losses within the mul-
+tiphase ISM, and the development of such calculations is likely
+to remain beyond our reach in the near future. Whilst progress is
+being made in pursuit of this goal (e.g. Yirak et al. 2010; Al¯uzas
+
+
+24
+R.A.Crain et al.
+et al. 2012), and valuable attempts are underway to bridge the
+vast dynamic range between star-forming complexes and galaxies
+(e.g. Joung & Mac Low 2006; Powell et al. 2011; Hopkins et al.
+2012; Agertz et al. 2013; Creasey et al. 2013; Hopkins et al. 2014;
+Creasey et al. 2015), there are many proﬁtable lines of enquiry to
+pursue with cosmological simulations that appeal to subgrid mod-
+els. As was discussed by S15, the chief purpose of such simula-
+tions is not to yield ab initio predictions of the masses of galaxies
+and their BHs, but to illuminate the fashion by which astrophysical
+processes shape the evolution of galaxies and their environments.
+Having calibrated simulations to reproduce judiciously chosen ob-
+servables, their confrontation with myriad complementary observ-
+ables, many more than explored here, represents an efﬁcient and di-
+rect means of identifying shortcomings in galaxy formation theory,
+and motivating improved treatments of the relevant astrophysical
+processes.
+ACKNOWLEDGEMENTS
+We gratefully acknowledge the expert high performance computing
+support of Lydia Heck and and Peter Draper, and useful discussions
+with Adam Muzzin and Ivan Baldry. We thank Yannick Bah´e for
+a careful reading of the initial manuscript, and the anonymous ref-
+eree for constructive feedback that improved the article. RAC is a
+Royal Society University Research Fellow. We thank PRACE for
+awarding us access to the Curie facility based in France at Tr`es
+Grand Centre de Calcul. This study used the DiRAC Data Centric
+system at Durham University, operated by the Institute for Com-
+putational Cosmology on behalf of the STFC DiRAC HPC Facil-
+ity (www.dirac.ac.uk); this equipment was funded by BIS National
+E-infrastructure capital grant ST/K00042X/1, STFC capital grant
+ST/H008519/1, STFC DiRAC Operations grant ST/K003267/1 and
+Durham University. DiRAC is part of the National E-Infrastructure.
+The study was sponsored by the Dutch National Computing Fa-
+cilities Foundation (NCF) for the use of supercomputer facilities,
+with ﬁnancial support from the Netherlands Organisation for Sci-
+entiﬁc Research (NWO), and the European Research Council under
+the European Unions Seventh Framework Programme (FP7/2007-
+2013) / ERC Grant agreements 278594 GasAroundGalaxies, GA
+267291 Cosmiway, and 321334 dustygal. Support was also re-
+ceived via the Interuniversity Attraction Poles Programme initiated
+by the Belgian Science Policy Ofﬁce ([AP P7/08 CHARM]), the
+National Science Foundation under Grant No. NSF PHY11-25915,
+and the UK Science and Technology Facilities Council (grant num-
+bers ST/F001166/1 and ST/I000976/1) via rolling and consolidat-
+ing grants awarded to the ICC.
+REFERENCES
+Abadi M. G., Navarro J. F., Steinmetz M., Eke V. R., 2003, ApJ,
+591, 499
+Agertz O., Kravtsov A. V., Leitner S. N., Gnedin N. Y., 2013, ApJ,
+770, 25
+Agertz O., et al., 2007, MNRAS, 380, 963
+Al¯uzas R., Pittard J. M., Hartquist T. W., Falle S. A. E. G., Langton
+R., 2012, MNRAS, 425, 2212
+Allende Prieto C., Lambert D. L., Asplund M., 2001, ApJ, 556,
+L63
+Aumer M., White S. D. M., Naab T., Scannapieco C., 2013, MN-
+RAS, 434, 3142
+Avila-Reese V., Zavala J., Firmani C., Hern´andez-Toledo H. M.,
+2008, AJ, 136, 1340
+Baes M., Verstappen J., De Looze I., Fritz J., Saftly W., Vidal
+P´erez E., Stalevski M., Valcke S., 2011, ApJS, 196, 22
+Baldry I. K., et al., 2012, MNRAS, 421, 621
+Balogh M. L., Pearce F. R., Bower R. G., Kay S. T., 2001, MN-
+RAS, 326, 1228
+Bate M. R., Burkert A., 1997, MNRAS, 288, 1060
+Bauer A. E., et al., 2013, MNRAS, 434, 209
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770, 57
+Benson A. J., Bower R. G., Frenk C. S., Lacey C. G., Baugh C. M.,
+Cole S., 2003, ApJ, 599, 38
+Bernardi M., Meert A., Sheth R. K., Vikram V., Huertas-Company
+M., Mei S., Shankar F., 2013, MNRAS, 436, 697
+Beutler F., et al., 2012, MNRAS, 423, 3430
+Blake C., et al., 2011a, MNRAS, 415, 2892
+—, 2011b, MNRAS, 418, 1725
+Blanchard A., Valls-Gabaud D., Mamon G. A., 1992, A&A, 264,
+365
+Bondi H., Hoyle F., 1944, MNRAS, 104, 273
+Booth C. M., Agertz O., Kravtsov A. V., Gnedin N. Y., 2013, ApJ,
+777, L16
+Booth C. M., Schaye J., 2009, MNRAS, 398, 53
+—, 2010, MNRAS, 405, L1
+Bouch´e N., et al., 2010, ApJ, 718, 1001
+Bower R. G., Benson A. J., Crain R. A., 2012, MNRAS, 422, 2816
+Bower R. G., Benson A. J., Malbon R., Helly J. C., Frenk C. S.,
+Baugh C. M., Cole S., Lacey C. G., 2006, MNRAS, 370, 645
+Bower R. G., Vernon I., Goldstein M., Benson A. J., Lacey C. G.,
+Baugh C. M., Cole S., Frenk C. S., 2010, MNRAS, 407, 2017
+Brook C. B., Stinson G., Gibson B. K., Roˇskar R., Wadsley J.,
+Quinn T., 2012, MNRAS, 419, 771
+Brook C. B., Stinson G., Gibson B. K., Shen S., Macci`o A. V.,
+Obreja A., Wadsley J., Quinn T., 2014, MNRAS, 443, 3809
+Brook C. B., et al., 2011, MNRAS, 415, 1051
+Chabrier G., 2003, PASP, 115, 763
+Chiosi C., Bertelli G., Bressan A., 1992, ARA&A, 30, 235
+Cole S., 1991, ApJ, 367, 45
+Cole S., Aragon-Salamanca A., Frenk C. S., Navarro J. F., Zepf
+S. E., 1994, MNRAS, 271, 781
+Cole S., Lacey C. G., Baugh C. M., Frenk C. S., 2000, MNRAS,
+319, 168
+Conroy C., Gunn J. E., White M., 2009, ApJ, 699, 486
+Correa C. A., Wyithe J. S. B., Schaye J., Duffy A. R., 2014, ArXiv
+e-prints
+Crain R. A., et al., 2009, MNRAS, 399, 1773
+Creasey P., Theuns T., Bower R. G., 2013, MNRAS, 429, 1922
+—, 2015, MNRAS, 446, 2125
+Creasey P., Theuns T., Bower R. G., Lacey C. G., 2011, MNRAS,
+
+
+EAGLE: calibration and model variations
+25
+415, 3706
+Croton D. J., et al., 2006, MNRAS, 365, 11
+Cullen L., Dehnen W., 2010, MNRAS, 408, 669
+Dalla Vecchia C., Schaye J., 2008, MNRAS, 387, 1431
+—, 2012, MNRAS, 426, 140
+Dav´e R., Finlator K., Oppenheimer B. D., 2011, MNRAS, 416,
+1354
+—, 2012, MNRAS, 421, 98
+Davis M., Efstathiou G., Frenk C. S., White S. D. M., 1985, ApJ,
+292, 371
+de Rossi M. E., Tissera P. B., Scannapieco C., 2007, MNRAS,
+374, 323
+Dekel A., et al., 2009, Nature, 457, 451
+Dolag K., Borgani S., Murante G., Springel V., 2009, MNRAS,
+399, 497
+Durier F., Dalla Vecchia C., 2012, MNRAS, 419, 465
+Dutton A. A., van den Bosch F. C., Dekel A., 2010, MNRAS, 405,
+1690
+Eke V. R., Baugh C. M., Cole S., Frenk C. S., King H. M., Peacock
+J. A., 2005, MNRAS, 362, 1233
+Fakhouri O., Ma C.-P., Boylan-Kolchin M., 2010, MNRAS, 406,
+2267
+Ferland G. J., Korista K. T., Verner D. A., Ferguson J. W., King-
+don J. B., Verner E. M., 1998, PASP, 110, 761
+Finlator K., Dav´e R., 2008, MNRAS, 385, 2181
+Fragile P. C., Murray S. D., Anninos P., van Breugel W., 2004,
+ApJ, 604, 74
+Fu L., et al., 2008, A&A, 479, 9
+Furlong M., et al., 2014, ArXiv e-prints
+Gallazzi A., Charlot S., Brinchmann J., White S. D. M., Tremonti
+C. A., 2005, MNRAS, 362, 41
+Gilbank D. G., Baldry I. K., Balogh M. L., Glazebrook K., Bower
+R. G., 2010, MNRAS, 405, 2594
+Governato F., et al., 2004, ApJ, 607, 688
+Guedes J., Callegari S., Madau P., Mayer L., 2011, ArXiv e-prints
+Haardt F., Madau P., 2001, in Clusters of Galaxies and the High
+Redshift Universe Observed in X-rays, Neumann D. M., Tran
+J. T. V., eds.
+Haas M. R., Schaye J., Booth C. M., Dalla Vecchia C., Springel
+V., Theuns T., Wiersma R. P. C., 2013a, MNRAS, 435, 2931
+—, 2013b, MNRAS, 435, 2955
+Hatton S., Devriendt J. E. G., Ninin S., Bouchet F. R., Guiderdoni
+B., Vibert D., 2003, MNRAS, 343, 75
+Heiles C., 1990, ApJ, 354, 483
+Henriques B., White S., Thomas P., Angulo R., Guo Q., Lemson
+G., Springel V., Overzier R., 2014, ArXiv e-prints
+Henriques B. M. B., Thomas P. A., Oliver S., Roseboom I., 2009,
+MNRAS, 396, 535
+Henriques B. M. B., White S. D. M., Thomas P. A., Angulo R. E.,
+Guo Q., Lemson G., Springel V., 2013, MNRAS, 431, 3373
+Hopkins P. F., 2013, MNRAS, 428, 2840
+—, 2014, ArXiv e-prints
+Hopkins P. F., Kereˇs D., O˜norbe J., Faucher-Gigu`ere C.-A.,
+Quataert E., Murray N., Bullock J. S., 2014, MNRAS, 445, 581
+Hopkins P. F., Quataert E., Murray N., 2012, MNRAS, 421, 3522
+Jenkins A., 2010, MNRAS, 403, 1859
+—, 2013, MNRAS, 434, 2094
+Jenkins A., Booth S., 2013, ArXiv e-prints
+Jenkins A., Frenk C. S., White S. D. M., Colberg J. M., Cole S.,
+Evrard A. E., Couchman H. M. P., Yoshida N., 2001, MNRAS,
+321, 372
+Joung M. K. R., Mac Low M.-M., 2006, ApJ, 653, 1266
+Jubelgas M., Springel V., Enßlin T., Pfrommer C., 2008, A&A,
+481, 33
+Kampakoglou M., Trotta R., Silk J., 2008, MNRAS, 384, 1414
+Katz N., Gunn J. E., 1991, ApJ, 377, 365
+Kauffmann G., White S. D. M., Guiderdoni B., 1993, MNRAS,
+264, 201
+Keller B. W., Wadsley J., Benincasa S. M., Couchman H. M. P.,
+2014, MNRAS, 442, 3013
+Kennicutt Jr. R. C., 1998, ARA&A, 36, 189
+Khandai N., Di Matteo T., Croft R., Wilkins S. M., Feng Y.,
+Tucker E., DeGraf C., Liu M.-S., 2014, ArXiv e-prints
+Krause M., Fierlinger K., Diehl R., Burkert A., Voss R., Ziegler
+U., 2013, A&A, 550, A49
+Kravtsov A., Vikhlinin A., Meshscheryakov A., 2014, ArXiv e-
+prints
+Lacey C., Cole S., 1994, MNRAS, 271, 676
+Lange R., et al., 2015, MNRAS, 447, 2603
+Le Brun A. M. C., McCarthy I. G., Schaye J., Ponman T. J., 2014,
+MNRAS, 441, 1270
+Lewis A., Challinor A., Lasenby A., 2000, ApJ, 538, 473
+Li C., White S. D. M., 2009, ArXiv e-prints
+Lopez L. A., Krumholz M. R., Bolatto A. D., Prochaska J. X.,
+Ramirez-Ruiz E., 2011, ApJ, 731, 91
+Lu Y., Mo H. J., Katz N., Weinberg M. D., 2012, MNRAS, 421,
+1779
+Marinacci F., Pakmor R., Springel V., 2014, MNRAS, 437, 1750
+Marri S., White S. D. M., 2003, MNRAS, 345, 561
+McCarthy I. G., Schaye J., Bower R. G., Ponman T. J., Booth
+C. M., Dalla Vecchia C., Springel V., 2011, MNRAS, 412, 1965
+McCarthy I. G., Schaye J., Font A. S., Theuns T., Frenk C. S.,
+Crain R. A., Dalla Vecchia C., 2012, MNRAS, 427, 379
+McCarthy I. G., et al., 2010, MNRAS, 406, 822
+McConnell N. J., Ma C.-P., 2013, ApJ, 764, 184
+Mellema G., Kurk J. D., R¨ottgering H. J. A., 2002, A&A, 395,
+L13
+Mitchell P. D., Lacey C. G., Cole S., Baugh C. M., 2014, MNRAS,
+444, 2637
+Mitra S., Dav´e R., Finlator K., 2014, ArXiv e-prints
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS, 428, 3121
+Moustakas J., et al., 2013, ApJ, 767, 50
+Munshi F., et al., 2013, ApJ, 766, 56
+Mutch S. J., Poole G. B., Croton D. J., 2013, MNRAS, 428, 2001
+Muzzin A., et al., 2013, ApJ, 777, 18
+Nath B. B., Shchekinov Y., 2013, ApJ, 777, L12
+Navarro J. F., White S. D. M., 1994, MNRAS, 267, 401
+Obreja A., Brook C. B., Stinson G., Dom´ınguez-Tenreiro R., Gib-
+son B. K., Silva L., Granato G. L., 2014, MNRAS, 442, 1794
+Okamoto T., Eke V. R., Frenk C. S., Jenkins A., 2005, MNRAS,
+363, 1299
+Okamoto T., Frenk C. S., Jenkins A., Theuns T., 2010, MNRAS,
+406, 208
+Okamoto T., Jenkins A., Eke V. R., Quilis V., Frenk C. S., 2003,
+MNRAS, 345, 429
+Oppenheimer B. D., Dav´e R., 2006, MNRAS, 373, 1265
+—, 2008, MNRAS, 387, 577
+—, 2009, MNRAS, 395, 1875
+Oppenheimer B. D., Dav´e R., Kereˇs D., Fardal M., Katz N.,
+Kollmeier J. A., Weinberg D. H., 2010, MNRAS, 406, 2325
+Orlando S., Peres G., Reale F., Bocchino F., Rosner R., Plewa T.,
+Siegel A., 2005, A&A, 444, 505
+Pforr J., Maraston C., Tonini C., 2012, MNRAS, 422, 3285
+Planck Collaboration, 2014a, A&A, 571, A1
+
+
+26
+R.A.Crain et al.
+—, 2014b, A&A, 571, A16
+Powell L. C., Slyz A., Devriendt J., 2011, MNRAS, 414, 3671
+Price D. J., 2008, Journal of Computational Physics, 227, 10040
+Puchwein E., Springel V., 2013, MNRAS, 428, 2966
+Rasera Y., Teyssier R., 2006, A&A, 445, 1
+Ritchie B. W., Thomas P. A., 2001, MNRAS, 323, 743
+Rosas-Guevara Y. M., et al., 2013, ArXiv e-prints
+Rosen A. L., Lopez L. A., Krumholz M. R., Ramirez-Ruiz E.,
+2014, MNRAS, 442, 2701
+Roy A., Nath B. B., Sharma P., Shchekinov Y., 2013, MNRAS,
+434, 3572
+Rozo E., et al., 2010, ApJ, 708, 645
+Sales L. V., Navarro J. F., Schaye J., Dalla Vecchia C., Springel
+V., Booth C. M., 2010, MNRAS, 409, 1541
+Sawala T., et al., 2014a, ArXiv e-prints
+—, 2014b, ArXiv e-prints
+Scannapieco C., et al., 2012, MNRAS, 423, 1726
+Schaye J., 2004, ApJ, 609, 667
+Schaye J., Dalla Vecchia C., 2008, MNRAS, 383, 1210
+Schaye J., Theuns T., Rauch M., Efstathiou G., Sargent W. L. W.,
+2000, MNRAS, 318, 817
+Schaye J., et al., 2010, MNRAS, 402, 1536
+—, 2015, MNRAS, 446, 521
+Schechter P., 1976, ApJ, 203, 297
+Shen S., Mo H. J., White S. D. M., Blanton M. R., Kauffmann G.,
+Voges W., Brinkmann J., Csabai I., 2003, MNRAS, 343, 978
+Snyder G. F., et al., 2015, ArXiv e-prints
+Somerville R. S., Hopkins P. F., Cox T. J., Robertson B. E., Hern-
+quist L., 2008, MNRAS, 391, 481
+Somerville R. S., Primack J. R., 1999, MNRAS, 310, 1087
+Sommer-Larsen J., Gelato S., Vedel H., 1999, ApJ, 519, 501
+Sommer-Larsen J., G¨otz M., Portinari L., 2003, ApJ, 596, 47
+Springel V., 2005, MNRAS, 364, 1105
+—, 2010, MNRAS, 401, 791
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS, 361, 776
+Springel V., Hernquist L., 2003, MNRAS, 339, 289
+Springel V., White S. D. M., Tormen G., Kauffmann G., 2001,
+MNRAS, 328, 726
+Stinson G. S., Brook C., Macci`o A. V., Wadsley J., Quinn T. R.,
+Couchman H. M. P., 2013, MNRAS, 428, 129
+Suzuki N., et al., 2012, ApJ, 746, 85
+Taylor E. N., et al., 2011, MNRAS, 418, 1587
+Tomczak A. R., et al., 2014, ApJ, 783, 85
+Torrey P., Vogelsberger M., Genel S., Sijacki D., Springel V.,
+Hernquist L., 2014, MNRAS, 438, 1985
+Tremonti C. A., et al., 2004, ApJ, 613, 898
+Tully R. B., Fisher J. R., 1977, A&A, 54, 661
+van de Voort F., Schaye J., Booth C. M., Haas M. R., Dalla Vec-
+chia C., 2011, MNRAS, 414, 2458
+Veilleux S., Cecil G., Bland-Hawthorn J., 2005, ARA&A, 43, 769
+Vogelsberger M., Genel S., Sijacki D., Torrey P., Springel V.,
+Hernquist L., 2013, MNRAS, 436, 3031
+Vogelsberger M., et al., 2014a, MNRAS, 444, 1518
+—, 2014b, Nature, 509, 177
+Weinmann S. M., Pasquali A., Oppenheimer B. D., Finlator K.,
+Mendel J. T., Crain R. A., Macci`o A. V., 2012, MNRAS, 426,
+2797
+Wendland H., 1995, Advances in Computational Mathematics, 01
+White C. E., Somerville R. S., Ferguson H. C., 2014, ArXiv e-
+prints
+White S. D. M., Frenk C. S., 1991, ApJ, 379, 52
+Wiersma R. P. C., Schaye J., Smith B. D., 2009a, MNRAS, 20
+Wiersma R. P. C., Schaye J., Theuns T., Dalla Vecchia C., Torna-
+tore L., 2009b, MNRAS, 399, 574
+Yirak K., Frank A., Cunningham A. J., 2010, ApJ, 722, 412
+Zahid J., Dima G., Kudritzki R., Kewley L., Geller M., Hwang
+H. S., Silverman J., Kashino D., 2014, ArXiv e-prints
+This paper has been typeset from a TEX/ LATEX ﬁle prepared by the
+author.

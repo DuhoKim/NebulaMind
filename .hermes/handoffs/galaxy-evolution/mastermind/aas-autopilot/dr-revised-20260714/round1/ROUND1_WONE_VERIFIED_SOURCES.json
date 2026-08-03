@@ -1,0 +1,181 @@
+{
+  "contract": {
+    "papers": [5, 6, 7, 8, 9],
+    "source_of_truth": "Use only the selected_sources below. Do not add or repair any other packet entry.",
+    "edit_mode": "Additive only. Insert one literature-boundary section before Reproducibility and safety and add matching bibitems before end{thebibliography}. Preserve every original line byte-for-byte and in order.",
+    "claims": "Association-not-causal, real-data-only. Literature may sharpen limitations or motivate future observables; it may not become a measurement of these SDSS targets.",
+    "receipts": "For every packet source not selected, add a skipped_sources row. Use a special mismatch reason where listed; otherwise use not selected after round-1 verification: redundant, lower priority, or unnecessary for minimal integration. Validate every citation key is defined and original-line subsequence is exact."
+  },
+  "papers": {
+    "paper_05": {
+      "safe_points": [
+        "Radio luminosity functions and kinetic-power conversions are future mechanical-heating context, not a measurement of this optical denominator.",
+        "Multi-epoch radio/X-ray structures show that a present optical line state need not represent integrated jet history.",
+        "Cavity power needs radio plus X-ray morphology; it cannot be inferred from this SDSS fibre sample."
+      ],
+      "selected_sources": [
+        {
+          "source_number": 4,
+          "citation_key": "kondapally2023",
+          "bibitem": "\\bibitem[Kondapally et al.(2023)]{kondapally2023} Kondapally, R., Best, P.~N., Raouf, M., et al. 2023, MNRAS, 523, 5292",
+          "identifier": "DOI:10.1093/mnras/stad1813; arXiv:2306.11795",
+          "verification_url": "https://doi.org/10.1093/mnras/stad1813",
+          "verification_result": "Resolved to Cosmic evolution of radio-AGN feedback: confronting models with data; metadata matched."
+        },
+        {
+          "source_number": 5,
+          "citation_key": "ubertosi2024",
+          "bibitem": "\\bibitem[Ubertosi et al.(2024)]{ubertosi2024} Ubertosi, F., Giacintucci, S., Clarke, T., et al. 2024, A\\&A, 691, A294",
+          "identifier": "DOI:10.1051/0004-6361/202451766; arXiv:2409.15440",
+          "verification_url": "https://doi.org/10.1051/0004-6361/202451766",
+          "verification_result": "Resolved to Multi-epoch jet outbursts in Abell 496; author/year/volume/article matched."
+        },
+        {
+          "source_number": 7,
+          "citation_key": "timmerman2022",
+          "bibitem": "\\bibitem[Timmerman et al.(2022)]{timmerman2022} Timmerman, R., van Weeren, R.~J., Botteon, A., et al. 2022, A\\&A, 668, A65",
+          "identifier": "DOI:10.1051/0004-6361/202243936; arXiv:2207.05088",
+          "verification_url": "https://doi.org/10.1051/0004-6361/202243936",
+          "verification_result": "Resolved to Measuring cavity powers of active galactic nuclei in clusters using a hybrid X-ray-radio method; metadata and abstract matched."
+        }
+      ],
+      "special_skips": {
+        "9": "source-specific identifier is internally inconsistent and does not settle the cited chapter"
+      }
+    },
+    "paper_06": {
+      "safe_points": [
+        "Time-integrated quenching predictors are not equivalent to an instantaneous optical AGN state.",
+        "Correct the packet metadata from the independently resolved DOI/arXiv record; do not repeat its incorrect year, volume, or page.",
+        "The added source only motivates a caveat; it does not identify a physical transition mass in this sample."
+      ],
+      "selected_sources": [
+        {
+          "source_number": 2,
+          "citation_key": "bluck2023",
+          "bibitem": "\\bibitem[Bluck et al.(2023)]{bluck2023} Bluck, A.~F.~L., Piotrowska, J.~M., \\& Maiolino, R. 2023, ApJ, 944, 108",
+          "identifier": "DOI:10.3847/1538-4357/acac7c; arXiv:2301.03677",
+          "verification_url": "https://doi.org/10.3847/1538-4357/acac7c",
+          "verification_result": "Resolved to The Fundamental Signature of Star Formation Quenching from AGN Feedback; authors/year/ApJ 944,108 established. Packet's ApJ 961,163 metadata was wrong and must not be used."
+        }
+      ],
+      "special_skips": {
+        "4": "packet DOI resolves to an unrelated extremely-red-quasar molecular-gas paper; its arXiv record duplicates selected source 2 instead",
+        "6": "packet DOI resolves to Baker et al. 2024 rather than the claimed Bluck et al. entry",
+        "8": "packet explicitly marks this entry unverified",
+        "10": "packet DOI resolves to an unrelated gravitational-wave cosmology article"
+      }
+    },
+    "paper_07": {
+      "safe_points": [
+        "An optical ionized-gas census is tracer- and definition-dependent and cannot recover neutral/molecular mass loading.",
+        "Radio detection can change observed ionized-outflow incidence, motivating radio follow-up without changing this optical prevalence.",
+        "Beam smearing and unresolved rotation block galaxy-wide outflow claims from a single aperture."
+      ],
+      "selected_sources": [
+        {
+          "source_number": 2,
+          "citation_key": "escott2025",
+          "bibitem": "\\bibitem[Escott et al.(2025)]{escott2025} Escott, E.~L., Morabito, L.~K., Scholtz, J., et al. 2025, MNRAS, 536, 1166",
+          "identifier": "DOI:10.1093/mnras/stae2645",
+          "verification_url": "https://doi.org/10.1093/mnras/stae2645",
+          "verification_result": "Resolved to Unveiling AGN outflows: [O III] outflow detection rates and correlation with low-frequency radio emission; metadata matched."
+        },
+        {
+          "source_number": 4,
+          "citation_key": "davies2024",
+          "bibitem": "\\bibitem[Davies et al.(2024)]{davies2024} Davies, R.~L., Belli, S., Park, M., et al. 2024, MNRAS, 528, 4976",
+          "identifier": "DOI:10.1093/mnras/stae327",
+          "verification_url": "https://doi.org/10.1093/mnras/stae327",
+          "verification_result": "Resolved to JWST reveals widespread AGN-driven neutral gas outflows in massive z~2 galaxies; metadata matched."
+        },
+        {
+          "source_number": 12,
+          "citation_key": "holden2024",
+          "bibitem": "\\bibitem[Holden \\& Tadhunter(2024)]{holden2024} Holden, L.~R., \\& Tadhunter, C.~N. 2024, MNRAS, 536, 1857",
+          "identifier": "DOI:10.1093/mnras/stae2661",
+          "verification_url": "https://doi.org/10.1093/mnras/stae2661",
+          "verification_result": "Resolved to No evidence for fast, galaxy-wide ionized outflows in a nearby quasar -- the importance of accounting for beam smearing; metadata matched."
+        }
+      ],
+      "special_skips": {
+        "6": "packet gives conflicting DOI metadata for the cited Gatto article",
+        "7": "packet DOI/arXiv metadata are internally inconsistent",
+        "10": "packet year/volume metadata are internally inconsistent",
+        "13": "packet year and arXiv metadata conflict",
+        "14": "packet arXiv identifier postdates and conflicts with its claimed 2024 article"
+      }
+    },
+    "paper_08": {
+      "safe_points": [
+        "Optical dust/emission proxies can organize follow-up but retain substantial scatter and cannot replace direct cold-gas masses.",
+        "Gas fraction and star-formation efficiency can both decline away from the main sequence, so an H-alpha deficit does not isolate either mechanism.",
+        "Do not turn either source into a molecular-gas measurement for these SDSS targets."
+      ],
+      "selected_sources": [
+        {
+          "source_number": 1,
+          "citation_key": "scholte2023",
+          "bibitem": "\\bibitem[Scholte \\& Saintonge(2023)]{scholte2023} Scholte, D., \\& Saintonge, A. 2023, MNRAS, 518, 353",
+          "identifier": "DOI:10.1093/mnras/stac3134",
+          "verification_url": "https://doi.org/10.1093/mnras/stac3134",
+          "verification_result": "Resolved to Cold gas mass measurements for the era of large optical spectroscopic surveys; metadata matched."
+        },
+        {
+          "source_number": 4,
+          "citation_key": "piotrowska2020",
+          "bibitem": "\\bibitem[Piotrowska et al.(2020)]{piotrowska2020} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., Concas, A., \\& Peng, Y. 2020, MNRAS, 492, L6",
+          "identifier": "DOI:10.1093/mnrasl/slz172; arXiv:1911.06693",
+          "verification_url": "https://arxiv.org/abs/1911.06693",
+          "verification_result": "Resolved to Towards a deeper understanding of the physics driving galaxy quenching -- inferring trends in the gas content via extinction; authors, journal acceptance, and related DOI established."
+        }
+      ],
+      "special_skips": {
+        "8": "packet DOI resolves to an unrelated magnetar paper",
+        "9": "packet DOI resolves to an unrelated obscured-AGN ray-tracing paper",
+        "12": "packet year and arXiv identifier conflict",
+        "14": "packet DOI suffix conflicts with the cited Riffel paper",
+        "15": "anonymous authorship and post-cutoff preprint",
+        "16": "packet DOI resolves to a neutron-star-merger review, not the claimed cold-gas review",
+        "17": "citation supplied only indirectly through an inconsistent future arXiv record"
+      }
+    },
+    "paper_09": {
+      "safe_points": [
+        "Simulation validation requires mock-observer forward modelling through this exact optical selection; raw intrinsic simulated values are not like-for-like.",
+        "Large-volume and calibrated hydrodynamical suites motivate future validation but do not become measurements of the SDSS cells.",
+        "The 15-cell optical vector remains selection-conditional and cannot uniquely identify a feedback mechanism."
+      ],
+      "selected_sources": [
+        {
+          "source_number": 1,
+          "citation_key": "schaye2023",
+          "bibitem": "\\bibitem[Schaye et al.(2023)]{schaye2023} Schaye, J., Kugel, R., Schaller, M., et al. 2023, MNRAS, 526, 4978",
+          "identifier": "DOI:10.1093/mnras/stad2419",
+          "verification_url": "https://doi.org/10.1093/mnras/stad2419",
+          "verification_result": "Resolved to FLAMINGO project: cosmological hydrodynamical simulations for large-scale structure and galaxy cluster surveys; metadata matched."
+        },
+        {
+          "source_number": 8,
+          "citation_key": "bose2023",
+          "bibitem": "\\bibitem[Bose et al.(2023)]{bose2023} Bose, S., Hadzhiyska, B., Eisenstein, D.~J., et al. 2023, MNRAS, 524, 2579",
+          "identifier": "DOI:10.1093/mnras/stad1097",
+          "verification_url": "https://doi.org/10.1093/mnras/stad1097",
+          "verification_result": "Resolved to MillenniumTNG Project: the large-scale clustering of galaxies; author/year/volume/page matched."
+        },
+        {
+          "source_number": 10,
+          "citation_key": "kugel2023",
+          "bibitem": "\\bibitem[Kugel et al.(2023)]{kugel2023} Kugel, R., Schaye, J., Schaller, M., et al. 2023, MNRAS, 526, 6103",
+          "identifier": "DOI:10.1093/mnras/stad2540",
+          "verification_url": "https://doi.org/10.1093/mnras/stad2540",
+          "verification_result": "Resolved to FLAMINGO: calibrating large cosmological hydrodynamical simulations with machine learning; metadata matched."
+        }
+      ],
+      "special_skips": {
+        "2": "packet DOI resolves to an unrelated Red Geysers abundance paper",
+        "3": "resolved paper title differs materially from the packet's claimed SYNTHESIZER description; not needed in round 1"
+      }
+    }
+  }
+}

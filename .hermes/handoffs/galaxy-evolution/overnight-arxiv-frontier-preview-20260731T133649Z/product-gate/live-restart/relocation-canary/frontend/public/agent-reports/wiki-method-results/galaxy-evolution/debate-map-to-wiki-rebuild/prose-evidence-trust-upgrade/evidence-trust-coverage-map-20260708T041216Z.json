@@ -1,0 +1,121 @@
+{
+  "marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_WIKI_UPGRADE_20260708T041216Z",
+  "resource_seed_marker": "PROSE_UPGRADE_RESOURCE_SEED_20260708T041216Z",
+  "method": "Method3 / debate-map-to-wiki rebuild",
+  "scope": {
+    "candidate_type": "working-repo static docs-only candidate",
+    "product_claim_markers": 0,
+    "product_cite_markers": 0,
+    "product_binding": "closed; requires separate P3 gate",
+    "live_apply": false
+  },
+  "source_basis": {
+    "prior_page_content": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/evidence-trust-rebuild/page-content-evidence-trust-20260708T014205Z.md",
+    "prior_evidence_basis": "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/debate-map-to-wiki-rebuild/evidence-trust-rebuild/evidence-basis-20260708T014205Z.md",
+    "debate_map_refresh": "docs/hwao_debate_map_refresh_20260706T002104Z/debate_map_data.json",
+    "status_debate_map": "docs/baseline_step6_status_debate_map_20260703T0954Z/artifacts/status_debate_map.json",
+    "source_inventory": "docs/hwao_overnight_pinning_atlas_20260705T153533Z/evidence_source_inventory.json"
+  },
+  "global_caveats": [
+    "status_debate_map.json status FINAL_DRAFT_PATCHED_AFTER_GORU_BLOCKER_PENDING_RECHECK carries forward",
+    "Trust labels are debate-map statuses, not product trust scores",
+    "No product claim/citation/evidence-ID binding is performed",
+    "Known unmatched/repair items remain P3 prerequisites"
+  ],
+  "debate_axes": [
+    { "axis_id": "mechanism_ejective_feedback", "status": "widely_supported", "plain_trust": "mechanism real in selected systems" },
+    { "axis_id": "alternatives_countercases", "status": "widely_supported", "plain_trust": "non-AGN pathways required context" },
+    { "axis_id": "outflow_prevalence_frequency", "status": "emerging_sample_limited", "plain_trust": "frequency depends on tracer, selection, and redshift" },
+    { "axis_id": "dominance_debate", "status": "actively_debated", "plain_trust": "no settled dominant channel" },
+    { "axis_id": "reservoir_response", "status": "actively_debated", "plain_trust": "mixed gas reservoir evidence" },
+    { "axis_id": "maintenance_heating_prevention", "status": "contradicted_or_model_dependent", "plain_trust": "model-dependent in this corpus" },
+    { "axis_id": "simulation_model_scope", "status": "contradicted_or_model_dependent", "plain_trust": "simulations test mechanisms, not observed prevalence" }
+  ],
+  "sections": [
+    {
+      "id": "overview",
+      "h2": "Overview: Galaxy Evolution as a Regulated Baryon Cycle",
+      "trust_label": "multi-channel synthesis",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s1",
+      "axes": ["alternatives_countercases"],
+      "local_claim_ids": [2931],
+      "status": "supported_docs_only"
+    },
+    {
+      "id": "halos",
+      "h2": "Dark Matter Halos & Structure Formation",
+      "trust_label": "scoped coverage extension",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s2",
+      "axes": ["dominance_debate"],
+      "local_claim_ids": [2572, 2557, 2573, 2233, 2570, 2912, 2338],
+      "source_ids": ["2512.16290v1", "2401.12953", "2508.11846v3", "1804.07798v2"],
+      "guard": "halo-mass regulation and assembly only; broad cosmological structure formation not fully rebuilt",
+      "status": "supported_docs_only"
+    },
+    {
+      "id": "gas",
+      "h2": "Gas Supply, Star Formation & Feedback",
+      "trust_label": "reservoir response actively debated; alternatives widely supported",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s3",
+      "axes": ["reservoir_response", "alternatives_countercases"],
+      "local_claim_ids": [2905, 2906, 2909, 2911, 2907, 2930],
+      "status": "supported_docs_only"
+    },
+    {
+      "id": "agn",
+      "h2": "AGN Feedback & Quenching",
+      "trust_label": "mechanism supported; prevalence sample-limited; dominance debated; maintenance model-dependent",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s4",
+      "axes": ["mechanism_ejective_feedback", "outflow_prevalence_frequency", "dominance_debate", "maintenance_heating_prevention", "simulation_model_scope"],
+      "local_claim_ids": [2929, 2917, 2924],
+      "unmatched_or_p3_repair": [2915, 2921, 2913],
+      "status": "supported_with_p3_caveats"
+    },
+    {
+      "id": "environment",
+      "h2": "Environment, Morphology & Structural Growth",
+      "trust_label": "environment supported; morphology scoped/correlational",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s5",
+      "axes": ["alternatives_countercases"],
+      "local_claim_ids": [2130, 2580, 2133, 2934, 2914, 2936, 2908, 2932, 2933, 2935, 2922, 2923],
+      "unmatched_or_p3_repair": ["2133 source list must include 2605.22497 or sentence must be restricted"],
+      "status": "supported_with_p3_caveats"
+    },
+    {
+      "id": "chemical",
+      "h2": "Chemical Enrichment & Cosmic Timing",
+      "trust_label": "scoped MZR/FMR and timing coverage",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s6",
+      "local_claim_ids": [2731, 2725, 2738, 2426, 2427, 2656, 2728, 2253, 2338, 2227, 2579, 2580, 2234],
+      "source_ids": ["2512.16989v1", "2606.11345", "2606.05284", "2605.29623", "2605.25557", "2605.27555", "2604.03503", "2605.13966"],
+      "guard": "do not generalize beyond the scoped z ~ 0-2.3 / timing basis",
+      "status": "supported_docs_only"
+    },
+    {
+      "id": "high-redshift",
+      "h2": "High-Redshift & Reionization Frontier",
+      "trust_label": "frontier debates; sample/model-dependent",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s7",
+      "local_claim_ids": [2836, 2798, 2736, 2754, 2735, 2698, 2812, 2811, 2805, 2619, 2618, 2625, 2235],
+      "source_ids": ["2606.05323", "2605.24112", "2605.26209", "2604.13866", "2606.02738", "2512.16981v1", "2605.20698"],
+      "unmatched_or_p3_repair": ["2374 garbled claim text; do not bind early-black-hole-seeding clause without a corrected row"],
+      "status": "supported_with_p3_caveats"
+    },
+    {
+      "id": "observational",
+      "h2": "Observational Evidence & Surveys",
+      "trust_label": "evidence-method framing; simulations model-dependent",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s8",
+      "axes": ["simulation_model_scope"],
+      "status": "synthesis_docs_only"
+    },
+    {
+      "id": "synthesis",
+      "h2": "Synthesis & Open Tensions",
+      "trust_label": "all-axis synthesis",
+      "basis_anchor": "evidence-basis-20260708T014205Z.md#s9",
+      "axes": ["mechanism_ejective_feedback", "outflow_prevalence_frequency", "dominance_debate", "maintenance_heating_prevention", "reservoir_response", "alternatives_countercases", "simulation_model_scope"],
+      "status": "synthesis_docs_only"
+    }
+  ]
+}

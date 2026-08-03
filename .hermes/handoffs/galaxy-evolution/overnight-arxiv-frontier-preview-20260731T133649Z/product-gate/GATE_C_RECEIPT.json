@@ -1,0 +1,139 @@
+{
+  "apply_result_sha256": "1e7f08614efd82d70c8e476821d0c9be2d95b5eaaca78882956f457c1ca2838d",
+  "approval": {
+    "normalized_gate": "APPLY FRONTIER RANKING PREVIEW overnight-arxiv-frontier-preview-20260731T133649Z ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac",
+    "source": "contextual natural-language approval"
+  },
+  "excluded": [
+    "DB/SQL/API mutation",
+    "curated RANK_TOPICS edit",
+    "paper-merit leaderboard edit",
+    "cockpit change",
+    "scheduler/cron/LaunchAgent change",
+    "Git add/commit/push/merge",
+    "deploy/restart",
+    "external submission"
+  ],
+  "finalized_at_utc": "2026-07-31T15:31:37Z",
+  "gate_c_manifest": {
+    "artifact_count": 14,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/GATE_C_MANIFEST.json",
+    "sha256": "bee662b512c9f0bfe6ebd97b16cade34f3d4ac3d3c22a96961a65c4092d2aa7c"
+  },
+  "next_gate": {
+    "approval_shape": "APPROVE FRONTIER LIVE BUILD-SWAP AND RESTART <run_id> <gate_c_receipt_sha256>",
+    "name": "FRONTIER LIVE BUILD-SWAP AND RESTART",
+    "scope": "Build/swap the active live artifact, restart only the existing Next.js service on port 3000, then verify source/build/public markers and UI."
+  },
+  "pre_apply_manifest_sha256": "c77b4e5294ae45b5001eaf45706dffa57e5395c9a314de55d585fee610a15e1d",
+  "public_runtime": {
+    "public_route_http_200": true,
+    "running_live_build_id": "t-iRxR98ZKuZzWRYYpD8z",
+    "running_process_restarted": false,
+    "source_updated": true,
+    "status": "PRIOR_BUILD_STILL_RUNNING",
+    "verified_nonlive_build_id": "XnoxXJxF59h1wHZWWxYf9"
+  },
+  "rollback": {
+    "requires_fresh_explicit_approval": true,
+    "script": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_gate_c.py",
+    "script_sha256": "8462bc7271648a2c8bb40735cc2d4dbe07e486eabca8b396cea8f924ff065325"
+  },
+  "run_id": "overnight-arxiv-frontier-preview-20260731T133649Z",
+  "safety_ledger": {
+    "canonical_ranking_writes": 2,
+    "cockpit_writes": 0,
+    "curated_topic_writes": 0,
+    "db_sql_api_writes": 0,
+    "deploy_restart_actions": 0,
+    "external_submissions": 0,
+    "git_index_history_writes": 0,
+    "live_build_swaps": 0,
+    "live_frontend_source_writes": 1,
+    "paper_merit_writes": 0,
+    "scheduler_writes": 0,
+    "verified_nonlive_builds": 1,
+    "worktree_frontend_source_writes": 1
+  },
+  "schema_version": 1,
+  "status": "SOURCE_APPLIED_BUILD_VERIFIED_AWAITING_RESTART_GATE",
+  "targets_after": {
+    "canonical_rerank": {
+      "bytes": 50328,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontier_map_v3_reranked.json",
+      "sha256": "ab9c37fb26a0a6112a9281ebdfee16b50ec8f9edace559472b1b90ae5e82e9ac",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontier_map_v3_reranked.preview.json"
+    },
+    "canonical_staging_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontiersData.v3.staging.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts"
+    },
+    "live_frontend_source_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts"
+    },
+    "worktree_frontend_ts": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36",
+      "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/shadow_engine/frontiersData.v3.preview.ts"
+    }
+  },
+  "targets_before": {
+    "canonical_rerank": {
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/canonical_frontier_map_v3_reranked.json",
+      "bytes": 50327,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontier_map_v3_reranked.json",
+      "sha256": "bfa25b3b3dd77e3b8886c566494d3c56e2bbb3e63d0706af79db1af80b05ecd0"
+    },
+    "canonical_staging_ts": {
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/canonical_frontiersData.v3.staging.ts",
+      "bytes": 38730,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/corpus-ga-co-2009-2026-20260718/frontiersData.v3.staging.ts",
+      "sha256": "c92554435de3444a1b70662637e9c5ac83a72cad9cfc75fb2781b72c84fb52e4"
+    },
+    "live_frontend_source_ts": {
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/live_frontiersData.ts",
+      "bytes": 36798,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "4d07f80decee9fbd375d92835a4706afc891bc13d86f6e0adf780f73032426cd"
+    },
+    "worktree_frontend_ts": {
+      "backup": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/rollback_snapshot/worktree_frontiersData.ts",
+      "bytes": 36798,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "4d07f80decee9fbd375d92835a4706afc891bc13d86f6e0adf780f73032426cd"
+    }
+  },
+  "tests": {
+    "diff_check": {
+      "live_returncode": 0,
+      "worktree_returncode": 0
+    },
+    "frontend_build": {
+      "command": "npm run build",
+      "returncode": 0,
+      "summary": "Next.js 14.2.35 compiled successfully; lint/type checks passed; 44/44 static pages generated; /lab build succeeded",
+      "workdir": "/Users/duhokim/NebulaMind/NebulaMind/frontend"
+    },
+    "ranking_tests": {
+      "command": "PYTHONDONTWRITEBYTECODE=1 backend/.venv/bin/python -m pytest -q -p no:cacheprovider tests/test_overnight_frontier_preview.py",
+      "returncode": 0,
+      "summary": "13 passed in 0.06s"
+    },
+    "rollback_dry_run": {
+      "expected_refusal": "Refusing rollback without --execute",
+      "returncode": 1,
+      "syntax": "ok"
+    }
+  },
+  "verification": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/VERIFICATION_RESULT.json",
+    "sha256": "75315db2d384677b2759c7d7b6af90bfe151b24093cdca2a1e99e8771437e9a0",
+    "status": "SOURCE_APPLIED_BUILD_VERIFIED_RESTART_REQUIRED"
+  }
+}

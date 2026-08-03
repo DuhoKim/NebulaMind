@@ -1,0 +1,42 @@
+# Lana — C2 Scientific / Representation Red-Team Review (read-only)
+
+AI_DRAFT_NOT_HUMAN_GOLD
+
+- Dispatch marker: `OVERNIGHT_PAPER_BOARD_PACKET_C2_LANA_REDTEAM_BRIEF_V1`
+- Parent approval: `OVERNIGHT_PAPER_BOARD_EXECUTION_APPROVED_20260726T133216Z`
+- Lane: direct Claude subscription only. **READ-ONLY — no edits were made to the candidate or any other file.**
+- Target: `packets/C-candidate-build/lana/c2-mzr-gated-e2e-candidate/candidate.tex` (`c615b2f3…`), `candidate.pdf` (`eed8992d…`).
+- Scope of this lens: scientific honesty & representation. (Kun runs the parallel mechanical contract audit.)
+
+## Method / evidence base
+- Source stability re-verified vs `baseline/INPUT_SHA256.txt`: `gated-e2e-demo/draft.tex` `f1aeadd8…`, `gated-e2e-demo.json` `46ddd75d…`, `result.png` `ed83a825…` — all OK, no drift. Candidate bytes unchanged since build.
+- Read the rendered `candidate.pdf` (2 pages) visually AND extracted the PDF text layer with `pdftotext` to confirm which strings are *rendered* vs. only `%`-comments.
+- Cross-read: `HWAO_PACKET_A_CANONICAL_DECISION`, `HWAO_PACKET_B_FINAL_DECISION`, `HWAO_ABCD_FIRSTPASS_ROLLUP`, `TORI_CD_FIRSTPASS_VALIDATION`, own `LANA_PACKET_C_RECEIPT`, source `gated-e2e-demo.json` (summary + `expected_value=TENSION`).
+
+## Findings
+
+| # | issue | location | severity | supported_by_source? | recommended_change (NOT applied) |
+|---|---|---|---|---|---|
+| F1 | Result says the comparison "provides insights into the relationship between galaxy mass and gas-phase metallicity" — asserts interpretive insight from a cross-dataset comparison the Caveats simultaneously call unresolved/"cannot be interpreted as physical." Internal Result-vs-Caveat tension; softest overclaim in the body. | `candidate.tex` §Result (l.19) / PDF p1 §3 | **MINOR** (→ MAJOR if ever advanced toward publication) | PARTIAL — source supports "computed two median relations + comparison figure"; "provides insights into the relationship" overstates. Verbatim from source draft. | Soften to descriptive + cross-reference the caveat, e.g. "presents the two median relations; their direct comparison is bounded by the O/H-scale systematic (see Caveats)." |
+| F2 | Abstract label "a bounded, reproducible, **descriptive** study" — "reproducible" sits in mild tension with the Provenance caveat (forced `spec.force=true` demo build, assembled from existing artifacts, sibling `d8de519cb9c9` never compiled). | `candidate.tex` §Abstract (l.12) / PDF Abstract | **MINOR** | PARTIAL — "descriptive" honest; "reproducible" not substantiated by the forced-demo provenance. Verbatim from source draft. | Qualify "reproducible" or defer authoritative status to the Provenance caveat; do not leave it unqualified given the forced-demo lineage. |
+| F3 | The bounding status (scale-limited / TENSION / anchor-not-frontier) is surfaced ONLY in the Caveats (p2). Title + Abstract + Figure — the surface most likely to be excerpted/shared — read as a clean "TNG vs SDSS MZR" result; the figure's striking high-mass TNG↓/SDSS↑ divergence carries no on-figure/caption caveat. | `candidate.tex` §Title/§Abstract/figure caption (l.8,12,20) / PDF p1 | **MINOR** (representation) — becomes a **MAJOR/mandatory** fix at any public-promotion gate | Placement, not an unsupported claim: disclosures ARE present & visible, just late. | Before promotion, surface a one-line scale-limited/anchor/TENSION flag in the Abstract and a caption note ("median relations on un-reconciled O/H scales; comparison is scale-limited — see Caveats"). Caption text only; never modify the source figure. |
+| F4 | "In this research note, we…" + AASTeX631 journal typesetting give the *visual appearance* of a formatted/submitted note. | `candidate.tex` §Data and method (l.17) + `\documentclass` styling / PDF p1 | **MINOR** | Source-inherited ("research note" is in source draft). Countered by the "Draft version" header, "autonomous pipeline" author, and the visibly-rendered AI/forced-demo/unpublished provenance caveat. | None strictly required given the strong disclosures; optionally add an explicit "not submitted / not peer-reviewed" tag near the title if promoted. |
+| OK-1 | Representation: author = "NebulaMind Lab (autonomous pipeline)"; "Draft version July 27, 2026" header; Provenance caveat states AI-assembled, not a fresh run, isolated & unpublished. No claim of validation, peer-review, acceptance, or human authorship anywhere. | title/author/§Caveats / PDF p1–2 | **OK** | YES | — |
+| OK-2 | O/H-scale caveat uses the bounded wording: "…remains confounded by unresolved scale systematics and cannot be interpreted as physical until a common calibration is established." Avoids asserting the difference is physical OR definitively systematic. | `candidate.tex` §Caveats O/H (l.24) / PDF p1–2 | **OK** | YES (matches Tori in-lane correction) | — |
+| OK-3 | TENSION carried, not upgraded: "returns TENSION, and we carry that verdict honestly rather than upgrading it to agreement." | `candidate.tex` §Caveats Tension (l.26) / PDF p2 | **OK** | YES (`gated-e2e-demo.json` `expected_value.verdict=TENSION`) | — |
+| OK-4 | Provenance caveat present, honest, non-weakening; original source caveats paragraph intact (append-only). No existing caveat weakened. | `candidate.tex` §Caveats (l.22–28) / PDF p1–2 | **OK** | YES | — |
+| OK-5 | Disclosure visibility (Task 4): `AI_DRAFT_NOT_HUMAN_GOLD`, forced/demo lineage (`spec.force=true`; `d8de519cb9c9` "queued and never compiled"), TENSION, and unresolved-calibration are ALL in the rendered PDF **text layer** (pdftotext-confirmed), not only in `%` comments. | `candidate.pdf` text layer | **OK** | YES | — |
+| OK-6 | Anchor/frontier honesty (Task 5): explicitly "an anchor relation, not a standalone frontier result" and "not a novel physical claim about the mass-metallicity relation" — aligns with the owner's publishable bar (anchors are not standalone frontier papers). | `candidate.tex` §Caveats Tension (l.26) / PDF p2 | **OK** | YES | — |
+| OK-7 | No invented numbers/offsets: only source numbers (23,722; 120,000) appear; no dex offset is stated or applied. | Abstract/Result/§Caveats | **OK** | YES | — |
+
+## Per-task summary
+1. **Representation** — PASS. No statement or implication of a validated measurement, accepted/peer-reviewed paper, or human authorship. Honest labelling (autonomous-pipeline author, draft header, AI/forced-demo/unpublished caveat) is sufficient and consistent. Residual: F2 ("reproducible") and F4 ("research note" appearance) are MINOR.
+2. **Claim-surface / overclaim** — Every body claim (Abstract counts/scaling; Data-and-method "compare … median relations"; Result "obtained … median relations") is source-supported EXCEPT the Result's "provides insights into the relationship" (F1, MINOR overreach, source-inherited). No fabricated claim.
+3. **Caveat sufficiency & honesty** — O/H-scale (bounded, correct), TENSION (carried, not upgraded), and Provenance caveats are all present, honest, and non-weakening (OK-2/3/4). None too weak/strong/missing.
+4. **PDF disclosure visibility** — PASS. All four disclosures are visibly rendered in the PDF text (OK-5); none exists only as a `%` comment.
+5. **Anchor/frontier honesty** — PASS (OK-6). The candidate does not read as a stronger result than the source supports *as a whole document*; the only placement risk is F3 (bounding status appears only in the Caveats, not the abstract/figure).
+
+## Overall representation verdict
+**PASS — the candidate is honestly labelled as an AI research-note draft and is free of BLOCKING scientific overclaim.** It carries redundant, visibly-rendered AI-draft / forced-demo / TENSION / unresolved-calibration disclosures and an explicit anchor-not-frontier framing; it claims no validation, peer-review, acceptance, or human authorship; it invents no number or O/H offset; and it does not assert the TNG–SDSS difference is physical.
+
+Counts: **BLOCKER 0, MAJOR 0, MINOR 4, OK 7.** No finding blocks the candidate's current isolated/unpublished status. Two items are placement/tone issues that must be escalated to mandatory fixes **before any public promotion**: F1 (soften "provides insights") and F3 (surface the scale-limited/anchor/TENSION status at the abstract + figure-caption level, so an excerpted abstract/figure cannot read as a clean validated result). F2 and F4 are MINOR polish. These are recommendations only — **not applied** (read-only lane).

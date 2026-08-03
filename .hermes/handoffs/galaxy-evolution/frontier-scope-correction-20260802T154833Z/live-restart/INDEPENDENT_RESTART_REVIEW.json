@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "status": "INDEPENDENT_RESTART_SCRIPT_REVIEW_PASS",
+  "completed_at_utc": "2026-08-03T01:50:52Z",
+  "reviewer": {
+    "tool": "OpenAI Codex CLI",
+    "model": "gpt-5.5",
+    "sandbox": "read-only"
+  },
+  "review_rounds": [
+    {
+      "round": 1,
+      "passed": false,
+      "blocking_findings": [
+        "Set swapped immediately after the candidate rename so post-rename fsync failures trigger failback.",
+        "Require a replacement listener PID and verify it is the child of the replacement LaunchAgent PID."
+      ],
+      "resolution": "Both findings were patched before execution. Failback also gained build, stable-tree, and marker checks before its kickstart."
+    },
+    {
+      "round": 2,
+      "passed": true,
+      "security_concerns": [],
+      "logic_errors": [],
+      "summary": "The patched script has no remaining blocking security concern or logic error."
+    }
+  ],
+  "post_review_hardening": {
+    "candidate_receipt_tree_rechecked_after_atomic_rename_before_kickstart": true
+  },
+  "scope": {
+    "production_mutations_authorized": [
+      "atomic .next build swap",
+      "restart gui/501/com.nebulamind.frontend"
+    ],
+    "source_writes": 0,
+    "git_writes": 0,
+    "db_writes": 0,
+    "scheduler_writes": 0,
+    "cockpit_writes": 0
+  }
+}

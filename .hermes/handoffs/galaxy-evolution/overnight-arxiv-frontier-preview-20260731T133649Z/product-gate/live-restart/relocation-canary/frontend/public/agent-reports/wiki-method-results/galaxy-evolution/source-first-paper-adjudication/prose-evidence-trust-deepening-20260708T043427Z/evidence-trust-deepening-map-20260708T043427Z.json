@@ -1,0 +1,46 @@
+{
+  "parent_marker": "AUTOPILOT_PROSE_EVIDENCE_TRUST_DEEPENING_20260708T043427Z",
+  "seed_marker": "DEEPENING_RESOURCE_SEED_20260708T043427Z",
+  "status": "PROGRESS_CANDIDATE_NOT_FINAL",
+  "earliest_finalization_utc": "2026-07-08T06:34:40Z",
+  "method": "method2-source-first-paper-adjudication",
+  "source_files": [
+    "../prose-evidence-trust-upgrade/page-content-prose-evidence-trust-upgrade-20260708T041216Z.md",
+    "../prose-evidence-trust-upgrade/evidence-trust-coverage-map-20260708T041216Z.json",
+    "../evidence-trust-rebuild/evidence-trust-map-20260708T014205Z.json",
+    "../p1-source-position-ledger.html",
+    "../p2-claim-status-ledger.html"
+  ],
+  "counting_basis": "deterministic array-derived Method2 counts with 28060 carried separately as no-claim caveat",
+  "totals": {
+    "claims": 6,
+    "claim_support_positions": 21,
+    "accepted_full": 2,
+    "accepted_limited_claim_support": 19,
+    "excluded": 2,
+    "rejected": 12,
+    "no_claim_caveat_positions": 1,
+    "numeric_product_cites": 0,
+    "cite_unmatched_groups": 7
+  },
+  "legacy_mismatch_preserved": {
+    "legacy_embedded_cited_positions": 22,
+    "legacy_embedded_accepted_limited": 20,
+    "deepening_disposition": "do not silently use legacy overcount; surface 28060 as no-claim caveat"
+  },
+  "claims": [
+    {"claim_id": "2942", "accepted_full": 0, "accepted_limited": 4, "evidence_ids": ["28074", "28087", "28151", "28155"]},
+    {"claim_id": "2943", "accepted_full": 1, "accepted_limited": 4, "evidence_ids": ["28141", "28091", "28140", "28144", "28148"], "excluded_ids": ["28133"]},
+    {"claim_id": "2944", "accepted_full": 0, "accepted_limited": 3, "evidence_ids": ["28069", "28073", "28088"]},
+    {"claim_id": "2945", "accepted_full": 0, "accepted_limited": 2, "evidence_ids": ["28066", "28075"]},
+    {"claim_id": "2946", "accepted_full": 0, "accepted_limited": 3, "evidence_ids": ["28089", "28123", "28158"]},
+    {"claim_id": "2947", "accepted_full": 1, "accepted_limited": 3, "evidence_ids": ["28095", "28131", "28108", "28062"], "excluded_ids": ["28111"]}
+  ],
+  "no_claim_caveat": {
+    "evidence_id": "28060",
+    "status": "accepted_limited",
+    "target_claim": null,
+    "prose_rule": "anti-overclaim caveat only; never inside claim chip; not counted as claim support"
+  },
+  "rejected_ids": ["28070", "28076", "28080", "28082", "28083", "28084", "28110", "28114", "28118", "28127", "28139", "28143"]
+}

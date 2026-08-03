@@ -1,0 +1,92 @@
+{
+  "key_results": {
+    "deterministic_bpt_counts": {
+      "agn": 8146,
+      "intermediate": 12234,
+      "star-forming": 39553,
+      "unclassified": 67
+    },
+    "expected_mc_bpt_counts": {
+      "agn": 8182.1796875,
+      "intermediate": 12069.53125,
+      "star-forming": 39641.359375,
+      "unclassified": 106.9296875
+    },
+    "monte_carlo_draws_per_row": 128,
+    "recomputed_bpt_mismatches_vs_cached_label": 0,
+    "rp1_baseline_matched_pairs": 8146,
+    "rp1_matched_pair_stability_threshold_0p84": {
+      "baseline_pairs": 8146,
+      "matched_pair_filter": "target p(AGN)>=0.84 and control p(SF)>=0.84 under 128-draw flux-error MC",
+      "mean_delta_log_sSFR_agn_minus_control": -1.2291051976527592,
+      "median_delta_bootstrap_ci95_high": -1.289009249999999,
+      "median_delta_bootstrap_ci95_low": -1.3460314375000004,
+      "median_delta_log_sSFR_agn_minus_control": -1.3204500000000001,
+      "median_match_distance_scaled": 0.013095691310014467,
+      "missing_pair_ids": 0,
+      "paper_scope": "M1 RP-1",
+      "proxy_guard": "SDSS optical emission-line flux-error/BPT stability and matched-pair association checks only; no causal AGN feedback, molecular gas depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "retained_fraction_of_baseline_pairs": 0.6589737294377609,
+      "retained_pairs": 5368,
+      "share_delta_negative": 0.9314456035767511,
+      "threshold": 0.84
+    },
+    "rp1_matched_pair_stability_threshold_0p95": {
+      "baseline_pairs": 8146,
+      "matched_pair_filter": "target p(AGN)>=0.95 and control p(SF)>=0.95 under 128-draw flux-error MC",
+      "mean_delta_log_sSFR_agn_minus_control": -1.2118301508957865,
+      "median_delta_bootstrap_ci95_high": -1.2446000000000002,
+      "median_delta_bootstrap_ci95_low": -1.3165699999999987,
+      "median_delta_log_sSFR_agn_minus_control": -1.2855600000000003,
+      "median_match_distance_scaled": 0.012884747117931118,
+      "missing_pair_ids": 0,
+      "paper_scope": "M1 RP-1",
+      "proxy_guard": "SDSS optical emission-line flux-error/BPT stability and matched-pair association checks only; no causal AGN feedback, molecular gas depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+      "retained_fraction_of_baseline_pairs": 0.4864964399705377,
+      "retained_pairs": 3963,
+      "share_delta_negative": 0.936916477416099,
+      "threshold": 0.95
+    },
+    "source_rows": 60000,
+    "stable_original_label_rows_p_ge_0p84": {
+      "agn": 6437,
+      "intermediate": 8404,
+      "star-forming": 37795,
+      "unclassified": 31
+    },
+    "total_row_draws": 7680000
+  },
+  "marker": "GORU_BPT_FLUX_ERROR_MONTE_CARLO_TICK_20260708T232006Z",
+  "matched_pairs_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/matched_agn_sf_pairs.csv",
+  "matched_pairs_csv_sha256": "4ea53af867cccccb2b68b81557ff84fe90ec3f13e0512ffbdc977fa7216996fd",
+  "method": {
+    "bpt_classification": "Mirrors run_sdss_agn_sfr_pilot.py: Kauffmann/Kewley NII-BPT curves plus x=log([NII]/Halpha)>0.35 unclassified guard.",
+    "draws_per_row": 128,
+    "matched_pair_sensitivity": "Filters existing cached RP-1 nearest-neighbour matched AGN/SF pairs by MC class-stability probabilities; it does not rematch after perturbation.",
+    "rng_seed": 20260708232006
+  },
+  "outputs": {
+    "inventory_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/goru_bpt_flux_error_mc_inventory_20260708T232006Z.csv",
+    "matched_pair_sensitivity_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/bpt_flux_error_mc_matched_pair_sensitivity_20260708T232006Z.csv",
+    "paper_metrics_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/bpt_flux_error_mc_paper_metrics_20260708T232006Z.csv",
+    "script": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/scripts/goru_bpt_flux_error_mc_20260708T232006Z.py",
+    "sn_summary_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/bpt_flux_error_mc_sn_summary_20260708T232006Z.csv",
+    "stability_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/bpt_flux_error_mc_stability_by_sn_20260708T232006Z.csv",
+    "stability_svg": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/bpt_flux_error_mc_stability_20260708T232006Z.svg",
+    "summary_json": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/artifacts/goru_bpt_flux_error_mc_20260708T232006Z.json",
+    "tick_report_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/ticks/GORU_TICK_20260708T232006Z.md",
+    "transition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/tables/bpt_flux_error_mc_transition_20260708T232006Z.csv"
+  },
+  "proxy_limits": "SDSS optical emission-line flux-error/BPT stability and matched-pair association checks only; no causal AGN feedback, molecular gas depletion, radio-jet coupling, outflow escape/recycling, X-ray heating, or simulation-validation proof.",
+  "row_counts": {
+    "matched_pair_sensitivity_rows": 4,
+    "paper_metrics_rows": 6,
+    "sn_summary_rows": 28,
+    "stability_rows": 24,
+    "transition_rows": 16
+  },
+  "safety": "Read cached SDSS/local CSV artifacts only; wrote under overnight-9-papers-20260708/lanes/goru only. No DB/API/page_versions/wiki publish/live mirror/deploy/restart/git/cron/billing/OAuth/external submission.",
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "source_csv_sha256": "6f982fa5778c3900239149b28729f701390fe393a164b95236229adc1e422883",
+  "timestamp_utc": "20260708T232006Z"
+}

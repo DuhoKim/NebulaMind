@@ -1,0 +1,180 @@
+{
+  "packet_kind": "galaxy_post_label_readiness_analysis",
+  "status": "NO_GO_FOR_POST_LABEL_READINESS__AWAITING_EXPORTED_LABEL_JSON_OR_CSV",
+  "generated_at_utc": "2026-06-27T12:09:11.720656+00:00",
+  "review_only": true,
+  "no_apply": true,
+  "db_write_count_for_this_analysis": 0,
+  "db_writes_executed": 0,
+  "galaxy_prose_edits_executed": 0,
+  "trust_badge_changes_executed": 0,
+  "threshold_retunes_executed": 0,
+  "apply_sql_generated": false,
+  "approval_packet_generated": false,
+  "source_priority_packet": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/galaxy-evidence-priority-triage-20260627.json",
+  "source_review_packet": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/galaxy-evidence-review-20260627.json",
+  "workspace": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/galaxy-evidence-human-calibration-workspace-latest.html",
+  "input_label_export_found": false,
+  "input_label_export_path": null,
+  "input_search_summary": {
+    "searched_paths": [
+      "/Users/duhokim/Downloads",
+      "/Users/duhokim/Desktop",
+      "/Users/duhokim/Documents",
+      "/Users/duhokim/NebulaMind",
+      "/Users/duhokim/Library/Application Support/Google/Chrome/Default/History",
+      "https://nebulamind.net/agent-reports/galaxy-evidence-human-calibration-labels-20260627.json",
+      "https://nebulamind.net/agent-reports/galaxy-evidence-human-calibration-labels-20260627.csv",
+      "https://nebulamind.net/agent-reports/uploaded-labels/latest.json"
+    ],
+    "local_label_export_hits": 0,
+    "public_label_export_hits": 0,
+    "chrome_download_history_hits_for_galaxy_label_export": 0,
+    "clarification_response_received": false
+  },
+  "source_summary": {
+    "source_rows": 102,
+    "priority_rows": 28,
+    "claims_touched": [
+      2929,
+      2930,
+      2931,
+      2932,
+      2933,
+      2934
+    ],
+    "consensus_priority_rows": 18,
+    "debated_priority_rows": 10,
+    "assistant_recommendation_counts": {
+      "nuance_only": 10,
+      "drop_no_effect": 8,
+      "count_as_support": 4,
+      "route_as_new_claim": 2,
+      "count_as_weakening": 4
+    },
+    "risk_counts_in_priority_rows": {
+      "consensus_label_needs_human_support_check": 18,
+      "same_source_repeated_within_claim": 19,
+      "metadata_cleanup_needed": 21,
+      "nuance_or_counter_language_present": 28,
+      "high_impact_claim": 23,
+      "debated_label_needs_direction_check": 10
+    },
+    "source_packet_db_write_count": 0,
+    "source_packet_no_apply": true,
+    "source_authoritative_status": "assistant triage, not human-gold"
+  },
+  "label_summary": {
+    "exported_label_rows": 0,
+    "reviewed_rows": 0,
+    "remaining_rows": 28,
+    "human_decision_counts": {},
+    "missing_label_rows": 28,
+    "human_gold_status": "none_available"
+  },
+  "diagnostics": {
+    "machine_vs_completed_label_metrics_computed": false,
+    "reason_metrics_not_computed": "No exported human calibration JSON/CSV was found or provided; inferring labels from assistant triage would violate review-only/human-gold constraints.",
+    "threshold_sweep_computed": false,
+    "reason_threshold_sweep_not_computed": "No human labels available; threshold-only sweep would be meaningless and unsafe.",
+    "exact_removal_only_candidate_computed": false,
+    "reason_exact_candidate_not_computed": "Galaxy source packet has all machine stances none / zero votes and no exported labels; no exact write diff is authorized or generated.",
+    "tier_shift_stability_computed": false,
+    "reason_tier_shift_not_computed": "No completed labels to compare preserved-human-only vs assisted-only vs all labels."
+  },
+  "claim_readiness": [
+    {
+      "claim_id": 2929,
+      "assistant_rows": 7,
+      "assistant_recommendation_counts": {
+        "nuance_only": 6,
+        "drop_no_effect": 1
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    },
+    {
+      "claim_id": 2930,
+      "assistant_rows": 7,
+      "assistant_recommendation_counts": {
+        "drop_no_effect": 4,
+        "count_as_support": 3
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    },
+    {
+      "claim_id": 2931,
+      "assistant_rows": 5,
+      "assistant_recommendation_counts": {
+        "nuance_only": 1,
+        "route_as_new_claim": 2,
+        "drop_no_effect": 1,
+        "count_as_support": 1
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    },
+    {
+      "claim_id": 2932,
+      "assistant_rows": 3,
+      "assistant_recommendation_counts": {
+        "count_as_weakening": 2,
+        "nuance_only": 1
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    },
+    {
+      "claim_id": 2933,
+      "assistant_rows": 2,
+      "assistant_recommendation_counts": {
+        "count_as_weakening": 1,
+        "nuance_only": 1
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    },
+    {
+      "claim_id": 2934,
+      "assistant_rows": 4,
+      "assistant_recommendation_counts": {
+        "count_as_weakening": 1,
+        "nuance_only": 1,
+        "drop_no_effect": 2
+      },
+      "exported_human_label_rows": 0,
+      "status": "AWAITING_EXPORTED_HUMAN_LABELS"
+    }
+  ],
+  "missing_label_queue_csv": "galaxy-post-label-readiness-analysis-20260627T120911Z_missing_label_queue.csv",
+  "recommendations": [
+    "NO_GO for threshold retune, trust badge changes, Galaxy prose edits, or DB writes.",
+    "GO only for read-only intake: provide the exported JSON/CSV, then rerun this analysis.",
+    "Do not treat assistant triage rows as human-gold; all 28 priority rows remain awaiting exported human review labels.",
+    "If the labels were created on another device/browser, re-export or upload/paste the JSON/CSV into this session."
+  ],
+  "page_invariants_from_source_packet": {
+    "before": {
+      "id": 58,
+      "slug": "galaxy-evolution-v2",
+      "version_num": 4,
+      "content_length": 11855,
+      "content_sha256": "af8a8c739c55a4a85b298ec0d62683f5b2f03b38fc5ecf3f14bdfcea176b0055",
+      "claim_count": 8
+    },
+    "after": {
+      "id": 58,
+      "slug": "galaxy-evolution-v2",
+      "version_num": 4,
+      "content_length": 11855,
+      "content_sha256": "af8a8c739c55a4a85b298ec0d62683f5b2f03b38fc5ecf3f14bdfcea176b0055",
+      "claim_count": 8
+    },
+    "unchanged": true
+  },
+  "artifact_sha256": {
+    "galaxy-post-label-readiness-analysis-20260627T120911Z.json": "7b2abc3479842d810b678bc9268771455344b2dc2e7362aa6643e2d11963e63c",
+    "galaxy-post-label-readiness-analysis-20260627T120911Z_missing_label_queue.csv": "7df3e7b501848195014fcf91a630277b63884f9ec7a408904c29bcdf22044f76"
+  }
+}

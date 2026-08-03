@@ -1,0 +1,3564 @@
+MNRAS 000, 000–000 (0000)
+Preprint 1 February 2018
+Compiled using MNRAS LATEX style ﬁle v3.0
+First results from the IllustrisTNG simulations:
+the stellar mass content of groups and clusters of galaxies
+Annalisa Pillepich1,2⋆, Dylan Nelson3, Lars Hernquist2, Volker Springel4,5,
+R¨udiger Pakmor4, Paul Torrey6†, Rainer Weinberger4, Shy Genel7,8, Jill P. Naiman2,
+Federico Marinacci6, and Mark Vogelsberger6‡
+1Max-Planck-Institut f¨ur Astronomie, K¨onigstuhl 17, 69117 Heidelberg, Germany
+2Harvard–Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA 02138
+3Max-Planck-Institut f¨ur Astrophysik, Karl-Schwarzschild-Str. 1, 85741 Garching, Germany
+4Heidelberg Institute for Theoretical Studies, Schloss-Wolfsbrunnenweg 35, D-69118 Heidelberg, Germany
+5Zentrum f¨ur Astronomie der Universit¨at Heidelberg, ARI, M¨onchhofstr. 12-14, D-69120 Heidelberg, Germany
+6Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+7Center for Computational Astrophysics, Flatiron Institute, 162 Fifth Avenue, New York, NY 10010, USA
+8Columbia Astrophysics Laboratory, Columbia University, 550 West 120th Street, New York, NY 10027, USA
+1 February 2018
+ABSTRACT
+The IllustrisTNG project is a new suite of cosmological magneto-hydrodynamical simula-
+tions of galaxy formation performed with the AREPO code and updated models for feedback
+physics. Here we introduce the ﬁrst two simulations of the series, TNG100 and TNG300,
+and quantify the stellar mass content of about 4000 massive galaxy groups and clusters
+(1013 ⩽M200c/M⊙⩽1015) at recent times (z ⩽1). The richest clusters have half of their to-
+tal stellar mass bound to satellite galaxies, with the other half being associated with the central
+galaxy and the diffuse intra-cluster light. Haloes more massive than about 5 × 1014M⊙have
+more diffuse stellar mass outside 100 kpc than within 100 kpc, with power-law slopes of the
+radial mass density distribution as shallow as the dark matter’s ( −3.5 ≲α3D ≲−3). Total
+halo mass is a very good predictor of stellar mass, and vice versa: at z = 0, the 3D stellar mass
+measured within 30 kpc scales as ∝(M500c)0.49 with a ∼0.12 dex scatter. This is possibly
+too steep in comparison to the available observational constraints, even though the abundance
+of TNG less massive galaxies (≲1011M⊙in stars) is in good agreement with the measured
+galaxy stellar mass functions at recent epochs. The 3D sizes of massive galaxies fall too on a
+tight (∼0.16 dex scatter) power-law relation with halo mass, with rstars
+0.5
+∝(M200c)0.53. Even
+more fundamentally, halo mass alone is a good predictor for the whole stellar mass proﬁles
+beyond the inner few kpc, and we show how on average these can be precisely recovered
+given a single mass measurement of the galaxy or its halo.
+Key words: methods: numerical – galaxies: formation – galaxies: evolution – galaxies: haloes
+– galaxies: groups – galaxies: clusters – general cosmology: theory
+1
+INTRODUCTION
+The Λ-Cold Dark Matter (ΛCDM) cosmological paradigm (The
+Planck Collaboration et al. 2016) predicts a bottom-up hierarchi-
+cal growth of structures, where massive systems such as groups
+and clusters of galaxies assembled recently through a series of
+mergers and the accretion of smaller units that previously formed
+⋆E-mail: pillepich@mpia-hd.mpg.de
+† Hubble Fellow
+‡ Alfred P. Sloan Fellow
+due to gravitational instability within the dark matter (DM) domi-
+nated density ﬁeld. As demonstrated by large-volume, gravity-only
+simulations (e.g. Evrard et al. 2002; Angulo et al. 2012; Potter
+et al. 2017), the abundance of the most massive haloes is a steeply
+falling function of halo mass. At the current epoch, objects of mass
+1014 (1015) M⊙are about 50 (a few thousand) times rarer than
+Milky-Way like haloes (1012 M⊙; e.g. Skillman et al. 2014), and
+they were about ten (a hundred) times more infrequent at z ∼1
+than today (e.g. Bocquet et al. 2016).
+Although only a few per cent of all galaxies at the present
+day reside in these very massive haloes, observations have shown
+c⃝0000 The Authors
+arXiv:1707.03406v2  [astro-ph.GA]  31 Jan 2018
+
+
+2
+Pillepich et al.
+that such clusters contain a rich mixture of galaxy types, ranging
+from hundreds or even thousands of dwarf galaxies (as seen, e.g.,
+in the Virgo, Fornax and Coma surveys, the Next Generation Virgo
+cluster Survey, the 2dF Fornax cluster survey, and SAURON) to the
+most massive galaxies in the Universe situated at the centers of their
+deep gravitational potential wells (studied in, e.g., ATLAS3D, The
+Massive Survey, among others). This galaxy population is thought
+to be shaped by intense mutual interactions in groups and clusters,
+such as galaxy harassment (Moore et al. 1996), stripping (Gunn &
+Gott 1972) or strangulation (Larson et al. 1980), making these en-
+vironments particularly interesting for studies of galaxy evolution.
+Also, the tidal stripping of stars from galaxies and the ingestion
+of smaller systems by the central cluster galaxy produces a diffuse
+intra-cluster light (ICL) component in the background halo. The
+overall prominence and radial extent of this low surface brightness
+envelope around the central galaxy forms an important integral con-
+straint for cosmic structure formation.
+Observationally constraining the ICL component is challeng-
+ing, as it requires both wide and deep observations capable of
+capturing spatially extended low-surface brightness regions. It has
+been attempted for the SDSS with stacking methods (Zibetti et al.
+2005), with targeted observations of individual objects in the local
+Universe (e.g. Mihos et al. 2005), as well as with HST at interme-
+diate redshifts in the Frontier Field and CLASH1 clusters (Montes
+& Trujillo 2014; DeMaio et al. 2015; Burke et al. 2015; Morishita
+et al. 2017; Montes & Trujillo 2017). Recently, Huang et al. 2017
+have taken a leap forward by measuring the light proﬁles out to 100
+kpc of a few thousand massive galaxies at intermediate redshifts
+using the Hyper Suprime Camera. The results thus far show signif-
+icant quantitative discrepancies, but are of substantial importance,
+for example, for the theoretical interpretation of abundance match-
+ing constraints at the cluster scale (Giodini et al. 2009; Andreon
+2012; Budzynski et al. 2012; Gonzalez et al. 2013; Kravtsov et al.
+2014; Andreon 2015; Chiu et al. 2016). As the brightness proﬁle
+of central galaxies often smoothly blends into the ICL, a particular
+challenge lies in arriving at an unambiguous deﬁnition of the stel-
+lar mass of the central galaxy, which has been a recurrent theme
+in previous modeling attempts of the ICL based on hydrodynam-
+ical simulations (Puchwein et al. 2010; Contini et al. 2014; Cui
+et al. 2014), semi-analytical and controlled N-body experiments
+(De Lucia & Blaizot 2007; Conroy et al. 2007; Laporte et al. 2013;
+Cooper et al. 2015) or semi-empirical models (Behroozi et al. 2013;
+Moster et al. 2017). Properly assigning mass to the central galaxies
+in large haloes is also critical for meaningfully comparing to ob-
+servational results for the massive end of the galaxy stellar mass
+function (Baldry et al. 2012; Bernardi et al. 2013, 2017; D’Souza
+et al. 2015).
+To model the evolution of massive haloes and their embed-
+ded galaxies in a physically meaningful way is challenging as it
+depends on a complex combination of many processes, coupling
+gravity, star formation, radiative gas cooling, heating, and stellar
+feedback in a highly non-linear fashion. Speciﬁc mechanisms that
+need to be considered include cosmological gas accretion, feedback
+and outﬂows driven by Active Galactic Nuclei (AGN), turbulence,
+thermal conduction, thermal instabilities, magnetic ﬁeld ampliﬁ-
+cation and transport of charged particles as well as galaxy-galaxy
+interactions, galaxy mergers, tidal disruption, interactions with the
+intra-cluster medium (ICM) itself, e.g., via ram-pressure stripping,
+and repeated high-speed galaxy encounters within the cluster grav-
+1 Cluster Lensing and Supernova Survey with Hubble
+itational potential (see Kravtsov & Borgani 2012, for a review).
+This diversity of the involved physical processes can be followed in
+full generality only through cosmological hydrodynamical simula-
+tions. However, the enormous range of scales (from sub-pc to many
+Mpc scales) makes this a formidable computational challenge (see
+Borgani & Kravtsov 2011, for a review). Simulating this in a truly
+self-consistent fashion is still a distant goal, even though the ever
+increasing power of modern supercomputers and improvements in
+the physical ﬁdelity of numerical codes have already allowed re-
+markable progress in this direction.
+In recent years, efforts in galaxy formation simulations have
+mostly focused on individual haloes up to Milky-Way sized mass
+(e.g. Guedes et al. 2011; Stinson et al. 2013; Marinacci et al. 2014;
+Hopkins et al. 2014; Wang et al. 2015; Christensen et al. 2016;
+Grand et al. 2017; Agertz & Kravtsov 2016; Hopkins et al. 2017)
+or on large cosmological volumes about 1003 Mpc3 across (Vogels-
+berger et al. 2014b; Schaye et al. 2015; Dubois et al. 2014; Khandai
+et al. 2015). The latter have by construction spatial and mass reso-
+lutions limited to about the kpc length and 106M⊙mass scales, re-
+spectively. Still, projects like Illustris (Vogelsberger et al. 2014b,a;
+Genel et al. 2014; Sijacki et al. 2015) and EAGLE (Schaye et al.
+2015; Crain et al. 2015) have shown that hydrodynamical simula-
+tions with sub-grid models tailored to such resolutions can repro-
+duce many structural properties and scaling relations of observed
+galaxies across a wide range of masses. While some empirical in-
+put is used to set the free parameters of the models (such as feed-
+back efﬁciencies), the large array of diverse physical measurements
+admitted by these calculations gives them considerable predictive
+power and makes them an invaluable tool to test galaxy formation
+theory. However, the limited volume covered by these simulations
+hinders their usage for an exploration of astrophysical processes
+acting on the largest scales of the Universe. In particular, this pre-
+cludes the study of very rare objects, like rich clusters of galaxies,
+and the properties of their stellar mass content.
+At present just a handful of hydrodynamical simulations ex-
+ist which are capable of accessing the realm of statistical samples
+of haloes more massive than 1014M⊙and including some form of
+feedback from AGN (Le Brun et al. 2014; Dolag et al. 2016; Mc-
+Carthy et al. 2017). Yet, none of them has the spatial and mass reso-
+lution needed to unveil the structural details of the cluster galaxies.
+In fact, some of those models have been speciﬁcally constructed
+to reproduce the global scaling relations of massive haloes (e.g. the
+fraction of hot halo gas and the stellar mass - BH mass relations) by
+means of adjusting the adopted subgrid prescriptions accordingly,
+without paying much attention to the cluster galaxies themselves.
+Other numerical works have focused on simulating smaller cluster
+samples to gain insight on speciﬁc aspects of the numerical im-
+plementations (e.g. the nIFTy comparison project, Sembolini et al.
+2016) or of the cluster physics, like the impact of AGN feedback
+on the thermodynamical properties of the ICM (e.g. Puchwein et al.
+2008; Planelles et al. 2014), the stellar properties and proﬁles of
+the brightest central galaxies (Puchwein et al. 2010; Martizzi et al.
+2012; Ragone-Figueroa et al. 2013), or the cool core - non cool
+core duality (e.g. Rasia et al. 2015; Hahn et al. 2017).
+Recently, Bah´e et al. (2017) and Barnes et al. (2017) have
+started to ﬁll the gap between these approaches by producing a suite
+of 24 (Hydrangea) plus 6 additional (C-EAGLE) zoom-in simula-
+tions of massive galaxy clusters between 1014 and 1015.4M⊙with
+the resolution and galaxy physics model of the EAGLE simulation.
+In our new IllustrisTNG project, we go beyond this approach by
+pushing it further with a much larger, uniformly sampled cosmo-
+logical volume. We use an updated modeling technique that ex-
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+3
+Dark Matter Column Density [log Msun kpc-2]
+5.5
+6.2
+6.8
+7.5
+8.2
+160 kpc
+320 kpc
+ID 225155 z = 0.0
+ID 358582 z = 0.0
+TNG300
+TNG100
+15 kpc
+15 kpc
+Figure 1. The IllustrisTNG Simulations: z = 0 visual representation of the scope and spatial volumes encompassed by the TNG100 and TNG300 runs
+presented in this paper. The background represents the DM density ﬁeld across the ∼300 Mpc volume of TNG300, while the upper right inset shows the
+distribution of stellar mass across the entire ∼100 Mpc volume of TNG100, each projected through a slice a third of the box in depth. Panels on the left
+show two examples of galaxy-galaxy interactions, and two examples of ﬁne-grained structure of the extended stellar haloes – shells, tidal tails, and luminous
+satellites – around two massive ellipticals at z = 0, in projected stellar mass density. The bottom right insets show the stellar light on scales of 60 kpc per side
+(face-on) of two randomly-selected z = 0 galaxies with a stellar mass larger than 1011M⊙, from the high-resolution TNG100 box.
+cels in the use of magneto-hydrodynamics (MHD) and improved
+treatments of AGN feedback, galactic winds and metal enrichment,
+and we aim for an unprecedented mix of statistical power, dynamic
+range in mass, numerical resolution, and included physics.
+IllustrisTNG (Figure 1) is the follow up project of the Il-
+lustris simulation. Upon completion, it will consist of three large
+cosmological volumes, TNG50, TNG100, and TNG300 of about
+50, 100, and 300 Mpc on a side, respectively. TNG100 features
+the same resolution and initial condition phases as Illustris, while
+TNG50 and TNG300 extend the series to a better resolution and
+a larger volume, respectively. In this paper, we use TNG100 and
+TNG300 to provide a census of the stellar mass content and its spa-
+tial distribution within massive galaxy groups and clusters (1013 ⩽
+M200c/M⊙≲1015). We focus on their central galaxies, diffuse
+ICL, satellite populations, and total stellar mass out to the virial
+radius. In our simulations, galaxies and haloes are extended, spa-
+tially resolved objects, unlike in semi-analytical and semi-empirical
+models. The tidal truncation and eventual disruption of galaxies is
+followed consistently in the simulations, hence the results for the
+spatial distribution of the various stellar components in massive
+haloes provide a highly non-trivial prediction of the calculations.
+The structure of the paper is hence as follows. In Section 2, we
+MNRAS 000, 000–000 (0000)
+
+
+4
+Pillepich et al.
+Table 1. The TNG100 and TNG300 simulations of IllustrisTNG: table of physical and numerical parameters for the three resolution levels of the two
+simulations presented in this paper. A third simulation with side length 35h−1 ∼50 Mpc (TNG50) completes the series: it is currently ongoing and will be
+presented in the future. The parameters are: the box side-length, the initial number of gas cells and dark matter particles, the target baryon mass, roughly equal
+to the average initial stellar particle mass, the dark matter particle mass, the z = 0 Plummer equivalent gravitational softening of the collisionless component,
+and the minimum comoving value of the adaptive gas gravitational softenings. Lastly, the total run time including substructure identiﬁcation in CPU core hours,
+and the number of compute cores used. For details on the adaptive mass and spatial resolution of the gas component see Pillepich et al. (2018), Appendix A.
+Run Name
+Lbox
+NGAS
+NDM
+mbaryon
+mDM
+ϵz=0
+DM,stars
+ϵgas,min
+CPU Time
+Ncores
+[ cMpc ]
+-
+-
+[ 106 M⊙]
+[ 106 M⊙]
+[ kpc ]
+[ ckpc ]
+[ Mh ]
+-
+TNG100(-1)
+110.7
+18203
+18203
+1.4
+7.5
+0.74
+0.19
+18.0
+10752
+TNG100-2
+110.7
+9103
+9103
+11.2
+59.7
+1.48
+0.37
+0.6
+2688
+TNG100-3
+110.7
+4553
+4553
+89.2
+477.7
+2.95
+0.74
+≪1
+336
+TNG300(-1)
+302.6
+25003
+25003
+11
+59
+1.48
+0.37
+34.9
+24000
+TNG300-2
+302.6
+12503
+12503
+88
+470
+2.95
+0.74
+1.3
+6000
+TNG300-3
+302.6
+6253
+6253
+703
+3764
+5.90
+1.47
+≪1
+768
+introduce all the technical details of the IllustrisTNG simulations
+presented in this paper. Subtleties of the adopted methods are ex-
+plained in Section 3. The basic demographics of the high-mass end
+sample enabled by the TNG100 and TNG300 simulations is pro-
+vided in Section 4. We show the results of our models in terms of
+3D enclosed stellar mass proﬁles as well as 3D stellar mass density
+proﬁles in Section 5, and give analytic ﬁts to them that require as
+sole input either the total halo mass or the galaxy stellar mass within
+a given aperture. The mass budget in TNG groups and clusters is
+quantiﬁed in Section 6 in terms of scaling relations between stellar
+mass and total halo mass for different ﬁxed spatial apertures. In the
+same section we assess the fractional contributions of the various
+cluster components to the total stellar mass budget and to the total
+halo mass, including a discussion on the scatter. We highlight se-
+lected theoretical insights enabled by the simulations in Section 7,
+and summarize and discuss our general conclusions in Section 8.
+2
+THE TNG SIMULATIONS
+In this paper, we analyze two recently ﬁnished simulations of the
+The Next Generation Illustris project: IllustrisTNG2. IllustrisTNG
+(Fig. 1) is an ongoing suite of magneto-hydrodynamical cosmolog-
+ical simulations that model the formation and evolution of galaxies
+within the ΛCDM paradigm. It builds upon the scientiﬁc achieve-
+ments of the Illustris simulation (Vogelsberger et al. 2014b,a; Genel
+et al. 2014) and improves upon Illustris by 1) extending the mass
+range of the simulated galaxies and haloes, 2) adopting an improved
+numerical and astrophysical modelling, and 3) addressing the iden-
+tiﬁed shortcomings of the previous generation simulations (sum-
+marized in Nelson et al. 2015).
+The galaxy formation model underlying the TNG simu-
+lations includes a new kinetic black hole feedback, magneto-
+hydrodynamics (MHD), and a revised scheme for galactic winds,
+among other changes. These are all described in full detail in the
+project’s two method papers by Pillepich et al. (2018) and Wein-
+berger et al. (2017), where the former covers the aspects respon-
+sible for shaping low- to intermediate-mass galaxies and gives a
+detailed summary of the parameters used in the model, while the
+latter focuses on the high-mass end of the stellar mass function and
+2 http://www.tng-project.org
+introduces a new BH-driven wind feedback model, a fundamental
+change in the feedback modeling compared with Illustris.
+In the following, we will refer to the galaxy formation physics
+speciﬁed in these two studies as the TNG model. For the sake
+of brevity, we only mention its most salient features here. The
+TNG model builds upon the infrastructure developed for Illustris
+(Vogelsberger et al. 2013; Torrey et al. 2014): it follows radia-
+tive gas cooling modulated by a time-variable UV background,
+star formation regulated by a subgrid model for the interstellar
+medium (Springel & Hernquist 2003), galactic wind feedback pow-
+ered by supernova explosions, a detailed metal enrichment model
+that tracks 9 elements and uses metallicity-dependent yields from
+SN-II, SN-Ia, and AGB stars, growth of supermassive black holes
+through Bondi gas accretion and black hole mergers, as well as
+thermal quasar feedback in high accretion rate states, and ki-
+netic black hole wind feedback in low accretion rate states of the
+black holes. The magnetic ﬁelds are followed with ideal magneto-
+hydrodynamics and are dynamically coupled to the gas through the
+magnetic pressure. We point out that all TNG model parameters of
+the IllustrisTNG simulations are exactly as described in the default
+model of Pillepich et al. (2018), and their values are kept the same
+for all of our simulations, independent of numerical resolution.
+IllustrisTNG uses the AREPO code (Springel 2010) which em-
+ploys a tree-particle-mesh algorithm to solve Poisson’s equation for
+gravity and a second-order accurate ﬁnite-volume Godunov scheme
+on a moving, unstructured Voronoi-mesh for the equations of ideal
+magnetohydrodynamics. The divergence constraint of the magnetic
+ﬁeld is taken care of by an 8-wave Powell cleaning scheme de-
+scribed in Pakmor & Springel (2013). A uniform magnetic ﬁeld of
+strength 10−14 G (comoving) is set up in the initial conditions and
+functions as the seed for the subsequent self-consistent ampliﬁca-
+tion of the magnetic ﬁelds through small-scale dynamo processes
+(Rieder & Teyssier 2016; Pakmor et al. 2017). Previous work has
+shown that our results are insensitive to the precise value of this
+initial seed ﬁeld (Marinacci et al. 2015).
+Compared to the code version used for the Illustris simulation,
+a number of improvements have been implemented and utilized in
+the TNG runs. These include an improved gradient estimate (Pak-
+mor et al. 2016) that leads to better convergence properties of the
+hydrodynamics scheme as well as to an improved angular momen-
+tum conservation, a reﬁned advection scheme for passive scalars
+used to track metals (Pillepich et al. 2018), and a modiﬁed, more
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+5
+efﬁcient hierarchical time integration method for gravitational in-
+teractions (Springel et al. in prep). Through local reﬁnement and
+de-reﬁnement operations acting upon the gas mesh, we ensure that
+the baryonic mass resolution of gas and stars always stays within a
+factor of two of the initial mass resolution (see Table 1).
+The IllustrisTNG runs studied in this work are two uniform
+mass resolution cosmological volume simulations with side lengths
+75 h−1 ≈100 Mpc and 205 h−1 ≈300 Mpc, referred to as
+TNG100 and TNG300 in the following. A third set with side length
+35 h−1 ≈50 Mpc (TNG50) is currently still in progress and will
+not be discussed in this paper. TNG100 has been performed at res-
+olution similar to the original Illustris simulation, while TNG300
+has a factor 8 (2) worse mass (spatial) resolution. TNG100 and
+TNG300 are each augmented by a series of lower resolution real-
+izations (TNG100-2, TNG100-3, and TNG300-2, TNG300-3, re-
+spectively) of the same volumes, each respectively with 8 and 64
+times more massive DM particles than their respective ﬂagship
+counterpart. Table 1 provides an overview of the primary charac-
+teristics of the simulations used in this study.
+The initial conditions of all simulations have been set at z =
+127 using the Zeldovich approximation. The adopted cosmological
+parameters are given by a matter density Ωm = Ωdm + Ωb =
+0.3089, baryonic density Ωb = 0.0486, cosmological constant
+ΩΛ = 0.6911, Hubble constant H0 = 100 h km s−1Mpc−1 with
+h = 0.6774, normalisation σ8 = 0.8159 and spectral index
+ns = 0.9667 (taken from Planck, The Planck Collaboration et al.
+2016).
+In this paper, we focus on the stellar mass content of mas-
+sive gravitationally collapsed haloes. It is one in a series of ﬁve pa-
+pers that introduce the IllustrisTNG project, all analyzing different
+aspects of the new simulations, highlighting their wide scientiﬁc
+scope. In Nelson et al. (2017), we show that the color bimodality of
+TNG galaxies is in good agreement with data from SDSS, demon-
+strating that the included feedback mechanisms quench galaxies at
+the appropriate stellar mass scale. We also ﬁnd that the spatial clus-
+tering of our simulated galaxies matches observational constraints
+both in the local universe and at higher redshift (Springel et al.
+2017). In Marinacci et al. (2017), we study the predicted magnetic
+ﬁeld strengths in haloes and derive maps of radio synchrotron emis-
+sion from massive galaxy clusters. Finally, in Naiman et al. (2017)
+we trace the enrichment from r-processes and explore the chemi-
+cal evolution of europium and magnesium directly in cosmological
+hydrodynamical simulations of Milky Way-like galaxies.
+3
+METHODS
+3.1
+Identiﬁcation of simulated haloes and galaxies
+Haloes, subhaloes, and their basic properties are obtained with the
+FOF and SUBFIND algorithms (Davis et al. 1985; Springel et al.
+2001; Dolag et al. 2009), at each of 100 snapshots saved from
+z ∼20 to z = 0. Throughout, we call galaxy any luminous
+(sub)halo, i.e. any gravitationally bound object with nonzero stel-
+lar component. To identify (sub)haloes, ﬁrst a standard friends-of-
+friends group ﬁnder is run to identify FOF haloes (linking length
+0.2) within which gravitationally bound substructures are then lo-
+cated and characterized hierarchically. The SUBFIND object catalog
+includes both central and satellite subhaloes: the position of cen-
+trals coincides with the FOF centers (deﬁned as the minimum of
+the gravitational potential), and centrals may contain one or more
+child subhaloes; satellite subhaloes may be either dark or luminous,
+and are members of their parent FOF group regardless of their
+distance from the centers. For the halo masses examined in this
+work, every FOF halo is univocally associated to a central SUB-
+FIND haloes.
+Throughout this paper, we refer to galaxies that do not reside
+within R200c or R500c
+3 of a larger halo as centrals. For any given
+central, satellites are all SUBFIND luminous objects which reside
+within a certain (3D or 2D) spherical aperture. Member galaxies
+are either centrals or satellites.
+Host haloes and galaxies are characterized by a total halo
+mass; here we adopt the spherical-overdensity mass M200c
+(M500c), obtained by summing the mass of all particles and cells
+enclosed within R200c (R500c) – including dark matter, gas, stars
+and black holes. At z = 0, we measure the total mass of a satel-
+lite galaxy by summing the mass of all its gravitationally bound
+particles and cells, according to SUBFIND, regardless of their dis-
+tance. The same applies to the stellar mass content alone: the SUB-
+FIND algorithm determines which stellar particles are gravitation-
+ally bound to which objects – a stellar particle can be associated
+to only one galaxy (central or satellite). Therefore, the stars of a
+satellite galaxy belong to the satellite rather than to the host galaxy
+around which the satellite orbits. As a result, satellite stellar masses
+are not included in the stellar mass of their hosts. Where needed,
+we adopt a Chabrier (2003) initial mass function (IMF), consistent
+with the choice used for the simulations themselves.
+Given the collection of gravitationally bound stellar particles
+assigned to a galaxy, the stellar half mass radius (rstars,1/2) is mea-
+sured as the three dimensional radius containing half of the stellar
+mass of all constituent stars.
+3.2
+On a galaxy’s stellar mass and cluster components
+Before we proceed any further and quantify the amount of stel-
+lar mass in TNG groups and clusters, it is helpful to outline a set
+of operational deﬁnitions for the different components. In Table 2,
+we clarify the nomenclature applied throughout this work for refer-
+ring to the various stellar components of massive haloes: the central
+galaxy (or BCG), satellite galaxies, the stellar halo or ICL, as well
+as combinations thereof. These terms are commonly used in the
+literature, although with varying deﬁnitions.
+We proceed in our analysis by labeling all central galaxies of
+our sample with a series of stellar mass measurements performed
+within ﬁxed spatial 3D apertures. Alternatively, one could have
+used 2D circularized apertures. The mass in the ICL is, conversely,
+deﬁned as the sum of all mass residing beyond the same ﬁxed spa-
+tial aperture. This operational deﬁnition eliminates any ambiguity
+in theoretical mass estimates from simulations, which is clearly de-
+sirable. Similarly, despite the complexity inherent in observational
+techniques to measure stellar mass or light, we hope that ﬁxed-
+aperture estimates could become a well-deﬁned standard practice.
+As it will be shown via the analysis of the stellar mass proﬁles in
+Section 5, no physical transition between central galaxies and ICL
+can be identiﬁed and generalized across mass scales, and hence
+ﬁxed-aperture boundaries are the best practical and most unam-
+biguous way to compare mass (or light) estimates across theoretical
+and observational compilations.
+Two complications still remain: the deﬁnition of satellite
+masses, and the outer boundary of a halo. In both cases we still
+3 R∆is deﬁned as the radius within which the mean enclosed mass density
+is ∆times the critical value ρc i.e. ¯ρhalo = ∆ρc.
+MNRAS 000, 000–000 (0000)
+
+
+6
+Pillepich et al.
+Name
+Deﬁnition
+Note
+Groups and clusters of galaxies
+Objects with a total spherical-overdensity halo mass of
+M200c ⩾1013M⊙, described in this work also in terms of
+M500c.
+The total mass includes contribution from DM, gas,
+stars, both smooth and within the central galaxy as
+well as including subhaloes/satellites and possibly
+gravitationally-unbound resolution elements.
+Central galaxy
+Galaxy at the potential minimum of a group or cluster that does
+not reside within the virial radius (e.g. R200c or R500c) of a
+larger halo. Its stellar mass is deﬁned as the sum of all stellar
+particles mass within ﬁxed apertures, e.g. 3D 10, 30, 100 physi-
+cal or comoving kpc, excising satellites.
+Here we use the terms central to refer to what oth-
+ers might also call host, parent galaxy or BCG
+(brightest cluster galaxy): in this work the mass of
+the central is always deﬁned within a ﬁxed (3D)
+aperture.
+Satellite galaxy
+Any galaxy within the virial radius (M200c or M500c) of a cen-
+tral. Its stellar mass is deﬁned as the sum of the mass of all stellar
+particles which are gravitationally bound according to the SUB-
+FIND algorithm.
+This separation between centrals and satellites and
+hence the deﬁnition of a satellite stellar mass are
+not directly applicable to observations.
+ICL (intra-cluster light)
+All stellar mass beyond a ﬁxed aperture from the center of the
+group or cluster to a maximum boundary set by the virial radius
+(e.g. R200c or R500c) of the hosting halo, regardless of origin
+and excising satellites and gravitationally unbound stars.
+This is also referred to as diffuse envelopes, stellar
+haloes, or intra-halo light.
+diffuse mass (central + ICL)
+All stellar mass in a group and cluster within a ﬁxed aperture
+(here usually the virial radius) which is not locked in satellites,
+namely the sum of the stellar mass in the central galaxy and intra-
+cluster light.
+This is what we have labeled in Section 5 Mstars
+200c .
+It is very close to the mass of what is sometimes
+labeled as ‘BCG’ in those observational analyses
+where the BCG total stellar mass/light budget is es-
+timated by integrating the stellar proﬁle to inﬁnity.
+Table 2. Operational deﬁnitions of the group and cluster components adopted in this work. As it will be justiﬁed in the next Sections, we advocate that a
+separation between central galaxies and intra-cluster light (ICL) cannot be generalized across mass scales, and that ﬁxed-aperture boundaries are the best
+practical way to compare mass (or light) estimates across theoretical and observational compilations. The total stellar mass of a group or cluster is the sum of
+all components (central+ICL+satellites), out to a speciﬁed spherical or circular aperture. In this study, we adopt throughout as a boundary the virial radius of
+the underlying total halo, R200c or R500c. The proposed separation can be extended to galaxies/haloes of any mass.
+implement deﬁnitions which are theoretically motivated. Namely,
+the mass of a satellite galaxy is taken as the sum of all its gravi-
+tationally bound particles, while observationally its light would be
+mixed with the background ICL, requiring a 2D based separation.
+Similarly, the outer boundary of our haloes is adopted as the mini-
+mum between the virial radius and the distance of the farthest grav-
+itationally bound stellar particle, while observationally this will be
+set by a surface brightness sensitivity limit. In advocating for ﬁxed
+aperture stellar mass deﬁnitions, these need to be properly recon-
+ciled with a consideration of the relevant boundaries of objects.
+3.3
+Resolution effects and rTNG300
+As can be seen from Table 1, the TNG300 simulation is performed
+at a factor of 8 (2) lower in mass (spatial) resolution when com-
+pared to the ﬂagship run TNG100. This is our typical step between
+two resolution levels. Therefore, TNG100-2 is realized at the same
+resolution as the ﬂagship TNG300 run, while TNG100-3 corre-
+sponds to TNG300-2. As a reminder, TNG100 has the same reso-
+lution as the original Illustris simulation (aside from a small shift in
+the adopted cosmological parameters), with a mean baryonic mass
+of 1.4 × 106M⊙.
+Other than the gravitational softening length parameters, all
+TNG runs use the default model parameter values given in Pillepich
+et al. (2018), with no adjustments with resolution. This approach is
+equivalent to aiming for “strong resolution convergence” (in the
+language of Schaye et al. 2015), in contrast to the “weak resolu-
+tion convergence” approach where parameters are intentionally re-
+scaled in order to obtain better converged simulation output. As a
+result, and as explored in Pillepich et al. (2018, Appendix A) and
+Weinberger et al. (2017, Appendix B), properties of the simulated
+galaxies may not be necessarily fully converged at the mass and
+spatial resolutions adopted in TNG100 and TNG300. In particular,
+in our galaxy physics model, stellar masses and star formation rates
+typically increase with better resolution. This is particularly prob-
+lematic for TNG300, because we would like to exploit the powerful
+statistics of the large volume, but with galaxy properties as would
+be obtained at TNG100 resolution.
+Thanks to the whole set of ancillary realizations, we have clear
+constraints on how the model results differ at different resolutions.
+We demonstrate this explicitly in Appendix A for all observables
+studied in this paper. In fact, despite the changes in box size and
+initial conditions phases, average results from TNG100-2 are in
+excellent agreement with those of TNG300, and the same applies
+at the next lower levels, TNG100-3 vs TNG300-2. We therefore
+account for possible resolution shifts by judicial application of a
+rescaling procedure. In practice, we assume that the model outcome
+at TNG100 resolution (the best in this work and the target one for
+the model development) is our best estimate of reality. For any ob-
+servable studied in this paper, curves denoted ‘rTNG300’ represent
+the TNG300 results multiplied by a resolution correction function
+informed by the comparison between TNG100 and TNG100-2 on
+the same statistics or observable (see Appendix A and Eq. (A1)).
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+7
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+100
+101
+102
+103
+ 1 + # Haloes ( > M200c )
+Fornax
+Virgo
+Perseus
+Coma
+ solid: z = 0
+ dotted: z = 1
+ TNG300 (m ~ 107 Msun)
+ TNG100 (m ~ 106 Msun)
+C-EAGLE (m ~ 106 Msun)
+Rhapsody-G (m ~ 108.4 Msun)
+Trieste (m ~ 108.3 Msun)
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+100
+101
+102
+103
+Halo Occupation Number
+ rTNG300, z = 0 
+ Richness or HON [ < R200c ] 
+1.4e+11
+3.1e+11
+7.6e+11
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+ members Mstars > 1.0e+08 Msun
+ members Mstars > 1.0e+09 Msun
+ members Mstars > 1.0e+10 Msun
+ members Mstars > 5.0e+10 Msun
+Figure 2. Demographics of the haloes and galaxies in the TNG100 and
+TNG300 simulations. Top: cumulative halo mass functions at different red-
+shifts, in absolute numbers from the 1003 (TNG100) and 3003 Mpc3
+(TNG300) simulated volumes. The size of the TNG massive end is com-
+pared to the C-Eagle/Hydrangea (Barnes et al. 2017; Bah´e et al. 2017),
+the Rhapsody-G (Hahn et al. 2017) and the Trieste (Ragone-Figueroa et al.
+2013) zoom-in projects: currently the only simulations at comparable res-
+olution (expressed in terms of the baryonic resolution element mass, m).
+Vertical grey bands denote the mass estimates of the local Fornax, Virgo,
+Perseus, and Coma clusters (Weinmann et al. 2011). Bottom: Richness of
+haloes in the rescaled rTNG300, i.e. average number of member galaxies
+(including the central) within R200c as a function of halo mass (bottom
+axis) or central stellar mass (top axis).
+4
+THE MASSIVE END OF TNG GALAXIES AND
+CLUSTERS
+In this paper we focus on the high mass end of the galaxy and
+halo mass functions over the last 8 Gyr of cosmic evolution (0 ⩽
+z ⩽1). In particular, we consider all (central) haloes in TNG100
+and TNG300 with total halo mass M200c ⩾1013 M⊙, includ-
+ing their families of member galaxies down to stellar masses of
+about 108 and 109 M⊙in TNG100 and TNG300, respectively.
+Fig. 2 presents some basic statistics of the sample. The top panel
+gives the cumulative histogram of the number of simulated haloes
+above a given mass, for TNG100 (blue) and TNG300 (orange),
+both at z = 0 (solid) as well as at z = 1 (dotted). In every mass
+bin, the larger volume contains roughly twenty times more objects
+than TNG100, and has comparable or superior statistics to ‘zoom-
+in’ cluster simulation projects with comparable numerical resolu-
+tion, e.g. the Trieste cluster sample (Ragone-Figueroa et al. 2013;
+Planelles et al. 2014), C-Eagle (Barnes et al. 2017) and Rhapsody-
+G (Hahn et al. 2017). In fact, while the most massive object in
+TNG300 has a mass of M200c = 1.54 × 1015M⊙, the Trieste,
+C-Eagle, and Rhapsody-G samples extend to larger halo masses
+(M200c ∼3.6, 2.4, 1.5 × 1015M⊙, respectively at z = 0), with
+the latter (former ones) achieving approximately 6 times better (10
+times worse) particle mass resolutions than TNG300. In practice,
+TNG300 contains numerous Virgo and Perseus mass analogs (i.e.
+M ∼1.4 −4 × 1014M⊙and M ∼4.6 −6.7 × 1014M⊙, re-
+spectively), but only a few Coma-like clusters (i.e. M ∼1.3 −2 ×
+1015M⊙, see Weinmann et al. 2011).
+In TNG100, the most massive halo at z = 0 has a total mass
+of 3.8×1014 M⊙(M200c), its central galaxy hosting a stellar mass
+of 1.1 × 1012 M⊙(measured within 30 kpc). In the 300 Mpc box,
+on the other hand, 3 objects exceed M200c = 1015 M⊙and 280
+are more massive than 1014M⊙. This gives us a sample of 182
+and 3733 for z = 0 groups and clusters (M200c ⩾1013 M⊙)
+from TNG100 and TNG300, respectively. At z = 1 the number
+of groups and clusters is reduced to 118 and 2333 in TNG100 and
+TNG300, respectively. Partly to maintain good statistics at the high-
+mass end, we therefore restrict the analysis of the present paper to
+z < 1. In doing so we capture the majority of cosmic evolution (∼8
+Gyr) and the period of massive cluster formation, after the dynam-
+ically rapid high redshift Universe begins to evolve more slowly.
+The resolution of TNG100 (TNG300) is such that 1013 M⊙
+objects are on average resolved with 2-3 million (300-400 thou-
+sand) resolution elements each, among gas cells, stellar particles,
+DM particles and black holes. The most massive objects in the
+large TNG300 run, on the other hand, are sampled at the current
+time with about 50 million resolution elements each. The mini-
+mum satellite stellar mass values of 108 and 109 M⊙correspond
+to about 100 stellar particles per galaxy in TNG100 and TNG300,
+respectively, and we have checked that they are suitable for the de-
+mographic statistics we are after in the following sections. The
+bottom panel of Fig. 2 shows the richness, or halo occupation
+number (HON), i.e. the number of galaxies above a given stellar
+mass threshold in different mass haloes. The most massive sim-
+ulated clusters host as many as ∼1000 resolved galaxies with
+Mstars > 108M⊙, while the smallest groups considered here con-
+tain about 10-20 such satellites. In practice, galaxies more massive
+than about 1011M⊙can only be found at the center of rich groups
+and clusters, i.e. surrounded by at least a few other galaxies more
+massive than 5 × 1010M⊙in stars.
+In Figures 3 and 4, we show the 20 most massive galaxy
+groups and clusters of the TNG300 and TNG100 boxes, respec-
+tively: they are depicted in stellar mass density projections at z = 0,
+each shown in a volume of R200c on a side, namely many hundreds
+of kpc across, in a randomly chosen projection. Because of the dif-
+ferent simulation volumes, the two ﬁgures focus on two rather dif-
+ferent mass ranges, mostly massive and rich clusters above a few
+1014M⊙in Fig. 3, and about one order of magnitude less massive
+galaxy groups in Fig. 4. The inspection of these objects demon-
+strates the diversity and richness of the simulated sample, of which
+here we show a mere ten percent only. Our simulations naturally
+produce groups and clusters of galaxies, with one (or more) mas-
+sive galaxies dominating the most luminous regions, surrounded by
+a spectrum of more or less numerous satellite galaxies, all amid a
+background of low surface brightness diffuse stellar material (also
+MNRAS 000, 000–000 (0000)
+
+
+8
+Pillepich et al.
+z = 0.0
+M200c  = 4.1e+14
+391 kpc
+z = 0.0
+M200c  = 1.5e+15
+609 kpc
+z = 0.0
+M200c  = 1.3e+15
+577 kpc
+z = 0.0
+M200c  = 1.0e+15
+533 kpc
+z = 0.0
+M200c  = 9.0e+14
+509 kpc
+z = 0.0
+M200c  = 8.4e+14
+498 kpc
+z = 0.0
+M200c  = 7.3e+14
+476 kpc
+z = 0.0
+M200c  = 4.6e+14
+407 kpc
+z = 0.0
+M200c  = 5.8e+14
+440 kpc
+z = 0.0
+M200c  = 4.0e+14
+388 kpc
+z = 0.0
+M200c  = 6.4e+14
+455 kpc
+z = 0.0
+M200c  = 6.4e+14
+454 kpc
+z = 0.0
+M200c  = 5.5e+14
+432 kpc
+z = 0.0
+M200c  = 6.6e+14
+458 kpc
+z = 0.0
+M200c  = 5.5e+14
+433 kpc
+z = 0.0
+M200c  = 4.4e+14
+401 kpc
+z = 0.0
+M200c  = 5.0e+14
+418 kpc
+z = 0.0
+M200c  = 3.8e+14
+382 kpc
+z = 0.0
+M200c  = 4.2e+14
+394 kpc
+z = 0.0
+M200c  = 4.7e+14
+410 kpc
+Figure 3. Stellar mass density projections of the 20 most massive objects in the TNG300 simulation, spanning total halo masses from 1.5 × 1015M⊙to
+about 4 × 1014M⊙. The surface mass densities range from 0.1 to 1010M⊙kpc−2 and the stamps measure R200c on a side. The most massive galaxies in
+the Universe occupy the centers of these massive systems and are surrounded by hundreds (even thousands) of less luminous satellite galaxies as well as by a
+cloud of diffuse stellar material extending to very large distances: the intra-cluster light.
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+9
+z = 0.0
+M200c  = 3.8e+14
+381 kpc
+z = 0.0
+M200c  = 3.8e+14
+383 kpc
+z = 0.0
+M200c  = 3.4e+14
+368 kpc
+z = 0.0
+M200c  = 1.7e+14
+293 kpc
+z = 0.0
+M200c  = 2.5e+14
+334 kpc
+z = 0.0
+M200c  = 2.0e+14
+310 kpc
+z = 0.0
+M200c  = 2.1e+14
+313 kpc
+z = 0.0
+M200c  = 8.9e+13
+236 kpc
+z = 0.0
+M200c  = 2.1e+14
+313 kpc
+z = 0.0
+M200c  = 2.1e+14
+315 kpc
+z = 0.0
+M200c  = 1.6e+14
+289 kpc
+z = 0.0
+M200c  = 1.3e+14
+269 kpc
+z = 0.0
+M200c  = 8.5e+13
+233 kpc
+z = 0.0
+M200c  = 5.1e+13
+197 kpc
+z = 0.0
+M200c  = 1.1e+14
+256 kpc
+z = 0.0
+M200c  = 1.1e+14
+252 kpc
+z = 0.0
+M200c  = 6.3e+13
+210 kpc
+z = 0.0
+M200c  = 1.1e+14
+250 kpc
+z = 0.0
+M200c  = 9.5e+13
+241 kpc
+z = 0.0
+M200c  = 9.4e+13
+241 kpc
+Figure 4. As in Figure 3, but for the 20 most massive objects in the TNG100 simulation: as the simulation volume is smaller, here we see a sample of slightly
+less massive and less rich clusters, with total halo masses between 9 × 1013M⊙and about 4 × 1014M⊙. The diffuse stellar envelopes exhibit a diversity of
+shapes and morphologies, including subtle phase-space features like shells and stellar streams.
+MNRAS 000, 000–000 (0000)
+
+
+10
+Pillepich et al.
+z = 0.0
+M200c  = 1.6e+14
+70 kpc
+0
+2
+4
+6
+8
+10
+                Stellar Mass Column Density [log10 Msun / kpc / kpc]
+z = 0.0
+M200c  = 1.1e+13
+70 kpc
+0
+2
+4
+6
+8
+10
+                Stellar Mass Column Density [log10 Msun / kpc / kpc]
+z = 0.0
+M200c  = 1.0e+12
+70 kpc
+0
+2
+4
+6
+8
+10
+               Stellar Mass Column Density [log10 Msun / kpc / kpc]
+10-3
+10-2
+10-1
+100
+radius [R200c]
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+3D M stars (< radius) / M stars
+ 200c
+ ~ 2 # rstars, 1/2
+M200c ~ 1.0e+12 Msun
+R200c ~ 2.1e+02 kpc
+ TNG100 (z ~ 0.0)
+10-3
+10-2
+10-1
+100
+radius [R200c]
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+3D M stars (< radius) / M stars
+ 200c
+ ~ 2 # rstars, 1/2
+M200c ~ 1.0e+13 Msun
+R200c ~ 4.6e+02 kpc
+ TNG100 (z ~ 0.0)
+10-3
+10-2
+10-1
+100
+radius [R200c]
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+3D M stars (< radius) / M stars
+ 200c
+ ~ 2 # rstars, 1/2
+M200c ~ 1.1e+14 Msun
+R200c ~ 1.0e+03 kpc
+ TNG100 (z ~ 0.0)
+Figure 5. Top: stellar mass density projections of three typical central galaxies and their surrounding satellites, from low (left) to high (right) halo masses (in
+M⊙). Bottom: thin grey curves depict proﬁles of the diffuse (i.e. excluding satellites) stellar mass of individual objects, thick blue curves are average stacked
+proﬁles in the labeled mass bin (±0.01, 0.05, 0.2 dex from left to right, in log10M200c). In the y-labels, Mstars
+200c = Mstars(< R200c). The stellar content
+of small haloes extends to much smaller distances than that of more massive haloes, even when the distances are renormalized by the virial radius.
+known as stellar halo, intra-cluster light or intra-halo light, here-
+after used interchangeably). The latter can extend out to hundreds
+of kpc from the central object, exhibits a variety of different shapes
+in projection, and at times displays prominent conﬁguration and
+phase-space features such as stellar shells and streams. This ac-
+creted stellar material encodes the hierarchical assembly history
+of the underlying dark matter halo, providing an observationally
+accessible witness to the process of hierarchical cosmic structure
+formation in ΛCDM.
+5
+STELLAR PROFILES TO LARGE RADII
+We are interested in quantifying the stellar mass content of groups
+and clusters of galaxies from the TNG simulations (see selection
+in Section 4). The aim is to provide a new comprehensive bench-
+mark for comparison against observations as well as other theoret-
+ical models. To this end, instead of attempting to reproduce one or
+a few standard observational techniques usually adopted to recover
+the stellar mass of observed galaxies, we use the simulations to
+identify an optimal characterization of the total stellar mass budget
+and spatial distribution of galaxies and galaxy clusters. In the fol-
+lowing, we occasionally extend our analysis to haloes smaller than
+1013M⊙to gain insights on the trends across a larger mass range
+or to compare to existing results from the literature.
+5.1
+Radial distribution of the diffuse stellar mass
+In Figure 5, we show the stellar mass radial distribution within a
+selection of objects from TNG100 at z = 0, speciﬁcally looking
+at the three discrete halo mass bins centered at 1012, 1013, and
+1014 M⊙. In the upper panels, the stellar mass density projection is
+shown for three typical central galaxies of comparable masses (and
+their surrounding satellites) across a ﬁxed aperture of 280 kpc (this
+is a much smaller ﬁeld of view than the stamps of Figures 3 and 4).
+They are ordered from left to right in increasing host halo mass and
+thin circles denote ﬁxed spherical apertures of 10, 30 and 100 kpc.
+In the lower panels, we show the cumulative enclosed stellar
+mass as a function of radius, normalized to the total stellar mass
+within the virial radius (R200c). Throughout this paper, stellar pro-
+ﬁles only account for diffuse stellar mass, i.e. the latter does not in-
+clude the mass in satellite galaxies or unbound stars, which are ex-
+cised based on gravitational binding/unbinding criteria (see Section
+3.1). Proﬁles are measured in spheres evenly spaced in logarithmic
+radius (∆log10(r/[1kpc]) ≈0.03) between the minimum stellar
+distance and the virial radius, with uniform weighting. Thin grey
+curves denote proﬁles from individual objects; thick blue curves
+are average stacked proﬁles of all the objects in the labeled mass
+bins, also ordered from left to right for increasing host halo mass
+(bin sizes ±0.01, 0.05, 0.2 dex, respectively, in log10M200c). Ver-
+tical thin lines denote twice the stellar half mass radius.
+From Figure 5 it is clear that galaxies residing in less mas-
+sive haloes have signiﬁcantly more centrally concentrated stellar
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+11
+mass distributions when compared to more massive galaxies, even
+when the radial apertures are renormalized to the virial radius of
+the host haloes. This behaviour is similar, at least qualitatively, to
+that of DM, for which less massive haloes exhibit more centrally
+concentrated DM density proﬁles than more massive objects. While
+more than 90% of the total stellar mass of a 1012 M⊙halo is within
+10% of its virial radius (bottom left panel), there is at least another
+30% of stellar mass beyond 10% of the virial radius of a 1014 M⊙
+group (bottom right panel). Similarly, the 3D stellar half-mass ra-
+dius moves from a few kpc for a Milky Way-like halo – equivalent
+to a few per cent of the virial radius – to tens of kpc for a galaxy
+residing at the centers of a group (see Genel et al. 2017, for an
+analysis of galaxy sizes in IllustrisTNG). Finally, Milky Way-like
+galaxies have more than 95% of their stellar mass contained within
+a 3D spherical aperture of 30 kpc – hence the standard use of 30 kpc
+as a natural boundary for galaxy stellar mass (see e.g. Schaye et al.
+2015, who demonstrate that this physical aperture provides stellar
+mass estimates in good agreement to those within Petrosian radii
+in observations). However, this fraction decreases to less than 50%
+within the same aperture for the most massive galaxies at the cen-
+ters of groups and clusters. It is also apparent that, while there are
+some variations in the stellar proﬁle shapes across different objects
+(thin grey curves), the averaged proﬁles in narrow halo mass bins
+are remarkably regular and share a similar sigmoidal form across
+halo and galaxy masses.
+We expand this analysis in Figure 6 focusing on the mass trend
+at z = 0 of the stacked 3D enclosed stellar mass and stellar mass
+density proﬁles (top panels) and on the diversity of the former as
+a function of radius for objects in different mass bins at different
+times (bottom four panels, one mass bin per panel). Radial proﬁles
+are given in terms of comoving kpc and include outcomes from
+TNG100, TNG300 and/or rTNG300, when possible. The curves
+for rTNG300 are obtained as described in Appendix A.
+From Figure 6, top left panel, we conﬁrm with TNG100 and
+TNG300 (not rescaled) that the slope of the enclosed mass proﬁles
+becomes progressively shallower for larger galaxy/halo masses, as
+can be seen in the ﬂattening of the slope at mid point of the enclosed
+mass; and the stellar half mass radius moves to larger fractional
+radii. The changes to the enclosed mass proﬁles with halo mass
+appear remarkably regular. In the radial mass density (top right), the
+central value rises monotonically with halo mass in reﬂection of its
+approximate rank ordering with galaxy stellar mass. Increasingly
+massive central galaxies are accompanied by more extended stellar
+mass at large distances – the mass density of stars at 100 kpc for a
+1013 M⊙(1015 M⊙) halo is roughly 100 (10’000) times larger than
+for a 1012 M⊙halo at the same radius. Indeed, the power-law slope
+of the 3D stellar mass density proﬁles at a few tens kpc from the
+centers clearly decreases from about −3 to about −5 in the mass
+range between ∼1015M⊙to 1012M⊙(see Section 5.2.3).
+In the lower four panels of Figure 6 we show both individual
+(thin grey curves, only the most massive 15 or less in each panel,
+to avoid overcrowding) and stacked (thick orange or blue curves)
+proﬁles of the 3D stellar mass enclosed out to the virial radius, in
+bins of halo mass (±0.2 dex). Solid curves refer to z = 0, dotted
+and dashed to redshifts z = 0.5 and 1, respectively, where pos-
+sible. Note that, because of its volume, TNG100 does not contain
+any halo larger than a few ×1014 M⊙at any time. These proﬁles
+correspond to those in the top left panel, plotted in actual physi-
+cal units and without normalization, to highlight possible features
+and provide quantitative references for comparison to observations.
+In all panels, vertical lines denote speciﬁc spherical apertures. As
+a reminder, 0.7 (1.4) kpc is about the stellar softening length in
+our TNG100 (TNG300) simulation. No strong claims regarding the
+shapes of the proﬁles can be made below radial distances of about
+2.8 times the softening length: this corresponds to about 2 kpc and 4
+kpc for TNG100 and (r)TNG300, respectively, and two grey zones
+in each panel remind us where to be cautious in any quantitative or
+qualitative interpretation (see also Appendix A and Fig. A2). Be-
+yond a few kpc from the centers, the stacked enclosed mass proﬁles
+exhibit radial trends at different halo or galaxy masses which are
+similar in shape but change substantially in normalization. In fact,
+the distributions of enclosed stellar mass at ﬁxed physical aperture
+across galaxies can be very broad, with the full scatter across the
+individual gray lines being possibly much larger than the 25th-75th
+percentile gap denoted by the shaded areas around the median.
+In contrast to the mass trends, the stellar mass distribution at
+ﬁxed halo mass evolves surprisingly little from redshift z = 1 to
+today. We shall return to this point in the context of Fig. 9, and here
+only point out that the enclosed mass proﬁles show marginal if any
+change for the ∼5 × 1013 and ∼1014 M⊙halo mass bins (lower
+two panels). At ∼5 × 1014 M⊙, there is a hint that the enclosed
+mass density increases as much as 50%, depending on radius, be-
+tween z = 0.5 and z = 0. However, even with the TNG300 volume
+the statistics become too poor at high redshift to make a popula-
+tion generalized statement: the apparent trend in the ﬁxed mass bin
+reﬂects a mass trend within the few clusters in the bin itself, i.e.
+the samples at high redshift are biased towards slightly lower halo
+masses that the z = 0 sample. Similarly, without larger simulated
+volumes, we cannot yet probe the evolution of haloes in the most
+massive bin beyond z = 0.
+5.2
+Functional forms and ﬁts
+The regularity of the average stellar mass proﬁles demonstrated in
+Figure 6 allows us to proceed and provide a quantitative description
+of the spatial distribution of stellar mass in massive TNG haloes.
+We ﬁt a functional form to the radial stellar mass content predicted
+in the TNG simulations as a function of halo mass or galaxy stellar
+mass, and redshift. In considering the three-dimensional mass dis-
+tributions we deliberately use spherical instead of ellipsoidal aper-
+tures: the former are comparatively less sensitive to details of the
+measurement procedure and therefore more appropriate for com-
+parison across analysis works. If the shapes of the extended stellar
+components are systematically non-spherical, then the spherically
+symmetric radial proﬁles are clearly a simpliﬁcation. However, we
+focus on the group and cluster populations as a whole and across
+two orders of magnitude in mass, and so neglect a study of the de-
+tailed morphologies of individual haloes.
+5.2.1
+Mass-enclosed proﬁles, beyond a few kpc from the centers
+The 3D enclosed stellar mass proﬁles of massive TNG groups and
+clusters can be well described by the following sigmoid function:
+Mstars(< r, z) =
+M stars
+200c
+1 + exp[−γ(x −x0.5)]
+,
+(1)
+where x = log(r/R200c) and M stars
+200c is the total amount of stellar
+mass (diffuse, no satellites) enclosed within the virial radius R200c.
+Both the steepness parameter γ and the pivot, mid-point x0.5 are
+a function of mass and redshift. In practice, we ﬁt the normal-
+ized, stacked proﬁles of enclosed stellar mass in bins of halo mass
+(M200c) 0.2 dex wide, across the whole available mass range. We
+also ﬁt the proﬁles of individual objects, to get a sense of the halo-
+to-halo variation. In both cases, the proﬁles are measured in spheres
+MNRAS 000, 000–000 (0000)
+
+
+12
+Pillepich et al.
+10-3
+10-2
+10-1
+100
+radius [R200c]
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+3D Mstars (< radius) / Mstars
+200c
+ z = 0.0 
+TNG300
+TNG100
+M200c ~ 1.0e+12 Msun
+M200c ~ 5.0e+12 Msun
+M200c ~ 9.0e+12 Msun
+M200c ~ 5.0e+13 Msun
+M200c ~ 9.0e+13 Msun
+M200c ~ 4.0e+14 Msun
+M200c ~ 8.0e+14 Msun
+100
+101
+102
+103
+radius [kpc]
+102
+104
+106
+108
+1010
+3D stellar mass density [Msun kpc-3]
+ z = 0.0 
+rTNG300
+TNG100
+slope: -5
+slope: -3
+M200c ~ 1.0e+12 Msun
+M200c ~ 5.0e+12 Msun
+M200c ~ 9.0e+12 Msun
+M200c ~ 5.0e+13 Msun
+M200c ~ 9.0e+13 Msun
+M200c ~ 4.0e+14 Msun
+M200c ~ 8.0e+14 Msun
+100
+101
+102
+radius [kpc]
+1010
+1011
+1012
+1013
+3D M stars (< radius) [Msun]
+solid black: fit to stacked profiles
+solid gray: top 15 individual profiles
+M200c ~ 5.0e+13 Msun
+R200c ~ 7.8e+02 kpc
+TNG100
+rTNG300
+ z ~ 0.0 ( # objects in rTNG300: 711 )
+ z ~ 0.5 ( # objects in rTNG300: 574 )
+ z ~ 1.0 ( # objects in rTNG300: 325 )
+100
+101
+102
+103
+radius [kpc]
+1010
+1011
+1012
+1013
+3D M stars (< radius) [Msun]
+solid black: fit to stacked profiles
+solid gray: top 15 individual profiles
+M200c ~ 1.1e+14 Msun
+R200c ~ 1.0e+03 kpc
+TNG100
+rTNG300
+ z ~ 0.0 ( # objects in rTNG300: 311 )
+ z ~ 0.5 ( # objects in rTNG300: 187 )
+ z ~ 1.0 ( # objects in rTNG300: 84 )
+100
+101
+102
+103
+radius [kpc]
+1010
+1011
+1012
+1013
+3D M stars (< radius) [Msun]
+solid black: fit to stacked profiles
+solid gray: top 15 individual profiles
+M200c ~ 5.0e+14 Msun
+R200c ~ 1.7e+03 kpc
+rTNG300
+ z ~ 0.0 ( # objects in rTNG300: 19 )
+ z ~ 0.5 ( # objects in rTNG300: 11 )
+100
+101
+102
+103
+radius [kpc]
+1010
+1011
+1012
+1013
+3D M stars (< radius) [Msun]
+solid black: fit to stacked profiles
+solid gray: top 15 individual profiles
+M200c ~ 8.4e+14 Msun
+R200c ~ 2.0e+03 kpc
+rTNG300
+ z ~ 0.0 ( # objects in rTNG300: 9 )
+Figure 6. 3D stellar radial proﬁles of massive haloes in the TNG simulations: mass enclosed (top left and bottom four panels) and mass density (top right)
+as a function of clustercentric distance at various redshifts, z ≲1. No distinction or separation is applied between stars in the central galaxy and stars in the
+diffuse, low-surface brightness ICL. Any contribution from satellites is excluded. In the top left panel, the 3D mass enclosed is normalized by the virial radius
+and the total mass within the virial radius, otherwise proﬁles are given in solar masses, and spatial scales are in comoving units. In the bottom four panels,
+proﬁles are given in the labeled bins of halo mass (0.5, 1.1, 5.0, 8.4 × 1014M⊙± 0.2 dex in log10M200c). In all panels, thick color curves show the average
+stacked proﬁles of haloes (if at least 3 objects lie in the bin). Color shaded area denote the 25th and 75th per centiles. Thin grey curves are up to 15 most
+massive individual haloes in each bin - hence possibly biased high compared to the stacks if the bins contain many more individual haloes. All annotations and
+symbols are z = 0 measurements, except for the dotted and dashed curves, which show stacked proﬁles for rTNG300 in the indicated mass bin at z ∼0.5
+and z ∼1, respectively. Grey radial regions indicate where interpretations require care, given our numerical resolution. Solid thin black curves are the results
+of the procedure described in Section 5.2.2: the recovery of the full large-scale proﬁles given the total halo mass only.
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+13
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ]
+1.5
+2
+2.5
+3
+3.5
+Steepness [3D, Sigmoid] [.]
+3D Stellar Mass Enclosed: sigmoid
+5.5e+10
+2.3e+11
+7.4e+11
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+TNG100
+rTNG300
+curves: stacked profiles
+points: individual profiles
+ z ~ 0.0
+ z ~ 1.0
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ]
+101
+102
+3D Half Mass Radius [(10x0.5) x R200c] [kpc]
+3D Stellar Mass Enclosed: sigmoid
+5.5e+10
+2.3e+11
+7.4e+11
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+TNG100
+rTNG300
+curves: stacked profiles
+points: individual profiles
+ / (M200c)1/3 (Kravtsov 2013)
+ z ~ 0.0
+ z ~ 1.0
+Figure 7. Best-ﬁt parameters to the normalized enclosed stellar mass pro-
+ﬁles of TNG galaxies (Fig. 6, top left) via the sigmoid functional form of
+Eq. (1) – for radii larger than 1 kpc. We show the trends with halo mass
+of the best-ﬁt parameters at z = 0 and z ∼1 of TNG100 and rTNG300
+haloes. In the upper panel, the steepness of the sigmoid function: the larger
+the slope, the steeper the proﬁle at the mid point. In the lower panel, the stel-
+lar half mass radius obtained by ﬁtting for the pivot parameter x0.5. Solid
+curves are the results from stacked proﬁles in bins of 0.2 dex in M200c;
+dots and shaded areas denote results from ﬁts to individual proﬁles, with
+dots denoting best ﬁt parameters to individual galaxies (only for TNG100
+at z = 0 to avoid overcrowding) and ﬁlled circles indicating the medians
+to the individual best ﬁt parameters in bins of 0.2 dex in M200c; shaded
+area denote 1-sigma galaxy-to-galaxy variation results. Corresponding stel-
+lar masses are indicated in the top x-axes, their values being taken from the
+average TNG100 stellar mass to halo mass relation.
+evenly spaced in logarithmic radius (∆log10(r/[1kpc]) ≈0.03)
+between the minimum stellar distance and the virial radius, with
+uniform weighting, and the ﬁt is performed only outwards of 1 kpc.
+For halo masses up to 1014M⊙(1015M⊙) at z = 0, the sigmoid of
+Eq. (1) represents the actual normalized stacked proﬁles to better
+than a 2-3 per cent (5-6 per cent) accuracy, and equally so when
+averaging over all radii larger than either one or ten per cent of the
+virial radius. In fact, 90 per cent of the individual proﬁles in the
+halo mass range 1013M⊙⩽M200c ⩽1015M⊙are captured by
+their individual sigmoid ﬁt to better than 5 per cent accuracy over
+the same radial ranges.
+The best-ﬁt results are given in Figure 7, with the steepness
+parameter γ(M200c) in the top panel and the radial pivot parameter
+x(M200c) in the bottom panel. The latter effectively corresponds to
+the stellar half mass radius of the galaxy in units of the virial radius
+(rstars,0.5 = 10x0.5 × R200c). For the z = 0 cases, we show both
+results from the stacks and the individual ﬁts, the latter averaged
+too in bins of halo mass: in each case the agreement is good.
+Both parameters exhibit remarkably clear trends with total
+halo mass (or galaxy stellar mass measured e.g. within 30 kpc),
+with γ slowly declining as the radial distribution of stellar mass ﬂat-
+tens for larger haloes. At the same time, x0.5 increases with larger
+halo mass. Above halo masses of 1013M⊙, both parameters can be
+expressed as linear or power-law functions of halo (or stellar) mass,
+which we provide in Table 3. Little evolution in redshift appears in
+the shapes of the normalized stellar enclosed mass proﬁles between
+z ∼1 (thin curves) and today (thick curves): up to a maximum of
+15-20% reduction in the proﬁle steepness at ﬁxed mass.
+In the bottom panel we recover the empirical result that the 3D
+half mass radius of the galaxy and the virial radius (or virial mass)
+of the underlying host halo are tightly correlated (Kravtsov 2013).
+From the ﬁts to the individual proﬁles, we ﬁnd a galaxy-to-galaxy
+variation for the stellar half mass radius at ﬁxed halo mass of ∼
+0.16 dex: this is slightly smaller than the 0.2 dex found by Kravtsov
+(2013) based on the abundance matching ansatz in concert with a
+diverse ensemble of observational datasets.
+Yet, the TNG relation does not agree with the one by Kravtsov
+(2013) in terms of normalization nor slope, with the latter scal-
+ing essentially like ∝M 1/3
+200c (grey annotations in Figure 7, bottom
+panel), while ours is steeper, with a power-law slope in the range
+0.41 −0.53 depending on resolution and exact mass range (see
+however Genel et al. 2017, for a more direct comparison to galaxy
+size observations). It is also important to note that this power-law
+relation breaks at lower masses and hence is applicable only to
+TNG haloes above a few 1012M⊙: at z ∼1, galaxies deviate from
+the scaling relation already at ∼1012M⊙.
+5.2.2
+From halo (galaxy) mass to the whole stellar mass proﬁle:
+a practical tool
+In order to develop a useful and practical tool, we give formulas
+for the four parameters needed to recover the full 3D Mstars(< r)
+proﬁle as a function of halo mass and redshift, or galaxy stellar
+mass and redshift. Table 3 gives simple ﬁt relations for the virial ra-
+dius R200c, the total diffuse stellar mass included within this radius
+M stars
+200c , the sigmoid steepness γ, and the sigmoid midpoint x0.5 as
+a function of total halo mass or galaxy mass. In practice, the third
+and fourth rows in Table 3 (the sigmoid steepness γ and midpoint
+x0.5, respectively) provide ﬁts to the average relations depicted in
+Figure 7, at z = 0, as a function of halo or galaxy mass.
+By plugging in a halo mass, it is possible to easily recover the
+full stellar mass proﬁle of the halo (outwards of a few kpc from the
+center), and so by deﬁnition also the stellar mass of the correspond-
+ing galaxy restricted to any given aperture. In fact, the total halo
+mass M200c and the total diffuse stellar mass within R200c also lie
+on a very tight scaling relation at the group and cluster mass scales
+(we show this explicitly in the next Section), so in practice, from
+the observational side, if instead of halo mass a particular stellar
+mass is known, e.g. the mass within 30 kpc, this can still be used
+to determine the entire stellar mass proﬁle of the galaxy. For any
+other galaxy stellar mass measurement, this process can be easily
+inverted, by calculating a grid of stellar mass proﬁles for different
+halo masses, then selecting the one which contains the matching
+stellar mass within the observationally measured aperture. In this
+way, the full ‘unseen’ stellar mass distribution of the observed sys-
+tem is predicted, as well as its total dark matter halo mass.
+The parameterization given in Table 3 in combination with
+MNRAS 000, 000–000 (0000)
+
+
+14
+Pillepich et al.
+3D Mstars(< r) as a function of M200c at z = 0 (Eq. 1)
+Here: m = log10(M200c) −14
+Parameter
+slope a
+norm b
+1−σ scatter
+log10(R200c)
+0.33
+2.99
+0.05 dex
+log10(Mstars
+200c )
+0.74
+12.04
+0.18 dex
+γ
+-0.25
+2.14
+0.34
+x0.5
+0.19
+-1.42
+0.15
+3D Mstars(< r) as a function of Mstars(< 30 kpc) at z = 0
+Here: m = log10(Mstars(< 30 kpc)) −11.5
+Parameter
+slope a
+norm b
+log10(R200c)
+0.70
+2.88
+log10(Mstars
+200c )
+1.56
+11.80
+γ
+-0.52
+2.22
+x0.5
+0.41
+-1.48
+Table 3.
+Instructions to recover average 3D enclosed stellar mass pro-
+ﬁles from the TNG galaxies at z = 0. These average stellar proﬁles fol-
+low from Eq. (1), which depends on four quantities: R200c, the stellar
+mass within this radius Mstars
+200c , the sigmoid slope γ, and the sigmoid mid-
+point x0.5 = log10(rstars,0.5/R200c). Each of these four parameters lies
+on tight linear or power-law relations with halo mass or stellar mass within
+a given aperture, at ﬁxed redshift. The tables above give such relations:
+y = am + b, where m is the logarithm of the input (see top of the sub ta-
+bles) and y is any of the parameters in the ﬁrst columns. Range of validity:
+1013 < M200c/M⊙< 1015; z ∼0. In the upper panel, we also give
+the one sigma scatter in the parameters at ﬁxed halo mass, as an indication
+of the halo-to-halo (or galaxy-to-galaxy) variation of the parameters. All
+masses are in M⊙and assume a Chabrier IMF; all lengths are in kpc.
+Eq. (1) returns the TNG average stellar enclosed mass proﬁles (not
+normalized) to an accuracy of 10 per cent or better, across the whole
+mass range 1013 < M200c/M⊙< 1015 at z ∼0 and at all radii
+larger than 2 kpc. This is demonstrated with the black solid curves
+in Fig. 6, bottom four panels, which have been obtained by solely
+knowing the total halo mass of the reported bin. By construction,
+this tool cannot reproduce the special features of certain high mass
+haloes within a few kpc in clustercentric distance nor the fast drop
+within the innermost cores of the simulated galaxies. Yet, the large
+scale regularity of the spherically-averaged stellar mass proﬁles as
+a function of total halo or galaxy mass is striking.
+5.2.3
+Stellar mass density at large distances
+To speciﬁcally characterise the outer stellar slopes, we follow
+Pillepich et al. (2014) and express the 3D diffuse stellar mass pro-
+ﬁles at large radii with a power-law function,
+ρstars(< r, z) = ρ0 rα, for r ≫1 kpc,
+(2)
+where the slope parameter α and the central stellar density
+ρ0 are both functions of mass and redshift. The proﬁles, mea-
+sured in spherical shells evenly spaced in logarithmic radius
+(∆log10(r/[1kpc]) ≈0.03), are obtained as before by stacking
+the density proﬁles of individual objects in running bins of halo
+mass (M200c) 0.2 dex wide. In practice, the ﬁtting procedure is per-
+formed in logarithmic space, both for stacked and individual pro-
+ﬁles, by minimizing the summed squares of the residuals from a
+ﬁrst-degree polynomial ﬁtting function, equally weighting all bins
+containing at least one particle each. These ICL power-law slopes
+1012
+1013
+1014
+1015
+Total Halo Mass [M200c] [Msun]
+-5
+-4.8
+-4.6
+-4.4
+-4.2
+-4
+-3.8
+-3.6
+-3.4
+-3.2
+-3
+Slope [3D, PowerLaw] [,]
+ 3D Stellar Mass Density: power law 
+5.5e+10
+2.3e+11
+7.4e+11
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+TNG100
+TNG300
+Illustris
+filled symbols: stacked profiles
+data points: individual profiles
+ > 30 kpc
+ > 100 kpc
+ > rstars, 1/2
+Figure 8. Best-ﬁt power-law slope to the 3D stellar mass density in the stel-
+lar haloes or intra-cluster light, i.e. at large distance from the central galaxy.
+We show trends as a function of total halo or stellar mass at z = 0. The mea-
+surement is made on all stars between a given radial inner aperture and the
+virial radius: > 30 kpc (circles), > 100 kpc (squares), or > rstars,0.5 (tri-
+angles). Results are shown from TNG100 (blue), the not rescaled TNG300
+(orange), and original Illustris (red). Results from stacked proﬁles (ﬁlled
+symbols) are in very good agreement with the averages from the individ-
+ual proﬁle ﬁts (not shown). Small data points are the slopes of individual
+TNG100 galaxies and shaded areas denote the 1-sigma halo-to-halo varia-
+tion (both for > 30 kpc). Over 3 dex in halo mass the power-law slope of the
+stellar halo drops from −3 to −5, reﬂecting the ﬂattening of the extended
+stellar mass proﬁle.
+are then evaluated for different radial apertures, with the inner
+boundary ranging between ﬁxed 30 or 100 kpc to the 3D stellar
+half mass radius (with an outer boundary ﬁxed to the virial radius
+in all cases).
+The results of the power-law ﬁts are shown in Figure 8,
+where the shallower stellar halo proﬁles towards larger halo masses
+are immediately recovered. Note that TNG300 and the rescaled
+rTNG300 simulations return the same median stellar halo slopes,
+and hence in Figure 8 we show results for the unprocessed TNG300
+output. Considering all gravitationally-bound stars outside of a
+ﬁxed aperture, either 30 kpc or 100 kpc, but excising satellites, the
+α slopes increase from −5 to −3 between halo masses of 1012
+and 1015 M⊙, in broad agreement with the original ﬁndings of
+Pillepich et al. (2014) based on the Illustris simulation. The adap-
+tive rstars,1/2 aperture includes different amounts of the central
+galaxy at different masses, making the mass trend of α correspond-
+ingly weaker than with the ﬁxed 30 and 100 kpc boundaries. The
+power-law slopes from the original Illustris simulation, outward of
+the 3D stellar half mass radius, are also shown (red triangles): they
+are steeper than the corresponding TNG averages (blue triangles)
+below a halo mass of 4 × 1012 M⊙, and shallower above. Indeed,
+the 3D stellar half mass radii of Illustris and TNG galaxies are dif-
+ferent (Pillepich et al. 2018), implying overall rather different radial
+distributions of the stellar material. However, the TNG model has
+been shown to reproduce galaxy sizes in better agreement with ob-
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+15
+servations (Genel et al. 2017) than Illustris (Bottrell et al. 2017),
+lending more credibility to the outcome of the TNG stellar mass
+distributions also at highest mass end. Regardless of the exact def-
+inition for the inner boundary of the stellar envelopes, the stellar
+mass in the outskirts of the most massive galaxy clusters is almost
+always as shallow as the dark matter’s, with average density slopes
+in the range [−3.5, −3].
+6
+THE MASS BUDGET IN GROUPS AND CLUSTERS
+BETWEEN Z ∼1 AND TODAY
+From the inspection of the stellar proﬁles in the previous Sec-
+tion, we see that individual haloes can exhibit changes of steepness
+across their radial extent. In our simulated massive clusters there
+are hints of possibly different proﬁle components (e.g. bottom pan-
+els of Figure 6). However, our limited spatial and numerical resolu-
+tion – precisely at the highest mass end and at small clustercentric
+distances – does not allow us to support population-wide quanti-
+tative reasons to prefer a description of the mass proﬁles in Fig-
+ures 5 and 6 in terms of a superposition of multiple proﬁles of dif-
+ferent shapes rather than a unique function. In practice, we cannot
+identify any optimal, qualitative, or generalized boundary between
+the innermost, brightest regions of galaxies and their lower surface
+brightness envelopes. We hence proceed in this Section to quantify
+the stellar mass census of the cluster components by adopting the
+deﬁnitions given in Section 3.2 and Table 2, all based on arbitrary
+ﬁxed-apertures decompositions.
+6.1
+Central galaxy, intracluster light, and cluster satellites
+In Fig. 9, we give the amount of mass in different cluster compo-
+nents in rTNG300 as a function of total halo mass. Here we use
+M500c to facilitate observational comparisons with X-ray derived
+mass estimates. We quantify: (1) the stellar mass in the central
+galaxy within ﬁxed spherical apertures of 30 kpc, 100 kpc or twice
+the stellar half mass radius, excising satellites (top left); (2) the ICL,
+namely the stellar mass outside ﬁxed spherical apertures of 30 kpc,
+100 kpc or twice the stellar half mass radius, excising satellites
+(top right); (3) the total satellite stellar mass component, with the
+sum carried out for different thresholds in satellite stellar mass (bot-
+tom left); and (4) the total stellar mass in all components across the
+whole total mass overdensity (bottom right). Solid lines denote me-
+dians in total halo mass bins (0.2 dex in log10M200c) with at least 5
+objects. Individual dots represent the 100 most massive simulated
+objects, while shaded areas indicate the 1-sigma halo-to-halo vari-
+ation. All solid curves and symbols refer to z = 0 results, except
+for the dotted median curves which show the same measurements
+at z = 1.
+For
+all
+components
+in
+the
+mass
+range
+studied
+here
+(1013M⊙⩽M200c ⩽1015M⊙), the stellar versus total halo
+masses are accurately described by power law relations, with the
+most massive clusters containing the largest amount of stellar mass,
+regardless of type. The trends with total mass, however, are dif-
+ferent for different components: the stellar mass enclosed in the
+outskirts (top right) and in satellites (bottom left) is a much steeper
+function of total mass than the stellar mass of the innermost regions
+(top left). In other words, Fig. 9 is a quantitative demonstration that
+the TNG galaxy formation model, coupled with the hierarchical
+growth of structure, naturally produces massive clusters of galax-
+ies which are surrounded by relatively more numerous and more
+luminous satellites, and by larger amounts of stellar mass in the far
+outskirts, than less massive groups.
+In more detail, the slope and normalization of the relations
+of the diffuse mass depend on the aperture within or beyond which
+the central galaxy and ICL are deﬁned (top panels). The total stellar
+mass (central+ICL+satellites, magenta curve in lower right panel)
+is a steeper function of halo mass when satellites are included, in
+comparison to the case when satellites are excluded (total diffuse
+mass = central + ICL, green curves in lower right panel). The stel-
+lar mass bound to satellites (lower left panel) is also a strong func-
+tion of the stellar mass of the satellites themselves, due to the steep
+stellar mass function of satellites and the steep relation between
+richness and total halo mass (see Fig. 2, lower panel).
+We can also characterize the time evolution of the relations
+and their scatter. In Figure 9, dotted curves denote the analog
+z ∼1 average stellar-to-total mass relations, albeit truncated to
+lower masses because of the lack of massive objects sampled at
+early cosmic times. These should be compared to the solid curves
+at z = 0. Interestingly, there appears to be very little redshift evo-
+lution in the scaling relations of Fig. 9, in the sense that z = 1
+relations lie within the present day 1-sigma scatter. Moreover, dif-
+ferences among different deﬁnitions can be much larger at any ﬁxed
+time than the evolution of the relations between z ∼1 and today.
+Still, a few interesting trends are evident. First, at earlier times the
+scaling relations are slightly tilted compared to those at z = 0,
+steeper or shallower and by varying amounts for the different com-
+ponents. Secondly, the amount of stellar mass contained in satellite
+galaxies is larger (up to a factor of 2) at earlier times than today.
+In the last few Gyrs of cosmic evolution, stars are stripped from
+orbiting and incoming satellites and mergers, thereby contributing
+to the diffuse components labeled here as central galaxies and ICL.
+Yet, interestingly, the stellar mass in the outskirts at ﬁxed halo mass
+was larger at earlier times (Figure 9, top right panel), although only
+beyond ﬁxed comoving clustercentric distances.
+Overall, massive haloes build up their stellar mass at roughly
+the same pace as they assemble their total dark matter mass – the
+total stellar mass at a ﬁxed halo mass scale is essentially invariant
+from z = 1 to z = 0 (as seen in the bottom right panel), while
+the satellite contribution is higher at z = 1 than today and the cen-
+tral (ICL) contribution is at most (at least) as high. One needs to
+keep in mind, however, that the total measured mass of each com-
+ponent depends on deﬁnition, and particularly if reference is made
+to an evolving mean or critical overdensity. Moreover, the different
+redshifts comparison of Fig. 9 does not represent the evolution of
+individual systems. In Section 7 we explore the origin of the stel-
+lar mass growth further, breaking down its predominantly accretion
+origin at late times.
+With respect to other ﬁndings, the TNG stellar masses across
+the various components are in the ball park identiﬁed by Gonza-
+lez et al. (2013) combining SDSS and XMM data, Kravtsov et al.
+(2014) combining SDSS and Chandra data, as well as those from
+Leauthaud et al. (2012) from COSMOS (lower two panels). All
+adopt a Chabrier IMF, consistently with the TNG choice, and we
+report here their measures within 3D apertures in all cases.
+In more detail, the mass in simulated central galaxies (top left
+panel, 3D 30 kpc aperture) appears still up to a factor of 3 (or
+0.4 −0.5 dex) larger than observational constraints by Kravtsov
+et al. 2014 (their Table 4, third column, for 3D 30 kpc aperture).
+In fact, the TNG and Kravtsov et al. 2014’s relations between stel-
+lar mass (< 30 kpc) and halo mass differ substantially in slope,
+but their normalizations are largely consistent at the 1014M⊙halo
+scale. The mismatch among simulated and observed stellar masses
+MNRAS 000, 000–000 (0000)
+
+
+16
+Pillepich et al.
+1013
+1014
+1015
+Total Halo Mass [ M500c ] [ Msun ] 
+1011
+1012
+1013
+Stellar Mass [ Mstars, cen ][ Msun] 
+Kravtsov+ 2014: Mstars (< 30 kpc)
+rTNG300, z = 0
+ Central 
+(dotted = z ~ 1)
+  < 30 kpc
+  < 100 kpc
+  <  2 x r_{stars, 1/2}
+1013
+1014
+1015
+Total Halo Mass [ M500c ] [ Msun ] 
+1011
+1012
+1013
+Stellar Mass [ Mstars, ICL ][ Msun] 
+rTNG300, z = 0
+ ICL 
+(dotted = z ~ 1)
+  > 30 kpc
+  > 100 kpc
+  >  2 x r_{stars, 1/2}
+1013
+1014
+1015
+Total Halo Mass [ M500c ] [ Msun ] 
+1011
+1012
+1013
+Stellar Mass [ Mstars, sats ][ Msun] 
+Gonzalez+ 2013 
+Kravtsov+ 2014
+Leauthaud+ 2012
+rTNG300, z = 0
+ Satellites (< R500c) 
+(dotted = z ~ 1)
+ stellar mass (satellites) > 1.0e+08 Msun
+ stellar mass (satellites) > 1.0e+10 Msun
+1013
+1014
+1015
+Total Halo Mass [ M500c ] [ Msun ] 
+1011
+1012
+1013
+Stellar Mass [ Mstars, tot ][ Msun] 
+Gonzalez+ 2013 (SDSS + XMM)
+Kravtsov+ 2014 (SDSS + Chandra)
+Bahe+ 2017 (Hydrangea Sims)
+Leauthaud+ 2012 (COSMOS + HOD)
+rTNG300, z = 0
+Total ( < R500c)
+(dotted = z ~ 1)
+ central + ICL + satellites
+ central + ICL
+Figure 9. The stellar mass budget of galaxy groups and clusters from the TNG simulations, in the central galaxy (top left), in the ICL (top right), cumu-
+latively in satellites (bottom left), and in the whole halo: central+ICL+satellites vs central+ICL (bottom right). For the operational deﬁnitions of the cluster
+components, see Table 2. Fixed apertures are all 3D, for both observations and simulations, and in comoving units. Solid lines denote medians in bins (0.2
+dex in log10M500c) with at least 5 objects; individual dots represent the top 100 most massive objects in the simulation; shaded area indicate the 1-sigma
+halo-to-halo variation. All solid curves, symbols and annotations refer to z = 0 results, but for the dotted median curves, denoting z = 1 results. Constraints
+from the literature, mostly observational, are indicated in grey curves and large symbols, with the Bahe+ 2017 data points being at z = 0.1. In the lower left
+panel, observational data are nominally for all the stellar mass locked in satellites with no threshold or selection bias on the cluster members. In the lower right
+panel, the literature data points are all to be intended for the ‘central+ICL+satellites’ case. Fitting functions for the stellar mass proﬁles of TNG objects are
+provided in Section 5 and Table 3 and can be used to reproduce these TNG predictions. Basic linear ﬁts to the scaling relations of this Figure can be found in
+Table 4, and are indicated in selected cases with solid thin black lines.
+at the highest mass end is indeed still a recurring issue for models,
+with e.g. the simulated clusters by Ragone-Figueroa et al. (2013);
+Hahn et al. (2017); Bah´e et al. (2017) all returning central’s stel-
+lar masses that are up to ∼0.6 dex larger than observational con-
+straints, all taken at face value and measured within a few tens of
+kpc from the centers. Instead, the overall predicted total amounts of
+stellar mass in clusters appears in better agreement with the avail-
+able observational values. The steep increase of the stellar mass
+locked up in orbiting satellites (bottom left) is commonly recov-
+ered, although our simulations lie about 30-50 per cent lower than
+data constraints. In TNG, we ﬁnd a power law slope of order unity
+above a satellite threshold mass of 108M⊙, total satellite mass and
+total halo mass rising in concert. Generally, the slope of the to-
+tal stellar mass trends (bottom right, central + ICL + satellites) is
+slightly larger than that favored by Gonzalez et al. (2013), while it
+is quite similar to e.g. those from the Hydrangea simulations (Bah´e
+et al. 2017) and the semi-empirical constraints by Leauthaud et al.
+(2012), yet TNG is about 30% higher than the observational data
+by Kravtsov et al. (2014) in normalization.
+To facilitate future comparisons between the TNG model pre-
+dictions and the observations, in Table 4 we provide ﬁtting formulas
+to these particular relations of the various stellar components ver-
+sus halo mass. We note that the same quantities can be obtained
+by adopting the more general ﬁtting functions provided previously
+which describe the enclosed stellar mass proﬁles of TNG galaxies
+(Section 5.2.1): we argue that conclusive remarks for the compar-
+ison between models and observations should be determined by
+contrasting the whole stellar mass proﬁles, as we will do in future
+works. Interestingly, all scaling relations between stellar mass and
+total halo mass at the massive end exhibit very little scatter, in the
+range 0.1-0.2 dex (see Table 4). For example, for the total stellar
+mass we ﬁnd an intrinsic scatter at ﬁxed halo mass of 0.07 dex,
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+17
+Relation
+deﬁnition
+slope
+norm
+scatter
+Mstars,cen −M500c
+< 30 kpc
+0.49
+11.77
+0.12
+Mstars,cen −M500c
+< 100 kpc
+0.59
+12.00
+0.13
+Mstars,cen −M500c
+< 2 × rstars
+0.5
+0.74
+12.02
+0.12
+Mstars,ICL −M500c
+> 30 kpc
+1.01
+12.01
+0.13
+Mstars,ICL −M500c
+> 100 kpc
+1.25
+11.74
+0.14
+Mstars,ICL −M500c
+> 2 × rstars
+0.5
+0.77
+11.72
+0.11
+Mstars,sat −M500c
+> 108M⊙
+1.14
+11.93
+0.22
+Mstars,diﬀ−M500c
+cen+ICL
+0.75
+12.19
+0.11
+Mstars,tot −M500c
+cen+ICL+sats
+0.84
+12.36
+0.07
+Table 4. The stellar mass budget in TNG groups and cluster at z = 0:
+best ﬁt parameters to the relations presented in Figure 9. The adopted ﬁtting
+function reads: y = am + b, where m = log10(M500c/M⊙) −14 and
+y = log10(Mstars/M⊙). Important: the reported scatter (in dex) is simply
+the median 1-sigma halo-to-halo variation in bins of log10M500c. Range
+of validity: 1013 < M200c/M⊙< 1015; z ∼0. All masses are in M⊙
+and assume a Chabrier IMF; all apertures are 3D.
+in between the ﬁndings of Andreon 2012 (≲0.06 dex) and e.g.
+Kravtsov et al. 2014 (0.1 dex).
+6.2
+Stellar mass fractions across halo mass and cosmic time
+To highlight the relative importance of different elements of the
+stellar mass budget, Fig. 10 gives the contribution of individual
+components to the total stellar mass enclosed within the virial ra-
+dius, as a function of total halo mass. From top to bottom we show:
+(1) the fraction of stellar mass in the central galaxy relative to the
+total stellar mass out to the virial radius; (2) the stellar mass in the
+ICL to the total stellar mass, both out to the virial radius; (3) the
+stellar mass in the diffuse components (central + ICL) to the total
+stellar mass out to the virial radius; and (4) the mass in the ICL to
+the stellar mass in the diffuse components (central + ICL). As in
+Fig. 9, the stellar mass associated to the ICL is obtained by inte-
+grating from a given spherical aperture all the way out to the virial
+radius (here R200c, see Table 2).
+The results of Fig. 10 are shown for TNG300 systems, but
+we note that all trends and quantities are unchanged in TNG100 at
+its improved numerical resolution, in the overlapping mass range
+1013 −1014M⊙. This is because the effects of resolution largely
+vanish when taking ratios of stellar masses.
+At the current epoch, the relative contribution of the inner-
+most regions to the total stellar mass (top panel) is smaller for
+more massive objects: for 1015M⊙clusters, only about 10% (20%)
+of the total stellar mass is within 30 (100) kpc of the cluster cen-
+ters (top panel). The relative amount beyond large, ﬁxed cluster-
+centric distances (ICL) is a larger fraction of the total diffuse stellar
+mass (central + ICL) for more massive haloes (bottom panel). In
+1015M⊙clusters, more than 80% (60%) of the cluster stellar mass
+excluding satellites is found beyond 30 (100) kpc distance from the
+centers (third panel from the top). And ﬁnally, the contribution of
+the diffuse stellar mass to the total (cen+ICL to cen+ICL+satellites)
+decreases towards larger masses. Conversely, the amount of mass
+locked up in surviving satellites is larger for more massive objects
+(Figure 10 bottom panel): the richest clusters have more than half of
+their stars bound to satellite galaxies. In the bottom panel of Figure
+10 grey data points represent the ﬁndings of Kravtsov et al. (2014)
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.2
+0.4
+0.6
+0.8
+1
+Mstars, cen / Mstars, tot
+TNG300, z = 0
+Central Mass Fraction to Total
+(dotted = z~1)
+  < 30 kpc
+  < 100 kpc
+  <  2 x r_{stars, 1/2}
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.2
+0.4
+0.6
+0.8
+1
+Mstars, ICL / Mstars, tot
+TNG300, z = 0
+ICL Mass Fraction to Total
+(dotted = z~1)
+  > 30 kpc
+  > 100 kpc
+  >  2 x r_{stars, 1/2}
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.2
+0.4
+0.6
+0.8
+1
+Mstars, ICL / Mstars, cen+ICL
+TNG300, z = 0
+ICL Mass Fraction to all Diffuse Mass
+(dotted = z~1)
+  > 30 kpc
+  > 100 kpc
+  >  2 x r_{stars, 1/2}
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+Mstars, cen+ICL / Mstars, tot
+Gonzalez+ 2013 
+Kravtsov+ 2014
+TNG300, z = 0
+Mass Fraction in Diffuse Mass to Total
+ all stars not in satellites ( z = 0.0 )
+ all stars not in satellites ( z = 1.0 )
+Figure 10. Stellar mass fractions in the various luminous components of
+groups and clusters, as a function of total halo mass. From top to bottom:
+stellar mass in the central galaxy to the total stellar mass out to the virial
+radius; stellar mass in the ICL or outskirts to the total stellar mass; mass in
+the ICL or outskirts to the stellar mass in the diffuse components (central +
+ICL); stellar mass in the diffuse component (central + ICL) to total stellar
+mass out to the virial radius. Annotations are as in Figure 9, with all solid
+curves, symbols and annotations referring to z = 0 relations, but for the
+dotted median curves, denoting z = 1 results.
+MNRAS 000, 000–000 (0000)
+
+
+18
+Pillepich et al.
+and Gonzalez et al. (2013) for what they call their BCG fraction to
+the total mass, with the former being measured by a triple-Sersic ﬁt
+to the central’s proﬁle extrapolated to inﬁnity. Here we have con-
+verted the observational data from M500c to M200c, adopting the
+simulation-based relation. As in the case of the stellar mass within
+30 kpc (top left panel of Figure 9), the contribution to the total bud-
+get of our TNG massive galaxies is shifted upwards by 10-15 per
+cent in comparison to observational constraints, namely it is 30-40
+per cent relatively larger than the values inferred from observations.
+We draw attention to the relatively shallow trends found when
+the adaptive 2 × rstars,0.5 boundary is used (purple lines). In par-
+ticular, the fraction of ICL mass relative to the total diffuse stellar
+mass is nearly constant with halo mass, reﬂecting a degree of in-
+variance in the shapes of the radial stellar proﬁles as previously
+seen in Figure 6.
+Similar trends hold between redshift z = 0 and z = 1 (solid
+versus dotted lines): the relations at these two times are nearly al-
+ways parallel. Interestingly, the 1-σ halo-to-halo variation in the
+fractional contribution of the central mass is larger for less mas-
+sive haloes, with 1013 M⊙groups exhibiting central galaxies con-
+tributing anywhere between 55 and 95% to the total within a 100
+kpc aperture. At a few times 1014 M⊙this variation decreases to
+of order 10-20%. On the other hand, the scatter in the extended
+components is roughly constant with halo mass, implying that for
+groups and clusters merger histories with ≫1 event may suppress
+the stochastic diversity of accreted mass.
+6.3
+The stellar mass – halo mass relation
+Until now we have focused on the relative contributions of differ-
+ent stellar components to the total stellar budget within groups and
+clusters. We now turn to the relative contribution of luminous mass
+to the total halo mass, measured in terms of a baryonic conversion
+efﬁciency, Mstars/Mhalo (Ωb/Ωm)−1.
+Although more massive haloes contain more stellar mass than
+their low mass counterparts, it has been long recognised that the
+baryonic conversion efﬁciency is maximal at the Milky Way mass
+scale (e.g. Conroy & Wechsler 2009; Leauthaud et al. 2012, and
+references therein). Towards both higher and lower masses, dark
+matter haloes become progressively more inefﬁcient at converting
+their baryons into stars. However, measurement of this efﬁciency
+as a function of halo mass is a difﬁcult observational task, and dif-
+ferent model and observational constraints have not yet reached a
+quantitative consensus.
+In Fig. 11 we therefore show several aspects of this stellar
+mass - halo mass (SMHM) relation for TNG haloes. The most ef-
+fective way to highlight subtle discrepancies across models, obser-
+vations, and deﬁnitions is with the linear ratio (upper left panel).
+In such a view, we are interested in tensions on the order of ten
+per cent or less; differences that would be invisible in a logarith-
+mic plot of stellar vs. total halo mass. Here we include the z = 0
+SMHM relations from Illustris, TNG100 and rTNG300 (red, blue
+and orange curves, respectively). Thick solid curves give the me-
+dian relations, while the 10 most massive haloes are represented
+as individual points. For visual clarity, the 1-σ scatter at ﬁxed halo
+mass is shown with shaded areas for TNG100 only. Note that a ver-
+sion of the upper left panel Fig. 11 has been already quantiﬁed in
+Pillepich et al. 2018 (e.g. their Fig. 4), for a selection of the aper-
+tures adopted here and using the outcome of smaller simulated vol-
+umes, hence possibly affected by sample variance. There the focus
+was a relative comparison between the Illustris and TNG model.
+We contrast our TNG results to the outcome of abundance
+matching and other semi-empirical models (Behroozi et al. 2013;
+Moster et al. 2013; Kravtsov et al. 2014; Rodr´ıguez-Puebla et al.
+2017; Moster et al. 2017, the latter two denoted as SHARC and
+EMERGE, respectively). The comparison is favourable, as indeed
+the TNG model has been devised to reproduce the general fea-
+tures of the semi-empirical constraints on the SMHM relation (see
+Weinberger et al. 2017; Pillepich et al. 2018). The TNG model pro-
+duces a strongly peaked SMHM function, with galaxies residing in
+≃1012 M⊙haloes being the most effective at forming stars, with
+a conversion efﬁciency of ∼20%. This efﬁciency halves rapidly,
+reaching ∼10% for 2 × 1011M⊙haloes (towards lower masses)
+and by 8 × 1012 M⊙(towards higher masses). In comparison to
+Illustris, the TNG model results in a much more strongly peaked
+SMHM, albeit at a slightly lower peak value. The differential sup-
+pression of star formation to either side of the peak is stronger in
+TNG, steepening the slope of the SMHM. With a canonical galaxy
+stellar mass deﬁnition (< 30 kpc; solid lines) both TNG realiza-
+tions produce a simulated SMHM whose shape and amplitude as a
+function of halo mass is in good agreement with the various con-
+straints, over the full resolved halo mass range, although with the
+location of the peak possibly up to a few fractions of a dex higher
+than the locus from semi-empirical models.
+Unfortunately, a detailed evaluation of the level of quantita-
+tive agreement proves more difﬁcult. While it has become common
+to compare the results of semi-empirical models to the outcomes
+of hydrodynamical simulations as a fundamental benchmark, no
+quantitative SMHM relation can at present be directly compared
+between the two. In a semi-empirical model, the exact values of
+Mstars/Mhalo are a non-trivial convolution of the different obser-
+vational datasets adopted for its calibration, each of which may in-
+voke a different deﬁnition of galaxy stellar mass, possibly varying
+as a function of mass. Unless a single observational dataset has
+been used to calibrate a given model and the galaxy stellar mass
+deﬁnition from that dataset is made explicit, it is impossible to
+make a well-posed comparison with simulated stellar mass content
+which is, by construction, sensitive to deﬁnition.
+We show this effect for rTNG300 galaxies in Fig. 11 (upper
+left panel; orange curves) by accounting for the stellar mass within
+different spherical apertures: 30 kpc (solid), 10 kpc (dotted), 100
+kpc (dashed), and twice the stellar half mass radius (crossed). The
+different choices not only modify the SMHM relation at the high
+mass end, but also the height of the peak itself. For example, the
+baryonic conversion efﬁciency of Milky Way-like galaxies can dif-
+fer by 30% if the stellar mass accounted for is within 10 or 100 kpc.
+For 1013 M⊙haloes, the baryonic conversion efﬁciency can differ
+by more than a factor of 2 for different operational deﬁnitions of
+central galaxy stellar mass – this discrepancy increases to a factor
+of a few at larger masses, modifying the overall slope of the SMHM
+relation at the high mass end.
+A similar consideration holds when extended stellar mass
+outside the central galaxy is included (top right panel). For both
+TNG100 and rTNG300, we show how the stellar to total mass frac-
+tion increases when accounting for the central galaxy only (thick
+solid curves), all the diffuse stellar mass (central + ICL, dotted),
+or all the stellar mass within the virial radius (+ satellites, dashed
+curves). Surprisingly, the SMHM recast in terms of the total stellar
+mass of the halo is much shallower on the high-mass end of the
+peak, and decreases by only a factor of two between Milky Way
+mass haloes and the most massive clusters in the Universe. As we
+have already seen, the satellite contribution at the high mass end is
+signiﬁcant and a clear signpost of hierarchical assembly.
+Considering the amount of evolution of the stellar mass con-
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+19
+1010
+1011
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+Mstars / Mhalo (+b / +m)-1
+Behroozi+ 2013
+Moster+ 2013
+Kravtsov+ 2014 (AM)
+Rodriguez-Pueblas et al 2017
+Moster et al. 2017
+z = 0
+Central
+Illustris
+TNG100
+rTNG300
+ stellar mass (< 30 kpc)
+ stellar mass (< 10 kpc)
+ stellar mass (< 100 kpc)
+ stellar mass (< 2 r_{stars, 1/2})
+1010
+1011
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+Mstars / Mhalo (+b / +m)-1
+Behroozi+ 2013
+Moster+ 2013
+Kravtsov+ 2014 (AM)
+Rodriguez-Pueblas et al 2017
+Moster et al. 2017
+z = 0
+TNG100
+rTNG300
+ central: < 30 kpc
+ central + ICL
+ central + ICL + satellites
+1010
+1011
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+10-1
+Mstars / Mhalo (+b / +m)-1
+ < 30 kpc
+TNG100
+rTNG300
+TNG100
+rTNG300
+TNG100
+rTNG300
+TNG100
+rTNG300
+TNG100
+rTNG300
+TNG100
+rTNG300
+ z = 0.0
+ z = 0.5
+ z = 1.0
+1010
+1011
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+0.35
+0.4
+<[log10 Mstars ]
+More et al. 2011 (SDSS)
+Reddick et al. 2012 (SDSS)
+Tinker et al. 2017
+(BOSS)
+Kravstov et al. 2014
+(SDSS + X-ray)
+Zu & Mandelbaum 2016 (SDSS)
+Leauthaud et al. 2012 (COSMOS, z~0.4)
+EAGLE (Matthee et al. 2017 - DMO Masses)
+ <  2 x rstars, 1/2
+ Illustris (z = 0.0)
+ TNG100 (z = 0.0)
+ TNG300 (z = 0.0)
+ TNG300 (z = 0.5)
+ TNG300 (z = 1.0)
+Figure 11. The stellar-mass to halo-mass (SMHM) relation and its scatter. Top left: SMHM relation at z = 0 for central galaxies, for different simulations
+(Illustris, TNG100, TNG300 or rTNG300 in red, blue, and orange thick curves, respectively) and for different deﬁnitions of a galaxy’s stellar mass: within
+ﬁxed spherical apertures of 30 kpc (solid thick), 10 kpc (dotted), 100 kpc (dashed), and twice the stellar half mass radius (crossed). Top right: the SMHM in
+TNG galaxies at z = 0 within the central galaxy (solid thick), for the whole diffuse stellar mass (central + ICL, excluding satellites: dotted), for the whole
+stellar content within a halo (total stellar mass = central + ICL + satellites, out to the virial radius of the halo: dashed). Bottom left: redshift evolution of the
+SMHM relation (central galaxy mass) from z ∼1 to the present day. Bottom right: 1-sigma scatter in the logarithmic galaxy stellar mass (within twice the
+half-mass radius) at ﬁxed halo mass, as a function of halo mass, compared to EAGLE and observational estimates (see boxes).
+tent at a given halo mass scale, we contrast the z = 0, z = 0.5,
+and z = 1 SMHM relations of the two TNG simulations (lower
+left panel), showing the < 30 kpc aperture only. Broadly speaking,
+the whole relation shifts to lower normalization across this redshift
+range, without any signiﬁcant change in its shape. At z = 1, the
+relation is slightly less peaked, implying that it is shallower to both
+sides of the peak, although this is a small effect. The location of the
+peak in Mhalo remains remarkably constant – the shift with red-
+shift is within < 50% at most. This is in contrast to the SMHM of
+Illustris (Genel et al. 2014), where the peak shifted more than half
+a dex towards higher masses from z = 0 to z = 1. The value of
+Mstars/Mhalo at the high-mass end is deﬁnitely larger at z = 0
+than at z = 1 in TNG, qualitatively regardless of aperture, and the
+same is true also at the low-mass end. Finally, although we only
+show the evolution for the < 30 kpc deﬁnition, we note that the
+trends at z < 1 are similar for the other aperture deﬁnitions con-
+sidered in this paper.
+Different semi-empirical models disagree on the redshift evo-
+lution of the SMHM in both the details and in the broad, overall be-
+haviour, making any comprehensive comparison difﬁcult. We note
+that Moster et al. (2017) favour a higher peak efﬁciency at z = 1
+as compared to z = 0, as well as a larger efﬁciency at high masses
+for the central galaxy, and we differ in both conclusions. The de-
+pendence of the peak mass in TNG is similar to Behroozi et al.
+(2013), although they favor a near constant efﬁciency over this red-
+shift range. In apparent agreement with that work is a largely un-
+changed slope, at the low-mass and high-mass ends, although their
+high-mass end amplitude is consistent with being constant or even
+slightly decreasing from z = 1 to z = 0. With respect to Moster
+et al. (2013), TNG ﬁnds qualitatively different behavior in the de-
+gree of shift in the peak mass, and the change of both slopes across
+this redshift range, agreeing only on the sign of the overall normal-
+ization increase.
+As a rather orthogonal constraint on the stellar assembly histo-
+ries of dark matter haloes, we consider the amount of allowed vari-
+ation in the stellar mass content at a given halo mass scale. The ﬁnal
+panel of Figure 11 shows the 1-σ scatter in the logarithmic galaxy
+stellar mass at ﬁxed halo mass (lower right panel). In addition to
+TNG100 (blue) and the redshift evolution of TNG300 (orange), we
+have also included original Illustris (red) results and the ﬁnding
+from EAGLE (Matthee et al. 2017, grey). Combined with the re-
+sults of N-body simulations, several observational estimates of the
+scatter have been made (More et al. 2011; Leauthaud et al. 2012;
+Reddick et al. 2013; Zu & Mandelbaum 2016; Tinker et al. 2017).
+MNRAS 000, 000–000 (0000)
+
+
+20
+Pillepich et al.
+Halo abundance or subhalo abundance matching models typically
+place the value of the intrinsic scatter in the range 0.1 to 0.26 be-
+tween z ∼1 and today, in broad agreement with direct observa-
+tional constraints that are available at the high-mass end (Kravtsov
+et al. 2014). Hydrodynamical simulations (Illustris, TNG, as well
+as EAGLE) commonly ﬁnd σ = 0.15 ± 0.05, for haloes above
+a few 1012M⊙, with no dependence on resolution. Our estimates
+are based on stellar masses measured within twice the stellar half
+mass radius, but do vary somewhat with the other apertures studied
+thus far. They can be compared to the 1-sigma logarithmic scat-
+ters reported in Table 4 for the different clusters components, all in
+the σ = 0.15 ± 0.05 range, with the total (satellites) stellar mass
+exhibiting the smallest (larger) halo-to-halo variations.
+The redshift evolution of the scatter is mild (Figure 11, lower
+right panel, solid vs dotted vs dashed curves), less than 0.05 dex
+from z = 1 to z = 0. Towards lower mass, on the other hand
+(Mhalo ≲1012 M⊙), the simulations predict a sharp increase in
+logarithmic scatter, with a non-negligible dependence on physical
+model. This regime is now becoming accessible with deep lensing
+surveys (e.g. in the HSC-SSP; Harikane et al. 2016) and motivates
+an in-depth study of the SMHM scatter and its redshift evolution in
+the near future.
+7
+STELLAR MASS ASSEMBLY AND STELLAR MASS
+FUNCTION
+So far we have seen that for M200c ≳1013M⊙, in the group and
+cluster regime, halo mass is a good predictor of stellar mass mea-
+sured within any ﬁxed spherical aperture. We can use the simula-
+tions to assess how the stellar mass in massive haloes is assembled
+across time, and across cluster components. We therefore measure
+the importance of the accreted ‘ex-situ’ stellar component, deter-
+mine its origin through the progenitor satellite mass spectrum, and
+connect the ICL of the most massive central galaxies to the numer-
+ous, low-mass end of the galaxy stellar mass function.
+7.1
+In-situ vs ex-situ material
+Cosmological simulations have demonstrated that the most massive
+galaxies in the Universe grow both in mass and sizes by the merging
+with smaller units. More quantitatively, the fractional contribution
+of accreted stars to the total stellar mass of a galaxy is a steep func-
+tion of stellar or halo mass (Oser et al. 2010; Lackner et al. 2012;
+Rodriguez-Gomez et al. 2016). Using the original Illustris simu-
+lation, in Rodriguez-Gomez et al. (2016) we measured the ex-situ
+fraction with respect to the total stellar mass of the halo (central
++ ICL, excluding satellites, effectively), which rises from less than
+10% to more than 50% for galaxies in the 109 to 1011.5M⊙stellar
+mass range. With the TNG simulations, we extend this analysis to
+the most massive objects, adopting the in-situ vs ex-situ classiﬁca-
+tion of Pillepich et al. (2014) and Rodriguez-Gomez et al. (2016),
+and by using the baryonic merger trees of Rodriguez-Gomez et al.
+(2015). As a reminder, an individual stellar particle is classiﬁed as
+ex-situ if it forms outside of the main progenitor branch of its z = 0
+host; otherwise, a star is in-situ.
+In Figure 12 we measure the ex-situ stellar mass fraction as
+a function of halo mass for TNG300 at z = 0. Four results for
+four different operational deﬁnitions of the stellar component are
+given: within 10 kpc (grey), within 30 kpc (dark green), the total
+central galaxy + ICL, excluding satellites (light green), and stars
+outside 100 kpc only, excluding satellites (orange). The ﬁrst three
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1
+Ex Situ Stellar Mass Fraction
+TNG300, z = 0
+(dotted = TNG100)
+1.9e+10
+1.0e+11
+3.1e+11
+1.0e+12
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+  < 30 kpc
+  > 100 kpc
+ central + ICL
+  < 10 kpc
+Figure 12. The fraction of ex-situ (accreted) stellar mass to the total (dif-
+fuse) stellar mass (i.e. in-situ+ex-situ) within different apertures, as a func-
+tion of halo mass at z = 0. We consider four apertures which examine
+different regions of the halo: the innermost region of groups and clusters,
+i.e. within the massive central galaxy (< 10 kpc, in grey, and < 30 kpc, in
+dark green); the outskirts, i.e. the outer stellar mass excluding satellites (>
+100 kpc, in orange); and the stellar diffuse component of the whole halo
+(Mstars
+200c = central + ICL, excluding satellites, in light green). Solid lines
+show TNG300 (bands and points are the same as in previous ﬁgures), while
+the dotted line from TNG100 demonstrates that the ex-situ fractions are
+reasonably well converged.
+cases have similar behavior: a steep rise from ≲10% at Mhalo <
+1012M⊙through an equal 50% contribution at Mhalo ≃1013M⊙
+to asymptotic values between 60% and 90% for Mhalo > 1014M⊙,
+depending on deﬁnition, independent of resolution, and with about
+1-sigma 10% galaxy-to-galaxy variation. In practice, we demon-
+strate that, while low-mass galaxies form almost all of their stars
+in-situ, the central galaxies of the most massive haloes (M200c ≳
+1014M⊙) acquire more than 80% of their mass through cosmolog-
+ical assembly and mergers. Remarkably, even within the innermost
+regions of the most massive galaxies (e.g. within just 10 kpc), the
+contribution of ex-situ stars is as a high as 60%.
+The behavior of the stellar component at large physical radii,
+considering stars beyond 100 kpc only (orange curve), is markedly
+different. Regardless of the halo mass scale, stellar mass at these
+distances originates almost exclusively from accreted material,
+with a ≳90% ex-situ fraction. This is because star formation is
+not expected to occur at such large radii, and other mechanisms
+need to be invoked to move in-situ stars to large distances from
+their original birth sites. The ex-situ contribution also exceeds 50%
+for a smaller physical inner boundary of > 30 kpc (not shown).
+This bounds the contribution from in-situ stars to the extended stel-
+lar halo. In particular, relatively few stars can be stripped from a
+central galaxy and ejected to large radii as a result of e.g. dynami-
+cal interactions. The properties of the extended stellar component,
+beyond a few tens of kpc from the centers, are therefore a largely
+pristine record of the baryonic assembly history of a given dark
+matter halo.
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+21
+108
+109
+1010
+1011
+1012
+Progenitor Stellar Mass [ Mstars,merger ][ Msun ]
+0
+0.2
+0.4
+0.6
+0.8
+1
+Fraction ( > Mstars,merger ) to Total Ex-situ
+TNG100
+TNG300
+Central: < 30 kpc
+11.4 < M 200c < 11.6
+11.9 < M 200c < 12.1
+12.4 < M 200c < 12.6
+12.9 < M 200c < 13.1
+13.4 < M 200c < 13.6
+13.9 < M 200c < 14.1
+14.3 < M 200c < 14.7
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ][ Msun ]
+108
+109
+1010
+1011
+1012
+Minimum Progenitor Stellar Mass [ Msun ]
+5.5e+10
+2.3e+11
+7.4e+11
+Stellar Mass [ Mstars, cen ][ < 30 kpc ] [ Msun ]
+TNG300, z = 0
+ solid: 90% of the total ex-situ mass
+ dotted: 50% of the total ex-situ mass
+ < 30 kpc
+ > 100 kpc
+ central + ICL
+ < 10 kpc
+Figure 13. The relative contribution from accreted satellites of different
+masses to the ex-situ stellar component of massive central galaxies at z = 0.
+In the top panel we stack haloes in seven mass bins, indicated in the legend.
+For all stars within the centrals (< 30 kpc), we show the cumulative fraction
+of the total ex-situ mass contributed by satellites of mass Mstars,merger or
+greater. Horizontal lines indicate threshold contributions of 50% and 90%.
+In the bottom panel we plot these thresholds as a function of halo mass, such
+that satellites of this mass and higher contribute half (dotted curves) or 90
+per cent (solid curves) of the total ex-situ stellar mass. Here we consider the
+same four apertures as in Figure 12, showing the degree to which accreted
+satellites of different masses contribute to the various stellar components of
+the halo.
+7.2
+The mass spectrum of accreted satellites
+Not surprisingly, given that a signiﬁcant fraction of the stars of
+galaxies above the Milky Way mass scale are ex-situ in origin, the
+bulk of such material for very massive galaxies has been brought in
+by rather massive galaxies. We demonstrate this in Figure 13.
+Figure 13 deconstructs the accreted (diffuse) stellar compo-
+nent into the spectrum of progenitor satellites from which it arose.
+The top panel shows the relative contribution of ex-situ stars from
+infalling satellites of different stellar masses.4 In particular, we
+show the fraction of the ex-situ stars within 30 kpc contributed by
+progenitors above a given threshold in stellar mass, stacking the
+results for seven different halo mass bins (colored lines) spanning
+1011.5M⊙< Mhalo < 1014.5M⊙. The intersection of each curve
+4 As initiated and motivated by Rodriguez-Gomez et al. (2015), we follow
+the common practice in merger analyses to take, for the mass of a merging
+satellite, its maximum mass at any time along its main progenitor branch, as
+opposed to its mass at infall or its mass at the time of the merger, the latter
+of which are sensitive to both physical and numerical issues.
+with the horizontal 50% ex-situ line indicates, for example, that
+satellites of this mass and greater contribute half of the total ex-situ
+stellar mass found within the galaxy. This threshold mass increases
+with increasing halo mass – the centrals of more massive haloes are
+built up from larger satellites, with correspondingly older and more
+metal-rich stellar components (e.g. Gallazzi et al. 2005; Bernardi
+et al. 2010). For Mhalo > 1013M⊙, the satellites which contribute
+the dominant part of the ex-situ stars (< 30 kpc) exceed stellar
+masses of 1010.5M⊙. This is an important threshold mass in the
+TNG model above which central galaxies are predominantly quies-
+cent, gas-poor, often spheroidal-morphology systems, and so likely
+to distribute a different physical mix of stars differently throughout
+the halo of their descendant host.
+In the lower panel we measure two particular satellite thresh-
+old masses, those contributing 50% and 90% of the total ex-situ
+Mstars, as a function of halo mass and as a function of four differ-
+ent aperture deﬁnitions. These are the same as in Figure 12, prob-
+ing within the massive central galaxy (< 10 kpc, in grey, and <
+30 kpc, in dark green) as well as the outskirts alone (> 100 kpc,
+in orange) and the stellar component of the whole halo (central +
+ICL, excluding satellites, in light green). We ﬁnd that the progen-
+itor stellar mass needed to account for half of the accreted stars is
+nearly invariant to aperture, i.e. the bulk of the stellar component
+of a host, in any given radial extent, is contributed by a similar
+mass spectrum of satellites. This minimum contributing mass in-
+creases sharply from Mmerger ≃109 M⊙for host haloes of total
+mass 1012 M⊙, to Mmerger ≃1010.5 M⊙for 1013 M⊙haloes. It
+then plateaus and rises to Mmerger ≃1011.2 M⊙, such that half
+of the extended stellar components of the most massive clusters is
+contributed by accreted satellites with stellar mass at least as mas-
+sive as a few 1011M⊙. For Milky Way haloes, this corresponds to
+LMC-like satellites, while for 1015M⊙clusters these are mergers
+of already large (∼5× MW mass) elliptical satellites.
+If we consider instead the 90% threshold, i.e. down to which
+satellite stellar mass must we go to recover essentially all of the
+stellar component of a host halo, the situation differs. Namely,
+a strong radial dependence becomes apparent. For the central
+galaxy (< 10, or 30, kpc) the minimum contributing satellite mass
+Mmerger is roughly 0.5 dex less massive than the 50% threshold
+value, with the same dependence on host halo mass. However for
+the outskirts (central + ICL, and even more so, > 100 kpc), the min-
+imum satellite mass is signiﬁcantly lower, and becomes halo mass
+independent at a nearly constant value of ≃109.8M⊙. Therefore,
+accreted galaxies with stellar masses above this value contribute
+90% of the extended stellar mass of all groups and clusters.
+In conclusion, within the innermost 30 kpc of galaxies in
+1015M⊙haloes (about 1012M⊙in stars), 70 per cent of the stars
+have been assembled by merging and 90 per cent of those stars have
+been brought by galaxies at least as massive as 4 −6 × 1010M⊙.
+7.3
+The TNG stellar mass function from z=0 to z=4
+The contributions of smaller merging companions only make phys-
+ical sense if the properties of these satellite galaxies are realisti-
+cally recovered in the simulations – not only at z = 0, but also
+backwards in time, as the stellar envelopes of galaxy groups and
+clusters assemble. We hence conclude the paper by demonstrating
+in Fig. 14 that the TNG model returns plausible galaxy populations
+across the whole mass spectrum and across redshift, and therefore
+that the non-trivial predictions of our numerical model presented
+throughout are dependable.
+Here we show the galaxy stellar mass function (GSMF) from
+MNRAS 000, 000–000 (0000)
+
+
+22
+Pillepich et al.
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Baldry+ 2008 (SDSS, z~0)
+Baldry+ 2012 (GAMA, z<0.05)
+Bernardi+ 2013 (SDSS)
+D Souza+ 2015 (SDSS, z~0.1)
+z = 0
+Illustris
+TNG100
+rTNG300
+ stellar mass (< 30 kpc)
+ stellar mass (< 10 kpc)
+ stellar mass (< 100 kpc)
+ stellar mass (< 2 r_{stars, 0.5})
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Perez-Gonzalez+ 2008
+Ilbert+ 2013  (z=0.2-0.5)
+Ilbert+ 2013  (z=0.5-0.8)
+Muzzin+ 2013 (z=0.2-0.5)
+Tomczak+ 2014 (z=0.2-0.5)
+z ~ 0
+(rTNG300)
+z ~ 0.5
+ Illustris
+ TNG100
+ rTNG300
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Ilbert+ 2010
+Mortlock+ 2011
+Ilbert+ 2013 (z=0.8-1.1)
+Tomczak+ 2014 (z=0.75-1.0)
+Tomczak+ 2014 (z=1.0-1.25)
+z ~ 0
+(rTNG300)
+z ~ 1
+ Illustris
+ TNG100
+ rTNG300
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Kajisawa+ 2009
+Santini+ 2012
+Ilbert+ 2013  (z=1.5-2.0)
+Ilbert+ 2013  (z=2.0-2.5)
+Muzzin+ 2013 (z=1.5-2.0)
+Muzzin+ 2013 (z=2.0-2.5)
+z ~ 0
+(rTNG300)
+z ~ 2
+ Illustris
+ TNG100
+ rTNG300
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Santini+ 2012
+Ilbert+ 2013  (z=2.5-3.0)
+Muzzin+ 2013 (z=2.5-3.0)
+Davidzon+ 2017 (z=2.5-3.0)
+Davidzon+ 2017 (z=3.0-3.5)
+z ~ 0
+(rTNG300)
+z ~ 3
+ Illustris
+ TNG100
+ rTNG300
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Song+ 2016 (CANDELS)
+Grazian+ 2015 (CANDELS)
+Davidzon+ 2017 
+z ~ 0
+(rTNG300)
+z ~ 4
+ Illustris
+ TNG100
+ rTNG300
+Figure 14. The TNG galaxy stellar mass functions after the Epoch of the Reionization, from z ∼4 to today. Unless otherwise speciﬁed, we show results
+from the simulations by accounting for all the stellar mass within twice the stellar half mass radius (thick colored curves from z = 0.5 to 4). At z = 0, we
+emphasize the importance of the galaxy mass deﬁnition by providing the predictions from TNG300 for different aperture measurements: 30 kpc (for all runs,
+thick curves), 10kpc (orange dotted), 100 kpc (orange dashed) and twice the stellar half mass radius (orange crosses). At z > 0, we report in light orange the
+rTNG300 mass function (within twice the stellar half mass radius), for reference. A selection of observational data points is included for comparison in grey
+symbols, all converted to Chabrier IMF (Baldry et al. 2008, 2012; Bernardi et al. 2013; D’Souza et al. 2015; P´erez-Gonz´alez et al. 2008; Mortlock et al. 2011;
+Ilbert et al. 2013; Muzzin et al. 2013; Tomczak et al. 2014; Kajisawa et al. 2009; Santini et al. 2012; Davidzon et al. 2017; Grazian et al. 2015).
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+23
+the TNG simulations at six discrete redshifts from the present day
+to z = 4, comparing to several observational datasets. We include
+TNG100, rTNG300, and Illustris (blue, orange, and red, respec-
+tively). Overall, the TNG simulations satisfy the available obser-
+vational constraints, with the abundance of galaxies at the knee
+of the GSMF growing by more than an order of magnitude be-
+tween z = 4 and today. We can also demonstrate here, across a
+larger mass range and with better statistical sampling than what was
+achieved in Pillepich et al. (2018), that with respect to Illustris, the
+amplitude of the low-mass end ( ≲1011M⊙) is signiﬁcantly sup-
+pressed, particularly at z ⩽1, resulting in much improved agree-
+ment. As discussed in Pillepich et al. (2018), this is mostly due to
+the changes in the implementation of the stellar-driven winds. At
+the higher mass end, the modiﬁcations to the black hole feedback
+(identically implemented in TNG100 and rTNG300) suppress, in
+comparison to Illustris, the GSMF at recent times in the critical
+mass regime above a few 1010M⊙, with a more pronounced knee
+and a sharply falling abundance at stellar masses above a few times
+1011M⊙.
+In the redshift zero comparison (upper left panel) we elabo-
+rate on the high-mass end shape of the galaxy abundance by im-
+plementing four distinct measurements from the simulation per-
+spective. Namely, we show the resulting curves for four different
+deﬁnitions of the galaxy stellar mass: < 30 kpc (solid), < 10 kpc
+(dotted), < 100 kpc (dashed), and < twice the stellar half mass
+radius (crossed). The value of Φ at Mstars > 1010.5M⊙sensi-
+tively depends on deﬁnition, with differences rising to more than
+one order of magnitude at stellar masses of 1012M⊙. Our ﬁndings
+on the large effect of aperture at the high mass end conﬁrm previ-
+ous studies, both in the context of observations (e.g. D’Souza et al.
+2015) and simulations (e.g. Schaye et al. 2015). In fact, in these
+four choices we have replicated in precise detail none of the ob-
+servational deﬁnitions used in Baldry et al. (2012); Bernardi et al.
+(2013); D’Souza et al. (2015). Therefore we point out only that,
+depending on deﬁnition, the high-mass end of the simulated galaxy
+stellar mass function spans the range of z = 0 observational mea-
+surements without difﬁculty.
+The situation at high redshift is much less constraining, with
+all three simulations showing similar levels of agreement with the
+observed z ⩾2 GSMF, despite the rather different mechanisms
+and energetics of the most important feedback processes. Cer-
+tainly, a more quantitative comparison to the individual observa-
+tional datasets would require more sophisticated and speciﬁcally
+tailored mock stellar mass modelings of the simulated galaxies.
+Yet, it is reassuring to witness the fundamental progress this rep-
+resents in such models, which had basic difﬁculties at recovering
+the zeroth-order abundances of galaxies just a few years ago (e.g.
+Kereˇs et al. 2009).
+As the main takeaway of this GSMF comparison, we conclude
+that the TNG galaxy formation model results in a realistic distribu-
+tion of stellar masses across the bulk of cosmic time. Therefore, as
+these galaxies merge and accrete onto forming groups and clusters
+at z < 1, we have conﬁdence that the deposition of stars into both
+the innermost and extended stellar components of the most massive
+objects in the Universe is well captured in our simulations.
+8
+SUMMARY AND DISCUSSION
+This study is one of ﬁve papers presenting the new IllustrisTNG
+(The Next Generation) project, a follow-up of the Illustris sim-
+ulation. TNG is an ambitious set of cosmological magneto-
+hydrodynamical simulations aimed at studying the formation and
+evolution of galaxies across an unprecedented range of masses
+and environments. They are performed with the moving-mesh code
+AREPO and the underlying galaxy physics model includes prescrip-
+tions for star formation, stellar evolution, chemical pollution, pri-
+mordial and metal-line cooling of the gas, galactic winds, and black
+hole formation, growth and feedback, the latter featuring a novel
+black-hole driven wind which acts at low accretion rates.
+In this paper, we have given an overview of the stellar mass
+content at the massive end of IllustrisTNG galaxies at recent times
+(z ⩽1). We have focused on massive galaxy groups and clusters
+(1013 ⩽M200c/M⊙⩽1015) and provided a census of the stel-
+lar mass content in their central galaxies, diffuse intra cluster light,
+satellite populations, and total stellar mass out to the virial radius.
+Our simulations naturally form large groups and clusters of galax-
+ies (Figures 3 and 4), with one (or more) massive galaxies dominat-
+ing the most luminous regions, surrounded by a signiﬁcant number
+of lower-mass satellite galaxies (Figure 2, lower panel), all amid an
+extended diffuse halo of stellar material.
+Here we have used the ﬁrst two simulations of the Illus-
+trisTNG series, TNG100 and TNG300 (Table 1). The large volumes
+encompassed by these runs (about 100 and 300 Mpc on a side, re-
+spectively) in combination with 2×18203 and 2×25003 resolution
+elements each, provide us with an unprecedented statistical power
+over a large mass range. We resolve tens of thousands of galax-
+ies with stellar masses as small as 108.5 −109M⊙as well as ∼
+300 central galaxies residing in galaxy clusters more massive than
+1014M⊙and featuring stellar masses ≳5 × 1011M⊙(see Fig. 2).
+This is the ﬁrst time that a theoretical, population-wide study
+of the stellar mass distribution in massive galaxies is accessible in
+a statistically-signiﬁcant sense via numerical simulations that are
+also capable of resolving the structural details of smaller satellite
+galaxies.
+Throughout, we have characterized the halo to halo variation
+in all derived quantities (e.g. Figure 11, bottom left, and Table
+4) and we have devoted particular attention to the deﬁnition of a
+galaxy’s stellar mass: we have quantiﬁed the effects that stellar
+mass measurements taken within e.g. different 3D spherical
+apertures (see Table 2) can impart in the shape of the stellar-to-halo
+mass relation (Figure 11, top panels) and chieﬂy the high mass end
+of the galaxy stellar mass function (Section 7.3 and Figure 14).
+Highlights of our quantitative ﬁndings are summarized as follows.
+• We have quantiﬁed the 3D total stellar mass proﬁles of
+massive galaxies (diffuse mass, excluding satellites), both by
+stacking the average distribution of stellar mass in bins of halo
+mass and by inspecting individual proﬁles. We ﬁnd that galaxies
+residing in less massive haloes have signiﬁcantly more centrally
+concentrated stellar mass distributions when compared to more
+massive galaxies, even when the radial apertures are renormalized
+to the virial radius of the host haloes. By this we do not mean that
+they have larger Sersic indexes, but rather that, while more than
+90% of the total stellar mass of a 1012 M⊙halo is within 10%
+of its virial radius, there is at least another 30% of stellar mass
+beyond 10% of the virial radius of a 1014 M⊙group (Figure 5).
+• We ﬁnd that the 3D stellar enclosed-mass radial proﬁles
+beyond about 1 kpc from the centers (Figures 5 and 6, top left),
+normalized by both the virial radius and the total mass, exhibit
+the same functional shape for all halo masses between 1012 and
+1015M⊙. We capture this with a two-parameter sigmoid function
+MNRAS 000, 000–000 (0000)
+
+
+24
+Pillepich et al.
+(or smooth step function, Eq. (1)), whose best-ﬁt parameters
+reveal remarkably clear trends with halo mass: more massive
+galaxies have shallower stellar proﬁles (smaller steepness) and
+larger midpoint pivot parameters than galaxies residing in less
+massive haloes. The latter parameter is de-facto the 3D stellar half
+mass radius of the galaxy when its stellar mass is measured out to
+the farthest extent of its underlying DM halo (Figure 7): for halo
+(stellar) masses ≳1012M⊙(≳5 × 1010M⊙), the 3D stellar half
+mass radius of TNG galaxies lies on a tight power-law relation with
+halo mass (or halo virial radius), with rstars
+0.5
+∝(M200c)0.41−0.53
+and with a ∼0.16 dex scatter.
+• The stellar mass density proﬁle at large distances (tens of
+kpc away from the centers) can also be well approximated by a
+simple functional form across halo masses: a power law function
+of clustercentric distance. Conﬁrming the results of Pillepich et al.
+(2014) and expanding them to the most massive clusters in the
+Universe, we ﬁnd that the extended stellar envelopes (‘stellar
+haloes’, ‘intra-cluster light’ or ‘intra-halo light’) that surround the
+most massive galaxies can be almost as shallow as the underlying
+dark-matter, with slopes in the range −3.5 ≲α3D ≲−3 for
+1015M⊙haloes. These can be compared to stellar mass density
+slopes of α3D ∼−5 for the diffuse mass in the outskirts of
+1012M⊙haloes (Section 5 and Figure 8).
+• In the studied mass range 1013M⊙⩽M500c ⩽1015M⊙and
+for z ≲1, the stellar mass content in different cluster components
+(central galaxy, outskirts/ICL, satellites, and total) scales as a
+power law of the total halo mass, independently of the exact
+operational deﬁnition (Figure 9). However, the exact shape and
+scatter of the scaling relations with halo mass do depend on the
+component deﬁnitions. We ﬁnd that the stellar mass of TNG
+central galaxies measured within 3D 30 kpc (100 kpc) scales as
+(M500c)0.49 (0.59) and that the total stellar mass (central + ICL
++ satellites) can be as steep as ∝(M500c)0.84, with even steeper
+scaling relations for the stellar mass in the ICL (> 30 or 100 kpc)
+as well as the mass in satellite galaxies (Figure 9 and Table 4).
+• In relative terms, for 1015M⊙haloes, up to 90 (80) per
+cent of their stellar mass is found beyond clustercentric distances
+of 30 (100) kpc, both in diffuse intra-halo light and satellite
+galaxies (Figure 10, top panel). As the number of satellite galax-
+ies is a steep function of halo mass (Figure 2), haloes more
+massive than about 5 × 1014M⊙have more mass in satellite
+galaxies than in diffuse material (central galaxy or ICL; ﬁgure
+10, bottom panel). In fact, the amount of ICL relative to the
+total diffuse mass grows with halo/galaxy mass (Figure 10, third
+panel from the top): haloes more massive than about 5 × 1014M⊙
+have more diffuse stellar mass outside 100 kpc than within 100 kpc.
+• While it has been long recognized that massive haloes are
+less efﬁcient than MW-like galaxies at making stars, the exact
+functional form and magnitude of the stellar mass to halo mass
+relation strongly depends on the deﬁnition of a central galaxy’s
+stellar mass (Figure 11). For 1013M⊙haloes, the baryonic
+conversion efﬁciency can differ by more than a factor of 2 for
+different operational deﬁnitions of central galaxy stellar mass:
+this discrepancy increases to a factor of a few at larger masses,
+modifying the overall slope of the SMHM relation at the high mass
+end. If we consider the total stellar mass (central+ICL+satellites),
+the stellar-to-halo mass fraction decreases by only a factor of two
+between Milky Way mass haloes and the most massive clusters in
+the Universe.
+• The halo-to-halo variation (intrinsic scatter) in all the afore-
+mentioned relations is remarkably small for all halo masses larger
+than 1013M⊙. According to the TNG simulations, the scatter in
+stellar masses at ﬁxed halo mass is 0.15 ± 0.03 dex for haloes
+larger than 1012.5M⊙and between z ∼1 and today (Figure
+11, bottom left, and Table 4). At z = 0 the different cluster
+components are ranked in their scatter: the total stellar mass in the
+whole halo (central + ICL + satellites) has the smallest scatter (≲
+0.1 dex), followed by the total diffuse component (central+ICL,
+0.11 dex), the central galaxy and the stellar mass in the outskirts
+(∼0.13 dex), and ﬁnally the stellar mass locked in satellites, with
+the largest halo-to-halo variation, slightly larger than 0.2 dex.
+• In Section 7, we have shown in quantitative terms the extent
+to which massive galaxies that form at the centers of massive
+haloes are the culmination of the hierarchical growth of structure:
+for M200c ≳1014M⊙, 80 per cent of their total stellar mass
+has been accreted via merging and stripping of smaller luminous
+galaxies (Figure 12). This ex-situ fraction exceeds 90 per cent
+when considering the stellar mass in the outskirts, e.g. beyond
+clustercentric distances of 100 kpc. In fact, the contribution of
+ex-situ stars to the stellar mass content of the most massive central
+galaxies is as high as 60 per cent even within their innermost 10
+kpc.
+• Not surprisingly, for very massive objects the bulk of this ac-
+creted material has been brought by rather massive galaxies (Figure
+13): we ﬁnd that 90 per cent of the accreted stellar mass in galaxies
+larger than about 5 × 1011M⊙in stars (M200c ≳1014M⊙) has
+been acquired from galaxies of at least 3−5×1010M⊙, i.e. galax-
+ies as massive as our current Milky Way. For the stars in the ICL,
+this picture is less top heavy: at clustercentric distances larger than
+e.g. 100 kpc, 90 per cent of the accreted material has been stripped
+from galaxies at least as massive as 5 −8 × 109M⊙, making the
+outer cluster envelopes the smooth bridge between the most mas-
+sive and rare galaxies in the Universe and the many more numerous
+dwarf ellipticals at the lower end of the galaxy mass function.
+All in all our analysis conﬁrms that halo mass is a very good
+predictor of stellar mass, and vice versa, i.e. that by measuring
+the stellar mass within e.g. 30 kpc in massive galaxies (≳a few
+1011M⊙), the total mass of the underlying DM halo can be known
+to about 0.2 dex precision. In fact, we have shown that halo mass
+alone is a very good predictor of the whole stellar mass proﬁle of
+massive galaxies beyond a few kpc from the center, at least on av-
+erage and at 5-10% accuracy (Section 5, Table 3 and Figure 7). To
+provide a new comprehensive benchmark for comparison to obser-
+vations and other models, we have supplied ﬁtting formulae for the
+3D stellar enclosed-mass proﬁles out to large radii of TNG groups
+and clusters at z = 0, proﬁles that can be fully computed from ei-
+ther the total halo mass or e.g. the stellar mass measured within 30
+kpc.
+By exploring the distribution of stellar material throughout the
+entirety of dark matter haloes, we have focused on results from the
+TNG simulations in a regime where our model is fully predictive.
+The spatial distribution of the stellar mass in massive haloes is a
+non-trivial outcome of the model, as it depends on many physi-
+cal processes including the stripping and tidal destruction of in-
+falling satellites within the framework of hierarchical structure for-
+mation. In fact, here we have pushed our analysis to a mass regime
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+25
+(M200c ≳1014M⊙) where our galaxy physics model was never di-
+rectly calibrated, or indeed even ever run at all before the execution
+of the TNG300 simulation itself.
+In fact, all the considerations above demonstrate that the high
+mass end of the galaxy and halo mass functions is an exquisitely
+precise and challenging test bed for galaxy physics models. If the
+stellar mass in the most massive objects in the Universe is 80 per
+cent accreted, not only it is important to identify the right quench-
+ing mechanisms of its central (in-situ) galaxy, but it becomes even
+more relevant how the mechanisms that regulate star formation
+act across the whole spectrum of accreted galaxies. Improvements
+in the adopted AGN feedback mechanisms at low accretion rates
+(Weinberger et al. 2017) and the reﬁned galactic winds regulating
+lower mass galaxies (Pillepich et al. 2018) give us conﬁdence in
+the TNG model outcome, both in terms of mass budget within the
+central galaxy as well as in the distant, low surface brightness out-
+skirts. This can be appreciated through the comparisons of TNG
+galaxies to observational and semi-empirical constraints, including
+the galaxy color bimodality distribution at low redshift (Nelson et
+al. 2017), the shapes of the stellar-to-halo mass relation (Figure 11)
+and the galaxy stellar mass functions across redshift (Figure 14).
+While the latter conﬁrms the good agreement of the abundance (and
+hence SMHM) of TNG galaxies below ≲1011M⊙in stellar mass,
+above this limit our preliminary comparisons to observational data
+indicates that the TNG relation between centrals stellar mass (< 30
+kpc) and halo mass at z = 0 is steeper than the one inferred by e.g.
+Kravtsov et al. (2014). It remains to be determined whether this is
+a fundamental limitation of the model or more subtle issues lie in
+the determination of the measured stellar masses. From the mod-
+eling view point, effects of numerical resolution also impair such
+comparisons at face value. Throughout this paper we have rescaled
+the stellar mass results from the TNG300 box to match the known
+outcome of our model at the superior resolution of the TNG100
+simulation (see Appendix A). While the applied resolution rescal-
+ing factors are relatively small (at most ≲1.4), such corrections
+(or lack of thereof) may easily be sufﬁcient to shift the perceived
+conclusions derived from the comparison to observational data.
+However, in closing we emphasize that, to converge towards a
+consistent and accurate interpretation of models and observations,
+any deﬁnition of a galaxy’s stellar mass must be made with caution
+and explicitly described in all diagnostics. We have attempted to
+do so throughout this analysis, with the hope to set up a new com-
+mon standard. In Figure 14, we have ﬁnally shown the extent to
+which the shape of the massive end of the galaxy stellar mass func-
+tion at recent times changes for different (3D spherical) apertures
+over which we measure TNG stellar masses. While the canonical
+30 kpc aperture captures more than 90 per cent of the stellar mass
+of a galaxy sitting in a 1012M⊙halo (Figure 5), this aperture heav-
+ily underestimates the more massive objects: at a stellar mass of
+1012M⊙there can be a factor of 10 difference in the estimated
+galaxy abundance for different choices of the central’s mass deﬁni-
+tion. We hence advocate that the most practical and least ambigu-
+ous deﬁnition for a galaxy stellar mass should be measured within
+some ﬁxed aperture in physical kiloparsecs (3D spherical or 2D cir-
+cularized). Echoing previous works, we also discourage attempts to
+separate the outer component of the BCGs (the ICL) from the cen-
+tral galaxies, if not by means of simple spatial, arbitrary boundary.
+From our analyses of the stellar mass proﬁles (Section 5), we could
+not identify any optimal, qualitative or generalized physical tran-
+sition between the inner bright regions of galaxies and their lower
+surface brightness envelopes – at least from a population-wide in-
+spection of stellar mass density proﬁles.
+In fact, a pragmatic separation of the cluster components based
+on ﬁxed apertures is validated by theoretical arguments: all (stel-
+lar) haloes, regardless of their mass, formed by smooth accretion
+and merging, even though in different relative amounts at different
+masses. At the high mass end, stellar mass accretion is the dom-
+inant mechanism for the build up of both the inner and the most
+distant stellar components of a cluster: this makes the distinction
+between a central galaxy and its ICL rather arbitrary.
+ACKNOWLEDGEMENTS
+The authors thank the anonymous referee for the useful and de-
+tailed comments and suggestions. A special grateful note goes to
+Vicente Rodriguez-Gomez for sharing his codes and data ﬁles for
+the merger trees and stellar assembly catalogs of the IllustrisTNG
+simulations. It is also our pleasure to thank Arjen van der Wel,
+Alexie Leauthaud, Song Huang, Andrej Kravtsov, Benedetta Vul-
+cani, Joe Mohr, Veronica Strazzullo, Alex Saro, Greg Rudnick, and
+Glenn van de Ven for useful conversations. AP thanks Ben Moster
+for sharing the observational data collected for the galaxy stellar
+mass functions at different redshifts and the organizers and partici-
+pants of the Galapagos conference “On the Origin (and Evolution)
+of Baryonic Galaxy haloes” and of “The Galaxy-Halo Connection”
+KITP program for inspiring input. VS, RW, and RP acknowledge
+support through the European Research Council under ERC-StG
+grant EXAGAL-308037 and would like to thank the Klaus Tschira
+Foundation. PT acknowledges support from NASA through Hub-
+ble Fellowship grant HST-HF-51384.001-A awarded by the Space
+Telescope Science Institute, which is operated by the Association
+of Universities for Research in Astronomy, Inc., for NASA, under
+contract NAS5-26555. SG, through the Flatiron Institute is sup-
+ported by the Simons Foundation and by the Hubble Fellowship
+grant HST-HF2-51384.001-A through NASA. JPN is supported by
+the NSF AARF award AST-1402480 and MV acknowledges sup-
+port through an MIT RSC award, the support of the Alfred P. Sloan
+Foundation, and support by NASA ATP grant NNX17AG29G. The
+ﬂagship simulations of the IllustrisTNG project used in this work
+have been run on the HazelHen Cray XC40-system at the High
+Performance Computing Center Stuttgart as part of project GCS-
+ILLU of the Gauss centers for Supercomputing (GCS). Ancillary
+and test runs of the project were also run on the Stampede super-
+computer at TACC/XSEDE (allocation AST140063), at the Hydra
+and Draco supercomputers at the Max Planck Computing and Data
+Facility, and on the MIT/Harvard computing facilities supported by
+FAS and MIT MKI.
+REFERENCES
+Agertz O., Kravtsov A. V., 2016, ApJ, 824, 79
+Andreon S., 2012, A&A, 548, A83
+Andreon S., 2015, A&A, 575, A108
+Angulo R. E., Springel V., White S. D. M., Jenkins A., Baugh C. M., Frenk
+C. S., 2012, MNRAS, 426, 2046
+Bah´e Y. M., et al., 2017, MNRAS, 470, 4186
+Baldry I. K., Glazebrook K., Driver S. P., 2008, MNRAS, 388, 945
+Baldry I. K., et al., 2012, MNRAS, 421, 621
+Barnes D. J., et al., 2017, arXiv.org, p. arXiv:1703.10907
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770, 57
+Bernardi M., Shankar F., Hyde J. B., Mei S., Marulli F., Sheth R. K., 2010,
+MNRAS, 404, 2087
+Bernardi M., Meert A., Sheth R. K., Vikram V., Huertas-Company M., Mei
+S., Shankar F., 2013, MNRAS, 436, 697
+MNRAS 000, 000–000 (0000)
+
+
+26
+Pillepich et al.
+Bernardi M., Meert A., Sheth R. K., Fischer J. L., Huertas-Company M.,
+Maraston C., Shankar F., Vikram V., 2017, MNRAS, 467, 2217
+Bocquet S., Saro A., Dolag K., Mohr J. J., 2016, MNRAS, 456, 2361
+Borgani S., Kravtsov A., 2011, Advanced Science Letters, 4, 204
+Bottrell C., Torrey P., Simard L., Ellison S. L., 2017, MNRAS, 467, 2879
+Budzynski J. M., Koposov S. E., McCarthy I. G., McGee S. L., Belokurov
+V., 2012, MNRAS, 423, 104
+Burke C., Hilton M., Collins C., 2015, MNRAS, 449, 2353
+Chabrier G., 2003, Publ. Astron. Soc. Pac., 115, 763
+Chiu I., et al., 2016, MNRAS, 458, 379
+Christensen C. R., Dav´e R., Governato F., Pontzen A., Brooks A., Munshi
+F., Quinn T., Wadsley J., 2016, ApJ, 824, 57
+Conroy C., Wechsler R. H., 2009, ApJ, 696, 620
+Conroy C., Wechsler R. H., Kravtsov A. V., 2007, ApJ, 668, 826
+Contini E., De Lucia G., Villalobos ´A., Borgani S., 2014, MNRAS, 437,
+3787
+Cooper A. P., Gao L., Guo Q., Frenk C. S., Jenkins A., Springel V., White
+S. D. M., 2015, MNRAS, 451, 2703
+Crain R. A., et al., 2015, MNRAS, 450, 1937
+Cui W., et al., 2014, MNRAS, 437, 816
+D’Souza R., Vegetti S., Kauffmann G., 2015, MNRAS, 454, 4027
+Davidzon I., et al., 2017, arXiv.org, p. arXiv:1701.02734
+Davis M., Efstathiou G., Frenk C. S., White S. D. M., 1985, ApJ, 292, 371
+De Lucia G., Blaizot J., 2007, MNRAS, 375, 2
+DeMaio T., Gonzalez A. H., Zabludoff A., Zaritsky D., Bradaˇc M., 2015,
+MNRAS, 448, 1162
+Dolag K., Borgani S., Murante G., Springel V., 2009, MNRAS, 399, 497
+Dolag K., Komatsu E., Sunyaev R., 2016, MNRAS, 463, 1797
+Dubois Y., et al., 2014, MNRAS, 444, 1453
+Evrard A. E., et al., 2002, ApJ, 573, 7
+Gallazzi A., Charlot S., Brinchmann J., White S. D. M., Tremonti C. A.,
+2005, MNRAS, 362, 41
+Genel S., et al., 2014, MNRAS, 445, 175
+Genel S., et al., 2017, preprint, (arXiv:1707.05327)
+Giodini S., et al., 2009, ApJ, 703, 982
+Gonzalez A. H., Sivanandam S., Zabludoff A. I., Zaritsky D., 2013, ApJ,
+778, 14
+Grand R. J. J., et al., 2017, MNRAS, 467, 179
+Grazian A., et al., 2015, A&A, 575, A96
+Guedes J., Callegari S., Madau P., Mayer L., 2011, ApJ, 742, 76
+Gunn J. E., Gott J. R. I., 1972, ApJ, 176, 1
+Hahn O., Martizzi D., Wu H.-Y., Evrard A. E., Teyssier R., Wechsler R. H.,
+2017, MNRAS, 470, 166
+Harikane Y., et al., 2016, ApJ, 821, 123
+Hopkins P. F., Kereˇs D., O˜norbe J., Faucher-Gigu`ere C.-A., Quataert E.,
+Murray N., Bullock J. S., 2014, MNRAS, 445, 581
+Hopkins P. F., et al., 2017, arXiv.org, p. arXiv:1702.06148
+Huang S., Leauthaud A., Greene J., Bundy K., Lin Y.-T., Tanaka M.,
+Miyazaki S., Komiyama Y., 2017, preprint, (arXiv:1707.01904)
+Ilbert O., et al., 2013, A&A, 556, A55
+Kajisawa M., et al., 2009, ApJ, 702, 1393
+Kereˇs D., Katz N., Dav´e R., Fardal M., Weinberg D. H., 2009, MNRAS,
+396, 2332
+Khandai N., Di Matteo T., Croft R., Wilkins S., Feng Y., Tucker E., DeGraf
+C., Liu M.-S., 2015, MNRAS, 450, 1349
+Kravtsov A. V., 2013, ApJ Letters, 764, L31
+Kravtsov A. V., Borgani S., 2012, ARAA, 50, 353
+Kravtsov A., Vikhlinin A., Meshscheryakov A., 2014, arXiv.org, p.
+arXiv:1401.7329
+Lackner C. N., Cen R., Ostriker J. P., Joung M. R., 2012, MNRAS, 425,
+641
+Laporte C. F. P., White S. D. M., Naab T., Gao L., 2013, MNRAS, 435, 901
+Larson R. B., Tinsley B. M., Caldwell C. N., 1980, ApJ, 237, 692
+Le Brun A. M. C., McCarthy I. G., Schaye J., Ponman T. J., 2014, MNRAS,
+441, 1270
+Leauthaud A., et al., 2012, ApJ, 744, 159
+Marinacci F., Pakmor R., Springel V., 2014, MNRAS, 437, 1750
+Marinacci F., Vogelsberger M., Mocz P., Pakmor R., 2015, MNRAS, 453,
+3999
+Martizzi D., Teyssier R., Moore B., 2012, MNRAS, 420, 2859
+Matthee J., Schaye J., Crain R. A., Schaller M., Bower R., Theuns T., 2017,
+MNRAS, 465, 2381
+McCarthy I. G., Schaye J., Bird S., Le Brun A. M. C., 2017, MNRAS, 465,
+2936
+Mihos J. C., Harding P., Feldmeier J., Morrison H., 2005, ApJ, 631, L41
+Montes M., Trujillo I., 2014, ApJ, 794, 137
+Montes M., Trujillo I., 2017, preprint, (arXiv:1710.03240)
+Moore B., Katz N., Lake G., Dressler A., Oemler A., 1996, Nature, 379,
+613
+More S., van den Bosch F. C., Cacciato M., Skibba R., Mo H. J., Yang X.,
+2011, MNRAS, 410, 210
+Morishita T., Abramson L. E., Treu T., Schmidt K. B., Vulcani B., Wang
+X., 2017, ApJ, 846, 139
+Mortlock A., Conselice C. J., Bluck A. F. L., Bauer A. E., Gr¨utzbauch R.,
+Buitrago F., Ownsworth J., 2011, MNRAS, 413, 2845
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS, 428, 3121
+Moster
+B.
+P.,
+Naab
+T.,
+White
+S.
+D.
+M.,
+2017,
+arXiv.org,
+p.
+arXiv:1705.05373
+Muzzin A., et al., 2013, ApJ, 777, 18
+Nelson D., et al., 2015, Astronomy and Computing, 13, 12
+Oser L., Ostriker J. P., Naab T., Johansson P. H., Burkert A., 2010, ApJ,
+725, 2312
+Pakmor R., Springel V., 2013, MNRAS, 432, 176
+Pakmor R., Springel V., Bauer A., Mocz P., Munoz D. J., Ohlmann S. T.,
+Schaal K., Zhu C., 2016, MNRAS, 455, 1134
+Pakmor R., et al., 2017, MNRAS, 469, 3185
+P´erez-Gonz´alez P. G., et al., 2008, ApJ, 675, 234
+Pillepich A., et al., 2014, MNRAS, 444, 237
+Pillepich A., et al., 2018, MNRAS, 473, 4077
+Planelles S., Borgani S., Fabjan D., Killedar M., Murante G., Granato G. L.,
+Ragone-Figueroa C., Dolag K., 2014, MNRAS, 438, 195
+Potter D., Stadel J., Teyssier R., 2017, ComAC, 4, 2
+Puchwein E., Sijacki D., Springel V., 2008, ApJ, 687, L53
+Puchwein E., Springel V., Sijacki D., Dolag K., 2010, MNRAS, 406, 936
+Ragone-Figueroa C., Granato G. L., Murante G., Borgani S., Cui W., 2013,
+MNRAS, 436, 1750
+Rasia E., et al., 2015, ApJ Letters, 813, L17
+Reddick R. M., Wechsler R. H., Tinker J. L., Behroozi P. S., 2013, ApJ,
+771, 30
+Rieder M., Teyssier R., 2016, MNRAS, 457, 1722
+Rodriguez-Gomez V., et al., 2015, MNRAS, 449, 49
+Rodriguez-Gomez V., et al., 2016, MNRAS, 458, 2371
+Rodr´ıguez-Puebla A., Primack J. R., Avila-Reese V., Faber S. M., 2017,
+MNRAS, 470, 651
+Santini P., et al., 2012, A&A, 538, A33
+Schaye J., et al., 2015, MNRAS, 446, 521
+Sembolini F., et al., 2016, MNRAS, 457, 4063
+Sijacki D., Vogelsberger M., Genel S., Springel V., Torrey P., Snyder G. F.,
+Nelson D., Hernquist L., 2015, MNRAS, 452, 575
+Skillman S. W., Warren M. S., Turk M. J., Wechsler R. H., Holz D. E.,
+Sutter P. M., 2014, arXiv.org, p. arXiv:1407.2600
+Springel V., 2010, MNRAS, 401, 791
+Springel V., Hernquist L., 2003, MNRAS, 339, 289
+Springel V., White S. D. M., Tormen G., Kauffmann G., 2001, MNRAS,
+328, 726
+Stinson G. S., Brook C., Macci`o A. V., Wadsley J., Quinn T. R., Couchman
+H. M. P., 2013, MNRAS, 428, 129
+The Planck Collaboration Ade P. A. R., et al., 2016, A&A, 594, A13
+Tinker J. L., et al., 2017, ApJ, 839, 121
+Tomczak A. R., et al., 2014, ApJ, 783, 85
+Torrey P., Vogelsberger M., Genel S., Sijacki D., Springel V., Hernquist L.,
+2014, MNRAS, 438, 1985
+Vogelsberger M., Genel S., Sijacki D., Torrey P., Springel V., Hernquist L.,
+2013, MNRAS, 436, 3031
+Vogelsberger M., et al., 2014a, MNRAS, 444, 1518
+MNRAS 000, 000–000 (0000)
+
+
+IllustrisTNG: the stellar mass content of galaxy groups and clusters
+27
+Vogelsberger M., et al., 2014b, Nature, 509, 177
+Wang L., Dutton A. A., Stinson G. S., Maccio A. V., Penzo C., Kang X.,
+Keller B. W., Wadsley J., 2015, MNRAS, 454, 83
+Weinberger R., et al., 2017, MNRAS, 465, 3291
+Weinmann S. M., Lisker T., Guo Q., Meyer H. T., Janz J., 2011, MNRAS,
+416, 1197
+Zibetti S., White S. D. M., Schneider D. P., Brinkmann J., 2005, MNRAS,
+358, 949
+Zu Y., Mandelbaum R., 2016, MNRAS, 457, 4360
+APPENDIX A: RESOLUTION STUDIES OF THE
+DIAGNOSTICS PRESENTED IN THIS PAPER
+In Section 3.3 we discussed the issue of numerical convergence,
+which has already been explored in some depth for the TNG model
+in Pillepich et al. (2018, Appendix A) and Weinberger et al. (2017,
+Appendix B). Broadly speaking, any given property of a simu-
+lated galaxy or galaxy halo may not be necessarily fully converged
+at the particular mass/spatial resolutions available in TNG100(-1)
+and TNG300(-1). We generally ﬁnd that both stellar masses and
+star formation rates increase with better resolution, for dark matter
+haloes of a ﬁxed mass. These effects are more severe at low masses,
+where systems may be ‘resolved’ with only 100 or 1000 resolution
+elements. And because the extended stellar components of galaxy
+groups and clusters, the main topic of this paper, are built up from
+the accreted remnants of less massive galaxy mergers, we add some
+additional details to better understand the relevant impact.
+Here, we demonstrate how we take full advantage of all runs
+of the IllustrisTNG series presented in this paper (see Table 1).
+A1
+Stellar masses
+Fig. A1 shows the convergence of the stellar mass to halo mass re-
+lation (top) and galaxy stellar mass function (bottom) at z = 0,
+following from Figures 11 and 14. All three resolution levels of
+TNG100 (blue lines, varying thickness) together with the overlap-
+ping resolutions of TNG300 as well as rTNG300 (orange lines) are
+included. TNG100-2 lies exactly on top of TNG300-1, and like-
+wise for TNG100-3 versus TNG300-2, indicating the same reso-
+lution pairs realized in different volumes behave identically. For
+the integral galaxy stellar mass within a given aperture, the inspec-
+tion of the ratio between TNG100(-1) and TNG100-2 reveals that,
+the stellar masses of galaxies in haloes ⩾1012.5M⊙in our ﬂag-
+ship TNG300 run are underestimated in comparison to TNG100 by
+about 40%, with no appreciable mass trend or dependence on the
+aperture over which the stellar mass is measured. A simple, con-
+stant multiplicative factor of ≃1.4 applied to e.g. TNG300-1 re-
+sults, shifting them to the TNG100-1 equivalents, would therefore
+offer an alternative, zeroth order correction for the observed stel-
+lar mass trends with resolution. Such ratio drops at larger redshifts,
+being as small as 1.3 (1.1) at z ∼1 (2). For smaller halo masses,
+however, the discrepancy due to resolution is larger and mass de-
+pendent. In this paper, for any observable involving estimating stel-
+lar masses (Ms) as a function of (bins of) halo mass (Mh) at a given
+redshift, we hence apply a mass-modulated rescaling procedure to
+derive rTNG300, as follows. For halo mass (bins) Mh ≲1014M⊙
+Ms(Mh; rTNG300) = Ms(Mh; TNG300) × Ms(Mh; TNG100-1)
+Ms(Mh; TNG100-2) ,
+(A1)
+whereas for halo mass (bins) Mh ⩾1014M⊙, the last fractional
+term of the equation is averaged across all haloes in the range
+1013M⊙⩽Mh ⩽1014M⊙. De facto, for the groups and clusters
+of galaxies studied in this paper, the rescaling reduces to a simple
+correction by 30-50 per cent at z = 0.
+In the case of the SMHM relation (Figure A1, top), rTNG300
+lies exactly on top of TNG100-1, as desired. The only discrepancy
+is at the high-mass end of TNG100 where the small volume of
+TNG100 leads to ﬂuctuations from low number statistics. A sim-
+ilar procedure is applied to the observables of e.g. Figure 9. When
+presenting z = 0.5 or z = 1 results, we have derived and applied
+the corrections at those times, with decreasing importance towards
+high redshift.
+For the galaxy stellar mass function φ at any given time
+(see Figure A1, bottom panel), the resolution-rescaled realization
+of TNG300 (rTNG300) is obtained by correcting on a halo-by-
+halo basis the stellar masses of each TNG300 haloes, according
+to Eq. (A1). This procedure returns a very similar answer to the al-
+ternative and more straightforward multiplication of the TNG300
+galaxy stellar mass function by a mass-constant factor, namely:
+φ(rTNG300) = φ(TNG300) × ⟨φ(TNG100-1)/φ(TNG100-2)⟩,
+where angle brackets denote averages across the entire galaxy stel-
+lar mass range.
+A2
+Stellar mass proﬁles
+Finally, Figure A2 shows two examples of stacked, 3D, enclosed
+stellar mass proﬁles in analogy to Figure 6. We include all three
+resolution levels of TNG100 (blue lines, varying thickness) and
+the two highest resolution of TNG300 (thin orange curves) to-
+gether with the rescaled rTNG300 (thick dotted orange). We re-
+assuringly see that the stacked proﬁles of TNG300(-1) are iden-
+tical to those of TNG100-2 in the same halo mass bins, as these
+two simulations have the same numerical resolution. Likewise, the
+two stacked proﬁles at TNG300-2 resolution are in good agree-
+ment with those from TNG100-3. For the proﬁles, we use infor-
+mation also on the radial behaviour of TNG100-2 vs TNG100(-
+1) to obtain a resolution-rescaled version of TNG300. Namely, we
+measure the ratio of the proﬁles in TNG100(-1) to TNG100-2 in
+bins of radial distance, and hence the rescaling factor is allowed
+to be modulated with cluster centric distance and to differ at dif-
+ferent radii. The standard rescaling prescribed in Eq. A1 would
+simply underestimate in a non-negligible fashion the rescaling at
+a few kpc from the centres, i.e. rTNG300 proﬁles would appear
+too low at radii smaller than a few kpc, and visibly so in the not
+normalised plots of Figures 6 and A2. With the appropriate proce-
+dure, the two rTNG300 proﬁles are in excellent agreement with the
+TNG100-1 results, particularly at masses where enough TNG100-1
+haloes exist to robustly estimate the mass distributions in the aver-
+age. For halo masses above 1014M⊙, we apply a radial-dependent
+correction informed by the comparison of the stacked proﬁles in
+TNG100(-1) and TNG100-2 averaged in the well-sampled mass bin
+1013M⊙⩽Mh ⩽1014M⊙.
+In Figure A2, the only visible discrepancy is at small radii, less
+than a few kpc and < 1 kpc in particular. In fact, different resolu-
+tions may disagree on the exact shapes and on the ﬁrst derivatives of
+the stellar proﬁles in certain distance ranges. Even with a rescaling
+procedure we cannot a priori fully trust the results at TNG100-2
+resolution in the innermost regions of galaxies. Here we observe
+that the stellar masses of the inner bulges of rTNG300 proﬁles may
+indeed be too large due to a breakdown of the rescaling procedure
+at the halo centers. With our best stellar softening length ﬁxed at
+about 0.7 (1.4) kpc at our the resolutions of TNG100 (TNG300),
+we cannot in any case claim any quantitative or qualitative numer-
+ical convergence at radii smaller than about 2.8 times the softening
+MNRAS 000, 000–000 (0000)
+
+
+28
+Pillepich et al.
+1010
+1011
+1012
+1013
+1014
+1015
+Total Halo Mass [ M200c ] [ Msun ] 
+0
+0.05
+0.1
+0.15
+0.2
+0.25
+0.3
+Mstars / Mhalo (+b / +m)-1
+Behroozi+ 2013
+Moster+ 2013
+Kravtsov+ 2014 (AM)
+Rodriguez-Pueblas et al 2017
+Moster et al. 2017
+z = 0
+ < 30 kpc
+ TNG100
+ TNG100-2
+ TNG100-3
+ TNG300
+ TNG300-2
+ rTNG300
+108
+109
+1010
+1011
+1012
+Galaxy Stellar Mass [ Msun ] [< 2 x rstars,1/2]
+10-6
+10-5
+10-4
+10-3
+10-2
+10-1
+) [ Mpc-3 dex-1 ]
+Baldry+ 2008 (SDSS, z~0)
+Baldry+ 2012 (GAMA, z<0.05)
+Bernardi+ 2013 (SDSS)
+D Souza+ 2015 (SDSS, z~0.1)
+z ~ 0
+ TNG100
+ TNG100-2
+ TNG100-3
+ TNG300
+ TNG300-2
+ rTNG300
+Figure A1. Resolution effects and comparison across cosmological vol-
+umes on some of the galaxy statistics presented in this paper. Top: SMHM
+relation at z = 0; bottom: galaxy stellar mass function at z = 0. In each
+panel, we show the results from all our resolution runs (see Table 1). As a
+reminder, TNG100-2 and the ﬂagship TNG300 run share the same spatial
+and mass resolutions, as well as TNG100-3 and TNG300-2, respectively
+8 and 64 times worse particle mass resolution than the highest resolution
+run of the series: TNG100. Better resolution implies larger stellar masses
+at ﬁxed halo mass (top), but different volumes at the same resolution return
+perfectly consistent results. We therefore use the comparisons on a pop-
+ulation basis between TNG100 and TNG100-2 to estimate by how much
+TNG300’ stellar masses are underestimated. Throughout this paper, curves
+denoted ‘rTNG300’ (here dotted) represent the TNG300 results multiplied
+by a resolution correction function informed by the comparison between
+TNG100 and TNG100-2 on the same statistics or observable.
+length. Although the rescaled proﬁles of TNG300 agree with the
+proﬁles of TNG100 to better than 10-20 per cent also in the 2 −4
+kpc range, we ﬁx at 2 and 4 kpc our spatial resolution limits - indi-
+cated as shaded areas. We will restrict our investigation, including
+the various quantitative ﬁts to stellar mass proﬁles, to outside the
+2 −4 kpc regime, where we expect of order a few per cent accu-
+racy or better.
+When both stellar mass and radial apertures are renormalized
+to the total stellar mass and the virial radius, respectively (as in
+Fig. 6, top left panel), the large radii behaviour (i.e. beyond one
+per cent of the virial radius) is well captured also at TNG300
+resolution, at least in the overlapping mass bins we can test (not
+shown). Analogously, for the 3D stellar mass density proﬁle
+(Fig. 6, top right panel), rTNG300 seems to return a more faithful
+100
+101
+102
+radius [kpc]
+1010
+1011
+1012
+3D M stars (< radius) [Msun]
+M200c ~ 1.4e+13 Msun (' 0.2 dex)
+R200c ~ 5.0e+02 kpc
+TNG100
+TNG100-2
+TNG100-3
+TNG300
+TNG300-2
+rTNG300
+100
+101
+102
+radius [kpc]
+1010
+1011
+1012
+3D M stars (< radius) [Msun]
+M200c ~ 6.0e+13 Msun (' 0.2 dex)
+R200c ~ 8.2e+02 kpc
+TNG100
+TNG100-2
+TNG100-3
+TNG300
+TNG300-2
+rTNG300
+Figure A2. Resolution effects and comparison across cosmological vol-
+umes on some of the galaxy statistics presented in this paper: here we fo-
+cus on the stellar mass proﬁles in two mass bins where TNG100(-1) and
+TNG100-2 offer good statistics (annotations as in Figure 6). The shaded ar-
+eas below ≲2−4 kpc indicate the regions where our spatial resolutions do
+not allow us precise statements.
+estimate of the amplitude (although not necessarily of the shape)
+of the proﬁles within about 10 kpc, while providing large scale
+proﬁles in very good agreement with its lower version TNG300.
+In closing, it is worthwhile to emphasise that, while the incom-
+plete resolution convergence of TNG300 is undoubtably a limita-
+tion of our model, the needed rescaling factors of ≲1.4 described
+thus far are rather small. In practice, they are comparable or smaller
+than the ratios between different choices of a galaxy’s stellar mass
+deﬁnition (e.g. within 30 kpc vs. within 10 kpc for 1014M⊙haloes,
+see e.g. Fig. 11). Else, the massive end of the z = 0 GSMF is mod-
+iﬁed to a lesser degree by the resolution rescaling described in this
+Appendix than the current discrepancies across different observa-
+tional measurements above galaxy stellar masses of 1011M⊙. We
+argue that the determinism of our simulated results – both at equal
+resolutions in different (large) volumes and at different resolutions
+in the same volume – is a powerful feature of our numerical model:
+it allows us to infer to a good level of accuracy how the model func-
+tions at increasingly better resolution by knowing how it performs
+at lower resolutions.
+MNRAS 000, 000–000 (0000)

@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "packet_id": "goru-options-pilot-20260711T102412Z",
+  "role": "Bounded LOCAL-ONLY comparison of Goru's three alternative options via transport-free surrogate pilots; browser-free, network-free, no Google/Gemini interaction",
+  "author": "Hwao (coordinator only; packet generation + local test design, no execution/browsing/dispatch)",
+  "commissioned": "Duho direction 2026-07-11 + safety-correction addendum (same day)",
+  "packet_written_utc": "2026-07-11T10:31:51Z",
+  "standing_state": {
+    "verification_hard_stop": "UNCLEARED (../gemini-web-rampage-extension-20260711T064115Z/RAMPAGE_EXT_HARD_STOP_VERIFICATION_20260711T093749Z)",
+    "joint_canary_packet": "../gemini-web-joint-burn-recovery-20260711T100139Z (NOT_ARMED)",
+    "browser_google_gemini": "FORBIDDEN packet-wide, all options, all phases",
+    "weekend_macro": "ruthless_weekend_burn.py read-only audit input; never executed; its 93 identical-sha256 outputs invalid/audit-only"
+  },
+  "options": [
+    {
+      "id": "OPTION-1",
+      "goru_mechanism": "reverse-engineered gemini-webapi/google-bard-api wrappers",
+      "live_transport": "__Secure-1PSID/__Secure-1PSIDTS cookies + direct undocumented Google RPC",
+      "live_status": "INADMISSIBLE-LIVE => REJECT-for-live regardless of surrogate outcome",
+      "surrogate_lane": "localhost python stdlib mock HTTP returning canned JSON; base URL overridden off Google; synthetic tokens only (DUMMY_1PSID_DO_NOT_USE); no real cookie/secret ever; PAPER_ONLY_NOW if it cannot be pointed off Google"
+    },
+    {
+      "id": "OPTION-2",
+      "goru_mechanism": "stealth Playwright/Puppeteer with copied live Chrome profile to evade anti-bot",
+      "live_transport": "cloned live profile + stealth/evasion driving Google UI",
+      "live_status": "INADMISSIBLE-LIVE => REJECT-for-live regardless of surrogate outcome",
+      "surrogate_lane": "localhost/file static fixture page with FRESH ephemeral profile under tests/; no stealth plugins; no copied profile; no Google; runs ONLY if stack already installed (no install under this packet) else PAPER_ONLY_NOW"
+    },
+    {
+      "id": "OPTION-3",
+      "goru_mechanism": "virtual/dummy display + AppleScript/System Events GUI automation",
+      "live_transport": "display reconfiguration + Accessibility/System Events + Chrome + Google",
+      "live_status": "SEPARATELY-GATED-LIVE (not tested here; any GUI/display/Accessibility/Chrome/Google step needs a future Duho-gated packet)",
+      "surrogate_lane": "dry-run fixture harness (decision logic) with NO Google/Chrome/System Events/Accessibility/display-reconfig/install/kext, plus goru/OPTION-3_DISCOVERY.md documenting (not invoking) the GUI mechanics"
+    }
+  ],
+  "non_equivalence_binding": "A surrogate/mock/benign-local PASS proves only transport-free decision-logic soundness against synthetic fixtures. It is NOT a Gemini success, NOT anti-bot survival evidence, NOT authorization for live Google/Gemini use. Options 1 & 2 stay REJECT-for-live (banned transport); Option 3 benign PASS can at most justify a SEPARATE Duho-gated packet, never a direct live run. Verbatim in DIRECTION §6 and DECISION_MATRIX.md.",
+  "phases": {
+    "phase0_blocking": "Goru fills goru/OPTIONS_DECLARATION.md (surrogate mechanics per option) per OPTIONS_DECLARATION_TEMPLATE.md; Tori admissibility review; Hwao records surrogate class {SURROGATE_TESTABLE|MOCK_ONLY|PAPER_ONLY_NOW|INADMISSIBLE}; marker ADMISSIBILITY_VERDICT_<UTC>Z required before any Phase-1 run",
+    "phase1_tests": ["T1 state classification", "T2 exact-target custody", "T3 fail-closed walls", "T4 capture integrity (anti-93-hash)", "T5 bounds & instrumentation"],
+    "bounds": "sequential OPTION-1->2->3; <=5 min wall clock per test-run; <=20 MB per option; loopback 127.0.0.1 only for Option-1 mock/Option-2 localhost lanes; zero other network; one re-run only for a Tori-confirmed harness defect"
+  },
+  "roles": {
+    "hwao": "coordinator/packet author; compiles DECISION_MATRIX.md + COMPARISON.md; executes nothing",
+    "goru": "Phase-0 declaration; transport-free shims + harness runs under goru/ and tests/results/; receipts. Banned from all of DIRECTION §0",
+    "tori": "independent verifier (admissibility, receipt/hash re-check, loopback-only attestation, countersigned matrix), hard-stop executor; does not run Goru's code for him"
+  },
+  "read_only_ground_truth": {
+    "note": "fixtures + EXPECTED_VERDICTS.json + targets.json are READ-ONLY; editing them is a hard-stop offense; Tori re-hashes before scoring",
+    "tests/gen_fixtures.py": "4a8fb033fec2fdab54faa0f0d0e34fd929f3a8ce6c20611fa2234df55397482a",
+    "tests/fixtures/EXPECTED_VERDICTS.json": "863b0f18c95a83904cac230e4461199f81bd5f9fff89f626fc6216cfd8e19c81",
+    "tests/fixtures/targets.json": "1540e61fd3c41b68094ab6d3889778582eaa4420a272b402e4b34bd7edd08c49",
+    "tests/fixtures/fx_composer_idle.html": "d00d270cc0cd1c37a9ab9bdb34ce6fa5819ac355f3d4e129521279e423499175",
+    "tests/fixtures/fx_composer_dr_active.html": "31f711f62ca54c7279a6ae9a12dc2b98b0fbdfd6863dd6d04876d24bcec97ea7",
+    "tests/fixtures/fx_plan_ready.html": "290d41984a0ea0723bf1c1c1360d21df11c7e82350a3150c317f93c02c343e4f",
+    "tests/fixtures/fx_running.html": "105196a519e7ce8478fc333da57e80f3113defd12e0d8e25b8153938397557fb",
+    "tests/fixtures/fx_ack_no_control.html": "5518b3d531618da11ab6228463ff48a01effe5dd63bd46e344f601e314fd3de7",
+    "tests/fixtures/fx_complete_ok.html": "819329cbf81100b7383792fadda7de7fd38a6b80e566b9e3c571d5f86b7fe32f",
+    "tests/fixtures/fx_complete_marker_missing.html": "1355d299a54e532f35eff43cdad5c84ba86e1746c9746baea96fbe85a059e899",
+    "tests/fixtures/fx_complete_marker_dup.html": "3a00e0297e691a03796619f3a9dfd8eeaf266cc1e881903f17570e30cea85000",
+    "tests/fixtures/fx_verification_wall.html": "ba78317857bbc1ce6a58ab92224c253fd21991e1fe981f885648119b5c9b9c4a",
+    "tests/fixtures/fx_billing_upsell.html": "19df3e7afac998b6f81a1714066ec10c2c9c4d30a92c14bc157bbc4bc76becc1",
+    "tests/fixtures/fx_login_wall.html": "63fb8a4f0cb78e0333bb49fcefe668fd1afe03391e9fa6d1cc6af509c9e42b4a",
+    "tests/fixtures/fx_stale_dom.html": "072c24f12cf211830c28c8f3e71a2610c3c2ea054a23cb51cf5829b9ddfbdb7e"
+  },
+  "packet_files": {
+    "DIRECTION.md": "2b2052fb7487d1b36b0678010ef8f70b59b7b56d74b76db87e77975c6dc79ec6",
+    "OPTIONS_DECLARATION_TEMPLATE.md": "a91f23fd98ad2233bd029189621b7850b402fc64a262924893da6f4385d79854",
+    "TEST_DESIGN.md": "6776db65ed1181fe6b6f0d2c8947b0dac7559cd91ce7cc2306a7749fe99165a7",
+    "DECISION_MATRIX.md": "65ec02e9dc566291860907c70e0870ad3c5082ae8a1f7c6548d523852554dad8",
+    "WAVE_LEDGER.md": "12a9e3811fe0d28ec5fd8d319845549fc6c6370f5b4aa67d048af4efd1723743 (seed rows; append-only thereafter)"
+  },
+  "markers": {
+    "ready": "HWAO_GORU_OPTIONS_PILOT_READY_20260711T102412Z",
+    "phase0_done": "GORU_OPTIONS_DECLARED_<UTC>Z",
+    "admissibility": "ADMISSIBILITY_VERDICT_<UTC>Z",
+    "normal_end": "PILOT_TESTS_COMPLETE_<UTC>Z",
+    "hard_stop_pattern": "PILOT_HARD_STOP_<REASON>_<UTC>Z"
+  },
+  "verdict_vocabulary": ["REJECT_LIVE__SURROGATE_PASS", "REJECT_LIVE__SURROGATE_FAIL", "REJECT_LIVE__SURROGATE_NOT_RUN", "ELIGIBLE_FOR_SEPARATELY_GATED_NEXT_STEP", "NEEDS_REWORK", "REJECT"],
+  "locks": {
+    "outputs": "raw/advisory under this root only; no adjudication/integration during generation; all prior quarantines remain; 93 macro outputs invalid/audit-only forever",
+    "no_writes": ["DB", "wiki", "candidates", "SPRINT_STATUS", "runner/runtime PID 45665", "git", "publish/deploy", "cron", "cloud/GCP", "billing", "account", "credentials", "extensions"],
+    "no_install_no_kext_no_display_reconfig_no_accessibility_no_chrome": true,
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/goru-options-pilot-20260711T102412Z/ (temp files _tmp_* inside)"
+  }
+}

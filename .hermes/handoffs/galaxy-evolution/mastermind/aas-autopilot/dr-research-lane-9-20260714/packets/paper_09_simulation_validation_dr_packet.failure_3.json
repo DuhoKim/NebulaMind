@@ -1,0 +1,37 @@
+{
+  "actions_not_taken": [
+    "no .tex edit",
+    "no DB write",
+    "no autopilot-lane mutation",
+    "no auto-apply"
+  ],
+  "advisory_only": true,
+  "error": "Start research acceptance not positively confirmed",
+  "error_class": "PaperFailure",
+  "failed_utc": "2026-07-14T14:12:52.787946Z",
+  "global_challenge_stop": false,
+  "identity": {
+    "captured_title": "# Deep Research prompt - Paper 09: SDSS target vector for feedback-model validation You are the **research lane** for a NebulaMind Galaxy-Evolution manuscript. Operate **read-only**. Build a rigorous, fully source-grounded literature packet that strengthens this specific paper. Do NOT edit files, re-run analysis, or produce new measurements. Produce a literature/source packet only, in the exact output format at the end. This paper is one of a nine-paper SDSS suite; it is a **guarded optical denominator / proxy** draft, not a completed physical-feedback paper. **Title:** SDSS target vector for feedback-model validation (proposal: \"Forward-modelled validation of cosmological feedback prescriptions\"). **Operational question:** What compact SDSS target vector of quenched fraction, optical AGN incidence, and colour versus mass/redshift can be used for forward-model validation? The output is an observed target vector; NO simulation mock has been forward-modelled or ranked here. ## Hard numeric invariants (do NOT contradict or restate as your own findings) - The pilot writes 15 mass-redshift cells with n >= 50 as a compact validation vector. - Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520. - Any valid simulation comparison must pass mocks through the same optical S/N and fiber-aperture selection function used here. ## Current citations in the paper `tng2019, eagle2015, simba2019, imanga2023, donnari2021, dubois2013, dubois2016` (simulations / mock methods) plus SDSS backbone. Add NEW sources. ## What to find Prioritise 2023-2025. Focus on: (1) cosmological-simulation feedback prescriptions (IllustrisTNG, EAGLE, SIMBA, Horizon-AGN successors) and their predicted quenched fraction / AGN incidence vs mass and redshift; (2) forward-modelling / mock-observation pipelines that apply SDSS/MaNGA/ALMA/X-ray/radio selection functions and aperture/noise models; (3) published quenched-fraction and AGN-fraction target statistics suitable for comparison. Simulation data are future-comparison motivation, not a completed comparison here. **Shared data scope (all nine papers - do not contradict):** Public SDSS DR17 only (spectroscopy, photometry, emission-line measurements, MPA-JHU-style `galSpecExtra`; stellar mass and sSFR from catalog `lgm_tot_p50` / `specsfr_tot_p50`). Redshift 0.02 < z < 0.12; 3-arcsec fiber (~1.2-6.5 kpc) so measurements are fiber-centered, not global. BPT four-line classes from Halpha, Hbeta, [O III]lambda5007, [N II]lambda6584. The analysis table is a **non-random 60,000-row cap** ordered by `specObjID` = **24.0%** of the strict four-line S/N>=3 parent of **249,917** galaxies. The four-line cut is strongly sSFR-dependent (keeps 33.6% of the -12<log sSFR<-11 bin but 94.9% of the -10<log sSFR<-9.5 bin), so every fraction is conditional on optical emission-line selection and is NOT volume-complete. ## Discipline rules (mandatory) - **Real-data-only.** Never introduce mock, synthetic, fake, placeholder, or toy data. Never invent numeric values, sample sizes, DOIs, arXiv IDs, ADS bibcodes, journal volumes/pages, or URLs. - **Verifiable identifiers only.** Every source must carry at least one checkable public identifier (DOI, arXiv ID, ADS bibcode, journal vol/page, or stable URL). If you cannot verify a source or its identifier, **omit it** or mark it explicitly \"unverified / do not integrate\" - never fabricate to fill a slot. - **Association-not-causal / denominator-not-mechanism.** This paper reports an optical association / optical denominator or target vector, NOT a causal physical-feedback result. Do not phrase any suggestion as if it established a physical mechanism, and do not contradict or restate the paper's numeric invariants as your own findings. - **Literature = future-observable motivation, not a measured NebulaMind result.** Literature can motivate future work; it cannot create a measured NebulaMind quantity. Radio, X-ray, CO/HI, resolved-outflow, halo/group, and simulation sources are strictly future-data motivation unless those data are actually present here (they are not). - **Prioritise 2023-2025 work**, adding foundational sources only where they carry the argument. - **Role-tag every source** with exactly one of: `method-support`, `interpretation-caveat`, `future-data-motivation`, `not-usable`. - Read-only: do not edit files, request credentials, publish/deploy/commit, or write DB/API/wiki/trust/cron/billing. ## Required output format (produce exactly these four sections) **Section 1 - Source-Grounded Literature Packet.** For EACH source, a block: - `Source N:` Authors (Year, Journal, Volume, Page) - `Identifier:` DOI and/or arXiv ID and/or ADS bibcode (at least one checkable ID; give more when available) - `Role:` one of {method-support | interpretation-caveat | future-data-motivation | not-usable} - `Stance / Rationale:` 1-3 sentences tying it to THIS paper's claim boundary (the measured invariant above, a named selection caveat, or a named missing observable). **Section 2 - Missing Real Observables Assessment.** Bulleted list of the specific observables this paper names as absent (see the paper's \"full proposal requires\" list) that would be needed to turn the optical denominator/association into a physical inference. State explicitly that these are **absent from the SDSS-only inventory** and must NOT be written as measured results. **Section 3 - Wording Improvements and Citation Insertions.** For each suggestion: quote (or closely paraphrase) the paper's current sentence, then give an exact safe replacement inserting `\\citep{...}` (use hedged forms like `\\citep[e.g.,][]{key}` for motivation). Wording must preserve the conditional, denominator-only framing. **Section 4 - No-Mock-Data Receipt and Safety Ledger.** Affirm: no mock/synthetic/fabricated data or citations; every identifier is verifiable; the paper's invariants were left unchanged; and the run was read-only (no file edits, DB, API, git, deploy, cron, billing, or credential access).",
+    "conversation_id": "c41e8761b6e1ad6e",
+    "conversation_path": "/app/c41e8761b6e1ad6e",
+    "identity_evidence": {
+      "evidence": "exact_current_route_plus_prompt_document_title_prefix_plus_single_user_query_plus_settled_plan",
+      "page_challenge": false,
+      "pre_freeze_message_lengths": [
+        1901
+      ],
+      "pre_freeze_probe_path": "/app/c41e8761b6e1ad6e",
+      "pre_freeze_start_research_count": 1,
+      "pre_freeze_user_query_count": 1
+    },
+    "page_challenge_after_submit": false,
+    "prompt_file_sha256": "717d6ba9891c1bf30d29dd01ba8486a2877c9e3a142f1cba2ae5b3bbd0b15e51",
+    "prompt_sha256": "59890f1a587cca5c38ab42e826b659134e49336693fc7f7643ae7c264a51672f",
+    "submit_account_lease_id": "L00270",
+    "submit_ledger_entry_sha256": "48616d824d6554de08a47c42fcdb951ffa1b2cf0f9e26da8ea2896146ddef052",
+    "submit_ledger_epoch": 1569,
+    "submit_utc": "2026-07-14T13:34:17Z",
+    "target_id": "C92443095EE9116210C178D855DF3329"
+  },
+  "paper_id": "paper_09"
+}

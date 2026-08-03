@@ -1,0 +1,142 @@
+{
+  "marker": "GALAXY_EVOLUTION_PGR_P5_2931_DEDUPE_SPEC_20260706T151025Z",
+  "created_utc": "2026-07-06T15:10:25Z",
+  "status": "prepared_static_docs_only_no_execution",
+  "method": "Method1 / PGR / packet-gated paper-to-wiki reconciliation",
+  "approval_phrase_accepted": "APPROVE METHOD1 P5 DOCS-ONLY 2931 DEDUPE SPEC",
+  "previous_method_phrase": "APPROVE METHOD1 P4 DOCS-ONLY TRUST LEVEL ROUTE-CONSISTENCY GUARD SPEC",
+  "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "safety": {
+    "db_writes": 0,
+    "sql_authored_or_apply_rollback": 0,
+    "migration": 0,
+    "trust_recompute": 0,
+    "product_code_changes": 0,
+    "live_wiki_or_page_versions": 0,
+    "deploy_publish_restart": 0,
+    "git_commit_push_merge": 0,
+    "prod_cloud_api_mutation": 0,
+    "cross_method_or_shared_parent_writes": 0,
+    "live_api_network_checks": 0,
+    "evidence_row_mutations": 0,
+    "pins_created_or_changed": 0
+  },
+  "p5_scope": {
+    "topic": "2931 / 1308.5224v1 triplicate evidence dedupe",
+    "target_claim": 2931,
+    "target_claim_text": "Galaxy quenching is jointly regulated by internal mass-linked processes and environment-linked processes; the separability and relative priority of those channels depend on sample selection, redshift, and how quenching is measured.",
+    "target_claim_trust": "debated",
+    "target_source": "1308.5224v1",
+    "target_evidence_ids": [
+      28099,
+      28154,
+      28161
+    ],
+    "current_claim_evidence_count": 20,
+    "dedupe_candidate_count": 3,
+    "route_decision": "docs_only_dedupe_spec; future packet must choose Route K, M, or N after payload/dependency review; no route executed here",
+    "default_canonical_candidate": 28099,
+    "pin_wave2_coordination": "Pin only the designated canonical row; if a pin already exists on another row at packet time, that pinned row must become the survivor or the packet must fail.",
+    "no_relink_to_other_claim": "No successor/misattachment route is in evidence here; relink to another claim is not part of this spec."
+  },
+  "target_rows": [
+    {
+      "evidence_id": 28099,
+      "claim_id": 2931,
+      "source_id": "1308.5224v1",
+      "arxiv_id": "1308.5224v1",
+      "stance": "none",
+      "status": "active",
+      "pin_status": "READY_TO_PIN",
+      "existing_pin_count": 0,
+      "vote_count": 0,
+      "support_votes": 0,
+      "counter_votes": 0,
+      "title": "arXiv:1308.5224",
+      "snapshot_summary": "[page58_neutral_seed_v1 gold_id=stance2b-042] Thus, in showing a strong correlation between quenching and inner mass surface density (Section 3 ), we do not conclude that high mass density definitively causes quenching, but rather only that it tends to predict it.",
+      "snapshot_votes_agree": 0,
+      "snapshot_votes_disagree": 0,
+      "snapshot_comments_count": 0,
+      "snapshot_link_count": 0,
+      "snapshot_element_links": []
+    },
+    {
+      "evidence_id": 28154,
+      "claim_id": 2931,
+      "source_id": "1308.5224v1",
+      "arxiv_id": "1308.5224v1",
+      "stance": "none",
+      "status": "active",
+      "pin_status": "READY_TO_PIN",
+      "existing_pin_count": 0,
+      "vote_count": 0,
+      "support_votes": 0,
+      "counter_votes": 0,
+      "title": "arXiv:1308.5224",
+      "snapshot_summary": "[page58_neutral_seed_v1 gold_id=stance2b-121] Indeed, existing quenching scenarios predict either very little stellar mass growth or at most a doubling of stellar mass (via major mergers) between the blue and red sequences (see Section 3 for further discussion).",
+      "snapshot_votes_agree": 0,
+      "snapshot_votes_disagree": 0,
+      "snapshot_comments_count": 0,
+      "snapshot_link_count": 0,
+      "snapshot_element_links": []
+    },
+    {
+      "evidence_id": 28161,
+      "claim_id": 2931,
+      "source_id": "1308.5224v1",
+      "arxiv_id": "1308.5224v1",
+      "stance": "none",
+      "status": "active",
+      "pin_status": "READY_TO_PIN",
+      "existing_pin_count": 0,
+      "vote_count": 0,
+      "support_votes": 0,
+      "counter_votes": 0,
+      "title": "arXiv:1308.5224",
+      "snapshot_summary": "[page58_neutral_seed_v1 gold_id=stance2b-128] For example, below a critical stellar mass, M ∗ ∼ 3 × 10 10 ​ M ⊙ similar-to subscript 𝑀 3 superscript 10 10 subscript 𝑀 direct-product M_{*}\\sim 3\\times 10^{10}\\,M_{\\odot} , galaxies typically are young and actively forming stars, while above this value, galaxies are predominantly old and not star-forming (Kauffmann et al., 2003b ) .",
+      "snapshot_votes_agree": 0,
+      "snapshot_votes_disagree": 0,
+      "snapshot_comments_count": 0,
+      "snapshot_link_count": 0,
+      "snapshot_element_links": []
+    }
+  ],
+  "route_options": {
+    "K_keep_one_canonical_row": {
+      "summary": "Keep one canonical row, default candidate 28099 unless payload review proves another row is the correct/richer survivor; retire the other two with audit notes.",
+      "evidence_row_delta_if_executed": "20 -> 18 for claim 2931; global atlas evidence rows 397 -> 395 per source spec",
+      "not_authorized_here": true
+    },
+    "M_merge_then_retire": {
+      "summary": "Merge any materially distinct locator/snippet/notes text into the survivor, then retire the other two with audit notes.",
+      "evidence_row_delta_if_executed": "20 -> 18 for claim 2931; global atlas evidence rows 397 -> 395 per source spec",
+      "not_authorized_here": true
+    },
+    "N_no_op_linked_set": {
+      "summary": "If Lana/source-payload review finds the three rows are materially distinct locators/snippets, leave all three and mark/track them as a linked set; withdraw dedupe.",
+      "evidence_row_delta_if_executed": "no row-count change",
+      "not_authorized_here": true
+    }
+  },
+  "future_packet_requirements": [
+    "Fresh before-state capture for claim 2931 and evidence rows 28099, 28154, and 28161 at packet time.",
+    "Verify all three rows still have claim_id=2931, source/arxiv_id=1308.5224v1, stance=none, status=active, and pin_status compatible with the selected route.",
+    "Verify votes/support/counter remain zero for all three rows; any new vote invalidates the prepared packet.",
+    "Enumerate comments, element links, jury scorecards, evidence_votes, evidence_comments, evidence_element_links, pin ledger rows, page citations, and fact-source references as exact counts, not assumptions.",
+    "Capture full-row payload diffs, including summary/snippet/quote/notes/metadata, before selecting Route K, M, or N.",
+    "Preserve neutral_context role for wave-2 pinning; no stance drift from none/neutral context to support/refute.",
+    "If any row has already been pinned, that row must be the survivor or the future packet must stop.",
+    "No trust recompute, no prose/page publish, and no P4 trust-level fix bundled into the dedupe packet unless a later user explicitly opens a combined high-risk gate.",
+    "Any future DB mutation needs a separate exact write packet, validator/checksum/drift PASS, and a separate literal user approval phrase."
+  ],
+  "input_artifacts_read": [
+    "docs/hwao_overnight_db_packet_prep_20260705T1615Z/DEDUPE_1308_5224v1_TRIPLICATE_SPEC.md",
+    "docs/hwao_overnight_db_packet_prep_20260705T1615Z/DB_PACKET_PREP_TARGETS.md",
+    "docs/hwao_overnight_db_packet_prep_20260705T1615Z/DB_PACKET_PREP_TARGETS.json",
+    "docs/galaxy_v2_live_qa_20260702T034618Z/snapshots/claim_2931_evidence.json",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/pgr-current-page-inventory-20260706T130610Z.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/p4-trust-level-route-consistency-guard-spec-20260706T150328Z.md"
+  ],
+  "next_method_phrase": "APPROVE METHOD1 P6 DOCS-ONLY BLOCKER CHAIN READINESS REVIEW",
+  "next_method_phrase_scope": "Method1-local blocker-chain readiness docs/static/handoff review only; no DB/SQL/trust/live wiki/page_versions/deploy/restart/git/prod/cloud/API/cross-method/shared-parent writes."
+}

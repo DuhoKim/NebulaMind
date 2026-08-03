@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "status": "FRESH_PREFLIGHT_REVERIFIED_RESTART_APPROVAL_REQUIRED",
+  "checked_at_utc": "2026-08-02T16:54:08Z",
+  "run_id": "frontier-scope-correction-20260802T154833Z",
+  "coordination": {
+    "hwao_fable_pane_available": false,
+    "observed_tmux_sessions": [
+      "ge-autopilot",
+      "ge-autopilot-dashboard-renderer",
+      "ge-mastermind",
+      "ge-pipeline-board-renderer",
+      "ge-provider-usage-monitor",
+      "goru-agy",
+      "mesh-ge-m1-packet",
+      "mesh-ge-m2-source",
+      "mesh-ge-m3-debate"
+    ],
+    "continuation_mode": "Tori bounded verification under direct user instruction; no planning, deploy, restart, canonical apply, Git write, DB write, scheduler write, or cockpit write"
+  },
+  "frozen_custody": {
+    "receipt_sha256": "d160a85f4445f39cc05ec273d5f22d3d495d1803ee750520e864f7f36f7d014c",
+    "manifest_sha256": "b01dafed5cd86d65babe06e63d3fb6aff307084ac0959f018e61d3423ac97006",
+    "review_patch_v5_sha256": "889e0cf06b0e0a768706cdb14c791a363486f0884ef4a60a5ea1bd17d4624cac",
+    "independent_review_v5_sha256": "d2e371b068d402059133ab2ddc6a58949a8d75994763c16ecfefe94a8c1a1a46",
+    "immutable_files_still_read_only": true
+  },
+  "fresh_verification": {
+    "live_source_v5_reverse_check": "PASS",
+    "focused_scope_test": "PASS: galaxy_frontier_scope_ok",
+    "typescript_no_emit": "PASS",
+    "candidate_build": {
+      "build_id": "aNNAOJzzSRMQDzgANAtuv",
+      "tree_sha256": "c70106d85e7c41a6422e43f27596c0643c6e479035bed56595fe461b3e44b556",
+      "files": 423,
+      "bytes": 234668009,
+      "matches_frozen_receipt": true,
+      "temporary_http_3011": 200
+    },
+    "hydrated_cdp_probe": {
+      "status": "PASS",
+      "title": "The pipeline — NebulaMind",
+      "visible_core_row_count": 8,
+      "visible_order": [
+        "JWST high-redshift galaxy evolution and emission",
+        "Massive quiescent galaxy evolution in clusters",
+        "ALMA SMGs at high redshift",
+        "CGM gas and DLA absorption in galactic medium",
+        "Milky Way halo streams and RR Lyrae stars",
+        "Jellyfish galaxies and ram pressure stripping in NGC surveys",
+        "Barred spiral galaxy formation",
+        "AGN-driven molecular outflows and emission lines"
+      ],
+      "core_scope_copy_present": true,
+      "core_plus_adjacent_shortlist_copy_present": true,
+      "forbidden_ranked_study_queue_absent": true,
+      "forbidden_stale_become_studies_copy_absent": true,
+      "note": "An initial Chrome --dump-dom process timed out, and the first generic CDP marker list used scientific-review labels rather than the actual rendered display names. A corrected fresh CDP visible-text probe passed; neither preliminary probe changed source or runtime."
+    },
+    "cleanup": {
+      "canary_port_3011": "CLOSED",
+      "cdp_ports_9347_9348": "CLOSED",
+      "temporary_chrome_processes": "CLEAN",
+      "temporary_probe_files": "CLEAN"
+    },
+    "production": {
+      "active_build_id": "lFt_UDNPmeNh2DCabbYZX",
+      "candidate_active": false,
+      "local_http": 200,
+      "public_http": 200,
+      "restart_required": true
+    }
+  },
+  "async_review_reconciliation": {
+    "v5_review_status": "PASS",
+    "security_concerns": [],
+    "logic_errors": [],
+    "suggestion": "Future hardening may assert exact membership or counts for all three taxonomy classes.",
+    "disposition": "DEFERRED_NON_BLOCKING: current test already verifies full 57-ID coverage, uniqueness, all eight intended core IDs, known non-core leakage IDs, exact top-eight order, and fail-closed unknown IDs. No post-review source change was made, preserving the immutable V5 patch and receipt."
+  },
+  "safety_ledger": {
+    "db_writes": 0,
+    "git_writes": 0,
+    "git_commits": 0,
+    "canonical_source_apply_actions": 0,
+    "deploy_restart_actions": 0,
+    "scheduler_writes": 0,
+    "cockpit_writes": 0,
+    "browser_ui_actions": 0
+  },
+  "closed_gates": {
+    "live_build_swap_restart": "APPROVE GALAXY SCOPE LIVE BUILD-SWAP RESTART d160a85f4445f39cc05ec273d5f22d3d495d1803ee750520e864f7f36f7d014c",
+    "canonical_apply": "APPROVE GALAXY SCOPE CANONICAL APPLY d160a85f4445f39cc05ec273d5f22d3d495d1803ee750520e864f7f36f7d014c",
+    "git_commit_push_merge": "SEPARATE_FUTURE_GATE"
+  }
+}

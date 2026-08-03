@@ -1,0 +1,643 @@
+{
+  "schema": "PHASE4_DISPOSITION_INDEX",
+  "timestamp": "2026-07-21T15:13:55.642097Z",
+  "snapshot": {
+    "head": "826e733",
+    "branch": "feat/surveys-atlas-ia-p1-20260627",
+    "modified_count": 20,
+    "untracked_count": 360,
+    "deleted_count": 0,
+    "phase1_entries": 380
+  },
+  "retained_in_place": {
+    "archive_count": 130,
+    "tools_bak_count": 14,
+    "tools_bak_paths": [
+      "tools/galaxy_evolution_autopilot.py.bak-20260710T160851Z-pre-route-line",
+      "tools/gemini_app_usage.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "tools/gemini_app_usage_ingest.py.bak-20260710T150441Z",
+      "tools/live_provider_usage_monitor.py.bak-20260710T122621Z-pre-gemini-app-gauge",
+      "tools/live_provider_usage_monitor.py.bak-20260710T135125Z-pre-copymode-fix",
+      "tools/live_provider_usage_monitor.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-20260710T092345Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-display-20260710T100544Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-obsolete-20260709T092850Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-overnight-20260718",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-paper-final-cleanup-20260709T060005Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-path-display-20260710T095553Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-relay-incident-20260711T0500Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-rp1-quality-20260709T0224Z"
+    ]
+  },
+  "g4a_quarantine": {
+    "count": 18,
+    "candidates": [
+      {
+        "status": "??",
+        "path": "backend/app/main.py.bak-labrunner",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 6178,
+          "mode": "-rw-------",
+          "mtime": 1784278496.999554,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "click.js",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 186,
+          "mode": "-rw-r--r--",
+          "mtime": 1783786762.058961,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "find_deep.js",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 353,
+          "mode": "-rw-r--r--",
+          "mtime": 1783786787.0133789,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "find_menu.js",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 347,
+          "mode": "-rw-r--r--",
+          "mtime": 1783786772.517123,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "goru_temp_report.json",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 2051,
+          "mode": "-rw-r--r--",
+          "mtime": 1783267629.4197848,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_applescript.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 299,
+          "mode": "-rw-r--r--",
+          "mtime": 1783790764.6780696,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_inject.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 502,
+          "mode": "-rw-r--r--",
+          "mtime": 1783821307.266718,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_inject2.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 538,
+          "mode": "-rw-r--r--",
+          "mtime": 1783821319.2495265,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_js_drop.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 660,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822476.473127,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_js_innerhtml.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 1013,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822412.9150708,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_js_insert.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 474,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822404.6383476,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_js_paste.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 701,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822424.880558,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_js_rich_textarea.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 759,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822443.3422363,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_menu_paste.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 289,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822806.5059798,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_paste.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 263,
+          "mode": "-rw-r--r--",
+          "mtime": 1783790913.5732844,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "test_type.applescript",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 336,
+          "mode": "-rw-r--r--",
+          "mtime": 1783822821.388352,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "tmp_build_2929_trust_packet.py",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 35837,
+          "mode": "-rw-------",
+          "mtime": 1783253822.0805366,
+          "is_dir": false
+        }
+      },
+      {
+        "status": "??",
+        "path": "wait_and_extract.py",
+        "bucket": "DELETE-CANDIDATE",
+        "reason": "Reproducible/generated debris",
+        "protected": false,
+        "evidence_basis": "filename-only",
+        "future_gate": "G4b",
+        "lstat": {
+          "size": 1880,
+          "mode": "-rw-r--r--",
+          "mtime": 1783824501.4264205,
+          "is_dir": false
+        }
+      }
+    ]
+  },
+  "g4b_disposal": {
+    "db_count": 18,
+    "cache_dir_count": 10,
+    "actionable_cache_dir_count": 2,
+    "actionable_cache_paths": [
+      ".pytest_cache",
+      "backend/.pytest_cache"
+    ],
+    "protected_held_cache_dir_count": 8,
+    "protected_held_cache_paths": [
+      ".claude/worktrees/remove-newsletter-beat/backend/.pytest_cache",
+      ".claude/worktrees/gemini-app-usage-gauge/.pytest_cache",
+      ".claude/worktrees/gemini-app-usage-gauge/backend/.pytest_cache",
+      ".hermes/handoffs/browser-concurrency/studio-simultaneous-web-viability-test-20260714T034720Z/.pytest_cache",
+      ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-revised-canary-20260712T045317Z/validator/.pytest_cache",
+      ".hermes/handoffs/galaxy-evolution/mastermind/goru-deep-research-capture-dev-20260712T030531Z/.pytest_cache",
+      ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-next-phase-canary-20260712T033422Z/.pytest_cache",
+      ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-c1r-chip-validator-repair-20260713T010203Z/.pytest_cache"
+    ],
+    "protected_held_policy": "Never include these eight paths in a blanket G4b action. Each requires Hwao path-specific adjudication and its own explicit approval line; the sealed canary path is presumptively retained because its packet is immutable.",
+    "db_candidates": [
+      {
+        "path": "test_cross_page_paper_footprint.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782833369.3471045,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_page_source_surface_fallbacks.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782833368.5175402,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_paper_profile.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782833369.154023,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_trust_stage3c_prep.db",
+        "lstat": {
+          "size": 540672,
+          "mode": "-rw-r--r--",
+          "mtime": 1782443418.3858259,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test.db",
+        "lstat": {
+          "size": 540672,
+          "mode": "-rw-r--r--",
+          "mtime": 1782443419.219802,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_jury_trust_mutation.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782365361.5640779,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_promote_provisional_evidence.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782365361.324046,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "test_global_paper_directory.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1782833368.8867507,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_cross_page_paper_footprint.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1784632905.5899892,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_page_source_surface_fallbacks.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1784632906.4235086,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_paper_profile.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1784632906.6760192,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_trust_debate_stance_caps.db",
+        "lstat": {
+          "size": 503808,
+          "mode": "-rw-r--r--",
+          "mtime": 1784632905.4334412,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_trust_stage3c_prep.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1782738691.7513773,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_pages_api_hardening.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1782738690.300876,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-------",
+          "mtime": 1782738585.370606,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_jury_trust_mutation.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1782738689.5574555,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_promote_provisional_evidence.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1782738690.8981867,
+          "is_dir": false
+        }
+      },
+      {
+        "path": "backend/test_global_paper_directory.db",
+        "lstat": {
+          "size": 561152,
+          "mode": "-rw-r--r--",
+          "mtime": 1784632905.816871,
+          "is_dir": false
+        }
+      }
+    ],
+    "cache_dirs": [
+      {
+        "path": ".pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783166074.4797378,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 14973
+      },
+      {
+        "path": ".claude/worktrees/remove-newsletter-beat/backend/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783743719.6538355,
+          "is_dir": true
+        },
+        "descendants": 6,
+        "total_bytes": 5291
+      },
+      {
+        "path": ".claude/worktrees/gemini-app-usage-gauge/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783684337.7832942,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 10544
+      },
+      {
+        "path": ".claude/worktrees/gemini-app-usage-gauge/backend/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783684822.477293,
+          "is_dir": true
+        },
+        "descendants": 6,
+        "total_bytes": 5291
+      },
+      {
+        "path": "backend/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwx------",
+          "mtime": 1779260690.9083917,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 35990
+      },
+      {
+        "path": ".hermes/handoffs/browser-concurrency/studio-simultaneous-web-viability-test-20260714T034720Z/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1784015216.5402644,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 4386
+      },
+      {
+        "path": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-revised-canary-20260712T045317Z/validator/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783833439.2512631,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 3521
+      },
+      {
+        "path": ".hermes/handoffs/galaxy-evolution/mastermind/goru-deep-research-capture-dev-20260712T030531Z/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783826022.7784483,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 1370
+      },
+      {
+        "path": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-next-phase-canary-20260712T033422Z/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783827997.880657,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 1993
+      },
+      {
+        "path": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-c1r-chip-validator-repair-20260713T010203Z/.pytest_cache",
+        "lstat": {
+          "size": 192,
+          "mode": "drwxr-xr-x",
+          "mtime": 1783906696.280899,
+          "is_dir": true
+        },
+        "descendants": 7,
+        "total_bytes": 1480
+      }
+    ]
+  },
+  "g4c_secret_adjacent": {
+    "count": 1,
+    "candidate": {
+      "status": "??",
+      "path": "backend/.env.redacted-before-disable-gemini-20260708_174609",
+      "bucket": "UNKNOWN",
+      "reason": "Secret-adjacent, requires Hwao/human adjudication",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4c held",
+      "lstat": {
+        "size": 2451,
+        "mode": "-rw-r--r--",
+        "mtime": 1783500369.6920478,
+        "is_dir": false
+      }
+    },
+    "content_read": false,
+    "hash_computed": false
+  },
+  "overlap_checks": {
+    "g4a_vs_g4b_db": [],
+    "g4a_vs_g4b_cache": [],
+    "g4a_vs_g4c_env": [],
+    "g4b_db_vs_g4b_cache": [],
+    "g4b_db_vs_g4c_env": [],
+    "g4b_cache_vs_g4c_env": []
+  },
+  "safety_ledger": {
+    "protected_violations": 0,
+    "candidate_content_reads": 0,
+    "env_content_reads": 0,
+    "db_content_reads": 0,
+    "hashes": 0,
+    "moves": 0,
+    "deletes": 0,
+    "source_edits": 0
+  },
+  "marker": "GORU_PHASE4_DISPOSITION_INDEX_COMPLETE_20260722"
+}

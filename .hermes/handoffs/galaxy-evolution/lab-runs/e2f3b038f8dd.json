@@ -1,0 +1,33 @@
+{
+  "id": "e2f3b038f8dd",
+  "spec": {
+    "topic": "main-sequence-quenching",
+    "topic_source": "frontier-map",
+    "data_sources": [
+      "sdss"
+    ],
+    "method": "scaling-relation-evolution",
+    "outputs": [
+      "aastex-draft"
+    ]
+  },
+  "status": "done",
+  "created_utc": "2026-07-17T09:06:12.028337Z",
+  "log": [
+    "queued",
+    "18:06:12 pulling SDSS star-forming galaxies (galSpecExtra)…",
+    "18:06:14 pulled 80000 galaxies; computing MZR…",
+    "18:06:15 done ✓"
+  ],
+  "artifacts": [
+    "mzr.png",
+    "history.json"
+  ],
+  "result": {
+    "summary": "Mass–metallicity relation from 80,000 SDSS star-forming galaxies. 12+log(O/H) rises from 8.57 at logM⋆=9.0 to 9.05 at logM⋆=10.5, flattening at the massive end.",
+    "N": 80000,
+    "oh_at_logM9": 8.572,
+    "oh_at_logM10p5": 9.05,
+    "figure_url": "/api/lab/runs/e2f3b038f8dd/artifact/mzr.png"
+  }
+}

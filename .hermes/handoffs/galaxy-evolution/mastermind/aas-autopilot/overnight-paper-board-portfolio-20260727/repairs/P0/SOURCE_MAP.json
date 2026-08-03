@@ -1,0 +1,64 @@
+{
+  "status": "SERVE_MATCHING_SOURCE_SNAPSHOT_FOUND__AUTHORITY_REPIN_REQUIRED_BEFORE_APPLY",
+  "marker": "P0_SOURCE_MAP_COMPLETE_20260728",
+  "served_identity": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
+    "bytes": 132831,
+    "sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef"
+  },
+  "representations": [
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
+      "classification": "CANONICAL_SERVED_IDENTITY",
+      "evidence": "fresh public fetch and rich live public-root bytes match; 4 pages"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.pdf",
+      "classification": "BYTE_IDENTICAL_SERVE_MATCHING_BUILD_SNAPSHOT",
+      "evidence": "exact byte equality with served identity"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+      "classification": "SERVE_MATCHING_STANDALONE_SOURCE_SNAPSHOT",
+      "evidence": "adjacent after.pdf is byte-identical to served PDF; backup MANIFEST states after.tex is standalone-compilable and after.pdf is current live-deployed PDF"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/research-frontiers-20260716/topic3/tng_draft.tex",
+      "classification": "STALE_PRE_REWRITE_SOURCE",
+      "evidence": "byte-identical to backup before.tex and lacks July 23 SFMS strengthening"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+      "classification": "BYTE_IDENTICAL_MIRROR_NOT_APPLY_TARGET",
+      "evidence": "same hash as rich live source snapshot but outside rich live root"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+      "classification": "BYTE_IDENTICAL_MIRROR_NOT_APPLY_TARGET",
+      "evidence": "same hash as rich live source snapshot but outside rich live root"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/FrontierDrafts.tsx",
+      "classification": "CURRENT_BOARD_METADATA_SOURCE",
+      "evidence": "P0 entry lines 60-67; dead review metadata still present"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/paperScores.ts",
+      "classification": "CURRENT_ADVISORY_SCORE_SOURCE",
+      "evidence": "P0 block lines 54-59 contains unsupported matched-scale chemistry statements in DR/Kun, an overbroad chemical-failure statement in Tori, and a stale uncorrected-aperture statement in Goru"
+    },
+    {
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/public/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft_history.json",
+      "classification": "IMMUTABLE_HUMAN_DIRECTION_HISTORY",
+      "evidence": "preserve as record of intended-but-not-landed revision; do not rewrite"
+    }
+  ],
+  "figure_disposition": {
+    "fig_tng_planes.pdf": "UNCHANGED",
+    "fig_tng_vs_jwst.pdf": "UNCHANGED__already_represents_unmatched_factor_2_state",
+    "reason": "selected repair retracts unsupported matched-scale claim to the current body/figure state; no figure-data or annotation change is required"
+  },
+  "apply_blocker": "The only source matching the live PDF is a durable after.tex snapshot under paper-backups. It is a valid exact-diff base, but a later source-apply gate must explicitly repin it as the canonical editable source or identify a different canonical generator. No apply may target the stale scratch tng_draft.tex.",
+  "selected_repair_branch": "RETRACT_UNSUPPORTED_MATCHED_SCALE_CLAIM__PRESERVE_UNMATCHED_SUGGESTIVE_STATE",
+  "not_selected": "SUPPLY_NEW_PP04_TE_ANALYSIS (no reproducible data/code/derivation found)"
+}

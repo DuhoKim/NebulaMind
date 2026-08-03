@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "packet_id": "gemini-dr-revised-canary-20260712T045317Z",
+  "role": "Fresh revised Deep Research canary: (A) offline post-mortem of failed C1, (B) TDD-green rendered-body validator + revised prompt C1r, (C) arming, (D) SEPARATE live-canary gate. NOT a retry of the closed packet.",
+  "author": "Hwao (leads; packet generation, no browse/execute)",
+  "commissioned": "Duho approval 2026-07-12",
+  "packet_written_utc": "2026-07-12T04:53:17Z",
+  "supersedes_not_resumes": "gemini-dr-next-phase-canary-20260712T033422Z (CLOSED FAIL-CLOSED, DR_C1_FAILED_20260712T042138Z; immutable)",
+  "preserved_invariants": ["one Duho Start", "zero Tori Start", "no follow-up/retry", "exact-target custody", "finally-style postflight quota", "artifact-first exact-ID chat cleanup (standing rule)", "Goru LOCAL-ONLY", "verification cleared by Duho only, never bypassed", "no DB/product/git/deploy/cron"],
+  "phases": {
+    "A_offline_postmortem": "audit closed C1 body vs ALL binding clauses C1-C8; POSTMORTEM.md; marker POSTMORTEM_DONE",
+    "B_revised_prep": "B1 rendered-body validator = DETERMINISTIC PASS/FAIL on mechanical clauses (C1 header; C2 structure/order with NONE_FOUND empty-field device; C3 number-has-uncertainty-or-UNCERTAINTY_NOT_QUOTED_BY_SOURCE; C4 calibration/validation-statement-has-same-line-citation-or-UNCITED_NOT_USABLE; C5 banned-register grep; C7 ledger; C8 marker once+final) PLUS MANUAL_REVIEW_REQUIRED flags for semantic C3/C4/C6 -- does NOT mechanically prove the full semantic contract; TDD RED->GREEN, fixtures incl failed C1 body (must deterministically FAIL C5 L117 + flag C4 L129) + clean-pass. B2 revised prompt C1r = EXACT paste-ready payload (no wrapper/sentinels/fence) so prompt_submitted.md is byte-identical (sha==pin) + normalized-composer-text verify; new REQ+marker; tightened C3/C4/C5. B3 reuse wait_and_extract c42df80e + validated adapter",
+    "C_arming": "POSTMORTEM_DONE + VALIDATOR_TDD_GREEN + custody pins + verification clear + fresh exact-burn quota <80% + ACKs + time => DR_C1R_ARMED",
+    "D_live_gate_separate": "one supervised conversation; prompt_submitted byte==pinned C1r + normalized-composer-text match; exact-target custody; one Duho Start / zero Tori Start; read-only monitor/capture; validator gate on body = deterministic PASS on ALL mechanical clauses AND clause-by-clause manual-review PASS required for acceptance (fail closed on any deterministic FAIL or unresolved MANUAL_REVIEW_REQUIRED); immutable receipt; finally postflight quota; artifact-first exact-ID cleanup"
+  },
+  "custody_pins": {
+    "closed_c1_body_immutable_postmortem_input": "9933638616c9fc4dfb8306849f1ed91bf2d008f819c2623b831aec672da347d3",
+    "closed_c1_final_receipt": "d93f2855ff95ce7968cdacf912409ee8d32a435f1cb8bfa5476ed14c7f9b758e",
+    "closed_c1_sealed_manifest": "727764ecf1cef1eb3bd0180b615b6bbfc4eb6ff77eeeb5f993d05ebf049bd84c",
+    "original_c1_prompt_revision_baseline": "adeaa369f9eb82b2090e8c9232f3752ef45ce997fef858f0873c230c1626d265",
+    "reused_capture_tool": "c42df80e39228f32c48d97efdc78df09ad1db98a8fa8bc13fec64cf1a196c49b",
+    "revised_prompt_c1r": "sha256:fffac44fbf6e9abe3afb1f8f34f3a9e3e7688991f319c4927459fb29ac00e1ef; EXACT paste-ready payload; no wrapper/sentinels/fence; prompt_submitted.md must be byte-identical and normalized-composer-text verified at submit; REQ_JOINT_C1R_20260712T045317Z; GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+    "rendered_body_validator": "validator.py sha256:67aa2a2d904a18a5ede42c93e33c22091797d55f042ae61fee732ad259cc5f5f; structured_capture.js sha256:ca23943a5068289b4893e60ed2153a54a87f60b380c451c1d26565546984a0c8; VALIDATOR_RECEIPT.json sha256:7f6dfcc14a896198f02e344496143dd0c8ca5f31e1ecaf2056baafa89a7a17dc; 37 Python + 1 Node fixture GREEN; deterministic mechanical PASS/FAIL plus MANUAL_REVIEW_REQUIRED for semantic C3/C4/C6; not a full-semantic prover"
+  },
+  "known_failures_to_prevent": {
+    "C2": "empty citation at line 96; missing datasets; unsupported/bare map cells including line 153; unlabeled GAP lines 175/177/179; padding",
+    "C3": "unlabeled quantitative values including lines 13, 16, 64-66, 97, and 131-141",
+    "C4": "same-unit citation/token omissions at lines 96, 129, 153, 175, 177, and 179",
+    "C5": "own-voice settled/causal register ('established') at line 117",
+    "C6": "unlabeled repeated simulation-observation comparisons at lines 115/117/119 and missing fraction qualifiers at lines 83-91, 148-150, and 158-159",
+    "C7": "inline citations 2501.16602v1 and 2605.13843v1 absent from the links ledger"
+  },
+  "acceptance_rules": {
+    "phaseB1": "validator RED before GREEN; deterministically FAILs C5 L117 and flags C4 L129 on the failed-C1 fixture; passes a clean fixture; emits MANUAL_REVIEW_REQUIRED for semantic C3/C4/C6",
+    "phaseC_arming": "all Phase-C gate items true",
+    "phaseD_run": "prompt_submitted byte==pinned C1r + normalized-composer-text match; exact-target custody; Pro+Deep Research confirmed; one submit; one HUMAN Start; active state verified; body deterministic-PASS(all mechanical clauses) AND clause-by-clause manual-review PASS AND marker once+final; immutable receipt; pre+post quota hashed; exact-ID cleanup only after custody verify",
+    "no_acceptance_marker_unless": "deterministic PASS on all mechanical clauses AND clause-by-clause manual-review PASS on the captured body (fail closed on ambiguity)"
+  },
+  "markers": {
+    "ready": "HWAO_DR_REVISED_CANARY_READY_20260712T045317Z",
+    "initial_state": "DR_REVISED_NOT_ARMED_20260712T045317Z",
+    "phaseA": "POSTMORTEM_DONE_<UTC>",
+    "phaseB1": ["VALIDATOR_TDD_GREEN_<UTC>", "VALIDATOR_TDD_RED_<UTC>"],
+    "arming": ["DR_C1R_ARMED_<UTC>", "DR_C1R_NOT_ARMED_<REASON>_<UTC>"],
+    "run": ["runs/c1r/RUN_CAPTURED", "runs/c1r/RUN_FAILED", "runs/c1r/RUN_VOID"],
+    "terminal": ["DR_C1R_DONE_<UTC>", "DR_C1R_FAILED_<UTC>", "DR_HARD_STOP_<REASON>_<UTC>"]
+  },
+  "hard_stops": ["verification/CAPTCHA/unusual-traffic/login/billing reappears", "model/mode uncertainty", "capture-target uncertainty", "quota-source uncertainty or >=80%", "read-channel loss", "TCC denial", "any second-Start pressure", "validator/tool integrity mismatch", "operator doubt", "weekly reset"],
+  "locks": {
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-dr-revised-canary-20260712T045317Z/",
+    "goru": "LOCAL-ONLY; no live/browser/network",
+    "quarantine": "incident driver/prompt never imported; external IDs QUARANTINED_PENDING_LOCAL_CHECK; closed packet immutable",
+    "no_bypass_tech": ["cookies/__Secure-1PSID", "undocumented APIs", "cloned profiles", "headless/stealth", "Playwright", "screenshot-TCC bypass"]
+  },
+  "run_scope": "C1r ONLY; one run; no C2/C3; no retry of a failed/void run; at most one packet-authorized neutral truncation-continue (not a Start)"
+}

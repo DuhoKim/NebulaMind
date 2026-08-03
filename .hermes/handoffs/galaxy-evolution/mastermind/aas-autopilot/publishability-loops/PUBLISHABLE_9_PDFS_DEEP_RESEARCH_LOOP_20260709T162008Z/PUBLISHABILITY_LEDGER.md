@@ -1,0 +1,5 @@
+- 2026-07-09T16:20:08Z — publishability loop started
+- 2026-07-09T16:20:08Z — cycle 1: candidate copied from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/integration-runs/INTEGRATED_9_PAPERS_20260709T012051Z to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/publishability-loops/PUBLISHABLE_9_PDFS_DEEP_RESEARCH_LOOP_20260709T162008Z/candidates/cycle_01_nine_papers
+- 2026-07-09T16:20:29Z — cycle 1: compiled 9/9 PDFs
+- 2026-07-09T16:21:59Z — cycle 1: Gemini Deep Research pass=True exit=0
+- 2026-07-09T16:21:59Z — publishability loop completed pass=True

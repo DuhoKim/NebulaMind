@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>NebulaMind Live Steering</title>
+<style>:root{color-scheme:dark;--bg:#07101a;--panel:#0d1a29;--ink:#f3f7ff;--muted:#9fb3c8;--line:#27445f;--ok:#1f8a55;--ok2:#0f3d29;--warn:#f5a524;--warn2:#33240b;--blue:#7cc4ff}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top left,#10243a 0,#07101a 42rem);color:var(--ink);font:17px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.wrap{max-width:880px;margin:0 auto;padding:22px}.card{background:rgba(13,26,41,.92);border:1px solid var(--line);border-radius:18px;padding:18px;margin:14px 0}.top{border-color:#39d98a;box-shadow:0 0 0 1px rgba(57,217,138,.18)}h1{font-size:clamp(30px,8vw,54px);line-height:1;margin:0 0 12px;letter-spacing:-.04em}h2{font-size:22px;margin:0 0 10px}.chip{display:inline-flex;align-items:center;gap:8px;background:var(--ok2);color:#84f0b5;border:1px solid #39d98a;border-radius:999px;padding:7px 12px;font-weight:850;font-size:13px;text-transform:uppercase;letter-spacing:.04em}.muted{color:var(--muted)}.marker{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;color:#a9d7ff;overflow-wrap:anywhere}.big{font-size:20px}.next{border-color:#39d98a;background:linear-gradient(180deg,rgba(15,61,41,.82),rgba(13,26,41,.92))}.rollback{border-color:var(--warn);background:linear-gradient(180deg,rgba(51,36,11,.92),rgba(13,26,41,.92))}.phrase{width:100%;border:1px solid #8a6317;background:#080b10;color:#ffe7a0;border-radius:12px;padding:12px;font:15px ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere;margin:10px 0}button{min-height:44px;border:1px solid var(--blue);border-radius:12px;background:#0c2b45;color:#fff;font-weight:800;padding:10px 14px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px}.stat{border:1px solid var(--line);border-radius:14px;padding:12px;background:#081522}.label{color:var(--muted);font-size:13px}.value{font-weight:850;font-size:18px}a{color:var(--blue);text-decoration-thickness:1px;text-underline-offset:3px}ul{padding-left:20px;margin:8px 0}details{border:1px solid var(--line);border-radius:14px;padding:12px;background:#081522}summary{cursor:pointer;font-weight:800}.small{font-size:14px}.rule{border-left:3px solid var(--blue);padding-left:12px;color:#dceaff}@media(max-width:560px){body{font-size:16px}.wrap{padding:14px}.card{padding:15px;border-radius:15px}.big{font-size:18px}}</style>
+</head>
+<body>
+<main class="wrap">
+  <section class="card top" id="current-state">
+    <span class="chip">ALL CLEAR</span>
+    <h1>NebulaMind Live Steering</h1>
+    <p class="big"><strong>Nothing is awaiting your approval.</strong></p>
+    <p class="muted">Updated 2026-07-03 10:24 KST · 2026-07-03 01:24 UTC</p>
+    <p class="marker">state: GALAXY_2299_SOURCEFILL_V2_EXECUTED_AND_VERIFIED<br>GALAXY_2299_SOURCEFILL_V2_EXECUTED_AND_VERIFIED_20260703T012406Z</p>
+  </section>
+
+  <section class="card" id="latest-action">
+    <h2>Latest verified action — Claim 2299 source-fill</h2>
+    <p>Added one supporting evidence row for Galaxy Evolution claim <strong>2299</strong> and recomputed trust with the canonical service.</p>
+    <div class="grid" aria-label="execution facts">
+      <div class="stat"><div class="label">Trust score</div><div class="value">−0.22 → +0.32</div></div>
+      <div class="stat"><div class="label">Trust level</div><div class="value">accepted</div></div>
+      <div class="stat"><div class="label">Evidence / audit</div><div class="value">30631 / 90511</div></div>
+    </div>
+    <p class="small muted">No pages, prose, votes, UI publish, deploy, restart, or git write. The inserted row is honestly labeled AI-draft / not-human-gold.</p>
+  </section>
+
+  <section class="card next" id="recommended-next">
+    <h2>Recommended next action</h2>
+    <p class="big"><strong>HOLD.</strong> Nothing needs to run right now.</p>
+    <p>Optional later: strengthen claim 2299 with a jury vote or a second human-verified full-text source, so its accepted level stops resting on a thin +0.024 margin.</p>
+  </section>
+
+  <section class="card rollback" id="rollback-only-if-needed">
+    <h2>Emergency rollback — only if something is wrong</h2>
+    <p>Use this only if the 2299 source-fill must be undone. It removes evidence <strong>30631</strong>, removes audit row <strong>90511</strong>, and restores claim 2299’s prior trust fields.</p>
+    <div class="phrase" id="rollbackPhrase">ROLLBACK P57 2299 SOURCEFILL V2 0034</div>
+    <button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(document.getElementById('rollbackPhrase').innerText).then(()=>this.textContent='Copied rollback phrase')">Copy rollback phrase</button>
+  </section>
+
+  <section class="card" id="artifacts">
+    <h2>Artifacts</h2>
+    <ul>
+      <li><a href="/agent-reports/live-steering-status.json">Machine status JSON</a></li>
+      <li><a href="/agent-reports/latest-execution-phrase.txt">Latest phrase file</a></li>
+      <li><span class="muted">Archived old long cockpit:</span> <code>/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/live-steering-cockpit-archive-20260703.html</code></li>
+      <li><span class="muted">Final report:</span> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2299_sourcefill_v2_packet_20260703T003424Z/EXECUTION_FINAL.md</code></li>
+      <li><span class="muted">Packet:</span> <code>/Users/duhokim/NebulaMind/NebulaMind/docs/galaxy_2299_sourcefill_v2_packet_20260703T003424Z</code></li>
+    </ul>
+    <p class="rule small">Nothing executes without a packet-specific phrase pasted by the operator; phrases shown here are the only live ones.</p>
+  </section>
+
+  <details class="small" id="history">
+    <summary>History / full archive</summary>
+    <p>The old cockpit was archived locally instead of destroyed. Historical packet cards now live in the archive file and in their docs directories, not on the active steering surface.</p>
+    <p>Archive file: <code>/Users/duhokim/NebulaMind/NebulaMind/frontend/public/agent-reports/live-steering-cockpit-archive-20260703.html</code></p>
+    <p>Fable overhaul report: <code>/Users/duhokim/NebulaMind/NebulaMind/docs/cockpit_simplification_20260703T012406Z/fable_cockpit_overhaul_report.md</code></p>
+  </details>
+</main>
+<script>
+const root=document.documentElement;
+root.dataset.generated="2026-07-03T01:24:06Z";
+root.dataset.state="GALAXY_2299_SOURCEFILL_V2_EXECUTED_AND_VERIFIED";
+root.dataset.packet="galaxy_2299_sourcefill_v2_packet_20260703T003424Z";
+</script>
+</body>
+</html>

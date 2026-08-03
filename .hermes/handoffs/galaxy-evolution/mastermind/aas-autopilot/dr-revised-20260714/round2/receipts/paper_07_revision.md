@@ -1,0 +1,2 @@
+# Revision notes for paper_07
+Preserved invariants exactly and mechanically verified the protected span. Added no new sources. Corrected the claim roles of existing citations in Section 5.1: Escott et al. supports the radio-detection context, Davies et al. supports a separate neutral-gas tracer, and the optical multiphase limitation is bounded by existing review sources. No source-dependent conclusion assertion was imported from a skipped citation.

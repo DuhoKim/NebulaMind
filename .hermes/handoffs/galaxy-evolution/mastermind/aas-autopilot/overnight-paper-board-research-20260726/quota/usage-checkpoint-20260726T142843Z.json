@@ -1,0 +1,48 @@
+{
+  "checkpoint_utc": "2026-07-26T14:28:43Z",
+  "checkpoint_kst": "2026-07-26 23:28:43 KST",
+  "source": "https://nebulamind.net/agent-reports/live-steering-status.json",
+  "source_monitor_observed_at_utc": "2026-07-26T14:28:33Z",
+  "source_monitor_status": "LIVE_SAFE_MONITOR_ACTIVE",
+  "provider_usage": {
+    "claude_fable_lana": {
+      "five_hour_used_pct": 9.0,
+      "weekly_used_pct": 3.0,
+      "opus_weekly_used_pct": 0.0,
+      "status": "Active panes live; last visible Claude usage-panel percentages retained"
+    },
+    "codex_kun": {
+      "weekly_used_pct": 1.0,
+      "codex_spark_weekly_used_pct": 0.0,
+      "status": "Live visible Codex /status; five-hour value not observed"
+    },
+    "gemini_goru": {
+      "five_hour_used_pct": 1.85,
+      "weekly_used_pct": 0.21,
+      "status": "Live Antigravity /usage subscription signal"
+    },
+    "gemini_consumer": {
+      "current_window_used_pct": 1.0,
+      "weekly_used_pct": 1.0,
+      "status": "Separate consumer-app pool; not used by this lane"
+    },
+    "hermes_nous": {
+      "monthly_plan_used_pct": 100.0,
+      "monthly_plan_remaining_usd": 0.0,
+      "purchased_balance_usd": 42.61,
+      "allowed_for_this_run": false
+    }
+  },
+  "lane_status": {
+    "Hwao": "coordinating A/B gate 2",
+    "Goru": "Packet A v2 DONE; awaiting Packet B cross-check brief",
+    "Kun": "Packet A reproducibility/duplication DONE; Packet B first pass preserved",
+    "Lana": "Packet B semantic review DONE",
+    "Tori": "independent verification and relay"
+  },
+  "locks": {
+    "source_mutations": 0,
+    "public_mutations": 0,
+    "publication": "LOCKED_PENDING_PACKET_SPECIFIC_APPROVAL"
+  }
+}

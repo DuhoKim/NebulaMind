@@ -1,0 +1,47 @@
+{
+  "id": "2958462772b2",
+  "spec": {
+    "topic": "cosmic-chemical-evolution",
+    "topic_source": "frontier-map",
+    "data_sources": [
+      "sdss"
+    ],
+    "method": "mass-metallicity",
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ]
+  },
+  "status": "done",
+  "created_utc": "2026-07-17T09:47:30.429095Z",
+  "log": [
+    "queued",
+    "18:47:34 pulling SDSS…",
+    "18:48:02 drafted manuscript body",
+    "18:48:14 review cycle 1: MINOR",
+    "18:48:14 review-revise loop done: MINOR in 1 cycle(s)",
+    "18:48:14 compiling AASTeX manuscript (PDF)...",
+    "18:48:17 AASTeX PDF compiled OK",
+    "18:48:17 done ✓"
+  ],
+  "artifacts": [
+    "result.png",
+    "review_loop.md",
+    "draft.pdf",
+    "history.json"
+  ],
+  "result": {
+    "data_sources": [
+      "sdss"
+    ],
+    "method": "mass-metallicity",
+    "summary": "Mass–metallicity relation — median relations for SDSS (120,000 gals).",
+    "figure_url": "/api/lab/runs/2958462772b2/artifact/result.png",
+    "review": "VERDICT: MINOR\n\nThe manuscript presents a clear analysis of the mass-metallicity relation using SDSS data but has some limitations that require attention. The top correctness/overclaim risks include potential biases from the single-selection method and uncalibrated measurements, which might affect the accuracy of the results. Missing caveats involve not discussing alternative methods or comparing findings with existing literature. The most important fix is to address these limitations by incorporating additional data validation techniques and exploring more robust selection methods to strengthen the study's conclusions. Overall, the manuscript provides valuable insights but requires minor revisions to enhance its reliability and validity.",
+    "review_model": "astrosage-70b:latest",
+    "review_verdict": "MINOR",
+    "review_cycles": 1,
+    "review_url": "/api/lab/runs/2958462772b2/artifact/review_loop.md",
+    "pdf_url": "/api/lab/runs/2958462772b2/artifact/draft.pdf"
+  }
+}

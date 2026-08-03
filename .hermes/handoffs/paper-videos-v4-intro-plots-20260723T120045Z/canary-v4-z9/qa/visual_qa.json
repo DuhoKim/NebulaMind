@@ -1,0 +1,53 @@
+{
+  "marker": "NEBULAMIND_V4_Z9_ENCODED_VISUAL_QA_PASS",
+  "completed_at_utc": "2026-07-23T13:48:27Z",
+  "reviewer": "Tori/Hermes receipt verifier",
+  "artifact": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v4-intro-plots-20260723T120045Z/canary-v4-z9/NEBULAMIND_Z9_V4_INTRO_PLOTS_CANARY.mp4",
+  "artifact_sha256": "3d8c1e49f673b2ccb1c786d1a03444166fea9cfcb2aebbeae0b055019fa2b30b",
+  "encoded_sheet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v4-intro-plots-20260723T120045Z/canary-v4-z9/qa/encoded_temporal_and_presenter_sheet.png",
+  "encoded_sheet_sha256": "6010736a361175bc569ca3ad444dd29f2b5b5f7bc070c8a510b5b254f27a17dc",
+  "review_method": "Ten encoded midpoint frames, one per signed slot, reviewed as full-frame plus presenter close-up after final H.264 compositing.",
+  "slots": [
+    {"slot": 0, "status": "PASS", "finding": "Question-led hook; no manuscript page; presenter stable and contained."},
+    {"slot": 1, "status": "PASS", "finding": "Plain-English chemical-clock introduction; three cards readable; presenter does not obscure content."},
+    {"slot": 2, "status": "PASS", "finding": "Lensing and extrapolation problem cards readable; no cover-page substitute."},
+    {"slot": 3, "status": "PASS", "finding": "Five-galaxy direct-Te sample summarized cleanly; source-safe wording visible."},
+    {"slot": 4, "status": "PASS", "finding": "Complete real Figure 1 crop, axes/ticks/legend/data present; one deficit claim panel; presenter clear of plot."},
+    {"slot": 5, "status": "PASS", "finding": "Complete real Figure 1 crop; benchmark comparison claim visible; presenter clear of plot."},
+    {"slot": 6, "status": "PASS", "finding": "Complete real Figure 1 crop; stacked-sample cross-check claim visible; presenter clear of plot."},
+    {"slot": 7, "status": "PASS", "finding": "GN-z11 direction-only interpretation and population range readable."},
+    {"slot": 8, "status": "PASS", "finding": "Systematics limitation and NOT A DETECTION warning are visually prominent."},
+    {"slot": 9, "status": "PASS", "finding": "Manuscript URL and full descriptive/not-validated boundary are readable."}
+  ],
+  "presenter": {
+    "identity_stable": true,
+    "contained_in_signed_box": true,
+    "science_obscured": false,
+    "visible_face_or_mask_defects": false,
+    "visible_blur_double_face_or_broken_mouth": false,
+    "status": "PASS"
+  },
+  "science_visuals": {
+    "manuscript_cover_present": false,
+    "figure_slots": [4, 5, 6],
+    "complete_plot_present": true,
+    "axis_tick_legend_content_present": true,
+    "measured_minimum_axis_text_pixels": 24.083,
+    "required_minimum_axis_text_pixels": 22.0,
+    "plot_display_scale": 0.916329,
+    "maximum_allowed_upscale": 1.15,
+    "status": "PASS"
+  },
+  "encoded_defects": {
+    "black_frames": false,
+    "clipping": false,
+    "layout_overlap": false,
+    "identity_drift": false,
+    "status": "PASS"
+  },
+  "overall": "PASS",
+  "publication_state": "local V4 z9 canary only; awaiting Duho watch-and-approve",
+  "youtube_mutation": false,
+  "website_mutation": false,
+  "git_mutation": false
+}

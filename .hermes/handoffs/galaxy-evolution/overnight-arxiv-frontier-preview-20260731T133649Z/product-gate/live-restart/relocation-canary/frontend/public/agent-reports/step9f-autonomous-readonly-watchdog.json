@@ -1,0 +1,153 @@
+{
+  "approval_boundary": "Broad continuation language is not treated as production publish approval; exact phrase is required.",
+  "checked_at_utc": "2026-07-04T04:41:39Z",
+  "db_writes_executed_by_watchdog": 0,
+  "domains": {
+    "db_readonly": {
+      "checks": {
+        "latest_version_unchanged": true,
+        "packet_page_version_rows_zero": true,
+        "page57_claim_count_734": true,
+        "step9e_claim_ids_available_5": true,
+        "step9e_distinct_page_citation_keys_25": true,
+        "step9e_evidence_count_35": true,
+        "step9e_packet_jury_scorecards_zero": true,
+        "step9e_packet_votes_zero": true,
+        "step9e_page_citation_link_count_25": true,
+        "transaction_read_only_on": true,
+        "wiki_page_hash_unchanged": true,
+        "wiki_page_length_unchanged": true
+      },
+      "failed_checks": [],
+      "snapshot": {
+        "checked_at_utc": "2026-07-04T04:41:39Z",
+        "latest_version_hash": "39200e8a3e3557b604d2064b953557986341b8fb21602365da3b259bb10d1cf2",
+        "latest_version_num": 1709,
+        "latest_version_unchanged": true,
+        "packet_page_version_rows": 0,
+        "page57_claim_count": 734,
+        "step9e_claim_ids_available": 5,
+        "step9e_distinct_page_citation_keys": 25,
+        "step9e_evidence_count": 35,
+        "step9e_packet_jury_scorecards": 0,
+        "step9e_packet_votes": 0,
+        "step9e_page_citation_link_count": 25,
+        "transaction_read_only": "on",
+        "wiki_page_hash": "39200e8a3e3557b604d2064b953557986341b8fb21602365da3b259bb10d1cf2",
+        "wiki_page_hash_unchanged": true,
+        "wiki_page_length": 14077,
+        "wiki_page_length_unchanged": true
+      },
+      "status": "PASS"
+    },
+    "packet_artifacts": {
+      "checks": {
+        "apply_sql_checksum_matches_summary": true,
+        "backup_checksum_matches_summary": true,
+        "exact_diff_checksum_matches_summary": true,
+        "manifest_checksum_pass": true,
+        "no_write_validation_pass": true,
+        "prepublish_validation_pass": true,
+        "public_cockpit_validation_pass": true,
+        "rollback_sql_checksum_matches_summary": true,
+        "static_validation_pass": true,
+        "summary_db_write_false": true,
+        "summary_phrase_matches": true,
+        "summary_product_publish_false": true,
+        "summary_sql_mutation_false": true,
+        "summary_status_awaiting": true,
+        "summary_step10_locked": true
+      },
+      "errors": [],
+      "failed_checks": [],
+      "status": "PASS"
+    },
+    "public_surfaces": {
+      "failures": [],
+      "results": {
+        "api": {
+          "bad": [],
+          "bytes": 14533,
+          "checks": {
+            "api_content_hash_unchanged": true,
+            "api_content_length_unchanged": true,
+            "api_page_id_57": true,
+            "api_slug_ok": true,
+            "http_ok": true
+          },
+          "exit_code": 0,
+          "stderr": "",
+          "url": "https://nebulamind.net/api/pages/galaxy-evolution"
+        },
+        "cockpit": {
+          "bad": [],
+          "bytes": 27665,
+          "checks": {
+            "http_ok": true,
+            "marker_present": true,
+            "not_published_present": true,
+            "old_step9e_execute_absent": true,
+            "phrase_present": true
+          },
+          "exit_code": 0,
+          "stderr": "",
+          "url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html"
+        },
+        "mobile": {
+          "bad": [],
+          "bytes": 2041,
+          "checks": {
+            "http_ok": true,
+            "marker_present": true,
+            "not_published_present": true,
+            "old_step9e_execute_absent": true,
+            "phrase_present": true
+          },
+          "exit_code": 0,
+          "stderr": "",
+          "url": "https://nebulamind.net/agent-reports/mobile.html"
+        },
+        "phrase": {
+          "bad": [],
+          "bytes": 80,
+          "checks": {
+            "http_ok": true,
+            "old_step9e_execute_absent": true,
+            "phrase_exact": true
+          },
+          "exit_code": 0,
+          "stderr": "",
+          "url": "https://nebulamind.net/agent-reports/latest-execution-phrase.txt"
+        },
+        "status": {
+          "bad": [],
+          "bytes": 2869,
+          "checks": {
+            "http_ok": true,
+            "marker_present": true,
+            "not_published_present": true,
+            "old_step9e_execute_absent": true,
+            "phrase_present": true,
+            "status_db_writes_zero": true,
+            "status_mode_ok": true,
+            "status_overall_not_complete": true,
+            "status_step10_locked": true
+          },
+          "exit_code": 0,
+          "stderr": "",
+          "url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+        }
+      },
+      "status": "PASS"
+    }
+  },
+  "failed_domains": [],
+  "future_publish_phrase": "APPROVE PUBLISH step9f_visible_content_prose_exact_diff_packet_20260704T022950Z",
+  "marker": "STEP9F_AUTONOMOUS_READONLY_WATCHDOG_ACTIVE_20260704T_AUTORUN",
+  "overall_status": "PASS",
+  "packet_id": "step9f_visible_content_prose_exact_diff_packet_20260704T022950Z",
+  "packet_marker": "STEP9F_VISIBLE_CONTENT_PACKET_READY_20260704T022950Z",
+  "publish_sql_executed_by_watchdog": false,
+  "sequence_index": 12,
+  "step10_unlocked_by_watchdog": false
+}

@@ -1,0 +1,90 @@
+{
+  "audited_by": "lana",
+  "artifact_sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+  "status_legend": {
+    "VERIFIED_INTERNAL": "internally consistent across all sections where stated AND arithmetic reproducible from values stated in the artifact",
+    "CONSISTENT_UNVERIFIABLE": "internally consistent, but underlying computation cannot be reproduced from pinned inputs (no data/code in packet)",
+    "QUESTIONABLE": "internally present but conflicts with adjacent verified context",
+    "BLOCKED": "load-bearing value with no derivation in the artifact and/or contradicted by the artifact's own body"
+  },
+  "invariants": [
+    {
+      "name": "sfms_z0_residual",
+      "value_dex": -0.30,
+      "locations": ["abstract", "S3", "Fig.1", "Fig.2 annotation", "S4", "S5"],
+      "status": "CONSISTENT_UNVERIFIABLE",
+      "note": "Consistent everywhere; underlying SDSS/TNG computation not reproducible from pinned inputs."
+    },
+    {
+      "name": "mzr_z0_residual",
+      "value_dex": 0.12,
+      "locations": ["abstract", "S3", "Fig.1 (caption ~0.1)", "Fig.2 right z=0 point"],
+      "status": "CONSISTENT_UNVERIFIABLE"
+    },
+    {
+      "name": "tng_internal_sfms_growth",
+      "values_dex": [1.30, 1.45, 1.61],
+      "check": "raw + |z0 residual|: 0.99+0.30=1.29~1.30; 1.15+0.30=1.45; 1.30+0.30=1.60~1.61 (0.01 rounding)",
+      "status": "VERIFIED_INTERNAL"
+    },
+    {
+      "name": "over_evolution_gap",
+      "values_dex": [0.41, 0.49],
+      "at_z": [4.7, 5.4],
+      "check": "nearest-lower-snapshot pairing: 1.30-0.89=0.41 exact; 1.45-0.96=0.49 exact. Pairing (TNG z=4 vs obs z~4.7; TNG z=5 vs obs z~5.4) is not stated explicitly but is the conservative direction (TNG internal growth rises with z), consistent with the lower-bound framing.",
+      "status": "VERIFIED_INTERNAL",
+      "caveat": "Observed medians +0.89/+0.96 inherit the failed Lisiecki citation identity (see CITATION_AND_REVIEW_LINK_AUDIT.md); Nakajima et al. 2023 alone plausibly anchors the elevation but the blended medians are not reproducible from pinned inputs."
+    },
+    {
+      "name": "debias_envelope",
+      "values_dex": {"sample_matched": [0.46, 0.83], "aggressive_corner": 1.1},
+      "grid": "sigma in {0.30,0.45,0.60} x Flim in {1,3,10}e-19 erg/s/cm^2 (9 configs), sign never flips",
+      "locations": ["abstract", "S2", "S3", "Fig.2 caption (direction)", "S4", "S5"],
+      "status": "CONSISTENT_UNVERIFIABLE",
+      "note": "All five text locations agree; explicitly quoted as an envelope, not a point estimate (degenerate in Etrue, Flim, sigma). Forward model not recomputable from pinned inputs; envelope not plotted in any figure."
+    },
+    {
+      "name": "aperture_mass_offset",
+      "value_dex": 0.13,
+      "detail": "total minus 2R1/2-aperture, median over logM*>10.3 at z=5, 16-84% +0.09/+0.16; +0.12 at z=6 (redshift-stable); from real TNG100-1 group catalogues",
+      "cancellation_logic": "VALID: offset common to z~0 anchor and high-z snapshots cancels to first order in internal-evolution differencing; raw-plane effect 0.61 x 0.13 = 0.0793 ~ 0.08 dex as stated",
+      "status": "VERIFIED_INTERNAL (logic + arithmetic); CONSISTENT_UNVERIFIABLE (catalogue value)"
+    },
+    {
+      "name": "mzr_internal_evolution_body",
+      "values_dex": [-0.23, -0.25, -0.25],
+      "vs_observed_dex": -0.50,
+      "check": "factor 0.50/0.25 = 2.0 as stated; Fig.2 right panel points match visually (blue z=0 +0.12; internal green ~-0.23/-0.25/-0.25; red obs ~-0.5)",
+      "status": "VERIFIED_INTERNAL (within body+figure)"
+    },
+    {
+      "name": "naive_factor_3_4",
+      "check": "TNG-vs-anchor apparent deficit = internal + z0 residual = -0.25+0.12 = -0.13; 0.50/0.13 = 3.8, in stated 3-4 range",
+      "status": "VERIFIED_INTERNAL"
+    },
+    {
+      "name": "matched_scale_claim",
+      "values": {"tremonti_offset_removed_dex": 0.24, "obs_deficit_matched_dex": -0.40, "tng_internal_matched_dex": -0.27, "factor": 1.5, "residual_systematic_dex": [0.10, 0.15]},
+      "locations": ["abstract ONLY", "conclusion (factor + systematic ONLY)"],
+      "internal_ratio_check": "0.40/0.27 = 1.48 ~ 1.5 (self-consistent); shortfall 0.13 dex lies within claimed 0.1-0.15 dex band",
+      "derivation_check_1": "NOT REPRODUCIBLE: shifting the anchor down by 0.24 dex moves a -0.50 deficit to ~-0.26, not -0.40, if JWST Te-scale values are unchanged; no stated ingredient yields -0.40",
+      "derivation_check_2": "INCONSISTENT: TNG internal evolution is anchor-independent by construction, yet abstract says -0.27 while S3/Fig.2 say -0.23/-0.25/-0.25; no derivation of -0.27 exists in the artifact",
+      "body_support": "NONE (no method step, no results paragraph, no figure series); contradicted by S4 present-tense 'on different scales' + 'requires re-deriving' + 'suggestive'",
+      "status": "BLOCKED"
+    },
+    {
+      "name": "sample_sizes",
+      "entries": [
+        {"quantity": "SDSS MPA-JHU total", "value": "4.9e5 (abstract ~5e5)", "status": "CONSISTENT_UNVERIFIABLE", "note": "matches the well-known MPA-JHU catalogue scale"},
+        {"quantity": "TNG sample", "value": "~3e4 (abstract)", "status": "QUESTIONABLE", "note": "plan-corrected invariant for the adjacent C2 packet gives TNG=23,722 (=2.4e4) for a TNG100-1 MZR selection; if the same M*>10^8.5, SFR>0 selection applies, '~3e4' overstates by ~26%. Not provable from pinned inputs; flag for correction ledger."},
+        {"quantity": "SDSS PP04 recompute subset", "value": "2.0e5 (abstract)", "status": "BLOCKED", "note": "belongs to the matched-scale claim, which has no body support; adjacent C2 invariant SDSS=120,000 also differs (possibly different cuts)."},
+        {"quantity": "TNG high-mass count at z=6", "value": "N=965", "status": "CONSISTENT_UNVERIFIABLE"}
+      ]
+    },
+    {
+      "name": "redshift_scope",
+      "detail": "Data: JWST z=3.8-8.9 (Nakajima 2023) + z=3-6 supplement; abstract claim scope z=4-6; quantitative claims at z~4.7/5.4 (inside scope). Fig.2 displays observed points to z~6.7 (SFMS) and z~7.2 (MZR) beyond the abstract's claim scope - display only, no claim attached.",
+      "status": "VERIFIED_INTERNAL (minor display-vs-scope note)"
+    }
+  ]
+}

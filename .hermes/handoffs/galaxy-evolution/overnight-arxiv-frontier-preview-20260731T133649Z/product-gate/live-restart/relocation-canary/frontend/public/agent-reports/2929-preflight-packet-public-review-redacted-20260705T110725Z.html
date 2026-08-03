@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en" data-marker="GALAXY_2929_PUBLIC_REDACTED_PACKET_READER_NO_ACTIVE_PHRASE_20260705T114600Z">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>2929 preflight packet public review copy</title><style>
+body{font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#07111f;color:#edf6ff;margin:0;padding:0}
+header{background:#0d2038;padding:28px 34px;border-bottom:1px solid #28486c;position:sticky;top:0}
+main{max-width:1080px;margin:0 auto;padding:28px 34px 80px}
+.badges span{display:inline-block;margin:0 8px 8px 0;padding:6px 10px;border:1px solid #4c749e;border-radius:999px;background:#132b49;color:#d8ecff;font-size:13px}
+pre{white-space:pre-wrap;word-wrap:break-word;background:#0a1728;border:1px solid #254664;border-radius:12px;padding:20px;overflow:auto}
+a{color:#9fd1ff}.warn{background:#2f2100;border:1px solid #9f7700;color:#ffe8aa;padding:12px 14px;border-radius:10px;margin-top:14px}
+</style></head>
+<body>
+<header>
+  <div class="badges"><span>PUBLIC REDACTED REVIEW COPY</span><span>NO ACTIVE EXECUTION PHRASE</span><span>DB WRITES 0</span><span>SQL EXECUTED 0</span></div>
+  <h1>2929 product/DB/wiki exact-diff preflight packet</h1>
+  <p>This public page is a review copy for reading from another machine. It intentionally redacts the packet-specific future execution phrase. The active public phrase remains <b>NO ACTIVE EXECUTION PHRASE</b>.</p>
+  <p><b>Marker:</b> GALAXY_2929_PUBLIC_REDACTED_PACKET_READER_NO_ACTIVE_PHRASE_20260705T114600Z</p>
+</header>
+<main>
+  <div class="warn"><b>Safety note:</b> This page is not an execution gate. Do not execute anything from this page. If a DB write is ever desired later, use the local packet and the exact packet-specific phrase from that packet only.</div>
+  <p>Stable cockpit: <a href="/agent-reports/live-steering-cockpit.html">/agent-reports/live-steering-cockpit.html</a></p>
+  <h2>Redacted packet text</h2>
+  <pre># Galaxy 2929 product/DB/wiki exact-diff preflight packet
+
+Packet: `galaxy_2929_product_db_wiki_exact_diff_preflight_20260705T110725Z`  
+Status: `AWAITING_SEPARATE_EXECUTION_APPROVAL_PREPARED_ONLY`  
+Active execution phrase: `NO ACTIVE EXECUTION PHRASE`  
+DB writes executed while preparing this packet: `0`  
+Product/wiki publication executed while preparing this packet: `0`
+
+## Scope
+
+This packet maps the completed 36/36 docs-only source-position decisions for hidden parent claim `2929` into product/DB/wiki shape.
+
+Direct write proposed only if separately approved later:
+
+- Table: `evidence`
+- Rows updated: `22`
+- Fields updated: `evidence.claim_id`, `evidence.stance`
+- Before: all 22 rows are currently on hidden parent `claim_id=2929` with `stance=&#x27;none&#x27;`
+- After: rows move to scoped visible successors `2942`, `2943`, `2944`, `2945`, `2946`, `2947` with `stance=&#x27;supports&#x27;`
+- Rows left archival/no DB change: `14`
+
+No other table is proposed for mutation in this packet.
+
+## Product targets
+
+- Page: `wiki_pages.id=57`, slug `galaxy-evolution`
+- Hidden parent claim: `claims.id=2929`
+- Visible successor claims: `2942, 2943, 2944, 2945, 2946, 2947`
+- Public/API surfaces expected to change if executed: `/api/claims/{claim_id}/evidence`, `/api/pages/galaxy-evolution/claims`
+- Wiki/prose surfaces: `NONE`. This packet does not update `wiki_pages.content` and does not insert `page_versions`.
+
+## Exact proposed DB row effects
+
+Current public evidence counts:
+
+```json
+{
+  &quot;2929&quot;: 36,
+  &quot;2942&quot;: 3,
+  &quot;2943&quot;: 10,
+  &quot;2944&quot;: 13,
+  &quot;2945&quot;: 7,
+  &quot;2946&quot;: 6,
+  &quot;2947&quot;: 5
+}
+```
+
+Expected counts after guarded apply:
+
+```json
+{
+  &quot;2929&quot;: 14,
+  &quot;2942&quot;: 7,
+  &quot;2943&quot;: 15,
+  &quot;2944&quot;: 16,
+  &quot;2945&quot;: 9,
+  &quot;2946&quot;: 9,
+  &quot;2947&quot;: 10
+}
+```
+
+Rows proposed for `evidence.claim_id` + `evidence.stance` update:
+
+| evidence_id | from | to | stance before | stance after | docs decision |
+|---:|---:|---:|---|---|---|
+| 28062 | 2929 | 2947 | none | supports | route_kinetic_radio |
+| 28066 | 2929 | 2945 | none | supports | relink |
+| 28069 | 2929 | 2944 | none | supports | relink |
+| 28073 | 2929 | 2944 | none | supports | relink |
+| 28074 | 2929 | 2942 | none | supports | relink |
+| 28075 | 2929 | 2945 | none | supports | relink |
+| 28087 | 2929 | 2942 | none | supports | relink |
+| 28088 | 2929 | 2944 | none | supports | relink |
+| 28089 | 2929 | 2946 | none | supports | relink |
+| 28091 | 2929 | 2943 | none | supports | relink |
+| 28095 | 2929 | 2947 | none | supports | route_kinetic_radio |
+| 28108 | 2929 | 2947 | none | supports | route_kinetic_radio |
+| 28111 | 2929 | 2947 | none | supports | route_kinetic_radio |
+| 28123 | 2929 | 2946 | none | supports | relink |
+| 28131 | 2929 | 2947 | none | supports | route_kinetic_radio |
+| 28140 | 2929 | 2943 | none | supports | relink |
+| 28141 | 2929 | 2943 | none | supports | relink |
+| 28144 | 2929 | 2943 | none | supports | relink |
+| 28148 | 2929 | 2943 | none | supports | relink |
+| 28151 | 2929 | 2942 | none | supports | relink |
+| 28155 | 2929 | 2942 | none | supports | relink |
+| 28158 | 2929 | 2946 | none | supports | relink |
+
+Rows left archival/no DB change:
+
+28060, 28070, 28076, 28080, 28082, 28083, 28084, 28110, 28114, 28118, 28127, 28133, 28139, 28143
+
+## Files generated
+
+- Backup/context: `backups/db_row_backup.json`
+- Exact diff JSON: `diff/exact_diff.json`
+- Exact diff CSV: `diff/exact_diff_summary.csv`
+- Review-only apply SQL: `sql/apply_2929_source_position_product_map.sql`
+- Review-only rollback SQL: `sql/rollback_2929_source_position_product_map.sql`
+- Pre-execute read-only verification SQL: `sql/pre_execute_readonly_verification.sql`
+- Post-execute read-only verification SQL: `sql/post_execute_readonly_verification.sql`
+- Rollback verification SQL: `sql/rollback_verification.sql`
+- GO/NO-GO checklist: `artifacts/go_no_go_checklist.jsonl`
+- Manifest: `artifacts/manifest.json`
+
+## Guard checks before any future execution
+
+The apply SQL aborts unless:
+
+- exactly 22 proposed rows still match `claim_id=2929`, `stance=&#x27;none&#x27;`, `status=&#x27;active&#x27;`, `evidence_status=&#x27;production_active&#x27;`, arXiv id, title hash, and summary hash;
+- hidden parent `2929` still has exactly 36 evidence rows;
+- update rows still have exactly 5 existing evidence votes;
+- all 36 held rows still have exactly 6 evidence votes;
+- all 36 held rows still have zero comments, zero element links, and zero jury scorecards;
+- post-apply evidence counts match the packet.
+
+## Rollback plan
+
+If apply is later approved and executed, rollback is the stored `rollback_2929_source_position_product_map.sql` file. It:
+
+1. Verifies the 22 rows are in the applied target state.
+2. Updates only those 22 rows back to `claim_id=2929`, `stance=&#x27;none&#x27;`.
+3. Verifies current evidence counts return to the pre-apply counts.
+
+Rollback does not undo any separately approved trust recompute or wiki/prose publish because those actions are excluded from this packet.
+
+## Explicit NO-GO until separate approval
+
+This packet preparation did not execute the write. Do not run the SQL unless the user reviews this packet and later pastes exactly:
+
+`[REDACTED FROM PUBLIC COPY — see local packet or request an explicit secure handoff]`
+
+Anything else keeps this packet read-only. The active state remains `NO ACTIVE EXECUTION PHRASE`.
+
+## Explicit exclusions
+
+- No trust recompute.
+- No `trust_audit_log` write.
+- No claim text/status/trust-score update.
+- No wiki prose publish.
+- No `wiki_pages.content` update.
+- No `page_versions` insert.
+- No `page_citation_links`, `evidence_votes`, `evidence_comments`, `evidence_element_links`, or `jury_scorecards` write.
+- No deploy/restart.
+- No git commit/push/merge.
+- No cron/cloud/account/secret changes.
+
+</pre>
+</main>
+</body></html>

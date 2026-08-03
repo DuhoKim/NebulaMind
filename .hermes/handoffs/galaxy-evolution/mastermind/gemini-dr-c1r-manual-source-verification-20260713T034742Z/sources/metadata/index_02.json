@@ -1,0 +1,65 @@
+{
+  "index": 2,
+  "captured_url": "https://www.tng-project.org/data/docs/background/",
+  "ledger_rows": [
+    2
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:14:48Z",
+      "method": "GET",
+      "host": "www.tng-project.org",
+      "index": 2,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://www.tng-project.org/data/docs/background/",
+      "final_url": "https://www.tng-project.org/data/docs/background/",
+      "status": 200,
+      "bytes": 74440,
+      "sha256": "668cdcd6ebff6de7390956a27d026d7a8d4539d7676447632ea8f80862965e46",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx02_initial_668cdcd6ebff.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:14:50Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 2,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22IllustrisTNG%20-%20Data%20Access%20-%20Background%20and%20Important%20Details%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22IllustrisTNG%20-%20Data%20Access%20-%20Background%20and%20Important%20Details%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 506,
+      "sha256": "a1e62d3d84056c7cfd517f0ddf3b48d778511c6f618a74f23cfe1255c83f8bf9",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx02_ads_a1e62d3d8405.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "IllustrisTNG - Data Access - Background and Important Details",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx02_initial_7d3531a083bc.txt",
+      "text_sha256": "7d3531a083bc654bacc6b0c59ac8ee8dfe9239464c95d14f8df1dff9efb6746e",
+      "text_chars": 58145
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx02_ads_480ae03d6cf9.txt",
+      "text_sha256": "480ae03d6cf933323e9ffde64821847798423ffc906f0ec02390bb53de22e1a4",
+      "text_chars": 606
+    }
+  ]
+}

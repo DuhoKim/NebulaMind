@@ -1,0 +1,11 @@
+Here's my plan to tackle that topic. Let me know if you need to make changes.
+ AGN Heating in Low-Mass Halos 
+Research Websites
+(1) Search astrophysics literature databases for X-ray studies of atmospheres and coronae in individual massive galaxies, ellipticals, lenticulars, spirals, and poor groups with halo masses up to 10^13.5 M_sun. Extract the citation, sample selection, mass range, detections or limits for X-ray luminosity, temperature, and extent, instruments used including eROSITA stacking constraints, and stated caveats.
+(2) Find literature on radio-AGN incidence fractions in central galaxies within this specific halo mass range. Record the survey name, luminosity threshold, and all necessary qualifiers to harmonize the fractions, ensuring uncertainties are accurately noted.
+(3) Research the energetics ledger for these low-mass systems by comparing published jet, cavity, or turbulence heating estimates against cooling estimates. Note the uncertainties, duty-cycle treatments, and the specific proxies used when cavity calorimetry was not possible.
+(4) Identify published arguments that extrapolate cluster duty cycles down to low-mass halos. Record the attributed claims, assumptions made by the authors, and any published pushback or criticism against these extrapolations.
+(5) Search for alternative, non-AGN maintenance heating channels discussed for this mass regime, specifically isolating mentions of Type Ia supernovae, gravitational or virialization heating, and magnetic or cosmic ray support.
+(6) Look for direct disagreements and conflicting estimates in the literature regarding AGN heating in this specific mass regime, and extract direct quotes representing both sides of the conflict.
+(7) Investigate proposed discriminating observational tests in the literature designed to decide the low-mass maintenance question. Note the feasibility statements, relevant instrument families required, and instances where JWST or ALMA are considered marginal.
+(8) Compile all gathered information adhering strictly to the user's required markdown structure, meta header, and citation formats. Apply all negative constraints, avoiding the banned causal register words, and ensure the requested completion marker string is the absolute final output line.

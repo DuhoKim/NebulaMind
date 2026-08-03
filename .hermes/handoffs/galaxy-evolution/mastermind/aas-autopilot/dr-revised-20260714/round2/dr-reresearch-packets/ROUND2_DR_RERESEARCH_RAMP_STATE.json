@@ -1,0 +1,137 @@
+{
+  "advisory_only": true,
+  "authorization_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/browser-concurrency/studio-simultaneous-web-viability-test-20260714T034720Z/receipts/DUHO_MAX_CONSUMPTION_20260715.md",
+  "authorization_sha256": "a0cf2c39c219a1e2df531dbb1667a0e106e43362f6684c9791272bb5bf90604c",
+  "batch_id": "DR_RERESEARCH_ROUND2_RAMP_20260715",
+  "broker_serializes_submit_instants_only": true,
+  "challenge_stop": null,
+  "created_utc": "2026-07-15T05:21:51.805714Z",
+  "current_gap_minutes": 20,
+  "error": "RampHold: paper_01 technical/custody failure: PaperFailure: saved packet result markers invalid",
+  "first_not_before": "2026-07-15T05:05:09Z",
+  "first_unaccepted_or_soft_throttle": {
+    "attempted_gap_minutes": 15,
+    "error": "paper_03 positively_unaccepted; no retry",
+    "retry_performed": false,
+    "stepped_up_sustainable_gap_minutes": 20,
+    "utc": "2026-07-15T06:04:26.822770Z"
+  },
+  "flow_parallel_on_studio_authorized": true,
+  "gap_ladder_minutes": [
+    30,
+    20,
+    15,
+    10,
+    8
+  ],
+  "ledger_verify": "OK (3217 entries)",
+  "live_leases_snapshot": [],
+  "next_action": "HOLD at stepped-up maximum sustainable gap; no retry and no later paper",
+  "next_not_before": "2026-07-15T06:00:00Z",
+  "next_paper": 3,
+  "ordered_papers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "paper01_custody_recovery_receipt": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-packets/PAPER01_PACKET_MARKER_RECOVERY_20260715T053400Z.json",
+  "paper01_custody_recovery_receipt_sha256": "1a62a3be2922cba1c5cf6b85fca40bafa5e7ce136807cadb1c3024ab2051ff9c",
+  "papers": {
+    "1": {
+      "accepted_start_epoch": 3083,
+      "accepted_start_holder": "goru-dr-reresearch-r2-paper_01-start",
+      "accepted_start_lease_id": "L00519",
+      "accepted_start_utc": "2026-07-15T05:23:06Z",
+      "completed_utc": "2026-07-15T05:41:41.560691Z",
+      "custody_recovery": {
+        "failed_metadata_snapshot": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-packets/paper_01_round2_reresearch_dr_packet.failed_save_snapshot_20260715T053400Z.metadata.json",
+        "failed_metadata_snapshot_sha256": "f134c9f70c0075e8ed48a8081e7ff911d1c7ef6261a29bbc5eab84639e1e9d4b",
+        "failed_packet_snapshot": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-packets/paper_01_round2_reresearch_dr_packet.failed_save_snapshot_20260715T053400Z.md",
+        "failed_packet_snapshot_sha256": "83af6e2a50feaf99d4645590bdf0088d98c0901612bb314d56b000179c8fd865",
+        "immutable_failure_sha256": "8ed98e6f9d4cdb7f262dc8ac2a874c2df5c6f9ee6bfc2e372265bb74d5a70c2c",
+        "new_prompt_or_start_performed": false,
+        "reason": "verbatim prompt contained a prior Captured-source-anchors heading; final wrapper delimiter is now selected after the new result"
+      },
+      "delete_epoch": 3152,
+      "deletion_sha256": "6cef75b85ed74c95bd1bd400aa0d0747997f9f7c37c9cf64b530aa0e333cc6f9",
+      "gap_minutes": 30,
+      "metadata_sha256": "7549cdf713eae9ba8559f9152880d2f207e1fd59a7a4e98d1219816a54ba1600",
+      "new_prompt_send_performed": true,
+      "packet_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-packets/paper_01_round2_reresearch_dr_packet.md",
+      "packet_sha256": "0d65f2dc270d7300297addd54014a6e78c16447976e81befbdc08e829564a456",
+      "required_output_shape_pass": true,
+      "result_chars": 29899,
+      "result_sha256": "cf9679d6a14a559024822093a64dd05650fd0c49334d6495735dda121d32290e",
+      "save_epoch": 3126,
+      "source_anchor_count": 87,
+      "start_retry_performed": false,
+      "started_utc": "2026-07-15T05:21:52.154560Z",
+      "status": "completed"
+    },
+    "2": {
+      "accepted_start_epoch": 3171,
+      "accepted_start_holder": "goru-dr-reresearch-r2-paper_02-start",
+      "accepted_start_lease_id": "L00535",
+      "accepted_start_utc": "2026-07-15T05:45:00Z",
+      "completed_utc": "2026-07-15T05:53:12.788167Z",
+      "delete_epoch": 3215,
+      "deletion_sha256": "0f3c4048a9c362b79511d0f80406113ae9913ef9a9129cb0e0d40beda8740927",
+      "gap_minutes": 20,
+      "metadata_sha256": "32ba39729d853f7921b64e1071ffce0ceb8c023c4ea334e32cd01370831173f6",
+      "new_prompt_send_performed": true,
+      "packet_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-packets/paper_02_round2_reresearch_dr_packet.md",
+      "packet_sha256": "77b8232e36aef16ea8aea84a0edbc08eeafb2c9577659e31bae6951c38a60ef8",
+      "required_output_shape_pass": true,
+      "result_chars": 26639,
+      "result_sha256": "6fade504a19d9b845cb8addedad38051c00bd2633941bee73a1ccb4229f159f8",
+      "save_epoch": 3208,
+      "source_anchor_count": 107,
+      "start_retry_performed": false,
+      "started_utc": "2026-07-15T05:43:06.055874Z",
+      "status": "completed"
+    },
+    "3": {
+      "gap_minutes": 15,
+      "start_timeout_classification": "positively_unaccepted",
+      "started_utc": "2026-07-15T06:00:00.064444Z",
+      "status": "starting"
+    },
+    "4": {
+      "status": "pending"
+    },
+    "5": {
+      "status": "pending"
+    },
+    "6": {
+      "status": "pending"
+    },
+    "7": {
+      "status": "pending"
+    },
+    "8": {
+      "status": "pending"
+    },
+    "9": {
+      "status": "pending"
+    }
+  },
+  "prior_goru_start": {
+    "epoch": 2939,
+    "holder": "goru-dr-review-r1-paper_08-start",
+    "lease_id": "L00496",
+    "utc": "2026-07-15T04:35:09Z"
+  },
+  "prompt_manifest_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-revised-20260714/round2/dr-reresearch-prompts/ROUND2_DR_RERESEARCH_PROMPTS.json",
+  "prompt_manifest_sha256": "8442b235c12f1b1e3da4ccfb2ebf68c7c41d27e2455c1b060c2c1ded343865b7",
+  "publish_commit_push_authorized": false,
+  "reference_only": true,
+  "remaining_seconds": 0.0,
+  "status": "FIRST_UNACCEPTED_OR_SOFT_THROTTLE_HOLD_NO_RETRY",
+  "updated_utc": "2026-07-15T06:04:26.822791Z"
+}

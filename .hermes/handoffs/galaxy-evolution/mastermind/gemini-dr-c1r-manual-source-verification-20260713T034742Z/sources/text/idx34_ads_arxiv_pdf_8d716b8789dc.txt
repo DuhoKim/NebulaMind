@@ -1,0 +1,2373 @@
+Mon. Not. R. Astron. Soc. 000, 1–13 (2014)
+Printed 15 November 2017
+(MN LATEX style ﬁle v2.2)
+Localized Massive halo properties in BAHAMAS and
+MACSIS simulations: scalings, log-normality, and
+covariance
+Arya Farahi1⋆, August E. Evrard1,2, Ian McCarthy3, David J. Barnes4,5, and
+Scott T. Kay4
+1Department of Physics and Michigan Center for Theoretical Physics, University of Michigan, Ann Arbor, MI 48109, USA
+2Department of Astronomy, University of Michigan, Ann Arbor, MI 48109, USA
+3Astrophysics Research Institute, Liverpool John Moores University, 146 Brownlow Hill, Liverpool L3 5RF
+4Jodrell Bank Centre for Astrophysics, School of Physics and Astronomy, The University of Manchester, Manchester M13 9PL, UK
+5Department of Physics, Kavli Institute for Astrophysics and Space Research, Massachusetts Institute of Technology, Cambridge, MA 02139, USA
+Accepted. Received; in original form
+ABSTRACT
+Using tens of thousands of halos realized in the bahamas and macsis simulations
+produced with a consistent astrophysics treatment that includes AGN feedback, we
+validate a multi-property statistical model for the stellar and hot gas mass behavior in
+halos hosting groups and clusters of galaxies. The large sample size allows us to extract
+ﬁne-scale mass–property relations (MPRs) by performing local linear regression (LLR)
+on individual halo stellar mass (Mstar) and hot gas mass (Mgas) as a function of total
+halo mass (Mhalo). We ﬁnd that: 1) both the local slope and variance of the MPRs
+run with mass (primarily) and redshift (secondarily); 2) the conditional likelihood,
+p(Mstar, Mgas| Mhalo, z) is accurately described by a multivariate, log-normal distri-
+bution, and; 3) the covariance of Mstar and Mgas at ﬁxed Mhalo is generally negative,
+reﬂecting a partially closed baryon box model for high mass halos. We validate the
+analytical population model of Evrard et al. (2014), ﬁnding sub-percent accuracy in
+the log-mean halo mass selected at ﬁxed property, ⟨ln Mhalo|Mgas⟩or ⟨ln Mhalo|Mstar⟩,
+when scale-dependent MPR parameters are employed. This work highlights the po-
+tential importance of allowing for running in the slope and scatter of MPRs when
+modeling cluster counts for cosmological studies. We tabulate LLR ﬁt parameters as
+a function of halo mass at z = 0, 0.5 and 1 for two popular mass conventions.
+Key words: galaxies: clusters: general
+1
+INTRODUCTION
+Dark matter halos provide the gravitational potential wells
+within which baryonic plasma can cool and form stars and
+galaxies. Measuring galaxy assembly across cosmic history is
+key to understanding the astrophysical processes happening
+within halos. Over the past two decades it has become clear
+that the highest mass halos that host groups and clusters of
+galaxies are, in an overall sense, less eﬃcient at converting
+baryons into stars. The majority of baryons end up in a hot
+intracluster medium (ICM) (Briel et al. 1992). Despite the
+⋆E-mail: aryaf@umich.edu
+ineﬃciency of star formation within the overall halo, the
+central galaxies of groups and clusters are the largest in the
+universe, built by merging and accretion of many smaller
+systems (e.g., Richstone 1976; De Lucia & Blaizot 2007).
+Considerable eﬀort has gone into measuring the statisti-
+cal relationship between the mass and observable properties
+of halos that reﬂect their baryon contents (see Giodini et al.
+2013, for a recent review). Observational studies are limited
+by sample of tens to low hundreds, systematic uncertainties
+in total mass estimates, and complex or ill-deﬁned sample se-
+lection criteria. Recent eﬀorts are improving on these fronts
+(Mantz et al. 2016a,b; Zou et al. 2016; Saro et al. 2017;
+Schellenberger & Reiprich 2017).
+c⃝2014 RAS
+arXiv:1711.04922v1  [astro-ph.CO]  14 Nov 2017
+
+
+2
+A. Farahi et al.
+We use the term mass–property relation (MPR) to rep-
+resent the functional form of conditional halo statistics,
+p(S|M, z), where S is a set of intrinsic properties of the
+population of halos of mass M at redshift z. We use the
+term property rather than observable here intentionally, as
+our work involves three-dimensional spatial measurements of
+stellar and hot gas mass properties at speciﬁc radii in sim-
+ulations. While not directly observable, estimators for these
+quantities can be constructed from optical, X-ray or SZ ob-
+servations. Knowledge of the MPR, and survey-speciﬁc map-
+pings to observed quantities, are critical for understanding
+multi-phase baryon evolution and for producing competitive
+cosmological constraints using cluster counts (Allen et al.
+2011; Weinberg et al. 2013).
+Cosmological hydrodynamical simulations that evolve
+gravitationally-coupled
+baryons
+and
+dark
+matter
+oﬀer
+model-dependent predictions for the form and redshift evo-
+lution of massive halo scaling relations (e.g., Evrard et al.
+1996; Bryan & Norman 1998; Sembolini et al. 2013; Le Brun
+et al. 2017; Barnes et al. 2017). While signiﬁcant progress
+has been made, multi-ﬂuid hydrodynamic simulations re-
+main challenged by the wide dynamic range and complex
+astrophysical elements involved in modeling the formation
+of stars, supernova feedback, and supermassive black hole ef-
+fects. The bahamas simulations (McCarthy et al. 2017) have
+taken a novel approach by tuning sub-grid control parame-
+ters to match the observed galaxy stellar mass function and
+the hot gas mass fractions of groups and clusters simultane-
+ously. The bahamas simulations are a set of 400 Mpc h−1
+volumes that includes metal-dependent radiative cooling,
+star formation, and prescriptions for both supernova and
+AGN feedback. This suite of simulations reproduce a wide
+range of observables and have been used to characterize bi-
+ases in a broad range of mass estimation techniques (Henson
+et al. 2017).
+Multi-wavelength population statistics require under-
+standing the covariance between pairs of intrinsic proper-
+ties or observable quantities. This covariance is an essential
+element in modeling multi-wavelength cluster samples, as
+pointed out by Nord et al. (2008) for the case of inferring
+luminosity evolution from X-ray ﬂux-limited samples.
+The diagonal elements of the covariance matrix link-
+ing mass to observable properties are becoming better mea-
+sured, but currently oﬀ-diagonal elements are poorly known
+(Mantz et al. 2016a). Cosmological hydrodynamics simula-
+tions, however, are a great tool for gaining insight into the
+detailed form of the MPR, including property covariance.
+The likelihood of little or no loss of baryons from the
+deepest potential wells motivates an expectation of anti-
+correlation in the gas and stellar mass fractions in the high-
+est massive halos. If all clusters of ﬁxed halo mass are closed
+baryon boxes with baryons partitioned into stars and gas,
+then a particular system with slightly more (less) gas than
+average must contain a lower (higher) stellar mass than av-
+erage, meaning a strong anti-correlation between gas mass
+and stellar mass. Such an anti-correlation is apparent in the
+Rhapsody-G simulations of Wu et al. (2015), where a corre-
+lation coeﬃcient r = −0.7 is found for gas and stellar mass
+deviations about the mean in a sample of ten 1015 M⊙halos
+and their progenitors.
+In lower-mass halos hosting groups and poor clusters
+of galaxies, feedback can eﬀectively drive baryons outside
+of the virial radius (e.g.
+Lau et al. 2010; Sembolini et al.
+2013; Truong et al. 2016; Le Brun et al. 2017), reducing or
+eliminating the degree of anti-correlation.
+Another key assumption in modeling MPRs is the form
+of the conditional distribution of properties at ﬁxed halo
+mass, usually assumed to take a log-normal form. Under a
+log-normal assumption coupled with a simple parameterized
+approximation to the halo space density, or mass function,
+Evrard et al. (2014, hereafter E14) derive closed-form ex-
+pressions for multi-property population statistics. The an-
+alytic model exposes fundamental parameter degeneracies
+between the shape of the mass function, which is driven by
+cosmology, and MPR parameters determined by astrophys-
+ical processes. Practically, the model supports fast compu-
+tation of expectations for cosmological likelihood analysis.
+The goals of this work are: i) to measure the mass and
+redshift dependencies of MPRs for stellar mass and hot gas
+mass; ii) evaluate the statistical form of the MPR likeli-
+hood, and; iii) test the accuracy of the E14 model in a sim-
+ulation setting where the intrinsic properties are measured
+directly. Unlike previous “zoom-in” simulations (e.g., Wu
+et al. 2015), the bahamas simulation models baryon behav-
+ior in a large cosmic volume, enabling study of a wide range
+of halos hosting groups and clusters. The large samples from
+bahamas allow us to apply a localized regression approach
+to estimate mass-dependent MPR parameters. However, the
+400 h−1 Mpc simulation size limits the number of the most
+massive halos; bahamas statistical coverage drops oﬀabove
+3 × 1014 M⊙. We therefore also include the macsis simula-
+tion ensemble which, like Wu et al. (2015), uses the zoom-in
+technique to extend the mass range of the bahamas sample
+while employing the same astrophysical model, resolution,
+and cosmology (Barnes et al. 2017).
+This paper organized as follows. In §2 we present the
+simulation samples used in this work while §3 describes our
+non-parametric local linear regression (LLR) model. The
+LLR results, including covariance of hot gas and stellar mass
+at ﬁxed halo mass, are presented in §4. In §5 we test the per-
+formance of the E14 analytic model, followed by discussion
+in §6 and a summary in §7.
+Throughout this paper, we use radial and mass scales
+deﬁned by a spherical density contrast with respect to
+the critical density of the universe, ρcrit(z); M∆indicates
+the mass within which the average total mass density is
+∆ρcrit(z). Halo masses are expressed in units of M⊙, not
+h−1 M⊙).
+2
+SIMULATIONS
+We use the bahamas cosmological hydrodynamical sim-
+ulation (McCarthy et al. 2017) run using the Gadget-3
+SPH code with subgrid prescriptions for metal-dependent
+radiative cooling, star formation, and stellar and AGN
+feedback developed as part of the OverWhelmingly Large
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+3
+Table 1. Halo sample sizes with M500 > 1013 M⊙.
+Redshift
+bahamas
+macsis
+1
+11387
+377
+0.5/0.46a
+17668
+377
+0
+21987
+385
+a 0.5=bahamas , 0.46=macsis
+Simulations project (Schaye et al. 2010). The periodic
+400 h−1 Mpc cube we use here adopts a ﬂat ΛCDM cos-
+mology with Planck 2013 cosmological parameters (Planck
+Collaboration et al. 2014), namely Ωm, Ωb, ΩΛ, σ8, ns, h =
+0.3175, 0.049, 0.6825, 0.834, 0.9624, 0.6711 where Ωm, Ωb and
+ΩΛ are the normalized densities in matter, baryons and
+vacuum energy, σ8 sets the power spectrum normaliza-
+tion, ns
+is
+the
+primordial
+spectral
+index,
+and h
+≡
+H0/(100 km s−1 Mpc−1) is the dimensionless Hubble con-
+stant.
+The wind velocity associated with stellar feedback and
+the heating temperature associated with the AGN feedback
+in bahamas are adjusted so as to reproduce the observed
+local galaxy stellar mass function and the amplitude of the
+relation between hot gas mass and halo mass of local X-
+ray-selected galaxy groups and clusters. Non-tuned features
+match an unprecedentedly wide range of observed proper-
+ties, including galaxy and hot gas radial proﬁles as well as
+the behavior of stacked SZ and X-ray luminosity as a func-
+tion of galaxy stellar mass (McCarthy et al. 2017).
+Cosmological simulations featuring volume-complete
+hydrodynamics with full sub-grid physics at high spatial
+and mass resolution are very computationally expensive.
+The 400 h−1 Mpc bahamas simulation has spatial resolu-
+tion of 4 h−1 kpc and resolves a 1014 M⊙halo with ∼30, 000
+particles. Because of the limited number of very high mass
+halos in the realized volume, the macsis project (Barnes
+et al. 2017) was developed to extend the sample to higher
+mass halos. The macsis ensemble consists of 390 “zoom-in”
+simulations (Tormen et al. 1997) of individual halo regions
+drawn from a parent 3.2 Gpc N-body simulation. The hydro-
+dynamic resimulations employ the same resolution and sub-
+grid prescriptions as bahamas in a Planck cosmology with
+nearly identical parameters as bahamas (parameter values
+typically diﬀer in the third signiﬁcant digit, see Barnes et al.
+2017).
+As described in McCarthy et al. (2017), halos are iden-
+tiﬁed using a “friends-of-friends” percolation method. The
+spherically integrated quantities used here are measured us-
+ing the minimum of the local gravitational potential as the
+halo center, and any sub-halos that lie outside the charac-
+teristic radii, R∆are ignored.
+The samples we use, listed in Table 1, include all ha-
+los with M500 > 1013 M⊙at redshifts z = 0, 0.5 and 1.0.
+Note that there the redshift slice for macsis sample is 0.46.
+The combined bahamas and macsis simulations oﬀer tens
+of thousands of halo realizations covering a wide dynamic
+range in total mass.
+The halo properties we study are the aggregate stellar
+mass, Mstar, and the hot phase gas mass, Mgas, measured
+within spheres enclosing densities of ∆= 500 and 200 times
+the critical density, ρcrit(z). Note that the hot gas mass in-
+cludes particles with temperatures greater than 105 K while
+the stellar mass uses all star particles within R∆.
+For this study, we combine bahamas and macsis sam-
+ples into a super-sample. Since the bahamas and macsis are
+not using exactly the same cosmology, we re-normalize the
+baryonic contents of the macsis sample to align the global
+baryon fraction, ωb/Ωm, to that assumed in the bahamas
+cosmology; however, the magnitude of this correction is neg-
+ligible, < 2%. We also note that there is small diﬀerence in
+the redshift of bahamas and macsis samples, 0.5 versus
+0.46. Since we show below that the redshift evolution of the
+properties we examine is relatively weak, we do not apply
+any correction for this redshift.
+The complex interactions of mergers, turbulence, cool-
+ing, chemical enrichment, and feedback from supernovae and
+AGN play out within the evolving cosmic web network of
+large-scale structure to determine the overall statistical na-
+ture of the baryon component masses within the halo popu-
+lation. While matching observed mean stellar and gas frac-
+tion behavior, within the limits of current observational un-
+certainties, has been done in the bahamas and macsis sim-
+ulations by tuning a small number of sub-grid parameters,
+higher-order features of the property statistics should be
+considered model-dependent predictions of the underlying
+astrophysical theory. Within the context of these simula-
+tions’ numerical and astrophysical treatments, we focus this
+paper on the model’s expectations for running of the slope
+and scatter of the MPR with mass and redshift. Future work
+can examine the robustness of these features using multiple
+simulations by independent groups.
+3
+MASS-LOCALIZED REGRESSION
+In this section, we describe a localized linear regression
+model to characterize the conditional joint property like-
+lihood, p(Mstar, Mgas| Mhalo, z), of the simulated halo en-
+semble. In practice, the power-law nature exhibited by most
+properties with respect to mass motivates the use of loga-
+rithmic variables that we introduce below.
+The method produces mass localized estimates of the
+intercepts, slopes and covariance of this pair of properties as
+a function of halo mass at ﬁxed redshift. The assumption of a
+log-normal form for the conditional likelihood underlies this
+model, and we demonstrate the validity of this assumption
+in §4.2.
+Following E14, our underlying population model consid-
+ers a vector of properties, S, associated with halos of total
+mass, M∆, at redshift, z. Using natural logarithms of the
+properties, s = ln S, and mass, µ = ln M∆, the log-mean
+scaling of property a at a ﬁxed redshift is locally linear
+⟨sa | µ, z⟩= πa(µ, z) + αa(µ, z)µ,
+(1)
+with redshift- and scale-dependent parameters that we mea-
+sure by diﬀerentially weighting halos in the simulation en-
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+4
+A. Farahi et al.
+Figure 1. Halo baryon contents (points) measured within over-densities, ∆= 500 (left) and 200 (right), for Mgas (top) and Mstar
+(bottom) as a function of total halo mass at three redshifts indicated in the legend. Lines show the LLR ﬁts. Parameters for the ∆= 500
+case are shown in Figures 2 and 3.
+semble around a chosen mass scale. In this model the nor-
+malization of the property element, Sa, is eπa(µ,z).
+At a ﬁxed redshift, we determine local ﬁt parameters —
+the slope αa(µ), intercept, πa(µ), and intrinsic sample vari-
+ance, σ2
+a(µ) — for property sa by minimizing the weighted
+square error,
+ϵ2
+a(µ) =
+n
+X
+i=1
+w2
+i (sa,i −αa(µ)µi −πa(µ))2,
+(2)
+where the sum i is over halos, µi ≡ln(Mhalo,i/M), and wi
+is the local weight centered on the mass scale, M ≡eµ. We
+sweep through values of M covering the mass scale of poor
+groups to rich clusters, M500 ∈{1013, 1015} M⊙, in the joint
+bahamas and macsis halo samples.
+We use a Gaussian weight in log-mass,
+wi =
+1
+√
+2πσLLR
+exp
+
+−
+µ2
+i
+2σ2
+LLR
+
+,
+(3)
+with σLLR = 0.46, equivalent to 0.2 dex in halo mass. As
+the central halo ﬁlter scale, µ, is varied, we record the local
+slope and intercept ﬁt parameters.
+With a local slope and intercept for each property, j, we
+can compute the local property covariance using the same
+weighting scheme. We use an unbiased weighted estimator
+of the property covariance matrix, C (Gough 2009),
+Ca,b = A
+n
+X
+i=1
+wi δsa,i δsb,i,
+(4)
+where δsa,i ≡sa,i −αaµi −πa is the residual deviation from
+the local best-ﬁt, (a, b) are labels representing either stellar
+mass or hot gas mass, and the pre-factor is
+A =
+nP
+i=1
+wi
+ nP
+i=1
+wi
+2
+−
+nP
+i=1
+w2
+i
+.
+(5)
+The covariance matrix for our pair of halo properties
+has one correlation coeﬃcient,
+rgas,star =
+Cgas,star
+p
+Cgas,gas Cstar,star
+.
+(6)
+We note that ﬁtting a global power-law to MPRs that
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+5
+run with scale could induce covariance as an artifact of the
+poor, i.e. underﬁt, regression model. The locally estimated
+covariance is unbiased, easily computable, and asymptoti-
+cally approaches the population true value in the limit of
+σLLR →0 and Nhalo →∞.
+4
+RESULTS
+In this section, we begin by presenting the LLR scaling be-
+havior of log-mean stellar mass and hot gas mass as a func-
+tion of halo mass and redshift. We then examine the form of
+the conditional likelihood PDF, ﬁnding excellent agreement
+with a log-normal form, the assumption behind the weighted
+Pearson covariance, equation (4). Finally, we investigate the
+redshift and mass dependence of the star-gas covariance.
+Unless otherwise stated, error bars and shaded regions
+in the ﬁgures below are one standard deviation based on
+bootstrap estimates of 1000 re-sampled halo datasets.
+4.1
+LLR ﬁts to scaling relations
+Figure 1 shows how the hot gas mass (top) and stellar
+mass (bottom) of the bahamas and macsis halo population
+scale with total mass at three redshifts and for two criti-
+cal overdensity scales, ∆= 500 and 200. LLR ﬁt lines are
+also shown. Overall, the conditional statistics display simi-
+lar forms at diﬀerent overdensities and redshifts, but the ﬁt
+parameter values depend on scale, redshift and halo mass.
+Figure 2 shows the mass and redshift dependence of the
+gas/star LLR slope and rms scatter at ∆= 500. There is
+strong scale dependence in the slopes of the MPR scalings in
+both Mgas and Mstar, with milder redshift dependence. For
+Mgas both the slope and scatter at ﬁxed halo mass increase
+at lower redshifts, and the running behavior of the slope is
+non-monotonic with halo mass, exhibiting a peak value near
+a group-scale mass, M500 ∼3 × 1013 M⊙. For Mstar the red-
+shift sensitivity of the MPR parameters at ﬁxed halo mass
+is more modest, and the slope at tends to slightly decrease
+toward lower redshifts. The running of the Mstar slope is
+approximately linear in the log of halo mass.
+In the bahamas simulation study of Le Brun et al.
+(2017), a broken (piece-wise constant) power-law is used to
+ﬁt the scaling of hot gas mass with halo mass. The bro-
+ken power-law approach introduces a particular mass scale
+— the transition, or break, mass — that is not anticipated
+by the relatively smooth astrophysical processes operating
+within halos. The LLR approach enables the detection of
+continuously varying, scale-dependent features without in-
+troducing an arbitrary halo mass scale. Indeed, the smooth
+behaviors of the local slopes in Figure 2 do not support a
+broken power-law approximation for either hot gas mass or
+stellar mass.
+For cluster-scale systems above ∼5 × 1013 M⊙, the
+slopes in both gas mass and stellar mass run nearly linearly
+with log-mass, approaching the naive self-similar expecta-
+tion of one in the highest mass systems from above and
+below, respectively. This is in agreement with Barnes et al.
+(2017) who ﬁnd a slope ∼1 when only the most massive
+Figure 2. Dependence of the slope and scatter of hot gas mass
+(top) and stellar mass (bottom) MPRs on total halo mass for
+∆= 500. Lines show the LLR estimates and shaded regions give
+1σ conﬁdence bootstrap errors in the parameters. The scatter is
+the root-mean square of the natural log.
+systems are considered, but ﬁnd a steeper slope using the
+superset of bahamas and macsis halos more massive than
+1014 M⊙.
+As hierarchical clustering progresses and halos grow
+larger and develop deeper potential wells, feedback driven
+by the central galaxy becomes more conﬁned to the core re-
+gion, allowing gravity to become dominant and self-similar
+scalings to recover. The simulations show this type of pro-
+gression, with slopes at z = 0 in Mgas and Mstar lying within
+1.00 ± 0.05 at masses, M500 > 1015 M⊙. Furthermore, for
+the highest-mass systems, the MPR parameters do not vary
+signiﬁcantly with redshift, but there are statistically signiﬁ-
+cant changes in the slope and normalization for group-scale
+systems.
+The above trends persist at both overdensity scales pre-
+sented in this work. We conﬁrm, but do not present here,
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+6
+A. Farahi et al.
+Figure 3. LLR normalizations of hot gas mass (solid) and stellar
+mass (dashed), expressed as mass fractions, fa = eπa(µ,z)/M,
+where πa(µ, z) is the scale- and redshift-dependent log-mean,
+equation (1), normalized by the cosmic mean baryon fraction of
+the bahamas universe. Shaded regions show the intrinsic scat-
+ter within the population rather than uncertainty in the mean
+behavior.
+similar behavior at ∆= 2500. The LLR ﬁt parameters for
+∆= 500 and 200 are provided in Appendix A.
+Figure 3 shows the scale and redshift behavior of the
+∆= 500 LLR normalizations for stellar and hot gas masses.
+The normalizations are presented as halo mass fractions nor-
+malized by mean cosmic baryonic fraction. Recall that we
+have aligned the macsis cosmic baryon fraction to that of
+the bahamas simulation.
+Above a halo mass of ∼3×1014 M⊙, the total gas mass
+and stellar mass fractions become nearly constant; how-
+ever, there is strong mass and redshift evolution for lower
+mass systems. The nearly ﬁxed high mass behavior provides
+strong evidence that baryon venting is negligible, while con-
+siderable venting occurs at the mass scale of groups. The
+weak redshift dependence at high mass is in good agree-
+ment with trends observed from a joint analysis of South
+Pole Telescope (SPT) and Dark Energy Survey (DES) data
+in a sample of 93 massive SPT clusters (Chiu et al. 2017).
+The interplay between cooling and feedback controls
+the relative mean proportions of the integrated gaseous and
+stellar masses in a way that introduces considerable vari-
+ance at the group mass scale, but the variance decreases for
+richer clusters with deeper potential wells. Associated with
+this, the covariance of gas and stars determines the scatter
+in overall baryon content. We ﬁnd evidence for a “closing
+box” scenario at the high-mass end, with increasing anti-
+correlation of stellar mass and gas mass at later times. We
+present this result in Section 4.3.
+4.2
+Log-normality of conditional statistics
+The log-normal shape of conditional statistics, an implicit
+assumption in previous analyses, is a core ingredient of the
+Figure 4. Conditional likelihood distribution derived from scal-
+ing relation residuals, equation (7) in hot gas mass (top) and
+stellar mass (bottom). Colors indicate redshift as in Figure 1.
+The mean bias is typically less than 1%, skewness is less than
+1, and kurtosis is less than 5 which are strong indicators of log-
+normality. Rank (Q-Q) comparison, shown in the inset of each
+panel, indicate only mild deviations in log-normality in the wings
+of each distribution.
+E14 population model. In the context of modeling star for-
+mation, a log-normal shape for ﬁnal stellar masses is ex-
+pected when random multiplicative factors govern the evo-
+lution of the system (e.g. Larson 1973; Adams & Fatuzzo
+1996). Observational studies of galaxy clusters broadly sup-
+port this form, although with currently modest sample sizes
+(e.g. Pratt et al. 2009; Mantz et al. 2010; Czakon et al. 2015;
+Mantz et al. 2016a).
+Non-Gaussian terms in MPR statistics can introduce
+bias in cosmological analysis based on cluster counts (Erick-
+son et al. 2011; Weinberg et al. 2013). Such terms cannot
+be characterized through measurement of the scatter alone.
+We use the large bahamas halo samples to study the PDF
+shape in detail, and assess the degree to which conditional
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+7
+property statistics of the simulated halo sample follow a log-
+normal frequency distribution.
+Previous simulation studies have addressed this issue
+with generally smaller samples. Using an ensemble of N-
+body and non-radiative hydrodynamics simulations, Evrard
+et al. (2008) show that the PDF of dark matter velocity dis-
+persion at ﬁxed halo mass is very close to log-normal, with
+some samples showing a modest skew caused by a minor-
+ity population of post-merger, transient systems. The con-
+struction of the bahamas and macsis halo samples eﬀec-
+tively ﬁlters out the small fraction of such secondary objects.
+Stanek et al. (2010) demonstrate log-normal PDFs for mul-
+tiple properties within a sample of ∼4000 halos drawn from
+the Millennium Gas Simulations, as do other hydrodynamic
+simulations with smaller samples (Fabjan et al. 2011; Biﬃ
+et al. 2014; Le Brun et al. 2017; Truong et al. 2016).
+Given the LLR ﬁt for property sa (with a a label indi-
+cating either ln Mstar or ln Mgas), we calculate the normal-
+ized deviation of halo i from the mean relation,
+˜δa,i ≡δsa,i/σa(µi) = sa,i −αa(µi)µi −πa
+σa(µi)
+,
+(7)
+where αa(µi) and σa(µi) are the local slope and scatter of
+the MPR evaluated at the total mass of the ith halo (see,
+Figure 2).
+Figure 4 presents the PDF of the normalized residuals
+of gas mass (top panels) and stellar mass (bottom panels)
+for ∆= 500 at z = 0, 0.5 and 1. These results are consis-
+tent for all overdensities. The inset of each panel provides
+a Q-Q plot1 to illustrate deviations from the normal form.
+The residuals in the log of stellar mass are extremely Gaus-
+sian, while the gas mass displays slight negative skewness
+and non-zero kurtosis. We note that only a small fraction
+halos, < 1%, are outliers with low gas mass. Understanding
+the physical causes of this minor deviation from normality
+lies beyond the scope of this work. The Gaussian form per-
+sists for both Mgas and Mstar and over all over-density scales
+considered in this work.
+These results provide strong evidence that the log-
+normal form is adequate to model the intrinsic quantities
+of halos. In Section 5 we demonstrate that employing a lo-
+cal form of the E14 model achieves sub-percent accuracy
+in estimating the population mean mass selected on baryon
+mass.
+Within the scope of cluster cosmology, non-Gaussian
+MPR shapes were formulated by Shaw et al. (2010) in terms
+of an Edgeworth series expansion,
+P(Mproxy|Mtrue) ≈G(x)−γ
+6
+d3G
+dx3 + κ
+24
+d4G
+dx4 + γ2
+72
+d6G
+dx6 , (8)
+where the skewness, γ, is deﬁned as,
+γ = ⟨(Mproxy −Mtrue)3⟩
+σ2
+,
+(9)
+1 The quantile-quantile (Q-Q) plot is a visualization technique
+for determining if a population sample comes from an assumed
+distribution. Axes compare rank quantiles of the model to quan-
+tiles of the sample.
+and the kurtosis, κ, is deﬁned as,
+κ = ⟨(Mproxy −Mtrue)4⟩
+σ4
+−3,
+(10)
+and G(x) is a Gaussian distribution. We note that achieving
+sub-percent level systematic uncertainty in cluster number
+counts under a log-normal approximation with a mass proxy
+having 20% scatter requires roughly γ < 7 and κ < 90 (see,
+equation (156) of Weinberg et al. 2013). The skewness and
+kurtosis values for our halo samples are at least an order
+of magnitude smaller than what is needed to achieve sub-
+percent uncertainty in number count statistics, but more
+work is needed to conﬁrm this result for realistic cluster
+samples.
+In principle, if the form of an observable conditional
+statistics at ﬁxed halo mass is known, it can be easily in-
+corporated into a cosmological analysis without introducing
+additional source of systematic error due to the uncertainty
+in the form of distribution. When modeling observational
+data, the form of the conditional statistics of measured quan-
+tities may diﬀer from a log-normal form, for example due to
+projection eﬀects (e.g.,
+Cohn et al. 2007; Erickson et al.
+2011). Analysis of such data using a log-normal assumption
+in the likelihood leads to systematic biases in halo mass that
+in turn can bias cosmological parameter constraints. These
+additional uncertainties are strongly dependent on survey
+characteristics and data reduction pipeline and so must be
+modeled explicitly (e.g., Juin et al. 2007; Farahi et al. 2016;
+Pacaud et al. 2016; de Haan et al. 2016).
+4.3
+Stellar–hot gas covariance
+A complete multi-wavelength MPR likelihood model will
+include property covariance. For cosmology, knowledge
+of property covariance improves dark energy constraints
+when performing analysis of joint, multi-wavelength clus-
+ter samples Cunha (2009). For astrophysical studies, Nord
+et al. (2008) demonstrate how covariance between temper-
+ature and luminosity can confuse studies of luminosity-
+temperature redshift evolution. Covariance of observed hot
+gas properties has recently been measured in X-ray selected
+samples (Mantz et al. 2010, 2016a; Andreon et al. 2017).
+In simulations, a covariance matrix of dark matter and
+hot gas properties was ﬁrst presented by Stanek et al. (2010)
+for halo samples in the Millennium Gas simulation. Based
+on a small sample of high mass halos and their progenitors
+run with RAMSES hydrodynamics including AGN feedback,
+Wu et al. (2015) published the ﬁrst non-zero correlation of
+hot gas and stellar mass fractions. We perform a similar
+measurement here on a much larger sample of halos evolved
+with an independent numerical method.
+The correlation coeﬃcient of gas and stellar mass at
+ﬁxed total mass, equation 4, is plotted as a function of halo
+mass in Figure 5. The color scheme is consistent with that
+used in Figure 1. The correlation coeﬃcient begins near zero
+at 1013 M⊙and becomes increasingly negative at higher halo
+mass. The values plateau around 3 × 1014 M⊙and decline
+in amplitude for the highest mass halos. While we show the
+results at ∆= 500, the pattern at ∆= 500 is similar.
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+8
+A. Farahi et al.
+Figure 5. The LLR correlation coeﬃcient between stellar mass
+and gas mass at ﬁxed halo mass, equation 4 at the redshifts in-
+dicated. Anti-correlation is favored at low redshifts and masses
+above 1014 M⊙.
+The lack of correlation for group size halos can be ex-
+plained through an “open box” scenario in which the to-
+tal baryonic content of a halo is not conserved. Feedback
+eﬀects at low masses are eﬃcient at venting material out
+of the relatively shallow potential well. As shown by Mc-
+Carthy et al. (2011), the gas ejection takes place at high-
+redshifts, 2 ≲z ≲4, in the progenitors of present-day
+groups. The ejection is suﬃciently energetic that the gas
+is not re-accreted later on. For higher mass halos, however,
+the gas is re-accreted. The anti-correlation above 1014 M⊙is
+indicative of a more “closed box” nature in which the over-
+all baryon fraction of halos more closely resembles the global
+value, Ωb/Ωm. The redshift behavior in Figure 5 indicates
+that the box is closing more tightly over time, with the ex-
+tremal value of r decreasing from −0.25 at z = 1 to −0.5 at
+z = 0.
+Wu et al. (2015) ﬁnd a correlation coeﬃcient of −0.68
+at ∆= 500, stronger than what is found here. The diﬀerent
+behaviors appears are likely due to the smaller variance in
+stellar mass in the bahamas and macsis samples for the
+most massive systems, ≳1015 M⊙. We return to this issue
+in more detail in Section 6.
+5
+VALIDATING THE ANALYTIC
+POPULATION MODEL
+Cluster population statistics are linked to the constituents
+of the universe through the growth of cosmic structure, and
+many ongoing and future cluster surveys are focused on us-
+ing cluster population statistics to constrain models of dark
+energy and cosmic acceleration (e.g., Mantz et al. 2015; de
+Haan et al. 2016; Mantz et al. 2016a; Dark Energy Survey
+Collaboration et al. 2016; Pierre et al. 2016). The multi-
+property space density and conditional statistics of the pop-
+ulation of massive halos are essential ingredients of such ef-
+Figure 6. The halo mass function derived from the bahamas
+simulation. The line is a third-order polynomial ﬁt to the data
+points, equation (12), for redshift z = 0.
+forts. The evidence presented above indicates that the ba-
+hamas and macsis halo populations obey the log-normal
+statistics assumed by the E14 analytic model. In this sec-
+tion we explicitly test the accuracy of that model by exam-
+ining the expected log-mass of halos, ⟨ln M|sa⟩, selected by
+an intrinsic property, sa.
+The mean, comoving number density of halos expected
+within some speciﬁc property bin, i, at redshift, z, is given
+by the convolution,
+dni(z)
+dV
+
+=
+Z si+1
+si
+ds
+Z ∞
+−∞
+dµ dn(µ, z)
+dµ
+p(s|µ, z),
+(11)
+with p(s|µ, z) the conditional likelihood of the property used
+to select the halo sample, and dn(µ,z)
+dµ
+is the mass function.
+The smoothness of the mass function allows a logarith-
+mic polynomial expansion,
+dn(µ, z)
+dµ
+= exp
+"
+β0(z) −
+3
+X
+j=1
+βj(z)
+j!
+µj
+#
+,
+(12)
+consisting of an amplitude, eβ0(z) and linear through cubic
+coeﬃcients, βj(z), that control the shape. These coeﬃcients
+vary smoothly with redshift.
+We analyze the z = 0 sample and ﬁt the number counts
+of halos to the above third-order polynomial. Figure 6 shows
+the diﬀerential number counts as a function of halo mass for
+redshift z = 0 slices as points, and the corresponding mass
+function ﬁts as lines. Note that the β1 and β2 terms in E14
+are the local ﬁrst and second derivatives of 12 evaluated at a
+pivot mass, while the β1 and β2 in this work are derived from
+ﬁtting the halo mass function over the mass range shown in
+Figure 6. We ﬁnd values of β0 = 8.42, β1 = 2.93, β2 = 0.86,
+and β3 = 0.42.
+The convolution, equation (11), brings the halo mass
+function coeﬃcients into the expression for the log-mean to-
+tal halo mass selected by a given observable, sa,
+⟨µ | sa, z⟩= xs
+sa −πa
+αa
+
+−β1σ2
+µ|s
+
+,
+(13)
+where σ2
+µ|s = σ2
+a/α2
+a is the ﬁrst-order estimate of the mass
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+9
+Figure 7. Tests of the E14 model for halos selected by hot gas
+mass (upper) and stellar mass (lower). In each panel the up-
+per sub-panels show the total halo mass of individual halos as
+a function of the selection mass, with black curves showing the
+LLR estimates of the underlying true ⟨ln M500|sa⟩relation, where
+sa = ln Mgas or ln Mstar. The red dashed (green solid) lines are
+predictions from inverting the global (local) MPRs, ignoring Ed-
+dington bias, while the blue lines show E14 model expectations,
+equation (13), that include the mass function convolution at sec-
+ond order. The lower sub-panels show the bias in the estimated
+halo mass, with dashed black lines showing ±1% accuracy with
+respect to the LLR true estimate.
+variance selected by property sa, and
+xs ≡(1 + β2 σ2
+µ|s)−1 ≃(1 −β2 σ2
+µ|s),
+(14)
+is a compression factor less than unity that is sensitive to
+the curvature of the mass function. The β1 term represents
+Eddington bias from convolution of a pure power-law mass
+function. Generally, the slope of the mass function lies in
+the range β1 ∈[2, 4], the curvature term β2 ≃1, and the
+variance ranges from (0.05)2 to (0.3)2 (see Fig. 2).
+The model estimate can be compared to the true log-
+mean halo mass in the simulations. To determine the under-
+lying “true” values of ⟨µ|sa, z⟩, we perform the inverse LLR
+ﬁt to that used above, meaning we ﬁt for the mean total
+halo mass, M500, as a function of either stellar mass or gas
+mass. We perform this regression above Mstar = 1012 M⊙
+and Mgas = 4 × 1011 M⊙. The results are shown as black
+lines in the upper panels of Figure 7.
+The lower panels of Figure 7 show the accuracy of var-
+ious estimates compared to the direct LLR ﬁts. Green lines
+show the naive estimator, ⟨µ|sa, z⟩= (sa −πa)/αa, using
+best ﬁt with constant slopes over halos with total masses
+> 1013 M⊙. This naive estimator, which ignores both the
+mass dependence of the slope and the Eddington bias, strug-
+gles to achieve mass accuracy at the level of 10%.
+Red dashed lines improve on this naive estimate by us-
+ing the local slope from the LLR model, Figure 2, while
+still ignoring the Eddington correction. This model is an
+improvement but it does not reach percent-level mass accu-
+racy, given by the horizontal dotted lines in the lower panels
+of Figure 7.
+Applying the full expression of equation (13), with the
+bias term and local estimates of the slope and scatter, leads
+to the blue line in Figure 7. This estimate recovers the true
+mean mass within 1% for selection by Mgas over the entire
+mass range shown.
+Equation (13) is similarly accurate for selection by Mstar
+above a stellar mass of 1012.3 M⊙. Below this the error grows,
+approaching a 5% bias at the lowest stellar masses. In halos
+near 1013 M⊙that host poor groups of galaxies, the scatter
+in cumulative stellar mass within halos is large, σ ≃0.3. The
+equivalent mass scatter at ﬁxed Mstar, given by σµ = σ/α
+is larger, σµ ≃0.4, since the LLR slope is sub-linear, α ∼
+0.8. The magnitude of the bias correction, proportional to
+the MPR variance, is largest for the low-mass halos selected
+by Mstar. In addition, there may be some non-Guassianity
+beginning to appear in p(Mstar Mhalo) at these low masses,
+as close inspection of Figure 7 indicates.
+What we have shown is that simple properties of sim-
+ulated halos, namely Mgas and Mstar, follow the E14 model
+form at a level suﬃcient to achieve sub-percent accuracy in
+estimated log-mean total halo mass. The test here, involving
+intrinsic halo properties, Sint, measured directly within the
+simulations, is a prelude to more realistic tests using mock
+observables. Projection and telescope/instrument eﬀects in-
+troduce an extra convolution, p(Sobs|Sint, z), that may intro-
+duce non-Gaussianity into the form of the measured observ-
+ables, Sobs. We defer such survey and instrument-speciﬁc
+studies to future work.
+Future work will extend this analysis to include addi-
+tional observable properties such as X-ray temperature or
+luminosity. Support for cosmological analysis also requires
+mapping intrinsic to observed properties in a survey-speciﬁc
+manner, a process that could induce non-Gaussian features
+into the conditional statistics.
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+10
+A. Farahi et al.
+6
+DISCUSSION
+Here we discuss our ﬁndings in the context of previous simu-
+lation work. We oﬀer some initial thoughts on observations,
+but leave detailed study of modeling observed MPRs to fu-
+ture work.
+6.1
+Mean MPR behavior
+The cosmo-OWLS simulations, precursor to those used here,
+display hot gas scaling trends similar to those of bahamas
+and macsis simulations. Le Brun et al. (2017) ﬁt the median
+behavior in mass bins for halos above 1013 M⊙and 0 <
+z < 1.5 to both single and broken power law forms. For
+∆= 500 they ﬁnd a single power-law slope in Mgas of 1.32±
+0.02, intermediate to the values shown in Figure 2. Using a
+break point of M500 = 1014 M⊙, they ﬁnd a high-mass slope
+of 1.18 ± 0.02, similar to our LLR values at 3 × 1014 M⊙.
+For low masses between the break and sample limit, they
+ﬁnd redshift-dependent behavior with a slope of 1.74 at z =
+0 declining to 1.32 at z = 1. The bahamas and macsis
+samples behave similarly; the local LLR slope of the Mgas
+MPR is most sensitive to redshift below 1014 M⊙.
+Using an independent smoothed particle hydrodynam-
+ics code, Truong et al. (2016) simulate 24 massive halos with
+astrophysical treatment that includes AGN feedback. While
+their methods are not directly calibrated to match the ob-
+served gas content of clusters, their estimate of the Mgas
+MPR slope is ∼1.07, near the value found for halo masses
+3 × 1014 M⊙in the bahamas and macsis simulations.
+The IllustrisTNG project (Springel et al. 2017) pro-
+duces full-physics simulations of 100 and 300 Mpc volumes
+with a moving-mesh code and an updated feedback model.
+Pillepich et al. (2017) study the stellar contents of a subset
+of halos at redshift z < 1 derived from the TNG100 and
+TNG300 simulations. Fitting a single power-law to the total
+stellar mass MPR around a mass scale of M500 = 1014 M⊙,
+they ﬁnd a slope of 0.84, in very good agreement with our
+ﬁndings.
+The trend toward a self-similar slope of one in the Mgas
+MPR is supported by the observational sample of relaxed,
+high mass clusters by Mantz et al. (2016a). Using weak lens-
+ing masses, they ﬁnd a slope of 1.04±0.05 in the Mgas−MW L
+relation for 40 clusters with kT > 5 keV. Studies of lower
+mass clusters typically ﬁnd super-linear scaling of gas mass
+with halo mass, such as the slope of 1.22 ± 0.04 found by
+Lovisari et al. (2015) for a sample of 82 clusters.
+6.2
+Diagonal elements of the property covariance
+The intrinsic scatter in the MPR for a certain property sets
+its quality as a proxy for total halos mass. Among observable
+X-ray properties, it has previously been noted that Mgas has
+low scatter in both observations (Okabe et al. 2010; Mantz
+et al. 2016a) and hydrodynamic simulations (Stanek et al.
+2010; Truong et al. 2016; Le Brun et al. 2017; Barnes et al.
+2017).
+For cosmo-OWLs, Le Brun et al. (2017) ﬁnd a scatter of
+0.11 in Mgas at ﬁxed halo mass of 1014 M⊙at z = 0, which
+agrees well with our results. They ﬁnd redshift and mass
+trends similar to those found here. Wu et al. (2015) ﬁnd Mgas
+scatter of 0.08 in the Rhapsody-G simulations of ten massive
+halos, including their progenitors. Truong et al. (2016) ﬁnd a
+somewhat smaller scatter of 0.06 in their sample of 24 halos.
+We note that the scatter derived in this work is an
+intrinsic halo property whereas the observational data are
+measured in a projected space. Given the incoherent na-
+ture of projections, the scatter derived from observational
+data should be larger that the intrinsic values derived in this
+work. For instance, Mantz et al. (2016a) ﬁnd 0.09 ± 0.02 for
+Mgas for halos above 3 × 1014 M⊙which is marginally larger
+than what is found in this work.
+On the scatter in overall stellar mass at ﬁxed halo mass,
+relatively little work has been published from either simu-
+lations or observations. Pillepich et al. (2017) ﬁnd scatter
+of 0.16 in Mstar the TNG100 and TNG300 simulations for
+halos ∼1014 M⊙, in good agreement with the bahamas and
+macsis results. A more detailed comparison is needed to
+compare trends with mass and redshift more precisely. In
+the Rhapsody-G sample, Wu et al. (2015) ﬁnd Mstar a larger
+scatter of 0.34 in a combined sample comprised of ten mas-
+sive halos at z = 0 and their progenitors at z = 0.5 and
+1.
+Observationally, Zu & Mandelbaum (2015) combine the
+galaxy stellar mass function with galaxy-galaxy lensing and
+galaxy clustering from a sample of Sloan Digital Sky Survey
+(SDSS) clusters and ﬁnd a scatter in the natural log of cen-
+tral galaxy stellar mass of 0.4 for clusters with masses near
+1014 M⊙. They also ﬁnd statistically signiﬁcant evidence in
+favor of the scatter in Mstar decreasing with increasing halo
+mass, but this refers only to the central galaxy, not the total
+stellar content.
+6.3
+The oﬀ-diagonal element of the property
+covariance
+In contrast to the diagonal elements which determine the
+mass proxy quality of individual properties, the oﬀ-diagonal
+covariance elements of the joint property matrix have re-
+ceived far less attention.
+The results presented in §4.3 are from hydrodynamics
+simulations that have been carefully calibrated to reproduce
+the observed mean relations between gas mass and halo mass
+and stellar mass and halo mass. While model-dependent,
+these theoretical predictions are testable empirically with
+current and future multi-wavelength survey data.
+The Rhapsody-G simulation by Wu et al. (2015) estab-
+lished the ﬁrst estimate of anti-correlation between stellar
+and gaseous content of halos. In this work, we extend their
+analysis by using a much larger halo sample that extends to
+galaxy group scales.
+In agreement with Wu et al. (2015), we ﬁnd that the
+most massive systems are approximately “closed boxes”, but
+our correlation coeﬃcient peaks at a smaller magnitude than
+the value of −0.68 found in that work. For the group size
+halos, the link between the stellar mass and hot gas mass is
+strongly reduced (see Figure 5). This trend is due to more
+eﬃcient feedback in low mass halos that ejects a signiﬁcant
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+11
+fraction of the gas from the progenitors of the groups to radii
+outside R500.
+Furthermore, we see redshift evolution in the correla-
+tion coeﬃcient toward larger anti-correlation at later times.
+While this ﬁnding might suggest that halos of ﬁxed mass
+vent their baryonic content more eﬃciently at high redshift,
+this scenario is not supported by the LLR normalizations
+(Figure 3) which indicate that baryon fractions increase with
+increasing redshift at ﬁxed halo mass. However, we observe
+increasing scatter at lower redshift for both gas mass and
+stellar mass at ﬁxed halo mass, which allows more a longer
+lever arm to support correlation. Accretion events might
+be the key in understanding this trend. Massive halos gain
+mass through merging and accretion, and the rate of accre-
+tion declines with redshift (Fakhouri et al. 2010). Due to
+the stochastic nature of these events, these events add addi-
+tional “irreducible scatter” which could weaken the strength
+of anti-correlation.
+A key diﬀerence between the Rhapsody-G simulation
+results of Wu et al. (2015) and ours is the scatter in Mstar at
+ﬁxed halo mass, which for high mass halos is much larger in
+Rhapsody-G (> 30%) than bahamas and macsis simulation
+(< 10%). We note that the Rhapsody-G sample combines
+all halos progenitors into a single sample. The diﬀerent sam-
+ple deﬁnitions, along with diﬀerent numerical and modeling
+treatments for star formation and feedback, are likely both
+conspiring to create the diﬀerence in property correlation
+behavior.
+The return toward zero of the correlation coeﬃcient for
+high mass systems most likely has a simple origin: the very
+small eﬀect of scatter in Mstar. Comparing Figures 2 and 3,
+we see that a typical 1015 M⊙halo at z = 0 will have con-
+verted 10% of its baryons into stars, with 75% remaining
+in hot gas within R500. The fractional deviations in these
+components are 0.1 and 0.05, respectively, meaning the con-
+tributions to the baryon fraction scatter are roughly 0.01
+for stars and 0.04 for hot gas. These small values leave little
+room for coupling deviations in gas mass with those in stel-
+lar mass. By comparison, the contributions to the baryon
+fraction scatter at 1014 M⊙are larger by roughly a factor of
+two, 0.02 for stars and 0.07 for hot gas.
+Put another way, we expect irreducible scatter in the
+baryon content of halos when masses are deﬁned using a
+simple spherical threshold. Deviations are sourced by the
+basic nature of the dynamics — collisionless for dark matter
+and stars but collisional for gas — as well as edge eﬀects
+introduced by the spherical ﬁlter, incluing choice of center.
+A measure of this irreducible scatter can be found from the
+gravity-only models of Stanek et al. (2010), which show a
+fractional scatter in gas/baryon mass (there are no stars) at
+ﬁxed halo mass of 0.036 ± 0.001. This value is very close to
+the level seen in the hot gas phase of bahamas and macsis
+halos above 1015 M⊙.
+We remind the reader that these are results from a
+model-dependent simulation. These predictions await test-
+ing by future empirical studies, which will ultimately be ca-
+pable of constraining the baryon content covariance of clus-
+ters with high accuracy.
+6.4
+Observational prospects for stellar-hot gas
+mass covariance
+The historical absence of well-deﬁned, uniform, multi-
+wavelength cluster samples explains the sparsity of obser-
+vational attempts to constrain the oﬀ-diagonal elements of
+the property covariance matrix. The few extant studies focus
+on covariance between X-ray observables (e.g. Mantz et al.
+2010; Maughan 2014; Mantz et al. 2016a; Andreon et al.
+2017). To the best of our knowledge, no constraint on the
+correlation between an optical and X-ray property pair has
+been reported. Finally, modeling the mapping between clus-
+ter observables and intrinsic halo properties is an important
+task.
+A minimum requirement is to obtain both stellar mass
+and gas mass estimates for a large cluster sample with a
+well-deﬁned selection function. Uniformity of the sample is
+a key factor; combining several heterogeneous datasets is not
+an option due to complexity in modeling the full selection
+function.
+The Local Cluster Substructure Survey (LoCuSS, PI:
+G.P. Smith) survey2 is taking the lead to make such a mea-
+surement possible by combining multi-wavelength observ-
+ables for a well-deﬁned cluster sample of moderate size. Lo-
+CuSS will help to have a preliminary result on the value
+of the correlation coeﬃcient; however, further studies with
+larger sample size and broader mass and redshift ranges are
+needed to study these quantities in more depth.
+6.5
+Sensitivity to Cosmological Parameters
+To test whether our ﬁndings are sensitive to the underlying
+cosmology, we analyzed the WMAP9 cosmology suite of the
+bahamas simulation at z = 0, 0.5, and 1.0. We obtain results
+in good agreement with results from the Planck cosmology.
+Speciﬁcally, we ﬁnd evidence for a log-normal PDF and see
+trends in LLR scaling parameters, including oﬀdiagonal el-
+ements, similar to those we report here. This reaﬃrms that
+the log-normal assumption is a suﬃcient statistical model
+independent of cosmological parameters.
+7
+CONCLUSION
+We present population statistics for volume-limited samples
+of massive halos selected from the bahamas simulation and
+its high-mass extension, macsis . The combination of these
+two sets of simulations provides large sample sizes across a
+wide dynamic range in halo mass realized with consistent,
+sub-grid physics treatments for star formation and feedback
+from supernovae and active galactic nuclei. We introduce lo-
+cal linear regression to measure conditional statistical prop-
+erties of stellar mass and hot gas mass given total halo mass,
+including their covariance. We assess the validity of the log-
+normal assumption in MPR models, and investigate the ac-
+curacy of the multi-property analytical model of E14.
+Our main ﬁndings are as follows.
+2 http://www.sr.bham.ac.uk/locuss/
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+12
+A. Farahi et al.
+• The scalings of ⟨ln Mgas|Mhalo, z⟩and ⟨ln Mstar|Mhalo, z⟩
+with halo mass are well approximated by power laws with
+running exponents. For clusters with masses above 1014 M⊙,
+the local slope and scatter behave monotonically with mass.
+The local slope and scatter in stellar mass are nearly red-
+shift independent, while the hot gas slope and scatter tend
+to increase with increasing redshift. Above 5 × 1014 M⊙, the
+behavior approaches simple self-similarity, with slopes ap-
+proaching one and very small fractional scatter in baryon
+component masses: 0.04 in hot gas and 0.08 in stellar mass.
+The component fractional scatter in galaxy groups near
+∼3 × 1013 M⊙is signiﬁcantly larger: 0.2 in hot gas and
+0.3 in stellar mass.
+• The PDF of residuals in gas and stellar mass about the lo-
+cal regression ﬁt is very close to log-normal. The deviations
+from normality in the intrinsic halo population are too small
+to bias cosmological constraints from cluster counts, but fur-
+ther modeling of sample selection eﬀects and of how intrinsic
+properties map to those observed remains to be done.
+• Studying the hot gas and stellar property covariance, we
+ﬁnd that massive halos display anti-correlation indicative
+of a “Closed Box” nature, with the box closing increas-
+ingly tighter at later times. The correlation coeﬃcient is
+suppressed in lower mass halos, which are capable of vent-
+ing a signiﬁcant fraction of their baryons outside their virial
+regions, as well as in the highest mass halos, where small de-
+viations about a small mean contribution in stellar mass has
+little eﬀect on the overall baryon content of these systems.
+• We verify that the model proposed by E14 can predict the
+expected log total mass of property-selected halo samples
+with sub-percent accuracy when local MPR scaling param-
+eters are used.
+These theoretical predictions need to be conﬁrmed or
+falsiﬁed through empirical evidence from analysis of obser-
+vational data. Future campaigns of multi-wavelength obser-
+vational studies, such as XXL (Pierre et al. 2016) and DES
+(Dark Energy Survey Collaboration et al. 2016), have the
+opportunity to test these predictions and enrich our knowl-
+edge of baryon component physics.
+ACKNOWLEDGMENT
+We acknowledge support from NASA Chandra grant CXC-
+17800360. DJB and STK acknowledge support from STFC
+through grant ST/L000768/1. We thank Joop Schaye
+for his contributions to the bahamas and macsis sim-
+ulations, and Elena Rasia useful discussions. This work
+used the DiRAC Data Centric system at Durham Uni-
+versity, operated by the Institute for Computational Cos-
+mology on behalf of the STFC DiRAC HPC Facility
+(www.dirac.ac.uk). This equipment was funded by BIS Na-
+tional E-infrastructure capital grant ST/K00042X/1, STFC
+capital grants ST/H008519/1 and ST/K00087X/1, STFC
+DiRAC Operations grant ST/K003267/1 and Durham Uni-
+versity. DiRAC is part of the National E-Infrastructure.
+REFERENCES
+Adams F. C., Fatuzzo M., 1996, ApJ, 464, 256
+Allen S. W., Evrard A. E., Mantz A. B., 2011, ARAA, 49,
+409
+Andreon S., Wang J., Trinchieri G., Moretti A., Serra A. L.,
+2017, preprint, (arXiv:1706.08356)
+Barnes D. J., Kay S. T., Henson M. A., McCarthy I. G.,
+Schaye J., Jenkins A., 2017, MNRAS, 465, 213
+BiﬃV., Sembolini F., De Petris M., Valdarnini R., Yepes
+G., Gottl¨ober S., 2014, MNRAS, 439, 588
+Briel U. G., Henry J. P., Boehringer H., 1992, A&A, 259,
+L31
+Bryan G. L., Norman M. L., 1998, ApJ, 495, 80
+Chiu I., et al., 2017, preprint, (arXiv:1711.00917)
+Cohn J. D., Evrard A. E., White M., Croton D., Ellingson
+E., 2007, MNRAS, 382, 1738
+Cunha C., 2009, Phys. Rev. D, 79, 063009
+Czakon N. G., et al., 2015, ApJ, 806, 18
+Dark Energy Survey Collaboration et al., 2016, MNRAS,
+460, 1270
+De Lucia G., Blaizot J., 2007, MNRAS, 375, 2
+Erickson B. M. S., Cunha C. E., Evrard A. E., 2011, Phys.
+Rev. D, 84, 103506
+Evrard A. E., Metzler C. A., Navarro J. F., 1996, ApJ, 469,
+494
+Evrard A. E., et al., 2008, ApJ, 672, 122
+Evrard A. E., Arnault P., Huterer D., Farahi A., 2014,
+MNRAS, 441, 3562
+Fabjan D., Borgani S., Rasia E., Bonafede A., Dolag K.,
+Murante G., Tornatore L., 2011, MNRAS, 416, 801
+Fakhouri O., Ma C.-P., Boylan-Kolchin M., 2010, MNRAS,
+406, 2267
+Farahi A., Evrard A. E., Rozo E., RykoﬀE. S., Wechsler
+R. H., 2016, MNRAS, 460, 3900
+Giodini S., Lovisari L., Pointecouteau E., Ettori S.,
+Reiprich T. H., Hoekstra H., 2013, Space Science Reviews,
+177, 247
+Gough B., 2009, GNU scientiﬁc library reference manual.
+Network Theory Ltd.
+Henson M. A., Barnes D. J., Kay S. T., McCarthy I. G.,
+Schaye J., 2017, MNRAS, 465, 3361
+Juin J. B., Yvon D., R´efr´egier A., Y`eche C., 2007, A&A,
+465, 57
+Larson R. B., 1973, MNRAS, 161, 133
+Lau E. T., Nagai D., Kravtsov A. V., 2010, ApJ, 708, 1419
+Le Brun A. M. C., McCarthy I. G., Schaye J., Ponman
+T. J., 2017, MNRAS, 466, 4442
+Lovisari L., Reiprich T. H., Schellenberger G., 2015, A&A,
+573, A118
+Mantz A., Allen S. W., Ebeling H., Rapetti D., Drlica-
+Wagner A., 2010, MNRAS, 406, 1773
+Mantz A. B., et al., 2015, MNRAS, 446, 2205
+Mantz A. B., Allen S. W., Morris R. G., Schmidt R. W.,
+2016a, MNRAS, 456, 4020
+Mantz A. B., et al., 2016b, MNRAS, 463, 3582
+Maughan B. J., 2014, MNRAS, 437, 1171
+McCarthy I. G., Schaye J., Bower R. G., Ponman T. J.,
+Booth C. M., Dalla Vecchia C., Springel V., 2011, MN-
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+13
+RAS, 412, 1965
+McCarthy I. G., Schaye J., Bird S., Le Brun A. M. C., 2017,
+MNRAS, 465, 2936
+Nord B., Stanek R., Rasia E., Evrard A. E., 2008, MNRAS,
+383, L10
+Okabe N., Zhang Y.-Y., Finoguenov A., Takada M., Smith
+G. P., Umetsu K., Futamase T., 2010, ApJ, 721, 875
+Pacaud F., et al., 2016, A&A, 592, A2
+Pierre M., et al., 2016, A&A, 592, A1
+Pillepich A., et al., 2017, preprint, (arXiv:1707.03406)
+Planck Collaboration et al., 2014, A&A, 571, A16
+Pratt G. W., Croston J. H., Arnaud M., B¨ohringer H.,
+2009, A&A, 498, 361
+Richstone D. O., 1976, ApJ, 204, 642
+Saro A., et al., 2017, MNRAS, 468, 3347
+Schaye J., et al., 2010, MNRAS, 402, 1536
+Schellenberger G., Reiprich T. H., 2017, MNRAS, 469, 3738
+Sembolini F., Yepes G., De Petris M., Gottl¨ober S., Lam-
+agna L., Comis B., 2013, MNRAS, 429, 323
+Shaw L. D., Holder G. P., Dudley J., 2010, ApJ, 716, 281
+Springel V., et al., 2017, preprint, (arXiv:1707.03397)
+Stanek R., Rasia E., Evrard A. E., Pearce F., Gazzola L.,
+2010, ApJ, 715, 1508
+Tormen G., Bouchet F. R., White S. D. M., 1997, MNRAS,
+286, 865
+Truong N., et al., 2016, preprint, (arXiv:1607.00019)
+Weinberg D. H., Mortonson M. J., Eisenstein D. J., Hirata
+C., Riess A. G., Rozo E., 2013, PhysRep, 530, 87
+Wu H.-Y., Evrard A. E., Hahn O., Martizzi D., Teyssier
+R., Wechsler R. H., 2015, MNRAS, 452, 1982
+Zou S., Maughan B. J., Giles P. A., Vikhlinin A., Pacaud
+F., Burenin R., Hornstrup A., 2016, MNRAS, 463, 820
+Zu Y., Mandelbaum R., 2015, MNRAS, 454, 1161
+de Haan T., et al., 2016, ApJ, 832, 95
+APPENDIX A: DATA
+Figures 2 and 3 illustrate the mass and redshift dependence
+of the LLR slope, scatter and normalization at ∆= 500.
+In Table A1, A2, A3, and A4, we provide the resultant ﬁt
+parameters of gas mass and stellar mass for ∆= 500 and
+2003.
+3 The LLR ﬁt parameters with three signiﬁcant digits will be
+available in the electronic version.
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+14
+A. Farahi et al.
+Table A1. The LLR ﬁt parameters for Mgas −Mhalo relation at redshift z = 0, 0.5, 1 for overdensity ∆= 500. For convenience,
+we use decimal logarithms for both the independent halo mass variable µ10 = log10(M∆/ M⊙), as well as the normalization, π10 =
+log10(Mgas/ M⊙). Also given are the local slope, α, and scatter in the natural logarithm, σ, the diagonal component of equation (4).
+The error on the normalization is < 0.01 in log10 basis. The quoted errors have two signiﬁcant digits, and 0.00 value means that the
+uncertainty is < 0.01. The LLR ﬁt parameters with three signiﬁcant digits will be available in the electronic version.
+µ10
+z = 0
+z = 0.5
+z = 1
+π10
+α
+σ
+π10
+α
+σ
+π10
+α
+σ
+13.0
+11.276
+1.54 ± 0.01
+0.29 ± 0.00
+11.500
+1.39 ± 0.01
+0.22 ± 0.00
+11.641
+1.30 ± 0.01
+0.20 ± 0.00
+13.1
+11.429
+1.56 ± 0.01
+0.28 ± 0.00
+11.639
+1.41 ± 0.01
+0.22 ± 0.00
+11.771
+1.32 ± 0.01
+0.20 ± 0.00
+13.2
+11.585
+1.58 ± 0.01
+0.27 ± 0.00
+11.780
+1.43 ± 0.00
+0.21 ± 0.00
+11.903
+1.33 ± 0.01
+0.19 ± 0.00
+13.3
+11.745
+1.60 ± 0.00
+0.26 ± 0.00
+11.924
+1.44 ± 0.00
+0.20 ± 0.00
+12.036
+1.34 ± 0.01
+0.19 ± 0.01
+13.4
+11.907
+1.62 ± 0.00
+0.24 ± 0.00
+12.069
+1.45 ± 0.00
+0.19 ± 0.00
+12.171
+1.34 ± 0.01
+0.20 ± 0.01
+13.5
+12.070
+1.63 ± 0.00
+0.23 ± 0.00
+12.216
+1.46 ± 0.00
+0.18 ± 0.00
+12.305
+1.34 ± 0.01
+0.21 ± 0.02
+13.6
+12.233
+1.63 ± 0.00
+0.22 ± 0.00
+12.362
+1.46 ± 0.00
+0.17 ± 0.00
+12.440
+1.34 ± 0.01
+0.22 ± 0.03
+13.7
+12.395
+1.62 ± 0.00
+0.20 ± 0.00
+12.506
+1.45 ± 0.00
+0.16 ± 0.00
+12.573
+1.34 ± 0.01
+0.24 ± 0.04
+13.8
+12.553
+1.59 ± 0.00
+0.19 ± 0.00
+12.647
+1.43 ± 0.00
+0.16 ± 0.01
+12.704
+1.32 ± 0.01
+0.25 ± 0.04
+13.9
+12.706
+1.55 ± 0.00
+0.18 ± 0.00
+12.785
+1.40 ± 0.01
+0.17 ± 0.01
+12.831
+1.30 ± 0.01
+0.26 ± 0.03
+14.0
+12.854
+1.51 ± 0.00
+0.17 ± 0.00
+12.917
+1.36 ± 0.01
+0.20 ± 0.02
+12.956
+1.27 ± 0.01
+0.27 ± 0.04
+14.1
+12.996
+1.45 ± 0.01
+0.17 ± 0.01
+13.045
+1.31 ± 0.01
+0.23 ± 0.03
+13.079
+1.25 ± 0.01
+0.27 ± 0.04
+14.2
+13.131
+1.39 ± 0.01
+0.18 ± 0.01
+13.168
+1.27 ± 0.01
+0.26 ± 0.03
+13.202
+1.24 ± 0.01
+0.27 ± 0.04
+14.3
+13.258
+1.32 ± 0.01
+0.20 ± 0.02
+13.290
+1.24 ± 0.01
+0.28 ± 0.04
+13.324
+1.23 ± 0.01
+0.24 ± 0.04
+14.4
+13.378
+1.25 ± 0.01
+0.23 ± 0.03
+13.411
+1.23 ± 0.01
+0.28 ± 0.04
+13.443
+1.20 ± 0.01
+0.19 ± 0.03
+14.5
+13.496
+1.21 ± 0.01
+0.26 ± 0.03
+13.532
+1.22 ± 0.01
+0.25 ± 0.04
+13.559
+1.17 ± 0.01
+0.14 ± 0.02
+14.6
+13.614
+1.19 ± 0.01
+0.27 ± 0.04
+13.652
+1.19 ± 0.01
+0.20 ± 0.03
+13.672
+1.14 ± 0.01
+0.10 ± 0.02
+14.7
+13.732
+1.18 ± 0.01
+0.26 ± 0.04
+13.767
+1.16 ± 0.01
+0.14 ± 0.02
+13.781
+1.11 ± 0.01
+0.07 ± 0.01
+14.8
+13.849
+1.16 ± 0.02
+0.23 ± 0.04
+13.878
+1.12 ± 0.01
+0.10 ± 0.01
+13.888
+1.09 ± 0.01
+0.06 ± 0.01
+14.9
+13.962
+1.13 ± 0.02
+0.19 ± 0.03
+13.986
+1.08 ± 0.01
+0.07 ± 0.01
+13.993
+1.07 ± 0.01
+0.05 ± 0.00
+15.0
+14.072
+1.09 ± 0.02
+0.16 ± 0.04
+14.091
+1.06 ± 0.01
+0.05 ± 0.00
+14.094
+1.05 ± 0.01
+0.04 ± 0.00
+15.1
+14.179
+1.06 ± 0.02
+0.14 ± 0.06
+14.195
+1.05 ± 0.01
+0.04 ± 0.00
+14.193
+1.03 ± 0.02
+0.04 ± 0.00
+15.2
+14.283
+1.05 ± 0.01
+0.14 ± 0.07
+14.297
+1.04 ± 0.01
+0.04 ± 0.00
+14.290
+1.01 ± 0.02
+0.04 ± 0.00
+15.3
+14.388
+1.05 ± 0.01
+0.14 ± 0.08
+14.400
+1.03 ± 0.01
+0.04 ± 0.00
+14.387
+1.00 ± 0.02
+0.03 ± 0.01
+15.4
+14.494
+1.05 ± 0.02
+0.12 ± 0.07
+14.503
+1.03 ± 0.01
+0.04 ± 0.00
+14.483
+0.99 ± 0.02
+0.02 ± 0.01
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+15
+Table A2. The LLR ﬁt parameters for Mgas −Mhalo relation at redshift z = 0, 0.5, 1 for overdensity ∆= 200. For convenience,
+we use decimal logarithms for both the independent halo mass variable µ10 = log10(M∆/ M⊙), as well as the normalization, π10 =
+log10(Mgas/ M⊙). Also given are the local slope, α, and scatter in the natural logarithm, σ, the diagonal component of equation (4).
+The error on the normalization is < 0.01 in log10 basis. The quoted errors have two signiﬁcant digits, and 0.00 value means that the
+uncertainty is < 0.01. The LLR ﬁt parameters with three signiﬁcant digits will be available in the electronic version.
+µ10
+z = 0
+z = 0.5
+z = 1
+π10
+α
+σ
+π10
+α
+σ
+π10
+α
+σ
+13.0
+11.365
+1.56 ± 0.01
+0.25 ± 0.00
+11.574
+1.42 ± 0.01
+0.19 ± 0.00
+11.701
+1.32 ± 0.01
+0.17 ± 0.00
+13.1
+11.520
+1.56 ± 0.01
+0.25 ± 0.00
+11.716
+1.42 ± 0.01
+0.19 ± 0.00
+11.833
+1.32 ± 0.01
+0.17 ± 0.00
+13.2
+11.676
+1.57 ± 0.01
+0.24 ± 0.00
+11.857
+1.42 ± 0.01
+0.18 ± 0.00
+11.965
+1.32 ± 0.01
+0.16 ± 0.00
+13.3
+11.833
+1.57 ± 0.01
+0.23 ± 0.00
+11.999
+1.42 ± 0.00
+0.18 ± 0.00
+12.097
+1.32 ± 0.00
+0.16 ± 0.00
+13.4
+11.990
+1.58 ± 0.00
+0.22 ± 0.00
+12.140
+1.42 ± 0.00
+0.17 ± 0.00
+12.229
+1.32 ± 0.00
+0.15 ± 0.00
+13.5
+12.147
+1.57 ± 0.00
+0.21 ± 0.00
+12.282
+1.41 ± 0.00
+0.16 ± 0.00
+12.360
+1.31 ± 0.00
+0.16 ± 0.01
+13.6
+12.304
+1.56 ± 0.00
+0.20 ± 0.00
+12.422
+1.40 ± 0.00
+0.15 ± 0.00
+12.490
+1.30 ± 0.00
+0.16 ± 0.01
+13.7
+12.458
+1.55 ± 0.00
+0.19 ± 0.00
+12.560
+1.39 ± 0.00
+0.14 ± 0.00
+12.619
+1.29 ± 0.01
+0.17 ± 0.02
+13.8
+12.608
+1.52 ± 0.00
+0.18 ± 0.00
+12.696
+1.37 ± 0.00
+0.13 ± 0.00
+12.746
+1.28 ± 0.01
+0.19 ± 0.03
+13.9
+12.755
+1.48 ± 0.00
+0.17 ± 0.00
+12.828
+1.34 ± 0.00
+0.13 ± 0.00
+12.870
+1.26 ± 0.01
+0.20 ± 0.03
+14.0
+12.897
+1.44 ± 0.00
+0.15 ± 0.00
+12.958
+1.31 ± 0.00
+0.13 ± 0.01
+12.991
+1.23 ± 0.01
+0.21 ± 0.03
+14.1
+13.033
+1.39 ± 0.00
+0.14 ± 0.00
+13.083
+1.28 ± 0.01
+0.14 ± 0.01
+13.108
+1.20 ± 0.01
+0.22 ± 0.03
+14.2
+13.164
+1.34 ± 0.00
+0.13 ± 0.00
+13.203
+1.24 ± 0.01
+0.16 ± 0.02
+13.224
+1.18 ± 0.01
+0.23 ± 0.03
+14.3
+13.290
+1.29 ± 0.00
+0.13 ± 0.01
+13.319
+1.19 ± 0.01
+0.19 ± 0.02
+13.340
+1.16 ± 0.01
+0.24 ± 0.04
+14.4
+13.410
+1.24 ± 0.01
+0.14 ± 0.01
+13.432
+1.16 ± 0.01
+0.22 ± 0.03
+13.456
+1.16 ± 0.01
+0.23 ± 0.04
+14.5
+13.525
+1.18 ± 0.01
+0.16 ± 0.02
+13.544
+1.14 ± 0.01
+0.24 ± 0.03
+13.570
+1.15 ± 0.01
+0.20 ± 0.04
+14.6
+13.635
+1.14 ± 0.01
+0.20 ± 0.03
+13.658
+1.14 ± 0.01
+0.24 ± 0.03
+13.682
+1.13 ± 0.01
+0.16 ± 0.03
+14.7
+13.745
+1.11 ± 0.01
+0.22 ± 0.03
+13.772
+1.14 ± 0.01
+0.21 ± 0.03
+13.792
+1.10 ± 0.01
+0.12 ± 0.02
+14.8
+13.855
+1.11 ± 0.01
+0.23 ± 0.03
+13.884
+1.12 ± 0.01
+0.17 ± 0.03
+13.898
+1.08 ± 0.01
+0.09 ± 0.02
+14.9
+13.967
+1.11 ± 0.01
+0.22 ± 0.03
+13.993
+1.09 ± 0.01
+0.12 ± 0.02
+14.003
+1.06 ± 0.01
+0.06 ± 0.01
+15.0
+14.077
+1.10 ± 0.01
+0.19 ± 0.03
+14.098
+1.06 ± 0.01
+0.08 ± 0.01
+14.107
+1.05 ± 0.01
+0.05 ± 0.01
+15.1
+14.186
+1.08 ± 0.01
+0.15 ± 0.03
+14.202
+1.04 ± 0.01
+0.06 ± 0.01
+14.210
+1.04 ± 0.01
+0.04 ± 0.01
+15.2
+14.292
+1.06 ± 0.01
+0.12 ± 0.03
+14.303
+1.02 ± 0.01
+0.04 ± 0.00
+14.313
+1.04 ± 0.01
+0.03 ± 0.00
+15.3
+14.396
+1.04 ± 0.01
+0.11 ± 0.04
+14.404
+1.02 ± 0.01
+0.03 ± 0.00
+14.415
+1.03 ± 0.01
+0.03 ± 0.00
+15.4
+14.499
+1.03 ± 0.01
+0.09 ± 0.04
+14.505
+1.01 ± 0.01
+0.03 ± 0.00
+14.517
+1.03 ± 0.01
+0.02 ± 0.00
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+16
+A. Farahi et al.
+Table A3. The LLR ﬁt parameters for Mstar −Mhalo relation at redshift z = 0, 0.5, 1 for overdensity ∆= 500. For convenience,
+we use decimal logarithms for both the independent halo mass variable µ10 = log10(M∆/ M⊙), as well as the normalization, π10 =
+log10(Mgas/ M⊙). Also given are the local slope, α, and scatter in the natural logarithm, σ, the diagonal component of equation (4).
+The error on the normalization is < 0.01 in log10 basis. The quoted errors have two signiﬁcant digits, and 0.00 value means that the
+uncertainty is < 0.01. The LLR ﬁt parameters with three signiﬁcant digits will be available in the electronic version.
+µ10
+z = 0
+z = 0.5
+z = 1
+π10
+α
+σ
+π10
+α
+σ
+π10
+α
+σ
+13.0
+11.432
+0.78 ± 0.01
+0.37 ± 0.00
+11.376
+0.77 ± 0.01
+0.34 ± 0.00
+11.328
+0.79 ± 0.01
+0.32 ± 0.00
+13.1
+11.510
+0.78 ± 0.01
+0.36 ± 0.00
+11.453
+0.78 ± 0.01
+0.34 ± 0.00
+11.407
+0.80 ± 0.01
+0.31 ± 0.00
+13.2
+11.588
+0.79 ± 0.01
+0.35 ± 0.00
+11.531
+0.78 ± 0.01
+0.33 ± 0.00
+11.487
+0.81 ± 0.01
+0.30 ± 0.00
+13.3
+11.667
+0.79 ± 0.01
+0.33 ± 0.00
+11.609
+0.79 ± 0.01
+0.31 ± 0.00
+11.569
+0.82 ± 0.01
+0.29 ± 0.00
+13.4
+11.747
+0.79 ± 0.00
+0.32 ± 0.00
+11.690
+0.80 ± 0.00
+0.30 ± 0.00
+11.653
+0.83 ± 0.01
+0.28 ± 0.00
+13.5
+11.827
+0.80 ± 0.00
+0.30 ± 0.00
+11.772
+0.81 ± 0.00
+0.28 ± 0.00
+11.737
+0.84 ± 0.01
+0.26 ± 0.00
+13.6
+11.907
+0.80 ± 0.00
+0.28 ± 0.00
+11.855
+0.83 ± 0.00
+0.26 ± 0.00
+11.823
+0.85 ± 0.01
+0.25 ± 0.00
+13.7
+11.988
+0.81 ± 0.00
+0.25 ± 0.00
+11.939
+0.84 ± 0.00
+0.24 ± 0.00
+11.909
+0.86 ± 0.01
+0.23 ± 0.00
+13.8
+12.071
+0.82 ± 0.00
+0.23 ± 0.00
+12.025
+0.85 ± 0.00
+0.22 ± 0.00
+11.996
+0.86 ± 0.01
+0.22 ± 0.01
+13.9
+12.154
+0.83 ± 0.00
+0.22 ± 0.00
+12.110
+0.85 ± 0.01
+0.21 ± 0.00
+12.081
+0.86 ± 0.01
+0.21 ± 0.01
+14.0
+12.238
+0.84 ± 0.01
+0.20 ± 0.00
+12.196
+0.86 ± 0.01
+0.20 ± 0.01
+12.166
+0.85 ± 0.01
+0.21 ± 0.01
+14.1
+12.323
+0.84 ± 0.01
+0.19 ± 0.00
+12.282
+0.86 ± 0.01
+0.20 ± 0.01
+12.252
+0.86 ± 0.01
+0.21 ± 0.02
+14.2
+12.408
+0.85 ± 0.01
+0.18 ± 0.01
+12.369
+0.87 ± 0.01
+0.21 ± 0.01
+12.342
+0.88 ± 0.01
+0.20 ± 0.02
+14.3
+12.494
+0.85 ± 0.01
+0.18 ± 0.01
+12.459
+0.88 ± 0.01
+0.21 ± 0.02
+12.434
+0.91 ± 0.01
+0.19 ± 0.02
+14.4
+12.581
+0.86 ± 0.01
+0.19 ± 0.01
+12.551
+0.91 ± 0.01
+0.20 ± 0.02
+12.528
+0.93 ± 0.01
+0.16 ± 0.02
+14.5
+12.671
+0.89 ± 0.01
+0.20 ± 0.02
+12.646
+0.93 ± 0.01
+0.18 ± 0.02
+12.623
+0.95 ± 0.01
+0.14 ± 0.01
+14.6
+12.763
+0.91 ± 0.01
+0.21 ± 0.02
+12.741
+0.94 ± 0.01
+0.15 ± 0.02
+12.719
+0.95 ± 0.01
+0.12 ± 0.01
+14.7
+12.858
+0.94 ± 0.01
+0.19 ± 0.02
+12.836
+0.95 ± 0.01
+0.12 ± 0.01
+12.815
+0.95 ± 0.01
+0.11 ± 0.01
+14.8
+12.954
+0.95 ± 0.01
+0.17 ± 0.02
+12.930
+0.95 ± 0.01
+0.10 ± 0.01
+12.909
+0.95 ± 0.02
+0.10 ± 0.01
+14.9
+13.050
+0.96 ± 0.01
+0.14 ± 0.01
+13.025
+0.95 ± 0.01
+0.09 ± 0.00
+13.003
+0.95 ± 0.02
+0.09 ± 0.01
+15.0
+13.145
+0.96 ± 0.01
+0.11 ± 0.01
+13.121
+0.95 ± 0.01
+0.09 ± 0.00
+13.098
+0.95 ± 0.02
+0.08 ± 0.01
+15.1
+13.241
+0.96 ± 0.01
+0.09 ± 0.00
+13.217
+0.96 ± 0.01
+0.08 ± 0.00
+13.195
+0.95 ± 0.02
+0.08 ± 0.01
+15.2
+13.337
+0.96 ± 0.01
+0.08 ± 0.00
+13.312
+0.96 ± 0.02
+0.08 ± 0.00
+13.292
+0.96 ± 0.02
+0.07 ± 0.01
+15.3
+13.433
+0.96 ± 0.01
+0.08 ± 0.00
+13.409
+0.96 ± 0.02
+0.08 ± 0.01
+13.389
+0.96 ± 0.02
+0.06 ± 0.01
+15.4
+13.529
+0.96 ± 0.01
+0.08 ± 0.00
+13.510
+0.98 ± 0.03
+0.08 ± 0.01
+13.487
+0.97 ± 0.03
+0.04 ± 0.01
+c⃝2014 RAS, MNRAS 000, 1–13
+
+
+Massive halo property covariance
+17
+Table A4. The LLR ﬁt parameters for Mstar −Mhalo relation at redshift z = 0, 0.5, 1 for overdensity ∆= 200. For convenience,
+we use decimal logarithms for both the independent halo mass variable µ10 = log10(M∆/ M⊙), as well as the normalization, π10 =
+log10(Mgas/ M⊙). Also given are the local slope, α, and scatter in the natural logarithm, σ, the diagonal component of equation (4).
+The error on the normalization is < 0.01 in log10 basis. The quoted errors have two signiﬁcant digits, and 0.00 value means that the
+uncertainty is < 0.01. The LLR ﬁt parameters with three signiﬁcant digits will be available in the electronic version.
+µ10
+z = 0
+z = 0.5
+z = 1
+π10
+α
+σ
+π10
+α
+σ
+π10
+α
+σ
+13.0
+11.347
+0.87 ± 0.01
+0.36 ± 0.00
+11.298
+0.83 ± 0.02
+0.34 ± 0.00
+11.262
+0.77 ± 0.02
+0.31 ± 0.00
+13.1
+11.436
+0.86 ± 0.01
+0.36 ± 0.00
+11.380
+0.83 ± 0.01
+0.33 ± 0.00
+11.335
+0.80 ± 0.01
+0.31 ± 0.00
+13.2
+11.522
+0.85 ± 0.01
+0.35 ± 0.00
+11.463
+0.84 ± 0.01
+0.32 ± 0.00
+11.413
+0.82 ± 0.01
+0.30 ± 0.00
+13.3
+11.607
+0.84 ± 0.01
+0.34 ± 0.00
+11.546
+0.84 ± 0.01
+0.31 ± 0.00
+11.495
+0.83 ± 0.01
+0.29 ± 0.00
+13.4
+11.691
+0.83 ± 0.01
+0.32 ± 0.00
+11.630
+0.84 ± 0.01
+0.30 ± 0.00
+11.579
+0.85 ± 0.01
+0.28 ± 0.00
+13.5
+11.774
+0.83 ± 0.00
+0.31 ± 0.00
+11.714
+0.84 ± 0.00
+0.29 ± 0.00
+11.665
+0.86 ± 0.01
+0.27 ± 0.00
+13.6
+11.857
+0.83 ± 0.00
+0.29 ± 0.00
+11.799
+0.84 ± 0.00
+0.27 ± 0.00
+11.752
+0.87 ± 0.01
+0.25 ± 0.00
+13.7
+11.941
+0.83 ± 0.00
+0.27 ± 0.00
+11.884
+0.85 ± 0.00
+0.25 ± 0.00
+11.840
+0.88 ± 0.01
+0.24 ± 0.00
+13.8
+12.024
+0.84 ± 0.00
+0.25 ± 0.00
+11.970
+0.86 ± 0.00
+0.23 ± 0.00
+11.929
+0.88 ± 0.01
+0.22 ± 0.00
+13.9
+12.109
+0.84 ± 0.00
+0.23 ± 0.00
+12.057
+0.87 ± 0.00
+0.21 ± 0.00
+12.018
+0.89 ± 0.01
+0.21 ± 0.00
+14.0
+12.195
+0.85 ± 0.00
+0.21 ± 0.00
+12.145
+0.87 ± 0.00
+0.20 ± 0.00
+12.107
+0.89 ± 0.01
+0.20 ± 0.00
+14.1
+12.281
+0.86 ± 0.00
+0.19 ± 0.00
+12.233
+0.88 ± 0.01
+0.19 ± 0.00
+12.194
+0.88 ± 0.01
+0.19 ± 0.01
+14.2
+12.368
+0.87 ± 0.00
+0.18 ± 0.00
+12.321
+0.88 ± 0.01
+0.18 ± 0.01
+12.281
+0.87 ± 0.01
+0.19 ± 0.01
+14.3
+12.456
+0.87 ± 0.01
+0.17 ± 0.00
+12.409
+0.88 ± 0.01
+0.19 ± 0.01
+12.370
+0.88 ± 0.01
+0.19 ± 0.02
+14.4
+12.543
+0.88 ± 0.01
+0.16 ± 0.00
+12.498
+0.89 ± 0.01
+0.19 ± 0.01
+12.462
+0.91 ± 0.01
+0.18 ± 0.02
+14.5
+12.631
+0.88 ± 0.01
+0.17 ± 0.01
+12.590
+0.90 ± 0.01
+0.20 ± 0.02
+12.557
+0.93 ± 0.01
+0.17 ± 0.02
+14.6
+12.720
+0.89 ± 0.01
+0.18 ± 0.01
+12.684
+0.93 ± 0.01
+0.19 ± 0.02
+12.653
+0.96 ± 0.01
+0.15 ± 0.01
+14.7
+12.811
+0.90 ± 0.01
+0.19 ± 0.02
+12.780
+0.95 ± 0.01
+0.17 ± 0.02
+12.752
+0.98 ± 0.01
+0.13 ± 0.01
+14.8
+12.905
+0.93 ± 0.01
+0.19 ± 0.02
+12.877
+0.96 ± 0.01
+0.15 ± 0.02
+12.851
+0.99 ± 0.01
+0.11 ± 0.01
+14.9
+13.000
+0.95 ± 0.01
+0.18 ± 0.02
+12.974
+0.97 ± 0.01
+0.12 ± 0.01
+12.950
+0.99 ± 0.01
+0.09 ± 0.01
+15.0
+13.097
+0.96 ± 0.01
+0.15 ± 0.02
+13.071
+0.97 ± 0.01
+0.10 ± 0.01
+13.048
+0.98 ± 0.01
+0.08 ± 0.01
+15.1
+13.194
+0.97 ± 0.01
+0.12 ± 0.01
+13.169
+0.98 ± 0.01
+0.08 ± 0.00
+13.147
+0.99 ± 0.02
+0.08 ± 0.01
+15.2
+13.291
+0.97 ± 0.01
+0.10 ± 0.01
+13.268
+0.98 ± 0.01
+0.08 ± 0.00
+13.248
+0.99 ± 0.02
+0.07 ± 0.01
+15.3
+13.388
+0.97 ± 0.01
+0.08 ± 0.00
+13.366
+0.98 ± 0.01
+0.07 ± 0.00
+13.350
+1.00 ± 0.03
+0.07 ± 0.01
+15.4
+13.486
+0.98 ± 0.01
+0.07 ± 0.00
+13.465
+0.99 ± 0.02
+0.07 ± 0.00
+13.452
+1.01 ± 0.04
+0.06 ± 0.01
+c⃝2014 RAS, MNRAS 000, 1–13

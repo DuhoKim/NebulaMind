@@ -1,0 +1,2166 @@
+MNRAS 000, 000–000 (2021)
+Preprint 22 March 2022
+Compiled using MNRAS LATEX style ﬁle v3.0
+The ASTRID simulation: the evolution of Supermassive Black Holes
+Yueying Ni,1,2★Tiziana Di Matteo,1,2 Simeon Bird,3 Rupert Croft,1,2 Yu Feng,4
+Nianyi Chen,1 Michael Tremmel,5 Colin DeGraf,6 Yin Li,7
+1 McWilliams Center for Cosmology, Department of Physics, Carnegie Mellon University, Pittsburgh, PA 15213
+2 NSF AI Planning Institute for Physics of the Future, Carnegie Mellon University, Pittsburgh, PA 15213, USA
+3 Department of Physics & Astronomy, University of California, Riverside, 900 University Ave., Riverside, CA 92521, USA
+4 Berkeley Center for Cosmological Physics and Department of Physics, University of California, Berkeley, CA 94720, USA
+5 Astronomy Department, Yale University, P.O. Box 208120, New Haven, CT 06520, USA
+6 Department of Physics, Truman State University, Kirksville, MO 63501, USA
+7 Center for Computational Astrophysics & Center for Computational Mathematics, Flatiron Institute, 162 5th Avenue, New York, NY 10010
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+We present the evolution of black holes (BHs) and their relationship with their host galaxies in Astrid , a large-volume
+cosmological hydrodynamical simulation with box size 250 ℎ−1Mpc containing 2 × 55003 particles evolved to 𝑧= 3. Astrid
+statistically models BH gas accretion and AGN feedback to their environments, applies a power-law distribution for BH seed mass
+𝑀sd, uses a dynamical friction model for BH dynamics and executes a physical treatment of BH mergers. The BH population is
+broadly consistent with empirical constraints on the BH mass function, the bright end of the luminosity functions, and the time
+evolution of BH mass and accretion rate density. The BH mass and accretion exhibit a tight correlation with host stellar mass
+and star formation rate. We trace BHs seeded before 𝑧> 10 down to 𝑧= 3, ﬁnding that BHs carry virtually no imprint of the
+initial 𝑀sd except those with the smallest 𝑀sd, where less than 50% of them have doubled in mass. Gas accretion is the dominant
+channel for BH growth compared to BH mergers. With dynamical friction, Astrid predicts a signiﬁcant delay for BH mergers
+after the ﬁrst encounter of a BH pair, with a typical elapse time of about 200 Myrs. There are in total 4.5 × 105 BH mergers in
+Astrid at 𝑧> 3, ∼103 of which have X-ray detectable EM counterparts: a bright kpc scale dual AGN with 𝐿X > 1043 erg s−1.
+BHs with 𝑀BH ∼107−8 𝑀⊙experience the most frequent mergers. Galaxies that host BH mergers are unbiased tracers of the
+overall 𝑀BH −𝑀∗relation. Massive (> 1011 𝑀⊙) galaxies have a high occupation number (≳10) of BHs, and hence host the
+majority of BH mergers.
+Key words: – methods: numerical – quasars:supermassive black holes – galaxies:formation
+1 INTRODUCTION
+A plethora of observational evidence has established that supermas-
+sive black holes (SMBHs) were in place very early in the history
+of the Universe (see, e.g. Fan et al. 2019, and references therein)
+and that they play a crucial role in many aspects of cosmic evolu-
+tion. Observed correlations between SMBHs and various large-scale
+properties of their host galaxies such as galaxy stellar or bulge mass
+(e.g. Häring & Rix 2004; Kormendy & Ho 2013; Reines & Volon-
+teri 2015), velocity dispersion (e.g. Ferrarese & Merritt 2000), star
+formation rate (e.g. Chen et al. 2013), etc, suggest that formation
+and evolution of galaxies and their central SMBHs are tightly con-
+nected. Active galactic nuclei (AGN) powered by accreting SMBHs
+are believed to regulate the growth of their host galaxy and also the
+accretion onto the SMBH itself, leading to the co-evolution of the
+galaxies and their central SMBHs (e.g. Heckman & Best 2014). Un-
+derstanding the formation and rapid early growth of SMBHs, as well
+★E-mail: yueyingn@andrew.cmu.edu
+as their interactions with their host galaxies, remains one of the most
+intriguing and unsolved problems in astrophysics.
+The launch of next-generation telescopes in the next decade and a
+half will greatly advance our understanding of galaxies and SMBHs
+in the early Universe. In particular, the ﬁrst galaxies will be probed
+and characterized by deep optical and infrared surveys using the
+James Webb Space Telescope (JWST, Gardner et al. 2006) and the
+subsequent Nancy Grace Roman Space telescope (NGRST, formerly
+WFIRST Spergel et al. 2015). For the high redshift SMBHs, the large
+survey area of EUCLID (Euclid Collaboration et al. 2019) will detect
+samples of the most massive and luminous BHs at near-infrared wave-
+lengths, and the high sensitivity of JWST will probe much fainter
+high-redshift AGN populations in the near-infrared band. Moreover,
+the proposed X-ray mission, the Lynx X-ray Observatory (The Lynx
+Team 2018) will provide unprecedented sensitivity to probe accret-
+ing BHs with masses ∼104 𝑀⊙at 𝑧= 10, unveiling the ﬁrst massive
+black holes in the ﬁrst generation of galaxies. Those observations
+will together open an electromagnetic window into the dawn of BHs
+and their host galaxies.
+On the other hand, the ﬁrst gravitational wave (GW) detections
+© 2021 The Authors
+arXiv:2110.14154v2  [astro-ph.GA]  20 Mar 2022
+
+
+2
+Y. Ni et al.
+by LIGO (Abbott et al. 2016) open up exciting new possibilities for
+the multi-messenger study of BHs. The terrestrial interferometers of
+LIGO can only cover the high-frequency regime (10 −103 Hz) of
+GW emission, and thus sources are limited to stellar-mass BH bina-
+ries with 𝑀BH ≲102 𝑀⊙(Martynov et al. 2016). Next-generation
+space-based missions such as the Laser Interferometer Space An-
+tenna (LISA) (Amaro-Seoane et al. 2017; Baker et al. 2019), with
+much longer interferometer arms, will also probe lower frequency
+GWs (10−4 −100 Hz), and thus study coalescences of more massive
+BHs with 𝑀BH ∼104 −107 𝑀⊙at a wide range of redshifts with
+𝑧< 20. Complementary to the space and ground-based detectors,
+Pulsar timing array (PTAs) experiments (e.g., IPTA, Perera et al.
+2019) making use of precisely-timed pulsars as galaxy-scale detec-
+tors would further probe GWs at nanohertz frequencies, and may be
+able to detect the inspiral of binary SMBHs up to 𝑀BH > 108 𝑀⊙.
+The combination of Lynx X-ray measurements of high redshift BH
+accretion, with GW detections of the ﬁrst BH mergers, will together
+probe the growth of the ﬁrst BHs by both accretion and mergers,
+unveiling a complete picture of their early assembly.
+Cosmological hydrodynamic simulations are an increasingly valu-
+able tool for testing and modelling the formation of galaxies and
+SMBHs and making predictions for those upcoming observations.
+Modern cosmological-scale hydrodynamic simulation projects, such
+as Magneticum (Hirschmann et al. 2014), Illustris (Vogelsberger et al.
+2014), Eagle (Schaye et al. 2015), Horizon-AGN (Dubois et al. 2015;
+Volonteri et al. 2016), MassiveBlack (Khandai et al. 2015), Blue-
+Tides (Feng et al. 2016b), Romulus (Tremmel et al. 2017), Illustris-
+TNG (Springel et al. 2018), Simba (Davé et al. 2019), and THESAN
+(Kannan et al. 2021; Garaldi et al. 2021; Smith et al. 2021) have
+implemented ever improving sub-grid models. They concurrently
+model the formation and evolution of galaxies and SMBHs through
+cosmic time, spanning a vast dynamic range from the creation of the
+cosmic web on Gpc scales to the evolution of the interstellar medium,
+stars and BHs on parsec scales.
+In this work, we introduce results from the Astrid simulation,
+a large volume cosmological hydrodynamical simulation, with box
+size 250ℎ−1Mpc containing 2 × 55003 particles, run to 𝑧= 3 us-
+ing the cosmological simulation code MP-Gadget (Feng et al. 2018)
+on the Frontera supercomputer. An earlier version of MP-Gadget
+carried out our previous large volume simulation BlueTides that
+focused on studying the 𝑧> 6 quasars and galaxies in a 400ℎ−1Mpc
+box, and has been validated against a number of observables (e.g.
+Feng et al. 2016b; Wilkins et al. 2017; Di Matteo et al. 2017; Ten-
+neti et al. 2018; Huang et al. 2018; Ni et al. 2018; Bhowmick et al.
+2018; Ni et al. 2020; Marshall et al. 2020, 2021). Compared with the
+BlueTides simulation, we have included several new physical pro-
+cesses in the simulation code, including models for inhomogeneous
+(patchy) hydrogen reionization, helium reionization, metal return
+from massive stars, the initial velocity oﬀset between baryons and
+dark matter, as well as a dynamical friction model for BH dynamics.
+Our companion paper Bird et al. (2021) discusses the predictions
+of Astrid for galaxy formation and shows the eﬀects of the inhomo-
+geneous hydrogen reionization model on star formation rates. In this
+paper, we introduce the results of studies of the BH and AGN popu-
+lation and BH-galaxy relation, as well as the BH merger predictions
+made by Astrid . Notably, with explicit inclusion of dynamical fric-
+tion from collisionless particles, Astrid models massive BH mergers
+with a higher ﬁdelity compared to many cosmological simulations,
+allowing us to make a statistical prediction for the multi-messenger
+signals of BH mergers.
+The outline of the paper goes as follows. We give a brief introduc-
+tion to the Astrid simulation in Section 2 and refer to our companion
+paper Bird et al. (2021) for detailed presentations of physical models
+for re-ionization and star formation. In Section 3 we give an overview
+of the BH model applied in Astrid . In Section 4 we present statis-
+tics of the BH population and compare the simulation with several
+observational constraints. In Section 5 we show the connection be-
+tween BHs and galaxies and also discuss the BH occupation in the
+galaxies. In Section 6 we analyse the BH mergers in Astrid . Finally,
+in Section 7 we summarize our results and conclude.
+2 Astrid SIMULATION
+Astrid is a cosmological hydrodynamical simulation performed
+using a new version of the MP-Gadget simulation code, a descen-
+dant of Gadget-3. It contains 55003 cold dark matter (DM) parti-
+cles in a 250ℎ−1Mpc side box, and an initially equal number of
+SPH hydrodynamic mass elements. The initial conditions are set at
+𝑧= 99 and the current ﬁnal redshift is 𝑧= 3. The cosmological
+parameters used are from (Planck Collaboration et al. 2020), with
+Ω0 = 0.3089, ΩΛ = 0.6911, Ωb = 0.0486, 𝜎8 = 0.82, ℎ= 0.6774,
+𝐴𝑠= 2.142 × 10−9, 𝑛𝑠= 0.9667. The mass resolution of Astrid is
+𝑀DM = 6.74 × 106ℎ−1𝑀⊙and 𝑀gas = 1.27 × 106ℎ−1𝑀⊙in the ini-
+tial conditions. The gravitational softening length is 𝜖g = 1.5ℎ−1 kpc
+for both DM and gas particles.
+MP-Gadget (Feng et al. 2018) is a massively scalable version of
+the cosmological structure formation code Gadget-3 (Springel 2005).
+Although many of the basic algorithms are unchanged since Feng
+et al. (2016b), the implementation has evolved signiﬁcantly in the di-
+rection of improved speed and scalability. Here we brieﬂy list some
+of the basic features with regard to the hydrodynamic implementa-
+tions and models of galaxy formation, and refer the readers to our
+companion paper Bird et al. (2021) for a more extensive description
+of the simulation code. The sub-grid models for BHs are described
+in Section 3.
+In Astrid , the gravitational dynamics uses a TreePM algorithm.
+The hydrodynamics, star formation and stellar feedback models
+largely follow Feng et al. (2016b). We adopt the pressure-entropy
+formulation of smoothed particle hydrodynamics (pSPH) to solve
+the Euler equations (Hopkins 2013; Read et al. 2010). Gas is allowed
+to cool both radiatively following Katz et al. (1996) and via metal
+line cooling. We approximate the metal cooling rate by scaling a so-
+lar metallicity template according to the metallicity of gas particles,
+following Vogelsberger et al. (2014).
+We model patchy reionization with a spatially varying ultra-violet
+background using a semi-analytic method based on hydrodynamic
+simulations performed with radiative transfer (for more details see
+Battaglia et al. 2013). For the ionized regions, we applied the ion-
+izing ultra-violet background provided by Faucher-Giguère (2020).
+Self-shielding is implemented following Rahmati et al. (2013), and
+ensures that gas is shielded from the ultra-violet background and thus
+is neutral at a density above 0.01 atoms/cm−3.
+Star formation is implemented based on the multi-phase star for-
+mation model in Springel & Hernquist (2003). We model the for-
+mation of molecular hydrogen, and its eﬀect on star formation at
+low metallicities, following the prescription by Krumholz & Gnedin
+(2011). Stars are formed with 1/4 of the mass of a gas particle (i.e.,
+𝑀star ∼3×105ℎ−1𝑀⊙in most cases). Type II supernova wind feed-
+back is included following Okamoto et al. (2010), assuming wind
+speeds proportional to the local one dimensional dark matter veloc-
+ity dispersion. Wind particles are hydrodynamically decoupled for a
+conditioned period of time and while decoupled do not experience
+or contribute to pressure forces or accrete onto a BH.
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+3
+In Astrid , we also include models for helium reionization and the
+eﬀect of massive neutrinos. Metal return from AGB stars, type II su-
+pernovae and type 1a supernovae is included, following Vogelsberger
+et al. (2013); Pillepich et al. (2018), although the implementation is
+independent and we have created our own yield tables, as detailed in
+Bird et al. (2021).
+We include treatment of SMBHs. Our accretion and AGN feedback
+models are similar to those in the BlueTides simulation Feng et al.
+(2016a), and are based on earlier work by Springel et al. (2005); Di
+Matteo et al. (2005). Compared with BlueTides, we have changed
+the seeding scheme of SMBHs by drawing the BH seed mass from
+a power-law distribution instead of using a universal seed mass. Fur-
+thermore, we apply the dynamic friction model (tested and validated
+in Chen et al. 2021a) to allow the sinking and merger of SMBHs
+after a galaxy merger to be followed more accurately than with the
+earlier repositioning based model. We elaborate on our BH models
+in Section 3.
+In Figure 1, we give an illustration of the Astrid simulation at 𝑧=
+3, visualizing the multi-ﬁeld modelling of various physical processes
+for a wide range of dynamical scales. Shown in the background is a
+slab of the full simulation volume with 250ℎ−1Mpc × 250ℎ−1Mpc
+width per side and 15ℎ−1Mpc slab depth. From left to right we
+show the projected dark matter and gas density ﬁeld with colour
+hue set by dark matter density (orange), gas temperature (blue),
+metallicity (purple) and neutral hydrogen fraction (red) respectively.
+For the leftmost inset we zoom into a (7ℎ−1Mpc)3 region centred on
+a massive halo with 𝑀halo = 3 × 1013 𝑀⊙, showing the gas density
+ﬁeld coloured by temperature. The second inset from the left further
+zooms into a (500ℎ−1 kpc)3 region centred on an ultra-massive BH
+with 𝑀BH = 1.4 × 1010 𝑀⊙, residing in a host galaxy with mass
+𝑀∗= 5 × 1011 𝑀⊙. The panel shows the stellar density ﬁeld colour-
+coded by the age of the stars. The white crosses in the panel mark
+the positions of SMBHs in this region with the cross size scaled by
+the BH mass. The third inset panel shows the morphology of the host
+galaxy in face-on (upper panel) and edge-on (lower panel) views in
+a 20ℎ−1 kpc region around the central SMBH. Finally, in the bottom
+inset, we show some randomly chosen galaxies that host > 109 𝑀⊙
+BHs.
+3 BLACK HOLE MODELS
+3.1 BH seeding
+The formation mechanism of SMBH seeds is an active research topic
+(see,e.g. Smith & Bromm 2019; Volonteri et al. 2021, for recent
+review). Diﬀerent seeding channels have been proposed, including
+remnants of the ﬁrst generation (Population III) stars (Madau &
+Rees 2001) creating 10 ∼103 𝑀⊙BH seeds, direct collapse of
+pristine (metal-free) gas (Bromm & Loeb 2003) and runaway collapse
+of nuclear star clusters (Davies et al. 2011) with a higher initial
+seed mass (∼104 −106 𝑀⊙). However, these processes cannot be
+modelled self-consistently at the resolution of current cosmological
+simulations.
+In Astrid , we continue to follow the practice of seeding a BH
+after the formation of a suﬃciently massive halo. We periodically run
+a Friends-of-Friends (FOF) group ﬁnder during the simulation, with
+a linking length of 0.2 times the mean particle separation. Haloes
+with a total mass and stellar mass exceeding the seeding criteria {
+𝑀halo,FOF > 𝑀halo,thr; 𝑀∗,FOF > 𝑀∗,thr} are eligible for seeding.
+We apply a mass threshold value 𝑀halo,thr = 5 × 109ℎ−1𝑀⊙and
+𝑀∗,thr = 2 × 106ℎ−1𝑀⊙. The choice of 𝑀∗,thr is a conservative
+setting to make sure that BHs are seeded in halos with enough cold
+dense gas to form stars, and that there are at least some collisionless
+star particles in the BH neighbourhood to act as sources of dynamical
+friction. The value of 𝑀∗,thr is estimated from the global 𝑀halo-𝑀∗
+relation. Most of the FOF halos with 𝑀halo > 𝑀halo,thr satisfy the
+𝑀∗,thr criteria.
+Considering the complex astrophysical process likely to be in-
+volved in BH seed formation, we allow haloes with the same mass
+to have diﬀerent SMBH seeds. Therefore, in Astrid , instead of
+applying a uniform seed mass for all the BHs, we probe a range of
+the BH seed mass 𝑀sd drawn probabilistically from a power-law
+distribution
+𝑃( 𝑀sd) =
+
+
+0
+𝑀sd < 𝑀sd,min
+N (𝑀sd)−𝑛
+𝑀sd,min <= 𝑀sd <= 𝑀sd,max
+0
+𝑀sd > 𝑀sd,max
+(1)
+where N is the normalization factor. We set 𝑀sd,min = 3 ×
+104ℎ−1𝑀⊙, 𝑀sd,max = 3 × 105ℎ−1𝑀⊙, and a power-law index
+𝑛= −1. In Section 4.4, we investigate the eﬀect of 𝑀sd on BH
+growth.
+For each halo that satisﬁes the seeding criteria but does not already
+contain at least one SMBH particle, we convert the densest gas parti-
+cle into a BH particle. The newborn BH particle inherits the position
+and velocity of its parent gas particle. The intrinsic mass of BH (𝑀BH
+hereafter) seeds are initially at 𝑀sd (as a subgrid mass). However,
+we preserve in a separate mass variable the parent particle mass, rep-
+resenting a subgrid gas reservoir around the SMBH. Neighbouring
+gas particles are swallowed once (Eddington-limited) accretion has
+allowed 𝑀BH to grow beyond the initial parent particle mass (i.e.,
+once it depletes the gas reservoir of the parent gas particle).
+3.2 BH dynamics and mergers
+A common approach applied in cosmological simulations is to anchor
+the BH at the halo potential minimum by forcefully repositioning the
+BH particle to the local (within the SPH kernel) potential minimum at
+every active timestep. While this method is eﬀective at stabilizing the
+BH in the halo centre, it means that the BH trajectory is discontinuous
+and the BH velocity is ill-deﬁned. In addition, should two galaxies
+pass close enough to each other, a BH merger can result immediately
+even though they are not gravitationally bound.
+We instead use a sub-grid dynamical friction model (Chen et al.
+2021a) to account for the unresolved frictional force exerted by the
+surrounding collisionless matter (stars and stellar-mass black holes)
+on SMBH dynamics. In this model, SMBHs gradually sink to the
+galaxy centre, as their relative velocity is dissipated by dynamical
+friction. Moreover, we can make a more physical prediction for BH
+mergers by calculating whether the (now well-deﬁned) relative ve-
+locities of two SMBHs allow them to be gravitationally bound. The
+validation of our dynamical friction model in cosmological simula-
+tions was performed in Chen et al. (2021a). In this section, we brieﬂy
+review the BH dynamics.
+3.2.1 Dynamical friction
+When an SMBH moves through an extended medium composed of
+collisionless particles with smaller mass, it experiences a drag force.
+The source of this force is the gravitational wake from perturbing
+the particles in the surrounding medium (Chandrasekhar 1943). This
+drag force is called dynamical friction and it eﬀectively transfers
+energy and momentum from the SMBH to surrounding particles,
+MNRAS 000, 000–000 (2021)
+
+
+4
+Y. Ni et al.
+Figure 1. Illustration of the Astrid simulation at 𝑧= 3. Background: A 250ℎ−1Mpc × 250ℎ−1Mpc ﬁeld view with a slab width of 15ℎ−1Mpc, from left to
+right the colour shows dark matter density (orange), gas temperature (blue), metallicity (purple) and neutral hydrogen fraction (red) respectively. First inset
+(Upper left): Gas density ﬁeld coloured by temperature, showing a 7ℎ−1Mpc zoomed-in region centred on a massive halo with 𝑀h = 3 × 1013 𝑀⊙. Second
+inset: further zoom into a 500ℎ−1 kpc region, showing the stellar density ﬁeld centred on an ultra-massive 1010 𝑀⊙BH. The white crosses in the panel mark
+the positions of SMBHs in this region with the cross size scaled by the BH mass. Third inset: the morphology of the host galaxy in face-on (upper panel) and
+edge-on (lower panel) views in a 20ℎ−1 kpc region around the central SMBH. Colours show the stellar age with older stars being redder. The bottom insets show
+some randomly chosen galaxies hosting > 109 𝑀⊙BHs.
+thus dissipating the SMBH momentum relative to its surroundings.
+Dynamical friction causes the SMBH orbit to decay towards the
+centre of massive galaxies (e.g. Governato et al. 1994; Kazantzidis
+et al. 2005) and also stabilizes the BH motion at the centre of the
+galaxy.
+We estimate dynamical friction on SMBHs using Eq. 8.3 of Binney
+& Tremaine (2008):
+FDF = −16𝜋2𝐺2𝑀2
+BH𝑚𝑎log(Λ) vBH
+𝑣3
+BH
+∫𝑣BH
+0
+𝑑𝑣𝑎𝑣2
+𝑎𝑓(𝑣𝑎),
+(2)
+𝑀BH is the BH mass, vBH is the BH velocity relative to its surround-
+ing medium, 𝑚𝑎and 𝑣𝑎are the masses and velocities of the particles
+surrounding the BH, and log(Λ) = log(𝑏max/𝑏min) is the Coulomb
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+5
+logarithm that accounts for the eﬀective range of the friction be-
+tween the speciﬁed 𝑏min and 𝑏max. 𝑓(𝑣𝑎) in Eq. 2 is the velocity
+distribution of the surrounding collisionless particles including both
+stars and dark matter. Here we have assumed an isotropic velocity
+distribution of the particles surrounding the BH so that we are left
+with a 1D integration.
+In Astrid , the BH seed mass extends down to 3 × 104ℎ−1𝑀⊙,
+which is one order of magnitude smaller than the stellar particle mass.
+At this 𝑀BH regime, the dynamical friction of BH is underestimated
+due to the limited mass resolution of the star particles, and so the
+dynamics of the seed BH would be unstable without repositioning.
+As a compromise, we replace the 𝑀BH in Eq. 2 with 𝑀dyn. This
+temporarily boosts the BH dynamic mass for BHs near the seed mass,
+stabilizing their motion during the early post-seeding evolution. We
+will further discuss this implementation in Section 3.2.3.
+We approximate 𝑓(𝑣𝑎) by the Maxwellian distribution (as, e.g.
+Binney & Tremaine 2008), and account for the neighbouring colli-
+sionless particles up to the range of the SPH kernel of the BH particle
+(see, Chen et al. 2021a, for more details). Eq. 2 reduces to
+FDF = −4𝜋𝜌sph
+ 𝐺𝑀dyn
+𝑣BH
+2
+log(Λ)F
+ 𝑣BH
+𝜎𝑣
+ vBH
+𝑣BH
+.
+(3)
+Here 𝜌sph is the density of dark matter and star particles within the
+SPH kernel. The function F , deﬁned as
+F (𝑥) = erf(𝑥) −2𝑥
+√𝜋𝑒−𝑥2, 𝑥= 𝑣BH
+𝜎𝑣
+(4)
+is the result of analytically integrating the Maxwellian distribu-
+tion. 𝜎𝑣is the velocity dispersion of the surrounding particles. The
+Coulomb logarithm Λ is calculated with
+Λ =
+𝑏max
+(𝐺𝑀dyn)/𝑣2
+BH
+(5)
+where 𝑏max = 20 kpc is an ad hoc choice for the maximum physical
+range to account for the frictional force.
+3.2.2 Gas Drag
+In addition to the dynamical friction from the collisionless particles
+(dark matter and stars), we also add a drag force on the BH from the
+surrounding gas particle, with
+adrag = (vgas −vBH) ¤𝑀BH/𝑀BH
+(6)
+This term is motivated by the BH gaining momentum from the sur-
+rounding gas continuously, bringing the sinking of the BH with re-
+spect to the gas. It is a subdominant factor compared to the dynamical
+friction exerted by collisionless particles (Chen et al. 2021a).
+3.2.3 Dynamic mass of BH
+In Astrid , the minimal BH seed mass is 3 × 104ℎ−1𝑀⊙, orders
+of magnitude smaller than the stellar and DM particle masses. Such
+a small BH mass relative to the surrounding particles causes noisy
+gravitational forces (dynamical heating) around the BH and thus
+instability in the BH motion. Moreover, as shown in some previous
+works (e.g. Tremmel et al. 2015; Pﬁster et al. 2019), it is challenging
+to eﬀectively model dynamical friction in a sub-grid fashion when
+𝑀BH/𝑀DM ≪1.
+Following Chen et al. (2021a), we introduce another BH mass
+tracer, the dynamical mass 𝑀dyn, to account for the force calculation
+of BH (including the gravitational force and dynamical friction).
+Note that we still use the intrinsic BH mass 𝑀BH to account for the
+BH accretion and AGN feedback. When a new BH is seeded, we
+initialize the corresponding 𝑀dyn = 𝑀dyn,seed = 107ℎ−1𝑀⊙, which
+is about 1.5𝑀DM. Chen et al. (2021a) showed that this alleviates
+dynamic heating and stabilizes the BH motion in the early growth
+phase. 𝑀dyn is kept at its seeding value until 𝑀BH > 𝑀dyn,seed. After
+that, 𝑀dyn grows following the BH mass accretion.
+The boost of the initial 𝑀dyn may overestimate the dynamical
+friction for small BHs and the resultant sinking time scale will be
+shortened by a factor of ∼𝑀BH/𝑀dyn compared to the no-boost
+case. On the other hand, it is also possible that the BH sinking
+time scale estimated in our simulation in the no-boost case could
+overestimate the true sinking time, as the high-density stellar bulges
+are not fully resolved (e.g. Antonini & Merritt 2012; Dosopoulou
+& Antonini 2017; Biernacki et al. 2017). Therefore, boosting the
+initial 𝑀dyn seems a reasonable compromise to model the dynamics
+of small mass BHs while also alleviating the noisy perturbation of
+dynamic heating brought by the limit of resolution. Note that even if
+our dynamic friction implementation overestimates the force, it still
+provides a substantially more conservative estimation of BH sinking
+than the common model where SMBHs are aggressively repositioned
+to the potential minimum.
+3.2.4 BH Mergers
+In Astrid , BHs have a well-deﬁned dissipative velocity subject to
+dynamic friction, allowing us to impose a more physical criterion
+for BH mergers based on the relative velocities and accelerations of
+merging SMBH pairs. Following Bellovary et al. (2011) and Tremmel
+et al. (2017), we check whether two nearby BHs are gravitationally
+bound using the criteria
+(
+|𝚫r| < 2𝜖g
+1
+2 |𝚫v|2 < 𝚫a𝚫r .
+(7)
+Here 𝜖g = 1.5ℎ−1 kpc is the gravitational softening length. We set the
+merging distance based on 𝜖g as BH dynamics below this distance are
+not spatially resolved. 𝚫a,𝚫v and 𝚫r denote the relative acceleration,
+velocity and position of the BH pair, respectively. Note that this
+expression is not strictly the total energy of the BH pair, but an
+approximation to the kinetic energy and the work needed to get the
+BH to merge.
+The BH merging criteria applied in Astrid is an improvement
+compared with many cosmological simulations where BH dynamics
+are modelled with repositioning. In simulations with BH reposition-
+ing, the distance between the two BHs is essentially the only merging
+criteria. It might spuriously merge two BHs with high relative veloc-
+ities when in reality they are not gravitationally bound and should
+not merge yet (or may never merge). Some cosmological simulations
+(e.g. Schaye et al. 2015; Davé et al. 2019) also apply gravitational
+binding or escape velocity criteria for a BH merger. However, in those
+cases, the BHs still do not have a well-deﬁned velocity and sinking
+time.
+Moreover, as the BH pairs in Astrid now have well-deﬁned orbits
+down to the numerical merger time, we can make use of the binary
+separation and eccentricity measured at the time of numerical merger
+as the initial conditions when post-processing BH mergers at sub-
+resolution scale, without having to assume a constant value as in
+Kelley et al. (2017). We will address this further in our follow up
+work (Chen et al. 2021b).
+MNRAS 000, 000–000 (2021)
+
+
+6
+Y. Ni et al.
+3.3 BH accretion and feedback
+We model BH growth and AGN feedback as in the BlueTides sim-
+ulation. BHs are allowed to grow by accreting mass from nearby
+gas particles. The gas accretion rate onto the BH is estimated via
+the Bondi-Hoyle-Lyttleton-like prescription applied to the smoothed
+properties of the 112 gas particles within the SPH kernel of the BH:
+¤𝑀B =
+4𝜋𝛼𝐺2𝑀2
+BH𝜌
+(𝑐2𝑠+ 𝑣2
+rel)3/2
+(8)
+𝑐𝑠and 𝜌are the local sound speed and density of gas, 𝑣rel is the
+relative velocity of the BH with respect to the nearby gas and 𝛼= 100
+is a dimensionless fudge parameter to account for the underestimation
+of the accretion rate due to the unresolved cold and hot phase of
+the subgrid interstellar medium nearby. Note that hydrodynamically
+decoupled wind particles are not included in the density calculation
+of Eq. 8.
+We allow for short periods of super-Eddington accretion in the
+simulation, but limit the accretion rate to 2 times the Eddington
+accretion rate
+¤𝑀Edd = 4𝜋𝐺𝑀BH𝑚𝑝
+𝜂𝜎𝑇𝑐
+.
+(9)
+𝑚𝑝is the proton mass, 𝜎𝑇the Thompson cross section, c the speed
+of light, and 𝜂= 0.1 the radiative eﬃciency of the accretion ﬂow
+onto the BH.
+In summary, the total BH accretion rate in the Astrid simulation
+is:
+¤𝑀BH = Min( ¤𝑀B, 2 ¤𝑀Edd)
+(10)
+Numerically, the physical BH mass, 𝑀BH, grows continuously
+with time, while we separately track the BH dynamic mass by stochas-
+tic accretion of nearby gas particles with a probability that statistically
+satisﬁes mass conservation. Given that 𝑀dyn is temporarily boosted
+(and initially ﬁxed) for the new-born BH particles for gravity and
+dynamical friction calculation, we use a separate mass tracer 𝑀trace
+to perform gas accretion when 𝑀BH < 𝑀dyn,seed. This term is ini-
+tialized as the parent particle mass that spawns the BH, and traces
+𝑀BH with stochastic gas accretion until 𝑀BH >= 𝑀dyn,seed. After
+that, 𝑀dyn grows following 𝑀BH by swallowing gas.
+To ensure stable accretion, the timestep of the BH particle is set not
+by the acceleration dynamics, but by being 2 times longer than the
+smallest timestep found amongst the gas particles within its density
+kernel.
+AGN thermal feedback is implemented as follows. The SMBH is
+assumed to radiate with a bolometric luminosity 𝐿Bol proportional
+to the accretion rate ¤𝑀BH:
+𝐿Bol = 𝜂¤𝑀BH𝑐2
+(11)
+with 𝜂= 0.1 being the mass-to-light conversion eﬃciency in an
+accretion disk according to Shakura & Sunyaev (1973). 5% of the
+radiated energy is thermally coupled to the surrounding gas that
+resides within twice the radius of the SPH smoothing kernel of the
+BH particle.
+The AGN feedback energy is isotropically imparted to the nearby
+gas particles, distributing the energy among them according to the
+SPH kernel. Gas particles that are heated by AGN feedback dissipate
+the energy in diﬀerent channels depending on their thermal proper-
+ties. Non star-forming gas cools as normal, while star-forming gas
+heated by the SMBH relax to the temperature corresponding to the
+eﬀective equation of state for star-forming (c.f. Springel & Hernquist
+2003), on a time scale determined by the cooling time. Note that star-
+forming gas heated by other means cools to the eﬀective equation of
+state on the longer relaxation timescale.
+3.4 BH catalogs in Astrid
+For every time step in the simulation, we log the full physical state
+of all the active BH particles, including the thermal states (density,
+entropy), dynamics (position, velocity, acceleration from gravity, dy-
+namical friction, gas drag), growth state (mass, accretion rate, accre-
+tion of gas and BHs), neighbour information (number of surrounding
+particles, local velocity dispersion) etc, to a separate catalogue. This
+high time resolution BH catalogue allows us to follow the detailed
+growth history of all BHs in the simulation, build the merger trees of
+BHs, trace the trajectory of BH merger events down to kpc scale and
+allow post-processing of BH mergers at sub-resolution scale based
+on the orbits of BHs.
+4 THE GLOBAL BH POPULATION
+In this section, we investigate the global statistics of the BH popu-
+lation from 𝑧> 6 to 𝑧= 3 in Astrid . § 4.1 - § 4.3 we present the
+statistics of the BH mass and luminosity. In § 4.4 we consider the
+global time evolution of the BH mass and accretion rate density. In
+§ 4.5, we discuss the eﬀect of the BH seeding mass on BH growth.
+Finally, in § 4.6 we investigate the contributions to the BH growth
+from seeding, accretion and BH mergers.
+4.1 BH Mass function
+We start our analysis by showing the evolution of BH mass functions
+(BHMFs). In the left panel of Figure 2, the coloured solid lines show
+the BH mass function evolving from 𝑧= 7 to 𝑧= 3, illustrating how
+the BH mass gradually builds up with cosmic time.
+In Astrid , the ﬁrst 108 𝑀⊙, 109 𝑀⊙and 1010 𝑀⊙BHs are
+in place at 𝑧= 6.6, 𝑧= 5.3 and 𝑧= 4.5 respectively. With the
+250 ℎ−1Mpc volume size of Astrid , we marginally being able to
+simulate the population of the ﬁrst 𝑀BH > 109 𝑀⊙QSOs at 𝑧> 6,
+which are thought to power high-𝑧quasars. At our ﬁnal redshift of
+𝑧= 3, the simulation contains a hundred 109 𝑀⊙BHs and a handful
+(∼3) of ultramassive BHs with 𝑀BH > 1010 𝑀⊙.
+As the ﬁrst sanity check, we show in the left panel of Figure 2
+some observational inferences of the BHMF derived from high-𝑧
+AGN samples. The purple dashed line gives the estimate of the 𝑧∼6
+BHMF derived in Willott et al. (2010) based on optical QSO samples
+at 𝑧= 6. The brown dotted, dashed-dotted and dashed lines are the
+BHMF predictions at 𝑧= 5, 𝑧= 4 and 𝑧= 3 from Ueda et al.
+(2014), based on X-ray observations of AGN samples (assuming
+mass-dependent radiative eﬃciency and averaged Eddington ratio
+¯𝜆Edd ∼0.25). At masses 𝑀BH > 107 𝑀⊙, Astrid produces a 𝑀BH
+distribution in good agreement with these observational predictions
+from 𝑧= 6 to 𝑧= 3. A caveat is that there are large uncertainties (and
+inconsistencies with the simulation model) lying in the assumptions
+applied by these observational inferences of BHMFs. The match
+to within an order of magnitude across a wide range of 𝑀BH and
+redshift still validates that the BH model in Astrid seems to be
+building up the 𝑀BH population in a reasonable way.
+BH populations at the small mass end are sensitive to the seed-
+ing prescription and to the level of growth achieved before reach-
+ing AGN feedback modulated self-regulation. In Astrid , the BH
+population with 𝑀BH < 106 𝑀⊙is dominated by the seed BHs.
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+7
+Figure 2. Left panel: BH mass function in Astrid from 𝑧= 7 to 𝑧= 3 with coloured solid lines representing diﬀerent redshifts. The grey dashed vertical lines
+mark the range of the BH seed mass with 𝑀sd,min = 3 × 104ℎ−1𝑀⊙, 𝑀sd,max = 3 × 105ℎ−1𝑀⊙. The purple dashed line shows an inferred BHMF at 𝑧= 6
+from Willott et al. (2010). The brown lines give the predictions at 𝑧= 5, 𝑧= 4, 𝑧= 3 by Ueda et al. (2014), inferred from X-ray observations. Right panel:
+Relationship between BH mass and luminosity. 𝑦axis gives the AGN luminosity, with 𝐿bol given on the left axis and the corresponding hard X-ray band 𝐿X
+calculated using a bolometric correction given in the right 𝑦axis. The background shows a 2D histogram representing the 𝑀BH −𝐿bol relation at 𝑧= 3. The
+solid lines give the averaged AGN luminosity for each 𝑀BH bin from 𝑧= 7 to 𝑧= 3, with the same colour scheme as the left panel. The grey dotted-dashed and
+dashed lines mark 2 × 𝐿Edd and 𝐿Edd respectively.
+The dashed vertical lines mark the range of the BH seed with
+𝑀sd,min = 3×104ℎ−1𝑀⊙(4.4×104 𝑀⊙), 𝑀sd,max = 3×105ℎ−1𝑀⊙
+(4.4 × 105 𝑀⊙). Instead of spiking at a uniform 𝑀sd, the power-law
+seeding prescription applied in Astrid allows the BH population
+to extend down to a lower 𝑀sd with a ﬂatter slope, and allows a
+statistical diagnosis of the impact of 𝑀sd on BH growth, which will
+be further discussed in Section 4.5. We will show there that 𝑀sd
+has a limited impact on the higher mass BH population, for which
+growth is mostly dominated by the local environment, governing gas
+accretion.
+4.2 Relation between BH mass and luminosity
+Now we investigate the relationship between 𝑀BH and luminosity
+across diﬀerent redshifts. The AGN luminosity is calculated from the
+BH accretion rate using bolometric luminosity corrections. We calcu-
+late the bolometric luminosity of AGN via Eq. 11 with 𝐿Bol ∝¤𝑀BH
+and the assumption of a uniform mass-to-light conversion eﬃciency
+of 𝜂= 0.1. To compare with AGN observations in diﬀerent bands
+such as the X-ray and UV, we apply the corresponding bolometric
+corrections.
+In particular, the X-ray band luminosity is estimated by converting
+AGN 𝐿Bol to the luminosity in the hard X-ray band [2-10] keV
+following the bolometric correction 𝐿𝑋= 𝐿Bol/𝑘from Hopkins
+et al. (2007) with
+𝑘(𝐿Bol) = 10.83(
+𝐿Bol
+1010𝐿⊙
+)0.28 + 6.08(
+𝐿Bol
+1010𝐿⊙
+)−0.020 .
+(12)
+Here 𝐿Bol is given by Eq. 11, and 𝐿⊙refers to the bolometric solar
+luminosity 𝐿⊙= 3.9 × 1033 erg s−1.
+To calculate the UV band AGN luminosity, we convert 𝐿Bol to rest
+frame UV band absolute magnitude 𝑀UV following the bolometric
+corrections from Fontanot et al. (2012)
+𝑀UV,AGN = −2.5log10
+LBol
+fB𝜇B
++ 34.1 + ΔB,UV ,
+(13)
+where 𝑓𝐵= 10.2, 𝜇𝐵= 6.7 × 1014Hz and ΔB,UV=-0.48.
+The right panel of Figure 2 shows the distribution of 𝑀BH versus
+the AGN luminosity. The left 𝑦-axis is labelled in units of bolometric
+luminosity, while the right 𝑦-axis marks the corresponding 𝐿X cal-
+culated via Eq. 12. The background shows the 2D histogram of the
+𝐿BH −𝑀BH relation for the BH population at 𝑧= 3, with the purple
+solid line giving the mean value of 𝐿BH for each 𝑀BH bin. We also
+give the average 𝐿BH −𝑀BH for higher redshifts from 𝑧= 7 to 𝑧= 3
+(using coloured solid lines with the same colour scheme as the left
+panel) to show time evolution.
+At the low mass end, 𝑀BH ≲107 𝑀⊙, 𝐿BH exhibits a steep pos-
+itive correlation with 𝑀BH as the BH growth is dominated by the
+initial Bondi-Hoyle-like accretion. More massive BHs experience a
+higher accretion rate, which also gives on average a higher Edding-
+ton accretion ratio 𝜆Edd ≡¤𝑀/ ¤𝑀Edd. As shown by the 𝐿BH −𝑀BH
+distribution at 𝑧= 3 in the background, some of the BHs with
+𝑀BH ∼[106, 107] 𝑀⊙can temporarily reach Eddington-limited ac-
+cretion (marked with a grey dashed-dotted line). At increased mass,
+𝑀BH ≳107 𝑀⊙, the 𝐿BH −𝑀BH curve ﬂattens, making the overall
+Eddington accretion ratio lower for more massive BHs. This signiﬁes
+that BH growth is self-regulated by AGN feedback, with massive BHs
+dumping thermal energy into the surrounding gas and the resulting
+hot and sparse gas slowing down the BH accretion. The overall 𝜆Edd
+tends to peak at 𝑀BH ∼107 𝑀⊙, a typical feature found in Bondi-
+Hoyle-like BH accretion models (see, e.g. DeGraf et al. 2012).
+As shown by the coloured solid lines, the mean 𝐿BH −𝑀BH
+relation exhibits a clear time evolution across diﬀerent redshifts, with
+the mean Eddington accretion ratio for BHs in the same 𝑀BH regime
+decreasing when going to lower redshifts. For 𝑀BH ∼108 𝑀⊙, the
+MNRAS 000, 000–000 (2021)
+
+
+8
+Y. Ni et al.
+average 𝜆Edd ∼0.07 at 𝑧= 3, ∼0.12 at 𝑧= 4, and ∼0.2 at 𝑧= 5 ∼6.
+The decrease in 𝜆Edd with redshift is a consequence of persistent
+AGN feedback and lower cold gas fractions in BH environments at
+lower redshift (see discussions in, e.g., Anglés-Alcázar et al. 2015),
+and is mirrored in a similar decrease in star formation (see Bird et al.
+2021). As we will show in Section 4.3.2, AGN at higher redshift
+is typically embedded in denser gas environments. Observational
+evidence also suggests an increasing 𝜆Edd at higher redshift (e.g.
+Lusso et al. 2012; Aird et al. 2015), supporting the trend found in the
+simulation.
+4.3 BH Luminosity Functions
+In this section, we discuss the predictions for the AGN luminosity
+functions (in X-ray and UV bands) for the BH population in Astrid
+and compare them to current observational constraints at 𝑧∼3 −
+7. The AGN luminosity functions (LFs: 1-point functions) provide
+basic statistics to gauge the accretion history of BHs as tracked in
+our simulation and hence are a fundamental way to validate our
+BH model. In addition, following Ni et al. (2020), we calculate the
+hydrogen column density, 𝑁H due to the gas in the host galaxies and
+assess its role in AGN obscuration. Although we cannot resolve scales
+relevant for the obscuring AGN torus, galactic obscuration serves as a
+lower limit on the total amount of obscuration expected. We compare
+our derived galactic 𝑁H as a function of X-ray luminosity to the
+current obscured fractions of AGN inferred from X-ray observations
+at 𝑧> 3.
+4.3.1 X-ray band AGN luminosity function
+In Figure 3 we show the X-ray luminosity function (XLF) from
+𝑧= 7, 6 and 𝑧= 5 (left panel) and at 𝑧= 4 and 𝑧= 3 in the middle
+and right panels respectively. At the highest redshift (𝑧= 5 −7), the
+XLF has been observationally constrained only at the very bright end
+(log 𝐿X ≳44). At 𝑧= 4 and 𝑧= 3 the measurements extend down
+by an order of magnitude in luminosity, close to log 𝐿X ∼43 (cor-
+responding to the ﬂux limit of the deepest Chandra ﬁelds). The grey
+data points in Figure 3 are a collection of observational constraints
+reported by Fiore et al. (2012), Aird et al. (2015), Vito et al. (2018)
+in diﬀerent redshift ranges. The grey shaded band covers the 90%
+interval determined from AGN samples reported by Buchner et al.
+(2015) through a non-parametric approach used to infer the intrinsic
+LF and include a correction for obscured (𝑁H = 1022−24cm−2) and
+Compton thick (𝑁H > 1024cm−2) AGN.
+Overall the AGN LF at log 𝐿X > 43.5 shows good agreement
+compared to the observational data. When we consider the log 𝐿X <
+43 population in Astrid , the AGN abundance is about 0.5 ∼1.0
+dex higher compared to observational constraints provided by Vito
+et al. (2018), and is close to the upper bound of conﬁdence interval
+predicted by Buchner et al. (2015). We note that the Astrid XLF
+determined using the full BH population has a steeper slope at the
+faint end with log 𝐿X ≲43.5.
+The details (and excess) at the faint end of the LF are a common
+issue seen in many cosmological simulations (e.g., see discussions
+in Sĳacki et al. 2015; Volonteri et al. 2016). We note that there are
+large uncertainties related to the comparison with the observed faint
+end AGN population, such as (i) observations of AGN at the faint
+end could be strongly inﬂuenced by gas obscuration, (ii) simulation
+modelling of small-mass BHs is more uncertain than for larger BHs,
+(iii) several assumptions are applied to model the simulated AGN
+luminosity such as radiative eﬃciencies and bolometric corrections.
+Dashed lines in Figure 3 show the XLF for the subset of BHs with
+𝑀BH > 107 𝑀⊙. We can see that the log 𝐿X < 43 AGN population
+is dominated by smaller mass BHs with 𝑀BH < 107 𝑀⊙which have
+not yet reached the self-regulated regime and might be subject to the
+uncertainties lying in the modelling of small mass BHs. Therefore,
+exclusion of small mass BHs or BHs residing in small halos can
+provide a better agreement at the faint end (for example,Sĳacki et al.
+(2015) applied 𝑀BH > 5 × 107 𝑀⊙).
+It has now been well established from X-ray studies that the vast
+majority of AGN are obscured by thick columns of gas and dust, and
+the predictions for the XLF, particularly at the faint end, are sensitive
+to the amount of obscuration to the AGN. In the next section, we
+focus the discussion on the important eﬀects of obscuration and the
+role it plays in predictions of the LFs.
+4.3.2 The fraction of AGN obscured by galaxy-scale gas in the host
+X-ray surveys over the last decade indicate that 20 −40% of AGN
+are hidden behind Compton-thick column densities (with 𝑁H > 1024
+cm−2) and, of the remaining population, ∼75% are obscured, with
+𝑁H = 1022 ∼1024cm−2 (e.g. Ueda et al. 2014; Buchner et al. 2015;
+Aird et al. 2015) at the peak of AGN activity at redshift 𝑧= 0.5 −3.
+Up to 𝑧∼3, the highest obscured fractions are found at the faint end
+(e.g. Ueda et al. 2014; Vito et al. 2018), showing that 80% of the
+AGN population at 𝑧∼3 −7 is obscured with little dependence on
+X-ray luminosity.
+Traditionally, AGN obscuration is associated with the “torus”, a
+nuclear structure (on scales of ∼10 pc) surrounding the accretion
+disk of the BH, which is completely unresolved in cosmological
+simulations. However, we can directly assess the contribution to the
+obscuration due to the gas in the host galaxy (mostly due to the same,
+cold gas reservoir which is responsible for fuelling the AGN: see Ni
+et al. 2020) without accounting for nuclear torus obscuration. The
+obscured fraction of high-𝑧AGN is constrained to be signiﬁcant (see,
+e.g. Vito et al. 2018). Our estimated galactic scale 𝑁H can separate
+the large-scale and small-scale obscured contribution for the high-𝑧
+AGN population. We also use it to assess the predicted contribution of
+galactic scale obscuration in the high redshift regime, where galactic
+gas densities can be high in AGN host galaxies.
+We calculate gas column density 𝑁H for each AGN from diﬀerent
+lines of sight following Ni et al. (2020), analysing all AGN with
+𝐿X > 1042.5 erg s−1. For each AGN, we cast 48 evenly distributed
+lines of sight starting from the BH position and calculate the hydro-
+gen column density 𝑁H along each sightline. More speciﬁcally, we
+ﬁrst determine the neutral hydrogen gas density ﬁeld using the SPH
+formalism
+𝜌(r𝑖) = 𝑋
+∑︁
+𝑗
+𝜒𝑗𝑚𝑗𝑊𝑖𝑗= 𝑋
+∑︁
+𝑗
+𝜒𝑗𝑚𝑗𝑊(|r𝑖−r 𝑗|, ℎ𝑗),
+(14)
+where Í
+𝑗is a sum over all the neighbouring gas particles within the
+smoothing length ℎ, 𝑊is the quintic kernel for density estimation,
+𝑋= 0.76 is the hydrogen mass fraction and 𝜒is the neutral hydrogen
+fraction for gas particles. We then calculate 𝑁H by integrating the
+(neutral) hydrogen number density along each line of sight:
+𝑁H =
+∫
+ray
+𝜌(𝑙)/𝑚𝑝𝑑𝑙
+(15)
+with 𝑚𝑝the proton mass.
+The dashed-dotted lines in Figure 3 show the AGN population with
+𝑁H > 1023cm−2. The 𝑁H threshold follows the convention of Vito
+et al. (2018). Note that 𝑁H calculated here is the galactic obscuration
+only and thus a lower limit on the total obscuration, as we cannot
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+9
+Figure 3. Predictions for the X-ray band luminosity function (XLF) of AGN from 𝑧= 7 ∼5 (ﬁrst panel), 𝑧= 4 (second panel) and 𝑧= 3 (third panel), for
+comparison with observations. Grey data points with error bars are the X-ray observational results from Fiore et al. (2012), Aird et al. (2015), and Vito et al.
+(2018). The grey shaded area covers the 90% credible interval inferred from X-ray selected AGN samples reported by Buchner et al. (2015). The coloured
+dashed lines show the XLF contributed by the 𝑀BH > 107 𝑀⊙BH population at each redshift. The dashed-dotted lines show the contribution of the obscured
+AGN population embedded in local gas column density with 𝑁H > 1023 cm−2 (see text for more details).
+Figure 4. Left panel: The relation between gas column density 𝑁H and AGN luminosity for the AGN population with log 𝐿X > 42.5 at 𝑧= 6 and 𝑧= 3. For
+each AGN we compute 𝑁H along 48 random sight lines. The solid line gives the running median, with the shaded area covering the 16 - 84th percentile of
+the 𝑁H distribution in each 𝐿X bin. Middle panel: Binned estimates of the obscured AGN fraction as a function of 𝐿X shown at 𝑧= 6 and 𝑧= 3. Solid and
+dashed-dotted lines show the fraction of sightlines with 𝑁H > 1023 cm−2 and 𝑁H > 1022.5 cm−2 respectively. The obscured fraction is calculated based on all
+lines of sight for the AGN populations in the corresponding 𝐿X bin. Grey data points with error bars are the observational results of Vito et al. (2018), based on
+the AGN population at redshift 𝑧= 3 −6. Right panel: Fraction of AGN that is covered by a given column density 𝑁H, calculated based on all lines of sight for
+the log 𝐿X > 42.5 AGN population at 𝑧= 6 and 𝑧= 3. The grey shaded area shows predictions for galaxy-scale obscuration of 𝑧∼3 AGN from Buchner &
+Bauer (2017).
+resolve the nuclear scale "torus". The ﬁrst panel of Figure 4 shows
+the relation between the X-ray absorbing column densities 𝑁H due
+to gas in the galaxy, and AGN activity 𝐿X. We ﬁnd that galaxy-scale
+obscuration is important at column densities 𝑁H = 1023−24 cm−2 at
+𝑧= 6. At 𝑧= 3, however, the typical 𝑁H decreases to 1022−23 cm−2,
+as a result of the lower gas density in galaxies.
+The second panel shows the obscured fraction 𝑓obs of AGN at 𝑧= 3
+and 𝑧= 6 as function of 𝐿X. The grey data points show constraints
+from Vito et al. (2018) for the fraction of AGN with 𝑁H > 1023
+cm−2 at 𝑧= 3 −6. At both redshifts, our estimated 𝑁H or the ob-
+scured fraction 𝑓obs increases with 𝐿X: this is in contrast with the
+ﬂat or decreasing trends shown in the observed relations at 𝑧> 3
+(e.g. Ueda et al. 2014; Vito et al. 2018). At 𝑧= 6, galactic-scale gas
+can provide Compton thick column densities at large luminosities,
+consistent with the observationally inferred obscured fraction from
+Vito et al. (2018). However, at 𝑧= 3, it is not possible to reproduce
+the number of Compton thick AGN through host-galaxy obscuration.
+This implies that Compton-thick obscuration is associated with nu-
+clear obscuration in the unresolved vicinity of the BH by the time
+𝑧= 3 is reached, particularly at low luminosities. What we classify
+as an ’unobscured’ AGN population in Astrid is therefore likely to
+be greatly overestimated.
+We can conclude that most Compton-thick obscuration can be as-
+sociated with galactic scale gas at 𝑧∼6 (at least at high luminosities).
+However, at 𝑧= 3, a large fraction of it needs to be associated with
+the nuclear regions, at least for AGNs log 𝐿X < 43.5. By 𝑧= 3,
+the average gas density in galaxies has decreased and only massive
+galaxies reach gas densities which can give rise to signiﬁcant absorp-
+MNRAS 000, 000–000 (2021)
+
+
+10
+Y. Ni et al.
+Figure 5. UV band luminosity function of AGN populations at 𝑧= 4 and
+𝑧= 3. The blue line gives the UV luminosity function for all BH populations.
+The purple shaded area gives the area bounded by the UVLF from the AGN
+population with 𝐿> 0.3×𝐿UV,host (the host galaxy) and the AGN population
+with 𝐿> 1 × 𝐿UV,host. The grey data points give the observational data
+collected from Kulkarni et al. (2019) and also Akiyama et al. (2018). The red
+and orange dashed lines give the ﬁts to observed AGN UVLF reported by
+Manti et al. (2017); Kulkarni et al. (2019).
+tion. We will further discuss this in Section 5.3, where we show the
+column density to the AGN as a function of the host galaxy stellar
+mass. At 𝑧= 3, 𝑁H is below 1024 cm−2 for most galaxies.
+The third panel of Figure 4 shows the covering fraction for
+log 𝐿X > 42.5 AGN as a function of 𝑁H at 𝑧= 6 and 𝑧= 3. The grey
+shaded area shows the range of inferred galaxy-scale obscuration al-
+lowed at 𝑧= 3 in a model based on observations of gamma-ray bursts
+(GRBs) reported by Buchner & Bauer (2017). Astrid predicts cov-
+ering fractions of galactic obscuration broadly consistent with the
+observational inferences, indicating that the galactic level obscura-
+tion in the simulation is reasonable. While galactic obscuration does
+not produce Compton-thick column densities, it can provide high
+covering fractions (50 - 90% at 𝑧= 6, decreasing to 20 −60% at
+𝑧= 3) at 𝑁H = 1023 cm−2. The high covering fractions suggest that
+a substantial part of the obscured/unobscured dichotomy can still be
+caused by galaxy-scale gas at high-𝑧and high luminosities.
+Our main result is that the host galaxy gas provides a positive cor-
+relation between luminosity and obscuration, implying that nuclear
+absorption still plays the most signiﬁcant role at low luminosities as 𝑧
+decreases from 𝑧= 6 to 𝑧= 3. However, X-ray inferred column den-
+sities imply an opposite correlation, with faint AGN experiencing the
+largest 𝑁H. As a result, we cannot directly assess the extent to which
+Astrid produces an excess of AGN at the faint end of the XLF. With
+insuﬃcient 𝑁H (without the torus) in the simulation, we are unable
+to properly represent the typically heavily obscured / optically-thick
+population at the faint end of the LF.
+4.3.3 UV band AGN luminosity function
+Figure 5 shows the predicted, rest frame, UV luminosity function for
+the AGN in Astrid . The UV band AGN luminosity is calculated
+using the bolometric correction in Eq. 13. We compare the predic-
+tions with observational results from the Hyper Suprime-Cam Wide
+Survey (Akiyama et al. 2018), which currently provides the best con-
+straints on the faint end of the UV LF of AGN at 𝑧= 4. We also use the
+UV observational data compiled by Kulkarni et al. (2019) and show
+(red and orange dashed lines) two ﬁts to AGN UVLF reported by
+Manti et al. (2017); Kulkarni et al. (2019). The Astrid bright AGN
+population agrees reasonably well with the observational constraints
+at 𝑧= 3 and 𝑧= 4.
+The UVLF is extremely sensitive to dust extinction and the uncer-
+tainties in the obscuration corrections are large. These eﬀects could
+easily result in an order of magnitude or more uncertainty in AGN
+number density in the UV band (see also Ni et al. 2020). One approach
+to estimate the dust obscuration is to convert the hydrogen column
+density 𝑁H to dust abundance with the assumption of a (constant)
+gas-to-dust ratio and use a dust interaction cross-section (calibrated
+on, e.g. the Small Magellanic Cloud model) to account for UV band
+extinction. However, in this work, we ﬁnd that these assumptions,
+along with our galactic gas 𝑁H, under-predict the UVLF of AGN
+and hence lead to an inconsistency between UV and X-ray LFs. This
+indicates that the extinction in the optical/UV is over-predicted by a
+model with the constant dust-to-gas ratio and the SMC-like extinction
+curve. This result supports a similar conclusion from the empirical
+modelling by Shen et al. (2020). For this reason, that work adopts a
+redshift-dependent dust-to-gas ratio and a Milky Way-like extinction
+curve which is shallower than the SMC-like curve.
+There remains much uncertainty as to how to calculate AGN ob-
+scuration in the UV band and diﬀerent empirical models have been
+adopted (e.g. see recent discussions in Shen et al. 2020; Yung et al.
+2021) that all require a somewhat suppressed eﬀect of dust for AGN
+at high-𝑧. Given that our model does not account for nuclear absorp-
+tion, there are large uncertainties in the dust modelling and the faint
+end of the UVLFs remains largely unconstrained. Here we discuss
+the eﬀects on UVLF by considering AGN UV luminosity compared
+to their host galaxy. In particular, we show the contribution to the
+UVLF due to AGN that are at least 30% of the UV luminosity of
+their host galaxies.
+We calculate the UV luminosity of the host galaxy by modelling
+the spectral energy distribution (SED) of a simple stellar population
+(SSP) to each star particle based on its age and metallicity which
+is discussed in detail and compared to the galaxy UVLF in our
+companion paper Bird et al. (2021).
+The shaded area in Figure 5 gives the area bounded by the UVLF
+from the AGN population with 𝐿UV,AGN > 0.3 × 𝐿UV,host (the host
+galaxy) and the AGN population with 𝐿UV,AGN > 1 × 𝐿UV,host.
+Interestingly, this band shows a broad consistency with observations.
+We ﬁnd that at 𝑀UV > −23, most of the AGN have a UV luminosity
+fainter their host galaxy. Excluding these makes the remaining UVLF
+> 1 dex lower than the overall AGN population. Detection of AGN
+in this range of UV magnitudes is likely very challenging due to
+the dominant contribution of the host galaxies. This exercise demon-
+strates another potential important eﬀect that may tend to suppress
+the number of faint AGN detected by the UV observations at high
+redshifts. Similar results were discussed in the analysis by Volonteri
+et al. (2017) at 𝑧= 6. To conclude, Astrid predicts that at the bright
+end of the UV magnitude (𝑀UV < −24), a signiﬁcant amount of the
+AGN is brighter than their host galaxies. While at the faint end of
+UVLFs, the host galaxies can be a large contaminant to observations.
+4.4 BH Mass density and accretion rate density
+This section discusses the global evolution history of the BH mass
+density (BHMD) and BH accretion rate density (BHAD) from 𝑧= 10
+to 𝑧= 3. The left panel of Figure 6 shows the BHMD as a function
+of redshift. The red to orange coloured lines denote the BHMD
+contributed by BHs in diﬀerent ranges of 𝑀BH (as indicated in the
+legend). The solid triangles indicate the upper limits derived from
+deep X-ray observations (Treister et al. 2013) or from the integrated
+X-ray background (Salvaterra et al. 2012). Note that those X-ray in-
+ferred upper limits do not include Compton-thick AGNs and might
+thus miss the contributions from a fraction of BHs. The black dotted
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+11
+Figure 6. Evolution of BH mass and accretion rate densities. Left panel: The upper panel shows the evolution of the global BH mass density (BHMD) as a
+function of redshift. The black solid line includes all BHs. Coloured lines show the BHMD contributed by the BHs in a given range of masses, as indicated by
+the legend on the right. The brown and black triangles are upper limits inferred from (Salvaterra et al. 2012; Treister et al. 2013). We also show prediction of
+BHMD from Ueda et al. (2014) and Volonteri & Reines (2016). The lower panel shows the ratio between the global stellar mass density (SMD) and BHMD.
+Right panel: The upper panel shows the evolution of the BH accretion rate density (BHAD). Coloured lines show the BHAD contributed by BHs from diﬀerent
+ranges of X-ray luminosity as indicated by the legend on the right. The lower panel shows the ratio of the global star formation rate density (SFRD) to the
+BHAD. Black and pink data points show X-ray observational prediction from Vito et al. (2018) and Aird et al. (2015). The grey dotted line gives the simulation
+prediction from Illustris (Sĳacki et al. 2015).
+line marked by empty circles was derived by Ueda et al. (2014) from
+observational constraints on the AGN XLF. The grey shaded area de-
+notes the predicted range of BHMD for BHs with 𝑀BH > 105 𝑀⊙
+reported by Volonteri & Reines (2016), which is derived from the
+galaxy mass function (Grazian et al. 2015) after making assump-
+tions about the BH-stellar mass relationships. We can see that the
+Astrid BHMD is in overall good agreement with the observational
+constraints. BHs within the mass range [105, 106] 𝑀⊙make the
+dominant contribution to BHMD.
+The right panel of Figure 6 shows the BHAD with diﬀerent
+coloured lines showing contributions from diﬀerent 𝐿X bins. At
+𝑧> 5 the BHAD is dominated by AGN with relatively low lumi-
+nosity in the range of log 𝐿X = [41, 42.5] erg s−1, while at lower
+redshift (𝑧< 5) more luminous AGNs with log 𝐿X > 42.5 start to
+dominate the BH accretion rate. The black data points show the ob-
+servational results from Vito et al. (2018), derived from samples of
+X-ray-detected AGN. As a comparison, we also show the simulation
+result from Illustris (Sĳacki et al. 2015) (including all BHs) as the
+black dotted line. The results of Vito et al. (2018) eﬀectively probe
+AGN down to the luminosity limit log 𝐿X > 42.5 for 𝑧= 3 ∼6,
+but beyond this (log 𝐿X < 42.5) the sample is strongly aﬀected by
+incompleteness. We can see that the dashed and dotted lines (corre-
+sponding to the log 𝐿X > 42.5 AGN population) show overall good
+agreement with Vito et al. (2018) at 𝑧= 6 and at 𝑧∼4, but overshoot
+by about 0.5 dex at 𝑧= 5.
+The lower left panel shows the ratio of the stellar mass density
+(SMD) to the BHMD at each redshift and the lower right panel
+shows star formation rate density (SFRD) divided by the BHAD.
+Here SMD and SFRD are all calculated based on the galaxies with
+𝑀∗> 107 𝑀⊙in the simulation. Since the star formation process
+builds up galaxy mass faster than BH formation and accretion (as
+also indicated by the SFRD/BHAD ratio), the ratio between SMD
+and BHMD slowly increases with time, from ∼100 at 𝑧= 10 to ∼700
+at 𝑧= 3. However, we note that the ratio of SFRD and BHAD does not
+show very strong time evolution, with SFRD/BHAD lying between
+1000−3000 for all redshifts. Some observations (e.g. Mullaney et al.
+2012) and simulations (e.g. Ricarte et al. 2019; Thomas et al. 2019)
+also exhibit no strong redshift evolution of the relation between star
+formation rate and BH accretion rate, and treat this as evidence for
+or a consequence of BH-galaxy coevolution.
+4.5 Eﬀect of the BH seed mass
+Since the Bondi-Hoyle prescription for BH accretion depends on the
+BH mass with ¤𝑀BH ∝𝑀2
+BH (c.f. Eq. 8), one would expect the early
+growth of BHs to be sensitive to the initial 𝑀sd. This is because in
+the early phase of BH growth the AGN feedback does not have a large
+impact on the local environment and the BH accretion is dominated
+by the 𝑀2
+BH term, where a larger 𝑀sd would cause 𝑀BH to build up
+more rapidly.
+In Astrid , BHs are seeded with 𝑀sd stochastically drawn from a
+power-law distribution within the mass range from 𝑀sd,min = 4.4 ×
+104 𝑀⊙(3 × 104ℎ−1𝑀⊙) to 𝑀sd,max = 4.4 × 105 𝑀⊙, which is
+independent of the host environment at the seeding time. This allows
+us to statistically investigate how the growth of a BH is dependent on
+its seeding mass.
+To this end, we select a batch of BHs that are seeded in a given time
+interval, trace them to a later time, and show how their ﬁnal 𝑀BH
+are dependent on their initial 𝑀sd. In order to allow the BHs enough
+time evolution, we select the BHs seeded at high redshift between
+10 < 𝑧< 15 (about 8.6 × 104 BHs in total), and trace them to lower
+redshifts from 𝑧= 6 to 𝑧= 3. To take into account the fact that BHs
+also grow by merging with other BHs (with a diﬀerent seed mass),
+we split the analysis into two parts. First, we exclude the BHs that
+MNRAS 000, 000–000 (2021)
+
+
+12
+Y. Ni et al.
+Figure 7. We trace the BHs seeded at 𝑧> 10 down to lower redshifts and show their 𝑀BH versus seed mass ( 𝑀sd) at 𝑧= 3 in the leftmost column. The
+black solid and dashed-dotted lines in the left column show the average and median 𝑀BH at each 𝑀sd bin. The middle column displays the mean and median
+𝑀BH/ 𝑀sd values for each 𝑀sd bin from 𝑧= 6 to 𝑧= 3, represented by the solid and dashed-dotted lines with colours representing diﬀerent redshifts. The right
+column gives the fraction of BHs in each 𝑀sd bin that has grown beyond 2 times (solid lines) and 10 times (dashed lines) the initial 𝑀sd at each redshift. The
+upper panels only include the BHs that have not undergone merger events. The lower panels include the BHs that have merged with other smaller mass BHs (i.e.
+being the more massive progenitor).
+have undergone merger events to cleanly diagnose how 𝑀BH gained
+by the gas accretion is aﬀected by original seed mass. Second, we
+include the BHs that have merged with other smaller mass BHs to
+address the possible bias introduced by selecting the no-merger BHs.
+The upper panels of Figure 7 show the result of the 𝑀BH −𝑀sd
+relation for BHs that are seeded at 10 < 𝑧< 15 and have not
+undergone a merger before the redshift inspected. The blue points in
+the left panel give the resultant 𝑀BH at 𝑧= 3 versus their original
+𝑀sd, with the black solid and dashed-dotted line giving the running
+mean and median 𝑀BH for each 𝑀sd bin. The middle panel shows
+the statistics of the mean and median 𝑀BH/ 𝑀sd in each 𝑀sd bin
+from 𝑧= 6 to 𝑧= 3 to show time evolution. The right panel shows the
+fraction of BHs in each 𝑀sd bin that have grown beyond their initial
+𝑀sd at each redshift, with the solid and dashed lines representing
+𝑀BH > 2 × 𝑀sd and 𝑀BH > 10 × 𝑀sd respectively.
+We can see that the initial 𝑀sd has a clear imprint on the ﬁnal
+𝑀BH, even after time evolution from 𝑧= 10 to 𝑧= 3. The median
+𝑀BH −𝑀sd relation at 𝑧= 3 displays a strong positive correlation
+especially at the lower 𝑀sd end, indicating that for the BH population
+from the smallest 𝑀sd bin, their BH accretion in general lags behind
+at the early stages and has not yet caught up even by 𝑧= 3. The right
+panel tells that BHs with the smallest 𝑀sd have a signiﬁcantly lower
+chance to grow beyond the seed mass compared to BHs with more
+massive 𝑀sd: less than 50% of BHs from the smallest 𝑀sd bin have
+grown to 𝑀BH > 2 × 𝑀sd at 𝑧= 3.
+However, it is important to note that these results are not showing
+that 𝑀BH is predominantly determined by the 𝑀sd. We can see from
+the left panel that the BHs from the lowest 𝑀sd bin can still reach the
+highest 𝑀BH range ( 𝑀BH > 109 𝑀⊙) through pure gas accretion,
+indicating that the local environment speciﬁc to each BH plays a
+signiﬁcant role in BH growth regardless of 𝑀sd.
+Moreover, the 𝑀BH diﬀerence caused by diﬀerent initial 𝑀sd
+values becomes narrower as time evolves, as the 𝑀BH becomes
+dominated by the accretion process determined by the local environ-
+ment. The evolution of the 𝑀BH- 𝑀sd relation shown in the right two
+panels becomes ﬂatter, especially for 𝑀sd > 105 𝑀⊙when moving
+to lower redshift. At 𝑧= 3, the median 𝑀BH/ 𝑀sd ratio, as well
+as the fraction of 𝑀BH growth is almost the same for BHs from
+𝑀sd ∼105 𝑀⊙and from the most massive 𝑀sd bin. This indicates
+that for BHs seeded with 𝑀sd > 105 𝑀⊙at 𝑧> 10, the impact of
+𝑀sd on the 𝑀BH at 𝑧= 3 has been virtually erased by accretion and
+its associated exponential growth.
+Selecting BHs that have not undergone any mergers might artiﬁ-
+cially eliminate the BH population residing in massive galaxies that
+are also likely to be gas-rich. Therefore in the lower panel of Fig-
+ure 7 we repeat the same analysis including the growth of BHs due
+to mergers. In this case, the 𝑀sd (in the lower panel of Figure 7) is
+that of the more massive BH progenitor in the merger history. The
+resultant 𝑀BH- 𝑀sd relation displays the same qualitative features
+as in the upper panels, but with a higher 𝑀BH than obtained in the
+upper panel.
+Therefore, we can conclude that the initial 𝑀sd has an impact on
+𝑀BH growth by gas accretion (and additionally by BH mergers, when
+they occur), whereby BHs from the smallest 𝑀sd bin have a lower
+chance to grow beyond the seed mass even with the long period of
+time evolution from 𝑧> 10 to 𝑧= 3. However, the eﬀect of the 𝑀sd
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+13
+Figure 8. Fraction of BH mass contributed by the seed mass, 𝑀sd, by accre-
+tion and by mergers (swallowing other BHs) as a function of 𝑀BH at 𝑧= 6
+(top panel) and 𝑧= 3 (bottom panel). For each BH that has undergone a
+merger, we use the 𝑀sd from the more massive progenitor and sum the mass
+of the merged BHs, denoting that to be the mass contribution from mergers.
+The solid lines show the mean value for each 𝑀BH bin, with the shaded
+regions covering the range corresponding to the 16th and 84th percentiles.
+The grey dotted-dashed and dashed lines mark the range 𝑀sd,min/ 𝑀BH and
+𝑀sd,max/ 𝑀BH which are the lower and upper limits of the possible 𝑀sd
+fraction.
+would be erased with time evolution, and the 𝑀BH is not dominated
+by the initial 𝑀sd. The most massive BHs can grow from the smallest
+initial 𝑀sd, as the local environment for each speciﬁc BH plays a
+crucial role in their evolutionary history.
+4.6 BH mass fraction by seed, merger and accretion
+In Section 4.5, we have seen that the BHs seeded from the smallest
+𝑀sd bin can still grow to > 109 𝑀⊙by gas accretion only. This
+indicates that gas accretion plays a predominant role in the mass
+assembly history of at least some BHs. It is interesting to analyse
+and compare the contribution of BH mergers and gas accretion to
+the overall 𝑀BH distribution on a statistical basis and investigate its
+time evolution.
+To this end, in Figure 8 we present the mass fraction of 𝑀BH
+contributed by 𝑀sd and by mergers as a function of 𝑀BH at two
+diﬀerent redshifts, 𝑧= 6 and 𝑧= 3. For each BH that has under-
+gone mergers, we trace the more massive progenitors, use the 𝑀sd
+from the massive progenitor and sum the mass of the merged BHs
+(calling this the mass contribution from mergers). The orange line in
+Figure 8 shows the mass fraction contributed by 𝑀sd. It lies between
+𝑀sd,min/ 𝑀BH and 𝑀sd,max/ 𝑀BH, as marked by the grey dashed
+lines. The purple and blue lines give the averaged mass fraction of
+𝑀BH obtained by BH accretion and by swallowing other BHs.
+BHs in the mass range 𝑀BH ≲106 𝑀⊙are dominated by the
+seed mass, with the 𝑀sd fraction lying toward the upper limit of
+𝑀sd,max/ 𝑀BH. This is because the low mass BHs are more likely
+to trace the initial seed mass and BHs in the 106 𝑀⊙regimes have
+a larger seed contribution compared to those with massive seeds.
+The 𝑀sd fraction becomes less biased when moving to the more
+massive end because massive BHs gain most of their mass from the
+gas accretion which is determined by the local environment. Their
+mass, therefore, is less dependent on the initial 𝑀sd.
+The averaged mass fraction of 𝑀BH from BH mergers has an
+almost ﬂat distribution at 𝑧= 3, with no strong dependence on the
+BH mass. The strict BH merger criteria applied in Astrid allows
+BHs to have a wide range of merger histories and leads to a large
+scatter in the BH mass fraction contributed by the merger. The scatter
+of the BH merger component (blue shade) increases with 𝑀BH as
+more massive BHs can involve BH mergers with larger mass contrast.
+The BH merger mass fraction in the 𝑀BH > 107 𝑀⊙regime at 𝑧=
+3 is slightly larger than that at 𝑧= 6, as more merger events happen
+at lower redshift. However, the averaged contribution to 𝑀BH from
+BH mergers is less than 10% for all mass bins and at both redshifts.
+For the population of the most massive BHs with 𝑀BH > 107 𝑀⊙,
+on average, more than 90% of the BH mass is obtained through the
+gas accretion, with only a few per cent from the BH mergers and
+negligible contribution from the seed mass. Therefore, we conclude
+that in Astrid , BH mergers are a subdominant factor in BH growth
+until at least 𝑧= 3.
+Simulations where BHs are centered using repositioning rather
+than dynamic friction merge BHs more aggressively and thus make
+diﬀerent predictions. For example, Illustris-TNG (Weinberger et al.
+2018) predicts that the SMBHs with 𝑀BH > 108.5 𝑀⊙grow most
+of their mass via mergers with lower mass BHs (though this claim is
+for BH population at 𝑧= 0). A more thorough comparison of the BH
+mergers with other simulations will be presented in our follow-up
+work.
+5 BH-GALAXY RELATIONS
+We identify galaxies and BHs in the subgroups by running SUB-
+FIND (Springel et al. 2001) on the FOF particle catalogue in post-
+processing. The statistics of galaxies, such as the stellar mass function
+and galaxy star formation rate, can be found in our companion paper
+(Bird et al. 2021). In this section, we investigate the relationships
+between BHs and their host galaxies. We look into the scaling rela-
+tion between 𝑀BH and 𝑀∗in § 5.1 and the scaling relation between
+¤𝑀BH and host star formation rate in § 5.2. § 5.3 is focused on the re-
+lationship between AGN galactic scale obscuration and the host 𝑀∗.
+§ 5.4 investigates the statistics of BH occupation in host galaxies.
+5.1 The scaling relation between 𝑀BH and 𝑀∗
+Scaling relations between central BH mass and host galaxy prop-
+erties are of fundamental importance to studying BH and galaxy
+evolution through cosmic time. In Figure 9, we show the scaling
+relations between 𝑀BH and 𝑀∗from 𝑧= 6 to 𝑧= 3 in Astrid .
+Here we use the total stellar mass of the galaxy in the subhalo and do
+not apply bulge-disk decomposition to identify the galaxy bulge. We
+only consider the central galaxies in each FOF halo (the main subhalo
+in each FOF halo with the greatest stellar mass) and do not include
+satellite galaxies in this analysis. For each subhalo that contains mul-
+tiple BHs, we select the most massive one. We have also repeated the
+analysis by selecting the most luminous BH for each subhalo and this
+does not lead to any signiﬁcant diﬀerence. The grey dashed and the
+MNRAS 000, 000–000 (2021)
+
+
+14
+Y. Ni et al.
+Figure 9. The scaling relations between 𝑀BH and galaxy mass 𝑀∗from 𝑧= 6 to 𝑧= 3 in Astrid , shown as 2D histograms. The black dashed-dotted line
+shows the averaged 𝑀BH for each stellar mass bin, and the grey shaded area denotes the 16th and 84th percentiles. The grey dashed line and brown dotted
+line show the ﬁt results from Kormendy & Ho (2013); Reines & Volonteri (2015), which are based on 𝑧∼0 AGN observations. The square data points are
+observations of three 𝑧> 7 QSOs. The empty circles with error bars show the HSC observations of 𝑧> 6 quasars from Izumi et al. (2021). The star and triangle
+data points are 𝑧> 4 and 2 < 𝑧< 4 quasars collected from Kormendy & Ho (2013). The red dashed-dotted line shows the 𝑀BH - 𝑀∗relation from the SIMBA
+simulation Thomas et al. (2019).
+Figure 10. BH accretion rate
+¤𝑀BH versus star formation rate (SFR) in the
+host galaxy, from 𝑧= 6 to 𝑧= 3. The solid lines show the running median
+with the error bars marking the 16-84th percentile in each SFR bin. The grey
+squares are from observations of a sample of 1.5 < 𝑧< 2.5 star forming
+galaxies by Delvecchio et al. (2015).
+brown dotted line shows the best-ﬁtting relations from Kormendy &
+Ho (2013); Reines & Volonteri (2015) based on the AGN population
+in the nearby universe. We also collect the data points from obser-
+vations of high-𝑧QSOs. The squared data points are properties of
+three 𝑧> 7 QSOs summarized in Izumi et al. (2019) and the circles
+with error bars show Subaru HSC observations of 𝑧> 6 QSOs from
+a recent compilation by Izumi et al. (2021). The observational stellar
+masses presented here are the inferred dynamical masses of the host
+galaxies. The star and triangle-shaped data points are for 𝑧> 4 and
+2 < 𝑧< 4 quasars collected from Kormendy & Ho (2013).
+Although the box size of Astrid is relatively large, it is not large
+enough to produce any 108 𝑀⊙BH at 𝑧> 7 or ∼109 𝑀⊙BHs
+at 𝑧> 6, and so we cannot directly compare with 𝑧> 6 QSO
+observations. The most massive BHs ( 𝑀BH > 108 𝑀⊙) at 𝑧= 6
+reside in 𝑀∗∼1011 𝑀⊙galaxies, and minimal extrapolation of
+these Astrid results leads to qualitatively good agreement with the
+HSC observations. The BH population with mass 𝑀BH < 106 𝑀⊙
+Figure 11. Gas column density of AGN as a function of the stellar mass in
+the host galaxy, including all AGN populations with 𝐿X > 1042.5 erg s−1 at
+𝑧= 6 and 𝑧= 3. For each AGN, we calculate 𝑁H along 48 random lines
+of sight. The solid black line shows the median of 𝑁H, and the shaded area
+covers the 16-84th percentile of the 𝑁H distribution for all sightlines in each
+𝑀∗bin. The red squares show observational results for 𝑧∼2 AGN hosts
+from Rodighiero et al. (2015). The orange area is the linear regression of 𝑁H
+and 𝑀∗reported by Lanzuisi et al. (2017) based on the 2 < 𝑧< 4 AGN
+population.
+is dominated by BHs which are at the ineﬃcient initial growth phase
+close to the seed mass. There is a large variation with regard to
+the host galaxy mass, ranging from 𝑀∗= 108 ∼1010 𝑀⊙. At
+𝑀BH > 106 𝑀⊙, where BHs go beyond the seed mass, Astrid
+produces a clear positive correlation between the stellar mass of
+a galaxy and the mass of its central BH, in concordance with the
+expectation that galaxies and BHs grow commensurately in a globally
+averaged sense.
+Compared with ﬁts to AGN populations in the local universe from
+Kormendy & Ho (2013); Reines & Volonteri (2015), Astrid has
+𝑀BH averaging about 0.5 dex lower for each 𝑀∗bin, with the discrep-
+ancy getting narrower at the more massive end with 𝑀∗> 1011 𝑀⊙.
+The lower averaged 𝑀BH predicted by the simulation can be partially
+attributed to the population of small BHs that are diﬃcult to obtain
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+15
+10 ckpc/h
+z=4.0
+MBH=3.2e+09M
+M* = 3.9e+11M
+10 ckpc/h
+z=4.0
+MBH=1.3e+09M
+M* = 2.7e+11M
+10 ckpc/h
+z=4.0
+MBH=1.2e+09M
+M* = 3.0e+11M
+10 ckpc/h
+z=4.0
+MBH=4.8e+08M
+M* = 1.7e+11M
+10 ckpc/h
+z=3.0
+MBH=7.0e+09M
+M* = 8.4e+11M
+10 ckpc/h
+z=3.0
+MBH=3.9e+09M
+M* = 5.2e+11M
+10 ckpc/h
+z=3.0
+MBH=2.9e+09M
+M* = 3.9e+11M
+10 ckpc/h
+z=3.0
+MBH=2.5e+09M
+M* = 3.7e+11M
+Figure 12. Top panels: Visualizations of some 𝑧= 4 and 𝑧= 3 galaxies associated with diﬀerent subgroups residing in the same FOF group. The coloured
+circles are the virial radii of the subgroups. The dashed circles correspond to the central galaxy (the most massive subgroup), where the circle radius is re-scaled
+by 0.5 to allow it to ﬁt inside the ﬁgure. The coloured crosses mark the positions of the SMBHs associated with diﬀerent subgroups, with the cross size scaled
+according to the BH mass. Bottom panel: Samples of face-on and edge-on zoom-in views of the galaxy hosts of some massive BHs in Astrid at 𝑧= 4 and
+𝑧= 3. The colour hue is determined by the age of the stars (with a red colour indicating older stars). All panels are centred on the position of the central SMBH.
+Figure 13. Upper panel: The fraction of galaxies that at least host one BH in each stellar mass bin (on 𝑦-axis), from 𝑧= 6 to 𝑧= 3. The green lines include the
+entire BH population. The red lines are for the BH population with 𝑀BH > 106 𝑀⊙. The blue and grey dashed lines include BH populations above diﬀerent
+luminosity thresholds of 𝐿X > 1041 erg s−1 and 𝐿X > 1043 erg s−1 respectively. Lower panel: The occupation number of BHs as a function of the stellar mass.
+The coloured lines show the average number of BHs for galaxies residing in each stellar mass bin, with the same colour conventions as the upper panels. The
+shaded area covers the 16-84th percentile.
+MNRAS 000, 000–000 (2021)
+
+
+16
+Y. Ni et al.
+using observations. Moreover, we note that this discrepancy is of the
+same order as likely systematic errors in the observations and that
+these systematics will be worse for low mass objects.
+As a comparison with other simulations, we also plot using a
+pink dashed-dotted line the 𝑀BH −𝑀∗relation measured from the
+SIMBA simulation Davé et al. (2019). We can see that even with
+diﬀerent implementations of the BH accretion and feedback, Astrid
+and SIMBA produce 𝑀BH −𝑀∗relations in good agreement with
+each other.
+5.2 BH accretion and SFR relation
+Since active BH growth is induced by the same cold dense gas that
+fuels star formation, one expects that the star formation rate and
+BH accretion rate should be positively correlated. This is supported
+by a range of AGN observations (e.g. Mullaney et al. 2012; Chen
+et al. 2013; Delvecchio et al. 2015; Lanzuisi et al. 2017) and is also
+established in many simulations (e.g. Thomas et al. 2019; Ricarte
+et al. 2019).
+In Figure 10, we show the instantaneous ¤𝑀BH - SFR relationship
+from 𝑧= 6 to 𝑧= 3. The solid lines are for the median ¤𝑀BH for
+each SFR bin, with the error bars showing the range corresponding
+to the 16-84th percentile. The grey squares are observational samples
+collected from the work of Delvecchio et al. (2015) who combined IR
+band selected star-forming galaxies and X-ray detected AGNs over
+the redshift range covering 1.5 < 𝑧< 2.5.
+The SFR broadly trace the ¤𝑀BH for galaxies with SFR ≳1 𝑀⊙/yr,
+and show reasonable agreement at the order of magnitude level com-
+pared to observational data for active star-forming galaxies (Delvec-
+chio et al. 2015). The curves ﬂatten at the low SFR end, as smaller
+galaxies with lower SFR host BHs near the seed mass, where ¤𝑀BH
+is dominated by 𝑀BH and is not on average coupled to SFR.
+The ¤𝑀BH-SFR relation at diﬀerent redshifts does not show ob-
+vious time evolution for active star-forming galaxies with SFR ≳
+100 𝑀⊙/yr. For AGN hosts with SFR < 100 𝑀⊙/yr, the ¤𝑀BH-SFR
+relation exhibits substantial scatter, and the median ¤𝑀BH for the same
+SFR decreases when going to higher redshift. This is because, for
+smaller hosts, a larger fraction of BHs have not built up the mass to
+reach the self-regulated regime and ¤𝑀BH is dominated by the initial
+Bondi accretion that is sensitive to 𝑀BH, where 𝑀BH is smaller at
+higher redshift. We note that the 𝑀BH −𝑀∗relation shows a similar
+trend with redshift for smaller galaxies.
+5.3 Relationship between 𝑁H and host galaxy properties
+As another probe of the connection or feedback between SMBH
+growth and galaxy build-up, observations are used to investigate the
+relationship between AGN gas obscuration and the host galaxy mass,
+with some ﬁnding a positive correlation between 𝑁H and 𝑀∗(e.g.
+Rodighiero et al. 2015; Buchner et al. 2017; Lanzuisi et al. 2017).
+In Figure 11, we show the simulation predictions for the 𝑁H - 𝑀∗
+relation. We investigate the 𝐿X > 1042.5 erg s−1 AGN populations
+and their host galaxies at 𝑧= 6 and 𝑧= 3. The black solid line
+surrounded by a shaded area shows the running median and 16-84th
+percentiles of the 𝑁H distribution including all sightlines for AGN
+lying in each 𝑀∗bin. For comparison, the red squares in Figure 11
+show observational results from Rodighiero et al. (2015) for a sample
+of 𝑧∼2 AGN hosts in the COSMOS ﬁeld. The purple shaded region
+is the linear ﬁt of 𝑁H to 𝑀∗for the 2 < 𝑧< 4 QSO population
+measured by Lanzuisi et al. (2017), based on a sample of X-ray
+detected AGN and their far-UV detected host galaxies.
+Astrid predicts an overall higher normalization for 𝑁H at 𝑧= 6
+compared to 𝑧= 3, as the galactic obscuration at higher redshift is
+larger. Considering the large variations brought about by diﬀerent
+AGN sightlines, Astrid predicts an 𝑁H- 𝑀∗relation broadly con-
+sistent with observations. We remind the reader that 𝑁H calculated
+in the simulation is the galactic scale gas obscuration, which does
+not include resolving the nuclear torus, and is therefore a lower limit
+to the obscuration that would be probed by AGN observations. The
+consistency with observations implies that a signiﬁcant fraction of
+the obscuration observed in AGN is due to galaxy-scale gas in the
+host (as also claimed in, e.g. Buchner et al. 2017).
+Astrid predicts a weak positive correlation between 𝑁H and 𝑀∗
+at both 𝑧= 6 and 𝑧= 3, implying that as galaxy mass increases there
+are higher chances to have an additional component to the amount of
+gas along the line of sight towards the AGN. However, we also note
+that the variation predicted by the simulation is large. At 𝑧= 3, the 1𝜎
+variation for massive galaxies with 𝑀∗> 1011 𝑀⊙is about 1.5 dex,
+ranging from 𝑁H = 1022cm−2 to 1023.5cm−2. As discussed in our
+previous work, Ni et al. (2020), simulations predict a large angular
+variation of 𝑁H values along diﬀerent AGN sightlines, as the AGN
+feedback modulates the surrounding gas density and launches gas
+outﬂows that lead to windows of low obscuration within even very
+massive galaxy hosts. We therefore do not see a tight power-law
+relation between 𝑁H and 𝑀∗due to this large variation between
+diﬀerent sightlines.
+5.4 BH occupation in galaxies
+There is compelling evidence that almost every massive galaxy in the
+nearby universe contains an SMBH at its centre. However, this may
+not be true for fainter AGN in low mass galaxies and the simulation
+will help us determine what to expect and why. The fraction of galax-
+ies hosting AGN as a function of galaxy mass and other properties
+also provide useful information about the growth and fueling of the
+ﬁrst BHs. In addition, it is interesting to investigate the statistics of
+BH occupation numbers in galaxies using a simulation that includes
+physically-based modelling of BH mergers and how they sink to the
+centre of their hosts. In Astrid , BHs do not merge immediately fol-
+lowing the mergers of host galaxies, but instead, their relative kinetic
+energies are dissipated by the force of dynamical friction and they
+become gravitationally bound. As a consequence, large galaxies in
+Astrid will in general host multiple BHs. In this section, we show
+statistics of the BH occupation in galaxies.
+Figure 12 provides a visualization of the galaxy hosts for BHs.
+The upper panel illustrates how BHs reside in galaxies associated
+with diﬀerent subgroups, all from the same large FOF group. We
+show some examples of large systems at 𝑧= 4 and 𝑧= 3. Diﬀerent
+subgroups are identiﬁed by coloured circles that correspond to the
+virial radius 𝑅200 of that subgroup. The dashed circles identify the
+central galaxy (associated with the most massive subgroup). The
+coloured crosses mark the positions of the BHs corresponding to
+diﬀerent subgroups, with the cross size scaled by the BH mass. The
+lower panels of Figure 12 show face-on and edge-on zoom-in views
+of the galaxy hosts for a selection of massive BHs at 𝑧= 4 and 𝑧= 3.
+The colour of the galaxies is determined by the age of the stars, with
+redder colours representing older stellar populations.
+The upper panel of Figure 12 illustrates how massive galaxies can
+host multiple BHs. In Figure 13, we present quantitative information
+on BH occupation as a function of the stellar mass in the host galaxy.
+The upper panel shows the fraction of galaxies that contain at least
+one BH (occupation fraction) in each stellar mass bin, from 𝑧= 6 to
+𝑧= 3. The green line includes all BHs, while the red line includes
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+17
+only the BHs that have grown beyond the seed mass regime with
+𝑀BH > 106 𝑀⊙.
+We also apply luminosity thresholds to predict BH occupation for
+bright AGNs and also for fainter AGNs that could be detected by
+the future X-ray observatory Lynx. The Lynx ﬂux limit of 1 × 10−19
+ergs cm−2 𝑠−1 in 2 −10 keV band (see, e.g. The Lynx Team 2018)
+allows it to probe an AGN population with 𝐿X ≳1040−41 erg s−1
+at redshifts 𝑧= 7 ∼3. The blue and grey dashed lines represent the
+occupation number of BHs with 𝐿X > 1041 erg s−1 and 𝐿X > 1043
+erg s−1 respectively.
+The lower panel of Figure 13 displays the BH occupation number
+as a function of galaxy stellar mass, showing the predicted number
+of BHs for galaxies with given 𝑀∗. The coloured lines give the
+mean occupation number and the shaded area covers the 16-84th
+percentiles for all galaxies in each 𝑀∗bin.
+Across all redshifts from 𝑧= 6 to 𝑧= 3, galaxies with 𝑀∗= 109 −
+1010 𝑀⊙begin hosting BHs that have grown beyond the seed mass
+or are relatively active with luminosities 𝐿X > 1041 erg s−1. This is
+qualitatively consistent with the ﬁndings of many other simulations
+such as Illustris, Illustris-TNG, Horizon-AGN and SIMBA, where
+𝑀∗∼1010 𝑀⊙galaxies have a probability of > 80 per cent to host
+an eﬃcient accretor at 𝑧= 3 ∼4 (with threshold 𝐿bol > 1043 erg
+s−1, see Habouzit et al. (2022) for a comprehensive review). On the
+other hand, most galaxies below 109 𝑀⊙contain only BHs near the
+seed mass. The deﬁciency of BH growth in low mass galaxies could
+be explained by the lack of cold dense gas that fuels BH accretion in
+the shallower potential well of smaller galaxies. Moreover, multiple
+simulation studies have found that BH growth in low mass galaxies
+with 𝑀∗< 109 𝑀⊙is regulated or stunted by supernovae (SN)
+feedback so that low mass galaxies generally have a lower probability
+of hosting a BH (see, e.g., Dubois et al. 2015; Habouzit et al. 2017).
+The green line in the lower panel of Figure 13 shows that the
+mean occupation number of BHs quickly increases with stellar mass.
+A similar feature is found in other cosmological simulations where
+BHs are permitted to evolve dynamically without being ﬁxed to halo
+centres (e.g. Volonteri et al. 2016; Tremmel et al. 2018; Ricarte et al.
+2021). In particular, Ricarte et al. (2021) shows that the occupation
+number of wandering BHs scales with halo or galaxy mass as a
+power-law relation.
+We note that the occupation number of more massive and more
+luminous BHs becomes ﬂattened for large galaxies. At 𝑧= 3, the
+most massive 𝑀∗> 1011 𝑀⊙galaxies on average host 2 BHs with
+𝑀BH > 106 𝑀⊙, and about 1 ∼2 actively accreting BHs with 𝐿X >
+1041 erg s−1. The slower increase in luminous AGN with galaxy
+mass can be explained by eﬃcient AGN feedback in massive galaxies
+which self-regulates the BHs and so suppresses the number of rapid
+accretors. A similar feature is also seen in some other simulations like
+Illustris-TNG and SIMBA that apply very strong AGN feedback for
+massive BHs (see, e.g. Habouzit et al. 2021, 2022, for a review). In
+those cases, they ﬁnd that massive galaxies with 𝑀∗∼1011 𝑀⊙are
+even less likely to host AGN with rapid accretion at 𝑧≤3 compared
+to galaxies with 𝑀∗∼1010 𝑀⊙. Another reason of the ﬂat feature
+of the BH occupation number in massive galaxies is likely caused by
+BH mergers. As we will show in Section 6, more massive galaxies,
+in general, have undergone more BH mergers. Also, more massive
+BHs on average have a higher merger rate compared to seed mass
+BHs. Therefore, even if massive galaxies contain several unmerged
+seed mass BHs, the average number of central actively accreting BHs
+remains 1 ∼2.
+6 BH MERGERS
+In Astrid , we use a sub-grid model to follow the dynamical evo-
+lution of SMBHs down to the spatial resolution corresponding to
+the gravitational softening length 𝜖g = 1.5ℎ−1 kpc, and numerically
+merge the bound BH pairs when they reach separation |𝚫r| < 2𝜖g.
+In reality, BH binaries should take a signiﬁcant time to in-spiral
+towards each other on scales below 1ℎ−1 kpc before they actually
+merge. However, in cosmological simulations, we cannot resolve the
+dynamical friction that dominates BH trajectories on sub-kpc scales
+and therefore we are unable to model this process in a self-consistent
+way. In follow-up work, Chen et al. (2021b), we will apply a sub-grid
+model to follow the process of BH merging below the spatial resolu-
+tion of Astrid using postprocessing techniques and make forecasts
+for upcoming observations of BH binaries and gravitational waves.
+For each BH merger event, we denote the BH with the larger
+mass at the time of merger as the primary BH and the BH with
+the smaller mass as the secondary. We use 𝑀1 and 𝑀2 to represent
+their corresponding 𝑀BH at the merger time. Over the course of the
+simulation (down to 𝑧= 3) we ﬁnd a total of 4.5 × 105 BH merger
+events.
+The current section presents the ﬁrst-order results of the BH merg-
+ers in Astrid as determined by a physically motivated and self-
+consistent treatment of the dynamical friction and BH mergers in the
+context of cosmological simulations. We ﬁrst show some examples
+of BH merger events in § 6.1. In § 6.2, we present the global statistics
+that describe BH mergers in Astrid , and in § 6.3 we investigate
+how the BH merger population is distributed in diﬀerent galaxies.
+6.1 Examples of merger events
+We begin with some illustrations of the BH mergers in Astrid .
+Figure 14 shows three examples of BH merger events, happening
+at diﬀerent redshifts and with diﬀerent 𝑀BH. The top three panels
+plot the trajectories of the merging BHs together with the evolution
+of their host galaxies shown in the background. All the snapshots
+are centred on the position of the primary black hole (BH1, red
+point). The blue lines show the trajectories of the secondary black
+hole (BH2, the blue point) in the reference frame of BH1 over a time
+period with a redshift interval 𝑑𝑧= 0.2. The smooth trajectory of
+the merging BHs is brought about by the well-deﬁned BH particle
+velocity.
+The lower panels of Figure 14 show the evolutionary histories of
+the BH masses and luminosities for the merger examples, with the
+red and blue lines representing BH1 and BH2 separately. We give the
+X-ray band luminosity (c.f. Eq. 12) modelled from the BH accretion
+rate. Note that the merging BHs in these three examples are well
+above the Lynx detection limit of 𝐿X ≳1040−41 erg s−1.
+In both examples 1 and 2, the BH merger takes place not long after
+the encounter or merger of their host galaxies (as shown in the ﬁrst
+panel). For the ﬁrst few close encounters, the BH binaries have large
+relative velocities that do not satisfy the merger criteria. With their
+kinetic energy gradually dissipated by dynamical friction, the binary
+systems become gravitationally bound and the BHs (numerically)
+merge at the last encounter. Example 1 shows a relatively eccentric
+trajectory before the merger, while in Example 2 the BH relative
+orbit is more circular. The masses of the BHs in the Example 2
+binary are very close to each other with 𝑞≡𝑀2/𝑀1 = 0.8. They
+grow commensurately during the merger process, as also shown by
+their respective light curves 𝐿X in the lower panel. In both examples
+1 and 2, the luminosities of the binary BHs are similar at the time of
+the merger, as the two BHs are close in 𝑀BH and are embedded in
+MNRAS 000, 000–000 (2021)
+
+
+18
+Y. Ni et al.
+15 ckpc/h
+z=5.05
+15 ckpc/h
+z=4.98
+10 ckpc/h
+z=4.95
+10 ckpc/h
+z=4.93
+Example 1, {z=4.8,M1=8.3e7,M2=2.1e7}
+10 ckpc/h
+z=4.87
+5 ckpc/h
+z=4.83
+5 ckpc/h
+z=4.80
+15 ckpc/h
+z=4.49
+15 ckpc/h
+z=4.41
+10 ckpc/h
+z=4.33
+10 ckpc/h
+z=4.28
+Example 2, {z=4.0,M1=2.0e7,M2=1.6e7}
+10 ckpc/h
+z=4.22
+5 ckpc/h
+z=4.15
+5 ckpc/h
+z=4.03
+15 ckpc/h
+z=3.50
+15 ckpc/h
+z=3.40
+10 ckpc/h
+z=3.35
+10 ckpc/h
+z=3.25
+Example 3, {z=3.1,M1=2.7e8,M2=1.4e7}
+10 ckpc/h
+z=3.20
+5 ckpc/h
+z=3.15
+5 ckpc/h
+z=3.11
+Figure 14. Three examples of merging galaxies and the evolution of their central BHs. Top panels: Visualization of galaxies and their corresponding BH orbital
+trajectories. The three rows show the evolution of three merger examples respectively. The background is the galaxy density ﬁeld hued by the age of the star, with
+a redder shade representing older galaxies. All panels are centred at the position of the primary BH (the more massive object at merger time). We keep zooming
+into smaller (down to 5 ckpc3) regions when approaching the merger time to better illustrate the morphological details of the host galaxies. Lower panels: The
+detailed evolutionary history of the BH mass and luminosity for the three merger systems shown above, with red and blue lines representing the primary and
+the secondary black hole (BH1 and BH2) respectively. The purple vertical lines mark the time of the snapshots shown in the top panels. The grey dashed line
+marks when the merger event happens. The light curves of the merging systems shown here are all above the Lynx satellite detection limit.
+similar gas environments by the time they reach the merger criterion
+|𝚫r| < 3ℎ−1 kpc.
+The third panel shows an example where the merger happens a
+long time after the ﬁrst encounter between the host galaxies. In this
+case, BH2 lingers in the host galaxy before eventually sinking to the
+galaxy centre and merging with BH1. In this case the two BHs have
+a larger mass diﬀerence, with 𝑀2 ∼106 𝑀⊙and 𝑀2 ∼108 𝑀⊙at
+𝑧= 3.5. BH2 accretes strongly, reaching a larger mass of 107 𝑀⊙
+at 𝑧= 3.1 during the process of sinking to the galaxy centre. It has
+slightly lower ﬁnal luminosity compared to BH1, as 𝑀2 is still an
+order of magnitude less than 𝑀1.
+6.2 Global Statistics of BH mergers
+6.2.1 Global BH mergers
+We start by examining the global statistics of BH merger rates with
+respect to redshift and BH mass. The ﬁrst panel of Figure 15 gives
+the BH merger rate as a function of redshift. Here the merger rate
+is deﬁned as the rate of GW signals that will reach the Earth from
+BH mergers happening at a given redshift, obtained by integrating
+the number of mergers over the redshift range and incorporating the
+cosmic volume at that redshift bin:
+d𝑁
+d𝑧d𝑡=
+1
+𝑧2 −𝑧1
+∫𝑧2
+𝑧1
+d2𝑛(𝑧)
+d𝑧d𝑉𝑐
+d𝑧
+d𝑡
+d𝑉𝑐
+d𝑧
+d𝑧
+1 + 𝑧
+(16)
+here 𝑉𝑐is the comoving volume of the redshift bin and 𝑛(𝑧) is the
+number of mergers at a given redshift.
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+19
+Figure 15. First panel: The global BH merger rate from 𝑧= 10 to 𝑧= 3. The grey line includes all BH mergers. The blue line covers only the merger population
+where both BHs have grown beyond their seed mass with 𝑀BH > 2 × 𝑀sd at the moment of the merger. The red line gives the merger rate for binaries where at
+least one BH has luminosity 𝐿X > 1043 erg s−1 at the time of the merger. Finally, the brown line shows merger events where both BHs have ever had 𝐿X > 1043
+erg s−1 (simultaneously) when at a separation 𝑑𝑟< 10ℎ−1 kpc before the merger. Second panel: BH mass function of merger BHs, giving the 𝑀BH distribution
+of 𝑀1 (green line) and 𝑀2 (purple line) for all the BH merger events happened at 𝑧> 3, normalized by the box volume and 𝑀BH bin. The brown solid and
+dashed lines show the distribution of 𝑀1 and 𝑀2 for bright dual AGN mergers with both 𝐿X > 1043 erg s−1, as indicated by the brown line in the left panel.
+Figure 16. The averaged merger rate for BHs in a given 𝑀BH bin, showing the
+rate at which an individual BH of a given mass would be expected to undergo
+mergers. Orange, green and blue lines show results at redshifts 𝑧= 5, 𝑧= 4
+and 𝑧= 3 respectively. The solid lines include all BH mergers, and the
+dashed-dotted lines include only the non-seed BH merger events where both
+BHs have 𝑀BH > 2 × 𝑀sd at the moment of merger.
+The second panel of Figure 15 shows the distribution of 𝑀1 and
+𝑀2 values for all the BH merger events in green and purple his-
+tograms respectively. The 𝑦axis gives the number of BHs that have
+encountered mergers at 𝑧> 3 in the simulation, normalized by the
+volume and 𝑀BH bin. The merger events cover 𝑀BH over the entire
+mass band, with the 𝑀2 distribution trending systematically smaller,
+as expected given that 𝑀2 is the mass of the secondary BH in each
+merger event.
+Most of the BH mergers involve BHs within the seed mass range,
+as small mass BHs are the dominant population. The grey line in the
+left panel of Figure 15 shows the overall BH merger rate from 𝑧= 10
+to 𝑧= 3. We also separately examine the component of mergers that
+do not involve seed mass BHs. In this work, we deﬁne the non-seed
+mass mergers as merger events where both BHs have grown beyond
+two times their original seed mass 𝑀BH > 2× 𝑀sd at the moment of
+the merger. There are in total 3.2 × 104 such non-seed mass mergers
+occurring between the start of the simulation and 𝑧= 3. The blue
+line shows the merger rate history of these non-seed mass mergers,
+which is 1 ∼2 dex lower than the global merger rate.
+We also investigate the merger of bright AGNs that could be de-
+tected through their electromagnetic signatures. In particular, we are
+interested in the case where one or two of the BHs are bright AGN
+before the merger. The red line shows the mergers for binaries where
+at least one BH has X-ray band luminosity 𝐿X > 1043 erg s−1 at
+the time of the merger. In total there are 8 × 103 such mergers. We
+are also interested in bright dual AGN where both of the merging
+BHs are luminous before the merger. As a brown line, we show the
+rate of merger events where both BHs ever have 𝐿X > 1043 erg s−1
+simultaneously when below separation 𝑑𝑟< 10ℎ−1 kpc before the
+merger take place. We note that the dual AGN population discussed
+here is a subset of the bright AGN pairs that would undergo merger
+at 𝑧> 3 in Astrid , and therefore do not represent the overall dual
+AGN population at a given redshift. There are in total ∼1 × 103
+such bright dual AGN mergers at 𝑧> 3. These bright dual AGNs
+are typically massive BHs, with typical mass 107−8 𝑀⊙, as shown
+by the mass distribution (brown lines) in the right panel.
+6.2.2 BH Merger rates as a function of 𝑀BH
+Detailed information on each of the half-million BH mergers in the
+simulation is available to us, allowing us to study diﬀerent aspects of
+their demographics. We next turn to the masses of merging BHs. In
+Figure 15, where in the right panel we can see that most of the BH
+mergers are composed of small mass BHs. This is because the overall
+𝑀BH distribution is dominated by small BHs. In this section, we also
+evaluate how likely it is that a BH with a given 𝑀BH would undergo
+a merger, by comparing the 𝑀BH distribution of the merger events
+MNRAS 000, 000–000 (2021)
+
+
+20
+Y. Ni et al.
+Figure 17. First panel: Distribution of the elapse time (deﬁned as the time
+between the ﬁrst encounter of the two BHs and ﬁnal merger time) for all the
+non-seed mass BH merger events. Second panel: Relationship between the
+elapse time and the mass ratio 𝑞≡𝑀2/𝑀1 of the BH binary. The vertical
+dashed lines in each panel mark the most probable elapse time, which is
+𝑡elapse ∼2 × 102 Myrs.
+with the underlying BH mass function. Figure 16 shows the averaged
+(expected) rate for a BH from a given 𝑀BH bin to merge with another
+BH, with the orange, green and blue lines showing results at three
+diﬀerent redshifts, 𝑧= 5, 𝑧= 4 and 𝑧= 3 respectively. The 𝑦axis
+is in units of merger rate (Myr−1) at a given redshift 𝑧, obtained by
+averaging the merger rate calculated in a 300 Myr bin centred on
+𝑧, over the BHs in each 𝑀BH bin at that redshift. For example, the
+blue solid line suggests that at 𝑧= 3 a BH of mass 107 𝑀⊙would be
+expected to undergo about 1 merger per Gyr. The solid lines include
+all BH mergers, while the dashed-dotted lines include only the non-
+seed BH mergers where both BHs have 𝑀BH > 2 × 𝑀sd at the time
+of the merger. Including only the non-seed BH mergers reduces the
+expected merger rate by 0.3 ∼0.5 dex. The dashed-dotted lines drop
+oﬀat 𝑀BH < 106 𝑀⊙, as most of the BHs there are still at the seed
+mass.
+The rates shown in Figure 16 do not exhibit signiﬁcant time evo-
+lution, with a similar trend of increasing merger rate with BH mass
+holding at all redshifts. The 108 𝑀⊙BHs have an average expected
+merger rate about 10 times higher than the 106 𝑀⊙BHs. This trend
+is mainly due to the fact that the most massive BHs reside in the
+most massive galaxies that have a large BH occupation number (as
+shown in Figure 13), and therefore they have the largest possibility
+to encounter mergers.
+6.2.3 Elapse time of BH mergers
+In this section, we investigate the timescale over which BH binaries
+spiral towards each other before a merger. This characterises the
+typical time scale for dynamical friction to take eﬀect by dissipating
+the BH kinetic energy and making the binary system gravitationally
+bound. For each of the merger events, we trace the BHs evolutionary
+histories and determine the ﬁrst time the two BHs encounter each
+other (i.e., satisfy the distance criteria for BH mergers, |𝚫r| < 2𝜖g).
+We deﬁne the elapse time for a BH merger, 𝑡elapse, in Astrid as the
+time between the ﬁrst encounter and the ﬁnal merger.
+The top panel of Figure 17 shows the overall 1D histogram of
+elapse times for all non-seed mass mergers. The bottom panel is a
+scatter plot of 𝑡elapse and the mass ratio 𝑀2/𝑀1 for the merger events.
+We choose not to show the seed-mass population for two reasons:
+ﬁrst, this population dominates the entire merger population, leading
+to a concentrated high-density region in the bottom panel which
+makes the relationship hard to see; second, the seed-mass BHs with
+boosted 𝑀dyn can upset the relationship between dynamical friction
+time scale and the BH masses.
+From the 1D distribution, we can see that the elapse time of BH
+mergers peaks at around 𝑡elapse ∼200 Myrs. This is a signiﬁcant
+delay compared to the BH ﬁrst encounter time. In fact, as will be
+shown in Chen et al. (2021b), the resolved dynamical friction time
+is already more than the unresolved dynamical friction time. This
+indicates that by adding the sub-grid dynamical friction model, we
+can already account for more than half of the orbital decay due to
+dynamical friction directly within the simulation.
+Analytical estimates (e.g. Binney & Tremaine 2008) expect that
+the dynamical friction time is proportional to the velocity dispersion
+of the primary galaxy, and is in turn positively correlated with the
+mass of the primary BH; It is also inversely proportional to 𝑀2 and
+should therefore result in a negative correlation between 𝑀2/𝑀1.
+Although we observe hints of this in the 2D distribution, it is very
+weak, implying that other environmental factors (such as the stellar
+density, morphology of the host galaxies, eccentricity of the BH
+binary orbit etc.) are also important to determine the actual elapse
+time for the BH mergers in the simulation.
+6.3 Statistics of the host galaxies for BH mergers
+In this section, we examine where the merging BHs reside with
+respect to the 𝑀BH - 𝑀∗relation. In the upper panel of Figure 18,
+we identify all the BHs that have undergone at least 1 merger event
+and plot their host galaxy mass in the 𝑀BH - 𝑀∗plane. The cross
+markers are coloured and scaled by the number of the BH progenitors.
+The black dashed-dotted lines are a repeat of those shown in Figure 9,
+giving the average 𝑀BH - 𝑀∗relation from 𝑧= 6 to 𝑧= 3 in Astrid
+. It is interesting to see that the cross markers evenly populate the
+area around the mean 𝑀BH - 𝑀∗relation, indicating that the systems
+hosting BH mergers do not have a biased distribution compared to the
+overall population. We note that some other simulations that perform
+BH mergers without modelling dynamical friction also ﬁnd a similar
+feature (see DeGraf et al. prep).
+The lower panels of Figure 18 show the statistics of BH mergers
+with respect to the stellar masses of host galaxies at each redshift.
+The red lines give the fraction of galaxies that have undergone at
+least one BH merger event in the past, and the purple lines give the
+averaged number of BH mergers that have occurred in the galaxies
+in each stellar mass bin. We can see that more massive galaxies have
+a higher possibility to host BH mergers. After 𝑧= 5, the fraction of
+mergers saturates for large galaxies with 𝑀∗∼1011 𝑀⊙, indicating
+that for galaxies of this size, all of them host BHs that have undergone
+mergers. The average number of BH mergers increases with the
+stellar mass. This is because, as shown in Figure 13, massive galaxies
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+21
+Figure 18. Upper panel: The coloured crosses in each panel show the 𝑀BH - 𝑀∗relation for the BHs that have undergone mergers at each redshift. The colours
+and sizes of the crosses are scaled using the number of BH progenitors. The black dashed-dotted lines are the averaged 𝑀BH - 𝑀∗relation for that redshift as
+given in Figure 9. Lower panel: The purple curves show the averaged number of BH progenitors in each stellar mass bin. The red curves show the expected
+fraction of galaxies that contain at least 1 BH progenitor (that have undergone at least 1 BH merger event.)
+typically have high occupation numbers of BHs and experience a
+relatively large number of BH mergers.
+7 SUMMARY
+In this work, we have analysed the evolution of the massive BH pop-
+ulation in the large volume cosmological hydrodynamical simulation
+Astrid at 𝑧≥3. Astrid uses a BH accretion and AGN feedback
+model evolved from that used in the BlueTides simulation. In order
+to broadly capture the eﬀects of diﬀerent BH seeding mechanisms
+as well as BH growth below the resolution of our simulations, BHs
+are seeded with a range of BH seed masses. Each 𝑀sd is stochas-
+tically drawn from an inverse power-law distribution ranging from
+𝑀sd,min = 104ℎ−1𝑀⊙to 𝑀sd,max = 3 × 105ℎ−1𝑀⊙, allowing us to
+investigate the eﬀects of seed mass on the subsequent BH growth.
+We have replaced the artiﬁcial ’repositioning’ of BHs to a local
+minimum with the implementation of dynamical friction from colli-
+sionless particles. Dynamical friction causes the BHs to sink into the
+central region of galaxies and leads to improved physical modelling
+of the BH mergers. The explicit inclusion of dynamical friction and
+the large cosmological volume (a 250ℎ−1Mpc box) allows us to make
+a number of predictions for multi-messenger studies of BHs.
+We have presented statistical properties of the BH population, such
+as their 𝑀BH and luminosity distributions spanning 𝑧> 6 to 𝑧= 3.
+The global evolution of the BH mass density and BH accretion rate
+is broadly consistent with current observational constraints. The BH
+mass function displays good agreement with observationally inferred
+results. We ﬁnd that the BH luminosity 𝐿bol (derived from the accre-
+tion rate) exhibits a positive correlation with 𝑀BH, with the mean
+𝐿bol- 𝑀BH relation decreasing with time over the redshift range from
+𝑧= 7 to 𝑧= 3. During this time the relation also becomes progres-
+sively ﬂattened at the more massive 𝑀BH range, consistent with the
+fact that for the most massive BHs, on average, the Eddington accre-
+tion ratio 𝜆Edd decreases with redshift. This eﬀect can be interpreted
+as the result of AGN feedback and decreased cold gas fraction at
+lower redshift.
+We compare the BH luminosity function to multiple observational
+constraints in the hard X-ray band. Our predicted X-ray luminosity
+functions agree well with observations at log 𝐿X > 43. The intrinsic
+AGN luminosity function has a somewhat steeper slope than obser-
+vations at the faint end with log 𝐿X < 43. We estimate the extent of
+galactic scale obscuration in each source by computing the hydro-
+gen column density 𝑁H surrounding the AGN and accounting for
+angular variations corresponding to diﬀerent sightlines. The galactic
+obscuration contributed by ISM gas is large (𝑁H ∼1023−24 cm−2)
+for high-redshift AGN with 𝑧> 6 and decreases to 𝑁H ∼1022−23
+cm−2 at lower redshift 𝑧= 3. We ﬁnd that at all redshifts the galactic
+column densities increase with AGN luminosity. Interestingly, this
+trend is opposite to what is generally found in observations, where
+the faint AGN population is typically more obscured than the bright
+one. At 𝑧= 3, the galactic component of the obscuration falls short
+at reproducing the large column densities constrained from X-ray
+observations. This implies that while a galactic gas component can
+provide substantial obscuration from 𝑧= 6 ∼3, there is a signiﬁcant
+contribution from a nuclear torus and this component is crucial for
+explaining the large amount of obscuration at the faint end of the
+AGN LFs.
+The UV luminosity of AGN from Astrid compares favourably
+with the available observations, particularly when considering mag-
+nitudes 𝑀UV < −23. At 𝑀UV > −23, however, most of the AGN
+has a UV luminosity fainter than their host galaxy. Because of this,
+and the poorly constrained gas to dust conversion at these redshifts,
+we ﬁnd that the number density of the faint UV AGN population is
+hard to predict to within a factor of at least 10.
+We investigate the eﬀects of the BH seed mass on the BH growth
+by tracing BHs seeded at 𝑧> 10 down to 𝑧= 3. We ﬁnd that at
+𝑧= 3, BHs with 𝑀sd > 105 𝑀⊙carry virtually no imprint of their
+initial 𝑀sd. However, a large fraction of BHs with the smallest 𝑀sd
+has not grown signiﬁcantly, more than half of them have not doubled
+their mass at 𝑧= 3. The trace of the original 𝑀sd is erased with time
+evolution as a result of the substantial gas accretion which governs
+the growth of massive BHs. We decompose the BH growth into
+the two diﬀerent channels of accretion and mergers, showing that
+MNRAS 000, 000–000 (2021)
+
+
+22
+Y. Ni et al.
+BH accretion is the dominant contributor to BH growth, while BH
+mergers play a subdominant role.
+The scaling relations, 𝑀BH−𝑀∗and ¤𝑀BH-SFR, in Astrid reveal
+correlations between the growth of BHs and their host galaxies which
+are broadly consistent with observations (for 𝑀∗≥1010 𝑀⊙). The
+𝑀BH −𝑀∗relations at 𝑧= 3 −6 have a slightly lower normalization
+than the observed relations at 𝑧= 0. We have also found that this
+relation ﬂattens and the scatter increases at 𝑀BH ≤106 𝑀⊙.
+The galactic column density contributions to the AGN have a
+weakly positive correlation with the host galaxy stellar mass (broadly
+consistent with what was inferred from observations at 𝑧= 2 −4).
+We ﬁnd a large scatter in the column density, as expected by the large
+angular variations in the gas surrounding the BH and the eﬀect of
+AGN feedback and outﬂows (see also Ni et al. 2020).
+With the improved modelling of the BH dynamical friction (and the
+removal of ‘repositioning’), we were able to examine BH occupation
+statistics for the galaxies in Astrid . Quantitatively, we found that
+galaxies with 𝑀∗≥1011 𝑀⊙host an average of > 10 BHs. However,
+most of these are close to the seed mass and even in the large galaxies
+the average occupation number of luminous BHs (𝐿X > 1043 erg s−1)
+remains only 1 −2.
+We analyzed the global statistics of BH mergers in Astrid . There
+are in total 450 thousand BH mergers in Astrid at 𝑧> 3. Most of the
+mergers involve seed mass BHs and only a few thousands occur for
+bright AGNs (𝐿X > 1043 erg s−1) that have at least one detectable
+electromagnetic X-ray counterpart. When considering the number of
+mergers scaled by the BH mass function of the whole BH population,
+we ﬁnd that the massive BHs (> 107 𝑀⊙, which likely to have
+detectable EM signatures) experience the most frequent mergers.
+These are the objects that reside in more massive galaxies, with high
+BH occupation numbers and typically experience a relatively large
+number of BH mergers.
+The eﬀects of directly modelling the BH dynamical friction pre-
+dicts a typical elapse time for a merger event (the time between the
+ﬁrst passage of the BH pair and their ﬁnal merger) of about 2 × 102
+Myrs. This is an important eﬀect that leads to a signiﬁcant delay
+from the time of the ﬁrst encounter (when for example, with reposi-
+tioning to the local potential minimum, the BHs would have already
+‘merged’). Interestingly, we have shown that the galaxies that host
+BH mergers trace out the same 𝑀BH −𝑀∗relation as the full BH-
+galaxy population. Massive galaxies host the majority of BH mergers
+as they have a high occupation number of BHs.
+In this paper, we have provided a broad overview of the main
+results for the BH growth and evolution at 𝑧> 3 in the Astrid
+simulation. In particular, we have presented primary results on BH
+statistics and the relationship between BHs with their host galaxies.
+We have made predictions for the BH merger rates and BH occupation
+fractions enabled by our self-consistent modelling of BH dynamical
+friction. We reserve to shortly upcoming works more detailed in-
+vestigation and several further applications, such as making mock
+X-ray catalogues and quasar spectra and using detailed galaxy and
+AGN SEDs to disentangle the galaxy and AGN contributions. We
+plan to create BH merger catalogues with associated predictions of
+electromagnetic counterparts (for the AGN and the host galaxy). We
+will make detailed predictions for the detectability of these events by
+LISA (considering also, as part of postprocessing, other BH binary
+evolution processes and orbit eccentricities).
+ACKNOWLEDGEMENTS
+Astrid is carried out on the Frontera facility at the Texas Advanced
+Computing Center. The simulation is named in honour of Astrid
+Lindgren, the author of Pippi Longstocking. We thank Aswin Vi-
+jayan, Steve Wilkins, Mislav Balokovic for helpful discussions. SB
+was supported by NSF grant AST-1817256. TDM and RACC ac-
+knowledge funding from the NSF AI Institute: Physics of the Future,
+NSF PHY-2020295, NASA ATP NNX17AK56G, and NASA ATP
+80NSSC18K101. TDM acknowledges additional support from NSF
+ACI-1614853, NSF AST-1616168, NASA ATP 19-ATP19-0084, and
+NASA ATP 80NSSC20K0519, and RACC from NSF AST-1909193.
+MT is supported by an NSF Astronomy and Astrophysics Postdoc-
+toral Fellowship under award AST-2001810.
+DATA AVAILABILITY
+The code to reproduce the simulation is available at https:
+//github.com/MP-Gadget/MP-Gadget in the asterix branch.
+Halo catalogues and snapshot particle tables are available on reason-
+able request to the authors. The full BH catalogues at 𝑧> 3 will be
+available online shortly.
+REFERENCES
+Abbott B. P., et al., 2016, Phys. Rev. Lett., 116, 061102
+Aird J., Coil A. L., Georgakakis A., Nandra K., Barro G., Pérez-González
+P. G., 2015, MNRAS, 451, 1892
+Akiyama M., et al., 2018, PASJ, 70, S34
+Amaro-Seoane P., et al., 2017, arXiv e-prints, p. arXiv:1702.00786
+Anglés-Alcázar D., Özel F., Davé R., Katz N., Kollmeier J. A., Oppenheimer
+B. D., 2015, ApJ, 800, 127
+Antonini F., Merritt D., 2012, ApJ, 745, 83
+Baker J., et al., 2019, arXiv e-prints, p. arXiv:1907.06482
+Battaglia N., Trac H., Cen R., Loeb A., 2013, ApJ, 776, 81
+Bellovary J., Volonteri M., Governato F., Shen S., Quinn T., Wadsley J., 2011,
+ApJ, 742, 13
+Bhowmick A. K., Di Matteo T., Feng Y., Lanusse F., 2018, MNRAS, 474,
+5393
+Biernacki P., Teyssier R., Bleuler A., 2017, MNRAS, 469, 295
+Binney J., Tremaine S., 2008, Galactic Dynamics: Second Edition
+Bird S., Ni Y., Di Matteo T., Croft R., Feng Y., Chen N., 2021, arXiv e-prints,
+p. arXiv:2111.01160
+Bromm V., Loeb A., 2003, ApJ, 596, 34
+Buchner J., Bauer F. E., 2017, MNRAS, 465, 4348
+Buchner J., et al., 2015, ApJ, 802, 89
+Buchner J., Schulze S., Bauer F. E., 2017, MNRAS, 464, 4545
+Chandrasekhar S., 1943, ApJ, 97, 255
+Chen C.-T. J., et al., 2013, ApJ, 773, 3
+Chen N., Ni Y., Tremmel M., Di Matteo T., Bird S., DeGraf C., Feng Y.,
+2021a, arXiv e-prints, p. arXiv:2104.00021
+Chen N., et al., 2021b, arXiv e-prints, p. arXiv:2112.08555
+Davé R., Anglés-Alcázar D., Narayanan D., Li Q., Raﬁeferantsoa M. H.,
+Appleby S., 2019, MNRAS, 486, 2827
+Davies M. B., Miller M. C., Bellovary J. M., 2011, ApJ, 740, L42
+DeGraf C., Di Matteo T., Khandai N., Croft R., 2012, ApJ, 755, L8
+DeGraf C., et al., in prep, MNRAS
+Delvecchio I., et al., 2015, MNRAS, 449, 373
+Di Matteo T., Springel V., Hernquist L., 2005, Nature, 433, 604
+Di Matteo T., Croft R. A. C., Feng Y., Waters D., Wilkins S., 2017, MNRAS,
+467, 4243
+Dosopoulou F., Antonini F., 2017, ApJ, 840, 31
+Dubois Y., Volonteri M., Silk J., Devriendt J., Slyz A., Teyssier R., 2015,
+MNRAS, 452, 1502
+MNRAS 000, 000–000 (2021)
+
+
+ASTRID BHs
+23
+Euclid Collaboration et al., 2019, A&A, 631, A85
+Fan X., et al., 2019, BAAS, 51, 121
+Faucher-Giguère C.-A., 2020, MNRAS, 493, 1614
+Feng Y., Di-Matteo T., Croft R. A., Bird S., Battaglia N., Wilkins S., 2016a,
+MNRAS, 455, 2778
+Feng Y., Di-Matteo T., Croft R. A., Bird S., Battaglia N., Wilkins S., 2016b,
+MNRAS, 455, 2778
+Feng
+Y.,
+Bird
+S.,
+Anderson
+L.,
+Font-Ribera
+A.,
+Pedersen
+C.,
+2018,
+MP-Gadget/MP-Gadget:
+A
+tag
+for
+getting
+a
+DOI,
+doi:10.5281/zenodo.1451799, https://doi.org/10.5281/zenodo.
+1451799
+Ferrarese L., Merritt D., 2000, ApJ, 539, L9
+Fiore F., et al., 2012, A&A, 537, A16
+Fontanot F., Cristiani S., Vanzella E., 2012, MNRAS, 425, 1413
+Garaldi E., Kannan R., Smith A., Springel V., Pakmor R., Vogelsberger M.,
+Hernquist L., 2021, arXiv e-prints, p. arXiv:2110.01628
+Gardner J. P., et al., 2006, Space Sci. Rev., 123, 485
+Governato F., Colpi M., Maraschi L., 1994, MNRAS, 271, 317
+Grazian A., et al., 2015, A&A, 575, A96
+Habouzit M., Volonteri M., Dubois Y., 2017, MNRAS, 468, 3935
+Habouzit M., et al., 2021, MNRAS, 503, 1940
+Habouzit M., et al., 2022, MNRAS, 509, 3015
+Häring N., Rix H.-W., 2004, ApJ, 604, L89
+Heckman T. M., Best P. N., 2014, ARA&A, 52, 589
+Hirschmann M., Dolag K., Saro A., Bachmann L., Borgani S., Burkert A.,
+2014, MNRAS, 442, 2304
+Hopkins P. F., 2013, MNRAS, 428, 2840
+Hopkins P. F., Richards G. T., Hernquist L., 2007, ApJ, 654, 731
+Huang K.-W., Di Matteo T., Bhowmick A. K., Feng Y., Ma C.-P., 2018,
+MNRAS, 478, 5063
+Izumi T., et al., 2019, PASJ, 71, 111
+Izumi T., et al., 2021, ApJ, 914, 36
+Kannan R., Garaldi E., Smith A., Pakmor R., Springel V., Vogelsberger M.,
+Hernquist L., 2021, arXiv e-prints, p. arXiv:2110.00584
+Katz N., Weinberg D. H., Hernquist L., 1996, ApJS, 105, 19
+Kazantzidis S., et al., 2005, ApJ, 623, L67
+Kelley L. Z., Blecha L., Hernquist L., 2017, MNRAS, 464, 3131
+Khandai N., Di Matteo T., Croft R., Wilkins S., Feng Y., Tucker E., DeGraf
+C., Liu M.-S., 2015, MNRAS, 450, 1349
+Kormendy J., Ho L. C., 2013, ARA&A, 51, 511
+Krumholz M. R., Gnedin N. Y., 2011, ApJ, 729, 36
+Kulkarni G., Worseck G., Hennawi J. F., 2019, MNRAS, 488, 1035
+Lanzuisi G., et al., 2017, A&A, 602, A123
+Lusso E., et al., 2012, MNRAS, 425, 623
+Madau P., Rees M. J., 2001, ApJ, 551, L27
+Manti S., Gallerani S., Ferrara A., Greig B., Feruglio C., 2017, MNRAS, 466,
+1160
+Marshall M. A., Ni Y., Di Matteo T., Wyithe J. S. B., Wilkins S., Croft R.
+A. C., Kuusisto J. K., 2020, MNRAS, 499, 3819
+Marshall M. A., Wyithe J. S. B., Windhorst R. A., Di Matteo T., Ni Y.,
+Wilkins S., Croft R. A. C., Mechtley M., 2021, arXiv e-prints, p.
+arXiv:2101.01219
+Martynov D. V., et al., 2016, Phys. Rev. D, 93, 112004
+Mullaney J. R., et al., 2012, ApJ, 753, L30
+Ni Y., Di Matteo T., Feng Y., Croft R. A. C., Tenneti A., 2018, MNRAS, 481,
+4877
+Ni Y., Di Matteo T., Gilli R., Croft R. A. C., Feng Y., Norman C., 2020,
+MNRAS, 495, 2135
+Okamoto T., Frenk C. S., Jenkins A., Theuns T., 2010, MNRAS, 406, 208
+Perera B. B. P., et al., 2019, MNRAS, 490, 4666
+Pﬁster H., Volonteri M., Dubois Y., Dotti M., Colpi M., 2019, MNRAS, 486,
+101
+Pillepich A., et al., 2018, MNRAS, 473, 4077
+Planck Collaboration et al., 2020, A&A, 641, A6
+Rahmati A., Pawlik A. H., Raičević M., Schaye J., 2013, MNRAS, 430, 2427
+Read J. I., Hayﬁeld T., Agertz O., 2010, MNRAS, 405, 1513
+Reines A. E., Volonteri M., 2015, ApJ, 813, 82
+Ricarte A., Tremmel M., Natarajan P., Quinn T., 2019, MNRAS, 489, 802
+Ricarte A., Tremmel M., Natarajan P., Zimmer C., Quinn T., 2021, MNRAS,
+503, 6098
+Rodighiero G., et al., 2015, ApJ, 800, L10
+Salvaterra R., Haardt F., Volonteri M., Moretti A., 2012, A&A, 545, L6
+Schaye J., et al., 2015, MNRAS, 446, 521
+Shakura N. I., Sunyaev R. A., 1973, A&A, 24, 337
+Shen X., Hopkins P. F., Faucher-Giguère C.-A., Alexander D. M., Richards
+G. T., Ross N. P., Hickox R. C., 2020, MNRAS, 495, 3252
+Sĳacki D., Vogelsberger M., Genel S., Springel V., Torrey P., Snyder G. F.,
+Nelson D., Hernquist L., 2015, MNRAS, 452, 575
+Smith A., Bromm V., 2019, Contemporary Physics, 60, 111
+Smith A., Kannan R., Garaldi E., Vogelsberger M., Pakmor R., Springel V.,
+Hernquist L., 2021, arXiv e-prints, p. arXiv:2110.02966
+Spergel D., et al., 2015, arXiv e-prints, p. arXiv:1503.03757
+Springel V., 2005, MNRAS, 364, 1105
+Springel V., Hernquist L., 2003, MNRAS, 339, 289
+Springel V., White S. D. M., Tormen G., Kauﬀmann G., 2001, MNRAS, 328,
+726
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS, 361, 776
+Springel V., et al., 2018, MNRAS, 475, 676
+Tenneti A., Di Matteo T., Croft R., Garcia T., Feng Y., 2018, MNRAS, 474,
+597
+The Lynx Team 2018, arXiv e-prints, p. arXiv:1809.09642
+Thomas N., Davé R., Anglés-Alcázar D., Jarvis M., 2019, MNRAS, 487,
+5764
+Treister E., Schawinski K., Volonteri M., Natarajan P., 2013, ApJ, 778, 130
+Tremmel M., Governato F., Volonteri M., Quinn T. R., 2015, MNRAS, 451,
+1868
+Tremmel M., Karcher M., Governato F., Volonteri M., Quinn T. R., Pontzen
+A., Anderson L., Bellovary J., 2017, MNRAS, 470, 1121
+Tremmel M., Governato F., Volonteri M., Pontzen A., Quinn T. R., 2018,
+ApJ, 857, L22
+Ueda Y., Akiyama M., Hasinger G., Miyaji T., Watson M. G., 2014, ApJ, 786,
+104
+Vito F., et al., 2018, MNRAS, 473, 2378
+Vogelsberger M., Genel S., Sĳacki D., Torrey P., Springel V., Hernquist L.,
+2013, MNRAS, 436, 3031
+Vogelsberger M., et al., 2014, MNRAS, 444, 1518
+Volonteri M., Reines A. E., 2016, ApJ, 820, L6
+Volonteri M., Dubois Y., Pichon C., Devriendt J., 2016, MNRAS, 460, 2979
+Volonteri M., Reines A. E., Atek H., Stark D. P., Trebitsch M., 2017, ApJ,
+849, 155
+Volonteri
+M.,
+Habouzit
+M.,
+Colpi
+M.,
+2021,
+arXiv
+e-prints,
+p.
+arXiv:2110.10175
+Weinberger R., et al., 2018, MNRAS, 479, 4056
+Wilkins S. M., Feng Y., Matteo T. D., Croft R., Lovell C. C., Waters D., 2017,
+MNRAS, 469, 2517
+Willott C. J., et al., 2010, AJ, 140, 546
+Yung L. Y. A., Somerville R. S., Finkelstein S. L., Hirschmann M., Davé R.,
+Popping G., Gardner J. P., Venkatesan A., 2021, MNRAS, 508, 2706
+MNRAS 000, 000–000 (2021)

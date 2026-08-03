@@ -1,0 +1,159 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T13:20:12Z",
+  "updated_at_kst": "2026-06-29 22:20:12 KST",
+  "source": "Hermes Agent read-only monitor after PR #68/#69 deploy",
+  "current_action": "STABLE MONITOR PASS. Live citations and fact-sources were probed twice over ~20 seconds; malformed arXiv URL counts stayed zero and source-table counts did not drift.",
+  "mode": "READ_ONLY_SOURCE_SURFACE_MONITOR_STABLE",
+  "monitor": {
+    "started_at_utc": "2026-06-29T13:19:37Z",
+    "finished_at_utc": "2026-06-29T13:20:00Z",
+    "interval_seconds": 20,
+    "snapshots": [
+      {
+        "label": "snapshot_1",
+        "captured_at_utc": "2026-06-29T13:19:38Z",
+        "local_citations": {
+          "status": 200,
+          "count": 102,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 5
+        },
+        "local_fact_sources": {
+          "status": 200,
+          "count": 8,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 2
+        },
+        "public_citations": {
+          "status": 200,
+          "count": 102,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 5
+        },
+        "public_fact_sources": {
+          "status": 200,
+          "count": 8,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 2
+        },
+        "db_counts_before": {
+          "page_citation_links": 1351,
+          "fact_sources": 391
+        },
+        "db_counts_after": {
+          "page_citation_links": 1351,
+          "fact_sources": 391
+        },
+        "source_table_count_drift": {
+          "page_citation_links": 0,
+          "fact_sources": 0
+        }
+      },
+      {
+        "label": "snapshot_2_after_20s",
+        "captured_at_utc": "2026-06-29T13:20:00Z",
+        "local_citations": {
+          "status": 200,
+          "count": 102,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 5
+        },
+        "local_fact_sources": {
+          "status": 200,
+          "count": 8,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 2
+        },
+        "public_citations": {
+          "status": 200,
+          "count": 102,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 5
+        },
+        "public_fact_sources": {
+          "status": 200,
+          "count": 8,
+          "malformed_arxiv_abs_count": 0,
+          "normalized_1712_count": 2
+        },
+        "db_counts_before": {
+          "page_citation_links": 1351,
+          "fact_sources": 391
+        },
+        "db_counts_after": {
+          "page_citation_links": 1351,
+          "fact_sources": 391
+        },
+        "source_table_count_drift": {
+          "page_citation_links": 0,
+          "fact_sources": 0
+        }
+      }
+    ],
+    "summary": {
+      "snapshots": 2,
+      "all_status_200": true,
+      "public_citations_malformed_arxiv_abs_count": 0,
+      "public_fact_sources_malformed_arxiv_abs_count": 0,
+      "source_table_count_drift_total": {
+        "page_citation_links": 0,
+        "fact_sources": 0
+      },
+      "monitor_verdict": "stable"
+    }
+  },
+  "runtime": {
+    "backend_pid": "20187",
+    "frontend_pid_before_report_refresh": "20487",
+    "checkout": "/Users/duhokim/NebulaMind/NebulaMind",
+    "backend_cwd": "/Users/duhokim/NebulaMind/NebulaMind/backend",
+    "branch": "feat/surveys-atlas-ia-p1-20260627",
+    "runtime_head": "ac0608c",
+    "origin_main": "cc4ced2",
+    "pr68_state": "MERGED_AND_LIVE",
+    "pr69_state": "MERGED_AND_LIVE",
+    "scoped_runtime_patch_backup": "/Users/duhokim/NebulaMind/deploy-backups/pr68-pr69-runtime-20260629T130910Z",
+    "scoped_runtime_patch_dir": "/Users/duhokim/NebulaMind/deploy-patches/pr68-pr69-runtime-20260629T130910Z"
+  },
+  "what_did_not_happen": [
+    "No backend/API restart during this monitor pass.",
+    "No backend/API deploy during this monitor pass.",
+    "No production source-table writes detected: page_citation_links and fact_sources counts stayed unchanged before/after probes.",
+    "No migrations.",
+    "No backfills.",
+    "No readiness/promotion flag changes."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Safest recurring",
+      "name": "Continue monitoring only if desired",
+      "risk": "Read-only probes",
+      "steering": "STEER: run another read-only live monitor pass for citations/fact-sources URL normalization and source-table counts; no DB writes."
+    },
+    {
+      "level": "Safe planning",
+      "name": "Runtime/repo hygiene plan",
+      "risk": "Planning/read-only unless later approved",
+      "steering": "STEER: prepare a hygiene plan for reconciling the dirty runtime checkout with origin/main; do not reset runtime or write DB."
+    },
+    {
+      "level": "Locked",
+      "name": "Source-table backfill",
+      "risk": "Production data mutation",
+      "steering": "Requires backup/dry-run/exact-diff packet and exact APPROVE EXECUTE phrase."
+    },
+    {
+      "level": "Locked",
+      "name": "Readiness/promotion changes",
+      "risk": "Product trust/readiness mutation",
+      "steering": "Requires separate GO/NO-GO packet and explicit approval."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "note": "Frontend report/static-file service refreshed only to serve cockpit/status artifacts; no backend/API deploy or restart occurred during this monitor pass.",
+    "frontend_old_pid": "20487",
+    "frontend_new_pid": "21203"
+  }
+}

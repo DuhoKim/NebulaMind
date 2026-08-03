@@ -1,0 +1,284 @@
+You are the Tori/Codex local manuscript integrator for quality cycle 22.
+
+You may edit ONLY these candidate-copy TeX files:
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+
+You may also write a concise Markdown response here:
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/CYCLE_22_REVIEW_RESPONSE.md
+
+Forbidden:
+- Do not edit the original source package outside this candidate root.
+- Do not edit public pages, live roots, DB/API/wiki/trust/deploy/git/cron/billing/OAuth/account settings, or external submission systems.
+- Do not change numeric results, table numbers, figure paths, or core claims.
+- Do not invent new data or new citations.
+- Do not turn denominator/proxy notes into causal physical-feedback claims.
+
+Allowed and desired:
+- Apply safe wording improvements from the review reports.
+- Improve abstract/intro/conclusion clarity.
+- Strengthen association-only and capped-cache caveats.
+- Make the supplement read like a coherent atlas rather than eight papers.
+- Clarify citation-role separation: SDSS/BPT/catalog for actual methods; radio/X-ray/CO/HI/outflow/simulation papers as future-data motivation.
+- Keep TeX compilable.
+- Write CYCLE_22_REVIEW_RESPONSE.md summarizing exactly what you changed and what you refused as needing new data.
+
+Review reports follow.
+
+
+===== REPORT /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/lanes/hwao/HWAO_QUALITY_REVIEW_CYCLE_22.md =====
+# hwao-agy-cycle-22
+Started UTC: 2026-07-09T05:27:42Z
+CWD: /Users/duhokim/NebulaMind/NebulaMind
+
+Error: authentication failed or timed out
+
+
+# command_result
+exit_code=1
+elapsed_s=35.3
+timed_out=False
+finished_utc=2026-07-09T05:28:17Z
+
+
+===== REPORT /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/lanes/gemini_deep/GEMINI_AGY_DEEP_REVIEW_CYCLE_22.md =====
+# gemini-agy-deep-cycle-22
+Started UTC: 2026-07-09T05:27:42Z
+CWD: /Users/duhokim/NebulaMind/NebulaMind
+
+Error: authentication failed or timed out
+
+
+# command_result
+exit_code=1
+elapsed_s=35.3
+timed_out=False
+finished_utc=2026-07-09T05:28:17Z
+
+
+===== REPORT /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/lanes/codex_kun/CODEX_KUN_REVIEW_CYCLE_22.md =====
+# codex-kun-cycle-22
+Started UTC: 2026-07-09T05:27:42Z
+CWD: /Users/duhokim/NebulaMind/NebulaMind
+
+Reading additional input from stdin...
+OpenAI Codex v0.143.0
+--------
+workdir: /Users/duhokim/NebulaMind/NebulaMind
+model: gpt-5.4-mini
+provider: openai
+approval: never
+sandbox: read-only
+reasoning effort: none
+reasoning summaries: none
+session id: 019f4558-9a79-7d43-b8ad-0bd29d1effff
+--------
+user
+Review this local manuscript package in read-only mode.
+
+You are the Codex/Kun reproducibility and TeX/prose lane. Inspect only local files under:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package
+
+Core files:
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/PACKAGE_AUDIT.md
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/FINAL_HANDOFF.md
+
+Safety:
+- Do not edit files in this review lane.
+- Do not run git write commands, deploy, restart, publish, call APIs, read credentials, or touch public/live roots.
+- You may read files and run harmless read-only commands if needed.
+
+Output requirements:
+- Start with marker CODEX_KUN_REVIEW_CYCLE_22.
+- Report TeX, compile, figure, and reproducibility risks.
+- Check for numeric consistency: 8,146 pairs; -1.309 dex; [-1.334,-1.283]; 60,000 cached rows; 249,917 strict parent; 24.0% coverage.
+- Identify wording that could break the association-only guardrail.
+- Give exact safe edit recommendations for the integrator.
+- End with safety ledger.
+
+codex
+I’m checking the four package files directly and will verify the manuscript numbers, TeX hazards, and any wording that weakens the association-only guardrail. I’ll read the core sources, cross-check the audit/handoff notes against the manuscript, and then return exact edit recommendations with line references.
+exec
+/bin/zsh -lc "sed -n '1,260p' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/flagship_rp1/aastex/rp1_flagship_polished.tex" in /Users/duhokim/NebulaMind/NebulaMind
+exec
+/bin/zsh -lc "sed -n '1,260p' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex" in /Users/duhokim/NebulaMind/NebulaMind
+ succeeded in 0ms:
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{Selection-aware SDSS BPT/sSFR study}
+\shortauthors{NebulaMind}
+\begin{document}
+
+\title{Broad Optical BPT Galaxies and Catalog Specific Star Formation in SDSS DR17: A Selection-Aware Matched-Control Study}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+We present an SDSS DR17 matched-control analysis of the association between broad optical BPT-selected galaxies and catalog specific star-formation rate. The analysis is shaped by the SDSS 3-arcsec fiber aperture, which preferentially samples central bulge regions at these redshifts, and by a non-random, fixed-size 60,000-galaxy pilot cap sequentially selected by \texttt{specObjID} from a strict public four-line S/N$\geq3$ parent of 249,917 galaxies. Broad optical BPT-selected galaxies are matched to star-forming controls in stellar mass and redshift only, with no morphology or aperture-fraction control. The preferred matched comparison yields 8,146 pairs and a median $\Delta\log {\rm sSFR}$ of -1.309 dex, with a bootstrap 95\% confidence interval of [-1.334,-1.283] dex. Sensitivity checks show that stricter line-S/N and narrower Seyfert-like definitions reduce the offset magnitude to -0.763 dex. This is an optical-classification association result within a capped, fiber-centered denominator; causal interpretation requires additional observables. An accompanying supplement organizes the structural and multiwavelength measurements needed for future physical tests.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: star formation --- galaxies: evolution --- surveys --- methods: statistical}
+
+\section{Question and claim boundary}
+This paper addresses a narrow question within a low-redshift SDSS DR17 optical emission-line denominator: do broad optical BPT-selected galaxies have lower catalog sSFR than mass--redshift matched star-forming controls? We observe a strong negative sSFR offset within the analyzed denominator. The result is an association in a capped optical sample and does not establish AGN feedback, molecular gas depletion, radio-mode maintenance heating, or outflow escape/recycling as measured physical processes.
+The fixed-size 60,000-galaxy sample is a capped pilot subset rather than a volume-complete census, so it is not normalized into a luminosity or mass function.
+
+
+The present scope also excludes morphology or aperture controls, Seyfert/LINER separation, AGN luminosity or Eddington-ratio proxies, gas-mass measurements, environment labels, and time-domain or duty-cycle modelling. BPT line ratios classify optical excitation, not directly black-hole accretion power in every object; retired stellar populations and low-ionization nuclear emission-line region (LINER)-like ionization can contaminate broad low-ionization classes \citep{stasinska2008,stasinska2015}. For that reason the paper uses the phrase ``broad optical BPT-selected galaxies'' and treats stronger Seyfert-like cuts as a sensitivity check rather than as an interchangeable label.
+
+\subsection{Scope and limitations}
+The association reported here is defined inside a capped, selection-limited optical denominator. It is not a volume-complete census, and it does not include morphology, aperture fraction, group membership, halo mass, gas mass, or AGN luminosity as matching variables. Those missing dimensions are relevant follow-up requirements, but they are not part of the present inference.
+
+\section{Data and shared selection}
+The data backbone is public SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates \citep{york2000,sdssdr17,brinchmann2004}. The pilot analysis sample is a fixed-size 60,000-galaxy pilot sample selected sequentially by \texttt{specObjID}. It is a local pilot subset used to validate the analysis workflow and establish the relative association within a fixed cache budget, not a volume-limited census. Because \texttt{specObjID} ordering follows SDSS targeting and plate/MJD bookkeeping, this cap is not a random sky sample and introduces survey-plate and sky-coverage bias. The strict public four-line S/N$\geq3$ eligible parent contains 249,917 galaxies, so the pilot sample covers 24.0\% of that strict parent. Because the cap is fixed and non-volume-limited, it cannot be used to derive absolute volume densities, luminosity functions, or any population-normalized abundance.
+Over the redshift interval $0.02<z<0.12$, the SDSS 3-arcsec fiber subtends roughly 1.2--6.5 kpc, so the catalog sSFR comparison is fiber-centered rather than global.
+Because the 3-arcsec fiber samples only the central regions at low redshift, the catalog-derived total sSFR is an aperture-extrapolated proxy; if broad optical BPT hosts are more bulge-dominated than the star-forming controls, the central fiber measurement can inflate the observed offset relative to a global star-formation comparison.
+The stellar-mass and sSFR values are taken from the public MPA-JHU-style value-added table \texttt{galSpecExtra}, using its catalog median estimators \texttt{lgm\_tot\_p50} and \texttt{specsfr\_tot\_p50} after joining \texttt{SpecObj}, \texttt{galSpecInfo}, and \texttt{PhotoObj}. Those are low-redshift SDSS catalog estimates, not rederived line-by-line physical measurements \citep{brinchmann2004,sdssdr17,york2000}.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Selection cascade for the flagship analysis sample.\label{tab:selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 100.0\% \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 83.1\% \\
+plus galSpecLine join & 416,554 & -- & 83.1\% \\
+four BPT lines with valid flux measurements (\texttt{ivar} $> 0$) & 373,445 & 60,000 & 74.5\% \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 49.9\% \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 35.2\% \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 18.3\% \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached analysis table. Retention is shown as a percentage of the spectro-z parent. Cached rows are shown only where the cache applies. The 416,554-to-373,445 drop when requiring \texttt{ivar} $> 0$ reflects the removal of rows with unusable line-flux uncertainties; this table does not distinguish masking, edge-of-chip loss, or missing spectral coverage. The sharp retention drop at higher S/N mainly reflects preferential loss of passive galaxies from the emission-line denominator, so the surviving cache becomes less representative of quiescent hosts as the cut tightens.}
+\end{deluxetable*}
+
+The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Marginal distribution checks between the pilot sample and the full public parent show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are 2.03, -1.63, and -0.58 percentage points, respectively. That check is reassuring but does not remove the fixed-size-sample limitation.
+
+\section{Classification and matching}
+BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ using standard demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006} (see Figure~\ref{fig:bpt}). The analysis denominator contains 39,553 star-forming galaxies, 12,234 intermediate/composite galaxies, 8,146 broad optical BPT-selected targets, and 67 unclassified objects. The 67 unclassified objects are retained in the denominator counts for completeness but excluded from the matched control pairing. Here, the star-forming control pool is defined as objects below the Kauffmann et al.\ (2003) demarcation. Each broad optical BPT-selected galaxy is matched to the nearest star-forming control by variance-normalized Euclidean distance in standardized $(\log M_\star,z)$ space, with replacement. In the preferred estimate, this yields 100\% target coverage (8,146 of 8,146 targets matched), so the association still inherits any mismatch in structure or fiber coverage between the two populations. Matching is not performed in morphology, aperture fraction, halo mass, gas mass, AGN luminosity, or duty-cycle phase; these missing dimensions define follow-up requirements. The preferred estimate does not impose a maximum mass--redshift caliper; the caliper row in Table~\ref{tab:robust} is a sensitivity variant.
+Here, ``broad optical BPT-selected'' means the inclusive optical-emission-line class under the standard BPT demarcations, while the Seyfert-like sensitivity check uses the stricter Kewley et al.\ (2006) high-excitation cut to remove the low-excitation LINER/retired branch by construction.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.72\textwidth]{../figures/fig-bpt.pdf}
+\caption{BPT line-ratio diagram for the SDSS DR17 analysis denominator. The matched controls are paired in stellar mass and redshift only, not in morphology, so the diagram verifies the optical-excitation classes used for matching but does not by itself prove accretion-driven feedback.}
+\label{fig:bpt}
+\end{figure*}
+
+\section{Matched-control result}
+The preferred broad optical BPT comparison gives a large negative catalog-sSFR offset for the broad optical BPT-selected galaxies relative to star-forming controls.
+A median $\Delta\log {\rm sSFR}$ (target minus matched control) of -1.309 dex is observed within this fiber-centered matched comparison. Because the spectroscopy samples only the central 3-arcsec region (1.2--6.5 kpc here) and the match does not control morphology or aperture fraction, the -1.309 dex offset may be partially or entirely driven by comparing bulge-dominated broad optical BPT hosts to disk-dominated star-forming controls. The robustness interval in Table~\ref{tab:robust} is a 95\% confidence interval on the median offset.
+
+\begin{deluxetable*}{lrrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Robustness ladder for matched catalog-sSFR offsets.\label{tab:robust}}
+\tablehead{\colhead{Variant} & \colhead{$N$ pairs} & \colhead{Median $\Delta\log {\rm sSFR}$} & \colhead{95\% interval} & \colhead{Interpretation}}
+\startdata
+Broad optical BPT-selected targets, S/N$\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.283] & Preferred association estimate \\
+Moderate mass--redshift caliper & 7,867 & -1.318 & -- & 96.6\% target coverage \\
+Greedy no-replacement stress test & 7,419 & -1.446 & -- & Poorer balance; diagnostic only \\
+Broad optical BPT-selected targets, S/N$\geq10$ & 1,530 & -0.744 & -- & Line-S/N sensitivity \\
+N II Seyfert-like proxy, S/N$\geq3$ & 2,114 & -0.763 & -- & Subclass sensitivity; excludes retired/LINER-like bulges \\
+\enddata
+\tablecomments{$\Delta\log {\rm sSFR}$ is target minus matched star-forming control. The moderate mass--redshift caliper uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$, and it leaves the median offset essentially unchanged at -1.318 dex for 7,867 pairs. The Seyfert-like proxy uses the Kewley et al.\ (2006) high-excitation demarcation, which excludes a portion of the LINER-like low-ionization tail by construction. The drop from -1.309 dex to -0.763 dex therefore reflects the narrower emission-line denominator and the removal of a LINER-like, retired, bulge-dominated tail by construction. All values are conditional on the optical emission-line denominator.}
+\end{deluxetable*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/fig-matched-offsets.pdf}
+\caption{Distribution of matched-pair catalog-sSFR offsets for broad optical BPT-selected galaxies minus nearest star-forming controls. The preferred estimate is strong within this denominator but changes under stricter line-S/N and narrower subclass definitions. The moderate matching caliper shown in Table~\ref{tab:robust} uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$.}
+\label{fig:offsets}
+\end{figure*}
+
+\section{Interpretation}
+The result is directly measured, reproducible, and falsifiable inside the stated denominator. The matched-offset distribution is shown in Figure~\ref{fig:offsets}. The median offset is large and survives a moderate mass--redshift caliper, which is already reflected by the 7,867-pair, -1.318 dex sensitivity row.
+Because the comparison is still fiber-centered and selection-limited, this interpretation remains a denominator-level association statement rather than a galaxy-wide causal inference. At the same time, the S/N$\geq10$ and Seyfert-like proxy variants reduce the magnitude from -1.309 dex to -0.763 dex (Table~\ref{tab:robust}), a reduction of $>0.5$ dex. In this sample, the Kewley et al.\ (2006) Seyfert-like cut trims away the low-excitation LINER/retired branch that is present in the broader BPT denominator, so the smaller offset reflects a narrower emission-line selection rather than a change in feedback strength. The reduction in offset magnitude for stricter S/N and Seyfert-like subsets does not remove the morphology/aperture caveat: if the broad optical BPT-selected sample is more bulge-dominated than the star-forming controls, the -1.309 dex offset can be inflated relative to a global star-formation suppression signal. The most robust conclusion is therefore: broad optical BPT classification is associated with lower catalog sSFR in this fixed-size 60,000-galaxy pilot sample. Any quenching-causality claim requires additional data, including morphology and aperture controls, Seyfert/LINER separation, AGN luminosity or Eddington proxy, gas mass, environment, and time-domain/duty-cycle modelling.
+
+\section{Conclusion}
+RP-1 is a selection-aware association paper. Its key results are the preferred -1.309 dex offset, the persistence of the offset under a moderate mass--redshift caliper, and the reduction to -0.763 dex under stricter line-S/N and Seyfert-like subsets. The accompanying \emph{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up} collects the missing-observable requirements for future physical tests.
+In practice, that means future work needs the kinds of measurements used in radio-mode and X-ray maintenance-heating studies \citep{best2005,fabian2012,mcnamara2007,heckmanbest2014,lamassa2013}, molecular and neutral gas studies \citep{xcoldgass2017,xgass2018}, outflow and kinematic studies \citep{veilleux2005,cicone2014,carniani2017,fiore2017}, and simulation-mock comparisons \citep{simba2019,tng2019,eagle2015}, together with the environment/context references \citep{peng2010,piotrowska2022,wetzel2013,dekel2006}; these references motivate the missing observables, but they are not part of the present SDSS-only denominator.
+
+\section*{Data Availability}
+This paper uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The fixed 60,000-row cache is derived from the public catalog joins and selection thresholds described above, and the manuscript conclusions remain conditional on the optical-emission-line denominator.
+
+\facilities{SDSS}
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Carniani et al.(2017)]{carniani2017} Carniani, S., Marconi, A., Maiolino, R., et al. 2017, A\&A, 605, A42
+\bibitem[Catinella et al.(2018)]{xgass2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Dave et al.(2019)]{simba2019} Dave, R., Angles-Alcazar, D., Narayanan, D., et al. 2019, MNRAS, 486, 2827
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Nelson et al.(2019)]{tng2019} Nelson, D., Springel, V., Pillepich, A., et al. 2019, Computational Astrophysics and Cosmology, 6, 2
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+\bibitem[Piotrowska et al.(2022)]{piotrowska2022} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., \& Peng, Y.-j. 2022, MNRAS, 512, 1052
+\bibitem[Saintonge et al.(2017)]{xcoldgass2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, ApJS, 233, 22
+\bibitem[Schaye et al.(2015)]{eagle2015} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2015, MNRAS, 446, 521
+\bibitem[Stasinska et al.(2008)]{stasinska2008} Stasinska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+\bibitem[Stasinska et al.(2015)]{stasinska2015} Stasinska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodre, L. 2015, MNRAS, 449, 559
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}
+
+ succeeded in 0ms:
+\documentclass[twocolumn]{aastex631}
+\usepa
+
+[TRUNCATED at 22000 chars from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/lanes/codex_kun/CODEX_KUN_REVIEW_CYCLE_22.md]
+
+
+===== REPORT /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/lanes/goru_mech/GORU_MECHANICAL_REPORT_CYCLE_22.md =====
+# Goru mechanical report cycle 22
+
+Marker: `GORU_MECHANICAL_REPORT_CYCLE_22`
+
+## Counts
+- flagship includegraphics: 2
+- supplement includegraphics: 8
+- flagship captions: 2
+- supplement captions: 8
+- figures found: 10
+
+## Missing required phrases
+- flagship: ['not a causal']
+- supplement: []
+
+## Missing numeric invariants in flagship
+- []
+
+## Suspicious claim phrase scan
+- flagship: ['outflow escape', 'molecular gas depletion']
+- supplement: []
+
+## PDF receipts
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/flagship_rp1/aastex/rp1_flagship_polished.pdf exists=True bytes=259003 header=%PDF sha256=dd174880f11568d57bea67cc93acfaae2860f9c35083f21915ae3d19dc802b0a
+- /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/quality-sprints/RP1_QUALITY_SPRINT_CONTINUATION_20260709T030336Z/candidates/cycle_22_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.pdf exists=True bytes=548750 header=%PDF sha256=999e07da2f74ea285f0ea094ddf718ab0cdcd938c8a961cfe9bcdf9742778248
+
+## Safety
+- no public pages or live roots
+- no public PDF replacement
+- no database, SQL, /api/pages, page_versions, wiki publish, or trust recompute
+- no deploy/restart
+- no git commit/push/merge/rebase
+- no cron creation/update
+- no billing/cloud/OAuth/API-key/account changes
+- no external manuscript submission
+- no credential/token/cookie reads
+

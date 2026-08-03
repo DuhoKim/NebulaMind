@@ -1,0 +1,83 @@
+{
+ "marker": "AUTOPILOT_RESEARCH_TOPICS_FROM_WIKI_20260708T090359Z",
+ "method": "M1-packet-gated",
+ "kind": "research-topics-from-wiki",
+ "source_wiki": "wiki-prose-evidence-trust-deepening-hwao-20260708T043427Z.html",
+ "caveat": "Research topics are derived from the current local wiki candidate; they are hypotheses/questions for future work, not accepted claims.",
+ "topic_count": 8,
+ "policy": "derived from local wiki only; no invented evidence/claim/cite/DOI/product bindings",
+ "topics": [
+  {
+   "id": "M1-RT-01",
+   "title": "Does claim 2929's attached evidence actually bear on internal AGN feedback?",
+   "q": "Can the 14 non-committal evidence rows on claim 2929 be adjudicated into a supporting, refuting, or genuinely-neutral stance for internal AGN feedback regulating/quenching star formation?",
+   "why": "On the M1 wiki, 2929 is trust=unverified with 14 rows that are ALL non-committal (0 support / 0 refute), and 6 of its 8 distinct papers appear only as unresolved arXiv identifiers.",
+   "basis": "M1 evidence card 'Claim 2929' (unverified) + the 2929 caution box; coverage map bound.2929.",
+   "limits": "Non-committal + unresolved-title rows may simply be off-topic; adjudication must not manufacture a stance the papers do not take.",
+   "next": "Resolve the 6 bare-arXiv titles from the local ledger, re-read each abstract, and re-tag stance \u2014 docs-only, no new external search."
+  },
+  {
+   "id": "M1-RT-02",
+   "title": "Under what selection does internal vs environmental quenching separate? (claim 2931)",
+   "q": "For which sample selections, redshifts, and quenching definitions do the internal (mass-linked) and environmental channels become separable, given the split evidence?",
+   "why": "2931 is trust=debated with a minority supporting (4 rows) against a large non-committal set (16 rows) across 13 distinct papers (2024-2026).",
+   "basis": "M1 evidence card 'Claim 2931' (debated); its 4-support/16-none stance split.",
+   "limits": "'Debated' reflects a real split; a single reconciling answer may not exist \u2014 frame as a conditions-map, not a verdict.",
+   "next": "Group the 4 supporting vs 16 non-committal papers by selection/redshift/measure and map where they agree/disagree \u2014 docs-only."
+  },
+  {
+   "id": "M1-RT-03",
+   "title": "Is sustained AGN maintenance heating observed, or only simulated? (claim 2946)",
+   "q": "Is there observational (non-simulation) evidence for sustained AGN heating as a maintenance mechanism in massive systems, beyond the model/simulation support currently backing the claim?",
+   "why": "2946 is trust=reported: all 9 supporting rows are simulation/model studies (IllustrisTNG, HORIZON-AGN, etc.), so support is model-dependent, not a measured prevalence.",
+   "basis": "M1 evidence card 'Claim 2946' (reported); its all-simulation supporting set.",
+   "limits": "Absence of observational rows here is a local-ledger gap, not proof none exists; state as an open question.",
+   "next": "Audit the local ledger for any observational maintenance-mode evidence attachable to 2946 \u2014 docs-only."
+  },
+  {
+   "id": "M1-RT-04",
+   "title": "Which of the 27 unbound claims are most tractable to evidence first?",
+   "q": "Of the 27 claims marked 'no local evidence / unbound', which are highest-value and most tractable to bind to evidence, and in what order?",
+   "why": "Only 3 of 30 claims carry local evidence; 27 are unbound-local \u2014 real claims with no evidence rows, explicitly not high-trust.",
+   "basis": "M1 'no local evidence / unbound' section (27 pills) + coverage map unbound_local.",
+   "limits": "Prioritization is a planning judgement, not a trust claim; binding itself needs the product claim/evidence layer (a closed gate).",
+   "next": "Rank the 27 by section importance + expected evidence availability into a docs-only backlog."
+  },
+  {
+   "id": "M1-RT-05",
+   "title": "What would move the 7 evidence-empty sections beyond narrative-only?",
+   "q": "For the 7 of 9 sections with zero evidence-linked claims, what specific evidence would raise them from narrative-only to evidence-backed?",
+   "why": "The per-section trust rollup shows only 2 of 9 sections (Overview; AGN Feedback & Quenching) contain any evidence-linked claim; the other 7 are entirely unbound-local.",
+   "basis": "M1 'Trust coverage by section' table (2 of 9 evidenced).",
+   "limits": "Section coverage reflects current local data only; a bare section is a data gap, not a weak-science verdict.",
+   "next": "Per empty section, list the one or two claims whose evidence would most improve coverage \u2014 docs-only gap audit."
+  },
+  {
+   "id": "M1-RT-06",
+   "title": "How much does unresolved-title / malformed-link data quality distort the trust picture?",
+   "q": "If the bare-arXiv-ID rows were resolved and the malformed links corrected, would any bound claim's trust level change?",
+   "why": "Across the 3 bound claims many distinct papers are unresolved arXiv IDs, and 2 evidence URLs were malformed (double-prefix) and had to be normalized.",
+   "basis": "M1 evidence tables' 'unresolved title' / 'link id normalized' flags + the v2.1 review/patch note.",
+   "limits": "Resolution is metadata cleanup, not new evidence; it may or may not shift a stance.",
+   "next": "Resolve titles/metadata for the flagged rows from the local ledger and re-check whether stance counts move \u2014 docs-only."
+  },
+  {
+   "id": "M1-RT-07",
+   "title": "Rows vs distinct papers: does deduplication change any trust level?",
+   "q": "When the 43 evidence rows are collapsed to their 26 distinct papers, does the independent-source count alter any claim's debated/unverified/reported label?",
+   "why": "The wiki stresses rows can repeat a paper (43 rows -> 26 distinct papers) and that distinct papers, not rows, are the honest measure of support.",
+   "basis": "M1 'How to read the evidence counts' explainer + per-card 'N rows / M papers' counts.",
+   "limits": "A recount is arithmetic on existing data; it changes interpretation, not evidence.",
+   "next": "Recompute per-claim stance on a distinct-paper basis and compare to the row-basis labels \u2014 docs-only."
+  },
+  {
+   "id": "M1-RT-08",
+   "title": "What is the minimal evidence set to lift AGN-feedback claims out of unverified/reported?",
+   "q": "For the AGN Feedback & Quenching section (which holds 2 of the 3 bound claims, both below 'accepted'), what minimal, well-scoped evidence would justify a higher trust level?",
+   "why": "The section's core mechanism claims are the least settled on the page: 2929 unverified and 2946 reported both sit in it.",
+   "basis": "M1 per-section rollup (AGN Feedback & Quenching evidenced) + cards for 2929/2946.",
+   "limits": "Acceptance criteria are a methodology proposal, not a promotion of the claims themselves.",
+   "next": "Draft docs-only acceptance criteria (stance thresholds, distinct-paper minimums, observational-vs-simulation mix) for 2929/2946."
+  }
+ ]
+}

@@ -1,0 +1,268 @@
+{
+  "marker": "GALAXY_EVOLUTION_PGR_P4_TRUST_LEVEL_ROUTE_CONSISTENCY_GUARD_SPEC_20260706T150328Z",
+  "created_utc": "2026-07-06T15:03:28Z",
+  "status": "prepared_static_docs_only_no_execution",
+  "method": "Method1 / PGR / packet-gated paper-to-wiki reconciliation",
+  "approval_phrase_accepted": "APPROVE METHOD1 P4 DOCS-ONLY TRUST LEVEL ROUTE-CONSISTENCY GUARD SPEC",
+  "previous_method_phrase": "APPROVE METHOD1 P3 DOCS-ONLY 2572 2573 PRIMACY WORDING SPEC",
+  "active_execution_phrase": "NO ACTIVE EXECUTION PHRASE",
+  "safety": {
+    "db_writes": 0,
+    "sql_authored_or_apply_rollback": 0,
+    "migration": 0,
+    "trust_recompute": 0,
+    "product_code_changes": 0,
+    "live_wiki_or_page_versions": 0,
+    "deploy_publish_restart": 0,
+    "git_commit_push_merge": 0,
+    "prod_cloud_api_mutation": 0,
+    "cross_method_or_shared_parent_writes": 0,
+    "live_api_network_checks": 0
+  },
+  "p4_scope": {
+    "topic": "trust-level / trust-score route consistency guard",
+    "source_snapshot": "READONLY_API_SNAPSHOT_20260706T0308Z.json",
+    "visible_claim_count": 730,
+    "allowed_visible_trust_levels": [
+      "accepted",
+      "challenged",
+      "consensus",
+      "debated",
+      "reported",
+      "unverified"
+    ],
+    "invalid_visible_trust_level_count": 526,
+    "visible_vs_audit_history_level_mismatch_count": 16,
+    "history_missing_or_error_count": 544,
+    "named_blocker_claim": 2546,
+    "named_mismatch_examples": [
+      2187,
+      2298,
+      2931
+    ],
+    "decision": "docs_only_guard_spec; no remedy class executed or selected as an apply lane",
+    "route_boundary": "Do not mix DB recompute/row cleanup and frontend render guard in one future approval gate.",
+    "trust_timing": "No trust recompute here. Future P1/P3 write packets must not bundle trust recompute; recompute waits for an explicit P4 remedy gate."
+  },
+  "named_blocker_2546": {
+    "text": "The growth of central stellar mass density is linked to mass quenching.",
+    "visible_trust_level": "0.5",
+    "history_current": null,
+    "evidence": [
+      {
+        "evidence_id": 26694,
+        "arxiv_id": "1308.5224v1",
+        "stance": "supports",
+        "summary": "Paper directly measures Σ_1 (inner stellar mass density within 1 kpc), shows it grows along the blue cloud and crosses a threshold that triggers quenching; title and findings independently entail the exact proposition."
+      }
+    ]
+  },
+  "invalid_visible_trust_level_examples": [
+    {
+      "claim_id": 2160,
+      "section": "Galaxy Scaling Relations & Size Evolution",
+      "visible_trust_level": "0.5",
+      "evidence_count": 0,
+      "text": "The small scatter in the Baryonic Tully-Fisher Relation suggests a self-similar process of baryon collapse within dark matter halos."
+    },
+    {
+      "claim_id": 2161,
+      "section": "Galaxy Scaling Relations & Size Evolution",
+      "visible_trust_level": "0.5",
+      "evidence_count": 0,
+      "text": "The baryonic mass of a galaxy scales as the fourth power of its rotational velocity."
+    },
+    {
+      "claim_id": 2168,
+      "section": "Galaxy Scaling Relations & Size Evolution",
+      "visible_trust_level": "0.5",
+      "evidence_count": 0,
+      "text": "The low scatter of the baryonic Tully-Fisher relation constrains the diversity of formation histories for disk galaxies."
+    },
+    {
+      "claim_id": 2169,
+      "section": "Galaxy Scaling Relations & Size Evolution",
+      "visible_trust_level": "0.5",
+      "evidence_count": 0,
+      "text": "The low scatter of the baryonic Tully-Fisher relation constrains the coupling between baryonic and dark matter components."
+    },
+    {
+      "claim_id": 2206,
+      "section": "Galaxy Scaling Relations & Size Evolution",
+      "visible_trust_level": "0.5",
+      "evidence_count": 0,
+      "text": "Early-phase galaxy assembly is dominated by rapid in-situ star formation."
+    }
+  ],
+  "visible_vs_audit_history_level_mismatch_examples": [
+    {
+      "claim_id": 2223,
+      "section": "Environmental Effects",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": -0.091,
+      "text": "Global cluster potential effects are a secondary driver of morphological transformation in intermediate-density environments."
+    },
+    {
+      "claim_id": 2251,
+      "section": "Environmental Effects",
+      "visible_trust_level": "consensus",
+      "audit_level": "accepted",
+      "audit_score": 0.588,
+      "text": "Environmental processes such as ram-pressure stripping can significantly impact the atomic gas content of spiral galaxies following cluster infall."
+    },
+    {
+      "claim_id": 2315,
+      "section": "Environmental Effects",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": 0.222,
+      "text": "Environmental processes induce structural changes in galaxies."
+    },
+    {
+      "claim_id": 2680,
+      "section": "Environmental Effects",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": 0.222,
+      "text": "Environmental preprocessing in galaxy groups can alter the structure of member galaxies before they enter a cluster environment."
+    },
+    {
+      "claim_id": 2690,
+      "section": "Environmental Effects",
+      "visible_trust_level": "debated",
+      "audit_level": "accepted",
+      "audit_score": 0.588,
+      "text": "In these systems, the suppression of star formation by ram-pressure stripping is primarily driven by direct gas removal, not by slow halo-gas starvation."
+    },
+    {
+      "claim_id": 2715,
+      "section": "Environmental Effects",
+      "visible_trust_level": "consensus",
+      "audit_level": "accepted",
+      "audit_score": 0.321,
+      "text": "Environmental quenching affects satellite galaxies in groups and clusters."
+    },
+    {
+      "claim_id": 2187,
+      "section": "AGN Feedback & Quenching Debates",
+      "visible_trust_level": "consensus",
+      "audit_level": "unverified",
+      "audit_score": -0.272,
+      "text": "Active galactic nuclei can drive feedback through a radiative mode, where energy and momentum are transferred to the surrounding gas via photons."
+    },
+    {
+      "claim_id": 2284,
+      "section": "AGN Feedback & Quenching Debates",
+      "visible_trust_level": "accepted",
+      "audit_level": "unverified",
+      "audit_score": 0.193,
+      "text": "Feedback from active galactic nuclei is a proposed mechanism for driving high-velocity outflows."
+    },
+    {
+      "claim_id": 2298,
+      "section": "Star Formation, Quenching & Color Bimodality",
+      "visible_trust_level": "consensus",
+      "audit_level": "unverified",
+      "audit_score": 0.22,
+      "text": "AGN feedback heats the gas reservoirs of massive galaxies."
+    },
+    {
+      "claim_id": 2738,
+      "section": "Observational Evidence & Multi-Wavelength Surveys",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": 0.22,
+      "text": "The z~2 mass-metallicity relation has an intrinsic scatter of about 0.10 dex, indicating tightly regulated enrichment."
+    },
+    {
+      "claim_id": 2595,
+      "section": "Open Questions & Frontier Debates",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": -0.091,
+      "text": "Radiative AGN feedback is a secondary quenching mechanism in massive galaxies (M_* > 10^{11} M_☉) at cosmic noon (z~1-3)."
+    },
+    {
+      "claim_id": 2931,
+      "section": "Overview: Galaxy Evolution as a Regulated Baryon Cycle",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": 0.2,
+      "text": "Galaxy quenching is jointly regulated by internal mass-linked processes and environment-linked processes; the separability and relative priority of those channels depend on sample selection, redshift, and how quenching is measured."
+    },
+    {
+      "claim_id": 2930,
+      "section": "Gas Supply, Star Formation & Feedback",
+      "visible_trust_level": "consensus",
+      "audit_level": "accepted",
+      "audit_score": 0.534,
+      "text": "Gas removal and depletion can suppress star formation by reducing the usable cold-gas reservoir, but the evidence should distinguish true reservoir loss from morphological quenching, turbulent regulation, and environment-specific stripping."
+    },
+    {
+      "claim_id": 2934,
+      "section": "Environment, Morphology & Structural Growth",
+      "visible_trust_level": "consensus",
+      "audit_level": "accepted",
+      "audit_score": 0.704,
+      "text": "Satellite galaxies can experience environmental quenching after infall into groups or clusters, especially when simulations or observations identify quenched low-mass systems as satellite analogues rather than isolated centrals."
+    },
+    {
+      "claim_id": 2932,
+      "section": "Environment, Morphology & Structural Growth",
+      "visible_trust_level": "debated",
+      "audit_level": "unverified",
+      "audit_score": 0.233,
+      "text": "Galaxy environment correlates with morphology and colour, but alignment or morphology-only evidence should be treated as contextual unless it directly connects dense environments to quenched early-type populations."
+    },
+    {
+      "claim_id": 2935,
+      "section": "Environment, Morphology & Structural Growth",
+      "visible_trust_level": "debated",
+      "audit_level": "consensus",
+      "audit_score": 0.751,
+      "text": "Cosmic-web filaments, sheets, nodes, and voids can shape galaxy evolution through coherent tidal fields that torque protogalactic gas and influence later accretion geometry."
+    }
+  ],
+  "future_remedy_classes": {
+    "A_scoped_legacy_recompute_or_row_cleanup": {
+      "use_if": "Persisted claim trust state is stale and must be repaired row-by-row.",
+      "requirements": [
+        "Exact DB backup of selected claims rows",
+        "Exact current trust_audit_log tail",
+        "Formula/source checksum for trust-level mapping",
+        "Row-level diff for trust_level, trust_score, trust_score_updated_at, and included visibility/rewrite fields",
+        "Guarded apply/rollback SQL in a future packet only",
+        "Status-aware caps so debated/reported/model_bounded states are not flattened"
+      ],
+      "not_authorized_here": true
+    },
+    "B_render_time_consistency_guard": {
+      "use_if": "Public UI/API display must be protected before persisted state is repaired.",
+      "requirements": [
+        "Trace exact frontend/API trust badge and score-label rendering path",
+        "Map allowed enum values and route unknown/numeric values to a safe fallback or diagnostic badge",
+        "Add tests for numeric \"0.5\", visible-vs-history mismatch examples, and semantic statuses",
+        "No DB writes, trust recompute, deploy, or restart without separate approval"
+      ],
+      "not_authorized_here": true
+    }
+  },
+  "guard_rules_for_future_packets": [
+    "Any future exact write/code packet must fresh-capture visible page route, claim evidence route, and claim-history route before mutation.",
+    "If visible trust level is outside the allowed enum, do not display the raw numeric value as a trust badge without an explicit diagnostic/fallback design.",
+    "If visible route and history route disagree, record both states and decide whether the source of truth is persisted DB repair or render/API consistency before applying anything.",
+    "Do not run global recompute until semantic status caps for debated, reported, and model_bounded are explicit.",
+    "Do not combine DB recompute/row cleanup with frontend render guard in a single approval gate.",
+    "No future trust recompute is bundled into P1/P3 wording/reparenting packets unless a later user explicitly opens a combined high-risk gate."
+  ],
+  "input_artifacts_read": [
+    "docs/hwao_morning_blocker_specs_20260706T0308Z/P4_LEVEL_SCORE_GUARD_RECOMPUTE_SPEC.md",
+    "docs/hwao_morning_blocker_specs_20260706T0308Z/READONLY_API_SNAPSHOT_20260706T0308Z.json",
+    "docs/hwao_p1_p3_readonly_preflight_20260706T0750Z/P1_P3_READONLY_PREFLIGHT_PACKET.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/pgr-current-page-inventory-20260706T130610Z.md",
+    "frontend/public/agent-reports/wiki-method-results/galaxy-evolution/packet-gated-paper-to-wiki-reconciliation/p3-2572-2573-primacy-wording-spec-20260706T145409Z.md"
+  ],
+  "next_method_phrase": "APPROVE METHOD1 P5 DOCS-ONLY 2931 DEDUPE SPEC",
+  "next_method_phrase_scope": "Method1-local P5 docs/static/handoff spec only; no DB/SQL/trust/live wiki/page_versions/deploy/restart/git/prod/cloud/API/cross-method/shared-parent writes."
+}

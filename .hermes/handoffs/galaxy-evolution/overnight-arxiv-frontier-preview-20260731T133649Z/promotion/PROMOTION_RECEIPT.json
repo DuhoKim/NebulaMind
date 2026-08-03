@@ -1,0 +1,146 @@
+{
+  "applied_at_utc": "2026-07-31T14:02:55.174222+00:00",
+  "apply_result": {
+    "original_status": "APPLIED_PENDING_INDEPENDENT_VERIFICATION",
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/APPLY_RESULT.json",
+    "sha256": "851ae9cc9ed959fc0d45271f60454be08a8ec71f127d267b077e8b63437ba42a"
+  },
+  "apply_script": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/promote_local_delta.py",
+    "sha256": "54fe1ca0342ab224dbe69c91bf436873d2a836ab7a142935a0085ddb9e94ab56"
+  },
+  "coordinator_relay": {
+    "attempted_before_verification": true,
+    "relay_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/HWAO_VERIFICATION_RELAY.md",
+    "relay_sha256": "25331596000062ed9cf6d1cbffdab80da681a4ccb5aedf9740a6dd1b5d1f0f77",
+    "result": "HWAO_PANE_BLOCKED_NOT_LOGGED_IN"
+  },
+  "corpus": {
+    "assigned_added": 199,
+    "base_rows": 120676,
+    "delta_rows_added": 233,
+    "delta_rows_after": 953,
+    "delta_rows_before": 720,
+    "drift_far_added": 15,
+    "embedding_dimension": 2560,
+    "labels_after": 953,
+    "novel_or_noise_added": 34,
+    "vector_rows_after": 953
+  },
+  "excluded": [
+    "DB/SQL",
+    "frontend/live/public/cockpit",
+    "wiki/evidence/trust",
+    "scheduler/cron/LaunchAgent",
+    "deploy/restart",
+    "external submission",
+    "Git commit/push/merge",
+    "second promotion"
+  ],
+  "finalized_at_utc": "2026-07-31T14:32:20.738456+00:00",
+  "independent_verification": {
+    "check_count": 23,
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/INDEPENDENT_VERIFICATION.json",
+    "post_promotion_tests": {
+      "command": [
+        "/Users/duhokim/NebulaMind/NebulaMind/backend/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "-p",
+        "no:cacheprovider",
+        "tests/test_overnight_frontier_preview.py"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ".............                                                            [100%]\n13 passed in 0.06s\n"
+    },
+    "sha256": "bd05d04be0bc912a53395ef24598fe1d14ce9f5e3859a45b2d3f27a99718115d",
+    "status": "INDEPENDENT_VERIFICATION_PASS",
+    "verifier_sha256": "64a613f8e3deb345716d3260688e07057b19bf62a299deceb60d5455c0b87785"
+  },
+  "manifest_sha256": "aaa9d4fe45da6a8f12b68325c1dd20f1c141f6f24a9929b99e50ce471dc6b0ba",
+  "next_gate": "Any product/frontend/live/public application is a separate explicit approval gate.",
+  "pre_execute": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/PRE_EXECUTE.json",
+    "sha256": "710f398426a0465622492b1a48aa24f0fbbaa54ea71303fcd7354f7c48ec4f38"
+  },
+  "ranking": {
+    "constants_frozen": true,
+    "rank_errors": [],
+    "review_holds": []
+  },
+  "replace_order": [
+    "new_emb.f32",
+    "new_papers.jsonl",
+    "new_labels.json"
+  ],
+  "rollback_script": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/rollback_local_delta.py",
+    "requires_fresh_explicit_approval": true,
+    "sha256": "c0b7b321ee7fd620dac2cd9b067f62e2043015abc41df187c7218a7a7080e065"
+  },
+  "rollback_snapshot": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/promotion/rollback_snapshot",
+  "run_id": "overnight-arxiv-frontier-preview-20260731T133649Z",
+  "safety_ledger": {
+    "canonical_target_files_replaced_by_approved_promotion": 3,
+    "db_sql_writes": 0,
+    "deploy_restart_actions": 0,
+    "external_submissions": 0,
+    "frontend_live_public_cockpit_writes": 0,
+    "git_writes": 0,
+    "scheduler_cron_launchagent_writes": 0,
+    "second_promotion_attempts": 0,
+    "verification_phase_canonical_writes": 0,
+    "wiki_evidence_trust_writes": 0
+  },
+  "schema_version": 1,
+  "status": "EXECUTED_AND_VERIFIED",
+  "target_count": 3,
+  "target_readback": {
+    "new_emb.f32": {
+      "bytes": 9758720,
+      "sha256": "6cb41e46917dae2ade4d98402a92024be856e21eed029bcc64af68be1eef8909"
+    },
+    "new_labels.json": {
+      "bytes": 17092,
+      "sha256": "fd3f4cb056b8f7acedfcb3957f1e65e2019b175bc37c97e87f3ef7a76cfaafd0"
+    },
+    "new_papers.jsonl": {
+      "bytes": 1841037,
+      "sha256": "7ebca5bbdc46d1e92f775bbc0608f367bd44f8dcc102bef76bb669066af2ad38"
+    }
+  },
+  "targets_after": {
+    "new_emb.f32": {
+      "bytes": 9758720,
+      "path": "shadow_engine/delta/new_emb.f32",
+      "sha256": "6cb41e46917dae2ade4d98402a92024be856e21eed029bcc64af68be1eef8909"
+    },
+    "new_labels.json": {
+      "bytes": 17092,
+      "path": "shadow_engine/delta/new_labels.json",
+      "sha256": "fd3f4cb056b8f7acedfcb3957f1e65e2019b175bc37c97e87f3ef7a76cfaafd0"
+    },
+    "new_papers.jsonl": {
+      "bytes": 1841037,
+      "path": "shadow_engine/delta/new_papers.jsonl",
+      "sha256": "7ebca5bbdc46d1e92f775bbc0608f367bd44f8dcc102bef76bb669066af2ad38"
+    }
+  },
+  "targets_before": {
+    "new_emb.f32": {
+      "bytes": 7372800,
+      "sha256": "dc860fcc028d01f50478a1e84f48174cc076f4a5e19c89974b60e0280bdce5a5"
+    },
+    "new_labels.json": {
+      "bytes": 12913,
+      "sha256": "b80d6274ae977b251e53a159952381d4657e7a706f44ef48aac63a360b02f630"
+    },
+    "new_papers.jsonl": {
+      "bytes": 1332681,
+      "sha256": "7f7925c286535e46d2dfd1df22f4efc4748734838fa757c9190311a43d36b273"
+    }
+  },
+  "verified_at_utc": "2026-07-31T14:30:37.410040+00:00"
+}

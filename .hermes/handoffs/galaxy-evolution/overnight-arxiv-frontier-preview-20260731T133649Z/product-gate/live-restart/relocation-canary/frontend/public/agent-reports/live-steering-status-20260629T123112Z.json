@@ -1,0 +1,107 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T12:31:12Z",
+  "updated_at_kst": "2026-06-29 21:31:12 KST",
+  "source": "Hermes Agent PR #67 backend/API deploy refresh",
+  "current_action": "PR #67 READ-ONLY FALLBACK IS LIVE: backend/API runtime was patched and restarted; Galaxy V2 citations/fact-sources now surface existing claim/evidence provenance. DB materialized table counts did not change.",
+  "pr": {
+    "number": 67,
+    "url": "https://github.com/DuhoKim/NebulaMind/pull/67",
+    "state": "MERGED",
+    "merge_commit": "ad87039cfd0535b945af4a293c8bbc0aaf38952e",
+    "merge_commit_short": "ad87039"
+  },
+  "runtime": {
+    "backend_launchd_label": "com.nebulamind.backend",
+    "backend_pid_after_restart": 14990,
+    "backend_cwd": "/Users/duhokim/NebulaMind/NebulaMind/backend",
+    "backend_checkout_branch": "feat/surveys-atlas-ia-p1-20260627",
+    "runtime_patch_scope": [
+      "backend/app/routers/pages.py",
+      "backend/tests/test_page_source_surface_fallbacks.py",
+      "docs/galaxy_v2_source_surface_reconciliation_20260629.md"
+    ],
+    "backup_dir": "/Users/duhokim/NebulaMind/deploy-backups/pr67-runtime-20260629T122913Z",
+    "note": "Runtime checkout is not clean and is not simply origin/main; PR #67 was applied as a scoped patch onto the running backend checkout."
+  },
+  "live_probe_after_deploy": {
+    "local_backend_citations_status": 200,
+    "local_backend_citations_count": 102,
+    "local_backend_fact_sources_status": 200,
+    "local_backend_fact_sources_count": 8,
+    "public_citations_status": 200,
+    "public_citations_count": 102,
+    "public_fact_sources_status": 200,
+    "public_fact_sources_count": 8,
+    "source_surface_seen": "claim_evidence_fallback",
+    "sample_citation": {
+      "seq": 1,
+      "evidence_id": 28063,
+      "author_year_key": "Goubert2024",
+      "url": "https://arxiv.org/abs/2401.12953"
+    },
+    "sample_fact_source": {
+      "fact_kind": "claim",
+      "claim_id": 2931,
+      "source_surface": "claim_evidence_fallback",
+      "reference_url": "https://arxiv.org/abs/2401.12953"
+    }
+  },
+  "db_no_write_evidence": {
+    "database_url_redacted": "postgresql://nebula:***@localhost:5432/nebulamind",
+    "page_citation_links_before": 1351,
+    "page_citation_links_after": 1351,
+    "fact_sources_before": 391,
+    "fact_sources_after": 391,
+    "production_db_writes_executed": 0,
+    "migrations": 0,
+    "backfills": 0,
+    "promotion_or_readiness_flag_changes": 0
+  },
+  "verification": [
+    "Runtime py_compile changed files: pass",
+    "Runtime fallback test file: 5 passed",
+    "Runtime related page/source API bundle: 15 passed",
+    "Runtime git diff --check for scoped patch: pass",
+    "Changed read-route scan: no db.add/db.commit/db.delete/INSERT/UPDATE/DELETE markers",
+    "Backend launchd restart: old PID 15975 -> new PID 14990",
+    "Local /api/stats readiness: HTTP 200 after 2 seconds",
+    "Public citations live probe: HTTP 200, 102 citations",
+    "Public fact-sources live probe: HTTP 200, 8 rows",
+    "Materialized table counts unchanged before/after probes: page_citation_links 1351, fact_sources 391"
+  ],
+  "observations": [
+    "One live citation sample has a pre-existing-looking malformed arXiv URL form: https://arxiv.org/abs/arXiv:1712.04452. The fallback is live and useful, but a future code-only normalization cleanup would make source URLs cleaner."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Safest",
+      "name": "Observe/monitor live fallback",
+      "risk": "Read-only",
+      "steering": "STEER: monitor PR #67 live source-surface endpoints; no code, no deploy, no DB writes."
+    },
+    {
+      "level": "Safe code-only follow-up",
+      "name": "Normalize arXiv identifier rendering",
+      "risk": "Code-only PR, no data writes",
+      "steering": "STEER: create a small TDD PR to normalize arXiv IDs/URLs in source surfaces; no DB writes, no deploy until reviewed."
+    },
+    {
+      "level": "High data risk",
+      "name": "Backfill materialized source tables",
+      "risk": "Production DB writes",
+      "steering": "Requires separate backup/dry-run/exact-diff packet and explicit execution approval."
+    },
+    {
+      "level": "Very high product risk",
+      "name": "Promotion/readiness unlock",
+      "risk": "Changes trust/readiness decisions",
+      "steering": "Requires GO/NO-GO packet, calibration, and explicit approval."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "note": "Frontend report/static-file service refreshed only to serve this cockpit/status artifact; backend/API product deploy was the separate PR #67 scoped runtime patch and restart."
+  },
+  "mode": "SOURCE_SURFACE_PR67_LIVE_NO_DB_WRITES"
+}

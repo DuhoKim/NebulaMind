@@ -1,0 +1,42 @@
+{
+  "lane": "P0-kun",
+  "packet": "P0-tng-validation",
+  "status": "DONE",
+  "started_at": "2026-07-27T13:20:00Z",
+  "completed_at": "2026-07-27T13:29:00Z",
+  "disposition": "ISSUES",
+  "marker": "P0_KUN_CROSSREVIEW_COMPLETE_20260727",
+  "files": [
+    {
+      "path": "CROSSREVIEW.md",
+      "sha256": "84b93d78d582da945245b7b58e22e2ea740c6469964e598f9f29060c86c2c9be",
+      "bytes": 6081
+    },
+    {
+      "path": "VALIDATION.json",
+      "sha256": "6cc63bb23bcb687a3c19c14762afd81b05539f8de41a35959a5c7151aeda7163",
+      "bytes": 5578
+    },
+    {
+      "path": "RECEIPT.json",
+      "sha256": null,
+      "bytes": null,
+      "note": "Self-hash not recorded because writing the hash into this file changes the file hash."
+    }
+  ],
+  "source_access_attestation": "Read input/BRIEF.md and all immutable input files in this lane. Recomputed manifest-listed SHA-256 hashes, parsed all JSON inputs, ran pdfinfo and pdftotext on the pinned served and secondary PDFs, rendered the served and secondary PDFs to PNGs under /tmp, and visually inspected the rendered served pages relevant to Figure 2 and conclusion. Used public search only to independently challenge citation identity for Lisiecki A&A 708 A235 and Nakajima 2023 ApJS 269 33; no login, CAPTCHA, payment, account, OAuth, or secret prompt was encountered.",
+  "validation_summary": {
+    "json_parses": true,
+    "input_hashes_match_manifest": true,
+    "served_pdf_pages": 4,
+    "secondary_pdf_pages": 3,
+    "copies_interchangeable": false,
+    "sfms_chain_survives": true,
+    "mzr_matched_scale_claim_survives": false,
+    "lisiecki_identity_failure_upheld": true,
+    "review_link_404_upheld": true,
+    "history_to_verdict_inference_used": false,
+    "capture_caused_false_defect_found": false,
+    "write_boundary_respected": true
+  }
+}

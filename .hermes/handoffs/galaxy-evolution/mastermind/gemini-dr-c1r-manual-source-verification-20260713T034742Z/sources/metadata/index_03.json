@@ -1,0 +1,56 @@
+{
+  "index": 3,
+  "captured_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+  "ledger_rows": [
+    3,
+    4
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:14:51Z",
+      "method": "GET",
+      "host": "academic.oup.com",
+      "index": 3,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+      "final_url": "https://academic.oup.com/mnras/article/475/1/648/4683271",
+      "status": 403,
+      "bytes": 5755,
+      "sha256": "a41632976aedfdf31d3b6d2acfa35b35d8965367f9aed3d99d7b791c7fa00a32",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx03_initial_a41632976aed.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:14:46Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 1,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Just%20a%20moment...%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 11603,
+      "sha256": "d8dd035aaa03e2d73409674e0e247f7c182cdd007d08316df447aced8118d370",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx01_ads_d8dd035aaa03.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": true
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "Just a moment...",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx03_initial_05f8bdf19ca6.txt",
+      "text_sha256": "05f8bdf19ca64ec98ac31c13061fb810966197580390f0688c67e092c21b5a3f",
+      "text_chars": 58
+    }
+  ]
+}

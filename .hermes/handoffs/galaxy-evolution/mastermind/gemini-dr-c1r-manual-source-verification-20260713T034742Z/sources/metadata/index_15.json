@@ -1,0 +1,110 @@
+{
+  "index": 15,
+  "captured_url": "https://arxiv.org/abs/1607.02151",
+  "ledger_rows": [
+    18
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:16Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 15,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/1607.02151",
+      "final_url": "https://arxiv.org/abs/1607.02151",
+      "status": 200,
+      "bytes": 47180,
+      "sha256": "d2a57d28328faa5effc38f9ff75ab1f28d4f5ea3b00fc1bddfc9013a9da02c9e",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx15_initial_d2a57d28328f.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:18Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 15,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/1607.02151",
+      "final_url": "https://arxiv.org/pdf/1607.02151",
+      "status": 200,
+      "bytes": 5143281,
+      "sha256": "7668892fda0b1fb4fc70be36ecc681ee9aa26ce6c78f7931fb17968bd63ca3c9",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx15_arxiv_pdf_7668892fda0b.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "requested_url": "https://doi.org/10.1093/mnras/stx1160",
+      "status": 0,
+      "error": "host_stopped_after_3_failures",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "utc": "2026-07-13T04:15:20Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 15,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1607.02151%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A1607.02151%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 2890,
+      "sha256": "a3d008cb0a878a1a27e38b82752757d21cc87c932762bd5a93a9be2cddf845a1",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx15_ads_a3d008cb0a87.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "The Romulus Cosmological Simulations: A Physical Approach to the Formation, Dynamics and Accretion Models of SMBHs",
+      "doi": "10.1093/mnras/stx1160",
+      "arxiv_id": "1607.02151",
+      "pdf_url": "https://arxiv.org/pdf/1607.02151",
+      "text_path": "sources/text/idx15_initial_7eed71924a48.txt",
+      "text_sha256": "7eed71924a488c01375a3d9f428d9bfd709b32d47e35da6a91de234d5a1b6438",
+      "text_chars": 5809
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "1607.02151",
+      "pdf_url": "",
+      "text_path": "sources/text/idx15_arxiv_pdf_25b6ec802541.txt",
+      "text_sha256": "25b6ec802541954a6dc06cea06d7212b44d6e99f08c754088354a9c2637a44cb",
+      "text_chars": 109844,
+      "pdf_pages": 21
+    },
+    {
+      "label": "doi",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "",
+      "text_sha256": "",
+      "text_chars": 0
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx15_ads_118e127db4f4.txt",
+      "text_sha256": "118e127db4f49ba56a1f18ad2c51d07b225d50e4e1f9a99b8cd6f818e2578d43",
+      "text_chars": 3372
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+ "probe": "xm1_broker_probe",
+ "transport_id": "thunderbolt-pass1r1",
+ "transport": "thunderbolt",
+ "fallback": "none",
+ "endpoints": {
+  "pro": {
+   "host": "duhokim@169.254.100.1",
+   "host_key_alias": "100.122.78.110"
+  },
+  "studio_from_pro": {
+   "host": "duhokim@169.254.100.2",
+   "host_key_alias": "100.84.12.101"
+  }
+ },
+ "results": {
+  "ping": {
+   "ok": true,
+   "pong": true,
+   "pid": 63339
+  },
+  "transport_acquire": {
+   "ok": true,
+   "lease": {
+    "lease_id": "L00001",
+    "holder": "pro-probe",
+    "kind": "target",
+    "mode": "write",
+    "scope": {
+     "host_id": "macpro",
+     "user_data_dir": "/pro/probe/p1"
+    },
+    "epoch": 1,
+    "granted_at": 1784012427.31671,
+    "ttl": 300.0,
+    "heartbeat_interval": 60.0,
+    "last_heartbeat": 1784012427.316711,
+    "state": "live"
+   }
+  },
+  "transport_check": {
+   "ok": true
+  },
+  "transport_release": {
+   "ok": true
+  },
+  "live_acquire": {
+   "ok": true,
+   "lease": {
+    "lease_id": "L00002",
+    "holder": "pro-probe-live",
+    "kind": "target",
+    "mode": "write",
+    "scope": {
+     "host_id": "macpro",
+     "user_data_dir": "/pro/probe/p2"
+    },
+    "epoch": 2,
+    "granted_at": 1784012427.3203998,
+    "ttl": 30.0,
+    "heartbeat_interval": 0.3,
+    "last_heartbeat": 1784012427.3203998,
+    "state": "live"
+   }
+  },
+  "authority_post_partition_check": {
+   "ok": false,
+   "deny": "no live lease"
+  },
+  "live_partition_failclosed": true,
+  "authority_reports_lease_nonlive": true
+ },
+ "pass": true
+}

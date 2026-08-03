@@ -1,0 +1,42 @@
+{
+  "checkpoint_utc": "2026-07-27T01:22:25Z",
+  "checkpoint_kst": "2026-07-27 10:22:25 KST",
+  "source": "https://nebulamind.net/agent-reports/live-steering-status.json",
+  "source_monitor_observed_at_utc": "2026-07-27T01:22:21Z",
+  "initial_checkpoint_utc": "2026-07-26T13:34:26Z",
+  "provider_usage_final": {
+    "claude_fable_5h_used_pct": 5.0,
+    "claude_fable_weekly_used_pct": 5.0,
+    "claude_opus_weekly_used_pct": 0.0,
+    "claude_sonnet_weekly_used_pct": 0.0,
+    "codex_gpt55_5h_used_pct": null,
+    "codex_gpt55_weekly_used_pct": 1.0,
+    "codex_spark_weekly_used_pct": 0.0,
+    "antigravity_gemini_5h_used_pct": 0.0,
+    "antigravity_gemini_weekly_used_pct": 0.22,
+    "antigravity_claude_gpt_5h_used_pct": 0.0,
+    "antigravity_claude_gpt_weekly_used_pct": 0.06,
+    "gemini_consumer_current_window_used_pct": 1.0,
+    "gemini_consumer_weekly_used_pct": 1.0,
+    "nous_plan_used_pct": 100.0,
+    "nous_plan_remaining_usd": 0.0,
+    "nous_purchased_balance_usd": 42.60
+  },
+  "observed_delta_from_initial": {
+    "claude_fable_5h_used_pct": -2.0,
+    "claude_fable_weekly_used_pct": 2.0,
+    "codex_gpt55_weekly_used_pct": 0.0,
+    "antigravity_gemini_5h_used_pct": 0.0,
+    "antigravity_gemini_weekly_used_pct": 0.18,
+    "gemini_consumer_current_window_used_pct": 0.0,
+    "gemini_consumer_weekly_used_pct": 0.0,
+    "nous_purchased_balance_usd": -0.01
+  },
+  "interpretation": {
+    "rolling_window_caution": "Five-hour values reset/roll and are not cumulative spend. Intermediate maximums were Claude 9% and Antigravity Gemini 3.34% in captured checkpoints.",
+    "subscription_headroom": "Claude, Codex, Antigravity, and consumer Gemini all ended with substantial headroom.",
+    "nous_balance_caution": "The globally observed Nous purchased balance moved from $42.61 to $42.60. The monitor exposes no transaction ledger, so the $0.01 change cannot be attributed to this run versus concurrent activity or rounding. This Tori session used openai-codex for the model; managed web/browser tools are Nous-provided services. No billing, account, routing, or credit-setting change was performed.",
+    "paid_usage_claim": "Do not claim zero purchased-balance movement; claim only the observed global -$0.01 delta with unknown attribution."
+  },
+  "marker": "OVERNIGHT_PAPER_BOARD_USAGE_FINAL_V1"
+}

@@ -1,0 +1,74 @@
+{
+  "schema": "KUN_C1R_REPAIR_PREFLIGHT_V1",
+  "packet": "gemini-dr-c1r-chip-validator-repair-20260713T010203Z",
+  "role": "Kun reproducibility/custody verifier",
+  "marker": "KUN_C1R_REPAIR_PREFLIGHT_DONE_20260713T010203Z",
+  "scope": {
+    "local_only": true,
+    "no_implementation": true,
+    "no_browser": true,
+    "no_network": true,
+    "no_live_gemini": true,
+    "no_git": true,
+    "no_db": true,
+    "no_deploy": true,
+    "writes_limited_to": [
+      "receipts/KUN_ACK",
+      "receipts/KUN_IMMUTABLE_INPUT_RECEIPT.md",
+      "receipts/KUN_PREFLIGHT.json",
+      "tests/run_all.sh"
+    ]
+  },
+  "sealed_inputs": {
+    "canary_packet": "../gemini-dr-revised-canary-20260712T045317Z",
+    "root_cause_packet": "../dr-c1r-root-cause-20260712T163156Z",
+    "file_count_hashed": 78,
+    "hash_list_recorded_in": "receipts/KUN_IMMUTABLE_INPUT_RECEIPT.md"
+  },
+  "run_receipt_reconciliation": {
+    "source": "../gemini-dr-revised-canary-20260712T045317Z/runs/c1r/RUN_RECEIPT.json",
+    "matched": [
+      "prompt_submitted_sha256",
+      "body_sha256",
+      "rendered_body_html_sha256",
+      "structured_capture_sha256",
+      "validator_result_sha256",
+      "manual_review_gate_sha256",
+      "quota_postflight_sha256",
+      "pre_cleanup_receipt_sha256",
+      "cleanup_receipt_sha256"
+    ],
+    "not_reconciled_from_available_file": [
+      {
+        "field": "composer_normalized_sha256",
+        "reason": "RUN_RECEIPT records a normalized text digest; no byte file with that exact digest was identified in the sealed packet."
+      }
+    ],
+    "status": "NO_HASH_MISMATCH_FOUND_FOR_AVAILABLE_BYTE_FILES"
+  },
+  "repair_packet_baseline": {
+    "existing_packet_files_observed_before_kun_receipt": [
+      "HWAO_BRIEF.md",
+      "GORU_BRIEF.md",
+      "ROLE_TABLE.md",
+      "KUN_BRIEF.md",
+      "HWAO_IMPLEMENTATION_DIRECTION.md",
+      "fixtures/rendered_body.html",
+      "fixtures/GORU_ACK",
+      "GORU_FIXTURE_MANIFEST.json",
+      "LANA_BRIEF.md"
+    ],
+    "noted_condition": "GORU_FIXTURE_MANIFEST.json was present but contained only '[' at preflight observation; Kun did not modify it.",
+    "kun_writes": [
+      "receipts/KUN_ACK",
+      "receipts/KUN_IMMUTABLE_INPUT_RECEIPT.md",
+      "receipts/KUN_PREFLIGHT.json",
+      "tests/run_all.sh"
+    ]
+  },
+  "gates_documented": {
+    "two_run_byte_determinism": true,
+    "postflight_immutability": true,
+    "expected_findings_preserved": true
+  }
+}

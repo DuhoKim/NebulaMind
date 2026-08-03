@@ -1,0 +1,3246 @@
+First results from the IllustrisTNG simulations:
+the galaxy color bimodality
+Dylan Nelson1⋆, Annalisa Pillepich2, Volker Springel3,4, Rainer Weinberger3,
+Lars Hernquist5, R¨udiger Pakmor3, Shy Genel6, Paul Torrey7,
+Mark Vogelsberger7, Guinevere Kauffmann1, Federico Marinacci7, Jill Naiman5
+1Max-Planck-Institut f¨ur Astrophysik, Karl-Schwarzschild-Str. 1, 85741 Garching, Germany
+2Max-Planck-Institut f¨ur Astronomie, K¨onigstuhl 17, 69117 Heidelberg, Germany
+3Heidelberg Institute for Theoretical Studies, Schloss-Wolfsbrunnenweg 35, 69118 Heidelberg, Germany
+4Zentrum f¨ur Astronomie der Universit¨at Heidelberg, ARI, M¨onchhofstr. 12-14, 69120 Heidelberg, Germany
+5Harvard-Smithsonian Center for Astrophysics, 60 Garden Street, Cambridge, MA, 02138, USA
+6Center for Computational Astrophysics, Flatiron Institute, 162 Fifth Avenue, New York, NY 10010, USA
+7Kavli Institute for Astrophysics and Space Research, Department of Physics, MIT, Cambridge, MA, 02139, USA
+1 February 2018
+ABSTRACT
+We introduce the ﬁrst two simulations of the IllustrisTNG project, a next generation of cos-
+mological magnetohydrodynamical simulations, focusing on the optical colors of galaxies.
+We explore TNG100, a rerun of the original Illustris box, and TNG300, which includes
+2×25003 resolution elements in a volume twenty times larger. Here we present ﬁrst results on
+the galaxy color bimodality at low redshift. Accounting for the attenuation of stellar light by
+dust, we compare the simulated (g-r) colors of 109 < M⋆/M⊙< 1012.5 galaxies to the observed
+distribution from the Sloan Digital Sky Survey (SDSS). We ﬁnd a striking improvement with
+respect to the original Illustris simulation, as well as excellent quantitative agreement with
+the observations, with a sharp transition in median color from blue to red at a characteristic
+M⋆∼1010.5 M⊙. Investigating the build-up of the color-mass plane and the formation of the
+red sequence, we demonstrate that the primary driver of galaxy color transition is supermas-
+sive blackhole feedback in its low-accretion state. Across the entire population the median
+color transition timescale ∆tgreen is ∼1.6 Gyr, a value which drops for increasingly massive
+galaxies. We ﬁnd signatures of the physical process of quenching: at ﬁxed stellar mass, red-
+der galaxies have lower SFRs, gas fractions, and gas metallicities; their stellar populations
+are also older and their large-scale interstellar magnetic ﬁelds weaker than in bluer galaxies.
+Finally, we measure the amount of stellar mass growth on the red sequence. Galaxies with
+M⋆> 1011 M⊙which redden at z < 1 accumulate on average ∼25% of their ﬁnal z = 0 mass
+post-reddening; at the same time, ∼18% of such massive galaxies acquire half or more of
+their ﬁnal stellar mass while on the red sequence.
+Key words: galaxies: evolution – galaxies: formation
+1
+INTRODUCTION
+Numerical simulations of cosmological galaxy formation have en-
+tered a new era. From the pioneering beginnings of dark-matter
+only simulations (Frenk et al. 1983; Davis et al. 1985; Navarro et al.
+1997), through milestone projects of the past decade (Evrard et al.
+2002; Springel et al. 2005; Klypin et al. 2011), it has now become
+possible to also model the hydrodynamics of cosmic gas together
+with the principal baryonic physics driving the formation and evo-
+lution of galaxies. Increasingly sophisticated physical models are
+used to realize simulations of ever increasing scope. Larger vol-
+⋆E-mail: dnelson@mpa-garching.mpg.de
+umes enable statistically robust comparisons of entire galaxy pop-
+ulations, while improved numerical methods combined with higher
+resolution realizations provide increasingly realistic results. The
+emergence of cosmological hydrodynamical simulations as pow-
+erfully predictive theoretical models is embodied in the recent Il-
+lustris (Vogelsberger et al. 2014a,b; Genel et al. 2014; Sijacki et al.
+2015) and EAGLE (Schaye et al. 2015; Crain et al. 2015) simu-
+lations. In concert with other large-volume efforts (Dubois et al.
+2016; Dolag et al. 2016; Dav´e et al. 2016) these projects have con-
+vincingly demonstrated that hydrodynamical simulations of struc-
+ture formation at kilo-parsec spatial resolution can reasonably re-
+produce the fundamental properties and scaling relations of ob-
+served galaxies. This zeroth order agreement has enabled many
+arXiv:1707.03395v2  [astro-ph.GA]  31 Jan 2018
+
+
+2
+D. Nelson et al.
+fruitful investigations; it has, at the same time, revealed many in-
+formative shortcomings.
+Here we present IllustrisTNG, a simulation campaign which
+(i) retains the fundamental approach and physical model ﬂavor of
+Illustris, (ii) alleviates many Illustris model deﬁciencies with re-
+spect to benchmark observations, and (iii) signiﬁcantly expands the
+scope with simulations of larger volumes, at higher resolution, and
+with new physics. In doing so we continue to heavily rely on sub-
+resolution models for physics below scales of a few hundred par-
+secs: by deﬁnition, this includes the process of star formation, the
+details of supernovae feedback, and the growth and evolution of
+supermassive blackholes.
+In order to improve upon our existing physical model, one of
+our ﬁrst tasks is therefore to address regimes in which it fails to
+provide a reasonable match to observational data. To this end we
+identiﬁed a set of clear model deﬁciencies in the original Illus-
+tris simulation and speciﬁcally addressed them in the new TNG
+model (Pillepich et al. 2017; Weinberger et al. 2017). The princi-
+pal model changes are revised treatments of both stellar feedback
+driven galactic winds and supermassive blackhole feedback. In this
+new context, we now investigate a key issue which existed in the
+previous simulations: the lack of a clear color bimodality between
+two distinct red and blue galaxy populations at low redshift. In Vo-
+gelsberger et al. (2014a) we presented the distributions of intrinsic
+(u-i) and (g-r) colors of simulated Illustris galaxies. Broadly, we
+concluded that the red peak for quiescent galaxies was either en-
+tirely absent, or not sufﬁciently pronounced, depending on stellar
+mass, while the transition from predominantly blue to red systems
+occurred at too large M⋆, and evidence for a bimodal color distri-
+bution at any mass was weak. We principally attributed this failure
+to the inability of Illustris blackhole feedback to entirely quench
+residual star formation in massive halos.
+There are surprisingly few other investigations of color across
+the full galaxy mass range in cosmological hydrodynamical simu-
+lations. Analyzing the EAGLE simulation, Trayford et al. (2015)
+is by far the most comprehensive, demonstrating favorable com-
+parison to low-redshift color-magnitude and luminosity function
+GAMA results, although this involves a combination of the ﬁducial
+volume with smaller box, higher resolution, re-calibrated models;
+despite good qualitative agreement, the coherent level of quantita-
+tive agreement is by no means perfect. In Trayford et al. (2016) the
+authors explore the evolution of the color-mass space, making the
+connection to both environmental-driven and blackhole feedback-
+driven color transition. Previously, Cen (2014) mainly studied the
+reddening of satellite galaxies due to hydrodynamic processes,
+without including blackholes or comparing to observed color dis-
+tributions. Gabor & Dav´e (2012) used a phenomenological halo
+quenching model to study the formation of the red sequence, like-
+wise omitting blackholes and attributing both central and satellite
+quenching to environments dominated by virialized gas. An up-
+date in Dav´e et al. (2017) where the enforced halo quenching mass
+varies with redshift also produces red central galaxies at the ex-
+pense of excessively red satellites.
+The emergence of a color bimodality was quickly identiﬁed as
+a critical challenge for semi-analytical models of galaxy formation
+as well (Cole et al. 2000). Speciﬁcally, models which introduced a
+central heating process from a supermassive blackhole were then
+able to recover the red colors of the most massive galaxies (Kang
+et al. 2005; Menci et al. 2005; Croton et al. 2006; Cattaneo et al.
+2007). The co-evolution of a central blackhole and its host galaxy
+is an important ingredient (Bower et al. 2006; Somerville et al.
+2008; Benson 2012), and more recent efforts continue to explore
+galaxy color as a fundamental observational constraint (e.g. Hen-
+riques et al. 2015; Zu & Mandelbaum 2017).
+Observationally, the color of a galaxy is a fundamental distil-
+lation of the emergent spectral distribution of light emitted by its
+constituent stellar populations. Measurements of galaxy colors are
+one of the most direct probes of the physical characteristics of ex-
+tragalactic stars, with a correspondingly rich observational history.
+Modern large-scale surveys – namely, the Sloan Digital Sky Sur-
+vey (SDSS) – enabled the discovery (Strateva et al. 2001) and early
+characterization (Kauffmann et al. 2003a; Blanton et al. 2003) of
+the bimodal distribution of galaxy colors at low redshift. Based on
+visual classiﬁcation, Strateva et al. (2001) demonstrated the rough
+relationship between color and morphology: that members of the
+red population are generally more spheroidal, while members of the
+blue population are more disk-like. Baldry et al. (2004) modeled the
+color distribution of SDSS galaxies using a double-Gaussian for-
+malism, measuring the separate red and blue luminosity and mass
+functions. Beyond the local universe, Bell et al. (2004) conﬁrmed
+the dual population picture at 0.2 < z < 1.0 using the COMBO-
+17 survey, constraining the evolution of the red population. Subse-
+quently, Faber et al. (2007) used COMBO-17 and DEEP2 to con-
+trast the z = 0 and z = 1 red and blue galaxy populations, con-
+straining the evolution of galaxies between, and within, each. More
+recently, Taylor et al. (2015) presented a sophisticated modeling of
+the overlapping red and blue galaxy populations from z < 0.1 re-
+sults of the GAMA survey, quantifying their respective properties
+and highlighting the care needed in their separation.
+Beyond the fundamental relation of galaxy color and stellar
+mass, observations have also explored correlations between, and
+implications arising from, other galactic properties. Studying en-
+vironment, Kauffmann et al. (2004) and Baldry et al. (2006) used
+SDSS to demonstrate that while the location of the two populations
+in the D4000/color-mass plane does not correlate with (projected
+neighbor density) environment, the relative fraction in each popu-
+lation does. Thereafter Peng et al. (2010) advocated for the separa-
+bility of mass and environmental (i.e. satellite) driven color trans-
+formation to z = 1, quantifying an increasing red fraction with
+overdensity at ﬁxed stellar mass. Considering structural properties,
+Kauffmann et al. (2003b) found that stellar surface mass density
+and stellar concentration vary strongly with mass, separating at a
+characteristic threshold of M⋆∼3×1010 M⊙likely established by
+baryonic feedback processes. Focusing on morphology, Schawinski
+et al. (2014) used Galaxy Zoo classiﬁcations and found two distinct
+transition pathways, with different physical timescales, correlated
+with early versus late-type morphology. Leveraging the CANDELS
+survey up to z = 3, Pandya et al. (2016) measured the prevalence
+of the intermediary population, as well as the occupation timescales
+and physical properties of its members. Recently, Powell et al.
+(2017) measured the color-mass distributions at z = 1 separated
+by morphological type and argued for two distinct timescales and
+the possible role of blackhole feedback induced transformation.
+In this paper we have two goals: to present the new TNG simu-
+lations, and to quantitatively assess their agreement with the z = 0
+observed color distribution, as a benchmark for improvement over
+the original Illustris simulation. Given this newly accessible the-
+oretical regime, we then proceed to study the characteristics and
+origin of the galaxy color bimodality. In Section 2 we describe the
+simulations and their methods, while Section 3 details our model-
+ing of galaxy colors and the effects of dust. Section 4 compares the
+results of TNG to the observational data. In Section 5 we provide a
+theoretical picture of the color transition process and the origin and
+buildup of the galaxy color bimodality. We conclude with a dis-
+
+
+IllustrisTNG: Galaxy Colors
+3
+cussion in Section 6 and summarize with Section 7. Finally, Ap-
+pendix A evaluates numerical convergence and details of our color
+modeling.
+2
+THE TNG SIMULATIONS
+The IllustrisTNG project1 is the successor of the Illustris simulation
+(Vogelsberger et al. 2014a,b; Genel et al. 2014; Sijacki et al. 2015).
+It uses an updated ‘next generation’ galaxy formation model which
+includes both new physics as well as reﬁnements to the original Il-
+lustris model. The complete description of the TNG galaxy forma-
+tion model, including details of the physical processes we include
+and explorations of the model and model variations on smaller test
+volumes are presented in the two TNG methods papers (Weinberger
+et al. 2017; Pillepich et al. 2017). For clarity, we avoid an exhaus-
+tive repetition of the details and here enumerate only the principal
+features.
+TNG is a series of large, cosmological, gravo-magneto-
+hydrodynamical simulations incorporating a comprehensive model
+for galaxy formation physics. We use the AREPO code (Springel
+2010) to solve the coupled equations of self-gravity and ideal,
+continuum magneto-hydrodynamics (MHD; Pakmor et al. 2011;
+Pakmor & Springel 2013), the former computed with the Tree-
+PM approach and the latter employing a Godunov/ﬁnite-volume
+method with a spatial discretization based on an unstructured,
+moving, Voronoi tessellation of the domain. The scheme is quasi-
+Lagrangian, second order in both space and time, uses individual
+particle time-stepping, and has been designed to efﬁciently execute
+large, parallel astrophysical simulations on modern supercomputer
+architectures – our largest run used 24000 compute cores.
+On top of this numerical framework the TNG simulations im-
+plement models for the key physical processes relevant for galaxy
+formation and evolution. These are: (i) microphysical gas radiative
+mechanisms, including primordial and metal-line cooling and heat-
+ing with an evolving ultraviolet background ﬁeld, (ii) star formation
+in the dense interstellar medium, (iii) stellar population evolution
+and chemical enrichment following supernovae Ia, II, and AGB
+stars, individually tracking H, He, C, N, O, Ne, Mg, Si, and Fe,
+(iv) stellar feedback driven galactic-scale outﬂows, (v) the forma-
+tion, merging, and accretion of supermassive blackholes, (vi) multi-
+mode blackhole feedback operating in a thermal ‘quasar’ mode at
+high accretion states and a kinetic ‘wind’ mode at low accretion
+states.
+We describe the complete model used to run the TNG cosmo-
+logical simulations in Pillepich et al. (2017) – see Table 1 of that
+work for the salient differences with respect to the original Illus-
+tris model – together with Weinberger et al. (2017), focusing on
+the blackholes and the high-mass end. Every aspect of the physi-
+cal model and detail of its numerical implementation, including all
+parameter values and the simulation code version, are documented
+therein and entirely unchanged for the simulations we present here.
+The TNG project is made up of three simulation volumes:
+TNG50, TNG100, and TNG300. Here we present the two larger
+volumes: the ﬁrst simulation, TNG100, includes 2×18203 resolu-
+tion elements in a ∼100 Mpc (comoving) box. The baryon mass
+resolution is 1.4 × 106 M⊙, the gravitational softening length of the
+dark matter and stars is 0.7 kpc at z = 0, and the gas component
+1 http://www.tng-project.org
+Table 1. Most important details of the two primary simulations presented
+here: TNG100 and TNG300. These are: the simulated volume and box side-
+length (both comoving), the number of initial gas cells, dark matter parti-
+cles, and Monte Carlo tracers. The mean baryon and dark matter particle
+mass resolutions, in solar masses. The minimum allowed adaptive gravita-
+tional softening length for gas cells (comoving Plummer equivalent), and
+the redshift zero softening of the dark matter and stellar components in
+physical kilo-parsecs. In Tables A1 and A2 we provide additional details,
+including the resolution series and dark-matter only analogs of each box.
+Run Name
+TNG100
+TNG300
+Volume
+[ Mpc3 ]
+110.73
+302.63
+Lbox
+[ Mpc/h ]
+75
+205
+NGAS
+-
+18203
+25003
+NDM
+-
+18203
+25003
+NTRACER
+-
+2 × 18203
+1 × 25003
+mbaryon
+[ M⊙]
+1.4 × 106
+1.1 × 107
+mDM
+[ M⊙]
+7.5 × 106
+5.9 × 107
+ϵgas,min
+[ pc ]
+185
+370
+ϵz=0
+DM,stars
+[ kpc ]
+0.74
+1.48
+ϵDM,stars
+[ ckpc/h ]
+1.0 →0.5
+2.0 →1.0
+has an adaptive softening with a minimum of 185 comoving par-
+secs. The phases are the same as original Illustris, enabling object-
+by-object comparison. The second simulation, TNG300, includes
+2×25003 resolution elements in a ∼300 Mpc box, a volume ∼20
+times larger. Its baryon mass resolution, collisionless softening, and
+gas minimum softening are 1.1×107 M⊙, 1.5 kpc, and 370 parsecs,
+respectively. The key details of each volume are given in Table 1.
+We also run two lower resolution realizations for each volume and
+dark-matter only analogs of every conﬁguration, a total of twelve
+simulations which are detailed, and studied, in Appendix A. The
+high-resolution TNG50 run will be introduced in future work (Nel-
+son et al. in prep, Pillepich et al. in prep). It includes 2×21603 res-
+olution elements in a ∼50 Mpc box, with a baryon mass resolution
+of 8.5 × 104 M⊙, z = 0 collisionless softening of 280 parsecs, and a
+minimum gas softening of 74 parsecs.
+This is one in a series of ﬁve papers that introduce Illus-
+trisTNG, each of the other four with a distinct scientiﬁc focus. In
+Naiman et al. (2017) we study neutron star-neutron star mergers
+and r-process chemical enrichment, and in Pillepich et al. (2017)
+we decompose the different stellar components at group and clus-
+ter scales and investigate the universality of stellar mass proﬁles.
+In Marinacci et al. (2017) we measure radio synchrotron emission
+from massive galaxy clusters, while in Springel et al. (2017) we
+examine the spatial clustering of matter and of galaxies.
+For TNG we adopt a cosmology consistent with recent con-
+straints (Planck Collaboration 2016), namely ΩΛ,0
+=
+0.6911,
+Ωm,0 = 0.3089, Ωb,0 = 0.0486, σ8 = 0.8159, ns = 0.9667 and
+h = 0.6774. Herein we identify gravitationally bound substructures
+using the SUBFIND algorithm (Springel et al. 2001) and link them
+through time with the SUBLINK merger tree algorithm (Rodriguez-
+Gomez et al. 2015).
+3
+MODELING GALAXY COLORS
+We consider three models for computing the colors of galaxies: (A),
+(B), and (C). Each builds off the previous with increasing complex-
+
+
+4
+D. Nelson et al.
+ity. Model (A) sums up the intrinsic emission of each star particle
+in a galaxy, with no attenuation. Model (B) adds ‘unresolved’ dust
+attenuation due to dense gas birth clouds surrounding young stellar
+populations. Model (C) adds ‘resolved’ dust attenuation due to the
+simulated distribution of neutral gas and metals. Therefore, the ﬁrst
+two models are invariant to orientation, while colors from the third
+depend on viewing angle. In this paper all results use model (C)
+exclusively, while the three models are compared in the appendix.
+3.1
+Model (A) - no dust
+Each star particle in the simulation is modeled as a single-burst
+simple stellar population (SSP), whose birth time, metallicity, and
+mass are recorded. We use the FSPS stellar population synthesis
+code (Conroy et al. 2009; Conroy & Gunn 2010; Foreman-Mackey
+et al. 2014) with the Padova isochrones, MILES stellar library, and
+assuming a Chabrier IMF. The isochrones contain 22 metallicity
+steps from −3.7 to −1.5 (log total metal mass ratio), and 94 age
+steps from −3.5 to 1.15 (log Gyr). For each point on this 2D grid,
+we convolve the resulting population spectrum with each of the
+observed pass-bands (SDSS u,g,r,i,z airmass 1.3), saving the total
+magnitude in each. Default models for dust emission and nebular
+line and continuum emission are included.
+For each star particle we then use bicubic interpolation
+in this (Zi, tssp) plane to obtain m1, the band magnitude of a
+1 M⊙equivalent population. Multiplying by the initial mass Mi
+gives the total band magnitude of the actual population m = m1 −
+2.5 ∗log10(Mi/M⊙). For the total magnitude of each galaxy, we
+sum all the subhalo member star particles, with no additional re-
+strictions. Galaxy colors are the difference between two of these
+total band magnitudes.
+3.2
+Model (B) - unresolved dust
+Following Charlot & Fall (2000) we add a simple powerlaw extinc-
+tion model for the attenuation by ﬁnite lifetime birth clouds sur-
+rounding young stellar populations as well as the ambient diffuse
+ISM. The intrinsic luminosity Li(λ) of each stellar population is at-
+tenuated as Lobs(λ)/Li(λ) = e−τB
+λ where the wavelength dependent
+optical depth τB
+λ is then given as
+τB
+λ =
+
+τ1(λ/λ0)−α1
+, tssp ⩽tage
+τ2(λ/λ0)−α2
+, tssp > tage
+.
+(1)
+All parameters are unchanged from their commonly adopted val-
+ues. We take τ1 = 1.0, τ2 = 0.3 (although see Wild et al. 2011),
+α1 = α2 = 0.7, tage = 10 Myr, and λ0 = 550 nm. The resulting
+colors remain independent of viewing angle.
+3.3
+Model (C) - resolved dust
+We follow the distribution of neutral gas in and around each sim-
+ulated galaxy. Using its metal content we can then model the sub-
+sequent dust attenuation of the optical light emitted by stars. We
+reiterate that this obscuration is in addition to the previously de-
+scribed Model (B) component. Following Guo & White (2009) and
+Xu et al. (2017) we likewise adopt the results of Calzetti et al.
+(1994) and take their internal dust model, where the ionized gas
+and dust are co-spatial and uniformly mixed (see the Appendix for
+an exploration of the alternative geometrical assumption of a fore-
+ground screen). In the present case
+Lobs(λ) = Li(λ) · 1
+τλ
+ 1 −e−τλ
+(2)
+where τλ is the total dust attenuation arising from both absorption
+and scattering. We use the resolved gas distribution of the simula-
+tion to calculate τa
+λ, the contribution from absorption. The scatter-
+ing contribution is then incorporated by deriving a total τλ as
+τλ = f eﬀ(τa
+λ, hλ, ωλ)
+= τa
+λ
+h
+hλ(1 −ωλ)1/2 + (1 −hλ)(1 −ωλ)
+i
+(3)
+where hλ and ωλ are taken from ﬁts to the scattering anisotropy
+weight factor and albedo over λ ∈[100 nm, 1000 nm], respectively
+(Calzetti et al. 1994). For the absorption optical depth, we take
+τa
+λ =
+ Aλ
+AV
+!
+⊙
+(1 + z)β (Zg/Z⊙)γ (NH/NH,0).
+(4)
+Here, the ﬁrst term is the solar neighborhood extinction curve
+which we take from Cardelli et al. (1989). Note that in the opti-
+cal the differences between the empirical extinction curves of the
+SMC, LMC, and Milky Way are negligible. The second and third
+terms parameterize a redshift and metallicity dependent dust-to-gas
+ratio (see also McKinnon et al. 2016). We adopt β = −0.5 and a
+broken power-law γ = 1.6 (λ > 200 nm) γ = 1.35 (λ < 200 nm,
+outside the SDSS bands). We take Z⊙= 0.0127 and for the nor-
+malization of the hydrogen column NH,0 = 2.1 × 1021 cm−2. All
+parameters are taken unchanged from their literature values.
+The quantities Zg and NH are both computed independently for
+each star with the following procedure. For each galaxy, we trace
+through the resolved gas distribution from twelve viewing angles,
+corresponding to the verticies of the Ns = 1 Healpix sphere (G´orski
+et al. 2005) oriented in simulation coordinates (i.e. randomly with
+respect to each galaxy). For each direction, an orthographic pro-
+jection grid with a pixel scale of 1.0 kpc is created covering all the
+member star particles. All gas cells and star particles in the sub-
+halo are z-sorted by distance from the view point, then gas cells
+are progressively deposited on to the grid front-to-back using the
+standard cubic spline kernel with h = 2.5 rcell = 2.5 (3Vcell/4/π)1/3.
+When the z-position of a star is reached it samples with bilinear
+interpolation the accumulated gas values in the four grid cells near-
+est to its projected location. These values are the neutral hydrogen
+column density and the neutral hydrogen mass weighted gas metal-
+licity, which are used for NH and Zg above. Note that the neutral
+hydrogen fraction of each gas cell is computed during the sim-
+ulation using the atomic network of Katz et al. (1996) with the
+time variable though spatially uniform ionizing UV background of
+Faucher-Gigu`ere et al. (2009) given the density-based self shield-
+ing prescription of Rahmati et al. (2013).
+Each full stellar population spectrum is convolved with the λ-
+dependent attenuation and then by the observed passband. Finally,
+we impose a 3D radial restriction of at most 30 physical kpc from
+the subhalo center. This approximates a Petrosian aperture, and in-
+cludes all subhalo particles for low-mass galaxies.
+
+
+IllustrisTNG: Galaxy Colors
+5
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+PDF
+9.0 < M ⋆ < 9.5
+all galaxies
+centrals only
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+PDF
+9.5 < M ⋆ < 10.0
+9.5 < M ⋆ < 10.0
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+PDF
+10.0 < M ⋆ < 10.5
+10.0 < M ⋆ < 10.5
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+PDF
+10.5 < M ⋆ < 11.0
+10.5 < M ⋆ < 11.0
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+2
+4
+6
+8
+10
+PDF
+11.0 < M ⋆ < 11.5
+11.0 < M ⋆ < 11.5
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+2
+4
+6
+8
+10
+PDF
+11.5 < M ⋆ < 12.0
+SDSS z<0.1
+Illustris-1
+TNG100-1
+Figure 1. The distribution of simulated versus observed (g-r) colors. In black the SDSS z <0.1 sample is shown, while red shows the result from the old
+Illustris simulation, and blue the result from our new TNG100 simulation of equivalent box size and resolution. In all cases, galaxies with stellar masses from
+109 to 1012 M⊙are included, divided into six mass bins as indicated in the six panels (log M⋆values shown). One-dimensional kernel density weighted PDFs
+are shown (with a half-Scott bandwidth of 0.5N−1/5). In each case galaxies are shown regardless of if they are centrals or satellites. In addition, in the lowest
+mass panel we also decompose the simulated results and show centrals only (dotted lines), demonstrating that the somewhat excessive red peak at these masses
+arises from the red satellite population. Illustris and TNG100 galaxies are treated with the same dust model C (see Section 3). Evident in both SDSS and
+TNG100: the dominant blue population at low masses, the emergence of the red peak and the strong bimodality around 1010.5 M⊙, and the dropout of blue
+systems with the red population dominant at high masses.
+4
+COMPARISON TO OBSERVATIONS
+To assess the outcome of the simulations we compare to the ob-
+served colors of galaxy populations in the local universe. Specif-
+ically, we draw an observed sample from the Sloan Digital Sky
+Survey (SDSS DR12; Alam et al. 2015) by selecting all galaxies
+with spectroscopic redshifts z < 0.1, a sample of 378,287 objects.
+For their absolute magnitudes in the ﬁve ugriz SDSS broadband ﬁl-
+ters we adopt the modelMag values. These are computed from the
+best ﬁt of either an exponential or de Vaucoulers proﬁle in the r-
+band, whose amplitude (but not shape) is then ﬁt in the remaining
+bands. They are in excellent agreement with Petrosian magnitudes
+for the majority of galaxies, with offsets due to color gradients and
+aperture corrections at the massive end (Strauss et al. 2002). We
+add the correction for Galactic extinction following Schlegel et al.
+(1998) as well as a k-correction using the method of Chilingarian
+et al. (2010). For stellar mass estimates for each observed galaxy
+we adopt the Granada FSPS wide SED ﬁt values (Ahn et al. 2014).
+In Figure 1 we show normalized PDFs of (g-r) color in six
+equal bins of stellar mass from 109 to 1012 M⊙. The black curves in
+each panel show the observed distribution of galaxy colors in that
+mass range. In red we show the results of the original Illustris simu-
+lation, while in blue we show the outcome of the new TNG100 sim-
+ulation. We adopt the same dust model (‘resolved dust’ model C)
+for both, and include all z = 0 galaxies with 109 < M⋆/M⊙< 1012.
+In both the observations and in TNG100 there is a consistent over-
+all picture: at low stellar masses, the blue population dominates
+the sample with (g-r) ∼0.4, while the red peak emerges towards
+higher M⋆at a characteristic (g-r) ∼0.8. The two reach roughly
+equal magnitude, displaying the strong observed color bimodality,
+at M⋆≃1010.5 M⊙. Above this mass blue systems quickly disap-
+pear, leaving the red galaxy population dominant at high mass.
+The agreement between TNG100 simulated galaxies and the
+observational dataset is in general excellent – see Section 4.2. For
+stellar masses below 1011 M⊙where there are clearly two distinct
+peaks, we recover their respective locations in (g-r) and the posi-
+tion of the minimum between them to ≃0.05 mag or better. The
+evolution of the relative amplitude of the blue and red distribu-
+tions as a function of M⋆is likewise well captured, as is the stellar
+mass of maximal bimodality, where the red fraction of the galaxy
+population is half. On the other hand, the original Illustris simu-
+lation does not exhibit a color bimodality sufﬁciently strong, or at
+the correct location in M⋆, having generally too few red systems
+at intermediate masses between 109.5 < M⋆/M⊙< 1011. Above
+1011 M⊙Illustris agrees well with SDSS in the peak location of the
+red sequence, although the distribution may be too narrow in color
+at the highest masses.
+The clearest potential tension between TNG100 and the
+z < 0.1 SDSS sample is that the simulation appears to contain too
+many red galaxies at the lowest masses, below 109.5 M⊙. In this
+panel (upper left) we also show the separate color distribution for
+central galaxies only, which demonstrates that this overly popu-
+
+
+6
+D. Nelson et al.
+8.0
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+12.5
+Stellar Mass [ log Msun ]
+0
+2
+4
+6
+8
+10
+12
+14
+Stellar Age [ Gyr ]
+Gallazzi+ (2005) SDSS z<0.2
+Bernardi+ (2010) SDSS, HB09 Early-Types
+TNG100-1
+TNG300-1
+8.0
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+12.5
+Stellar Mass [ log Msun ]
+−1.5
+−1.0
+−0.5
+0.0
+0.5
+1.0
+Zstars [ log Zsun ]
+Gallazzi+ (2005) SDSS z<0.2
+Woo+ (2008) Local Group
+Kirby+ (2013) Local Group
+TNG100-1
+TNG300-1
+TNG100-1 mock SDSS ﬁber spectra ﬁts
+Figure 2. The simulated stellar age versus mass (left panel) and stellar metallicity versus mass (right panel) relations, compared to several observational
+data sets (gray). The ages are compared to observational results from Gallazzi et al. (2005) and Bernardi et al. (2010), while the stellar metallicity relation is
+compared to data from Gallazzi et al. (2005) with dwarf points from Woo et al. (2008) and Kirby et al. (2013). In both cases, the simulated lines are taken at
+z = 0.1 by considering the mean age and/or metallicity of all star particles within a 4 kpc mock SDSS ﬁber aperture, weighted by their r-band luminosities.
+For Zstars we include approximate corrections from Guidi et al. (2016) for the difference between our luminosity weighted ﬁber-aperture technique and the
+spectral index ﬁtting technique actually used in Gallazzi et al. (2005) (dashed blue and orange lines). In green we show the TNG100-1 trend and its scatter
+derived by ﬁtting mock SDSS spectra with matched noise and resolution characteristics (see footnote for details).
+lated red component is entirely made up of satellites. TNG100 may
+genuinely produce too many low-mass red satellite galaxies. These
+are however some of the most marginally resolved systems, con-
+taining only ∼1000 star particles, and in Appendix A we show that
+with increasing resolution the low-mass galaxy population tends
+to become bluer. This may be, therefore, an unresolved regime for
+TNG100. On the other hand, the observations are not complete at
+these low masses. A bias in the effective volume sampled by the
+SDSS spectroscopic survey as a function of color, such that intrin-
+sically fainter red galaxies are underrepresented, could explain the
+discrepancy. Similarly, a bias from the spectroscopic targeting due
+to ﬁber collisions in high-density environments, such that intrinsi-
+cally redder satellites are underrepresented, could also contribute.
+A more sophisticated analysis – namely, a full mock SDSS spectral
+survey – could deﬁnitely demonstrate the impact of both issues.
+4.1
+Stellar Ages and Metallicities
+The principal ingredients of the colors are the ages and metallici-
+ties of the stars. In Figure 2 we therefore independently compare
+the predictions for TNG100 and TNG300 at z = 0.1 against ob-
+served stellar age and metallicity relations. The primary constraint
+for both is from Gallazzi et al. (2005), which is also based on low-
+redshift SDSS galaxies. From the simulations we compute lumi-
+nosity weighted r-band 2D ﬁber-aperture 4 kpc restricted values as
+an approximation of the SDSS ﬁber derived observations.
+The simulated stellar ages are in excellent agreement with the
+observed relation, both in the median values (solid lines) and in
+the scatter (16th-84th percentiles). We caution that the simulated
+scatter is intrinsic only – we have not convolved by an estimate
+of the observational uncertainty. The simulated scatter is therefore
+consistent with the observed scatter in the sense of a lower limit.
+The average stellar ages transition from a relatively constant ≃8 −
+10 Gyr at the highest masses to a relatively constant ≃2 Gyr at
+the lowest masses, with intermediate values over 1010 < M⋆/M⊙<
+1011. This same trend, and the transition point at Milky Way mass,
+is seen in the observed ages. Tension exists in the value of the mean
+age of stars in the lowest mass galaxies, below 109.5 M⊙. While
+Gallazzi et al. (2005) favor an asymptotic value of 1 Gyr, we ﬁnd
+a somewhat higher mean age of 2 Gyrs. This lack of present day
+low-mass dwarf systems formed within the past billion years in the
+simulation may be a genuine failure of the model. As we discuss
+next, it may also arise from an overly simplistic comparison.
+The stellar metallicities do not reproduce the observed trend
+to the same degree. At 1010.5 M⊙and above the simulations agree
+with the observed population quite well, exhibiting a weak scal-
+ing with M⋆normalized at a super-solar metallicity value. How-
+ever, the trend with stellar mass is too ﬂat, and this leads to too
+high metallicities at low mass. Speciﬁcally, the maximal discrep-
+ancy is ≃0.5 dex in stellar metallicity at log(Z⋆/Z⊙) ≃−0.5 (ob-
+served), at the level of the 1σ (upper 84th percentile) range of the
+observed sample. We hypothesize that this discrepancy is driven by
+the rather different method for deriving the simulated versus ob-
+served stellar metallicities. Speciﬁcally, we show (orange and blue
+dashed lines) a proposed correction between the two from Guidi
+et al. (2016), which involves a dust radiative transfer computation
+of the emergent spectrum, followed by measurement of individual
+spectral features (e.g. D4000n, Hβ, [Mg2Fe]) and the application
+of the speciﬁc procedure of Gallazzi et al. (2005). This is rather
+distant from the simple luminosity-weighted ﬁber-aperture values
+we present, which do not involve any spectral measurements. Al-
+though we would like to use this correction directly, it has been
+derived from a small simulated sample over a limited mass range,
+and with a different physical model. A robust comparison of TNG
+stellar metallicities (and ages) to SDSS ﬁber spectrally-derived val-
+ues therefore requires more sophisticated forward modeling.2
+2 A preliminary analysis – whereby we have created mock SDSS ﬁber
+spectra for every simulated galaxy with noise and instrumental resolution
+characteristics sampled randomly from real SDSS ﬁbers, identically per-
+formed a MCMC ﬁt on both the mock spectral catalog and the actual SDSS
+spectral sample, using FSPS as the generative model (Leja et al. 2017, John-
+
+
+IllustrisTNG: Galaxy Colors
+7
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+4.0
+(u-i) color [ mag ]
+SDSS z<0.1
+TNG100-1
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+(g-r) color [ mag ]
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+(r-i) color [ mag ]
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+3.5
+(u-r) color [ mag ]
+Figure 3. The distribution of observed (black) versus simulated (blue) galaxies in the color-mass plane at z = 0, shown for three band combinations beyond the
+(g-r) explored in this work: (u-i), (u-r), and (r-i). Conditional 2D kernel density estimates (KDEs) are shown with contours at {0.2,0.5,0.75,0.98}. On the right
+side of each panel the marginalized one-dimensional PDF is shown, drawing a simulated sample with the same stellar mass distribution as the observations
+using a discrete inverse transform sampling method. We see that the (u-i) and (u-r) colors show the same level of excellent quantitative agreement with respect
+to the observations, while the (r-i) colors of low mass galaxies are slightly too red.
+Indeed, the colors of stellar populations are sensitively depen-
+dent on both age and metallicity. Yet, we have demonstrated excel-
+lent quantitative agreement between simulated and observed galaxy
+colors down to, at least, stellar masses of 109.5 M⊙. Therefore, the
+apparent tension in the stellar age and metallicity relations at these
+same masses suggests that the direct comparison of age and metal-
+licity is presently less informative than the more indirect compari-
+son of color, because of the difﬁculty of making a rigorous compar-
+ison of the simulated results with SDSS ﬁber-derived quantities.
+son et al. in prep) with the MILES libraries over 3750 < λ < 7000 in the
+seven-dimensional parameter space of {zresidual, M⋆, Z⋆, τSFH, tage, τ1,dust,
+σdisp} with broad priors on each – suggests that the correspondingly derived
+median stellar metallicities are offset lower by ∼0.2 dex at M⋆= 1010 M⊙
+and by ∼0.5 dex at M⋆= 109 M⊙with respect to the presented simula-
+tion values. This implies that the apparent tension in the Z⋆−M⋆relation
+arises solely from an overly simplistic comparison (Nelson et al. in prep).
+Note that we truncate this mock Zstars measurement at M⋆≃1010.5M⊙,
+after which our current modeling implies a similar and roughly constant
+offset extends up to the more massive galaxies. A more robust conclusion
+in this regime, however, would require an improved ﬁtting of systems with
+signiﬁcant stellar velocity dispersions.
+4.2
+Characterizing the Color-Mass Plane
+Color combinations with the u-band will span the 4000Å break at
+low redshift, making them more sensitive indicators of quiescence
+and star formation history (Bruzual 1983). We therefore augment
+the (g-r) colors presented thus far with several additional compar-
+isons against the SDSS sample. In Figure 3 we show contours of the
+full two dimensional distributions in the color-mass plane for four
+band combinations: (u-i), (g-r), (r-i), and (u-r), comparing each to
+the same z < 0.1 SDSS galaxies. We see that each of (u-r), (u-i),
+and (r-i) share the same level of quantitative agreement with the ob-
+servations as (g-r). The blue population in (r-i) color is excessively
+red by roughly 0.1 dex, and since (r-i) is sensitive to dust reddening
+this discrepancy may indicate tension in our dust modeling.
+More interestingly, we see the emergence of several second
+order discrepancies. These would have been impossible to observe,
+much less characterize, without this excellent base level of agree-
+ment. Two are immediately obvious.
+The ﬁrst is the fact that the sharp transition from blue to red
+occurs at slightly too high M⋆in the simulations, by about 0.1 dex.
+The immediate conclusion would be that galaxies transition to a
+red-dominated population slightly too late. We caution, though, that
+
+
+8
+D. Nelson et al.
+we have not modeled mock SDSS stellar masses of galaxies at the
+same level of rigor as their colors (see Torrey et al. 2015; Guidi
+et al. 2015; Bottrell et al. 2017, for work in this direction); 0.1 dex
+is likely also less than the observational uncertainty in M⋆.
+The second discrepancy is that the slope of the red sequence is
+ﬂatter in the simulations than in the observations. This implies that
+there may be some physical effect tilting the observed color-mass
+relation at the high-mass end, which TNG either misses or captures
+less strongly. The physical origin is likely the residual trends of age
+and Z⋆within the passive population (Loubser et al. 2009). It is
+possible that in TNG the mean stellar age and Z⋆do not increase
+as strongly with stellar mass as they should. On the other hand,
+we ﬁnd that the integrated colors of the massive red population are
+quite sensitive to aperture. We propose that galactic color gradients
+act to wash out this intrapopulation effect: because passive galax-
+ies have measurable radial gradients in stellar age, metallicity, and
+color (Gonz´alez Delgado et al. 2015; Cook et al. 2016) integrated
+colors are sensitive to the radius within which they are measured,
+and our ﬁxed 30 kpc aperture restriction cannot precisely corre-
+spond to the SDSS model magnitudes. Smaller apertures exclude
+a progressively larger fraction of (generally bluer) ICL, reddening
+the integral color of the simulated galaxy. Similar considerations
+may explain why simulated galaxies in the most massive bin of
+Figure 1 (at M⋆⩾1011.5 M⊙) do not reach the maximal (g-r) val-
+ues seen in SDSS, although the lack of this tail at (g-r) > 0.9 may
+also reﬂect the inability of our dust modeling to represent the most
+extremely reddened observed galaxies.
+To avoid ambiguous statements about having ‘reasonable’,
+‘good’, or ‘excellent’ agreement between observed and simulated
+galaxy properties we quantify the respective color distributions. In-
+spired by Baldry et al. (2004) and Taylor et al. (2015) we proceed
+without making a priori cuts on where red versus blue galaxies pop-
+ulate the color-mass space. Instead we assume that, at a given stellar
+mass, two distinct (possibly overlapping) populations exist, each
+with a gaussian distribution G(C) in color C. In a discrete set of
+mass bins, we therefore ﬁt a series of 2-gaussian mixture models
+1
+X
+i=0
+Gi =
+1
+X
+i=0
+i + (−1)iAi
+σi(2π)−1/2 exp
+"−(C −µi)2
+2σ2
+i
+#
+.
+(5)
+We
+consider
+the
+stellar
+mass
+range
+spanning
+9.0 <
+log( M⋆/M⊙)<12.0 with a binsize ∆log M⋆= 0.15 giving 20
+total mass bins. Similarly, a color binsize of ∆(g −r) = 0.04
+over the color range 0.0 < (g-r) < 1.0 gives 25 color bins per
+mass bin. Rather than let the ﬁve parameters of each P Gi vary
+independently, we constrain their center positions and widths to
+be continuous functions of stellar mass according to a global
+linear+tanh relation, namely
+T (M⋆) = p0 + p1 log M⋆+ q0 tanh
+"log M⋆−q1
+q2
+#
+.
+(6)
+We have 20 relative amplitudes for the red versus blue populations
+across the mass bins. In addition, ten T (x) function parameters for
+the red and blue µi, and likewise the ten T (x) function parame-
+ters for the red and blue σi, resulting in a forty parameter vector
+Θ to ﬁt. Rather than a simultaneous global ﬁt, we ﬁrst implement
+and carry out the parameter-split iterative procedure as described
+in Baldry et al. (2004). We then take this solution Θ0 as the initial
+guess of a global MCMC ﬁt to explore the 40-dimensional param-
+eter space and estimate the uncertainties of each (using EMCEE;
+Foreman-Mackey et al. 2013).
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M⋆ [ log Msun ]
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+μred, blue [peak location in (g−r) mag]
+TNG100-1
+SDSS z<0.1
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M⋆ [ log Msun ]
+0.00
+0.02
+0.04
+0.06
+0.08
+0.10
+0.12
+0.14
+0.16
+σred, blue [width in (g−r) mag]
+TNG100-1
+SDSS z<0.1
+Figure 4. Comparison of the red and blue population ﬁt parameters: widths
+σi (top panel) and center locations µi (bottom panel). The same procedure
+has been applied to the SDSS z < 0.1 sample and the TNG100-1 simulation
+at z = 0. We visually focus on the low-mass blue and high-mass red pa-
+rameters by showing them as dark lines and shaded regions, which give the
+median and 10-90 percentile model ranges of the ﬁnal chains, respectively.
+Applying the same procedure to the simulated and observed
+data sets, Figure 4 shows the result. In it we compare the loca-
+tions and widths of the red and blue populations as a function of
+stellar mass, in SDSS (dotted) versus TNG100-1 at z = 0 (solid).
+The mean color of blue galaxies is in excellent agreement, within
+0.05 mag. Its location in (g-r) may increase more slowly with M⋆
+in the observations, although we caution that this could be driven
+largely by the balance between the pi and qi components of the
+T function (i.e., the amount of curvature is not well constrained).
+Most interestingly, we can quantify the red sequence discrepancies
+noted above: in the simulation the mean of this is slightly too blue
+(by ≲0.05 mag). This tension arises because the dependence of
+σred on M⋆is steeper than observed, while the dependence of µred
+on M⋆is shallower than observed. The simulated color widths are
+slightly less than observed, indicating that the intrinsic scatter is
+consistent with the observed scatter. We reiterate that we have not
+convolved the intrinsic colors with estimated observational uncer-
+tainties, which would be required to compare the scatter in detail. In
+addition, we here use (as always) the ﬁducial model (C) ‘resolved
+dust’ colors for the simulations, and note that the exact level of
+quantitative (dis)agreement with respect to SDSS must depend at
+some level on the details of our dust modeling assumptions, which
+we explore in the Appendix.
+
+
+IllustrisTNG: Galaxy Colors
+9
+30 Mpc
+DM Column Density [log Msun kpc−2]
+5.0
+5.9
+6.8
+7.6
+8.5
+Gas Column Density [log Msun kpc−2]
+4.3
+5.0
+5.8
+6.5
+7.3
+Gas Column Density [log Msun kpc−2]
+5.0
+5.6
+6.2
+6.7
+7.3
+10 Mpc
+TNG100
+TNG300
+Temperature [log K]
+4.3
+5.0
+5.8
+6.5
+7.2
+Magnetic Field Magnitude [log μG]
+-9.0
+-7.0
+-5.0
+-3.0
+-1.0
+Figure 5. The cosmological context offered by the TNG100 and TNG300 simulations. The main ﬁgure shows three views of TNG300-1 at z = 0, centered
+on the most massive cluster in the box: gas column density (left), gas temperature (center), and magnetic ﬁeld amplitude (right). The ﬁrst two are projected
+through a depth equal to a third of the volume, while the magnetic ﬁeld is shown in a thin 100 kpc slice. The 50 most massive halos in the thick slice are
+indicated by circles with radii of r200,crit. In the inset in the upper right, we show the TNG100-1 volume at z = 0 in projected dark matter density (left) and
+gas density (right).
+5
+THEORETICAL INTERPRETATION
+Together, the TNG100 and TNG300 simulations are a powerful the-
+oretical tool. In Figure 5 we show a visual overview of the two
+simulation volumes at the present day, z = 0, including several
+properties of the gas as well as the dark matter distributions. The
+light of stars is entirely absent from this composite view, while all
+the galaxies (together with their colors) which we have thus far
+studied exist within this full cosmological context. By construction
+these large volumes include galaxies of a great variety of types, en-
+vironments, and formation histories. Simultaneously, each system
+has a large information content, whereby a wide range of proper-
+ties of its stars, gas, dark matter, or blackholes can be measured.
+
+
+10
+D. Nelson et al.
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−3.0
+−2.7
+−2.4
+−2.1
+−1.8
+−1.5
+−1.2
+−0.9
+−0.6
+−0.3
+0.0
+log sSFR [ Gyr−1 ]
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−1.0
+−0.8
+−0.6
+−0.4
+−0.2
+0.0
+0.2
+0.4
+log ( Zgas / Zsun )
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−3.2
+−2.8
+−2.4
+−2.0
+−1.6
+−1.2
+−0.8
+−0.4
+0.0
+log fgas
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+log tage, stars
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+0.00
+0.15
+0.30
+0.45
+0.60
+0.75
+0.90
+1.05
+1.20
+1.35
+1.50
+log |B|ISM  [μG]
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−2.0
+−1.6
+−1.2
+−0.8
+−0.4
+0.0
+0.4
+0.8
+log PB/Pgas (halo)
+[ Gyr ]
+Figure 6. Six views of the color-mass plane of all central galaxies in TNG300-1 at z = 0. In each case colors show a physical, median value of all the galaxies
+in that bin, and measurements are always within 2r⋆,1/2 unless otherwise noted. We show (i) the speciﬁc star formation rate, (ii) the gas metallicity normalized
+by solar, (iii) the gas fraction – gas mass divided by total baryon mass, (iv) the mean r-band luminosity weighted stellar age within a 4 kpc ﬁber-aperture, (v)
+the mean magnetic ﬁeld strength in the ISM, and (vi) the β−1 parameter of the mean ratio of magnetic to thermal pressure in the halo (0.15 < r/rvir < 1.0).
+Gray indicates a zero (or n/a) value for a given property of all the galaxies in that bin. Contours show conditional 75% and 95% levels.
+All these components have arisen self-consistently as the result of
+a coupled physical evolution across the history of the universe. In
+this section we use these relationships to elucidate the origin of the
+galaxy color distribution. We frequently include the TNG300 large
+volume in order to take advantage of its superior statistics, and refer
+to the Appendix for a discussion of resolution convergence and the
+differences between TNG300 and the higher resolution TNG100
+simulation.
+
+
+IllustrisTNG: Galaxy Colors
+11
+5.1
+Relating Color to Other Galaxy Properties
+In Figure 6 we show six views of the same TNG300-1 color-mass
+plane at z = 0. In each case, we map color to one median property
+of all the galaxies falling in that speciﬁc bin. These are: the spe-
+ciﬁc star formation rate (upper left), gas metallicity (upper right),
+galaxy gas fraction (center left), galaxy stellar age (center right),
+ISM magnetic ﬁeld amplitude (lower left), and halo magnetic to
+gas pressure ratio (lower right). Gray colors indicate a uniformly
+zero value for that bin, while contours show the conditional 75%
+and 95% levels of the galaxy population as a function of M⋆.
+In broad comparison of the lower left to the upper right of
+each panel – the locations of the blue and red populations, respec-
+tively – we recover several expected results. Red galaxies are pas-
+sive, gas poor, and old. With respect to otherwise increasing trends
+with stellar mass, they also have lower gas metallicities and smaller
+magnetic ﬁeld strengths, the latter in both the galaxy and the halo.
+Stellar age is the only property shown which depends almost en-
+tirely on color and not at all on M⋆, indicated by the purely vertical
+gradient. The fact that more massive galaxies tend to be older there-
+fore imprints itself as an increasing red fraction with stellar mass.
+On the other hand, galactic stellar metallicity has a largely hori-
+zontal gradient in this plane (not shown), reﬂecting the stronger
+dependence of color on age.
+The other ﬁve properties we show here, all related to the gas,
+have more complex behavior. Each appears driven by an underly-
+ing scaling with galaxy mass, which is then strongly modulated by
+color. For instance, the mean galactic gas metallicity increases with
+M⋆following the mass-metallicity relation only while the majority
+of galaxies are star-forming. Above a threshold stellar mass of ∼
+1010.5 M⊙we see that Zgas is suppressed. Similar trends are clearly
+visible in fgas as well as |B|ISM. The emergent sSFR lacks any signif-
+icant mass dependence, but otherwise has a similar trend. The halo
+β-ratio is the most complex, with non-monotonic behavior along
+both axes which we shortly explore further.
+In the transition regime of M⋆∼1010.5 M⊙and at ﬁxed stellar
+mass, the statistics of TNG300 allow us to see by eye the correla-
+tions between galaxy color and all ﬁve of the gas properties. For
+instance, in the median speciﬁc star formation rate, a vertical slice
+at this mass scale transitions from highly star forming (in yellow) at
+a (g-r) color of 0.3 to complete quiescence (in purple/gray) at a (g-
+r) color of 0.7. Similarly for the gas fraction, which also drops from
+near unity to essentially zero at a ﬁxed stellar mass of ∼1010.5 M⊙.
+We point out an explicit prediction of the TNG model: at the Milky
+Way mass scale blue galaxies should have a large-scale interstellar
+magnetic ﬁeld strength of order 10-30 µG while red galaxies, at the
+same stellar mass, should host a much weaker ﬁeld of ≲1 µG.
+An intriguing feature evident in Figure 6 is the diagonal
+boundary dividing the red and blue regimes. It implies the existence
+of a mass-dependent color threshold, or equivalently stated, a color-
+dependent mass threshold, beyond which galaxies enter a distinct
+physical population. We show later that this diagonal separation in
+the CM plane does not correspond to a boundary orthogonal to the
+bulk ﬂux of galaxies as they evolve, which is more vertical. Still, its
+existence, location in M⋆, and slope are all signatures of the color
+transition mechanism, driven by the speciﬁcs of the quenching pro-
+cess of the TNG blackhole feedback model.
+To identify the underlying physical mechanism of color tran-
+sition, Figure 7 shows a diagnostic of the integrated energy input
+from feedback by supermassive blackholes. Speciﬁcally, the cumu-
+lative energy released in the low accretion state (kinetic mode) is
+compared to the cumulative energy released in the high accretion
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+−6
+−5
+−4
+−3
+−2
+−1
+0
+BH 
+Z
+ Einjected, low / 
+Z
+ Einjected, high [ log ]
+TNG100-1
+TNG300-1
+10−4
+10−3
+10−2
+10−1
+Blackhole Accretion Rate / Eddington Rate
+TNG Model 
+χ(MBH) Low-State
+Threshold at z=0
+Measured
+Blackhole
+dMgas/dt
+at z=0
+Figure 7. The role of supermassive blackhole feedback in setting the char-
+acteristic stellar mass of color transition: the logarithm of the ratio of the
+integrated energy injection in the low versus high accretion states. These
+two quantities are summed across all blackhole progenitors. The median
+across all central galaxies is given for TNG100-1 (blue) and TNG300-1
+(orange). This ratio is always less than one, increasing rapidly between
+10.0 < log(M⋆/M⊙) < 10.5, similar to the transition from a blue to red
+dominated galaxy population. In addition we show the value of χ(MBH)
+deﬁning the fraction of the Eddington accretion rate below which a black-
+hole is in the low state (dashed gray), and the actual z = 0 blackhole accre-
+tion rates (dashed green), which intersect at this same characteristic mass.
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−2.0
+−1.5
+−1.0
+−0.5
+0.0
+0.5
+1.0
+log PB/Pgas (halo)
+TNG100-1
+TNG300-1
+blue
+red
+Figure 8. The correlation between the β−1 = PB/Pgas pressure ratio of the
+halo gas and the (g-r) color of the galaxy at a stellar mass of 1010.5 M⊙. We
+include all central galaxies for TNG100-1 (blue median line and individual
+galaxies indicated by circles) as well as TNG300-1 (orange median line and
+10 to 90 percentile shaded region) in a mass bin of width ±0.1 dex. Blue
+galaxies have β−1 ∼1, which then increases moderately with increasing
+color for transitional systems, before reversing and plummeting to β−1 ∼
+10−2 in the halos of the reddest galaxies. This trend is a signature of the
+physical mechanism of color transformation.
+state (quasar mode), as a function of M⋆of the central galaxy. For
+low-mass galaxies this ratio is effectively zero as these SMBHs
+have never been in the low-state. For the most massive galaxies
+this ratio asymptotes to ∼0.5, but is always less than one. A rapid
+transition between these two regimes occurs between 1010 M⊙and
+1010.5 M⊙, coinciding with the stellar mass where the median color
+of galaxies evolves from predominantly blue to predominantly red.
+
+
+12
+D. Nelson et al.
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ [ log Msun ]
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+−0.06
+−0.04
+−0.02
+0.00
+0.02
+0.04
+0.06
+0.08
+0.10
+Rate of (g-r) Evolution [ mag / Gyr ]
+Figure 9. The ﬂux of galaxies across the color-mass plane with time in TNG300-1. Both panels include all redshift zero central galaxies and show evolution
+between z = 0 and z = 0.3, corresponding to 3.4 Gyr – the results are not sensitive to this time interval. Contours show the locations of the red and blue
+populations at redshift zero for reference. Left panel: individual arrows show the median origin M⋆and (g-r) color of all the galaxies which arrive to the
+indicated bin by z = 0. The background grid shows the binning, with green and gray arrows on alternative rows. Right panel: the background color measures
+the median rate of color evolution, computed from all the galaxies in that bin at redshift zero, in magnitudes per billion years. Overlaid are streamlines (in
+black) showing the direction of the local vector ﬁeld (∂M⋆/∂t, ∂(g −r)/∂t) of galaxy evolution at that point. Several evolutionary phases are evident including
+(horizontal) mass growth along the blue population and (vertical) reddening towards quiescence. These ﬁgures reveal the dynamic and evolving nature of the
+color-mass plane by showing the bulk evolution of galaxy ensembles, and do not necessarily represent the pathway of any individual system.
+In the TNG model, blackholes enter the low-state when
+their accretion rate relative to Eddington drops below a threshold
+˙M/ ˙Medd < χ(MBH) which depends on the blackhole mass (Wein-
+berger et al. 2017, Eqn. 5). Using the median MBH −M⋆relation we
+plot the effective threshold in the same ﬁgure (dashed gray line), as
+well as the actual ˙MBH accretion rates (dashed green line). As the
+stellar mass of a galaxy grows above ∼1010 M⊙BH accretion drops
+while the value of χ also rises, increasingly promoting transition
+into the low-state. Note that the model input χ was set to address the
+stellar mass content of massive halos and the location of the knee
+in the stellar mass function (Pillepich et al. 2017). We therefore
+conclude that the mass scale where galaxies undergo rapid color
+transition is set by SMBH feedback in the low-accretion state. Fur-
+thermore, we ﬁnd that an evolution from blue to red color at this
+particular mass is unavoidably linked to the steep decline of the
+high-mass end of the low redshift stellar mass function.
+Finally, in Figure 8 we return to the ratio PB/Pgas of magnetic
+to thermal gas pressure support in the halos of galaxies. Select-
+ing all galaxies in the narrow mass bin 1010.4 < M⋆/M⊙< 1010.6 we
+measure the median relation as a function of (g-r) color, effectively
+at ﬁxed stellar mass. While blue galaxies have a typical magnetic
+to gas pressure ratio of order unity in the halo gas, this value in-
+creases by a factor of a few at intermediate colors, before drop-
+ping sharply by a factor of 100 for the reddest objects. That is, the
+relative importance of the halo magnetic ﬁeld with respect to the
+halo thermal energy is enhanced during the color transition phase
+and becomes negligible after. We generally expect ampliﬁcation to-
+wards equipartition and β = 1, as seen in the blue population. On
+the other hand, with PB ≪Pgas the magnetic ﬁeld in the halo is ef-
+fectively controlled by the gas thermodynamics. This sharp decline
+arises because PB drops much faster than Pgas, coinciding with the
+changing density and thermal energy content of the hot halo. The
+properties of the circumgalactic gas around a galaxy therefore en-
+code information about the energy release by the central blackhole,
+the cessation of star formation, and the color transition.
+5.2
+The Buildup of the Color-Mass Plane
+To untangle the origin of the z = 0 properties considered thus far,
+we begin to examine the time evolution of galaxies, focusing on
+their motion through the two-dimensional space of (g-r) color and
+stellar mass. In Figure 9 we show two views of the ﬂux of galaxies
+across the color-mass plane from z = 0.3 to redshift zero, a period
+of roughly 3.4 Gyr. In the left panel we show, for all the galaxies
+in each bin at z = 0, where this ensemble of galaxies originated
+from. Arrows start at the median mass and color at z = 0.3 and end
+at the redshift zero location. In the right panel we show the rate of
+color evolution in the background color, superimposing streamlines
+derived from the vector ﬁeld of ∆M⋆and ∆(g-r) taken across this
+same time period.
+Along the lower edge of the z = 0 blue population, (g-r) ≃
+0.35, we see mass growth largely in the horizontal direction. From
+the right panel it is clear that this line acts as a separatrix in the pop-
+ulation between either a positive or negative mean change of galaxy
+(g-r) color with time. Below this line, the population becomes more
+blue as stellar mass increases, while above the opposite is true, lead-
+ing to the butterﬂy pattern in color-mass space. This line of demar-
+cation extends all the way to M⋆= 1012 M⊙, although the origin at
+high mass differs. Above a stellar mass of ≳1011 M⊙it moves up
+to a (g-r) color of ≃0.7, at the bottom edge of the red population.
+Here, galaxies above this line redden slowly due to passive stellar
+evolution, while those below undergo episodes of rejuvenated star
+formation which temporarily pollute their integrated colors with the
+light from young stars. From the left panel we see these galaxies
+can traverse the full color range, although the sparsity of high-mass
+blue systems at z = 0 indicates these events are rare.
+One feature not immediately evident is strong passive mass
+growth along the passive red population. The most massive galaxies
+must either grow in mass through a succession of dry mergers after
+becoming red at lower mass, or directly join the red sequence at
+essentially their ﬁnal mass.
+
+
+IllustrisTNG: Galaxy Colors
+13
+5.3
+Timescale of the Color Transition and Formation of the
+Red Population
+To measure the evolution of individual galaxies in to, and out of,
+the red and blue populations, we ﬁrst repeat the characterization
+of the color-mass plane as described in Section 4.2 over the range
+0 ⩽z ⩽1. Colors are always derived from the rest-frame spectra of
+galaxies; changing colors indicate underlying physical evolution.
+At each discrete redshift and in every stellar mass bin this yields
+independent ﬁts of µred, µblue, σred, σblue. At each M⋆we then ﬁt for
+the redshift evolution of each of these four parameters assuming
+a powerlaw in (1 + z). For example, at M⋆= 1011 M⊙(in the red
+population) we ﬁnd µred ∝(1 + z)−0.3 and σred ∝(1 + z)0.8 such
+that from z = 0 to z = 1 the location of the red peak drops by
+≃0.15 mag in (g-r) and its width increases by almost a factor of
+two. At M⋆= 1010 M⊙(in the blue population) we ﬁnd µblue ∝
+(1 + z)−0.6 and σblue ∝(1 + z)−0.4 such that, over the same redshift
+range, the blue peak moves down by ≃0.2 mag in (g-r) while its
+width decreases by ∼30%.
+This quantitative characterization of the evolving blue/red
+galaxy distributions in color-mass space leads to a straightforward
+way to measure the color evolution of individual galaxies. We de-
+ﬁne two boundaries in color, Cblue and Cred, such that a galaxy with
+C < Cblue is classiﬁed as blue, C > Cred as red, and Cblue < C < Cred
+as an intermediate (‘green valley’) system. Each boundary is taken
+as some multiple of the width of that population away from its
+center location, both varying with stellar mass as well as redshift.
+Speciﬁcally,
+Cblue(M⋆, z) = µblue(M⋆, z) + fblue · σblue(M⋆, z) ,
+Cred(M⋆, z) = µred(M⋆, z) −fred · σred(M⋆, z) .
+(7)
+The parameters fblue and fred set the precise locations of the color
+boundaries. We take fblue = fred = 1.0 as a compromise between (i)
+the separation between the red and blue populations, and (ii) con-
+tamination of the intermediate group by non-transitional galaxies.
+The timescales we measure below can be modulated by these val-
+ues, which is to say, the time it takes galaxies to evolve through a
+region of color space depends on the deﬁnition of that region.
+For every galaxy at z = 0 we follow the evolution of its M⋆
+and (g-r) color back to z = 1. We locate all crossings of the evolv-
+ing red and blue boundaries, if applicable. For each galaxy we
+then know the ﬁrst time (highest redshift) it left the blue popula-
+tion tblue, the time it subsequently joined the red population tred,ini,
+and the timescale of its color transition ∆tgreen – its green valley
+occupation time. We also know its stellar mass upon exiting the
+blue population M⋆(tblue) and when entering the red population
+M⋆(tred,ini). Any mass growth after joining the red sequence is given
+by ∆M⋆,red = M⋆(z = 0)−M⋆(tred,ini). After becoming red, a galaxy
+may at some later point drop out of the red population by satis-
+fying C < Cred, in which case we record the number Nrejuv and
+time(s) ti
+rejuv (i = 0, 1, 2, ...) of these ‘rejuvenation’ events, as well
+as the mass growth ∆M⋆(ti
+rejuv) and timescale(s) τi
+rejuv of each, if the
+galaxy rejoins the red population thereafter.
+Figure 10 (top panel) presents the distribution of color transi-
+tion timescales ∆tgreen for all galaxies with M⋆> 109 M⊙at z = 0.
+Approximately 60% of all galaxies transition between the blue and
+red populations in less than two billion years, with the distribu-
+tions peaked at ∼1.5 Gyr. An extended tail reaches to much longer
+timescales, with ∼10% of galaxies taking 4 Gyr or longer to tran-
+sition in color. Although broad, the distributions of ∆tgreen are uni-
+modal (roughly log-normal) and do not necessarily require the ex-
+0
+1
+2
+3
+4
+5
+6
+7
+8
+Δtgreen [ Gyr ]
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+PDF
+TNG100-1
+TNG300-1
+All Galaxies
+Centrals Only
+Satellites Only
+TNG100-1
+TNG300-1
+All Galaxies
+Centrals Only
+Satellites Only
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M ⋆ at tred, ini (Arrival into the Red Population) [ log Msun ]
+0
+1
+2
+3
+4
+5
+∆tgreen [ Gyr ]
+TNG100-1
+TNG300-1
+All Galaxies
+Centrals Only
+Satellites Only
+TNG100-1
+TNG300-1
+All Galaxies
+Centrals Only
+Satellites Only
+Figure 10.
+Top. The timescale of color transition ∆tgreen measured as
+(tred,ini−tblue), corresponding to the time difference between leaving the blue
+population and entering the red population. We show for TNG100/TNG300
+the timescale PDF for all galaxies with M⋆> 109 M⊙(solid) and the sep-
+arate distributions for z = 0 central versus satellite galaxies only (dotted
+and dashed, respectively). In all cases the timescale distribution is broad,
+approximately log-normal, with a peak at ∼1.5 Gyr. Bottom. Relation be-
+tween ∆tgreen and stellar mass when the galaxy became red M⋆(tred,ini). At
+M⋆≲1010 M⊙galaxies require ∼2.5 Gyr to transit the green valley. Above
+this mass, we ﬁnd a decreasing trend with mass: galaxies which arrive into
+the red population with more stellar mass do so more rapidly. Shaded areas
+show the 10-90th percentiles for the ‘All Galaxies’ samples.
+istence of multiple color transition pathways with distinct physical
+timescales. Quantitatively, in TNG100-1 the median ∆tgreen across
+all galaxies is 1.6 Gyr with the 10-90th percentiles spanning 0.7 Gyr
+to 3.8 Gyr. There is only a minor difference between z = 0 central
+versus satellite galaxies: satellites have a slightly narrower distribu-
+tion of color transition timescales, P90
+10 = [0.8 Gyr, 3.7 Gyr]. This re-
+ﬂects a non-trivial similarity between central and satellite quench-
+ing timescales, the latter arising only after some threshold of envi-
+ronmental inﬂuence.
+In Figure 10 (bottom panel) we show the timescale of color
+transition ∆tgreen as a function of the ‘initial red’ galaxy stellar mass
+M⋆(tred,ini). Low mass systems which enter the red population with
+M⋆≲1010 M⊙take on average 2 −3 billion years to become red
+(albeit with signiﬁcant variation). Galaxies arriving with progres-
+sively larger stellar masses do so quicker, taking only ∼1 Gyr at
+M⋆≳1011 M⊙. We suggest that the increasingly common onset of
+
+
+14
+D. Nelson et al.
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+M⋆ at tred, ini (Arrival into the Red Population) [ log Msun ]
+0.0
+0.5
+1.0
+1.5
+2.0
+PDF
+TNG100-1 Cen
+TNG300-1 Cen
+M⋆(z = 0) Cen
+TNG100-1 Cen
+TNG300-1 Cen
+M⋆(z = 0) Cen
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+∆M ⋆, red / M ⋆, z = 0
+10−1
+100
+101
+PDF
+TNG100-1 Cen
+TNG300-1 Cen
+M⋆, z = 0 > 1010. 5Msun
+M⋆, z = 0 > 1011. 0Msun
+TNG100-1 Cen
+TNG300-1 Cen
+M⋆, z = 0 > 1010. 5Msun
+M⋆, z = 0 > 1011. 0Msun
+9.0
+9.5
+10.0 10.5 11.0 11.5 12.0
+M ⋆, z = 0 [ log Msun ]
+−0.2
+−0.1
+0.0
+0.1
+0.2
+0.3
+0.4
+∆M ⋆, red / M ⋆, z = 0
+All
+Cen
+Sat
+All
+Cen
+Sat
+Figure 11. Left. The initial stellar mass of galaxies joining the red population, M⋆(tred,ini). Only central galaxies at z = 0 are shown to exclude the contribution
+from low-mass satellite reddening. In dotted lines we show the distributions of z = 0 stellar masses of these same samples of galaxies, which are qualitatively
+quite similar. Right. The fraction of ﬁnal z = 0 stellar mass of galaxies which originates from growth after joining the red population ∆M⋆,red/M⋆,z=0. Only
+central galaxies with M⋆,z=0 above the indicated minima are included to focus on the massive population. Right Inset: Correlation between this red-phase
+fractional mass growth and the z = 0 stellar mass of the galaxy. Shaded areas show 10-90th percentiles for the ‘All’ samples.
+low-state BH feedback at ∼1010.5 M⊙provides for the steep drop
+in ∆tgreen for centrals evident around this mass.
+Upon completion of a transition from blue to red over this
+timescale, galaxies will arrive to the red population with a range
+of stellar masses. Figure 11 shows the distribution of M⋆(tred,ini),
+the initial M⋆upon ﬁrst crossing Cred and entering the red popula-
+tion, for central galaxies (left panel). ‘Initial red’ galaxy masses are
+peaked strongly at ≃1010.5 M⊙, and it would be tempting to con-
+clude that the vast majority of massive galaxies join the red popu-
+lation at its low-mass end. However, the drop-off towards large M⋆
+also encapsulates the correspondingly steep stellar mass function.
+Comparison with the z = 0 stellar mass of these same populations
+(dashed lines) clariﬁes that most galaxies join the red population
+roughly in proportion to where they reside at z = 0, and that we
+should examine the differential stellar mass growth.
+Even in the complete absence of any further in-situ star forma-
+tion, a newly red galaxy may still increase its M⋆down to z = 0.
+In Figure 11 (right panel) we show the distribution of this mass
+increase ∆M⋆,red normalized by ﬁnal z = 0 stellar mass (main
+panel). We include only central galaxies with M⋆,z=0 > 1010.5 M⊙to
+focus on the massive population and exclude the negative tail aris-
+ing from satellite mass loss. In this regime 0 < ∆M⋆,red/M⋆,z=0 < 1
+and for TNG100-1 the average fraction of the ﬁnal stellar mass
+which accumulates post-quiescence is 0.11, while the upper 10th
+percentile of galaxies exceed 0.41. Above 1011 M⊙these values in-
+crease to 0.25 and 0.53, respectively. Here, ≃18% of all galaxies
+acquire half or more of their present day mass on the red sequence.
+A small number of the most massive galaxies can acquire nearly all
+of their z = 0 stellar mass while on the red sequence - we ﬁnd ex-
+amples as high as 80%. The inset panel (upper right) quantiﬁes this
+correlation between red-phase mass growth and total stellar mass.
+The observed differences between TNG100 and TNG300 primarily
+reﬂect the lower mass resolution of the latter.
+We note that for satellite galaxies with M⋆below 1010.5 M⊙the
+mean ∆M⋆,red/M⋆,z=0 is −0.22 with the lowest 10th percentile ob-
+taining −0.44. The lowest mass satellite galaxies can lose > 50% of
+their stellar mass after becoming red. Post-reddening stellar mass
+growth (or loss) is clearly a strong function of both stellar mass and
+environment.
+6
+DISCUSSION
+So far we have presented our analysis of the color distribution of
+TNG galaxies without ever showing either a blue or red galaxy. We
+therefore turn to Figures 12 and 13 which visualize two z = 0
+samples of 35 blue and 35 red galaxies, respectively, making the
+connection to stellar morphology.
+Stellar light composites in the optical emphasize younger stars
+in the blue channel and older stars in the red. Galaxies are shown
+face-on, projections are 60 physical kiloparsecs on a side and each
+panel includes the galaxy stellar mass, subhalo ID, (g-r) color,
+and κ⋆,rot|Jz>0, a proxy for the rotational support (strong spheroids
+having κ ≲0.3 and strong disks having κ ≳0.6; Rodriguez-
+Gomez et al. 2017). Both samples are drawn from a halo mass
+bin 1012 < Mhalo/M⊙< 1012.2 where overlapping red and blue pop-
+ulations exist at similar stellar masses. Here we select blue galaxies
+as having (g-r) < 0.6, which may also include transitional color ob-
+jects, while we require (g-r) > 0.6 for the red galaxy sample.
+In this roughly Milky Way mass bin the bluer galaxies are typ-
+ically large, star-forming disks. Spiral features are often present,
+commonly traced by the blue light of younger stellar popula-
+tions. Spiral arms range from tightly wound conﬁgurations, to
+open grand-design patterns, to ﬂocculent and even more irregu-
+lar arrangements, although we caution that the we do not expect
+the physical mechanisms of spiral arm formation to be realisti-
+cally captured in cosmological simulations like TNG. Some sys-
+tems have strong central bulges, bar-like features, clumpy disk sub-
+structures, and/or merging companions; 10.4 ≲M⋆/ M⊙≲10.6 and
+0.5 ≲κ⋆≲0.7 are typical values.
+For passive centrals this is a relatively low mass scale, and
+the red galaxy sample is a mix of spheroidal and disk morpholo-
+gies. We see that some ‘red disks’ exist, as well as the more com-
+mon featureless ellipticals. Many of these systems exhibit ﬁne-
+grained phase space structures including stellar shells and elon-
+gated stellar streams from tidally destroyed satellites, indicative
+of recent merger activity – both features become more common at
+higher M⋆. Typically 10.5 ≲M⋆/ M⊙≲10.7 and 0.2 ≲κ⋆≲0.4 for
+the spheroids, while the passive disks continue to have κ⋆≳0.6.
+
+
+IllustrisTNG: Galaxy Colors
+15
+log Mstar = 10.7
+ID 438297 z = 0.0
+(g−r) = 0.56 κ ⋆ = 0.74
+log Mstar = 10.3
+ID 448732 z = 0.0
+(g−r) = 0.35 κ ⋆ = 0.49
+log Mstar = 10.5
+ID 446548 z = 0.0
+(g−r) = 0.48 κ ⋆ = 0.64
+log Mstar = 10.6
+ID 452577 z = 0.0
+(g−r) = 0.50 κ ⋆ = 0.69
+log Mstar = 10.5
+ID 455335 z = 0.0
+(g−r) = 0.47 κ ⋆ = 0.62
+log Mstar = 10.3
+ID 463062 z = 0.0
+(g−r) = 0.51 κ ⋆ = 0.52
+log Mstar = 10.4
+ID 463649 z = 0.0
+(g−r) = 0.49 κ ⋆ = 0.49
+log Mstar = 10.3
+ID 464576 z = 0.0
+(g−r) = 0.38 κ ⋆ = 0.39
+log Mstar = 10.6
+ID 460692 z = 0.0
+(g−r) = 0.47 κ ⋆ = 0.26
+log Mstar = 10.7
+ID 468590 z = 0.0
+(g−r) = 0.55 κ ⋆ = 0.65
+log Mstar = 10.6
+ID 466436 z = 0.0
+(g−r) = 0.43 κ ⋆ = 0.60
+log Mstar = 10.6
+ID 469315 z = 0.0
+(g−r) = 0.48 κ ⋆ = 0.56
+log Mstar = 10.7
+ID 470617 z = 0.0
+(g−r) = 0.42 κ ⋆ = 0.69
+log Mstar = 10.6
+ID 472457 z = 0.0
+(g−r) = 0.46 κ ⋆ = 0.51
+log Mstar = 10.4
+ID 471740 z = 0.0
+(g−r) = 0.33 κ ⋆ = 0.61
+log Mstar = 10.6
+ID 473004 z = 0.0
+(g−r) = 0.50 κ ⋆ = 0.68
+log Mstar = 10.5
+ID 473349 z = 0.0
+(g−r) = 0.56 κ ⋆ = 0.55
+log Mstar = 10.5
+ID 473898 z = 0.0
+(g−r) = 0.37 κ ⋆ = 0.47
+log Mstar = 10.7
+ID 474813 z = 0.0
+(g−r) = 0.45 κ ⋆ = 0.64
+log Mstar = 10.5
+ID 476487 z = 0.0
+(g−r) = 0.56 κ ⋆ = 0.61
+log Mstar = 10.4
+ID 477179 z = 0.0
+(g−r) = 0.29 κ ⋆ = 0.61
+log Mstar = 10.3
+ID 477677 z = 0.0
+(g−r) = 0.38 κ ⋆ = 0.64
+log Mstar = 10.5
+ID 479174 z = 0.0
+(g−r) = 0.48 κ ⋆ = 0.52
+log Mstar = 10.4
+ID 479117 z = 0.0
+(g−r) = 0.49 κ ⋆ = 0.60
+log Mstar = 10.3
+ID 480230 z = 0.0
+(g−r) = 0.41 κ ⋆ = 0.48
+log Mstar = 10.5
+ID 480441 z = 0.0
+(g−r) = 0.48 κ ⋆ = 0.65
+log Mstar = 10.6
+ID 481126 z = 0.0
+(g−r) = 0.54 κ ⋆ = 0.68
+log Mstar = 10.5
+ID 481300 z = 0.0
+(g−r) = 0.39 κ ⋆ = 0.61
+log Mstar = 10.5
+ID 482169 z = 0.0
+(g−r) = 0.58 κ ⋆ = 0.51
+log Mstar = 10.4
+ID 483370 z = 0.0
+(g−r) = 0.42 κ ⋆ = 0.59
+log Mstar = 10.6
+ID 482869 z = 0.0
+(g−r) = 0.59 κ ⋆ = 0.39
+log Mstar = 10.5
+ID 484771 z = 0.0
+(g−r) = 0.40 κ ⋆ = 0.60
+log Mstar = 10.4
+ID 485441 z = 0.0
+(g−r) = 0.47 κ ⋆ = 0.44
+log Mstar = 10.4
+ID 486590 z = 0.0
+(g−r) = 0.33 κ ⋆ = 0.64
+log Mstar = 10.7
+ID 487244 z = 0.0
+(g−r) = 0.54 κ ⋆ = 0.73
+Figure 12.
+Stellar light composites of a sample of z
+=
+0 blue galaxies, selected as having (g-r) < 0.6, and taken from the halo mass bin
+1012 < Mhalo/M⊙< 1012.2. Imaged in NIRCam f200W, f115W, and F070W ﬁlters (face-on), no dust. Every panel is 60 kpc on a side.
+
+
+16
+D. Nelson et al.
+log Mstar = 10.7
+ID 441141 z = 0.0
+(g−r) = 0.76 κ ⋆ = 0.55
+log Mstar = 10.6
+ID 443914 z = 0.0
+(g−r) = 0.77 κ ⋆ = 0.73
+log Mstar = 10.5
+ID 453835 z = 0.0
+(g−r) = 0.72 κ ⋆ = 0.54
+log Mstar = 10.4
+ID 421956 z = 0.0
+(g−r) = 0.74 κ ⋆ = 0.42
+log Mstar = 10.4
+ID 440477 z = 0.0
+(g−r) = 0.75 κ ⋆ = 0.45
+log Mstar = 10.4
+ID 497926 z = 0.0
+(g−r) = 0.71 κ ⋆ = 0.45
+log Mstar = 10.6
+ID 491801 z = 0.0
+(g−r) = 0.76 κ ⋆ = 0.53
+log Mstar = 10.7
+ID 460076 z = 0.0
+(g−r) = 0.72 κ ⋆ = 0.63
+log Mstar = 10.6
+ID 496436 z = 0.0
+(g−r) = 0.75 κ ⋆ = 0.58
+log Mstar = 10.8
+ID 475490 z = 0.0
+(g−r) = 0.70 κ ⋆ = 0.69
+log Mstar = 10.4
+ID 498958 z = 0.0
+(g−r) = 0.77 κ ⋆ = 0.33
+log Mstar = 10.5
+ID 451243 z = 0.0
+(g−r) = 0.79 κ ⋆ = 0.34
+log Mstar = 10.5
+ID 478160 z = 0.0
+(g−r) = 0.76 κ ⋆ = 0.20
+log Mstar = 10.5
+ID 479314 z = 0.0
+(g−r) = 0.74 κ ⋆ = 0.19
+log Mstar = 10.5
+ID 479917 z = 0.0
+(g−r) = 0.74 κ ⋆ = 0.33
+log Mstar = 10.5
+ID 502881 z = 0.0
+(g−r) = 0.74 κ ⋆ = 0.54
+log Mstar = 10.6
+ID 461038 z = 0.0
+(g−r) = 0.73 κ ⋆ = 0.55
+log Mstar = 10.3
+ID 467519 z = 0.0
+(g−r) = 0.70 κ ⋆ = 0.21
+log Mstar = 10.4
+ID 469589 z = 0.0
+(g−r) = 0.79 κ ⋆ = 0.60
+log Mstar = 10.6
+ID 473125 z = 0.0
+(g−r) = 0.77 κ ⋆ = 0.30
+log Mstar = 10.5
+ID 481347 z = 0.0
+(g−r) = 0.74 κ ⋆ = 0.46
+log Mstar = 10.5
+ID 482257 z = 0.0
+(g−r) = 0.71 κ ⋆ = 0.54
+log Mstar = 10.4
+ID 505333 z = 0.0
+(g−r) = 0.75 κ ⋆ = 0.51
+log Mstar = 10.7
+ID 483868 z = 0.0
+(g−r) = 0.73 κ ⋆ = 0.60
+log Mstar = 10.5
+ID 482533 z = 0.0
+(g−r) = 0.73 κ ⋆ = 0.27
+log Mstar = 10.6
+ID 484113 z = 0.0
+(g−r) = 0.75 κ ⋆ = 0.45
+log Mstar = 10.6
+ID 484257 z = 0.0
+(g−r) = 0.76 κ ⋆ = 0.40
+log Mstar = 10.3
+ID 480645 z = 0.0
+(g−r) = 0.79 κ ⋆ = 0.23
+log Mstar = 10.6
+ID 485365 z = 0.0
+(g−r) = 0.78 κ ⋆ = 0.33
+log Mstar = 10.6
+ID 486052 z = 0.0
+(g−r) = 0.70 κ ⋆ = 0.63
+log Mstar = 10.6
+ID 487152 z = 0.0
+(g−r) = 0.70 κ ⋆ = 0.20
+log Mstar = 10.6
+ID 489314 z = 0.0
+(g−r) = 0.72 κ ⋆ = 0.63
+log Mstar = 10.5
+ID 488841 z = 0.0
+(g−r) = 0.75 κ ⋆ = 0.30
+log Mstar = 10.4
+ID 508985 z = 0.0
+(g−r) = 0.71 κ ⋆ = 0.48
+log Mstar = 10.5
+ID 510751 z = 0.0
+(g−r) = 0.77 κ ⋆ = 0.22
+Figure 13. Stellar light composites at z = 0 as in Figure 12 except here for red galaxies, selected as having (g-r) > 0.6 and in the same halo mass bin
+1012 < Mhalo/M⊙< 1012.2, corresponding to the low-mass end of the red sequence.
+
+
+IllustrisTNG: Galaxy Colors
+17
+These two visual samples demonstrate the existence of mul-
+tiple, distinct galaxy types spanning a wide range of stellar mor-
+phologies and structural characteristics. This diversity of the galaxy
+population even at ﬁxed mass, as observed to occur in the real uni-
+verse, represents a fundamental achievement (and stringent require-
+ment) of any theoretical model for galaxy formation.
+6.1
+Galaxy Color Evolution and the Formation of the
+Color-Mass Plane
+We seek to draw together our conclusions and thereby arrive at a
+coherent picture for the color distribution of low redshift galaxies
+and the physical mechanisms most responsible. In Figure 14 we
+therefore present a schematic view of the color-mass plane and the
+movement of galaxies therein. Gray contours show the distribution
+of color versus stellar mass for all galaxies at redshift zero, which
+divides broadly into the blue population at low stellar mass and the
+red population at high stellar mass. The dotted contours indicate
+the bulk evolution of these two groups to z ∼0.5, each becoming
+bluer at earlier times. With eleven colored lines we show charac-
+teristic evolutionary tracks which individual central galaxies can
+take through this space. They encompass all prototypical behaviors
+without being exhaustive.
+The red population continually incorporates new members, as
+galaxies transitioning over the timescale ∆tgreen arrive with a stellar
+mass M⋆(tred,ini). Figure 11 quantiﬁed the distribution of this ‘initial
+red’ mass, which is strongly peaked at ∼1010.5 M⊙– the purple and
+pink tracks which ascend almost vertically from the high-mass end
+of the blue population are therefore typical in this regard. Although
+most redshift zero red sequence galaxies, by number, join the pop-
+ulation at its low-mass end, this is by and large a reﬂection of the
+steep stellar mass function – most z = 0 red sequence galaxies also
+simply reside at its low-mass end.
+Even without any further in-situ star formation, passive red
+galaxies may grow further in M⋆down to z = 0 by acquiring new
+stars through mergers (van Dokkum et al. 1999; Naab et al. 2006),
+with accreted stellar mass fractions of 50% or higher for galaxies
+exceeding 1011M⊙(Rodriguez-Gomez et al. 2015; Pillepich et al.
+2017). The multi-merger track (pink) and ∆M⋆,red ≫0 track (gold)
+respectively provide typical and extreme examples of this mecha-
+nism. The former undergoes two distinct dry merger events which
+together increase the galaxy stellar mass by a factor of two, with
+marginal impact on its color. The latter undergoes several dry merg-
+ers which increase its mass by a factor of four, becoming more red
+in the process. Figure 11 quantiﬁes this red sequence mass growth
+in terms of ∆M⋆,red/M⋆,z=0, the fraction of the redshift zero stellar
+mass of a galaxy accumulated after its entrance into the red popu-
+lation – above M⋆> 1011 M⊙galaxies on average accumulate 25%
+of their ﬁnal mass after reddening.
+We naturally contrast our ﬁndings for ∆M⋆,red with the pic-
+ture proposed in Faber et al. (2007). In particular, their Figure 10
+presents three schematic possibilities of galaxy migration to, and
+growth along, the red sequence. Adopting that nomenclature, we
+here speciﬁcally refer to galaxies which enter the red population
+at its low mass end (∼1010.5 M⊙) as ‘early quenching’ and those
+which enter the red population at higher masses as ‘late quench-
+ing’. We rule out the ‘early quenching + dry merging’ scenario.
+Namely, while early quenchers are plentiful (epitomized in our pur-
+ple and brown tracks), they grow the least through subsequent dry
+stellar accretion. The ‘late quenching + no dry merging’ scenario is
+common and important. We call these ∆M⋆,red = 0 tracks, typiﬁed
+by our red trajectory. We note that evolutionary paths of this shape
+(with ∆M⋆,red ≃0) occur across the full spectrum of M⋆(tred,ini), and
+at any redshift. The ‘mixed, quenching + dry merging’ scenario is
+also common and important. We label these as ∆M⋆,red > 0 tracks,
+typiﬁed by the pink and gold trajectories. Both mechanisms are
+present; therefore, neither alone can capture the manner in which
+the red sequence builds up from the entire galaxy population.
+Our contribution to this theoretical picture is given in Fig-
+ure 11 (inset), which quantiﬁes that high mass galaxies experience
+more red-phase growth. That is, in the ‘mixed’ scenario of Faber
+et al. (2007), arrows denoting ∆M⋆along the red sequence become
+longer towards higher redshift zero M⋆. In general, we also ﬁnd
+that galaxies which enter the red population with more mass do so
+later: at 1010.5 M⊙systems transition at a mean ¯zred,ini ∼0.6 while
+those which enter at 1011.5 M⊙do so at ¯zred,ini ∼0.3.
+As we have already seen, there is signiﬁcant variation in ∆tgreen
+even at similar stellar mass. Figure 10 quantiﬁes the distribution
+of this green valley occupation timescale, and we ﬁnd a median
+value across all galaxies of 1.6 Gyr with the 10-90th percentiles
+spanning 0.7 Gyr to 3.8 Gyr. A large fraction of the population is
+therefore consistent with passive reddening after a short quench-
+ing timescale, consistent with observational demographics of post-
+starburst galaxies (e.g. Wild et al. 2016) and passive evolution times
+using single SSPs (e.g. Trayford et al. 2016). At the same time,
+the presence of existing older stellar population could induce a
+more rapid blue to red transition, while dust may also be an impor-
+tant factor in color transition timescales (e.g. Gutcke et al. 2017).
+As the symbols for each track in our schematic ﬁgure are placed
+at z = {0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.7, 1.0, 1.5, 2.0}, they are spaced
+roughly 1 Gyr apart. As an example, while the brown and pink
+paths begin at the same mass and color at z = 2, they traverse the
+green valley over different timescales, the multi-merger case requir-
+ing ∼2 Gyr less. Trayford et al. (2016) also computed color tran-
+sition timescales from cosmological simulations, ﬁnding a median
+of ∆tgreen ≃2.0 −2.5 Gyr for 1010 < M⋆/ M⊙< 1011 with a tail to-
+wards longer values and no strong mass dependence. Despite being
+qualitatively similar, in detail this result differs from our ﬁndings
+in Figure 10 by up to a factor of two, as well as in the decreas-
+ing dependence of ∆tgreen on stellar mass. This is undoubtedly due
+to a combination of different physical models and so quenching
+mechanisms between the two simulations, compounded with dif-
+ferent deﬁnitions of the color transition region and the deﬁnition of
+the transition between blue and red galaxies. We ﬁnd that the most
+massive central galaxies of the present epoch have spent the least
+amount of time in the green valley, partially reﬂecting the merging
+loci of the blue and red populations towards the highest masses.
+Although we have not presented comprehensive results on
+the process of rejuvenated star formation in the red population,
+we make a few brief observations from TNG100-1. Once red, the
+majority of galaxies do not ever leave the red population. Across
+the entire resolved mass range, 94% of redshift zero galaxies have
+Nrejuv = 0. If we restrict our attention to massive, passive galaxies
+by considering M⋆,z=0 / M⊙> 1011M⊙we ﬁnd that 90% of galax-
+ies have never undergone a rejuvenation event, while 10% have
+rejuvenated once and ∼1% have gone through two or more such
+events. These ‘ﬁreﬂy’ galaxies (light orange line) continually re-
+light their star formation and so jump along the red sequence by
+increasing their stellar mass in intermittent ﬂashes. We ﬁnd a maxi-
+mum of Nrejuv = 5, although such extreme cases represent a negligi-
+ble fraction of the galaxy population. The distribution of rejuvena-
+tion timescales ti
+rejuv has a similar shape as the ∆tgreen distribution,
+with a slightly lower normalization. The median time between ex-
+iting and re-entering the red population is 1.1 Gyr with a percentile
+
+
+18
+D. Nelson et al.
+9
+10
+11
+12
+Galaxy Stellar Mass [ log Msun ]
+0.3
+0.6
+0.9
+Galaxy (g-r) Color
+0.0
+0.5
+1.0
+0.0
+0.5
+1.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+0.0
+0.5
+1.0
+2.0
+0.0
+0.5
+1.0
+2.0
+ID #530874
+ID #495177
+ID #456725
+ID #377212
+ID #477919
+ID #423657
+ID #366565
+ID #184828
+ID #531178
+ID #146176
+ID #170540
+z=0 blue
+population
+z=0 red
+population
+z=0.5
+green
+valley occupant
+∆M*,red >> 0
+blue galaxy
+multi-merger
+mixed ∆M*,red > 0
+no red-sequence
+growth, ∆M*,red = 0
+rejuvenation
+based growth
+Nrejuv = 1
+low-state BH
+FB induced
+reddening
+∆M*,red ~ 0
+quasi-equilibrium SF 
+FB regulated growth 
+and color oscillations
+“firefly”
+galaxy
+no low-z
+growth
+blue
+galaxy
+Figure 14. Schematic diagram of galaxy evolution across the color-mass plane. The distribution of all z = 0 galaxies is shown by the gray contours,
+while the dotted lines indicate the bulk evolution of the red and blue populations to z ≃0.5, both moving downward in (g-r). Eleven colored lines show
+the characteristic evolutionary pathways of individual, central galaxies, from at most z = 2 to the present day. Although drawn from actual tracks in
+TNG100-1, we intend them as prototypical demonstrations of the various trajectories of central galaxies towards z = 0 and in particular the ways they can
+ascend to the red population (see text).
+spread P90
+10 = [0.5 Gyr, 2.7 Gyr]. The duty cycle of rejuvenation in
+massive red galaxies should correspond to observable residual star
+formation in such objects (Fogarty et al. 2015; McDonald et al.
+2016). Some massive galaxies can attribute almost all of their late-
+time stellar growth to a single large rejuvenation event. The light
+red track provides one example – despite the fact that this galaxy
+enters the red population already by z = 1 it resumes star forma-
+tion and does not ﬁnally quench until ∼5 Gyr later. Note that the
+total P ∆M⋆(ti
+rejuv) is included by deﬁnition in the ∆M⋆,red values
+we present throughout, and that we could miss rejuvenation events
+due to the ﬁnite time spacing of our simulation snapshots or due to
+the precise deﬁnition of the red color boundary.
+6.2
+The Connection to Galaxy Morphology
+We have also not addressed the question of morphological trans-
+formation, an intriguing aspect of galaxy formation which is in-
+timately connected to color. Speciﬁcally, we have not attempted
+to discern if color transition and the quenching of star forma-
+tion is always accompanied by morphological change, and if so,
+if these occur co-temporal or if one precedes the other. From our
+blue/red samples in Figures 12 and 13 we already see by eye the
+relation between morphology and color in this halo mass bin (see
+also Snyder et al. 2015). We add a few brief comments here. At
+ﬁxed M⋆= 1010.5 M⊙we ﬁnd a trend of morphology as measured
+through κ⋆and (g-r) color, such that redder galaxies are on av-
+erage less rotationally supported. We ﬁnd no correlation between
+κ⋆(z = 0) and ∆tgreen. On the other hand, κ⋆exhibits a sugges-
+tive scaling with red-phase mass growth, such that κ⋆≃0.4 for
+∆M⋆,red/M⋆,z=0 ∼0 while κ⋆≲0.2 for ∆M⋆,red/M⋆,z=0 ≳0.25.
+That is, galaxies which acquire more mass on the red sequence are
+driven towards preferentially spheroidal morphologies; the under-
+lying physical cause is undoubtedly merger activity, which lowers
+the former while increasing the latter. A similar trend exists with
+∆Mgreen, hinting that mass growth in the green valley is associated
+with disturbed, non-steady-state star formation. This may indirectly
+agree with the observationally based hypothesis of Powell et al.
+(2017) that a lack of green spheroids results from the rapidity of
+their quenching via mergers. However, the lack of correlation be-
+tween z = 0 morphology and ∆tgreen does not appear to support
+the idea that early-type (or late-type) galaxies should arrive to the
+red population over characteristically shorter (or longer) transition
+timescales due to either near instantaneous quenching or slow sec-
+ular gas exhaustion, respectively (Schawinski et al. 2014). A more
+detailed study along these lines is clearly needed. The interwoven
+pathways of stellar reddening and structural change, together with
+the origin of red disks, blue spheroids, and the connection with cen-
+tral stellar bulges, all promise to be a fruitful future direction of
+investigation.
+6.3
+Final Considerations
+Throughout this paper we have intentionally focused on the mas-
+sive red population and its emergence from previously star-forming
+
+
+IllustrisTNG: Galaxy Colors
+19
+galaxies. That is, we have neglected the properties and evolution
+of red satellites, satellite quenching, and environment. The upper
+left corner of Figure 14 is populated by low-mass red galaxies,
+which are almost entirely satellites in dense environments. From
+observations we expect strong environmental dependence (includ-
+ing one-halo conformity) in color related properties such as color-
+split luminosity functions or stellar mass functions (Baldry et al.
+2006), red fraction (Peng et al. 2010), color-split clustering (Wang
+& White 2012; Farrow et al. 2015; Zu & Mandelbaum 2017; Law-
+Smith & Eisenstein 2017), and quiescent fraction (Cucciati et al.
+2017). We also expect different physical processes such as tidal and
+ram-pressure stripping to play important roles in satellite galaxy
+transformation, not only in color but also in star formation rate, gas
+content, and morphology (e.g. Ann et al. 2008; Sales et al. 2015).
+We leave for the future an investigation of the environmental de-
+pendency of galaxy color in TNG.
+Finally, we have not speciﬁcally addressed the balance be-
+tween stellar feedback – that is, our supernova driven galactic
+winds – and blackhole feedback (for an interesting view see Bower
+et al. 2017). We have shown that the low-state BH feedback mode
+is responsible for inducing color transformation in the TNG model
+and setting its characteristics. Interestingly, we ﬁnd only a moder-
+ate correlation of blackhole mass with galaxy color at our canon-
+ical stellar transition mass of 1010.5 M⊙. Here the reddest galaxies
+have blackholes which are ≃0.4 dex more massive than their bluest
+counterparts. This is because blackhole mass growth in the TNG
+model is dominated by accretion in the high state (quasar mode).
+Therefore, even though transition to the low-state quenches galax-
+ies and transforms galaxies from blue to red, it cannot leave a strong
+impression in the relic BH total mass. We do not see the same mag-
+nitude signature of excess SMBH mass as found in Trayford et al.
+(2016) (their Figure 3). However, in the integrated ratio of mass
+growth between the low and high states, the integrated ratio of en-
+ergy injection (as shown in our Figure 7), or the total energy injec-
+tion in the low-state, we do see a clear marker of blackhole induced
+quenching. For example, at M⋆= 1010.5 M⊙blue galaxies have a
+total integrated Einjected,low ≃1058 erg, while red galaxies have in-
+jected a hundred times more energy in the low accretion-state, with
+median Einjected,low ≃1060 erg. There is a pronounced increase in
+these BH related indicators at a color threshold of (g-r) = 0.55 mag.
+In Figure 14 the remaining three lowest mass evolutionary
+tracks – cyan, orange, and blue – are all below this color thresh-
+old, and all still members of the blue population at z = 0. Each has
+grown in stellar mass through quasi-equilibrium oscillations of star
+formation activity, which drives their optical color periodically up
+and down. Indeed the self-regulated nature of star formation should
+establish the color width of the blue population. Here we identify
+the origin of the features seen at low M⋆in Figure 9. Because
+of these oscillations, galaxies below a center line will have gener-
+ally arrived from redder colors, while those above will have arrived
+from bluer colors. This establishes the separatrix in the streamline
+ﬁeld and the butterﬂy pattern of the ﬂux of galaxies through this
+region of the color-mass plane.
+7
+SUMMARY AND CONCLUSIONS
+In this paper we have introduced the TNG100 and TNG300 sim-
+ulations, the ﬁrst two efforts of the IllustrisTNG project, a series
+of ‘next generation’ cosmological magnetohydrodynamical simu-
+lations using the updated, comprehensive TNG galaxy formation
+model. Leveraging their unique combination of volume, resolution,
+and physical ﬁdelity, we model the optical colors of the simulated
+galaxy populations, incorporating a resolved treatment of attenua-
+tion from interstellar dust.3 We ﬁrst compare to observational data
+from SDSS and then, bolstered by the excellent agreement, study
+the relationships between color and other galaxy properties, the
+process of color transformation, and the physical mechanisms driv-
+ing the buildup of the color-mass plane. Our main results are:
+• The simulated (g-r) colors of TNG galaxies at low redshift
+are in excellent agreement with a quantitative comparison to ob-
+servational data from SDSS at z < 0.1. The color bimodality for
+intermediate mass galaxies is demonstrably improved with respect
+to the original Illustris simulation. We recover the locations in color
+of both the red and blue populations as a function of M⋆, as well
+as the relative strength between the red and blue distributions, the
+location of the color minimum between the two, and the location of
+the maximal bimodality in stellar mass. We show the same level of
+quantitative agreement exists in other colors including (u-r), (u-i),
+while slightly less favorable comparison to the dust-sensitive (r-i)
+may indicate shortcomings in our relatively simple dust modeling.
+• We use a double gaussian mixture model to characterize the
+red and blue populations and apply the same MCMC ﬁtting proce-
+dure to both the simulations and observations. The loci of the red
+and blue distributions agree across 109 < M⋆/ M⊙< 1012 to within
+0.05 mag, while the scatter is consistent within 0.02 mag for blue
+galaxies and 0.01 mag for red galaxies. This foundational agree-
+ment allows us to identify a second order discrepancy of possible
+interest: the slope of the red sequence may be too ﬂat, an effect
+likely driven by the ﬁnite aperture choice together with non-zero
+color gradients in extended stellar light.
+• As the two primary ingredients of colors beyond reddening,
+we directly compare the stellar ages and metallicities in TNG ver-
+sus observed relations. The luminosity-weighted, ﬁber aperture re-
+stricted stellar ages are in remarkable agreement. The trend of Z⋆
+versus M⋆appears too shallow, implying that the simulated stellar
+metallicities are too high for low-mass galaxies. However, we show
+that this discrepancy plausibly arises only due to an overly simplis-
+tic comparison, and that a more robust analysis based on consistent
+ﬁts to mock SDSS ﬁber spectra is required (Nelson et al. in prep).
+• Relating redshift zero (g-r) color to other galaxy properties,
+we ﬁnd as expected that red galaxies are quiescent, old, and gas
+depleted. Compared to otherwise increasing trends with M⋆, they
+also have lower gas-phase metallicities and lower interstellar mag-
+netic ﬁeld strengths. We ﬁnd a non-monotonic correlation, at ﬁxed
+stellar mass, between galaxy color and the β ratio of magnetic to
+thermal pressure in the gaseous halo, such that the PB/Pgas ratio
+peaks for green valley systems and drops sharply thereafter for red
+galaxies. We point out an explicit prediction of the TNG model:
+at M⋆≃1010.5 M⊙blue galaxies should have interstellar magnetic
+ﬁeld strengths of 10 −30 µG, while red galaxies at the same mass
+should have much lower |BISM| ≲1 µG.
+• We attribute the primary driver of galaxy color transition in
+the TNG model to supermassive blackhole feedback in its low-
+accretion state. We demonstrate that the ratio of the cumulative en-
+ergy injection by blackholes in the high (quasar) versus low (kinetic
+wind) state drops sharply around a characteristic M⋆∼1010.5 M⊙,
+a value set by our MBH-dependent accretion rate threshold. Having
+3 All the data generated herein, including the galaxy luminosities and col-
+ors with the varying dust models, will be made publicly available coincident
+with the future TNG public data release (following Nelson et al. 2015).
+
+
+20
+D. Nelson et al.
+been ﬁxed during model development in order to match the stel-
+lar mass content of halos and in particular the knee of the stellar
+mass function, we conclude that color transition at this mass scale
+is inseparably linked to a realistic high-mass galaxy population.
+• Across all z = 0 galaxies, we measure a median color transi-
+tion timescale ∆tgreen of ∼1.6 Gyr, with a 10-90th percentile spread
+of 0.7 −3.8 Gyr. This distribution of green valley occupation times
+is unimodal, approximately log-normal, and does not show direct
+evidence for more than one characteristic timescale. We ﬁnd a rela-
+tion between ∆tgreen and stellar mass, such that galaxies which enter
+the red population at larger M⋆do so with a correspondingly more
+rapid color transition and shorter green valley occupation.
+• We measure the amount of ‘red-phase’ stellar mass growth,
+between the time a galaxy enters the red population and z = 0.
+Massive galaxies with M⋆> 1011 M⊙accumulate on average 25%
+of their mass after reddening; at the same time, the top ≃18% of
+galaxies accumulate half or more of their z = 0 stellar mass while
+on the red sequence. The amount of ∆M⋆,red is found to increase
+with increasing redshift zero M⋆. We therefore advocate for an
+updated ‘mixed’ scenario for the formation of the red population
+whereby galaxies become red across a wide range of stellar mass,
+some fraction subsequently having ∆M⋆,red = 0 while the remain-
+der grow by an amount ∆M⋆,red > 0 which increases for more mas-
+sive systems.
+Together, the TNG100 and TNG300 simulations have a dy-
+namic range of 107 per spatial dimension. This enables us to con-
+nect the internal characteristics of galaxies – notably, their colors
+– to details of their host halos, as well as to the statistical prop-
+erties of the global galaxy population within a full cosmological
+context. Our present investigation of the low redshift galaxy color
+distribution demonstrates the predictive and explanatory power of
+these simulations and their impressive utility as a theoretical tool
+for understanding the process of galaxy formation.
+ACKNOWLEDGEMENTS
+DN would like to thank Charlie Conroy for development of the
+FSPS code and for helpful comments on the dust methods, Ben
+Johnson for development of the PROSPECTOR code and assistance
+in its use, Vicente Rodriguez-Gomez for developing and allowing
+us to use the SUBLINK merger tree code, Arjen van der Wel for
+ideas on the spectral modeling, and Simon White for useful com-
+ments and suggestions.
+VS, RW, and RP acknowledge support through the European
+Research Council under ERC-StG grant EXAGAL-308037 and
+would like to thank the Klaus Tschira Foundation. SG through
+the Flatiron Institute is supported by the Simons Foundation. PT
+and SG are supported by NASA through Hubble Fellowship grants
+HST-HF-51384.001-A and HST-HF2-51341.001-A , respectively,
+awarded by the Space Telescope Science Institute, which is oper-
+ated by the Association of Universities for Research in Astronomy,
+Inc., for NASA, under contract NAS5-26555. MV acknowledges
+support from a MIT RSC award, the Alfred P. Sloan Foundation,
+and by NASA ATP grant NNX17AG29G. JN acknowledges sup-
+port from NSF AARF award AST-1402480.
+In the execution of the primary simulations presented herein,
+the authors gratefully acknowledge the Gauss Centre for Super-
+computing (GCS) for providing computing time for the GCS
+Large-Scale Projects GCS-ILLU (2014) and GCS-DWAR (2016)
+on the GCS share of the supercomputer Hazel Hen at the High Per-
+formance Computing Center Stuttgart (HLRS). GCS is the alliance
+of the three national supercomputing centres HLRS (Universit¨at
+Stuttgart), JSC (Forschungszentrum J¨ulich), and LRZ (Bayerische
+Akademie der Wissenschaften), funded by the German Federal
+Ministry of Education and Research (BMBF) and the German State
+Ministries for Research of Baden-W¨urttemberg (MWK), Bayern
+(StMWFK) and Nordrhein-Westfalen (MIWF). Additional simula-
+tions were carried out on the Hydra and Draco supercomputers at
+the Max Planck Computing and Data Facility (MPCDF, formerly
+known as RZG), as well as on the Stampede supercomputer at the
+Texas Advanced Computing Center through the XSEDE project
+AST140063. Some additional computations in this paper were run
+on the Odyssey cluster supported by the FAS Division of Science,
+Research Computing Group at Harvard University.
+REFERENCES
+Ahn C. P., et al., 2014, ApJS, 211, 17
+Alam S., et al., 2015, ApJS, 219, 12
+Ann H. B., Park C., Choi Y.-Y., 2008, MNRAS, 389, 86
+Baldry I. K., Glazebrook K., Brinkmann J., Ivezi´c ˇZ., Lupton R. H., Nichol
+R. C., Szalay A. S., 2004, ApJ, 600, 681
+Baldry I. K., Balogh M. L., Bower R. G., Glazebrook K., Nichol R. C.,
+Bamford S. P., Budavari T., 2006, MNRAS, 373, 469
+Bell E. F., et al., 2004, ApJ, 608, 752
+Benson A. J., 2012, New Astron., 17, 175
+Bernardi M., Shankar F., Hyde J. B., Mei S., Marulli F., Sheth R. K., 2010,
+MNRAS, 404, 2087
+Blanton M. R., et al., 2003, ApJ, 594, 186
+Bottrell C., Torrey P., Simard L., Ellison S. L., 2017, MNRAS, 467, 1033
+Bower R. G., Benson A. J., Malbon R., Helly J. C., Frenk C. S., Baugh
+C. M., Cole S., Lacey C. G., 2006, MNRAS, 370, 645
+Bower R. G., Schaye J., Frenk C. S., Theuns T., Schaller M., Crain R. A.,
+McAlpine S., 2017, MNRAS, 465, 32
+Bruzual A. G., 1983, ApJ, 273, 105
+Calzetti D., Kinney A. L., Storchi-Bergmann T., 1994, ApJ, 429, 582
+Cardelli J. A., Clayton G. C., Mathis J. S., 1989, ApJ, 345, 245
+Cattaneo A., et al., 2007, MNRAS, 377, 63
+Cen R., 2014, ApJ, 789, L21
+Charlot S., Fall S. M., 2000, ApJ, 539, 718
+Chilingarian I. V., Melchior A.-L., Zolotukhin I. Y., 2010, MNRAS, 405,
+1409
+Cole S., Lacey C. G., Baugh C. M., Frenk C. S., 2000, MNRAS, 319, 168
+Conroy C., Gunn J. E., 2010, ApJ, 712, 833
+Conroy C., Gunn J. E., White M., 2009, ApJ, 699, 486
+Cook B. A., Conroy C., Pillepich A., Rodriguez-Gomez V., Hernquist L.,
+2016, ApJ, 833, 158
+Crain R. A., et al., 2015, MNRAS, 450, 1937
+Croton D. J., et al., 2006, MNRAS, 365, 11
+Cucciati O., et al., 2017, A&A, 602, A15
+Dav´e R., Thompson R., Hopkins P. F., 2016, MNRAS, 462, 3265
+Dav´e R., Raﬁeferantsoa M. H., Thompson R. J., 2017, MNRAS, 471, 1671
+Davis M., Efstathiou G., Frenk C. S., White S. D. M., 1985, ApJ, 292, 371
+Dolag K., Komatsu E., Sunyaev R., 2016, MNRAS, 463, 1797
+Dubois Y., Peirani S., Pichon C., Devriendt J., Gavazzi R., Welker C.,
+Volonteri M., 2016, MNRAS, 463, 3948
+Evrard A. E., et al., 2002, ApJ, 573, 7
+Faber S. M., et al., 2007, ApJ, 665, 265
+Farrow D. J., et al., 2015, MNRAS, 454, 2120
+Faucher-Gigu`ere C.-A., Lidz A., Zaldarriaga M., Hernquist L., 2009, ApJ,
+703, 1416
+Fogarty K., Postman M., Connor T., Donahue M., Moustakas J., 2015, ApJ,
+813, 117
+Foreman-Mackey D., Hogg D. W., Lang D., Goodman J., 2013, PASP, 125,
+306
+Foreman-Mackey
+D.,
+Sick
+J.,
+Johnson
+B.,
+2014,
+python-fsps,
+doi:10.5281/zenodo.12157
+
+
+IllustrisTNG: Galaxy Colors
+21
+Frenk C. S., White S. D. M., Davis M., 1983, ApJ, 271, 417
+Gabor J. M., Dav´e R., 2012, MNRAS, 427, 1816
+Gallazzi A., Charlot S., Brinchmann J., White S. D. M., Tremonti C. A.,
+2005, MNRAS, 362, 41
+Genel S., et al., 2014, MNRAS, 445, 175
+Gonz´alez Delgado R. M., et al., 2015, A&A, 581, A103
+G´orski K. M., Hivon E., Banday A. J., Wandelt B. D., Hansen F. K., Rei-
+necke M., Bartelmann M., 2005, ApJ, 622, 759
+Guidi G., Scannapieco C., Walcher C. J., 2015, MNRAS, 454, 2381
+Guidi G., Scannapieco C., Walcher J., Gallazzi A., 2016, MNRAS, 462,
+2046
+Guo Q., White S. D. M., 2009, MNRAS, 396, 39
+Gutcke T. A., Macci`o A. V., Dutton A. A., Stinson G. S., 2017, MNRAS,
+466, 4614
+Henriques B. M. B., White S. D. M., Thomas P. A., Angulo R., Guo Q.,
+Lemson G., Springel V., Overzier R., 2015, MNRAS, 451, 2663
+Kang X., Jing Y. P., Mo H. J., B¨orner G., 2005, ApJ, 631, 21
+Katz N., Weinberg D. H., Hernquist L., 1996, ApJS, 105, 19
+Kauffmann G., et al., 2003a, MNRAS, 341, 33
+Kauffmann G., et al., 2003b, MNRAS, 341, 54
+Kauffmann G., White S. D. M., Heckman T. M., M´enard B., Brinchmann
+J., Charlot S., Tremonti C., Brinkmann J., 2004, MNRAS, 353, 713
+Kirby E. N., Cohen J. G., Guhathakurta P., Cheng L., Bullock J. S., Gallazzi
+A., 2013, ApJ, 779, 102
+Klypin A. A., Trujillo-Gomez S., Primack J., 2011, ApJ, 740, 102
+Law-Smith J., Eisenstein D. J., 2017, ApJ, 836, 87
+Leja J., Johnson B. D., Conroy C., van Dokkum P. G., Byler N., 2017, ApJ,
+837, 170
+Loubser S. I., S´anchez-Bl´azquez P., Sansom A. E., Soechting I. K., 2009,
+MNRAS, 398, 133
+McDonald M., et al., 2016, ApJ, 817, 86
+McKinnon R., Torrey P., Vogelsberger M., 2016, MNRAS, 457, 3775
+Menci N., Fontana A., Giallongo E., Salimbeni S., 2005, ApJ, 632, 49
+Naab T., Khochfar S., Burkert A., 2006, ApJ, 636, L81
+Navarro J. F., Frenk C. S., White S. D. M., 1997, ApJ, 490, 493
+Nelson D., et al., 2015, Astronomy and Computing, 13, 12
+Pakmor R., Springel V., 2013, MNRAS, 432, 176
+Pakmor R., Bauer A., Springel V., 2011, MNRAS, 418, 1392
+Pandya V., et al., 2016, preprint, (arXiv:1611.03869)
+Peng Y.-j., et al., 2010, ApJ, 721, 193
+Pillepich A., et al., 2017, preprint, (arXiv:1703.02970)
+Planck Collaboration 2016, A&A, 594, A13
+Powell M. C., Urry C. M., Cardamone C. N., Simmons B. D., Schawinski
+K., Young S., Kawakatsu M., 2017, ApJ, 835, 22
+Rahmati A., Pawlik A. H., Raiˇcevic M., Schaye J., 2013, MNRAS, 430,
+2427
+Rodriguez-Gomez V., et al., 2015, MNRAS, 449, 49
+Rodriguez-Gomez V., et al., 2017, MNRAS, 467, 3083
+Sales L. V., et al., 2015, MNRAS, 447, L6
+Schawinski K., et al., 2014, MNRAS, 440, 889
+Schaye J., et al., 2015, MNRAS, 446, 521
+Schlegel D. J., Finkbeiner D. P., Davis M., 1998, ApJ, 500, 525
+Sijacki D., Vogelsberger M., Genel S., Springel V., Torrey P., Snyder G. F.,
+Nelson D., Hernquist L., 2015, MNRAS, 452, 575
+Snyder G. F., et al., 2015, MNRAS, 454, 1886
+Somerville R. S., Hopkins P. F., Cox T. J., Robertson B. E., Hernquist L.,
+2008, MNRAS, 391, 481
+Springel V., 2010, MNRAS, 401, 791
+Springel V., White S. D. M., Tormen G., Kauffmann G., 2001, MNRAS,
+328, 726
+Springel V., et al., 2005, Nature, 435, 629
+Strateva I., et al., 2001, AJ, 122, 1861
+Strauss M. A., et al., 2002, AJ, 124, 1810
+Taylor E. N., et al., 2015, MNRAS, 446, 2144
+Torrey P., et al., 2015, MNRAS, 447, 2753
+Trayford J. W., et al., 2015, MNRAS, 452, 2879
+Trayford J. W., Theuns T., Bower R. G., Crain R. A., Lagos C. d. P., Schaller
+M., Schaye J., 2016, MNRAS, 460, 3925
+Trayford J. W., et al., 2017, MNRAS, 470, 771
+Vogelsberger M., et al., 2014a, MNRAS, 444, 1518
+Vogelsberger M., et al., 2014b, Nature, 509, 177
+Wang W., White S. D. M., 2012, MNRAS, 424, 2574
+Weinberger R., et al., 2017, MNRAS, 465, 3291
+Wild V., Charlot S., Brinchmann J., Heckman T., Vince O., Paciﬁci C.,
+Chevallard J., 2011, MNRAS, 417, 1760
+Wild V., Almaini O., Dunlop J., Simpson C., Rowlands K., Bowler R.,
+Maltby D., McLure R., 2016, MNRAS, 463, 832
+Woo J., Courteau S., Dekel A., 2008, MNRAS, 390, 1453
+Xu D., Springel V., Sluse D., Schneider P., Sonnenfeld A., Nelson D., Vo-
+gelsberger M., Hernquist L., 2017, MNRAS, 469, 1824
+Zu Y., Mandelbaum R., 2017, preprint, (arXiv:1703.09219)
+van Dokkum P. G., Franx M., Fabricant D., Kelson D. D., Illingworth G. D.,
+1999, ApJ, 520, L95
+
+
+22
+D. Nelson et al.
+APPENDIX A: THE DUST UNDER THE RUG
+In this appendix we show a few additional ﬁgures which explore
+the differences between the dust models and the resolution conver-
+gence of our results.
+First, Figure A1 shows the output of our color modeling on
+ﬁve individual galaxy examples spanning a range of stellar masses
+and star formation rates, as shown (colored lines). For each, the
+(g-r) colors derived with Model A and Model B are shown as single
+circles and squares, respectively. As these models have no viewing
+angle dependence, each galaxy has one unique color. The y-axis
+locations of these points are therefore arbitrary. PDFs of the Model
+C colors are also shown, for Nside = 4 (dotted; 192 projections
+per galaxy) and Nside = 8 (solid; 768 projections per galaxy), the
+view-angle dependent color distributions converging with sufﬁcient
+sampling of the sphere. Note that in the main text we have used
+Nside = 1 throughout, and taken either all 12 resultant colors per
+galaxy or a single random color of these twelve, depending on the
+speciﬁc application.
+Figure A2 compares the different dust models on the full
+galaxy populations, in three stellar mass bins from TNG100-1. The
+unresolved dust correction of Model B is signiﬁcant for low-mass
+(blue) galaxies, while the impact of Model C is relatively small
+in comparison. The modeled attenuation is also important in set-
+ting the precise location of the red peak for more massive galaxies,
+which is shifted blueward in the case of no dust. We note that Model
+C aims to account for attenuation by ‘resolved’ gas structures in
+the simulation, and high density clumpy substructure in the ISM is
+far from resolved in the TNG simulations, implying that in higher
+resolution simulations we may be better able to model small-scale
+dust effects than in the current work. Including all twelve Model
+C colors for each galaxy or including only one at random has little
+impact on these global distributions, although this may not hold if
+we preferentially selected colors based on edge-on or face-on pro-
+jections. We also include an as of yet unexplored Model D, a vari-
+ation on Model C which considers an alternative geometrical as-
+sumption for the dust distribution along each line of sight. Speciﬁ-
+cally, it implements the ‘uniform scattering model’ of Calzetti et al.
+(1994) instead of the internal dust model. In this case, the calcula-
+tion of τλ is identical, and the attenuated luminosity is given by
+Lobs(λ)/Li(λ) = e−τλ instead of by Equation (2). The differences
+between Model C and Model D are small, and reﬂect only a minor
+change in the positive contribution of dust scattering to the emer-
+gent luminosity as a function of how the dust column is distributed
+along each line of sight through the gas distribution.
+Finally, we comment on resolution convergence. As a re-
+minder, we do not adjust in any way our model parameters as a
+function of resolution (for details see Pillepich et al. 2017). This is
+in contrast to the approach adopted in the EAGLE project where
+feedback mechanisms are speciﬁcally adjusted to counterbalance
+any (un)physical change with resolution and thereby to achieve a
+roughly, or at least more-so, constant result as a function of nu-
+merical resolution (Schaye et al. 2015). Different properties of our
+simulated galaxies have different convergence properties, the most
+fundamental of which are discussed in Appendix A of Pillepich
+et al. (2017). In Figure 2 we add to that discussion by showing the
+TNG100-1 and TNG300-1 predicted stellar ages and metallicities.
+In doing so, we are effectively looking at the resolution conver-
+gence of these quantities, since TNG300-1 is ‘one step lower’ in
+resolution (a factor of two in spatial resolution, eight in mass) and
+therefore equivalent to the intermediate TNG100-2 run. We ﬁnd
+that the stellar age and metallicity trends have somewhat different
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+(g-r) color [ mag ]
+101
+102
+PDF 
+Z
+= 1
+M ⋆=1011. 4 sSFR=−12.1
+M ⋆=1011. 5 sSFR=−10.8
+M ⋆=1010. 5 sSFR=−10.2
+M ⋆=1010. 4 sSFR=−9.7
+M ⋆=1010. 3 sSFR=−10.2
+Model A
+Model B
+Model C, Nside = 4
+Model C, Nside = 8
+Figure A1. Impact of viewing angle variation in the calculated (g-r) color
+values for ﬁve example systems spanning a range of stellar masses. For
+each galaxy, Model A and Model B results are shown by single circles or
+squares, respectively. The PDF of colors for Model C is then shown for each
+using high Nside parameters of 4 (dashed) or 8 (solid lines), corresponding to
+192 and 768 projections per galaxy, respectively. The most massive galaxy
+has a predominantly spherical distribution of both stars and gas and thus
+exhibits little color variation due to projection-dependent dust effects. The
+less massive galaxies show asymmetric color distributions skewed to the
+red, although the total widths are typically less than 0.1 mag for all but the
+most dusty systems.
+convergence behaviors. Given the low-statistics at the high-mass
+end for TNG100-1, the stellar ages appear to be well converged,
+better than most galaxy properties. Stellar metallicities increase, at
+ﬁxed M⋆, with increasing resolution, by roughly 0.05 −0.1 dex be-
+tween the TNG300-1 (intermediate) and TNG100-1 (high) resolu-
+tion levels. We caution that, as in any case when showing M⋆on the
+x-axis, any intrinsic shift in a speciﬁc galaxy property is convolved
+with the fact that TNG stellar masses are not perfectly converged,
+and so galaxies will also shift along the x-axis, typically towards
+higher M⋆at ﬁxed halo mass with increasing resolution.
+Figure A3 presents the resolution convergence of the galaxy
+color PDFs directly, in the same three stellar mass bins as before.
+Keeping in mind that galaxies will shift between bins due to chang-
+ing stellar masses, the general result is that with progressively lower
+resolution we lose low-mass blue galaxies. As a result, there are
+too many low mass red galaxies and the separation between the two
+populations becomes less well deﬁned, and there is also an increase
+in the number of high-mass blue galaxies.
+Another culprit in the apparent lack of resolution convergence
+for the bluest systems arises directly from the ﬁnite mass resolu-
+tion of the simulations and the stochastic sampling of the physical
+process of star formation. Namely, a low-mass galaxy on the star
+formation main sequence with a SFR of ∼1 M⊙/yr will on aver-
+age create only one 106 M⊙stellar particle every million years at
+TNG100-1 resolution, and only one 107 M⊙stellar particle every
+ten million years at TNG100-2 resolution. This discreteness implies
+that at lower resolutions there may be no very young star particles
+present even though a galaxy is actively star forming. Motivated
+by this exact problem, Trayford et al. (2017) (using the EAGLE
+simulation) decided to implement a re-sampling technique in post-
+processing to effectively generate the expected populations of very
+young star particles. Indeed, even with perfect resolution conver-
+gence of the physical properties of a galaxy, its color would still be-
+come redder with worsening mass resolution due to such a stochas-
+
+
+IllustrisTNG: Galaxy Colors
+23
+Table A1. Table of physical and numerical parameters for the three resolution levels of each of the two simulations presented in this paper, TNG100 and
+TNG300. The physical parameters are: the box volume, the box side-length, the initial number of gas cells, dark matter particles, and Monte Carlo tracer
+particles. The target baryon mass, the dark matter particle mass, the z = 0 Plummer equivalent gravitational softening of the collisionless component, the
+same value in comoving units, the maximum softening applied to blackholes, and the minimum comoving value of the adaptive gas gravitational softenings.
+Additional characterizations of the gas resolution, measured at redshift zero: the minimum physical gas cell radius, the median gas cell radius, the mean radius
+of star-forming gas cells, the mean hydrogen number density of star-forming gas cells, and the maximum hydrogen gas density. The numerical parameters
+are: the number of high time frequency subbox volumes, the number of snapshots in each subbox, the total number of timesteps to z = 0, the total run time
+including substructure identiﬁcation in millions of CPU core hours, and the number of compute cores used.
+Run Name
+TNG100-1
+TNG100-2
+TNG100-3
+TNG300-1
+TNG300-2
+TNG300-3
+Volume
+[ cMpc3 ]
+106.53
+106.53
+106.53
+302.63
+302.63
+302.63
+Lbox
+[ cMpc/h ]
+75
+75
+75
+205
+205
+205
+NGAS
+-
+18203
+9103
+4553
+25003
+12503
+6253
+NDM
+-
+18203
+9103
+4553
+25003
+12503
+6253
+NTRACER
+-
+2 × 18203
+2 × 9103
+2 × 4553
+1 × 25003
+1 × 12503
+1 × 6253
+mbaryon
+[ M⊙/h ]
+9.4 × 105
+7.6 × 106
+6.0 × 107
+7.6 × 106
+5.9 × 107
+4.8 × 108
+mDM
+[ M⊙/h ]
+5.1 × 106
+4.0 × 107
+3.2 × 108
+4.0 × 107
+3.2 × 108
+2.5 × 109
+mbaryon
+[ 106 M⊙]
+1.4
+11.2
+89.2
+11
+88
+703
+mDM
+[ 106 M⊙]
+7.5
+59.7
+477.7
+59
+470
+3764
+ϵz=0
+DM,stars
+[ kpc ]
+0.74
+1.48
+2.95
+1.48
+2.95
+5.90
+ϵDM,stars
+[ ckpc/h ]
+1.0 →0.5
+2.0 →1.0
+4.0 →2.0
+2.0 →1.0
+4.0 →2.0
+8.0 →4.0
+ϵBH,max
+[ ckpc/h ]
+5.0
+5.84
+6.84
+5.84
+6.84
+13.7
+ϵgas,min
+[ ckpc/h ]
+0.125
+0.25
+0.5
+0.25
+0.5
+1.0
+rcell,min
+[ pc ]
+14
+74
+260
+47
+120
+519
+¯rcell
+[ kpc ]
+15.8
+31.3
+63.8
+31.2
+63.8
+153.1
+¯rcell,SF
+[ pc ]
+355
+720
+1410
+715
+1420
+3070
+¯nH,SF
+[ cm−3 ]
+1.0
+0.6
+0.5
+0.6
+0.5
+0.4
+nH,max
+[ cm−3 ]
+3040
+185
+30
+490
+235
+30
+Nsubboxes
+-
+2
+2
+2
+3
+3
+3
+Nsnaps,sub
+-
+7908
+4380
+2431
+2449
+3045
+2050
+∆t
+-
+11316834
+3221234
+500779
+6203062
+944143
+209161
+CPU Time
+[ Mh ]
+18.0
+0.6
+0.02
+34.9
+1.3
+0.05
+Ncores
+-
+10752
+2688
+336
+24000
+6000
+768
+Table A2. Table of physical and numerical parameters as in Table A1, except for the six dark-matter only analog runs.
+TNG100-1-DM
+TNG100-2-DM
+TNG100-3-DM
+TNG300-1-DM
+TNG300-2-DM
+TNG300-3-DM
+Volume
+[ cMpc3 ]
+106.53
+106.53
+106.53
+302.63
+302.63
+302.63
+NDM
+-
+18203
+9103
+4553
+25003
+12503
+6253
+mDM
+[ M⊙]
+8.9 × 106
+7.1 × 107
+5.7 × 108
+7.0 × 107
+5.6 × 108
+4.5 × 109
+ϵz=0
+DM
+[ kpc ]
+0.74
+1.48
+2.95
+1.48
+2.95
+5.90
+ϵDM
+[ ckpc/h ]
+1.0 →0.5
+2.0 →1.0
+4.0 →2.0
+2.0 →1.0
+4.0 →2.0
+8.0 →4.0
+tic sampling. This effect provides a caution for accurate colors in
+lower resolution simulations, and likely drives much of the resolu-
+tion trend seen in this Figure.
+Tables A1 and A2 give the most relevant physical and numer-
+ical parameters for the baryonic and dark-matter only runs, respec-
+tively. Each includes the highest resolution realization of the two
+boxes presented herein, TNG100-1 and TNG300-1, as well as the
+two lower resolution versions of each. Among other values we in-
+clude the mean radius of star-forming gas cells ¯rgas,SF in physical
+parsecs, and the mean number density of star-forming gas cells
+¯ngas,SF in particles per cm3. These provide a rough idea of the spatial
+scales and gas densities at which the physical process of star for-
+mation takes place in our numerical simulations, namely, ∼350 pc
+and ∼1 cm−3 in the case of TNG100-1.
+
+
+24
+D. Nelson et al.
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+PDF
+9.5 < M ⋆ < 10.0
+SDSS z<0.1
+Model D
+Model C (all)
+Model C
+Model B
+Model A
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+PDF
+10.0 < M ⋆ < 10.5
+10.0 < M ⋆ < 10.5
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+PDF
+10.5 < M ⋆ < 11.0
+10.5 < M ⋆ < 11.0
+Figure A2. Building up the dust model used in this paper, in the middle
+three stellar mass bins from 109.5 < M⋆/Msun < 1011.0. First we show Model
+A (brown lines), which includes the stellar population synthesis modeling
+with no dust treatment. Next, Model B (purple lines) includes only the un-
+resolved presence of dense birth clouds. Model C includes the resolved dust
+column calculations with one random line of sight per galaxy (red lines) or
+all twelve projections shown simultaneously (green lines). Model D uses a
+different dust geometry assumption (see text; blue lines).
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+PDF
+9.5 < M ⋆ < 10.0
+SDSS z<0.1
+TNG100-1
+TNG100-2
+TNG100-3
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+PDF
+10.0 < M ⋆ < 10.5
+10.0 < M ⋆ < 10.5
+−0.2
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+(g-r) color [ mag ]
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+PDF
+10.5 < M ⋆ < 11.0
+10.5 < M ⋆ < 11.0
+Figure A3. The resolution convergence of the color distributions (Model
+C), shown in the central three stellar mass bins explored in this work, rang-
+ing from 109.5 < M⋆/Msun < 1011.0. Although the resolution convergence is
+fair, it is far from perfect. In general, with increasing mass and spatial reso-
+lution, galaxies are bluer, primarily as a result of larger stellar metallicities
+and larger stellar masses. Note however that galaxies also shift between bins
+due to changing stellar masses.

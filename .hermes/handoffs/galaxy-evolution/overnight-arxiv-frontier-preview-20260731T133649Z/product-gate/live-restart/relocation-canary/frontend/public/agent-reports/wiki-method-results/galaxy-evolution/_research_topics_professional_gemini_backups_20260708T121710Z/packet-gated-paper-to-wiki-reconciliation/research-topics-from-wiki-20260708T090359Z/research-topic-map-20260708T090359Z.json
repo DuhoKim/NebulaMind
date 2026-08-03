@@ -1,0 +1,147 @@
+{
+ "marker": "AUTOPILOT_RESEARCH_TOPICS_JOURNAL_EVIDENCE_LINK_PASS_20260708T112408Z",
+ "method": "M1-packet-gated",
+ "kind": "research-prospectus",
+ "source_wiki": "wiki-prose-evidence-trust-deepening-hwao-20260708T043427Z.html",
+ "caveat": "These are proposed studies derived from the current Method 1 synthesis; they are research designs for future work, not accepted claims, and not product-bound evidence. A linked record denotes evidence the source basis attaches to a statement, at the stance indicated, not endorsement of the proposed hypothesis. Method 1's confidence scale is internal and is not comparable across methods.",
+ "proposal_count": 6,
+ "policy": "prior-evidence links are real arXiv records from the local ledger; malformed URLs normalized; absent evidence marked unlinked; no invented papers/DOIs/IDs/numeric results; product claim/cite markers 0",
+ "proposals": [
+  {
+   "id": "RP-1",
+   "title": "A causal test of whether active galactic nucleus feedback suppresses star formation",
+   "question": "At fixed stellar mass and environment, do AGN-hosting galaxies exhibit a measurable star-formation deficit attributable to feedback energetics rather than to shared mass or environment?",
+   "prior_evidence_links": [
+    "https://arxiv.org/abs/2604.15438",
+    "https://arxiv.org/abs/2512.05584",
+    "https://arxiv.org/abs/2512.21927",
+    "https://arxiv.org/abs/1507.06366",
+    "https://arxiv.org/abs/0901.1880",
+    "https://arxiv.org/abs/1203.2926",
+    "https://arxiv.org/abs/2403.17145",
+    "https://arxiv.org/abs/2009.11175"
+   ],
+   "prior_evidence_count": 8,
+   "has_artifact_link": false,
+   "open_question": "Whether a mass-, redshift-, and morphology-matched population exhibits a star-formation deficit attributable to AGN energetics, and which gas phase \u2014 the molecular reservoir or the replenishing inflow \u2014 responds.",
+   "data_plan": [
+    "SDSS-MaNGA or MUSE integral-field spectroscopy: spatially resolved star-formation histories and gas kinematics around the nucleus (the response).",
+    "ALMA CO: molecular gas mass and depletion time (the fuel).",
+    "Chandra and XMM-Newton: X-ray luminosity and AGN mechanical/radiative power (the energy budget).",
+    "VLA and LOFAR: jet power and radio duty cycle (the kinetic channel)."
+   ],
+   "test": "Compare resolved star-formation suppression and molecular gas fraction between matched AGN and non-AGN control samples as a function of AGN power and mode.",
+   "decision": "A calibrated star-formation deficit at fixed mass and environment, accompanied by an energy budget sufficient (or demonstrably insufficient) to drive it, thereby promoting or bounding the causal statement.",
+   "provenance": "Source basis: claim 2929 (non-committal); kinetic mode 2915; rapid-quenching channel 2913."
+  },
+  {
+   "id": "RP-2",
+   "title": "Locating the regime in which internal and environmental quenching separate",
+   "question": "At fixed stellar mass, does local environment contribute a measurable quenching excess beyond internal processes, and in which mass\u2013redshift regime do the two channels separate rather than remain degenerate?",
+   "prior_evidence_links": [
+    "https://arxiv.org/abs/2511.02964",
+    "https://arxiv.org/abs/2606.25367",
+    "https://arxiv.org/abs/2606.03652",
+    "https://arxiv.org/abs/2603.18292",
+    "https://arxiv.org/abs/2401.12953",
+    "https://arxiv.org/abs/2604.15438",
+    "https://arxiv.org/abs/1712.04452",
+    "https://arxiv.org/abs/1308.5224",
+    "https://arxiv.org/abs/2605.03008",
+    "https://arxiv.org/abs/2605.25075",
+    "https://arxiv.org/abs/0901.1880",
+    "https://arxiv.org/abs/2605.31052",
+    "https://arxiv.org/abs/2501.00986"
+   ],
+   "prior_evidence_count": 13,
+   "has_artifact_link": false,
+   "open_question": "Which combination of stellar mass, redshift, and environment renders the channels separable, and whether satellite-versus-central status is the controlling variable.",
+   "data_plan": [
+    "SDSS and GAMA: low-redshift group and cluster environment with quenched fractions.",
+    "COSMOS/CANDELS with JWST: environment at cosmic noon.",
+    "DESI: large mass- and redshift-matched parent samples (the denominator).",
+    "Euclid and Rubin (LSST): wide-area environment and weak-lensing halo mass."
+   ],
+   "test": "Hold stellar mass fixed and vary environment (and conversely); measure the environmental quenching excess at fixed mass as a function of redshift.",
+   "decision": "A separation map delineating the mass\u2013redshift\u2013environment regime in which an environmental quenching excess is detectable at fixed mass.",
+   "provenance": "Source basis: claim 2931 (debated); satellite quenching 2934; environment\u2013morphology 2932."
+  },
+  {
+   "id": "RP-3",
+   "title": "An observed heating-versus-cooling balance for maintenance quenching",
+   "question": "In massive haloes, does AGN heating balance radiative cooling closely and frequently enough to maintain quiescence when measured observationally, rather than inferred from simulations alone?",
+   "prior_evidence_links": [
+    "https://arxiv.org/abs/2112.07672",
+    "https://arxiv.org/abs/2008.00005",
+    "https://arxiv.org/abs/1301.3092",
+    "https://arxiv.org/abs/1606.03086",
+    "https://arxiv.org/abs/1108.0110",
+    "https://arxiv.org/abs/1301.3130",
+    "https://arxiv.org/abs/2508.06707",
+    "https://arxiv.org/abs/2403.17145"
+   ],
+   "prior_evidence_count": 8,
+   "has_artifact_link": false,
+   "open_question": "The observed frequency and time-averaged sufficiency of heating relative to cooling across a mass-selected population, as opposed to individual cavity systems.",
+   "data_plan": [
+    "Chandra: X-ray cavities and their mechanical power.",
+    "XMM-Newton and eROSITA: hot-halo thermodynamics and cooling luminosity.",
+    "VLA and LOFAR: radio-mode AGN duty cycle.",
+    "IllustrisTNG- and HORIZON-AGN-style simulations: forward-modelled predictions to be tested, explicitly labelled as simulations."
+   ],
+   "test": "Measure cavity heating power against cooling luminosity across a mass-selected sample and compare the observed balance and duty cycle with the simulation predictions.",
+   "decision": "An observational bound on the frequency with which heating balances cooling, converting a model expectation into a measured prevalence or refuting it.",
+   "provenance": "Source basis: claim 2946 (reported / simulation-supported)."
+  },
+  {
+   "id": "RP-4",
+   "title": "A prioritised evidence-gap programme for the narrative-only sections",
+   "question": "Which components of the galaxy-evolution narrative currently carry no directly attached evidence in the source basis, and in what order should named surveys ground them?",
+   "prior_evidence_links": [],
+   "prior_evidence_count": 0,
+   "has_artifact_link": true,
+   "open_question": "Which under-evidenced section is most tractable to ground first, and the expected evidence yield of each candidate survey per section.",
+   "data_plan": [
+    "DESI: spectroscopy for gas, metallicity, and environment.",
+    "SDSS legacy: statistical baselines.",
+    "Euclid and Rubin: scale and large-scale structure.",
+    "JWST: the high-redshift and reionization frontier."
+   ],
+   "test": "Score each thematic section by current evidential support and by the estimated yield of each candidate survey, producing a ranked observational programme.",
+   "decision": "A reusable evidence-gap ranking that converts narrative-only sections into a defined data-collection order.",
+   "provenance": "Source basis: per-section coverage record (two of nine sections directly evidenced)."
+  },
+  {
+   "id": "RP-5",
+   "title": "Robustness of the synthesis to evidence accounting (methods appendix)",
+   "question": "Do the synthesis's qualitative conclusions change when support is counted by distinct study rather than by record, and when incompletely catalogued references are resolved?",
+   "prior_evidence_links": [],
+   "prior_evidence_count": 0,
+   "has_artifact_link": true,
+   "open_question": "Whether any statement's confidence level shifts under distinct-study counting, and how sensitively interpretation depends on the unresolved references.",
+   "data_plan": [
+    "The synthesis's existing literature corpus (no new observations).",
+    "NASA ADS and the local bibliography: metadata resolution only, explicitly not observational evidence."
+   ],
+   "test": "Recompute per-statement support on a distinct-study basis, resolve the identifier-only references, and compare against the record-based tally.",
+   "decision": "A methods-appendix result establishing whether the conclusions are stable under evidence-accounting choices, with a corrected distinct-study support level per statement.",
+   "provenance": "Source basis: evidence tabulation (record-versus-study counts; identifier-only references)."
+  },
+  {
+   "id": "RP-6",
+   "title": "Pre-registered acceptance criteria for AGN-feedback conclusions (methods appendix)",
+   "question": "What explicit observational thresholds would justify promoting an AGN-feedback statement from tentative to established?",
+   "prior_evidence_links": [],
+   "prior_evidence_count": 0,
+   "has_artifact_link": true,
+   "open_question": "The quantitative thresholds \u2014 independent-study support, observation-versus-simulation mix, effect size, and consistency \u2014 that should gate promotion.",
+   "data_plan": [
+    "The combined observational programmes of RP-1, RP-2, and RP-3 as the inputs a promotion decision would draw on (proposed evidence to gather).",
+    "NASA ADS and local corpus: independent-study counting only."
+   ],
+   "test": "Specify thresholds and apply them retrospectively to the current AGN-feedback statements to determine which would promote, hold, or demote.",
+   "decision": "A reproducible acceptance rule set adoptable by other syntheses, reducing subjective confidence judgements.",
+   "provenance": "Source basis: AGN feedback & quenching section (statements 2929 non-committal, 2946 reported)."
+  }
+ ]
+}

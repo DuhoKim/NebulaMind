@@ -1,0 +1,3846 @@
+{
+  "schema": "WORKTREE_CLASSIFICATION",
+  "version": "1.0",
+  "timestamp": "2026-07-21T13:58:41.336195Z",
+  "snapshot": {
+    "branch": "feat/surveys-atlas-ia-p1-20260627",
+    "head": "826e733",
+    "ahead": "6",
+    "behind": "66",
+    "modified_count": 20,
+    "untracked_count": 360,
+    "total_entries": 380
+  },
+  "bucket_definitions": {
+    "KEEP-COMMIT": "real code, tests, canonical docs, or canonical research artifacts that require isolated review.",
+    "ARCHIVE": "useful receipts, reports, or snapshots that may move only after later G4a approval.",
+    "DELETE-CANDIDATE": "reproducible/generated debris with concrete filename/stat/reference evidence; deletion remains held behind G4b.",
+    "UNKNOWN": "insufficient evidence; defaults to KEEP and requires Hwao/human adjudication."
+  },
+  "entries": [
+    {
+      "status": " M",
+      "path": "backend/app/routers/pages.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "backend/app/services/model_canary.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "backend/app/services/trust_calculation.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/package.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/scripts/test-surveys-atlas-ia.mjs",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/components/NavBar.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/ideas/IdeasIndexClient.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/ideas/page.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/page.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/surveys/[slug]/SurveyDetailClient.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/BandSpectrumStrip.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/ChartView.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/FilterSheet.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/PlotB.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/SurveyCard.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/SurveyPeek.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "frontend/src/components/surveys/SurveysView.tsx",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "tools/lab_runner_worker.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": " M",
+      "path": "wiki_schema.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Modified tracked code/docs",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": ".claude/",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": ".hermes.md",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": ".hermes/",
+      "bucket": "UNKNOWN",
+      "reason": "Collapsed mixed .hermes/ is protected-mixed",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "backend/.env.redacted-before-disable-gemini-20260708_174609",
+      "bucket": "UNKNOWN",
+      "reason": "Secret-adjacent, requires Hwao/human adjudication",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4c held"
+    },
+    {
+      "status": "??",
+      "path": "backend/app/main.py.bak-labrunner",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "backend/scripts/generate_video_gemini.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_cross_page_paper_footprint_api.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_global_paper_directory_api.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_model_canary.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_page_source_surface_fallbacks.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_paper_profile_api.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "backend/tests/test_trust_debate_stance_caps.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Protected category",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "click.js",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "click_textarea.applescript",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "click_via_js.applescript",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_20260626T012412Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_20260626T014029Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_full_no_apply_completed_20260626T044900Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_full_no_apply_running_20260626T032300Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_full_no_apply_running_20260626T032700Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_interactive_20260626T014636Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_readiness_packet_20260626T025500Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/agent_progress_report_usage_monitor_20260626T034600Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step6_status_debate_map_20260703T0954Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step7_wording_contract_20260703T1007Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step7a_b1_prime_contradiction_gold_20260703T1205Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step7a_litdist_tool_eval_20260703T1012Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step8_docs_only_prose_preview_20260703T1242Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9_exact_diff_packet_20260703T1306Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9b_claim_evidence_continuity_20260703T1329Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9c_readonly_db_evidence_match_20260703T1354Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9d_insert_heavy_exact_diff_prep_20260703T1500Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9e_claim_id_guarded_sql_packet_20260703T1532Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/baseline_step9e_claim_id_guarded_sql_packet_repaired_20260704T020002Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/claim2299_nuance_source_packet_20260703T041421Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/claim2299_strengthening_20260703T014356Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/claim_ledger_contract_v1_agn_20260703T0830Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/cockpit_simplification_20260703T012406Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/cockpit_single_writer_rootcause_20260704T103016Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/dashboard_usage_quota_update_20260712T155053Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/execution_2942_2947_trust_recompute_approved_20260704T180848Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy-post-label-readiness-analysis-20260627T121535Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy-post-label-readiness-analysis-20260627T121535Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy-post-label-readiness-analysis-20260627T121535Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2181_2299_trust_conflicts_20260702T115202Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2299_source_decision_packet_20260703T001440Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2299_sourcefill_v2_packet_20260703T003424Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2557_live_refute_reconcile_20260702T113108Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2913_2921_exact_write_preflight_20260704T134546Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2913_2921_readonly_decision_packet_20260704T131018Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2915_execution_and_cockpit_prevention_20260704T113605Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2915_scoped_replacement_exact_write_packet_20260704T111714Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2915_scoped_replacement_preflight_20260704T105746Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_evidence_remap_preflight_20260704T142442Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_product_db_wiki_exact_diff_preflight_20260705T110725Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_source_position_queue_20260705T013911Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2929_trust_recompute_preflight_20260705T121124Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2942_2947_trust_model_status_correction_preflight_20260704T155315Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2942_2947_trust_recompute_readiness_fresh_20260704T164723Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_2942_2947_trust_recompute_readiness_preflight_20260704T151916Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_9h2_confirmed_cockpit_backup_20260707T005157Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_baseline_cockpit_refresh_20260704T122043Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_canonical_exact_diff_preflight_20260702T073312Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_canonical_merge_preview_packet_20260702T070000Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_claim_backlog_scoping_20260702T101316Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_claim_backlog_scoping_20260702T143028Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_claim_layer_held_coverage_decision_20260704T102251Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_claim_layer_reconciliation_preflight_20260704T082747Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_claim_layer_split_first_execution_20260704T095826Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_cockpit_clarity_quintet_20260704T091755Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_cockpit_ultra_format_gate_20260706T153234Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_cockpit_ultra_format_visible_action_20260706T153949Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_evolution_autonomous_quintet_hardening_20260704T071053Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_evolution_claim_layer_reconciliation_intake_20260704T073425Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_evolution_final_page_completion_readiness_gate_20260704T062937Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_evolution_final_page_completion_readiness_gate_20260704T063403Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_evolution_readonly_scope_reset_20260702T061500Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_held_claims_coverage_decision_20260704T102251Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_human_decision_clarity_backup_20260707T001006Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_human_decision_cockpit_update_20260706T234329Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_marker_normalization_execution_20260702T093507Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_marker_normalization_preflight_20260702T090333Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_stance_audit_20260702T124152Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_stance_exact_diff_prep_20260702T131029Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_stance_write_packet_20260702T133041Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_trust_recompute_preflight_20260702T145402Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_trust_recompute_v2_trigger_fix_packet_20260702T164209Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_page57_trust_recompute_write_packet_20260702T153238Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_pick_c_cockpit_backup_20260707T002851Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_rich_baseline_cockpit_restore_20260704T104352Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_stable_cockpit_renderer_20260704T115307Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_stance_audit_scoping_20260702T121713Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_tranche1_snippet_verify_20260702T105047Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v1_absorb_retired_v2_prose_overhaul_20260703T043245Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_baseline_lock_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_baseline_lock_20260627T125853Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_best_effort_evidence_map_20260627T165252Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_best_effort_markdown_diff_20260627T165252Z.patch",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_best_effort_preview_manifest_20260627T165252Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_best_effort_preview_packet_20260627T165252Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_best_effort_proposed_content_20260627T165252Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_blocked_assistant_hints_20260627T125853Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_blocked_assistant_hints_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_calibration_definitions_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_calibration_definitions_20260627T125853Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_claim_2929_candidate_registry_20260627T125853Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_claim_2929_candidate_registry_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_claim_marker_inventory_20260627T125853Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_claim_marker_inventory_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_content_publish_preflight_20260627T170527Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_counted_candidate_human_confirmation_manifest_20260627T153755Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_disclaimer_fix_publish_preflight_20260627T172833Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_human_counted_votes_preflight_20260628T011555Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_live_qa_20260702T034618Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_phase1_code_safety_slice_20260627T175914Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_phase1_code_safety_slice_20260627T175914Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_phase5_preview_manifest_20260627T152717Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_assistant_disagreements_20260627T164022Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_audit_queue_20260627T164022Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_claim_readiness_20260627T164022Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_human_counted_candidates_20260627T164022Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_missing_export_hold_20260627T154313Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_missing_export_hold_20260627T154313Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_missing_export_hold_manifest_20260627T154313Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_readiness_20260627T164022Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_readiness_20260627T164022Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_post_confirmation_readiness_manifest_20260627T164022Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_preview_outline_20260627T152717Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_preview_outline_20260627T152717Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_proposed_prose_diff_packet_DRAFT_20260627T152717Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_proposed_prose_diff_packet_DRAFT_20260627T152717Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_prose_cleanup_publish_preflight_20260627T180319Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_prose_overhaul_20260703T041421Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_prose_quality_checklist_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_prose_quality_checklist_20260627T125853Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_recommended_sequence_manifest_20260627T125853Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_representative_queue_manifest_20260627T130801Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_scope_corrected_status_20260702T032010Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_section_conformance_20260627T125853Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_section_conformance_20260627T125853Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_source_surface_reconciliation_20260629.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_sources_page_deploy_preflight_20260702T041206Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_sources_page_exact_diff_packet_20260702T035242Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_targeted_audit_queue_20260627T125853Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_targeted_audit_queue_20260627T125853Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_claim_readiness_20260627T153558Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_counted_candidates_20260627T153558Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_readiness_20260627T153558Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_readiness_20260627T153558Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_review_20260627T153558Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_review_20260627T153558Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_hermes_assisted_review_manifest_20260627T153558Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z_rows.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.json.sha256",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/gemini_quota_pools.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_debate_map_refresh_20260706T002104Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_morning_blocker_specs_20260706T0308Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_morning_prepared_packets_20260706T0308Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_overnight_db_packet_prep_20260705T1615Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_overnight_pinning_atlas_20260705T153533Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_overnight_pinning_wave2_20260705T1615Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/hwao_p1_p3_readonly_preflight_20260706T0750Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/method1_cockpit_ultra_format_gate_20260706T154438Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/mission_resumption_20260702T081658Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/overnight_2942_2947_quintet_hardening_20260704T170510Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/overnight_step9e_readonly_hardening_20260703T1621Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_audit_deferral_status_20260626T130951Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_audit_deferral_status_20260626T130951Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_audit_deferral_status_20260626T130951Z_critical_micro_audit.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_audit_deferral_status_20260626T130951Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_20260626T045946Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_20260626T045946Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_20260626T045946Z_labels.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z_labels.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_product_operator_augmented_20260626T051047Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_product_operator_augmented_20260626T051047Z_labels.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z_labels.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_claim_trust_publish_preflight_20260626T113250Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_calibration_packet_20260626T124240Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_calibration_packet_20260626T124240Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_calibration_packet_20260626T124240Z_label_audit.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_calibration_packet_20260626T124240Z_labels.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_calibration_packet_20260626T124240Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_audit_queue.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_exact_removal_only_diff.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_threshold_only_label_diff.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_fresh_no_apply_readiness_packet_20260626T025500Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_fresh_no_apply_readiness_packet_20260626T030000Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_full_no_apply_final_analysis_20260626T044700Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_full_no_apply_final_analysis_20260626T044700Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_full_no_apply_result_packet_20260626T044632Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_full_no_apply_result_packet_20260626T044632Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_partial_label_go_20260626T081326Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_partial_label_go_20260626T081326Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_20260626T123203Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_20260626T123203Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_20260626T123203Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_priority0_calibration_audit_20260626T165934Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_priority0_calibration_audit_20260626T165934Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_priority0_calibration_audit_20260626T165934Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_priority0_calibration_audit_20260626T165934Z_rows.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_production_mutation_preflight_20260626T101849Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.html",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z_rows.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_tier_shift_audit_20260626T171354Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_tier_shift_audit_20260626T171354Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_tier_shift_audit_20260626T171354Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence0_tier_shift_audit_20260626T171354Z_rows.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_sentence_vote_staking_dry_run_20260626T032236Z_full_no_apply/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_vc076_human_confirmation_packet_20260626T174135Z.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_vc076_human_confirmation_packet_20260626T174135Z.md",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_vc076_human_confirmation_packet_20260626T174135Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/page58_vc076_human_confirmation_packet_20260626T174135Z_review.csv",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_citation_snippet_verification_top20_20260701T141717Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_claim_rewrite_assembly_top20_20260701T151453Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_claim_rewrite_packet_top20_20260701T135153Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_contradiction_adjudication_top20_20260701T124233Z_packet/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_distillation_pilot_artifacts_20260701T122648Z_manifest/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_overnight_distillation_20260702T002532Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_product_wiki_exact_diff_20260702T054507Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_contradiction_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_distillation_schema.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_page_readiness.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_paper_manifest.jsonl",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_prose_candidates.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_source_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122022Z_summary.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_contradiction_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_distillation_schema.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_page_readiness.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_paper_manifest.jsonl",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_prose_candidates.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_source_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122351Z_summary.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_contradiction_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_distillation_schema.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_page_readiness.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_paper_manifest.jsonl",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_prose_candidates.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_source_gaps.jsonl",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_prose_readiness_pilot_20260701T122648Z_summary.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_source_acquisition_lock_top20_20260701T144153Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/paper_source_position_review_top20_20260701T145604Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/step9f_visible_content_prose_exact_diff_packet_20260704T022605Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/step9f_visible_content_prose_exact_diff_packet_20260704T022950Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_design_studio_20260626T132110Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_design_studio_20260626T132110Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_design_studio_20260626T132110Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_three_lane_synthesis_20260626T133153Z.json",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_three_lane_synthesis_20260626T133153Z.md",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/surveys_three_lane_synthesis_20260626T133153Z_manifest.json",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/tmp_step9f_discovery/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/uploads/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/v1_absorption_agn_feedback_section_packet_20260703T045032Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "docs/v1_paper_distillation_methods_survey_20260703T0716Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/white_dwarfs_baseline_target_kickoff_20260704T070207Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/white_dwarfs_step0_1_source_claim_ledger_intake_20260704T070538Z/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Canonical research artifact",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "docs/youtube_quota_dashboard_backup_20260721T003905Z/",
+      "bucket": "ARCHIVE",
+      "reason": "Useful receipt/report",
+      "protected": true,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4a approval"
+    },
+    {
+      "status": "??",
+      "path": "find_deep.js",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "find_menu.js",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "frontend/public/agent-reports/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/public/human-cal/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/scripts/test-agent-report-upload.mjs",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/scripts/test-wiki-trust-visibility.mjs",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/src/app/agent-reports/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/src/app/wiki/[slug]/trustVisibility.ts",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "frontend/src/lib/agentReportUpload.ts",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "goru_temp_report.json",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "open_new_gemini.applescript",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "paste_submit.applescript",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "playwright_test/",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "run_js.applescript",
+      "bucket": "UNKNOWN",
+      "reason": "Insufficient evidence",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "Hwao/human adjudication"
+    },
+    {
+      "status": "??",
+      "path": "test_applescript.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_inject.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_inject2.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_js_drop.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_js_innerhtml.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_js_insert.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_js_paste.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_js_rich_textarea.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_menu_paste.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_paste.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "test_type.applescript",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "tests/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tmp_build_2929_trust_packet.py",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    },
+    {
+      "status": "??",
+      "path": "tools/R15_prompt.txt",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/build_hwao_2929_trust_recompute_stage_packet_20260705T122901Z.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/galaxy_evolution_autopilot.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/galaxy_evolution_autopilot.py.bak-20260710T160851Z-pre-route-line",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/ge_tex_publishability_lint.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage_autofetch.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage_bookmarklet.js",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage_extractor.js",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage_ingest.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_app_usage_ingest.py.bak-20260710T150441Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_burn_plan_patch.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/gemini_deep_research_driver.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/live_provider_usage_monitor.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/live_provider_usage_monitor.py.bak-20260710T122621Z-pre-gemini-app-gauge",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/live_provider_usage_monitor.py.bak-20260710T135125Z-pre-copymode-fix",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/live_provider_usage_monitor.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/nm_dispersion_v2.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/nm_fulltext_layer.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/nm_fulltext_mass_mine.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/nm_gates.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/nm_numeric_kb.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-20260710T092345Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-display-20260710T100544Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-obsolete-20260709T092850Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-overnight-20260718",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-paper-final-cleanup-20260709T060005Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-path-display-20260710T095553Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-relay-incident-20260711T0500Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_ge_autopilot_dashboard_v2.py.bak-rp1-quality-20260709T0224Z",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_pipeline_board.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/render_run_page.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/stable_cockpit_guard.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/stable_cockpit_renderer.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/templates/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/tests/",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/tmux_board_snapshot.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/tmux_board_summary.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "tools/watch_subnav_videos.py",
+      "bucket": "KEEP-COMMIT",
+      "reason": "Real code/tests",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G3 held"
+    },
+    {
+      "status": "??",
+      "path": "wait_and_extract.py",
+      "bucket": "DELETE-CANDIDATE",
+      "reason": "Reproducible/generated debris",
+      "protected": false,
+      "evidence_basis": "filename-only",
+      "future_gate": "G4b"
+    }
+  ],
+  "bucket_totals": {
+    "KEEP-COMMIT": 222,
+    "ARCHIVE": 130,
+    "DELETE-CANDIDATE": 18,
+    "UNKNOWN": 10
+  },
+  "dispositions": {
+    "archive": [
+      "docs/agent_progress_report_20260626T012412Z.html",
+      "docs/agent_progress_report_20260626T014029Z.html",
+      "docs/agent_progress_report_full_no_apply_completed_20260626T044900Z.html",
+      "docs/agent_progress_report_full_no_apply_running_20260626T032300Z.html",
+      "docs/agent_progress_report_full_no_apply_running_20260626T032700Z.html",
+      "docs/agent_progress_report_interactive_20260626T014636Z.html",
+      "docs/agent_progress_report_readiness_packet_20260626T025500Z.html",
+      "docs/agent_progress_report_usage_monitor_20260626T034600Z.html",
+      "docs/baseline_step9_exact_diff_packet_20260703T1306Z/",
+      "docs/baseline_step9e_claim_id_guarded_sql_packet_20260703T1532Z/",
+      "docs/baseline_step9e_claim_id_guarded_sql_packet_repaired_20260704T020002Z/",
+      "docs/claim2299_nuance_source_packet_20260703T041421Z/",
+      "docs/dashboard_usage_quota_update_20260712T155053Z/",
+      "docs/galaxy-post-label-readiness-analysis-20260627T121535Z.json",
+      "docs/galaxy-post-label-readiness-analysis-20260627T121535Z.md",
+      "docs/galaxy-post-label-readiness-analysis-20260627T121535Z_manifest.json",
+      "docs/galaxy_2299_source_decision_packet_20260703T001440Z/",
+      "docs/galaxy_2299_sourcefill_v2_packet_20260703T003424Z/",
+      "docs/galaxy_2913_2921_readonly_decision_packet_20260704T131018Z/",
+      "docs/galaxy_2915_scoped_replacement_exact_write_packet_20260704T111714Z/",
+      "docs/galaxy_2929_evidence_remap_audit_docs_only_20260704T170510Z/",
+      "docs/galaxy_2929_hwao_trust_recompute_stage_packet_20260705T122901Z/",
+      "docs/galaxy_canonical_merge_preview_packet_20260702T070000Z/",
+      "docs/galaxy_page57_stance_audit_20260702T124152Z/",
+      "docs/galaxy_page57_stance_write_packet_20260702T133041Z/",
+      "docs/galaxy_page57_trust_recompute_v2_trigger_fix_packet_20260702T164209Z/",
+      "docs/galaxy_page57_trust_recompute_write_packet_20260702T153238Z/",
+      "docs/galaxy_stance_audit_scoping_20260702T121713Z/",
+      "docs/galaxy_v2_best_effort_evidence_map_20260627T165252Z.csv",
+      "docs/galaxy_v2_best_effort_preview_manifest_20260627T165252Z.json",
+      "docs/galaxy_v2_best_effort_preview_packet_20260627T165252Z.json",
+      "docs/galaxy_v2_blocked_assistant_hints_20260627T125853Z.csv",
+      "docs/galaxy_v2_claim_2929_candidate_registry_20260627T125853Z.csv",
+      "docs/galaxy_v2_claim_marker_inventory_20260627T125853Z.csv",
+      "docs/galaxy_v2_counted_candidate_human_confirmation_manifest_20260627T153755Z.json",
+      "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.csv",
+      "docs/galaxy_v2_phase5_preview_manifest_20260627T152717Z.json",
+      "docs/galaxy_v2_post_confirmation_assistant_disagreements_20260627T164022Z.csv",
+      "docs/galaxy_v2_post_confirmation_audit_queue_20260627T164022Z.csv",
+      "docs/galaxy_v2_post_confirmation_claim_readiness_20260627T164022Z.csv",
+      "docs/galaxy_v2_post_confirmation_human_counted_candidates_20260627T164022Z.csv",
+      "docs/galaxy_v2_post_confirmation_missing_export_hold_manifest_20260627T154313Z.json",
+      "docs/galaxy_v2_post_confirmation_readiness_manifest_20260627T164022Z.json",
+      "docs/galaxy_v2_proposed_prose_diff_packet_DRAFT_20260627T152717Z.json",
+      "docs/galaxy_v2_proposed_prose_diff_packet_DRAFT_20260627T152717Z.md",
+      "docs/galaxy_v2_recommended_sequence_manifest_20260627T125853Z.json",
+      "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.csv",
+      "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.json",
+      "docs/galaxy_v2_representative_audit_expansion_requirements_20260627T125853Z.md",
+      "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.csv",
+      "docs/galaxy_v2_representative_queue_manifest_20260627T130801Z.json",
+      "docs/galaxy_v2_sources_page_exact_diff_packet_20260702T035242Z/",
+      "docs/galaxy_v2_targeted_audit_queue_20260627T125853Z.csv",
+      "docs/galaxy_v2_targeted_audit_queue_20260627T125853Z.json",
+      "docs/galaxy_v2_tranche1_hermes_assisted_claim_readiness_20260627T153558Z.csv",
+      "docs/galaxy_v2_tranche1_hermes_assisted_counted_candidates_20260627T153558Z.csv",
+      "docs/galaxy_v2_tranche1_hermes_assisted_review_20260627T153558Z.csv",
+      "docs/galaxy_v2_tranche1_hermes_assisted_review_manifest_20260627T153558Z.json",
+      "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.csv",
+      "docs/hwao_morning_prepared_packets_20260706T0308Z/",
+      "docs/hwao_overnight_db_packet_prep_20260705T1615Z/",
+      "docs/page58_audit_deferral_status_20260626T130951Z.json",
+      "docs/page58_audit_deferral_status_20260626T130951Z.md",
+      "docs/page58_audit_deferral_status_20260626T130951Z_critical_micro_audit.csv",
+      "docs/page58_audit_deferral_status_20260626T130951Z_manifest.json",
+      "docs/page58_calibration_spot_check_packet_20260626T045946Z.json",
+      "docs/page58_calibration_spot_check_packet_20260626T045946Z.md",
+      "docs/page58_calibration_spot_check_packet_20260626T045946Z_labels.csv",
+      "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z.json",
+      "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z.md",
+      "docs/page58_calibration_spot_check_packet_evidence_provenance_augmented_20260626T051913Z_labels.csv",
+      "docs/page58_calibration_spot_check_packet_product_operator_augmented_20260626T051047Z.json",
+      "docs/page58_calibration_spot_check_packet_product_operator_augmented_20260626T051047Z_labels.csv",
+      "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z.json",
+      "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z.md",
+      "docs/page58_calibration_spot_check_packet_reviewer_augmented_20260626T050601Z_labels.csv",
+      "docs/page58_completed_calibration_packet_20260626T124240Z.json",
+      "docs/page58_completed_calibration_packet_20260626T124240Z.md",
+      "docs/page58_completed_calibration_packet_20260626T124240Z_label_audit.json",
+      "docs/page58_completed_calibration_packet_20260626T124240Z_labels.csv",
+      "docs/page58_completed_calibration_packet_20260626T124240Z_manifest.json",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z.json",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z.md",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_audit_queue.csv",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_exact_removal_only_diff.csv",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_manifest.json",
+      "docs/page58_completed_packet_calibration_analysis_20260626T130121Z_threshold_only_label_diff.csv",
+      "docs/page58_fresh_no_apply_readiness_packet_20260626T025500Z.md",
+      "docs/page58_fresh_no_apply_readiness_packet_20260626T030000Z.json",
+      "docs/page58_full_no_apply_final_analysis_20260626T044700Z.json",
+      "docs/page58_full_no_apply_final_analysis_20260626T044700Z.md",
+      "docs/page58_full_no_apply_result_packet_20260626T044632Z.json",
+      "docs/page58_full_no_apply_result_packet_20260626T044632Z.md",
+      "docs/page58_post_label_calibration_readiness_20260626T123203Z_manifest.json",
+      "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z.json",
+      "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z.md",
+      "docs/page58_post_label_calibration_readiness_analysis_20260626T163722Z_manifest.json",
+      "docs/page58_priority0_calibration_audit_20260626T165934Z.json",
+      "docs/page58_priority0_calibration_audit_20260626T165934Z.md",
+      "docs/page58_priority0_calibration_audit_20260626T165934Z_manifest.json",
+      "docs/page58_priority0_calibration_audit_20260626T165934Z_rows.csv",
+      "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.html",
+      "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.json",
+      "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z.md",
+      "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z_manifest.json",
+      "docs/page58_sentence0_remaining_driver_audit_20260626T172726Z_rows.csv",
+      "docs/page58_sentence0_tier_shift_audit_20260626T171354Z.json",
+      "docs/page58_sentence0_tier_shift_audit_20260626T171354Z.md",
+      "docs/page58_sentence0_tier_shift_audit_20260626T171354Z_manifest.json",
+      "docs/page58_sentence0_tier_shift_audit_20260626T171354Z_rows.csv",
+      "docs/page58_sentence_vote_staking_dry_run_20260626T032236Z_full_no_apply/",
+      "docs/page58_vc076_human_confirmation_packet_20260626T174135Z.json",
+      "docs/page58_vc076_human_confirmation_packet_20260626T174135Z.md",
+      "docs/page58_vc076_human_confirmation_packet_20260626T174135Z_manifest.json",
+      "docs/page58_vc076_human_confirmation_packet_20260626T174135Z_review.csv",
+      "docs/paper_claim_rewrite_packet_top20_20260701T135153Z/",
+      "docs/paper_contradiction_adjudication_top20_20260701T124233Z_packet/",
+      "docs/paper_distillation_pilot_artifacts_20260701T122648Z_manifest/",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_paper_manifest.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_summary.json",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_paper_manifest.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_summary.json",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_paper_manifest.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_summary.json",
+      "docs/step9f_visible_content_prose_exact_diff_packet_20260704T022605Z/",
+      "docs/step9f_visible_content_prose_exact_diff_packet_20260704T022950Z/",
+      "docs/surveys_design_studio_20260626T132110Z_manifest.json",
+      "docs/surveys_three_lane_synthesis_20260626T133153Z_manifest.json",
+      "docs/v1_absorption_agn_feedback_section_packet_20260703T045032Z/",
+      "docs/youtube_quota_dashboard_backup_20260721T003905Z/"
+    ],
+    "ordinary-quarantine": [],
+    "deletion-candidates": [
+      "backend/app/main.py.bak-labrunner",
+      "click.js",
+      "find_deep.js",
+      "find_menu.js",
+      "goru_temp_report.json",
+      "test_applescript.applescript",
+      "test_inject.applescript",
+      "test_inject2.applescript",
+      "test_js_drop.applescript",
+      "test_js_innerhtml.applescript",
+      "test_js_insert.applescript",
+      "test_js_paste.applescript",
+      "test_js_rich_textarea.applescript",
+      "test_menu_paste.applescript",
+      "test_paste.applescript",
+      "test_type.applescript",
+      "tmp_build_2929_trust_packet.py",
+      "wait_and_extract.py"
+    ],
+    "secret-adjacent": [
+      "backend/.env.redacted-before-disable-gemini-20260708_174609"
+    ],
+    "product-review": [
+      "backend/app/routers/pages.py",
+      "backend/app/services/model_canary.py",
+      "backend/app/services/trust_calculation.py",
+      "frontend/package.json",
+      "frontend/scripts/test-surveys-atlas-ia.mjs",
+      "frontend/src/app/components/NavBar.tsx",
+      "frontend/src/app/ideas/IdeasIndexClient.tsx",
+      "frontend/src/app/ideas/page.tsx",
+      "frontend/src/app/page.tsx",
+      "frontend/src/app/surveys/[slug]/SurveyDetailClient.tsx",
+      "frontend/src/app/wiki/[slug]/WikiPageClient.tsx",
+      "frontend/src/components/surveys/BandSpectrumStrip.tsx",
+      "frontend/src/components/surveys/ChartView.tsx",
+      "frontend/src/components/surveys/FilterSheet.tsx",
+      "frontend/src/components/surveys/PlotB.tsx",
+      "frontend/src/components/surveys/SurveyCard.tsx",
+      "frontend/src/components/surveys/SurveyPeek.tsx",
+      "frontend/src/components/surveys/SurveysView.tsx",
+      "tools/lab_runner_worker.py",
+      "wiki_schema.md",
+      "backend/scripts/generate_video_gemini.py",
+      "backend/tests/test_cross_page_paper_footprint_api.py",
+      "backend/tests/test_global_paper_directory_api.py",
+      "backend/tests/test_model_canary.py",
+      "backend/tests/test_page_source_surface_fallbacks.py",
+      "backend/tests/test_paper_profile_api.py",
+      "backend/tests/test_trust_debate_stance_caps.py",
+      "frontend/public/agent-reports/",
+      "frontend/public/human-cal/",
+      "frontend/scripts/test-agent-report-upload.mjs",
+      "frontend/scripts/test-wiki-trust-visibility.mjs",
+      "frontend/src/app/agent-reports/",
+      "frontend/src/app/wiki/[slug]/trustVisibility.ts",
+      "frontend/src/lib/agentReportUpload.ts",
+      "tests/",
+      "tools/R15_prompt.txt",
+      "tools/build_hwao_2929_trust_recompute_stage_packet_20260705T122901Z.py",
+      "tools/galaxy_evolution_autopilot.py",
+      "tools/galaxy_evolution_autopilot.py.bak-20260710T160851Z-pre-route-line",
+      "tools/ge_tex_publishability_lint.py",
+      "tools/gemini_app_usage.py",
+      "tools/gemini_app_usage.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "tools/gemini_app_usage_autofetch.py",
+      "tools/gemini_app_usage_bookmarklet.js",
+      "tools/gemini_app_usage_extractor.js",
+      "tools/gemini_app_usage_ingest.py",
+      "tools/gemini_app_usage_ingest.py.bak-20260710T150441Z",
+      "tools/gemini_burn_plan_patch.py",
+      "tools/gemini_deep_research_driver.py",
+      "tools/live_provider_usage_monitor.py",
+      "tools/live_provider_usage_monitor.py.bak-20260710T122621Z-pre-gemini-app-gauge",
+      "tools/live_provider_usage_monitor.py.bak-20260710T135125Z-pre-copymode-fix",
+      "tools/live_provider_usage_monitor.py.bak-20260710T173625Z-pre-crawler-provenance",
+      "tools/nm_dispersion_v2.py",
+      "tools/nm_fulltext_layer.py",
+      "tools/nm_fulltext_mass_mine.py",
+      "tools/nm_gates.py",
+      "tools/nm_numeric_kb.py",
+      "tools/render_ge_autopilot_dashboard.py",
+      "tools/render_ge_autopilot_dashboard_v2.py",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-20260710T092345Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-display-20260710T100544Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-clean-obsolete-20260709T092850Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-overnight-20260718",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-paper-final-cleanup-20260709T060005Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-path-display-20260710T095553Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-relay-incident-20260711T0500Z",
+      "tools/render_ge_autopilot_dashboard_v2.py.bak-rp1-quality-20260709T0224Z",
+      "tools/render_pipeline_board.py",
+      "tools/render_run_page.py",
+      "tools/stable_cockpit_guard.py",
+      "tools/stable_cockpit_renderer.py",
+      "tools/templates/",
+      "tools/tests/",
+      "tools/tmux_board_snapshot.py",
+      "tools/tmux_board_summary.py",
+      "tools/watch_subnav_videos.py"
+    ],
+    "research-docs-preservation": [
+      "docs/baseline_step6_status_debate_map_20260703T0954Z/",
+      "docs/baseline_step7_wording_contract_20260703T1007Z/",
+      "docs/baseline_step7a_b1_prime_contradiction_gold_20260703T1205Z/",
+      "docs/baseline_step7a_litdist_tool_eval_20260703T1012Z/",
+      "docs/baseline_step8_docs_only_prose_preview_20260703T1242Z/",
+      "docs/baseline_step9b_claim_evidence_continuity_20260703T1329Z/",
+      "docs/baseline_step9c_readonly_db_evidence_match_20260703T1354Z/",
+      "docs/baseline_step9d_insert_heavy_exact_diff_prep_20260703T1500Z/",
+      "docs/claim2299_strengthening_20260703T014356Z/",
+      "docs/claim_ledger_contract_v1_agn_20260703T0830Z/",
+      "docs/cockpit_simplification_20260703T012406Z/",
+      "docs/cockpit_single_writer_rootcause_20260704T103016Z/",
+      "docs/execution_2942_2947_trust_recompute_approved_20260704T180848Z/",
+      "docs/galaxy_2181_2299_trust_conflicts_20260702T115202Z/",
+      "docs/galaxy_2557_live_refute_reconcile_20260702T113108Z/",
+      "docs/galaxy_2913_2921_exact_write_preflight_20260704T134546Z/",
+      "docs/galaxy_2915_execution_and_cockpit_prevention_20260704T113605Z/",
+      "docs/galaxy_2915_scoped_replacement_preflight_20260704T105746Z/",
+      "docs/galaxy_2929_evidence_remap_preflight_20260704T142442Z/",
+      "docs/galaxy_2929_product_db_wiki_exact_diff_preflight_20260705T110725Z/",
+      "docs/galaxy_2929_source_position_queue_20260705T013911Z/",
+      "docs/galaxy_2929_trust_recompute_preflight_20260705T121124Z/",
+      "docs/galaxy_2942_2947_trust_model_status_correction_preflight_20260704T155315Z/",
+      "docs/galaxy_2942_2947_trust_recompute_readiness_fresh_20260704T164723Z/",
+      "docs/galaxy_2942_2947_trust_recompute_readiness_preflight_20260704T151916Z/",
+      "docs/galaxy_9h2_confirmed_cockpit_backup_20260707T005157Z/",
+      "docs/galaxy_baseline_cockpit_refresh_20260704T122043Z/",
+      "docs/galaxy_canonical_exact_diff_preflight_20260702T073312Z/",
+      "docs/galaxy_claim_backlog_scoping_20260702T101316Z/",
+      "docs/galaxy_claim_backlog_scoping_20260702T143028Z/",
+      "docs/galaxy_claim_layer_held_coverage_decision_20260704T102251Z/",
+      "docs/galaxy_claim_layer_reconciliation_preflight_20260704T082747Z/",
+      "docs/galaxy_claim_layer_split_first_execution_20260704T095826Z/",
+      "docs/galaxy_cockpit_clarity_quintet_20260704T091755Z/",
+      "docs/galaxy_cockpit_ultra_format_gate_20260706T153234Z/",
+      "docs/galaxy_cockpit_ultra_format_visible_action_20260706T153949Z/",
+      "docs/galaxy_evolution_autonomous_quintet_hardening_20260704T071053Z/",
+      "docs/galaxy_evolution_claim_layer_reconciliation_intake_20260704T073425Z/",
+      "docs/galaxy_evolution_final_page_completion_readiness_gate_20260704T062937Z/",
+      "docs/galaxy_evolution_final_page_completion_readiness_gate_20260704T063403Z/",
+      "docs/galaxy_evolution_readonly_scope_reset_20260702T061500Z/",
+      "docs/galaxy_held_claims_coverage_decision_20260704T102251Z/",
+      "docs/galaxy_human_decision_clarity_backup_20260707T001006Z/",
+      "docs/galaxy_human_decision_cockpit_update_20260706T234329Z/",
+      "docs/galaxy_marker_normalization_execution_20260702T093507Z/",
+      "docs/galaxy_marker_normalization_preflight_20260702T090333Z/",
+      "docs/galaxy_page57_stance_exact_diff_prep_20260702T131029Z/",
+      "docs/galaxy_page57_trust_recompute_preflight_20260702T145402Z/",
+      "docs/galaxy_pick_c_cockpit_backup_20260707T002851Z/",
+      "docs/galaxy_rich_baseline_cockpit_restore_20260704T104352Z/",
+      "docs/galaxy_stable_cockpit_renderer_20260704T115307Z/",
+      "docs/galaxy_tranche1_snippet_verify_20260702T105047Z/",
+      "docs/galaxy_v1_absorb_retired_v2_prose_overhaul_20260703T043245Z/",
+      "docs/galaxy_v2_baseline_lock_20260627T125853Z.json",
+      "docs/galaxy_v2_baseline_lock_20260627T125853Z.md",
+      "docs/galaxy_v2_best_effort_markdown_diff_20260627T165252Z.patch",
+      "docs/galaxy_v2_best_effort_proposed_content_20260627T165252Z.md",
+      "docs/galaxy_v2_blocked_assistant_hints_20260627T125853Z.json",
+      "docs/galaxy_v2_calibration_definitions_20260627T125853Z.json",
+      "docs/galaxy_v2_calibration_definitions_20260627T125853Z.md",
+      "docs/galaxy_v2_claim_2929_candidate_registry_20260627T125853Z.json",
+      "docs/galaxy_v2_claim_marker_inventory_20260627T125853Z.json",
+      "docs/galaxy_v2_content_publish_preflight_20260627T170527Z/",
+      "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.json",
+      "docs/galaxy_v2_counted_candidate_human_confirmation_workspace_20260627T153755Z.md",
+      "docs/galaxy_v2_disclaimer_fix_publish_preflight_20260627T172833Z/",
+      "docs/galaxy_v2_human_counted_votes_preflight_20260628T011555Z/",
+      "docs/galaxy_v2_live_qa_20260702T034618Z/",
+      "docs/galaxy_v2_phase1_code_safety_slice_20260627T175914Z.json",
+      "docs/galaxy_v2_phase1_code_safety_slice_20260627T175914Z.md",
+      "docs/galaxy_v2_post_confirmation_missing_export_hold_20260627T154313Z.json",
+      "docs/galaxy_v2_post_confirmation_missing_export_hold_20260627T154313Z.md",
+      "docs/galaxy_v2_post_confirmation_readiness_20260627T164022Z.json",
+      "docs/galaxy_v2_post_confirmation_readiness_20260627T164022Z.md",
+      "docs/galaxy_v2_preview_outline_20260627T152717Z.json",
+      "docs/galaxy_v2_preview_outline_20260627T152717Z.md",
+      "docs/galaxy_v2_prose_cleanup_publish_preflight_20260627T180319Z/",
+      "docs/galaxy_v2_prose_overhaul_20260703T041421Z/",
+      "docs/galaxy_v2_prose_quality_checklist_20260627T125853Z.json",
+      "docs/galaxy_v2_prose_quality_checklist_20260627T125853Z.md",
+      "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.json",
+      "docs/galaxy_v2_representative_candidate_queue_20260627T130801Z.md",
+      "docs/galaxy_v2_scope_corrected_status_20260702T032010Z/",
+      "docs/galaxy_v2_section_conformance_20260627T125853Z.json",
+      "docs/galaxy_v2_section_conformance_20260627T125853Z.md",
+      "docs/galaxy_v2_source_surface_reconciliation_20260629.md",
+      "docs/galaxy_v2_sources_page_deploy_preflight_20260702T041206Z/",
+      "docs/galaxy_v2_tranche1_hermes_assisted_readiness_20260627T153558Z.json",
+      "docs/galaxy_v2_tranche1_hermes_assisted_readiness_20260627T153558Z.md",
+      "docs/galaxy_v2_tranche1_hermes_assisted_review_20260627T153558Z.json",
+      "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.json",
+      "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z.md",
+      "docs/galaxy_v2_tranche1_review_workspace_20260627T150814Z_rows.json",
+      "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.json",
+      "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.json.sha256",
+      "docs/galaxy_v2_v6_board_baseline_20260627T175356Z.md",
+      "docs/gemini_quota_pools.md",
+      "docs/hwao_debate_map_refresh_20260706T002104Z/",
+      "docs/hwao_morning_blocker_specs_20260706T0308Z/",
+      "docs/hwao_overnight_pinning_atlas_20260705T153533Z/",
+      "docs/hwao_overnight_pinning_wave2_20260705T1615Z/",
+      "docs/hwao_p1_p3_readonly_preflight_20260706T0750Z/",
+      "docs/method1_cockpit_ultra_format_gate_20260706T154438Z/",
+      "docs/mission_resumption_20260702T081658Z/",
+      "docs/overnight_2942_2947_quintet_hardening_20260704T170510Z/",
+      "docs/overnight_step9e_readonly_hardening_20260703T1621Z/",
+      "docs/page58_claim_trust_publish_preflight_20260626T113250Z/",
+      "docs/page58_partial_label_go_20260626T081326Z.json",
+      "docs/page58_partial_label_go_20260626T081326Z.md",
+      "docs/page58_post_label_calibration_readiness_20260626T123203Z.json",
+      "docs/page58_post_label_calibration_readiness_20260626T123203Z.md",
+      "docs/page58_production_mutation_preflight_20260626T101849Z/",
+      "docs/paper_citation_snippet_verification_top20_20260701T141717Z/",
+      "docs/paper_claim_rewrite_assembly_top20_20260701T151453Z/",
+      "docs/paper_overnight_distillation_20260702T002532Z/",
+      "docs/paper_product_wiki_exact_diff_20260702T054507Z/",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z.md",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_contradiction_gaps.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_distillation_schema.json",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_page_readiness.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_prose_candidates.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122022Z_source_gaps.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z.md",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_contradiction_gaps.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_distillation_schema.json",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_page_readiness.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_prose_candidates.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122351Z_source_gaps.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z.md",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_contradiction_gaps.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_distillation_schema.json",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_page_readiness.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_prose_candidates.jsonl",
+      "docs/paper_prose_readiness_pilot_20260701T122648Z_source_gaps.jsonl",
+      "docs/paper_source_acquisition_lock_top20_20260701T144153Z/",
+      "docs/paper_source_position_review_top20_20260701T145604Z/",
+      "docs/surveys_design_studio_20260626T132110Z.json",
+      "docs/surveys_design_studio_20260626T132110Z.md",
+      "docs/surveys_three_lane_synthesis_20260626T133153Z.json",
+      "docs/surveys_three_lane_synthesis_20260626T133153Z.md",
+      "docs/tmp_step9f_discovery/",
+      "docs/uploads/",
+      "docs/v1_paper_distillation_methods_survey_20260703T0716Z/",
+      "docs/white_dwarfs_baseline_target_kickoff_20260704T070207Z/",
+      "docs/white_dwarfs_step0_1_source_claim_ledger_intake_20260704T070538Z/"
+    ]
+  },
+  "safety_ledger": {
+    "moves": 0,
+    "deletes": 0,
+    "stashes": 0,
+    "commits": 0,
+    "branches": 0,
+    "git_writes": 0,
+    "env_content_reads": 0,
+    "db_actions": 0,
+    "runtime_actions": 0,
+    "network": 0,
+    "publication": 0
+  },
+  "marker": "GORU_PHASE1_WORKTREE_CLASSIFICATION_COMPLETE_20260721"
+}

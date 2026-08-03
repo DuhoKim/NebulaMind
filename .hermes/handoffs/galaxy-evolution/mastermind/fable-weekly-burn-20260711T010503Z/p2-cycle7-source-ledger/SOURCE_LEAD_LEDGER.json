@@ -1,0 +1,526 @@
+{
+  "marker": "FABLE_BURN_P2_SOURCE_LEAD_LEDGER_20260711T010503Z",
+  "brief_marker": "HWAO_FABLE_BURN_P2_BRIEF_20260711T010503Z",
+  "generated_utc": "2026-07-11T01:52:00Z",
+  "request_id": "JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z",
+  "report_verdict": "REJECTED_RETAIN_VERIFIED_SOURCE_LEADS_ONLY",
+  "network_fetches_performed": 0,
+  "classification_policy": "Fail-closed. VERIFIED_LOCAL only for claims fully checkable against on-disk files (in practice: claims about RP-1's own study checked against the cycle-5 tex snapshot). Every claim about external literature content is NEEDS_NETWORK_VERIFICATION at best, because no external paper text exists on local disk; Tori's recorded abstract-level checks are treated as supporting notes, not as local verification. REJECTED marks claims retracted in the corrected report, contradicted by on-disk ground truth, or prohibited by the wording contract (HWAO_GEMINI_WEB_VERDICT_20260711T000400Z: no 'establishes' or equivalent causal/settled verbs; non-commensurable absolute quantities must be labeled).",
+  "quoting_note": "exact_claim fields quote the rejected report verbatim, including wording that violates the wording contract (e.g. the section heading 'What the literature appears to establish'). Those verbs belong to the quoted, rejected material and are reproduced solely for identification; the ledger's own prose does not use them.",
+  "line_reference_note": "File:line references use the hash-pinned copies in sources-snapshot/ within this packet directory. RAW = GEMINI_WEB_OUTPUT.md, CORR = GEMINI_WEB_OUTPUT_CORRECTED.md, TEX = rp1_flagship_polished.tex, TORI = JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z_TORI_PRELIMINARY.md, INTEG = JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z_INTEGRATION.md.",
+  "source_file_sha256": {
+    "sources-snapshot/GEMINI_WEB_OUTPUT.md": "55959dd3d4e9f6f3e5de28e2ea530c3c6178640f14a003fc62e0fc23e004f4c5",
+    "sources-snapshot/GEMINI_WEB_OUTPUT.meta.json": "53d452d1e55dd82dec46b9fdfc4f4064441acbd8c199f5ec6b062051674296e4",
+    "sources-snapshot/GEMINI_WEB_OUTPUT.links.json": "a633d872e7049aaebce38e2cdcb2349d7066bd4616e49e4b88ab98d855e26cfa",
+    "sources-snapshot/GEMINI_WEB_OUTPUT_CORRECTED.md": "39d4221edb332e770aff76f9d17481a7f0a0db6b24bc8afff6e4bf648a85b375",
+    "sources-snapshot/GEMINI_WEB_OUTPUT_CORRECTED.chat.md": "bc2c3b6d59e904fdd0063b11dfe816e637108a4bf8bb0acf02ba44e0e2b13fed",
+    "sources-snapshot/GEMINI_WEB_OUTPUT_CORRECTED.meta.json": "41fb4432b3bc45eb5d3f9c06b884b5d732d7c375795f99b28b5d2c551ebee2d8",
+    "sources-snapshot/GEMINI_WEB_OUTPUT_CORRECTED.links.json": "596a8e672a195cd57721e1feb9b1e15918685df98b660c003da93486533284b7",
+    "sources-snapshot/GEMINI_WEB_OUTPUT_CORRECTED.acceptance.json": "7f3cc87e0e4b2f3677fa56e55fbe58600c0f6299bdd1cac4bd82607ad187f41b",
+    "sources-snapshot/CAPTURE_STATUS.json": "c00ac1fb3757dcb33193da1556edd66e8fe2190e2665b0fd4dc224e7ddf7f80b",
+    "sources-snapshot/JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z_INTEGRATION.md": "e99ba30401774318521af38f6592577374ce7c866bf6aa9b4a88cc3743de17d7",
+    "sources-snapshot/JOURNAL_CYCLE7_GEMINI_WEB_20260710T232711Z_TORI_PRELIMINARY.md": "476fae6628a1095439d9bf0de4ca8c2b6399d84ebc97c62abcf7e8e556f6589c",
+    "sources-snapshot/HWAO_GEMINI_WEB_VERDICT_20260711T000400Z.md": "3894c3aca13ddab43d8f9178c0ca7bc425b1e115d319abf0b9c430c4578b93c4",
+    "sources-snapshot/rp1_flagship_polished.tex": "63b3920e158ba3be3a78ac0fcf771a979ccf43afe1a8759eda921e1f35ae9384"
+  },
+  "counts": {
+    "total_leads": 50,
+    "VERIFIED_LOCAL": 4,
+    "NEEDS_NETWORK_VERIFICATION": 39,
+    "REJECTED": 7,
+    "retained_lead_entries": ["N01", "N05", "N07", "N09", "N11"],
+    "uncited_not_usable_label_instances": 26,
+    "uncited_label_count_matches_acceptance_json": true
+  },
+  "leads": [
+    {
+      "lead_id": "V01",
+      "source_ref": "RP-1 (this study) — cycle-5 flagship tex",
+      "exact_claim": "CORR:79 'Context: Our invariant study result is median Delta log sSFR (target minus matched star-forming control) = -1.309 dex, bootstrap 95% interval [-1.334,-1.283] dex.' Also RAW:5/111/115 'a fiber-centered -1.309 dex [-1.334,-1.283] association'.",
+      "classification": "VERIFIED_LOCAL",
+      "local_basis": "TEX:13 ('a median $\\Delta\\log {\\rm sSFR}$ of -1.309 dex, with a bootstrap 95\\% confidence interval of [-1.334,-1.283] dex'), TEX:57 (table row '-1.309 & [-1.334,-1.283]'), TEX:65, TEX:74. Numerals match character-for-character.",
+      "network_pass_must_confirm": null,
+      "notes": "The one class of claim in the rejected report that is fully checkable on disk: RP-1's own estimand. The tex defines it as association-only, morphology-uncontrolled, fiber-centered (TEX:13, TEX:74). Cycles 6/7 corrupted this CI by regenerating it; the cycle-5 tex snapshot in this packet is the ground truth."
+    },
+    {
+      "lead_id": "V02",
+      "source_ref": "RP-1 (this study) — redshift window",
+      "exact_claim": "RAW:3 'Within the local universe window of 0.02<z<0.12'; CORR:95/97/99 'for SDSS 0.02 < z < 0.12 samples'.",
+      "classification": "VERIFIED_LOCAL",
+      "local_basis": "TEX:22 'Because the sample is restricted to $0.02<z<0.12$'.",
+      "network_pass_must_confirm": null,
+      "notes": "The report's stated target window matches RP-1's actual denominator restriction."
+    },
+    {
+      "lead_id": "V03",
+      "source_ref": "RP-1 (this study) — catalog sSFR estimator identity",
+      "exact_claim": "RAW:83 'utilizing parameters such as specsfr_tot_p50'; RAW:137 'the specsfr_tot_p50 D n (4000)-based derivation for AGN hosts' (the report's premise that the study metric is the MPA-JHU-style specsfr_tot_p50).",
+      "classification": "VERIFIED_LOCAL",
+      "local_basis": "TEX:34 'using its catalog median estimators \\texttt{lgm\\_tot\\_p50} and \\texttt{specsfr\\_tot\\_p50}' (galSpecExtra value-added table).",
+      "network_pass_must_confirm": null,
+      "notes": "Only the estimator-identity premise is verified locally. The report's claims about how the MPA-JHU pipeline internally derives/substitutes that estimator for AGN hosts are external pipeline claims — see U19 and N12; they are not verified by this entry."
+    },
+    {
+      "lead_id": "V04",
+      "source_ref": "RP-1 (this study) — S/N cut premise",
+      "exact_claim": "RAW:67 'Stringent signal-to-noise (S/N) cuts—typically requiring S/N>3 ... for all four diagnostic lines—are routinely applied' (as applied to this study's denominator).",
+      "classification": "VERIFIED_LOCAL",
+      "local_basis": "TEX:57 ('Broad optical BPT-selected targets, S/N$\\geq3$'), TEX:19 ('the strict four-line S/N cut means the retained denominator is already biased against emission-weak passive systems').",
+      "network_pass_must_confirm": null,
+      "notes": "Verified only insofar as RP-1 itself applies a four-line S/N>=3 cut and its tex already states the resulting denominator bias. The literature-practice generalization ('routinely applied', 'even S/N>5') is N12."
+    },
+    {
+      "lead_id": "N01",
+      "source_ref": "Ellison et al. (2016) — https://academic.oup.com/mnrasl/article/458/1/L34/2589536",
+      "exact_claim": "CORR:45 'Optically selected AGN hosts are associated with a median global star formation rate offset of -0.06 dex relative to matched controls.'; CORR:87 'Global ΔSFR = -0.06 dex. Control variables: Mass, Redshift, Local Density. Aperture: Global (ANN). Selection: SDSS optical.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No copy of the paper or its abstract exists on local disk. TORI:30 and INTEG:53 record a supervised abstract-level check ('indexed abstract reports median Delta SFR = -0.06 dex'), which is an on-disk attestation of a network check, not local source material.",
+      "network_pass_must_confirm": "That the MNRAS Letters 458(1) L34 abstract and full text report median Delta SFR = -0.06 dex for optically selected AGN vs matched controls; the matching variables (stellar mass, redshift, local density) and ANN-derived L_IR SFR methodology; and that the URL resolves to Ellison et al. 2016.",
+      "notes": "RETAINED LEAD 1 of 5 (INTEG:53). Global aperture — non-commensurable with RP-1's fiber-centered matched-control difference as a raw value; usable only as a labeled cross-aperture context point. The earlier -0.12 dex / 25 percent figure is REJECTED (R01)."
+    },
+    {
+      "lead_id": "N02",
+      "source_ref": "Ellison et al. (2016) — same URL as N01 (raw-report-only details)",
+      "exact_claim": "RAW:13-21 matching tolerances '0.1 dex in stellar mass ..., 0.005 in redshift (z), and 0.1 dex in local galaxy density (δ 5)'; 'median composite of at least five star-forming control galaxies'; 'infrared-selected AGN exhibited a median SFR enhancement of a factor of ∼1.5'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; these details do not appear in any on-disk verification record (Tori's check covered only the -0.06 dex abstract value).",
+      "network_pass_must_confirm": "Exact matching tolerances, minimum-control count, and the IR-selected enhancement factor (~1.5x) from the full text.",
+      "notes": "Dropped from the corrected report; survives only in the rejected raw prose. Treat with extra suspicion given the same source's headline value was misquoted (R01)."
+    },
+    {
+      "lead_id": "N03",
+      "source_ref": "Gatto et al. (2025) — https://academic.oup.com/mnras/article/539/4/3229/8120227",
+      "exact_claim": "RAW:37-39 'median nuclear log value of −1.34±0.03 dex for AGN hosts, compared to −1.55±0.02 dex for the morphological control galaxies' within '2.5′′' aperture 'averaging a physical width of 2.62 kpc'; difference '+0.21 dex' / '60 percent higher'. CORR:85 'Nuclear ΣSFR ∗,nuc = -1.34 dex (AGN) vs -1.55 dex (Control) ... Aperture: 2.5-arcsec central. Selection: MaNGA.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. Unlike the five retained leads, no on-disk Tori record attests even an abstract-level check of the Gatto numbers.",
+      "network_pass_must_confirm": "The -1.34±0.03 vs -1.55±0.02 dex nuclear values, the quantity they describe (surface density vs rate — the raw report is inconsistent about this), aperture definition, and the +0.21 dex offset sign/derivation.",
+      "notes": "Non-commensurable with RP-1's matched-control Delta log sSFR as raw values (absolute nuclear quantity vs matched-pair difference) — CORR:85 itself now carries this caveat. The raw report's 'Highly commensurable' framing is REJECTED (R02)."
+    },
+    {
+      "lead_id": "N04",
+      "source_ref": "Gatto et al. (2025) — same URL as N03 (raw-report-only sample/global details)",
+      "exact_claim": "RAW:23-43 '293 AGN hosts', controls at '0.015≤z≤0.14' and '10^8.5<M⋆<10^11 M⊙' with '30 percent deviation tolerance', 'two control galaxies for each AGN' matched on morphology and axial ratio, SFR from stars younger than 20 Myr; global 'median offset from the SFMS for AGN-hosting galaxies is −0.35 dex' vs control '−0.60 dex', AGN global SFR 'approximately 70 percent higher', '44 percent of the control sample' totally quenched. RAW:125 'sAGN-et ... +0.62 dex', 'wAGN-lt ... +0.15 dex'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; none of these values appear in any on-disk verification record.",
+      "network_pass_must_confirm": "Sample size, control-selection procedure, SFMS offsets (-0.35 / -0.60 dex), the 70 percent and 44 percent figures, and the sAGN-et/wAGN-lt subgroup offsets (+0.62 / +0.15 dex).",
+      "notes": "Dropped from the corrected report's quantitative section except the +0.21 dex nuclear offset and green-valley statement (CORR:47/49)."
+    },
+    {
+      "lead_id": "N05",
+      "source_ref": "Gawade (2025) — https://arxiv.org/abs/2512.22268",
+      "exact_claim": "CORR:51 'EAGLE producing a broad continuous distribution and IllustrisTNG producing a sharp pile-up at an imposed SFR floor'; CORR:91 'Green Valley Median = -14.85 dex (TNG) vs -11.71 dex (EAGLE) ... Commensurability caveat: Different estimand (absolute quantity vs. our matched-control difference); not commensurable as raw values.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:37 records an abstract-level check that the medians (-14.85, -11.71) appear in the preprint abstract; that is an attestation, not local source material.",
+      "network_pass_must_confirm": "That arXiv:2512.22268 (24-Dec-2025 preprint) reports the TNG and EAGLE green-valley median log10 sSFR values -14.85 and -11.71 dex; the preprint's version at check time must be pinned; publication/peer-review status must be recorded.",
+      "notes": "RETAINED LEAD 3 of 5 (INTEG:55). 2025 preprint — treat as unrefereed. Absolute simulation medians — non-commensurable with RP-1's matched-control difference; labeled as such wherever cited. CORR:141 additionally marks the 'illustrative values of TNG/EAGLE sSFR floors' UNCITED_NOT_USABLE outside the direct reference context (U18)."
+    },
+    {
+      "lead_id": "N06",
+      "source_ref": "Gawade (2025) — same URL as N05 (raw-report-only details)",
+      "exact_claim": "RAW:55-63 TNG pile-up 'approximately 3.5 dex below observed SDSS AGN hosts'; subgrid contrast 'stochastic thermal feedback in EAGLE versus kinetic momentum modes in TNG'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; the 3.5 dex gap and the subgrid characterization are not in any on-disk verification record.",
+      "network_pass_must_confirm": "Whether the preprint itself states the ~3.5 dex offset from observed SDSS AGN hosts and characterizes the feedback implementations this way.",
+      "notes": "The 3.5 dex comparison mixes a simulation absolute median against an observed population — if used at all it must carry a non-commensurability label."
+    },
+    {
+      "lead_id": "N07",
+      "source_ref": "Cid Fernandes et al. (2010, 2011) — https://arxiv.org/abs/1012.4426",
+      "exact_claim": "CORR:53 'The WHAN diagram separates true weakly accreting AGN from \"retired galaxies\" ionized by hot evolved low-mass stars.'; RAW:75-79 'requiring W Hα >3 Å for true weak AGN as defined by the WHAN criteria'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:36 records an abstract-level check ('abstract supports the WHAN distinction ... and the W_Halpha = 3 A boundary'); attestation only.",
+      "network_pass_must_confirm": "The WHAN diagram definition, the retired-galaxy (HOLMES) interpretation, and the exact W_Halpha boundary wording (= 3 Å vs > 3 Å) from the full text; also which of the 2010 vs 2011 papers the arXiv id resolves to and whether both are needed.",
+      "notes": "RETAINED LEAD 2 of 5 (INTEG:54). RP-1's tex already cites cidfernandes2011 for LINER/retired-galaxy contamination (TEX:22) — locally checkable evidence that RP-1 cites the work, not verification of the boundary value."
+    },
+    {
+      "lead_id": "N08",
+      "source_ref": "Piotrowska et al. (2022) — https://academic.oup.com/mnras/article/512/1/1052/6482843",
+      "exact_claim": "CORR:55 'The quenching of central galaxies is overwhelmingly predicted by integrated supermassive black hole mass (a proxy for integrated feedback history) rather than instantaneous AGN accretion output.'; CORR:89 'Quenching Threshold = sSFR < -11.0 dex. Control variables: Integrated SMBH mass, Halo mass. Aperture: Global.'; RAW:131 'standard z=0 global quenching threshold of sSFR<10 −11 yr −1'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:40 records only that the link resolves; 'the detailed numbers/interpretations quoted by Gemini still require full-paper verification'.",
+      "network_pass_must_confirm": "The machine-learning classification result (integrated SMBH mass as dominant quenching predictor), the sSFR < 10^-11 yr^-1 threshold usage, and that the URL resolves to Piotrowska et al. 2022.",
+      "notes": "Not among the five retained leads. RP-1's tex cites piotrowska2022 (TEX:25, TEX:75) as a degeneracy/missing-observable reference — evidence of citation, not of the quoted numbers. The -11.0 dex threshold is an absolute global quantity — non-commensurable with RP-1's matched-control difference; labeled wherever cited."
+    },
+    {
+      "lead_id": "N09",
+      "source_ref": "Simard et al. (2011) and Mendel et al. (2014) — https://cdsarc.cds.unistra.fr/viz-bin/cat/J/ApJS/196/11",
+      "exact_claim": "CORR:57 'Robust multi-band bulge-disk decompositions and Sérsic indices are available for 1.12 million SDSS galaxies to enable morphological control matching.'; RAW:182 'PSF) convolved bulge-disk decompositions for an astonishing 1.12 million galaxies', 'ugriz structural measurements', 'bulge-to-total (B/T) light ratios, Sérsic indices'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:38 records a check that the VizieR catalog exists and 'reports PSF-convolved bulge+disk decompositions for 1,123,718 SDSS DR7 galaxies'; attestation only.",
+      "network_pass_must_confirm": "The exact row count (1,123,718), the available structural fields (B/T, Sérsic index, component sizes, ugriz), and whether the Mendel et al. (2014) attribution belongs to this VizieR entry or a separate catalog (the report bundles both names under one URL).",
+      "notes": "RETAINED LEAD 4 of 5 (INTEG:56). Catalog lead for a future morphology-controlled rerun — directly relevant to RP-1's stated missing structural proxies (TEX:34: R90/R50, fracDeV, petroR50/90 not retained in the cache)."
+    },
+    {
+      "lead_id": "N10",
+      "source_ref": "Tempel et al. (2014) — https://academic.oup.com/mnras/article/438/4/3465/1107139",
+      "exact_claim": "CORR:59 'Public catalogs provide distances to cosmic web filaments within the SDSS footprint to account for large-scale environmental variables.'; RAW:188-190 'extracted the cosmic web filamentary pattern for the SDSS volume using the Bisous model', 'assigns distances to filament axes', 'structures reaching up to 60 h −1 Mpc in length'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:40 records only that the link resolves.",
+      "network_pass_must_confirm": "That the paper provides a public SDSS filament catalog with filament-axis distances, the Bisous-model methodology, and the 60 h^-1 Mpc figure.",
+      "notes": "Not among the five retained leads. Environmental-control lead for follow-up; RP-1's tex lists environment labels among missing observables (TEX:25, TEX:28)."
+    },
+    {
+      "lead_id": "N11",
+      "source_ref": "SDSS-V SPIDERS — https://www.sdss.org/dr18/bhm/programs/spiders/",
+      "exact_claim": "CORR:61 'Optical spectroscopic follow-up of X-ray sources yields uniformly selected AGN samples that bypass traditional optical dust obscuration and signal-to-noise line-ratio limits.'; CORR:99 'SDSS-V SPIDERS / eROSITA ... → X-ray flux cross-correlation → BPT denominator cleaning and selection-bias boundary feasibility for SDSS 0.02 < z < 0.12 samples.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material. TORI:39 records that the DR18 page supports SPIDERS as optical spectroscopic follow-up of eROSITA X-ray sources but does not, by itself, support the claimed overlap with the exact 0.02<z<0.12 denominator.",
+      "network_pass_must_confirm": "The actual footprint/redshift/flux-limit overlap between SPIDERS/eROSITA source lists and RP-1's SDSS DR17 0.02<z<0.12 denominator — the feasibility claim, not just the program description.",
+      "notes": "RETAINED LEAD 5 of 5 (INTEG:57), retained explicitly WITHOUT the overlap claim. Any use must separate the program description (supported) from the denominator-overlap feasibility (unsupported)."
+    },
+    {
+      "lead_id": "N12",
+      "source_ref": "Unattributed literature-practice claim (raw report)",
+      "exact_claim": "RAW:67 'Stringent signal-to-noise (S/N) cuts—typically requiring S/N>3 or even S/N>5 for all four diagnostic lines—are routinely applied ... this requirement inherently excludes obscured populations, emission-weak nuclei, and ... massive galaxies transitioning into full quiescence'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No citation given in the report and no local source material for the field-wide practice claim. RP-1's own S/N>=3 cut and its bias statement are verified separately (V04).",
+      "network_pass_must_confirm": "A citable source for the S/N-cut practice range and the exclusion-bias characterization.",
+      "notes": "Overlaps thematically with CORR:73 ('What remains unknown': S/N >= 3 denominator bias), which the corrected report frames as an open question rather than a claim."
+    },
+    {
+      "lead_id": "N13",
+      "source_ref": "Unattributed structural claims (raw report)",
+      "exact_claim": "RAW:218 'Massive, dense bulges inherently restrict central star formation through morphological quenching—stabilizing gas against fragmentation due to deep potential wells—and secular gas exhaustion.'; RAW:220 'AGN preferentially reside in galaxies with larger bulges, as black hole mass scales with bulge mass.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No citation given in the report; no local source material.",
+      "network_pass_must_confirm": "Citable sources for morphological quenching and the M_BH–M_bulge scaling as used in this framing.",
+      "notes": "Standard-textbook-flavored claims, but fail-closed: uncited is uncited. RP-1's tex makes the related degeneracy point with its own citations (TEX:25: schawinski2010, bluck2014, piotrowska2022)."
+    },
+    {
+      "lead_id": "U01",
+      "source_ref": "Schawinski et al. (2014) — no URL in report",
+      "exact_claim": "CORR:23 'Schawinski et al. (2014) — UNCITED_NOT_USABLE — commentary'. Raw-report content: RAW:53 green valley 'houses multiple distinct evolutionary pathways'; late-type 'slow, gradual exhaustion of gas reservoirs'; early-type 'rapid quenching, likely driven by major mergers'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; the only on-disk record is the rejected report's own UNCITED_NOT_USABLE label.",
+      "network_pass_must_confirm": "Locate the actual Schawinski et al. 2014 paper and verify the two-pathway green-valley characterization attributed to it.",
+      "notes": "UNCITED_NOT_USABLE label instance 1/26 (list section 'Prior studies/reviews to verify locally')."
+    },
+    {
+      "lead_id": "U02",
+      "source_ref": "Brinchmann et al. (2004) — no URL in report",
+      "exact_claim": "CORR:25 'Brinchmann et al. (2004) — UNCITED_NOT_USABLE — observation'. Raw-report content: RAW:85 aperture corrections 'originally developed by Brinchmann et al. (2004) and Salim et al. (2007)' fitting models 'to the photometry residing strictly outside the fiber footprint'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label. RP-1's tex cites brinchmann2004 for its catalog values (TEX:34) — evidence of citation in RP-1, not verification of the aperture-correction description.",
+      "network_pass_must_confirm": "That Brinchmann et al. 2004 is the correct source for the MPA-JHU SFR methodology as described.",
+      "notes": "UNCITED_NOT_USABLE label instance 2/26."
+    },
+    {
+      "lead_id": "U03",
+      "source_ref": "Salim et al. (2007) — no URL in report",
+      "exact_claim": "CORR:27 'Salim et al. (2007) — UNCITED_NOT_USABLE — observation'. Raw-report content: RAW:85 co-credited with the aperture-correction methodology.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Salim et al. 2007's actual role in the aperture-correction/photometric-SFR methodology.",
+      "notes": "UNCITED_NOT_USABLE label instance 3/26."
+    },
+    {
+      "lead_id": "U04",
+      "source_ref": "Kewley et al. (2005) — no URL in report",
+      "exact_claim": "CORR:29 'Kewley et al. (2005) — UNCITED_NOT_USABLE — observation'. Raw-report content: RAW:85 'a minimum fiber covering fraction of roughly 20 percent is required for nuclear spectral properties to accurately approximate global galactic values. For the SDSS 3-arcsec fiber, this 20 percent threshold corresponds roughly to z∼0.04.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "The 20 percent covering-fraction result and whether the z~0.04 mapping for the SDSS 3-arcsec fiber is stated by Kewley et al. 2005 or is the report's own derivation.",
+      "notes": "UNCITED_NOT_USABLE label instance 4/26. Directly relevant to RP-1's aperture-limitation wording; do not import the numbers until verified."
+    },
+    {
+      "lead_id": "U05",
+      "source_ref": "Hickox et al. (2014) — no URL in report",
+      "exact_claim": "CORR:31 'Hickox et al. (2014) — UNCITED_NOT_USABLE — review'. Raw-report content: RAW:99 AGN accretion 'broken up into numerous short bursts, lasting roughly 0.1 to 10 Myr'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "The 0.1–10 Myr burst-timescale attribution.",
+      "notes": "UNCITED_NOT_USABLE label instance 5/26."
+    },
+    {
+      "lead_id": "U06",
+      "source_ref": "Schawinski et al. (2015) — no URL in report",
+      "exact_claim": "CORR:33 'Schawinski et al. (2015) — UNCITED_NOT_USABLE — review'. Raw-report content: RAW:99 co-credited for the stochastic 'flickering' accretion picture.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "The flickering/duty-cycle attribution to Schawinski et al. 2015.",
+      "notes": "UNCITED_NOT_USABLE label instance 6/26."
+    },
+    {
+      "lead_id": "U07",
+      "source_ref": "Yang et al. (2007) — no URL in report",
+      "exact_claim": "CORR:35 'Yang et al. (2007) — UNCITED_NOT_USABLE — catalog'. Raw-report content: RAW:186 'halo-based group catalog ... categorizes over 600,000 SDSS galaxies into distinct dark matter halos, delineating central galaxies from satellites'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "The >600,000-galaxy group catalog description and central/satellite delineation.",
+      "notes": "UNCITED_NOT_USABLE label instance 7/26. Same source re-labeled at U13 and U22."
+    },
+    {
+      "lead_id": "U08",
+      "source_ref": "xCOLD GASS / Saintonge et al. (2017) — no URL in report",
+      "exact_claim": "CORR:37 'xCOLD GASS / Saintonge et al. (2017) — UNCITED_NOT_USABLE — survey-instrument'. Raw-report content: RAW:194 'mass-selected sample of galaxies out to z=0.05', 'IRAM 30-m telescope to measure CO(1-0) emission', molecular gas fractions and depletion timescales.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label. RP-1's tex cites xcoldgass2017 among missing-observable references (TEX:75) — citation evidence only.",
+      "network_pass_must_confirm": "Survey design (z limit, mass selection, IRAM 30-m, CO(1-0)) and the Saintonge 2017 attribution.",
+      "notes": "UNCITED_NOT_USABLE label instance 8/26. Same source re-labeled at U14 and U23."
+    },
+    {
+      "lead_id": "U09",
+      "source_ref": "ALFALFA — no URL in report",
+      "exact_claim": "CORR:39 'ALFALFA — UNCITED_NOT_USABLE — survey-instrument'. Raw-report content: RAW:194 'extensive neutral hydrogen (HI) mass maps covering the SDSS footprint'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "ALFALFA's coverage/overlap with the SDSS footprint and its usability for HI masses in the RP-1 window.",
+      "notes": "UNCITED_NOT_USABLE label instance 9/26. Same source re-labeled at U15 and U24."
+    },
+    {
+      "lead_id": "U10",
+      "source_ref": "SDSS-IV MaNGA — no URL in report",
+      "exact_claim": "CORR:41 'SDSS-IV MaNGA — UNCITED_NOT_USABLE — survey-instrument'. Raw-report content: RAW:200 'integral field spectroscopy for approximately 10,000 galaxies at z<0.15'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label (the Gatto link covers MaNGA only where Gatto's own text does).",
+      "network_pass_must_confirm": "The ~10,000-galaxy / z<0.15 survey parameters from a citable MaNGA source.",
+      "notes": "UNCITED_NOT_USABLE label instance 10/26. Same source re-labeled at U16 and U25."
+    },
+    {
+      "lead_id": "U11",
+      "source_ref": "Unattributed aperture claim (corrected report)",
+      "exact_claim": "CORR:63 'SDSS 3-arcsec fiber measurements require approximately a 20 percent covering fraction to represent total global properties, limiting fiber metrics at lower redshifts to bulge-dominated scales. (UNCITED_NOT_USABLE)'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; labeled uncited by the report itself (content overlaps the Kewley 2005 attribution in the raw report, U04).",
+      "network_pass_must_confirm": "The 20 percent covering-fraction requirement and its source.",
+      "notes": "UNCITED_NOT_USABLE label instance 11/26 (section 'What the literature appears to establish' — heading wording is the report's own; see quoting_note)."
+    },
+    {
+      "lead_id": "U12",
+      "source_ref": "Unattributed timescale claim (corrected report)",
+      "exact_claim": "CORR:65 'Active black hole accretion cycles operate on short stochastic timescales (0.1 to 10 Myr), whereas optical tracers of galactic stellar populations integrate over much longer temporal baselines (100 Myr to 1 Gyr). (UNCITED_NOT_USABLE)'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; labeled uncited by the report itself (raw report attributes the burst timescale to Hickox 2014 / Schawinski 2015, U05/U06, and adds RAW:101 'Hα emission traces ... approximately 10 Myr').",
+      "network_pass_must_confirm": "Both timescale ranges and their proper attributions.",
+      "notes": "UNCITED_NOT_USABLE label instance 12/26."
+    },
+    {
+      "lead_id": "U13",
+      "source_ref": "Yang et al. (2007) SDSS group catalog — no URL in report",
+      "exact_claim": "CORR:101 'Yang et al. (2007) SDSS group catalog (UNCITED_NOT_USABLE) → group/halo membership → local environmental control feasibility.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Catalog access path and fitness for group/halo-membership control in the RP-1 window.",
+      "notes": "UNCITED_NOT_USABLE label instance 13/26 (section 'Data/survey plan'). Same source as U07/U22."
+    },
+    {
+      "lead_id": "U14",
+      "source_ref": "xCOLD GASS — no URL in report",
+      "exact_claim": "CORR:103 'xCOLD GASS (UNCITED_NOT_USABLE) → CO(1-0) molecular gas mass → physical gas depletion vs. sSFR artifact feasibility.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Data access and overlap feasibility with the RP-1 denominator.",
+      "notes": "UNCITED_NOT_USABLE label instance 14/26. Same source as U08/U23. RP-1's supplement inventories CO/HI requirements (TEX:70, TEX:74)."
+    },
+    {
+      "lead_id": "U15",
+      "source_ref": "ALFALFA — no URL in report",
+      "exact_claim": "CORR:105 'ALFALFA (UNCITED_NOT_USABLE) → HI atomic gas mass → large-scale gas reservoir control feasibility.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Data access and overlap feasibility with the RP-1 denominator.",
+      "notes": "UNCITED_NOT_USABLE label instance 15/26. Same source as U09/U24."
+    },
+    {
+      "lead_id": "U16",
+      "source_ref": "SDSS-IV MaNGA — no URL in report",
+      "exact_claim": "CORR:107 'SDSS-IV MaNGA (UNCITED_NOT_USABLE) → IFU kinematics and spatially resolved line emission → aperture artifact bounding and inside-out association mapping feasibility.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "MaNGA cross-match feasibility with RP-1's denominator (fiber-collision/aperture questions included).",
+      "notes": "UNCITED_NOT_USABLE label instance 16/26. Same source as U10/U25. RP-1's tex already flags IFU follow-up with its own citations (TEX:25)."
+    },
+    {
+      "lead_id": "U17",
+      "source_ref": "Schawinski et al. (2014) — no URL in report",
+      "exact_claim": "CORR:139 'UNCITED_NOT_USABLE: Schawinski et al. (2014) regarding green valley transition pathways and morphological quenching speeds.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U01 (single verification covers both label instances).",
+      "notes": "UNCITED_NOT_USABLE label instance 17/26 (section 'Do-not-use until verified'). Same source as U01."
+    },
+    {
+      "lead_id": "U18",
+      "source_ref": "Gawade (2025) illustrative values — https://arxiv.org/abs/2512.22268 (label scopes usage beyond the link)",
+      "exact_claim": "CORR:141 'UNCITED_NOT_USABLE: Gawade (2025) illustrative values of TNG/EAGLE sSFR floors (unless directly verified in the simulation reference context).'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; the label restricts use of the floor values outside the directly verified preprint context.",
+      "network_pass_must_confirm": "Which specific floor/median values the preprint itself supports and in what context (ties to N05/N06).",
+      "notes": "UNCITED_NOT_USABLE label instance 18/26."
+    },
+    {
+      "lead_id": "U19",
+      "source_ref": "Brinchmann et al. (2004) and Salim et al. (2007) methodologies — no URL in report",
+      "exact_claim": "CORR:143 'UNCITED_NOT_USABLE: Brinchmann et al. (2004) and Salim et al. (2007) methodologies for MPA-JHU catalog aperture corrections and D n (4000) proxy substitutions.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label. RAW:87-95 carries the full pipeline claim (Dn(4000) substitution for AGN hosts; systematic low bias for old bulges).",
+      "network_pass_must_confirm": "The MPA-JHU pipeline's actual AGN-host treatment (Dn(4000)-based substitution) and whether the claimed systematic low bias for bulge-dominated AGN hosts is documented.",
+      "notes": "UNCITED_NOT_USABLE label instance 19/26. Highest-value verification target in the U-set: if confirmed, it directly informs interpretation of RP-1's specsfr_tot_p50-based offset (V03); if refuted, the raw report's central methodological critique loses force."
+    },
+    {
+      "lead_id": "U20",
+      "source_ref": "Kewley et al. (2005) — no URL in report",
+      "exact_claim": "CORR:149 'UNCITED_NOT_USABLE: Kewley et al. (2005) findings on minimum fiber covering fractions and aperture limits.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U04 (single verification covers both label instances).",
+      "notes": "UNCITED_NOT_USABLE label instance 20/26. Same source as U04/U11."
+    },
+    {
+      "lead_id": "U21",
+      "source_ref": "Hickox et al. (2014) and Schawinski et al. (2015) — no URL in report",
+      "exact_claim": "CORR:151 'UNCITED_NOT_USABLE: Hickox et al. (2014) and Schawinski et al. (2015) conclusions regarding stochastic AGN accretion duty cycles versus integrated optical stellar tracers.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U05/U06/U12 (one pass covers the duty-cycle claim family).",
+      "notes": "UNCITED_NOT_USABLE label instance 21/26."
+    },
+    {
+      "lead_id": "U22",
+      "source_ref": "Yang et al. (2007) — no URL in report",
+      "exact_claim": "CORR:153 'UNCITED_NOT_USABLE: Yang et al. (2007) SDSS halo-based environmental group catalogs.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U07/U13.",
+      "notes": "UNCITED_NOT_USABLE label instance 22/26."
+    },
+    {
+      "lead_id": "U23",
+      "source_ref": "xCOLD GASS / Saintonge et al. (2017) — no URL in report",
+      "exact_claim": "CORR:155 'UNCITED_NOT_USABLE: The xCOLD GASS survey and Saintonge et al. (2017) CO(1-0) emission measurements.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U08/U14.",
+      "notes": "UNCITED_NOT_USABLE label instance 23/26."
+    },
+    {
+      "lead_id": "U24",
+      "source_ref": "ALFALFA — no URL in report",
+      "exact_claim": "CORR:157 'UNCITED_NOT_USABLE: The ALFALFA survey neutral hydrogen maps.'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U09/U15.",
+      "notes": "UNCITED_NOT_USABLE label instance 24/26."
+    },
+    {
+      "lead_id": "U25",
+      "source_ref": "SDSS-IV MaNGA — no URL in report",
+      "exact_claim": "CORR:159 'UNCITED_NOT_USABLE: The SDSS-IV MaNGA survey (except where directly supported by the Gatto et al. link).'",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label.",
+      "network_pass_must_confirm": "Same as U10/U16; additionally delimit exactly which MaNGA statements the Gatto link itself supports.",
+      "notes": "UNCITED_NOT_USABLE label instance 25/26."
+    },
+    {
+      "lead_id": "U26",
+      "source_ref": "IllustrisTNG and EAGLE projects — no URL in report",
+      "exact_claim": "CORR:161 'UNCITED_NOT_USABLE: The IllustrisTNG and EAGLE projects (except where directly supported by the Gawade link).' Raw-report content: RAW:204 'exhaustive, publicly accessible mock catalogs containing millions of simulated galaxies'.",
+      "classification": "NEEDS_NETWORK_VERIFICATION",
+      "local_basis": null,
+      "local_basis_reason": "No local source material; only the report's own label. RP-1's tex cites tng2019 and eagle2015 among missing-observable references (TEX:75) — citation evidence only.",
+      "network_pass_must_confirm": "Project data-access claims and which statements the Gawade preprint itself supports.",
+      "notes": "UNCITED_NOT_USABLE label instance 26/26."
+    },
+    {
+      "lead_id": "R01",
+      "source_ref": "Ellison et al. (2016) — misquoted figure",
+      "exact_claim": "RAW:21 'optically selected AGN demonstrated an under-abundance of star formation by approximately 25 percent'; RAW:43 'a global suppression offset of roughly -0.12 dex'; RAW:157 '∼−0.12 dex (25% under-abundance)'.",
+      "classification": "REJECTED",
+      "local_basis": "CORR:131 'Retracted: Ellison et al. (2016) reported a -0.12 dex / 25 percent star-formation under-abundance (corrected to -0.06 dex).'; TORI:30 (abstract check: -0.06 dex); INTEG:24 (retraction verified).",
+      "network_pass_must_confirm": "Nothing for reuse — figure is retracted. A network pass may additionally check whether -0.12 dex appears anywhere in the full text in some other role, purely to document the misquote's origin.",
+      "notes": "Headline quantitative citation error; grounds for the pilot's rejection cascade. Use -0.06 dex (N01) once network-verified."
+    },
+    {
+      "lead_id": "R02",
+      "source_ref": "Gatto et al. (2025) — commensurability claim",
+      "exact_claim": "RAW:123 'The target association value of -1.309 dex rests remarkably close to the absolute median nuclear SFR values recorded for AGN populations in these high-resolution IFU studies'; RAW:152 'Highly commensurable in spatial scale'.",
+      "classification": "REJECTED",
+      "local_basis": "CORR:133 'Retracted: The claim that the -1.309 dex study invariant is \"Highly commensurable\" or \"rests remarkably close\" to absolute median nuclear SFR values ... This was a false comparison of unlike estimands.'; HWAO_GEMINI_WEB_VERDICT_20260711T000400Z.md blocking fact 4.",
+      "network_pass_must_confirm": "Nothing — the comparison is invalid by construction (matched-control difference vs absolute nuclear values), independent of what the paper says.",
+      "notes": "Violates the wording-contract rule that non-commensurable absolute quantities must be labeled, in the strongest possible way (asserted commensurability)."
+    },
+    {
+      "lead_id": "R03",
+      "source_ref": "Cross-study raw-value comparisons (Piotrowska -11.0; TNG -14.85; EAGLE -11.71 vs RP-1 -1.309)",
+      "exact_claim": "RAW:135 'A fiber-centered value of -1.309 dex clearly operates on an entirely different scale' framed as direct numeric comparison against 'sSFR<10 −11 yr −1 (equivalent to −11.0 dex)' and simulation medians '−11.71 dex in EAGLE to −14.85 dex in IllustrisTNG'.",
+      "classification": "REJECTED",
+      "local_basis": "CORR:135 'Retracted: Any direct comparison or commensurability between the -1.309 dex matched-control difference and absolute sSFR quantities (-11.0 dex from Piotrowska; -14.85 or -11.71 dex from TNG/EAGLE) without explicit, estimand-mismatch caveats.'",
+      "network_pass_must_confirm": "Nothing for the comparison itself. The underlying external values are tracked at N05/N08.",
+      "notes": "The external values survive as leads; only their raw-value comparison against RP-1's matched-control difference is rejected unless carrying explicit estimand-mismatch labels."
+    },
+    {
+      "lead_id": "R04",
+      "source_ref": "Raw report — causal/diagnostic interpretation of RP-1's statistic",
+      "exact_claim": "RAW:125 'this association captures the intersection of secular central gas depletion and concurrent black hole fueling, rather than a whole-galaxy quenching event' (and the retracted verb family: confirms/captures/reflects/establishes/demonstrates aperture dependence, nuclear suppression or enhancement, bulge dominance, gas clearing, active feedback, quenching).",
+      "classification": "REJECTED",
+      "local_basis": "CORR:137 'Retracted: Any wording that our statistic \"confirms,\" \"captures,\" \"reflects,\" \"establishes,\" or demonstrates aperture dependence, nuclear suppression, nuclear enhancement, bulge dominance, concurrent black-hole fueling, secular central gas depletion, gas clearing, active feedback, or quenching.'; TEX:13/70/74 (association-only, not causal); wording contract rule 1.",
+      "network_pass_must_confirm": "Nothing — no network fact can rescue causal wording for an association-only, morphology-uncontrolled statistic.",
+      "notes": "RP-1's own tex states the statistic is 'not a causal result' (TEX:19, TEX:70)."
+    },
+    {
+      "lead_id": "R05",
+      "source_ref": "Corrected report — 'establishes an empirical baseline' wording",
+      "exact_claim": "CORR:121 'Neutral alternative: Stating the fiber-centered association establishes an empirical baseline for future causal tests.'; RAW:232 'The observed fiber-centered -1.309 dex [-1.334,-1.283] association establishes a robust empirical baseline'.",
+      "classification": "REJECTED",
+      "local_basis": "GEMINI_WEB_OUTPUT_CORRECTED.acceptance.json blocking_failures[2] and prohibited_establishes_empirical_baseline_count: 1; INTEG:31 (rejection ground 2); wording contract rule 1 (no 'establishes').",
+      "network_pass_must_confirm": "Nothing — prohibited wording, not a factual claim.",
+      "notes": "This is the wording that collapsed the corrected report to rejection even though 26 UNCITED_NOT_USABLE labels and the estimand fix passed. Offered by Gemini as a 'neutral alternative', which is exactly why the contract bans the verb rather than trusting rephrasing."
+    },
+    {
+      "lead_id": "R06",
+      "source_ref": "Raw report — mischaracterization of RP-1's estimand",
+      "exact_claim": "RAW:135-141 '-1.309 dex clearly operates on an entirely different scale—likely reflecting a specific logarithmic surface density measurement, a log-ratio offset relative to a baseline, or an unnormalized raw parameter within the catalog pipeline'; 'If the -1.309 dex value represents an absolute global sSFR, it is profoundly unphysical'; 'commensurable with prior literature only when viewed strictly as a catalog-specific artifact of fiber-aperture limitations'.",
+      "classification": "REJECTED",
+      "local_basis": "TEX:13 and TEX:50 define the quantity exactly: 'a median $\\Delta\\log {\\rm sSFR}$ (target minus matched control) of -1.309 dex' — a matched-control difference, not an absolute value, surface density, or pipeline artifact. Also HWAO_GEMINI_WEB_VERDICT_20260711T000400Z.md blocking fact 4; CORR:79 states the corrected definition.",
+      "network_pass_must_confirm": "Nothing — contradicted by local ground truth.",
+      "notes": "The speculation was only possible because the report ignored the estimand definition supplied to it; the corrected report fixed the definition (V01)."
+    },
+    {
+      "lead_id": "R07",
+      "source_ref": "Raw report — fiber physical-scale figure for RP-1's window",
+      "exact_claim": "RAW:115 'this fiber covers a physical diameter ranging from approximately 1.2 kpc (at z=0.02) to nearly 6.7 kpc (at z=0.12)'.",
+      "classification": "REJECTED",
+      "local_basis": "TEX:25 'the spectroscopy samples only the central 3-arcsec region (1.2--6.5 kpc here)' — conflicts at the upper end (6.5 vs 6.7 kpc).",
+      "network_pass_must_confirm": "Nothing required for RP-1 use — the tex value governs RP-1 wording. If reconciliation is ever wanted, a cosmology-parameter re-derivation (not a fetch) can identify the source of the 0.2 kpc discrepancy.",
+      "notes": "Fail-closed: for any RP-1-facing text, use the tex's 1.2–6.5 kpc. The discrepancy plausibly reflects different assumed cosmologies, but that is unverified."
+    }
+  ]
+}

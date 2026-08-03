@@ -1,0 +1,102 @@
+{
+  "packet_id": "NM-C2V2-20260727-A",
+  "run_id": "c2v2e2e0726a",
+  "status": "EXECUTED_AND_VERIFIED",
+  "approval_phrase_received": "APPROVE PUBLISH NM-C2V2-20260727-A",
+  "executed_by": "Tori/Hermes",
+  "hwao_ack_marker": "HWAO_ACK_PUBLISH_NM_C2V2_20260727_A_EXECUTE_VIA_TORI",
+  "verified_at_utc": "2026-07-27T01:22:25Z",
+  "verified_at_kst": "2026-07-27 10:22:25 KST",
+  "risk_classification": "HIGH-RISK live/public/current-Lab mutation bounded by create-only controls",
+  "preconditions": {
+    "packet_hashes_match_receipt": true,
+    "publish_commands_bash_n": true,
+    "target_json_absent": true,
+    "target_directory_absent": true,
+    "candidate_hashes_match": true,
+    "baseline_sha256_entries_passed": 38,
+    "local_list_http": 200,
+    "local_valid_existing_detail_http": 200,
+    "public_list_http": 200,
+    "public_valid_existing_detail_http": 200,
+    "target_detail_before_http": 404
+  },
+  "writes": [
+    {
+      "path": ".hermes/handoffs/galaxy-evolution/lab-runs/c2v2e2e0726a/draft.pdf",
+      "bytes": 84831,
+      "sha256": "ac59ac609bab9c1fdbd74bab27920bdf6de70eac9721a066bdc74dc71384d08d"
+    },
+    {
+      "path": ".hermes/handoffs/galaxy-evolution/lab-runs/c2v2e2e0726a/draft.tex",
+      "bytes": 6647,
+      "sha256": "bb77d38d294792f44b05a2011774c6bbb3dbcf0dfc24adf3cb0c5bd5d52e7ee6"
+    },
+    {
+      "path": ".hermes/handoffs/galaxy-evolution/lab-runs/c2v2e2e0726a/result.png",
+      "bytes": 38386,
+      "sha256": "ed83a8250b4a7a2ba969751f3519253f7a2e386080de239bd06e66baa9f82639"
+    },
+    {
+      "path": ".hermes/handoffs/galaxy-evolution/lab-runs/c2v2e2e0726a.json",
+      "bytes": 2566,
+      "sha256": "fa4c815578aef3f01a7e18985f83725fefab052d4735987577f77f76f4d6b0ba"
+    }
+  ],
+  "verification": {
+    "local_api_base": "http://localhost:8000",
+    "public_api_base": "https://api.nebulamind.net",
+    "public_main_base": "https://nebulamind.net",
+    "local_detail_http": 200,
+    "local_list_membership": true,
+    "local_pdf_http": 200,
+    "local_figure_http": 200,
+    "public_detail_http": 200,
+    "public_list_membership": true,
+    "public_pdf_http": 200,
+    "public_figure_http": 200,
+    "public_main_proxy_detail_http": 200,
+    "public_main_proxy_list_membership": true,
+    "public_main_proxy_pdf_http": 200,
+    "public_main_proxy_figure_http": 200,
+    "served_pdf_sha256_match": true,
+    "served_figure_sha256_match": true,
+    "visible_summary_labels": [
+      "AI-draft",
+      "forced-demo",
+      "TENSION",
+      "unresolved-calibration"
+    ],
+    "pdf_text_phrases_passed": [
+      "not submitted, not peer-reviewed",
+      "TENSION",
+      "common calibration is established"
+    ],
+    "frontend_url": "https://nebulamind.net/lab?tab=paper&sub=progress",
+    "frontend_run_table_present": true,
+    "frontend_stage": "compiled · PDF",
+    "frontend_sources": ["TNG", "SDSS"],
+    "frontend_card_expanded": true,
+    "frontend_disclosure_present": true,
+    "frontend_not_physical_present": true,
+    "frontend_pdf_link": "https://nebulamind.net/api/lab/runs/c2v2e2e0726a/artifact/draft.pdf",
+    "frontend_figure_link": "https://nebulamind.net/api/lab/runs/c2v2e2e0726a/artifact/result.png",
+    "baseline_sha256_entries_passed_post_write": 38
+  },
+  "rollback": {
+    "invoked": false,
+    "reason": "all stored-plan and independent verification checks passed",
+    "artifact": "BACKUP_ROLLBACK.md"
+  },
+  "audit_note": "The first independent post-check used the wrong list-card shape (card.result.summary). backend/app/routers/lab_runner.py flattens the list summary to card.summary. Corrected schema-based verification passed for local, api.nebulamind.net, and nebulamind.net. This was a checker error, not a publication failure.",
+  "excluded_actions": {
+    "database_writes": 0,
+    "deploys_or_restarts": 0,
+    "git_writes": 0,
+    "baseline_overwrites": 0,
+    "other_run_mutations": 0,
+    "browser_mutations": 0,
+    "billing_or_account_changes": 0
+  },
+  "marker": "OVERNIGHT_PAPER_BOARD_TORI_PUBLISH_EXECUTED_VERIFIED_V1"
+}

@@ -1,0 +1,112 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-29T13:02:44Z",
+  "updated_at_kst": "2026-06-29 22:02:44 KST",
+  "source": "Hermes Agent PR #69 async-review follow-up refresh",
+  "current_action": "ASYNC REVIEW WARNING CLOSED IN CODE. PR #69 is merged to main and extends arXiv URL normalization to materialized and inline /fact-sources paths. Backend/API runtime is still not deployed for PR #68/#69.",
+  "prs": {
+    "pr67": {
+      "number": 67,
+      "state": "MERGED_AND_LIVE",
+      "merge_commit_short": "ad87039",
+      "purpose": "read-only source-surface fallback"
+    },
+    "pr68": {
+      "number": 68,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/68",
+      "state": "MERGED_NOT_DEPLOYED",
+      "merge_commit_short": "e2d6e81",
+      "purpose": "normalize Evidence.url-derived arXiv source URLs"
+    },
+    "pr69": {
+      "number": 69,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/69",
+      "state": "MERGED_NOT_DEPLOYED",
+      "merged_at": "2026-06-29T13:01:40Z",
+      "merge_commit": "cc4ced2a6e69e9222805c080ce700e91517e6093",
+      "merge_commit_short": "cc4ced2",
+      "head_branch": "fix/normalize-fact-source-urls-20260629",
+      "remote_head_branch_deleted": true,
+      "changed_files": 2,
+      "squash_parent_count": 1,
+      "purpose": "normalize materialized and inline /fact-sources reference_url values read-time only"
+    }
+  },
+  "repo": {
+    "origin_main": "cc4ced2",
+    "previous_origin_main": "e2d6e81",
+    "worktree": "/Users/duhokim/NebulaMind/worktrees/normalize-fact-source-urls-20260629",
+    "local_branch": "fix/normalize-fact-source-urls-20260629",
+    "local_branch_head": "97f753b",
+    "pr69_merged": true,
+    "deployed_pr68_pr69": false,
+    "backend_api_restarted_for_url_normalization": false,
+    "production_db_writes": 0,
+    "migrations": 0,
+    "backfills": 0,
+    "promotion_or_readiness_flag_changes": 0
+  },
+  "async_review_resolution": {
+    "warning": "PR #68 only normalized Evidence.url-derived fallback paths; materialized fact_sources.reference_url and inline hero source.reference_url were raw.",
+    "resolution": "PR #69 added RED tests for both paths and normalizes both at read time without rewriting stored rows/page JSON.",
+    "verdict": "closed_in_main_not_live"
+  },
+  "live_probe_after_pr69_merge_before_deploy": {
+    "public_citations_status": 200,
+    "public_citations_count": 102,
+    "public_citations_malformed_arxiv_abs_count": 16,
+    "public_fact_sources_status": 200,
+    "public_fact_sources_count": 8,
+    "public_fact_sources_malformed_arxiv_abs_count": 2,
+    "meaning": "GitHub main has PR #68/#69, but running backend/API still has old URL rendering until scoped runtime deploy/restart is explicitly approved."
+  },
+  "verification": [
+    "Async review warning verified on origin/main before follow-up: raw s.reference_url and source.get(\"reference_url\") remained in /fact-sources paths",
+    "TDD RED observed: inline hero and materialized fact-source URL tests failed before implementation",
+    "Focused GREEN tests passed after implementation",
+    "py_compile changed files: pass",
+    "fallback test file: 8 passed",
+    "related page/source API bundle: 18 passed",
+    "backend tests directory: 327 passed",
+    "pre-push smoke script: 49 passed before push and again in git pre-push hook",
+    "git diff --check: pass",
+    "changed read-route scan: no write markers",
+    "value-safe secret scan of touched files: no findings",
+    "local Ollama independent review: pass, no blockers/warnings/suggestions",
+    "PR #69 mergeable; no GitHub checks reported",
+    "PR #69 squash-merged; merge commit parent count 1; remote head branch deleted"
+  ],
+  "what_did_not_happen": [
+    "No backend/API deploy for PR #68/#69.",
+    "No backend/API restart for PR #68/#69.",
+    "No production DB writes.",
+    "No migrations.",
+    "No backfills.",
+    "No readiness/promotion flag changes."
+  ],
+  "next_recommended_sequence": [
+    {
+      "level": "Next operational step, requires explicit approval",
+      "name": "Scoped deploy/restart backend/API for PR #68 and PR #69 together",
+      "risk": "Moderate operational risk: live backend/API code restart, no intended data writes",
+      "steering": "STEER: deploy/restart backend/API for PR #68 and PR #69 arXiv URL normalization only; live-probe citations and fact-sources; no DB writes."
+    },
+    {
+      "level": "Then",
+      "name": "Live probe URL cleanup",
+      "risk": "Read-only verification",
+      "steering": "STEER: verify malformed arXiv URL counts drop to zero on live source-surface endpoints and update cockpit; no DB writes."
+    },
+    {
+      "level": "Still locked",
+      "name": "Backfill or promotion work",
+      "risk": "Production data/product trust risk",
+      "steering": "Requires separate backup/dry-run/exact-diff or GO/NO-GO packet."
+    }
+  ],
+  "report_delivery": {
+    "frontend_public_file_manifest_refreshed": true,
+    "note": "Frontend report/static-file service refreshed only to serve this cockpit/status artifact; backend/API PR #68/#69 deploy remains locked."
+  },
+  "mode": "ASYNC_REVIEW_CLOSED_PR69_MERGED_DEPLOY_LOCKED"
+}

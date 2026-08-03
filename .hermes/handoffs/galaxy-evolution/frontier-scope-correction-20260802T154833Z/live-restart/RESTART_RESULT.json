@@ -1,0 +1,98 @@
+{
+  "approval": "APPROVE GALAXY SCOPE LIVE BUILD-SWAP RESTART",
+  "build": {
+    "active_receipt_tree_after_health": {
+      "bytes": 234668009,
+      "files": 423,
+      "sha256": "c70106d85e7c41a6422e43f27596c0643c6e479035bed56595fe461b3e44b556"
+    },
+    "active_stable_tree": {
+      "bytes": 6974346,
+      "excluded_dynamic_paths": [
+        "cache",
+        "trace"
+      ],
+      "files": 401,
+      "sha256": "7158c6b37af06a2d280421697cd2bd59eb068509421dac90bb44743067c176e0"
+    },
+    "new_build_id": "aNNAOJzzSRMQDzgANAtuv",
+    "old_build_id": "lFt_UDNPmeNh2DCabbYZX",
+    "pre_swap_active_receipt_tree": {
+      "bytes": 233186187,
+      "files": 442,
+      "sha256": "6808cec14e66ad41be4f5cf258d9999dc3ad5ba648d9f0277c8bcc060595ab21"
+    },
+    "rollback_receipt_tree_after_health": {
+      "bytes": 233186187,
+      "files": 442,
+      "sha256": "6808cec14e66ad41be4f5cf258d9999dc3ad5ba648d9f0277c8bcc060595ab21"
+    },
+    "rollback_stable_tree": {
+      "bytes": 7073195,
+      "excluded_dynamic_paths": [
+        "cache",
+        "trace"
+      ],
+      "files": 401,
+      "sha256": "47f47df17986c3a4bbe582b513113787376c5b29f2c7a21bbfed1a7c410cbbd1"
+    }
+  },
+  "completed_at_utc": "2026-08-03T01:51:35Z",
+  "execute_script_sha256": "63b67db7e56ee241a8b40b71b98def4bd50f035e2e5f2c5a6f5875e16c35f5a5",
+  "health": {
+    "build_id": "aNNAOJzzSRMQDzgANAtuv",
+    "http": {
+      "bytes": 66855,
+      "status": 200
+    },
+    "launchctl_pid": 88210,
+    "listener_parent_pid": 88210,
+    "listener_pid": 88212,
+    "markers": {
+      "The most-contested core Galaxy Evolution clusters": 2,
+      "The top galaxy-evolution frontiers become the studies": 0,
+      "ranked study queue": 0,
+      "ranks only the hand-reviewed": 2
+    },
+    "stable_tree": {
+      "bytes": 6974346,
+      "excluded_dynamic_paths": [
+        "cache",
+        "trace"
+      ],
+      "files": 401,
+      "sha256": "7158c6b37af06a2d280421697cd2bd59eb068509421dac90bb44743067c176e0"
+    }
+  },
+  "paths": {
+    "active_next": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/.next",
+    "rollback_next": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/frontier-scope-correction-20260802T154833Z/live-restart/rollback-live-next"
+  },
+  "pre_restart_sha256": "751ec350ccc95860b05b64b4d8e699c47dc6b63c3e6fed9daf59533e746414d9",
+  "receipt_sha256": "d160a85f4445f39cc05ec273d5f22d3d495d1803ee750520e864f7f36f7d014c",
+  "relocation_canary_sha256": "b5a878d7f77c14646b72986d8c7b5f3faa78d1142eaced79bfd6a4a525c57eb7",
+  "safety_ledger": {
+    "cockpit_writes": 0,
+    "db_writes": 0,
+    "existing_frontend_service_restarts": 1,
+    "external_submissions": 0,
+    "git_writes": 0,
+    "launchagent_plist_writes": 0,
+    "live_build_swaps": 1,
+    "new_services_or_schedulers": 0,
+    "source_writes": 0,
+    "unrelated_service_restarts": 0
+  },
+  "schema_version": 1,
+  "service": {
+    "domain": "gui/501/com.nebulamind.frontend",
+    "label": "com.nebulamind.frontend",
+    "new_launchctl_pid": 88210,
+    "new_listener_pid": 88212,
+    "old_launchctl_pid": 43644,
+    "old_listener_pid": 43646,
+    "port": 3000,
+    "restart_elapsed_seconds": 0.956
+  },
+  "status": "LIVE_BUILD_SWAPPED_RESTARTED_AND_LOCALLY_VERIFIED"
+}

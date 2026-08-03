@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NebulaMind Morning Review — 2026-06-27</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #0d1b2f;
+      --panel-2: #101f35;
+      --ink: #eef6ff;
+      --muted: #9fb0c7;
+      --line: rgba(148, 163, 184, 0.22);
+      --green: #3ddc97;
+      --blue: #60a5fa;
+      --amber: #fbbf24;
+      --orange: #fb923c;
+      --red: #f87171;
+      --violet: #a78bfa;
+      --cyan: #22d3ee;
+      --shadow: 0 24px 80px rgba(0,0,0,0.38);
+      --radius: 22px;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% -10%, rgba(96, 165, 250, 0.30), transparent 28rem),
+        radial-gradient(circle at 88% 0%, rgba(61, 220, 151, 0.18), transparent 26rem),
+        linear-gradient(180deg, #07111f 0%, #08111d 58%, #050914 100%);
+    }
+    a { color: inherit; }
+    .wrap { max-width: 1240px; margin: 0 auto; padding: 36px 22px 70px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 22px;
+    }
+    .hero-main, .hero-side, .card, .lane, .approval, .verify-row, .note {
+      border: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(13, 27, 47, 0.92), rgba(8, 18, 33, 0.92));
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-main { padding: 32px; position: relative; overflow: hidden; }
+    .hero-main:after {
+      content: "";
+      position: absolute;
+      inset: auto -70px -110px auto;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(34, 211, 238, 0.22), transparent 65%);
+    }
+    .eyebrow { color: var(--cyan); letter-spacing: 0.14em; text-transform: uppercase; font-size: 12px; font-weight: 800; }
+    h1 { margin: 10px 0 14px; font-size: clamp(34px, 5vw, 62px); line-height: 0.95; letter-spacing: -0.05em; }
+    .hero-copy { color: var(--muted); max-width: 72ch; font-size: 17px; line-height: 1.65; }
+    .hero-side { padding: 22px; display: grid; gap: 12px; }
+    .metric { padding: 17px; border: 1px solid var(--line); border-radius: 18px; background: rgba(15, 23, 42, 0.55); }
+    .metric .value { font-size: 28px; font-weight: 850; letter-spacing: -0.04em; }
+    .metric .label { color: var(--muted); font-size: 13px; margin-top: 4px; }
+    .top-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .button {
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      border-radius: 999px;
+      padding: 10px 14px;
+      background: rgba(148, 163, 184, 0.10);
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 750;
+      font-size: 13px;
+      cursor: pointer;
+    }
+    .button.primary { background: rgba(61, 220, 151, 0.14); border-color: rgba(61, 220, 151, 0.38); color: #bbf7d0; }
+    .grid { display: grid; gap: 18px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .section { margin-top: 30px; }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 14px; margin: 0 0 14px; }
+    h2 { margin: 0; font-size: 24px; letter-spacing: -0.03em; }
+    .sub { color: var(--muted); font-size: 14px; line-height: 1.5; }
+    .map {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .lane { padding: 16px; min-height: 160px; position: relative; overflow: hidden; }
+    .lane:before { content: ""; position: absolute; inset: 0 auto 0 0; width: 4px; background: var(--blue); }
+    .lane.done:before { background: var(--green); }
+    .lane.ready:before { background: var(--amber); }
+    .lane.locked:before { background: var(--red); }
+    .lane .status { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 900; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+    .dot { width: 8px; height: 8px; border-radius: 999px; background: currentColor; }
+    .lane.done .status { color: var(--green); }
+    .lane.ready .status { color: var(--amber); }
+    .lane.locked .status { color: var(--red); }
+    .lane h3, .card h3, .approval h3 { margin: 12px 0 8px; font-size: 18px; letter-spacing: -0.02em; }
+    .lane p, .card p, .approval p, .note p { color: var(--muted); line-height: 1.55; margin: 0; font-size: 14px; }
+    .card { padding: 22px; }
+    .pillrow { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 7px 10px; font-size: 12px; font-weight: 800; color: #dbeafe; background: rgba(96, 165, 250, 0.10); }
+    .pill.green { color: #bbf7d0; background: rgba(61, 220, 151, 0.12); border-color: rgba(61, 220, 151, 0.25); }
+    .pill.amber { color: #fde68a; background: rgba(251, 191, 36, 0.11); border-color: rgba(251, 191, 36, 0.25); }
+    .pill.red { color: #fecaca; background: rgba(248, 113, 113, 0.12); border-color: rgba(248, 113, 113, 0.25); }
+    .verify { display: grid; gap: 10px; }
+    .verify-row { box-shadow: none; border-radius: 16px; padding: 13px 14px; display: grid; grid-template-columns: 110px 1fr auto; gap: 12px; align-items: center; }
+    .verify-row strong { color: var(--green); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; }
+    .verify-row span { color: var(--muted); font-size: 13px; }
+    code { color: #c4b5fd; background: rgba(167, 139, 250, 0.10); border: 1px solid rgba(167,139,250,.22); padding: 2px 6px; border-radius: 7px; }
+    .approval { padding: 20px; display: grid; gap: 12px; }
+    .approval .readiness { height: 8px; border-radius: 999px; overflow: hidden; background: rgba(148, 163, 184, 0.16); }
+    .approval .bar { height: 100%; background: linear-gradient(90deg, var(--green), var(--cyan)); }
+    .approval.locked .bar { background: linear-gradient(90deg, var(--orange), var(--red)); }
+    .approval button { justify-self: start; }
+    .copied { color: var(--green); font-size: 12px; min-height: 16px; }
+    .timeline { border-left: 1px solid var(--line); padding-left: 18px; display: grid; gap: 14px; }
+    .event { position: relative; padding: 14px 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(15, 23, 42, 0.45); }
+    .event:before { content: ""; position: absolute; left: -24px; top: 20px; width: 10px; height: 10px; border-radius: 999px; background: var(--green); box-shadow: 0 0 0 4px rgba(61, 220, 151, .12); }
+    .event time { color: var(--cyan); font-size: 12px; font-weight: 800; }
+    .event h3 { margin: 5px 0; font-size: 16px; }
+    .event p { color: var(--muted); margin: 0; font-size: 14px; line-height: 1.55; }
+    .note { padding: 20px; box-shadow: none; }
+    .footer { margin-top: 34px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    @media (max-width: 980px) {
+      .hero, .grid.two, .grid.three, .map { grid-template-columns: 1fr; }
+      .verify-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">Morning review workspace · 2026-06-27</div>
+        <h1>NebulaMind is stable; priority evidence triage is ready.</h1>
+        <p class="hero-copy">Today’s sequence reviewed Galaxy Evolution and Surveys, landed PR #37, deployed from the clean live worktree, created the read-only Galaxy content/evidence review packet, and added a Hermes-assisted priority triage. Destructive/content-changing work remains locked behind explicit approval.</p>
+        <div class="top-actions">
+          <a class="button primary" href="https://github.com/DuhoKim/NebulaMind/pull/37">View merged PR #37</a>
+          <a class="button" href="/wiki/galaxy-evolution-v2?morning_report=20260627">Open Galaxy Evolution</a>
+          <a class="button" href="/surveys?morning_report=20260627">Open Surveys</a>
+          <a class="button primary" href="/agent-reports/galaxy-evidence-review-20260627.html">Open Galaxy evidence packet</a>
+          <a class="button primary" href="/agent-reports/galaxy-evidence-priority-triage-20260627.html">Open priority triage</a>
+          <a class="button primary" href="/agent-reports/galaxy-evidence-human-calibration-workspace-20260627.html">Open human calibration workspace</a>
+        </div>
+      </div>
+      <aside class="hero-side" aria-label="Current state summary">
+        <div class="metric"><div class="value">210265f</div><div class="label">origin/main and live worktree HEAD</div></div>
+        <div class="metric"><div class="value">0</div><div class="label">open PRs after merge</div></div>
+        <div class="metric"><div class="value">0</div><div class="label">DB writes, content publishes, or migrations</div></div>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Implementation map</h2><div class="sub">Left-to-right status of the recommended sequence.</div></div>
+      </div>
+      <div class="map">
+        <article class="lane done"><div class="status"><span class="dot"></span>Done</div><h3>Baseline</h3><p>Used clean worktrees, kept automation paused, and avoided the dirty primary checkout for scoped PR work.</p></article>
+        <article class="lane done"><div class="status"><span class="dot"></span>Done</div><h3>Live review</h3><p>Galaxy trust/evidence map and Surveys controls were checked visually and through DOM/browser probes.</p></article>
+        <article class="lane done"><div class="status"><span class="dot"></span>Done</div><h3>PR #37</h3><p>Trust chips now expose live dialog state with <code>aria-haspopup</code>, <code>aria-expanded</code>, and <code>aria-controls</code>.</p></article>
+        <article class="lane done"><div class="status"><span class="dot"></span>Done</div><h3>Deploy</h3><p>Clean live worktree reset to <code>origin/main</code>, rebuilt, launchd restarted, and public Galaxy verified.</p></article>
+        <article class="lane done"><div class="status"><span class="dot"></span>Done</div><h3>Priority triage</h3><p>Created and verified a Hermes-assisted, not-human-gold triage of 28 high-risk rows with 4 candidate support, 4 candidate weakening, and no writes.</p></article>
+      </div>
+    </section>
+
+    <section class="section grid two">
+      <article class="card">
+        <div class="eyebrow">Galaxy Evolution</div>
+        <h3>Evidence layer is usable and now better wired for assistive tech.</h3>
+        <p>The page shows 8 trust-bearing claims, 3 consensus / 5 debated, and 102 paper-source links. The first consensus evidence map resolves to <code>claim-evidence-panel-2929</code>, opens with <code>aria-expanded=true</code>, and shows the neutral copy that directional support/counter stance split is not published yet.</p>
+        <div class="pillrow"><span class="pill green">Trust panel visible</span><span class="pill green">Evidence map verified</span><span class="pill green">ARIA contract shipped</span><span class="pill amber">Prose unchanged</span></div>
+      </article>
+      <article class="card">
+        <div class="eyebrow">Surveys</div>
+        <h3>Atlas surface reads clearly; no urgent bug found.</h3>
+        <p>The page has a clear title, atlas stats, band filters, list/explorer controls, search, filter trigger, and survey cards. Prior public deployment drift was corrected by serving the clean live worktree.</p>
+        <div class="pillrow"><span class="pill green">List/Explorer state present</span><span class="pill green">Filter dialog trigger present</span><span class="pill green">Public route live</span><span class="pill amber">Polish optional</span></div>
+      </article>
+    </section>
+
+    <section class="section grid two">
+      <article class="card">
+        <div class="section-head"><h2>Verification</h2></div>
+        <div class="verify">
+          <div class="verify-row"><strong>Pass</strong><span><code>npm run test:wiki-trust-visibility</code></span><span>wiki_trust_visibility_smoke_ok</span></div>
+          <div class="verify-row"><strong>Pass</strong><span><code>npm run test:evidence-panel-copy</code></span><span>evidence_panel_copy_ok</span></div>
+          <div class="verify-row"><strong>Pass</strong><span><code>npm run test:surveys-atlas-ia</code></span><span>surveys atlas IA smoke checks passed</span></div>
+          <div class="verify-row"><strong>Pass</strong><span><code>npm run build</code></span><span>Next.js production build compiled</span></div>
+          <div class="verify-row"><strong>Pass</strong><span>pre-push hook</span><span>49 passed</span></div>
+          <div class="verify-row"><strong>Pass</strong><span>public browser verification</span><span>ARIA controls resolve to the opened Evidence map dialog</span></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="section-head"><h2>What did not happen</h2></div>
+        <div class="grid">
+          <div class="note"><p>No database writes, no apply path, no production migration, no content/prose edits, and no overnight cron resume.</p></div>
+          <div class="note"><p>The primary checkout may still contain unrelated local dirt from older work; remote <code>origin/main</code> and the live worktree are the authoritative deployed state.</p></div>
+          <div class="note"><p>Terminal probes to public <code>nebulamind.net</code> can hit bot/403 behavior, so public deployment was verified through browser automation and same-origin page checks.</p></div>
+        </div>
+      </article>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Approval board</h2><div class="sub">Buttons copy exact follow-up prompts; they do not trigger changes by themselves.</div></div></div>
+      <div class="grid three">
+        <article class="approval">
+          <div class="eyebrow">Ready for human review</div>
+          <h3>Human review of priority triage</h3>
+          <p>The read-only packet and Hermes-assisted triage are live: <a href="/agent-reports/galaxy-evidence-review-20260627.html">evidence packet</a> · <a href="/agent-reports/galaxy-evidence-priority-triage-20260627.html">priority triage</a>. Next safe move is human/Papa review of the 28-row triage; no DB/prose/badge writes.</p>
+          <div class="readiness"><div class="bar" style="width:94%"></div></div>
+          <button class="button primary" data-copy="Review the Galaxy priority triage. Treat Hermes recommendations as not human-gold. Keep it read-only; do not approve DB writes, prose changes, badge changes, or threshold retuning.">Copy review prompt</button><div class="copied"></div>
+        </article>
+        <article class="approval">
+          <div class="eyebrow">Recommended if you want product polish</div>
+          <h3>Small Surveys UX polish PR</h3>
+          <p>Use TDD for one narrow non-destructive polish slice: empty/filter state copy, keyboard focus, or visual affordance cleanup.</p>
+          <div class="readiness"><div class="bar" style="width:72%"></div></div>
+          <button class="button primary" data-copy="Proceed with one small non-destructive Surveys UX polish PR using TDD, then verify and merge if green.">Copy approval</button><div class="copied"></div>
+        </article>
+        <article class="approval locked">
+          <div class="eyebrow">Locked until evening / explicit approval</div>
+          <h3>Resume overnight automation</h3>
+          <p>Automation remains paused so it cannot race manual review or create overlapping worktrees. Resume only with a narrowed prompt.</p>
+          <div class="readiness"><div class="bar" style="width:38%"></div></div>
+          <button class="button" data-copy="Resume overnight automation with a narrowed non-destructive prompt and report-only output.">Copy approval</button><div class="copied"></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section grid two">
+      <article class="card">
+        <div class="section-head"><h2>Timeline</h2></div>
+        <div class="timeline">
+          <div class="event"><time>10:00 KST</time><h3>Morning baseline</h3><p>Verified no open PRs, clean live worktree strategy, and paused automation.</p></div>
+          <div class="event"><time>10:10 KST</time><h3>Live review</h3><p>Galaxy and Surveys were checked; public deploy drift was corrected by serving from the clean live worktree.</p></div>
+          <div class="event"><time>10:24 KST</time><h3>PR #37 merged</h3><p><a href="https://github.com/DuhoKim/NebulaMind/pull/37">PR #37</a> squash-merged as <code>210265f</code>.</p></div>
+          <div class="event"><time>10:25 KST</time><h3>Live deployment verified</h3><p>LaunchAgent restarted from <code>NebulaMind-origin-main-live</code>; public Galaxy evidence chip resolves to the opened dialog.</p></div>
+          <div class="event"><time>12:24 KST</time><h3>Read-only evidence packet published</h3><p><a href="/agent-reports/galaxy-evidence-review-20260627.html">Galaxy evidence packet</a> created with 8 claims, 102 evidence rows, JSON/CSV exports, one clear final-decision field, and verified no-write page invariants.</p></div>
+          <div class="event"><time>12:48 KST</time><h3>Hermes-assisted priority triage published</h3><p><a href="/agent-reports/galaxy-evidence-priority-triage-20260627.html">Priority triage</a> created for 28 nuance/counter/high-risk rows. It is explicitly not human-gold and keeps all write/apply paths locked.</p></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="section-head"><h2>Current repo/service state</h2></div>
+        <div class="verify">
+          <div class="verify-row"><strong>Clean</strong><span>temp PR worktree</span><span>0 dirty files after merge</span></div>
+          <div class="verify-row"><strong>Clean</strong><span>live worktree tracked files</span><span>0 dirty tracked files; report/packet HTML+JSON+CSV are untracked operational artifacts</span></div>
+          <div class="verify-row"><strong>Live</strong><span>frontend LaunchAgent</span><span>serving <code>origin/main</code> from clean live worktree</span></div>
+          <div class="verify-row"><strong>Open PRs</strong><span>GitHub</span><span>0</span></div>
+        </div>
+      </article>
+    </section>
+
+    <p class="footer">Updated 2026-06-27 12:48:18 KST / 2026-06-27T03:48:18Z after publishing the Hermes-assisted priority triage. This report is a static review workspace; report files are live/untracked operational artifacts unless separately committed.</p>
+  </main>
+  <script>
+    document.querySelectorAll('[data-copy]').forEach((button) => {
+      button.addEventListener('click', async () => {
+        const text = button.getAttribute('data-copy');
+        const target = button.parentElement.querySelector('.copied');
+        try {
+          await navigator.clipboard.writeText(text);
+          target.textContent = 'Copied approval prompt.';
+        } catch (err) {
+          target.textContent = text;
+        }
+      });
+    });
+  </script>
+</body>
+</html>

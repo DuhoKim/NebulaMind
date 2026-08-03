@@ -1,0 +1,67 @@
+{
+  "created_utc": "2026-07-06T09:25:59Z",
+  "marker": "GALAXY_EVOLUTION_METHOD_DIRECTORIES_QUINTET_20260706T0928Z",
+  "method_cockpit": {
+    "baseline": "Start from papers/source positions; only accepted or accepted-limited source roles may support public wiki sentences.",
+    "marker": "GALAXY_EVOLUTION_METHOD2_COCKPIT_UPDATED_20260706T142132Z",
+    "next_action_phrase": "APPROVE METHOD2 P1 DOCS-ONLY SOURCE-POSITION LEDGER",
+    "safety_phrase": "NO ACTIVE EXECUTION PHRASE",
+    "scope": "Method2/SFA method-local static cockpit/docs only; no cross-method/shared-parent/product/wiki/DB/runtime/git/cloud/API mutation."
+  },
+  "method": {
+    "first_step": "Build a source-position ledger for the target papers and decide which positions can support a public wiki sentence.",
+    "label": "Source-first adjudication",
+    "num": "2",
+    "rule": "Begin from the papers themselves, adjudicate source positions first, then allow claims and prose only after source roles are accepted or accepted-limited.",
+    "short": "SFA",
+    "slug": "source-first-paper-adjudication",
+    "status": "queued second lane",
+    "title": "Source-first paper adjudication",
+    "wiki_goal": "A Galaxy Evolution page whose sections are organized around accepted paper positions, with rejected/no-go source readings excluded from the reader-facing text."
+  },
+  "public_paths": {
+    "directory": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/index.html",
+    "quintet": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/quintet.html",
+    "wiki_page": "https://nebulamind.net/agent-reports/wiki-method-results/galaxy-evolution/source-first-paper-adjudication/wiki-page.html"
+  },
+  "quintet": [
+    {
+      "agent": "Hwao",
+      "lane": "Coordinator/planner",
+      "responsibility": "sets lane goal, order, stop conditions, and final method verdict",
+      "scoped_name": "Hwao-SFA"
+    },
+    {
+      "agent": "Lana",
+      "lane": "Science/prose reviewer",
+      "responsibility": "checks semantic accuracy, reader-facing clarity, and overclaim risk",
+      "scoped_name": "Lana-SFA"
+    },
+    {
+      "agent": "Goru",
+      "lane": "Mechanical validator",
+      "responsibility": "checks paths, counts, citation/source coverage, markers, and no-go rows",
+      "scoped_name": "Goru-SFA"
+    },
+    {
+      "agent": "Kun",
+      "lane": "Reproducibility reviewer",
+      "responsibility": "checks whether another agent can reproduce the method from files and briefs",
+      "scoped_name": "Kun-SFA"
+    },
+    {
+      "agent": "Tori",
+      "lane": "Relay/verifier",
+      "responsibility": "records instructions, updates public surfaces, verifies files/routes, and keeps safety ledgers",
+      "scoped_name": "Tori-SFA"
+    }
+  ],
+  "safety": {
+    "active_execution_phrase": null,
+    "backend_api_restart": 0,
+    "db_writes": 0,
+    "live_wiki_publish": 0,
+    "method2_next_action_phrase": "APPROVE METHOD2 P1 DOCS-ONLY SOURCE-POSITION LEDGER",
+    "phrase": "NO ACTIVE EXECUTION PHRASE"
+  }
+}

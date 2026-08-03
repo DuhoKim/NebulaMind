@@ -1,0 +1,53 @@
+{
+  "verified_utc": "2026-07-09T14:08:18.602349+00:00",
+  "marker": "NEBULAMIND_METHOD_WIKI_SAME_FORMAT_CARD_RETAINED_20260709T132800Z",
+  "routes": {
+    "localhost_3000": {
+      "all_status_200": true,
+      "all_marker_present": true,
+      "all_method_card_before_article": true,
+      "all_article_h1_galaxy_evolution": true,
+      "all_h2_skeleton_ok": true,
+      "all_no_active_execution_phrase": true,
+      "source_static_safety_scan": "no script/fetch/XHR/WebSocket/form/inline event handlers on localhost/source responses"
+    },
+    "https_nebulamind_net": {
+      "all_status_200": true,
+      "all_marker_present": true,
+      "all_method_card_before_article": true,
+      "all_article_h1_galaxy_evolution": true,
+      "all_h2_skeleton_ok": true,
+      "all_no_active_execution_phrase": true,
+      "cloudflare_injected_scripts_seen": true,
+      "cloudflare_note": "Public HTTPS responses include Cloudflare beacon/challenge scripts not present in source or localhost static artifacts."
+    }
+  },
+  "per_method_counts": {
+    "packet-gated-paper-to-wiki-reconciliation": {
+      "claims": 30,
+      "citation_groups": 0
+    },
+    "source-first-paper-adjudication": {
+      "claims": 6,
+      "citation_groups": 7
+    },
+    "debate-map-to-wiki-rebuild": {
+      "claims": 0,
+      "citation_groups": 0,
+      "note": "P2 narrative keeps claim/citation binding deferred to P3 gate"
+    }
+  },
+  "negative_checks": {
+    "APPROVE EXECUTE absent": true,
+    "APPROVE APPLY absent": true
+  },
+  "safety": {
+    "db_writes": 0,
+    "page_versions_writes": 0,
+    "live_wiki_publish": 0,
+    "backend_restart": 0,
+    "trust_recompute": 0,
+    "deploy": 0,
+    "git_commit_push_merge": 0
+  }
+}

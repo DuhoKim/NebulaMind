@@ -1,0 +1,13 @@
+**Findings**
+- **Blocker - Reproducibility gap:** both manuscripts explicitly say the candidate package does not include the executable analysis script or frozen command recipe that generated the downstream JSON/CSV results. That means the headline results are traceable to real artifacts, but not replayable from this package alone, which is too weak for a journal-level provenance claim. See [flagship](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_20_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L79) and [supplement](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_20_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L210).
+- **Moderate - Literature provenance is uneven:** the support bibliography mixes fully identified references with entries that are only journal-volume/page level or otherwise not clearly pinned down for integration. For the flagship and supplement, spot-check and upgrade the follow-up support references used in the interpretation sections, especially the gas, environment, and simulation literature, to explicit DOI/arXiv/ADS bibcode form or mark them as `unverified / do not integrate`. Relevant ranges are [flagship bibliography](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_20_package/flagship_rp1/aastex/rp1_flagship_polished.tex#L90) and [supplement bibliography](/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_20_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L221).
+
+**Open Questions**
+- If the missing analysis recipe exists in another immutable handoff artifact, the reproducibility blocker drops from hard fail to a documentation gap.
+- I did not attempt a full ADS/Crossref audit of every bibliography identifier; the issue here is that the manuscript should not leave provenance-sensitive support references ambiguous.
+
+**Change Summary**
+- Numeric claims in the flagship and supplement do match the custody JSONs; I did not find invented measured results in the text.
+- The main issues are provenance completeness for replayability and bibliography identifier hygiene.
+
+JOURNAL_LEVEL_PASS: NO

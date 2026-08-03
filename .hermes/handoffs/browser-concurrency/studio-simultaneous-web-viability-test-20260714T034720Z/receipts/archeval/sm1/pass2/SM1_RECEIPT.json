@@ -1,0 +1,62 @@
+{
+ "rung": "SM-1",
+ "pass_id": "2",
+ "mode": "DOM/CDP only; every op broker-checked; awaitPromise in-flight; inert targets; zero cua",
+ "n_per_writer": 15,
+ "hold_ms": 20,
+ "writers": [
+  {
+   "label": "writerA",
+   "host_id": "studio",
+   "expected_target_id": "2E8EB39D7DC2767C038F0EC121C7DE9E",
+   "lease_id": "L00001"
+  },
+  {
+   "label": "writerB",
+   "host_id": "studio",
+   "expected_target_id": "E9E92B97A6A4F8BDA19333535AB30A3B",
+   "lease_id": "L00002"
+  }
+ ],
+ "inflight_overlap_pairs": 24,
+ "max_pair_overlap_ms": 24.886334000000005,
+ "finals": {
+  "A": [
+   "writerA-14",
+   15
+  ],
+  "B": [
+   "writerB-14",
+   15
+  ]
+ },
+ "assertions": {
+  "SM1.A1_inflight_pair_overlap_ge1": true,
+  "SM1.A2_writerA_isolated_counter": true,
+  "SM1.A3_writerB_isolated_counter": true,
+  "SM1.A4_no_cross_contamination": true,
+  "SM1.A5_all_ops_broker_allowed_and_resolved": true
+ },
+ "pass": true,
+ "normalization": {
+  "rule": "3x byte-comparability evaluated after replacing volatile fields with VOLATILE",
+  "volatile": [
+   "writers[].expected_target_id",
+   "writers[].lease_id",
+   "inflight_overlap_pairs",
+   "max_pair_overlap_ms",
+   "ports",
+   "pids",
+   "timestamps"
+  ],
+  "stable": [
+   "rung",
+   "mode",
+   "n_per_writer",
+   "hold_ms",
+   "finals",
+   "assertions",
+   "pass"
+  ]
+ }
+}

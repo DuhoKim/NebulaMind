@@ -1,0 +1,1364 @@
+{
+  "schema": "NM_GEMINI_RENDERED_DOM_V1",
+  "innertext": "Joint C1R answer — REQ_JOINT_C1R_20260712T045317Z\n\nRun date (UTC): 2026-07-12T06:48:00Z\nModel: Gemini Pro (selected UI mode; backend version not exposed)\nSimulations covered: 8\n\n1. Calibration ledger\nSimulation (method-paper citation)\tStated calibration targets (faithful to source wording)\tFeedback parameters tuned (as stated)\tExplicitly emergent (stated NOT calibrated)\tNotes\n\n\nIllustrisTNG \n\n\t\n\nThe project specifically targeted the observed galaxy stellar mass function, the stellar-to-halo mass scaling relation, the total gas mass content evaluated strictly within the virial radius, the central supermassive black hole mass to galaxy mass or halo mass relation, and the galaxy stellar sizes specifically represented by effective radii, utilizing these physical quantities as rough guidelines to explicitly engineer the baseline subgrid model behavior prior to conducting predictive science runs.\n\n\t\n\nThe developers explicitly adjusted the parameters governing galactic winds, specifically modifying their directionality, bulk velocity, thermal energy content, and phenomenological energy scalings, while simultaneously implementing and tuning a revised black-hole-driven kinetic feedback model intended to operate effectively during low accretion rate states to ensure massive galaxies appropriately quench their star formation without violating local empirical constraints.\n\n\t\n\nThe spatial distribution of the stellar mass in the most massive haloes (M200c ≳10\n14\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE) was explicitly stated to be an emergent phenomenon occurring in a mass regime where the galaxy physics model was never directly calibrated or even previously run prior to the execution of the TNG300 simulation itself, rendering the structural properties of these simulated clusters genuinely predictive rather than engineered.\n\n\t\n\nThe specific parameter values adopted for the reference IllustrisTNG physical model were kept strictly identical across all variations in numerical resolution, explicitly avoiding the practice of resolution-dependent parameter retuning across the different simulation volumes.\n\n\n\n\nEAGLE \n\n\t\n\nThe subgrid physics model was explicitly calibrated to reproduce the observed redshift z=0.1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the scaling relation between the stellar mass of galaxies and their central supermassive black hole mass, whilst simultaneously seeking to yield simulated galaxies with physical sizes measured via effective radii that are statistically similar to local astronomical observations.\n\n\t\n\nThe subgrid routines governing the energetic feedback associated with both star formation and the accretion growth of black holes were varied; specifically, the stellar feedback calibration exclusively varied the energy coupling efficiency parameter representing the fraction of available Type II Supernovae energy coupling to the interstellar medium, while the black hole feedback was regulated by tuning the subgrid viscosity parameter alongside a fixed heating temperature increment of 10\n8.5\n K UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\n\n\t\n\nThe study authors explicitly stated that the calibrated simulations broadly reproduce the observed galaxy stellar mass function as early as redshift z=7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, accurately track its evolution to the present day, and successfully match a diverse, representative set of low-redshift observables that were strictly withheld from the calibration process.\n\n\t\n\nThe calibration process necessitated adjusting the star formation feedback parameters such that the injected energy varies as a function of the local gas density, mitigating spurious numerical radiative losses that otherwise suppress feedback efficiency in high-density regions.\n\n\n\n\nSIMBA \n\n\t\n\nThe primary calibration strategy for this cosmological hydrodynamic simulation focuses stringently on reproducing the global galaxy stellar mass function evolution across cosmic time alongside the local empirical scaling relation bridging central supermassive black hole mass and host galaxy stellar mass, utilizing these macroscopic distributions as the fundamental anchor points to which the energetic outputs of the subgrid feedback modules are explicitly tuned.\n\n\t\n\nThe simulation explicitly tuned the fraction of material entering the accretion disc that actually accretes onto the central black hole to a value of ∼10% UNCERTAINTY_NOT_QUOTED_BY_SOURCE, while simultaneously calibrating the kinetic feedback ejection velocities based on Eddington ratios to scale from ∼10\n3\n km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at high accretion rates to ∼8000 km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at low accretion rates, utilizing a constant momentum input of 20 L/c UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\n\n\t\n\nThe model produces a wide array of emergent properties that successfully reproduce observational constraints without direct tuning, including neutral and molecular gas fractions (TRACER=H I and H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the mass-metallicity relation at redshift z≈0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z≈2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, star-forming galaxy sizes, and the properties of cosmic dust.\n\n\t\n\nAnalysis of specific simulation variants lacking jet and X-ray feedback modules revealed that the carefully tuned high-velocity jet feedback is primarily responsible for the successful quenching of massive galaxies and significantly alters late-time cosmic cold gas evolution.\n\n\n\n\nFIRE/FIRE-2 \n\n\t\n\nThe method papers indicate that there is no fine-tuning or direct calibration of any parameters in the simulations to match these specific macroscopic observational properties, as the models attempt to explicitly capture the interstellar medium physics and stellar feedback mechanisms directly from stellar evolution models rather than employing phenomenological macroscopic tuning.\n\n\t\n\nNONE_FOUND.\n\n\t\n\nThe simulations report that galaxy-scale properties naturally emerge from the underlying microphysics, specifically noting that as numerical resolution increases, stellar masses and density profiles converge first, followed by metal abundances and visual morphologies, and subsequently the complex properties of galactic winds and the circumgalactic medium.\n\n\t\n\nWhile the overarching properties are physically emergent, the central kiloparsec mass concentrations of massive galaxies remain sensitive to underlying numerical implementations, particularly regarding how explicitly ejected winds are trapped, mixed, and recycled within the hot circumgalactic halos.\n\n\n\n\nROMULUS \n\n\t\n\nThe simulation utilized a multi-dimensional parameter search to optimize the subgrid parameters regulating star formation and feedback directly against a comprehensive set of redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy scaling relations, specifically including the stellar mass-halo mass relation, the black hole mass-stellar mass relation, and the multi-epoch colour-colour history of Milky Way and M31 progenitors.\n\n\t\n\nThe developers optimized specific free parameters controlling the supermassive black hole accretion rate and the efficiency at which radiated energy is transferred to the surrounding gas, alongside stellar parameters such as the star formation threshold density, the star formation efficiency, and the supernova feedback efficiency which was explicitly set to 0.75 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\n\n\t\n\nThe novel implementation of supermassive black hole physics allows the simulation to predict where and when supermassive black holes grow entirely independent of any predefined assumptions about the specific host galaxies they exist in, generating global star formation and black hole accretion histories that emerge naturally from the physics.\n\n\t\n\nThe explicit calibration of the blastwave supernova feedback implementation was uniquely targeted to reliably reproduce observable dwarf galaxy structures, specifically focusing on generating realistic cored dark matter density profiles in low-mass systems.\n\n\n\n\nASTRID \n\n\t\n\nThe subgrid model suite was explicitly validated and calibrated to show good statistical agreement with observed ultraviolet luminosity functions, galaxy stellar mass functions, and specific star formation rates, with the dust model specifically calibrated at redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE using Sloan Digital Sky Survey luminosity functions before being tested at higher redshifts.\n\n\t\n\nThe simulation explicitly tuned the supernova feedback energy parameter to 1.0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of 10\n51\n erg UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the wind speed parameter to 3.7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of local dark matter velocity dispersion), the average number of star particles produced per gas particle to 4 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, and the black hole feedback efficiency to 0.05 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\n\n\t\n\nThe simulation yields a supermassive black hole population that is broadly consistent with empirical constraints on the black hole mass function, the bright end of the luminosity functions, and the time evolution of black hole mass and accretion rate density without these explicit relations being used as direct tuning targets.\n\n\t\n\nThe unique black hole dynamic implementation explicitly includes mergers driven by dynamical friction from stars rather than relying on the common practice of artificial repositioning, generating significant delays for black hole mergers post-encounter.\n\n\n\n\nFLAMINGO \n\n\t\n\nThe subgrid feedback models were strictly calibrated using Gaussian process emulation to match the redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the low-redshift cluster gas mass proportions (TRACER=gas mass; SELECTION=clusters; DENOMINATOR=total mass; REDSHIFT=low-z UNCERTAINTY_NOT_QUOTED_BY_SOURCE) evaluated within the M\n500c\n\t​\n\n radius, recognizing that baryonic effects become increasingly important as observations move to smaller cosmological scales.\n\n\t\n\nThe emulation process specifically varied and tuned the stellar feedback efficiency, the target kick velocity for stellar feedback winds, the power-law slope of the density dependence governing the black hole accretion boost factor, and the active galactic nucleus heating temperature, adapting these parameters distinctly across the three different numerical resolution levels.\n\n\t\n\nThe calibrated simulations successfully reproduce a variety of complex cluster scaling relations and thermodynamic density and temperature profiles that were strictly excluded from the initial machine-learning-driven Gaussian process emulation and calibration methodology.\n\n\t\n\nThe project uniquely generated twelve variations of the flagship intermediate-resolution simulation by explicitly shifting the calibration data targets relative to their fiducial observational values by specified standard deviations, creating a controlled suite to test the impact of varying feedback strengths on large-scale structure.\n\n\n\n\nBAHAMAS \n\n\t\n\nThe project represents a targeted attempt to explicitly calibrate the subgrid models of stellar and active galactic nucleus feedback to successfully reproduce the present-day galaxy stellar mass function and the observed hot gas mass proportions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) in order to ensure the back-reaction effects of feedback on the overall cosmic matter distribution are of the broadly correct physical magnitude.\n\n\t\n\nThe calibration sequence systematically adjusted the stellar feedback wind velocity to match the lower-mass end of the stellar mass function, the mass of gas heated by active galactic nuclei to reproduce the high-mass knee of the mass function, the heating temperature to match the cluster gas fractions, and the black hole feedback efficiency to reproduce the local scaling relation between black hole and stellar mass.\n\n\t\n\nThe calibrated simulations inherently reproduce an unprecedentedly wide range of independent properties of massive systems, successfully yielding the various complex observed observational mappings between galaxies, hot gas distributions, total mass profiles, and central supermassive black holes.\n\n\t\n\nThe study stresses that obtaining the correct total baryon fraction is a fundamental prerequisite for utilizing hydrodynamical simulations in precision large-scale structure cosmology, motivating the explicit decision to calibrate directly against cluster gas fractions.\n\n  \n2. Out-of-sample validation ledger\nSimulation\tObservable\tResult (agreement or tension, with magnitude)\tCOMPARABILITY\tOverlap with a Section-1 calibration target\tCitation\nIllustrisTNG\tGalaxy color bimodality distribution\tAgreement (the simulation demonstrates a striking improvement relative to previous models, achieving excellent quantitative agreement with observed data featuring a sharp transition in median color from blue to red at a characteristic stellar mass of M\n∗\n\t​\n\n∼10\n10.5\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t\nEAGLE\tSpecific star formation rate to stellar mass relation at intermediate redshifts\tTension (the simulated specific star formation rate relation is steeper than observed at all measured redshifts, and the empirically observed relations possess a significantly higher normalisation at redshift z∼1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z∼2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t\nSIMBA\tMolecular gas mass distributions\tTension (the model exhibits systemic tension with observational data by significantly overproducing the molecular hydrogen mass proportions (TRACER=H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) despite matching the underlying galaxy stellar mass function accurately)\tMATCHED_SELECTIONS\tNo\t\nFIRE/FIRE-2\tVisual morphologies and central mass concentrations in massive galaxies\tAgreement (the model produces galaxy-scale properties such as metal abundances and visual morphologies that converge well with increasing numerical resolution, though central kiloparsec mass concentrations remain highly sensitive to how efficiently winds are trapped and recycled)\tMATCHED_SELECTIONS\tNo\t\nROMULUS\tDual active galactic nucleus frequency\tAgreement (the simulation accurately yields dual AGN demographic frequencies (TRACER=dual active galactic nuclei; SELECTION=massive galaxies; DENOMINATOR=total active galactic nuclei; REDSHIFT=NOT_APPLICABLE) that can be directly and successfully compared against larger contexts due to the physically motivated exploration of black hole dynamics without artificial repositioning)\tMATCHED_SELECTIONS\tNo\t\nASTRID\tSupermassive black hole mass and luminosity functions\tAgreement (the predicted supermassive black hole population remains broadly consistent with empirical constraints regarding the black hole mass function and the bright end of the luminosity functions, demonstrating significant agreement at early epochs prior to redshift z=3 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t\nFLAMINGO\tKinetic Sunyaev-Zel'dovich effect of SDSS BOSS galaxies\tTension (rigorous analysis comparing the simulation to Planck and ACT stacking measurements reveals a prominent tension where the observational measurements strongly prefer a higher level of energetic feedback than is natively predicted by the simulation variants originally calibrated to local cluster gas fractions)\tMATCHED_SELECTIONS\tNo\t\nBAHAMAS\tCosmic shear and matter power spectrum clustering\tTension (the simulation faces persistent tension when tested against weak lensing constraints and the S8 parameter, as the specific models implementing sufficiently strong feedback to resolve the S8 clustering tension fundamentally disagree with the X-ray-inferred cluster gas fractions utilized as the primary calibration target)\tMATCHED_SELECTIONS\tNo\t\n  \n3. Double-counting warnings\n\nResearchers explicitly caution that a comprehensively calibrated cosmological simulation fundamentally loses its predictive power for the specific empirical scaling relations utilized during the calibration phase, noting that while the framework can still make genuine predictions at other cosmological redshifts and for physical quantities that were strictly withheld as calibration targets, any successful reproduction of the explicitly targeted data must be viewed entirely as an engineered mathematical outcome rather than an independent theoretical validation of the underlying physical model.    \n\nIt is prominently emphasized in the methodological literature that calibrating complex subgrid physics models by forcing their outputs to match a pre-selected suite of benchmark observations represents a necessary but significant scientific sacrifice, resulting in a partial forfeit of the numerical model's intrinsic predictive power; this inherent limitation requires computational scientists to rigorously and transparently balance exactly how many macroscopic observables they force the subgrid parameter space to match versus how many subsequent physical results can legitimately and ethically be deemed independent, out-of-sample predictions.    \n\nThe specific methodological approach of explicitly tuning subgrid control parameters to simultaneously match the observed galaxy stellar mass function and the hot gas mass distributions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) is rigorously described in the literature as an essential strategy to ensure the macroscopic back-reaction of baryons on the underlying dark matter distribution occurs at the correct physical magnitude for cosmological studies, but this explicit engineering inherently precludes investigators from utilizing those exact same low-redshift thermodynamic observables to subsequently validate the fundamental accuracy of the subgrid active galactic nucleus feedback physics.    \n\n4. Feedback-relevant observables map\nSimulation\tQuenched fractions\tGas fractions of passive galaxies\tOutflow demographics\tHot-halo/cavity properties\tRadio-AGN incidence\nIllustrisTNG\t\n\nEMERGENT \n\n\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nEMERGENT \n\n\nEAGLE\t\n\nEMERGENT \n\n\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nEMERGENT \n\n\nSIMBA\t\n\nEMERGENT \n\n\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nEMERGENT \n\n\nFIRE/FIRE-2\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nEMERGENT \n\n\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\nROMULUS\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\nASTRID\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\nFLAMINGO\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nCALIBRATED \n\n\tNOT_REPORTED — NONE_FOUND\nBAHAMAS\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\t\n\nCALIBRATED \n\n\tNOT_REPORTED — NONE_FOUND\n  \n5. Gaps\n\nGAP: The theoretical and observational community lacks a definitive physical consensus on how to construct a unified subgrid feedback model that simultaneously reproduces the macroscopic thermodynamic gas properties of low-redshift galaxy clusters and the small-scale clustering amplitude measured by cosmic shear and weak lensing surveys, creating a persistent, unresolved tension where simulation models calibrated explicitly to the former systematically fail to accurately predict the latter. \nGAP: Detailed structural and kinematic measurements of the cold molecular gas phases located specifically within low-mass quenched satellite galaxies remain largely unconstrained in a rigorous statistical out-of-sample sense, as current macro-calibration methodologies preferentially target global stellar mass scaling relations while leaving the detailed internal multiphase gas depletion mechanisms entirely dependent on emergent, unverified subgrid interpolations. ASSERTED_ABSENCE_NOT_SYSTEMATICALLY_VERIFIED\nGAP: There is an ongoing challenge in fully diagnosing the precise role that radio-mode active galactic nucleus feedback plays in rapidly quenching massive galaxies, as direct observational evidence linking instantaneous radio luminosity to long-term star formation suppression metrics remains highly ambiguous and frequently uncorroborated, fundamentally complicating rigorous out-of-sample validations of the subgrid kinetic jet models currently employed by major simulation suites. \nGAP: Rigorous out-of-sample validations targeting the very high-redshift (z>6 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) stellar mass-halo mass relation and extremely early supermassive black hole seeding environments remain severely limited by current observational survey sensitivities, forcing major simulation suites to continuously extrapolate feedback efficiency parameters that were calibrated exclusively in the low-redshift universe into fundamentally different, denser cosmological epochs without robust empirical justification. ASSERTED_ABSENCE_NOT_SYSTEMATICALLY_VERIFIED   \n\nLinks ledger\n\n | https://academic.oup.com/mnras/article/473/3/4077/4494369 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.tng-project.org/data/docs/background/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/475/1/648/4683271 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/475/1/648/4683271 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/450/2/1937/984366 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1407.7040 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/450/2/1937/984366 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/ | QUARANTINED_PENDING_LOCAL_CHECK\n | http://simba.roe.ac.uk/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/486/2/2827/5426823 | QUARANTINED_PENDING_LOCAL_CHECK\n | http://simba.roe.ac.uk/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/480/1/800/5046474 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://flathub.flatironinstitute.org/fire | QUARANTINED_PENDING_LOCAL_CHECK\n | https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1607.02151 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://mtremmel.github.io/research/romulus.html | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2111.01160 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2605.13843v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/512/3/3703/6546174 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2110.14154 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://flamingo.strw.leidenuniv.nl/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/545/2/staf2125/8361503 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2601.15851v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1603.02702 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/465/3/2936/2417021 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/465/3/2936/2417021 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article-abstract/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2410.19905 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2410.17109v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/pdf/2509.04067 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/478/2/2618/4993329 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/511/4/6126/6520457 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2508.04907v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2509.07960v2 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK   \n\nGEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+  "blocks": [
+    {
+      "id": "heading_1",
+      "type": "heading",
+      "text": "Joint C1R answer — REQ_JOINT_C1R_20260712T045317Z",
+      "links": [],
+      "source_lines": [
+        1
+      ],
+      "section": null
+    },
+    {
+      "id": "paragraph_2",
+      "type": "paragraph",
+      "text": "Run date (UTC): 2026-07-12T06:48:00Z\nModel: Gemini Pro (selected UI mode; backend version not exposed)\nSimulations covered: 8",
+      "links": [],
+      "source_lines": [
+        2,
+        3,
+        4
+      ],
+      "section": null
+    },
+    {
+      "id": "heading_3",
+      "type": "heading",
+      "text": "1. Calibration ledger",
+      "links": [],
+      "source_lines": [
+        6
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_header_4",
+      "type": "table_header",
+      "text": "Simulation (method-paper citation)\tStated calibration targets (faithful to source wording)\tFeedback parameters tuned (as stated)\tExplicitly emergent (stated NOT calibrated)\tNotes",
+      "links": [],
+      "cells": [
+        {
+          "text": "Simulation (method-paper citation)",
+          "links": []
+        },
+        {
+          "text": "Stated calibration targets (faithful to source wording)",
+          "links": []
+        },
+        {
+          "text": "Feedback parameters tuned (as stated)",
+          "links": []
+        },
+        {
+          "text": "Explicitly emergent (stated NOT calibrated)",
+          "links": []
+        },
+        {
+          "text": "Notes",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        8
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_5",
+      "type": "table_row",
+      "text": "IllustrisTNG\tThe project specifically targeted the observed galaxy stellar mass function, the stellar-to-halo mass scaling relation, the total gas mass content evaluated strictly within the virial radius, the central supermassive black hole mass to galaxy mass or halo mass relation, and the galaxy stellar sizes specifically represented by effective radii, utilizing these physical quantities as rough guidelines to explicitly engineer the baseline subgrid model behavior prior to conducting predictive science runs.\tThe developers explicitly adjusted the parameters governing galactic winds, specifically modifying their directionality, bulk velocity, thermal energy content, and phenomenological energy scalings, while simultaneously implementing and tuning a revised black-hole-driven kinetic feedback model intended to operate effectively during low accretion rate states to ensure massive galaxies appropriately quench their star formation without violating local empirical constraints.\tThe spatial distribution of the stellar mass in the most massive haloes (M200c ≳10\n14\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE) was explicitly stated to be an emergent phenomenon occurring in a mass regime where the galaxy physics model was never directly calibrated or even previously run prior to the execution of the TNG300 simulation itself, rendering the structural properties of these simulated clusters genuinely predictive rather than engineered.\tThe specific parameter values adopted for the reference IllustrisTNG physical model were kept strictly identical across all variations in numerical resolution, explicitly avoiding the practice of resolution-dependent parameter retuning across the different simulation volumes.",
+      "links": [],
+      "cells": [
+        {
+          "text": "IllustrisTNG",
+          "links": []
+        },
+        {
+          "text": "The project specifically targeted the observed galaxy stellar mass function, the stellar-to-halo mass scaling relation, the total gas mass content evaluated strictly within the virial radius, the central supermassive black hole mass to galaxy mass or halo mass relation, and the galaxy stellar sizes specifically represented by effective radii, utilizing these physical quantities as rough guidelines to explicitly engineer the baseline subgrid model behavior prior to conducting predictive science runs.",
+          "links": []
+        },
+        {
+          "text": "The developers explicitly adjusted the parameters governing galactic winds, specifically modifying their directionality, bulk velocity, thermal energy content, and phenomenological energy scalings, while simultaneously implementing and tuning a revised black-hole-driven kinetic feedback model intended to operate effectively during low accretion rate states to ensure massive galaxies appropriately quench their star formation without violating local empirical constraints.",
+          "links": []
+        },
+        {
+          "text": "The spatial distribution of the stellar mass in the most massive haloes (M200c ≳10\n14\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE) was explicitly stated to be an emergent phenomenon occurring in a mass regime where the galaxy physics model was never directly calibrated or even previously run prior to the execution of the TNG300 simulation itself, rendering the structural properties of these simulated clusters genuinely predictive rather than engineered.",
+          "links": []
+        },
+        {
+          "text": "The specific parameter values adopted for the reference IllustrisTNG physical model were kept strictly identical across all variations in numerical resolution, explicitly avoiding the practice of resolution-dependent parameter retuning across the different simulation volumes.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_6",
+      "type": "table_row",
+      "text": "EAGLE\tThe subgrid physics model was explicitly calibrated to reproduce the observed redshift z=0.1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the scaling relation between the stellar mass of galaxies and their central supermassive black hole mass, whilst simultaneously seeking to yield simulated galaxies with physical sizes measured via effective radii that are statistically similar to local astronomical observations.\tThe subgrid routines governing the energetic feedback associated with both star formation and the accretion growth of black holes were varied; specifically, the stellar feedback calibration exclusively varied the energy coupling efficiency parameter representing the fraction of available Type II Supernovae energy coupling to the interstellar medium, while the black hole feedback was regulated by tuning the subgrid viscosity parameter alongside a fixed heating temperature increment of 10\n8.5\n K UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\tThe study authors explicitly stated that the calibrated simulations broadly reproduce the observed galaxy stellar mass function as early as redshift z=7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, accurately track its evolution to the present day, and successfully match a diverse, representative set of low-redshift observables that were strictly withheld from the calibration process.\tThe calibration process necessitated adjusting the star formation feedback parameters such that the injected energy varies as a function of the local gas density, mitigating spurious numerical radiative losses that otherwise suppress feedback efficiency in high-density regions.",
+      "links": [],
+      "cells": [
+        {
+          "text": "EAGLE",
+          "links": []
+        },
+        {
+          "text": "The subgrid physics model was explicitly calibrated to reproduce the observed redshift z=0.1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the scaling relation between the stellar mass of galaxies and their central supermassive black hole mass, whilst simultaneously seeking to yield simulated galaxies with physical sizes measured via effective radii that are statistically similar to local astronomical observations.",
+          "links": []
+        },
+        {
+          "text": "The subgrid routines governing the energetic feedback associated with both star formation and the accretion growth of black holes were varied; specifically, the stellar feedback calibration exclusively varied the energy coupling efficiency parameter representing the fraction of available Type II Supernovae energy coupling to the interstellar medium, while the black hole feedback was regulated by tuning the subgrid viscosity parameter alongside a fixed heating temperature increment of 10\n8.5\n K UNCERTAINTY_NOT_QUOTED_BY_SOURCE.",
+          "links": []
+        },
+        {
+          "text": "The study authors explicitly stated that the calibrated simulations broadly reproduce the observed galaxy stellar mass function as early as redshift z=7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, accurately track its evolution to the present day, and successfully match a diverse, representative set of low-redshift observables that were strictly withheld from the calibration process.",
+          "links": []
+        },
+        {
+          "text": "The calibration process necessitated adjusting the star formation feedback parameters such that the injected energy varies as a function of the local gas density, mitigating spurious numerical radiative losses that otherwise suppress feedback efficiency in high-density regions.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_7",
+      "type": "table_row",
+      "text": "SIMBA\tThe primary calibration strategy for this cosmological hydrodynamic simulation focuses stringently on reproducing the global galaxy stellar mass function evolution across cosmic time alongside the local empirical scaling relation bridging central supermassive black hole mass and host galaxy stellar mass, utilizing these macroscopic distributions as the fundamental anchor points to which the energetic outputs of the subgrid feedback modules are explicitly tuned.\tThe simulation explicitly tuned the fraction of material entering the accretion disc that actually accretes onto the central black hole to a value of ∼10% UNCERTAINTY_NOT_QUOTED_BY_SOURCE, while simultaneously calibrating the kinetic feedback ejection velocities based on Eddington ratios to scale from ∼10\n3\n km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at high accretion rates to ∼8000 km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at low accretion rates, utilizing a constant momentum input of 20 L/c UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\tThe model produces a wide array of emergent properties that successfully reproduce observational constraints without direct tuning, including neutral and molecular gas fractions (TRACER=H I and H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the mass-metallicity relation at redshift z≈0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z≈2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, star-forming galaxy sizes, and the properties of cosmic dust.\tAnalysis of specific simulation variants lacking jet and X-ray feedback modules revealed that the carefully tuned high-velocity jet feedback is primarily responsible for the successful quenching of massive galaxies and significantly alters late-time cosmic cold gas evolution.",
+      "links": [],
+      "cells": [
+        {
+          "text": "SIMBA",
+          "links": []
+        },
+        {
+          "text": "The primary calibration strategy for this cosmological hydrodynamic simulation focuses stringently on reproducing the global galaxy stellar mass function evolution across cosmic time alongside the local empirical scaling relation bridging central supermassive black hole mass and host galaxy stellar mass, utilizing these macroscopic distributions as the fundamental anchor points to which the energetic outputs of the subgrid feedback modules are explicitly tuned.",
+          "links": []
+        },
+        {
+          "text": "The simulation explicitly tuned the fraction of material entering the accretion disc that actually accretes onto the central black hole to a value of ∼10% UNCERTAINTY_NOT_QUOTED_BY_SOURCE, while simultaneously calibrating the kinetic feedback ejection velocities based on Eddington ratios to scale from ∼10\n3\n km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at high accretion rates to ∼8000 km s$^{-1}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE at low accretion rates, utilizing a constant momentum input of 20 L/c UNCERTAINTY_NOT_QUOTED_BY_SOURCE.",
+          "links": []
+        },
+        {
+          "text": "The model produces a wide array of emergent properties that successfully reproduce observational constraints without direct tuning, including neutral and molecular gas fractions (TRACER=H I and H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the mass-metallicity relation at redshift z≈0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z≈2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, star-forming galaxy sizes, and the properties of cosmic dust.",
+          "links": []
+        },
+        {
+          "text": "Analysis of specific simulation variants lacking jet and X-ray feedback modules revealed that the carefully tuned high-velocity jet feedback is primarily responsible for the successful quenching of massive galaxies and significantly alters late-time cosmic cold gas evolution.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_8",
+      "type": "table_row",
+      "text": "FIRE/FIRE-2\tThe method papers indicate that there is no fine-tuning or direct calibration of any parameters in the simulations to match these specific macroscopic observational properties, as the models attempt to explicitly capture the interstellar medium physics and stellar feedback mechanisms directly from stellar evolution models rather than employing phenomenological macroscopic tuning.\tNONE_FOUND.\tThe simulations report that galaxy-scale properties naturally emerge from the underlying microphysics, specifically noting that as numerical resolution increases, stellar masses and density profiles converge first, followed by metal abundances and visual morphologies, and subsequently the complex properties of galactic winds and the circumgalactic medium.\tWhile the overarching properties are physically emergent, the central kiloparsec mass concentrations of massive galaxies remain sensitive to underlying numerical implementations, particularly regarding how explicitly ejected winds are trapped, mixed, and recycled within the hot circumgalactic halos.",
+      "links": [],
+      "cells": [
+        {
+          "text": "FIRE/FIRE-2",
+          "links": []
+        },
+        {
+          "text": "The method papers indicate that there is no fine-tuning or direct calibration of any parameters in the simulations to match these specific macroscopic observational properties, as the models attempt to explicitly capture the interstellar medium physics and stellar feedback mechanisms directly from stellar evolution models rather than employing phenomenological macroscopic tuning.",
+          "links": []
+        },
+        {
+          "text": "NONE_FOUND.",
+          "links": []
+        },
+        {
+          "text": "The simulations report that galaxy-scale properties naturally emerge from the underlying microphysics, specifically noting that as numerical resolution increases, stellar masses and density profiles converge first, followed by metal abundances and visual morphologies, and subsequently the complex properties of galactic winds and the circumgalactic medium.",
+          "links": []
+        },
+        {
+          "text": "While the overarching properties are physically emergent, the central kiloparsec mass concentrations of massive galaxies remain sensitive to underlying numerical implementations, particularly regarding how explicitly ejected winds are trapped, mixed, and recycled within the hot circumgalactic halos.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        33,
+        34,
+        35,
+        36,
+        37
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_9",
+      "type": "table_row",
+      "text": "ROMULUS\tThe simulation utilized a multi-dimensional parameter search to optimize the subgrid parameters regulating star formation and feedback directly against a comprehensive set of redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy scaling relations, specifically including the stellar mass-halo mass relation, the black hole mass-stellar mass relation, and the multi-epoch colour-colour history of Milky Way and M31 progenitors.\tThe developers optimized specific free parameters controlling the supermassive black hole accretion rate and the efficiency at which radiated energy is transferred to the surrounding gas, alongside stellar parameters such as the star formation threshold density, the star formation efficiency, and the supernova feedback efficiency which was explicitly set to 0.75 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\tThe novel implementation of supermassive black hole physics allows the simulation to predict where and when supermassive black holes grow entirely independent of any predefined assumptions about the specific host galaxies they exist in, generating global star formation and black hole accretion histories that emerge naturally from the physics.\tThe explicit calibration of the blastwave supernova feedback implementation was uniquely targeted to reliably reproduce observable dwarf galaxy structures, specifically focusing on generating realistic cored dark matter density profiles in low-mass systems.",
+      "links": [],
+      "cells": [
+        {
+          "text": "ROMULUS",
+          "links": []
+        },
+        {
+          "text": "The simulation utilized a multi-dimensional parameter search to optimize the subgrid parameters regulating star formation and feedback directly against a comprehensive set of redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy scaling relations, specifically including the stellar mass-halo mass relation, the black hole mass-stellar mass relation, and the multi-epoch colour-colour history of Milky Way and M31 progenitors.",
+          "links": []
+        },
+        {
+          "text": "The developers optimized specific free parameters controlling the supermassive black hole accretion rate and the efficiency at which radiated energy is transferred to the surrounding gas, alongside stellar parameters such as the star formation threshold density, the star formation efficiency, and the supernova feedback efficiency which was explicitly set to 0.75 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.",
+          "links": []
+        },
+        {
+          "text": "The novel implementation of supermassive black hole physics allows the simulation to predict where and when supermassive black holes grow entirely independent of any predefined assumptions about the specific host galaxies they exist in, generating global star formation and black hole accretion histories that emerge naturally from the physics.",
+          "links": []
+        },
+        {
+          "text": "The explicit calibration of the blastwave supernova feedback implementation was uniquely targeted to reliably reproduce observable dwarf galaxy structures, specifically focusing on generating realistic cored dark matter density profiles in low-mass systems.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        39,
+        40,
+        41,
+        42,
+        43
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_10",
+      "type": "table_row",
+      "text": "ASTRID\tThe subgrid model suite was explicitly validated and calibrated to show good statistical agreement with observed ultraviolet luminosity functions, galaxy stellar mass functions, and specific star formation rates, with the dust model specifically calibrated at redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE using Sloan Digital Sky Survey luminosity functions before being tested at higher redshifts.\tThe simulation explicitly tuned the supernova feedback energy parameter to 1.0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of 10\n51\n erg UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the wind speed parameter to 3.7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of local dark matter velocity dispersion), the average number of star particles produced per gas particle to 4 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, and the black hole feedback efficiency to 0.05 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.\tThe simulation yields a supermassive black hole population that is broadly consistent with empirical constraints on the black hole mass function, the bright end of the luminosity functions, and the time evolution of black hole mass and accretion rate density without these explicit relations being used as direct tuning targets.\tThe unique black hole dynamic implementation explicitly includes mergers driven by dynamical friction from stars rather than relying on the common practice of artificial repositioning, generating significant delays for black hole mergers post-encounter.",
+      "links": [],
+      "cells": [
+        {
+          "text": "ASTRID",
+          "links": []
+        },
+        {
+          "text": "The subgrid model suite was explicitly validated and calibrated to show good statistical agreement with observed ultraviolet luminosity functions, galaxy stellar mass functions, and specific star formation rates, with the dust model specifically calibrated at redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE using Sloan Digital Sky Survey luminosity functions before being tested at higher redshifts.",
+          "links": []
+        },
+        {
+          "text": "The simulation explicitly tuned the supernova feedback energy parameter to 1.0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of 10\n51\n erg UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the wind speed parameter to 3.7 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of local dark matter velocity dispersion), the average number of star particles produced per gas particle to 4 UNCERTAINTY_NOT_QUOTED_BY_SOURCE, and the black hole feedback efficiency to 0.05 UNCERTAINTY_NOT_QUOTED_BY_SOURCE.",
+          "links": []
+        },
+        {
+          "text": "The simulation yields a supermassive black hole population that is broadly consistent with empirical constraints on the black hole mass function, the bright end of the luminosity functions, and the time evolution of black hole mass and accretion rate density without these explicit relations being used as direct tuning targets.",
+          "links": []
+        },
+        {
+          "text": "The unique black hole dynamic implementation explicitly includes mergers driven by dynamical friction from stars rather than relying on the common practice of artificial repositioning, generating significant delays for black hole mergers post-encounter.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_11",
+      "type": "table_row",
+      "text": "FLAMINGO\tThe subgrid feedback models were strictly calibrated using Gaussian process emulation to match the redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the low-redshift cluster gas mass proportions (TRACER=gas mass; SELECTION=clusters; DENOMINATOR=total mass; REDSHIFT=low-z UNCERTAINTY_NOT_QUOTED_BY_SOURCE) evaluated within the M\n500c\n\t​\n\n radius, recognizing that baryonic effects become increasingly important as observations move to smaller cosmological scales.\tThe emulation process specifically varied and tuned the stellar feedback efficiency, the target kick velocity for stellar feedback winds, the power-law slope of the density dependence governing the black hole accretion boost factor, and the active galactic nucleus heating temperature, adapting these parameters distinctly across the three different numerical resolution levels.\tThe calibrated simulations successfully reproduce a variety of complex cluster scaling relations and thermodynamic density and temperature profiles that were strictly excluded from the initial machine-learning-driven Gaussian process emulation and calibration methodology.\tThe project uniquely generated twelve variations of the flagship intermediate-resolution simulation by explicitly shifting the calibration data targets relative to their fiducial observational values by specified standard deviations, creating a controlled suite to test the impact of varying feedback strengths on large-scale structure.",
+      "links": [],
+      "cells": [
+        {
+          "text": "FLAMINGO",
+          "links": []
+        },
+        {
+          "text": "The subgrid feedback models were strictly calibrated using Gaussian process emulation to match the redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the low-redshift cluster gas mass proportions (TRACER=gas mass; SELECTION=clusters; DENOMINATOR=total mass; REDSHIFT=low-z UNCERTAINTY_NOT_QUOTED_BY_SOURCE) evaluated within the M\n500c\n\t​\n\n radius, recognizing that baryonic effects become increasingly important as observations move to smaller cosmological scales.",
+          "links": []
+        },
+        {
+          "text": "The emulation process specifically varied and tuned the stellar feedback efficiency, the target kick velocity for stellar feedback winds, the power-law slope of the density dependence governing the black hole accretion boost factor, and the active galactic nucleus heating temperature, adapting these parameters distinctly across the three different numerical resolution levels.",
+          "links": []
+        },
+        {
+          "text": "The calibrated simulations successfully reproduce a variety of complex cluster scaling relations and thermodynamic density and temperature profiles that were strictly excluded from the initial machine-learning-driven Gaussian process emulation and calibration methodology.",
+          "links": []
+        },
+        {
+          "text": "The project uniquely generated twelve variations of the flagship intermediate-resolution simulation by explicitly shifting the calibration data targets relative to their fiducial observational values by specified standard deviations, creating a controlled suite to test the impact of varying feedback strengths on large-scale structure.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "table_row_12",
+      "type": "table_row",
+      "text": "BAHAMAS\tThe project represents a targeted attempt to explicitly calibrate the subgrid models of stellar and active galactic nucleus feedback to successfully reproduce the present-day galaxy stellar mass function and the observed hot gas mass proportions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) in order to ensure the back-reaction effects of feedback on the overall cosmic matter distribution are of the broadly correct physical magnitude.\tThe calibration sequence systematically adjusted the stellar feedback wind velocity to match the lower-mass end of the stellar mass function, the mass of gas heated by active galactic nuclei to reproduce the high-mass knee of the mass function, the heating temperature to match the cluster gas fractions, and the black hole feedback efficiency to reproduce the local scaling relation between black hole and stellar mass.\tThe calibrated simulations inherently reproduce an unprecedentedly wide range of independent properties of massive systems, successfully yielding the various complex observed observational mappings between galaxies, hot gas distributions, total mass profiles, and central supermassive black holes.\tThe study stresses that obtaining the correct total baryon fraction is a fundamental prerequisite for utilizing hydrodynamical simulations in precision large-scale structure cosmology, motivating the explicit decision to calibrate directly against cluster gas fractions.",
+      "links": [],
+      "cells": [
+        {
+          "text": "BAHAMAS",
+          "links": []
+        },
+        {
+          "text": "The project represents a targeted attempt to explicitly calibrate the subgrid models of stellar and active galactic nucleus feedback to successfully reproduce the present-day galaxy stellar mass function and the observed hot gas mass proportions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) in order to ensure the back-reaction effects of feedback on the overall cosmic matter distribution are of the broadly correct physical magnitude.",
+          "links": []
+        },
+        {
+          "text": "The calibration sequence systematically adjusted the stellar feedback wind velocity to match the lower-mass end of the stellar mass function, the mass of gas heated by active galactic nuclei to reproduce the high-mass knee of the mass function, the heating temperature to match the cluster gas fractions, and the black hole feedback efficiency to reproduce the local scaling relation between black hole and stellar mass.",
+          "links": []
+        },
+        {
+          "text": "The calibrated simulations inherently reproduce an unprecedentedly wide range of independent properties of massive systems, successfully yielding the various complex observed observational mappings between galaxies, hot gas distributions, total mass profiles, and central supermassive black holes.",
+          "links": []
+        },
+        {
+          "text": "The study stresses that obtaining the correct total baryon fraction is a fundamental prerequisite for utilizing hydrodynamical simulations in precision large-scale structure cosmology, motivating the explicit decision to calibrate directly against cluster gas fractions.",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        62,
+        63,
+        64,
+        65,
+        66
+      ],
+      "section": "1. Calibration ledger"
+    },
+    {
+      "id": "heading_13",
+      "type": "heading",
+      "text": "2. Out-of-sample validation ledger",
+      "links": [],
+      "source_lines": [
+        68
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_header_14",
+      "type": "table_header",
+      "text": "Simulation\tObservable\tResult (agreement or tension, with magnitude)\tCOMPARABILITY\tOverlap with a Section-1 calibration target\tCitation",
+      "links": [],
+      "cells": [
+        {
+          "text": "Simulation",
+          "links": []
+        },
+        {
+          "text": "Observable",
+          "links": []
+        },
+        {
+          "text": "Result (agreement or tension, with magnitude)",
+          "links": []
+        },
+        {
+          "text": "COMPARABILITY",
+          "links": []
+        },
+        {
+          "text": "Overlap with a Section-1 calibration target",
+          "links": []
+        },
+        {
+          "text": "Citation",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        69
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_15",
+      "type": "table_row",
+      "text": "IllustrisTNG\tGalaxy color bimodality distribution\tAgreement (the simulation demonstrates a striking improvement relative to previous models, achieving excellent quantitative agreement with observed data featuring a sharp transition in median color from blue to red at a characteristic stellar mass of M\n∗\n\t​\n\n∼10\n10.5\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "IllustrisTNG",
+          "links": []
+        },
+        {
+          "text": "Galaxy color bimodality distribution",
+          "links": []
+        },
+        {
+          "text": "Agreement (the simulation demonstrates a striking improvement relative to previous models, achieving excellent quantitative agreement with observed data featuring a sharp transition in median color from blue to red at a characteristic stellar mass of M\n∗\n\t​\n\n∼10\n10.5\n M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        70,
+        71,
+        72,
+        73,
+        74,
+        75
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_16",
+      "type": "table_row",
+      "text": "EAGLE\tSpecific star formation rate to stellar mass relation at intermediate redshifts\tTension (the simulated specific star formation rate relation is steeper than observed at all measured redshifts, and the empirically observed relations possess a significantly higher normalisation at redshift z∼1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z∼2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "EAGLE",
+          "links": []
+        },
+        {
+          "text": "Specific star formation rate to stellar mass relation at intermediate redshifts",
+          "links": []
+        },
+        {
+          "text": "Tension (the simulated specific star formation rate relation is steeper than observed at all measured redshifts, and the empirically observed relations possess a significantly higher normalisation at redshift z∼1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE and redshift z∼2 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        76
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_17",
+      "type": "table_row",
+      "text": "SIMBA\tMolecular gas mass distributions\tTension (the model exhibits systemic tension with observational data by significantly overproducing the molecular hydrogen mass proportions (TRACER=H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) despite matching the underlying galaxy stellar mass function accurately)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "SIMBA",
+          "links": []
+        },
+        {
+          "text": "Molecular gas mass distributions",
+          "links": []
+        },
+        {
+          "text": "Tension (the model exhibits systemic tension with observational data by significantly overproducing the molecular hydrogen mass proportions (TRACER=H2 mass; SELECTION=galaxies; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) despite matching the underlying galaxy stellar mass function accurately)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        77
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_18",
+      "type": "table_row",
+      "text": "FIRE/FIRE-2\tVisual morphologies and central mass concentrations in massive galaxies\tAgreement (the model produces galaxy-scale properties such as metal abundances and visual morphologies that converge well with increasing numerical resolution, though central kiloparsec mass concentrations remain highly sensitive to how efficiently winds are trapped and recycled)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "FIRE/FIRE-2",
+          "links": []
+        },
+        {
+          "text": "Visual morphologies and central mass concentrations in massive galaxies",
+          "links": []
+        },
+        {
+          "text": "Agreement (the model produces galaxy-scale properties such as metal abundances and visual morphologies that converge well with increasing numerical resolution, though central kiloparsec mass concentrations remain highly sensitive to how efficiently winds are trapped and recycled)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        78
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_19",
+      "type": "table_row",
+      "text": "ROMULUS\tDual active galactic nucleus frequency\tAgreement (the simulation accurately yields dual AGN demographic frequencies (TRACER=dual active galactic nuclei; SELECTION=massive galaxies; DENOMINATOR=total active galactic nuclei; REDSHIFT=NOT_APPLICABLE) that can be directly and successfully compared against larger contexts due to the physically motivated exploration of black hole dynamics without artificial repositioning)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "ROMULUS",
+          "links": []
+        },
+        {
+          "text": "Dual active galactic nucleus frequency",
+          "links": []
+        },
+        {
+          "text": "Agreement (the simulation accurately yields dual AGN demographic frequencies (TRACER=dual active galactic nuclei; SELECTION=massive galaxies; DENOMINATOR=total active galactic nuclei; REDSHIFT=NOT_APPLICABLE) that can be directly and successfully compared against larger contexts due to the physically motivated exploration of black hole dynamics without artificial repositioning)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        79
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_20",
+      "type": "table_row",
+      "text": "ASTRID\tSupermassive black hole mass and luminosity functions\tAgreement (the predicted supermassive black hole population remains broadly consistent with empirical constraints regarding the black hole mass function and the bright end of the luminosity functions, demonstrating significant agreement at early epochs prior to redshift z=3 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "ASTRID",
+          "links": []
+        },
+        {
+          "text": "Supermassive black hole mass and luminosity functions",
+          "links": []
+        },
+        {
+          "text": "Agreement (the predicted supermassive black hole population remains broadly consistent with empirical constraints regarding the black hole mass function and the bright end of the luminosity functions, demonstrating significant agreement at early epochs prior to redshift z=3 UNCERTAINTY_NOT_QUOTED_BY_SOURCE)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        81
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_21",
+      "type": "table_row",
+      "text": "FLAMINGO\tKinetic Sunyaev-Zel'dovich effect of SDSS BOSS galaxies\tTension (rigorous analysis comparing the simulation to Planck and ACT stacking measurements reveals a prominent tension where the observational measurements strongly prefer a higher level of energetic feedback than is natively predicted by the simulation variants originally calibrated to local cluster gas fractions)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "FLAMINGO",
+          "links": []
+        },
+        {
+          "text": "Kinetic Sunyaev-Zel'dovich effect of SDSS BOSS galaxies",
+          "links": []
+        },
+        {
+          "text": "Tension (rigorous analysis comparing the simulation to Planck and ACT stacking measurements reveals a prominent tension where the observational measurements strongly prefer a higher level of energetic feedback than is natively predicted by the simulation variants originally calibrated to local cluster gas fractions)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        82
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "table_row_22",
+      "type": "table_row",
+      "text": "BAHAMAS\tCosmic shear and matter power spectrum clustering\tTension (the simulation faces persistent tension when tested against weak lensing constraints and the S8 parameter, as the specific models implementing sufficiently strong feedback to resolve the S8 clustering tension fundamentally disagree with the X-ray-inferred cluster gas fractions utilized as the primary calibration target)\tMATCHED_SELECTIONS\tNo\t",
+      "links": [],
+      "cells": [
+        {
+          "text": "BAHAMAS",
+          "links": []
+        },
+        {
+          "text": "Cosmic shear and matter power spectrum clustering",
+          "links": []
+        },
+        {
+          "text": "Tension (the simulation faces persistent tension when tested against weak lensing constraints and the S8 parameter, as the specific models implementing sufficiently strong feedback to resolve the S8 clustering tension fundamentally disagree with the X-ray-inferred cluster gas fractions utilized as the primary calibration target)",
+          "links": []
+        },
+        {
+          "text": "MATCHED_SELECTIONS",
+          "links": []
+        },
+        {
+          "text": "No",
+          "links": []
+        },
+        {
+          "text": "",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        83
+      ],
+      "section": "2. Out-of-sample validation ledger"
+    },
+    {
+      "id": "heading_23",
+      "type": "heading",
+      "text": "3. Double-counting warnings",
+      "links": [],
+      "source_lines": [
+        85
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "bullet_24",
+      "type": "bullet",
+      "text": "Researchers explicitly caution that a comprehensively calibrated cosmological simulation fundamentally loses its predictive power for the specific empirical scaling relations utilized during the calibration phase, noting that while the framework can still make genuine predictions at other cosmological redshifts and for physical quantities that were strictly withheld as calibration targets, any successful reproduction of the explicitly targeted data must be viewed entirely as an engineered mathematical outcome rather than an independent theoretical validation of the underlying physical model.",
+      "links": [],
+      "source_lines": [
+        86
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "paragraph_25",
+      "type": "paragraph",
+      "text": "Researchers explicitly caution that a comprehensively calibrated cosmological simulation fundamentally loses its predictive power for the specific empirical scaling relations utilized during the calibration phase, noting that while the framework can still make genuine predictions at other cosmological redshifts and for physical quantities that were strictly withheld as calibration targets, any successful reproduction of the explicitly targeted data must be viewed entirely as an engineered mathematical outcome rather than an independent theoretical validation of the underlying physical model.",
+      "links": [],
+      "source_lines": [
+        87
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "bullet_26",
+      "type": "bullet",
+      "text": "It is prominently emphasized in the methodological literature that calibrating complex subgrid physics models by forcing their outputs to match a pre-selected suite of benchmark observations represents a necessary but significant scientific sacrifice, resulting in a partial forfeit of the numerical model's intrinsic predictive power; this inherent limitation requires computational scientists to rigorously and transparently balance exactly how many macroscopic observables they force the subgrid parameter space to match versus how many subsequent physical results can legitimately and ethically be deemed independent, out-of-sample predictions.",
+      "links": [],
+      "source_lines": [
+        89
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "paragraph_27",
+      "type": "paragraph",
+      "text": "It is prominently emphasized in the methodological literature that calibrating complex subgrid physics models by forcing their outputs to match a pre-selected suite of benchmark observations represents a necessary but significant scientific sacrifice, resulting in a partial forfeit of the numerical model's intrinsic predictive power; this inherent limitation requires computational scientists to rigorously and transparently balance exactly how many macroscopic observables they force the subgrid parameter space to match versus how many subsequent physical results can legitimately and ethically be deemed independent, out-of-sample predictions.",
+      "links": [],
+      "source_lines": [
+        90
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "bullet_28",
+      "type": "bullet",
+      "text": "The specific methodological approach of explicitly tuning subgrid control parameters to simultaneously match the observed galaxy stellar mass function and the hot gas mass distributions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) is rigorously described in the literature as an essential strategy to ensure the macroscopic back-reaction of baryons on the underlying dark matter distribution occurs at the correct physical magnitude for cosmological studies, but this explicit engineering inherently precludes investigators from utilizing those exact same low-redshift thermodynamic observables to subsequently validate the fundamental accuracy of the subgrid active galactic nucleus feedback physics.",
+      "links": [],
+      "source_lines": [
+        91
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "paragraph_29",
+      "type": "paragraph",
+      "text": "The specific methodological approach of explicitly tuning subgrid control parameters to simultaneously match the observed galaxy stellar mass function and the hot gas mass distributions (TRACER=hot gas mass; SELECTION=groups and clusters; DENOMINATOR=total mass; REDSHIFT=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) is rigorously described in the literature as an essential strategy to ensure the macroscopic back-reaction of baryons on the underlying dark matter distribution occurs at the correct physical magnitude for cosmological studies, but this explicit engineering inherently precludes investigators from utilizing those exact same low-redshift thermodynamic observables to subsequently validate the fundamental accuracy of the subgrid active galactic nucleus feedback physics.",
+      "links": [],
+      "source_lines": [
+        93
+      ],
+      "section": "3. Double-counting warnings"
+    },
+    {
+      "id": "heading_30",
+      "type": "heading",
+      "text": "4. Feedback-relevant observables map",
+      "links": [],
+      "source_lines": [
+        94
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_header_31",
+      "type": "table_header",
+      "text": "Simulation\tQuenched fractions\tGas fractions of passive galaxies\tOutflow demographics\tHot-halo/cavity properties\tRadio-AGN incidence",
+      "links": [],
+      "cells": [
+        {
+          "text": "Simulation",
+          "links": []
+        },
+        {
+          "text": "Quenched fractions",
+          "links": []
+        },
+        {
+          "text": "Gas fractions of passive galaxies",
+          "links": []
+        },
+        {
+          "text": "Outflow demographics",
+          "links": []
+        },
+        {
+          "text": "Hot-halo/cavity properties",
+          "links": []
+        },
+        {
+          "text": "Radio-AGN incidence",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        95
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_32",
+      "type": "table_row",
+      "text": "IllustrisTNG\tEMERGENT\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tEMERGENT",
+      "links": [],
+      "cells": [
+        {
+          "text": "IllustrisTNG",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        97,
+        98,
+        99,
+        100
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_33",
+      "type": "table_row",
+      "text": "EAGLE\tEMERGENT\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tEMERGENT",
+      "links": [],
+      "cells": [
+        {
+          "text": "EAGLE",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        102,
+        103,
+        104,
+        105
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_34",
+      "type": "table_row",
+      "text": "SIMBA\tEMERGENT\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tEMERGENT",
+      "links": [],
+      "cells": [
+        {
+          "text": "SIMBA",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        106,
+        107,
+        108,
+        109
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_35",
+      "type": "table_row",
+      "text": "FIRE/FIRE-2\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tEMERGENT\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND",
+      "links": [],
+      "cells": [
+        {
+          "text": "FIRE/FIRE-2",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "EMERGENT",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        110,
+        111,
+        112
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_36",
+      "type": "table_row",
+      "text": "ROMULUS\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND",
+      "links": [],
+      "cells": [
+        {
+          "text": "ROMULUS",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        114
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_37",
+      "type": "table_row",
+      "text": "ASTRID\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND",
+      "links": [],
+      "cells": [
+        {
+          "text": "ASTRID",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        115
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_38",
+      "type": "table_row",
+      "text": "FLAMINGO\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tCALIBRATED\tNOT_REPORTED — NONE_FOUND",
+      "links": [],
+      "cells": [
+        {
+          "text": "FLAMINGO",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "CALIBRATED",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        116,
+        117,
+        118
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "table_row_39",
+      "type": "table_row",
+      "text": "BAHAMAS\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tNOT_REPORTED — NONE_FOUND\tCALIBRATED\tNOT_REPORTED — NONE_FOUND",
+      "links": [],
+      "cells": [
+        {
+          "text": "BAHAMAS",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        },
+        {
+          "text": "CALIBRATED",
+          "links": []
+        },
+        {
+          "text": "NOT_REPORTED — NONE_FOUND",
+          "links": []
+        }
+      ],
+      "source_lines": [
+        119,
+        120,
+        121
+      ],
+      "section": "4. Feedback-relevant observables map"
+    },
+    {
+      "id": "heading_40",
+      "type": "heading",
+      "text": "5. Gaps",
+      "links": [],
+      "source_lines": [
+        123
+      ],
+      "section": "5. Gaps"
+    },
+    {
+      "id": "paragraph_41",
+      "type": "paragraph",
+      "text": "GAP: The theoretical and observational community lacks a definitive physical consensus on how to construct a unified subgrid feedback model that simultaneously reproduces the macroscopic thermodynamic gas properties of low-redshift galaxy clusters and the small-scale clustering amplitude measured by cosmic shear and weak lensing surveys, creating a persistent, unresolved tension where simulation models calibrated explicitly to the former systematically fail to accurately predict the latter. \nGAP: Detailed structural and kinematic measurements of the cold molecular gas phases located specifically within low-mass quenched satellite galaxies remain largely unconstrained in a rigorous statistical out-of-sample sense, as current macro-calibration methodologies preferentially target global stellar mass scaling relations while leaving the detailed internal multiphase gas depletion mechanisms entirely dependent on emergent, unverified subgrid interpolations. ASSERTED_ABSENCE_NOT_SYSTEMATICALLY_VERIFIED\nGAP: There is an ongoing challenge in fully diagnosing the precise role that radio-mode active galactic nucleus feedback plays in rapidly quenching massive galaxies, as direct observational evidence linking instantaneous radio luminosity to long-term star formation suppression metrics remains highly ambiguous and frequently uncorroborated, fundamentally complicating rigorous out-of-sample validations of the subgrid kinetic jet models currently employed by major simulation suites. \nGAP: Rigorous out-of-sample validations targeting the very high-redshift (z>6 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) stellar mass-halo mass relation and extremely early supermassive black hole seeding environments remain severely limited by current observational survey sensitivities, forcing major simulation suites to continuously extrapolate feedback efficiency parameters that were calibrated exclusively in the low-redshift universe into fundamentally different, denser cosmological epochs without robust empirical justification. ASSERTED_ABSENCE_NOT_SYSTEMATICALLY_VERIFIED",
+      "links": [],
+      "source_lines": [
+        124,
+        125,
+        126,
+        127
+      ],
+      "section": "5. Gaps"
+    },
+    {
+      "id": "heading_42",
+      "type": "heading",
+      "text": "Links ledger",
+      "links": [],
+      "source_lines": [
+        128
+      ],
+      "section": "Links ledger"
+    },
+    {
+      "id": "paragraph_43",
+      "type": "paragraph",
+      "text": "| https://academic.oup.com/mnras/article/473/3/4077/4494369 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.tng-project.org/data/docs/background/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/475/1/648/4683271 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/475/1/648/4683271 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/450/2/1937/984366 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1407.7040 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/450/2/1937/984366 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/ | QUARANTINED_PENDING_LOCAL_CHECK\n | http://simba.roe.ac.uk/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/486/2/2827/5426823 | QUARANTINED_PENDING_LOCAL_CHECK\n | http://simba.roe.ac.uk/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/480/1/800/5046474 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://flathub.flatironinstitute.org/fire | QUARANTINED_PENDING_LOCAL_CHECK\n | https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1607.02151 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://mtremmel.github.io/research/romulus.html | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2111.01160 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2605.13843v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/512/3/3703/6546174 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2110.14154 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://flamingo.strw.leidenuniv.nl/ | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/545/2/staf2125/8361503 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2601.15851v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/1603.02702 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/465/3/2936/2417021 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/465/3/2936/2417021 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article-abstract/470/1/1121/3828081 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/abs/2410.19905 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2410.17109v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/pdf/2509.04067 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/526/4/6103/7291940 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/478/2/2618/4993329 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/511/4/6126/6520457 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2508.04907v1 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://arxiv.org/html/2509.07960v2 | QUARANTINED_PENDING_LOCAL_CHECK\n | https://academic.oup.com/mnras/article/497/1/146/5866845 | QUARANTINED_PENDING_LOCAL_CHECK",
+      "links": [
+        {
+          "url": "https://academic.oup.com/mnras/article/473/3/4077/4494369"
+        },
+        {
+          "url": "https://www.tng-project.org/data/docs/background/"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/475/1/648/4683271"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/475/1/648/4683271"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/450/2/1937/984366"
+        },
+        {
+          "url": "https://arxiv.org/abs/1407.7040"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/450/2/1937/984366"
+        },
+        {
+          "url": "https://researchportal.port.ac.uk/en/publications/the-eagle-simulations-of-galaxy-formation-calibration-of-subgrid-/"
+        },
+        {
+          "url": "https://www.research.ed.ac.uk/en/publications/simba-cosmological-simulations-with-black-hole-growth-and-feedbac/"
+        },
+        {
+          "url": "http://simba.roe.ac.uk/"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/486/2/2827/5426823"
+        },
+        {
+          "url": "http://simba.roe.ac.uk/"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/497/1/146/5866845"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/480/1/800/5046474"
+        },
+        {
+          "url": "https://flathub.flatironinstitute.org/fire"
+        },
+        {
+          "url": "https://fire.northwestern.edu/2017/03/21/fire-2-simulations-physics-versus-numerics-in-galaxy-formation/"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/470/1/1121/3828081"
+        },
+        {
+          "url": "https://arxiv.org/abs/1607.02151"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/470/1/1121/3828081"
+        },
+        {
+          "url": "https://mtremmel.github.io/research/romulus.html"
+        },
+        {
+          "url": "https://arxiv.org/abs/2111.01160"
+        },
+        {
+          "url": "https://arxiv.org/html/2605.13843v1"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/512/3/3703/6546174"
+        },
+        {
+          "url": "https://arxiv.org/abs/2110.14154"
+        },
+        {
+          "url": "https://flamingo.strw.leidenuniv.nl/"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/526/4/6103/7291940"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/526/4/6103/7291940"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/545/2/staf2125/8361503"
+        },
+        {
+          "url": "https://arxiv.org/html/2601.15851v1"
+        },
+        {
+          "url": "https://arxiv.org/abs/1603.02702"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/465/3/2936/2417021"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/465/3/2936/2417021"
+        },
+        {
+          "url": "https://oamonitor.ireland.openaire.eu/national/search/publication?pid=10.1093%2Fmnras%2Fstx3040"
+        },
+        {
+          "url": "https://www.cambridge.org/core/journals/publications-of-the-astronomical-society-of-australia/article/relation-between-starformation-rate-and-stellar-mass-of-galaxies-at-z-14/2AAB84B2524F5870838E5BCC736A18DC"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/497/1/146/5866845"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article-abstract/470/1/1121/3828081"
+        },
+        {
+          "url": "https://arxiv.org/abs/2410.19905"
+        },
+        {
+          "url": "https://arxiv.org/html/2410.17109v1"
+        },
+        {
+          "url": "https://boa.unimib.it/retrieve/2e807906-4dbc-4c89-b032-54b46c2c5022/Chaikin%20et%20al-2026-Monthly%20Notices%20of%20the%20Royal%20Astronomical%20Society-VoR.pdf"
+        },
+        {
+          "url": "https://arxiv.org/pdf/2509.04067"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/526/4/6103/7291940"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/478/2/2618/4993329"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/511/4/6126/6520457"
+        },
+        {
+          "url": "https://arxiv.org/html/2508.04907v1"
+        },
+        {
+          "url": "https://arxiv.org/html/2509.07960v2"
+        },
+        {
+          "url": "https://academic.oup.com/mnras/article/497/1/146/5866845"
+        }
+      ],
+      "source_lines": [
+        129,
+        130,
+        131,
+        132,
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145,
+        146,
+        147,
+        148,
+        149,
+        150,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162,
+        163,
+        164,
+        165,
+        166,
+        167,
+        168,
+        169,
+        170,
+        171,
+        172,
+        173,
+        174
+      ],
+      "section": "Links ledger"
+    },
+    {
+      "id": "paragraph_44",
+      "type": "paragraph",
+      "text": "GEMINI_WEB_JOINT_C1R_OUTPUT_DONE_20260712T045317Z",
+      "links": [],
+      "source_lines": [
+        175
+      ],
+      "section": "Links ledger"
+    }
+  ]
+}

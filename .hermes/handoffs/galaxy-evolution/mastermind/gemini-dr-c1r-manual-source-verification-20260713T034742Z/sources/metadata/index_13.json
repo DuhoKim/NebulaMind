@@ -1,0 +1,65 @@
+{
+  "index": 13,
+  "captured_url": "https://flathub.flatironinstitute.org/fire",
+  "ledger_rows": [
+    15
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:13Z",
+      "method": "GET",
+      "host": "flathub.flatironinstitute.org",
+      "index": 13,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://flathub.flatironinstitute.org/fire",
+      "final_url": "https://flathub.flatironinstitute.org/fire",
+      "status": 200,
+      "bytes": 20678,
+      "sha256": "0b06349124ed558f52613a9a4d2952ed09b000bbf822b7f35f5458c5360343df",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx13_initial_0b06349124ed.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:15Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 13,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FlatHUB%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22FlatHUB%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 2010,
+      "sha256": "83af649919f1ec2402f574f1e83770cdf42715814db640cd5bb993d558e4d1ac",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx13_ads_83af649919f1.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "FlatHUB",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx13_initial_3f590aba4aa8.txt",
+      "text_sha256": "3f590aba4aa89204166b27ffb95210d8edcdd7ffa5681224a1e9ca7f81093698",
+      "text_chars": 7863
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx13_ads_8a35c267191d.txt",
+      "text_sha256": "8a35c267191df0a0336db6583896b5fbc0528443bc19a74b77b95f3e8e35d7f1",
+      "text_chars": 2645
+    }
+  ]
+}

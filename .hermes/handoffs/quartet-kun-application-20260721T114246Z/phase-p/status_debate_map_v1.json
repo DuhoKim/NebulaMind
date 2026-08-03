@@ -1,0 +1,297 @@
+{
+  "marker": "CLAIM_STATUS_DEBATE_MAP_V1_AGN_20260722",
+  "as_of": "2026-07-22T14:08:09Z",
+  "boundary": "Docs-only status/debate map over Contract v1; prose remains blocked; no product mutation.",
+  "source_contract": "claim_ledger_contract_v1_agn_20260703T0830Z",
+  "derived_from_seed": "artifacts/status_debate_map_seed.json",
+  "vocabulary_bridge": {
+    "note": "Backend _STATUS_SEMANTIC_CAPS reconciliation, documentation only \u2014 no code change in this gate.",
+    "mixed_debated": {
+      "ledger": "modality value + certainty_level actively_debated",
+      "backend_cap": "debated",
+      "overlap": "exact"
+    },
+    "model_bounded": {
+      "ledger": "no direct value; nearest = modality in_model_only / reported_only, certainty_level contradicted_or_model_dependent",
+      "backend_cap": "reported",
+      "overlap": "none \u2014 naming mismatch flagged"
+    }
+  },
+  "axes": [
+    {
+      "axis": "mechanism",
+      "status": "widely_supported",
+      "status_seed_original": "widely_supported_scoped",
+      "member_entries": [
+        "clc_agn2299_001_mechanism",
+        "clc_agn_001_ejective_mechanism_selected_systems",
+        "clc_agn_004_preventive_maintenance_heating_distinct",
+        "clc_agn_008_star_formation_driven_outflow_counter",
+        "clc_agn_006_central_kpc_depletion_local_qualifier"
+      ],
+      "counterevidence": [
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "span_ids": [
+            "span_2012MNRAS_420_2662D_07"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_001_mechanism",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_008_star_formation_driven_outflow_counter",
+          "relation": "contradicts",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": [
+            "span_2016MNRAS_456L__25S_02"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_008_star_formation_driven_outflow_counter",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_003_dominance_debate",
+          "span_ids": [
+            "span_2016MNRAS_456L__25S_01"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": []
+        }
+      ],
+      "epistemic_caps": [
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "cap": "simulation",
+          "ceiling_modality": "in_model_only"
+        }
+      ],
+      "reader_guard": "can occur / can drive in scoped contexts; distinguish ejective vs maintenance/heating"
+    },
+    {
+      "axis": "prevalence",
+      "status": "emerging_sample_limited",
+      "member_entries": [
+        "clc_agn2299_002_prevalence",
+        "clc_agn_002_outflow_prevalence_scoped_samples",
+        "clc_agn_002a_mosdef_17pct_ionized_outflows",
+        "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+        "clc_agn_003_deugenio_case_not_prevalence"
+      ],
+      "counterevidence": [
+        {
+          "entry_id": "clc_agn2299_002_prevalence",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "span_ids": [
+            "span_2024NatAs___8_1443D_07"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "span_ids": []
+        }
+      ],
+      "epistemic_caps": [
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "cap": "single_case",
+          "ceiling_modality": "shows_can_occur"
+        }
+      ],
+      "reader_guard": "substantial subsets in selected samples; never universal; sample-child entries preserve 17% MOSDEF and 46% JWST fractions; D\u2019Eugenio case excluded as prevalence anchor"
+    },
+    {
+      "axis": "dominance_debate",
+      "status": "actively_debated",
+      "member_entries": [
+        "clc_agn2299_003_dominance_debate",
+        "clc_agn_007_alternative_quenching_channels",
+        "clc_agn_009_central_bh_bulge_predictor_axis",
+        "clc_agn_010_halo_environment_satellite_axis",
+        "clc_agn_005_gas_retention_low_sfe_qualifier"
+      ],
+      "counterevidence": [
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "span_ids": [
+            "span_2010ApJ___721__193P_02",
+            "span_2014MNRAS_441__599B_07"
+          ]
+        },
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_007_alternative_quenching_channels",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn2299_003_dominance_debate",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_003_dominance_debate",
+          "span_ids": [
+            "span_2022MNRAS_512_1052P_02"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_003_dominance_debate",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": [
+            "span_2017ApJ___846L__14S_06",
+            "span_2019ApJ___884L__52Z_03",
+            "span_2021ApJS__252___29K_03"
+          ]
+        },
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_003_dominance_debate",
+          "span_ids": [
+            "span_2017ApJ___846L__14S_06",
+            "span_2019ApJ___884L__52Z_03",
+            "span_2021ApJS__252___29K_03"
+          ]
+        }
+      ],
+      "epistemic_caps": [],
+      "reader_guard": "AGN is one axis; alternatives/counters and central-vs-environment axes must remain visible. Alternative channels are positions within the debated axis (`same_axis`), not contradiction of the fact that dominance is debated."
+    },
+    {
+      "axis": "simulation_support",
+      "status": "contradicted_or_model_dependent",
+      "member_entries": [
+        "clc_agn_011_simulations_model_dependent_support",
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "counterevidence": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_002_prevalence",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "relation": "same_axis",
+          "target_entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "span_ids": []
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "relation": "qualifies",
+          "target_entry_id": "clc_agn2299_001_mechanism",
+          "span_ids": []
+        }
+      ],
+      "epistemic_caps": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "cap": "simulation",
+          "ceiling_modality": "in_model_only"
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "cap": "simulation",
+          "ceiling_modality": "in_model_only"
+        }
+      ],
+      "reader_guard": "in simulations / under model assumptions; never observed frequency; observational maintenance-heating corpus gap queued but not filled in this run"
+    }
+  ],
+  "coverage": {
+    "entry_count": 16,
+    "entries_referenced": 16,
+    "unmapped": []
+  }
+}

@@ -1,0 +1,49 @@
+- 2026-07-10T11:16:22Z sprint started
+- 2026-07-10T11:25:06Z cycle 01 phase=baseline referee integrity=2 quality=8
+- 2026-07-10T11:25:06Z cycle 01: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-10T11:31:39Z stop requested signal=15
+- 2026-07-10T11:32:07Z sprint stopped
+- 2026-07-10T11:32:38Z sprint started
+- 2026-07-10T11:43:06Z cycle 01 phase=baseline referee integrity=0 quality=7
+- 2026-07-10T11:45:46Z stop requested signal=15
+- 2026-07-10T11:46:06Z sprint stopped
+- 2026-07-10T11:46:31Z sprint started
+- 2026-07-10T11:53:31Z cycle 01 phase=baseline referee integrity=0 quality=8
+- 2026-07-10T14:02:58Z cycle 02 phase=real-data feasibility integrity=1 quality=8
+- 2026-07-10T14:02:58Z cycle 02: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-10T15:59:56Z cycle 03 phase=methods integrity=4 quality=8
+- 2026-07-10T15:59:56Z cycle 03: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-10T18:01:13Z cycle 04 phase=statistics/robustness integrity=0 quality=8
+- 2026-07-10T19:59:49Z cycle 05 phase=tables/figures integrity=0 quality=8
+- 2026-07-10T21:56:35Z cycle 06 phase=literature integrity=1 quality=8
+- 2026-07-10T21:56:35Z cycle 06: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-10T23:58:20Z cycle 07 phase=introduction integrity=1 quality=8
+- 2026-07-10T23:58:20Z cycle 07: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T01:57:13Z cycle 08 phase=results integrity=1 quality=8
+- 2026-07-11T01:57:13Z cycle 08: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T03:53:21Z cycle 09 phase=discussion integrity=1 quality=8
+- 2026-07-11T03:53:21Z cycle 09: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T05:51:41Z cycle 10 phase=limitations integrity=0 quality=8
+- 2026-07-11T07:56:37Z cycle 11 phase=supplement integrity=1 quality=8
+- 2026-07-11T07:56:37Z cycle 11: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T09:57:10Z cycle 12 phase=reproducibility integrity=0 quality=7
+- 2026-07-11T11:58:05Z cycle 13 phase=referee 1 integrity=3 quality=7
+- 2026-07-11T11:58:05Z cycle 13: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T14:01:51Z cycle 14 phase=data audit integrity=1 quality=7
+- 2026-07-11T14:01:51Z cycle 14: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T15:57:58Z cycle 15 phase=TeX/layout integrity=3 quality=7
+- 2026-07-11T15:57:58Z cycle 15: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T17:53:50Z cycle 16 phase=citations integrity=3 quality=7
+- 2026-07-11T17:53:50Z cycle 16: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T19:57:41Z cycle 17 phase=abstract/title integrity=0 quality=8
+- 2026-07-11T21:53:32Z cycle 18 phase=journal style integrity=1 quality=8
+- 2026-07-11T21:53:32Z cycle 18: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-11T23:56:55Z cycle 19 phase=adversarial claims integrity=1 quality=8
+- 2026-07-11T23:56:55Z cycle 19: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-12T01:57:09Z cycle 20 phase=coherence integrity=0 quality=8
+- 2026-07-12T03:58:57Z cycle 21 phase=reanalysis integrity=0 quality=8
+- 2026-07-12T05:56:38Z cycle 22 phase=referee 2 integrity=0 quality=8
+- 2026-07-12T07:56:48Z cycle 23 phase=final revision integrity=0 quality=8
+- 2026-07-12T09:54:36Z cycle 24 phase=final dossier integrity=1 quality=8
+- 2026-07-12T09:54:36Z cycle 24: integrity fatal; next cycle will restart from last clean candidate
+- 2026-07-12T11:46:31Z sprint completed

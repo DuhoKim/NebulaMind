@@ -1,0 +1,92 @@
+{
+  "marker": "NEBULAMIND_MUSETALK_MLX_LIPSYNC_CANARY_COMPLETE",
+  "source": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/omni/gemini_omni_gesture_raw.mp4",
+  "source_sha256": "8c42f1fcf238c961bdb5950308861602e78fa3aaf6f6b66300c38cf19c0aaa8f",
+  "audio": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/lipsync/michael_gesture_excerpt_6s.wav",
+  "audio_sha256": "6f46e6cd37399830bf8d1a87459ef1fc4f5e35901002cfe78aaf710d4b499d61",
+  "face_boxes": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/omni/musetalk_face_boxes.json",
+  "face_tracking": "S3FD per-frame detections at 0.5 scale; no temporal smoothing",
+  "frame_zero_repair": "replaced source frame 0 close-up burn with source frame 1",
+  "model": "mlx-community/MuseTalk-1.5-q4",
+  "model_files": {
+    "config.json": {
+      "bytes": 227,
+      "sha256": "ba919fbdecb9834fc1c3e0b08234c8e8dce53910a22cb1c43e006038c69255b9"
+    },
+    "unet.safetensors": {
+      "bytes": 1325610215,
+      "sha256": "7a66b9f65d98e29eb7ecd4dac034331075d125ba00e1cdc704999ef404b60f1b"
+    },
+    "vae.safetensors": {
+      "bytes": 167335279,
+      "sha256": "2a7670782dbe0ab66c40833dfd431b193375f0bdfc7c2daf76f5bc4e59070f98"
+    },
+    "whisper_encoder.safetensors": {
+      "bytes": 16423174,
+      "sha256": "c04baf7220bbc73393eeba74b6224398ce56caad60e4e0a0f4c28af3180836d3"
+    }
+  },
+  "model_code": "xocialize/musetalk-mlx@c6eb30e",
+  "mask": {
+    "center": [
+      128,
+      190
+    ],
+    "radii": [
+      78,
+      50
+    ],
+    "gaussian_sigma": 6,
+    "extra_bottom_pixels": 10
+  },
+  "output": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/paper-videos-v3-male-lipsync-20260723T050645Z/omni/gemini_omni_gesture_michael_musetalk_mlx.mp4",
+  "output_sha256": "6d225789f1f0887c22713b11f4a673c0638062c387f615c3c7af955f9ce566b5",
+  "probe": {
+    "programs": [],
+    "stream_groups": [],
+    "streams": [
+      {
+        "codec_name": "h264",
+        "codec_type": "video",
+        "width": 1280,
+        "height": 720,
+        "r_frame_rate": "24/1",
+        "nb_read_frames": "144"
+      },
+      {
+        "codec_name": "aac",
+        "codec_type": "audio",
+        "sample_rate": "48000",
+        "channels": 1,
+        "r_frame_rate": "0/0",
+        "nb_read_frames": "282"
+      }
+    ],
+    "format": {
+      "duration": "6.000000",
+      "size": "2046318",
+      "bit_rate": "2728424"
+    }
+  },
+  "sharpness": {
+    "sample_indices": [
+      10,
+      34,
+      58,
+      82,
+      106,
+      130
+    ],
+    "mouth_source_mean": 193.507255143919,
+    "mouth_output_mean": 164.0182798656927,
+    "mouth_ratio": 0.8476079087768871,
+    "upper_face_source_mean": 406.705330158619,
+    "upper_face_output_mean": 381.2439042879259,
+    "upper_face_ratio": 0.9373958884168966,
+    "rejected_wav2lip_mouth_ratio": 0.18546214441066852
+  },
+  "render_seconds": 17.495485067367554,
+  "youtube_mutation": false,
+  "website_mutation": false,
+  "git_mutation": false
+}

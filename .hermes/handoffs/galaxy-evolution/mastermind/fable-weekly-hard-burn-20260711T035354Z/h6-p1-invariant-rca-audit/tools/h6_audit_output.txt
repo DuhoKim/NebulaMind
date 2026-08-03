@@ -1,0 +1,280 @@
+==============================================================================
+C1 MANIFEST STRUCTURE
+==============================================================================
+entry_count field=105 len(entries)=105 -> PASS
+unique ids -> PASS
+required fields -> PASS
+kinds: {'count': 17, 'point_estimate': 2, 'ci_interval': 3, 'percent': 5, 'redshift_range': 2, 'physical_range': 1, 'aperture': 3, 'threshold': 6, 'dex': 4, 'other': 1, 'wavelength_identifier': 2, 'run_identifier': 3, 'release_identifier': 2, 'method_parameter': 1, 'fraction': 13, 'range': 4, 'ratio': 1, 'luminosity': 1, 'sha256': 2, 'table_row': 32}
+match_modes: {'substring': 97, 'numeric_token': 8}
+anchor line in lines[] -> PASS
+occurrences_expected >= len(lines) -> PASS
+table_row count=32 (RCA claims 32), scalars=73 (RCA claims 73)
+duplicate (file,exact_string) -> PASS
+
+==============================================================================
+C2/C4 RECOUNT: all 105 entries vs cycle 5/6/7 snapshots (check_rule semantics)
+==============================================================================
+--- cycle 05: clause-1 failures=0, near-miss hits=29
+    NEAR-MISS FLG-MEDIAN-OFFSET: 8 variant(s) e.g. ['-1.283', '-1.334']
+    NEAR-MISS SUP-ENV-HI: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-HI-RATIO: 2 variant(s) e.g. ['2,710/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-LO: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-LO-RATIO: 2 variant(s) e.g. ['3,456/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-CI: 1 variant(s) e.g. ['[0.112, 0.170]']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE-LOWSSFR: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-HIEXC-FRAC: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-HI: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-LO: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-CI: 1 variant(s) e.g. ['[0.041, 0.059]']
+    NEAR-MISS SUP-BPT-PEAK: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-LO: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-HI: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-GAS-BPT: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ROW-176: 1 variant(s) e.g. ['8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 1.379 \\\\']
+    NEAR-MISS SUP-ROW-177: 1 variant(s) e.g. ['8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 1.532 \\\\']
+    NEAR-MISS SUP-ROW-179: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-180: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-181: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-182: 7 variant(s) e.g. ['10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-183: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-184: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-185: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-186: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-187: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-189: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-190: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    cycle-5 exact-count mismatches (found != expected): NONE
+--- cycle 06: clause-1 failures=13, near-miss hits=31
+    FAIL count FLG-CI95: found 0, expected >= 4
+    FAIL count SUP-BPT-PEAK: found 1, expected >= 2
+    FAIL count SUP-SPAN-QUENCH: found 0, expected >= 1
+    FAIL count SUP-SPAN-BPT: found 0, expected >= 1
+    FAIL count FLG-ROW-057: found 0, expected >= 1
+    FAIL count SUP-ROW-059: found 0, expected >= 1
+    FAIL count SUP-ROW-060: found 0, expected >= 1
+    FAIL count SUP-ROW-061: found 0, expected >= 1
+    FAIL count SUP-ROW-062: found 0, expected >= 1
+    FAIL count SUP-ROW-063: found 0, expected >= 1
+    FAIL count SUP-ROW-064: found 0, expected >= 1
+    FAIL count SUP-ROW-065: found 0, expected >= 1
+    FAIL count SUP-ROW-066: found 0, expected >= 1
+    NEAR-MISS FLG-MEDIAN-OFFSET: 8 variant(s) e.g. ['-1.282', '-1.334']
+    NEAR-MISS FLG-CI95: 4 variant(s) e.g. ['[-1.334,-1.282]']
+    NEAR-MISS SUP-ENV-HI: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-HI-RATIO: 2 variant(s) e.g. ['2,710/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-LO: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-LO-RATIO: 2 variant(s) e.g. ['3,456/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-CI: 1 variant(s) e.g. ['[0.112, 0.170]']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE-LOWSSFR: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-HIEXC-FRAC: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-HI: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-LO: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-CI: 1 variant(s) e.g. ['[0.041, 0.059]']
+    NEAR-MISS SUP-BPT-PEAK: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-LO: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-HI: 75 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-GAS-BPT: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS FLG-ROW-057: 1 variant(s) e.g. ['Broad optical BPT-selected targets, S/N$\\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.282] & Preferred association estimate \\\\']
+    NEAR-MISS SUP-ROW-176: 1 variant(s) e.g. ['8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 1.379 \\\\']
+    NEAR-MISS SUP-ROW-177: 1 variant(s) e.g. ['8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 1.532 \\\\']
+    NEAR-MISS SUP-ROW-179: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-180: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-181: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-182: 7 variant(s) e.g. ['10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-183: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-184: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-185: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-186: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-187: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-189: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-190: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+--- cycle 07: clause-1 failures=3, near-miss hits=32
+    FAIL count FLG-CI95: found 0, expected >= 4
+    FAIL count FLG-ROW-057: found 0, expected >= 1
+    FAIL count SUP-ROW-188: found 0, expected >= 1
+    NEAR-MISS FLG-MEDIAN-OFFSET: 8 variant(s) e.g. ['-1.282', '-1.334']
+    NEAR-MISS FLG-CI95: 4 variant(s) e.g. ['[-1.334,-1.282]']
+    NEAR-MISS SUP-ENV-HI: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-HI-RATIO: 2 variant(s) e.g. ['2,710/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-LO: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-ENV-LO-RATIO: 2 variant(s) e.g. ['3,456/15,000', '4,440/60,000']
+    NEAR-MISS SUP-ENV-CI: 1 variant(s) e.g. ['[0.112, 0.170]']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-BPT-FRAC-MASSIVE-LOWSSFR: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-HIEXC-FRAC: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-HI: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-LO: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-JET-CI: 1 variant(s) e.g. ['[0.041, 0.059]']
+    NEAR-MISS SUP-BPT-PEAK: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-LO: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-TRACER-HI: 76 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS SUP-GAS-BPT: 77 variant(s) e.g. ['0.001', '0.003', '0.004']
+    NEAR-MISS FLG-ROW-057: 1 variant(s) e.g. ['Broad optical BPT-selected targets, S/N$\\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.282] & Preferred association estimate \\\\']
+    NEAR-MISS SUP-ROW-176: 1 variant(s) e.g. ['8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 1.379 \\\\']
+    NEAR-MISS SUP-ROW-177: 1 variant(s) e.g. ['8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 1.532 \\\\']
+    NEAR-MISS SUP-ROW-179: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-180: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-181: 10 variant(s) e.g. ['0.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '0.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '0.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-182: 7 variant(s) e.g. ['10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-183: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-184: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\\\']
+    NEAR-MISS SUP-ROW-185: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-186: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-187: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-188: 1 variant(s) e.g. ['11.0--12.5 & 0.02--0.05 & 390 & 0.856 & 0.610 & 2.831 \\\\']
+    NEAR-MISS SUP-ROW-189: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+    NEAR-MISS SUP-ROW-190: 7 variant(s) e.g. ['10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\\\', '10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\\\', '10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\\\']
+
+==============================================================================
+C2 PROBES: token anchors
+==============================================================================
+SUP-CELLS '15': token occurrences by line:
+    line 42 (n=1): ...e543e00005e1ab3907e8fae7d15e70c93e351} \\...
+    line 63 (n=1): ...idence by $M_\star$ bin (15 cells with $n\geq50$) & ...
+    line 66 (n=1): ...-redshift target vector (15 cells with $n\geq50$) & ...
+    line 169 (n=1): ...elling. The pilot writes 15 mass-redshift cells with...
+SUP-CELL-MIN '50': token occurrences by line:
+    line 22 (n=2): ...ties such as \(R_{90}/R_{50}\), \texttt{fracDeV}, \t...
+    line 22 (n=2): ...{fracDeV}, \texttt{petroR50}, and \texttt{petroR90} ...
+    line 63 (n=1): ...bin (15 cells with $n\geq50$) & \texttt{m2\_p3} \\...
+    line 66 (n=1): ...tor (15 cells with $n\geq50$) & \texttt{m3\_p3} \\...
+    line 169 (n=1): ...hift cells with \(n \geq 50\) as a compact compariso...
+FLG-UNCLASS '67': token occurrences by line:
+    line 39 (n=2): ...PT-selected targets, and 67 unclassified objects. Th...
+    line 39 (n=2): ...l used for matching. The 67 unclassified objects are...
+
+==============================================================================
+C2 ARITHMETIC RECOMPUTES (manifest+RCA derivable numbers)
+==============================================================================
+PASS: denominator sum 39553+12234+8146+67: got 60000, expected 60000
+PASS: coverage 60000/249917 % (1dp): got 24.0, expected 24.0
+PASS: env hi 3456/15000 (3dp): got 0.230, expected 0.230
+PASS: env lo 2710/15000 (3dp): got 0.181, expected 0.181
+PASS: env hi-lo 0.230-0.181 in [0.041,0.059]: got True, expected True
+PASS: coef 0.032 -> 3.2 pp: got 3.2, expected 3.2
+PASS: hi-exc 4440/60000 (3dp): got 0.074, expected 0.074
+PASS: jet hi-lo 0.509-0.367 in [0.112,0.170]: got True, expected True
+PASS: tracer 0.418/0.136 (1dp): got 3.1, expected 3.1
+PASS: reuse 2731+1508: got 4239, expected 4239
+PASS: reuse feasibility 8146-2731 uses over 1508 controls, max26: got True, expected True
+
+==============================================================================
+C3 RAW ARTIFACTS vs manifest artifact_full_precision + RCA E1/E3
+==============================================================================
+flagship artifact matched_delta_log_sSFR_median_dex = [-1.3088869999999995]
+flagship artifact matched_delta_log_sSFR_median_ci95_bootstrap = [[-1.3341385500000003, -1.2821399375]]
+flagship artifact match_abs_delta_logM_median = [0.0044599999999999085]
+flagship artifact match_abs_delta_z_median = [0.00021079499999999973]
+flagship artifact bpt_counts = [{'star-forming': 39553, 'intermediate': 12234, 'agn': 8146, 'unclassified': 67}]
+m3_p3 artifact quenched_fraction_range = [[0.005283204324855633, 0.7292338209769402]]
+m3_p3 artifact agn_fraction_range = [[0.0027030347708563705, 0.5202082816761716]]
+m3_p3 artifact result_bullets = [["The pilot writes 15 mass-redshift cells with n >= 50 as a compact validation vector.", "Across mass bins, quenched fractions span 0.005-0.729; optical AGN fractions span 0.003-0.520.", "The output is an observed target vector for simulation forward modelling, not a direct simulation comparison."]
+manifest FLG-MEDIAN-OFFSET artifact_full_precision=-1.3088869999999995
+manifest FLG-CI95 artifact_full_precision=[-1.3341385500000003, -1.2821399375]
+manifest FLG-SF artifact_full_precision=39553
+manifest FLG-COMP artifact_full_precision=12234
+manifest FLG-UNCLASS artifact_full_precision=67
+manifest FLG-SEP-LOGM artifact_full_precision=0.0044599999999999085
+manifest FLG-SEP-Z artifact_full_precision=0.00021079499999999973
+m3_p3 cell-table key found: False
+
+==============================================================================
+C3/C4 AUDIT JSONs + custody JSON claims (RCA section 1 table)
+==============================================================================
+c5 integrity_blockers = [[]]
+c5 numeric_invariants_missing = [[]]
+c5 fatal_failures = [0]
+c5 undefined_citations = [[], [], []]
+c6 integrity_blockers = [["numeric invariants missing"]]
+c6 numeric_invariants_missing = [["[-1.334,-1.283]"]]
+c6 fatal_failures = [1]
+c6 undefined_citations = [[], [], []]
+c7 integrity_blockers = [["numeric invariants missing"]]
+c7 numeric_invariants_missing = [["[-1.334,-1.283]"]]
+c7 fatal_failures = [1]
+c7 undefined_citations = [[], [], []]
+c5 flagship hash in custody: PRESENT
+c5 supplement hash in custody: PRESENT
+flagship results hash in custody: PRESENT
+m3_p3 results hash in custody: PRESENT
+pairs CSV hash in custody: PRESENT
+
+==============================================================================
+C4 BIBITEM claims (RCA 2.4 / INTRO_LIT bibliography rule)
+==============================================================================
+brinchmann2004           c05 flg=1 sup=1 | c06 flg=1 sup=1 | c07 flg=1 sup=1
+kauffmann2003bpt         c05 flg=1 sup=1 | c06 flg=1 sup=1 | c07 flg=1 sup=1
+heckmanbest2014          c05 flg=1 sup=2 | c06 flg=1 sup=2 | c07 flg=1 sup=2
+ellison2011              c05 flg=1 sup=0 | c06 flg=1 sup=0 | c07 flg=1 sup=0
+schawinski2010           c05 flg=1 sup=0 | c06 flg=1 sup=0 | c07 flg=1 sup=0
+bluck2014                c05 flg=1 sup=0 | c06 flg=1 sup=0 | c07 flg=1 sup=0
+piotrowska2022           c05 flg=1 sup=2 | c06 flg=1 sup=2 | c07 flg=1 sup=2
+kewley2005               c05 flg=2 sup=0 | c06 flg=2 sup=0 | c07 flg=2 sup=0
+cidfernandes2011         c05 flg=1 sup=1 | c06 flg=1 sup=0 | c07 flg=1 sup=1
+stasinska2008            c05 flg=1 sup=1 | c06 flg=1 sup=1 | c07 flg=1 sup=1
+belfiore2016             c05 flg=1 sup=0 | c06 flg=1 sup=0 | c07 flg=1 sup=0
+ellison2021              c05 flg=1 sup=0 | c06 flg=0 sup=0 | c07 flg=1 sup=0
+harrison2017             c05 flg=1 sup=0 | c06 flg=0 sup=0 | c07 flg=1 sup=0
+strateva2001             c05 flg=1 sup=0 | c06 flg=0 sup=0 | c07 flg=1 sup=0
+mendel2014               c05 flg=1 sup=0 | c06 flg=0 sup=0 | c07 flg=1 sup=0
+mcnamara2007             c05 flg=1 sup=1 | c06 flg=1 sup=0 | c07 flg=1 sup=1
+dawson2013               c05 flg=0 sup=0 | c06 flg=0 sup=0 | c07 flg=0 sup=2
+dominguezsanchez2018     c05 flg=0 sup=0 | c06 flg=0 sup=0 | c07 flg=0 sup=2
+
+==============================================================================
+C5 CUSTODY RECHECK: every file P1_RECEIPT lists
+==============================================================================
+PASS: P1_ACK.md bytes 566 (claim 566) sha match
+PASS: INVARIANT_MANIFEST.json bytes 51754 (claim 51754) sha match
+PASS: RCA_NUMERIC_DRIFT.md bytes 15941 (claim 15941) sha match
+PASS: INTRODUCTION_LITERATURE_REFERENCE.md bytes 14196 (claim 14196) sha match
+PASS: build_manifest.py bytes 19178 (claim 19178) sha match
+PASS: FABLE_BURN_P1_DONE_20260711T010503Z bytes 0 (claim 0) sha n/a
+-- snapshot copies vs receipt-claimed original hashes:
+PASS: snapshot rp1_flagship_polished.tex (cycle_05_package)
+PASS: snapshot supplementary_denominator_atlas.tex (cycle_05_package)
+PASS: snapshot rp1_flagship_polished.tex (cycle_06_package)
+PASS: snapshot supplementary_denominator_atlas.tex (cycle_06_package)
+PASS: snapshot CYCLE_06_literature_AUDIT.json (cycle_06_package)
+PASS: snapshot rp1_flagship_polished.tex (cycle_07_package)
+PASS: snapshot supplementary_denominator_atlas.tex (cycle_07_package)
+PASS: snapshot CYCLE_07_introduction_AUDIT.json (cycle_07_package)
+PASS: snapshot REAL_DATA_SOURCE_CUSTODY.json (cycle_05_package)
+PASS: snapshot CYCLE_05_tables_figures_AUDIT.json (cycle_05_package)
+PASS: snapshot analysis_results.json (SDSS_AGN_SFR_PILOT_20260708T122000Z)
+PASS: snapshot analysis_results.json (SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z)
+-- manifest snapshot_sha256 block vs receipt table:
+PASS: cycle_05_package/CYCLE_05_tables_figures_AUDIT.json manifest=79d6dd688fed... receipt=same
+PASS: aastex/rp1_flagship_polished.tex manifest=63b3920e158b... receipt=same
+PASS: provenance/REAL_DATA_SOURCE_CUSTODY.json manifest=92c0f786c6ba... receipt=same
+PASS: aastex/supplementary_denominator_atlas.tex manifest=a4e3d66c5d4f... receipt=same
+PASS: cycle_06_package/CYCLE_06_literature_AUDIT.json manifest=8080d24568c0... receipt=same
+PASS: aastex/rp1_flagship_polished.tex manifest=55c497ffcc00... receipt=same
+PASS: aastex/supplementary_denominator_atlas.tex manifest=38bb60c135ee... receipt=same
+PASS: cycle_07_package/CYCLE_07_introduction_AUDIT.json manifest=51204dd2b102... receipt=same
+PASS: aastex/rp1_flagship_polished.tex manifest=5fc4fea3fa27... receipt=same
+PASS: aastex/supplementary_denominator_atlas.tex manifest=9e99adc72d1a... receipt=same
+PASS: SDSS_AGN_SFR_PILOT_20260708T122000Z/analysis_results.json manifest=668ad7a67290... receipt=same
+PASS: m3_p3_simulation_validation/analysis_results.json manifest=6f289f8c68da... receipt=same
+-- live originals (observational; may legitimately have moved on):
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_05_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_05_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_06_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_06_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_06_package/CYCLE_06_literature_AUDIT.json
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_07_package/flagship_rp1/aastex/rp1_flagship_polished.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_07_package/supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_07_package/CYCLE_07_introduction_AUDIT.json
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_05_package/provenance/REAL_DATA_SOURCE_CUSTODY.json
+MATCH: research-quality-sprints/ACTUAL_RESEARCH_JOURNAL_WEEKEND_48H_20260710T110009Z/candidates/cycle_05_package/CYCLE_05_tables_figures_AUDIT.json
+MATCH: runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/analysis_results.json
+MATCH: runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/analysis_results.json
+MATCH: pairs CSV live hash
+CSV header: ['agn_specObjID', 'control_specObjID', 'agn_z', 'control_z', 'agn_logM', 'control_logM', 'agn_log_sSFR', 'control_log_sSFR', 'delta_log_sSFR_agn_minus_control', 'match_distance_scaled']
+CSV data rows: 8146 (RCA claims 8,146)
+candidate control-id columns: ['control_specObjID', 'control_z', 'control_logM', 'control_log_sSFR', 'delta_log_sSFR_agn_minus_control']
+  col 'control_specObjID': unique=4239 once=2731 reused=1508 maxreuse=26
+  col 'control_z': unique=4237 once=2728 reused=1509 maxreuse=26
+  col 'control_logM': unique=4171 once=2641 reused=1530 maxreuse=26

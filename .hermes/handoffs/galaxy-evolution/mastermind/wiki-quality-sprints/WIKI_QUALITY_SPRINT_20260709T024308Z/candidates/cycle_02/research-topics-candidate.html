@@ -1,0 +1,79 @@
+<!doctype html><meta charset='utf-8'>
+<title>Galaxy Evolution research topics candidate</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;max-width:980px;margin:40px auto;padding:0 24px;line-height:1.6;background:#0f172a;color:#e5edf7}h1,h2,h3{color:#fff}p{color:#cbd5e1}code{color:#93c5fd}</style>
+<!-- WIKI_QUALITY_SPRINT_20260709T024308Z_TOPICS_HTML_CYCLE_02 -->
+<h1>Galaxy Evolution — Research proposals on outflows and feedback regimes</h1>
+
+<p>&gt; This page presents one SDSS denominator baseline and three proposal-style research programmes on outflow fate, jet coupling, and the transition from stellar-feedback to AGN-linked regulation. The proposals are framed around measurable observables, matched denominators, and explicit decision criteria.</p>
+
+<p>**AAS pilot PDFs.** Actual-data SDSS DR17 pilot manuscripts are available for the three focused programmes below:</p>
+
+<p>• P1: [SDSS high-excitation AGN denominator for outflow escape tests: an SDSS DR17 pilot (PDF)](m2_p1_outflow_escape_recycling_aas.pdf)</p>
+<p>• P2: [Environment proxy for optical AGN in massive SDSS hosts: an SDSS DR17 pilot (PDF)](m2_p2_radio_jet_environment_aas.pdf)</p>
+<p>• P3: [SDSS mass transition in quenching and optical AGN incidence: an SDSS DR17 pilot (PDF)](m2_p3_feedback_transition_mass_aas.pdf)</p>
+
+<p>P0 is the local SDSS baseline used to define the denominator and stress-test selection effects.</p>
+
+<h2>P0 — Denominator-controlled optical AGN associations in SDSS</h2>
+
+<p>**Hypothesis / objective.** BPT-selected optical AGN hosts show lower catalog sSFR than carefully matched star-forming controls, but part of the offset may come from selection, aperture, and denominator effects rather than feedback alone.</p>
+
+<p>**Primary observables.** Median $\Delta\log\mathrm{sSFR}$, the matched-pair distribution width, and the stability of the offset across AGN tracers and control definitions.</p>
+
+<p>**Prior evidence and constraints.** The local RP-1 SDSS pilot is a denominator-design baseline, not causal proof: it reports 8,146 matched AGN/control pairs and a median $\Delta\log\mathrm{sSFR}$ of -1.309 dex, with bootstrap interval [-1.334, -1.283]. The same pilot uses a 60,000-row capped cache covering 24.0% of a strict 249,917-row four-line $S/N \ge 3$ parent.</p>
+
+<p>**Control plan.** Rebuild the denominator with full SDSS DR17 access, then compare BPT, WISE, radio, X-ray, and morphology-selected AGN hosts across matched bins in stellar mass, redshift, inclination, dust, fiber coverage, local density, and emission-line signal-to-noise. Reweight by selection probability and repeat with alternate control samples to test sensitivity.</p>
+
+<p>**Decision criterion.** The association is interesting only if the sSFR offset survives reweighting, control redesign, and AGN-tracer swaps, and if the same hosts also show coherent gas-reservoir or outflow differences. If the offset collapses under those tests, the result should be treated as a selection effect rather than as evidence for quenching.</p>
+
+<p>**Limitations and wording guardrails.** Catalog SFR systematics, aperture bias, AGN detectability, and missing gas diagnostics can all inflate the offset. This proposal should be described as an association and denominator test, not as proof of causal AGN quenching.</p>
+
+<h2>P1 — Escape versus recycling: the fate of AGN-driven multiphase outflows</h2>
+
+<p>**Hypothesis / objective.** A substantial fraction of AGN-driven outflowing gas remains gravitationally bound and recycles through the circumgalactic medium, so feedback may regulate gas supply without permanently removing it.</p>
+
+<p>**Primary observables.** The phase-resolved outflow velocity distribution, the bound-versus-escaping fraction relative to halo escape speed, and the return or disappearance of the same gas phase in later CGM measurements.</p>
+
+<p>**Prior evidence and constraints.** Quasar observations show AGN feedback acting on molecular gas reservoirs at high redshift, but those detections do not determine whether gas escapes the halo. Stellar-feedback work on baryon deficiency in low-mass galaxies provides a boundary condition for non-AGN removal channels that must not be confused with AGN-driven escape. Simulated feedback constraints show that gas removal, recycling, and observable baryon fractions depend on halo scale.</p>
+
+<p>**Control plan.** Assemble AGN hosts and inactive controls matched in stellar mass, halo mass, redshift, inclination, and star-formation rate. Use MUSE and MaNGA for ionized-gas kinematics, ALMA CO and [C II] for cold gas, JWST/NIRSpec for $z &gt; 2$ outflow tracers, and CGM absorption where available to follow recycling. Pre-register a common escape-speed estimator and the same aperture definitions for all phases.</p>
+
+<p>**Decision criterion.** The result favors permanent removal if the median escaping fraction is above one-half in the matched sample and the same gas does not reappear in later CGM measurements. The result favors recycling-limited regulation if most of the gas remains below escape speed or returns in a later halo measurement. Mixed behavior should be treated as phase-dependent regulation, not as a binary outcome.</p>
+
+<p>**Limitations and wording guardrails.** Projection effects, phase conversion, uncertain halo potentials, incomplete time baselines, and sample censoring can dominate the escaped-fraction error budget.</p>
+
+<h2>P2 — Environmental dependence of radio-jet coupling efficiency in galaxy gas</h2>
+
+<p>**Hypothesis / objective.** The fraction of radio-jet mechanical power deposited into the multiphase interstellar or circumgalactic medium varies systematically with ambient gas density and host environment.</p>
+
+<p>**Primary observables.** Coupling efficiency estimated from cavities, shocks, and disturbed gas, measured relative to jet power within matched apertures around the same host population.</p>
+
+<p>**Prior evidence and constraints.** Young radio galaxies show AGN-driven outflows and provide an empirical route to estimating feedback efficiency. Local M51-scale NOEMA data show how jet or AGN activity can affect molecular ISM structure at high spatial resolution, motivating a broader population test. Galaxy-group feedback studies identify the group regime as a strong testbed for coupling between radio activity and hot gas.</p>
+
+<p>**Control plan.** Use VLA, LOFAR, and MeerKAT for jet morphology and radio spectral ages; Chandra for cavities, shocks, and hot gas; MUSE and MaNGA for ionized-gas shock diagnostics; ALMA CO for molecular disturbances; and group catalogues for environment. Match on jet age, jet power, stellar mass, halo mass, gas fraction, and local density, then compare field, group, and cluster subsamples with the same selection cuts.</p>
+
+<p>**Decision criterion.** A robust environmental dependence is present if coupling efficiency shifts systematically with density or group membership after correcting for radio-power calibration, jet age, and aperture choice, and if an environment term improves out-of-sample prediction relative to a jet-power-only model. If the response is flat once controls are applied, environment is a secondary effect.</p>
+
+<p>**Limitations and wording guardrails.** Radio-to-jet-power conversions are uncertain; cavity detectability, viewing angle, and phase mixing can also blur the coupling signal.</p>
+
+<h2>P3 — Locating the transition from stellar-feedback to AGN-feedback regulation</h2>
+
+<p>**Hypothesis / objective.** There is a mass regime where stellar-feedback momentum and energy budgets stop explaining gas loss or quiescence, and AGN-linked observables become necessary to reproduce the observed quenched fraction and baryon deficit.</p>
+
+<p>**Primary observables.** The break mass or transition surface in gas fraction, quenched fraction, and baryon deficit as functions of stellar mass and halo mass.</p>
+
+<p>**Prior evidence and constraints.** Low-mass baryon deficiency attributed to stellar feedback provides the low-mass endpoint of the transition problem. High-redshift environmental-quenching simulations emphasize that quenching mechanisms vary with mass and redshift, not only with local observables. Simulated observable-property constraints show why feedback-regime boundaries must be tested against measured baryonic properties.</p>
+
+<p>**Control plan.** Build DESI, GAMA, and COSMOS parent samples with stellar-mass and halo proxies; add ALFALFA and FASHI H I plus ALMA CO gas fractions; measure optical and IR star-formation rates; add X-ray and radio AGN indicators; and extend to high redshift with JWST, targeting $z &gt; 2$ where possible. Fit the same pipeline to both field and environment-rich subsamples so that the transition can be separated from group processing.</p>
+
+<p>**Decision criterion.** Fit single-slope and broken-slope models for gas fraction, baryon deficit, and quenched fraction, and include an AGN-incidence term. The transition is credible only if the broken-slope or transition model improves on the single-slope baseline, and the AGN-linked term adds predictive power beyond stellar-feedback proxies at high mass. If the improvement vanishes under cross-validation or when halo proxies are swapped, the transition is not secure.</p>
+
+<p>**Limitations and wording guardrails.** Halo-mass uncertainty, selection functions, and survey incompleteness can smear the break; results should be framed as a probability surface rather than as one universal transition mass.</p>
+
+<h2>Methodological note</h2>
+
+<p>• Evidence-traceability work remains useful as methodology support, but it is not presented here as an astrophysical proposal because it does not test a physical galaxy-evolution hypothesis.</p>
+
+<h2>Scope note</h2>
+
+<p>These are proposed research designs, not accepted claims. Source links in the proposal text identify prior evidence or constraints that motivate the study; they do not by themselves prove the proposed hypothesis. Each proposal is written to be testable through future survey analysis, matched controls, and explicit decision criteria.</p>

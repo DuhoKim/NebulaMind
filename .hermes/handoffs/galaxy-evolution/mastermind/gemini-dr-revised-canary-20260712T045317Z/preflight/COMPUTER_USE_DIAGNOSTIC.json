@@ -1,0 +1,32 @@
+{
+  "schema": "NM_HERMES_COMPUTER_USE_DIAGNOSTIC_V1",
+  "checked_utc": "2026-07-12T05:52:54Z",
+  "packet": "gemini-dr-revised-canary-20260712T045317Z",
+  "doctor": {
+    "command": "hermes computer-use doctor",
+    "exit_code": 0,
+    "cua_driver_version": "0.7.1",
+    "platform": "macOS 26.5.2 arm64",
+    "session_active": true,
+    "bundle_identity": "com.trycua.driver",
+    "tcc_accessibility": true,
+    "tcc_screen_recording": true,
+    "ax_capability": true,
+    "screen_capture_capability": true,
+    "display_count": 1
+  },
+  "tool_bridge": {
+    "capture_google_chrome": "0x0; zero elements",
+    "list_apps": "zero apps",
+    "capture_google_chrome_after_doctor": "0x0; zero elements",
+    "capture_screen_after_doctor": "0x0; zero elements",
+    "result": "PROCESS_LOCAL_TOOL_BRIDGE_UNAVAILABLE"
+  },
+  "cli_help": {
+    "available_subcommands": ["install", "status", "doctor", "permissions"],
+    "restart_subcommand_available": false,
+    "repair_not_attempted": "Driver and all permissions already passed doctor; reinstall is not justified."
+  },
+  "safe_recovery": "Exit and relaunch the Hermes process, then resume the most recent session with `hermes --continue`. This is a process relaunch, not `/new`. Re-run computer_use capture before changing the NOT_ARMED state.",
+  "live_side_effects": false
+}

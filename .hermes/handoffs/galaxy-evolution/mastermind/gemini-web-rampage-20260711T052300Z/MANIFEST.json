@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "packet_id": "gemini-web-rampage-20260711T052300Z",
+  "role": "Gemini Web useful-burn rampage packet for the original 48h research-journal pilot (Deep Research sidecars)",
+  "author": "Hwao (coordinator only; packet generation, no browsing/dispatch)",
+  "t0_utc": "2026-07-11T05:23:00Z",
+  "packet_written_utc": "2026-07-11T05:31:44Z",
+  "authority": {
+    "scope": "DUHO_GEMINI_WEB_WIKI_RESEARCH_ARTIFACT_SCOPE_20260711T004710Z",
+    "fresh_approval": "Duho direction 20260711T052300Z (T0.md + commissioning message)",
+    "supersedes": "one-run cap in pilot-gemini-resume-20260711T050514Z (DIRECTION.md s3.5, WEB_OPERATOR_PACKET.md s1)"
+  },
+  "quota_policy": {
+    "baseline_at_t0": "~1% app compute used (operator-reported)",
+    "useful_target_pct": [60, 75],
+    "hard_stop_pct": 80,
+    "hard_stops": ["quota>=80%", "billing/upsell/upgrade interstitial", "account-verification demand", "safety issue or operator doubt", "weekly reset"],
+    "wave_gate": "used% + 3 * max(largest observed per-run delta, 5) <= 80, and >=90 min to reset, and no stop condition"
+  },
+  "evidence_protocol": {
+    "screencapture_tcc": "DENIED - must not be bypassed (no screencapture/tccutil/System Settings/third-party capture); screenshot steps in prior packets are void for this rampage",
+    "replacement": "trusted chrome-auto extractor output: usage-page URL as loaded + UTC + DOM-scoped usage text + extractor identity, saved under evidence/ and sha256-hashed into WAVE_LEDGER.md",
+    "capture_standard": "extractor-pulled conversation text + conversation URL + UTC; per-run CAPTURE_RECEIPT.md with wc -c and shasum -a 256; fail closed if any field unavailable"
+  },
+  "waves": {
+    "wave1": ["R1", "R2", "R3"],
+    "wave2": ["R4", "R5", "R6"],
+    "wave3_if_under_target": ["R3b (verbatim replicate)", "R5b (verbatim replicate)", "R6b (verbatim replicate)"],
+    "wave4_if_under_target": ["R1b (verbatim replicate)", "R2b (verbatim replicate)", "R4b (verbatim replicate)"],
+    "concurrency": "3 conversations per wave, starts staggered >=60s",
+    "beyond_wave4": "stop; request fresh Hwao packet - never improvise new prompts mid-rampage"
+  },
+  "runs": [
+    {"id": "R1", "wave": 1, "prompt": "prompts/R1.md", "sha256": "ea74964f29d2c68a1f51b6c01ea2a5ae4560ca0f9e47856d6c3a99ca473ec757", "topic": "existing H2 r2 six-card M3 contract run (verbatim reuse)", "req_id": "REQ_M3_RT_20260711T091128Z", "completion_marker": "GEMINI_WEB_M3_RT_OUTPUT_DONE_REQ_M3_RT_20260711T091128Z"},
+    {"id": "R2", "wave": 1, "prompt": "prompts/R2.md", "sha256": "168e9100314332be0a433eb24f56893063a046cddcc4169d2d67ce3a2ae1a112", "topic": "cycle-9 quantitative prior-work envelope (Q1-Q8 published-values tables)", "req_id": "REQ_RAMPAGE_R2_20260711T052300Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R2_OUTPUT_DONE_20260711T052300Z"},
+    {"id": "R3", "wave": 1, "prompt": "prompts/R3.md", "sha256": "92e6e043b9689acafa7899d8e5119a345e6abc53abe0eb68e6b3b5cff3c4cf38", "topic": "tracer-denominator outflow census", "req_id": "REQ_RAMPAGE_R3_20260711T052300Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R3_OUTPUT_DONE_20260711T052300Z"},
+    {"id": "R4", "wave": 2, "prompt": "prompts/R4.md", "sha256": "d9b974f67dd746b9d1b1b59f24b4ef84ceef609c679b6ecbd0e1781148cc0e7f", "topic": "reservoir depletion vs suppressed SFE evidence census", "req_id": "REQ_RAMPAGE_R4_20260711T052300Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R4_OUTPUT_DONE_20260711T052300Z"},
+    {"id": "R5", "wave": 2, "prompt": "prompts/R5.md", "sha256": "d13fbc98206ecc7286546b2f419c1e8c608ffcfba0d5809a1b3a2afe8458c367", "topic": "maintenance-heating duty cycle observational determinations", "req_id": "REQ_RAMPAGE_R5_20260711T052300Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R5_OUTPUT_DONE_20260711T052300Z"},
+    {"id": "R6", "wave": 2, "prompt": "prompts/R6.md", "sha256": "ff7f60551c341ae6279582223f8f41ac37e94a768dcfa24f92a260cceb73bcb0", "topic": "simulation forward-model / selection-effects map", "req_id": "REQ_RAMPAGE_R6_20260711T052300Z", "completion_marker": "GEMINI_WEB_RAMPAGE_R6_OUTPUT_DONE_20260711T052300Z"}
+  ],
+  "prompt_contract_common": ["checkable citations (arXiv/DOI/ADS/URL) or UNCITED_NOT_USABLE", "uncertainty on every number or UNCERTAINTY_NOT_QUOTED_BY_SOURCE", "banned settled/causal own-voice register", "links ledger with QUARANTINED_PENDING_LOCAL_CHECK", "exact completion marker as final non-empty body line", "single self-contained markdown body", "NONE_FOUND empty-field device"],
+  "files": {
+    "RAMPAGE_DIRECTION.md": "bbc5c03ab2d69bed59218ec89464450d0d3f96f12204bb6e3bc849d6fcfa3dbd",
+    "WAVE_LEDGER.md": "4bb7956743e76f54b733008968234e9cdff1c5e62751e6fb227d3fb20de3d10f (seed row only; append-only thereafter)",
+    "T0.md": "d1bcb4e7a60b87092938216d95c068b7a6bfd415720121ebf5e2eba2c5765fd6"
+  },
+  "run_capture_set": ["prompt_submitted.md (byte-copy of prompts/R<n>.md, sha256 must match this manifest)", "plan_snapshot.md (or absence noted in meta.md)", "body.md", "meta.md", "CAPTURE_RECEIPT.md", "RUN_CAPTURED_R<n> xor RUN_VOID_R<n> (+VOID_REASON.md)"],
+  "markers": {
+    "ready": "HWAO_GEMINI_WEB_RAMPAGE_READY_20260711T052300Z",
+    "hard_stop_pattern": "RAMPAGE_HARD_STOP_<QUOTA|BILLING|VERIFICATION|SAFETY|RESET>_<UTC>Z + HARD_STOP_REASON.md",
+    "normal_end": "RAMPAGE_COMPLETE_<UTC>Z"
+  },
+  "locks": {
+    "outputs": "raw/advisory under runs/ only; no adjudication/integration/harvesting during generation; all IDs QUARANTINED_PENDING_LOCAL_CHECK",
+    "no_writes": ["candidates", "runner PID 45665 (no signals/env/config)", "SPRINT_STATUS", "DB", "wiki", "publish/deploy", "git", "cron", "cloud/GCP", "billing", "credentials", "extensions", "account settings"],
+    "write_root": ".hermes/handoffs/galaxy-evolution/mastermind/gemini-web-rampage-20260711T052300Z/ (temp files as _tmp_* inside)"
+  },
+  "adjudication": "post-rampage only, separate brief: R1 per H2 SB scorecard vs M3_ACCEPTANCE_BASELINE.md (sha256 d028f3c716cc123be1840170d6111c42e24693451c9d3bf90284fdb19691d433); R2-R6 via fresh quintet-reviewed pass"
+}

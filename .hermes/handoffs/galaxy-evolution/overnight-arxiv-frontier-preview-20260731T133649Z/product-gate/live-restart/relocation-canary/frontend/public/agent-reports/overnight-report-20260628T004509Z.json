@@ -1,0 +1,352 @@
+{
+  "packet_kind": "nebulamind_overnight_report",
+  "generated_at_kst": "2026-06-28T09:45:09+09:00",
+  "generated_at_utc": "2026-06-28T00:45:09+00:00",
+  "review_only": true,
+  "no_apply": true,
+  "db_write_count": 0,
+  "repo_state": {
+    "live_head": "3e18c8e",
+    "origin_main": "3e18c8e",
+    "divergence": "0\t0",
+    "tracked_status_count": "0",
+    "untracked_report_artifacts": "31",
+    "open_pr_count": "0",
+    "primary_branch": "feat/surveys-atlas-ia-p1-20260627",
+    "primary_dirty_count": "466",
+    "frontend_process_count": "1"
+  },
+  "cron_state": {
+    "job_id": "8475b415b96e",
+    "name": "NebulaMind overnight Galaxy+Surveys safe forward progress",
+    "state": "paused",
+    "enabled": false,
+    "repeat": "2/4",
+    "last_status": "ok",
+    "last_run_at": "2026-06-27T08:26:00+09:00",
+    "paused_at": "2026-06-27T09:48:23+09:00",
+    "deliver": "local"
+  },
+  "page_state": {
+    "id": 58,
+    "slug": "galaxy-evolution-v2",
+    "version_num": 7,
+    "content_chars": 10265,
+    "content_bytes": 10290,
+    "content_sha256": "ab6502e572a6189b173b9be934a2f812091d5004a5cc2102211464bc4747190c",
+    "h2_count": 9,
+    "title": "Galaxy Evolution (Intro-Synthesis V2 Pilot)"
+  },
+  "packet_vs_current": {
+    "source_packet_version": 4,
+    "source_packet_content_length": 11855,
+    "source_packet_content_sha256": "af8a8c739c55a4a85b298ec0d62683f5b2f03b38fc5ecf3f14bdfcea176b0055",
+    "current_version": 7,
+    "current_content_length": 10265,
+    "current_content_sha256": "ab6502e572a6189b173b9be934a2f812091d5004a5cc2102211464bc4747190c",
+    "matches_source_packet": false
+  },
+  "artifact_summary": {
+    "review": {
+      "claim_count": 8,
+      "evidence_row_count": 102,
+      "trust_counts": {
+        "consensus": 3,
+        "debated": 5
+      },
+      "machine_stance_counts": {
+        "none": 102
+      },
+      "risk_counts": {
+        "consensus_label_needs_human_support_check": 61,
+        "same_source_repeated_within_claim": 64,
+        "metadata_cleanup_needed": 76,
+        "high_impact_claim": 77,
+        "nuance_or_counter_language_present": 28,
+        "debated_label_needs_direction_check": 41
+      },
+      "all_rows_have_zero_votes": true,
+      "all_machine_stance_none": true
+    },
+    "triage": {
+      "source_rows": 102,
+      "priority_rows": 28,
+      "assistant_recommendation_counts": {
+        "nuance_only": 10,
+        "drop_no_effect": 8,
+        "count_as_support": 4,
+        "route_as_new_claim": 2,
+        "count_as_weakening": 4
+      },
+      "claims_touched": [
+        2929,
+        2930,
+        2931,
+        2932,
+        2933,
+        2934
+      ],
+      "consensus_priority_rows": 18,
+      "debated_priority_rows": 10
+    },
+    "readiness": {
+      "status": "NO_GO_FOR_POST_LABEL_READINESS__AWAITING_EXPORTED_LABEL_JSON_OR_CSV",
+      "input_label_export_found": false,
+      "label_summary": {
+        "exported_label_rows": 0,
+        "reviewed_rows": 0,
+        "remaining_rows": 28,
+        "human_decision_counts": {},
+        "missing_label_rows": 28,
+        "human_gold_status": "none_available"
+      },
+      "recommendations": [
+        "NO_GO for threshold retune, trust badge changes, Galaxy prose edits, or DB writes.",
+        "GO only for read-only intake: provide the exported JSON/CSV, then rerun this analysis.",
+        "Do not treat assistant triage rows as human-gold; all 28 priority rows remain awaiting exported human review labels.",
+        "If the labels were created on another device/browser, re-export or upload/paste the JSON/CSV into this session."
+      ]
+    }
+  },
+  "findings": [
+    {
+      "status": "done",
+      "title": "Evidence review packet remains available",
+      "body": "102 source rows across 8 claims; machine stance split remains unavailable in the original packet. Risk counts include {'consensus_label_needs_human_support_check': 61, 'same_source_repeated_within_claim': 64, 'metadata_cleanup_needed': 76, 'high_impact_claim': 77, 'nuance_or_counter_language_present': 28, 'debated_label_needs_direction_check': 41}.",
+      "links": [
+        [
+          "Evidence packet",
+          "/agent-reports/galaxy-evidence-review-20260627.html"
+        ]
+      ]
+    },
+    {
+      "status": "done",
+      "title": "Priority triage narrowed the human queue",
+      "body": "28 priority rows; assistant recommendations: {'nuance_only': 10, 'drop_no_effect': 8, 'count_as_support': 4, 'route_as_new_claim': 2, 'count_as_weakening': 4}. It is explicitly not human-gold.",
+      "links": [
+        [
+          "Priority triage",
+          "/agent-reports/galaxy-evidence-priority-triage-20260627.html"
+        ]
+      ]
+    },
+    {
+      "status": "done",
+      "title": "Human calibration workspace exists",
+      "body": "Interactive workspace is published for the 28-row queue, with export controls for human/Papa labels.",
+      "links": [
+        [
+          "Human calibration workspace",
+          "/agent-reports/galaxy-evidence-human-calibration-workspace-latest.html"
+        ]
+      ]
+    },
+    {
+      "status": "blocked",
+      "title": "Post-label readiness is blocked",
+      "body": "No exported human calibration JSON/CSV was found or provided; inferring labels from assistant triage would violate review-only/human-gold constraints.",
+      "links": [
+        [
+          "Post-label readiness hold",
+          "/agent-reports/galaxy-post-label-readiness-analysis-latest.html"
+        ],
+        [
+          "Missing-label queue CSV",
+          "/agent-reports/galaxy-post-label-readiness-analysis-latest_missing_label_queue.csv"
+        ]
+      ]
+    },
+    {
+      "status": "warn",
+      "title": "Source packet is stale against current Galaxy page",
+      "body": "The source packet was generated against page v4 / len 11855; current live page is v7 / len 10265. Treat old evidence packet/triage as review context until reconciled with current v7 content.",
+      "links": [
+        [
+          "Current Galaxy page",
+          "/wiki/galaxy-evolution-v2"
+        ]
+      ]
+    },
+    {
+      "status": "hold",
+      "title": "Overnight cron remains paused",
+      "body": "Cron 8475b415b96e is paused; last recorded status was ok, repeat 2/4. No background processes are running now.",
+      "links": []
+    },
+    {
+      "status": "done",
+      "title": "Nutty gpt-oss canary detour resolved",
+      "body": "The CRITICAL empty-content canary was a token-budget/call-shape issue, not a dead model. PR #38 raised the canary budget to 64 tokens, merged at 3e18c8e, restarted backend/celery, and the live local probe now passes with content_preview=ok.",
+      "links": [
+        [
+          "PR #38",
+          "https://github.com/DuhoKim/NebulaMind/pull/38"
+        ]
+      ]
+    }
+  ],
+  "approval_moves": [
+    {
+      "title": "Export or provide human labels",
+      "state": "READY",
+      "body": "Open the human calibration workspace, label the 28 priority rows, and export/paste the JSON/CSV. Then rerun post-label readiness only.",
+      "copy": "Open the Galaxy human calibration workspace, label/export the 28 priority rows as human/Papa labels, and rerun the post-label readiness analysis read-only. Do not approve DB writes, prose edits, badge changes, or threshold retunes."
+    },
+    {
+      "title": "Reconcile packets with current Galaxy v7",
+      "state": "RECOMMENDED",
+      "body": "Because Galaxy is now version 7 while the packet was generated from v4, create a read-only v7 reconciliation packet before using old packet labels for any trust/prose decision.",
+      "copy": "Create a read-only Galaxy v7 reconciliation packet comparing the current live page against the v4 evidence packets. Keep no_apply=true and db_write_count=0."
+    },
+    {
+      "title": "Apply/write path",
+      "state": "LOCKED",
+      "body": "Only after exported human-gold labels and a separate backup/rollback/diff apply packet. Still locked now.",
+      "copy": "Prepare, but do not run, a separate apply/backup/rollback diff packet after human-gold labels are available."
+    },
+    {
+      "title": "Resume overnight automation",
+      "state": "LOCKED",
+      "body": "Cron is paused; resume only with a narrowed prompt after human review or explicit approval.",
+      "copy": "Resume the NebulaMind overnight cron with a narrowed read-only prompt; avoid DB/content writes unless separately approved."
+    }
+  ],
+  "latest_reports": [
+    {
+      "name": "galaxy-post-label-readiness-analysis-latest_missing_label_queue.csv",
+      "bytes": 21490,
+      "mtime_kst": "2026-06-27 21:09:12 KST"
+    },
+    {
+      "name": "galaxy-post-label-readiness-analysis-latest.html",
+      "bytes": 18178,
+      "mtime_kst": "2026-06-27 21:09:12 KST"
+    },
+    {
+      "name": "galaxy-post-label-readiness-analysis-latest.json",
+      "bytes": 6820,
+      "mtime_kst": "2026-06-27 21:09:11 KST"
+    },
+    {
+      "name": "galaxy-post-label-readiness-analysis-20260627T120911Z_missing_label_queue.csv",
+      "bytes": 21490,
+      "mtime_kst": "2026-06-27 21:09:11 KST"
+    },
+    {
+      "name": "galaxy-post-label-readiness-analysis-20260627T120911Z.html",
+      "bytes": 18178,
+      "mtime_kst": "2026-06-27 21:09:11 KST"
+    },
+    {
+      "name": "galaxy-post-label-readiness-analysis-20260627T120911Z.json",
+      "bytes": 6820,
+      "mtime_kst": "2026-06-27 21:09:11 KST"
+    },
+    {
+      "name": "galaxy-evidence-human-calibration-workspace-latest.html",
+      "bytes": 92102,
+      "mtime_kst": "2026-06-27 17:03:33 KST"
+    },
+    {
+      "name": "galaxy-evidence-human-calibration-workspace-20260627T075824Z.html",
+      "bytes": 92102,
+      "mtime_kst": "2026-06-27 17:03:33 KST"
+    },
+    {
+      "name": "galaxy-evidence-human-calibration-workspace-20260627.html",
+      "bytes": 92102,
+      "mtime_kst": "2026-06-27 17:03:33 KST"
+    },
+    {
+      "name": "morning-review-20260627.html",
+      "bytes": 19390,
+      "mtime_kst": "2026-06-27 17:02:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627T034818Z.html",
+      "bytes": 67335,
+      "mtime_kst": "2026-06-27 17:02:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627.html",
+      "bytes": 67335,
+      "mtime_kst": "2026-06-27 17:02:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627T032441Z.html",
+      "bytes": 159411,
+      "mtime_kst": "2026-06-27 12:50:42 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627.html",
+      "bytes": 159411,
+      "mtime_kst": "2026-06-27 12:50:42 KST"
+    },
+    {
+      "name": "morning-review-20260627T034818Z.html",
+      "bytes": 19237,
+      "mtime_kst": "2026-06-27 12:50:42 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627T034818Z.csv",
+      "bytes": 26032,
+      "mtime_kst": "2026-06-27 12:48:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627T034818Z.json",
+      "bytes": 63856,
+      "mtime_kst": "2026-06-27 12:48:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627.csv",
+      "bytes": 26032,
+      "mtime_kst": "2026-06-27 12:48:18 KST"
+    },
+    {
+      "name": "galaxy-evidence-priority-triage-20260627.json",
+      "bytes": 63856,
+      "mtime_kst": "2026-06-27 12:48:18 KST"
+    },
+    {
+      "name": "morning-review-20260627T032441Z.html",
+      "bytes": 18637,
+      "mtime_kst": "2026-06-27 12:28:49 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627T032441Z.csv",
+      "bytes": 73734,
+      "mtime_kst": "2026-06-27 12:24:42 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627.csv",
+      "bytes": 73734,
+      "mtime_kst": "2026-06-27 12:24:42 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627T032441Z.json",
+      "bytes": 163698,
+      "mtime_kst": "2026-06-27 12:24:42 KST"
+    },
+    {
+      "name": "galaxy-evidence-review-20260627.json",
+      "bytes": 163698,
+      "mtime_kst": "2026-06-27 12:24:42 KST"
+    },
+    {
+      "name": "morning-review-20260627T012545Z.html",
+      "bytes": 17959,
+      "mtime_kst": "2026-06-27 10:28:04 KST"
+    }
+  ],
+  "canary_state": {
+    "status": "RESOLVED",
+    "label": "Nutty",
+    "model": "gpt-oss:20b",
+    "root_cause": "Ollama OpenAI-compatible chat route needed more visible-token budget because hidden reasoning consumed tiny max_tokens before message.content.",
+    "mitigation": "model_canary max_tokens raised from 8 to 64; regression test added.",
+    "pr": 38,
+    "merge_commit": "3e18c8e",
+    "live_probe": "pass: content_preview ok"
+  }
+}

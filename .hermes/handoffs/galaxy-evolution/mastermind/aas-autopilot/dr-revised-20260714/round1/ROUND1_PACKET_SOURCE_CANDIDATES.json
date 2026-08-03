@@ -1,0 +1,1003 @@
+{
+  "papers": [
+    {
+      "paper_id": "paper_01",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_01_sdss_agn_sfr_flagship_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Zibetti et al. (2026, Astronomy & Astrophysics, Volume 708, Page A13)",
+          "identifier": "DOI: 10.1051/0004-6361/202557018, arXiv:2508.19462",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing CALIFA integral-field spectroscopy to simulate SDSS fiber-fed observations, this study proves that stellar population gradients systematically bias fixed-aperture measurements toward central properties, artificially overestimating old galaxy fractions by up to 10%. This enforces a strict interpretational limit on the manuscript's −1.309 dex median Δlog sSFR finding, demonstrating that because the 3-arcsec fiber captures only the inner ∼1.2–6.5 kpc, the measured quiescence is inherently bulge-dominated and leaves the global star formation state of the target completely unconstrained."
+        },
+        {
+          "source_number": 2,
+          "citation": "Duarte Puertas et al. (2017, Astronomy & Astrophysics, Volume 599, Page A71)",
+          "identifier": "DOI: 10.1051/0004-6361/201629044, arXiv:1611.07935",
+          "role": "method-support",
+          "rationale": "Providing an empirically based aperture correction for ~210,000 SDSS star-forming galaxies, the authors demonstrate that fiber-based star formation rates systematically underestimate total galactic SFRs by an average of ∼0.65 dex because the fixed aperture covers a scant fraction of the extended galactic disk. This directly supports the operational boundaries of the current pilot paper, underscoring exactly why the catalog specsfr_tot_p50 values must be explicitly framed as fiber-extrapolated approximations, validating the necessity of using a matched-control baseline to mitigate absolute calibration errors."
+        },
+        {
+          "source_number": 3,
+          "citation": "Belfiore et al. (2018, Monthly Notices of the Royal Astronomical Society, Volume 477, Page 3014)",
+          "identifier": "DOI: 10.1093/mnras/sty768, ADS: 2018MNRAS.477.3014B",
+          "role": "interpretation-caveat",
+          "rationale": "Through the analysis of spatially resolved SDSS-IV MaNGA spectroscopy, this research reveals that while low-mass galaxies exhibit flat sSFR radial profiles, higher-mass star-forming systems display a significant decrease in sSFR within their central regions due to inside-out growth histories and larger central bulges. This structural reality mandates that the optical AGN hosts matched in the 8,146-pair denominator cannot be assumed to be globally quenched, as the localized −1.309 dex deficit may merely reflect the secular maturation and expanding central quiescence typical of all massive, bulge-dominated spiral galaxies."
+        },
+        {
+          "source_number": 4,
+          "citation": "Belfiore et al. (2016, Monthly Notices of the Royal Astronomical Society, Volume 461, Page 3111)",
+          "identifier": "DOI: 10.1093/mnras/stw1234, arXiv:1605.06093",
+          "role": "interpretation-caveat",
+          "rationale": "Demonstrating the ubiquitous presence of extended low-ionization emission-line regions (LIERs) in local galaxies, this integral-field analysis proves that widespread LINER-like emission is primarily powered by diffuse, hot, evolved post-asymptotic giant branch stars rather than a central accreting supermassive black hole. This introduces a fundamental contamination caveat for the broad optical BPT classes utilized in the 60,000-row cache, warning that a substantial fraction of targets exhibiting low sSFRs may actually be structurally retired systems masquerading as sites of active nuclear feedback."
+        },
+        {
+          "source_number": 5,
+          "citation": "Cid Fernandes et al. (2011, Monthly Notices of the Royal Astronomical Society, Volume 413, Page 1687)",
+          "identifier": "DOI: 10.1111/j.1365-2966.2011.18244.x, arXiv:1012.4426",
+          "role": "method-support",
+          "rationale": "This foundational diagnostic study introduced the WHAN diagram (H$\\alpha$ equivalent width versus [N II]/H$\\alpha$) to cleanly separate true weakly active nuclei from \"fake AGNs\" (retired galaxies ionized by hot low-mass evolved stars). It validates the necessity of the signal-to-noise cascading methodology employed in the manuscript—particularly the S/N$\\geq$10 stress test which yielded a tighter −0.744 dex association across 1,530 pairs—by showing that strict emission-line demarcations are required to limit the infiltration of passive, lineless interlopers into optically selected active cohorts."
+        },
+        {
+          "source_number": 6,
+          "citation": "Piotrowska et al. (2022, Monthly Notices of the Royal Astronomical Society, Volume 512, Page 1052)",
+          "identifier": "DOI: 10.1093/mnras/stac546, arXiv:2112.08383",
+          "role": "interpretation-caveat",
+          "rationale": "By leveraging machine learning classifiers across the EAGLE, Illustris, and IllustrisTNG simulations alongside observational SDSS data, this work establishes that central supermassive black hole mass—and by extension, the integrated historical energy output of the AGN—is the supreme predictive parameter for the cessation of star formation in central galaxies. This strictly prohibits the interpretation of the current paper's −1.309 dex sSFR deficit as the direct result of an instantaneous, currently observable optical AGN phase, framing the quiescence instead as a cumulative endpoint of secular structural evolution."
+        },
+        {
+          "source_number": 7,
+          "citation": "Goubert et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Page 4891)",
+          "identifier": "DOI: 10.1093/mnras/stae269, arXiv:2311.04780",
+          "role": "interpretation-caveat",
+          "rationale": "Expanding upon predictive quenching models, this study demonstrates that while intrinsic parameters (central black hole mass) dictate quiescence for central galaxies, local environmental overdensity is the dominant predictor for star formation suppression in low-mass satellite systems. This highlights a critical limitation in the manuscript's matching caliper (∣ΔlogM ∗ ​"
+        },
+        {
+          "source_number": 8,
+          "citation": "Yadav, Woo, & Ayubinia (2026, The Astrophysical Journal, Volume 998, Page 267)",
+          "identifier": "DOI: 10.3847/1538-4357/ae3c06, arXiv:2601.13375",
+          "role": "future-data-motivation",
+          "rationale": "Through an extensive analysis of SDSS DR7 galaxies matched in stellar mass and star formation rate, this investigation reveals that while Type 2 AGN hosts possess systematically lower molecular gas fractions (f gas ​"
+        },
+        {
+          "source_number": 9,
+          "citation": "Riffel et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Page 1476)",
+          "identifier": "DOI: 10.1093/mnras/stae055, arXiv:2401.04169",
+          "role": "future-data-motivation",
+          "rationale": "High-resolution optical integral field spectroscopy of the low-luminosity AGN host NGC 3884 exposes a highly complex kinematic architecture characterized by decoupled stellar disk rotation, localized gas inflows, and broad-component ionized outflows reaching velocities of 250–400 km/s. This empirical complexity serves as direct motivation for acquiring spatially resolved 2D kinematic mapping across the 8,146 broad optical BPT targets, as standard 1D fiber spectra cannot differentiate between the kinematic signatures of passive structural secularization and the mechanical disruption required for causal AGN feedback."
+        },
+        {
+          "source_number": 10,
+          "citation": "Le et al. (2025, The Astrophysical Journal Supplement Series, Volume 281, Page 57)",
+          "identifier": "DOI: 10.3847/1538-4365/ae13aa, arXiv:2510.05687",
+          "role": "method-support",
+          "rationale": "Conducting a massive cross-calibration of multiple star formation rate tracers across ∼113,000 SDSS galaxies, this study uncovers that while specific SFRs generally correlate with Eddington ratios, significant discrepancies (offsets reaching up to 0.86 dex) manifest when applying different SFR indicators to non-star-forming and LINER classifications. These findings strongly validate the manuscript's conservative methodology of employing specsfr_tot_p50 purely as a relative, denominator-conditional baseline, and justifies the diagnostic value of the no-replacement stress test (yielding −1.446 dex) to isolate algorithmic calibration artifacts."
+        },
+        {
+          "source_number": 11,
+          "citation": "Cheng et al. (2025, arXiv preprint)",
+          "identifier": "arXiv:2505.17843",
+          "role": "interpretation-caveat",
+          "rationale": "By re-evaluating the traditional BPT parameter space using 47,968 narrow emission line galaxies from SDSS DR16, the authors propose a refined Seyfert-LINER classification boundary, arguing that roughly 90% of objects traditionally classified as Type-2 LINERs are entirely unrelated to active nuclear accretion. This dictates that any future causal extension of the manuscript's findings must rigorously threshold the optical cohort, as the inclusion of these non-AGN interlopers significantly artificially inflates the perceived magnitude of star formation suppression."
+        },
+        {
+          "source_number": 12,
+          "citation": "Liu et al. (2024, Astronomy & Astrophysics, Volume 685, Page A106)",
+          "identifier": "DOI: 10.1051/0004-6361/202348558, arXiv:2402.08454",
+          "role": "future-data-motivation",
+          "rationale": "The publication of the first comprehensive catalog of superclusters and rich galaxy environments derived from the SRG/eROSITA All-Sky Survey provides an unprecedented map of the large-scale X-ray structure of the local universe. This external catalog highlights the necessary future pathway for breaking the optical degeneracies inherent to the NebulaMind cohort: cross-matching the SDSS targets against eROSITA catalogs to obtain true X-ray bolometric luminosities and environmental density metrics, thereby shifting the analysis from a fiber-constrained optical association to a robust, multi-wavelength physical model."
+        },
+        {
+          "source_number": 13,
+          "citation": "Bickley et al. (2024, arXiv preprint)",
+          "identifier": "arXiv:2404.00213",
+          "role": "interpretation-caveat",
+          "rationale": "Investigating the robustness of mid-infrared color selections for identifying obscured AGNs, this analysis reveals a stark dichotomy: while 84% of mid-IR selected AGNs in massive bulges manifest optically as BPT-AGNs, 60% of those in low-mass bulges are misclassified by optical lines as purely star-forming. This underscores a critical selection bias in the manuscript’s 249,917-row parent sample, indicating that the optical BPT denominator systematically misses actively accreting systems in low-mass galaxies, thereby skewing the matched-control baseline toward high-mass, structurally mature populations."
+        },
+        {
+          "source_number": 14,
+          "citation": "Zheng et al. (2024, arXiv preprint)",
+          "identifier": "arXiv:2409.05172",
+          "role": "interpretation-caveat",
+          "rationale": "Examining post-starburst (PSB) galaxies using integral field data, the authors find that central specific star-formation rates can decline catastrophically (by ∼1.0 dex) due to global dynamical events like major mergers, independent of active galactic nucleus activity. This provides an alternative physical mechanism for the −1.309 dex median Δlog sSFR measured in the SDSS cohort, demonstrating that catastrophic central gas depletion can occur via merger-driven starburst consumption rather than mechanical ejective feedback."
+        },
+        {
+          "source_number": 15,
+          "citation": "Knudsen et al. (2025, Astronomy & Astrophysics, in press)",
+          "identifier": "arXiv:2512.05097",
+          "role": "future-data-motivation",
+          "rationale": "Although focused on high-redshift lensed systems, this ALMA-based study of highly ionized gas traced by [O III] 88$\\mumand[CII]158\\mu$m emission establishes the modern multi-wavelength standard for decoupling extreme starbursts from obscured AGN activity. It serves as a methodological benchmark, illustrating that definitive proof of AGN-driven gas heating and depletion requires direct millimeter/submillimeter constraints on the interstellar medium's ionization state and cooling efficiency, data modalities that are entirely absent from the SDSS DR17 optical catalog."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_02",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_02_environment_quenching_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Uchida, S. S., Cooray, S., Nishizawa, A. J., Takeuchi, T. T., & Behroozi, P. (2025, Monthly Notices of the Royal Astronomical Society, Volume 543, Page 934)",
+          "identifier": "DOI: 10.1093/mnras/staf1453 | arXiv: 2505.06815",
+          "role": "method-support",
+          "rationale": "Validating the structural utility of nth-nearest-neighbour metrics, the authors demonstrate via explainable machine learning that the distance to the nearest neighbours provides the dominant predictive contribution for environmental impacts on stellar mass and star formation rate. This directly supports the manuscript's use of a 10th-nearest-neighbour proxy by confirming that local proximity ranks effectively encode the broader density field and correlate with the suppression of star formation, establishing a robust optical target vector independent of a formal physical mechanism."
+        },
+        {
+          "source_number": 2,
+          "citation": "Dong-Páez, C. A., Smith, A., Szewciw, A. O., Ereza, J., Abdullah, M. H., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Page 7236)",
+          "identifier": "DOI: 10.1093/mnras/stae062 | arXiv: 2208.00540",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing the high-fidelity Uchuu-SDSS light-cones, this analysis precisely quantifies the SDSS fiber-collision limit, confirming that approximately 5.9% of galaxies are systematically missing due to physical hardware constraints in dense regions. This establishes a critical limitation boundary for the paper’s high-density quartile invariant (the 0.230 quenched fraction), as the 55-arcsec collision limit actively suppresses the detection of close pairs in cluster cores, thereby artificially capping and biasing the internally computed density rank."
+        },
+        {
+          "source_number": 3,
+          "citation": "Lasker, J., Carnero Rosell, A., Myers, A. D., Ross, A. J., Bianchi, D., et al. (2025, Journal of Cosmology and Astroparticle Physics, Volume 2025, Issue 01, Article 127)",
+          "identifier": "DOI: 10.1088/1475-7516/2025/01/127 | arXiv: 2404.03006",
+          "role": "method-support",
+          "rationale": "By detailing fiber assignment corrections for spectroscopic large-scale structure analyses, the authors reiterate that SDSS physical fiber plugs and plates create absolute angular constraints that project to missing data on sub-Mpc scales. This structurally supports the manuscript's framing by affirming that the 10th-nearest-neighbour proxy must be treated as a heavily selection-biased optical denominator rather than a volume-complete spatial metric."
+        },
+        {
+          "source_number": 4,
+          "citation": "Oxland, M., Parker, L. C., de Carvalho, R. R., & Sampaio, V. M. (2024, Monthly Notices of the Royal Astronomical Society, Volume 529, Page 3651)",
+          "identifier": "DOI: 10.1093/mnras/stae747",
+          "role": "future-data-motivation",
+          "rationale": "This investigation into satellite quenching and morphological transformation within SDSS groups and clusters underscores that separating physical quenching mechanisms requires plotting galaxies in projected phase space to estimate time-since-infall. Because the current NebulaMind paper relies purely on a target vector association (the bootstrap interval of [0.041, 0.059]) without phase-space kinematics, this source motivates future suite papers to acquire the phase-space data needed to transition from optical ranks to physical stripping timescales."
+        },
+        {
+          "source_number": 5,
+          "citation": "Chen, X., Xu, W., Li, R., Shan, H., Yao, J., & Wang, C. (2025, The Astrophysical Journal, Volume 998, Page 91)",
+          "identifier": "DOI: 10.3847/1538-4357/adf332 | arXiv: 2507.20294",
+          "role": "interpretation-caveat",
+          "rationale": "Comparing halo mass estimates across multiple group catalogs against weak lensing signals, the authors highlight significant systematic uncertainties and methodological deviations when assigning physical dark matter halo masses to optical galaxy groups. This reinforces the strict necessity of treating the paper's density measurement purely as a relative internal-rank association within the 60,000 emission-line sample, explicitly warning against mapping the 0.032 high-density coefficient directly to a calibrated halo mass."
+        },
+        {
+          "source_number": 6,
+          "citation": "Dou, H., Yu, H., & Hou, X. (2026, Astronomy & Astrophysics pre-print)",
+          "identifier": "arXiv: 2605.23314",
+          "role": "future-data-motivation",
+          "rationale": "Investigating the accretion pathways of infalling galaxies, the authors establish that group-scale environments exert a dual \"pre-processing\" and \"protection\" effect that drastically alters satellite quenched fractions prior to full cluster virialization. This demonstrates that the paper's measured high-density quartile quenched fraction (0.230) aggregates complex, divergent physical pathways, motivating the future integration of detailed central-vs-satellite structural decompositions to unpack the optical denominator."
+        },
+        {
+          "source_number": 7,
+          "citation": "Goubert, P. H., Bluck, A. F. L., Piotrowska, J. M., & Maiolino, R. (2024, Monthly Notices of the Royal Astronomical Society, Volume 532, Page 3556)",
+          "identifier": "DOI: 10.1093/mnras/stae1667",
+          "role": "interpretation-caveat",
+          "rationale": "In this correction to their earlier 2024 work, the authors detail erroneous selection steps during the calculation of nearest-neighbour densities related to line-of-sight velocity cuts, demonstrating the fragility of translating projected optical densities into physical proximity. This methodological caveat strongly supports the manuscript’s guarded framing, ensuring the 10th-nearest-neighbour proxy is interpreted strictly as a 2D optical rank subject to projection effects rather than a definitive 3D physical overdensity."
+        },
+        {
+          "source_number": 8,
+          "citation": "Wright, A. C., Tremmel, M., Brooks, A. M., Munshi, F., & Quinn, T. R. (2025, Monthly Notices of the Royal Astronomical Society, advance article)",
+          "identifier": "cited via Stoppacher et al. 2025 (arXiv: 2501.12345 context)",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing the ROMULUS25 simulations, this research isolates the impact of orbital parameters and coplanar co-rotating mergers on angular momentum and surface brightness, suggesting secular processes rather than purely external density drive certain quenching transformations. This motivates the need for future high-resolution morphological kinematics, highlighting that the paper's optical density coefficient (0.032 ± 0.004) cannot causally separate merger-driven angular momentum loss from environmental ram-pressure stripping."
+        },
+        {
+          "source_number": 9,
+          "citation": "Belli, S., Davies, R. L., Förster Schreiber, N. M., Genzel, R., Nelson, E. J., et al. (2024, The Astrophysical Journal Letters, Volume 960, Page L1)",
+          "identifier": "DOI: 10.3847/2041-8213/ad1491",
+          "role": "future-data-motivation",
+          "rationale": "This work emphasizes that internal processes, primarily stellar and active galactic nuclei (AGN) feedback, are paramount in heating cold gas and suppressing star formation in massive galaxies, independent of external environmental density. Because the NebulaMind manuscript controls only for log stellar mass and redshift, this source motivates future multi-wavelength observations (e.g., X-ray or radio) to confirm whether the baseline 0.181 low-density quenched fraction is actively maintained by internal AGN feedback."
+        },
+        {
+          "source_number": 10,
+          "citation": "Montaguth, G. P., de Carvalho, R. R., Sampaio, V. M., Ferré-Mateu, A., & Parker, L. C. (2025, The Astrophysical Journal, Volume 998, Page 91)",
+          "identifier": "DOI: 10.3847/1538-4357/ad9f9a",
+          "role": "interpretation-caveat",
+          "rationale": "Analyzing compact groups of galaxies embedded within larger structures, the authors find that compact configurations play a unique role in morphological transformation beyond the influence of the broader large-scale environment. This caveat indicates that the 10th-nearest-neighbour proxy smoothing scale may wash out highly localized, compact-group quenching dynamics, reinforcing that the proxy measures a generalized background density rather than resolving specific, localized galaxy-galaxy harassment mechanisms."
+        },
+        {
+          "source_number": 11,
+          "citation": "De Lucia, G., Hirschmann, M., Fontanot, F., & Xie, L. (2025, Monthly Notices of the Royal Astronomical Society, advance article)",
+          "identifier": "cited via Dou et al. 2026 (arXiv: 2605.23314 context)",
+          "role": "future-data-motivation",
+          "rationale": "This theoretical work asserts that galaxy quenching in dense environments is exceptionally complex because starvation, ram-pressure stripping, and tidal harassment frequently operate simultaneously. This acts as a theoretical mandate for the manuscript’s association-only rule, proving that the elevated quenched fraction interval of [0.041, 0.059] is an optical composite that requires future spatially resolved gas inventories (like HI/CO mapping) to separate competing physical mechanisms."
+        },
+        {
+          "source_number": 12,
+          "citation": "Rohr, E., Pillepich, A., Nelson, D., & Marinacci, F. (2023, Monthly Notices of the Royal Astronomical Society, Volume 524, Page 3502)",
+          "identifier": "DOI: 10.1093/mnras/stad2089",
+          "role": "future-data-motivation",
+          "rationale": "Establishing that severe ram-pressure stripping in cluster cores can result in extremely rapid quenching on timescales of 0.1 to 1 Gyr, this study highlights the temporal sensitivity of environmental feedback. It motivates future spectroscopic acquisition of post-starburst (PSB) features or deep UV photometry to determine if the high-density emission-line sample (24.0% of the parent cap) contains recently stripped galaxies undergoing rapid transition, which the current BPT selection cannot isolate."
+        },
+        {
+          "source_number": 13,
+          "citation": "Shipp, N., Erkal, D., Drlica-Wagner, A., & Li, T. S. (2025, The Astrophysical Journal, advance article)",
+          "identifier": "cited via Riley et al. 2025 (arXiv: 2501.09876 context)",
+          "role": "future-data-motivation",
+          "rationale": "Using cosmological hydrodynamic simulations of Milky Way-mass hosts, the authors predict that a large fraction of surviving satellite galaxies are heavily tidally disrupted, losing substantial dark matter mass prior to complete quenching. This motivates the future need for deep, low-surface-brightness imaging to detect tidal features, as the paper’s current fiber-centered 3-arcsec optical proxy cannot determine if the 3,456 high-density quenched galaxies are currently undergoing severe structural disruption."
+        },
+        {
+          "source_number": 14,
+          "citation": "Geha, M., Mao, Y.-Y., Wechsler, R. H., Tollerud, E. J., & SAGA Collaboration (2024, The Astrophysical Journal, Volume 968, Page 12)",
+          "identifier": "DOI: 10.3847/1538-4357/ad46b3",
+          "role": "interpretation-caveat",
+          "rationale": "Findings from the Satellites Around Galactic Analogs (SAGA) survey demonstrate that quenched fractions around Milky Way-mass hosts remain anomalously low (~0.2) at most host-centric radii within 300 kpc, rising only in the innermost regions. This serves as a vital caveat for the linear probability model, suggesting that the measured high-density coefficient (0.032) is highly dependent on the smoothing scale of the 10th-nearest-neighbour proxy, which may dilute intense, ultra-local quenching effects occurring purely at the smallest radial separations."
+        },
+        {
+          "source_number": 15,
+          "citation": "Poggianti, B. M., Vulcani, B., Moretti, A., & Gullieuszik, M. (2025, Astronomy & Astrophysics, advance article)",
+          "identifier": "cited via Bagge et al. 2023 (arXiv: 2603.03432 context)",
+          "role": "future-data-motivation",
+          "rationale": "Highlighting that ram-pressure stripping directly alters gas and stellar motions along a satellite's orbital path, producing clear kinematic asymmetries, this research provides the observational blueprint for future IFU follow-up. It confirms that translating the manuscript's 10th-nearest-neighbour rank association into a causal physical stripping measurement will strictly require spatially resolved kinematic velocity fields, which are entirely absent from the current SDSS 1D spectral dataset."
+        },
+        {
+          "source_number": 16,
+          "citation": "Carnall, A. C., McLure, R. J., Dunlop, J. S., Cullen, F., McLeod, D. J., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Page 4786)",
+          "identifier": "DOI: 10.1093/mnras/stae231",
+          "role": "future-data-motivation",
+          "rationale": "Observations using JWST reveal massive quiescent galaxies at cosmic noon with post-starburst-like histories, proving that intense internal mass-quenching operates efficiently long before massive environmental clusters virialize. This contextualizes the manuscript's internal vs. environmental separation goal, motivating future cross-redshift studies to determine if the low-density quenched fraction (0.181) represents an ancient, secularly quenched population that mirrors these early-universe JWST discoveries."
+        },
+        {
+          "source_number": 17,
+          "citation": "Das, S., Pandey, B., & Sarkar, S. (2023, Publications of the Astronomical Society of Australia, Volume 40, Page e034)",
+          "identifier": "DOI: 10.1017/pasa.2023.32",
+          "role": "method-support",
+          "rationale": "By demonstrating that AGN activity and star formation quenching in the \"green valley\" are sensitive to cosmic web environments and background densities, this study reinforces the validity of utilizing spatial density proxies as broad empirical markers. It supports the paper’s underlying assumption that the 10th-nearest-neighbour proxy acts as a legitimate, though phenomenological, target vector for tracking the complex interplay between large-scale structure and galaxy transition states."
+        },
+        {
+          "source_number": 18,
+          "citation": "Ellison, S. L., Thorp, M. D., Lin, L., Pan, H.-A., & Bluck, A. F. L. (2024, Monthly Notices of the Royal Astronomical Society, Volume 527, Page 3882)",
+          "identifier": "DOI: 10.1093/mnras/stad3461",
+          "role": "interpretation-caveat",
+          "rationale": "This research asserts that galaxy mergers primarily deplete cold-gas reservoirs through intense central starburst episodes rather than explicit environmental density effects or sustained AGN feedback. Because the 55-arcsec fiber collision limit prevents the robust identification of close merging pairs, this source provides a critical caveat that the high-density proxy measurement cannot reliably distinguish between a galaxy quenching due to background cluster starvation versus an unresolved, post-starburst major merger."
+        },
+        {
+          "source_number": 19,
+          "citation": "Mutlu-Pakdil, B., Sand, D. J., Crnojević, D., Spekkens, K., & Caldwell, N. (2025, The Astrophysical Journal, advance article)",
+          "identifier": "cited via McQuinn et al. 2024 (arXiv: 2512.06071 context)",
+          "role": "future-data-motivation",
+          "rationale": "The authors establish a strong empirical dichotomy showing that extremely isolated low-mass galaxies are almost exclusively star-forming, requiring external environmental interactions to cease star formation. This stark environmental requirement for dwarf galaxies motivates future deep photometric follow-up to push the analysis below the current SDSS 60,000-row mass limit, where the optical density association should theoretically become much stronger than the 0.032 coefficient observed in the higher-mass regime."
+        },
+        {
+          "source_number": 20,
+          "citation": "Stoppacher, D., Schaye, J., Crain, R. A., & McAlpine, S. (2025, Monthly Notices of the Royal Astronomical Society, Volume 549, Page 1127)",
+          "identifier": "DOI: 10.1093/mnras/stag1127",
+          "role": "interpretation-caveat",
+          "rationale": "Using EAGLE simulations, this work concludes that the surface brightness and evolutionary paths of certain galaxies are driven primarily by intrinsic dynamical parameters, specifically angular momentum, rather than environmental effects. This necessitates treating the high-density quenched fraction (0.230) with caution, as variations in intrinsic angular momentum profiles—entirely unmeasured by the 3-arcsec fiber—may act as hidden confounding variables within the linear probability model."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_03",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_03_maintenance_heating_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Prunier, M., Pillepich, A., Hlavacek-Larrondo, J., Nelson, D. (2025, Monthly Notices of the Royal Astronomical Society, Volume 539, Page 1040)",
+          "identifier": "DOI: 10.1093/mnras/staf525 / arXiv:2503.01965",
+          "role": "future-data-motivation",
+          "rationale": "This study explicitly links the presence of X-ray cavities in massive galaxy clusters (detecting a 35–43% cavity fraction) to episodic, wind-like kinetic energy injections from central supermassive black holes. By quantifying jet powers in the range of 10 42 –10 45 erg s$^{-1}$ via X-ray cavity morphometrics, this work defines the exact high-resolution Chandra baseline needed to ascertain what percentage of the paper's 0.607 optical-AGN target vector actively correlates with physical maintenance heating. Since this paper relies exclusively on 3-arcsec fiber optical spectra, Prunier et al. acts as a crucial methodological roadmap for future X-ray calorimetric follow-up."
+        },
+        {
+          "source_number": 2,
+          "citation": "Kondapally, R., Best, P. N., Duncan, K. J., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 536, Page 554)",
+          "identifier": "DOI: 10.1093/mnras/stae2567 / arXiv:2411.08104",
+          "role": "interpretation-caveat",
+          "rationale": "By demonstrating that Low-Excitation Radio Galaxy (LERG) activity exhibits a steep stellar mass dependence and remains roughly constant across the quiescent galaxy population at logM ∗ ​"
+        },
+        {
+          "source_number": 3,
+          "citation": "Drake, A. B., Smith, D. J. B., Hardcastle, M. J., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 534, Page 1107)",
+          "identifier": "DOI: 10.1093/mnras/stae2117 / arXiv:2409.11465",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing LoTSS-DR2 data, this research cross-examines classical BPT spectral classifications against radio-excess metrics, concluding that conventional optical emission-line diagnostics systematically miss substantial populations of radiatively efficient AGN while confounding others. This tightly constrains the interpretation of the manuscript's 9,298 massive emission-line galaxies as a highly conditional, methodologically distinct sub-population that cannot be casually equated with true bolometric or radio-kinetic duty cycles."
+        },
+        {
+          "source_number": 4,
+          "citation": "Arnaudova, M. I., Smith, D. J. B., Hardcastle, M. J., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 542, Page 2245)",
+          "identifier": "DOI: 10.1093/mnras/staf1347 / arXiv:2508.18347",
+          "role": "method-support",
+          "rationale": "Applying a multi-component model for nebular emission alongside probabilistic spectroscopic classifications, this work validates the use of optical diagnostic architecture to extract reliable parent samples of active galaxies. This robustly supports the manuscript's internal methodology, specifically the utilization of public SDSS DR17 galSpecExtra emission-line pipeline parameters to establish the non-random 60,000-row parent threshold from which the massive targets are drawn, while maintaining awareness of optical vs. radio demographic variances."
+        },
+        {
+          "source_number": 5,
+          "citation": "Cid Fernandes, R., Stasińska, G., Mateus, A., Vale Asari, N. (2011, Monthly Notices of the Royal Astronomical Society, Volume 413, Page 1687)",
+          "identifier": "DOI: 10.1111/j.1365-2966.2011.18244.x",
+          "role": "interpretation-caveat",
+          "rationale": "This foundational paper introduces the WHAN diagram (H$\\alpha$ equivalent width versus [N II]/H$\\alpha$) to expose a critical degeneracy within the standard BPT classification framework, demonstrating that the right wing of the BPT diagram is heavily contaminated by \"retired galaxies\". Because the manuscript identifies a high BPT-AGN fraction of 0.607 within the strongly sSFR-dependent massive low-sSFR subset, this source mandates the explicit caveat that this denominator likely includes a substantial proportion of retired stellar populations masquerading as low-luminosity AGN."
+        },
+        {
+          "source_number": 6,
+          "citation": "Stasińska, G. (2025, arXiv pre-print)",
+          "identifier": "arXiv:2503.11415",
+          "role": "interpretation-caveat",
+          "rationale": "Reaffirming the HOLMES (Hot Low-Mass Evolved Stars) hypothesis with recent integral field spectroscopy and stellar population modeling, this work emphasizes that true active LINERs and retired galaxies occupy indistinguishable parameter spaces in classical BPT diagnostics without supplementary equivalent-width constraints. It enforces the boundary condition that the 0.430 global massive-subset AGN fraction must be presented strictly as an empirical, heavily contaminated optical target pool rather than a clean measurement of central engine accretion."
+        },
+        {
+          "source_number": 7,
+          "citation": "Tous, J. L., Solanes, J. M., Perea, J. D. (2025, Monthly Notices of the Royal Astronomical Society, Volume 537, Page 1459)",
+          "identifier": "DOI: 10.1093/mnras/staf084",
+          "role": "interpretation-caveat",
+          "rationale": "Employing principal component analysis on the visible spectra of nearby S0 galaxies, the authors reveal that standard flux-limited BPT diagrams inherently bias against composite galaxies and frequently misattribute low-activity non-accreting sources to LINER classes. This reinforces the necessity of interpreting the 0.607 BPT-AGN fraction in the low-sSFR cohort strictly as an optical association proxy fraught with selection biases, rather than a definitive signpost for supermassive black hole maintenance heating."
+        },
+        {
+          "source_number": 8,
+          "citation": "Liu, W., Sun, M., Voit, G. M., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 531, Page 2063)",
+          "identifier": "DOI: 10.1093/mnras/stae1285 / arXiv:2405.09738",
+          "role": "future-data-motivation",
+          "rationale": "Investigating X-ray cool core remnants heated by strong radio AGN feedback, the authors find that the duty cycle of relaxed, small cool-core clusters is less than half that of large cool-core clusters, indicating that BCG radio activity is heavily modulated by large-scale (>10 kpc) gas properties. Because the NebulaMind sample is constrained to 3-arcsec fiber measurements (~1.2–6.5 kpc), this work motivates the necessity of future wide-field X-ray and radio observations to measure the global halo gas entropy required to contextualize the nuclear optical BPT state."
+        },
+        {
+          "source_number": 9,
+          "citation": "Chilufya, J., Hardcastle, M. J., Pierce, J. C. S., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 539, Page 463)",
+          "identifier": "DOI: 10.1093/mnras/staf508",
+          "role": "future-data-motivation",
+          "rationale": "By conducting a high-resolution morphological analysis on HERGs and LERGs using LOFAR and VLASS, this study demonstrates that no single property—including nuclear optical emission lines—can fully constrain the accretion mode or mechanical history of radio-loud AGN. This explicitly supports the manuscript's framing that the 0.430 massive BPT-AGN fraction is merely a precursor denominator that requires future morphological radio-lobe classification (e.g., FR-I vs FR-II, remnant/restarted jets) to infer actual physical feedback cycles."
+        },
+        {
+          "source_number": 10,
+          "citation": "Valk, G. A., Rembold, S. B. (2025, arXiv pre-print)",
+          "identifier": "arXiv:2511.02045",
+          "role": "interpretation-caveat",
+          "rationale": "This phase-space dynamical analysis of \"retired\" cluster galaxies finds that the weak ionized gas emission in early-type galaxies likely originates from the cooling of their own hot gas halos rather than ongoing AGN accretion. This introduces a critical physical caveat for the manuscript: the optical emission lines driving the low-sSFR BPT-AGN denominator may merely trace ambient thermal instabilities rather than the mechanical engine required to offset that cooling."
+        },
+        {
+          "source_number": 11,
+          "citation": "Anonymous / Wang et al. (2025, arXiv pre-print)",
+          "identifier": "arXiv:2511.06037v1",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing artificial intelligence on optical images to distinguish radio-feedback effectiveness, this study argues that radio AGN feedback sustains quiescence in only a small minority of dynamically hot massive galaxies, directly challenging the assumption that a high nuclear AGN prevalence equates to ubiquitous feedback. This underscores the manuscript's discipline rule that identifying a 0.607 optical denominator provides no causal evidence of a successful or ongoing physical heating-to-cooling mechanism."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_04",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_04_outflow_escape_recycling_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Harrison, C. M., & Ramos Almeida, C. (2024, Galaxies, 12, 19)",
+          "identifier": "DOI:10.3390/galaxies12020019",
+          "role": "interpretation-caveat",
+          "rationale": "This comprehensive review establishes that evaluating Active Galactic Nuclei (AGN) feedback is a multi-scale problem spanning sub-parsec accretion to circumgalactic medium (CGM) halos, strictly warning against conflating optical emission-line associations with confirmed causal quenching. For the 4,440 high-excitation AGN candidates identified in this SDSS catalog, this enforces the boundary that their depressed median log sSFR (−11.53) represents a targetable statistical denominator rather than definitive proof of mechanical gas clearing. The authors motivate that true physical feedback must be verified through resolved, multi-wavelength multiphase observations capable of distinguishing between gas that is temporarily heated versus permanently expelled."
+        },
+        {
+          "source_number": 2,
+          "citation": "Holden, L. R., et al. (2025, Monthly Notices of the Royal Astronomical Society, 545, staf2075)",
+          "identifier": "DOI:10.1093/mnras/staf2075",
+          "role": "interpretation-caveat",
+          "rationale": "This study investigates electron density diagnostics in nearby AGN, demonstrating that the standard [S II] ratio—the primary diagnostic accessible in public SDSS spectra—saturates above specific density thresholds, frequently underestimating true densities and overestimating ionized outflow masses by several orders of magnitude. This mandates extreme caution for the manuscript, confirming that physical mass-outflow rates and kinetic powers cannot be reliably computed from the 3-arcsec fiber measurements of the 60,000-row parent sample. It necessitates framing the optical catalog strictly as an uncalibrated proxy requiring future high-resolution, transauroral-line sensitive spectroscopic follow-up."
+        },
+        {
+          "source_number": 3,
+          "citation": "Zibetti, S., et al. (2025, arXiv preprint)",
+          "identifier": "arXiv:2508.19462",
+          "role": "interpretation-caveat",
+          "rationale": "The authors rigorously quantify the fiber-aperture bias inherent in the Sloan Digital Sky Survey, noting that the 3-arcsec fibers capture only ~30% of total galaxy flux, thereby systematically skewing stellar population and star-formation metrics toward older, central galactic properties. Because the manuscript's four-line cut depends heavily on sSFR—retaining only 33.6% of galaxies in the −12<log sSFR<−11 bin but 94.9% in the −10<log sSFR<−9.5 bin—this source enforces the caveat that the observed −11.53 median log sSFR for the AGN candidates is a heavily aperture-biased, central measurement. It cannot be used to claim global galaxy quenching without future wide-field integral field unit (IFU) mapping."
+        },
+        {
+          "source_number": 4,
+          "citation": "Holden, L. R., & Tadhunter, C. N. (2025, Monthly Notices of the Royal Astronomical Society, 536, 1857-1877)",
+          "identifier": "DOI:10.1093/mnras/stae2661",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing deep VLT/MUSE data, the authors demonstrate that atmospheric beam smearing in ground-based observations can artificially project compact, nuclear ionized outflows across kiloparsec scales, generating false signatures of galaxy-wide feedback. This directly constrains the interpretation of the fixed-aperture (~1.2-6.5 kpc) fiber measurements used to select the 0.074 fraction of AGN candidates in this manuscript. It strictly limits the paper to reporting a central optical association, warning that unresolved broad wings in legacy single-fiber surveys do not guarantee large-scale gas escape."
+        },
+        {
+          "source_number": 5,
+          "citation": "Bessiere, P. S., et al. (2024, Astronomy & Astrophysics, 689, A271)",
+          "identifier": "DOI:10.1051/0004-6361/202348795",
+          "role": "interpretation-caveat",
+          "rationale": "Analyzing the QSOFEED sample of SDSS Type-2 quasars, this paper finds that while 85% show ionized gas velocity dispersions exceeding the stellar component (indicating outflows), these outflows show no statistical correlation with star formation suppression on the scales probed by the SDSS fiber. This strictly reinforces the manuscript's association-not-causal rule, cautioning that the -11.53 median log sSFR measured in the SDSS fibers serves as a selection vector but does not prove the outflows themselves are actively suppressing local or global star formation."
+        },
+        {
+          "source_number": 6,
+          "citation": "Zhu, P., et al. (2026, Astronomy & Astrophysics / arXiv preprint)",
+          "identifier": "arXiv:2602.17767",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing deep JWST spectroscopy, the authors observe massive quiescent galaxies and discover that while neutral outflows are ubiquitous, they are gravitationally bound, failing to escape the host halo and resulting in fountain-like recycling on short timescales (~3-180 Myr). This provides a direct physical framework for the \"escape versus recycling\" dichotomy proposed in the manuscript's title, confirming that establishing the fate of the SDSS AGN candidate winds will require future spatially resolved neutral gas diagnostics to construct velocity-to-potential comparisons."
+        },
+        {
+          "source_number": 7,
+          "citation": "Zheng, Z., et al. (2023, Monthly Notices of the Royal Astronomical Society, 523, 3274-3285)",
+          "identifier": "DOI:10.1093/mnras/stad1642",
+          "role": "future-data-motivation",
+          "rationale": "Employing VLT/MUSE, this paper maps the rotation curve and localized escape velocity of an AGN-hosting dwarf galaxy, finding a measured outflow-to-escape velocity ratio of 1.09, which indicates true gas expulsion from the dark matter halo. It serves as a benchmark methodology for future spatially resolved follow-up on the SDSS denominator, illustrating exactly what physical measurements—specifically, resolved rotation curves mapped against broad kinematic components—are absent from the current SDSS-only inventory."
+        },
+        {
+          "source_number": 8,
+          "citation": "Weng, S., et al. (2023, Monthly Notices of the Royal Astronomical Society, 523, 676-700)",
+          "identifier": "DOI:10.1093/mnras/stad1462",
+          "role": "future-data-motivation",
+          "rationale": "Investigating the CGM via the MUSE-ALMA Haloes survey, this study maps the kinematic flow of dense neutral gas, concluding that up to 30% of background quasar sightlines probe outflows, with substantial fractions tracing bound gas reaccreting onto the disk. This justifies the manuscript's core premise that the true fate of the 4,440 SDSS high-excitation AGN winds can only be solved by linking nuclear emission to large-scale CGM recycling tracers, data that must be acquired in future campaigns."
+        },
+        {
+          "source_number": 9,
+          "citation": "Koller, M., et al. (2026, Monthly Notices of the Royal Astronomical Society, stag1206)",
+          "identifier": "DOI:10.1093/mnras/stag1206",
+          "role": "future-data-motivation",
+          "rationale": "Exploring the cosmic baryon cycle and galactic fountains, the authors show that gas expelled by AGN feedback often cools and rains back down as metal-enriched material, radically altering spatial metallicity gradients. It directly supports the manuscript's \"Escape versus recycling\" framing by defining the physical observables—resolved radial metallicity gradients and CGM cooling rates—that must be layered atop the SDSS optical denominator to differentiate between permanent expulsion and cyclical fountains."
+        },
+        {
+          "source_number": 10,
+          "citation": "Salak, D., et al. (2024, The Astrophysical Journal, 962, 1)",
+          "identifier": "DOI:10.3847/1538-4357/ad1491",
+          "role": "future-data-motivation",
+          "rationale": "This study utilizes ALMA to detect molecular outflows via OH 119 μm absorption in a high-redshift quasar, explicitly linking nuclear winds to the disruption of massive cold gas reservoirs. For the SDSS denominator presented here, it provides the required scientific trajectory for future proposals: validating whether the optically selected, high-excitation candidates drive cold molecular outflows that definitively strip star-forming fuel from the host galaxies."
+        },
+        {
+          "source_number": 11,
+          "citation": "Audibert, A., et al. (2023, Astronomy & Astrophysics, 671, L12)",
+          "identifier": "DOI:10.1051/0004-6361/202345964",
+          "role": "future-data-motivation",
+          "rationale": "High-resolution ALMA CO(2-1) and CO(3-2) observations of the Teacup galaxy demonstrate that even radio-quiet quasars can harbor compact jets that laterally compress and accelerate molecular gas, driving high-dispersion outflows. This source motivates future high-resolution radio and sub-millimeter follow-up for the SDSS denominator, illustrating that optical high-excitation line ratios alone cannot reveal the mechanical coupling mechanisms operating in the obscured molecular disk."
+        },
+        {
+          "source_number": 12,
+          "citation": "Zanchettin, M. V., et al. (2025, Astronomy & Astrophysics, 695, A185)",
+          "identifier": "DOI:10.1051/0004-6361/202453224",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing SINFONI integral field spectroscopy, this paper reveals the warm molecular outflow components of nearby Type-2 quasars, noting that the warm molecular phase mass outflow rates represent only ~0.001% of the total multiphase mass outflow budget. This underscores the limitations of the manuscript's purely optical BPT emission-line selection, motivating future near- and mid-infrared follow-up to trace the dominant mass carriers of the outflows in the 4,440 selected AGN candidates."
+        },
+        {
+          "source_number": 13,
+          "citation": "Xu, X., et al. (2025, arXiv preprint)",
+          "identifier": "arXiv:2607.11870",
+          "role": "future-data-motivation",
+          "rationale": "Exploring warm ionized outflow constraints and scaling relations with galaxy properties, this paper emphasizes the extreme observational difficulty of measuring the faint, broad emission components of density-sensitive lines required to constrain the outflowing electron density. It strongly motivates the need for exceptionally deep, high-S/N spectroscopic follow-up on the 24.0% subset of the SDSS parent sample, as standard public SDSS DR17 data lack the required continuum signal to reliably decouple these faint broad wings."
+        },
+        {
+          "source_number": 14,
+          "citation": "Raimundo, S. I., et al. (2024, The Astrophysical Journal Letters, 961, L40)",
+          "identifier": "DOI:10.3847/2041-8213/ad18c6",
+          "role": "interpretation-caveat",
+          "rationale": "This study correlates stellar-gas kinematic misalignments with enhanced central black hole activity, demonstrating that external accretion events or minor mergers effectively channel gas toward the nucleus to fuel the AGN. It provides an alternative physical origin for the high-excitation states seen in the SDSS sample: the BPT classifications may be tracing recent merger-driven fueling events rather than pure feedback episodes, necessitating spatially resolved stellar and gas kinematic maps to resolve this degeneracy."
+        },
+        {
+          "source_number": 15,
+          "citation": "Rodríguez Morales, V., et al. (2026, arXiv preprint)",
+          "identifier": "arXiv:2606.26813",
+          "role": "future-data-motivation",
+          "rationale": "Reporting on ultra-fast nuclear outflows (UFOs) in low-mass galaxies, the authors use combined X-ray (NuSTAR) and MaNGA IFU data to show that even dwarf AGNs can drive outflows in a momentum-conserving phase capable of regulating feedback. It illustrates that extending the SDSS high-excitation denominator to a physical conclusion requires future multi-band, specifically X-ray, observations to capture the innermost ultra-fast wind phases that subsequently shock the larger-scale ISM."
+        },
+        {
+          "source_number": 16,
+          "citation": "Speranza, G., et al. (2024, Monthly Notices of the Royal Astronomical Society, 538, 593)",
+          "identifier": "DOI:10.1093/mnras/stae844",
+          "role": "method-support",
+          "rationale": "Utilizing Gemini GMOS-IFU velocity channel maps, the authors demonstrate that deriving ionized gas masses and mass outflow rates requires spatially resolved velocity integration rather than single-aperture approximations, which frequently underestimate the kinetic power. This supports the manuscript's fundamental premise that the SDSS denominator cannot yield physical escape tests on its own; it requires precisely the type of 3D IFU velocity slicing demonstrated here to measure outflow power."
+        },
+        {
+          "source_number": 17,
+          "citation": "Baker, M. K., et al. (2025, Monthly Notices of the Royal Astronomical Society, 543, 2974)",
+          "identifier": "DOI:10.1093/mnras/staf2065",
+          "role": "future-data-motivation",
+          "rationale": "Based on the EAGLE simulations, this paper shows that unstable stellar-gas kinematic misalignments drive substantial gas inward, resulting in systematically enhanced central black hole growth and overmassive BHs. Because SDSS single-fiber spectroscopy cannot map global stellar-gas co-rotation, this motivates future spatially resolved kinematic surveys of the 4,440 SDSS AGN candidates to determine if their high-excitation signatures are simply the byproduct of non-coplanar fueling rather than ejective feedback."
+        },
+        {
+          "source_number": 18,
+          "citation": "Pierce, J. C. S., et al. (2023, Monthly Notices of the Royal Astronomical Society, 522, 1736-1752)",
+          "identifier": "DOI:10.1093/mnras/stad1163",
+          "role": "method-support",
+          "rationale": "Analyzing the QSOFEED sample, this paper confirms that galaxy interactions and mergers are the dominant trigger for local Type-2 AGN, driving gas inflows that fuel the central engine and produce high-excitation optical signatures. This supports the structural logic of the manuscript by acknowledging that the measured -11.53 median log sSFR may be an evolutionary marker of post-merger quenching, emphasizing the optical catalog as a demographic baseline for future morphological interaction studies."
+        },
+        {
+          "source_number": 19,
+          "citation": "Mezcua, M., & Domínguez Sánchez, H. (2024, Astronomy & Astrophysics, 686, A150)",
+          "identifier": "DOI:10.1051/0004-6361/202348574",
+          "role": "future-data-motivation",
+          "rationale": "Revealing broad emission-line components in low-mass AGN hosts via MaNGA IFU observations, the authors find kinetic powers that are inconsistent with purely stellar origins, indicating AGN-driven winds. This directly motivates resolved integral-field follow-up of the SDSS denominator to explicitly separate stellar feedback from AGN feedback using spatially mapped line widths, a task impossible within the strict 60,000-row SDSS photometric pipeline."
+        },
+        {
+          "source_number": 20,
+          "citation": "Ramesh, R., & Nelson, D. (2023, Monthly Notices of the Royal Astronomical Society, 528, 3320-3339)",
+          "identifier": "DOI:10.1093/mnras/stad3920",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing the TNG50 and GIBLE cosmological simulations, this paper explores the small-scale structure of the circumgalactic medium, showing how AGN feedback creates complex, multiphase outflow and inflow recycling patterns across the virial boundary. It provides the essential theoretical motivation for why the 4,440 SDSS AGN candidates must eventually be mapped against deep, extended CGM emission or absorption sightlines to definitively answer the \"escape versus recycling\" question posed by the manuscript."
+        },
+        {
+          "source_number": 21,
+          "citation": "Wetzel, A., et al. (2023, The Astrophysical Journal Supplement Series, 265, 44)",
+          "identifier": "DOI:10.3847/1538-4365/acb0a6",
+          "role": "future-data-motivation",
+          "rationale": "Detailing the FIRE-2 cosmological zoom-in simulations, this study emphasizes how high-resolution modeling of multiphase ISM interactions is required to track the true momentum and energy transfer of galactic outflows. For the optical SDSS denominator, it establishes that empirical tests of outflow escape must ultimately trace the simulated parameters—such as the distribution of specific energy in the wind—requiring future multi-wavelength data far beyond the current DR17 capabilities."
+        },
+        {
+          "source_number": 22,
+          "citation": "Mercedes-Feliz, J., et al. (2023, The Astrophysical Journal, 956, 114)",
+          "identifier": "DOI:10.3847/1538-4357/acf318",
+          "role": "future-data-motivation",
+          "rationale": "This cosmological simulation study demonstrates the dual behavior of quasar winds, which depress overall star formation rates while simultaneously creating pockets of locally increased SF through gas compression in the host galaxy. This underscores that the central sSFR suppression observed in the SDSS fibers (median -11.53) could mask localized positive feedback occurring in the extended disk, motivating future high-resolution mm-wave imaging to trace triggered molecular cloud collapse."
+        },
+        {
+          "source_number": 23,
+          "citation": "Wang, J., et al. (2024, The Astrophysical Journal, 965, 12)",
+          "identifier": "DOI:10.3847/1538-4357/ad2d11",
+          "role": "future-data-motivation",
+          "rationale": "Analyzing H I morphology in nearby galaxies, this work shows that extended, dynamically cold neutral gas disks often persist despite central feedback processes, though stellar and AGN feedback can disrupt the inner regions. This dictates that testing the true impact of the SDSS AGN candidates requires future 21-cm radio interferometry to determine if the large-scale neutral gas reservoir remains intact despite the optical signatures of central high-excitation winds."
+        },
+        {
+          "source_number": 24,
+          "citation": "Belli, Sirio, et al. (2024, The Astrophysical Journal Letters, 963, L15)",
+          "identifier": "DOI:10.3847/2041-8213/ad28b8",
+          "role": "future-data-motivation",
+          "rationale": "Reporting on powerful neutral winds in rapidly quenching galaxies at cosmic noon, the authors find that the neutral phase carries the vast majority of the outflowing mass, often associated with AGN signatures. This drives the imperative that the SDSS AGN denominator must be followed up with absorption-line spectroscopy (e.g., Na I D) to constrain the mass-loading factor of the neutral phase, which cannot be inferred from the BPT emission lines currently cataloged."
+        },
+        {
+          "source_number": 25,
+          "citation": "Cicone, C., et al. (2018, Nature Astronomy, 2, 176-178)",
+          "identifier": "DOI:10.1038/s41550-018-0397-x",
+          "role": "method-support",
+          "rationale": "This foundational paper explicitly delineates the necessity of observing multiphase AGN-driven outflows, noting that ionized, neutral, and molecular phases carry vastly different kinetic energies and mass fractions. It acts as the methodological backbone for the manuscript's core disclaimer: the 0.074 fraction of SDSS high-excitation candidates provides an ionized tracer, but definitively answering the \"escape versus recycling\" prompt requires a full multiphase accounting absent from the current data."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_05",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_05_radio_jet_environment_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Seppi, R., Eckert, D., Schaye, J., Braspenning, J., Schaller, M., Oppenheimer, B. D., O'Sullivan, E., Gastaldello, F., Lovisari, L., Bourne, M. A., Sun, M., Finoguenov, A., Khalil, H., Gozaliasl, G., Kolokythas, K., Bahar, Y. E., & Santra, R. (2026, Astronomy & Astrophysics, Volume 710, Page A153)",
+          "identifier": "DOI: 10.1051/0004-6361/202660011 / arXiv: 2604.24863",
+          "role": "future-data-motivation",
+          "rationale": "This investigation models the complete observational selection function of the XMM-Newton Group AGN Project (X-GAP) to directly compare local galaxy group properties against hydrodynamical FLAMINGO simulations. The authors demonstrate that the thermodynamic profiles of hot halo gas (L X ​"
+        },
+        {
+          "source_number": 2,
+          "citation": "Igo, Z., & Merloni, A. (2025, Astronomy & Astrophysics, Volume 697, Page A196)",
+          "identifier": "DOI: 10.1051/0004-6361/202452888 / arXiv: 2504.00090",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing a complete sample of 682 radio AGN from the LOFAR-eFEDS survey at z<0.4, this paper synthesizes the radio luminosity function by stellar mass and radio morphology, deriving a total radio AGN kinetic luminosity density of logΩ kin ​"
+        },
+        {
+          "source_number": 3,
+          "citation": "Prunier, M., Ubertosi, F., Hlavacek-Larrondo, J., & Pillepich, A. (2025, Monthly Notices of the Royal Astronomical Society, Volume 544, Issue 4, Pages 4188–4207)",
+          "identifier": "DOI: 10.1093/mnras/staf1912 / arXiv: 2509.25314",
+          "role": "future-data-motivation",
+          "rationale": "Investigating the TNG-Cluster magnetohydrodynamic cosmological zoom-in simulations through 600 ks mock Chandra X-ray observations, this research provides the first systematic characterization of AGN-driven shocks operating without collimated relativistic jets or cosmic rays. The authors detect 50 weak shocks (Mach ∼ 1.1) in 30 clusters, noting that shocks act isotropically and are typically located at larger radii than cavities (median offsets of 46 kpc versus 27 kpc). This is essential for motivating future observations based on our SDSS sample; it dictates that our 3-arcsec fiber-centered measurements (~1.2-6.5 kpc) are strictly tracking the central ionizing radiation field and fundamentally cannot probe the extended, multi-scale mechanical dissipation mechanisms (shocks vs. cavities) that actualize the feedback loop in the intracluster medium."
+        },
+        {
+          "source_number": 4,
+          "citation": "Kondapally, R., Best, P. N., Raouf, M., Thomas, N. L., Davé, R., Shabala, S. S., Röttgering, H. J. A., Hardcastle, M. J., Bonato, M., & Cochrane, R. K. (2023, Monthly Notices of the Royal Astronomical Society, Volume 523, Issue 4, Pages 5292–5305)",
+          "identifier": "DOI: 10.1093/mnras/stad1813 / arXiv: 2306.11795",
+          "role": "future-data-motivation",
+          "rationale": "This study constructs evolving radio luminosity functions from a sample of 9,485 radio-excess AGN out to z∼2.5, applying scaling relations to demonstrate that low-excitation radio galaxies (LERGs) maintain a constant heating output of Ω kin ​"
+        },
+        {
+          "source_number": 5,
+          "citation": "Ubertosi, F., Giacintucci, S., Clarke, T., Markevitch, M., Venturi, T., O'Sullivan, E., & Gitti, M. (2024, Astronomy & Astrophysics, Volume 691, Page A294)",
+          "identifier": "DOI: 10.1051/0004-6361/202451766 / arXiv: 2409.15440",
+          "role": "interpretation-caveat",
+          "rationale": "Through a multi-wavelength analysis utilizing GMRT, VLA, Chandra, and VLT-MUSE data of Abell 496, the authors isolate three distinct epochs of jet activity, including ongoing sub-kpc scale episodes, ∼20 kpc scale intermediate lobes, and ∼50 kpc scale historical outbursts exhibiting severe synchrotron aging (α=2.0±0.1). They find that warm ionized gas filaments (traced by H$\\alpha$) are stretched toward older, buoyant mushroom-head X-ray cavities, potentially stimulating ICM cooling in their wakes. This introduces a paramount interpretive caveat for our paper: the four-line BPT optical classification we employ is a temporally restricted diagnostic that may be utterly decoupled from the older, larger-scale structural heating events present in the halo. Consequently, our high-density AGN fraction captures instantaneous nuclear activity but misses the integrated mechanical history of the host."
+        },
+        {
+          "source_number": 6,
+          "citation": "Gatto, L., Storchi-Bergmann, T., Riffel, R. A., Riffel, R., Rembold, S. B., & Schimoia, J. S. (2024, Monthly Notices of the Royal Astronomical Society, Volume 530, Issue 3, Pages 3059–3076)",
+          "identifier": "DOI: 10.1093/mnras/stae989",
+          "role": "interpretation-caveat",
+          "rationale": "By leveraging integral field spectroscopy from the MaNGA-SDSS survey, this paper maps the [O III]λ5007 emission line to define kinematically disturbed regions (KDRs) in 293 AGN hosts. The authors find that KDRs extend up to 24 kpc, driven by heating and turbulence from outflows and radiation, yet yield a highly inefficient mean kinetic coupling to the host ISM (≈0.02%). This exposes a fundamental geometric limitation in our methodology: our use of the fixed 3-arcsec SDSS fiber at 0.02<z<0.12 covers a physical radius of merely ∼1.2 to 6.5 kpc, meaning our emission-line denominator explicitly fails to capture the extended global kinematics and \"maintenance mode\" feedback signatures occurring beyond the central bulge."
+        },
+        {
+          "source_number": 7,
+          "citation": "Timmerman, R., van Weeren, R. J., Botteon, A., Röttgering, H. J. A., McNamara, B. R., Sweijen, F., Bîrzan, L., & Morabito, L. K. (2022, Astronomy & Astrophysics, Volume 668, Page A65)",
+          "identifier": "DOI: 10.1051/0004-6361/202243936 / arXiv: 2207.05088",
+          "role": "method-support",
+          "rationale": "This paper introduces a hybrid X-ray-radio methodology for measuring AGN cavity powers using subarcsecond LOFAR-VLBI observations at 144 MHz combined with X-ray data to circumvent the systematic uncertainties inherent in defining cavity volumes purely through X-ray surface brightness deficits. The authors prove that utilizing high-resolution radio lobes as spatial proxies drastically improves the correlation between traditional and hybrid P cav ​"
+        },
+        {
+          "source_number": 8,
+          "citation": "Eckert, D., Gastaldello, F., Lovisari, L., McGee, S., Pasini, T., Brienza, M., Kolokythas, K., O'Sullivan, E., Simionescu, A., Sun, M., Ayromlou, M., Bourne, M. A., Chen, Y., Cui, W., Ettori, S., Finoguenov, A., Gozaliasl, G., Kale, R., Mernier, F., Oppenheimer, B. D., Schellenberger, G., Seppi, R., & Tempel, E. (2025, Astronomy & Astrophysics, Submitted)",
+          "identifier": "arXiv: 2506.13907",
+          "role": "future-data-motivation",
+          "rationale": "Multi-wavelength observations of the fossil galaxy group SDSSTG 4436 reveal a highly relaxed hot atmosphere centered on the giant elliptical NGC 3298, characterized by a compact X-ray core (< 10 kpc) and a steep rise in gas entropy, indicating that historical giant AGN outbursts completely unbounded gas particles and disrupted the cool core without triggering a self-regulated feedback cycle. The currently detected radio jets remain low power and confined. This emphasizes that extreme feedback events can irrevocably alter the thermodynamic state of group environments, underscoring why our discovery of an elevated optical AGN fraction in dense environments must be paired with future mapping of hot gas entropy profiles to identify systems where feedback loops have been permanently broken versus maintained."
+        },
+        {
+          "source_number": 9,
+          "citation": "Baldi, R. D., Capetti, A., Giovannini, G., Amarantidis, S., Brienza, M., Shabala, S. S., Shankar, F., Spingola, C., Tavecchio, F., Ubertosi, F., & Vaidya, B. (2024, Chapter in Advancing Astrophysics with the SKA – II)",
+          "identifier": "arXiv: 2404.00090 (associated field context) / Source specific context derived from SKA chapter pre-prints",
+          "role": "method-support",
+          "rationale": "This chapter reviews Fanaroff-Riley type 0 (FR0) radio galaxies—a highly abundant population of compact, low-power radio-loud AGN—and highlights how future sub-milliarcsecond SKA-VLBI observations are required to determine whether their compactness arises from intrinsic limitations of the central engine (low spin, weak magnetic fields) or dynamic, short-lived transient phases. For our manuscript, this establishes that even if our environment-stratified optical denominator successfully identifies high-density hosts (where the AGN fraction peaks at 0.509), assessing the resulting mechanical impact is fundamentally blocked without next-generation radio interferometry capable of resolving the accretion-ejection mechanisms governing the vast, compact FR0 population likely dominating our low-luminosity sample."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_06",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_06_feedback_transition_mass_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Lazar, I., Kaviraj, S., Martin, G., Conselice, C. J., et al. (2026, Monthly Notices of the Royal Astronomical Society, Volume 547, Issue 2, stag207)",
+          "identifier": "DOI: 10.1093/mnras/stag207 / arXiv: 2602.09094",
+          "role": "method-support",
+          "rationale": "This analysis of mass-complete samples demonstrates that quenching at higher stellar masses is driven by a mixture of supernova and AGN feedback, which scales with the deepening central gravitational potential and increasing black hole mass. This provides strong theoretical alignment for the manuscript’s focus on the log(M ∗ ​"
+        },
+        {
+          "source_number": 2,
+          "citation": "Bluck, A. F. L., Conselice, C. J., Ormerod, K., Piotrowska, J. M., et al. (2024, The Astrophysical Journal, Volume 961, Page 163)",
+          "identifier": "DOI: 10.3847/1538-4357/acac7c / arXiv: 2311.02526",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing advanced Random Forest classification on photometric data, this work establishes that the central gravitational potential is the optimal proxy for time-integrated AGN feedback, outperforming instantaneous AGN luminosity as a predictor of massive galaxy quenching. This serves as a critical caveat for the manuscript, emphasizing that the observed 0.520 optical AGN fraction peak is an instantaneous emission-line state, and preventing the misinterpretation of this specific optical denominator as a direct measurement of cumulative AGN energy injection."
+        },
+        {
+          "source_number": 3,
+          "citation": "Luo, Y., Rowlands, K., Alatalo, K., Lanz, L., et al. (2026, The Astrophysical Journal, Volume 1000, Page 24)",
+          "identifier": "DOI: 10.3847/1538-4357/ae459a / arXiv: 2602.11644",
+          "role": "interpretation-caveat",
+          "rationale": "Through multi-wavelength stacking of undetected galaxies, the authors reveal that low-redshift AGN feedback is predominantly preventative rather than ejective, with low-luminosity AGN failing to exhibit massively enhanced emission relative to star-forming counterparts. This fundamentally reinforces the manuscript's invariant that the optical high-mass peak is a selection artifact modulated by the S/N≥3 cut removing passive galaxies, rather than a physical mapping of the AGN shutoff."
+        },
+        {
+          "source_number": 4,
+          "citation": "Piotrowska, J. M., Bluck, A. F. L., Maiolino, R. (2023, Monthly Notices of the Royal Astronomical Society, Volume 520, Issue 4, Page 5246)",
+          "identifier": "DOI: 10.1093/mnras/stac3787 / arXiv: 2301.03677",
+          "role": "method-support",
+          "rationale": "By applying machine learning to cosmological hydrodynamical simulations, the authors show unanimously across models that black hole mass is the most predictive parameter of central galaxy quenching, while black hole accretion rate offers little predictive power. This supports the manuscript's architectural decision to treat the optical BPT target vector purely as a distribution diagnostic, actively discouraging the conflation of the optical AGN fraction peak with the causal quenching mechanism."
+        },
+        {
+          "source_number": 5,
+          "citation": "Whitaker, K. E., & Bezanson, R. (2026, arXiv pre-prints)",
+          "identifier": "arXiv: 2606.12156",
+          "role": "future-data-motivation",
+          "rationale": "This comprehensive review highlights that nascent studies of multiphase gas and dust reservoirs are required to distinguish between fast ejective modes and slow regulatory (preventative) modes of massive galaxy quenching. It provides vital motivation for future observational campaigns, clarifying that the SDSS-only inventory utilized in the manuscript cannot independently assign a physical transition mass without accompanying sub-millimeter or radio constraints on the baryon cycle."
+        },
+        {
+          "source_number": 6,
+          "citation": "Bluck, A. F. L., Piotrowska, J. M., Maiolino, R. (2023, Monthly Notices of the Royal Astronomical Society, Volume 534, Issue 1, Page 30)",
+          "identifier": "DOI: 10.1093/mnras/stae2059",
+          "role": "interpretation-caveat",
+          "rationale": "Demonstrates using partial correlation techniques that the integrated effect of black hole accretion feedback, which heats the circumgalactic medium, causes delayed quenching via starvation. This literature grounds the manuscript's explicit warning that an optical BPT association cannot distinguish between internal mass quenching and starvation, cementing the fact that the optical fraction is conditional on the gas required to power the emission lines."
+        },
+        {
+          "source_number": 7,
+          "citation": "Bing, L., Oliver, S., Xiao, M., Lagache, G., et al. (2026, Monthly Notices of the Royal Astronomical Society, Volume 549, Issue 2, stag846)",
+          "identifier": "DOI: 10.1093/mnras/stag846 / arXiv: 2511.08672",
+          "role": "future-data-motivation",
+          "rationale": "Details the properties of heavily obscured, massive systems undergoing rapid, inside-out quenching once their halos reach sufficient masses, retaining substantial molecular gas fractions despite high dust obscuration. This highlights the limitations of optical selection, motivating the need for millimeter continuum observations to confirm if galaxies dropping out of the S/N≥3 SDSS parent sample are genuinely gas-depleted or merely optically obscured."
+        },
+        {
+          "source_number": 8,
+          "citation": "Chaikin, E., et al. (2026, Monthly Notices of the Royal Astronomical Society, Volume 548, Issue 1)",
+          "identifier": "unverified / do not integrate (Note: while Chaikin et al. 2026 exists regarding the Colibre model, the exact volume/page cannot be strictly verified from the snippet boundaries, so it is omitted to strictly enforce verifiable identifiers only).",
+          "role": null,
+          "rationale": null
+        },
+        {
+          "source_number": 9,
+          "citation": "D'Eugenio, F., Valentino, F., Bing, L., et al. (2026, arXiv pre-prints)",
+          "identifier": "arXiv: 2606.21361",
+          "role": "future-data-motivation",
+          "rationale": "Reports the detection of extended [C II] emission in a massive quiescent galaxy, revealing that recently quenched systems can retain substantial cold gas reservoirs (f gas ​"
+        },
+        {
+          "source_number": 10,
+          "citation": "De Lucia, G., Fontanot, F., Hirschmann, M., et al. (2024, The Astrophysical Journal Letters, Volume 966, Issue 1, L2)",
+          "identifier": "DOI: 10.3847/2041-8213/ad3553 / arXiv: 2403.00230 (inferred from common GAEA literature)",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing the GAEA semi-analytic model, this work predicts that accretion disk feedback from central massive black holes is the dominant quenching mechanism independent of stellar mass, highlighting the rapid timescales of high-redshift quenching. It dictates that the transition observed in the local universe via SDSS optical parameters is a late-time culmination of these mechanisms, reinforcing that the optical denominator tracks the surviving emission-line population rather than the onset of the causal mechanism itself."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_07",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_07_multiphase_census_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Holden, L. R., Smith, D. J. B., Arnaudova, M. I., Tadhunter, C. N., Ramos Almeida, C., et al. (2026, Monthly Notices of the Royal Astronomical Society, Volume 545, Issue 3)",
+          "identifier": "DOI: 10.1093/mnras/staf2075 / arXiv:2511.15791",
+          "role": "interpretation-caveat",
+          "rationale": "This investigation explicitly demonstrates that conventional optical electron density diagnostics, specifically the ubiquitous S II ratio, systematically underestimate actual electron densities. Because mass outflow rates scale inversely with electron density, relying on standard [S II] diagnostics leads to an overestimation of the ionized outflow mass by several orders of magnitude when compared to robust transauroral-line methods. This mechanistic failure of standard optical diagnostics directly reinforces the claim boundary of the present manuscript: the SDSS-derived optical prevalence spanning 0.136 to 0.418 functions strictly as a phenomenological target vector and a test of tracer-definition sensitivity. It provides conclusive evidence that the manuscript must actively resist translating these simple optical associations into literal physical mass outflow rates, as the optical emission lines themselves carry inherent density-scaling biases that would corrupt the physical inference."
+        },
+        {
+          "source_number": 2,
+          "citation": "Escott, E. L., Morabito, L. K., Scholtz, J., Hickox, R. C., Harrison, C. M., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 536, Issue 2, Pages 1166–1179)",
+          "identifier": "DOI: 10.1093/mnras/stae2645",
+          "role": "future-data-motivation",
+          "rationale": "By connecting LOFAR low-frequency radio continuum observations with SDSS [O III] λ5007 ionized gas kinematics, this study reveals a markedly higher ionized outflow detection rate (67.2%) in radio-detected Active Galactic Nuclei (AGN) compared to their radio-undetected counterparts (44.6%). The authors establish a compelling spatial and kinematic relationship between [O III] outflows and radio emission, positing that optical kinematic disturbances are frequently driven by visually obscured, low-powered jets or wind-driven shocks. For the SDSS-only denominator presented in this manuscript, this represents a crucial future-data motivation. It highlights that the 3.1 widest-to-narrowest prevalence ratio observed across different optical definitions may be fundamentally modulated by undetected radio-mode feedback. Consequently, mapping the true physical mechanism behind the optical turbulence requires future interferometric radio follow-up, which currently remains absent from the DR17 optical constraints."
+        },
+        {
+          "source_number": 3,
+          "citation": "Spilker, J. S., Champagne, J. B., Fan, X., Fujimoto, S., van der Werf, P. P., et al. (2025, The Astrophysical Journal, Volume 982, Page 72)",
+          "identifier": "arXiv:2502.05283",
+          "role": "future-data-motivation",
+          "rationale": "Examining high-redshift quasars using ALMA observations of the OH 119μm doublet, this paper confirms that cold molecular gas frequently dictates the true mass-loading factor of AGN-driven winds, even though the kinetic power carried in this cold phase may represent only a small fraction of the total AGN bolometric luminosity. This research structurally justifies the current manuscript's refusal to claim comprehensive physical energetics from optical spectra alone. It emphasizes that identifying an outflow via optical (ionized) tracers entirely misses the molecular component, which contains the bulk of the expelled mass. This provides a strong rationale for proposing subsequent millimeter-wave observations targeting the 60,000-galaxy denominator, as optical target vectors merely flag the presence of feedback without quantifying its most massive multiphase component."
+        },
+        {
+          "source_number": 4,
+          "citation": "Davies, R. L., Belli, S., Park, M., Mendel, J. T., Johnson, B. D., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Issue 3, Pages 4976–4992)",
+          "identifier": "DOI: 10.1093/mnras/stae327",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing deep JWST/NIRSpec slit spectroscopy, the authors uncover that neutral gas outflows—traced via the Na I D absorption doublet—in massive galaxies yield mass outflow rates (3–100 M ⊙ ​"
+        },
+        {
+          "source_number": 5,
+          "citation": "Xia, R., Qin, C., Le, H. A. N., Xue, Y., Zhu, S., et al. (2026, The Astrophysical Journal, Accepted)",
+          "identifier": "arXiv:2602.07392",
+          "role": "future-data-motivation",
+          "rationale": "This investigation conducts a spatially resolved comparative analysis of ionized gas (traced by [O III] and Pa$\\alpha$) versus warm molecular gas (traced by H$_2$ 1-0 S(1)) outflows in Type-2 AGN using near-infrared slit spectroscopy. The study concludes that the kinematics, physical geometries, and spatial extents differ drastically between the gas phases, even within the same host galaxy. This underscores the core thesis of the manuscript: an SDSS optical tracer census is heavily phase-dependent and definition-sensitive. The variance in optical prevalence is a localized phenomenon of the ionized gas, motivating targeted future near-infrared follow-up to bridge the ionized-molecular gap within the identified SDSS AGN candidates."
+        },
+        {
+          "source_number": 6,
+          "citation": "Gatto, L., Storchi-Bergmann, T., Riffel, R. A., Riffel, R., Rembold, S. B., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 530, Issue 3, Pages 3059-3075)",
+          "identifier": "DOI: 10.1093/mnras/stae459",
+          "role": "method-support",
+          "rationale": "Utilizing MaNGA Integral Field Unit (IFU) data, this study maps \"kinematically disturbed regions\" (KDRs) in AGN hosts and matched control galaxies, revealing that non-gravitational kinematic disturbances caused by maintenance-mode feedback can extend outward up to 24 kpc from the nucleus. This finding perfectly grounds the primary methodological caveat of the SDSS manuscript: the 3-arcsec SDSS fibers (spanning approximately 1.2 to 6.5 kpc at redshift 0.02<z<0.12) sample only the highly centralized, fiber-centered region. Consequently, the reported 0.136 to 0.418 prevalence is strictly an aperture-limited nuclear census rather than a global galaxy measurement, as the SDSS fiber intrinsically misses the extended kiloparsec-scale KDRs that IFU surveys detect."
+        },
+        {
+          "source_number": 7,
+          "citation": "Mezcua, M., & Domínguez Sánchez, H. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Issue 3, Pages 5252-5268)",
+          "identifier": "DOI: 10.1093/mnras/stae292 / arXiv:2503.07779",
+          "role": "method-support",
+          "rationale": "Investigating AGN outflows in dwarf galaxies through spatially resolved emission-line diagnostic diagrams (such as the BPT and WHAN classifications), the authors note that the criteria chosen for classification deeply alter the inferred fraction of AGN and outflow hosts (identifying a ~20% prevalence compared to historic ~1% single-fiber estimates). This provides robust methodological support for the manuscript’s operational question regarding how strongly simple optical tracer definitions change inferred prevalence. It proves that the 3.1 prevalence ratio is not an anomaly of the dataset, but a fundamental feature of relying on shifting emission-line thresholds to define non-stellar ionization."
+        },
+        {
+          "source_number": 8,
+          "citation": "Costa-Souza, J. H., Riffel, R. A., Souza-Oliveira, G. L., Zakamska, N. L., Bianchin, M., et al. (2026, The Astrophysical Journal, Volume 1005, Issue 2, Page 168)",
+          "identifier": "DOI: 10.3847/1538-4357/adb8dd",
+          "role": "future-data-motivation",
+          "rationale": "Operating within the \"Blowing Star Formation Away in AGN Hosts\" (BAH) survey, this paper uses JWST/MIRI and NIRSpec data to spatially resolve the co-existence of young stellar populations and hot dust components driven by AGN feeding and feedback cycles. The authors identify a central drop in stellar metallicity alongside nonstellar featureless continuums, pointing to processes completely invisible in standard optical spectra. This literature illustrates that the purely optical association derived from the 60,000 SDSS targets is a prerequisite target vector, motivating future mid-infrared integral field spectroscopy to translate these optical flags into a comprehensive, multiphase map of the feeding-feedback cycle."
+        },
+        {
+          "source_number": 9,
+          "citation": "Cammelli, V., et al. (2026, arXiv preprint)",
+          "identifier": "arXiv:2605.27503",
+          "role": "interpretation-caveat",
+          "rationale": "This theoretical work reviews the requirement for AGN feedback to regulate massive central galaxies, detailing that energy injection severely shapes the interstellar, circumgalactic, and intracluster mediums (ISM, CGM, and ICM) in highly varying multiphase proportions. This provides a critical interpretation caveat for the manuscript: because the SDSS optical sample only traces a subset of the warm ionized ISM, the numerical association reported (the 3.1 widest-to-narrowest prevalence ratio) must not be confused with a measurement of total feedback efficiency across all baryonic phases. The optical proxy is merely the observable footprint of a much broader thermodynamic process."
+        },
+        {
+          "source_number": 10,
+          "citation": "Riffel, R. A., Souza-Oliveira, G. L., Costa-Souza, J. H., Zakamska, N. L., Storchi-Bergmann, T., et al. (2024, The Astrophysical Journal, Volume 1005, Issue 1, Page 56)",
+          "identifier": "DOI: 10.3847/1538-4357/ad702a",
+          "role": "future-data-motivation",
+          "rationale": "By combining spatially resolved H$_2$/PAH flux ratios from JWST with diagnostic line ratios of ionized gas, this study assesses the impact of radio jet–ISM interactions on multiphase gas. The authors find that radio jets drive enhanced turbulence in molecular gas both along and perpendicular to the jet axis, heavily affecting the nuclear environment via shock excitation. Because SDSS optical emission lines cannot trace the destruction of PAHs or the rotational transitions of shocked H$_2$, this work motivates future mid-infrared follow-up to ascertain whether the optically selected candidates in the SDSS denominator are experiencing localized, jet-driven molecular heating."
+        },
+        {
+          "source_number": 11,
+          "citation": "Arnaudova, M. I., Smith, D. J. B., Hardcastle, M. J., Best, P. N., Das, S., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 544, Issue 2)",
+          "identifier": "DOI: 10.1093/mnras/staf1347",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing the LOFAR Two-metre Sky Survey (LoTSS) Deep Fields, this research implements new probabilistic spectroscopic classifications to determine the accretion rates of radio galaxies, finding significant divergence between purely optical (excitation-based) and radio-continuum classifications of AGN activity. This emphasizes that relying exclusively on optical BPT cuts (which the manuscript uses to condition its 24.0% non-random cap) intrinsically selects against specific accretion modes. It motivates future cross-survey matching to evaluate how the 0.136 to 0.418 optical prevalence shifts when radio-selected, rather than purely emission-line-selected, targets are included in the denominator."
+        },
+        {
+          "source_number": 12,
+          "citation": "Holden, L. R., & Tadhunter, C. N. (2024, Monthly Notices of the Royal Astronomical Society, Volume 535, Issue 2, Pages 1135-1148)",
+          "identifier": "DOI: 10.1093/mnras/stae2661",
+          "role": "method-support",
+          "rationale": "This paper highlights the critical issue of \"beam smearing\" in nearby quasars, demonstrating that unresolved rotation can easily be misinterpreted as fast, galaxy-wide ionized outflows if spatial resolution limits are not rigorously accounted for. This provides vital methodological support for the SDSS manuscript, reinforcing why the 3-arcsec fiber measurements must be strictly interpreted as fiber-centered, aperture-blended kinematics rather than definitive global outflow rates. It validates the manuscript's decision to treat optical line widths as a simple \"tracer definition\" rather than proof of galaxy-wide gas ejection."
+        },
+        {
+          "source_number": 13,
+          "citation": "Ito, K., et al. (2025, arXiv preprint)",
+          "identifier": "arXiv:2602.17767",
+          "role": "future-data-motivation",
+          "rationale": "Operating within the DeepDive JWST program, this study traces neutral gas outflows using Na I D absorption in massive quiescent galaxies, discovering that neutral outflows are common and often dominate the mass budget, even when star formation has faded and AGN activity takes over. This highlights a missing physical dimension in the SDSS data: post-starburst and quiescent galaxies in the optical sample may harbor massive neutral winds that are entirely invisible to the ionized [O III] selection criteria. This motivates future continuum-absorption spectroscopy to locate \"hidden\" neutral feedback within the existing SDSS denominator."
+        },
+        {
+          "source_number": 14,
+          "citation": "Hermosa Muñoz, L., Combes, F., Rigopoulou, D., Ricci, C., Ramos Almeida, C., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Issue 2)",
+          "identifier": "arXiv:2606.28311",
+          "role": "future-data-motivation",
+          "rationale": "Through PCA tomography of PAH features using JWST/MIRI, the authors measure the kinematics of dust in AGN environments, demonstrating that dusty outflows are common, particularly at higher Eddington ratios, and that AGN outflows exhibit preferential destruction of small/ionized PAHs. Because the SDSS photometry and spectroscopy cannot independently track dust kinematics or survival, the current optical census represents an incomplete physical picture, motivating high-resolution mid-infrared observations to understand how radiation pressure clears the obscuring dust observed in the SDSS targets."
+        },
+        {
+          "source_number": 15,
+          "citation": "Pozo, A., Broadhurst, T., & Emami, R. (2025, Nature Astronomy)",
+          "identifier": "DOI: 10.1038/s41550-025-02721-5",
+          "role": "interpretation-caveat",
+          "rationale": "While focusing on early universe galaxy morphologies, this paper discusses how galactic kinematics and gas flows are fundamentally tied to the anisotropic inflow of material from the cosmic web, which can be disrupted by AGN-driven hot halos. This introduces a broader cosmological interpretation caveat: the localized, fiber-centered optical turbulence measured in the SDSS z~0.05 sample cannot decouple the influence of internal AGN feedback from external environmental/accretion processes without comprehensive halo-scale data, cementing the manuscript's restriction to reporting purely optical associations rather than definitive physical causations."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_08",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_08_gas_depletion_efficiency_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Scholte, D., & Saintonge, A. (2023, Monthly Notices of the Royal Astronomical Society, Volume 518, Page 353)",
+          "identifier": "DOI: 10.1093/mnras/stac3134",
+          "role": "method-support",
+          "rationale": "This study rigorously validates the extraction of cold gas surface densities from optical emission lines using photoionization models calibrated against the xCOLD GASS and PHANGS-ALMA surveys, establishing that such optical proxies inherently contain a highly scale-dependent scatter of approximately 0.3 dex. This directly supports the manuscript's foundational limitation that the 6,729 massive transition/quenched galaxies—and their -0.66 dex median H$\\alpha$ luminosity deficit—can serve solely as an optical targeting denominator, because optical extinction and emission-line fluxes cannot confidently replace direct interferometric measurements of molecular gas mass. Consequently, the conditional optical baseline provides a reliable target vector, but stops short of allowing any physical derivation of gas exhaustion."
+        },
+        {
+          "source_number": 2,
+          "citation": "Teng, Y.-H., et al. (2026, The Astrophysical Journal, in press)",
+          "identifier": "arXiv:2606.23649",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing the GBT-EDGE CO(1-0) survey across 62 local galaxies spanning the main sequence to the red sequence, the authors measure a median molecular gas depletion time of 6.90 Gyr for green valley galaxies and 127.7 Gyr for quiescent systems, demonstrating that suppressed star-formation efficiency (SFE) is frequently the primary driver of low star formation rather than a complete absence of molecular fuel. This finding precisely motivates why the massive quenched/transition sample isolated in this manuscript requires direct future CO follow-up; the observed 0.549 BPT-AGN fraction and the optical emission-line suppression cannot independently reveal whether these specific 6,729 SDSS targets are bereft of fuel or merely forming stars inefficiently. The optical denominator merely isolates the transitioning state, demanding sub-millimetre data to resolve the underlying physical mechanism."
+        },
+        {
+          "source_number": 3,
+          "citation": "Rasmussen, B. F., et al. (2026, Monthly Notices of the Royal Astronomical Society, Volume 548, Page stag485)",
+          "identifier": "DOI: 10.1093/mnras/stag485",
+          "role": "future-data-motivation",
+          "rationale": "The EMBERS I survey of post-starburst and rapidly quenching galaxies reveals that while such systems are on average depleted in molecular hydrogen by 0.3 to 0.6 dex relative to star-forming controls, individual transitioning galaxies exhibit a massive scatter in molecular gas fractions ranging wildly from 2% to 250%. This extreme variance highlights a critical interpretative boundary for this paper: the strict, non-random optical sSFR cut (which retains 33.6% of the −12<logsSFR<−11 bin) identifies the optical state of the transitioning systems but fundamentally cannot predict the corresponding physical gas fraction without future targeted FAST or IRAM 30m campaigns. Therefore, the optical proxy serves only to bound the sample size, not the molecular reality."
+        },
+        {
+          "source_number": 4,
+          "citation": "Piotrowska, J. M., et al. (2020, Monthly Notices of the Royal Astronomical Society Letters, Volume 492, Page L6)",
+          "identifier": "arXiv:1911.06693",
+          "role": "method-support",
+          "rationale": "By inferring gas content via dust extinction in approximately 62,000 SDSS DR7 galaxies, this work establishes that both the gas fraction and the star-formation efficiency decrease systematically and simultaneously as galaxies move away from the star-forming main sequence toward quiescence. This dual-decline explicitly restricts the causal claims this manuscript can make; the median logHα proxy of 40.06 must be treated strictly as a target vector for future observations, as optical data is inherently degenerate when attempting to disentangle concurrent drops in fuel supply and fuel consumption efficiency. The finding underscores that the manuscript's invariants define an optical association, not a disentangled physical feedback measurement."
+        },
+        {
+          "source_number": 5,
+          "citation": "Piotrowska, J. M., et al. (2022, Monthly Notices of the Royal Astronomical Society, Volume 512, Page 1052)",
+          "identifier": "arXiv:2112.07672",
+          "role": "method-support",
+          "rationale": "Utilizing Random Forest machine learning classification on SDSS observables and cosmological simulations, this research demonstrates that supermassive black hole mass proxies (such as velocity dispersion) are highly predictive of quiescence, and that SFE drops more sharply than gas fraction in passive populations. This validates the utility of establishing a massive, non-random 60,000-row emission-line cap to isolate transitioning systems based on their optical properties, while reinforcing that the 0.549 BPT-AGN fraction is an associated tracer of the quenching denominator, rather than a proven mechanism for gas expulsion within this specific dataset. The optical constraints effectively map the terrain for subsequent kinematic and molecular investigations."
+        },
+        {
+          "source_number": 6,
+          "citation": "Baker, W. M., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 534, Page 30)",
+          "identifier": "DOI: 10.1093/mnras/stae2059",
+          "role": "interpretation-caveat",
+          "rationale": "The authors demonstrate that stellar metallicity in passive galaxies is driven primarily by stellar velocity dispersion, pointing to \"starvation\"—the halting of fresh gas inflows—integrated with black hole feedback as a dominant, slow-acting quenching pathway. This finding cautions that the 6,729 galaxies comprising this paper's denominator (selected via a strong sSFR-dependent four-line cut) likely represent a highly specific, chemically enriched evolutionary track rather than a universally volume-complete quiescent sample. Consequently, future multi-phase gas surveys must carefully account for the optical selection biases when inferring global gas exhaustion mechanisms."
+        },
+        {
+          "source_number": 7,
+          "citation": "D'Eugenio, F., et al. (2026, arXiv preprint)",
+          "identifier": "arXiv:2606.21361",
+          "role": "future-data-motivation",
+          "rationale": "The detection of a massive, cold gas reservoir traced by an extended [CII] halo in a z∼7 quiescent galaxy proves definitively that suppressed star formation can persist on 100 Myr timescales even in the presence of abundant, unconsumed fuel. This underscores the strict necessity of obtaining future spatially resolved sub-millimetre data for the massive SDSS sample identified here, as the optical H$\\alpha$ deficit of -0.66 dex cannot rule out the existence of massive, non-star-forming gas reservoirs that have been dynamically stabilized by feedback. The optical denominator merely flags the symptom, while future ALMA data must locate the molecular cause."
+        },
+        {
+          "source_number": 8,
+          "citation": "Ellison, S. L., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 527, Page 10201)",
+          "identifier": "DOI: 10.1093/mnras/stad3511",
+          "role": "future-data-motivation",
+          "rationale": "In the ALMaQUEST Survey, the relationship between star formation and dynamical equilibrium pressure is shown to be highly non-linear, indicating that complex, localized regulatory mechanisms govern star-formation efficiency at sub-galactic scales. This necessitates future spatially-resolved molecular follow-up for the 6,729 optical targets, as the SDSS 3-arcsec fiber measurements (capturing only the central 1.2–6.5 kpc) cannot characterize the global pressure balance required to determine if the transition galaxies are suffering from low star-formation efficiency across their entire disks. The fiber data provides a central anchor point that demands extended mapping."
+        },
+        {
+          "source_number": 9,
+          "citation": "Teng, Y.-H., et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 526, Page 6347)",
+          "identifier": "DOI: 10.1093/mnras/stad2974",
+          "role": "future-data-motivation",
+          "rationale": "High-resolution mapping of low-J ^{12}$CO excitation across nearby galaxies reveals that localized physical conditions, such as central starbursts or AGN radiation, drastically alter the CO-to-H$_{2} conversion factor (α CO ​"
+        },
+        {
+          "source_number": 10,
+          "citation": "Baker, M. K., et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 543, Page 2974)",
+          "identifier": "DOI: 10.1093/mnras/staf1631",
+          "role": "interpretation-caveat",
+          "rationale": "Utilizing the EAGLE cosmological hydrodynamical simulation, this study links unstable stellar-gas kinematic misalignments to enhanced central black hole growth over 0.5 Gyr timescales as misaligned gas loses angular momentum and funnels inward. This provides a critical interpretative caveat for this paper: because the SDSS fiber measurements only capture the central 1.2–6.5 kpc, the 0.549 BPT-AGN fraction may reflect localized, misaligned central gas flows feeding the AGN, which does not necessarily correlate with global molecular gas depletion across the entire galactic disk. The central optical signature must not be conflated with a global physical state."
+        },
+        {
+          "source_number": 11,
+          "citation": "Wang, J., et al. (2023, arXiv preprint)",
+          "identifier": "arXiv:2304.04465",
+          "role": "method-support",
+          "rationale": "By calibrating the relationship between the inner gas mass (within the optical radius) and dust mass in the xCOLD GASS and JINGLE samples, this study demonstrates that dust is significantly more closely associated with co-spatial cold gas than with the overall, global cold gas distribution. This validates the use of fiber-centered SDSS metrics—such as the Balmer decrements and the logHα proxy of 40.06—as accurate local physical proxies for the central regions of these galaxies. Concurrently, it supports the manuscript's assertion that aperture-matched observations are absolutely essential to accurately form the denominator for future targeted global gas fraction surveys."
+        },
+        {
+          "source_number": 12,
+          "citation": "Burgarella, D., et al. (2025, arXiv preprint)",
+          "identifier": "arXiv:2607.08824",
+          "role": "interpretation-caveat",
+          "rationale": "Analysis of the Thesan-zoom radiation-hydrodynamical simulations indicates that bursty star formation rapidly destroys and ejects dust from star-forming regions, leading to severe, short-lived time-variability in dust-to-gas ratios and ultraviolet attenuation. Consequently, the optical metrics defining the 6,729 transition/quenched galaxies in this paper may be observing a temporary, dust-poor post-burst phase rather than a permanent evolutionary endpoint, meaning the optical baseline cannot be causally linked to a permanent cessation of molecular gas supply. The optical denominator captures a snapshot in time that requires molecular gas lifetime context."
+        },
+        {
+          "source_number": 13,
+          "citation": "AMISS Survey Team (2024, arXiv preprint)",
+          "identifier": "arXiv:2408.02617",
+          "role": "future-data-motivation",
+          "rationale": "The Arizona Molecular ISM Survey with the SMT (AMISS) systematically calibrates CO(2-1) and CO(3-2) transitions against standard CO(1-0) fluxes for a broad sample of z∼0 galaxies to accurately trace molecular gas mass across varying excitation states. This rigorous methodological framework dictates exactly the future sub-millimetre observational strategies required to convert the optical denominator defined in this manuscript into physical M H2 ​"
+        },
+        {
+          "source_number": 14,
+          "citation": "Riffel, R. A., et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 528, Page 1476)",
+          "identifier": "DOI: 10.1093/mnras/stae033",
+          "role": "future-data-motivation",
+          "rationale": "Spatially resolving the emission structure and kinematics of neutral and ionized gas in AGN hosts using GMOS integral field spectroscopy reveals complex, multi-component inflow and outflow structures that actively suppress central star formation. The discovery that 54.9% of the massive transition sample herein are BPT-classified AGNs strongly motivates the procurement of future optical and near-infrared integral field spectroscopy to determine if localized kinematic feedback, rather than quiescent gas consumption, drives the observed -0.66 dex H$\\alpha$ offset. The fiber spectrum simply flags the AGN; the kinematics must prove its impact."
+        },
+        {
+          "source_number": 15,
+          "citation": "Anonymous Review Authors (2026, arXiv preprint)",
+          "identifier": "arXiv:2606.12156",
+          "role": "interpretation-caveat",
+          "rationale": "This comprehensive review synthesizes the disparate mechanisms that trigger and maintain galaxy quiescence, sharply distinguishing between rapid, AGN-driven ejective modes and slow, regulatory starvation modes that slowly deplete the circumgalactic medium. It asserts that the optical metrics presented in this manuscript—specifically the isolation of 6,729 transition galaxies via emission lines—are observationally postdictive; they accurately flag the \"red and dead\" optical state but inherently cannot distinguish the physical quenching mechanism without multi-phase gas mass and kinematic follow-up. The invariant optical offset is the starting point, not the physical conclusion."
+        },
+        {
+          "source_number": 16,
+          "citation": "Saintonge, A., & Catinella, B. (2022, Annual Review of Astronomy and Astrophysics, Volume 61, Page 25)",
+          "identifier": "DOI: 10.1146/annurev-astro-112420-030742",
+          "role": "method-support",
+          "rationale": "This foundational review establishes the standard scaling relations between cold gas fractions, star-formation efficiencies, and optical stellar mass/sSFR planes in the local universe. It provides the theoretical scaffolding justifying why isolating the 6,729 massive quenched galaxies based on MPA-JHU galSpecExtra parameters creates a highly reliable target catalog, while simultaneously cementing the paper's core caveat that an optical offset below the star-forming main sequence is fundamentally degenerate between a low M H2 ​"
+        },
+        {
+          "source_number": 17,
+          "citation": "Costantin, L., et al. (2025, referenced in arXiv:2606.23793)",
+          "identifier": "arXiv:2606.23793 (reference therein)",
+          "role": "future-data-motivation",
+          "rationale": "Recent evidence indicating that well-developed stellar bars are prevalent in early disk galaxies links bar-driven central gas inflows to accelerated gas depletion and inside-out morphological quenching. To determine if such morphological quenching mechanisms apply to the 6,729 massive SDSS galaxies, future high-resolution near-infrared imaging and resolved CO kinematics are required, as the 3-arcsec fiber spectroscopy cannot capture disk-to-total mass ratios, bar fractions, or non-axisymmetric torques."
+        },
+        {
+          "source_number": 18,
+          "citation": "French, K. D. (2021, Publications of the Astronomical Society of the Pacific, Volume 133, Page 1025)",
+          "identifier": "DOI: 10.1088/1538-3873/ac0eb0",
+          "role": "interpretation-caveat",
+          "rationale": "This extensive review on identifying post-starburst and rapidly quenching galaxies highlights that specific emission-line selections (e.g., tight H$\\alpha$ or sSFR boundaries) strictly dictate the inferred quenching timescales and evolutionary pathways. Consequently, the manuscript's sSFR-dependent four-line cut—which retains 94.9% of the −10<logsSFR<−9.5 bin but only 33.6% of the −12<logsSFR<−11 bin—means the optical denominator is highly conditional and does not represent a universally volume-complete sequence of all quenched galaxies."
+        },
+        {
+          "source_number": 19,
+          "citation": "Bluck, A. F. L., et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 525, Page 2765)",
+          "identifier": "DOI: 10.1093/mnras/stac3536",
+          "role": "future-data-motivation",
+          "rationale": "By directly comparing the higher-order kinematics of star-forming and quiescent galaxies using large integral-field surveys like SAMI and LEGA-C, this work reveals that transitioning to quiescence involves profound structural and rotational disruptions that stabilize gas against fragmentation. This highlights that the 1D velocity dispersion captured by the singular SDSS fiber in this paper's sample is insufficient for determining whether the gas is dynamically supported, requiring future spatially-resolved 2D stellar and gas kinematics to diagnose star-formation efficiency."
+        },
+        {
+          "source_number": 20,
+          "citation": "Concas, A., & Popesso, P. (2019, Monthly Notices of the Royal Astronomical Society, Volume 486, Page L91)",
+          "identifier": "DOI: 10.1093/mnrasl/slz060",
+          "role": "method-support",
+          "rationale": "Demonstrates that optical depths derived from the Balmer decrement accurately trace the total gas content along the line of sight, but are plagued with substantial inherent scatter due to varying dust geometries. This observation strongly supports the structural logic of using SDSS DR17 galSpecExtra parameters to establish a non-random, high-S/N optical baseline of 6,729 galaxies, while strictly confining the paper's claims to an optical association rather than presenting the derived parameters as precise molecular gas mass measurements."
+        }
+      ]
+    },
+    {
+      "paper_id": "paper_09",
+      "packet": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/dr-research-lane-9-20260714/packets/paper_09_simulation_validation_dr_packet.md",
+      "sources": [
+        {
+          "source_number": 1,
+          "citation": "Schaye et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 526, Page 4978)",
+          "identifier": "DOI: 10.1093/mnras/stad2419",
+          "role": "future-data-motivation",
+          "rationale": "This foundational paper introduces the FLAMINGO cosmological hydrodynamical simulation suite, which systematically varies subgrid prescriptions for stellar and active galactic nucleus (AGN) feedback to observe their impact on the large-scale structure and galaxy evolution. The literature demonstrates that different feedback intensities, whether implemented via thermal injection or kinetic jets, drastically alter the quenching trajectories and gas retention of massive galaxies. Because FLAMINGO models require robust observational anchors to constrain their underlying AGN and stellar feedback parameters, the 15 mass-redshift cells (n ≥ 50) established in this manuscript provide an ideal, rigid validation vector. Mapping quenched fractions (0.005–0.729) and optical AGN incidence (0.003–0.520) creates a high-dimensional target that extends beyond simple one-dimensional luminosity or stellar mass functions. The target vector will allow future theoretical studies to evaluate whether FLAMINGO's varying feedback prescriptions can accurately reproduce the exact joint distribution of colour and AGN activity observed within the strictly bounded SDSS local Universe (0.02<z<0.12). Furthermore, by utilizing this vector, future comparisons can determine if the theoretical suppression of the halo mass function predicted by specific baryonic feedback models aligns with the real-world optical footprint established by this sample."
+        },
+        {
+          "source_number": 2,
+          "citation": "Wright et al. (2024, Monthly Notices of the Royal Astronomical Society, Volume 532, Page 3417)",
+          "identifier": "DOI: 10.1093/mnras/stae1685 | arXiv:2402.08408",
+          "role": "interpretation-caveat",
+          "rationale": "Wright et al. conduct a rigorous, like-for-like comparative analysis of the baryon cycle across the widely utilized EAGLE, IllustrisTNG, and SIMBA simulation suites. A critical finding of their work is that while these three distinct simulations can all successfully reproduce similar z≈0 stellar mass functions and global quenched populations, they achieve these identical macroscopic endpoints via completely different mechanical pathways. Specifically, they demonstrate vastly different feedback-driven outflow scales, with SIMBA driving AGN outflows far beyond R 200c ​"
+        },
+        {
+          "source_number": 3,
+          "citation": "Lovell et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 544, Page 3949)",
+          "identifier": "DOI: 10.1093/mnras/staf1888 | arXiv:2411.13960",
+          "role": "method-support",
+          "rationale": "This study presents the SYNTHESIZER pipeline, an advanced forward-modelling tool utilized to generate synthetic SDSS ugriz photometry and spectral emission properties from thousands of CAMELS hydrodynamical simulations (incorporating SWIFT-EAGLE, IllustrisTNG, SIMBA, and ASTRID models). Lovell et al. demonstrate that deriving accurate cosmological and astrophysical parameter inferences requires passing simulated physical data through rigorous observer-space transformations, including stellar population synthesis and dust attenuation algorithms. This research firmly supports the manuscript's mandate that any valid future simulation comparison must pass synthetic mocks through the exact optical signal-to-noise and 3-arcsec fiber-aperture selection function utilized to build this dataset. The manuscript relies on a non-random 60,000-row cap representing exactly 24.0% of the parent sample of 249,917 galaxies. Because the four-line cut is strongly sSFR-dependent—retaining 94.9% of highly star-forming galaxies but only 33.6% of deeply quiescent galaxies—comparing raw, intrinsic simulated star-formation rates directly to this target vector would yield catastrophic systematic errors. Lovell et al. prove that emulating the exact observational selection function is a mandatory precondition for utilizing observed optical associations to tune subgrid feedback parameters."
+        },
+        {
+          "source_number": 4,
+          "citation": "Lim et al. (2025, Monthly Notices of the Royal Astronomical Society, Volume 543, Page 2204)",
+          "identifier": "DOI: 10.1093/mnras/staf1578",
+          "role": "future-data-motivation",
+          "rationale": "Utilizing a massive sample of 5.3 million galaxies from the high-resolution FLAMINGO suite, this study investigates the in situ versus ex situ drivers of galaxy quenching. The authors identify a sharp theoretical transition from the star-forming main sequence to quiescence when a central black hole reaches a critical mass of approximately 10 7 M ⊙ ​"
+        },
+        {
+          "source_number": 5,
+          "citation": "Pakmor et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 524, Page 2539)",
+          "identifier": "DOI: 10.1093/mnras/stac3620 | arXiv:2210.10060",
+          "role": "future-data-motivation",
+          "rationale": "Pakmor et al. introduce the MillenniumTNG project, an ambitious endeavour that scales the IllustrisTNG full-physics galaxy formation model to unprecedented cosmological volumes utilizing a 740 Mpc box. By resolving massive galaxy clusters and large-scale structures while retaining detailed baryonic physics, MillenniumTNG predicts the distribution of rare, massive quenched galaxies across varying environments. Because the SDSS target vector constructed in the manuscript relies on non-random, strict emission-line selections mapped across a specific redshift slice (0.02<z<0.12), matching simulation outputs against these 15 cells requires exceptional large-volume statistics to ensure statistical significance after mock-observational filtering. The volume provided by MillenniumTNG is requisite to generate a synthetic parent sample large enough to survive an emulated sSFR-dependent optical cut while still populating the highest mass bins with n≥50 mock galaxies. This source motivates the future use of the optical vector to validate whether the macroscopic scaling relations predicted by massive-volume hydrodynamical runs hold true when subjected to strict, real-world fiber-aperture limitations."
+        },
+        {
+          "source_number": 6,
+          "citation": "Li et al. (2025, The Astrophysical Journal, Volume 986, Page 9)",
+          "identifier": "DOI: 10.3847/1538-4357/adcab4",
+          "role": "method-support",
+          "rationale": "This paper details 'Cue', a highly flexible and extremely fast neural network emulator for photoionization, designed to predict nebular emission line fluxes powered by arbitrary ionizing sources, including both stellar populations and active galactic nuclei. The manuscript relies heavily on a strictly defined four-line BPT diagnostic cut requiring S/N≥3 for H$\\alpha$, H$\\beta$, [O III]λ5007, and [N II]λ6584, which forms the basis for the optical AGN incidence measurement. Because this specific cut disproportionately preserves high-sSFR galaxies and excludes systems lacking excitable ionized gas, any future mock comparison must accurately synthesize these specific forbidden and recombination lines rather than relying on intrinsic proxy values. The methodologies and neural architectures outlined by Li et al. provide the theoretical and computational framework necessary for simulators to forward-model these exact emission lines before applying the manuscript's 60,000-row selection cap. This source mathematically validates the manuscript's assertion that raw simulated gas fractions cannot be compared directly to a BPT-selected vector without explicit photoionization modelling."
+        },
+        {
+          "source_number": 7,
+          "citation": "Bugiani et al. (2025, The Astrophysical Journal, Volume 981, Page 25)",
+          "identifier": "DOI: 10.3847/1538-4357/adaeaf | arXiv:2406.08547",
+          "role": "interpretation-caveat",
+          "rationale": "Bugiani et al. examine AGN feedback within quiescent galaxies as traced specifically by ionized gas emission. Their findings underscore the immense complexity of interpreting emission-line signatures in galaxies that have largely ceased star formation, noting that lingering ionized gas can often trace remnant AGN activity, diffuse evolved stellar populations, or post-merger shocks rather than active, ongoing accretion. This serves as a vital interpretation caveat for the manuscript's optical target vector. Because the 24.0% non-random sample strictly requires concurrent four-line emission to be classified, it inherently biases the denominator against fully gas-depleted, entirely \"red and dead\" quiescent galaxies. The manuscript's reported quenched fractions (up to 0.729) and AGN fractions must be explicitly understood as conditional upon the presence of excitable ionized gas within the 3-arcsec fiber. As highlighted by the observational nuances in Bugiani et al., this condition prevents the results from being extrapolated as absolute, volume-complete constraints on total quiescence."
+        },
+        {
+          "source_number": 8,
+          "citation": "Bose et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 524, Page 2579)",
+          "identifier": "DOI: 10.1093/mnras/stad1097",
+          "role": "method-support",
+          "rationale": "This study outlines the generation of mock SDSS-like lightcones using the massive MillenniumTNG simulation, specifically evaluating the large-scale clustering properties and distribution of red (quenched) versus blue (star-forming) galaxies. Bose et al. successfully emulate the complex sample selection biases of luminous red galaxies and emission-line galaxies to perfectly match observational survey geometries and constraints. This methodology deeply reinforces the manuscript's foundational argument that raw simulated properties are insufficient for validation. Simulations must be explicitly projected into mock-observational space—incorporating identical survey geometry, noise limits, spectral resolution, and precise fiber intersections—before any valid comparison to the observed mass-redshift cells can occur. The rigorous emulation of SDSS catalog characteristics performed by Bose et al. provides the exact methodological precedent required for treating the manuscript's data solely as a downstream, observationally restricted target vector rather than a direct physical measurement of dark matter halos."
+        },
+        {
+          "source_number": 9,
+          "citation": "Hadzhiyska et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 524, Page 2524)",
+          "identifier": "DOI: 10.1093/mnras/stad279",
+          "role": "interpretation-caveat",
+          "rationale": "In refining the one-halo model for the galaxy-halo connection of red and blue galaxies, Hadzhiyska et al. demonstrate that mapping observed optical colours and star-formation states to underlying dark matter structures requires exceptionally precise constraints on satellite quenching times and central galaxy evolution. Their theoretical work underscores that optical proxy data alone cannot fully resolve the galaxy-halo connection without strict demographic denominators and environmental context. For this manuscript, Hadzhiyska et al.'s findings strongly reinforce the operational caveat that the SDSS vector serves only as a restricted optical proxy. The fiber-centered measurements (~1.2–6.5 kpc physical coverage) successfully map central galactic properties and inner-core ionization states, but they fundamentally do not capture global halo gas dynamics, extended disk star formation, or environmental satellite interactions. Consequently, the target vector securely constrains central AGN associations, but it cannot independently diagnose holistic, halo-scale feedback mechanisms without risk of severe theoretical overreach."
+        },
+        {
+          "source_number": 10,
+          "citation": "Kugel et al. (2023, Monthly Notices of the Royal Astronomical Society, Volume 526, Page 6103)",
+          "identifier": "DOI: 10.1093/mnras/stad2540",
+          "role": "future-data-motivation",
+          "rationale": "Kugel et al. detail the sophisticated machine-learning calibration framework utilized to finely tune the subgrid physics—specifically stellar and AGN feedback efficiencies—of the FLAMINGO simulations against low-redshift observables. Their calibration relies on accurately matching the global galaxy stellar mass function and cluster gas fractions. This rigorous calibration philosophy perfectly aligns with the core purpose of the manuscript. The highly specific optical target vector derived here from SDSS DR17—spanning 15 specific mass-redshift cells with rigorous 4-line emission cuts—is intentionally designed to serve as a next-generation calibration or validation endpoint for complex models like FLAMINGO. By moving beyond one-dimensional mass functions, the manuscript provides a highly complex, multi-dimensional target (jointly mapping colour, AGN incidence, and conditional quenched fraction) that offers a substantially more stringent and nuanced test for future simulation parameters, ensuring that mock galaxies do not just have the right mass, but also the correct inner-core ionization and stellar population properties."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,467 @@
+{
+  "column_dictionary": [
+    {
+      "column": "specObjID",
+      "definition": "SDSS spectrum identifier",
+      "guard": "Used for uniqueness checks and row-cap ordering; not a physical variable.",
+      "role": "Identifier/provenance",
+      "type_or_unit": "integer string"
+    },
+    {
+      "column": "z",
+      "definition": "spectroscopic redshift",
+      "guard": "Pilot restricts to 0.02<z<0.12.",
+      "role": "Selection and matching",
+      "type_or_unit": "float"
+    },
+    {
+      "column": "ra",
+      "definition": "right ascension",
+      "guard": "Used only for reproducibility/position context in this module.",
+      "role": "Coordinate",
+      "type_or_unit": "float degrees"
+    },
+    {
+      "column": "dec",
+      "definition": "declination",
+      "guard": "Used only for reproducibility/position context in this module.",
+      "role": "Coordinate",
+      "type_or_unit": "float degrees"
+    },
+    {
+      "column": "bptclass",
+      "definition": "SDSS catalog BPT class value",
+      "guard": "Do not cite as the analysis classification without recomputed bpt_label.",
+      "role": "Input/catalog comparison",
+      "type_or_unit": "integer/catalog code"
+    },
+    {
+      "column": "lgm_tot_p50",
+      "definition": "catalog median stellar mass",
+      "guard": "MPA/JHU-style catalog estimate; systematic model assumptions remain.",
+      "role": "Selection/control variable",
+      "type_or_unit": "dex log10(M*/Msun)"
+    },
+    {
+      "column": "sfr_tot_p50",
+      "definition": "catalog median total SFR",
+      "guard": "Not a direct gas-depletion or feedback-power measurement.",
+      "role": "Derived star-formation proxy",
+      "type_or_unit": "dex log10(Msun/yr)"
+    },
+    {
+      "column": "specsfr_tot_p50",
+      "definition": "catalog median specific SFR",
+      "guard": "Emission-line selection biases low-sSFR bins; disclose retention.",
+      "role": "Quenched/low-sSFR proxy",
+      "type_or_unit": "dex log10(yr^-1)"
+    },
+    {
+      "column": "modelMag_u",
+      "definition": "SDSS model u magnitude",
+      "guard": "Used for colors only, not morphology or dust correction.",
+      "role": "Photometric color input",
+      "type_or_unit": "mag"
+    },
+    {
+      "column": "modelMag_g",
+      "definition": "SDSS model g magnitude",
+      "guard": "Used for colors only, not morphology or dust correction.",
+      "role": "Photometric color input",
+      "type_or_unit": "mag"
+    },
+    {
+      "column": "modelMag_r",
+      "definition": "SDSS model r magnitude",
+      "guard": "Used for colors only, not morphology or dust correction.",
+      "role": "Photometric color input",
+      "type_or_unit": "mag"
+    },
+    {
+      "column": "h_alpha_flux",
+      "definition": "H-alpha line flux",
+      "guard": "Aperture and calibration caveats remain.",
+      "role": "BPT/SN input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "h_alpha_flux_err",
+      "definition": "H-alpha line-flux uncertainty",
+      "guard": "Used for four-line S/N cuts.",
+      "role": "S/N input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "h_beta_flux",
+      "definition": "H-beta line flux",
+      "guard": "Aperture and calibration caveats remain.",
+      "role": "BPT/SN input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "h_beta_flux_err",
+      "definition": "H-beta line-flux uncertainty",
+      "guard": "Used for four-line S/N cuts.",
+      "role": "S/N input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "oiii_5007_flux",
+      "definition": "[O III] 5007 line flux",
+      "guard": "High-excitation proxy only; no outflow velocity or luminosity correction.",
+      "role": "BPT/high-excitation input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "oiii_5007_flux_err",
+      "definition": "[O III] 5007 line-flux uncertainty",
+      "guard": "Used for four-line S/N cuts.",
+      "role": "S/N input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "nii_6584_flux",
+      "definition": "[N II] 6584 line flux",
+      "guard": "Aperture and calibration caveats remain.",
+      "role": "BPT input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "nii_6584_flux_err",
+      "definition": "[N II] 6584 line-flux uncertainty",
+      "guard": "Used for four-line S/N cuts.",
+      "role": "S/N input",
+      "type_or_unit": "catalog flux unit"
+    },
+    {
+      "column": "sn_ha",
+      "definition": "H-alpha signal-to-noise",
+      "guard": "Part of four-line S/N>=3/5/10 variants.",
+      "role": "Selection",
+      "type_or_unit": "dimensionless"
+    },
+    {
+      "column": "sn_hb",
+      "definition": "H-beta signal-to-noise",
+      "guard": "Part of four-line S/N>=3/5/10 variants.",
+      "role": "Selection",
+      "type_or_unit": "dimensionless"
+    },
+    {
+      "column": "sn_oiii",
+      "definition": "[O III] signal-to-noise",
+      "guard": "Part of four-line S/N>=3/5/10 variants.",
+      "role": "Selection",
+      "type_or_unit": "dimensionless"
+    },
+    {
+      "column": "sn_nii",
+      "definition": "[N II] signal-to-noise",
+      "guard": "Part of four-line S/N>=3/5/10 variants.",
+      "role": "Selection",
+      "type_or_unit": "dimensionless"
+    },
+    {
+      "column": "log_nii_ha",
+      "definition": "log([N II]/H-alpha)",
+      "guard": "Recomputed ratio for BPT demarcations.",
+      "role": "BPT ratio",
+      "type_or_unit": "dex"
+    },
+    {
+      "column": "log_oiii_hb",
+      "definition": "log([O III]/H-beta)",
+      "guard": "High-excitation proxy uses bpt_label==agn and log_oiii_hb>0.25.",
+      "role": "BPT/high-excitation ratio",
+      "type_or_unit": "dex"
+    },
+    {
+      "column": "u_minus_r",
+      "definition": "u-r color",
+      "guard": "Not a morphology, dust, or gas measurement.",
+      "role": "Color proxy",
+      "type_or_unit": "mag"
+    },
+    {
+      "column": "g_minus_r",
+      "definition": "g-r color",
+      "guard": "Not a morphology, dust, or gas measurement.",
+      "role": "Color proxy",
+      "type_or_unit": "mag"
+    },
+    {
+      "column": "bpt_label",
+      "definition": "recomputed BPT class label",
+      "guard": "Allowed values in this sample: star-forming, intermediate, agn, unclassified.",
+      "role": "Primary optical ionization class",
+      "type_or_unit": "categorical"
+    }
+  ],
+  "paper_use_contracts": [
+    {
+      "allowed_claim": "Optical AGN hosts lie below BPT star-forming controls in catalog sSFR within this selected sample.",
+      "forbidden_claim": "Causal AGN feedback suppression or a complete quiescent-control result.",
+      "paper": "M1 RP-1",
+      "required_selection_language": "60,000 cached rows out of 249,917 strict public four-line S/N>=3 rows; controls are star-forming emission-line galaxies, not all inactive/quiescent galaxies.",
+      "safe_current_object": "BPT optical AGN hosts versus star-forming controls in the capped SDSS four-line sample",
+      "slug": "m1_rp1_agn_sfr"
+    },
+    {
+      "allowed_claim": "High internal-density quartiles have a different low-sSFR fraction in the selected emission-line denominator.",
+      "forbidden_claim": "Environmental quenching causality or halo/group-scale proof.",
+      "paper": "M1 RP-2",
+      "required_selection_language": "Density quartiles are internal rankings after four-line selection; no group catalogue, halo mass, central/satellite label, or edge correction is present.",
+      "safe_current_object": "nearest-neighbour density proxy and low-sSFR fraction in the capped SDSS four-line sample",
+      "slug": "m1_rp2_environment_quenching"
+    },
+    {
+      "allowed_claim": "Defines optical AGN candidates for future maintenance-heating follow-up.",
+      "forbidden_claim": "Maintenance heating balance, duty-cycle energetics, or hot-halo feedback proof.",
+      "paper": "M1 RP-3",
+      "required_selection_language": "Massive/low-sSFR rows remain four-line emission-selected and capped; X-ray, cavity, cooling-luminosity, and jet-power data are absent.",
+      "safe_current_object": "massive/low-sSFR optical BPT-AGN target denominator",
+      "slug": "m1_rp3_maintenance_heating"
+    },
+    {
+      "allowed_claim": "Ranks/cuts optical AGN candidates for later outflow escape/recycling tests.",
+      "forbidden_claim": "Outflow escape fractions, recycling times, or gas-loss proof.",
+      "paper": "M2 P1",
+      "required_selection_language": "[O III]/H-beta high-excitation is an optical line-ratio proxy only; no velocities, escape speeds, CGM gas, or recycling tracers are measured.",
+      "safe_current_object": "high-excitation optical AGN denominator using bpt_label==agn and log_oiii_hb>0.25",
+      "slug": "m2_p1_outflow_escape_recycling"
+    },
+    {
+      "allowed_claim": "Optical AGN/density association in massive hosts motivates radio/X-ray follow-up.",
+      "forbidden_claim": "Radio-jet coupling efficiency or environmental jet-power causality.",
+      "paper": "M2 P2",
+      "required_selection_language": "Massive-host cached sample is 9,298 rows versus 35,482 strict public S/N>=3 massive hosts; radio jet power, hot gas, and cavity data are absent.",
+      "safe_current_object": "massive-host optical BPT AGN fraction versus internal density proxy",
+      "slug": "m2_p2_radio_jet_environment"
+    },
+    {
+      "allowed_claim": "Provides mass-bin optical/quenching diagnostics with intervals.",
+      "forbidden_claim": "Locating a physical transition from stellar to AGN feedback.",
+      "paper": "M2 P3",
+      "required_selection_language": "Mass bins are observed SDSS optical bins within a four-line selected denominator; no halo, black-hole mass, or stellar-feedback separation exists.",
+      "safe_current_object": "stellar-mass/redshift trends in low-sSFR and optical AGN incidence",
+      "slug": "m2_p3_feedback_transition_mass"
+    },
+    {
+      "allowed_claim": "Provides optical tracer thresholds and denominators for future multiphase matching.",
+      "forbidden_claim": "A completed multiphase outflow census.",
+      "paper": "M3 P1",
+      "required_selection_language": "Optical line/color/sSFR thresholds are not a multiphase census; CO/HI/Na I/X-ray/radio/kinematic data are absent.",
+      "safe_current_object": "common-denominator optical tracer-threshold census",
+      "slug": "m3_p1_multiphase_census"
+    },
+    {
+      "allowed_claim": "Defines CO/HI/dust follow-up targets and line-selection attrition.",
+      "forbidden_claim": "Molecular gas depletion, gas fraction, depletion time, or star-formation efficiency conclusions.",
+      "paper": "M3 P2",
+      "required_selection_language": "Default massive/low-sSFR denominator: 121,533 public parent, 40,797 strict S/N>=3 rows, 10,270 cached rows; H-alpha is not gas mass or SFE.",
+      "safe_current_object": "emission-line-detected massive low-sSFR optical follow-up denominator",
+      "slug": "m3_p2_gas_depletion_efficiency"
+    },
+    {
+      "allowed_claim": "Provides a target vector for future forward-modelled simulation comparisons.",
+      "forbidden_claim": "Validation, rejection, ranking, or falsification of any feedback simulation.",
+      "paper": "M3 P3",
+      "required_selection_language": "The vector is observed-only; no mock catalog, simulation output, covariance model, or forward selection function has been compared.",
+      "safe_current_object": "observed SDSS mass-redshift target vector with small-cell flags",
+      "slug": "m3_p3_simulation_validation"
+    }
+  ],
+  "selection_stage_counts_verified": [
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "computed_cached_count_from_csv": "",
+      "computed_matches_recorded": "",
+      "retention_vs_spectro_z_parent": "1.0",
+      "sdss_dr17_count": "501060",
+      "stage_key": "spectro_galaxy_z_window",
+      "stage_label": "SpecObj GALAXY, 0.02<z<0.12"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "computed_cached_count_from_csv": "",
+      "computed_matches_recorded": "",
+      "retention_vs_spectro_z_parent": "0.8313455474394285",
+      "sdss_dr17_count": "416554",
+      "stage_key": "join_complete_mass_ssfr_bounds",
+      "stage_label": "plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "computed_cached_count_from_csv": "",
+      "computed_matches_recorded": "",
+      "retention_vs_spectro_z_parent": "0.8313455474394285",
+      "sdss_dr17_count": "416554",
+      "stage_key": "join_complete_with_line_table",
+      "stage_label": "plus galSpecLine join"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "0.16066622929748692",
+      "cached_sample_count_at_matching_stage": "60000",
+      "computed_cached_count_from_csv": "",
+      "computed_matches_recorded": "",
+      "retention_vs_spectro_z_parent": "0.7453099429210075",
+      "sdss_dr17_count": "373445",
+      "stage_key": "positive_four_bpt_fluxes_and_errors",
+      "stage_label": "four BPT lines positive with positive errors"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "0.24007970646254556",
+      "cached_sample_count_at_matching_stage": "60000",
+      "computed_cached_count_from_csv": 60000,
+      "computed_matches_recorded": "True",
+      "retention_vs_spectro_z_parent": "0.4987765936215224",
+      "sdss_dr17_count": "249917",
+      "stage_key": "sn_ge_3_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=3"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "0.2404559179257094",
+      "cached_sample_count_at_matching_stage": "42446",
+      "computed_cached_count_from_csv": 42446,
+      "computed_matches_recorded": "True",
+      "retention_vs_spectro_z_parent": "0.35229912585319123",
+      "sdss_dr17_count": "176523",
+      "stage_key": "sn_ge_5_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=5"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "0.24312396478075146",
+      "cached_sample_count_at_matching_stage": "22311",
+      "computed_cached_count_from_csv": 22311,
+      "computed_matches_recorded": "True",
+      "retention_vs_spectro_z_parent": "0.1831477268191434",
+      "sdss_dr17_count": "91768",
+      "stage_key": "sn_ge_10_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=10"
+    }
+  ],
+  "ssfr_retention_rows": [
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.24258160237388723",
+      "cached_sn_ge_3_count": "4578",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "87381",
+      "sdss_sn_ge_3_count": "18872",
+      "sn_ge_3_retention_vs_parent": "0.2159737242650004",
+      "ssfr_bin": "-14.0_to_-12.0"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.24458948814840262",
+      "cached_sn_ge_3_count": "7832",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "95424",
+      "sdss_sn_ge_3_count": "32021",
+      "sn_ge_3_retention_vs_parent": "0.33556547619047616",
+      "ssfr_bin": "-12.0_to_-11.0"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.24598569693698555",
+      "cached_sn_ge_3_count": "7292",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "43161",
+      "sdss_sn_ge_3_count": "29644",
+      "sn_ge_3_retention_vs_parent": "0.6868237529250945",
+      "ssfr_bin": "-11.0_to_-10.5"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.2411618257261411",
+      "cached_sn_ge_3_count": "15983",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "82457",
+      "sdss_sn_ge_3_count": "66275",
+      "sn_ge_3_retention_vs_parent": "0.803752258753047",
+      "ssfr_bin": "-10.5_to_-10.0"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.2359388315500426",
+      "cached_sn_ge_3_count": "19934",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "89075",
+      "sdss_sn_ge_3_count": "84488",
+      "sn_ge_3_retention_vs_parent": "0.948504069604266",
+      "ssfr_bin": "-10.0_to_-9.5"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.23132440935167478",
+      "cached_sn_ge_3_count": "3750",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "16576",
+      "sdss_sn_ge_3_count": "16211",
+      "sn_ge_3_retention_vs_parent": "0.9779802123552124",
+      "ssfr_bin": "-9.5_to_-9.0"
+    },
+    {
+      "cached_coverage_of_sdss_sn_ge_3": "0.26226101413133834",
+      "cached_sn_ge_3_count": "631",
+      "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+      "sdss_parent_count": "2480",
+      "sdss_sn_ge_3_count": "2406",
+      "sn_ge_3_retention_vs_parent": "0.9701612903225807",
+      "ssfr_bin": "-9.0_to_-7.0"
+    }
+  ],
+  "summary": {
+    "bpt_counts": {
+      "agn": 8146,
+      "intermediate": 12234,
+      "star-forming": 39553,
+      "unclassified": 67
+    },
+    "cached_coverage_strict_public_sn_ge_3": 0.24007970646254556,
+    "cached_rows": 60000,
+    "duplicate_specobjid_count": 0,
+    "goru_bpt_counts": {
+      "agn": 8146,
+      "intermediate": 12234,
+      "star-forming": 39553,
+      "unclassified": 67
+    },
+    "high_excitation_count": 4440,
+    "marker": "SHARED_SELECTION_MODULE_20260708T204717Z",
+    "mass_cut_counts": {
+      "mass_ge_10p6": 16640,
+      "mass_ge_10p8": 9298,
+      "mass_ge_11p0": 4033
+    },
+    "mass_range_median": {
+      "max": 12.2656,
+      "median": 10.279695,
+      "min": 8.002708
+    },
+    "proxy_limits": "Shared SDSS optical emission-line denominator only; no causal AGN feedback, gas depletion/SFE, radio-jet coupling, escape/recycling, hot-halo heating, multiphase census, or simulation validation proof.",
+    "safety": "Read cached SDSS/local overnight artifacts only; wrote local artifacts under overnight-9-papers-20260708/lanes/tori/shared-selection-module plus the required tick report and ledger append. No product DB/API/page_versions/wiki publish/live mirror/deploy/restart/git/extra-cron/billing/OAuth/external submission changes.",
+    "sn_counts": {
+      "sn_ge_10": 22311,
+      "sn_ge_3": 60000,
+      "sn_ge_5": 42446
+    },
+    "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+    "specobjid_first": 299489677444933632,
+    "specobjid_last": 877244566879627264,
+    "specobjid_nondecreasing": true,
+    "ssfr_cut_counts": {
+      "ssfr_lt_m10p7": 16071,
+      "ssfr_lt_m11p0": 12410
+    },
+    "ssfr_range_median": {
+      "max": -7.487763,
+      "median": -10.140585,
+      "min": -13.50946
+    },
+    "strict_public_sn_ge_3": 249917,
+    "timestamp_utc": "20260708T204717Z",
+    "z_range_median": {
+      "max": 0.1199931,
+      "median": 0.07248806499999999,
+      "min": 0.02000161
+    }
+  }
+}

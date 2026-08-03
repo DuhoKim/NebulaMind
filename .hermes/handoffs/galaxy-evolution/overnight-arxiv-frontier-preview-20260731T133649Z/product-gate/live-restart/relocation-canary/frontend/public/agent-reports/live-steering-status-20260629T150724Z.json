@@ -1,0 +1,88 @@
+{
+  "status": "pr70_merge_decision_request_changes",
+  "updated_at_utc": "2026-06-29T15:07:24Z",
+  "updated_at_kst": "2026-06-30 00:07:24 KST",
+  "plain_english_summary": "Reviewed PR #70. It is narrow and build/tests pass, but merge is blocked because malformed JSON label rows can be accepted by the upload route. No merge/deploy/DB writes happened.",
+  "pr_url": "https://github.com/DuhoKim/NebulaMind/pull/70",
+  "pr_number": 70,
+  "is_draft": true,
+  "mergeable": "MERGEABLE",
+  "ready_to_merge": false,
+  "merge_decision": "REQUEST_CHANGES_BEFORE_MERGE",
+  "blockers": [
+    {
+      "severity": "blocking",
+      "file": "frontend/src/lib/agentReportUpload.ts",
+      "lines": "100-109",
+      "summary": "JSON row validation checks required fields with separate some(...) calls, so two bad rows can combine to pass validation.",
+      "evidence": "One-off helper probe returned ok=true for rows with one object containing only sample_id and another containing only final_decision. Alternate-port POST to the PR route returned HTTP 200 ok=true and saved the malformed JSON to /tmp. Expected pre-merge behavior is HTTP 400 reject.",
+      "recommended_fix": "Require each submitted JSON row to have its own sample_id and at least one primary decision field, or otherwise validate labels_by_sample_id entries explicitly. Add RED helper + route smoke coverage for split/missing fields, then rerun build and review."
+    }
+  ],
+  "warnings": [
+    "PR is still a draft. Even after blocker fix, it needs to be marked ready before normal merge.",
+    "GitHub reports no CI checks, so local verification is the available gate."
+  ],
+  "suggestions": [
+    "Add nonblocking hardening later: deeper object-shape/row-count limits beyond the 2 MB file cap.",
+    "Consider not using token-derived prefixes in public stored filenames in a later small follow-up, even though the token is one-time and used after upload."
+  ],
+  "verification": [
+    "PR metadata verified live: #70 is OPEN, draft=true, mergeable=MERGEABLE, base=main, one commit 9c942c24b5f45e4fe3d30c51594272eb906c9f78.",
+    "GitHub PR diff is narrow: 5 frontend files, +415/-0; no backend/schema/DB files.",
+    "GitHub checks: no checks reported on the branch.",
+    "Local detached review worktree from PR head is clean.",
+    "Diff check passed: git diff origin/main...HEAD --check.",
+    "Value-safe secret scan over changed files found no files.",
+    "DB/API write-surface scan over route/helper found no SessionLocal/db/prisma/sqlalchemy/execute/fetch(/api)/absolute_path metadata patterns.",
+    "Focused tests passed: test:agent-report-upload and test:page58-label-upload-route-contract.",
+    "Regression smoke tests passed: wiki trust visibility, source trace hover, claim minimap hover, paper claim flight deck, cross-page paper footprint.",
+    "npm run build passed and included /agent-reports/page58-label-upload/submit.",
+    "Alternate-port route probe on 3028 used only /tmp state/upload dirs and was stopped afterward.",
+    "Independent local reviewer returned REQUEST_CHANGES because malformed JSON rows are accepted.",
+    "Runtime backend unchanged: PID 25075, cwd clean candidate.",
+    "DB counts unchanged: page_citation_links=1351, fact_sources=391."
+  ],
+  "backend_pid": "25075",
+  "backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "db_counts": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_writes": 0,
+  "deploys": 0,
+  "backend_restarts": 0,
+  "merges": 0,
+  "artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merge-decision-20260629T150724Z",
+    "manifest": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merge-decision-20260629T150724Z/pr70-merge-decision.json",
+    "report": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merge-decision-20260629T150724Z/pr70-merge-decision.md",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merge-decision-20260629T150724Z/SHA256SUMS"
+  },
+  "future_options": [
+    {
+      "option": "Recommended: fix PR #70 malformed JSON validation with TDD",
+      "plain_english": "Add failing coverage for split/bad rows, tighten validation, rerun build/route smoke/review. Keep PR unmerged.",
+      "risk": "Low code-only; no merge/deploy/DB writes",
+      "approval": "STEER: fix PR #70 malformed JSON row validation with TDD; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Hold PR #70 as draft",
+      "plain_english": "Do nothing else; leave the draft PR open for later.",
+      "risk": "Lowest; no changes",
+      "approval": "STEER: hold PR #70 as draft; continue clean-candidate monitor; no DB writes."
+    },
+    {
+      "option": "Review only after external edits",
+      "plain_english": "If someone else fixes the PR, rerun this review from the new head.",
+      "risk": "Low/read-only",
+      "approval": "STEER: re-review PR #70 current head; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Locked: mark ready and merge PR #70",
+      "plain_english": "Not recommended until the blocker is fixed and re-reviewed.",
+      "risk": "Locked; would change GitHub main",
+      "approval": "APPROVE MARK READY AND MERGE PR 70 PAGE58 LABEL UPLOAD AFTER FIX 20260629T150724Z"
+    }
+  ]
+}

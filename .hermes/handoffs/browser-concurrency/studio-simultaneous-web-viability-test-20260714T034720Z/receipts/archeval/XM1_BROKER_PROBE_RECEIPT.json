@@ -1,0 +1,61 @@
+{
+ "probe": "xm1_broker_probe",
+ "results": {
+  "ping": {
+   "ok": true,
+   "pong": true,
+   "pid": 56572
+  },
+  "transport_acquire": {
+   "ok": true,
+   "lease": {
+    "lease_id": "L00001",
+    "holder": "pro-probe",
+    "kind": "target",
+    "mode": "write",
+    "scope": {
+     "host_id": "macpro",
+     "user_data_dir": "/pro/probe/p1"
+    },
+    "epoch": 1,
+    "granted_at": 1784010492.443341,
+    "ttl": 300.0,
+    "heartbeat_interval": 60.0,
+    "last_heartbeat": 1784010492.443342,
+    "state": "live"
+   }
+  },
+  "transport_check": {
+   "ok": true
+  },
+  "transport_release": {
+   "ok": true
+  },
+  "live_acquire": {
+   "ok": true,
+   "lease": {
+    "lease_id": "L00002",
+    "holder": "pro-probe-live",
+    "kind": "target",
+    "mode": "write",
+    "scope": {
+     "host_id": "macpro",
+     "user_data_dir": "/pro/probe/p2"
+    },
+    "epoch": 2,
+    "granted_at": 1784010492.448669,
+    "ttl": 30.0,
+    "heartbeat_interval": 0.3,
+    "last_heartbeat": 1784010492.448669,
+    "state": "live"
+   }
+  },
+  "authority_post_partition_check": {
+   "ok": false,
+   "deny": "no live lease"
+  },
+  "live_partition_failclosed": true,
+  "authority_reports_lease_nonlive": true
+ },
+ "pass": true
+}

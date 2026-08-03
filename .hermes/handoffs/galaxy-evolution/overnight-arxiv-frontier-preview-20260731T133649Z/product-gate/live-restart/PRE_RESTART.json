@@ -1,0 +1,118 @@
+{
+  "approval": {
+    "gate_c_receipt": {
+      "bytes": 7433,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/GATE_C_RECEIPT.json",
+      "sha256": "bfd9218df587c2ef7aaa92208c3925ad60c058dbbbd6a9c0a36f24adc66b3b88"
+    },
+    "phrase": "APPROVE FRONTIER LIVE BUILD-SWAP AND RESTART overnight-arxiv-frontier-preview-20260731T133649Z bfd9218df587c2ef7aaa92208c3925ad60c058dbbbd6a9c0a36f24adc66b3b88"
+  },
+  "excluded": [
+    "DB/SQL/API mutation",
+    "Git add/commit/push/merge",
+    "LaunchAgent plist edit",
+    "new scheduler/service",
+    "cockpit edit",
+    "curated RANK_TOPICS edit",
+    "paper-merit edit",
+    "unrelated service restart",
+    "external submission"
+  ],
+  "git": {
+    "branch": "main",
+    "head": "6553874e08a943cb4c461c84136dc0185efc5719",
+    "status_line_count": 3,
+    "status_sha256": "6142762ead579e32b88fbacee5414a54e93cbc539258281581ef1f0430ce87e1",
+    "target_staged": false
+  },
+  "health": {
+    "launchagent_state": "running",
+    "local_lab_http_status": 200,
+    "port_owner_pid": 2652
+  },
+  "paths": {
+    "active_live_next": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/.next",
+    "build_stage": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/live-restart/build-stage/frontend",
+    "rollback_live_next": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/overnight-arxiv-frontier-preview-20260731T133649Z/product-gate/live-restart/rollback-live-next"
+  },
+  "prepared_at_utc": "2026-07-31T15:42:05Z",
+  "rollback_on_failure": [
+    "staged build marker mismatch",
+    "build swap readback failure",
+    "LaunchAgent restart failure",
+    "port 3000 not listening",
+    "local /lab non-200",
+    "new build marker absent",
+    "old build marker present"
+  ],
+  "run_id": "overnight-arxiv-frontier-preview-20260731T133649Z",
+  "schema_version": 1,
+  "service": {
+    "domain": "gui/501",
+    "label": "com.nebulamind.frontend",
+    "launchctl_snapshot": [
+      "{",
+      "\t\"StandardOutPath\" = \"/Users/duhokim/NebulaMind/logs/frontend.log\";",
+      "\t\"LimitLoadToSessionType\" = \"Aqua\";",
+      "\t\"StandardErrorPath\" = \"/Users/duhokim/NebulaMind/logs/frontend.error.log\";",
+      "\t\"Label\" = \"com.nebulamind.frontend\";",
+      "\t\"OnDemand\" = false;",
+      "\t\"LastExitStatus\" = 0;",
+      "\t\"PID\" = 2538;",
+      "\t\"Program\" = \"/bin/bash\";",
+      "\t\"ProgramArguments\" = (",
+      "\t\t\"/bin/bash\";",
+      "\t\t\"-c\";",
+      "\t\t\"cd /Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend && /opt/homebrew/bin/node node_modules/.bin/next start -p 3000\";",
+      "\t);",
+      "};"
+    ],
+    "old_build_id": "t-iRxR98ZKuZzWRYYpD8z",
+    "old_server_pid": 2652,
+    "old_shell_pid": 2538,
+    "plist": {
+      "bytes": 1277,
+      "path": "/Users/duhokim/Library/LaunchAgents/com.nebulamind.frontend.plist",
+      "sha256": "9dc5b17dbf66b03c45507a44066bbbb4a476ad32bbc03a32d886595c26c1a799"
+    },
+    "port": 3000,
+    "process_snapshot": [
+      "2538     1  2538 2026\ub144  7\uc6d4 28\uc77c \ud654\uc694\uc77c 15\uc2dc 09\ubd84 13\ucd08 /bin/bash -c cd /Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend && /opt/homebrew/bin/node node_modules/.bin/next start -p 3000",
+      " 2652  2538  2538 2026\ub144  7\uc6d4 28\uc77c \ud654\uc694\uc77c 15\uc2dc 09\ubd84 13\ucd08 next-server (v14.2.35)"
+    ],
+    "working_directory": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend"
+  },
+  "source": {
+    "frontiers_data": {
+      "bytes": 38735,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/frontiersData.ts",
+      "sha256": "08ec69b7b059dc9c0ed1bc1311f9253d092c8ec314e684c149a1e13f3882dc36"
+    },
+    "lab_stages": {
+      "bytes": 126747,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/LabStages.tsx",
+      "sha256": "31a08a0ff5ab36a3f43ef493c6e1a2da99e86bce7f8aaf7d4808839316eb361d"
+    },
+    "package_json": {
+      "bytes": 3203,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/package.json",
+      "sha256": "252cda4fd37a4894f5f504f98fc314d82215135e300b79da8e81c60a6fb145c8"
+    },
+    "package_lock": {
+      "bytes": 142028,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/package-lock.json",
+      "sha256": "6b4b47678a08deca68d322122cec94e9f2a29f67092f765a21a05de047b21ee9"
+    },
+    "paper_scores": {
+      "bytes": 15358,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/src/app/lab/paperScores.ts",
+      "sha256": "868845cdeb0f824ac03cec3a327fcc5fb9ade43a07d79db7d4dee8fd927eb8bb"
+    },
+    "tsconfig": {
+      "bytes": 599,
+      "path": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend/tsconfig.json",
+      "sha256": "e8ecc89295aa6fd56307dccfd6fe90aed0e865ffe9f7ba2ddd7f0cf446df1492"
+    }
+  },
+  "status": "PRE_RESTART_LOCKED"
+}

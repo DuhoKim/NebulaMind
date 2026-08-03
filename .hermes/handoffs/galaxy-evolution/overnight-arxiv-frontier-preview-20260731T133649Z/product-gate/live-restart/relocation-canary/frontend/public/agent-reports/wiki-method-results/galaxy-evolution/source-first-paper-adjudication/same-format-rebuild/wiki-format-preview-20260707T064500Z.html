@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Galaxy Evolution | Method2 wiki-format preview</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #07111f;
+      --panel: #0f1b2d;
+      --panel-2: #101f34;
+      --text: #e5edf8;
+      --muted: #9fb0c7;
+      --line: rgba(148, 163, 184, 0.22);
+      --accent: #7dd3fc;
+      --accent-2: #a5b4fc;
+      --claim: rgba(14, 165, 233, 0.14);
+      --claim-border: rgba(125, 211, 252, 0.55);
+      --cite: rgba(250, 204, 21, 0.13);
+      --cite-border: rgba(250, 204, 21, 0.45);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(59, 130, 246, 0.18), transparent 30rem),
+        linear-gradient(180deg, #08111f 0%, #050914 100%);
+      color: var(--text);
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(7, 17, 31, 0.92);
+      backdrop-filter: blur(14px);
+    }
+    .topbar-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0.9rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .brand { display: flex; flex-direction: column; gap: 0.2rem; min-width: 0; }
+    .brand-title { font-size: 0.95rem; font-weight: 800; letter-spacing: 0; }
+    .brand-subtitle { font-size: 0.74rem; color: var(--muted); }
+    .top-controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: flex-end; }
+    .segmented, .button {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(15, 27, 45, 0.82);
+      color: var(--text);
+      font-size: 0.76rem;
+      line-height: 1;
+      padding: 0.55rem 0.65rem;
+      white-space: nowrap;
+    }
+    .segmented strong {
+      color: #ffffff;
+      font-weight: 800;
+      margin-right: 0.35rem;
+    }
+    .shell {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 1.4rem 1.25rem 3rem;
+      display: grid;
+      grid-template-columns: minmax(0, 56rem) 240px;
+      gap: 2rem;
+    }
+    .article-frame {
+      min-width: 0;
+      border: 1px solid var(--line);
+      background: rgba(15, 27, 45, 0.78);
+      box-shadow: 0 20px 54px rgba(0, 0, 0, 0.28);
+    }
+    .article-header {
+      padding: 1.25rem 1.35rem 1rem;
+      border-bottom: 1px solid var(--line);
+      background: linear-gradient(180deg, rgba(16, 31, 52, 0.96), rgba(15, 27, 45, 0.72));
+    }
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.75rem;
+    }
+    .chip {
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.72);
+      color: var(--muted);
+      font-size: 0.72rem;
+      padding: 0.33rem 0.52rem;
+      white-space: nowrap;
+    }
+    .chip.provenance {
+      color: #dbeafe;
+      border-color: rgba(125, 211, 252, 0.38);
+      background: rgba(14, 165, 233, 0.13);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(2.1rem, 4vw, 4.2rem);
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+    .summary {
+      margin-top: 0.9rem;
+      color: var(--muted);
+      line-height: 1.6;
+      max-width: 58rem;
+    }
+    .article-controls {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 1rem;
+    }
+    .content {
+      padding: 1.35rem;
+      max-width: 76ch;
+    }
+    .content blockquote {
+      margin: 0 0 1.25rem;
+      padding: 0.9rem 1rem;
+      border-left: 3px solid var(--accent);
+      background: rgba(14, 165, 233, 0.1);
+      color: #dbeafe;
+      line-height: 1.6;
+    }
+    .content h2 {
+      margin: 2rem 0 0.8rem;
+      padding-top: 0.4rem;
+      font-size: 1.35rem;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .content h2:first-child { margin-top: 0; }
+    .content p {
+      margin: 0 0 1rem;
+      color: #d9e4f5;
+      font-size: 1rem;
+      line-height: 1.72;
+    }
+    .claim-preview {
+      display: inline;
+      padding: 0.08rem 0.2rem;
+      border-radius: 5px;
+      border: 1px solid var(--claim-border);
+      background: var(--claim);
+      box-decoration-break: clone;
+      -webkit-box-decoration-break: clone;
+    }
+    .claim-label, .cite-unmatched {
+      display: inline-flex;
+      align-items: center;
+      min-height: 1.35rem;
+      margin: 0 0.12rem;
+      border-radius: 999px;
+      font-size: 0.68rem;
+      font-weight: 800;
+      vertical-align: 0.08rem;
+      white-space: nowrap;
+    }
+    .claim-label {
+      padding: 0.14rem 0.4rem;
+      color: #bae6fd;
+      border: 1px solid var(--claim-border);
+      background: rgba(14, 165, 233, 0.18);
+    }
+    .cite-unmatched {
+      max-width: 100%;
+      padding: 0.14rem 0.45rem;
+      color: #fde68a;
+      border: 1px solid var(--cite-border);
+      background: var(--cite);
+    }
+    .rail {
+      position: sticky;
+      top: 5rem;
+      align-self: start;
+      border: 1px solid var(--line);
+      background: rgba(15, 27, 45, 0.78);
+      padding: 1rem;
+      max-height: calc(100vh - 6rem);
+      overflow: auto;
+    }
+    .rail h2 {
+      margin: 0 0 0.75rem;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .rail a {
+      display: block;
+      padding: 0.42rem 0;
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.82rem;
+      line-height: 1.35;
+      border-top: 1px solid rgba(148, 163, 184, 0.11);
+    }
+    .rail a:hover { color: #ffffff; }
+    .trust-box {
+      margin-top: 1rem;
+      padding: 0.8rem;
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      background: rgba(22, 163, 74, 0.08);
+      color: #bbf7d0;
+      font-size: 0.78rem;
+      line-height: 1.5;
+    }
+    @media (max-width: 980px) {
+      .shell { grid-template-columns: 1fr; }
+      .rail { position: static; max-height: none; order: -1; }
+    }
+    @media (max-width: 640px) {
+      .topbar-inner { align-items: flex-start; flex-direction: column; }
+      .top-controls { justify-content: flex-start; }
+      .shell { padding: 1rem 0.75rem 2rem; }
+      .article-header, .content { padding: 1rem; }
+      h1 { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-title">NebulaMind Wiki Preview</div>
+        <div class="brand-subtitle">Fallback title: Galaxy Evolution · slug: galaxy-evolution</div>
+      </div>
+      <div class="top-controls" aria-label="Static preview controls">
+        <span class="segmented"><strong>Reader</strong> On</span>
+        <span class="segmented"><strong>Evidence</strong> Static</span>
+        <span class="button">History</span>
+        <span class="button">Sources</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <article class="article-frame" aria-label="Galaxy Evolution wiki article preview">
+      <header class="article-header">
+        <div class="meta-row">
+          <span class="chip provenance">HWAO_SAME_FORMAT_REBUILD_PACKET_20260707T064500Z</span>
+          <span class="chip">Method2 · Source-first adjudication</span>
+          <span class="chip">Static preview shell</span>
+          <span class="chip">0 numeric cites · cite-unmatched preview</span>
+        </div>
+        <h1>Galaxy Evolution</h1>
+        <p class="summary">Trust summary placeholder: Method2 claim chips 2942-2947 are rendered as static preview highlights. Citation badges marked unmatched represent local source-adjudication evidence that has not been resolved to product cite IDs in this preview.</p>
+        <div class="article-controls">
+          <span class="button">Reader</span>
+          <span class="button">Evidence</span>
+          <span class="button">Preview-only History</span>
+          <span class="button">Preview-only Sources</span>
+        </div>
+      </header>
+
+      <section class="content">
+        <blockquote>Highlighted claim chips mark statements with provenance in the Method2 source-first adjudication ledger. They are used sparingly here: the page is a narrative synthesis first, and this static preview renders unresolved source-adjudication citations as unmatched badges without inventing product evidence IDs.</blockquote>
+
+        <h2 id="overview-galaxy-evolution-as-a-regulated-baryon-cycle">Overview: Galaxy Evolution as a Regulated Baryon Cycle</h2>
+        <p>Galaxy evolution is the study of how dark matter halos, gas supply, star formation, feedback, environment, and cosmic time combine to build the observed galaxy population. The useful modern picture is not a single ladder from blue spirals to red ellipticals. It is a regulated baryon cycle: halos assemble and acquire gas, galaxies convert only part of that gas into stars, feedback returns energy and enriched material to surrounding reservoirs, and quenching processes eventually reduce or shut down star formation.</p>
+        <p>The red sequence, green valley, and blue cloud remain useful observational landmarks, but they are outcomes rather than mechanisms. A source-first synthesis should therefore start with causal structure: what sets the baryon supply, what regulates star formation, what shuts galaxies down, and which observations separate internal feedback from external processing. AGN-related claims here are deliberately narrow, supporting scoped mechanisms and cautions rather than a universal quenching explanation.</p>
+
+        <h2 id="dark-matter-halos-structure-formation">Dark Matter Halos &amp; Structure Formation</h2>
+        <p>Dark matter halos provide the gravitational scaffolding for galaxy formation, but halo mass alone does not determine how efficiently baryons become stars. At the low-mass end, shallow potential wells make galaxies sensitive to feedback and to whether expelled gas is truly lost, reaccreted later, or prevented from cooling in the first place.</p>
+        <p>The connection between halo history and galaxy properties is less settled than a one-parameter halo-mass model would suggest. Metallicity, large-scale environment, gas supply, feedback timing, and merger history can redirect similar halos into different visible outcomes. That conditional framing matters for the AGN evidence, where group-scale gas, single-galaxy cases, and model-bounded maintenance heating are informative but not interchangeable.</p>
+        <p>At the massive end and at cosmic noon, quiescent systems probe how stellar shutdown couples to halo growth. High-redshift massive-galaxy claims should be written cautiously: stellar-population modeling, dust, emission-line contamination, AGN light, IMF assumptions, and spectroscopic completeness all affect the interpretation. The observations are powerful tests of galaxy-formation efficiency and modeling assumptions, not automatic falsifications of the cosmological frame.</p>
+
+        <h2 id="gas-supply-star-formation-feedback">Gas Supply, Star Formation &amp; Feedback</h2>
+        <p>The gas cycle links accretion, the interstellar medium, the circumgalactic medium, and later recycling. Stellar feedback is the clearest bridge between local star formation and galaxy-scale regulation, while AGN feedback can add jets, winds, turbulence, and heating that couple differently to cold, warm, and hot gas phases.</p>
+        <p><span class="claim-preview" data-claim-id="2945"><span class="claim-label">claim 2945</span> Gas-removal claims need recycling and mass-regime cautions: accepted-limited source positions indicate fallback or recycling of outflowing material and note that low-redshift, low-mass systems can have winds that are less effective at permanent gas removal.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28066 (arXiv:2512.05584), 28075 (arXiv:0901.1880); unresolved to product cite ID">unmatched source evidence</span></p>
+        <p>Not every outflow implies immediate quenching. Some gas can leave the star-forming disk but later return, some feedback can regulate turbulence without emptying the reservoir, and some source positions remain cautionary rather than supportive. In the M51 case specifically, a positive or compressive feedback line is preserved only as an anti-overclaim caution: it does not support a quenching claim and is not used inside a claim chip. <span class="cite-unmatched" title="M2 source-adjudication evidence 28060 (arXiv:2604.15438); unresolved to product cite ID">unmatched source evidence</span></p>
+
+        <h2 id="agn-feedback-quenching">AGN Feedback &amp; Quenching</h2>
+        <p>Quenching is not a single event. It can be rapid or slow, central or environmental, preventive or ejective, and it can leave different signatures in stellar populations, gas reservoirs, molecular excitation, hot atmospheres, and morphology. The evidence here supports AGN feedback as a real but scoped pathway, with especially strong caution against turning local or model-bounded evidence into universal prose.</p>
+        <p><span class="claim-preview" data-claim-id="2942"><span class="claim-label">claim 2942</span> AGN feedback should be framed as scoped and context-dependent rather than universal: the ratified source positions include a review-level complexity caveat, group-scale evidence, and M51-specific rows that keep the claim tied to particular environments and gas phases.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28087 (arXiv:2009.11175), 28151 (arXiv:2403.17145), 28074 (arXiv:2604.15438), 28155 (arXiv:2604.15438); unresolved to product cite ID">unmatched source evidence</span></p>
+        <p><span class="claim-preview" data-claim-id="2943"><span class="claim-label">claim 2943</span> AGN outflows can remove or suppress star-forming gas in some systems, with the strongest support coming from a direct quasar-outflow source position and additional limited support from outflow detections, an ultra-fast-outflow detection, a simulation comparison, and an explicitly M51-scoped case.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28141 (arXiv:1706.08987), 28144 (arXiv:2508.06707), 28148 (arXiv:2604.22922), 28140 (arXiv:2111.01801), 28091 (arXiv:2604.15438); unresolved to product cite ID">unmatched source evidence</span></p>
+        <p>The same evidence base also limits the prose. A source position marked background-only is not cited here, and single-galaxy M51 material remains scoped to M51 rather than promoted to a general law. AGN feedback is therefore treated as a mechanism that can matter, not as a guarantee that every active nucleus quenches its host.</p>
+        <p><span class="claim-preview" data-claim-id="2946"><span class="claim-label">claim 2946</span> Maintenance or preventive heating remains model-dependent in this evidence set: simulations and model-bounded source positions support the need for AGN feedback in some settings, while one observed X-ray-cavity line provides an observational anchor without making the pathway universal.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28089 (arXiv:2508.06707), 28123 (arXiv:2403.17145), 28158 (arXiv:2403.17145); unresolved to product cite ID">unmatched source evidence</span></p>
+        <p><span class="claim-preview" data-claim-id="2947"><span class="claim-label">claim 2947</span> Kinetic and radio-mode feedback is supported here by one review-synthesis source position and one radio-mode observational source position, with weak jet-gas coupling and same-source cautionary material kept as limitations rather than stacked as extra support.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28095 (arXiv:2009.11175), 28131 (arXiv:0901.1880), 28108 (arXiv:2009.11175), 28062 (arXiv:2508.06707); unresolved to product cite ID">unmatched source evidence</span></p>
+
+        <h2 id="environment-morphology-structural-growth">Environment, Morphology &amp; Structural Growth</h2>
+        <p>Environment changes galaxies by stripping, starving, perturbing, and merging them. In groups and clusters, the same observable state can arise from multiple channels: external gas removal, suppressed inflow, tidal processing, central structure, or internal feedback. A careful synthesis should keep those channels separate unless the source position directly connects a mechanism to the resulting star-formation state.</p>
+        <p>The source set here does not authorize broad new morphology claims. Its environment-relevant material is narrower: group-scale evidence contributes to the scoped AGN-feedback claim, and one high-redshift environmental-quenching source position is used as a qualifier for stellar-feedback alternatives. That keeps environment present in the synthesis without letting it overrun the adjudicated evidence.</p>
+        <p>Mergers are a second structural channel, but this synthesis does not add merger-specific accepted source positions. They remain part of the broader galaxy-evolution picture, while the highlighted evidence here is reserved for the ratified AGN, gas-removal, stellar-feedback, and maintenance-heating claims.</p>
+
+        <h2 id="chemical-enrichment-cosmic-timing">Chemical Enrichment &amp; Cosmic Timing</h2>
+        <p>Chemical enrichment records the integrated history of star formation, inflow, and outflow. Metallicity scaling relations act as clocks and regulators: they encode how much gas has been processed into stars, how much enriched material has been lost, and how much low-metallicity gas has diluted the interstellar medium.</p>
+        <p><span class="claim-preview" data-claim-id="2944"><span class="claim-label">claim 2944</span> Stellar-feedback alternatives and qualifiers remain necessary in a balanced quenching synthesis: accepted-limited source positions include DESI and Mg II evidence for non-AGN outflow channels and a high-redshift simulation result in which stellar feedback alone is insufficient to fully quench high-mass galaxies.</span> <span class="cite-unmatched" title="M2 source-adjudication evidence 28069 (arXiv:2512.05584), 28073 (arXiv:2512.05584), 28088 (arXiv:2605.03008); unresolved to product cite ID">unmatched source evidence</span></p>
+        <p>This timing perspective explains why galaxy evolution is not simply a sequence from blue disks to red spheroids. Different galaxies can enter the same observed class by different routes: early gas exhaustion, central quenching, environmental processing, late structural assembly, or combinations of these mechanisms. The source-first rule keeps those routes from being collapsed into a single feedback story.</p>
+
+        <h2 id="high-redshift-reionization-frontier">High-Redshift &amp; Reionization Frontier</h2>
+        <p>At high redshift, galaxy evolution connects directly to early gas supply, rapid structure growth, and the first dense stellar systems. The evidence set here touches this frontier through high-redshift environmental-quenching simulations and through model-dependent maintenance-heating claims, but it does not by itself settle the abundance or photon-budget questions that belong to a broader reionization synthesis.</p>
+        <p>That boundary is important. High-redshift observations can sharpen tensions between inferred stellar masses, star-formation histories, AGN light, dust, and expected halo abundances, but a source-first synthesis should not use an AGN outflow or stellar-feedback qualifier as a proxy for the full early-universe problem. The cited high-redshift material is therefore kept as a qualified contribution to feedback and quenching mechanisms, not a standalone reionization claim.</p>
+
+        <h2 id="observational-evidence-surveys">Observational Evidence &amp; Surveys</h2>
+        <p>The evidence base is multi-wavelength and redshift-dependent. Rest-frame optical and near-infrared spectra constrain stellar populations, nebular lines, metallicities, and dust. Submillimetre and radio observations constrain hidden star formation and molecular or atomic gas. X-ray and radio signatures identify AGN power and hot atmospheres. Integral-field spectroscopy maps outflows, rotation, turbulence, and spatially resolved quenching.</p>
+        <p>The source positions here illustrate why observing mode matters. Quasar outflows, ultra-fast outflows, radio-mode systems, X-ray cavities, M51 molecular-gas excitation, DESI and Mg II outflow material, and model-comparison rows each carry different evidentiary strength. The synthesis therefore pairs citation badges with cautious verbs: observations can anchor mechanisms, reviews can synthesize them, and simulations can test dependence, but the prose should not blur those roles.</p>
+        <p>Current and near-future facilities should be framed by the physical ambiguity they reduce. JWST constrains rest-frame optical diagnostics at high redshift and tests early mass budgets. ALMA and radio facilities trace molecular gas, dust-obscured star formation, and cold reservoirs. Euclid, Rubin, DESI, and related wide surveys connect galaxy populations to large-scale environment, weak lensing, clustering, and cosmic-web structure. The point is not to list missions; it is to connect each observing mode to a mechanism-level uncertainty.</p>
+
+        <h2 id="synthesis-open-tensions">Synthesis &amp; Open Tensions</h2>
+        <p>Galaxy evolution is regulated by baryon supply, the conversion of gas into stars, the return of energy and metals through feedback, and the environments that reshape reservoirs after infall. The clearest picture is causal rather than linear: halo growth creates the gravitational setting, gas accretion and recycling provide fuel, stellar and AGN feedback regulate how efficiently that fuel forms stars, and groups, clusters, and cosmic-web geometry alter the boundary conditions.</p>
+        <p>The source-first result narrows the AGN part of that picture. AGN feedback can be real, ejective, kinetic, thermal, or preventive, but the strength of the statement depends on source type, gas phase, environment, and whether the evidence is direct observation, review synthesis, or model-bounded support. Stellar-feedback alternatives, recycling cautions, and M51-specific positive-feedback nuance prevent the draft from turning feedback into a one-way quenching slogan.</p>
+        <p>The open frontier is not whether any one mechanism matters. It is when each dominates, how strongly it couples to observable gas phases, and how those answers change with mass, redshift, and environment. Remaining tensions include the abundance of massive galaxies in early JWST samples, survival of cold streams in hot halos, scaling of feedback efficiency with simulation resolution, the relative importance of direct stripping versus starvation, and the source budget for reionization. Those topics should become additional sourced claims only when their evidence is mapped cleanly into the claim/evidence layer.</p>
+      </section>
+    </article>
+
+    <aside class="rail" aria-label="Contents">
+      <h3>Contents</h3>
+      <a href="#overview-galaxy-evolution-as-a-regulated-baryon-cycle">Overview: Galaxy Evolution as a Regulated Baryon Cycle</a>
+      <a href="#dark-matter-halos-structure-formation">Dark Matter Halos &amp; Structure Formation</a>
+      <a href="#gas-supply-star-formation-feedback">Gas Supply, Star Formation &amp; Feedback</a>
+      <a href="#agn-feedback-quenching">AGN Feedback &amp; Quenching</a>
+      <a href="#environment-morphology-structural-growth">Environment, Morphology &amp; Structural Growth</a>
+      <a href="#chemical-enrichment-cosmic-timing">Chemical Enrichment &amp; Cosmic Timing</a>
+      <a href="#high-redshift-reionization-frontier">High-Redshift &amp; Reionization Frontier</a>
+      <a href="#observational-evidence-surveys">Observational Evidence &amp; Surveys</a>
+      <a href="#synthesis-open-tensions">Synthesis &amp; Open Tensions</a>
+      <div class="trust-box">
+        Trust summary placeholder: 6 Method2 claim chips, 0 numeric cite markers, unresolved source-adjudication citations rendered as static unmatched badges.
+      </div>
+    </aside>
+  </main>
+</body>
+</html>

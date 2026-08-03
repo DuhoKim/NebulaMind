@@ -1,0 +1,137 @@
+{
+  "browser_automation_default": "disabled",
+  "default_mode": "manual_packet_loop",
+  "hard_rules": [
+    "one prompt packet only per approved run",
+    "Gemini web output is advisory until reconciled against local artifacts",
+    "never use web/app for mechanical work that Goru or scripts can do",
+    "do not execute browser automation unless a fresh one-packet supervised pilot approval exists",
+    "do not continue on login, 2FA, CAPTCHA, payment, API key, GCP/project/billing, OAuth code, token, cookie, password, account-change prompt, URL drift, UI uncertainty, prompt-only capture, missing marker, or tool action error"
+  ],
+  "marker": "GEMINI_WEB_OPERATOR_STATE_MACHINE_20260707T134324Z",
+  "states": [
+    {
+      "allowed_actions": [
+        "watch_dashboard",
+        "wait_for_candidate_packet"
+      ],
+      "exit_to": [
+        "CANDIDATE_TRIAGE"
+      ],
+      "id": "IDLE"
+    },
+    {
+      "allowed_actions": [
+        "decide_if_gemini_web_adds_value",
+        "prefer_goru_for_mechanical_work",
+        "prefer_lana_kun_for_repo_truth"
+      ],
+      "exit_to": [
+        "PREPARE_PACKET",
+        "DECLINE_WITH_REASON"
+      ],
+      "id": "CANDIDATE_TRIAGE"
+    },
+    {
+      "allowed_actions": [
+        "write_self_contained_prompt",
+        "write_expected_marker",
+        "copy_prompt_to_clipboard_or_tmux_buffer",
+        "write_capture_helper"
+      ],
+      "exit_to": [
+        "WAIT_FOR_MANUAL_OUTPUT",
+        "REQUEST_SUPERVISED_PILOT_APPROVAL"
+      ],
+      "id": "PREPARE_PACKET"
+    },
+    {
+      "allowed_actions": [
+        "user_or_supervisor_pastes_prompt",
+        "user_or_supervisor_copies_answer",
+        "capture_clipboard_output"
+      ],
+      "exit_to": [
+        "VERIFY_OUTPUT",
+        "STOP_BLOCKED"
+      ],
+      "id": "WAIT_FOR_MANUAL_OUTPUT"
+    },
+    {
+      "allowed_actions": [
+        "present_one_packet_approval_phrase_only"
+      ],
+      "exit_to": [
+        "SUPERVISED_ONE_PACKET_PILOT",
+        "STOP_BLOCKED"
+      ],
+      "id": "REQUEST_SUPERVISED_PILOT_APPROVAL"
+    },
+    {
+      "allowed_actions": [
+        "capture_app",
+        "paste_one_prompt",
+        "wait_for_answer",
+        "capture_generated_answer",
+        "stop_after_one_packet"
+      ],
+      "exit_to": [
+        "VERIFY_OUTPUT",
+        "STOP_BLOCKED"
+      ],
+      "id": "SUPERVISED_ONE_PACKET_PILOT",
+      "requires_fresh_user_approval": true
+    },
+    {
+      "allowed_actions": [
+        "verify_marker_in_generated_answer_not_prompt",
+        "record_sha256_bytes_lines",
+        "detect_prompt_only_capture",
+        "scan_for_stop_condition_mentions"
+      ],
+      "exit_to": [
+        "INTEGRATE_OUTPUT",
+        "STOP_BLOCKED"
+      ],
+      "id": "VERIFY_OUTPUT"
+    },
+    {
+      "allowed_actions": [
+        "reconcile_against_local_files",
+        "list_corrections",
+        "write_integration_note",
+        "feed_only_integrated_facts_to_autopilot"
+      ],
+      "exit_to": [
+        "DONE"
+      ],
+      "id": "INTEGRATE_OUTPUT"
+    },
+    {
+      "allowed_actions": [
+        "write_short_reason_why_not_using_gemini_web"
+      ],
+      "exit_to": [
+        "DONE"
+      ],
+      "id": "DECLINE_WITH_REASON"
+    },
+    {
+      "allowed_actions": [
+        "write_blocker_receipt",
+        "do_not_retry_blindly"
+      ],
+      "exit_to": [
+        "DONE"
+      ],
+      "id": "STOP_BLOCKED"
+    },
+    {
+      "allowed_actions": [
+        "report_paths_and_next_gate"
+      ],
+      "exit_to": [],
+      "id": "DONE"
+    }
+  ]
+}

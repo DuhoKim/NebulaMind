@@ -1,0 +1,70 @@
+{
+  "prepared_at": "2026-07-28T00:42:59.530273+09:00",
+  "status": "P0_CORRECTION_PACKET_PREPARED_ONLY__NOT_APPLIED_NOT_RENDERED_NOT_REVIEWED",
+  "marker": "P0_CORRECTION_PACKET_PREPARATION_COMPLETE_20260728",
+  "packet_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-paper-board-portfolio-20260727/repairs/P0",
+  "manifest": {
+    "bytes": 5089,
+    "sha256": "64e3454a5fb197957c323c08995920a127cef617b3ea8ca3fee872f19ef03197",
+    "file_count": 25,
+    "excludes": [
+      "manifest.json",
+      "RECEIPT.json"
+    ]
+  },
+  "served_identity": {
+    "url": "https://nebulamind.net/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf",
+    "http_status": 200,
+    "bytes": 132831,
+    "sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef"
+  },
+  "selected_branch": "RETRACT_UNSUPPORTED_MATCHED_SCALE_CLAIM__PRESERVE_UNMATCHED_SUGGESTIVE_STATE",
+  "source_authority": "SERVE_MATCHING_STANDALONE_SOURCE_SNAPSHOT_FOUND__EXPLICIT_REPIN_REQUIRED_BEFORE_APPLY",
+  "prepared_changes": {
+    "modify": [
+      "paper-backups/quartet-rewrites-20260723T141609Z/p6_tng-calibration-validation/after.tex",
+      "frontend/src/app/lab/FrontierDrafts.tsx",
+      "frontend/src/app/lab/paperScores.ts"
+    ],
+    "create": [
+      "frontend/scripts/test-p0-correction-state.mjs"
+    ],
+    "figures": "UNCHANGED",
+    "history_json": "UNCHANGED"
+  },
+  "verification": {
+    "git_apply_check": {
+      "red_test_only.patch": "PASS",
+      "green_source_only.patch": "PASS",
+      "exact_diff.patch": "PASS"
+    },
+    "structured_parse": "PASS__4_JSON_1_JSONL_1_CSV",
+    "issue_rows": 9,
+    "citation_rows": 8,
+    "patch_paths": 4,
+    "proposed_contract": "PASS__EVALUATED_WITHOUT_TEST_EXECUTION",
+    "live_source_custody": "PASS__UNCHANGED",
+    "live_repository_stray_cleanup": "PASS__ZERO_RESIDUE",
+    "tests_compiles_renders_executed": 0
+  },
+  "side_effects": {
+    "packet_artifacts_written": 27,
+    "live_source_files_modified": 0,
+    "public_writes": 0,
+    "lab_db_wiki_writes": 0,
+    "services_restarted": 0,
+    "git_actions": 0,
+    "tests_run": 0,
+    "tex_compiles": 0,
+    "pdf_renders": 0,
+    "independent_reviews": 0,
+    "cleanup_receipt": "One mistakenly resolved docs-only packet file under live-root .hermes was immediately deleted together with all empty directories; final live-root residue is zero."
+  },
+  "apply_blockers": [
+    "serve-matching after.tex must be explicitly repinned or replaced by another verified canonical generator",
+    "fresh Lana/Kun/Goru no-self-review receipts are required after candidate compile/render",
+    "a separate apply gate is required"
+  ],
+  "next_gate": "APPROVE APPLY P0 EXACT-DIFF PACKET 64e3454a5fb197957c323c08995920a127cef617b3ea8ca3fee872f19ef03197; REPIN SERVE-MATCHING after.tex AS THE CANDIDATE SOURCE; RUN RED/GREEN + TECTONIC + RENDER REVIEW; NO PUBLICATION, RESTART, OR GIT.",
+  "no_active_execution_phrase": true
+}

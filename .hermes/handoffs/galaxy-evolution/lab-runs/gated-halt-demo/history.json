@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "runId": "gated-halt-demo",
+  "model": "astrosage-70b:latest",
+  "converged": "MINOR",
+  "createdUtc": null,
+  "lineage": {
+    "topicSource": null,
+    "topic": "the z=0 star-forming main sequence of galaxies in SDSS",
+    "parentRunId": null
+  },
+  "revisions": [
+    {
+      "cycle": 1,
+      "feedbackSource": "referee-model",
+      "feedbackBy": "astrosage-70b:latest",
+      "feedbackKind": {
+        "verdict": "MINOR",
+        "categories": [
+          "overclaim",
+          "caveats",
+          "calibration",
+          "selection",
+          "methodology",
+          "statistics"
+        ]
+      },
+      "feedbackText": "This manuscript presents a thorough analysis of the z=0 star-forming main sequence in SDSS galaxies using a well-established method. However, there are some minor concerns regarding potential overclaims or missing caveats:\n\n1. The reliance on an automated selection process may introduce biases and overlook specific galaxy populations.\n2. Calibration issues or uncertainties in the SDSS data could affect the accuracy of the findings.\n3. The single-selection criterion might oversimplify the properties of star-forming galaxies.\n\nThe most important fix would be to address these caveats more explicitly, either by discussing their potential impact on the results or by providing additional evidence to mitigate their effects. Overall, the manuscript is well-structured and provides valuable insights into the local universe's galaxy evolution, but it requires minor revisions to strengthen its conclusions.",
+      "changed": {
+        "summary": "first automated pass — draft not yet revised",
+        "diffStat": null
+      },
+      "timestamp": null
+    }
+  ],
+  "humanFeedback": {
+    "captured": false,
+    "events": []
+  },
+  "gates": {
+    "captured": false,
+    "events": [],
+    "note": "novelty / expected-value / citation gates are not instrumented in this pipeline"
+  }
+}

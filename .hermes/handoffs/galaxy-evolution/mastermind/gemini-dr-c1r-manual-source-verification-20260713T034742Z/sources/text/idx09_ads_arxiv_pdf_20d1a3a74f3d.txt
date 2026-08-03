@@ -1,0 +1,2959 @@
+MNRAS 000, 1–25 (2018)
+Preprint 3 April 2019
+Compiled using MNRAS LATEX style ﬁle v3.0
+Simba: Cosmological Simulations with Black Hole Growth
+and Feedback
+Romeel Dav´e1,2,3, Daniel Angl´es-Alc´azar4, Desika Narayanan5,6,7,
+Qi Li5, Mika H. Raﬁeferantsoa2,3, & Sarah Appleby1
+1 Institute for Astronomy, Royal Observatory, Univ. of Edinburgh, Edinburgh EH9 3HJ, UK
+2 University of the Western Cape, Bellville, Cape Town 7535, South Africa
+3 South African Astronomical Observatories, Observatory, Cape Town 7925, South Africa
+4 Center for Computational Astrophysics, Flatiron Institute, 162 Fifth Avenue, New York, NY 10010, USA
+5 Department of Astronomy, University of Florida, 211 Bryant Space Sciences Center, Gainesville, FL, USA
+6 University of Florida Informatics Institute, 432 Newell Drive, CISE Bldg E251, Gainesville, FL, USA
+7 Cosmic Dawn Center at the Niels Bohr Institute, University of Copenhagen and DTU-Space, Technical University of Denmark
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+We introduce the Simba simulations, the next generation of the Mufasa cosmological
+galaxy formation simulations run with Gizmo’s meshless ﬁnite mass hydrodynamics.
+Simba includes updates to Mufasa’s sub-resolution star formation and feedback pre-
+scriptions, and introduces black hole growth via the torque-limited accretion model
+of Angl´es-Alc´azar et al. (2017a) from cold gas and Bondi accretion from hot gas,
+along with black hole feedback via kinetic bipolar outﬂows and X-ray energy. Ejec-
+tion velocities are taken to be ∼103 km s−1 at high Eddington ratios, increasing to
+∼8000 km s−1 at Eddington ratios below 2%, with a constant momentum input of
+20L/c. Simba further includes an on-the-ﬂy dust production, growth, and destruc-
+tion model. Our Simba run with (100h−1Mpc)3 and 10243 gas elements reproduces
+numerous observables, including galaxy stellar mass functions at z = 0 −6, the stellar
+mass–star formation rate main sequence, H i and H2 fractions, the mass-metallicity
+relation at z ≈0, 2, star-forming galaxy sizes, hot gas fractions in massive halos, and
+z = 0 galaxy dust properties. However, Simba also yields an insuﬃciently sharp trun-
+cation of the z = 0 mass function, and too-large sizes for low-mass quenched galaxies.
+We show that Simba’s jet feedback is primarily responsible for quenching massive
+galaxies.
+Key words: galaxies: formation, galaxies: evolution, methods: N-body simulations,
+galaxies: mass function
+1
+INTRODUCTION
+The formation and evolution of galaxies is governed by a
+wide range of physical processes spanning from sub-parsec
+to giga-parsec scales. These include the growth of large-
+scale structure, cooling and heating of astrophysical plas-
+mas, and the formation of stars and central black holes along
+with associated energy return processes collectively known
+as feedback. As observations of galaxies improve at an ever-
+advancing pace, a key goal of modern astrophysics is to un-
+derstand how such observations can be used to constrain the
+balance of underlying physical processes driving galaxy evo-
+lution, particularly in regards to feedback processes that are
+currently among its least well-understood aspects.
+Modern galaxy formation models are generally built on
+the premise that feedback at the very lowest masses is dom-
+inated by photoionisation from the metagalactic ultraviolet
+background, feedback at scales above this but below L⋆is
+driven primarily by energy and momentum from young stars
+and supernovae, and feedback in massive galaxies predomi-
+nantly owes to energetic release from accretion disks around
+supermassive central black holes (see Somerville & Dav´e
+2015, for a review). While this framework has been broadly
+successful at reproducing many key observed characteristics
+of the galaxy population at a range of cosmic epochs, the
+physical understanding of most of these small-scale feed-
+back processes remains coarse and heuristic (see Naab &
+Ostriker 2017, for a review). Galaxy formation models have
+now progressed to a point where numerous models can repro-
+duce similar core sets of observations, but they often do so
+© 2018 The Authors
+arXiv:1901.10203v2  [astro-ph.GA]  2 Apr 2019
+
+
+2
+Dav´e et al.
+with signiﬁcantly diﬀerent underlying physical models and
+assumptions. To discriminate among these physical drivers,
+it becomes important to develop modeling methodologies
+that are as well-motivated and realistic as possible, and to
+test such models against the widest possible suite of obser-
+vations quantifying the stellar, gas, metal, and black hole
+properties of galaxies along with their surrounding gas.
+Cosmological-scale
+simulations
+that
+model
+galaxy
+growth and feedback dynamically within evolving large-
+scale structure are an increasingly valuable tool for testing
+and constraining galaxy formation physics, owing both to
+rapidly advancing computational power and the commen-
+surate ability to concurrently model a large range of scales
+and physical processes. State of the art models now simul-
+taneously predict the co-evolution of stars, interstellar me-
+dia, black holes, and circum-galactic gas, enabling a holis-
+tic approach towards testing the input physics against ob-
+servations across a wide range of scales, environments, and
+wavelengths. Modern cosmological-scale simulations such as
+Illustris (Vogelsberger et al. 2014; Genel et al. 2014), Mag-
+neticum (Hirschmann et al. 2014), Horizon-AGN (Dubois
+et al. 2014; Volonteri et al. 2016; Kaviraj et al. 2017), Ea-
+gle (Schaye et al. 2015), MassiveBlack (Khandai et al. 2015),
+Blue Tides (Feng et al. 2016), Romulus (Tremmel et al.
+2017), and Illustris-TNG (Springel et al. 2018) have im-
+plemented ever-improving sub-grid models aimed at more
+successfully reproducing the stellar, gaseous, and black hole
+contents of galaxies in bulk, while numerous associated
+hierarchically-situated zoom simulations using more detailed
+input physics can examine the internal structural and dy-
+namical properties of galaxies with increasing ﬁdelity.
+The Mufasa simulation project (Dav´e et al. 2016) has
+added to the pantheon of such simulations, employing sev-
+eral novel approaches that distinguish it from others. First,
+it utilises meshless ﬁnite mass (MFM) hydrodynamics as im-
+plemented in the Gizmo code (Hopkins 2015, 2017), which
+oﬀers important accuracy advantages over Smoothed Parti-
+cle Hydrodynamics (SPH), and owing to the mass conserv-
+ing nature of its gas elements greater ease of analysis as
+compared to adaptive mesh reﬁnement (Ramses) and mov-
+ing mesh (Arepo) codes. Second, rather than employing
+simple parameterisations or a cooling shutoﬀto drive galac-
+tic outﬂows, the kinetic mass outﬂow rate is taken directly
+from very high-resolution simulations from the Feedback in
+Realistic Environments (FIRE; Hopkins et al. 2014, 2018;
+Muratov et al. 2015) simulations, providing a synergy be-
+tween ISM-resolving simulations of individual galaxies and
+cosmological-scale simulations of galaxy populations.
+An aspect where Mufasa was physically less well moti-
+vated than other state of the art simulations was in its depic-
+tion of black hole growth and AGN feedback. Mufasa did
+not directly grow black holes and utilise the accretion energy
+for feedback to quench galaxies. Instead, following Gabor
+& Dav´e (2015), Mufasa implemented a heuristic “quench-
+ing feedback” in which diﬀuse gas within massive halos was
+prevented from cooling. This energy was envisioned to be
+putatively supplied by an AGN, but Mufasa did not ex-
+plicitly model black hole accretion and the interaction of
+its energy release with surrounding gas. The halo mass scale
+above which quenching feedback was applied was taken from
+the best-ﬁt analytic equilibrium model of Mitra et al. (2015,
+2017), and evolved slowly upwards with redshift. Despite its
+simplicity, this prescription displayed impressive successes
+at reproducing a red sequence and massive central galaxy
+properties in excellent accord with observations (Dav´e et al.
+2017b), albeit with some non-trivial discrepancies such as
+over-quenching satellites particularly in the outskirts of large
+halos (Raﬁeferantsoa & Dav´e 2018). This demonstrated that
+a model based primarily on starvation of the central galaxy
+via “radio mode” feedback (Croton et al. 2006; Bower et al.
+2006) is able to quench the galaxy population in a hydro-
+dynamic simulation in broad agreement with observations.
+While this model represented an interesting numerical ex-
+periment, it would clearly be valuable to implement a more
+physically-motivated black hole growth and feedback model
+that retains and perhaps even extends the successes of Mu-
+fasa’s more heuristic model.
+This is the primary goal of the Simba project. As the
+descendent of Mufasa, Simba marries two lines of investi-
+gation to achieve this. First, it builds on the successful Mu-
+fasa model, including its representation of star formation-
+driven feedback and other modern features. To this, Simba
+adds a novel and promising model for black hole growth:
+Torque-limited accretion (Hopkins & Quataert 2011; Angl´es-
+Alc´azar et al. 2013, 2015, 2017a). In this model, black hole
+growth is regulated by the ability for gas in the inner disk
+to lose angular momentum via disk instabilities. Hopkins &
+Quataert (2011) developed an analytic formalism for this,
+tested and calibrated using sub-pc scale numerical simula-
+tions, which yielded a formula that connects the infall rate
+of material onto the black hole accretion disk with prop-
+erties of the inner galactic disk. They showed that even
+at ∼1 kpc resolution typical of cosmological simulations,
+their gravitational torque accretion formula provides a sig-
+niﬁcantly better match to the measured accretion rate in
+their high-resolution simulations than employing the canon-
+ical Bondi accretion formula used in all other current cos-
+mological black hole growth simulations.
+Angl´es-Alc´azar et al. (2013) explored the torque-limited
+accretion model via the post-processing of zoom simulations,
+and Angl´es-Alc´azar et al. (2015) extended this approach to
+cosmological simulations. Their most signiﬁcant result was
+that, unlike Bondi accretion, torque-limited accretion does
+not require the black hole to self-regulate its own growth. In
+particular, torque-limited accretion naturally results in black
+holes growing along the observed galaxy-black hole scaling
+relations, even without any black hole feedback. There is one
+free parameter in the model which represents the fraction
+of material entering the accretion disk that accretes onto
+the black hole; a plausible choice of ∼10% provided a good
+match to data, insensitive to the choice of the (uncertain)
+black hole seed mass. Angl´es-Alc´azar et al. (2017a) extended
+these previous works to self-consistently incorporate torque-
+limited accretion into Gizmo, along with bipolar black hole
+winds, and demonstrated that the results obtained with-
+out feedback were reproduced in this case – in particular,
+the inclusion of feedback self-consistently conﬁrmed the pri-
+mary result obtained in the post-processed case that black
+hole–galaxy scaling relations arise naturally without the
+black hole self-regulating its own growth. Simba builds on
+this work to employ the torque-limited black hole accretion
+model of Angl´es-Alc´azar et al. (2017a) when accreting from
+cold or star-forming gas, in order to self-consistently grow
+black holes within galaxies during the simulation run. The
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+3
+use of torque-limited black hole growth is unique among
+current cosmological simulations. Simba also includes Bondi
+accretion, but only from hot gas when present close to the
+black hole since it is the physically appropriate model in
+that case.
+The second part of Simba’s new black hole model in-
+volves a novel sub-grid prescription for active galactic nu-
+clei (AGN) feedback. AGN feedback connects ﬂows coming
+oﬀthe black hole accretion disk to energy release on scales
+of tens or hundreds of kpc. To model this transfer of en-
+ergy from small to large scales, Simba utilises kinetic out-
+ﬂows with outﬂow parameters based on observed AGN feed-
+back. While there is still no well-deﬁned theoretical consen-
+sus on the generation of black hole outﬂows and jets, recent
+observational progress has been rapid, showing that AGN
+can drive molecular and ionised outﬂows with velocities of
+∼1000 km s−1 or more (Sturm et al. 2011; Greene et al. 2012;
+Maiolino et al. 2012; Liu et al. 2013; Perna et al. 2017a),
+and jets at velocities up to ∼104 km s−1 and more (Fabian
+2012). Generally, high-velocity jets are observed to arise
+from early-type galaxies hosting massive black holes with
+low accretion rates relative to its Eddington rate ( fEdd <∼few
+percent), while lower-velocity outﬂows typically arise in sys-
+tems with higher fEdd (Best & Heckman 2012; Heckman &
+Best 2014). Extreme systems such as bright quasars often
+show both types of outﬂows. Simba’s black hole outﬂows
+are parameterised to broadly follow such observed trends.
+Simba employs kinetic feedback (i.e. gas element kicks) for
+both feedback modes, with the kick velocity ranging from
+many hundreds of km/s in low-mass, fast-accreting black
+holes, up to many thousands of km s−1 for slower-accreting
+black holes.
+A key unique feature is that Simba’s kinetic feedback is
+purely bipolar, with the ejection vector given by the angular
+momentum of the inner disk. This direction is relatively sta-
+ble over galaxy dynamical timescales. To be conservative in
+minimising black hole feedback impact on the galaxy inter-
+stellar medium, we employ an opening angle of zero. This is
+in contrast to other simulations that successfully reproduce
+massive galaxy properties using Bondi accretion, which em-
+ploy either spherical thermal input (e.g. EAGLE; Schaye
+et al. 2015) or randomise the kinetic feedback’s direction on
+short timescales (e.g. Illustris-TNG; Weinberger et al. 2017).
+Horizon-AGN employed Bondi accretion with a two-mode
+feedback scheme (Dubois et al. 2012), but still used spherical
+thermal feedback during the high-Eddington growth phase,
+as later also done in Illustris-TNG. More detailed isolated
+elliptical simulations have also highlighted the importance
+of radiative mechanical feedback (Gan et al. 2014) that can
+reproduce observations of AGNs in ellipticals such as their
+duty cycle (Gan et al. 2019).
+The reason Simba is able to be successful with a
+genuinely bipolar model likely traces back to its accre-
+tion model: Torque-limited accretion does not require self-
+regulation of black hole growth, whereas Bondi accretion re-
+quires quasi-spherical energy distribution close to the black
+hole in order to self-regulate its own growth. In Simba’s case,
+the energy input sphericalises at large distances, suﬃcient in
+massive halos to quench inﬂow into the galaxy by keeping
+the halo gas hot. In this way, Simba’s accretion and feedback
+models work together to build a sub-grid description of AGN
+feedback that is more closely connected to observations of
+AGN winds and jets.
+In addition to kinetic AGN feedback, Simba also in-
+cludes X-ray feedback input into surrounding gas. The im-
+portance of this feedback channel has been emphasised in
+zoom simulations by Choi et al. (2012), showing that it
+can potentially drive the quenching of massive galaxies.
+We adapt this model to operate under the lower-resolution
+conditions present in Simba’s cosmological-scales runs, and
+show that it plays a minor but non-trivial role in quenching
+the most massive galaxies. Simba is the ﬁrst cosmological-
+volume simulation to include such X-ray feedback.
+Another novel aspect of Simba is that it includes
+a model for on-the-ﬂy dust production and destruction,
+broadly following McKinnon et al. (2017)’s implementation
+into Arepo where the dust is passively advected with the
+gas. We include dust production from Type II supernovae
+(SNe) and Asymptotic Giant Branch (AGB) stars, and fur-
+ther growth via condensation from metals, while destruction
+can occur from sputtering, consumption by star formation,
+or SNe shocks. The fraction of metals locked into dust can be
+substantial, leading to signiﬁcant changes in the predicted
+mass-metallicity relations. In Mufasa, we found it neces-
+sary to reduce the SN yields arbitrarily by a factor of two in
+order to match the observed gas-phase mass-metallicity re-
+lation, but in Simba we can reproduce this as well or better
+without such arbitrary factors, since a substantial fraction
+of the metals ends up locked in dust.
+In this paper, we describe the simulation methodology
+in Simba which, besides the new black hole model, also
+makes various other minor improvements to Mufasa (§2).
+We then present a range of observational comparisons to
+predicted stellar, gas, and metal properties, analogous to
+a sampling of results presented for Mufasa in a series of
+recent papers (Dav´e et al. 2016, 2017a,b; Raﬁeferantsoa &
+Dav´e 2018), paying particular attention to black hole and
+massive galaxy properties which represent the most direct
+test of Simba’s new AGN feedback model (§3). We show
+that Simba reproduces many observations comparably well
+or better than Mufasa, but now with a more realistic and
+self-consistent description of black hole growth and feedback.
+We then examine variants of Simba’s AGN feedback model
+in order to isolate the impact of its various components (§4),
+showing that the high-velocity jet feedback is crucial for pro-
+ducing a quenched massive galaxy population. Finally, we
+summarize our results in §5.
+2
+SIMULATION METHODOLOGY
+2.1
+Code and input physics
+The Simba simulations utilise much of the framework of the
+Mufasa simulations as described in Dav´e et al. (2016), but
+there are a number of updates and additions based on recent
+theoretical and observations results, in addition to the major
+change of modeling black hole growth and feedback as well
+as dust. Here we recap the main features of the model, and
+then describe in more detail the new aspects of Simba.
+Simba utilises a forked version of the Gizmo cosmologi-
+cal gravity plus hydrodynamics solver (Hopkins 2015, 2017),
+in its Meshless Finite Mass (MFM) version. This code, based
+MNRAS 000, 1–25 (2018)
+
+
+4
+Dav´e et al.
+on Gadget-3 (Springel 2005), evolves dark matter and gas
+elements together including gravity and pressure forces, han-
+dling shocks via a Riemann solver with no artiﬁcial viscosity.
+It performs very well in numerous standard hydrodynamics
+tests including strong shocks, rotating disks, and cold blobs
+moving through hot media (Hopkins 2015). It also preserves
+the mass within each ﬂuid element during the evolution,
+thereby enabling detailed tracking of gas ﬂows. It thus mar-
+ries the advantages of a particle-based code such as adaptiv-
+ity in space and time, with the hydrodynamics accuracy of
+a Riemann solved-based mesh code, without the imposition
+of a Cartesian mesh that can cause diﬃculties with Galilean
+invariance and rotating shear ﬂows.
+Radiative cooling and photoionisation heating are mod-
+eled using the Grackle-3.1 library (Smith et al. 2017), in-
+cluding metal cooling and non-equilibrium evolution of pri-
+mordial elements. This is an updated version of Grackle-
+2.1 used in Mufasa, oﬀering two advantages: First, the adi-
+abatic and radiative terms are evolved together during the
+cooling sub-timestep, unlike the previous operator-split ap-
+proach where ﬁrst the system was evolved adiabatically over
+the full timestep and then cooling was applied; this results in
+more accurate and stable thermal evolution particularly in
+the stiﬀregions of the cooling curve. Second, it includes self-
+shielding self-consistently during the simulation run, based
+on the Rahmati et al. (2013) prescription in which the ion-
+ising background strength is attenuated depending (primar-
+ily) on gas density. A spatially-uniform ionising background
+is assumed as speciﬁed by Haardt & Madau (2012), modi-
+ﬁed to account for self-shielding (A. Emerick, priv. comm.).
+These changes do not make a noticeable diﬀerence to the
+resulting galaxy population, but they do improve the accu-
+racy of the baryonic thermal evolution which may be partic-
+ularly important within circum-galactic gas. Furthermore,
+computing the neutral hydrogen content of gas particles is
+now done self-consistently within the code rather than via
+a post-processed application of self-shielding (Dav´e et al.
+2017a).
+As in Mufasa, we use an H2-based star formation
+rate, where the H2 fraction is computed based on the sub-
+grid model of Krumholz & Gnedin (2011) based on the
+metallicity and local column density, with minor modi-
+ﬁcations as described in Dav´e et al. (2016) to account
+for variations in numerical resolution. The star formation
+rate is given by the H2 density divided by the dynamical
+time: SFR= ϵ∗ρH2/tdyn, where we use ϵ∗= 0.02 (Kenni-
+cutt 1998). The chemical enrichment model tracks eleven
+elements (H,He,C,N,O,Ne,Mg,Si,S,Ca,Fe) during the simu-
+lation, with enrichment tracked from Type II supernovae
+(SNe), Type Ia SNe, and Asymptotic Giant Branch (AGB)
+stars. The yield tables employed are the same as in Mufasa,
+namely Nomoto et al. (2006) for SNII yields, Iwamoto et al.
+(1999) for SNIa yields, and AGB star enrichment following
+Oppenheimer & Dav´e (2006). However, we no longer apply
+an arbitrary reduction of yields by a factor of 2 that was pre-
+viously needed to match the mass-metallicity relation, and
+instead lock individual metals into dust; we detail the dust
+model implementation in §2.5. Type Ia SNe and AGB wind
+heating are also included as in Mufasa, along with ISM
+pressurisation at a minimum level as required to resolve the
+Jeans mass in star-forming gas as described in Dav´e et al.
+(2016).
+The model for star formation-driven galactic winds
+closely follows that in Mufasa; we continue to use decou-
+pled two-phase winds, with 30% of wind particles ejected
+“hot” i.e. with a temperature set by the supernova energy
+minus the wind kinetic energy. However, we make a signif-
+icant update to the mass loading factor scaling with stellar
+mass. Mufasa used the scalings taken from Muratov et al.
+(2015), who computed the outﬂow rates based on mass ad-
+vection across a boundary at one-quarter of the virial radius
+in the FIRE zoom simulations. Angl´es-Alc´azar et al. (2017b)
+used similar FIRE simulations, but instead tracked individ-
+ual particles in order to quantify the mass outﬂow rates out
+of the star-forming region, thus providing a more direct mea-
+surement of the amount of material leaving the ISM. This
+yields a cumulative mass loading factor versus stellar mass
+as shown in Figure 1, which is well ﬁt by a broken power
+law at M0 = 5.2 × 109M⊙:
+η(M∗) ∝
+
+
+9
+ M∗
+M0
+−0.317
+,
+if M∗< M0
+9
+ M∗
+M0
+−0.761
+,
+if M∗> M0
+(1)
+and is independent of redshift. This has a similar slope
+to Muratov et al. (2015) below M0 but with roughly dou-
+ble the amplitude, and is much steeper above M0. It is
+also similar to the assumed mass loading factor in Illustris-
+TNG (Pillepich et al. 2018). Similar to TNG, Simba employs
+a ﬂat η(M∗) below an M∗corresponding to 16 star parti-
+cles (M∗≤2.9 × 108M⊙for the 100h−1Mpc run), otherwise
+poorly-resolved forming galaxies are unable to grow owing to
+excessive feedback. As in Mufasa, we further apply a reduc-
+tion in η at high redshifts, in order to allow for early galaxy
+growth in poorly resolved situations. Mufasa was found to
+underproduce z > 6 galaxies, and hence we strengthen the
+suppression factor at z > 3 from (a/0.25) to (a/0.25)fa, where
+a is the expansion factor. We tune the value of fa based on
+the resolution of the simulation, since the origin of the lack
+of early galaxy formation owes to poor resolution. Testing
+has shown that we obtain converged results that match z >∼6
+observations (shown later) if we use fa = 2 at our largest
+(100h−1Mpc) volume’s resolution, fa = 1.5 at 8× higher mass
+resolution, and so on. Fortunately, because galaxy growth is
+very rapid at high redshifts, this choice makes little diﬀer-
+ence to galaxy predictions at z >∼3 over most of cosmic time.
+Note that the FIRE simulations do not make strong predic-
+tions for η(M∗) at z >∼3 owing to the limited dynamic range
+covered by their zooms at early epochs, so this choice is not
+in obvious conﬂict with using FIRE scalings at lower red-
+shifts. However, the ad hoc nature of this correction means
+that results for galaxy stellar growth at high redshifts from
+Simba should be considered as tuned rather than predictive.
+A new feature in Simba is metal-loaded winds. When
+a wind particle is launched, it extracts some metals from
+nearby particles to represent the local enrichment by the
+supernovae driving the wind. The metallicity added to the
+wind particle is given by
+dZ = fSNIIySNII(Z)/MAX(η, 1)
+(2)
+where fSNII = 0.18 is the stellar mass fraction lost to su-
+pernova (assumed to be instantaneous in Simba), ySNII(Z)
+is the metal-dependent Type II SN yield for each species,
+and η is the mass loading factor. This amount is subtracted
+from nearby gas in a kernel-weighted manner. If there is not
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+5
+6
+7
+8
+9
+10
+11
+log( M∗/M⊙ )
+10-1
+100
+101
+102
+ηc
+m10
+m11
+m12v
+m12i
+m12q
+m13
+Angles-Alcazar+2017
+Muratov+2015
+Illustris
+TNG
+0.0
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Redshift
+Figure 1. Mass loading factor η versus stellar mass M∗from
+a suite of FIRE simulations analysed via particle tracking in
+Angl´es-Alc´azar et al. (2017b). The points show values measured
+at various redshifts, while the orange line is the best-ﬁt relation.
+The gray solid line shows the Muratov et al. (2015) scaling and
+the dashed and dotted gray lines show the mass loading factors
+used in the Illustris and Illustris-TNG simulations (η(Mhalo) ﬁt-
+ting functions from Pillepich et al. 2018, converted to η(M∗) using
+the M∗–Mhalo relation of Moster et al. 2013).
+enough metals nearby (as can happen early on), then dZ is
+reduced appropriately. In all circumstances, the total metal
+mass is conserved. The metal loading factor (i.e. the ejected
+metallicity relative to surrounding gas) can be a factor of
+two or larger when the ISM has a metallicity ≪ySNII, but
+is more typically around 10-20%, in broad agreement with
+metal loading estimates from zoom simulations (Muratov
+et al. 2017; Christensen et al. 2018).
+Simba continues to use the wind velocity scalings from
+Muratov et al. (2015) as in Mufasa, since the scaling follows
+the expected quasi-linear scaling of wind speed with escape
+velocity as observed (e.g. Martin 2005), and also because
+a full analysis of the velocity distribution of outﬂowing gas
+is not available from FIRE. In Mufasa, the amplitude was
+taken as a tunable parameter, and set to 2vcirc at vcirc =
+200 km s−1. Owing to the increase in the mass loading factor
+from low-mass galaxies, we ﬁnd that a somewhat lower value
+of the wind velocity is required to compensate for this, so in
+Simba we reduce the normalisation to 1.6:
+vw = 1.6
+
+vcirc
+200 km s−1
+0.12
+vcirc + ∆v(0.25Rvir)
+(3)
+where ∆v(0.25Rvir) is the velocity corresponding to the po-
+tential diﬀerence between the launch point and one-quarter
+of the virial radius (see Dav´e et al. 2016). A related new
+aspect in Simba is that we limit the wind kinetic energy
+to the available supernova energy by attenuating the wind
+speed when needed, although this only has noticeable eﬀect
+in small galaxies at very early epochs.
+Simba uses an on-the-ﬂy approximate friends-of-friends
+(FOF) ﬁnder applied to stars and dense gas as described in
+Dav´e et al. (2016) in order to compute the galaxy properties
+such as M∗, and as in Mufasa obtains vcirc using a scaling
+based on the baryonic Tully-Fisher relation. Besides algo-
+rithmic improvements to improve parallel performance, the
+only change to this is that the FOF ﬁnder now also groups
+black holes into galaxies.
+2.2
+Black hole growth
+The most signiﬁcant change in Simba relative to Mufasa is
+that black holes are seeded and grown during the simulation,
+and the accretion energy is used to drive feedback that serves
+to quench galaxies. In this section we describe Simba’s two-
+mode accretion model. The ﬁrst mode closely follows the
+torque-limited accretion model presented in Angl´es-Alc´azar
+et al. (2017a), and we refer the reader there for full details.
+The second mode uses Bondi accretion, but solely from the
+hot gas component. In future work (Angl´es-Alc´azar et al.,
+in prep.) we will show that this contribution from Bondi
+accretion is sub-dominant for all but the highest mass black
+holes.
+2.2.1
+Torque-limited accretion from cold gas
+We model the gas inﬂow rate ÛMTorque driven by disk gravita-
+tional instabilities from galactic scales down to the accretion
+disk surrounding the central black hole following Hopkins &
+Quataert (2011):
+ÛMTorque ≈ϵT f 5/2
+d
+×
+ MBH
+108 M⊙
+1/6  Menc(R0)
+109 M⊙
+
+×
+
+R0
+100 pc
+−3/2 
+1 +
+f0
+fgas
+−1
+M⊙yr−1,
+(4)
+where fd is the disk mass fraction (including both stars
+and gas), Menc(R0) is the total gas+stellar mass,
+fgas
+is the gas mass fraction in the disk component,
+f0
+≈
+0.31 f 2
+d (Md(R0)/109M⊙)−1/3, and all quantities are evaluated
+within a distance R0 of each black hole enclosing the near-
+est 256 gas elements, with an upper limit R0 ≤2 h−1kpc
+(comoving) imposed throughout the simulation. Evaluating
+this equation for ÛMTorque requires separating the spheroidal
+and disk components within R0, which we do by means
+of the kinematic decomposition implemented in Angl´es-
+Alc´azar et al. (2017a); see the Appendix of Angl´es-Alc´azar
+et al. (2015) for further tests of this.
+Unlike previous
+work, we evaluate torque-limited accretion only for the cold
+(T < 105 K) gas within the black hole kernel, since it relies
+on instabilities in a cold gaseous disk to drive mass inﬂow.
+We consider all ISM gas to be in the cold phase, where ISM
+gas is taken to be gas that has been artiﬁcially pressurised
+in order to resolve the Jeans mass as described in Dav´e et al.
+(2016). In our 100h−1Mpc run this corresponds to gas above
+a hydrogen number density of nH > 0.13 cm−3 and within
+0.5 dex of the pressurized ISM temperature ﬂoor.
+The normalization factor ϵT ≡ϵm ×αT encapsulates pro-
+cesses that aﬀect the radial transport of gas on unresolved
+scales (e.g. nuclear star formation and stellar feedback and
+mass loss in winds from the accretion disk), where αT = 5 is
+the original normalization of ÛMTorque in Hopkins & Quataert
+(2011) and we set ϵm = 0.1 to match the normalization of the
+local MBH–M⋆relation as in Angl´es-Alc´azar et al. (2017a).
+One can view αT as corresponding to an eﬃciency of trans-
+port of material from the inner galactic disk onto the black
+hole accretion disk, and ϵm as the eﬃciency of transport
+MNRAS 000, 1–25 (2018)
+
+
+6
+Dav´e et al.
+from the accretion disk onto the black hole, for which 10%
+is a canonical value. However, αT is itself fairly uncertain,
+and in the end the meaningful subgrid parameter is only the
+combination ϵT.
+2.2.2
+Bondi accretion from hot gas
+Hot gas can also accrete onto black holes, but in this case
+Bondi accretion is a more appropriate physical mechanism
+since the hot gas is typically more spherically distributed.
+Thus we also account for Bondi accretion, but only from
+non-ISM gas with a temperature of T > 105 K.
+Bondi-Hoyle-Lyttleton accretion is computed via the
+standard Bondi (1952) formula:
+ÛMBondi = ϵm
+4πG2M2
+BHρ
+(v2 + c2s)3/2
+(5)
+where ρ is the mean density of hot (T > 105 K) gas com-
+puted within the black hole accretion kernel, cs is the kernel-
+averaged sound speed of the hot gas, and v is the kernel-
+averaged velocity of the hot gas relative to the black hole. In
+practice, we neglect the gas relative velocity and set v = 0,
+since the dynamics of the black hole particle is controlled
+by the repositioning algorithm (§2.4). We do not include
+any boost factor, since hot gas is likely distributed quite
+smoothly over the size of the black hole kernel. For consis-
+tency with the gravitational torque rate, we suppress Bondi
+accretion by the same eﬃciency ϵm = 0.1.
+2.2.3
+Numerical implementation
+The total accretion rate for a given black hole is then
+ÛMBH = (1 −η) × ( ÛMTorque + ÛMBondi),
+(6)
+where we adopt a constant radiative eﬃciency η = 0.1
+(e.g. Yu & Tremaine 2002). We apply an overall limit to
+the accretion rate, based on the given black hole’s Ed-
+dington accretion rate. For torque-limited accretion, we ap-
+ply a limit of 3 times the Eddington rate, based on the
+idea that non-spherical accretion can potentially exceed Ed-
+dington as occasionally observed particularly at higher red-
+shifts (Martınez-Aldama et al. 2018) and consistent with re-
+cent accretion disk simulations (e.g. Jiang et al. 2014). For
+Bondi accretion, we apply a strict Eddington limit, since this
+is intended to represent quasi-spherical accretion from hot
+gas where the Eddington limit is directly applicable.
+Numerically, we follow Springel et al. (2005) and track
+separately the physical black hole mass, which grows con-
+tinuously according to equation 6, and the dynamical black
+hole particle mass, which grows by stochastically accreting
+a fraction fm of the mass of gas particles within R0 with a
+probability that statistically satisﬁes mass conservation and
+the desired mass outﬂow rate in AGN winds (see below). A
+time step limiter is imposed on black hole particles such that
+black holes do not grow by more than 0.1 % of their current
+mass in a single time step.
+2.3
+Black hole feedback
+We incorporate a kinetic subgrid model for black hole feed-
+back, along with X-ray energy feedback. The motivation
+for the kinetic feedback model comes from the observed di-
+chotomy in black hole growth modes that is reﬂected in their
+outﬂow characteristics (e.g. Heckman & Best 2014): A “ra-
+diative mode” at high Eddington ratios ( fEdd ≡ÛMBH/ ÛMEdd >∼
+few percent), in which AGN are seen to drive multi-phase
+winds at velocities of ∼1000 km s−1 that include molecu-
+lar and warm ionised gas (e.g. Sturm et al. 2011; Maiolino
+et al. 2012; Perna et al. 2017a); and a “jet mode” at low
+Eddington ratios, where AGN mostly drive hot gas in col-
+limated jets at high velocities (of order ∼104 km s−1) that
+in some circumstances are seen to inﬂate super-virial tem-
+perature bubbles in surrounding hot gas (e.g. McNamara &
+Nulsen 2007; Fabian 2012). This dichotomy also appears in
+radio jet activity (“high excitation”vs.“low excitation”radio
+galaxies) above and below roughly a percent of the Edding-
+ton rate (Best & Heckman 2012), with the former tending
+to be found in lower-mass, bluer host galaxies and the lat-
+ter in massive early-types. Simba’s AGN feedback model is
+designed to directly mimic the energy injection into large-
+scale surrounding gas from these two modes, using purely
+bipolar feedback with velocities and temperatures taken as
+much as possible from AGN outﬂow observations. We also
+include X-ray heating from black holes broadly following the
+model introduced by Choi et al. (2012), modiﬁed to operate
+at the lower resolution of Simba’s cosmological simulations.
+We now describe these subgrid models in more detail.
+2.3.1
+Kinetic feedback
+For the high- fEdd mode outﬂows, we choose an outﬂow ve-
+locity based on ionised gas linewidth observations of X-ray
+detected AGN from SDSS by Perna et al. (see Fig. 8 of
+2017a), which we parameterise in terms of the black hole
+mass MBH (in M⊙) as
+vw,EL = 500 + 500(log MBH −6)/3 km s−1;
+(7)
+we refer to these as radiative AGN winds. The gas is
+ejected without modifying its temperature, meaning that it
+is ejected at the ISM temperature given by our ISM pres-
+surisation model. This is generally consistent with observa-
+tions suggesting typical electron temperature of ∼104K for
+the ionised gas outﬂows (Perna et al. 2017b). This is broadly
+similar to the AGN feedback model implemented into Gizmo
+by Angl´es-Alc´azar et al. (2017a), except here with a variable
+outﬂow velocity.
+If the Eddington ratio is below fEdd < 0.2, we begin
+to transition to a jet mode with a velocity that becomes
+increasingly strong as fEdd drops, as follows:
+vw,jet = vw,EL + 7000 log (0.2/ fEdd) km s−1,
+(8)
+with a cap to the velocity increase at 7000 km s−1. In this
+way, full speed jets are achieved only once fEdd <∼0.02. To
+trigger jet mode, we also include an additional criterion re-
+quiring MBH > MBH,lim, motivated by observations showing
+that radio jets only arise in galaxies with velocity disper-
+sions corresponding to black holes with MBH >∼108M⊙(Bar-
+iˇsi´c et al. 2017). To be conservative we choose MBH,lim lower
+than this, namely MBH,lim = 107.5M⊙. Physically, this mass
+limit is implemented in order to prevent small black holes
+that temporarily have low accretion rates from driving high-
+powered jets.
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+7
+Based on observations of AGN outﬂows and the in-
+ferred momentum and energy input (e.g. Fiore et al. 2017;
+Ishibashi et al. 2018), we set the amount of material ejected
+in the AGN winds in order to obtain a momentum input
+of ÛPout = 20 L/c, where L = η ÛMBH c2 is the bolometric lu-
+minosity of the AGN, η = 0.1, and c is the speed of light.
+This value is kept constant for both modes, resulting in the
+mass loading factor in AGN winds scaling inversely with
+the outﬂow velocity. For our parameter choices, a black hole
+with MBH = 109 M⊙in the high- fEdd mode injects outﬂows
+with vw,EL = 1000 km s−1, mass loading ÛMout,EL/ ÛMBH ≈600,
+and kinetic energy eﬃciency ÛEkin,EL ≈0.03 L, while in the
+low- fEdd mode at full jet speed reaches vw,jet = 8000 km s−1,
+ÛMout,jet/ ÛMBH ≈75, and ÛEkin,jet ≈0.3 L.
+Particles are selected to be ejected randomly from
+within the black hole accretion kernel, with probability
+pj = 1 −fm
+fm
+× wj
+mj
+× ÛMBH ∆t,
+(9)
+where wj is a kernel weight (Σj wj = 1) and fm is the fraction
+of mass accreted by the black hole. The desired mass loading
+factor relative to the black hole accretion rate ( ÛMout/ ÛMBH =
+(1 −fm)/ fm) is achieved by setting fm such that:
+ÛPout
+L/c = 20 = vw
+η c
+ 1 −fm
+fm
+
+.
+(10)
+All outﬂows are ejected in a purely bipolar fashion. That
+is, we eject gas elements in a direction ±parallel to the an-
+gular momentum vector of the inner disk that we use to
+compute the black hole accretion (typically, the 256 nearest
+gas particle neighbours to the black hole). We assume zero
+opening angle for all winds; this is probably conservative for
+the radiative mode winds, as the opening angles are likely to
+be wider, but for the jet mode it is a good approximation to
+observed highly collimated jets. Even in the case of initially
+spherical radiative winds, it is likely that there is substan-
+tial collimation from the inner galaxy disk on scales that we
+cannot resolve in our cosmological runs, so the assumption
+of collimated winds is likely to be closer to correct. Since the
+wind particles are launched from their current location, this
+results in a collimated outﬂow with a small but ﬁnite extent
+( <∼1 kpc). We note that the outﬂow direction can precess
+owing to variations in the inner disk, but is in practice typi-
+cally stable over tens to hundreds of Myr. Hence any eﬀect of
+“sphericalising” the jet energy input on super-galactic scales
+is done self-consistently via the hydrodynamic interactions
+of the outﬂows with ambient gas at larger scales.
+Since jets are observed to carry very hot gas, we
+raise the temperature of jet mode (only) outﬂows to the
+virial temperature of the halo, speciﬁcally Tvir = 9.52 ×
+107(Mhalo/1015M⊙)1/3 K (Voit 2005). This choice is mo-
+tivated by observations showing that jets contain mostly
+synchrotron-emitting plasma, and eventually thermalise
+their energy into surrounding hot gas at around Tvir (Fabian
+2012). The extra energy input required for this is typically
+less than a few percent of the jet kinetic energy, so it does
+not ﬁgure signiﬁcantly into the overall energy budget.
+We apply a short hydrodynamic and radiative cooling
+decoupling time of 10−4tH to the outﬂowing wind gas ele-
+ments, where tH is the Hubble time at launch. This is in or-
+der to avoid further entrainment within the unresolved ISM
+close to the black hole, since the mass loading is accounted
+for from the assumption of constant momentum input of
+20L/c. This also avoids some numerical inaccuracies from
+high Mach number shocks in very dense gas. We note that
+for the jet mode, this can result in a decoupled distance of up
+to tens of kpc at the present epoch. Hence the jet energy be-
+gins to be deposited at a distance comparable to the extent
+of observed radio lobes. Gizmo employs a Durier & Dalla
+Vecchia (2012) timestep limiter in order to ensure proper
+interactions of the high-speed winds and their surrounding
+gas as they recouple.
+Our model has similarities to the two-mode thermal
+and kinetic AGN feedback model employed in Illustris-
+TNG (Weinberger et al. 2017). The main diﬀerences are as
+follows: (i) Illustris-TNG uses Bondi accretion rather than
+torque-limited accretion for cold, rotationally supported gas.
+(ii) Illustris-TNG uses spherical thermal feedback at high
+fEdd rather than kinetic feedback. This may owe to the
+fact that torque-limited accretion does not require self-
+regulation, while Bondi accretion does (Angl´es-Alc´azar et al.
+2013), and hence Simba can employ non-spherical feedback
+during the growth phase and yield black holes consistent
+with observed scaling relations. (iii) At low- fEdd, Illustris-
+TNG randomises the direction of the jets at each timestep,
+rather than always ejecting jets perpendicular to the inner
+disk. Our approach seems more physically motivated, since
+jets are not known to dramatically precess on timescales of
+∼Myr (though they may occasionally do so over hundreds
+of Myr). (iv) Illustris-TNG uses, at maximum, 200% of the
+AGN bolometric luminosity (assuming a 10% radiative ef-
+ﬁciency), whereas for our model, the maximum is approxi-
+mately a third of the bolometric luminosity. Despite these
+and other minor diﬀerences, the use of two-mode AGN feed-
+back as in Illustris-TNG and Simba seems to be a reason-
+ably successful approach in state of the art AGN feedback
+models.
+2.3.2
+X-ray feedback
+We include energy input into surrounding gas from X-rays
+oﬀthe accretion disk, as motivated and discussed in Choi
+et al. (2012). Speciﬁcally, we compute the volume heating
+rate owing to X-rays following equation 12 of Choi et al.
+(2012), assuming (as they did) a radiative eﬃciency of 0.1.
+We only apply this heating when jet mode is activated, as
+the lower velocity winds typically arise in more gaseous blue
+galaxies for which radiative losses would be severe (Best &
+Heckman 2012). To be more explicit, we assume that more
+gas-rich galaxies are able to absorb and radiate away the
+X-ray energy, so we implement a gas fraction threshold such
+that we only apply X-ray heating if fgas < 0.2, where fgas =
+Mgas/M∗as computed by our galaxy ﬁnder, and we only
+include X-ray heating in galaxies with full-velocity jets.
+The X-ray heating is applied to gas within the black
+hole accretion kernel, scaled inversely with the square of the
+distance between the gas elements and the black hole, in-
+cluding Plummer softening based on the gas’s smoothing
+length in order to mitigate large energy deposition in gas
+close to the black hole. For non-ISM gas, we directly in-
+crease the gas’s temperature according to the heating ﬂux
+at the gas’s position. For ISM gas, because depositing such
+heat into a low-resolution, pressurised ISM as we assume in
+Simba would cool quickly and not be physically well moti-
+MNRAS 000, 1–25 (2018)
+
+
+8
+Dav´e et al.
+vated, we instead take half of the X-ray energy and apply
+it a radial outwards kick; the remainder is added as heat.
+We further limit the total energy input in both kinetic and
+thermal forms to the overall available heating energy; if while
+looping over BH neighbors the X-ray energy input exceeds
+this value, then no further X-ray heating is done for that
+black hole at that timestep. The X-ray heating has a fairly
+minimal eﬀect on the galaxy mass function, but it provides
+an important additional energy input to more fully quench
+massive galaxies, as we discuss in §4.
+2.4
+Black hole seeding and dynamics
+We use the on-the-ﬂy FOF algorithm to seed black holes in
+galaxies dynamically during the simulation (e.g. Di Matteo
+et al. 2008; Angl´es-Alc´azar et al. 2017a). If a galaxy reaches
+a stellar mass M∗> γBH × Mseed and it does not already
+contain a black hole particle, then the star particle closest
+to the center of mass of the galaxy is converted into a black
+hole particle. For our ﬁducial simulations, we employ Mseed =
+104 M⊙/h and γBH = 3 × 105, which places black holes in
+galaxies with M∗≳109.5 M⊙.
+This somewhat high stellar mass threshold for black
+hole seeding is motivated by recent simulations from the
+FIRE project, showing that stellar feedback strongly sup-
+presses black hole growth in low mass galaxies by evacuating
+the nuclear gas reservoir on < 100 pc scales (Angl´es-Alc´azar
+et al. 2017c). A qualitatively similar eﬀect was also found
+in EAGLE (Bower et al. 2017; McAlpine et al. 2018) and
+Ramses-based simulations (Dubois et al. 2015; Habouzit
+et al. 2017), though their use of Bondi accretion may inhibit
+the growth of low mass black holes even in the absence of
+resolved stellar feedback (owing to the strong dependence
+ÛMBondi ∝M2
+BH). Owing to poorer cosmological resolution
+as well as Simba’s decoupled kinetic winds that explicitly
+avoids interaction of star formation feedback with ISM gas,
+Simba does not reproduce this eﬀect self-consistently. Hence
+we simply seed black holes in the regime where they are ex-
+pected to grow more eﬃciently. We note that our results
+are insensitive to the exact choice of Mseed and stellar mass
+threshold (Angl´es-Alc´azar et al. 2015).
+We assume that dynamical friction is eﬃcient enough to
+maintain black holes near the host galaxy’s center. At every
+time step, black hole particles are repositioned to the loca-
+tion of the potential minimum within the FOF host group,
+if it is found within a distance < 4 × R0, where R0 is the size
+of the black hole kernel used to compute the accretion rate.
+The black hole particle velocity is then set to the center of
+mass velocity of the FOF group. While current cosmological
+large volume simulations cannot self-consistently model the
+dynamics of black holes within galaxies, this algorithm is
+suﬃcient to capture the mass growth and feedback of “well-
+behaved”central black holes (see Tremmel et al. 2017, for an
+attempt to include sub-grid dynamic friction for black holes
+in cosmological simulations). Any two black holes located
+within R0 are allowed to merge instantaneously if their rel-
+ative velocity is lower than three times their mutual escape
+velocity.
+2.5
+Dust production, growth and destruction
+Simba includes a dust physics module to track the lifecy-
+cle of cosmic dust. In this implementation, dust is passively
+advected following the gas particles. This treatment is es-
+sentially accurate, as gas drag is usually able to decelerate
+grains on very short time scales especially when the radia-
+tive pressure is weak, so the drift cannot be resolved in our
+simulations. We additionally assume all dust grains have the
+same physical properties with a ﬁxed radius a
+= 0.1 µm.
+We ignore the active dust cooling, which will be applied in
+future work.
+Dust is produced by condensation of metals from ejecta
+of SNe and AGB stars. We follow the prescription described
+in the work of Dwek (1998), with updated condensation eﬃ-
+ciencies based on recent studies. In the following, mj
+i,d refers
+to the dust mass of the ith element (C, O, Mg, Si, S, Ca, Fe)
+produced by the jth stellar process (Type II SNe or AGB
+stars), whereas mj
+i,ej refers to the mass of ejecta from the jth
+process.
+The mass of dust produced by AGB stars with a carbon-
+to-oxygen mass ratio C/O > 1 is expressed as
+mAGB
+i,d
+=
+(
+δAGB
+C
+(mAGB
+C,ej −0.75mAGB
+O,ej ),
+i = C
+0,
+otherwise,
+(11)
+where δAGB
+i
+is the condensation eﬃciency of element i for
+AGB stars. The mass of dust produced by AGB stars with
+a carbon-to-oxygen mass ratio C/O < 1 is expressed as
+mAGB
+i,d
+=
+
+
+0,
+i = C
+16
+Í
+i=Mg,Si,S,Ca,Fe
+δAGB
+i
+mAGB
+i,ej ,
+i = O
+δAGB
+i
+mAGB
+i,ej ,
+otherwise,
+(12)
+where µi is the mass of element i in atomic mass units. The
+mass of dust produced by Type II SNe is described as
+mSNII
+i,d
+=
+
+
+16
+Í
+i=Mg,Si,S,Ca,Fe
+δSNII
+i
+mSNII
+i,ej ,
+i = O
+δSNII
+i
+mSNII
+i,ej ,
+otherwise,
+(13)
+where σSNII
+i
+is the condensation eﬃciency of element i for
+Type II SNe.
+We take a ﬁxed dust condensation eﬃciency δAGB
+i,dust = 0.2
+based on the theoretical models of Ferrarotti & Gail (2006).
+Guided by computations of Bianchi & Schneider (2007),
+we choose the dust condensation eﬃciency of Type II SNe
+δSNII
+i,dust = 0.15 to match the low-metallicity end of the ob-
+served relation between dust-to-gas mass ratios (DGR) and
+gas-phase metallicities (R´emy-Ruyer et al. 2014). We omit
+the condensation of Type Ia SNe ejecta, as recent work sug-
+gests that Type Ia SNe are not signiﬁcant sources of dust
+production (see Nozawa et al. 2011; Dwek 2016; Gioannini
+et al. 2017). This is diﬀerent from McKinnon et al. (2016)
+and Popping et al. (2017) where Type Ia SNe are assumed
+to have the same condensation eﬃciency as Type II SNe.
+Once dust grains are produced, they can grow by accret-
+ing gas-phase metals. Derived by Dwek (1998), the growth
+rate of grain radius can be expressed as:
+ dMdust
+dt
+
+grow
+=
+
+1 −Mdust
+Mmetal
+  Mdust
+τaccr
+
+,
+(14)
+where Mmetal is the total mass of dust and local gas-phase
+metals. Following Hirashita (2000) and Asano et al. (2013)
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+9
+which assume the accretion is a two-body collisional process,
+the accretion time scale τaccr is
+τaccr = τref
+ ρref
+ρg
+ Tref
+Tg
+  Z⊙
+Zg
+
+.
+(15)
+where ρg, Tg and Zg are the local gas density, tem-
+perature and metallicity, respectively. ρref, Tref and Zref
+are the reference values correspondingly. We take ρref =
+100 H atoms cm−3, Tref = 20 K and τref = 10 Myr. Inclusion
+of the multiplier (Z⊙/Zg), unlike McKinnon et al. (2017), is
+integral to reproduce the observed relation between the dust
+to gas ratio and gas-phase metal abundance (§3.9).
+Dust grains can be eroded by colliding with thermally
+excited gas especially in hot halos. A number of works have
+calculated the thermal sputtering rate in detail (e.g. Barlow
+1978; Draine & Salpeter 1979; Tielens et al. 1994). In this
+work, we adopt an analytic approximation of the growth rate
+of grain radii of Tsai & Mathews (1995) (also adopted by
+McKinnon et al. 2017 and Popping et al. 2017) described as
+ da
+dt
+
+sp
+= −a
+τsp
+,
+(16)
+where the sputtering time scale
+τsp = a
+
+da
+dt
+
+−1
+∼(0.17Gyr)
+
+a
+0.1µm
+  10−27g cm−3
+ρg
+  T0
+Tg
+ω
++ 1
+
+,
+(17)
+where ω = 2.5 controls the low-temperature scaling of the
+sputtering rate and T0 = 2×106 K is the temperature above
+which the sputtering rate ﬂattens. The corresponding dust
+mass changes as
+ dMdust
+dt
+
+sp
+= −Mdust
+τsp/3
+(18)
+Because SN blast waves are not resolved in our simula-
+tions, we implement an additional dust destruction mecha-
+nism by SN shocks which enhance inertia and the thermal
+sputtering of dust grains (Dwek & Scalo 1980; Seab & Shull
+1983; McKee et al. 1987; McKee 1989). We follow the pre-
+scription outlined by McKinnon et al. (2016) in this work.
+The growth rate of the dust particle mass due to SN de-
+struction is
+ dMdust
+dt
+
+de
+= −Mdust
+τde
+,
+(19)
+where the characteristic time scale τde is
+τde =
+Mg
+ϵγMs
+,
+(20)
+where Mg is the local gas mass, ϵ = 0.3 is the eﬃciency with
+which grains are destroyed in SN shocks (McKee 1989), γ
+is the local SN II rate, and Ms is the mass of local gas
+shocked to at least 100 km/s. Considering that our sim-
+ulations are unable to resolve multi-phase ISM, we apply
+the Sedov-Taylor solution to a homogeneous medium of
+nH = 0.13 H atoms cm−3 (the minimum SF threshold density
+of our simulations) and obtain
+Ms = 6800 ESNII,51
+
+vs
+100 km s−1
+
+,
+(21)
+where ESNII,51 is the energy released by a SN II in units of
+1051 erg, and vs ∼100 km s−1 is the shock wave speed.
+We additionally destroy dust, as well as molecular hy-
+drogen, completely in hot winds and during star formation
+(§2.1) and in any gas that is impacted by AGN X-ray heat-
+ing or jets (§2.3). This is done instantaneously, with all dust
+mass and metals being returned to the gaseous phase. Note
+that we do not do this for cold star-forming winds or AGN
+winds in the high-Eddington mode, so these outﬂows carry
+molecular gas and dust out of the galaxy. We leave for future
+work an investigation into whether this reproduces observa-
+tions of AGN-driven molecular outﬂows (e.g. Sturm et al.
+2011) and circum-galactic dust (e.g. Peek et al. 2015).
+2.6
+Runs and analysis
+The primary Simba runs have 10243 dark matter parti-
+cles and 10243 gas elements. We are running four volumes:
+100h−1Mpc down to z = 0, 50h−1Mpc to z = 1, 25h−1Mpc
+to z = 2, and 12.5h−1Mpc to z = 5. All runs have identical
+input physics, begin at z = 249, and assume a Planck Col-
+laboration et al. (2016) concordant cosmology of Ωm = 0.3,
+ΩΛ = 0.7, Ωb = 0.048, H0 = 68 km s−1 Mpc−1, σ8 = 0.82,
+and ns = 0.97. Other parameters such as the minimum grav-
+itational softening length and mass resolutions are listed in
+Table 1. In this paper we will only present results from the
+main 100h−1Mpc run, as the other runs are at various stages
+of completion.
+We will also explore parameter space and compare to
+our previous Mufasa simulations using 50h−1Mpc runs with
+2 × 5123 particles that match Mufasa’s size. We run a full
+physics Simba simulation at this resolution, and in order to
+directly assess the impact of our new quenching feedback
+modules, namely jet and X-ray feedback, we also run a “No-
+jet” simulation where these modules are turned oﬀ, and a
+”No-Xray” run where jets are kept on but X-ray feedback
+is turned oﬀ. All other input physics in these runs, includ-
+ing stellar feedback and radiative mode black hole feedback,
+remains identical to that in Simba.
+To analyse the simulation outputs, we employ a suite of
+tools as described below. First, galaxies are identiﬁed using
+a friends-of-friends galaxy ﬁnder, assuming a spatial link-
+ing length of 0.0056 times the mean inter-particle spacing
+(equivalent to twice the minimum softening length). In our
+tests, this gives very similar results to the more compre-
+hensive Spline Kernel Interpolative Denmax (SKID) galaxy
+ﬁnder. Galaxy ﬁnding is applied to all stars and black holes
+plus all gas elements with a density above the minimum SF
+threshold density of nH >0.13 H atoms cm−3; this captures
+all the stars and molecular gas in galaxies. Black holes are
+assigned to the galaxy to which they are most gravitationally
+bound; large galaxies can have many black holes. We take
+the central black hole to be the most massive black hole in
+the galaxy, and use this when we discuss black hole masses.
+In most cases, the other black holes are very small and add
+no signiﬁcant black hole mass compared to the central one.
+Because signiﬁcant amounts of neutral hydrogen can lie
+in an extended conﬁguration beyond the star-forming region
+of galaxies, we assign H i to galaxies in a separate step. To
+do this, we consider all gas elements with H i fractions above
+0.001, and assign them to the galaxy to which they are most
+MNRAS 000, 1–25 (2018)
+
+
+10
+Dav´e et al.
+z = 2.0
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+6.0
+6.5
+7.0
+7.5
+8.0
+log( T / k )
+z = 0.0
+3.0
+3.5
+4.0
+4.5
+5.0
+5.5
+6.0
+6.5
+7.0
+7.5
+8.0
+log( T / k )
+Figure 2. Temperature map projected through a random 10 Mpc/h slice from a 50 Mpc/h Simba volume, at z = 2 (left) and z = 0
+(right). At z = 2, warm-hot gas traces large-scale ﬁlaments, with energetic bipolar outﬂows owing to jets evident from the nodes where
+the most massive galaxies and black holes reside. At z = 0, high-speed AGN outﬂows have shocked the IGM gas throughout much of this
+volume to well beyond the virial radii of halos, with cooler dense ﬁlamentary structures penetrating the hot gas.
+Table 1. The Simba simulation suite.
+Name
+La
+box
+ϵ b
+min
+zc
+end
+mdgas
+me
+DM
+M f
+∗,min
+m100n1024
+100
+0.5
+0
+1.82 × 107
+9.6 × 107
+5.8 × 108
+m50n1024
+50
+0.25
+1
+2.28 × 106
+1.2 × 107
+7.3 × 107
+m25n1024
+25
+0.125
+2
+2.85 × 105
+1.5 × 106
+9.1 × 106
+m12.5n1024
+12.5
+0.0625
+5
+3.56 × 104
+1.88 × 105
+1.14 × 106
+a Box length in comoving h−1Mpc.
+b Minimum gravitational softening length in comoving h−1kpc.
+c Ending redshift (all begin at z = 249).
+d Initial gas element mass resolution in M⊙.
+e Dark matter particle mass resolution in M⊙.
+f Minimum stellar mass of a resolved galaxy in M⊙.
+gravitationally bound, i.e. its kinetic energy relative to the
+galaxy’s center of mass velocity minus the potential energy
+from the galaxy at the gas element’s location is minimised.
+Halos are identiﬁed on the ﬂy during the simulation
+run using a 3-D friends-of-friends algorithm within Gizmo,
+which is identical to the one in Gadget-3 written by V.
+Springel. The linking length is taken to be 0.2 times the
+mean inter-particle spacing. We do not identify or consider
+sub-halos in this work.
+Galaxies and halos are cross-matched in post-processing
+using the yt-based package Caesar, which outputs a single
+hdf5 catalogue containing all galaxy and halo information
+with many key properties pre-computed, as well as particle
+lists of individual galaxies and halos so that any other prop-
+erties can be computed via user-written python scripts.
+All results shown here are obtained from the Caesar
+catalogs generated from simulation snapshots at speciﬁed
+redshifts. We output 151 snapshots to z = 0, 105 to z = 1,
+and 78 to z = 2. Each snapshot is ≈250 GB in size, and the
+Caesar catalogues are typically ∼15 GB each.
+3
+RESULTS
+In this section we provide a comprehensive suite of predic-
+tions for Simba for a range of key global galaxy properties.
+The purpose is to ascertain how well Simba reproduces ob-
+served galaxy stellar and gas properties that have histori-
+cally provided stringent constraints on feedback models in
+previous simulations, and thereby demonstrate the suitabil-
+ity of Simba as a platform to study detailed galaxy evolu-
+tion.
+To begin, we show in Figure 2 a projected temperature
+map from the (50 Mpc/h)3, 5123 Simba simulation. The slice
+shown is 10 Mpc/h thick, and is arbitrarily chosen to con-
+tain representative structures in the volume. At z = 2, the
+familiar Cosmic Web is evident as traced out by warmer gas
+arising from mild shock heating on ﬁlamentary structures.
+Closer inspection reveals the earliest AGN jets becoming ac-
+tive, with characteristic bipolar outﬂows that are typically
+perpendicular to the large-scale ﬁlaments. But these large
+early black holes are sparse, and most of the IGM is un-
+aﬀected by feedback. In contrast, by z = 0 (right panel),
+a signiﬁcant volume of the IGM has been heated to high
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+11
+Figure 3. Examples of the molecular gas (left) and stellar (right)
+surface density distributions in star-forming disk galaxies with
+M∗≈4.7 × 1010M⊙at z = 0 (top four panels) and z = 2 (bottom
+four panels), showing face-on and edge-on views. At z = 0 there
+is a thin, well-ordered disk in both H i and H2, while the high-z
+galaxy is clumpier and thicker.
+temperatures from AGN feedback, and the hot bubbles en-
+croach upon regions untouched by AGN feedback containing
+the canonical warm ﬁlaments. These bubbles are reasonably
+spherical since they arise from clustered massive galaxies,
+each one ejecting jets that are relatively stable in direction
+but overlap quickly with neighboring outﬂows. In some cases
+individual bipolar jets and the resulting bow shocks can still
+be picked out. Such a dramatic impact on the IGM may have
+signiﬁcant consequences for the ionisation state of diﬀuse
+neutral hydrogen and the statistics of Lyman alpha forest
+absorbers (Kollmeier et al. 2014), as well as the diﬀuse IGM
+pressure measurable via the Sunyaev-Zel’dovich eﬀect (Lim
+et al. 2018); we will explore these in future work. In this pa-
+per, we focus on the demographics of the galaxy population
+predicted by Simba.
+Figure 3 shows some examples of individual galaxies.
+We choose a Milky Way-sized disk galaxy at z = 0, with
+M∗≈4.7 × 1010M⊙and SFR= 1.3 M⊙yr−1, and show the
+face-on (upper row) and edge-on (lower row) views, in both
+H2 surface density (left) and stellar mass surface density
+(right). The z = 2 galaxy shown in the bottom four panels
+has essentially the same M∗, but with SFR= 45 M⊙yr−1 that
+is typical of a main sequence galaxy at Cosmic Noon. The
+z = 0 disk is a grand design spiral, with a thin cold gas dis-
+tribution. There is a small central hole in cold gas that owes
+to the AGN feedback from its 6 × 107M⊙black hole accret-
+ing at 0.005M⊙yr−1. The stellar distribution does not show
+the spiral structure owing to the relatively low resolution of
+Simba, compared to zooms or higher-resolution simulations
+such as Illustris-TNG and EAGLE. The z = 2 system shows
+more prominent star forming clumps and a thicker gas dis-
+tribution, and is overall more compact (note the scale bar).
+While Simba’s numerical resolution smooths out many of
+the detailed internal features, this shows that it still pro-
+duces galaxies that have features broadly like star-forming
+disk galaxies in the real Universe. We do not show more
+massive quenched examples, but as expected they tend to
+be elliptical in their stellar morphology, with little cold gas.
+3.1
+Galaxy stellar mass functions
+Since galaxies are a collection of stars, the most basic prop-
+erty of a galaxy is its stellar mass. Given that the con-
+cordance cosmological model strongly constraints the halo
+mass function, the galaxy stellar mass function (GSMF)
+thus characterises the eﬃciency by which halos convert their
+baryons into stars. It is well established that (under the
+abundance-matching ansatz) the stellar-to-halo mass ratio
+drops quickly to low and high masses away from the peak at
+L∗(e.g. Moster et al. 2013; Behroozi et al. 2013), and current
+models attribute this to self-regulation by star formation-
+driven feedback below L∗and quenching of galaxies due to
+AGN feedback above L∗(Somerville & Dav´e 2015). Since
+the GSMF is reasonably well measured over much of cos-
+mic time (albeit with non-trivial systematic uncertainties;
+Mobasher et al. 2015), it represents a stringent test for the
+key feedback modules of a galaxy formation model. Indeed,
+simulations these days including Simba tend to use the z = 0
+GSMF as a primary constraint to tune feedback models.
+Figure 4 shows the GSMF at z = 0.1, 1, 2, 3, 4, 6 from
+Simba (green lines). Observational data is shown at z = 0
+from Bernardi et al. (2017). At z = 1, 2, 3 we show obser-
+vations from Tomczak et al. (2014) combining CANDELS
+and zFOURGE data, while at z = 4, 6 we show observa-
+tions based on CANDELS from Song et al. (2016). We also
+show the GSMF of central galaxies only, subdivided into
+star-forming (SF) and quenched (Q) samples at a speciﬁc
+SFR= 10−1.8+0.3zGyr−1. Error bars are shown from jacknife
+re-sampling over eight simulation sub-octants. Finally, we
+show the results from the EAGLE simulation as the dotted
+cyan line at selected redshifts.
+Simba produces generally good agreement with the ob-
+served GSMFs at all redshifts, overall comparably well to
+EAGLE. There is excellent agreement at z ≥3, especially
+given the systematic uncertainties in stellar mass determi-
+nations at higher redshifts (Mobasher et al. 2015). At z = 2,
+there starts to be a slight excess at the massive end in Simba.
+This may owe to insuﬃcient quenching of the most massive
+galaxies, or may represent an underestimate of the observed
+GSMF owing to selection eﬀects in the rest-optical surveys
+used for the GSMF determinations which can miss massive
+dusty galaxies.
+MNRAS 000, 1–25 (2018)
+
+
+12
+Dav´e et al.
+7
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=5.9
+Simba-SF
+Simba-Q
+Simba
+Song+15
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=2
+Simba-SF
+Simba-Q
+EAGLE
+Simba
+Tomczak+14
+Muzzin+13
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=4
+Simba-SF
+Simba-Q
+EAGLE
+Simba
+Song+15
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=1
+Simba-SF
+Simba-Q
+EAGLE
+Simba
+Tomczak+14
+Muzzin+13
+9
+10
+11
+12
+logM * [M
+]
+7
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=3
+Simba-SF
+Simba-Q
+Simba
+Tomczak+14
+Muzzin+13
+9
+10
+11
+12
+logM * [M
+]
+6
+5
+4
+3
+2
+1
+log [Mpc
+3]
+z=0.1
+Simba-SF
+Simba-Q
+EAGLE
+Simba
+Bernardi+17
+Baldry+12
+Figure 4. Stellar mass function evolution from z = 6 →0, compared to observations as indicated in the legends. Green band shows
+the results from all Simba galaxies, with the spread computed from jackknife resampling the 8 simulations sub-octants. Red and blue
+dashed lines show the mass functions of central galaxies below and above sSFR= 10−1.8+0.3zGyr−1, respectively. Cyan dotted line shows
+the results from EAGLE for comparison.
+At lower redshifts, there is a clear truncation at the
+massive end, but a mild overproduction of the most massive
+galaxies remains all the way to z = 0. Like EAGLE, Simba
+under-predicts the GSMF around M⋆by a factor of up to
+two; this was an advantage of Mufasa that is unfortunately
+not retained in Simba. This highlights that it continues to be
+a challenge to achieve such a sharp turndown in the GSMF
+using a physically-motivated AGN feedback model.
+The overproduction of the most massive galaxies could
+owe to a number of eﬀects. First oﬀ, there are numerical
+uncertainties in quantifying the most massive systems, be-
+cause they tend to have large extended envelopes of stars
+and many satellites that, owing to poor resolution, can be
+overmerged into the central object either during the dynam-
+ical evolution or during the post-processing galaxy ﬁnding
+stage. These tend to artiﬁcially boost the mass in the simu-
+lated massive galaxies. One way to mitigate this is to com-
+pare the stellar mass within ﬁxed apertures to data, which
+Schaye et al. (2015) showed using EAGLE can signiﬁcantly
+reduce the mass of M∗>∼1011M⊙objects. There are also in-
+creased observational uncertainties at the massive end. For
+instance, it is a matter of debate as to how much of the
+surrounding stars should be classiﬁed as part of the cen-
+tral galaxy and how much should be intracluster light; this
+can strongly impact the stellar mass (Kravtsov et al. 2018).
+There is also the issue of the stellar initial mass function
+(IMF) – stellar population (Conroy et al. 2013) and dynam-
+ical (Cappellari et al. 2013) studies suggest that the most
+massive galaxies have bottom-heavy IMFs relative to Milky
+Way-like galaxies, which can result in the stellar mass being
+underestimated by a factor of 2 or more for the most massive
+systems. Finally, there is an issue particular to this Simba
+run – it turns out, in the 100h−1Mpc volume, by z = 0, the
+largest halo has a virial mass of Mhalo = 1.16×1015M⊙, which
+is larger than expected by about 50% for its volume; this may
+contribute to the excess of the very most massive galaxies.
+Hence although at face value there is some disagreement at
+the massive end in comparing Simba with recent observa-
+tions, more work must be done to determine whether these
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+13
+discrepancies reﬂect a signiﬁcant failing of Simba’s input
+physics.
+Examining the SF vs. Q samples, we see that massive
+quenched galaxies begin to appear in signiﬁcant numbers
+at z >∼2. By z = 1 they outnumber the SF galaxies among
+the most massive galaxies with M∗>∼1011M⊙, and by z = 0,
+they dominate at M∗>∼2×1010M⊙. The quenched population
+grows quickly at low redshifts, and the number of massive
+star-forming galaxies drops quickly since z ∼1, in broad
+agreement with observations (e.g. Bell et al. 2004). There
+are a few very small quenched centrals, but this is likely an
+artifact of the friends-of-friends halo ﬁnder.
+In summary, to within systematic uncertainties, Simba
+produces a GSMF that is in quite good agreement with ob-
+servations across most of cosmic time, with the possible ex-
+eption of the z = 0 massive end. Simba passes this primary
+check at a level comparable to that seen for Mufasa, EA-
+GLE, and Illustris-TNG (Pillepich et al. 2018). In no small
+part, this owes to these various models tuning feedback pa-
+rameters to match such data, but even the fact that such a
+tuning is now possible is a recent and important step forward
+for cosmological hydrodynamic simulations. It does mean
+that the growth of galaxies’ stellar component over time is no
+longer a strong discriminant between current galaxy forma-
+tion models. Instead, for this we must rely on the many other
+predicted observables that are not used to tune the models.
+We now examine some of these predictions for Simba.
+3.2
+Star formation rate–stellar mass relation
+Another key barometer of galaxy formation models is the
+star formation rate–stellar mass (SFR−M∗) relation. Unlike
+the GSMF that is often used as a primary constraint on
+models, SFR−M∗is not, making it more of a true prediction
+of models. The SFR−M∗relation consists of a star-forming
+“main sequence” of galaxies, and a population of quenched
+galaxies falling below the main sequence that dominates at
+high masses at later epochs. Getting the balance of these
+populations in accord with observations over cosmic time,
+as well as predicting their growth rates, has traditionally
+been diﬃcult to reproduce in cosmological simulations.
+During Cosmic Noon, it has long been seen that cos-
+mological models tend to underpredict the main sequence
+amplitude (Daddi et al. 2007; Dav´e 2008; Narayanan et al.
+2012; Sparre et al. 2015; Somerville & Dav´e 2015), typically
+by a factor of 2 −3. Fixing this requires rather substantially
+changing the star formation histories, not just the overall
+SFRs, since a multiplicative constant on the SFR will tend
+to move galaxies along the relation rather than increase its
+amplitude. There are also potential observationally-oriented
+systematics that may be overestimating the SFR owing to
+one or more of many possible factors, such as galaxies being
+dominated by harder-ionising stellar populations at high-z,
+or having a more top-heavy initial mass function.
+Figure 5 shows the speciﬁc SFR−M∗relation at z =
+0.1 (left) and z = 2.3 (right) for Simba galaxies. The
+SFRs are computed as instantaneous SFRs from the gas
+elements, which corresponds well to the SFR computed
+from young star particles when averaged over several tens
+of Myr. The running median (green curve) includes star-
+forming galaxies only (Simba-SF), deﬁned as before by
+sSFR> 10−1.8+0.3zGyr−1 (dotted horizontal yellow line). The
+error bars show the 1σ spread around the median value in
+each bin. Points are colour-coded by the ratio of black hole
+to stellar mass, with magenta points having higher MBH/M∗;
+points at M∗<∼1010M⊙in cyan have no or very small grow-
+ing black holes, as we will discuss later. Galaxies with very
+low or zero SFR are plotted near the bottom for visibility.
+Observations at low-z are shown from the GALEX-SDSS-
+WISE Legacy CatalogSalim et al. (GSWLC; 2016, 2018),
+shown as grey hexbins, and the running median to the star-
+forming galaxies with the same criterion as above is shown
+as the black dashed line, along with error bars showing the
+1σ spread around the median. At high-z, we show the me-
+dian sSFR−M∗relation measured for 2 < z < 2.5 galaxies
+by Whitaker et al. (2014). Finally, results from EAGLE are
+shown as the magenta dotted line.
+At z = 0 (left panel), Simba nicely reproduces the
+observed GSWLC main sequence slope and amplitude at
+M∗>∼1010M⊙. Below this mass, Simba shows noticeably
+higher SFRs. This mass corresponds to the onset of massive
+black holes, as shown by the growing number of magenta-
+coloured points with higher black hole mass for their M∗.
+Indeed, there is a very strong trend that the galaxies that
+are quenching are speciﬁcally the ones with a high MBH/M∗
+ratio; massive galaxies left on the main sequence at z ∼0 in
+Simba are only those that for some reason have not grown
+their black hole as rapidly. A similar trend is seen in EA-
+GLE (Matthee & Schaye 2019), which arises owing to a
+spread in halo formation times (Davies et al. 2019). We
+will investigate the detailed reasons for this dichotomy in
+Simba in future work, but for now we note the tight connec-
+tion between quenching and black holes already appearing
+in Simba, which will be a recurring theme throughout this
+paper. The average slope of sSFR−M∗for star-forming galax-
+ies over the entire mass range plotted is −0.27, which is in
+reasonable agreement with observations (e.g. Noeske et al.
+2007; Speagle et al. 2014). The scatter around the main se-
+quence in Simba is 0.3 −0.4 dex, with a mild tendency to
+drop with M∗; this is very comparable to that seen in the
+GSWLC data.
+At z = 2.2 (right panel), the Simba main sequence gen-
+erally tracks the observed one from Whitaker et al. (2014),
+but is low in amplitude by ≈×2. This continues the trend
+in models that the main sequence at Cosmic Noon remains
+too low, though not quite as strongly as in some previous
+models. However, Leja et al. (2018) points out that more
+sophisticated SED ﬁtting applied to the latest datasets can
+lead to a systematic increase in the inferred M∗while lower-
+ing the SFR that results in a combined ≈0.3 dex lower sSFR
+compared to previous determinations. If conﬁrmed, then at
+face value this would bring Simba’s (and other models’) sim-
+ulated main sequence into agreement with z ∼2 observations
+at long last.
+Finally, we show in Figure 6 histograms of the speciﬁc
+SFR, broken up into mass bins of 109 < M∗< 1010M⊙,
+1010 < M∗< 1011M⊙, and M∗> 1011M⊙. Solid lines show the
+results from Simba at z = 0.1, while dashed lines show iden-
+tically selected galaxies from the GSWLC-D2 catalog (Salim
+et al. 2018). Galaxies with sSFR≤10−2.5 Gyr−1 have been
+placed in the lowest sSFR bin. There is an overall bimodal
+distribution, with low-mass galaxies being predominantly
+star-forming, while massive galaxies are almost uniformly
+MNRAS 000, 1–25 (2018)
+
+
+14
+Dav´e et al.
+Figure 5. Star formation rate–stellar mass relation at z ≈0 (left) and z ≈2 (right). Points show Simba galaxies, colour-coded by their
+black hole to stellar mass ratio. The thick green line shows the running median to star-forming galaxies (i.e. above the horizontal dotted
+yellow line). Observations at z = 0 from GSWLC-X2 are shown as the grey hexbins, with the black dashed line showing the median to
+galaxies using the same sSFR cut as shown for Simba. The errorbars show the 1σ spread around the running median value, typically
+0.3 −0.4 dex. At high-z we show the black dashed line as the best-ﬁt relation for 2 < z < 2.5 galaxies from Whitaker et al. (2014). Results
+from EAGLE are shown as the magneta dotted line for comparison. Simba reproduces the star-forming main sequence at both redshift
+reasonably well, especially accounting for systematics in high-z sSFR determinations, though in small galaxies it appears to overpredict
+the SFR at z ∼0 and underpredict at z ∼2
+3.0
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+0.5
+log sSFR (Gyr
+1)
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+fraction
+Solid: Simba, z=0.1
+Dotted: GSWLC-D2
+109 < M * < 1010
+1010 < M * < 1011
+M * > 1011
+Figure 6. Histogram of sSFR in three bins of stellar mass. Solid
+lines show the results for Simba at z = 0.1, while dotted lines
+show z ∼0.1 observations from GSWLC-D2. All galaxies with
+sSFR< 10−2.5 Gyr−1 are placed in the lowestmost bin. There is
+good agreement, particularly in the quenched fractions in more
+massive galaxies, though Simba produces somewhat too high sS-
+FRs at low-M∗.
+quenched. There is impressive agreement in the lowest sSFR
+bin, showing that Simba well reproduces the quenched frac-
+tions at various M∗. However, the low-mass galaxies in Simba
+have somewhat too high sSFR values, reﬂecting the same ex-
+cess as seen in Figure 5.
+In summary, Simba generally reproduces the main se-
+quence of star-forming galaxies as seen at z ≈0, 2, to within
+current systematic uncertainties. Potential disagreements
+from data lie mostly at lower masses, where the observations
+are less certain and more subject to selection eﬀects. The
+success at M ∗>∼1010M⊙is encouraging because it suggests
+that the balance of quenching and quenched galaxies in this
+transition mass near M⋆is being reproduced roughly cor-
+rectly in Simba. There is also a strong trend that quenched
+galaxies at a given M∗tend to have larger fractional black
+hole masses, which is an interesting prediction that can be
+tested in future samples of black hole mass measurements in
+sub-M⋆galaxies.
+3.3
+Global star formation rate evolution
+The evolution of the cosmic SFR density (SFRD) has long
+been a key test for cosmological galaxy formation models.
+While proper model comparisons to data can be challeng-
+ing owing to the variety of diﬀerent selection eﬀects used to
+measure SFR over time, the recent compilation by Madau &
+Dickinson (2014) has provided a homogenised database for
+the SFRD that can be more robustly compared.
+Figure 7 shows the comparison of the cosmic SFRD as
+a function of cosmic age in Simba versus the Madau & Dick-
+inson (2014) compilation. The Simba SFRD values include
+all the star formation in the volume at each epoch, but we
+have checked that including only star formation in resolved
+galaxies (M∗> 5.8 × 108M⊙) makes a negligible diﬀerence.
+The overall shape of the predicted SFRD versus time
+is in good agreement with observations. Simba matches the
+preset-day SFRD very well, and generally reproduces the
+order-of-magnitude rise in SFRD towards the peak at z ∼2.
+There is a slight tendency for Simba to form more stars glob-
+ally at earlier epochs, with the peak shifted very slightly
+towards higher redshift compared to the best-ﬁt line from
+Madau & Dickinson (2014). The peak SFRD at z ∼2 is also
+slightly lower than observed, following the trend shown in
+Figure 5 that Simba has slightly lower main sequence than
+observed. Despite these minor diﬀerences, the overall shape
+and amplitude is in very good agreement with observations,
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+15
+0
+2
+4
+6
+8
+10
+12
+14
+Cosmic Time (Gyr)
+2.50
+2.25
+2.00
+1.75
+1.50
+1.25
+1.00
+log SFRD(M
+yr
+1Mpc
+3)
+Simba
+MD14
+0
+1
+2
+4
+6
+Redshift
+Figure 7. Star formation rate density evolution versus age of
+the Universe in Simba (curve), compared to the observational
+compilation of Madau & Dickinson (2014) (black points and best-
+ﬁt line).
+comparable to the agreement seen versus other recent sim-
+ulations such as Illustris-TNG (Pillepich et al. 2018).
+3.4
+Neutral and molecular gas fractions
+Simba tracks the neutral (H i) and molecular (H2) hydrogen
+separately during its evolution, via sub-grid prescriptions to
+account for molecular gas production and destruction, and
+approximate self-shielding that results in neutral gas. Thus
+Simba lends itself to testing against a complementary set of
+constraints: the scaling relations of H i and H2 gas fractions
+versus M∗. Recent millimetre and radio observation data has
+greatly expanded our knowledge of gas contents for low-z
+galaxies, with constraints at higher z promising continued
+rapid advancement in the near future.
+Figure 8 shows the scaling relations for H2 (top) and
+H i (bottom) mass fractions, versus M∗. The points show
+individual galaxies at z = 0 colour-coded by their sSFR de-
+viation from the main sequence at that M∗(∆sSFR), where
+the main sequence is deﬁned by ﬁtting a running median to
+the main sequence. The running mean of the gas fractions
+is shown as the cyan dashed line. Observations are shown
+from the mass-selected GASS H i survey (Catinella et al.
+2012) and its follow-up COLDGASS survey (Saintonge et al.
+2017) that obtained H2 masses from CO emission measure-
+ments. We further show the mean predicted trends at z = 1
+(green dashed) and z = 2 (magenta dashed), to illustrate
+how these quantities evolve.
+Overall, Simba does an excellent job of reproducing the
+trends in both molecular and neutral gas fractions with stel-
+lar mass. There is a hint that the amplitude of both is low
+by about 0.1 dex, but given observational uncertainties such
+as the CO-to-H2 conversion factor which is poorly deter-
+mined particularly in the low-mass (M∗< 1010M⊙) regime
+(e.g. Narayanan et al. 2012; Bolatto et al. 2013), as well as
+theoretical uncertainties in the approximate way that self-
+shielding is applied, galaxy gas contents can be considered
+to be a remarkably successful prediction of Simba.
+We note that our massive galaxies have a non-trivial
+Figure 8. Molecular (top) and neutral (bottom) gas fractions
+MH2/M∗and MH I /M∗as a function of M∗. The points show
+z = 0 values from Simba colour-coded by the deviation in sSFR
+from the star-forming main sequence – bluer points have higher-
+than typical SFR, redder have lower. A running median at z = 0
+is shown as the cyan dashed line. For comparison we show the
+running medians at z = 1, 2 (green, magneta lines). Observations
+of fH2 from xCOLDGASS (Saintonge et al. 2017) are shown in
+the top panel, and observations of fH I from GASS (Catinella
+et al. 2012) are shown in the bottom panel. Simba predicts gas
+fraction scalings in good agreement with data, and predicts a
+small but signiﬁcant amount of gas even in the most massive
+quenched systems.
+amount of cold gas, despite their very low sSFR. This was
+not the case in Mufasa (Dav´e et al. 2017a), where the most
+massive galaxies were devoid of essentially any cold gas. Re-
+cent observations seem to suggest that, perhaps surprisingly,
+many massive quenched galaxies contain substantial cold gas
+fractions of up to a percent or more (e.g. Young et al. 2014),
+which is consistent with Simba’s predictions. The eﬃciency
+of star formation from the molecular gas is, however, low.
+Simba qualitatively reproduces this trend, possibly because
+the cold gas generally sits in a more extended conﬁguration
+where the densities are not as high. Since the star forma-
+tion rate is proportional to ρ1.5, this means that even if the
+gas has high molecular content, its low density will curtail
+star formation relative to the same gas being in a compact
+conﬁguration. The origin and fate of this cold dense gas is
+unclear; it could be a transient phase brought in by satellites,
+or else a stable phase maintained in a more diﬀuse conﬁgu-
+ration owing to the presence of hot gas and AGN feedback.
+We will examine the exact nature of cold gas in quenched
+galaxies in future work.
+Finally, the colours of the Simba points in Figure 8 indi-
+cate the deviation of a given galaxy from the main sequence.
+There is a clear trend that galaxies that are more gas-rich
+at a given M∗have a higher SFR. This is unsurprising for
+H2 in our models, given that star formation is tied to the
+molecular content. It is somewhat more surprising to see
+MNRAS 000, 1–25 (2018)
+
+
+16
+Dav´e et al.
+this for the H i fraction, but such a correlation was also seen
+fairly strongly in Mufasa (Dav´e et al. 2017a), though not
+as strong as for H2 (Raﬁeferantsoa et al. 2018). Such trends
+have also been noted in observations (Bothwell et al. 2013)
+and in EAGLE (Lagos et al. 2016).
+3.5
+Gas-phase and stellar mass-metallicity
+relations
+Simba tracks the production and distribution of various
+heavy elements, through several nucleosynthetic channels.
+Produced metals can be carried out from galaxies via out-
+ﬂows, which in Simba are typically mildly enriched com-
+pared to the mean ISM metallicity (see §2.1). Addition-
+ally, Simba locks individual metals into dust, removing them
+from the gas phase. Hence predictions for the relationship
+between galaxy stellar mass and metallicity, which is ob-
+served to be among the tightest relations known for galax-
+ies, tests how numerous aspects of Simba work together to
+establish galaxy metallicities.
+Metals can be associated with gas, stars, or dust. Mea-
+surements of the gas-phase metallicity reﬂect a balance be-
+tween relatively pristine inﬂow and ejection of enriched ma-
+terial via outﬂows, and thus provide a direct constraint
+on the mass outﬂow rate in gas-rich (star-forming) galax-
+ies (Finlator & Dav´e 2008). The stellar metallicity is mea-
+sured from stellar atmospheric absorption lines that reﬂect
+the accumulated metals from both gas and dust that ended
+up locked in the stars. The inclusion of dust production and
+destruction model can in principle therefore decouple the
+stellar and gas phase metallicities. Here we present predic-
+tions for the gas-phase and stellar metallicity scaling rela-
+tions from Simba.
+Figure 9 shows the gas-phase mass-metallicity relation
+(gMZR) at z = 0 (left) and z = 2.3 (right). The gas-phase
+metallicity is computed as the SFR-weighted oxygen abun-
+dance in all galaxy gas particles, normalized to the solar
+value of 1.34% (Asplund et al. 2009). Points show cen-
+tral galaxies colour-coded by their deviation from the main
+sequence, as in Figure 8; black points are satellite galax-
+ies. A running median for star-forming galaxies (sSFR>
+10−1.8 + 0.3zGyr−1) is shown as the dashed green line. Fits
+to observations at z = 0 are shown from strong emission
+line ﬁtting (Tremonti et al. 2004, black dashed), stacked
+measurement of direct metallicities (Andrews & Martini
+2013, black dot-dashed), and individual semi-direct metal-
+licities (Yates et al. 2019, black dotted). Observations at
+z = 2.3 are shown from the MOSDEF survey (Sanders et al.
+2015).
+Simba predicts a gas phase mass-metallicity relation
+that agrees quite well with observations, lying generally in
+agreement with the range of current observational determi-
+nations. The metallicities may be slightly too high at the
+highest masses, but this turns out to be strongly dependent
+on the assumed cut for star-forming galaxies; a more strin-
+gent cut would lower the massive end ﬁt, and highlights the
+sensitivity of MZR predictions there to precise selection ef-
+fects.
+Mufasa produced a gMZR that was slightly too steep,
+in addition to having an amplitude that roughly agreed
+with data only because of an arbitrary halving of the SNII
+yields (Dav´e et al. 2017a). In Simba, metals are locked into
+dust, increasingly so at higher metallicities and hence larger
+masses. This likely leads to a suppression of the gas-phase
+metallicity in massive galaxies and thus a ﬂatter gMZR, as
+well as a lower amplitude. We will examine the impact of
+dust on the metal content of galaxies in more detail in fu-
+ture work (Li et al., in prep.).
+Since z = 2.3, Simba produces more metal evolution at
+the low-mass end, in general agreement with observations
+suggesting that the most metal-rich galaxies are in place
+at early epochs (e.g. Zahid et al. 2014). Star-forming galaxy
+metallicities are in good agreement with the MOSDEF data,
+suggesting that the amount of metal evolution from z ∼2 →
+0 is approximately correct in Simba.
+Simba also shows a clear second parameter dependence
+on the speciﬁc SFR such that at a given M∗, galaxies with
+lower sSFR tend to have higher metallicities. This has been
+noted observationally as the Fundamental Metallicity Rela-
+tion (FMR; Mannucci et al. 2010; Lara-L´opez et al. 2010).
+The existence of the FMR remains somewhat controver-
+sial (Salim et al. 2014; S´anchez et al. 2017; Cresci et al.
+2018), but a careful analysis of the MOSDEF data has re-
+vealed such a trend at z ∼2 (Sanders et al. 2018). The trend
+is quite obvious at z = 0 with the bluest galaxies clearly
+having the lowest metallicities, but is not quite so evident
+at z = 2.3 except at the massive end where a population
+of quenched galaxies has appeared. Finally, the small black
+points showing the satellites tend to lie above the mean re-
+lation, in qualitative agreement with data (Pasquali et al.
+2012).
+Figure 10 shows the mass-weighted stellar metallicity
+as a function of M∗at z = 0. Points show centrals colour-
+coded by sSFR, with satellites in black. The yellow dashed
+line shows a running median. Observations are shown from
+Gallazzi et al. (2005) and Panter et al. (2008).
+Simba nicely reproduces the stellar MZR for massive,
+quenched galaxies. At lower masses, the star-forming popu-
+lation dominates, and these tend to have a stellar MZR that
+is typically slightly higher, with larger scatter, than expected
+from an extrapolation of the massive galaxy relation. This
+owes to the fact that these galaxies have continued to form
+stars after their more massive counterparts have quenched.
+However, no such feature is evident in the observations, and
+hence Simba produces a low-mass stellar MZR that is some-
+what too high compared to observations.
+In summary, Simba does a reasonable job reproducing
+observed galaxy metallicities, both stellar and gas phase,
+and the evolution out to Cosmic Noon. The fact that no
+arbitrary normalisation was required as in Mufasa is a step
+forward, suggesting that Simba is locking metals into dust
+in a realistic manner; we will explore this more in §3.9.
+3.6
+Galaxy photometric sizes
+Modern cosmological simulations typically have suﬃcent
+resolution to resolve the size of galaxies, even if the de-
+tailed structure of the ISM remains unresolved. Illustris
+highlighted the ability for simulations to produce galaxies
+populating the full range of the Hubble sequence (Vogels-
+berger et al. 2014). For EAGLE, galaxy sizes provided a
+key constraint on their star formation feedback implementa-
+tion (Schaye et al. 2015), namely that they employ a steeper
+dependence of the star formation rate on the density in dense
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+17
+Figure 9. Gas-phase mass-metallicity relation at z = 0 (left) and z = 2.3 (right) from Simba. Points are colour-coded by deviation in
+sSFR from the star-forming main sequence. Running median values are shown as the green lines. At low-z, best-ﬁts to observations
+from Tremonti et al. (2004); Andrews & Martini (2013); Yates et al. (2019) are shown as the black lines. At z ≈2.3, observations are
+shown from the MOSDEF survey (Sanders et al. 2015). Simba reproduces the gas-phase MZR well at both redshifts, with a noticeable
+second-parameter dependence on SFR particularly at low-z.
+Figure 10. Stellar mass–stellar metallicity relation at z = 0 from
+Simba, with a running median shown as the dashed yellow line.
+Points are colour-coded by speciﬁc SFR. Observations are shown
+from Gallazzi et al. (2005); Panter et al. (2008). Simba reproduces
+the stellar metallicities of galaxies fairly well, although it appears
+that low-mass star-forming galaxies tend to have somewhat higher
+metallicities than typically observed.
+gas in order to prevent galaxies from being overly compact.
+Simba did not use sizes to tune the feedback model, so in-
+stead they provide a test of it.
+To conduct a fair comparison to observed sizes, we com-
+pute projected galaxy half-light radii in the R-band. We ob-
+tain R-band luminosities from the Bruzual & Charlot (2003)
+models interpolated to the age and metallicity of each star
+particle. The radius is determined for each galaxy by aver-
+aging 2-D half-light projections along the x, y, z axes. Fig-
+ure 11 shows the galaxy half-light sizes at z = 0 from Simba
+versus stellar mass. We colour-code the points by sSFR
+as before, and ﬁt separate running medians for quenched
+Figure 11. R-band 2-D projected half-light radii of Simba galax-
+ies at z = 0, as a function of M∗. Points are colour-coded by
+sSFR. We ﬁt median relations to the red and blue sub-samples,
+delineated by 10−1.8 Gyr−1, as the cyan and magenta dashed lines
+lines, respectively. Observational relations are shown from Zhang
+& Yang (2017) from SDSS, split into red and blue galaxies. Simba
+broadly reproduces the sizes of star-forming galaxies, but fails
+to show the observed trend that quiescent galaxies have a much
+steeper slope and are much more compact at low masses.
+(Simba-Q) and star-forming (Simba-SF) populations (ma-
+genta and cyan lines), where we divide the two populations
+at sSFR= 10−1.8 Gyr−1 as before. For comparison we show
+observations from SDSS (Zhang & Yang 2017). The SDSS
+sample has been subdivided into red and blue galaxies, al-
+beit with a criterion based on photometry, not sSFR.
+Star-forming galaxy sizes in Simba show an amplitude
+and scaling with M∗that agrees quite well with the observed
+slope, which is encouraging. There is a suggestion that low-
+mass galaxies are too small, but this occurs in the mass
+MNRAS 000, 1–25 (2018)
+
+
+18
+Dav´e et al.
+Figure 12. Gas fractions as a function of M500 at z = 0. Black
+points show the total baryon fraction within the halo, and red and
+blue points show the gas fractions subdivided at 105K. Purple
+hexbins show an observational compilation of hot gas fractions
+from McCarthy et al. (2017), to be compared to the red points.
+Simba does a reasonable job of reproducing the observed trend of
+hot gas fraction with M500, which has been diﬃcult for previous
+simulations to achieve without tuning.
+range where the number of particles is below a few hun-
+dred, and given that the sizes are light-weighted, stochas-
+ticity can give rise to smaller-than-expected sizes. We note
+that a stellar mass-weighted size does not show this drop-oﬀ
+at low masses. But for well-resolved star-forming galaxies,
+the sizes are in quite good agreement with data. This is an
+important success that did not require any speciﬁc tuning
+of the feedback model.
+In contrast to the star-forming systems, Simba shows
+quenched galaxy sizes that are quite discrepant with obser-
+vations. Massive galaxy sizes are in reasonable agreement
+with data, but the lowest-mass quiescent galaxies are up to
+∼×3 larger than the comparable sample in SDSS, showing
+that the size–mass trend for passive galaxies is incorrect in
+Simba; indeed, in Simba the low-mass passive galaxies are
+actually larger than the star-forming ones, which is opposite
+to the observed trend. There are a number of potential rea-
+sons for this. The large number of stellar orbits in older qui-
+escent galaxies tends to puﬀout the distribution numerically.
+The discrepancy could also represent a failing in physics, if
+for instance low-mass galaxies are preferentially quenched
+via some rapid mode such as merging, violent disk insta-
+bility, or stripping that is simultaneously associated with
+compactiﬁcation (e.g. Tacchella et al. 2016). Alternatively,
+it could be a failing of the feedback physics associated with
+quenching low-mass galaxies. We can test this issue directly
+with higher resolution runs once they complete. For now, we
+note that the sizes of small quenched galaxies in Simba is a
+clear failing of the current model, in contrast to its success
+at reproducing the sizes of star-forming galaxies.
+3.7
+Halo gas fractions
+In Simba, AGN feedback provides the primary energy input
+that serves to quench massive galaxies in large halos. Such
+energy input can concurrently have a strong impact on the
+amount and thermal state of hot gas within those halos.
+In particular, it can evacuate gas even from fairly sizeable
+halos, somewhat by entraining gas in jets but mostly by de-
+positing heat that results in the gas becoming unbound to
+the halo. These processes result in halo gas fractions that
+deviate strongly from the mean cosmic baryon fraction, a
+departure that can be measured in real systems via X-ray
+emission from intra-group and intra-cluster gas. Such obser-
+vations thus provide an important constraint on the AGN
+feedback model.
+The hot gas fraction as a function of halo mass has been
+a challenging constraint for modern cosmological AGN feed-
+back models to reproduce (McCarthy et al. 2017). In Illus-
+tris, it was found that the AGN feedback mechanism over-
+evacuated hot gas from group-sized halos compared to obser-
+vations (Genel et al. 2014), which provided one motivation
+for the new AGN feedback model in Illustris-TNG (Wein-
+berger et al. 2018). Nonetheless, while closer than Illus-
+tris, TNG somewhat overpredicts the observed hot gas frac-
+tions (Barnes et al. 2018). EAGLE likewise overpredicts the
+hot gas fractions, while the Bahamas simulation suite was
+able to match this with mild tuning (McCarthy et al. 2017).
+Here we examine this constraint for Simba.
+Figure 12 shows the baryon fractions as a function of
+halo mass (M500) from Simba. M500 is computed as the ra-
+dius enclosing 500 times the critical density, centered on the
+most bound halo particle. Black points show the total baryon
+fraction, red points show hot gas (T > 105K) fractions, and
+blue show cold gas (T < 105K). Colour-coordinated lines
+show the running median values. Note that the black points
+include the stellar (and black hole) contribution, which is
+not explicitly shown. A compilation of observations from
+McCarthy et al. (2017) is shown as the purple hexbins. All
+fractions have been scaled to Ωb = 0.048, so a halo at unity
+has its cosmic share of baryons.
+At 1012M⊙halos have about 40% of the cosmic baryon
+fraction within R500, with a large scatter. This dips to ∼30%
+at 1012.5−13M⊙, before rising again to large halo masses. The
+dip owes to jet AGN feedback, which we have checked by
+comparing to the No-jet test run, which shows baryon frac-
+tions around 90% for all halos over this mass range (and
+a much ﬂatter trend of hot gas fraction versus halo mass).
+This shows that the energy input required to quench galaxies
+can cause substantial evacuation of group-sized halos, as has
+been noted in e.g. Illustris (Genel et al. 2014). This strong
+evacuation has important implications for using these sys-
+tems as probes of cosmology, which we will probe in future
+work.
+The hot baryon fraction is shown in red, which can be
+compared to the observations shown in purple. In massive
+systems, the total baryons are dominated by this hot phase.
+Most of this hot gas is near the virial temperature, so the
+results are insensitive to the exact value of the cut at 105K.
+Comparing to observations, we see that Simba’s halos have
+hot baryon fractions that are well in agreement with data in
+the overlapping mass range, in both amplitude and scatter.
+We note that there was no tuning done to obtain this agree-
+ment. The halo hot baryon fraction is thus a non-trivial suc-
+cess of Simba’s AGN feedback model, and shows that Simba
+evacuates halo baryons in a manner that is concordant with
+observations. In Borrow et al. (in prep.) we will examine
+quantitatively where these evacuated baryons end up.
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+19
+Figure 13. MBH −M∗relation at z = 0 in Simba. Points show
+galaxies, with centrals colour-coded by speciﬁc SFR, and satel-
+lites as the grey points. Observations are shown from Kormendy
+& Ho (2013) for comparison with bulge-dominated (redder) sys-
+tems, while Bentz & Manne-Nicholas (2018) shows the relation-
+ship more appropriate for spiral star-forming systems at lower
+M∗. Simba broadly reproduces these observed relations in its ap-
+propriate galaxy populations.
+3.8
+Black hole mass vs stellar mass
+The canonical relation that highlights the connection be-
+tween galaxies and their central supermassive black holes
+is the relationship between the black hole mass and the
+galaxy bulge mass or stellar velocity dispersion (e.g. Magor-
+rian et al. 1998; Kormendy & Ho 2013; McConnell & Ma
+2013; Graham 2016; Bentz & Manne-Nicholas 2018). Mod-
+ern galaxy formation models that track black holes typi-
+cally have free parameter(s) that are tuned to match these
+relations; in Simba, this is set by the accretion eﬃciency
+tuned to ϵm = 10%, while most other cosmological simula-
+tions (based on Bondi accretion) tune the AGN feedback ef-
+ﬁciency. In previous works, Angl´es-Alc´azar et al. (2015) and
+Angl´es-Alc´azar et al. (2017a) showed that the MBH −M∗
+relation emerged naturally from the torque-limited accre-
+tion model, without or with AGN feedback, respectively.
+But these studies were done via post-processing or without
+star formation feedback. Here we examine whether the full
+physics model in Simba likewise reproduces the relationship
+between black hole mass and galaxy properties.
+Figure 13 shows the black hole mass–stellar mass re-
+lation at z = 0 for Simba galaxies. Central galaxies are
+shown colour-coded by speciﬁc SFR, while satellite galax-
+ies are indicated by grey points. The relationship for galaxy
+bulges is shown from Kormendy & Ho (2013) as the ma-
+genta dashed line; this is an appropriate comparison sample
+for bulge-dominated galaxies, which are expected to be the
+quiescent systems with redder points. Meanwhile, Bentz &
+Manne-Nicholas (2018) assembled a sample of reverberation-
+mapped galaxies, and found the steeper relation shown as
+the blue dotted line. In their case, the lower-mass systems
+are predominantly late-type galaxies, while the most mas-
+sive systems are early-type. Hence in the region plotted, the
+Bentz & Manne-Nicholas (2018) sample is probably best
+compared to later-type systems, and therefore star form-
+ing (bluer points). We note that all observational relations
+show a large scatter, typically at least 0.3 dex, which is not
+represented on this plot.
+Simba black holes generally lie in the range of obser-
+vations. Although we tuned ϵm = 0.1 in order to obtain the
+correct amplitude of the relation, the slope of the relation
+is not tunable, particularly in terms of diﬀerent galaxy sub-
+samples. Hence the agreement of the quiescent galaxy slope
+with the bulge-dominated galaxy black holes, and likewise
+the general agreement of the star-forming galaxies with the
+lower black hole masses at a given M∗, is in good agreement
+with observations. We note that there is some disagreement
+on whether the late-type galaxies have a steeper slope or the
+same slope but oﬀset to lower black hole masses (e.g. Gra-
+ham 2016; Savorgnan et al. 2016; Bentz & Manne-Nicholas
+2018), but Simba predictions are broadly compatible with
+either scenario.
+At the low-mass end, consistent with Angl´es-Alc´azar
+et al. (2015), torque-limited accretion grows black holes very
+quickly once the galaxy stellar mass exceeds 3×109M⊙, which
+is where we choose to seed the black holes in Simba. Hence
+the rapid rise is not directly physical but a numerical artifact
+of our seeding prescription, though it is intended to mimic
+the physical eﬀect of black hole growth suppression due to
+early star formation seen in e.g. FIRE (Angl´es-Alc´azar et al.
+2017c). Also, we note that we attempt to keep black holes
+ﬁxed to the centre of the galaxy potential well, but in dense
+regions this does not always work owing to the shallow po-
+tential wells in poorly resolved galaxies, so black holes can
+move between galaxies and thus merge. We continue to test
+for approaches for better handling this given the poor cos-
+mological resolution.
+Overall, Simba predicts a relationship between black
+hole and stellar masses in agreement with observations. In
+upcoming work we will examine black hole scaling relations
+in more detail, but for now, the good agreement corrobo-
+rates the idea that black holes in Simba grow in accord with
+observations, and thus the feedback energy released by black
+holes and used by Simba to quench galaxies is plausible.
+3.9
+Dust Properties
+Simba includes a model to form and destroy dust from met-
+als within the ISM of galaxies during the simulation run. As
+a basic check on the production of dust, here we examine
+two measurables tracking dust in galaxies: The dust mass
+function, and the dust-to-gas ratio.
+Figure 14 shows the z = 0 (bottom panel) and z = 2
+(top) dust mass function (DMF) from Simba (green line),
+versus two z = 0 observational determinations from Dunne
+et al. (2011) and Clemens et al. (2013), and a z = 2 determi-
+nation from Dunne et al. (2003). At z = 0, Simba agrees well
+with Dunne et al. (2011), but not Clemens et al. (2013). The
+diﬀerence between the two can be traced to their assump-
+tion of the dust mass opacity coeﬃcient used to infer the
+dust mass from far-IR data; Clemens et al. (2013) showed
+that under the same assumption of this quantity, the two
+results agree. Hence given current uncertainties in inferring
+dust masses, it is probably premature to use the DMF as a
+strong constraint on models. But Simba’s DMF is at least
+within the ballpark of currently observed values, with good
+agreement in the overall DMF shape. Unsurprisingly, the
+MNRAS 000, 1–25 (2018)
+
+
+20
+Dav´e et al.
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+log
+z=2
+Simba-SF
+Simba-Q
+Simba
+Dunne+03
+6.0
+6.5
+7.0
+7.5
+8.0
+8.5
+9.0
+log Mdust[M
+]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+log
+z=0
+Simba-SF
+Simba-Q
+Simba
+Dunne+11
+Clemens+13
+Figure 14. Dust mass function from Simba at z = 0, shown as the
+green shaded region. DMF is split into star-forming and quenched
+samples, shown as blue and red dashed lines, respectively. Obser-
+vations are shown from Dunne et al. (2011) and Clemens et al.
+(2013); diﬀerences owe to assumptions regarding inferring dust
+mass from far-IR ﬂux. Simba reproduces the observed shape of
+the DMF, and is in the range of observed amplitudes, modulo
+systematic uncertainties.
+DMF is dominated by star-forming galaxies (blue dashed
+line), which is as observed (Beeston et al. 2018).
+The z = 2 DMF is compared to observations from Dunne
+et al. (2003), and shows a deﬁcit of ∼×3 in the number
+density of galaxies at a given dust mass. We note that the
+observational DMF by Dunne et al. (2003) is from surveys
+of sub-mm sources with large beam sizes, which could result
+in multiple objects being blended within one beam therefore
+overestimating their dust masses. If one regards the Clemens
+et al. (2013) results at z = 0 to be more accurate, as con-
+ﬁrmed by Beeston et al. (2018), then the shortfall in the
+predicted DMF is very similar at both redshifts. This sug-
+gests that the evolution in dust masses in Simba is viable,
+but the overall dust production is short, or else destruction
+is too eﬃcient. It may be possible to remedy this with dif-
+fering choices of dust parameters; we are exploring this. We
+note that our z = 0 DMF agrees well with the predictions
+from cosmological simulations of McKinnon et al. (2017),
+Figure 15. Dust to gas ratio as a function of gas-phase metal-
+licity at z = 0 in Simba galaxies, colour-coded by speciﬁc SFR.
+Observations are shown as crosses from R´emy-Ruyer et al. (2014).
+Simba reproduces the observed trend and amplitude in dust-to-
+gas ratios.
+Figure 16. Metal mass fraction locked in dust, as a function of
+M∗, for star-forming galaxies in Simba. Plot is colour-coded by the
+mean sSFR within each hexbin. Except for the smallest galaxies,
+typically one-third of the metals are locked in dust.
+owing in part to tuning of each model, but our z = 2 DMF
+is signiﬁcantly higher than theirs.
+Figure 15 shows the z = 0 dust-to-gas ratio (DGR) as
+a function of gas-phase metal abundance. Points are colour-
+coded by sSFR. Simba is in good agreement with the data
+shown (R´emy-Ruyer et al. 2014, crosses), showing a slope
+of increasing DGR with metallicity as observed. In massive
+quenched systems, the DGR drops quickly.
+Finally, Figure 16 shows the fraction of metals locked
+into dust at z = 0 for star-forming galaxies. The green line
+shows the running median. For galaxies with M∗>∼109.5M⊙,
+the fraction is typically 30-40%, but drops signiﬁcantly to
+lower masses. This mostly explains why the mass-metallicity
+relation agrees with observations in Simba without the ad
+hoc reduction of the yields by ×2 as in Mufasa. Low-sSFR
+galaxies also have fewer metals locked into dust, as AGN
+feedback returns metals locked in dust into the gas phase.
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+21
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=2
+Simba
+No-jet
+No-Xray
+Simba-100
+Tomczak+14
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+12.5
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=1
+Simba
+No-jet
+No-Xray
+Simba-100
+Tomczak+14
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+12.5
+logM * [M
+]
+6
+5
+4
+3
+2
+log [Mpc
+3]
+z=0
+Simba
+No-jet
+No-Xray
+Simba-100
+Baldry+12
+Figure 17. Stellar mass function evolution from z = 2 →0 in
+50h−1Mpc, 5123 test runs with diﬀerent AGN feedback variants:
+Original Simba (green solid), Jet and X-ray feedback both turned
+oﬀ(No-jet; blue dashed), only X-ray feedback turned oﬀ(No-
+Xray; red dashed). For comparison we show the main 100h−1Mpc
+Simba run (green dashed) reproduced from Figure 4, as well as
+selected observations as indicated. Turning on just the jet feed-
+back (No-Xray) results in a substantial truncation of the GSMF
+that does not occur without jets (No-jet).
+We will examine galaxy dust content and evolution in signif-
+icantly more detail in forthcoming work (Li et al., in prep.),
+but these preliminary comparisons suggest that Simba’s
+dust tracking model yields plausible galaxy dust contents.
+4
+AGN FEEDBACK VARIATIONS
+AGN feedback is believed to be responsible for quenching
+galaxies. Simba includes three diﬀerent forms of AGN feed-
+back: Radiative mode AGN winds, AGN jets, and X-ray
+feedback. In this section we examine the importance of these
+various modules in producing a quenched galaxy population,
+by running simulations with AGN jets and X-ray feedback
+oﬀ, and with only X-ray feedback oﬀ. We always include ra-
+diative AGN winds. For these tests we use 50h−1Mpc, 2×5123
+simulations run to z = 0, with Simba input physics and pa-
+rameters except for the AGN feedback variations.
+Figure 17 shows the GSMF for the full Simba physics
+run, a No-X run turning oﬀonly X-ray feedback, and a No-
+jet run turning oﬀboth jet and X-ray feedback, at z = 2, 1, 0.
+Observations are overplotted as described in Figure 4. We
+do not show z ≥3 results because these variants’ GSMFs
+are indistinguishable there.
+Looking at the z = 0 panel, without jets, the GSMF
+is strongly overproduced at high masses. Turning on jets
+Figure 18. MBH −M∗relations in test simulations with jet and
+X-ray black hole feedback turned oﬀ(No-jet, top panel), and jets
+on but X-ray feedback turned oﬀ(No-Xray, bottom). By compar-
+ing to Figure 13, the jet feedback is seen to enact most of the
+quenching, but the X-ray feedback is important for fully quench-
+ing the most massive galaxies.
+results in much better agreement with full Simba. This is
+even true when including X-ray feedback, which makes only
+a small change to the GSMF. The redshift evolution shows
+that the impact of jets is fairly minor at z ∼2 in terms of
+the GSMF, only impacting the very largest few galaxies. The
+importance of jets in truncating the GSMF grows steadily
+with time, to where without jets the number density of M∗=
+1012M⊙galaxies would be an order of magnitude higher, in
+strong disagreement with data. These results clearly show
+that the main driver in truncating the massive end of the
+GSMF in Simba is AGN jet feedback.
+A more detailed view of how AGN feedback impacts
+both stellar and black hole growth can be obtained by ex-
+amining the MBH −M∗relation in these variants, shown in
+Figure 18, with galaxies colour-coded by speciﬁc SFR as in
+Figure 13. For clarity we show only central galaxies.
+Comparing the No-Jet version (top panel) to the orig-
+inal Simba in Figure 13 highlights several key points. As
+expected, the sub-M⋆objects show little diﬀerence in the
+trends, in either MBH or sSFR. However, for massive galax-
+ies, the full Simba run shows signiﬁcantly lower sSFR and
+somewhat higher MBH, particularly for the most massive
+MNRAS 000, 1–25 (2018)
+
+
+22
+Dav´e et al.
+galaxies. This demonstrates more explicitly that the AGN
+jet feedback is crucial for quenching galaxies.
+Interestingly, the No-jet run still shows a few quenched
+galaxies at high MBH around M⋆. These are clearly corre-
+lated with the presence of a massive black hole, and would
+not occur in a model with no AGN feedback at all. This
+arises from the fact that we still have radiative AGN winds
+in our No-jet run. These become eﬀective around M⋆be-
+cause it is at the corresponding halo mass that a signiﬁcant
+hot gaseous halo begins to form (Kereˇs et al. 2005; Gabor &
+Dav´e 2012). The AGN energy can then be deposited into the
+hot gas, providing a mechanism for quenching the galaxy by
+shutting oﬀthe fuel supply (Dekel et al. 2009).
+So why do radiative winds cease to be eﬀective at higher
+masses? An examination of the energetics shows the reason.
+In Simba’s AGN feedback model the momentum input is as-
+sumed to be constant, which means that the AGN feedback
+energy scales as the wind velocity. Since Simba’s black hole
+accretion rates are a quite weak function of M∗(Thomas et
+al., in prep) while the number of hot halo baryons is grow-
+ing, this means that the energy injected per hot halo baryon
+is dropping with the halo mass. The logarithmic increase in
+velocity with MBH (eq. 7) is too slow to compensate for this,
+so one quickly ends up in a situation where the energy in-
+jection is insuﬃcient to keep the hot halo baryons near the
+virial temperature. What is required is a strong increase in
+the outﬂow velocity, and hence energy input, in this halo
+mass regime. This is why high-velocity AGN jets are crucial
+for quenching massive galaxies.
+The black hole masses in the No-jet run are also ap-
+pear to be signiﬁcantly lower. However, this can primarily
+be explained by the eﬀect that M∗values in this simulation
+are substantially higher, which moves galaxies leftwards in
+the MBH −M∗diagram; the black hole masses themselves
+are not substantially diﬀerent. The relative roles of Bondi
+vs. torque-limited accretion in growing black holes across
+the full mass range over cosmic time will be examined more
+fully in a forthcoming paper (Ang´es-Alc´azar et al. in prep.).
+The No-Xray run is fairly similar to the full Simba run,
+but there is a slight if noticeable increase in the sSFR in
+the massive galaxies. This is not so much as to contribute
+signiﬁcant mass growth, hence the GSMF is only modestly
+aﬀected, but it is higher than typical observed values for
+massive red and dead ellipticals. This suggests that the X-
+ray feedback is important for fully quenching massive galax-
+ies in accord with observations, even if it does not play a
+leading role in regulating mass growth.
+5
+SUMMARY
+We have introduced the new Simba suite of cosmological
+galaxy formation simulations, and explored predictions from
+a 100 Mpc/h box run with 10243 dark matter and 10243 gas
+elements. The most novel aspect of Simba is its implemen-
+tation of black hole growth via torque-limited accretion, and
+two-mode black hole feedback via bipolar kinetic outﬂows.
+Simba further includes numerous updates over its predeces-
+sor simulation Mufasa, including a dust production and de-
+struction model. In this paper we present comparisons to a
+range of diﬀerent observational probes measuring the stellar
+mass, star formation rate, neutral and molecular gas, black
+hole, and dust properties in Simba. We show that, in all
+cases, Simba produces galaxies that are in quite reasonable
+agreement with observations. While our feedback parame-
+ters were generally chosen to follow observations or expecta-
+tion from high-resolution simulations, some of these observa-
+tions were used to further tune these parameters. However,
+many of them were not, and these represent model predic-
+tions that demonstrate the viability of Simba as a platform
+for studying cosmological-scale galaxy evolution.
+Here are our main ﬁndings:
+• Simba produces a stellar mass function evolution that
+is in very good agreement with data across all masses at
+all cosmic epochs, although it may overproduce the massive
+end slightly by z = 0. Quenched galaxies grow substantial
+in numbers at z <∼2, and by z = 0 they dominate at M∗>
+2 × 1010M⊙.
+• Simba’s star forming main sequence is in good agree-
+ment with observations at z = 0, and low at z ≈2 by only a
+factor of two which is explainable via observational system-
+atics. Predicted quenched fractions at z = 0 as a function
+of M∗are in good agreement with observations.
+Galaxies
+at a given M∗that quench ﬁrst in Simba have preferentially
+larger black holes.
+• Simba gas fractions, both neutral and molecular, show
+a dropping trend with M∗that is in good agreement with
+observations. Gas fractions evolve downwards with time, but
+even at z = 0, massive quenched galaxies still typically have
+some cold gas.
+• The gas-phase and stellar mass–metallicity relations
+generally agree with observations at z = 0 and z ∼2. The
+MZR evolves upwards by a factor of ∼×3 for our smallest
+systems, but at M∗>∼1011M⊙there is little evolution.
+• Galaxy photometric projected sizes are in good agree-
+ment with observations for star-forming systems, but are too
+large for quenched systems particularly at lower masses.
+• There is substantial evacuation of baryons from halos
+at group scales, with Local Group-sized objects retaining
+typically only a third of their cosmic baryon fraction. Hot
+halo gas fractions show a rising trend with halo mass in good
+agreement with data.
+• The black hole mass–stellar mass relation shows a pop-
+ulation of quenched galaxies that agrees well with observa-
+tions of bulge-dominated systems, while star-forming galax-
+ies at a given M∗have lower black hole masses.
+• Simba predicts a z = 0 dust mass function and dust-to-
+gas ratios in agreement with observations, with more mas-
+sive star-forming galaxies having higher ratios. At a given
+metallicity, galaxies that have higher SFR have higher dust-
+to-gas ratios. Roughly one-third of metals are locked in dust.
+These results demonstrate that Simba broadly repro-
+duces a wide range of observed galaxy properties includ-
+ing their stellar content, star formation rates, gas content,
+metallicities, sizes, black hole properties, and dust proper-
+ties. Clearly there are many other more detailed constraints
+that would be tested, and in subsequent work we aim to
+examine these in more detail. It is important to note that
+Simba also displays some aspects that are in conﬂict with
+observations. It fails to produce as sharp a knee in the z = 0
+stellar mass function as is observed. It produces low-mass
+quenched galaxy sizes that are larger than for star-forming
+systems, opposite to the observed trend in SDSS. There are
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+23
+suggestions that Simba overproduces the stellar metallici-
+ties as well as the speciﬁc SFRs in low-mass present-day
+star-forming systems. Finally, in many low-z scaling rela-
+tions (e.g. gas and metallicities vs. M∗) there is an abrupt
+break in the typical properties of galaxies above and below
+M∗≈2 × 1010M⊙, which qualitatively agrees observations
+but quantitatively may be too sharp. This rapid transition
+contrasts with the too-gradual turn-down in the GSMF, sug-
+gesting a tension in how Simba (and similar cosmological
+models) quench massive galaxies at low redshifts. Despite
+these minor issues, Simba provides a state of the art plat-
+form for studying galaxy evolution across a range of masses,
+environments, and cosmic epochs, and promises to yield nu-
+merous new insights into the physical drivers of galaxy evo-
+lution over cosmic time.
+ACKNOWLEDGEMENTS
+The authors acknowledge helpful discussions with Josh Bor-
+row, Weiguang Cui, Shuiyao Huang, Katarina Kraljic, and
+Neal Katz. We thank Philip Hopkins for making Gizmo pub-
+lic, and providing our group with early access. We thank
+Robert Thompson for developing Caesar, and the yt team
+for development and support of yt. RD acknowledges sup-
+port from the Wolfson Research Merit Award program of
+the U.K. Royal Society. DAA acknowledges support by a
+Flatiron Fellowship. The Flatiron Institute is supported
+by the Simons Foundation. DN and QL were supported
+in part by NSF Award AST-1715206 and HST Theory
+Award 15043.0001. This work used the DiRAC@Durham
+facility managed by the Institute for Computational Cos-
+mology on behalf of the STFC DiRAC HPC Facility.
+The equipment was funded by BEIS capital funding via
+STFC capital grants ST/P002293/1, ST/R002371/1 and
+ST/S002502/1, Durham University and STFC operations
+grant ST/R000832/1. DiRAC is part of the National e-
+Infrastructure.
+REFERENCES
+Andrews B. H., Martini P., 2013, ApJ, 765, 140
+Angl´es-Alc´azar D., ¨Ozel F., Dav´e R., 2013, ApJ, 770, 5
+Angl´es-Alc´azar D., ¨Ozel F., Dav´e R., Katz N., Kollmeier J. A.,
+Oppenheimer B. D., 2015, ApJ, 800, 127
+Angl´es-Alc´azar D., Dav´e R., Faucher-Gigu`ere C.-A., ¨Ozel F., Hop-
+kins P. F., 2017a, MNRAS, 464, 2840
+Angl´es-Alc´azar D., Faucher-Gigu`ere C.-A., Kereˇs D., Hopkins
+P. F., Quataert E., Murray N., 2017b, MNRAS, 470, 4698
+Angl´es-Alc´azar D., Faucher-Gigu`ere C.-A., Quataert E., Hopkins
+P. F., Feldmann R., Torrey P., Wetzel A., Kereˇs D., 2017c,
+MNRAS, 472, L109
+Asano R. S., Takeuchi T. T., Hirashita H., Inoue A. K., 2013,
+Earth, Planets, and Space, 65, 213
+Asplund M., Grevesse N., Sauval A. J., Scott P., 2009, Annual
+Review of Astronomy and Astrophysics, 47, 481
+Bariˇsi´c I., et al., 2017, ApJ, 847, 72
+Barlow M. J., 1978, MNRAS, 183, 367
+Barnes D. J., et al., 2018, MNRAS, 481, 1809
+Beeston R. A., et al., 2018, MNRAS, 479, 1077
+Behroozi P. S., Wechsler R. H., Conroy C., 2013, ApJ, 770, 57
+Bell E. F., et al., 2004, ApJ, 608, 752
+Bentz M. C., Manne-Nicholas E., 2018, ApJ, 864, 146
+Bernardi M., Meert A., Sheth R. K., Fischer J.-L., Huertas-
+Company M., Maraston C., Shankar F., Vikram V., 2017,
+MNRAS, 467, 2217
+Best P. N., Heckman T. M., 2012, MNRAS, 421, 1569
+Bianchi S., Schneider R., 2007, MNRAS, 378, 973
+Bolatto A. D., Wolﬁre M., Leroy A. K., 2013, ARA&A, 51, 207
+Bondi H., 1952, MNRAS, 112, 195
+Bothwell M. S., Maiolino R., Kennicutt R., Cresci G., Mannucci
+F., Marconi A., Cicone C., 2013, MNRAS, 433, 1425
+Bower R. G., Benson A. J., Malbon R., Helly J. C., Frenk C. S.,
+Baugh C. M., Cole S., Lacey C. G., 2006, MNRAS, 370, 645
+Bower R. G., Schaye J., Frenk C. S., Theuns T., Schaller M.,
+Crain R. A., McAlpine S., 2017, MNRAS, 465, 32
+Bruzual G., Charlot S., 2003, MNRAS, 344, 1000
+Cappellari M., et al., 2013, MNRAS, 432, 1862
+Catinella B., et al., 2012, A&A, 544, A65
+Choi E., Ostriker J. P., Naab T., Johansson P. H., 2012, ApJ,
+754, 125
+Christensen C. R., Dav´e R., Brooks A., Quinn T., Shen S., 2018,
+ApJ, 867, 142
+Clemens M. S., et al., 2013, MNRAS, 433, 695
+Conroy C., Dutton A. A., Graves G. J., Mendel J. T., van Dokkum
+P. G., 2013, ApJ, 776, L26
+Cresci G., Mannucci F., Curti M., 2018, arXiv e-prints,
+Croton D. J., et al., 2006, MNRAS, 365, 11
+Daddi E., et al., 2007, ApJ, 670, 156
+Dav´e R., 2008, MNRAS, 385, 147
+Dav´e R., Thompson R., Hopkins P. F., 2016, MNRAS, 462, 3265
+Dav´e R., Raﬁeferantsoa M. H., Thompson R. J., Hopkins P. F.,
+2017a, MNRAS, 467, 115
+Dav´e R., Raﬁeferantsoa M. H., Thompson R. J., 2017b, MNRAS,
+471, 1671
+Davies J. J., Crain R. A., McCarthy I. G., Oppenheimer B. D.,
+Schaye J., Schaller M., McAlpine S., 2019, MNRAS,
+Dekel A., et al., 2009, Nature, 457, 451
+Di Matteo T., Colberg J., Springel V., Hernquist L., Sijacki D.,
+2008, ApJ, 676, 33
+Draine B. T., Salpeter E. E., 1979, ApJ, 231, 438
+Dubois Y., Devriendt J., Slyz A., Teyssier R., 2012, MNRAS, 420,
+2662
+Dubois Y., et al., 2014, MNRAS, 444, 1453
+Dubois Y., Volonteri M., Silk J., Devriendt J., Slyz A., Teyssier
+R., 2015, MNRAS, 452, 1502
+Dunne L., Eales S. A., Edmunds M. G., 2003, MNRAS, 341, 589
+Dunne L., et al., 2011, MNRAS, 417, 1510
+Durier F., Dalla Vecchia C., 2012, MNRAS, 419, 465
+Dwek E., 1998, ApJ, 501, 643
+Dwek E., 2016, ApJ, 825, 136
+Dwek E., Scalo J. M., 1980, ApJ, 239, 193
+Fabian A. C., 2012, ARA&A, 50, 455
+Feng Y., Di-Matteo T., Croft R. A., Bird S., Battaglia N., Wilkins
+S., 2016, MNRAS, 455, 2778
+Ferrarotti A. S., Gail H. P., 2006, A&A, 447, 553
+Finlator K., Dav´e R., 2008, MNRAS, 385, 2181
+Fiore F., et al., 2017, A&A, 601, A143
+Gabor J. M., Dav´e R., 2012, MNRAS, 427, 1816
+Gabor J. M., Dav´e R., 2015, MNRAS, 447, 374
+Gallazzi A., Charlot S., Brinchmann J., White S. D. M., Tremonti
+C. A., 2005, MNRAS, 362, 41
+Gan Z., Yuan F., Ostriker J. P., Ciotti L., Novak G. S., 2014,
+ApJ, 789, 150
+Gan Z., Ciotti L., Ostriker J. P., Yuan F., 2019, ApJ, 872, 167
+Genel S., et al., 2014, MNRAS, 445, 175
+Gioannini L., Matteucci F., Vladilo G., Calura F., 2017, MNRAS,
+464, 985
+Graham A. W., 2016, Galactic Bulges, 418, 263
+Greene J. E., Zakamska N. L., Smith P. S., 2012, ApJ, 746, 86
+Haardt F., Madau P., 2012, ApJ, 746, 125
+MNRAS 000, 1–25 (2018)
+
+
+24
+Dav´e et al.
+Habouzit M., Volonteri M., Dubois Y., 2017, MNRAS, 468, 3935
+Heckman T. M., Best P. N., 2014, ARA&A, 52, 589
+Hirashita H., 2000, Publications of the Astronomical Society of
+Japan, 52, 585
+Hirschmann M., Dolag K., Saro A., Bachmann L., Borgani S.,
+Burkert A., 2014, MNRAS, 442, 2304
+Hopkins P. F., 2015, MNRAS, 450, 53
+Hopkins P. F., 2017, preprint, (arXiv:1712.01294)
+Hopkins P. F., Quataert E., 2011, MNRAS, 415, 1027
+Hopkins P. F., Kereˇs D., O˜norbe J., Faucher-Gigu`ere C.-A.,
+Quataert E., Murray N., Bullock J. S., 2014, MNRAS, 445,
+581
+Hopkins P. F., et al., 2018, MNRAS, 480, 800
+Ishibashi W., Fabian A. C., Maiolino R., 2018, MNRAS, 476, 512
+Iwamoto K., Brachwitz F., Nomoto K., Kishimoto N., Umeda H.,
+Hix W. R., Thielemann F.-K., 1999, ApJS, 125, 439
+Jiang Y.-F., Stone J. M., Davis S. W., 2014, ApJ, 796, 106
+Kaviraj S., et al., 2017, MNRAS, 467, 4739
+Kennicutt Jr. R. C., 1998, ApJ, 498, 541
+Kereˇs D., Katz N., Weinberg D. H., Dav´e R., 2005, MNRAS, 363,
+2
+Khandai N., Di Matteo T., Croft R., Wilkins S., Feng Y., Tucker
+E., DeGraf C., Liu M.-S., 2015, MNRAS, 450, 1349
+Kollmeier J. A., et al., 2014, ApJ, 789, L32
+Kormendy J., Ho L. C., 2013, ARA&A, 51, 511
+Kravtsov A. V., Vikhlinin A. A., Meshcheryakov A. V., 2018,
+Astronomy Letters, 44, 8
+Krumholz M. R., Gnedin N. Y., 2011, ApJ, 729, 36
+Lagos C. d. P., et al., 2016, MNRAS, 459, 2632
+Lara-L´opez M. A., et al., 2010, A&A, 521, L53
+Leja J., et al., 2018, arXiv e-prints,
+Lim S. H., Mo H. J., Wang H., Yang X., 2018, MNRAS, 480, 4017
+Liu G., Zakamska N. L., Greene J. E., Nesvadba N. P. H., Liu X.,
+2013, MNRAS, 436, 2576
+Madau P., Dickinson M., 2014, ARA&A, 52, 415
+Magorrian J., et al., 1998, AJ, 115, 2285
+Maiolino R., et al., 2012, MNRAS, 425, L66
+Mannucci F., Cresci G., Maiolino R., Marconi A., Gnerucci A.,
+2010, MNRAS, 408, 2115
+Martin C. L., 2005, ApJ, 621, 227
+Martınez-Aldama M. L., Del Olmo A., Marziani P., Sulentic
+J. W., Negrete C. A., Dultzin D., Onofrio M. D., Perea J.,
+2018, preprint, (arXiv:1807.11006)
+Matthee J., Schaye J., 2019, MNRAS, 484, 915
+McAlpine S., Bower R. G., Rosario D. J., Crain R. A., Schaye J.,
+Theuns T., 2018, MNRAS, 481, 3118
+McCarthy I. G., Schaye J., Bird S., Le Brun A. M. C., 2017,
+MNRAS, 465, 2936
+McConnell N. J., Ma C.-P., 2013, ApJ, 764, 184
+McKee C., 1989, in Allamandola L. J., Tielens A. G. G. M., eds,
+IAU Symposium Vol. 135, Interstellar Dust. p. 431
+McKee C. F., Hollenbach D. J., Seab G. C., Tielens A. G. G. M.,
+1987, ApJ, 318, 674
+McKinnon R., Torrey P., Vogelsberger M., 2016, MNRAS, 457,
+3775
+McKinnon R., Torrey P., Vogelsberger M., Hayward C. C., Mari-
+nacci F., 2017, MNRAS, 468, 1505
+McNamara B. R., Nulsen P. E. J., 2007, ARA&A, 45, 117
+Mitra S., Dav´e R., Finlator K., 2015, MNRAS, 452, 1184
+Mitra S., Dav´e R., Simha V., Finlator K., 2017, MNRAS, 464,
+2766
+Mobasher B., et al., 2015, ApJ, 808, 101
+Moster B. P., Naab T., White S. D. M., 2013, MNRAS, 428, 3121
+Muratov A. L., Kereˇs D., Faucher-Gigu`ere C.-A., Hopkins P. F.,
+Quataert E., Murray N., 2015, MNRAS, 454, 2691
+Muratov A. L., et al., 2017, MNRAS, 468, 4170
+Naab T., Ostriker J. P., 2017, ARA&A, 55, 59
+Narayanan D., Krumholz M. R., Ostriker E. C., Hernquist L.,
+2012, MNRAS, 421, 3127
+Noeske K. G., et al., 2007, ApJ, 660, L43
+Nomoto K., Tominaga N., Umeda H., Kobayashi C., Maeda K.,
+2006, Nuclear Physics A, 777, 424
+Nozawa T., Maeda K., Kozasa T., Tanaka M., Nomoto K., Umeda
+H., 2011, ApJ, 736, 45
+Oppenheimer B. D., Dav´e R., 2006, MNRAS, 373, 1265
+Panter B., Jimenez R., Heavens A. F., Charlot S., 2008, MNRAS,
+391, 1117
+Pasquali A., Gallazzi A., van den Bosch F. C., 2012, MNRAS,
+425, 273
+Peek J. E. G., M´enard B., Corrales L., 2015, ApJ, 813, 7
+Perna M., Lanzuisi G., Brusa M., Mignoli M., Cresci G., 2017a,
+A&A, 603, A99
+Perna M., Lanzuisi G., Brusa M., Cresci G., Mignoli M., 2017b,
+A&A, 606, A96
+Pillepich A., et al., 2018, MNRAS, 473, 4077
+Planck Collaboration et al., 2016, A&A, 594, A13
+Popping G., Somerville R. S., Galametz M., 2017, MNRAS, 471,
+3152
+Raﬁeferantsoa M., Dav´e R., 2018, MNRAS, 475, 955
+Raﬁeferantsoa M., Dav´e R., Naab T., 2018, arXiv e-prints, p.
+arXiv:1811.11613
+Rahmati A., Pawlik A. H., Raicevic M., Schaye J., 2013, MNRAS,
+430, 2427
+R´emy-Ruyer A., et al., 2014, A&A, 563, A31
+Saintonge A., et al., 2017, ApJS, 233, 22
+Salim S., Lee J. C., Ly C., Brinchmann J., Dav´e R., Dickinson
+M., Salzer J. J., Charlot S., 2014, ApJ, 797, 126
+Salim S., et al., 2016, ApJS, 227, 2
+Salim S., Boquien M., Lee J. C., 2018, ApJ, 859, 11
+S´anchez S. F., et al., 2017, MNRAS, 469, 2121
+Sanders R. L., et al., 2015, ApJ, 799, 138
+Sanders R. L., et al., 2018, ApJ, 858, 99
+Savorgnan G. A. D., Graham A. W., Marconi A., Sani E., 2016,
+ApJ, 817, 21
+Schaye J., et al., 2015, MNRAS, 446, 521
+Seab C. G., Shull J. M., 1983, ApJ, 275, 652
+Smith B. D., et al., 2017, MNRAS, 466, 2217
+Somerville R. S., Dav´e R., 2015, ARA&A, 53, 51
+Song M., et al., 2016, ApJ, 825, 5
+Sparre M., et al., 2015, MNRAS, 447, 3548
+Speagle J. S., Steinhardt C. L., Capak P. L., Silverman J. D.,
+2014, preprint, (arXiv:1405.2041)
+Springel V., 2005, MNRAS, 364, 1105
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS, 361, 776
+Springel V., et al., 2018, MNRAS, 475, 676
+Sturm E., et al., 2011, ApJ, 733, L16
+Tacchella S., Dekel A., Carollo C. M., Ceverino D., DeGraf C.,
+Lapiner S., Mandelker N., Primack Joel R., 2016, MNRAS,
+457, 2790
+Tielens A. G. G. M., McKee C. F., Seab C. G., Hollenbach D. J.,
+1994, ApJ, 431, 321
+Tomczak A. R., et al., 2014, ApJ, 783, 85
+Tremmel M., Karcher M., Governato F., Volonteri M., Quinn
+T. R., Pontzen A., Anderson L., Bellovary J., 2017, MNRAS,
+470, 1121
+Tremonti C. A., et al., 2004, ApJ, 613, 898
+Tsai J. C., Mathews W. G., 1995, ApJ, 448, 84
+Vogelsberger M., et al., 2014, MNRAS, 444, 1518
+Voit G. M., 2005, Advances in Space Research, 36, 701
+Volonteri M., Dubois Y., Pichon C., Devriendt J., 2016, MNRAS,
+460, 2979
+Weinberger R., et al., 2017, MNRAS, 465, 3291
+Weinberger R., et al., 2018, MNRAS, 479, 4056
+Whitaker K. E., et al., 2014, ApJ, 795, 104
+MNRAS 000, 1–25 (2018)
+
+
+Simba
+25
+Yates R. M., Schady P., Chen T.-W., Schweyer T., Wiseman P.,
+2019, arXiv e-prints,
+Young L. M., et al., 2014, MNRAS, 444, 3408
+Yu Q., Tremaine S., 2002, MNRAS, 335, 965
+Zahid H. J., et al., 2014, ApJ, 792, 75
+Zhang Y., Yang X., 2017, arXiv e-prints,
+This paper has been typeset from a TEX/LATEX ﬁle prepared by
+the author.
+MNRAS 000, 1–25 (2018)

@@ -1,0 +1,1661 @@
+{
+  "captured_at_utc": "2026-07-26T13:34:26Z",
+  "marker": "OVERNIGHT_PAPER_BOARD_T0_SNAPSHOT_V1",
+  "run_count": 8,
+  "runs": {
+    "2958462772b2": {
+      "artifacts": [
+        "result.png",
+        "review_loop.md",
+        "draft.pdf",
+        "history.json"
+      ],
+      "created_utc": "2026-07-17T09:47:30.429095Z",
+      "id": "2958462772b2",
+      "log": [
+        "queued",
+        "18:47:34 pulling SDSS\u2026",
+        "18:48:02 drafted manuscript body",
+        "18:48:14 review cycle 1: MINOR",
+        "18:48:14 review-revise loop done: MINOR in 1 cycle(s)",
+        "18:48:14 compiling AASTeX manuscript (PDF)...",
+        "18:48:17 AASTeX PDF compiled OK",
+        "18:48:17 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "sdss"
+        ],
+        "figure_url": "/api/lab/runs/2958462772b2/artifact/result.png",
+        "method": "mass-metallicity",
+        "pdf_url": "/api/lab/runs/2958462772b2/artifact/draft.pdf",
+        "review": "VERDICT: MINOR\n\nThe manuscript presents a clear analysis of the mass-metallicity relation using SDSS data but has some limitations that require attention. The top correctness/overclaim risks include potential biases from the single-selection method and uncalibrated measurements, which might affect the accuracy of the results. Missing caveats involve not discussing alternative methods or comparing findings with existing literature. The most important fix is to address these limitations by incorporating additional data validation techniques and exploring more robust selection methods to strengthen the study's conclusions. Overall, the manuscript provides valuable insights but requires minor revisions to enhance its reliability and validity.",
+        "review_cycles": 1,
+        "review_model": "astrosage-70b:latest",
+        "review_url": "/api/lab/runs/2958462772b2/artifact/review_loop.md",
+        "review_verdict": "MINOR",
+        "summary": "Mass\u2013metallicity relation \u2014 median relations for SDSS (120,000 gals)."
+      },
+      "spec": {
+        "data_sources": [
+          "sdss"
+        ],
+        "method": "mass-metallicity",
+        "outputs": [
+          "aastex-draft",
+          "dr-review-loop"
+        ],
+        "topic": "cosmic-chemical-evolution",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "2ab3c92eea8a": {
+      "artifacts": [
+        "result.png",
+        "history.json"
+      ],
+      "created_utc": "2026-07-17T09:13:08.864691Z",
+      "id": "2ab3c92eea8a",
+      "log": [
+        "re-queued",
+        "18:20:27 loading TNG100-1 z=0 fields: sfr \u2026",
+        "18:20:28 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "tng"
+        ],
+        "figure_url": "/api/lab/runs/2ab3c92eea8a/artifact/result.png",
+        "method": "scaling-relation-evolution",
+        "summary": "Star-forming main sequence \u2014 median relations for TNG100 (23,060 gals)."
+      },
+      "spec": {
+        "data_sources": [
+          "tng"
+        ],
+        "method": "scaling-relation-evolution",
+        "outputs": [],
+        "topic": "main-sequence-quenching",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "7cb504ea7ad3": {
+      "artifacts": [
+        "result.png",
+        "draft.pdf",
+        "review.md",
+        "history.json"
+      ],
+      "created_utc": "2026-07-17T09:39:59.918965Z",
+      "id": "7cb504ea7ad3",
+      "log": [
+        "queued",
+        "18:40:03 loading TNG100-1 z=0 fields:  \u2026",
+        "18:40:03 computing TNG stellar mass function\u2026",
+        "18:40:03 drafting AASTeX manuscript + compiling PDF...",
+        "18:40:06 AASTeX PDF compiled OK",
+        "18:40:06 running automated referee review (astrosage-70b:latest)...",
+        "18:40:21 automated review complete OK",
+        "18:40:21 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "tng"
+        ],
+        "figure_url": "/api/lab/runs/7cb504ea7ad3/artifact/result.png",
+        "method": "stellar-mass-function",
+        "pdf_url": "/api/lab/runs/7cb504ea7ad3/artifact/draft.pdf",
+        "review": "(1) Verdict: This study provides a preliminary, automated measurement of the stellar mass function in IllustrisTNG but requires substantial improvement before publication.\n\n(2) Top correctness/overclaim risks and missing caveats:\n- The study assumes that the simulation accurately represents real-world galaxy formation processes without providing justification or comparison to observational data.\n- No error analysis or uncertainty quantification is presented, which is crucial for assessing the reliability of the results.\n- Potential biases in the selection of galaxies and the calculation of stellar masses are not discussed.\n\n(3) The single most important next step to make it publishable:\nPerform a thorough comparison between the simulated stellar mass function from IllustrisTNG and observational data (e.g., SDSS, GAMA, or COSMOS surveys) to validate the simulation's accuracy in representing real galaxy populations. This should include an analysis of potential discrepancies and their implications for our understanding of galaxy formation and evolution. Additionally, provide a detailed error analysis and discuss any limitations or biases in the methodology used.",
+        "review_model": "astrosage-70b:latest",
+        "review_url": "/api/lab/runs/7cb504ea7ad3/artifact/review.md",
+        "summary": "IllustrisTNG (TNG100-1, z=0) stellar mass function from 203,524 galaxies in a (111 Mpc)\u00b3 box; n(>10\u00b9\u2070\u00b7\u2075M\u2299)=1.49e-03 Mpc\u207b\u00b3."
+      },
+      "spec": {
+        "data_sources": [
+          "tng"
+        ],
+        "method": "stellar-mass-function",
+        "outputs": [
+          "aastex-draft",
+          "dr-review-loop"
+        ],
+        "topic": "stellar-mass-assembly",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "d8de519cb9c9": {
+      "artifacts": [
+        "result.png",
+        "history.json"
+      ],
+      "created_utc": "2026-07-17T09:20:58.872370Z",
+      "id": "d8de519cb9c9",
+      "log": [
+        "queued",
+        "18:21:03 loading TNG100-1 z=0 fields: gasZ \u2026",
+        "18:21:04 pulling SDSS\u2026",
+        "18:21:07 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "tng",
+          "sdss"
+        ],
+        "figure_url": "/api/lab/runs/d8de519cb9c9/artifact/result.png",
+        "method": "mass-metallicity",
+        "note": "Figure + summary computed. Full aastex-draft is queued for crew execution.",
+        "summary": "Mass\u2013metallicity relation \u2014 median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity \u2192 O/H (solar-scaled)."
+      },
+      "spec": {
+        "data_sources": [
+          "tng",
+          "sdss"
+        ],
+        "method": "mass-metallicity",
+        "outputs": [
+          "aastex-draft"
+        ],
+        "topic": "cosmic-chemical-evolution",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "e2f3b038f8dd": {
+      "artifacts": [
+        "mzr.png",
+        "history.json"
+      ],
+      "created_utc": "2026-07-17T09:06:12.028337Z",
+      "id": "e2f3b038f8dd",
+      "log": [
+        "queued",
+        "18:06:12 pulling SDSS star-forming galaxies (galSpecExtra)\u2026",
+        "18:06:14 pulled 80000 galaxies; computing MZR\u2026",
+        "18:06:15 done \u2713"
+      ],
+      "result": {
+        "N": 80000,
+        "figure_url": "/api/lab/runs/e2f3b038f8dd/artifact/mzr.png",
+        "oh_at_logM10p5": 9.05,
+        "oh_at_logM9": 8.572,
+        "summary": "Mass\u2013metallicity relation from 80,000 SDSS star-forming galaxies. 12+log(O/H) rises from 8.57 at logM\u22c6=9.0 to 9.05 at logM\u22c6=10.5, flattening at the massive end."
+      },
+      "spec": {
+        "data_sources": [
+          "sdss"
+        ],
+        "method": "scaling-relation-evolution",
+        "outputs": [
+          "aastex-draft"
+        ],
+        "topic": "main-sequence-quenching",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "fesc002": {
+      "artifacts": [
+        "result.png",
+        "review_loop.md",
+        "draft.pdf"
+      ],
+      "created_utc": "2026-07-23T02:00:00Z",
+      "gates": {
+        "citation_entailment": {
+          "adversarial": true,
+          "all": [],
+          "checked": 0,
+          "gate": "citation_entailment",
+          "n_unsupported": 0,
+          "spot_audit": null,
+          "unsupported": []
+        },
+        "expected_value": {
+          "gate": "expected_value",
+          "kill": false,
+          "n_values": 21,
+          "papers": [
+            {
+              "arxiv": "1207.3803",
+              "authors": [
+                "Mitra, Sourav",
+                "Ferrara, Andrea",
+                "Choudhury, T. Roy"
+              ],
+              "bibcode": "2013MNRAS.428L...1M",
+              "cites": 96,
+              "score": 0.7191803455352783,
+              "title": "The escape fraction of ionizing photons from high-redshift galaxies from data-constrained reionization models",
+              "year": "2013"
+            },
+            {
+              "arxiv": "1006.3519",
+              "authors": [
+                "Fernandez, Elizabeth R.",
+                "Shull, J. Michael"
+              ],
+              "bibcode": "2011ApJ...731...20F",
+              "cites": 68,
+              "score": 0.7082842588424683,
+              "title": "The Effect of Galactic Properties on the Escape Fraction of Ionizing Photons",
+              "year": "2011"
+            },
+            {
+              "arxiv": "1206.0735",
+              "authors": [
+                "Finkelstein, Steven L.",
+                "Papovich, Casey",
+                "Ryan, Russell E.",
+                "Pawlik, Andreas H.",
+                "Dickinson, Mark",
+                "Ferguson, Henry C.",
+                "Finlator, Kristian",
+                "Koekemoer, Anton M.",
+                "Giavalisco, Mauro",
+                "Cooray, Asantha",
+                "Dunlop, James S.",
+                "Faber, Sandy M.",
+                "Grogin, Norman A.",
+                "Kocevski, Dale D.",
+                "Newman, Jeffrey A."
+              ],
+              "bibcode": "2012ApJ...758...93F",
+              "cites": 205,
+              "score": 0.7033215761184692,
+              "title": "CANDELS: The Contribution of the Observed Galaxy Population to Cosmic Reionization",
+              "year": "2012"
+            },
+            {
+              "arxiv": "2105.10518",
+              "authors": [
+                "Davies, Frederick B.",
+                "Bosman, Sarah E. I.",
+                "Furlanetto, Steven R.",
+                "Becker, George D.",
+                "D'Aloisio, Anson"
+              ],
+              "bibcode": "2021ApJ...918L..35D",
+              "cites": 51,
+              "score": 0.6995197534561157,
+              "title": "The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources",
+              "year": "2021"
+            },
+            {
+              "arxiv": "1605.06507",
+              "authors": [
+                "Faisst, Andreas L."
+              ],
+              "bibcode": "2016ApJ...829...99F",
+              "cites": 76,
+              "score": 0.6932699680328369,
+              "title": "Revisiting the Lyman Continuum Escape Crisis: Predictions for z > 6 from Local Galaxies",
+              "year": "2016"
+            },
+            {
+              "arxiv": "2404.07250",
+              "authors": [
+                "Mu\u00f1oz, Julian B.",
+                "Mirocha, Jordan",
+                "Chisholm, John",
+                "Furlanetto, Steven R.",
+                "Mason, Charlotte"
+              ],
+              "bibcode": "2024MNRAS.535L..37M",
+              "cites": 130,
+              "score": 0.6905421018600464,
+              "title": "Reionization after JWST: a photon budget crisis?",
+              "year": "2024"
+            },
+            {
+              "arxiv": "1907.13130",
+              "authors": [
+                "Naidu, Rohan P.",
+                "Tacchella, Sandro",
+                "Mason, Charlotte A.",
+                "Bose, Sownak",
+                "Oesch, Pascal A.",
+                "Conroy, Charlie"
+              ],
+              "bibcode": "2020ApJ...892..109N",
+              "cites": 346,
+              "score": 0.6889711618423462,
+              "title": "Rapid Reionization by the Oligarchs: The Case for Massive, UV-bright, Star-forming Galaxies with High Escape Fractions",
+              "year": "2020"
+            }
+          ],
+          "reason": "none [z=6] calib=null [Mitra2013]\n- f_esc,0: 1.7-0.2+0.1 % [8.5 < log(M/Msun) < 9.5] calib=None [Faisst2016]\n- f_esc,0: 2.5-0.2+0.2 % [8.0 < log(M/Msun) < 8.5] calib=None [Faisst2016]\n- f_esc,0: 2.1-0.2+0.2 % [8.5 < log(M/Msun) < 9.0] calib=None [Faisst2016]\n- f_esc,0: 1.4-0.3+0.4 % [9.0 < log(M/Msun) < 9.5] calib=None [Faisst2016]\n- f_esc: 5.7-3.3+8.3 % [z = 6, log(M/Msun) ~ 9.0] calib=None [Faisst2016]\n\nHowever, the most directly comparable value is from Mitra2013 for z=6.\n\nStep 2 - COMPARE: The measured result is f_esc = 0.048 (+0.048/-0.025), which is lower than the expected range of 0.068-0.122 from Mitra2013. However, considering the calibration uncertainty and potential scale offsets, this difference might not be significant enough to be considered a contradiction.\n\nVERDICT: TENSION",
+          "verdict": "TENSION"
+        },
+        "novelty": {
+          "gate": "novelty",
+          "papers": [
+            {
+              "arxiv": "2404.07250",
+              "authors": [
+                "Mu\u00f1oz, Julian B.",
+                "Mirocha, Jordan",
+                "Chisholm, John",
+                "Furlanetto, Steven R.",
+                "Mason, Charlotte"
+              ],
+              "bibcode": "2024MNRAS.535L..37M",
+              "cites": 130,
+              "score": 0.7842265367507935,
+              "title": "Reionization after JWST: a photon budget crisis?",
+              "year": "2024"
+            },
+            {
+              "arxiv": "2409.01286",
+              "authors": [
+                "Simmonds, C.",
+                "Tacchella, S.",
+                "Hainline, K.",
+                "Johnson, B. D.",
+                "Pusk\u00e1s, D.",
+                "Robertson, B.",
+                "Baker, W. M.",
+                "Bhatawdekar, R.",
+                "Boyett, K.",
+                "Bunker, A. J.",
+                "Cargile, P. A.",
+                "Carniani, S.",
+                "Chevallard, J.",
+                "Curti, M.",
+                "Curtis-Lake, E.",
+                "Ji, Z.",
+                "Jones, G. C.",
+                "Kumari, N.",
+                "Laseter, I.",
+                "Maiolino, R.",
+                "Maseda, M. V.",
+                "Rinaldi, P.",
+                "Stoffers, A.",
+                "\u00dcbler, H.",
+                "Villanueva, N. C.",
+                "Williams, C. C.",
+                "Willott, C.",
+                "Witstok, J.",
+                "Zhu, Y."
+              ],
+              "bibcode": "2024MNRAS.535.2998S",
+              "cites": 107,
+              "score": 0.7705462574958801,
+              "title": "Ionizing properties of galaxies in JADES for a stellar mass complete sample: resolving the cosmic ionizing photon budget crisis at the Epoch of Reionization",
+              "year": "2024"
+            },
+            {
+              "arxiv": "2405.09720",
+              "authors": [
+                "Choustikov, Nicholas",
+                "Stiskalek, Richard",
+                "Saxena, Aayush",
+                "Katz, Harley",
+                "Devriendt, Julien",
+                "Slyz, Adrianne"
+              ],
+              "bibcode": "2025MNRAS.537.2273C",
+              "cites": 18,
+              "score": 0.7443621158599854,
+              "title": "Inferring the ionizing photon contributions of high-redshift galaxies to reionization with JWST NIRCam photometry",
+              "year": "2025"
+            },
+            {
+              "arxiv": "1505.01846",
+              "authors": [
+                "Duncan, Kenneth",
+                "Conselice, Christopher J."
+              ],
+              "bibcode": "2015MNRAS.451.2030D",
+              "cites": 87,
+              "score": 0.7238396406173706,
+              "title": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10",
+              "year": "2015"
+            },
+            {
+              "arxiv": "2310.01112",
+              "authors": [
+                "Simmonds, C.",
+                "Tacchella, S.",
+                "Hainline, K.",
+                "Johnson, B. D.",
+                "McClymont, W.",
+                "Robertson, B.",
+                "Saxena, A.",
+                "Sun, F.",
+                "Witten, C.",
+                "Baker, W. M.",
+                "Bhatawdekar, R.",
+                "Boyett, K.",
+                "Bunker, A. J.",
+                "Charlot, S.",
+                "Curtis-Lake, E.",
+                "Egami, E.",
+                "Eisenstein, D. J.",
+                "Hausen, R.",
+                "Maiolino, R.",
+                "Maseda, M. V.",
+                "Scholtz, J.",
+                "Williams, C. C.",
+                "Willott, C.",
+                "Witstok, J."
+              ],
+              "bibcode": "2024MNRAS.527.6139S",
+              "cites": 137,
+              "score": 0.7110471129417419,
+              "title": "Low-mass bursty galaxies in JADES efficiently produce ionizing photons and could represent the main drivers of reionization",
+              "year": "2024"
+            },
+            {
+              "arxiv": "2511.19600",
+              "authors": [
+                "Bera, Ankita",
+                "Hassan, Sultan",
+                "Feldmann, Robert",
+                "Dav\u00e9, Romeel",
+                "Finlator, Kristian"
+              ],
+              "bibcode": "2026ApJ..1003....7B",
+              "cites": 2,
+              "score": 0.7065238952636719,
+              "title": "Toward Reconciling Reionization with JWST: The Role of Bright Galaxies and Strong Feedback",
+              "year": "2026"
+            }
+          ],
+          "reason": "sation. While they touch on the production of ionizing photons, they do not explicitly measure the reionization-photon-budget via ionizing-photon-budget using JWST.\n\nGiven these analyses:\n- None of the papers exactly replicate the proposed study's methodology (using JWST data to measure reionization-photon-budget via ionizing-photon-budget).\n- The closest studies (Mu\u00f1oz2024 and Simmonds2024) either discuss related concepts without the specific focus on JWST or do not explicitly measure the reionization-photon-budget as proposed.\n\nTherefore, considering the strict criteria for novelty and the fact that none of these papers report the exact measurement proposed using JWST data:\n\nVERDICT: NOVEL",
+          "top_similarity": 0.784,
+          "verdict": "NOVEL"
+        }
+      },
+      "id": "fesc002",
+      "lit_grounded": true,
+      "lit_grounding": "grounded on 6 papers, 5 passages",
+      "lit_papers": [
+        {
+          "arxiv": "1505.01846",
+          "authors": [
+            "Duncan, Kenneth",
+            "Conselice, Christopher J."
+          ],
+          "bibcode": "2015MNRAS.451.2030D",
+          "cites": 87,
+          "score": 0.6873655319213867,
+          "title": "Powering reionization: assessing the galaxy ionizing photon budget at z < 10",
+          "year": "2015"
+        },
+        {
+          "arxiv": "2105.10518",
+          "authors": [
+            "Davies, Frederick B.",
+            "Bosman, Sarah E. I.",
+            "Furlanetto, Steven R.",
+            "Becker, George D.",
+            "D'Aloisio, Anson"
+          ],
+          "bibcode": "2021ApJ...918L..35D",
+          "cites": 51,
+          "score": 0.6724658012390137,
+          "title": "The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources",
+          "year": "2021"
+        },
+        {
+          "arxiv": "2404.07250",
+          "authors": [
+            "Mu\u00f1oz, Julian B.",
+            "Mirocha, Jordan",
+            "Chisholm, John",
+            "Furlanetto, Steven R.",
+            "Mason, Charlotte"
+          ],
+          "bibcode": "2024MNRAS.535L..37M",
+          "cites": 130,
+          "score": 0.6724181175231934,
+          "title": "Reionization after JWST: a photon budget crisis?",
+          "year": "2024"
+        },
+        {
+          "arxiv": "2001.07785",
+          "authors": [
+            "Lewis, Joseph S. W.",
+            "Ocvirk, Pierre",
+            "Aubert, Dominique",
+            "Sorce, Jenny G.",
+            "Shapiro, Paul R.",
+            "Deparis, Nicolas",
+            "Dawoodbhoy, Taha",
+            "Teyssier, Romain",
+            "Yepes, Gustavo",
+            "Gottl\u00f6ber, Stefan",
+            "Ahn, Kyungjin",
+            "Iliev, Ilian T.",
+            "Chardin, Jonathan"
+          ],
+          "bibcode": "2020MNRAS.496.4342L",
+          "cites": 52,
+          "score": 0.6567302942276001,
+          "title": "Galactic ionizing photon budget during the epoch of reionization in the Cosmic Dawn II simulation",
+          "year": "2020"
+        },
+        {
+          "arxiv": "1710.07636",
+          "authors": [
+            "Madau, Piero"
+          ],
+          "bibcode": "2017ApJ...851...50M",
+          "cites": 64,
+          "score": 0.6503502726554871,
+          "title": "Cosmic Reionization after Planck and before JWST: An Analytic Approach",
+          "year": "2017"
+        },
+        {
+          "arxiv": "2112.05184",
+          "authors": [
+            "Park, Jaehong",
+            "Greig, Bradley",
+            "Mesinger, Andrei"
+          ],
+          "bibcode": "2022MNRAS.517..192P",
+          "cites": 7,
+          "score": 0.6446638107299805,
+          "title": "Calibrating excursion set reionization models to approximately conserve ionizing photons",
+          "year": "2022"
+        }
+      ],
+      "lit_reflist": [
+        "[Muoz2024] Mu\u00f1oz et al. (2024). Reionization after JWST: a photon budget crisis?. bibcode 2024MNRAS.535L..37M",
+        "[Davies2021] Davies et al. (2021). The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources. bibcode 2021ApJ...918L..35D",
+        "[Park2022] Park et al. (2022). Calibrating excursion set reionization models to approximately conserve ionizing photons. bibcode 2022MNRAS.517..192P",
+        "[Duncan2015] Duncan et al. (2015). Powering reionization: assessing the galaxy ionizing photon budget at z < 10. bibcode 2015MNRAS.451.2030D",
+        "[Madau2017] Madau (2017). Cosmic Reionization after Planck and before JWST: An Analytic Approach. bibcode 2017ApJ...851...50M"
+      ],
+      "lit_refs": [
+        "2015MNRAS.451.2030D",
+        "2021ApJ...918L..35D",
+        "2024MNRAS.535L..37M",
+        "2020MNRAS.496.4342L",
+        "2017ApJ...851...50M",
+        "2022MNRAS.517..192P"
+      ],
+      "log": [
+        "queued \u2014 f_esc re-run (fixed provenance/citations/title)",
+        "01:12:21 gate/novelty: NOVEL (top-sim 0.784)",
+        "01:12:21 computing reionization ionizing-photon budget (required vs. inferred f_esc)\u2026",
+        "01:12:56 gate/expected-value: TENSION",
+        "01:12:57 lit-grounded on 6 papers, 5 passages",
+        "01:13:42 drafted manuscript body",
+        "01:13:58 review cycle 1: MINOR",
+        "01:13:58 review-revise loop done: MINOR in 1 cycle(s)",
+        "01:13:58 gate/citations: 0 unsupported of 0 checked",
+        "01:13:58 compiling AASTeX manuscript (PDF)...",
+        "01:14:01 AASTeX PDF compiled OK",
+        "01:14:01 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "jwst"
+        ],
+        "fesc": {
+          "delta": [
+            -0.11940044770597483,
+            -0.012375102752585318,
+            0.04323561874068433
+          ],
+          "delta_O32": -0.028844483923866283,
+          "delta_beta": -0.0015631224360911486,
+          "f_inferred": [
+            0.023405073669616968,
+            0.062231892139581496,
+            0.17026421667491082
+          ],
+          "f_required": [
+            0.0233895138514688,
+            0.047891141462309154,
+            0.09614655656227143
+          ],
+          "frac_shortfall": 0.41395,
+          "noncircular_robust": true,
+          "z": 6.0
+        },
+        "figure_url": "/api/lab/runs/fesc002/artifact/result.png",
+        "method": "ionizing-photon-budget",
+        "pdf_url": "/api/lab/runs/fesc002/artifact/draft.pdf",
+        "provenance": "Literature-anchored budget calculation \u2014 NO survey catalog data is used. The cosmic SFRD is the Madau & Dickinson (2014) analytic fitting function; xi_ion and the O32/beta f_esc proxy calibrations are adopted published values (LzLCS: Chisholm+22, Flury+22; Simmonds+24). Do NOT state or imply that this study uses JWST, SDSS, or TNG observational/catalog data \u2014 it is a systematics reconciliation over published literature values.",
+        "review": "VERDICT: MINOR\n\nThe manuscript presents a careful analysis of the reionization photon budget using established literature values and calibrations. However, there are some minor concerns regarding overclaim risks and missing caveats:\n\n1. The calculation relies on published proxy calibrations for f_esc and xi_ion, which may introduce systematic errors if these relationships do not accurately represent the true physical processes.\n2. The study does not incorporate new observational data or survey catalogs, which could provide more precise constraints on the ionizing photon budget.\n\nThe most important fix is to further discuss the potential limitations of using proxy calibrations and consider incorporating additional data sources to strengthen the conclusions. Overall, the manuscript is well-structured and acknowledges its limitations, but minor revisions are needed to address these concerns.",
+        "review_cycles": 1,
+        "review_model": "astrosage-70b:latest",
+        "review_url": "/api/lab/runs/fesc002/artifact/review_loop.md",
+        "review_verdict": "MINOR",
+        "summary": "Reionization ionizing-photon-budget reconciliation at z~6: star-forming galaxies require f_esc=0.048 (+0.048/-0.025) to close the budget (Madau-Dickinson SFRD, log xi_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f_esc=0.062 (+0.108/-0.039) from LzLCS O32/beta calibrations. Median delta(required-inferred)=-0.012 dex-frac (16-84%: -0.119 to +0.043); 41% of the systematic MC shows a shortfall. Conclusion: the budget CLOSES within the systematic, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi_ion x clumping x proxy-calibration systematic, not by statistics.",
+        "title": "The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z~6"
+      },
+      "spec": {
+        "data_sources": [
+          "jwst"
+        ],
+        "force": true,
+        "method": "ionizing-photon-budget",
+        "outputs": [
+          "aastex-draft",
+          "dr-review-loop"
+        ],
+        "topic": "reionization-photon-budget",
+        "topic_source": "frontier-map"
+      },
+      "status": "done"
+    },
+    "gated-e2e-demo": {
+      "artifacts": [
+        "result.png",
+        "review_loop.md",
+        "draft.pdf",
+        "history.json"
+      ],
+      "gates": {
+        "citation_entailment": {
+          "all": [
+            {
+              "key": "Torrey2019",
+              "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS TORREY'S WORK ON THE EVOLUTION OF THE MASS-METALLICITY RELATION IN ILLUSTRISTNG, BUT DOES NOT MENTION QI2025 OR THEIR EXA",
+              "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+              "supported": false
+            },
+            {
+              "key": "Qi2025",
+              "reason": "SUPPORTED\nTHE PASSAGE MENTIONS QI (LIKELY \"QI2025\") EXAMINING STAR FORMATION RATES IN TNG50 AND ALSO MENTIONS PAUL TORREY (LIKELY RELATED TO \"TORREY2019\"), PROV",
+              "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+              "supported": true
+            },
+            {
+              "key": "Guo2016",
+              "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS GUO'S STUDY, BUT NOT GARCIA'S ANALYSIS OF GAS-PHASE METALLICITY BREAK RADII.",
+              "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+              "supported": false
+            },
+            {
+              "key": "Garcia2023",
+              "reason": "SUPPORTED\nTHE PASSAGE MENTIONS \"GAS-PHASE METALLICITY BREAK RADII OF STAR-FORMING GALAXIES IN ILLUSTRISTNG\" WHICH IS THE SAME FACT AS THE CLAIM ABOUT GARCIA'S A",
+              "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+              "supported": true
+            }
+          ],
+          "checked": 4,
+          "gate": "citation_entailment",
+          "n_unsupported": 2,
+          "unsupported": [
+            {
+              "key": "Torrey2019",
+              "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS TORREY'S WORK ON THE EVOLUTION OF THE MASS-METALLICITY RELATION IN ILLUSTRISTNG, BUT DOES NOT MENTION QI2025 OR THEIR EXA",
+              "sentence": "For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50, while [Torrey2019] investigated the evolution of the mass-metallicit",
+              "supported": false
+            },
+            {
+              "key": "Guo2016",
+              "reason": "UNSUPPORTED \nTHE PASSAGE ONLY MENTIONS GUO'S STUDY, BUT NOT GARCIA'S ANALYSIS OF GAS-PHASE METALLICITY BREAK RADII.",
+              "sentence": "Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG, and [Guo2016] studied the stellar mass-gas-phase metallicity relatio",
+              "supported": false
+            }
+          ]
+        },
+        "expected_value": {
+          "gate": "expected_value",
+          "kill": false,
+          "n_values": 41,
+          "papers": [
+            {
+              "arxiv": "2107.00672",
+              "authors": [
+                "Henry, Alaina",
+                "Rafelski, Marc",
+                "Sunnquist, Ben",
+                "Pirzkal, Norbert",
+                "Pacifici, Camilla",
+                "Atek, Hakim",
+                "Bagley, Micaela",
+                "Baronchelli, Ivano",
+                "Barro, Guillermo",
+                "Bunker, Andrew J.",
+                "Colbert, James",
+                "Dai, Y. Sophia",
+                "Elmegreen, Bruce G.",
+                "Elmegreen, Debra Meloy",
+                "Finkelstein, Steven",
+                "Kocevski, Dale",
+                "Koekemoer, Anton",
+                "Malkan, Matthew",
+                "Martin, Crystal L.",
+                "Mehta, Vihang",
+                "Pahl, Anthony",
+                "Papovich, Casey",
+                "Rutkowski, Michael",
+                "S\u00e1nchez Almeida, Jorge",
+                "Scarlata, Claudia",
+                "Snyder, Gregory",
+                "Teplitz, Harry"
+              ],
+              "bibcode": "2021ApJ...919..143H",
+              "cites": 51,
+              "score": 0.7432928085327148,
+              "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+              "year": "2021"
+            },
+            {
+              "arxiv": "1711.05261",
+              "authors": [
+                "Torrey, Paul",
+                "Vogelsberger, Mark",
+                "Marinacci, Federico",
+                "Pakmor, R\u00fcdiger",
+                "Springel, Volker",
+                "Nelson, Dylan",
+                "Naiman, Jill",
+                "Pillepich, Annalisa",
+                "Genel, Shy",
+                "Weinberger, Rainer",
+                "Hernquist, Lars"
+              ],
+              "bibcode": "2019MNRAS.484.5587T",
+              "cites": 288,
+              "score": 0.7366077899932861,
+              "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+              "year": "2019"
+            },
+            {
+              "arxiv": "2501.18687",
+              "authors": [
+                "Qi, Jia",
+                "Garcia, Alex M.",
+                "Robinson, Davis",
+                "Torrey, Paul",
+                "Moreno, Jorge",
+                "Green, Kara N.",
+                "Evans, Aaron S.",
+                "Hemler, Z. S.",
+                "Hernquist, Lars",
+                "Ellison, Sara L."
+              ],
+              "bibcode": "2025ApJ...993...32Q",
+              "cites": 3,
+              "score": 0.7018239498138428,
+              "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+              "year": "2025"
+            },
+            {
+              "arxiv": "1404.7526",
+              "authors": [
+                "Zahid, H. Jabran",
+                "Dima, Gabriel I.",
+                "Kudritzki, Rolf-Peter",
+                "Kewley, Lisa J.",
+                "Geller, Margaret J.",
+                "Hwang, Ho Seong",
+                "Silverman, John D.",
+                "Kashino, Daichi"
+              ],
+              "bibcode": "2014ApJ...791..130Z",
+              "cites": 316,
+              "score": 0.6866456270217896,
+              "title": "The Universal Relation of Galactic Chemical Evolution: The Origin of the Mass-Metallicity Relation",
+              "year": "2014"
+            },
+            {
+              "arxiv": "1504.02097",
+              "authors": [
+                "Ma, Xiangcheng",
+                "Hopkins, Philip F.",
+                "Faucher-Gigu\u00e8re, Claude-Andr\u00e9",
+                "Zolman, Nick",
+                "Muratov, Alexander L.",
+                "Kere\u0161, Du\u0161an",
+                "Quataert, Eliot"
+              ],
+              "bibcode": "2016MNRAS.456.2140M",
+              "cites": 450,
+              "score": 0.6806620359420776,
+              "title": "The origin and evolution of the galaxy mass-metallicity relation",
+              "year": "2016"
+            },
+            {
+              "arxiv": "1304.3889",
+              "authors": [
+                "Lara-Lopez, M. A.",
+                "Hopkins, A. M.",
+                "Lopez-Sanchez, A. R.",
+                "Brough, S.",
+                "Colless, M.",
+                "Bland-Hawthorn, J.",
+                "Driver, S.",
+                "Foster, C.",
+                "Liske, J.",
+                "Loveday, J.",
+                "Robotham, A. S. G.",
+                "Sharp, R. G.",
+                "Steele, O.",
+                "Taylor, E. N."
+              ],
+              "bibcode": "2013MNRAS.433L..35L",
+              "cites": 55,
+              "score": 0.6774289011955261,
+              "title": "Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.",
+              "year": "2013"
+            },
+            {
+              "arxiv": "2508.18369",
+              "authors": [
+                "Jain, Shweta",
+                "Sanders, Ryan L.",
+                "Khostovan, Ali Ahmad",
+                "Jones, Tucker",
+                "Shapley, Alice E.",
+                "Reddy, Naveen A.",
+                "Garcia, Alex M.",
+                "Torrey, Paul",
+                "Coil, Alison"
+              ],
+              "bibcode": "2026ApJ..1000..109J",
+              "cites": 10,
+              "score": 0.6772202849388123,
+              "title": "A Uniform Analysis of Gas-phase Metallicity Evolution with 1\u25003 Gyr Time Sampling over the Past 12 Gyr",
+              "year": "2026"
+            }
+          ],
+          "reason": "n differences (on the order of ~0.2-0.7 dex), comparing these directly requires considering potential scale differences.\n\nGiven the information provided, there isn't a direct, exact match in terms of specifying \"median relations\" for MZR as measured, but \"MZR turnover metallicity\" values from various sources provide relevant comparisons. The comparison involves recognizing that while the specific aspect of MZR (e.g., turnover, slope) might differ, the general context of mass-metallicity relation is consistent across these measurements.\n\nConsidering calibration differences and the lack of precise matching in the description (median relations vs. specific aspects like turnover metallicity), but acknowledging the relevance of \"MZR turnover metallicity\" values for comparison:\n\nVERDICT: TENSION",
+          "verdict": "TENSION"
+        },
+        "novelty": {
+          "gate": "novelty",
+          "papers": [
+            {
+              "arxiv": "1711.05261",
+              "authors": [
+                "Torrey, Paul",
+                "Vogelsberger, Mark",
+                "Marinacci, Federico",
+                "Pakmor, R\u00fcdiger",
+                "Springel, Volker",
+                "Nelson, Dylan",
+                "Naiman, Jill",
+                "Pillepich, Annalisa",
+                "Genel, Shy",
+                "Weinberger, Rainer",
+                "Hernquist, Lars"
+              ],
+              "bibcode": "2019MNRAS.484.5587T",
+              "cites": 288,
+              "score": 0.7741690278053284,
+              "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+              "year": "2019"
+            },
+            {
+              "arxiv": "2107.00672",
+              "authors": [
+                "Henry, Alaina",
+                "Rafelski, Marc",
+                "Sunnquist, Ben",
+                "Pirzkal, Norbert",
+                "Pacifici, Camilla",
+                "Atek, Hakim",
+                "Bagley, Micaela",
+                "Baronchelli, Ivano",
+                "Barro, Guillermo",
+                "Bunker, Andrew J.",
+                "Colbert, James",
+                "Dai, Y. Sophia",
+                "Elmegreen, Bruce G.",
+                "Elmegreen, Debra Meloy",
+                "Finkelstein, Steven",
+                "Kocevski, Dale",
+                "Koekemoer, Anton",
+                "Malkan, Matthew",
+                "Martin, Crystal L.",
+                "Mehta, Vihang",
+                "Pahl, Anthony",
+                "Papovich, Casey",
+                "Rutkowski, Michael",
+                "S\u00e1nchez Almeida, Jorge",
+                "Scarlata, Claudia",
+                "Snyder, Gregory",
+                "Teplitz, Harry"
+              ],
+              "bibcode": "2021ApJ...919..143H",
+              "cites": 51,
+              "score": 0.7448322176933289,
+              "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+              "year": "2021"
+            },
+            {
+              "arxiv": "2501.18687",
+              "authors": [
+                "Qi, Jia",
+                "Garcia, Alex M.",
+                "Robinson, Davis",
+                "Torrey, Paul",
+                "Moreno, Jorge",
+                "Green, Kara N.",
+                "Evans, Aaron S.",
+                "Hemler, Z. S.",
+                "Hernquist, Lars",
+                "Ellison, Sara L."
+              ],
+              "bibcode": "2025ApJ...993...32Q",
+              "cites": 3,
+              "score": 0.7324591875076294,
+              "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+              "year": "2025"
+            },
+            {
+              "arxiv": "2401.12310",
+              "authors": [
+                "Garcia, Alex M.",
+                "Torrey, Paul",
+                "Grasha, Kathryn",
+                "Hernquist, Lars",
+                "Ellison, Sara",
+                "Zovaro, Henry R. M.",
+                "Hemler, Z. S.",
+                "Nelson, Erica J.",
+                "Kewley, Lisa J."
+              ],
+              "bibcode": "2024MNRAS.529.3342G",
+              "cites": 23,
+              "score": 0.7119671106338501,
+              "title": "Interplay of stellar and gas-phase metallicities: unveiling insights for stellar feedback modelling with Illustris, IllustrisTNG, and EAGLE",
+              "year": "2024"
+            },
+            {
+              "arxiv": "2212.03326",
+              "authors": [
+                "Garcia, Alex M.",
+                "Torrey, Paul",
+                "Hemler, Z. S.",
+                "Hernquist, Lars",
+                "Kewley, Lisa J.",
+                "Nelson, Erica J.",
+                "Grasha, Kathryn",
+                "Zovaro, Henry R. M.",
+                "Chen, Qian-Hui"
+              ],
+              "bibcode": "2023MNRAS.519.4716G",
+              "cites": 27,
+              "score": 0.7099641561508179,
+              "title": "Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG",
+              "year": "2023"
+            },
+            {
+              "arxiv": "2309.14257",
+              "authors": [
+                "Nanni, Lorenza",
+                "Neumann, Justus",
+                "Thomas, Daniel",
+                "Maraston, Claudia",
+                "Trayford, James",
+                "Lovell, Christopher C.",
+                "Law, David R.",
+                "Yan, Renbin",
+                "Chen, Yanping"
+              ],
+              "bibcode": "2024MNRAS.527.6419N",
+              "cites": 11,
+              "score": 0.7089718580245972,
+              "title": "iMaNGA: mock MaNGA galaxies based on IllustrisTNG and MaStar SSPs. - III. Stellar metallicity drivers in MaNGA and TNG50",
+              "year": "2024"
+            }
+          ],
+          "reason": "ation at higher redshifts (z \u223c 1 \u2212 2) and its dependence on star formation rate, which is not directly comparable to the proposed study focusing on z=0.\n\n6. **Garcia2023 (second instance)** provides details on mass bins and radial extent for the TNG50-1 sample at z = 0 but does not explicitly report on the comparison of the mass-metallicity relation between IllustrisTNG and SDSS at z=0.\n\nGiven this analysis, none of the cited papers directly reports on the z=0 gas-phase mass-metallicity relation of galaxies using both IllustrisTNG and SDSS data as proposed. Therefore, the study appears to offer a novel comparison that has not been explicitly conducted in the prior literature.\n\nVERDICT: NOVEL",
+          "top_similarity": 0.774,
+          "verdict": "NOVEL"
+        }
+      },
+      "id": "gated-e2e-demo",
+      "lit_papers": [
+        {
+          "arxiv": "1711.05261",
+          "authors": [
+            "Torrey, Paul",
+            "Vogelsberger, Mark",
+            "Marinacci, Federico",
+            "Pakmor, R\u00fcdiger",
+            "Springel, Volker",
+            "Nelson, Dylan",
+            "Naiman, Jill",
+            "Pillepich, Annalisa",
+            "Genel, Shy",
+            "Weinberger, Rainer",
+            "Hernquist, Lars"
+          ],
+          "bibcode": "2019MNRAS.484.5587T",
+          "cites": 288,
+          "score": 0.7550148367881775,
+          "title": "The evolution of the mass-metallicity relation and its scatter in IllustrisTNG",
+          "year": "2019"
+        },
+        {
+          "arxiv": "2107.00672",
+          "authors": [
+            "Henry, Alaina",
+            "Rafelski, Marc",
+            "Sunnquist, Ben",
+            "Pirzkal, Norbert",
+            "Pacifici, Camilla",
+            "Atek, Hakim",
+            "Bagley, Micaela",
+            "Baronchelli, Ivano",
+            "Barro, Guillermo",
+            "Bunker, Andrew J.",
+            "Colbert, James",
+            "Dai, Y. Sophia",
+            "Elmegreen, Bruce G.",
+            "Elmegreen, Debra Meloy",
+            "Finkelstein, Steven",
+            "Kocevski, Dale",
+            "Koekemoer, Anton",
+            "Malkan, Matthew",
+            "Martin, Crystal L.",
+            "Mehta, Vihang",
+            "Pahl, Anthony",
+            "Papovich, Casey",
+            "Rutkowski, Michael",
+            "S\u00e1nchez Almeida, Jorge",
+            "Scarlata, Claudia",
+            "Snyder, Gregory",
+            "Teplitz, Harry"
+          ],
+          "bibcode": "2021ApJ...919..143H",
+          "cites": 51,
+          "score": 0.7471012473106384,
+          "title": "The Mass-Metallicity Relation at z   1-2 and Its Dependence on the Star Formation Rate",
+          "year": "2021"
+        },
+        {
+          "arxiv": "2501.18687",
+          "authors": [
+            "Qi, Jia",
+            "Garcia, Alex M.",
+            "Robinson, Davis",
+            "Torrey, Paul",
+            "Moreno, Jorge",
+            "Green, Kara N.",
+            "Evans, Aaron S.",
+            "Hemler, Z. S.",
+            "Hernquist, Lars",
+            "Ellison, Sara L."
+          ],
+          "bibcode": "2025ApJ...993...32Q",
+          "cites": 3,
+          "score": 0.7101145386695862,
+          "title": "Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50",
+          "year": "2025"
+        },
+        {
+          "arxiv": "1304.3889",
+          "authors": [
+            "Lara-Lopez, M. A.",
+            "Hopkins, A. M.",
+            "Lopez-Sanchez, A. R.",
+            "Brough, S.",
+            "Colless, M.",
+            "Bland-Hawthorn, J.",
+            "Driver, S.",
+            "Foster, C.",
+            "Liske, J.",
+            "Loveday, J.",
+            "Robotham, A. S. G.",
+            "Sharp, R. G.",
+            "Steele, O.",
+            "Taylor, E. N."
+          ],
+          "bibcode": "2013MNRAS.433L..35L",
+          "cites": 55,
+          "score": 0.6940224170684814,
+          "title": "Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.",
+          "year": "2013"
+        },
+        {
+          "arxiv": "2212.03326",
+          "authors": [
+            "Garcia, Alex M.",
+            "Torrey, Paul",
+            "Hemler, Z. S.",
+            "Hernquist, Lars",
+            "Kewley, Lisa J.",
+            "Nelson, Erica J.",
+            "Grasha, Kathryn",
+            "Zovaro, Henry R. M.",
+            "Chen, Qian-Hui"
+          ],
+          "bibcode": "2023MNRAS.519.4716G",
+          "cites": 27,
+          "score": 0.6899098753929138,
+          "title": "Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG",
+          "year": "2023"
+        },
+        {
+          "arxiv": "1603.04863",
+          "authors": [
+            "Guo, Yicheng",
+            "Koo, David C.",
+            "Lu, Yu",
+            "Forbes, John C.",
+            "Rafelski, Marc",
+            "Trump, Jonathan R.",
+            "Amor\u00edn, Ricardo",
+            "Barro, Guillermo",
+            "Dav\u00e9, Romeel",
+            "Faber, S. M.",
+            "Hathi, Nimish P.",
+            "Yesuf, Hassen",
+            "Cooper, Michael C.",
+            "Dekel, Avishai",
+            "Guhathakurta, Puragra",
+            "Kirby, Evan N.",
+            "Koekemoer, Anton M.",
+            "P\u00e9rez-Gonz\u00e1lez, Pablo G.",
+            "Lin, Lihwai",
+            "Newman, Jeffery A.",
+            "Primack, Joel R.",
+            "Rosario, David J.",
+            "Willmer, Christopher N. A.",
+            "Yan, Renbin"
+          ],
+          "bibcode": "2016ApJ...822..103G",
+          "cites": 53,
+          "score": 0.6891254186630249,
+          "title": "Stellar Mass-Gas-phase Metallicity Relation at 0.5 \u2264 z \u2264 0.7: A Power Law with Increasing Scatter toward the Low-mass Regime",
+          "year": "2016"
+        }
+      ],
+      "lit_reflist": [
+        "[Qi2025] Qi et al. (2025). Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50. bibcode 2025ApJ...993...32Q",
+        "[Torrey2019] Torrey et al. (2019). The evolution of the mass-metallicity relation and its scatter in IllustrisTNG. bibcode 2019MNRAS.484.5587T",
+        "[Garcia2023] Garcia et al. (2023). Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG. bibcode 2023MNRAS.519.4716G",
+        "[Guo2016] Guo et al. (2016). Stellar Mass-Gas-phase Metallicity Relation at 0.5 \u2264 z \u2264 0.7: A Power Law with Increasing Scatter toward the Low-mass Regime. bibcode 2016ApJ...822..103G",
+        "[LaraLopez2013] Lara-Lopez et al. (2013). Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.. bibcode 2013MNRAS.433L..35L"
+      ],
+      "lit_refs": [
+        "2019MNRAS.484.5587T",
+        "2021ApJ...919..143H",
+        "2025ApJ...993...32Q",
+        "2013MNRAS.433L..35L",
+        "2023MNRAS.519.4716G",
+        "2016ApJ...822..103G"
+      ],
+      "log": [
+        "14:32:59 gate/novelty: NOVEL (top-sim 0.774)",
+        "14:32:59 loading TNG100-1 z=0 fields: gasZ \u2026",
+        "14:32:59 pulling SDSS\u2026",
+        "14:39:52 gate/expected-value: TENSION",
+        "14:39:57 lit-grounded on 6 papers, 5 passages",
+        "14:40:48 drafted manuscript body",
+        "14:41:05 review cycle 1: MINOR",
+        "14:41:05 review-revise loop done: MINOR in 1 cycle(s)",
+        "14:41:23 gate/citations: 2 unsupported of 4 checked",
+        "14:41:23 compiling AASTeX manuscript (PDF)...",
+        "14:41:26 AASTeX PDF compiled OK",
+        "14:41:26 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "tng",
+          "sdss"
+        ],
+        "figure_url": "/api/lab/runs/gated-e2e-demo/artifact/result.png",
+        "method": "mass-metallicity",
+        "pdf_url": "/api/lab/runs/gated-e2e-demo/artifact/draft.pdf",
+        "review": "VERDICT: MINOR\n\nThe manuscript provides a clear comparison between IllustrisTNG and SDSS data on the z=0 gas-phase mass-metallicity relation, acknowledging its limitations and potential biases. However, there are some minor concerns:\n\n1. **Overclaim risk**: The study's conclusions might be overstated without considering additional factors like environmental effects or feedback mechanisms.\n2. **Missing caveats**: While the authors mention calibration issues and observational uncertainties, they could further discuss how these limitations affect their results.\n3. **Most important fix**: Include a more detailed discussion on the potential impact of unaccounted factors (e.g., galaxy environment) on the mass-metallicity relation to strengthen the analysis.\n\nOverall, the manuscript is well-structured and honest about its limitations but requires minor adjustments to address these concerns for a more robust conclusion.",
+        "review_cycles": 1,
+        "review_model": "astrosage-70b:latest",
+        "review_url": "/api/lab/runs/gated-e2e-demo/artifact/review_loop.md",
+        "review_verdict": "MINOR",
+        "summary": "Mass\u2013metallicity relation \u2014 median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity \u2192 O/H (solar-scaled)."
+      },
+      "spec": {
+        "data_sources": [
+          "tng",
+          "sdss"
+        ],
+        "force": true,
+        "method": "mass-metallicity",
+        "outputs": [
+          "aastex-draft",
+          "dr-review-loop"
+        ],
+        "topic": "the z=0 gas-phase mass-metallicity relation of galaxies: IllustrisTNG vs SDSS"
+      },
+      "status": "done"
+    },
+    "gated-halt-demo": {
+      "artifacts": [
+        "result.png",
+        "review_loop.md",
+        "draft.pdf",
+        "history.json"
+      ],
+      "gates": {
+        "citation_entailment": {
+          "all": [
+            {
+              "key": "Renzini2015",
+              "reason": "SUPPORTED\nTHE PASSAGE MENTIONS RENZINI AS AN AUTHOR, WHICH MATCHES THE CLAIM THAT REFERENCES [RENZINI2015], INDICATING HIS WORK HAS CONTRIBUTED TO UNDERSTANDING",
+              "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+              "supported": true
+            },
+            {
+              "key": "Pearson2023",
+              "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR AUTHORS LIKE RENZINI2015 AND PEARSON2023.",
+              "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+              "supported": false
+            }
+          ],
+          "checked": 2,
+          "gate": "citation_entailment",
+          "n_unsupported": 1,
+          "unsupported": [
+            {
+              "key": "Pearson2023",
+              "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR AUTHORS LIKE RENZINI2015 AND PEARSON2023.",
+              "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+              "supported": false
+            }
+          ]
+        },
+        "expected_value": {
+          "gate": "expected_value",
+          "kill": false,
+          "n_values": 43,
+          "papers": [
+            {
+              "arxiv": "1501.01080",
+              "authors": [
+                "Lee, Nicholas",
+                "Sanders, D. B.",
+                "Casey, Caitlin M.",
+                "Toft, Sune",
+                "Scoville, N. Z.",
+                "Hung, Chao-Ling",
+                "Le Floc'h, Emeric",
+                "Ilbert, Olivier",
+                "Zahid, H. Jabran",
+                "Aussel, Herv\u00e9",
+                "Capak, Peter",
+                "Kartaltepe, Jeyhan S.",
+                "Kewley, Lisa J.",
+                "Li, Yanxia",
+                "Schawinski, Kevin",
+                "Sheth, Kartik",
+                "Xiao, Quanbao"
+              ],
+              "bibcode": "2015ApJ...801...80L",
+              "cites": 233,
+              "score": 0.6908369660377502,
+              "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>\u2609</SUB> for Redshifts z < 1.3",
+              "year": "2015"
+            },
+            {
+              "arxiv": "2602.21500",
+              "authors": [
+                "Gao, Yang",
+                "Liang, Shujiao",
+                "Tan, Qinghua",
+                "Wang, Enci",
+                "Liu, Huilan",
+                "Wang, Hongmei",
+                "Jing, Tao",
+                "Wang, Xiaolong",
+                "Liu, Kaihui",
+                "Gai, Ning",
+                "Tang, Yanke",
+                "Wang, Yifan",
+                "Li, Yutong"
+              ],
+              "bibcode": "2026Univ...12...60G",
+              "cites": 0,
+              "score": 0.683696448802948,
+              "title": "Revisiting the Origin of the Star-Forming Main Sequence Based on a Volume-Limited Sample of \u223c25,000 Galaxies",
+              "year": "2026"
+            },
+            {
+              "arxiv": "1506.00648",
+              "authors": [
+                "Chang, Yu-Yen",
+                "van der Wel, Arjen",
+                "da Cunha, Elisabete",
+                "Rix, Hans-Walter"
+              ],
+              "bibcode": "2015ApJS..219....8C",
+              "cites": 272,
+              "score": 0.6761307716369629,
+              "title": "Stellar Masses and Star Formation Rates for 1M Galaxies from SDSS+WISE",
+              "year": "2015"
+            },
+            {
+              "arxiv": "2009.02405",
+              "authors": [
+                "Berti, Angela M.",
+                "Coil, Alison L.",
+                "Hearin, Andrew P.",
+                "Behroozi, Peter S."
+              ],
+              "bibcode": "2021AJ....161...49B",
+              "cites": 19,
+              "score": 0.6744718551635742,
+              "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+              "year": "2021"
+            },
+            {
+              "arxiv": "2009.06931",
+              "authors": [
+                "Corcho-Caballero, P.",
+                "Ascasibar, Y.",
+                "L\u00f3pez-S\u00e1nchez, \u00c1. R."
+              ],
+              "bibcode": "2020MNRAS.499..573C",
+              "cites": 12,
+              "score": 0.6700130701065063,
+              "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+              "year": "2020"
+            },
+            {
+              "arxiv": "2301.01995",
+              "authors": [
+                "Huang, Rongjun",
+                "Battisti, Andrew J.",
+                "Grasha, Kathryn",
+                "da Cunha, Elisabete",
+                "Lagos, Claudia del P.",
+                "Leslie, Sarah K.",
+                "Wisnioski, Emily"
+              ],
+              "bibcode": "2023MNRAS.520..446H",
+              "cites": 11,
+              "score": 0.6593978404998779,
+              "title": "Exploring the intrinsic scatter of the star-forming galaxy main sequence at redshift 0.5 to 3.0",
+              "year": "2023"
+            },
+            {
+              "arxiv": "2205.01203",
+              "authors": [
+                "Duarte Puertas, S.",
+                "Vilchez, J. M.",
+                "Iglesias-P\u00e1ramo, J.",
+                "Moll\u00e1, M.",
+                "P\u00e9rez-Montero, E.",
+                "Kehrig, C.",
+                "Pilyugin, L. S.",
+                "Zinchenko, I. A."
+              ],
+              "bibcode": "2022A&A...666A.186D",
+              "cites": 40,
+              "score": 0.6571320295333862,
+              "title": "Mass-metallicity and star formation rate in galaxies: A complex relation tuned to stellar age",
+              "year": "2022"
+            }
+          ],
+          "reason": "galaxies, present-epoch] calib=MAGPHYS [Chang2015]\n\nGiven the broad range of redshifts and the assumption that our measurement could pertain to any of these, we have multiple matches.\n\nStep 2 - COMPARE: Without a specific measured value provided for comparison, let's consider the range of slopes given. The expected slopes from Lee2015 vary significantly with redshift (from 0.80 to 1.72), and there's also a slope of 0.8 from Chang2015 for star-forming galaxies at the present epoch.\n\nGiven this variability and without knowing the exact redshift or specifics of our measurement, it's challenging to directly compare. However, if we were to assume our measured slope falls within the range provided by these studies (which is plausible given the broad range of slopes), then:\n\nVERDICT: INSUFFICIENT",
+          "verdict": "INSUFFICIENT"
+        },
+        "novelty": {
+          "gate": "novelty",
+          "papers": [
+            {
+              "arxiv": "2009.06931",
+              "authors": [
+                "Corcho-Caballero, P.",
+                "Ascasibar, Y.",
+                "L\u00f3pez-S\u00e1nchez, \u00c1. R."
+              ],
+              "bibcode": "2020MNRAS.499..573C",
+              "cites": 12,
+              "score": 0.7293046712875366,
+              "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+              "year": "2020"
+            },
+            {
+              "arxiv": "1502.01027",
+              "authors": [
+                "Renzini, Alvio",
+                "Peng, Ying-jie"
+              ],
+              "bibcode": "2015ApJ...801L..29R",
+              "cites": 394,
+              "score": 0.7208517789840698,
+              "title": "An Objective Definition for the Main Sequence of Star-forming Galaxies",
+              "year": "2015"
+            },
+            {
+              "arxiv": "2308.16605",
+              "authors": [
+                "Pearson, W. J.",
+                "Pistis, F.",
+                "Figueira, M.",
+                "Ma\u0142ek, K.",
+                "Moutard, T.",
+                "Vergani, D.",
+                "Pollo, A."
+              ],
+              "bibcode": "2023A&A...679A..35P",
+              "cites": 11,
+              "score": 0.7153297066688538,
+              "title": "Influence of star-forming galaxy selection on the galaxy main sequence",
+              "year": "2023"
+            },
+            {
+              "arxiv": "2009.02405",
+              "authors": [
+                "Berti, Angela M.",
+                "Coil, Alison L.",
+                "Hearin, Andrew P.",
+                "Behroozi, Peter S."
+              ],
+              "bibcode": "2021AJ....161...49B",
+              "cites": 19,
+              "score": 0.7067774534225464,
+              "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+              "year": "2021"
+            },
+            {
+              "arxiv": "1501.01080",
+              "authors": [
+                "Lee, Nicholas",
+                "Sanders, D. B.",
+                "Casey, Caitlin M.",
+                "Toft, Sune",
+                "Scoville, N. Z.",
+                "Hung, Chao-Ling",
+                "Le Floc'h, Emeric",
+                "Ilbert, Olivier",
+                "Zahid, H. Jabran",
+                "Aussel, Herv\u00e9",
+                "Capak, Peter",
+                "Kartaltepe, Jeyhan S.",
+                "Kewley, Lisa J.",
+                "Li, Yanxia",
+                "Schawinski, Kevin",
+                "Sheth, Kartik",
+                "Xiao, Quanbao"
+              ],
+              "bibcode": "2015ApJ...801...80L",
+              "cites": 233,
+              "score": 0.7049378752708435,
+              "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>\u2609</SUB> for Redshifts z < 1.3",
+              "year": "2015"
+            },
+            {
+              "arxiv": "1509.03632",
+              "authors": [
+                "Leslie, S. K.",
+                "Kewley, L. J.",
+                "Sanders, D. B.",
+                "Lee, N."
+              ],
+              "bibcode": "2016MNRAS.455L..82L",
+              "cites": 78,
+              "score": 0.6998807191848755,
+              "title": "Quenching star formation: insights from the local main sequence",
+              "year": "2016"
+            }
+          ],
+          "reason": "z < 1.3, which does not directly align with measuring the z=0 main sequence in SDSS.\n\n6. The second mention of **Berti2021** reiterates the use of strict stellar mass complete SDSS galaxy samples and specifies a redshift range (0.02 < z < 0.0435), which includes z=0 but does not exclusively focus on it.\n\nGiven these points, while several studies touch upon aspects related to the main sequence of star-forming galaxies, including some that use SDSS data, none directly report measuring the z=0 star-forming main sequence of galaxies in SDSS as proposed. The closest studies either focus on different redshift ranges or aspects of the main sequence other than its measurement at z=0.\n\nVERDICT: NOVEL",
+          "top_similarity": 0.729,
+          "verdict": "NOVEL"
+        }
+      },
+      "id": "gated-halt-demo",
+      "lit_papers": [
+        {
+          "arxiv": "1501.01080",
+          "authors": [
+            "Lee, Nicholas",
+            "Sanders, D. B.",
+            "Casey, Caitlin M.",
+            "Toft, Sune",
+            "Scoville, N. Z.",
+            "Hung, Chao-Ling",
+            "Le Floc'h, Emeric",
+            "Ilbert, Olivier",
+            "Zahid, H. Jabran",
+            "Aussel, Herv\u00e9",
+            "Capak, Peter",
+            "Kartaltepe, Jeyhan S.",
+            "Kewley, Lisa J.",
+            "Li, Yanxia",
+            "Schawinski, Kevin",
+            "Sheth, Kartik",
+            "Xiao, Quanbao"
+          ],
+          "bibcode": "2015ApJ...801...80L",
+          "cites": 233,
+          "score": 0.677495002746582,
+          "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>\u2609</SUB> for Redshifts z < 1.3",
+          "year": "2015"
+        },
+        {
+          "arxiv": "2308.16605",
+          "authors": [
+            "Pearson, W. J.",
+            "Pistis, F.",
+            "Figueira, M.",
+            "Ma\u0142ek, K.",
+            "Moutard, T.",
+            "Vergani, D.",
+            "Pollo, A."
+          ],
+          "bibcode": "2023A&A...679A..35P",
+          "cites": 11,
+          "score": 0.6723823547363281,
+          "title": "Influence of star-forming galaxy selection on the galaxy main sequence",
+          "year": "2023"
+        },
+        {
+          "arxiv": "2009.06931",
+          "authors": [
+            "Corcho-Caballero, P.",
+            "Ascasibar, Y.",
+            "L\u00f3pez-S\u00e1nchez, \u00c1. R."
+          ],
+          "bibcode": "2020MNRAS.499..573C",
+          "cites": 12,
+          "score": 0.6716455221176147,
+          "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+          "year": "2020"
+        },
+        {
+          "arxiv": "2009.02405",
+          "authors": [
+            "Berti, Angela M.",
+            "Coil, Alison L.",
+            "Hearin, Andrew P.",
+            "Behroozi, Peter S."
+          ],
+          "bibcode": "2021AJ....161...49B",
+          "cites": 19,
+          "score": 0.6617674231529236,
+          "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+          "year": "2021"
+        },
+        {
+          "arxiv": "1509.03632",
+          "authors": [
+            "Leslie, S. K.",
+            "Kewley, L. J.",
+            "Sanders, D. B.",
+            "Lee, N."
+          ],
+          "bibcode": "2016MNRAS.455L..82L",
+          "cites": 78,
+          "score": 0.6607149243354797,
+          "title": "Quenching star formation: insights from the local main sequence",
+          "year": "2016"
+        },
+        {
+          "arxiv": "1502.01027",
+          "authors": [
+            "Renzini, Alvio",
+            "Peng, Ying-jie"
+          ],
+          "bibcode": "2015ApJ...801L..29R",
+          "cites": 394,
+          "score": 0.6575812101364136,
+          "title": "An Objective Definition for the Main Sequence of Star-forming Galaxies",
+          "year": "2015"
+        }
+      ],
+      "lit_reflist": [
+        "[Renzini2015] Renzini et al. (2015). An Objective Definition for the Main Sequence of Star-forming Galaxies. bibcode 2015ApJ...801L..29R",
+        "[Pearson2023] Pearson et al. (2023). Influence of star-forming galaxy selection on the galaxy main sequence. bibcode 2023A&A...679A..35P",
+        "[CorchoCaballero2020] Corcho-Caballero et al. (2020). A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg. bibcode 2020MNRAS.499..573C",
+        "[Berti2021] Berti et al. (2021). Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass. bibcode 2021AJ....161...49B",
+        "[Leslie2016] Leslie et al. (2016). Quenching star formation: insights from the local main sequence. bibcode 2016MNRAS.455L..82L"
+      ],
+      "lit_refs": [
+        "2015ApJ...801...80L",
+        "2023A&A...679A..35P",
+        "2020MNRAS.499..573C",
+        "2021AJ....161...49B",
+        "2016MNRAS.455L..82L",
+        "2015ApJ...801L..29R"
+      ],
+      "log": [
+        "14:46:43 gate/novelty: NOVEL (top-sim 0.729)",
+        "14:46:43 pulling SDSS\u2026",
+        "14:52:20 gate/expected-value: INSUFFICIENT",
+        "14:52:23 lit-grounded on 6 papers, 5 passages",
+        "14:52:55 drafted manuscript body",
+        "14:53:10 review cycle 1: MINOR",
+        "14:53:10 review-revise loop done: MINOR in 1 cycle(s)",
+        "14:53:18 gate/citations: 1 unsupported of 2 checked",
+        "14:53:18 compiling AASTeX manuscript (PDF)...",
+        "14:53:20 AASTeX PDF compiled OK",
+        "14:53:20 done \u2713"
+      ],
+      "result": {
+        "data_sources": [
+          "sdss"
+        ],
+        "figure_url": "/api/lab/runs/gated-halt-demo/artifact/result.png",
+        "method": "main-sequence",
+        "pdf_url": "/api/lab/runs/gated-halt-demo/artifact/draft.pdf",
+        "review": "VERDICT: MINOR\n\nThis manuscript presents a thorough analysis of the z=0 star-forming main sequence in SDSS galaxies using a well-established method. However, there are some minor concerns regarding potential overclaims or missing caveats:\n\n1. The reliance on an automated selection process may introduce biases and overlook specific galaxy populations.\n2. Calibration issues or uncertainties in the SDSS data could affect the accuracy of the findings.\n3. The single-selection criterion might oversimplify the properties of star-forming galaxies.\n\nThe most important fix would be to address these caveats more explicitly, either by discussing their potential impact on the results or by providing additional evidence to mitigate their effects. Overall, the manuscript is well-structured and provides valuable insights into the local universe's galaxy evolution, but it requires minor revisions to strengthen its conclusions.",
+        "review_cycles": 1,
+        "review_model": "astrosage-70b:latest",
+        "review_url": "/api/lab/runs/gated-halt-demo/artifact/review_loop.md",
+        "review_verdict": "MINOR",
+        "summary": "Star-forming main sequence \u2014 median relations for SDSS (120,000 gals)."
+      },
+      "spec": {
+        "data_sources": [
+          "sdss"
+        ],
+        "method": "main-sequence",
+        "outputs": [
+          "aastex-draft",
+          "dr-review-loop"
+        ],
+        "topic": "the z=0 star-forming main sequence of galaxies in SDSS"
+      },
+      "status": "done"
+    }
+  },
+  "source_root": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/lab-runs",
+  "source_root_read_only": true
+}

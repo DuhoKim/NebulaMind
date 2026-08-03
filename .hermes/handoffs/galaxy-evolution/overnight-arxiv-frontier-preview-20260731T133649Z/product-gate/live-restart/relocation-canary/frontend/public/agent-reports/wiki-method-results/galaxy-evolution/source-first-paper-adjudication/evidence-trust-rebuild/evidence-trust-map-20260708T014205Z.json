@@ -1,0 +1,270 @@
+{
+  "marker": "AUTOPILOT_EVIDENCE_TRUST_LINKING_20260708T014205Z",
+  "method": "method2-source-first-paper-adjudication",
+  "generated_note": "derived from existing P1/S2 ledger; no invented data",
+  "trust_vocabulary": "method-local source-first adjudication status (NOT product DB trust)",
+  "local_evidence_ledger": "../p1-source-position-ledger.html",
+  "claim_status_ledger": "../p2-claim-status-ledger.html",
+  "totals": {
+    "claims": 6,
+    "accepted_full": 2,
+    "accepted_limited": 20,
+    "cited_positions": 22,
+    "excluded": 2,
+    "rejected": 12,
+    "cite_unmatched_groups": 7,
+    "numeric_product_cites": 0
+  },
+  "claims": [
+    {
+      "claim_id": "2942",
+      "title": "AGN feedback is scoped, not universal",
+      "accepted_full": 0,
+      "accepted_limited": 4,
+      "evidence": [
+        {
+          "evidence": "28074",
+          "status": "LIMITED",
+          "arxiv": "2604.15438",
+          "role": "M51 low-power kinetic AGN mode"
+        },
+        {
+          "evidence": "28087",
+          "status": "LIMITED",
+          "arxiv": "2009.11175",
+          "role": "review complexity caveat (many-mode)"
+        },
+        {
+          "evidence": "28151",
+          "status": "LIMITED",
+          "arxiv": "2403.17145",
+          "role": "AGN feedback strongest at group scale"
+        },
+        {
+          "evidence": "28155",
+          "status": "LIMITED",
+          "arxiv": "2604.15438",
+          "role": "M51: models require AGN feedback (theory, M51-scoped)"
+        }
+      ]
+    },
+    {
+      "claim_id": "2943",
+      "title": "AGN outflows can remove/suppress star-forming gas",
+      "accepted_full": 1,
+      "accepted_limited": 4,
+      "evidence": [
+        {
+          "evidence": "28141",
+          "status": "ACCEPTED",
+          "arxiv": "1706.08987",
+          "role": "direct quasar outflows evacuating star-forming gas (human +1)"
+        },
+        {
+          "evidence": "28091",
+          "status": "LIMITED",
+          "arxiv": "2604.15438",
+          "role": "M51 outflow-driven turbulence halts SF"
+        },
+        {
+          "evidence": "28140",
+          "status": "LIMITED",
+          "arxiv": "2111.01801",
+          "role": "Seyfert-jet simulation vs obs \u2014 subgrid caveat"
+        },
+        {
+          "evidence": "28144",
+          "status": "LIMITED",
+          "arxiv": "2508.06707",
+          "role": "multiple high-velocity outflow detections, lower-z AGN"
+        },
+        {
+          "evidence": "28148",
+          "status": "LIMITED",
+          "arxiv": "2604.22922",
+          "role": "ultra-fast-outflow detection \u2014 broad limited framing"
+        }
+      ]
+    },
+    {
+      "claim_id": "2944",
+      "title": "Stellar-feedback alternatives & qualifiers",
+      "accepted_full": 0,
+      "accepted_limited": 3,
+      "evidence": [
+        {
+          "evidence": "28069",
+          "status": "LIMITED",
+          "arxiv": "2512.05584",
+          "role": "DESI/Mg II stellar-feedback outflows, low-mass"
+        },
+        {
+          "evidence": "28073",
+          "status": "LIMITED",
+          "arxiv": "2512.05584",
+          "role": "outflow rate/mass-loading scale with SFR"
+        },
+        {
+          "evidence": "28088",
+          "status": "LIMITED",
+          "arxiv": "2605.03008",
+          "role": "stellar feedback insufficient to fully quench high-mass"
+        }
+      ]
+    },
+    {
+      "claim_id": "2945",
+      "title": "Gas-removal / recycling cautions",
+      "accepted_full": 0,
+      "accepted_limited": 2,
+      "evidence": [
+        {
+          "evidence": "28066",
+          "status": "LIMITED",
+          "arxiv": "2512.05584",
+          "role": "outflow gas falls back <100 kpc \u2014 recycling caution"
+        },
+        {
+          "evidence": "28075",
+          "status": "LIMITED",
+          "arxiv": "0901.1880",
+          "role": "low-z low-mass winds weak at gas removal"
+        }
+      ]
+    },
+    {
+      "claim_id": "2946",
+      "title": "Maintenance / preventive heating (model-dependent)",
+      "accepted_full": 0,
+      "accepted_limited": 3,
+      "evidence": [
+        {
+          "evidence": "28089",
+          "status": "LIMITED",
+          "arxiv": "2508.06707",
+          "role": "simulations require AGN feedback \u2014 model-bounded"
+        },
+        {
+          "evidence": "28123",
+          "status": "LIMITED",
+          "arxiv": "2403.17145",
+          "role": "simulations model AGN feedback differently \u2014 model-dependent"
+        },
+        {
+          "evidence": "28158",
+          "status": "LIMITED",
+          "arxiv": "2403.17145",
+          "role": "observed X-ray cavities \u2014 only direct maintenance-heating obs"
+        }
+      ]
+    },
+    {
+      "claim_id": "2947",
+      "title": "Kinetic / radio-mode jets",
+      "accepted_full": 1,
+      "accepted_limited": 3,
+      "evidence": [
+        {
+          "evidence": "28095",
+          "status": "ACCEPTED",
+          "arxiv": "2009.11175",
+          "role": "review-synthesis: AGN jets drive feedback (human +1)"
+        },
+        {
+          "evidence": "28062",
+          "status": "LIMITED",
+          "arxiv": "2508.06707",
+          "role": "weak jet-gas kinetic coupling \u2014 caution"
+        },
+        {
+          "evidence": "28108",
+          "status": "LIMITED",
+          "arxiv": "2009.11175",
+          "role": "jet-feedback understanding incomplete \u2014 caution"
+        },
+        {
+          "evidence": "28131",
+          "status": "LIMITED",
+          "arxiv": "0901.1880",
+          "role": "radio-mode feedback in massive radio galaxies"
+        }
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "evidence": "28133",
+      "arxiv": "2009.11175",
+      "claim": "2943",
+      "reason": "F1 erratum \u2014 background_only, no public-sentence use"
+    },
+    {
+      "evidence": "28111",
+      "arxiv": "2009.11175",
+      "claim": "2947",
+      "reason": "F3 single-source stacking guard \u2014 2nd 2009.11175 support for 2947 held out"
+    }
+  ],
+  "rejected": [
+    {
+      "evidence": "28070",
+      "arxiv": "2512.05584",
+      "reason": "duplicate of 28069/28073"
+    },
+    {
+      "evidence": "28076",
+      "arxiv": "2512.21927",
+      "reason": "Perseus superbubble \u2014 not AGN"
+    },
+    {
+      "evidence": "28080",
+      "arxiv": "2512.21927",
+      "reason": "local superbubble fragmentation"
+    },
+    {
+      "evidence": "28082",
+      "arxiv": "1507.06366",
+      "reason": "GMC radiation feedback \u2014 sub-galactic"
+    },
+    {
+      "evidence": "28083",
+      "arxiv": "2512.21927",
+      "reason": "stellar-feedback structures \u2014 context only"
+    },
+    {
+      "evidence": "28084",
+      "arxiv": "2512.21927",
+      "reason": "cloud-scale stellar feedback"
+    },
+    {
+      "evidence": "28110",
+      "arxiv": "0901.1880",
+      "reason": "duplicate of 28075"
+    },
+    {
+      "evidence": "28114",
+      "arxiv": "1203.2926",
+      "reason": "radiation pressure young clusters \u2014 off-target"
+    },
+    {
+      "evidence": "28118",
+      "arxiv": "1203.2926",
+      "reason": "radiation-force impl detail"
+    },
+    {
+      "evidence": "28127",
+      "arxiv": "2403.17145",
+      "reason": "cooling+AGN cycle \u2014 same-paper overload"
+    },
+    {
+      "evidence": "28139",
+      "arxiv": "2403.17145",
+      "reason": "group-study setup background"
+    },
+    {
+      "evidence": "28143",
+      "arxiv": "2403.17145",
+      "reason": "AGN clears group halos \u2014 wrong claim"
+    }
+  ]
+}

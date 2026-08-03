@@ -1,0 +1,1150 @@
+{
+  "schema_marker": "LANA_R3_TRIAGE_LEDGER_V1",
+  "packet": "gemini-dr-c1r-contract-r3-manual-triage-20260713T024458Z",
+  "phase": "P2 classification (routing, not scientific adjudication)",
+  "goru_input": "triage/GORU_MANUAL_QUEUE_TABLE.json",
+  "goru_input_sha256": "ae5aac74ff85f6ba66652dd4e4f023dc435740e4b19713753ac94f380d95ad06",
+  "validator_result_of_record": "../gemini-dr-c1r-chip-validator-repair-20260713T010203Z/readjudication/validator_result_v2.json",
+  "upstream_validator_result_sha256": "ad4d035b291f6d64ad47f510811cc05826d822f449cf3d181974be2ce2473d52",
+  "total": 73,
+  "lane_counts": {
+    "VERIFY_SOURCE_FIDELITY": 47,
+    "VERIFY_SCIENTIFIC_COMPARABILITY": 8,
+    "VERIFY_UNCERTAINTY_OR_SCOPE": 18,
+    "CONTRACT_R3_CHANGE": 0,
+    "IGNORE_FOR_THIS_CONTRACT_TEST": 0
+  },
+  "clause_code_counts": {
+    "C3:UNCERTAINTY_CHECK": 18,
+    "C4:CITED_CELL_CLAIM_REVIEW": 40,
+    "C4:CITED_CLAIM_REVIEW": 5,
+    "C4:CITATION_QUALITY_REVIEW": 1,
+    "C4:SOURCE_FIDELITY_REVIEW": 1,
+    "C6:COMPARISON_LABEL_REVIEW": 8
+  },
+  "clause_code_by_lane": {
+    "C3:UNCERTAINTY_CHECK": {
+      "VERIFY_UNCERTAINTY_OR_SCOPE": 18
+    },
+    "C4:CITED_CELL_CLAIM_REVIEW": {
+      "VERIFY_SOURCE_FIDELITY": 40
+    },
+    "C4:CITED_CLAIM_REVIEW": {
+      "VERIFY_SOURCE_FIDELITY": 5
+    },
+    "C4:CITATION_QUALITY_REVIEW": {
+      "VERIFY_SOURCE_FIDELITY": 1
+    },
+    "C4:SOURCE_FIDELITY_REVIEW": {
+      "VERIFY_SOURCE_FIDELITY": 1
+    },
+    "C6:COMPARISON_LABEL_REVIEW": {
+      "VERIFY_SCIENTIFIC_COMPARABILITY": 8
+    }
+  },
+  "zero_lanes": [
+    {
+      "lane": "CONTRACT_R3_CHANGE",
+      "count": 0,
+      "reason": "Every finding an r3 D-item resolves (D1 6 UNLABELED_COMPARISON, D2 SIMBA MISSING_QUALIFIER, D3 8 Section-2 Result-cell UNCITED_CELL_CLAIM, D4 C7 integrity, D5 GAP granularity) is a deterministic FAIL outside the 73-entry manual queue per Amendment A3; no manual entry exists solely because of an r3-resolved contract pressure."
+    },
+    {
+      "lane": "IGNORE_FOR_THIS_CONTRACT_TEST",
+      "count": 0,
+      "reason": "All 73 manual entries carry a genuine uncertainty, source-fidelity, or comparability review need; none is a duplicate flag on the same defect or a formatting-only review with no scientific content, so none meets the ignore definition (ignore never means scientifically accepted)."
+    }
+  ],
+  "contract_r3_change_crossmap": [],
+  "deterministic_crosswalk_ref": "design/CONTRACT_R3_DRAFT.md §9 — D-items resolve deterministic residue findings that are NOT in this 73-entry queue (Amendment A3).",
+  "rules_applied": [
+    "exactly one pinned lane per entry",
+    "source order M001-M073 preserved",
+    "ties break toward a VERIFY_* lane",
+    "IGNORE never means scientifically accepted",
+    "the 8 deterministic D3 Section-2 Result-cell findings are excluded (A3)"
+  ],
+  "entries": [
+    {
+      "manual_id": "M001",
+      "finding_ordinal": 4,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_4",
+        3
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The spatial distribution of the stellar mass in the most massive haloes (M200c ≳1014 M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE) was explicitly stated to be an emergent phenomeno"
+    },
+    {
+      "manual_id": "M002",
+      "finding_ordinal": 5,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        1
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid physics model was explicitly calibrated to reproduce the observed redshift z=0.1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the scaling relation "
+    },
+    {
+      "manual_id": "M003",
+      "finding_ordinal": 6,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid routines governing the energetic feedback associated with both star formation and the accretion growth of black holes were varied; specifically, the stellar feedback ca"
+    },
+    {
+      "manual_id": "M004",
+      "finding_ordinal": 7,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        3
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The study authors explicitly stated that the calibrated simulations broadly reproduce the observed galaxy stellar mass function as early as redshift z=7 UNCERTAINTY_NOT_QUOTED_BY_S"
+    },
+    {
+      "manual_id": "M005",
+      "finding_ordinal": 8,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation explicitly tuned the fraction of material entering the accretion disc that actually accretes onto the central black hole to a value of ∼10% UNCERTAINTY_NOT_QUOTED_BY"
+    },
+    {
+      "manual_id": "M006",
+      "finding_ordinal": 9,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        3
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The model produces a wide array of emergent properties that successfully reproduce observational constraints without direct tuning, including neutral and molecular gas fractions (T"
+    },
+    {
+      "manual_id": "M007",
+      "finding_ordinal": 10,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        1
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation utilized a multi-dimensional parameter search to optimize the subgrid parameters regulating star formation and feedback directly against a comprehensive set of redsh"
+    },
+    {
+      "manual_id": "M008",
+      "finding_ordinal": 11,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The developers optimized specific free parameters controlling the supermassive black hole accretion rate and the efficiency at which radiated energy is transferred to the surroundi"
+    },
+    {
+      "manual_id": "M009",
+      "finding_ordinal": 12,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        1
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid model suite was explicitly validated and calibrated to show good statistical agreement with observed ultraviolet luminosity functions, galaxy stellar mass functions, an"
+    },
+    {
+      "manual_id": "M010",
+      "finding_ordinal": 13,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation explicitly tuned the supernova feedback energy parameter to 1.0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of 1051 erg UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the wind sp"
+    },
+    {
+      "manual_id": "M011",
+      "finding_ordinal": 14,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_10",
+        1
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid feedback models were strictly calibrated using Gaussian process emulation to match the redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and th"
+    },
+    {
+      "manual_id": "M012",
+      "finding_ordinal": 15,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_11",
+        1
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The project represents a targeted attempt to explicitly calibrate the subgrid models of stellar and active galactic nucleus feedback to successfully reproduce the present-day galax"
+    },
+    {
+      "manual_id": "M013",
+      "finding_ordinal": 16,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_14",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Agreement (the simulation demonstrates a striking improvement relative to previous models, achieving excellent quantitative agreement with observed data featuring a sharp transitio"
+    },
+    {
+      "manual_id": "M014",
+      "finding_ordinal": 17,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_15",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Tension (the simulated specific star formation rate relation is steeper than observed at all measured redshifts, and the empirically observed relations possess a significantly high"
+    },
+    {
+      "manual_id": "M015",
+      "finding_ordinal": 18,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_16",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Tension (the model exhibits systemic tension with observational data by significantly overproducing the molecular hydrogen mass proportions (TRACER=H2 mass; SELECTION=galaxies; DEN"
+    },
+    {
+      "manual_id": "M016",
+      "finding_ordinal": 19,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_19",
+        2
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Agreement (the predicted supermassive black hole population remains broadly consistent with empirical constraints regarding the black hole mass function and the bright end of the l"
+    },
+    {
+      "manual_id": "M017",
+      "finding_ordinal": 20,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "bullet_25"
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The specific methodological approach of explicitly tuning subgrid control parameters to simultaneously match the observed galaxy stellar mass function and the hot gas mass distribu"
+    },
+    {
+      "manual_id": "M018",
+      "finding_ordinal": 21,
+      "clause": "C3",
+      "code": "UNCERTAINTY_CHECK",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "gap_line_4"
+      ],
+      "lane": "VERIFY_UNCERTAINTY_OR_SCOPE",
+      "reason": "UNCERTAINTY_NOT_QUOTED_BY_SOURCE / quoted-value / redshift-selection-scope faithfulness in this unit is an uncertainty-scope review.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "GAP: Rigorous out-of-sample validations targeting the very high-redshift (z>6 UNCERTAINTY_NOT_QUOTED_BY_SOURCE) stellar mass-halo mass relation and extremely early supermassive bla"
+    },
+    {
+      "manual_id": "M019",
+      "finding_ordinal": 22,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_4",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The project specifically targeted the observed galaxy stellar mass function, the stellar-to-halo mass scaling relation, the total gas mass content evaluated strictly within the vir"
+    },
+    {
+      "manual_id": "M020",
+      "finding_ordinal": 23,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_4",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The developers explicitly adjusted the parameters governing galactic winds, specifically modifying their directionality, bulk velocity, thermal energy content, and phenomenological"
+    },
+    {
+      "manual_id": "M021",
+      "finding_ordinal": 24,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_4",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The spatial distribution of the stellar mass in the most massive haloes (M200c ≳1014 M$_{\\odot}$ UNCERTAINTY_NOT_QUOTED_BY_SOURCE) was explicitly stated to be an emergent phenomeno"
+    },
+    {
+      "manual_id": "M022",
+      "finding_ordinal": 25,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_4",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The specific parameter values adopted for the reference IllustrisTNG physical model were kept strictly identical across all variations in numerical resolution, explicitly avoiding "
+    },
+    {
+      "manual_id": "M023",
+      "finding_ordinal": 26,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid physics model was explicitly calibrated to reproduce the observed redshift z=0.1 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and the scaling relation "
+    },
+    {
+      "manual_id": "M024",
+      "finding_ordinal": 27,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid routines governing the energetic feedback associated with both star formation and the accretion growth of black holes were varied; specifically, the stellar feedback ca"
+    },
+    {
+      "manual_id": "M025",
+      "finding_ordinal": 28,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The study authors explicitly stated that the calibrated simulations broadly reproduce the observed galaxy stellar mass function as early as redshift z=7 UNCERTAINTY_NOT_QUOTED_BY_S"
+    },
+    {
+      "manual_id": "M026",
+      "finding_ordinal": 29,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_5",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The calibration process necessitated adjusting the star formation feedback parameters such that the injected energy varies as a function of the local gas density, mitigating spurio"
+    },
+    {
+      "manual_id": "M027",
+      "finding_ordinal": 30,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The primary calibration strategy for this cosmological hydrodynamic simulation focuses stringently on reproducing the global galaxy stellar mass function evolution across cosmic ti"
+    },
+    {
+      "manual_id": "M028",
+      "finding_ordinal": 31,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation explicitly tuned the fraction of material entering the accretion disc that actually accretes onto the central black hole to a value of ∼10% UNCERTAINTY_NOT_QUOTED_BY"
+    },
+    {
+      "manual_id": "M029",
+      "finding_ordinal": 32,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The model produces a wide array of emergent properties that successfully reproduce observational constraints without direct tuning, including neutral and molecular gas fractions (T"
+    },
+    {
+      "manual_id": "M030",
+      "finding_ordinal": 33,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_6",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Analysis of specific simulation variants lacking jet and X-ray feedback modules revealed that the carefully tuned high-velocity jet feedback is primarily responsible for the succes"
+    },
+    {
+      "manual_id": "M031",
+      "finding_ordinal": 34,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_7",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The method papers indicate that there is no fine-tuning or direct calibration of any parameters in the simulations to match these specific macroscopic observational properties, as "
+    },
+    {
+      "manual_id": "M032",
+      "finding_ordinal": 35,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_7",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulations report that galaxy-scale properties naturally emerge from the underlying microphysics, specifically noting that as numerical resolution increases, stellar masses an"
+    },
+    {
+      "manual_id": "M033",
+      "finding_ordinal": 36,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_7",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "While the overarching properties are physically emergent, the central kiloparsec mass concentrations of massive galaxies remain sensitive to underlying numerical implementations, p"
+    },
+    {
+      "manual_id": "M034",
+      "finding_ordinal": 37,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation utilized a multi-dimensional parameter search to optimize the subgrid parameters regulating star formation and feedback directly against a comprehensive set of redsh"
+    },
+    {
+      "manual_id": "M035",
+      "finding_ordinal": 38,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The developers optimized specific free parameters controlling the supermassive black hole accretion rate and the efficiency at which radiated energy is transferred to the surroundi"
+    },
+    {
+      "manual_id": "M036",
+      "finding_ordinal": 39,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The novel implementation of supermassive black hole physics allows the simulation to predict where and when supermassive black holes grow entirely independent of any predefined ass"
+    },
+    {
+      "manual_id": "M037",
+      "finding_ordinal": 40,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_8",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The explicit calibration of the blastwave supernova feedback implementation was uniquely targeted to reliably reproduce observable dwarf galaxy structures, specifically focusing on"
+    },
+    {
+      "manual_id": "M038",
+      "finding_ordinal": 41,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid model suite was explicitly validated and calibrated to show good statistical agreement with observed ultraviolet luminosity functions, galaxy stellar mass functions, an"
+    },
+    {
+      "manual_id": "M039",
+      "finding_ordinal": 42,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation explicitly tuned the supernova feedback energy parameter to 1.0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE (in units of 1051 erg UNCERTAINTY_NOT_QUOTED_BY_SOURCE), the wind sp"
+    },
+    {
+      "manual_id": "M040",
+      "finding_ordinal": 43,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The simulation yields a supermassive black hole population that is broadly consistent with empirical constraints on the black hole mass function, the bright end of the luminosity f"
+    },
+    {
+      "manual_id": "M041",
+      "finding_ordinal": 44,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_9",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The unique black hole dynamic implementation explicitly includes mergers driven by dynamical friction from stars rather than relying on the common practice of artificial reposition"
+    },
+    {
+      "manual_id": "M042",
+      "finding_ordinal": 45,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_10",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The subgrid feedback models were strictly calibrated using Gaussian process emulation to match the redshift z=0 UNCERTAINTY_NOT_QUOTED_BY_SOURCE galaxy stellar mass function and th"
+    },
+    {
+      "manual_id": "M043",
+      "finding_ordinal": 46,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_10",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The emulation process specifically varied and tuned the stellar feedback efficiency, the target kick velocity for stellar feedback winds, the power-law slope of the density depende"
+    },
+    {
+      "manual_id": "M044",
+      "finding_ordinal": 47,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_10",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The calibrated simulations successfully reproduce a variety of complex cluster scaling relations and thermodynamic density and temperature profiles that were strictly excluded from"
+    },
+    {
+      "manual_id": "M045",
+      "finding_ordinal": 48,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_10",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The project uniquely generated twelve variations of the flagship intermediate-resolution simulation by explicitly shifting the calibration data targets relative to their fiducial o"
+    },
+    {
+      "manual_id": "M046",
+      "finding_ordinal": 49,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_11",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The project represents a targeted attempt to explicitly calibrate the subgrid models of stellar and active galactic nucleus feedback to successfully reproduce the present-day galax"
+    },
+    {
+      "manual_id": "M047",
+      "finding_ordinal": 50,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_11",
+        2
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The calibration sequence systematically adjusted the stellar feedback wind velocity to match the lower-mass end of the stellar mass function, the mass of gas heated by active galac"
+    },
+    {
+      "manual_id": "M048",
+      "finding_ordinal": 51,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_11",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The calibrated simulations inherently reproduce an unprecedentedly wide range of independent properties of massive systems, successfully yielding the various complex observed obser"
+    },
+    {
+      "manual_id": "M049",
+      "finding_ordinal": 52,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_11",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The study stresses that obtaining the correct total baryon fraction is a fundamental prerequisite for utilizing hydrodynamical simulations in precision large-scale structure cosmol"
+    },
+    {
+      "manual_id": "M050",
+      "finding_ordinal": 61,
+      "clause": "C4",
+      "code": "CITED_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "bullet_23"
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited bullet/GAP claim; needs source-fidelity check that the cited source supports the stated claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "Researchers explicitly caution that a comprehensively calibrated cosmological simulation fundamentally loses its predictive power for the specific empirical scaling relations utili"
+    },
+    {
+      "manual_id": "M051",
+      "finding_ordinal": 62,
+      "clause": "C4",
+      "code": "CITED_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "bullet_24"
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited bullet/GAP claim; needs source-fidelity check that the cited source supports the stated claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "It is prominently emphasized in the methodological literature that calibrating complex subgrid physics models by forcing their outputs to match a pre-selected suite of benchmark ob"
+    },
+    {
+      "manual_id": "M052",
+      "finding_ordinal": 63,
+      "clause": "C4",
+      "code": "CITED_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "bullet_25"
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited bullet/GAP claim; needs source-fidelity check that the cited source supports the stated claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "The specific methodological approach of explicitly tuning subgrid control parameters to simultaneously match the observed galaxy stellar mass function and the hot gas mass distribu"
+    },
+    {
+      "manual_id": "M053",
+      "finding_ordinal": 64,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_28",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M054",
+      "finding_ordinal": 65,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_28",
+        5
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M055",
+      "finding_ordinal": 66,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_29",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M056",
+      "finding_ordinal": 67,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_29",
+        5
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M057",
+      "finding_ordinal": 68,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_30",
+        1
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M058",
+      "finding_ordinal": 69,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_30",
+        5
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M059",
+      "finding_ordinal": 70,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_31",
+        3
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "EMERGENT"
+    },
+    {
+      "manual_id": "M060",
+      "finding_ordinal": 71,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_34",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "CALIBRATED"
+    },
+    {
+      "manual_id": "M061",
+      "finding_ordinal": 72,
+      "clause": "C4",
+      "code": "CITED_CELL_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_35",
+        4
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited claim cell (same-cell citation resolved); needs source-fidelity check that the source supports the claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "CALIBRATED"
+    },
+    {
+      "manual_id": "M062",
+      "finding_ordinal": 73,
+      "clause": "C4",
+      "code": "CITED_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "gap_line_1"
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited bullet/GAP claim; needs source-fidelity check that the cited source supports the stated claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "GAP: The theoretical and observational community lacks a definitive physical consensus on how to construct a unified subgrid feedback model that simultaneously reproduces the macro"
+    },
+    {
+      "manual_id": "M063",
+      "finding_ordinal": 74,
+      "clause": "C4",
+      "code": "CITED_CLAIM_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "gap_line_3"
+      ],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Cited bullet/GAP claim; needs source-fidelity check that the cited source supports the stated claim.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "GAP: There is an ongoing challenge in fully diagnosing the precise role that radio-mode active galactic nucleus feedback plays in rapidly quenching massive galaxies, as direct obse"
+    },
+    {
+      "manual_id": "M064",
+      "finding_ordinal": 75,
+      "clause": "C4",
+      "code": "CITATION_QUALITY_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Resolved-citation quality (aggregator / shared-source risk) is a source-resolution question; tie broken toward VERIFY_SOURCE_FIDELITY.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "{\"resolved_citation_occurrences\":62}"
+    },
+    {
+      "manual_id": "M065",
+      "finding_ordinal": 76,
+      "clause": "C4",
+      "code": "SOURCE_FIDELITY_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [],
+      "lane": "VERIFY_SOURCE_FIDELITY",
+      "reason": "Explicit source-fidelity review of the resolved-citation set.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "{\"resolved_citation_occurrences\":62}"
+    },
+    {
+      "manual_id": "M066",
+      "finding_ordinal": 78,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_14",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M067",
+      "finding_ordinal": 79,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_15",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M068",
+      "finding_ordinal": 80,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_16",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M069",
+      "finding_ordinal": 81,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_17",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M070",
+      "finding_ordinal": 82,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_18",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M071",
+      "finding_ordinal": 83,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_19",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M072",
+      "finding_ordinal": 84,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_20",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    },
+    {
+      "manual_id": "M073",
+      "finding_ordinal": 85,
+      "clause": "C6",
+      "code": "COMPARISON_LABEL_REVIEW",
+      "status": "MANUAL_REVIEW_REQUIRED",
+      "source_refs": [
+        "table_row_21",
+        3
+      ],
+      "lane": "VERIFY_SCIENTIFIC_COMPARABILITY",
+      "reason": "Semantic correctness of the COMPARABILITY token is a scientific-comparability judgment.",
+      "absorbing_d_item": null,
+      "evidence_snippet": "MATCHED_SELECTIONS"
+    }
+  ]
+}

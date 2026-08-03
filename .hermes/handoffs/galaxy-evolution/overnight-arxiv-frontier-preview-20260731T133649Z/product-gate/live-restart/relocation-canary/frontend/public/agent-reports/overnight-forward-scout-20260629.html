@@ -1,0 +1,12 @@
+<!doctype html><meta charset="utf-8"><meta name="robots" content="noindex,nofollow">
+<title>Overnight forward scout — complete</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,Segoe UI,sans-serif;background:#07111f;color:#e5eefb;margin:0;padding:32px}.card{max-width:1120px;margin:auto;background:#101b2d;border:1px solid #29415f;border-radius:18px;padding:28px}a{color:#67e8f9}code{background:#07111f;padding:2px 6px;border-radius:6px}.ok{color:#86efac;font-weight:800}.muted{color:#94a3b8}</style>
+<div class="card"><h1>Overnight forward scout — complete</h1>
+<p class="ok">All holds wrapped: PR #64 and PR #65 are merged, frontend runtime is live, and dynamic paper-profile API is live.</p>
+<p><strong>PR #64:</strong> <a href="https://github.com/DuhoKim/NebulaMind/pull/64">wiki browser UX smoke summary</a> — <code>ea25eff</code></p>
+<p><strong>PR #65:</strong> <a href="https://github.com/DuhoKim/NebulaMind/pull/65">paper profile detail</a> — <code>ea9b666</code></p>
+<p><strong>Backend runtime backup:</strong> <code>/Users/duhokim/NebulaMind/runtime-file-backups/pr65-backend-paper-profile-20260629T112908KST</code></p>
+<p><strong>Frontend runtime backup:</strong> <code>/Users/duhokim/NebulaMind/runtime-file-backups/pr65-paper-profile-frontend-20260629T111601KST</code></p>
+<p><strong>Safety:</strong> DB writes executed: <code>0</code>; migrations executed: <code>0</code>; SQL executed: <code>0</code>.</p>
+<h2>Verification</h2><ul><li>python3 -m py_compile backend/app/routers/pages.py -&gt; pass</li><li>backend AST route check -&gt; get_paper_profile present at line 376</li><li>pytest tests/test_paper_profile_api.py tests/test_global_paper_directory_api.py -q -&gt; 6 passed</li><li>launchctl kickstart -k gui/$(id -u)/com.nebulamind.backend -&gt; backend restarted on port 8000</li><li>local backend /api/pages/paper-directory?limit=3 -&gt; 200, items include profile_id/profile_href</li><li>local backend /api/pages/paper-profile?paper_id=&lt;real profile_id&gt; -&gt; 200, schema paper_profile.v1</li><li>local frontend proxy /api/pages/paper-profile -&gt; 200</li><li>public https://nebulamind.net/api/pages/paper-profile -&gt; 200</li><li>local/public dynamic route /wiki/papers/arxiv%3A2512.16290v1 -&gt; 200 with paper-profile chunk markers</li><li>scripts/smoke_pre_push.sh with PYTHON=/Users/duhokim/NebulaMind/NebulaMind/backend/.venv/bin/python -&gt; 49 passed</li></ul>
+<p class="muted">Updated 2026-06-29T11:31:24+09:00</p></div>

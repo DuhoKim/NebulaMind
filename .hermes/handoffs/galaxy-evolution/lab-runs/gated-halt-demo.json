@@ -1,0 +1,431 @@
+{
+  "id": "gated-halt-demo",
+  "spec": {
+    "topic": "the z=0 star-forming main sequence of galaxies in SDSS",
+    "method": "main-sequence",
+    "data_sources": [
+      "sdss"
+    ],
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ]
+  },
+  "status": "done",
+  "log": [
+    "14:46:43 gate/novelty: NOVEL (top-sim 0.729)",
+    "14:46:43 pulling SDSS…",
+    "14:52:20 gate/expected-value: INSUFFICIENT",
+    "14:52:23 lit-grounded on 6 papers, 5 passages",
+    "14:52:55 drafted manuscript body",
+    "14:53:10 review cycle 1: MINOR",
+    "14:53:10 review-revise loop done: MINOR in 1 cycle(s)",
+    "14:53:18 gate/citations: 1 unsupported of 2 checked",
+    "14:53:18 compiling AASTeX manuscript (PDF)...",
+    "14:53:20 AASTeX PDF compiled OK",
+    "14:53:20 done ✓"
+  ],
+  "result": {
+    "data_sources": [
+      "sdss"
+    ],
+    "method": "main-sequence",
+    "summary": "Star-forming main sequence — median relations for SDSS (120,000 gals).",
+    "figure_url": "/api/lab/runs/gated-halt-demo/artifact/result.png",
+    "review": "VERDICT: MINOR\n\nThis manuscript presents a thorough analysis of the z=0 star-forming main sequence in SDSS galaxies using a well-established method. However, there are some minor concerns regarding potential overclaims or missing caveats:\n\n1. The reliance on an automated selection process may introduce biases and overlook specific galaxy populations.\n2. Calibration issues or uncertainties in the SDSS data could affect the accuracy of the findings.\n3. The single-selection criterion might oversimplify the properties of star-forming galaxies.\n\nThe most important fix would be to address these caveats more explicitly, either by discussing their potential impact on the results or by providing additional evidence to mitigate their effects. Overall, the manuscript is well-structured and provides valuable insights into the local universe's galaxy evolution, but it requires minor revisions to strengthen its conclusions.",
+    "review_model": "astrosage-70b:latest",
+    "review_verdict": "MINOR",
+    "review_cycles": 1,
+    "review_url": "/api/lab/runs/gated-halt-demo/artifact/review_loop.md",
+    "pdf_url": "/api/lab/runs/gated-halt-demo/artifact/draft.pdf"
+  },
+  "gates": {
+    "novelty": {
+      "gate": "novelty",
+      "verdict": "NOVEL",
+      "top_similarity": 0.729,
+      "reason": "z < 1.3, which does not directly align with measuring the z=0 main sequence in SDSS.\n\n6. The second mention of **Berti2021** reiterates the use of strict stellar mass complete SDSS galaxy samples and specifies a redshift range (0.02 < z < 0.0435), which includes z=0 but does not exclusively focus on it.\n\nGiven these points, while several studies touch upon aspects related to the main sequence of star-forming galaxies, including some that use SDSS data, none directly report measuring the z=0 star-forming main sequence of galaxies in SDSS as proposed. The closest studies either focus on different redshift ranges or aspects of the main sequence other than its measurement at z=0.\n\nVERDICT: NOVEL",
+      "papers": [
+        {
+          "bibcode": "2020MNRAS.499..573C",
+          "arxiv": "2009.06931",
+          "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+          "authors": [
+            "Corcho-Caballero, P.",
+            "Ascasibar, Y.",
+            "López-Sánchez, Á. R."
+          ],
+          "year": "2020",
+          "cites": 12,
+          "score": 0.7293046712875366
+        },
+        {
+          "bibcode": "2015ApJ...801L..29R",
+          "arxiv": "1502.01027",
+          "title": "An Objective Definition for the Main Sequence of Star-forming Galaxies",
+          "authors": [
+            "Renzini, Alvio",
+            "Peng, Ying-jie"
+          ],
+          "year": "2015",
+          "cites": 394,
+          "score": 0.7208517789840698
+        },
+        {
+          "bibcode": "2023A&A...679A..35P",
+          "arxiv": "2308.16605",
+          "title": "Influence of star-forming galaxy selection on the galaxy main sequence",
+          "authors": [
+            "Pearson, W. J.",
+            "Pistis, F.",
+            "Figueira, M.",
+            "Małek, K.",
+            "Moutard, T.",
+            "Vergani, D.",
+            "Pollo, A."
+          ],
+          "year": "2023",
+          "cites": 11,
+          "score": 0.7153297066688538
+        },
+        {
+          "bibcode": "2021AJ....161...49B",
+          "arxiv": "2009.02405",
+          "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+          "authors": [
+            "Berti, Angela M.",
+            "Coil, Alison L.",
+            "Hearin, Andrew P.",
+            "Behroozi, Peter S."
+          ],
+          "year": "2021",
+          "cites": 19,
+          "score": 0.7067774534225464
+        },
+        {
+          "bibcode": "2015ApJ...801...80L",
+          "arxiv": "1501.01080",
+          "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>☉</SUB> for Redshifts z < 1.3",
+          "authors": [
+            "Lee, Nicholas",
+            "Sanders, D. B.",
+            "Casey, Caitlin M.",
+            "Toft, Sune",
+            "Scoville, N. Z.",
+            "Hung, Chao-Ling",
+            "Le Floc'h, Emeric",
+            "Ilbert, Olivier",
+            "Zahid, H. Jabran",
+            "Aussel, Hervé",
+            "Capak, Peter",
+            "Kartaltepe, Jeyhan S.",
+            "Kewley, Lisa J.",
+            "Li, Yanxia",
+            "Schawinski, Kevin",
+            "Sheth, Kartik",
+            "Xiao, Quanbao"
+          ],
+          "year": "2015",
+          "cites": 233,
+          "score": 0.7049378752708435
+        },
+        {
+          "bibcode": "2016MNRAS.455L..82L",
+          "arxiv": "1509.03632",
+          "title": "Quenching star formation: insights from the local main sequence",
+          "authors": [
+            "Leslie, S. K.",
+            "Kewley, L. J.",
+            "Sanders, D. B.",
+            "Lee, N."
+          ],
+          "year": "2016",
+          "cites": 78,
+          "score": 0.6998807191848755
+        }
+      ]
+    },
+    "expected_value": {
+      "gate": "expected_value",
+      "verdict": "INSUFFICIENT",
+      "kill": false,
+      "n_values": 43,
+      "reason": "galaxies, present-epoch] calib=MAGPHYS [Chang2015]\n\nGiven the broad range of redshifts and the assumption that our measurement could pertain to any of these, we have multiple matches.\n\nStep 2 - COMPARE: Without a specific measured value provided for comparison, let's consider the range of slopes given. The expected slopes from Lee2015 vary significantly with redshift (from 0.80 to 1.72), and there's also a slope of 0.8 from Chang2015 for star-forming galaxies at the present epoch.\n\nGiven this variability and without knowing the exact redshift or specifics of our measurement, it's challenging to directly compare. However, if we were to assume our measured slope falls within the range provided by these studies (which is plausible given the broad range of slopes), then:\n\nVERDICT: INSUFFICIENT",
+      "papers": [
+        {
+          "bibcode": "2015ApJ...801...80L",
+          "arxiv": "1501.01080",
+          "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>☉</SUB> for Redshifts z < 1.3",
+          "authors": [
+            "Lee, Nicholas",
+            "Sanders, D. B.",
+            "Casey, Caitlin M.",
+            "Toft, Sune",
+            "Scoville, N. Z.",
+            "Hung, Chao-Ling",
+            "Le Floc'h, Emeric",
+            "Ilbert, Olivier",
+            "Zahid, H. Jabran",
+            "Aussel, Hervé",
+            "Capak, Peter",
+            "Kartaltepe, Jeyhan S.",
+            "Kewley, Lisa J.",
+            "Li, Yanxia",
+            "Schawinski, Kevin",
+            "Sheth, Kartik",
+            "Xiao, Quanbao"
+          ],
+          "year": "2015",
+          "cites": 233,
+          "score": 0.6908369660377502
+        },
+        {
+          "bibcode": "2026Univ...12...60G",
+          "arxiv": "2602.21500",
+          "title": "Revisiting the Origin of the Star-Forming Main Sequence Based on a Volume-Limited Sample of ∼25,000 Galaxies",
+          "authors": [
+            "Gao, Yang",
+            "Liang, Shujiao",
+            "Tan, Qinghua",
+            "Wang, Enci",
+            "Liu, Huilan",
+            "Wang, Hongmei",
+            "Jing, Tao",
+            "Wang, Xiaolong",
+            "Liu, Kaihui",
+            "Gai, Ning",
+            "Tang, Yanke",
+            "Wang, Yifan",
+            "Li, Yutong"
+          ],
+          "year": "2026",
+          "cites": 0,
+          "score": 0.683696448802948
+        },
+        {
+          "bibcode": "2015ApJS..219....8C",
+          "arxiv": "1506.00648",
+          "title": "Stellar Masses and Star Formation Rates for 1M Galaxies from SDSS+WISE",
+          "authors": [
+            "Chang, Yu-Yen",
+            "van der Wel, Arjen",
+            "da Cunha, Elisabete",
+            "Rix, Hans-Walter"
+          ],
+          "year": "2015",
+          "cites": 272,
+          "score": 0.6761307716369629
+        },
+        {
+          "bibcode": "2021AJ....161...49B",
+          "arxiv": "2009.02405",
+          "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+          "authors": [
+            "Berti, Angela M.",
+            "Coil, Alison L.",
+            "Hearin, Andrew P.",
+            "Behroozi, Peter S."
+          ],
+          "year": "2021",
+          "cites": 19,
+          "score": 0.6744718551635742
+        },
+        {
+          "bibcode": "2020MNRAS.499..573C",
+          "arxiv": "2009.06931",
+          "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+          "authors": [
+            "Corcho-Caballero, P.",
+            "Ascasibar, Y.",
+            "López-Sánchez, Á. R."
+          ],
+          "year": "2020",
+          "cites": 12,
+          "score": 0.6700130701065063
+        },
+        {
+          "bibcode": "2023MNRAS.520..446H",
+          "arxiv": "2301.01995",
+          "title": "Exploring the intrinsic scatter of the star-forming galaxy main sequence at redshift 0.5 to 3.0",
+          "authors": [
+            "Huang, Rongjun",
+            "Battisti, Andrew J.",
+            "Grasha, Kathryn",
+            "da Cunha, Elisabete",
+            "Lagos, Claudia del P.",
+            "Leslie, Sarah K.",
+            "Wisnioski, Emily"
+          ],
+          "year": "2023",
+          "cites": 11,
+          "score": 0.6593978404998779
+        },
+        {
+          "bibcode": "2022A&A...666A.186D",
+          "arxiv": "2205.01203",
+          "title": "Mass-metallicity and star formation rate in galaxies: A complex relation tuned to stellar age",
+          "authors": [
+            "Duarte Puertas, S.",
+            "Vilchez, J. M.",
+            "Iglesias-Páramo, J.",
+            "Mollá, M.",
+            "Pérez-Montero, E.",
+            "Kehrig, C.",
+            "Pilyugin, L. S.",
+            "Zinchenko, I. A."
+          ],
+          "year": "2022",
+          "cites": 40,
+          "score": 0.6571320295333862
+        }
+      ]
+    },
+    "citation_entailment": {
+      "gate": "citation_entailment",
+      "checked": 2,
+      "n_unsupported": 1,
+      "unsupported": [
+        {
+          "key": "Pearson2023",
+          "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+          "supported": false,
+          "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR AUTHORS LIKE RENZINI2015 AND PEARSON2023."
+        }
+      ],
+      "all": [
+        {
+          "key": "Renzini2015",
+          "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+          "supported": true,
+          "reason": "SUPPORTED\nTHE PASSAGE MENTIONS RENZINI AS AN AUTHOR, WHICH MATCHES THE CLAIM THAT REFERENCES [RENZINI2015], INDICATING HIS WORK HAS CONTRIBUTED TO UNDERSTANDING"
+        },
+        {
+          "key": "Pearson2023",
+          "sentence": "Previous works, such as [Renzini2015] and [Pearson2023], have contributed to our understanding of the MS by providing insights into its definition and characteristics.",
+          "supported": false,
+          "reason": "UNSUPPORTED\nTHE PASSAGE DOES NOT MENTION PREVIOUS WORKS OR AUTHORS LIKE RENZINI2015 AND PEARSON2023."
+        }
+      ]
+    }
+  },
+  "artifacts": [
+    "result.png",
+    "review_loop.md",
+    "draft.pdf",
+    "history.json"
+  ],
+  "lit_refs": [
+    "2015ApJ...801...80L",
+    "2023A&A...679A..35P",
+    "2020MNRAS.499..573C",
+    "2021AJ....161...49B",
+    "2016MNRAS.455L..82L",
+    "2015ApJ...801L..29R"
+  ],
+  "lit_reflist": [
+    "[Renzini2015] Renzini et al. (2015). An Objective Definition for the Main Sequence of Star-forming Galaxies. bibcode 2015ApJ...801L..29R",
+    "[Pearson2023] Pearson et al. (2023). Influence of star-forming galaxy selection on the galaxy main sequence. bibcode 2023A&A...679A..35P",
+    "[CorchoCaballero2020] Corcho-Caballero et al. (2020). A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg. bibcode 2020MNRAS.499..573C",
+    "[Berti2021] Berti et al. (2021). Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass. bibcode 2021AJ....161...49B",
+    "[Leslie2016] Leslie et al. (2016). Quenching star formation: insights from the local main sequence. bibcode 2016MNRAS.455L..82L"
+  ],
+  "lit_papers": [
+    {
+      "bibcode": "2015ApJ...801...80L",
+      "arxiv": "1501.01080",
+      "title": "A Turnover in the Galaxy Main Sequence of Star Formation at M <SUB>*</SUB> ~ 10<SUP>10</SUP> M <SUB>☉</SUB> for Redshifts z < 1.3",
+      "authors": [
+        "Lee, Nicholas",
+        "Sanders, D. B.",
+        "Casey, Caitlin M.",
+        "Toft, Sune",
+        "Scoville, N. Z.",
+        "Hung, Chao-Ling",
+        "Le Floc'h, Emeric",
+        "Ilbert, Olivier",
+        "Zahid, H. Jabran",
+        "Aussel, Hervé",
+        "Capak, Peter",
+        "Kartaltepe, Jeyhan S.",
+        "Kewley, Lisa J.",
+        "Li, Yanxia",
+        "Schawinski, Kevin",
+        "Sheth, Kartik",
+        "Xiao, Quanbao"
+      ],
+      "year": "2015",
+      "cites": 233,
+      "score": 0.677495002746582
+    },
+    {
+      "bibcode": "2023A&A...679A..35P",
+      "arxiv": "2308.16605",
+      "title": "Influence of star-forming galaxy selection on the galaxy main sequence",
+      "authors": [
+        "Pearson, W. J.",
+        "Pistis, F.",
+        "Figueira, M.",
+        "Małek, K.",
+        "Moutard, T.",
+        "Vergani, D.",
+        "Pollo, A."
+      ],
+      "year": "2023",
+      "cites": 11,
+      "score": 0.6723823547363281
+    },
+    {
+      "bibcode": "2020MNRAS.499..573C",
+      "arxiv": "2009.06931",
+      "title": "A single galaxy population? Statistical evidence that the star-forming main sequence might be the tip of the iceberg",
+      "authors": [
+        "Corcho-Caballero, P.",
+        "Ascasibar, Y.",
+        "López-Sánchez, Á. R."
+      ],
+      "year": "2020",
+      "cites": 12,
+      "score": 0.6716455221176147
+    },
+    {
+      "bibcode": "2021AJ....161...49B",
+      "arxiv": "2009.02405",
+      "title": "Main-sequence Scatter is Real: The Joint Dependence of Galaxy Clustering on Star Formation and Stellar Mass",
+      "authors": [
+        "Berti, Angela M.",
+        "Coil, Alison L.",
+        "Hearin, Andrew P.",
+        "Behroozi, Peter S."
+      ],
+      "year": "2021",
+      "cites": 19,
+      "score": 0.6617674231529236
+    },
+    {
+      "bibcode": "2016MNRAS.455L..82L",
+      "arxiv": "1509.03632",
+      "title": "Quenching star formation: insights from the local main sequence",
+      "authors": [
+        "Leslie, S. K.",
+        "Kewley, L. J.",
+        "Sanders, D. B.",
+        "Lee, N."
+      ],
+      "year": "2016",
+      "cites": 78,
+      "score": 0.6607149243354797
+    },
+    {
+      "bibcode": "2015ApJ...801L..29R",
+      "arxiv": "1502.01027",
+      "title": "An Objective Definition for the Main Sequence of Star-forming Galaxies",
+      "authors": [
+        "Renzini, Alvio",
+        "Peng, Ying-jie"
+      ],
+      "year": "2015",
+      "cites": 394,
+      "score": 0.6575812101364136
+    }
+  ]
+}

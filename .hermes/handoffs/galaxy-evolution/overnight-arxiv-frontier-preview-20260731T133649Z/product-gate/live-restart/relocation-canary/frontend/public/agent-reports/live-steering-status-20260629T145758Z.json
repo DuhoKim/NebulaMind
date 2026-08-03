@@ -1,0 +1,85 @@
+{
+  "status": "draft_pr_open_no_merge_no_deploy",
+  "updated_at_utc": "2026-06-29T14:57:58Z",
+  "updated_at_kst": "2026-06-29 23:57:58 KST",
+  "plain_english_summary": "Created draft PR #70 for a guarded Page58 label-upload route using TDD. It is a draft only: no merge, no deploy, no DB writes.",
+  "pr_url": "https://github.com/DuhoKim/NebulaMind/pull/70",
+  "pr_number": 70,
+  "is_draft": true,
+  "mergeable": "MERGEABLE",
+  "changed_files": 5,
+  "additions": 415,
+  "deletions": 0,
+  "commit": "9c942c24b5f45e4fe3d30c51594272eb906c9f78",
+  "branch": "feat/page58-label-upload-route-20260629T144914Z",
+  "pr_files": [
+    "frontend/package.json",
+    "frontend/scripts/test-agent-report-upload.mjs",
+    "frontend/scripts/test-page58-label-upload-route-contract.mjs",
+    "frontend/src/app/agent-reports/page58-label-upload/submit/route.ts",
+    "frontend/src/lib/agentReportUpload.ts"
+  ],
+  "verification": [
+    "Helper RED failed before helper existed: ENOENT agentReportUpload.ts.",
+    "Helper GREEN: npm run test:agent-report-upload -> agent_report_upload_helper_ok.",
+    "Route RED failed before route existed: Page58 label-upload route file should exist.",
+    "Route contract RED caught absolute_path metadata exposure; route patched and GREEN.",
+    "npm run test:wiki-trust-visibility passed.",
+    "npm run test:source-trace-hover passed.",
+    "npm run test:claim-minimap-hover passed.",
+    "npm run test:paper-claim-flight-deck passed.",
+    "npm run test:cross-page-paper-footprint passed.",
+    "npm run build passed and included /agent-reports/page58-label-upload/submit.",
+    "Alternate-port Next route smoke passed on port 3027 with /tmp state/upload dirs; server stopped; port closed.",
+    "Diff-scope secret scan found no changed files.",
+    "DB/API write-surface scan found none in route/helper.",
+    "Independent local Ollama staged-diff review passed with no blockers.",
+    "Pre-push smoke hook passed: 49 passed."
+  ],
+  "review": {
+    "passed": true,
+    "blockers": [],
+    "nonblocking_suggestions": [
+      "Consider adding deeper JSON/object-size hardening beyond the existing 2 MB route file cap.",
+      "Consider pre-capping extremely long filenames before regex normalization, though final stored filename is already capped."
+    ]
+  },
+  "backend_pid": "25075",
+  "backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "db_counts": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_writes": 0,
+  "backend_restarts": 0,
+  "deploys": 0,
+  "merges": 0,
+  "artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/page58-label-upload-draft-pr-20260629T145758Z",
+    "manifest": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/page58-label-upload-draft-pr-20260629T145758Z/draft-pr-70-manifest.json",
+    "report": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/page58-label-upload-draft-pr-20260629T145758Z/draft-pr-70-report.md",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/page58-label-upload-draft-pr-20260629T145758Z/SHA256SUMS"
+  },
+  "future_options": [
+    {
+      "option": "Review PR #70 and prepare merge decision",
+      "risk": "Low/read-only review; no merge/deploy/DB writes",
+      "approval": "STEER: review PR #70 and prepare merge decision; no merge, no deploy, no DB writes."
+    },
+    {
+      "option": "Merge PR #70 after review",
+      "risk": "Medium GitHub state change; still no deploy unless separately approved",
+      "approval": "APPROVE MERGE PR 70 PAGE58 LABEL UPLOAD 20260629T145758Z"
+    },
+    {
+      "option": "Continue clean-candidate monitor",
+      "risk": "Low/read-only",
+      "approval": "STEER: continue clean-candidate source-surface monitor; no DB writes."
+    },
+    {
+      "option": "Prepare Atlas IA surveys clean PR plan",
+      "risk": "Medium planning only",
+      "approval": "STEER: prepare clean PR plan for Atlas IA surveys polish from old runtime branch; no code changes, no deploy, no DB writes."
+    }
+  ]
+}

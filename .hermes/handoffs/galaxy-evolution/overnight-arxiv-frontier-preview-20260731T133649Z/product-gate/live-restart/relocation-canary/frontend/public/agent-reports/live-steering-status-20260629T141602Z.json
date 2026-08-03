@@ -1,0 +1,161 @@
+{
+  "status": "plain_english_cockpit_with_future_options",
+  "updated_at_utc": "2026-06-29T14:16:02Z",
+  "updated_at_kst": "2026-06-29 23:16:02 KST",
+  "monitor_window": {
+    "started_at_utc": "2026-06-29T14:11:03Z",
+    "finished_at_utc": "2026-06-29T14:11:48Z",
+    "snapshot_count": 3,
+    "approx_interval_seconds": 20
+  },
+  "runtime": {
+    "backend_pid_start": "25075",
+    "backend_pid_finish": "25075",
+    "backend_pid_changed": false,
+    "backend_process_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+    "plist_working_directory": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+    "candidate_head": "cc4ced2a6e69e9222805c080ce700e91517e6093",
+    "candidate_status_clean": true,
+    "backend_on_clean_candidate": true
+  },
+  "live_source_surfaces": {
+    "public_citations": {
+      "status": 200,
+      "bytes": 57397,
+      "kind": "citations",
+      "rows": 102,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 5,
+      "source_surface_counts": {
+        "unspecified": 102
+      }
+    },
+    "public_fact_sources": {
+      "status": 200,
+      "bytes": 5001,
+      "kind": "fact_sources",
+      "rows": 8,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 2,
+      "source_surface_counts": {
+        "claim_evidence_fallback": 8
+      }
+    },
+    "local_citations": {
+      "status": 200,
+      "bytes": 57397,
+      "kind": "citations",
+      "rows": 102,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 5,
+      "source_surface_counts": {
+        "unspecified": 102
+      }
+    },
+    "local_fact_sources": {
+      "status": 200,
+      "bytes": 5001,
+      "kind": "fact_sources",
+      "rows": 8,
+      "malformed_arxiv_abs_urls": 0,
+      "normalized_1712_urls": 2,
+      "source_surface_counts": {
+        "claim_evidence_fallback": 8
+      }
+    }
+  },
+  "db_counts_start": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_counts_finish": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_count_drift_over_window": {
+    "page_citation_links": 0,
+    "fact_sources": 0
+  },
+  "db_write_count_for_monitor": 0,
+  "migrations": 0,
+  "backfills": 0,
+  "readiness_or_promotion_changes": 0,
+  "backend_restart_or_deploy_during_monitor": 0,
+  "monitor_artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z",
+    "json": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z/monitor-clean-candidate-source-surfaces.json",
+    "markdown": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/monitor-clean-candidate-20260629T141101Z/monitor-clean-candidate-source-surfaces.md"
+  },
+  "next_recommended": "Continue periodic read-only monitoring or classify remaining dirty runtime checkout artifacts; no DB writes.",
+  "plain_english_summary": [
+    "I repaired the Galaxy source/citation surfaces so the page no longer hides missing source rows and no longer serves malformed arXiv links.",
+    "I merged the fixes to main, then moved the live backend off the old dirty feature-branch checkout and onto a clean origin/main candidate worktree.",
+    "I verified the live API after the switch: citations and fact-sources both return HTTP 200, malformed arXiv URLs are zero, and source-table counts did not change.",
+    "I kept the old dirty checkout intact as a preserved local workspace. It is no longer the running backend, but it still needs classification before any cleanup."
+  ],
+  "future_options": [
+    {
+      "rank": "1",
+      "option": "Classify the old dirty runtime checkout",
+      "plain_words": "Look through the old feature-branch checkout and label what is worth saving, what is already in main, and what is disposable. No cleanup yet.",
+      "risk": "Low / read-only",
+      "what_i_will_do": "Inventory staged, unstaged, and untracked files; group them into keep / already-covered / archive / candidate-PR buckets; write a report only.",
+      "db_writes": "0",
+      "approval": "STEER: classify dirty runtime checkout artifacts; no reset, no deletion, no DB writes.",
+      "recommended": true
+    },
+    {
+      "rank": "2",
+      "option": "Keep monitoring the clean backend",
+      "plain_words": "Check again that the live API is stable, arXiv links stay fixed, and the source tables do not change.",
+      "risk": "Lowest / read-only",
+      "what_i_will_do": "Run another short monitor window against local and public citations/fact-sources plus source-table counts.",
+      "db_writes": "0",
+      "approval": "STEER: continue clean-candidate source-surface monitor; no DB writes.",
+      "recommended": false
+    },
+    {
+      "rank": "3",
+      "option": "Turn useful old runtime work into a clean PR plan",
+      "plain_words": "If the old Atlas IA or UI work matters, move it through a clean branch/PR path instead of keeping it hidden in the old runtime checkout.",
+      "risk": "Medium / code-only planning first",
+      "what_i_will_do": "Inspect the runtime-only commit and dirty files, identify a narrow slice, and prepare a non-mutating PR plan. No merge/deploy unless separately approved.",
+      "db_writes": "0",
+      "approval": "STEER: prepare clean PR plan for useful dirty runtime work; no deploy, no DB writes.",
+      "recommended": false
+    },
+    {
+      "rank": "4",
+      "option": "Archive the old dirty runtime checkout safely",
+      "plain_words": "Preserve the old checkout as an archive so it is not confused with the live backend anymore.",
+      "risk": "Medium / filesystem-only, needs exact scope",
+      "what_i_will_do": "Create backup/archive artifacts and a rollback note first. I would not delete or reset anything without a later exact approval phrase.",
+      "db_writes": "0",
+      "approval": "APPROVE PREPARE OLD RUNTIME ARCHIVE PLAN 20260629T141602Z",
+      "recommended": false
+    },
+    {
+      "rank": "5",
+      "option": "Clean/delete/reset old runtime leftovers",
+      "plain_words": "Actually remove or reset old dirty files. This is intentionally locked because it can destroy local work.",
+      "risk": "High / destructive filesystem action",
+      "what_i_will_do": "Not available from this table. It requires a separate exact cleanup packet after classification and backup.",
+      "db_writes": "0, but local files may be removed if later approved",
+      "approval": "LOCKED \u2014 classify and backup first.",
+      "recommended": false
+    },
+    {
+      "rank": "6",
+      "option": "Resume product/research work on NebulaMind",
+      "plain_words": "Go back to improving the Galaxy/NebulaMind product now that the backend is clean and stable.",
+      "risk": "Depends on task",
+      "what_i_will_do": "Start from a clean branch or read-only packet depending on the request. Any DB/content write still needs its own approval packet.",
+      "db_writes": "0 unless a separate write packet is approved",
+      "approval": "STEER: propose next NebulaMind product slice from clean main; no DB writes.",
+      "recommended": false
+    }
+  ],
+  "recommended_next_option": "Classify the old dirty runtime checkout",
+  "db_write_count_for_this_report_update": 0,
+  "backend_restart_or_deploy_for_this_report_update": 0
+}

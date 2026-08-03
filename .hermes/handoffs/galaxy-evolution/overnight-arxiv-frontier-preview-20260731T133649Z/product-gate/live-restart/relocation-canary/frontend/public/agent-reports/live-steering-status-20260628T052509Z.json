@@ -1,0 +1,142 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-28T05:25:09Z",
+  "updated_at_kst": "2026-06-28 14:25:09 KST",
+  "source": "Hermes Agent live workflow status",
+  "current_action": "Visible progress surface created so Duho can steer by eye before the next work slice.",
+  "runtime": {
+    "frontend_service": "running",
+    "frontend_pid": "6292",
+    "local_url": "http://127.0.0.1:3000/agent-reports/live-steering-cockpit.html",
+    "public_url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html",
+    "runtime_checkout": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend"
+  },
+  "repo": {
+    "origin_main": "e501d89",
+    "origin_main_full": "e501d89ab2b33385b85ff9413d76cfa63384c5b9",
+    "latest_merged_pr": {
+      "baseRefName": "main",
+      "headRefName": "galaxy-fastbreak-cockpit-20260628",
+      "mergeCommit": {
+        "oid": "e501d89ab2b33385b85ff9413d76cfa63384c5b9"
+      },
+      "mergedAt": "2026-06-28T05:10:51Z",
+      "number": 39,
+      "state": "MERGED",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    }
+  },
+  "safety": {
+    "production_db_writes_from_this_dashboard": 0,
+    "migrations": 0,
+    "deploys": "frontend runtime restart only; no backend/service migration",
+    "explicit_approval_required_for": [
+      "production DB writes",
+      "trust/badge/prose apply paths",
+      "schema migrations",
+      "destructive cleanup"
+    ]
+  },
+  "milestones": [
+    {
+      "state": "done",
+      "label": "PR #39 merged",
+      "detail": "Evidence vote cockpit landed on origin/main at e501d89."
+    },
+    {
+      "state": "done",
+      "label": "Runtime updated",
+      "detail": "Scoped frontend files copied into the running frontend tree and rebuilt."
+    },
+    {
+      "state": "done",
+      "label": "Public JS verified",
+      "detail": "The deployed public wiki page chunk contains Evidence vote cockpit and Counted vote signal."
+    },
+    {
+      "state": "ready",
+      "label": "Steering cockpit online",
+      "detail": "This page is the visual progress surface; future milestones can be updated here."
+    },
+    {
+      "state": "locked",
+      "label": "Production data mutation",
+      "detail": "Still locked unless Duho explicitly approves a named preflight/apply packet."
+    }
+  ],
+  "verification": [
+    {
+      "check": "PR #39",
+      "result": "MERGED",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "check": "origin/main",
+      "result": "e501d89",
+      "evidence": "verified after squash merge"
+    },
+    {
+      "check": "frontend tests/build",
+      "result": "PASS",
+      "evidence": "test:evidence-panel-copy, test:evidence-status, test:wiki-trust-visibility, tsc, next build"
+    },
+    {
+      "check": "pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed"
+    },
+    {
+      "check": "public cockpit chunk",
+      "result": "PASS",
+      "evidence": "Evidence vote cockpit text found in deployed JS chunk"
+    }
+  ],
+  "next_moves": [
+    {
+      "id": "continue-visible-ui",
+      "readiness": "ready",
+      "title": "Continue visible wiki UX slice",
+      "why": "Best for momentum: add the next thing you can judge by eye, likely an evidence-trace preview or clearer claim/evidence summary panel.",
+      "copy_command": "STEER: continue with the next visible wiki UX slice; keep it frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "dashboard-first",
+      "readiness": "ready",
+      "title": "Improve the steering cockpit first",
+      "why": "If you want tighter supervision, I can add live JSON milestones, a visual branch/PR lane, and richer approval cards before more code.",
+      "copy_command": "STEER: improve the live steering cockpit before more product code."
+    },
+    {
+      "id": "readiness-packet",
+      "readiness": "read-only-ready",
+      "title": "Prepare post-label readiness proposal",
+      "why": "Useful but guarded: analysis/reporting is safe; trust/badge/prose writes stay locked until explicit approval.",
+      "copy_command": "APPROVE READ-ONLY: prepare the post-label readiness proposal; no production writes or apply path."
+    },
+    {
+      "id": "pause",
+      "readiness": "available",
+      "title": "Pause after PR #39",
+      "why": "Use this if you want to inspect the live page manually before the next slice.",
+      "copy_command": "STEER: pause after PR #39; do not start the next slice yet."
+    }
+  ],
+  "links": [
+    {
+      "label": "Live progress dashboard",
+      "url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html"
+    },
+    {
+      "label": "PR #39",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "label": "Live Galaxy page",
+      "url": "https://nebulamind.net/wiki/galaxy-evolution-v2"
+    },
+    {
+      "label": "Latest status JSON",
+      "url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+    }
+  ]
+}

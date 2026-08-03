@@ -1,0 +1,47 @@
+- 2026-07-10T01:12:19Z / 2026-07-10 10:12:19 KST — repair sprint started from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_20260709T235447Z/candidates/cycle_06_nine_papers (explicit NEBULAMIND_LATEX_REPAIR_SOURCE override)
+- 2026-07-10T01:12:19Z / 2026-07-10 10:12:19 KST — cycle 1: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_20260709T235447Z/candidates/cycle_06_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_01_nine_papers
+- 2026-07-10T01:12:19Z / 2026-07-10 10:12:19 KST — cycle 1: tex lint-before errors=0 warnings=0 findings=0
+- 2026-07-10T01:12:40Z / 2026-07-10 10:12:40 KST — cycle 1: strict compile-before build_ok=9/9 clean_ok=7/9 layout_warnings=4 undefined=0
+- 2026-07-10T01:16:05Z / 2026-07-10 10:16:05 KST — cycle 1: lane reports finished (5 lanes)
+- 2026-07-10T01:16:05Z / 2026-07-10 10:16:05 KST — cycle 1: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/feeds/LATEX_REPAIR_FEED_CYCLE_01.md
+- 2026-07-10T01:23:05Z / 2026-07-10 10:23:05 KST — cycle 1: writer integrator finished exit=0
+- 2026-07-10T01:23:05Z / 2026-07-10 10:23:05 KST — cycle 1: tex lint-after errors=0 warnings=0 findings=0
+- 2026-07-10T01:23:26Z / 2026-07-10 10:23:26 KST — cycle 1: strict compile-after build_ok=9/9 clean_ok=7/9 layout_warnings=4 undefined=0
+- 2026-07-10T01:23:26Z / 2026-07-10 10:23:26 KST — cycle 1: sleeping 120s before next cycle
+- 2026-07-10T01:25:26Z / 2026-07-10 10:25:26 KST — cycle 2: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_01_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_02_nine_papers
+- 2026-07-10T01:25:26Z / 2026-07-10 10:25:26 KST — cycle 2: tex lint-before errors=0 warnings=0 findings=0
+- 2026-07-10T01:25:47Z / 2026-07-10 10:25:47 KST — cycle 2: strict compile-before build_ok=9/9 clean_ok=7/9 layout_warnings=4 undefined=0
+- 2026-07-10T01:30:17Z / 2026-07-10 10:30:17 KST — cycle 2: lane reports finished (5 lanes)
+- 2026-07-10T01:30:17Z / 2026-07-10 10:30:17 KST — cycle 2: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/feeds/LATEX_REPAIR_FEED_CYCLE_02.md
+- 2026-07-10T01:32:58Z / 2026-07-10 10:32:58 KST — cycle 2: writer integrator finished exit=0
+- 2026-07-10T01:32:58Z / 2026-07-10 10:32:58 KST — cycle 2: tex lint-after errors=0 warnings=0 findings=0
+- 2026-07-10T01:33:20Z / 2026-07-10 10:33:20 KST — cycle 2: strict compile-after build_ok=9/9 clean_ok=7/9 layout_warnings=5 undefined=0
+- 2026-07-10T01:33:20Z / 2026-07-10 10:33:20 KST — cycle 2: sleeping 120s before next cycle
+- 2026-07-10T01:35:20Z / 2026-07-10 10:35:20 KST — cycle 3: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_02_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_03_nine_papers
+- 2026-07-10T01:35:20Z / 2026-07-10 10:35:20 KST — cycle 3: tex lint-before errors=0 warnings=0 findings=0
+- 2026-07-10T01:35:41Z / 2026-07-10 10:35:41 KST — cycle 3: strict compile-before build_ok=9/9 clean_ok=7/9 layout_warnings=5 undefined=0
+- 2026-07-10T01:39:29Z / 2026-07-10 10:39:29 KST — cycle 3: lane reports finished (5 lanes)
+- 2026-07-10T01:39:29Z / 2026-07-10 10:39:29 KST — cycle 3: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/feeds/LATEX_REPAIR_FEED_CYCLE_03.md
+- 2026-07-10T01:42:08Z / 2026-07-10 10:42:08 KST — cycle 3: writer integrator finished exit=0
+- 2026-07-10T01:42:08Z / 2026-07-10 10:42:08 KST — cycle 3: tex lint-after errors=0 warnings=0 findings=0
+- 2026-07-10T01:42:29Z / 2026-07-10 10:42:29 KST — cycle 3: strict compile-after build_ok=9/9 clean_ok=8/9 layout_warnings=1 undefined=0
+- 2026-07-10T01:42:29Z / 2026-07-10 10:42:29 KST — cycle 3: sleeping 120s before next cycle
+- 2026-07-10T01:44:29Z / 2026-07-10 10:44:29 KST — cycle 4: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_03_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_04_nine_papers
+- 2026-07-10T01:44:29Z / 2026-07-10 10:44:29 KST — cycle 4: tex lint-before errors=0 warnings=0 findings=0
+- 2026-07-10T01:44:50Z / 2026-07-10 10:44:50 KST — cycle 4: strict compile-before build_ok=9/9 clean_ok=8/9 layout_warnings=1 undefined=0
+- 2026-07-10T01:50:59Z / 2026-07-10 10:50:59 KST — cycle 4: lane reports finished (5 lanes)
+- 2026-07-10T01:50:59Z / 2026-07-10 10:50:59 KST — cycle 4: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/feeds/LATEX_REPAIR_FEED_CYCLE_04.md
+- 2026-07-10T01:58:54Z / 2026-07-10 10:58:54 KST — cycle 4: writer integrator finished exit=0
+- 2026-07-10T01:58:54Z / 2026-07-10 10:58:54 KST — cycle 4: tex lint-after errors=0 warnings=0 findings=0
+- 2026-07-10T01:59:15Z / 2026-07-10 10:59:15 KST — cycle 4: strict compile-after build_ok=9/9 clean_ok=8/9 layout_warnings=1 undefined=0
+- 2026-07-10T01:59:15Z / 2026-07-10 10:59:15 KST — cycle 4: sleeping 120s before next cycle
+- 2026-07-10T02:01:15Z / 2026-07-10 11:01:15 KST — cycle 5: copied candidate from /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_04_nine_papers to /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/candidates/cycle_05_nine_papers
+- 2026-07-10T02:01:15Z / 2026-07-10 11:01:15 KST — cycle 5: tex lint-before errors=0 warnings=0 findings=0
+- 2026-07-10T02:01:36Z / 2026-07-10 11:01:36 KST — cycle 5: strict compile-before build_ok=9/9 clean_ok=8/9 layout_warnings=1 undefined=0
+- 2026-07-10T02:05:00Z / 2026-07-10 11:05:00 KST — cycle 5: lane reports finished (5 lanes)
+- 2026-07-10T02:05:00Z / 2026-07-10 11:05:00 KST — cycle 5: feed packet written /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/latex-publishability-repair/LATEX_PUBLISHABILITY_REPAIR_CONTINUATION_20260710T003716Z_PDF_REPAIR/feeds/LATEX_REPAIR_FEED_CYCLE_05.md
+- 2026-07-10T02:08:16Z / 2026-07-10 11:08:16 KST — cycle 5: writer integrator finished exit=0
+- 2026-07-10T02:08:16Z / 2026-07-10 11:08:16 KST — cycle 5: tex lint-after errors=0 warnings=0 findings=0
+- 2026-07-10T02:08:38Z / 2026-07-10 11:08:38 KST — cycle 5: strict compile-after build_ok=9/9 clean_ok=9/9 layout_warnings=0 undefined=0
+- 2026-07-10T02:08:38Z / 2026-07-10 11:08:38 KST — cycle 5: strict LaTeX clean PASS achieved; stopping early
+- 2026-07-10T02:08:38Z / 2026-07-10 11:08:38 KST — repair sprint completed

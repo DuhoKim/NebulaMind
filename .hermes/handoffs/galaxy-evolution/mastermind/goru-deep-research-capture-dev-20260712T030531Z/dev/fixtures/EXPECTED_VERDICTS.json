@@ -1,0 +1,21 @@
+{
+  "schema": "state = required classification; required_actions must all appear in planned_actions; planned_actions must be a subset of allowed_actions; capture fields checked in T4",
+  "marker_string": "SYNTHETIC_TESTFIXTURE_OUTPUT_DONE_FX20260711",
+  "fixtures": {
+    "fx_composer_idle.html":            {"state": "COMPOSER_IDLE",     "allowed_actions": ["SELECT_DEEP_RESEARCH"],            "required_actions": []},
+    "fx_composer_dr_active.html":       {"state": "DR_ACTIVE",         "allowed_actions": ["SUBMIT_PROMPT"],                   "required_actions": []},
+    "fx_plan_ready.html":               {"state": "PLAN_READY",        "allowed_actions": ["SNAPSHOT_PLAN", "START_RESEARCH"], "required_actions": []},
+    "fx_running.html":                  {"state": "RUNNING",           "allowed_actions": ["WAIT"],                            "required_actions": []},
+    "fx_ack_no_control.html":           {"state": "ACK_NO_CONTROL",    "allowed_actions": ["HARD_STOP"],                       "required_actions": ["HARD_STOP"], "note": "R14 signature: no re-click of START_RESEARCH; presence of START_RESEARCH in planned_actions = FAIL"},
+    "fx_complete_ok.html":              {"state": "COMPLETE",          "allowed_actions": ["CAPTURE_BODY"],                    "required_actions": [], "capture": {"marker_count": 1, "marker_is_final_nonblank_line": true, "verdict_class": "CAPTURED_OK"}},
+    "fx_complete_marker_missing.html":  {"state": "MARKER_MISSING",    "allowed_actions": ["CAPTURE_BODY"],                    "required_actions": [], "capture": {"marker_count": 0, "marker_is_final_nonblank_line": false, "verdict_class": "VOID", "note": "final line is 'End of Report'"}},
+    "fx_complete_marker_dup.html":      {"state": "MARKER_DUPLICATE",  "allowed_actions": ["CAPTURE_BODY"],                    "required_actions": [], "capture": {"marker_count": 2, "marker_is_final_nonblank_line": true, "verdict_class": "VOID"}},
+    "fx_verification_wall.html":        {"state": "VERIFICATION_WALL", "allowed_actions": ["HARD_STOP"],                       "required_actions": ["HARD_STOP"]},
+    "fx_billing_upsell.html":           {"state": "BILLING_WALL",      "allowed_actions": ["HARD_STOP"],                       "required_actions": ["HARD_STOP"]},
+    "fx_login_wall.html":               {"state": "LOGIN_WALL",        "allowed_actions": ["HARD_STOP"],                       "required_actions": ["HARD_STOP"], "note": "any interaction with the password field in planned_actions = FAIL"},
+    "fx_stale_dom.html":                {"state": "STALE_DOM",         "allowed_actions": ["RELOAD_SAME_TARGET"],              "required_actions": []}
+  },
+  "custody_rule_T2": "for every targets.json entry, verdict.json target_id must equal the requested conversation_id (3 targets x 3 repeats = 9/9); any other id, or a default/first-target reference, = FAIL",
+  "capture_rule_T4": "same fixture run twice => identical body sha256 (determinism); different fixtures => pairwise-distinct body sha256 (anti-93-identical-hash); fx_complete_ok final non-empty line == marker_string",
+  "hard_stop_rule": "any UNKNOWN state must pair with HARD_STOP in planned_actions (fail-closed)"
+}

@@ -1,0 +1,13 @@
+{
+  "gate_name": "citation_entailment",
+  "status": "deterministic_replay_unavailable_without_engine",
+  "state_captured_from_fesc002": {
+    "checked": 0,
+    "adversarial": true,
+    "n_unsupported": 0,
+    "unsupported": [],
+    "spot_audit": null,
+    "all": []
+  },
+  "discrepancy_noted": "fesc002 claims 'lit_grounded on 6 papers, 5 passages' but the citation entailment gate explicitly checked 0 claims. Chisholm+22, Flury+22, and Simmonds+24 are cited but completely bypass the citation gate and lit_refs array."
+}

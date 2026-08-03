@@ -1,0 +1,1707 @@
+{
+  "status": "PASS_COMPOSITE_IDS_AND_REVIEW_MEMBERSHIP",
+  "mission_id": "GALAXY_REVIEW_BASE_DR_20260715",
+  "queue_item": 7,
+  "review": {
+    "key": "REV07-R00",
+    "authors": "Peroux C & Howk JC",
+    "year": 2020,
+    "title": "The Cosmic Baryon and Metal Cycles",
+    "journal": "Annual Review of Astronomy and Astrophysics",
+    "doi": "10.1146/annurev-astro-021820-120014",
+    "arxiv": "2011.01935",
+    "ads_bibcode": "2020ARA&A..58..363P",
+    "identity_status": "PASS_ADS_CROSSREF_ARXIV"
+  },
+  "review_bibliography_basis": {
+    "source": "https://ar5iv.labs.arxiv.org/html/2011.01935",
+    "status": "PASS_COMPLETE_REVIEW_TEXT_AND_REFERENCE_LIST_WEB_ONLY",
+    "local_raw_source_extraction_used": false
+  },
+  "counts": {
+    "raw_harvest_rows": 41,
+    "added_verified_primary_rows": 6,
+    "total_registry_rows": 47,
+    "usable_primary_sources": 40,
+    "usable_supporting_reviews": 4,
+    "quarantined_sources": 3,
+    "corrected_raw_rows": 38
+  },
+  "sources": [
+    {
+      "key": "REV07-P001",
+      "authors": "Abraham RG, van Dokkum PG",
+      "year": 2014,
+      "journal": "Publications of the Astronomical Society of the Pacific",
+      "title": "Ultra-Low Surface Brightness Imaging with the Dragonfly Telephoto Array",
+      "doi": "10.1086/674875",
+      "arxiv": "1401.5473",
+      "ads_bibcode": "2014PASP..126...55A",
+      "role": "measurement",
+      "review_locator": "Probing Baryons and Metals",
+      "boundary": "Low surface brightness emission tracers.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2014PASP..126...55A/abstract",
+        "ads_direct_status": "PASS_ADS_TITLE_URL_CROSSREF_ARXIV",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P002",
+      "authors": "Aller MC, Kulkarni VP, York DG",
+      "year": 2014,
+      "journal": "The Astrophysical Journal",
+      "title": "Interstellar Silicate Dust in the z = 0.685 Absorber Toward TXS 0218+357",
+      "doi": "10.1088/0004-637X/785/1/36",
+      "arxiv": "1402.4509",
+      "ads_bibcode": "2014ApJ...785...36A",
+      "role": "measurement",
+      "review_locator": "Dust content",
+      "boundary": "Dust-to-gas ratio in intervening absorption systems.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2014ApJ...785...36A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Interstellar Silicate Dust in Quasar Absorption Systems",
+          "canonical": "Interstellar Silicate Dust in the z = 0.685 Absorber Toward TXS 0218+357"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1402.6698",
+          "canonical": "1402.4509"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P003",
+      "authors": "Anderson ME, Sunyaev R",
+      "year": 2016,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Searching for FUV line emission from 107 K gas in massive elliptical galaxies and galaxy clusters as a tracer of turbulent velocities",
+      "doi": "10.1093/mnras/stw822",
+      "arxiv": "1506.01703",
+      "ads_bibcode": "2016MNRAS.459.2806A",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Tracing the hot ionized phase of the CGM.",
+      "source_status": "QUARANTINED",
+      "identity_verification": {
+        "status": "QUARANTINED_UNCITED",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2016MNRAS.459.2806A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "FAIL_NOT_IN_AR5IV_REVIEW_BIBLIOGRAPHY"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The X-ray luminosity function of galaxies and the hot circumgalactic medium",
+          "canonical": "Searching for FUV line emission from 107 K gas in massive elliptical galaxies and galaxy clusters as a tracer of turbulent velocities"
+        },
+        {
+          "field": "doi",
+          "raw": "10.1093/mnras/stw689",
+          "canonical": "10.1093/mnras/stw822"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1511.00688",
+          "canonical": "1506.01703"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": "UNCITED_NOT_USABLE: composite identity resolves in ADS, but Anderson & Sunyaev 2016 is absent from the review bibliography"
+    },
+    {
+      "key": "REV07-P004",
+      "authors": "Aoyama S, Hou KC, Hirashita H, Nagamine K, Shimizu I",
+      "year": 2018,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Cosmological simulation with dust formation and destruction",
+      "doi": "10.1093/mnras/sty1431",
+      "arxiv": "1802.04027",
+      "ads_bibcode": "2018MNRAS.478.4905A",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Dust and Metals",
+      "boundary": "Evolution of dust and molecular gas in cosmological volumes.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018MNRAS.478.4905A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Galaxy evolution with dust and H2 - I. Cosmological simulation of dust and H2",
+          "canonical": "Cosmological simulation with dust formation and destruction"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1805.11283",
+          "canonical": "1802.04027"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P005",
+      "authors": "Asano RS, Takeuchi TT, Hirashita H, Inoue AK",
+      "year": 2013,
+      "journal": "Earth, Planets and Space",
+      "title": "Dust formation history of galaxies: A critical role of metallicity\\* for the dust mass growth by accreting materials in the interstellar medium",
+      "doi": "10.5047/eps.2012.04.014",
+      "arxiv": "1206.0817",
+      "ads_bibcode": "2013EP&S...65..213A",
+      "role": "analytic_theory",
+      "review_locator": "Dust content",
+      "boundary": "Theoretical modeling of dust destruction and growth.",
+      "source_status": "QUARANTINED",
+      "identity_verification": {
+        "status": "QUARANTINED_UNCITED",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2013EP&S...65..213A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "FAIL_NOT_IN_AR5IV_REVIEW_BIBLIOGRAPHY"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Dust Evolution in Galaxies",
+          "canonical": "Dust formation history of galaxies: A critical role of metallicity\\* for the dust mass growth by accreting materials in the interstellar medium"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1206.0817"
+        }
+      ],
+      "quarantine_reason": "UNCITED_NOT_USABLE: composite identity resolves after correction, but Asano et al. 2013 is absent from the review bibliography"
+    },
+    {
+      "key": "REV07-P006",
+      "authors": "Asplund M, Grevesse N, Sauval A, Scott P",
+      "year": 2009,
+      "journal": "Annual Review of Astronomy and Astrophysics",
+      "title": "The Chemical Composition of the Sun",
+      "doi": "10.1146/annurev.astro.46.060407.145222",
+      "arxiv": "0909.0948",
+      "ads_bibcode": "2009ARA&A..47..481A",
+      "role": "supporting_review",
+      "review_locator": "Metal Yields",
+      "boundary": "Baseline for normalizing cosmic metallicity measurements.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2009ARA&A..47..481A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "calibration",
+          "canonical": "supporting_review"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P007",
+      "authors": "Augustin R, Quiret S, Milliard B, et al.",
+      "year": 2019,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Emission from the circumgalactic medium: from cosmological zoom-in simulations to multiwavelength observables",
+      "doi": "10.1093/mnras/stz2238",
+      "arxiv": "1909.02575",
+      "ads_bibcode": "2019MNRAS.489.2417A",
+      "role": "measurement",
+      "review_locator": "Probing Baryons and Metals",
+      "boundary": "Challenges of detecting low-density gas in emission.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019MNRAS.489.2417A/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The Cosmic UV Background and the Intergalactic Medium",
+          "canonical": "Emission from the circumgalactic medium: from cosmological zoom-in simulations to multiwavelength observables"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stz2238"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1909.02575"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P008",
+      "authors": "Bahcall J, Spitzer L",
+      "year": 1969,
+      "journal": "The Astrophysical Journal",
+      "title": "Absorption Lines Produced by Galactic Halos",
+      "doi": "10.1086/180350",
+      "arxiv": null,
+      "ads_bibcode": "1969ApJ...156L..63B",
+      "role": "analytic_theory",
+      "review_locator": "Quasar Absorption",
+      "boundary": "Foundational theory of intervening gas clouds.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/1969ApJ...156L..63B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "doi",
+          "raw": "10.1086/180353",
+          "canonical": "10.1086/180350"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P009",
+      "authors": "Bauermeister A, Blitz L, Ma CP",
+      "year": 2010,
+      "journal": "The Astrophysical Journal",
+      "title": "The Gas Consumption History to Redshift 4",
+      "doi": "10.1088/0004-637X/717/1/323",
+      "arxiv": "0909.3840",
+      "ads_bibcode": "2010ApJ...717..323B",
+      "role": "measurement",
+      "review_locator": "Molecular Gas",
+      "boundary": "Universal gas depletion time and H2 density evolution.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2010ApJ...717..323B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The Cosmic Evolution of Molecular Gas Mass Density",
+          "canonical": "The Gas Consumption History to Redshift 4"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1003.1118",
+          "canonical": "0909.3840"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P010",
+      "authors": "Becker GD, Pettini M, Rafelski M",
+      "year": 2019,
+      "journal": "The Astrophysical Journal",
+      "title": "The Evolution of O I over 3.2 < z < 6.5: Reionization of the Circumgalactic Medium",
+      "doi": "10.3847/1538-4357/ab3eb5",
+      "arxiv": "1907.02983",
+      "ads_bibcode": "2019ApJ...883..163B",
+      "role": "measurement",
+      "review_locator": "Quasar Absorption",
+      "boundary": "Probing neutral gas and metals at extreme redshifts.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019ApJ...883..163B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "A High-Resolution Keck/HIRES Spectrum of the z~7.1 Quasar ULAS J1120+0641",
+          "canonical": "The Evolution of O I over 3.2 < z < 6.5: Reionization of the Circumgalactic Medium"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.3847/1538-4357/ab3eb5"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1907.02983"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P011",
+      "authors": "Becker GD, Sargent WLW, Rauch M, Calverley AP",
+      "year": 2011,
+      "journal": "The Astrophysical Journal",
+      "title": "High-redshift Metals. II. Probing Reionization Galaxies with Low-ionization Absorption Lines at Redshift Six",
+      "doi": "10.1088/0004-637X/735/2/93",
+      "arxiv": "1101.4399",
+      "ads_bibcode": "2011ApJ...735...93B",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Metals in cold T < 10^4 K gas at z > 2.5.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2011ApJ...735...93B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The Evolution of the Cosmic Ultraviolet Background and Intergalactic Medium",
+          "canonical": "High-redshift Metals. II. Probing Reionization Galaxies with Low-ionization Absorption Lines at Redshift Six"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1088/0004-637X/735/2/93"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1101.4399"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P012",
+      "authors": "Beeston RA, Wright AH, Maddox S, et al.",
+      "year": 2018,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "GAMA/H-ATLAS: the local dust mass function and cosmic density as a function of galaxy type - a benchmark for models of galaxy evolution",
+      "doi": "10.1093/mnras/sty1460",
+      "arxiv": "1712.07261",
+      "ads_bibcode": "2018MNRAS.479.1077B",
+      "role": "measurement",
+      "review_locator": "Stars",
+      "boundary": "Total metal mass locked in stars at z < 1.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018MNRAS.479.1077B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "GAMA/G10-COSMOS/3D-HST: the 0 < z < 5 cosmic star formation history and stellar mass density",
+          "canonical": "GAMA/H-ATLAS: the local dust mass function and cosmic density as a function of galaxy type - a benchmark for models of galaxy evolution"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/sty1460"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1712.07261"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P013",
+      "authors": "Bekki K",
+      "year": 2015,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Dust-regulated galaxy formation and evolution: a new chemodynamical model with live dust particles",
+      "doi": "10.1093/mnras/stv165",
+      "arxiv": "1501.05459",
+      "ads_bibcode": "2015MNRAS.449.1625B",
+      "role": "semi_analytic_model",
+      "review_locator": "Dust and Metals",
+      "boundary": "Chemical evolution models linking dust and H2.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2015MNRAS.449.1625B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Co-evolution of dust and molecular gas in galaxies",
+          "canonical": "Dust-regulated galaxy formation and evolution: a new chemodynamical model with live dust particles"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1501.07005",
+          "canonical": "1501.05459"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P014",
+      "authors": "Bera A, Kanekar N, Chengalur JN, Bagla JS",
+      "year": 2019,
+      "journal": "The Astrophysical Journal",
+      "title": "Atomic Hydrogen in Star-forming Galaxies at Intermediate Redshifts",
+      "doi": "10.3847/2041-8213/ab3656",
+      "arxiv": "1909.05905",
+      "ads_bibcode": "2019ApJ...882L...7B",
+      "role": "measurement",
+      "review_locator": "Atomic Gas",
+      "boundary": "Evolution of the HI mass function.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019ApJ...882L...7B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The Atomic Gas Mass of Galaxies at z ~ 0.35",
+          "canonical": "Atomic Hydrogen in Star-forming Galaxies at Intermediate Redshifts"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.3847/2041-8213/ab3656"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1909.05905"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P015",
+      "authors": "Berg TAM, Ellison SL, Sánchez-Ramírez R",
+      "year": 2016,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Chemical abundances of the damped Lyman α systems in the XQ-100 survey",
+      "doi": "10.1093/mnras/stw2232",
+      "arxiv": "1609.05968",
+      "ads_bibcode": "2016MNRAS.463.3021B",
+      "role": "measurement",
+      "review_locator": "Dust content",
+      "boundary": "Cosmic dust-to-gas and dust-to-metals ratio dependencies.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2016MNRAS.463.3021B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Dust depletion and extinction in damped Lyman alpha systems",
+          "canonical": "Chemical abundances of the damped Lyman α systems in the XQ-100 survey"
+        },
+        {
+          "field": "doi",
+          "raw": "10.1093/mnras/stw2189",
+          "canonical": "10.1093/mnras/stw2232"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1608.06622",
+          "canonical": "1609.05968"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P016",
+      "authors": "Berg TAM, Ellison SL, Sánchez-Ramírez R",
+      "year": 2019,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Sub-damped Lyman α systems in the XQ-100 survey - I. Identification and contribution to the cosmological H I budget",
+      "doi": "10.1093/mnras/stz2012",
+      "arxiv": "1907.07703",
+      "ads_bibcode": "2019MNRAS.488.4356B",
+      "role": "measurement",
+      "review_locator": "Metal Yields",
+      "boundary": "Ionization corrections and metallicity measurements in DLAs.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019MNRAS.488.4356B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The chemical evolution of damped Lyman alpha systems",
+          "canonical": "Sub-damped Lyman α systems in the XQ-100 survey - I. Identification and contribution to the cosmological H I budget"
+        },
+        {
+          "field": "doi",
+          "raw": "10.1093/mnras/stz1961",
+          "canonical": "10.1093/mnras/stz2012"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1907.08630",
+          "canonical": "1907.07703"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P017",
+      "authors": "Bird S, Garnett R, Ho S",
+      "year": 2017,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Statistical properties of damped Lyman-alpha systems from Sloan Digital Sky Survey DR12",
+      "doi": "10.1093/mnras/stw3246",
+      "arxiv": "1610.01165",
+      "ads_bibcode": "2017MNRAS.466.2111B",
+      "role": "analytic_theory",
+      "review_locator": "Atomic Gas",
+      "boundary": "Linking HI column density to underlying dark matter halos.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2017MNRAS.466.2111B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Predicting the neutral hydrogen content of galaxies from the dark matter",
+          "canonical": "Statistical properties of damped Lyman-alpha systems from Sloan Digital Sky Survey DR12"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stw3246"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1610.01165"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P018",
+      "authors": "Bird S, Haehnelt M, Neeleman M",
+      "year": 2015,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Reproducing the kinematics of damped Lyman α systems",
+      "doi": "10.1093/mnras/stu2542",
+      "arxiv": "1407.7858",
+      "ads_bibcode": "2015MNRAS.447.1834B",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "DLA properties derived from hydrodynamical models.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2015MNRAS.447.1834B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The properties of damped Lyman alpha systems in cosmological simulations",
+          "canonical": "Reproducing the kinematics of damped Lyman α systems"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stu2542"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1407.7858"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P019",
+      "authors": "Bocquet S, Saro A, Dolag K, Mohr JJ",
+      "year": 2016,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Halo mass function: baryon impact, fitting formulae, and implications for cluster cosmology",
+      "doi": "10.1093/mnras/stv2657",
+      "arxiv": "1502.07357",
+      "ads_bibcode": "2016MNRAS.456.2361B",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Impact of obscuration and halo selection effects.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2016MNRAS.456.2361B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Halo mass function and galaxy populations in hydrodynamical simulations",
+          "canonical": "Halo mass function: baryon impact, fitting formulae, and implications for cluster cosmology"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stv2657"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1502.07357"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P020",
+      "authors": "Bolatto AD, Wolfire M, Leroy AK",
+      "year": 2013,
+      "journal": "Annual Review of Astronomy and Astrophysics",
+      "title": "The CO-to-H2 Conversion Factor",
+      "doi": "10.1146/annurev-astro-082812-140944",
+      "arxiv": "1301.3498",
+      "ads_bibcode": "2013ARA&A..51..207B",
+      "role": "supporting_review",
+      "review_locator": "Molecular Gas",
+      "boundary": "Systematics and calibration of the X_CO conversion factor.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2013ARA&A..51..207B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "calibration",
+          "canonical": "supporting_review"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P021",
+      "authors": "Bolmer J, Ledoux C, Wiseman P, et al.",
+      "year": 2019,
+      "journal": "Astronomy and Astrophysics",
+      "title": "Evidence for diffuse molecular gas and dust in the hearts of gamma-ray burst host galaxies. Unveiling the nature of high-redshift damped Lyman-α systems",
+      "doi": "10.1051/0004-6361/201834422",
+      "arxiv": "1810.06403",
+      "ads_bibcode": "2019A&A...623A..43B",
+      "role": "measurement",
+      "review_locator": "Dust content",
+      "boundary": "Probing dust via bright GRB background sources.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019A&A...623A..43B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Dust extinction in gamma-ray burst sightlines",
+          "canonical": "Evidence for diffuse molecular gas and dust in the hearts of gamma-ray burst host galaxies. Unveiling the nature of high-redshift damped Lyman-α systems"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1051/0004-6361/201834422"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1810.06403"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P022",
+      "authors": "Bouché N, Dekel A, Genzel R, et al.",
+      "year": 2010,
+      "journal": "The Astrophysical Journal",
+      "title": "The Impact of Cold Gas Accretion Above a Mass Floor on Galaxy Scaling Relations",
+      "doi": "10.1088/0004-637X/718/2/1001",
+      "arxiv": "0912.1858",
+      "ads_bibcode": "2010ApJ...718.1001B",
+      "role": "semi_analytic_model",
+      "review_locator": "Baryon cycle",
+      "boundary": "Net accretion driving the star formation history.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2010ApJ...718.1001B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P023",
+      "authors": "Bouché N, Finley H, Schroetter I",
+      "year": 2016,
+      "journal": "The Astrophysical Journal",
+      "title": "Possible Signatures of a Cold-flow Disk from MUSE Using a z ∼ 1 Galaxy-Quasar Pair toward SDSS J1422-0001",
+      "doi": "10.3847/0004-637X/820/2/121",
+      "arxiv": "1601.07567",
+      "ads_bibcode": "2016ApJ...820..121B",
+      "role": "measurement",
+      "review_locator": "Baryon cycle",
+      "boundary": "Kinematic mapping of cold gas inflows.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2016ApJ...820..121B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Signature of a highly accreting cold gas stream",
+          "canonical": "Possible Signatures of a Cold-flow Disk from MUSE Using a z ∼ 1 Galaxy-Quasar Pair toward SDSS J1422-0001"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1601.07548",
+          "canonical": "1601.07567"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P024",
+      "authors": "Bouché N, Lehnert MD, Aguirre A, Péroux C, Bergeron J",
+      "year": 2007,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "The missing metals problem - III. How many metals are expelled from galaxies?",
+      "doi": "10.1111/j.1365-2966.2007.11740.x",
+      "arxiv": "astro-ph/0703509",
+      "ads_bibcode": "2007MNRAS.378..525B",
+      "role": "measurement",
+      "review_locator": "Baryon cycle",
+      "boundary": "Constraining galactic outflow kinematics.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2007MNRAS.378..525B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The kinematic signature of galaxy-scale outflows in the circumgalactic medium",
+          "canonical": "The missing metals problem - III. How many metals are expelled from galaxies?"
+        },
+        {
+          "field": "doi",
+          "raw": "10.1111/j.1365-2966.2007.11867.x",
+          "canonical": "10.1111/j.1365-2966.2007.11740.x"
+        },
+        {
+          "field": "arxiv",
+          "raw": "0704.1454",
+          "canonical": "astro-ph/0703509"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P025",
+      "authors": "Bouché N, Lehnert MD, Péroux C",
+      "year": 2005,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "The missing metal problem - I. How many metals are in submillimetre galaxies?",
+      "doi": "10.1111/j.1365-2966.2005.09570.x",
+      "arxiv": "astro-ph/0509005",
+      "ads_bibcode": "2005MNRAS.364..319B",
+      "role": "measurement",
+      "review_locator": "Missing Metals",
+      "boundary": "SMGs metal contribution and census closure.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2005MNRAS.364..319B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "doi",
+          "raw": "10.1111/j.1365-2966.2005.09559.x",
+          "canonical": "10.1111/j.1365-2966.2005.09570.x"
+        },
+        {
+          "field": "arxiv",
+          "raw": "astro-ph/0508655",
+          "canonical": "astro-ph/0509005"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P026",
+      "authors": "Bouché N, Lehnert MD, Péroux C",
+      "year": 2006,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "The missing metals problem - II. How many metals are in z~= 2.2 galaxies?",
+      "doi": "10.1111/j.1745-3933.2005.00130.x",
+      "arxiv": "astro-ph/0511698",
+      "ads_bibcode": "2006MNRAS.367L..16B",
+      "role": "measurement",
+      "review_locator": "Missing Metals",
+      "boundary": "Phase partitioning of early universe metals.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2006MNRAS.367L..16B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The missing metal problem - II.",
+          "canonical": "The missing metals problem - II. How many metals are in z~= 2.2 galaxies?"
+        },
+        {
+          "field": "doi",
+          "raw": "10.1111/j.1745-3933.2006.00139.x",
+          "canonical": "10.1111/j.1745-3933.2005.00130.x"
+        },
+        {
+          "field": "arxiv",
+          "raw": "astro-ph/0511846",
+          "canonical": "astro-ph/0511698"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P027",
+      "authors": "Bouché N, Murphy M, Péroux C",
+      "year": 2012,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Enriched haloes at redshift z = 2 with no star formation: implications for accretion and wind scenarios",
+      "doi": "10.1111/j.1365-2966.2011.19500.x",
+      "arxiv": "1107.4618",
+      "ads_bibcode": "2012MNRAS.419....2B",
+      "role": "measurement",
+      "review_locator": "Atomic Gas",
+      "boundary": "Cosmological incidence and evolution of DLAs.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2012MNRAS.419....2B/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The cosmic evolution of the DLA incidence",
+          "canonical": "Enriched haloes at redshift z = 2 with no star formation: implications for accretion and wind scenarios"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1111/j.1365-2966.2011.19500.x"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1107.4618"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P028",
+      "authors": "Carilli CL, Walter F",
+      "year": 2013,
+      "journal": "Annual Review of Astronomy and Astrophysics",
+      "title": "Cool Gas in High-Redshift Galaxies",
+      "doi": "10.1146/annurev-astro-082812-140953",
+      "arxiv": "1301.0371",
+      "ads_bibcode": "2013ARA&A..51..105C",
+      "role": "supporting_review",
+      "review_locator": "Molecular Gas",
+      "boundary": "Cosmic density of molecular gas over time.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2013ARA&A..51..105C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "supporting_review"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P029",
+      "authors": "Cashman FH, Kulkarni VP, Kisielius R, Ferland GJ, Bogdanovich P",
+      "year": 2017,
+      "journal": "The Astrophysical Journal Supplement Series",
+      "title": "Atomic Data Revisions for Transitions Relevant to Observations of Interstellar, Circumgalactic, and Intergalactic Matter",
+      "doi": "10.3847/1538-4365/aa6d84",
+      "arxiv": "1701.04847",
+      "ads_bibcode": "2017ApJS..230....8C",
+      "role": "calibration",
+      "review_locator": "Quasar Absorption",
+      "boundary": "Atomic data updates for precise ion column measurements.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2017ApJS..230....8C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "New Atomic Data for Extragalactic Spectroscopy",
+          "canonical": "Atomic Data Revisions for Transitions Relevant to Observations of Interstellar, Circumgalactic, and Intergalactic Matter"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.3847/1538-4365/aa6d84"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1701.04847"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P030",
+      "authors": "Cen R, Ostriker JP",
+      "year": 1999,
+      "journal": "The Astrophysical Journal",
+      "title": "Where Are the Baryons?",
+      "doi": "10.1086/306949",
+      "arxiv": "astro-ph/9806281",
+      "ads_bibcode": "1999ApJ...514....1C",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Foundational prediction of the Warm-Hot Intergalactic Medium.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/1999ApJ...514....1C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P031",
+      "authors": "Chabrier G",
+      "year": 2003,
+      "journal": "Publications of the Astronomical Society of the Pacific",
+      "title": "Galactic Stellar and Substellar Initial Mass Function",
+      "doi": "10.1086/376392",
+      "arxiv": "astro-ph/0304382",
+      "ads_bibcode": "2003PASP..115..763C",
+      "role": "calibration",
+      "review_locator": "Metal Yields",
+      "boundary": "Calibration standard for IMF and stellar metal yield expectations.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2003PASP..115..763C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P032",
+      "authors": "Chang TC, Pen UL, Bandura K, Peterson JB",
+      "year": 2010,
+      "journal": "Nature",
+      "title": "An intensity map of hydrogen 21-cm emission at redshift z~0.8",
+      "doi": "10.1038/nature09187",
+      "arxiv": null,
+      "ads_bibcode": "2010Natur.466..463C",
+      "role": "measurement",
+      "review_locator": "Atomic Gas",
+      "boundary": "Line intensity mapping of diffuse cosmic HI.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2010Natur.466..463C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "An intensity map of hydrogen 21-cm emission at redshift z ~ 0.8",
+          "canonical": "An intensity map of hydrogen 21-cm emission at redshift z~0.8"
+        },
+        {
+          "field": "arxiv",
+          "raw": "1007.3709",
+          "canonical": null
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P033",
+      "authors": "Chen HW, Gauthier JR, Sharon K",
+      "year": 2014,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Spatially resolved velocity maps of halo gas around two intermediate-redshift galaxies",
+      "doi": "10.1093/mnras/stt2288",
+      "arxiv": "1312.0016",
+      "ads_bibcode": "2014MNRAS.438.1435C",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Baryon and metal content in extended massive halos.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2014MNRAS.438.1435C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The circumgalactic medium of massive galaxies",
+          "canonical": "Spatially resolved velocity maps of halo gas around two intermediate-redshift galaxies"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stt2288"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1312.0016"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P034",
+      "authors": "Chen HW, Johnson SD, Zahedy FS, Rauch M, Mulchaey JS",
+      "year": 2017,
+      "journal": "The Astrophysical Journal",
+      "title": "Gauging Metallicity of Diffuse Gas under an Uncertain Ionizing Radiation Field",
+      "doi": "10.3847/2041-8213/aa762d",
+      "arxiv": "1706.04645",
+      "ads_bibcode": "2017ApJ...842L..19C",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Heavy elements located in the dense CGM.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2017ApJ...842L..19C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Mapping the Circumgalactic Medium of Quasar Host Galaxies",
+          "canonical": "Gauging Metallicity of Diffuse Gas under an Uncertain Ionizing Radiation Field"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.3847/2041-8213/aa762d"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1706.04645"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P035",
+      "authors": "Chisari NE, Richardson MLA, Devriendt J",
+      "year": 2018,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "The impact of baryons on the matter power spectrum from the Horizon-AGN cosmological hydrodynamical simulation",
+      "doi": "10.1093/mnras/sty2093",
+      "arxiv": "1801.08559",
+      "ads_bibcode": "2018MNRAS.480.3962C",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Baryon cycle",
+      "boundary": "Simulation phase partition versus observations.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018MNRAS.480.3962C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The impact of baryon physics on the dark matter distribution",
+          "canonical": "The impact of baryons on the matter power spectrum from the Horizon-AGN cosmological hydrodynamical simulation"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/sty2093"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1801.08559"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P036",
+      "authors": "Chiu I, Mohr JJ, McDonald M",
+      "year": 2018,
+      "journal": "MNRAS",
+      "title": "Baryon content in a sample of 91 galaxy clusters selected by the South Pole Telescope at 0.2 <z < 1.25",
+      "doi": null,
+      "arxiv": "1711.00917",
+      "ads_bibcode": "2018MNRAS.478.3072C",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Intracluster gas mass fractions.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018MNRAS.478.3072C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Baryon content and scaling relations in galaxy clusters",
+          "canonical": "Baryon content in a sample of 91 galaxy clusters selected by the South Pole Telescope at 0.2 <z < 1.25"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1711.00917"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P037",
+      "authors": "Christensen L, Møller P, Fynbo JPU, Zafar T",
+      "year": 2014,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "Verifying the mass-metallicity relation in damped Lyman α selected galaxies at 0.1 < z < 3.2",
+      "doi": "10.1093/mnras/stu1726",
+      "arxiv": "1404.6529",
+      "ads_bibcode": "2014MNRAS.445..225C",
+      "role": "measurement",
+      "review_locator": "Dust and Metals",
+      "boundary": "Empirical scaling relations in high-z neutral gas.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2014MNRAS.445..225C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "The mass-metallicity relation for damped Lyman alpha galaxies",
+          "canonical": "Verifying the mass-metallicity relation in damped Lyman α selected galaxies at 0.1 < z < 3.2"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1093/mnras/stu1726"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1404.6529"
+        },
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P038",
+      "authors": "Churchill CW, Vander Vliet JR, Trujillo-Gomez S, Kacprzak GG, Klypin A",
+      "year": 2015,
+      "journal": "The Astrophysical Journal",
+      "title": "Direct Insights Into Observational Absorption Line Analysis Methods of the Circumgalactic Medium Using Cosmological Simulations",
+      "doi": "10.1088/0004-637X/802/1/10",
+      "arxiv": "1409.0914",
+      "ads_bibcode": "2015ApJ...802...10C",
+      "role": "hydrodynamic_simulation",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Ionization modeling of CGM metal absorbers.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2015ApJ...802...10C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "title",
+          "raw": "Mg II Absorption through the Halos of Simulated Galaxies",
+          "canonical": "Direct Insights Into Observational Absorption Line Analysis Methods of the Circumgalactic Medium Using Cosmological Simulations"
+        },
+        {
+          "field": "doi",
+          "raw": null,
+          "canonical": "10.1088/0004-637X/802/1/10"
+        },
+        {
+          "field": "arxiv",
+          "raw": null,
+          "canonical": "1409.0914"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P039",
+      "authors": "Macquart JP, Prochaska JX, McQuinn M, et al.",
+      "year": 2020,
+      "journal": "Nature",
+      "title": "A census of baryons in the Universe from localized fast radio bursts",
+      "doi": "10.1038/s41586-020-2300-2",
+      "arxiv": "2005.13161",
+      "ads_bibcode": "2020Natur.581..391M",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "FRB dispersion quantifying highly ionized missing baryons.",
+      "source_status": "QUARANTINED",
+      "identity_verification": {
+        "status": "QUARANTINED_UNCITED",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2020Natur.581..391M/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "FAIL_NOT_IN_AR5IV_REVIEW_BIBLIOGRAPHY"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": "UNCITED_NOT_USABLE: Macquart et al. 2020 is absent from the authors' 2020 draft bibliography"
+    },
+    {
+      "key": "REV07-P040",
+      "authors": "Tumlinson J, Peeples MS, Werk JK",
+      "year": 2017,
+      "journal": "Annual Review of Astronomy and Astrophysics",
+      "title": "The Circumgalactic Medium",
+      "doi": "10.1146/annurev-astro-091916-055240",
+      "arxiv": "1709.09180",
+      "ads_bibcode": "2017ARA&A..55..389T",
+      "role": "supporting_review",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Foundational mapping of multi-phase CGM gas.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2017ARA&A..55..389T/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "review_synthesis",
+          "canonical": "supporting_review"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P041",
+      "authors": "Cooke R, Pettini M, Steidel CC",
+      "year": 2018,
+      "journal": "The Astrophysical Journal",
+      "title": "One Percent Determination of the Primordial Deuterium Abundance",
+      "doi": "10.3847/1538-4357/aaab53",
+      "arxiv": "1710.11129",
+      "ads_bibcode": "2018ApJ...855..102C",
+      "role": "measurement",
+      "review_locator": "Cosmic Inventories",
+      "boundary": "Absolute benchmark for Omega_baryon via nucleosynthesis.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018ApJ...855..102C/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_AUTHOR_YEAR_JOURNAL_PAGE"
+      },
+      "raw_tuple_corrected": true,
+      "corrections": [
+        {
+          "field": "role",
+          "raw": "observation",
+          "canonical": "measurement"
+        }
+      ],
+      "quarantine_reason": null
+    },
+    {
+      "key": "REV07-P042",
+      "authors": "Planck Collaboration, Ade PAR, Aghanim N, et al.",
+      "year": 2016,
+      "journal": "Astronomy & Astrophysics",
+      "title": "Planck 2015 results. XIII. Cosmological parameters",
+      "doi": "10.1051/0004-6361/201525830",
+      "arxiv": "1502.01589",
+      "ads_bibcode": "2016A&A...594A..13P",
+      "role": "measurement",
+      "review_locator": "Context and cosmic baryon density",
+      "boundary": "CMB-anisotropy cosmological parameter inference; supplies the total baryon-density normalization rather than a collapsed-phase census.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2016A&A...594A..13P/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    },
+    {
+      "key": "REV07-P043",
+      "authors": "Driver SP, Andrews SK, da Cunha E, et al.",
+      "year": 2018,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "GAMA/G10-COSMOS/3D-HST: the 0 < z < 5 cosmic star formation history, stellar-mass, and dust-mass densities",
+      "doi": "10.1093/mnras/stx2728",
+      "arxiv": "1710.06628",
+      "ads_bibcode": "2018MNRAS.475.2891D",
+      "role": "measurement",
+      "review_locator": "Condensed baryon, stellar-metal, and dust censuses",
+      "boundary": "SED-model-dependent stellar, star-formation, and dust mass densities over 0 < z < 5 under a consistent IMF and energy-balance model.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2018MNRAS.475.2891D/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    },
+    {
+      "key": "REV07-P044",
+      "authors": "Noterdaeme P, Laursen P, Petitjean P, et al.",
+      "year": 2012,
+      "journal": "Astronomy & Astrophysics",
+      "title": "Discovery of a compact gas-rich damped Lyman-alpha galaxy at z = 2.2: evidence of a starburst-driven outflow",
+      "doi": "10.1051/0004-6361/201118691",
+      "arxiv": "1202.0280",
+      "ads_bibcode": "2012A&A...540A..63N",
+      "role": "measurement",
+      "review_locator": "Neutral gas and absorber-selected galaxies",
+      "boundary": "A single extremely high-column-density DLA counterpart at z = 2.207; not a population-wide neutral-gas census.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2012A&A...540A..63N/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    },
+    {
+      "key": "REV07-P045",
+      "authors": "Peroux C, McMahon RG, Storrie-Lombardi LJ, Irwin MJ",
+      "year": 2003,
+      "journal": "Monthly Notices of the Royal Astronomical Society",
+      "title": "The evolution of Omega_HI and the epoch of formation of damped Lyman alpha absorbers",
+      "doi": "10.1111/j.1365-2966.2003.07129.x",
+      "arxiv": "astro-ph/0107045",
+      "ads_bibcode": "2003MNRAS.346.1103P",
+      "role": "measurement",
+      "review_locator": "Neutral-gas mass density and column-density distribution",
+      "boundary": "DLA and Lyman-limit absorber column-density statistics; conclusions depend on absorber thresholds and extrapolation of f(N,z).",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2003MNRAS.346.1103P/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    },
+    {
+      "key": "REV07-P046",
+      "authors": "Decarli R, Walter F, Gonzalez-Lopez J, et al.",
+      "year": 2019,
+      "journal": "The Astrophysical Journal",
+      "title": "The ALMA Spectroscopic Survey in the HUDF: CO Luminosity Functions and the Molecular Gas Content of Galaxies through Cosmic History",
+      "doi": "10.3847/1538-4357/ab30fe",
+      "arxiv": "1903.09164",
+      "ads_bibcode": "2019ApJ...882..138D",
+      "role": "measurement",
+      "review_locator": "Cosmic molecular-gas density",
+      "boundary": "Blind CO line survey in the HUDF; molecular masses depend on excitation corrections and the adopted CO-to-H2 conversion factor.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019ApJ...882..138D/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    },
+    {
+      "key": "REV07-P047",
+      "authors": "Wotta CB, Lehner N, Howk JC, et al.",
+      "year": 2019,
+      "journal": "The Astrophysical Journal",
+      "title": "The COS CGM Compendium. II. Metallicities of the Partial and Lyman Limit Systems at z <= 1",
+      "doi": "10.3847/1538-4357/aafb74",
+      "arxiv": "1811.10654",
+      "ads_bibcode": "2019ApJ...872...81W",
+      "role": "measurement",
+      "review_locator": "Ionized CGM metallicity distribution",
+      "boundary": "HI-selected pLLSs and LLSs at z <= 1; metallicities depend on photoionization modeling and the ionizing radiation field.",
+      "source_status": "PASS",
+      "identity_verification": {
+        "status": "PASS_ADS_DIRECT",
+        "ads_url": "https://ui.adsabs.harvard.edu/abs/2019ApJ...872...81W/abstract",
+        "ads_direct_status": "PASS",
+        "review_membership": "PASS_AR5IV_EXACT_REFERENCE_BLOCK"
+      },
+      "raw_tuple_corrected": false,
+      "corrections": [],
+      "quarantine_reason": null,
+      "added_during_curated_reconciliation": true
+    }
+  ]
+}

@@ -1,0 +1,101 @@
+[
+  {
+    "model": "nomic-embed-text",
+    "backend": "ollama",
+    "dim": 768,
+    "recall@10": 0.5886,
+    "recall@20": 0.4924,
+    "recall@100": 0.5532,
+    "mrr": 0.8879,
+    "n": 120,
+    "sec": 61
+  },
+  {
+    "model": "qwen3-embedding-0.6b",
+    "backend": "ollama",
+    "dim": 1024,
+    "recall@10": 0.6392,
+    "recall@20": 0.5479,
+    "recall@100": 0.6132,
+    "mrr": 0.8954,
+    "n": 120,
+    "sec": 193
+  },
+  {
+    "model": "qwen3-embedding-4b",
+    "backend": "ollama",
+    "dim": 2560,
+    "recall@10": 0.691,
+    "recall@20": 0.6098,
+    "recall@100": 0.6768,
+    "mrr": 0.9406,
+    "n": 120,
+    "sec": 979
+  },
+  {
+    "model": "qwen3-embedding-8b",
+    "backend": "ollama",
+    "dim": 4096,
+    "recall@10": 0.7042,
+    "recall@20": 0.6213,
+    "recall@100": 0.7069,
+    "mrr": 0.9468,
+    "n": 120,
+    "sec": 1716
+  },
+  {
+    "model": "bge-m3",
+    "backend": "ollama",
+    "dim": 1024,
+    "recall@10": 0.5618,
+    "recall@20": 0.4866,
+    "recall@100": 0.5275,
+    "mrr": 0.861,
+    "n": 120,
+    "sec": 138
+  },
+  {
+    "model": "snowflake-arctic-embed2",
+    "backend": "ollama",
+    "dim": 1024,
+    "recall@10": 0.6043,
+    "recall@20": 0.5097,
+    "recall@100": 0.5716,
+    "mrr": 0.907,
+    "n": 120,
+    "sec": 143
+  },
+  {
+    "model": "mxbai-embed-large",
+    "backend": "ollama",
+    "dim": 1024,
+    "recall@10": 0.6097,
+    "recall@20": 0.518,
+    "recall@100": 0.5957,
+    "mrr": 0.9091,
+    "n": 112,
+    "sec": 193
+  },
+  {
+    "model": "scincl",
+    "backend": "st",
+    "dim": 768,
+    "recall@10": 0.4991,
+    "recall@20": 0.4184,
+    "recall@100": 0.4953,
+    "mrr": 0.8263,
+    "n": 120,
+    "sec": 93
+  },
+  {
+    "model": "specter2-base",
+    "backend": "st",
+    "dim": 768,
+    "recall@10": 0.3281,
+    "recall@20": 0.2582,
+    "recall@100": 0.3233,
+    "mrr": 0.6946,
+    "n": 120,
+    "sec": 86
+  }
+]

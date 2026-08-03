@@ -1,0 +1,2739 @@
+MNRAS 000, 1–22 (2019)
+Preprint 29 June 2020
+Compiled using MNRAS LATEX style ﬁle v3.0
+Galaxy Cold Gas Contents in Modern Cosmological Hydrodynamic
+Simulations
+Romeel Davé,1,2,3 Robert A. Crain,4 Adam R. H. Stevens,5,6 Desika Narayanan,7,8,9
+Amelie Saintonge,10 Barbara Catinella,5,6 Luca Cortese5,6
+1 Institute for Astronomy, Royal Observatory, Univ. of Edinburgh, Edinburgh EH9 3HJ, UK
+2 University of the Western Cape, Bellville, Cape Town 7535, South Africa
+3 South African Astronomical Observatories, Observatory, Cape Town 7925, South Africa
+4 Astrophysics Research Institute, Liverpool John Moores University, 146 Brownlow Hill, Liverpool, L3 5RF
+5 International Centre for Radio Astronomy Research, The University of Western Australia, Crawley, WA 6009, Australia
+6 ARC Centre of Excellence for All Sky Astrophysics in 3 Dimensions (ASTRO 3D), Australia
+7 Department of Astronomy, University of Florida, 211 Bryant Space Sciences Center, Gainesville, FL, USA
+8 University of Florida Informatics Institute, 432 Newell Drive, CISE Bldg E251, Gainesville, FL, USA
+9 Cosmic Dawn Center at the Niels Bohr Institute, University of Copenhagen and DTU-Space, Technical University of Denmark
+10 Department of Physics and Astronomy, University College London, Gower Street, London WC1E 6BT, UK
+Accepted XXX. Received YYY; in original form ZZZ
+ABSTRACT
+We present a comparison of galaxy atomic and molecular gas properties in three recent cos-
+mological hydrodynamic simulations, Simba, EAGLE, and IllustrisTNG, versus observations
+from z ∼0 −2. These simulations all rely on similar sub-resolution prescriptions to model
+cold interstellar gas which they cannot represent directly, and qualitatively reproduce the
+observed z ≈0 H i and H2 mass functions (HIMF, H2MF), CO(1-0) luminosity functions
+(COLF), and gas scaling relations versus stellar mass, speciﬁc star formation rate, and stellar
+surface density µ∗, with some quantitative diﬀerences. To compare to the COLF, we apply an
+H2-to-CO conversion factor to the simulated galaxies based on their average molecular sur-
+face density and metallicity, yielding substantial variations in αCO and signiﬁcant diﬀerences
+between models. Using this, predicted z = 0 COLFs agree better with data than predicted
+H2MFs. Out to z ∼2, EAGLE’s and Simba’s HIMF and COLF strongly increase, while
+IllustrisTNG’s HIMF declines and COLF evolves slowly. EAGLE and Simba reproduce high
+LCO1−0 galaxies at z ∼1 −2 as observed, owing partly to a median αCO(z = 2) ∼1 versus
+αCO(z = 0) ∼3. Examining H i, H2, and CO scaling relations, their trends with M∗are broadly
+reproduced in all models, but EAGLE yields too little H i in green valley galaxies, IllustrisTNG
+and Simba overproduce cold gas in massive galaxies, and Simba overproduces molecular gas
+in small systems. Using Simba variants that exclude individual AGN feedback modules, we
+ﬁnd that Simba’s AGN jet feedback is primarily responsible by lowering cold gas contents
+from z ∼1 →0 by suppressing cold gas in M∗≳1010M⊙galaxies, while X-ray feedback
+suppresses the formation of high-µ∗systems.
+Key words: galaxies: formation, galaxies: evolution, methods: N-body simulations
+1
+INTRODUCTION
+Galaxies are made up of stars, gas, dust, black holes, and dark
+matter. Of those, stars represent the most straightforwardly visible
+component, and so have received the most observational and the-
+oretical attention. But in the modern baryon cycling paradigm of
+galaxy evolution, it is the exchange of gas between the interstellar
+medium (ISM) of galaxies and their surrounding circum-galactic
+medium (CGM) via inﬂows, outﬂows, and recycling that primarily
+govern how galaxies form and evolve (Tumlinson et al. 2017). As
+such it is becoming clear that understanding the gas within and
+around galaxies is crucial for a full picture of galaxy formation and
+evolution.
+Comprehensive observations of gas in galaxies are challenging
+because gas is typically diﬀuse, multi-phase, and its emission is
+often best traced in less accessible portions of the electromagnetic
+spectrum. For instance, molecular gas (primarily H2) is canonically
+traced via heavy element molecular emission lines in the millimetre
+regime; atomic gas is most straightforwardly traced as radio 21-cm
+emission; ionised gas appears as ultraviolet and optical emission
+© 2019 The Authors
+arXiv:2002.07226v2  [astro-ph.GA]  26 Jun 2020
+
+
+2
+Davé et al.
+lines; and gas at high temperatures is mostly evident via X-ray
+emission. Assembling observations of these various gas phases into
+a coherent scenario for the role of gas in galaxy evolution is an
+important goal for current models of galaxy evolution.
+Within the interstellar medium (ISM) of star-forming galaxies,
+the dominant gas phases are cold (T ≲100 K) and warm (T ∼103−
+104 K), best traced by molecular and atomic hydrogen, respectively.
+Recent advances in observations of molecular and atomic gas have
+opened up new windows on understanding the role of ISM gas
+in galaxy evolution. This gas not only provides the reservoir for
+new star formation, but also contains strong signatures of feedback
+processes from both star formation (SF) and active galactic nuclei
+(AGN). Hence it is important to situate ISM gas in and around
+galaxies within the context of hierarchical galaxy formation.
+Cosmological gas dynamical simulations provide a compre-
+hensive approach towards elucidating the connection between ISM
+gas, star formation, and feedback. Modern simulations now include
+sophisticated models for star formation and feedback processes, and
+generally do a good job of reproducing the observed evolution of the
+stellar component, including suppressing low-mass galaxy growth
+via stellar feedback and producing massive quenched galaxies via
+AGN feedback (Somerville & Davé 2015). Simulations such as
+EAGLE (Schaye et al. 2015), IllustrisTNG (Pillepich et al. 2018a),
+and Simba (Davé et al. 2019) all produce stellar mass functions in
+reasonable agreement with observations over cosmic time, showing
+a shallow faint-end slope and a truncation at high masses coinci-
+dent with the onset of a quiescent galaxy population. Despite this
+concordance, the detailed physical models for sub-grid processes
+such as star formation and feedback implemented in each model are
+markedly diﬀerent. Hence discrimination between such simulations
+requires comparing to data beyond stellar masses and stellar growth
+rates.
+Emerging observations of cold ISM gas provide a new regime
+for testing galaxy formation models. Early simulations demonstrated
+a clear connection between SF-driven feedback and the cold gas con-
+tents of galaxies. For instance, Davé et al. (2011) showed, perhaps
+counter-intuitively, that increasing the strength of galactic outﬂows
+results in an increased gas fraction at a a ﬁxed stellar mass in galax-
+ies; while the cold gas mass at a given halo mass is lower, the stellar
+mass is reduced even further (Crain et al. 2017). The Mufasa sim-
+ulation used an improved model for SF feedback and obtained good
+agreement with observations available at the time (Davé et al. 2017).
+EAGLE (Schaye et al. 2015; Crain et al. 2015) has been success-
+ful in reproducing a wide range of galaxy properties, and has been
+used to investigate the origin of H i in galaxies (Crain et al. 2017).
+IllustrisTNG has been shown to broadly capture many observed
+cold-gas statistics of galaxies, including trends with galaxy envi-
+ronment, but some curious features in the gas content of massive
+galaxies that are likely related to AGN feedback remain in ten-
+sion with observations (Diemer et al. 2018; Stevens et al. 2019a).
+Despite the increased uncertainty with modeling the observational
+characteristics of gas in simulated galaxies, and the limited resolu-
+tion that precludes direct modeling of many detailed ISM processes
+in cosmological volumes, these results highlight how cold gas ob-
+servations could potentially provide a valuable testbed for modern
+galaxy formation models.
+Observations of cold gas components within galaxies have also
+matured in recent years. For atomic hydrogen, large blind H i surveys
+such as the H i Parkes All-Sky Survey (HIPASS; Barnes et al. 2001;
+Meyer et al. 2004; Wong et al. 2006) and the Arecibo Legacy Fast
+ALFA survey (ALFALFA; Giovanelli et al. 2005; Haynes et al.
+2018) characterised the properties of H i-selected galaxies over a
+wide area, but since these galaxies were selected by their H i mass,
+this meant that these surveys tended to preferentially detect H i-rich
+systems (Catinella et al. 2012). In order to connect to models, it
+is more optimal to have a survey that selects on a quantity that
+is more robustly predicted in models. Ideally, this is stellar mass,
+since it is the observation that models are most commonly tuned to
+reproduce, enabling a equal-footing comparison between simulation
+predictions.
+The GALEX Arecibo SDSS Survey (GASS; Catinella et al.
+2010) was pioneering in that it measured H i contents for a stel-
+lar mass selected sample from the Sloan Digital Sky Survey with
+M∗≳1010M⊙, using Arecibo. GASS was able to statistically
+quantify or place limits on H i-poor galaxies, which become in-
+creasingly commonplace towards higher masses. To expand the
+dynamic range, the GASS-Low survey was done to extend the com-
+pleteness down to M∗≳109M⊙. The aggregate survey, known
+as extended GASS (xGASS), thus provides H i contents and up-
+per limits for a representative sample of nearly 1200 galaxies with
+109 < M∗< 1011.5M⊙(Catinella et al. 2018).
+Molecular gas measurements have likewise made signiﬁcant
+progress in recent years, typically via CO surveys. As a complement
+to xGASS, the xCOLD GASS survey (Saintonge et al. 2011, 2017)
+provided CO(1-0) and CO(2-1) measurements for over 500 of the
+xGASS-observed galaxies. As with xGASS, the careful selection
+from SDSS enabled reconstruction of a volume-limited sample.
+xGASS and xCOLD GASS thus provide a benchmark constraint
+for modern cosmological galaxy formation models, with a well-
+speciﬁed selection function that allows cleaner model–data com-
+parisons, and comprehensive ancillary data that enables tests of the
+relationship between the cold gas and other components of galaxies.
+Moving to higher redshifts, H i surveys are currently quite lim-
+ited (Catinella & Cortese 2015; Fernández et al. 2016), though for
+example the recently begun LADUMA survey on MeerKAT aims
+to measure H i directly out to z ≳1 (Blyth et al. 2016). CO surveys
+at higher redshifts meanwhile have progressed substantially. The pi-
+oneering Plateau de Bure HIgh-z Blue Sequence Survey (PHIBBS)
+survey was able to study the molecular content of a well-studied
+sample including internal kinematics (Tacconi et al. 2013) to z ∼2,
+but this was not designed to sample a representative volume. The
+recent CO Luminosity Density at High-z (COLDz) survey using
+the Jansky Very Large Array (Pavesi et al. 2018) and the Atacama
+Large Millimetre Array (ALMA) SPECtroscopic Survey (ASPECS)
+in the Hubble Ultra Deep Field (Aravena et al. 2019) have provided
+a more statistical characterisation of the molecular gas contents of
+galaxies out to z ∼2, albeit with limited samples. Given that such
+high redshift cold gas observations are set to improve dramatically
+in the next few years, the time is ripe to provide a snapshot view
+of how modern galaxy formation simulations that are successful in
+reproducing stellar properties fare against available cold gas obser-
+vations.
+This paper compares the predictions from three recent cos-
+mological hydrodynamic simulations, namely Simba, EAGLE, and
+IllustrisTNG, to ALFALFA, xGASS, and xCOLD GASS obser-
+vations at low redshifts, and ASPECS and COLDz data at high
+redshifts. The primary purpose is to assess the range of predictions
+among state-of-the-art hydrodynamic models in galaxy cold gas
+contents, and to provide preliminary comparisons to observations. A
+proper comparison would involve mimicking details observational
+selection eﬀects for each survey, which we leave for future work;
+here we take extant simulation predictions for EAGLE and Illus-
+trisTNG, add Simba predictions, and compare to data at face value.
+We examine H i and H2 contents that are more directly predicted in
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+3
+these simulations, along with the CO(1-0) luminosity determined
+via a conversion factor following the recipe based on merger simula-
+tions and CO radiative transfer by Narayanan et al. (2012). We ﬁnd
+substantial variations among current models in their cold gas pre-
+dictions, with all models qualitatively reproducing the broad trends
+but no model quantitatively reproducing all the observations.
+This paper is organised as follows. In §2 we brieﬂy recap the
+simulations and key observations used in this work. In §3 we ﬁrst
+compare stellar properties to show that they are similar among our
+simulations, and then present our comparisons from z = 0 −2 for
+the H i and H2 mass functions, the H2-to-CO conversion factor, the
+CO(1-0) luminosity functions, and the gas content scaling relations
+at z = 0, all compared to a range of relevant observations focused
+on xGASS and xCOLD GASS at z ∼0 along with other recent
+surveys from z ∼0 −2. We further examine diﬀerent variants of
+AGN feedback models within Simba to better understand the physics
+driving the evolution of cold gas mass functions. Finally, in §4 we
+summarise our results.
+2
+SIMULATIONS & OBSERVATIONS
+In this work we employ the Simba EAGLE, and IllustrisTNG sim-
+ulations, and will compare these to the xGASS and xCOLD GASS
+data sets. Here we brieﬂy review these simulations and observations.
+Beyond brieﬂy describing each simulation’s input physics, we
+will focus on each one’s procedure for partitioning gas into ionised,
+atomic, and molecular phases. As cosmological simulations, each of
+these models has a spatial resolution of ∼1kpc, which is insuﬃcient
+to directly model physical processes giving rise to the cold ISM
+phase. Even the onset to self-shielding is not done self-consistently,
+since this would require radiative transfer, which has a prohibitive
+computational cost. Instead, each model employs a set of established
+but approximate sub-grid prescriptions in order to determine the
+atomic and molecular fractions of dense gas. The prescription for
+self-shielding to form neutral gas is essentially the same among
+these models, while that for forming molecular gas is not identical
+but still broadly similar.
+2.1
+Simba
+Simba (Davé et al. 2019),is the successor to the Mufasa simula-
+tion (Davé et al. 2016), which was run using a modiﬁed version of
+the gravity plus hydrodynamics solver Gizmo (Hopkins 2015) in its
+meshless ﬁnite mass (MFM) mode. The simulation evolves a rep-
+resentative 100 h−1Mpc comoving volume from z = 249 →0 with
+10243 gas elements and 10243 dark matter particles. The mass res-
+olution is 9.6 × 107M⊙for dark matter particles and 1.82 × 107M⊙
+for gas elements, and the minimum adaptive gravitational soften-
+ing length is ϵmin = 0.5h−1ckpc. Initial conditions are generated
+using Music (Hahn & Abel 2011) assuming the following cosmol-
+ogy (Planck Collaboration et al. 2016): ΩM = 0.3, ΩΛ = 0.7,
+Ωb = 0.048, H0 = 68 km s−1 Mpch−1, σ8 = 0.82, ns = 0.97.
+Star formation is modelled using an H2-based Schmidt (1959)
+relation, where the H2 fraction is computed using the sub-grid pre-
+scription of Krumholz & Gnedin (2011) based on the local metal-
+licity and gas column density, modiﬁed to account for variations in
+resolution (Davé et al. 2016). This H2 fraction will be directly used
+in the H2 results for this paper, so bears further description. For
+each gas element, the H2 fraction is computed as
+fH2 = 1 −0.75
+s
+1 + 0.25s
+(1)
+Figure 1. Phase diagram of hydrogen number density nH vs. temperature
+T for dense, cool gas in Simba at z = 0. For clarity, a random sample of
+0.05% of gas elements are plotted. Points are colour-coded by H i fraction
+in blue/green, and H2 fraction in red/yellow for the gas elements where
+fH2 > 0. Abrupt transitions are seen from nearly fully ionised to nearly fully
+neutral at nH ∼10−3 cm−3, while the transition from atomic to molecular
+is similarly abrupt but depends on metallicity.
+where
+s = ln(1 + 0.6χ + 0.01χ2)
+0.0396Z(Σ/M⊙pc−2) ,
+(2)
+where Z is the metallicity in solar units, χ is a function of metallicity
+(see Krumholz & Gnedin 2011), and Σ = ρ2/|∇ρ| is the column
+density calculated using the Sobolev approximation, increased by
+×302/3 to account for sub-resolution clumping (see Davé et al. 2016,
+for full discussion). We impose a minimum metallicity of 10−3Z⊙
+solely for the purposes of this sub-grid model.
+The star formation rate (SFR) is calculated from the density ρ
+and the dynamical time tdyn via SFR = ϵ∗fH2 ρ/tdyn, where ϵ∗=
+0.02 (Kennicutt 1998). Star formation is only allowed to occur in gas
+with nH > 0.13 H atoms cm−3, although the limiting factor is fH2 >
+0 for all but super-solar metallicities. Simba artiﬁcially pressurises
+gas above this density by imposingT = 104(nH/0.13)4/3 K (Schaye
+& Dalla Vecchia 2008), in order to prevent numerical fragmentation
+owing to the Jeans mass being unresolved.
+The H i fraction of gas elements is computed self-consistently
+within the code, accounting for self-shielding on the ﬂy based on
+the prescription in Rahmati et al. (2013), where the metagalactic
+ionizing ﬂux strength is attenuated depending on the gas density
+assuming a spatially uniform ionising background from Haardt &
+Madau (2012). This gives the total neutral gas, and subtracting oﬀ
+the H2 yields the H i. Hence in Simba, the H i and H2 fractions for
+gas are computed self-consistently, on the ﬂy during the simulation
+run.
+Figure 1 illustrates the resulting cold gas fractions in phase
+space in Simba at z = 0. A random subsample of 0.05% of all
+particles are plotted in (nH,T) space, with green→blue colours
+showing the H i fractions, and yellow→red colors indicating H2
+fractions in gas where fH2 > 0. This plot focuses on the cool,
+dense phase of cosmic gas, since other cosmic phases have tiny
+neutral fractions; see Christiansen et al. (2019) for a complete phase
+diagram from Simba. For EAGLE, the analogous diagram is shown
+in Figure 1 of Crain et al. (2017).
+There is an abrupt transition at nH ≈10−3 cm−3 above which
+MNRAS 000, 1–22 (2019)
+
+
+4
+Davé et al.
+self-shielding kicks in, and the gas goes from highly ionised to
+mostly neutral. Metal cooling can cool highly enriched gas to fairly
+low temperatures, but above nH > 0.13 cm−3, the ISM pressuri-
+sation becomes evident as the gas is forced to have a minimum
+Jeans mass-resolving temperature of T ∝ρ1/3 (Davé et al. 2016).
+Ultimately, it is this ISM pressurisation forced by the poor resolu-
+tion (Schaye & Dalla Vecchia 2008) that prevents direct modeling
+of the cold molecular ISM phase in Simba, as well as in the other
+cosmological simulations. In this pressurized region, the gas fairly
+abruptly transition to molecular, but the density at which this occurs
+is metal-dependent, hence there is still substantial low-metallicity
+atomic gas above the threshold (blue points, many hidden under-
+neath the red points). This illustrates how self-shielding and the
+Krumholz & Gnedin (2011) prescription work together to trans-
+form ionised IGM gas into atomic and molecular phases.
+Radiative cooling and photoionisation heating are imple-
+mented using the Grackle-3.1 library (Smith et al. 2017). The
+chemical enrichment model tracks 9 metals during the simulation,
+tracking enrichment from Type II supernovae (SNe), Type Ia SNe
+and asymptotic giant branch (AGB) stars, including locking some of
+the metals into dust. A (Chabrier 2003) stellar initial mass function
+is assumed in order to compute stellar evolution. Simba includes
+star formation-driven galactic winds as kinetic two-phase, metal-
+enriched winds with 30% of the wind particles ejected hot and with
+a mass loading factor that scales with stellar mass, based on the
+FIRE (Hopkins et al. 2014) zoom simulation scalings from Anglés-
+Alcázar et al. (2017b). Importantly, hydrodynamics are turned oﬀin
+the winds (“decoupled”) until they are well outside the interstellar
+medium (Springel & Hernquist 2003), hence they explicitly avoid
+depositing energy in the ISM on their way out. This is done because
+in any current hydrodynamic solver, a single ﬂuid element moving
+at high velocities through an ambient medium is more accurately
+represented by turning oﬀhydrodynamics rather than allowing the
+solver to calculate the interactions.
+Simba’s main improvement on Mufasa is the addition of black
+hole growth via torque-limited accretion, and AGN feedback via
+stable bipolar kinetic outﬂows. For (T < 105 K) gas, black hole
+accretion follows the torque limited accretion model of Anglés-
+Alcázar et al. (2017a) which is based on the analytic model of
+Hopkins & Quataert (2011), while for hot gas accretion (Bondi
+1952) accretion is employed. AGN feedback in Simba is designed
+to mimic the observed dichotomy in black hole growth modes seen
+in real AGN (e.g. Heckman & Best 2014): a ‘radiative’ mode at high
+Eddington ratios ( fEdd) characterised by mass-loaded radiatively-
+driven winds ejected at ∼103 km s−1, and a ‘jet’ mode at low fEdd ≲
+few percent at ∼104 km s−1. The mass loading is set such that the
+outﬂow momentum is 20L/c, where L = 0.1 ÛMc2 is the radiative
+luminosity for a black hole accretion rate of ÛM. Additionally, we
+include X-ray heating by black holes based on the model of Choi
+et al. (2012). This yields a quenched galaxy population (Rodríguez
+Montero et al. 2019) and galaxy–black hole co-evolution (Thomas
+et al. 2019) in good agreement with observations.
+In addition to the full Simba feedback model, we will consider
+50 h−1Mpc, 2 × 5123 variants where we turn oﬀthe X-ray feedback
+(“No-X”), turn oﬀboth X-ray and jet feedback (“No-jet”), and turn
+oﬀall AGN feedback (“No-AGN”). These runs have the same res-
+olution as the 100 h−1Mpc run but with 1/8 the volume. All other
+input physics, as well as the initial conditions, are identical. These
+models will be described further in §3.7. Finally, to assess resolution
+convergence, we will employ a 25 h−1Mpc, 2 × 5123 Simba run,
+with identical input physics to the full Simba run. This has 8× bet-
+ter mass resolution than the other Simba runs. Feedback parameters
+have not been re-tuned at this higher resolution.
+Galaxies are identiﬁed using a 6-D friends-of-friends (FOF)
+galaxy ﬁnder, using a spatial linking length of 0.0056 times the mean
+inter-particle spacing (equivalent to twice the minimum softening
+kernel), and a velocity linking length set to the local velocity dis-
+persion. This is applied to all stars and ISM gas (nH > 0.13 cm−2).
+Halos are identiﬁed using a 3-D FOF with a linking length parame-
+ter of 0.2. The H i and H2 fractions for individual gas elements are
+taken directly from the simulation, without any post-processing. To
+compute galaxies’ H i and H2 contents, we assign each gas particle
+in a halo to the galaxy that has the highest value of Mbaryon/R2,
+where Mbaryon is the total baryonic mass of the galaxy, and R is
+the distance from the particle to the galaxy’s centre of mass. This
+enables cold gas, particularly H i, to be assigned to a galaxy even if
+it is not identiﬁed as within the galaxy’s ISM, since the H i can be
+signiﬁcant even for gas with nH < 0.13 cm−2. For H2, the results
+are insensitive to whether we consider this low-density gas, since
+all the molecular gas is located within the ISM (Fig. 1).
+For consistency among the models, we will restrict our sim-
+ulated galaxy samples to M∗> 109 M⊙, which represents the
+approximate mass limit for the primary observational sample to
+which we will compare, even though all our simulations are able to
+resolve to lower stellar masses.
+2.2
+EAGLE
+The EAGLE simulations (Schaye et al. 2015; Crain et al. 2015, with
+public data release described by McAlpine et al. 2016) were evolved
+with a substantially-modiﬁed version of the N-body Tree-Particle-
+Mesh (TreePM) smoothed particle hydrodynamics (SPH) solver
+gadget3, (last described by Springel 2005). The modiﬁcations in-
+clude signiﬁcant updates to the hydrodynamics solver, the time-
+stepping criteria, and the implemented sub-grid physics modules.
+The largest-volume EAGLE simulation (Ref-L100N1504 in the
+nomenclature of Schaye et al. 2015) evolves a region 67.77 h−1Mpc
+(100 Mpc) to the present day, realised with 15043 dark matter par-
+ticles and an (initially) equal number of baryonic particles, yielding
+particle masses of 1.81 × 106 M⊙and 9.70 × 106 M⊙for baryons
+and dark matter, respectively. The Plummer-equivalent gravitational
+softening length is ϵcom = 2.66 ckpc, limited to a maximum proper
+length of ϵprop = 0.7 pkpc. We will also show results from the
+EAGLE-Recal simulation (Recal-L25N752 in Schaye et al. 2015),
+which evolved a 16.94 h−1Mpc volume with 8× higher mass res-
+olution, and 2× higher spatial resolution. Initial conditions were
+generated with the software described by Jenkins (2010), as de-
+tailed in Appendix B of Schaye et al. (2015), assuming the Planck
+Collaboration et al. (2014) cosmogony: Ωm = 0.307, ΩΛ = 0.693,
+Ωb = 0.04825, H0 = 67.77 km s−1 Mpc−1, σ8 = 0.8288,
+ns = 0.9611.
+Interstellar gas is treated as a single-phase star-forming ﬂuid
+with a polytropic pressure ﬂoor (Schaye & Dalla Vecchia 2008), sub-
+ject to a a metallicity-dependent density threshold for star formation
+(Schaye 2004), which reproduces (by construction) the observed
+Kennicutt-Schmidt relation (Kennicutt 1998) in gas that satisﬁes
+local vertical hydrostatic equilibrium. Radiative heating and cool-
+ing are implemented element-by-element for 11 species (Wiersma
+et al. 2009a) in the presence of a time-varying UV/X-ray back-
+ground radiation ﬁeld (Haardt & Madau 2001) and the cosmic
+microwave background (CMB). The evolution of the same species
+due to stellar evolution and mass loss are tracked during the simu-
+lation according to the implementation of Wiersma et al. (2009b).
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+5
+The seeding of BHs and their growth via gas accretion and BH-BH
+mergers are treated with an updated version of the method intro-
+duced by Springel et al. (2005), accounting for the dynamics of gas
+close to the BH (Rosas-Guevara et al. 2015). Feedback associated
+with the formation of stars (Dalla Vecchia & Schaye 2012) and
+the growth of BHs (Booth & Schaye 2009) are both implemented
+via stochastic, isotropic heating of gas particles (∆TSF = 107.5
+K, ∆TAGN = 108.5 K), designed to prevent immediate, numerical
+radiative losses. Heated particles are not decoupled from the hy-
+drodynamics scheme. The simulations assume the Chabrier (2003)
+IMF.
+Halos are identiﬁed by applying the friends-of-friends (FoF)
+algorithm to the dark matter particle distribution, with a linking
+length of 0.2 times the mean inter-particle separation. Gas, stars
+and BHs are associated with the FoF group, if any, of their nearest
+dark matter particle. Galaxies are equated to bound substructures
+within halos, identiﬁed by the application of the Subfind algorithm
+(Springel et al. 2001; Dolag et al. 2009) to the particles (of all
+types) comprising FoF haloes. Following Schaye et al. (2015), we
+compute the properties of galaxies by aggregating the properties
+of the relevant particles residing within 30 kpc of their most-bound
+particle.
+The EAGLE model does not partition hydrogen into its ionised
+(H ii), atomic (H i) and molecular (H2) forms ‘on-the-ﬂy’, so we
+estimate the fraction of each on a particle-by-particle basis in post-
+processing, with the two-step approximation used by Crain et al.
+(2017, elements of which were also used by Lagos et al. 2015,
+2016; Bahé et al. 2016; Marasco et al. 2016). Hydrogen is ﬁrst par-
+titioned into atomic (H i + H2) and ionized (H ii) components, using
+the ﬁtting function of Rahmati et al. (2013), which considers both
+collisional ionization (using temperature-dependent rates collated
+by Cen 1992) and photoionization by metagalactic UV radiation,
+calibrated using TRAPHIC radiative transfer simulations (Pawlik &
+Schaye 2008). Radiation due to sources within or local to galaxies,
+although likely signiﬁcant (see e.g. Miralda-Escudé 2005) is not
+considered explicitly, but is accounted for implicitly via the use of
+an empirical or theoretical scheme to partition the atomic hydrogen
+of star-forming gas particles into its atomic and molecular compo-
+nents. Crain et al. (2017) present results using two such schemes,
+to illustrate the associated systematic uncertainty. The ﬁrst is the
+theoretically-motivated prescription of Gnedin & Kravtsov (2011),
+whilst the second is motivated by the observed scaling of the molec-
+ular to atomic hydrogen surface density ratio (Rmol ≡ΣH2/ΣHI)
+with the mid-plane pressure of galaxy discs (Blitz & Rosolowsky
+2006). In the latter case, gas particles are assigned a molecular
+hydrogen fraction that scales as a function of their pressure (this
+approach has been widely used elsewhere, see e.g. Popping et al.
+2009; Duﬀy et al. 2012; Davé et al. 2013; Rahmati et al. 2013).
+For the EAGLE results in this paper, we will employ the results
+using the Gnedin & Kravtsov (2011) approach. This is primarily be-
+cause it is signiﬁcantly closer to the approaches used in Simba and
+IllustrisTNG.
+Crain et al. (2017) show that this scheme gener-
+ally yields higher molecular fractions than the pressure-based ap-
+proach, and that the partitioning of neutral hydrogen into its atomic
+and molecular components is a more severe uncertainty on the
+H i masses of galaxies than, for example, the freedom aﬀorded by
+present constraints on the amplitude of the present-day UV back-
+ground. However, the primary systematic inﬂuence on atomic hy-
+drogen masses was found to be the resolution of the simulation, with
+galaxies of ﬁxed mass exhibiting signiﬁcantly greater ISM masses
+when simulated at 8x (2x) greater mass (spatial) resolution, as will
+be reiterated in the results of this paper.
+2.3
+IllustrisTNG
+IllustrisTNG comprises a suite of cosmological magnetohydrody-
+namic simulations at various resolutions and volumes, all run with
+the moving-mesh arepo code (Springel 2010), assuming a ΛCDM
+cosmology with parameters based on Planck Collaboration et al.
+(2016), using a common galaxy formation model (Weinberger et al.
+2017; Pillepich et al. 2018a), which was developed from the origi-
+nal Illustris model/simulation (Vogelsberger et al. 2014; Genel et al.
+2014). The model includes gas cooling, both primordial and from
+metal lines, where nine chemical elements are tracked; star forma-
+tion and stellar evolution, which includes kinectic-wind feedback
+from Type-II supernovae, and metal enrichment from supernovae
+(Types Ia and II) and asymptotic giant branch stars (Pillepich et al.
+2018a); massive black hole growth, carrying two modes of feed-
+back: thermal injection for high accretion rates, and kinetic winds
+at low accretion rates (Weinberger et al. 2017); and an idealized
+consideration of magnetic ﬁelds (Pakmor & Springel 2013). The
+main observational constraints used to calibrate the model included
+the z = 0 galaxy stellar mass function, the z = 0 stellar-to-halo mass
+relation, and cosmic star formation rate density history (for details,
+see Pillepich et al. 2018a).
+In this paper, we use the TNG100 simulation, ﬁrst presented in
+a series of ﬁve papers (Marinacci et al. 2018; Naiman et al. 2018;
+Nelson et al. 2018; Pillepich et al. 2018b; Springel et al. 2018),
+which has been made publicly available (Nelson et al. 2019). The
+periodic box length of TNG100 is 75 h−1Mpc ≈110 comoving
+Mpc, within which 18203 dark-matter particles and 18203 initial
+gas cells are evolved. This gives a mass resolution of 7.5 × 106M⊙
+for dark matter and ∼1.4 × 106M⊙for baryons. The smallest re-
+solvable length for gas in galaxy centres is 190 pc. The simulation
+has been post-processed to decompose atomic gas into its atomic
+and molecular phases; we follow the methodology of Stevens et al.
+(2019a), which is based largely on Diemer et al. (2018).
+TNG100 galaxy properties in this paper follow the ‘inherent’
+deﬁnition of Stevens et al. (2019a). This means isolating parti-
+cles/cells bound to (sub)structures according to Subfind (Springel
+et al. 2001; Dolag et al. 2009) and further making an aperture cut
+to remove the near-isothermal ‘intrahalo’ component (Stevens et al.
+2014).1All H i/H2 properties assume the Gnedin & Draine (2014)
+prescription, as described in Stevens et al. (2019a). The primary
+factors in this prescription are the gas density, local UV ﬂux, and
+local dust content. Critically, it is assumed that UV is generated
+from sites of star formation, with 90% of that UV absorbed in the
+star-forming cell; the other 10% is propagated through the halo,
+treating it as a transparent medium (Diemer et al. 2018). A lower
+limit on the UV ﬂux in any cell is set to the assumed cosmic UV
+background (Faucher-Giguère et al. 2009). The dust fraction of each
+cell is assumed directly proportional to its metallicity, in line with
+Lagos et al. (2015). A comparison of the performance of this pre-
+scription with several others has been presented alongside many
+H i- and H2-related properties of TNG100 galaxies in a series of
+recent papers (Diemer et al. 2018, 2019; Stevens et al. 2019a,b).
+1 We note a previously unreported error in the application of this aperture
+in the results of Stevens et al. (2019a), which meant the radius always hit its
+upper limit of R200c. We have corrected for this in this work. The eﬀect is
+negligible for our results and that of Stevens et al. (2019a).
+MNRAS 000, 1–22 (2019)
+
+
+6
+Davé et al.
+2.4
+Comparison of Models
+For clarity, we brieﬂy summarise the key diﬀerences between our
+cosmological simulations, in terms of measuring the cold gas prop-
+erties. All employ the Rahmati et al. (2013) prescription to de-
+termine the self-shielded gas, and all employ some variant of the
+Krumholz & Gnedin (2011) model to compute the H2 fraction.
+Simba does these on-the-ﬂy, while the others apply these in post-
+processing, but since their impact on the dynamics should be rel-
+atively minimal, there should not be large variations because of
+this.
+Assigning gas into galaxies has more variations between mod-
+els. In Simba, all H i and H2 in halos (which is essentially all cold
+gas overall) is assigned to the most dynamically important galaxy
+(i.e. maximum in Mgal/r2 where r is the distance to the galaxy’s
+center of mass). While we identify the galaxies using a 6DFOF and
+use this to compute properties such as the SFR and M∗, only the
+locations are used for the cold gas contents, with all cold gas being
+assigned via proximity. In the case of H2, this is essentially equiv-
+alent to just assigning the H2 to its own galaxy. The H i, however,
+can extend well beyond the star-forming region of a galaxy, so this
+procedure can yield large diﬀerences in H i content. The choice for
+Simba is motivated by our comparisons to Arecibo data (see next
+section) which has arcminute-scale resolution, and thus is unlikely
+to be resolving individual galaxies’ ISM.
+EAGLE, also motivated by matching Arecibo’s beam (Bahé
+et al. 2016), uses a ﬁxed 70 kpc aperture to compute both H i and
+H2 contents, within which only gas that is gravitationally bound
+to a given galaxy is attached to it. IllustrisTNG, meanwhile, uses
+the variable ‘BaryMP’ aperture of Stevens et al. (2014). For a ﬁxed
+stellar mass of 109 M⊙at z = 0, the aperture radius comes out as
+20 ± 10 kpc (rounded 1σ range). For M∗= 1011 M⊙, this rises to
+70±30 kpc. For the same respective stellar masses at z = 2, aperture
+radii are 15 ± 5 and 40 ± 10 physical kpc. A similar exercise at ﬁxed
+MHI of 108 and 1010 M⊙yields aperture radii of 16 ± 4 and 50 ± 9
+kpc, respectively, at z = 0. To ﬁrst order, the aperture scales with
+the virial radius of each system, where typically RBaryMP/Rvir ≃
+0.25±0.10. This means that in EAGLE, the largest galaxies may be
+missing gas that is at large radii compared to what is in TNG. This is
+not expected to be signiﬁcant for H2 where the gas is mostly conﬁned
+to the dense ISM, but may be important in the case of H i that can
+extend quite far out. On the ﬂip side, in small galaxies EAGLE may
+include H i that TNG would not include, but in such systems the H i
+is not expected to extend very far out. Simba does not use aperture
+masses, but in principle can assign H i from anywhere in the halo,
+so it is not straightforward to directly compare to aperture masses,
+but in general Simba includes H i from at least as far out as TNG.
+We emphasize, however, that in all simualtions most of the H i is
+located relatively close to galaxies.
+We can compare these radii to the observed H i size–mass
+relation, R1 =
+p
+MHI/12.88 where R1 in pc is the radius at which
+the surface density drops to 1 M⊙pc−2, and MHI is in solar masses
+(Stevens et al. 2019b). This gives, for log MHI = [8, 9, 10, 11],
+R1 = [2.8, 8.8, 28, 88] kpc. Thus generally the TNG aperture extends
+out to at least this radius, while EAGLE’s aperture is not expected
+to miss signiﬁcant H i except for MHI ≳1010M⊙. Bahé et al. (2016)
+showed that EAGLE’s choice of 30 kpc can bias the resulting MHI
+by up to ∼20%, which is not negligible but does not impact the
+conclusions of this paper.
+Given that the H i distribution is fairly extended and thus more
+subject to choices regarding aperture or assignment, we thus empha-
+sise that H i comparisons between models and to ALFALFA data
+should be regarded as preliminary; this could either overestimate or
+underestimate the H i content depending on the assumed aperture
+relative to the observed beam.Nonetheless, the diﬀerences between
+models are signiﬁcantly larger than the expected systematics asso-
+ciated with apertures. Upcoming observations with sensitive radio
+interferometers such as MeerKAT and ASKAP will avoid blending
+issues (Elson et al. 2019), but may require even more care when
+considering H i apertures in simulation comparisons; we leave a
+fuller investigation of this for future work.
+For H2, we have a somewhat diﬀerent issue, because the beam
+size for our main comparison sample xCOLD GASS, based on
+IRAM-30m data, is a factor of ∼5 smaller than Arecibo, with typical
+apertures of ∼10−20 kpc. Aperture corrections are applied to these
+observations, as detailed in §2.4 of Saintonge et al. (2017) as well
+as in Saintonge et al. (2012); these indicate that the observations
+appear to capture the majority of H2 in these systems. However,
+if one applies similarly small apertures to the simulations, one can
+get non-trivially diﬀerent results, particularly for massive gas-rich
+galaxies that are quite large in extent. The underlying problem is
+probably that all the simulations assume that H2 is allowed to form in
+gas with nH ≳0.1−0.2 cm−3, whereas in reality H2 actually forms
+only at much higher densities (nH ≳100 cm−3). The choice in
+these simulations is driven by the numerical resolution, which does
+not enable the internal structure of the ISM to be fully represented.
+The result is that H2 can form in more extended gas in simulations
+than in real data. Unfortunately, this is an intrinsic limitation even in
+these state-of-the-art models, and suggests that better sub-resolution
+ISM models are required to properly represent the distribution of
+molecular gas in galaxies.
+Ultimately, the models and observations are both including the
+vast majority of H2 in the galaxies. However, the spatial distribution
+in the case of simulations is more extended owing to resolution lim-
+itations. Diemer et al. (2019) demonstrated this explicitly, showing
+that the molecular gas distribution in IllustrisTNG is more extended
+than observed. Hence if we were to create mock observations with
+the same aperture restrictions, we may obtain substantially smaller
+H2 contents for the most massive gas-rich galaxies. But given the
+limitations in way that H2 is modeled in the ISM, this would not
+be a meaningful way to conduct such a comparison. We thus will
+conduct our comparisons with the apertures as described above,
+with the caveat that we are comparing only the global molecular gas
+contents, without creating mock CO images tailored to individual
+surveys.
+In truth, none of the decisions surrounding apertures in this
+paper are necessarily faithful representations of the scale on which
+gas (or stellar) properties of galaxies are measured observationally.
+For H i in IllustrisTNG galaxies, this has been explored by Stevens
+et al. (2019a) and Diemer et al. (2019). In the former, alongside
+the inherent IllustrisTNG properties, mock-observed properties that
+were catered to speciﬁc H i surveys were presented, namely for AL-
+FALFA and xGASS. Mock and inherent H i measurements diﬀered
+most for satellite galaxies, primarily due to the much higher prob-
+ability of ‘confusion’ (where H i in the mock beam comes from
+sources other than the galaxy of interest). A similar mocking proce-
+dure for H2 will be presented for TNG100 in Stevens et al. (in prep.).
+Finally, we note that aperture choices can also be important for stel-
+lar mass measures, particularly for massive galaxies (e.g. Bernardi
+et al. 2017), so these issues are not limited to gas measures.
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+7
+2.5
+xGASS and xCOLD GASS
+The twin surveys xGASS and xCOLD GASS were speciﬁcally de-
+signed to provide a robust and complete census of H i and CO across
+the z ∼0 Universe for purposes such as comparing and constraining
+large-scale simulations. Unlike most previous gas surveys, they are
+neither ﬂux-limited nor the result of complex selection functions;
+the galaxies are selected from SDSS based on stellar mass and
+redshift alone, and are therefore representative of the local galaxy
+population.
+The H i component of this programme, xGASS, provides 21-
+cm measurements for 1179 galaxies with 109 < M∗/M⊙< 1011.5
+and 0.01 < z < 0.05 (Catinella et al. 2010, 2013, 2018). The
+sample is extracted from the overlap of the SDSS spectroscopic
+and GALEX imaging surveys, and builds on ALFALFA H i-blind
+survey (Giovanelli et al. 2005), which provides the measurements
+for the most gas-rich systems in the sample.
+In addition to the sample selection, the observing strategy em-
+ployed by xGASS is key to making it ﬁt for purpose here. The
+observations were designed to provide uniform sensitivity in terms
+of atomic gas mass fraction, fHI = MHI/M∗, which allows to com-
+pare gas contents with global galaxy properties over a wide range
+of stellar masses. Apart from the galaxies already detected in H i by
+ALFALFA, each xGASS galaxy was observed with Arecibo until
+either a detection of the H i line was obtained or until sensitivity to a
+gas mass fraction of 2-10% (depending on stellar mass) was reached.
+For H i non-detections, 5σ upper limits have been computed.
+The xCOLD GASS survey targeted 532 galaxies from xGASS
+with the IRAM-30m telescope to measure their total molecular gas
+masses via CO(1-0) line emission (Saintonge et al. 2011, 2017). As
+for the H i, the strategy was to observe each galaxy until either a
+detection of the CO(1-0) line was obtained or until sensitivity to
+fH2 = MH2/M∗= 2% was reached, allowing stringent upper limits
+to be placed on the most gas-poor galaxies. The CO line luminosities
+are corrected for small aperture eﬀects (Saintonge et al. 2012), and
+then converted into molecular gass masses using the CO-to-H2
+conversion factor αCO of Accurso et al. (2017).
+Accurso et al. (2017) characterised αCO using [CII] data from
+Herschel and CO(1-0) data from xCOLD GASS, guided by photo-
+dissociation region modeling. They found that αCO depends quite
+strongly on the galaxy’s metallicity, and weakly on its deviation
+from the star-forming main sequence:
+log αCO(±0.165) = 14.752−1.623(12+log(O/H))+0.062 log ∆MS,
+(3)
+where 12 + log(O/H) is the oxygen abundance in conventional
+notation, and ∆MS is the ratio of the SFR in the galaxy to
+that in a galaxy on the main sequence at the same M∗. Using
+12 + log(O/H)⊙= 8.69 (Asplund et al. 2009), we can rewrite
+this as:
+αCO =
+4.47+2.06
+−1.41
+Z1.623
+H2
+∆0.062
+MS
+M⊙pc−2K−1km−1s,
+(4)
+We will show a comparison of this method for determining αCO
+versus the simulation-based method we employ from Narayanan
+et al. (2012) in §3.4.
+The H i and CO observations are complemented by addi-
+tional data products. Stellar masses are retrieved from the MPA-
+JHU catalog, and stellar mass surface densities were calculated as
+µ∗= M∗/(2πr2
+50,z), where r50,z is the radius encompassing 50% of
+the z-band ﬂux, in kpc. Star formation rates were calculated using
+5.5
+5.0
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+log
+[Mpc
+3]
+z=0
+TNG100
+EAGLE
+Simba
+Wright+17
+9.5
+10.0
+10.5
+11.0
+11.5
+12.0
+log M* [M
+]
+2.0
+1.5
+1.0
+0.5
+sSFR [Gyr
+1]
+Figure 2. The galaxy stellar mass function (top panel) and speciﬁc star
+formation rate vs. stellar mass (bottom panel) at z = 0 for Simba (blue),
+IllustrisTNG (red), and EAGLE (green) compared with observations. The
+blue shading for Simba shows the variance over 8 simulation sub-octants.
+For the GSMF, representative observations are shown from Wright et al.
+(2017). For the bottom panel, the hexbin shows the xGASS sample. Running
+medians are shown for galaxies with sSFR> 10−1.8 Gyr−1; dashed black line
+shows xGASS, while the red, green, and blue lines IllustrisTNG, EAGLE,
+and Simba, respectively. Error bars show the 1σ spread around the median.
+All models show good agreement with these stellar-based measures, with
+some minor discrepancies.
+a combination of UV and IR photometry and an optical SED ﬁtting
+method (Janowiecki et al. 2017).
+3
+RESULTS
+3.1
+Stellar and SFR properties
+To set the stage for our gas comparisons, we ﬁrst present and com-
+pare stellar mass and star formation rate properties in our three sim-
+ulations. In particular, we look at the galaxy stellar mass function
+and the star formation rate–stellar mass relation (“main sequence”).
+These have been presented in other papers (Furlong et al. 2015;
+Pillepich et al. 2018a; Davé et al. 2019), but here we provide a
+direct comparison to each other as well as to observations. For the
+main sequence, we will compare to the galaxies in the xGASS sam-
+ple in order to ensure there are no clear systematic diﬀerences in
+the sample properties.
+Fig. 2, top panel, shows the z = 0 galaxy stellar mass function
+(GSMF) in Simba (blue), IllustrisTNG (red), EAGLE (green). The
+blue shaded region shows the standard deviation computed over 8
+sub-octants of the Simba volume, as an estimate of cosmic variance;
+since the other simulations have similar volumes, they likely have
+comparable variance. The observed z ≈0 GSMF is shown from
+Wright et al. (2017) as the black data points, from the Galaxy And
+Mass Assembly (GAMA) survey. We do not show EAGLE-Recal
+here to avoid clutter, but it was speciﬁcally recalibrated to match
+the GSMF, so agrees as well as the main EAGLE simulation.
+All simulations provide a good match to the observed z = 0
+GSMF. In part, this is by construction, as the star formation and feed-
+MNRAS 000, 1–22 (2019)
+
+
+8
+Davé et al.
+back recipes in each have been tuned at some level to reproduce this
+key demographic. They agree quite well below M⋆, but there some
+minor diﬀerences at the massive end. EAGLE and Simba slightly
+undercut the knee of the GSMF, while IllustrisTNG matches the
+knee very well but may overproduce the massive end. This high-
+lights the continued diﬃculty that simulations have in reproducing
+the sharpness of the exponential cutoﬀin the z = 0 GSMF (e.g.
+Davé et al. 2016). Note that the massive end is relatively uncertain
+owing to aperture eﬀects and potentially initial mass function vari-
+ations (e.g. Bernardi et al. 2018). Despite these small variations, in
+general all these simulations reproduce the observed GSMF quite
+well, within plausible systematic uncertainties.
+Fig. 2, bottom panel, shows speciﬁc star formation rate
+(sSFR=SFR/M∗) versus stellar mass for Simba (blue), IllustrisTNG
+(red), and EAGLE (green). Here, we show a running median
+for each simulation for star-forming galaxies deﬁned as having
+sSFR> 10−1.8Gyr−1, following Davé et al. (2019). The grey hexbins
+show the mass-selected xGASS sample, and the black points and
+line show a similarly selected running median of the xGASS star-
+forming galaxies. All have errorbars representing the 1σ scatter
+around the median. We focus on a comparison of the star-forming
+sample since we are primarily interested in gas-rich galaxies in this
+work; as an aside, there are larger diﬀerences in the quenched galaxy
+fractions among these various models.
+All models produce a mildly declining relation of sSFR vs. M∗
+in non-quenched galaxies that is in good agreement with the xGASS
+sample, as well as with each other. There are mild diﬀerences in the
+detailed shape of the curves, such as Simba producing high sSFR
+values at low masses, IllustrisTNG having slightly higher sSFR val-
+ues around M⋆, and EAGLE potentially slightly low at low masses.
+The hexbinned xGASS sample shows a turndown in sSFR at high
+masses, which would also be evident in the simulations’ running
+medians if we were to include sSFR< 10−1.8Gyr−1 galaxies. The
+1σ scatter is typically in the range of ∼0.3 dex in all models, which
+is comparable to that seen in the observations (e.g. Kurczynski et al.
+2016; Catinella et al. 2018).
+Overall, we conﬁrm that Simba, IllustrisTNG, and EAGLE
+all produce stellar mass functions and star-forming main sequences
+that are in good agreement with observations, and with each other.
+This is an important check, which sets the baseline for comparisons
+among their cold gas properties in relation to their M∗and SFR.
+It is also a non-trivial success for these models, which has only
+been achieved in the last few years among hydrodynamic galaxy
+formation simulations. Nonetheless, we will see that the diﬀerences
+among gas properties in these simulations are signiﬁcantly larger
+than those seen in stellar properties.
+3.2
+H i Mass Function
+We now examine properties of the neutral gas, starting with the H i
+mass function (HIMF) and its redshift evolution in our three simu-
+lations. The H i mass function is straightforwardly measurable from
+21-cm emission down to quite low masses, albeit currently only
+at low redshifts owing to the sensitivity limits of radio telescopes.
+Hence the HIMF has relatively few concerns regarding selection
+eﬀects or other observational systematics, modulo confusion issues
+given the large beam sizes of single-dish surveys (e.g. Elson et al.
+2019). That said, there are some non-trivial modeling systemat-
+ics regarding assumptions about self-shielding and the separation
+of atomic and molecular hydrogen, although since the neutral gas
+content tends to be dominated by atomic gas particularly in small
+systems, this is less of an uncertainty for H i as for H2. For these
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+z=0
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+ALFALFA z=0
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+log
+[Mpc
+3dex
+1]
+z=1
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+ALFALFA z=0
+9.25
+9.50
+9.75
+10.00
+10.25
+10.50
+10.75
+11.00
+log MHI[M
+]
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+z=2
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+ALFALFA z=0
+Figure 3. The H i mass function in Simba (blue), IllustrisTNG (red), and
+EAGLE (green), at z = 0, 1, 2 (top to bottom). The HIMF from the AL-
+FALFA survey (Jones et al. 2018) at z ≈0 is shown as the grey shading,
+and these are reproduced at higher z in lighter shading for reference. Illus-
+trisTNG and Simba shows much more H i than EAGLE, in better agreement
+with observations, while EAGLE and Simba show an increasing HIMF at
+earlier epochs while IllustrisTNG shows a dropping HIMF.
+reasons, the H i mass function is among the more robust constraints
+on the cold gas content in simulated galaxies.
+Fig. 3 shows the H i mass function at z = 0, 1, 2 (top to bot-
+tom) for Simba (blue), IllustrisTNG (red), EAGLE (green solid),
+and EAGLE-Recal (green dotted). The blue shaded region shows
+the estimated cosmic variance computed over 8 sub-octants of the
+Simba volume. At z = 0, we show the observed HIMF from the
+ALFALFA survey (Jones et al. 2018) as the dark grey band; we
+repeat this in the z = 1, 2 panels with lighter shading as a reference
+point to gauge the amount of evolution in models, but current ob-
+servations of the HIMF are limited to low redshifts so comparisons
+to data should only be done at z = 0. Finally, for Simba, we will
+show in §3.7 that, owing to its relatively low resolution compared
+to IllustrisTNG and EAGLE, it suﬀers from incompleteness at the
+low-MHI end. To denote this, we have shown the portion of the
+HIMF that is potentially compromised by resolution eﬀects using a
+dashed blue line.
+At z = 0, all simulations show a fairly ﬂat low-mass slope,
+and a turnover at high masses; broadly, this is similar to that seen
+in ALFALFA. To quantify this, we ﬁt a Schechter function to each
+simulated HIMF for galaxies with MHI > 109M⊙. Given the limited
+dynamic range, we ﬁx the low-mass slope to the ALFALFA value of
+−1.25; leaving the slope free gives values consistent with this, but
+with signiﬁcantly larger uncertainties on all the parameters. We ﬁnd
+that the best-ﬁt characteristic H i mass M⋆
+HI varies signiﬁcantly be-
+tween models: For IllustrisTNG it is M⋆
+HI = 1010.26M⊙, for Simba
+it is M⋆
+HI = 1010.07M⊙, while for EAGLE it is M⋆
+HI = 109.67M⊙.
+For comparison, ALFALFA ﬁnds M⋆
+HI = 109.94M⊙(Jones et al.
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+9
+2018). This conﬁrms the visual impression that IllustrisTNG while
+generally matching the HIMF as seen in Diemer et al. (2019), mildly
+over-predicts the HIMF at the high-mass end; we note that Diemer
+et al. (2019) supplemented TNG-100 with TNG300 and showed
+that it provided a better match to the high-mass end. Meanwhile the
+main EAGLE volume strongly under-predicts the HIMF, while the
+higher-resolution 25 h−1Mpc EAGLE-Recal simulation produces a
+signiﬁcantly higher HIMF.Simba provides a very good match to
+ALFALFA observations in both shape and amplitude. Note that
+none of these models have been tuned to reproduce the HIMF.
+As noted by Crain et al. (2017) and seen in Fig. 3, EAGLE-
+Recal produces signiﬁcantly more H i in galaxies, although its vol-
+ume is too small to probe the high-mass turnover discrepancy. Hence
+in EAGLE the H i content appears to be fairly resolution-dependent,
+which we speculate is likely a consequence of EAGLE’s subgrid im-
+plementation of feedback (intentionally) not incorporating mecha-
+nisms to mitigate against resolution sensitivity (as is the case for
+Simba and IllustrisTNG). As noted by Bahé et al. (2016), the ther-
+mal energy injected into the ISM by feedback events in EAGLE
+scales linearly with the baryon particle mass, and at the standard
+resolution of EAGLE individual heating events can temporarily cre-
+ate ∼kpc-scale ‘holes’ in the cold gas distribution. Assuming higher
+resolution simulations produce more robust results, the EAGLE-
+Recal results suggest that the EAGLE feedback model is capable of
+well reproducing the HIMF.
+The HIMF resolution convergence was generally good in the
+case of Simba’s predecessor, Mufasa (Davé et al. 2017). Because
+the star formation feedback is quite similar in Simba, we expect
+this would also be the case in Simba either, and we will demon-
+strate this in §3.7. Thus to avoid clutter, we choose not to show
+diﬀerent resolution versions of these simulations, though we show
+EAGLE vs. EAGLE-Recal. For IllustrisTNG, Diemer et al. (2019)
+showed the level of convergence in the cold gas mass functions be-
+tween TNG100 and TNG3002, and found that they were generally
+in agreement with each other in their overlapping resolved mass
+ranges, with TNG300 being slightly lower. This suggests that mod-
+els that use kinetic decoupled winds may fare somewhat better in
+resolution convergence than thermal feedback models. Note, how-
+ever, that all these comparisons are subject to aperture eﬀects that
+could cause more signiﬁcant changes than resolution (§2.4).
+Even stronger diﬀerences between the simulations are seen
+when examining redshift evolution. Simba and EAGLE both have
+strong redshift evolution, in the sense that the HIMF shifts to higher
+MHI at higher redshifts. This occurs owing to the higher inﬂow rates
+at higher redshifts, which in the quasi self-regulated scenario for
+galaxy growth results in higher gas contents (see e.g. Fig. 5 of Crain
+et al. 2017). Quantiﬁed purely in terms of characteristic mass evo-
+lution (ﬁxing the low-mass slope) from z = 0 →2, M⋆
+HI increases
+by ×2.5 and ×2 in Simba and EAGLE, respectively. Interestingly,
+EAGLE-Recal does not show as much evolution as EAGLE, and
+is consistent with the larger volume at z = 1, 2. Meanwhile, Illus-
+trisTNG shows a reduction in M⋆
+HI by ∼×2 between z = 0 →2; it
+is not immediately evident why IllustrisTNG shows this behaviour.
+In IllustrisTNG and EAGLE, the low-mass slope becomes steeper
+at high-z. Simba shows a turnover at low masses (MHI ≲109M⊙),
+but this owes largely to numerical resolution, as we show in §3.7. At
+higher redshifts, the higher MHI/M∗ratios together with the ﬁxed
+galaxy mass threshold of M∗= 5.8 × 108M⊙combine to result
+2 For a full exploration of resolution convergence in IllustrisTNG, see
+http://www.benediktdiemer.com/data/hi-h2-in-illustris/
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+z=0
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+xCOLDGASS z=0
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+log
+[Mpc
+3dex
+1]
+z=1
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+xCOLDGASS z=0
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+log MH2[M
+]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+z=2
+TNG100
+EAGLE
+EAGLE-Recal
+Simba
+xCOLDGASS z=0
+Figure 4. The H2 mass function in Simba (blue), IllustrisTNG (red),
+and EAGLE (green), at z = 0, 1, 2 (top to bottom). Observations from
+xCOLD GASS (Fletcher et al. 2020) at z ≈0 are shown as the black points,
+and reproduced in grey at higher z for reference. IllustrisTNG and Simba
+yield signiﬁcantly larger molecular masses than EAGLE. Simba and EAGLE
+show an increased H2MF at the high-mass end at z = 2, while IllustrisTNG’s
+is lower.
+in signiﬁcant incompleteness at MHI ≲109.5M⊙by z ∼2. Mod-
+ulo these caveats that mostly impact the low-MHI end, it is clear
+that measurements of the HIMF even out to z ∼1, as is planned
+with MeerKAT’s LADUMA survey (Blyth et al. 2016), could pro-
+vide qualitative discrimination between current galaxy formation
+models.
+3.3
+H2 Mass Function
+Stars form from molecular gas, so the molecular gas content pro-
+vides a connection to the growth rate of galaxies, particularly in star-
+forming systems where the merger growth rate is sub-dominant (e.g.
+Hirschmann et al. 2014). This has been explored in previous works
+including Lagos et al. (2015) for EAGLE and Davé et al. (2019) for
+Simba. However, as emphasised in analytic “equilibrium” or “bath-
+tub” models of galaxy evolution (e.g. Finlator & Davé 2008; Bouché
+et al. 2010; Davé et al. 2012; Lilly et al. 2013), the molecular gas
+content does not govern the global stellar mass assembly history,
+but rather represents an evolving balance between gas supply and
+gas consumption. For a given gas supply into the ISM, if the star
+formation eﬃciency (SFE=SFR/MH2) is high, then the gas reser-
+voir will be low, and vice versa, though the time-averaged number
+of stars formed will not be altered. Meanwhile, the star formation
+history of a galaxy over cosmological timescales is set primarily
+by the net gas supply rate (inﬂows minus outﬂows), and is globally
+independent of SFE for reasonable choices (Katz et al. 1996; Schaye
+et al. 2015). The molecular gas reservoir thus represents a way to
+characterise this SFE. In observational work, this is often presented
+MNRAS 000, 1–22 (2019)
+
+
+10
+Davé et al.
+as measures of its its inverse quantity, the molecular gas depletion
+time.
+In cosmological simulations, the SFE is an input parameter.
+Typically, it is tuned to approximately reproduce the Kennicutt
+(1998) relation in star-forming galaxies (e.g. Springel & Hernquist
+2003), which for instance has been checked in Simba (Appleby
+et al. 2019). In practice, however, the SFE parameter is applied
+in Simba and IllustrisTNG via a volumetric Schmidt (1959) law,
+which is connected to the Kennicutt (1998) surface density relation
+via galactic structure; EAGLE uses a scheme based on the local
+pressure which results in the Kennicutt (1998) relation by construc-
+tion in the case of vertical hydrostatic equilibrium. In all cases, the
+molecular gas content in simulations is thus also sensitive to the
+distribution of molecular gas within galaxies. Furthermore, as men-
+tioned in §2.1, Simba’s star formation prescription uses a molecular
+gas-based Schmidt (1959) law, while that in IllustrisTNG and EA-
+GLE use the total gas, which could result in further diﬀerences in the
+internal structure of star-forming gas. For these reasons, the H2 mass
+function provides insights into the diﬀerences between current star
+formation prescriptions, particularly among simulations that well
+reproduce the observed growth histories of the galaxy population.
+Fig. 4 shows the H2 mass function (H2MF) at z = 0, 1, 2 (top to
+bottom) for Simba (blue), IllustrisTNG (red), EAGLE (green solid),
+and EAGLE-Recal (green dotted), with a blue shading on Simba for
+the estimated cosmic variance as before. Observations at z ≈0 are
+shown as the black points from the xCOLD GASS survey (Fletcher
+et al. 2020), and reproduced at other redshifts in grey for reference.
+At higher redshifts, we will compare more directly to CO luminosity
+functions in §3.5.
+As with the H i mass function, the general Schechter function
+shape is found in all simulations, but there are substantive diﬀer-
+ences between model predictions. At z = 0, Simba and IllustrisTNG
+produce nearly identical H2MFs, while EAGLE’s is much lower.
+The diﬀerences are particularly dramatic at the high-mass end. A
+Schechter ﬁt ﬁxing the observed faint-end slope at −1.33 (Sain-
+tonge et al. 2017) gives M⋆
+H2 = 109.98 for Simba, M⋆
+H2 = 1010.07
+for IllustrisTNG, but M⋆
+H2 = 109.21 for EAGLE. Comparing to the
+observed M⋆
+H2 = 109.68 from xCOLD GASS highlights the discrep-
+ancies between all these models and the observations, with Simba
+and IllustrisTNG overproducing the H2MF at the massive end, while
+EAGLE under-predicts it. We reiterate here that the comparisons at
+the massive end are potentially subject to uncertainties regarding
+aperture eﬀects, given that the simulations’ apertures are generally
+signiﬁcantly larger than in the observations, as discussed in §2.4.
+At the low-mass end, Simba shows a dip that owes to limited
+numerical resolution; we denote the low-mass portion of the H2MF
+that is subject to resolution eﬀects via the dashed blue line (see §3.7).
+However, it agrees around the knee of the H2MF, while IllustrisTNG
+over-predicts the H2MF somewhat at all masses. These diﬀerences
+may be subject to signiﬁcant systematics, not the least of which is
+the assumed CO-to-H2 conversion factor used to determine MH2
+from the observations, as we will explore in §3.4.
+The shifts to higher redshifts again shows a similar pattern
+as the HIMF: The H2MF is clearly increasing to higher redshifts
+in Simba and EAGLE, but mostly unevolving in IllustrisTNG. For
+EAGLE, M⋆
+H2 increases by ×4 between z = 0 and z = 2, for Simba it
+is ×2.5, while there is no clear increase for IllustrisTNG. Comparing
+to M⋆
+HI evolution, we see then that EAGLE and IllustrisTNG both
+yield a greater increase (or less decrease) in M⋆
+H2 from z = 0 to
+z = 2, while for Simba the increase is similar in both H i and H2;
+for Simba, this is reﬂected in the similarity of the evolution of ΩHI
+vs. ΩH2 as noted in Davé et al. (2019).
+Overall, the H2MF shows strong diﬀerences between models
+both at z = 0 and in terms of evolution to higher redshifts. This
+highlights the potential for molecular gas mass measurements to be
+a key discriminator between models. We will discuss the diﬀerences
+in input physics that may be causing these variations in §3.8, but it is
+interesting that none of the models reproduce the z ≈0 H2MF “out
+of the box”. We note that Lagos et al. (2015) found better agree-
+ment between EAGLE’s H2MF and observations from Keres et al.
+(2003) when converting their data to H2 masses assuming a con-
+stant αCO = 2M⊙pc−2K−1km−1s, but this value is low compared
+to the canonical value for Milky Way-like galaxies of αCO ≈4.5,
+Diemer et al. (2019) found better agreement between IllustrisTNG
+and the H2MF inferred by Obreschkow et al. (2009), but the recent
+xCOLD GASS determination is somewhat lower at low masses,
+resulting in more of an apparent disagreement. At the massive end,
+we are using a signiﬁcantly larger aperture than Diemer et al. (2019)
+in order to capture all the molecular gas and compare the global H2
+content, but this increases the H2 content of these massive systems
+into poorer agreement. Popping et al. (2019) likewise found that
+apertures can have a signiﬁcant impact on this comparison, and
+only including mass within a 3.5" aperture resulted in signiﬁcantly
+better agreement. As discussed in §2.4, it is not entirely clear which
+way of doing the comparison is more correct. But what this does
+indicate is that systematic uncertainties in both observing and mod-
+eling the H2MF may be substantial. Among the most crucial of
+these is the conversion factor between observed CO luminosity and
+the H2 mass. We examine this issue next, and use this to bring our
+comparisons into the observational plane of CO(1-0) luminosities.
+3.4
+The H2-to-CO conversion factor
+Observationally, the molecular hydrogen content is most commonly
+traced via the CO luminosity. Since simulations most directly model
+molecular gas, we need to convert the molecular gas mass into a
+CO luminosity. This conversion factor, known as αCO ≡MH2/LCO,
+is the subject of much debate (see the review by Bolatto et al.
+2013). It is clear that αCO depends on metallicity as well as the lo-
+cal strength of H2 dissociating radiation, which in turn depends
+on quantities such as the local star formation rate and shield-
+ing column density. For fairly massive galaxies with close to so-
+lar metallicity, it is observed that Milky Way-like galaxies have
+αCO ≈4.5M⊙pc−2K−1km−1s, while starburst-like galaxies have a
+much lower αCO ≈0.8M⊙pc−2K−1km−1s, where the CO measure-
+ment here corresponds to the lowest J = 1 −0 rotational transition.
+One traditional approach to generating an H2 mass function is to
+measure CO(1-0), classify the galaxy into one of these categories,
+and use an appropriate factor typically assumed to be a constant
+among all galaxies in a class. Clearly this is quite simplistic, and it
+is more likely that there is a continuum of αCO values.
+Narayanan et al. (2012) presented a theoretical investigation
+into how αCO varies with galaxy properties. They used a suite of
+very high resolution isolated disk galaxy and merger simulations,
+together with CO line radiative transfer modeling, to directly con-
+nect the H2 measured in their galaxies with the emergent CO(1-0)
+luminosity. They ﬁnd that the relation between αCO and galaxy
+properties is on average reasonably well described by:
+αCO =
+20.6
+ZH2Σ0.5
+H2
+M⊙pc−2K−1km−1s,
+(5)
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+11
+Figure 5. αCO versus stellar mass (left panels) and metallicity (right), at
+z = 0 (top panels) and z = 2 (bottom), in Simba, using the Narayanan et al.
+(2012) prescription. Individual galaxies are colour-coded by their location
+relative to the main sequence ∆M S = −0.7 →+0.7 (red to blue). Black
+hexbins show the values using instead the Accurso et al. (2017) prescription.
+Horizontal dotted lines demarcate values usually assumed for starbursts
+(αCO = 0.8) and Milky Way-like galaxies (αCO = 4.5), for reference.
+where ZH2 is the mass-weighted metallicity of the molecular gas
+in solar units, and ΣH2 is the molecular mass surface density in
+M⊙pc−2.
+The quantities ZH2 and ΣH2 are calculable for each galaxy
+in our various simulations. To compute ZH2, we determine the
+H2 fraction-weighted metallicity of all gas particles with a radius
+containing half the molecular gas (RH2). For ΣH2, we compute the
+projected H2 surface densities from gas particles within RH2 in the z
+direction, although we checked in Simba that using the average of the
+x, y, and z projections gives similar results. Given these quantities,
+we use equation 5 to compute αCO for each galaxy. This enables
+us to predict CO(1-0) luminosity function and scaling relations for
+direct comparison to the CO(1-0) luminosities in xCOLDGASS and
+other CO surveys. We note that Narayanan et al. (2012) recommends
+applying their formula locally within the ISM, but given the ∼kpc
+scale spatial resolution of our simulations this is often impractical.
+Hence we compute these quantities within RH2 to give a single αCO
+value for each galaxy.
+Fig. 5 shows a scatter plot of αCO versus stellar mass (left
+panels) and metallicity (right panels), at z = 0 (top) and z = 2
+(bottom), in Simba, computed using the Narayanan et al. (2012)
+prescription (eq. 5). Individual galaxies are colour-coded by their
+location relative to the star-forming main sequence, computed as a
+running median of SFR vs. M∗, ranging from reddest points having
+∆MS ⩽−0.7 to the bluest pointswith ∆MS ⩾0.7. The black hexbin
+shading in the background shows the values computed instead using
+the Accurso et al. (2017) method (eq. 4). The horizontal dashed
+lines show reference values typically assumed for starbursts (αCO =
+0.8) and Milky Way-like galaxies (αCO = 4.5). Only galaxies with
+MH2 > 108M⊙(as well as our adopted stellar mass resolution
+limit of M∗> 109M⊙) are shown, since otherwise they have too
+little molecular gas to reliably determine the quantities required to
+estimate αCO.
+Generally, αCO is anti-correlated with both stellar mass and
+metallicity. The trend with metallicity is stronger, reﬂecting the in-
+verse metallicity dependence in equation 5. At a given metallicity,
+low-sSFR galaxies have higher values of αCO, since they are gas-
+1.0
+0.5
+0.0
+0.5
+1.0
+1.5
+2.0
+log
+CO
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+1.2
+Simba z=0
+TNG100 z=0
+EAGLE z=0
+Simba z=2
+TNG100 z=2
+EAGLE z=2
+Figure 6. Histograms of αCO for M∗> 1010M⊙galaxies in Simba (blue),
+IllustrisTNG (red), and EAGLE (green), at z = 0 (solid curves) and z = 2
+(dashed). Vertical lines show values for starbursts (αCO = 0.8) and Milky
+Way-like galaxies (αCO = 4.5), for reference
+poor with lower H2 surface densities. The trend with mass is shal-
+lower than that with metallicity at z = 0, because lower-mass galax-
+ies have lower metallicity, but this is partly counteracted by their
+higher gas surface densities. It is notable that Simba seems to under-
+predict the value of αCO in a Milky Way-like star-forming galaxy
+relative to the nominal value of αCO = 4.5M⊙pc−2K−1km−1s; this
+is also true for EAGLE. This would result in an over-prediction of
+CO luminosities for a given MH2; we quantify the implications of
+this for the CO luminosity function below.
+At z = 2, the overall values using the Narayanan et al. (2012)
+prescription are lower than at z = 0 for a given mass or metallicity.
+This is because galaxies are more compact and gas-rich at high
+redshifts (e.g. Appleby et al. 2019), leading to higher ΣH2; while
+the metallicities are also lower (Davé et al. 2019), the relatively
+weak dependece on ZH2 is more than compensated by the increased
+surface density.
+The black hexbins in the background show αCO values com-
+puted using equation 4 from Accurso et al. (2017), for comparison.
+At z = 0 for massive (M∗≳1010M⊙) galaxies, the values from
+the two methods are similar, though with a slight trend towards
+higher αCO using this method.At lower masses, the Accurso et al.
+(2017) prescription yields more signiﬁcantly higher values, since it
+is more strongly dependent on metallicity, which is also reﬂected
+in its tighter relation with metallicity in the right panel. At high
+redshifts, equation 4 gives implausibly high values, owing to the
+signiﬁcantly lower metallicities that is not mitigated by the higher
+gas surface densities as in the Narayanan et al. (2012) prescription.
+This is perhaps not surprising, given that the Accurso et al. (2017)
+prescription is based on z ≈0 observations. For the remainder of
+this work, we will use the Narayanan et al. (2012) prescription,
+as it appears to yield a more plausible redshift evolution owing to
+accounting for both structural and metallicity changes.
+To compare the αCO values among the diﬀerent simulations,
+we show in Fig. 6 histograms of αCO at z = 0, 2 (solid and dashed
+lines, respectively) for galaxies with M∗> 1010M⊙from Simba
+(blue), IllustrisTNG (red), and EAGLE (green). Reference lines for
+typical starburst and MW values are indicated by the vertical dotted
+lines.
+Simba and EAGLE both predict a median value of αCO =
+2.9M⊙pc−2K−1km−1s at z = 0, dropping to ≈1 at z = 2. A typical
+MNRAS 000, 1–22 (2019)
+
+
+12
+Davé et al.
+dispersion of αCO is ≈0.5 dex, which is consistent with the spread
+seen in Fig. 5 for Simba. This shows that the assumption of a constant
+αCO value even among relatively massive star-forming galaxies may
+be a poor one. Meanwhile, IllustrisTNG shows generally higher
+values of αCO, with a median value of αCO ≈6 at z = 0 with rapid
+evolution to αCO ≈1.5 at z = 2, and an even larger dispersion.
+It is worth pointing out that the αCO prescription developed by
+Narayanan et al. (2012) used simulations with star formation and
+feedback prescriptions that are diﬀerent to any of the simulations
+considered here, and also were not cosmologically situated. Since
+αCO likely depends on the structure and distribution of molecular
+clouds within the ISM, it could be sensitive to such choices. For
+instance, the same procedure of running very high resolution zoom
+versions using our three simulations’ own star formation and feed-
+back prescriptions and applying a CO radiative transfer code could
+yield substantially diﬀerent ﬁtting formulae for αCO in each case.
+While it is beyond the scope to investigate this here, the variations
+in αCO among the diﬀerent simulations even when using the same
+underlying ﬁtting formula highlight the importance of being able
+to predict this quantity more accurately in ∼kpc scale cosmological
+simulations if one wants to more robustly compare such simulations
+to CO observations.
+Overall, our computed values of αCO broadly follow expected
+trends of being around the Milky Way value in massive star-forming
+galaxies today, shifting towards more starburst-like values at high
+redshifts. There is, however, no bimodality in the αCO distribution,
+indicating that using a bimodal αCO value based on galaxy classiﬁ-
+cation may be too simplistic. Moreover, the large spread in αCO at a
+given M∗or metallicity suggests that using a single value, regardless
+of what it is, may be a dangerous assumption. This is particularly
+true when examining counting statistics such as a mass function,
+where the scatter in αCO could scatter more numerous low-MH2
+galaxies up to high LCO(1−0) values, thereby increasing M⋆
+H2 over
+what one would infer from assuming a constant αCO. In order to
+examine such eﬀects more quantitatively, we next compare the re-
+sulting CO(1-0) luminosity function with αCO computed as above
+among our various simulations, and compare these to observations
+from z ∼0 −2.
+3.5
+The CO Luminosity Function
+With a prescription for computing αCO in hand, albeit with its sub-
+stantial attendant uncertainties, we can now move the comparison
+of molecular gas into the observational plane. It is particularly in-
+teresting to relate the comparative trends seen for the COLF to the
+analogous trends seen for the H2MF from the previous section –
+if αCO was a robust and well-determined quantity, then the gen-
+eral trends between these should mirror each other, but we will
+see that there are signiﬁcant diﬀerences. Moreover, we can also
+engage in more direct comparisons to observations out to higher
+redshifts. Thanks to recent surveys such as ASPECS and COLDz,
+the CO(1-0) luminosity function (COLF) has now been measured
+out to z ≳2, to go along with the improved recent low-redshift
+determination from xCOLD GASS (Saintonge et al. 2017). In this
+section we compare our simulated COLFs to each other and to these
+observations, to assess how well current models do at reproducing
+data and understand how robust these comparisons are.
+Fig. 7 shows the CO(1-0) luminosity function at z = 0, 1, 2 (top
+to bottom) for Simba (blue), IllustrisTNG (red), EAGLE (green).
+Also shown are various observational determinations: The grey
+points at z = 0 are the observations from xCOLD GASS (Sain-
+tonge et al. 2017), while at z ≈1, 2 we show observations from
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+z=0
+Simba
+TNG100
+EAGLE
+xCOLDGASS
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+log
+[Mpc
+3dex
+1]
+z=1
+Simba
+TNG100
+EAGLE
+ASPECS
+8.0
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+log LCO [K km/s pc2]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+z=2
+Simba
+TNG100
+EAGLE
+COLDz
+ASPECS
+Figure 7. CO(1-0) luminosity functions for Simba (blue), IllustrisTNG (red),
+and EAGLE (green) at z = 0, 1, 2 (top to bottom). These are computed us-
+ing Narayanan et al. (2012) prescription for αCO; the results from using a
+constant αCO at the mean value instead results in the dotted lines. Obser-
+vations from xCOLD GASS at z = 0 (Saintonge et al. 2017), ASPECS at
+z ≈1, 2 (Aravena et al. 2019), and COLDz at z ≈2 (Riechers et al. 2019)
+are shown in black and grey. IllustrisTNG and EAGLE well reproduce the
+COLF despite widely diﬀerent H2MF, while Simba overproduces the COLF
+like the H2MF. Simba and EAGLE are able to reproduce observations of
+high-LCO1−0 galaxies at z ≳1.
+ASPECS (Aravena et al. 2019) and COLDz (Pavesi et al. 2018;
+Riechers et al. 2019).
+The z = 0 COLF, with αCO computed individually for each
+simulated galaxy, gives a qualitatively diﬀerent picture in compar-
+ison to observations. Firstly, all the models are now signiﬁcantly
+closer to the observations. For instance, EAGLE has gone from
+being extremely deﬁcient at high MH2, to agreeing very well for
+LCO1−0. IllustrisTNG showed a milk overproduction in the H2MF
+at all masses, but now agrees quite well with the COLF, thanks to its
+typically higher values of αCO. This illustrates that the assumptions
+about αCO qualitatively impact simulations constraints based on the
+H2MF.
+At higher redshifts, the qualitative evolution among the mod-
+els mimics that seen for the gas mass functions: EAGLE and Simba
+have strong positive luminosity evolution out to high redshifts, while
+IllustrisTNG’s evolution is also positive (owing to its lower αCO val-
+ues at high-z) but much weaker than in the other two simulations.
+The net result is that IllustrisTNG has a diﬃcult time reproduc-
+ing the very high LCO1−0 values seen in galaxies at z ∼1 −2,
+and tends to over-produce low-LCO1−0 systems. A similar failing
+of galaxy formation models was noticed from a comparison to
+semi-analytic models done in Riechers et al. (2019), and similarly
+Popping et al. (2019) found that IllustrisTNG under-predicted the
+high-luminosity end at z > 1. As is often the case, the claimed
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+13
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+z=0
+Simba,
+CO = 2.9
+Simba,Accurso
+TNG100,
+CO = 2.9
+EAGLE,
+CO = 2.9
+xCOLDGASS
+8.0
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+log LCO [K km/s pc2]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+                              log
+[Mpc
+3dex
+1]
+z=2
+Simba,
+CO = 2.9
+Simba,Accurso
+TNG100,
+CO = 2.9
+EAGLE,
+CO = 2.9
+COLDz
+ASPECS
+Figure 8. CO(1-0) luminosity functions for Simba (blue), IllustrisTNG (red),
+and EAGLE (green) at z = 0, 2 (top to bottom). The diﬀerent line types
+show the results when computed using various αCO prescriptions. The faint
+solid lines show the results using the Narayanan et al. (2012) prescription,
+reproduced from Figure 7. The dotted lines for each simulation show the
+results assuming a constant αCO = 2.9 M⊙pc−2K−1km−1s, which is a
+typical average value at z = 0. Finally, the dashed blue line shows the
+COLF for Simba assuming the Accurso et al. (2017) αCO prescription,
+which produces unphysically high values of αCO at z = 2. For reference,
+observations are shown as in Figure 7. The assumption of a constant αCO
+makes an especially large diﬀerence for the bright end at z = 2.
+discrepancy is quite model dependent. Simba and EAGLE are
+well able to produce LCO1−0 ∼1011 K
+km s−1 pc2 systems at
+z ∼2, as observed. The key is their low αCO values, typically
+αCO ∼1M⊙pc−2K−1km−1s.We note that Simba reproduces the
+mass-metallicity relation at z ∼2 (as well as z ∼0; Davé et al.
+2019), so the low αCO values are not due to over-enriched galaxies.
+To illustrate the sensitivity of these predictions to assump-
+tions about αCO, Figure 8 shows a comparison of these models
+with diﬀerent assumptions about αCO, at z = 0 (top) and z = 2
+(bottom). For Simba, we show with blue dotted and dashed curves
+the results of using a constant αCO = 2.9 M⊙pc−2K−1km−1s and
+the Accurso et al. (2017) αCO prescription, respectively. For Illus-
+trisTNG and EAGLE shown in red and green, the dotted lines show
+a constant αCO = 2.9 M⊙pc−2K−1km−1s. For comparison, the
+semi-transparent solid lines reproduces the results from Figure 7,
+and the observations shown there are also reproduced.
+For Simba at z = 0, using the median αCO (dotted line) rather
+than the full spread in values does not yield a much diﬀerent COLF.
+At z = 2, however, there is a large diﬀerence, as using a constant
+αCO strongly underpredicts the bright end. This illustrates the im-
+portance of including a distribution of αCO values for comparing
+to observations. Meanwhile, the Accurso et al. (2017) prescription
+yields a somewhat lower COLF at z = 0, owing to its generally
+higher αCO values. At z = 2, the likely unphysically high αCO val-
+ues predicted in this prescription results in a much poorer agreement
+with data.
+For EAGLE and IllustrisTNG, the story is similar: At z = 0,
+using a constant αCO results in mildly lower COLFs, but at z = 2, the
+diﬀerence is very pronounced, and as with Simba tends to strongly
+truncate the bright end of the COLF. The assumption of a constant
+αCO may thus be a major reason why Riechers et al. (2019) and
+Popping et al. (2019) found that models could not reproduce the
+bright end of the high-redshift COLF.
+Clearly, independent constraints on αCO at both low and high
+redshifts would be highly valuable in order to conduct a robust
+comparison between the observed and simulated COLFs. This could
+come from direct observations (e.g. Accurso et al. 2017), or else
+from sophisticated higher-resolution simulations including CO line
+radiative transfer, such as with SÍGAME (Olsen et al. 2017). It
+is possible that the αCO values coming from the Narayanan et al.
+(2012) prescription are systematically discrepant in one or more
+of our simulations, which could then either indicate a failing of
+that model, or the inapplicability of the Narayanan et al. (2012)
+prescription for that model. There is thus substantial eﬀort still
+needed in order to be able to utilise the COLF as a robust constraints
+on galaxy formation models.
+Overall, it is encouraging that all our models better reproduce
+the z ≈0 COLF than the H2MF, since the former is the more direct
+observable. At higher redshifts, at least some current galaxy forma-
+tion models have no diﬃculty forming galaxies with high LCO1−0
+values at z ∼1 −2 – the evolution predicted in EAGLE is in very
+good agreement with observations, Simba’s evolution is still quite
+reasonable compared to data, while IllustrisTNG has signiﬁcant dif-
+ﬁculties generating high-LCO1−0 systems at high redshifts despite
+its rapid downwards evolution of αCO. EAGLE’s good agreement
+with the COLF was also noted in Lagos et al. (2015), despite us-
+ing a diﬀerent metallicity-dependent αCO prescription. Nonetheless,
+all these conclusions are highly sensitive to assumptions regarding
+αCO. To make progress, this must be independently constrained ei-
+ther observationally and/or theoretically in order to properly assess
+whether galaxy formation models match observations of molecular
+gas in galaxies across cosmic time.
+3.6
+Gas Fraction Scaling Relations
+We have seen that our three galaxy formation simulations quali-
+tatively reproduce the distribution functions of cold gas and their
+measures in galaxies, but there are also signiﬁcant discrepancies in
+each case. To investigate the successes and failures in more detail
+and isolate the galaxy population(s) responsible, it is instructive
+to examine scaling relations of gas content versus global galaxy
+properties, which is what we do here.
+Fig. 9 shows a montage of scaling relations for our simulations,
+compared to observations. The y−axis panels shows the quantities
+fHI = MHI/M∗, fH2 = MH2/M∗, and LCO(1−0) as computed assum-
+ing the Narayanan et al. (2012) prescription for αCO. The x−axis
+quantities are the stellar mass M∗, the speciﬁc star formation rate
+(sSFR), and stellar mass surface density (computed within the half
+stellar mass radius) µ∗. In each panel, we show a running median
+for Simba (blue), IllustrisTNG (red), EAGLE (green solid), and
+EAGLE-Recal (green dashed), with the spread from the 16th to
+84th percentile shown as the shaded blue region for Simba. The
+underlying grey points show the observations from xGASS (for H i)
+and xCOLD GASS (for H2 and CO) with downwards arrows indi-
+cating upper limits. A running median is shown as the black points
+with the errorbars indicating the 1σ spread around the median. The
+medians are taken over all data points including non-detections or
+gas-free galaxies; using the median rather than the mean avoids any
+MNRAS 000, 1–22 (2019)
+
+
+14
+Davé et al.
+9
+10
+11
+12
+log M *
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+0.5
+log fHI
+xGASS/xCOLDGASS
+Simba
+TNG100
+EAGLE
+xGASS/xCOLDGASS
+Simba
+TNG100
+EAGLE
+xGASS/xCOLDGASS
+Simba
+TNG100
+EAGLE
+xGASS/xCOLDGASS
+Simba
+TNG100
+EAGLE
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+z=0
+z=0
+z=0
+z=0
+9
+10
+11
+12
+log M *
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+log fH2
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+9
+10
+11
+12
+log M *
+6.5
+7.0
+7.5
+8.0
+8.5
+9.0
+9.5
+log LCO [K km s
+1 pc2]
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+Figure 9. Gas fraction scaling relations at z = 0 in Simba (blue), IllustrisTNG (red), EAGLE (green solid), and EAGLE-Recal (green dashed). Top row shows
+atomic gas fraction MHI/M∗, middle shows molecular gas fraction MH2/M∗, and bottom row shows LCO1−0 with αCO computed using the Narayanan et al.
+(2012) prescription. These are shown as a function of stellar mass (left panels), speciﬁc SFR (middle), and stellar surface density (right). Lines shown the
+running median for each scaling relation; in each case, the bins have been chosen to hold approximately an equal number of galaxies from within each dataset.
+Blue shaded region shows the 16–84% spread around the median in Simba. Grey points show results from xGASS for H i data and xCOLD GASS for H2 and
+CO data (non-detections shown as downward arrows at their upper limits), with the running median shown as the black points with errorbars indicating the
+1σ spread about the median including non-detection. All simulations broadly reproduce the trends in gas fractions, but signiﬁcant discrepancies are seen for
+Simba in molecular gas at low M∗and all sSFR, for IllustrisTNG in molecular gas at high M∗, and for EAGLE in H i at low masses which is much improved
+in EAGLE-Recal.
+ambiguity regarding the values for the upper limits in the observa-
+tions. The results are not signiﬁcantly diﬀerent if we compute the
+running mean instead. The bins are chosen to have roughly equal
+numbers of galaxies in each.
+The leftmost column shows the relations versus M∗. In the
+simulations, stellar mass is generally the most accurately predicted
+quantity, hence M∗scaling relations are likely the most robust trends
+predicted by the models. All models predict falling fHI and fH2 with
+increasing M∗, and a slow rise in LCO1−0 with M∗in the star-forming
+regime and a quick drop in the most massive (generally quenched)
+galaxies. The variance around the median in Simba is about 0.4
+dex in H i, and increases towards high M∗for the molecular and
+CO trends. These broadly mimics the corresponding observational
+trends, but there are notable discrepancies.
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+15
+For fHI, Simba and IllustrisTNG agree reasonably well at most
+masses, reﬂecting their good agreement with the HIMF as seen
+in Fig. 3, but somewhat overpredict the atomic fractions at the
+highest masses. EAGLE, meanwhile, is an interesting case – it
+strongly underpredicts the HIMF, yet the fHI is only mildly low,
+except for a stronger drop at the lowest M∗. This occurs because
+EAGLE has a signiﬁcantly larger fraction of galaxies across all
+masses with little or no H i, which impacts the counts more than
+the median values. EAGLE-Recal, meanwhile, has higher fHI at
+all masses, but in particular follows the observations more closely
+at M∗≲1010M⊙, the combination of which produces an HIMF
+for EAGLE-Recal that is in good agreement with observations. As
+discussed in Section 3.2, we speculate that the signiﬁcant diﬀerence
+between EAGLE and EAGLE-Recal is a consequence of the stronger
+resolution dependence of EAGLE’s subgrid feedback model relative
+to those used by Simba and IllustrisTNG.
+fH2 similarly shows an overall falling trend in all models. Illus-
+trisTNG overproduces the molecular fractions particularly in low-
+and high-M∗galaxies, and likewise shows an upwards deviation
+in fH2 towards high M∗like that seen for fHI, indicating that this
+represents a true bump in the overall cold gas in massive systems as
+opposed to some artifact of H i–H2 separation. The overprediction,
+particularly at the massive end, is subject to uncertainties regarding
+apertures; Diemer et al. (2019) and Popping et al. (2019) obtained
+signiﬁcantly better agreement owing to their use of a smaller aper-
+ture.
+Simba, meanwhile, overproduces fH2 particularly at low
+masses, suggesting that the excess seen in the H2MF comes from
+dwarfs that are overly molecular gas-rich. Given Simba’s large aper-
+ture, it is subject to similar aperture caveats as IllustrisTNG. Curi-
+ously, despite matching the H2MF and the GSMF fairly well, Simba
+systematically overproduces the H2 fractions.
+EAGLE shows the best agreement in the slope of fH2(M∗), al-
+though it is slightly low. Hence for the galaxies that have molecular
+gas, EAGLE does a good job of reproducing their gas fractions.
+EAGLE-Recal is very similar to EAGLE, showing that molecu-
+lar fractions are less resolution-sensitive than atomic fractions in
+EAGLE.
+Both IllustrisTNG and Simba produce at least some quite mas-
+sive galaxies with signiﬁcant H2 even though those galaxies are gen-
+erally quenched, which is also seen in some observed systems (e.g.
+Davis et al. 2019). It remains to be seen if there is statistical agree-
+ment with observations since xCOLD GASS is not a suﬃciently
+large sample to include such rare objects, and current observations
+of molecular gas in massive galaxies are limited to heterogeneously
+selected samples. In Simba, such gas typically has very low star
+formation eﬃciency and lies below the Kennicutt-Schmidt rela-
+tion (Appleby et al. 2019), likely owing to its diﬀuse distribution.
+We can further compare these to the Mufasa gas scaling pre-
+dictions shown in Figure 5 of Davé et al. (2017). The fH2 relation is
+fairly similar, since the H2 formation model has remained the same,
+but Simba produces more molecular gas in low-mass galaxies. The
+fHI predictions are also fairly similar, but Simba produces some-
+what more H i at the highest masses. Likely this occurs because
+Mufasa’s quenching feedback mechanism explicitly heated all the
+ambient gas in high-mass halos. Mufasa thus over-suppressed H i
+in massive galaxies, while Simba slightly under-suppresses it.
+Looking at LCO1−0, we see that the impact of the variations in
+αCO result in somewhat diﬀerent trends relative to that for fH2. As
+in the COLF, Simba clearly overproduces LCO1−0, while EAGLE
+and IllustrisTNG do generally better, the latter owing to its sig-
+niﬁcantly higher values of αCO. Simba and EAGLE show a sharp
+decline in CO luminosity at M∗≳1011M⊙, similar to that seen
+in xCOLD GASS, while IllustrisTNG continues to show typically
+high LCO1−0 out to large stellar masses. In Simba, despite there be-
+ing some molecular gas in these galaxies, the H2 surface densities
+are generally low, which increases αCO and thus decreases the CO
+luminosity. Nonetheless, the very most massive galaxy in Simba is
+relatively CO-bright.
+The second column depicts the trends versus sSFR. Again, all
+simulations qualitatively produce the observed trends of increasing
+cold gas fractions with sSFR, but only a weak trend with LCO1−0.
+The trends in individual simulations mirror that seen for M∗: Il-
+lustrisTNG and Simba match fHI and are somewhat high in fH2,
+reﬂecting the trends seen in the mass functions. For EAGLE, the
+origins of the discrepancies in the mass functions become clearer
+in this plot: EAGLE produces too little neutral gas in low-sSFR
+systems, and generally shows a steeper slope of either H i or H2 gas
+fraction versus sSFR versus observations, indicating that EAGLE’s
+model over-suppresses cold gas in green valley galaxies. EAGLE-
+Recal simply lacks many galaxies in this green valley regime, but
+for the few that are there, it seems to produce signiﬁcantly higher
+fHI. Meanwhile, the LCO1−0 trends represents the competing eﬀects
+of lower sSFR objects generally having lower molecular fractions,
+but also being larger systems overall. All models achieve this bal-
+ance naturally, although as before the amplitudes vary somewhat.
+All models also produce a sharp drop in LCO1−0 for the quenched
+systems as observed, more dramatic than that for fH2. In Simba
+owes to a higher αCO in such systems from the lower molecular gas
+surface densities, and this appears to occur naturally in the other
+simulations as well.
+The rightmost column shows trends versus the stellar surface
+density µ∗. Both data and models show dropping cold fractions with
+increasing µ∗, as higher µ∗galaxies tend to have lower sSFR and
+therefore less cold gas relative to stars. The slope of the trend in all
+models generally reproduces observations. However, the amplitudes
+vary substantially. IllustrisTNG produces good agreement with all
+properties as a function of µ∗, while EAGLE tends to under-produce
+the gas contents, and Simba predicts reasonable gas fractions but
+generally has a ﬂatter trend with µ∗than observations. The maxi-
+mum µ∗reached in each model is substantially diﬀerent, which is
+directly tied to numerical resolution: IllustrisTNG has the highest
+resolution, then EAGLE, then Simba, which has ∼15× lower mass
+resolution than IllustrisTNG owing to its larger volume and lower
+number of gas elements. This is also seen by comparing EAGLE to
+EAGLE-Recal; the latter produces higher fHI values and also higher
+fH2, even though the molecular fractions are a given M∗or sSFR
+are not resolution-dependent. One interpretation is thus that Illus-
+trisTNG’s resolution is necessary in order to properly resolve the
+inner structure of the stellar component. If so, this means predict-
+ing inner structural quantities as stellar mass surface density, bulge
+fractions, Sersic indices, etc., is quite computationally demanding
+and subject to a careful assessment of resolution convergence ef-
+fects. However, we will show in §3.7 that Simba with AGN feedback
+oﬀproduces a plethora of very high µ∗galaxies, even at the same
+resolution. Hence it is certainly possible to produce galaxies with
+high µ∗at Simba’s resolution, which suggests that instead it may be
+Simba’s AGN feedback scheme that prevents galaxies from having
+suﬃciently high stellar densities.
+Overall, all our simulations broadly reproduce trends versus
+stellar mass, surface density, and speciﬁc SFR, but there are notable
+variations and discrepancies that highlight speciﬁc diﬀerences re-
+ﬂected in the earlier mass and luminosity functions. IllustrisTNG
+and Simba tend to do slightly better on H i fractions, while EAGLE
+MNRAS 000, 1–22 (2019)
+
+
+16
+Davé et al.
+does somewhat better on molecular gas fractions. Stellar surface
+densities provide a novel constraint on feedback regarding the spa-
+tial distribution of stellar growth in simulated galaxies, albeit such
+measures may be more sensitive to numerical eﬀects. As observa-
+tions improve both at z = 0 and in the distant universe, it is clear
+that gas scaling relations will provide complementary constraints
+and insights into the robustness and validity of the input physics in
+cosmological galaxy formation simulations.
+3.7
+Simba AGN feedback variants
+AGN feedback is a key ingredient in modern galaxy formation mod-
+els in order to quench massive galaxies (Somerville & Davé 2015).
+In terms of the cold gas content, the predominant eﬀect is to eject
+and/or prevent gas accretion, owing to energy injection from the
+AGN. Thus it is expected that models predict low cold gas contents
+in massive galaxies, as we have seen above. Yet AGN feedback can
+come in many diﬀerent forms (Sturm et al. 2011; Maiolino et al.
+2012; Heckman & Best 2014), such as radiatively-driven winds oﬀ
+the accretion disk, relativistic jets, and photo-heating of surround-
+ing gas. As such, it is interesting to know which type of AGN
+feedback is responsible for lowering the cold gas content. In Simba,
+we have a particularly interesting model that employs three diﬀer-
+ent types of AGN feedback, broadly following the three feedback
+modes described in Heckman & Best (2014). Understanding how
+these diﬀerent types of AGN feedback impacts galaxy cold gas con-
+tent, particularly in massive galaxies, may provide useful insights
+that would help guide and constrain quenching models.
+In this section, we examine the impact of AGN feedback on
+the cold gas content of galaxies in Simba. As outlined in §2.1, the
+three diﬀerent forms of AGN feedback in Simba are jet feedback
+at low fEdd ≲0.02, radiative feedback at high fEdd, and X-ray
+feedback at low fEdd and gas fractions (see Davé et al. 2019, for
+full details). The ﬁrst two feedback modes are bipolar and purely
+kinetic, while the X-ray feedback is spherical and mostly kinetic,
+though typically of much lower strength. The radiative feedback
+mode corresponds to what is often referred to as ‘quasar mode’
+feedback, and is designed to qualitatively model outﬂows of warm
+ionised (Perna et al. 2017) and/or cold molecular (Maiolino et al.
+2012) gas at speeds of many hundreds of km/s. The jet mode aims
+to represent the impact of collimated relativistic radio jets, often
+called ‘radio mode’ feedback, that eject hot plasma out to tens to
+hundreds of kpc before imparting their energy into the surrounding
+medium. X-ray feedback is motivated more fully in Choi et al.
+(2012) as high-energy radiation pressure that imparts momentum
+onto the gas surrounding the black hole; unlike the other modes,
+this mode is spherical, and typically generates a relatively modest
+outward push of a few hundred km/s in the gas closest to the black
+hole, with a strength that scales as the inverse square of the distance.
+The Simba suite contains 50 h−1Mpc box size, 2×5123 element
+variants where each of these AGN feedback mechanisms is turned
+oﬀin turn, as follows:
+• “Simba” – Full AGN feedback physics.
+• “No-Xray” – Only X-ray feedback turned oﬀ.
+• “No-jet” – X-ray and jet feedback turned oﬀ.
+• “No-AGN” – All AGN feedback turned oﬀ.
+All simulations are run from the same initial conditions, and all
+other input physics is unchanged. These should thus be regarded as
+numerical experiments to isolate the impact of each feedback mech-
+anism, rather than realistic variations of galaxy formation models.
+For instance, only the full Simba model accurately reproduces the
+observed stellar mass function (Davé et al. 2019).
+Fig. 10 shows the H i (left panels) and H2 (right) mass func-
+tions, at z = 0 (top panels) and z = 1 (bottom) for the 50 h−1Mpc
+Simba run (blue), No-Xray (green), No-jet (red), and No-AGN
+(cyan). The blue shading shows the cosmic variance estimated over
+8 simulation sub-octants in the full physics run; the other models
+show similar variance but are not shown for clarity. The dotted
+blue line shows the results from a small-volume (25 h−1Mpc) ver-
+sion of Simba with 8× better mass resolution. The dashed blue line
+shows the 100 h−1Mpc Simba results reproduced from Figs 3 and
+4. Observations from ALFALFA (left) and xCOLD GASS (right)
+are also reproduced from those ﬁgures, although we will not focus
+on comparing to data here.
+We ﬁrst compare the 50 h−1Mpc and 100 h−1Mpc Simba runs,
+which diﬀer only in that the latter has 8× the volume. In general they
+shows similar results within uncertainties, but the variance is larger
+in the 50 h−1Mpc case owing to the fewer numbers of galaxies.
+One notable diﬀerence is that the smaller volume produces a higher
+HIMF, which is within the variance at z = 0 but not at z = 1. With
+a larger volume, there are more quenched galaxies with less H i in
+their outskirts, resulting in a higher mass function for the smaller
+volume. The diﬀerence is less noticeable for H2, and in this case
+the large volume has a slightly higher mass function. Nonetheless,
+these are all variations that are within 1σ expectations of cosmic
+variance, and since these two volumes are started from diﬀerent
+initial conditions, such variations are not unexpected.
+We can examine resolution convergence by comparing the
+50 h−1Mpc (solid) and 25 h−1Mpc (dotted) results, which have the
+same dynamic range but the latter has 8× better resolution. As such,
+it resolves galaxies to much lower masses. For the H2MF, there is
+quite good resolution convergence, but it can be seen that the turn-
+down at MH2 ≲109M⊙owes primarily to incompleteness, as the
+25 h−1Mpc results do not show a turnover there. The HIMF, in con-
+trast, does tend to be slightly higher in the higher resolution volume.
+This general behavior is also seen between the main EAGLE run and
+the high-resolution EAGLE-Recal run (Crain et al. 2017), though
+with a more dramatic diﬀerence than in Simba. However, in Simba,
+this might also be a volume eﬀect as described in the previous para-
+graph. More crucially, it is now evident that the turn-down in the
+HIMF in Simba clearly owes to numerical resolution – with a high-
+resolution run, the HIMF continues to broadly follow the observed
+HIMF trend down to MHI ≲109M⊙. The impact of resolution is
+particularly evident at z = 1, and suggests that the main Simba
+volume can only resolve H i in galaxies down to MHI ∼1010M⊙at
+these redshifts. Upcoming surveys, however, are unlikely to probe
+to lower H i masses, at least for individual detections.
+Turning to the AGN feedback variants, at z = 0 we see by far
+the strongest impact owes to the jet feedback mode. This can be
+seen by noting that turning oﬀX-rays (blue→red) only modestly
+changes the cold gas mass functions. Thus X-ray feedback does
+have some eﬀect, but it is barely at the 1σ level relative to cosmic
+variance. In contrast, further turning oﬀjet feedback (red→green)
+makes a much larger diﬀerence, which is true for both H i and
+H2. Davé et al. (2019) noted (via analogous tests) that it is jet
+feedback that is primarily responsible for quenching star formation
+in Simba, so it is unsurprising to see this reﬂected in H2, but it is
+perhaps not immediately evident that it would also impact the H i
+so dramatically. Finally, we note that radiative AGN feedback has
+very little impact on cold gas content (green→cyan). If anything,
+including this feedback mode tends to increase the H i, which may
+be because modest-velocity AGN winds are able to throw more
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+17
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+log
+[Mpc
+3]
+z=0
+No-Xray
+No-jet
+No-AGN
+Simba-100
+Simba(25 Mpc/h)
+Simba(50 Mpc/h)
+ALFALFA z=0
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+z=0
+No-Xray
+No-jet
+No-AGN
+Simba-100
+Simba(25 Mpc/h)
+Simba(50 Mpc/h)
+xCOLDGASS z=0
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+log MHI [M
+]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+log
+[Mpc
+3]
+z=1
+8.5
+9.0
+9.5
+10.0
+10.5
+11.0
+11.5
+log MH2 [M
+]
+4.5
+4.0
+3.5
+3.0
+2.5
+2.0
+1.5
+1.0
+z=1
+Figure 10. HIMF (left) and H2MF (right) at z = 0, 1 (top, bottom) for the four AGN feedback variants: full Simba (blue), no-Xray (red), no-jet (green), and
+no-AGN (cyan). These are run in 50 h−1Mpc volumes; the corresponding Simba 100 h−1Mpc volume results are shown as the blue dashed line. Observations
+from ALFALFA (Jones et al. 2018) and xCOLD GASS (Fletcher et al. 2020) are shown for reference. The dominant diﬀerence comes from the inclusion of
+AGN jet feedback, which strongly suppresses cold gas in massive galaxies at z ≲1.
+material (albeit a small amount overall) into the CGM that can then
+remain suﬃciently dense to be self-shielded.
+Looking at z = 1 (bottom panels), it is clear the diﬀerences are
+much less pronounced. We do not show the results at z = 2, but here
+all models are essentially identical to within cosmic variance. This
+indicates that the impact of jet feedback is mostly seen at z ≲1,
+which is also reﬂected in larger-scale motions of baryons in the IGM
+in Simba (Borrow et al. 2019; Christiansen et al. 2019). Without
+jets (green and cyan), the cold gas mass functions actually increase
+at the massive end from z = 1 →0, whereas with jets (blue and
+red) they decrease. Hence in Simba, jet feedback that is responsible
+for quenching galaxies also dramatically changes late-time cosmic
+cold gas evolution.
+Fig. 11 gives a complementary view of the variations in cold
+gas properties induced by AGN feedback. This shows cold gas scal-
+ing relation comparisons at z = 0 as in Fig. 9, but here we compare
+the suite of 50 h−1Mpc AGN feedback variant runs vs. xGASS and
+xCOLD GASS scaling relations. The blue, red, green, and cyan
+lines show running median scaling relations for the full Simba, No-
+Xray, No-jet, and No-AGN variants as described above. Note that
+the full Simba run here is in a 50 h−1Mpc box, rather than the ﬁdu-
+cial 100 h−1Mpc box shown in Figure 9, in order to homogenise
+the comparison to the other runs. The galaxies in the 50 h−1Mpc
+volume have somewhat higher H i contents and slightly lower H2
+contents than the 100 h−1Mpc box, as seen in Figure 10. The ob-
+servations from xGASS and xCOLD GASS are reproduced from
+Fig. 9 for reference, though the focus in this plot is a comparison
+among the AGN feedback variants.
+AGN feedback primary impacts high-mass galaxies in Simba.
+This is seen by the fact that at M∗≲109.5M⊙, all models give
+similar results, even without any AGN feedback at all. There is
+immediately an increase in gas content by turning on the radiative
+mode feedback (i.e. cyan No-AGN vs. green No-Jet lines), which as
+we discussed in the mass functions section seems counterintuitive:
+Radiative AGN feedback increases the amount of both H i and H2
+(as well as LCO). This is because there is additional cold material
+being driven out of the galaxy that both mildly lowers the amount
+of stars formed while also providing more gas to accrete from the
+CGM.
+The largest diﬀerence comes from further turning on jet feed-
+back (green vs. red lines). This causes a major drop in the gas
+fractions at M∗≳1010M⊙, particularly in molecular gas. It is this
+feedback, which is also responsible for quenching galaxies (Davé
+et al. 2019) that is thus responsible for reproducing the strongly
+negative slope of gas fractions as observed; such a slope is not a
+trivial outcome of galaxy formation, but rather driven speciﬁcally
+by AGN feedback. Note that the H i fractions still have a negative
+slope even without jet feedback, since the growth of gravitational hot
+gaseous halos suppresses cold gas in the CGM relative to the stars;
+in contrast, the molecular fractions are nearly mass-independent
+without jet feedback. Adding X-ray feedback has a small but notice-
+able impact on the molecular content of the most massive systems
+M∗≳1011M⊙, which comes from the removal of molecular gas
+from the central regions owing to this feedback mode in Simba (Ap-
+pleby et al. 2019).
+The sSFR scaling relations (middle column) show much less
+dependence on AGN feedback. This is primarily because the most
+signiﬁcant impact of AGN feedback is to quench galaxies and build
+MNRAS 000, 1–22 (2019)
+
+
+18
+Davé et al.
+9
+10
+11
+12
+log M *
+2.0
+1.5
+1.0
+0.5
+0.0
+0.5
+log fHI
+xGASS/xCOLDGASS
+Simba (50 Mpc/h)
+No-Xray
+No-jet
+No-AGN
+xGASS/xCOLDGASS
+Simba (50 Mpc/h)
+No-Xray
+No-jet
+No-AGN
+xGASS/xCOLDGASS
+Simba (50 Mpc/h)
+No-Xray
+No-jet
+No-AGN
+xGASS/xCOLDGASS
+Simba (50 Mpc/h)
+No-Xray
+No-jet
+No-AGN
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+z=0
+z=0
+z=0
+z=0
+9
+10
+11
+12
+log M *
+2.5
+2.0
+1.5
+1.0
+0.5
+0.0
+log fH2
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+9
+10
+11
+12
+log M *
+6.5
+7.0
+7.5
+8.0
+8.5
+9.0
+9.5
+log LCO [K km s
+1 pc2]
+2
+1
+0
+log sSFR
+8
+9
+log
+*
+Figure 11. Gas scaling relations at z = 0 as in Fig. 9, for 50 h−1Mpc, 2 × 5123 variants of Simba with diﬀerent AGN feedback modules included. The blue
+line shows the running median of these scaling relations for the full Simba model, red (‘No-Xray’) shows turning oﬀthe X-ray feedback only, green (‘No-jet’)
+shows turning oﬀthe jets and X-ray feedback, and cyan (‘No-AGN’) showing further turning oﬀthe radiative feedback. xGASS and xCOLD GASS data are
+also shown as in Fig. 9. AGN feedback has no impact on the low-M∗or high-sSFR galaxies, but in particular, jet AGN feedback strongly lowers the gas content
+in massive galaxies to bring them into better agreement with observations.
+a population with very low sSFR; the ones that remain star-forming
+and dominate this plot are not strongly aﬀected. Nonetheless, once
+can see that turning on radiative mode AGN feedback, for instance,
+mildly increases the amount of H i and H2 in galaxies at modest
+sSFR. The slopes of the sSFR– fgas relations are thus in somewhat
+better agreement with observations when AGN feedback is included
+versus having all AGN feedback turned oﬀ.
+The stellar surface density plot provides some insight into the
+nature of the discrepancies seen in Fig. 9 for the full Simba run.
+Previously we argued that resolution may be impacting the results
+to prevent very high surface densities. However, when jets are oﬀ
+(green/cyan lines), it is clear that plenty of galaxies at high stellar
+surface densities as observed can indeed be achieved at this numeri-
+cal resolution. Instead, it is primarily the jet feedback that causes the
+lack of high µ∗galaxies, with X-ray feedback providing a minor ad-
+dition. This is seen particularly dramatically in the fH2 plot, where
+turning on X-ray feedback starkly reduces the number of high-µ∗
+galaxies. Note that Appleby et al. (2019) found that this same X-
+ray feedback is necessary to obtain central depressions in the sSFR
+proﬁles of green valley galaxies in accord with observations, yet the
+impact on the stellar surface densities may be overly strong. It could
+still be that the results are impacted by numerical resolution; sim-
+ply producing high-µ∗galaxies does not guarantee that resolution
+is not a concern. Nonetheless, this comparison illustrates that the
+stellar surface densities could potentially provide a complementary
+constraint on X-ray feedback, constrained by the internal buildup of
+stars within galaxies.
+Overall, the comparison between AGN feedback variants in
+Simba demonstrates that the cold gas mass function and its evolu-
+tion since z ∼1 provides interesting constraints on AGN feedback
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+19
+models. Simba’s AGN feedback was designed to quench massive
+galaxies, while keeping the kinetic energy from the jets to be rel-
+atively modest, in accord with observations (Whittam et al. 2018;
+Davé et al. 2019). Given the large impact of this feedback mode in
+impacting the HIMF and H2MF, it may be likely that the remaining
+discrepancies versus e.g. the H2MF could be mitigated with modest
+tweaking of the jet energy input, while not substantively impact the
+quenched population. Simba’s jet AGN feedback has the largest im-
+pact on cold gas properties, and it may actually over-suppress high
+high stellar surface density systems. Nonetheless, it is a non-trivial
+success that Simba, as well as other simulations, are able to come
+close to reproducing cold gas mass functions particularly at the
+massive end via AGN feedback, and highlights such data as a way
+to independently constrain a poorly understood aspect of modern
+galaxy formation models.
+3.8
+Discussion: The interplay of feedback and cold gas
+We have seen that despite very similar stellar and SFR properties,
+EAGLE, IllustrisTNG, and Simba have substantially diﬀerent pre-
+dictions for cold gas properties. In this section we brieﬂy speculate
+on the physical origin of these model diﬀerences. A proper study
+of this would require a systematic parameter space exploration of a
+range of feedback prescriptions, which is beyond the scope of this
+work, but there are some qualitative diﬀerences in feedback models
+that may broadly explain some of the variations.
+At low masses, the dominant feedback mechanism in these
+simulations is star formation-driven outﬂows. In both Simba and
+IllustrisTNG, star formation feedback is done via decoupled kinetic
+outﬂows, meaning they explicitly do not impact or remove ambient
+ISM gas. In EAGLE, the feedback is done by raising the temper-
+ature of gas particles neighboring newly-formed star particles, by
+a temperature increment of 107.5K. This drives outﬂows from the
+resulting pressure gradient, and also adds heat to the ISM, likely
+lowering the cold (both molecular and atomic) gas content. Also,
+it may heat surrounding CGM gas more, which would particularly
+lower the H i content associated with the galaxy. This may explain
+why, at low masses, EAGLE predicts lower H i and particularly
+H2 contents, indicating that the low-mass gas content of galaxies
+is sensitive to the amount of thermal energy deposition from star
+formation feedback into the ISM and CGM. This explanation seems
+plausible when one considers that the eﬀect is strongly resolution-
+dependent, and that EAGLE’s thermal feedback scheme injects less
+energy per feedback event at higher resolution.
+Larger diﬀerences are seen in the HIMF and H2MF at high
+masses above ≳M⋆. In this regime, AGN feedback is an important
+contributor. Again, Simba and IllustrisTNG have qualitatively sim-
+ilar AGN feedback approaches, via kinetic jets in massive galaxies
+at late times. EAGLE continues to use a thermal-based feedback
+approach, with a higher temperature increment of 108.5K for heat-
+ing gas around the black hole. Judging from the lack of massive
+cold gas reservoirs in EAGLE, it may be that this feedback mode
+is overly aggressive in heating or expelling cold gas. On the other
+hand, the overproduction of H2 in Simba and IllustrisTNG (modulo
+uncertainties in αCO) may indicate that a purely kinetic feedback
+form is insuﬃcient to remove molecular gas from the ISM in a
+manner in accord with observations. Note that Simba generally has
+weaker jet energy input than IllustrisTNG and does not vary the
+direction of the jet feedback on short timescales as IllustrisTNG
+does, but it does include X-ray feedback that is important for re-
+ducing the central molecular gas in quenching high-mass galaxies
+as observed (Appleby et al. 2019). Thus the molecular gas content
+in massive galaxies appears to be impacted by essentially all the
+diﬀerent feedback mechanisms, making detailed tests of the impact
+of each one within each simulation model (as in §3.7) important for
+understanding their impact. We leave such a study for future work.
+Among the more striking results is that IllustrisTNG predicts
+comparable or lower H i and H2 mass functions at higher redshifts
+versus z = 0, while Simba and EAGLE both have increasing mass
+function to high-z. This is particularly curious since both Illus-
+trisTNG and Simba used decoupled kinetic winds and two-mode
+AGN feedback, yet yield qualitatively diﬀerent evolution. One po-
+tential diﬀerence is that IllustrisTNG uses spherical thermal AGN
+feedback at high black hole Eddington fractions that are more com-
+mon at earlier epochs, only going to kinetic at lower Eddington
+fractions, while Simba uses bipolar kinetic AGN feedback in all
+cases. It could be that such thermal feedback during the peak of
+black hole growth activity is signiﬁcantly impacting the gas in the
+immediate vicinity of star-forming galaxies, thereby modulating the
+cold gas content. This does not happen in Simba owing to the ex-
+plicit bipolar and decoupled nature of the AGN feedback, even at
+high Eddington fractions. Since the largest impact is on the H i, it is
+not immediately clear which approach is in better agreement with
+data since H i mass functions aren’t yet available at higher redshifts,
+but this is an interesting prediction that may already be testable
+using e.g. the upcoming LADUMA survey on MeerKAT.
+4
+SUMMARY
+We have examined the atomic and molecular hydrogen proper-
+ties of galaxies in three state-of-the-art cosmological hydrody-
+namic simulations, Simba, IllustrisTNG, and EAGLE, and com-
+pared them to available observations focusing on the z ≈0 xGASS
+and xCOLD GASS stellar mass-limited surveys. These simulations
+employ sub-grid models for self-shielding and H2 formation. In all
+models, the self-shielding is done via the prescription in Rahmati
+et al. (2013). The H2 fraction in Simba is computed on the ﬂy using
+the Krumholz & Gnedin (2011) prescription, while EAGLE uses
+a similar method in post-processing, and TNG using a related pre-
+scription from Gnedin & Draine (2014). We have studied gas mass
+functions, CO(1-0) luminosity functions with αCO computed in the
+simulations using the prescription from Narayanan et al. (2012),
+and gas scaling relations versus stellar mass, speciﬁc star formation
+rate, and stellar mass surface density. We also looked in Simba to
+examine how the cold gas properties vary when excluding individ-
+ual AGN feedback processes. We summarize our main results as
+follows.
+• Simba, EAGLE, and IllustrisTNG all have z = 0 stellar mass
+functions and star-forming main sequences that are in good agree-
+ment with each other and with observations, indicating that stellar
+properties can now be well reproduced in the current generation of
+hydrodynamic models.
+• The simulations’ H i mass functions all show a Schechter shape
+with a ﬂat faint-end slope as observed, but the characteristic mass
+M⋆
+HI varies substantially, from 2 × 109M⊙for EAGLE, to 1010M⊙
+for Simba (in good agreement with ALFALFA data), to 2×1010M⊙
+for IllustrisTNG. EAGLE-Recal produces signiﬁcantly more H i
+than EAGLE, thus showing some resolution sensitivity for this
+model.
+• Simba and EAGLE show a shift towards higher M⋆
+HI at higher
+redshifts, increasing by ∼×2 −2.5 out to z = 0, while IllustrisTNG
+MNRAS 000, 1–22 (2019)
+
+
+20
+Davé et al.
+shows a dropping M⋆
+HI. This qualitative diﬀerence will hopefully be
+discriminated in the upcoming generation of H i surveys.
+• The H2 mass functions for these simulations likewise all show a
+ﬂat faint-end slope as observed, but with dramatic variations in M⋆
+H2,
+from 109.2M⊙for EAGLE to 1010M⊙for Simba and IllustrisTNG;
+xCOLD GASS ﬁnds M⋆
+H2 ≈109.7M⊙, intermediate between these
+predictions.
+• As with H i, there is a strong increase in M⋆
+H2 out to z = 2 for
+EAGLE (∼×4) and Simba (∼×2.5), but no change for IllustrisTNG.
+Thus the evolutionary diﬀerences are mainly in the total neutral gas
+content, not in the relative fractions of H i and H2.
+• Examining the more directly-observable LCO(1−0) rather than
+MH2 gives a substantively diﬀerent picture, because αCO can
+vary signiﬁcantly for galaxies both within a model, and between
+models. EAGLE and Simba produce on average αCO(z = 0) ≈
+3M⊙pc−2K−1km−1s for M∗> 1010M⊙star-forming galaxies,
+while IllustrisTNG has αCO(z = 0) ≈6M⊙pc−2K−1km−1s. There
+is strong evolution in αCO to higher redshifts, with a median
+αCO(z = 2) ≈1 −1.5M⊙pc−2K−1km−1s in all models.
+• The resulting simulated z = 0 CO(1-0) luminosity functions
+are generally in closer agreement with xCOLD GASS observations
+versus the H2MF, with EAGLE and IllustrisTNG agreeing very well
+and Simba still somewhat too high.
+• The evolution of the COLF broadly mimics that of the H2MF.
+EAGLE and Simba show much higher COLFs at z = 2 than z = 0.
+These models well reproduce observations of high LCO1−0 galaxies
+at these epochs in the COLDz and ASPECS surveys, showing that
+at least some modern galaxy formation models can accommodate
+these observations.
+• Assuming a constant αCO poorly approximates the z = 0 COLF
+for EAGLE and IllustrisTNG, while for Simba it is a decent approx-
+imation at z = 0 but not at z = 2. This shows that assuming a
+constant αCO can signiﬁcantly bias H2 comparisons, and that the
+exact way in which it will be biased depends in detail on the distri-
+bution of αCO within the simulated galaxy population. Comparing
+model predictions using the Accurso et al. (2017) αCO COLF vs.
+the Narayanan et al. (2012) one, we ﬁnd that the former produces
+a somewhat lower COLF at z = 0, and a dramatically lower one at
+z = 2 where its predicted αCO values are dubiously high.
+• Gas fractions drop with M∗and rise with sSFR in all models,
+with slopes generally as seen in the data. All models broadly repro-
+duce the H i and H2 fractions but with some discrepancies such as
+Simba being too high at low masses, IllustrisTNG too high at high
+masses, and EAGLE slightly low overall, though EAGLE-Recal
+shows very good agreement.
+• Comparing to LCO(1−0) scalings, EAGLE produces reasonable
+agreement, Simba is too high particularly at low M∗and sSFR, and
+IllustrisTNG may be too high at high M∗.
+• Scaling relations versus stellar surface density µ∗generally
+show good agreement for IllustrisTNG and poorer agreement for
+EAGLE and Simba, which may in part reﬂect IllustrisTNG’s supe-
+rior numerical resolution for modeling the stellar surface density,
+but may also reﬂect failings of the feedback models. EAGLE-Recal
+shows higher µ∗values than EAGLE, which corroborates at least
+some of the discrepancy owing to numerical resolution.
+• Comparing AGN feedback variants in Simba shows that it is
+Simba’s jet mode feedback that is responsible for suppressing cold
+gas mass functions at the massive end from z ∼1 →0; without jet
+feedback, the mass functions grow with time.
+• Jet AGN feedback in Simba is further responsible for creating
+a strong anti-correlation between molecular gas fraction and stellar
+mass; without this, Simba predicts roughly constant molecular gas
+fractions. Concurrently, jet feedback seems to over-suppress the
+formation of the highest stellar surface density objects, which could
+be responsible for Simba’s discrepancies versus these observations.
+• Besides αCO and numerical resolution, the dominant system-
+atic for comparisons to observations is the choice of aperture, par-
+ticularly for H2 in massive galaxies. While this might be partly mit-
+igated by carefully mocking observations, the H2 formation thresh-
+old and ISM pressurization used in all these simulations intrinsically
+limit how well the ISM structure can be modeled at cosmological
+resolutions. Aperture eﬀects are unlikely to qualitatively change our
+results, but for robust quantitative predictions it will be necessary
+to model such systematics more carefully.
+These results illustrate how cold gas content and its evolution
+provides strong constraints on key galaxy growth and feedback pro-
+cesses in current models. Even just the mass functions of atomic
+and molecular gas and their evolution are already qualitatively dif-
+ferent in our state-of-the-art simulations that have very similar stellar
+properties. While H i provides a more straightforward comparison,
+current radio telescopes provide no constraints at z ≫0, although
+this will hopefully improve soon with now-online Square Kilome-
+tre Array (SKA) precursors MeerKAT and ASKAP. The molecular
+gas content is potentially even more constraining, but current com-
+parisons are strongly systematics-limited in terms of assumptions
+regarding αCO that connects the simulated H2 mass to CO luminos-
+ity. More attention should be given to modeling this quantity, which
+may depend sensitively on many sub-grid aspects of ISM modeling.
+Nonetheless, the large diﬀerences between the evolutionary trends
+in models suggests that even broad constraints on αCO could pro-
+vide substantial discriminatory power. This would unlock the full
+potential of ALMA data to employ the evolution of molecular gas
+as a constraint on galaxy formation models. The next generation
+of far-infrared and radio facilities promises to provide novel and
+complementary constraints on galaxy formation models that will
+be crucial for building a more comprehensive scenario of galaxy
+evolution within a cosmological context.
+ACKNOWLEDGEMENTS
+The authors acknowledge helpful discussions with Daniel Anglés-
+Alcázar, Sarah Appleby, Katarina Kraljic, and Daniele Sorini, as
+well as helpful comments from the referee. We thank Robert Thomp-
+son for developing Caesar, and the yt team for development and
+support of yt. RD acknowledges support from the Wolfson Research
+Merit Award program of the U.K. Royal Society. RAC is a Royal So-
+ciety University Research Fellow. ARHS is the Jim Buckee Fellow
+at UWA. DN is supported in part by NSF Award AST-1715206 and
+HST Theory Award 15043.0001. LC is the recipient of an Australian
+Research Council Future Fellowship (FT180100066) funded by the
+Australian Government. This work used the DiRAC@Durham fa-
+cility managed by the Institute for Computational Cosmology on be-
+half of the STFC DiRAC HPC Facility. The equipment was funded
+by BEIS capital funding via STFC capital grants ST/P002293/1,
+ST/R002371/1 and ST/S002502/1, Durham University and STFC
+operations grant ST/R000832/1. DiRAC is part of the National
+e-Infrastructure. Parts of this research were conducted by the Aus-
+tralian Research Council Centre of Excellence for All Sky Astro-
+physics in 3 Dimensions (ASTRO 3D), through project number
+CE170100013. This research was supported by the Munich In-
+stitute for Astro- and Particle Physics (MIAPP) which is funded
+by the Deutsche Forschungsgemeinschaft (DFG, German Research
+MNRAS 000, 1–22 (2019)
+
+
+Cold Gas in Hydro Simulations
+21
+Foundation) under Germany’s Excellence Strategy – EXC-2094-
+390783311.
+DATA AVAILABILITY STATEMENT
+The data underlying this work, including simulation snapshots and
+galaxy catalogs, will be shared on reasonable request to the corre-
+sponding author R. Davé.
+REFERENCES
+Accurso G., et al., 2017, MNRAS, 470, 4750
+Anglés-Alcázar D., Davé R., Faucher-Giguère C.-A., Özel F., Hopkins P. F.,
+2017a, MNRAS, 464, 2840
+Anglés-Alcázar D., Faucher-Giguère C.-A., Kereš D., Hopkins P. F.,
+Quataert E., Murray N., 2017b, MNRAS, 470, 4698
+Appleby S., Davé R., Kraljic K., Anglés-Alcázar D., Narayanan D., 2019,
+arXiv e-prints, p. arXiv:1911.02041
+Aravena M., et al., 2019, ApJ, 882, 136
+Asplund M., Grevesse N., Sauval A. J., Scott P., 2009, Annual Review of
+Astronomy and Astrophysics, 47, 481
+Bahé Y. M., et al., 2016, MNRAS, 456, 1115
+Barnes D. G., et al., 2001, MNRAS, 322, 486
+Bernardi M., Meert A., Sheth R. K., Fischer J.-L., Huertas-Company M.,
+Maraston C., Shankar F., Vikram V., 2017, MNRAS, 467, 2217
+Bernardi M., et al., 2018, MNRAS, 475, 757
+Blitz L., Rosolowsky E., 2006, ApJ, 650, 933
+Blyth S., et al., 2016, in MeerKAT Science: On the Pathway to the SKA.
+p. 4
+Bolatto A. D., Wolﬁre M., Leroy A. K., 2013, ARA&A, 51, 207
+Bondi H., 1952, MNRAS, 112, 195
+Booth C. M., Schaye J., 2009, MNRAS, 398, 53
+Borrow J., Angles-Alcazar D., Dave R., 2019, arXiv e-prints, p.
+arXiv:1910.00594
+Bouché N., et al., 2010, ApJ, 718, 1001
+Catinella B., Cortese L., 2015, MNRAS, 446, 3526
+Catinella B., et al., 2010, MNRAS, 403, 683
+Catinella B., et al., 2012, A&A, 544, A65
+Catinella B., et al., 2013, MNRAS, 436, 34
+Catinella B., et al., 2018, MNRAS, 476, 875
+Cen R., 1992, ApJS, 78, 341
+Chabrier G., 2003, Publications of the Astronomical Society of the Paciﬁc,
+115, 763
+Choi E., Ostriker J. P., Naab T., Johansson P. H., 2012, ApJ, 754, 125
+Christiansen J. F., Davé R., Sorini D., Anglés-Alcázar D., 2019, arXiv e-
+prints, p. arXiv:1911.01343
+Crain R. A., et al., 2015, MNRAS, 450, 1937
+Crain R. A., et al., 2017, MNRAS, 464, 4204
+Dalla Vecchia C., Schaye J., 2012, MNRAS, 426, 140
+Davé R., Finlator K., Oppenheimer B. D., 2011, MNRAS, 416, 1354
+Davé R., Finlator K., Oppenheimer B. D., 2012, MNRAS, 421, 98
+Davé R., Katz N., Oppenheimer B. D., Kollmeier J. A., Weinberg D. H.,
+2013, MNRAS, 434, 2645
+Davé R., Thompson R., Hopkins P. F., 2016, MNRAS, 462, 3265
+Davé R., Raﬁeferantsoa M. H., Thompson R. J., Hopkins P. F., 2017, MN-
+RAS, 467, 115
+Davé R., Anglés-Alcázar D., Narayanan D., Li Q., Raﬁeferantsoa M. H.,
+Appleby S., 2019, MNRAS, 486, 2827
+Davis T. A., Greene J. E., Ma C.-P., Blakeslee J. P., Dawson J. M., Pandya
+V., Veale M., Zabel N., 2019, MNRAS, 486, 1404
+Diemer B., et al., 2018, ApJS, 238, 33
+Diemer B., et al., 2019, MNRAS, 487, 1529
+Dolag K., Borgani S., Murante G., Springel V., 2009, MNRAS, 399, 497
+Duﬀy A. R., Kay S. T., Battye R. A., Booth C. M., Dalla Vecchia C., Schaye
+J., 2012, MNRAS, 420, 2799
+Elson E. C., Baker A. J., Blyth S. L., 2019, MNRAS, 486, 4894
+Faucher-Giguère C.-A., Lidz A., Zaldarriaga M., Hernquist L., 2009, ApJ,
+703, 1416
+Fernández X., et al., 2016, ApJ, 824, L1
+Finlator K., Davé R., 2008, MNRAS, 385, 2181
+Fletcher T. J., Saintonge A., Soares P. S., Pontzen A., 2020, arXiv e-prints,
+p. arXiv:2002.04959
+Furlong M., et al., 2015, MNRAS, 450, 4486
+Genel S., et al., 2014, MNRAS, 445, 175
+Giovanelli R., et al., 2005, AJ, 130, 2598
+Gnedin N. Y., Draine B. T., 2014, ApJ, 795, 37
+Gnedin N. Y., Kravtsov A. V., 2011, ApJ, 728, 88
+Haardt F., Madau P., 2001, in Neumann D. M., Tran J. T. V., eds, Clusters
+of Galaxies and the High Redshift Universe Observed in X-rays. p. 64
+(arXiv:astro-ph/0106018)
+Haardt F., Madau P., 2012, ApJ, 746, 125
+Hahn O., Abel T., 2011, MNRAS, 415, 2101
+Haynes M. P., et al., 2018, ApJ, 861, 49
+Heckman T. M., Best P. N., 2014, ARA&A, 52, 589
+Hirschmann M., Dolag K., Saro A., Bachmann L., Borgani S., Burkert A.,
+2014, MNRAS, 442, 2304
+Hopkins P. F., 2015, MNRAS, 450, 53
+Hopkins P. F., Quataert E., 2011, MNRAS, 415, 1027
+Hopkins P. F., Kereš D., Oñorbe J., Faucher-Giguère C.-A., Quataert E.,
+Murray N., Bullock J. S., 2014, MNRAS, 445, 581
+Janowiecki S., Catinella B., Cortese L., Saintonge A., Brown T., Wang J.,
+2017, MNRAS, 466, 4795
+Jenkins A., 2010, MNRAS, 403, 1859
+Jones M. G., Haynes M. P., Giovanelli R., Moorman C., 2018, MNRAS,
+477, 2
+Katz N., Weinberg D. H., Hernquist L., 1996, ApJS, 105, 19
+Kennicutt Jr. R. C., 1998, ApJ, 498, 541
+Keres D., Yun M. S., Young J. S., 2003, ApJ, 582, 659
+Krumholz M. R., Gnedin N. Y., 2011, ApJ, 729, 36
+Kurczynski P., et al., 2016, ApJ, 820, L1
+Lagos C. d. P., et al., 2015, MNRAS, 452, 3815
+Lagos C. d. P., et al., 2016, MNRAS, 459, 2632
+Lilly S. J., Carollo C. M., Pipino A., Renzini A., Peng Y., 2013, ApJ, 772,
+119
+Maiolino R., et al., 2012, MNRAS, 425, L66
+Marasco A., Crain R. A., Schaye J., Bahé Y. M., van der Hulst T., Theuns
+T., Bower R. G., 2016, MNRAS, 461, 2630
+Marinacci F., et al., 2018, MNRAS, 480, 5113
+McAlpine S., et al., 2016, Astronomy and Computing, 15, 72
+Meyer M. J., et al., 2004, MNRAS, 350, 1195
+Miralda-Escudé J., 2005, ApJ, 620, L91
+Naiman J. P., et al., 2018, MNRAS, 477, 1206
+Narayanan D., Krumholz M. R., Ostriker E. C., Hernquist L., 2012, MNRAS,
+421, 3127
+Nelson D., et al., 2018, MNRAS, 475, 624
+Nelson D., et al., 2019, Computational Astrophysics and Cosmology, 6, 2
+Obreschkow D., Croton D., De Lucia G., Khochfar S., Rawlings S., 2009,
+ApJ, 698, 1467
+Olsen K., Greve T. R., Narayanan D., Thompson R., Davé R., Niebla Rios
+L., Stawinski S., 2017, ApJ, 846, 105
+Pakmor R., Springel V., 2013, MNRAS, 432, 176
+Pavesi R., et al., 2018, ApJ, 864, 49
+Pawlik A. H., Schaye J., 2008, MNRAS, 389, 651
+Perna M., Lanzuisi G., Brusa M., Cresci G., Mignoli M., 2017, A&A, 606,
+A96
+Pillepich A., et al., 2018a, MNRAS, 473, 4077
+Pillepich A., et al., 2018b, MNRAS, 475, 648
+Planck Collaboration et al., 2014, A&A, 571, A16
+Planck Collaboration et al., 2016, A&A, 594, A13
+Popping A., Davé R., Braun R., Oppenheimer B. D., 2009, A&A, 504, 15
+Popping G., et al., 2019, ApJ, 882, 137
+Rahmati A., Pawlik A. H., Raicevic M., Schaye J., 2013, MNRAS, 430,
+2427
+MNRAS 000, 1–22 (2019)
+
+
+22
+Davé et al.
+Riechers D. A., et al., 2019, ApJ, 872, 7
+Rodríguez Montero F., Davé R., Wild V., Anglés-Alcázar D., Narayanan D.,
+2019, MNRAS, 490, 2139
+Rosas-Guevara Y. M., et al., 2015, MNRAS, 454, 1038
+Saintonge A., et al., 2011, MNRAS, 415, 32
+Saintonge A., et al., 2012, ApJ, 758, 73
+Saintonge A., et al., 2017, ApJS, 233, 22
+Schaye J., 2004, ApJ, 609, 667
+Schaye J., Dalla Vecchia C., 2008, MNRAS, 383, 1210
+Schaye J., et al., 2015, MNRAS, 446, 521
+Schmidt M., 1959, ApJ, 129, 243
+Smith B. D., et al., 2017, MNRAS, 466, 2217
+Somerville R. S., Davé R., 2015, ARA&A, 53, 51
+Springel V., 2005, MNRAS, 364, 1105
+Springel V., 2010, MNRAS, 401, 791
+Springel V., Hernquist L., 2003, MNRAS, 339, 289
+Springel V., White S. D. M., Tormen G., Kauﬀmann G., 2001, MNRAS,
+328, 726
+Springel V., Di Matteo T., Hernquist L., 2005, MNRAS, 361, 776
+Springel V., et al., 2018, MNRAS, 475, 676
+Stevens A. R. H., Martig M., Croton D. J., Feng Y., 2014, MNRAS, 445,
+239
+Stevens A. R. H., et al., 2019a, MNRAS, 483, 5334
+Stevens A. R. H., Diemer B., Lagos C. d. P., Nelson D., Obreschkow D.,
+Wang J., Marinacci F., 2019b, MNRAS, 490, 96
+Sturm E., et al., 2011, ApJ, 733, L16
+Tacconi L. J., et al., 2013, ApJ, 768, 74
+Thomas N., Davé R., Anglés-Alcázar D., Jarvis M., 2019, MNRAS, 487,
+5764
+Tumlinson J., Peeples M. S., Werk J. K., 2017, ARA&A, 55, 389
+Vogelsberger M., et al., 2014, MNRAS, 444, 1518
+Weinberger R., et al., 2017, MNRAS, 465, 3291
+Whittam I. H., Prescott M., McAlpine K., Jarvis M. J., Heywood I., 2018,
+MNRAS, 480, 358
+Wiersma R. P. C., Schaye J., Smith B. D., 2009a, MNRAS, 393, 99
+Wiersma R. P. C., Schaye J., Theuns T., Dalla Vecchia C., Tornatore L.,
+2009b, MNRAS, 399, 574
+Wong O. I., et al., 2006, MNRAS, 371, 1855
+Wright A. H., et al., 2017, MNRAS, 470, 283
+This paper has been typeset from a TEX/LATEX ﬁle prepared by the author.
+MNRAS 000, 1–22 (2019)

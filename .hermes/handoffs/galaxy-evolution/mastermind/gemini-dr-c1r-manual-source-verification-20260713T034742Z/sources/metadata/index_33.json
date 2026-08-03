@@ -1,0 +1,110 @@
+{
+  "index": 33,
+  "captured_url": "https://arxiv.org/abs/2509.04067",
+  "ledger_rows": [
+    40
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:16:12Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 33,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "https://arxiv.org/abs/2509.04067",
+      "final_url": "https://arxiv.org/abs/2509.04067",
+      "status": 200,
+      "bytes": 49601,
+      "sha256": "9da6bb2e5d03bb001cc34560f0e61a7eeb73cfd096a5ebfec3a952e3995ecabf",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx33_initial_9da6bb2e5d03.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:16:14Z",
+      "method": "GET",
+      "host": "arxiv.org",
+      "index": 33,
+      "label": "arxiv_pdf",
+      "purpose": "primary_full_text",
+      "requested_url": "https://arxiv.org/pdf/2509.04067",
+      "final_url": "https://arxiv.org/pdf/2509.04067",
+      "status": 200,
+      "bytes": 1945653,
+      "sha256": "6ca021ca1f9a90a4681fc96224474fc403e60ad59b9f1c086cb3ee4f195c6908",
+      "content_type": "application/pdf",
+      "raw_path": "sources/raw/idx33_arxiv_pdf_6ca021ca1f9a.pdf",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "requested_url": "https://doi.org/10.1093/mnras/stag300",
+      "status": 0,
+      "error": "host_stopped_after_3_failures",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "utc": "2026-07-13T04:16:15Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 33,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.04067%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=identifier%3A%22arXiv%3A2509.04067%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 3642,
+      "sha256": "f7d2a56ebecd9963868cb8ea33ec11952aa6faff66fe216f1cc9c7ad062314ce",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx33_ads_f7d2a56ebecd.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "COLIBRE: calibrating subgrid feedback in cosmological simulations that include a cold gas phase",
+      "doi": "10.1093/mnras/stag300",
+      "arxiv_id": "2509.04067",
+      "pdf_url": "https://arxiv.org/pdf/2509.04067",
+      "text_path": "sources/text/idx33_initial_4004f4984465.txt",
+      "text_sha256": "4004f498446543d1b8909faa6e19ff3f679629db7f7df8a7f33700b8e5d842f1",
+      "text_chars": 6098
+    },
+    {
+      "label": "arxiv_pdf",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "2509.04067",
+      "pdf_url": "",
+      "text_path": "sources/text/idx33_arxiv_pdf_220c99637437.txt",
+      "text_sha256": "220c9963743713353d789638d7b392b6f14b2bd77b9e4482749f5131d3b2a63b",
+      "text_chars": 232709,
+      "pdf_pages": 41
+    },
+    {
+      "label": "doi",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "",
+      "text_sha256": "",
+      "text_chars": 0
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx33_ads_2c68b94d9b92.txt",
+      "text_sha256": "2c68b94d9b92716e025dcd9504dc02cc99ae64f7af52e7ddb6a6da726dfbb275",
+      "text_chars": 4224
+    }
+  ]
+}

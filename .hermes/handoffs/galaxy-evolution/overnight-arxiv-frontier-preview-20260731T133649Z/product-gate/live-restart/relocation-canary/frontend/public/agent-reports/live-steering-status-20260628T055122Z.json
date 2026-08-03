@@ -1,0 +1,182 @@
+{
+  "title": "NebulaMind live steering cockpit",
+  "updated_at_utc": "2026-06-28T05:51:22Z",
+  "updated_at_kst": "2026-06-28 14:51:22 KST",
+  "source": "Hermes Agent live workflow status",
+  "current_action": "PR #40 is merged and live: inline wiki claim badges now expose countering evidence counts. Ready for your next steering choice.",
+  "runtime": {
+    "frontend_service": "running",
+    "frontend_pid": "6292",
+    "local_url": "http://127.0.0.1:3000/agent-reports/live-steering-cockpit.html",
+    "public_url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html",
+    "runtime_checkout": "/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend"
+  },
+  "repo": {
+    "origin_main": "c5f3c51",
+    "origin_main_full": "c5f3c51f756766d93322020e60d06911680c094c",
+    "latest_merged_pr": {
+      "number": 40,
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/40",
+      "state": "MERGED",
+      "mergedAt": "2026-06-28T05:48:01Z",
+      "mergeCommit": {
+        "oid": "c5f3c51f756766d93322020e60d06911680c094c"
+      }
+    }
+  },
+  "safety": {
+    "production_db_writes_from_this_dashboard": 0,
+    "migrations": 0,
+    "deploys": "frontend runtime restart only; no backend/service migration",
+    "explicit_approval_required_for": [
+      "production DB writes",
+      "trust/badge/prose apply paths",
+      "schema migrations",
+      "destructive cleanup"
+    ]
+  },
+  "milestones": [
+    {
+      "state": "done",
+      "label": "PR #39 merged + live",
+      "detail": "Evidence vote cockpit is live in the wiki evidence panel."
+    },
+    {
+      "state": "done",
+      "label": "PR #40 merged + live",
+      "detail": "Inline claim badges now show countering evidence counts when present, e.g. Debated · 16 sources · 1 countering."
+    },
+    {
+      "state": "done",
+      "label": "Runtime frontend refreshed",
+      "detail": "Scoped files copied to the non-git runtime tree, Next build passed, launchd frontend restarted."
+    },
+    {
+      "state": "ready",
+      "label": "Next visible slice ready",
+      "detail": "Recommended next: make source/citation hover cards expose a one-line evidence trace without opening a separate panel."
+    },
+    {
+      "state": "locked",
+      "label": "Production data mutation",
+      "detail": "Still locked unless Duho explicitly approves a named preflight/apply packet."
+    }
+  ],
+  "verification": [
+    {
+      "check": "PR #39",
+      "result": "MERGED",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "check": "origin/main",
+      "result": "e501d89",
+      "evidence": "verified after squash merge"
+    },
+    {
+      "check": "frontend tests/build",
+      "result": "PASS",
+      "evidence": "test:evidence-panel-copy, test:evidence-status, test:wiki-trust-visibility, tsc, next build"
+    },
+    {
+      "check": "pre-push smoke",
+      "result": "PASS",
+      "evidence": "49 passed"
+    },
+    {
+      "check": "public cockpit chunk",
+      "result": "PASS",
+      "evidence": "Evidence vote cockpit text found in deployed JS chunk"
+    },
+    {
+      "check": "RED test: inline countering badge",
+      "result": "EXPECTED FAIL",
+      "evidence": "test:wiki-trust-visibility saw missing · 1 countering copy"
+    },
+    {
+      "check": "GREEN test/build bundle",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence/status/trust-history/surveys smokes, tsc, next build, local page chunk probe"
+    },
+    {
+      "check": "PR #40 opened",
+      "result": "OPEN",
+      "evidence": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "check": "PR #40 merge",
+      "result": "MERGED",
+      "evidence": "c5f3c51 feat: show counter-evidence on wiki claim badges (#40)"
+    },
+    {
+      "check": "Runtime PR #40 tests/build",
+      "result": "PASS",
+      "evidence": "wiki trust visibility, evidence panel/status smokes, tsc, Next build"
+    },
+    {
+      "check": "Public wiki JS chunk",
+      "result": "PASS",
+      "evidence": "https://nebulamind.net/wiki/galaxy-evolution-v2 chunk contains countering + Open evidence map for"
+    },
+    {
+      "check": "Frontend service",
+      "result": "RUNNING",
+      "evidence": "launchd com.nebulamind.frontend restarted; port 3000 listener pid verified"
+    }
+  ],
+  "next_moves": [
+    {
+      "id": "source-trace-hover",
+      "readiness": "ready",
+      "title": "Next visible slice: source trace hover cards",
+      "why": "Show the paper title/year + why it is linked right next to citations/claim badges, so you can scan evidence without opening the full panel. Frontend-first and TDD-friendly.",
+      "copy_command": "STEER: build source trace hover cards next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "wiki-map-polish",
+      "readiness": "ready",
+      "title": "Polish the evidence cockpit visually",
+      "why": "Make the PR #39 panel easier to judge by eye with stronger hierarchy, small bars, and clearer unresolved-vote language.",
+      "copy_command": "STEER: polish the Evidence vote cockpit visuals next; frontend-first, TDD, PR/merge if verified."
+    },
+    {
+      "id": "readiness-packet",
+      "readiness": "read-only-ready",
+      "title": "Prepare post-label readiness proposal",
+      "why": "Useful but guarded: read-only analysis/reporting only; trust/badge/prose writes remain locked until explicit approval.",
+      "copy_command": "APPROVE READ-ONLY: prepare the post-label readiness proposal; no production writes or apply path."
+    },
+    {
+      "id": "pause",
+      "readiness": "available",
+      "title": "Pause for manual inspection",
+      "why": "Use this if you want to inspect the live page/dashboard before more code.",
+      "copy_command": "STEER: pause after PR #40; do not start the next slice yet."
+    }
+  ],
+  "links": [
+    {
+      "label": "Live progress dashboard",
+      "url": "https://nebulamind.net/agent-reports/live-steering-cockpit.html"
+    },
+    {
+      "label": "PR #40",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/40"
+    },
+    {
+      "label": "PR #39",
+      "url": "https://github.com/DuhoKim/NebulaMind/pull/39"
+    },
+    {
+      "label": "Live Galaxy page",
+      "url": "https://nebulamind.net/wiki/galaxy-evolution-v2"
+    },
+    {
+      "label": "Latest status JSON",
+      "url": "https://nebulamind.net/agent-reports/live-steering-status.json"
+    }
+  ],
+  "active_worktree": "/Users/duhokim/NebulaMind/worktrees/wiki-visible-evidence-trace-20260628",
+  "active_branch": "wiki-visible-evidence-trace-20260628 (merged; local worktree retained)",
+  "active_commit": "93b0a86"
+}

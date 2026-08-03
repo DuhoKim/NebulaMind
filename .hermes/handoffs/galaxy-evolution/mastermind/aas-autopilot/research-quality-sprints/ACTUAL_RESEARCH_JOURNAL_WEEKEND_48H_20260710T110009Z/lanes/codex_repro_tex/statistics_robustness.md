@@ -1,0 +1,24 @@
+**Integrity blockers**
+- The selection-cascade tables in both manuscripts include public row counts that are not backed by an inventoried receipt in the custody file. In the flagship this is [selection table](./flagship_rp1/aastex/rp1_flagship_polished.tex#L36) and in the supplement it is [shared selection table](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L28). The custody file inventories the retained cache and result artifacts, but not the query logs behind those parent-count rows. If you want those counts in the paper, they need explicit query receipts; otherwise they should be demoted to non-result context or removed.
+- The supplement’s fiber-collision discussion in [Atlas notes](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L87) uses a vague “tens-to-hundred-kpc” scale without a custody-backed calculation or source citation. That is too loose for a provenance-tight methods note and should be replaced with either a precise, sourced conversion or a strict omission.
+
+**Journal-quality blockers**
+- The flagship’s result section is carrying too much caveat text inline. In [Matched-control result](./flagship_rp1/aastex/rp1_flagship_polished.tex#L65), keep the measured statement short and push the morphology/aperture degeneracy discussion into [Scope and limitations](./flagship_rp1/aastex/rp1_flagship_polished.tex#L24) or a dedicated limitations subsection. Right now the result and interpretation are interleaved.
+- The supplement’s [Atlas summary](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L64) mixes measured baselines and missing-observable requirements in one dense table. Split it into “measured optical baselines” and “required follow-up data” so the association-only boundary stays visually obvious.
+- The supplement’s subsection templates repeat the same caveat structure eight times. That is defensible, but it reads like duplicated prose rather than an atlas. A cleaner structure would be: one sentence with the baseline result, one sentence with the missing observables, one sentence with the role of the cited follow-up literature.
+
+**Concrete section-level improvements**
+- Flagship: in [Question and claim boundary](./flagship_rp1/aastex/rp1_flagship_polished.tex#L18), add a one-sentence provenance sentence pointing to the exact retained files for the core result, then cut the later repetition in [Interpretation](./flagship_rp1/aastex/rp1_flagship_polished.tex#L86).
+- Flagship: in [Data and shared selection](./flagship_rp1/aastex/rp1_flagship_polished.tex#L30), distinguish “public query context” from “retained result” more sharply. The current wording invites readers to treat the 501,060 / 416,554 / 373,445 / 249,917 cascade as a measured output, which it is not in the custody inventory.
+- Supplement: in [Provenance map](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L44), add the run IDs directly into the table or caption so each subsection can be audited without jumping between sections.
+- Supplement: in [Simulation target vector](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L163), either list the 15 cells explicitly in a compact table or say the full vector is deferred to a provenance appendix. The current prose gives only ranges, which is less reproducible than the underlying JSON artifact.
+- Supplement: in [Low-sSFR optical denominator](./supplementary_denominator_atlas/aastex/supplementary_denominator_atlas.tex#L152), keep the H-alpha proxy discussion, but explicitly state that the 40.061 dex value is a catalog proxy from the retained result artifact and not a directly observed total gas quantity.
+
+**Literature pointers with real identifiers**
+- For fiber-collision / environment follow-up, the most useful concrete identifiers are `Zehavi et al. 2002, ApJ, 571, 172; ADS bibcode 2002ApJ...571..172Z` and `Yang et al. 2007, ApJ, 671, 153; ADS bibcode 2007ApJ...671..153Y`.
+- For radio-jet / maintenance-heating framing, `Heckman & Best 2014, ARA&A, 52, 589` and `Hardcastle & Croston 2020, New Astronomy Reviews, 88, 101539` are appropriate; if you want a machine-resolvable pointer for the latter, use `arXiv:2003.06137`.
+- For the environment/morphology degeneracy language already in the flagship, the manuscript’s current citations are adequate and already identified in the bibliography: `2003MNRAS.346.1055K` for Kauffmann et al. 2003a and `2011MNRAS.413.1687C` for Cid Fernandes et al. 2011.
+
+The core measured claims themselves are provenance-consistent: the flagship’s `8,146` pairs and `-1.309 dex` median offset match the retained JSON, and the supplement’s per-topic counts and fractions also match their inventoried artifacts. The remaining problems are the provenance boundary around the selection-cascade counts and the presentation quality of the section structure.
+
+JOURNAL_LEVEL_PASS: NO

@@ -1,0 +1,195 @@
+{
+  "observed_at_utc": "2026-07-27T13:10:02.803229+00:00",
+  "cards": [
+    {
+      "provider": "Claude / Fable / Lana",
+      "status": "Active panes live; quota fetched via OAuth",
+      "value_label": "Fable 12% used 5h · 10% used weekly",
+      "fill_pct": 12.0,
+      "source_label": "OAuth /api/oauth/usage fetched 2026-07-27T13:09:27Z; active Claude panes: 52.",
+      "sub_gauges": [
+        {
+          "fill_pct": 12.0,
+          "label": "Fable 5h used",
+          "tone": "ok",
+          "value_label": "12% "
+        },
+        {
+          "fill_pct": 10.0,
+          "label": "Fable weekly used",
+          "tone": "ok",
+          "value_label": "10%  · remained 4 day 15 hours"
+        },
+        {
+          "fill_pct": 0,
+          "label": "Opus weekly used",
+          "tone": "ok",
+          "value_label": "0%  · remained 4 day 15 hours"
+        },
+        {
+          "fill_pct": 0,
+          "label": "Sonnet weekly used",
+          "tone": "ok",
+          "value_label": "0%  · remained 4 day 15 hours"
+        }
+      ]
+    },
+    {
+      "provider": "Codex / Kun",
+      "status": "Live pane scan from latest visible /status",
+      "value_label": "gpt-5.5 not observed 5h · 1% used weekly",
+      "fill_pct": 1.0,
+      "source_label": "Idle Codex pane visible pane /status observed 2026-07-27T13:09:27Z; active Kun/Codex panes: 4.",
+      "sub_gauges": [
+        {
+          "fill_pct": null,
+          "label": "gpt-5.5 5h used",
+          "tone": "warn",
+          "value_label": "not observed"
+        },
+        {
+          "fill_pct": 1.0,
+          "label": "gpt-5.5 weekly used",
+          "tone": "ok",
+          "value_label": "1% used · remained 6 day 7 hours"
+        },
+        {
+          "fill_pct": null,
+          "label": "Codex Spark 5h used",
+          "tone": "warn",
+          "value_label": "not observed"
+        },
+        {
+          "fill_pct": 0.0,
+          "label": "Codex Spark weekly used",
+          "tone": "ok",
+          "value_label": "0% used · remained 6 day 9 hours"
+        }
+      ]
+    },
+    {
+      "provider": "Gemini / Goru",
+      "status": "Live slash-command refresh",
+      "value_label": "Gemini 1.2% used weekly · 1.2% used 5h",
+      "fill_pct": 1.2399999999999949,
+      "source_label": "Idle Antigravity pane %249 /usage observed 2026-07-27T13:06:14Z; active Goru/Gemini panes: 2.",
+      "sub_gauges": [
+        {
+          "fill_pct": 1.2399999999999949,
+          "label": "Gemini weekly used",
+          "tone": "ok",
+          "value_label": "1.2% used · 98.76% remaining · remained 1 day 10 hours"
+        },
+        {
+          "fill_pct": 1.2099999999999937,
+          "label": "Gemini 5h used",
+          "tone": "ok",
+          "value_label": "1.2% used · 98.79% remaining"
+        },
+        {
+          "fill_pct": 0.060000000000002274,
+          "label": "Antigravity Claude/GPT weekly used",
+          "tone": "ok",
+          "value_label": "0.06% used · 99.94% remaining"
+        },
+        {
+          "fill_pct": 0.0,
+          "label": "Antigravity Claude/GPT 5h used",
+          "tone": "ok",
+          "value_label": "0% used · 100% remaining"
+        }
+      ]
+    },
+    {
+      "provider": "Tori / Hermes",
+      "status": "Live tmux status-line scan",
+      "value_label": "context percent not visible",
+      "fill_pct": null,
+      "source_label": "tmux pane scan refreshed 2026-07-27T13:09:27Z; active Tori/Hermes panes: 6."
+    },
+    {
+      "provider": "Gemini app / consumer",
+      "status": "Unattended Chrome scrape, 14m ago",
+      "value_label": "1% current-window used · remained 0 day 16 hours",
+      "fill_pct": 1.0,
+      "source_label": "Captured from https://gemini.google.com/usage at 2026-07-27T12:54:53Z via chrome-auto; checked 2026-07-27T13:09:27Z.",
+      "sub_gauges": [
+        {
+          "fill_pct": 1.0,
+          "label": "Current-window used",
+          "tone": "ok",
+          "value_label": "1% used · remained 0 day 16 hours"
+        },
+        {
+          "fill_pct": 1.0,
+          "label": "Weekly used",
+          "tone": "ok",
+          "value_label": "1% used · remained 0 day 11 hours"
+        },
+        {
+          "fill_pct": null,
+          "label": "Burn lane",
+          "tone": "ok",
+          "value_label": "burn · 99% headroom"
+        }
+      ]
+    },
+    {
+      "provider": "Flow / Veo (Ultra)",
+      "status": "Live balance not captured — no percentage shown",
+      "value_label": "balance not captured · 13 Fast = 130 credits",
+      "fill_pct": null,
+      "source_label": "Google Flow plan and Agent documentation verified 2026-07-12; no live account or billing surface opened.",
+      "sub_gauges": [
+        {
+          "fill_pct": null,
+          "label": "13 × Veo 3.1 Lite",
+          "tone": "ok",
+          "value_label": "65 Flow credits"
+        },
+        {
+          "fill_pct": null,
+          "label": "13 × Veo 3.1 Fast",
+          "tone": "ok",
+          "value_label": "130 Flow credits"
+        },
+        {
+          "fill_pct": null,
+          "label": "13 × Veo 3.1 Quality",
+          "tone": "warn",
+          "value_label": "1,300 Flow credits"
+        }
+      ]
+    },
+    {
+      "provider": "Hermes / Nous credits",
+      "status": "Free plan exhausted · top-up balance active",
+      "value_label": "$42.56 total usable · $0.00 of $0.10 plan left",
+      "big": "$42.56",
+      "fill_pct": null,
+      "source_label": "Read-only GET /api/oauth/account captured 2026-07-27T13:09:28Z (0s before render) during monitor pass 2026-07-27T13:09:27Z.",
+      "sub_gauges": [
+        {
+          "fill_pct": 100.0,
+          "label": "Monthly plan used",
+          "tone": "danger",
+          "value_label": "100% used · $0.00 / $0.10 left"
+        },
+        {
+          "fill_pct": null,
+          "label": "Top-up balance",
+          "tone": "ok",
+          "value_label": "$42.56 remaining · purchased balance"
+        },
+        {
+          "fill_pct": null,
+          "label": "Total usable",
+          "tone": "ok",
+          "value_label": "$42.56 available"
+        }
+      ]
+    }
+  ],
+  "error": null,
+  "document_observed_at_utc": "2026-07-27T13:09:27Z"
+}

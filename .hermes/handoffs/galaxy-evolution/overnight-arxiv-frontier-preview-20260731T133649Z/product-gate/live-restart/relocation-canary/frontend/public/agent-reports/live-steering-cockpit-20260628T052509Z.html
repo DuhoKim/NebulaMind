@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>NebulaMind live steering cockpit</title>
+<style>
+:root {
+  color-scheme: dark;
+  --bg: #070a12;
+  --panel: #0d1323;
+  --panel2: #111a2e;
+  --ink: #eef5ff;
+  --muted: #9fb0ca;
+  --line: rgba(159,176,202,.22);
+  --green: #48d597;
+  --blue: #66b7ff;
+  --amber: #f5c869;
+  --red: #ff6b8a;
+  --violet: #b89cff;
+  --shadow: 0 20px 70px rgba(0,0,0,.36);
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "SF Pro Text", Inter, Segoe UI, sans-serif; background: radial-gradient(circle at 20% -10%, rgba(102,183,255,.18), transparent 34rem), radial-gradient(circle at 90% 0%, rgba(184,156,255,.14), transparent 28rem), var(--bg); color: var(--ink); }
+a { color: #9bd0ff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+.shell { max-width: 1180px; margin: 0 auto; padding: 34px 22px 60px; }
+.hero { display:grid; grid-template-columns: 1.15fr .85fr; gap: 18px; align-items: stretch; }
+.card { background: linear-gradient(180deg, rgba(17,26,46,.94), rgba(11,17,31,.94)); border: 1px solid var(--line); border-radius: 24px; box-shadow: var(--shadow); }
+.hero-main { padding: 28px; position: relative; overflow: hidden; }
+.eyebrow { color: var(--blue); text-transform: uppercase; letter-spacing: .16em; font-size: 12px; font-weight: 800; }
+h1 { font-size: clamp(36px, 6vw, 72px); line-height: .92; letter-spacing: -.06em; margin: 14px 0 18px; }
+.lede { color: var(--muted); max-width: 760px; font-size: 18px; line-height: 1.6; }
+.hero-side { padding: 24px; display:grid; gap: 14px; }
+.status-grid { display:grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; }
+.metric { padding: 15px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.035); }
+.metric b { display:block; font-size: 22px; margin-bottom: 5px; }
+.metric span { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .09em; }
+.links { display:flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.links a { border:1px solid var(--line); border-radius:999px; padding:9px 12px; background:rgba(255,255,255,.04); }
+.grid { display:grid; grid-template-columns: .95fr 1.05fr; gap: 18px; margin-top: 18px; }
+.section { padding: 22px; }
+.section h2 { margin: 0 0 16px; font-size: 23px; letter-spacing: -.03em; }
+.step { display:grid; grid-template-columns: 22px 1fr; gap: 12px; padding: 14px 0; border-top: 1px solid var(--line); }
+.step:first-of-type { border-top:0; }
+.step-dot { width: 12px; height:12px; border-radius:50%; margin-top: 6px; background: var(--muted); box-shadow: 0 0 0 5px rgba(159,176,202,.08); }
+.step.done .step-dot { background: var(--green); }
+.step.ready .step-dot { background: var(--blue); }
+.step.locked .step-dot { background: var(--red); }
+.step h3, .move h3 { margin:0 0 6px; font-size: 16px; }
+.step p, .move p, .small { margin:0; color: var(--muted); line-height:1.55; }
+.chip { display:inline-flex; align-items:center; margin-left: 7px; padding:3px 8px; border-radius:999px; font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.06em; border: 1px solid var(--line); color: var(--muted); }
+.chip.done { color:#022914; background:var(--green); border-color:transparent; }
+.chip.ready { color:#041b32; background:var(--blue); border-color:transparent; }
+.chip.locked { color:#360512; background:var(--red); border-color:transparent; }
+.chip.readonly { color:#2d1d00; background:var(--amber); border-color:transparent; }
+.move { border: 1px solid var(--line); border-radius: 18px; padding: 16px; background: rgba(255,255,255,.035); margin-bottom: 12px; }
+.move-top { display:flex; align-items:flex-start; justify-content:space-between; gap:10px; }
+button { margin: 13px 0 8px; border:0; border-radius: 12px; padding: 10px 12px; background: #dcecff; color:#061424; font-weight: 800; cursor:pointer; }
+button:hover { filter: brightness(1.06); }
+code { display:block; white-space: normal; word-break: break-word; color: #d7e7ff; background: rgba(0,0,0,.24); border:1px solid var(--line); padding:10px; border-radius:12px; font-size: 12px; }
+table { width:100%; border-collapse: collapse; }
+td { border-top:1px solid var(--line); padding: 11px 8px; color: var(--muted); vertical-align: top; }
+td:first-child { color: var(--ink); font-weight:700; }
+.result { color: var(--green); font-weight:900; }
+.guard { display:grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 12px; margin-top: 18px; }
+.guard div { padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.035); }
+.guard b { display:block; font-size: 20px; color: var(--green); }
+.footer { color: var(--muted); margin-top: 18px; font-size: 13px; }
+.pulse { display:inline-block; width:9px; height:9px; border-radius:50%; background:var(--green); box-shadow: 0 0 0 0 rgba(72,213,151,.7); animation:pulse 1.8s infinite; margin-right:8px; }
+@keyframes pulse { 70% { box-shadow: 0 0 0 9px rgba(72,213,151,0); } 100% { box-shadow: 0 0 0 0 rgba(72,213,151,0); } }
+@media (max-width: 860px) { .hero, .grid { grid-template-columns:1fr; } .guard, .status-grid { grid-template-columns:1fr 1fr; } h1 { font-size: 44px; } }
+@media (max-width: 540px) { .guard, .status-grid { grid-template-columns:1fr; } .shell { padding: 18px 12px 40px; } }
+</style>
+</head>
+<body>
+<div class="shell">
+  <section class="hero">
+    <main class="card hero-main">
+      <div class="eyebrow"><span class="pulse"></span>Live steering cockpit</div>
+      <h1>Watch the work by eye. Steer with one copied line.</h1>
+      <p class="lede">This is the public progress surface for the current NebulaMind work. I will keep this page/status JSON updated at major checkpoints so you can see what landed, what is running, what is locked, and what command to paste if you want to steer.</p>
+      <div class="links"><a href="https://nebulamind.net/agent-reports/live-steering-cockpit.html">Live progress dashboard</a>
+<a href="https://github.com/DuhoKim/NebulaMind/pull/39">PR #39</a>
+<a href="https://nebulamind.net/wiki/galaxy-evolution-v2">Live Galaxy page</a>
+<a href="https://nebulamind.net/agent-reports/live-steering-status.json">Latest status JSON</a></div>
+    </main>
+    <aside class="card hero-side">
+      <div class="status-grid">
+        <div class="metric"><b id="originMain">e501d89</b><span>origin/main</span></div>
+        <div class="metric"><b>Merged</b><span>PR #39</span></div>
+        <div class="metric"><b>0</b><span>DB writes from dashboard</span></div>
+        <div class="metric"><b id="runtimeState">Running</b><span>frontend runtime</span></div>
+      </div>
+      <p class="small"><strong>Current action:</strong> <span id="currentAction">Visible progress surface created so Duho can steer by eye before the next work slice.</span></p>
+      <p class="small"><strong>Last updated:</strong> <span id="updatedAt">2026-06-28 14:25:09 KST</span></p>
+      <p class="small"><strong>Live JSON:</strong> <a href="/agent-reports/live-steering-status.json">/agent-reports/live-steering-status.json</a></p>
+    </aside>
+  </section>
+
+  <section class="guard">
+    <div><b>0</b><span>No production DB writes</span></div>
+    <div><b>0</b><span>No migrations</span></div>
+    <div><b>1</b><span>frontend restart only</span></div>
+    <div><b>locked</b><span>apply paths need approval</span></div>
+  </section>
+
+  <section class="grid">
+    <div class="card section">
+      <h2>Implementation map</h2>
+      <article class="step done">
+  <div class="step-dot"></div><div><h3>PR #39 merged <span class="chip done">done</span></h3><p>Evidence vote cockpit landed on origin/main at e501d89.</p></div>
+</article>
+<article class="step done">
+  <div class="step-dot"></div><div><h3>Runtime updated <span class="chip done">done</span></h3><p>Scoped frontend files copied into the running frontend tree and rebuilt.</p></div>
+</article>
+<article class="step done">
+  <div class="step-dot"></div><div><h3>Public JS verified <span class="chip done">done</span></h3><p>The deployed public wiki page chunk contains Evidence vote cockpit and Counted vote signal.</p></div>
+</article>
+<article class="step ready">
+  <div class="step-dot"></div><div><h3>Steering cockpit online <span class="chip ready">ready</span></h3><p>This page is the visual progress surface; future milestones can be updated here.</p></div>
+</article>
+<article class="step locked">
+  <div class="step-dot"></div><div><h3>Production data mutation <span class="chip locked">locked</span></h3><p>Still locked unless Duho explicitly approves a named preflight/apply packet.</p></div>
+</article>
+    </div>
+    <div class="card section">
+      <h2>Steer the next move</h2>
+      <article class="move ready">
+  <div class="move-top"><h3>Continue visible wiki UX slice</h3><span class="chip ready">ready</span></div>
+  <p>Best for momentum: add the next thing you can judge by eye, likely an evidence-trace preview or clearer claim/evidence summary panel.</p>
+  <button data-copy="STEER: continue with the next visible wiki UX slice; keep it frontend-first, TDD, PR/merge if verified.">Copy steering command</button>
+  <code>STEER: continue with the next visible wiki UX slice; keep it frontend-first, TDD, PR/merge if verified.</code>
+</article>
+<article class="move ready">
+  <div class="move-top"><h3>Improve the steering cockpit first</h3><span class="chip ready">ready</span></div>
+  <p>If you want tighter supervision, I can add live JSON milestones, a visual branch/PR lane, and richer approval cards before more code.</p>
+  <button data-copy="STEER: improve the live steering cockpit before more product code.">Copy steering command</button>
+  <code>STEER: improve the live steering cockpit before more product code.</code>
+</article>
+<article class="move read-only-ready">
+  <div class="move-top"><h3>Prepare post-label readiness proposal</h3><span class="chip readonly">read-only-ready</span></div>
+  <p>Useful but guarded: analysis/reporting is safe; trust/badge/prose writes stay locked until explicit approval.</p>
+  <button data-copy="APPROVE READ-ONLY: prepare the post-label readiness proposal; no production writes or apply path.">Copy steering command</button>
+  <code>APPROVE READ-ONLY: prepare the post-label readiness proposal; no production writes or apply path.</code>
+</article>
+<article class="move available">
+  <div class="move-top"><h3>Pause after PR #39</h3><span class="chip available">available</span></div>
+  <p>Use this if you want to inspect the live page manually before the next slice.</p>
+  <button data-copy="STEER: pause after PR #39; do not start the next slice yet.">Copy steering command</button>
+  <code>STEER: pause after PR #39; do not start the next slice yet.</code>
+</article>
+    </div>
+  </section>
+
+  <section class="card section" style="margin-top:18px">
+    <h2>Verification evidence</h2>
+    <table><tr><td>PR #39</td><td><span class="result">MERGED</span></td><td>https://github.com/DuhoKim/NebulaMind/pull/39</td></tr>
+<tr><td>origin/main</td><td><span class="result">e501d89</span></td><td>verified after squash merge</td></tr>
+<tr><td>frontend tests/build</td><td><span class="result">PASS</span></td><td>test:evidence-panel-copy, test:evidence-status, test:wiki-trust-visibility, tsc, next build</td></tr>
+<tr><td>pre-push smoke</td><td><span class="result">PASS</span></td><td>49 passed</td></tr>
+<tr><td>public cockpit chunk</td><td><span class="result">PASS</span></td><td>Evidence vote cockpit text found in deployed JS chunk</td></tr></table>
+  </section>
+
+  <section class="card section" style="margin-top:18px">
+    <h2>What happens when you say “proceed”</h2>
+    <p class="small">I verify the current repo/runtime state, pick the next safe high-leverage slice, write or update a focused test first where possible, implement the smallest visible change, run targeted tests/build, open a narrow PR, merge when verified, update the runtime if it uses a separate tree, then refresh this cockpit. Production mutations, migrations, and trust/badge/prose apply paths stay locked until an explicit named approval.</p>
+  </section>
+
+  <p class="footer">Generated 2026-06-28 14:25:09 KST from live tool output. Timestamped copy: live-steering-cockpit-20260628T052509Z.html. Buttons only copy text; they do not execute actions from the public web page.</p>
+</div>
+<script>
+async function refreshStatus() {
+  try {
+    const res = await fetch('/agent-reports/live-steering-status.json?ts=' + Date.now(), { cache: 'no-store' });
+    if (!res.ok) throw new Error('status ' + res.status);
+    const data = await res.json();
+    document.getElementById('originMain').textContent = data.repo?.origin_main || 'unknown';
+    document.getElementById('runtimeState').textContent = data.runtime?.frontend_service || 'unknown';
+    document.getElementById('currentAction').textContent = data.current_action || 'No current action recorded';
+    document.getElementById('updatedAt').textContent = data.updated_at_kst || data.updated_at_utc || 'unknown';
+  } catch (err) {
+    document.getElementById('updatedAt').textContent += ' · live JSON refresh failed';
+  }
+}
+document.querySelectorAll('button[data-copy]').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const text = btn.getAttribute('data-copy');
+    try { await navigator.clipboard.writeText(text); btn.textContent = 'Copied'; }
+    catch { btn.textContent = 'Copy failed — select command below'; }
+    setTimeout(() => btn.textContent = 'Copy steering command', 1400);
+  });
+});
+refreshStatus();
+setInterval(refreshStatus, 15000);
+</script>
+</body>
+</html>

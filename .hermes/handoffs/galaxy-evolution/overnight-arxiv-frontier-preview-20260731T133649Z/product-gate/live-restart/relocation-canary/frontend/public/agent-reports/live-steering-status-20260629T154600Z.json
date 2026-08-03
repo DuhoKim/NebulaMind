@@ -1,0 +1,82 @@
+{
+  "status": "pr70_merged_not_deployed",
+  "updated_at_utc": "2026-06-29T15:46:00Z",
+  "updated_at_kst": "2026-06-30 00:46:00 KST",
+  "plain_english_summary": "PR #70 was marked ready and squash-merged into GitHub main. It is not live yet because no frontend runtime sync/deploy was performed. DB writes remain 0.",
+  "pr_url": "https://github.com/DuhoKim/NebulaMind/pull/70",
+  "pr_number": 70,
+  "merge_commit": "a4a73dbcb0c57b2024f9fec3dbbc06b1305c4a3c",
+  "origin_main": "a4a73dbcb0c57b2024f9fec3dbbc06b1305c4a3c",
+  "merged_at": "2026-06-29T15:45:09Z",
+  "route_live_status": "not_deployed_expected_404",
+  "route_probes": [
+    {
+      "url": "http://127.0.0.1:3000/agent-reports/page58-label-upload/submit",
+      "http": "404",
+      "bytes": 19378,
+      "stderr": ""
+    },
+    {
+      "url": "https://nebulamind.net/agent-reports/page58-label-upload/submit",
+      "http": "404",
+      "bytes": 20540,
+      "stderr": ""
+    }
+  ],
+  "backend_pid": "25075",
+  "backend_cwd": "/Users/duhokim/NebulaMind/runtime-candidates/origin-main-cc4ced2-20260629T132728/backend",
+  "backend_head": "cc4ced2a6e69e9222805c080ce700e91517e6093",
+  "db_counts": {
+    "page_citation_links": 1351,
+    "fact_sources": 391
+  },
+  "db_writes": 0,
+  "deploys": 0,
+  "backend_restarts": 0,
+  "verification": [
+    "PR #70 was marked ready for review before merge.",
+    "Squash merge used a head-commit guard: 606bb5f353d0b2cc1b27c701c1f22e57e47af2ed.",
+    "PR #70 is now MERGED on GitHub.",
+    "Merge commit is a single-parent squash commit: a4a73dbcb0c57b2024f9fec3dbbc06b1305c4a3c.",
+    "origin/main now points at the merge commit.",
+    "Remote PR branch is deleted/absent.",
+    "Merged diff contains 5 frontend files and 480 insertions; no backend/schema/DB files.",
+    "GitHub checks: none reported for this branch; prior local checks were the gate.",
+    "Live route probe remains 404 locally and publicly, which is expected because no frontend runtime deploy/sync was performed.",
+    "Backend service unchanged: PID 25075, cwd clean candidate, HEAD cc4ced2.",
+    "DB counts unchanged: page_citation_links=1351, fact_sources=391.",
+    "No merge-side deploy, backend restart, DB write, production upload, migration, or backfill occurred."
+  ],
+  "artifacts": {
+    "dir": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merged-not-deployed-20260629T154600Z",
+    "report": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merged-not-deployed-20260629T154600Z/pr70-merged-not-deployed.md",
+    "manifest": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merged-not-deployed-20260629T154600Z/pr70-merged-not-deployed.json",
+    "checksums": "/Users/duhokim/NebulaMind/runtime-hygiene/20260629T132728/pr70-merged-not-deployed-20260629T154600Z/SHA256SUMS"
+  },
+  "future_options": [
+    {
+      "option": "Recommended: scoped frontend runtime sync/deploy for PR #70",
+      "plain_english": "Copy/sync only the merged PR #70 frontend route/helper/test-safe files into the running frontend/runtime checkout, rebuild if needed, restart only frontend, and verify the upload route. No DB writes.",
+      "risk": "Medium: frontend restart/product runtime change; no DB writes",
+      "approval": "STEER: deploy PR #70 frontend route with scoped runtime sync; no DB writes."
+    },
+    {
+      "option": "Plan-only: prepare sync plan first",
+      "plain_english": "Inspect the frontend runtime checkout and write a deploy/sync plan without changing runtime files or restarting anything.",
+      "risk": "Low/read-only",
+      "approval": "STEER: prepare scoped frontend runtime sync plan for PR #70; no deploy, no DB writes."
+    },
+    {
+      "option": "Hold after merge",
+      "plain_english": "Leave GitHub main updated but keep the live route undeployed for now.",
+      "risk": "Lowest; no runtime change",
+      "approval": "STEER: hold PR #70 after merge; no deploy, no DB writes."
+    },
+    {
+      "option": "Locked: DB/write actions",
+      "plain_english": "Not needed for this frontend route and still locked.",
+      "risk": "Locked / not recommended",
+      "approval": "Not applicable; PR #70 needs no DB writes."
+    }
+  ]
+}

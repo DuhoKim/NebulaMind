@@ -1,0 +1,119 @@
+{
+  "lane": "kun",
+  "packet": "P2-fesc",
+  "marker": "P2_KUN_CROSSREVIEW_COMPLETE_20260727",
+  "disposition": "ISSUES",
+  "input_audit": {
+    "brief_read": true,
+    "immutable_manifest_files": 21,
+    "manifest_hash_byte_mismatches": [],
+    "primary_outputs_parsed": {
+      "BIBLIOGRAPHY_IDENTITY.csv": {
+        "rows": 3,
+        "finding": "parsed; one identity error found for Chisholm+22"
+      },
+      "PASSAGE_SUPPORT_LEDGER.csv": {
+        "rows": 7,
+        "finding": "parsed; counts align with pipeline arrays and provenance except no positive entailment evidence"
+      },
+      "CLAIM_STATUS_LEDGER.jsonl": {
+        "rows": 7,
+        "statuses": [
+          "DO_NOT_USE",
+          "debated_input",
+          "established_assumption",
+          "measured_proxy",
+          "unknown"
+        ]
+      },
+      "CITATION_GATE_REPLAY.json": {
+        "valid_json": true
+      },
+      "LINEAGE_MATRIX.json": {
+        "valid_json": true
+      },
+      "RECEIPT.json": {
+        "valid_json": true
+      }
+    }
+  },
+  "citation_gate_validation": {
+    "pipeline_checked_claims": 0,
+    "pipeline_unsupported_claims": 0,
+    "pass_count": 0,
+    "partial_count": 0,
+    "fail_count": 0,
+    "zero_original_claims_checked": true,
+    "bibliography_presence_is_not_entailment": true,
+    "goru_primary_gap_preserved": true
+  },
+  "bibliography_identity_validation": {
+    "Chisholm+22": {
+      "goru_status": "VERIFIED",
+      "crossreview_status": "PATCH_REQUIRED",
+      "correct_identity": {
+        "bibcode": "2022MNRAS.517.5104C",
+        "title": "The far-ultraviolet continuum slope as a Lyman Continuum escape estimator at high redshift",
+        "doi": "10.1093/mnras/stac2874"
+      },
+      "problem": "Goru recorded 2022MNRAS.515.4265C; frontier PDF and public metadata indicate MNRAS 517, 5104."
+    },
+    "Flury+22": {
+      "goru_status": "VERIFIED",
+      "crossreview_status": "PARTIAL_ROLE_PATCH_REQUIRED",
+      "identities": [
+        {
+          "bibcode": "2022ApJS..260....1F",
+          "title": "The Low-redshift Lyman Continuum Survey. I. New, Diverse Local Lyman Continuum Emitters",
+          "doi": "10.3847/1538-4365/ac5331",
+          "role": "survey/sample paper"
+        },
+        {
+          "bibcode": "2022ApJ...930..126F",
+          "title": "The Low-redshift Lyman Continuum Survey. II. New Insights into LyC Diagnostics",
+          "doi": "10.3847/1538-4357/ac61e4",
+          "role": "direct diagnostics/calibration role match"
+        }
+      ],
+      "problem": "Frontier bibliography cites ApJ 930, 126; Goru's main row cites ApJS 260, 1."
+    },
+    "Simmonds+24": {
+      "goru_status": "QUARANTINED",
+      "crossreview_status": "QUARANTINE_CONFIRMED",
+      "candidate_identities": [
+        {
+          "bibcode": "2024MNRAS.527.6139S",
+          "title": "Low-mass bursty galaxies in JADES efficiently produce ionizing photons and could represent the main drivers of reionization",
+          "doi": "10.1093/mnras/stad3605"
+        },
+        {
+          "bibcode": "2024MNRAS.535.2998S",
+          "title": "Ionizing properties of galaxies in JADES for a stellar mass complete sample: resolving the cosmic ionizing photon budget crisis at the Epoch of Reionization",
+          "doi": "10.1093/mnras/stae2537"
+        }
+      ],
+      "problem": "Pipeline provenance uses only Simmonds+24 while novelty gate contains two same-year JADES candidates."
+    }
+  },
+  "lineage_validation": {
+    "goru_recommended_relationship": "CANONICAL_PLUS_SUPPORTING",
+    "crossreview_recommended_relationship": "UNRESOLVED",
+    "reason": "The packet shows narrative/human-directed continuity from a single z~6 run to a 232-point frontier manuscript, but lacks mechanical derivation or artifact-build lineage sufficient to prove canonical-plus-supporting status."
+  },
+  "mutation_scope": {
+    "worked_only_in_directory": true,
+    "source_public_lab_db_wiki_service_cockpit_git_writes": 0,
+    "immutable_inputs_modified": false,
+    "stop_files_found": false,
+    "git_status_note": "Repository had extensive pre-existing dirty status outside this packet; no changes were made there."
+  },
+  "external_sources_used": [
+    "https://academic.oup.com/mnras/article/517/4/5104/6753210",
+    "https://research.rug.nl/en/publications/the-far-ultraviolet-continuum-slope-as-a-lyman-continuum-escape-e/",
+    "https://authors.library.caltech.edu/records/710n4-fp279",
+    "https://www.ipac.caltech.edu/publication/2022ApJ...930..126F",
+    "https://experts.arizona.edu/en/publications/low-mass-bursty-galaxies-in-jades-efficiently-produce-ionizing-ph/",
+    "https://ouci.dntb.gov.ua/en/works/7WADgnZl/"
+  ]
+}
+

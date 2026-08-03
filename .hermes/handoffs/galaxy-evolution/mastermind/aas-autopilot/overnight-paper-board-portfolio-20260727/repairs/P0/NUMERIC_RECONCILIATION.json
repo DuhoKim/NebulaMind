@@ -1,0 +1,62 @@
+{
+  "status": "PREPARED_ONLY_NOT_EXECUTED",
+  "marker": "P0_NUMERIC_RECONCILIATION_PREPARED_20260728",
+  "served_artifact_sha256": "086654e747f13626d853d404557292bd0238f5536ee2173669f2674d37ad62ef",
+  "selected_branch": "retract unsupported matched-scale claim",
+  "surviving": {
+    "sfms_z0_residual_dex": -0.30,
+    "mzr_z0_residual_dex": 0.12,
+    "tng_internal_sfms_growth_dex": [1.30, 1.45, 1.61],
+    "observed_sfms_medians_dex": {
+      "values": [0.89, 0.96],
+      "status": "PROVISIONAL_UNRESOLVED_SUPPLEMENT_PROVENANCE"
+    },
+    "over_evolution_gap_dex": {
+      "values": [0.41, 0.49],
+      "redshift": [4.7, 5.4],
+      "checks": ["1.30 - 0.89 = 0.41", "1.45 - 0.96 = 0.49"],
+      "status": "ARITHMETIC_PASS_WITH_PROVENANCE_CAVEAT"
+    },
+    "selection_envelope_dex": {
+      "sample_matched": [0.46, 0.83],
+      "aggressive_corner": 1.1,
+      "configurations": 9,
+      "status": "INTERNALLY_CONSISTENT_NOT_SOURCE_RECOMPUTABLE"
+    },
+    "aperture_to_total_dex": {
+      "z5": 0.13,
+      "z6": 0.12,
+      "raw_plane_check": "0.61 * 0.13 = 0.0793 ~ 0.08",
+      "status": "ARITHMETIC_PASS_CATALOG_VALUE_NOT_RECOMPUTED"
+    },
+    "mzr_unmatched": {
+      "tng_internal_dex": [-0.23, -0.25, -0.25],
+      "observed_face_value_dex": -0.50,
+      "ratio_check": "0.50 / 0.25 = 2.0",
+      "status": "SUGGESTIVE_ONLY_UNMATCHED_SCALES"
+    },
+    "naive_cross_survey_ratio": {
+      "check": "-0.25 + 0.12 = -0.13; 0.50 / 0.13 = 3.846",
+      "status": "ARITHMETIC_PASS_AS_ARTIFACT_ILLUSTRATION_ONLY"
+    }
+  },
+  "removed": {
+    "tng_sample_count_approx_30000": "REMOVED_SELECTION_IDENTITY_UNPROVEN",
+    "pp04_subset_count_200000": "BLOCKED_NO_ANALYSIS",
+    "matched_observed_deficit_dex_-0.40": "BLOCKED_NO_DERIVATION",
+    "matched_tng_internal_dex_-0.27": "BLOCKED_INTERNAL_EVOLUTION_SHOULD_NOT_CHANGE_WITH_SDSS_ANCHOR",
+    "matched_factor_1.5": "REMOVED_DEPENDS_ON_BLOCKED_INPUTS",
+    "residual_systematic_0.10_0.15_consistency_verdict": "REMOVED_NO_SINGLE_SCALE_RESULT"
+  },
+  "invariants_not_replaced": {
+    "adjacent_tng_count": 23722,
+    "adjacent_sdss_count": 120000,
+    "reason": "Selection identity with this manuscript is not proven; values are not substituted into the proposed manuscript."
+  },
+  "execution": {
+    "tex_compiled": false,
+    "pdf_rendered": false,
+    "source_test_run": false,
+    "reason": "Packet-preparation approval forbids source/test execution."
+  }
+}

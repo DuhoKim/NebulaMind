@@ -1,0 +1,45 @@
+{
+  "id": "7cb504ea7ad3",
+  "spec": {
+    "topic": "stellar-mass-assembly",
+    "topic_source": "frontier-map",
+    "data_sources": [
+      "tng"
+    ],
+    "method": "stellar-mass-function",
+    "outputs": [
+      "aastex-draft",
+      "dr-review-loop"
+    ]
+  },
+  "status": "done",
+  "created_utc": "2026-07-17T09:39:59.918965Z",
+  "log": [
+    "queued",
+    "18:40:03 loading TNG100-1 z=0 fields:  …",
+    "18:40:03 computing TNG stellar mass function…",
+    "18:40:03 drafting AASTeX manuscript + compiling PDF...",
+    "18:40:06 AASTeX PDF compiled OK",
+    "18:40:06 running automated referee review (astrosage-70b:latest)...",
+    "18:40:21 automated review complete OK",
+    "18:40:21 done ✓"
+  ],
+  "artifacts": [
+    "result.png",
+    "draft.pdf",
+    "review.md",
+    "history.json"
+  ],
+  "result": {
+    "data_sources": [
+      "tng"
+    ],
+    "method": "stellar-mass-function",
+    "summary": "IllustrisTNG (TNG100-1, z=0) stellar mass function from 203,524 galaxies in a (111 Mpc)³ box; n(>10¹⁰·⁵M⊙)=1.49e-03 Mpc⁻³.",
+    "figure_url": "/api/lab/runs/7cb504ea7ad3/artifact/result.png",
+    "pdf_url": "/api/lab/runs/7cb504ea7ad3/artifact/draft.pdf",
+    "review": "(1) Verdict: This study provides a preliminary, automated measurement of the stellar mass function in IllustrisTNG but requires substantial improvement before publication.\n\n(2) Top correctness/overclaim risks and missing caveats:\n- The study assumes that the simulation accurately represents real-world galaxy formation processes without providing justification or comparison to observational data.\n- No error analysis or uncertainty quantification is presented, which is crucial for assessing the reliability of the results.\n- Potential biases in the selection of galaxies and the calculation of stellar masses are not discussed.\n\n(3) The single most important next step to make it publishable:\nPerform a thorough comparison between the simulated stellar mass function from IllustrisTNG and observational data (e.g., SDSS, GAMA, or COSMOS surveys) to validate the simulation's accuracy in representing real galaxy populations. This should include an analysis of potential discrepancies and their implications for our understanding of galaxy formation and evolution. Additionally, provide a detailed error analysis and discuss any limitations or biases in the methodology used.",
+    "review_model": "astrosage-70b:latest",
+    "review_url": "/api/lab/runs/7cb504ea7ad3/artifact/review.md"
+  }
+}

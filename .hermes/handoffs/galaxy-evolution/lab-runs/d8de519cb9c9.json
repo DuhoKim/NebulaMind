@@ -1,0 +1,37 @@
+{
+  "id": "d8de519cb9c9",
+  "spec": {
+    "topic": "cosmic-chemical-evolution",
+    "topic_source": "frontier-map",
+    "data_sources": [
+      "tng",
+      "sdss"
+    ],
+    "method": "mass-metallicity",
+    "outputs": [
+      "aastex-draft"
+    ]
+  },
+  "status": "done",
+  "created_utc": "2026-07-17T09:20:58.872370Z",
+  "log": [
+    "queued",
+    "18:21:03 loading TNG100-1 z=0 fields: gasZ …",
+    "18:21:04 pulling SDSS…",
+    "18:21:07 done ✓"
+  ],
+  "artifacts": [
+    "result.png",
+    "history.json"
+  ],
+  "result": {
+    "data_sources": [
+      "tng",
+      "sdss"
+    ],
+    "method": "mass-metallicity",
+    "summary": "Mass–metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity → O/H (solar-scaled).",
+    "figure_url": "/api/lab/runs/d8de519cb9c9/artifact/result.png",
+    "note": "Figure + summary computed. Full aastex-draft is queued for crew execution."
+  }
+}

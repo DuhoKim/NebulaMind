@@ -1,0 +1,66 @@
+{
+  "index": 8,
+  "captured_url": "http://simba.roe.ac.uk/",
+  "ledger_rows": [
+    10,
+    12
+  ],
+  "records": [
+    {
+      "utc": "2026-07-13T04:15:07Z",
+      "method": "GET",
+      "host": "simba.roe.ac.uk",
+      "index": 8,
+      "label": "initial",
+      "purpose": "captured_citation_url",
+      "requested_url": "http://simba.roe.ac.uk/",
+      "final_url": "http://simba.roe.ac.uk/",
+      "status": 200,
+      "bytes": 48174,
+      "sha256": "dfb11c49f2108bc60d090f6ed4cd441eecf9c81b3dc33350adbf295385670a75",
+      "content_type": "text/html",
+      "raw_path": "sources/raw/idx08_initial_dfb11c49f210.html",
+      "auth": "NONE",
+      "cache_reuse": false
+    },
+    {
+      "utc": "2026-07-13T04:15:09Z",
+      "method": "GET",
+      "host": "api.adsabs.harvard.edu",
+      "index": 8,
+      "label": "ads",
+      "purpose": "read_only_metadata",
+      "requested_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Simba%20Simulation%20Repository%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "final_url": "https://api.adsabs.harvard.edu/v1/search/query?q=title%3A%22Simba%20Simulation%20Repository%22&fl=bibcode%2Ctitle%2Cabstract%2Cdoi%2Cidentifier%2Cauthor%2Cyear%2Cpub%2Cproperty&rows=5",
+      "status": 200,
+      "bytes": 473,
+      "sha256": "8dd7b2f2b286535ed5da792ba9c8c2e98b5c9b6c0beab8ef7e034a47b0142fdc",
+      "content_type": "application/json",
+      "raw_path": "sources/raw/idx08_ads_8dd7b2f2b286.json",
+      "auth": "ADS_CONFIGURED_BOOLEAN_ONLY",
+      "cache_reuse": false
+    }
+  ],
+  "extracts": [
+    {
+      "label": "initial",
+      "title": "Simba Simulation Repository",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx08_initial_f9dd283f502e.txt",
+      "text_sha256": "f9dd283f502e2ed212a855b8d14a48ba6b636110ca921e5c9e38ccce8c9a6ca8",
+      "text_chars": 8502
+    },
+    {
+      "label": "ads",
+      "title": "",
+      "doi": "",
+      "arxiv_id": "",
+      "pdf_url": "",
+      "text_path": "sources/text/idx08_ads_fa21f8f9a04e.txt",
+      "text_sha256": "fa21f8f9a04e74b9c3009165d9a1d1e96959c6a7744a50cccfc1d4c5933032f9",
+      "text_chars": 573
+    }
+  ]
+}

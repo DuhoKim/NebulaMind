@@ -1,0 +1,132 @@
+{
+  "cached_coverage_of_strict_sdss_sn_ge_3": 0.24007970646254556,
+  "cached_rows": 60000,
+  "files": {
+    "aastex_table_fragment": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_attrition_table_fragment_20260708T155514Z.tex",
+    "m3_p2_massive_low_ssfr_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/m3_p2_massive_low_ssfr_attrition_20260708T155514Z.csv",
+    "m3_p3_small_cell_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/m3_p3_small_cell_attrition_20260708T155514Z.csv",
+    "massive_host_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/massive_host_attrition_m1rp3_m2p2_20260708T155514Z.csv",
+    "selection_stage_counts_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/selection_stage_counts_20260708T155514Z.csv",
+    "ssfr_bin_line_selection_attrition_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/tables/ssfr_bin_line_selection_attrition_20260708T155514Z.csv",
+    "summary_md": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/tori/selection-function-attrition/20260708T155514Z/selection_function_attrition_summary_20260708T155514Z.md"
+  },
+  "m3_p2_default_denominator": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2517341961418732,
+    "cached_sn_ge_3_count": 10270,
+    "guard": "This is an emission-line selected optical denominator, not a gas mass or SFE measurement.",
+    "mass_cut_logM_ge": 10.6,
+    "paper": "M3 P2 gas-depletion/SFE denominator",
+    "sdss_parent_mass_ssfr_count": 121533,
+    "sdss_sn_ge_3_count": 40797,
+    "sn_ge_3_retention_vs_parent": 0.33568660363851793,
+    "ssfr_cut_log_ssfr_lt": -10.7
+  },
+  "m3_p2_strict_denominator": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2605421686746988,
+    "cached_sn_ge_3_count": 2941,
+    "guard": "This is an emission-line selected optical denominator, not a gas mass or SFE measurement.",
+    "mass_cut_logM_ge": 11.0,
+    "paper": "M3 P2 gas-depletion/SFE denominator",
+    "sdss_parent_mass_ssfr_count": 33125,
+    "sdss_sn_ge_3_count": 11288,
+    "sn_ge_3_retention_vs_parent": 0.34076981132075473,
+    "ssfr_cut_log_ssfr_lt": -11.0
+  },
+  "m3_p3_small_cell_count": 2,
+  "marker": "SELECTION_FUNCTION_ATTRITION_TICK_20260708T155514Z",
+  "safety": "Read-only public SDSS counts plus local file reads; lane-local artifact writes only. No product DB/API/page_versions/live wiki/deploy/git/cron/billing/OAuth/external submission changes.",
+  "sdss_endpoint": "https://skyserver.sdss.org/dr17/SkyServerWS/SearchTools/SqlSearch",
+  "source_csv": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_AGN_SFR_PILOT_20260708T122000Z/data/analysis_sample_bpt.csv",
+  "ssfr_low_bin_reference": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.24458948814840262,
+    "cached_sn_ge_3_count": 7832,
+    "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+    "sdss_parent_count": 95424,
+    "sdss_sn_ge_3_count": 32021,
+    "sn_ge_3_retention_vs_parent": 0.33556547619047616,
+    "ssfr_bin": "-12.0_to_-11.0"
+  },
+  "ssfr_star_forming_bin_reference": {
+    "cached_coverage_of_sdss_sn_ge_3": 0.2359388315500426,
+    "cached_sn_ge_3_count": 19934,
+    "guard": "Four-line emission selection is sSFR-dependent; disclose before quenched/gas-denominator prose.",
+    "sdss_parent_count": 89075,
+    "sdss_sn_ge_3_count": 84488,
+    "sn_ge_3_retention_vs_parent": 0.948504069604266,
+    "ssfr_bin": "-10.0_to_-9.5"
+  },
+  "stage_counts": [
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": "",
+      "retention_vs_spectro_z_parent": 1.0,
+      "sdss_dr17_count": 501060,
+      "stage_key": "spectro_galaxy_z_window",
+      "stage_label": "SpecObj GALAXY, 0.02<z<0.12"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.8313455474394285,
+      "retention_vs_spectro_z_parent": 0.8313455474394285,
+      "sdss_dr17_count": 416554,
+      "stage_key": "join_complete_mass_ssfr_bounds",
+      "stage_label": "plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds"
+    },
+    {
+      "cached_coverage_of_sdss_stage": "",
+      "cached_sample_count_at_matching_stage": "",
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 1.0,
+      "retention_vs_spectro_z_parent": 0.8313455474394285,
+      "sdss_dr17_count": 416554,
+      "stage_key": "join_complete_with_line_table",
+      "stage_label": "plus galSpecLine join"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.16066622929748692,
+      "cached_sample_count_at_matching_stage": 60000,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.896510416416599,
+      "retention_vs_spectro_z_parent": 0.7453099429210075,
+      "sdss_dr17_count": 373445,
+      "stage_key": "positive_four_bpt_fluxes_and_errors",
+      "stage_label": "four BPT lines positive with positive errors"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.24007970646254556,
+      "cached_sample_count_at_matching_stage": 60000,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.6692203671223339,
+      "retention_vs_spectro_z_parent": 0.4987765936215224,
+      "sdss_dr17_count": 249917,
+      "stage_key": "sn_ge_3_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=3"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.2404559179257094,
+      "cached_sample_count_at_matching_stage": 42446,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.7063265003981322,
+      "retention_vs_spectro_z_parent": 0.35229912585319123,
+      "sdss_dr17_count": 176523,
+      "stage_key": "sn_ge_5_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=5"
+    },
+    {
+      "cached_coverage_of_sdss_stage": 0.24312396478075146,
+      "cached_sample_count_at_matching_stage": 22311,
+      "query_scope": "SpecObj+galSpecInfo+PhotoObj+galSpecExtra+galSpecLine where relevant; read-only public SDSS DR17 SkyServer count.",
+      "retention_vs_previous_stage": 0.5198642669793738,
+      "retention_vs_spectro_z_parent": 0.1831477268191434,
+      "sdss_dr17_count": 91768,
+      "stage_key": "sn_ge_10_four_bpt_lines",
+      "stage_label": "four BPT lines S/N>=10"
+    }
+  ],
+  "strict_sdss_sn_ge_3_total": 249917,
+  "timestamp_utc": "20260708T155514Z"
+}
