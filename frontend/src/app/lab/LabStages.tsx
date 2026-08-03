@@ -3,6 +3,7 @@
 import { useState, Fragment, type ReactNode } from "react";
 import { STEPS, useTab, useSub, select, useLabUrlSync } from "./labTabStore";
 import { FRONTIERS } from "./frontiersData";
+import { coreGalaxyEvolutionFrontiers, isCoreGalaxyEvolutionFrontier } from "./frontierScope";
 import { itemsFor, RESEARCH_ITEMS } from "./stageData";
 import { METHOD_LABEL } from "./methodLinks";
 import { RawStyle } from "./rawStyle";
@@ -360,6 +361,7 @@ const CID_COLORIDX = new Map<number, number>(SCATTER_CLUSTERS.map(([id], i) => [
 const CID_SHORT = new Map<number, string>(SCATTER_CLUSTERS.map(([id, l]) => [id, l]));
 const FRONTIER_BY_CID = new Map(FRONTIERS.map((f) => [f.cluster, f]));
 const RANK_BY_CID = new Map<number, number>(FRONTIERS.map((f, i) => [f.cluster, i + 1])); // FRONTIERS is score-desc
+const CORE_RANK_BY_CID = new Map(coreGalaxyEvolutionFrontiers(FRONTIERS).map((f, i) => [f.cluster, i + 1]));
 const CLUSTER_TOPIC_CIDS = FRONTIERS.slice(0, 14).map((f) => f.cluster);
 // island centroid per cid — a stable anchor for the tooltip, computed once over all points
 const CENTROIDS = (() => {
@@ -384,7 +386,8 @@ function cidForActivity(v: number): number | null {
   return best;
 }
 type ScatterMode = "cluster" | "activity" | "rank";
-const SCOREV1_MAX = Math.max(...FRONTIERS.map((f) => f.scoreV1)); // galaxy-evolution controversy scale
+const CONTESTED = coreGalaxyEvolutionFrontiers(FRONTIERS).slice(0, 8);
+const SCOREV1_MAX = Math.max(...CONTESTED.map((f) => f.scoreV1)); // strict Galaxy Evolution controversy scale
 function contestColor(t: number): string {
   // agree/settled (teal) → amber → clash/contested (red), echoing the settled-vs-contested chart
   const stops: [number, [number, number, number]][] = [[0, [74, 214, 196]], [0.5, [224, 164, 88]], [1, [244, 114, 114]]];
@@ -401,7 +404,6 @@ function contestColor(t: number): string {
   return "rgb(244,114,114)";
 }
 const contestNorm = (sv: number) => Math.pow(sv / SCOREV1_MAX, 0.7);
-const CONTESTED = FRONTIERS.filter((f) => f.scoreV1 > 0).sort((a, b) => b.scoreV1 - a.scoreV1).slice(0, 8);
 type CidMeta = { name: string; size: number; activity: number | null; rank: number | null; scoreV1: number };
 function cidMeta(cid: number): CidMeta | null {
   if (cid < 0) return null;
@@ -416,7 +418,7 @@ function cidMeta(cid: number): CidMeta | null {
 }
 const isIsland = (cid: number, mode: ScatterMode) =>
   mode === "cluster" ? CID_COLORIDX.has(cid)
-    : mode === "rank" ? (FRONTIER_BY_CID.get(cid)?.scoreV1 ?? 0) > 0
+    : mode === "rank" ? isCoreGalaxyEvolutionFrontier(cid) && (FRONTIER_BY_CID.get(cid)?.scoreV1 ?? 0) > 0
     : cid >= 0;
 function isMatch(cid: number, focus: number | null, mode: ScatterMode) {
   if (focus == null) return true;
@@ -439,6 +441,7 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
   const dim = focus != null && focus !== -1; // a -1 (haze) focus lifts the haze, it doesn't dim islands
   const tip = focus != null && focus >= 0 ? cidMeta(focus) : null;
   const anchor = focus != null && focus >= 0 ? CENTROIDS.get(focus) : undefined;
+  const coreRank = focus != null ? CORE_RANK_BY_CID.get(focus) : null;
   return (
     <div className="corpus-block">
       <div className="cch-h">{mode === "cluster"
@@ -467,7 +470,7 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
               baseOp = ci != null ? 0.9 : 0.32;
             } else if (mode === "rank") {
               const sv = FRONTIER_BY_CID.get(cid)?.scoreV1 ?? 0;
-              const contested = sv > 0 && cid >= 0;
+              const contested = cid >= 0 && isCoreGalaxyEvolutionFrontier(cid) && sv > 0;
               const t = contested ? contestNorm(sv) : 0;
               fill = contested ? contestColor(t) : "#242c3d";
               baseR = contested ? 0.62 + t * 0.75 : 0.5;
@@ -489,9 +492,9 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
         {tip && anchor && (
           <div className="scatter-tip" role="status" style={{ left: `${anchor.cx}%`, top: `${100 - anchor.cy}%` }}>
             <b>{tip.name}</b>
-            <span>{tip.size.toLocaleString()} papers{tip.rank ? ` · #${tip.rank} of 57` : ""}</span>
+            <span>{tip.size.toLocaleString()} papers{mode === "rank" && coreRank ? ` · core #${coreRank}` : mode !== "rank" && tip.rank ? ` · #${tip.rank} of 57` : ""}</span>
             {mode === "activity" && tip.activity != null && <span>{tip.activity.toFixed(1)} recent cites / paper</span>}
-            {mode === "rank" && tip.scoreV1 > 0 && <span>controversy {tip.scoreV1.toFixed(2)}</span>}
+            {mode === "rank" && focus != null && isCoreGalaxyEvolutionFrontier(focus) && tip.scoreV1 > 0 && <span>controversy {tip.scoreV1.toFixed(2)}</span>}
           </div>
         )}
         {focus === -1 && (
@@ -532,7 +535,7 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
             <span>agree · settled</span>
             <div className="heat-bar contest" />
             <span>clash · contested</span>
-            <span className="heat-grey"><i />not a galaxy-evo frontier</span>
+            <span className="heat-grey"><i />adjacent or outside the core scope</span>
           </div>
         </>
       ) : (
@@ -547,7 +550,7 @@ function InteractiveClusterScatter({ mode, hoveredCid, lockedCid, onHover, onSel
       {mode === "cluster" ? (
         <p className="cch-note">A 2-D UMAP of a representative sample. The top-10 frontiers fall out as <b>distinct islands</b> — nobody drew the boundaries; the grey haze is the 43% the algorithm left unclustered rather than forcing into a theme. <b>Hover or tap a topic</b> to light up its island.</p>
       ) : mode === "rank" ? (
-        <p className="cch-note">The <b>same 57-cluster map</b>, recolored by the <b>controversy score</b> — how much independent measurements of a cluster&rsquo;s key numbers disagree, once redshift and mass are controlled. The contested <b>galaxy-evolution</b> frontiers glow; settled or out-of-scope fields (much of cosmology, instrumentation) stay dark. <b>JWST high-z</b> is the most contested.</p>
+        <p className="cch-note">The <b>same 57-cluster map</b>, recolored by the <b>controversy score</b> — how much independent measurements of a cluster&rsquo;s key numbers disagree, once redshift and mass are controlled. Only <b>core Galaxy Evolution</b> frontiers glow; adjacent probes and out-of-scope fields stay dark. <b>JWST high-z</b> is the most contested.</p>
       ) : (
         <p className="cch-note">Exactly the <b>same 57-theme map</b> as the previous step — but recolored: each theme now glows by its <b>recent citations per paper</b>. A handful burn hot (the field is still piling citations on); most sit cool and settled. The single hottest island is <b>JWST high-z galaxy formation</b>.</p>
       )}
@@ -705,7 +708,8 @@ const QUANTITY_DISP: { q: string; N: number; S: number; Szm: number; verdict: st
   { q: "UV-LF faint-end slope · α", N: 30, S: 3.18, Szm: 1.42, verdict: "z-driven" },
   { q: "Stellar mass function · M✱", N: 10, S: 1.22, Szm: 1.06, verdict: "consistent" },
 ];
-// v2.3 frontier ranking — ranked by measurement disagreement (mass-controlled). plain = one-line what's disputed.
+// v2.3 measurement shortlist — core questions plus adjacent probes, kept separate
+// from the strict cluster ranking above. plain = one-line what's disputed.
 const RANK_TOPICS: { label: string; score: number; plain: string; measured: string }[] = [
   { label: "JWST high-z galaxy formation", score: 0.60, plain: "How fast did the first galaxies grow and enrich? Early-JWST numbers clash.", measured: "star-formation density · metallicity at z>7" },
   { label: "Black-hole accretion", score: 0.56, plain: "How fast do supermassive black holes feed? Reported rates disagree.", measured: "Eddington ratio" },
@@ -778,7 +782,7 @@ function RankingView() {
       <InteractiveClusterScatter mode="rank"
         hoveredCid={hoveredCid} lockedCid={lockedCid} onHover={setHoveredCid} onSelect={toggleLock} />
       <div className="corpus-block">
-        <div className="cch-h">The most-contested clusters · straight from the data</div>
+        <div className="cch-h">The most-contested core Galaxy Evolution clusters · straight from the data</div>
         <div className="embed-lb frontiers">
           {CONTESTED.map((f, i) => (
             <button type="button" key={f.cluster} aria-pressed={lockedCid === f.cluster}
@@ -791,10 +795,10 @@ function RankingView() {
             </button>
           ))}
         </div>
-        <p className="cch-note">The 57 clusters scored by how much their key measurements disagree — the galaxy-evolution controversy signal, the same one coloring the map above. <b>Hover a row to find its island.</b> This data-driven ranking is what the curated frontier shortlist below is distilled from.</p>
+        <p className="cch-note">The broad 57-cluster map is retained for evidence discovery, but this list ranks only the hand-reviewed <b>core Galaxy Evolution</b> scope by measurement disagreement. Adjacent stellar, transient, Galactic-probe, and cosmology clusters remain in the corpus without seeding this ranking. <b>Hover a row to find its island.</b></p>
       </div>
       <div className="corpus-block">
-        <div className="cch-h">The contested frontiers — where the field is unsettled</div>
+        <div className="cch-h">Core + adjacent measurement shortlist · where the field is unsettled</div>
         <div className="embed-lb frontiers">
           {RANK_TOPICS.map(({ label, score, plain, measured }, i) => (
             <div className={`clu-row${i === 0 ? " top" : ""}`} key={label}>
@@ -803,7 +807,7 @@ function RankingView() {
             </div>
           ))}
         </div>
-        <p className="cch-note">The bar shows how much the field disagrees — no cryptic score, just the level and the reason. The top galaxy-evolution frontiers become the studies the pipeline runs; <b>JWST high-z</b> leads, with a genuine early-universe disagreement over both how fast galaxies formed and how metal-rich they already were.</p>
+        <p className="cch-note">The bar shows how much the field disagrees — no cryptic score, just the level and the reason. This supporting shortlist includes adjacent probes such as accretion and LyC escape; those remain useful context but do <b>not</b> enter the core ranking or seed a study by rank alone. <b>JWST high-z</b> leads the strict core list above.</p>
       </div>
       <div className="corpus-block">
         <div className="cch-h">The measurements behind it · does the field agree?</div>
