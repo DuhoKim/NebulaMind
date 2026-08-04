@@ -1,0 +1,26 @@
+\documentclass[twocolumn]{aastex631}
+\begin{document}
+\title{An age dependence of the Galactic alpha-knee across galactocentric radius}
+\author{NebulaMind Lab (autonomous pipeline)}
+\affiliation{NebulaMind Lab, \url{https://lab.nebulamind.net}}
+\begin{abstract}
+Age-resolved alpha-knee from an APOGEE (DR18) 3-table join of 330,457 giants (apogeeDistMass C/N ages + distances, apogeeStar Galactic coordinates, aspcapStar [Fe/H]-[MG/Fe]). The [Fe/H]\_knee is located per (R\_g x age) cell with a broken-line ridge fit (bootstrap error) in 34 populated cells; median [Fe/H]\_knee = -0.47. Gradients: d[Fe/H]\_knee/d(age)|\_R\_g = +0.0234+/-0.0054 dex/Gyr; d[Fe/H]\_knee/dR\_g|\_age = +0.0208+/-0.0039 dex/kpc. Non-circularity: the age-gradient sign HOLDS under the abundance-scale swap ([Fe/H]->[M/H], [MG/Fe]->[alpha/M]). Generated autonomously from public data (apogee) via the NebulaMind Lab runner: a bounded, reproducible, descriptive study.
+\end{abstract}
+\section{Introduction}
+Introduction
+The study of the age-resolved alpha-knee in the Milky Way provides valuable insights into the galaxy's chemical evolution. Previous works by Claytor et al. [Claytor2020] and Warfield et al. [Warfield2021] have explored the relationship between stellar ages and abundances, while Grisoni et al. [Grisoni2024] have investigated young alpha-rich stars in different Galactic regions. Building on these studies, we aim to determine the age-resolved alpha-knee using APOGEE DR18 data.
+\section{Data and method}
+Data and method
+We utilize data from three tables (apogeeDistMass, apogeeStar, aspcapStar) in the SDSS DR18 APOGEE catalog, accessed via SkyServer raw-HTTP. The data is chunked by sky region with pacing, retry/backoff, and disk cache, then joined in-process on APOGEE\_ID. Flag/quality cuts are applied in Python to ensure data reliability. We compute R\_g from glon/glat/distance using R0=8.200 kpc and derive ages from spectroscopic C/N ratios. The alpha-knee and its gradients are determined through a broken-line ridge fit with bootstrap error estimation.
+\section{Result}
+Result
+Our analysis reveals an age-resolved alpha-knee in the APOGEE DR18 data, characterized by a median [Fe/H]\_knee of -0.47. We find gradients of d[Fe/H]\_knee/d(age)|\_R\_g = +0.0234+/-0.0054 dex/Gyr and d[Fe/H]\_knee/dR\_g|\_age = +0.0208+/-0.0039 dex/kpc. Notably, the age-gradient sign remains consistent even when swapping the abundance calibration scale.
+\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{An age dependence of the Galactic alpha-knee across galactocentric radius}\end{figure}
+\section{Caveats}
+Caveats
+This study relies on an automated, single-selection method without explicit calibration of the C/N-age relation, which may introduce systematic errors in age determination. Additionally, our measurement is uncalibrated and based solely on APOGEE DR18 data, limiting its generalizability to other datasets or regions of the galaxy. Furthermore, the alpha-knee location and gradients are sensitive to the choice of abundance calibration scale, highlighting the need for further investigation into this aspect.
+\section*{References}
+\footnotesize
+[Claytor2020] Claytor et al. (2020). Chemical Evolution in the Milky Way: Rotation-based Ages for APOGEE-Kepler Cool Dwarf Stars. bibcode 2020ApJ...888...43C \par [Grisoni2024] Grisoni et al. (2024). K2 results for "young" α-rich stars in the Galaxy. bibcode 2024A\&A...683A.111G \par [Valle2024] Valle et al. (2024). Stellar model tests and age determination for RGB stars from the APO-K2 catalogue. bibcode 2024A\&A...690A.323V \par [Warfield2021] Warfield et al. (2021). An Intermediate-age Alpha-rich Galactic Population in K2. bibcode 2021AJ....161..100W
+
+\end{document}

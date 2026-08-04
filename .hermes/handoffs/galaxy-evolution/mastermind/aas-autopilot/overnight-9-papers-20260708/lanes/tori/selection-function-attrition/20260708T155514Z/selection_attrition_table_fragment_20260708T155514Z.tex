@@ -1,0 +1,15 @@
+% SELECTION_FUNCTION_ATTRITION_TICK table fragment; lane-local only, not merged.
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Public SDSS DR17 selection-function counts for the optical-denominator pilot}
+\tablehead{\colhead{Stage} & \colhead{SDSS DR17 $N$} & \colhead{Prev. retention} & \colhead{Cached $N$} & \colhead{Cached/SDSS}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & -- & -- \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & 83.1\% & -- & -- \\
+plus galSpecLine join & 416,554 & 100.0\% & -- & -- \\
+four BPT lines positive with positive errors & 373,445 & 89.7\% & 60,000 & 16.1\% \\
+four BPT lines S/N>=3 & 249,917 & 66.9\% & 60,000 & 24.0\% \\
+four BPT lines S/N>=5 & 176,523 & 70.6\% & 42,446 & 24.0\% \\
+four BPT lines S/N>=10 & 91,768 & 52.0\% & 22,311 & 24.3\% \\
+\enddata
+\tablecomments{The cached pilot sample is capped at 60,000 rows selected by SpecObjID order from the S/N$\geq$3 four-line-eligible set. These counts diagnose the selection function; they are not causal feedback evidence.}
+\end{deluxetable*}

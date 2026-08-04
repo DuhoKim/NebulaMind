@@ -1,0 +1,96 @@
+% LANA_REVISION_DRAFT_20260708T140659Z
+% Paper: M1 RP-2 / m1_rp2_environment_quenching
+% This is a lane-local revision draft only. It does not overwrite the current linked manuscript or PDF.
+\documentclass[twocolumn]{aastex631}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp2_environment_quenching/figures/}}
+
+\shorttitle{SDSS Density-Proxy Quenching Pilot}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A Nearest-Neighbour Density Proxy for Environmental Quenching in an SDSS DR17 Emission-Line Pilot Sample}
+
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data only}
+
+\begin{abstract}
+We revise the SDSS DR17 pilot manuscript for the Galaxy Evolution topic ``Separating internal and environmental quenching across stellar mass, halo mass, and redshift.''  The pilot uses the same 60,000-galaxy public SDSS emission-line denominator as the overnight AAS autopilot run and asks a narrow operational question: does an internally computed 10th-nearest-neighbour density ranking add quenched-fraction information beyond stellar mass and redshift?  In the cached analysis summary, the high-density quartile contains 3,456 quenched galaxies out of 15,000 (quenched fraction 0.230), while the low-density quartile contains 2,710 out of 15,000 (0.181).  The high-minus-low quenched-fraction difference is 0.049, with bootstrap 95\% interval [0.041, 0.059].  A linear-probability cross-check adjusted for stellar mass and redshift gives a high-density coefficient of $0.032\pm0.004$ (approximate 95\% interval [0.025, 0.040]).  These results support a reproducible environment-proxy measurement, but they do not by themselves identify halo mass, central/satellite status, morphology, or causal environmental quenching.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: environments --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Purpose and Scope}\label{sec:scope}
+The full research topic asks how internal regulation and environment jointly shape galaxy quenching across stellar mass, halo mass, and redshift.  This revision keeps the pilot narrower: it tests whether a nearest-neighbour density proxy, measured inside one SDSS DR17 emission-line denominator, is associated with a higher quenched fraction after a simple mass--redshift adjustment.
+
+The pilot is therefore a denominator and methods test, not a completed environmental-quenching paper.  It does not use a group catalogue, halo masses, central/satellite labels, morphology, volume completeness corrections, survey-mask corrections, or a multi-redshift selection function.  Those missing ingredients must remain explicit in any integrated manuscript.
+
+\section{Data and Operational Definitions}\label{sec:data}
+The input table is the cached SDSS DR17 emission-line sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z.  The parent selection requires spectroscopic galaxy classification, $0.02<z<0.12$, finite catalog stellar-mass and specific-star-formation-rate estimates, and signal-to-noise ratio at least 3 in H$\alpha$, H$\beta$, [O~III] $\lambda5007$, and [N~II] $\lambda6584$.  BPT classes are recomputed from the measured line ratios using the Kauffmann et al. and Kewley et al. demarcations.
+
+The environmental observable in this draft is a rank statistic: each galaxy is assigned an internally computed 10th-nearest-neighbour density proxy from approximate comoving positions, and galaxies are compared by density quartile.  Because edge effects, angular mask structure, fiber collisions, and a volume-limited parent selection are not modeled here, the proxy should be described as a within-sample local-density ordering rather than a calibrated halo-environment measurement.
+
+The cached analysis flags a galaxy as quenched using the pilot sSFR threshold preserved in the run artifacts.  The manuscript should name that threshold explicitly when the analysis code is merged; this Lana draft does not invent a value absent from the JSON summary.
+
+\section{Statistical Summary}\label{sec:methods}
+The primary contrast is the difference in quenched fraction between the highest and lowest local-density quartiles.  The uncertainty quoted for this contrast is the bootstrap interval preserved in \texttt{analysis\_results.json}.  As a cross-check, the batch run also records a linear probability model with high-density status as the coefficient of interest and stellar mass plus redshift as adjustment variables.
+
+This simple model should be presented as a diagnostic, not as a causal adjustment set.  It does not include morphology, stellar age, halo mass, satellite status, aperture scale, or color-dependent selection effects.
+
+\section{Results}\label{sec:results}
+The high-density quartile has a larger quenched fraction than the low-density quartile in the cached pilot measurement.  Table~\ref{tab:rp2_summary} records the numbers that should replace the current itemized result list in the integrated manuscript.
+
+\begin{deluxetable*}{lccc}
+\tablecaption{Environment-proxy quenching summary for the SDSS DR17 pilot\label{tab:rp2_summary}}
+\tablehead{\colhead{Quantity} & \colhead{Low-density quartile} & \colhead{High-density quartile} & \colhead{Contrast or model term}}
+\startdata
+Galaxies in quartile & 15,000 & 15,000 & --- \\
+Quenched count & 2,710 & 3,456 & --- \\
+Quenched fraction & 0.181 $\pm$ 0.003 & 0.230 $\pm$ 0.003 & $\Delta=0.049$ \\
+Bootstrap interval for $\Delta f_Q$ & --- & --- & [0.041, 0.059] \\
+Mass--redshift adjusted LPM coefficient & --- & --- & $0.032\pm0.004$ \\
+Approximate 95\% interval for LPM coefficient & --- & --- & [0.025, 0.040] \\
+\enddata
+\tablecomments{Fractions and bootstrap intervals are copied from the preserved topic-specific JSON summary.  The linear-probability-model coefficient is useful as a robustness diagnostic but is not a causal environmental-quenching estimate.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m1\_rp2\_environment\_quenching\_figure1.pdf}
+\caption{Preserved topic-specific SDSS DR17 measurement for the nearest-neighbour density proxy.  In the integrated manuscript, this caption should state the plotted density bins and quenched definition explicitly, and it should retain the warning that the figure is a proxy diagnostic rather than a halo-environment measurement.}
+\label{fig:rp2_density}
+\end{figure}
+
+\section{Discussion Outline for Integration}\label{sec:discussion}
+Three discussion points should be emphasized.
+\begin{enumerate}
+\item \textbf{What the result supports.}  The pilot shows that, within this emission-line SDSS denominator, galaxies in the high-density quartile are more often classified as quenched than galaxies in the low-density quartile, even after a simple mass--redshift adjustment.
+\item \textbf{What remains unmeasured.}  The density proxy is not a halo mass, satellite probability, group-centric radius, or cluster membership label.  It also does not separate morphology--density correlations from environmental quenching.
+\item \textbf{Next data needed.}  A publishable environmental-quenching version needs a group catalogue, central/satellite assignments, halo masses, morphology or structural proxies, volume-limit and mask tests, and redshift-stratified selection checks.
+\end{enumerate}
+
+\section{Conclusions}\label{sec:conclusions}
+\begin{enumerate}
+\item The revised pilot question is now narrow and measurable: compare quenched fractions across an internal 10th-neighbour density ranking in the SDSS emission-line denominator.
+\item The high-density quartile has quenched fraction 0.230, compared with 0.181 in the low-density quartile; the bootstrap high-minus-low interval is [0.041, 0.059].
+\item A mass--redshift adjusted linear-probability diagnostic gives a high-density coefficient of $0.032\pm0.004$.
+\item The manuscript must not call this a causal proof of environmental quenching; it is a reproducible proxy baseline for the full multi-survey topic.
+\end{enumerate}
+
+\section*{Reproducibility and Safety Note}
+Source analysis summary: \texttt{m1\_rp2\_environment\_quenching/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  This Lana revision is lane-local and did not overwrite the public-linked manuscript or PDF.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and open-source Python tools.
+
+\begin{thebibliography}{}
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

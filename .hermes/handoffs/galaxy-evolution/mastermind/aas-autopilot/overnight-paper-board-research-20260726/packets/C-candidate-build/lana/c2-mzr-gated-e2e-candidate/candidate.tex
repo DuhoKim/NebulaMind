@@ -1,0 +1,33 @@
+% AI_DRAFT_NOT_HUMAN_GOLD
+% Packet C / C2 — isolated AASTeX candidate. Base = source gated-e2e-demo/draft.tex, with the
+% Introduction citation form replaced by Lana's Hwao-adopted, Goru-verified split (four single-citation
+% sentences; all 5 reference entries retained incl. LaraLopez2013) and three mandatory caveats appended.
+% NOT PUBLISHED. Assembled from existing source artifacts, not a fresh production run.
+\documentclass[twocolumn]{aastex631}
+\begin{document}
+\title{Mass-metallicity relation}
+\author{NebulaMind Lab (autonomous pipeline)}
+\affiliation{NebulaMind Lab, \url{https://lab.nebulamind.net}}
+\begin{abstract}
+Mass-metallicity relation — median relations for TNG100 (23,722 gals), SDSS (120,000 gals). TNG uses SF-weighted gas metallicity  to  O/H (solar-scaled). Generated autonomously from public data (tng, sdss) via the NebulaMind Lab runner: a bounded, reproducible, descriptive study.
+\end{abstract}
+\section{Introduction}
+Recent studies have explored the relationship between galaxy properties such as mass, metallicity, and star formation rates. For instance, [Qi2025] examined star formation rates, metallicities, and stellar masses on kpc-scales in TNG50. [Torrey2019] investigated the evolution of the mass-metallicity relation in IllustrisTNG. Additionally, [Garcia2023] analyzed gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG. [Guo2016] studied the stellar mass-gas-phase metallicity relation at redshifts between 0.5 and 0.7. These works provide valuable context for understanding the complex interplay between galaxy properties.
+\section{Data and method}
+In this research note, we compare the z=0 gas-phase mass-metallicity relation of galaxies using data from IllustrisTNG (specifically TNG100) and the Sloan Digital Sky Survey (SDSS). Our method involves analyzing the mass-metallicity relationship by calculating median relations for both datasets. Notably, TNG uses star formation-weighted gas metallicity to determine oxygen-to-hydrogen ratios (O/H), scaled to solar values.
+\section{Result}
+Our result shows that we have obtained the mass-metallicity relation — median relations for TNG100 (23,722 galaxies) and SDSS (120,000 galaxies). TNG100 utilizes a star formation-weighted gas metallicity approach to derive O/H values on a solar scale. This comparison provides insights into the relationship between galaxy mass and gas-phase metallicity in these two distinct datasets.
+\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{Mass-metallicity relation}\end{figure}
+\section{Caveats}
+It is essential to acknowledge the limitations of our analysis. The automated nature of this measurement may introduce biases, as it relies solely on a single selection criterion without accounting for potential variations in galaxy properties or observational uncertainties. Furthermore, the lack of calibration in our method could lead to discrepancies between the simulated and observed data. Additionally, our study does not account for other factors that might influence the mass-metallicity relation, such as environmental effects or feedback mechanisms. Therefore, while our result offers a preliminary comparison, further investigation and refinement are necessary to provide a more comprehensive understanding of the z=0 gas-phase mass-metallicity relation in galaxies.
+
+\emph{O/H-scale caveat.} A specific limitation applies to the metallicity comparison. The SDSS oxygen-abundance (O/H) calibration and scale are absent from the source artifacts, and no common O/H scale between IllustrisTNG and SDSS is established here. The two O/H scales may differ, and no dex offset is invented or applied to reconcile them. TNG-versus-SDSS metallicity comparability therefore remains unresolved. Any apparent TNG-SDSS difference remains confounded by unresolved scale systematics and cannot be interpreted as physical until a common calibration is established.
+
+\emph{Tension caveat.} The source expected-value assessment for this comparison returns TENSION, and we carry that verdict honestly rather than upgrading it to agreement. The appropriate framing of this z$\sim$0 TNG-versus-SDSS mass-metallicity comparison is a systematics and anchor-reconciliation note, bounded by the unresolved O/H-scale systematic above, not a novel physical claim about the mass-metallicity relation. A z$\sim$0 TNG-versus-SDSS mass-metallicity relation is an anchor relation, not a standalone frontier result.
+
+\emph{Provenance caveat.} This is an AI-assembled candidate (AI\_DRAFT\_NOT\_HUMAN\_GOLD), not a fresh production run. Its lineage is the forced (spec.force=true) end-to-end build ``gated-e2e-demo''; the sibling precursor run d8de519cb9c9 shares the same core analysis, but its independent AASTeX draft was queued and never compiled. The candidate is assembled from existing source artifacts (the gated-e2e-demo draft, gates, and figure), not produced by a new data run, and it is isolated and unpublished.
+\section*{References}
+\footnotesize
+[Qi2025] Qi et al. (2025). Star Formation Rates, Metallicities, and Stellar Masses on Kiloparsec Scales in TNG50. bibcode 2025ApJ...993...32Q \par [Torrey2019] Torrey et al. (2019). The evolution of the mass-metallicity relation and its scatter in IllustrisTNG. bibcode 2019MNRAS.484.5587T \par [Garcia2023] Garcia et al. (2023). Gas-phase metallicity break radii of star-forming galaxies in IllustrisTNG. bibcode 2023MNRAS.519.4716G \par [Guo2016] Guo et al. (2016). Stellar Mass-Gas-phase Metallicity Relation at 0.5 <= z <= 0.7: A Power Law with Increasing Scatter toward the Low-mass Regime. bibcode 2016ApJ...822..103G \par [LaraLopez2013] Lara-Lopez et al. (2013). Galaxy and mass assembly (GAMA): the connection between metals, specific  SFR and hi gas in galaxies: the Z-SSFR relation.. bibcode 2013MNRAS.433L..35L
+
+\end{document}

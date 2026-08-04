@@ -1,0 +1,32 @@
+% --- Paper A: migration-ready error-budget table (from scratch cycles 1,2,4) ---
+% Unlensed direct-Te sample, N=6 (Pollock+2026 x5, z=9.3-9.9; GN-z11, z=10.6).
+% Weighted deficit vs Curti+2020 local MZR = -0.68 +/- 0.03 (stat); no mass/z trend.
+\begin{table}[t]
+\centering
+\caption{Systematic error budget on the population mean metallicity deficit
+(unlensed direct-$T_e$ sample vs the local MZR). The absolute $T_e$ scale dominates.}
+\begin{tabular}{lc}
+\hline
+Term & Contribution (dex) \\
+\hline
+Central deficit (inverse-variance weighted) & $-0.68$ \\
+\hline
+Measurement (on the mean)      & 0.05 \\
+Sample variance (SEM)          & 0.05 \\
+Leave-one-out spread           & 0.08 \\
+Local-anchor choice (Curti+20 vs AM13) & 0.04 \\
+Absolute $T_e$ scale (zero-point) & \textbf{0.15} \\
+\hline
+Statistical (SEM)              & 0.05 \\
+Systematic (anchor $\oplus$ $T_e$) & 0.16 \\
+\textbf{Total}                 & \textbf{0.16} \\
+\hline
+\end{tabular}
+\end{table}
+% Honest-significance sentence:
+% "The deficit is $-0.68\pm0.16$~dex; its sign is secure (bootstrap $P(<0)=100\%$; effective
+%  $\sim$4$\sigma$ once the absolute $T_e$-scale systematic is folded in) while its magnitude
+%  (0.5--0.7~dex) is $T_e$-scale-limited. It is explicitly not a formal statistical detection."
+% Normalization-offset sentence (cycle 4):
+% "Within the sample we detect no significant trend of the offset with stellar mass ($1.1\sigma$)
+%  or redshift ($0.6\sigma$), consistent with a pure normalization deficit at unchanged slope."

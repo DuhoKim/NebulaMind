@@ -1,0 +1,99 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{Environment proxy for optical AGN in massive SDSS hosts}
+\shortauthors{NebulaMind Research Autopilot}
+\begin{document}
+
+\title{Environment proxy for optical AGN in massive SDSS hosts}
+\author{NebulaMind Research Autopilot}
+\affiliation{NebulaMind Astrophysics Collaboration, San Francisco, CA 94107, USA}
+\correspondingauthor{NebulaMind Research Autopilot}
+\email{autopilot@nebulamind.ai}
+
+\begin{abstract}
+We build an optical denominator for radio-jet environment follow-up using a 60,000-galaxy subset of the SDSS DR17 emission-line catalog. In massive hosts, the high-density quartile has optical AGN fraction 0.509 $\pm$ 0.012 and the low-density quartile has 0.367 $\pm$ 0.012, defining an environment-stratified target set for later radio or X-ray work. The result is an optical baseline only; it does not measure jet power or coupling efficiency.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+\software{Astropy, SciPy, NumPy, Matplotlib, pandas}
+
+\section{Introduction}\label{sec:introduction}
+Radio-jet environment studies require radio and X-ray data, but an optical denominator is a useful starting point. Here we present the SDSS DR17 emission-line sample as an environment-stratified baseline for massive hosts and restrict the analysis to directly measured optical quantities. Jet power, coupling efficiency, and hot-gas structure remain future-data requirements.
+
+
+\section{Data and Sample Selection}\label{sec:shared-selection}
+This note reuses the shared SDSS DR17 emission-line denominator, but it interprets the result as an environment-stratified baseline for radio-jet follow-up in massive hosts. The capped subset contains 60,000 galaxies selected from public spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the analyzed subset covers 24.0\% of that parent. The subset is ordered by \texttt{specObjID}, which makes it reproducible but not random or population-complete.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent (fraction)}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N$\geq 3$ & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N$\geq 5$ & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N$\geq 10$ & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq 3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+
+Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+Unless otherwise noted, quoted fraction uncertainties are binomial counting uncertainties from the stated sample sizes, and bracketed intervals are bootstrap confidence intervals.
+
+
+\section{Optical denominator for radio-jet environment follow-up}\label{sec:topic-result}
+We examine whether a local-density proxy modulates the optical AGN fraction in massive SDSS hosts. The result is an environment-stratified optical baseline for future radio and X-ray jet-coupling work.
+
+Among massive hosts, the high-density quartile has optical AGN fraction $0.509 \pm 0.012$, while the low-density quartile has $0.367 \pm 0.012$. The bootstrap high-minus-low interval is $[0.112,0.170]$. This is an optical/environment denominator for radio-jet coupling work and does not measure jet power or coupling efficiency.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+\caption{SDSS DR17 optical denominator/proxy diagnostic for radio-jet environment follow-up. The figure demonstrates the environment-stratified target set, with the optical AGN fraction rising to 0.509 $\pm$ 0.012 in the high-density quartile of massive hosts.}
+\label{fig:topic}
+\end{figure}
+
+\section{Interpretation and missing observables}\label{sec:missing}
+This SDSS-only pilot is intentionally limited to optical quantities. A full proposal requires radio jet morphology/age, cavity or shock energetics, hot-gas density, and calibrated jet-power estimates.
+
+Because the density proxy is projected on the sky, fiber-collision and redshift-space incompleteness can dilute nearest-neighbor estimates; future radio-jet follow-up should correct those effects explicitly.
+
+The radio/X-ray/group literature motivates environment-stratified follow-up, but the present result is only an optical BPT-AGN fraction versus an internal density proxy \citep{best2005,santoro2020,mcnamara2007,eckert2024}.
+
+
+\section{Data Availability}\label{sec:data-avail}
+The SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog quantities used here are publicly available through the SDSS data releases and associated catalog papers cited below. A local subset and manifest are retained in the project repository for reproducibility.
+
+\section{Conclusion}\label{sec:conclusion}
+Among massive hosts, the optical AGN fraction is 0.509 $\pm$ 0.012 in the high-density quartile and 0.367 $\pm$ 0.012 in the low-density quartile, with a bootstrap difference of [0.112, 0.170]. This establishes an environment-stratified optical denominator for radio-jet coupling studies, not a direct coupling measurement.
+
+\acknowledgments
+We thank the SDSS collaboration. This manuscript uses public SDSS DR17 data only.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Eckert et al.(2024)]{eckert2024} Eckert, D., Gastaldello, F., O'Sullivan, E., et al. 2024, Galaxies, 12(3), 24
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Santoro et al.(2020)]{santoro2020} Santoro, F., Tadhunter, C., Baron, D., Morganti, R., \& Holt, J. 2020, A\&A, 644, A54
+\end{thebibliography}
+
+\end{document}

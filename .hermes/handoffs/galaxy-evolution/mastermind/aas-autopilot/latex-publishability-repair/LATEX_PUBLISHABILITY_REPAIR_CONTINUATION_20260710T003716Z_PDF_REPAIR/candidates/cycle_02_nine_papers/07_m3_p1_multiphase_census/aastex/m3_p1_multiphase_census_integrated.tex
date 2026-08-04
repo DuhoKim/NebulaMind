@@ -1,0 +1,99 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{Common-Denominator Optical Tracer Census in SDSS}
+\shortauthors{NebulaMind Research Autopilot}
+\begin{document}
+
+\title{Common-Denominator Optical Tracer Census in SDSS}
+\author{NebulaMind Research Autopilot}
+\affiliation{NebulaMind Astrophysics Collaboration, San Francisco, CA 94107, USA}
+\correspondingauthor{NebulaMind Research Autopilot}
+\email{autopilot@nebulamind.ai}
+
+\begin{abstract}
+We build a common optical denominator for a multiphase outflow census from a 60,000-galaxy subset of the SDSS DR17 emission-line catalog. Simple tracer definitions change the inferred AGN or feedback-candidate prevalence within the same denominator, from 0.136 for BPT AGN to 0.418 for red+emission, so this note focuses on the optical selection baseline needed before adding ionized, neutral, molecular, or X-ray/radio tracers. This is a denominator study, not a multiphase outflow measurement.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+\software{Astropy, SciPy, NumPy, Matplotlib, pandas}
+
+\section{Introduction}\label{sec:introduction}
+Multiphase outflow work requires ionized, neutral, molecular, and X-ray or radio measurements, but a common optical denominator is a practical starting point. Here, the SDSS DR17 emission-line parent sample functions as the shared optical denominator for later multiphase follow-up rather than a direct multiphase measurement. We present the SDSS DR17 emission-line sample as that baseline and restrict the manuscript to directly measured optical quantities. The missing multiphase observables remain future-data requirements.
+
+
+\section{Data and Sample Selection}\label{sec:shared-selection}
+This note reuses the shared SDSS DR17 parent selection, but it interprets the result as a common denominator for a multiphase tracer census. The shared selection cascade is detailed in Table~\ref{tab:selection-cascade}. The capped subset contains 60,000 emission-line galaxies selected from public spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the analyzed subset covers 24.0\% of that parent. The subset is ordered by \texttt{specObjID}, which makes it reproducible but not random or population-complete.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent (fraction)}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N$\geq 3$ & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N$\geq 5$ & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N$\geq 10$ & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq 3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this analysis is conditional on the four-line emission-line selection.
+
+Local subset versus public catalog marginal checks found no redshift, stellar-mass, or sSFR bin with a subset-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+Unless otherwise noted, quoted fraction uncertainties are binomial counting uncertainties from the stated sample sizes, and bracketed intervals are bootstrap confidence intervals.
+
+
+\section{Optical census of multiphase target denominators}\label{sec:topic-result}
+We examine how simple optical tracer definitions change the inferred AGN and feedback-candidate prevalence within one common SDSS denominator. The result is an optical baseline for later multiphase follow-up rather than a direct multiphase measurement.
+
+Within the same 60,000-galaxy denominator, the BPT AGN and red+emission definitions produce prevalence from 0.136 for BPT AGN to 0.418 for red+emission, a factor of 3.1. That spread shows why a common-denominator census is required, while also underscoring that the present SDSS sample cannot measure molecular, neutral, or X-ray/radio outflow phases. Figure~\ref{fig:topic} summarizes the tracer spread.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+\caption{SDSS DR17 optical denominator/proxy diagnostic for the common-denominator multiphase census. The figure shows how the BPT AGN, high-[N II]/H$\alpha$, high-[O III]/H$\beta$, low-sSFR+emission, and red+emission definitions span the same 60,000-galaxy denominator, with prevalence ranging from 0.136 to 0.418.}
+\label{fig:topic}
+\end{figure}
+
+\section{Interpretation and missing observables}\label{sec:missing}
+This SDSS-only pilot is intentionally limited to optical quantities. A full proposal requires ionized, molecular, neutral, and X-ray/radio tracers measured over the same parent denominator and aperture model.
+
+A real multiphase census needs independent ionized, neutral, molecular, and energetic outflow observables; the present SDSS thresholds are an optical denominator only \citep{veilleux2005, rupke2018, cicone2014, fiore2017, feruglio2015, woo2016, bae2018}.
+
+
+\section{Data Availability}\label{sec:data-avail}
+The SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog quantities used here are publicly available through the SDSS data releases and associated catalog papers cited below. A local subset and manifest are retained in the project repository for reproducibility and are available from the corresponding author upon reasonable request.
+
+\section{Conclusion}\label{sec:conclusion}
+Within the 60,000-galaxy denominator, the BPT AGN and red+emission definitions change prevalence from 0.136 for BPT AGN to 0.418 for red+emission, a factor of 3.1. That spread shows why a common-denominator census is required, while also underscoring that the present SDSS sample cannot measure molecular, neutral, or X-ray/radio outflow phases.
+
+\begin{acknowledgments}
+We thank the SDSS collaboration. This manuscript uses public SDSS DR17 data only.
+\end{acknowledgments}
+\begin{thebibliography}{99}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\bibitem[Bae \& Woo(2018)]{bae2018} Bae, H.-J., \& Woo, J.-H. 2018, ApJ, 853, 185
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Feruglio et al.(2015)]{feruglio2015} Feruglio, C., Fiore, F., Carniani, S., et al. 2015, A\&A, 583, A99
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Rupke(2018)]{rupke2018} Rupke, D.~S.~N. 2018, Galaxies, 6, 138
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[Woo et al.(2016)]{woo2016} Woo, J.-H., Bae, H.-J., Son, D., \& Karouzos, M. 2016, ApJ, 817, 108
+\end{thebibliography}
+
+\end{document}

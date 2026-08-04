@@ -1,0 +1,89 @@
+% LANA_MANUSCRIPT_TICK_20260708T161724Z
+% Paper: m3_p2_gas_depletion_efficiency
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/figures/}}
+\shorttitle{Selection-disclosed gas-follow-up denominators}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{Selection-disclosed emission-line denominators for molecular-gas depletion versus efficiency follow-up in SDSS DR17}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+We revise the SDSS-only pilot for the active topic ``Distinguishing molecular-gas depletion from suppressed star-formation efficiency in quenched galaxies.''  The revised manuscript deliberately renames the sample as an emission-line-detected optical follow-up denominator: SDSS DR17 optical spectra do not measure CO or dust gas mass, molecular gas fraction, depletion time, or star-formation efficiency.  The selection-function packet shows strong denominator attrition for massive low-sSFR systems.  For the default threshold pair, $\log M_\star\geq10.6$ and $\log {\rm sSFR}<-10.7$, public SDSS has 121,533 parent rows, 40,797 four-line S/N$\geq3$ rows, and 10,270 cached rows.  For the strict pair, $\log M_\star\geq11.0$ and $\log {\rm sSFR}<-11.0$, the corresponding counts are 33,125, 11,288, and 2,941.  The cached denominators therefore identify CO/dust follow-up targets, but they cannot distinguish depletion from efficiency suppression.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: star formation --- galaxies: active --- surveys --- methods: data analysis}
+
+\section{Scope and required wording change}\label{sec:scope}
+This Lana revision targets the highest-risk wording in the gas-depletion/SFE pilot.  The batch manuscript called the sample a gas-fraction versus efficiency denominator, but the actual measured quantity is narrower: massive low-sSFR galaxies with the four optical emission lines needed for BPT classification.  That restriction is valuable for target selection, but it is biased against weak-line quiescent systems and must not be described as a complete quenched-galaxy gas parent.
+
+The full proposal requires CO or dust-based molecular gas masses, aperture-matched SFRs, morphology, and environment labels.  None of those are present in this SDSS-only pilot.  The safe title-level claim is therefore an ``emission-line denominator for molecular-gas follow-up,'' not a depletion-time result.
+
+\section{Data and selection function}\label{sec:data}
+The cached analysis sample contains 60,000 public SDSS DR17 galaxies at $0.02<z<0.12$ with finite stellar mass, finite catalog specific SFR, and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$.  The broader public SDSS count for the same four-line S/N$\geq3$ redshift, mass, and sSFR window is 249,917 rows; the cache covers 24.0\% of that strict eligible set and was capped by SpecObjID order.
+
+The attrition is especially important here because line selection depends on sSFR.  The selection packet finds that S/N$\geq3$ keeps 33.56\% of the public $-12<\log {\rm sSFR}<-11$ bin but 94.85\% of the $-10<\log {\rm sSFR}<-9.5$ bin.  This is why the manuscript must call the result an emission-line detected massive low-sSFR denominator.
+
+\section{Measurement definitions}\label{sec:methods}
+The threshold grid in Table~\ref{tab:m3p2-grid} varies stellar mass cuts ($\log M_\star\geq10.6, 10.8, 11.0$) and low-sSFR cuts ($\log {\rm sSFR}<-10.7$ and $<-11.0$).  For each threshold pair, we report:
+\begin{enumerate}
+\item the public SDSS parent count before requiring the four strong BPT lines;
+\item the public four-line S/N$\geq3$ count;
+\item the cached four-line count used by the current pilot;
+\item the BPT optical AGN fraction in the cached denominator; and
+\item the median SDSS-derived H$\alpha$ luminosity proxy from the batch analysis.
+\end{enumerate}
+The H$\alpha$ quantity is an optical emission proxy only.  It is not a molecular gas mass, gas fraction, depletion time, or SFE estimator.
+
+\section{Results}\label{sec:results}
+Across the threshold grid, the cached follow-up denominator ranges from 2,941 to 10,270 galaxies.  The public parent-to-S/N$\geq3$ retention remains only about 30--36\% for these massive low-sSFR selections, and the cached rows cover about one quarter of the public S/N-eligible rows.
+
+\begin{deluxetable*}{lrrrrcc}
+\tabletypesize{\scriptsize}
+\tablecaption{Massive low-sSFR emission-line denominators and optical proxy quantities\label{tab:m3p2-grid}}
+\tablehead{\colhead{$\log M_\star$ cut} & \colhead{$\log {\rm sSFR}$ cut} & \colhead{Public parent $N$} & \colhead{Public S/N$\geq3$ $N$} & \colhead{Cached $N$} & \colhead{Cached/S/N} & \colhead{$f_{\rm BPT\,AGN}$; median $\log L_{\rm H\alpha}$}}
+\startdata
+$\geq10.6$ & $<-10.7$ & 121,533 & 40,797 & 10,270 & 25.2\% & 0.509$\pm$0.005; 40.03 \\
+$\geq10.6$ & $<-11.0$ & 111,172 & 33,564 & 8,400 & 25.0\% & 0.574$\pm$0.005; 39.97 \\
+$\geq10.8$ & $<-10.7$ & 74,070 & 26,170 & 6,729 & 25.7\% & 0.549$\pm$0.006; 40.06 \\
+$\geq10.8$ & $<-11.0$ & 68,649 & 22,324 & 5,695 & 25.5\% & 0.607$\pm$0.006; 40.01 \\
+$\geq11.0$ & $<-10.7$ & 35,092 & 12,692 & 3,334 & 26.3\% & 0.600$\pm$0.008; 40.09 \\
+$\geq11.0$ & $<-11.0$ & 33,125 & 11,288 & 2,941 & 26.1\% & 0.649$\pm$0.009; 40.05 \\
+\enddata
+\tablecomments{Public counts come from read-only SDSS DR17 count queries.  Cached counts and optical AGN fractions come from the preserved 60,000-row sample and Goru robustness table.  The final column combines a binomial uncertainty on the cached BPT optical AGN fraction with the median H$\alpha$ luminosity proxy; neither quantity measures molecular gas or SFE.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m3\_p2\_gas\_depletion\_efficiency\_figure1.pdf}
+\caption{Preserved batch-run diagnostic for the M3 P2 pilot.  In this revised draft the figure is interpreted only as an optical baseline for follow-up target selection; it is not a gas-fraction, depletion-time, or star-formation-efficiency measurement.}
+\label{fig:m3p2-original}
+\end{figure}
+
+\section{Discussion outline and scope guards}\label{sec:discussion}
+The table is useful because it gives observers a bounded target-list scale for CO or dust follow-up under several mass and sSFR choices.  It also warns that an optical four-line denominator is not the same as a complete quenched-galaxy denominator.  A later science paper should add molecular gas data and then explicitly compare gas fraction, depletion time, and aperture-matched SFR at fixed mass, morphology, and environment.
+
+Safe wording for integration: ``The SDSS pilot identifies 2,941--10,270 massive low-sSFR galaxies with four strong optical lines, depending on thresholds, that can seed CO/dust follow-up.''  Unsafe wording to avoid: ``SDSS distinguishes molecular-gas depletion from SFE suppression,'' or ``the optical H$\alpha$ proxy demonstrates depletion.''
+
+Topic-specific bibliography remains a gap.  It should be filled only after the Literature Wave-2 packet verifies and classifies CO/dust gas-fraction and depletion-time sources; this revision does not invent citation support.
+
+\section*{Reproducibility and safety note}
+Draft marker: LANA\_MANUSCRIPT\_TICK\_20260708T161724Z.  Inputs used for this revision were the current source manuscript, \texttt{analysis\_results.json}, Tori Wave-2 table draft, Goru topic-metric CSV, and Tori selection-function attrition tables.  This draft writes lane-local artifacts only and does not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

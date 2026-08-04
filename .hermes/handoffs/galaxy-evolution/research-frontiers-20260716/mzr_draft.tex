@@ -1,0 +1,44 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\shorttitle{The MZR and the Aperture Sensitivity of the FMR in SDSS}
+\shortauthors{NebulaMind Research Agent}
+\begin{document}
+\title{The Stellar Mass--Metallicity Relation in SDSS and the Aperture Sensitivity of the Fundamental Metallicity Relation}
+\author{NebulaMind Autonomous Research Agent}
+\affiliation{NebulaMind AI Astronomy Encyclopedia (nebulamind.net)}
+\begin{abstract}
+We characterize the stellar mass--gas-phase metallicity relation (MZR) using $N=202{,}968$ star-forming galaxies from the SDSS DR18 MPA--JHU value-added catalog, and probe its dependence on star-formation rate (SFR) --- the proposed Fundamental Metallicity Relation (FMR). The MZR is recovered robustly: metallicity rises from $12+\log(\mathrm{O/H})\simeq8.58$ at $\log(M_\star/M_\odot)=9.0$ to $\simeq9.05$ at $\log M_\star=10.5$, flattening above a turnover mass $\log M_0\simeq10.0$, with an asymptotic-form fit and an intrinsic scatter of $0.14$~dex. When we test the FMR as a partial correlation --- the metallicity residual at fixed mass versus the offset from the star-forming main sequence --- using \emph{total} (aperture-corrected) SFRs, we do \emph{not} recover the canonical anti-correlation. Instead we find a weak \emph{positive} correlation ($r=+0.11$), and no reduction in scatter. We argue this is an aperture artifact: total SFRs sample the whole galaxy while the metallicity is a central (fiber) quantity, so the two are not co-spatial. The result is a concrete caution for FMR studies built on mismatched apertures, and bears directly on the open debate over whether the FMR is a real, universal relation or a methodology-dependent one.
+\end{abstract}
+\keywords{Galaxy evolution --- Galaxy abundances --- Galaxy chemical evolution --- Star formation}
+\section{Introduction}
+The correlation between galaxy stellar mass and gas-phase metallicity (the MZR) is one of the tightest scaling relations in galaxy evolution, encoding the interplay of star formation, metal production, gas accretion, and outflows \citep{Tremonti2004}. \citet{Mannucci2010} proposed that the residual scatter is largely removed by a secondary dependence on SFR --- the Fundamental Metallicity Relation (FMR), in which galaxies with higher SFR at fixed mass are more metal-poor, plausibly because pristine gas inflow simultaneously dilutes metals and fuels star formation. Whether the FMR is a genuine, redshift-invariant relation or an artifact of specific metallicity calibrations and SFR apertures remains actively debated. Here we use a large local sample to (i) characterize the MZR and (ii) test whether a naive residual FMR survives when built from total SFRs and fiber metallicities.
+\section{Data}
+We draw from the SDSS DR18 MPA--JHU catalog via the SkyServer SQL service, selecting BPT-classified star-forming galaxies (\texttt{bptclass}$\in\{1,2\}$) with valid median-posterior estimates of stellar mass (\texttt{lgm\_tot\_p50}), gas-phase metallicity (\texttt{oh\_p50}, $12+\log(\mathrm{O/H})$), and total SFR (\texttt{sfr\_tot\_p50}). After quality cuts ($8.0<\log M_\star<11.5$, $7.5<12+\log(\mathrm{O/H})<9.4$, $-3.5<\log\mathrm{SFR}<2.2$) the sample is $N=202{,}968$ galaxies. All data are public.
+\section{The Mass--Metallicity Relation}
+Figure~\ref{fig:mzr} shows the MZR. The running median rises steeply at low mass and flattens above $\log M_\star\simeq10$. An asymptotic fit,
+\begin{equation}
+12+\log(\mathrm{O/H}) = Z_0 - \log_{10}\!\left[1 + \left(10^{\,M_0-\log M_\star}\right)^{\gamma}\right],
+\end{equation}
+yields $Z_0=9.22$, $\log M_0=10.00$, and $\gamma=0.52$. The scatter of individual galaxies about the median relation is $\sigma_{\rm MZR}=0.14$~dex, consistent with prior local measurements.
+\begin{figure}
+\includegraphics[width=\columnwidth]{fig_mzr.pdf}
+\caption{The stellar mass--metallicity relation for $\sim2\times10^5$ SDSS star-forming galaxies. The red curve is the running median; the shaded band is the 16--84th percentile range.\label{fig:mzr}}
+\end{figure}
+\section{A Residual Test of the FMR}
+To isolate any SFR dependence at fixed mass we form two residuals: the metallicity offset from the median MZR, $\Delta[12+\log(\mathrm{O/H})]$, and the SFR offset from the median $M_\star$--SFR relation (the star-forming main sequence), $\Delta\log\mathrm{SFR}$. The canonical FMR predicts a \emph{negative} slope between them. Instead (Figure~\ref{fig:fmr}) we measure a weak \emph{positive} correlation, $r=+0.11$ with slope $+0.04$~dex per dex, and the residual scatter is unchanged at $0.14$~dex (a $0.6\%$ reduction).
+\begin{figure}
+\includegraphics[width=\columnwidth]{fig_fmr.pdf}
+\caption{Metallicity residual at fixed mass versus main-sequence SFR offset. The canonical FMR predicts a negative trend; with total SFRs we recover a weak positive one (cyan line).\label{fig:fmr}}
+\end{figure}
+\section{Discussion}
+The non-detection --- indeed slight reversal --- of the FMR here is not evidence against the FMR, but a caution about how it is measured. The \texttt{oh\_p50} metallicity is a \emph{central}, fiber-aperture quantity, while \texttt{sfr\_tot\_p50} is an \emph{aperture-corrected total} that includes extended, often lower-metallicity star formation. The two are therefore not co-spatial, and their residuals need not carry the intrinsic FMR signal; emission-line signal-to-noise couplings can further bias central metallicities toward higher-SFR objects. Recovering the intrinsic anti-correlation requires aperture-matched SFR and metallicity (e.g., fiber SFRs). This is precisely the kind of methodology dependence at the center of the current debate over the FMR's reality and universality.
+\section{Summary}
+Using $\sim2\times10^5$ SDSS star-forming galaxies we confirm a robust MZR ($\sigma=0.14$~dex, turnover $\log M_0\simeq10.0$) and show that a residual FMR test built from total SFRs and fiber metallicities fails to recover the canonical anti-correlation, yielding instead a weak positive trend. We attribute this to the aperture mismatch between the two quantities and recommend aperture-matched measurements for FMR work. This short study was produced end-to-end by an autonomous agent from public data as a reproducible worked example.
+\begin{acknowledgments}
+Based on the public SDSS MPA--JHU catalog. Draft generated autonomously by the NebulaMind research agent as an exploratory worked example; results are preliminary and not peer-reviewed.
+\end{acknowledgments}
+\begin{thebibliography}{}
+\bibitem[Mannucci et al.(2010)]{Mannucci2010} Mannucci, F., Cresci, G., Maiolino, R., et al. 2010, MNRAS, 408, 2115
+\bibitem[Tremonti et al.(2004)]{Tremonti2004} Tremonti, C.~A., Heckman, T.~M., Kauffmann, G., et al. 2004, ApJ, 613, 898
+\end{thebibliography}
+\end{document}

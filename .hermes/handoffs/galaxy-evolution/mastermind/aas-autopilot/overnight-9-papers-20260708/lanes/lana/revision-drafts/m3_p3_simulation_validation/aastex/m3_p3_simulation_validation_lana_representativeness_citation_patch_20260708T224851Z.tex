@@ -1,0 +1,117 @@
+% LANA_WAVE2_REPRESENTATIVENESS_CITATION_PATCH_20260708T224851Z
+% Paper: m3_p3_simulation_validation
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/figures/}}
+\shorttitle{Representativeness-flagged SDSS target vector}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A Representativeness-Flagged Observed SDSS Target Vector for Future Feedback-Model Forward Modelling}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+This Lana revision patches the M3 P3 target-vector draft after external review.  The artifact is an observed SDSS vector, not a validation of any cosmological feedback model.  The vector is measured in a four-line S/N$\geq3$ optical-emission sample: public SDSS contains 249,917 strict eligible rows, and the cached SpecObjID-ordered pilot uses 60,000 rows (24.0\%).  Cached-versus-public z/mass/sSFR marginals show no bin above a 5 percentage-point deviation, but all fractions remain conditional on emission-line detection and the row cap.  The 15 mass--redshift cells span $f_Q\simeq0.001$--0.856 and $f_{\rm BPT\,AGN}\simeq0.001$--0.610 in the cached table.  Two cells have cached $N<500$; this draft now prints Wilson intervals for their quenched, BPT-AGN, and high-excitation fractions.  A future model paper must forward-model the SDSS selection, aperture, and noise before accepting, rejecting, or ranking simulations.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- surveys --- methods: data analysis --- methods: statistical}
+
+\section{Scope and citation boundary}\label{sec:m3p3-scope}
+DR17 anchors the observed SDSS target vector \citep{abdurrouf2022,york2000}, while simulation-suite papers only motivate future mock construction and comparison \citep{nelson2018,schaye2014,dave2019,nanni2022,donnari2020,dubois2016}.  No EAGLE, IllustrisTNG, SIMBA, Horizon-AGN, or iMaNGA mock catalogue was generated in this pilot.  Therefore no model is validated, falsified, ranked, or tuned here.
+
+The allowed headline is: the pilot writes a reproducible 15-cell observed SDSS vector that future mocks must reproduce under the same selection.  Forbidden headlines include direct simulation validation, model rejection, or proof of AGN feedback from high-mass cells.
+
+\section{Selection function and representativeness}\label{sec:m3p3-selection}
+The vector is built from the same 60,000-row cached SDSS emission-line table used by the other overnight pilots.  The required four-line S/N$\geq3$ cut means that $f_Q$ is a quenched fraction among emission-line-detected galaxies, not a native all-galaxy simulation quenched fraction.  This distinction must travel with any future mock-comparison request: a simulation should be observed through a comparable line-detection, aperture, redshift, mass, and noise model before Table~\ref{tab:m3p3-vector} is used.
+
+
+\begin{deluxetable*}{llrrrrr}
+\tablecaption{Cached sample versus public SDSS four-line parent: largest marginal deviations for m3p3\label{tab:m3p3-cached-public}}
+\tablehead{\colhead{Dimension} & \colhead{Bin} & \colhead{Public $N$} & \colhead{Cached $N$} & \colhead{Public frac.} & \colhead{Cached frac.} & \colhead{$\Delta$ pp}}
+\startdata
+redshift & 0.080--0.120 & 92,343 & 23,385 & 36.9\% & 39.0\% & +2.0 \\
+stellar mass & 8.0--9.5 & 37,970 & 8,139 & 15.2\% & 13.6\% & -1.6 \\
+sSFR & $-10.0$--$-9.5$ & 84,488 & 19,934 & 33.8\% & 33.2\% & -0.6 \\
+\enddata
+\tablecomments{Public counts are read-only SDSS DR17 SkyServer counts for the same redshift, mass, sSFR, and four-line S/N$\geq3$ constraints.  The full public four-line parent has 249,917 rows; the cached SpecObjID-ordered pilot subset has 60,000 rows, or 24.0\% coverage.  No checked marginal bin exceeds a 5 percentage-point deviation, but the subset is still row-capped and non-random.}
+\end{deluxetable*}
+
+
+\section{Small-cell uncertainty check}\label{sec:m3p3-small}
+External review flagged small cells because extrema such as $f_Q=0.856$ and $f_{\rm BPT\,AGN}=0.610$ could otherwise look overprecise.  Table~\ref{tab:m3p3-smallcells} reports Wilson 95\% intervals for the two cached cells with $N<500$.  The intervals are still conditional-binomial intervals; they do not include selection-function uncertainty, catalog-systematic uncertainty, or simulation-forward-modelling error.
+
+\begin{deluxetable*}{llrccc}
+\tablecaption{Small cached cells requiring visible interval and minimum-N caution\label{tab:m3p3-smallcells}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$z$ bin} & \colhead{Cached $N$} & \colhead{$f_Q$ Wilson interval} & \colhead{$f_{\rm BPT\,AGN}$ Wilson interval} & \colhead{$f_{\rm high\,exc.}$ Wilson interval}}
+\startdata
+8.0--9.5 & 0.08--0.12 & 300 & 2/300 (0.007; [0.002, 0.024]) & 3/300 (0.010; [0.003, 0.029]) & 0/300 (0.000; [0.000, 0.013]) \\
+11.0--12.5 & 0.02--0.05 & 390 & 334/390 (0.856; [0.818, 0.888]) & 238/390 (0.610; [0.561, 0.657]) & 85/390 (0.218; [0.180, 0.262]) \\
+\enddata
+\tablecomments{Intervals are Wilson 95\% binomial intervals computed from the cached cell counts.  The first row corresponds to 300 cached of 1,252 public S/N$\geq3$ eligible rows; the second to 390 cached of 1,553 public S/N$\geq3$ eligible rows.}
+\end{deluxetable*}
+
+\section{Observed target vector}\label{sec:m3p3-results}
+\begin{deluxetable*}{llccccc}
+\tabletypesize{\scriptsize}
+\tablecaption{Observed SDSS mass--redshift target vector with minimum-N flags\label{tab:m3p3-vector}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$z$ bin} & \colhead{$N$} & \colhead{$f_Q$} & \colhead{$f_{\rm BPT\,AGN}$} & \colhead{$f_{\rm high\,exc.}$} & \colhead{Flag}}
+\startdata
+8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 0.002 & \nodata \\
+8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 0.001 & \nodata \\
+8.0--9.5 & 0.08--0.12 & 300 & 0.007 & 0.010 & 0.000 & $N<500$ \\
+9.5--10.0 & 0.02--0.05 & 3,607 & 0.061 & 0.030 & 0.027 & \nodata \\
+9.5--10.0 & 0.05--0.08 & 6,059 & 0.013 & 0.008 & 0.007 & \nodata \\
+9.5--10.0 & 0.08--0.12 & 2,187 & 0.003 & 0.001 & 0.001 & \nodata \\
+10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 0.104 & \nodata \\
+10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 0.064 & \nodata \\
+10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 0.029 & \nodata \\
+10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 0.215 & \nodata \\
+10.5--11.0 & 0.05--0.08 & 5,083 & 0.451 & 0.297 & 0.160 & \nodata \\
+10.5--11.0 & 0.08--0.12 & 9,861 & 0.326 & 0.209 & 0.119 & \nodata \\
+11.0--12.5 & 0.02--0.05 & 390 & 0.856 & 0.610 & 0.218 & $N<500$ \\
+11.0--12.5 & 0.05--0.08 & 1,199 & 0.805 & 0.563 & 0.228 & \nodata \\
+11.0--12.5 & 0.08--0.12 & 2,444 & 0.672 & 0.485 & 0.198 & \nodata \\
+\enddata
+\tablecomments{Observed SDSS quantities only.  The fractions are conditional on four-line emission detection and the cached row cap.  A future validation paper must compare simulations to this vector only after constructing mocks with matching selection, aperture, and noise models.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m3\_p3\_simulation\_validation\_figure1.pdf}
+\caption{Preserved batch-run diagnostic for the M3 P3 pilot.  It should be read as a visualization of the observed SDSS target vector, not as a test passed or failed by any simulation.}
+\label{fig:m3p3-original}
+\end{figure}
+
+\section{Discussion outline}\label{sec:m3p3-discussion}
+The table is useful as an observation target for forward modelling because it is compact and reproducible.  Its physical interpretation is deliberately deferred.  High-mass cells have large low-sSFR and BPT-AGN fractions in this emission-line sample, but those numbers convolve galaxy physics, optical-line detectability, aperture effects, stellar-mass distribution, redshift distribution, and the SpecObjID cap.  A model-comparison manuscript should generate synthetic observations from public simulation suites \citep{nelson2018,schaye2014,dave2019} and then apply SDSS-like emission-line cuts, aperture/noise models, and, where relevant, MaNGA/ALMA/X-ray/radio mock selections \citep{nanni2022,donnari2020}.
+
+\section{Conclusions}\label{sec:m3p3-conclusions}
+\begin{enumerate}
+\item The draft now states that $f_Q$ is an emission-line-detected quenched fraction, not an all-galaxy simulation quenched fraction.
+\item The cached-versus-public marginal check is visible before the target vector and shows no z/mass/sSFR bin above a 5 pp discrepancy, while preserving the non-random cap caveat.
+\item The two cached cells with $N<500$ now show Wilson intervals in the manuscript table.
+\item Simulation citations are placed only in the future-forward-modelling paragraph; no model is validated or rejected here.
+\end{enumerate}
+
+\section*{Reproducibility and safety note}
+Source analysis summary: \texttt{m3\_p3\_simulation\_validation/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  Draft marker: LANA\_WAVE2\_REPRESENTATIVENESS\_CITATION\_PATCH\_20260708T224851Z.  This file is lane-local and did not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, A., et al. 2022, ApJS, 259, 35
+\bibitem[Dave et al.(2019)]{dave2019} Dave, R., Angles-Alcazar, D., Narayanan, D., et al. 2019, arXiv:1901.10203
+\bibitem[Donnari et al.(2020)]{donnari2020} Donnari, M., Pillepich, A., Nelson, D., et al. 2020, arXiv:2008.00004
+\bibitem[Dubois et al.(2016)]{dubois2016} Dubois, Y., Peirani, S., Pichon, C., et al. 2016, arXiv:1606.03086
+\bibitem[Nanni et al.(2022)]{nanni2022} Nanni, L., Thomas, D., Trayford, J., et al. 2022, arXiv:2203.11575
+\bibitem[Nelson et al.(2018)]{nelson2018} Nelson, D., Springel, V., Pillepich, A., et al. 2018, arXiv:1812.05609
+\bibitem[Schaye et al.(2014)]{schaye2014} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2014, arXiv:1407.7040
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

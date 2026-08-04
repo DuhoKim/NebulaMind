@@ -1,0 +1,26 @@
+\documentclass[twocolumn]{aastex631}
+\begin{document}
+\title{The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z\~{}9 (optimistic systematic corner)}
+\author{NebulaMind Lab (autonomous pipeline)}
+\affiliation{NebulaMind Lab, \url{https://lab.nebulamind.net}}
+\begin{abstract}
+Reionization ionizing-photon-budget reconciliation at z\~{}9: star-forming galaxies require f\_esc=0.083 (+0.072/-0.038) to close the budget (Madau-Dickinson SFRD, log xi\_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f\_esc=0.080 (+0.147/-0.051) from LzLCS O32/beta calibrations. Median delta(required-inferred)=+0.003 dex-frac (16-84\%: -0.139 to +0.085); 51\% of the systematic MC shows a shortfall. Conclusion: the budget CLOSES within the systematic, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi\_ion x clumping x proxy-calibration systematic, not by statistics. Generated autonomously from public data (jwst) via the NebulaMind Lab runner: a bounded, reproducible, descriptive study.
+\end{abstract}
+\section{Introduction}
+Introduction:
+Recent studies have highlighted a potential crisis in the photon budget required for reionization, particularly with the advent of new observations from JWST [Muñoz2024]. The question remains whether star-forming galaxies can provide sufficient ionizing photons to drive reionization. Previous works have explored various aspects of this problem, including excursion set models [Park2022], galaxy ionizing photon budgets at lower redshifts [Duncan2015], and the challenges posed by absorption-dominated reionization [Davies2021]. Building on these efforts, our analysis aims to reconcile the reionization ionizing-photon-budget using a literature-anchored approach.
+\section{Data and method}
+Data and method:
+To address this issue, we employ a systematic reconciliation of published literature values. Specifically, we utilize the cosmic star formation rate density (SFRD) from Madau \& Dickinson (2014), which provides an analytic fitting function for the SFRD at various redshifts. We also adopt established calibrations for xi\_ion and the O32/beta f\_esc proxy from LzLCS [Chisholm+22, Flury+22; Simmonds+24]. Our method focuses on calculating the ionizing-photon-budget using these inputs to determine if star-forming galaxies can close the budget at z\~{}9.
+\section{Result}
+Result:
+Our analysis reveals that star-forming galaxies require a escape fraction of f\_esc=0.083 (+0.072/-0.038) to reconcile the reionization ionizing-photon-budget at z\~{}9, assuming the Madau-Dickinson SFRD, log xi\_ion=25.5±0.15, clumping C=2-5, and JWST-SFRD tail. This result is compared to the indirect-proxy-inferred f\_esc=0.080 (+0.147/-0.051) from LzLCS O32/beta calibrations. The median delta between required and inferred values is +0.003 dex-frac (16-84\%: -0.139 to +0.085), with 51\% of the systematic Monte Carlo simulations showing a shortfall. Despite these uncertainties, our findings indicate that the budget closes within the systematic errors, and the sign remains consistent under both O32 and beta calibrations.
+\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{The reionization ionizing-photon-budget shortfall for star-forming galaxies is not robust to systematics at z\~{}9 (optimistic systematic corner)}\end{figure}
+\section{Caveats}
+Caveats:
+It is essential to acknowledge the limitations of this study. Our approach relies on an automated, single-selection, uncalibrated measurement, which may introduce biases and uncertainties. The accuracy of our results depends heavily on the adopted literature values for SFRD, xi\_ion, and f\_esc proxy calibrations. Additionally, our analysis does not account for potential variations in these parameters across different galaxy populations or redshifts. Furthermore, the clumping factor C and its impact on recombination rates introduce an extra layer of uncertainty. These limitations highlight the need for further research and more precise measurements to refine our understanding of the reionization photon budget.
+\section*{References}
+\footnotesize
+[Muoz2024] Muñoz et al. (2024). Reionization after JWST: a photon budget crisis?. bibcode 2024MNRAS.535L..37M \par [Park2022] Park et al. (2022). Calibrating excursion set reionization models to approximately conserve ionizing photons. bibcode 2022MNRAS.517..192P \par [Duncan2015] Duncan et al. (2015). Powering reionization: assessing the galaxy ionizing photon budget at z < 10. bibcode 2015MNRAS.451.2030D \par [Davies2021] Davies et al. (2021). The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources. bibcode 2021ApJ...918L..35D \par [Madau2017] Madau (2017). Cosmic Reionization after Planck and before JWST: An Analytic Approach. bibcode 2017ApJ...851...50M
+
+\end{document}

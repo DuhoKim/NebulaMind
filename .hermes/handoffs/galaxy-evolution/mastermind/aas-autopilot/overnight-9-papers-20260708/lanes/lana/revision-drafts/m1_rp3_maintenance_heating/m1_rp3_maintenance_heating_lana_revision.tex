@@ -1,0 +1,89 @@
+% LANA_REVISION_DRAFT_20260708T140659Z
+% Paper: M1 RP-3 / m1_rp3_maintenance_heating
+% This is a lane-local revision draft only. It does not overwrite the current linked manuscript or PDF.
+\documentclass[twocolumn]{aastex631}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m1_rp3_maintenance_heating/figures/}}
+
+\shorttitle{Optical AGN Denominators for Maintenance Follow-up}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{Optical-AGN Fractions in Massive Low-sSFR SDSS Hosts as a Denominator for Maintenance-Heating Follow-up}
+
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data only}
+
+\begin{abstract}
+This revision reframes the ``maintenance-heating'' pilot as a denominator paper rather than a heating measurement.  Using the cached 60,000-galaxy SDSS DR17 emission-line sample, the analysis counts optical BPT AGN among massive hosts and among massive low-sSFR hosts.  The massive subset, defined in the run summary as $\log(M_\star/M_\odot)\geq10.8$, contains 9,298 galaxies, of which 3,997 are optical AGN; the corresponding fraction is 0.430 with approximate binomial 95\% interval [0.420, 0.440].  The massive low-sSFR subset contains 5,695 galaxies, of which 3,459 are optical AGN; the corresponding fraction is 0.607 with approximate interval [0.595, 0.620].  These counts are useful for planning X-ray/radio maintenance-heating follow-up, but they do not measure jet power, cavity enthalpy, cooling luminosity, halo gas thermodynamics, or AGN duty-cycle time averaging.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: evolution --- galaxies: halos --- surveys --- methods: data analysis}
+
+\section{Purpose and Scope}\label{sec:scope}
+The parent research topic asks whether AGN maintenance heating can balance cooling in massive halos.  The SDSS-only pilot cannot answer that question directly because it contains optical spectra and catalog stellar properties but not X-ray cooling luminosities, cavity powers, calibrated radio jet powers, or halo-selected nondetection modeling.
+
+The scientifically defensible pilot product is therefore an optical denominator: in a reproducible public SDSS sample, how common are BPT-selected optical AGN among massive emission-line galaxies, especially among massive galaxies already selected to have low sSFR?  This framing should replace any wording that implies a heating-to-cooling balance has been tested.
+
+\section{Data and Selection}\label{sec:data}
+The input table is the SDSS DR17 emission-line sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z.  The parent selection requires spectroscopic galaxy classification, $0.02<z<0.12$, finite stellar-mass and sSFR estimates, and signal-to-noise ratio at least 3 in H$\alpha$, H$\beta$, [O~III] $\lambda5007$, and [N~II] $\lambda6584$.
+
+Optical AGN are identified with the BPT classification already used across the overnight pilot set.  The massive subset is the one recorded in \texttt{analysis\_results.json}: $\log(M_\star/M_\odot)\geq10.8$, yielding 9,298 emission-line galaxies.  The massive low-sSFR subset is also inherited from the cached pilot threshold and contains 5,695 galaxies.  The exact sSFR threshold should be inserted from the analysis code during integration; this draft keeps the threshold unnamed rather than inventing one from memory.
+
+\section{Results}\label{sec:results}
+Table~\ref{tab:rp3_fractions} gives the primary result in a manuscript-ready form.  The key point is not that maintenance heating has been detected, but that an optical AGN denominator exists for selecting follow-up targets and for estimating how severe nondetection modeling will be in X-ray/radio samples.
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Optical-AGN fractions for maintenance-heating follow-up denominators\label{tab:rp3_fractions}}
+\tablehead{\colhead{Population} & \colhead{$N$} & \colhead{BPT AGN} & \colhead{AGN fraction} & \colhead{Approx. 95\% interval}}
+\startdata
+Massive emission-line hosts, $\log M_\star\geq10.8$ & 9,298 & 3,997 & 0.430 & [0.420, 0.440] \\
+Massive low-sSFR emission-line hosts & 5,695 & 3,459 & 0.607 & [0.595, 0.620] \\
+\enddata
+\tablecomments{Counts and fractions are copied from the preserved topic-specific JSON summary.  The intervals are normal approximations using the recorded binomial standard errors; they are descriptive planning errors, not a complete selection-function uncertainty.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m1\_rp3\_maintenance\_heating\_figure1.pdf}
+\caption{Preserved topic-specific SDSS DR17 measurement for the massive-host optical AGN denominator.  The figure should be captioned as a target-selection and denominator diagnostic, not as an X-ray/radio maintenance-heating measurement.}
+\label{fig:rp3_denominator}
+\end{figure}
+
+\section{Interpretation Guard}\label{sec:guard}
+A high optical-AGN fraction in massive low-sSFR emission-line hosts is plausible motivation for follow-up, but it is not a calorimetric heating result.  Four boundaries should be carried into the integrated manuscript.
+\begin{enumerate}
+\item \textbf{Optical selection is not jet-power selection.}  BPT AGN can include radiatively efficient AGN, LINER-like systems, and ionization sources that do not map one-to-one onto mechanical jet power.
+\item \textbf{The parent sample is emission-line selected.}  Massive galaxies without the required line detections are absent, so the denominator is not a complete halo-mass-selected quiescent population.
+\item \textbf{No cooling side is measured.}  The pilot does not include X-ray luminosity, gas temperature, entropy, cavity enthalpy, or cooling time.
+\item \textbf{No duty-cycle clock is measured.}  A snapshot optical AGN fraction is not a time-averaged mechanical duty cycle without variability and selection modeling.
+\end{enumerate}
+
+\section{Discussion Outline for Integration}\label{sec:discussion}
+The discussion can be organized around a forward path.  First, use the SDSS denominator to define target strata: massive emission-line hosts, massive low-sSFR hosts, and optical AGN subsets.  Second, cross-match those strata to radio and X-ray catalogs with explicit nondetection accounting.  Third, compare any jet-power or cavity-power estimates to cooling-luminosity requirements only after a halo-selected parent sample is defined.  This ordering keeps the current paper valuable without overstating what the SDSS-only run proves.
+
+\section{Conclusions}\label{sec:conclusions}
+\begin{enumerate}
+\item The revised manuscript should present M1 RP-3 as an optical denominator for maintenance-heating follow-up, not as a maintenance-heating detection.
+\item In the cached SDSS pilot, 3,997 of 9,298 massive emission-line hosts are BPT AGN, giving fraction 0.430.
+\item Among massive low-sSFR emission-line hosts, 3,459 of 5,695 are BPT AGN, giving fraction 0.607.
+\item X-ray/radio energetics, halo selection, nondetection modeling, and a duty-cycle model are required before testing maintenance heating.
+\end{enumerate}
+
+\section*{Reproducibility and Safety Note}
+Source analysis summary: \texttt{m1\_rp3\_maintenance\_heating/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  This Lana revision is lane-local and did not overwrite the public-linked manuscript or PDF.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and open-source Python tools.
+
+\begin{thebibliography}{}
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

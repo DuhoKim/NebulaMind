@@ -1,0 +1,100 @@
+% LANA_MANUSCRIPT_TICK_20260708T161724Z
+% Paper: m3_p3_simulation_validation
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p3_simulation_validation/figures/}}
+\shorttitle{Selection-flagged SDSS target vector}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A selection-flagged observed SDSS target vector for later feedback-model forward validation}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+We revise the simulation-validation pilot by turning the target vector into a selection-flagged observational product rather than a model-comparison claim.  The current artifact contains 15 mass--redshift cells from the capped 60,000-row SDSS four-line emission sample.  Across cells, the observed quenched fraction spans approximately 0.001--0.856 and the BPT optical AGN fraction spans approximately 0.001--0.610, but two cells have cached $N<500$ and should not drive precise headline claims.  Public SDSS checks show that the small cached cells correspond to larger four-line S/N$\geq3$ eligible counts: 300 cached of 1,252 eligible for $8.0<\log M_\star<9.5$, $0.08<z<0.12$, and 390 cached of 1,553 eligible for $11.0<\log M_\star<12.5$, $0.02<z<0.05$.  No simulation is accepted, rejected, or ranked until mocks are passed through matching SDSS/MaNGA/ALMA/X-ray/radio selection, aperture, and noise models.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- surveys --- methods: data analysis --- methods: statistical}
+
+\section{Scope and status}\label{sec:scope}
+This Lana revision addresses the main overclaim risk in the M3 P3 pilot.  The batch paper framed the output as a validation vector, but the safe object is an observed SDSS target vector with selection flags.  It is useful for future forward modelling; it is not itself a simulation comparison.
+
+The full proposal requires simulated catalogs passed through the same SDSS spectroscopic, line-S/N, mass, redshift, aperture, and noise filters, plus analogous MaNGA/ALMA/X-ray/radio selection functions if those observables are compared.  Without those mocks, differences between a simulation and Table~\ref{tab:m3p3-vector} would mix physics, selection effects, aperture effects, and measurement definitions.
+
+\section{Data and definitions}\label{sec:data}
+The source sample is the cached public SDSS DR17 four-line emission sample: 60,000 galaxies at $0.02<z<0.12$ with finite stellar mass, finite catalog specific SFR, and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$.  The corresponding public SDSS four-line S/N$\geq3$ eligible count is 249,917, so the cache covers 24.0\% of the strict eligible set and is capped by SpecObjID order.
+
+The table uses the Goru definitions recovered from the analysis code: $f_Q$ is the fraction with catalog $\log {\rm sSFR}<-11.0$; $f_{\rm BPT\,AGN}$ is the fraction classified as optical AGN by the BPT criterion; and $f_{\rm high\,exc.}$ requires BPT AGN plus $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$.  The vector is intentionally compact, so cell-level flags are carried in a separate column rather than hidden in prose.
+
+\section{Selection and small-cell checks}\label{sec:smallcells}
+Two cached target-vector cells have $N<500$ and need a minimum-N warning in any integrated manuscript.  They are not removed, because they may be useful to a forward-modelling exercise, but the abstract and discussion should avoid overprecise claims based on their extrema.
+
+\begin{deluxetable*}{llrrrrl}
+\tablecaption{Small cached cells requiring minimum-N caution\label{tab:m3p3-smallcells}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$z$ bin} & \colhead{Cached $N$} & \colhead{Public parent $N$} & \colhead{Public S/N$\geq3$ $N$} & \colhead{Cached/S/N} & \colhead{Flag}}
+\startdata
+8.0--9.5 & 0.08--0.12 & 300 & 1,426 & 1,252 & 24.0\% & $N<500$ \\
+11.0--12.5 & 0.02--0.05 & 390 & 2,242 & 1,553 & 25.1\% & $N<500$ \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 checks for the two cached target-vector cells below $N=500$.  They support uncertainty/minimum-N disclosure only; they are not simulation-validation results.}
+\end{deluxetable*}
+
+\section{Observed target vector}\label{sec:results}
+Table~\ref{tab:m3p3-vector} is the target vector that a future simulation mock could attempt to reproduce after applying the same selection function.  Fractions are rounded to three decimals in the table; the narrative should use approximate ranges and avoid treating the minimum or maximum as precise physical thresholds.
+
+\begin{deluxetable*}{llccccc}
+\tabletypesize{\scriptsize}
+\tablecaption{Observed SDSS mass--redshift target vector with minimum-N flags\label{tab:m3p3-vector}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$z$ bin} & \colhead{$N$} & \colhead{$f_Q$} & \colhead{$f_{\rm BPT\,AGN}$} & \colhead{$f_{\rm high\,exc.}$} & \colhead{Flag}}
+\startdata
+8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 0.002 & \nodata \\
+8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 0.001 & \nodata \\
+8.0--9.5 & 0.08--0.12 & 300 & 0.007 & 0.010 & 0.000 & $N<500$ \\
+9.5--10.0 & 0.02--0.05 & 3,607 & 0.061 & 0.030 & 0.027 & \nodata \\
+9.5--10.0 & 0.05--0.08 & 6,059 & 0.013 & 0.008 & 0.007 & \nodata \\
+9.5--10.0 & 0.08--0.12 & 2,187 & 0.003 & 0.001 & 0.001 & \nodata \\
+10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 0.104 & \nodata \\
+10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 0.064 & \nodata \\
+10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 0.029 & \nodata \\
+10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 0.215 & \nodata \\
+10.5--11.0 & 0.05--0.08 & 5,083 & 0.451 & 0.297 & 0.160 & \nodata \\
+10.5--11.0 & 0.08--0.12 & 9,861 & 0.326 & 0.209 & 0.119 & \nodata \\
+11.0--12.5 & 0.02--0.05 & 390 & 0.856 & 0.610 & 0.218 & $N<500$ \\
+11.0--12.5 & 0.05--0.08 & 1,199 & 0.805 & 0.563 & 0.228 & \nodata \\
+11.0--12.5 & 0.08--0.12 & 2,444 & 0.672 & 0.485 & 0.198 & \nodata \\
+\enddata
+\tablecomments{Observed SDSS quantities only.  A future validation paper must compare simulations to this vector only after constructing mocks with matching selection, aperture, and noise models.  The two $N<500$ cells should carry uncertainty/minimum-N caveats in abstracts, captions, and discussion text.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m3\_p3\_simulation\_validation\_figure1.pdf}
+\caption{Preserved batch-run diagnostic for the M3 P3 pilot.  It should be read as a visualization of the observed SDSS target vector, not as a test passed or failed by any simulation.}
+\label{fig:m3p3-original}
+\end{figure}
+
+\section{Discussion outline and scope guards}\label{sec:discussion}
+The main contribution is a reproducible target-vector shape: low-mass/high-sSFR cells have low $f_Q$ and low optical AGN incidence, while high-mass cells in this emission-line sample have larger low-sSFR and BPT-AGN fractions.  That pattern is observationally useful, but it is not an explanation.  It cannot identify whether feedback prescriptions, halo quenching, morphology, dust, aperture effects, or line-selection cuts drive the trends.
+
+Safe wording for integration: ``The pilot writes a 15-cell observed SDSS vector that future mocks must reproduce under the same selection.''  Unsafe wording to avoid: ``the SDSS vector validates a feedback model,'' ``the high-mass cells prove AGN feedback,'' or ``a mismatch would falsify a simulation'' without forward-modelled mock catalogs.
+
+Topic-specific simulation-validation bibliography remains a gap.  It should be inserted only after the Literature Wave-2 source packet classifies forward-modelling and feedback-prescription sources; this revision does not invent citation support.
+
+\section*{Reproducibility and safety note}
+Draft marker: LANA\_MANUSCRIPT\_TICK\_20260708T161724Z.  Inputs used for this revision were the current source manuscript, \texttt{analysis\_results.json}, Tori Wave-2 table draft, Goru simulation target-vector CSV, and Tori selection-function small-cell tables.  This draft writes lane-local artifacts only and does not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

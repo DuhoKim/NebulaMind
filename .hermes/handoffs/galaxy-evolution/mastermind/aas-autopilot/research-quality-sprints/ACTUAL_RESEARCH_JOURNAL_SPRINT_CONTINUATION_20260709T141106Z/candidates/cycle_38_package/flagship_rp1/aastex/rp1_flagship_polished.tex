@@ -1,0 +1,144 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{Selection-aware SDSS BPT/sSFR study}
+\shortauthors{NebulaMind}
+\begin{document}
+
+\title{Broad Optical BPT Galaxies and Catalog Specific Star Formation in SDSS DR17: A Selection-Aware Pilot Matched-Control Study}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+We present a selection-aware SDSS DR17 matched-control pilot that measures the association between broad optical BPT-selected galaxies and catalog specific star-formation rate within a selection-limited denominator. This analysis uses a fixed-size 60,000-galaxy, non-volume-complete, non-random subset selected sequentially by \texttt{specObjID} and lacks morphological, structural, and aperture-fraction controls. Because structural proxies such as concentration index and \texttt{fracDeV} were not retained in the cache, the reported -1.309 dex sSFR offset is an association-only measurement within this fixed-size, morphology-uncontrolled optical denominator and cannot be disentangled from a morphology or bulge-fraction association. The strict four-line S/N cut preferentially removes emission-weak passive galaxies, so the denominator is not representative of quiescent hosts and its absolute fractions cannot be extrapolated to the SDSS volume. Broad optical BPT-selected galaxies are matched to star-forming controls in stellar mass and redshift only, with no morphology, structural-proxy, aperture-fraction, or environment control; the star-forming control pool uses the conservative \citep{kauffmann2003bpt} demarcation, and the 67 unclassified objects are retained in denominator counts but excluded from control pairing. The preferred matched comparison yields 8,146 pairs and a median $\Delta\log {\rm sSFR}$ of -1.309 dex, with a bootstrap 95\% confidence interval of [-1.334,-1.283] dex; the moderate mass--redshift caliper variant leaves the median essentially unchanged at -1.318 dex for 7,867 pairs. The stricter line-S/N ($S/N \geq 10$) variant yields -0.744 dex, while the Seyfert-like subset yields -0.763 dex after the lower-excitation tail is removed by the stricter cut, so the larger broad-denominator offset shrinks by more than 0.5 dex under the tighter excitation cuts. BPT classification is an optical excitation diagnostic, not a direct proxy for bolometric accretion power or Eddington ratio. The companion supplement inventories the missing structural, environmental, and multiwavelength observables needed for future real-data tests, including morphology, aperture fraction, halo or group labels, CO/HI gas measurements, radio and X-ray proxies, and IFU kinematics.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: star formation --- galaxies: evolution --- surveys --- methods: statistical}
+
+\section{Question and claim boundary}
+This paper addresses a narrow association-only question within a low-redshift SDSS DR17 optical emission-line denominator: do broad optical BPT-selected galaxies have lower catalog sSFR than mass--redshift matched star-forming controls? We observe a negative catalog-sSFR offset within the analyzed denominator. The result is not a causal claim or inference; it is an association in a fixed-size optical sample and does not test feedback-related quenching scenarios, molecular gas depletion, radio-mode maintenance heating, or outflow escape/recycling in this dataset. The 60,000-galaxy subset is non-volume-complete, so it is not normalized into a luminosity or mass function.
+
+
+The present scope also excludes morphology or aperture controls, structural-proxy matching, Seyfert/LINER separation, bolometric accretion-luminosity proxies, gas-mass measurements, environment labels, and time-domain or duty-cycle modelling. BPT line ratios classify optical excitation, not directly black-hole accretion power in every object; as seen in previous literature, retired stellar populations ionized by hot post-AGB stars, as well as low-ionization nuclear emission-line region (LINER)-like ionization, can contaminate broad low-ionization classes and mimic active-nucleus signatures \citep{cidfernandes2011,stasinska2008,stasinska2015}. For that reason the paper uses the phrase ``broad optical BPT-selected galaxies'' and treats stronger Seyfert-like cuts as a sensitivity check rather than as an interchangeable label. Because structural proxies were not retained in the 60,000-galaxy cache, the present optical denominator cannot separate the measured offset from bulge-fraction or central-velocity-dispersion associations. Because the sample is restricted to $0.02<z<0.12$, the standard local BPT demarcations are used here without any redshift-evolution correction.
+
+\subsection{Scope and limitations}
+The association reported here is defined inside a capped, selection-limited optical denominator. It is not a volume-complete census, and it does not include morphology, aperture fraction, group membership, halo mass, gas mass, or bolometric accretion-luminosity proxies as matching variables. Those missing dimensions are relevant follow-up requirements, but they are not part of the present inference.
+
+\section{Missing observables for future causal inference}
+The present SDSS-only analysis is deliberately restricted to an optical association pilot, so the observables needed for any causal interpretation are not measured here. The remaining requirements are morphology and structural proxies, aperture-fraction control, group or halo membership, CO/HI gas masses, radio and X-ray proxies, resolved IFU kinematics, and matched simulation comparisons passed through the same selection function. These are the real-data inputs that the companion supplement inventories as future follow-up targets; they are not results of this paper.
+
+\section{Data and shared selection}
+The data backbone is public SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates \citep{york2000,sdssdr17,brinchmann2004}. The pilot analysis sample is a fixed 60,000-galaxy subset selected sequentially by \texttt{specObjID}. It is a selection-limited pilot subset used to estimate the association within the available SDSS cache, not a volume-limited census. Because \texttt{specObjID} ordering follows SDSS targeting and plate/MJD bookkeeping, this non-random subset is not a random sky sample and introduces survey-plate and sky-coverage bias. The strict public four-line S/N$\geq3$ eligible parent contains 249,917 galaxies, so the pilot sample covers 24.0\% of that strict parent. Because the subset is fixed and non-volume-limited, it cannot be used to derive absolute volume densities, luminosity functions, or any population-normalized abundance.
+Over the redshift interval $0.02<z<0.12$, the SDSS 3-arcsec fiber subtends roughly 1.2--6.5 kpc, so the catalog sSFR comparison is fiber-centered rather than global.
+Because the 3-arcsec fiber samples only the central regions at low redshift, the catalog-derived total sSFR is an aperture-extrapolated proxy; the fixed 3-arcsec aperture systematically misses extended star-forming disks at low redshift \citep{kewley2005}. If broad optical BPT hosts are more bulge-dominated than the star-forming controls, the central fiber measurement can inflate the observed offset relative to a galaxy-wide star-formation comparison.
+The stellar-mass and sSFR values are taken from the public MPA-JHU-style value-added table \texttt{galSpecExtra}, using its catalog median estimators \texttt{lgm\_tot\_p50} and \texttt{specsfr\_tot\_p50} after joining \texttt{SpecObj}, \texttt{galSpecInfo}, and \texttt{PhotoObj}. Although \texttt{PhotoObj} was joined in the catalog backbone, structural quantities such as \(R_{90}/R_{50}\) and \texttt{fracDeV} were not retained in the 60,000-galaxy cache, so morphology cannot be controlled in this cycle. Those are low-redshift SDSS catalog estimates, not rederived line-by-line physical measurements \citep{brinchmann2004,sdssdr17,york2000}. We use variance-normalized Euclidean matching, with each coordinate standardized by its sample standard deviation before distance calculation, because the feature space is only two variables, $(\log M_\star,z)$, so the rule stays transparent and the resulting nearest-neighbor control remains easy to interpret as an association baseline.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Selection cascade for the flagship analysis sample.\label{tab:selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 100.0\% \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 83.1\% \\
+plus galSpecLine join & 416,554 & -- & 83.1\% \\
+four BPT lines with valid flux measurements (\texttt{ivar} $> 0$) & 373,445 & 60,000 & 74.5\% \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 49.9\% \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 35.2\% \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 18.3\% \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached analysis table. Retention is shown as a percentage of the spectro-z parent. Cached rows are shown only where the cache applies. The 416,554-to-373,445 drop when requiring \texttt{ivar} $> 0$ reflects the removal of rows with unusable line-flux uncertainties; this table does not distinguish masking, edge-of-chip loss, or missing spectral coverage. The sharp retention drop at higher S/N mainly reflects preferential loss of passive galaxies from the emission-line denominator, so the surviving cache becomes less representative of quiescent hosts as the cut tightens.}
+\end{deluxetable*}
+
+The selection is not neutral with respect to star formation. In public counts, S/N$\geq3$ in all four BPT lines keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. This preferentially increases the relative share of star-forming objects among the surviving denominator and therefore inflates the relative weight of star-forming controls available for matching. Marginal distribution checks between the pilot sample and the full public parent show no redshift, mass, or sSFR bin differing by more than 5 percentage points; the largest absolute differences are 2.03, -1.63, and -0.58 percentage points, respectively. That check is reassuring but does not remove the fixed-size-sample limitation.
+
+\section{Classification and matching}
+BPT classes are computed from H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ using standard demarcations \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006} (see Figure~\ref{fig:bpt}). The analysis denominator contains 39,553 star-forming galaxies, 12,234 intermediate/composite galaxies, 8,146 broad optical BPT-selected targets, and 67 unclassified objects. The intermediate/composite galaxies are retained in the denominator counts but are not part of the star-forming control pool used for matching. The 67 unclassified objects are retained in the denominator counts for completeness but excluded from the matched control pairing; this cycle does not tabulate a separate failure mode for them. Here, the star-forming control pool is defined as objects below the Kauffmann et al.\ (2003) demarcation, which is a conservative optical cut and may still include weak or obscured active-nucleus contaminants. Each broad optical BPT-selected galaxy is matched to the nearest star-forming control by variance-normalized Euclidean distance in standardized $(\log M_\star,z)$ space, with replacement. In the preferred estimate, this yields 100\% target coverage (8,146 of 8,146 targets matched), and the unrestricted Euclidean match has median absolute separations of 0.0045 dex in $\log M_\star$ and 0.00021 in redshift, so the association still inherits any mismatch in structure or fiber coverage between the two populations. Matching is not performed in morphology, aperture fraction, halo mass, gas mass, accretion-luminosity proxy, or duty-cycle phase; these missing dimensions define follow-up requirements. The preferred estimate does not impose a maximum mass--redshift caliper; the caliper row in Table~\ref{tab:robust} is a sensitivity variant. The moderate mass--redshift caliper sensitivity variant uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$.
+Here, ``broad optical BPT-selected'' means the inclusive optical-emission-line class under the standard BPT demarcations, while the Seyfert-like sensitivity check uses the stricter Kewley et al.\ (2006) high-excitation cut to remove most of the low-excitation LINER/retired branch by construction rather than to define a separate accretion-power measurement.
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.72\textwidth]{../figures/fig-bpt.pdf}
+\caption{BPT line-ratio diagram for the SDSS DR17 analysis denominator. The matched controls are paired in stellar mass and redshift only, not in morphology, so the diagram verifies the optical-excitation classes used for matching but does not by itself establish an accretion-based interpretation.}
+\label{fig:bpt}
+\end{figure*}
+
+\section{Matched-control result}
+The preferred broad optical BPT comparison gives a large negative catalog-sSFR offset for the broad optical BPT-selected galaxies relative to star-forming controls.
+    \par\noindent\textbf{Morphology and aperture caveat.} Without controlling for structural morphology or aperture fraction, a median $\Delta\log {\rm sSFR}$ (target minus matched control) of -1.309 dex is observed within this fixed-size, morphology-uncontrolled optical denominator and fiber-centered matched comparison. Because the spectroscopy samples only the central 3-arcsec region (1.2--6.5 kpc here) and the match does not control morphology, structural proxies, or aperture fraction, the observed sSFR offset is highly degenerate with the known correlation between stellar mass and galaxy morphology and the transition from disk-dominated to bulge-dominated systems, including bulge prominence or central velocity dispersion associations \citep{schawinski2010,bluck2014,belfiore2016,piotrowska2022}. The lack of concentration-index or \texttt{fracDeV}-style structural matching limits the result's ability to separate bulge-linked structural associations from excitation-linked associations. Single-fiber measurements cannot separate galaxy-wide changes from purely central gradients, so spatially resolved integral-field spectroscopy is required to resolve the aperture-morphology degeneracy \citep{penny2018,cheung2016,bundy2015}. Within the present data, the association is therefore still not separable from a morphology or bulge-fraction association. The robustness interval in Table~\ref{tab:robust} is a 95\% confidence interval on the median offset.
+
+\begin{deluxetable*}{lrrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Robustness ladder for matched catalog-sSFR offsets.\label{tab:robust}}
+\tablehead{\colhead{Variant} & \colhead{$N$ pairs} & \colhead{Median $\Delta\log {\rm sSFR}$} & \colhead{95\% interval} & \colhead{Interpretation}}
+\startdata
+Broad optical BPT-selected targets, S/N$\geq3$, nearest SF control with replacement & 8,146 & -1.309 & [-1.334,-1.283] & Preferred association estimate \\
+Moderate mass--redshift caliper & 7,867 & -1.318 & -- & 96.6\% target coverage \\
+Greedy no-replacement stress test & 7,419 & -1.446 & -- & Poorer balance; diagnostic only \\
+Broad optical BPT-selected targets, S/N$\geq10$ & 1,530 & -0.744 & -- & Line-S/N sensitivity \\
+N II Seyfert-like proxy, S/N$\geq3$ & 2,114 & -0.763 & -- & Subclass sensitivity; excludes retired/LINER-like bulges \\
+\enddata
+\tablecomments{$\Delta\log {\rm sSFR}$ is target minus matched star-forming control. The moderate mass--redshift caliper uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$, and it leaves the median offset essentially unchanged at -1.318 dex for 7,867 pairs. The Seyfert-like proxy uses the Kewley et al.\ (2006) high-excitation demarcation, which excludes a portion of the LINER-like low-ionization tail by construction. The drop from -1.309 dex to -0.763 dex therefore reflects the narrower emission-line denominator and the removal of a LINER-like, retired, bulge-dominated tail by construction. All values are conditional on the optical emission-line denominator.}
+\end{deluxetable*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.86\textwidth]{../figures/fig-matched-offsets.pdf}
+\caption{Distribution of matched-pair catalog-sSFR offsets for the preferred broad optical BPT-selected galaxy minus nearest star-forming control estimate ($N=8{,}146$ pairs, without a maximum mass--redshift caliper). The preferred estimate is strong within this denominator but changes under stricter line-S/N and narrower subclass definitions. The moderate matching caliper shown in Table~\ref{tab:robust} uses $|\Delta\log M_\star|\leq0.05$ and $|\Delta z|\leq0.002$.}
+\label{fig:offsets}
+\end{figure*}
+
+\section{Interpretation}
+The result is directly measured in the capped sample and remains falsifiable within the stated denominator. The matched-offset distribution is shown in Figure~\ref{fig:offsets}. The median offset persists under a moderate mass--redshift caliper, which is already reflected by the 7,867-pair, -1.318 dex sensitivity row. Because the comparison is still fiber-centered and selection-limited, this interpretation remains a denominator-level association statement rather than a galaxy-wide causal inference. At the same time, the S/N$\geq10$ and Seyfert-like proxy variants reduce the magnitude to -0.744 dex and -0.763 dex, respectively (Table~\ref{tab:robust}), a reduction of $>0.5$ dex relative to the preferred association estimate. The Kewley et al.\ (2006) demarcation explicitly removes the retired/LINER-like low-ionization tail, so the larger -1.309 dex offset reflects in part that broader low-ionization branch rather than solely Seyfert-like excitation. The reduction in offset magnitude for stricter S/N and Seyfert-like subsets does not remove the morphology/aperture caveat: if the broad optical BPT-selected sample is more bulge-dominated than the star-forming controls, the -1.309 dex offset can be biased high relative to a galaxy-wide star-formation comparison. Matching on mass and redshift alone leaves morphology uncontrolled, and the fixed 3-arcsec fiber can under-sample extended disk star formation at low redshift; this is a known source of central-to-global mismatch \citep[e.g.,][]{harrison2017,ellison2021}. The central-kiloparsec aperture restriction is one reason this remains a local association rather than a galaxy-wide star-formation measurement. The most robust conclusion is therefore: broad optical BPT classification is associated with lower catalog sSFR in this fixed-size, selection-limited, morphology-uncontrolled 60,000-galaxy pilot sample. Any mechanistic interpretation requires additional real data, including morphology and aperture controls, Seyfert/LINER separation, bolometric accretion-luminosity proxy, gas mass, environment, and time-domain/duty-cycle modelling.
+The choice of variance-normalized Euclidean matching is deliberate: with only two standardized coordinates, it preserves a simple nearest-neighbor control rule without introducing an additional model layer that would not be better constrained by the available data.
+
+\section{Conclusion}
+RP-1 is a selection-aware pilot association paper. This analysis is bounded by a fixed 60,000-galaxy subset selected sequentially by \texttt{specObjID}, and lacks morphological, structural, and aperture-fraction controls. Without controlling for structural morphology or aperture fraction, the reported -1.309 dex sSFR offset is an association-only measurement within this fixed-size, morphology-uncontrolled optical denominator and is currently indistinguishable from a morphology or bulge-fraction association. Its key results are the preferred -1.309 dex offset, the persistence of the offset under a moderate mass--redshift caliper, and the reduction to -0.744 dex for the stricter line-S/N variant and -0.763 dex for the Seyfert-like subset. The accompanying \emph{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up} is a denominator/proxy atlas and follow-up target list for the missing-observable requirements of future real-data tests. See the supplement's neighbor-rank/fiber-collision and CO/HI entries, summarized in its atlas overview, for the clearest examples of the remaining constraints.
+In practice, future follow-up requires integration with the kinds of measurements used in radio-mode and X-ray maintenance-heating studies \citep{best2005,fabian2012,mcnamara2007,heckmanbest2014,lamassa2013}, molecular and neutral gas studies \citep{xcoldgass2017,xgass2018}, outflow and kinematic studies \citep{veilleux2005,cicone2014,carniani2017,fiore2017}, and simulation comparisons passed through the same selection functions \citep{simba2019,tng2019,eagle2015}, together with the environment/context references \citep{peng2010,ellison2011,piotrowska2022,wetzel2013,dekel2006}; these references are cited as examples of missing observables for future follow-up, not as validation of any mechanism in this SDSS-only denominator. The result remains association-only until morphology, aperture fraction, and the missing multiwavelength or IFU observables are added. The fixed 60,000-galaxy cache remains a non-random selection-limited subset, so the reported offsets should continue to be read as denominator-bound associations rather than population-wide trends within this morphology-uncontrolled optical denominator.
+
+\section*{Data Availability}
+This paper uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The 60,000-row cache is derived from the public catalog joins and selection thresholds described above, and the manuscript conclusions remain conditional on the optical-emission-line denominator. No mock, synthetic, fake, placeholder, or toy data were used.
+
+\facilities{SDSS}
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Belfiore et al.(2016)]{belfiore2016} Belfiore, A., Maiolino, R., Maraston, C., et al. 2016, MNRAS, 461, 3111
+\bibitem[Bluck et al.(2014)]{bluck2014} Bluck, A.~F.~L., Bruce, V.~A., Pilkington, K., et al. 2014, MNRAS, 441, 599
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Bundy et al.(2015)]{bundy2015} Bundy, K., Law, D.~R., Yan, R., et al. 2015, ApJ, 798, 7
+\bibitem[Cid Fernandes et al.(2011)]{cidfernandes2011} Cid Fernandes, R., Stasi{\'n}ska, G., Schlickmann, S., et al. 2011, MNRAS, 413, 1687
+\bibitem[Cheung et al.(2016)]{cheung2016} Cheung, E., Bundy, K., Cappellari, M., et al. 2016, Nature, 533, 504
+\bibitem[Ellison et al.(2011)]{ellison2011} Ellison, S.~L., Patton, D.~R., Mendel, J.~T., et al. 2011, MNRAS, 418, 2043
+\bibitem[Ellison et al.(2021)]{ellison2021} Ellison, S.~L., Lin, L., Rosario, D.~J., et al. 2021, MNRAS, 501, 4777
+\bibitem[Harrison(2017)]{harrison2017} Harrison, C.~M. 2017, Nature Astronomy, 1, 0165
+\bibitem[Carniani et al.(2017)]{carniani2017} Carniani, S., Marconi, A., Maiolino, R., et al. 2017, A\&A, 605, A42
+\bibitem[Catinella et al.(2018)]{xgass2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Dav{\'e} et al.(2019)]{simba2019} Dav{\'e}, R., Angl{\'e}s-Alc{\'a}zar, D., Narayanan, D., et al. 2019, MNRAS, 486, 2827
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2005)]{kewley2005} Kewley, L.~J., Jansen, R.~A., \& Geller, M.~J. 2005, PASP, 117, 227
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Nelson et al.(2019)]{tng2019} Nelson, D., Springel, V., Pillepich, A., et al. 2019, Computational Astrophysics and Cosmology, 6, 2
+\bibitem[Penny et al.(2018)]{penny2018} Penny, S.~J., Davies, R.~L., Houghton, R.~C.~W., et al. 2018, MNRAS, 476, 979
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+\bibitem[Piotrowska et al.(2022)]{piotrowska2022} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., \& Peng, Y.-j. 2022, MNRAS, 512, 1052
+\bibitem[Schawinski et al.(2010)]{schawinski2010} Schawinski, K., Evans, D.~A., Virani, S., et al. 2010, ApJ, 711, 284
+\bibitem[Saintonge et al.(2017)]{xcoldgass2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, ApJS, 233, 22
+\bibitem[Schaye et al.(2015)]{eagle2015} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2015, MNRAS, 446, 521
+\bibitem[Stasi{\'n}ska et al.(2008)]{stasinska2008} Stasi{\'n}ska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+\bibitem[Stasi{\'n}ska et al.(2015)]{stasinska2015} Stasi{\'n}ska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodr{\'e}, L. 2015, MNRAS, 449, 559
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

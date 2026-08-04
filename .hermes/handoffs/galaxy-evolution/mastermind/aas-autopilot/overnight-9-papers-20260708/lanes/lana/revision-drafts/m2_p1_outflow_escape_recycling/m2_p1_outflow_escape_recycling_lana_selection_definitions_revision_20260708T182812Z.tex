@@ -1,0 +1,119 @@
+% LANA_SELECTION_DEFINITION_CLEANUP_20260708T182812Z
+% Paper: M2 P1 / m2_p1_outflow_escape_recycling
+% Lane-local revision draft only; does not overwrite the current linked manuscript or PDF.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p1_outflow_escape_recycling/figures/}{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/overnight-9-papers-20260708/lanes/goru/figures/}}
+
+\shorttitle{High-Excitation Optical AGN Denominator}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A High-Excitation Optical-AGN Target Denominator for Resolved Escape-versus-Recycling Follow-up in SDSS DR17}
+
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data only}
+
+\begin{abstract}
+We revise the M2 P1 pilot into a target-denominator paper for future outflow-fate work.  The SDSS run contains optical line ratios and catalog galaxy properties, not outflow velocities, halo escape speeds, multiphase gas masses, CGM tracers, mass loading, or recycling times.  The exact candidate definition is now inserted from the preserved analysis code: high-excitation optical AGN are recomputed BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$.  In the cached 60,000-galaxy four-line S/N$\geq3$ sample, this selects 4,440 galaxies, a fraction of 0.074.  Their median catalog $\log({\rm sSFR}/{\rm yr}^{-1})$ is -11.53, compared with -10.14 for the full denominator; this median difference is descriptive target characterization, not feedback evidence.  The shared selection-function warning remains central: public SDSS count checks find 249,917 strict four-line S/N$\geq3$ rows, so the cached query covers 24.0\% of that parent and is not a complete or random incidence denominator.  The pilot identifies a feasible optical parent sample for resolved follow-up, but it does not distinguish escaping from recycling gas.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: evolution --- galaxies: outflows --- surveys --- methods: data analysis}
+
+\section{Purpose and Scope}\label{sec:scope}
+A true escape-versus-recycling test requires velocities, radii, gas-phase masses, halo potentials, geometry, and CGM or reaccretion tracers \citep{veilleux2005,cicone2014,fiore2017}.  This SDSS-only pilot supplies none of those quantities.  Its role is to define an optical target denominator and to state which follow-up measurements are required before any outflow-fate or feedback-efficiency claim can be made.  Literature on multiphase winds and AGN feedback should therefore be used as missing-data motivation, not as support for the measured optical fraction \citep{fabian2012,carniani2017}.
+
+\section{Data, Selection Function, and Candidate Definition}\label{sec:data}
+The parent table is the shared public SDSS DR17-derived emission-line sample \citep{abdurrouf2022,york2000}.  BPT classes are recomputed from the [N~II]/H$\alpha$ and [O~III]/H$\beta$ diagnostics \citep{baldwin1981,kauffmann2003,kewley2001}.  Optical classification caveats, including the Seyfert/LINER/composite structure of diagnostic diagrams, should remain explicit \citep{kewley2006}.
+
+\begin{deluxetable*}{lrrl}
+\tablecaption{Selection-function disclosure for the shared SDSS four-line denominator\label{tab:m2p1_selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public SDSS DR17 count} & \colhead{Cached count used here} & \colhead{Manuscript implication}}
+\startdata
+Spectroscopic \texttt{GALAXY}, $0.02<z<0.12$ & 501,060 & --- & Redshift-window parent only \\
+Joined catalog with mass/sSFR bounds & 416,554 & --- & Value-added-property parent \\
+Positive four BPT fluxes and errors & 373,445 & 60,000 & Optical-line denominator, not a full galaxy census \\
+Four BPT lines with S/N$\geq3$ & 249,917 & 60,000 & Cached sample covers 24.0\% of strict parent \\
+Four BPT lines with S/N$\geq5$ & 176,523 & 42,446 & Higher-S/N robustness subset \\
+Four BPT lines with S/N$\geq10$ & 91,768 & 22,311 & High-S/N subset changes candidate mix \\
+\enddata
+\tablecomments{The cached query used \texttt{TOP 60000 ... ORDER BY specObjID}.  Four-line S/N selection and the 60,000-row cap mean that target fractions are conditional planning fractions, not complete prevalence estimates.}
+\end{deluxetable*}
+
+The adopted high-excitation definition is now fully specified: an object must be a recomputed BPT AGN and satisfy $\log([\mathrm{O\,III}]\lambda5007/\mathrm{H}\beta)>0.25$.  This is an optical excitation proxy, not a velocity, mass-loading, or escape criterion.  Alternative optical thresholds in Table~\ref{tab:m2p1_definitions} show why the wording must remain definition-dependent.
+
+\section{Results}\label{sec:results}
+\begin{deluxetable*}{lrrrl}
+\tablecaption{Optical candidate-definition sensitivity in the cached S/N$\geq3$ sample\label{tab:m2p1_definitions}}
+\tablehead{\colhead{Definition} & \colhead{Denominator} & \colhead{Candidates} & \colhead{Fraction} & \colhead{Use in this manuscript}}
+\startdata
+All BPT AGN & 60,000 & 8,146 & 0.136 & Broad optical-AGN comparison \\
+BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.00$ & 60,000 & 7,730 & 0.129 & Looser excitation check \\
+BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$ & 60,000 & 4,440 & 0.074 & Adopted high-excitation target denominator \\
+BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.50$ & 60,000 & 1,586 & 0.026 & Stricter excitation check \\
+NII Seyfert-like proxy within AGN branch & 60,000 & 2,114 & 0.035 & Classification-sensitivity check \\
+\enddata
+\tablecomments{All rows are optical line-ratio definitions from the Goru mechanical packet.  None measures outflow velocity, gas phase, escape speed, or recycling.}
+\end{deluxetable*}
+
+The adopted high-excitation sample has median catalog $\log {\rm sSFR}=-11.53$, compared with -10.14 for the full 60,000-row denominator.  That -1.39 dex median difference is a descriptive target-property contrast without a bootstrap interval in the topic JSON; it should not be converted into a feedback claim.  A matched-control sensitivity table from Goru provides a more useful robustness framing (Table~\ref{tab:m2p1_sn}).
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{High-excitation target denominator and matched-control sensitivity by line-S/N cut\label{tab:m2p1_sn}}
+\tablehead{\colhead{Cached cut} & \colhead{Cached denominator} & \colhead{High-excitation targets} & \colhead{Target fraction} & \colhead{Matched $\Delta\log{\rm sSFR}$}}
+\startdata
+Four-line S/N$\geq3$ & 60,000 & 4,440 & 0.074 & -1.136 [ -1.177, -1.103 ] \\
+Four-line S/N$\geq5$ & 42,446 & 2,491 & 0.0587 & -0.930 [ -0.974, -0.891 ] \\
+Four-line S/N$\geq10$ & 22,311 & 1,285 & 0.0576 & -0.712 [ -0.741, -0.673 ] \\
+\enddata
+\tablecomments{Matched offsets compare the adopted high-excitation optical target class to star-forming controls matched in stellar mass and redshift.  They remain optical association diagnostics, not escape/recycling measurements.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m2\_p1\_outflow\_escape\_recycling\_figure1.pdf}
+\caption{Preserved SDSS DR17 BPT diagnostic for the high-excitation optical-AGN target denominator.  The adopted threshold is $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$ within the recomputed BPT AGN region.}
+\label{fig:m2p1_denominator}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{matched_offset_sensitivity_20260708T162615Z.pdf}
+\caption{Goru matched-offset sensitivity figure for optical AGN definitions and line-S/N cuts.  This figure supports robustness and scope-guard language only; SDSS optical line ratios do not measure gas escape, recycling, multiphase outflow rates, or CGM reaccretion.}
+\label{fig:m2p1_sensitivity}
+\end{figure}
+
+\section{Discussion and Integration Notes}\label{sec:discussion}
+The integrated manuscript should explicitly separate measured quantities from missing physics.  Measured here: an optical high-excitation target count, a target fraction, and catalog sSFR contrasts inside a capped SDSS denominator.  Needed for escape: resolved kinematics, geometry, phase-dependent outflow masses, and a halo potential or escape-speed estimate.  Needed for recycling: CGM gas tracers, time-scale modeling, and nondetections in a common parent sample.  This structure allows outflow literature to motivate follow-up without implying that a single-fiber optical denominator has measured the fate of expelled gas.
+
+\section{Conclusions}\label{sec:conclusions}
+\begin{enumerate}
+\item The revised M2 P1 draft now inserts the exact high-excitation criterion: recomputed BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$.
+\item The adopted target pool contains 4,440 of 60,000 cached S/N$\geq3$ emission-line galaxies, or 7.4\% of the cached denominator.
+\item The target fraction and matched sSFR offsets change under stricter S/N cuts, reinforcing that the paper is a selection-flagged target baseline.
+\item No outflow velocity, escape velocity, molecular/neutral/ionized mass budget, CGM tracer, or recycling timescale is measured in this SDSS-only pilot.
+\end{enumerate}
+
+\section*{Reproducibility and Safety Note}
+Source analysis summary: \texttt{m2\_p1\_outflow\_escape\_recycling/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  This Lana revision is lane-local and did not overwrite the public-linked manuscript or PDF.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and open-source Python tools.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, A., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Carniani et al.(2017)]{carniani2017} Carniani, S., et al. 2017, arXiv:1706.08987
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

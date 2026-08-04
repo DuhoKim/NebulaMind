@@ -1,0 +1,100 @@
+% LANA_WAVE2_REPRESENTATIVENESS_CITATION_PATCH_20260708T224851Z
+% Paper: m3_p2_gas_depletion_efficiency
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p2_gas_depletion_efficiency/figures/}}
+\shorttitle{Representativeness-flagged gas-follow-up denominators}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A Representativeness-Flagged Optical Denominator for Molecular-Gas Depletion and Efficiency Follow-up in SDSS DR17}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+This Lana revision patches the M3 P2 gas-depletion/SFE draft by making the selection-convolved denominator and H$\alpha$ proxy explicit.  SDSS DR17 optical spectra do not measure CO, H~I, dust gas mass, molecular gas fraction, depletion time, or star-formation efficiency.  The strict public four-line S/N$\geq3$ parent contains 249,917 rows; the cached pilot uses a SpecObjID-ordered 60,000-row subset (24.0\%).  A z/mass/sSFR marginal check finds no bin above a 5 percentage-point cached-minus-public discrepancy, but the denominator remains four-line-selected and non-random.  In massive low-sSFR selections, cached denominators range from 2,941 to 10,270 galaxies and BPT optical-AGN fractions range from 0.509 to 0.649.  These high fractions are conditional on requiring all four optical lines; weak-line quiescent systems are excluded.  The H$\alpha$ column is an approximate observed-flux luminosity proxy, not a gas mass or SFE measurement.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: star formation --- galaxies: active --- surveys --- methods: data analysis}
+
+\section{Scope and citation boundary}\label{sec:m3p2-scope}
+The parent proposal asks how to distinguish molecular-gas depletion from suppressed star-formation efficiency.  This SDSS-only pilot can only build an optical follow-up denominator.  DR17 and catalog physical-property work anchor the actual measurements \citep{abdurrouf2022,york2000,brinchmann2004}.  COLD GASS, xCOLD GASS, and xGASS are cited only to define the missing CO/H~I measurements and depletion-time quantities required for the full test \citep{saintonge2011a,saintonge2011b,saintonge2017,catinella2018}.  No gas-fraction or SFE result is claimed here.
+
+\section{Selection function and cached-public check}\label{sec:m3p2-selection}
+The cached table requires four BPT lines with S/N$\geq3$.  This matters more for M3 P2 than for most other overnight pilots because weak-line quiescent systems are exactly the population that a gas-depletion paper would otherwise need to count.  Earlier public selection checks found strong sSFR-dependent four-line retention: 33.56\% retention in the $-12<\log {\rm sSFR}<-11$ bin versus 94.85\% in the $-10<\log {\rm sSFR}<-9.5$ bin.  Therefore all rows in Table~\ref{tab:m3p2-grid} are emission-line-detected target denominators, not complete massive-quiescent-galaxy fractions.
+
+
+\begin{deluxetable*}{llrrrrr}
+\tablecaption{Cached sample versus public SDSS four-line parent: largest marginal deviations for m3p2\label{tab:m3p2-cached-public}}
+\tablehead{\colhead{Dimension} & \colhead{Bin} & \colhead{Public $N$} & \colhead{Cached $N$} & \colhead{Public frac.} & \colhead{Cached frac.} & \colhead{$\Delta$ pp}}
+\startdata
+redshift & 0.080--0.120 & 92,343 & 23,385 & 36.9\% & 39.0\% & +2.0 \\
+stellar mass & 8.0--9.5 & 37,970 & 8,139 & 15.2\% & 13.6\% & -1.6 \\
+sSFR & $-10.0$--$-9.5$ & 84,488 & 19,934 & 33.8\% & 33.2\% & -0.6 \\
+\enddata
+\tablecomments{Public counts are read-only SDSS DR17 SkyServer counts for the same redshift, mass, sSFR, and four-line S/N$\geq3$ constraints.  The full public four-line parent has 249,917 rows; the cached SpecObjID-ordered pilot subset has 60,000 rows, or 24.0\% coverage.  No checked marginal bin exceeds a 5 percentage-point deviation, but the subset is still row-capped and non-random.}
+\end{deluxetable*}
+
+
+\section{Measured optical quantities}\label{sec:m3p2-methods}
+The threshold grid varies $\log M_\star\geq10.6, 10.8, 11.0$ and $\log {\rm sSFR}<-10.7$ or $<-11.0$.  For each row we report the public parent count, the public four-line S/N$\geq3$ count, the cached count, the cached BPT optical-AGN fraction, and a median H$\alpha$ luminosity proxy.
+
+The H$\alpha$ proxy is now defined from the batch code rather than left implicit.  The script reads the observed SDSS \texttt{h\_alpha\_flux} column in $10^{-17}\,{\rm erg\,s^{-1}\,cm^{-2}}$ units, multiplies by $4\pi D_L^2$ using a low-redshift $H_0=70\,{\rm km\,s^{-1}\,Mpc^{-1}}$ luminosity-distance approximation, and stores $\log_{10}L_{\rm H\alpha}$ in ${\rm erg\,s^{-1}}$.  The overnight pilot did not apply dust-extinction correction, aperture correction, Balmer-decrement correction, or a gas-mass conversion.  The uncertainties shown for $f_{\rm BPT\,AGN}$ are binomial-only; they do not include selection-bootstrap or calibration errors.
+
+\section{Results}\label{sec:m3p2-results}
+\begin{deluxetable*}{lrrrrcc}
+\tabletypesize{\scriptsize}
+\tablecaption{Massive low-sSFR emission-line denominators and optical proxy quantities\label{tab:m3p2-grid}}
+\tablehead{\colhead{$\log M_\star$ cut} & \colhead{$\log {\rm sSFR}$ cut} & \colhead{Public parent $N$} & \colhead{Public S/N$\geq3$ $N$} & \colhead{Cached $N$} & \colhead{Cached/S/N} & \colhead{$f_{\rm BPT\,AGN}$; median $\log L_{\rm H\alpha}$}}
+\startdata
+$\geq10.6$ & $<-10.7$ & 121,533 & 40,797 & 10,270 & 25.2\% & 0.509$\pm$0.005; 40.03 \\
+$\geq10.6$ & $<-11.0$ & 111,172 & 33,564 & 8,400 & 25.0\% & 0.574$\pm$0.005; 39.97 \\
+$\geq10.8$ & $<-10.7$ & 74,070 & 26,170 & 6,729 & 25.7\% & 0.549$\pm$0.006; 40.06 \\
+$\geq10.8$ & $<-11.0$ & 68,649 & 22,324 & 5,695 & 25.5\% & 0.607$\pm$0.006; 40.01 \\
+$\geq11.0$ & $<-10.7$ & 35,092 & 12,692 & 3,334 & 26.3\% & 0.600$\pm$0.008; 40.09 \\
+$\geq11.0$ & $<-11.0$ & 33,125 & 11,288 & 2,941 & 26.1\% & 0.649$\pm$0.009; 40.05 \\
+\enddata
+\tablecomments{Public counts come from read-only SDSS DR17 count checks.  Cached counts and optical AGN fractions come from the preserved 60,000-row sample and Goru/Tori threshold tables.  The BPT-AGN fractions are selection-convolved because weak-line systems are removed before the denominator is formed.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m3\_p2\_gas\_depletion\_efficiency\_figure1.pdf}
+\caption{Preserved batch-run diagnostic for the M3 P2 pilot.  It is now interpreted only as an optical baseline for CO/H~I/dust follow-up target selection; it is not a gas-fraction, depletion-time, or star-formation-efficiency measurement.}
+\label{fig:m3p2-original}
+\end{figure}
+
+\section{Discussion outline}\label{sec:m3p2-discussion}
+The threshold grid is useful because it gives observers a feasible target-list scale for CO or dust follow-up.  It is also a warning: BPT-AGN fractions of 0.509--0.649 should not be read as the prevalence of AGN among all massive quiescent galaxies.  They are conditional fractions among systems with four measurable optical lines, and the public selection-function check shows that this condition removes many low-sSFR galaxies.  Gas-survey citations should therefore appear in the missing-observable paragraph: a real depletion/SFE paper needs molecular or total cold-gas masses, aperture-matched SFRs, nondetections, and matched morphology/environment controls \citep{saintonge2011a,saintonge2011b,saintonge2017,catinella2018}.
+
+\section{Conclusions}\label{sec:m3p2-conclusions}
+\begin{enumerate}
+\item The draft now states that all fractions are conditional on a four-line optical emission denominator and the 60,000-row SpecObjID cap.
+\item The cached-versus-public marginal check found no z/mass/sSFR bin above 5 pp, but it does not repair weak-line/quiescent selection loss.
+\item The H$\alpha$ proxy is an observed-flux luminosity proxy in ${\rm erg\,s^{-1}}$ without extinction, aperture, or gas-mass correction.
+\item The paper should remain a CO/H~I/dust follow-up denominator, not a molecular-gas depletion or SFE result.
+\end{enumerate}
+
+\section*{Reproducibility and safety note}
+Source analysis summary: \texttt{m3\_p2\_gas\_depletion\_efficiency/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  H$\alpha$ proxy definition read from \texttt{run\_remaining\_topic\_pilots.py}.  Draft marker: LANA\_WAVE2\_REPRESENTATIVENESS\_CITATION\_PATCH\_20260708T224851Z.  This file is lane-local and did not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, A., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Catinella et al.(2018)]{catinella2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, arXiv:1802.02373
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Saintonge et al.(2011a)]{saintonge2011a} Saintonge, A., Kauffmann, G., Kramer, C., et al. 2011, arXiv:1103.1642
+\bibitem[Saintonge et al.(2011b)]{saintonge2011b} Saintonge, A., Kauffmann, G., Wang, J., et al. 2011, arXiv:1104.0019
+\bibitem[Saintonge et al.(2017)]{saintonge2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, arXiv:1710.02157
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}
