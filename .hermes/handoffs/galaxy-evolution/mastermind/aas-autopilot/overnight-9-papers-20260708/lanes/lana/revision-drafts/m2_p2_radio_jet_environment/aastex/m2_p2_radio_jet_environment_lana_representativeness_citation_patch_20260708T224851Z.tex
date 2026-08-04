@@ -1,0 +1,99 @@
+% LANA_WAVE2_REPRESENTATIVENESS_CITATION_PATCH_20260708T224851Z
+% Paper: m2_p2_radio_jet_environment
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/figures/}}
+\shorttitle{Representativeness-flagged optical AGN environments}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{A Representativeness-Flagged Optical AGN Environment Denominator for Radio/X-ray Jet-Coupling Follow-up in SDSS DR17}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+This Lana revision patches the Wave-2 M2 P2 draft after external review.  The science product is explicitly an optical denominator: BPT optical-AGN incidence versus an internal nearest-neighbour density ranking among massive SDSS emission-line hosts.  It is not a radio-jet coupling measurement.  The shared public SDSS check finds 249,917 galaxies satisfying the strict four-line S/N$\geq3$ parent selection, while the cached pilot uses a SpecObjID-ordered 60,000-row subset (24.0\% coverage).  A cached-versus-public marginal check finds no redshift, stellar-mass, or sSFR bin above a 5 percentage-point discrepancy, but the subset remains capped and non-random.  For $\log M_\star\geq10.8$ hosts, the high-minus-low BPT optical-AGN fraction is 0.138--0.152 across $k=5$, 10, and 20 internal density rankings.  The safe conclusion is a target-selection one: environment-stratified radio/X-ray follow-up should preserve the optical selection function before discussing jet power, hot gas, or coupling efficiency.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: evolution --- galaxies: environments --- surveys --- methods: data analysis}
+
+\section{Scope and citation boundary}\label{sec:m2p2-scope}
+The parent proposal asks whether gaseous environment changes radio-jet coupling efficiency.  This SDSS-only manuscript cannot answer that directly because it contains neither radio jet powers nor X-ray cavity/hot-gas measurements.  The public SDSS DR17 release anchors the observed optical parent \citep{abdurrouf2022,york2000}, and BPT diagnostics anchor the optical classification \citep{baldwin1981,kauffmann2003,kewley2001,kewley2006}.  Radio-mode and hot-atmosphere studies are used only to define the follow-up data still needed \citep{best2005,mcnamara2007,santoro2020,eckert2024}.
+
+The allowed manuscript headline is: in a capped four-line SDSS denominator, massive hosts in the high internal-density quartile have a higher BPT optical-AGN fraction than massive hosts in the low-density quartile.  Forbidden headlines include radio jet coupling efficiency, hot-gas heating balance, cavity power, or causal environmental triggering.
+
+\section{Data, selection, and representativeness}\label{sec:m2p2-data}
+The cached analysis sample requires spectroscopic class \texttt{GALAXY}, $0.02<z<0.12$, finite catalog stellar mass and sSFR, and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$.  The public strict four-line parent has 249,917 rows; the cached analysis table has 60,000 rows produced by a \texttt{TOP 60000 ... ORDER BY specObjID} query.  For the massive-host cut used here, $\log(M_\star/M_\odot)\geq10.8$, public SDSS has 85,225 mass-selected rows, 35,482 four-line S/N$\geq3$ eligible rows, and 9,298 cached rows.
+
+
+\begin{deluxetable*}{llrrrrr}
+\tablecaption{Cached sample versus public SDSS four-line parent: largest marginal deviations for m2p2\label{tab:m2p2-cached-public}}
+\tablehead{\colhead{Dimension} & \colhead{Bin} & \colhead{Public $N$} & \colhead{Cached $N$} & \colhead{Public frac.} & \colhead{Cached frac.} & \colhead{$\Delta$ pp}}
+\startdata
+redshift & 0.080--0.120 & 92,343 & 23,385 & 36.9\% & 39.0\% & +2.0 \\
+stellar mass & 8.0--9.5 & 37,970 & 8,139 & 15.2\% & 13.6\% & -1.6 \\
+sSFR & $-10.0$--$-9.5$ & 84,488 & 19,934 & 33.8\% & 33.2\% & -0.6 \\
+\enddata
+\tablecomments{Public counts are read-only SDSS DR17 SkyServer counts for the same redshift, mass, sSFR, and four-line S/N$\geq3$ constraints.  The full public four-line parent has 249,917 rows; the cached SpecObjID-ordered pilot subset has 60,000 rows, or 24.0\% coverage.  No checked marginal bin exceeds a 5 percentage-point deviation, but the subset is still row-capped and non-random.}
+\end{deluxetable*}
+
+
+All reported optical-AGN fractions are therefore conditional on four-line emission detection and the SpecObjID-ordered cap.  The representativeness check reduces one external-review concern in broad z/mass/sSFR marginals, but it does not make the cached table spatially random, volume complete, edge corrected, or halo selected.
+
+\section{Density method and known confounds}\label{sec:m2p2-methods}
+Density is an internal rank proxy.  The original batch code uses an $H_0=70$ low-redshift distance proxy to convert $(\alpha,\delta,z)$ into approximate Cartesian coordinates and then ranks galaxies by nearest-neighbour distance.  For this patch, the result table keeps the Goru/Tori $k=5$, 10, and 20 neighbour-count checks.  No survey mask, angular edge correction, redshift-space distortion model, fiber-collision correction, halo mass, group catalogue, central/satellite label, or radio morphology enters the density estimate.  Density quartiles are assigned inside the cached 60,000-row emission-line sample and then intersected with $\log M_\star\geq10.8$ hosts; low- and high-density denominators are not required to be equal.
+
+These method limits are especially important because massive hosts vary with redshift and stellar mass across density bins.  The table below should be integrated with a z--mass balance diagnostic before any stronger environment language is used.
+
+\section{Results}\label{sec:m2p2-results}
+\begin{deluxetable*}{lccc}
+\tablecaption{Massive-host BPT optical-AGN fraction by internal density ranking\label{tab:m2p2-density}}
+\tablehead{\colhead{Density proxy} & \colhead{Low-density massive hosts} & \colhead{High-density massive hosts} & \colhead{$\Delta f_{\rm BPT\,AGN}$ high--low}}
+\startdata
+$k=5$ nearest neighbours & 959/2,604 (0.368) & 1,002/1,980 (0.506) & 0.138 [0.107, 0.166] \\
+$k=10$ nearest neighbours & 1,007/2,746 (0.367) & 948/1,864 (0.509) & 0.142 [0.114, 0.171] \\
+$k=20$ nearest neighbours & 1,062/2,906 (0.365) & 942/1,819 (0.518) & 0.152 [0.123, 0.181] \\
+\enddata
+\tablecomments{Rows are restricted to cached massive hosts with $\log M_\star\geq10.8$.  Fractions are BPT optical-AGN fractions inside the emission-line denominator.  The stability across $k$ is a neighbour-count sensitivity check, not proof of a physical gas-density scale.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m2\_p2\_radio\_jet\_environment\_figure1.pdf}
+\caption{Preserved batch-run SDSS diagnostic.  In this patched draft the figure is an optical/environment denominator visualization only; it does not encode radio morphology, jet power, cavity energetics, or hot-gas coupling.}
+\label{fig:m2p2-original}
+\end{figure}
+
+\section{Discussion outline}\label{sec:m2p2-discussion}
+The useful result is a follow-up design statement.  If a radio/X-ray program wants to test jet coupling across environment, this SDSS table supplies massive optical-AGN candidate counts and a reproducible internal-density stratification.  The physical test still needs cross-matched radio luminosity/morphology, X-ray gas or cavity information, redshift-space and edge corrections, and nondetection accounting.  Best et al.-style massive-host radio demographics \citep{best2005} and hot-atmosphere energetics \citep{mcnamara2007,eckert2024} should appear in the future-observable paragraph, not as evidence for the optical fraction itself.
+
+\section{Conclusions}\label{sec:m2p2-conclusions}
+\begin{enumerate}
+\item The draft now contains a cached-versus-public representativeness table: the largest checked marginal differences are +2.0 pp in redshift, -1.6 pp in stellar mass, and -0.6 pp in sSFR.
+\item The $k=5$, 10, and 20 density rankings give high-minus-low massive-host BPT optical-AGN contrasts of 0.138--0.152.
+\item The result remains an optical target-denominator association and must not be written as a radio-jet coupling-efficiency measurement.
+\end{enumerate}
+
+\section*{Reproducibility and safety note}
+Source analysis summary: \texttt{m2\_p2\_radio\_jet\_environment/analysis\_results.json} under run SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z.  Draft marker: LANA\_WAVE2\_REPRESENTATIVENESS\_CITATION\_PATCH\_20260708T224851Z.  This file is lane-local and did not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, A., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Eckert et al.(2024)]{eckert2024} Eckert, D., et al. 2024, arXiv:2403.17145
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Santoro et al.(2020)]{santoro2020} Santoro, F., Tadhunter, C., Baron, D., Morganti, R., \& Holt, J. 2020, arXiv:2009.11175
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

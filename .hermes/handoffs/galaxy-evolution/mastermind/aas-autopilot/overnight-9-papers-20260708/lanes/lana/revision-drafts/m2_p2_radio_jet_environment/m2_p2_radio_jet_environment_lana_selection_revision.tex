@@ -1,0 +1,93 @@
+% LANA_MANUSCRIPT_TICK_20260708T161724Z
+% Paper: m2_p2_radio_jet_environment
+% Lane-local revision draft only; does not overwrite public-linked manuscripts or PDFs.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m2_p2_radio_jet_environment/figures/}}
+\shorttitle{Selection-disclosed radio-jet follow-up denominators}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{Selection-disclosed environment-stratified optical AGN denominators for radio-jet coupling follow-up in SDSS DR17}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+We revise the SDSS-only pilot for the active topic ``Environmental dependence of radio-jet coupling efficiency in galaxy gas.''  The result is not a radio-jet coupling measurement: it is an optical-AGN/environment denominator for later radio/X-ray follow-up.  Public SDSS DR17 count checks show that 249,917 galaxies satisfy the four-line S/N$\geq3$ redshift, mass, and sSFR cuts used by the pilot, while the cached analysis sample is a capped 60,000-row subset selected by SpecObjID order.  For the massive-host cut used here, $\log M_\star\geq10.8$, the public parent has 85,225 rows, the four-line S/N$\geq3$ eligible set has 35,482 rows, and the cached sample contains 9,298 rows.  Within that cached massive-host denominator, the high-minus-low BPT optical AGN fraction is 0.138--0.152 across $k=5$, 10, and 20 nearest-neighbour density rankings.  This contrast is insensitive to the tested neighbour-count choice, but it does not establish radio jet power, hot-gas coupling, or causal feedback efficiency.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: evolution --- surveys --- methods: data analysis}
+
+\section{Scope and merge boundary}\label{sec:scope}
+This Lana revision replaces the batch draft's short bullet list with a selection-disclosed manuscript structure, an explicit density-scale table, and paper-specific guardrails.  It is a lane-local draft only.  The current public-linked manuscript and PDF are not overwritten.
+
+The full science proposal asks whether gaseous environment changes the efficiency with which radio jets couple to galaxy and halo gas.  SDSS optical spectra alone do not provide radio morphology, jet ages, cavity enthalpy, shock energetics, hot-gas density, or calibrated jet powers.  Therefore this pilot can only identify an optical denominator and an environment proxy for later radio/X-ray observations.
+
+\section{Data, selection, and denominator disclosure}\label{sec:data}
+The analysis uses the cached public SDSS DR17 emission-line sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z.  The row-level selection requires spectroscopic class \texttt{GALAXY}, $0.02<z<0.12$, finite stellar mass and catalog specific SFR, and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$.  BPT optical AGN are objects above the Kewley et al. demarcation in the [N~II]/H$\alpha$ diagnostic after the Baldwin--Phillips--Terlevich line-ratio construction.  The massive-host subset uses $\log(M_\star/M_\odot)\geq10.8$.
+
+A later integration pass must preserve the selection-function disclosure in Table~\ref{tab:m2p2-selection}.  The cached 60,000 rows are a capped subset of the S/N$\geq3$ eligible population, not a complete or random SDSS parent.  The massive-host counts show that the environmental AGN fractions are measured inside a 9,298-row cached subset of 35,482 public S/N-eligible massive hosts.
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Selection-function counts relevant to the M2 P2 massive-host denominator\label{tab:m2p2-selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public SDSS DR17 $N$} & \colhead{Retention} & \colhead{Cached $N$} & \colhead{Cached / public}}
+\startdata
+SpecObj galaxy, $0.02<z<0.12$ & 501,060 & \nodata & \nodata & \nodata \\
+Mass/sSFR-bounded four-line S/N$\geq3$ parent & 249,917 & 49.9\% of spectro-$z$ parent & 60,000 & 24.0\% \\
+Massive hosts, $\log M_\star\geq10.8$, parent & 85,225 & \nodata & \nodata & \nodata \\
+Massive hosts, four-line S/N$\geq3$ & 35,482 & 41.6\% of massive parent & 9,298 & 26.2\% \\
+\enddata
+\tablecomments{Counts are from the read-only SDSS DR17 selection-function packet.  They diagnose the optical denominator only and are not evidence for radio jet coupling.}
+\end{deluxetable*}
+
+\section{Measurements}\label{sec:methods}
+We use three internal density rankings computed from approximate comoving Cartesian positions and the distance to the $k$th nearest neighbour, with $k=5$, 10, and 20.  Density quartiles are assigned in the full 60,000-galaxy emission-line denominator and are then intersected with the massive-host subset.  The low- and high-density massive-host row counts in Table~\ref{tab:m2p2-density} therefore need not be equal; the point is to ask how many massive optical AGN fall into the full-sample low- and high-density environments under each internal ranking.
+
+The primary statistic is
+\begin{equation}
+\Delta f_{\rm AGN}=f_{\rm BPT\,AGN,high\ density}-f_{\rm BPT\,AGN,low\ density}.
+\end{equation}
+Bootstrap intervals are inherited from the Goru robustness table and should be recomputed if the source sample or density definition changes.
+
+\section{Results}\label{sec:results}
+The sign and scale of the massive-host optical-AGN contrast are similar for the three tested neighbour counts.  The result should be described as insensitive to this neighbour-count choice, not as a physically scale-robust environment measurement.
+
+\begin{deluxetable*}{lccc}
+\tablecaption{Massive-host optical AGN fraction by internal density ranking\label{tab:m2p2-density}}
+\tablehead{\colhead{Density proxy} & \colhead{Low-density massive hosts} & \colhead{High-density massive hosts} & \colhead{$\Delta f_{\rm AGN}$ high--low}}
+\startdata
+$k=5$ nearest neighbours & 959/2,604 (0.368) & 1,002/1,980 (0.506) & 0.138 [0.107, 0.166] \\
+$k=10$ nearest neighbours & 1,007/2,746 (0.367) & 948/1,864 (0.509) & 0.142 [0.114, 0.171] \\
+$k=20$ nearest neighbours & 1,062/2,906 (0.365) & 942/1,819 (0.518) & 0.152 [0.123, 0.181] \\
+\enddata
+\tablecomments{Rows are restricted to cached massive hosts with $\log M_\star\geq10.8$.  Fractions are BPT optical AGN fractions.  Density is an internal nearest-neighbour ranking, not a group catalogue, halo mass, radio-jet environment, or hot-gas measurement.}
+\end{deluxetable*}
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m2\_p2\_radio\_jet\_environment\_figure1.pdf}
+\caption{Preserved batch-run diagnostic for the M2 P2 pilot.  The figure and Table~\ref{tab:m2p2-density} define an SDSS optical/environment target denominator; they do not measure radio jet power or jet--gas coupling.}
+\label{fig:m2p2-original}
+\end{figure}
+
+\section{Discussion outline and scope guards}\label{sec:discussion}
+The result is useful because it identifies where an environment-stratified radio/X-ray follow-up sample would draw massive optical AGN candidates.  The analysis does not show that high-density gas improves or suppresses coupling efficiency.  It also does not distinguish central from satellite galaxies, group halo mass, merger state, radio-loud AGN, jet orientation, or hot-gas thermodynamics.
+
+A later integrated manuscript should add topic-specific bibliography only after the Literature Wave-2 source packet classifies sources as method anchors, status motivation, or future-data requirements.  Until then, the safe wording is: ``In this capped SDSS four-line emission denominator, massive hosts in the high internal-density quartile have a higher BPT optical AGN fraction than massive hosts in the low-density quartile.''
+
+\section*{Reproducibility and safety note}
+Draft marker: LANA\_MANUSCRIPT\_TICK\_20260708T161724Z.  Inputs used for this revision were the current source manuscript, \texttt{analysis\_results.json}, Tori Wave-2 table draft, Goru topic-metric CSV, and Tori selection-function attrition tables.  This draft writes lane-local artifacts only and does not overwrite public-linked manuscripts or PDFs.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

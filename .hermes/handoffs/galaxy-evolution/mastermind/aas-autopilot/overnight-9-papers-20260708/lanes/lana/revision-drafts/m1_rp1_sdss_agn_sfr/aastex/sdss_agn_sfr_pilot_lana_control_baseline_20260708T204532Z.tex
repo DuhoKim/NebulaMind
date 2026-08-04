@@ -1,0 +1,190 @@
+% LANA_WAVE3_FLAGSHIP_CONTROL_SUITE_REVISION_20260708T204532Z
+% Paper: m1_rp1_sdss_agn_sfr; Lana lane-local draft only.
+\documentclass[twocolumn]{aastex631}
+
+\usepackage{amsmath}
+\usepackage{booktabs}
+
+\shorttitle{SDSS Optical AGN sSFR Pilot}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+
+\title{BPT Optical AGN Hosts Relative to Star-Forming and Non-AGN SDSS Controls: A Selection-Flagged Pilot}
+
+\correspondingauthor{NebulaMind Autopilot}
+\email{no-reply@example.invalid}
+
+\author[0000-0000-0000-0000]{NebulaMind Autopilot}
+\affiliation{NebulaMind Research Automation, local reproducible pilot run}
+
+\begin{abstract}
+We execute a bounded pilot version of a proposed galaxy-evolution study: whether optically selected active galactic nucleus (AGN) hosts show a star-formation deficit relative to matched inactive emission-line galaxies.  Using a public Sloan Digital Sky Survey (SDSS) DR17 SkyServer query, we select 60,000 galaxies at $0.02<z<0.12$ with signal-to-noise ratio $\geq 3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$, plus finite MPA/JHU-style stellar-mass and specific-star-formation-rate estimates.  Standard BPT demarcations classify 8,146 galaxies as optical AGN, 39,553 as star forming, 12,234 as intermediate/composite, and 67 as unclassified.  Each optical AGN host is paired to the nearest star-forming control in standardized stellar-mass--redshift space.  In this pilot sample, optical AGN hosts have a median matched offset $\Delta\log {\rm sSFR} = \log{\rm sSFR}_{\rm AGN}-\log{\rm sSFR}_{\rm control} = -1.31$ dex, with a bootstrap 95\% interval of $[-1.33,-1.28]$ dex.  A simple linear model adjusted for stellar mass and redshift gives an AGN coefficient of $-1.20\pm 0.01$ dex.  A selection-function and robustness pass materially qualifies the headline number: public SDSS count checks show that the capped 60,000-row cache covers only 24.0\% of the 249,917 strict four-line S/N$\geq3$ eligible rows, and the median matched offset weakens to $-1.16$ dex at S/N$\geq5$, $-0.74$ dex at S/N$\geq10$, and $-0.76$ dex for a Seyfert-like [N~II]-branch proxy.  A new control-baseline bracket shows that the median offset is $-0.86$ dex against all non-AGN emission-line controls and approximately zero against low-sSFR non-AGN emission-line controls.  The result demonstrates a reproducible survey-analysis path from the proposal to a measurable quantity, but it should not be read as causal evidence for AGN feedback: optical selection, aperture effects, class-dependent star-formation estimator modes, retired/LINER-like ionization, morphology, halo environment, and AGN duty-cycle timing remain uncontrolled.
+\end{abstract}
+
+\keywords{galaxies: active --- galaxies: evolution --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Introduction}\label{sec:intro}
+AGN feedback is often invoked as a mechanism that links black-hole growth, gas heating or removal, and the shutdown of star formation in massive galaxies.  A basic observational precursor to a causal feedback test is simpler: at fixed confounding variables, do galaxies classified as AGN hosts show a measurable deficit in star formation relative to otherwise similar non-AGN systems?  The research proposal that motivated this pilot asked for a matched-control survey analysis rather than another restatement of the broad AGN-quenching narrative.
+
+This paper is a first local execution of that proposal, now revised to expose the selection function and robustness envelope before any physical interpretation.  We use public SDSS DR17 spectroscopy and photometry \citep{abdurrouf2022} to build an emission-line galaxy sample, classify sources on the [N~II] BPT diagram \citep{baldwin1981,kewley2001,kauffmann2003,kewley2006}, and compare optical AGN hosts to star-forming controls matched in stellar mass and redshift.  Prior low-redshift work on the AGN--star-formation connection \citep{lamassa2013} motivates the association test, but the analysis deliberately stops at a pilot association measurement.  It does not attempt to measure molecular-gas depletion, mechanical-energy coupling, halo environment, or the AGN duty cycle.
+
+\section{Data and Sample}\label{sec:data}
+The sample is queried from SDSS DR17 SkyServer through \texttt{astroquery.sdss}; SDSS DR17 is the public survey release described by \citet{abdurrouf2022}.  We join SDSS spectroscopic objects, photometric model magnitudes, emission-line measurements, and derived stellar-mass/star-formation quantities exposed through the public catalog tables.  The stellar-mass and star-formation quantities follow the SDSS physical-property/catalog context of \citet{brinchmann2004}.  The local query is preserved with the data products in the run directory.
+
+The selection requires spectroscopic class \texttt{GALAXY}, $0.02<z<0.12$, positive H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$ fluxes, and signal-to-noise ratio $\geq3$ in all four lines.  We also require $8.0 < \log(M_\star/M_\odot) < 12.5$ and $-14 < \log({\rm sSFR}/{\rm yr}^{-1}) < -7$ in the catalog median estimates.  The query returns 60,000 rows; all satisfy the analysis cuts after finite-value filtering.
+
+\subsection{Selection-function disclosure}\label{sec:selection_function}
+This revision adds an explicit denominator audit because the cached sample is not a random draw from all low-redshift SDSS galaxies.  A read-only public SDSS DR17 count query finds 501,060 spectroscopic galaxies at $0.02<z<0.12$; after joins, mass/sSFR bounds, positive four-line flux/error requirements, and four BPT lines at S/N$\geq3$, the strict eligible parent contains 249,917 rows.  The preserved pilot query uses \texttt{SELECT TOP 60000 ... ORDER BY s.specObjID}, so the cached analysis table covers 60,000/249,917 = 24.0\% of the strict four-line eligible parent rather than the full denominator.  The four-line requirement is also sSFR-dependent: the public count audit retains only 33.56\% of the $-12<\log\mathrm{sSFR}<-11$ parent bin at S/N$\geq3$, compared with 94.85\% for $-10<\log\mathrm{sSFR}<-9.5$.  Therefore all incidence and matched-offset statements below are statements about this capped, emission-line selected optical denominator.
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Public SDSS DR17 selection-function counts for the optical-denominator pilot\label{tab:selectionfunction}}
+\tablehead{\colhead{Stage} & \colhead{SDSS DR17 $N$} & \colhead{Prev. retention} & \colhead{Cached $N$} & \colhead{Cached/SDSS}}
+\startdata
+SpecObj GALAXY, $0.02<z<0.12$ & 501,060 & -- & -- & -- \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & 83.1\% & -- & -- \\
+plus galSpecLine join & 416,554 & 100.0\% & -- & -- \\
+four BPT lines positive with positive errors & 373,445 & 89.7\% & 60,000 & 16.1\% \\
+four BPT lines S/N$\geq3$ & 249,917 & 66.9\% & 60,000 & 24.0\% \\
+four BPT lines S/N$\geq5$ & 176,523 & 70.6\% & 42,446 & 24.0\% \\
+four BPT lines S/N$\geq10$ & 91,768 & 52.0\% & 22,311 & 24.3\% \\
+\enddata
+\tablecomments{Counts come from the overnight read-only public SDSS count audit.  They diagnose the denominator and cached-row cap; they are not evidence for a causal feedback mechanism.}
+\end{deluxetable*}
+
+
+\section{Classification and Matched-Control Test}\label{sec:methods}
+We compute
+\begin{equation}
+ x = \log\left(\frac{[\mathrm{N\,II}]\lambda6584}{\mathrm{H}\alpha}\right), \qquad
+ y = \log\left(\frac{[\mathrm{O\,III}]\lambda5007}{\mathrm{H}\beta}\right).
+\end{equation}
+Star-forming galaxies lie below the empirical \citet{kauffmann2003} line,
+\begin{equation}
+ y < \frac{0.61}{x-0.05} + 1.30,
+\end{equation}
+while optical AGN lie above the theoretical maximum-starburst line from \citet{kewley2001},
+\begin{equation}
+ y > \frac{0.61}{x-0.47} + 1.19.
+\end{equation}
+Objects between those curves are labeled intermediate/composite.  This revision keeps the original broad BPT-AGN label for reproducibility, but interprets it as an optical ionization proxy: Seyfert/LINER separation and retired-galaxy contamination are known limitations of line-ratio-only classifications \citep{kewley2006,stasinska2015}.  For each optical AGN host, we identify the nearest star-forming control in standardized $(\log M_\star,z)$ space using a KD-tree.  Controls are selected with replacement so that every AGN has a valid local comparison.  The primary statistic is the paired difference
+\begin{equation}
+ \Delta\log{\rm sSFR} = \log{\rm sSFR}_{\rm AGN} - \log{\rm sSFR}_{\rm control}.
+\end{equation}
+Uncertainties on the median and mean paired offsets are estimated by nonparametric bootstrap resampling of the matched pairs.
+
+\section{Results}\label{sec:results}
+Figure~\ref{fig:bpt} shows the BPT classification.  The finite analysis sample contains 39,553 star-forming galaxies, 12,234 intermediate objects, 8,146 optical AGN, and 67 unclassified sources.  The optical AGN population is redder and more massive than the star-forming population before matching: the median optical AGN host has $z=0.076$, $\log M_\star=10.79$, $\log{\rm sSFR}=-11.77$, and $u-r=2.76$, while the star-forming sample has median $z=0.069$, $\log M_\star=10.02$, $\log{\rm sSFR}=-9.91$, and $u-r=1.81$.
+
+After matching each optical AGN to the nearest star-forming galaxy in mass--redshift space, the median absolute match separation is 0.0045 dex in $\log M_\star$ and 0.00021 in redshift.  Figure~\ref{fig:offsets} shows the paired offset distribution and the parent sSFR--mass plane.  The median paired offset is -1.31 dex, with a bootstrap 95\% interval of $[-1.33,-1.28]$ dex.  The mean paired offset is -1.20 dex, with a bootstrap 95\% interval of $[-1.22,-1.18]$ dex.
+
+As a simple regression cross-check, we fit $\log{\rm sSFR} = \beta_0 + \beta_1 I_{\rm AGN} + \beta_2\log M_\star + \beta_3 z$ to the star-forming plus AGN classes.  The AGN indicator coefficient is $-1.20\pm0.01$ dex, with a nominal 95\% interval of $[-1.21,-1.19]$ dex.  Both the matched and regression summaries therefore recover a large optical-AGN-associated sSFR deficit in this bounded pilot sample, but the robustness pass below shows that its magnitude is not invariant to line-strength and optical-subclass choices.
+
+\subsection{Robustness to line strength and optical-AGN proxy}\label{sec:robustness}
+Table~\ref{tab:robustness} and Figure~\ref{fig:robustness} summarize the overnight robustness pass.  The sign of the matched offset remains negative across the tested optical definitions, but the magnitude changes substantially.  Raising the four-line threshold from S/N$\geq3$ to S/N$\geq10$ reduces the broad-BPT matched median from $-1.31$ dex to $-0.74$ dex.  Within the S/N$\geq3$ cached sample, a high-excitation proxy gives $-1.14$ dex, while an [N~II]-branch Seyfert-like proxy gives $-0.76$ dex and a LINER-like proxy gives $-1.47$ dex.  The latter split is especially important: the large broad-BPT offset is partly a statement about which low-ionization systems enter the optical-AGN side, not a direct measurement of feedback shutting off star formation.
+
+\begin{deluxetable*}{llrrrr}
+\tablecaption{BPT/S/N sensitivity of matched optical-class sSFR offsets\label{tab:robustness}}
+\tablehead{\colhead{S/N cut} & \colhead{Target definition} & \colhead{$N_{target}$} & \colhead{$N_{ctrl}$} & \colhead{Median $\Delta\log\mathrm{sSFR}$} & \colhead{95\% CI}}
+\startdata
+$\geq$3 & broad BPT AGN vs. BPT star-forming & 8,146 & 39,553 & -1.31 & [-1.33, -1.28] \\
+$\geq$5 & broad BPT AGN vs. BPT star-forming & 4,032 & 31,252 & -1.16 & [-1.21, -1.13] \\
+$\geq$10 & broad BPT AGN vs. BPT star-forming & 1,530 & 18,131 & -0.74 & [-0.78, -0.72] \\
+$\geq$3 & high-excitation $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$ proxy & 4,440 & 39,553 & -1.14 & [-1.18, -1.10] \\
+$\geq$3 & [N~II]-branch Seyfert-like proxy & 2,114 & 39,553 & -0.76 & [-0.82, -0.72] \\
+$\geq$3 & [N~II]-branch LINER-like proxy & 6,032 & 39,553 & -1.47 & [-1.49, -1.44] \\
+\enddata
+\tablecomments{All rows match the target optical class to star-forming controls in stellar-mass/redshift space.  Values are association checks in the capped SDSS emission-line denominator, not causal feedback evidence.}
+\end{deluxetable*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.92\textwidth]{../figures/matched_offset_sensitivity_20260708T162615Z.pdf}
+\caption{Matched sSFR offset sensitivity from the overnight Goru robustness artifact.  The figure is included in this lane-local revision to make the selection/proxy dependence visible in the manuscript itself.  It should travel with any later integration draft before the headline $-1.31$ dex result is used.}
+\label{fig:robustness}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.78\textwidth]{../figures/figure1_bpt.pdf}
+\caption{BPT line-ratio diagram for the SDSS DR17 pilot sample.  Points are colored by the classification used in this analysis.  The dashed line is the empirical star-forming demarcation from \citet{kauffmann2003} and the dotted line is the theoretical maximum-starburst line from \citet{kewley2001}.  The figure verifies that the pilot uses actual measured emission-line ratios rather than catalog labels alone.}
+\label{fig:bpt}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\includegraphics[width=0.95\textwidth]{../figures/figure2_matched_offsets.pdf}
+\caption{Left: matched-pair difference in catalog specific star-formation rate, defined as optical AGN host minus nearest star-forming control in standardized stellar-mass--redshift space.  Right: parent sSFR--stellar-mass distribution for the star-forming and optical-AGN classes.  The pilot finds a large negative sSFR offset for optical AGN hosts, but the result remains an association measurement and not a causal feedback inference.}
+\label{fig:offsets}
+\end{figure*}
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Pilot sample medians by BPT class\label{tab:sample}}
+\tablehead{\colhead{Class} & \colhead{$N$} & \colhead{median $z$} & \colhead{median $\log M_\star$} & \colhead{median $\log{\rm sSFR}$}}
+\startdata
+Star forming & 39,553 & 0.069 & 10.02 & -9.91 \\
+Intermediate & 12,234 & 0.080 & 10.63 & -10.86 \\
+Optical AGN & 8,146 & 0.076 & 10.79 & -11.77 \\
+Unclassified & 67 & 0.083 & 10.88 & -12.07 \\
+\enddata
+\tablecomments{Stellar masses and specific star-formation rates are catalog median estimates exposed through the public SDSS/MPA-JHU-style tables.}
+\end{deluxetable*}
+
+
+\subsection{Control-baseline bracket and match diagnostics}\label{sec:control_bracket}
+The external review correctly flagged a structural limitation: the original comparison is not ``AGN hosts versus all inactive galaxies.''  It is specifically BPT optical-AGN hosts versus BPT star-forming controls.  Because the control class is selected to be star forming by line ratios, the large negative $\Delta\log\mathrm{sSFR}$ should be read as a distance from a star-forming emission-line locus, not as a standalone measurement of quenching caused by AGN feedback.  To make that dependence visible, this Lana revision adds a control-baseline bracket in Table~\ref{tab:controlbracket}.  The additional rows are not alternative causal estimators; they are diagnostics showing how the contrast changes when the control pool is broadened or deliberately moved into low-sSFR territory.
+
+\begin{deluxetable*}{lrrrrr}
+\tablecaption{Control-baseline bracket for the RP-1 matched sSFR offset\label{tab:controlbracket}}
+\tablehead{\colhead{Control pool} & \colhead{$N_{\rm pool}$} & \colhead{Unique controls used} & \colhead{Max reuse} & \colhead{Median $\Delta\log\mathrm{sSFR}$} & \colhead{95\% CI}}
+\startdata
+BPT star-forming only & 39,553 & 4,239 & 26 & -1.309 & [-1.334, -1.282] \\
+All non-AGN emission-line & 51,854 & 6,013 & 8 & -0.859 & [-0.889, -0.827] \\
+Low-sSFR non-AGN emission-line & 5,986 & 3,992 & 11 & -0.001 & [-0.024, 0.023] \\
+Intermediate/unclassified non-SF & 12,301 & 5,254 & 8 & -0.514 & [-0.544, -0.490] \\
+\enddata
+\tablecomments{All rows match the same 8,146 broad-BPT optical-AGN hosts in standardized stellar-mass--redshift space with replacement.  The first row is the preserved original pair table; the other rows are diagnostics recomputed from the cached 60,000-row SDSS table.  The low-sSFR control row nearly erases the median offset by construction, demonstrating that the primary result is a baseline-dependent optical association, not a causal quenching proof.}
+\end{deluxetable*}
+
+The original BPT-star-forming control match uses 4,239 unique star-forming controls out of a 39,553-object pool; the most reused control appears 26 times and the 95th-percentile reuse count is 5.  Median absolute pair separations are $0.0045$ dex in $\log M_\star$ and $0.00021$ in redshift.  The scaled match-distance distribution has median 0.0137, 90th percentile 0.0522, 95th percentile 0.0767, and 99th percentile 0.1528; 10.7\% of pairs exceed a scaled distance of 0.05 and 2.8\% exceed 0.10.  One AGN falls outside the one-dimensional star-forming-control stellar-mass support and one outside the redshift support.  These diagnostics argue for reporting the $-1.31$ dex value together with the S/N/subclass robustness envelope and the control-baseline bracket, not as a single universal AGN-suppression amplitude.
+
+\section{Discussion}\label{sec:discussion}
+The pilot result is qualitatively consistent with the idea that optical AGN hosts often occupy lower-sSFR regions than emission-line star-forming galaxies at similar redshift and stellar mass.  However, the interpretation is intentionally narrow.  BPT-selected optical AGN include heterogeneous ionization sources and may overlap with LINER-like or retired-galaxy systems \citep{kewley2006,stasinska2015}.  SDSS fiber apertures probe central regions whose physical scale varies with redshift.  The catalog sSFR estimates depend on modeling assumptions that can interact with AGN contamination and weak star formation.  The matching used here controls only stellar mass and redshift; morphology, environment, halo mass, gas mass, dust, aperture covering fraction, stellar-continuum ionization, and AGN luminosity are not included.
+
+A second limitation is the catalog sSFR estimator itself.  In the SDSS/MPA-JHU-style context, star-forming galaxies can be tied closely to emission-line SFR calibrations, whereas AGN/composite or weak-line systems may rely more heavily on continuum/D$_n$4000-style information and aperture/model assumptions \citep{brinchmann2004}.  This lane-local draft does not contain the estimator-mode flags required to correct that mismatch, so the offset must be described as a catalog-sSFR association in an optical-classified sample.
+
+The new selection, robustness, and control-baseline checks change how the headline number should be carried forward.  The $-1.31$ dex median is the broad-BPT, S/N$\geq3$, capped-cache estimate.  The smaller S/N$\geq10$ and Seyfert-like values show that a more conservative optical-AGN definition yields a still-negative but substantially weaker association.  Conversely, the LINER-like branch yields a stronger deficit but is exactly where retired/old-stellar-population ionization is a stronger concern.  A later publishable analysis should therefore report a bracketed optical-association range rather than a single causal-sounding deficit.
+
+Consequently, the correct conclusion is not that AGN feedback has been proven.  The result instead demonstrates that the proposal can be operationalized as a measurable survey test, and it identifies the next requirements for a publishable analysis: stricter AGN subclasses, aperture corrections, morphology and environment controls, treatment of retired/LINER-like galaxies, comparison to non-emission-line quiescent controls, and direct gas or AGN-power observables.
+
+\section{Conclusions}\label{sec:conclusions}
+We used a public SDSS DR17 query to execute a first AAS-style pilot analysis derived from the AGN-feedback research proposal.  The main outcomes are:
+\begin{enumerate}
+\item A reproducible emission-line sample of 60,000 galaxies was built from public SDSS spectroscopy, photometry, and derived stellar-mass/sSFR quantities.
+\item BPT cuts classify 8,146 objects as optical AGN and 39,553 as star-forming controls.
+\item Nearest-neighbor matching in stellar mass and redshift gives a median broad-BPT optical-AGN sSFR offset of -1.31 dex relative to star-forming controls, with bootstrap 95\% interval $[-1.33,-1.28]$ dex.
+\item Selection-function and robustness checks are now manuscript-visible: the cached table is 60,000/249,917 = 24.0\% of the strict public SDSS four-line S/N$\geq3$ denominator, and the matched median weakens to -0.74 dex at S/N$\geq10$ and -0.76 dex for a Seyfert-like proxy.
+\item The analysis supports a real survey-measurement path for the proposal, but it remains an association pilot and does not establish causal AGN feedback.
+\end{enumerate}
+
+\section*{Reproducibility and Safety Note}
+The source run identifier is SDSS-AGN-SFR-PILOT-20260708T122000Z.  This lane-local revision identifier is LANA\_WAVE3\_FLAGSHIP\_CONTROL\_SUITE\_REVISION\_20260708T204532Z.  The preserved artifacts include the original SQL query, CSV tables, figures, JSON summary, manuscript source, compiled PDF, the overnight selection-function audit, and the overnight Goru robustness tables/figure.  The workflow used read-only public SDSS/literature artifacts plus local artifact writes only.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and open-source Python tools.
+
+\begin{thebibliography}{}
+
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJ, 765, L33
+\bibitem[Stasi\'nska et al.(2015)]{stasinska2015} Stasi\'nska, G., Costa-Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodr\'e, L. 2015, MNRAS, 449, 559
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

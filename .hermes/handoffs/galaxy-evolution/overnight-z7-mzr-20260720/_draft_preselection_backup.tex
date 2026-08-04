@@ -1,0 +1,97 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\shorttitle{A mass- and calibration-controlled upper bound on z>7 MZR evolution}
+\shortauthors{NebulaMind Lab}
+
+\begin{document}
+
+\title{A Calibration- and Mass-Controlled Upper Bound on Mass--Metallicity Evolution at $z>7$}
+
+\author{NebulaMind Lab (autonomous overnight)}
+\affiliation{NebulaMind AI Astronomy Encyclopedia (nebulamind.net)}
+
+\begin{abstract}
+We report a \emph{bounded, automated, descriptive result --- not a validated measurement} --- on the evolution of the gas-phase mass--metallicity relation (MZR) at $z>7$. Placing an SDSS local anchor ($N=203{,}599$ star-forming galaxies, Tremonti et al.\ 2004 [T04] scale) and the JWST spectroscopic census of Nakajima et al.\ (2023) onto a single abundance scale via the Kewley \& Ellison (2008) metallicity-dependent T04$\rightarrow$PP04-O3N2 cubic, and comparing only within the stellar-mass overlap window $\log(M_\star/M_\odot)\in[8.0,9.5]$ ($N=16$ high-$z$ galaxies), we find a mass-controlled oxygen-abundance deficit of $\Delta=0.45$~dex (Te-direct subset only: $0.33$~dex) below the local relation, with a bootstrap $95\%$ confidence interval $[0.28,0.62]$ that excludes zero. The offset does \emph{not} vanish on the matched scale (the naive unmatched-T04 value is $0.57$~dex; calibration accounts for only $\sim0.12$~dex) and it survives $6$ of $7$ pre-registered systematics tests. We nonetheless label this a \emph{strong upper bound on $z>7$ MZR evolution, not a detection}, because the one failing test is decisive: the JWST sample is emission-line/UV selected, which biases $12+\log(\mathrm{O/H})$ downward --- in the \emph{same} direction as the claimed offset --- by an amount ($\sim0.1$--$0.2$~dex) that cannot be bounded from the data on disk. The sample is further single-survey (Nakajima+23 only), small ($N=16$ in overlap), and lacks a $z>7$ simulation comparator. The measured deficit therefore caps, rather than measures, early chemical evolution.
+\end{abstract}
+
+\keywords{Galaxy evolution --- Galaxy abundances --- Galaxy chemical evolution --- High-redshift galaxies --- Star formation}
+
+\section{Introduction}
+The gas-phase mass--metallicity relation (MZR) is among the tightest scaling relations in galaxy evolution, encoding the balance of star formation, metal production, pristine-gas accretion, and metal-loaded outflows \citep{Tremonti2004,KewleyEllison2008}. Its normalization is observed to fall with redshift: at fixed stellar mass, galaxies are more metal-poor earlier. \citet{Sanders2021} report a mild, well-behaved trend $d\log(\mathrm{O/H})/dz = -0.11\pm0.02$ at fixed mass over $z=0$--$3.3$, and that part of the picture is not contested.
+
+What \emph{is} contested is the amplitude and interpretation of the offset in the $z>7$ (JWST) regime. \citet{Langeroodi2023} infer a $z\sim8$ MZR normalization roughly $0.9$~dex below local from $11$ lensed galaxies, but explicitly flag this as an early small-sample constraint rather than a universal zero point. \citet{Curti2024}, from JADES, fit a shallower low-mass slope ($0.17\pm0.03$) than the $\simeq0.30$ that \citet{Sanders2021} find invariant to $z\sim3.3$, and report a median fundamental-metallicity-relation offset of $\sim0.5$~dex above $z\sim6$. Whether $z>7$ galaxies are metal-poor \emph{exactly as the low-$z$ relation extrapolated predicts}, or \emph{anomalously} so, is therefore open.
+
+The disagreement persists because the claimed $z>7$ offset amplitude is comparable to, or smaller than, the known systematic budget. Different calibration families shift $12+\log(\mathrm{O/H})$ by up to $\sim0.7$~dex \citep{KewleyEllison2008}, and \citet{Hirschmann2023} show that applying $z=0$ strong-line calibrations to early-galaxy ISM conditions can bias $\mathrm{O/H}$ \emph{downward} by up to $\sim1$~dex --- larger than the Langeroodi offset itself. Because low-mass $z>7$ samples occupy the steepest part of the local MZR \citep{Tremonti2004}, an unmatched-mass comparison further inflates any apparent deficit.
+
+We therefore pre-commit to a non-circular question, fixed before any number existed: \emph{once SDSS and JWST $z>7$ galaxies are placed on one common abundance scale and matched in stellar mass, does a $z>7$ MZR offset survive, and is that residual larger than the calibration + aperture systematic budget?} Both a surviving offset and a vanishing null are admissible outcomes; the decision criterion is quantitative (matched-scale $|\Delta|-\sigma_{\rm cal,resid}>0$ \emph{and} a bootstrap $95\%$ CI excluding zero), and calibration is reconciled \emph{first}. The claim ceiling is deliberately capped: even a surviving offset is a constraint, not a precision MZR.
+
+\section{Data}
+\textbf{Local anchor.} We use the SDSS MPA--JHU value-added catalog, selecting BPT star-forming galaxies (\texttt{bptclass}$=1$) with valid median-posterior stellar mass and gas-phase metallicity (\texttt{oh\_p50}, $12+\log(\mathrm{O/H})$ on the T04 scale), $N=203{,}599$ galaxies over $7<\log M_\star<12.5$. The running-median T04 relation is fit with an asymptotic form ($Z_0=9.25$, $\log M_0=10.11$, $\gamma=0.51$; rms $0.021$~dex), giving $12+\log(\mathrm{O/H})=8.58$ at $\log M_\star=9.0$ with a per-bin scatter of $0.15$~dex. SDSS line fluxes are not on disk, so the abundance scale is reconciled by conversion rather than re-derivation.
+
+\textbf{High-$z$ sample.} We pulled the Nakajima et al.\ (2023) JWST census from VizieR (\texttt{J/ApJS/269/33}, table~D1) via TAPVizieR: $N=182$ total, $34$ at $z>7$, and $26$ at $z>7$ with both stellar mass and $12+\log(\mathrm{O/H})$. Restricting to the SDSS mass-overlap window $\log M_\star\in[8.0,9.5]$ and excluding three mass upper limits leaves $N=16$ galaxies. Their abundances are $100\%$ oxygen-based: $4$ direct-Te and $12$ R23/R3 strong-line (Nakajima et al.\ 2022 calibration, Te-anchored; overlap-sample breakdown --- the broader $z>7$ census of $26$ galaxies contains $6$ direct-Te); no nitrogen-based diagnostic is used. The Curti et al.\ (2024) JADES table is not deposited in VizieR TAP and is used only as its published relation fit, $12+\log(\mathrm{O/H})=7.72+0.17\log(M_\star/10^{8})$, for context.
+
+\section{Method}
+\textbf{Calibration reconciliation (make-or-break).} We put SDSS onto the Nakajima Te/PP04-O3N2 scale using the exact \citet{KewleyEllison2008} metallicity-dependent cubic,
+\begin{align}
+12+\log(\mathrm{O/H})_{\rm PP04\text{-}O3N2} =\ & 230.782 - 75.79752\,x \nonumber\\
+ & + 8.526986\,x^2 - 0.3162894\,x^3,
+\end{align}
+with $x=12+\log(\mathrm{O/H})_{\rm T04}$, valid over $x\in[8.05,9.2]$ (rms $0.046$~dex). This conversion is strongly metallicity-dependent --- the shift is $\sim0.0$~dex at $\log M_\star=8.0$ but $\sim-0.24$~dex at $\log M_\star=9.5$ --- so the first-order bulk $-0.24$~dex used at design time over-corrects precisely where the $z>7$ galaxies live, and is replaced by the cubic throughout.
+
+\textbf{Mass-overlap restriction.} The offset is evaluated only within $\log M_\star\in[8.0,9.5]$, where both surveys are populated, and reported as a function of mass on a grid so a residual mass-dependent artifact would be visible. No extrapolation of the SDSS relation beyond its fitted range is used as evidence.
+
+\textbf{Uncertainty.} We bootstrap the mass-matched offset with $\geq2\times10^4$ resamples, drawing both galaxies (with replacement) and per-object measurement noise on $M_\star$ and $\mathrm{O/H}$, and report the $95\%$ CI. We additionally run leave-one-out and most-extreme-object-excluded tests to confirm the result is not single-object-driven, and we recompute the offset on the Te-direct-only subset as a calibration-free cross-check.
+
+\section{Results}
+On the matched PP04-O3N2 scale the mass-controlled deficit is $\Delta=0.45$~dex (SDSS minus $z>7$, at fixed mass in $[8.0,9.5]$), with a bootstrap $95\%$ CI of $[0.28,0.62]$ that excludes zero. The offset does not vanish on reconciliation: the naive unmatched-T04 value is $0.57$~dex, of which calibration explains only $\sim0.12$~dex, leaving $\sim0.45$~dex. Leave-one-out gives $[0.43,0.48]$, and excluding the most extreme object still yields $[0.37,0.59]$; the result is not driven by a single galaxy.
+
+The deficit is present at every grid mass in the overlap: $\Delta=0.55$ ($N=4$), $0.40$ ($N=10$), $0.44$ ($N=7$), and $0.43$~dex ($N=2$) at $\log M_\star=8.0,8.5,9.0,9.5$ respectively. The calibration-free Te-direct subset gives a conservative $\Delta=0.33$~dex (CI $[0.08,0.54]$), while the strong-line subset gives $0.49$~dex (CI $[0.35,0.62]$); both share the same sign and exclude zero, with the modestly larger strong-line value consistent with the mild downward bias of $z=0$ strong-line calibrations at high $z$ noted by \citet{Hirschmann2023}. The best-fit $z>7$ relation over the overlap is $12+\log(\mathrm{O/H})=5.54+0.268\log M_\star$. For context, IllustrisTNG at $z=6$ (its highest available snapshot, on its intrinsic scale) predicts only a $\sim0.13$~dex deficit --- far smaller than observed --- suggesting simulations under-predict early metal deficiency, though this comparison mixes scales and epochs and is not part of the pre-registered gate. Figure~\ref{fig:z7mzr} shows the matched SDSS relation, the $z>7$ points and fit, the Curti+24 relation, the TNG $z=6$ trend, and the systematic band.
+
+\begin{figure}
+\includegraphics[width=\columnwidth]{fig_z7mzr.png}
+\caption{Matched-scale, mass-controlled $z>7$ mass--metallicity comparison. The SDSS anchor (T04, converted to PP04-O3N2 via the KE08 cubic) is shown against the Nakajima+23 $z>7$ galaxies ($N=16$ in the $\log M_\star\in[8.0,9.5]$ overlap) and their fit, with the Curti+24 relation, the IllustrisTNG $z=6$ trend, and the systematic band. The mass-controlled deficit is $\Delta=0.45$~dex (bootstrap $95\%$ CI $[0.28,0.62]$).\label{fig:z7mzr}}
+\end{figure}
+
+\section{Systematics}
+The offset was tested against seven pre-registered artifact channels (Table~\ref{tab:scorecard}), each with a pass/fail declared before any number existed. Six pass. The decisive failure is Test~4 (selection). The Nakajima+23 $z>7$ sample is emission-line/UV selected, favoring high-equivalent-width, metal-poor, bursty systems; such selection biases $12+\log(\mathrm{O/H})$ \emph{downward}, i.e.\ in the \emph{same} direction as the measured deficit, by a plausible $\sim0.1$--$0.2$~dex that cannot be bounded from the data on disk (no forward-modelled selection function is available). Because a same-sign, comparable-magnitude bias cannot be excluded, the offset is an \emph{upper bound} on chemical evolution rather than a clean measurement, and this single failed test --- under the pre-registered honest-labeling rule --- governs the paper's top-line claim. Quantitatively, the plausible selection amplitude ($\sim0.1$--$0.2$~dex) is comparable to the lower edge of the bootstrap interval --- and on the calibration-free Te-direct subset, whose $95\%$ CI lower bound is $0.08$~dex, the plausible selection bias lies within the interval, so on the most conservative reading selection could account for much or all of the Te-only signal; only the larger strong-line-inclusive offset sits clearly above the selection band. This is exactly why the result is reported as a ceiling on evolution, not a measurement of it. Test~6 (aperture) and, at the low overlap masses, Test~2 both point the same way: any residual bias inflates rather than deflates the deficit, so $0.45$~dex is a ceiling.
+
+\begin{deluxetable}{lcp{3.3cm}}
+\tablecaption{Pre-registered $7$-test systematics scorecard\label{tab:scorecard}}
+\tablehead{\colhead{Test} & \colhead{Result} & \colhead{Key number}}
+\startdata
+1. Calibration & PASS & Matched $|\Delta|=0.45$; $|\Delta|-\sigma_{\rm resid}(0.10)=0.35>0$; survives full $0.24$ budget \\
+2. Mass mismatch & PASS & Fixed-mass $\Delta=0.55/0.40/0.44/0.43$ at $\log M_\star=8.0/8.5/9.0/9.5$ \\
+3. Strong-line bracketing & PASS & Te-direct $0.33$ [$0.08,0.54$]; strong-line $0.49$ [$0.35,0.62$]; same sign \\
+4. Selection & \textbf{FAIL} & EM-line/UV bias $\sim0.1$--$0.2$~dex, \emph{same} sign; unbounded on disk \\
+5. Small-$N$ & PASS & $N=16$, CI $[0.33,0.56]$; LOO $[0.43,0.48]$; excl.\ extreme $[0.37,0.59]$ \\
+6. Aperture & PASS & Fibre-central bias $<\!\sim\!0.05$~dex at these masses; inflates offset \\
+7. N/O enhancement & PASS & $100\%$ O-based diagnostics; zero N-based \\
+\enddata
+\tablecomments{$6/7$ pass. Test~4 fails: same-sign selection bias cannot be bounded, so the result is DESCRIPTIVE (upper bound), not a validated detection.}
+\end{deluxetable}
+
+\section{Conclusion}
+Once SDSS and the Nakajima+23 $z>7$ sample are placed on one abundance scale and matched in stellar mass, a gas-phase $\mathrm{O/H}$ deficit of $\Delta=0.45$~dex (Te-only $0.33$~dex; bootstrap $95\%$ CI $[0.28,0.62]$) survives, robust to calibration, mass, diagnostic bracketing, small-$N$, aperture, and N/O channels. This exceeds the residual calibration floor ($\sigma_{\rm cal,resid}=0.10$~dex) and is not single-object-driven. It is nonetheless \emph{not} a validated detection of $z>7$ MZR evolution: emission-line/UV selection biases $\mathrm{O/H}$ downward in the same sense as the offset and cannot be bounded here, so the deficit \emph{caps} early chemical evolution rather than measuring it.
+
+Validating (or shrinking) this bound requires three things not available on disk: (i) a multi-survey $z>7$ sample --- adding Curti et al.\ (2024) and Heintz et al.\ (2023) to break the single-survey dependence; (ii) a forward-modelled selection function that propagates the JWST emission-line/UV selection into an $\mathrm{O/H}$ bias with quantified sign and magnitude, converting Test~4 from a fail to a bounded correction; and (iii) a $z>7$ cosmological simulation on the same matched scale (the available IllustrisTNG snapshot stops at $z=6$). Until then the honest statement is: \emph{an $\mathrm{O/H}$ deficit of $\lesssim0.45$~dex survives a matched-scale, mass-matched $z>7$ comparison, as an upper bound above the calibration floor.}
+
+\section{Caveats}
+This is a descriptive, automated result, not a validated measurement. (1) The selection bias is uncorrected and same-signed with the offset, making every number an upper bound. (2) The high-$z$ sample is single-survey (Nakajima+23 only; Curti+24 absent from VizieR TAP). (3) The overlap sample is small ($N=16$). (4) There is no $z>7$ simulation comparator; the TNG $z=6$ figure mixes scales and epochs and is contextual only. (5) SDSS metallicities are fibre-central and reconciled by conversion, not re-derived from fluxes. The paper's claim ceiling is an offset of stated size surviving a matched, mass-matched comparison above a stated systematic floor --- never a measured $z>7$ MZR.
+
+\begin{acknowledgments}
+Based on the public SDSS MPA--JHU catalog and the Nakajima et al.\ (2023) VizieR table \texttt{J/ApJS/269/33}. This manuscript was generated end-to-end by the autonomous NebulaMind overnight research pipeline as a pre-registered worked example; results are automated, descriptive, and not peer-reviewed.
+\end{acknowledgments}
+
+\begin{thebibliography}{}
+\bibitem[Curti et al.(2024)]{Curti2024} Curti, M., D'Eugenio, F., Carniani, S., et al. 2024, A\&A, 684, A75
+\bibitem[Hirschmann et al.(2023)]{Hirschmann2023} Hirschmann, M., Charlot, S., Feltre, A., et al. 2023, MNRAS, 526, 3610
+\bibitem[Kewley \& Ellison(2008)]{KewleyEllison2008} Kewley, L.~J., \& Ellison, S.~L. 2008, ApJ, 681, 1183
+\bibitem[Langeroodi et al.(2023)]{Langeroodi2023} Langeroodi, D., Hjorth, J., Chen, W., et al. 2023, ApJ, 957, 39
+\bibitem[Nakajima et al.(2023)]{Nakajima2023} Nakajima, K., Ouchi, M., Isobe, Y., et al. 2023, ApJS, 269, 33
+\bibitem[Sanders et al.(2021)]{Sanders2021} Sanders, R.~L., Shapley, A.~E., Jones, T., et al. 2021, ApJ, 914, 19
+\bibitem[Tremonti et al.(2004)]{Tremonti2004} Tremonti, C.~A., Heckman, T.~M., Kauffmann, G., et al. 2004, ApJ, 613, 898
+\end{thebibliography}
+
+\end{document}

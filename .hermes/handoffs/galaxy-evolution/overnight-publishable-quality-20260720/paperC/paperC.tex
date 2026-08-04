@@ -1,0 +1,65 @@
+\documentclass[twocolumn]{aastex631}
+\shorttitle{Disentangling aperture and calibration systematics in the MZR}
+\shortauthors{NebulaMind Lab}
+\begin{document}
+\title{Disentangling Aperture and Calibration Systematics in the Gas-Phase Mass--Metallicity Relation: A Practitioner's Framework (Review)}
+\author{NebulaMind Lab (autonomous run)}
+\affiliation{Descriptive methods review, machine-generated --- not a validated result. Contribution is the synthesis/framework, not a new measurement.}
+
+\begin{abstract}
+Comparisons of the gas-phase mass--metallicity relation (MZR) across surveys, simulations, and cosmic
+epochs are limited less by statistics than by two systematics that are frequently conflated: the
+\emph{calibration-scale} offset between abundance diagnostics, and the \emph{aperture} bias of
+fixed-size spectroscopic apertures. We review the recent literature and lay out a practitioner's
+framework that separates the two. The calibration-scale offset between theoretical photoionization and
+empirical direct-$T_e$ diagnostics reaches up to $\sim0.7$~dex in absolute normalization; aperture bias
+introduces errors exceeding $\sim0.15$~dex whenever the fiber covering fraction falls below $\sim20\%$,
+and can masquerade as physical structure in the MZR (including its high-mass turnover). Diffuse ionized
+gas (DIG), contributing 30--60\% of H$\alpha$, further biases low-ionization line ratios and can flatten
+or invert inferred gradients. We recommend: (i) reporting all abundances on a single declared scale with
+published conversions; (ii) enforcing covering-fraction floors or aperture corrections calibrated against
+integral-field data; and (iii) using resolved (IFS) measurements as the independent ground truth for
+integrated relations. This is a synthesis and methods contribution, not a new measurement.
+\end{abstract}
+
+\section{Introduction and Scope}
+The MZR is a foundational scaling relation used to constrain feedback and chemical-evolution models. Its
+interpretation, however, is entangled with observational systematics that do not cancel across samples.
+This review addresses two dominant, separable effects --- calibration scale and aperture --- and the role
+of diffuse ionized gas, and proposes an explicit framework to keep them distinct in cross-sample work.
+
+\section{Calibration-Scale Systematics}
+Direct-$T_e$ abundances are the gold standard but are biased toward metal-poor, high-excitation systems.
+Strong-line diagnostics extend coverage but split into theoretical (photoionization) and empirical
+($T_e$-anchored) families whose absolute normalizations differ by up to $\sim0.7$~dex --- a factor of five
+in metal content. $R_{23}$ is double-valued; $N2$/$O3N2$ implicitly assume a local N/O--O/H scaling that
+fails in the N/O-enhanced high-$z$ regime. Mixing diagnostics across redshift can mimic or mask true MZR
+evolution. The mitigation is a single declared scale with published inter-calibration conversions.
+
+\section{Aperture Bias}
+A fixed angular aperture (e.g.\ the 3\arcsec\ SDSS fiber) samples a redshift-dependent physical radius.
+Below a $\sim20\%$ covering fraction, nuclear-to-global metallicity differences exceed $\sim0.15$~dex;
+because disks have negative gradients, a small central aperture over-estimates the global abundance and
+imprints spurious size--metallicity trends. Massive, extended galaxies remain under-sampled even above the
+canonical $z>0.04$ cut, so part of the MZR high-mass turnover is aperture-induced rather than physical.
+
+\section{Diffuse Ionized Gas}
+DIG supplies 30--60\% of H$\alpha$ with a harder ionizing field and enhanced low-ionization lines. In
+integrated or coarsely-resolved spectra, line-ratio mixing inflates $N2$/$O3N2$ abundances and flattens
+--- occasionally inverts --- gradients, which can be misread as pristine-gas infall. Masking
+low-$\Sigma_{{\rm H}\alpha}$ regions or using DIG-robust indices ($N2O2$) mitigates this.
+
+\section{A Framework and Recommendations}
+(1) Declare one abundance scale and convert all inputs to it. (2) Apply covering-fraction floors or
+IFS-calibrated aperture corrections; propagate the residual as a systematic. (3) Treat resolved (IFS) MZR
+measurements as the independent ground truth for integrated relations. Applying this separation makes the
+$\Delta({\rm O/H})_{\rm aperture}$ term explicitly distinct from the calibration-scale offset --- a
+prerequisite for any credible MZR-evolution or simulation-vs-observation claim.
+
+\begin{thebibliography}{}
+\bibitem[Andrews \& Martini(2013)]{am13} Andrews, B.~H., \& Martini, P. 2013, ApJ, 765, 140
+\bibitem[Kewley et al.(2008)]{kewley08} Kewley, L.~J., \& Ellison, S.~L. 2008, ApJ, 681, 1183
+\bibitem[Poetrodjojo et al.(2019)]{dig} Poetrodjojo, H., et al. 2019, MNRAS, 487, 79
+\bibitem[S{\'a}nchez et al.(2021)]{ifs} S{\'a}nchez, S.~F. 2021, ARA\&A, 59, 191
+\end{thebibliography}
+\end{document}

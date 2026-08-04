@@ -1,0 +1,119 @@
+{
+  "id": "ovl6754001",
+  "spec": {
+    "id": "fesc-z6p5-anchor",
+    "spec": {
+      "topic": "reionization-photon-budget",
+      "topic_source": "frontier-map",
+      "data_sources": [
+        "jwst"
+      ],
+      "method": "ionizing-photon-budget",
+      "z0": 6.5,
+      "outputs": [
+        "aastex-draft"
+      ],
+      "force": true
+    }
+  },
+  "status": "gated-novelty",
+  "created_utc": "2026-08-03T14:34:05Z",
+  "log": [
+    "queued by overnight loop",
+    "23:35:01 gate/novelty: ABORT (top-sim 0.455)",
+    "23:35:01 HALTED by novelty gate: already done in the literature (set spec.force to override)"
+  ],
+  "artifacts": [],
+  "result": null,
+  "gates": {
+    "novelty": {
+      "gate": "novelty",
+      "verdict": "ABORT",
+      "top_similarity": 0.455,
+      "reason": "yogenesis, supernovae distance estimation, and stellar stream detection using machine learning.\n- There's no direct overlap with a proposed study that isn't described, making it challenging to assess novelty directly.\n\nHowever, since the proposed topic, method, and measurement are not specified in the query, we cannot directly compare them to the literature provided. Thus, without specific details on what is being proposed, it's impossible to accurately determine if any of these studies have already reported the same measurement or covered the exact topic with comparable data.\n\nGiven this lack of information about the proposed study and based strictly on the passages provided:\nVERDICT: ABORT",
+      "papers": [
+        {
+          "bibcode": "2024MNRAS.529.4745S",
+          "arxiv": "2303.01529",
+          "title": "VIA MACHINAE 2.0: Full-sky, model-agnostic search for stellar streams in Gaia DR2",
+          "authors": [
+            "Shih, David",
+            "Buckley, Matthew R.",
+            "Necib, Lina"
+          ],
+          "year": "2024",
+          "cites": 21,
+          "score": 0.45546257495880127
+        },
+        {
+          "bibcode": "2022JHEP...12..121P",
+          "arxiv": "2206.01120",
+          "title": "Resummation and cancellation of the VIA source in electroweak baryogenesis",
+          "authors": [
+            "Postma, Marieke",
+            "van de Vis, Jorinde",
+            "White, Graham"
+          ],
+          "year": "2022",
+          "cites": 22,
+          "score": 0.4487296938896179
+        },
+        {
+          "bibcode": "2022MNRAS.509.5992S",
+          "arxiv": "2104.12789",
+          "title": "VIA MACHINAE: Searching for stellar streams using unsupervised machine learning",
+          "authors": [
+            "Shih, David",
+            "Buckley, Matthew R.",
+            "Necib, Lina",
+            "Tamanas, John"
+          ],
+          "year": "2022",
+          "cites": 46,
+          "score": 0.44870179891586304
+        },
+        {
+          "bibcode": "2024A&A...684A..55M",
+          "arxiv": "2401.13349",
+          "title": "Using multiobjective optimization to reconstruct interferometric data. II. Polarimetry and time dynamics",
+          "authors": [
+            "Mus, Alejandro",
+            "M\u00fcller, Hendrik",
+            "Mart\u00ed-Vidal, Ivan",
+            "Lobanov, Andrei"
+          ],
+          "year": "2024",
+          "cites": 13,
+          "score": 0.4337386190891266
+        },
+        {
+          "bibcode": "2024MNRAS.535.2306U",
+          "arxiv": "2405.06013",
+          "title": "Variational inference for acceleration of SN Ia photometric distance estimation with BayeSN",
+          "authors": [
+            "Uzsoy, Ana Sof\u00eda M.",
+            "Thorp, Stephen",
+            "Grayling, Matthew",
+            "Mandel, Kaisey S."
+          ],
+          "year": "2024",
+          "cites": 13,
+          "score": 0.4238744378089905
+        },
+        {
+          "bibcode": "2024A&A...688A.100M",
+          "arxiv": "2405.03330",
+          "title": "Swarm intelligence for full Stokes dynamic imaging reconstruction of interferometric data",
+          "authors": [
+            "Mus, Alejandro",
+            "M\u00fcller, Hendrik",
+            "Lobanov, Andrei"
+          ],
+          "year": "2024",
+          "cites": 13,
+          "score": 0.4207008481025696
+        }
+      ]
+    }
+  }
+}

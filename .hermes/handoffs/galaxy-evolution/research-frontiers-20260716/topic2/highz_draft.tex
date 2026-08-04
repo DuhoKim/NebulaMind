@@ -1,0 +1,74 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\shorttitle{Scaling relations from $z\approx0$ to the JWST frontier}
+\shortauthors{NebulaMind Autonomous Research}
+
+\begin{document}
+
+\title{Galaxy Scaling Relations from $z\approx0$ to the JWST Frontier:\\ Evolution of the Star-Forming Main Sequence and the Mass--Metallicity Relation}
+
+\author{NebulaMind Autonomous Research Pipeline}
+\affiliation{NebulaMind Open Science Wiki (\url{https://nebulamind.net})}
+
+\begin{abstract}
+We anchor two fundamental galaxy scaling relations --- the star-forming main sequence (SFMS) and the stellar mass--gas-phase-metallicity relation (MZR) --- at $z\approx0$ using $\sim5\times10^{5}$ SDSS galaxies, and confront them with JWST/NIRSpec spectroscopy of $3<z<9$ galaxies drawn from the Nakajima et al. (2023) census and the MIRI/CEERS SED catalogue of Lisiecki et al. (2025). Relative to the local sequence at fixed stellar mass, high-redshift galaxies are elevated in star-formation rate by $+0.77$~dex at $z\!\approx\!3.5$, rising monotonically to $+1.9$~dex at $z\gtrsim6$, consistent with a specific-SFR that increases steeply with cosmic time. In metallicity they lie $\approx0.4$~dex below the local MZR at fixed mass, measured against a $T_e$-anchored local abundance scale (PP04 O3N2) chosen to match the direct-$T_e$ high-$z$ metallicities. This metallicity deficit is nearly \emph{constant} ($-0.43$ to $-0.37$~dex) across $z\approx4$--$7$, rather than deepening with redshift, and the population shows large scatter that includes individual systems approaching the local relation. Both signatures --- a flat high-$z$ metallicity offset and enriched outliers --- bear directly on the current debate over whether early galaxies are as metal-poor as hierarchical chemical-evolution models predict. We describe caveats (heterogeneous emission-line selection, calibration systematics, extrapolation of the local relations to low mass) and outline a companion simulation-versus-observation test using IllustrisTNG. This manuscript was generated autonomously; all numbers are reproducible from the public queries listed.
+\end{abstract}
+
+\keywords{Galaxy evolution --- Galaxy chemical evolution --- Star formation --- High-redshift galaxies}
+
+\section{Introduction}
+The star-forming main sequence (a tight, roughly power-law relation between stellar mass $M_\star$ and star-formation rate, SFR; \citealt{noeske07,speagle14}) and the mass--metallicity relation \citep{tremonti04,kewley08} are among the most economical summaries of how galaxies build their stars and metals. Their \emph{evolution} encodes the changing balance of gas accretion, star formation, and outflows over cosmic time. JWST has for the first time extended these relations with rest-frame optical spectroscopy into the reionization epoch, and the early results are contested: some analyses find galaxies markedly metal-poor at fixed mass as expected, while others report surprisingly rapid early enrichment \citep{nakajima23,curti24,sanders21}. Our automated research pipeline, which draws candidate frontiers bottom-up from a large literature corpus, flagged high-redshift nebular diagnostics as the fastest-growing and most contested frontier. Here we act on that by measuring, with a uniform local anchor, how far JWST galaxies have moved off the $z\approx0$ relations.
+
+\section{Data}
+\subsection{The $z\approx0$ anchor: SDSS}
+We use the MPA--JHU value-added catalogue derived from SDSS spectroscopy \citep{brinchmann04,tremonti04}, queried live from the SkyServer (\texttt{galSpecExtra}: total stellar mass \texttt{lgm\_tot\_p50}, SFR \texttt{sfr\_tot\_p50}, specific SFR \texttt{specsfr\_tot\_p50}, and, for the MZR, the star-forming subsample with $12+\log(\mathrm{O/H})$). After quality cuts we retain $N=4.9\times10^{5}$ galaxies over $8.75<\log M_\star<11.75$. Fitting the star-forming population ($\log\mathrm{sSFR}>-11$) gives a main sequence
+\begin{equation}
+\log\mathrm{SFR} = 0.61\,(\log M_\star-10) + 0.065, \quad \sigma\approx0.39~\mathrm{dex},
+\end{equation}
+and an asymptotic MZR \citep{moustakas11} of the form $12+\log(\mathrm{O/H}) = Z_0-\log[1+(10^{M_0-\log M_\star})^{\gamma}]$ with $(Z_0,M_0,\gamma)=(9.22,9.997,0.524)$. These define our fixed reference relations.
+
+\subsection{The high-$z$ frontier: JWST}
+For $3<z<9$ we combine two public JWST catalogues obtained from the VizieR TAP service. (i) \citet{nakajima23} (VizieR \texttt{J/ApJS/269/33}): 180 galaxies with NIRSpec spectroscopic redshifts, SED stellar masses, SFRs, and direct/strong-line $12+\log(\mathrm{O/H})$ (145 with metallicity), spanning $z=3.8$--$8.9$. (ii) \citet{lisiecki25} (VizieR \texttt{J/A+A/708/A235}): 3743 galaxies at $z=3$--$6$ with MIRI/CEERS SED masses and SFRs (no metallicity), used to boost main-sequence statistics. Masses are placed on a Chabrier/Kroupa scale, consistent with the SDSS anchor to within $\sim0.03$~dex.
+
+\section{Method}
+For every high-$z$ galaxy we compute its offset from the \emph{local} relation at its own stellar mass: $\Delta\log\mathrm{SFR}\equiv\log\mathrm{SFR}-\mathrm{SFMS}_{z\approx0}(\log M_\star)$ and $\Delta_{\rm O/H}\equiv[12+\log(\mathrm{O/H})]-\mathrm{MZR}_{z\approx0}(\log M_\star)$. We report the median and 16--84th percentile of these offsets in redshift bins. This differential approach cancels the (identical) mass axis and isolates evolution in the SFR and metallicity directions. Critically, to avoid an abundance-scale mismatch, the MZR anchor is recomputed on a $T_e$-anchored strong-line scale (PP04 O3N2) from SDSS \texttt{galSpecLine} fluxes ($N=2.0\times10^{5}$), matched to the direct-$T_e$ scale on which the high-$z$ metallicities are derived; the earlier photoionization-model (Tremonti) anchor lies $\sim0.24$~dex higher and by itself overstated the deficit by $\sim0.1$--$0.13$~dex.
+
+\section{Results}
+\begin{figure*}
+\centering
+\includegraphics[width=0.92\textwidth]{fig_highz_planes.pdf}
+\caption{JWST galaxies at $3<z<9$ (points, coloured by redshift) overlaid on the SDSS $z\approx0$ relations (black). \textit{Left:} the star-forming main sequence; high-$z$ galaxies sit systematically above the local sequence. \textit{Right:} the mass--metallicity relation; high-$z$ galaxies lie below the local relation, with large scatter.}
+\label{fig:planes}
+\end{figure*}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.47\textwidth]{fig_highz_evolution.pdf}
+\caption{Evolution of the offsets from the $z\approx0$ relations. \textit{Left:} main-sequence elevation $\Delta\log\mathrm{SFR}$ grows with redshift. \textit{Right:} the metallicity deficit $\Delta_{\rm O/H}$ is $\approx-0.4$~dex ($T_e$ scale) and nearly flat across $z\approx4$--$7$. Error bars are 16--84th percentiles; $n$ per bin annotated.}
+\label{fig:evol}
+\end{figure}
+
+\textbf{Main sequence.} High-$z$ galaxies are elevated above the local sequence at fixed mass by $+0.77$~dex ($z\!\approx\!3.5$), $+0.89$~dex ($z\!\approx\!4.7$), $+0.96$~dex ($z\!\approx\!5.4$), and $+1.94$~dex ($z\!\approx\!6.7$; Fig.~\ref{fig:planes} left, Fig.~\ref{fig:evol} left). A factor of $\sim6$ enhancement in SFR at fixed mass by $z\sim3$--$5$, growing toward two orders of magnitude by $z\gtrsim6$, is the expected consequence of higher gas fractions and shorter gas-consumption timescales in the early Universe. The highest-redshift bin ($z>6$, $n=46$) should be read cautiously given the small sample and the strong emission-line selection.
+
+\textbf{Mass--metallicity relation.} At fixed mass, high-$z$ galaxies are metal-poor relative to $z\approx0$ by $-0.43$~dex ($z\!\approx\!4.6$), $-0.37$~dex ($z\!\approx\!5.3$), and $-0.40$~dex ($z\!\approx\!7.2$; Fig.~\ref{fig:evol} right), all on the $T_e$-anchored scale. Two features stand out. First, the deficit is \emph{nearly constant} from $z\approx4$ to $z\approx7$ rather than deepening --- early galaxies are not progressively more pristine with lookback time in this sample. Second, the scatter is large (16--84th range spanning $\sim0.5$~dex) and includes systems within $\sim0.15$~dex of the local relation. Both are directly relevant to the ongoing debate over ``surprisingly enriched'' early galaxies: a flat offset plus enriched outliers is more consistent with rapid early enrichment followed by a slowly evolving equilibrium than with monotonic metal build-up.
+
+\section{Discussion and caveats}
+The measurements above are differential and therefore robust to the absolute calibration of the local relations, but several systematics temper interpretation. (1) The JWST samples are emission-line selected and thus biased toward high-sSFR, high-EW systems, which inflates the apparent main-sequence elevation and may bias metallicities. (2) We mitigate the dominant abundance-scale systematic by placing the local anchor on the same $T_e$-anchored scale as the high-$z$ data; a residual $\sim0.1$~dex uncertainty between direct-$T_e$ and $T_e$-anchored strong-line calibrations remains, and high-ionization conditions at early times may add scatter. (3) We extrapolate the SDSS relations below $\log M_\star\approx8$ to overlap the low-mass JWST galaxies; the main-sequence extrapolation is mild (linear) but the MZR extrapolation is more uncertain. (4) Aperture and IMF differences are sub-dominant ($\lesssim0.05$~dex). (5) The $z>6$ bins are small. A natural next step --- enabled by the same pipeline --- is to confront these observed relations with a cosmological simulation (IllustrisTNG) processed identically, testing whether a model tuned to $z\approx0$ reproduces the \emph{evolution} we measure. That ``calibration is not validation'' test is the single highest-ranked frontier in our topic map and is deferred to a companion study.
+
+\section{Conclusion}
+Using a uniform SDSS anchor and public JWST catalogues, we find that $3<z<9$ galaxies are elevated $0.8$--$1.9$~dex above the local star-forming main sequence and depressed $\approx0.4$~dex below the local ($T_e$-anchored) mass--metallicity relation, with the metallicity deficit remaining flat across $z\approx4$--$7$. The combination of a non-deepening metallicity offset with enriched outliers favours rapid early enrichment toward an evolving equilibrium, and provides a concrete, reproducible target for cosmological simulations. This study was produced autonomously as a demonstration of literature-to-data frontier research; the SDSS SkyServer and VizieR TAP queries are public and the analysis is fully reproducible.
+
+\begin{thebibliography}{}
+\bibitem[Brinchmann et al.(2004)]{brinchmann04} Brinchmann, J., et al. 2004, MNRAS, 351, 1151
+\bibitem[Curti et al.(2024)]{curti24} Curti, M., et al. 2024, A\&A, 684, A75
+\bibitem[Kewley \& Ellison(2008)]{kewley08} Kewley, L.~J., \& Ellison, S.~L. 2008, ApJ, 681, 1183
+\bibitem[Lisiecki et al.(2025)]{lisiecki25} Lisiecki, K., et al. 2025, A\&A, 708, A235
+\bibitem[Moustakas et al.(2011)]{moustakas11} Moustakas, J., et al. 2011, arXiv:1112.3300
+\bibitem[Nakajima et al.(2023)]{nakajima23} Nakajima, K., et al. 2023, ApJS, 269, 33
+\bibitem[Noeske et al.(2007)]{noeske07} Noeske, K.~G., et al. 2007, ApJ, 660, L43
+\bibitem[Sanders et al.(2021)]{sanders21} Sanders, R.~L., et al. 2021, ApJ, 914, 19
+\bibitem[Speagle et al.(2014)]{speagle14} Speagle, J.~S., et al. 2014, ApJS, 214, 15
+\bibitem[Tremonti et al.(2004)]{tremonti04} Tremonti, C.~A., et al. 2004, ApJ, 613, 898
+\end{thebibliography}
+
+\end{document}

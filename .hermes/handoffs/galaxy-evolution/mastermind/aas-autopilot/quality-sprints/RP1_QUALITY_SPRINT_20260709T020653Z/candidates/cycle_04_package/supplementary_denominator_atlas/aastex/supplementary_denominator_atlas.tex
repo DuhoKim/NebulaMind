@@ -1,0 +1,225 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS denominator/proxy atlas}
+\shortauthors{NebulaMind}
+\begin{document}
+
+\title{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+This supplement collects eight SDSS DR17 denominator and proxy notes that share the same capped 60,000-row optical emission-line cache and the same selection-function caveats. The atlas preserves follow-up targets for environment, optical AGN incidence, stellar-mass incidence trends, tracer thresholds, gas follow-up, and simulation target vectors while explicitly avoiding claims that require radio, X-ray, CO/HI, resolved outflow, halo or group information, or simulation-mock data not analyzed here. These counts and fractions are conditional on the SDSS optical selection used here, not global volume-limited statistics. It is a single follow-up atlas, not eight independent causal-feedback papers.
+\end{abstract}
+
+\keywords{galaxies: evolution --- surveys --- catalogs --- methods: observational --- methods: statistical}
+
+\section{Purpose}
+The main paper measures an optical BPT AGN--catalog-sSFR association. These eight topics are distinct: each is scientifically useful as a denominator or target-vector definition, but each lacks at least one core physical observable required by its original proposal. The BPT language and catalog-backbone language here follow the same SDSS/MPA-JHU-style value-added tables and standard demarcations as the flagship \citep{sdssdr17,brinchmann2004,york2000,baldwin1981,kewley2001,kauffmann2003bpt,kewley2006,stasinska2008,stasinska2015}. Keeping them in one supplement prevents overclaiming and gives future work a single checklist of what still must be added.
+
+\section{Shared denominator}
+The atlas uses the same cached public-data backbone as the main paper: 60,000 cached rows from a strict public four-line S/N$\geq3$ parent of 249,917 rows, i.e. 24.0\% cached coverage. The four-line selection is sSFR-dependent and the cache is capped and non-random, so all counts and fractions are conditional denominators rather than population-complete measurements. The row-level stellar masses and catalog sSFR values are taken from the public MPA-JHU-style \texttt{galSpecExtra} table after the same SDSS joins used in the flagship \citep{sdssdr17,brinchmann2004,york2000}.
+
+The eight subsections below are intentionally parallel: each one states the observed optical denominator or target vector, then lists the missing observables that a future multiwavelength or simulation-based test would have to add before any physical inference can be made.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Selection cascade shared by the atlas.\label{tab:supp-selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+\enddata
+\end{deluxetable*}
+
+\section{Atlas notes}
+
+\subsection{SDSS density proxy for low-sSFR incidence}
+This note isolates an environmental denominator that can later be joined to group catalogs and halo masses. The nearest-neighbour density proxy adds low-sSFR incidence information beyond stellar mass in the SDSS emission-line sample. The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbour density proxy. The high-density quartile has a low-sSFR emission-line fraction of 0.230 (3,456/15,000), while the low-density quartile has 0.181 (2,710/15,000). The bootstrap high-minus-low interval is [0.041, 0.059], and a linear probability model adjusted for log stellar mass and redshift gives a high-density coefficient of 0.032 +/- 0.004. This is a denominator-level environmental diagnostic; the missing observables are:
+\begin{itemize}
+\item group catalogues
+\item robust central/satellite labels
+\item halo masses
+\item morphology
+\item multi-redshift selection functions
+\end{itemize}
+These are still needed for a physical environmental interpretation \citep{peng2010,wetzel2013,dekel2006}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-01.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m1\_rp2\_environment\_quenching. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m1-rp2-environment-quenching}
+\end{figure}
+
+
+\subsection{Optical-AGN denominator for maintenance-heating follow-up}
+This note identifies the optical-AGN duty-cycle denominator that radio and X-ray data would need to test maintenance heating. Among massive, low-sSFR SDSS emission-line galaxies, the optical AGN fraction can be used as a denominator for X-ray and radio maintenance-heating follow-up. The massive subset (\(\log M_\star \geq 10.8\)) contains 9,298 emission-line galaxies, of which 5,695 are low-sSFR by the pilot threshold. The optical BPT AGN fraction is 0.430 in the massive subset and 0.607 among massive low-sSFR objects. This provides an optical duty-cycle denominator for X-ray and radio follow-up, not a heating-to-cooling measurement. The missing observables are:
+\begin{itemize}
+\item X-ray cavity or cooling-luminosity measurements
+\item radio jet powers
+\item halo-selected parent catalogues
+\item nondetection modelling
+\end{itemize}
+These are still needed for a physical maintenance-heating interpretation \citep{best2005,heckmanbest2014,fabian2012,mcnamara2007,lamassa2013}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-02.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m1\_rp3\_maintenance\_heating. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m1-rp3-maintenance-heating}
+\end{figure}
+
+
+\subsection{SDSS high-excitation AGN denominator for outflow tests}
+This note isolates the high-excitation optical-AGN denominator that resolved kinematics would need to test escape versus recycling. High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074). Their median \(\log {\rm sSFR}\) is -11.53, compared with -10.14 for the full denominator. SDSS does not measure escape velocity or multiphase outflow velocities here; the note supplies a denominator for resolved follow-up rather than an escape or recycling result. The missing observables are:
+\begin{itemize}
+\item resolved outflow velocities
+\item halo potentials
+\item molecular, ionized, and neutral gas phases
+\item CGM recycling tracers
+\end{itemize}
+These are still needed for a physical outflow interpretation \citep{veilleux2005,cicone2014,carniani2017,fiore2017,lamassa2013}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-03.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m2\_p1\_outflow\_escape\_recycling. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m2-p1-outflow-escape-recycling}
+\end{figure}
+
+
+\subsection{Environment proxy for optical AGN in massive SDSS hosts}
+This note defines the environment-stratified optical denominator that future radio and X-ray work could test. The local-density proxy is correlated with the optical AGN fraction in massive SDSS hosts and motivates environment-stratified radio and X-ray follow-up. Among massive hosts, the high-density quartile has an optical AGN fraction of 0.509, while the low-density quartile has 0.367. The bootstrap high-minus-low interval is [0.112, 0.170]. This is an optical/environment denominator for radio-jet coupling work; it does not measure radio jet power or coupling efficiency. The missing observables are:
+\begin{itemize}
+\item radio jet morphology and age
+\item cavity or shock energetics
+\item hot-gas density
+\item calibrated jet-power estimates
+\end{itemize}
+These are still needed for a physical radio-jet interpretation \citep{best2005,mcnamara2007,heckmanbest2014}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-04.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m2\_p2\_radio\_jet\_environment. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m2-p2-radio-jet-environment}
+\end{figure}
+
+
+\subsection{Stellar-mass distribution of low-sSFR and optical AGN incidence}
+This note pins down the mass bin where a future gas-inclusive study should look for an incidence change. At what stellar-mass scale do the low-sSFR emission-line fraction and optical AGN incidence rise in the same SDSS denominator? The first stellar-mass bin with low-sSFR fraction above 0.5 is \(\log(M_\star/M_\odot) \in [11.0,12.5]\). The optical AGN fraction peaks in the 11.0-12.5 bin at 0.520. This is an optical distribution diagnostic; gas fractions and baryon deficits are needed before assigning any physical meaning to the apparent incidence change. The missing observables are:
+\begin{itemize}
+\item gas fractions
+\item baryon deficits
+\item halo masses
+\item stellar-feedback observables
+\item high-redshift extensions
+\end{itemize}
+The same binning is therefore best treated as a population-distribution diagnostic, not a statement about a physical transition mass for individual galaxies \citep{peng2010,wetzel2013,dekel2006}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-05.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m2\_p3\_feedback\_transition\_mass. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m2-p3-feedback-transition-mass}
+\end{figure}
+
+
+\subsection{Common-denominator optical tracer census in SDSS}
+This note compares optical tracer choices against one shared denominator before any multiphase census is attempted. How strongly do simple optical tracer definitions change the inferred AGN or feedback-candidate prevalence in one common SDSS denominator? Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418. The widest-to-narrowest prevalence ratio is 3.1 before adding molecular, neutral, or X-ray or radio phases. This demonstrates why a common-denominator multiphase census is required; it does not measure molecular or neutral outflow rates. The missing observables are:
+\begin{itemize}
+\item ionized, molecular, and neutral tracers
+\item X-ray or radio tracers
+\item a shared parent denominator
+\item a consistent aperture model
+\end{itemize}
+These are still needed for a physical multiphase interpretation \citep{xcoldgass2017,xgass2018,cicone2014,carniani2017,fiore2017,veilleux2005}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-06.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m3\_p1\_multiphase\_census. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m3-p1-multiphase-census}
+\end{figure}
+
+
+\subsection{Optical denominator for gas-fraction versus efficiency tests}
+This note defines the denominator for CO/HI gas-fraction and depletion-time follow-up. How many massive low-sSFR or transitioning SDSS galaxies with valid emission-line measurements are available as a denominator for CO gas-fraction and depletion-time follow-up? The massive low-sSFR denominator contains 6,729 galaxies in the SDSS emission-line sample. Its optical BPT AGN fraction is 0.549, and the median H-alpha luminosity proxy is 40.06. The median H-alpha luminosity proxy is 0.66 dex lower than in massive star-forming emission-line galaxies. SDSS optical data cannot distinguish molecular-gas depletion from reduced star-formation efficiency; this note identifies the CO/HI follow-up denominator and optical baseline. The missing observables are:
+\begin{itemize}
+\item CO or dust-based molecular gas masses
+\item aperture-matched SFRs
+\item morphology
+\item environment labels
+\end{itemize}
+These are still needed for a physical gas-fraction or depletion-time interpretation \citep{xcoldgass2017,xgass2018,piotrowska2022}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-07.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m3\_p2\_gas\_depletion\_efficiency. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m3-p2-gas-depletion-efficiency}
+\end{figure}
+
+
+\subsection{SDSS target vector for feedback-model validation}
+This note provides a compact observed target vector for forward modelling, not a direct simulation comparison. What compact SDSS target vector of low-sSFR fraction, optical AGN incidence, and colour versus mass and redshift can be used for forward-model validation? The pilot writes 15 mass-redshift cells with \(n \geq 50\) as a compact validation vector. Across mass bins, low-sSFR fractions span 0.005-0.729, and optical AGN fractions span 0.003-0.520. The output is an observed target vector for simulation forward modelling, not a direct simulation comparison. The missing observables are:
+\begin{itemize}
+\item simulation mocks passed through the SDSS, MaNGA, ALMA, X-ray, and radio selection functions
+\item aperture models
+\item noise models
+\end{itemize}
+These are still needed for a physical simulation-validation interpretation \citep{simba2019,tng2019,eagle2015}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-08.pdf}
+\caption{SDSS optical denominator/proxy diagnostic for m3\_p3\_simulation\_validation. This is a follow-up target definition or baseline, not a physical-feedback measurement.}
+\label{fig:m3-p3-simulation-validation}
+\end{figure}
+
+
+\section{Package decision}
+These eight notes should remain supplementary until the missing observables are added. They are suitable as follow-up target definitions, denominator baselines, or appendix material under the main result, but not as independent causal-feedback papers in their current SDSS-only form.
+
+\section{Local reproducibility}
+This PDF was generated from the local candidate package \texttt{RP1\_FLAGSHIP\_WITH\_SUPPLEMENT\_20260709T013510Z}. It does not replace any public-linked PDF and does not touch public pages, live roots, product databases, deployment state, git history, billing/OAuth state, cron jobs, or external submission systems.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Carniani et al.(2017)]{carniani2017} Carniani, S., Marconi, A., Maiolino, R., et al. 2017, A\&A, 605, A42
+\bibitem[Catinella et al.(2018)]{xgass2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Dave et al.(2019)]{simba2019} Dave, R., Angles-Alcazar, D., Narayanan, D., et al. 2019, MNRAS, 486, 2827
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[LaMassa et al.(2013)]{lamassa2013} LaMassa, S.~M., Heckman, T.~M., Ptak, A., \& Urry, C.~M. 2013, ApJL, 765, L33
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Nelson et al.(2019)]{tng2019} Nelson, D., Springel, V., Pillepich, A., et al. 2019, Computational Astrophysics and Cosmology, 6, 2
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+\bibitem[Piotrowska et al.(2022)]{piotrowska2022} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., \& Peng, Y.-j. 2022, MNRAS, 512, 1052
+\bibitem[Saintonge et al.(2017)]{xcoldgass2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, ApJS, 233, 22
+\bibitem[Schaye et al.(2015)]{eagle2015} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2015, MNRAS, 446, 521
+\bibitem[Stasinska et al.(2008)]{stasinska2008} Stasinska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+\bibitem[Stasinska et al.(2015)]{stasinska2015} Stasinska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodre, L. 2015, MNRAS, 449, 559
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

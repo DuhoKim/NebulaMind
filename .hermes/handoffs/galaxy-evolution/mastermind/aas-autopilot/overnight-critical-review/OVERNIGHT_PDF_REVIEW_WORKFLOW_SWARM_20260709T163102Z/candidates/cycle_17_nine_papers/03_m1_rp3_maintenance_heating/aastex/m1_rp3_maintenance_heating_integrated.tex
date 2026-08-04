@@ -1,0 +1,98 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{Optical-AGN denominator for maintenance-heating follow-up}
+\shortauthors{NebulaMind Research Autopilot}
+\begin{document}
+
+\title{Optical-AGN denominator for maintenance-heating follow-up}
+\author{NebulaMind Research Autopilot}
+\affiliation{NebulaMind Astrophysics Collaboration, San Francisco, CA 94107, USA}
+\correspondingauthor{NebulaMind Research Autopilot}
+\email{autopilot@nebulamind.ai}
+
+\begin{abstract}
+We use a 60,000-galaxy subset of the SDSS DR17 emission-line catalog to construct an optical denominator for maintenance-heating follow-up in massive galaxies. Among massive, low-sSFR hosts, the BPT-AGN fraction is 0.430 in the massive subset and 0.607 among massive low-sSFR objects, providing a proxy for the duty-cycle denominator relevant to future X-ray or radio maintenance-heating studies. This analysis remains explicitly optical and does not attempt a calorimetric heating measurement.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+\software{Astropy, SciPy, NumPy, Matplotlib, pandas}
+
+\section{Introduction}\label{sec:introduction}
+Maintenance-heating interpretations require X-ray or radio observables, but a rigorous optical denominator is a necessary first step. Here, the optical denominator denotes the SDSS DR17 emission-line parent sample used as the baseline population for downstream comparisons, not a measurement of any physical process by itself. Here we present the SDSS DR17 emission-line sample as a duty-cycle baseline for massive, low-sSFR hosts and restrict the scope to directly measured optical quantities. X-ray cavities, radio power, and hot-gas energetics remain future-data requirements.
+
+
+\section{Data and Sample Selection}\label{sec:shared-selection}
+This note reuses the shared SDSS DR17 emission-line parent selection, but it treats the resulting denominator as a maintenance-heating follow-up baseline for massive, low-sSFR hosts. The capped subset contains 60,000 galaxies selected from public spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the analyzed subset covers 24.0\% of that parent. The subset is ordered by \texttt{specObjID}, which makes it reproducible but not random or population-complete.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent (fraction)}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N$\geq 3$ & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N$\geq 5$ & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N$\geq 10$ & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq 3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this analysis is conditional on the four-line emission-line selection.
+
+Local subset versus public catalog marginal checks found no redshift, stellar-mass, or sSFR bin with a subset-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table \citep{baldwin1981,kewley2001,kauffmann2003bpt,kewley2006}. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+Unless otherwise noted, quoted fraction uncertainties are binomial counting uncertainties from the stated sample sizes, and bracketed intervals are bootstrap confidence intervals.
+
+
+\section{Optical denominator for maintenance-heating follow-up}\label{sec:topic-result}
+Among massive, low-sSFR SDSS emission-line galaxies, we quantify the optical AGN fraction available as a denominator for X-ray and radio maintenance-heating follow-up. The result is an optical baseline rather than a calorimetric measurement.
+
+The massive galaxy subset ($\log M_\star \geq 10.8$) contains 9,298 emission-line galaxies, of which 5,695 are classified as low-sSFR based on the specific star formation rate threshold of $\log(\mathrm{sSFR}/\mathrm{yr}^{-1}) < -11.0$ applied in this analysis. The optical BPT AGN fraction is measured as 0.430 in the total massive subset, rising to 0.607 when restricting the sample to massive low-sSFR objects. This empirical duty-cycle baseline is intended for future X-ray or radio maintenance-heating follow-up and is not a heating measurement.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+\caption{SDSS DR17 optical denominator/proxy diagnostic for maintenance-heating follow-up. The figure highlights that among massive, low-sSFR objects, the BPT-AGN fraction is 0.607, providing a duty-cycle denominator for future X-ray/radio studies.}
+\label{fig:topic}
+\end{figure}
+
+\section{Interpretation and missing observables}\label{sec:missing}
+This SDSS-only pilot is intentionally limited to optical quantities. A full proposal requires X-ray cavity/cooling-luminosity measurements, radio jet powers, halo-selected parent catalogues, and nondetection modelling.
+
+Radio-mode and hot-atmosphere studies define the future calorimetric observables--jet power, cavities, cooling luminosity, and group gas--that are absent from this optical denominator \citep{best2005,mcnamara2007,mcnamara2012,heckmanbest2014,eckert2024}.
+
+
+\section{Data Availability}\label{sec:data-avail}
+The SDSS DR17 spectroscopy, photometry, emission-line measurements, and catalog quantities used here are publicly available through the SDSS data releases and associated catalog papers cited below. A local subset and manifest are retained in the project repository for reproducibility and are available from the corresponding author upon reasonable request.
+
+\section{Conclusion}\label{sec:conclusion}
+The massive subset contains 9,298 emission-line galaxies, with 5,695 classified as low-sSFR by the pilot threshold of $\log(\mathrm{sSFR}/\mathrm{yr}^{-1}) < -11.0$. The BPT AGN fraction rises from 0.430 in the massive subset to 0.607 in the massive low-sSFR subset, defining an optical duty-cycle denominator for maintenance-heating follow-up rather than a direct heating result.
+
+\acknowledgments
+We thank the SDSS collaboration. This manuscript uses public SDSS DR17 data only.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Eckert et al.(2024)]{eckert2024} Eckert, D., Gastaldello, F., O'Sullivan, E., et al. 2024, Galaxies, 12(3), 24
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[McNamara \& Nulsen(2012)]{mcnamara2012} McNamara, B.~R., \& Nulsen, P.~E.~J. 2012, New J. Phys., 14, 055023
+\end{thebibliography}
+
+\end{document}

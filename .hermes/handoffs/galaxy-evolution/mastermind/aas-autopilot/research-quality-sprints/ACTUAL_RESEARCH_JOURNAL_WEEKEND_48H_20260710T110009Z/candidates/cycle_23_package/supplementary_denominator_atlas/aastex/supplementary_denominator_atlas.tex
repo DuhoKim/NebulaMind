@@ -1,0 +1,256 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS denominator/proxy atlas}
+\shortauthors{NebulaMind}
+\begin{document}
+
+\title{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+This supplement packages eight denominator/proxy notes from the selection-aware SDSS BPT/sSFR pilot into one optical baseline atlas for future real-data follow-up. All counts and fractions remain conditional on a fixed 60,000-galaxy optical cache selected sequentially by \texttt{specObjID}; the atlas is therefore a baseline-and-checklist document, not a population-complete or causal-mechanism result. It collects environment, maintenance-heating, outflow, radio-jet, mass-bin, tracer, gas-depletion, and simulation-vector notes, while radio, X-ray, CO/HI, halo/group, resolved-outflow, and forward-model observables remain missing.
+\end{abstract}
+
+\keywords{galaxies: evolution --- surveys --- catalogs --- methods: observational --- methods: statistical}
+
+\section{Purpose}
+The main paper measures an optical association between BPT classification and catalog sSFR. Here, each atlas entry serves one of two roles: it is either an observed optical denominator or a target vector, and it is paired with the specific missing observables required before any physical inference is attempted. The entries span environment, maintenance heating, outflows, jet environments, mass-bin diagnostics, tracer thresholds, gas depletion, and simulation targets, but they share the same selection biases and missing data. For consistency with the flagship, the atlas uses broad optical BPT-selected language when the full optical-emission-line denominator is meant and names specific subsets only when the stricter selection matters. The SDSS/BPT/catalog references document the present optical denominators; the radio/X-ray/CO/HI/outflow/simulation references that appear later are future-data motivation rather than validation of the current measurements.
+
+\section{Shared denominator limitations}
+The atlas uses the same public-data backbone as the main paper: a fixed 60,000-galaxy subset. The strict public four-line S/N$\geq3$ parent count of 249,917 galaxies, and the corresponding 24.0\% cache coverage, are selection-context diagnostics rather than custody-backed independent result rows; the present custody receipt inventories the 60,000-row cache and topic JSON artifacts, not the public SQL count logs behind the full parent cascade. The four-line selection is sSFR-dependent and the sample is capped and non-random, so all counts and fractions are conditional denominators rather than population-complete measurements. The galaxy-by-galaxy stellar masses and catalog sSFR values are taken from the public MPA-JHU-style \texttt{galSpecExtra} table after the same SDSS joins used in the flagship \citep{sdssdr17,brinchmann2004,york2000}. Structural quantities such as \(R_{90}/R_{50}\), \texttt{fracDeV}, \texttt{petroR50}, and \texttt{petroR90} were not retained in the 60,000-row cache, so morphology cannot be controlled in this cycle. The fixed 3-arcsec SDSS fiber makes the optical quantities central-fiber proxies rather than global measurements, the strict four-line S/N cuts preferentially remove low-equivalent-width or passive systems, and the 55-arcsec fiber-collision limit distorts projected-neighbor statistics in dense regions. These are denominator limitations, not physical results, and they apply to every subsection below.
+
+Public parent-count cascade values are used only as selection context in this atlas. They should be accompanied by explicit SQL/query receipts before they are promoted to independent measured results in a journal submission.
+
+\section{Provenance map}
+The candidate custody file \texttt{provenance/REAL\_DATA\_SOURCE\_CUSTODY.json} inventories the real source artifacts, byte counts, hashes, and approximate row counts without copying the source data into this candidate. Table~\ref{tab:provenance-map} maps each atlas entry and the flagship matched-control anchor to its inventoried artifact. The table is a provenance index only; it does not add measurements beyond the topic JSON files and flagship matched-pair artifact.
+
+\begin{deluxetable*}{lllll}
+\tabletypesize{\tiny}
+\tablecaption{Custody-backed artifacts used by the atlas and flagship anchor.\label{tab:provenance-map}}
+\tablehead{\colhead{Atlas entry} & \colhead{Run ID} & \colhead{Inventoried artifact} & \colhead{SHA-256} & \colhead{JSON keys}}
+\startdata
+Flagship matched-control anchor & \texttt{SDSS\_AGN\_SFR\_PILOT\_20260708T122000Z} & \texttt{analysis\_results.json} & \texttt{668ad7a67290600ff5028ae587d32ef239a09bd8627a480539f37e1927d659df} & \texttt{matched\_pairs}, \texttt{matched\_delta\_log\_sSFR\_median\_dex}, \texttt{matched\_delta\_log\_sSFR\_median\_ci95\_bootstrap}, \texttt{match\_abs\_delta\_logM\_median}, \texttt{match\_abs\_delta\_z\_median} \\
+Flagship matched-pair table & \texttt{SDSS\_AGN\_SFR\_PILOT\_20260708T122000Z} & \texttt{data/matched\_agn\_sf\_pairs.csv} & \texttt{4ea53af867cccccb2b68b81557ff84fe90ec3f13e0512ffbdc977fa7216996fd} & \texttt{matched\_pairs} \\
+Relative neighbor-count baseline & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m1\_rp2\_environment\_quenching/analysis\_results.json} & \texttt{c0421620f67f3c227955affa3f4c1876cb85f8b31874d219f2cd2e35a7f9cec0} & \texttt{high\_density\_quenched.fraction}, \texttt{low\_density\_quenched.fraction}, \texttt{high\_minus\_low\_ci}, \texttt{lpm\_high\_density\_coeff}, \texttt{lpm\_high\_density\_se} \\
+Maintenance-heating denominator & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m1\_rp3\_maintenance\_heating/analysis\_results.json} & \texttt{06291f82c3fbe0f7fe84f7249568882ca4fa44972bcc25a55e367ef1fdcc7e6e} & \texttt{massive\_transition\_quenched\_rows}, \texttt{agn\_fraction\_in\_denominator}, \texttt{median\_log\_lha\_denominator}, \texttt{median\_log\_lha\_offset\_vs\_massive\_sf} \\
+Resolved-kinematics follow-up denominator & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m2\_p1\_outflow\_escape\_recycling/analysis\_results.json} & \texttt{44b2407aa691d64fd6de22eb49a8c0a185c86bb1f3b538c7bf066e904d0a3210} & \texttt{high\_excitation\_agn}, \texttt{median\_log\_sSFR\_high\_excitation}, \texttt{median\_log\_sSFR\_all} \\
+Radio-jet environment baseline & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m2\_p2\_radio\_jet\_environment/analysis\_results.json} & \texttt{4e1ff701bb5b98af4945d5adad2e543e00005e1ab3907e8fae7d15e70c93e351} & \texttt{high\_density\_massive\_agn}, \texttt{low\_density\_massive\_agn}, \texttt{high\_minus\_low\_ci} \\
+Stellar-mass selection diagnostic & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m2\_p3\_feedback\_transition\_mass/analysis\_results.json} & \texttt{204ec46dc838e5e69a34b4dc2f790cb0b5e0f7fc1cb4eaa71f830779a2c92b67} & \texttt{agn\_fraction\_by\_mass}, \texttt{quenched\_fraction\_by\_mass}, \texttt{peak\_agn\_mass\_bin}, \texttt{peak\_agn\_fraction}, \texttt{transition\_mass\_bin\_quenched\_fraction\_gt\_0p5} \\
+Tracer-threshold census & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m3\_p1\_multiphase\_census/analysis\_results.json} & \texttt{e711563011102657b6d5cab279c1b2ab7ed087dfc734e50932ad4edfe90d0683} & \texttt{tracer\_prevalence}, \texttt{prevalence\_ratio\_widest\_to\_narrowest} \\
+Low-sSFR optical denominator & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m3\_p2\_gas\_depletion\_efficiency/analysis\_results.json} & \texttt{42965b6f359c23b56098f5f9845561f4a4a2ba81e1e00df09fbae4acf3bcc2d9} & \texttt{massive\_transition\_quenched\_rows}, \texttt{agn\_fraction\_in\_denominator}, \texttt{median\_log\_lha\_denominator}, \texttt{median\_log\_lha\_offset\_vs\_massive\_sf} \\
+Simulation target vector & \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} & \texttt{m3\_p3\_simulation\_validation/analysis\_results.json} & \texttt{6f289f8c68da425eb3d8005e673bf5c5c02cf917eaa2bc6feedd053535de8f52} & \texttt{target\_vector\_cells}, \texttt{quenched\_fraction\_range}, \texttt{agn\_fraction\_range} \\
+\enddata
+\tablecomments{The two flagship rows are included because the supplement repeatedly uses the main paper's 8,146-pair, -1.309 dex matched-control result as its anchor. The eight atlas-topic artifacts are under run \texttt{SDSS\_REMAINING\_TOPIC\_PILOTS\_20260708T125828Z} and use the shared 60,000-row SDSS analysis sample from \texttt{SDSS\_AGN\_SFR\_PILOT\_20260708T122000Z}. The JSON key names in the final column identify the field-level provenance for each subsection, so the map can be audited without inferring which field generated which displayed number.}
+\end{deluxetable*}
+
+\section{Atlas summary}
+Table~\ref{tab:atlas-summary} condenses the follow-up menu across the eight entries. All eight entries remain SDSS optical denominators or target vectors until the missing multiwavelength, morphological, or forward-model comparison data are added, so their present role is to organize follow-up rather than to establish causal physical claims.
+
+\begin{deluxetable*}{lll}
+\tabletypesize{\scriptsize}
+\tablecaption{Custody-backed optical baselines in the atlas. These are selection-dependent optical baselines, not physical density, gas-mass, or feedback-efficiency measurements.\label{tab:atlas-summary}}
+\tablehead{\colhead{Topic} & \colhead{Observed baseline} & \colhead{Artifact}}
+\startdata
+Environment & low-sSFR vs.\ 10th-neighbor rank (60,000 total; 15,000 per quartile) & \texttt{m1\_rp2} \\
+Maintenance heating & broad optical BPT-selected hosts in massive low-sSFR galaxies (9,298 massive; 5,695 low-sSFR) & \texttt{m1\_rp3} \\
+Outflow kinematics & high-excitation broad optical BPT-selected subset (4,440/60,000) & \texttt{m2\_p1} \\
+Env.\ jets & neighbor-rank-stratified broad optical BPT-selected fraction in massive hosts & \texttt{m2\_p2} \\
+Mass bin & low-sSFR and broad optical BPT-selected incidence by $M_\star$ bin (15 cells with $n\geq50$) & \texttt{m2\_p3} \\
+Tracer census & tracer prevalence in 60k sample (0.136 to 0.418) & \texttt{m3\_p1} \\
+Gas depletion & gas-depletion low-sSFR baseline; H$\alpha$ proxy (6,729 galaxies) & \texttt{m3\_p2} \\
+Simulation vector & mass-redshift target vector (15 cells with $n\geq50$) & \texttt{m3\_p3} \\
+\enddata
+\tablecomments{The table is a compact index of the subsection-level missing-observables lists; it does not add new measurements or change any counts. The sharp retention drop at higher S/N mainly reflects the optical emission-line selection function, which preferentially removes low-equivalent-width or passive systems from the denominator; the surviving sample therefore becomes less representative of quiescent hosts as the cut tightens.}
+\end{deluxetable*}
+
+\begin{deluxetable*}{lll}
+\tabletypesize{\scriptsize}
+\tablecaption{Required follow-up data for interpreting the optical baselines in Table~\ref{tab:atlas-summary}.\label{tab:atlas-followup}}
+\tablehead{\colhead{Topic} & \colhead{Missing observables} & \colhead{Future follow-up domain}}
+\startdata
+Environment & group catalogs; central/satellite labels; halo mass; fiber-collision correction & environment test \\
+Maintenance heating & X-ray cavities; cooling luminosity; radio jet powers; halo-selected parents & radio/X-ray follow-up \\
+Outflow kinematics & resolved velocities; halo potentials; multiphase gas; CGM tracers & kinematic follow-up \\
+Env.\ jets & radio morphology/age; cavity energetics; hot-gas density & radio-jet follow-up \\
+Mass bin & gas fractions; baryon deficits; halo masses; physical-observable constraints & selection diagnostic \\
+Tracer census & multiphase tracers; shared denominator; aperture model & multiphase follow-up \\
+Gas depletion & CO/dust gas masses; aperture-matched SFRs; morphology; environment & CO/HI follow-up \\
+Simulation vector & simulations through SDSS/MaNGA/ALMA/X-ray/radio selection; aperture/noise models & forward model \\
+\enddata
+\tablecomments{These rows are missing-observable requirements, not measurements in the current SDSS-only atlas.}
+\end{deluxetable*}
+
+\section{Atlas notes}
+Each atlas entry below follows the same pattern: artifact ID, observed optical baseline, missing observables, and the non-causal boundary. The missing observables listed in Table~\ref{tab:atlas-followup} are required before any physical inference from these optical baselines.
+
+\subsection{Relative neighbor-count baseline: SDSS 10th-neighbor index for low-sSFR incidence}
+Artifact \texttt{m1\_rp2\_environment\_quenching/analysis\_results.json} (\texttt{high\_density\_quenched.fraction}, \texttt{low\_density\_quenched.fraction}, \texttt{high\_minus\_low\_ci}, \texttt{lpm\_high\_density\_coeff}, \texttt{lpm\_high\_density\_se}) gives the 10th-neighbor projected-rank baseline in the 60,000-galaxy emission-line denominator. The high-index quartile has a low-sSFR emission-line fraction of 0.230 (3,456/15,000), while the low-index quartile has 0.181 (2,710/15,000); the bootstrap high-minus-low interval is [0.041, 0.059], and the adjusted linear-probability coefficient is 0.032 +/- 0.004. Missing observables are group catalogs, halo mass, central/satellite labels, and a spectroscopic fiber-collision correction at the 55-arcsec scale. This is an ordinal projected-neighbor rank, not a physical density or causal environment result.
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-01.pdf}
+\caption{SDSS optical emission-line denominator: the low-sSFR emission-line fraction as a function of the 10th-neighbor index in the SDSS emission-line sample. This is a selection-dependent baseline for future group- and halo-matched follow-up.}
+\label{fig:m1-rp2-neighbor-count-baseline}
+\end{figure}
+
+
+\subsection{Maintenance-heating denominator: broad optical BPT-selected hosts in massive SDSS galaxies}
+Artifact \texttt{m1\_rp3\_maintenance\_heating/analysis\_results.json} (\texttt{massive\_transition\_quenched\_rows}, \texttt{agn\_fraction\_in\_denominator}, \texttt{median\_log\_lha\_denominator}, \texttt{median\_log\_lha\_offset\_vs\_massive\_sf}) defines the optical duty-cycle denominator for maintenance-heating follow-up. The massive subset (\(\log M_\star \geq 10.8\)) contains 9,298 emission-line galaxies, of which 5,695 are low-sSFR; the broad optical BPT-selected fraction is 0.430 in the massive subset and 0.607 among massive low-sSFR objects. Missing observables are X-ray cavity or cooling-luminosity measurements, radio jet mechanical powers, halo-selected parent catalogues, and nondetection modelling. Future radio-loud baselines can be anchored to catalog work such as Best \& Heckman (2012) \citep{bestheckman2012}; the present optical denominator is still not a heating-to-cooling or jet-power measurement.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-02.pdf}
+\caption{SDSS optical emission-line denominator: the massive and low-sSFR SDSS emission-line subsets used as a baseline for future X-ray and radio measurements.}
+\label{fig:m1-rp3-maintenance-heating}
+\end{figure}
+
+
+\subsection{High-excitation broad optical BPT-selected baseline: resolved kinematics follow-up}
+Artifact \texttt{m2\_p1\_outflow\_escape\_recycling/analysis\_results.json} (\texttt{high\_excitation\_agn}, \texttt{median\_log\_sSFR\_high\_excitation}, \texttt{median\_log\_sSFR\_all}) defines the high-excitation broad optical BPT denominator for resolved-kinematics follow-up. High-excitation broad optical BPT-selected candidates number 4,440 of 60,000 emission-line galaxies (0.074), and their median \(\log {\rm sSFR}\) is -11.53 versus -10.14 for the full denominator. Missing observables are resolved outflow velocities, halo potentials, molecular/ionized/neutral gas phases, and CGM recycling tracers. This is a follow-up denominator, not an escape-velocity or recycling result.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-03.pdf}
+\caption{SDSS optical emission-line denominator: the high-excitation BPT-selected subset used to define an observational baseline for future resolved-kinematic measurements.}
+\label{fig:m2-p1-outflow-escape-recycling}
+\end{figure}
+
+
+\subsection{Radio-jet environment baseline: broad optical BPT-selected fraction vs. 10th-neighbor index in massive hosts}
+Artifact \texttt{m2\_p2\_radio\_jet\_environment/analysis\_results.json} (\texttt{high\_density\_massive\_agn}, \texttt{low\_density\_massive\_agn}, \texttt{high\_minus\_low\_ci}) defines the environment-stratified optical denominator for future radio/X-ray work. Among massive hosts, the high-index quartile has a broad optical BPT-selected fraction of 0.509, while the low-index quartile has 0.367; the bootstrap high-minus-low interval is [0.112, 0.170]. Missing observables are radio jet morphology and age, cavity or shock energetics, hot-gas density, and calibrated jet-power estimates. This is an optical environment denominator, not a radio-jet power measurement.
+Radio continuum surveys such as FIRST and LoTSS provide the missing morphology and age leverage needed to turn this denominator into a jet-environment test \citep{first1995,lotss2019}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-04.pdf}
+\caption{SDSS optical emission-line denominator: the high- and low-index quartile comparison among massive SDSS hosts, used as a baseline for future radio-jet and X-ray work.}
+\label{fig:m2-p2-radio-jet-environment}
+\end{figure}
+
+
+\subsection{Stellar-mass selection diagnostic: low-sSFR and broad optical BPT-selected incidence}
+Artifact \texttt{m2\_p3\_feedback\_transition\_mass/analysis\_results.json} (\texttt{agn\_fraction\_by\_mass}, \texttt{quenched\_fraction\_by\_mass}, \texttt{peak\_agn\_mass\_bin}, \texttt{peak\_agn\_fraction}, \texttt{transition\_mass\_bin\_quenched\_fraction\_gt\_0p5}) measures low-sSFR and broad optical BPT incidence across stellar-mass bins. The first bin with low-sSFR fraction above 0.5 is \(\log(M_\star/M_\odot) \in [11.0,12.5]\), and the broad optical BPT-selected incidence peaks in the same bin at 0.520 within the selection-limited pilot sample. Missing observables are gas fractions, baryon deficits, halo masses, and central-velocity-dispersion proxies. This is a population-distribution diagnostic, not a physical transition mass.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-05.pdf}
+\caption{SDSS optical emission-line denominator: mass-bin diagnostic for low-sSFR and broad optical BPT-selected incidence in the SDSS emission-line denominator. This is a population baseline for future gas-inclusive follow-up.}
+\label{fig:m2-p3-transition-mass}
+\end{figure}
+
+
+\subsection{Tracer-threshold census for multiphase follow-up}
+Artifact \texttt{m3\_p1\_multiphase\_census/analysis\_results.json} (\texttt{tracer\_prevalence}, \texttt{prevalence\_ratio\_widest\_to\_narrowest}) compares optical tracer choices against one shared denominator before any multiphase census is attempted. Within the 60,000-galaxy sample, simple optical tracer definitions produce broad optical BPT-selected prevalence from 0.136 to 0.418, a factor of 3.1 before molecular, neutral, X-ray, or radio phases are added. Missing observables are ionized, molecular, and neutral tracers, X-ray or radio tracers, a shared parent denominator, and a consistent aperture model. This is a tracer-baseline note, not a multiphase outflow measurement.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-06.pdf}
+\caption{SDSS optical emission-line denominator: prevalence of alternative tracer definitions within the 60,000-galaxy sample. This is a baseline for future multiphase work.}
+\label{fig:m3-p1-multiphase-census}
+\end{figure}
+
+
+\subsection{Low-sSFR optical denominator: baseline for future CO/HI gas measurements}
+Artifact \texttt{m3\_p2\_gas\_depletion\_efficiency/analysis\_results.json} (\texttt{massive\_transition\_quenched\_rows}, \texttt{agn\_fraction\_in\_denominator}, \texttt{median\_log\_lha\_denominator}, \texttt{median\_log\_lha\_offset\_vs\_massive\_sf}) defines the denominator for CO/HI gas-fraction and depletion-time follow-up. The massive low-sSFR denominator contains 6,729 galaxies, its broad optical BPT-selected fraction is 0.549, and the median H-alpha luminosity proxy is \(\log (L_{\mathrm{H}\alpha}/\mathrm{erg\,s^{-1}}) = 40.061\), which is 0.66 dex lower than in massive star-forming emission-line galaxies. The H-alpha value is an aperture-corrected catalog proxy, not a direct total gas quantity. Missing observables are CO or dust-based molecular gas masses, atomic hydrogen masses, aperture-matched SFRs, morphology, and environment labels, together with radio, X-ray, and IFU observables. Catalogs such as xCOLD GASS/xGASS and matched stellar-population plus CO survey designs motivate the follow-up; the present value remains a line-luminosity proxy, not a cold-gas-mass estimate.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-07.pdf}
+\caption{SDSS optical emission-line denominator: the massive low-sSFR SDSS galaxies available for CO/HI depletion-time follow-up.}
+\label{fig:m3-p2-gas-depletion-efficiency}
+\end{figure}
+
+
+\subsection{Simulation target vector for forward-model comparison}
+Artifact \texttt{m3\_p3\_simulation\_validation/analysis\_results.json} (\texttt{target\_vector\_cells}, \texttt{quenched\_fraction\_range}, \texttt{agn\_fraction\_range}) provides the observed target vector for forward modelling. The pilot writes 15 mass-redshift cells with \(n \geq 50\) for low-sSFR fraction, broad optical BPT-selected incidence, and median \(u-r\) colour versus mass and redshift; across mass bins, low-sSFR fractions span 0.001-0.856 and broad optical BPT-selected fractions span 0.001-0.610, as listed in Table~\ref{tab:simulation-vector}.
+
+\begin{deluxetable*}{lrrrrr}
+\tabletypesize{\tiny}
+\tablecaption{Mass-redshift target vector retained in \texttt{m3\_p3\_simulation\_validation/analysis\_results.json}.\label{tab:simulation-vector}}
+\tablehead{\colhead{$\log(M_\star/M_\odot)$ bin} & \colhead{$z$ bin} & \colhead{$N$} & \colhead{Low-sSFR fraction} & \colhead{Broad optical BPT fraction} & \colhead{Median \(u-r\)}}
+\startdata
+8.0--9.5 & 0.02--0.05 & 6,201 & 0.006 & 0.003 & 1.532 \\
+8.0--9.5 & 0.05--0.08 & 1,638 & 0.001 & 0.001 & 1.379 \\
+8.0--9.5 & 0.08--0.12 & 300 & 0.007 & 0.010 & 1.045 \\
+9.5--10.0 & 0.02--0.05 & 3,607 & 0.061 & 0.030 & 1.854 \\
+9.5--10.0 & 0.05--0.08 & 6,059 & 0.013 & 0.008 & 1.696 \\
+9.5--10.0 & 0.08--0.12 & 2,187 & 0.003 & 0.001 & 1.516 \\
+10.0--10.5 & 0.02--0.05 & 2,962 & 0.256 & 0.154 & 2.264 \\
+10.0--10.5 & 0.05--0.08 & 7,581 & 0.161 & 0.090 & 2.119 \\
+10.0--10.5 & 0.08--0.12 & 8,593 & 0.062 & 0.040 & 1.920 \\
+10.5--11.0 & 0.02--0.05 & 1,895 & 0.581 & 0.430 & 2.623 \\
+10.5--11.0 & 0.05--0.08 & 5,083 & 0.451 & 0.297 & 2.580 \\
+10.5--11.0 & 0.08--0.12 & 9,861 & 0.326 & 0.209 & 2.455 \\
+11.0--12.5 & 0.02--0.05 & 390 & 0.856 & 0.610 & 2.831 \\
+11.0--12.5 & 0.05--0.08 & 1,199 & 0.805 & 0.563 & 2.851 \\
+11.0--12.5 & 0.08--0.12 & 2,444 & 0.672 & 0.485 & 2.838 \\
+\enddata
+\tablecomments{Fractions and median \(u-r\) values are rounded to three decimals for compact display; the retained JSON stores the full precision. Each low-sSFR and broad optical BPT fraction is computed directly from the row-specific \(N\) count, i.e. a bin count divided by the bin denominator. This table is an observed optical target vector, not a simulation comparison.}
+\end{deluxetable*}
+
+The follow-up ingredients are simulations \citep{eagle2015} passed through the exact optical S/N and fiber-aperture selection function used here, including the sequential 60,000-row \texttt{specObjID} cache cap, and then through the SDSS, MaNGA, ALMA, X-ray, and radio selection functions with aperture and noise models. Forward modelling should synthesize optical emission-line classifications, including BPT selection, and couple them to a photoionization code such as CLOUDY before comparison to the atlas vector \citep{hirschmann2017,ferland2017}. Observed \(u-r\) colors are not intrinsic dust-free colors, so a realistic comparison also needs explicit dust treatment or radiative transfer, as in forward-model color work such as \citet{trayford2015}. Without those matched selection steps, any simulation comparison is not a valid test.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-08.pdf}
+\caption{SDSS optical emission-line denominator: low-sSFR fraction, broad optical BPT-selected incidence, and colour versus mass and redshift in the SDSS emission-line sample. This is an observed target vector for forward modelling.}
+\label{fig:m3-p3-simulation-validation}
+\end{figure}
+
+\section{Package decision}
+These eight entries should remain supplementary until the missing observables are added. They are follow-up target definitions, denominator baselines, or appendix material under the main result, but not independent causal-mechanism papers in their current SDSS-only form. The observational role of each subsection is to define what real data are still needed, not to expand the current SDSS-only measurement set.
+
+\section*{Data Availability}
+This atlas uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The custody receipt is \texttt{provenance/REAL\_DATA\_SOURCE\_CUSTODY.json}. It inventories the shared \texttt{SDSS\_AGN\_SFR\_PILOT\_20260708T122000Z/data/analysis\_sample\_bpt.csv} source cache (60,000 rows; SHA-256 \texttt{6f982fa5778c3900239149b28729f701390fe393a164b95236229adc1e422883}), the flagship matched-control anchor \texttt{analysis\_results.json} (SHA-256 \texttt{668ad7a67290600ff5028ae587d32ef239a09bd8627a480539f37e1927d659df}) and \texttt{data/matched\_agn\_sf\_pairs.csv} (8,146 rows; SHA-256 \texttt{4ea53af867cccccb2b68b81557ff84fe90ec3f13e0512ffbdc977fa7216996fd}), plus the eight atlas JSON artifacts listed in Table~\ref{tab:provenance-map}. All eight notes remain conditional on the optical-selection denominators summarized in this atlas. This candidate package does not contain the executable analysis scripts or frozen command recipes that generated the downstream JSON files, so full regeneration from the candidate alone is not claimed. No mock, synthetic, fake, placeholder, or toy data were used.
+
+\facilities{SDSS}
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35; ADS bibcode: 2022ApJS..259...35A; DOI: 10.3847/1538-4365/ac4a0c
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5; ADS bibcode: 1981PASP...93....5B; DOI: 10.1086/130766
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25; ADS bibcode: 2005MNRAS.362...25B; DOI: 10.1111/j.1365-2966.2005.09192.x
+\bibitem[Best \& Heckman(2012)]{bestheckman2012} Best, P.~N., \& Heckman, T.~M. 2012, MNRAS, 421, 1569; DOI: 10.1111/j.1365-2966.2012.20414.x
+\bibitem[Avery et al.(2021)]{avery2021} Avery, C.~R., et al. 2021, MNRAS, 503, 5133; DOI: 10.1093/mnras/stab712
+\bibitem[Blanton et al.(2003)]{blanton2003} Blanton, M.~R., Lin, H., Lupton, R.~H., et al. 2003, ApJ, 592, 819; ADS bibcode: 2003ApJ...592..819B; DOI: 10.1086/375776
+\bibitem[Bolatto et al.(2013)]{bolatto2013} Bolatto, A.~D., Wolfire, M., \& Leroy, A.~K. 2013, ARA\&A, 51, 207; DOI: 10.1146/annurev-astro-082812-140944
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151; ADS bibcode: 2004MNRAS.351.1151B; DOI: 10.1111/j.1365-2966.2004.08017.x
+\bibitem[Cid Fernandes et al.(2011)]{cidfernandes2011} Cid Fernandes, R., Stasi{\'n}ska, G., Schlickmann, S., et al. 2011, MNRAS, 413, 1687; ADS bibcode: 2011MNRAS.413.1687C; DOI: 10.1111/j.1365-2966.2011.18244.x
+\bibitem[Davies et al.(2016)]{davies2016} Davies, R.~L., Schirmer, M., \& Turner, J.~E.~H. 2016, MNRAS, 462, 1616; DOI: 10.1093/mnras/stw1754
+\bibitem[Hardcastle \& Croston(2020)]{hardcastle2020} Hardcastle, M.~J., \& Croston, J.~H. 2020, New Astronomy Reviews, 88, 101539; arXiv: 2003.06137
+\bibitem[Harrison et al.(2018)]{harrison2018} Harrison, C.~M., Costa, T., Tadhunter, C.~N., et al. 2018, Nature Astronomy, 2, 198; ADS bibcode: 2018NatAs...2..198H
+\bibitem[Saintonge et al.(2017)]{xcoldgass2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, ApJS, 233, 22; ADS bibcode: 2017ApJS..233...22S
+\bibitem[Catinella et al.(2018)]{xgass2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875; ADS bibcode: 2018MNRAS.476..875C
+\bibitem[Becker et al.(1995)]{first1995} Becker, R.~H., White, R.~L., \& Helfand, D.~J. 1995, ApJ, 450, 559; ADS bibcode: 1995ApJ...450..559B; DOI: 10.1086/176166
+\bibitem[Stasi{\'n}ska et al.(2008)]{stasinska2008} Stasi{\'n}ska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29; ADS bibcode: 2008MNRAS.391L..29S; DOI: 10.1111/j.1745-3933.2008.00550.x
+\bibitem[Stasi{\'n}ska et al.(2015)]{stasinska2015} Stasi{\'n}ska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodr{\'e}, L. 2015, MNRAS, 449, 559; ADS bibcode: 2015MNRAS.449..559S; DOI: 10.1093/mnras/stv353
+\bibitem[Strauss et al.(2002)]{strauss2002} Strauss, M.~A., Weinberg, D.~H., Lupton, R.~H., et al. 2002, AJ, 124, 1810; ADS bibcode: 2002AJ....124.1810S; DOI: 10.1086/342343
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2; ADS bibcode: 2006MNRAS.368....2D; DOI: 10.1111/j.1365-2966.2006.10145.x
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455; ADS bibcode: 2012ARA\&A..50..455F; DOI: 10.1146/annurev-astro-081811-125521
+\bibitem[Ferland et al.(2017)]{ferland2017} Ferland, G.~J., Chatzikos, M., Guzm\'an, F., et al. 2017, RMxAA, 53, 385; arXiv: 1705.10877
+\bibitem[Fluetsch et al.(2019)]{fluetsch2019} Fluetsch, A., Maiolino, R., Carniani, S., et al. 2019, MNRAS, 483, 4586; DOI: 10.1093/mnras/sty3449
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589; ADS bibcode: 2014ARA\&A..52..589H; DOI: 10.1146/annurev-astro-081913-035933
+\bibitem[Guo et al.(2012)]{guo2012} Guo, H., Zehavi, I., Zheng, Z., et al. 2012, MNRAS, 427, 428; ADS bibcode: 2012MNRAS.427..428G; DOI: 10.1111/j.1365-2966.2012.21956.x
+\bibitem[Hirschmann et al.(2017)]{hirschmann2017} Hirschmann, M., Charlot, S., Feltre, A., et al. 2017, MNRAS, 472, 115; DOI: 10.1093/mnras/stx1907
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055; ADS bibcode: 2003MNRAS.346.1055K
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121; ADS bibcode: 2001ApJ...556..121K; DOI: 10.1086/321545
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961; ADS bibcode: 2006MNRAS.372..961K; DOI: 10.1111/j.1365-2966.2006.10859.x
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117; ADS bibcode: 2007ARA\&A..45..117M; DOI: 10.1146/annurev.astro.45.051806.110625
+\bibitem[Lin et al.(2020)]{lin2020} Lin, L., Ellison, S.~L., Pan, H.-A., et al. 2020, ApJ, 903, 150; DOI: 10.3847/1538-4357/abba69
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193; ADS bibcode: 2010ApJ...721..193P; DOI: 10.1088/0004-637X/721/1/193
+\bibitem[Piotrowska et al.(2022)]{piotrowska2022} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., \& Peng, Y.-j. 2022, MNRAS, 512, 1052; ADS bibcode: 2022MNRAS.512.1052P; DOI: 10.1093/mnras/stac532
+\bibitem[Sandstrom et al.(2013)]{sandstrom2013} Sandstrom, K.~M., Leroy, A.~K., Walter, F., et al. 2013, ApJ, 777, 5; ADS bibcode: 2013ApJ...777....5S
+\bibitem[Charlot \& Fall(2000)]{charlotfall2000} Charlot, S., \& Fall, S.~M. 2000, ApJ, 539, 718; ADS bibcode: 2000ApJ...539..718C
+\bibitem[Schaye et al.(2015)]{eagle2015} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2015, MNRAS, 446, 521; ADS bibcode: 2015MNRAS.446..521S; DOI: 10.1093/mnras/stu2058
+\bibitem[Shimwell et al.(2019)]{lotss2019} Shimwell, T.~W., Hardcastle, M.~J., Tasse, C., et al. 2019, A\&A, 622, A1; ADS bibcode: 2019A\&A...622A...1S; DOI: 10.1051/0004-6361/201834522
+\bibitem[Trayford et al.(2015)]{trayford2015} Trayford, J.~W., Power, C., Hopkins, P.~F., et al. 2015, MNRAS, 452, 2879; DOI: 10.1093/mnras/stv1461
+\bibitem[Tacconi et al.(2018)]{tacconi2018} Tacconi, L.~J., Genzel, R., Saintonge, A., et al. 2018, ApJ, 853, 179; ADS bibcode: 2018ApJ...853..179T
+\bibitem[Tinker(2021)]{tinker2021} Tinker, J.~L. 2021, ApJ, 911, 52; DOI: 10.3847/1538-4357/abe044
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336; ADS bibcode: 2013MNRAS.432..336W; DOI: 10.1093/mnras/stt410
+\bibitem[Yang et al.(2007)]{yang2007} Yang, X., Mo, H.~J., van den Bosch, F.~C., et al. 2007, ApJ, 671, 153; ADS bibcode: 2007ApJ...671..153Y
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579; ADS bibcode: 2000AJ....120.1579Y; DOI: 10.1086/301513
+\bibitem[Zehavi et al.(2002)]{zehavi2002} Zehavi, I., Blanton, M.~R., Frieman, J.~A., et al. 2002, ApJ, 571, 172; ADS bibcode: 2002ApJ...571..172Z
+\bibitem[Zehavi et al.(2011)]{zehavi2011} Zehavi, I., Zheng, Z., Weinberg, D.~H., et al. 2011, ApJ, 736, 59; DOI: 10.1088/0004-637X/736/1/59
+\end{thebibliography}
+
+\end{document}

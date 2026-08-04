@@ -1,0 +1,188 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS denominator/proxy atlas}
+\shortauthors{NebulaMind}
+\begin{document}
+
+\title{Supplementary SDSS Denominator and Proxy Atlas for Galaxy-Evolution Follow-up}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+This supplement is the companion to the selection-aware SDSS BPT/sSFR pilot study and organizes eight SDSS DR17 denominator and proxy notes into one coherent, association-only optical baseline atlas for future real-data follow-up. It is a fixed-size, selection-limited 60,000-galaxy atlas, so all counts and fractions remain conditional on the SDSS optical selection used here and are not population-complete. Because \texttt{specObjID} ordering follows SDSS targeting and plate/MJD bookkeeping, this non-random subset is not a random sky sample and introduces survey-plate and sky-coverage bias. The 55-arcsec SDSS fiber-collision limit also biases projected-neighbor statistics in dense regions, so the environment-related ranks later in the atlas are explicitly selection-limited before any physical interpretation is attempted. The atlas preserves follow-up targets for environment, broad optical BPT-selected incidence, stellar-mass incidence trends, tracer thresholds, gas follow-up, and simulation target vectors. Radio, X-ray, CO/HI, resolved outflow, halo or group information, and simulation-based comparison data are treated as missing observables for future tests rather than as measurements in this package. The sample coverage is 24.0\% of the strict four-line S/N$\geq3$ parent. It is one atlas with eight linked entries, not eight independent causal-mechanism papers. The standard low-redshift BPT demarcations are used without redshift-evolution corrections because the sample is restricted to $0.02<z<0.12$. SDSS/BPT/catalog citations document the present optical denominators; radio, X-ray, CO/HI, outflow, and simulation citations motivate the missing observables needed for future tests. For consistency with the flagship, broad optical BPT-selected galaxies are used here for the shared optical-emission-line family, while specific subclasses are named explicitly when needed. Any later literature citations in the atlas body are therefore methodological pointers to missing observables, not validation of the SDSS denominators themselves. Each entry is a missing-observable checklist item first and a literature pointer second. \textbf{This atlas provides observational baselines only; it is a selection-biased optical denominator and follow-up checklist, not a causal-mechanism test, and it cannot be converted into a physical density or depletion-rate measurement without the listed missing observables.}
+\end{abstract}
+
+\keywords{galaxies: evolution --- surveys --- catalogs --- methods: observational --- methods: statistical}
+
+\section{Purpose}
+The main paper measures an optical association between BPT classification and catalog sSFR. These eight entries are distinct baseline-and-follow-up atlas notes: each is scientifically useful as a denominator or target-vector definition, but each lacks at least one core physical observable required by its original proposal. Although the entries span environment, maintenance heating, outflows, jet environments, mass-bin diagnostics, tracer thresholds, gas depletion, and simulation targets, they share the same optical-selection biases and missing observables. For consistency with the flagship, the atlas uses the broad optical BPT-selected family when the full optical-emission-line denominator is meant and names specific subsets only when the stricter selection matters. The BPT language and catalog-backbone language here follow the same SDSS/MPA-JHU-style value-added tables and standard demarcations as the flagship \citep{sdssdr17,brinchmann2004,york2000,baldwin1981,kewley2001,kauffmann2003bpt,kewley2006,stasinska2008,stasinska2015}. The SDSS/BPT/catalog references document the present optical denominators; the radio/X-ray/CO/HI/outflow/simulation references that appear later in the notes are role-separated as future-data motivation rather than validation of the current measurements. These are missing observables in the present catalog and are required for future mechanism tests. This is an association-only optical baseline atlas and a single internal follow-up checklist for future causal inference, not a collection of standalone mechanism papers.
+
+\section{Shared denominator limitations}
+The atlas uses the same analyzed public-data backbone as the main paper: 60,000 galaxies in a fixed, selection-limited subset from a strict public four-line S/N$\geq3$ parent of 249,917 galaxies, i.e. 24.0\% sample coverage. The four-line selection is sSFR-dependent and the sample is capped and non-random, so all counts and fractions are conditional denominators rather than population-complete measurements. The galaxy-by-galaxy stellar masses and catalog sSFR values are taken from the public MPA-JHU-style \texttt{galSpecExtra} table after the same SDSS joins used in the flagship \citep{sdssdr17,brinchmann2004,york2000}. Although \texttt{PhotoObj} was joined in the catalog backbone, structural quantities such as \(R_{90}/R_{50}\) and \texttt{fracDeV} were not retained in the 60,000-row cache, so morphology cannot be controlled in this cycle. The SDSS/BPT/catalog references support these observed denominators; the later multiwavelength and simulation references only mark the follow-up measurements that are still missing.
+
+The shared limitations are the same ones that appear throughout the atlas notes and should be read once here rather than repeated in each subsection. The fixed 3-arcsec SDSS fiber makes all derived optical quantities central-fiber proxies rather than global measurements, the strict four-line S/N cuts preferentially remove low-equivalent-width or passive systems, and the 55-arcsec fiber-collision limit distorts any projected-neighbor statistic in dense regions. Because the subset is sequentially selected by \texttt{specObjID}, it is also not a random sky sample and can inherit survey-plate and sky-coverage bias. These are denominator limitations, not physical results, and they apply to every subsection below.
+
+The eight subsections below are intentionally parallel baseline-plus-follow-up notes: each one states the observed optical denominator or target vector, then names the missing observables that a future multiwavelength or simulation-based test would need before any physical inference can be made. In other words, the sections are distinct follow-up domains bounded by the same optical selection bias, and their role is to organize the atlas rather than to stand as separate papers.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Selection cascade shared by the atlas; the cache cap is summarized in the main paper.\label{tab:supp-selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 100.0\% \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 83.1\% \\
+plus galSpecLine join & 416,554 & -- & 83.1\% \\
+four BPT lines with valid flux measurements (\texttt{ivar} $> 0$) & 373,445 & 60,000 & 74.5\% \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 49.9\% \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 35.2\% \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 18.3\% \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached analysis table. Retention is shown as a percentage of the spectro-z parent. Cached rows are shown only where the cache applies. The 416,554-to-373,445 drop when requiring \texttt{ivar} $> 0$ reflects the removal of rows with unusable line-flux uncertainties; this table does not distinguish masking, edge-of-chip loss, or missing spectral coverage. The sharp retention drop at higher S/N mainly reflects preferential loss of passive galaxies from the emission-line denominator, so the surviving cache becomes less representative of quiescent hosts as the cut tightens.}
+\end{deluxetable*}
+
+\section{Atlas summary}
+Table~\ref{tab:atlas-summary} condenses the follow-up menu across the eight entries. All eight entries are linked by the same limitation: they remain SDSS optical denominators or target vectors until the missing multiwavelength, morphological, or forward-model comparison data are added, so their present role is to organize follow-up rather than to establish causal physical claims.
+
+\begin{deluxetable*}{llll}
+\tabletypesize{\scriptsize}
+\tablecaption{Atlas-level follow-up menu. Each row summarizes the present optical role and the missing observables needed before any physical inference. This is a selection-dependent optical baseline, not a physical density metric.\label{tab:atlas-summary}}
+\tablehead{\colhead{Topic} & \colhead{Observed baseline} & \colhead{Missing observables} & \colhead{Future Follow-up Domain}}
+\startdata
+Environment & low-sSFR vs.\ 10th-neighbor rank (60,000 total; 15,000 per quartile) & group catalogs; central/satellite labels; halo mass; fiber-collision correction & environment test \\
+Maintenance heating & broad optical BPT-selected hosts in massive low-sSFR galaxies (maintenance-heating baseline; 9,298 massive; 5,695 low-sSFR) & X-ray cavities; cooling luminosity; radio jet powers; halo-selected parents & radio/X-ray follow-up \\
+Outflow kinematics & high-excitation broad optical BPT-selected subset (4,440/60,000) & resolved velocities; halo potentials; multiphase gas; CGM tracers & kinematic follow-up \\
+Env.\ jets & density-stratified broad optical BPT-selected fraction in massive hosts & radio morphology/age; cavity energetics; hot-gas density & radio-jet follow-up \\
+Mass bin & low-sSFR and broad optical BPT-selected incidence by $M_\star$ bin (15 cells with $n\geq50$) & gas fractions; baryon deficits; halo masses; physical-observable constraints & selection diagnostic \\
+Tracer census & tracer prevalence in 60k sample (0.136 to 0.418) & multiphase tracers; shared denominator; aperture model & multiphase follow-up \\
+Gas depletion & gas-depletion low-sSFR baseline; H$\alpha$ proxy (6,729 galaxies) & CO/dust gas masses; aperture-matched SFRs; morphology; environment & CO/HI follow-up \\
+Simulation vector & mass-redshift target vector (15 cells with $n\geq50$) & simulations through SDSS/MaNGA/ALMA/X-ray/radio selection; aperture/noise models & forward model \\
+\enddata
+\tablecomments{The table is a compact index of the subsection-level missing-observables lists; it does not add new measurements or change any counts. The sharp retention drop at higher S/N mainly reflects the optical emission-line selection function, which preferentially removes low-equivalent-width or passive systems from the denominator; the surviving sample therefore becomes less representative of quiescent hosts as the cut tightens.}
+\end{deluxetable*}
+
+\section{Atlas notes}
+As a reminder, each atlas entry is a baseline-plus-follow-up checklist, not a standalone physical-mechanism result.
+
+\subsection{Relative neighbor-count baseline: SDSS 10th-neighbor index for low-sSFR incidence}
+See Table~\ref{tab:atlas-summary}; we establish a relative neighbor-count baseline within the emission-line denominator that can later be joined to group catalogs and halo masses. The 10th-neighbor index is the rank of the 10th nearest companion in projected sky separation within this redshift-limited sample; it is an internal ordinal rank within this selection-biased sample and should not be interpreted as a physical environmental volume density or halo density. Because no additional line-of-sight velocity window is imposed beyond the redshift slice, the statistic is especially susceptible to projection effects. The projected-neighbor ranking is computed within the full $0.02<z<0.12$ redshift slice, with no additional line-of-sight velocity window imposed beyond those sample limits. The SDSS 55-arcsec fiber-collision limit systematically removes close neighbors in dense regions, so the 10th-neighbor proxy is biased before any physical interpretation is attempted. We emphasize that the SDSS 55-arcsec fiber collision limit systematically biases this index in dense environments, precluding its use as a physical density metric without forward-modeled corrections. In this sense, the 10th-neighbor index is a fiber-collision-biased projected-neighbor rank rather than a physical density estimate. The SDSS emission-line denominator contains 60,000 galaxies with an internally computed 10th-neighbor index. The high-index quartile has a low-sSFR emission-line fraction of 0.230 (3,456/15,000), while the low-index quartile has 0.181 (2,710/15,000). The bootstrap high-minus-low interval is [0.041, 0.059], and a linear probability model adjusted for log stellar mass and redshift gives a high-index coefficient of 0.032 +/- 0.004 coefficient uncertainty. The follow-up ingredients are group catalogues, robust central/satellite labels, halo masses, a spectroscopic fiber-collision correction at the 55-arcsec scale, morphology, and multi-redshift selection functions. Within this selection-biased emission-line sample, the 10th-neighbor statistic is only a relative local rank, not a physical volume density and not a substitute for central/satellite labels or a volume-complete halo-density measurement. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-01.pdf}
+\caption{SDSS optical emission-line denominator: the low-sSFR emission-line fraction as a function of the 10th-neighbor index in the SDSS emission-line sample. This is a selection-dependent baseline for future group- and halo-matched follow-up.}
+\label{fig:m1-rp2-neighbor-count-baseline}
+\end{figure}
+
+
+\subsection{Maintenance-heating denominator: broad optical BPT-selected hosts in massive SDSS galaxies}
+See Table~\ref{tab:atlas-summary}; we isolate the broad optical BPT-selected duty-cycle denominator that radio and X-ray data would need to test maintenance heating. Among massive, low-sSFR SDSS emission-line galaxies, the broad optical BPT-selected fraction can serve as a denominator for X-ray and radio maintenance-heating follow-up. The massive subset (\(\log M_\star \geq 10.8\)) contains 9,298 emission-line galaxies, of which 5,695 are low-sSFR by the pilot threshold. The broad optical BPT-selected fraction is 0.430 in the massive subset and 0.607 among massive low-sSFR objects. This provides an optical duty-cycle denominator for X-ray and radio follow-up, not a heating-to-cooling measurement. This optical fraction represents an observational baseline pool, not the active maintenance-heating duty cycle. See the next subsection for the related radio-jet baseline that uses the same projected-density proxy. The follow-up ingredients are X-ray cavity or cooling-luminosity measurements \citep{fabian2012}, calibrated radio jet mechanical powers \citep[e.g.,][]{best2005,hardcastle2020}, halo-selected parent catalogues, and nondetection modelling. Those observables are missing here; this entry remains an optical baseline only, and future follow-up requires those real observables before any physical inference. Optical broad BPT selection primarily traces the radiative-mode denominator, so it cannot isolate the mechanically dominated jet-mode population without contemporaneous X-ray and radio measurements \citep{heckmanbest2014}.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-02.pdf}
+\caption{SDSS optical emission-line denominator: the massive and low-sSFR SDSS emission-line subsets used as a baseline for future X-ray and radio measurements.}
+\label{fig:m1-rp3-maintenance-heating}
+\end{figure}
+
+
+\subsection{High-excitation broad optical BPT-selected baseline: resolved kinematics follow-up}
+See Table~\ref{tab:atlas-summary}; we isolate the high-excitation broad optical BPT-selected denominator that resolved kinematics would need to test escape versus recycling. High-excitation broad optical BPT-selected candidates number 4,440 of 60,000 emission-line galaxies (0.074). Their median \(\log {\rm sSFR}\) is -11.53, compared with -10.14 for the full denominator. SDSS does not measure escape velocity or multiphase outflow velocities here; the note supplies a denominator for resolved follow-up rather than an escape or recycling result. The follow-up ingredients are resolved outflow velocities, halo potentials, molecular, ionized, and neutral gas phases, and CGM recycling tracers. Without IFU kinematics to decouple non-circular outflow components from host rotation, optical excitation alone cannot determine whether the gas exceeds the halo escape speed \citep{harrison2018}. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-03.pdf}
+\caption{SDSS optical emission-line denominator: the high-excitation BPT-selected subset used to define an observational baseline for future resolved-kinematic measurements.}
+\label{fig:m2-p1-outflow-escape-recycling}
+\end{figure}
+
+
+\subsection{Radio-jet environment baseline: broad optical BPT-selected fraction vs. 10th-neighbor index in massive hosts}
+See Table~\ref{tab:atlas-summary}; we define the environment-stratified optical denominator that future radio and X-ray work could test. This subsection reuses the same projected-neighbor ranking described in the relative neighbor-count baseline above and motivates environment-stratified radio and X-ray follow-up. Among massive hosts, the high-index quartile has a broad optical BPT-selected fraction of 0.509, while the low-index quartile has 0.367. The bootstrap high-minus-low interval is [0.112, 0.170]. This is an optical/environment denominator for future radio-jet follow-up; it does not measure radio jet power or coupling efficiency. The follow-up ingredients are radio jet morphology and age, cavity or shock energetics, hot-gas density, and calibrated jet-power estimates. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-04.pdf}
+\caption{SDSS optical emission-line denominator: the high- and low-density quartile comparison among massive SDSS hosts, used as a baseline for future radio-jet and X-ray work.}
+\label{fig:m2-p2-radio-jet-environment}
+\end{figure}
+
+
+\subsection{Stellar-mass selection diagnostic: low-sSFR and broad optical BPT-selected incidence}
+See Table~\ref{tab:atlas-summary}; in this optical-emission-line denominator, the peak in the stellar-mass range \(11.0 \le \log(M_\star/M_\odot) \le 12.5\) is consistent with a selection-function bias: the S/N$\geq$3 cut preferentially removes truly passive, massive galaxies, leaving a surviving emission-line subset that is concentrated in that mass bin. It must not be interpreted as a universal physical threshold. We identify the mass bin where a future gas-inclusive study should look for a selection-sensitive change in incidence. The note measures the incidence of low catalog-sSFR and broad optical BPT-selected classification across stellar-mass bins in this emission-line subset. The first stellar-mass bin with low-sSFR fraction above 0.5 is \(\log(M_\star/M_\odot) \in [11.0,12.5]\), and the broad optical BPT-selected incidence peaks in the 11.0--12.5 bin at 0.520 within this selection-limited, SpecObjID-capped pilot sample. This is an optical distribution diagnostic; gas fractions and baryon deficits are needed before assigning any physical meaning to the apparent incidence change. The follow-up ingredients are gas fractions, baryon deficits, halo masses, central velocity dispersion proxies \citep{piotrowska2022}, stellar-regulation observables, and high-redshift extensions. The same binning is therefore best treated as a population-distribution diagnostic, not a statement about a transition mass for individual galaxies \citep{peng2010,wetzel2013,dekel2006}. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-05.pdf}
+\caption{SDSS optical emission-line denominator: mass-bin diagnostic for low-sSFR and broad optical BPT-selected incidence in the SDSS emission-line denominator. This is a population baseline for future gas-inclusive follow-up.}
+\label{fig:m2-p3-transition-mass}
+\end{figure}
+
+
+\subsection{Tracer-threshold census for multiphase follow-up}
+See Table~\ref{tab:atlas-summary}; we compare optical tracer choices against one shared denominator before any multiphase census is attempted. Simple optical tracer definitions change the inferred broad optical BPT-selected prevalence within one common SDSS denominator. Within the same 60,000-galaxy denominator, simple optical tracer definitions produce prevalence from 0.136 to 0.418. The widest-to-narrowest prevalence ratio is 3.1 before adding molecular, neutral, X-ray, or radio phases. This demonstrates why a common-denominator multiphase census is required; it does not measure molecular or neutral outflow rates. The follow-up ingredients are ionized, molecular, and neutral tracers, X-ray or radio tracers, a shared parent denominator, and a consistent aperture model. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-06.pdf}
+\caption{SDSS optical emission-line denominator: prevalence of alternative tracer definitions within the 60,000-galaxy sample. This is a baseline for future multiphase work.}
+\label{fig:m3-p1-multiphase-census}
+\end{figure}
+
+
+\subsection{Low-sSFR optical denominator: baseline for future CO/HI gas measurements}
+See Table~\ref{tab:atlas-summary}; we define the denominator for CO/HI gas-fraction and depletion-time follow-up. Using the gas-depletion note's low-sSFR baseline, the massive low-sSFR denominator contains 6,729 galaxies in the SDSS emission-line sample. This denominator is note-specific and should not be conflated with the \(\log M_\star \geq 10.8\) maintenance-heating subset summarized above. Its broad optical BPT-selected fraction is 0.549, and the median H-alpha luminosity proxy is \(\log (L_{\mathrm{H}\alpha}/\mathrm{erg\,s^{-1}}) = 40.06\). Here the H-alpha luminosity proxy is the aperture-corrected \texttt{galSpecExtra} catalog value rather than raw fiber flux; that catalog-level correction extrapolates the fiber measurement beyond the aperture in a model-dependent way and assumes line emission broadly tracks the broadband light profile. The median H-alpha luminosity proxy is 0.66 dex lower than in massive star-forming emission-line galaxies. SDSS optical data alone cannot distinguish bulk molecular-gas depletion from localized reductions in star-formation efficiency or measure total cold-gas mass \citep{tacconi2018}; this note identifies the CO/HI follow-up denominator and optical baseline required for spatially resolved gas tests. The follow-up ingredients are global CO or dust-based molecular gas masses \citep[e.g., xCOLD GASS;][]{xcoldgass2017}, atomic hydrogen masses \citep[e.g., xGASS;][]{xgass2018}, aperture-matched SFRs, morphology, and environment labels, together with radio, X-ray, and IFU observables that are still missing here. As with any H$\alpha$-based proxy, residual dust attenuation and stellar-absorption systematics can still affect the optical denominator, so this value should be read as a line-luminosity proxy rather than a direct total cold-gas-mass measurement. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference. No mock, synthetic, fake, placeholder, or toy data were used in compiling this atlas.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-07.pdf}
+\caption{SDSS optical emission-line denominator: the massive low-sSFR SDSS galaxies available for CO/HI depletion-time follow-up.}
+\label{fig:m3-p2-gas-depletion-efficiency}
+\end{figure}
+
+
+\subsection{Simulation target vector for forward-model comparison}
+See Table~\ref{tab:atlas-summary}; we provide a compact observed target vector for forward modelling. The pilot writes 15 mass-redshift cells with \(n \geq 50\) as a compact comparison vector for low-sSFR fraction, broad optical BPT-selected incidence, and colour versus mass and redshift. Across mass bins, low-sSFR fractions span 0.005-0.729, and broad optical BPT-selected fractions span 0.003-0.520. The follow-up ingredients are simulations \citep{eagle2015} passed through the exact optical S/N and fiber-aperture selection function used here, including the sequential 60,000-row \texttt{specObjID} cache cap, then through the SDSS, MaNGA, ALMA, X-ray, and radio selection functions, together with aperture models and noise models. Without those matched selection steps, any simulation comparison is not a valid test. This entry remains an optical baseline only; the missing observables listed in Table~\ref{tab:atlas-summary} are required before any physical inference.
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/topic-08.pdf}
+\caption{SDSS optical emission-line denominator: low-sSFR fraction, broad optical BPT-selected incidence, and colour versus mass and redshift in the SDSS emission-line sample. This is an observed target vector for forward modelling.}
+\label{fig:m3-p3-simulation-validation}
+\end{figure}
+
+\section{Package decision}
+These eight entries should remain supplementary until the missing observables are added. They are best treated as a single internal follow-up checklist: suitable as follow-up target definitions, denominator baselines, or appendix material under the main result, but not as independent causal-mechanism papers in their current SDSS-only form. The observational role of each subsection is therefore to define what real data are still needed, not to expand the current SDSS-only measurement set. In particular, the atlas does not convert optical denominators into physical densities, depletion rates, or causal feedback claims.
+
+\section*{Data Availability}
+This atlas uses public SDSS DR17 spectroscopy, photometry, emission-line measurements, and MPA-JHU-style value-added catalog tables only. No proprietary data were used. The 60,000-row cache is derived from the public catalog joins and selection thresholds described above, and all eight notes remain conditional on the optical-selection denominators summarized in this atlas. No mock, synthetic, fake, placeholder, or toy data were used.
+
+\facilities{SDSS}
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Best et al.(2005)]{best2005} Best, P.~N., Kauffmann, G., Heckman, T.~M., et al. 2005, MNRAS, 362, 25
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[Cid Fernandes et al.(2011)]{cidfernandes2011} Cid Fernandes, R., Stasi{\'n}ska, G., Schlickmann, S., et al. 2011, MNRAS, 413, 1687
+\bibitem[Hardcastle \& Croston(2020)]{hardcastle2020} Hardcastle, M.~J., \& Croston, J.~H. 2020, New Astronomy Reviews, 88, 101539
+\bibitem[Harrison et al.(2018)]{harrison2018} Harrison, C.~M., Costa, T., Tadhunter, C.~N., et al. 2018, Nature Astronomy, 2, 198
+\bibitem[Saintonge et al.(2017)]{xcoldgass2017} Saintonge, A., Catinella, B., Tacconi, L.~J., et al. 2017, ApJS, 233, 22
+\bibitem[Catinella et al.(2018)]{xgass2018} Catinella, B., Saintonge, A., Janowiecki, S., et al. 2018, MNRAS, 476, 875
+\bibitem[Stasi{\'n}ska et al.(2008)]{stasinska2008} Stasi{\'n}ska, G., Asari, N.~V., Cid Fernandes, R., et al. 2008, MNRAS, 391, L29
+\bibitem[Stasi{\'n}ska et al.(2015)]{stasinska2015} Stasi{\'n}ska, G., Costa Duarte, M.~V., Vale Asari, N., Cid Fernandes, R., \& Sodr{\'e}, L. 2015, MNRAS, 449, 559
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Heckman \& Best(2014)]{heckmanbest2014} Heckman, T.~M., \& Best, P.~N. 2014, ARA\&A, 52, 589
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003a, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Kewley et al.(2006)]{kewley2006} Kewley, L.~J., Groves, B., Kauffmann, G., \& Heckman, T. 2006, MNRAS, 372, 961
+\bibitem[McNamara \& Nulsen(2007)]{mcnamara2007} McNamara, B.~R., \& Nulsen, P.~E.~J. 2007, ARA\&A, 45, 117
+\bibitem[Peng et al.(2010)]{peng2010} Peng, Y.-j., Lilly, S.~J., Kovac, K., et al. 2010, ApJ, 721, 193
+\bibitem[Piotrowska et al.(2022)]{piotrowska2022} Piotrowska, J.~M., Bluck, A.~F.~L., Maiolino, R., \& Peng, Y.-j. 2022, MNRAS, 512, 1052
+\bibitem[Schaye et al.(2015)]{eagle2015} Schaye, J., Crain, R.~A., Bower, R.~G., et al. 2015, MNRAS, 446, 521
+\bibitem[Tacconi et al.(2018)]{tacconi2018} Tacconi, L.~J., Genzel, R., Saintonge, A., et al. 2018, ApJ, 853, 179
+\bibitem[Wetzel et al.(2013)]{wetzel2013} Wetzel, A.~R., Tinker, J.~L., Conroy, C., \& van den Bosch, F.~C. 2013, MNRAS, 432, 336
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

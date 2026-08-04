@@ -1,0 +1,22 @@
+\documentclass[twocolumn]{aastex631}
+\begin{document}
+\title{A residual reionization ionizing-photon-budget shortfall for star-forming galaxies at z\~{}7 (crisis systematic corner)}
+\author{NebulaMind Lab (autonomous pipeline)}
+\affiliation{NebulaMind Lab, \url{https://lab.nebulamind.net}}
+\begin{abstract}
+Reionization ionizing-photon-budget reconciliation at z\~{}7: star-forming galaxies require f\_esc=0.327 (+0.261/-0.144) to close the budget (Madau-Dickinson SFRD, log xi\_ion=25.5+/-0.15, clumping C=2-5, JWST-SFRD tail), versus indirect-proxy-inferred f\_esc=0.050 (+0.075/-0.030) from LzLCS O32/beta calibrations. Median delta(required-inferred)=+0.260 dex-frac (16-84\%: +0.104 to +0.523); 96\% of the systematic MC shows a shortfall. Conclusion: a genuine SHORTFALL remains, and the sign holds under both O32 and beta calibrations. The result is bounded by the xi\_ion x clumping x proxy-calibration systematic, not by statistics. Generated autonomously from public data (jwst) via the NebulaMind Lab runner: a bounded, reproducible, descriptive study.
+\end{abstract}
+\section{Introduction}
+Recent studies have highlighted a potential crisis in understanding the reionization process, with concerns that current models may not account for the necessary ionizing photons to match observations [Muñoz2024]. This issue is further complicated by the increased demands on ionizing sources due to absorption-dominated reionization [Davies2021]. To address this discrepancy, we revisit the ionizing-photon-budget using a literature-anchored approach.
+\section{Data and method}
+Our method relies on published values for key parameters: the cosmic star formation rate density (SFRD) is taken from Madau \& Dickinson's (2014) analytic fitting function, while xi\_ion and O32/beta f\_esc proxy calibrations are adopted from LzLCS studies [Chisholm+22, Flury+22; Simmonds+24]. We calculate the ionizing-photon-budget using these parameters to determine if star-forming galaxies can account for the required photons during reionization.
+\section{Result}
+Our analysis reveals that at z\~{}7, star-forming galaxies must have an escape fraction of f\_esc=0.327 (+0.261/-0.144) to reconcile the reionization ionizing-photon-budget. However, indirect-proxy-inferred values from LzLCS O32/beta calibrations suggest a significantly lower f\_esc=0.050 (+0.075/-0.030). This discrepancy results in a median delta(required-inferred)=+0.260 dex-frac (16-84\%: +0.104 to +0.523), with 96\% of systematic Monte Carlo simulations showing a shortfall.
+\begin{figure}\centering\includegraphics[width=\columnwidth]{result.png}\caption{A residual reionization ionizing-photon-budget shortfall for star-forming galaxies at z\~{}7 (crisis systematic corner)}\end{figure}
+\section{Caveats}
+It is essential to acknowledge the limitations of our approach, which relies on automated selection and uncalibrated measurements from literature values. The accuracy of our result is contingent upon the assumptions made in previous studies, including the choice of xi\_ion and clumping factor C. Additionally, the use of proxy calibrations introduces uncertainty, as these may not fully capture the complexity of reionization processes. Further research, incorporating direct observations and refined models, is necessary to validate our findings and resolve the ionizing-photon-budget crisis.
+\section*{References}
+\footnotesize
+[Muoz2024] Muñoz et al. (2024). Reionization after JWST: a photon budget crisis?. bibcode 2024MNRAS.535L..37M \par [Davies2021] Davies et al. (2021). The Predicament of Absorption-dominated Reionization: Increased Demands on Ionizing Sources. bibcode 2021ApJ...918L..35D \par [Park2022] Park et al. (2022). Calibrating excursion set reionization models to approximately conserve ionizing photons. bibcode 2022MNRAS.517..192P \par [Duncan2015] Duncan et al. (2015). Powering reionization: assessing the galaxy ionizing photon budget at z < 10. bibcode 2015MNRAS.451.2030D \par [Madau2017] Madau (2017). Cosmic Reionization after Planck and before JWST: An Analytic Approach. bibcode 2017ApJ...851...50M
+
+\end{document}

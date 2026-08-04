@@ -1,0 +1,121 @@
+% TORI_M2P3_M3P1_SELECTION_CI_REVISION_20260708T193507Z
+% Paper: m2_p3_feedback_transition_mass
+% Lane-local revision draft only; does not overwrite current linked manuscript/PDF.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{../figures/}}
+\shorttitle{Selection-flagged transition-mass pilot}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+\title{A Selection-Flagged SDSS DR17 Mass-Transition Diagnostic for Low-sSFR and Optical-AGN Incidence}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+We revise the active M2 P3 pilot into a selection-flagged optical transition diagnostic.  The actual measurement is a capped SDSS DR17 four-line emission denominator, not a separation of stellar-feedback and AGN-feedback regulation.  The cached table covers 60,000 of 249,917 strict public SDSS four-line S/N$\geq3$ eligible rows (24.0\%).  We now define the quenching threshold explicitly as catalog $\log({\rm sSFR}/{\rm yr}^{-1})<-11.0$ and report Wilson intervals.  Across broad stellar-mass bins, the low-sSFR fraction rises from 43/8,139 (0.005; 95\% CI 0.004--0.007) at $\log M_\star=8.0$--9.5 to 2,941/4,033 (0.729; 0.715--0.743) at 11.0--12.5.  The BPT optical-AGN fraction over the same bins rises from 0.003 to 0.520.  Redshift-stratified cells show the same broad mass ordering but also substantial redshift/aperture mix, so the result remains an optical denominator for future gas, halo, black-hole-mass, and morphology follow-up.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Scope and source grounding}
+The proposal title is ``Locating the transition from stellar-feedback to AGN-feedback regulation.''  This draft deliberately narrows the claim to what the cached SDSS data can support: a mass-binned vector of catalog low-sSFR incidence and optical BPT-AGN incidence in one emission-line denominator.  SDSS DR17 supplies the public survey provenance \citep{abdurrouf2022,york2000}, while SDSS stellar-mass and star-formation catalog context motivates use of stellar mass and sSFR axes \citep{kauffmann2003mass,kauffmann2003structure}.  The broader transition/bimodality and quenching literature \citep{baldry2004,peng2012} motivates the diagnostic, but halo-shock, black-hole-mass, and baryon-cycle interpretations require data not present here \citep{dekel2006,bluck2023}.
+
+\section{Data, selection function, and operational definitions}
+The input is the shared cached public SDSS DR17 sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z: spectroscopic galaxies at $0.02<z<0.12$ with finite catalog stellar mass and sSFR and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III] $\lambda5007$, and [N~II] $\lambda6584$.  BPT labels use the [N~II] diagnostic \citep{baldwin1981,kewley2001,kauffmann2003bpt}: star-forming if below the Kauffmann curve, optical AGN if above the Kewley curve, intermediate/composite otherwise, with the cached run excluding the pathological high-[N~II] divergence range.  Throughout this manuscript, ``quenched'' means only $\log({\rm sSFR}/{\rm yr}^{-1})<-11.0$ in the catalog quantity; it is not a gas-depletion, halo-quenching, or feedback-mode classification.
+
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Selection-function disclosure for the shared capped SDSS DR17 four-line denominator\label{tab:m2p3-selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public SDSS DR17 $N$} & \colhead{Prior-stage retention} & \colhead{Cached $N$} & \colhead{Cached/SDSS}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & -- & -- \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & 83.1\% & -- & -- \\
+four BPT lines positive with positive errors & 373,445 & 89.7\% & 60000 & 16.1\% \\
+four BPT lines S/N>=3 & 249,917 & 66.9\% & 60000 & 24.0\% \\
+four BPT lines S/N>=5 & 176,523 & 70.6\% & 42446 & 24.0\% \\
+four BPT lines S/N>=10 & 91,768 & 52.0\% & 22311 & 24.3\% \\
+\enddata
+\tablecomments{The preserved pilot query used \texttt{SELECT TOP 60000 ... ORDER BY s.specObjID}.  Therefore all fractions in this draft are conditional on a capped ordered cache: 60,000/249,917 = 24.0\% of the strict public four-line S/N$\geq3$ eligible parent.}
+\end{deluxetable*}
+
+
+\section{Mass-bin result with intervals}
+Table~\ref{tab:m2p3-mass-ci} replaces the previous qualitative transition statement with denominators, numerators, thresholds, and Wilson intervals.
+
+
+\begin{deluxetable*}{lccc}
+\tablecaption{Mass-binned low-sSFR and optical-BPT-AGN fractions with Wilson intervals\label{tab:m2p3-mass-ci}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$N$} & \colhead{$f_Q$: $\log {\rm sSFR}<-11.0$} & \colhead{$f_{\rm BPT\,AGN}$}}
+\startdata
+8.0-9.5 & 8,139 & 43/8,139 (0.005; 0.004--0.007) & 22/8,139 (0.003; 0.002--0.004) \\
+9.5-10.0 & 11,853 & 306/11,853 (0.026; 0.023--0.029) & 163/11,853 (0.014; 0.012--0.016) \\
+10.0-10.5 & 19,135 & 2,510/19,135 (0.131; 0.126--0.136) & 1,480/19,135 (0.077; 0.074--0.081) \\
+10.5-11.0 & 16,840 & 6,610/16,840 (0.393; 0.385--0.400) & 4,383/16,840 (0.260; 0.254--0.267) \\
+11.0-12.5 & 4,033 & 2,941/4,033 (0.729; 0.715--0.743) & 2,098/4,033 (0.520; 0.505--0.536) \\
+\enddata
+\tablecomments{Parent denominator is the cached SDSS four-line S/N$\geq3$ table.  Parenthetical ranges are Wilson 95\% binomial intervals.  The optical AGN class is a line-ratio label, not an AGN-feedback measurement.}
+\end{deluxetable*}
+
+
+\section{Redshift-stratified descriptive check}
+Table~\ref{tab:m2p3-z-check} checks whether the mass vector is merely a single redshift slice.  The low-sSFR and optical-AGN fractions are highest in the upper mass bins across the broad redshift slices, but the values shift with redshift, line S/N, and aperture population mix.  This is why the pilot should be carried forward as a target vector, not as a causal transition-mass measurement.
+
+
+\begin{deluxetable*}{llrrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Redshift-stratified descriptive check for the mass-transition vector\label{tab:m2p3-z-check}}
+\tablehead{\colhead{$\log M_\star$ bin} & \colhead{$z$ bin} & \colhead{$N$} & \colhead{$f_Q$} & \colhead{$f_{\rm BPT\,AGN}$} & \colhead{median $\log {\rm sSFR}$}}
+\startdata
+8.0-9.5 & 0.020-0.050 & 6,201 & 0.006 & 0.003 & -9.679 \\
+8.0-9.5 & 0.050-0.080 & 1,638 & 0.001 & 0.001 & -9.477 \\
+8.0-9.5 & 0.080-0.120 & 300 & 0.007 & 0.010 & -9.135 \\
+9.5-10.0 & 0.020-0.050 & 3,607 & 0.061 & 0.030 & -10.018 \\
+9.5-10.0 & 0.050-0.080 & 6,059 & 0.013 & 0.008 & -9.832 \\
+9.5-10.0 & 0.080-0.120 & 2,187 & 0.003 & 0.001 & -9.637 \\
+10.0-10.5 & 0.020-0.050 & 2,962 & 0.256 & 0.154 & -10.418 \\
+10.0-10.5 & 0.050-0.080 & 7,581 & 0.161 & 0.090 & -10.206 \\
+10.0-10.5 & 0.080-0.120 & 8,592 & 0.062 & 0.040 & -9.991 \\
+10.5-11.0 & 0.020-0.050 & 1,895 & 0.581 & 0.430 & -11.294 \\
+10.5-11.0 & 0.050-0.080 & 5,083 & 0.451 & 0.297 & -10.860 \\
+10.5-11.0 & 0.080-0.120 & 9,862 & 0.326 & 0.209 & -10.586 \\
+11.0-12.5 & 0.020-0.050 & 390 & 0.856 & 0.610 & -12.214 \\
+11.0-12.5 & 0.050-0.080 & 1,199 & 0.805 & 0.563 & -12.022 \\
+11.0-12.5 & 0.080-0.120 & 2,444 & 0.672 & 0.485 & -11.593 \\
+\enddata
+\tablecomments{This table addresses redshift-mix sensitivity but is still descriptive: no volume weighting, central/satellite separation, gas fractions, black-hole masses, or halo masses are present.}
+\end{deluxetable*}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m2p3_original_figure1.pdf}
+\caption{Original batch-run SDSS mass-transition diagnostic, preserved in this lane-local revision.  The figure should be read with Tables~\ref{tab:m2p3-mass-ci} and \ref{tab:m2p3-z-check}: it is an optical denominator/transition vector, not proof that AGN feedback causes the transition.}
+\label{fig:m2p3-original}
+\end{figure}
+
+\section{Interpretation guard and next data}
+The strengthened result is an empirical co-variation: in the capped four-line SDSS denominator, low-sSFR incidence and optical-BPT-AGN incidence both increase strongly toward higher stellar mass.  It does not distinguish stellar feedback, AGN feedback, halo quenching, morphological quenching, gas starvation, aperture effects, or black-hole-mass dependence.  A follow-up capable of addressing the original proposal must add gas fractions or baryon deficits, halo/central-satellite information, black-hole mass or velocity-dispersion proxies, morphology, and selection-matched redshift extensions.  The current manuscript is ready for local integration review, not prose/publish gates.
+
+\section*{Reproducibility and safety note}
+Revision marker: TORI\_M2P3\_M3P1\_SELECTION\_CI\_REVISION\_20260708T193507Z.  Numerical fractions, Wilson intervals, and redshift rows were recomputed locally from the cached source table \texttt{analysis\_sample\_bpt.csv}; public denominator counts were inherited from \texttt{selection\_caution\_overlay\_20260708T162615Z.csv}.  The Wave-3 literature packet supplied the citation placement and guardrails.  This file is lane-local and did not overwrite public-linked artifacts.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Baldry et al.(2004)]{baldry2004} Baldry, I.~K., Glazebrook, K., Brinkmann, J., et al. 2004, ApJ, 600, 681
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Bluck et al.(2023)]{bluck2023} Bluck, A.~F.~L., Piotrowska, J.~M., \& Maiolino, R. 2023, ApJ, 944, 108
+\bibitem[Dekel \& Birnboim(2006)]{dekel2006} Dekel, A., \& Birnboim, Y. 2006, MNRAS, 368, 2
+\bibitem[Kauffmann et al.(2003a)]{kauffmann2003mass} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003a, MNRAS, 341, 33
+\bibitem[Kauffmann et al.(2003b)]{kauffmann2003structure} Kauffmann, G., Heckman, T.~M., White, S.~D.~M., et al. 2003b, MNRAS, 341, 54
+\bibitem[Kauffmann et al.(2003c)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003c, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Peng et al.(2012)]{peng2012} Peng, Y.-j., Lilly, S.~J., Renzini, A., \& Carollo, M. 2012, ApJ, 757, 4
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,1204 @@
+{
+  "boundary": "Step-7 prose-preview packet self-check. PREVIEW ONLY: the P0 apply gate is HELD; nothing lands on any page, DB, or wiki. Not product text.",
+  "marker": "LANA_AGN_STEP7_COMPLETE_20260804",
+  "lane": "agn-step7-prose-preview-20260803T2334K",
+  "compiled": "2026-08-03T14:38Z",
+  "sources": {
+    "ledger": "docs/claim_ledger_contract_v1_agn_20260703T0830Z/artifacts/claim_status_ledger.jsonl (as_of 2026-07-03; all 16 entries verification_status=pending)",
+    "contract": "docs/claim_ledger_contract_v1_agn_20260703T0830Z/artifacts/wording_contract_check.json",
+    "map": ".hermes/handoffs/agn-step6-map-pilot-20260803T1330Z/AGN_STATUS_DEBATE_MAP_V1.md (post-patch)"
+  },
+  "tier_rank_declared": {
+    "is_are_does": 7,
+    "commonly_probably": 6,
+    "may_or_can": 5,
+    "shows_can_occur": 4,
+    "mixed_debated": 3,
+    "in_model_only": 2,
+    "reported_only": 1
+  },
+  "rules": [
+    "R-A: a sentence's actual_tier must not outrank the minimum contract max_allowed_tier over its bound entries (contract ceilings from wording_contract_check.json).",
+    "R-B: a sentence's actual_tier must not outrank any bound entry's ledger modality, OR must equal that entry's contract-template actual_tier (resolves the clc_agn_005 may_or_can-vs-mixed_debated recording; see report ambiguity #2).",
+    "R-C: capped tiers (mixed_debated, in_model_only, shows_can_occur) require the sentence to carry the corresponding framing (debate framing / 'in simulations' / single-case framing); enforced by construction, verified by eye per sentence.",
+    "R-D: meta/guard/status sentences that only report ledger fields, links, notes, or enums use actual_tier=reported_only and meta_sentence=true; they still bind entries (see report ambiguity #3).",
+    "R-E: contested fractions (17%, 46%) never appear without their do-not-average guard sentence in the same paragraph; no cross-tracer combination or cross-channel dominance fraction appears anywhere.",
+    "R-F: pending verification_status is disclosed in the preview header verbatim from the map header and as bound sentence s7_H01."
+  ],
+  "summary": {
+    "sentences_total": 36,
+    "sentences_passing": 36,
+    "failures": [],
+    "entries_bound": 16,
+    "entries_unbound": [],
+    "countercase_quota": {
+      "axis_A_ejective_widely_supported": "clc_agn_008 in prose at s7_A06",
+      "axis_C_007_widely_supported": "tension named at s7_C09 (Axis A mechanism rows; simulation rows as qualifiers only)",
+      "axis_C_009_vs_010_widely_supported": "mutual bounding named at s7_C07",
+      "axis_C_direct_contradicts": "clc_agn_008 at s7_C08",
+      "axis_B_guard": "clc_agn_003 exclusion at s7_B05; do-not-average at s7_B04"
+    }
+  },
+  "sentences": [
+    {
+      "sentence_id": "s7_H01",
+      "text": "Before reading further: all 16 ledger entries behind this preview carry verification_status: pending — every status label below, including widely_supported, binds to pending-verification entries, and the labels are ledger-carried certainty enums, not verification outcomes.",
+      "bound_entry_ids": [
+        "clc_agn_001_ejective_mechanism_selected_systems",
+        "clc_agn_002_outflow_prevalence_scoped_samples",
+        "clc_agn_002a_mosdef_17pct_ionized_outflows",
+        "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+        "clc_agn_003_deugenio_case_not_prevalence",
+        "clc_agn_004_preventive_maintenance_heating_distinct",
+        "clc_agn_005_gas_retention_low_sfe_qualifier",
+        "clc_agn_006_central_kpc_depletion_local_qualifier",
+        "clc_agn_007_alternative_quenching_channels",
+        "clc_agn_008_star_formation_driven_outflow_counter",
+        "clc_agn_009_central_bh_bulge_predictor_axis",
+        "clc_agn_010_halo_environment_satellite_axis",
+        "clc_agn_011_simulations_model_dependent_support",
+        "clc_agn2299_001_mechanism",
+        "clc_agn2299_002_prevalence",
+        "clc_agn2299_003_dominance_debate"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002a_mosdef_17pct_ionized_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "ledger_modality": "shows_can_occur",
+          "contract_max_tier": "shows_can_occur",
+          "template_actual_tier": "shows_can_occur",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        },
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        },
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_008_star_formation_driven_outflow_counter",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        },
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn2299_002_prevalence",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "ledger_modality": "mixed_debated",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A01",
+      "text": "In selected massive or AGN-host galaxies, AGN activity can drive gas outflows capable of removing or depleting star-forming fuel — a capability claim scoped to the systems where it is observed, not a universal one.",
+      "bound_entry_ids": [
+        "clc_agn_001_ejective_mechanism_selected_systems",
+        "clc_agn2299_001_mechanism"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "may_or_can",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A02",
+      "text": "In one massive z~2 sample, measured mass-outflow rates span 3-100 solar masses per year.",
+      "bound_entry_ids": [
+        "clc_agn_001_ejective_mechanism_selected_systems"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "may_or_can",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A03",
+      "text": "One z=3 galaxy, GS-10578, shows that ejective black-hole feedback can occur, with a neutral outflow rate about ten times the star-formation rate; it is a single case, and it cannot anchor any prevalence fraction.",
+      "bound_entry_ids": [
+        "clc_agn_003_deugenio_case_not_prevalence",
+        "clc_agn2299_001_mechanism"
+      ],
+      "max_allowed_tier": "shows_can_occur",
+      "actual_tier": "shows_can_occur",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "single_case",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "ledger_modality": "shows_can_occur",
+          "contract_max_tier": "shows_can_occur",
+          "template_actual_tier": "shows_can_occur",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A04",
+      "text": "In simulations, a second channel — maintenance heating via chaotic cold accretion and dual jet/heating modes — is distinct from ejective outflows; in this corpus that channel is supported in models only, and its certainty is capped at model-dependent.",
+      "bound_entry_ids": [
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "in_model_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A05",
+      "text": "The cap has a recorded reason: observational maintenance evidence (X-ray cavities and bubbles) is absent from the approved corpus, and filling that gap — queued, not executed in this run — is the single move that could lift this side off model-only status.",
+      "bound_entry_ids": [
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A06",
+      "text": "The corpus also holds a direct countercase to the ejective side: in typical low-redshift galaxies, cold-gas outflows may be driven by star formation rather than AGN activity — so the ejective claim survives only because it is scoped to selected systems, not typical ones.",
+      "bound_entry_ids": [
+        "clc_agn_008_star_formation_driven_outflow_counter",
+        "clc_agn_001_ejective_mechanism_selected_systems"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_008_star_formation_driven_outflow_counter",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_A07",
+      "text": "Status: the ejective side is labeled widely_supported and the maintenance side contradicted_or_model_dependent — no single axis-level label exists because the sides sit at different enum levels, and both labels bind to pending-verification entries.",
+      "bound_entry_ids": [
+        "clc_agn_001_ejective_mechanism_selected_systems",
+        "clc_agn2299_001_mechanism",
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn2299_001_mechanism",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B01",
+      "text": "Across selected AGN or massive-galaxy samples, observed AGN-associated outflow signatures occur in substantial but sample-dependent fractions — not universally.",
+      "bound_entry_ids": [
+        "clc_agn_002_outflow_prevalence_scoped_samples",
+        "clc_agn2299_002_prevalence"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn2299_002_prevalence",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B02",
+      "text": "In the MOSDEF z=1.4-3.8 AGN sample, ionized outflows are detected in 17% of 159 AGNs.",
+      "bound_entry_ids": [
+        "clc_agn_002a_mosdef_17pct_ionized_outflows"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_002a_mosdef_17pct_ionized_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B03",
+      "text": "In one JWST sample of 113 massive (log M*/Msun > 10) z~2 galaxies, 46% show excess Na I D absorption, and half of the absorption profiles are blueshifted by at least 100 km/s.",
+      "bound_entry_ids": [
+        "clc_agn_002b_jwst_46pct_neutral_naid_outflows"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B04",
+      "text": "These two fractions carry a do-not-average guard: they measure different tracers (ionized versus neutral gas) on different selections (AGN-selected versus mass-selected) in different redshift windows, so the 17%-46% spread is at least partly definitional, not a measurement scatter on one quantity.",
+      "bound_entry_ids": [
+        "clc_agn_002_outflow_prevalence_scoped_samples",
+        "clc_agn_002a_mosdef_17pct_ionized_outflows",
+        "clc_agn_002b_jwst_46pct_neutral_naid_outflows"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "reported_only",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002a_mosdef_17pct_ionized_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B05",
+      "text": "The GS-10578 case shows that ejective feedback can occur at z=3, but its risk flag (CASE_ROW_NOT_PREVALENCE_ANCHOR) is binding: it is excluded from every fraction quoted here.",
+      "bound_entry_ids": [
+        "clc_agn_003_deugenio_case_not_prevalence"
+      ],
+      "max_allowed_tier": "shows_can_occur",
+      "actual_tier": "shows_can_occur",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "single_case",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "ledger_modality": "shows_can_occur",
+          "contract_max_tier": "shows_can_occur",
+          "template_actual_tier": "shows_can_occur",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_B06",
+      "text": "Status: emerging_sample_limited across all five entries (pending verification); a matched-tracer, matched-selection census across redshift is what would turn the tracer-confounded 17%-46% spread into a real dispersion on defined quantities.",
+      "bound_entry_ids": [
+        "clc_agn_002_outflow_prevalence_scoped_samples",
+        "clc_agn_002a_mosdef_17pct_ionized_outflows",
+        "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+        "clc_agn_003_deugenio_case_not_prevalence",
+        "clc_agn2299_002_prevalence"
+      ],
+      "max_allowed_tier": "shows_can_occur",
+      "actual_tier": "reported_only",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_002_outflow_prevalence_scoped_samples",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002a_mosdef_17pct_ionized_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_002b_jwst_46pct_neutral_naid_outflows",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn_003_deugenio_case_not_prevalence",
+          "ledger_modality": "shows_can_occur",
+          "contract_max_tier": "shows_can_occur",
+          "template_actual_tier": "shows_can_occur",
+          "certainty_level": "emerging_sample_limited"
+        },
+        {
+          "entry_id": "clc_agn2299_002_prevalence",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C01",
+      "text": "Whether AGN feedback dominates quenching is actively debated: AGN feedback is one important axis, but its dominance relative to stellar feedback, gas retention, strangulation, stripping, halo/environment, and satellite channels remains debated and context-dependent.",
+      "bound_entry_ids": [
+        "clc_agn2299_003_dominance_debate"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "mixed_debated",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "ledger_modality": "mixed_debated",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C02",
+      "text": "Strangulation, environmental stripping, and cold-gas pathway differences remain mandatory alternative or qualifying quenching channels.",
+      "bound_entry_ids": [
+        "clc_agn_007_alternative_quenching_channels"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "commonly_probably",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C03",
+      "text": "Behind that position: strangulation appears primary for local galaxies below 10^11 solar masses on a roughly 4 Gyr timescale, stripping is reported as ubiquitous among satellites, and central galaxies defy simple pathway assignments.",
+      "bound_entry_ids": [
+        "clc_agn_007_alternative_quenching_channels"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "commonly_probably",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C04",
+      "text": "Central properties — bulge mass, central velocity dispersion, or black-hole mass — are a real quenching-predictor axis; the black-hole-mass machine-learning result joins this position only as a qualifier, because it is simulation-comparison-based.",
+      "bound_entry_ids": [
+        "clc_agn_009_central_bh_bulge_predictor_axis"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "commonly_probably",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C05",
+      "text": "Halo, environment, and satellite-quenching channels are also real quenching axes and must remain separate from central/BH predictors.",
+      "bound_entry_ids": [
+        "clc_agn_010_halo_environment_satellite_axis"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "commonly_probably",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C06",
+      "text": "On that side of the ledger: mass-driven and environment-driven quenching stay separable out to z~1, star formation has ceased in 30%-70% of satellites, and satellite quenching is reported as dominant for satellites below 10^10 solar masses, with a delayed-then-rapid history — a 2-4 Gyr delay, then an e-folding time under 0.8 Gyr.",
+      "bound_entry_ids": [
+        "clc_agn_010_halo_environment_satellite_axis"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "commonly_probably",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C07",
+      "text": "The central and halo/environment positions bound each other by construction: their ledger links are same-axis, and each asserts a complementary 'real axis' claim, not dominance over the other.",
+      "bound_entry_ids": [
+        "clc_agn_009_central_bh_bulge_predictor_axis",
+        "clc_agn_010_halo_environment_satellite_axis"
+      ],
+      "max_allowed_tier": "commonly_probably",
+      "actual_tier": "reported_only",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_009_central_bh_bulge_predictor_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C08",
+      "text": "The direct countercase sits in the corpus: in a 456-galaxy sample of typical z<0.2 galaxies, cold-gas outflows may be driven by star formation rather than AGN — a single-sample result, and the ledger's only direct contradicts-stance observational countercase.",
+      "bound_entry_ids": [
+        "clc_agn_008_star_formation_driven_outflow_counter"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_008_star_formation_driven_outflow_counter",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C09",
+      "text": "The alternatives position is not unopposed either: it is held in tension by the ejective-mechanism evidence of Axis A, while simulation entries enter this debate only as qualifiers, never as observed-frequency evidence.",
+      "bound_entry_ids": [
+        "clc_agn_007_alternative_quenching_channels",
+        "clc_agn_001_ejective_mechanism_selected_systems",
+        "clc_agn_011_simulations_model_dependent_support"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "widely_supported",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_001_ejective_mechanism_selected_systems",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C10",
+      "text": "No cross-channel dominance fraction is licensed: the per-channel numbers above do not combine, and dominance wording stays blocked until a position can name the mass, redshift, and central-versus-satellite scope in which its channel is shown dominant with the other axes' entries represented.",
+      "bound_entry_ids": [
+        "clc_agn2299_003_dominance_debate",
+        "clc_agn_007_alternative_quenching_channels",
+        "clc_agn_010_halo_environment_satellite_axis"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "mixed_debated",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "ledger_modality": "mixed_debated",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        },
+        {
+          "entry_id": "clc_agn_007_alternative_quenching_channels",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        },
+        {
+          "entry_id": "clc_agn_010_halo_environment_satellite_axis",
+          "ledger_modality": "is_are_does",
+          "contract_max_tier": "commonly_probably",
+          "template_actual_tier": "commonly_probably",
+          "certainty_level": "widely_supported"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_C11",
+      "text": "Status: actively_debated (pending verification) — and per Step 6, actively debated is a valid reader-facing result, not a failure.",
+      "bound_entry_ids": [
+        "clc_agn2299_003_dominance_debate"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "reported_only",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "review",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn2299_003_dominance_debate",
+          "ledger_modality": "mixed_debated",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D01",
+      "text": "Does quenching require gas removal? Here the evidence is mixed and the question is actively debated, with the two sides separated by physical scale.",
+      "bound_entry_ids": [
+        "clc_agn_005_gas_retention_low_sfe_qualifier"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "mixed_debated",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D02",
+      "text": "Gas retention and low star-formation efficiency can qualify simple gas-removal accounts: SFR-matched AGN hosts show no molecular-gas difference, some z~0.7 quenched galaxies retain large molecular reservoirs, and some massive quiescent disks retain substantial atomic hydrogen.",
+      "bound_entry_ids": [
+        "clc_agn_005_gas_retention_low_sfe_qualifier"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "mixed_debated",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D03",
+      "text": "That retention evidence enters the ledger as a qualifier by construction — 'not a refutation of ejective cases'.",
+      "bound_entry_ids": [
+        "clc_agn_005_gas_retention_low_sfe_qualifier"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "reported_only",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D04",
+      "text": "On the other side, some local AGN-host central regions show molecular gas fractions about a factor of 2 lower than star-forming regions — a central-kpc scoped result, resting most strongly on four best-statistics galaxies, and not a global quenching claim.",
+      "bound_entry_ids": [
+        "clc_agn_006_central_kpc_depletion_local_qualifier"
+      ],
+      "max_allowed_tier": "may_or_can",
+      "actual_tier": "may_or_can",
+      "certainty_level": "emerging_sample_limited",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D05",
+      "text": "The two sides are scale-separated — global reservoirs versus the central kiloparsec — and the current corpus contains no joint measurement connecting them; that joint measurement is what would settle the axis.",
+      "bound_entry_ids": [
+        "clc_agn_005_gas_retention_low_sfe_qualifier",
+        "clc_agn_006_central_kpc_depletion_local_qualifier"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "reported_only",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        },
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_D06",
+      "text": "Status: actively_debated at axis level, carried by the highest-information entry, with the central-depletion qualifier at emerging_sample_limited inside it (both pending verification).",
+      "bound_entry_ids": [
+        "clc_agn_005_gas_retention_low_sfe_qualifier",
+        "clc_agn_006_central_kpc_depletion_local_qualifier"
+      ],
+      "max_allowed_tier": "mixed_debated",
+      "actual_tier": "reported_only",
+      "certainty_level": "actively_debated",
+      "epistemic_type": "observational_sample",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_005_gas_retention_low_sfe_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "mixed_debated",
+          "template_actual_tier": "mixed_debated",
+          "certainty_level": "actively_debated"
+        },
+        {
+          "entry_id": "clc_agn_006_central_kpc_depletion_local_qualifier",
+          "ledger_modality": "may_or_can",
+          "contract_max_tier": "may_or_can",
+          "template_actual_tier": "may_or_can",
+          "certainty_level": "emerging_sample_limited"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_E01",
+      "text": "In simulations — HORIZON-AGN against its noAGN twin, RAMSES zoom runs, IllustrisTNG, and EAGLE/Illustris/TNG comparisons — AGN-feedback mechanisms are supported under named model assumptions.",
+      "bound_entry_ids": [
+        "clc_agn_011_simulations_model_dependent_support"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "in_model_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_E02",
+      "text": "Simulations do not by themselves establish observed prevalence; that cap is binding, and no observed-frequency sentence in this preview rests on a simulation entry.",
+      "bound_entry_ids": [
+        "clc_agn_011_simulations_model_dependent_support"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "in_model_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_E03",
+      "text": "The maintenance-heating channel of Axis A sits under the same cap: model-only in this corpus.",
+      "bound_entry_ids": [
+        "clc_agn_004_preventive_maintenance_heating_distinct",
+        "clc_agn_011_simulations_model_dependent_support"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "in_model_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": false,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        },
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_E04",
+      "text": "Nothing inside simulation space can lift the cap; only observational anchors can — for the maintenance channel, the same recorded corpus gap named in Axis A.",
+      "bound_entry_ids": [
+        "clc_agn_011_simulations_model_dependent_support",
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    },
+    {
+      "sentence_id": "s7_E05",
+      "text": "Status: contradicted_or_model_dependent for both entries (pending verification).",
+      "bound_entry_ids": [
+        "clc_agn_011_simulations_model_dependent_support",
+        "clc_agn_004_preventive_maintenance_heating_distinct"
+      ],
+      "max_allowed_tier": "in_model_only",
+      "actual_tier": "reported_only",
+      "certainty_level": "contradicted_or_model_dependent",
+      "epistemic_type": "simulation",
+      "source_access": "full_text",
+      "passes": true,
+      "failure_reason": null,
+      "meta_sentence": true,
+      "per_entry": [
+        {
+          "entry_id": "clc_agn_011_simulations_model_dependent_support",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        },
+        {
+          "entry_id": "clc_agn_004_preventive_maintenance_heating_distinct",
+          "ledger_modality": "in_model_only",
+          "contract_max_tier": "in_model_only",
+          "template_actual_tier": "in_model_only",
+          "certainty_level": "contradicted_or_model_dependent"
+        }
+      ]
+    }
+  ]
+}

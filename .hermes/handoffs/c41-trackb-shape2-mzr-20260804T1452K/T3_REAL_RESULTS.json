@@ -1,0 +1,115 @@
+{
+ "bins": {
+  "M_star_bin_8_9": {
+   "N": 2,
+   "verdict": "no-verdict-possible (too few anchors)"
+  },
+  "M_star_bin_9_10": {
+   "N": 1,
+   "verdict": "no-verdict-possible (too few anchors)"
+  },
+  "M_star_bin_gt_10": {
+   "N": 0,
+   "verdict": "no-verdict-possible (too few anchors)"
+  }
+ },
+ "A4_FMR": {
+  "status": "not-computable-v1",
+  "reason": "no declared SFR channel in v1 fetch (Hbeta-SFR needs flux calibration review)"
+ },
+ "per_class_counts": {
+  "oh_rows_total": 5,
+  "icf_fallback_excluded": 0,
+  "no_mass": 0,
+  "no_dustcorr_flagged": 20,
+  "dustcorr_skipped_flagged": 1,
+  "class_x_no_snr": 0,
+  "below_bin_floor": 2
+ },
+ "anchor_frame": {
+  "form": "AM13 eq.5 asymptotic: 8.798 - log10(1+(10^(8.901-logM))^0.640)",
+  "table": {
+   "8.0": 8.119,
+   "8.5": 8.35,
+   "9.0": 8.527,
+   "9.5": 8.648,
+   "10.0": 8.72,
+   "10.5": 8.759
+  },
+  "anchor_frame_discrepancy_note": "crew z9-10 receipted arithmetic implies AM13(8.0)~8.26; this published form gives 8.12 (~0.14 dex) \u2014 REPORTABLE, referred to T4; not averaged away (Kun B3)"
+ },
+ "predictions_confrontation": {
+  "c41_pred_001": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_002": {
+   "status": "no-measured-bins"
+  },
+  "c41_pred_003": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_004": {
+   "status": "no-measured-bins"
+  },
+  "c41_pred_005": {
+   "status": "no-measured-bins"
+  },
+  "c41_pred_006": {
+   "status": "no-measured-bins"
+  },
+  "c41_pred_007": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_008": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_009": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_010": {
+   "status": "not-numeric-in-span"
+  },
+  "c41_pred_011": {
+   "status": "not-numeric-in-span"
+  }
+ },
+ "status": "REAL_COMPLETED",
+ "protocol": "reviewed-script; no agent-typed numbers; every row carries provenance",
+ "below_bin_floor_note": "C1 (Kun T4-real): 2 verified contract-grade anchors sit below the lowest bin edge (logM<8.0): ERO_04590   @7.60, ERO_10612   @7.78 \u2014 real, at exactly the low masses this study probes; binned nowhere by the frozen 8.0 floor, counted here so no reader concludes only the binned anchors exist.",
+ "forecast_vs_actual": {
+  "frozen_forecast_v1": {
+   "forecast_id": "F4_SHAPE2_PREFETCH",
+   "expected_N_anchors_z_gt_3": {
+    "M_star_bin_8_9": 10,
+    "M_star_bin_9_10": 12,
+    "M_star_bin_gt_10": 3
+   },
+   "total_expected_Te_anchors": 25,
+   "deficit_precision_forecast_dex": 0.25,
+   "null_information_threshold_X_dex": 0.3,
+   "notes": "Forecast based on T1 row counts and known high-z auroral detection rates (~1% of deep spec samples). Deficits larger than 0.30 dex can be excluded if scale uncertainties are properly bounded."
+  },
+  "frozen_forecast_v2": {
+   "forecast_id": "F4_SHAPE2_PREFETCH_V2",
+   "expected_N_anchors_z_gt_3": {
+    "M_star_bin_8_9": 35,
+    "M_star_bin_9_10": 42,
+    "M_star_bin_gt_10": 10
+   },
+   "total_expected_Te_anchors": 87,
+   "deficit_precision_forecast_dex": 0.12,
+   "null_information_threshold_X_dex": 0.15,
+   "v1_sha256": "61d48d22d34a2aed5fa1385a76afb04bb5aa6ac2f074c9b1b099961f99b860ec",
+   "revision_cause": "Eligibility change from column metadata, rulings 1-2, pre-result. JADES-class A-prime anchors added (+N); GLASS/MACS 10^5.7 lensed sample excluded (-N) per T2b amendment.",
+   "notes": "v2 re-freeze permitted pre-fetch. Deficits larger than 0.15 dex can be excluded."
+  },
+  "supersession_disclosure": "v1 frozen pre-fetch; v2 re-frozen under Amendment Ruling 3 (changed eligibility universe), both receipted. Kun mock-forensics F-T4-1 flagged v2's precision claim as unachievable; the honest statement follows from v1's MORE conservative expectation.",
+  "actual_usable_anchors_total": 5,
+  "actual_per_bin": {
+   "M_star_bin_8_9": 2,
+   "M_star_bin_9_10": 1,
+   "M_star_bin_gt_10": 0
+  },
+  "null_statement_T2b_s6": "Against the frozen forecast (v1 expected ~25 usable Te anchors; v2 expected ~87), the executed public-archive assembly yielded 5 contract-grade anchors \u2014 short of even the conservative expectation by roughly an order of magnitude. No mass bin reaches the pre-committed 3-anchor minimum; no deficit verdict is possible at contract-grade public statistics. This quantifies A3's settle-line: the z>3 Te anchor set public archives can currently supply is N=5."
+ }
+}

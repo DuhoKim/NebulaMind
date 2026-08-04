@@ -1,0 +1,52 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\shorttitle{Shared SDSS Selection Module}
+\shortauthors{NebulaMind Autopilot}
+\begin{document}
+\title{Smoke Test for the Shared SDSS Parent Sample and Selection Function Module}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data only}
+\begin{abstract}
+This local-only document verifies that the shared parent-sample and selection-function fragment for the nine Galaxy Evolution pilots compiles under AASTeX.
+\end{abstract}
+% SHARED_SELECTION_MODULE_20260708T204717Z
+% Include after \begin{document}; requires aastex631 deluxetable support.
+\section{Parent sample, selection function, and shared data dictionary}\label{sec:shared-selection}
+All nine Galaxy Evolution pilot manuscripts share the same cached public SDSS DR17 optical emission-line denominator. The row-level file contains 60,000 galaxies with spectroscopic class GALAXY, $0.02<z<0.12$, finite catalog stellar mass and specific SFR, and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III]$\lambda5007$, and [N~II]$\lambda6584$. A read-only public SDSS count packet found 249,917 strict S/N$\geq3$ eligible rows for the same four-line, mass, sSFR, and redshift constraints, so the cached table covers 24.0\% of that strict public denominator. The cached rows are ordered by SpecObjID and are not a random or complete parent sample.
+The recomputed BPT labels in the cached table are: 39,553 star-forming, 12,234 intermediate/composite, 8,146 optical AGN, and 67 unclassified. The high-excitation optical subset used by M2 P1 is defined as BPT AGN with $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0.25$ and contains 4,440 objects.
+Because the four-line requirement is strongly sSFR-dependent, manuscripts that discuss quenching, gas depletion, or low-sSFR denominators must quote the retention contrast: S/N$\geq3$ keeps 33.6\% of the public $-12<\log\mathrm{sSFR}<-11$ bin but 94.9\% of the $-10<\log\mathrm{sSFR}<-9.5$ bin.
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Shared SDSS DR17 selection-function counts for all nine pilots\label{tab:shared-selection-stages}}
+\tablehead{\colhead{Stage} & \colhead{Public SDSS $N$} & \colhead{Retention vs. spectro-$z$} & \colhead{Cached $N$} & \colhead{Cached/public}}
+\startdata
+SpecObj GALAXY, $0.02<z<0.12$ & 501,060 & 100.0\% & \nodata & \nodata \\
+plus mass/sSFR bounds & 416,554 & 83.1\% & \nodata & \nodata \\
+plus emission-line table join & 416,554 & 83.1\% & \nodata & \nodata \\
+four BPT lines positive with positive errors & 373,445 & 74.5\% & 60,000 & 16.1\% \\
+four BPT lines S/N$\geq3$ & 249,917 & 49.9\% & 60,000 & 24.0\% \\
+four BPT lines S/N$\geq5$ & 176,523 & 35.2\% & 42,446 & 24.0\% \\
+four BPT lines S/N$\geq10$ & 91,768 & 18.3\% & 22,311 & 24.3\% \\
+\enddata
+\tablecomments{Public counts come from read-only SDSS DR17 SkyServer count queries preserved in the selection-function packet; cached counts are independently recomputed from the local 60,000-row CSV where applicable.}
+\end{deluxetable*}
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{sSFR-dependent four-line selection retention\label{tab:shared-ssfr-retention}}
+\tablehead{\colhead{$\log\mathrm{sSFR}$ bin} & \colhead{Public parent $N$} & \colhead{Public S/N$\geq3$ $N$} & \colhead{S/N retention} & \colhead{Cached S/N$\geq3$ $N$}}
+\startdata
+$-$14.0 to $-$12.0 & 87,381 & 18,872 & 21.6\% & 4,578 \\
+$-$12.0 to $-$11.0 & 95,424 & 32,021 & 33.6\% & 7,832 \\
+$-$11.0 to $-$10.5 & 43,161 & 29,644 & 68.7\% & 7,292 \\
+$-$10.5 to $-$10.0 & 82,457 & 66,275 & 80.4\% & 15,983 \\
+$-$10.0 to $-$9.5 & 89,075 & 84,488 & 94.9\% & 19,934 \\
+$-$9.5 to $-$9.0 & 16,576 & 16,211 & 97.8\% & 3,750 \\
+$-$9.0 to $-$7.0 & 2,480 & 2,406 & 97.0\% & 631 \\
+\enddata
+\tablecomments{The low-sSFR bins are much less likely to survive four-line S/N selection than star-forming bins; gas-depletion, quenching, and denominator papers must keep this caveat attached.}
+\end{deluxetable*}
+
+\paragraph{Shared wording contract.}
+Allowed: this SDSS module supplies an optical emission-line denominator, BPT classifications, catalog mass/sSFR proxies, internal density rankings, and target-vector cells for follow-up design. Not allowed from this module alone: causal AGN feedback, radio-jet coupling efficiency, outflow escape/recycling, hot-halo maintenance heating, molecular-gas depletion, star-formation efficiency, multiphase outflow prevalence, or validation/falsification of simulations.
+
+\end{document}

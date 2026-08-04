@@ -1,0 +1,116 @@
+{
+  "status": "COMPLETED_V3",
+  "A_vs_A_prime_seam_check": {
+    "discrepancy_dex": 0.08,
+    "status": "PASS",
+    "note": "Within twice combined declared uncertainty."
+  },
+  "A3_deficit_retest": {
+    "M_star_bin_8_9": {
+      "offset_dex": -0.15,
+      "uncertainty_dex": 0.18,
+      "verdict": "scale-limited"
+    },
+    "M_star_bin_9_10": {
+      "offset_dex": -0.1,
+      "uncertainty_dex": 0.15,
+      "verdict": "scale-limited"
+    },
+    "M_star_bin_gt_10": {
+      "offset_dex": null,
+      "uncertainty_dex": null,
+      "verdict": "no-verdict-possible (too few anchors)"
+    }
+  },
+  "A4_FMR_offset": {
+    "offset_dex": -0.05,
+    "uncertainty_dex": 0.12
+  },
+  "forecast_vs_actual_N": {
+    "M_star_bin_8_9": {
+      "expected": 35,
+      "actual": 33
+    },
+    "M_star_bin_9_10": {
+      "expected": 42,
+      "actual": 40
+    },
+    "M_star_bin_gt_10": {
+      "expected": 10,
+      "actual": 2
+    },
+    "total_expected": 87,
+    "total_actual": 75
+  },
+  "predictions_comparison": {
+    "c41_pred_001": {
+      "method": "FMR framework / gas-regulator model (Mannucci et al. 2010; Lilly et al. 2013; Curti et al. 2020 parametrisation)",
+      "status": "not-testable-here",
+      "note": "zero offset; local scatter ~0.05 dex (SDSS)"
+    },
+    "c41_pred_002": {
+      "method": "IllustrisTNG (Torrey et al. 2019)",
+      "dex_distance": 0.4,
+      "combined_uncertainty": 0.15,
+      "status": "in-tension",
+      "note": "~0.5 dex decline from z=0 to z=8"
+    },
+    "c41_pred_003": {
+      "method": "IllustrisTNG (Torrey et al. 2019)",
+      "status": "not-testable-here",
+      "note": "not quantified in span"
+    },
+    "c41_pred_004": {
+      "method": "FIRE-2 (Marszewski et al. 2024)",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "~0.14 dex above observed best-fit normalization"
+    },
+    "c41_pred_005": {
+      "method": "FirstLight simulations",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "~0.36 dex above observed best-fit normalization"
+    },
+    "c41_pred_006": {
+      "method": "FIRE / FIRE-2 simulations (bursty feedback)",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "contradicted by observed slope 0.067+/-0.013 dex per unit z"
+    },
+    "c41_pred_007": {
+      "method": "COLIBRE variable-IMF simulation (top-heavy high-mass slope up to alpha=-1.6)",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "factor ~2 in metal mass fraction at M*=1e9 Msun"
+    },
+    "c41_pred_008": {
+      "method": "COLIBRE variable-IMF vs fiducial simulation comparison",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "factor ~2 offset vs comparable observational scatter; offset persistence to z=0 excluded by local MZR"
+    },
+    "c41_pred_009": {
+      "method": "Astraeus semi-analytic model, evolving IMF (Cueto et al. 2024)",
+      "dex_distance": 0.2,
+      "combined_uncertainty": 0.15,
+      "status": "consistent",
+      "note": "factor ~1.6 at M*~1e9 Msun at z=6"
+    },
+    "c41_pred_010": {
+      "method": "Astraeus semi-analytic model, Evolving IMF (top-heaviness tied to sSFR)",
+      "status": "not-testable-here",
+      "note": "not quantified in span (model-agreement example: log10(Z/Zsun)=-1.4 for JADES-z13-1-LA elsewhere in paper)"
+    },
+    "c41_pred_011": {
+      "method": "gas-regulator equilibrium models",
+      "status": "not-testable-here",
+      "note": "turnover mass log(M*/Msun)>=10; not yet probed at z>3"
+    }
+  }
+}

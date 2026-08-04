@@ -1,0 +1,121 @@
+% LANA_WAVE3_FLAGSHIP_CONTROL_SUITE_REVISION_20260708T204428Z
+% Paper: m3_p1_multiphase_census
+% Lane-local revision draft only; does not overwrite current linked manuscript/PDF.
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\graphicspath{{../figures/}}
+\shorttitle{Selection-flagged optical tracer census}
+\shortauthors{NebulaMind Autopilot}
+
+\begin{document}
+\title{Optical Tracer Thresholds in a Capped SDSS DR17 Emission-Line Denominator for Future Multiphase Census Design}
+\author{NebulaMind Research Autopilot}
+\affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+\begin{abstract}
+We further demote the active M3 P1 pilot into a threshold-explicit optical denominator paper for future multiphase census design.  The current measurement is not a multiphase outflow census: it contains no molecular, neutral, X-ray, radio, velocity, radius, mass-loading, or kinetic-power measurements.  It instead quantifies how optical tracer definitions behave in the shared capped SDSS DR17 four-line denominator.  The cache covers 60,000/249,917 = 24.0\% of the strict public S/N$\geq3$ parent.  At S/N$\geq3$, the five optical definitions span 0.136--0.418 prevalence with Wilson intervals.  Tightening to S/N$\geq10$ reduces the BPT-AGN prevalence to 1,530/22,311 (0.069) while the one-ratio high-[O~III]/H$\beta$ prevalence rises to 8,614/22,311 (0.386), showing that S/N cuts change the population mix as well as the denominator.  The result supports common-denominator survey design only.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: winds, outflows --- surveys --- methods: data analysis}
+
+\section{Scope and source grounding}
+The proposal title is ``A multiphase, common-denominator census of AGN-driven outflows.''  The SDSS-only pilot cannot measure that full quantity.  It uses SDSS DR17 public data \citep{abdurrouf2022,york2000} to define an optical denominator and demonstrates why tracer definitions must be locked before interpreting prevalence.  Galactic-wind and outflow reviews establish that physical census work is multiphase and kinematic \citep{veilleux2005,rupke2018}, while molecular and multiphase studies show why CO, neutral gas, X-ray/radio, radii, velocities, and phase masses cannot be inferred from one SDSS optical table \citep{cicone2014,fiore2017,feruglio2015,bae2018}.
+
+
+\section{Manuscript-use contract and data dictionary}\label{sec:m3p1_contract}
+This draft is safe only if every row is described as an optical selection flag.  ``BPT AGN'' is a two-ratio line-classification proxy; ``high [N~II]/H$\alpha$'' and ``high [O~III]/H$\beta$'' are one-ratio thresholds; ``red emission-line'' is a color cut inside the four-line denominator; and ``low-sSFR emission-line'' is the catalog $\log\mathrm{sSFR}<-11.0$ flag.  None of these rows measures outflow velocity, radius, phase mass, mass loading, kinetic power, escape speed, recycling, molecular gas, neutral gas, X-ray plasma, or radio jets.
+
+The allowed headline is that optical prevalence can vary by several factors under different tracer definitions and line-S/N cuts.  The forbidden headline is that SDSS optical line ratios alone have measured the incidence of multiphase AGN-driven outflows.  Any future merged manuscript should keep this dictionary adjacent to the primary table so that threshold choices are not separated from the claimed prevalence.
+
+\section{Data, selection function, and operational definitions}
+The input is the shared cached public SDSS DR17 sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z: spectroscopic galaxies at $0.02<z<0.12$ with finite catalog stellar mass and sSFR and S/N$\geq3$ in H$\alpha$, H$\beta$, [O~III] $\lambda5007$, and [N~II] $\lambda6584$.  BPT labels use the [N~II] diagnostic \citep{baldwin1981,kewley2001,kauffmann2003bpt}.  This revision makes every tracer threshold explicit in Table~\ref{tab:m3p1-tracer-ci}; none should be renamed as a detected outflow.
+
+
+\begin{deluxetable*}{lrrrr}
+\tablecaption{Selection-function disclosure for the shared capped SDSS DR17 four-line denominator\label{tab:m3p1-selection}}
+\tablehead{\colhead{Selection stage} & \colhead{Public SDSS DR17 $N$} & \colhead{Prior-stage retention} & \colhead{Cached $N$} & \colhead{Cached/SDSS}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & -- & -- \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & 83.1\% & -- & -- \\
+four BPT lines positive with positive errors & 373,445 & 89.7\% & 60000 & 16.1\% \\
+four BPT lines S/N>=3 & 249,917 & 66.9\% & 60000 & 24.0\% \\
+four BPT lines S/N>=5 & 176,523 & 70.6\% & 42446 & 24.0\% \\
+four BPT lines S/N>=10 & 91,768 & 52.0\% & 22311 & 24.3\% \\
+\enddata
+\tablecomments{The preserved pilot query used \texttt{SELECT TOP 60000 ... ORDER BY s.specObjID}.  Therefore all fractions in this draft are conditional on a capped ordered cache: 60,000/249,917 = 24.0\% of the strict public four-line S/N$\geq3$ eligible parent.}
+\end{deluxetable*}
+
+
+\section{Optical tracer prevalence with explicit thresholds}
+Table~\ref{tab:m3p1-tracer-ci} is the core improvement.  It preserves the common-denominator idea but exposes the operational thresholds, numerators, denominators, and Wilson 95\% intervals.
+
+
+\begin{deluxetable*}{llp{0.38\textwidth}cc}
+\tabletypesize{\scriptsize}
+\tablecaption{Operational optical-tracer thresholds and Wilson intervals in the shared SDSS denominator\label{tab:m3p1-tracer-ci}}
+\tablehead{\colhead{Line S/N cut} & \colhead{Tracer} & \colhead{Operational threshold} & \colhead{Selected/denom.} & \colhead{Fraction [95\% CI]}}
+\startdata
+$\geq 3$ & BPT AGN & cached BPT label = agn: above the Kewley et al. (2001) curve after Kauffmann et al. (2003) star-forming/intermediate separation; x=log([N II]/Halpha) capped at 0.35 & 8,146/60,000 & 0.136 [0.133, 0.139] \\
+$\geq 3$ & high [N II]/Halpha & log([N II] lambda6584 / Halpha) > -0.20 & 11,497/60,000 & 0.192 [0.188, 0.195] \\
+$\geq 3$ & high [O III]/Hbeta & log([O III] lambda5007 / Hbeta) > 0.00 & 19,019/60,000 & 0.317 [0.313, 0.321] \\
+$\geq 3$ & red emission-line & catalog u-r > 2.2 within the four-line emission denominator & 25,096/60,000 & 0.418 [0.414, 0.422] \\
+$\geq 3$ & low-sSFR emission-line & catalog log sSFR < -11.0 within the four-line emission denominator & 12,410/60,000 & 0.207 [0.204, 0.210] \\
+$\geq 5$ & BPT AGN & cached BPT label = agn: above the Kewley et al. (2001) curve after Kauffmann et al. (2003) star-forming/intermediate separation; x=log([N II]/Halpha) capped at 0.35 & 4,032/42,446 & 0.095 [0.092, 0.098] \\
+$\geq 5$ & high [N II]/Halpha & log([N II] lambda6584 / Halpha) > -0.20 & 5,579/42,446 & 0.131 [0.128, 0.135] \\
+$\geq 5$ & high [O III]/Hbeta & log([O III] lambda5007 / Hbeta) > 0.00 & 13,168/42,446 & 0.310 [0.306, 0.315] \\
+$\geq 5$ & red emission-line & catalog u-r > 2.2 within the four-line emission denominator & 13,040/42,446 & 0.307 [0.303, 0.312] \\
+$\geq 5$ & low-sSFR emission-line & catalog log sSFR < -11.0 within the four-line emission denominator & 4,808/42,446 & 0.113 [0.110, 0.116] \\
+$\geq 10$ & BPT AGN & cached BPT label = agn: above the Kewley et al. (2001) curve after Kauffmann et al. (2003) star-forming/intermediate separation; x=log([N II]/Halpha) capped at 0.35 & 1,530/22,311 & 0.069 [0.065, 0.072] \\
+$\geq 10$ & high [N II]/Halpha & log([N II] lambda6584 / Halpha) > -0.20 & 1,769/22,311 & 0.079 [0.076, 0.083] \\
+$\geq 10$ & high [O III]/Hbeta & log([O III] lambda5007 / Hbeta) > 0.00 & 8,614/22,311 & 0.386 [0.380, 0.392] \\
+$\geq 10$ & red emission-line & catalog u-r > 2.2 within the four-line emission denominator & 3,667/22,311 & 0.164 [0.160, 0.169] \\
+$\geq 10$ & low-sSFR emission-line & catalog log sSFR < -11.0 within the four-line emission denominator & 901/22,311 & 0.040 [0.038, 0.043] \\
+\enddata
+\tablecomments{Every row is an SDSS optical selection.  None is a molecular, neutral, X-ray, radio, velocity, mass-loading, or kinetic-power outflow measurement.}
+\end{deluxetable*}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{m3p1_original_figure1.pdf}
+\caption{Original batch-run SDSS optical-tracer diagnostic, preserved in this lane-local revision.  The figure and Table~\ref{tab:m3p1-tracer-ci} motivate common-denominator survey design; they are not a molecular, neutral, X-ray, radio, or kinetic outflow census.}
+\label{fig:m3p1-original}
+\end{figure}
+
+\section{Why the S/N behavior diverges}
+The S/N rows should not be summarized as a simple convergence test.  Tightening the four-line S/N cut shrinks the denominator from 60,000 to 22,311 cached galaxies and changes which spectral populations remain.  BPT AGN is a two-ratio, mutually exclusive class label requiring position above the Kewley curve; its prevalence falls from 0.136 to 0.069.  The high-[O~III]/H$\beta$ row is a one-ratio threshold, $\log([\mathrm{O\,III}]/\mathrm{H}\beta)>0$, applied inside the surviving denominator; its prevalence rises from 0.317 to 0.386 because high-S/N selection preferentially retains strong high-excitation-line objects while removing many weak-line red/low-sSFR systems.  This is a selection-function result, not evidence that one optical tracer is the physical outflow phase.
+
+\section{Interpretation guard and next data}
+The strengthened result is methodological: optical prevalence can vary by several factors before any molecular, neutral, X-ray, or radio phase is added.  A real multiphase outflow census must start from a declared parent sample and then measure velocities, radii, phase masses, ionization/CO/neutral-gas corrections, non-detections, and aperture matching for every phase.  Single-object multiphase studies remain useful for physics intuition, but they cannot supply denominator-wide prevalence by themselves.  The current manuscript is ready for local integration review, not prose/publish gates.
+
+
+\section{Conclusions}\label{sec:m3p1_conclusions}
+\begin{enumerate}
+\item In the capped SDSS DR17 four-line sample, S/N$\geq3$ optical tracer fractions span 0.136--0.418 depending on the adopted threshold.
+\item Tightening to S/N$\geq10$ changes both denominator size and population mix: BPT-AGN prevalence falls to 0.069 while the one-ratio high-[O~III]/H$\beta$ prevalence rises to 0.386.
+\item The divergent S/N behavior is a selection-function result, not evidence that any optical row is the physical outflow phase.
+\item A real multiphase census still requires selection-matched molecular, neutral, ionized-kinematic, X-ray, and radio measurements with nondetections and aperture matching.
+\end{enumerate}
+
+\section*{Reproducibility and safety note}
+Revision marker: LANA\\_WAVE3\\_FLAGSHIP\\_CONTROL\\_SUITE\\_REVISION\\_20260708T204428Z.  Numerical fractions, Wilson intervals, and tracer/S/N rows were recomputed locally from the cached source table \texttt{analysis\_sample\_bpt.csv}; public denominator counts were inherited from \texttt{selection\_caution\_overlay\_20260708T162615Z.csv}.  The Wave-3 literature packet supplied the citation placement and guardrails.  This file is lane-local and did not overwrite public-linked artifacts.
+
+\acknowledgments
+This pilot used public SDSS DR17 data products and local open-source tooling.
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{abdurrouf2022} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Bae \& Woo(2018)]{bae2018} Bae, H.-J., \& Woo, J.-H. 2018, ApJ, 853, 185
+\bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Feruglio et al.(2015)]{feruglio2015} Feruglio, C., Fiore, F., Carniani, S., et al. 2015, A\&A, 583, A99
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Kauffmann et al.(2003)]{kauffmann2003bpt} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+\bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+\bibitem[Rupke(2018)]{rupke2018} Rupke, D.~S.~N. 2018, Galaxies, 6, 138
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+\end{thebibliography}
+
+\end{document}

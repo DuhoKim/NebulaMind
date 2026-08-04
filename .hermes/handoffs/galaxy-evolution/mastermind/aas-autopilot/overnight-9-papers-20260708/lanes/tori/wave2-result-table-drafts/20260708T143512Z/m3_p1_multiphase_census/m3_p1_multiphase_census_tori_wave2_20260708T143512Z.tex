@@ -1,0 +1,79 @@
+% TORI_WAVE2_RESULT_TABLE_DRAFT_20260708T143512Z
+    % Paper: m3_p1_multiphase_census
+    % This lane-local revision draft does not overwrite public-linked manuscripts or PDFs.
+    \documentclass[twocolumn]{aastex631}
+    \usepackage{amsmath}
+    \usepackage{booktabs}
+    \graphicspath{{/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/galaxy-evolution/mastermind/aas-autopilot/runs/SDSS_REMAINING_TOPIC_PILOTS_20260708T125828Z/m3_p1_multiphase_census/figures/}}
+    \shorttitle{Optical tracer denominator sensitivity}
+    \shortauthors{NebulaMind Autopilot}
+
+    \begin{document}
+    \title{Selection-definition sensitivity in a common SDSS DR17 optical tracer denominator}
+    \author{NebulaMind Research Autopilot}
+    \affiliation{Local reproducible pilot run; public SDSS DR17 data and overnight local artifacts only}
+
+    \begin{abstract}
+    We add a selection-sensitivity table to the common-denominator optical tracer census.  At S/N$\geq3$, simple optical tracer definitions span prevalence 0.136--0.418; tightening the line-S/N threshold changes both denominator size and tracer prevalence.  This motivates a true multiphase common-denominator survey, but the present result remains optical only.
+    \end{abstract}
+
+    \keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+
+    \section{Scope and data}
+    This Wave-2 draft improves the active consolidated pilot for ``A multiphase, common-denominator census of AGN-driven outflows'' by replacing a short itemized result with an explicit result table.  It remains an SDSS-only denominator/proxy manuscript.  The full topic still requires co-measured ionized, molecular, neutral, X-ray, and radio tracers over an aperture-matched common parent sample.
+
+    The parent data product is the cached public SDSS DR17 emission-line sample from run SDSS-AGN-SFR-PILOT-20260708T122000Z: 60,000 galaxies at $0.02<z<0.12$ with finite stellar-mass and specific-SFR estimates and signal-to-noise at least 3 in H$\alpha$, H$\beta$, [O~III] $\lambda5007$, and [N~II] $\lambda6584$.  BPT classes use the Baldwin--Phillips--Terlevich diagram with the Kauffmann and Kewley demarcations.  Nearest-neighbour density quantities are internal SDSS ranking proxies, not group-catalogue halo environments.
+
+    \section{Result-table addendum}
+    Table~\ref{tab:m3-p1-multiphase-census} exposes the selection dependence that was previously compressed into one range.  The same parent idea gives different candidate fractions depending on the tracer and S/N threshold.
+
+    \begin{deluxetable*}{llcc}
+    \tablecaption{Optical tracer prevalence under common-denominator and line-S/N changes\label{tab:m3-p1-multiphase-census}}
+    \tablehead{\colhead{Line S/N cut} & \colhead{Optical tracer definition} & \colhead{Selected/denominator} & \colhead{Prevalence}}
+    \startdata
+    $\geq 3$ & BPT AGN & 8,146/60,000 & 0.136 \\
+$\geq 3$ & high [N~II]/H$\alpha$ & 11,497/60,000 & 0.192 \\
+$\geq 3$ & high [O~III]/H$\beta$ & 19,019/60,000 & 0.317 \\
+$\geq 3$ & red emission-line & 25,096/60,000 & 0.418 \\
+$\geq 3$ & low-sSFR emission-line & 12,410/60,000 & 0.207 \\
+$\geq 5$ & BPT AGN & 4,032/42,446 & 0.095 \\
+$\geq 5$ & high [N~II]/H$\alpha$ & 5,579/42,446 & 0.131 \\
+$\geq 5$ & high [O~III]/H$\beta$ & 13,168/42,446 & 0.310 \\
+$\geq 5$ & red emission-line & 13,040/42,446 & 0.307 \\
+$\geq 5$ & low-sSFR emission-line & 4,808/42,446 & 0.113 \\
+$\geq 10$ & BPT AGN & 1,530/22,311 & 0.069 \\
+$\geq 10$ & high [N~II]/H$\alpha$ & 1,769/22,311 & 0.079 \\
+$\geq 10$ & high [O~III]/H$\beta$ & 8,614/22,311 & 0.386 \\
+$\geq 10$ & red emission-line & 3,667/22,311 & 0.164 \\
+$\geq 10$ & low-sSFR emission-line & 901/22,311 & 0.040 \\
+    \enddata
+    \tablecomments{All rows are optical SDSS definitions.  They are useful for common-denominator design but are not molecular, neutral, X-ray, or radio outflow measurements.}
+    \end{deluxetable*}
+
+    \begin{figure}
+    \centering
+    \includegraphics[width=\columnwidth]{m3\_p1\_multiphase\_census\_figure1.pdf}
+    \caption{Preserved topic-specific SDSS DR17 diagnostic from the original batch run.  It should be read with Table~\ref{tab:m3-p1-multiphase-census}: the figure and table are proxy or denominator measurements, not the full multi-survey physical test.}
+    \label{fig:m3-p1-multiphase-census}
+    \end{figure}
+
+    \section{Interpretation guard}
+    The table supports a methodological point about denominator control and selection sensitivity.  The manuscript must continue to distinguish actual SDSS optical measurements from future radio, X-ray, molecular-gas, resolved-kinematic, or simulation-mock measurements.  No causal AGN-feedback, gas-depletion, escape/recycling, jet-coupling, or model-validation claim is established by this table alone.
+
+    \section{Integration notes}
+    This file is a Tori lane-local draft.  It was generated from the current source manuscript \texttt{m3\_p1\_multiphase\_census\_aas.tex}, the topic analysis JSON \texttt{analysis\_results.json}, Goru's actual-data robustness CSV, and the preserved figure path under the batch run.  If merged later, the table should be checked against the then-current analysis code and accompanied by a fresh PDF/hash manifest.
+
+    \section*{Reproducibility and safety note}
+    Draft marker: TORI\_WAVE2\_RESULT\_TABLE\_DRAFT\_20260708T143512Z.  Sources: \texttt{topic\_metric\_robustness\_20260708T141459Z.csv}, \texttt{simulation\_target\_vector\_cells\_20260708T141459Z.csv} when applicable, and current batch-run figures.  This draft uses local files only and does not overwrite public-linked PDFs.
+
+    \acknowledgments
+    This pilot used public SDSS DR17 data products and local open-source tooling.
+
+    \begin{thebibliography}{}
+    \bibitem[Baldwin et al.(1981)]{baldwin1981} Baldwin, J.~A., Phillips, M.~M., \& Terlevich, R. 1981, PASP, 93, 5
+    \bibitem[Kauffmann et al.(2003)]{kauffmann2003} Kauffmann, G., Heckman, T.~M., Tremonti, C., et al. 2003, MNRAS, 346, 1055
+    \bibitem[Kewley et al.(2001)]{kewley2001} Kewley, L.~J., Dopita, M.~A., Sutherland, R.~S., Heisler, C.~A., \& Trevena, J. 2001, ApJ, 556, 121
+    \bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+    \end{thebibliography}
+
+    \end{document}

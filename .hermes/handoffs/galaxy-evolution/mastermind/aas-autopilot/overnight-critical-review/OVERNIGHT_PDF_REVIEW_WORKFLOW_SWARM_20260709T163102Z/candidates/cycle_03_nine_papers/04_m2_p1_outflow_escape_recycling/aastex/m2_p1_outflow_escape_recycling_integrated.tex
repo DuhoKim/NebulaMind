@@ -1,0 +1,94 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\shorttitle{SDSS high-excitation AGN denominator for outflow escape tests}
+\shortauthors{Outflow escape}
+\begin{document}
+
+\title{SDSS high-excitation AGN denominator for outflow escape tests: selection-aware SDSS optical proxy integration}
+\author{NebulaMind Research Autopilot}
+\affiliation{Public SDSS DR17 data only}
+
+\begin{abstract}
+We use the cached SDSS DR17 emission-line subset to define the optical denominator for an outflow escape-versus-recycling program. The analysis counts high-excitation optical AGN candidates and records their median sSFR as a proxy for where resolved kinematics and multiphase-gas follow-up should focus. This draft is an optical selection baseline, not an escape-velocity measurement.
+\end{abstract}
+
+\keywords{galaxies: evolution --- galaxies: active --- galaxies: star formation --- surveys --- methods: data analysis}
+
+\section{Purpose and claim contract}\label{sec:purpose}
+This draft preserves the active proposal title, 'Escape versus recycling: the fate of AGN-driven multiphase outflows', but narrows the supported claim to the cached SDSS optical measurement named in the results. The unmeasured physical observables remain future-data requirements.
+
+The claim contract is intentionally conservative. Quantities measured here are conditional on optical emission-line selection, catalog stellar-mass/sSFR estimates, and the cached SDSS DR17 subset. Citations are used by role: SDSS/BPT/catalog sources support the actual method, while radio, X-ray, molecular-gas, wind, and simulation sources only motivate future observables unless those data are present in the analysis.
+
+
+\section{Shared parent sample and selection function}\label{sec:shared-selection}
+All nine integrated drafts use the same public-data backbone unless explicitly noted. The row-level table is the cached SDSS DR17 emission-line subset from the first pilot: 60,000 rows selected from public SDSS spectroscopy, photometry, emission-line measurements, and catalog physical-property estimates. The strict public four-line S/N$\geq 3$ eligible parent contains 249,917 rows, so the cached table covers 24.0\% of that strict parent. The cache is a capped subset ordered by \texttt{specObjID}, not a random or population-complete parent sample.
+
+\begin{deluxetable*}{lrrr}
+\tabletypesize{\scriptsize}
+\tablecaption{Shared SDSS DR17 selection cascade used before paper-specific quantities.\label{tab:selection-cascade}}
+\tablehead{\colhead{Selection stage} & \colhead{Public DR17 rows} & \colhead{Cached rows} & \colhead{Retention vs. spectro-z parent}}
+\startdata
+SpecObj GALAXY, 0.02<z<0.12 & 501,060 & -- & 1.000 \\
+plus galSpecInfo/PhotoObj/galSpecExtra and mass/sSFR bounds & 416,554 & -- & 0.831 \\
+plus galSpecLine join & 416,554 & -- & 0.831 \\
+four BPT lines positive with positive errors & 373,445 & 60,000 & 0.745 \\
+four BPT lines S/N>=3 & 249,917 & 60,000 & 0.499 \\
+four BPT lines S/N>=5 & 176,523 & 42,446 & 0.352 \\
+four BPT lines S/N>=10 & 91,768 & 22,311 & 0.183 \\
+\enddata
+\tablecomments{Counts are read-only public SDSS DR17 count queries plus the cached local CSV. Cached rows are shown only where the cache applies.}
+\end{deluxetable*}
+
+The four-line requirement is strongly selection dependent. In the public counts, S/N$\geq3$ keeps 33.6\% of the $-12<\log {\rm sSFR}<-11$ parent bin but 94.9\% of the $-10<\log {\rm sSFR}<-9.5$ bin. Therefore every incidence, quenching, density, gas-denominator, or target-vector statement in this integration is conditional on the four-line emission-line selection.
+
+Cached-versus-public marginal checks found no redshift, stellar-mass, or sSFR bin with a cached-minus-public fraction difference above 5 percentage points. The largest absolute differences were 2.03 percentage points in redshift, -1.63 percentage points in stellar mass, and -0.58 percentage points in sSFR. This is a representativeness diagnostic only; it does not make the capped cache random or complete.
+
+
+\section{Measurements}\label{sec:measurements}
+The row-level measurements include redshift, stellar mass, catalog specific star-formation rate, model colors, and four optical line fluxes/errors. BPT labels and all derived denominators are recomputed locally from the cached table. Catalog SFR/sSFR values are treated as low-redshift SDSS physical-property estimates rather than direct resolved gas or feedback measurements \citep{sdssdr17,brinchmann2004,york2000}.
+
+
+\section{Optical denominator for outflow escape tests}\label{sec:topic-result}
+The consolidated proposal question is: How large is the SDSS high-excitation optical-AGN denominator that would need resolved kinematics to test escape versus recycling? The integrated manuscript deliberately demotes the claim to the directly measured SDSS quantity. It is not a full physical-feedback test.
+
+\begin{itemize}
+\item High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies (0.074).
+\item Their median log sSFR is -11.53, compared with -10.14 for the full denominator.
+\item SDSS does not measure escape velocity or multiphase outflow velocities here; the pilot supplies a denominator for resolved follow-up rather than an escape/recycling result.
+\end{itemize}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\columnwidth]{../figures/fig-topic.pdf}
+\caption{SDSS DR17 optical denominator/proxy diagnostic for outflow escape-versus-recycling follow-up. The figure summarizes the cached optical result used for target definition.}
+\label{fig:topic}
+\end{figure}
+
+\section{Interpretation and missing observables}\label{sec:missing}
+SDSS-only pilot; full proposal requires the additional survey data named in the research-topic page. The full proposal requires: resolved outflow velocities, halo potentials, molecular/ionized/neutral gas phases, and CGM recycling tracers.
+
+Wind and outflow literature specifies the missing kinematic, geometric, molecular, and multiphase measurements; these sources motivate follow-up and do not turn line-ratio selection into an escape/recycling measurement \citep{veilleux2005,cicone2014,fiore2017,carniani2017,fabian2012}.
+
+
+\section{Reproducibility and safety}\label{sec:repro}
+This manuscript uses the cached SDSS DR17 subset and the accompanying local manifest of inputs and outputs. The output is a local draft PDF and manifest entry only. No public-linked PDF was replaced.
+
+\section{Conclusion}\label{sec:conclusion}
+High-excitation optical AGN candidates number 4,440 of 60,000 emission-line galaxies, and their median log sSFR is -11.53 compared with -10.14 for the full denominator. The optical sample therefore defines a follow-up denominator for resolved escape/recycling work, but SDSS alone cannot measure outflow velocity or fate.
+
+
+\begin{thebibliography}{}
+\bibitem[Abdurro'uf et al.(2022)]{sdssdr17} Abdurro'uf, Accetta, K., Aerts, C., et al. 2022, ApJS, 259, 35
+\bibitem[Brinchmann et al.(2004)]{brinchmann2004} Brinchmann, J., Charlot, S., White, S.~D.~M., et al. 2004, MNRAS, 351, 1151
+\bibitem[York et al.(2000)]{york2000} York, D.~G., Adelman, J., Anderson, J.~E., Jr., et al. 2000, AJ, 120, 1579
+
+\bibitem[Carniani et al.(2017)]{carniani2017} Carniani, S., Marconi, A., Maiolino, R., et al. 2017, A\&A, 605, A42
+\bibitem[Cicone et al.(2014)]{cicone2014} Cicone, C., Maiolino, R., Sturm, E., et al. 2014, A\&A, 562, A21
+\bibitem[Fabian(2012)]{fabian2012} Fabian, A.~C. 2012, ARA\&A, 50, 455
+\bibitem[Fiore et al.(2017)]{fiore2017} Fiore, F., Feruglio, C., Shankar, F., et al. 2017, A\&A, 601, A143
+\bibitem[Veilleux et al.(2005)]{veilleux2005} Veilleux, S., Cecil, G., \& Bland-Hawthorn, J. 2005, ARA\&A, 43, 769
+\end{thebibliography}
+
+\end{document}

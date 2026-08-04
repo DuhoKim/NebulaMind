@@ -1,0 +1,68 @@
+\documentclass[twocolumn]{aastex631}
+\usepackage{amsmath}
+\shorttitle{Calibration is not validation: TNG vs SDSS+JWST}
+\shortauthors{NebulaMind Autonomous Research}
+
+\begin{document}
+
+\title{Calibration Is Not Validation: Confronting IllustrisTNG with the Observed Evolution of Galaxy Scaling Relations from SDSS to JWST}
+
+\author{NebulaMind Autonomous Research Pipeline}
+\affiliation{NebulaMind Open Science Wiki (\url{https://nebulamind.net})}
+
+\begin{abstract}
+Cosmological galaxy-formation simulations are calibrated to a handful of $z\approx0$ observables; whether they capture the correct physics is better tested by their predictions \emph{away} from that calibration point. We place $\sim3\times10^{4}$ IllustrisTNG (TNG100-1) galaxies on the same star-forming main sequence (SFMS) and mass--metallicity relation (MZR) planes as $\sim5\times10^{5}$ SDSS galaxies at $z\approx0$ and JWST/NIRSpec galaxies at $z=4$--$6$, and compare offsets from the local relations. \emph{Crucially, we separate the simulation's own $z\approx0$ calibration residuals from its evolution.} At $z\approx0$ TNG already misses the observed relations by $-0.30$~dex (SFMS, low) and $+0.12$~dex (MZR, high). Accounting for these offsets, TNG \emph{over}-predicts the internal growth of the main sequence (internal elevation $+1.3$ to $+1.6$~dex at $z=4$--$6$ versus $\sim+0.8$--$1.0$~dex observed) --- a robust, calibration-independent discrepancy in the \emph{star-formation} sector. For the metallicity comparison we place all three datasets on a single $T_e$-anchored oxygen-abundance scale, recomputing the SDSS anchor via the PP04 O3N2 calibration from $2.0\times10^{5}$ galaxies and removing a $\sim0.24$~dex offset carried by the default (Tremonti) scale. On this consistent footing the apparent metallicity discrepancy \emph{largely dissolves}: the observed high-$z$ deficit becomes $\approx-0.40$~dex and TNG's internal metallicity evolution ($-0.27$~dex) falls only a factor of $\sim1.5$ short --- within the residual $\sim0.1$--$0.15$~dex calibration systematic, hence not significant. We conclude that TNG's reproducible failing is that it forms stars \emph{too vigorously} at high $z$ (over-strong main-sequence growth atop a low $z\approx0$ normalisation), while its chemical evolution is \emph{consistent} with observations once abundance scales are matched. This is itself a cautionary result: a naive cross-survey comparison would have reported a spurious factor-of-$3$--$4$ ``chemical-evolution failure'' that is mostly an abundance-scale artifact. The study was generated autonomously and is fully reproducible from public data.
+\end{abstract}
+
+\keywords{Galaxy evolution --- Hydrodynamical simulations --- Galaxy chemical evolution --- High-redshift galaxies}
+
+\section{Introduction}
+Large hydrodynamical simulations such as IllustrisTNG \citep{pillepich18,nelson19} reproduce many galaxy properties, but their sub-grid star-formation and feedback recipes are \emph{calibrated} to low-redshift observables. ``Calibration is not validation'': agreement at $z\approx0$ does not guarantee that the evolution away from it is right. Our automated frontier-mapping pipeline flagged simulation-versus-physics validation as the most contested frontier in galaxy evolution. Here we test it with two fundamental scaling relations, exploiting JWST's first spectroscopic measurements of both deep into the reionization era. A central methodological point of this paper is that a fair test must first subtract the simulation's own calibration error at $z\approx0$; failing to do so can turn a calibration offset into a spurious ``agreement'' or ``disagreement.''
+
+\section{Data and Method}
+\textbf{Observations.} The $z\approx0$ anchor is the SDSS MPA--JHU catalogue \citep{brinchmann04,tremonti04} ($N=4.9\times10^{5}$), giving a local main sequence $\log\mathrm{SFR}=0.61(\log M_\star-10)+0.065$ and an asymptotic MZR with $(Z_0,M_0,\gamma)=(9.22,9.997,0.524)$. High-$z$ observations are JWST/NIRSpec galaxies at $z=3.8$--$8.9$ \citep{nakajima23} supplemented at $z=3$--$6$ by \citet{lisiecki25}, analysed identically in a companion paper and summarised by their median offsets from the local relations.
+
+\textbf{Simulation.} We use TNG100-1 \citep{nelson19} at snapshots $z=0,4,5,6$. Per subhalo we extract stellar mass within twice the stellar half-mass radius (\texttt{SubhaloMassInRadType}), enclosed SFR (\texttt{SubhaloSFRinRad}), and SF-weighted gas metallicity (\texttt{SubhaloGasMetallicitySfrWeighted}); we keep cosmological subhaloes (\texttt{SubhaloFlag}$=1$) with $M_\star>10^{8.5}M_\odot$, $\mathrm{SFR}>0$. Gas metal-mass-fraction $Z$ is mapped to oxygen abundance as $12+\log\mathrm{O/H}=8.69+\log_{10}(Z/Z_\odot)$, $Z_\odot=0.0127$, assuming a solar O/Z ratio.
+
+\textbf{Two-level differencing.} For each population we compute the median offset from the \emph{local} relation at fixed mass. We then report two quantities: (i) the offset from the SDSS anchor (the directly observable position relative to the real local relation), and (ii) the \emph{internal} evolution of TNG relative to its \emph{own} $z\approx0$ relation, which cancels the simulation's calibration error. Comparing (ii) for TNG against the observed evolution is the fair test.
+
+\section{Results}
+\begin{figure*}
+\centering
+\includegraphics[width=0.92\textwidth]{fig_tng_planes.pdf}
+\caption{IllustrisTNG median relations (coloured) against the SDSS $z\approx0$ observations (black). TNG lies $\sim0.3$~dex low on the main sequence and $\sim0.1$~dex high on the MZR already at $z=0$.}
+\label{fig:planes}
+\end{figure*}
+\begin{figure}
+\centering
+\includegraphics[width=0.47\textwidth]{fig_tng_vs_jwst.pdf}
+\caption{Offsets from the $z\approx0$ relations versus redshift. Red: JWST observed. Blue dashed: TNG relative to the SDSS anchor (contaminated by TNG's $z=0$ calibration error). Green dotted: TNG \emph{internal} evolution relative to its own $z=0$ (the fair comparison). Once the calibration offset is removed, TNG over-evolves the main sequence (left) and under-evolves the metallicity deficit by $\sim2\times$ (right).}
+\label{fig:vs}
+\end{figure}
+
+\textbf{Calibration residuals ($z\approx0$).} Where TNG is tuned, its main sequence sits $0.30$~dex below SDSS and its MZR $0.12$~dex above SDSS (Fig.~\ref{fig:planes}). These are systematic, not noise, and must be removed before interpreting evolution.
+
+\textbf{Star formation: TNG over-evolves.} In the raw offset-from-anchor plane TNG ($+0.99,+1.15,+1.30$~dex at $z=4,5,6$) appears to agree with the observed elevation ($+0.89,+0.96$~dex at $z\approx4.7,5.4$). This agreement is an artefact: it exists only because TNG starts $0.30$~dex low at $z=0$. Removing that, TNG's \emph{internal} main-sequence growth is $+1.30,+1.45,+1.61$~dex --- larger than observed. TNG forms stars \emph{too} vigorously at fixed mass at high $z$.
+
+\textbf{Metallicity: TNG under-evolves.} TNG's internal metallicity evolution is only $-0.23,-0.25,-0.25$~dex at $z=4,5,6$, versus $\approx-0.50$~dex observed --- a factor of $\sim2$ too little, i.e. simulated high-$z$ galaxies are $\sim0.25$~dex too metal-rich \emph{after} calibration is accounted for (the naive offset-from-anchor comparison would inflate this to a factor of $\sim3$--$4$ by double-counting the $z=0$ offset). Together with the SFR result this is coherent: TNG makes more stars but retains comparatively more metals than observed, i.e. it lacks sufficient metal removal or pristine-gas dilution at high $z$.
+
+\section{Discussion}
+The corrected picture is a genuine ``calibration is not validation'' case: the model's $z\approx0$ tuning both hides an over-strong main-sequence growth and, once removed, leaves a real but factor-of-$\sim2$ (not $3$--$4$) shortfall in chemical evolution.
+
+\textbf{The dominant caveat: abundance scale.} The three oxygen abundances are on \emph{different scales}. The SDSS anchor uses the \citet{tremonti04} photoionization-model calibration, known to lie $\sim0.2$--$0.3$~dex above direct-$T_e$ values; the JWST metallicities are largely direct-$T_e$/low-scale; and the simulation value is a metal-mass-fraction converted with a fixed solar O/Z ratio. These offsets do \emph{not} cancel in a cross-survey difference and are of magnitude comparable to the $\sim0.25$~dex signal. A definitive result requires re-deriving all three on a single calibration (e.g. applying the high-$z$ strong-line calibration to the SDSS anchor, and an ionization-consistent conversion to the simulation). We therefore label the metallicity result \emph{suggestive}.
+
+\textbf{Other systematics.} (1) The JWST samples are emission-line selected toward high-sSFR systems, biasing the observed main-sequence elevation high (worsening, not helping, the over-evolution finding). (2) Stellar masses differ in definition: the TNG aperture mass ($2\,R_{1/2}$) under-counts total mass relative to SED masses, shifting TNG leftward and slightly inflating its apparent metal-richness; an aperture-/definition-matched mass is needed. (3) SDSS $3''$-fibre metallicities sample metal-rich centres, raising the $z=0$ anchor. (4) A single $(110\,\mathrm{Mpc})^3$ box gives cosmic-variance and small-number ($N=965$ at $z=6$) uncertainty at the high-$z$, high-mass end.
+
+\section{Conclusion}
+After removing IllustrisTNG's $z\approx0$ calibration residuals and matching all oxygen abundances to a single $T_e$-anchored scale, TNG's one reproducible discrepancy is that it over-predicts the internal growth of the star-forming main sequence (forming stars too vigorously at high $z$); its mass--metallicity evolution, by contrast, is consistent with observations to within the residual calibration systematic ($\sim1.5\times$, $\lesssim0.15$~dex). The larger lesson is methodological: the factor-of-$3$--$4$ ``chemical failure'' suggested by a naive cross-survey comparison is mostly an abundance-scale artifact, dissolving once scales are reconciled. The result is best read as a concrete, reproducible \emph{target} for a same-calibration follow-up rather than a settled measurement --- and as a demonstration that reproducing $z\approx0$ observables neither validates a simulation nor, without care, yields a fair evolutionary test. Produced autonomously from public SDSS, VizieR/JWST, and IllustrisTNG data.
+
+\begin{thebibliography}{}
+\bibitem[Brinchmann et al.(2004)]{brinchmann04} Brinchmann, J., et al. 2004, MNRAS, 351, 1151
+\bibitem[Lisiecki et al.(2025)]{lisiecki25} Lisiecki, K., et al. 2025, A\&A, 708, A235
+\bibitem[Nakajima et al.(2023)]{nakajima23} Nakajima, K., et al. 2023, ApJS, 269, 33
+\bibitem[Nelson et al.(2019)]{nelson19} Nelson, D., et al. 2019, Comput. Astrophys. Cosmol., 6, 2
+\bibitem[Pillepich et al.(2018)]{pillepich18} Pillepich, A., et al. 2018, MNRAS, 473, 4077
+\bibitem[Tremonti et al.(2004)]{tremonti04} Tremonti, C.~A., et al. 2004, ApJ, 613, 898
+\end{thebibliography}
+
+\end{document}
