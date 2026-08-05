@@ -12,7 +12,67 @@ import { RawStyle } from "./rawStyle";
 
 export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[]; frontier?: number };
 
+// Studies a HUMAN read and rejected. They stay published — the rejection and its reason are
+// part of the record, not something to hide. `why` is Duho's stated reason, verbatim in
+// substance; `retired` is when he pulled it.
+export type Rejected = Flagship & { why: string; retired: string; kept?: string };
+
+// PERSONAL-INTEREST TRACKS — research Duho asked for by name, carried openly as his interest
+// rather than dressed up as a corpus-derived frontier (frontier rows carry real cluster paper
+// counts; a hand-made one would be invented data). Every number below is measured: arXiv totals
+// from a live query on 2026-08-05, archive counts from VizieR TAP_SCHEMA the same day.
+export type InterestTrack = {
+  title: string; interestOf: string; opened: string; lane: string;
+  motivation: string; literature: string; dataFound: string; state: string; priority?: boolean;
+};
+
+export const INTEREST_TRACKS: InterestTrack[] = [
+  {
+    title: "Black-hole-universe cosmology \u2014 galaxy spin-parity test",
+    interestOf: "Duho",
+    opened: "2026-08-05",
+    lane: "spin-parity-census-20260805T1922K",
+    priority: true, // Duho, 2026-08-05: "place that as top priority"
+    motivation:
+      "If our universe is the interior of a rotating black hole it inherits a preferred axis, and the observable signatures are parity ones: a handedness excess among spiral galaxies, or a hemispherical asymmetry in the CMB.",
+    literature:
+      "arXiv, measured 2026-08-05: 37 papers on black-hole cosmology / universe-inside-a-black-hole; 516 on the Einstein\u2013Cartan torsion-bounce line, 88 of the last 100 from 2024 onward; 66 on galaxy spin-direction asymmetry; 40 on CMB hemispherical asymmetry.",
+    dataFound:
+      "VizieR carries no per-object spiral-handedness catalogue. Of 81 catalogues whose descriptions say \u201cclockwise\u201d, nearly all use it as a position-angle convention; 40 name matches are central wavelengths, CatWISE proper motions and neutron-monitor dips; the 4 survivors are two galaxy-CLUSTER rotation tables (42 rows, wrong quantity), one Galaxy Zoo vote fraction that sums handedness away, and one spiral yes/no deposit. The vote fractions do exist outside VizieR \u2014 Galaxy Zoo 1\u2019s own release carries P_CW and P_ACW per object with sky positions.",
+    state:
+      "Contract drafted and under adversarial review before any row is fetched. The sample cut is frozen pre-fetch; Galaxy Zoo\u2019s documented mirror bias (classifiers over-report clockwise) is named as the dominant systematic; and the contract forbids any result from being phrased as support for the cosmology that motivated it.",
+  },
+];
+
+export const HUMAN_REJECTED: Rejected[] = [
+  {
+    title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z\u22489\u201310",
+    summary: "An unlensed z\u22489\u201310 field sample sits \u22120.68 dex below the local mass\u2013metallicity relation on a single Te scale \u2014 a normalization deficit, explicitly not a formal detection.",
+    meta: "Nakajima+23 direct-Te subset \u00b7 Pollock+26 unlensed field + GN-z11 \u00b7 cross-checked vs Isobe+26 (~1500 gal) \u00b7 systematic budget \u00b10.16 dex",
+    verdict: "REJECT",
+    pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
+    updated: "2026-07-22 11:26",
+    review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
+    methods: ["mzr"],
+    frontier: 41,
+    retired: "2026-08-05",
+    why: "No original work. Every abundance and stellar mass is adopted from published papers (Nakajima+2023, Pollock+2026, Isobe+2026), both local anchors are published parametrizations (Curti+2020, Andrews & Martini 2013), and the result is a subtraction \u0394 = (12+log O/H)obs \u2212 MZR(logM\u2605) over N=5\u20136 galaxies. Nothing was measured. The conclusion was already published by the ~1500-galaxy stacked-Te sample the paper itself cites.",
+    kept: "The systematics work is real and was kept: the single-Te-scale restriction, the unlensed-only cut after Deep Research caught lens contamination in the \u201cclean\u201d subset, the local-anchor swap quantifying that systematic at 0.042 dex, and the Te-scale Monte Carlo that deflated a formal ~22\u03c3 to ~4.5\u03c3. Those methods are the direct ancestors of the anchor-gap census\u2019s contract-grade discipline.",
+  },
+];
+
 export const FLAGSHIP: Flagship[] = [
+  {
+    title: "The Machine-Readable Bright End: an Eligibility-Audited Census of Public z>8 Rest-UV Catalogues",
+    summary: "Four independent channels were opened to measure how fast the bright end declines over z=8\u201314 from public data, and every one closed with its reason quoted from the sources. The confirmed spectroscopic bright end of the entire machine-readable record is dozens of objects \u2014 and none above z=11.5.",
+    meta: "6,417 in-slice rows \u00b7 67 counted catalogues \u00b7 112-table eligibility layer (30 disqualified with recorded reasons) \u00b7 92 of 112 candidates reachable ONLY by UCD metadata \u00b7 contract sha-pinned before the first fetch \u00b7 referee ESTABLISHED, 8 findings raised and closed",
+    verdict: "REVIEW-READY",
+    pdf: "/studies/c41-brightend-uvlf-archival-gap.pdf",
+    updated: "2026-08-05 19:40",
+    review: "/studies/c41-brightend-uvlf-archival-gap_review_loop.md",
+    methods: ["mzr"],
+    frontier: 41,
+  },
   {
     title: "A Systematics-Bounded Redshift Sweep of the Reionization Ionizing-Photon Budget",
     summary: "Under frozen literature anchors, the required-vs-inferred escape-fraction mismatch becomes robust to the stated systematics only above z\u22488 (crossing z_c=8.05, bootstrap 8.03\u20138.06); removing the JWST-motivated SFRD boost strengthens the shortfall (z_c\u21927.62). Proxy transport is named as the only remaining escape route.",
@@ -32,17 +92,6 @@ export const FLAGSHIP: Flagship[] = [
     pdf: "/studies/c41-highz-mzr-calibration-anchored.pdf",
     updated: "2026-08-04 21:39",
     review: "/studies/c41-highz-mzr-calibration-anchored_review_loop.md",
-    methods: ["mzr"],
-    frontier: 41,
-  },
-  {
-    title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z≈9–10",
-    summary: "An unlensed z≈9–10 field sample sits −0.68 dex below the local mass–metallicity relation on a single Te scale — a robust normalization deficit, explicitly not a formal detection.",
-    meta: "Nakajima+23 direct-Te subset · Pollock+26 unlensed CAPERS/JADES + GN-z11 (z=10.6) · cross-checked vs Isobe+26 (~1500 gal) · systematic error budget ±0.16 dex, abs. Te scale (0.15) dominant",
-    verdict: "REVIEW-READY",
-    pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
-    updated: "2026-07-22 11:26",
-    review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
     methods: ["mzr"],
     frontier: 41,
   },
@@ -77,6 +126,7 @@ export default function FlagshipStudies() {
         ))}
       </div>
       <p className="pb-flag-note">{FLAGSHIP.length} published so far. The fully-automated runs — the fast, high-attrition track — live under <b>Pipeline runs</b>.</p>
+
     </div>
   );
 }
