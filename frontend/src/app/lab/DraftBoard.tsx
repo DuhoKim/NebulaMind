@@ -13,7 +13,7 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { PB_CSS } from "./PipelineBoard";
 import { RawStyle } from "./rawStyle";
-import { FLAGSHIP, HUMAN_REJECTED } from "./FlagshipStudies";
+import { FLAGSHIP, HUMAN_REJECTED, INTEREST_TRACKS } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { FRONTIERS } from "./frontiersData";
 import { coreGalaxyEvolutionFrontiers, galaxyEvolutionScope, isCoreGalaxyEvolutionFrontier } from "./frontierScope";
@@ -35,7 +35,7 @@ type Run = {
   lit_grounded?: boolean | null;
   lit_grounding?: string | null;
 };
-type Track = "flagship" | "frontier" | "pipeline";
+type Track = "flagship" | "frontier" | "pipeline" | "interest";
 type Production = "hand" | "auto";
 type Depth = "note" | "manuscript";
 type Item = {
@@ -44,6 +44,8 @@ type Item = {
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
   updated?: string | null; methods?: string[] | null; grounded?: boolean | null; grounding?: string | null;
   rejectedBy?: string | null; rejectedOn?: string | null; rejectWhy?: string | null; rejectKept?: string | null;
+  interestOf?: string | null; motivation?: string | null; literature?: string | null; dataFound?: string | null;
+  priority?: boolean | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -352,6 +354,14 @@ function DraftCard({ it }: { it: Item }) {
       {open && (
         <div className="db-lrow-detail">
           {it.note && <p className="pb-run-summary">{it.note}</p>}
+          {it.interestOf && (
+            <div className="db-interest">
+              <p className="db-int-tag"><b>Personal-interest track \u2014 {it.interestOf}.</b>{it.priority ? " Top priority." : ""} Carried as a declared interest, not a corpus-ranked frontier.</p>
+              {it.literature && <p className="db-int-row"><b>Literature (measured).</b> {it.literature}</p>}
+              {it.dataFound && <p className="db-int-row"><b>Data found.</b> {it.dataFound}</p>}
+              {it.grounding && <p className="db-int-row"><b>State.</b> {it.grounding}</p>}
+            </div>
+          )}
           {it.rejectWhy && (
             <div className="db-rej">
               <p className="db-rej-why"><b>Rejected by {it.rejectedBy} · {it.rejectedOn}.</b> {it.rejectWhy}</p>
@@ -495,6 +505,7 @@ export default function DraftBoard() {
   const items: Item[] = [];
   for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const f of HUMAN_REJECTED) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: "REJECTED BY HUMAN", pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null, rejectedBy: "Duho", rejectedOn: f.retired, rejectWhy: f.why, rejectKept: f.kept ?? null });
+  for (const f of INTEREST_TRACKS) items.push({ title: f.title, track: "interest", production: "hand", depth: "note", frontier: null, stage: 1, verdict: null, pdf: null, note: f.motivation, updated: f.opened, review: null, methods: null, interestOf: f.interestOf, motivation: f.motivation, literature: f.literature, dataFound: f.dataFound, grounding: f.state, priority: f.priority ?? false });
   for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", production: "auto", depth: "manuscript", frontier: f.frontier ?? null, stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
@@ -627,7 +638,8 @@ export default function DraftBoard() {
         <p className="ub-empty">No paper matches these filters. Clear one to see more.</p>
       ) : groupBy === "status" ? (
         BUCKETS.map((b) => {
-          const rows = filtered.filter((i) => bucketOf(i) === b.key);
+          const rows = filtered.filter((i) => bucketOf(i) === b.key)
+            .sort((a, c) => Number(c.priority ?? false) - Number(a.priority ?? false));
           if (b.key !== "validated" && rows.length === 0) return null;
           return (
             <div key={b.key} className="ub-bucket">
@@ -834,4 +846,8 @@ const DB_CSS = `
 .db-rej{margin:.55rem 0 .2rem;padding:.6rem .75rem;border-left:2px solid #f47272;background:rgba(244,114,114,.06);border-radius:0 8px 8px 0}
 .db-rej-why{margin:0;font-size:.85rem;line-height:1.55;color:var(--lab-ink)}
 .db-rej-kept{margin:.45rem 0 0;font-size:.83rem;line-height:1.55;color:var(--lab-soft)}
+
+.db-interest{margin:.55rem 0 .2rem;padding:.6rem .75rem;border-left:2px solid #7c86ff;background:rgba(124,134,255,.07);border-radius:0 8px 8px 0}
+.db-int-tag{margin:0 0 .35rem;font-size:.84rem;color:var(--lab-ink)}
+.db-int-row{margin:.35rem 0 0;font-size:.83rem;line-height:1.55;color:var(--lab-soft)}
 `;
