@@ -12,6 +12,28 @@ import { RawStyle } from "./rawStyle";
 
 export type Flagship = { title: string; summary: string; meta: string; verdict: string; pdf: string; updated: string; review?: string; methods?: string[]; frontier?: number };
 
+// Studies a HUMAN read and rejected. They stay published — the rejection and its reason are
+// part of the record, not something to hide. `why` is Duho's stated reason, verbatim in
+// substance; `retired` is when he pulled it.
+export type Rejected = Flagship & { why: string; retired: string; kept?: string };
+
+export const HUMAN_REJECTED: Rejected[] = [
+  {
+    title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z\u22489\u201310",
+    summary: "An unlensed z\u22489\u201310 field sample sits \u22120.68 dex below the local mass\u2013metallicity relation on a single Te scale \u2014 a normalization deficit, explicitly not a formal detection.",
+    meta: "Nakajima+23 direct-Te subset \u00b7 Pollock+26 unlensed field + GN-z11 \u00b7 cross-checked vs Isobe+26 (~1500 gal) \u00b7 systematic budget \u00b10.16 dex",
+    verdict: "REJECT",
+    pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
+    updated: "2026-07-22 11:26",
+    review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
+    methods: ["mzr"],
+    frontier: 41,
+    retired: "2026-08-05",
+    why: "No original work. Every abundance and stellar mass is adopted from published papers (Nakajima+2023, Pollock+2026, Isobe+2026), both local anchors are published parametrizations (Curti+2020, Andrews & Martini 2013), and the result is a subtraction \u0394 = (12+log O/H)obs \u2212 MZR(logM\u2605) over N=5\u20136 galaxies. Nothing was measured. The conclusion was already published by the ~1500-galaxy stacked-Te sample the paper itself cites.",
+    kept: "The systematics work is real and was kept: the single-Te-scale restriction, the unlensed-only cut after Deep Research caught lens contamination in the \u201cclean\u201d subset, the local-anchor swap quantifying that systematic at 0.042 dex, and the Te-scale Monte Carlo that deflated a formal ~22\u03c3 to ~4.5\u03c3. Those methods are the direct ancestors of the anchor-gap census\u2019s contract-grade discipline.",
+  },
+];
+
 export const FLAGSHIP: Flagship[] = [
   {
     title: "A Systematics-Bounded Redshift Sweep of the Reionization Ionizing-Photon Budget",
@@ -32,17 +54,6 @@ export const FLAGSHIP: Flagship[] = [
     pdf: "/studies/c41-highz-mzr-calibration-anchored.pdf",
     updated: "2026-08-04 21:39",
     review: "/studies/c41-highz-mzr-calibration-anchored_review_loop.md",
-    methods: ["mzr"],
-    frontier: 41,
-  },
-  {
-    title: "An Independent, Unlensed Gas-Phase Metallicity Deficit at z≈9–10",
-    summary: "An unlensed z≈9–10 field sample sits −0.68 dex below the local mass–metallicity relation on a single Te scale — a robust normalization deficit, explicitly not a formal detection.",
-    meta: "Nakajima+23 direct-Te subset · Pollock+26 unlensed CAPERS/JADES + GN-z11 (z=10.6) · cross-checked vs Isobe+26 (~1500 gal) · systematic error budget ±0.16 dex, abs. Te scale (0.15) dominant",
-    verdict: "REVIEW-READY",
-    pdf: "/studies/z9-10-unlensed-metallicity-deficit.pdf",
-    updated: "2026-07-22 11:26",
-    review: "/studies/z9-10-unlensed-metallicity-deficit_review_loop.md",
     methods: ["mzr"],
     frontier: 41,
   },
@@ -77,6 +88,7 @@ export default function FlagshipStudies() {
         ))}
       </div>
       <p className="pb-flag-note">{FLAGSHIP.length} published so far. The fully-automated runs — the fast, high-attrition track — live under <b>Pipeline runs</b>.</p>
+
     </div>
   );
 }

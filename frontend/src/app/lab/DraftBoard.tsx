@@ -13,11 +13,12 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import { PB_CSS } from "./PipelineBoard";
 import { RawStyle } from "./rawStyle";
-import { FLAGSHIP } from "./FlagshipStudies";
+import { FLAGSHIP, HUMAN_REJECTED } from "./FlagshipStudies";
 import { FRONTIER } from "./FrontierDrafts";
 import { FRONTIERS } from "./frontiersData";
 import { coreGalaxyEvolutionFrontiers, galaxyEvolutionScope, isCoreGalaxyEvolutionFrontier } from "./frontierScope";
 import { PAPER_SCORES, meritOf, EVALUATORS } from "./paperScores";
+import { PAPER_VIDEOS } from "./paperVideos";
 import { MethodChips } from "./methodLinks";
 
 type Run = {
@@ -42,6 +43,7 @@ type Item = {
   stage: number; verdict: string | null; pdf: string | null; note: string;
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
   updated?: string | null; methods?: string[] | null; grounded?: boolean | null; grounding?: string | null;
+  rejectedBy?: string | null; rejectedOn?: string | null; rejectWhy?: string | null; rejectKept?: string | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -324,6 +326,7 @@ function DraftCard({ it }: { it: Item }) {
   const score = it.pdf ? PAPER_SCORES[it.pdf] : undefined;
   const merit = meritOf(it.pdf);
   const tier = merit == null ? "" : merit >= 6 ? "hi" : merit >= 4 ? "mid" : "lo";
+  const videoId = it.pdf ? PAPER_VIDEOS[it.pdf] : undefined;
   return (
     <div className={`db-lrow${open ? " open" : ""}${it.track === "flagship" ? " pb-flag" : ""}`}>
       <div className="db-lrow-head">
@@ -342,12 +345,19 @@ function DraftCard({ it }: { it: Item }) {
             {it.verdict ? `${it.verdict}${it.verdict.toUpperCase() === "MINOR" ? " · not accepted" : ""}` : "no verdict yet"}
           </span>
           {it.pdf ? <a className="db-lrow-pdf" href={it.pdf} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>PDF ↗</a> : <span className="pb-nolink">no PDF</span>}
+          {videoId && <a className="pb-chip db-lrow-video" href={`https://youtu.be/${videoId}`} target="_blank" rel="noopener noreferrer" onClick={(e) => e.stopPropagation()}>YouTube ↗</a>}
           {it.review && <button type="button" className={`db-lrow-log${h.open ? " on" : ""}`} onClick={(e) => { e.stopPropagation(); h.toggle(); }} aria-expanded={h.open}>log ▸</button>}
         </span>
       </div>
       {open && (
         <div className="db-lrow-detail">
           {it.note && <p className="pb-run-summary">{it.note}</p>}
+          {it.rejectWhy && (
+            <div className="db-rej">
+              <p className="db-rej-why"><b>Rejected by {it.rejectedBy} · {it.rejectedOn}.</b> {it.rejectWhy}</p>
+              {it.rejectKept && <p className="db-rej-kept"><b>What was kept.</b> {it.rejectKept}</p>}
+            </div>
+          )}
           {score && merit != null && (
             <div className="db-merit">
               <div className="db-merit-head">
@@ -484,6 +494,7 @@ export default function DraftBoard() {
 
   const items: Item[] = [];
   for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
+  for (const f of HUMAN_REJECTED) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: "REJECTED BY HUMAN", pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null, rejectedBy: "Duho", rejectedOn: f.retired, rejectWhy: f.why, rejectKept: f.kept ?? null });
   for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", production: "auto", depth: "manuscript", frontier: f.frontier ?? null, stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
@@ -683,6 +694,8 @@ const DB_CSS = `
 .db-lrow-chip{font-size:.58rem;padding:.05rem .45rem}
 .db-lrow-pdf{color:var(--lab-accent);text-decoration:none}
 .db-lrow-pdf:hover{text-decoration:underline}
+.db-lrow-video{color:#ff8a80;border-color:rgba(255,138,128,.55);background:rgba(255,138,128,.08);text-decoration:none}
+.db-lrow-video:hover{color:#ffb4ad;border-color:#ff8a80;background:rgba(255,138,128,.14)}
 .db-lrow-log{background:transparent;border:1px solid var(--lab-line);color:var(--lab-soft);font:inherit;font-family:ui-monospace,monospace;font-size:.66rem;padding:.08rem .45rem;border-radius:6px;cursor:pointer;white-space:nowrap}
 .db-lrow-log:hover,.db-lrow-log.on{color:var(--lab-ink);border-color:var(--lab-accent)}
 .db-lrow-merit{font-family:ui-monospace,monospace;font-size:.62rem;font-weight:700;letter-spacing:.02em;padding:.08rem .5rem;border-radius:999px;border:1px solid;white-space:nowrap}
@@ -711,7 +724,12 @@ const DB_CSS = `
 .db-merit-note b{color:var(--lab-ink);font-family:ui-monospace,monospace;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em;margin-right:.4rem}
 .db-lrow-detail{padding:.1rem .7rem .65rem;border-top:1px solid var(--lab-line)}
 .db-lrow-detail .db-thumb{margin-top:.5rem}
-@media(max-width:600px){.db-lrow-by,.db-lrow-chip{display:none}}
+@media(max-width:600px){
+  .db-lrow-by,.db-lrow-chip{display:none}
+  .db-lrow-head{display:grid;grid-template-columns:5rem minmax(0,1fr);align-items:center;gap:.35rem .6rem}
+  .db-lrow-btn{grid-column:2}
+  .db-lrow-meta{grid-column:2;flex-wrap:wrap;gap:.45rem}
+}
 .db-track-chip{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.05em;text-transform:uppercase;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.06rem .5rem;white-space:nowrap}
 .db-prod,.db-depth{font-family:ui-monospace,monospace;font-size:.6rem;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;border-radius:999px;padding:.06rem .5rem;border:1px solid var(--lab-line);color:var(--lab-soft)}
 .db-prod[data-prod="hand"]{border-color:var(--lab-accent);color:var(--lab-accent)}
@@ -812,4 +830,8 @@ const DB_CSS = `
 .dh-lineage b{color:var(--lab-accent2)}
 .dh-cats{display:flex;flex-wrap:wrap;gap:.3rem;margin:0 0 .45rem}
 .dh-cat{font-family:ui-monospace,monospace;font-size:.58rem;letter-spacing:.03em;color:var(--lab-soft);border:1px solid var(--lab-line);border-radius:999px;padding:.05rem .45rem}
+
+.db-rej{margin:.55rem 0 .2rem;padding:.6rem .75rem;border-left:2px solid #f47272;background:rgba(244,114,114,.06);border-radius:0 8px 8px 0}
+.db-rej-why{margin:0;font-size:.85rem;line-height:1.55;color:var(--lab-ink)}
+.db-rej-kept{margin:.45rem 0 0;font-size:.83rem;line-height:1.55;color:var(--lab-soft)}
 `;

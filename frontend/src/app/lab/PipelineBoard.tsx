@@ -190,4 +190,10 @@ export const PB_CSS = `
 .pb-run-meta{font-family:ui-monospace,monospace;font-size:.66rem;color:var(--lab-accent2);margin:0 0 .5rem;line-height:1.4}
 .pb-flag-note{font-size:.75rem;color:var(--lab-soft);line-height:1.5;margin:.55rem 0 .2rem;font-style:italic}
 @media(max-width:560px){.pb-kpis{gap:1.1rem}.pb-dk{width:120px}}
+
+.pb-rej-h{margin:2.2rem 0 .3rem;font-size:1.02rem;font-weight:650;color:var(--lab-ink)}
+.pb-rej-lede{margin:0 0 .9rem;font-size:.88rem;line-height:1.5;color:var(--lab-soft);max-width:62ch}
+.pb-run-rej{opacity:.92;border-left:2px solid #f47272}
+.pb-rej-why{margin:.5rem 0 0;font-size:.86rem;line-height:1.55;color:var(--lab-ink)}
+.pb-rej-kept{margin:.4rem 0 0;font-size:.84rem;line-height:1.55;color:var(--lab-soft)}
 `;
