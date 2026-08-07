@@ -2,7 +2,7 @@
 export const SUBNAV_VIDEOS: Record<string, string> = {
   corpus: "oMA-H1m5yZQ",
   embedding: "piNaIKTedHQ",
-  clustering: "",
-  overlay: "",
-  ranking: "",
+  clustering: "W-yygXqtWGU",
+  overlay: "08jp5bcTHko",
+  ranking: "T0cZOaQAPaM",
 };
