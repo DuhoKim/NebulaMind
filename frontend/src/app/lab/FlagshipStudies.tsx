@@ -22,25 +22,26 @@ export type Rejected = Flagship & { why: string; retired: string; kept?: string 
 // counts; a hand-made one would be invented data). Every number below is measured: arXiv totals
 // from a live query on 2026-08-05, archive counts from VizieR TAP_SCHEMA the same day.
 export type InterestTrack = {
-  title: string; interestOf: string; opened: string; lane: string;
+  title: string; interestOf: string; opened: string; lane: string; currentProbe?: string;
   motivation: string; literature: string; dataFound: string; state: string; priority?: boolean;
 };
 
 export const INTEREST_TRACKS: InterestTrack[] = [
   {
-    title: "Black-hole-universe cosmology \u2014 galaxy spin-parity test",
+    title: "Black-hole-universe cosmology",
     interestOf: "Duho",
     opened: "2026-08-05",
     lane: "spin-parity-census-20260805T1922K",
+    currentProbe: "First probe: a galaxy spin-parity test \u2014 chosen because, of the signatures this cosmology predicts, spiral handedness is the one with data reachable in public archives today. It is one probe, not the topic: the CMB hemispherical-asymmetry route and the Einstein\u2013Cartan torsion-bounce line (the larger literature at 516 papers) remain open under this track.",
     priority: true, // Duho, 2026-08-05: "place that as top priority"
     motivation:
-      "If our universe is the interior of a rotating black hole it inherits a preferred axis, and the observable signatures are parity ones: a handedness excess among spiral galaxies, or a hemispherical asymmetry in the CMB.",
+      "The hypothesis that our observable universe is the interior of a black hole in a parent universe. If that interior rotates, it inherits a preferred axis \u2014 so the observable signatures are parity and anisotropy ones: a handedness excess among spiral galaxies, a hemispherical asymmetry in the CMB, or the torsion-bounce phenomenology of Einstein\u2013Cartan cosmology.",
     literature:
       "arXiv, measured 2026-08-05: 37 papers on black-hole cosmology / universe-inside-a-black-hole; 516 on the Einstein\u2013Cartan torsion-bounce line, 88 of the last 100 from 2024 onward; 66 on galaxy spin-direction asymmetry; 40 on CMB hemispherical asymmetry.",
     dataFound:
       "VizieR carries no per-object spiral-handedness catalogue. Of 81 catalogues whose descriptions say \u201cclockwise\u201d, nearly all use it as a position-angle convention; 40 name matches are central wavelengths, CatWISE proper motions and neutron-monitor dips; the 4 survivors are two galaxy-CLUSTER rotation tables (42 rows, wrong quantity), one Galaxy Zoo vote fraction that sums handedness away, and one spiral yes/no deposit. The vote fractions do exist outside VizieR \u2014 Galaxy Zoo 1\u2019s own release carries P_CW and P_ACW per object with sky positions.",
     state:
-      "Contract drafted and under adversarial review before any row is fetched. The sample cut is frozen pre-fetch; Galaxy Zoo\u2019s documented mirror bias (classifiers over-report clockwise) is named as the dominant systematic; and the contract forbids any result from being phrased as support for the cosmology that motivated it.",
+      "The measurement has run under the frozen contract, and it stopped itself. Mirroring the images moves the asymmetry to the other side of zero, clearing the pre-registered three-sigma bar by more than twice; of the objects clearly classified in both conditions, every one changed label \u2014 a pre-registered MIXED reading. What the flip means is undetermined: it depends on a convention neither primary source states (whether archived directions were recorded as the classifier saw them, or corrected back to the sky first), and on data of the same provenance the source study reports no reversal where this lane finds one. This is a classifier mirror-bias reading on the bias-study sample \u2014 not a cosmological asymmetry, not a dipole, not a parity result \u2014 and the contract forbids any result from being phrased as support for the cosmology that motivated it. One correction of record, kept visible: the contract named the Galaxy Zoo mirror bias backwards. Land et al. (2008) report the excess as S-wise \u2014 anticlockwise over-reported, not clockwise \u2014 confirmed against the paper and three further primary sources.",
   },
 ];
 

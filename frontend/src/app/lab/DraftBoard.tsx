@@ -19,6 +19,7 @@ import { FRONTIERS } from "./frontiersData";
 import { coreGalaxyEvolutionFrontiers, galaxyEvolutionScope, isCoreGalaxyEvolutionFrontier } from "./frontierScope";
 import { PAPER_SCORES, meritOf, EVALUATORS } from "./paperScores";
 import { PAPER_VIDEOS } from "./paperVideos";
+import { PaperVideo } from "./PaperVideo";
 import { MethodChips } from "./methodLinks";
 
 type Run = {
@@ -44,8 +45,8 @@ type Item = {
   id?: string; method?: string | null; sources?: string[]; cycles?: number | null; figure?: string | null; review?: string | null;
   updated?: string | null; methods?: string[] | null; grounded?: boolean | null; grounding?: string | null;
   rejectedBy?: string | null; rejectedOn?: string | null; rejectWhy?: string | null; rejectKept?: string | null;
-  interestOf?: string | null; motivation?: string | null; literature?: string | null; dataFound?: string | null;
-  priority?: boolean | null;
+  interestOf?: string | null; motivation?: string | null; literature?: string | null; dataFound?: string | null; currentProbe?: string | null;
+  priority?: boolean | null; lane?: string | null;
 };
 
 const STAGES = ["Computed", "Drafted", "Compiled", "Refereed", "Cleared"];
@@ -328,7 +329,9 @@ function DraftCard({ it }: { it: Item }) {
   const score = it.pdf ? PAPER_SCORES[it.pdf] : undefined;
   const merit = meritOf(it.pdf);
   const tier = merit == null ? "" : merit >= 6 ? "hi" : merit >= 4 ? "mid" : "lo";
-  const videoId = it.pdf ? PAPER_VIDEOS[it.pdf] : undefined;
+  // A manuscript binds by PDF path; a probe with no manuscript binds by lane. Still fails closed
+  // when neither is mapped — an unapproved paper never renders a chip.
+  const videoId = it.pdf ? PAPER_VIDEOS[it.pdf] : it.lane ? PAPER_VIDEOS[it.lane] : undefined;
   return (
     <div className={`db-lrow${open ? " open" : ""}${it.track === "flagship" ? " pb-flag" : ""}`}>
       <div className="db-lrow-head">
@@ -357,9 +360,11 @@ function DraftCard({ it }: { it: Item }) {
           {it.interestOf && (
             <div className="db-interest">
               <p className="db-int-tag"><b>Personal-interest track \u2014 {it.interestOf}.</b>{it.priority ? " Top priority." : ""} Carried as a declared interest, not a corpus-ranked frontier.</p>
+              {it.currentProbe && <p className="db-int-row"><b>Current probe.</b> {it.currentProbe}</p>}
               {it.literature && <p className="db-int-row"><b>Literature (measured).</b> {it.literature}</p>}
               {it.dataFound && <p className="db-int-row"><b>Data found.</b> {it.dataFound}</p>}
               {it.grounding && <p className="db-int-row"><b>State.</b> {it.grounding}</p>}
+              <PaperVideo videoId={videoId} title={it.title} />
             </div>
           )}
           {it.rejectWhy && (
@@ -505,7 +510,7 @@ export default function DraftBoard() {
   const items: Item[] = [];
   for (const f of FLAGSHIP) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: f.verdict, pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const f of HUMAN_REJECTED) items.push({ title: f.title, track: "flagship", production: "hand", depth: "manuscript", frontier: f.frontier ?? null, stage: 4, verdict: "REJECTED BY HUMAN", pdf: f.pdf, note: f.summary, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null, rejectedBy: "Duho", rejectedOn: f.retired, rejectWhy: f.why, rejectKept: f.kept ?? null });
-  for (const f of INTEREST_TRACKS) items.push({ title: f.title, track: "interest", production: "hand", depth: "note", frontier: null, stage: 1, verdict: null, pdf: null, note: f.motivation, updated: f.opened, review: null, methods: null, interestOf: f.interestOf, motivation: f.motivation, literature: f.literature, dataFound: f.dataFound, grounding: f.state, priority: f.priority ?? false });
+  for (const f of INTEREST_TRACKS) items.push({ title: f.title, track: "interest", production: "hand", depth: "note", frontier: null, stage: 1, verdict: null, pdf: null, note: f.motivation, updated: f.opened, review: null, methods: null, interestOf: f.interestOf, motivation: f.motivation, literature: f.literature, dataFound: f.dataFound, grounding: f.state, priority: f.priority ?? false, currentProbe: f.currentProbe ?? null, lane: f.lane });
   for (const f of FRONTIER) items.push({ title: f.title, track: "frontier", production: "auto", depth: "manuscript", frontier: f.frontier ?? null, stage: f.verdict ? 4 : 3, verdict: f.verdict ?? null, pdf: f.pdf, note: f.sub, updated: f.updated, review: f.review ?? null, methods: f.methods ?? null });
   for (const r of runs.filter((x) => !isDemo(x))) {
     const stage = r.review_verdict ? 4 : r.pdf_url ? 3 : r.review_url ? 2 : 1;
