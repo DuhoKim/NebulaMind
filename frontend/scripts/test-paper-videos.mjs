@@ -11,15 +11,23 @@ const mapPath = path.join(root, "src/app/lab/paperVideos.ts");
 const componentPath = path.join(root, "src/app/lab/PaperVideo.tsx");
 const flagshipPath = path.join(root, "src/app/lab/FlagshipStudies.tsx");
 const frontierPath = path.join(root, "src/app/lab/FrontierDrafts.tsx");
+const draftBoardPath = path.join(root, "src/app/lab/DraftBoard.tsx");
 const packagePath = path.join(root, "package.json");
 
 const expected = {
-  "/studies/z9-10-unlensed-metallicity-deficit.pdf": "hHxmycvPalE",
-  "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf": "QjdJ1WZpiJY",
-  "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf": "XiB4dpn2o3g",
-  "/agent-reports/research-frontiers/mzr-aperture-calibration-framework.pdf": "jVyK-y_KQ14",
-  "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf": "gDIVbF8ZUFg",
+  "/studies/z9-10-unlensed-metallicity-deficit.pdf": "5Edsa6kKWnQ",
+  "/agent-reports/research-frontiers/reionization-fesc-budget-landscape.pdf": "19azFXDa2VA",
+  "/agent-reports/research-frontiers/galaxy-evolution-highz-scaling-relations-draft.pdf": "uo2T7ShkmKc",
+  "/agent-reports/research-frontiers/tng-massive-galaxy-abundance-systematics.pdf": "gasowEBf6RI",
+  "/agent-reports/research-frontiers/mzr-aperture-calibration-framework.pdf": "S8qvGJ1Gx9g",
+  "/agent-reports/research-frontiers/galaxy-evolution-tng-validation-draft.pdf": "pqkkQutFpxk",
+  // Lane-keyed, not PDF-keyed: a probe with no manuscript. Approved by Duho 2026-08-07.
+  "spin-parity-census-20260805T1922K": "uch2gFhtd3g",
 };
+
+// Bindings that intentionally key on a lane id rather than a /path.pdf, so the PDF-resolution
+// assertions below skip them instead of failing.
+const LANE_KEYED = new Set(["spin-parity-census-20260805T1922K"]);
 
 assert.ok(fs.existsSync(mapPath), "Paper-stage video map should exist.");
 assert.ok(fs.existsSync(componentPath), "Shared PaperVideo component should exist.");
@@ -34,7 +42,7 @@ vm.runInNewContext(compiled.outputText, { module: mapModule, exports: mapModule.
 assert.deepEqual(
   JSON.parse(JSON.stringify(mapModule.exports.PAPER_VIDEOS)),
   expected,
-  "The map should contain exactly the five approved PDF-to-video bindings.",
+  "The map should contain exactly the seven approved video bindings.",
 );
 assert.ok(Object.values(mapModule.exports.PAPER_VIDEOS).every(id => /^[A-Za-z0-9_-]{11}$/.test(id)), "Every value should be one YouTube video ID.");
 
@@ -61,7 +69,27 @@ assert.match(frontier, /<PaperVideo videoId=\{PAPER_VIDEOS\[f\.pdf\]\} title=\{f
 const renderedPdfPaths = [...flagship.matchAll(/pdf: "([^"]+)"/g), ...frontier.matchAll(/pdf: "([^"]+)"/g)]
   .map(match => match[1])
   .sort();
-assert.deepEqual(renderedPdfPaths, Object.keys(expected).sort(), "Every currently rendered paper card should have exactly one approved video binding.");
+// 4 in FlagshipStudies (3 flagship + 1 human-rejected, which stays published) + 5 frontier drafts.
+assert.equal(renderedPdfPaths.length, 9, "The current Paper Board catalog should contain nine manuscripts.");
+for (const key of Object.keys(expected)) {
+  if (LANE_KEYED.has(key)) {
+    assert.ok(flagship.includes(`lane: "${key}"`), `Lane-keyed binding should resolve to a rendered track: ${key}`);
+    continue;
+  }
+  assert.ok(renderedPdfPaths.includes(key), `Approved video binding should resolve to a rendered paper card: ${key}`);
+}
+assert.equal(Object.keys(expected).length, 7, "Exactly seven approved video bindings; unmapped papers fail closed without a chip.");
+
+const draftBoard = fs.readFileSync(draftBoardPath, "utf8");
+assert.match(draftBoard, /import \{ PAPER_VIDEOS \} from "\.\/paperVideos"/, "Paper Board should use the shared PDF-to-video map.");
+assert.match(draftBoard, /const videoId = it\.pdf \? PAPER_VIDEOS\[it\.pdf\] : it\.lane \? PAPER_VIDEOS\[it\.lane\] : undefined/, "Each Paper Board row should resolve by PDF, then by lane, and fail closed when neither is mapped.");
+assert.match(draftBoard, /href=\{`https:\/\/youtu\.be\/\$\{videoId\}`\}/, "The YouTube chip should open the exact mapped review URL.");
+assert.match(draftBoard, />YouTube ↗<\/a>/, "The Paper Board chip should have a concise visible label.");
+assert.match(draftBoard, /className="pb-chip db-lrow-video"/, "The YouTube link should render as a chip, not an unstyled link.");
+assert.match(draftBoard, /target="_blank" rel="noopener noreferrer"/, "The external video link should open safely.");
+assert.match(draftBoard, /onClick=\{\(e\) => e\.stopPropagation\(\)\}/, "Using the chip should not toggle the paper row.");
+assert.match(draftBoard, /grid-template-columns:5rem minmax\(0,1fr\)/, "Mobile Paper Board rows should preserve a real title column after adding the chip.");
+assert.match(draftBoard, /\.db-lrow-meta\{grid-column:2;flex-wrap:wrap/, "Mobile Paper Board controls should wrap below the title instead of squeezing it out.");
 
 const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));
 assert.equal(packageJson.scripts["test:paper-videos"], "node scripts/test-paper-videos.mjs");
