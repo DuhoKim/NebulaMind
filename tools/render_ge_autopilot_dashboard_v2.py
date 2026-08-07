@@ -21,6 +21,7 @@ import json
 import os
 import re
 import shutil
+import sys
 import subprocess
 import time
 import urllib.error
@@ -129,6 +130,298 @@ POLICY_LINES = [
     "Goru permission prompts are handled by the autopilot when they match safe private-dashboard or docs/static scope.",
     "Hard gates stay closed: no DB, live publish, deploy, git, cloud/secrets, browser automation, or cron.",
 ]
+
+
+def _pending_from_payload() -> Dict[str, Any]:
+    """Stale-run count, quota-feed staleness, and unfinished sprint cycles.
+
+    These are the buried items Kun's audit named: a stale unresolved run that is counted but
+    never displayed, a credits refresh sitting inside a warn card, and sprint states that only
+    surface as fine print under a finished panel.
+    """
+    decisions, failed = [], []
+    try:
+        runs = normalize_run_estimates(load_source().get("run_estimates") or {}) or {}
+        stale = runs.get("stale_unresolved_runs_count") or 0
+        if stale:
+            decisions.append({"what": f"{stale} stale unresolved run(s) — counted but never shown",
+                              "where": "run estimates"})
+    except Exception:
+        pass
+    try:
+        usage = build_usage_snapshot() if "build_usage_snapshot" in globals() else {}
+        age = (usage or {}).get("cache_age_label")
+        state = (usage or {}).get("cache_state")
+        if age and any(u in str(age) for u in ("h ", "d ")):
+            failed.append({"what": f"quota feed is {age} old (state: {state})",
+                           "where": "usage monitor"})
+    except Exception:
+        pass
+    return {"decisions": decisions, "failed": failed}
+
+
+def build_operator_answers(source: Dict[str, Any], septet: Dict[str, Any],
+                           blockers: Any, safe_prompts: Any) -> Dict[str, Any]:
+    """The four questions an operator actually asks, answered in one place.
+
+    Kun's audit (2026-08-06) ranked the page best-to-worst: what is running > what is blocked >
+    what failed > what needs my decision — and called the LAST one "Duho's most important
+    question" and the page's weakest. Real pending items existed but sat in micro text under a
+    finished panel, while the only red pill on the page was 25 days old. This assembles them from
+    keys already in the payload; nothing new is scraped.
+    """
+    decisions, running, failed = [], [], []
+
+    for b in (blockers or [])[:12]:
+        txt = b if isinstance(b, str) else (b.get("text") or b.get("summary") or str(b))
+        decisions.append({"what": str(txt)[:160], "where": "blockers"})
+    for b in (safe_prompts or [])[:8]:
+        txt = b if isinstance(b, str) else (b.get("text") or b.get("summary") or str(b))
+        decisions.append({"what": str(txt)[:160], "where": "safe autoprompt"})
+
+    for seat in (septet.get("seats") or []):
+        if seat.get("state") == "WORKING":
+            running.append({"what": f"{seat['name']} — {seat['role']}",
+                            "detail": seat.get("detail", "")})
+    for lane in (septet.get("lanes_blocked") or []):
+        decisions.append({"what": f"lane blocked with idle seats: {lane}", "where": "septet"})
+
+    na = source.get("next_action")
+    if na:
+        decisions.append({"what": str(na)[:160], "where": "next action"})
+
+    # Kun named FIVE sources; the first draft of this panel used three and then reported
+    # "nothing pending" while real items sat buried — the quiet lie the audit was about. The
+    # remaining two are read here, from the payload that is already assembled below.
+    ledger = _pending_from_payload()
+    decisions.extend(ledger["decisions"])
+    failed.extend(ledger["failed"])
+
+    return {"decisions": decisions, "running": running, "failed": failed,
+            "counts": {"decisions": len(decisions), "running": len(running)},
+            "note": ("empty here means genuinely nothing pending — this panel is sourced from "
+                     "blockers, safe autoprompts, septet lane state and next_action")}
+
+
+def build_septet_matrix() -> Dict[str, Any]:
+    """Seats PER PAPER, not one global row.
+
+    Duho, 2026-08-06: "why's there only one septet? shouldn't there be 7 for each paper?" He is
+    right. The first version collapsed every paper into a single row of seat states, which
+    answers "is Kun working" but not "on which paper" or — the question that matters — "which
+    paper has nobody on it". The septet is a role table applied per paper; the SEATS are shared
+    agents, so the truthful shape is a matrix: papers down, seats across.
+
+    A seat counts as engaged on a paper when it has produced an artifact in that paper's lane.
+    Live process state is GLOBAL — a running agent does not announce which lane it serves — so
+    it is shown as a separate badge and never faked into a per-paper cell.
+    """
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "nm_paper_run_dashboard", str(REPO / "tools" / "nm_paper_run_dashboard.py"))
+        dash = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(dash)
+        rows = dash.collect()
+        working, _interactive = dash.crew_live()
+    except Exception as exc:
+        return {"ok": False, "error": f"{type(exc).__name__}: {exc}"[:160], "papers": []}
+
+    # Sextet, per Duho 2026-08-08: "drop DR, sextet is the other six". DR was never a crew seat —
+    # it produced reference-only evidence and gated nothing — so counting it made the engagement
+    # denominator flatter than the truth. Five content seats plus Hwao coordinating.
+    seats = ["Hwao", "Lana", "Goru", "Kun", "Tori", "Yui"]
+
+    # Some seats do not write into a lane directory at all, so lane-local artifact scanning
+    # reported them empty on every paper while they were actively working. Yui's videos and
+    # narration live under the cockpit; Tori's ledgers and DR's reference files live under
+    # .hermes/workflows. Scanning where a seat ACTUALLY writes is the difference between a real
+    # staffing gap and a blind spot that would have had five idle agents dispatched on top of
+    # five already working.
+    def _global_seat_evidence():
+        found = {}
+        vids = Path("/Users/duhokim/HermesOps/cockpit/videos")
+        wf = REPO / ".hermes" / "workflows"
+        if vids.exists() and any(vids.glob("*.mp4")):
+            found.setdefault("Yui", []).append("cockpit/videos")
+        if wf.exists():
+            names = " ".join(f.name for f in wf.glob("*"))
+            if "TORI_" in names or "QUEUE_LEDGER" in names:
+                found.setdefault("Tori", []).append(".hermes/workflows")
+        return found
+
+    global_ev = _global_seat_evidence()
+
+    # Yui's output. Served from the cockpit's own directory (tailnet-only), NOT from
+    # nebulamind.net — these are UNPUBLISHED. A public link would publish them without Duho
+    # having approved a single one, and the standing rule is unlisted-only on his say-so.
+    LANE_VIDEO = {
+        "c41-trackb-shape1-uvlf-20260804": "c41-brightend-uvlf-archival-gap",
+        "c41-trackb-shape2-mzr-20260804T1452K": "c41-highz-mzr-calibration-anchored",
+        "fesc-zsweep-merged-paper-20260804T1040K": "fesc-zsweep-photon-budget",
+        "mzr-archive-census-20260805T1857K": "mzr-archive-census",
+        "spin-parity-census-20260805T1922K": "spin-parity-census",
+    }
+    vid_dir = Path("/Users/duhokim/HermesOps/cockpit/videos")
+    # Published links live in a JSON registry beside the videos, not in this renderer: an upload
+    # is a fact about the world and belongs in an artifact, not in code someone has to edit.
+    # Absence of an entry means NOT published — the default must never be "assume published".
+    pub_path = vid_dir / "published.json"
+    published = {}
+    if pub_path.exists():
+        try:
+            published = json.loads(pub_path.read_text())
+        except Exception:
+            published = {}
+    live = {c["seat"] for c in working}
+    papers, starved = [], []
+    for r in rows:
+        staffed = set(r.get("staffed") or [])
+        cells = []
+        for seat in seats:
+            if seat == "Hwao":
+                st = "coord"
+            elif seat in staffed:
+                st = "engaged"
+            elif seat in global_ev:
+                st = "engaged-global"
+            else:
+                st = "empty"
+            cells.append({"seat": seat, "state": st})
+        engaged = sum(1 for c in cells if c["state"] == "engaged")
+        if engaged == 0:
+            starved.append(r["lane"])
+        # What is this paper actually waiting on? Derived from its own gate state, not from
+        # the autopilot blocker list — that list is empty while real decisions sit in lane
+        # verdicts. This is what replaces the separate "Needs your decision" box: a decision
+        # belongs to a paper, so it is shown on that paper's row.
+        verdicts = r.get("verdicts") or []
+        newest = verdicts[0] if verdicts else None
+        waiting, who = "", ""
+        if r["state"].startswith("BLOCKED"):
+            waiting, who = f"edits owed — {newest[0]}: {newest[1]}" if newest else "edits owed", "crew"
+        elif r["state"] == "RUNNING":
+            waiting, who = "gate running", "—"
+        elif newest and newest[1] in ("PASS", "APPROVED", "FREEZE APPROVED"):
+            frozen = r.get("frozen") or []
+            mutable = [m for m in (r.get("mutable") or []) if "CONTRACT" in m.upper() or m.startswith("AMENDMENT")]
+            waiting = ("gates clear — freeze decision pending" if mutable
+                       else "gates clear — next stage")
+            who = "DUHO" if mutable else "crew"
+        elif newest:
+            waiting, who = f"{newest[0]}: {newest[1]}", "crew"
+        scripts = r.get("scripts") or []
+        failclosed = [sc["file"] for sc in scripts if "fail-closed" in sc.get("state", "")]
+        slug = LANE_VIDEO.get(r["lane"])
+        video = None
+        if slug:
+            # Prefer the NARRATED cut. The dashboard was linking the silent original while the
+            # narrated version sat beside it — which is why the videos appeared to have no audio.
+            # Prefer the NEWEST versioned cut, so the chip's URL changes whenever the video does
+            # and a browser cannot serve a stale copy from cache. Falls back to the stable alias
+            # for lanes built before versioning, then to the silent cut.
+            versioned = sorted((f.name for f in vid_dir.glob(f"{slug}-narrated-*.mp4")), reverse=True)
+            candidates = [(v, True) for v in versioned[:1]] + \
+                         [(f"{slug}-narrated.mp4", True), (f"{slug}.mp4", False)]
+            for name, has_audio in candidates:
+                vp = vid_dir / name
+                if vp.exists():
+                    # When the cut was last written, in KST — Duho reads times in KST, and a
+                    # video's age is the fastest way to see that a lane moved but its video did
+                    # not. `age_h` is what the card actually leads with.
+                    st = vp.stat()
+                    when = dt.datetime.fromtimestamp(st.st_mtime, dt.timezone.utc)
+                    kst = when.astimezone(dt.timezone(dt.timedelta(hours=9)))
+                    age_h = (dt.datetime.now(dt.timezone.utc) - when).total_seconds() / 3600.0
+                    pub = published.get(slug) or {}
+                    video = {"href": f"videos/{name}", "slug": slug, "audio": has_audio,
+                             "mb": round(st.st_size / 1048576, 1),
+                             "published": bool(pub.get("url")),
+                             "published_url": pub.get("url"),
+                             "published_privacy": pub.get("privacy"),
+                             "published_at_kst": pub.get("uploaded_kst"),
+                             "published_file": pub.get("file"),
+                             "updated_kst": kst.strftime("%m-%d %H:%M KST"),
+                             "updated_utc": when.replace(microsecond=0).isoformat(),
+                             "age_h": round(age_h, 1)}
+                    # A timestamp alone does not answer the question it raises: is this cut still
+                    # current? Compare it against the newest artifact in the lane. If the lane
+                    # moved after the video was rendered, the video describes an older study.
+                    lane_dir = REPO / ".hermes" / "handoffs" / r["lane"]
+                    try:
+                        # Scratch and run logs are excluded: a runner writing a log is not the
+                        # study changing, and a staleness flag that fires on noise gets ignored,
+                        # which is worse than not having one.
+                        newest_art = max(
+                            (f.stat().st_mtime for f in lane_dir.rglob("*")
+                             if f.is_file() and not f.name.startswith(".")
+                             and not f.name.startswith(("_tmp", "RUN_", "_batch", "_character"))
+                             and f.suffix not in (".log", ".tmp")),
+                            default=0.0)
+                    except OSError:
+                        newest_art = 0.0
+                    if newest_art > st.st_mtime:
+                        behind = (newest_art - st.st_mtime) / 3600.0
+                        video["stale_by_h"] = round(behind, 1)
+                    break
+        papers.append({"video": video,
+                       "lane": r["lane"], "state": r["state"], "cells": cells,
+                       "engaged": engaged, "of": len(seats) - 1,
+                       "waiting": waiting, "who": who,
+                       "verdict": (f"{newest[0]}: {newest[1]}" if newest else ""),
+                       "stages": (f"{r['checklist']['done']}/{r['checklist']['total']}"
+                                  if r.get("checklist") else ""),
+                       "fail_closed": failclosed})
+    return {"ok": True, "seats": seats, "papers": papers, "starved": starved,
+            "live_seats": sorted(live),
+            "awaiting_duho": [p["lane"] for p in papers if p.get("who") == "DUHO"],
+            "note": ("engaged = that seat has produced an artifact in that lane; live process "
+                     "state is global and shown separately, never guessed per paper")}
+
+
+def build_septet() -> Dict[str, Any]:
+    """Sextet seat monitor for this dashboard (Duho, 2026-08-06; DR dropped 2026-08-08).
+
+    Shows which of the seven seats is working a DISPATCHED job right now, and flags the pairing
+    that nothing surfaced on 2026-08-06: a lane owing work while its seats sit idle. An amendment
+    had its edits applied at 23:14 and was never resubmitted; it blocked a measurement sequence
+    for eleven hours because 'lane stuck' and 'nobody working it' lived in different places.
+    Interactive sessions are reported apart from staffed work — an engine having a process is not
+    the same as a seat doing a job.
+    """
+    try:
+        import importlib.util
+        spec = importlib.util.spec_from_file_location(
+            "nm_paper_run_dashboard", str(REPO / "tools" / "nm_paper_run_dashboard.py"))
+        dash = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(dash)
+        rows = dash.collect()
+        working, interactive = dash.crew_live()
+    except Exception as exc:  # never let this section break the dashboard
+        return {"ok": False, "error": f"{type(exc).__name__}: {exc}"[:180], "seats": []}
+
+    roles = {"Hwao": "coordinates; no content work", "Lana": "science pressure",
+             "Goru": "mechanical counts", "Kun": "reproducibility / adversarial gate",
+             "Tori": "relay, receipts, queue ledger",
+             "Yui": "video; nothing unpublished"}
+    busy = {c["seat"]: c for c in working}
+    blocked = [r["lane"] for r in rows if r["state"].startswith("BLOCKED")]
+    seats = []
+    for name, role in roles.items():
+        w = busy.get(name)
+        state = "WORKING" if w else ("COORDINATING" if name == "Hwao" else "IDLE")
+        seats.append({"name": name, "role": role, "state": state,
+                      "detail": (f"{w['elapsed']} elapsed" if w else ""),
+                      "owes": state == "IDLE" and bool(blocked)})
+    warning = ""
+    if blocked:
+        warning = ("BLOCKED lane with idle seats: " + ", ".join(blocked) +
+                   " — the shape of the 2026-08-06 eleven-hour stall.")
+    elif interactive:
+        warning = ("interactive sessions that are NOT staffed work: " +
+                   ", ".join(f"{c['seat']} pid {c['pid']}" for c in interactive))
+    return {"ok": True, "seats": seats, "warning": warning, "lanes_blocked": blocked,
+            "lanes_total": len(rows)}
 
 
 def now_utc() -> str:
@@ -1573,6 +1866,20 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "targets": source.get("targets", []),
         "groups": groups,
         "lane_summaries": lane_summaries,
+        "septet": build_septet(),
+        "septet_matrix": build_septet_matrix(),
+        "writer_identity": {
+            # [step 3] Kun: "add writer identity so the page can rat out a stale watcher."
+            # Three correct renders were silently overwritten today by a watcher holding old code.
+            "pid": os.getpid(),
+            "rendered_at_utc": now_utc(),
+            # The writer knows its own mode. Shelling out to pgrep returned False even while
+            # the watcher was live, which would have made this panel assert "page is static"
+            # about a page that was updating — a lie inside the panel built to catch lies.
+            "watcher_mode": "--watch" in sys.argv,
+        },
+        "operator_answers": build_operator_answers(
+            source, build_septet(), review_source_blockers, safe_source_blockers),
         "blockers": review_source_blockers,
         "safe_autoprompts": safe_source_blockers,
         "events": events,
@@ -1696,6 +2003,27 @@ def render_html() -> str:
     </div>
   </header>
   <main>
+    <section class="panel">
+      <h2>Running now</h2>
+      <p>Seats working a dispatched job. What each paper is waiting on — and which of those need YOU — is on its row in the septet matrix below.</p>
+      <div id="op-running" class="events"><div class="empty">Loading…</div></div>
+    </section>
+
+    <section class="panel">
+      <h2>Sextet — paper research seats</h2>
+      <p>Who is working a dispatched job right now. IDLE beside a blocked lane is the failure shape from 2026-08-06: an amendment sat applied-but-unresubmitted for eleven hours because nothing joined "lane stuck" to "nobody working it".</p>
+      <div id="septet-warning" class="topline"></div>
+      <div id="septet-matrix"><div class="empty">Loading sextet matrix…</div></div>
+      <div id="septet" class="usage-grid" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel" id="usage-monitor-panel">
+      <h2>Usage limit monitor</h2>
+      <p>Live quota comes first. This mirrors the public live steering cockpit’s provider gauges and adds the official YouTube Data API daily limits from a local checkpoint; the private browser polls every 5s while the shared safe monitor refreshes public status and idle quota panels on their reported cadence.</p>
+      <div id="usage-summary" class="topline"></div>
+      <div id="usage-cards" class="usage-grid"><div class="empty">Loading usage monitor…</div></div>
+      <p class="micro" id="usage-notes"></p>
+    </section>
     <section class="panel gates-strip">
       <h2>Hard gates closed</h2>
       <p>Hard gates closed — no product DB/API/page writes · no live wiki/publish · no deploy · no git · no public cockpit/global · no cloud/billing/OAuth · no browser · no cron. The only DB-like write is the local append-only outcome ledger under .hermes.</p>
@@ -1725,7 +2053,7 @@ def render_html() -> str:
         <h2>What this monitors</h2>
         <div class="flow grid">
           <div class="flowbox"><strong>Directors</strong><small>Hwao, Tori, Goru live-view.</small></div>
-          <div class="flowbox"><strong>M1/M2/M3</strong><small>Hwao/Lana/Goru/Kun/Tori panes by method.</small></div>
+          <div class="flowbox"><strong>Sextet seats</strong><small>Hwao, Lana, Goru, Kun, Tori, Yui — who owes work.</small></div>
           <div class="flowbox"><strong>Survey Autopilot</strong><small>Frontend /surveys files, smoke-test custody, and safe next work.</small></div>
           <div class="flowbox"><strong>Prompts</strong><small>Safe vs needs-you permission states.</small></div>
           <div class="flowbox"><strong>Events</strong><small>Latest autopilot ticks/actions/blockers.</small></div>
@@ -1736,54 +2064,6 @@ def render_html() -> str:
     <section class="metrics grid" id="metrics"></section>
     <section class="summaries grid" id="summaries"></section>
 
-    <section class="panel" id="usage-monitor-panel">
-      <h2>Usage limit monitor</h2>
-      <p>Live quota comes first. This mirrors the public live steering cockpit’s provider gauges and adds the official YouTube Data API daily limits from a local checkpoint; the private browser polls every 5s while the shared safe monitor refreshes public status and idle quota panels on their reported cadence.</p>
-      <div id="usage-summary" class="topline"></div>
-      <div id="usage-cards" class="usage-grid"><div class="empty">Loading usage monitor…</div></div>
-      <p class="micro" id="usage-notes"></p>
-    </section>
-
-    <section class="panel" id="overnight-report-panel">
-      <h2>C41 Step 2 full-text acquisition</h2>
-      <p>Verified outcome for exactly the sealed 180 papers: cache-first acquisition, honest access labels, and no later-stage execution.</p>
-      <div id="overnight-report-summary" class="topline"></div>
-      <div id="overnight-report-cards" class="overnight-grid"><div class="empty">Loading overnight report…</div></div>
-      <p class="micro" id="overnight-report-next"></p>
-      <p class="micro"><code>NO ACTIVE EXECUTION PHRASE</code> · no retry, browser action, provider-account action, public Baseline change, DB write, deploy, git, or cron.</p>
-    </section>
-
-    <section class="panel" id="corpus-scaleup-panel">
-      <h2>Corpus scale-up (RAG foundation)</h2>
-      <p>Scaling the literature corpus 12k &rarr; 120k and wiring it into research + drafting. Live from the pipeline.</p>
-      <p style="margin:.2rem 0 .8rem"><a href="pipeline-board.html" style="display:inline-block;background:#7c86ff;color:#0a0d17;font-weight:600;padding:.4rem .9rem;border-radius:8px;text-decoration:none;font-size:.85rem">&#9656; AI-Scientist pipeline board &mdash; per-run traces, gate evidence &amp; funnel &rarr;</a></p>
-      <div id="corpus-scaleup-summary" class="topline"></div>
-      <div id="corpus-scaleup-cards" class="overnight-grid"><div class="empty">Loading corpus status&hellip;</div></div>
-      <p class="micro" id="corpus-scaleup-next"></p>
-    </section>
-
-    <section class="panel incident-resolved" aria-labelledby="last-incident-title">
-      <h2 id="last-incident-title">Latest incident</h2>
-      <p>Latest private-lane custody incident and verification. This card reports a contained operator issue; it does not execute actions.</p>
-      <div id="last-incident" class="usage-grid"><div class="empty">Loading incident status…</div></div>
-    </section>
-
-    <section class="panel" id="paper-quality-sprint-panel">
-      <h2>RP-1 Paper Quality Sprint</h2>
-      <p>Shows the latest local-only manuscript-quality sprint status and final clean candidate. Completed history is archived in the ledger; this card only shows the current clean receipt. It does not publish or replace PDFs.</p>
-      <div id="quality-sprint-summary" class="topline"></div>
-      <div id="quality-sprint-cards" class="usage-grid"><div class="empty">Loading RP-1 quality sprint…</div></div>
-      <div id="quality-sprint-ledger" class="events" style="margin-top:12px;"></div>
-    </section>
-
-    <section class="panel">
-      <h2>Galaxy Evolution Wiki Quality Sprint</h2>
-      <p>Shows the latest local-only wiki/research-topic sprint status and final clean candidate. Completed history is archived in the ledger; this card only shows the current clean receipt. It does not publish wiki pages or write the product DB.</p>
-      <div id="wiki-quality-sprint-summary" class="topline"></div>
-      <div id="wiki-quality-sprint-cards" class="usage-grid"><div class="empty">Loading wiki quality sprint…</div></div>
-      <div id="wiki-quality-sprint-ledger" class="events" style="margin-top:12px;"></div>
-    </section>
-
     <section class="panel">
       <h2>Autopilot run time estimates</h2>
       <p>Shows active/unresolved autopilot orders only. Completed historical packets are summarized and kept out of the visible board so stale messages do not crowd the current operator view.</p>
@@ -1791,13 +2071,6 @@ def render_html() -> str:
       <div id="run-estimates" class="usage-grid"><div class="empty">Loading run estimates…</div></div>
     </section>
 
-
-    <section class="panel">
-      <h2>Local outcome DB</h2>
-      <p>Append-only local SQLite ledger for overnight autopilot receipts. Product DB/API/page writes remain closed unless a separate exact approval packet is executed.</p>
-      <div id="outcome-ledger-summary" class="topline"></div>
-      <div id="outcome-ledger-card" class="usage-grid"><div class="empty">Loading local outcome ledger…</div></div>
-    </section>
 
     <section class="panel">
       <h2>Survey Autopilot</h2>
@@ -1819,11 +2092,6 @@ def render_html() -> str:
         <h2>Current blockers / prompts</h2>
         <div id="blockers" class="empty">Loading…</div>
       </div>
-      <div class="panel">
-        <h2>Latest autopilot events</h2>
-        <div id="events" class="events"><div class="empty">Loading…</div></div>
-      </div>
-    </section>
 
     <section class="wide">
       <div class="panel">
@@ -1832,10 +2100,18 @@ def render_html() -> str:
       </div>
       <div class="panel">
         <h2>Provenance</h2>
+      <div id="writer-identity" class="topline"></div>
+      <div id="outcome-line" class="micro"></div>
         <p class="micro">Source status: <code id="source-status"></code></p>
         <p class="micro">Source events: <code id="source-events"></code></p>
         <p class="micro">Rendered JSON: <code id="web-status"></code></p>
         <div id="other"></div>
+      </div>
+    </section>
+
+      <div class="panel">
+        <h2>Latest autopilot events</h2>
+        <div id="events" class="events"><div class="empty">Loading…</div></div>
       </div>
     </section>
   </main>
@@ -1883,7 +2159,13 @@ function renderQuotaGlance(u) {
   });
   target.innerHTML = rendered.length ? rendered.join('') : '<div class="empty">No live quota data.</div>';
 }
+function ageIsStale(label) {
+  // [step 3] A 20-hour-old card sat beside 17-minute data with no visual distinction. For an
+  // operations glance, anything measured in hours or days is stale.
+  return /\d+\s*(h|hr|hour|d|day)/i.test(String(label || ''));
+}
 function usageCard(u) {
+  const __stale = ageIsStale(u && (u.age_label || u.cache_age_label || u.updated_label));
   const hasPct = typeof u.percent === 'number' && Number.isFinite(u.percent);
   const pct = hasPct ? Math.max(0, Math.min(100, u.percent)) : null;
   const cls = hasPct ? '' : 'unknown';
@@ -1936,30 +2218,12 @@ function renderUsage(u) {
 function overnightCard(card) {
   return `<div class="usage-card ${esc(card.tone || '')}"><h3>${esc(card.title || '')}</h3><div class="usage-status">${esc(card.status || 'observed')}</div><div class="usage-big">${esc(card.big || '')}</div><p class="usage-note">${esc(card.detail || '')}</p></div>`;
 }
-function renderOvernightReport(report) {
-  if (!report) return;
-  const cards = report.cards || [];
-  document.getElementById('overnight-report-summary').innerHTML = [
-    `<span class="pill healthy"><span class="dot"></span><span>${esc(report.marker || 'overnight report')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>Reported ${esc(report.reported_at_utc || 'unknown')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(report.headline || '')}</span></span>`
-  ].join('');
-  document.getElementById('overnight-report-cards').innerHTML = cards.length ? cards.map(overnightCard).join('') : '<div class="empty">No overnight report data.</div>';
-  document.getElementById('overnight-report-next').textContent = report.next_action || '';
-}
-function renderCorpusScaleup(report) {
-  if (!report) return;
-  const cards = report.cards || [];
-  const s = document.getElementById('corpus-scaleup-summary');
-  if (s) s.innerHTML = [
-    `<span class="pill healthy"><span class="dot"></span><span>${esc(report.marker || 'corpus scale-up')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(report.headline || '')}</span></span>`
-  ].join('');
-  const c = document.getElementById('corpus-scaleup-cards');
-  if (c) c.innerHTML = cards.length ? cards.map(overnightCard).join('') : '<div class="empty">No corpus data.</div>';
-  const nx = document.getElementById('corpus-scaleup-next');
-  if (nx) nx.textContent = report.next_action || '';
-}
+// [step 5] renderOvernightReport removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+// [step 5] renderCorpusScaleup removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
 function runStateClass(state) {
   if (state === 'blocked' || state === 'over-estimate') return 'needs-review';
   if (state === 'complete') return 'healthy';
@@ -1985,82 +2249,29 @@ function renderRunEstimates(re) {
   ].join('');
   document.getElementById('run-estimates').innerHTML = runs.length ? runs.map(runCard).join('') : `<div class="empty">No active autopilot orders right now. ${esc(completedText)}. Completed packet cards are archived from the visible board.</div>`;
 }
-function renderQualitySprint(q) {
-  if (!q) return;
-  const stateCls = q.state === 'needs-review' ? 'needs-review' : (q.state === 'healthy' ? 'healthy' : 'watching');
-  const pct = typeof q.progress_percent === 'number' && Number.isFinite(q.progress_percent) ? Math.max(0, Math.min(100, q.progress_percent)) : 0;
-  const audit = q.latest_audit || {};
-  const processLabel = q.process_running ? `PID ${q.pid || '—'} · running` : 'completed · no sprint process running';
-  const stateDetail = q.process_running ? `target end ${q.target_end_utc || 'unknown'} · progress ${pct.toFixed(1)}%` : `completed ${q.updated_utc || 'unknown'} · target window ended ${q.target_end_utc || 'unknown'}`;
-  const auditDetail = `${audit.cycle == null ? '' : 'cycle '+audit.cycle+' · '}compile ${Array.isArray(audit.compile_ok) ? audit.compile_ok.join('/') : '—'} · figures ${audit.figures ?? '—'}`;
-  document.getElementById('quality-sprint-summary').innerHTML = [
-    `<span class="pill ${stateCls}"><span class="dot"></span><span>${esc(q.text || q.status || 'unknown')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(q.marker || 'quality sprint')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>cycle ${esc(q.cycle ?? '—')} · completed ${esc(q.cycles_completed ?? 0)}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(processLabel)}</span></span>`
-  ].join('');
-  document.getElementById('quality-sprint-cards').innerHTML = [
-    infoCard('Current sprint state', q.status || 'unknown', stateDetail, q.state || 'unknown'),
-    infoCard('Lane model', '5 lanes', (q.lanes || []).join(' · '), 'low-usage local sprint'),
-    infoCard('Latest candidate', shortenPath(q.candidate) || 'not written yet', 'Verified local candidate package', 'candidate-copy only'),
-    infoCard('Latest audit', `fatal ${audit.fatal_failures ?? '—'}`, auditDetail, 'compile/audit receipt')
-  ].join('');
-  document.getElementById('quality-sprint-ledger').innerHTML = (q.ledger_tail || []).length ? (q.ledger_tail || []).map(x => `<div class="event"><strong>${esc(shortenPath(x))}</strong></div>`).join('') : '<div class="empty">No sprint ledger entries yet.</div>';
+// [step 5] renderQualitySprint removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+// [step 5] renderWikiQualitySprint removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
+function renderOutcomeLedger(led) {
+  // [step 5] Demoted from a full panel to one provenance line, per Kun's audit: it is a
+  // receipt, not something an operator acts on.
+  const el = document.getElementById('outcome-line');
+  if (!el) return;
+  led = led || {};
+  const n = led.rows_total ?? led.count ?? null;
+  el.textContent = n === null ? 'Local outcome DB: no rows recorded'
+                              : `Local outcome DB: ${n} row(s), ${led.marker || 'unmarked'}`;
 }
-function renderWikiQualitySprint(q) {
-  if (!q) return;
-  const stateCls = q.state === 'needs-review' ? 'needs-review' : (q.state === 'healthy' ? 'healthy' : 'watching');
-  const pct = typeof q.progress_percent === 'number' && Number.isFinite(q.progress_percent) ? Math.max(0, Math.min(100, q.progress_percent)) : 0;
-  const audit = q.latest_audit || {};
-  const forbidden = Array.isArray(audit.forbidden_contract_tokens) ? audit.forbidden_contract_tokens.join(', ') : '—';
-  const overclaims = Array.isArray(audit.overclaim_pattern_hits) ? audit.overclaim_pattern_hits.join(', ') : '—';
-  const processLabel = q.process_running ? `PID ${q.pid || '—'} · running` : 'completed · no sprint process running';
-  const stateDetail = q.process_running ? `target end ${q.target_end_utc || 'unknown'} · progress ${pct.toFixed(1)}%` : `completed ${q.updated_utc || 'unknown'} · target window ended ${q.target_end_utc || 'unknown'}`;
-  document.getElementById('wiki-quality-sprint-summary').innerHTML = [
-    `<span class="pill ${stateCls}"><span class="dot"></span><span>${esc(q.text || q.status || 'unknown')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(q.marker || 'wiki quality sprint')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>cycle ${esc(q.cycle ?? '—')} · completed ${esc(q.cycles_completed ?? 0)}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(processLabel)}</span></span>`
-  ].join('');
-  document.getElementById('wiki-quality-sprint-cards').innerHTML = [
-    infoCard('Current sprint state', q.status || 'unknown', stateDetail, q.state || 'unknown'),
-    infoCard('Lane model', '4 lanes', (q.lanes || []).join(' · '), 'low-usage local sprint'),
-    infoCard('Latest candidate', shortenPath(q.candidate) || 'not written yet', 'Verified local candidate Markdown', 'candidate Markdown only'),
-    infoCard('Latest audit', `fatal ${audit.fatal_failures ?? '—'}`, `claim balanced ${audit.claim_markers_balanced ?? '—'} · cites ${audit.cite_count ?? '—'} · forbidden ${forbidden} · overclaim ${overclaims}`, 'wiki/content-contract receipt')
-  ].join('');
-  document.getElementById('wiki-quality-sprint-ledger').innerHTML = (q.ledger_tail || []).length ? (q.ledger_tail || []).map(x => `<div class="event"><strong>${esc(shortenPath(x))}</strong></div>`).join('') : '<div class="empty">No wiki sprint ledger entries yet.</div>';
-}
-function renderOutcomeLedger(l) {
-  if (!l) return;
-  const latest = l.latest_status || {};
-  const enabled = l.enabled !== false;
-  document.getElementById('outcome-ledger-summary').innerHTML = [
-    `<span class="pill ${enabled ? 'healthy' : 'needs-review'}"><span class="dot"></span><span>${enabled ? 'local ledger enabled' : 'local ledger disabled'}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>${esc(l.marker || 'outcome ledger')}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>events ${esc(l.events_total ?? 0)}</span></span>`,
-    `<span class="pill"><span class="dot"></span><span>snapshots ${esc(l.snapshots_total ?? 0)}</span></span>`,
-    `<span class="pill needs-review"><span class="dot"></span><span>product DB writes ${l.product_db_writes_enabled ? 'OPEN' : 'closed'}</span></span>`
-  ].join('');
-  document.getElementById('outcome-ledger-card').innerHTML = [
-    infoCard('Ledger file', shortenPath(l.path), l.scope || '', enabled ? 'append-only local DB' : 'disabled'),
-    infoCard('Latest status', latest.ts || l.latest_status_ts || 'not recorded yet', `blockers ${latest.blockers ?? '—'} · targets ${latest.targets_ok ?? '—'}/${latest.targets_total ?? '—'} · panes ${latest.panes ?? '—'}`, latest.phase || 'unknown'),
-    infoCard('Safety', l.product_db_writes_enabled ? 'OPEN' : 'closed', 'Autopilot pane SQL and NebulaMind product DB writes remain denied; use an exact backup/diff/rollback packet for product DB mutation.', 'hard gate')
-  ].join('');
-}
+
 function infoCard(title, big, detail, status='observed') {
   return `<div class="usage-card"><h3>${esc(title)}</h3><div class="usage-status">${esc(status)}</div><div class="usage-big">${esc(shortenPath(big))}</div><p class="usage-note">${esc(shortenPath(detail))}</p></div>`;
 }
-function renderIncident(i) {
-  if (!i) return;
-  const title = document.getElementById('last-incident-title');
-  if (title) title.textContent = i.title || 'Latest incident';
-  document.getElementById('last-incident').innerHTML = [
-    infoCard('Status', i.status || 'unknown', `Detected ${i.detected_utc || 'unknown'} · resolved ${i.resolved_utc || 'unknown'}`, 'verified live'),
-    infoCard('What changed', i.component || 'controller', i.summary || '', i.change_note || 'behavior corrected'),
-    infoCard('Verification', i.verification_headline || 'verified', i.verification || '', i.verification_note || 'receipts recorded'),
-    infoCard('Safety', 'No product changes', i.scope || '', 'private dashboard only')
-  ].join('');
-}
+// [step 5] renderIncident removed — its panel was deleted in step 4 and every write it
+// made targeted an element that no longer exists.
+
 function surveyFileCard(f) {
   const status = f.exists ? 'present' : 'missing';
   return `<div class="event"><strong>${esc(f.label)} · ${esc(status)}</strong><small>${esc(shortenPath(f.path))}${f.modified_at_utc ? ' · modified '+esc(f.modified_at_utc) : ''}</small></div>`;
@@ -2098,24 +2309,141 @@ async function load() {
     document.getElementById('event-text').textContent=d.latest_event ? `last tick ${d.latest_event.ts}` : 'no event log yet';
     document.getElementById('metrics').innerHTML=[metric('Targets OK',`${c.targets_ok??0}/${c.targets_total??0}`),metric('Panes',c.panes??0),metric('Active',c.active??0),metric('Idle',c.idle??0),metric('Needs-you issues',c.blockers??0),metric('Safe auto-prompts',c.safe_autoprompts??c.safe_prompts??0)].join('');
     document.getElementById('summaries').innerHTML=GROUP_ORDER.map(g=>summaryCard(summaries[g]||{name:g,state:'idle',text:'No data',counts:{},panes:0})).join('');
-    renderRunEstimates(d.run_estimates);
-    renderQualitySprint(d.paper_quality_sprint);
-    renderWikiQualitySprint(d.wiki_quality_sprint);
-    renderQuotaGlance(d.usage_monitor);
-    renderUsage(d.usage_monitor);
-    renderOvernightReport(d.overnight_report);
-    renderCorpusScaleup(d.corpus_scaleup);
-    renderOutcomeLedger(d.local_outcome_ledger);
-    renderSurvey(d.survey_autopilot);
-    renderIncident(d.last_incident);
+    function renderOperatorAnswers(oa) {
+      oa = oa || {};
+      const dec = oa.decisions || [], run = oa.running || [];
+      // [reorder] The decisions list now renders per paper in the septet matrix, where a
+      // decision belongs to the thing it is about. This element no longer exists.
+      document.getElementById('op-running').innerHTML = run.length
+        ? run.map(x=>`<div class="event">${esc(x.what||'')} <span class="muted">${esc(x.detail||'')}</span></div>`).join('')
+        : '<div class="empty">no seat is working a dispatched job</div>';
+    }
+    // [overhaul step 1] Isolation. Every render call below used to run bare inside load()'s one
+    // big try: a single throw killed every call after it and flipped the whole page to NO DATA,
+    // making a fetch failure and a render bug indistinguishable. `guard` runs one panel, and on
+    // failure writes a visible error into that panel's own element and carries on.
+    function guard(label, elId, fn) {
+      try { fn(); }
+      catch (e) {
+        const el = elId && document.getElementById(elId);
+        if (el) el.innerHTML = `<div class="empty">${esc(label)} failed: ${esc(String(e && e.message || e))}</div>`;
+        if (window.__panelErrors) window.__panelErrors.push(label);
+      }
+    }
+    window.__panelErrors = [];
+    guard('septet matrix','septet-matrix',()=>{
+      // [redesign] The dot matrix was compact but cryptic — ●/◇/· told you nothing without the
+      // legend, and the row that mattered (a paper waiting on Duho) looked like every other row.
+      // One readable block per paper instead: seats named, the ask stated in words, and the
+      // papers that need a human decision sorted to the top.
+      const mx = (d && d.septet_matrix) || {};
+      const papers = mx.papers || [];
+      if (!papers.length) {
+        document.getElementById('septet-matrix').innerHTML =
+          `<div class="empty">${esc(mx.error || 'no lanes with recorded gate activity')}</div>`;
+        return;
+      }
+      const sorted = papers.slice().sort((a,b)=>{
+        const rank = p => p.who==='DUHO' ? 0 : (p.engaged===0 ? 1 : 2);
+        return rank(a)-rank(b);
+      });
+      const blocks = sorted.map(function(p){
+        const mine = p.who === 'DUHO';
+        const engagedSeats = p.cells.filter(c=>c.state==='engaged').map(c=>c.seat);
+        const globalSeats  = p.cells.filter(c=>c.state==='engaged-global').map(c=>c.seat);
+        const emptySeats   = p.cells.filter(c=>c.state==='empty').map(c=>c.seat);
+        const border = mine ? '#d69a66' : (p.engaged===0 ? '#a8622f' : '#1e2637');
+        const chips = c => c.map(x=>`<span style="display:inline-block;border-radius:4px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px;background:#17202f">${esc(x)}</span>`).join('');
+        const askLine = mine
+          ? `<div style="margin-top:8px;font-size:14px;color:#e9eef7"><span class="pill needs-review"><span class="dot"></span><span>NEEDS YOU</span></span> <b>${esc(p.waiting||'')}</b></div>`
+          : `<div style="margin-top:8px;font-size:13px;color:#a9b6cc">waiting on the crew — ${esc(p.waiting||'—')}</div>`;
+        // The update time answers "is this cut current?" — and when the lane has moved since the
+        // render, say so outright rather than leaving Duho to subtract two timestamps.
+        const vstale = p.video && p.video.stale_by_h
+          ? `<span style="color:#d69a66"> · lane moved ${esc(p.video.stale_by_h)}h after this cut</span>` : '';
+        // The published chip states the PRIVACY, not just that a link exists. "unlisted" and
+        // "public" are different facts about who can see it, and a chip that hides the
+        // difference is how an unlisted link gets treated as if it were still private.
+        const pub = p.video && p.video.published_url
+          ? `<a href="${esc(p.video.published_url)}" target="_blank" rel="noopener"
+                style="font-size:12px;color:#d69a66"> · ▶ YouTube (${esc(p.video.published_privacy||'?')})</a>`
+            + `<span class="muted" style="font-size:11px"> ${esc(p.video.published_at_kst||'')}</span>`
+          : '<span class="muted" style="font-size:12px"> · unpublished</span>';
+        // a published link that points at an older cut than the one on disk is worth saying
+        const pstale = (p.video && p.video.published_url && p.video.published_file &&
+                        !p.video.href.endsWith(p.video.published_file))
+          ? `<span style="color:#d69a66;font-size:11px"> · published cut is not the newest</span>` : '';
+        const vid = p.video
+          ? `<a href="${esc(p.video.href)}" style="font-size:12px">▶ watch ${p.video.audio?'🔊':'(silent)'} (${esc(p.video.mb)} MB)</a>`
+            + `<span class="muted" style="font-size:12px"> · updated ${esc(p.video.updated_kst)}</span>${vstale}${pub}${pstale}`
+          : '<span class="muted" style="font-size:12px">no video</span>';
+        return `<div style="border:1px solid ${border};border-radius:10px;padding:14px 16px;margin-bottom:10px;background:${mine?'#1a1206':'#0e1420'}">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap">
+            <div style="font-weight:600;font-size:15px">${esc(p.lane)}</div>
+            <div class="muted" style="font-size:12px">${esc(p.state)}${p.stages?` · stage ${esc(p.stages)}`:''} · ${vid}</div>
+          </div>
+          ${askLine}
+          <div style="margin-top:10px;font-size:12px">
+            <div><span class="muted">working this paper (${p.engaged}/${p.of}):</span> ${engagedSeats.length?chips(engagedSeats):'<span style="color:#d69a66">nobody</span>'}</div>
+            ${globalSeats.length?`<div style="margin-top:4px"><span class="muted">working across all papers:</span> ${chips(globalSeats)}</div>`:''}
+            <div style="margin-top:4px"><span class="muted">no one in seat:</span> ${emptySeats.length?chips(emptySeats):'<span style="color:#7fb27f">all seats filled</span>'}</div>
+          </div>
+        </div>`;
+      }).join('');
+      const mineList = mx.awaiting_duho || [];
+      const banner = mineList.length
+        ? `<div style="margin-bottom:12px;padding:10px 14px;border-radius:8px;background:#2a1c09;font-size:14px"><b>${mineList.length} paper(s) waiting on your decision.</b> They are first below.</div>`
+        : '<div style="margin-bottom:12px" class="muted">nothing is waiting on your decision.</div>';
+      const foot = `<div class="muted" style="font-size:11px;margin-top:2px">A seat counts as working a paper when it has produced an artifact in that lane. Live processes are global — currently: ${esc((mx.live_seats||[]).join(', ') || 'none')}. Videos are served from this host only; none is published.</div>`;
+      document.getElementById('septet-matrix').innerHTML = banner + blocks + foot;
+    });
+    guard('writer identity','writer-identity',()=>{
+      const w=(d && d.writer_identity)||{};
+      const note = w.watcher_mode ? ' · live watcher' : ' · one-shot render (page is static until next render)';
+      document.getElementById('writer-identity').innerHTML =
+        `<span class="pill"><span class="dot"></span><span>rendered by pid ${esc(w.pid||'?')} at ${esc(w.rendered_at_utc||'?')}${esc(note)}</span></span>`;
+    });
+    guard('running now','op-running',()=>{ renderOperatorAnswers(d.operator_answers); });
+    guard('run estimates','run-estimates',()=>{ renderRunEstimates(d.run_estimates); });
+    guard('quota glance','quota-glance',()=>{ renderQuotaGlance(d.usage_monitor); });
+    guard('usage monitor','usage-cards',()=>{ renderUsage(d.usage_monitor); });
+    guard('outcome ledger','outcome-ledger',()=>{ renderOutcomeLedger(d.local_outcome_ledger); });
+    guard('survey autopilot','survey-cards',()=>{ renderSurvey(d.survey_autopilot); });
+    // NOTE: the status object in this scope is `d`, not `data`. Using `data` here threw a
+    // ReferenceError that killed every render call BELOW this line — the septet box appeared
+    // empty and the sections after it silently stopped painting. Wrapped so a future mistake
+    // in this block cannot take the rest of the dashboard down with it.
+    try {
+    const sx = (d && d.septet) || {};
+    const sxSeats = sx.seats || [];
+    document.getElementById('septet').innerHTML = sxSeats.length ? sxSeats.map(function(s){
+      const col = s.state==='WORKING' ? '#2f6fa8' : (s.owes ? '#a8622f' : '#39414f');
+      return `<div style="border:1px solid ${col};border-radius:8px;padding:10px 12px;background:#0e1420"><div style="font-weight:600">${esc(s.name)}`
+        + `<span style="float:right;font-size:11px;color:${col}">${esc(s.state)}</span></div>`
+        + `<div class="muted" style="font-size:12px;margin-top:4px">${esc(s.role)}</div>`
+        + (s.detail ? `<div style="font-size:12px;margin-top:6px">${esc(s.detail)}</div>` : '')
+        + `</div>`;
+    }).join('') : `<div class="empty">${esc(sx.error || 'no septet state')}</div>`;
+    document.getElementById('septet-warning').innerHTML = sx.warning
+      ? `<span class="pill"><span class="dot"></span><span>${esc(sx.warning)}</span></span>` : '';
+    } catch (e) { document.getElementById('septet').innerHTML =
+      `<div class="empty">septet render failed: ${esc(String(e))}</div>`; }
+    // [step 4] The septet lesson generalised to this block, as Kun required. These calls were
+    // bare: one null element — exactly what deleting a panel creates — threw and took out
+    // everything after it. One guard around the block keeps a deletion from silently blanking
+    // directors, methods, blockers, events, gates and provenance.
+    // [step 5] Group sections used to render their headings even with zero panes, which is
+    // most of what made the page look full of dead boxes. Empty groups now render nothing.
+    guard('lower panels', 'directors', () => {
     document.getElementById('directors').innerHTML=(groups['Directors']||[]).length ? (groups['Directors']||[]).map(paneCard).join('') : '<div class="empty">No director panes seen</div>';
-    document.getElementById('methods').innerHTML=['Review','Lanes'].map(g=>groupCard(g,groups[g]||[],summaries[g])).join('');
+    document.getElementById('methods').innerHTML=['Review','Lanes'].filter(g=>(groups[g]||[]).length).map(g=>groupCard(g,groups[g]||[],summaries[g])).join('');
     const blockers=d.blockers||[]; const safePrompts=d.safe_autoprompts||[]; document.getElementById('blockers').className=(blockers.length||safePrompts.length)?'':'empty'; document.getElementById('blockers').innerHTML=blockers.length?blockers.map(blockerCard).join(''):(safePrompts.length?`<div class="empty">No user-needed blockers. ${esc(safePrompts.length)} safe prompt(s) are being handled by autopilot.</div>${safePrompts.map(blockerCard).join('')}`:'No current blockers or permission prompts.');
     const events=d.events||[]; document.getElementById('events').innerHTML=events.length?events.slice().reverse().map(eventCard).join(''):'<div class="empty">No recent actions or blockers. Heartbeat is live in the room-glance tick above.</div>';
     const gateHtml=(d.hard_gates_closed||[]).map(x=>`<div class="gate"><span class="lock">🔒</span> ${esc(x)}</div>`).join(''); document.getElementById('gates-top').innerHTML=gateHtml;
-    document.getElementById('policy').innerHTML=(d.policy_lines||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+    // [step 4] policy legend panel deleted; its content merged into the gates strip.
     document.getElementById('source-status').textContent=shortenPath(d.source_status_path); document.getElementById('source-events').textContent=shortenPath(d.source_events_path); document.getElementById('web-status').textContent=shortenPath(d.web_status_path);
     const other=groups['Other']||[]; document.getElementById('other').innerHTML=other.length ? `<h2>Standalone / helpers</h2>${other.map(paneCard).join('')}` : '';
+    });
   } catch (err) { const pill=document.getElementById('health-pill'); pill.className='pill needs-review'; document.getElementById('health-text').textContent=`Dashboard data unavailable: ${err.message}`; document.getElementById('state-word').className='state-word needs-review'; document.getElementById('state-word').textContent='NO DATA'; document.getElementById('next-action').textContent='The dashboard could not read its JSON snapshot.'; }
 }
 load(); setInterval(load, 5000);
@@ -2140,7 +2468,12 @@ load(); setInterval(load, 5000);
 
 def write_outputs(compact: Dict[str, Any]) -> None:
     WEB_ROOT.mkdir(parents=True, exist_ok=True)
-    JSON_PATH.write_text(json.dumps(compact, indent=2, sort_keys=True) + "\n")
+    # [overhaul step 1] Atomic write. The browser polls this file every 5s; a direct write of a
+    # ~39KB payload can be read mid-flight, which lands as a JSON.parse throw and a full-page
+    # NO DATA flash. Same tmp+replace pattern the kimi cache already uses.
+    _tmp = JSON_PATH.with_suffix(".json.tmp")
+    _tmp.write_text(json.dumps(compact, indent=2, sort_keys=True) + "\n")
+    os.replace(_tmp, JSON_PATH)
     HTML_PATH.write_text(render_html())
     LATEST_URL_PATH.write_text(URL + "\n")
 
