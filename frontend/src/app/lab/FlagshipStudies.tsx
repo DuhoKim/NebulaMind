@@ -66,7 +66,7 @@ export const FLAGSHIP: Flagship[] = [
   {
     title: "The Machine-Readable Bright End: an Eligibility-Audited Census of Public z>8 Rest-UV Catalogues",
     summary: "Four independent channels were opened to measure how fast the bright end declines over z=8\u201314 from public data, and every one closed with its reason quoted from the sources. The confirmed spectroscopic bright end of the entire machine-readable record is dozens of objects \u2014 and none above z=11.5.",
-    meta: "6,417 in-slice rows \u00b7 67 counted catalogues \u00b7 112-table eligibility layer (30 disqualified with recorded reasons) \u00b7 92 of 112 candidates reachable ONLY by UCD metadata \u00b7 contract sha-pinned before the first fetch \u00b7 referee ESTABLISHED, 8 findings raised and closed",
+    meta: "6,417 in-slice rows \u00b7 112-table eligibility layer: 67 counted, 31 closed per verdict, 4 disqualified, 10 skipped \u2014 every exclusion with its reason recorded \u00b7 92 of 112 candidates reachable ONLY by UCD metadata \u00b7 contract sha-pinned before the first fetch \u00b7 referee ESTABLISHED, 8 findings raised and closed",
     verdict: "REVIEW-READY",
     pdf: "/studies/c41-brightend-uvlf-archival-gap.pdf",
     updated: "2026-08-05 19:40",
