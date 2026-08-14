@@ -1,0 +1,43 @@
+{
+ "train_minutes": 10.6,
+ "device": "mps",
+ "tau": 4.4006456017494235,
+ "retention_central": 0.9644166666666667,
+ "retention_lower95_one_sided": 0.9615286568284276,
+ "n_heldout": 12000,
+ "sign_accuracy_accepted": 1.0,
+ "by_snr": {
+  "2-5": {
+   "retention": 0.8910776361529548,
+   "n": 3452,
+   "sign_acc": 1.0
+  },
+  "5-10": {
+   "retention": 0.9907478797224364,
+   "n": 2594,
+   "sign_acc": 1.0
+  },
+  "10-20": {
+   "retention": 0.9969135802469136,
+   "n": 2592,
+   "sign_acc": 1.0
+  },
+  "20-50": {
+   "retention": 0.9943486020226056,
+   "n": 3362,
+   "sign_acc": 1.0
+  }
+ },
+ "weights_sha256_canonical": "1075a4d91c295d7f3256128534a0b8c4d097fb9d162169df1ac698843637a589",
+ "receipts_float32": {
+  "R1": "200/200",
+  "R2": "200/200",
+  "R3": {
+   "chi_sym": 0.0,
+   "mirror_bits": "0x0",
+   "neg_bits": "0x80000000",
+   "value_equal": true
+  }
+ },
+ "weights_file_sha256": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d"
+}

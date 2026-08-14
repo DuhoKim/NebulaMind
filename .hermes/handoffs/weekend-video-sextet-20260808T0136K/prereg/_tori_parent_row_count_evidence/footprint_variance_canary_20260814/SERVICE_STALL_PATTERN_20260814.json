@@ -1,0 +1,43 @@
+{
+  "recorded_utc": "2026-08-14T02:45:03Z",
+  "scope": "Local NOIRLab TAP/UWS service-behavior custody for the Longo-axis aggregate-moment campaign; not a public service-status claim",
+  "pattern": "Two independent stalls on the same endpoint in under one day: gateway-pressure/job-loss and healthy-HTTP scheduler PENDING saturation",
+  "stall_modes": [
+    {
+      "mode": "HTTP_502_THEN_REMOTE_404",
+      "run": "footprint_variance_partitioned_20260813",
+      "facts": {
+        "unique_job_urls": 9,
+        "jobs_lost_after_http_502_and_rechecked_404": 8,
+        "deadline_aborted_jobs": 1,
+        "landed_result_csvs": 0
+      },
+      "reconciliation_sha256": "a9a3344b19bc4a357074610ab8ce59a0981683fb0b8ec739bd06a17816309a9a",
+      "receipt_sha256": "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289"
+    },
+    {
+      "mode": "HTTP_200_BUT_SCHEDULER_PENDING",
+      "run": "footprint_variance_partitioned_rerun_20260814",
+      "facts": {
+        "endpoint_preflight_http_status": 200,
+        "endpoint_preflight_elapsed_seconds": 0.508021,
+        "active_jobs": 3,
+        "all_active_phases": "PENDING",
+        "queue_stall_seconds": 2700,
+        "landed_result_csvs": 0,
+        "abort_reason": "queue_stalled_45m",
+        "post_abort_phase": "ABORTED"
+      },
+      "queue_watch_sha256": "e551c3b04abc15f72d85beea8c5ae1be3c9df06ab73fd4d22b1eb2ca6a0d45f0",
+      "final_outcome_sha256": "815a05f499bdf389f350d8554a910e6bfcda340860fb2ea0615a3edf0fce8e8f"
+    }
+  ],
+  "operational_lesson": "HTTP 200 from TAP async proves endpoint reachability, not scheduler throughput. Several PENDING jobs with no phase progress are queue saturation, not landed work. A bounded queue-watch and early stop prevent hours of unattended service use.",
+  "canary_policy": {
+    "single_job": true,
+    "poll_seconds": 300,
+    "on_executing_or_completed": "report and stop; do not auto-launch full manifest",
+    "after_three_hours_pending": "report and leave the remote job parked; do not abort",
+    "full_manifest_auto_launches": 0
+  }
+}

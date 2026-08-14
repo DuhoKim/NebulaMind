@@ -1,0 +1,80 @@
+{
+  "boundary": {
+    "acceptance": false,
+    "chirality_or_morphology_labels": 0,
+    "cockpit_update": false,
+    "database_writes": 0,
+    "git_commit": false,
+    "git_merge": false,
+    "git_push": false,
+    "images_requested_or_opened_for_this_task": 0,
+    "object_or_sample_rows_exported": 0,
+    "positions_exported": 0,
+    "publication": false,
+    "sky_statistics": 0
+  },
+  "controlling_brief": {
+    "path": "_tmp_TORI_BS1247_BRIEF.md",
+    "sha256": "6431f9cf56fc4732162059e08a97b944a48d2b8ad79dd560d1747342b0c9e190"
+  },
+  "exact_next_action": "Obtain an express catalogue/derived-product licence or written rights-holder confirmation, then submit BS-1 licence for a fresh Kun gate. Do not publish the derived catalogue under the current receipt.",
+  "git": {
+    "branch": "feat/paper-workflow-v2",
+    "head": "88d315518336794cae0f05139b8a3c8daa17b802"
+  },
+  "machine_custody": {
+    "bs2_arm_contrast_audit_sha256": "a31b9b982b90ae06de9745e994e5b609c0243b4ebbd2a6adb6c2be6e1d14cf0f",
+    "bs2_brick_product_coverage_sha256": "4b16ab0a3ef7e0973a755e8b9cfb200064b3a9cde0359b6e324eb1cbc7afed97",
+    "bs2_direct_coverage_sha256": "999c89cb56f0da9df1eabb267dcd4825eb587e5d65e5c3c5e1a221c33b538722",
+    "bs2_final_verification_sha256": "fd0f8b2728a6ca0c8a00efe7eb0b4f76e7598c9b87814abc86a2b8c5441f442a",
+    "bs2_manifest_sha256": "5e3303969e91886c328208acdb81cca54ab3036fe277974fce14575cb6f1a809",
+    "bs7_machine_receipt_sha256": "64a7f2ed61a5faad5c289e5a5293ff67bc493d0d92883ec6effaad580602419a",
+    "source_pin_register_sha256": "fdaa064aa1eab2c03881c1f6bdc16ca574399b3ffe46b8ead72120cc80cf1906"
+  },
+  "overall_reason": "BS-1 derived-catalogue licence permission is ambiguous/not established; BS-2 and BS-7 pass but do not cure that blocker",
+  "overall_status": "FAIL",
+  "recorded_utc": "2026-08-14T08:01:50Z",
+  "slot_results": {
+    "BS-1-licence": {
+      "deliverable": "TORI_BS1_LICENCE_20260814.md",
+      "reason": "official Legacy Surveys page licenses images and gives data acknowledgement text but does not expressly license the DR10 catalogue or per-object derived catalogue publication",
+      "sha256": "34aad1f17804b235a26f07aa25bbd85d2614d0611b428d1ec31faad375d2684e",
+      "status": "FAIL"
+    },
+    "BS-2-covariates": {
+      "core_dropout": "arm_contrast",
+      "deblend_quality": "DROPPED; MASKBITS=0 retained; no additional FITBITS exclusion",
+      "deliverable": "TORI_BS2_COVARIATES_20260814.md",
+      "photoz": "INCLUDE_AS_CONDITIONAL_ELEVENTH_COVARIATE",
+      "required": 8,
+      "sha256": "9f869c5b1cd3f4728a5dafe3a2e0d03bc1d9f1467fbc02049769b4b2b7585a57",
+      "status": "PASS",
+      "surviving_core_covariates": 9
+    },
+    "BS-7-distortion": {
+      "declared_branch": "FAIL_CLOSED",
+      "deliverable": "TORI_BS7_DISTORTION_20260814.md",
+      "future_per_product_audit_required": true,
+      "local_jacobian_selected": false,
+      "sha256": "cb6fa7b6836a5c1e8c49b36ae50d1995ef1d9e07d7098a380f81213eb44d955e",
+      "status": "PASS"
+    }
+  },
+  "verification": {
+    "active_bs1247_python": 0,
+    "aggregate_partitions_complete": 67,
+    "aggregate_rows_returned": 67,
+    "bs2_contract": "PASS",
+    "bs2_independent_semantic_replay": "PASS",
+    "bs7_synthetic_fail_closed_contract": "PASS; 10 cases",
+    "citation_verification": {
+      "BS-1": "PASS strict evidence",
+      "BS-2": "PASS strict evidence",
+      "BS-7": "PASS strict evidence"
+    },
+    "lost_job_receipts": 0,
+    "service_pressure_receipts": 0,
+    "submission_count_after_close": 67,
+    "submission_entry_point": "CLOSED; re-entry refused"
+  }
+}

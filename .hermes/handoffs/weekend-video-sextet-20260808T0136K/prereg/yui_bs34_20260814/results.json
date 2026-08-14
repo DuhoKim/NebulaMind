@@ -1,0 +1,231 @@
+{
+  "BS3_primary_identity": {
+    "R1_mirror_involution_byte_exact": "1000/1000",
+    "R2_antisymmetry_bit_exact": "1000/1000",
+    "R2_antisymmetry_value_exact": "1000/1000",
+    "R2_nonzero_cases": 1000,
+    "R2_zero_cases": 0,
+    "R3_signed_zero": {
+      "bit_equal": false,
+      "chi_mirror_bits": "0x00000000",
+      "chi_sym": 0.0,
+      "neg_chi_bits": "0x80000000",
+      "ordered_acceptance_false": true,
+      "value_equal": true
+    },
+    "frozen_tau": 4.4006456017494235,
+    "frozen_weights_canonical_sha256": "1075a4d91c295d7f3256128534a0b8c4d097fb9d162169df1ac698843637a589",
+    "frozen_weights_file_sha256": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d",
+    "max_abs_chi_mirror_plus_chi": 0.0,
+    "operative_retention": {
+      "accepted": 10349,
+      "central": 0.8624166666666667,
+      "lower95_one_sided": 0.8571626782674123,
+      "n": 12000,
+      "support": "uniform in cos(i), 0 to 69.3 degrees admitted by b/a > 0.4"
+    },
+    "validity_rule": "R1 and R2 bit-exact 1000/1000 on the promised production probe set",
+    "verdict": "PASS"
+  },
+  "BS4_secondary_identity_and_abstention": {
+    "R1_mirror_involution_byte_exact": "1000/1000",
+    "R2_antisymmetry_bit_exact": "1000/1000",
+    "R2_antisymmetry_value_exact": "1000/1000",
+    "R2_nonzero_cases": 1000,
+    "R2_zero_cases": 0,
+    "R3_signed_zero": {
+      "bit_equal": false,
+      "chi_mirror_bits": "0x00000000",
+      "chi_sym": 0.0,
+      "neg_chi_bits": "0x80000000",
+      "ordered_acceptance_false": true,
+      "value_equal": true
+    },
+    "R4_interpolating_mirror_canary": {
+      "formula": "abs(chi_secondary_production(m_bad(x)) + chi_secondary_production(x))",
+      "max": 6.3714709877967834,
+      "mean": 0.7186069953221013,
+      "min": 5.91278076171875e-05,
+      "n": 1000,
+      "n_exceeding_threshold": 939,
+      "threshold": 0.01,
+      "verdict": "PASS"
+    },
+    "R5_raw_flip_imbalance": {
+      "counts": {
+        "0.0": 1000
+      },
+      "dA_raw": 0.0,
+      "formula": "mean((sign(w(x)) + sign(w(mirror(x)))) / 2)",
+      "sum": 0.0
+    },
+    "algorithm_code_sha256": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75",
+    "fresh_promised_probe_abstention": {
+      "abstention": 0.999,
+      "accepted": 1,
+      "by_snr": {
+        "10-20": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "n": 177,
+          "retention": 0.0
+        },
+        "2-5": {
+          "abstention": 0.9967532467532467,
+          "accepted": 1,
+          "n": 308,
+          "retention": 0.003246753246753247
+        },
+        "20-50": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "n": 289,
+          "retention": 0.0
+        },
+        "5-10": {
+          "abstention": 1.0,
+          "accepted": 0,
+          "n": 226,
+          "retention": 0.0
+        }
+      },
+      "n": 1000,
+      "retention": 0.001,
+      "tau": 5.916292121766702
+    },
+    "frozen_tau": 5.916292121766702,
+    "historical_production_heldout_abstention": {
+      "abstention": 0.9986666666666667,
+      "accepted": 16,
+      "by_snr": {
+        "10-20": {
+          "n": 2592,
+          "retention": 0.0
+        },
+        "2-5": {
+          "n": 3452,
+          "retention": 0.004055619930475087
+        },
+        "20-50": {
+          "n": 3362,
+          "retention": 0.0
+        },
+        "5-10": {
+          "n": 2594,
+          "retention": 0.0007710100231303007
+        }
+      },
+      "n": 12000,
+      "retention": 0.0013333333333333333,
+      "retention_lower95": 0.0008864588227278362,
+      "source": "prereg/receipt_results.json::secondary_retention",
+      "support": "uniform in inclination on 0 to 60 degrees; not a full b/a > 0.4 support estimate",
+      "tau": 5.916292121766702
+    },
+    "historical_spike_abstention": {
+      "abstention": 0.922,
+      "by_snr": {
+        "10.0": {
+          "abstention": 0.92,
+          "sign_accuracy_accepted": 1.0
+        },
+        "2.0": {
+          "abstention": 0.935,
+          "sign_accuracy_accepted": 0.6923076923076923
+        },
+        "25.0": {
+          "abstention": 0.905,
+          "sign_accuracy_accepted": 1.0
+        },
+        "5.0": {
+          "abstention": 0.945,
+          "sign_accuracy_accepted": 1.0
+        },
+        "50.0": {
+          "abstention": 0.905,
+          "sign_accuracy_accepted": 1.0
+        }
+      },
+      "n": 1000,
+      "reproducibility_caveat": "the historical runner used process-salted Python hash(...) for spiral noise seeds; its landed result is pinned by file hash but exact probe noise is not reconstructible from source without the missing PYTHONHASHSEED",
+      "source": "spike/yui_identity/results.json::E_calibration",
+      "tau": 4.198004717066903
+    },
+    "max_abs_chi_mirror_plus_chi": 0.0,
+    "null_manifest_sha256": "1963132f2f36e7aa42b08012aad02d2c541d6c0973740a5bbce6a6e7a2904bd1",
+    "production_receipt_runner_sha256": "eb41680c8425135662bf9d18cad1a12a4c752c137672f179e3e140f48656a028",
+    "validity_rule": "identity bit-exact; abstention published",
+    "verdict": "PASS"
+  },
+  "boundaries": {
+    "acceptance_or_freeze": false,
+    "commit_or_push": false,
+    "publication": false,
+    "real_object_rows": false,
+    "real_sky_data": false,
+    "sky_statistic": false,
+    "tau_recalibration": false,
+    "training_or_retraining": false,
+    "tuning_or_retry_to_pass": false
+  },
+  "elapsed_seconds": 60.63889503479004,
+  "environment": {
+    "deterministic_algorithms": true,
+    "numpy": "1.26.4",
+    "pid": 59511,
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "torch": "2.8.0",
+    "torch_interop_threads": 1,
+    "torch_threads": 1
+  },
+  "frozen_input_verification": {
+    "hashes": {
+      "prereg/KUN_REGATE_BS1_BS3_20260814.md": "e5bc40fc4368d813649534dd50dd9fe686b6200c244e7ffe4a457602ba483a66",
+      "prereg/PREREG_LONGO_AMPLITUDE_TEST_20260812.md": "ac43490054b159610385b8faac28dc4e3178161fadd97d66aa0418a1186b7590",
+      "prereg/YUI_PRODUCTION_ESTIMATOR_RECEIPT_20260812.md": "b4e2f5b5f92fc881ec2a0a35e84515fd05057c1051bff516cad7acae3609e18a",
+      "prereg/receipt_results.json": "d5d4a8bc005b031ed523e64a672237536896f37030722fd5cf71ff44a3405a04",
+      "prereg/train_results.json": "c36cd33001e432c60df786da8c0ff95b8ef5ab350a458b29d71ff084178a41fd",
+      "prereg/weights_frozen.pt": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d",
+      "prereg/yui_bs3_r4_r5_20260813/run_bs3_r4_r5.py": "de0f35355902f25497e240a413a087a1413d365342419b0be3fc15a7e5117914",
+      "prereg/yui_inclination_retention_remeasure_20260812/results.json": "414fbc5cb6fa050390f0a6bca69e02e81795ed2a3585928be19767f4cb3a59e2",
+      "prereg/yui_receipt_run.py": "eb41680c8425135662bf9d18cad1a12a4c752c137672f179e3e140f48656a028",
+      "spike/YUI_IDENTITY_UNITTEST_RECEIPT_20260812.md": "fc2d99f23cb8ac720558f14bc94537faffd4d3f9f1f810f840220c9be0b60c55",
+      "spike/yui_identity/results.json": "9e95861f8e02113ae97681f572b93a8dcbc27f16fa22214fb7971d3a0becab61",
+      "spike/yui_identity/run_identity_test.py": "c44813b73ee3cb92895d3d29c71c64d0a9860d5650e0cec4567ee215b12182e5",
+      "spike/yui_identity/w_chi.py": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
+    },
+    "value_checks": {
+      "canonical_weights_record": true,
+      "master_seed": true,
+      "null_manifest": true,
+      "primary_retention_full_support": true,
+      "primary_tau": true,
+      "secondary_historical_production_retention": true,
+      "secondary_spike_abstention": true,
+      "secondary_tau": true
+    }
+  },
+  "probe_set": {
+    "definition": "one-shot 1,000-probe extension of the landed production R1/R2 prefix",
+    "dtype": "float32",
+    "image_manifest_sha256": "35d679d4955d3657866bd64fe309a9a42b30ff8a61d1952d2a3795ee59231024",
+    "master_seed": "LONGO-AMPLITUDE-FREEZE-M1",
+    "n": 1000,
+    "prefix_200_manifest_sha256": "ab75d5f2ec08ad44fbcf1198d1612c23759f8d3aac29db044a181346ac43f9b2",
+    "prefix_matches_prior_production_receipt": true,
+    "raster": [
+      128,
+      128
+    ],
+    "source_index_end_inclusive": 3000999,
+    "source_index_start": 3000000
+  },
+  "records": {
+    "path": "prereg/yui_bs34_20260814/identity_probe_records.jsonl",
+    "rows": 1000,
+    "sha256": "b5ddea6397947f74156cdb9bf62038d72f983b765b4ba54a8e00052eb6550380"
+  },
+  "scope": "synthetic instrument probes and aggregate frozen receipts only; no sky/survey/object data",
+  "status": "PASS_BS3_IDENTITY_AND_BS4_IDENTITY_VALIDITY"
+}

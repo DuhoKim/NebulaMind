@@ -1,0 +1,148 @@
+{
+  "chirality_or_morphology_labels": 0,
+  "core_covariates": [
+    {
+      "covariate": "imaging_depth",
+      "coverage_basis": "pinned survey-bricks-dr10-south PSFDEPTH_R weighted by exact Cut-6 per-brick aggregate counts",
+      "drop_reason": null,
+      "eligible_parent_available": 831159,
+      "eligible_parent_missing": 1234,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 0.98766
+    },
+    {
+      "covariate": "seeing_psf",
+      "coverage_basis": "pinned survey-bricks-dr10-south PSFSIZE_R weighted by exact Cut-6 per-brick aggregate counts",
+      "drop_reason": null,
+      "eligible_parent_available": 831173,
+      "eligible_parent_missing": 1220,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 0.9878
+    },
+    {
+      "covariate": "galactic_extinction",
+      "coverage_basis": "DR10.1 South sweep EBV aggregate validity census",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "stellar_density",
+      "coverage_basis": "Gaia DR3 gaia_source PHOT_G_MEAN_MAG<19 counts on complete Nside=128 RING ICRS grid; zero is a defined count",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "crowding",
+      "coverage_basis": "DR10.1 South sweep neighbour count within 30 arcsec; every accepted object necessarily has the bound catalogue coordinate used for its cutout",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "angular_size",
+      "coverage_basis": "DR10.1 South sweep SHAPE_R aggregate validity census",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "axis_ratio",
+      "coverage_basis": "DR10.1 South sweep SHAPE_E1/SHAPE_E2 aggregate validity census and frozen b/a transform",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "colour_g_minus_r",
+      "coverage_basis": "DR10.1 South sweep positive FLUX_G/FLUX_R and MW_TRANSMISSION_G/R aggregate validity census",
+      "drop_reason": null,
+      "eligible_parent_available": 832391,
+      "eligible_parent_missing": 2,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 0.99998
+    },
+    {
+      "covariate": "magnitude_r",
+      "coverage_basis": "DR10.1 South sweep positive FLUX_R and MW_TRANSMISSION_R aggregate validity census",
+      "drop_reason": null,
+      "eligible_parent_available": 832393,
+      "eligible_parent_missing": 0,
+      "product_defined": true,
+      "survives": true,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 1.0
+    },
+    {
+      "covariate": "arm_contrast",
+      "coverage_basis": "no s(x)/u(x)/arm-contrast product in the frozen BS-3 appendix; dropped",
+      "drop_reason": "product_not_defined",
+      "eligible_parent_available": 0,
+      "eligible_parent_missing": 832393,
+      "product_defined": false,
+      "survives": false,
+      "threshold": 0.95,
+      "worst_case_accepted_coverage": 0.0
+    }
+  ],
+  "deblend_flag_decision": {
+    "additional_fitbits_exclusion": "NONE",
+    "deblend_quality_covariate": "DROPPED",
+    "fitbits_field_available": 832393,
+    "reason": "DR10 documents FITBITS as fit peculiarities, not a single deblend-quality scalar; adding a post-count subset would change the frozen parent without a preregistered interpretation",
+    "selection_mask": "MASKBITS=0 (therefore BAILOUT bit 10 and SUB_BLOB bit 16, plus every other MASKBITS bit, are excluded)"
+  },
+  "eligible_parent_population": 832393,
+  "images": 0,
+  "maximum_missing_for_95_percent_gate": 5000,
+  "minimum_accepted_population": 100000,
+  "object_rows": 0,
+  "photoz_decision": {
+    "decision": "INCLUDE_AS_CONDITIONAL_ELEVENTH_COVARIATE",
+    "eligible_parent_available": 832393,
+    "not_counted_in_core_ten": true,
+    "product": "DESI Legacy DR10.1 South 10.1-photo-z sweeps / ls_dr10.photo_z Z_PHOT_MEDIAN",
+    "survives_coverage_gate": true,
+    "worst_case_accepted_coverage": 1.0
+  },
+  "positions": 0,
+  "recorded_utc": "2026-08-14T07:56:50Z",
+  "required_surviving_core_covariates": 8,
+  "sky_statistics": 0,
+  "source_receipts": {
+    "arm_contrast_audit_sha256": "a31b9b982b90ae06de9745e994e5b609c0243b4ebbd2a6adb6c2be6e1d14cf0f",
+    "brick_product_coverage_sha256": "4b16ab0a3ef7e0973a755e8b9cfb200064b3a9cde0359b6e324eb1cbc7afed97",
+    "direct_coverage_sha256": "999c89cb56f0da9df1eabb267dcd4825eb587e5d65e5c3c5e1a221c33b538722",
+    "independent_manifest_sha256": "5e3303969e91886c328208acdb81cca54ab3036fe277974fce14575cb6f1a809"
+  },
+  "status": "PASS",
+  "surviving_core_covariates": 9,
+  "validity_rule": "at least 8 of 10 core covariates have a defined product and worst-case coverage >=0.95 for any accepted sample with N>=100000"
+}

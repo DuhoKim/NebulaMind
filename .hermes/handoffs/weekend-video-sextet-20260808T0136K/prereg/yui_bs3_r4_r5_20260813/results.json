@@ -1,0 +1,111 @@
+{
+  "R4_interpolating_mirror_canary": {
+    "canary_transform": "scipy.ndimage.affine_transform reflection displaced 0.25 pixel from grid centreline; bilinear interpolation order=1; mode=nearest",
+    "max_abs_identity_violation": 1.5070748329162598,
+    "mean_abs_identity_violation": 0.3970843741297722,
+    "min_abs_identity_violation": 0.010587692260742188,
+    "n_exceeding_threshold": 200,
+    "n_probes": 200,
+    "pass_rule": "at least one abs(chi_production(m_bad(x)) + chi_production(x)) > 0.01",
+    "threshold": 0.01,
+    "verdict": "PASS_CANARY_DETECTS_INTERPOLATING_MIRROR"
+  },
+  "R5_flip_imbalance": {
+    "acceptance_mismatches_at_frozen_tau": 0,
+    "contribution_counts": {
+      "0.0": 197,
+      "1.0": 3
+    },
+    "dA_raw": 0.015,
+    "formula": "mean((sign(f(x)) + sign(f(mirror(x)))) / 2)",
+    "interpretation": "raw-trunk flip imbalance before architectural antisymmetrization; not a sky statistic and not the antisymmetrized estimator output",
+    "n_probes": 200,
+    "per_object_outputs_published_in": "prereg/yui_bs3_r4_r5_20260813/paired_probe_records.jsonl",
+    "sum_contributions": 3.0
+  },
+  "boundaries": {
+    "acceptance_or_freeze_decision": false,
+    "commit": false,
+    "publication": false,
+    "sky_run": false
+  },
+  "elapsed_seconds": 10.897249698638916,
+  "environment": {
+    "deterministic_algorithms": true,
+    "numpy": "1.26.4",
+    "pid": 40298,
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "scipy_affine_transform_module": "scipy.ndimage._interpolation",
+    "torch": "2.8.0",
+    "torch_num_interop_threads": 1,
+    "torch_num_threads": 1
+  },
+  "frozen_instrument": {
+    "generator_sha256": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75",
+    "master_seed": "LONGO-AMPLITUDE-FREEZE-M1",
+    "null_manifest_sha256": "1963132f2f36e7aa42b08012aad02d2c541d6c0973740a5bbce6a6e7a2904bd1",
+    "tau": 4.4006456017494235,
+    "tau_recalibrated_or_retuned": false,
+    "training_set_regenerated": false,
+    "weights_canonical_sha256": "1075a4d91c295d7f3256128534a0b8c4d097fb9d162169df1ac698843637a589",
+    "weights_file_sha256": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d",
+    "weights_retrained_or_modified": false
+  },
+  "input_verification": {
+    "hashes": {
+      "generator_sha256": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75",
+      "receipt_results_sha256": "d5d4a8bc005b031ed523e64a672237536896f37030722fd5cf71ff44a3405a04",
+      "retention_results_sha256": "414fbc5cb6fa050390f0a6bca69e02e81795ed2a3585928be19767f4cb3a59e2",
+      "train_results_sha256": "c36cd33001e432c60df786da8c0ff95b8ef5ab350a458b29d71ff084178a41fd",
+      "weights_file_sha256": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d"
+    },
+    "value_checks": {
+      "master_seed_matches": true,
+      "null_manifest_matches": true,
+      "operative_retention_matches": true,
+      "stored_canonical_hash_matches": true,
+      "tau_matches": true
+    }
+  },
+  "operative_retention": {
+    "accepted": 10349,
+    "lower95_one_sided_wilson": 0.8571626782674123,
+    "lower95_percent_rounded": 85.72,
+    "n": 12000,
+    "population": "uniform in cos(i), 0 <= i <= 69.3 degrees admitted by b/a > 0.4",
+    "retention": 0.8624166666666667,
+    "retention_percent_rounded": 86.24,
+    "superseded_number_not_operational": "96.44% / 96.15% came from synthetics uniform in inclination on 0-60 degrees"
+  },
+  "probe_set": {
+    "definition": "same 200 deterministic production probes used by R1/R2",
+    "dtype": "float32",
+    "image_manifest_sha256": "ab75d5f2ec08ad44fbcf1198d1612c23759f8d3aac29db044a181346ac43f9b2",
+    "n": 200,
+    "raster": [
+      128,
+      128
+    ],
+    "source_index_end_inclusive": 3000199,
+    "source_index_start_inclusive": 3000000
+  },
+  "production_path_recheck": {
+    "R1_mirror_involution_byte_exact": "200/200",
+    "R2_antisymmetry_bit_exact_nonzero": "200/200",
+    "R2_antisymmetry_value_exact": "200/200",
+    "R2_nonzero_pairs": 200,
+    "R2_signed_zero_cases": 0,
+    "acceptance_mismatches_at_frozen_tau": 0,
+    "max_abs_chi_mirror_plus_chi": 0.0,
+    "max_abs_chi_pair_delta": 0.0,
+    "mirror": "pure width-axis pixel-index reversal"
+  },
+  "records": {
+    "path": "prereg/yui_bs3_r4_r5_20260813/paired_probe_records.jsonl",
+    "rows": 200,
+    "sha256": "8f8b973abe4685f76049de16b907e16bbc8e3be7c9061f7d349b655bd55b7e82"
+  },
+  "scope": "synthetic-only; no sky/catalogue/survey data",
+  "status": "COMPLETED_R4_R5_INSTRUMENT_RECEIPTS_NOT_FREEZE_ACCEPTANCE"
+}

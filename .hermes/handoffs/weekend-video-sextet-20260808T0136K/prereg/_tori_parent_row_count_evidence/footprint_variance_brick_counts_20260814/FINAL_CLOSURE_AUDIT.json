@@ -1,0 +1,78 @@
+{
+  "recorded_utc": "2026-08-14T06:47:28Z",
+  "recorded_kst": "2026-08-14T15:47:28+09:00",
+  "status": "PASS",
+  "route": "Lana Tier 3 exact post-Cut-6 counts per brick; geometry local",
+  "authorization": "Duho: yes, run it",
+  "server_acquisition": {
+    "partition_count": 67,
+    "submissions": 67,
+    "terminal_completed": 67,
+    "partition_receipts": 67,
+    "partition_results": 67,
+    "service_pressure_records": 0,
+    "worker_timeouts": 0,
+    "remote_job_losses": 0,
+    "aggregate_group_rows": 270577,
+    "population": 832393,
+    "expected_population": 832393,
+    "population_matches": true,
+    "trigonometric_terms_in_queries": 0,
+    "axis_terms_in_queries": 0,
+    "object_rows": 0,
+    "object_positions": 0
+  },
+  "local_reconstruction": {
+    "nonempty_bricks": 270577,
+    "missing_static_centres": 0,
+    "mean_cos_theta_center": -0.10911614165219373,
+    "mean_cos2_theta_center": 0.45710768048101724,
+    "variance_cos_theta_center": 0.4452013481119556,
+    "error_bracket": 0.0124,
+    "conservative_interval": [0.4328013481119556, 0.45760134811195563],
+    "threshold": 0.15,
+    "margin_above_threshold": 0.29520134811195564,
+    "required_twice_error_margin": 0.0248,
+    "verdict": "PASS",
+    "independent_recomputation": "PASS"
+  },
+  "guard": {
+    "state": "ARMED_AND_BYTE_IDENTICAL",
+    "exception_opened": false,
+    "sha256": "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51"
+  },
+  "closure": {
+    "worker_cli_closed": true,
+    "worker_post_path_closed": true,
+    "orchestrator_cli_closed": true,
+    "submission_count_before_closure_probe": 67,
+    "submission_count_after_closure_probe": 67,
+    "orchestrator_lock_free": true,
+    "active_variance_processes": 0,
+    "closed_worker_sha256": "5947956c18c50ab031218bbb9cff8edd25fe550927f46d133b4a5ddf7c0c945c",
+    "closed_orchestrator_sha256": "7718bbfe19f4ad856ba7e2dc13ff789bc1b3bae1e2560a664625602faeb6bb4b"
+  },
+  "hashes": {
+    "manifest": "2d85c044693633b6d9d74e9fae026965d16ed645708dcdff9781120267c3ed51",
+    "combined_per_brick_counts": "4e4ec45d83f156e8daa738d81cd71a1e140d4ccbadd5343dc0bb8ed9f2479aa0",
+    "local_geometry_result": "0d3c188410a77df1074d4525d0a6f369391cf8465449a0067a09acfdefb3692f",
+    "reconstruction_custody": "549a74e87b9f7c53e0b9fb924f6ed797c3f6dc403eab36fbd69763c12bd19678",
+    "independent_verification": "49109526ad41f856042bd043ba11c38af9e2d8558013beb62eb20bab78f19f19",
+    "final_receipt": "9f6955e3c625de3ed94ee06593661d1f3f8e196282572de2a989be9b082326c0",
+    "preserved_global_attempt": "ef995652531d35cf3dc68df542661f9c503b571be9d34e4423de0347c63bf20e",
+    "preserved_partition_attempt": "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289"
+  },
+  "repo": {
+    "branch": "feat/paper-workflow-v2",
+    "head": "88d315518336794cae0f05139b8a3c8daa17b802"
+  },
+  "boundary": {
+    "publication": 0,
+    "acceptance_action": 0,
+    "git_commit": 0,
+    "git_push": 0,
+    "git_merge": 0,
+    "cockpit_update": 0,
+    "database_write": 0
+  }
+}

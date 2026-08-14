@@ -1,0 +1,255 @@
+#!/usr/bin/env python3
+"""Run one hash-pinned, aggregate-only Longo-axis footprint-variance exception."""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import importlib.util
+import json
+import math
+import re
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+ORDINARY_GUARD_PATH = ROOT / "run_aggregate_tap.py"
+ASYNC_ENDPOINT = "https://datalab.noirlab.edu/tap/async"
+UWS = "{http://www.ivoa.net/xml/UWS/v1.0}"
+XLINK = "{http://www.w3.org/1999/xlink}href"
+EXPECTED_QUERY_SHA256 = "5d4c7812331419eff0ec7dca4e40f690203cb94cc71b6309d7b8694299249ff1"
+EXPECTED_COLUMNS = ["n_cut6_dered", "mean_cos_theta", "var_pop_cos_theta"]
+EXPECTED_POPULATION_COUNT = 832393
+SERVICE_PRESSURE_HTTP = {429, 502, 503, 504}
+
+
+def utc_now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def sha256_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def atomic_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    temporary.replace(path)
+
+
+def load_ordinary_guard():
+    spec = importlib.util.spec_from_file_location("ordinary_aggregate_guard", ORDINARY_GUARD_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load ordinary aggregate guard")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.validate_aggregate_only
+
+
+def projected_aliases(query: str) -> list[str]:
+    normalized = " ".join(query.split())
+    select = normalized[7 : normalized.upper().index(" FROM ")]
+    return re.findall(r"\bAS\s+([A-Za-z_][A-Za-z0-9_]*)\b", select, re.I)
+
+
+def validate_exception_query(query_bytes: bytes) -> None:
+    if sha256_bytes(query_bytes) != EXPECTED_QUERY_SHA256:
+        raise ValueError("query hash is not the single authorized exception hash")
+    query = query_bytes.decode("utf-8")
+    try:
+        load_ordinary_guard()(query)
+    except ValueError as exc:
+        if "sky-statistic/trigonometric construct forbidden" not in str(exc):
+            raise
+    else:
+        raise ValueError("exception query is not blocked by the ordinary guard")
+    upper = " ".join(query.upper().split())
+    if projected_aliases(query) != EXPECTED_COLUMNS:
+        raise ValueError("exception projection drift")
+    if upper.count("SELECT ") != 1 or " GROUP BY " in upper or "SELECT *" in upper:
+        raise ValueError("exception must return one aggregate row")
+    if any(re.search(rf"\b{word}\b", upper) for word in ("TOP", "LIMIT", "OFFSET", "INTO", "UPLOAD", "CREATE", "DROP", "DELETE", "UPDATE", "INSERT")):
+        raise ValueError("row export or mutation construct forbidden")
+    for signal_term in ("CHIRALITY", "HANDEDNESS", "CLOCKWISE", "COUNTERCLOCKWISE", "CW_CCW", "DIPOLE_AMPLITUDE"):
+        if signal_term in upper:
+            raise ValueError(f"signal-bearing term forbidden: {signal_term}")
+
+
+def http_request(url: str, *, data: dict[str, str] | None = None, timeout: int = 180, attempts: int = 8, retry_seconds: float = 15.0):
+    body = urllib.parse.urlencode(data).encode() if data is not None else None
+    for attempt in range(1, attempts + 1):
+        request = urllib.request.Request(url, data=body, headers={"User-Agent": "Tori-variance-custody/1.0"})
+        try:
+            with urllib.request.urlopen(request, timeout=timeout) as response:
+                return response.status, response.geturl(), response.read(), {k.lower(): v for k, v in response.headers.items()}
+        except urllib.error.HTTPError as exc:
+            payload = exc.read()
+            if exc.code not in SERVICE_PRESSURE_HTTP or attempt == attempts:
+                raise RuntimeError(f"HTTP {exc.code} for {url}: {payload[:1000]!r}") from exc
+            time.sleep(retry_seconds)
+    raise AssertionError("unreachable")
+
+
+def submit_once(query: str):
+    request = urllib.request.Request(
+        ASYNC_ENDPOINT,
+        data=urllib.parse.urlencode({"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv", "phase": "RUN", "QUERY": query}).encode(),
+        headers={"User-Agent": "Tori-variance-custody/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            return response.status, response.geturl(), response.read(), {k.lower(): v for k, v in response.headers.items()}
+    except urllib.error.HTTPError as exc:
+        payload = exc.read()
+        raise RuntimeError(f"single submission failed HTTP {exc.code}: {payload[:1000]!r}; no automatic resubmission permitted") from exc
+    except Exception as exc:
+        raise RuntimeError("single submission transport outcome ambiguous; no automatic resubmission permitted") from exc
+
+
+def parse_phase(job_url: str) -> str:
+    return http_request(job_url + "/phase")[2].decode().strip()
+
+
+def run(query_path: Path, output_dir: Path, poll_seconds: float, max_wait_seconds: int) -> None:
+    query_bytes = query_path.read_bytes()
+    validate_exception_query(query_bytes)
+    query = query_bytes.decode("utf-8")
+    output_dir.mkdir(parents=True, exist_ok=False)
+    lifecycle_path = output_dir / "guard_lifecycle.json"
+    ordinary_guard_hash_before = sha256_bytes(ORDINARY_GUARD_PATH.read_bytes())
+    lifecycle = {
+        "authorization": "Duho narrow one-query footprint-variance exception, relayed by user in this session",
+        "ordinary_guard_path": str(ORDINARY_GUARD_PATH),
+        "ordinary_guard_sha256_before": ordinary_guard_hash_before,
+        "ordinary_guard_verified_rejects_query_before": True,
+        "exception_query_sha256": EXPECTED_QUERY_SHA256,
+        "exception_state": "OPEN",
+        "opened_utc": utc_now(),
+        "submission_attempts": 0,
+        "submission_limit": 1,
+    }
+    atomic_json(lifecycle_path, lifecycle)
+    try:
+        lifecycle["submission_attempts"] = 1
+        atomic_json(lifecycle_path, lifecycle)
+        status, final_url, _, headers = submit_once(query)
+        if status not in (200, 201, 303):
+            raise RuntimeError(f"unexpected create status {status}")
+        job_url = headers.get("location", final_url).rstrip("/")
+        if "/tap/async/" not in job_url:
+            raise RuntimeError(f"unexpected job URL {job_url}")
+        started = utc_now()
+        submission = {
+            "recorded_utc": started,
+            "endpoint": ASYNC_ENDPOINT,
+            "job_url": job_url,
+            "query_path": str(query_path.resolve()),
+            "query_sha256": EXPECTED_QUERY_SHA256,
+            "submission_attempts": 1,
+            "submission_limit": 1,
+        }
+        atomic_json(output_dir / "submission.json", submission)
+        phase = parse_phase(job_url)
+        if phase == "PENDING":
+            http_request(job_url + "/phase", data={"PHASE": "RUN"})
+        deadline = time.monotonic() + max_wait_seconds
+        phases: list[dict[str, str]] = []
+        while True:
+            phase = parse_phase(job_url)
+            phases.append({"timestamp_utc": utc_now(), "phase": phase})
+            if phase in {"COMPLETED", "ERROR", "ABORTED"}:
+                break
+            if time.monotonic() >= deadline:
+                raise TimeoutError(f"same job still {phase}; resume job_url without resubmission: {job_url}")
+            time.sleep(poll_seconds)
+        job_xml = http_request(job_url)[2]
+        (output_dir / "job.xml").write_bytes(job_xml)
+        if phase != "COMPLETED":
+            raise RuntimeError(f"job ended {phase}: {job_xml[:4000]!r}")
+        root = ET.fromstring(job_xml)
+        result = root.find(f"{UWS}results/{UWS}result")
+        if result is None or XLINK not in result.attrib:
+            raise RuntimeError("completed job has no result URL")
+        result_url = result.attrib[XLINK]
+        result_bytes = http_request(result_url, timeout=300)[2]
+        if len(result_bytes) > 100_000:
+            raise RuntimeError("aggregate response unexpectedly large")
+        rows = list(csv.DictReader(result_bytes.decode("utf-8").splitlines()))
+        if len(rows) != 1 or list(rows[0]) != EXPECTED_COLUMNS:
+            raise RuntimeError("expected exactly one three-column aggregate row")
+        n = int(rows[0]["n_cut6_dered"])
+        mean = float(rows[0]["mean_cos_theta"])
+        variance = float(rows[0]["var_pop_cos_theta"])
+        if n != EXPECTED_POPULATION_COUNT:
+            raise RuntimeError(f"coordinate-valid Cut-6 count mismatch: {n} != {EXPECTED_POPULATION_COUNT}")
+        if not (math.isfinite(mean) and -1 <= mean <= 1):
+            raise RuntimeError(f"invalid mean cos(theta): {mean}")
+        if not (math.isfinite(variance) and 0 <= variance <= 1):
+            raise RuntimeError(f"invalid population variance: {variance}")
+        (output_dir / "query.adql").write_bytes(query_bytes)
+        (output_dir / "result.csv").write_bytes(result_bytes)
+        receipt = {
+            "authorization_scope": "one server-side aggregate geometry check over the exact dered Cut-6 population",
+            "started_utc": started,
+            "completed_utc": utc_now(),
+            "endpoint": ASYNC_ENDPOINT,
+            "job_url": job_url,
+            "result_url": result_url,
+            "phases": phases,
+            "query_sha256": EXPECTED_QUERY_SHA256,
+            "result_sha256": sha256_bytes(result_bytes),
+            "job_xml_sha256": sha256_bytes(job_xml),
+            "result_row_count": 1,
+            "result_columns": EXPECTED_COLUMNS,
+            "population_count_expected": EXPECTED_POPULATION_COUNT,
+            "population_count_returned": n,
+            "mean_cos_theta": mean,
+            "var_pop_cos_theta": variance,
+            "threshold": 0.15,
+            "threshold_met": variance >= 0.15,
+            "sample_rows_exported": 0,
+            "positions_exported": 0,
+            "images_requested": 0,
+            "chirality_computed": False,
+            "handedness_joined_or_referenced": False,
+            "directional_outputs_beyond_authorized_moments": 0,
+        }
+        atomic_json(output_dir / "receipt.json", receipt)
+        print(json.dumps({"phase": phase, "job_url": job_url, "result": rows[0]}, sort_keys=True))
+    finally:
+        ordinary_guard_hash_after = sha256_bytes(ORDINARY_GUARD_PATH.read_bytes())
+        rejected_after = False
+        try:
+            load_ordinary_guard()(query)
+        except ValueError as exc:
+            rejected_after = "sky-statistic/trigonometric construct forbidden" in str(exc)
+        lifecycle.update({
+            "exception_state": "CLOSED",
+            "closed_utc": utc_now(),
+            "ordinary_guard_sha256_after": ordinary_guard_hash_after,
+            "ordinary_guard_unchanged": ordinary_guard_hash_after == ordinary_guard_hash_before,
+            "ordinary_guard_verified_rejects_query_after": rejected_after,
+        })
+        atomic_json(lifecycle_path, lifecycle)
+        if ordinary_guard_hash_after != ordinary_guard_hash_before or not rejected_after:
+            raise RuntimeError("ordinary guard restoration verification failed")
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_path", type=Path)
+    parser.add_argument("output_dir", type=Path)
+    parser.add_argument("--poll-seconds", type=float, default=15.0)
+    parser.add_argument("--max-wait-seconds", type=int, default=7200)
+    args = parser.parse_args()
+    run(args.query_path, args.output_dir, args.poll_seconds, args.max_wait_seconds)
+
+
+if __name__ == "__main__":
+    main()

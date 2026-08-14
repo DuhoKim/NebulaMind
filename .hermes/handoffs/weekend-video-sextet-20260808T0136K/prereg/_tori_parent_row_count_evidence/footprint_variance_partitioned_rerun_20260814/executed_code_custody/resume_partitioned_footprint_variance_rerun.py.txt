@@ -1,0 +1,153 @@
+#!/usr/bin/env python3
+"""Resume the three exact 2026-08-14 rerun jobs after local wrapper loss."""
+from __future__ import annotations
+
+import hashlib
+import importlib.util
+import json
+import time
+from datetime import datetime, timezone
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+ORCHESTRATOR_PATH = ROOT / "run_partitioned_footprint_variance_rerun.py"
+SCOPE = ROOT / "footprint_variance_partitioned_rerun_20260814"
+MANIFEST_PATH = SCOPE / "manifest.json"
+LIFECYCLE_PATH = SCOPE / "guard_lifecycle.json"
+EXPECTED_JOB_COUNT = 3
+
+
+def load_orchestrator():
+    spec = importlib.util.spec_from_file_location("pinned_variance_rerun", ORCHESTRATOR_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load pinned rerun orchestrator")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+ORCH = load_orchestrator()
+
+
+def parse_utc(value: str) -> datetime:
+    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def format_utc(value: datetime) -> str:
+    return value.astimezone(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def progress_anchor(
+    manifest: dict,
+    *,
+    current_utc: datetime | None = None,
+    current_monotonic: float | None = None,
+) -> tuple[float, str, set[str]]:
+    current_utc = current_utc or datetime.now(timezone.utc)
+    current_monotonic = time.monotonic() if current_monotonic is None else current_monotonic
+    submissions: list[datetime] = []
+    scheduler_progress: list[datetime] = []
+    seen_executing_jobs: set[str] = set()
+    for entry in manifest["entries"]:
+        run_dir = Path(entry["run_dir"])
+        submission_path = run_dir / "submission.json"
+        if submission_path.exists():
+            submission = json.loads(submission_path.read_text())
+            recorded = submission.get("recorded_utc")
+            if recorded:
+                submissions.append(parse_utc(recorded))
+        poll_path = run_dir / "poll_history.json"
+        if poll_path.exists():
+            poll = json.loads(poll_path.read_text())
+            job_url = poll.get("job_url")
+            for item in poll.get("phases", []):
+                if item.get("phase") in {"EXECUTING", "COMPLETED"} and item.get("timestamp_utc"):
+                    scheduler_progress.append(parse_utc(item["timestamp_utc"]))
+                    if job_url:
+                        seen_executing_jobs.add(job_url)
+        receipt_path = run_dir / "receipt.json"
+        if receipt_path.exists():
+            receipt = json.loads(receipt_path.read_text())
+            completed = receipt.get("completed_utc")
+            if completed:
+                scheduler_progress.append(parse_utc(completed))
+    if scheduler_progress:
+        anchor = max(scheduler_progress)
+    elif submissions:
+        anchor = min(submissions)
+    else:
+        anchor = current_utc
+    elapsed = max(0.0, (current_utc - anchor).total_seconds())
+    return current_monotonic - elapsed, format_utc(anchor), seen_executing_jobs
+
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_resume_custody(manifest: dict) -> None:
+    if not LIFECYCLE_PATH.exists():
+        raise RuntimeError("rerun lifecycle missing")
+    lifecycle = json.loads(LIFECYCLE_PATH.read_text())
+    if lifecycle.get("exception_state") != "OPEN":
+        raise RuntimeError("rerun lifecycle is not OPEN")
+    if lifecycle.get("manifest_sha256") != sha(MANIFEST_PATH):
+        raise RuntimeError("rerun lifecycle manifest hash mismatch")
+    if manifest.get("orchestrator_sha256") != sha(ORCHESTRATOR_PATH):
+        raise RuntimeError("pinned rerun orchestrator hash mismatch")
+    submissions = []
+    for entry in manifest["entries"]:
+        run_dir = Path(entry["run_dir"])
+        path = run_dir / "submission.json"
+        if not path.exists():
+            continue
+        if (run_dir / "receipt.json").exists() or (run_dir / "result.csv").exists():
+            raise RuntimeError("recovery expected zero landed results")
+        submission = json.loads(path.read_text())
+        if submission.get("query_sha256") != entry["query_sha256"]:
+            raise RuntimeError("recovery submission query hash mismatch")
+        submissions.append(submission)
+    if len(submissions) != EXPECTED_JOB_COUNT:
+        raise RuntimeError(f"recovery expected {EXPECTED_JOB_COUNT} exact jobs, found {len(submissions)}")
+    if len({submission["job_url"] for submission in submissions}) != EXPECTED_JOB_COUNT:
+        raise RuntimeError("recovery job URLs are not unique")
+
+
+def main() -> None:
+    manifest = json.loads(MANIFEST_PATH.read_text())
+    verify_resume_custody(manifest)
+    anchor_monotonic, anchor_utc, seen = progress_anchor(manifest)
+    recovery = {
+        "recorded_utc": format_utc(datetime.now(timezone.utc)),
+        "classification": "resume_exact_jobs_after_local_wrapper_loss",
+        "manifest_sha256": sha(MANIFEST_PATH),
+        "orchestrator_sha256": sha(ORCHESTRATOR_PATH),
+        "recovery_runner_sha256": sha(Path(__file__).resolve()),
+        "job_count": EXPECTED_JOB_COUNT,
+        "queue_clock_anchor_utc": anchor_utc,
+        "previously_executing_job_urls": sorted(seen),
+        "replacement_submissions_authorized_or_made": 0,
+    }
+    ORCH.atomic_json(SCOPE / "RECOVERY_CUSTODY_20260814.json", recovery)
+
+    real_monotonic = ORCH.time.monotonic
+    first_call = True
+
+    def seeded_monotonic() -> float:
+        nonlocal first_call
+        if first_call:
+            first_call = False
+            ORCH.time.monotonic = real_monotonic
+            return anchor_monotonic
+        return real_monotonic()
+
+    ORCH.time.monotonic = seeded_monotonic
+    print(json.dumps({"recovery": recovery}, sort_keys=True), flush=True)
+    try:
+        ORCH.main()
+    finally:
+        ORCH.time.monotonic = real_monotonic
+
+
+if __name__ == "__main__":
+    main()

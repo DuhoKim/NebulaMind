@@ -1,0 +1,85 @@
+{
+  "authorization": "Duho: yes, run it",
+  "recorded_utc": "2026-08-14T06:08:41Z",
+  "recorded_kst": "2026-08-14T15:08:41+09:00",
+  "route": "Lana Tier 3 exact per-brick post-Cut-6 counts; all geometry local",
+  "required_audits": {
+    "GORU_VARIANCE_APPROACH_AUDIT.md": "3dba46c58bc2c01920c22af273f36cbbe1358e5c1375b9e8b23aa9c49acf0a15",
+    "KUN_VARIANCE_APPROACH_AUDIT.md": "e14c76a4bf45f8d3535ff50d5f761ddc9af3de4c4f538a660b5653cfc1a3dc17",
+    "LANA_VARIANCE_APPROACH_AUDIT.md": "04738a649b9d0533ce6070a5b8327839de7878250f092c517e950bba248b2c44"
+  },
+  "source_range_manifest": {
+    "path": "../footprint_variance_partitioned_20260813/manifest.json",
+    "sha256": "076131fff15c0338cce689b4742cd64631f855e2a04398dc2d527b0962edda93",
+    "partition_count": 67,
+    "coverage": {"lo": 1, "hi": 662174}
+  },
+  "successful_count_sweep_manifest": {
+    "path": "../partitions/remaining_121001_662174/manifest.json",
+    "sha256": "665738a20a9e754ee190297a421a1438d33bb563e53ea67b64feb634c250b7ef",
+    "shape_reused": "partitioned aggregate counting over BRICKID ranges"
+  },
+  "server_query_contract": {
+    "columns": ["brickid", "n_cut6_dered"],
+    "grouping": "exact post-Cut-6 count per brickid",
+    "trigonometry": 0,
+    "axis_terms": 0,
+    "angular_terms": 0,
+    "object_rows": 0,
+    "positions": 0,
+    "chirality": 0,
+    "handedness_spin_cw_ccw": 0,
+    "images": 0
+  },
+  "guard_contract": {
+    "ordinary_guard_state": "ARMED_AND_BYTE_IDENTICAL",
+    "ordinary_guard_sha256": "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51",
+    "exception_opened": false,
+    "grouped_count_route": "dedicated fail-closed validator allowing only brickid plus COUNT(*) grouped by brickid"
+  },
+  "static_brick_product": {
+    "url": "https://portal.nersc.gov/cfs/cosmo/data/legacysurvey/dr10/south/survey-bricks-dr10-south.fits.gz",
+    "published_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+    "content_length_bytes": 104480980,
+    "last_modified": "Fri, 15 Dec 2023 19:26:48 GMT",
+    "required_columns": ["brickid", "ra", "dec"]
+  },
+  "frozen_population": {
+    "name": "dered Cut-6",
+    "expected_total": 832393
+  },
+  "local_geometry": {
+    "long_axis_galactic_degrees": {"l": 52.0, "b": 68.5},
+    "frozen_equatorial_degrees": {"ra": 216.984434295527, "dec": 32.060611193471},
+    "brick_half_diagonal_degrees": 0.177,
+    "brick_half_diagonal_radians_bound": 0.00309,
+    "variance_error_bracket": 0.0124,
+    "threshold": 0.15,
+    "twice_error_bracket": 0.0248,
+    "decision_rule": {
+      "PASS": "V_center - 0.15 >= 0.0248",
+      "FAIL": "V_center + 0.0124 < 0.15",
+      "INCONCLUSIVE": "otherwise; report measured value and escalate"
+    }
+  },
+  "execution": {
+    "max_concurrent": 3,
+    "service_pressure_backoff": "serial on HTTP 429/502/503/504",
+    "queue_stall_seconds": 1800,
+    "queue_stall_definition": "all active jobs stationary PENDING/QUEUED, no EXECUTING phase, and no completed partition for 1800 seconds",
+    "stop_rule": {
+      "coverage": true,
+      "service_pressure_judgement": true,
+      "deadline_utc": "2026-08-14T13:00:00Z",
+      "deadline_kst": "2026-08-14T22:00:00+09:00",
+      "first_of": true
+    }
+  },
+  "receipt_target": "../../TORI_FOOTPRINT_VARIANCE_RECEIPT.md",
+  "preserved_attempt_receipts": {
+    "../../TORI_FOOTPRINT_VARIANCE_ATTEMPT_20260813.md": "ef995652531d35cf3dc68df542661f9c503b571be9d34e4423de0347c63bf20e",
+    "../../TORI_FOOTPRINT_VARIANCE_PARTITIONED_ATTEMPT_20260814.md": "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289"
+  },
+  "prior_unresolved_receipt_sha256": "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289",
+  "publication_acceptance_commit_push_authorized": false
+}

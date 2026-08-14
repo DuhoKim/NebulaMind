@@ -1,0 +1,50 @@
+{
+  "axis_equatorial_degrees": {
+    "dec": 32.060611193471,
+    "ra": 216.984434295527
+  },
+  "axis_unit_vector": {
+    "x": -0.6769717798726217,
+    "y": -0.5098465358556564,
+    "z": 0.5308160878610231
+  },
+  "binding_decision_rule": {
+    "FAIL": "V_center + 0.0124 < 0.15",
+    "INCONCLUSIVE": "otherwise; report measured value and escalate",
+    "PASS": "V_center - 0.15 >= 0.0248"
+  },
+  "brick_half_diagonal_degrees": 0.177,
+  "brick_half_diagonal_radians_bound": 0.00309,
+  "conservative_object_variance_interval": {
+    "lower": 0.4328013481119556,
+    "upper": 0.45760134811195563
+  },
+  "lipschitz_variance_error_bracket": 0.0124,
+  "local_geometry_only": true,
+  "margin_above_threshold": 0.29520134811195564,
+  "maximum_cos_theta_center": 0.9999988623867118,
+  "mean_cos2_theta_center": 0.45710768048101724,
+  "mean_cos_theta_center": -0.10911614165219373,
+  "method": "Lana Tier 3 exact post-Cut-6 counts per brick; geometry local at frozen brick centres",
+  "minimum_cos_theta_center": -0.9999988623867118,
+  "nonempty_bricks": 270577,
+  "object_rows_exported": 0,
+  "population": 832393,
+  "positions_exported_from_object_table": 0,
+  "server_side_axis_terms": 0,
+  "server_side_trigonometry": 0,
+  "static_product": {
+    "matched_nonempty_bricks": 270577,
+    "required_columns": [
+      "brickid",
+      "ra",
+      "dec"
+    ],
+    "static_table_rows": 366912,
+    "static_unique_brickids": 366912
+  },
+  "threshold": 0.15,
+  "twice_error_bracket": 0.0248,
+  "variance_cos_theta_center": 0.4452013481119556,
+  "verdict": "PASS"
+}

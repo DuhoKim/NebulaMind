@@ -1,0 +1,256 @@
+#!/usr/bin/env python3
+"""Submit exactly one immutable aggregate-moment scheduler canary, then close its guard."""
+from __future__ import annotations
+
+import argparse
+import hashlib
+import importlib.util
+import json
+import re
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from pathlib import Path
+from typing import Callable
+
+ASYNC_ENDPOINT = "https://datalab.noirlab.edu/tap/async"
+EXPECTED_MANIFEST_SHA256 = "076131fff15c0338cce689b4742cd64631f855e2a04398dc2d527b0962edda93"
+EXPECTED_QUERY_SHA256 = "0d626704d44d8be36f6f3de45c57ad3eb377e9e5ec53608f01b11393560cbd98"
+EXPECTED_GUARD_SHA256 = "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51"
+EXPECTED_COLUMNS = ["n_cut6_dered", "sum_cos_theta", "sum_cos2_theta"]
+CANARY_RANGE = {"lo": 1, "hi": 10000}
+AUTHORIZATION = (
+    "Duho: yes, set the canary; exactly one existing aggregate-moment partition, "
+    "scheduler probe only, no automatic full-manifest launch"
+)
+FORBIDDEN_SIGNAL_FIELDS = re.compile(
+    r"\b(chirality|handedness|spin|cw|ccw|clockwise|counterclockwise|dipole)\b",
+    re.IGNORECASE,
+)
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def sha(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def atomic_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    temporary.replace(path)
+
+
+def load_guard_validator(guard_path: Path):
+    spec = importlib.util.spec_from_file_location("ordinary_aggregate_guard", guard_path)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load ordinary aggregate guard")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    validator = getattr(module, "validate_aggregate_only", None)
+    if not callable(validator):
+        raise RuntimeError("ordinary guard lacks validate_aggregate_only")
+    return validator
+
+
+def require_guard_rejection(guard_path: Path, query: str) -> None:
+    validator = load_guard_validator(guard_path)
+    try:
+        validator(query)
+    except ValueError as exc:
+        if "sky-statistic/trigonometric construct forbidden" not in str(exc):
+            raise RuntimeError(f"ordinary guard rejected for unexpected reason: {exc}") from exc
+    else:
+        raise RuntimeError("ordinary guard unexpectedly accepted canary query")
+
+
+def projected_aliases(query: str) -> list[str]:
+    normalized = " ".join(query.split())
+    upper = normalized.upper()
+    select_clause = normalized[7 : upper.index(" FROM ")]
+    return re.findall(r"\bAS\s+([A-Za-z_][A-Za-z0-9_]*)\b", select_clause, re.IGNORECASE)
+
+
+def validate_canary_query(query_path: Path, manifest_path: Path, guard_path: Path) -> dict:
+    if sha(manifest_path) != EXPECTED_MANIFEST_SHA256:
+        raise ValueError("67-partition manifest hash drift")
+    manifest = json.loads(manifest_path.read_text())
+    if manifest.get("partition_count") != 67 or len(manifest.get("entries", [])) != 67:
+        raise ValueError("not the frozen 67-partition manifest")
+    query_hash = sha(query_path)
+    if query_hash != EXPECTED_QUERY_SHA256:
+        raise ValueError("query hash differs from the one authorized canary query")
+    matches = [
+        entry
+        for entry in manifest["entries"]
+        if entry.get("lo") == CANARY_RANGE["lo"]
+        and entry.get("hi") == CANARY_RANGE["hi"]
+        and entry.get("query_sha256") == query_hash
+        and Path(entry.get("query_path", "")).resolve() == query_path.resolve()
+    ]
+    if len(matches) != 1:
+        raise ValueError("one authorized canary query is not one unique manifest entry")
+    if sha(guard_path) != EXPECTED_GUARD_SHA256:
+        raise ValueError("ordinary aggregate guard hash drift")
+    query = query_path.read_text()
+    require_guard_rejection(guard_path, query)
+    if projected_aliases(query) != EXPECTED_COLUMNS:
+        raise ValueError("canary aggregate projection drift")
+    upper = query.upper()
+    if upper.count("SELECT") != 1 or upper.count("COUNT(") != 1 or upper.count("SUM(") != 2:
+        raise ValueError("canary must return exactly n, SUM(x), and SUM(x*x)")
+    if "AVG(" in upper or "GROUP BY" in upper or "SELECT *" in upper:
+        raise ValueError("non-additive or row-shaped output forbidden")
+    if FORBIDDEN_SIGNAL_FIELDS.search(query):
+        raise ValueError("signal-bearing field forbidden")
+    if "T.RA AS" in upper or "T.DEC AS" in upper:
+        raise ValueError("position projection forbidden")
+    return matches[0]
+
+
+def submission_form(query: str) -> bytes:
+    return urllib.parse.urlencode(
+        {"REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv", "phase": "RUN", "QUERY": query}
+    ).encode()
+
+
+def run(
+    query_path: Path,
+    manifest_path: Path,
+    guard_path: Path,
+    output_dir: Path,
+    *,
+    opener: Callable = urllib.request.urlopen,
+) -> dict:
+    raise RuntimeError(
+        "Canary submission path is CLOSED after its one authorized POST; "
+        "executed bytes are retained under footprint_variance_canary_20260814/executed_code_custody/"
+    )
+    protected = [
+        output_dir / name
+        for name in (
+            "submission.json",
+            "guard_lifecycle.json",
+            "submission_ambiguous.json",
+            "result.csv",
+            "canary_result_receipt.json",
+        )
+    ]
+    occupied = [str(path) for path in protected if path.exists()]
+    if occupied:
+        raise RuntimeError(f"canary output already occupied; second submission forbidden: {occupied}")
+    entry = validate_canary_query(query_path, manifest_path, guard_path)
+    query_bytes = query_path.read_bytes()
+    query = query_bytes.decode()
+    guard_before = sha(guard_path)
+    lifecycle_path = output_dir / "guard_lifecycle.json"
+    lifecycle = {
+        "authorization": AUTHORIZATION,
+        "exception_state": "OPEN",
+        "opened_utc": now(),
+        "submission_limit": 1,
+        "submissions_made": 0,
+        "manifest_sha256": sha(manifest_path),
+        "query_sha256": sha(query_path),
+        "submitter_sha256": sha(Path(__file__)),
+        "brickid_range": CANARY_RANGE,
+        "ordinary_guard_sha256_before": guard_before,
+        "ordinary_guard_verified_rejects_query_before": True,
+        "object_rows_authorized": 0,
+        "positions_authorized": 0,
+        "images_authorized": 0,
+        "extra_directional_outputs_authorized": 0,
+        "full_manifest_auto_launches_authorized": 0,
+    }
+    atomic_json(lifecycle_path, lifecycle)
+    submission: dict | None = None
+    failure: BaseException | None = None
+    try:
+        request = urllib.request.Request(
+            ASYNC_ENDPOINT,
+            data=submission_form(query),
+            headers={"User-Agent": "Tori-footprint-scheduler-canary/1.0"},
+            method="POST",
+        )
+        try:
+            with opener(request, timeout=180) as response:
+                location = response.headers.get("Location", response.geturl()).rstrip("/")
+                status = int(response.status)
+        except BaseException as exc:
+            failure = exc
+            atomic_json(
+                output_dir / "submission_ambiguous.json",
+                {
+                    "recorded_utc": now(),
+                    "classification": "submission_outcome_ambiguous_no_replacement",
+                    "query_sha256": sha(query_path),
+                    "error_type": type(exc).__name__,
+                    "error_text": str(exc)[:2000],
+                },
+            )
+        else:
+            if status not in (200, 201, 303) or "/tap/async/" not in location:
+                failure = RuntimeError(f"unexpected canary submission response: {status} {location}")
+            else:
+                submission = {
+                    "recorded_utc": now(),
+                    "authorization": AUTHORIZATION,
+                    "endpoint": ASYNC_ENDPOINT,
+                    "http_status": status,
+                    "job_url": location,
+                    "query_path": str(query_path.resolve()),
+                    "query_sha256": sha(query_path),
+                    "manifest_path": str(manifest_path.resolve()),
+                    "manifest_sha256": sha(manifest_path),
+                    "brickid_range": entry,
+                    "submission_attempts": 1,
+                    "canary_only": True,
+                    "full_manifest_auto_launches": 0,
+                    "object_rows_exported": 0,
+                    "positions_exported": 0,
+                }
+                atomic_json(output_dir / "submission.json", submission)
+                lifecycle["submissions_made"] = 1
+    finally:
+        guard_after = sha(guard_path)
+        require_guard_rejection(guard_path, query)
+        lifecycle.update(
+            {
+                "exception_state": "CLOSED",
+                "closed_utc": now(),
+                "ordinary_guard_sha256_after": guard_after,
+                "ordinary_guard_unchanged": guard_before == guard_after,
+                "ordinary_guard_verified_rejects_query_after": True,
+                "submission_outcome": "created" if submission else "ambiguous_or_failed",
+            }
+        )
+        atomic_json(lifecycle_path, lifecycle)
+    if not lifecycle["ordinary_guard_unchanged"]:
+        raise RuntimeError("ordinary guard changed during canary exception")
+    if failure is not None:
+        raise RuntimeError("canary submission did not produce one custodial job; replacement forbidden") from failure
+    if submission is None:
+        raise RuntimeError("canary submission did not produce one custodial job")
+    print(json.dumps(submission, sort_keys=True))
+    return submission
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_path", type=Path)
+    parser.add_argument("manifest_path", type=Path)
+    parser.add_argument("guard_path", type=Path)
+    parser.add_argument("output_dir", type=Path)
+    args = parser.parse_args()
+    run(args.query_path, args.manifest_path, args.guard_path, args.output_dir)
+
+
+if __name__ == "__main__":
+    main()

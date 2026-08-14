@@ -1,0 +1,48 @@
+{
+  "recorded_utc": "2026-08-12T11:14:57Z",
+  "authorization": "Duho authorized one fixed-range Cut 6 aggregate pass over BRICKID 1..121000 only",
+  "orchestrator": {
+    "pid": 61942,
+    "command": "exec python3 -u run_cut6_fixed_range.py >> cut6_fixed_000001_121000/orchestrator.log 2>&1",
+    "cwd": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence",
+    "sole_lock_holder_verified": true,
+    "duplicate_orchestrators": 0
+  },
+  "manifest": {
+    "path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/cut6_fixed_000001_121000/manifest.json",
+    "sha256": "b157e6c84ed91e77612caa6c0ada173324d9a42193f69777829a60354fd9fc89",
+    "partition_count": 13,
+    "start_brickid": 1,
+    "stop_brickid": 121000,
+    "no_coverage_extension": true
+  },
+  "initial_jobs": [
+    {
+      "range": "1-1000",
+      "job_url": "https://datalab.noirlab.edu/tap/async/kxmtbldln1sjcyxz",
+      "phase": "EXECUTING",
+      "query_sha256": "7220d3457ee012d6084a240d79011999d73b475df381e23d532a1378a1b6a759"
+    },
+    {
+      "range": "1001-11000",
+      "job_url": "https://datalab.noirlab.edu/tap/async/wur7mn8e48b7meqt",
+      "phase": "EXECUTING",
+      "query_sha256": "94bcae18a68c73b534329533abbcc6704edb90b7148fe194666a1da6c62f44cd"
+    },
+    {
+      "range": "11001-21000",
+      "job_url": "https://datalab.noirlab.edu/tap/async/zhqkqqdbu3om6idr",
+      "phase": "EXECUTING",
+      "query_sha256": "d7d367f5454cf223249043223a7b28f93dd873950338880e7c9ca4fccb64e393"
+    }
+  ],
+  "boundary": {
+    "sample_rows_exported": 0,
+    "positions_exported": 0,
+    "images_requested": 0,
+    "chirality_computed": false,
+    "sky_statistics_computed": false,
+    "bulk_downloads": 0,
+    "publication_commit_push": 0
+  }
+}

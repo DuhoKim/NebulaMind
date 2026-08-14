@@ -1,0 +1,39 @@
+{
+  "custody_recorded_utc": "2026-08-12T09:53:25Z",
+  "disclosed_operator": "Hwao, acting on Duho's explicit order to make the count sweep detached",
+  "command_as_disclosed": "nohup python3 run_partition_manifest.py",
+  "cwd": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence",
+  "stdout_stderr_log": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/partitions/orchestrator_nohup_hwao.log",
+  "pid_at_verification": 40694,
+  "ppid_at_verification": 1,
+  "lock_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/partitions/orchestrator.lock",
+  "lock_holder_verified": true,
+  "process_cwd_verified": true,
+  "script_manifest_query_receipt_edits_by_operator_disclosed": 0,
+  "only_disclosed_created_file": "partitions/orchestrator_nohup_hwao.log",
+  "tori_independent_verification": {
+    "orchestrator_command": "run_partition_manifest.py",
+    "configured_concurrency": 3,
+    "stop_parent_lower_bound": 200000,
+    "active_jobs_at_verification": [
+      {
+        "brickid_range": "21001..31000",
+        "job_id": "rmw4uhda1pbq05wg",
+        "phase": "EXECUTING"
+      },
+      {
+        "brickid_range": "31001..41000",
+        "job_id": "kpuxrb89pfm4pgy9",
+        "phase": "EXECUTING"
+      },
+      {
+        "brickid_range": "41001..51000",
+        "job_id": "fn140tun0ld7p4j7",
+        "phase": "EXECUTING"
+      }
+    ],
+    "service_backpressure_seen": false,
+    "duplicate_jobs_detected": false
+  },
+  "scope": "server-side aggregate counts only; no rows, positions, images, handedness, chirality, dipole, or sky statistic"
+}
