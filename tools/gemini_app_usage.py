@@ -53,6 +53,16 @@ BURN_TASKS = (
 )
 
 
+def _dh_g(days: int, hours: int) -> str:
+    """Correct singular/plural; omit a zero component."""
+    bits = []
+    if days:
+        bits.append(f"{days} day" + ("s" if days != 1 else ""))
+    if hours:
+        bits.append(f"{hours} hour" + ("s" if hours != 1 else ""))
+    return " ".join(bits) if bits else "under an hour"
+
+
 class ReadingError(ValueError):
     """A drop-file exists but does not carry a trustworthy reading."""
 
@@ -377,7 +387,7 @@ def build_gauge(reading: dict[str, Any] | None, now: datetime, observed_at: str)
         total_seconds = int(to_reset * 60)
         days = total_seconds // 86400
         hours = (total_seconds % 86400) // 3600
-        reset_text = f'remained {days} day {hours} hours'
+        reset_text = 'resets in ' + _dh_g(days, hours)
     else:
         rl = reset_label.lower().strip()
         if rl.startswith('in '):
@@ -391,9 +401,9 @@ def build_gauge(reading: dict[str, Any] | None, now: datetime, observed_at: str)
             total_mins = h * 60 + m
             d = total_mins // 1440
             hr = (total_mins % 1440) // 60
-            reset_text = f'remained {d} day {hr} hours'
+            reset_text = 'resets in ' + _dh_g(d, hr)
         else:
-            reset_text = f'remained {rl}'
+            reset_text = f'resets in {rl}'
         
     weekly_reset_text = None
     if weekly_used is not None:
@@ -403,7 +413,7 @@ def build_gauge(reading: dict[str, Any] | None, now: datetime, observed_at: str)
             weekly_seconds = int(weekly_minutes * 60)
             weekly_days = weekly_seconds // 86400
             weekly_hours = (weekly_seconds % 86400) // 3600
-            weekly_reset_text = f'remained {weekly_days} day {weekly_hours} hours'
+            weekly_reset_text = 'resets in ' + _dh_g(weekly_days, weekly_hours)
         else:
             weekly_reset_text = reading.get('weekly_reset_label') or 'weekly reset time not captured'
 

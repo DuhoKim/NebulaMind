@@ -1,0 +1,57 @@
+{
+  "recorded_utc": "2026-08-12T15:07:08Z",
+  "recorded_kst": "2026-08-13T00:07:08+09:00",
+  "decision": "resume unchanged 55-partition manifest serially after fixing unhandled HTTP 502 service-pressure path",
+  "orchestrator": {
+    "pid": 18279,
+    "tracker_session": "proc_d8bda7de461a",
+    "sole_lock_holder_verified": true,
+    "active_concurrency": 1
+  },
+  "incident_custody_sha256": "5c1470be396145c8948af2711d0a03efecce4af91e20a3ca5fde5cd61c59655d",
+  "manifest_sha256": "665738a20a9e754ee190297a421a1438d33bb563e53ea67b64feb634c250b7ef",
+  "preserved_landed": {
+    "partitions": 6,
+    "new_keyspace_units": 60000,
+    "contiguous_covered_hi": 181000,
+    "cumulative_keyspace_units": 181000,
+    "coverage_percent": 27.334205208902794,
+    "cumulative_cut5_dered": 309892,
+    "cumulative_cut6_dered": 255325
+  },
+  "first_recovery_partition": {
+    "range": [181001, 191000],
+    "old_lost_job_url": "https://datalab.noirlab.edu/tap/async/bfximpiaqlw727uy",
+    "old_job_post_incident_state": "HTTP 404 job not found",
+    "failed_attempt_archive": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/partitions/remaining_121001_662174/runs/run_181001_191000/tap/failed_attempts/attempt_20260812T150608Z",
+    "fresh_job_url": "https://datalab.noirlab.edu/tap/async/xiao65udmo1b2x7k",
+    "fresh_job_phase": "EXECUTING",
+    "query_sha256": "0f97694d1730ede189ca1a4548323ffe1d6f345ac98245c82b7756ee88eac4e8",
+    "fresh_submission_only_for_unlanded_range": true
+  },
+  "regression_verification": {
+    "remaining_service_recovery_test": "PASS",
+    "remaining_keyspace_contract_test": "PASS",
+    "remaining_receipt_test": "PASS",
+    "cut6_fixed_range_test": "PASS",
+    "cut6_receipt_test": "PASS",
+    "python_compile": "PASS"
+  },
+  "deadline_utc": "2026-08-12T21:00:00Z",
+  "deadline_kst": "2026-08-13T06:00:00+09:00",
+  "frozen_certificates": {
+    "parent_receipt_sha256": "df9357085d4cfd35320ab34346a1fb3080dc1e5ba1e3d86e2dc6231dbbf534f3",
+    "cut6_receipt_sha256": "ed6b6e5e957903473c7692d5973f3b2d05a991916ce3aa247365938b0f414651",
+    "unchanged": true
+  },
+  "boundary": {
+    "sample_rows_exported": 0,
+    "positions_exported": 0,
+    "images_requested": 0,
+    "chirality_computed": false,
+    "sky_statistics_computed": false,
+    "trigonometric_or_axis_relative_terms": 0,
+    "bulk_downloads": 0,
+    "publication_acceptance_commit_push": 0
+  }
+}

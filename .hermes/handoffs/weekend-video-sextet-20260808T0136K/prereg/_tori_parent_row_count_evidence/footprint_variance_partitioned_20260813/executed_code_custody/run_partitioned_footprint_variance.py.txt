@@ -1,0 +1,618 @@
+#!/usr/bin/env python3
+"""Run the freshly authorized partitioned Cut-6 Longo-axis variance aggregate."""
+from __future__ import annotations
+
+import csv
+import fcntl
+import hashlib
+import importlib.util
+import json
+import os
+import re
+import shutil
+import subprocess
+import sys
+import time
+import urllib.parse
+import urllib.request
+from datetime import datetime, timezone
+from decimal import Decimal, getcontext
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+PREREG = ROOT.parent
+SCOPE = ROOT / "footprint_variance_partitioned_20260813"
+QUERIES = SCOPE / "queries"
+RUNS = SCOPE / "runs"
+MANIFEST_PATH = SCOPE / "manifest.json"
+STATUS_PATH = SCOPE / "status.json"
+LOCK_PATH = SCOPE / "orchestrator.lock"
+LIFECYCLE_PATH = SCOPE / "guard_lifecycle.json"
+CONCURRENCY_CONTROL_PATH = SCOPE / "concurrency_control.json"
+FINAL_PATH = SCOPE / "FINAL_PARTITIONED_VARIANCE_RECONSTRUCTION_20260813.json"
+WORKER_PATH = ROOT / "run_footprint_variance_partition.py"
+ORDINARY_GUARD_PATH = ROOT / "run_aggregate_tap.py"
+GLOBAL_QUERY_PATH = ROOT / "footprint_variance_20260813" / "query.adql"
+ATTEMPT_HISTORY = PREREG / "TORI_FOOTPRINT_VARIANCE_ATTEMPT_20260813.md"
+START = 1
+STOP = 662174
+WIDTH = 10000
+MAX_CONCURRENT = 3
+POLL_SECONDS = 15
+MAX_WAIT_SECONDS = 7200
+DEADLINE_UTC = "2026-08-13T21:00:00Z"
+DEADLINE_KST = "2026-08-14T06:00:00+09:00"
+EXPECTED_POPULATION_COUNT = 832393
+EXPECTED_COLUMNS = ["n_cut6_dered", "sum_cos_theta", "sum_cos2_theta"]
+GLOBAL_QUERY_SHA256 = "5d4c7812331419eff0ec7dca4e40f690203cb94cc71b6309d7b8694299249ff1"
+ATTEMPT_HISTORY_SHA256 = "ef995652531d35cf3dc68df542661f9c503b571be9d34e4423de0347c63bf20e"
+ORDINARY_GUARD_SHA256 = "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51"
+CUT6 = "POWER(t.shape_e1,2) + POWER(t.shape_e2,2) < 0.1836734693877551"
+COS_EXPR = """COS(RADIANS(t.dec)) * COS(RADIANS(t.ra)) * (-0.6769717798726208)
+    + COS(RADIANS(t.dec)) * SIN(RADIANS(t.ra)) * (-0.5098465358556549)
+    + SIN(RADIANS(t.dec)) * 0.5308160878610257"""
+COS_EXPR_SHA256 = hashlib.sha256(COS_EXPR.encode()).hexdigest()
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def parse_utc(value: str) -> datetime:
+    return datetime.fromisoformat(value.replace("Z", "+00:00"))
+
+
+def sha_bytes(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def sha_path(path: Path) -> str:
+    return sha_bytes(path.read_bytes())
+
+
+def atomic_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    temporary.replace(path)
+
+
+def load_ordinary_guard():
+    spec = importlib.util.spec_from_file_location("ordinary_guard", ORDINARY_GUARD_PATH)
+    if spec is None or spec.loader is None:
+        raise RuntimeError("cannot load ordinary aggregate guard")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module.validate_aggregate_only
+
+
+def ranges() -> list[tuple[int, int]]:
+    values = []
+    lo = START
+    while lo <= STOP:
+        hi = min(lo + WIDTH - 1, STOP)
+        values.append((lo, hi))
+        lo = hi + 1
+    return values
+
+
+def projected_aliases(query: str) -> list[str]:
+    normalized = " ".join(query.split())
+    select = normalized[7 : normalized.upper().index(" FROM ")]
+    return re.findall(r"\bAS\s+([A-Za-z_][A-Za-z0-9_]*)\b", select, re.I)
+
+
+def render_query(lo: int, hi: int) -> str:
+    if (lo, hi) not in ranges():
+        raise ValueError("range outside partition manifest")
+    return f"""SELECT
+  COUNT(
+    {COS_EXPR}
+  ) AS n_cut6_dered,
+  SUM(
+    {COS_EXPR}
+  ) AS sum_cos_theta,
+  SUM(POWER(
+    {COS_EXPR},
+    2
+  )) AS sum_cos2_theta
+FROM ls_dr10.tractor_s AS t
+LEFT OUTER JOIN ls_dr10.photo_z AS p
+  ON t.ls_id = p.ls_id
+ AND t.release = p.release
+ AND t.brickid = p.brickid
+ AND t.objid = p.objid
+WHERE t.brickid BETWEEN {lo} AND {hi}
+  AND t.brick_primary = 1
+  AND t.maskbits = 0
+  AND t.type <> 'PSF'
+  AND t.flux_r > 0
+  AND p.z_phot_median >= 0
+  AND p.z_phot_median < 0.15
+  AND t.dered_mag_r < 17.7
+  AND t.shape_r > 1.5
+  AND {CUT6}
+"""
+
+
+def validate_exception_query(query_bytes: bytes, entry: dict) -> None:
+    if sha_bytes(query_bytes) != entry["query_sha256"]:
+        raise ValueError("query hash differs from immutable manifest")
+    query = query_bytes.decode()
+    try:
+        load_ordinary_guard()(query)
+    except ValueError as exc:
+        if "sky-statistic/trigonometric construct forbidden" not in str(exc):
+            raise
+    else:
+        raise ValueError("ordinary guard unexpectedly accepts exception query")
+    if projected_aliases(query) != EXPECTED_COLUMNS:
+        raise ValueError("aggregate projection drift")
+    if query.upper().count("SELECT") != 1 or query.upper().count("COUNT(") != 1 or query.upper().count("SUM(") != 2:
+        raise ValueError("aggregate shape drift")
+    if "AVG(" in query.upper() or "GROUP BY" in query.upper() or "SELECT *" in query.upper():
+        raise ValueError("query can return more than additive aggregate moments")
+    if query.count(CUT6) != 1:
+        raise ValueError("Cut-6 predicate drift")
+    marker = f"WHERE t.brickid BETWEEN {entry['lo']} AND {entry['hi']}"
+    if marker not in query:
+        raise ValueError("partition range drift")
+
+
+def verify_frozen_inputs() -> None:
+    expected = {
+        GLOBAL_QUERY_PATH: GLOBAL_QUERY_SHA256,
+        ATTEMPT_HISTORY: ATTEMPT_HISTORY_SHA256,
+        ORDINARY_GUARD_PATH: ORDINARY_GUARD_SHA256,
+    }
+    for path, expected_hash in expected.items():
+        if not path.exists() or sha_path(path) != expected_hash:
+            raise RuntimeError(f"frozen input missing or changed: {path}")
+
+
+def build_manifest(*, dry_run: bool = False) -> dict:
+    verify_frozen_inputs()
+    worker_hash = sha_path(WORKER_PATH)
+    entries = []
+    for lo, hi in ranges():
+        query = render_query(lo, hi)
+        query_bytes = query.encode()
+        query_path = QUERIES / f"query_{lo:06d}_{hi:06d}.adql"
+        run_dir = RUNS / f"run_{lo:06d}_{hi:06d}"
+        entry = {
+            "lo": lo,
+            "hi": hi,
+            "key_count": hi - lo + 1,
+            "query_path": str(query_path.resolve()),
+            "query_sha256": sha_bytes(query_bytes),
+            "run_dir": str(run_dir.resolve()),
+        }
+        validate_exception_query(query_bytes, entry)
+        entries.append(entry)
+        if not dry_run:
+            QUERIES.mkdir(parents=True, exist_ok=True)
+            if query_path.exists() and query_path.read_bytes() != query_bytes:
+                raise RuntimeError(f"refuse overwrite of nonidentical query: {query_path}")
+            if not query_path.exists():
+                query_path.write_bytes(query_bytes)
+    manifest = {
+        "created_utc": now(),
+        "authorization": "Fresh Duho authorization relayed by user: partitioned re-run of the same Cut-6 Longo-axis footprint variance",
+        "endpoint": "https://datalab.noirlab.edu/tap/async",
+        "coverage": {"lo": START, "hi": STOP},
+        "partition_count": len(entries),
+        "width": WIDTH,
+        "columns": EXPECTED_COLUMNS,
+        "combination": "variance = sum(sum_x2)/sum(n) - (sum(sum_x)/sum(n))^2",
+        "expected_population_count": EXPECTED_POPULATION_COUNT,
+        "global_query_sha256": GLOBAL_QUERY_SHA256,
+        "cos_expression_sha256": COS_EXPR_SHA256,
+        "ordinary_guard_sha256": ORDINARY_GUARD_SHA256,
+        "attempt_history_sha256": ATTEMPT_HISTORY_SHA256,
+        "worker_sha256": worker_hash,
+        "orchestrator_sha256": sha_path(Path(__file__).resolve()),
+        "max_concurrent": MAX_CONCURRENT,
+        "server_pressure_backoff": "serial",
+        "pressure_signals": ["HTTP_429", "HTTP_502", "HTTP_503", "HTTP_504", "UWS_QUEUED"],
+        "deadline_utc": DEADLINE_UTC,
+        "deadline_kst": DEADLINE_KST,
+        "entries": entries,
+    }
+    if dry_run:
+        return manifest
+    SCOPE.mkdir(parents=True, exist_ok=True)
+    if MANIFEST_PATH.exists():
+        existing = json.loads(MANIFEST_PATH.read_text())
+        for value in (existing, manifest):
+            value.pop("created_utc", None)
+        if existing != manifest:
+            raise RuntimeError("refuse overwrite of nonidentical partition manifest")
+    else:
+        atomic_json(MANIFEST_PATH, manifest)
+    return json.loads(MANIFEST_PATH.read_text())
+
+
+def parse_row(path: Path) -> dict[str, Decimal | int]:
+    rows = list(csv.DictReader(path.read_text().splitlines()))
+    if len(rows) != 1 or list(rows[0]) != EXPECTED_COLUMNS:
+        raise RuntimeError(f"result shape drift: {path}")
+    n = int(rows[0]["n_cut6_dered"])
+    first_text = rows[0]["sum_cos_theta"]
+    second_text = rows[0]["sum_cos2_theta"]
+    if n == 0:
+        if first_text not in ("", "0", "0.0") or second_text not in ("", "0", "0.0"):
+            raise RuntimeError(f"zero partition with nonzero moment: {path}")
+        first = Decimal(0)
+        second = Decimal(0)
+    else:
+        first = Decimal(first_text)
+        second = Decimal(second_text)
+    return {"n_cut6_dered": n, "sum_cos_theta": first, "sum_cos2_theta": second}
+
+
+def validate_completed(entry: dict) -> dict[str, Decimal | int] | None:
+    run_dir = Path(entry["run_dir"])
+    receipt_path = run_dir / "receipt.json"
+    result_path = run_dir / "result.csv"
+    if not receipt_path.exists() or not result_path.exists():
+        return None
+    receipt = json.loads(receipt_path.read_text())
+    if receipt["query_sha256"] != entry["query_sha256"] or receipt["result_sha256"] != sha_path(result_path):
+        raise RuntimeError(f"partition hash custody mismatch: {run_dir}")
+    if receipt["result_row_count"] != 1 or receipt["result_columns"] != EXPECTED_COLUMNS:
+        raise RuntimeError(f"partition shape custody mismatch: {run_dir}")
+    for key in ("object_rows_exported", "positions_exported", "images_requested", "extra_directional_outputs"):
+        if receipt[key] != 0:
+            raise RuntimeError(f"partition boundary violation {key}: {run_dir}")
+    return parse_row(result_path)
+
+
+def landed(manifest: dict) -> list[tuple[dict, dict[str, Decimal | int]]]:
+    values = []
+    for entry in manifest["entries"]:
+        row = validate_completed(entry)
+        if row is not None:
+            values.append((entry, row))
+    return values
+
+
+def combine_rows(rows: list[dict[str, Decimal | int]], *, require_expected_count: bool = True) -> dict:
+    getcontext().prec = 50
+    n = sum(int(row["n_cut6_dered"]) for row in rows)
+    first = sum((Decimal(row["sum_cos_theta"]) for row in rows), Decimal(0))
+    second = sum((Decimal(row["sum_cos2_theta"]) for row in rows), Decimal(0))
+    if require_expected_count and n != EXPECTED_POPULATION_COUNT:
+        raise RuntimeError(f"population count mismatch: {n} != {EXPECTED_POPULATION_COUNT}")
+    if n == 0:
+        raise RuntimeError("cannot reconstruct moments from zero population")
+    mean = first / Decimal(n)
+    variance = second / Decimal(n) - mean * mean
+    return {
+        "n_cut6_dered": n,
+        "sum_cos_theta": first,
+        "sum_cos2_theta": second,
+        "mean_cos_theta": mean,
+        "var_pop_cos_theta": variance,
+        "threshold": Decimal("0.15"),
+        "threshold_met": variance >= Decimal("0.15"),
+    }
+
+
+def status_value(manifest: dict, active: dict[int, dict], *, stop_reason: str | None = None) -> dict:
+    completed = landed(manifest)
+    rows = [row for _, row in completed]
+    partial = None
+    if rows and sum(int(row["n_cut6_dered"]) for row in rows) > 0:
+        partial = combine_rows(rows, require_expected_count=False)
+        partial = {key: str(value) if isinstance(value, Decimal) else value for key, value in partial.items()}
+    return {
+        "updated_utc": now(),
+        "result_status": "COMPLETE" if len(completed) == len(manifest["entries"]) else "PARTIAL",
+        "completed_partitions": len(completed),
+        "partition_count": len(manifest["entries"]),
+        "completed_keyspace_units": sum(entry["key_count"] for entry, _ in completed),
+        "full_keyspace_units": STOP,
+        "partial_running_totals": partial,
+        "active": [value["entry"] for value in active.values()],
+        "serial_mode": pressure_detected(manifest),
+        "deadline_utc": DEADLINE_UTC,
+        "stop_reason": stop_reason,
+    }
+
+
+def pressure_detected(manifest: dict) -> bool:
+    activated = None
+    if CONCURRENCY_CONTROL_PATH.exists():
+        control = json.loads(CONCURRENCY_CONTROL_PATH.read_text())
+        if control.get("mode") == "CONCURRENT_UNTIL_NEW_PRESSURE":
+            activated = parse_utc(control["activated_utc"])
+    for entry in manifest["entries"]:
+        run_dir = Path(entry["run_dir"])
+        paths = [run_dir / "service_pressure.json", *run_dir.glob("failed_attempts/*/service_pressure.json")]
+        for path in paths:
+            if not path.exists():
+                continue
+            receipt = json.loads(path.read_text())
+            events = receipt.get("events", [receipt])
+            for event in events:
+                detected = event.get("detected_utc")
+                if activated is None or detected is None or parse_utc(detected) >= activated:
+                    return True
+    return False
+
+
+def archive_lost_attempt(run_dir: Path, entry: dict) -> Path:
+    submission_path = run_dir / "submission.json"
+    if not submission_path.exists():
+        raise RuntimeError("lost remote job has no submission custody")
+    if (run_dir / "receipt.json").exists() or (run_dir / "result.csv").exists():
+        raise RuntimeError("refuse archive of landed partition")
+    submission = json.loads(submission_path.read_text())
+    if submission.get("query_sha256") != entry["query_sha256"]:
+        raise RuntimeError("lost attempt query hash mismatch")
+    stamp = now().replace(":", "").replace("-", "")
+    archive = run_dir / "failed_attempts" / f"attempt_{stamp}"
+    suffix = 1
+    while archive.exists():
+        archive = run_dir / "failed_attempts" / f"attempt_{stamp}_{suffix}"
+        suffix += 1
+    archive.mkdir(parents=True)
+    atomic_json(archive / "failure_record.json", {
+        "recorded_utc": now(),
+        "classification": "remote_job_lost",
+        "cause": "recorded UWS /phase URL returned HTTP 404 after service pressure",
+        "job_url": submission["job_url"],
+        "query_sha256": entry["query_sha256"],
+        "brickid_range": {"lo": entry["lo"], "hi": entry["hi"]},
+        "replacement_scope": "same immutable unlanded partition only",
+        "object_rows_exported": 0,
+        "positions_exported": 0,
+        "images_requested": 0,
+        "extra_directional_outputs": 0,
+    })
+    for name in (
+        "submission.json", "service_pressure.json", "worker_stdout.log", "worker_stderr.log",
+        "poll_history.json", "job.xml",
+    ):
+        path = run_dir / name
+        if path.exists():
+            shutil.move(str(path), archive / name)
+    return archive
+
+
+def recorded_job_is_lost(run_dir: Path) -> bool:
+    stderr_path = run_dir / "worker_stderr.log"
+    return stderr_path.exists() and bool(re.search(r"HTTP 404 .*?/phase", stderr_path.read_text()))
+
+
+def worker_command(entry: dict) -> list[str]:
+    run_dir = Path(entry["run_dir"])
+    command = [
+        sys.executable, str(WORKER_PATH), entry["query_path"], str(run_dir), str(MANIFEST_PATH),
+        "--poll-seconds", str(POLL_SECONDS), "--max-wait-seconds", str(MAX_WAIT_SECONDS),
+    ]
+    submission_path = run_dir / "submission.json"
+    if submission_path.exists():
+        submission = json.loads(submission_path.read_text())
+        if submission["query_sha256"] != entry["query_sha256"]:
+            raise RuntimeError("resume submission hash mismatch")
+        command += ["--resume-job-url", submission["job_url"]]
+    return command
+
+
+def launch(entry: dict) -> tuple[subprocess.Popen, object, object]:
+    run_dir = Path(entry["run_dir"])
+    run_dir.mkdir(parents=True, exist_ok=True)
+    stdout = (run_dir / "worker_stdout.log").open("ab")
+    stderr = (run_dir / "worker_stderr.log").open("ab")
+    process = subprocess.Popen(worker_command(entry), stdout=stdout, stderr=stderr)
+    return process, stdout, stderr
+
+
+def abort_job(entry: dict, reason: str) -> None:
+    run_dir = Path(entry["run_dir"])
+    submission_path = run_dir / "submission.json"
+    if not submission_path.exists() or (run_dir / "receipt.json").exists():
+        return
+    submission = json.loads(submission_path.read_text())
+    job_url = submission["job_url"]
+    record = {"requested_utc": now(), "reason": reason, "job_url": job_url, "query_sha256": entry["query_sha256"]}
+    try:
+        request = urllib.request.Request(
+            job_url + "/phase",
+            data=urllib.parse.urlencode({"PHASE": "ABORT"}).encode(),
+            headers={"User-Agent": "Tori-partitioned-deadline-abort/1.0"},
+        )
+        with urllib.request.urlopen(request, timeout=180) as response:
+            record["http_status"] = response.status
+            record["response_sha256"] = sha_bytes(response.read())
+        phase_request = urllib.request.Request(job_url + "/phase", method="GET")
+        with urllib.request.urlopen(phase_request, timeout=180) as response:
+            record["phase_after"] = response.read().decode().strip()
+    except Exception as exc:
+        record["abort_error"] = repr(exc)
+    atomic_json(run_dir / "deadline_abort.json", record)
+
+
+def open_lifecycle(manifest: dict) -> None:
+    if LIFECYCLE_PATH.exists():
+        existing = json.loads(LIFECYCLE_PATH.read_text())
+        if existing.get("exception_state") == "CLOSED":
+            raise RuntimeError("partition exception has already been consumed and closed")
+        return
+    first_query = Path(manifest["entries"][0]["query_path"]).read_text()
+    try:
+        load_ordinary_guard()(first_query)
+    except ValueError as exc:
+        if "sky-statistic/trigonometric construct forbidden" not in str(exc):
+            raise
+    else:
+        raise RuntimeError("ordinary guard did not reject partition query before opening")
+    atomic_json(LIFECYCLE_PATH, {
+        "authorization": manifest["authorization"],
+        "opened_utc": now(),
+        "exception_state": "OPEN",
+        "manifest_sha256": sha_path(MANIFEST_PATH),
+        "partition_count": len(manifest["entries"]),
+        "ordinary_guard_sha256_before": sha_path(ORDINARY_GUARD_PATH),
+        "ordinary_guard_verified_rejects_query_before": True,
+        "worker_sha256": sha_path(WORKER_PATH),
+    })
+
+
+def close_lifecycle(manifest: dict, stop_reason: str) -> None:
+    lifecycle = json.loads(LIFECYCLE_PATH.read_text())
+    first_query = Path(manifest["entries"][0]["query_path"]).read_text()
+    try:
+        load_ordinary_guard()(first_query)
+    except ValueError as exc:
+        verified = "sky-statistic/trigonometric construct forbidden" in str(exc)
+    else:
+        verified = False
+    after = sha_path(ORDINARY_GUARD_PATH)
+    lifecycle.update({
+        "closed_utc": now(),
+        "exception_state": "CLOSED",
+        "stop_reason": stop_reason,
+        "ordinary_guard_sha256_after": after,
+        "ordinary_guard_unchanged": after == lifecycle["ordinary_guard_sha256_before"] == ORDINARY_GUARD_SHA256,
+        "ordinary_guard_verified_rejects_query_after": verified,
+        "completed_partitions": len(landed(manifest)),
+        "partition_count": len(manifest["entries"]),
+    })
+    atomic_json(LIFECYCLE_PATH, lifecycle)
+    if not lifecycle["ordinary_guard_unchanged"] or not verified:
+        raise RuntimeError("ordinary guard restoration verification failed")
+
+
+def write_final(manifest: dict) -> dict:
+    completed = landed(manifest)
+    if len(completed) != len(manifest["entries"]):
+        raise RuntimeError("cannot finalize incomplete manifest")
+    combined = combine_rows([row for _, row in completed])
+    partitions = []
+    for entry, row in completed:
+        run_dir = Path(entry["run_dir"])
+        receipt = json.loads((run_dir / "receipt.json").read_text())
+        partitions.append({
+            "lo": entry["lo"], "hi": entry["hi"], "n_cut6_dered": row["n_cut6_dered"],
+            "sum_cos_theta": str(row["sum_cos_theta"]), "sum_cos2_theta": str(row["sum_cos2_theta"]),
+            "query_sha256": entry["query_sha256"], "result_sha256": receipt["result_sha256"],
+            "job_url": receipt["job_url"], "receipt_sha256": sha_path(run_dir / "receipt.json"),
+        })
+    result = {
+        "status": "COMPLETE",
+        "completed_utc": now(),
+        "coverage": {"lo": START, "hi": STOP},
+        "partition_count": len(partitions),
+        "manifest_sha256": sha_path(MANIFEST_PATH),
+        "ordinary_guard_sha256": sha_path(ORDINARY_GUARD_PATH),
+        "n_cut6_dered": combined["n_cut6_dered"],
+        "sum_cos_theta": str(combined["sum_cos_theta"]),
+        "sum_cos2_theta": str(combined["sum_cos2_theta"]),
+        "mean_cos_theta": str(combined["mean_cos_theta"]),
+        "var_pop_cos_theta": str(combined["var_pop_cos_theta"]),
+        "threshold": "0.15",
+        "threshold_met": combined["threshold_met"],
+        "combination": "variance = sum(sum_x2)/sum(n) - (sum(sum_x)/sum(n))^2",
+        "object_rows_exported": 0,
+        "positions_exported": 0,
+        "images_requested": 0,
+        "extra_directional_outputs": 0,
+        "partitions": partitions,
+    }
+    atomic_json(FINAL_PATH, result)
+    return result
+
+
+def main() -> None:
+    manifest = build_manifest()
+    LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
+    lock_file = LOCK_PATH.open("a+")
+    try:
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as exc:
+        raise RuntimeError("partition variance orchestrator already holds the lock") from exc
+
+    open_lifecycle(manifest)
+    active: dict[int, dict] = {}
+    stop_reason = "hard_failure"
+    try:
+        while True:
+            completed_count = len(landed(manifest))
+            if completed_count == len(manifest["entries"]):
+                write_final(manifest)
+                stop_reason = "coverage_complete"
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+            if datetime.now(timezone.utc) >= parse_utc(DEADLINE_UTC):
+                stop_reason = "deadline_reached"
+                for value in active.values():
+                    abort_job(value["entry"], stop_reason)
+                    value["process"].terminate()
+                for value in active.values():
+                    try:
+                        value["process"].wait(timeout=30)
+                    except subprocess.TimeoutExpired:
+                        value["process"].kill()
+                    value["stdout"].close()
+                    value["stderr"].close()
+                active.clear()
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+
+            serial = pressure_detected(manifest)
+            capacity = 1 if serial else MAX_CONCURRENT
+            running_entries = {(value["entry"]["lo"], value["entry"]["hi"]) for value in active.values()}
+            for entry in manifest["entries"]:
+                if len(active) >= capacity:
+                    break
+                if validate_completed(entry) is not None or (entry["lo"], entry["hi"]) in running_entries:
+                    continue
+                process, stdout, stderr = launch(entry)
+                active[process.pid] = {"process": process, "entry": entry, "stdout": stdout, "stderr": stderr}
+                running_entries.add((entry["lo"], entry["hi"]))
+
+            failed = None
+            for pid, value in list(active.items()):
+                code = value["process"].poll()
+                if code is None:
+                    continue
+                value["stdout"].close()
+                value["stderr"].close()
+                del active[pid]
+                if code != 0:
+                    run_dir = Path(value["entry"]["run_dir"])
+                    if recorded_job_is_lost(run_dir):
+                        archive_lost_attempt(run_dir, value["entry"])
+                        time.sleep(15)
+                    elif (run_dir / "service_pressure.json").exists() or (run_dir / "submission.json").exists():
+                        time.sleep(15)
+                    else:
+                        failed = value["entry"]
+                        break
+                elif validate_completed(value["entry"]) is None:
+                    failed = value["entry"]
+                    break
+            if failed is not None:
+                stop_reason = f"hard_failure_{failed['lo']}_{failed['hi']}"
+                for value in active.values():
+                    abort_job(value["entry"], stop_reason)
+                    value["process"].terminate()
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                raise RuntimeError(stop_reason)
+            atomic_json(STATUS_PATH, status_value(manifest, active))
+            time.sleep(5)
+    finally:
+        for value in active.values():
+            value["stdout"].close()
+            value["stderr"].close()
+        close_lifecycle(manifest, stop_reason)
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+        lock_file.close()
+
+    print(json.dumps({"stop_reason": stop_reason, "status": json.loads(STATUS_PATH.read_text())}, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

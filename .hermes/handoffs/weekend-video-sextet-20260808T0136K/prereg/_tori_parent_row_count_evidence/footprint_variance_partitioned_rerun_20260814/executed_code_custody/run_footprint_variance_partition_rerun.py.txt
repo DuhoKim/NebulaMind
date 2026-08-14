@@ -1,0 +1,161 @@
+#!/usr/bin/env python3
+"""Worker for the freshly authorized 2026-08-14 partitioned variance rerun."""
+from __future__ import annotations
+
+import argparse
+import importlib.machinery
+import importlib.util
+import json
+import time
+import urllib.parse
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+BASE_PATH = (
+    ROOT
+    / "footprint_variance_partitioned_20260813"
+    / "executed_code_custody"
+    / "run_footprint_variance_partition.py.txt"
+)
+_loader = importlib.machinery.SourceFileLoader("variance_partition_worker_base_20260814", str(BASE_PATH))
+_spec = importlib.util.spec_from_loader(_loader.name, _loader)
+if _spec is None:
+    raise RuntimeError("cannot load preserved partition worker")
+BASE = importlib.util.module_from_spec(_spec)
+_loader.exec_module(BASE)
+
+ASYNC_ENDPOINT = BASE.ASYNC_ENDPOINT
+EXPECTED_COLUMNS = BASE.EXPECTED_COLUMNS
+PRESSURE_CODES = (429, 502, 503, 504)
+UWS = BASE.UWS
+XLINK = BASE.XLINK
+RemoteHTTP = BASE.RemoteHTTP
+now = BASE.now
+digest = BASE.digest
+atomic_json = BASE.atomic_json
+pressure = BASE.pressure
+get = BASE.get
+submission_form = BASE.submission_form
+submit = BASE.submit
+entry_for = BASE.entry_for
+require_open_lifecycle = BASE.require_open_lifecycle
+validate_result = BASE.validate_result
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_path", type=Path)
+    parser.add_argument("output_dir", type=Path)
+    parser.add_argument("manifest_path", type=Path)
+    parser.add_argument("--resume-job-url")
+    parser.add_argument("--poll-seconds", type=float, default=15)
+    parser.add_argument("--max-wait-seconds", type=int, default=7200)
+    args = parser.parse_args()
+
+    require_open_lifecycle(args.manifest_path)
+    manifest = json.loads(args.manifest_path.read_text())
+    entry = entry_for(manifest, args.query_path)
+    query_bytes = args.query_path.read_bytes()
+    query_hash = digest(query_bytes)
+    if query_hash != entry["query_sha256"]:
+        raise RuntimeError("query differs from immutable manifest")
+    query = query_bytes.decode()
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    pressure_path = args.output_dir / "service_pressure.json"
+    submission_path = args.output_dir / "submission.json"
+    poll_history_path = args.output_dir / "poll_history.json"
+
+    if args.resume_job_url:
+        submission = json.loads(submission_path.read_text())
+        job_url = args.resume_job_url.rstrip("/")
+        if submission["job_url"] != job_url or submission["query_sha256"] != query_hash:
+            raise RuntimeError("resume custody mismatch")
+    else:
+        if any((args.output_dir / name).exists() for name in ("submission.json", "result.csv", "receipt.json")):
+            raise RuntimeError("fresh submission directory is not empty")
+        job_url, status = submit(query, pressure_path)
+        if status not in (200, 201, 303) or "/tap/async/" not in job_url:
+            raise RuntimeError(f"unexpected submission response: {status} {job_url}")
+        atomic_json(
+            submission_path,
+            {
+                "recorded_utc": now(),
+                "endpoint": ASYNC_ENDPOINT,
+                "job_url": job_url,
+                "query_path": str(args.query_path.resolve()),
+                "query_sha256": query_hash,
+                "submission_attempts": 1,
+            },
+        )
+
+    deadline = time.monotonic() + args.max_wait_seconds
+    phases: list[dict[str, str]] = []
+    while True:
+        phase = get(job_url + "/phase", pressure_path).decode().strip()
+        phases.append({"timestamp_utc": now(), "phase": phase})
+        atomic_json(poll_history_path, {"job_url": job_url, "phases": phases, "partial": True})
+        if phase == "QUEUED":
+            pressure(pressure_path, "UWS_QUEUED", "phase", job_url)
+        if phase in {"COMPLETED", "ERROR", "ABORTED"}:
+            break
+        if time.monotonic() >= deadline:
+            raise TimeoutError(f"job still {phase}; resume exact job URL")
+        time.sleep(args.poll_seconds)
+
+    job_xml = get(job_url, pressure_path)
+    args.output_dir.joinpath("job.xml").write_bytes(job_xml)
+    if phase != "COMPLETED":
+        raise RuntimeError(f"partition ended {phase}: {job_xml[:4000]!r}")
+    root = ET.fromstring(job_xml)
+    result_element = root.find(f"{UWS}results/{UWS}result")
+    if result_element is None or XLINK not in result_element.attrib:
+        raise RuntimeError("completed job has no result URL")
+    result_url = result_element.attrib[XLINK]
+    parsed = urllib.parse.urlsplit(result_url)
+    if parsed.hostname != "datalab.noirlab.edu" or parsed.scheme != "https":
+        raise RuntimeError("result URL outside Data Lab HTTPS custody")
+    result_bytes = get(result_url, pressure_path)
+    row = validate_result(result_bytes)
+
+    args.output_dir.joinpath("query.adql").write_bytes(query_bytes)
+    args.output_dir.joinpath("result.csv").write_bytes(result_bytes)
+    atomic_json(poll_history_path, {"job_url": job_url, "phases": phases, "partial": False})
+    atomic_json(
+        args.output_dir / "receipt.json",
+        {
+            "completed_utc": now(),
+            "endpoint": ASYNC_ENDPOINT,
+            "job_url": job_url,
+            "result_url": result_url,
+            "brickid_range": {"lo": entry["lo"], "hi": entry["hi"]},
+            "query_sha256": query_hash,
+            "result_sha256": digest(result_bytes),
+            "job_xml_sha256": digest(job_xml),
+            "result_row_count": 1,
+            "result_columns": EXPECTED_COLUMNS,
+            "n_cut6_dered": int(row["n_cut6_dered"]),
+            "sum_cos_theta": row["sum_cos_theta"],
+            "sum_cos2_theta": row["sum_cos2_theta"],
+            "aggregate_only": True,
+            "object_rows_exported": 0,
+            "positions_exported": 0,
+            "images_requested": 0,
+            "extra_directional_outputs": 0,
+        },
+    )
+    print(
+        json.dumps(
+            {
+                "phase": phase,
+                "job_url": job_url,
+                "range": {"lo": entry["lo"], "hi": entry["hi"]},
+                "row": row,
+            },
+            sort_keys=True,
+        )
+    )
+
+
+if __name__ == "__main__":
+    main()

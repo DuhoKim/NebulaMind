@@ -15,7 +15,7 @@ import hashlib
 import html
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any
 
@@ -183,6 +183,55 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
     ]
 
 
+
+_OBSERVED_RE = re.compile(r'(\d{4}-\d{2}-\d{2})(?:T(\d{2}):(\d{2}))?')
+
+
+def gauge_observed_age(source_label: str, kind: str = '', status: str = '') -> tuple[str, str]:
+    """Return (age_text, tone) for a gauge, from the timestamp inside its source_label.
+
+    Each provider card records when it was observed, but only inside prose
+    ("... observed 2026-08-14T04:59:49Z"). Nothing surfaced it, so a card whose
+    number was 39 days old looked identical to one refreshed a minute ago.
+    Added 2026-08-14 at Duho's request after exactly that: the Flow/Veo figure
+    had been carried since 2026-07-12 and nobody could tell.
+    """
+    if not source_label:
+        return ('observation time not recorded', 'stale')
+    # Some cards have no live surface by design -- documented plan/credit references
+    # rather than measurements. Ageing them red cries wolf and devalues the warning on
+    # cards that genuinely decayed. Added 2026-08-14: Flow/Veo showed "33 days ago" in
+    # red when nothing about it had gone out of date and no live source exists to poll.
+    haystack = f'{kind} {status} {source_label}'.lower()
+    is_reference = any(t in haystack for t in (
+        'not exposed', 'not captured', 'no live', 'documentation', 'planning'))
+    m = _OBSERVED_RE.search(source_label)
+    if not m:
+        return ('observation time not recorded', 'stale')
+    try:
+        if m.group(2):
+            when = datetime(int(m.group(1)[:4]), int(m.group(1)[5:7]), int(m.group(1)[8:10]),
+                                     int(m.group(2)), int(m.group(3)), tzinfo=timezone.utc)
+        else:
+            when = datetime(int(m.group(1)[:4]), int(m.group(1)[5:7]), int(m.group(1)[8:10]),
+                                     tzinfo=timezone.utc)
+    except ValueError:
+        return ('observation time not recorded', 'stale')
+    kst = when + timedelta(hours=9)
+    stamp = kst.strftime('%H:%M') if m.group(2) else kst.strftime('%d %b')
+    mins = (datetime.now(timezone.utc) - when).total_seconds() / 60
+    if is_reference:
+        return (f'reference \u00b7 verified {kst.strftime("%d %b %Y")} \u00b7 no live source to poll', 'reference')
+    if mins < 0:
+        return (f'observed just now ({stamp} KST)', 'fresh')
+    if mins < 90:
+        return (f'observed {int(mins)} min ago \u00b7 {stamp} KST', 'fresh')
+    hours = mins / 60
+    if hours < 36:
+        return (f'observed {int(hours)}h ago \u00b7 {stamp} KST', 'aging')
+    return (f'observed {int(hours / 24)} days ago \u00b7 {stamp} KST', 'stale')
+
+
 def render_provider_usage_gauges(canonical: dict[str, Any]) -> str:
     gauges = canonical.get('provider_usage_gauges') or provider_usage_limits_to_gauges(canonical.get('provider_usage_limits') or {})
     if not gauges:
@@ -222,6 +271,8 @@ def render_provider_usage_gauges(canonical: dict[str, Any]) -> str:
             f'{sub_gauge_html}'
             f'<p class="mut"><b>{esc(gauge.get("status", "Observed status"))}</b></p>'
             f'<p class="mut">{esc(gauge.get("detail"))}</p>'
+            f'<p class="gauge-observed {gauge_observed_age(gauge.get("source_label", ""), gauge.get("kind", ""), gauge.get("status", ""))[1]}">'
+            f'{esc(gauge_observed_age(gauge.get("source_label", ""), gauge.get("kind", ""), gauge.get("status", ""))[0])}</p>'
             f'<p class="marker">{esc(gauge.get("source_label", "pane-observed snapshot"))}</p>'
             '</div>'
         )
@@ -275,6 +326,39 @@ def render_artifacts(items: list[dict[str, Any]]) -> str:
     return ''.join(out)
 
 
+def render_septet(canonical: dict[str, Any]) -> str:
+    """Septet seat monitor. Added 2026-08-06 on Duho's ask.
+
+    The one thing this must show is a seat sitting idle beside a lane that owes work: on
+    2026-08-06 an amendment had its edits applied at 23:14 and was never resubmitted, and it
+    blocked a whole measurement sequence for eleven hours because nothing joined 'lane is stuck'
+    to 'nobody is working it'. Idle is rendered as a warning state, not a neutral one.
+    """
+    septet = canonical.get('septet') or {}
+    seats = septet.get('seats') or []
+    if not seats:
+        return '<div class="muted">no septet state recorded</div>'
+    cells = []
+    for seat in seats:
+        state = str(seat.get('state', 'unknown'))
+        working = state == 'WORKING'
+        blocked = bool(seat.get('owes'))
+        colour = '#2f6fa8' if working else ('#a8622f' if blocked else '#39414f')
+        detail = esc(seat.get('detail', ''))
+        cells.append(
+            f'<div style="border:1px solid {colour};border-radius:8px;padding:10px 12px">'
+            f'<div style="font-weight:600">{esc(seat.get("name"))}'
+            f'<span style="float:right;font-size:11px;color:{colour}">{esc(state)}</span></div>'
+            f'<div class="muted" style="font-size:12px;margin-top:4px">{esc(seat.get("role"))}</div>'
+            + (f'<div style="font-size:12px;margin-top:6px">{detail}</div>' if detail else '')
+            + '</div>')
+    warn = septet.get('warning')
+    warn_html = (f'<div style="margin-top:10px;color:#d69a66;font-size:13px">{esc(warn)}</div>'
+                 if warn else '')
+    return ('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));'
+            'gap:10px">' + ''.join(cells) + '</div>' + warn_html)
+
+
 def render_stable_cockpit_html(canonical: dict[str, Any], template_path: Path | None = None) -> str:
     validate_canonical(canonical)
     template = (template_path or DEFAULT_TEMPLATE_PATH).read_text()
@@ -317,6 +401,7 @@ def render_stable_cockpit_html(canonical: dict[str, Any], template_path: Path | 
         '__COPYABLE_STATE__': esc(copyable),
         '__UPDATED_AT_UTC__': esc(canonical.get('updated_at_utc')),
         '__ARTIFACT_LINKS__': render_artifacts(canonical.get('artifacts', [])),
+        '__SEPTET__': render_septet(canonical),
     }
     html_text = template
     for token, value in replacements.items():

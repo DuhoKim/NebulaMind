@@ -1,0 +1,10 @@
+[
+  {
+    "cause": "HTTP 502 Bad Gateway from nginx while polling three existing UWS /phase URLs",
+    "detected_utc": "2026-08-12T14:40:53Z",
+    "landed_partitions_preserved": 6,
+    "recovery_action": "resume same manifest serially; remotely lost job URLs require fresh submissions for unlanded ranges only",
+    "runner_defect": "HTTP 502 was omitted from pressure handling; children exited and the generic hard-failure branch stopped the orchestrator",
+    "stop_reason": "partition_failure_201001-211000"
+  }
+]

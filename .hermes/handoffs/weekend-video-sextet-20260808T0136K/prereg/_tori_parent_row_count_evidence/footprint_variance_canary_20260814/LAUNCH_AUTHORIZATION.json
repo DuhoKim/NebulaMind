@@ -1,0 +1,37 @@
+{
+  "authorization": "Duho: yes, set the canary",
+  "authorization_interpretation": "Latest controlling instruction: exactly one scheduler canary; do not auto-launch the full 67-partition run",
+  "recorded_utc": "2026-08-14T02:43:05Z",
+  "endpoint_health": {
+    "checked_utc": "2026-08-14T02:43:05Z",
+    "http_status": 200,
+    "elapsed_seconds": 0.500251
+  },
+  "canary": {
+    "brickid_lo": 1,
+    "brickid_hi": 10000,
+    "query_sha256": "0d626704d44d8be36f6f3de45c57ad3eb377e9e5ec53608f01b11393560cbd98",
+    "manifest_sha256": "076131fff15c0338cce689b4742cd64631f855e2a04398dc2d527b0962edda93",
+    "selection_reason": "First nonempty existing partition in the frozen 67-partition manifest; usable as an exact partial additive contribution if it lands; no new subpartition invented",
+    "expected_n_bracket_from_prior_counts": {
+      "lower": 2583,
+      "upper": 26464,
+      "lower_source_result_sha256": "54ad5e14560db369c161a56e058f6b2b6a89114b4c83ff62f6532acc3ab8ad7e",
+      "upper_superset_source_result_sha256": "22d0c2882ea558ba11e6f4ae2201d10ef2a43762046924ebe04ec9373598547d"
+    }
+  },
+  "ordinary_guard_sha256": "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51",
+  "submitter_sha256": "2b92b6a9b77202b800a438f3407064dc07c924158d55c88245ef32c7986c5d4a",
+  "monitor_sha256": "aa282350b2dec940778c8a72cacada0bce3db00794a9fc018bcf0660e524f290",
+  "poll_seconds": 300,
+  "observation_window_seconds": 10800,
+  "pending_window_action": "report and leave remote job sitting; do not abort",
+  "queue_open_action": "report and stop; do not auto-launch full manifest",
+  "submission_limit": 1,
+  "full_manifest_auto_launches_authorized": 0,
+  "object_rows_authorized": 0,
+  "positions_authorized": 0,
+  "images_authorized": 0,
+  "extra_directional_outputs_authorized": 0,
+  "variance_receipt_sha256_before": "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289"
+}

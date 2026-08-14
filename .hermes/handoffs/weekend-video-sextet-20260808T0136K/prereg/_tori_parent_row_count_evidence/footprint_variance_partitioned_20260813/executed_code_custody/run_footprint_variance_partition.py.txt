@@ -1,0 +1,240 @@
+#!/usr/bin/env python3
+"""Run one immutable aggregate-moment partition from the authorized manifest."""
+from __future__ import annotations
+
+import argparse
+import csv
+import hashlib
+import json
+import math
+import time
+import urllib.error
+import urllib.parse
+import urllib.request
+import xml.etree.ElementTree as ET
+from datetime import datetime, timezone
+from pathlib import Path
+
+ASYNC_ENDPOINT = "https://datalab.noirlab.edu/tap/async"
+EXPECTED_COLUMNS = ["n_cut6_dered", "sum_cos_theta", "sum_cos2_theta"]
+PRESSURE_CODES = (429, 502, 503, 504)
+UWS = "{http://www.ivoa.net/xml/UWS/v1.0}"
+XLINK = "{http://www.w3.org/1999/xlink}href"
+
+
+class RemoteHTTP(RuntimeError):
+    def __init__(self, code: int, url: str, body: bytes):
+        self.code = code
+        super().__init__(f"HTTP {code} for {url}: {body[:1000]!r}")
+
+
+def now() -> str:
+    return datetime.now(timezone.utc).isoformat(timespec="seconds").replace("+00:00", "Z")
+
+
+def digest(data: bytes) -> str:
+    return hashlib.sha256(data).hexdigest()
+
+
+def atomic_json(path: Path, value: object) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_suffix(path.suffix + ".tmp")
+    temporary.write_text(json.dumps(value, indent=2, sort_keys=True) + "\n")
+    temporary.replace(path)
+
+
+def pressure(path: Path, signal: str, stage: str, url: str) -> None:
+    value: dict[str, object] = json.loads(path.read_text()) if path.exists() else {"events": []}
+    events = value.get("events")
+    if not isinstance(events, list):
+        raise RuntimeError("service-pressure receipt has invalid event history")
+    event = {"detected_utc": now(), "signal": signal, "stage": stage, "url": url}
+    events.append(event)
+    value.update(event)
+    atomic_json(path, value)
+
+
+def get(url: str, pressure_path: Path, *, attempts: int = 8) -> bytes:
+    for attempt in range(1, attempts + 1):
+        request = urllib.request.Request(url, headers={"User-Agent": "Tori-partitioned-moments/1.0"}, method="GET")
+        try:
+            with urllib.request.urlopen(request, timeout=300) as response:
+                return response.read()
+        except urllib.error.HTTPError as exc:
+            body = exc.read()
+            if exc.code in PRESSURE_CODES:
+                pressure(pressure_path, f"HTTP_{exc.code}", "get", url)
+            if exc.code not in PRESSURE_CODES or attempt == attempts:
+                raise RemoteHTTP(exc.code, url, body) from exc
+            time.sleep(15)
+    raise AssertionError("unreachable")
+
+
+def submission_form(query: str) -> bytes:
+    return urllib.parse.urlencode({
+        "REQUEST": "doQuery", "LANG": "ADQL", "FORMAT": "csv", "phase": "RUN", "QUERY": query,
+    }).encode()
+
+
+def submit(query: str, pressure_path: Path) -> tuple[str, int]:
+    payload = submission_form(query)
+    request = urllib.request.Request(
+        ASYNC_ENDPOINT,
+        data=payload,
+        headers={"User-Agent": "Tori-partitioned-moments/1.0"},
+    )
+    try:
+        with urllib.request.urlopen(request, timeout=180) as response:
+            location = response.headers.get("Location", response.geturl()).rstrip("/")
+            return location, response.status
+    except urllib.error.HTTPError as exc:
+        body = exc.read()
+        if exc.code in PRESSURE_CODES:
+            pressure(pressure_path, f"HTTP_{exc.code}", "submission", ASYNC_ENDPOINT)
+        raise RemoteHTTP(exc.code, ASYNC_ENDPOINT, body) from exc
+    except Exception as exc:
+        raise RuntimeError("submission outcome ambiguous; automatic replacement forbidden") from exc
+
+
+def entry_for(manifest: dict, query_path: Path) -> dict:
+    resolved = str(query_path.resolve())
+    entries = [entry for entry in manifest["entries"] if entry["query_path"] == resolved]
+    if len(entries) != 1:
+        raise RuntimeError("query path is not one unique manifest entry")
+    return entries[0]
+
+
+def require_open_lifecycle(manifest_path: Path) -> None:
+    lifecycle_path = manifest_path.parent / "guard_lifecycle.json"
+    if not lifecycle_path.exists():
+        raise RuntimeError("partition exception lifecycle is missing")
+    lifecycle = json.loads(lifecycle_path.read_text())
+    if lifecycle.get("exception_state") != "OPEN":
+        raise RuntimeError("partition exception is not OPEN")
+    manifest_hash = digest(manifest_path.read_bytes())
+    if lifecycle.get("manifest_sha256") != manifest_hash:
+        raise RuntimeError("partition exception manifest hash mismatch")
+
+
+def validate_result(data: bytes) -> dict[str, str]:
+    if len(data) > 100_000:
+        raise RuntimeError("aggregate response unexpectedly large")
+    rows = list(csv.DictReader(data.decode().splitlines()))
+    if len(rows) != 1 or list(rows[0]) != EXPECTED_COLUMNS:
+        raise RuntimeError("expected one exact aggregate row")
+    row = rows[0]
+    n = int(row["n_cut6_dered"])
+    if n < 0:
+        raise RuntimeError("negative contributing count")
+    if n == 0:
+        if row["sum_cos_theta"] not in ("", "0", "0.0") or row["sum_cos2_theta"] not in ("", "0", "0.0"):
+            raise RuntimeError("zero population has nonzero moments")
+    else:
+        first = float(row["sum_cos_theta"])
+        second = float(row["sum_cos2_theta"])
+        if not math.isfinite(first) or not math.isfinite(second):
+            raise RuntimeError("nonfinite aggregate moment")
+        if abs(first) > n + 1e-7 or second < -1e-7 or second > n + 1e-7:
+            raise RuntimeError("aggregate moment outside unit-vector bounds")
+    return row
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("query_path", type=Path)
+    parser.add_argument("output_dir", type=Path)
+    parser.add_argument("manifest_path", type=Path)
+    parser.add_argument("--resume-job-url")
+    parser.add_argument("--poll-seconds", type=float, default=15)
+    parser.add_argument("--max-wait-seconds", type=int, default=5400)
+    args = parser.parse_args()
+
+    require_open_lifecycle(args.manifest_path)
+    manifest = json.loads(args.manifest_path.read_text())
+    entry = entry_for(manifest, args.query_path)
+    query_bytes = args.query_path.read_bytes()
+    query_hash = digest(query_bytes)
+    if query_hash != entry["query_sha256"]:
+        raise RuntimeError("query differs from immutable manifest")
+    query = query_bytes.decode()
+    args.output_dir.mkdir(parents=True, exist_ok=True)
+    pressure_path = args.output_dir / "service_pressure.json"
+    submission_path = args.output_dir / "submission.json"
+
+    if args.resume_job_url:
+        submission = json.loads(submission_path.read_text())
+        job_url = args.resume_job_url.rstrip("/")
+        if submission["job_url"] != job_url or submission["query_sha256"] != query_hash:
+            raise RuntimeError("resume custody mismatch")
+    else:
+        if any((args.output_dir / name).exists() for name in ("submission.json", "result.csv", "receipt.json")):
+            raise RuntimeError("fresh submission directory is not empty")
+        job_url, status = submit(query, pressure_path)
+        if status not in (200, 201, 303) or "/tap/async/" not in job_url:
+            raise RuntimeError(f"unexpected submission response: {status} {job_url}")
+        atomic_json(submission_path, {
+            "recorded_utc": now(),
+            "endpoint": ASYNC_ENDPOINT,
+            "job_url": job_url,
+            "query_path": str(args.query_path.resolve()),
+            "query_sha256": query_hash,
+            "submission_attempts": 1,
+        })
+
+    deadline = time.monotonic() + args.max_wait_seconds
+    phases: list[dict[str, str]] = []
+    while True:
+        phase = get(job_url + "/phase", pressure_path).decode().strip()
+        phases.append({"timestamp_utc": now(), "phase": phase})
+        if phase == "QUEUED":
+            pressure(pressure_path, "UWS_QUEUED", "phase", job_url)
+        if phase in {"COMPLETED", "ERROR", "ABORTED"}:
+            break
+        if time.monotonic() >= deadline:
+            atomic_json(args.output_dir / "poll_history.json", {"job_url": job_url, "phases": phases, "partial": True})
+            raise TimeoutError(f"job still {phase}; resume exact job URL")
+        time.sleep(args.poll_seconds)
+
+    job_xml = get(job_url, pressure_path)
+    args.output_dir.joinpath("job.xml").write_bytes(job_xml)
+    if phase != "COMPLETED":
+        raise RuntimeError(f"partition ended {phase}: {job_xml[:4000]!r}")
+    root = ET.fromstring(job_xml)
+    result_element = root.find(f"{UWS}results/{UWS}result")
+    if result_element is None or XLINK not in result_element.attrib:
+        raise RuntimeError("completed job has no result URL")
+    result_url = result_element.attrib[XLINK]
+    parsed = urllib.parse.urlsplit(result_url)
+    if parsed.hostname != "datalab.noirlab.edu" or parsed.scheme != "https":
+        raise RuntimeError("result URL outside Data Lab HTTPS custody")
+    result_bytes = get(result_url, pressure_path)
+    row = validate_result(result_bytes)
+
+    args.output_dir.joinpath("query.adql").write_bytes(query_bytes)
+    args.output_dir.joinpath("result.csv").write_bytes(result_bytes)
+    atomic_json(args.output_dir / "poll_history.json", {"job_url": job_url, "phases": phases, "partial": False})
+    atomic_json(args.output_dir / "receipt.json", {
+        "completed_utc": now(),
+        "endpoint": ASYNC_ENDPOINT,
+        "job_url": job_url,
+        "result_url": result_url,
+        "brickid_range": {"lo": entry["lo"], "hi": entry["hi"]},
+        "query_sha256": query_hash,
+        "result_sha256": digest(result_bytes),
+        "job_xml_sha256": digest(job_xml),
+        "result_row_count": 1,
+        "result_columns": EXPECTED_COLUMNS,
+        "n_cut6_dered": int(row["n_cut6_dered"]),
+        "sum_cos_theta": row["sum_cos_theta"],
+        "sum_cos2_theta": row["sum_cos2_theta"],
+        "aggregate_only": True,
+        "object_rows_exported": 0,
+        "positions_exported": 0,
+        "images_requested": 0,
+        "extra_directional_outputs": 0,
+    })
+    print(json.dumps({"phase": phase, "job_url": job_url, "range": {"lo": entry["lo"], "hi": entry["hi"]}, "row": row}, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

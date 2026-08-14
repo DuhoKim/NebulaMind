@@ -1,0 +1,53 @@
+{
+ "master_seed": "LONGO-AMPLITUDE-FREEZE-M1",
+ "train_manifest": {
+  "tag": "train-20000",
+  "n": 20000,
+  "manifest_sha256": "498a505c84bb6d70058299e05c78d3ac1f025042ec173c405b404743d2742872"
+ },
+ "null_manifest": {
+  "tag": "null-8000",
+  "n": 8000,
+  "manifest_sha256": "1963132f2f36e7aa42b08012aad02d2c541d6c0973740a5bbce6a6e7a2904bd1"
+ },
+ "heldout_manifest": {
+  "tag": "heldout-12000",
+  "n": 12000,
+  "manifest_sha256": "9b8607b7eb3b863d9f2527a474ec44d40a60cc81771a8bf499cdf1ce083f60ae"
+ },
+ "secondary_retention": {
+  "tau": 5.916292121766702,
+  "retention_central": 0.0013333333333333333,
+  "retention_lower95": 0.0008864588227278362,
+  "n": 12000,
+  "by_snr": {
+   "2-5": {
+    "retention": 0.004055619930475087,
+    "n": 3452
+   },
+   "5-10": {
+    "retention": 0.0007710100231303007,
+    "n": 2594
+   },
+   "10-20": {
+    "retention": 0.0,
+    "n": 2592
+   },
+   "20-50": {
+    "retention": 0.0,
+    "n": 3362
+   }
+  }
+ },
+ "receipts_production_raster_float32": {
+  "R1_mirror_involution_byte_exact": "200/200",
+  "R2_antisymmetry_bit_exact": "200/200",
+  "R3_signed_zero": {
+   "chi_sym": 0.0,
+   "chi_mirror_bits": "0x0",
+   "neg_chi_bits": "0x80000000",
+   "value_equal": true,
+   "bit_equal": false
+  }
+ }
+}

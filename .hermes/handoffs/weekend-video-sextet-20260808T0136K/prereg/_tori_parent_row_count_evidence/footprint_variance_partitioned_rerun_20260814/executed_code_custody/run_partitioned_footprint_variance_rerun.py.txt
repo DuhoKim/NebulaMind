@@ -1,0 +1,427 @@
+#!/usr/bin/env python3
+"""Freshly authorized 2026-08-14 rerun of the frozen 67-partition variance manifest."""
+from __future__ import annotations
+
+import fcntl
+import hashlib
+import importlib.machinery
+import importlib.util
+import json
+import signal
+import subprocess
+import time
+from datetime import datetime, timezone
+from decimal import Decimal
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parent
+PREREG = ROOT.parent
+SOURCE_SCOPE = ROOT / "footprint_variance_partitioned_20260813"
+SOURCE_MANIFEST_PATH = SOURCE_SCOPE / "manifest.json"
+SOURCE_MANIFEST_SHA256 = "076131fff15c0338cce689b4742cd64631f855e2a04398dc2d527b0962edda93"
+SCOPE = ROOT / "footprint_variance_partitioned_rerun_20260814"
+RUNS = SCOPE / "runs"
+MANIFEST_PATH = SCOPE / "manifest.json"
+STATUS_PATH = SCOPE / "status.json"
+QUEUE_WATCH_PATH = SCOPE / "queue_watch.json"
+LOCK_PATH = SCOPE / "orchestrator.lock"
+LIFECYCLE_PATH = SCOPE / "guard_lifecycle.json"
+FINAL_PATH = SCOPE / "FINAL_PARTITIONED_VARIANCE_RECONSTRUCTION_20260814.json"
+WORKER_PATH = ROOT / "run_footprint_variance_partition_rerun.py"
+ORDINARY_GUARD_PATH = ROOT / "run_aggregate_tap.py"
+GLOBAL_QUERY_PATH = ROOT / "footprint_variance_20260813/query.adql"
+GLOBAL_ATTEMPT_HISTORY = PREREG / "TORI_FOOTPRINT_VARIANCE_ATTEMPT_20260813.md"
+PARTITION_ATTEMPT_HISTORY = PREREG / "TORI_FOOTPRINT_VARIANCE_PARTITIONED_ATTEMPT_20260814.md"
+BASE_PATH = SOURCE_SCOPE / "executed_code_custody/run_partitioned_footprint_variance.py.txt"
+
+MAX_CONCURRENT = 3
+POLL_SECONDS = 15
+MAX_WAIT_SECONDS = 7200
+QUEUE_STALL_SECONDS = 45 * 60
+MAX_LOST_ATTEMPTS_PER_PARTITION = 2
+DEADLINE_UTC = "2026-08-14T09:00:00Z"
+DEADLINE_KST = "2026-08-14T18:00:00+09:00"
+EXPECTED_POPULATION_COUNT = 832393
+EXPECTED_COLUMNS = ["n_cut6_dered", "sum_cos_theta", "sum_cos2_theta"]
+PARTITION_ORDER = "ascending_contiguous"
+ORDINARY_GUARD_SHA256 = "228a045a9c896ca7bef6dc199e5988bbd0d222e5c027cdee3c1d6d23842a1a51"
+GLOBAL_ATTEMPT_SHA256 = "ef995652531d35cf3dc68df542661f9c503b571be9d34e4423de0347c63bf20e"
+PARTITION_ATTEMPT_SHA256 = "f26b507a2c28ec310d305877fdc5e24dcf0b09c5b7b4a3d2fa7970a79730c289"
+HTTP_PRESSURE_SIGNALS = {"HTTP_429", "HTTP_502", "HTTP_503", "HTTP_504"}
+
+_loader = importlib.machinery.SourceFileLoader("variance_orchestrator_base_20260814", str(BASE_PATH))
+_spec = importlib.util.spec_from_loader(_loader.name, _loader)
+if _spec is None:
+    raise RuntimeError("cannot load preserved partition orchestrator")
+BASE = importlib.util.module_from_spec(_spec)
+_loader.exec_module(BASE)
+
+for _name, _value in {
+    "SCOPE": SCOPE,
+    "RUNS": RUNS,
+    "MANIFEST_PATH": MANIFEST_PATH,
+    "STATUS_PATH": STATUS_PATH,
+    "LOCK_PATH": LOCK_PATH,
+    "LIFECYCLE_PATH": LIFECYCLE_PATH,
+    "FINAL_PATH": FINAL_PATH,
+    "WORKER_PATH": WORKER_PATH,
+    "ORDINARY_GUARD_PATH": ORDINARY_GUARD_PATH,
+    "GLOBAL_QUERY_PATH": GLOBAL_QUERY_PATH,
+    "DEADLINE_UTC": DEADLINE_UTC,
+    "DEADLINE_KST": DEADLINE_KST,
+    "MAX_CONCURRENT": MAX_CONCURRENT,
+    "POLL_SECONDS": POLL_SECONDS,
+    "MAX_WAIT_SECONDS": MAX_WAIT_SECONDS,
+    "EXPECTED_POPULATION_COUNT": EXPECTED_POPULATION_COUNT,
+    "EXPECTED_COLUMNS": EXPECTED_COLUMNS,
+    "ORDINARY_GUARD_SHA256": ORDINARY_GUARD_SHA256,
+}.items():
+    setattr(BASE, _name, _value)
+
+now = BASE.now
+parse_utc = BASE.parse_utc
+sha_path = BASE.sha_path
+sha_bytes = BASE.sha_bytes
+atomic_json = BASE.atomic_json
+projected_aliases = BASE.projected_aliases
+validate_exception_query = BASE.validate_exception_query
+validate_completed = BASE.validate_completed
+landed = BASE.landed
+combine_rows = BASE.combine_rows
+
+
+def verify_frozen_inputs() -> dict:
+    expected = {
+        SOURCE_MANIFEST_PATH: SOURCE_MANIFEST_SHA256,
+        GLOBAL_ATTEMPT_HISTORY: GLOBAL_ATTEMPT_SHA256,
+        PARTITION_ATTEMPT_HISTORY: PARTITION_ATTEMPT_SHA256,
+        ORDINARY_GUARD_PATH: ORDINARY_GUARD_SHA256,
+        GLOBAL_QUERY_PATH: BASE.GLOBAL_QUERY_SHA256,
+    }
+    for path, digest in expected.items():
+        if not path.exists() or sha_path(path) != digest:
+            raise RuntimeError(f"frozen input missing or changed: {path}")
+    source = json.loads(SOURCE_MANIFEST_PATH.read_text())
+    if len(source.get("entries", [])) != 67 or source.get("coverage") != {"lo": 1, "hi": 662174}:
+        raise RuntimeError("source partition manifest shape drift")
+    return source
+
+
+def build_manifest(*, dry_run: bool = False) -> dict:
+    source = verify_frozen_inputs()
+    entries = []
+    for old in source["entries"]:
+        query_path = Path(old["query_path"])
+        entry = {
+            "lo": old["lo"],
+            "hi": old["hi"],
+            "key_count": old["key_count"],
+            "query_path": str(query_path.resolve()),
+            "query_sha256": old["query_sha256"],
+            "run_dir": str((RUNS / f"run_{old['lo']:06d}_{old['hi']:06d}").resolve()),
+        }
+        if not query_path.exists() or sha_path(query_path) != entry["query_sha256"]:
+            raise RuntimeError(f"frozen partition query drift: {query_path}")
+        validate_exception_query(query_path.read_bytes(), entry)
+        entries.append(entry)
+    manifest = {
+        "created_utc": now(),
+        "authorization": "Duho on 2026-08-14: rerun the variance now; same Longo-axis statistic, frozen dered Cut-6 population, and 67-partition ledger",
+        "endpoint": "https://datalab.noirlab.edu/tap/async",
+        "source_manifest_path": str(SOURCE_MANIFEST_PATH.resolve()),
+        "source_manifest_sha256": SOURCE_MANIFEST_SHA256,
+        "coverage": {"lo": 1, "hi": 662174},
+        "partition_count": 67,
+        "partition_order": PARTITION_ORDER,
+        "columns": EXPECTED_COLUMNS,
+        "combination": "variance = sum(sum_x2)/sum(n) - (sum(sum_x)/sum(n))^2",
+        "expected_population_count": EXPECTED_POPULATION_COUNT,
+        "partial_threshold_verdict": None,
+        "queue_stall_seconds": QUEUE_STALL_SECONDS,
+        "queue_rule": "stop and abort active jobs when all observed active phases remain PENDING/QUEUED for 45 continuous minutes since scheduler progress",
+        "max_lost_attempts_per_partition": MAX_LOST_ATTEMPTS_PER_PARTITION,
+        "max_concurrent": MAX_CONCURRENT,
+        "server_pressure_backoff": "serial after HTTP 429/502/503/504; UWS PENDING/QUEUED does not open a fourth slot",
+        "deadline_utc": DEADLINE_UTC,
+        "deadline_kst": DEADLINE_KST,
+        "global_query_sha256": source["global_query_sha256"],
+        "cos_expression_sha256": source["cos_expression_sha256"],
+        "ordinary_guard_sha256": ORDINARY_GUARD_SHA256,
+        "global_attempt_history_sha256": GLOBAL_ATTEMPT_SHA256,
+        "partition_attempt_history_sha256": PARTITION_ATTEMPT_SHA256,
+        "worker_sha256": sha_path(WORKER_PATH),
+        "orchestrator_sha256": sha_path(Path(__file__).resolve()),
+        "entries": entries,
+    }
+    if dry_run:
+        return manifest
+    SCOPE.mkdir(parents=True, exist_ok=True)
+    if MANIFEST_PATH.exists():
+        existing = json.loads(MANIFEST_PATH.read_text())
+        comparable_existing = dict(existing)
+        comparable_new = dict(manifest)
+        comparable_existing.pop("created_utc", None)
+        comparable_new.pop("created_utc", None)
+        if comparable_existing != comparable_new:
+            raise RuntimeError("refuse nonidentical rerun manifest")
+        return existing
+    atomic_json(MANIFEST_PATH, manifest)
+    return manifest
+
+
+def partial_summary(entries: list[dict], rows: list[dict[str, Decimal | int]]) -> dict:
+    combined = combine_rows(rows, require_expected_count=False)
+    return {
+        "label": "PARTIAL",
+        "completed_partitions": len(entries),
+        "completed_keyspace_units": sum(entry["key_count"] for entry in entries),
+        "completed_ranges": [{"lo": entry["lo"], "hi": entry["hi"]} for entry in entries],
+        "coverage_is_full_footprint": False,
+        "n_cut6_dered": combined["n_cut6_dered"],
+        "sum_cos_theta": str(combined["sum_cos_theta"]),
+        "sum_cos2_theta": str(combined["sum_cos2_theta"]),
+        "mean_cos_theta": str(combined["mean_cos_theta"]),
+        "var_pop_cos_theta": str(combined["var_pop_cos_theta"]),
+        "threshold": "0.15",
+        "threshold_verdict": None,
+    }
+
+
+def pressure_detected(manifest: dict) -> bool:
+    for entry in manifest["entries"]:
+        run_dir = Path(entry["run_dir"])
+        paths = [run_dir / "service_pressure.json", *run_dir.glob("failed_attempts/*/service_pressure.json")]
+        for path in paths:
+            if not path.exists():
+                continue
+            value = json.loads(path.read_text())
+            events = value.get("events", [value])
+            if any(event.get("signal") in HTTP_PRESSURE_SIGNALS for event in events):
+                return True
+    return False
+
+
+setattr(BASE, "pressure_detected", pressure_detected)
+
+
+def latest_phase(run_dir: Path) -> tuple[str | None, str | None]:
+    path = run_dir / "poll_history.json"
+    if not path.exists():
+        return None, None
+    value = json.loads(path.read_text())
+    phases = value.get("phases", [])
+    phase = phases[-1].get("phase") if phases else None
+    return value.get("job_url"), phase
+
+
+def active_phases(active: dict[int, dict]) -> dict[str, str]:
+    values = {}
+    for item in active.values():
+        job_url, phase = latest_phase(Path(item["entry"]["run_dir"]))
+        if job_url and phase:
+            values[job_url] = phase
+    return values
+
+
+def queue_stalled(now_monotonic: float, last_progress_monotonic: float, phases: dict[str, str]) -> bool:
+    return bool(phases) and all(phase in {"PENDING", "QUEUED"} for phase in phases.values()) and (
+        now_monotonic - last_progress_monotonic >= QUEUE_STALL_SECONDS
+    )
+
+
+def lost_attempt_count(entry: dict) -> int:
+    return len(list(Path(entry["run_dir"]).glob("failed_attempts/*/failure_record.json")))
+
+
+def status_value(manifest: dict, active: dict[int, dict], *, stop_reason: str | None = None) -> dict:
+    completed = landed(manifest)
+    entries = [entry for entry, _ in completed]
+    rows = [row for _, row in completed]
+    partial = None
+    if rows and sum(int(row["n_cut6_dered"]) for row in rows) > 0 and len(entries) < len(manifest["entries"]):
+        partial = partial_summary(entries, rows)
+    threshold_verdict = None
+    if len(entries) == len(manifest["entries"]):
+        combined = combine_rows(rows)
+        threshold_verdict = "PASS" if combined["threshold_met"] else "FAIL"
+    return {
+        "updated_utc": now(),
+        "result_status": "COMPLETE" if len(entries) == len(manifest["entries"]) else "PARTIAL",
+        "completed_partitions": len(entries),
+        "partition_count": len(manifest["entries"]),
+        "completed_keyspace_units": sum(entry["key_count"] for entry in entries),
+        "full_keyspace_units": 662174,
+        "partial_running_totals": partial,
+        "threshold_verdict": threshold_verdict,
+        "active": [value["entry"] for value in active.values()],
+        "active_phases": active_phases(active),
+        "serial_mode": pressure_detected(manifest),
+        "queue_stall_seconds": QUEUE_STALL_SECONDS,
+        "deadline_utc": DEADLINE_UTC,
+        "deadline_kst": DEADLINE_KST,
+        "stop_reason": stop_reason,
+    }
+
+
+def abort_active(active: dict[int, dict], reason: str) -> None:
+    for value in list(active.values()):
+        BASE.abort_job(value["entry"], reason)
+        if value["process"].poll() is None:
+            value["process"].terminate()
+    for value in list(active.values()):
+        try:
+            value["process"].wait(timeout=30)
+        except subprocess.TimeoutExpired:
+            value["process"].kill()
+            value["process"].wait(timeout=30)
+        value["stdout"].close()
+        value["stderr"].close()
+    active.clear()
+
+
+def close_lifecycle(manifest: dict, stop_reason: str) -> None:
+    BASE.close_lifecycle(manifest, stop_reason)
+    lifecycle = json.loads(LIFECYCLE_PATH.read_text())
+    if lifecycle.get("exception_state") != "CLOSED":
+        raise RuntimeError("rerun exception lifecycle did not close")
+    if lifecycle.get("ordinary_guard_sha256_after") != ORDINARY_GUARD_SHA256:
+        raise RuntimeError("ordinary guard hash changed during rerun")
+    if lifecycle.get("ordinary_guard_unchanged") is not True:
+        raise RuntimeError("ordinary guard before/after hashes differ")
+    if lifecycle.get("ordinary_guard_verified_rejects_query_after") is not True:
+        raise RuntimeError("ordinary guard rejection was not independently verified after rerun")
+
+
+def main() -> None:
+    manifest = build_manifest()
+    LOCK_PATH.parent.mkdir(parents=True, exist_ok=True)
+    lock_file = LOCK_PATH.open("a+")
+    try:
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_EX | fcntl.LOCK_NB)
+    except BlockingIOError as exc:
+        raise RuntimeError("partition variance rerun orchestrator already holds the lock") from exc
+
+    BASE.open_lifecycle(manifest)
+    active: dict[int, dict] = {}
+    stop_reason = "hard_failure"
+    last_progress_monotonic = time.monotonic()
+    last_progress_utc = now()
+    seen_executing_jobs: set[str] = set()
+    completed_before = len(landed(manifest))
+
+    def interrupted(signum, frame):
+        raise InterruptedError(f"signal_{signum}")
+
+    prior_term = signal.signal(signal.SIGTERM, interrupted)
+    prior_int = signal.signal(signal.SIGINT, interrupted)
+    try:
+        while True:
+            completed_count = len(landed(manifest))
+            if completed_count == len(manifest["entries"]):
+                BASE.write_final(manifest)
+                stop_reason = "coverage_complete"
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+            if datetime.now(timezone.utc) >= parse_utc(DEADLINE_UTC):
+                stop_reason = "deadline_reached_1800_kst"
+                abort_active(active, stop_reason)
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+
+            capacity = 1 if pressure_detected(manifest) else MAX_CONCURRENT
+            running_ranges = {(value["entry"]["lo"], value["entry"]["hi"]) for value in active.values()}
+            for entry in manifest["entries"]:
+                if len(active) >= capacity:
+                    break
+                if validate_completed(entry) is not None or (entry["lo"], entry["hi"]) in running_ranges:
+                    continue
+                process, stdout, stderr = BASE.launch(entry)
+                active[process.pid] = {"process": process, "entry": entry, "stdout": stdout, "stderr": stderr}
+                running_ranges.add((entry["lo"], entry["hi"]))
+
+            failed = None
+            service_stop = None
+            for pid, value in list(active.items()):
+                code = value["process"].poll()
+                if code is None:
+                    continue
+                value["stdout"].close()
+                value["stderr"].close()
+                del active[pid]
+                run_dir = Path(value["entry"]["run_dir"])
+                if code != 0:
+                    if BASE.recorded_job_is_lost(run_dir):
+                        BASE.archive_lost_attempt(run_dir, value["entry"])
+                        if lost_attempt_count(value["entry"]) >= MAX_LOST_ATTEMPTS_PER_PARTITION:
+                            service_stop = f"service_pressure_lost_attempt_limit_{value['entry']['lo']}_{value['entry']['hi']}"
+                            break
+                        time.sleep(15)
+                    elif (run_dir / "service_pressure.json").exists() or (run_dir / "submission.json").exists():
+                        time.sleep(15)
+                    else:
+                        failed = value["entry"]
+                        break
+                elif validate_completed(value["entry"]) is None:
+                    failed = value["entry"]
+                    break
+            if service_stop:
+                stop_reason = service_stop
+                abort_active(active, stop_reason)
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+            if failed is not None:
+                stop_reason = f"hard_failure_{failed['lo']}_{failed['hi']}"
+                abort_active(active, stop_reason)
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                raise RuntimeError(stop_reason)
+
+            phases = active_phases(active)
+            for job_url, phase in phases.items():
+                if phase in {"EXECUTING", "COMPLETED"} and job_url not in seen_executing_jobs:
+                    seen_executing_jobs.add(job_url)
+                    last_progress_monotonic = time.monotonic()
+                    last_progress_utc = now()
+            completed_count = len(landed(manifest))
+            if completed_count > completed_before:
+                completed_before = completed_count
+                last_progress_monotonic = time.monotonic()
+                last_progress_utc = now()
+
+            atomic_json(
+                QUEUE_WATCH_PATH,
+                {
+                    "updated_utc": now(),
+                    "last_scheduler_progress_utc": last_progress_utc,
+                    "queue_stall_seconds": QUEUE_STALL_SECONDS,
+                    "active_phases": phases,
+                    "completed_partitions": completed_count,
+                    "partial_only_until_full_coverage": True,
+                },
+            )
+            if queue_stalled(time.monotonic(), last_progress_monotonic, phases):
+                stop_reason = "queue_stalled_45m"
+                abort_active(active, stop_reason)
+                atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+                break
+
+            atomic_json(STATUS_PATH, status_value(manifest, active))
+            time.sleep(5)
+    except InterruptedError as exc:
+        stop_reason = str(exc)
+        abort_active(active, stop_reason)
+        atomic_json(STATUS_PATH, status_value(manifest, active, stop_reason=stop_reason))
+        raise
+    finally:
+        if active:
+            abort_active(active, stop_reason)
+        close_lifecycle(manifest, stop_reason)
+        signal.signal(signal.SIGTERM, prior_term)
+        signal.signal(signal.SIGINT, prior_int)
+        fcntl.flock(lock_file.fileno(), fcntl.LOCK_UN)
+        lock_file.close()
+
+    print(json.dumps({"stop_reason": stop_reason, "status": json.loads(STATUS_PATH.read_text())}, sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,78 @@
+{
+  "recorded_utc": "2026-08-12T10:10:19Z",
+  "authorization": {
+    "source": "Duho's latest explicit stopping rule relayed by Tori",
+    "stop_first_of": [
+      "contiguous n_cut5_parent_dered lower bound reaches 200000",
+      "deadline 2026-08-12T13:56:00Z",
+      "BRICKID keyspace exhaustion at 662174"
+    ],
+    "raw_branch_role": "reported throughout but does not gate stopping",
+    "external_spiral_or_inclination_factors": "not computed or applied; Goru-owned"
+  },
+  "superseded_process_handoff": {
+    "first_disclosed_orchestrator_pid": 40694,
+    "second_hwao_harness_orchestrator_pid": 42630,
+    "second_parent_pid": 4083,
+    "second_parent_identity": "Hwao/Fable Claude Code coordinator lane",
+    "hwao_hold_acknowledgment": "HWAO_COUNT_HOLD_ACK",
+    "local_pollers_terminated_only": true,
+    "server_jobs_aborted_during_handoff": false,
+    "server_jobs_resubmitted_during_handoff": false
+  },
+  "corrected_orchestrator": {
+    "process_session_id": "proc_a53d6c78905f",
+    "pid": 45811,
+    "cwd": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence",
+    "command": "python3 -u run_partition_manifest.py",
+    "log_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/partitions/orchestrator_tori_dered_rule.log",
+    "lock_path": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_tori_parent_row_count_evidence/partitions/orchestrator.lock",
+    "sole_lock_holder_verified": true,
+    "max_concurrent": 3,
+    "serial_backpressure_enabled": true
+  },
+  "exact_url_resumptions": [
+    {
+      "brickid_lo": 51001,
+      "brickid_hi": 61000,
+      "job_url": "https://datalab.noirlab.edu/tap/async/d54qncvedefo971u",
+      "phase_after_resume": "EXECUTING"
+    },
+    {
+      "brickid_lo": 61001,
+      "brickid_hi": 71000,
+      "job_url": "https://datalab.noirlab.edu/tap/async/n22wbqva768dhbjf",
+      "phase_after_resume": "EXECUTING"
+    },
+    {
+      "brickid_lo": 71001,
+      "brickid_hi": 81000,
+      "job_url": "https://datalab.noirlab.edu/tap/async/x41oyl29668hl1ru",
+      "phase_after_resume": "EXECUTING"
+    }
+  ],
+  "current_contiguous_lower_bound": {
+    "covered_brickid_lo": 1,
+    "covered_brickid_hi": 51000,
+    "n_cut5_parent_raw": 81194,
+    "n_cut5_parent_dered": 97051,
+    "status": "LOWER BOUND"
+  },
+  "artifact_sha256": {
+    "run_partition_manifest.py": "7887f466fce69b0d02809c3a0deeca2bda9dbc610957786e6a4bd352295757f2",
+    "run_aggregate_tap.py": "7e59737785b6c136c3e64b1fadefa958eeefdaef4338a9b2b30e9fb02af66fcf",
+    "render_parent_count_receipt.py": "fdb7803e18a5cfd2e958f0cedf22a9a7ced5dc122c853ac2bcc3b14a9dddaa03",
+    "manifest.json": "b72bf2a465ec331d322011277852718ddaeda0552808750aa3b7ca93b4282376",
+    "status.json_at_verification": "e6bd4891c695a5e4d4c6058152042ab7b91728ad18bd969920806588764fe451"
+  },
+  "custody_boundary": {
+    "aggregate_rows_only": true,
+    "sample_rows_exported": 0,
+    "positions_exported": 0,
+    "images_requested": 0,
+    "chirality_computed": false,
+    "sky_statistics_computed": false,
+    "bulk_downloads": 0,
+    "publication_commit_push": 0
+  }
+}
