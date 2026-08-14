@@ -188,12 +188,25 @@ def tone_for_used(value: float | None) -> str:
     return 'ok'
 
 
+def _dh(days: int, hours: int) -> str:
+    """'4 days 18 hours', '1 day', '18 hours' — no '4 day 18 hours', no zero parts."""
+    bits = []
+    if days:
+        bits.append(f"{days} day" + ("s" if days != 1 else ""))
+    if hours:
+        bits.append(f"{hours} hour" + ("s" if hours != 1 else ""))
+    return " ".join(bits) if bits else "under an hour"
+
+
 def fmt_reset_remained(val: str | None) -> str:
     if not val or val == 'unknown':
         return 'unknown'
     val = str(val).strip()
-    if val.lower().startswith('remained '):
-        val = val[9:].strip()
+    low = val.lower()
+    for pre in ('remained ', 'resets in '):          # accept either, emit the new one
+        if low.startswith(pre):
+            val = val[len(pre):].strip()
+            break
     now = datetime.now(timezone.utc)
     d = None
     try:
@@ -219,8 +232,8 @@ def fmt_reset_remained(val: str | None) -> str:
         days = minutes // 1440
         hours = (minutes % 1440) // 60
         if days == 0 and hours == 0:
-            return "remained 0 day 0 hours"
-        return f"remained {days} day {hours} hours"
+            return "resets in under an hour"
+        return "resets in " + _dh(days, hours)
         
     val_lower = val.lower()
     if val_lower.startswith('in '):
@@ -234,9 +247,9 @@ def fmt_reset_remained(val: str | None) -> str:
         total_mins = h * 60 + m
         d = total_mins // 1440
         hr = (total_mins % 1440) // 60
-        return f"remained {d} day {hr} hours"
+        return "resets in " + _dh(d, hr)
         
-    return f"remained {val}"
+    return f"resets in {val}"
 
 
 def display_pct(value: float | None, suffix: str = 'used') -> str:
@@ -429,9 +442,53 @@ def provider_index(gauges: list[dict[str, Any]], provider: str) -> int:
     return len(gauges) - 1
 
 
+
+FLOW_CREDITS_PATH = Path('/Users/duhokim/HermesOps/scripts/clips/flow_credits.json')
+
+
+def flow_credits_gauge(gauges: list[dict[str, Any]]) -> None:
+    """Source the Flow/Veo gauge from the same file the autopilot dashboard uses.
+
+    Added 2026-08-14. The two cockpits disagreed about Flow/Veo: this canonical
+    carried a legacy entry quoting July documentation (credit COSTS, no balance),
+    while ge-autopilot read the real balance capture from flow_credits.json. Same
+    provider, two ages, no shared source. Duho asked for one fact.
+    """
+    i = provider_index(gauges, 'Flow / Veo (Ultra)')
+    g = gauges[i]
+    g.setdefault('provider', 'Flow / Veo (Ultra)')
+    g['kind'] = 'monthly Flow credit pool (separate from Gemini-app limits)'
+    try:
+        data = json.loads(FLOW_CREDITS_PATH.read_text())
+    except Exception as exc:
+        g['value_label'] = 'balance not captured'
+        g['status'] = 'No Flow balance capture available'
+        g['detail'] = f'Could not read {FLOW_CREDITS_PATH.name}: {exc}'
+        g['source_label'] = 'no live account or billing surface opened; no capture file readable.'
+        g['tone'] = 'warn'
+        g['fill_pct'] = None
+        return
+    remaining = data.get('remaining')
+    total = data.get('total') or data.get('base_monthly_total')
+    captured = data.get('captured_utc', '')
+    pct = None
+    if isinstance(remaining, (int, float)) and isinstance(total, (int, float)) and total:
+        pct = max(0.0, min(100.0, 100.0 * float(remaining) / float(total)))
+    g['fill_pct'] = pct
+    g['value_label'] = (f'{int(remaining):,} / {int(total):,} credits left'
+                        if pct is not None else 'balance not captured')
+    g['status'] = 'Last operator-confirmed Flow UI capture — no live balance API exists'
+    g['detail'] = str(data.get('reset', '')) or 'Flow credit pool; reset terms not captured.'
+    g['source_label'] = (f'Flow UI balance capture in flow_credits.json at {captured}; '
+                         'no live account or billing surface opened.')
+    g['tone'] = 'ok' if (pct or 0) > 25 else 'warn'
+
+
 def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: dict[str, Any] | None, telemetry: dict[str, Any], observed_at: str, slash_sources: dict[str, Any]) -> dict[str, Any]:
     gauges = copy.deepcopy(canonical.get('provider_usage_gauges') or [])
     counts = telemetry['counts']
+
+    flow_credits_gauge(gauges)
 
     i = provider_index(gauges, 'Claude / Fable / Lana')
     g = gauges[i]

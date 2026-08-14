@@ -8,9 +8,8 @@ Output:  /Users/duhokim/HermesOps/cockpit/ge-autopilot.html
 
 This is a private tailnet-only read-only mirror. It does not dispatch prompts,
 approve permissions, publish wiki pages, edit the public NebulaMind cockpit,
-touch product DB or mutating APIs, deploy, restart services, or run git. When an
-approved direct Kimi credential is present in memory, it may read the official
-Moonshot balance endpoint and cache only the non-secret balance response.
+touch product DB or mutating APIs, deploy, restart services, or run git. Provider
+wallet data is consumed from the approved public usage-monitor artifact only.
 """
 from __future__ import annotations
 
@@ -24,8 +23,6 @@ import shutil
 import sys
 import subprocess
 import time
-import urllib.error
-import urllib.request
 from pathlib import Path
 from typing import Any, Dict, Iterable, List
 
@@ -69,7 +66,7 @@ KIMI_BALANCE_CACHE_PATH = Path(os.environ.get(
 ))
 KIMI_BALANCE_URL = "https://api.moonshot.ai/v1/users/me/balance"
 KIMI_BALANCE_CACHE_MARKER = "KIMI_DIRECT_BALANCE_CACHE_V1"
-KIMI_BALANCE_REFRESH_SECONDS = 60
+MOONSHOT_POOL_ID = "moonshot_kun_kimi_k3_wallet"
 LATEST_URL_PATH = WEB_ROOT / "latest-ge-autopilot-url.txt"
 URL = os.environ.get("GE_AUTOPILOT_URL", "https://duho-macstudio.taila27502.ts.net/cockpit/ge-autopilot.html")
 STATUS_URL = "ge-autopilot-status.json"
@@ -223,7 +220,7 @@ def build_septet_matrix() -> Dict[str, Any]:
         dash = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(dash)
         rows = dash.collect()
-        working, _interactive = dash.crew_live()
+        working, interactive_sessions = dash.crew_live()
     except Exception as exc:
         return {"ok": False, "error": f"{type(exc).__name__}: {exc}"[:160], "papers": []}
 
@@ -274,6 +271,11 @@ def build_septet_matrix() -> Dict[str, Any]:
         except Exception:
             published = {}
     live = {c["seat"] for c in working}
+    # An empty live_seats cannot distinguish "no seats exist" from "seats exist and are idle".
+    # That is the same absence-as-information defect the provider cards had tonight: a board that
+    # goes quiet must say WHY it is quiet. Idle is a finding; missing is a different finding.
+    seated = sorted({c["seat"] for c in working} | {c["seat"] for c in interactive_sessions})
+    idle_seats = sorted(set(seated) - live)
     papers, starved = [], []
     for r in rows:
         staffed = set(r.get("staffed") or [])
@@ -374,6 +376,12 @@ def build_septet_matrix() -> Dict[str, Any]:
                        "fail_closed": failclosed})
     return {"ok": True, "seats": seats, "papers": papers, "starved": starved,
             "live_seats": sorted(live),
+            "seated_seats": seated,
+            "idle_seats": idle_seats,
+            "seat_state_note": (
+                f"{len(seated)} seat session(s) present; {len(live)} working, "
+                f"{len(idle_seats)} idle. Empty live_seats with a non-empty seated_seats means "
+                f"the crew is present and idle, not absent."),
             "awaiting_duho": [p["lane"] for p in papers if p.get("who") == "DUHO"],
             "note": ("engaged = that seat has produced an artifact in that lane; live process "
                      "state is global and shown separately, never guessed per paper")}
@@ -1072,9 +1080,76 @@ def _tidy_detail(provider: Any, text: Any) -> Any:
     return text
 
 
+_PROVIDER_CARD_FRESHNESS_RULES = {
+    "Claude / Fable / Lana": 3600,
+    "Gemini app / consumer": 3600,
+    "Moonshot / Kun (Kimi K3)": 3600,
+    "Antigravity / Gemini": 3600,
+    "Codex": 3600,
+}
+_USAGE_SOURCE_TIMESTAMP_RE = re.compile(
+    r"20\d{2}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d+)?(?:Z|[+-]\d{2}:\d{2})"
+)
+
+
+def _freshness_limit_for_provider(provider: str) -> int | None:
+    if provider.startswith("Codex"):
+        return _PROVIDER_CARD_FRESHNESS_RULES["Codex"]
+    return _PROVIDER_CARD_FRESHNESS_RULES.get(provider)
+
+
+def provider_card_freshness(provider: str, source_label: str) -> Dict[str, Any]:
+    """Bind source age independently of the fresh public wrapper timestamp."""
+    max_age = _freshness_limit_for_provider(provider)
+    if max_age is None:
+        return {}
+    source_match = _USAGE_SOURCE_TIMESTAMP_RE.search(source_label)
+    observed_at = source_match.group(0) if source_match else None
+    source_age = age_seconds(observed_at) if observed_at else None
+    if source_age is None:
+        classification = "UNAVAILABLE / UNKNOWN"
+    elif source_age <= max_age:
+        classification = "FRESH LIVE METER"
+    else:
+        classification = "STALE HISTORICAL OBSERVATION"
+    return {
+        "freshness_classification": classification,
+        "source_observed_at_utc": observed_at,
+        "source_age_seconds": source_age,
+        "freshness_max_age_seconds": max_age,
+    }
+
+
+def classification_aware_provider_headline(
+    *,
+    big: Any,
+    percent: float | None,
+    freshness: Dict[str, Any],
+) -> Any:
+    """Choose a headline only after the card's own observation age is bound."""
+    if big:
+        return big
+    classification = freshness.get("freshness_classification")
+    if classification == "STALE HISTORICAL OBSERVATION":
+        # Report the age, not the verdict. This function replaces the HEADLINE only
+        # and leaves the card's status line untouched, so a bare "Stale" ended up
+        # sitting directly above "Live pane scan from latest visible /usage" — the
+        # card contradicted itself and gave no way to tell ninety minutes from
+        # ninety days. Duho reported it twice on 2026-08-14.
+        age = freshness.get("source_age_seconds")
+        return f"{age_label(age)} ago" if isinstance(age, (int, float)) else "Last seen"
+    if classification == "UNAVAILABLE / UNKNOWN":
+        return "Unknown"
+    if classification == "FRESH LIVE METER" and isinstance(percent, (int, float)):
+        return f"{percent:.0f}%"
+    return None
+
+
 def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     provider = gauge.get("provider") or "Provider"
     detail = _tidy_detail(provider, gauge.get("detail") or "")
+    source_label = gauge.get("source_label") or "public live steering cockpit status JSON"
+    freshness = provider_card_freshness(str(provider), str(source_label))
     raw_subs = [s for s in (gauge.get("sub_gauges") or []) if isinstance(s, dict)]
     # Headline = the WEEKLY quota for each provider (not the 5-hour one), and
     # drop the 5-hour sub-gauges entirely per operator preference.
@@ -1098,7 +1173,12 @@ def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
     big = gauge.get("big")
     if not big and pct is None and isinstance(head_label, str) and head_label.lower().startswith("available"):
         big = "Available"
-    return {
+    big = classification_aware_provider_headline(
+        big=big,
+        percent=pct,
+        freshness=freshness,
+    )
+    card = {
         "name": provider,
         "kind": gauge.get("kind") or "public cockpit realtime feed",
         "status": gauge.get("status") or "observed",
@@ -1107,10 +1187,175 @@ def public_gauge_card(gauge: Dict[str, Any]) -> Dict[str, Any]:
         "percent_label": head_label,
         "activity": head_label,
         "detail": detail,
-        "source": gauge.get("source_label") or "public live steering cockpit status JSON",
+        "source": source_label,
         "tone": gauge.get("tone") or "ok",
         "sub_gauges": sub_gauges,
     }
+    for key in (
+        "pool_id",
+        "classification",
+        "observed_at_utc",
+        "current_value_known",
+        "available_balance_usd",
+        "cash_balance_usd",
+        "voucher_balance_usd",
+        "planning_envelopes",
+        "historical_observations",
+    ):
+        if key in gauge:
+            card[key] = gauge.get(key)
+    card.update(freshness)
+    return card
+
+
+def _usage_label_is_known(value: Any) -> bool:
+    text = str(value or "").strip().lower()
+    if not text:
+        return False
+    return not any(
+        marker in text
+        for marker in (
+            "not observed",
+            "unknown",
+            "unavailable",
+            "not exposed",
+            "withheld",
+            "no capture",
+        )
+    )
+
+
+def historicalize_usage_card(
+    card: Dict[str, Any],
+    *,
+    fallback_observed_at: str,
+    fallback_age_seconds: int | None,
+) -> Dict[str, Any]:
+    """Fail closed while preserving an old provider reading as explicit history."""
+    out = dict(card)
+    source = str(card.get("source") or "")
+    source_match = _USAGE_SOURCE_TIMESTAMP_RE.search(source)
+    observed_at = source_match.group(0) if source_match else fallback_observed_at
+    observed_age = age_seconds(observed_at)
+    if observed_age is None:
+        observed_age = fallback_age_seconds
+
+    had_measurement = (
+        isinstance(card.get("percent"), (int, float))
+        or _usage_label_is_known(card.get("big"))
+        or _usage_label_is_known(card.get("percent_label"))
+    )
+    classification = (
+        "STALE HISTORICAL OBSERVATION" if had_measurement else "UNAVAILABLE / UNKNOWN"
+    )
+    old_label = str(card.get("percent_label") or "").strip()
+    old_activity = str(card.get("activity") or old_label).strip()
+
+    # Say HOW old, not just "old". A bare "Stale" headline reads identically at
+    # ninety minutes and ninety days, so it tells the reader nothing about whether
+    # to trust the number or go refresh it. Changed 2026-08-14 after Duho reported
+    # the card twice; it also contradicted its own preserved source line, which
+    # still advertised a "live pane scan" underneath the word Stale.
+    aged = f"{age_label(observed_age)} ago" if observed_age is not None else "age unknown"
+    out.update({
+        "classification": classification,
+        "observed_at_utc": observed_at,
+        "age_seconds": observed_age,
+        "current_value_known": False,
+        "percent": None,
+        "big": (aged if had_measurement else "Unknown"),
+        "percent_label": (
+            f"Last measured {old_label} · {aged}"
+            if had_measurement and old_label
+            else "No current percentage — provider feed stale"
+        ),
+        "activity": (
+            f"Last observed — {old_activity}"
+            if had_measurement and old_activity
+            else "No prior measured value"
+        ),
+        "detail": (
+            f"Observed {observed_at} ({aged}); past the freshness window, so this is "
+            "held as history rather than a current reading. "
+            + str(card.get("detail") or "")
+        ).strip(),
+        "status": (
+            f"last measured {aged} · awaiting a fresh /usage scan"
+            if had_measurement
+            else "Unavailable / unknown"
+        ),
+        "tone": "warn",
+    })
+    # The inherited source line described how the value was ONCE obtained and read as
+    # a claim that it is current. Qualify it in place rather than dropping provenance.
+    if had_measurement and source and "past the freshness window" not in source:
+        out["source"] = f"{source.rstrip('. ')}. Captured {observed_at}, {aged} — not refreshed since."
+    if had_measurement and old_label:
+        out["historical_value_label"] = old_label
+
+    structured_balance = {
+        "available_balance_usd": card.get("available_balance_usd"),
+        "cash_balance_usd": card.get("cash_balance_usd"),
+        "voucher_balance_usd": card.get("voucher_balance_usd"),
+    }
+    if any(value is not None for value in structured_balance.values()):
+        history = [
+            dict(item)
+            for item in (card.get("historical_observations") or [])
+            if isinstance(item, dict)
+        ]
+        current_history = {
+            "classification": "STALE HISTORICAL OBSERVATION",
+            "observed_at_utc": observed_at,
+            "age_seconds": observed_age,
+            "status": "Historical observation retained after provider feed became stale",
+            **structured_balance,
+        }
+        if not any(
+            item.get("observed_at_utc") == observed_at
+            and item.get("available_balance_usd") == structured_balance["available_balance_usd"]
+            for item in history
+        ):
+            history.insert(0, current_history)
+        out["historical_observations"] = history
+    for key in (
+        "available_balance_usd",
+        "cash_balance_usd",
+        "voucher_balance_usd",
+        "routing_balance_usd",
+    ):
+        if key in out:
+            out[key] = None
+
+    historical_subs = []
+    for sub in card.get("sub_gauges") or []:
+        if not isinstance(sub, dict):
+            continue
+        historical_sub = dict(sub)
+        old_sub_label = str(sub.get("value_label") or "").strip()
+        sub_had_measurement = (
+            isinstance(sub.get("percent"), (int, float))
+            or _usage_label_is_known(old_sub_label)
+        )
+        historical_sub.update({
+            "classification": (
+                "STALE HISTORICAL OBSERVATION"
+                if sub_had_measurement
+                else "UNAVAILABLE / UNKNOWN"
+            ),
+            "percent": None,
+            "value_label": (
+                f"Last observed — {old_sub_label}"
+                if sub_had_measurement and old_sub_label
+                else "not observed"
+            ),
+            "tone": "warn",
+        })
+        if sub_had_measurement and old_sub_label:
+            historical_sub["historical_value_label"] = old_sub_label
+        historical_subs.append(historical_sub)
+    out["sub_gauges"] = historical_subs
+    return out
 
 
 def _usd(value: Any) -> str:
@@ -1120,45 +1365,6 @@ def _usd(value: Any) -> str:
         return "unknown"
 
 
-def kimi_direct_balance_card_from_reading(
-    reading: Dict[str, Any],
-    *,
-    stale: bool,
-) -> Dict[str, Any]:
-    available = reading.get("available_balance_usd")
-    cash = reading.get("cash_balance_usd")
-    voucher = reading.get("voucher_balance_usd")
-    observed_at = str(reading.get("observed_at_utc") or "unknown")
-    available_label = _usd(available)
-    cash_label = _usd(cash)
-    voucher_label = _usd(voucher)
-    if stale:
-        status = "Last read-only balance · refresh unavailable"
-        tone = "warn"
-    else:
-        status = "Live read-only balance"
-        tone = "ok" if isinstance(available, (int, float)) and available > 0 else "danger"
-    return {
-        "name": "Kimi / Moonshot direct API",
-        "kind": "Kimi Open Platform USD API balance",
-        "status": status,
-        "big": available_label,
-        "percent": None,
-        "percent_label": f"{available_label} available · no fixed denominator",
-        "activity": f"{cash_label} cash · {voucher_label} voucher",
-        "detail": (
-            "Direct Kimi Open Platform credit purchased from Kimi, separate from Nous Portal. "
-            "No percentage is inferred because the wallet has no fixed maximum."
-        ),
-        "source": f"Official read-only GET {KIMI_BALANCE_URL} observed {observed_at}; API key not stored in dashboard data.",
-        "tone": tone,
-        "sub_gauges": [
-            {"label": "Cash balance", "percent": None, "value_label": cash_label},
-            {"label": "Voucher balance", "percent": None, "value_label": voucher_label},
-        ],
-    }
-
-
 def _read_kimi_balance_cache() -> Dict[str, Any] | None:
     cached = read_small_json(KIMI_BALANCE_CACHE_PATH)
     if cached.get("marker") != KIMI_BALANCE_CACHE_MARKER:
@@ -1166,73 +1372,169 @@ def _read_kimi_balance_cache() -> Dict[str, Any] | None:
     return cached
 
 
-def _write_kimi_balance_cache(reading: Dict[str, Any]) -> None:
-    KIMI_BALANCE_CACHE_PATH.parent.mkdir(parents=True, exist_ok=True)
-    tmp = KIMI_BALANCE_CACHE_PATH.with_suffix(KIMI_BALANCE_CACHE_PATH.suffix + ".tmp")
-    tmp.write_text(json.dumps(reading, indent=2, sort_keys=True) + "\n")
-    tmp.replace(KIMI_BALANCE_CACHE_PATH)
+_MOONSHOT_AVAILABLE_RE = re.compile(r"\$([\d,]+(?:\.\d+)?)\s+available", re.IGNORECASE)
+_MOONSHOT_CASH_RE = re.compile(r"cash\s+\$([\d,]+(?:\.\d+)?)", re.IGNORECASE)
+_MOONSHOT_VOUCHER_RE = re.compile(r"voucher\s+\$([\d,]+(?:\.\d+)?)", re.IGNORECASE)
 
 
-def _fetch_kimi_direct_balance() -> Dict[str, Any] | None:
-    key = (
-        os.environ.get("MOONSHOT_API_KEY")
-        or os.environ.get("KIMI_API_KEY")
-        or os.environ.get("KIMI_CODING_API_KEY")
-    )
-    if not key:
-        return None
-    request = urllib.request.Request(
-        KIMI_BALANCE_URL,
-        headers={
-            "Authorization": f"Bearer {key}",
-            "User-Agent": "NebulaMind-private-Kimi-balance/1.0",
-        },
-    )
-    try:
-        with urllib.request.urlopen(request, timeout=10) as response:
-            payload = json.loads(response.read().decode("utf-8"))
-    except (OSError, ValueError, urllib.error.HTTPError, urllib.error.URLError):
-        return None
-    data = payload.get("data") if isinstance(payload, dict) else None
-    if not isinstance(payload, dict) or not payload.get("status") or not isinstance(data, dict):
-        return None
-    reading = {
-        "marker": KIMI_BALANCE_CACHE_MARKER,
-        "observed_at_utc": now_utc(),
-        "available_balance_usd": data.get("available_balance"),
-        "cash_balance_usd": data.get("cash_balance"),
-        "voucher_balance_usd": data.get("voucher_balance"),
-    }
-    try:
-        _write_kimi_balance_cache(reading)
-    except OSError:
-        pass
-    return reading
+def _matched_dollars(pattern: re.Pattern[str], *texts: Any) -> float | None:
+    for value in texts:
+        match = pattern.search(str(value or ""))
+        if match:
+            try:
+                return float(match.group(1).replace(",", ""))
+            except ValueError:
+                return None
+    return None
 
 
-def kimi_direct_balance_card() -> Dict[str, Any]:
+def _cached_moonshot_history() -> Dict[str, Any] | None:
     cached = _read_kimi_balance_cache()
-    cache_age = age_seconds(cached.get("observed_at_utc")) if cached else None
-    if cached and cache_age is not None and cache_age <= KIMI_BALANCE_REFRESH_SECONDS:
-        return kimi_direct_balance_card_from_reading(cached, stale=False)
-    reading = _fetch_kimi_direct_balance()
-    if reading:
-        return kimi_direct_balance_card_from_reading(reading, stale=False)
-    if cached:
-        return kimi_direct_balance_card_from_reading(cached, stale=True)
+    if not cached:
+        return None
+    observed_at = str(cached.get("observed_at_utc") or "unknown")
     return {
-        "name": "Kimi / Moonshot direct API",
-        "kind": "Kimi Open Platform USD API balance",
-        "status": "Direct credential not present in private renderer",
-        "big": "Unknown",
-        "percent": None,
-        "percent_label": "balance withheld",
-        "activity": "No cached direct Kimi reading",
-        "detail": "Direct Kimi credit is separate from Nous Portal; no balance is guessed when the read-only source is unavailable.",
-        "source": f"Official read-only endpoint {KIMI_BALANCE_URL}; no successful private reading cached.",
-        "tone": "warn",
-        "sub_gauges": [],
+        "classification": "STALE HISTORICAL OBSERVATION",
+        "observed_at_utc": observed_at,
+        "age_seconds": age_seconds(observed_at),
+        "available_balance_usd": cached.get("available_balance_usd"),
+        "cash_balance_usd": cached.get("cash_balance_usd"),
+        "voucher_balance_usd": cached.get("voucher_balance_usd"),
+        "status": "Historical observation superseded by newer official reading",
+        "source": f"Local cache of {KIMI_BALANCE_URL}; never a current or routing balance.",
     }
+
+
+def canonicalize_moonshot_wallet(cards: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """Return one wallet sourced from the approved public monitor, plus dated history."""
+    out = [dict(card) for card in cards]
+    wallet_index = next(
+        (
+            index
+            for index, card in enumerate(out)
+            if card.get("pool_id") == MOONSHOT_POOL_ID
+            or card.get("name") == "Moonshot / Kun (Kimi K3)"
+        ),
+        None,
+    )
+    cached_history = _cached_moonshot_history()
+    if wallet_index is None:
+        out.append({
+            "pool_id": MOONSHOT_POOL_ID,
+            "name": "Moonshot / Kun (Kimi K3)",
+            "kind": "Moonshot direct-key dollar balance (read-only)",
+            "classification": "UNAVAILABLE / UNKNOWN",
+            "freshness_classification": "UNAVAILABLE / UNKNOWN",
+            "status": "Approved live wallet reading unavailable",
+            "big": "Unknown",
+            "percent": None,
+            "percent_label": "Current balance unavailable",
+            "activity": "No current approved live wallet reading",
+            "detail": "The historical cache is retained below but is never promoted to a current balance.",
+            "source": "Approved public provider monitor; no current Moonshot gauge present.",
+            "tone": "warn",
+            "current_value_known": False,
+            "available_balance_usd": None,
+            "cash_balance_usd": None,
+            "voucher_balance_usd": None,
+            "routing_balance_usd": None,
+            "planning_envelopes": [],
+            "historical_observations": [cached_history] if cached_history else [],
+            "sub_gauges": [],
+        })
+        return out
+
+    wallet = dict(out[wallet_index])
+    available = wallet.get("available_balance_usd")
+    if not isinstance(available, (int, float)) or isinstance(available, bool):
+        available = _matched_dollars(
+            _MOONSHOT_AVAILABLE_RE,
+            wallet.get("percent_label"),
+            wallet.get("detail"),
+        )
+    cash = wallet.get("cash_balance_usd")
+    if not isinstance(cash, (int, float)) or isinstance(cash, bool):
+        cash = _matched_dollars(_MOONSHOT_CASH_RE, wallet.get("detail"), wallet.get("activity"))
+    voucher = wallet.get("voucher_balance_usd")
+    if not isinstance(voucher, (int, float)) or isinstance(voucher, bool):
+        voucher = _matched_dollars(
+            _MOONSHOT_VOUCHER_RE,
+            wallet.get("detail"),
+            wallet.get("activity"),
+        )
+
+    planning_envelopes = [
+        dict(item)
+        for item in (wallet.get("planning_envelopes") or [])
+        if isinstance(item, dict)
+    ]
+    old_percent = wallet.get("percent")
+    if isinstance(old_percent, (int, float)) and not planning_envelopes:
+        planning_envelopes.append({
+            "classification": "PLANNING ENVELOPE",
+            "label": "Percent of observed peak consumed",
+            "percent": float(old_percent),
+        })
+    history = [
+        dict(item)
+        for item in (wallet.get("historical_observations") or [])
+        if isinstance(item, dict)
+    ]
+    if cached_history and not any(
+        item.get("observed_at_utc") == cached_history.get("observed_at_utc")
+        and item.get("available_balance_usd") == cached_history.get("available_balance_usd")
+        for item in history
+    ):
+        history.append(cached_history)
+
+    freshness = wallet.get("freshness_classification") or "UNAVAILABLE / UNKNOWN"
+    has_observed_balance = available is not None
+    wallet.update({
+        "pool_id": MOONSHOT_POOL_ID,
+        "classification": freshness,
+        "current_value_known": freshness == "FRESH LIVE METER" and has_observed_balance,
+        "big": _usd(available) if has_observed_balance else "Unknown",
+        "percent": None,
+        "percent_label": (
+            f"{_usd(available)} available · no fixed denominator"
+            if has_observed_balance
+            else "Current balance unavailable"
+        ),
+        "activity": (
+            f"{_usd(cash)} cash · {_usd(voucher)} voucher"
+            if has_observed_balance
+            else "No current approved live wallet reading"
+        ),
+        "available_balance_usd": available,
+        "cash_balance_usd": cash,
+        "voucher_balance_usd": voucher,
+        "routing_balance_usd": available if freshness == "FRESH LIVE METER" else None,
+        "planning_envelopes": planning_envelopes,
+        "historical_observations": history,
+        "sub_gauges": [
+            {"label": "Cash balance", "percent": None, "value_label": _usd(cash)},
+            {"label": "Voucher balance", "percent": None, "value_label": _usd(voucher)},
+        ],
+    })
+    if freshness == "STALE HISTORICAL OBSERVATION":
+        wallet = historicalize_usage_card(
+            wallet,
+            fallback_observed_at=str(wallet.get("source_observed_at_utc") or now_utc()),
+            fallback_age_seconds=wallet.get("source_age_seconds"),
+        )
+    elif freshness == "UNAVAILABLE / UNKNOWN":
+        wallet.update({
+            "classification": "UNAVAILABLE / UNKNOWN",
+            "status": "Approved live wallet reading unavailable",
+            "big": "Unknown",
+            "tone": "warn",
+            "available_balance_usd": None,
+            "cash_balance_usd": None,
+            "voucher_balance_usd": None,
+            "routing_balance_usd": None,
+        })
+    out[wallet_index] = wallet
+    return out
 
 
 def flow_credit_card() -> Dict[str, Any]:
@@ -1292,15 +1594,20 @@ def flow_credit_card() -> Dict[str, Any]:
         assert isinstance(remaining, (int, float)) and not isinstance(remaining, bool)
         assert isinstance(total, (int, float)) and not isinstance(total, bool)
         used_pct = None
-        big = "Stale"
+        # Not "Stale": this is the most recent obtainable value, not a decayed one.
+        # Flow exposes no balance API, so an operator capture is the only source there
+        # is. Renamed 2026-08-14 to match the baseline cockpit, which calls the same
+        # fact a "reference" -- one fact should not carry two labels across surfaces.
+        big = "Last confirmed"
         reset_label = str(reset).strip()
         reset_copy = ("reset date not shown" if reset_label.lower().startswith(
             ("not specified", "not shown", "unknown", "unavailable")) else f"resets {reset_label}")
         head = f"Last confirmed {int(remaining):,} / {int(total):,} credits left · {reset_copy}"
-        status = f"stale — captured {age_label(capture_age)} ago"
+        status = f"last confirmed {age_label(capture_age)} ago · no live balance API"
         detail = (
             f"Last operator-confirmed Flow UI balance, captured {captured_utc} ({age_label(capture_age)} old). "
-            "Shown as the most recent known reading; refresh with `flow-credits <remaining>` after a glance at the Flow UI."
+            "The most recent obtainable reading — Flow exposes no balance API. "
+            "Refresh with `flow-credits <remaining>` after a glance at the Flow UI."
         )
         source = f"Last Flow UI balance capture in {FLOW_CREDITS_PATH.name} at {captured_utc}."
         tone = "warn"
@@ -1409,19 +1716,34 @@ def build_public_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any] | None
         if "veo" in prov or "flow" in prov:
             return False
         return prov != "tori / hermes"
-    cards = [public_gauge_card(g) for g in gauges if isinstance(g, dict) and _keep_gauge(g)]
-    kimi_card = kimi_direct_balance_card()
-    cards.append(kimi_card)
-    cards.append(flow_credit_card())   # re-added: Flow/Veo monthly credit pool
-    cards.append(youtube_api_quota_card())
+    public_cards = [public_gauge_card(g) for g in gauges if isinstance(g, dict) and _keep_gauge(g)]
+    public_cards = canonicalize_moonshot_wallet(public_cards)
+    flow_card = flow_credit_card()   # re-added: Flow/Veo monthly credit pool
+    youtube_card = youtube_api_quota_card()
+    cards = public_cards + [flow_card, youtube_card]
     if observed_age is not None and observed_age > 3600:
+        stale_public_cards = [
+            historicalize_usage_card(
+                card,
+                fallback_observed_at=str(observed_at),
+                fallback_age_seconds=observed_age,
+            )
+            for card in public_cards
+        ]
+        stale_cards = stale_public_cards + [flow_card, youtube_card]
+        unknown_meters = sum(
+            1
+            for card in stale_public_cards
+            for meter in [card, *(card.get("sub_gauges") or [])]
+            if meter.get("classification") == "UNAVAILABLE / UNKNOWN"
+        )
         return {
             "marker": PUBLIC_USAGE_FEED_MARKER,
             "provider_monitor_marker": monitor.get("marker") or "unknown",
-            "provider_monitor_status": "stale-hidden",
+            "provider_monitor_status": "STALE_PROVIDER_FEED_CARDS_VISIBLE",
             "generated_at": now_utc(),
             "observed_at_utc": observed_at,
-            "cache_state": "stale-source-hidden",
+            "cache_state": "stale-source-visible",
             "cache_age_label": age_label(observed_age),
             "exact_limit_percent_sources": 0,
             "browser_poll_seconds": 5,
@@ -1430,23 +1752,25 @@ def build_public_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any] | None
             "public_status_path": str(PUBLIC_USAGE_STATUS),
             "public_status_url": PUBLIC_USAGE_URL,
             "active_pane_counts": monitor.get("active_pane_counts") if isinstance(monitor.get("active_pane_counts"), dict) else {},
-            "cards": [kimi_card, flow_credit_card(), youtube_api_quota_card()],
+            "cards": stale_cards,
             "notes": [
-                f"Provider usage source is stale ({age_label(observed_age)} old), so old quota gauges are hidden from this dashboard until the source refreshes.",
-                "The private Kimi card may use an approved in-memory credential for an official read-only balance GET; no browser, payment, account mutation, or public cockpit write is involved.",
+                f"Provider usage source is stale ({age_label(observed_age)} old). Provider cards remain visible, but retained values are historical only and current percentages are unavailable.",
+                "Moonshot wallet history is attached to its one canonical provider card; no duplicate private provider read is performed.",
             ],
             "sources": {
                 "public_status_path": str(PUBLIC_USAGE_STATUS),
                 "public_status_url": PUBLIC_USAGE_URL,
                 "public_monitor_observed_at_utc": observed_at,
                 "public_monitor_age_seconds": observed_age,
-                "provider_gauge_count_hidden_as_stale": len(cards),
+                "provider_gauge_count_visible_as_stale": len(stale_public_cards),
+                "provider_meter_count_unknown": unknown_meters,
+                "provider_meter_count_planning_envelope": 0,
             },
         }
     exact_sources = sum(1 for card in cards if isinstance(card.get("percent"), (int, float)))
     active_counts = monitor.get("active_pane_counts") if isinstance(monitor.get("active_pane_counts"), dict) else {}
     notes = [
-        "Provider quota cards mirror the public live steering feed. The direct Kimi wallet is the only private supplement and comes from Kimi's official read-only balance endpoint.",
+        "Provider quota and wallet cards mirror the approved public live steering feed; the private renderer performs no duplicate Moonshot provider read.",
         "Browser refreshes this private JSON every 5s; local public usage monitor refreshes status files every 60s and safe visible slash panels every 300s when panes are idle.",
         monitor.get("source_policy") or "Visible pane/status sources only. No credentials, billing APIs, account/payment surfaces, browser automation, or provider secrets.",
     ]
@@ -2005,7 +2329,7 @@ def render_html() -> str:
   <main>
     <section class="panel">
       <h2>Running now</h2>
-      <p>Seats working a dispatched job. What each paper is waiting on — and which of those need YOU — is on its row in the septet matrix below.</p>
+      <p>Seats working a dispatched job. What each paper is waiting on — and which of those need YOU — is on its row in the sextet matrix below.</p>
       <div id="op-running" class="events"><div class="empty">Loading…</div></div>
     </section>
 
@@ -2176,9 +2500,14 @@ function usageCard(u) {
     const swidth = sp === null ? '' : `style="width:${sp}%"`;
     const scls = sp === null ? 'unknown' : '';
     let valStr = esc(s.value_label || (sp === null ? 'not observed' : sp.toFixed(0)+'%'));
-    if (valStr.includes('remained ')) {
-      const parts = valStr.split('remained ');
-      const remainStr = parts.slice(1).join('remained ');
+    // Accept both tokens: the monitor now emits 'resets in', but a cached or
+    // not-yet-rewritten card may still carry the old 'remained'. Dropping the old
+    // one would silently kill the colour coding until every writer had cycled.
+    const tok = valStr.includes('resets in ') ? 'resets in '
+              : valStr.includes('remained ')  ? 'remained ' : null;
+    if (tok) {
+      const parts = valStr.split(tok);
+      const remainStr = parts.slice(1).join(tok);
       let days = 0;
       const dayMatch = remainStr.match(/(\d+)\s*day/);
       if (dayMatch) {
@@ -2187,14 +2516,14 @@ function usageCard(u) {
       let colorClass = 'reset-blue';
       if (days < 2) colorClass = 'reset-red';
       else if (days < 4) colorClass = 'reset-orange';
-      valStr = parts[0] + `<span class="reset-time ${colorClass}">remained ` + remainStr + '</span>';
+      valStr = parts[0] + `<span class="reset-time ${colorClass}">${tok}` + remainStr + '</span>';
     } else if ((s.label || '').toLowerCase().includes('week') && valStr.includes(' · ')) {
       const parts = valStr.split(' · ');
       valStr = parts[0] + ' · <span class="reset-time">' + parts.slice(1).join(' · ') + '</span>';
     }
     return `<div class="usage-sub"><div class="usage-sub-line"><span>${esc(s.label)}</span><strong>${valStr}</strong></div><div class="usage-sub-bar"><span class="${scls}" ${swidth}></span></div></div>`;
   }).join('');
-  return `<div class="usage-card ${cls}"><h3>${esc(u.name)}</h3><div class="usage-status">${esc(u.status)} · ${esc(u.kind)}</div><div class="usage-big">${esc(big)}</div><div class="usage-note">${esc(u.percent_label || '')}</div><div class="usage-bar"><span ${width}></span></div>${subs ? `<div class="usage-subs">${subs}</div>` : ''}<p><strong>${esc(u.activity || '')}</strong></p><p class="usage-note">${esc(u.detail || '')}</p><p class="usage-note">Source: ${esc(shortenPath(u.source))}</p></div>`;
+  return `<div class="usage-card ${cls}"><h3>${esc(u.name)}</h3><div class="usage-status">${esc(u.status)} · ${esc(u.kind)}</div><div class="usage-big">${esc(big)}</div><div class="usage-note">${esc(u.percent_label || '')}</div><div class="usage-bar"><span ${width}></span></div>${subs ? `<div class="usage-subs">${subs}</div>` : ''}${(u.activity && u.activity !== u.percent_label) ? `<p><strong>${esc(u.activity)}</strong></p>` : ''}<p class="usage-note">${esc(u.detail || '')}</p><p class="usage-note">Source: ${esc(shortenPath(u.source))}</p></div>`;
 }
 function renderUsage(u) {
   if (!u) return;
