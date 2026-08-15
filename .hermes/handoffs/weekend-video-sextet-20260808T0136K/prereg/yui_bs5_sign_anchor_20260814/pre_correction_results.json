@@ -1,0 +1,155 @@
+{
+  "absolute_sign_anchor": "PASS",
+  "boundaries": {
+    "acceptance_or_freeze": false,
+    "commit_or_push": false,
+    "convention_change": false,
+    "probe_selection_tuning_or_replacement": false,
+    "publication": false,
+    "real_images": false,
+    "real_object_rows": false,
+    "real_sky_data": false,
+    "sky_positions": false,
+    "sky_statistic": false,
+    "technical_execution_rerun_after_pre_result_serialization_error": true,
+    "threshold_tuning": false,
+    "training_or_retraining": false,
+    "weight_reexport": false
+  },
+  "convention_changed": false,
+  "counts": {
+    "base_chi_ccw_positive": 32,
+    "base_chi_mirror_negative": 32,
+    "estimator_accepted_at_tau": 32,
+    "estimator_antisymmetry_value_exact": 32,
+    "estimator_chi_ccw_positive": 32,
+    "estimator_chi_mirror_negative": 32,
+    "known_ccw_image_slope_positive": 32,
+    "known_cw_mirror_slope_negative": 32,
+    "mirror_involution_byte_exact": 32
+  },
+  "environment": {
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "numpy": "1.26.4",
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "torch": "2.8.0",
+    "torch_interop_threads": 1,
+    "torch_threads": 1
+  },
+  "estimator_chi_summary": {
+    "max": 10.054704666137695,
+    "mean": 7.576760560274124,
+    "min": 4.513615131378174
+  },
+  "estimator_corrected_after_precheck": false,
+  "estimator_sign_multiplier": 1,
+  "execution_history": {
+    "attempt1_error": "numpy.bool_ was not JSON serializable",
+    "attempt1_failed_before_any_sign_result": true,
+    "attempt1_partial_records": "prereg/yui_bs5_sign_anchor_20260814/attempt1_partial_probe_records.jsonl",
+    "attempt1_stderr": "prereg/yui_bs5_sign_anchor_20260814/attempt1_pre_correction_stderr.log",
+    "attempt1_stdout": "prereg/yui_bs5_sign_anchor_20260814/attempt1_pre_correction_stdout.log",
+    "probe_selection_tuned_or_replaced": false,
+    "technical_rerun_after_serialization_failure": true
+  },
+  "frozen_estimator": {
+    "canonical_parameter_sha256_after_strict_load": "1075a4d91c295d7f3256128534a0b8c4d097fb9d162169df1ac698843637a589",
+    "finetuned": false,
+    "null_manifest_sha256": "1963132f2f36e7aa42b08012aad02d2c541d6c0973740a5bbce6a6e7a2904bd1",
+    "reexported": false,
+    "retrained": false,
+    "tau": 4.4006456017494235,
+    "tau_recalibrated": false,
+    "weights_file_sha256": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d"
+  },
+  "frozen_input_verification_before": {
+    "hashes": {
+      "prereg/LANA_BS5_LONGO_SIGN_20260814.md": "b7c32dcf12d9e147e5dee6a8262d925b61011615f2ee1d75d687600abb0a72ca",
+      "prereg/PREREG_LONGO_AMPLITUDE_TEST_20260812.md": "ac43490054b159610385b8faac28dc4e3178161fadd97d66aa0418a1186b7590",
+      "prereg/PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260814.md": "da2c6a21d994b9af7395347bf881075f855826ff859dd0415f15042f80ed3308",
+      "prereg/_tmp_YUI_SIGN_ANCHOR_BRIEF.md": "f8f0633a9e2bb513534ba721e79e573afd0e8e2d0e2ef3a11f6bcfee3be45602",
+      "prereg/receipt_results.json": "d5d4a8bc005b031ed523e64a672237536896f37030722fd5cf71ff44a3405a04",
+      "prereg/train_results.json": "c36cd33001e432c60df786da8c0ff95b8ef5ab350a458b29d71ff084178a41fd",
+      "prereg/weights_frozen.pt": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d",
+      "prereg/yui_bs3_r4_r5_20260813/run_bs3_r4_r5.py": "de0f35355902f25497e240a413a087a1413d365342419b0be3fc15a7e5117914",
+      "spike/yui_identity/w_chi.py": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
+    },
+    "value_checks": {
+      "canonical_weights_record": true,
+      "master_seed_record": true,
+      "null_manifest": true,
+      "tau": true
+    }
+  },
+  "frozen_sign_convention": "CCW apparent winding East-of-North => chi > 0",
+  "probe_set": {
+    "apparent_winding": "CCW East-of-North on North-up/East-left raster",
+    "dtype": "float32",
+    "image_and_mirror_manifest_sha256": "d0f8ffab5a941add19bb1b9adef74e944bd8973bf7d48f89c677e48f74a71293",
+    "master_seed": "LONGO-AMPLITUDE-BS5-ABSOLUTE-SIGN-V1",
+    "mirror": "pure width-axis pixel-index reversal",
+    "n": 32,
+    "parameter_policy": "fixed hash-derived pitch/inclination/SNR inside frozen synthetic support; no retry or replacement",
+    "raster": [
+      128,
+      128
+    ],
+    "seeds": [
+      2473273849244718098,
+      8789019505398510286,
+      1526912716211634484,
+      9072892516473193307,
+      8540587544735610435,
+      3479233177003602006,
+      2206455257116269984,
+      7915581451605460104,
+      7967478538437203672,
+      8327766093791237161,
+      6567860936143578748,
+      2094551303266628906,
+      1618592970158951944,
+      1532065566840713327,
+      4881465317377269483,
+      1555784974855130691,
+      7554151867994230338,
+      2292959223475340082,
+      4632702592972026775,
+      1725246391710917466,
+      922424052922638712,
+      3643598945665468368,
+      3687420998031907456,
+      8636501273444800728,
+      7253894412676643749,
+      4438494391256111696,
+      3671490285313508610,
+      2558166004466253871,
+      7987164651420205480,
+      996386341571357895,
+      925931966215780766,
+      3812471434965937345
+    ],
+    "source_index_end_inclusive": 5000031,
+    "source_index_start": 5000000
+  },
+  "records": {
+    "path": "prereg/yui_bs5_sign_anchor_20260814/pre_correction_probe_records.jsonl",
+    "rows": 32,
+    "sha256": "cd02451070f0bbd16326439ed963dc07a5593da7b1505ef277307d4571019dc2"
+  },
+  "scope": "synthetic 128x128 float32 images only; no survey image, real object, row, position, or sky statistic",
+  "semantic_image_validation": "PASS",
+  "stage": "pre-correction",
+  "status": "PASS_BS5_SYNTHETIC_ABSOLUTE_SIGN_ANCHOR",
+  "wcs_parity_first": {
+    "cd_pc_cdelt_determinant": -7.71604938271605e-08,
+    "combined_pixel_to_sky_determinant": -7.71604938271605e-08,
+    "east_direction_on_raster": "left",
+    "north_direction_on_raster": "up",
+    "path": "prereg/yui_bs5_sign_anchor_20260814/wcs_parity.json",
+    "row_order_transform_determinant": 1.0,
+    "sha256": "14deff60b3462f99ec2daae6412e9d370313990e9303a2186f4faf48242e6169",
+    "status": "PASS_WCS_PARITY_FIRST"
+  }
+}
