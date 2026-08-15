@@ -1,0 +1,265 @@
+[
+  {
+    "candidate_bricks": [
+      "ra-wrap-east",
+      "ra-wrap-west"
+    ],
+    "dec_deg": -10.0,
+    "expected_array_path": "expected/ra_wrap_crossing.npy",
+    "expected_array_sha256": "52d37127e76ef256d45caa42c9eeb84c2d3449eaf4789835e058e806d1defe89",
+    "expected_bricks": [
+      "ra-wrap-east",
+      "ra-wrap-west"
+    ],
+    "expected_coverage_sha256": "746664dba900c81ef311c8456e15b02a5efeee3736a4f3827ce1eb1e0c24d8da",
+    "geometry_evidence": {
+      "great_circle_tangent_point_separation_deg": 0.2500217082807561,
+      "plain_numeric_tangent_point_delta_deg": 359.74612129760226
+    },
+    "group_id": "ra-wrap",
+    "object_id": "ra_wrap_crossing",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 0.0,
+      "CRVAL2": -10.0,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "ra-wrap-west",
+    "ra_deg": 0.0,
+    "source_set_signature_sha256": "509725e174a5389f3b716973dabb83f5ac02267ebdce5953d81c76a19ed28992",
+    "value_probes": [
+      {
+        "float32_bits": 1122196744,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122196511,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122196728,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122196945,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122196712,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "dec-max-east",
+      "dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/selected_dec_max_crossing.npy",
+    "expected_array_sha256": "042d9dddedbbce0b22bd97789e022a638ceaac643f0b822f3e4578eed3587d50",
+    "expected_bricks": [
+      "dec-max-east",
+      "dec-max-west"
+    ],
+    "expected_coverage_sha256": "746664dba900c81ef311c8456e15b02a5efeee3736a4f3827ce1eb1e0c24d8da",
+    "geometry_evidence": {
+      "selected_footprint_extreme": "maximum"
+    },
+    "group_id": "dec-max",
+    "object_id": "selected_dec_max_crossing",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.09852216748772,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "dec-max-west",
+    "ra_deg": 200.09852216748772,
+    "source_set_signature_sha256": "5d74e8d3084ddba9b3c491db76318e0dcee160c42642866954f7a6b839205af3",
+    "value_probes": [
+      {
+        "float32_bits": 1119059760,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1119059869,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1119059979,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1119060086,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1119060196,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "dec-min-east",
+      "dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/selected_dec_min_crossing.npy",
+    "expected_array_sha256": "9c110b46cf37f0cf2127a132d36a57e302420ee6fed89162a28b0d2587c481c1",
+    "expected_bricks": [
+      "dec-min-east",
+      "dec-min-west"
+    ],
+    "expected_coverage_sha256": "746664dba900c81ef311c8456e15b02a5efeee3736a4f3827ce1eb1e0c24d8da",
+    "geometry_evidence": {
+      "selected_footprint_extreme": "minimum"
+    },
+    "group_id": "dec-min",
+    "object_id": "selected_dec_min_crossing",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 120.0,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "dec-min-west",
+    "ra_deg": 120.0,
+    "source_set_signature_sha256": "8a0e52a22636d6f5cb7f86010019d98dd7f7b1243c996edaf0976f6a812b5d5e",
+    "value_probes": [
+      {
+        "float32_bits": 1119764845,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1119765236,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1119765063,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1119764888,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1119765279,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "geometry-overlap-east",
+      "geometry-overlap-west"
+    ],
+    "dec_deg": -30.0,
+    "expected_array_path": "expected/geometry_overlap_only.npy",
+    "expected_array_sha256": "264a7a8758ae4fa64cba9588ede9c178016d5d0c99890ca9f98e75881f33e146",
+    "expected_bricks": [
+      "geometry-overlap-east",
+      "geometry-overlap-west"
+    ],
+    "expected_coverage_sha256": "68741bf7fdebec02550bbda701af9b848b8171ef082bac5a82f5514f8fa7f34c",
+    "geometry_evidence": {
+      "candidate_offset_range_pixels": [
+        65,
+        146
+      ],
+      "derived_inward_offset_pixels": 106,
+      "output_crosses_unique_boundary": false,
+      "output_intersects_neighbour_source_polygon": true,
+      "planned_by_positive_area_nine_point_wcs_polygon": [
+        "geometry-overlap-east",
+        "geometry-overlap-west"
+      ]
+    },
+    "group_id": "geometry-overlap",
+    "object_id": "geometry_overlap_only",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 180.13543855828215,
+      "CRVAL2": -30.0,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "geometry-overlap-west",
+    "ra_deg": 180.13543855828215,
+    "source_set_signature_sha256": "74e5417724d2d3deb40865cbf95b95a7d2f29a4cb4277040c12a4e3992377cdf",
+    "value_probes": [
+      {
+        "float32_bits": 1118648581,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1118632429,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1118632299,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1118648551,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1118632399,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  }
+]
