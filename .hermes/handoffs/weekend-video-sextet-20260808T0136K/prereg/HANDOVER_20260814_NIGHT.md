@@ -353,3 +353,93 @@ verified still gitignored file-by-file (0 leaks), not assumed.
 
 No lane went idle without delivering; every artifact this session was gated. Autopilot ends here —
 no further wakeups armed.
+
+---
+
+# STATUS — overnight 2026-08-16 → 17 (03:53 KST)
+
+## Headline: the "if" in Kun's open item was wrong, and the adapter had already handled it
+
+His production-tier list read *"legitimate three-source T-junction **if it occurs** in the real DR10
+South geometry."* It occurs, systematically. Brick RA width scales with `1/cos(dec)`, so adjacent
+declination rows hold different brick counts, their RA boundaries stagger, and three cells meet
+along every row boundary.
+
+**Yui verified that from the brick table rather than accepting it from me** — she was asked to,
+because this project has already frozen a directional claim written from memory and paid for it.
+Five real brick records from the SHA-pinned local `survey-bricks-dr10-south.fits.gz`, geometry and
+provenance columns only. The lower row's vertical RA boundary lies strictly inside the upper
+brick's RA interval: exactly three cells.
+
+## Round-5, and why it stresses rather than merely contains
+
+Every prior fixture had four bricks at a corner, or none. Nine cases now sit at a three-brick
+junction with the ladder on both edges of the T:
+
+    tjunction_exact            [0.0, 4.82e-11]      the junction itself
+    vertical_subpixel_in/out   ±0.24999999980       both sides
+    horizontal_subpixel_in/out ±0.25000000033       both sides
+    one_pixel_beyond           0.99999999994
+
+Checked deliberately, because round-3 taught that a fixture can contain the hard case without
+exercising it — its margins were ≥10 source pixels, so the knife edge went untested at the very
+extremes it was built for. The offsets were verified, not the case names.
+
+## Cross-check and gate
+
+    round-1 29/29 · round-2 4/4 · round-3 10/10 · round-4 3/3 · round-5 9/9
+    five separately-counted blocks, never summed, zero failures
+
+`KUN_ROUND5_TJUNCTION_GATE_20260817.md` → **PASS_ROUND5_TJUNCTION**.
+
+**The adapter was not modified** — byte-identical at `267b2a93` through seven fixture rounds and
+seven gates. Kun ruled on what that means rather than treating it as self-evident: round-5 is not a
+no-op, since it presents five local candidates of which exactly three are legitimate and two guards
+must be excluded. So the planner genuinely handles the topology.
+
+**The sharpest result:** at a T-junction the adapter's grouping primary is `tj-upper-span` while
+Yui's oracle records `tj-lower-west`. They disagree, and it does not matter — planned, contributing
+and zero-pixel-touch sets are identical across all nine cases. *"Which brick is primary" still does
+not decide "which pixels are available."* That is the corner repair's central gain, retested where
+three centres compete instead of four.
+
+## Negative control promoted out of scratch
+
+Kun's determinism negative control was `_tmp_kun_bad_order_harness_20260816.py` — never committed,
+while its SHA-256 was pinned in a gate report. A hash pointing at a file that could vanish, which is
+the same defect shape as a receipt with no stable identity.
+
+Renamed to `NEGATIVE_CONTROL_deliberately_defective_order_harness.py` with a README stating plainly
+that it is broken on purpose and must never be run as the harness. Content byte-identical
+(`5ecf0b44`), so the cited hash still resolves. **The gate report was not edited.**
+
+## Committed
+
+`e971e36` on `feat/paper-workflow-v2`, local, **not pushed**. 10 files, 0.33 MB. All 86 synthetic
+FITS/npy binaries across five generated trees (199 MB) verified gitignored file-by-file, 0 leaks —
+checked, not assumed.
+
+## Open — and what actually needs Duho
+
+**Three questions are out with Dustin Lang:**
+
+1. DR10 per-brick checksum currency against the DR10.1 in-place replacements;
+2. whether DR11 incorporates the DR10.1 sub-blob fix;
+3. the NOIRLab Data Lab timeline for `ls_dr11.photo_z`.
+
+**Question 3 decides everything.** The DR11 migration is **HELD**: `ls_dr11` currently exposes only
+`apflux_s`, `tractor`, `tractor_n`, `tractor_s`. Cut 3 is `0 <= z_phot_median < 0.15` and removes
+99.2% of the sample, so without `photo_z` the frozen selection cannot run against DR11 at all.
+
+**DR10.1 remains the operative preregistration.**
+
+Also still open, unchanged: production-kernel equivalence with the Imagine/astrometry.net resampler;
+exact offline rebuild (the lock is a measurement, not a container lock); and — a **data** question,
+not a fixture question — whether real parent-set objects touch T-junctions and how many. Round-5
+proves the pattern exists and one synthetic instance is handled; it does not enumerate the real
+working set. That belongs to the manifest gate.
+
+## Boundary
+
+No real brick, route or manifest opened. Zero cutouts, zero sky statistics, no endpoint activated,
+no consent granted, no package installed, no network fetch of survey data. K-8 untripped.
