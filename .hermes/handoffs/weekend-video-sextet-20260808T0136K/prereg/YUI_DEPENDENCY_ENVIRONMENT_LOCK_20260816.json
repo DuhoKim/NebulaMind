@@ -1,0 +1,830 @@
+{
+  "content_hash_excludes": [
+    "content_sha256",
+    "recorded_utc"
+  ],
+  "content_sha256": "d8ca7292a6c12a77ecfecf0df5fe39aa32741afa4085a8303509985e90dd637d",
+  "dependency_partition": {
+    "adapter_module_and_tests": {
+      "direct_third_party_imports": [],
+      "python_runtime": {
+        "dont_write_bytecode": false,
+        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+        "implementation": "CPython",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      "runtime_loaded_distributions_after_probe_baseline": {},
+      "stdlib_only_invariant": "PASS",
+      "tests_run": 30,
+      "tests_successful": true
+    },
+    "cross_runner": {
+      "direct_third_party_imports": [
+        "astropy",
+        "numpy"
+      ],
+      "local_imports": [
+        "make_boundary_fixtures",
+        "make_boundary_fixtures_round2",
+        "nm_brick_cutout_adapter"
+      ],
+      "note": "Cross-runner directly imports numpy and astropy.io and also imports local oracle modules; it therefore requires the oracle third-party environment.",
+      "python_runtime": {
+        "dont_write_bytecode": false,
+        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+        "implementation": "CPython",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      "transitive_runtime_loaded_distributions": {
+        "PyYAML": [
+          "yaml"
+        ],
+        "astropy": [
+          "astropy"
+        ],
+        "astropy-iers-data": [
+          "astropy_iers_data"
+        ],
+        "certifi": [
+          "certifi"
+        ],
+        "numpy": [
+          "numpy"
+        ],
+        "packaging": [
+          "packaging"
+        ],
+        "pyerfa": [
+          "erfa"
+        ]
+      }
+    },
+    "oracle_and_fixture_tests": {
+      "direct_third_party_imports": [
+        "astropy",
+        "numpy"
+      ],
+      "python_runtime": {
+        "dont_write_bytecode": true,
+        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+        "implementation": "CPython",
+        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      },
+      "runtime_loaded_distributions": {
+        "PyYAML": [
+          "yaml"
+        ],
+        "astropy": [
+          "astropy"
+        ],
+        "astropy-iers-data": [
+          "astropy_iers_data"
+        ],
+        "certifi": [
+          "certifi"
+        ],
+        "numpy": [
+          "numpy"
+        ],
+        "packaging": [
+          "packaging"
+        ],
+        "pyerfa": [
+          "erfa"
+        ]
+      },
+      "tests_run": 17,
+      "tests_successful": true
+    },
+    "python_startup_probe_baseline": {
+      "setuptools": [
+        "_distutils_hack"
+      ]
+    }
+  },
+  "operating_system": {
+    "build_version": "25G76",
+    "darwin_kernel": "Darwin Duhoui-MacStudio.local 25.6.0 Darwin Kernel Version 25.6.0: Sat Jul 11 15:27:26 PDT 2026; root:xnu-12377.161.13~4/RELEASE_ARM64_T6031 arm64",
+    "mac_ver": [
+      "26.6.1",
+      [
+        "",
+        "",
+        ""
+      ],
+      "arm64"
+    ],
+    "platform": "macOS-26.6.1-arm64-arm-64bit",
+    "product_version": "26.6.1"
+  },
+  "probe_evidence": {
+    "adapter_runtime": {
+      "path": "_tmp_yui_dependency_probe_adapter_20260816.json",
+      "result": {
+        "baseline_probe_distributions": {
+          "setuptools": [
+            "_distutils_hack"
+          ]
+        },
+        "errors": 0,
+        "failures": 0,
+        "python_runtime": {
+          "dont_write_bytecode": false,
+          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+          "implementation": "CPython",
+          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+        },
+        "scope": "adapter_module",
+        "tests_run": 30,
+        "tests_successful": true,
+        "third_party_distributions_loaded_after_baseline": {}
+      },
+      "sha256": "c0cf5a71594bee723930dbf0dab5727fe1aeee94add01c0b6ffdb491a3674aca"
+    },
+    "cross_runner_runtime": {
+      "path": "_tmp_yui_dependency_probe_cross_runner_20260816.json",
+      "result": {
+        "baseline_probe_distributions": {
+          "setuptools": [
+            "_distutils_hack"
+          ]
+        },
+        "errors": 0,
+        "failures": 0,
+        "python_runtime": {
+          "dont_write_bytecode": false,
+          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+          "implementation": "CPython",
+          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+        },
+        "scope": "cross_runner",
+        "tests_run": 0,
+        "tests_successful": true,
+        "third_party_distributions_loaded_after_baseline": {
+          "PyYAML": [
+            "yaml"
+          ],
+          "astropy": [
+            "astropy"
+          ],
+          "astropy-iers-data": [
+            "astropy_iers_data"
+          ],
+          "certifi": [
+            "certifi"
+          ],
+          "numpy": [
+            "numpy"
+          ],
+          "packaging": [
+            "packaging"
+          ],
+          "pyerfa": [
+            "erfa"
+          ]
+        }
+      },
+      "sha256": "d3241fcaa41f4df7c208315d69318684ebe4bf95b63499d0a4a3bfd15beed800"
+    },
+    "lock_builder": {
+      "path": "_tmp_yui_dependency_lock_build_20260816.py",
+      "result": null,
+      "sha256": "5cb31764555fcc9b49437e4d83eda19184cc615d3a90bd3e1df163dab38cd5fd"
+    },
+    "oracle_runtime": {
+      "path": "_tmp_yui_dependency_probe_oracle_20260816.json",
+      "result": {
+        "baseline_probe_distributions": {
+          "setuptools": [
+            "_distutils_hack"
+          ]
+        },
+        "errors": 0,
+        "failures": 0,
+        "python_runtime": {
+          "dont_write_bytecode": true,
+          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+          "implementation": "CPython",
+          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+        },
+        "scope": "oracle",
+        "tests_run": 17,
+        "tests_successful": true,
+        "third_party_distributions_loaded_after_baseline": {
+          "PyYAML": [
+            "yaml"
+          ],
+          "astropy": [
+            "astropy"
+          ],
+          "astropy-iers-data": [
+            "astropy_iers_data"
+          ],
+          "certifi": [
+            "certifi"
+          ],
+          "numpy": [
+            "numpy"
+          ],
+          "packaging": [
+            "packaging"
+          ],
+          "pyerfa": [
+            "erfa"
+          ]
+        }
+      },
+      "sha256": "9b7392a4755065d293cd5d6e0cf6a29c0a5b64da6c5c652abf0b29e9c391d542"
+    },
+    "probe_script": {
+      "path": "_tmp_yui_dependency_probe_20260816.py",
+      "result": null,
+      "sha256": "5af5db372bf3979666b96f9d5992f4e2e1dacfc5f015fbb3d920c3a50f75cc2d"
+    }
+  },
+  "python_environment": {
+    "base_prefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9",
+    "build": [
+      "default",
+      "May 22 2026 11:13:45"
+    ],
+    "byteorder": "little",
+    "compiler": "Clang 21.0.0 (clang-2100.1.1.101)",
+    "enable_user_site": true,
+    "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
+    "implementation": "CPython",
+    "machine": "arm64",
+    "prefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9",
+    "real_executable": {
+      "path": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/bin/python3.9",
+      "sha256": "bdea59019a38eb6600cc9e71e984a97fedadc406448431281e7657030f54987e",
+      "size_bytes": 102352
+    },
+    "shell_resolved_launcher": {
+      "path": "/usr/bin/python3",
+      "sha256": "44a68ddc1983d6cff3fd35ba3f9ba5f82004216f1dcde69892b3d1b06e408698",
+      "size_bytes": 118640
+    },
+    "sys_executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
+    "sys_executable_symlink_target": "../../Library/Frameworks/Python3.framework/Versions/3.9/bin/python3",
+    "sys_path": [
+      "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg",
+      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python39.zip",
+      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9",
+      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/lib-dynload",
+      "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+      "__editable__.astro_agent-0.1.0.finder.__path_hook__",
+      "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/site-packages"
+    ],
+    "sysconfig_platform": "macosx-10.9-universal2",
+    "user_site": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages",
+    "version": "3.9.6",
+    "version_full": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "version_info": [
+      3,
+      9,
+      6,
+      "final",
+      0
+    ]
+  },
+  "recorded_utc": "2026-08-16T03:36:49.836505Z",
+  "reproducibility": {
+    "current_environment_verifiable_against_installed_file_fingerprints": true,
+    "exact_offline_rebuild_possible_from_current_pip_wheel_cache": false,
+    "network_access_alone_sufficient_for_bit_exact_rebuild": false,
+    "network_access_required_to_attempt_rebuild": true,
+    "reason": "The lock identifies versions, ABI tags, metadata, RECORD declarations, and exact installed-file fingerprints, but it does not contain the original distribution archives, the Apple Command Line Tools installer, or the macOS image.",
+    "reproducible_from_lock_alone": false
+  },
+  "schema_version": "yui-dependency-environment-lock-v1",
+  "scope": {
+    "brief_path": "_tmp_yui_dependency_lock_brief_20260816.md",
+    "brief_sha256": "270b1d45d24481cb7913bfdda312f48182cb75deafd5c5e2c5db121f3fc62523",
+    "build_only": true,
+    "install_or_download_performed": false,
+    "network_used": false,
+    "synthetic_only": true
+  },
+  "source_artifacts": {
+    "adapter/cross_check_yui_boundary.py": {
+      "imports": [
+        "__future__",
+        "astropy.io",
+        "datetime",
+        "hashlib",
+        "json",
+        "make_boundary_fixtures",
+        "make_boundary_fixtures_round2",
+        "nm_brick_cutout_adapter",
+        "numpy",
+        "pathlib",
+        "shutil",
+        "sys",
+        "tempfile"
+      ],
+      "sha256": "e4168e331148feb9d348e30dcd10427f572492dfbedab141b745b8e3c34c691d"
+    },
+    "adapter/nm_brick_cutout_adapter.py": {
+      "imports": [
+        "__future__",
+        "argparse",
+        "datetime",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "math",
+        "pathlib",
+        "re",
+        "struct",
+        "sys",
+        "typing"
+      ],
+      "sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f"
+    },
+    "adapter/test_nm_brick_cutout_adapter.py": {
+      "imports": [
+        "__future__",
+        "ast",
+        "hashlib",
+        "importlib.util",
+        "json",
+        "pathlib",
+        "shutil",
+        "struct",
+        "subprocess",
+        "sys",
+        "tempfile",
+        "unittest"
+      ],
+      "sha256": "d077ef35846340b31694d0cf630aceb185723d8971ad372f324422f9caa5566d"
+    },
+    "boundary_fixtures/make_boundary_fixtures.py": {
+      "imports": [
+        "__future__",
+        "argparse",
+        "astropy.io",
+        "astropy.wcs",
+        "hashlib",
+        "json",
+        "numpy",
+        "pathlib",
+        "typing"
+      ],
+      "sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d"
+    },
+    "boundary_fixtures/make_boundary_fixtures_round2.py": {
+      "imports": [
+        "__future__",
+        "argparse",
+        "astropy.io",
+        "astropy.wcs",
+        "hashlib",
+        "json",
+        "make_boundary_fixtures",
+        "math",
+        "numpy",
+        "pathlib",
+        "typing"
+      ],
+      "sha256": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc"
+    },
+    "boundary_fixtures/make_boundary_fixtures_round3.py": {
+      "imports": [
+        "__future__",
+        "argparse",
+        "astropy.io",
+        "astropy.wcs",
+        "hashlib",
+        "json",
+        "make_boundary_fixtures",
+        "make_boundary_fixtures_round2",
+        "numpy",
+        "pathlib",
+        "typing"
+      ],
+      "sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62"
+    },
+    "boundary_fixtures/test_boundary_fixtures.py": {
+      "imports": [
+        "__future__",
+        "astropy.io",
+        "astropy.wcs",
+        "json",
+        "make_boundary_fixtures",
+        "numpy",
+        "pathlib",
+        "tempfile",
+        "unittest"
+      ],
+      "sha256": "295e9a1a72f56a2ca66caa3910b2c92f8c67700e9302e133a202593ba76b3da0"
+    },
+    "boundary_fixtures/test_boundary_fixtures_round2.py": {
+      "imports": [
+        "__future__",
+        "astropy.io",
+        "astropy.utils.exceptions",
+        "astropy.wcs",
+        "hashlib",
+        "json",
+        "make_boundary_fixtures",
+        "make_boundary_fixtures_round2",
+        "math",
+        "numpy",
+        "pathlib",
+        "tempfile",
+        "unittest",
+        "warnings"
+      ],
+      "sha256": "f369b659f54f2aed677d92019428ffed82fd965bfe264b6e6efa9205c9dfa951"
+    },
+    "boundary_fixtures/test_boundary_fixtures_round3.py": {
+      "imports": [
+        "__future__",
+        "hashlib",
+        "json",
+        "make_boundary_fixtures_round3",
+        "numpy",
+        "pathlib",
+        "tempfile",
+        "unittest"
+      ],
+      "sha256": "36f9438d3359cbca6c27432b22ecf73570a581e15c64ca062a0a921e319b668f"
+    }
+  },
+  "standing_constraints": {
+    "commit_or_push_performed": false,
+    "pc3_pc4_atomicity_changed": false,
+    "publication_or_acceptance_performed": false,
+    "real_rows_positions_images_or_chirality_touched": false,
+    "real_survey_data_touched": false,
+    "source_manifest_generated": false
+  },
+  "status": "SUPERSEDED_BY_PRODUCTION_READ_ENVIRONMENT_LOCK",
+  "supersession": {
+    "pre_supersession_content_sha256": "d729a7824ae5d139f461bd1a4d69b27486c053af1984421cf1c2305175ae1f05",
+    "pre_supersession_file_sha256": "6e0c9ae2c414f0659c1dda5fba4f42bb417924fb64bb0bb08fb60d6d0f6e24ab",
+    "pre_supersession_status": "PASS_OFFLINE_ENVIRONMENT_MEASURED_WITH_REBUILD_GAPS",
+    "reason": "The architecture now has a separate compressed-FITS readstage; the successor adds its source/test, current cross-runner, and exact Astropy tiled-decoder module bytes.",
+    "successor_content_sha256": "86cf7c7aa07ee236d05e691598c216d1e037d347ebcfb1b5ea63d462bb11fbc7",
+    "successor_path": "YUI_PRODUCTION_READ_ENVIRONMENT_LOCK_20260816.json",
+    "superseded_utc": "2026-08-16T10:36:22.396674Z"
+  },
+  "third_party_distributions": {
+    "PyYAML": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/pyyaml-6.0.3.dist-info",
+      "installed_files_count": 43,
+      "installed_files_fingerprint_sha256": "69461ed93ee63f89dd10b20e2e31abb9daed97d2283ae25fc72d9c9d21e4a56b",
+      "installer": "pip",
+      "metadata_sha256": "03c3b415ed38d09faedc49360e930769b40c58f68585e6de00e2e4916a858d34",
+      "name": "PyYAML",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 43,
+      "record_entries_fingerprint_sha256": "be6977d93771c0644b56e9403d8deed55b978f9a227faac89a10dde5c4915a98",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 24,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 19
+      },
+      "record_sha256": "7341c191e6f219ef829b4fe75e6271b3f2de40bc725b9b08ef909b40bc3455ac",
+      "requires_dist": [],
+      "version": "6.0.3",
+      "wheel_metadata_sha256": "6c359a1568a0a46e5b129ab0f48a118b262cf0cbe64858743a15003a88bff8a0",
+      "wheel_tags": [
+        "cp39-cp39-macosx_11_0_arm64"
+      ]
+    },
+    "astropy": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy-6.0.1.dist-info",
+      "installed_files_count": 2216,
+      "installed_files_fingerprint_sha256": "7705162d98d01e85daaba9456e91b8a23c84094630ad15292b80ad5556de14b4",
+      "installer": "pip",
+      "metadata_sha256": "7e51f9878d2fe77c6683600f2a0b0817f38e4d52811dbd05da7f709929ff701f",
+      "name": "astropy",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 2216,
+      "record_entries_fingerprint_sha256": "9c2af3fb1cb64a785c34f391b2d30f36bc917cf076ea7295dbefd7136e4dbb37",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 1321,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 895
+      },
+      "record_sha256": "18cfef02e67866122ebe97b388f3f304cda7f665200ab6056722e28718c88709",
+      "requires_dist": [
+        "numpy <2,>=1.22",
+        "pyerfa >=2.0.1.1",
+        "astropy-iers-data >=0.2024.2.26.0.28.55",
+        "PyYAML >=3.13",
+        "packaging >=19.0",
+        "astropy[recommended] ; extra == 'all'",
+        "certifi ; extra == 'all'",
+        "dask[array] ; extra == 'all'",
+        "h5py ; extra == 'all'",
+        "pyarrow >=5.0.0 ; extra == 'all'",
+        "beautifulsoup4 ; extra == 'all'",
+        "html5lib ; extra == 'all'",
+        "bleach ; extra == 'all'",
+        "pandas ; extra == 'all'",
+        "sortedcontainers ; extra == 'all'",
+        "pytz ; extra == 'all'",
+        "jplephem ; extra == 'all'",
+        "mpmath ; extra == 'all'",
+        "asdf-astropy >=0.3 ; extra == 'all'",
+        "bottleneck ; extra == 'all'",
+        "ipython >=4.2 ; extra == 'all'",
+        "pytest >=7.0 ; extra == 'all'",
+        "typing-extensions >=3.10.0.1 ; extra == 'all'",
+        "fsspec[http] >=2023.4.0 ; extra == 'all'",
+        "s3fs >=2023.4.0 ; extra == 'all'",
+        "pre-commit ; extra == 'all'",
+        "astropy[recommended] ; extra == 'docs'",
+        "sphinx ; extra == 'docs'",
+        "sphinx-astropy[confv2] >=1.9.1 ; extra == 'docs'",
+        "pytest >=7.0 ; extra == 'docs'",
+        "sphinx-changelog >=1.2.0 ; extra == 'docs'",
+        "sphinx-design ; extra == 'docs'",
+        "Jinja2 >=3.1.3 ; extra == 'docs'",
+        "tomli ; (python_version < \"3.11\") and extra == 'docs'",
+        "scipy >=1.5 ; extra == 'recommended'",
+        "matplotlib !=3.4.0,!=3.5.2,>=3.3 ; extra == 'recommended'",
+        "pytest >=7.0 ; extra == 'test'",
+        "pytest-doctestplus >=0.12 ; extra == 'test'",
+        "pytest-astropy-header >=0.2.1 ; extra == 'test'",
+        "pytest-astropy >=0.10 ; extra == 'test'",
+        "pytest-xdist ; extra == 'test'",
+        "threadpoolctl ; extra == 'test'",
+        "astropy[test] ; extra == 'test_all'",
+        "objgraph ; extra == 'test_all'",
+        "ipython >=4.2 ; extra == 'test_all'",
+        "coverage[toml] ; extra == 'test_all'",
+        "skyfield >=1.20 ; extra == 'test_all'",
+        "sgp4 >=2.3 ; extra == 'test_all'"
+      ],
+      "version": "6.0.1",
+      "wheel_metadata_sha256": "2654d5c29a94ccfd358aa4942802fc2ebc2c728605902164676f12455f46eb67",
+      "wheel_tags": [
+        "cp39-cp39-macosx_11_0_arm64"
+      ]
+    },
+    "astropy-iers-data": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy_iers_data-0.2025.10.27.0.39.10.dist-info",
+      "installed_files_count": 17,
+      "installed_files_fingerprint_sha256": "1340013c5eed75a972b4eb22143b91aea3d3a3acdaf937feb30b460017814b25",
+      "installer": "pip",
+      "metadata_sha256": "ab917dcd0ca48b20d94dd5968014574e26f128853941736be9429c8e07960acd",
+      "name": "astropy-iers-data",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 17,
+      "record_entries_fingerprint_sha256": "bc6699c64708096c8e59eabe47a62613dee1f874588bdd7248e5829582245b5b",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 13,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 4
+      },
+      "record_sha256": "3bae19d4298bab03297fd9e3ebd6f0e6a7d865b0145164861f2a070578c0e001",
+      "requires_dist": [
+        "pytest; extra == 'docs'",
+        "hypothesis; extra == 'test'",
+        "pytest; extra == 'test'",
+        "pytest-remotedata; extra == 'test'"
+      ],
+      "version": "0.2025.10.27.0.39.10",
+      "wheel_metadata_sha256": "aad0b0a12256807936d52d4a6f88a1773236ae527564a688bab4e3fe780e8724",
+      "wheel_tags": [
+        "py3-none-any"
+      ]
+    },
+    "certifi": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/certifi-2025.11.12.dist-info",
+      "installed_files_count": 14,
+      "installed_files_fingerprint_sha256": "5a31477e27972b78f4c06ed090103a329527b7031f3a9017710e46795079f33a",
+      "installer": "pip",
+      "metadata_sha256": "fc9a6b1aeff595649d1e5aee44129ca2b5e7adfbc10e1bd7ffa291afc1d06cb7",
+      "name": "certifi",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 14,
+      "record_entries_fingerprint_sha256": "f77ea373f698591436f97655d597f51ada5f3b0065bf91d33ac311aebfc45b95",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 10,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 4
+      },
+      "record_sha256": "88c65b9dffabfca16cb32ab77c82f9b03585b12388d2c4e038d699add5d6bacc",
+      "requires_dist": [],
+      "version": "2025.11.12",
+      "wheel_metadata_sha256": "ff309ddcdd65ebd02bc724dbf2bcc4a0ff53a5b61792a44548d383e4ebb19d3b",
+      "wheel_tags": [
+        "py3-none-any"
+      ]
+    },
+    "numpy": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/numpy-1.26.4.dist-info",
+      "installed_files_count": 1408,
+      "installed_files_fingerprint_sha256": "f7294be3e1bd1b5700971199cafef73d0c2c56a4a31da1f5df34b80d2f09c7dd",
+      "installer": "pip",
+      "metadata_sha256": "804ce5ed37916ab3a6d4a50b7e13769fe64aa9f1265cfe3aefb6f90737bacc66",
+      "name": "numpy",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 1408,
+      "record_entries_fingerprint_sha256": "dde5b2c349c8bcca8b209d74b4bf38047f8a592cf0a5c4b022acbc240873fe25",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 918,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 490
+      },
+      "record_sha256": "91c8461ec79a165f4b5a2a3f07e872735105fe79080614c27782d6783ad7cd09",
+      "requires_dist": [],
+      "version": "1.26.4",
+      "wheel_metadata_sha256": "ac511b97b546a5d71389630bc8f1ca46278abf1c224e8302c555c5ba3e7417f0",
+      "wheel_tags": [
+        "cp39-cp39-macosx_11_0_arm64"
+      ]
+    },
+    "packaging": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/packaging-25.0.dist-info",
+      "installed_files_count": 40,
+      "installed_files_fingerprint_sha256": "ccbb82d128c197f4c78efba08eedd58d8b929be002bbf3ab6ad9210b6248a415",
+      "installer": "pip",
+      "metadata_sha256": "5b611a609c38fefc3d616bf45d20aec98fb7d53f245daca9e2c30fc85c7ac282",
+      "name": "packaging",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 40,
+      "record_entries_fingerprint_sha256": "c7c44954628e6acc364e351ed2f8333f99006d2d943919a4ed25509d715ba79b",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 23,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 17
+      },
+      "record_sha256": "ed51e0c8c457a825b87a8f87ac14f4e64963eb8f2fdfe81d4343a715ae544fce",
+      "requires_dist": [],
+      "version": "25.0",
+      "wheel_metadata_sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+      "wheel_tags": [
+        "py3-none-any"
+      ]
+    },
+    "pyerfa": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/pyerfa-2.0.1.5.dist-info",
+      "installed_files_count": 23,
+      "installed_files_fingerprint_sha256": "083447f295ee82a01b68ae6bab9413166d9f33c54cf2f29c495b67096d98f8d0",
+      "installer": "pip",
+      "metadata_sha256": "a58370cc0a2bc2ed944214fb4d4758dc72221dc507d7b6e0b456334602f9c354",
+      "name": "pyerfa",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 23,
+      "record_entries_fingerprint_sha256": "3ea94934b65c75b392051efc10e57bd04f41fa3030f9b31e48a0a2d3f13f2203",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 14,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 9
+      },
+      "record_sha256": "c2d3bb2ead98591ff5bb41b65d46e1f9624815ab989a138b9f114fb4a5cb0511",
+      "requires_dist": [
+        "numpy>=1.19.3",
+        "sphinx-astropy>=1.3; extra == \"docs\"",
+        "pytest; extra == \"test\"",
+        "pytest-doctestplus>=0.7; extra == \"test\""
+      ],
+      "version": "2.0.1.5",
+      "wheel_metadata_sha256": "d6a12b30be98a85c4dfd74bf57ed7e9e0782825ed862e0baae241534b2d97a92",
+      "wheel_tags": [
+        "cp39-abi3-macosx_11_0_arm64"
+      ]
+    },
+    "setuptools": {
+      "cached_install_artifacts": [],
+      "direct_url_json": null,
+      "dist_info_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/setuptools-82.0.0.dist-info",
+      "installed_files_count": 760,
+      "installed_files_fingerprint_sha256": "79ef619d615a86f0a1ea94cc3cbd8dc69c6c2f7b79dd30c241497854d6d3ce85",
+      "installer": "pip",
+      "metadata_sha256": "ac7e92d32efa17a0d854cbccbe9c3244f7caa5e5633b32f1a1fde1da26ae915f",
+      "name": "setuptools",
+      "original_install_artifact_sha256": null,
+      "original_install_artifact_status": "UNAVAILABLE_OFFLINE: dist-info RECORD hashes installed files but does not preserve the original wheel/sdist archive SHA-256; no matching wheel is present in pip's wheel cache",
+      "record_entries_count": 760,
+      "record_entries_fingerprint_sha256": "597f69222d0b2cc8ca11841b08071aeba3cbaaeda11a3bee0fe8b6711d779bd1",
+      "record_hash_validation": {
+        "declared_other_hash_algorithm": 0,
+        "declared_sha256_matched": 440,
+        "declared_sha256_mismatched": 0,
+        "missing_entries": 0,
+        "unhashed_entries": 320
+      },
+      "record_sha256": "4f34ef7034f4764e21e4c06f412e5eba2da670d8beada8345864dc07fcf385c6",
+      "requires_dist": [
+        "pytest!=8.1.*,>=6; extra == \"test\"",
+        "virtualenv>=13.0.0; extra == \"test\"",
+        "wheel>=0.44.0; extra == \"test\"",
+        "pip>=19.1; extra == \"test\"",
+        "packaging>=24.2; extra == \"test\"",
+        "jaraco.envs>=2.2; extra == \"test\"",
+        "pytest-xdist>=3; extra == \"test\"",
+        "jaraco.path>=3.7.2; extra == \"test\"",
+        "build[virtualenv]>=1.0.3; extra == \"test\"",
+        "filelock>=3.4.0; extra == \"test\"",
+        "ini2toml[lite]>=0.14; extra == \"test\"",
+        "tomli-w>=1.0.0; extra == \"test\"",
+        "pytest-timeout; extra == \"test\"",
+        "pytest-perf; sys_platform != \"cygwin\" and extra == \"test\"",
+        "jaraco.develop>=7.21; (python_version >= \"3.9\" and sys_platform != \"cygwin\") and extra == \"test\"",
+        "pytest-home>=0.5; extra == \"test\"",
+        "pytest-subprocess; extra == \"test\"",
+        "pyproject-hooks!=1.1; extra == \"test\"",
+        "jaraco.test>=5.5; extra == \"test\"",
+        "sphinx>=3.5; extra == \"doc\"",
+        "jaraco.packaging>=9.3; extra == \"doc\"",
+        "rst.linker>=1.9; extra == \"doc\"",
+        "furo; extra == \"doc\"",
+        "sphinx-lint; extra == \"doc\"",
+        "jaraco.tidelift>=1.4; extra == \"doc\"",
+        "pygments-github-lexers==0.0.5; extra == \"doc\"",
+        "sphinx-favicon; extra == \"doc\"",
+        "sphinx-inline-tabs; extra == \"doc\"",
+        "sphinx-reredirects; extra == \"doc\"",
+        "sphinxcontrib-towncrier; extra == \"doc\"",
+        "sphinx-notfound-page<2,>=1; extra == \"doc\"",
+        "pyproject-hooks!=1.1; extra == \"doc\"",
+        "towncrier<24.7; extra == \"doc\"",
+        "packaging>=24.2; extra == \"core\"",
+        "more_itertools>=8.8; extra == \"core\"",
+        "jaraco.text>=3.7; extra == \"core\"",
+        "importlib_metadata>=6; python_version < \"3.10\" and extra == \"core\"",
+        "tomli>=2.0.1; python_version < \"3.11\" and extra == \"core\"",
+        "wheel>=0.43.0; extra == \"core\"",
+        "platformdirs>=4.2.2; extra == \"core\"",
+        "jaraco.functools>=4; extra == \"core\"",
+        "more_itertools; extra == \"core\"",
+        "pytest-checkdocs>=2.4; extra == \"check\"",
+        "pytest-ruff>=0.2.1; sys_platform != \"cygwin\" and extra == \"check\"",
+        "ruff>=0.13.0; sys_platform != \"cygwin\" and extra == \"check\"",
+        "pytest-cov; extra == \"cover\"",
+        "pytest-enabler>=2.2; extra == \"enabler\"",
+        "pytest-mypy; extra == \"type\"",
+        "mypy==1.18.*; extra == \"type\"",
+        "importlib_metadata>=7.0.2; python_version < \"3.10\" and extra == \"type\"",
+        "jaraco.develop>=7.21; sys_platform != \"cygwin\" and extra == \"type\""
+      ],
+      "version": "82.0.0",
+      "wheel_metadata_sha256": "6027f0606398322e49870d9f538c8d83012bc9b6f6217e4f13004a57865b741a",
+      "wheel_tags": [
+        "py3-none-any"
+      ]
+    }
+  },
+  "unpinnable_offline": [
+    {
+      "item": "original wheel/sdist archive SHA-256 for all locked Python distributions",
+      "reason": "Installed dist-info does not preserve the archive SHA-256 and pip's wheel cache contains no matching artifacts. RECORD hashes individual installed files only."
+    },
+    {
+      "item": "CPython 3.9.6 Apple Command Line Tools installer artifact",
+      "reason": "The executable and build identity are hashed, but no offline CLT installer/package artifact is present in this lane."
+    },
+    {
+      "item": "macOS 26.6.1 build 25G76 installation image and system-library artifacts",
+      "reason": "The running OS/kernel identity is recorded, but the system image is not vendored and its distribution hash is not available from this offline environment."
+    }
+  ]
+}

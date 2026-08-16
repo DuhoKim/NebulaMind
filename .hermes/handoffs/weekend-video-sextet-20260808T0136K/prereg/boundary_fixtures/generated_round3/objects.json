@@ -1,0 +1,1704 @@
+[
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_inside.npy",
+    "expected_array_sha256": "b18655cbd09a7daef639bf5fe8b463d8d36d2ee6797b31fa82e0584a6a06bb27",
+    "expected_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": -10.000000000009095,
+      "achieved_subpixel_fraction": 9.094947017729282e-12,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.5456375258189188,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": -10.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3610.6922543509845,
+          1737.811205594195
+        ],
+        [
+          3674.6925324773574,
+          1737.9073203940225
+        ],
+        [
+          3738.6928353739777,
+          1738.003435230558
+        ],
+        [
+          3738.5967081426893,
+          1802.0035567711955
+        ],
+        [
+          3738.500580911238,
+          1866.003678293516
+        ],
+        [
+          3674.5002780703576,
+          1865.9075386864295
+        ],
+        [
+          3610.500000000009,
+          1865.8113991161897
+        ],
+        [
+          3610.596127175665,
+          1801.8113023643548
+        ],
+        [
+          3610.6922543509845,
+          1737.811205594195
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -10.192254350984513,
+        -74.19253247735742,
+        -138.1928353739777,
+        -138.0967081426893,
+        -138.0005809112381,
+        -74.00027807035758,
+        -10.000000000009095,
+        -10.09612717566506,
+        -10.192254350984513
+      ],
+      "solve_absolute_error_pixels": 9.094947017729282e-12,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_inside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.08503324360032,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.08503324360032,
+    "source_set_signature_sha256": "c339e31676b4043c59d25c5bb1c980960eccc79a6d74ef62355783938fbff01e",
+    "value_probes": [
+      {
+        "float32_bits": 1120223159,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223268,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223379,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1120223485,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1120223595,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_exact_boundary.npy",
+    "expected_array_sha256": "476e3cc544141ddb816d14ce672473d586cbf2610e1cfcbd54222e46d9699c48",
+    "expected_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 5.056790541857481e-10,
+      "achieved_subpixel_fraction": 5.056790541857481e-10,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.542725914440761,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": 0.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3600.6912284413825,
+          1737.7967391384693
+        ],
+        [
+          3664.691503541396,
+          1737.8923410496611
+        ],
+        [
+          3728.6918032799795,
+          1737.9879429970902
+        ],
+        [
+          3728.5961890036697,
+          1801.9880633098016
+        ],
+        [
+          3728.5005747279147,
+          1865.9881836044042
+        ],
+        [
+          3664.5002750445024,
+          1865.8925570185904
+        ],
+        [
+          3600.4999999994943,
+          1865.7969304691703
+        ],
+        [
+          3600.5956142208734,
+          1801.7968348128886
+        ],
+        [
+          3600.6912284413825,
+          1737.7967391384693
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -0.19122844138246364,
+        -64.19150354139583,
+        -128.19180327997947,
+        -128.09618900366968,
+        -128.00057472791468,
+        -64.00027504450236,
+        5.056790541857481e-10,
+        -0.09561422087335814,
+        -0.19122844138246364
+      ],
+      "solve_absolute_error_pixels": 5.056790541857481e-10,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_exact_boundary",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.08589381839192,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.08589381839192,
+    "source_set_signature_sha256": "c339e31676b4043c59d25c5bb1c980960eccc79a6d74ef62355783938fbff01e",
+    "value_probes": [
+      {
+        "float32_bits": 1120223150,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223260,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223370,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1120223477,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1120223586,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_one_pixel_beyond.npy",
+    "expected_array_sha256": "23989979d69e55520b0846c228c6449acf913d4d444f3dedf5a2cd206f93ebff",
+    "expected_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [
+      "knife-dec-max-east"
+    ],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 1.00000000001819,
+      "achieved_subpixel_fraction": 1.8189894035458565e-11,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.5424347532956082,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": 1.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3599.6911258508817,
+          1737.795296900927
+        ],
+        [
+          3663.691400649302,
+          1737.8908475232242
+        ],
+        [
+          3727.6917000729877,
+          1737.9863981817869
+        ],
+        [
+          3727.5961370921805,
+          1801.986518372041
+        ],
+        [
+          3727.5005741120176,
+          1865.9866385442456
+        ],
+        [
+          3663.500274743168,
+          1865.8910632604902
+        ],
+        [
+          3599.499999999982,
+          1865.7954880132077
+        ],
+        [
+          3599.595562925613,
+          1801.7953924661233
+        ],
+        [
+          3599.6911258508817,
+          1737.795296900927
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        0.80887414911831,
+        -63.19140064930207,
+        -127.19170007298771,
+        -127.09613709218047,
+        -127.0005741120176,
+        -63.00027474316812,
+        1.00000000001819,
+        0.9044370743868058,
+        0.80887414911831
+      ],
+      "solve_absolute_error_pixels": 1.8189894035458565e-11,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_one_pixel_beyond",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.08597987587325,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.08597987587325,
+    "source_set_signature_sha256": "8bf5b343d5505e81bfb0e5e26a427e8ef3591223bdd6d7cbefc022d0f474c77a",
+    "value_probes": [
+      {
+        "float32_bits": 1120223149,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223259,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223369,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1120223476,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1120223586,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_subpixel_just_inside.npy",
+    "expected_array_sha256": "3cd75f4162220b677eee041c96eb56517f23ce924b4ddb803de934068c7ce749",
+    "expected_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": -0.2500000002687557,
+      "achieved_subpixel_fraction": 0.2500000002687557,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.5427987047269531,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": -0.25,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3600.941254089769,
+          1737.7970998230835
+        ],
+        [
+          3664.9415292653084,
+          1737.8927145564764
+        ],
+        [
+          3728.9418290825633,
+          1737.9883293261255
+        ],
+        [
+          3728.846201982413,
+          1801.9884496695136
+        ],
+        [
+          3728.7505748826866,
+          1865.988569994704
+        ],
+        [
+          3664.75027512059,
+          1865.8929305833462
+        ],
+        [
+          3600.7500000002688,
+          1865.7972912084351
+        ],
+        [
+          3600.8456270449365,
+          1801.7971955248488
+        ],
+        [
+          3600.941254089769,
+          1737.7970998230835
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -0.44125408976879044,
+        -64.44152926530842,
+        -128.44182908256334,
+        -128.34620198241282,
+        -128.25057488268658,
+        -64.25027512058978,
+        -0.2500000002687557,
+        -0.3456270449364638,
+        -0.44125408976879044
+      ],
+      "solve_absolute_error_pixels": 2.687556843739003e-10,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_subpixel_just_inside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.0858723040216,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.0858723040216,
+    "source_set_signature_sha256": "c339e31676b4043c59d25c5bb1c980960eccc79a6d74ef62355783938fbff01e",
+    "value_probes": [
+      {
+        "float32_bits": 1120223150,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223260,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223370,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1120223477,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1120223587,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_subpixel_just_outside.npy",
+    "expected_array_sha256": "4613bb50f7bd51033df887da67cb5821e2da0d18d0dc34aff770c7d9dffe6218",
+    "expected_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [
+      "knife-dec-max-east"
+    ],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 0.25000000020418156,
+      "achieved_subpixel_fraction": 0.25000000020418156,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.542653124154665,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": 0.25,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3600.4412027937215,
+          1737.7963785039558
+        ],
+        [
+          3664.4414778185533,
+          1737.891967592896
+        ],
+        [
+          3728.4417774784247,
+          1737.9875567181061
+        ],
+        [
+          3728.346176025957,
+          1801.9876770002281
+        ],
+        [
+          3728.2505745741755,
+          1865.9877972642053
+        ],
+        [
+          3664.250274969485,
+          1865.8921835039005
+        ],
+        [
+          3600.249999999796,
+          1865.7965697800464
+        ],
+        [
+          3600.3456013971195,
+          1801.7964741510616
+        ],
+        [
+          3600.4412027937215,
+          1737.7963785039558
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        0.058797206278541125,
+        -63.94147781855327,
+        -127.94177747842468,
+        -127.84617602595699,
+        -127.75057457417552,
+        -63.75027496948496,
+        0.25000000020418156,
+        0.15439860288051932,
+        0.058797206278541125
+      ],
+      "solve_absolute_error_pixels": 2.041815605480224e-10,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_subpixel_just_outside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.0859153327622,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.0859153327622,
+    "source_set_signature_sha256": "8bf5b343d5505e81bfb0e5e26a427e8ef3591223bdd6d7cbefc022d0f474c77a",
+    "value_probes": [
+      {
+        "float32_bits": 1120223150,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223259,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1120223370,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1120223477,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1120223586,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/dec_min_inside.npy",
+    "expected_array_sha256": "c4b834758812e72e5c9c805f53ba5d7279a3f548d8000b77e7f6dc8d0dbce6d1",
+    "expected_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": -9.999999999999545,
+      "achieved_subpixel_fraction": 4.547473508864641e-13,
+      "boundary_axis": "y",
+      "boundary_axis_index": 1,
+      "boundary_source_pixel": 0.5,
+      "candidate_inward_sign": 1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.7951566147067675,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        3287.9576522959132,
+        -775.8460966226303
+      ],
+      "requested_edge_offset_pixels": -10.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3452.718195273357,
+          -9.499999999999545
+        ],
+        [
+          3446.6746252860503,
+          -73.21447418523803
+        ],
+        [
+          3440.6310531652384,
+          -136.92897086992184
+        ],
+        [
+          3504.345549743517,
+          -142.97287749518068
+        ],
+        [
+          3568.060071056645,
+          -149.0167864672153
+        ],
+        [
+          3574.1036230246727,
+          -85.30226291416852
+        ],
+        [
+          3580.14717285859,
+          -21.587761859928605
+        ],
+        [
+          3516.432671698677,
+          -15.54387975703321
+        ],
+        [
+          3452.718195273357,
+          -9.499999999999545
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -9.999999999999545,
+        -73.71447418523803,
+        -137.42897086992184,
+        -143.47287749518068,
+        -149.5167864672153,
+        -85.80226291416852,
+        -22.087761859928605,
+        -16.04387975703321,
+        -9.999999999999545
+      ],
+      "solve_absolute_error_pixels": 4.547473508864641e-13,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-min",
+    "knife_edge_source_brick": "knife-dec-min-east",
+    "object_id": "dec_min_inside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 84.5812062351879,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-min-west",
+    "ra_deg": 84.5812062351879,
+    "source_set_signature_sha256": "71308570185e7658061db7b1292aa13c081691fe26ca4c04bdeaf93ff496ad1c",
+    "value_probes": [
+      {
+        "float32_bits": 1122110653,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110947,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110933,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122110915,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122111208,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/dec_min_exact_boundary.npy",
+    "expected_array_sha256": "31348e50203e520ae56b6d98daabf2fd0007c94f28770809c5059b6ab5944c9e",
+    "expected_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": -6.821210263296962e-13,
+      "achieved_subpixel_fraction": 6.821210263296962e-13,
+      "boundary_axis": "y",
+      "boundary_axis_index": 1,
+      "boundary_source_pixel": 0.5,
+      "candidate_inward_sign": 1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.7922672524890297,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        3287.9576522959132,
+        -775.8460966226303
+      ],
+      "requested_edge_offset_pixels": 0.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3453.2472901690767,
+          0.4999999999993179
+        ],
+        [
+          3447.589393866848,
+          -63.24987813955272
+        ],
+        [
+          3441.9314955658824,
+          -126.99977880321535
+        ],
+        [
+          3505.681396136868,
+          -132.65800969920087
+        ],
+        [
+          3569.4313213200276,
+          -138.31624277995934
+        ],
+        [
+          3575.0891992809843,
+          -74.56631550509746
+        ],
+        [
+          3580.747075243241,
+          -10.81641075441371
+        ],
+        [
+          3516.997170399967,
+          -5.158204285017291
+        ],
+        [
+          3453.2472901690767,
+          0.4999999999993179
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -6.821210263296962e-13,
+        -63.74987813955272,
+        -127.49977880321535,
+        -133.15800969920087,
+        -138.81624277995934,
+        -75.06631550509746,
+        -11.31641075441371,
+        -5.658204285017291,
+        -6.821210263296962e-13
+      ],
+      "solve_absolute_error_pixels": 6.821210263296962e-13,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-min",
+    "knife_edge_source_brick": "knife-dec-min-east",
+    "object_id": "dec_min_exact_boundary",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 84.92792970131643,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-min-west",
+    "ra_deg": 84.92792970131643,
+    "source_set_signature_sha256": "71308570185e7658061db7b1292aa13c081691fe26ca4c04bdeaf93ff496ad1c",
+    "value_probes": [
+      {
+        "float32_bits": 1122110629,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110924,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110909,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122110889,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122111184,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/dec_min_one_pixel_beyond.npy",
+    "expected_array_sha256": "c0698afee18cfc770e3e36f804d5aa29cdcc9c204570e29b2df1ff3746aec88f",
+    "expected_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [
+      "knife-dec-min-east"
+    ],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 1.0000000000552518,
+      "achieved_subpixel_fraction": 5.525180313270539e-11,
+      "boundary_axis": "y",
+      "boundary_axis_index": 1,
+      "boundary_source_pixel": 0.5,
+      "candidate_inward_sign": 1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.7919783659711908,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        3287.9576522959132,
+        -775.8460966226303
+      ],
+      "requested_edge_offset_pixels": 1.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3453.2968626694064,
+          1.5000000000552518
+        ],
+        [
+          3447.6775387259895,
+          -62.25328957129068
+        ],
+        [
+          3442.058212797442,
+          -126.00660166924854
+        ],
+        [
+          3505.811524803922,
+          -131.6262600020409
+        ],
+        [
+          3569.5648614101765,
+          -137.24592050342426
+        ],
+        [
+          3575.1841669804094,
+          -73.49258182031554
+        ],
+        [
+          3580.803470565311,
+          -9.739265663638207
+        ],
+        [
+          3517.0501543175405,
+          -4.1196317478845685
+        ],
+        [
+          3453.2968626694064,
+          1.5000000000552518
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        1.0000000000552518,
+        -62.75328957129068,
+        -126.50660166924854,
+        -132.1262600020409,
+        -137.74592050342426,
+        -73.99258182031554,
+        -10.239265663638207,
+        -4.6196317478845685,
+        1.0000000000552518
+      ],
+      "solve_absolute_error_pixels": 5.525180313270539e-11,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-min",
+    "knife_edge_source_brick": "knife-dec-min-east",
+    "object_id": "dec_min_one_pixel_beyond",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 84.96259608345711,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-min-west",
+    "ra_deg": 84.96259608345711,
+    "source_set_signature_sha256": "1f976d4f0bda8ccb61f15a5b748004f1c9d525bae69d8cf74938684bb3f2c290",
+    "value_probes": [
+      {
+        "float32_bits": 1122110626,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110922,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110906,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122110886,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122111182,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/dec_min_subpixel_just_inside.npy",
+    "expected_array_sha256": "0d7419fd1b097cdf0fa698d97d423769f16acd51c9af54473380871791ac0389",
+    "expected_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": -0.24999999991246113,
+      "achieved_subpixel_fraction": 0.24999999991246113,
+      "boundary_axis": "y",
+      "boundary_axis_index": 1,
+      "boundary_source_pixel": 0.5,
+      "candidate_inward_sign": 1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.7923394754763984,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        3287.9576522959132,
+        -775.8460966226303
+      ],
+      "requested_edge_offset_pixels": -0.25,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3453.2348022717297,
+          0.25000000008753887
+        ],
+        [
+          3447.5672630214585,
+          -63.49902161881073
+        ],
+        [
+          3441.899721769405,
+          -127.24806576159767
+        ],
+        [
+          3505.6487658188125,
+          -132.91593965656807
+        ],
+        [
+          3569.397834483353,
+          -138.58381574022042
+        ],
+        [
+          3575.065355400327,
+          -74.8347449801256
+        ],
+        [
+          3580.732874315311,
+          -11.085696743687777
+        ],
+        [
+          3516.983825985893,
+          -5.417847277706414
+        ],
+        [
+          3453.2348022717297,
+          0.25000000008753887
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -0.24999999991246113,
+        -63.99902161881073,
+        -127.74806576159767,
+        -133.41593965656807,
+        -139.08381574022042,
+        -75.3347449801256,
+        -11.585696743687777,
+        -5.917847277706414,
+        -0.24999999991246113
+      ],
+      "solve_absolute_error_pixels": 8.753886504564434e-11,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-min",
+    "knife_edge_source_brick": "knife-dec-min-east",
+    "object_id": "dec_min_subpixel_just_inside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 84.91926294283219,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-min-west",
+    "ra_deg": 84.91926294283219,
+    "source_set_signature_sha256": "71308570185e7658061db7b1292aa13c081691fe26ca4c04bdeaf93ff496ad1c",
+    "value_probes": [
+      {
+        "float32_bits": 1122110629,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110925,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110909,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122110890,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122111185,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "dec_deg": -89.875,
+    "expected_array_path": "expected/dec_min_subpixel_just_outside.npy",
+    "expected_array_sha256": "6b1a4ebe468a40200da7e520bdc3d0b17627c693463720094227319783c5e0bf",
+    "expected_bricks": [
+      "knife-dec-min-east",
+      "knife-dec-min-west"
+    ],
+    "expected_contributing_bricks": [
+      "knife-dec-min-west"
+    ],
+    "expected_coverage_sha256": "111ce3c2a38d83a2e4706bde4abddd509d7f8248116c6832b06745bdc349e09f",
+    "expected_zero_pixel_touch_bricks": [
+      "knife-dec-min-east"
+    ],
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 0.24999999995316102,
+      "achieved_subpixel_fraction": 0.24999999995316102,
+      "boundary_axis": "y",
+      "boundary_axis_index": 1,
+      "boundary_source_pixel": 0.5,
+      "candidate_inward_sign": 1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.7921950300464822,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        3287.9576522959132,
+        -775.8460966226303
+      ],
+      "requested_edge_offset_pixels": 0.25,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3453.25974015669,
+          0.749999999953161
+        ],
+        [
+          3447.611486858945,
+          -63.000733194891154
+        ],
+        [
+          3441.963231566164,
+          -126.75148891480308
+        ],
+        [
+          3505.713987193649,
+          -132.400076755109
+        ],
+        [
+          3569.4647674298253,
+          -138.04866677571567
+        ],
+        [
+          3575.11300237826,
+          -74.29788445139161
+        ],
+        [
+          3580.7612353314876,
+          -10.547124651946433
+        ],
+        [
+          3517.0104754395825,
+          -4.898561235979287
+        ],
+        [
+          3453.25974015669,
+          0.749999999953161
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        0.24999999995316102,
+        -63.500733194891154,
+        -127.25148891480308,
+        -132.900076755109,
+        -138.54866677571567,
+        -74.79788445139161,
+        -11.047124651946433,
+        -5.398561235979287,
+        0.24999999995316102
+      ],
+      "solve_absolute_error_pixels": 4.6838977141305804e-11,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-min",
+    "knife_edge_source_brick": "knife-dec-min-east",
+    "object_id": "dec_min_subpixel_just_outside",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 84.93659639442214,
+      "CRVAL2": -89.875,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-min-west",
+    "ra_deg": 84.93659639442214,
+    "source_set_signature_sha256": "1f976d4f0bda8ccb61f15a5b748004f1c9d525bae69d8cf74938684bb3f2c290",
+    "value_probes": [
+      {
+        "float32_bits": 1122110628,
+        "x": 0,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110924,
+        "x": 127,
+        "y": 0
+      },
+      {
+        "float32_bits": 1122110908,
+        "x": 64,
+        "y": 64
+      },
+      {
+        "float32_bits": 1122110888,
+        "x": 0,
+        "y": 127
+      },
+      {
+        "float32_bits": 1122111184,
+        "x": 127,
+        "y": 127
+      }
+    ]
+  }
+]
