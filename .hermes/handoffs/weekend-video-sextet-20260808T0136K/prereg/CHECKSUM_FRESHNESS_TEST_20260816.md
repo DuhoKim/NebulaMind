@@ -72,3 +72,20 @@ handle explicitly:
 Image bytes fetched: 0. FITS downloaded: 0. Endpoints activated: 0. Consents granted: 0.
 Transfers: 0. Sky statistic: none. K-8 untripped. Route binding unamended. Only HEAD requests and
 two `.sha256sum` files (~6 KB each) were read.
+
+## Update — follow-up sent 2026-08-16
+
+Duho sent a threaded reply to Dustin Lang (cc the group) asking the two questions that remain:
+
+1. were the per-brick `.sha256sum` files regenerated for the 598 DR10.1-replaced bricks, or do they
+   still describe pre-replacement bytes — given the Nov-2022 sequential pass, the Sept-2023
+   replacements, and the Dec-2023 top-level refresh;
+2. are per-brick checksums published for **DR11** on the same pattern, and current with the release
+   as shipped.
+
+Question 2 was added deliberately: if the DR11 decision goes that way, the freshness question has
+to be answered for DR11 rather than DR10, and asking now avoids a third round-trip.
+
+**Until an answer arrives, R3 of `MANIFEST_GATE_REQUIREMENTS_20260816.md` stays open and the
+manifest gate cannot be approved.** Do not let the existence of per-brick checksums be read as
+freshness — coverage and currency are separate properties, and only coverage is established.
