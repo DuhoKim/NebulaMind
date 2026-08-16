@@ -95,3 +95,64 @@ the short term is not a negative result.
   the degraded-custody question returns, which memo §5 explicitly does not pre-authorize.
 
 Nothing about this changes the build state: all five pre-transfer gaps remain gated and closed.
+
+---
+
+# CORRECTION — 2026-08-16, after Dustin Lang's reply. THE FINDING ABOVE IS WRONG.
+
+**Per-brick checksums DO exist. Everything above that says otherwise is retracted.**
+
+Dustin Lang (Legacy Surveys) replied 2.5 hours after the query and named the exact path:
+
+    .../dr10/south/coadd/000/0001m002/legacysurvey_dr10_south_coadd_000_0001m002.sha256sum
+
+Verified directly: HTTP 200, 6,039 bytes, **58 entries**, including
+`legacysurvey-0001m002-image-r.fits.fz`. One checksum file per brick directory, covering every
+product in it.
+
+## How the error happened — mechanism, so it is not repeated
+
+The brick directory listing has **60 entries. The checksum file is entry 60, the last one.**
+`legacysurvey_` (underscore, `0x5F`) sorts after `legacysurvey-` (hyphen, `0x2D`), so all 58 data
+files precede it alphabetically.
+
+I printed **lines 2–30** and concluded no digests existed. I then reported *"I listed a brick
+directory in full"* — which was false. Half the directory was never looked at, and the one file
+that mattered was in the half I skipped.
+
+This is the same error class the whole gate discipline exists to catch: **a partial view reported
+as a complete one.** A truncating pipe is exactly as dangerous as a keyword check that matches a
+prohibition, and I have now made both errors in one session. The lesson is not "look at more
+lines" — it is that any absence claim must state the enumeration bound it was drawn from. "No
+checksum file in lines 2–30 of 60" is a fact; "no checksum file" was not.
+
+## Consequences — the route decision flips
+
+Lana's coverage sub-condition is **satisfied**, not failed. Route B is **not** blocked.
+`ACQUISITION_ROUTE_DECISION_20260816.md` §5 resolves toward B, subject to its remaining conditions:
+
+- **Freshness is now the live question and is UNANSWERED.** Dustin did not address question 2.
+  Sampled: `image-r` Last-Modified 2022-06-17, its checksum 2022-11-18 — the digest postdates that
+  file, which is reassuring for this brick and proves nothing about bricks replaced in place by
+  DR10.1. The hazard named in the memo stands: pre-replacement bytes confirmed by their own stale
+  checksum verify cleanly while not being current. The DR10 known-issues replacement list remains
+  the cross-check, and a replaced brick must be sampled before this is called closed.
+- The pacing rule and the §6 amendment list still apply. Adopting B still requires a successor
+  binding and a new freeze.
+
+## Two further facts from the same reply
+
+1. **DR11 has been released**, "expands the area significantly", and Dustin suggests using it
+   instead of DR10. The frozen parent set, the 208,407 count, the feasibility arithmetic and the
+   route binding are all built on DR10.1. Switching releases is not a data-source swap — it would
+   invalidate the frozen selection. **This is Duho's decision and it is a large one.** Do not treat
+   "newer is better" as obvious.
+2. **Anonymous Globus access may be available.** He supplied a file-manager link for the cosmo
+   collection and said "I think it should be accessible anonymously (though this may change)".
+   If true, route A needs no NERSC allocation at all — which would make A cheap again, and A
+   requires no amendment to the frozen binding.
+
+## Status of this document
+
+Sections above the CORRECTION line are retained as the record of what was measured and concluded,
+and are **superseded**. The operative conclusions are in this section.

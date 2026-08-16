@@ -1,0 +1,203 @@
+{
+  "adapter_sha256_observed": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+  "comparison_contract": {
+    "output_bytes": "exact SHA-256 equality per object across every configuration, no exclusions",
+    "receipt_normalization": {
+      "dropped_fields": [
+        "manifest_sha256"
+      ],
+      "path_normalization": "absolute staging-root prefix in sources[*].path replaced by <SOURCE_ROOT>"
+    },
+    "receipts": "equal after declared normalization",
+    "run_journals": "cut_log.jsonl and state.json are per-root append-only run evidence (timestamped, hash-chained) and are not deliverable content; the compared deliverables are cutout bytes and COMPLETED receipts"
+  },
+  "completion_order_forcing": "one 4-worker configuration with reversed staggered start delays so the naturally-first worker finishes last",
+  "component": "nm_mp_determinism_harness",
+  "configurations": [
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 101,
+      "name": "w1-s101",
+      "objects": 16,
+      "workers": 1
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 101,
+      "name": "w2-s101",
+      "objects": 16,
+      "workers": 2
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 101,
+      "name": "w4-s101",
+      "objects": 16,
+      "workers": 4
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 101,
+      "name": "w8-s101",
+      "objects": 16,
+      "workers": 8
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 202,
+      "name": "w4-s202",
+      "objects": 16,
+      "workers": 4
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": false,
+      "input_order_seed": 303,
+      "name": "w4-s303",
+      "objects": 16,
+      "workers": 4
+    },
+    {
+      "all_objects_byte_identical_to_reference": true,
+      "completion_order_reversed": true,
+      "input_order_seed": 101,
+      "name": "w4-completion-reversed",
+      "objects": 16,
+      "workers": 4
+    }
+  ],
+  "content_hash_excludes": [
+    "content_sha256",
+    "recorded_utc"
+  ],
+  "content_sha256": "377f7daa90c06ed60180063ed20edfd79b73fdab3d5c6bdd7f0cc5863931be49",
+  "harness_sha256": "101c59edb51a2e26a10b36fecb884281839ce6619e37949020a3a6355457a86e",
+  "input_order_seeds_exercised": [
+    101,
+    202,
+    303
+  ],
+  "input_set": {
+    "brick_values": {
+      "0000p000": 1.25,
+      "0000p002": 3.75,
+      "0002p000": 2.5,
+      "0002p002": 5.0
+    },
+    "geometry_bricks": 4,
+    "mix": "4 single-source, 4 edge, 4 corner, 4 margin/overlap/exact-corner",
+    "objects": 16
+  },
+  "limits": "synthetic fixtures, one machine, one OS (macOS/darwin, Python 3.9.6), 16 objects vs ~270,577 production bricks; cross-platform float/scheduling behaviour and real-scale contention remain unproven; the read stage is not in this loop (its determinism is covered by its reproducible content hash and the round-4 byte-identity result); production parallelism, when added, must keep the sealed whole-set manifest single-writer and one output root per worker, then re-run this harness",
+  "mismatches": [],
+  "nondeterminism_audit": [
+    {
+      "mechanism": "render_cutout sums source contributions iterating the sources mapping, which run_local_cut builds in sorted planned_bricknames order; any input ordering collapses to the same canonical summation order before any float add. Yui's forward-vs-reversed fixture replay covers two orderings of her oracle; canonical pre-sort is what extends that to the general case, and this harness's seeded shuffles exercise it end-to-end",
+      "source": "float accumulation order",
+      "verdict": "NONE_BY_CONSTRUCTION"
+    },
+    {
+      "mechanism": "every set that reaches an output is sorted first (duplicates, alternates, candidates, planned, unique-area primaries, manifest records, pc3 source sets); all JSON serialization uses sort_keys; spawned workers with independent hash seeds empirically confirm no leak",
+      "source": "dict/set iteration order",
+      "verdict": "NONE_FOUND"
+    },
+    {
+      "mechanism": "the adapter cut path contains no listdir/glob/scandir; geometry and source paths are explicit inputs; the harness merge collects explicit per-shard key lists, never directory listings",
+      "source": "filesystem enumeration order",
+      "verdict": "NOT_PRESENT"
+    },
+    {
+      "mechanism": "COMPLETED receipts carry no pid/hostname/worker index/timestamp; the two run-varying fields are manifest_sha256 (input-set/mtime dependent) and absolute sources[*].path (staging temp root), both declared in receipt_normalization rather than remembered; no worker index exists anywhere in receipt content",
+      "source": "per-process receipt fields (pid/hostname/worker index/timestamps/temp paths)",
+      "verdict": "TWO_DECLARED_FIELDS"
+    },
+    {
+      "mechanism": "grouping primary: min over (angular separation, brickname) \u2014 total order with lexicographic tie-break; object processing: sorted by (primary_brickname, object_key) with unique keys; planned/candidate lists sorted; manifest reason priority by explicit membership rules; no tie anywhere is broken by iteration order",
+      "source": "tie-breaks",
+      "verdict": "ALL_TOTAL"
+    }
+  ],
+  "pinned_adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+  "read_stage_sha256": "6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a",
+  "recorded_utc": "2026-08-16T12:18:02Z",
+  "reference": {
+    "SYNTH-MP-00": {
+      "normalized_receipt_sha256": "07494f8d3f46c712a0d73879d835e5807e155fe96be08b5fd67cab913d89fce8",
+      "output_sha256": "56247a003142226e792549b4861e38c1fc1b626041b788e6569465f84b0c8088"
+    },
+    "SYNTH-MP-01": {
+      "normalized_receipt_sha256": "d0cfca4c436dcfdf928494b9c5231f4d37e8480e1b48fd5424b2df8ce2ebf8a5",
+      "output_sha256": "925f815585fbadf28dcb49b4021d7dff0f508446d615045cea9ec030ee8c8260"
+    },
+    "SYNTH-MP-02": {
+      "normalized_receipt_sha256": "632917f21967d9a94278f40064305b1170fdf8889d0469afa53a2f991375661c",
+      "output_sha256": "8edf7a8d41b673a8db446594b8804860378c3c00d65eac195e3479fca617e252"
+    },
+    "SYNTH-MP-03": {
+      "normalized_receipt_sha256": "bc70c5de56d368a7e699606577b752445d7225cca4ba4f4e513b0868cdb8babc",
+      "output_sha256": "9c1e38e110e959c72d52638ee1df93b553fc0d9c642e7fb14f29e2649f20e7ba"
+    },
+    "SYNTH-MP-04": {
+      "normalized_receipt_sha256": "88f7c4d0a8c79237d7e7c3e02c1613fdc479ee6bb1ef4c649b1af6edc89a422c",
+      "output_sha256": "73a0944510c4d996427075d793abf900fef2168adf45f2a35130148bd38c077b"
+    },
+    "SYNTH-MP-05": {
+      "normalized_receipt_sha256": "839609c9f75cf47d96684205d6e56f981db199c7fe1d08c2e00178afd28e6fae",
+      "output_sha256": "626de389e9f096e51474c649bf9ea5c029511fe9ea9571cf5405295b6624d92c"
+    },
+    "SYNTH-MP-06": {
+      "normalized_receipt_sha256": "ba9c231d053546d723907e8a97b388b506b194f11906ca6362557c1eec42cc2e",
+      "output_sha256": "e9995f0a9b1ead17ce53e0979fe5cdae0afc215f8b1b138973ca38113d762a48"
+    },
+    "SYNTH-MP-07": {
+      "normalized_receipt_sha256": "43949ba94e33d3eb554dee984cf985e84f706059df425777684f241501db8e42",
+      "output_sha256": "98fecb5b9cdac45693e6c61d7894e89e3ca22ca93a8e12b66431122ca5016684"
+    },
+    "SYNTH-MP-08": {
+      "normalized_receipt_sha256": "563beca7ab7bdeee1ede8fef3432af5a8b6adfa47ba8de1ecd29177740bd19b3",
+      "output_sha256": "8480f116300592e320387b2212e64ecf660fdf8c9ea839b4f730c0a12897025e"
+    },
+    "SYNTH-MP-09": {
+      "normalized_receipt_sha256": "989d4fe957f65997c252cbd351e0e1d37e50a36d083fe19a624afcc46a0e10b3",
+      "output_sha256": "19e1086975069d6eb1cb6de01745da879f8886b372a6bd86c6ded851dad9114e"
+    },
+    "SYNTH-MP-10": {
+      "normalized_receipt_sha256": "90f6155fa89084384cfb3b9dee1896cd860627860335963dc862e4cc4da294ce",
+      "output_sha256": "92095f39203b644ee16b504952890ed59ee8068ef64fa5a5390f58b4a97a4901"
+    },
+    "SYNTH-MP-11": {
+      "normalized_receipt_sha256": "b18e6aecd58f722646f263c24b74f5b87ca1f82a2b45986ef6679765fa14709a",
+      "output_sha256": "68c591b0b839689c1c3461e9404f9ef9afc248d2cbae7bb0e0d4d2e293eaf24f"
+    },
+    "SYNTH-MP-12": {
+      "normalized_receipt_sha256": "8772d4f8284ad0c19f34a302e159aa271a7a89f8cb52b9bc0be691ad93af8b0a",
+      "output_sha256": "3c77f7e9001d125fdb31413aed3ce3db5f98258cc563fbbcc8b09c23eb2cb786"
+    },
+    "SYNTH-MP-13": {
+      "normalized_receipt_sha256": "f2b6681d17c4b3fd2d0dfa24d97952469360b6a3f7177f0f27f644655ab4ef03",
+      "output_sha256": "caec43a4d6a3e20ab420883abed27eef54acf0fed6fde3e40f807ad36bc1121d"
+    },
+    "SYNTH-MP-14": {
+      "normalized_receipt_sha256": "782c616142b97d6c8985337abe520117cec7ecd2170f11cb001f426b5ee9b92a",
+      "output_sha256": "876abb911254b737f69dac09661cee17050eb9e21d86eb1f1f03865bb2e09af7"
+    },
+    "SYNTH-MP-15": {
+      "normalized_receipt_sha256": "4c68d145e89fa93092ed1551f2939c2cfc81ef7ebdfa80e732ffb3921e0d8c7c",
+      "output_sha256": "6206d9580b62f3cb22bb520ecb82802e43cbc57471586c71b4de81bd9dd41934"
+    }
+  },
+  "scope": "SYNTHETIC_ONLY_BUILD",
+  "spawn_note": "workers are spawn-context processes; each carries its own Python string-hash seed, so any set-iteration order leaking into outputs would surface as cross-worker differences",
+  "status": "PASS",
+  "worker_counts_exercised": [
+    1,
+    2,
+    4,
+    8
+  ]
+}
