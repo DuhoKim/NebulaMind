@@ -711,7 +711,35 @@ class TestYuiBoundaryCrossCheck(AdapterTestBase):
         self.assertEqual(pixel4["cases_skipped"], 1)
         self.assertLessEqual(pixel4["max_abs_error_over_compared"], 1e-5)
 
+        # Round-5: three-source T-junctions — the first three-brick meeting
+        # class. Exactly the three meeting bricks planned; guards never; all
+        # three contribute everywhere; pixels compared on all nine cases.
+        round5 = receipt["round5"]
+        self.assertEqual(round5["status"], "PASS")
+        self.assertEqual(round5["cases_total"], 9)
+        self.assertEqual(round5["cases_passed"], 9)
+        self.assertTrue(all(round5["integrity"].values()))
+        expected_trio = ["tj-lower-east", "tj-lower-west", "tj-upper-span"]
+        round5_ids = {case["object_id"] for case in round5["cases"]}
+        self.assertIn("tjunction_exact", round5_ids)
+        self.assertEqual(len(round5_ids), 9)
+        for case in round5["cases"]:
+            self.assertEqual(case["status"], "PASS")
+            self.assertEqual(case["planned_bricknames"], expected_trio)
+            self.assertEqual(case["contributing_sources"], expected_trio)
+            self.assertEqual(case["zero_pixel_touch_sources"], [])
+            self.assertNotIn("tj-upper-west-guard", case["planned_bricknames"])
+            self.assertNotIn("tj-upper-east-guard", case["planned_bricknames"])
+            self.assertGreaterEqual(case["coverage_min"], 3)
+            self.assertEqual(case["coverage_zero_count"], 0)
+            self.assertTrue(case["pixel_compared"])
+        pixel5 = round5["pixel_agreement"]
+        self.assertEqual(pixel5["cases_compared"], 9)
+        self.assertEqual(pixel5["cases_skipped"], 0)
+        self.assertLessEqual(pixel5["max_abs_error_over_compared"], 1e-5)
+
         scope = receipt["scope"]
+        self.assertTrue(any("T-junction" in line for line in scope["covered"]))
         self.assertTrue(any(".fits.fz read path" in line for line in scope["covered"]))
         self.assertTrue(any("SYNTHET" in line for line in scope["not_covered"]))
         self.assertTrue(any("RA-wrap" in line for line in scope["covered"]))

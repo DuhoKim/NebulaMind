@@ -6,11 +6,12 @@
     "yui_make_boundary_fixtures.py_sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d",
     "yui_make_boundary_fixtures_round2.py_sha256": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc",
     "yui_make_boundary_fixtures_round3.py_sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62",
-    "yui_make_boundary_fixtures_round4.py_sha256": "d6c193841ff8ff52f1188ae1d48bbe5ea8c89bf553c542ad176f70189b7b7533"
+    "yui_make_boundary_fixtures_round4.py_sha256": "d6c193841ff8ff52f1188ae1d48bbe5ea8c89bf553c542ad176f70189b7b7533",
+    "yui_make_boundary_fixtures_round5.py_sha256": "498659bf1798c228aac8146fbfd53ea43c6723f319aae1d7ddec41f9d93ddf6c"
   },
   "comparison_contract": {
     "contributing_sets": "where the fixture declares expected_contributing_bricks / expected_zero_pixel_touch_bricks (round 3), adapter PC-3 contributing and zero-pixel-touch sets must equal them; planned-but-not-contributing is a legitimate state, never an error",
-    "counts": "round-1, round-2, round-3, and round-4 are reported separately and never merged",
+    "counts": "round-1 through round-5 are reported separately and never merged",
     "coverage": "coverage_min >= 1 and coverage_zero_count == 0 on completed cuts",
     "pixel_values": "compared per round against Yui's expected arrays on her hash-verified brick data at her pre-declared absolute tolerances (round-1 5e-6 centre-brick-only; rounds 2-3 1e-5 all cases); see scope for what remains excluded and why",
     "source_sets": "adapter plan and PC-3 planned/opened sets must equal Yui expected_bricks"
@@ -19,8 +20,8 @@
     "content_sha256",
     "recorded_utc"
   ],
-  "content_sha256": "c30a7b315a55a24bb3a022bc851f38b7c79e12b8f58903e7dece7b344773a978",
-  "recorded_utc": "2026-08-16T11:25:41Z",
+  "content_sha256": "38585df8e4e752062e143bd18788c4bd48749d8925c33a1644dbe4626ae87b55",
+  "recorded_utc": "2026-08-16T17:31:11Z",
   "round1": {
     "cases": [
       {
@@ -2988,13 +2989,760 @@
     },
     "status": "PASS"
   },
+  "round5": {
+    "cases": [
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.0,
+            4.8203219193965197e-11
+          ],
+          "junction_output_pixel": [
+            64.5,
+            64.4999999999518
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.0,
+            -4.8203219193965197e-11
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.0,
+            0.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            0.0,
+            4.8203219193965197e-11
+          ],
+          "solve_max_abs_error_pixels": 4.8203219193965197e-11,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "tjunction_exact",
+        "output_file_sha256": "d299cca34c63c0478849f7d64f048f4b30b461659cbc33c1bda1a26f5b085f1b",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-upper-span"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            -10.000000000056026,
+            9.123368727159686e-12
+          ],
+          "junction_output_pixel": [
+            54.499999999943974,
+            64.49999999999088
+          ],
+          "junction_pixel_offset_from_crpix": [
+            -10.000000000056026,
+            -9.123368727159686e-12
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            -10.0,
+            0.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            -5.60262947146839e-11,
+            9.123368727159686e-12
+          ],
+          "solve_max_abs_error_pixels": 5.60262947146839e-11,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "vertical_inside",
+        "output_file_sha256": "4ac35c039317655f7952df07e41796784e7041281a7c7222c1f6e07d43bb7378",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-west"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.9999999999432987,
+            -3.0748026347282575e-10
+          ],
+          "junction_output_pixel": [
+            65.4999999999433,
+            64.50000000030748
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.9999999999432987,
+            3.0748026347282575e-10
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            1.0,
+            0.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            -5.6701310313655995e-11,
+            -3.0748026347282575e-10
+          ],
+          "solve_max_abs_error_pixels": 3.0748026347282575e-10,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "vertical_one_pixel_beyond",
+        "output_file_sha256": "11bcc93a141ada5da21bad6678d274d10d6189ca36c5ce67a229042c7065587f",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-east"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            -0.24999999980333598,
+            4.7833736971369945e-11
+          ],
+          "junction_output_pixel": [
+            64.25000000019666,
+            64.49999999995217
+          ],
+          "junction_pixel_offset_from_crpix": [
+            -0.24999999980333598,
+            -4.7833736971369945e-11
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            -0.25,
+            0.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            1.9666401840368053e-10,
+            4.7833736971369945e-11
+          ],
+          "solve_max_abs_error_pixels": 1.9666401840368053e-10,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "vertical_subpixel_inside",
+        "output_file_sha256": "0d74bbf26117eb7808f8ae79c2b7000cb7d714d97393078f22d676e987a6b2fa",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-west"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.24999999980333598,
+            4.7833736971369945e-11
+          ],
+          "junction_output_pixel": [
+            64.74999999980334,
+            64.49999999995217
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.24999999980333598,
+            -4.7833736971369945e-11
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.25,
+            0.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            -1.9666401840368053e-10,
+            4.7833736971369945e-11
+          ],
+          "solve_max_abs_error_pixels": 1.9666401840368053e-10,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "vertical_subpixel_outside",
+        "output_file_sha256": "74b95f7b715c8d8c85c154002977f880aaae456c852199d9dc9a9f0cd191afef",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-east"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.0,
+            -10.000000000055934
+          ],
+          "junction_output_pixel": [
+            64.5,
+            74.50000000005593
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.0,
+            10.000000000055934
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.0,
+            -10.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            0.0,
+            -5.5933924159035087e-11
+          ],
+          "solve_max_abs_error_pixels": 5.5933924159035087e-11,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "horizontal_inside",
+        "output_file_sha256": "258dfb02b1c0d73f75e7e84bcbfcfccbc5a208922f38b4e02aade7264f02baff",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-east"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.0,
+            0.9999999999432916
+          ],
+          "junction_output_pixel": [
+            64.5,
+            63.50000000005671
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.0,
+            -0.9999999999432916
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.0,
+            1.0
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            0.0,
+            -5.6708415741013596e-11
+          ],
+          "solve_max_abs_error_pixels": 5.6708415741013596e-11,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "horizontal_one_pixel_beyond",
+        "output_file_sha256": "06332f874c752f427f4a2bb0bd5e0e80584fe404bcabf736169dd64f321260fe",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-upper-span"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.0,
+            -0.25000000032777336
+          ],
+          "junction_output_pixel": [
+            64.5,
+            64.75000000032777
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.0,
+            0.25000000032777336
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.0,
+            -0.25
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            0.0,
+            -3.277733640061342e-10
+          ],
+          "solve_max_abs_error_pixels": 3.277733640061342e-10,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "horizontal_subpixel_inside",
+        "output_file_sha256": "ac528fd831f5841f645b21902457504aa6b2b551e601a9e1fd9315040a0b43bd",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-lower-east"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "tj-upper-span",
+        "contributing_sources": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "coverage_min": 3,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_contributing_bricks": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "expected_zero_pixel_touch_bricks": [],
+        "geometry_evidence": {
+          "achieved_signed_object_offset_pixels": [
+            0.0,
+            0.25000000032777336
+          ],
+          "junction_output_pixel": [
+            64.5,
+            64.24999999967223
+          ],
+          "junction_pixel_offset_from_crpix": [
+            0.0,
+            -0.25000000032777336
+          ],
+          "junction_world_deg": [
+            175.40275049115917,
+            -45.125
+          ],
+          "negative_horizontal_meaning": "object centre is south in the lower declination row",
+          "negative_vertical_meaning": "object centre is west in the lower-west unique cell",
+          "placement_method": "two-dimensional Newton solve of the frozen real-geometry junction through the final object-centred TAN WCS",
+          "positive_horizontal_meaning": "object centre is north in the upper declination row",
+          "positive_vertical_meaning": "object centre is east in the lower-east unique cell",
+          "requested_signed_object_offset_pixels": [
+            0.0,
+            0.25
+          ],
+          "signed_offset_axes": [
+            "east",
+            "north"
+          ],
+          "solve_error_pixels": [
+            0.0,
+            3.277733640061342e-10
+          ],
+          "solve_max_abs_error_pixels": 3.277733640061342e-10,
+          "solve_tolerance_pixels": 1e-08
+        },
+        "group_id": "tjunction-dr10-row-offset",
+        "object_id": "horizontal_subpixel_outside",
+        "output_file_sha256": "641568bf6448784389b72d2b09bff69feb3f08c604d80a8b071f1edfee68afd0",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "tj-lower-east",
+          "tj-lower-west",
+          "tj-upper-span"
+        ],
+        "reasons": {
+          "tj-lower-east": "edge_neighbour",
+          "tj-lower-west": "edge_neighbour",
+          "tj-upper-span": "primary"
+        },
+        "status": "PASS",
+        "unique_area_primary_bricknames": [
+          "tj-upper-span"
+        ],
+        "yui_primary_brick_not_compared": "tj-lower-west",
+        "zero_pixel_touch_sources": []
+      }
+    ],
+    "cases_failed": 0,
+    "cases_passed": 9,
+    "cases_total": 9,
+    "fixture_generator": "make_boundary_fixtures_round5.py",
+    "fixture_manifest_schema": "yui-boundary-fixtures-round5-v1",
+    "fixture_round": 5,
+    "fixture_source": "pinned pre-generated tree boundary_fixtures/generated_round5 (read-only)",
+    "geometry_sidecar_sha256": "469671589abf31b4674878dc6befb4adcfd3872d318d8669165512d105b934dc",
+    "integrity": {
+      "geometry_sidecar_sha256_verified": true,
+      "objects_sha256_verified": true
+    },
+    "objects_sha256": "d40b74d3a90a4366135c0f3d336ce05695fa5d8d8e394e9f394a2327d2a21031",
+    "pixel_agreement": {
+      "cases_compared": 9,
+      "cases_skipped": 0,
+      "max_abs_error_over_compared": 7.62939453125e-06,
+      "skip_reasons": [],
+      "tolerance_absolute": 1e-05,
+      "tolerance_source": "Yui rounds-2/3 VALUE_TOLERANCE / adapter_comparison_absolute_tolerance (1e-5), declared in make_boundary_fixtures_round2.py before this gate"
+    },
+    "status": "PASS"
+  },
   "scope": {
     "covered": [
       "round-1: shared-tangent 3x3 grid at (180, -30): centre control, edge cases (no-neighbour gap, overlap-only, within-63px, exact-edge, one-pixel-beyond) in all four directions, and exact-/beyond-corner in all four corners \u2014 planned source sets, end-to-end cut completion, PC-3 planned/opened set equality, coverage_min >= 1, zero uncovered pixels",
       "round-2: distinct per-brick TAN tangent points; RA-wrap seam crossing at dec -10; selected-footprint declination extremes at +32.25 and -89.875; derived overlap-without-unique-boundary-crossing at dec -30 \u2014 same comparisons as round 1",
       "round-3: extreme-declination sub-pixel knife edges at both selected-footprint declination extremes (+32.25 and -89.875): signed candidate-edge offset ladder (-10, -0.25, exact 0, +0.25, +1 source pixels, solved to 1e-8 px); exact zero-area tangency excluded from planning; and the planned/opened/contributing/zero-pixel-touch distinction compared against Yui's declared expectations \u2014 including the cases where a source is legitimately planned (positive intersection area) yet contributes no output pixel centre",
       "pixel-value agreement against Yui's expected arrays, on her exact hash-verified brick data, at her pre-declared absolute tolerances (round-1 5e-6 on centre-brick-only cases; rounds 2-3 1e-5 on all cases): the adapter renderer is a bilinear resampler with the oracle's interpolation rule (support window [1, N], float64 accumulation, mean over coverage)",
-      "round-4: production-shaped .fits.fz read path through the separate pinned read stage (nm_brick_read_stage.py): empty-primary + RICE_1 image-HDU-1 files; raw compression cards (ZIMAGE/ZCMPTYPE/ZBITPIX/ZNAXIS1/2) gated terminally BEFORE decode; decompressed arrays hash-equal to the parent uncompressed data; WCS cards verified against the geometry sidecar; and the adapter output from read-stage staging byte-identical (exact, no tolerance) to the uncompressed staging path \u2014 the adapter itself stays stdlib-only and cannot tell the two provenances apart"
+      "round-4: production-shaped .fits.fz read path through the separate pinned read stage (nm_brick_read_stage.py): empty-primary + RICE_1 image-HDU-1 files; raw compression cards (ZIMAGE/ZCMPTYPE/ZBITPIX/ZNAXIS1/2) gated terminally BEFORE decode; decompressed arrays hash-equal to the parent uncompressed data; WCS cards verified against the geometry sidecar; and the adapter output from read-stage staging byte-identical (exact, no tolerance) to the uncompressed staging path \u2014 the adapter itself stays stdlib-only and cannot tell the two provenances apart",
+      "round-5: three-source T-junctions, the first fixture class where exactly three bricks meet (offset declination-row RA boundaries, verified by Yui against the real DR10 brick-table pattern and reproduced synthetically at dec -45): signed sub-pixel object ladders along both the vertical and horizontal branches plus the exact junction point; exactly the three meeting bricks planned in every case, with the two upper-row guard bricks excluded \u2014 the nearer guard by the polygon positive-area rule itself, not merely the candidate prefilter \u2014 and all three sources contributing (coverage min = max = 3), with pixel values compared at the rounds-2/3 tolerance"
     ],
     "not_covered": [
       "exact float32 bit-equality of pixel values: unreachable in principle because Yui's expected arrays are analytic (float64 sky pattern evaluated at output-pixel world coordinates) while any real resampler interpolates the float32-quantized brick rasters \u2014 the irreducible residual is float32 quantization (~7e-6 at fixture values ~100-120, ~2e-6 at ~20) plus bilinear truncation, which is why the comparison bound is Yui's declared tolerance, not bit-equality",

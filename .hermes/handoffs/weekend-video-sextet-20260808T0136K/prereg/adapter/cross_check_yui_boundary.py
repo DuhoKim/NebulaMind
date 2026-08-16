@@ -30,9 +30,21 @@ centre, so planned and contributing differ by design. The pinned pre-generated
 tree `boundary_fixtures/generated_round3/` is loaded read-only, hash-verified
 against its own manifest.
 
-Round-1, round-2, and round-3 results are reported SEPARATELY and never
-merged into one total: a single number would hide exactly the scope ambiguity
-this receipt exists to prevent.
+Round 4 (`make_boundary_fixtures_round4.py`, 3 objects): production-shaped
+.fits.fz re-expressions of round-1/round-3 cases, cut from sources staged by
+the pinned read stage AND from direct uncompressed staging, with the two
+adapter outputs required byte-identical per case.
+
+Round 5 (`make_boundary_fixtures_round5.py`, 9 objects): three-source
+T-junctions — the first fixture class where exactly three bricks meet
+(offset declination-row RA boundaries; the real DR10 row pattern reproduced
+synthetically at dec -45). Loads through the same pinned-tree path as rounds
+2-3 per its declared schema compatibility; the two upper-row guard bricks
+must never be planned.
+
+Round-1 through round-5 results are reported SEPARATELY and never merged
+into one total: a single number would hide exactly the scope ambiguity this
+receipt exists to prevent.
 
 Pixel values (2026-08-16 resampler gate): the adapter renderer is now a
 bilinear resampler matching the oracle's interpolation rule, and this
@@ -95,6 +107,8 @@ ROUND3_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round3
 ROUND3_GENERATED = PREREG / "boundary_fixtures" / "generated_round3"
 ROUND4_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round4.py"
 ROUND4_GENERATED = PREREG / "boundary_fixtures" / "generated_round4"
+ROUND5_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round5.py"
+ROUND5_GENERATED = PREREG / "boundary_fixtures" / "generated_round5"
 READ_STAGE_PATH = PREREG / "readstage" / "nm_brick_read_stage.py"
 
 SCOPE_STATEMENT = {
@@ -126,6 +140,15 @@ SCOPE_STATEMENT = {
         "verified against the geometry sidecar; and the adapter output from read-stage "
         "staging byte-identical (exact, no tolerance) to the uncompressed staging path — "
         "the adapter itself stays stdlib-only and cannot tell the two provenances apart",
+        "round-5: three-source T-junctions, the first fixture class where exactly three "
+        "bricks meet (offset declination-row RA boundaries, verified by Yui against the "
+        "real DR10 brick-table pattern and reproduced synthetically at dec -45): signed "
+        "sub-pixel object ladders along both the vertical and horizontal branches plus the "
+        "exact junction point; exactly the three meeting bricks planned in every case, "
+        "with the two upper-row guard bricks excluded — the nearer guard by the polygon "
+        "positive-area rule itself, not merely the candidate prefilter — and all three "
+        "sources contributing (coverage min = max = 3), with pixel values compared at the "
+        "rounds-2/3 tolerance",
     ],
     "not_covered": [
         "exact float32 bit-equality of pixel values: unreachable in principle because Yui's "
@@ -473,6 +496,16 @@ def _run_round3(tmp: Path) -> dict:
     )
 
 
+def _run_round5(tmp: Path) -> dict:
+    # Round 5 (three-source T-junctions) declares round-2 schema
+    # compatibility and a cross_runner_loading_contract naming this exact
+    # pinned-tree path; it loads with no reshaping.
+    return _run_pinned_tree(
+        tmp, round_number=5, generated_root=ROUND5_GENERATED,
+        generator_name="make_boundary_fixtures_round5.py",
+    )
+
+
 def _run_round4(tmp: Path) -> dict:
     """Round 4: production-shaped .fits.fz through the pinned read stage.
 
@@ -656,6 +689,7 @@ def run_cross_check() -> dict:
         round2 = _run_round2(tmp)
         round3 = _run_round3(tmp)
         round4 = _run_round4(tmp)
+        round5 = _run_round5(tmp)
         receipt = {
             "recorded_utc": datetime.now(timezone.utc)
             .isoformat(timespec="seconds")
@@ -663,13 +697,17 @@ def run_cross_check() -> dict:
             "scope": SCOPE_STATEMENT,
             "status": (
                 "PASS"
-                if all(block["status"] == "PASS" for block in (round1, round2, round3, round4))
+                if all(
+                    block["status"] == "PASS"
+                    for block in (round1, round2, round3, round4, round5)
+                )
                 else "FAIL"
             ),
             "round1": round1,
             "round2": round2,
             "round3": round3,
             "round4": round4,
+            "round5": round5,
             "artifacts": {
                 "nm_brick_cutout_adapter.py_sha256": _sha256_path(HERE / "nm_brick_cutout_adapter.py"),
                 "nm_brick_read_stage.py_sha256": _sha256_path(READ_STAGE_PATH),
@@ -679,6 +717,7 @@ def run_cross_check() -> dict:
                 "yui_make_boundary_fixtures_round2.py_sha256": _sha256_path(ROUND2_GENERATOR),
                 "yui_make_boundary_fixtures_round3.py_sha256": _sha256_path(ROUND3_GENERATOR),
                 "yui_make_boundary_fixtures_round4.py_sha256": _sha256_path(ROUND4_GENERATOR),
+                "yui_make_boundary_fixtures_round5.py_sha256": _sha256_path(ROUND5_GENERATOR),
                 "kun_scratch_runner_sha256": (
                     _sha256_path(KUN_SCRATCH_RUNNER) if KUN_SCRATCH_RUNNER.is_file() else None
                 ),
@@ -691,7 +730,7 @@ def run_cross_check() -> dict:
                     "data at her pre-declared absolute tolerances (round-1 5e-6 centre-brick-only; "
                     "rounds 2-3 1e-5 all cases); see scope for what remains excluded and why"
                 ),
-                "counts": "round-1, round-2, round-3, and round-4 are reported separately and never merged",
+                "counts": "round-1 through round-5 are reported separately and never merged",
                 "contributing_sets": (
                     "where the fixture declares expected_contributing_bricks / "
                     "expected_zero_pixel_touch_bricks (round 3), adapter PC-3 contributing and "
@@ -744,10 +783,14 @@ def main() -> int:
                     key: receipt["round4"][key]
                     for key in ("status", "cases_total", "cases_passed", "cases_failed")
                 },
+                "round5": {
+                    key: receipt["round5"][key]
+                    for key in ("status", "cases_total", "cases_passed", "cases_failed")
+                },
                 "round4_byte_identity": receipt["round4"]["byte_identity"],
                 "pixel_agreement": {
                     name: receipt[name]["pixel_agreement"]
-                    for name in ("round1", "round2", "round3", "round4")
+                    for name in ("round1", "round2", "round3", "round4", "round5")
                     if "pixel_agreement" in receipt[name]
                 },
             },
