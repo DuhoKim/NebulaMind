@@ -19,8 +19,10 @@ Known stand-ins that must be replaced at the environment-lock gate before any
 real execution (documented in TORI_ADAPTER_20260815.md):
 - synthetic staged bricks are uncompressed primary-HDU FITS; production reads
   fpack-compressed image HDU 1 through the pinned fitsio/Imagine layer;
-- the per-pixel renderer here is a deterministic nearest-neighbour stand-in
-  for the hash-pinned Imagine/astrometry.net resampler.
+- the per-pixel renderer is a deterministic bilinear resampler whose
+  semantics match the fixture oracle (2026-08-16 resampler gate); its
+  equivalence with the hash-pinned Imagine/astrometry.net production kernel
+  is bound to Yui's dependency lock and is not asserted here.
 """
 from __future__ import annotations
 
@@ -1076,7 +1078,10 @@ def pc3_output_receipt(item: SyntheticCutTarget, staged_bytes: bytes, coverage: 
 
 
 # ---------------------------------------------------------------------------
-# Rendering: deterministic nearest-neighbour stand-in for the pinned resampler.
+# Rendering: bilinear resampler matching the fixture-oracle interpolation rule
+# (2026-08-16 resampler gate). Equivalence with the hash-pinned Imagine/
+# astrometry.net production kernel is bound to Yui's dependency lock, not
+# asserted here.
 # ---------------------------------------------------------------------------
 
 def render_cutout(item: SyntheticCutTarget, sources: Mapping[str, SyntheticBrickSource]):
@@ -1092,17 +1097,29 @@ def render_cutout(item: SyntheticCutTarget, sources: Mapping[str, SyntheticBrick
             nonfinite = False
             for name, source in sources.items():
                 sx, sy = source.wcs.sky_to_pixel(ra, dec)
-                px = min(SRC_N, int(math.floor(sx + 0.5)))
-                py = min(SRC_N, int(math.floor(sy + 0.5)))
-                # Contribution window: the output pixel CENTRE must lie within
-                # the source's interior pixel-centre (bilinear-support) window
-                # [1, N], matching the fixture oracle. A planned source whose
-                # overlap holds no output pixel centre is a legitimate
-                # zero-pixel-touch source, never an error and never credited
-                # as coverage. Production contribution semantics come from the
-                # hash-pinned resampler at the resampler gate.
+                # Contribution/support window: the output pixel CENTRE must
+                # lie within the source's interior pixel-centre window [1, N]
+                # (bilinear support), matching the fixture oracle. A planned
+                # source whose overlap holds no output pixel centre is a
+                # legitimate zero-pixel-touch source, never an error and never
+                # credited as coverage.
                 if 1.0 <= sx <= SRC_N and 1.0 <= sy <= SRC_N:
-                    sample = source.pixel(px, py)
+                    # Bilinear with the oracle's exact index rule: 0-based
+                    # fx = sx - 1, x0 = floor(fx), x1 = min(x0 + 1, N - 1).
+                    fx = sx - 1.0
+                    fy = sy - 1.0
+                    x0 = int(math.floor(fx))
+                    y0 = int(math.floor(fy))
+                    x1 = min(x0 + 1, SRC_N - 1)
+                    y1 = min(y0 + 1, SRC_N - 1)
+                    wx = fx - x0
+                    wy = fy - y0
+                    sample = (
+                        source.pixel(x0 + 1, y0 + 1) * (1.0 - wx) * (1.0 - wy)
+                        + source.pixel(x1 + 1, y0 + 1) * wx * (1.0 - wy)
+                        + source.pixel(x0 + 1, y1 + 1) * (1.0 - wx) * wy
+                        + source.pixel(x1 + 1, y1 + 1) * wx * wy
+                    )
                     contributed_counts[name] += 1
                     count += 1
                     if math.isfinite(sample):
@@ -1403,7 +1420,7 @@ def run_local_cut(
                 "output_file_sha256": pc3["output_file_sha256"],
                 "manifest_sha256": manifest["manifest_sha256"],
                 "code_manifest": code_manifest,
-                "resampler_note": "deterministic nearest-neighbour stand-in; production requires the hash-pinned Imagine/astrometry.net resampler and a re-gate",
+                "resampler_note": "deterministic bilinear resampler matching the fixture-oracle interpolation rule (support window [1,N], float64 accumulation, mean over coverage); equivalence with the hash-pinned Imagine/astrometry.net production kernel is bound to Yui's dependency lock and re-gated there",
             }
             _atomic_json(receipt_dir / f"{item.object_key}.json", receipt)
             state["objects"][item.object_key] = receipt
@@ -1432,6 +1449,7 @@ def write_synthetic_brick(
     row: Mapping[str, float],
     *,
     value: float = 1.0,
+    data_big_endian: Optional[bytes] = None,
     header_only: bool = False,
     truncate_data: bool = False,
     extra_cards: Iterable = (),
@@ -1462,7 +1480,12 @@ def write_synthetic_brick(
     if header_only:
         path.write_bytes(header)
         return path
-    data = struct.pack(">f", value) * (SRC_N * SRC_N)
+    if data_big_endian is not None:
+        if len(data_big_endian) != SRC_N * SRC_N * 4:
+            raise ValueError("data_big_endian must be exactly SRC_N*SRC_N big-endian float32")
+        data = bytes(data_big_endian)
+    else:
+        data = struct.pack(">f", value) * (SRC_N * SRC_N)
     data += b"\x00" * ((-len(data)) % 2880)
     if truncate_data:
         data = data[: len(data) // 2]

@@ -1,6 +1,6 @@
 # TORI — guarded production adapter for the brick route
 
-Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3)
+Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4)
 Owner: Tori lane (executed this session)
 Status: **BUILT, SELF-TESTED, CORNER-REPAIRED, YUI CROSS-CHECK ROUND-1 29/29 + ROUND-2 4/4; NOT EXECUTABLE; ZERO TRANSFER**
 Gate: corner repair gated `PASS_ADAPTER_CORNER_REPAIR`; round-2 coverage extension awaits review. Duho owns acceptance.
@@ -175,6 +175,79 @@ the repair is in the adapter, reported per the brief),
 `test_nm_brick_cutout_adapter.py`
 `bffcd9d26cb72d0ab232e8ebd20b39e46b807cc7a623ebb8804dcc8cabdc3d45`.
 Fixture pins unmoved: `24f55943…`, `60e3d662…`, `6b410fb4…`.
+
+## 0.4. 2026-08-16 resampler gate — pixel-value equality closed
+
+The deferred gap: all prior rounds verified planning, coverage, and source
+sets, never pixel values (nearest-neighbour stand-in vs bilinear oracles).
+
+**What changed:**
+
+1. The adapter renderer is now a **bilinear resampler with the oracle's exact
+   interpolation rule**: support window = output pixel centre within the
+   source's interior pixel-centre window [1, N]; 0-based `x0 = floor(sx-1)`,
+   `x1 = min(x0+1, N-1)` (edge clamp); float64 accumulation; mean over
+   coverage; float32 output. Contribution semantics unchanged from the
+   round-3 alignment.
+2. The cross-check now stages **Yui's exact brick pixel data** — decompressed
+   from her fixture trees and verified against her recorded per-brick
+   `data_sha256` before staging — and compares the adapter's output arrays
+   against her expected arrays (also hash-verified), per round, reported as a
+   per-round `pixel_agreement` block. Counts remain separate, never merged.
+
+**Results (all PASS):** round-1 29/29, round-2 4/4, round-3 10/10;
+pixel agreement round-1 5 compared / 24 skipped, max abs error
+`1.9073486328125e-06` vs tolerance 5e-6; round-2 4/4 compared, max
+`7.62939453125e-06` vs 1e-5; round-3 10/10 compared, max
+`7.62939453125e-06` vs 1e-5.
+
+**Tolerance and its justification (not tuned to pass):**
+
+- The bounds are **Yui's pre-declared numbers**, published in her fixture
+  modules before this gate: 5e-6 (round-1 `render_fixture_oracle`
+  `adapter_comparison_absolute_tolerance`) and 1e-5 (rounds-2/3
+  `VALUE_TOLERANCE`).
+- Exact float32 bit-equality is unreachable **in principle**: her expected
+  arrays are analytic (float64 sky pattern at output-pixel world coordinates)
+  while any real resampler interpolates float32-quantized rasters. The
+  measured residuals sit exactly at that quantization floor:
+  `7.62939453125e-06 = 2^-17` is **one float32 ulp** for values in [64, 128)
+  — the fixture patterns run ~100–120 — and round-1's `1.907e-06 = 2^-19` is
+  the corresponding scale at pattern values ~20. The residual is therefore
+  fully accounted for by float32 quantization of the source rasters, with
+  bilinear truncation and TAN-math differences (~1e-12 px) below it.
+
+**Round-1 partial comparison, stated not papered over:** Yui's round-1 bricks
+share ONE tangent plane (her declared approximation); the adapter's
+production-shaped source model is per-brick TAN, displacing neighbour-brick
+sampling by up to ~1.4 px at 0.25° from the shared tangent point. Value
+comparison on the 24 neighbour-involving round-1 cases would measure that
+fixture-model gap, not the resampler, so they are skipped with this reason
+recorded in the receipt; the 5 centre-brick-only cases (where the models
+coincide identically) are compared at 5e-6. Rounds 2–3 use distinct per-brick
+tangent points and are value-compared in full. **No open question against any
+fixture**: the oracle and adapter agree on every comparable case.
+
+**What this gate does NOT claim (item 6):** equivalence with the hash-pinned
+Imagine/astrometry.net production resampler kernel. That claim is only
+meaningful against **Yui's dependency lock** (separate deliverable, in
+progress) and is referenced there, not asserted here — this gate proves
+oracle-bilinear semantics on synthetic rasters.
+
+**Identity:** `content_hash_excludes` still exactly
+`['content_sha256','recorded_utc']`; two consecutive runs gave `recorded_utc`
+2026-08-16T03:21:45Z / 03:22:38Z with identical
+`content_sha256 = a8a5e998549c6b66732591b5ca0c3b5fbf37b076ac29080c33bea99a16cde586`.
+
+**Artifact hashes (supersede §0.3's):**
+`nm_brick_cutout_adapter.py`
+`267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f`,
+`cross_check_yui_boundary.py`
+`e4168e331148feb9d348e30dcd10427f572492dfbedab141b745b8e3c34c691d`,
+`test_nm_brick_cutout_adapter.py`
+`d077ef35846340b31694…` (full value in SELFTEST.md).
+Fixture pins unmoved: `24f55943…`, `60e3d662…`, `6b410fb4…`; frozen V3
+unchanged.
 
 ## 1. What this is
 

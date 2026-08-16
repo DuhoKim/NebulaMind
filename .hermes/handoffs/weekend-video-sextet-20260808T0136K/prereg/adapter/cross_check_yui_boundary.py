@@ -34,12 +34,19 @@ Round-1, round-2, and round-3 results are reported SEPARATELY and never
 merged into one total: a single number would hide exactly the scope ambiguity
 this receipt exists to prevent.
 
+Pixel values (2026-08-16 resampler gate): the adapter renderer is now a
+bilinear resampler matching the oracle's interpolation rule, and this
+cross-check stages Yui's exact brick pixel data (verified against her
+recorded data_sha256) and compares adapter output arrays against her expected
+arrays at HER pre-declared absolute tolerances: 5e-6 for round 1, 1e-5 for
+rounds 2-3. Round-1 comparison covers only cases planned entirely within the
+centre brick, where Yui's shared-tangent fixture model and the adapter's
+per-brick-TAN source model coincide identically; neighbour-involving round-1
+cases are skipped with the geometric reason recorded in the receipt.
+
 Yui's artifacts are imported/loaded read-only and never modified. The round-1
 geometry mapping mirrors Kun's scratch cross-runner
-(`prereg/_tmp_kun_cross_adapter_fixtures_20260816.py`). Pixel-value equality
-is intentionally NOT required in either round: Yui's oracles use Astropy WCS
-with bilinear sampling while the adapter declares a nearest-neighbour renderer
-stand-in; a value mismatch would not isolate the boundary rule.
+(`prereg/_tmp_kun_cross_adapter_fixtures_20260816.py`).
 
 Synthetic only. No network, no real survey data.
 """
@@ -58,8 +65,25 @@ PREREG = HERE.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(PREREG / "boundary_fixtures"))
 
+import numpy as np  # noqa: E402
+from astropy.io import fits  # noqa: E402
+
 import make_boundary_fixtures as yui  # noqa: E402  (Yui's round-1 oracle, read-only)
+from make_boundary_fixtures_round2 import VALUE_TOLERANCE as ROUND23_PIXEL_TOLERANCE  # noqa: E402
 import nm_brick_cutout_adapter as tori  # noqa: E402
+
+# Yui's round-1 declared comparison bound: render_fixture_oracle emits
+# "adapter_comparison_absolute_tolerance": 5e-6 in make_boundary_fixtures.py.
+ROUND1_PIXEL_TOLERANCE = 5e-6
+ROUND1_PIXEL_SKIP_REASON = (
+    "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's "
+    "production-shaped source model is per-brick TAN, which displaces neighbour-brick "
+    "sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison "
+    "on neighbour-involving cases would measure that mapping approximation, not the "
+    "resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. "
+    "Compared cases are exactly those whose planned set is the centre brick alone, where "
+    "the two source models coincide identically."
+)
 
 RECEIPT_PATH = HERE / "CROSS_CHECK_YUI_BOUNDARY_RECEIPT.json"
 KUN_SCRATCH_RUNNER = PREREG / "_tmp_kun_cross_adapter_fixtures_20260816.py"
@@ -85,15 +109,27 @@ SCOPE_STATEMENT = {
         "touch distinction compared against Yui's declared expectations — including the "
         "cases where a source is legitimately planned (positive intersection area) yet "
         "contributes no output pixel centre",
+        "pixel-value agreement against Yui's expected arrays, on her exact hash-verified "
+        "brick data, at her pre-declared absolute tolerances (round-1 5e-6 on centre-brick-"
+        "only cases; rounds 2-3 1e-5 on all cases): the adapter renderer is a bilinear "
+        "resampler with the oracle's interpolation rule (support window [1, N], float64 "
+        "accumulation, mean over coverage)",
     ],
     "not_covered": [
-        "pixel-value equality against Yui's bilinear Astropy oracles — the adapter renderer "
-        "is a declared nearest-neighbour stand-in pending the hash-pinned Imagine/"
-        "astrometry.net resampler and environment lock",
-        "production contribution semantics: the adapter's contribution window (output pixel "
-        "centre within the source's interior pixel-centre window [1, N], matching the "
-        "fixture oracle's bilinear-support rule) stands in for whatever support window the "
-        "hash-pinned resampler actually has — re-proven at the resampler gate",
+        "exact float32 bit-equality of pixel values: unreachable in principle because Yui's "
+        "expected arrays are analytic (float64 sky pattern evaluated at output-pixel world "
+        "coordinates) while any real resampler interpolates the float32-quantized brick "
+        "rasters — the irreducible residual is float32 quantization (~7e-6 at fixture "
+        "values ~100-120, ~2e-6 at ~20) plus bilinear truncation, which is why the "
+        "comparison bound is Yui's declared tolerance, not bit-equality",
+        "round-1 pixel values on neighbour-involving cases: Yui's round-1 bricks share one "
+        "tangent plane (her declared approximation), the adapter's source model is "
+        "per-brick TAN; the mapping difference displaces neighbour-brick sampling by up to "
+        "~1.4 px, so value comparison there would measure the fixture-model gap, not the "
+        "resampler — rounds 2-3 supersede that model and ARE value-compared in full",
+        "equivalence with the hash-pinned Imagine/astrometry.net production resampler "
+        "kernel: bound to Yui's dependency lock (in progress, separate deliverable); this "
+        "gate proves oracle-bilinear semantics, not production-kernel identity",
         "Yui's 'primary_brick' (west-side convention) is recorded but not compared: the "
         "adapter primary is grouping metadata under the nearest-planned-centre rule and "
         "never a selection rule",
@@ -112,7 +148,43 @@ def _object_key(object_id: str) -> str:
     return "SYNTH-" + "".join(allowed)[:57]
 
 
-def _run_case(case, item, geometry, source_root, out_dir):
+def _stage_brick_with_yui_data(source_root, geometry_row, tree_root: Path, brick_record) -> None:
+    """Stage Yui's exact brick pixel data (hash-verified) in the adapter format."""
+    with fits.open(tree_root / brick_record["relative_path"], memmap=False) as hdus:
+        data = np.ascontiguousarray(hdus[1].data, dtype=np.float32)
+    if data.shape != (tori.SRC_N, tori.SRC_N):
+        raise AssertionError(f"unexpected fixture brick shape for {brick_record['brick_id']}")
+    observed = hashlib.sha256(data.tobytes(order="C")).hexdigest()
+    if observed != brick_record["data_sha256"]:
+        raise AssertionError(
+            f"fixture brick data custody mismatch for {brick_record['brick_id']}"
+        )
+    tori.write_synthetic_brick(
+        source_root, geometry_row,
+        data_big_endian=np.ascontiguousarray(data.astype(">f4")).tobytes(),
+    )
+
+
+def _load_expected_array(tree_root: Path, case) -> "np.ndarray":
+    expected_path = tree_root / case["expected_array_path"]
+    if _sha256_path(expected_path) != case["expected_array_sha256"]:
+        raise AssertionError(f"expected-array custody mismatch for {case['object_id']}")
+    expected = np.load(expected_path, allow_pickle=False)
+    if expected.shape != (128, 128) or expected.dtype != np.dtype("float32"):
+        raise AssertionError(f"unexpected expected-array shape/dtype for {case['object_id']}")
+    return expected
+
+
+def _read_cutout_array(out_dir: Path, receipt) -> "np.ndarray":
+    payload = (out_dir / receipt["output_path"]).read_bytes()
+    _, _, data_offset, _ = tori.parse_fits_header(payload)
+    return np.frombuffer(
+        payload, dtype=">f4", count=128 * 128, offset=data_offset
+    ).reshape(128, 128)
+
+
+def _run_case(case, item, geometry, source_root, out_dir, *,
+              expected_array=None, pixel_tolerance=None, pixel_skip_reason=None):
     expected = sorted(str(name) for name in case["expected_bricks"])
     record = {"object_id": case["object_id"], "expected_bricks": expected}
     try:
@@ -162,6 +234,25 @@ def _run_case(case, item, geometry, source_root, out_dir):
                     "zero-pixel-touch sources differ from Yui expectation: "
                     f"adapter {pc3['zero_pixel_touch_sources']} vs {expected_zero_touch}"
                 )
+        # Pixel-value comparison (2026-08-16 resampler gate): adapter output
+        # bytes against Yui's expected array, absolute per-pixel, at her
+        # declared tolerance for the round.
+        if expected_array is not None:
+            adapter_array = _read_cutout_array(out_dir, receipt).astype(np.float64)
+            max_abs_error = float(
+                np.max(np.abs(adapter_array - expected_array.astype(np.float64)))
+            )
+            record["pixel_compared"] = True
+            record["pixel_max_abs_error"] = max_abs_error
+            record["pixel_tolerance"] = pixel_tolerance
+            if max_abs_error > pixel_tolerance:
+                raise AssertionError(
+                    f"pixel values differ from Yui expected array: max abs error "
+                    f"{max_abs_error} exceeds {pixel_tolerance}"
+                )
+        else:
+            record["pixel_compared"] = False
+            record["pixel_skip_reason"] = pixel_skip_reason
         record["status"] = "PASS"
     except Exception as exc:  # noqa: BLE001 - the receipt must record the exact failure
         record["status"] = "FAIL"
@@ -198,15 +289,31 @@ def _build_round1_geometry() -> "tori.SyntheticBrickGeometry":
     return tori.SyntheticBrickGeometry(rows, scope=tori.SCOPE)
 
 
+def _pixel_agreement_summary(cases, tolerance: float, tolerance_source: str) -> dict:
+    compared = [case for case in cases if case.get("pixel_compared")]
+    skipped = [case for case in cases if case.get("pixel_compared") is False]
+    return {
+        "cases_compared": len(compared),
+        "cases_skipped": len(skipped),
+        "max_abs_error_over_compared": (
+            max(case["pixel_max_abs_error"] for case in compared) if compared else None
+        ),
+        "tolerance_absolute": tolerance,
+        "tolerance_source": tolerance_source,
+        "skip_reasons": sorted({case["pixel_skip_reason"] for case in skipped}),
+    }
+
+
 def _run_round1(tmp: Path) -> dict:
     yui_root = tmp / "yui_round1"
-    yui.generate_fixture_tree(yui_root)
+    manifest = yui.generate_fixture_tree(yui_root)
     yui_rows = json.loads((yui_root / "objects.json").read_text(encoding="utf-8"))
     objects_json_sha256 = _sha256_path(yui_root / "objects.json")
     geometry = _build_round1_geometry()
+    brick_records = {row["brick_id"]: row for row in manifest["bricks"]}
     source_root = tmp / "round1_staged"
     for row in geometry.rows:
-        tori.write_synthetic_brick(source_root, row, value=1.0 + row["brickid"] / 10.0)
+        _stage_brick_with_yui_data(source_root, row, yui_root, brick_records[row["brickname"]])
     cases = []
     for yui_row in yui_rows:
         item = tori.SyntheticCutTarget(
@@ -214,8 +321,12 @@ def _run_round1(tmp: Path) -> dict:
             float(yui_row["ra_deg"]),
             float(yui_row["dec_deg"]),
         )
+        primary_only = sorted(yui_row["expected_bricks"]) == ["r+0c+0"]
         record = _run_case(
-            yui_row, item, geometry, source_root, tmp / "round1_out" / str(yui_row["object_id"])
+            yui_row, item, geometry, source_root, tmp / "round1_out" / str(yui_row["object_id"]),
+            expected_array=_load_expected_array(yui_root, yui_row) if primary_only else None,
+            pixel_tolerance=ROUND1_PIXEL_TOLERANCE if primary_only else None,
+            pixel_skip_reason=None if primary_only else ROUND1_PIXEL_SKIP_REASON,
         )
         record["case"] = yui_row["case"]
         cases.append(record)
@@ -229,6 +340,10 @@ def _run_round1(tmp: Path) -> dict:
         "cases_total": len(cases),
         "cases_passed": len(cases) - failed,
         "cases_failed": failed,
+        "pixel_agreement": _pixel_agreement_summary(
+            cases, ROUND1_PIXEL_TOLERANCE,
+            "Yui round-1 render_fixture_oracle adapter_comparison_absolute_tolerance (5e-6)",
+        ),
         "cases": cases,
     }
 
@@ -275,9 +390,12 @@ def _run_pinned_tree(tmp: Path, *, round_number: int, generated_root: Path, gene
     yui_rows = json.loads(objects_path.read_text(encoding="utf-8"))
     sidecar = json.loads(sidecar_path.read_text(encoding="utf-8"))
     geometry = _build_round2_geometry(sidecar)
+    brick_records = {row["brick_id"]: row for row in sidecar["bricks"]}
     source_root = tmp / f"round{round_number}_staged"
     for row in geometry.rows:
-        tori.write_synthetic_brick(source_root, row, value=1.0 + row["brickid"] / 10.0)
+        _stage_brick_with_yui_data(
+            source_root, row, generated_root, brick_records[row["brickname"]]
+        )
     cases = []
     for yui_row in yui_rows:
         item = tori.SyntheticCutTarget(
@@ -288,6 +406,8 @@ def _run_pinned_tree(tmp: Path, *, round_number: int, generated_root: Path, gene
         record = _run_case(
             yui_row, item, geometry, source_root,
             tmp / f"round{round_number}_out" / str(yui_row["object_id"]),
+            expected_array=_load_expected_array(generated_root, yui_row),
+            pixel_tolerance=ROUND23_PIXEL_TOLERANCE,
         )
         record["group_id"] = yui_row["group_id"]
         record["yui_primary_brick_not_compared"] = yui_row["primary_brick"]
@@ -295,6 +415,11 @@ def _run_pinned_tree(tmp: Path, *, round_number: int, generated_root: Path, gene
         cases.append(record)
     failed = sum(1 for record in cases if record["status"] != "PASS")
     return {
+        "pixel_agreement": _pixel_agreement_summary(
+            cases, ROUND23_PIXEL_TOLERANCE,
+            "Yui rounds-2/3 VALUE_TOLERANCE / adapter_comparison_absolute_tolerance (1e-5), "
+            "declared in make_boundary_fixtures_round2.py before this gate",
+        ),
         "fixture_round": round_number,
         "fixture_generator": generator_name,
         "fixture_source": (
@@ -360,8 +485,9 @@ def run_cross_check() -> dict:
                 "source_sets": "adapter plan and PC-3 planned/opened sets must equal Yui expected_bricks",
                 "coverage": "coverage_min >= 1 and coverage_zero_count == 0 on completed cuts",
                 "pixel_values": (
-                    "excluded: Yui oracles are Astropy bilinear, adapter renderer is a declared "
-                    "nearest-neighbour stand-in pending the pinned resampler"
+                    "compared per round against Yui's expected arrays on her hash-verified brick "
+                    "data at her pre-declared absolute tolerances (round-1 5e-6 centre-brick-only; "
+                    "rounds 2-3 1e-5 all cases); see scope for what remains excluded and why"
                 ),
                 "counts": "round-1, round-2, and round-3 are reported separately and never merged",
                 "contributing_sets": (
@@ -411,6 +537,11 @@ def main() -> int:
                 "round3": {
                     key: receipt["round3"][key]
                     for key in ("status", "cases_total", "cases_passed", "cases_failed")
+                },
+                "pixel_agreement": {
+                    name: receipt[name]["pixel_agreement"]
+                    for name in ("round1", "round2", "round3")
+                    if "pixel_agreement" in receipt[name]
                 },
             },
             sort_keys=True,

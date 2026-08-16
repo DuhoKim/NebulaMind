@@ -661,11 +661,33 @@ class TestYuiBoundaryCrossCheck(AdapterTestBase):
                 self.assertEqual(case["planned_bricknames"], case["contributing_sources"])
                 self.assertEqual(case["zero_pixel_touch_sources"], [])
 
+        # Resampler gate: pixel values compared per round against Yui's
+        # expected arrays on her hash-verified brick data, at her pre-declared
+        # tolerances. Counts stay per-round; the tolerances are Yui's, not
+        # ours, so a residual regression cannot be hidden by widening them.
+        pixel1 = round1["pixel_agreement"]
+        self.assertEqual(pixel1["cases_compared"], 5)
+        self.assertEqual(pixel1["cases_skipped"], 24)
+        self.assertEqual(pixel1["tolerance_absolute"], 5e-6)
+        self.assertLessEqual(pixel1["max_abs_error_over_compared"], 5e-6)
+        self.assertEqual(len(pixel1["skip_reasons"]), 1)
+        self.assertIn("share ONE tangent plane", pixel1["skip_reasons"][0])
+        for block, expected_compared in ((round2, 4), (round3, 10)):
+            pixel = block["pixel_agreement"]
+            self.assertEqual(pixel["cases_compared"], expected_compared)
+            self.assertEqual(pixel["cases_skipped"], 0)
+            self.assertEqual(pixel["tolerance_absolute"], 1e-5)
+            self.assertLessEqual(pixel["max_abs_error_over_compared"], 1e-5)
+        for case in round3["cases"]:
+            self.assertTrue(case["pixel_compared"])
+
         scope = receipt["scope"]
         self.assertTrue(any("RA-wrap" in line for line in scope["covered"]))
         self.assertTrue(any("-89.875" in line for line in scope["covered"]))
         self.assertTrue(any("knife edge" in line for line in scope["covered"]))
-        self.assertTrue(any("pixel-value" in line for line in scope["not_covered"]))
+        self.assertTrue(any("pixel-value agreement" in line for line in scope["covered"]))
+        self.assertTrue(any("bit-equality" in line for line in scope["not_covered"]))
+        self.assertTrue(any("dependency lock" in line for line in scope["not_covered"]))
         self.assertEqual(
             receipt["artifacts"]["nm_brick_cutout_adapter.py_sha256"],
             hashlib.sha256(MODULE_PATH.read_bytes()).hexdigest(),

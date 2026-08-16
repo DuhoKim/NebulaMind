@@ -1,13 +1,18 @@
 # Guarded brick-route local-cut adapter — synthetic self-test
 
-Recorded: 2026-08-15T17:47:26Z (2026-08-16T02:47:26+09:00)
-Supersedes the 2026-08-15T16:37:44Z record after the round-3 knife-edge
-repair and cross-check extension (see TORI_ADAPTER_20260815.md §0.3; earlier
-supersessions: content-hash identity 16:37:44Z, round-2 extension 16:23:04Z,
+Recorded: 2026-08-16T03:24:43Z (2026-08-16T12:24:43+09:00)
+Supersedes the 2026-08-15T17:47:26Z record after the resampler gate
+(TORI_ADAPTER_20260815.md §0.4; earlier supersessions: round-3 knife-edge
+17:47:26Z, content-hash identity 16:37:44Z, round-2 extension 16:23:04Z,
 corner repair 16:03:08Z).
 
 Verdict: **PASS — BUILD ONLY; ZERO TRANSFER; ZERO REAL ACQUISITION;
-YUI CROSS-CHECK ROUND-1 29/29, ROUND-2 4/4, ROUND-3 10/10 (reported separately, never merged)**
+YUI CROSS-CHECK ROUND-1 29/29, ROUND-2 4/4, ROUND-3 10/10 (separate, never
+merged); PIXEL VALUES COMPARED per round on Yui's hash-verified brick data at
+her pre-declared tolerances — r1 max 1.907e-06 vs 5e-6 (5 compared / 24
+skipped with recorded geometric reason), r2 max 7.629e-06 vs 1e-5 (4/4), r3
+max 7.629e-06 vs 1e-5 (10/10); residuals sit at the float32 quantization
+floor (one ulp of the fixture values)**
 
 ## Boundary counters
 
@@ -91,10 +96,10 @@ only by `cross_check_yui_boundary.py`, never by the adapter module.
 
 | File | SHA-256 |
 |---|---|
-| `nm_brick_cutout_adapter.py` | `cd18ead45f4b77f2c1aaa505d5bce9c401f02eda4bd2e5cdfdb8c2bbe8f58128` (moved by the round-3 repair; supersedes `f3c71021…fb658a`) |
-| `test_nm_brick_cutout_adapter.py` | `bffcd9d26cb72d0ab232e8ebd20b39e46b807cc7a623ebb8804dcc8cabdc3d45` |
-| `cross_check_yui_boundary.py` | `74ad048178df66a5025d5516514d233d6d3eeedabe916b80088e5cd2315a80ad` |
-| `CROSS_CHECK_YUI_BOUNDARY_RECEIPT.json` | regenerated each suite run; `status: PASS`, round-1 29/29 + round-2 4/4 + round-3 10/10 separately, with a written `scope` field, binding the adapter hash above. Pinnable identity: `content_sha256 = 1eba47d8cef18d84941e6a85ffca010717825b7134cf8be72656b53f6a7561c7` (canonical content hash excluding exactly `recorded_utc` + itself, exclusions declared in-artifact; proven identical across two consecutive runs with differing timestamps 17:46:37Z / 17:46:51Z) |
+| `nm_brick_cutout_adapter.py` | `267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f` (moved by the resampler gate — bilinear renderer; supersedes `cd18ead4…f58128`) |
+| `test_nm_brick_cutout_adapter.py` | `d077ef35846340b31694d0cf630aceb185723d8971ad372f324422f9caa5566d` |
+| `cross_check_yui_boundary.py` | `e4168e331148feb9d348e30dcd10427f572492dfbedab141b745b8e3c34c691d` |
+| `CROSS_CHECK_YUI_BOUNDARY_RECEIPT.json` | regenerated each suite run; `status: PASS`, round-1 29/29 + round-2 4/4 + round-3 10/10 separately, per-round `pixel_agreement` blocks, with a written `scope` field, binding the adapter hash above. Pinnable identity: `content_sha256 = a8a5e998549c6b66732591b5ca0c3b5fbf37b076ac29080c33bea99a16cde586` (canonical content hash excluding exactly `recorded_utc` + itself, exclusions declared in-artifact; proven identical across two consecutive runs with differing timestamps 03:21:45Z / 03:22:38Z) |
 
 ## Guarantee-fires matrix (a guarantee never observed to fire is not a guarantee)
 
