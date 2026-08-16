@@ -1,6 +1,6 @@
 # TORI — guarded production adapter for the brick route
 
-Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4); read/decompression stage + round-4 19:00 KST (§0.5)
+Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4); read/decompression stage + round-4 19:00 KST (§0.5); multiprocessing determinism 20:24 KST (§0.6)
 Owner: Tori lane (executed this session)
 Status: **BUILT, SELF-TESTED, CORNER-REPAIRED, YUI CROSS-CHECK ROUND-1 29/29 + ROUND-2 4/4; NOT EXECUTABLE; ZERO TRANSFER**
 Gate: corner repair gated `PASS_ADAPTER_CORNER_REPAIR`; round-2 coverage extension awaits review. Duho owns acceptance.
@@ -322,6 +322,75 @@ own `content_sha256`.)
 suite `test_nm_brick_cutout_adapter.py` `7fc77ee7…5b3f99c`, 30/30.
 Fixture pins unmoved: r1 `24f55943…`, r2 `60e3d662…`, r3 `6b410fb4…`,
 r4 `d6c19384…`; frozen V3 unchanged.
+
+## 0.6. 2026-08-16 multiprocessing scheduling determinism (property established before parallelism)
+
+The adapter has no concurrency surface (verified: zero references to
+multiprocessing/threading/concurrent.futures/fork/spawn/os.cpu_count, and no
+listdir/glob/scandir anywhere in the cut path). Production (~270,577 bricks)
+will be parallel, so the determinism property was established FIRST, so that
+parallelism can later be added in a form that provably preserves it.
+
+**Harness** `prereg/mpdeterminism/nm_mp_determinism_harness.py`
+(`101c59edb51a2e26a10b36fecb884281839ce6619e37949020a3a6355457a86e`; standing
+test `test_nm_mp_determinism.py` `89a33d44…d82002`, 5/5). Parallel model
+mirroring intended production: whole-set manifest semantics single-writer;
+one private output root per spawned worker (the adapter's hash-chained log is
+single-writer per root by design); deterministic sorted merge. 16 synthetic
+objects (4 single-source, 4 edge, 4 corner, 4 margin/overlap/exact-corner)
+on the 4-brick grid.
+
+**Exercised:** worker counts 1, 2, 4, 8; seeded input-order shuffles
+(101, 202, 303, which also reshuffle worker assignment); one forced
+completion-order reversal (staggered start delays). Spawned workers carry
+independent Python string-hash seeds, so set-iteration leaks would surface as
+cross-worker differences. Result: **all 7 configurations byte-identical to
+the single-process reference for every object** — output bytes by exact
+SHA-256 with no exclusions; receipts equal after the declared normalization.
+
+**Nondeterminism sources hunted, each with verdict (none found; nothing fixed
+because nothing needed fixing — the harness's detection power is evidenced by
+the spawn-hash-seed and completion-reversal designs):**
+
+1. *Float accumulation order* — NONE_BY_CONSTRUCTION: summation iterates the
+   sources mapping built in sorted planned-brickname order, so every input
+   ordering collapses to one canonical FP order before any add. Yui's
+   forward-vs-reversed replay covers two orderings of her oracle; canonical
+   pre-sort is what extends it to the general case, and the seeded shuffles
+   exercise it end-to-end.
+2. *Dict/set iteration order* — NONE_FOUND: every set reaching an output is
+   sorted first; all JSON uses sort_keys; independent worker hash seeds
+   empirically confirm.
+3. *Filesystem enumeration order* — NOT_PRESENT: no listdir/glob/scandir in
+   the cut path; geometry and sources are explicit inputs; the merge uses
+   explicit shard key lists.
+4. *Per-process receipt fields* — TWO_DECLARED_FIELDS: COMPLETED receipts
+   carry no PID/hostname/worker index/timestamp; the two run-varying fields
+   (`manifest_sha256` — input-set/mtime dependent, sealed once and
+   single-writer in production — and absolute `sources[*].path`) are declared
+   in the receipt's normalization contract, not remembered. No worker index
+   exists anywhere in receipt content.
+5. *Tie-breaks* — ALL_TOTAL: grouping primary min over (separation,
+   brickname); object order (primary_brickname, unique object_key); sorted
+   lists throughout; no tie broken by iteration order.
+
+**Identity:** `MP_DETERMINISM_RECEIPT.json`, excludes exactly
+`['content_sha256','recorded_utc']` declared in the hashed body; two
+consecutive runs gave `recorded_utc` 2026-08-16T11:22:49Z / 11:23:18Z with
+identical `content_sha256 =
+377f7daa90c06ed60180063ed20edfd79b73fdab3d5c6bdd7f0cc5863931be49`.
+
+**Stated limits (in the receipt itself):** synthetic fixtures, one machine,
+one OS (macOS, Python 3.9.6), 16 objects vs ~270,577 production bricks;
+cross-platform float/scheduling behaviour and real-scale contention remain
+unproven; the read stage is outside this loop (covered by its reproducible
+content hash and round-4 byte-identity). When production parallelism is
+added, it must keep the sealed whole-set manifest single-writer and one
+output root per worker, then re-run this harness.
+
+**Pins:** adapter UNMOVED at `267b2a93…` (asserted by the harness before it
+will run, and by the standing test); read stage `6662c8c7…`; fixture
+generators r1–r4 unchanged.
 
 ## 1. What this is
 
