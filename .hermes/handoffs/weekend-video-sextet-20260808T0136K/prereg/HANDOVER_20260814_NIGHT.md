@@ -341,3 +341,15 @@ clauses to amend.
 
 `BUILD_ONLY_STOP` intact. Zero cutouts, zero sky statistics, no endpoint activated, no network
 reached, no package installed, K-8 untripped. Nothing pushed or published.
+
+## Checkpoint 3 addendum — 2026-08-16 15:37 KST
+
+Committed locally as `4742d12` on `feat/paper-workflow-v2` — **not pushed**. 11 files, 0.32 MB.
+All 64 synthetic FITS/npy binaries across `generated/`, `generated_round2/` and `generated_round3/`
+verified still gitignored file-by-file (0 leaks), not assumed.
+
+**Globus Connect Personal is not installed** — no application bundle, no running process, no
+`~/.globusonline` config. The destination collection does not exist yet. That step is still yours.
+
+No lane went idle without delivering; every artifact this session was gated. Autopilot ends here —
+no further wakeups armed.

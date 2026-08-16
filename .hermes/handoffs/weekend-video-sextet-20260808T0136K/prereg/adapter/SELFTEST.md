@@ -1,10 +1,11 @@
 # Guarded brick-route local-cut adapter — synthetic self-test
 
-Recorded: 2026-08-16T03:24:43Z (2026-08-16T12:24:43+09:00)
-Supersedes the 2026-08-15T17:47:26Z record after the resampler gate
-(TORI_ADAPTER_20260815.md §0.4; earlier supersessions: round-3 knife-edge
-17:47:26Z, content-hash identity 16:37:44Z, round-2 extension 16:23:04Z,
-corner repair 16:03:08Z).
+Recorded: 2026-08-16T09:59:42Z (2026-08-16T18:59:42+09:00)
+Supersedes the 2026-08-16T03:24:43Z record after the read/decompression-stage
+gate and round-4 cross (TORI_ADAPTER_20260815.md §0.5; earlier supersessions:
+resampler gate 03:24:43Z, round-3 knife-edge 2026-08-15T17:47:26Z,
+content-hash identity 16:37:44Z, round-2 extension 16:23:04Z, corner repair
+16:03:08Z).
 
 Verdict: **PASS — BUILD ONLY; ZERO TRANSFER; ZERO REAL ACQUISITION;
 YUI CROSS-CHECK ROUND-1 29/29, ROUND-2 4/4, ROUND-3 10/10 (separate, never
@@ -96,10 +97,12 @@ only by `cross_check_yui_boundary.py`, never by the adapter module.
 
 | File | SHA-256 |
 |---|---|
-| `nm_brick_cutout_adapter.py` | `267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f` (moved by the resampler gate — bilinear renderer; supersedes `cd18ead4…f58128`) |
-| `test_nm_brick_cutout_adapter.py` | `d077ef35846340b31694d0cf630aceb185723d8971ad372f324422f9caa5566d` |
-| `cross_check_yui_boundary.py` | `e4168e331148feb9d348e30dcd10427f572492dfbedab141b745b8e3c34c691d` |
-| `CROSS_CHECK_YUI_BOUNDARY_RECEIPT.json` | regenerated each suite run; `status: PASS`, round-1 29/29 + round-2 4/4 + round-3 10/10 separately, per-round `pixel_agreement` blocks, with a written `scope` field, binding the adapter hash above. Pinnable identity: `content_sha256 = a8a5e998549c6b66732591b5ca0c3b5fbf37b076ac29080c33bea99a16cde586` (canonical content hash excluding exactly `recorded_utc` + itself, exclusions declared in-artifact; proven identical across two consecutive runs with differing timestamps 03:21:45Z / 03:22:38Z) |
+| `nm_brick_cutout_adapter.py` | `267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f` (UNCHANGED by the read-stage gate — byte-identical to Kun's resampler-gate pin; AST audit: zero third-party imports) |
+| `test_nm_brick_cutout_adapter.py` | `7fc77ee74bdff2facbba6bc5de1f45d78875193841dc67df9b76e67565b3f99c` |
+| `cross_check_yui_boundary.py` | `3bb84cefe44eea4a49b8d8ef7bad6a64a92137d67731606e4bccbe33703f9436` |
+| `../readstage/nm_brick_read_stage.py` | `6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a` (new pinned read/decompression stage; astropy-backed, outside the adapter) |
+| `../readstage/test_nm_brick_read_stage.py` | `dd669e434de0319d237f53a16792c3a9c0a2b61457b84ea81a01d9d71c325790` (9/9: positive chain + fail-closed negatives) |
+| `CROSS_CHECK_YUI_BOUNDARY_RECEIPT.json` | regenerated each suite run; `status: PASS`, round-1 29/29 + round-2 4/4 + round-3 10/10 + round-4 3/3 separately, per-round `pixel_agreement` blocks, round-4 `byte_identity` (read-stage path vs uncompressed path, exact) and embedded timestamp-stripped read-stage receipts, with a written `scope` field, binding the adapter hash above. Pinnable identity: `content_sha256 = c30a7b315a55a24bb3a022bc851f38b7c79e12b8f58903e7dece7b344773a978` (canonical content hash excluding exactly `recorded_utc` + itself, exclusions declared in-artifact; proven identical across two consecutive runs with differing timestamps 09:58:05Z / 09:58:30Z) |
 
 ## Guarantee-fires matrix (a guarantee never observed to fire is not a guarantee)
 

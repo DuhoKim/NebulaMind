@@ -64,6 +64,7 @@ HERE = Path(__file__).resolve().parent
 PREREG = HERE.parent
 sys.path.insert(0, str(HERE))
 sys.path.insert(0, str(PREREG / "boundary_fixtures"))
+sys.path.insert(0, str(PREREG / "readstage"))
 
 import numpy as np  # noqa: E402
 from astropy.io import fits  # noqa: E402
@@ -71,6 +72,7 @@ from astropy.io import fits  # noqa: E402
 import make_boundary_fixtures as yui  # noqa: E402  (Yui's round-1 oracle, read-only)
 from make_boundary_fixtures_round2 import VALUE_TOLERANCE as ROUND23_PIXEL_TOLERANCE  # noqa: E402
 import nm_brick_cutout_adapter as tori  # noqa: E402
+import nm_brick_read_stage as readstage  # noqa: E402  (pinned .fits.fz decode stage)
 
 # Yui's round-1 declared comparison bound: render_fixture_oracle emits
 # "adapter_comparison_absolute_tolerance": 5e-6 in make_boundary_fixtures.py.
@@ -91,6 +93,9 @@ ROUND2_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round2
 ROUND2_GENERATED = PREREG / "boundary_fixtures" / "generated_round2"
 ROUND3_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round3.py"
 ROUND3_GENERATED = PREREG / "boundary_fixtures" / "generated_round3"
+ROUND4_GENERATOR = PREREG / "boundary_fixtures" / "make_boundary_fixtures_round4.py"
+ROUND4_GENERATED = PREREG / "boundary_fixtures" / "generated_round4"
+READ_STAGE_PATH = PREREG / "readstage" / "nm_brick_read_stage.py"
 
 SCOPE_STATEMENT = {
     "covered": [
@@ -114,6 +119,13 @@ SCOPE_STATEMENT = {
         "only cases; rounds 2-3 1e-5 on all cases): the adapter renderer is a bilinear "
         "resampler with the oracle's interpolation rule (support window [1, N], float64 "
         "accumulation, mean over coverage)",
+        "round-4: production-shaped .fits.fz read path through the separate pinned read "
+        "stage (nm_brick_read_stage.py): empty-primary + RICE_1 image-HDU-1 files; raw "
+        "compression cards (ZIMAGE/ZCMPTYPE/ZBITPIX/ZNAXIS1/2) gated terminally BEFORE "
+        "decode; decompressed arrays hash-equal to the parent uncompressed data; WCS cards "
+        "verified against the geometry sidecar; and the adapter output from read-stage "
+        "staging byte-identical (exact, no tolerance) to the uncompressed staging path — "
+        "the adapter itself stays stdlib-only and cannot tell the two provenances apart",
     ],
     "not_covered": [
         "exact float32 bit-equality of pixel values: unreachable in principle because Yui's "
@@ -133,8 +145,13 @@ SCOPE_STATEMENT = {
         "Yui's 'primary_brick' (west-side convention) is recorded but not compared: the "
         "adapter primary is grouping metadata under the nearest-planned-centre rule and "
         "never a selection rule",
-        "real DR10 South geometry-sidecar bricks, production .fits.fz HDU-1 reads, "
-        "multi-process scheduling determinism, dependency/container lock — later gates",
+        "real (non-synthetic) brick reads: the read stage terminally refuses any logical "
+        "header without the SYNTHET marker — lifting that build-only guard for real DR10 "
+        "bricks is a later explicit gate; the read stage's decoder environment lock "
+        "(interpreter/astropy/numpy versions plus tile-compression module hashes) is a "
+        "partial pin pending Yui's dependency lock",
+        "real DR10 South geometry-sidecar bricks, multi-process scheduling determinism, "
+        "full dependency/container lock — later gates",
     ],
 }
 
@@ -212,6 +229,7 @@ def _run_case(case, item, geometry, source_root, out_dir, *,
         record["coverage_zero_count"] = pc3["coverage_zero_count"]
         record["contributing_sources"] = pc3["contributing_sources"]
         record["zero_pixel_touch_sources"] = pc3["zero_pixel_touch_sources"]
+        record["output_file_sha256"] = receipt["output_file_sha256"]
         # Where the fixture declares contributing/zero-touch expectations
         # (round 3), compare all three set roles — planned, opened, AND
         # contributing — not just the planned set.
@@ -261,7 +279,7 @@ def _run_case(case, item, geometry, source_root, out_dir, *,
     return record
 
 
-def _build_round1_geometry() -> "tori.SyntheticBrickGeometry":
+def _round1_geometry_rows() -> list:
     rows = []
     brickid = 1
     for grid_row in (-1, 0, 1):
@@ -286,7 +304,11 @@ def _build_round1_geometry() -> "tori.SyntheticBrickGeometry":
                 }
             )
             brickid += 1
-    return tori.SyntheticBrickGeometry(rows, scope=tori.SCOPE)
+    return rows
+
+
+def _build_round1_geometry() -> "tori.SyntheticBrickGeometry":
+    return tori.SyntheticBrickGeometry(_round1_geometry_rows(), scope=tori.SCOPE)
 
 
 def _pixel_agreement_summary(cases, tolerance: float, tolerance_source: str) -> dict:
@@ -451,12 +473,189 @@ def _run_round3(tmp: Path) -> dict:
     )
 
 
+def _run_round4(tmp: Path) -> dict:
+    """Round 4: production-shaped .fits.fz through the pinned read stage.
+
+    Each case runs TWICE — once from sources staged by nm_brick_read_stage
+    (decompressed from Yui's RICE_1 fixtures) and once from direct
+    uncompressed staging of the same arrays — and the two adapter outputs
+    must be byte-identical: tile compression is lossless here, so a value
+    difference anywhere in the read path is a defect, not a tolerance
+    question. Expected-array pixel comparison uses the parent round's
+    tolerance semantics (round-1 parents: 5e-6, centre-brick-only; round-3
+    parent: 1e-5).
+    """
+    manifest = json.loads((ROUND4_GENERATED / "fixture_manifest.json").read_text(encoding="utf-8"))
+    objects_path = ROUND4_GENERATED / manifest["objects_path"]
+    integrity = {
+        "objects_sha256_verified": _sha256_path(objects_path) == manifest["objects_sha256"],
+    }
+    if not all(integrity.values()):
+        return {
+            "fixture_round": 4, "fixture_generator": "make_boundary_fixtures_round4.py",
+            "status": "FAIL", "error": "pinned round-4 tree failed its own manifest hash check",
+            "integrity": integrity, "cases_total": 0, "cases_passed": 0, "cases_failed": 0,
+            "cases": [],
+        }
+    yui_rows = json.loads(objects_path.read_text(encoding="utf-8"))
+    brick_records = {row["brick_id"]: row for row in manifest["bricks"]}
+
+    geometry_rows = _round1_geometry_rows()
+    west = brick_records["knife-dec-max-west"]
+    geometry_rows.append(
+        {
+            "brickname": west["brick_id"],
+            "brickid": len(geometry_rows) + 1,
+            "ra": west["wcs"]["CRVAL1"],
+            "dec": west["wcs"]["CRVAL2"],
+            "ra1": west["unique_ra_bounds_deg"][0] % 360.0,
+            "ra2": west["unique_ra_bounds_deg"][1] % 360.0,
+            "dec1": west["unique_dec_bounds_deg"][0],
+            "dec2": west["unique_dec_bounds_deg"][1],
+        }
+    )
+    geometry = tori.SyntheticBrickGeometry(geometry_rows, scope=tori.SCOPE)
+    rows_by_name = {row["brickname"]: row for row in geometry.rows}
+
+    root_read = tmp / "round4_staged_readstage"
+    root_direct = tmp / "round4_staged_direct"
+    read_receipts = []
+    decompressed_hashes_match = True
+    for brick_id, record in sorted(brick_records.items()):
+        row = rows_by_name[brick_id]
+        if record["source_round"] == "round1":
+            # Yui's round-1 bricks declare her shared-tangent WCS; verify the
+            # header against those declared cards. The staging row remains the
+            # adapter's per-brick model (same documented approximation as the
+            # round-1 cross-check block).
+            expected_wcs = {
+                "CTYPE1": "RA---TAN", "CTYPE2": "DEC--TAN",
+                "CRVAL1": 180.0, "CRVAL2": -30.0,
+                "CRPIX1": 1800.5 - record["origin_x"],
+                "CRPIX2": 1800.5 - record["origin_y"],
+                "CD1_1": tori.OUT_CD[0][0], "CD1_2": tori.OUT_CD[0][1],
+                "CD2_1": tori.OUT_CD[1][0], "CD2_2": tori.OUT_CD[1][1],
+            }
+        else:
+            expected_wcs = None
+        receipt = readstage.read_production_brick(
+            ROUND4_GENERATED / record["relative_path"], row, root_read,
+            expected_file_sha256=record["file_sha256"],
+            expected_wcs_cards=expected_wcs,
+        )
+        if receipt["decompressed_array_sha256"] != record["data_sha256"]:
+            decompressed_hashes_match = False
+        # Embed without the read receipt's own run timestamp: its identity is
+        # its content_sha256 (which already excludes recorded_utc), and the
+        # cross-check receipt must stay byte-stable modulo its own timestamp.
+        read_receipts.append(
+            {key: value for key, value in receipt.items() if key != "recorded_utc"}
+        )
+        _stage_brick_with_yui_data(root_direct, row, ROUND4_GENERATED, record)
+
+    cases = []
+    for yui_row in yui_rows:
+        item = tori.SyntheticCutTarget(
+            _object_key(str(yui_row["object_id"])),
+            float(yui_row["ra_deg"]),
+            float(yui_row["dec_deg"]),
+        )
+        if yui_row["source_round"] == "round3":
+            expected_array = _load_expected_array(ROUND4_GENERATED, yui_row)
+            tolerance = ROUND23_PIXEL_TOLERANCE
+            skip_reason = None
+        elif sorted(yui_row["expected_bricks"]) == ["r+0c+0"]:
+            expected_array = _load_expected_array(ROUND4_GENERATED, yui_row)
+            tolerance = ROUND1_PIXEL_TOLERANCE
+            skip_reason = None
+        else:
+            expected_array = None
+            tolerance = None
+            skip_reason = ROUND1_PIXEL_SKIP_REASON
+        record = _run_case(
+            yui_row, item, geometry, root_read,
+            tmp / "round4_out_readstage" / str(yui_row["object_id"]),
+            expected_array=expected_array, pixel_tolerance=tolerance,
+            pixel_skip_reason=skip_reason,
+        )
+        record["source_round"] = yui_row["source_round"]
+        direct = _run_case(
+            yui_row, item, geometry, root_direct,
+            tmp / "round4_out_direct" / str(yui_row["object_id"]),
+            expected_array=expected_array, pixel_tolerance=tolerance,
+            pixel_skip_reason=skip_reason,
+        )
+        record["read_path_output_sha256"] = record.get("output_file_sha256")
+        record["uncompressed_path_output_sha256"] = direct.get("output_file_sha256")
+        if direct["status"] != "PASS" and record["status"] == "PASS":
+            record["status"] = "FAIL"
+            record["error"] = f"uncompressed reference path failed: {direct.get('error')}"
+        elif record["status"] == "PASS":
+            byte_identical = (
+                record["read_path_output_sha256"] is not None
+                and record["read_path_output_sha256"] == record["uncompressed_path_output_sha256"]
+            )
+            record["byte_identical_to_uncompressed_path"] = byte_identical
+            if not byte_identical:
+                record["status"] = "FAIL"
+                record["error"] = (
+                    "adapter output from the read stage is not byte-identical to the "
+                    "uncompressed staging path — a read-path value defect, not a tolerance question"
+                )
+        cases.append(record)
+
+    failed = sum(1 for record in cases if record["status"] != "PASS")
+    if not decompressed_hashes_match:
+        failed = max(failed, 1)
+    compared = [case for case in cases if case.get("pixel_compared")]
+    skipped = [case for case in cases if case.get("pixel_compared") is False]
+    return {
+        "fixture_round": 4,
+        "fixture_generator": "make_boundary_fixtures_round4.py",
+        "fixture_source": "pinned pre-generated tree boundary_fixtures/generated_round4 (read-only)",
+        "fixture_manifest_schema": manifest["schema_version"],
+        "objects_sha256": manifest["objects_sha256"],
+        "integrity": integrity,
+        "status": "PASS" if failed == 0 and decompressed_hashes_match else "FAIL",
+        "cases_total": len(cases),
+        "cases_passed": len(cases) - sum(1 for c in cases if c["status"] != "PASS"),
+        "cases_failed": sum(1 for c in cases if c["status"] != "PASS"),
+        "read_stage": {
+            "module_sha256": _sha256_path(READ_STAGE_PATH),
+            "all_decompressed_hashes_match_parent_data": decompressed_hashes_match,
+            "receipts": read_receipts,
+        },
+        "byte_identity": {
+            "all_cases_byte_identical": all(
+                case.get("byte_identical_to_uncompressed_path") for case in cases
+            ),
+            "comparison": "adapter output bytes, read-stage path vs uncompressed staging path, exact",
+        },
+        "pixel_agreement": {
+            "cases_compared": len(compared),
+            "cases_skipped": len(skipped),
+            "max_abs_error_over_compared": (
+                max(case["pixel_max_abs_error"] for case in compared) if compared else None
+            ),
+            "tolerance_absolute": None,
+            "tolerance_source": (
+                "parent-round tolerances per case: round-1 parents 5e-6 (centre-brick-only), "
+                "round-3 parent 1e-5; byte-identity between compressed and uncompressed paths "
+                "is asserted EXACTLY for every case"
+            ),
+            "skip_reasons": sorted({case["pixel_skip_reason"] for case in skipped}),
+        },
+        "cases": cases,
+    }
+
+
 def run_cross_check() -> dict:
     tmp = Path(tempfile.mkdtemp(prefix="_tmp_cross_check_yui_", dir=HERE))
     try:
         round1 = _run_round1(tmp)
         round2 = _run_round2(tmp)
         round3 = _run_round3(tmp)
+        round4 = _run_round4(tmp)
         receipt = {
             "recorded_utc": datetime.now(timezone.utc)
             .isoformat(timespec="seconds")
@@ -464,19 +663,22 @@ def run_cross_check() -> dict:
             "scope": SCOPE_STATEMENT,
             "status": (
                 "PASS"
-                if all(block["status"] == "PASS" for block in (round1, round2, round3))
+                if all(block["status"] == "PASS" for block in (round1, round2, round3, round4))
                 else "FAIL"
             ),
             "round1": round1,
             "round2": round2,
             "round3": round3,
+            "round4": round4,
             "artifacts": {
                 "nm_brick_cutout_adapter.py_sha256": _sha256_path(HERE / "nm_brick_cutout_adapter.py"),
+                "nm_brick_read_stage.py_sha256": _sha256_path(READ_STAGE_PATH),
                 "yui_make_boundary_fixtures.py_sha256": _sha256_path(
                     PREREG / "boundary_fixtures" / "make_boundary_fixtures.py"
                 ),
                 "yui_make_boundary_fixtures_round2.py_sha256": _sha256_path(ROUND2_GENERATOR),
                 "yui_make_boundary_fixtures_round3.py_sha256": _sha256_path(ROUND3_GENERATOR),
+                "yui_make_boundary_fixtures_round4.py_sha256": _sha256_path(ROUND4_GENERATOR),
                 "kun_scratch_runner_sha256": (
                     _sha256_path(KUN_SCRATCH_RUNNER) if KUN_SCRATCH_RUNNER.is_file() else None
                 ),
@@ -489,7 +691,7 @@ def run_cross_check() -> dict:
                     "data at her pre-declared absolute tolerances (round-1 5e-6 centre-brick-only; "
                     "rounds 2-3 1e-5 all cases); see scope for what remains excluded and why"
                 ),
-                "counts": "round-1, round-2, and round-3 are reported separately and never merged",
+                "counts": "round-1, round-2, round-3, and round-4 are reported separately and never merged",
                 "contributing_sets": (
                     "where the fixture declares expected_contributing_bricks / "
                     "expected_zero_pixel_touch_bricks (round 3), adapter PC-3 contributing and "
@@ -538,9 +740,14 @@ def main() -> int:
                     key: receipt["round3"][key]
                     for key in ("status", "cases_total", "cases_passed", "cases_failed")
                 },
+                "round4": {
+                    key: receipt["round4"][key]
+                    for key in ("status", "cases_total", "cases_passed", "cases_failed")
+                },
+                "round4_byte_identity": receipt["round4"]["byte_identity"],
                 "pixel_agreement": {
                     name: receipt[name]["pixel_agreement"]
-                    for name in ("round1", "round2", "round3")
+                    for name in ("round1", "round2", "round3", "round4")
                     if "pixel_agreement" in receipt[name]
                 },
             },

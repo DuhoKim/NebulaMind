@@ -1,109 +1,75 @@
 {
+  "build_provenance": {
+    "identity_verification": {
+      "expected_distinct_field": "recorded_utc",
+      "expected_stable_field": "content_sha256",
+      "required_consecutive_builds": 2
+    },
+    "predecessor_builder": {
+      "path": "_tmp_yui_dependency_lock_build_20260816.py",
+      "sha256": "5cb31764555fcc9b49437e4d83eda19184cc615d3a90bd3e1df163dab38cd5fd"
+    },
+    "successor_builder": {
+      "path": "_tmp_yui_production_read_environment_lock_build_20260816.py",
+      "sha256": "38e3b2c0da3ce346d79ed7a270bc5dc9caf21973ffec455bc9244495cf71d8a5"
+    },
+    "successor_contract_test": {
+      "path": "_tmp_test_yui_production_read_environment_lock_20260816.py",
+      "sha256": "a5a49227fe5b06fd73939847edb53f319fd47c398a58b3f65777c576fb8e9a72"
+    }
+  },
+  "claim_level": "MEASUREMENT_NOT_EXACT_REBUILD_OR_PRODUCTION_AUTHORIZATION",
   "content_hash_excludes": [
     "content_sha256",
     "recorded_utc"
   ],
-  "content_sha256": "d8ca7292a6c12a77ecfecf0df5fe39aa32741afa4085a8303509985e90dd637d",
-  "dependency_partition": {
-    "adapter_module_and_tests": {
-      "direct_third_party_imports": [],
-      "python_runtime": {
-        "dont_write_bytecode": false,
-        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-        "implementation": "CPython",
-        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+  "content_sha256": "86cf7c7aa07ee236d05e691598c216d1e037d347ebcfb1b5ea63d462bb11fbc7",
+  "decoder_module_fingerprints": {
+    "astropy_version": "6.0.1",
+    "decoder": "astropy.io.fits tiled compression",
+    "module_directory": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy/io/fits/hdu/compressed",
+    "module_set_fingerprint_sha256": "1d9cc08c32e7b9edae77671e912d51a489115fbc49d9c936c4267dce9b5314a5",
+    "modules": [
+      {
+        "installed_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy/io/fits/hdu/compressed/__init__.py",
+        "name": "__init__.py",
+        "sha256": "28a65f9fb32ac03db20f1012ee14817e0a52b1dc76aadfd0b9b075ebed7cbd1c",
+        "size_bytes": 181
       },
-      "runtime_loaded_distributions_after_probe_baseline": {},
-      "stdlib_only_invariant": "PASS",
-      "tests_run": 30,
-      "tests_successful": true
-    },
-    "cross_runner": {
-      "direct_third_party_imports": [
-        "astropy",
-        "numpy"
-      ],
-      "local_imports": [
-        "make_boundary_fixtures",
-        "make_boundary_fixtures_round2",
-        "nm_brick_cutout_adapter"
-      ],
-      "note": "Cross-runner directly imports numpy and astropy.io and also imports local oracle modules; it therefore requires the oracle third-party environment.",
-      "python_runtime": {
-        "dont_write_bytecode": false,
-        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-        "implementation": "CPython",
-        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
+      {
+        "installed_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy/io/fits/hdu/compressed/compressed.py",
+        "name": "compressed.py",
+        "sha256": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c",
+        "size_bytes": 46144
       },
-      "transitive_runtime_loaded_distributions": {
-        "PyYAML": [
-          "yaml"
-        ],
-        "astropy": [
-          "astropy"
-        ],
-        "astropy-iers-data": [
-          "astropy_iers_data"
-        ],
-        "certifi": [
-          "certifi"
-        ],
-        "numpy": [
-          "numpy"
-        ],
-        "packaging": [
-          "packaging"
-        ],
-        "pyerfa": [
-          "erfa"
-        ]
+      {
+        "installed_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy/io/fits/hdu/compressed/_tiled_compression.py",
+        "name": "_tiled_compression.py",
+        "sha256": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+        "size_bytes": 22603
+      },
+      {
+        "installed_path": "/Users/duhokim/Library/Python/3.9/lib/python/site-packages/astropy/io/fits/hdu/compressed/_compression.cpython-39-darwin.so",
+        "name": "_compression.cpython-39-darwin.so",
+        "sha256": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+        "size_bytes": 126592
       }
-    },
-    "oracle_and_fixture_tests": {
-      "direct_third_party_imports": [
-        "astropy",
-        "numpy"
-      ],
-      "python_runtime": {
-        "dont_write_bytecode": true,
-        "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-        "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-        "implementation": "CPython",
-        "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
-      },
-      "runtime_loaded_distributions": {
-        "PyYAML": [
-          "yaml"
-        ],
-        "astropy": [
-          "astropy"
-        ],
-        "astropy-iers-data": [
-          "astropy_iers_data"
-        ],
-        "certifi": [
-          "certifi"
-        ],
-        "numpy": [
-          "numpy"
-        ],
-        "packaging": [
-          "packaging"
-        ],
-        "pyerfa": [
-          "erfa"
-        ]
-      },
-      "tests_run": 17,
-      "tests_successful": true
-    },
-    "python_startup_probe_baseline": {
-      "setuptools": [
-        "_distutils_hack"
-      ]
-    }
+    ],
+    "numpy_version": "1.26.4",
+    "scope_note": "These are the exact installed Python and native-extension bytes that implement Astropy's tiled-compression path in this measured environment; the package version string alone is not treated as decoder identity."
+  },
+  "dependency_boundary": {
+    "cross_runner_process_note": "The cross-runner imports the readstage plus numpy/Astropy. Adapter calls can therefore execute in a process containing third-party packages without changing the adapter module/input-contract invariant.",
+    "invariant_kind": "module-and-input-contract",
+    "readstage_dependency_owner": "readstage/nm_brick_read_stage.py",
+    "readstage_direct_third_party_dependencies": [
+      "astropy",
+      "numpy"
+    ],
+    "stdlib_only_invariant_applies_to": [
+      "adapter/nm_brick_cutout_adapter.py"
+    ],
+    "whole_process_third_party_free": false
   },
   "operating_system": {
     "build_version": "25G76",
@@ -120,134 +86,11 @@
     "platform": "macOS-26.6.1-arm64-arm-64bit",
     "product_version": "26.6.1"
   },
-  "probe_evidence": {
-    "adapter_runtime": {
-      "path": "_tmp_yui_dependency_probe_adapter_20260816.json",
-      "result": {
-        "baseline_probe_distributions": {
-          "setuptools": [
-            "_distutils_hack"
-          ]
-        },
-        "errors": 0,
-        "failures": 0,
-        "python_runtime": {
-          "dont_write_bytecode": false,
-          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-          "implementation": "CPython",
-          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
-        },
-        "scope": "adapter_module",
-        "tests_run": 30,
-        "tests_successful": true,
-        "third_party_distributions_loaded_after_baseline": {}
-      },
-      "sha256": "c0cf5a71594bee723930dbf0dab5727fe1aeee94add01c0b6ffdb491a3674aca"
-    },
-    "cross_runner_runtime": {
-      "path": "_tmp_yui_dependency_probe_cross_runner_20260816.json",
-      "result": {
-        "baseline_probe_distributions": {
-          "setuptools": [
-            "_distutils_hack"
-          ]
-        },
-        "errors": 0,
-        "failures": 0,
-        "python_runtime": {
-          "dont_write_bytecode": false,
-          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=0, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-          "implementation": "CPython",
-          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
-        },
-        "scope": "cross_runner",
-        "tests_run": 0,
-        "tests_successful": true,
-        "third_party_distributions_loaded_after_baseline": {
-          "PyYAML": [
-            "yaml"
-          ],
-          "astropy": [
-            "astropy"
-          ],
-          "astropy-iers-data": [
-            "astropy_iers_data"
-          ],
-          "certifi": [
-            "certifi"
-          ],
-          "numpy": [
-            "numpy"
-          ],
-          "packaging": [
-            "packaging"
-          ],
-          "pyerfa": [
-            "erfa"
-          ]
-        }
-      },
-      "sha256": "d3241fcaa41f4df7c208315d69318684ebe4bf95b63499d0a4a3bfd15beed800"
-    },
-    "lock_builder": {
-      "path": "_tmp_yui_dependency_lock_build_20260816.py",
-      "result": null,
-      "sha256": "5cb31764555fcc9b49437e4d83eda19184cc615d3a90bd3e1df163dab38cd5fd"
-    },
-    "oracle_runtime": {
-      "path": "_tmp_yui_dependency_probe_oracle_20260816.json",
-      "result": {
-        "baseline_probe_distributions": {
-          "setuptools": [
-            "_distutils_hack"
-          ]
-        },
-        "errors": 0,
-        "failures": 0,
-        "python_runtime": {
-          "dont_write_bytecode": true,
-          "executable": "/Library/Developer/CommandLineTools/usr/bin/python3",
-          "flags": "sys.flags(debug=0, inspect=0, interactive=0, optimize=0, dont_write_bytecode=1, no_user_site=0, no_site=0, ignore_environment=0, verbose=0, bytes_warning=0, quiet=0, hash_randomization=1, isolated=0, dev_mode=False, utf8_mode=0)",
-          "implementation": "CPython",
-          "version": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]"
-        },
-        "scope": "oracle",
-        "tests_run": 17,
-        "tests_successful": true,
-        "third_party_distributions_loaded_after_baseline": {
-          "PyYAML": [
-            "yaml"
-          ],
-          "astropy": [
-            "astropy"
-          ],
-          "astropy-iers-data": [
-            "astropy_iers_data"
-          ],
-          "certifi": [
-            "certifi"
-          ],
-          "numpy": [
-            "numpy"
-          ],
-          "packaging": [
-            "packaging"
-          ],
-          "pyerfa": [
-            "erfa"
-          ]
-        }
-      },
-      "sha256": "9b7392a4755065d293cd5d6e0cf6a29c0a5b64da6c5c652abf0b29e9c391d542"
-    },
-    "probe_script": {
-      "path": "_tmp_yui_dependency_probe_20260816.py",
-      "result": null,
-      "sha256": "5af5db372bf3979666b96f9d5992f4e2e1dacfc5f015fbb3d920c3a50f75cc2d"
-    }
-  },
+  "production_reliance_gaps": [
+    "No real production .fits.fz brick, source route, or real-parent manifest was opened or locked; the current readstage gate is synthetic only.",
+    "Real survey container variation, transfer behavior, and exact production execution route remain separate gates.",
+    "This record detects drift in the measured installed environment but cannot recreate it bit-for-bit from its own contents."
+  ],
   "python_environment": {
     "base_prefix": "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9",
     "build": [
@@ -294,187 +137,459 @@
       0
     ]
   },
-  "recorded_utc": "2026-08-16T03:36:49.836505Z",
+  "recorded_utc": "2026-08-16T10:36:22.396674Z",
   "reproducibility": {
-    "current_environment_verifiable_against_installed_file_fingerprints": true,
-    "exact_offline_rebuild_possible_from_current_pip_wheel_cache": false,
+    "current_environment_verifiable": true,
+    "exact_offline_rebuild_possible": false,
     "network_access_alone_sufficient_for_bit_exact_rebuild": false,
     "network_access_required_to_attempt_rebuild": true,
-    "reason": "The lock identifies versions, ABI tags, metadata, RECORD declarations, and exact installed-file fingerprints, but it does not contain the original distribution archives, the Apple Command Line Tools installer, or the macOS image.",
+    "production_reliance_authorized": false,
+    "reason": "This record hash-locks current source, installed package trees, and exact tiled-decoder module bytes, but it does not contain the original distribution archives, Apple Command Line Tools installer, or macOS image/system-library artifacts. Wider measured coverage does not turn the record into a self-contained rebuild bundle.",
     "reproducible_from_lock_alone": false
   },
-  "schema_version": "yui-dependency-environment-lock-v1",
+  "schema_version": "yui-production-read-environment-lock-v2",
   "scope": {
-    "brief_path": "_tmp_yui_dependency_lock_brief_20260816.md",
-    "brief_sha256": "270b1d45d24481cb7913bfdda312f48182cb75deafd5c5e2c5db121f3fc62523",
+    "brief_path": "_tmp_yui_lock_reissue_brief_20260816.md",
+    "brief_sha256": "a936d00d2866d4ff9f696f08d3a79d6095840115b80a4ad1e6d6f449968dea2e",
     "build_only": true,
-    "install_or_download_performed": false,
+    "governing_gate_path": "KUN_READSTAGE_GATE_20260816.md",
+    "governing_gate_sha256": "6b57385217ed89c5f51f36df47c5829f3fb6917077571f49466b3ea498b5087a",
+    "install_download_or_fetch_performed": false,
     "network_used": false,
     "synthetic_only": true
   },
   "source_artifacts": {
     "adapter/cross_check_yui_boundary.py": {
-      "imports": [
-        "__future__",
-        "astropy.io",
-        "datetime",
-        "hashlib",
-        "json",
-        "make_boundary_fixtures",
-        "make_boundary_fixtures_round2",
-        "nm_brick_cutout_adapter",
-        "numpy",
-        "pathlib",
-        "shutil",
-        "sys",
-        "tempfile"
-      ],
-      "sha256": "e4168e331148feb9d348e30dcd10427f572492dfbedab141b745b8e3c34c691d"
+      "artifact_role": "third-party-dependent synthetic cross-runner",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy.io",
+          "datetime",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "nm_brick_cutout_adapter",
+          "nm_brick_read_stage",
+          "numpy",
+          "pathlib",
+          "shutil",
+          "sys",
+          "tempfile"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "nm_brick_cutout_adapter",
+          "nm_brick_read_stage"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "3bb84cefe44eea4a49b8d8ef7bad6a64a92137d67731606e4bccbe33703f9436",
+      "size_bytes": 37750
     },
     "adapter/nm_brick_cutout_adapter.py": {
-      "imports": [
-        "__future__",
-        "argparse",
-        "datetime",
-        "hashlib",
-        "importlib.util",
-        "json",
-        "math",
-        "pathlib",
-        "re",
-        "struct",
-        "sys",
-        "typing"
-      ],
-      "sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f"
+      "artifact_role": "stdlib-only adapter module and canonical staged-input owner",
+      "dependency_contract": {
+        "dependency_class": "stdlib-only-module-input-contract",
+        "direct_imports": [
+          "__future__",
+          "argparse",
+          "datetime",
+          "hashlib",
+          "importlib.util",
+          "json",
+          "math",
+          "pathlib",
+          "re",
+          "struct",
+          "sys",
+          "typing"
+        ],
+        "direct_third_party_imports": [],
+        "invariant_kind": "module-and-input-contract",
+        "local_imports": [],
+        "note": "The adapter source and staged-input contract use only the Python standard library. This does not claim that a process which imports the readstage or cross-runner has no third-party packages loaded.",
+        "stdlib_only_source": true,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+      "size_bytes": 66545
     },
     "adapter/test_nm_brick_cutout_adapter.py": {
-      "imports": [
-        "__future__",
-        "ast",
-        "hashlib",
-        "importlib.util",
-        "json",
-        "pathlib",
-        "shutil",
-        "struct",
-        "subprocess",
-        "sys",
-        "tempfile",
-        "unittest"
-      ],
-      "sha256": "d077ef35846340b31694d0cf630aceb185723d8971ad372f324422f9caa5566d"
+      "artifact_role": "stdlib-only adapter contract test",
+      "dependency_contract": {
+        "dependency_class": "stdlib-only-adapter-test-contract",
+        "direct_imports": [
+          "__future__",
+          "ast",
+          "hashlib",
+          "importlib.util",
+          "json",
+          "pathlib",
+          "shutil",
+          "struct",
+          "subprocess",
+          "sys",
+          "tempfile",
+          "unittest"
+        ],
+        "direct_third_party_imports": [],
+        "invariant_kind": "test-and-imported-module-contract",
+        "local_imports": [],
+        "note": "The test and the adapter it imports are stdlib-only at their module boundary; no claim is made about unrelated ambient packages installed in the process environment.",
+        "stdlib_only_source": true,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "7fc77ee74bdff2facbba6bc5de1f45d78875193841dc67df9b76e67565b3f99c",
+      "size_bytes": 39337
     },
     "boundary_fixtures/make_boundary_fixtures.py": {
-      "imports": [
-        "__future__",
-        "argparse",
-        "astropy.io",
-        "astropy.wcs",
-        "hashlib",
-        "json",
-        "numpy",
-        "pathlib",
-        "typing"
-      ],
-      "sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d"
+      "artifact_role": "third-party-dependent fixture-oracle generator",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "argparse",
+          "astropy.io",
+          "astropy.wcs",
+          "hashlib",
+          "json",
+          "numpy",
+          "pathlib",
+          "typing"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d",
+      "size_bytes": 17753
     },
     "boundary_fixtures/make_boundary_fixtures_round2.py": {
-      "imports": [
-        "__future__",
-        "argparse",
-        "astropy.io",
-        "astropy.wcs",
-        "hashlib",
-        "json",
-        "make_boundary_fixtures",
-        "math",
-        "numpy",
-        "pathlib",
-        "typing"
-      ],
-      "sha256": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc"
+      "artifact_role": "third-party-dependent fixture-oracle generator",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "argparse",
+          "astropy.io",
+          "astropy.wcs",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "math",
+          "numpy",
+          "pathlib",
+          "typing"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc",
+      "size_bytes": 26229
     },
     "boundary_fixtures/make_boundary_fixtures_round3.py": {
-      "imports": [
-        "__future__",
-        "argparse",
-        "astropy.io",
-        "astropy.wcs",
-        "hashlib",
-        "json",
-        "make_boundary_fixtures",
-        "make_boundary_fixtures_round2",
-        "numpy",
-        "pathlib",
-        "typing"
-      ],
-      "sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62"
+      "artifact_role": "third-party-dependent fixture-oracle generator",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "argparse",
+          "astropy.io",
+          "astropy.wcs",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "numpy",
+          "pathlib",
+          "typing"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62",
+      "size_bytes": 19581
+    },
+    "boundary_fixtures/make_boundary_fixtures_round4.py": {
+      "artifact_role": "third-party-dependent fixture-oracle generator",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "argparse",
+          "astropy.io",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "make_boundary_fixtures_round3",
+          "numpy",
+          "pathlib",
+          "typing"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "make_boundary_fixtures_round3"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "d6c193841ff8ff52f1188ae1d48bbe5ea8c89bf553c542ad176f70189b7b7533",
+      "size_bytes": 19163
     },
     "boundary_fixtures/test_boundary_fixtures.py": {
-      "imports": [
-        "__future__",
-        "astropy.io",
-        "astropy.wcs",
-        "json",
-        "make_boundary_fixtures",
-        "numpy",
-        "pathlib",
-        "tempfile",
-        "unittest"
-      ],
-      "sha256": "295e9a1a72f56a2ca66caa3910b2c92f8c67700e9302e133a202593ba76b3da0"
+      "artifact_role": "third-party-dependent fixture-oracle test",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy.io",
+          "astropy.wcs",
+          "json",
+          "make_boundary_fixtures",
+          "numpy",
+          "pathlib",
+          "tempfile",
+          "unittest"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "295e9a1a72f56a2ca66caa3910b2c92f8c67700e9302e133a202593ba76b3da0",
+      "size_bytes": 13947
     },
     "boundary_fixtures/test_boundary_fixtures_round2.py": {
-      "imports": [
-        "__future__",
-        "astropy.io",
-        "astropy.utils.exceptions",
-        "astropy.wcs",
-        "hashlib",
-        "json",
-        "make_boundary_fixtures",
-        "make_boundary_fixtures_round2",
-        "math",
-        "numpy",
-        "pathlib",
-        "tempfile",
-        "unittest",
-        "warnings"
-      ],
-      "sha256": "f369b659f54f2aed677d92019428ffed82fd965bfe264b6e6efa9205c9dfa951"
+      "artifact_role": "third-party-dependent fixture-oracle test",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy.io",
+          "astropy.utils.exceptions",
+          "astropy.wcs",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "math",
+          "numpy",
+          "pathlib",
+          "tempfile",
+          "unittest",
+          "warnings"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "f369b659f54f2aed677d92019428ffed82fd965bfe264b6e6efa9205c9dfa951",
+      "size_bytes": 8178
     },
     "boundary_fixtures/test_boundary_fixtures_round3.py": {
-      "imports": [
-        "__future__",
-        "hashlib",
-        "json",
-        "make_boundary_fixtures_round3",
-        "numpy",
-        "pathlib",
-        "tempfile",
-        "unittest"
-      ],
-      "sha256": "36f9438d3359cbca6c27432b22ecf73570a581e15c64ca062a0a921e319b668f"
+      "artifact_role": "third-party-dependent fixture-oracle test",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures_round3",
+          "numpy",
+          "pathlib",
+          "tempfile",
+          "unittest"
+        ],
+        "direct_third_party_imports": [
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures_round3"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "36f9438d3359cbca6c27432b22ecf73570a581e15c64ca062a0a921e319b668f",
+      "size_bytes": 8378
+    },
+    "boundary_fixtures/test_boundary_fixtures_round4.py": {
+      "artifact_role": "third-party-dependent fixture-oracle test",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy.io",
+          "hashlib",
+          "json",
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "make_boundary_fixtures_round3",
+          "make_boundary_fixtures_round4",
+          "numpy",
+          "pathlib",
+          "tempfile",
+          "unittest"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "make_boundary_fixtures",
+          "make_boundary_fixtures_round2",
+          "make_boundary_fixtures_round3",
+          "make_boundary_fixtures_round4"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "97be43190812eafd4745dc175442aff88254a030cd6272ebbd143cf5d660972e",
+      "size_bytes": 10790
+    },
+    "readstage/nm_brick_read_stage.py": {
+      "artifact_role": "third-party decoder owner and canonical adapter-input producer",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy",
+          "astropy.io",
+          "astropy.io.fits.hdu.compressed",
+          "datetime",
+          "hashlib",
+          "json",
+          "nm_brick_cutout_adapter",
+          "numpy",
+          "pathlib",
+          "platform",
+          "sys",
+          "typing"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "nm_brick_cutout_adapter"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a",
+      "size_bytes": 12284
+    },
+    "readstage/test_nm_brick_read_stage.py": {
+      "artifact_role": "third-party-dependent readstage contract test",
+      "dependency_contract": {
+        "dependency_class": "third-party-dependent",
+        "direct_imports": [
+          "__future__",
+          "astropy.io",
+          "hashlib",
+          "json",
+          "nm_brick_read_stage",
+          "numpy",
+          "pathlib",
+          "shutil",
+          "tempfile",
+          "unittest"
+        ],
+        "direct_third_party_imports": [
+          "astropy",
+          "numpy"
+        ],
+        "invariant_kind": "source-and-runtime-dependency",
+        "local_imports": [
+          "nm_brick_read_stage"
+        ],
+        "note": "This artifact directly owns or exercises numpy/Astropy dependencies and is not covered by the adapter's stdlib-only invariant.",
+        "stdlib_only_source": false,
+        "third_party_free_process_claimed": false
+      },
+      "sha256": "dd669e434de0319d237f53a16792c3a9c0a2b61457b84ea81a01d9d71c325790",
+      "size_bytes": 7119
     }
   },
   "standing_constraints": {
     "commit_or_push_performed": false,
-    "pc3_pc4_atomicity_changed": false,
+    "network_download_fetch_or_install_performed": false,
     "publication_or_acceptance_performed": false,
     "real_rows_positions_images_or_chirality_touched": false,
-    "real_survey_data_touched": false,
-    "source_manifest_generated": false
+    "real_source_manifest_generated": false,
+    "real_survey_data_touched": false
   },
-  "status": "SUPERSEDED_BY_PRODUCTION_READ_ENVIRONMENT_LOCK",
-  "supersession": {
+  "status": "PASS_OFFLINE_PRODUCTION_READ_ENVIRONMENT_MEASURED_WITH_REBUILD_GAPS",
+  "supersedes": {
+    "path": "YUI_DEPENDENCY_ENVIRONMENT_LOCK_20260816.json",
     "pre_supersession_content_sha256": "d729a7824ae5d139f461bd1a4d69b27486c053af1984421cf1c2305175ae1f05",
     "pre_supersession_file_sha256": "6e0c9ae2c414f0659c1dda5fba4f42bb417924fb64bb0bb08fb60d6d0f6e24ab",
-    "pre_supersession_status": "PASS_OFFLINE_ENVIRONMENT_MEASURED_WITH_REBUILD_GAPS",
-    "reason": "The architecture now has a separate compressed-FITS readstage; the successor adds its source/test, current cross-runner, and exact Astropy tiled-decoder module bytes.",
-    "successor_content_sha256": "86cf7c7aa07ee236d05e691598c216d1e037d347ebcfb1b5ea63d462bb11fbc7",
-    "successor_path": "YUI_PRODUCTION_READ_ENVIRONMENT_LOCK_20260816.json",
-    "superseded_utc": "2026-08-16T10:36:22.396674Z"
+    "pre_supersession_status": "PASS_OFFLINE_ENVIRONMENT_MEASURED_WITH_REBUILD_GAPS"
   },
   "third_party_distributions": {
     "PyYAML": {
@@ -816,15 +931,15 @@
   "unpinnable_offline": [
     {
       "item": "original wheel/sdist archive SHA-256 for all locked Python distributions",
-      "reason": "Installed dist-info does not preserve the archive SHA-256 and pip's wheel cache contains no matching artifacts. RECORD hashes individual installed files only."
+      "reason": "Installed dist-info RECORD data identifies installed files, not the original archive bytes; no matching original archives are present in the local pip wheel cache."
     },
     {
       "item": "CPython 3.9.6 Apple Command Line Tools installer artifact",
-      "reason": "The executable and build identity are hashed, but no offline CLT installer/package artifact is present in this lane."
+      "reason": "The running interpreter is byte-hashed, but no offline CLT installer/package artifact is present in this prereg lane."
     },
     {
-      "item": "macOS 26.6.1 build 25G76 installation image and system-library artifacts",
-      "reason": "The running OS/kernel identity is recorded, but the system image is not vendored and its distribution hash is not available from this offline environment."
+      "item": "macOS 26.6.1 build 25G76 image and external system-library artifacts",
+      "reason": "The active OS and kernel are measured, but the system image and its externally supplied libraries are not vendored and have no offline distribution hash here."
     }
   ]
 }

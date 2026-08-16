@@ -681,7 +681,39 @@ class TestYuiBoundaryCrossCheck(AdapterTestBase):
         for case in round3["cases"]:
             self.assertTrue(case["pixel_compared"])
 
+        # Round-4: production-shaped .fits.fz through the separate read stage.
+        round4 = receipt["round4"]
+        self.assertEqual(round4["status"], "PASS")
+        self.assertEqual(round4["cases_total"], 3)
+        self.assertEqual(round4["cases_passed"], 3)
+        self.assertTrue(all(round4["integrity"].values()))
+        self.assertTrue(round4["read_stage"]["all_decompressed_hashes_match_parent_data"])
+        self.assertEqual(len(round4["read_stage"]["receipts"]), 5)
+        for read_receipt in round4["read_stage"]["receipts"]:
+            self.assertEqual(read_receipt["raw_compression_cards"]["ZCMPTYPE"], "RICE_1")
+            self.assertEqual(read_receipt["raw_compression_cards"]["ZBITPIX"], -32)
+            self.assertEqual(
+                read_receipt["content_hash_excludes"], ["content_sha256", "recorded_utc"]
+            )
+        self.assertTrue(round4["byte_identity"]["all_cases_byte_identical"])
+        round4_ids = {case["object_id"] for case in round4["cases"]}
+        self.assertEqual(
+            round4_ids, {"centre", "dec_max_exact_boundary", "corner_north_west_exact"}
+        )
+        for case in round4["cases"]:
+            self.assertEqual(case["status"], "PASS")
+            self.assertTrue(case["byte_identical_to_uncompressed_path"])
+            self.assertEqual(
+                case["read_path_output_sha256"], case["uncompressed_path_output_sha256"]
+            )
+        pixel4 = round4["pixel_agreement"]
+        self.assertEqual(pixel4["cases_compared"], 2)
+        self.assertEqual(pixel4["cases_skipped"], 1)
+        self.assertLessEqual(pixel4["max_abs_error_over_compared"], 1e-5)
+
         scope = receipt["scope"]
+        self.assertTrue(any(".fits.fz read path" in line for line in scope["covered"]))
+        self.assertTrue(any("SYNTHET" in line for line in scope["not_covered"]))
         self.assertTrue(any("RA-wrap" in line for line in scope["covered"]))
         self.assertTrue(any("-89.875" in line for line in scope["covered"]))
         self.assertTrue(any("knife edge" in line for line in scope["covered"]))

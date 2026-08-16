@@ -2,13 +2,15 @@
   "artifacts": {
     "kun_scratch_runner_sha256": "69115bc3133b50c195db77e6ae6ea070f4ee1b989675b8da1bf4fb850157ae7a",
     "nm_brick_cutout_adapter.py_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+    "nm_brick_read_stage.py_sha256": "6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a",
     "yui_make_boundary_fixtures.py_sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d",
     "yui_make_boundary_fixtures_round2.py_sha256": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc",
-    "yui_make_boundary_fixtures_round3.py_sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62"
+    "yui_make_boundary_fixtures_round3.py_sha256": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62",
+    "yui_make_boundary_fixtures_round4.py_sha256": "d6c193841ff8ff52f1188ae1d48bbe5ea8c89bf553c542ad176f70189b7b7533"
   },
   "comparison_contract": {
     "contributing_sets": "where the fixture declares expected_contributing_bricks / expected_zero_pixel_touch_bricks (round 3), adapter PC-3 contributing and zero-pixel-touch sets must equal them; planned-but-not-contributing is a legitimate state, never an error",
-    "counts": "round-1, round-2, and round-3 are reported separately and never merged",
+    "counts": "round-1, round-2, round-3, and round-4 are reported separately and never merged",
     "coverage": "coverage_min >= 1 and coverage_zero_count == 0 on completed cuts",
     "pixel_values": "compared per round against Yui's expected arrays on her hash-verified brick data at her pre-declared absolute tolerances (round-1 5e-6 centre-brick-only; rounds 2-3 1e-5 all cases); see scope for what remains excluded and why",
     "source_sets": "adapter plan and PC-3 planned/opened sets must equal Yui expected_bricks"
@@ -17,8 +19,8 @@
     "content_sha256",
     "recorded_utc"
   ],
-  "content_sha256": "a8a5e998549c6b66732591b5ca0c3b5fbf37b076ac29080c33bea99a16cde586",
-  "recorded_utc": "2026-08-16T04:17:49Z",
+  "content_sha256": "c30a7b315a55a24bb3a022bc851f38b7c79e12b8f58903e7dece7b344773a978",
+  "recorded_utc": "2026-08-16T10:07:07Z",
   "round1": {
     "cases": [
       {
@@ -33,6 +35,7 @@
           "r+0c+0"
         ],
         "object_id": "centre",
+        "output_file_sha256": "bc3b30a04df3583ef31412115337bee08859223eb3d118be5cece49c897a813b",
         "pixel_compared": true,
         "pixel_max_abs_error": 0.0,
         "pixel_tolerance": 5e-06,
@@ -60,6 +63,7 @@
           "r+0c+0"
         ],
         "object_id": "edge_north_no_neighbour",
+        "output_file_sha256": "a2b9028f800077c7ececf9e4cf3bc490b0056a9604dbefaf3a3eea964c33f317",
         "pixel_compared": true,
         "pixel_max_abs_error": 1.9073486328125e-06,
         "pixel_tolerance": 5e-06,
@@ -89,6 +93,7 @@
           "r+1c+0"
         ],
         "object_id": "edge_north_overlap_only",
+        "output_file_sha256": "842afd98a7d21c9749c710e1294df572504f131faed34e7903f5832754b8f2f9",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -119,6 +124,7 @@
           "r+1c+0"
         ],
         "object_id": "edge_north_within_63px",
+        "output_file_sha256": "54534a475961af8824cc36d2cf7d1d36b88c9df337a2ae87547b18371e7d1d3e",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -149,6 +155,7 @@
           "r+1c+0"
         ],
         "object_id": "edge_north_exact",
+        "output_file_sha256": "8da2ad25025e3ede4b6f1983d23652ab9a656b8f679bb93f2269384285d44d1d",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -179,6 +186,7 @@
           "r+1c+0"
         ],
         "object_id": "edge_north_beyond",
+        "output_file_sha256": "3e2fdfcc84dda1262ef67178fab3eb51049381e7bab271a8778c089f92e46d3c",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -207,6 +215,7 @@
           "r+0c+0"
         ],
         "object_id": "edge_south_no_neighbour",
+        "output_file_sha256": "e070871ae5591fe9bb5750c6e32ab120e59787368ac5ee8fd18e3ed380a4b862",
         "pixel_compared": true,
         "pixel_max_abs_error": 1.9073486328125e-06,
         "pixel_tolerance": 5e-06,
@@ -236,6 +245,7 @@
           "r-1c+0"
         ],
         "object_id": "edge_south_overlap_only",
+        "output_file_sha256": "d38e98c25fecb54f86eb19eefd3839b11d62182d7c95a6a0438553a898c022ad",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -266,6 +276,7 @@
           "r-1c+0"
         ],
         "object_id": "edge_south_within_63px",
+        "output_file_sha256": "ae3ec286ec6f91f4bbd4833ea198d7411174fccf71c581ed060e905a0ef0d907",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -296,6 +307,7 @@
           "r-1c+0"
         ],
         "object_id": "edge_south_exact",
+        "output_file_sha256": "efc68199db5d0bb4e578a394100b1ff7014e169f328cd002e7d726ac9da3210f",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -326,6 +338,7 @@
           "r-1c+0"
         ],
         "object_id": "edge_south_beyond",
+        "output_file_sha256": "074c3aa513df2a8c71c2ca7b2a0b6edc920f8ccd21fdee0574c4f77376d455a2",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -354,6 +367,7 @@
           "r+0c+0"
         ],
         "object_id": "edge_east_no_neighbour",
+        "output_file_sha256": "f0f4bb67fe32ce39a31330f0c8c237af4b69ab8f585ed83a3ce3c5e90bc0004c",
         "pixel_compared": true,
         "pixel_max_abs_error": 1.9073486328125e-06,
         "pixel_tolerance": 5e-06,
@@ -383,6 +397,7 @@
           "r+0c-1"
         ],
         "object_id": "edge_east_overlap_only",
+        "output_file_sha256": "6139e3afe52c1383eaab0388f7fcd2fb8bee69b2d0ec34be540b680430a36c10",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -413,6 +428,7 @@
           "r+0c-1"
         ],
         "object_id": "edge_east_within_63px",
+        "output_file_sha256": "455481a50623f23c3b609e2e6a3cef6067a87bd882a65a56bcabf8f92d963731",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -443,6 +459,7 @@
           "r+0c-1"
         ],
         "object_id": "edge_east_exact",
+        "output_file_sha256": "d3ddf53257055fb624a9b2afaa424eca02f22cb271d517b94835728347e7ff1f",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -473,6 +490,7 @@
           "r+0c-1"
         ],
         "object_id": "edge_east_beyond",
+        "output_file_sha256": "23130c09515903f9db398c8a6ef4146a7449cbb96c5c04cd3b359c4e37945a24",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -501,6 +519,7 @@
           "r+0c+0"
         ],
         "object_id": "edge_west_no_neighbour",
+        "output_file_sha256": "6bddb629d3f8c0cbf48724b706e0bd739bd37d61c4b938eb20935188257e6d08",
         "pixel_compared": true,
         "pixel_max_abs_error": 1.9073486328125e-06,
         "pixel_tolerance": 5e-06,
@@ -530,6 +549,7 @@
           "r+0c+1"
         ],
         "object_id": "edge_west_overlap_only",
+        "output_file_sha256": "3b96c1b78e28f7fe5bc117bf24bfcb0cc8f57982dddcf34834a8a0828983787c",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -560,6 +580,7 @@
           "r+0c+1"
         ],
         "object_id": "edge_west_within_63px",
+        "output_file_sha256": "dfc396d3d0d0e4b86f517a59e195b9d96bf3c1e711675b9bcf21b0b9b0406b09",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -590,6 +611,7 @@
           "r+0c+1"
         ],
         "object_id": "edge_west_exact",
+        "output_file_sha256": "d85b5020d79f2b8349dab430c248bd62596873ce6180489129cfcf37009f79ae",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -620,6 +642,7 @@
           "r+0c+1"
         ],
         "object_id": "edge_west_beyond",
+        "output_file_sha256": "21c638901d64311280b02ec55cbad4111145a7159e547144c5f194ee42eafb49",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -654,6 +677,7 @@
           "r+1c-1"
         ],
         "object_id": "corner_north_east_exact",
+        "output_file_sha256": "5485cd2148829a9212ccd03c77cb8ec300fa71ee12a0113c5b468fd3eea2390b",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -690,6 +714,7 @@
           "r+1c-1"
         ],
         "object_id": "corner_north_east_beyond",
+        "output_file_sha256": "3b567c72432753903a251dc79feb35fecd4f7d4ff64d900f0bc1fc1dd7158300",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -726,6 +751,7 @@
           "r+1c+1"
         ],
         "object_id": "corner_north_west_exact",
+        "output_file_sha256": "5bd7eef10f78c4dc85a358da87229f46346dc05164ddd5b87ee7d96c78f85e52",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -762,6 +788,7 @@
           "r+1c+1"
         ],
         "object_id": "corner_north_west_beyond",
+        "output_file_sha256": "4ed45249624e40332d8e2f1d299aed331b65bdfed319deb69733086170259fb4",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -798,6 +825,7 @@
           "r-1c-1"
         ],
         "object_id": "corner_south_east_exact",
+        "output_file_sha256": "4d8c4d4cf0961fa9f6b64a07601996b67864a64018b5b404694aae123b5df8b4",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -834,6 +862,7 @@
           "r-1c-1"
         ],
         "object_id": "corner_south_east_beyond",
+        "output_file_sha256": "9a7b5b3054303a3679c29383447c6fb10152310640fe873b9b95db08022b3d1d",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -870,6 +899,7 @@
           "r-1c+1"
         ],
         "object_id": "corner_south_west_exact",
+        "output_file_sha256": "a0e0d95a95e84355310435da9941c0b1dd25fa6a6856900619c05e6d4a82a3f6",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -906,6 +936,7 @@
           "r-1c+1"
         ],
         "object_id": "corner_south_west_beyond",
+        "output_file_sha256": "21974c12d5396ec2c15e78840f3a47b2c63867d874ca6dc6b28e77c7b828e696",
         "pixel_compared": false,
         "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
         "planned_bricknames": [
@@ -964,6 +995,7 @@
         },
         "group_id": "ra-wrap",
         "object_id": "ra_wrap_crossing",
+        "output_file_sha256": "e1cfa8a5c749ed5e60e1ec59deb9b665a7ae9574e2c3ad9cd85fa16bcd3d4d02",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -999,6 +1031,7 @@
         },
         "group_id": "dec-max",
         "object_id": "selected_dec_max_crossing",
+        "output_file_sha256": "06a4274ac53f4d5bfed88ce90b5dc61c6a3733f804dbd23a1047bd0e11e54a3c",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1034,6 +1067,7 @@
         },
         "group_id": "dec-min",
         "object_id": "selected_dec_min_crossing",
+        "output_file_sha256": "03bb114567aa899de2292901a688857caf1db76a46eb826c212b5e515570b4a1",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1079,6 +1113,7 @@
         },
         "group_id": "geometry-overlap",
         "object_id": "geometry_overlap_only",
+        "output_file_sha256": "ea8e4b99bdfe7b9fe4dfde906f773b23ec66ea5260cb2dc4f22684ecf963500d",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1244,6 +1279,7 @@
         },
         "group_id": "knife-dec-max",
         "object_id": "dec_max_inside",
+        "output_file_sha256": "93b3f13add5f2774eb280dc50eb0f1c22def209412c733f08b864371995f0ea1",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1381,6 +1417,7 @@
         },
         "group_id": "knife-dec-max",
         "object_id": "dec_max_exact_boundary",
+        "output_file_sha256": "bcbc90c24a86ccd60422ae50fdeacb58d2924c37045136f304a52e16dbfbd8e7",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1521,6 +1558,7 @@
         },
         "group_id": "knife-dec-max",
         "object_id": "dec_max_one_pixel_beyond",
+        "output_file_sha256": "41edb6c77b0abe0c90132336c31451bbeaea66d9fc5ca882e876ee27ef3bef5c",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1662,6 +1700,7 @@
         },
         "group_id": "knife-dec-max",
         "object_id": "dec_max_subpixel_just_inside",
+        "output_file_sha256": "c6e4d3dd7ca25ebdb5569874371315ad7782311fdca0f8ec2fcacd5d06e0b093",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1802,6 +1841,7 @@
         },
         "group_id": "knife-dec-max",
         "object_id": "dec_max_subpixel_just_outside",
+        "output_file_sha256": "ce28ebe28dfdb2937a6f7c1279cd6259cbe702f980c7f9da7f773883db8b2662",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -1943,6 +1983,7 @@
         },
         "group_id": "knife-dec-min",
         "object_id": "dec_min_inside",
+        "output_file_sha256": "7f0d5d6089675cad4f2595fd97c7e4dc74d1a3df18bdbedbdc427cd8fa81b6b0",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -2080,6 +2121,7 @@
         },
         "group_id": "knife-dec-min",
         "object_id": "dec_min_exact_boundary",
+        "output_file_sha256": "89ca7fcbf2bc7fbdb6978aeb0018bddb5ae25a30669e59c8dd7d5e432d4ac19b",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -2220,6 +2262,7 @@
         },
         "group_id": "knife-dec-min",
         "object_id": "dec_min_one_pixel_beyond",
+        "output_file_sha256": "2a139ab76cfd1e5e54b8d1072de38af2adb8634946ad48a184ebc5d7c3a48b8b",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -2361,6 +2404,7 @@
         },
         "group_id": "knife-dec-min",
         "object_id": "dec_min_subpixel_just_inside",
+        "output_file_sha256": "3bef42610e45cae7bca518786ef0919156f07a5e178cd1ec86c9659fef399477",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -2501,6 +2545,7 @@
         },
         "group_id": "knife-dec-min",
         "object_id": "dec_min_subpixel_just_outside",
+        "output_file_sha256": "4476eb8462c305dfde2f02ed69f2cf6d1e6ec475b9dedbe38aff8bf5831bb77c",
         "pixel_compared": true,
         "pixel_max_abs_error": 7.62939453125e-06,
         "pixel_tolerance": 1e-05,
@@ -2545,19 +2590,419 @@
     },
     "status": "PASS"
   },
+  "round4": {
+    "byte_identity": {
+      "all_cases_byte_identical": true,
+      "comparison": "adapter output bytes, read-stage path vs uncompressed staging path, exact"
+    },
+    "cases": [
+      {
+        "adapter_primary_brickname": "r+0c+0",
+        "byte_identical_to_uncompressed_path": true,
+        "contributing_sources": [
+          "r+0c+0"
+        ],
+        "coverage_min": 1,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "r+0c+0"
+        ],
+        "object_id": "centre",
+        "output_file_sha256": "bc3b30a04df3583ef31412115337bee08859223eb3d118be5cece49c897a813b",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 0.0,
+        "pixel_tolerance": 5e-06,
+        "planned_bricknames": [
+          "r+0c+0"
+        ],
+        "read_path_output_sha256": "bc3b30a04df3583ef31412115337bee08859223eb3d118be5cece49c897a813b",
+        "reasons": {
+          "r+0c+0": "primary"
+        },
+        "source_round": "round1",
+        "status": "PASS",
+        "uncompressed_path_output_sha256": "bc3b30a04df3583ef31412115337bee08859223eb3d118be5cece49c897a813b",
+        "unique_area_primary_bricknames": [
+          "r+0c+0"
+        ],
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "knife-dec-max-west",
+        "byte_identical_to_uncompressed_path": true,
+        "contributing_sources": [
+          "knife-dec-max-west"
+        ],
+        "coverage_min": 1,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "knife-dec-max-west"
+        ],
+        "object_id": "dec_max_exact_boundary",
+        "output_file_sha256": "bcbc90c24a86ccd60422ae50fdeacb58d2924c37045136f304a52e16dbfbd8e7",
+        "pixel_compared": true,
+        "pixel_max_abs_error": 7.62939453125e-06,
+        "pixel_tolerance": 1e-05,
+        "planned_bricknames": [
+          "knife-dec-max-west"
+        ],
+        "read_path_output_sha256": "bcbc90c24a86ccd60422ae50fdeacb58d2924c37045136f304a52e16dbfbd8e7",
+        "reasons": {
+          "knife-dec-max-west": "primary"
+        },
+        "source_round": "round3",
+        "status": "PASS",
+        "uncompressed_path_output_sha256": "bcbc90c24a86ccd60422ae50fdeacb58d2924c37045136f304a52e16dbfbd8e7",
+        "unique_area_primary_bricknames": [
+          "knife-dec-max-west"
+        ],
+        "zero_pixel_touch_sources": []
+      },
+      {
+        "adapter_primary_brickname": "r+1c+1",
+        "byte_identical_to_uncompressed_path": true,
+        "contributing_sources": [
+          "r+0c+0",
+          "r+0c+1",
+          "r+1c+0",
+          "r+1c+1"
+        ],
+        "coverage_min": 2,
+        "coverage_zero_count": 0,
+        "expected_bricks": [
+          "r+0c+0",
+          "r+0c+1",
+          "r+1c+0",
+          "r+1c+1"
+        ],
+        "object_id": "corner_north_west_exact",
+        "output_file_sha256": "5bd7eef10f78c4dc85a358da87229f46346dc05164ddd5b87ee7d96c78f85e52",
+        "pixel_compared": false,
+        "pixel_skip_reason": "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically.",
+        "planned_bricknames": [
+          "r+0c+0",
+          "r+0c+1",
+          "r+1c+0",
+          "r+1c+1"
+        ],
+        "read_path_output_sha256": "5bd7eef10f78c4dc85a358da87229f46346dc05164ddd5b87ee7d96c78f85e52",
+        "reasons": {
+          "r+0c+0": "corner_neighbour",
+          "r+0c+1": "edge_neighbour",
+          "r+1c+0": "edge_neighbour",
+          "r+1c+1": "primary"
+        },
+        "source_round": "round1",
+        "status": "PASS",
+        "uncompressed_path_output_sha256": "5bd7eef10f78c4dc85a358da87229f46346dc05164ddd5b87ee7d96c78f85e52",
+        "unique_area_primary_bricknames": [],
+        "zero_pixel_touch_sources": []
+      }
+    ],
+    "cases_failed": 0,
+    "cases_passed": 3,
+    "cases_total": 3,
+    "fixture_generator": "make_boundary_fixtures_round4.py",
+    "fixture_manifest_schema": "yui-boundary-fixtures-round4-v1",
+    "fixture_round": 4,
+    "fixture_source": "pinned pre-generated tree boundary_fixtures/generated_round4 (read-only)",
+    "integrity": {
+      "objects_sha256_verified": true
+    },
+    "objects_sha256": "826bd4fc8e3725519409290c9ddf3f2c4b516e9b3c795a8beb7a0d262cc3b2a7",
+    "pixel_agreement": {
+      "cases_compared": 2,
+      "cases_skipped": 1,
+      "max_abs_error_over_compared": 7.62939453125e-06,
+      "skip_reasons": [
+        "round-1 bricks share ONE tangent plane (Yui's declared approximation); the adapter's production-shaped source model is per-brick TAN, which displaces neighbour-brick sampling by up to ~1.4 px at 0.25 deg from the shared tangent point. Pixel comparison on neighbour-involving cases would measure that mapping approximation, not the resampler; rounds 2-3 (distinct per-brick tangent points) exist to supersede it. Compared cases are exactly those whose planned set is the centre brick alone, where the two source models coincide identically."
+      ],
+      "tolerance_absolute": null,
+      "tolerance_source": "parent-round tolerances per case: round-1 parents 5e-6 (centre-brick-only), round-3 parent 1e-5; byte-identity between compressed and uncompressed paths is asserted EXACTLY for every case"
+    },
+    "read_stage": {
+      "all_decompressed_hashes_match_parent_data": true,
+      "module_sha256": "6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a",
+      "receipts": [
+        {
+          "adapter_input_file_sha256": "189dc0042098f740d91528d22f0bf4417a5ba581d672295c5b62063e9d784db6",
+          "adapter_input_relpath": "coadd/kni/knife-dec-max-west/legacysurvey-knife-dec-max-west-image-r.fits",
+          "adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+          "brickname": "knife-dec-max-west",
+          "component": "nm_brick_read_stage",
+          "content_hash_excludes": [
+            "content_sha256",
+            "recorded_utc"
+          ],
+          "content_sha256": "4be77438b4f58b9bfeeaec11a75bee87199b8b43c649a38e6a91866e922b6f5f",
+          "decoder_environment_lock": {
+            "astropy_tiled_compression_module_sha256": {
+              "_compression.cpython-39-darwin.so": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+              "_tiled_compression.py": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+              "compressed.py": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c"
+            },
+            "astropy_version": "6.0.1",
+            "full_dependency_lock": "Yui's dependency-lock deliverable (separate); this record is a partial pin and does not by itself establish the pinned-resampler or pinned-decoder claim",
+            "numpy_version": "1.26.4",
+            "python_version": "3.9.6"
+          },
+          "decompressed_array_sha256": "f47e45630cfb08e7a8ba5288421da3369ceebd866e5799cbf61db5ed992067c9",
+          "raw_compression_cards": {
+            "ZBITPIX": -32,
+            "ZCMPTYPE": "RICE_1",
+            "ZIMAGE": true,
+            "ZNAXIS": 2,
+            "ZNAXIS1": 3600,
+            "ZNAXIS2": 3600,
+            "ZTILE1": 100,
+            "ZTILE2": 100
+          },
+          "raw_hdu1_header_sha256": "7a9b81e4701fe1867d769c2c2f818522b96c6199b1148a63f78dc3a5a41e7ef7",
+          "raw_primary_header_sha256": "676e39590eca4a380e73ece478d7cb89d1a8d97ca2c2cdd8f59d9169855ef811",
+          "scope": "SYNTHETIC_ONLY_BUILD",
+          "source_basename": "synthetic-round3-knife-dec-max-west-image-r.fits.fz",
+          "source_file_sha256": "e96d571a893f1e62e323b3d0f2f02b53f502cb8d1f7c4fce25d32486f14a39c4",
+          "verified_wcs_cards": {
+            "CD1_1": -7.277777777777778e-05,
+            "CD1_2": 0.0,
+            "CD2_1": 0.0,
+            "CD2_2": 7.277777777777778e-05,
+            "CRPIX1": 1800.5,
+            "CRPIX2": 1800.5,
+            "CRVAL1": 199.95073891625617,
+            "CRVAL2": 32.25,
+            "CTYPE1": "RA---TAN",
+            "CTYPE2": "DEC--TAN"
+          },
+          "wcs_verification_model": "production-per-brick-tan"
+        },
+        {
+          "adapter_input_file_sha256": "b6b05b9348963c644684b0f29a7806a8a13b772e5d7c3c5a1fd56ca4f11908aa",
+          "adapter_input_relpath": "coadd/r+0/r+0c+0/legacysurvey-r+0c+0-image-r.fits",
+          "adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+          "brickname": "r+0c+0",
+          "component": "nm_brick_read_stage",
+          "content_hash_excludes": [
+            "content_sha256",
+            "recorded_utc"
+          ],
+          "content_sha256": "a67fd75c305fdf669d9472eb45024d4ea585c89f8c5181c57ae517bece548e1d",
+          "decoder_environment_lock": {
+            "astropy_tiled_compression_module_sha256": {
+              "_compression.cpython-39-darwin.so": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+              "_tiled_compression.py": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+              "compressed.py": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c"
+            },
+            "astropy_version": "6.0.1",
+            "full_dependency_lock": "Yui's dependency-lock deliverable (separate); this record is a partial pin and does not by itself establish the pinned-resampler or pinned-decoder claim",
+            "numpy_version": "1.26.4",
+            "python_version": "3.9.6"
+          },
+          "decompressed_array_sha256": "a58a4a30e14a8766b56b200406a1d841398fbdd9525cca0fb5fbfd292dd237a3",
+          "raw_compression_cards": {
+            "ZBITPIX": -32,
+            "ZCMPTYPE": "RICE_1",
+            "ZIMAGE": true,
+            "ZNAXIS": 2,
+            "ZNAXIS1": 3600,
+            "ZNAXIS2": 3600,
+            "ZTILE1": 100,
+            "ZTILE2": 100
+          },
+          "raw_hdu1_header_sha256": "d1a6a94b48c13e78397dcc5fc7ba6dfcb9238d00cc89dc09a5375f85f30a60ee",
+          "raw_primary_header_sha256": "676e39590eca4a380e73ece478d7cb89d1a8d97ca2c2cdd8f59d9169855ef811",
+          "scope": "SYNTHETIC_ONLY_BUILD",
+          "source_basename": "synthetic-round1-r+0c+0-image-r.fits.fz",
+          "source_file_sha256": "fe78767edb4a6af6b96602efa38370ac23db647dd3a88ffeefed35bce3d9d7f8",
+          "verified_wcs_cards": {
+            "CD1_1": -7.277777777777778e-05,
+            "CD1_2": 0.0,
+            "CD2_1": 0.0,
+            "CD2_2": 7.277777777777778e-05,
+            "CRPIX1": 1800.5,
+            "CRPIX2": 1800.5,
+            "CRVAL1": 180.0,
+            "CRVAL2": -30.0,
+            "CTYPE1": "RA---TAN",
+            "CTYPE2": "DEC--TAN"
+          },
+          "wcs_verification_model": "fixture-declared-cards"
+        },
+        {
+          "adapter_input_file_sha256": "d3d02ace1d175363fbdb2b49c962f07d3a82cc66e87af87252d90daeac0ff698",
+          "adapter_input_relpath": "coadd/r+0/r+0c+1/legacysurvey-r+0c+1-image-r.fits",
+          "adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+          "brickname": "r+0c+1",
+          "component": "nm_brick_read_stage",
+          "content_hash_excludes": [
+            "content_sha256",
+            "recorded_utc"
+          ],
+          "content_sha256": "a5fe12a351f2bca4c6b1682ca9a41a7537194039b9af75babf5efc55cc97454c",
+          "decoder_environment_lock": {
+            "astropy_tiled_compression_module_sha256": {
+              "_compression.cpython-39-darwin.so": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+              "_tiled_compression.py": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+              "compressed.py": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c"
+            },
+            "astropy_version": "6.0.1",
+            "full_dependency_lock": "Yui's dependency-lock deliverable (separate); this record is a partial pin and does not by itself establish the pinned-resampler or pinned-decoder claim",
+            "numpy_version": "1.26.4",
+            "python_version": "3.9.6"
+          },
+          "decompressed_array_sha256": "8787bd2ec811cdc4ab5dbfd41794884ea1502e150ab86aaddd697009e3823ca8",
+          "raw_compression_cards": {
+            "ZBITPIX": -32,
+            "ZCMPTYPE": "RICE_1",
+            "ZIMAGE": true,
+            "ZNAXIS": 2,
+            "ZNAXIS1": 3600,
+            "ZNAXIS2": 3600,
+            "ZTILE1": 100,
+            "ZTILE2": 100
+          },
+          "raw_hdu1_header_sha256": "d55e8a7c38020451fca8798a47e4c9ecc750097d6c3259cca3267820e7e3a841",
+          "raw_primary_header_sha256": "9eb57d92bfd9b380bfbcffdaa3e1820536ef9eaf34b917d7e815c9f796df8336",
+          "scope": "SYNTHETIC_ONLY_BUILD",
+          "source_basename": "synthetic-round1-r+0c+1-image-r.fits.fz",
+          "source_file_sha256": "0ae78ddc22719c8bb9a73a7d978e002df8cdbbae6a9027c98b651057d9e3a644",
+          "verified_wcs_cards": {
+            "CD1_1": -7.277777777777778e-05,
+            "CD1_2": 0.0,
+            "CD2_1": 0.0,
+            "CD2_2": 7.277777777777778e-05,
+            "CRPIX1": -1671.5,
+            "CRPIX2": 1800.5,
+            "CRVAL1": 180.0,
+            "CRVAL2": -30.0,
+            "CTYPE1": "RA---TAN",
+            "CTYPE2": "DEC--TAN"
+          },
+          "wcs_verification_model": "fixture-declared-cards"
+        },
+        {
+          "adapter_input_file_sha256": "f0cc905a28175fa3c92f7dcaf7ba4a86b701ea204c19f36463849ea6d8ce29e5",
+          "adapter_input_relpath": "coadd/r+1/r+1c+0/legacysurvey-r+1c+0-image-r.fits",
+          "adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+          "brickname": "r+1c+0",
+          "component": "nm_brick_read_stage",
+          "content_hash_excludes": [
+            "content_sha256",
+            "recorded_utc"
+          ],
+          "content_sha256": "d927fbabdfb90624495d052616bd48dd0d324fea9f49c4bbbfde6cc909969d6f",
+          "decoder_environment_lock": {
+            "astropy_tiled_compression_module_sha256": {
+              "_compression.cpython-39-darwin.so": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+              "_tiled_compression.py": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+              "compressed.py": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c"
+            },
+            "astropy_version": "6.0.1",
+            "full_dependency_lock": "Yui's dependency-lock deliverable (separate); this record is a partial pin and does not by itself establish the pinned-resampler or pinned-decoder claim",
+            "numpy_version": "1.26.4",
+            "python_version": "3.9.6"
+          },
+          "decompressed_array_sha256": "5cf3f092331ae10c2d71ea88826d2dbbecabafb492a33c3ffb6f6cfd4e9a49dc",
+          "raw_compression_cards": {
+            "ZBITPIX": -32,
+            "ZCMPTYPE": "RICE_1",
+            "ZIMAGE": true,
+            "ZNAXIS": 2,
+            "ZNAXIS1": 3600,
+            "ZNAXIS2": 3600,
+            "ZTILE1": 100,
+            "ZTILE2": 100
+          },
+          "raw_hdu1_header_sha256": "ac40c9ef2464ec79e6b619ecf1f47458c19d6392b224c0f3f7ca752d5adbb410",
+          "raw_primary_header_sha256": "9eb57d92bfd9b380bfbcffdaa3e1820536ef9eaf34b917d7e815c9f796df8336",
+          "scope": "SYNTHETIC_ONLY_BUILD",
+          "source_basename": "synthetic-round1-r+1c+0-image-r.fits.fz",
+          "source_file_sha256": "5747d57f8c8b0c9771e398437448f6996704e0e85f31b277bc7243c2a02a3975",
+          "verified_wcs_cards": {
+            "CD1_1": -7.277777777777778e-05,
+            "CD1_2": 0.0,
+            "CD2_1": 0.0,
+            "CD2_2": 7.277777777777778e-05,
+            "CRPIX1": 1800.5,
+            "CRPIX2": -1671.5,
+            "CRVAL1": 180.0,
+            "CRVAL2": -30.0,
+            "CTYPE1": "RA---TAN",
+            "CTYPE2": "DEC--TAN"
+          },
+          "wcs_verification_model": "fixture-declared-cards"
+        },
+        {
+          "adapter_input_file_sha256": "e6b78f2575c47a83f87b1af79e51a752ccbf673371ad7cad4690d91214a4d83f",
+          "adapter_input_relpath": "coadd/r+1/r+1c+1/legacysurvey-r+1c+1-image-r.fits",
+          "adapter_sha256": "267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f",
+          "brickname": "r+1c+1",
+          "component": "nm_brick_read_stage",
+          "content_hash_excludes": [
+            "content_sha256",
+            "recorded_utc"
+          ],
+          "content_sha256": "0730961df8fa407c1cecef4038bb550f005e4eae17efa9ab458d4f278964d3ff",
+          "decoder_environment_lock": {
+            "astropy_tiled_compression_module_sha256": {
+              "_compression.cpython-39-darwin.so": "b80ed4d27841c618b96d6caf8ad82fc165f5e9e06407e2f202010a5a5a3cc892",
+              "_tiled_compression.py": "17408948e1741aeb408d971fd3479c69c35222a018ddc72b9a5ae566e7ac8291",
+              "compressed.py": "dcf97d827a3727c4c23d57d099a65f59576e3a41265eb30d88edd4f52a48ab6c"
+            },
+            "astropy_version": "6.0.1",
+            "full_dependency_lock": "Yui's dependency-lock deliverable (separate); this record is a partial pin and does not by itself establish the pinned-resampler or pinned-decoder claim",
+            "numpy_version": "1.26.4",
+            "python_version": "3.9.6"
+          },
+          "decompressed_array_sha256": "20fe7d4480666bf538ee3bb8b7c9b670b4424080bb6a78a97267cafce8285f73",
+          "raw_compression_cards": {
+            "ZBITPIX": -32,
+            "ZCMPTYPE": "RICE_1",
+            "ZIMAGE": true,
+            "ZNAXIS": 2,
+            "ZNAXIS1": 3600,
+            "ZNAXIS2": 3600,
+            "ZTILE1": 100,
+            "ZTILE2": 100
+          },
+          "raw_hdu1_header_sha256": "4d138a443c51b01c9273600ee5f511e416efc7713fe097da63d6b82602da1d3f",
+          "raw_primary_header_sha256": "9eb57d92bfd9b380bfbcffdaa3e1820536ef9eaf34b917d7e815c9f796df8336",
+          "scope": "SYNTHETIC_ONLY_BUILD",
+          "source_basename": "synthetic-round1-r+1c+1-image-r.fits.fz",
+          "source_file_sha256": "ca41606e75b9b8fd42e029caf7eac731f09e95a51f69aa1fe9d7e77b8b71df30",
+          "verified_wcs_cards": {
+            "CD1_1": -7.277777777777778e-05,
+            "CD1_2": 0.0,
+            "CD2_1": 0.0,
+            "CD2_2": 7.277777777777778e-05,
+            "CRPIX1": -1671.5,
+            "CRPIX2": -1671.5,
+            "CRVAL1": 180.0,
+            "CRVAL2": -30.0,
+            "CTYPE1": "RA---TAN",
+            "CTYPE2": "DEC--TAN"
+          },
+          "wcs_verification_model": "fixture-declared-cards"
+        }
+      ]
+    },
+    "status": "PASS"
+  },
   "scope": {
     "covered": [
       "round-1: shared-tangent 3x3 grid at (180, -30): centre control, edge cases (no-neighbour gap, overlap-only, within-63px, exact-edge, one-pixel-beyond) in all four directions, and exact-/beyond-corner in all four corners \u2014 planned source sets, end-to-end cut completion, PC-3 planned/opened set equality, coverage_min >= 1, zero uncovered pixels",
       "round-2: distinct per-brick TAN tangent points; RA-wrap seam crossing at dec -10; selected-footprint declination extremes at +32.25 and -89.875; derived overlap-without-unique-boundary-crossing at dec -30 \u2014 same comparisons as round 1",
       "round-3: extreme-declination sub-pixel knife edges at both selected-footprint declination extremes (+32.25 and -89.875): signed candidate-edge offset ladder (-10, -0.25, exact 0, +0.25, +1 source pixels, solved to 1e-8 px); exact zero-area tangency excluded from planning; and the planned/opened/contributing/zero-pixel-touch distinction compared against Yui's declared expectations \u2014 including the cases where a source is legitimately planned (positive intersection area) yet contributes no output pixel centre",
-      "pixel-value agreement against Yui's expected arrays, on her exact hash-verified brick data, at her pre-declared absolute tolerances (round-1 5e-6 on centre-brick-only cases; rounds 2-3 1e-5 on all cases): the adapter renderer is a bilinear resampler with the oracle's interpolation rule (support window [1, N], float64 accumulation, mean over coverage)"
+      "pixel-value agreement against Yui's expected arrays, on her exact hash-verified brick data, at her pre-declared absolute tolerances (round-1 5e-6 on centre-brick-only cases; rounds 2-3 1e-5 on all cases): the adapter renderer is a bilinear resampler with the oracle's interpolation rule (support window [1, N], float64 accumulation, mean over coverage)",
+      "round-4: production-shaped .fits.fz read path through the separate pinned read stage (nm_brick_read_stage.py): empty-primary + RICE_1 image-HDU-1 files; raw compression cards (ZIMAGE/ZCMPTYPE/ZBITPIX/ZNAXIS1/2) gated terminally BEFORE decode; decompressed arrays hash-equal to the parent uncompressed data; WCS cards verified against the geometry sidecar; and the adapter output from read-stage staging byte-identical (exact, no tolerance) to the uncompressed staging path \u2014 the adapter itself stays stdlib-only and cannot tell the two provenances apart"
     ],
     "not_covered": [
       "exact float32 bit-equality of pixel values: unreachable in principle because Yui's expected arrays are analytic (float64 sky pattern evaluated at output-pixel world coordinates) while any real resampler interpolates the float32-quantized brick rasters \u2014 the irreducible residual is float32 quantization (~7e-6 at fixture values ~100-120, ~2e-6 at ~20) plus bilinear truncation, which is why the comparison bound is Yui's declared tolerance, not bit-equality",
       "round-1 pixel values on neighbour-involving cases: Yui's round-1 bricks share one tangent plane (her declared approximation), the adapter's source model is per-brick TAN; the mapping difference displaces neighbour-brick sampling by up to ~1.4 px, so value comparison there would measure the fixture-model gap, not the resampler \u2014 rounds 2-3 supersede that model and ARE value-compared in full",
       "equivalence with the hash-pinned Imagine/astrometry.net production resampler kernel: bound to Yui's dependency lock (in progress, separate deliverable); this gate proves oracle-bilinear semantics, not production-kernel identity",
       "Yui's 'primary_brick' (west-side convention) is recorded but not compared: the adapter primary is grouping metadata under the nearest-planned-centre rule and never a selection rule",
-      "real DR10 South geometry-sidecar bricks, production .fits.fz HDU-1 reads, multi-process scheduling determinism, dependency/container lock \u2014 later gates"
+      "real (non-synthetic) brick reads: the read stage terminally refuses any logical header without the SYNTHET marker \u2014 lifting that build-only guard for real DR10 bricks is a later explicit gate; the read stage's decoder environment lock (interpreter/astropy/numpy versions plus tile-compression module hashes) is a partial pin pending Yui's dependency lock",
+      "real DR10 South geometry-sidecar bricks, multi-process scheduling determinism, full dependency/container lock \u2014 later gates"
     ]
   },
   "status": "PASS"

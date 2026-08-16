@@ -1,6 +1,6 @@
 # TORI — guarded production adapter for the brick route
 
-Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4)
+Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4); read/decompression stage + round-4 19:00 KST (§0.5)
 Owner: Tori lane (executed this session)
 Status: **BUILT, SELF-TESTED, CORNER-REPAIRED, YUI CROSS-CHECK ROUND-1 29/29 + ROUND-2 4/4; NOT EXECUTABLE; ZERO TRANSFER**
 Gate: corner repair gated `PASS_ADAPTER_CORNER_REPAIR`; round-2 coverage extension awaits review. Duho owns acceptance.
@@ -248,6 +248,80 @@ oracle-bilinear semantics on synthetic rasters.
 `d077ef35846340b31694…` (full value in SELFTEST.md).
 Fixture pins unmoved: `24f55943…`, `60e3d662…`, `6b410fb4…`; frozen V3
 unchanged.
+
+## 0.5. 2026-08-16 pinned read/decompression stage + round-4 cross (Kun's architecture, Duho's choice)
+
+Kun's round-4 assessment (`KUN_ROUND4_READPATH_SCOPE_20260816.md`,
+`81008ae6…75fdd3`) established the adapter cannot read production-shaped
+`.fits.fz` and recommended a separate pinned read stage rather than either an
+in-house RICE codec or a third-party import inside the adapter. Built as
+specified:
+
+**New component `prereg/readstage/nm_brick_read_stage.py`
+(`6662c8c74d71b81216149596d65deeaa39c07a19a57e50ba9bbe4ac22d478b0a`;
+tests `test_nm_brick_read_stage.py` `dd669e43…325790`, 9/9):**
+
+1. Opens HDU 1 with astropy.io.fits, but only AFTER a stdlib raw pre-parse of
+   literal header cards terminally enforces: empty primary (`NAXIS = 0`),
+   `XTENSION = BINTABLE`, `ZIMAGE`, `ZCMPTYPE = RICE_1`, `ZBITPIX = -32`,
+   `ZNAXIS1/2 = 3600`, tile cards present. Mismatch is terminal, never a
+   warning (proven: wrong codec, wrong ZBITPIX, wrong dimensions, non-empty
+   primary, digest mismatch, missing file all fail closed with distinct
+   codes; nothing is staged on failure).
+2. Verifies the decompressed float32 shape and the source WCS cards. Default
+   expectation is the production model (per-brick TAN centre from the
+   geometry sidecar row, CRPIX 1800.5, frozen CD); a fixture whose declared
+   WCS legitimately differs (Yui's round-1 shared-tangent bricks) must pass
+   its declared cards explicitly, and the receipt records which model was
+   verified.
+3. Emits the canonical uncompressed handoff through the ADAPTER'S OWN staged
+   writer, so the adapter's input contract is unchanged and it cannot tell a
+   decompressed production brick from an uncompressed fixture — every prior
+   adapter gate keeps standing.
+4. Receipt chains source file hash → raw primary + HDU-1 header hashes →
+   decompressed array hash → decoder environment lock → adapter input bytes,
+   with the same identity discipline: `content_sha256` excluding exactly
+   `['content_sha256','recorded_utc']`, exclusion list inside the hashed
+   body, proven reproducible.
+5. BUILD-ONLY GUARD: a logical header without the `SYNTHET` marker is
+   terminally refused — lifting that for real DR10 bricks is a later
+   explicit gate. The decoder environment lock (Python 3.9.6, astropy 6.0.1,
+   numpy 1.26.4, SHA-256 of astropy's `hdu/compressed` modules including the
+   `_compression` C extension) is a **partial pin**; the pinned-decoder claim
+   defers to Yui's dependency-lock deliverable.
+
+**The rule that defined the task, held:** `nm_brick_cutout_adapter.py` is
+BYTE-IDENTICAL to Kun's resampler-gate hash
+`267b2a93d2a61f65b281aeb3b04dd874d7add058797b10f593cb3efb4066006f` — zero
+changes, and an AST audit confirms **zero third-party imports** (exactly the
+twelve stdlib modules as at every prior gate).
+
+**Round-4 cross (fourth separately-counted block; nothing merged):**
+round-1 **29/29**, round-2 **4/4**, round-3 **10/10**, round-4 **3/3**. Each
+round-4 case runs twice — sources staged by the read stage from Yui's RICE_1
+files, and directly from the same decompressed arrays — and the adapter
+outputs are **byte-identical** in all three cases (exact, no tolerance:
+compression is lossless here, so any difference would be a read-path
+defect). All five decompressed arrays hash-equal Yui's parent `data_sha256`
+(the lossless re-expression claim, verified not assumed). Expected-array
+pixel comparison uses parent-round semantics: 2 compared (centre @5e-6,
+dec_max_exact_boundary @1e-5, max abs error again the 1-ulp floor
+7.62939453125e-06), 1 skipped (corner_north_west_exact, the documented
+round-1 shared-tangent reason). No open question against any fixture.
+
+**Identity:** two consecutive runs gave `recorded_utc` 2026-08-16T09:58:05Z /
+09:58:30Z with identical `content_sha256 =
+c30a7b315a55a24bb3a022bc851f38b7c79e12b8f58903e7dece7b344773a978`. (One
+stability defect was found and fixed during this gate: embedded read-stage
+receipts initially carried their own `recorded_utc` into the cross-check
+body; they are now embedded timestamp-stripped, their identity being their
+own `content_sha256`.)
+
+**Cross-runner:** `cross_check_yui_boundary.py`
+`3bb84cefe44eea4a49b8d8ef7bad6a64a92137d67731606e4bccbe33703f9436`;
+suite `test_nm_brick_cutout_adapter.py` `7fc77ee7…5b3f99c`, 30/30.
+Fixture pins unmoved: r1 `24f55943…`, r2 `60e3d662…`, r3 `6b410fb4…`,
+r4 `d6c19384…`; frozen V3 unchanged.
 
 ## 1. What this is
 
