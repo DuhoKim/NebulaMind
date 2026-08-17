@@ -443,3 +443,66 @@ working set. That belongs to the manifest gate.
 
 No real brick, route or manifest opened. Zero cutouts, zero sky statistics, no endpoint activated,
 no consent granted, no package installed, no network fetch of survey data. K-8 untripped.
+
+---
+
+# STATUS — overnight 2026-08-17 → 18 (05:55 KST). Two lanes.
+
+## Lane 1 — checksum harvest
+
+**Paused cleanly at the window boundary, not dead.** `state PAUSED_WINDOW`, process alive,
+heartbeat current. That distinction was the thing worth checking: a crashed process and a paused one
+look identical from outside.
+
+    completed        12,053 / 60,308      block event      none
+    HTTP             200 × 12,053         truncated        0
+    image_r_listed   True × 12,053        contradictions   0
+
+Every `content_length_header` matched `bytes_received`, so no partial checksum files. The gated
+classification (`required = 60,308`, `absent-by-coverage = 0`) has now been ground-truthed 12,053
+times without a single contradiction.
+
+Two observations for the record: 51 bricks list 49 files rather than the typical 58 — reduced-band
+bricks, all still carrying `image-r`, so not contradictions but a real recurring shape worth watching
+for spatial clustering. And the request rate briefly dipped to 0.905/s before recovering to 0.992;
+that is the *safe* direction, since the rule is a minimum spacing and a slower server response pushes
+the interval up.
+
+Next window opens 20:00 PDT = **12:00 KST today**. About 13.4 h of request time remains, so roughly
+two more windows.
+
+## Lane 2 — BHU, opened and settled overnight
+
+Committed `db1f9a14`. Both documents gated.
+
+**The finding:** the chain fails by its author's own *second* falsifier, not the famous one. The mass
+ceiling limb reached serious doubt and stopped; the 4%-asymmetry limb had already finished in the
+published literature since 2020. PSR J1913+1102 differs by 19.3 ± 0.7% against a 4% threshold.
+
+**Why it holds:** criterion hash-sealed before the evidence harvest; the source's own thresholds
+adopted rather than convenient ones invented; every exclusion cutting *against* the verdict.
+
+**What it does not say, deliberately:** not "BHU is falsified" (five disagreeing programmes exist),
+not "Smolin refuted" (the flagship prediction is gone, which is different), not "we measured"
+(the numbers are the pulsar community's).
+
+**Explainer packet:** script, storyboard, claim ledger, visual plan — `PASS_EXPLAINER_PACKET`. All 41
+sentences ledgered to gated source lines; the single unmappable clause was cut rather than softened.
+
+## What needs Duho
+
+1. **Rendering the video is an unspent decision.** It needs Flow/Veo credits and per-step approval.
+   Nothing was generated, submitted, or uploaded overnight.
+2. Nothing else. The harvest resumes on its own at 12:00 KST; both lanes are otherwise idle.
+
+## One process fault, recorded
+
+`kun-r2` was launched without an auto-approve flag, so it sat on a write-permission prompt looking
+exactly like an idle finished lane. Its C08 gate was a PASS waiting behind a single keypress. Had the
+00:37 check not read its scrollback, the whole video chain would have concluded "no gate, do not
+dispatch" and died on a verdict that had already passed. Fix the launch flags before relying on that
+lane unattended.
+
+## Boundary
+
+No image bytes, no rendering, no credits, no upload, no publication, no push. K-8 untripped.
