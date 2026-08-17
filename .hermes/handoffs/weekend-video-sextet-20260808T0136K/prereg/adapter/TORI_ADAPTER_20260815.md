@@ -1,6 +1,6 @@
 # TORI — guarded production adapter for the brick route
 
-Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4); read/decompression stage + round-4 19:00 KST (§0.5); multiprocessing determinism 20:24 KST (§0.6)
+Date: 2026-08-16 00:05 KST; corner repair 01:03 KST (§0); round-2 cross-check extension 01:23 KST (§0.1); receipt content-hash identity 01:37 KST (§0.2); round-3 knife-edge repair + extension 02:47 KST (§0.3); resampler gate 12:24 KST (§0.4); read/decompression stage + round-4 19:00 KST (§0.5); multiprocessing determinism 20:24 KST (§0.6); round-5 T-junctions 2026-08-17 00:32 KST (§0.7)
 Owner: Tori lane (executed this session)
 Status: **BUILT, SELF-TESTED, CORNER-REPAIRED, YUI CROSS-CHECK ROUND-1 29/29 + ROUND-2 4/4; NOT EXECUTABLE; ZERO TRANSFER**
 Gate: corner repair gated `PASS_ADAPTER_CORNER_REPAIR`; round-2 coverage extension awaits review. Duho owns acceptance.
@@ -391,6 +391,64 @@ output root per worker, then re-run this harness.
 **Pins:** adapter UNMOVED at `267b2a93…` (asserted by the harness before it
 will run, and by the standing test); read stage `6662c8c7…`; fixture
 generators r1–r4 unchanged.
+
+## 0.7. 2026-08-17 round-5 three-source T-junctions (fifth block)
+
+Yui verified from the real DR10 brick-table pattern that adjacent unequal-
+count declination rows offset their RA boundaries, so exactly THREE bricks
+meet along row boundaries — systematic, not hypothetical — and reproduced
+one such junction synthetically at dec −45 (`make_boundary_fixtures_round5.py`,
+`498659bf…3ddf6c`, pinned tree `generated_round5/` hash-verified). This is
+the first three-brick meeting the adapter — byte-identical at `267b2a93…`
+through six gates — had ever seen.
+
+**Loading:** exactly as Yui's `cross_runner_loading_contract` declared, the
+tree loads through the existing round-2/3 pinned-tree path with no
+reshaping. **Results:** round-1 **29/29**, round-2 **4/4**, round-3
+**10/10**, round-4 **3/3**, round-5 **9/9** — separate blocks; no merged
+total exists anywhere. Pixels compared on all nine cases at the rounds-2/3
+tolerance 1e-5; max abs error again the float32 1-ulp floor
+`7.62939453125e-06`. The three-way set comparison (planned / opened /
+contributing vs Yui's declared expectations) held on every case: all three
+meeting bricks contribute, coverage min = max = 3, zero-touch empty.
+
+**Findings on the three scrutiny questions (no defect, no adapter change):**
+
+1. **Exactly the three meeting bricks, guards never.** In every case the
+   planned set is precisely `{tj-lower-west, tj-lower-east, tj-upper-span}`.
+   The far guard (`tj-upper-west-guard`, ~0.38° away) never reaches the
+   candidate list; the near guard (`tj-upper-east-guard`, ~0.19°) DOES pass
+   the candidate prefilter and is rejected by the polygon positive-area rule
+   itself — the stronger exclusion, decided by geometry rather than by the
+   prefilter radius.
+2. **`tjunction_exact` is stable, and cannot depend on a tie-break by
+   construction:** source selection is a per-brick clipped-area-vs-threshold
+   test with no inter-brick comparison anywhere, so no tie-break exists in
+   the selection path at all. Empirically the planned set at the exact
+   junction point is the same trio.
+3. **The primary tie-break is total, and primary choice cannot change
+   available pixels.** At the junction three centres compete: upper-span at
+   0.167632° is strictly nearest; the two lower bricks tie EXACTLY
+   (0.176507° both, symmetric geometry) but are non-minimal, so the
+   lexicographic tie-break is not even reached — and were it reached it is
+   total (`tj-lower-east` < `tj-lower-west`). The adapter's grouping primary
+   is `tj-upper-span`, differing from Yui's west-side `primary_brick`
+   convention — a recorded-not-compared metadata field since round 2. The
+   corner repair's guarantee holds structurally: the primary influences only
+   ordering and reason labels; the opened source set is the planned set,
+   invariant of the primary, and the receipts prove
+   planned = opened = contributing on every case.
+
+**Identity:** two consecutive runs gave `recorded_utc` 2026-08-16T15:30:28Z /
+15:30:59Z with identical `content_sha256 =
+38585df8e4e752062e143bd18788c4bd48749d8925c33a1644dbe4626ae87b55`
+(supersedes `c30a7b31…` from §0.5; excludes unchanged).
+
+**Artifacts:** cross-runner `cross_check_yui_boundary.py`
+`e6ac5b11008e0614b0574bba48796d41a68873d5769c255ff044597b80edb085`; suite
+`test_nm_brick_cutout_adapter.py` `8b84d7a4…992e8b`, 30/30. Adapter UNMOVED
+at `267b2a93…` (seventh consecutive gate). Fixture pins r1–r5 unmoved;
+frozen V3 unchanged. No open question against any fixture.
 
 ## 1. What this is
 
