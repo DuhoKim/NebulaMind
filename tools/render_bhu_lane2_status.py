@@ -82,17 +82,27 @@ def v2_progress():
     return {"steps": steps, "video": vid}
 
 THEORY = os.path.join(W, "bhu-theory-phase0-20260818")
+THEORY1 = os.path.join(W, "bhu-theory-phase1-20260819")
 
 def theory_progress():
-    """Theory Phase 0 lane state, read from its own marker files."""
+    """Theory lane state (Phase 0 + Phase 1), read from marker files."""
     if not os.path.isdir(THEORY): return None
-    return [
-        ("Lana — physics scoping (3 routes)", first_line(os.path.join(THEORY, "LANA_P0_DONE.md"))),
-        ("Goru — prior-art sweep", first_line(os.path.join(THEORY, "GORU_P0_DONE.md"))),
-        ("Kun — Phase 0 gate", first_line(os.path.join(THEORY, "KUN_PHASE0_GATE.md"))),
-        ("Lana — Route A closure note", first_line(os.path.join(THEORY, "LANA_CLOSURE_DONE.md"))),
-        ("Kun — closure-note gate", first_line(os.path.join(THEORY, "KUN_CLOSURE_GATE.md"))),
+    rows = [
+        ("P0 Lana — physics scoping (3 routes)", first_line(os.path.join(THEORY, "LANA_P0_DONE.md"))),
+        ("P0 Goru — prior-art sweep", first_line(os.path.join(THEORY, "GORU_P0_DONE.md"))),
+        ("P0 Kun — Phase 0 gate", first_line(os.path.join(THEORY, "KUN_PHASE0_GATE.md"))),
+        ("P0 Lana — Route A closure note", first_line(os.path.join(THEORY, "LANA_CLOSURE_DONE.md"))),
+        ("P0 Kun — closure-note gate", first_line(os.path.join(THEORY, "KUN_CLOSURE_GATE.md"))),
     ]
+    if os.path.isdir(THEORY1):
+        rows += [
+            ("P1 — Track A adversarial audit gate", first_line(os.path.join(THEORY1, "KUN_P1_TRACKA_GATE.md"))),
+            ("P1 — model-spec gate (regate)", first_line(os.path.join(THEORY1, "KUN_P1_MODELSPEC_REGATE.md"))),
+            ("P1 — ω-evolution derivation gate", first_line(os.path.join(THEORY1, "KUN_P1_OMEGA_GATE.md"))),
+            ("P1 — transfer-function derivation gate", first_line(os.path.join(THEORY1, "KUN_P1_TRANSFER_GATE.md"))),
+            ("P1 — confrontation/inversion gate (regate)", first_line(os.path.join(THEORY1, "KUN_P1_CONFRONT_REGATE.md"))),
+        ]
+    return rows
 
 g, lt, v, v2, th = gates(), ledger_tally(), video(), v2_progress(), theory_progress()
 now = datetime.now().strftime("%d %b %Y, %H:%M KST")

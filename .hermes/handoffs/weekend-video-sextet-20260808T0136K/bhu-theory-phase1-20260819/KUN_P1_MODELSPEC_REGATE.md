@@ -1,0 +1,25 @@
+PASS_MODELSPEC
+
+Re-gate of KUN_P1_MODELSPEC_GATE.md (HOLD_GORU_ITEMS12_NO_CITATIONS), held items only.
+Reviewer: Miru, second reviewer. Date: 2026-08-19. Findings-only; no file other than this one written.
+Scope per kickoff: GORU_INGREDIENTS.md items 1-2 only. Items 3-4 and all Part 1 spec-side checks stand as passed; not re-litigated. No web fetches; grep-only verification against local sources. No line-window reading of sources.
+
+## Item 1 — vector-mode/vorticity decay (source: sources/0809.4944.html, Malik & Wands, arXiv:0809.4944)
+- Integrity: SHA-256 of local file = 2a9d652ebedd9777a2b94c6358fb7e8dcb113059602694e386268cd0ac1e4114, exactly the hash item 1 declares. MATCH.
+- Citation now present: author, title ("Cosmological perturbations"), arXiv id, venue (Physics Reports 475, 1-51, 2009). The no-citation defect the gate held on is cured.
+- Quote 1 grep-verified verbatim in the HTML: "vector metric perturbations can be supported only by divergence-free momenta, but even then equation (8.62) shows that the vector perturbations are redshifted away by the Hubble expansion on large scales unless they are driven by an anisotropic stress." Located in section S8.SS3, whose heading greps as "8.3 First order vector perturbations" — the section attribution in the item is correct.
+- Quote 2 grep-verified verbatim: the math alttext "{\delta q}_{i}^{\prime}+4{\cal H}\delta q_{i}=-\nabla^{2}\Pi_{i}" exists exactly as quoted (equation 8.62).
+- Content check: the quotes state the item's claim. The sentence literally asserts vector perturbations are redshifted away by Hubble expansion unless driven by anisotropic stress, and the quoted equation is the governing homogeneous equation. The item's further remark "with zero anisotropic stress gives momentum delta q_i ∝ a^-4" is the one-step integration of the quoted equation and is presented as derivation from it, not as a verbatim quote — the paper does not itself print an a^-4 scaling (grep for a^{-4} in the file: no match), so the presentation as derived-from-quote is the correct framing.
+- Non-binding note for the D-omega step (not a repair): the pin anchors the homogeneous vector equation and the qualitative decay law. Converting delta q_i ∝ a^-4 to a per-era vorticity exponent n_era (e.g. matter-era omega ∝ a^-2) still requires the definitional step omega_i = delta q_i/((rho+P)a) in the derivation itself, per the spec's n_era derived-not-assumed rule. The derivation should quote that definition from the same source when it runs.
+
+## Item 2 — TTT L-growth (source: sources/0808.0203.html, Schäfer, arXiv:0808.0203)
+- Integrity: SHA-256 of local file = b84bc0c5eeeb24b275b5ad94912e537637f0606667f4cebdc39f454463f7e6d4, exactly the hash item 2 declares. MATCH.
+- Citation now present: author, title, arXiv id, venue (IJMPD 18, 173-222, 2009). Defect cured.
+- Quote 1 grep-verified verbatim (both halves): "This mechanism was first quantitatively investigated by Doroshkevich 1970, White 1984 and Wesson 1985" and "Assuming a non-spherical shape of the protogalactic region, the angular momentum grows at first order and linearly in time in Einstein-de Sitter universes, whereas in spherical regions, the acquisition of angular momentum is only a second order effect due to convective matter streams on the boundary surface, as shown by Peebles 1969." The item's "..." elides one clause ("building on the original idea by Sciama 1955") between the two verbatim halves — fair ellipsis, no distortion. Located in section S3.SS1 (byte offset 99113 > S3.SS1 start 96407) — the "Section 3.1" attribution is correct.
+- Quote 2 grep-verified verbatim: "They find a linear growth with cosmic time until turn-around, and continues quasi-linearly until shell crossing, when the Zel'dovich-approximation ceases to be applicable." — character-exact, including the source's own "continues" grammar and the curly apostrophe in "Zel'dovich". Located in section S6.SS1 (offset 398969 > S6.SS1 start 393827), whose heading greps as "6.1 Numerical tests of tidal torque theory" — matching the item's "Section 6.1 (citing N-body comparisons)" attribution.
+- Content check: the quotes state the item's claim. L grows linearly in time at first order in Einstein-de Sitter, growth stalls at turn-around and proceeds only quasi-linearly until shell crossing. This is exactly the TTT L-growth import the spec's transfer step needs, and it is consistent with the spec-side general relation L ∝ a^2 dD/dt: in EdS, D ∝ a ∝ t^{2/3} gives a^2 dD/dt ∝ t, i.e. linear-in-t growth.
+
+## Verdict
+Both held items now carry full primary-source citations whose declared file hashes match the local sources, quote load-bearing sentences verbatim (grep-confirmed in the local HTML, correct sections), and the quotes state what the items claim. The hold condition of KUN_P1_MODELSPEC_GATE.md is cleared. MODEL_SPEC freeze gate: PASS. The single a^-4-to-n_era conversion note above is recorded for the D-omega derivation and does not bind this gate.
+
+— Miru (second reviewer), 2026-08-19. Supersedes the hold in KUN_P1_MODELSPEC_GATE.md; sibling gate KUN_P1_TRACKA_GATE.md (PASS_TRACKA_AUDIT) untouched.
