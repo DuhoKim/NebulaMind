@@ -13,6 +13,7 @@ W = ("/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/"
      "weekend-video-sextet-20260808T0136K")
 ADJ = os.path.join(W, "bhu-mass-adjudication-20260817")
 EXP = os.path.join(W, "bhu-neutron-star-explainer-20260817")
+EXP2 = os.path.join(W, "bhu-explainer-v2-20260818")
 OUT = "/Users/duhokim/HermesOps/cockpit/bhu-lane2-status.html"
 
 def sha12(p):
@@ -54,7 +55,46 @@ def video():
         except Exception: pass
     return d
 
-g, lt, v = gates(), ledger_tally(), video()
+def first_line(p):
+    try: return open(p, errors="ignore").readline().strip()
+    except OSError: return None
+
+def v2_progress():
+    """Seat-by-seat state of the v2 remake, read from the lane's own marker files."""
+    if not os.path.isdir(EXP2): return None
+    steps = [
+        ("Yui — script + storyboard", first_line(os.path.join(EXP2, "YUI_DONE.md"))),
+        ("Lana — claim ledger", first_line(os.path.join(EXP2, "LANA_DONE.md"))),
+        ("Goru — visual plan", first_line(os.path.join(EXP2, "GORU_DONE.md"))),
+        ("Kun — packet gate", first_line(os.path.join(EXP2, "KUN_PACKET_GATE_V2.md"))),
+        ("Tori — local build", first_line(os.path.join(EXP2, "TORI_DONE.md"))),
+        ("Kun — render gate", first_line(os.path.join(EXP2, "KUN_RENDER_GATE_V2.md"))),
+    ]
+    cand = os.path.join(EXP2, "build", "BHU_EXPLAINER_V2_LOCAL_REVIEW.mp4")
+    vid = None
+    if os.path.exists(cand):
+        vid = {"size_mb": round(os.path.getsize(cand)/1048576, 1), "sha12": sha12(cand)}
+        try:
+            r = subprocess.run(["ffprobe","-v","error","-show_entries","format=duration",
+                                "-of","default=nw=1:nk=1", cand], capture_output=True, text=True, timeout=20)
+            vid["seconds"] = float(r.stdout.strip())
+        except Exception: vid["seconds"] = None
+    return {"steps": steps, "video": vid}
+
+THEORY = os.path.join(W, "bhu-theory-phase0-20260818")
+
+def theory_progress():
+    """Theory Phase 0 lane state, read from its own marker files."""
+    if not os.path.isdir(THEORY): return None
+    return [
+        ("Lana — physics scoping (3 routes)", first_line(os.path.join(THEORY, "LANA_P0_DONE.md"))),
+        ("Goru — prior-art sweep", first_line(os.path.join(THEORY, "GORU_P0_DONE.md"))),
+        ("Kun — Phase 0 gate", first_line(os.path.join(THEORY, "KUN_PHASE0_GATE.md"))),
+        ("Lana — Route A closure note", first_line(os.path.join(THEORY, "LANA_CLOSURE_DONE.md"))),
+        ("Kun — closure-note gate", first_line(os.path.join(THEORY, "KUN_CLOSURE_GATE.md"))),
+    ]
+
+g, lt, v, v2, th = gates(), ledger_tally(), video(), v2_progress(), theory_progress()
 now = datetime.now().strftime("%d %b %Y, %H:%M KST")
 P = ['<!doctype html><meta charset=utf-8><title>BHU lane 2 — status</title>',
      '<meta name=viewport content="width=device-width,initial-scale=1">', """<style>
@@ -122,6 +162,58 @@ if v:
           'in the encoded pixels, not the source files.</p></div>']
 else:
     P.append('<div class="big"><div class=q>Explainer video</div><div class=a>not built</div></div>')
+
+if v2:
+    P.append("<h2>v2 remake — in flight</h2>")
+    P.append('<p class=note>Duho, 18 Aug: <i>"remake the video, now make it, easier to understand, '
+             'explainning how it can be relataed to BHU cosmology"</i> — v2 walks the chain from the '
+             'universe-inside-a-black-hole idea through cosmological natural selection to the '
+             'neutron-star tests, on the same gated sources. Crew lane; seat states below are read '
+             'from the lane\'s own marker files.</p>')
+    P.append("<table><tr><th>seat</th><th>state</th></tr>")
+    for label, token in v2["steps"]:
+        if token is None:
+            P.append(f'<tr><td>{html.escape(label)}</td><td class=m>pending</td></tr>')
+        else:
+            cl = "y" if ("PASS" in token or "COMPLETE" in token) else ("n" if "HOLD" in token else "m")
+            P.append(f'<tr><td>{html.escape(label)}</td><td class={cl}>{html.escape(token)}</td></tr>')
+    P.append("</table>")
+    if v2["video"]:
+        vv = v2["video"]
+        mins = f"{int(vv['seconds']//60)} min {int(vv['seconds']%60)} s" if vv.get("seconds") else "—"
+        # Published state is read from the video registry by full-hash match, never remembered.
+        pub = None
+        try:
+            reg = json.load(open("/Users/duhokim/HermesOps/cockpit/videos/published.json"))
+            cand = os.path.join(EXP2, "build", "BHU_EXPLAINER_V2_LOCAL_REVIEW.mp4")
+            full = hashlib.sha256(open(cand, "rb").read()).hexdigest()
+            pub = next((e for e in reg.values() if e.get("video_sha256") == full), None)
+        except Exception:
+            pass
+        if pub:
+            P.append(f'<p class=note>v2 candidate: {mins} · {vv["size_mb"]} MB · '
+                     f'SHA-256 <code>{vv["sha12"]}…</code> · <b>uploaded {html.escape(pub.get("privacy","?"))}</b>: '
+                     f'<a href="{html.escape(pub["url"])}">{html.escape(pub["url"])}</a> ({html.escape(pub.get("uploaded_kst",""))})</p>')
+        else:
+            P.append(f'<p class=note>v2 candidate: {mins} · {vv["size_mb"]} MB · '
+                     f'SHA-256 <code>{vv["sha12"]}…</code> · local review only, not published.</p>')
+
+if th:
+    P.append("<h2>Theory Phase 0 — can a calibrated BHU observable be derived?</h2>")
+    P.append('<p class=note>Duho, 18 Aug: <i>"go ahead with phase 0"</i>, then <i>"go ahead with the '
+             'closure note if the gate passes"</i>. All three routes scoped DEAD-ON-ARRIVAL '
+             '(axis-model amplitude: sample-complete kill, needs ~18× every galaxy that exists; '
+             'torsion-bounce: ~66 orders below reach; birth fingerprint: causal-boundary degeneracy). '
+             'One product survives: the Route A closure note — research-note class, one novel element '
+             '(the bound→floor confrontation).</p>')
+    P.append("<table><tr><th>step</th><th>state</th></tr>")
+    for label, token in th:
+        if token is None:
+            P.append(f'<tr><td>{html.escape(label)}</td><td class=m>pending</td></tr>')
+        else:
+            cl = "y" if ("PASS" in token or "COMPLETE" in token) else ("n" if "HOLD" in token else "m")
+            P.append(f'<tr><td>{html.escape(label)}</td><td class={cl}>{html.escape(token)}</td></tr>')
+    P.append("</table>")
 
 P += ["<h2>Status</h2>",
       "<p class=note>This is a <b>note, not a study</b> — the measurements are the pulsar community's, "
