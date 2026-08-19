@@ -11,7 +11,7 @@ Derived on every run: gate verdicts (from the KUN_*.md first lines), harvest pro
 modes. If an input vanishes the page says so rather than repeating a stale claim.
 """
 import glob, hashlib, html, json, os, re, stat
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 PREREG = ("/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/"
           "weekend-video-sextet-20260808T0136K/prereg")
@@ -67,6 +67,29 @@ def harvest():
     d["confirmed"] = ok; d["contradicted"] = bad; d["contradicted_names"] = names
     return d
 
+TRANSFER_HB = "/Users/duhokim/NebulaMindData/dr10_south_image_r/heartbeat.json"
+
+def transfer():
+    """DR10 south r-band image transfer, read from its own heartbeat (2026-08-19).
+
+    Trust the JOB PHASE, not artifact existence; a beat older than 10 minutes is
+    reported as stale instead of echoing a state the writer may no longer hold.
+    """
+    if not os.path.exists(TRANSFER_HB):
+        return None
+    try:
+        d = json.load(open(TRANSFER_HB))
+    except Exception:
+        return None
+    try:
+        beat = datetime.strptime(d.get("utc", ""), "%Y-%m-%dT%H:%M:%SZ")
+        d["age_s"] = (datetime.utcnow() - beat).total_seconds()
+        d["beat_kst"] = (beat + timedelta(hours=9)).strftime("%d %b %H:%M KST")
+    except Exception:
+        d["age_s"] = None
+        d["beat_kst"] = "unparsable beat time"
+    return d
+
 FROZEN = [
     ("Preregistration (v3)", "PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md"),
     ("Route binding (successor, route B)", "TORI_ROUTE_BINDING_SUCCESSOR_20260817.md"),
@@ -81,7 +104,7 @@ PINS = [
     ("fixtures r5", "boundary_fixtures/make_boundary_fixtures_round5.py", "498659bf1798"),
 ]
 
-g = gates(); hv = harvest()
+g = gates(); hv = harvest(); tr = transfer()
 passes = [x for x in g if x[1].startswith("PASS")]
 holds  = [x for x in g if x[1].startswith("HOLD")]
 now = datetime.now().strftime("%d %b %Y, %H:%M KST")
@@ -151,6 +174,32 @@ else:
           '<div class=a>No harvest state found on disk</div>'
           '<p class=note>Either it has not started or its state directory has moved. This page reports '
           'what it can read, and says so when it cannot read anything.</p></div>']
+
+# --- transfer, derived ------------------------------------------------------
+if tr:
+    acc, tot = tr.get("accepted", 0), tr.get("total", 0)
+    pct = 100.0 * acc / tot if tot else 0.0
+    gb = tr.get("cumulative_received_bytes", 0) / 1e9
+    cap = tr.get("approved_byte_ceiling", 0) / 1e9
+    st = str(tr.get("state", "?"))
+    stale = tr["age_s"] is None or tr["age_s"] > 600
+    if stale:
+        cls, q = "big blocked", "Image transfer — heartbeat stale"
+        a = f"Last beat {tr['beat_kst']} said {st} — treat the state as unknown until it beats again."
+    elif st in ("ERROR", "STOPPED", "ABORTED"):
+        cls, q, a = "big bad", "Image transfer", f"{st} — needs a decision."
+    elif st != "RUNNING":
+        cls, q, a = "big ok", "Image transfer", f"{st} — {acc:,} of {tot:,} bricks"
+    else:
+        cls, q = "big", "Image transfer in progress"
+        a = (f"{acc:,} of {tot:,} bricks accepted ({pct:.2f}%)"
+             + ("" if tr.get("in_window") else " — paused outside the window"))
+    P += [f'<div class="{cls}"><div class=q>{q}</div><div class=a>{html.escape(a)}</div>',
+          f'<div class=bar><i style="width:{pct:.2f}%"></i></div>',
+          f'<p class=note>{gb:,.1f} GB of the approved {cap:,.0f} GB ceiling · '
+          f'{tr.get("bandwidth_ceiling_bytes_per_second", 0)/1e6:.0f} MB/s bandwidth cap · '
+          f'{tr.get("pacing_seconds", "?")} s pacing · last brick {html.escape(str(tr.get("last_brick", "?")))} · '
+          f'beat {tr["beat_kst"]}.</p></div>']
 
 # --- gates, derived --------------------------------------------------------
 P += ["<h2>Independent gates</h2>",
