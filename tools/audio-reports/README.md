@@ -14,8 +14,12 @@ OPS session owns. Deploy = copy the file back to HermesOps/scripts.
   archive-index rebuild (the archive had silently rotted 08-16→08-19 because
   nothing regenerated it).
 
-Not mirrored (unchanged, pre-existing): `nm_say.py` (gateway TTS shim),
-`nm_audio_index.py` (archive builder), `nm_audio_route.sh` (machine detector).
+Also mirrored since the 2026-08-20 overhaul: `nm_audio_publish.py` (queue.json
+publisher — monotonic seq, atomic writes, quiet hours 22:30-08:00 KST,
+transcript sidecars, speaker identity), `nm_morning_digest.sh` (force-live
+first-sound-of-the-day), `voices.json` (single voice registry: Hwao=shimmer,
+Tori=nova, Blanc=onyx), `nm_say.py`, `nm_audio_index.py`, `nm_audio_align.py`.
+Not mirrored: `nm_audio_route.sh` (orphaned pre-overhaul router, no callers).
 
 ## Listening
 
