@@ -1,6 +1,6 @@
 import { RawStyle } from "./lab/rawStyle";
 import { LAB_TOKENS_CSS } from "./labTheme";
-import { FLAGSHIP } from "./lab/FlagshipStudies";
+import { FLAGSHIP } from "./lab/flagshipData";
 import { PAPER_VIDEOS } from "./lab/paperVideos";
 
 export const metadata = {
