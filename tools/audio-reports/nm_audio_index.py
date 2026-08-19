@@ -32,15 +32,42 @@ def parse(name):
     return when, slug
 
 
+# Duration cache: the index rebuilds after EVERY reading, and ffprobe-ing all
+# ~200 mp3s each time is 200 subprocess spawns for numbers that never change.
+# Keyed by (name, size) so a replaced file re-probes. (2026-08-20 overhaul)
+import json as _json
+_DUR_CACHE_PATH = os.path.join(DIR, ".durations.json")
+try:
+    _dur_cache = _json.loads(open(_DUR_CACHE_PATH).read())
+except Exception:
+    _dur_cache = {}
+
+
+def _save_dur_cache():
+    try:
+        open(_DUR_CACHE_PATH, "w").write(_json.dumps(_dur_cache))
+    except Exception:
+        pass
+
+
 def duration(path):
+    try:
+        key = f"{os.path.basename(path)}:{os.path.getsize(path)}"
+    except OSError:
+        key = None
+    if key and key in _dur_cache:
+        return _dur_cache[key]
     try:
         r = subprocess.run(
             ["ffprobe", "-v", "error", "-show_entries", "format=duration",
              "-of", "default=nw=1:nk=1", path],
             capture_output=True, text=True, timeout=20)
-        return float(r.stdout.strip())
+        val = float(r.stdout.strip())
     except Exception:
         return None
+    if key:
+        _dur_cache[key] = val
+    return val
 
 
 def title(slug):
@@ -462,4 +489,5 @@ au.addEventListener('ended', ()=>{{
 
 with open(OUT, "w") as f:
     f.write(page)
+_save_dur_cache()
 print(f"{OUT}  {len(rows)} readings  {os.path.getsize(OUT)} B")
