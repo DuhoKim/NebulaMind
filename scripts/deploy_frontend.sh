@@ -26,6 +26,7 @@ if [[ -n "$REF" ]]; then
 fi
 
 cd "$FRONTEND"
+rm -rf .next/types   # stale generated types for deleted routes fail tsc
 PATH="$NODE_PATH" npx tsc --noEmit
 PATH="$NODE_PATH" npm run build
 rm -rf .next/cache/fetch-cache
