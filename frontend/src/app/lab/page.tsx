@@ -2,6 +2,7 @@ import LabStages from "./LabStages";
 import LabTopTabs from "./LabTopTabs";
 import DesktopCompanion from "./DesktopCompanion";
 import { RawStyle } from "./rawStyle";
+import { LAB_TOKENS_CSS } from "../labTheme";
 
 export const metadata = {
   title: "The pipeline — NebulaMind",
@@ -12,7 +13,7 @@ export default function PipelinePage() {
   return (
     <main style={{ minHeight: "100vh", background: "var(--lab-bg)", color: "var(--lab-ink)" }}>
       <RawStyle css={`
-        :root{ --lab-bg:#0a0d17; --lab-panel:#111524; --lab-ink:#e8ecf5; --lab-soft:#9aa3b8; --lab-line:#242a3d; --lab-accent:#7c86ff; --lab-accent2:#4ad6c4; }
+        ${LAB_TOKENS_CSS}
         .lab-wrap{max-width:1000px;margin:0 auto;padding:0 1.25rem}
         .lab-sec{padding:2.1rem 0;border-bottom:1px solid var(--lab-line)}
         .lab-kicker{font-family:ui-monospace,monospace;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--lab-soft);margin:0 0 1.25rem}

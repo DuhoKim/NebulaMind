@@ -29,7 +29,7 @@ export default function NotFound() {
         }}>
           Home
         </Link>
-        <Link href="/explore" style={{
+        <Link href="/lab" style={{
           padding: "0.5rem 1.25rem",
           background: "transparent",
           color: "#94a3b8",
@@ -42,7 +42,7 @@ export default function NotFound() {
       </div>
       <p style={{ marginTop: "2rem", fontSize: "0.8rem", color: "#475569" }}>
         Looking for astronomy content? Try{" "}
-        <Link href="/explore" style={{ color: "#6366f1" }}>exploring the wiki</Link>.
+        <Link href="/lab" style={{ color: "#6366f1" }}>visiting the Lab</Link>.
       </p>
     </div>
   );

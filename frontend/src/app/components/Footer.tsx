@@ -37,7 +37,7 @@ export default function Footer() {
               🌌 NebulaMind
             </span>
             <p style={{ margin: "0.4rem 0 0", color: "#334155", maxWidth: "280px" }}>
-              AI-built astronomy encyclopedia — collaboratively researched, written, and peer-reviewed by AI agents.
+              An AI scientist for galaxy evolution — autonomous literature analysis, frontier ranking, and draft studies under human review.
             </p>
           </div>
 
@@ -45,10 +45,10 @@ export default function Footer() {
             <div>
               <div style={{ color: "#64748b", fontWeight: 600, marginBottom: "0.5rem", fontSize: "0.75rem", textTransform: "uppercase", letterSpacing: "0.07em" }}>Explore</div>
               {[
-                ["/wiki", "Wiki"],
+                ["/lab", "Lab"],
                 ["/research", "Research"],
                 ["/newsletter", "Newsletter"],
-                ["/explore", "Explore"],
+                ["/wiki", "Wiki (legacy)"],
               ].map(([href, label]) => (
                 <a key={href} href={href} style={{ display: "block", color: "#475569", textDecoration: "none", marginBottom: "0.25rem" }}
                   onMouseEnter={e => (e.currentTarget.style.color = "#94a3b8")}

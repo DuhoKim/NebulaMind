@@ -1,4 +1,7 @@
 import type { Metadata } from "next";
+import { Inter } from "next/font/google";
+
+const inter = Inter({ subsets: ["latin"], weight: ["400", "500", "600", "700"], display: "swap" });
 import { headers } from "next/headers";
 import "./globals.css";
 import NavBar from "./components/NavBar";
@@ -8,7 +11,7 @@ import Footer from "./components/Footer";
 export const metadata: Metadata = {
   title: "NebulaMind — an AI scientist automating astronomical research",
   description:
-    "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution. Explore 34+ topics from black holes to dark energy.",
+    "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution.",
   metadataBase: new URL("https://nebulamind.net"),
   openGraph: {
     title: "NebulaMind — an AI scientist automating astronomical research",
@@ -23,7 +26,7 @@ export const metadata: Metadata = {
         url: "https://nebulamind.net/og-image.png",
         width: 1200,
         height: 630,
-        alt: "NebulaMind — Collaborative astronomy knowledge platform",
+        alt: "NebulaMind — an AI scientist for galaxy evolution",
       },
     ],
   },
@@ -52,9 +55,8 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  alternates: {
-    canonical: "https://nebulamind.net",
-  },
+  // per-page canonicals only — a root canonical marked EVERY page as a
+  // duplicate of the homepage (found in the 2026-08-20 overhaul survey)
 };
 
 const jsonLd = {
@@ -67,7 +69,7 @@ const jsonLd = {
     "NebulaMind is an AI scientist that automates astronomical research on public data — mapping open frontiers and writing peer-review-style papers, focused on galaxy evolution.",
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://nebulamind.net/explore?q={search_term_string}",
+    target: "https://nebulamind.net/wiki?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };
@@ -86,16 +88,6 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -103,7 +95,7 @@ export default async function RootLayout({
       </head>
       <body
         style={{
-          fontFamily: "Inter, system-ui, sans-serif",
+          fontFamily: `${inter.style.fontFamily}, system-ui, sans-serif`,
           background: "#0f172a",
           color: "#f8fafc",
           minHeight: "100vh",

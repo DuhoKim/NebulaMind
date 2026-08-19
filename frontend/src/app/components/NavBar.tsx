@@ -3,13 +3,14 @@
 import { useState, useRef, useEffect } from "react";
 
 const NAV_LINKS = [
-  { href: "/wiki", label: "Wiki" },
+  // Lab first — it is the product; the wiki era is over (link kept as legacy).
+  { href: "/lab", label: "Lab" },
   { href: "/surveys", label: "Surveys" },
   { href: "/ideas", label: "Research" },
-  { href: "https://lab.nebulamind.net", label: "Lab" },
   { href: "/news", label: "News" },
   { href: "/council", label: "Council" },
   { href: "/agents", label: "Agents" },
+  { href: "/wiki", label: "Wiki (legacy)" },
 ];
 
 const MORE_LINKS = [
@@ -39,7 +40,7 @@ export default function NavBar() {
         .catch(() => {});
     };
     fetchOnline();
-    const t = setInterval(fetchOnline, 30000);
+    const t = setInterval(fetchOnline, 120000);
     return () => clearInterval(t);
   }, []);
 
