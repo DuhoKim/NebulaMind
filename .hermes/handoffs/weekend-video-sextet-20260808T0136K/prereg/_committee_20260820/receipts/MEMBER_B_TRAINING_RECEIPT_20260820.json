@@ -1,0 +1,72 @@
+{
+  "architecture_family": "plain sequential LeNet-style small CNN; no residual blocks",
+  "balanced_parity": true,
+  "batch_size": 100,
+  "boundary": "synthetic-only; no real data; no human chirality labels; no network",
+  "epoch_receipts": [
+    {
+      "epoch": 1,
+      "mean_loss": 0.6833645367622375,
+      "permutation_seed": 20260820,
+      "training_sign_accuracy": 0.73165
+    },
+    {
+      "epoch": 2,
+      "mean_loss": 0.34529010966420176,
+      "permutation_seed": 20260821,
+      "training_sign_accuracy": 0.92575
+    },
+    {
+      "epoch": 3,
+      "mean_loss": 0.09801950505003333,
+      "permutation_seed": 20260822,
+      "training_sign_accuracy": 0.9745
+    },
+    {
+      "epoch": 4,
+      "mean_loss": 0.06517280268482864,
+      "permutation_seed": 20260823,
+      "training_sign_accuracy": 0.98025
+    }
+  ],
+  "epochs": 4,
+  "freeze_policy": "Serialized once and chmod 0444. Never retrain, recalibrate, fine-tune, prune, re-export, replace, or overwrite; any change requires a new candidate and freeze.",
+  "fresh_seed": 20260820,
+  "input_bindings": {
+    "prereg/LANA_ONE_HUMAN_ATTENUATION_20260814.md": {
+      "mode": "0o644",
+      "sha256": "b2590e4213e225f9869fe782cfe0f55d8d8979dcb470752836a5cd31a58453fd"
+    },
+    "prereg/PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md": {
+      "mode": "0o444",
+      "sha256": "b06901c8a0f3a0570af41262453670589d8dc0b20c79c7d4162853c7dfec42d7"
+    },
+    "spike/yui_identity/w_chi.py": {
+      "mode": "0o644",
+      "sha256": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
+    }
+  },
+  "loss": "softplus(-parity * chi_B), chi_B=(g(x)-g(mirror(x)))/2",
+  "optimizer": {
+    "learning_rate": 0.001,
+    "name": "Adam"
+  },
+  "runtime": {
+    "deterministic_algorithms": true,
+    "device": "cpu",
+    "elapsed_seconds": 157.88535070419312,
+    "numpy": "1.26.4",
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "threads": 1,
+    "torch": "2.8.0"
+  },
+  "threshold": 0.15,
+  "training_count": 20000,
+  "training_domain": "HC1H-COMMITTEE-B-TRAIN-20260820",
+  "training_manifest_sha256": "64c4c192e1a0a927bbf638450adcbb2eade070e279e8040c77508c7d08b08055",
+  "weights_canonical_float32_sha256": "a61e5f726107b716570a9573aa49cbaa0152a55a889c25caf5216f587d542f5d",
+  "weights_file_sha256": "6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a",
+  "weights_mode_after_freeze": "0o444",
+  "weights_path": "_committee_20260820/member_b_weights_frozen.pt"
+}

@@ -1,0 +1,108 @@
+{
+  "band": {
+    "fraction": 2.0614381359289613e-05,
+    "high_arcsec": 0.262,
+    "high_pixels": 1.0,
+    "low_arcsec": -2.62,
+    "low_pixels": -10.0,
+    "pixel_scale_arcsec": 0.262,
+    "round5_requested_offsets_pixels": {
+      "horizontal_inside": [
+        0.0,
+        -10.0
+      ],
+      "horizontal_one_pixel_beyond": [
+        0.0,
+        1.0
+      ],
+      "horizontal_subpixel_inside": [
+        0.0,
+        -0.25
+      ],
+      "horizontal_subpixel_outside": [
+        0.0,
+        0.25
+      ],
+      "tjunction_exact": [
+        0.0,
+        0.0
+      ],
+      "vertical_inside": [
+        -10.0,
+        0.0
+      ],
+      "vertical_one_pixel_beyond": [
+        1.0,
+        0.0
+      ],
+      "vertical_subpixel_inside": [
+        -0.25,
+        0.0
+      ],
+      "vertical_subpixel_outside": [
+        0.25,
+        0.0
+      ]
+    },
+    "width_arcsec": 2.882,
+    "working_band_area_deg2": 0.07715143987107126,
+    "working_brick_area_denominator_deg2": 3742.6027260480428
+  },
+  "counts": {
+    "bricks_with_at_least_one_junction": 60308,
+    "per_brick_segment_count_distribution": {
+      "1": 1,
+      "2": 10,
+      "3": 611,
+      "4": 134,
+      "5": 187,
+      "6": 59273,
+      "7": 92
+    },
+    "selected_event_stem_orientation": {
+      "lower-row-stem": 65785,
+      "upper-row-stem": 66323
+    },
+    "topology_skip_diagnostics": {
+      "coincident_four_cell_boundary": 170121,
+      "noncontiguous_available_stem_pair": 2748,
+      "spanning_brick_absent_from_sidecar": 2002
+    },
+    "unique_junction_events_with_any_working_brick": 132108,
+    "working_brick_junction_boundary_incidences": 359607,
+    "working_rows": 60308,
+    "working_unique_brickids": 60308,
+    "working_unique_bricknames": 60308
+  },
+  "definitions": {
+    "area_fraction": "sum of each tested-band rectangle clipped to incident working-brick unique geometry, divided by sum of FITS AREA for all working bricks",
+    "junction_segment": "one per-working-brick boundary incidence at a unique three-cell meet; the headline total is the sum of the per-brick counts",
+    "object_level_touching_counts": "NOT_DERIVABLE_POSITIONS_DELETED_BY_DESIGN",
+    "tested_offset_band": "axis-aligned east/north envelope of round-5 requested offsets, [-10,+1] pixels on each axis",
+    "unique_junction_events_with_any_working_brick": 132108
+  },
+  "headline": {
+    "bricks_with_at_least_one_junction": 60308,
+    "fraction_of_working_brick_area_within_round5_tested_offset_band": 2.0614381359289613e-05,
+    "total_junction_segments": 359607
+  },
+  "inputs": {
+    "custody_receipt_sha256": "fe6c96501e8969e71e54147cc6e0e7f290d7276579bb8dcc61aca88bfcf46ad4",
+    "geometry_path_relative_to_prereg": "_tori_parent_row_count_evidence/footprint_variance_brick_counts_20260814/static/survey-bricks-dr10-south.fits.gz",
+    "geometry_rows": 366912,
+    "geometry_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+    "round1_generator_sha256": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d",
+    "round5_generator_path_relative_to_prereg": "boundary_fixtures/make_boundary_fixtures_round5.py",
+    "round5_generator_sha256": "498659bf1798c228aac8146fbfd53ea43c6723f319aae1d7ddec41f9d93ddf6c",
+    "working_set_path_relative_to_prereg": "_tori_r1_workingset_evidence/workingset_bricks.csv",
+    "working_set_sha256": "78ee99d6824bf4f5126b9ffd9eb622ad8201df2c64c3f232d99c1791b5f36b74"
+  },
+  "limits": {
+    "ceiling": "This brick-level census is the manifest-gate answer's ceiling, not an object count.",
+    "network_used": false,
+    "object_count_interpretation_allowed": false,
+    "parent_object_positions_used": false
+  },
+  "scope": "brick_geometry_only",
+  "status": "GPT1_TJCENSUS_COMPLETE"
+}

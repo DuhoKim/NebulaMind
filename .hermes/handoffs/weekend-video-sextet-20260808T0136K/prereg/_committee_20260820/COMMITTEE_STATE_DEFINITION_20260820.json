@@ -1,0 +1,15 @@
+{
+  "exhaustive": true,
+  "member_values": [
+    -1,
+    0,
+    1
+  ],
+  "mutually_exclusive": true,
+  "prohibited_use": "stratifier/allocator/diagnostic only; never inside a",
+  "states": {
+    "AGREE_CONFIDENT": "A and B are both nonzero and A == B",
+    "DISAGREE": "A and B are both nonzero and A == -B",
+    "LOW_CONFIDENCE": "A == 0 or B == 0"
+  }
+}

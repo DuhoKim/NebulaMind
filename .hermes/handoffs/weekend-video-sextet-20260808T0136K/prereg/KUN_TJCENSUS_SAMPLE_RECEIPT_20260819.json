@@ -1,0 +1,43 @@
+{
+  "full_event_key_set_equal": true,
+  "gate": "KUN_TJCENSUS_GATE_20260819_sample_recompute",
+  "headline_claims": {
+    "area_fraction": 2.0614381359289613e-05,
+    "bricks_with_at_least_one_junction": 60308,
+    "junction_segments": 359607,
+    "unique_events": 132108
+  },
+  "inputs": {
+    "deliverable_brick_csv_sha256": "cc80a440a35004da3bcecf05a4d79cbb6d663edb6dc2057daddeb153ca865aa9",
+    "deliverable_events_csv_sha256": "cb1ec553e092fbd26ed3187a0b1c4787a79c126fe801ee6779b7c36c39d3d489",
+    "geometry_sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+    "working_set_sha256": "78ee99d6824bf4f5126b9ffd9eb622ad8201df2c64c3f232d99c1791b5f36b74"
+  },
+  "my_full_recompute": {
+    "area_fraction": 2.0614381359289613e-05,
+    "band_area_deg2": 0.07715143987107126,
+    "bricks_with_at_least_one_junction": 60308,
+    "denominator_area_deg2": 3742.6027260480428,
+    "junction_segments": 359607,
+    "unique_events": 132108
+  },
+  "sample_bricknames_sha256": "969bd125f55496c59c5f352df28ef32e795f8fc248a464192175c2e5e5a7c75d",
+  "sample_selection": "numpy.random.RandomState(seed).choice(sorted_working_bricknames, size=500, replace=False)",
+  "sample_size": 500,
+  "sample_vs_deliverable": {
+    "events_extra_in_deliverable": 0,
+    "events_missing_in_deliverable": 0,
+    "perbrick_mismatch_count": 0,
+    "perbrick_mismatches": [],
+    "sample_area_deg2": 31.030090243170292,
+    "sample_area_fraction_mine": 2.0627340067317836e-05,
+    "sample_band_area_deliverable_deg2": 0.0006400682237654348,
+    "sample_band_area_mine_deg2": 0.0006400682237654348,
+    "sample_events_deliverable": 2956,
+    "sample_events_mine": 2956,
+    "sample_segment_sum_deliverable": 2978,
+    "sample_segment_sum_mine": 2978
+  },
+  "seed": 20260819,
+  "status": "CONSISTENT"
+}

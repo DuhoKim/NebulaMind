@@ -1,0 +1,71 @@
+{
+  "boundary": "10,000 fresh frozen-generator synthetics only; no real data; no network",
+  "committee_complete": true,
+  "committee_state_counts": {
+    "AGREE_CONFIDENT": 9016,
+    "DISAGREE": 424,
+    "LOW_CONFIDENCE": 560
+  },
+  "committee_state_fractions": {
+    "AGREE_CONFIDENT": 0.9016,
+    "DISAGREE": 0.0424,
+    "LOW_CONFIDENCE": 0.056
+  },
+  "committee_state_mapping": {
+    "AGREE_CONFIDENT": "both nonzero and same sign",
+    "DISAGREE": "both nonzero and opposite signs",
+    "LOW_CONFIDENCE": "at least one member abstains"
+  },
+  "elapsed_seconds": 27.201374053955078,
+  "exactly_balanced_parity": true,
+  "fresh_from_training": true,
+  "input_bindings": {
+    "prereg/LANA_ONE_HUMAN_ATTENUATION_20260814.md": {
+      "mode": "0o644",
+      "sha256": "b2590e4213e225f9869fe782cfe0f55d8d8979dcb470752836a5cd31a58453fd"
+    },
+    "prereg/PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md": {
+      "mode": "0o444",
+      "sha256": "b06901c8a0f3a0570af41262453670589d8dc0b20c79c7d4162853c7dfec42d7"
+    },
+    "spike/yui_identity/w_chi.py": {
+      "mode": "0o644",
+      "sha256": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
+    }
+  },
+  "member_a": {
+    "abstained": 533,
+    "accepted": 9467,
+    "accepted_sign_accuracy": 0.9708460969684166,
+    "antisymmetry_value_fail": 0,
+    "antisymmetry_value_pass": 10000,
+    "architecture": "deterministic training-free symmetrized annular winding tracer",
+    "correct_accepted": 9191,
+    "coverage": 0.9467,
+    "mirror_decision_fail": 0,
+    "mirror_decision_pass": 10000,
+    "overall_correct_fraction_abstention_not_correct": 0.9191,
+    "qualification": "QUALIFIED",
+    "threshold": 0.08
+  },
+  "member_b": {
+    "abstained": 32,
+    "accepted": 9968,
+    "accepted_sign_accuracy": 0.9826444622792937,
+    "antisymmetry_value_fail": 0,
+    "antisymmetry_value_pass": 10000,
+    "architecture": "independently trained plain sequential small CNN",
+    "correct_accepted": 9795,
+    "coverage": 0.9968,
+    "mirror_decision_fail": 0,
+    "mirror_decision_pass": 10000,
+    "overall_correct_fraction_abstention_not_correct": 0.9795,
+    "qualification": "QUALIFIED",
+    "threshold": 0.15,
+    "weights_canonical_float32_sha256": "a61e5f726107b716570a9573aa49cbaa0152a55a889c25caf5216f587d542f5d",
+    "weights_file_sha256": "6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a"
+  },
+  "validation_count": 10000,
+  "validation_domain": "HC1H-COMMITTEE-VALIDATE-20260820",
+  "validation_manifest_sha256": "b444d50b5fdacd41363a8351f04a2ff0b29a1611ebfe05bd385a06583e96d322"
+}

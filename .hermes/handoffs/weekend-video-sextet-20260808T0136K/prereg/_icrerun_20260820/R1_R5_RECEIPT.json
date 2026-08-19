@@ -1,0 +1,89 @@
+{
+  "R1": {
+    "byte_exact": 1000,
+    "n": 1000,
+    "old_quantity": "1000/1000"
+  },
+  "R2": {
+    "bit_exact": 1000,
+    "max_abs_chi_mirror_plus_chi": 0.0,
+    "n": 1000,
+    "old_quantity": "1000/1000 bit-exact; max residual 0.0",
+    "value_exact": 1000
+  },
+  "R3": {
+    "bit_equal": false,
+    "chi": 0.0,
+    "chi_bits": "0x00000000",
+    "chi_mirror": 0.0,
+    "chi_mirror_bits": "0x00000000",
+    "input_bytes_equal_old_path": true,
+    "neg_chi_bits": "0x80000000",
+    "old_quantity": "+0.0 vs -0.0 bits; value-equal; ordered rejection",
+    "ordered_acceptance_false": true,
+    "value_equal": true
+  },
+  "R4": {
+    "formula": "abs(chi_production_full_path(m_bad(x)) + chi_production_full_path(x))",
+    "max": 1.5070748329162598,
+    "mean": 0.3970843741297722,
+    "min": 0.010587692260742188,
+    "n": 200,
+    "n_exceeding_threshold": 200,
+    "old_quantity": {
+      "max": 1.5070748329162598,
+      "mean": 0.3970843741297722,
+      "min": 0.010587692260742188,
+      "n_exceeding_threshold": 200
+    },
+    "threshold": 0.01,
+    "verdict": "PASS"
+  },
+  "R5": {
+    "acceptance_mismatches": 0,
+    "contribution_counts": {
+      "0.0": 197,
+      "1.0": 3
+    },
+    "dA_raw": 0.015,
+    "formula": "mean((sign(f(x)) + sign(f(mirror_full_path(x)))) / 2)",
+    "n": 200,
+    "old_quantity": {
+      "counts": {
+        "0.0": 197,
+        "1.0": 3
+      },
+      "dA_raw": 0.015,
+      "sum": 3.0
+    },
+    "sum": 3.0
+  },
+  "full_path_IC7": {
+    "chi_sign_flip_bit_exact": 1000,
+    "mirror_after_IC1_IC6_equals_contract_of_raw_mirror_bytes": 1000,
+    "n": 1000
+  },
+  "identity_witness": {
+    "n": 1000,
+    "old_new_chi_bit_identical": 1000,
+    "verdict": "PASS"
+  },
+  "natural_invalid_pixels": {
+    "count": 0,
+    "images": 1000
+  },
+  "probe_set": {
+    "generator_manifest_sha256": "35d679d4955d3657866bd64fe309a9a42b30ff8a61d1952d2a3795ee59231024",
+    "master_seed": "LONGO-AMPLITUDE-FREEZE-M1",
+    "n": 1000,
+    "old_receipt_generator_manifest_sha256": "35d679d4955d3657866bd64fe309a9a42b30ff8a61d1952d2a3795ee59231024",
+    "prefix_200_manifest_sha256": "ab75d5f2ec08ad44fbcf1198d1612c23759f8d3aac29db044a181346ac43f9b2",
+    "source_index_end_inclusive": 3000999,
+    "source_index_start": 3000000
+  },
+  "records": {
+    "path": "r1_r5_records.jsonl",
+    "rows": 1000,
+    "sha256": "65fa6dfe8ab43ea28053c3840126c98406a10ce137329446d1a3e5d38747ef1a"
+  }
+}

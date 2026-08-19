@@ -1,0 +1,5 @@
+# Duplicate invocation containment receipt — 2026-08-20
+
+The first synthetic-only runner completed and serialized `member_b_weights_frozen.pt` once, then changed it to mode `0444`; its training and 10,000-synthetic validation receipts are complete. While process status was being checked, a duplicate invocation had already started concurrently with the first. It regenerated the same deterministic candidate in memory from the same frozen generator, code, and seed, but when it reached serialization the already-frozen target could not be opened. It exited with `RuntimeError: ... member_b_weights_frozen.pt cannot be opened.` It did not alter the frozen file, receipts, source inputs, or validation result; it used no real data and no network. A later post-freeze rerun was refused immediately by the runner's existing-file guard. `receipts/freeze_refusal_summary.log` records identical before/after file hashes: `6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a`.
+
+This event does not create a second frozen member: only the hash-pinned read-only file above is the committee member. The failed in-memory duplicate is discarded and has no receipt authority.

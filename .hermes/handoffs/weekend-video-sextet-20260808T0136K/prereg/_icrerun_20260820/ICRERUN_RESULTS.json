@@ -1,0 +1,63 @@
+{
+  "boundaries": {
+    "network_used": false,
+    "real_data_touched": false,
+    "sky_access_authorized_by_this_receipt": false,
+    "synthetics_only": true,
+    "tau_recalibration": false,
+    "training_or_retraining": false
+  },
+  "checks": {
+    "IC7_full_path": true,
+    "R1": true,
+    "R2": true,
+    "R3": true,
+    "R4": true,
+    "R4_exact_old_quantity": true,
+    "R5_exact_old_quantity": true,
+    "identity_witness": true,
+    "retention_exact_old_quantity": true,
+    "slots_synthetic_only_validation": true
+  },
+  "elapsed_seconds": 416.44075417518616,
+  "environment": {
+    "deterministic_algorithms": true,
+    "numpy": "1.26.4",
+    "pid": 73032,
+    "platform": "macOS-26.6.2-arm64-arm-64bit",
+    "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+    "torch": "2.8.0",
+    "torch_interop_threads": 1,
+    "torch_threads": 1
+  },
+  "hash_pins_before_and_after": {
+    "prereg/LANA_PC1_INPUT_AMENDMENT_20260815.md": "519ab5ba33c5e9d670b5654fb41f6941293c5d969c5515fb0284ebe8d52d70fb",
+    "prereg/YUI_PRODUCTION_ESTIMATOR_APPENDIX_20260812.md": "331a941a807eef2f02e821086230655505b332b90ff1e47ff128d034334f9fc3",
+    "prereg/_cutout_runner_20260820/cutout_runner.py": "ccb9b8fed457333669e54fa9f0a3dac645dc866a56c6cd8dc665ffd4d93b1bcc",
+    "prereg/_icrerun_20260820/ic5_scaler.py": "21b66eda899b5e48034be2b2d92ee2c77f262b156eb59d680eb1b80763d12621",
+    "prereg/receipt_results.json": "d5d4a8bc005b031ed523e64a672237536896f37030722fd5cf71ff44a3405a04",
+    "prereg/train_results.json": "c36cd33001e432c60df786da8c0ff95b8ef5ab350a458b29d71ff084178a41fd",
+    "prereg/weights_frozen.pt": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d",
+    "prereg/yui_bs34_20260814/results.json": "cfd11391f123e0caa054f0a3bdfab76b20eb7293c457bafd70563e90af07df33",
+    "prereg/yui_bs3_r4_r5_20260813/results.json": "bb4eef8798893a0ce8e06c09768e20d683ca771c5b7dfb396fd7747a86efea78",
+    "prereg/yui_bs3_r4_r5_20260813/run_bs3_r4_r5.py": "de0f35355902f25497e240a413a087a1413d365342419b0be3fc15a7e5117914",
+    "prereg/yui_inclination_retention_remeasure_20260812/results.json": "414fbc5cb6fa050390f0a6bca69e02e81795ed2a3585928be19767f4cb3a59e2",
+    "prereg/yui_inclination_retention_remeasure_20260812/run_remeasure.py": "15de0ea82baab8dd8115d5707f897fdfcc86e6287dc4cb8fb4affa327da66ca7",
+    "spike/yui_identity/w_chi.py": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
+  },
+  "identity_witness": {
+    "n": 1000,
+    "old_new_chi_bit_identical": 1000,
+    "verdict": "PASS"
+  },
+  "slot_values": {
+    "IC-4_invalid_fraction_cap": 0.0,
+    "IC-5": {
+      "form": "tensor = float32(nanomaggy)",
+      "gain": 1.0,
+      "offset": 0.0
+    },
+    "slots_sha256": "10d24a6e1c5dd64eef8e1ada7e3d222f2e168bab288b1438792db7ff6a848372"
+  },
+  "status": "PASS_ICRERUN"
+}

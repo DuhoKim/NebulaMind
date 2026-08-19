@@ -1,0 +1,21 @@
+{
+  "ic4_invalid_fraction_cap": 0.0,
+  "ic5_form": "tensor = float32(nanomaggy)",
+  "ic5_gain": 1.0,
+  "ic5_offset": 0.0,
+  "ic5_validation": "Fixed monotone identity affine map; exact old/new input bytes on all 13,000 natural synthetics; no per-object or data-dependent operation; preserves frozen estimator scale and tau.",
+  "ic7_involution": true,
+  "natural_invalid_pixel_count": 0,
+  "natural_synthetic_images": 13000,
+  "old_new_input_bytes_exact": 13000,
+  "old_new_input_images": 13000,
+  "one_invalid_fails_closed": true,
+  "one_invalid_failure_code": "FAILED_IC4_INVALID_FRACTION_CAP",
+  "one_invalid_fraction": 6.103515625e-05,
+  "scaler_sha256": "21b66eda899b5e48034be2b2d92ee2c77f262b156eb59d680eb1b80763d12621",
+  "selection_basis": "All 13,000 frozen-generator natural synthetic images had invalid fraction 0.0. No synthetic evidence supports tolerance above zero, so the conservative cap is 0.0; one invalid pixel (1/16384) fails closed.",
+  "slots_sha256": "10d24a6e1c5dd64eef8e1ada7e3d222f2e168bab288b1438792db7ff6a848372",
+  "synthetic_monotone_grid_exact_bytes": true,
+  "synthetic_monotone_grid_order_preserved": true,
+  "zero_invalid_receipt_fraction": 0.0
+}
