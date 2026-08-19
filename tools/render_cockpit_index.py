@@ -24,7 +24,7 @@ GROUPS = [
         ("pipeline-board.html",                  "AI-scientist pipeline board"),
     ]),
     ("Stale", "Left in place, but old enough to mislead. Read the date before believing anything here.", [
-        ("live-steering-cockpit.html",   "Queue helper QA — renderer is now a .bak file, nothing regenerates this"),
+        ("live-steering-cockpit.html",   "Stable steering cockpit — refreshed by every usage-monitor pass (also at nebulamind.net/agent-reports)"),
         ("mobile.html",                  "Batch B3 row decisions"),
         ("baseline-galaxy-current.html", "Locked with the macOS uchg flag — deliberately immutable"),
         ("baseline-roadmap.html",        "Locked with the macOS uchg flag — byte-identical to the two above"),

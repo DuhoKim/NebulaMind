@@ -35,6 +35,8 @@ LIVE_FRONTEND = Path('/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/fron
 PUBLIC_ROOTS = [
     ROOT / 'frontend/public/agent-reports',
     LIVE_FRONTEND / 'public/agent-reports',
+    # 2026-08-20: cockpit root joined the render targets (index.html links live there)
+    Path('/Users/duhokim/HermesOps/cockpit'),
 ]
 STABLE_FILES = [
     'live-steering-cockpit.html',

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>com.nebulamind.cockpit-render</string>
+  <key>ProgramArguments</key><array>
+    <string>/bin/zsh</string>
+    <string>/Users/duhokim/NebulaMind/NebulaMind/tools/cockpit-scheduling/render_all_cockpit.sh</string>
+  </array>
+  <key>StartInterval</key><integer>600</integer>
+  <key>RunAtLoad</key><true/>
+  <key>StandardOutPath</key><string>/Users/duhokim/HermesOps/cockpit/render-launchd.log</string>
+  <key>StandardErrorPath</key><string>/Users/duhokim/HermesOps/cockpit/render-launchd.log</string>
+</dict></plist>

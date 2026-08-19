@@ -23,7 +23,10 @@ ROOT = Path('/Users/duhokim/NebulaMind/NebulaMind')
 LIVE_FRONTEND = Path('/Users/duhokim/NebulaMind/NebulaMind-origin-main-live/frontend')
 DEFAULT_CANONICAL_PATH = ROOT / 'frontend/public/agent-reports/stable-cockpit-canonical.json'
 DEFAULT_TEMPLATE_PATH = ROOT / 'tools/templates/stable-cockpit-template.html'
-DEFAULT_PUBLIC_ROOTS = [ROOT / 'frontend/public/agent-reports', LIVE_FRONTEND / 'public/agent-reports']
+DEFAULT_PUBLIC_ROOTS = [ROOT / 'frontend/public/agent-reports', LIVE_FRONTEND / 'public/agent-reports',
+                        # 2026-08-20: the cockpit root too — index.html links these pages there,
+                        # and its copies had been 45-day orphans nothing refreshed.
+                        Path('/Users/duhokim/HermesOps/cockpit')]
 
 # Drift guard for the cockpit's stated primitive. Updated 2026-08-05 (Duho: the wiki era is
 # over; the current NebulaMind is an AI scientist for galaxy evolution). The old value was

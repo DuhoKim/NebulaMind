@@ -109,7 +109,7 @@ SURVEY_REQUIRED_FILES = [
 # retired with their tmux sessions. Groups now name the surfaces the crew actually runs.
 GROUP_ORDER = ["Directors", "Review", "Lanes", "Other"]
 METHOD_GROUPS = ["Review", "Lanes"]
-ROLE_ORDER = ["Hwao", "Lana", "Goru", "Kun", "Tori"]
+ROLE_ORDER = ["Hwao", "claude-seat", "agy", "kimi", "gpt2"]
 STATUS_ORDER = {"review": 0, "dead": 1, "safe-prompt": 2, "copy-mode": 3, "active": 4, "idle": 5}
 SAFETY_GATES = [
     "product DB/SQL writes and pane-initiated SQL",
@@ -124,7 +124,7 @@ SAFETY_GATES = [
 POLICY_LINES = [
     "This page is a read-only mirror of local status JSON.",
     "Green means nothing needs you; red means a real human decision is needed.",
-    "Goru permission prompts are handled by the autopilot when they match safe private-dashboard or docs/static scope.",
+    "agy permission prompts are handled by the autopilot when they match safe private-dashboard or docs/static scope.",
     "Hard gates stay closed: no DB, live publish, deploy, git, cloud/secrets, browser automation, or cron.",
 ]
 
@@ -227,7 +227,7 @@ def build_septet_matrix() -> Dict[str, Any]:
     # Sextet, per Duho 2026-08-08: "drop DR, sextet is the other six". DR was never a crew seat —
     # it produced reference-only evidence and gated nothing — so counting it made the engagement
     # denominator flatter than the truth. Five content seats plus Hwao coordinating.
-    seats = ["Hwao", "Lana", "Goru", "Kun", "Tori", "Yui"]
+    seats = ["Hwao", "claude-seat", "agy", "kimi", "gpt2", "gpt1"]
 
     # Some seats do not write into a lane directory at all, so lane-local artifact scanning
     # reported them empty on every paper while they were actively working. Yui's videos and
@@ -240,11 +240,11 @@ def build_septet_matrix() -> Dict[str, Any]:
         vids = Path("/Users/duhokim/HermesOps/cockpit/videos")
         wf = REPO / ".hermes" / "workflows"
         if vids.exists() and any(vids.glob("*.mp4")):
-            found.setdefault("Yui", []).append("cockpit/videos")
+            found.setdefault("gpt1", []).append("cockpit/videos")
         if wf.exists():
             names = " ".join(f.name for f in wf.glob("*"))
             if "TORI_" in names or "QUEUE_LEDGER" in names:
-                found.setdefault("Tori", []).append(".hermes/workflows")
+                found.setdefault("gpt2", []).append(".hermes/workflows")
         return found
 
     global_ev = _global_seat_evidence()
@@ -408,10 +408,10 @@ def build_septet() -> Dict[str, Any]:
     except Exception as exc:  # never let this section break the dashboard
         return {"ok": False, "error": f"{type(exc).__name__}: {exc}"[:180], "seats": []}
 
-    roles = {"Hwao": "coordinates; no content work", "Lana": "science pressure",
-             "Goru": "mechanical counts", "Kun": "reproducibility / adversarial gate",
-             "Tori": "relay, receipts, queue ledger",
-             "Yui": "video; nothing unpublished"}
+    roles = {"Hwao": "coordinates; no content work", "claude-seat": "science pressure",
+             "agy": "mechanical counts", "kimi": "reproducibility / adversarial gate",
+             "gpt2": "relay, receipts, queue ledger",
+             "gpt1": "video; nothing unpublished"}
     busy = {c["seat"]: c for c in working}
     blocked = [r["lane"] for r in rows if r["state"].startswith("BLOCKED")]
     seats = []
@@ -482,10 +482,24 @@ def load_source() -> Dict[str, Any]:
     return json.loads(SOURCE_STATUS.read_text())
 
 
+def _tail_lines(path: Path, n: int = 200, chunk: int = 262144) -> List[str]:
+    """Last n lines without reading the whole file (the events log is 22 MB+)."""
+    with open(path, "rb") as f:
+        f.seek(0, 2)
+        size = f.tell()
+        data = b""
+        while size > 0 and data.count(b"\n") <= n:
+            step = min(chunk, size)
+            size -= step
+            f.seek(size)
+            data = f.read(step) + data
+    return data.decode("utf-8", "replace").splitlines()[-n:]
+
+
 def read_events(limit: int = 18, meaningful_only: bool = False) -> List[Dict[str, Any]]:
     if not SOURCE_EVENTS.exists():
         return []
-    lines = SOURCE_EVENTS.read_text(errors="replace").splitlines()[-200:]
+    lines = _tail_lines(SOURCE_EVENTS, 200)
     events: List[Dict[str, Any]] = []
     for line in lines:
         try:
@@ -547,7 +561,7 @@ def group_for(pane: Dict[str, Any]) -> str:
     target = str(pane.get("target") or "")
     if target.startswith("ge-mastermind") or role.endswith("-director") or role.endswith("-director-live-view"):
         return "Directors"
-    if target.startswith("ge-review") or role in {"Miru-reviewer", "Kun-director"} or "reviewer" in role.lower():
+    if target.startswith("ge-review") or role in {"Miru-reviewer", "Kun-director", "kimi-reviewer"} or "reviewer" in role.lower():
         return "Review"
     if target.startswith("goru-agy") or target.startswith("lane-"):
         return "Lanes"
@@ -745,6 +759,16 @@ def build_survey_autopilot_snapshot() -> Dict[str, Any]:
         text = "Smoke FAIL"
         next_action = "The latest recorded Survey Atlas IA smoke failed. Fix the Survey surface before expanding Survey autopilot work."
 
+    # The status sidecar can be weeks old; a panel that renders it as live is
+    # lying. Surface the age and downgrade the state label.
+    try:
+        sidecar_age = time.time() - SURVEY_AUTOPILOT_STATUS.stat().st_mtime
+    except OSError:
+        sidecar_age = None
+    if sidecar_age is not None and sidecar_age > 48 * 3600:
+        text = f"{text} · STALE — status last written {sidecar_age / 86400:.0f} days ago"
+        if state == "healthy":
+            state = "watching"
     return {
         "marker": SURVEY_AUTOPILOT_MARKER,
         "generated_at": now_utc(),
@@ -769,7 +793,7 @@ def build_survey_autopilot_snapshot() -> Dict[str, Any]:
         "safe_boundaries": [
             "Dashboard is read-only; browser fetches JSON only.",
             "No DB/SQL, live wiki publish, deploy/restart, git write, cloud/account/OAuth/secrets, browser automation, or cron.",
-            "Survey autopilot work should produce local reports or separately approved frontend patches; helper reports are advisory until Tori verifies files/tests.",
+            "Survey autopilot work should produce local reports or separately approved frontend patches; helper reports are advisory until a coordinator verifies files/tests.",
         ],
     }
 
@@ -895,10 +919,10 @@ def build_paper_quality_sprint_snapshot() -> Dict[str, Any]:
             "marker": audit.get("marker"),
         },
         "lanes": [
-            "Hwao-style director review: AGY Gemini 3.1 Pro Low",
-            "Gemini/Goru deep-review critique: AGY Gemini 3.5 Flash Low",
-            "Codex/Kun reproducibility and TeX/prose review: Codex gpt-5.4-mini",
-            "Goru mechanical checks: local Python",
+            "Director-style review: AGY Gemini 3.1 Pro Low",
+            "agy deep-review critique: AGY Gemini 3.5 Flash Low",
+            "kimi/codex reproducibility and TeX/prose review",
+            "agy mechanical checks: local Python",
             "Integrator: candidate-copy edits, compile, audit only",
         ],
         "ledger_tail": display_ledger_lines,
@@ -1007,13 +1031,13 @@ def lane_usage_counts(source: Dict[str, Any]) -> Dict[str, Dict[str, int]]:
     for pane in source.get("panes", []):
         role = role_prefix(str(pane.get("role") or ""))
         key = None
-        if role == "Tori":
+        if role in {"Tori", "Yui", "gpt1", "gpt2", "gpt3"}:
             key = "hermes"
-        elif role in {"Hwao", "Lana"}:
+        elif role in {"Hwao", "Blanc", "Lana", "claude"}:
             key = "claude"
-        elif role == "Goru":
+        elif role in {"Goru", "agy"}:
             key = "goru"
-        elif role == "Kun":
+        elif role in {"Kun", "Miru", "kimi"}:
             key = "codex"
         if key:
             buckets[key]["total"] += 1
@@ -1858,7 +1882,7 @@ def build_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any]:
             "lanes_total": lanes["claude"]["total"],
         },
         {
-            "name": "Goru / Antigravity Gemini",
+            "name": "Antigravity / agy (Gemini)",
             "kind": "subscription-lane",
             "status": "running" if lanes["goru"]["total"] else "not seen",
             "percent": None,
@@ -2183,20 +2207,30 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
     if review_needs:
         health = "needs-review"
         health_text = f"NEEDS YOU · {review_needs}"
-        next_action = "A hard-gate or unsafe prompt is waiting. Ask Tori or inspect the real pane; autopilot will not approve it."
+        next_action = "A hard-gate or unsafe prompt is waiting. Ask the owning coordinator or inspect the real pane; autopilot will not approve it."
     elif safe_attention:
         health = "watching"
         health_text = f"WATCHING SAFE PROMPTS · {safe_attention}"
         next_action = "Autopilot can handle safe docs/static or private-dashboard prompts; keep watching for red."
-    if age is not None and age > 90:
-        health = "stale"
-        health_text = "STALE · monitor may be paused"
-        next_action = "Check `ge-auto tail` or restart the Phase 1 monitor if the timestamp keeps aging."
-
-    lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     events = read_events(limit=8, meaningful_only=True)
     latest_ticks = read_events(limit=1, meaningful_only=False)
     latest_event = latest_ticks[-1] if latest_ticks else events[-1] if events else None
+    events_age = age_seconds(latest_event.get("ts")) if latest_event else None
+    if age is not None and age > 90:
+        # The status snapshot can sleep for days while the events feed stays
+        # live (coordinators append constantly). Judge health by the freshest
+        # signal instead of declaring the whole system stale on the stalest.
+        if events_age is not None and events_age < 900:
+            if health == "healthy":
+                health = "watching"
+                health_text = f"LIVE VIA EVENTS · status snapshot {age_label(age)} old"
+                next_action = "Events feed is fresh; the autopilot status snapshot is old. Nothing needs you unless a card below says so."
+        else:
+            health = "stale"
+            health_text = "STALE · monitor may be paused"
+            next_action = "Check `ge-auto tail` or restart the Phase 1 monitor if the timestamp keeps aging."
+
+    lane_summaries = {name: lane_summary(name, groups.get(name, [])) for name in GROUP_ORDER}
     usage_snapshot = build_usage_snapshot(source)
     return {
         "marker": MARKER,
@@ -2206,6 +2240,8 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "source_ts": source_ts,
         "source_age_seconds": age,
         "source_age_label": age_label(age),
+        "events_age_seconds": events_age,
+        "events_age_label": age_label(events_age),
         "health": health,
         "health_text": health_text,
         "next_action": next_action,
@@ -2237,8 +2273,6 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "events": events,
         "latest_event": latest_event,
         "last_incident": LAST_INCIDENT,
-        "overnight_report": build_overnight_report(usage_snapshot),
-        "corpus_scaleup": build_corpus_scaleup_snapshot(),
         "run_estimates": normalize_run_estimates(source.get("run_estimates") or {
             "marker": RUN_TIME_ESTIMATE_MARKER,
             "runs_total": 0,
@@ -2283,6 +2317,8 @@ def render_html() -> str:
     .subtitle { margin:10px 0 0; max-width:1080px; color:var(--soft); }
     .topline { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; align-items:center; }
     .pill { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--line); background:rgba(8,24,39,.78); border-radius:999px; padding:8px 12px; color:var(--soft); font-size:13px; }
+    a.pill { color:var(--soft); text-decoration:none; cursor:pointer; }
+    a.pill:hover { border-color:#5b6b8c; color:var(--ink); }
     .dot { width:10px; height:10px; border-radius:50%; background:var(--blue); box-shadow:0 0 20px currentColor; }
     .healthy .dot { background:var(--green); } .watching .dot,.stale .dot,.active .dot { background:var(--yellow); } .needs-review .dot,.review .dot,.dead .dot { background:var(--red); }
     .grid { display:grid; gap:16px; }
@@ -2353,6 +2389,13 @@ def render_html() -> str:
       <span class="pill"><span class="dot"></span><span id="updated-text">Waiting for JSON</span></span>
       <span class="pill"><span class="dot"></span><span>__MARKER__</span></span>
     </div>
+    <div class="topline" style="margin-top:8px">
+      <a class="pill" href="spin-parity-status.html">spin-parity</a>
+      <a class="pill" href="bhu-lane2-status.html">BHU lane 2</a>
+      <a class="pill" href="index.html">all cockpit pages</a>
+      <a class="pill" href="/reports/status-audio/listen.html">audio reports</a>
+      <a class="pill" href="/reports/status-audio/archive.html">audio archive</a>
+    </div>
   </header>
   <main>
     <section class="panel">
@@ -2404,8 +2447,8 @@ def render_html() -> str:
         <p class="micro">Requires Tailscale on the MacBook. The browser only fetches <code>ge-autopilot-status.json</code>; it does not approve, run, publish, deploy, or write anything.</p>
         <h2>What this monitors</h2>
         <div class="flow grid">
-          <div class="flowbox"><strong>Directors</strong><small>Hwao, Tori, Goru live-view.</small></div>
-          <div class="flowbox"><strong>Sextet seats</strong><small>Hwao, Lana, Goru, Kun, Tori, Yui — who owes work.</small></div>
+          <div class="flowbox"><strong>Coordinators</strong><small>Hwao (DESI), Tori (BHU), Blanc (OPS) live-view.</small></div>
+          <div class="flowbox"><strong>Engine seats</strong><small>claude-seat, agy, kimi, gpt1, gpt2 (+ Hwao coordinating) — who owes work.</small></div>
           <div class="flowbox"><strong>Survey Autopilot</strong><small>Frontend /surveys files, smoke-test custody, and safe next work.</small></div>
           <div class="flowbox"><strong>Prompts</strong><small>Safe vs needs-you permission states.</small></div>
           <div class="flowbox"><strong>Events</strong><small>Latest autopilot ticks/actions/blockers.</small></div>
@@ -2434,7 +2477,7 @@ def render_html() -> str:
 
     <section class="panel">
       <h2>Directors</h2>
-      <p>Hwao sets direction; Tori verifies and relays; Goru provides mechanical crosschecks. Red here means stop and ask.</p>
+      <p>Coordinators set direction (Hwao=DESI, Tori=BHU, Blanc=OPS); engine seats do the work and cross-check each other. Red here means stop and ask.</p>
       <div id="directors" class="directors-grid"></div>
     </section>
     <section class="methods-grid" id="methods"></section>
@@ -2502,7 +2545,7 @@ function renderQuotaGlance(u) {
   const target = document.getElementById('quota-glance');
   if (!target) return;
   const cards = u?.cards || [];
-  const preferred = ['Claude / Fable + claude-seat', 'Antigravity / agy (Gemini)', 'Moonshot / kimi (K3 direct)', 'Claude / Fable / Lana', 'Codex / Kun', 'Gemini / Goru', 'Kimi / Moonshot direct API'];
+  const preferred = ['Claude / Fable + claude-seat', 'Codex / gpt seats (ChatGPT Pro)', 'Antigravity / agy (Gemini)', 'Moonshot / kimi (K3 direct)', 'Hermes / Nous credits'];
   const primary = preferred.map(name => cards.find(card => card.name === name)).filter(Boolean);
   const rendered = primary.map(card => {
     const pct = typeof card.percent === 'number' && Number.isFinite(card.percent) ? card.percent : null;
@@ -2661,7 +2704,9 @@ async function load() {
     document.getElementById('state-word').className=`state-word ${d.health||'healthy'}`;
     document.getElementById('state-word').textContent=d.health_text||'UNKNOWN';
     document.getElementById('next-action').textContent=d.next_action||'';
-    document.getElementById('updated-text').textContent=`Updated ${d.source_ts||d.generated_at||'unknown'} · age ${d.source_age_label||'unknown'}`;
+    const rAgeS=d.generated_at?Math.max(0,(Date.now()-Date.parse(d.generated_at))/1000):null;
+    const rAge=rAgeS==null?'unknown':(rAgeS<90?Math.round(rAgeS)+'s':(rAgeS<5400?Math.round(rAgeS/60)+'m':(rAgeS/3600).toFixed(1)+'h'));
+    document.getElementById('updated-text').textContent=`rendered ${rAge} ago · events ${d.events_age_label||'unknown'} · status snapshot ${d.source_age_label||'unknown'}`;
     document.getElementById('phase-text').textContent=d.phase||'phase1-bounded-controller';
     document.getElementById('event-text').textContent=d.latest_event ? `last tick ${d.latest_event.ts}` : 'no event log yet';
     document.getElementById('metrics').innerHTML=[metric('Targets OK',`${c.targets_ok??0}/${c.targets_total??0}`),metric('Panes',c.panes??0),metric('Active',c.active??0),metric('Idle',c.idle??0),metric('Needs-you issues',c.blockers??0),metric('Safe auto-prompts',c.safe_autoprompts??c.safe_prompts??0)].join('');
