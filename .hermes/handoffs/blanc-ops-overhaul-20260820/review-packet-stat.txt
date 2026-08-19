@@ -1,0 +1,37 @@
+ frontend/src/app/april-fools/page.tsx              | 194 ---------
+ frontend/src/app/components/Footer.tsx             |   6 +-
+ frontend/src/app/components/NavBar.tsx             |   7 +-
+ frontend/src/app/contribute/page.tsx               |  78 ++--
+ frontend/src/app/lab/FlagshipStudies.tsx           |  40 +-
+ frontend/src/app/lab/flagshipData.ts               |  40 ++
+ frontend/src/app/lab/page.tsx                      |   3 +-
+ frontend/src/app/labTheme.ts                       |   1 +
+ frontend/src/app/layout.tsx                        |  26 +-
+ frontend/src/app/not-found.tsx                     |   4 +-
+ frontend/src/app/page.tsx                          | 163 +++++---
+ frontend/src/app/sitemap.ts                        |   2 +-
+ scripts/deploy_frontend.sh                         |  34 +-
+ tools/attic/README.md                              |   8 +
+ tools/attic/nm_septet_cockpit_feed.py              |  74 ++++
+ tools/{ => attic}/render_ge_autopilot_dashboard.py |   0
+ tools/attic/tmux_board_snapshot.py                 | 417 ++++++++++++++++++
+ tools/attic/tmux_board_summary.py                  | 162 +++++++
+ tools/audio-reports/README.md                      |   8 +-
+ tools/audio-reports/nm_audio_align.py              | 107 +++++
+ tools/audio-reports/nm_audio_index.py              | 465 +++++++++++++++++++++
+ tools/audio-reports/nm_audio_publish.py            | 137 ++++++
+ tools/audio-reports/nm_fable_say.sh                |  25 +-
+ tools/audio-reports/nm_listen_daemon.sh            |  55 ++-
+ tools/audio-reports/nm_morning_digest.sh           |   9 +
+ tools/audio-reports/nm_say.py                      |  55 +++
+ tools/audio-reports/nm_status_say.sh               |  28 +-
+ tools/audio-reports/voices.json                    |   8 +
+ tools/cockpit-scheduling/README.md                 |  14 +
+ .../com.nebulamind.cockpit-render.plist            |  13 +
+ tools/cockpit-scheduling/render_all_cockpit.sh     |  15 +
+ tools/nm_paper_run_dashboard.py                    | 408 ++++++++++++++++++
+ tools/render_cockpit_index.py                      |   2 +-
+ tools/render_ge_autopilot_dashboard_v2.py          | 115 +++--
+ tools/stable_cockpit_guard.py                      |   2 +
+ tools/stable_cockpit_renderer.py                   |   5 +-
+ 36 files changed, 2304 insertions(+), 426 deletions(-)
