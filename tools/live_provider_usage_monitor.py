@@ -2,7 +2,10 @@
 """Refresh public provider usage gauges from safe local visible status surfaces.
 
 Safety model:
-- Uses visible tmux pane /status or /usage display commands only when panes are idle.
+- Uses the visible Antigravity /usage display command only when an agy pane is idle,
+  never scrolled back, and never one of the ACQ/BHU coordinator seats (Codex /status
+  path retired 2026-08-19 with the Codex lane; the kimi seats spend on the Moonshot
+  wallet read from its local cache).
 - Reads one validated local drop-file of gemini.google.com/usage readings. The
   drop-file may come from an operator-confirmed capture or the separately gated
   high-confidence Chrome usage-page crawler; this monitor does not drive Chrome.
@@ -79,51 +82,31 @@ def nous_credits_gauge(observed_at: str) -> dict[str, Any]:
     return nous_credits_usage.fetch_gauge(observed_at)
 
 
-KIMI_WALLET_CACHE = Path('/Users/duhokim/HermesOps/private-state/kimi-direct-balance.json')
+# Naming reform 2026-08-19 (Duho): coordinators are Hwao/Tori/Blanc; helper seats
+# are named by engine (agy, gpt1-3, kimi, claude-seat) and the personas Yui/Lana/
+# Kun/Goru/Miru are retired. Gauge cards are regenerated records, so they carry
+# the engine names; this map migrates entries left by older canonical files.
+PROVIDER_RENAMES = {
+    'Claude / Fable / Lana': 'Claude / Fable + claude-seat',
+    'Tori / Hermes': 'Hermes / gpt seats (context)',
+    'Moonshot / Kun (Kimi K3)': 'Moonshot / kimi (K3 direct)',
+    'Kimi K3 / Kun+Miru (Moonshot)': 'Moonshot / kimi (K3 direct)',
+    'Antigravity / Gemini': 'Antigravity / agy (Gemini)',
+    'Gemini / Goru': 'Antigravity / agy (Gemini)',
+}
+# Gauges that no longer correspond to any paid resource (Codex lane retired 2026-08).
+PROVIDER_DROPS = ('Codex / Kun', 'Codex (seat unassigned)')
 
 
-def kimi_wallet_gauge(gauges: list[dict[str, Any]], observed_at: str) -> None:
-    """Kun+Miru gate on the Kimi K3 direct Moonshot key (Codex lane retired 2026-08).
-
-    Local cache only (written by tools/moonshot_balance_usage.py); the gauge shows a
-    dollar wallet with its own capture time and withholds the value if unreadable.
-    Also retitles any legacy 'Codex / Kun' gauge left in an older canonical file.
-    """
-    if provider_index(gauges, 'Moonshot / Kun (Kimi K3)') >= 0:
-        # A live Moonshot wallet card already exists; drop any legacy Codex-era
-        # gauges instead of duplicating the wallet.
-        for legacy in ('Kimi K3 / Kun+Miru (Moonshot)', 'Codex / Kun', 'Codex (seat unassigned)'):
-            j = provider_index(gauges, legacy)
-            if j >= 0:
-                gauges.pop(j)
-        return
-    idx = provider_index(gauges, 'Kimi K3 / Kun+Miru (Moonshot)')
-    if idx < 0:
-        idx = provider_index(gauges, 'Codex / Kun')
-    if idx < 0:
-        return
-    g = gauges[idx]
-    g['provider'] = 'Kimi K3 / Kun+Miru (Moonshot)'
-    g['kind'] = 'dollar wallet'
-    try:
-        d = json.loads(KIMI_WALLET_CACHE.read_text())
-        bal = d.get('available_balance_usd')
-        cap = d.get('observed_at_utc') or 'unknown'
-        peak = d.get('peak_observed_usd')
-        if isinstance(bal, (int, float)):
-            g['value_label'] = f'${bal:.2f} available'
-            g['tone'] = 'ok' if bal >= 10 else 'warn'
-            extra = f' · peak observed ${peak:.2f}' if isinstance(peak, (int, float)) else ''
-            g['detail'] = (f'Moonshot direct-key wallet ${bal:.2f}{extra}. Kun and Miru review '
-                           f'one-shots spend here; Codex lane retired 2026-08. Captured {cap} — '
-                           f'not refreshed since.')
-            g['source_label'] = 'local kimi-direct-balance.json cache (moonshot_balance_usage.py)'
-        else:
-            g['value_label'] = 'wallet unreadable'
-            g['tone'] = 'warn'
-    except Exception:
-        g['value_label'] = 'wallet cache missing'
-        g['tone'] = 'warn'
+def migrate_legacy_gauges(gauges: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    seen: dict[str, dict[str, Any]] = {}
+    for g in gauges:
+        name = g.get('provider')
+        if name in PROVIDER_DROPS:
+            continue
+        g['provider'] = PROVIDER_RENAMES.get(name, name)
+        seen[g['provider']] = g  # later (fresher) entries win
+    return list(seen.values())
 
 
 def utc_now() -> str:
@@ -161,7 +144,7 @@ def is_idle_codex(text: str) -> bool:
     joined = '\n'.join(tail).lower()
     if any(bad in joined for bad in ['running command', 'thinking', 'approval requested', 'ctrl+o to expand', 'pane is dead']):
         return False
-    return any(line.lstrip().startswith('›') for line in tail) and any('gpt-5' in line.lower() or 'codex' in line.lower() for line in tail)
+    return any(line.lstrip().startswith('\u203a') for line in tail) and any('gpt-5' in line.lower() or 'codex' in line.lower() for line in tail)
 
 
 def is_idle_agy(text: str) -> bool:
@@ -183,23 +166,37 @@ def in_copy_mode(pane: dict[str, str]) -> bool:
     return pane.get('in_mode', '0') == '1'
 
 
+# Session split 2026-08-19: lane sessions belong to the Hwao/Tori coordinator
+# sessions, and their window names churn as platoons are recomposed. This monitor
+# may capture-read them (passive), but must never be the thing that types into
+# them — slash refreshes pick a pane outside these sessions (e.g. goru-agy:agy).
+PROTECTED_SLASH_SESSIONS = {'sextet-v2'}
+
+
+def is_slash_protected(pane: dict[str, str]) -> bool:
+    session = pane.get('target', '').split(':', 1)[0].lower()
+    return session in PROTECTED_SLASH_SESSIONS
+
+
 def choose_pane(panes: list[dict[str, str]], kind: str) -> dict[str, str] | None:
+    if kind not in {'agy', 'codex'}:
+        return None
     candidates = []
     for pane in panes:
-        if in_copy_mode(pane) or pane.get('dead') == '1':
+        if in_copy_mode(pane) or pane.get('dead') == '1' or is_slash_protected(pane):
             continue
         cmd = pane['command'].lower()
         target = pane['target'].lower()
         role = pane['role'].lower()
-        if kind == 'codex' and (cmd in {'node', 'codex'} or 'kun' in role or 'kun' in target):
-            candidates.append(pane)
         if kind == 'agy' and (cmd == 'agy' or 'goru' in role or 'goru' in target):
+            candidates.append(pane)
+        if kind == 'codex' and (cmd in {'node', 'codex'} or 'codex' in target):
             candidates.append(pane)
     for pane in candidates:
         text = capture_pane(pane['pane_id'], 80)
-        if kind == 'codex' and is_idle_codex(text):
-            return pane
         if kind == 'agy' and is_idle_agy(text):
+            return pane
+        if kind == 'codex' and is_idle_codex(text):
             return pane
     return None
 
@@ -208,12 +205,6 @@ def send_visible_command(pane_id: str, command: str, wait_seconds: float) -> str
     run(['tmux', 'send-keys', '-t', pane_id, command, 'C-m'])
     time.sleep(wait_seconds)
     text = capture_pane(pane_id, 220)
-    # Some Codex panes show the slash command in the composer before opening it;
-    # submit once if that exact state is visible.
-    if command == '/status' and re.search(r'^[›>]\s*/status\s*$', text, re.M):
-        run(['tmux', 'send-keys', '-t', pane_id, 'C-m'])
-        time.sleep(wait_seconds)
-        text = capture_pane(pane_id, 240)
     if command == '/usage':
         # Capture while the panel is visible, then return the pane to idle.
         run(['tmux', 'send-keys', '-t', pane_id, 'Escape'])
@@ -341,6 +332,7 @@ def limit_tone(limit: dict[str, Any]) -> str:
 
 
 def parse_codex_status(text: str) -> dict[str, Any] | None:
+    """Parse the Codex CLI /status panel (v0.146: weekly lines only, no 5h)."""
     idx = text.rfind('OpenAI Codex')
     if idx < 0:
         idx = text.rfind('/status')
@@ -357,17 +349,15 @@ def parse_codex_status(text: str) -> dict[str, Any] | None:
         block,
         re.IGNORECASE,
     )
-    ctx = re.search(r'Context window:\s+([0-9]+(?:\.[0-9]+)?)% left \(([^)]*)\)', block)
     if not five and not weekly:
         return None
     result: dict[str, Any] = {'raw_source': 'codex /status'}
     model = re.search(r'Model:\s+([A-Za-z0-9._-]+)', block, re.IGNORECASE)
     result['main_model'] = model.group(1) if model else 'Codex main'
-    if ctx:
-        left = float(ctx.group(1))
-        result['context_left_pct'] = left
-        result['context_used_pct'] = pct_used_from_left(left)
-        result['context_label'] = ctx.group(2)
+    account = re.search(r'Account:\s+(\S+)\s*(\(([^)]+)\))?', block)
+    if account:
+        result['account'] = account.group(1)
+        result['plan'] = account.group(3)
     if len(five) >= 1:
         left = float(five[0][0])
         result['main_5h_left_pct'] = left
@@ -378,11 +368,6 @@ def parse_codex_status(text: str) -> dict[str, Any] | None:
         result['main_weekly_left_pct'] = left
         result['main_weekly_used_pct'] = pct_used_from_left(left)
         result['main_weekly_reset'] = weekly[0][1] or None
-    if len(five) >= 2:
-        left = float(five[1][0])
-        result['spark_5h_left_pct'] = left
-        result['spark_5h_used_pct'] = pct_used_from_left(left)
-        result['spark_5h_reset'] = five[1][1] or None
     if len(weekly) >= 2:
         left = float(weekly[1][0])
         result['spark_weekly_left_pct'] = left
@@ -455,30 +440,42 @@ def parse_agy_usage(text: str) -> dict[str, Any] | None:
 
 
 def active_counts_and_context(panes: list[dict[str, str]]) -> dict[str, Any]:
-    counts = {'claude_fable_lana': 0, 'codex_kun': 0, 'gemini_goru': 0, 'tori_hermes': 0}
-    tori_context: list[float] = []
+    """Classify live panes onto the engine-named seat pool (reform 2026-08-19).
+
+    Seats: kimi (Kimi K3 on the Moonshot wallet, hermes CLIs), agy
+    (Antigravity/Gemini), gpt1-3 (hermes gpt-5.6-sol profiles), claude-seat +
+    the Fable coordinators (claude CLI). Window names carry the engine name;
+    legacy persona window names (kun/mir/tori/yui/lana/goru) are kept as
+    fallbacks until every session finishes renaming. Classification is
+    exclusive and command-first: the Directors window carries roles like
+    'Goru-director-live-view' on claude.exe panes, which substring-only
+    matching miscounted as a Gemini seat.
+    """
+    counts = {'claude_seats': 0, 'kimi_seats': 0, 'agy_seats': 0, 'gpt_seats': 0}
+    hermes_context: list[float] = []
     for pane in panes:
         if pane.get('dead') == '1':
             continue
         cmd = pane['command'].lower()
         target = pane['target'].lower()
         role = pane['role'].lower()
-        if cmd == 'claude.exe' or 'hwao' in role or 'lana' in role:
-            counts['claude_fable_lana'] += 1
-        if cmd in {'node', 'codex'} or 'kun' in role or 'kun' in target:
-            counts['codex_kun'] += 1
-        if cmd == 'agy' or 'goru' in role or 'goru' in target:
-            counts['gemini_goru'] += 1
-        if 'tori' in role or (cmd.startswith('python') and 'ge-' in target):
-            counts['tori_hermes'] += 1
+        window = target.split(':', 1)[-1].rsplit('.', 1)[0]
+        if cmd in {'claude', 'claude.exe'} or 'hwao' in role or 'lana' in role or 'lana' in window:
+            counts['claude_seats'] += 1
+        elif cmd == 'agy' or 'goru' in role or 'goru' in window:
+            counts['agy_seats'] += 1
+        elif cmd.startswith('python') and ('kimi' in window or 'kun' in role or 'miru' in role or 'kun' in window or 'mir' in window):
+            counts['kimi_seats'] += 1
+        elif cmd.startswith('python') and ('gpt' in window or 'tori' in role or 'yui' in role or 'tori' in window or 'yui' in window):
+            counts['gpt_seats'] += 1
             text = capture_pane(pane['pane_id'], 80)
             for line in text.splitlines():
                 if '│' in line and ('/' in line or 'gpt-' in line.lower() or 'claude' in line.lower()):
                     for m in re.finditer(r'([0-9]+(?:\.[0-9]+)?)%', line):
                         value = float(m.group(1))
                         if 0 <= value <= 100:
-                            tori_context.append(value)
-    return {'counts': counts, 'tori_context_max_used_pct': max(tori_context) if tori_context else None}
+                            hermes_context.append(value)
+    return {'counts': counts, 'gpt_context_max_used_pct': max(hermes_context) if hermes_context else None}
 
 
 def provider_index(gauges: list[dict[str, Any]], provider: str) -> int:
@@ -531,16 +528,15 @@ def flow_credits_gauge(gauges: list[dict[str, Any]]) -> None:
     g['tone'] = 'ok' if (pct or 0) > 25 else 'warn'
 
 
-def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: dict[str, Any] | None, telemetry: dict[str, Any], observed_at: str, slash_sources: dict[str, Any]) -> dict[str, Any]:
-    gauges = copy.deepcopy(canonical.get('provider_usage_gauges') or [])
+def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: dict[str, Any] | None, telemetry: dict[str, Any], observed_at: str, slash_sources: dict[str, Any]) -> dict[str, Any]:
+    gauges = migrate_legacy_gauges(copy.deepcopy(canonical.get('provider_usage_gauges') or []))
     counts = telemetry['counts']
 
     flow_credits_gauge(gauges)
-    kimi_wallet_gauge(gauges, observed_at)
 
-    i = provider_index(gauges, 'Claude / Fable / Lana')
+    i = provider_index(gauges, 'Claude / Fable + claude-seat')
     g = gauges[i]
-    g.setdefault('provider', 'Claude / Fable / Lana')
+    g.setdefault('provider', 'Claude / Fable + claude-seat')
     
     claude_data = fetch_claude_quota_via_oauth()
     if claude_data:
@@ -577,7 +573,7 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
             f'and all models combined at {display_pct(weekly_pct)} ({weekly_reset}). '
             'The binding constraint is the highest of these, not the combined total.'
         )
-        g['source_label'] = f'OAuth /api/oauth/usage fetched {observed_at}; active Claude panes: {counts["claude_fable_lana"]}.'
+        g['source_label'] = f'OAuth /api/oauth/usage fetched {observed_at}; active Claude panes: {counts["claude_seats"]}.'
         
         sub_gauges = [
             {'label': 'Fable 5h used', 'value_label': f'{display_pct(five_h_pct, "")}', 'fill_pct': five_h_pct, 'tone': tone_for_used(five_h_pct)},
@@ -623,40 +619,11 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
         g['status'] = 'Active panes live; approved OAuth usage read unavailable'
         g['detail'] = (
             'Approved read-only Claude OAuth usage check returned unavailable. '
-            f'Keeping the last visible Claude usage-panel percentages while live-monitoring {counts["claude_fable_lana"]} Claude/Hwao/Lana panes. '
+            f'Keeping the last visible Claude usage-panel percentages while live-monitoring {counts["claude_seats"]} Claude/Hwao/Lana panes. '
             'No token value was emitted and no billing, payment, or account mutation occurred.'
         )
-        g['source_label'] = f'Last visible Claude usage-panel values retained after approved OAuth usage read returned unavailable at {observed_at}; active Claude panes: {counts["claude_fable_lana"]}.'
+        g['source_label'] = f'Last visible Claude usage-panel values retained after approved OAuth usage read returned unavailable at {observed_at}; active Claude panes: {counts["claude_seats"]}.'
     gauges[i] = g
-
-    if codex:
-        main_model = codex.get('main_model') or 'Codex main'
-        main_5h = codex.get('main_5h_used_pct')
-        main_weekly = codex.get('main_weekly_used_pct')
-        spark_5h = codex.get('spark_5h_used_pct')
-        spark_weekly = codex.get('spark_weekly_used_pct')
-        main_fill = max([v for v in [main_5h, main_weekly] if v is not None], default=None)
-        i = provider_index(gauges, 'Codex (seat unassigned)')
-        gauges[i] = {
-            'provider': 'Codex (seat unassigned)',
-            'kind': 'live visible Codex /status used percent',
-            'value_label': f'{main_model} {display_pct(main_5h)} 5h · {display_pct(main_weekly)} weekly',
-            'fill_pct': main_fill,
-            'tone': tone_for_used(main_fill),
-            'status': 'Live slash-command refresh' if slash_sources.get('codex_refreshed') else 'Live pane scan from latest visible /status',
-            'detail': (
-                f'Codex /status reports {main_model} 5h {display_pct(codex.get("main_5h_left_pct"), "left")} '
-                f'({fmt_reset_remained(codex.get("main_5h_reset"))}) and weekly {display_pct(codex.get("main_weekly_left_pct"), "left")} '
-                f'({fmt_reset_remained(codex.get("main_weekly_reset"))}). Codex itself warns these limits may be stale; this monitor refreshes only via visible idle-pane /status, not the web billing/settings page.'
-            ),
-            'source_label': f'Idle Codex pane {slash_sources.get("codex_pane", "visible pane")} /status observed {observed_at}; active Kun/Codex panes: {counts["codex_kun"]}.',
-            'sub_gauges': [
-                {'label': f'{main_model} 5h used', 'value_label': f'{display_pct(main_5h)}', 'fill_pct': main_5h, 'tone': tone_for_used(main_5h)},
-                {'label': f'{main_model} weekly used', 'value_label': f'{display_pct(main_weekly)} · {fmt_reset_remained(codex.get("main_weekly_reset"))}', 'fill_pct': main_weekly, 'tone': tone_for_used(main_weekly)},
-                {'label': 'Codex Spark 5h used', 'value_label': f'{display_pct(spark_5h)}', 'fill_pct': spark_5h, 'tone': tone_for_used(spark_5h)},
-                {'label': 'Codex Spark weekly used', 'value_label': f'{display_pct(spark_weekly)} · {fmt_reset_remained(codex.get("spark_weekly_reset"))}', 'fill_pct': spark_weekly, 'tone': tone_for_used(spark_weekly)},
-            ],
-        }
 
     if agy:
         gw = agy.get('gemini_weekly') or {}
@@ -664,9 +631,9 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
         aw = agy.get('ag_claude_gpt_weekly') or {}
         a5 = agy.get('ag_claude_gpt_5h') or {}
         main_fill = max([v for v in [gw.get('used_pct'), g5.get('used_pct')] if v is not None], default=None)
-        i = provider_index(gauges, 'Antigravity / Gemini')
+        i = provider_index(gauges, 'Antigravity / agy (Gemini)')
         gauges[i] = {
-            'provider': 'Antigravity / Gemini',
+            'provider': 'Antigravity / agy (Gemini)',
             'kind': 'live visible Antigravity /usage quota signal (agent-request pool)',
             'value_label': f'Gemini {limit_usage_label(gw)} weekly · {limit_usage_label(g5)} 5h',
             'fill_pct': main_fill,
@@ -679,13 +646,46 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
                 f'{gemini_app_usage.PROVIDER}: spending one does not draw down the other. '
                 'Visible app quota panel only; no Gemini/GCP/API/billing/credits surface was used.'
             ),
-            'source_label': f'Idle Antigravity pane {slash_sources.get("agy_pane", "visible pane")} /usage observed {observed_at}; active Goru/Gemini panes: {counts["gemini_goru"]}.',
+            'source_label': f'Idle Antigravity pane {slash_sources.get("agy_pane", "visible pane")} /usage observed {observed_at}; active agy panes: {counts["agy_seats"]}.',
             'sub_gauges': [
                 {'label': 'Gemini weekly used', 'value_label': limit_value_label(gw, include_reset=True), 'fill_pct': gw.get('used_pct'), 'tone': limit_tone(gw)},
                 {'label': 'Gemini 5h used', 'value_label': limit_value_label(g5), 'fill_pct': g5.get('used_pct'), 'tone': limit_tone(g5)},
                 {'label': 'Antigravity Claude/GPT weekly used', 'value_label': limit_value_label(aw), 'fill_pct': aw.get('used_pct'), 'tone': limit_tone(aw)},
                 {'label': 'Antigravity Claude/GPT 5h used', 'value_label': limit_value_label(a5), 'fill_pct': a5.get('used_pct'), 'tone': limit_tone(a5)},
             ],
+        }
+
+    if codex:
+        main_model = codex.get('main_model') or 'Codex main'
+        main_weekly = codex.get('main_weekly_used_pct')
+        main_5h = codex.get('main_5h_used_pct')
+        spark_weekly = codex.get('spark_weekly_used_pct')
+        main_fill = max([v for v in [main_5h, main_weekly] if v is not None], default=None)
+        account = codex.get('account') or 'account not shown'
+        plan = codex.get('plan') or 'plan not shown'
+        i = provider_index(gauges, 'Codex / gpt seats (ChatGPT Pro)')
+        sub_gauges = [
+            {'label': f'{main_model} weekly used', 'value_label': f'{display_pct(main_weekly)} · {fmt_reset_remained(codex.get("main_weekly_reset"))}', 'fill_pct': main_weekly, 'tone': tone_for_used(main_weekly)},
+            {'label': 'Codex Spark weekly used', 'value_label': f'{display_pct(spark_weekly)} · {fmt_reset_remained(codex.get("spark_weekly_reset"))}', 'fill_pct': spark_weekly, 'tone': tone_for_used(spark_weekly)},
+        ]
+        if main_5h is not None:
+            sub_gauges.insert(0, {'label': f'{main_model} 5h used', 'value_label': f'{display_pct(main_5h)}', 'fill_pct': main_5h, 'tone': tone_for_used(main_5h)})
+        gauges[i] = {
+            'provider': 'Codex / gpt seats (ChatGPT Pro)',
+            'kind': 'live visible Codex CLI /status used percent (account-level)',
+            'value_label': f'{main_model} {display_pct(main_weekly)} weekly',
+            'fill_pct': main_fill,
+            'tone': tone_for_used(main_fill),
+            'status': 'Live slash-command refresh' if slash_sources.get('codex_refreshed') else 'Live pane scan from latest visible /status',
+            'detail': (
+                f'Codex CLI /status for {account} ({plan}) reports {main_model} weekly '
+                f'{display_pct(codex.get("main_weekly_left_pct"), "left")} '
+                f'({fmt_reset_remained(codex.get("main_weekly_reset"))}). These are the account-level '
+                'ChatGPT limits the gpt1-3 hermes seats draw on (shared Codex OAuth credential); hermes itself '
+                'exposes no rate-limit reader, so the dedicated idle Codex CLI window is the meter.'
+            ),
+            'source_label': f'Idle Codex CLI pane {slash_sources.get("codex_pane", "visible pane")} /status observed {observed_at}.',
+            'sub_gauges': sub_gauges,
         }
 
     app_gauge = gemini_app_gauge(observed_at)
@@ -697,35 +697,23 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
     gauges[i] = nous_gauge
 
     moonshot_gauge = moonshot_balance_usage.fetch_gauge(observed_at)
+    moonshot_gauge['source_label'] = (moonshot_gauge.get('source_label') or '').rstrip() + (
+        f' Active kimi seats: {counts["kimi_seats"]}.'
+    )
     i = provider_index(gauges, moonshot_balance_usage.PROVIDER)
     gauges[i] = moonshot_gauge
 
-    # Crew reorg 2026-08-04: seats retired but the SUBSCRIPTIONS remain paid resources —
-    # gauges stay visible under provider-centric names; one-time migration of old keys,
-    # dedupe keeps the freshest entry per provider.
-    RENAMES = {'Codex / Kun': 'Codex (seat unassigned)',
-               'Gemini / Goru': 'Antigravity / Gemini'}
-    for g in gauges:
-        old = g.get('provider')
-        if old in RENAMES:
-            g['provider'] = RENAMES[old]
-            g['status'] = (g.get('status') or '') + ' · seat retired 2026-08-04, subscription still tracked'
-    seen = {}
-    for g in gauges:
-        seen[g.get('provider')] = g
-    gauges = list(seen.values())
-
-    tori_pct = telemetry.get('tori_context_max_used_pct')
-    i = provider_index(gauges, 'Tori / Hermes')
+    gpt_pct = telemetry.get('gpt_context_max_used_pct')
+    i = provider_index(gauges, 'Hermes / gpt seats (context)')
     gauges[i] = {
-        'provider': 'Tori / Hermes',
-        'kind': 'live local context used gauges only',
-        'value_label': f'up to {display_pct(tori_pct, "context used")}' if tori_pct is not None else 'context percent not visible',
-        'fill_pct': tori_pct,
-        'tone': tone_for_used(tori_pct),
+        'provider': 'Hermes / gpt seats (context)',
+        'kind': 'live local context used gauges only (gpt1-3 hermes profiles)',
+        'value_label': f'up to {display_pct(gpt_pct, "context used")}' if gpt_pct is not None else 'context percent not visible',
+        'fill_pct': gpt_pct,
+        'tone': tone_for_used(gpt_pct),
         'status': 'Live tmux status-line scan',
-        'detail': 'This is local context-window usage from visible Tori/Hermes panes, not a provider subscription quota or billing gauge.',
-        'source_label': f'tmux pane scan refreshed {observed_at}; active Tori/Hermes panes: {counts["tori_hermes"]}.',
+        'detail': 'This is local context-window usage from visible gpt-seat hermes panes, not a provider subscription quota or billing gauge. These seats authenticate via Codex OAuth (ChatGPT subscription), whose 5h/weekly limits have no safe local reader yet; Nous credits fund TTS and other gateway services, not these seats.',
+        'source_label': f'tmux pane scan refreshed {observed_at}; active gpt-seat hermes panes: {counts["gpt_seats"]}.',
     }
 
     canonical['provider_usage_gauges'] = gauges
@@ -736,10 +724,11 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
         'browser_poll_seconds': 5,
         'local_refresh_seconds': slash_sources.get('local_refresh_seconds'),
         'slash_refresh_seconds': slash_sources.get('slash_refresh_seconds'),
-        'codex_refreshed_this_pass': bool(slash_sources.get('codex_refreshed')),
         'agy_refreshed_this_pass': bool(slash_sources.get('agy_refreshed')),
-        'codex_source_pane': slash_sources.get('codex_pane'),
         'agy_source_pane': slash_sources.get('agy_pane'),
+        'codex_refreshed_this_pass': bool(slash_sources.get('codex_refreshed')),
+        'codex_source_pane': slash_sources.get('codex_pane'),
+        'slash_protected_sessions': sorted(PROTECTED_SLASH_SESSIONS),
         'active_pane_counts': counts,
         'source_policy': (
             'Visible pane/CLI status, plus one validated local gemini.google.com/usage drop-file. '
@@ -749,8 +738,8 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
             'no token value enters this monitor. No billing mutation, purchase, payment, GCP, or provider-account write occurs.'
         ),
         'limitations': [
-            'Claude/Fable exact subscription usage is retained from the last visible usage-panel reading because safe local Claude CLI does not expose a non-interactive fresh percent.',
-            'Codex /status warns limits may be stale; this monitor refreshes through an idle visible pane when possible.',
+            'Claude/Fable usage comes from the read-only OAuth usage endpoint; when that read is unavailable the last visible usage-panel percentages are retained rather than refreshed.',
+            'Slash refreshes never target panes inside the coordinator lane sessions (sextet-v2); those panes are capture-read only.',
             'Gemini/Goru comes from Antigravity /usage only, not Gemini/GCP billing or API calls. It tracks the Antigravity agent-request pool.',
             f'{gemini_app_usage.PROVIDER} tracks the separate consumer app compute meter. It has no API, so it is refreshed by an operator capture or the high-confidence Chrome usage-page crawler; '
             f'the crawler abstains on weak signals, and readings older than {gemini_app_usage.STALE_AFTER_SECONDS // 3600}h are reported as unknown rather than shown as current.',
@@ -793,18 +782,9 @@ def render_all(canonical: dict[str, Any], reason: str) -> dict[str, Any]:
 def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refresh_seconds: int | None) -> tuple[dict[str, Any] | None, dict[str, Any] | None, dict[str, Any], dict[str, Any]]:
     panes = tmux_panes()
     slash_sources: dict[str, Any] = {'local_refresh_seconds': local_refresh_seconds, 'slash_refresh_seconds': slash_refresh_seconds}
-    codex_texts = []
-    agy_texts = []
-    codex = None
     agy = None
+    codex = None
     if refresh_slash:
-        codex_pane = choose_pane(panes, 'codex')
-        if codex_pane:
-            text = send_visible_command(codex_pane['pane_id'], '/status', 4)
-            codex = parse_codex_status(text)
-            if codex:
-                slash_sources['codex_refreshed'] = True
-                slash_sources['codex_pane'] = codex_pane['pane_id']
         agy_pane = choose_pane(panes, 'agy')
         if agy_pane:
             text = send_visible_command(agy_pane['pane_id'], '/usage', 5)
@@ -812,45 +792,44 @@ def collect(refresh_slash: bool, local_refresh_seconds: int | None, slash_refres
             if agy:
                 slash_sources['agy_refreshed'] = True
                 slash_sources['agy_pane'] = agy_pane['pane_id']
+        codex_pane = choose_pane(panes, 'codex')
+        if codex_pane:
+            text = send_visible_command(codex_pane['pane_id'], '/status', 4)
+            codex = parse_codex_status(text)
+            if codex:
+                slash_sources['codex_refreshed'] = True
+                slash_sources['codex_pane'] = codex_pane['pane_id']
     for pane in panes:
         if pane.get('dead') == '1':
             continue
         cmd = pane['command'].lower()
         role = pane['role'].lower()
         target = pane['target'].lower()
-        if cmd in {'node', 'codex'} or 'kun' in role or 'kun' in target:
-            codex_texts.append(capture_pane(pane['pane_id'], 500))
-        if cmd == 'agy' or 'goru' in role or 'goru' in target:
-            agy_texts.append(capture_pane(pane['pane_id'], 500))
-    if codex is None:
-        for text in codex_texts:
-            parsed = parse_codex_status(text)
-            if parsed:
-                codex = parsed
-                break
-    if agy is None:
-        for text in agy_texts:
-            parsed = parse_agy_usage(text)
+        if agy is None and (cmd == 'agy' or 'goru' in role or 'goru' in target):
+            parsed = parse_agy_usage(capture_pane(pane['pane_id'], 500))
             if parsed:
                 agy = parsed
-                break
+        if codex is None and (cmd in {'node', 'codex'} or 'codex' in target):
+            parsed = parse_codex_status(capture_pane(pane['pane_id'], 500))
+            if parsed:
+                codex = parsed
     telemetry = active_counts_and_context(panes)
-    return codex, agy, telemetry, slash_sources
+    return agy, codex, telemetry, slash_sources
 
 
 def update_once(refresh_slash: bool, render: bool, local_refresh_seconds: int | None, slash_refresh_seconds: int | None) -> dict[str, Any]:
     observed_at = utc_now()
     canonical = load_canonical()
     backup_canonical(canonical, observed_at)
-    codex, agy, telemetry, slash_sources = collect(refresh_slash, local_refresh_seconds, slash_refresh_seconds)
-    canonical = update_gauges(canonical, codex, agy, telemetry, observed_at, slash_sources)
+    agy, codex, telemetry, slash_sources = collect(refresh_slash, local_refresh_seconds, slash_refresh_seconds)
+    canonical = update_gauges(canonical, agy, codex, telemetry, observed_at, slash_sources)
     result = {
         'marker': MARKER,
         'observed_at_utc': observed_at,
-        'codex_observed': bool(codex),
         'agy_observed': bool(agy),
+        'codex_observed': bool(codex),
         'active_pane_counts': telemetry['counts'],
-        'tori_context_max_used_pct': telemetry.get('tori_context_max_used_pct'),
+        'gpt_context_max_used_pct': telemetry.get('gpt_context_max_used_pct'),
         'rendered': False,
     }
     if render:

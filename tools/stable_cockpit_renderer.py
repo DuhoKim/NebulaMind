@@ -145,7 +145,7 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
         return []
     return [
         {
-            'provider': 'Claude / Fable / Lana',
+            'provider': 'Claude / Fable + claude-seat',
             'kind': 'plan-limit notice',
             'value_label': '50% weekly cap visible',
             'fill_pct': 50,
@@ -154,10 +154,10 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
             'source_label': limits.get('source', 'pane-observed snapshot'),
         },
         {
-            # Codex lane retired 2026-08; Kun (and Miru) gate on the Kimi K3 direct
+            # Codex lane retired 2026-08; the kimi seats gate on the Kimi K3 direct
             # Moonshot key. The wallet number is refreshed by the monitor from the
             # local balance cache written by tools/moonshot_balance_usage.py.
-            'provider': 'Kimi K3 / Kun+Miru (Moonshot)',
+            'provider': 'Moonshot / kimi (K3 direct)',
             'kind': 'dollar wallet',
             'value_label': 'wallet balance',
             'fill_pct': None,
@@ -166,7 +166,7 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
             'source_label': limits.get('source', 'local balance cache'),
         },
         {
-            'provider': 'Gemini / Goru',
+            'provider': 'Antigravity / agy (Gemini)',
             'kind': 'quota not visible',
             'value_label': 'numeric quota not visible',
             'fill_pct': None,
@@ -175,7 +175,7 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
             'source_label': limits.get('source', 'pane-observed snapshot'),
         },
         {
-            'provider': 'Tori / Hermes',
+            'provider': 'Hermes / gpt seats (context)',
             'kind': 'local context gauge',
             'value_label': 'context gauge only',
             'fill_pct': None,

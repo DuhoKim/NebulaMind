@@ -69,12 +69,29 @@ Within each group
 """
 
 
-CURRENT_CODEX_STATUS = """
->_ OpenAI Codex (v0.146.0)
-│  Model:                              gpt-5.6-sol (reasoning low)       │
-│  Weekly limit:                       [██████████████████░░] 92% left   │
-│  GPT-5.3-Codex-Spark Weekly limit:   [████████████████████] 100% left  │
+CODEX_STATUS_V0146 = """
+\u256d\u2500\u2500\u2500\u2500\u2500\u256e
+\u2502  >_ OpenAI Codex (v0.146.0)
+\u2502  Model:                              gpt-5.6-sol (reasoning low, summaries auto)
+\u2502  Account:                            duhokim81@gmail.com (Pro)
+\u2502  Weekly limit:                       [\u2588\u2588\u2588\u2591\u2591] 76% left (resets 13:18 on 20 Aug)
+\u2502  GPT-5.3-Codex-Spark Weekly limit:   [\u2588\u2588\u2588\u2588\u2588] 100% left (resets 17:10 on 26 Aug)
+\u2570\u2500\u2500\u2500\u2500\u2500\u256f
 """
+
+
+def test_codex_v0146_status_panel_is_parsed():
+    parsed = monitor.parse_codex_status(CODEX_STATUS_V0146)
+
+    assert parsed is not None
+    assert parsed["main_model"] == "gpt-5.6-sol"
+    assert parsed["account"] == "duhokim81@gmail.com"
+    assert parsed["plan"] == "Pro"
+    assert parsed["main_weekly_left_pct"] == 76.0
+    assert parsed["main_weekly_used_pct"] == 24.0
+    assert parsed["main_weekly_reset"] == "13:18 on 20 Aug"
+    assert parsed["spark_weekly_left_pct"] == 100.0
+    assert "main_5h_left_pct" not in parsed
 
 
 def test_quota_available_does_not_invent_a_numeric_percentage():
@@ -107,75 +124,96 @@ def test_precise_bar_values_override_rounded_remaining_labels():
     assert monitor.limit_value_label(parsed["gemini_5h"]) == "0.03% used · 99.97% remaining"
 
 
-def test_current_codex_status_without_reset_labels_is_parsed():
-    parsed = monitor.parse_codex_status(CURRENT_CODEX_STATUS)
-
-    assert parsed is not None
-    assert parsed["main_model"] == "gpt-5.6-sol"
-    assert parsed["main_weekly_left_pct"] == 92.0
-    assert parsed["main_weekly_used_pct"] == 8.0
-    assert parsed["main_weekly_reset"] is None
-    assert parsed["spark_weekly_left_pct"] == 100.0
-    assert parsed["spark_weekly_used_pct"] == 0.0
-    assert parsed["spark_weekly_reset"] is None
-
-
-def test_dead_codex_pane_is_never_treated_as_idle():
-    dead_tail = CURRENT_CODEX_STATUS + "\n›\nPane is dead (status 0)\n"
-
-    assert monitor.is_idle_codex(dead_tail) is False
-
-
-def test_dead_codex_scrollback_is_not_used_as_a_fallback(monkeypatch):
-    panes = [
-        {"pane_id": "%dead", "target": "kun", "command": "node", "role": "Kun", "in_mode": "0", "dead": "1"},
-    ]
-    monkeypatch.setattr(monitor, "tmux_panes", lambda: panes)
-    monkeypatch.setattr(monitor, "capture_pane", lambda pane_id, lines=500: CURRENT_CODEX_STATUS)
-
-    codex, _, telemetry, _ = monitor.collect(False, 60, 300)
-
-    assert codex is None
-    assert telemetry["counts"]["codex_kun"] == 0
-
-
 def test_explicit_slash_refresh_wins_over_stale_scrollback(monkeypatch):
-    stale_codex = CURRENT_CODEX_STATUS.replace("92% left", "99% left")
     fresh_agy = PRECISE_USAGE.replace("100.00%", "99.18%", 1).replace("99.97%", "97.81%", 1)
     stale_agy = PRECISE_USAGE
     panes = [
-        {"pane_id": "%codex", "target": "codex", "command": "codex", "role": "Kun", "in_mode": "0", "dead": "0"},
-        {"pane_id": "%agy", "target": "agy", "command": "agy", "role": "Goru", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%agy", "target": "goru-agy:agy.0", "command": "agy", "role": "Goru", "in_mode": "0", "dead": "0"},
     ]
 
     monkeypatch.setattr(monitor, "tmux_panes", lambda: panes)
-    monkeypatch.setattr(
-        monitor,
-        "choose_pane",
-        lambda _panes, kind: panes[0] if kind == "codex" else panes[1],
-    )
+    monkeypatch.setattr(monitor, "choose_pane", lambda _panes, kind: panes[0])
     monkeypatch.setattr(
         monitor,
         "send_visible_command",
-        lambda pane_id, command, wait: CURRENT_CODEX_STATUS if command == "/status" else fresh_agy,
+        lambda pane_id, command, wait: fresh_agy,
     )
-    monkeypatch.setattr(
-        monitor,
-        "capture_pane",
-        lambda pane_id, lines=500: stale_codex if pane_id == "%codex" else stale_agy,
-    )
+    monkeypatch.setattr(monitor, "capture_pane", lambda pane_id, lines=500: stale_agy)
     monkeypatch.setattr(
         monitor,
         "active_counts_and_context",
-        lambda _panes: {"counts": {}, "tori_context_max_used_pct": None},
+        lambda _panes: {"counts": {}, "gpt_context_max_used_pct": None},
     )
 
-    codex, agy, _, sources = monitor.collect(True, 60, 300)
+    agy, _codex, _, sources = monitor.collect(True, 60, 300)
 
-    assert codex is not None and codex["main_weekly_used_pct"] == 8.0
     assert agy is not None and agy["gemini_weekly"]["left_pct"] == 99.18
-    assert sources["codex_refreshed"] is True
     assert sources["agy_refreshed"] is True
+
+
+def test_scrollback_scan_still_reads_agy_without_slash_refresh(monkeypatch):
+    panes = [
+        {"pane_id": "%agy", "target": "sextet-v2:goru.0", "command": "agy", "role": "", "in_mode": "0", "dead": "0"},
+    ]
+    monkeypatch.setattr(monitor, "tmux_panes", lambda: panes)
+    monkeypatch.setattr(monitor, "capture_pane", lambda pane_id, lines=500: PRECISE_USAGE)
+
+    agy, _codex, telemetry, sources = monitor.collect(False, 60, 300)
+
+    assert agy is not None and agy["gemini_weekly"]["left_pct"] == 100.0
+    assert sources.get("agy_refreshed") is None
+    assert telemetry["counts"]["agy_seats"] == 1
+
+
+def test_roster_counts_classify_directors_and_hermes_seats(monkeypatch):
+    panes = [
+        # Directors window: claude.exe panes whose roles name other seats must
+        # still count as Claude seats, not Gemini/Tori ones.
+        {"pane_id": "%1", "target": "ge-mastermind:Directors.0", "command": "claude.exe", "role": "Hwao-director", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%2", "target": "ge-mastermind:Directors.1", "command": "claude.exe", "role": "Goru-director-live-view", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%3", "target": "ge-mastermind:Directors.2", "command": "claude.exe", "role": "Tori-director", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%9", "target": "sextet-v2:p0-lana.0", "command": "claude.exe", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%6", "target": "sextet-v2:goru.0", "command": "agy", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%7", "target": "sextet-v2:kun.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%14", "target": "sextet-v2:mir1.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%8", "target": "sextet-v2:tori.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        # gpt1's legacy window (yui) exists but no hermes profile is running: not an active seat.
+        {"pane_id": "%4", "target": "sextet-v2:yui.0", "command": "zsh", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%99", "target": "sextet-v2:kun2.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "1"},
+    ]
+    monkeypatch.setattr(monitor, "capture_pane", lambda pane_id, lines=500: "")
+
+    telemetry = monitor.active_counts_and_context(panes)
+
+    assert telemetry["counts"] == {
+        "claude_seats": 4,
+        "kimi_seats": 2,
+        "agy_seats": 1,
+        "gpt_seats": 1,
+    }
+
+
+def test_roster_counts_recognize_engine_named_windows(monkeypatch):
+    """Windows renamed to the 2026-08-19 engine scheme (kimi1, gpt2, cseat1...)."""
+    panes = [
+        {"pane_id": "%9", "target": "sextet-v2:cseat1.0", "command": "claude.exe", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%10", "target": "sextet-v2:agy.0", "command": "agy", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%14", "target": "sextet-v2:kimi1.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%7", "target": "sextet-v2:old-kimi-a.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        {"pane_id": "%8", "target": "sextet-v2:gpt2.0", "command": "python3.11", "role": "", "in_mode": "0", "dead": "0"},
+        # gpt1 window with a bare shell: seat exists but no hermes profile running.
+        {"pane_id": "%4", "target": "sextet-v2:gpt1.0", "command": "zsh", "role": "", "in_mode": "0", "dead": "0"},
+    ]
+    monkeypatch.setattr(monitor, "capture_pane", lambda pane_id, lines=500: "")
+
+    telemetry = monitor.active_counts_and_context(panes)
+
+    assert telemetry["counts"] == {
+        "claude_seats": 1,
+        "kimi_seats": 2,
+        "agy_seats": 1,
+        "gpt_seats": 1,
+    }
 
 
 def test_available_quota_card_withholds_fill_and_names_missing_measurement(monkeypatch):
@@ -206,16 +244,16 @@ def test_available_quota_card_withholds_fill_and_names_missing_measurement(monke
 
     canonical = monitor.update_gauges(
         {},
-        codex=None,
         agy=parsed,
+        codex=None,
         telemetry={
             "counts": {
-                "claude_fable_lana": 0,
-                "codex_kun": 0,
-                "gemini_goru": 2,
-                "tori_hermes": 0,
+                "claude_seats": 0,
+                "kimi_seats": 0,
+                "agy_seats": 2,
+                "gpt_seats": 0,
             },
-            "tori_context_max_used_pct": None,
+            "gpt_context_max_used_pct": None,
         },
         observed_at="2026-07-21T09:15:27Z",
         slash_sources={"agy_refreshed": True, "agy_pane": "%249"},
@@ -223,8 +261,8 @@ def test_available_quota_card_withholds_fill_and_names_missing_measurement(monke
     card = next(
         gauge
         for gauge in canonical["provider_usage_gauges"]
-        # renamed by the 2026-08-04 crew reorg; the subscription is still tracked
-        if gauge["provider"] == "Antigravity / Gemini"
+        # engine-named by the 2026-08-19 naming reform
+        if gauge["provider"] == "Antigravity / agy (Gemini)"
     )
     weekly = next(
         gauge for gauge in card["sub_gauges"] if gauge["label"] == "Gemini weekly used"
@@ -239,7 +277,7 @@ def test_available_quota_card_withholds_fill_and_names_missing_measurement(monke
     claude_card = next(
         gauge
         for gauge in canonical["provider_usage_gauges"]
-        if gauge["provider"] == "Claude / Fable / Lana"
+        if gauge["provider"] == "Claude / Fable + claude-seat"
     )
     assert claude_card["kind"] == "Claude last-visible quota fallback"
     assert claude_card["status"] == "Active panes live; approved OAuth usage read unavailable"

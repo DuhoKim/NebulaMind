@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any
 
 SCHEMA = "NM_MOONSHOT_BALANCE_V1"
-PROVIDER = "Moonshot / Kun (Kimi K3)"
+PROVIDER = "Moonshot / kimi (K3 direct)"
 POOL_ID = "moonshot_kun_kimi_k3_wallet"
 KEY_PATH = Path.home() / ".hermes/moonshot.key"
 HWM_PATH = Path.home() / ".hermes/moonshot_balance_hwm.json"
@@ -123,7 +123,7 @@ def fetch_gauge(observed_at: str) -> dict[str, Any]:
             f"Moonshot balance: ${avail:.2f} available "
             f"(cash {_usd_or_unknown(cash)}, voucher {_usd_or_unknown(voucher)}); "
             f"peak observed ${hwm:.2f}. Kimi K3 pricing $3/M in · $15/M out · $0.30/M cache-hit. "
-            "Kun's review one-shots run on this key; Nous route retired for Kun."
+            "kimi-seat one-shots run on this key (personas retired 2026-08-19); Nous route not used for kimi."
         ),
         "source_label": f"api.moonshot.ai/v1/users/me/balance fetched {observed_at}.",
     }

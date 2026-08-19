@@ -1081,6 +1081,12 @@ def _tidy_detail(provider: Any, text: Any) -> Any:
 
 
 _PROVIDER_CARD_FRESHNESS_RULES = {
+    # naming reform 2026-08-19: engine-named cards; legacy keys kept so cards
+    # rendered from an older canonical still get freshness bounds.
+    "Claude / Fable + claude-seat": 3600,
+    "Hermes / gpt seats (context)": 3600,
+    "Moonshot / kimi (K3 direct)": 3600,
+    "Antigravity / agy (Gemini)": 3600,
     "Claude / Fable / Lana": 3600,
     "Gemini app / consumer": 3600,
     "Moonshot / Kun (Kimi K3)": 3600,
@@ -1413,7 +1419,7 @@ def canonicalize_moonshot_wallet(cards: List[Dict[str, Any]]) -> List[Dict[str, 
             index
             for index, card in enumerate(out)
             if card.get("pool_id") == MOONSHOT_POOL_ID
-            or card.get("name") == "Moonshot / Kun (Kimi K3)"
+            or card.get("name") in {"Moonshot / kimi (K3 direct)", "Moonshot / Kun (Kimi K3)"}
         ),
         None,
     )
@@ -1421,7 +1427,7 @@ def canonicalize_moonshot_wallet(cards: List[Dict[str, Any]]) -> List[Dict[str, 
     if wallet_index is None:
         out.append({
             "pool_id": MOONSHOT_POOL_ID,
-            "name": "Moonshot / Kun (Kimi K3)",
+            "name": "Moonshot / kimi (K3 direct)",
             "kind": "Moonshot direct-key dollar balance (read-only)",
             "classification": "UNAVAILABLE / UNKNOWN",
             "freshness_classification": "UNAVAILABLE / UNKNOWN",
@@ -1711,11 +1717,12 @@ def build_public_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any] | None
     observed_age = age_seconds(observed_at)
     def _keep_gauge(g: Dict[str, Any]) -> bool:
         # Drop cards that aren't real provider quotas, per operator preference:
-        # the Flow/Veo credit-planning card and the Tori/Hermes context-window card.
+        # the Flow/Veo credit-planning card and the hermes context-window card
+        # (named "Tori / Hermes" before the 2026-08-19 naming reform).
         prov = (g.get("provider") or "").strip().lower()
         if "veo" in prov or "flow" in prov:
             return False
-        return prov != "tori / hermes"
+        return prov not in {"tori / hermes", "hermes / gpt seats (context)"}
     public_cards = [public_gauge_card(g) for g in gauges if isinstance(g, dict) and _keep_gauge(g)]
     public_cards = canonicalize_moonshot_wallet(public_cards)
     flow_card = flow_credit_card()   # re-added: Flow/Veo monthly credit pool
@@ -1827,7 +1834,7 @@ def build_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any]:
 
     cards = [
         {
-            "name": "Hermes / Tori",
+            "name": "Hermes CLI / local sessions",
             "kind": "local-analytics",
             "status": "measured" if insights_cmd.get("ok") else "unavailable",
             "percent": None,
@@ -1839,7 +1846,7 @@ def build_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any]:
             "lanes_total": lanes["hermes"]["total"],
         },
         {
-            "name": "Claude Code / Hwao+Lana",
+            "name": "Claude Code / Fable + claude-seat",
             "kind": "subscription-lane",
             "status": "authenticated" if auth_counts.get("anthropic", 0) else "unknown",
             "percent": None,
@@ -1898,7 +1905,7 @@ KIMI_BALANCE_CACHE = Path("/Users/duhokim/HermesOps/private-state/kimi-direct-ba
 
 
 def kimi_wallet_card() -> Dict[str, Any]:
-    """Kun+Miru run on the Kimi K3 direct Moonshot key (Codex lane retired 2026-08).
+    """The kimi seats run on the Kimi K3 direct Moonshot key (Codex lane retired 2026-08).
 
     Reads only the local balance cache written by tools/moonshot_balance_usage.py;
     shows a dollar wallet with its capture time, never a guessed quota percent.
@@ -1915,7 +1922,7 @@ def kimi_wallet_card() -> Dict[str, Any]:
     if isinstance(peak, (int, float)) and isinstance(bal, (int, float)):
         detail += f" · peak observed ${peak:.2f}"
     return {
-        "name": "Kun+Miru / Kimi K3 (Moonshot)",
+        "name": "Moonshot / kimi (K3 direct)",
         "kind": "wallet-lane",
         "status": "balance" if isinstance(bal, (int, float)) else "unknown",
         "percent": None,
@@ -2495,7 +2502,7 @@ function renderQuotaGlance(u) {
   const target = document.getElementById('quota-glance');
   if (!target) return;
   const cards = u?.cards || [];
-  const preferred = ['Claude / Fable / Lana', 'Codex / Kun', 'Gemini / Goru', 'Kimi / Moonshot direct API'];
+  const preferred = ['Claude / Fable + claude-seat', 'Antigravity / agy (Gemini)', 'Moonshot / kimi (K3 direct)', 'Claude / Fable / Lana', 'Codex / Kun', 'Gemini / Goru', 'Kimi / Moonshot direct API'];
   const primary = preferred.map(name => cards.find(card => card.name === name)).filter(Boolean);
   const rendered = primary.map(card => {
     const pct = typeof card.percent === 'number' && Number.isFinite(card.percent) ? card.percent : null;
