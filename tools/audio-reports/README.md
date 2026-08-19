@@ -17,6 +17,22 @@ OPS session owns. Deploy = copy the file back to HermesOps/scripts.
 Not mirrored (unchanged, pre-existing): `nm_say.py` (gateway TTS shim),
 `nm_audio_index.py` (archive builder), `nm_audio_route.sh` (machine detector).
 
-Listening: leave https://duho-macstudio.taila27502.ts.net/reports/status-audio/listen.html
-open and press "Start listening" once — every new reading then auto-plays,
-queueing behind one already in progress. The Studio speakers always play.
+## Listening
+
+Both machines auto-play natively — no browser needed:
+
+- **Studio**: `nm_status_say.sh` afplays each reading directly.
+- **MacBook**: `nm_listen_daemon.sh` runs as LaunchAgent
+  `net.nebulamind.status-listener` (RunAtLoad + KeepAlive; installed via SSH,
+  Duho-authorized 2026-08-19). It polls `latest.txt` every 8 s and afplays new
+  readings; first poll after start only arms, so old readings never replay.
+  Live copies: `~/.local/bin/nm_listen_daemon.sh` +
+  `~/Library/LaunchAgents/net.nebulamind.status-listener.plist` on the MacBook,
+  both also served from `HermesOps/reports/status-audio/` on the Studio.
+  Reinstall/update: `curl -fsS https://duho-macstudio.taila27502.ts.net/reports/i | zsh`
+  (that installer is `install-listener.sh` here, served as `HermesOps/reports/i`).
+- **Stop**: `killall afplay` mutes the current reading;
+  `launchctl bootout gui/$UID/net.nebulamind.status-listener` disables the MacBook daemon.
+
+The listen.html / archive.html pages remain as browsable history (browser
+autoplay needs one click per tab — that limitation is why the native daemons exist).
