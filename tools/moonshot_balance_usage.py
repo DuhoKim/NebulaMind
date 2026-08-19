@@ -6,8 +6,9 @@ sent only as an Authorization header to the official balance endpoint; the key v
 is never logged, never emitted into any gauge field, and no billing/account mutation
 exists on this route. Failure modes withhold the value rather than guessing.
 
-fill_pct is percent-of-peak-consumed against a locally recorded high-water mark
-(max available balance ever observed), which is honest without knowing top-up history.
+The live wallet amount is a dollar balance, not a provider quota percentage. A
+percent-of-peak comparison may be emitted only as an explicitly local planning
+envelope against the maximum available balance observed by this collector.
 """
 from __future__ import annotations
 
@@ -19,6 +20,7 @@ from typing import Any
 
 SCHEMA = "NM_MOONSHOT_BALANCE_V1"
 PROVIDER = "Moonshot / Kun (Kimi K3)"
+POOL_ID = "moonshot_kun_kimi_k3_wallet"
 KEY_PATH = Path.home() / ".hermes/moonshot.key"
 HWM_PATH = Path.home() / ".hermes/moonshot_balance_hwm.json"
 BALANCE_URL = "https://api.moonshot.ai/v1/users/me/balance"
@@ -33,12 +35,34 @@ def _tone(avail: float) -> str:
     return "ok"
 
 
+def _optional_float(value: Any) -> float | None:
+    if value is None or isinstance(value, bool):
+        return None
+    try:
+        return float(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def _usd_or_unknown(value: float | None) -> str:
+    return f"${value:.2f}" if value is not None else "unknown"
+
+
 def _withheld(observed_at: str, why: str) -> dict[str, Any]:
     return {
+        "pool_id": POOL_ID,
         "provider": PROVIDER,
         "kind": "Moonshot direct-key dollar balance (read-only)",
+        "classification": "UNAVAILABLE / UNKNOWN",
+        "observed_at_utc": observed_at,
+        "current_value_known": False,
+        "big": "Unknown",
+        "available_balance_usd": None,
+        "cash_balance_usd": None,
+        "voucher_balance_usd": None,
         "value_label": "balance not captured",
         "fill_pct": None,
+        "planning_envelopes": [],
         "tone": "neutral",
         "status": "Balance read unavailable — value withheld",
         "detail": f"Read-only balance endpoint not usable: {why}. No key value emitted; nothing guessed.",
@@ -62,8 +86,8 @@ def fetch_gauge(observed_at: str) -> dict[str, Any]:
     if avail is None:
         return _withheld(observed_at, "response missing available_balance")
     avail = float(avail)
-    voucher = float(data.get("voucher_balance") or 0.0)
-    cash = float(data.get("cash_balance") or 0.0)
+    voucher = _optional_float(data.get("voucher_balance"))
+    cash = _optional_float(data.get("cash_balance"))
     hwm = avail
     try:
         if HWM_PATH.is_file():
@@ -73,14 +97,31 @@ def fetch_gauge(observed_at: str) -> dict[str, Any]:
         hwm = avail
     used_pct = round(100.0 * (1.0 - avail / hwm), 1) if hwm > 0 else None
     return {
+        "pool_id": POOL_ID,
         "provider": PROVIDER,
         "kind": "Moonshot direct-key dollar balance (read-only)",
-        "value_label": f"${avail:.2f} available · {used_pct if used_pct is not None else '?'}% of peak used",
-        "fill_pct": used_pct,
+        "classification": "FRESH LIVE METER",
+        "observed_at_utc": observed_at,
+        "current_value_known": True,
+        "big": f"${avail:.2f}",
+        "available_balance_usd": avail,
+        "cash_balance_usd": cash,
+        "voucher_balance_usd": voucher,
+        "value_label": f"${avail:.2f} available · no fixed denominator",
+        "fill_pct": None,
+        "planning_envelopes": [
+            {
+                "classification": "PLANNING ENVELOPE",
+                "label": "Percent of observed peak consumed",
+                "percent": used_pct,
+                "peak_balance_usd": hwm,
+            }
+        ],
         "tone": _tone(avail),
         "status": "Live official balance endpoint (key never emitted)",
         "detail": (
-            f"Moonshot balance: ${avail:.2f} available (cash ${cash:.2f}, voucher ${voucher:.2f}); "
+            f"Moonshot balance: ${avail:.2f} available "
+            f"(cash {_usd_or_unknown(cash)}, voucher {_usd_or_unknown(voucher)}); "
             f"peak observed ${hwm:.2f}. Kimi K3 pricing $3/M in · $15/M out · $0.30/M cache-hit. "
             "Kun's review one-shots run on this key; Nous route retired for Kun."
         ),

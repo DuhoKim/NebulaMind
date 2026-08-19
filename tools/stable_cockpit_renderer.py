@@ -154,13 +154,16 @@ def provider_usage_limits_to_gauges(limits: dict[str, Any]) -> list[dict[str, An
             'source_label': limits.get('source', 'pane-observed snapshot'),
         },
         {
-            'provider': 'Codex / Kun',
-            'kind': 'reset bank visible',
-            'value_label': '4 resets visible',
+            # Codex lane retired 2026-08; Kun (and Miru) gate on the Kimi K3 direct
+            # Moonshot key. The wallet number is refreshed by the monitor from the
+            # local balance cache written by tools/moonshot_balance_usage.py.
+            'provider': 'Kimi K3 / Kun+Miru (Moonshot)',
+            'kind': 'dollar wallet',
+            'value_label': 'wallet balance',
             'fill_pct': None,
             'tone': 'ok',
-            'detail': limits.get('codex_kun', ''),
-            'source_label': limits.get('source', 'pane-observed snapshot'),
+            'detail': limits.get('kimi_kun_miru', 'balance cache not read yet'),
+            'source_label': limits.get('source', 'local balance cache'),
         },
         {
             'provider': 'Gemini / Goru',

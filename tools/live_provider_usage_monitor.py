@@ -79,6 +79,53 @@ def nous_credits_gauge(observed_at: str) -> dict[str, Any]:
     return nous_credits_usage.fetch_gauge(observed_at)
 
 
+KIMI_WALLET_CACHE = Path('/Users/duhokim/HermesOps/private-state/kimi-direct-balance.json')
+
+
+def kimi_wallet_gauge(gauges: list[dict[str, Any]], observed_at: str) -> None:
+    """Kun+Miru gate on the Kimi K3 direct Moonshot key (Codex lane retired 2026-08).
+
+    Local cache only (written by tools/moonshot_balance_usage.py); the gauge shows a
+    dollar wallet with its own capture time and withholds the value if unreadable.
+    Also retitles any legacy 'Codex / Kun' gauge left in an older canonical file.
+    """
+    if provider_index(gauges, 'Moonshot / Kun (Kimi K3)') >= 0:
+        # A live Moonshot wallet card already exists; drop any legacy Codex-era
+        # gauges instead of duplicating the wallet.
+        for legacy in ('Kimi K3 / Kun+Miru (Moonshot)', 'Codex / Kun', 'Codex (seat unassigned)'):
+            j = provider_index(gauges, legacy)
+            if j >= 0:
+                gauges.pop(j)
+        return
+    idx = provider_index(gauges, 'Kimi K3 / Kun+Miru (Moonshot)')
+    if idx < 0:
+        idx = provider_index(gauges, 'Codex / Kun')
+    if idx < 0:
+        return
+    g = gauges[idx]
+    g['provider'] = 'Kimi K3 / Kun+Miru (Moonshot)'
+    g['kind'] = 'dollar wallet'
+    try:
+        d = json.loads(KIMI_WALLET_CACHE.read_text())
+        bal = d.get('available_balance_usd')
+        cap = d.get('observed_at_utc') or 'unknown'
+        peak = d.get('peak_observed_usd')
+        if isinstance(bal, (int, float)):
+            g['value_label'] = f'${bal:.2f} available'
+            g['tone'] = 'ok' if bal >= 10 else 'warn'
+            extra = f' · peak observed ${peak:.2f}' if isinstance(peak, (int, float)) else ''
+            g['detail'] = (f'Moonshot direct-key wallet ${bal:.2f}{extra}. Kun and Miru review '
+                           f'one-shots spend here; Codex lane retired 2026-08. Captured {cap} — '
+                           f'not refreshed since.')
+            g['source_label'] = 'local kimi-direct-balance.json cache (moonshot_balance_usage.py)'
+        else:
+            g['value_label'] = 'wallet unreadable'
+            g['tone'] = 'warn'
+    except Exception:
+        g['value_label'] = 'wallet cache missing'
+        g['tone'] = 'warn'
+
+
 def utc_now() -> str:
     return datetime.now(timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')
 
@@ -489,6 +536,7 @@ def update_gauges(canonical: dict[str, Any], codex: dict[str, Any] | None, agy: 
     counts = telemetry['counts']
 
     flow_credits_gauge(gauges)
+    kimi_wallet_gauge(gauges, observed_at)
 
     i = provider_index(gauges, 'Claude / Fable / Lana')
     g = gauges[i]

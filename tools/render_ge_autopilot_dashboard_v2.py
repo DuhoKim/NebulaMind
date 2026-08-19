@@ -1862,18 +1862,7 @@ def build_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any]:
             "lanes_active": lanes["goru"]["active"],
             "lanes_total": lanes["goru"]["total"],
         },
-        {
-            "name": "Kun / Codex CLI",
-            "kind": "subscription-lane",
-            "status": "authenticated" if auth_counts.get("openai-codex", 0) else "unknown",
-            "percent": None,
-            "percent_label": "not exposed by safe CLI",
-            "activity": f"{lanes['codex']['active']}/{lanes['codex']['total']} active panes",
-            "detail": f"{auth_counts.get('openai-codex', 0)} OpenAI Codex credential visible · local doctor has no quota percent field",
-            "source": "tmux pane state + hermes auth list",
-            "lanes_active": lanes["codex"]["active"],
-            "lanes_total": lanes["codex"]["total"],
-        },
+        kimi_wallet_card(),
     ]
     cards.append(youtube_api_quota_card())
     exact_sources = sum(1 for card in cards if isinstance(card.get("percent"), (int, float)))
@@ -1903,6 +1892,38 @@ def build_usage_snapshot(source: Dict[str, Any]) -> Dict[str, Any]:
     except Exception:
         pass
     return snapshot
+
+
+KIMI_BALANCE_CACHE = Path("/Users/duhokim/HermesOps/private-state/kimi-direct-balance.json")
+
+
+def kimi_wallet_card() -> Dict[str, Any]:
+    """Kun+Miru run on the Kimi K3 direct Moonshot key (Codex lane retired 2026-08).
+
+    Reads only the local balance cache written by tools/moonshot_balance_usage.py;
+    shows a dollar wallet with its capture time, never a guessed quota percent.
+    """
+    d: Dict[str, Any] = {}
+    try:
+        d = json.loads(KIMI_BALANCE_CACHE.read_text())
+    except Exception:
+        pass
+    bal = d.get("available_balance_usd")
+    observed = d.get("observed_at_utc") or "unknown"
+    peak = d.get("peak_observed_usd")
+    detail = f"${bal:.2f} available on the Moonshot direct key" if isinstance(bal, (int, float)) else "balance cache unreadable"
+    if isinstance(peak, (int, float)) and isinstance(bal, (int, float)):
+        detail += f" · peak observed ${peak:.2f}"
+    return {
+        "name": "Kun+Miru / Kimi K3 (Moonshot)",
+        "kind": "wallet-lane",
+        "status": "balance" if isinstance(bal, (int, float)) else "unknown",
+        "percent": None,
+        "percent_label": "dollar wallet, not a quota percent",
+        "activity": f"captured {observed}",
+        "detail": detail + " · gates and reviews spend here; refresh via tools/moonshot_balance_usage.py",
+        "source": "local kimi-direct-balance.json cache only (moonshot_balance_usage.py writes it)",
+    }
 
 
 def normalize_run_estimates(raw: Any) -> Dict[str, Any]:
