@@ -13,7 +13,7 @@ TS=$(date '+%Y%m%dT%H%M%S')
 out="$R/${TS}-${slug}.mp3"
 python3 "$S/nm_say.py" "$text" --voice "${NM_SAY_VOICE:-alloy}" -o "$out" >/dev/null || exit 1
 pub_args=("$out" --slug "$slug" --speaker "${NM_SPEAKER:-system}" --text "$text")
-[[ -n "${NM_FORCE_LIVE:-}" ]] && pub_args+=(--force-live)
+[[ "${NM_FORCE_LIVE:-}" == "1" ]] && pub_args+=(--force-live)
 pub=$(python3 "$S/nm_audio_publish.py" "${pub_args[@]}") || exit 1
 quiet=$(print -r -- "$pub" | python3 -c 'import json,sys; print("1" if json.load(sys.stdin)["quiet"] else "0")')
 if [[ "$quiet" != "1" && -z "${NM_SAY_NO_PLAY:-}" ]]; then

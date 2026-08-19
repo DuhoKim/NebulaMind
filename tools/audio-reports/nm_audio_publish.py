@@ -18,10 +18,12 @@ Also owns what nm_status_say.sh used to forget:
 Prints a one-line JSON result {seq, quiet, file} for the shell wrapper.
 """
 from __future__ import annotations
-import argparse, datetime, json, os, pathlib, subprocess, sys, tempfile
+import argparse, datetime, fcntl, json, os, pathlib, subprocess, sys, tempfile
 
 R = pathlib.Path("/Users/duhokim/HermesOps/reports/status-audio")
 QUEUE = R / "queue.json"
+QUEUE_SEQ = R / "queue.seq"      # durable seq floor: survives a corrupt queue.json
+QUEUE_LOCK = R / ".queue.lock"   # three Fables can publish concurrently
 VOICES = R / "voices.json"
 QUEUE_KEEP = 50
 KST = datetime.timezone(datetime.timedelta(hours=9))
@@ -89,12 +91,21 @@ def main() -> int:
         transcript = mp3.with_suffix(".txt")
         atomic_write(transcript, a.text.strip() + "\n")
 
-    # queue update (atomic; single writer assumed but replace is safe anyway)
+    # queue update under an exclusive lock — the 08-19 Fable trio published
+    # 4 s apart; unlocked read-modify-replace would hand out duplicate seqs.
+    lock_fh = open(QUEUE_LOCK, "w")
+    fcntl.lockf(lock_fh, fcntl.LOCK_EX)
     try:
         q = json.loads(QUEUE.read_text())
     except Exception:
         q = {"version": 1, "seq": 0, "entries": []}
-    q["seq"] = int(q.get("seq", 0)) + 1
+    # a corrupt queue.json must not reset seq to 0 (consumers with a higher
+    # state would go permanently silent) — queue.seq is the durable floor
+    try:
+        seq_floor = int(QUEUE_SEQ.read_text().strip())
+    except Exception:
+        seq_floor = 0
+    q["seq"] = max(int(q.get("seq", 0)), seq_floor) + 1
     entry = {
         "seq": q["seq"],
         "file": mp3.name,
@@ -112,6 +123,7 @@ def main() -> int:
     q["entries"] = (q.get("entries", []) + [entry])[-QUEUE_KEEP:]
     q["updated_utc"] = entry["stamp_utc"]
     atomic_write(QUEUE, json.dumps(q, ensure_ascii=False, indent=1) + "\n")
+    atomic_write(QUEUE_SEQ, str(q["seq"]) + "\n")
 
     # legacy latch — only for live readings, mp3 before txt, both atomic
     if not quiet:
@@ -122,6 +134,9 @@ def main() -> int:
             atomic_write(R / "latest_transcript.txt", a.text.strip() + "\n")
         atomic_write(R / "latest.txt",
                      f"{entry['stamp_kst']}  {mp3.name}\n")
+
+    fcntl.lockf(lock_fh, fcntl.LOCK_UN)
+    lock_fh.close()
 
     # alignment in the background (harmless if faster_whisper is missing)
     if transcript:

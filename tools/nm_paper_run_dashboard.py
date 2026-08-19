@@ -220,9 +220,10 @@ def _tmux_seats():
             continue
         live.setdefault(seat, []).append(name)
         try:
-            a = sh(f"{TMUX} capture-pane -p -t {name}")
+            qname = shlex.quote(name)  # session names reach a shell=True command
+            a = sh(f"{TMUX} capture-pane -p -t {qname}")
             time.sleep(1)
-            b = sh(f"{TMUX} capture-pane -p -t {name}")
+            b = sh(f"{TMUX} capture-pane -p -t {qname}")
             if a != b:
                 busy.add(seat)
         except Exception:

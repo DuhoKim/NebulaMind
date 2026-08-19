@@ -1,0 +1,164 @@
+<!doctype html><meta charset=utf-8><title>NebulaMind — status readings</title>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<style>
+:root{color-scheme:dark light}
+*{box-sizing:border-box}
+body{font:16px/1.6 -apple-system,BlinkMacSystemFont,system-ui,sans-serif;max-width:36rem;margin:0 auto;
+padding:2.5rem 1.2rem;background:#0f1115;color:#dfe3ea;text-align:center}
+h1{font-size:1.25rem;margin:0 0 .2em;color:#fff}
+.sub{color:#8b93a1;font-size:.85rem;margin-bottom:2rem}
+.sub a{color:#9db8e8}
+button{font:600 1rem/1 inherit;padding:1.1em 2em;border-radius:999px;border:1px solid #2c3442;
+background:#1a2130;color:#dfe3ea;cursor:pointer}
+button:hover{border-color:#4a5a72}
+button[disabled]{opacity:.45;cursor:default}
+.state{margin:2rem 0 .4rem;font-size:1.05rem;color:#fff;min-height:1.6em}
+.dot{display:inline-block;width:.6em;height:.6em;border-radius:50%;background:#39506f;margin-right:.5em;
+vertical-align:middle}
+.live .dot{background:#8ee6b8;animation:p 2s ease-in-out infinite}
+.playing .dot{animation:p .9s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1}50%{opacity:.25}}
+.meta{color:#78818f;font-size:.8rem;margin-top:.3em}
+.transcript{margin:1rem auto 0;max-width:32rem;max-height:11em;overflow-y:auto;text-align:left;
+font-size:.88rem;line-height:1.65;color:#a8b0be;background:#141922;border:1px solid #232833;
+border-radius:10px;padding: .9em 1.1em;display:none;white-space:pre-wrap}
+audio{width:100%;margin-top:1.4rem}
+.recent{margin-top:2.4rem;text-align:left}
+.recent h2{font-size:.8rem;color:#8b93a1;text-transform:uppercase;letter-spacing:.07em;margin:0 0 .5em}
+.row{display:flex;align-items:center;gap:.6em;padding:.45em 0;border-bottom:1px solid #1b2029;font-size:.85rem}
+.row .who{font-weight:600;color:#dfe3ea;white-space:nowrap}
+.row .slug{color:#78818f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.row .when{color:#78818f;font-size:.78rem;white-space:nowrap}
+.row .badge{font-size:.7rem;color:#c9b280;border:1px solid #4a4020;border-radius:6px;padding:.1em .45em;white-space:nowrap}
+.row button{font-size:.75rem;padding:.35em .8em}
+.log{margin-top:2.2rem;text-align:left;font-size:.78rem;color:#78818f;border-top:1px solid #232833;padding-top:1rem}
+.log div{padding:.22em 0;border-bottom:1px solid #1b2029}
+@media(prefers-color-scheme:light){body{background:#fbfbfd;color:#1c1f26}h1{color:#000}
+button{background:#f0f2f6;border-color:#d8dce4;color:#1c1f26}.state{color:#000}
+.transcript{background:#f0f2f6;border-color:#d8dce4;color:#3c4250}
+.row .who{color:#1c1f26}}
+</style>
+
+<h1>NebulaMind status readings</h1>
+<div class=sub>Leave this tab open on whichever machine you're at. Each new reading plays here by itself,
+in the speaker's own voice.<br><a href="archive.html">browse every past reading &rarr;</a></div>
+
+<button id=go>Start listening</button>
+
+<div class="state" id=state><span class=dot id=sdot></span><span id=stext>not listening yet</span></div>
+<div class="meta" id=meta></div>
+
+<audio id=au controls preload=none></audio>
+<div class=transcript id=tx></div>
+
+<div class=recent><h2>Recent readings</h2><div id=recent></div></div>
+<div class=log id=log></div>
+
+<script>
+const Q='queue.json', TXT='latest.txt', MP3='latest.mp3', POLL=8000;
+const au=document.getElementById('au'), sdot=document.getElementById('sdot'),
+      stext=document.getElementById('stext'), st=document.getElementById('state'),
+      mt=document.getElementById('meta'), tx=document.getElementById('tx'),
+      rec=document.getElementById('recent'), lg=document.getElementById('log'),
+      go=document.getElementById('go');
+let armed=false, lastPlayed=null, playQ=[], nowPlaying=null, legacyLast=null, legacyMode=false;
+
+function set(cls,text,color){ st.className='state '+cls; stext.textContent=text;
+  sdot.style.background=color||''; }
+function note(t){ const d=document.createElement('div');
+  d.textContent=new Date().toLocaleTimeString()+'  '+t; lg.prepend(d);
+  while(lg.children.length>12) lg.lastChild.remove(); }
+function esc(s){ const d=document.createElement('span'); d.textContent=s??''; return d.innerHTML; }
+function dur(e){ return e.duration_s?` · ${Math.round(e.duration_s)}s`:''; }
+
+async function showTranscript(e){
+  tx.style.display='none'; tx.textContent='';
+  if(!e||!e.transcript) return;
+  try{ const r=await fetch(e.transcript+'?t='+Date.now(),{cache:'no-store'});
+       if(r.ok){ tx.textContent=(await r.text()).trim(); tx.style.display='block'; } }catch(_){}
+}
+
+function playEntry(e,msg){
+  nowPlaying=e;
+  au.src=e.file+'?t='+Date.now();
+  au.play().then(()=>{
+    set('playing',`${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
+    if(msg) note(msg);
+    showTranscript(e);
+  }).catch(()=>{ set('live','new reading ready — press play'); note('autoplay blocked; press play'); });
+}
+
+function pump(){
+  if(!au.paused && !au.ended && au.currentTime>0) return;   // never interrupt
+  const e=playQ.shift();
+  if(e) playEntry(e,`playing ${e.name||e.speaker} (#${e.seq})`);
+}
+
+au.onended=()=>{ nowPlaying=null;
+  if(playQ.length){ pump(); }
+  else { set('live','listening for the next one'); }
+};
+
+function renderRecent(entries){
+  const last=entries.slice(-8).reverse();
+  rec.innerHTML=last.map(e=>`
+    <div class=row>
+      <span class=dot style="background:${esc(e.color||'#39506f')}"></span>
+      <span class=who>${esc(e.name||e.speaker)}</span>
+      <span class=slug>${esc(e.slug)}${dur(e)}</span>
+      ${e.quiet?'<span class=badge>quiet · queued overnight</span>':''}
+      <span class=when>${esc((e.stamp_kst||'').replace(' KST',''))}</span>
+      <button data-file="${esc(e.file)}" data-seq="${e.seq}">play</button>
+    </div>`).join('');
+  rec.querySelectorAll('button').forEach(b=>{
+    b.onclick=()=>{ const e=last.find(x=>String(x.seq)===b.dataset.seq);
+      if(e){ playQ=[]; playEntry(e,`playing on demand: ${e.name||e.speaker} (#${e.seq})`); } };
+  });
+}
+
+async function checkQueue(){
+  const r=await fetch(Q+'?t='+Date.now(),{cache:'no-store'});
+  if(!r.ok) throw new Error(r.status);
+  const q=await r.json();
+  renderRecent(q.entries||[]);
+  mt.textContent=`queue #${q.seq} · updated ${q.updated_utc||'?'}`;
+  if(!armed) return;
+  if(lastPlayed===null){ lastPlayed=q.seq; note('watching — will play the next one'); return; }
+  const fresh=(q.entries||[]).filter(e=>e.seq>lastPlayed && !e.quiet);
+  const skippedQuiet=(q.entries||[]).filter(e=>e.seq>lastPlayed && e.quiet).length;
+  if(skippedQuiet) note(`${skippedQuiet} quiet reading(s) queued for the archive, not played`);
+  if(fresh.length){ playQ.push(...fresh); note(`${fresh.length} new reading(s)`); pump(); }
+  lastPlayed=q.seq;
+}
+
+async function checkLegacy(){
+  const r=await fetch(TXT+'?t='+Date.now(),{cache:'no-store'});
+  if(!r.ok) throw new Error(r.status);
+  const stamp=(await r.text()).trim();
+  mt.textContent='legacy mode · current: '+stamp;
+  if(!armed) return;
+  if(legacyLast===null){ legacyLast=stamp; return; }
+  if(stamp!==legacyLast){ legacyLast=stamp;
+    if(au.paused||au.ended||au.currentTime===0){
+      au.src=MP3+'?t='+Date.now();
+      au.play().then(()=>set('playing','playing the latest reading')).catch(()=>set('live','press play'));
+    }
+  }
+}
+
+async function check(){
+  try{ await checkQueue(); legacyMode=false;
+       if(armed && au.paused && !playQ.length && !nowPlaying) set('live','listening');
+  }catch(_){
+    try{ await checkLegacy(); if(!legacyMode){ legacyMode=true; note('queue unreachable — legacy latch mode'); } }
+    catch(__){ set('live','waiting (cannot reach the server)'); }
+  }
+}
+
+go.onclick=async()=>{
+  armed=true; go.disabled=true; go.textContent='listening';
+  set('live','listening'); note('armed — will play the next reading');
+  check(); setInterval(check,POLL);
+};
+check();  // populate the recent list before arming (no playback until armed)
+</script>

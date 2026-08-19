@@ -18,23 +18,32 @@ while true; do
       # first poll only arms — never replay history on startup
       print -r -- "$q" | python3 -c 'import json,sys; print(json.load(sys.stdin)["seq"])' > "$STATE" 2>/dev/null
     else
-      plays=$(print -r -- "$q" | python3 -c "
+      # Entries newer than our state, in order, quiet-flag included. State only
+      # advances THROUGH successes: a failed download/play stops the walk so the
+      # reading is retried next poll instead of being skipped forever (review
+      # finding 2026-08-20). Quiet entries advance without playing.
+      todo=$(print -r -- "$q" | python3 -c "
 import json,sys
 q=json.load(sys.stdin)
 for e in q['entries']:
-    if e['seq'] > int('$last') and not e.get('quiet'):
-        print(e['seq'], e['file'])")
-      maxseq=$(print -r -- "$q" | python3 -c 'import json,sys; print(json.load(sys.stdin)["seq"])')
-      if [[ -n "$plays" ]]; then
-        print -r -- "$plays" | while read -r seq file; do
+    if e['seq'] > int('$last'):
+        print(e['seq'], 1 if e.get('quiet') else 0, e['file'])")
+      if [[ -n "$todo" ]]; then
+        print -r -- "$todo" | while read -r seq isquiet file; do
+          if [[ "$isquiet" == "1" ]]; then
+            print -r -- "$seq" > "$STATE"
+            continue
+          fi
           f="/tmp/nm_readings/$file"
-          curl -fsS --max-time 60 "$BASE/$file" -o "$f" && afplay "$f"
-          rm -f "$f"
-          print -r -- "$seq" > "$STATE"
+          if curl -fsS --max-time 60 "$BASE/$file" -o "$f" && afplay "$f"; then
+            rm -f "$f"
+            print -r -- "$seq" > "$STATE"
+          else
+            rm -f "$f"
+            break   # retry this entry on the next poll
+          fi
         done
       fi
-      # advance past quiet entries too, so they are never back-played
-      [[ -n "$maxseq" ]] && print -r -- "$maxseq" > "$STATE"
     fi
   else
     # legacy fallback: latest.txt latch
