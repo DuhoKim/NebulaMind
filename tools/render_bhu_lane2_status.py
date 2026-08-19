@@ -209,7 +209,19 @@ if v2:
                      f'SHA-256 <code>{vv["sha12"]}…</code> · local review only, not published.</p>')
 
 if th:
-    P.append("<h2>Theory Phase 0 — can a calibrated BHU observable be derived?</h2>")
+    P.append("<h2>Theory — the audited paper and what the phases found</h2>")
+    P.append('<p class=note>Base paper: <a href="https://arxiv.org/abs/1910.10819">arXiv:1910.10819</a> '
+             '(rotating-parent preferred-axis scenario; v2 full text pinned in the Phase 1 lane). '
+             '<b>Phase 1 audit:</b> 23 claims verdicted — its Λ = 3Ω²/c² identification fixes rotation '
+             '10⁹× over the Planck bound, and its own conservation premise makes the "rotational dark '
+             'energy" w = +1/3, ~46σ from the DES value it cites; only the bare CW/CCW symmetry claim '
+             'survives. <b>Strict model:</b> transfer coefficient derived (C ≈ 7.2 [1.4–12.8]) → '
+             'A ≈ 1.9×10⁻⁸ at the allowed rotation → 0.027σ all-sky; ~12,000 observable universes for '
+             '3σ. Closure strengthened; CMB additionally bounds the parent\'s spin dilution '
+             '(> 10²²–10³⁰). Artifacts: <code>bhu-theory-phase0-20260818/</code> and '
+             '<code>bhu-theory-phase1-20260819/</code> in the weekend-video-sextet handoff; videos in '
+             'the registry below.</p>')
+    P.append("<h3>Gate chain</h3>")
     P.append('<p class=note>Duho, 18 Aug: <i>"go ahead with phase 0"</i>, then <i>"go ahead with the '
              'closure note if the gate passes"</i>. All three routes scoped DEAD-ON-ARRIVAL '
              '(axis-model amplitude: sample-complete kill, needs ~18× every galaxy that exists; '
