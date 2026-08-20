@@ -1,4 +1,7 @@
-# Morning handover — status-report format (Blanc, 2026-08-21)
+# Morning handover — status-report format (Blanc, 2026-08-21 08:04 KST)
+
+**Delivered:** briefing spoken at 08:04 (first sound since 22:30). Cockpit rendered
+fresh — spin-parity moved to 27 gates, 22 passing, overnight.
 
 **Open this first:**
 https://duho-macstudio.taila27502.ts.net/reports/status-audio/report-20260821T004950-hwao-report.html
