@@ -474,3 +474,111 @@ def receipt_card(seed_key: str = "") -> dict | None:
                 "transcription, and cannot be reproduced by a different instrument without that "
                 "showing. One card only: this is provenance, not a distribution, and no aggregate "
                 "of χ may be looked at until the sample is complete."}
+
+
+REPO = pathlib.Path("/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/"
+                    "weekend-video-sextet-20260808T0136K")
+
+
+def verdict_strip(src: str) -> dict | None:
+    """Every audited row as a cell, with the load-bearing rows lifted out.
+
+    Tori's contract, and the file's own: **never render a pass percentage.**
+    In both audits the arithmetic passes broadly while every load-bearing row
+    fails, so a pass rate inverts the finding. If `load_bearing` is missing we
+    REFUSE to render rather than draw an undifferentiated strip that would read
+    as "mostly fine".
+    """
+    import json as _j
+    p = REPO / src
+    if not p.exists():
+        return None
+    try:
+        d = _j.loads(p.read_text())
+    except Exception:
+        return None
+    audits = d.get("audits") or {}
+    if not audits:
+        return None
+
+    bands, y = [], 34
+    W = 560
+    total_lb = total_lb_fail = 0
+    for key in sorted(audits):
+        a = audits[key]
+        rows = a.get("rows") or []
+        if not rows or any("load_bearing" not in r for r in rows):
+            return None                       # refuse rather than flatten
+        lb = [r for r in rows if r.get("load_bearing")]
+        bulk = [r for r in rows if not r.get("load_bearing")]
+        total_lb += len(lb)
+        total_lb_fail += sum(1 for r in lb if not r.get("passing"))
+        bands.append(f'<text x="0" y="{y}" fill="#8b93a1" font-size="11" '
+                     f'font-family="system-ui">{a.get("label", key)}</text>')
+        y += 10
+        # bulk: small cells, deliberately unremarkable
+        cw = max(4, min(9, (W - 8) // max(1, len(bulk))))
+        for i, r in enumerate(bulk):
+            col = "#2f6b4a" if r.get("passing") else "#7a3140"
+            bands.append(f'<rect x="{i * cw}" y="{y}" width="{cw - 1.5:.1f}" height="12" rx="2" fill="{col}"/>')
+        y += 22
+        # load-bearing: lifted out, large, impossible to read as part of the mass
+        lw = min(64, max(28, (W - 8) // max(1, len(lb))))
+        for i, r in enumerate(lb):
+            passing = r.get("passing")
+            col, fg = ("#173a26", "#7ee6a8") if passing else ("#3a1717", "#ff8ba0")
+            x = i * (lw + 6)
+            bands.append(
+                f'<rect x="{x}" y="{y}" width="{lw}" height="30" rx="6" fill="{col}" '
+                f'stroke="{"#2f6b4a" if passing else "#b02a37"}"/>'
+                f'<text x="{x + lw/2:.0f}" y="{y + 20}" text-anchor="middle" fill="{fg}" '
+                f'font-size="12" font-family="system-ui" font-weight="600">'
+                f'{"✓" if passing else "✗"}</text>')
+        y += 44
+    headline = f"{total_lb_fail} of {total_lb} load-bearing rows failed"
+    h = y + 8
+    return {"svg": (
+        f'<svg viewBox="0 0 {W} {h}" width="100%" role="img" aria-label="{headline}">'
+        f'<text x="0" y="14" fill="#ff8ba0" font-size="14" font-family="system-ui" '
+        f'font-weight="700">{headline}</text>'
+        f'{"".join(bands)}</svg>'),
+        "attr": "Each small cell is one audited row; the large cells are the rows the conclusions "
+                "actually rest on, lifted out so they cannot be read as part of the mass. No pass "
+                "percentage is shown, by the source file's own contract: the arithmetic passes "
+                "broadly while every load-bearing row fails, so a pass rate would invert the "
+                "finding. A CHECK means a step reproduces — not that the paper's conclusion holds."}
+
+
+def ladder(floor: dict, value: dict, gap: str) -> dict:
+    """A ceiling far below a floor — a distance, not a measurement.
+
+    Tori's trap: this must not read as a measured signal with error bars. Both
+    ends are labelled for what they are (a generous ceiling, a theoretical
+    best-case floor) and the axis carries no numbers beyond the spoken gap.
+    """
+    W, H = 520, 150
+    return {"svg": (
+        f'<svg viewBox="0 0 {W} {H}" width="100%" role="img" aria-label="signal ceiling below the floor">'
+        f'<line x1="16" y1="34" x2="{W-16}" y2="34" stroke="#7ee6a8" stroke-width="2"/>'
+        f'<text x="16" y="26" fill="#7ee6a8" font-size="12" font-family="system-ui">'
+        f'{html_escape(floor.get("label",""))}</text>'
+        f'<text x="{W-16}" y="26" text-anchor="end" fill="#78818f" font-size="10" '
+        f'font-family="system-ui">{html_escape(floor.get("note",""))}</text>'
+        f'<line x1="16" y1="116" x2="{W-16}" y2="116" stroke="#ff8ba0" stroke-width="2" '
+        f'stroke-dasharray="5 4"/>'
+        f'<text x="16" y="134" fill="#ff8ba0" font-size="12" font-family="system-ui">'
+        f'{html_escape(value.get("label",""))}'
+        f'{" (a ceiling, not a detection)" if value.get("ceiling") else ""}</text>'
+        f'<line x1="{W/2:.0f}" y1="38" x2="{W/2:.0f}" y2="112" stroke="#59d8ff" stroke-width="1.2" '
+        f'stroke-dasharray="3 3"/>'
+        f'<text x="{W/2+10:.0f}" y="78" fill="#59d8ff" font-size="13" font-family="system-ui" '
+        f'font-weight="600">{html_escape(gap)} below</text></svg>'),
+        "attr": "A distance, not a measurement. The upper line is a theoretical best case no "
+                "instrument achieves; the lower is our most generous stack, and it is a ceiling "
+                "rather than a detection. The effect is too small — the telescopes are not the "
+                "limitation."}
+
+
+def html_escape(s):
+    import html as _h
+    return _h.escape(str(s))

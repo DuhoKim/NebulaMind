@@ -87,6 +87,10 @@ def build(mp3: pathlib.Path, authored: pathlib.Path) -> int:
                     r = graphics.sky_map(f"{stem.name}:{t}")
                 elif kind == "failstrip":
                     r = graphics.failure_strip()
+                elif kind == "verdictstrip":
+                    r = graphics.verdict_strip(g.get("src", ""))
+                elif kind == "ladder":
+                    r = graphics.ladder(g.get("floor") or {}, g.get("value") or {}, str(g.get("gap", "")))
                 elif kind == "receipt":
                     r = graphics.receipt_card(f"{stem.name}:{t}")
                 elif kind == "chain":
