@@ -526,6 +526,25 @@ def flow_credits_gauge(gauges: list[dict[str, Any]]) -> None:
     g['source_label'] = (f'Flow UI balance capture in flow_credits.json at {captured}; '
                          'no live account or billing surface opened.')
     g['tone'] = 'ok' if (pct or 0) > 25 else 'warn'
+    # Flow has no API and nothing auto-refreshes the drop-file, so a stale
+    # capture kept rendering as a confident current balance (16 days old on
+    # 2026-08-20, across a month boundary that resets the pool). Say the age.
+    try:
+        cap_age = (datetime.now(timezone.utc)
+                   - datetime.strptime(captured, '%Y-%m-%dT%H:%M:%SZ').replace(tzinfo=timezone.utc)).total_seconds()
+    except Exception:
+        cap_age = None
+    if cap_age is None or cap_age > 3 * 86400:
+        days = f'{cap_age / 86400:.0f} days' if cap_age else 'unknown age'
+        g['value_label'] = (f'{int(remaining):,} credits at last capture ({days} ago)'
+                            if pct is not None else 'balance not captured')
+        g['status'] = f'STALE — capture is {days} old; no live Flow balance source exists'
+        g['detail'] = (f'Last operator-confirmed reading was {days} ago and nothing refreshes it '
+                       'automatically. Spend since then is invisible here, and the monthly pool may '
+                       'have reset. Refresh = an operator-confirmed Flow UI capture into '
+                       'flow_credits.json. ') + g['detail']
+        g['tone'] = 'warn'
+        g['fill_pct'] = None
 
 
 def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: dict[str, Any] | None, telemetry: dict[str, Any], observed_at: str, slash_sources: dict[str, Any]) -> dict[str, Any]:
