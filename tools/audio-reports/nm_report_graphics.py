@@ -414,3 +414,63 @@ def pipeline_chain() -> dict | None:
         "attr": f"Stage counts as of {stamp}. Galaxies waiting on bricks are waiting by design — a "
                 f"brick they need has not arrived yet. Counts only: no chirality value or committee "
                 f"state is shown, and none may be until the sample is complete and the labels are in."}
+
+
+def receipt_card(seed_key: str = "") -> dict | None:
+    """ONE real chi receipt, with its custody chain — Hwao's requested generator.
+
+    "Receipted" is the most abstract claim this project makes and the most
+    load-bearing; a card showing an actual measurement beside the hashes that
+    produced it makes it concrete in a glance.
+
+    Hard constraint from Hwao: ONE card only. Three values in a row start to
+    look like a distribution, and no aggregate of chi may be shown before the
+    sample is complete. Committee state is omitted for the same reason.
+    """
+    import json as _j
+    if not CHI_RESULTS.exists():
+        return None
+    rows = []
+    for line in CHI_RESULTS.open(errors="replace"):
+        try:
+            rows.append(_j.loads(line))
+        except Exception:
+            continue
+    if not rows:
+        return None
+    h = int(hashlib.sha256(seed_key.encode()).hexdigest()[:8], 16) if seed_key else 0
+    r = rows[h % len(rows)]
+    short = lambda s: (str(s)[:16] + "…") if s else "—"
+    oid = str(r.get("object_id", ""))
+    val = r.get("chi_value")
+    bits = r.get("chi_bits_hex", "")
+    fields = [("weights", r.get("weights_sha256")),
+              ("input tensor", r.get("input_tensor_sha256")),
+              ("code", r.get("code_sha256")),
+              ("receipt", r.get("receipt_sha256"))]
+    rowsvg, y = [], 92
+    for label, v in fields:
+        rowsvg.append(
+            f'<text x="16" y="{y}" fill="#78818f" font-size="11" font-family="system-ui">{label}</text>'
+            f'<text x="132" y="{y}" fill="#9db8e8" font-size="12" '
+            f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">{short(v)}</text>')
+        y += 21
+    w, h_ = 520, 190
+    return {"svg": (
+        f'<svg viewBox="0 0 {w} {h_}" width="100%" role="img" aria-label="one measurement receipt">'
+        f'<rect x="0" y="0" width="{w}" height="{h_}" rx="12" fill="#0d1424" stroke="#26304f"/>'
+        f'<text x="16" y="26" fill="#59d8ff" font-size="10" letter-spacing="1.6" '
+        f'font-family="system-ui">ONE MEASUREMENT, AS STORED</text>'
+        f'<text x="16" y="50" fill="#eef1fb" font-size="12" '
+        f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">{short(oid)}</text>'
+        f'<text x="16" y="72" fill="#ffc46b" font-size="15" font-weight="600" '
+        f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">χ = {val}</text>'
+        f'<text x="190" y="72" fill="#78818f" font-size="11" '
+        f'font-family="ui-monospace,SFMono-Regular,Menlo,monospace">raw bits {bits}</text>'
+        f'{"".join(rowsvg)}</svg>'),
+        "attr": "One real receipt from the run, drawn from results.jsonl. The value is stored "
+                "beside the hashes of the weights, the input tensor, the code and the receipt "
+                "itself, and beside its own raw float bits — so a number cannot drift in "
+                "transcription, and cannot be reproduced by a different instrument without that "
+                "showing. One card only: this is provenance, not a distribution, and no aggregate "
+                "of χ may be looked at until the sample is complete."}
