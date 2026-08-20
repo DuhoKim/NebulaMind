@@ -1,6 +1,9 @@
 import hashlib
+import json
+import tempfile
 import unittest
 from pathlib import Path
+from unittest import mock
 
 import numpy as np
 import torch
@@ -9,11 +12,15 @@ from committee import (
     GENERATOR_SHA256,
     GEOMETRIC_THRESHOLD,
     CNN_THRESHOLD,
+    ContractError,
+    MEMBER_B_WEIGHTS_SHA256,
     SmallPlainCNN,
     canonical_parameter_hash,
     committee_state,
     geometric_chi,
+    load_frozen_member_b,
     mirror,
+    score_manifest,
     synth_sample,
 )
 
@@ -67,6 +74,43 @@ class CommitteeContractTests(unittest.TestCase):
         second = SmallPlainCNN()
         self.assertEqual(canonical_parameter_hash(first), canonical_parameter_hash(second))
         self.assertEqual(len(canonical_parameter_hash(first)), 64)
+
+    def test_member_b_weight_hash_mismatch_refuses_before_torch_load(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as raw:
+            bad = Path(raw) / "bad.pt"
+            bad.write_bytes(b"not frozen weights")
+            with mock.patch.object(torch, "load") as load:
+                with self.assertRaises(ContractError):
+                    load_frozen_member_b(bad)
+            load.assert_not_called()
+
+    def test_batch_entry_point_scores_tensor_manifest_per_object(self):
+        with tempfile.TemporaryDirectory(dir=Path(__file__).resolve().parent) as raw:
+            root = Path(raw)
+            paths = []
+            for index in range(2):
+                image, _ = synth_sample("HC1H-COMMITTEE-BATCH-TEST", index)
+                path = root / f"object-{index}.f32le"
+                path.write_bytes(image.astype("<f4", copy=False).tobytes(order="C"))
+                paths.append(path)
+            manifest = root / "inputs.json"
+            manifest.write_text(json.dumps([str(path) for path in paths]), encoding="utf-8")
+            output = root / "committee.jsonl"
+
+            count = score_manifest(manifest, output)
+
+            rows = [json.loads(line) for line in output.read_text().splitlines()]
+            self.assertEqual(count, 2)
+            self.assertEqual([row["input_path"] for row in rows], [str(path) for path in paths])
+            self.assertTrue(all(row["state"] in {"AGREE_CONFIDENT", "DISAGREE", "LOW_CONFIDENCE"} for row in rows))
+            self.assertEqual(
+                [row["hc1h_state"] for row in rows],
+                [
+                    {"AGREE_CONFIDENT": "agree-confident", "DISAGREE": "disagree", "LOW_CONFIDENCE": "low-confidence"}[row["state"]]
+                    for row in rows
+                ],
+            )
+            self.assertTrue(all(row["member_b_weights_sha256"] == MEMBER_B_WEIGHTS_SHA256 for row in rows))
 
 
 if __name__ == "__main__":

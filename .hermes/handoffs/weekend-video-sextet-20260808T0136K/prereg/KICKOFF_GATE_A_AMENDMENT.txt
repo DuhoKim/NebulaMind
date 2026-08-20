@@ -1,0 +1,13 @@
+You are the kimi gate seat (Nous route), fresh one-shot. Gate ONE document: AMENDMENT_PREK8_20260820.md (SHA e832a341f4c9c3937b8fcafc42d6dd7c15ca1e6ea32e5c9ae21856ab50e1380c, 562 lines; receipt CSEAT_AMENDMENT_DONE.md). Working directory (absolute): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg . Plumbing is a SEPARATE gate — ignore it entirely.
+
+This amends a FROZEN preregistration immediately before an irreversible step (K-8), so a wrong PASS is expensive. Method: local files, grep, python3, time-boxed; UNVERIFIED-AT-GATE with a reason beats crawling. Budget your effort: the five checks below, then write. Do not re-read the whole frozen prereg — grep to the clauses you need.
+
+1. AM-A ORIGIN CLAIM: the amendment says the sign convention was ALREADY frozen by BS-5 §3 and merely CONFIRMED by the rehearsal. Verify against BS-5 itself. If it is actually CHOOSING a convention, that is material — say so plainly.
+2. AM-A ARITHMETIC: recompute the polarity mapping (Longo A=(R-L)/(R+L)=-0.0408 becoming +0.0408 in (L-R) polarity, so REPRODUCED-LONGO requires positive A_c) and check it against V3's F-6 decision regions.
+3. AM-B: recompute the Jeffreys formula (c_s+0.5)/(m_s+1) against _rehearsal_20260820/hc1h_neyman_priors.json and confirm the claimed byte-for-byte string reproduction; then verify the FIREWALL claim by reading HC-4's computation path — allocation priors must touch only the integer n_s and never the estimate a.
+4. AM-C: verify the merge ladder is deterministic, within-committee-state only, evaluated once on the complete population, and that BOTH branches of the AM-C.3 precedence rule are fully specified now (no discretion surviving the crossing).
+5. WEAKENING CHECK: confirm the amendment weakens no existing guarantee — F-9, F-10 output rules, HC-3/HC-4, the sealed key, K-8 itself.
+
+THEN RULE, explicitly and separately, on the three questions the amendment escalates to you in its "What Kun must rule on" section: (i) the P7 "9 strata" wording change; (ii) whether the merge implementation can be gated before the crossing given HC1H_STRATA is a hardcoded nine-tuple at nm_handcheck.py:45-46; (iii) whether AM-A.4's FAIL_CLOSED consequence is entailed by PC-1/PC-4 or is a new freeze.
+
+Write KUN_GATE_A_AMENDMENT_20260820.md at LANE ROOT, first line PASS_PREK8_AMENDMENT or HOLD_ + numbered repairs, with the three rulings in their own clearly-labelled section. Findings-only. No network.

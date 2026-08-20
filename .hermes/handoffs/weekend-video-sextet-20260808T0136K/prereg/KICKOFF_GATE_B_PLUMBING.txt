@@ -1,0 +1,15 @@
+You are the kimi gate seat (Nous route), fresh one-shot. Gate ONE thing: the six plumbing fixes recorded in GPT2_PLUMBING_DONE.md (F2,F3,F4,F5,F7,F8). Working directory (absolute): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg . The preregistration amendment is a SEPARATE gate — ignore it entirely; do not read AMENDMENT_PREK8_20260820.md.
+
+Method: local files, grep, python3; run the tests; time-boxed; UNVERIFIED-AT-GATE with a reason beats crawling.
+
+CRITICAL BOUNDARY CHECK FIRST: rehearsal findings 1 (sparse-cell policy) and 6 (Neyman prior smoothing) were fenced OUT of this seat's scope because they are preregistration parameters. Grep the plumbing changes for any smoothing rule, prior estimator, sparse-cell policy, floor change, or strata-count change. Code that quietly encodes any of them is an AUTOMATIC HOLD — say so loudly.
+
+Then per fix:
+- F2: no package installs occurred; the stage/interpreter split is documented in RUN_ENVIRONMENTS.md and matches what the scripts actually do; no stage needs both torch and Pillow.
+- F3: --input-manifest is byte-EQUIVALENT to the legacy --inputs path (not merely similar — prove it: same ordered run_paths, same outputs on a shared fixture); the 20,000-path test passes when you run it.
+- F4: the committee batch CLI verifies member-B weights against SHA-256 6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a BEFORE torch.load and refuses on mismatch (test the refusal by pointing it at a corrupted copy in a temp dir); scoring functions unchanged (diff them).
+- F5: the DISPLAY-LIN-NEG1-POS1-V1 renderer is deterministic byte-identical across repeat renders (run it twice yourself on one tensor); PNGs are structurally barred from the chi path (prove by code path, not by comment).
+- F7: committee_state_vocabulary.py is imported by BOTH sides (not duplicated); the bijection is total and injective; no ad-hoc string munging remains at call sites (grep for the raw literals).
+- F8: HC-1H's frozen interface name is unchanged, and the new provenance assertion actually refuses a synthetic pool passed as the real population — TEST that refusal.
+
+Write KUN_GATE_B_PLUMBING_20260820.md at LANE ROOT, first line PASS_PLUMBING_FIXES or HOLD_ + numbered repairs. Findings-only. No network.

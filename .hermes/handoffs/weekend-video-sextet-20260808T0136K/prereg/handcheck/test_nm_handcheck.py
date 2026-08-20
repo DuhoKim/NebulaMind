@@ -134,6 +134,14 @@ def write_hc1h_pools(
     injection_path.write_bytes(
         b"".join(canonical_json_bytes(row) + b"\n" for row in injection_rows)
     )
+    real_path.with_suffix(real_path.suffix + ".provenance.json").write_text(
+        json.dumps({"population_role": "accepted_population", "provenance": "synthetic"}),
+        encoding="utf-8",
+    )
+    injection_path.with_suffix(injection_path.suffix + ".provenance.json").write_text(
+        json.dumps({"population_role": "blind_injection_pool", "provenance": "synthetic"}),
+        encoding="utf-8",
+    )
     prior_rates = {
         f"{state}|{chi}": Decimal("0.80") + Decimal(state_index + chi) / Decimal("50")
         for state_index, state in enumerate(HC1H_STATES)
@@ -244,6 +252,31 @@ class AllocationTests(unittest.TestCase):
 
 
 class PreparationTests(unittest.TestCase):
+    def test_hc1h_population_data_class_must_match_provenance(self) -> None:
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            real_population, injection_pool, prior_rates = write_hc1h_pools(root)
+            real_population.with_suffix(real_population.suffix + ".provenance.json").write_text(
+                json.dumps(
+                    {"population_role": "accepted_population", "provenance": "authorized_measurement"}
+                ),
+                encoding="utf-8",
+            )
+            with self.assertRaisesRegex(HandcheckError, "provenance disagrees"):
+                prepare_hc1h_experiment(
+                    real_population_path=real_population,
+                    synthetic_pool_path=injection_pool,
+                    neyman_prior_rates=prior_rates,
+                    private_root=root / "private",
+                    checking_root=root / "checking",
+                    passphrase=PASSPHRASE,
+                    checker_id="synthetic-duho",
+                    real_total=18,
+                    synthetic_total=9,
+                    repeat_total=6,
+                    real_floor=2,
+                )
+
     def test_authorized_hc1h_requires_covariance_and_cannot_override_frozen_counts(self) -> None:
         with tempfile.TemporaryDirectory() as temporary:
             root = Path(temporary)
@@ -253,6 +286,12 @@ class PreparationTests(unittest.TestCase):
                 row["data_class"] = "authorized_measurement"
             real_population.write_bytes(
                 b"".join(canonical_json_bytes(row) + b"\n" for row in rows)
+            )
+            real_population.with_suffix(real_population.suffix + ".provenance.json").write_text(
+                json.dumps(
+                    {"population_role": "accepted_population", "provenance": "authorized_measurement"}
+                ),
+                encoding="utf-8",
             )
             with self.assertRaisesRegex(HandcheckError, "additional covariance"):
                 prepare_hc1h_experiment(

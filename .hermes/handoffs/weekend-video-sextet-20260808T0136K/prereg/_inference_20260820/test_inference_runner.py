@@ -125,6 +125,29 @@ class InferenceRunnerContractTests(unittest.TestCase):
         self.assertIn(metadata["state"], {"AGREE_CONFIDENT", "DISAGREE", "LOW_CONFIDENCE"})
         self.assertNotIn("chi", metadata)
 
+    def test_input_manifest_loads_20000_ordered_paths_without_argv_transport(self) -> None:
+        with tempfile.TemporaryDirectory(dir=HERE) as raw:
+            manifest = Path(raw) / "inputs.txt"
+            expected = [Path(f"tensor-{index:05d}.f32le") for index in range(20_000)]
+            manifest.write_text("".join(f"{path}\n" for path in expected), encoding="utf-8")
+            self.assertEqual(runner.resolve_input_paths(None, manifest), expected)
+
+    def test_json_input_manifest_is_equivalent_to_legacy_inputs(self) -> None:
+        with tempfile.TemporaryDirectory(dir=HERE) as raw:
+            manifest = Path(raw) / "inputs.json"
+            expected = [Path("a.f32le"), Path("b.f32le")]
+            manifest.write_text(json.dumps([str(path) for path in expected]), encoding="utf-8")
+            self.assertEqual(runner.resolve_input_paths(None, manifest), expected)
+            self.assertEqual(runner.resolve_input_paths(expected, None), expected)
+
+    def test_input_manifest_and_legacy_inputs_are_mutually_exclusive(self) -> None:
+        with tempfile.TemporaryDirectory(dir=HERE) as raw:
+            manifest = Path(raw) / "inputs.txt"
+            manifest.write_text("a.f32le\n", encoding="utf-8")
+            with self.assertRaises(runner.ContractError) as caught:
+                runner.resolve_input_paths([Path("b.f32le")], manifest)
+            self.assertEqual(caught.exception.code, "REFUSED_INPUT_TRANSPORT")
+
     def test_receipts_ledger_and_resume_are_append_only(self) -> None:
         with tempfile.TemporaryDirectory(dir=HERE) as raw:
             root = Path(raw)

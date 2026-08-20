@@ -23,8 +23,8 @@ from PIL import Image
 ROOT = Path(__file__).resolve().parent
 PREREG = ROOT.parent
 WEEKEND = PREREG.parent
-N = 2000
-CANDIDATE_DRAWS = 12000
+N = 20000
+REAL_RUN_N = 208407
 DOMAIN = "GPT1-END-TO-END-REHEARSAL-20260820"
 GENERATOR = WEEKEND / "spike" / "yui_identity" / "w_chi.py"
 GENERATOR_SHA256 = "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75"
@@ -85,7 +85,7 @@ def png_from_tensor(tensor: np.ndarray, path: Path) -> None:
         raise RuntimeError("cannot create deterministic HC-1H PNG sidecar")
     display = np.clip((image - lo) / (hi - lo), 0.0, 1.0)
     pixels = np.rint(display * 255.0).astype(np.uint8)
-    Image.fromarray(pixels, mode="L").save(path, format="PNG", optimize=False, compress_level=9)
+    Image.fromarray(pixels).save(path, format="PNG", optimize=False, compress_level=9)
 
 
 def sign(value: float) -> int:
@@ -109,10 +109,11 @@ def render_report(summary: dict) -> str:
         "## Headline",
         "",
         f"- Objects: {summary['objects']:,} frozen-BS-3 synthetic galaxies; zero real chirality labels.",
-        f"- Synthetic candidate draws used to make all nine HC-1H cells feasible: {summary['generator']['candidate_draws']:,}; selected campaign objects: {summary['objects']:,}.",
+        f"- Natural deterministic synthetic campaign: the first {summary['objects']:,} BS-3 draws; no stratum engineering or candidate screening.",
         f"- Primary chi direct-sign accuracy: {summary['chi']['direct_accuracy']:.6%}; inverted-sign accuracy: {summary['chi']['inverted_accuracy']:.6%}; zero chi: {summary['chi']['zero_count']}.",
         f"- Observed sign convention: {summary['chi']['observed_sign_convention']}.",
         f"- HC-1H preparation: {summary['hc1h']['status']}; blinded items: {summary['hc1h']['items']}; sealed-key envelope present: {summary['hc1h']['sealed_key_present']}; no labels submitted.",
+        f"- Independent verification: {summary.get('independent_verification', {}).get('status', 'PENDING')} ({summary.get('independent_verification', {}).get('checks', 0):,} checks).",
         f"- End-to-end wall clock: {summary['timing_seconds']['total']:.3f} s ({summary['timing_seconds']['total_per_1000']:.3f} s per 1,000 objects).",
         "",
         "## Frozen identities and safety boundary",
@@ -128,7 +129,7 @@ def render_report(summary: dict) -> str:
         "## Tensor generation and writer equivalence",
         "",
         f"- Frozen generator domain: `{summary['generator']['domain']}`.",
-        f"- Candidate-screening reservoir: {summary['generator']['candidate_draws']:,} deterministic BS-3 draws; the campaign contains exactly {summary['objects']:,} selected objects.",
+        f"- Campaign: the first {summary['objects']:,} deterministic BS-3 draws under the frozen domain; no preselection.",
         f"- Generated tensor count: {summary['objects']:,}.",
         f"- Layout verification: {summary['writer']['layout_verified']:,}/{summary['objects']:,} are exactly `(1,128,128)`, `<f4`, C-order, 65,536 bytes.",
         f"- Writer byte-equivalence: {summary['writer']['byte_equivalent']:,}/{summary['objects']:,} outputs equal direct frozen-generator little-endian float32 bytes.",
@@ -164,6 +165,10 @@ def render_report(summary: dict) -> str:
         "",
         f"Population strata below 30: {summary['strata_population_below_30']}. Allocation strata below 30: {summary['strata_allocation_below_30']}. Allocation sum: {summary['allocation_total']}.",
         "",
+        f"At N={summary['real_projection']['target_n']:,}, scaling the observed N={summary['objects']:,} stratum fractions gives a smallest projected stratum of {summary['real_projection']['minimum_projected_population']:.1f}. Therefore the allocator's population floor check WOULD PASS at 208,407 under the observed population mix (all nine projected populations exceed 30). This is a projection, not a read of real data.",
+        "",
+        "The optional pilot requires exactly 90 real labels: 10 in each of the nine strata. It only needs each stratum population to support 10 and cannot estimate the final attenuation. The full design requires 500 real labels with a hard floor of 30 per stratum; its remaining 230 labels are assigned by constrained Neyman allocation. The 200 synthetic injections and 150 repeats are additional labels in the full 850-label stream.",
+        "",
         "## HC-1H harness acceptance",
         "",
         f"- CLI prepare exit code: {summary['hc1h']['prepare_exit_code']}.",
@@ -180,9 +185,9 @@ def render_report(summary: dict) -> str:
         "| phase | seconds | seconds per 1,000 campaign objects |",
         "|---|---:|---:|",
     ]
-    for phase in ("candidate_screening", "generation_writer_png", "inference", "committee", "strata_inputs", "hc1h_prepare_session", "total"):
+    for phase in ("generation_writer_png", "inference", "committee", "strata_inputs", "hc1h_prepare_session", "total"):
         seconds = summary["timing_seconds"][phase]
-        lines.append(f"| {phase} | {seconds:.3f} | {seconds / 2:.3f} |")
+        lines.append(f"| {phase} | {seconds:.3f} | {seconds / (summary['objects'] / 1000):.3f} |")
     lines += [
         "",
         "The HC-1H preparation has a fixed 850-item cost, so its per-1,000 figure is a mechanical normalization, not a scaling law. The generation/inference/committee figures are the useful linear projection inputs.",
@@ -206,7 +211,7 @@ def render_report(summary: dict) -> str:
 def main() -> int:
     started = time.perf_counter()
     if ROOT.exists() and any(ROOT.iterdir()):
-        allowed = {Path(__file__).name}
+        allowed = {Path(__file__).name, "verify_rehearsal.py"}
         extras = {path.name for path in ROOT.iterdir()} - allowed
         if extras:
             attempt_number = 1
@@ -242,53 +247,9 @@ def main() -> int:
     cutout = load_module("gpt1_rehearsal_cutout", CUTOUT_PATH)
     cutout.verify_frozen_dependencies()
 
-    # The natural 2,000-draw campaign left two globally ranked state×|chi| cells
-    # below 30 (28 and 8). Screen a deterministic synthetic-only reservoir, then
-    # select exactly 667/667/666 objects from its low/mid/high |chi| thirds while
-    # reserving at least 35 of every committee state in each third (30 sampled
-    # floor plus HC-7 replacement headroom). The selected
-    # campaign remains exactly N=2,000 and is rerun through every gated stage.
-    candidate_start = time.perf_counter()
-    screening_inference = load_module("gpt1_rehearsal_inference_screen", INFERENCE_PATH)
-    screening_model = screening_inference.load_frozen_model()
-    screening_committee = screening_inference.Committee()
-    candidates = []
-    for index in range(CANDIDATE_DRAWS):
-        image, truth = committee.synth_sample(DOMAIN, index)
-        tensor, _ = cutout.apply_input_contract(image, slots_path=SLOTS_PATH, real_sky=False)
-        torch_tensor = torch.from_numpy(tensor)
-        chi = float(screening_inference.chi_tensor(screening_model, torch_tensor).item())
-        metadata = screening_committee.classify(tensor[0])
-        candidates.append({"index": index, "truth_sign": int(truth), "abs_chi": abs(chi), "committee_state": metadata["state"]})
-    ordered_candidates = sorted(candidates, key=lambda row: (row["abs_chi"], row["index"]))
-    bin_sizes = (667, 667, 666)
-    reservoir_bins = (
-        ordered_candidates[: CANDIDATE_DRAWS // 3],
-        ordered_candidates[CANDIDATE_DRAWS // 3 : 2 * CANDIDATE_DRAWS // 3],
-        ordered_candidates[2 * CANDIDATE_DRAWS // 3 :],
-    )
-    selected_candidates = []
-    for bin_index, (reservoir, target_size) in enumerate(zip(reservoir_bins, bin_sizes)):
-        chosen = []
-        chosen_indices = set()
-        for state_name in ("AGREE_CONFIDENT", "DISAGREE", "LOW_CONFIDENCE"):
-            state_rows = [row for row in reservoir if row["committee_state"] == state_name]
-            if len(state_rows) < 35:
-                raise RuntimeError(f"candidate reservoir still cannot fill {state_name}|{bin_index}: {len(state_rows)}")
-            for row in state_rows[:35]:
-                chosen.append(row)
-                chosen_indices.add(row["index"])
-        for row in reservoir:
-            if len(chosen) == target_size:
-                break
-            if row["index"] not in chosen_indices:
-                chosen.append(row)
-                chosen_indices.add(row["index"])
-        if len(chosen) != target_size:
-            raise RuntimeError(f"candidate selection failed to close bin {bin_index}")
-        selected_candidates.extend(chosen)
-    selected_candidates.sort(key=lambda row: row["index"])
-    candidate_seconds = time.perf_counter() - candidate_start
+    # Natural campaign: exactly the first N deterministic synthetic draws.  The
+    # earlier N=2,000 sparse-cell HOLD is preserved in the archived attempts.
+    selected_candidates = [{"index": index} for index in range(N)]
 
     generation_start = time.perf_counter()
     truth_rows: list[dict] = []
@@ -482,7 +443,7 @@ def main() -> int:
         "status": "PASS_COMPLETE_CHAIN_SYNTHETIC_ONLY",
         "objects": N,
         "hashes": hashes,
-        "generator": {"domain": DOMAIN, "candidate_draws": CANDIDATE_DRAWS},
+        "generator": {"domain": DOMAIN, "draws": N, "selection": "first-N-natural-no-screening"},
         "writer": {"layout_verified": layout_verified, "byte_equivalent": byte_equivalent},
         "inference": inference_result,
         "chi": {
@@ -509,6 +470,16 @@ def main() -> int:
         "strata_population_below_30": sum(value < 30 for value in populations.values()),
         "strata_allocation_below_30": sum(value < 30 for value in allocation.values()),
         "allocation_total": sum(allocation.values()),
+        "real_projection": {
+            "target_n": REAL_RUN_N,
+            "scale_factor": REAL_RUN_N / N,
+            "projected_populations": {
+                key: populations[key] * REAL_RUN_N / N for key in expected_strata
+            },
+            "minimum_projected_population": min(populations.values()) * REAL_RUN_N / N,
+            "allocator_floor_30_passes": min(populations.values()) * REAL_RUN_N / N >= 30,
+            "basis": "N=20,000 observed synthetic stratum fractions; no real data read",
+        },
         "hc1h": {
             "prepare_exit_code": prepared.returncode,
             "status": prepare_receipt.get("status", "PREPARED"),
@@ -521,14 +492,13 @@ def main() -> int:
             "commitment_sha256": sha256_file(commitment_path),
         },
         "timing_seconds": {
-            "candidate_screening": candidate_seconds,
             "generation_writer_png": generation_seconds,
             "inference": inference_seconds,
             "committee": committee_seconds,
             "strata_inputs": strata_seconds,
             "hc1h_prepare_session": harness_seconds,
             "total": total_seconds,
-            "total_per_1000": total_seconds / 2,
+            "total_per_1000": total_seconds / (N / 1000),
         },
         "interface_mismatches": [
             {
@@ -539,8 +509,8 @@ def main() -> int:
             },
             {
                 "interface": "Natural BS-3 population versus HC-1H floor",
-                "mismatch": "The first unselected N=2,000 draw produced populations 28, 8, and 11 in three cells, so the frozen floor of 30 made full preparation impossible.",
-                "workaround": "Preserved that failed attempt, screened 12,000 deterministic BS-3 candidates synthetically, and selected an exactly 2,000-object campaign with 667/667/666 objects across global |chi| thirds and at least 35 of every committee state per third (floor 30 plus HC-7 reserve headroom); then reran the selected campaign through inference and committee.",
+                "mismatch": "The first natural N=2,000 draw produced populations 28, 8, and 11 in three cells, so the frozen floor of 30 correctly made full preparation impossible.",
+                "workaround": "Preserved that failed attempt and reran the natural deterministic campaign at N=20,000, with no preselection or stratum engineering.",
                 "real_run_implication": "The real accepted population cannot be engineered this way; if any real cell has N_s<30, HC-1H is infeasible and must hold or receive a preregistered sparse-cell rule before any labels.",
             },
             {
@@ -551,7 +521,7 @@ def main() -> int:
             },
             {
                 "interface": "Inference CLI input transport",
-                "mismatch": "The runner accepts every tensor as a separate --inputs argument and has no manifest/stdin mode; 2,000 absolute paths risk the macOS argument-length ceiling and the real campaign would certainly exceed it.",
+                "mismatch": "The runner accepts every tensor as a separate --inputs argument and has no manifest/stdin mode; 20,000 absolute paths exceed a safe CLI transport size and the real campaign would certainly exceed it.",
                 "workaround": "Called the unmodified gated run_paths API with the complete ordered Path list.",
                 "real_run_implication": "Add a hash-bound manifest input mode before the real campaign without changing inference semantics.",
             },
@@ -582,11 +552,12 @@ def main() -> int:
             {
                 "interface": "HC-1H campaign role naming",
                 "mismatch": "The harness calls its 500-row input real_population even when data_class is synthetic, and separately requires another synthetic_pool for injections.",
-                "workaround": "Used the 2,000-object synthetic campaign as a synthetic-class accepted population and a separately identified view of the same generated assets as an injection pool; no claim of independent science samples is made.",
+                "workaround": "Used the 20,000-object synthetic campaign as a synthetic-class accepted population and a separately identified view of the same generated assets as an injection pool; no claim of independent science samples is made.",
                 "real_run_implication": "Production must supply genuinely separate accepted real population and blind-injection pool, with identity-disjointness policy made explicit.",
             },
         ],
         "artifacts": {
+            "independent_verification": str(ROOT / "independent_verification.json"),
             "summary": str(SUMMARY_PATH),
             "truth_manifest": str(TRUTH_PATH),
             "inference_ledger": str(INFERENCE_OUT / "results.jsonl"),

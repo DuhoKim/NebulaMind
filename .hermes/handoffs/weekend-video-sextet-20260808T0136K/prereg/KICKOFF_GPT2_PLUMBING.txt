@@ -1,0 +1,17 @@
+You are gpt2, fixing the six plumbing faults the rehearsal found. Working directory (absolute, all reads/writes): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg . Read _rehearsal_20260820/REHEARSAL_REPORT_20260820.md "Interface mismatches and workarounds" — findings 2,3,4,5,7,8 are yours. Findings 1 and 6 are NOT yours: they are parameters going into a preregistration amendment by another seat; do not decide them, do not encode a smoothing rule or a sparse-cell policy anywhere.
+
+Fix, in the gated programs where they belong (each change is a build change and will be re-gated — keep diffs minimal and surgical):
+
+F2 ENVIRONMENT SPLIT — the torch venv lacks Pillow/cryptography/astropy while system python lacks torch. Do NOT install packages. Instead make the run scripts explicit about which interpreter runs which stage, and record the split in a RUN_ENVIRONMENTS.md (which venv, which stage, why). If a single stage genuinely needs both torch and Pillow, say so and stop — that is a real problem needing a decision, not a workaround.
+
+F3 INFERENCE CLI INPUT TRANSPORT — the runner takes one --inputs argument per tensor and will hit the macOS argument-length ceiling at 208,407 objects. Add a manifest mode (--input-manifest FILE, one tensor path per line, or a JSON list) that is byte-equivalent in behavior to the existing path; keep the old flag working. Test at 20,000 paths.
+
+F4 COMMITTEE ENTRY POINT — committee.py has no campaign CLI and does not load its own frozen member-B weights. Add a batch entry point that loads the hash-pinned weights itself (verify the hash, refuse on mismatch) and scores a manifest of tensors, emitting per-object committee state. Do not alter the scoring functions themselves.
+
+F5 TENSOR-VS-IMAGE CONTRACT — inference consumes 65,536-byte float32 tensors; HC-1H needs Pillow-readable images. The rehearsal improvised a rendering step. SPECIFY it instead: a deterministic tensor->PNG renderer (fixed stretch, fixed byte layout, no per-image normalization that could vary — state the exact transform), with a test proving the same tensor always renders byte-identical PNG. This renderer is display-only and must never feed chi.
+
+F7 STATE VOCABULARY — committee emits AGREE_CONFIDENT / DISAGREE / LOW_CONFIDENCE; HC-1H accepts agree-confident / disagree / low-confidence. Freeze the bijection in ONE place both sides import, with a test asserting the mapping is total and injective. No ad-hoc string munging at call sites.
+
+F8 HC-1H ROLE NAMING — the harness calls its 500-row input real_population even for synthetic data. Do not rename the harness's frozen interface; instead document the trap prominently in the run scripts and add an assertion that data_class and the population's provenance agree, so a synthetic pool can never silently be passed as the real population.
+
+Finish with GPT2_PLUMBING_DONE.md at lane root, first line GPT2_PLUMBING_COMPLETE with per-finding status, or _HOLD. Tests for every fix. No network. Real data untouched — no chi, no real tensors read.

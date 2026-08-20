@@ -36,13 +36,16 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 from cryptography.hazmat.primitives.kdf.scrypt import Scrypt
 from PIL import Image, ImageOps
 
+PREREG_ROOT = Path(__file__).resolve().parent.parent
+if str(PREREG_ROOT) not in sys.path:
+    sys.path.insert(0, str(PREREG_ROOT))
+from committee_state_vocabulary import HC1H_STATES
 
 SCHEMA_VERSION = "nm-handcheck-v2-hc1h"
 PROTOCOL_RANDOM_STATE = 20260812
 CHECKER_ROLES = ("A", "B")
 ALL_ROLES = ("A", "B", "J")
 HC1H_ROLE = "H"
-HC1H_STATES = ("agree-confident", "disagree", "low-confidence")
 HC1H_STRATA = tuple(f"{state}|{chi}" for state in HC1H_STATES for chi in range(3))
 HC1H_SESSION_PRESENTATION_LIMIT = 50
 HC1H_POWER_BOUND_N = 130_076
@@ -533,6 +536,21 @@ def _read_hc1h_rows(path: Path, *, injection: bool) -> list[dict]:
         rows.append(row)
     if not rows or len({row[identity_field] for row in rows}) != len(rows):
         raise HandcheckError("HC-1H input identities must be nonempty and unique")
+    provenance_path = Path(path).with_suffix(Path(path).suffix + ".provenance.json")
+    try:
+        provenance = json.loads(provenance_path.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise HandcheckError(f"HC-1H population provenance is missing or invalid: {provenance_path}") from exc
+    expected_role = "blind_injection_pool" if injection else "accepted_population"
+    if set(provenance) != {"population_role", "provenance"}:
+        raise HandcheckError("HC-1H population provenance has a non-contract field set")
+    if provenance["population_role"] != expected_role:
+        raise HandcheckError(
+            f"HC-1H population role disagrees: expected {expected_role}, got {provenance['population_role']}"
+        )
+    data_classes = {row["data_class"] for row in rows}
+    if len(data_classes) != 1 or provenance["provenance"] != next(iter(data_classes)):
+        raise HandcheckError("HC-1H population data_class and provenance disagrees")
     return rows
 
 

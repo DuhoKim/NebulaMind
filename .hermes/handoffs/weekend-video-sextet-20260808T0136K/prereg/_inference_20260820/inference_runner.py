@@ -25,7 +25,7 @@ PREREG_ROOT = HERE.parent
 WEIGHTS_PATH = PREREG_ROOT / "weights_frozen.pt"
 WEIGHTS_SHA256 = "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d"
 COMMITTEE_PATH = PREREG_ROOT / "_committee_20260820" / "committee.py"
-COMMITTEE_SHA256 = "64fceff7c79b18303692a945c92dc25a44780e8cf9ee3e62e17eb4054e627bf5"
+COMMITTEE_SHA256 = "c1438d7f1d45fb04b950e3344fd7286244e1d09f659f88208e61f23eb6dc3a95"
 COMMITTEE_WEIGHTS_PATH = PREREG_ROOT / "_committee_20260820" / "member_b_weights_frozen.pt"
 COMMITTEE_WEIGHTS_SHA256 = "6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a"
 REAL_TENSOR_ROOT = Path("/Users/duhokim/NebulaMindData/cutouts_dr10_south/tensors")
@@ -339,6 +339,37 @@ def _append_ledger(path: Path, row: dict) -> None:
         os.close(descriptor)
 
 
+def resolve_input_paths(
+    inputs: Sequence[Path] | None,
+    input_manifest: Path | None,
+) -> list[Path]:
+    if (inputs is None) == (input_manifest is None):
+        raise ContractError(
+            "provide exactly one of --inputs or --input-manifest",
+            code="REFUSED_INPUT_TRANSPORT",
+        )
+    if inputs is not None:
+        return [Path(path) for path in inputs]
+    assert input_manifest is not None
+    text = Path(input_manifest).read_text(encoding="utf-8")
+    try:
+        document = json.loads(text)
+    except json.JSONDecodeError:
+        paths = [line for line in text.splitlines() if line]
+    else:
+        if not isinstance(document, list) or not all(
+            isinstance(path, str) and path for path in document
+        ):
+            raise ContractError(
+                "input manifest JSON must be a list of nonempty path strings",
+                code="REFUSED_INPUT_TRANSPORT",
+            )
+        paths = document
+    if not paths:
+        raise ContractError("input manifest is empty", code="REFUSED_INPUT_TRANSPORT")
+    return [Path(path) for path in paths]
+
+
 def run_paths(
     paths: Iterable[Path],
     output_dir: Path,
@@ -413,14 +444,21 @@ def run_paths(
 
 def main(argv: Sequence[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--inputs", type=Path, nargs="+", required=True)
+    transport = parser.add_mutually_exclusive_group(required=True)
+    transport.add_argument("--inputs", type=Path, nargs="+")
+    transport.add_argument(
+        "--input-manifest",
+        type=Path,
+        help="UTF-8 file containing one tensor path per line or a JSON path list",
+    )
     parser.add_argument("--output-dir", type=Path, required=True)
     parser.add_argument("--synthetic", action="store_true", help="declare all inputs synthetic")
     parser.add_argument("--authorization", type=Path)
     arguments = parser.parse_args(argv)
     try:
+        paths = resolve_input_paths(arguments.inputs, arguments.input_manifest)
         result = run_paths(
-            arguments.inputs,
+            paths,
             arguments.output_dir,
             synthetic=arguments.synthetic,
             authorization=arguments.authorization,
