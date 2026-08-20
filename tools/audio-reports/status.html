@@ -222,12 +222,17 @@ let previewed=null;
 function previewLatest(entries){
   if(nowPlaying) return;                       // never disturb a playing reading
   if(!au.paused && !au.ended && au.currentTime>0) return;
-  const live=(entries||[]).filter(e=>!e.quiet);
-  const e=live[live.length-1];
+  // Quiet governs PLAYBACK, not visibility. Filtering quiet reports out of the
+  // preview meant the newest overnight report was invisible in the morning and
+  // the page showed a stale one instead (caught 2026-08-21 03:10, before Duho
+  // could open it and see yesterday).
+  const all=(entries||[]);
+  const e=all[all.length-1];
   if(!e || previewed===e.seq) return;
   previewed=e.seq;
   loadAudio(e.file);                          // loaded, not played
-  set(armed?'live':'', `latest: ${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
+  set(armed?'live':'', `latest: ${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`
+      + (e.quiet ? ' · queued overnight, not played' : ''), e.color);
   showTranscript(e);
   showDeck(e);
   const or_=document.getElementById('openreport');
