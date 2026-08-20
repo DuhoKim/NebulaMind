@@ -31,8 +31,11 @@ sys.path.insert(0, "/Users/duhokim/HermesOps/scripts")
 import nm_deck_derive as derive_mod
 
 
+# A sentence-final number used to swallow its full stop ("208,407." -> "208407")
+# and then fail to match the same number written in a slide. Only take a decimal
+# point when digits follow it.
 def numbers(text: str) -> set[str]:
-    return {n.replace(",", "") for n in re.findall(r"\d[\d,]*\.?\d*", str(text))}
+    return {n.replace(",", "") for n in re.findall(r"\d[\d,]*(?:\.\d+)?", str(text))}
 
 
 def build(mp3: pathlib.Path, authored: pathlib.Path) -> int:

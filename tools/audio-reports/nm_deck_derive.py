@@ -49,8 +49,10 @@ def sentences_with_times(stem: pathlib.Path):
     return sents, starts, "estimated", 0.0
 
 
+# Only take a decimal point when digits follow, so a sentence-final number does
+# not swallow its full stop and fail to match the slide that quotes it.
 def numbers_in(text: str) -> set[str]:
-    return {n.replace(",", "") for n in re.findall(r"\d[\d,]*\.?\d*", text)}
+    return {n.replace(",", "") for n in re.findall(r"\d[\d,]*(?:\.\d+)?", text)}
 
 
 def derive(stem: pathlib.Path) -> int:

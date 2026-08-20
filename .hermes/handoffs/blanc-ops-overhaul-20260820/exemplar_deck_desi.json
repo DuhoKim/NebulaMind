@@ -1,0 +1,36 @@
+{"slides": [
+ {"t": 0.0, "k": "Thursday night", "h": "A galaxy was measured, and the design became permanent",
+  "b": ["<span class='num'>2,840</span> galaxies now carry a real chirality value. The day before, that number was <span class='num'>0</span>.",
+        "From the first one, the study's own rules forbid changing any parameter — the run is <span class='bad'>void</span> if we do, not merely embarrassing."],
+  "g": {"kind": "cutgrid", "n": 6, "cols": 6}},
+
+ {"t": 25.54, "k": "The finding", "h": "The achievement was 2 days of deliberately not measuring",
+  "b": ["<span class='num'>2</span> parameters were still choosable. Choosing them one day later would have voided the run instead of delaying it.",
+        "A preregistration is worth something only because the choices are made before the data can influence them.",
+        "The first real measurement is where that protection either holds or quietly fails."]},
+
+ {"t": 47.56, "k": "How we found out", "h": "Rehearse on fake galaxies to see what is still undecided",
+  "b": ["It found <span class='num'>2</span> live parameters: the allocator refuses when a prior reaches <span class='num'>0</span> or <span class='num'>1</span>, so a smoothing rule had to exist.",
+        "And <span class='num'>30</span> galaxies per stratum was satisfiable in rehearsal only because a synthetic sample can be engineered and a real one cannot."],
+  "g": {"kind": "badges", "items": [["sign convention frozen", true], ["allocation priors frozen", true], ["sparse-cell rule frozen", true]]}},
+
+ {"t": 73.34, "k": "The review that caught us", "h": "The document freezing those choices cited the wrong file",
+  "b": ["Its engineering claim quoted a line from a different revision of the harness than its evidence came from.",
+        "Its byte-for-byte check pointed at a file a later run had overwritten.",
+        "An adversarial review caught both. Held, repaired, <span class='ok'>re-gated</span> before anything was measured — which is the reason to trust the rest of this."]},
+
+ {"t": 96.88, "k": "What a measurement is", "h": "Every value carries the hashes of everything that made it",
+  "b": ["The raw float bits sit beside the decimal, so a number cannot drift in transcription or be reproduced by a different instrument without it showing."],
+  "g": {"kind": "receipt"}},
+
+ {"t": 113.04, "k": "What nobody may look at", "h": "No average, no tertile, no summary until the last galaxy",
+  "b": ["<span class='num'>2,840</span> measured of <span class='num'>208,407</span>.",
+        "Looking at any aggregate now would let the data influence the strata that decide which galaxies get hand-checked.",
+        "The prohibition is the protection."],
+  "g": {"kind": "skymap"}},
+
+ {"t": 135.96, "k": "What remains", "h": "Then 150 labels, by hand, blinded",
+  "b": ["Transfer finishes around Tuesday; measurement follows minutes behind; strata form once, on the complete sample.",
+        "If a stratum comes up short the frozen answer is to hold and declare it underpowered — not to improvise."],
+  "g": {"kind": "chain"}}
+]}
