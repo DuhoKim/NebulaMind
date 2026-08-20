@@ -253,8 +253,14 @@ def sky_map(seed_key: str = "") -> dict | None:
         dr.text((6, y - 7), f"{dec:+d}°", font=f9, fill=(139, 147, 161))
     dr.text((PAD_L, 10), "Bricks in hand, over the sky our sample needs",
             font=f12, fill=(238, 241, 251))
-    dr.text((PAD_L, H - 17), "RA →   ·   blue haze = 208,407 parent galaxies   ·   "
+    dr.text((PAD_L, H - 30), "RA →   ·   blue haze = 208,407 parent galaxies   ·   "
                              "cyan = bricks accepted", font=f9, fill=(139, 147, 161))
+    # Hwao, verified against all 208,407 positions (dec -89.6 to -39.4, median
+    # -56.5): the empty north is the frozen selection, not absent data. Without
+    # this line the black 82% reads as "we are missing most of the sky".
+    dr.text((PAD_L, H - 16), "Parent sample is a frozen southern cap (BRICKID 1–121000); "
+                             "the empty north is out of scope by design, not missing.",
+            font=f9, fill=(255, 196, 107))
     stamp = (last_utc or "").replace("T", " ").replace("Z", " UTC")
     dr.text((W - 300, 12), f"{len(accepted):,} of {WORKING_SET_BRICKS:,} bricks · {stamp}",
             font=f9, fill=(255, 196, 107))
@@ -267,7 +273,11 @@ def sky_map(seed_key: str = "") -> dict | None:
                     f"{stamp}. NOT survey sky coverage — the backdrop is the 208,407 galaxies this "
                     f"study needs. The transfer walks bricks in RA order, so the leading edge is "
                     f"ordering, not a missing region; and one brick is not one galaxy, so brick "
-                    f"coverage is not sample completeness."}
+                    f"coverage is not sample completeness. The parent sample is a frozen "
+                    f"southern cap (BRICKID 1–121000, dec −89.6 to −39.4, median −56.5) — the "
+                    f"empty north is out of scope by design, not missing data. A single cap can "
+                    f"still constrain a dipole: count-weighted var(cos θ) = 0.445201 against a "
+                    f"required 0.15 (TORI_FOOTPRINT_VARIANCE_RECEIPT.md)."}
 
 
 def failure_strip() -> dict | None:
@@ -334,3 +344,73 @@ def throughput(hours: int = 24) -> dict | None:
         "attr": "Flat hours are the frozen transfer window (the campaign sleeps by rule), "
                 "not a stall. No ETA is shown: projecting from a running-window rate lands "
                 "wildly early."}
+
+
+CUTOUT_DIR = pathlib.Path("/Users/duhokim/NebulaMindData/cutouts_dr10_south")
+CHI_RESULTS = pathlib.Path("/Users/duhokim/NebulaMindData/chi_dr10_south/results.jsonl")
+PARENT_TOTAL = 208407
+
+
+def pipeline_chain() -> dict | None:
+    """Where the sample is, stage by stage, and where it is piling up.
+
+    Hwao's rule: most galaxies are WAITING ON BRICKS, which is the design
+    working, not a failure — so the gap is labelled that way and never as
+    "failed". COUNTS ONLY: results.jsonl carries chi_value and committee_state,
+    and the measurement is blinded until the sample is complete, so nothing
+    here may hint at the distribution.
+    """
+    import json as _j
+    try:
+        hb = _j.loads((RECEIPTS.parent / "heartbeat.json").read_text())
+    except Exception:
+        hb = {}
+    bricks_ok, bricks_total = hb.get("accepted", 0), hb.get("total", WORKING_SET_BRICKS)
+    try:
+        wrap = _j.loads((CUTOUT_DIR / "wrapper_heartbeat.json").read_text())
+    except Exception:
+        wrap = {}
+    ready = int(wrap.get("ready") or 0)
+    tensors = len(list((CUTOUT_DIR / "tensors").glob("object-*.f32le"))) \
+        if (CUTOUT_DIR / "tensors").exists() else 0
+    measured = sum(1 for _ in CHI_RESULTS.open()) if CHI_RESULTS.exists() else 0
+    stamp = (wrap.get("utc") or "").replace("T", " ").replace("Z", " UTC")
+
+    stages = [("parent sample", f"{PARENT_TOTAL:,}", "galaxies"),
+              ("bricks in hand", f"{bricks_ok:,}/{bricks_total:,}", "bricks"),
+              ("ready to cut", f"{ready:,}", "galaxies"),
+              ("cut", f"{tensors:,}", "galaxies"),
+              ("measured", f"{measured:,}", "galaxies")]
+    w, h, bw, gap = 620, 132, 104, 24
+    parts = []
+    for i, (label, value, unit) in enumerate(stages):
+        x = i * (bw + gap)
+        if x + bw > w:
+            break
+        parts.append(
+            f'<rect x="{x}" y="26" width="{bw}" height="52" rx="9" fill="#141c33" stroke="#2a3550"/>'
+            f'<text x="{x + bw/2:.0f}" y="20" text-anchor="middle" fill="#8b93a1" font-size="11" '
+            f'font-family="system-ui">{label}</text>'
+            f'<text x="{x + bw/2:.0f}" y="52" text-anchor="middle" fill="#ffc46b" font-size="15" '
+            f'font-family="system-ui" font-weight="600">{value}</text>'
+            f'<text x="{x + bw/2:.0f}" y="68" text-anchor="middle" fill="#78818f" font-size="10" '
+            f'font-family="system-ui">{unit}</text>')
+        if i < len(stages) - 1 and x + bw + gap < w:
+            parts.append(f'<path d="M{x + bw + 4} 52 L{x + bw + gap - 6} 52" stroke="#59d8ff" '
+                         f'stroke-width="1.5" fill="none" marker-end="url(#ar)"/>')
+    waiting = max(0, PARENT_TOTAL - ready)
+    queued = max(0, ready - tensors)
+    parts.append(
+        f'<text x="0" y="98" fill="#8b93a1" font-size="11" font-family="system-ui">'
+        f'<tspan fill="#59d8ff">{waiting:,}</tspan> waiting on bricks — the design working, not a '
+        f'failure   ·   <tspan fill="#59d8ff">{queued:,}</tspan> queued for the cutter</text>'
+        f'<text x="0" y="118" fill="#78818f" font-size="10" font-family="system-ui">'
+        f'counts only — the measurement stays blinded until the sample is complete · {stamp}</text>')
+    return {"svg": (
+        f'<svg viewBox="0 0 {w} {h}" width="100%" role="img" aria-label="pipeline stages">'
+        f'<defs><marker id="ar" viewBox="0 0 8 8" refX="6" refY="4" markerWidth="5" '
+        f'markerHeight="5" orient="auto"><path d="M0 1 L6 4 L0 7 z" fill="#59d8ff"/></marker></defs>'
+        f'{"".join(parts)}</svg>'),
+        "attr": f"Stage counts as of {stamp}. Galaxies waiting on bricks are waiting by design — a "
+                f"brick they need has not arrived yet. Counts only: no chirality value or committee "
+                f"state is shown, and none may be until the sample is complete and the labels are in."}

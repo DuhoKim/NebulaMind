@@ -84,6 +84,8 @@ def build(mp3: pathlib.Path, authored: pathlib.Path) -> int:
                     r = graphics.sky_map(f"{stem.name}:{t}")
                 elif kind == "failstrip":
                     r = graphics.failure_strip()
+                elif kind == "chain":
+                    r = graphics.pipeline_chain()
                 elif kind == "throughput":
                     r = graphics.throughput(int(g.get("hours", 24)))
                 elif kind == "badges":

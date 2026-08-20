@@ -60,3 +60,9 @@ frontend/public/agent-reports/
 # hot runtime state — rewritten continuously by live services; never track
 .hermes/state/**
 .hermes/**/autopilot-status.json
+
+# Embedded upstream git clones — vendored data/code, must not be gitlinks (2026-08-20)
+.hermes/handoffs/weekend-video-sextet-20260808T0136K/quasar-dipole-design-brief-20260811T0845K/exact-products/catwise-v3/Resultscode/CatWISEdipole/
+.hermes/handoffs/weekend-video-sextet-20260808T0136K/quasar-dipole-design-brief-20260811T0845K/exact-products/quaia/gaia-quasars-lss/
+.hermes/handoffs/weekend-video-sextet-20260808T0136K/research_sources/PantheonPlusSH0ES_DataRelease/
+.hermes/handoffs/weekend-video-sextet-20260808T0136K/reviews/_tori_spin_prior_art_sources_20260811/GalaxySpinAnisotropy/

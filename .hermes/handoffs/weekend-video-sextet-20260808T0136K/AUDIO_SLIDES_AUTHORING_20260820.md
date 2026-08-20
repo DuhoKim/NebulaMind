@@ -46,6 +46,7 @@ fallback), but yours will always be better.
 | `{"kind":"badges","items":[["receipts pass",true],["manifest bug",false]]}` | pass/fail chips |
 | `{"kind":"skymap"}` | **DESI**: accepted bricks in RA/Dec over the 208,407 parent galaxies, with the RA-ordered transfer front labelled on the image (it is not a missing region) |
 | `{"kind":"failstrip"}` | **DESI**: outcome counts from receipts.jsonl *including the zeros* — "no digest mismatch so far", never "verified perfect" |
+| `{"kind":"chain"}` | **DESI**: parent → bricks → ready → cut → measured with the pile-ups; galaxies waiting are labelled "waiting on bricks — the design working", and counts only (the measurement is blinded) |
 | `{"kind":"throughput","hours":24}` | **DESI**: bricks/hour from receipt timestamps; flat hours are the frozen transfer window, and no ETA is printed |
 
 The three DESI graphics read `receipts.jsonl` themselves, so their numbers come
