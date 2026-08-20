@@ -91,3 +91,4 @@ was not here:
 - 03:50 tick: restored Tori's exemplar to the queue as a quiet entry so BOTH exemplars appear in the morning view (it was pulled as a draft; it is now a finished exemplar). Verified live: preview = Hwao 00:50 'queued overnight, not played', open-as-page link resolves, recent list carries both.
 - 04:11 tick: verified the report page WORKS not just renders (blob audio, exact seeking, 7 chips, slides advancing at 100s and 137s). Briefing text drafted and checked for digits. Cockpit rendered. Nothing unpushed.
 - 04:49 tick: quiet — all surfaces 200, nothing new published, no changes needed. Holding for the 08:04 handover.
+- 05:11 tick: quiet — no change, surfaces healthy, tree clean.
