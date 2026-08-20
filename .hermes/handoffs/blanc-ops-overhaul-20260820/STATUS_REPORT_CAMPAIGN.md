@@ -46,14 +46,38 @@ word "audio" stops being the headline anywhere in the system.
 - Fable weekly cap is exhausted until Sat 13:59 KST; this session is Opus.
   Non-Claude seats stay available but this is single-surface work, so I do it.
 
+## CORRECTION 00:0x — quality, not volume
+
+Duho, verbatim: **"no report tonight, i said spend a night to make it a good
+quality new format report with slides."**
+
+I had briefed Hwao and Tori to each publish a report overnight. That was my
+misreading and it is retracted. The night's deliverable is **the format at a
+quality bar, demonstrated by ONE genuinely good report**, not a stream of
+routine ones. Publishing nothing further tonight is a fine outcome; the
+coordinators contribute judgment (which moment deserves the exemplar, what the
+slides should say, which generator they need), and I do the craft.
+
+Quality bar for the exemplar — it has to survive being read by a person who
+was not here:
+- the headline states the finding, not the occasion;
+- every slide earns its place; no slide restates the previous one;
+- graphics carry data, not decoration, and each is captioned with what it
+  cannot tell you;
+- the caveat sits beside the claim it qualifies, not exiled to the end;
+- it reads with the sound off, and rewards listening rather than requiring it.
+
 ## Phases
 
 - P1 build the report-page renderer + component (slides-first)
 - P2 status.html (live view) + archive rows linking to report pages
-- P3 backfill report pages for existing readings with decks; vocabulary sweep
+- P3 ONE exemplar report built to the bar above (content from the lane that
+  owns the moment); vocabulary sweep; backfill pages for existing readings
 - P4 verify in a real browser (dark AND light, phone width), commit, push
 - P5 morning handover + 08:0x audio briefing
 
 ## Ledger
 
 - 23:55 campaign opened; reference read (Tori's podcast card format).
+- 00:0x P1 done: nm_report_page.py renders a real report page (verified in browser, dark). Hwao+Tori briefed to write real status reports overnight per Duho.
+- 00:0x CORRECTION: Duho — no reports tonight; the night is for FORMAT QUALITY plus one exemplar. Retracted my publish-a-report brief to both coordinators.
