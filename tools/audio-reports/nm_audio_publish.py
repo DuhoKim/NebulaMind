@@ -85,11 +85,24 @@ def main() -> int:
     now_kst = now_utc.astimezone(KST)
     quiet = in_quiet_hours(now_kst) and not a.force_live
 
-    # transcript sidecar first — alignment and the pages depend on it
+    # transcript sidecar first — alignment and the pages depend on it.
+    # The caption is the DISPLAY copy: digits, not spelled-out numbers
+    # (Duho's standing rule — the spoken text leaks into the caption verbatim,
+    # so "three hundred forty six" was showing up in the archive).
     transcript = None
+    caption_fixes = 0
     if a.text:
+        try:
+            sys.path.insert(0, str(R.parent.parent / "scripts"))
+            import nm_caption_norm
+            caption, caption_fixes = nm_caption_norm.normalize(a.text.strip())
+        except Exception:
+            caption = a.text.strip()
         transcript = mp3.with_suffix(".txt")
-        atomic_write(transcript, a.text.strip() + "\n")
+        atomic_write(transcript, caption + "\n")
+        if caption_fixes:
+            print(f"[caption: {caption_fixes} spelled-out number/letter-run normalized to digits]",
+                  file=sys.stderr)
 
     # queue update under an exclusive lock — the 08-19 Fable trio published
     # 4 s apart; unlocked read-modify-replace would hand out duplicate seqs.
@@ -118,6 +131,7 @@ def main() -> int:
         "stamp_kst": now_kst.strftime("%Y-%m-%d %H:%M:%S KST"),
         "quiet": quiet,
         "transcript": transcript.name if transcript else None,
+        "caption_normalized": caption_fixes,
         "duration_s": duration_of(mp3),
     }
     q["entries"] = (q.get("entries", []) + [entry])[-QUEUE_KEEP:]
@@ -131,7 +145,7 @@ def main() -> int:
         tmp.write_bytes(mp3.read_bytes())
         os.replace(tmp, R / "latest.mp3")
         if a.text:
-            atomic_write(R / "latest_transcript.txt", a.text.strip() + "\n")
+            atomic_write(R / "latest_transcript.txt", (caption if transcript else a.text.strip()) + "\n")
         atomic_write(R / "latest.txt",
                      f"{entry['stamp_kst']}  {mp3.name}\n")
 
