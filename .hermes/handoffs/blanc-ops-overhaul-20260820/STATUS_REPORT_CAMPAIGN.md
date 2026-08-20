@@ -94,3 +94,4 @@ was not here:
 - 05:11 tick: quiet — no change, surfaces healthy, tree clean.
 - 05:49 tick: quiet — no change; pushed the pending ledger commit.
 - 06:11 tick: quiet — no change.
+- 08:15 CAMPAIGN CLOSED: handover delivered 08:04 (briefing played on both machines, MacBook confirmed seq 26), cockpit rendered, everything pushed. Overnight tick cron cancelled — Blanc back to normal OPS duty.
