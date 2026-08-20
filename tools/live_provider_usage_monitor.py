@@ -583,22 +583,42 @@ def update_gauges(canonical: dict[str, Any], agy: dict[str, Any] | None, codex: 
         fable_reset = fmt_reset_remained(fable_lim.get('resets_at')) if fable_lim else weekly_reset
 
         main_fill = max([v for v in [five_h_pct, weekly_pct, fable_pct] if v is not None], default=None)
-        g['value_label'] = f'Fable {display_pct(five_h_pct)} 5h · {display_pct(fable_pct)} weekly'
+        # A per-model tier can be exhausted while the plan still has headroom
+        # (2026-08-20: Fable weekly hit 100% and the coordinators moved to Opus,
+        # yet the card headlined a bare 100% — reading as "Claude is dead" when
+        # 43% of the all-models week remained). Name the full tier explicitly
+        # and keep the usable number beside it.
+        if fable_pct is not None and fable_pct >= 99 and weekly_pct is not None and weekly_pct < 95:
+            g['value_label'] = (f'Fable tier FULL · all models {display_pct(weekly_pct)} weekly '
+                                f'· {display_pct(five_h_pct)} 5h')
+        else:
+            g['value_label'] = f'Fable {display_pct(five_h_pct)} 5h · {display_pct(fable_pct)} weekly'
         g['fill_pct'] = main_fill
         g['tone'] = tone_for_used(main_fill)
         g['detail'] = (
             f'Claude OAuth usage endpoint reports the 5h limit at {display_pct(five_h_pct)} '
             f'({five_h_reset}), the Fable weekly cap at {display_pct(fable_pct)} ({fable_reset}), '
             f'and all models combined at {display_pct(weekly_pct)} ({weekly_reset}). '
-            'The binding constraint is the highest of these, not the combined total.'
+            'The binding constraint is the highest of these, not the combined total. '
+            'Per-model caps (Opus, Sonnet) are reported as "not observed" when the endpoint '
+            'omits them — an exhausted Fable tier does not mean an exhausted plan.'
         )
         g['source_label'] = f'OAuth /api/oauth/usage fetched {observed_at}; active Claude panes: {counts["claude_seats"]}.'
         
+        fable_sub = {'label': 'Fable tier weekly' + (' — FULL' if (fable_pct or 0) >= 99 else ''),
+                     'value_label': f'{display_pct(fable_pct, "")} · {fable_reset}',
+                     'fill_pct': fable_pct, 'tone': tone_for_used(fable_pct)}
+        all_sub = {'label': 'All models weekly used',
+                   'value_label': f'{display_pct(weekly_pct, "")} · {weekly_reset}',
+                   'fill_pct': weekly_pct, 'tone': tone_for_used(weekly_pct)}
+        # The dashboard headlines the FIRST weekly sub-gauge. When one model tier
+        # is exhausted but the plan is not, lead with the number that still
+        # governs work (all-models) and keep the closed tier loudly beside it.
+        weekly_subs = ([all_sub, fable_sub] if (fable_pct or 0) >= 99 and (weekly_pct or 100) < 95
+                       else [fable_sub, all_sub])
         sub_gauges = [
-            {'label': 'Fable 5h used', 'value_label': f'{display_pct(five_h_pct, "")}', 'fill_pct': five_h_pct, 'tone': tone_for_used(five_h_pct)},
-            {'label': 'Fable weekly used', 'value_label': f'{display_pct(fable_pct, "")} · {fable_reset}', 'fill_pct': fable_pct, 'tone': tone_for_used(fable_pct)},
-            {'label': 'All models weekly used', 'value_label': f'{display_pct(weekly_pct, "")} · {weekly_reset}', 'fill_pct': weekly_pct, 'tone': tone_for_used(weekly_pct)},
-        ]
+            {'label': 'Claude 5h used', 'value_label': f'{display_pct(five_h_pct, "")}', 'fill_pct': five_h_pct, 'tone': tone_for_used(five_h_pct)},
+        ] + weekly_subs
         
         # Add other Anthropic models dynamically from limits
         for lim in claude_data.get('limits', []):
