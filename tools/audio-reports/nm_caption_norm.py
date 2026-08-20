@@ -51,18 +51,37 @@ def spelled_to_digits(text: str) -> tuple[str, int]:
         low = tok.lower().strip("-")
         if low in WORDS:
             run, j = [], i
+            last_word = i          # index of the last NUMBER token consumed
             while j < len(tokens):
                 w = tokens[j].lower().strip("-")
                 if w in WORDS:
                     run.append(w)
+                    last_word = j
                     j += 1
-                elif tokens[j].strip() in ("", "-") or tokens[j] in (" ", "-", " and "):
-                    if j + 1 < len(tokens) and tokens[j + 1].lower().strip("-") in WORDS:
+                elif w == "and" and any(r in SCALES for r in run):
+                    # "two thousand AND forty seven" is ONE number in ordinary
+                    # speech. Splitting it wrote "2,000 and 47" into the caption,
+                    # so slides legitimately claiming 2,047 were refused (Hwao
+                    # lost 4 of 6 slides to this, 2026-08-20). Absorb the
+                    # connector only where a scale word precedes it — "3 machines
+                    # and 2 repairs" must stay two separate numbers.
+                    k = j + 1
+                    while k < len(tokens) and not tokens[k].strip():
+                        k += 1
+                    if k < len(tokens) and tokens[k].lower().strip("-") in WORDS:
+                        j = k
+                        continue
+                    break
+                elif not tokens[j].strip() or tokens[j].strip() == "-":
+                    nxt = j + 1
+                    if nxt < len(tokens) and (tokens[nxt].lower().strip("-") in WORDS
+                                              or tokens[nxt].lower().strip("-") == "and"):
                         j += 1
                     else:
                         break
                 else:
                     break
+            j = last_word + 1      # never swallow the separator after the number
             words_only = [t for t in run]
             if words_only and not (len(words_only) == 1 and words_only[0] in KEEP_AS_WORD):
                 val = _value(words_only)

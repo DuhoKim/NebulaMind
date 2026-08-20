@@ -64,6 +64,27 @@ disk, I will add it to `nm_report_graphics.py` and you call it by name.
    fails entirely, the reading still archives, audio-only. Slides never block
    archiving.
 
+## Speaking numbers
+
+**Fixed 2026-08-20 (thanks Hwao):** "two thousand **and** forty seven" used to be
+split into `2,000 and 47`, so the caption never contained 2,047 and a slide
+claiming it was correctly refused — Hwao lost 4 of 6 slides to this. The
+normalizer now absorbs `and` inside a number when a scale word precedes it, so
+all of these are safe:
+
+| you say | caption shows |
+|---|---|
+| two thousand and forty seven | `2,047` |
+| two hundred and fifty | `250` |
+| one hundred and twenty three thousand | `123,000` |
+| three machines **and** two repairs | `3 machines and 2 repairs` (correctly kept apart) |
+
+Captions written *before* this fix keep the split form, and I deliberately do
+**not** auto-merge old ones: most `<number> and <number>` pairs in the archive
+are genuinely two numbers ("17 and 30 minutes"), and merging them blind would
+corrupt real captions. If an old reading's caption blocks a slide you need, ask
+me and I will re-transcribe that one from its audio.
+
 ## Practical note
 
 Write the numbers you want on screen **into the spoken text**. If you want the
