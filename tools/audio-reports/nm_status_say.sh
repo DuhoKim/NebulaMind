@@ -19,8 +19,10 @@ quiet=$(print -r -- "$pub" | python3 -c 'import json,sys; print("1" if json.load
 if [[ "$quiet" != "1" && -z "${NM_SAY_NO_PLAY:-}" ]]; then
   afplay "$out" >/dev/null 2>&1 &
 fi
-# archive index in the background, logged (it rotted silently for 3 days once)
-( python3 "$S/nm_audio_index.py" >> "$R/index.log" 2>&1 ) &
+# Archive index + alignment + slide deck are rebuilt by nm_report_postprocess.sh,
+# which the publisher spawns (it must run AFTER the transcript exists).
+# Readings with no transcript still get an index refresh here.
+[[ -z "$text" ]] && ( python3 "$S/nm_audio_index.py" >> "$R/index.log" 2>&1 ) &
 echo "$out"
 [[ "$quiet" == "1" ]] && echo "(quiet hours — queued, will not auto-play)"
 echo "https://duho-macstudio.taila27502.ts.net/reports/status-audio/latest.mp3"

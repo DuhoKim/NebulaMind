@@ -152,11 +152,14 @@ def main() -> int:
     fcntl.lockf(lock_fh, fcntl.LOCK_UN)
     lock_fh.close()
 
-    # alignment in the background (harmless if faster_whisper is missing)
+    # Post-processing in the background: align -> derive slide deck -> rebuild
+    # index. Slides are a DEFAULT part of every report (spec 2026-08-20) but
+    # must never block archiving, so this is fire-and-forget and every step is
+    # best-effort.
     if transcript:
         subprocess.Popen(
-            [sys.executable, str(R.parent.parent / "scripts" / "nm_audio_align.py"), mp3.stem],
-            stdout=open(R / "align.log", "a"), stderr=subprocess.STDOUT)
+            ["/bin/zsh", str(R.parent.parent / "scripts" / "nm_report_postprocess.sh"), str(mp3)],
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
     print(json.dumps({"seq": entry["seq"], "quiet": quiet, "file": mp3.name}))
     return 0

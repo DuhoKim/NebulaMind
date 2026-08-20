@@ -40,3 +40,30 @@ Both machines auto-play natively — no browser needed:
 
 The listen.html / archive.html pages remain as browsable history (browser
 autoplay needs one click per tab — that limitation is why the native daemons exist).
+
+## Slides (default since 2026-08-20)
+
+Per FEATURE_SPEC_AUDIO_SLIDES_20260820 (Duho: "let's make it as a default
+feature for audio report"). Every reading gets a deck without the speaker doing
+anything:
+
+`nm_audio_publish.py` spawns `nm_report_postprocess.sh`, which runs
+**align → derive deck → rebuild index** in that order, off the critical path:
+
+- `nm_audio_align.py` (MUST use the hermes venv python — system python3 has no
+  faster_whisper) writes `<stem>.times.json` with per-sentence end times.
+- `nm_deck_derive.py` turns transcript + times into `<stem>.deck.json` in Tori's
+  podcast DECK schema. Two rules are enforced mechanically, not trusted: every
+  slide time must equal a real sentence start, and **every number in the deck
+  must already appear in the transcript** — invented numbers are rejected and a
+  deck with under 3 surviving slides is discarded entirely.
+- Decks are cached: an existing `.deck.json` is never re-rolled or re-billed.
+- Failure is always non-fatal — the reading archives audio-only, as before.
+
+`listen.html` and `archive.html` render decks with Tori's podcast look (cyan
+kicker, amber numbers, clickable time chips that seek the audio).
+
+Captions recovered by `nm_audio_backfill.py` (machine transcription of old
+readings whose text was never saved) carry an `.asr.json` marker and show an
+"auto-transcribed" badge — a guess at what was said is never presented as the
+written record.

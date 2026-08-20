@@ -159,6 +159,13 @@ for name in os.listdir(DIR):
         "size": os.path.getsize(path),
         "dur": duration(path),
         "text": transcript(path),
+        # Slides are a default part of every report since 2026-08-20; a reading
+        # without a deck simply renders audio-only.
+        "deck": (json.load(open(os.path.splitext(path)[0] + ".deck.json"))
+                 if os.path.exists(os.path.splitext(path)[0] + ".deck.json") else None),
+        # Captions recovered by machine transcription are labelled as such —
+        # they are a guess at what was said, not the written text.
+        "asr": os.path.exists(os.path.splitext(path)[0] + ".asr.json"),
     })
     rows[-1]["times"], rows[-1]["tmode"] = (
         timings(path, rows[-1]["text"], rows[-1]["dur"]) if rows[-1]["text"] else (None, None))
@@ -194,7 +201,23 @@ for key, items in groups:
         # expand. Duho did not see it either time. Anything that needs discovering
         # is not delivered, so rows that have text simply show it. Rows without a
         # transcript emit nothing at all rather than 148 "not saved" notices.
-        tx = f'<div class=tx>{spanify(r["text"])}</div>' if r["text"] else ""
+        asr_badge = ('<span class=asr title="machine transcription of the audio; '
+                     'the original written text was not saved">auto-transcribed</span>'
+                     if r.get("asr") else "")
+        tx = f'<div class=tx>{asr_badge}{spanify(r["text"])}</div>' if r["text"] else ""
+        deck_html = ""
+        if r.get("deck") and (r["deck"].get("slides") or []):
+            d = r["deck"]
+            chips = "".join(
+                f'<button class=dchip data-t="{sl["t"]}">{int(sl["t"])//60}:{int(sl["t"])%60:02d}</button>'
+                for sl in d["slides"])
+            slides_json = html.escape(json.dumps(d["slides"]), quote=True)
+            note = ("Slides follow the audio (forced alignment); they only restate what is spoken."
+                    if d.get("timing") == "aligned"
+                    else "Slide timing is estimated from sentence lengths, not measured.")
+            deck_html = (f'<div class=deck data-slides="{slides_json}">'
+                         f'<div class=marks>{chips}</div><div class=slide></div>'
+                         f'<div class=dnote>{note}</div></div>')
         # Timing table travels on the row, with its provenance beside it.
         tattr = (f' data-t="{",".join(str(x) for x in r["times"])}" data-tm="{r["tmode"]}"'
                  if r.get("times") else "")
@@ -204,7 +227,7 @@ for key, items in groups:
             f'<span class=play>▶</span>'
             f'<span class=t>{html.escape(r["title"])}</span>'
             f'<span class=m>{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
-            f'</div>{tx}</li>')
+            f'</div>{tx}{deck_html}</li>')
     body.append("</ul>")
 
 total_min = sum(r["dur"] or 0 for r in rows) / 60
@@ -229,6 +252,23 @@ border:1px solid #1e242f;background:#141922;cursor:pointer}}
 .tx{{display:none;margin:.7em 0 .15em;padding:.9em 1em;border-radius:7px;background:#0d1119;
 border:1px solid #232833;font-size:1.06rem;line-height:1.7;color:#d5dbe4;white-space:pre-wrap}}
 li.sel .tx{{display:block}}
+.asr{{display:inline-block;font-size:.68rem;color:#c9b280;border:1px solid #4a4020;border-radius:5px;
+padding:.05em .4em;margin-right:.5em;vertical-align:middle}}
+/* Slide deck — same look as the podcast decks and the live listen page. */
+.deck{{display:none;margin:.6em 0 .2em}}
+li.sel .deck{{display:block}}
+.marks{{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:.5rem}}
+.dchip{{background:#141922;border:1px solid #232833;color:#8b93a1;border-radius:999px;
+padding:.15em .55em;font:600 .7rem/1 inherit;cursor:pointer}}
+.dchip.on{{background:#59d8ff;color:#04121c;border-color:#59d8ff}}
+.slide{{background:#0c1228;border:1px solid #26304f;border-radius:12px;padding:.9em 1em}}
+.slide .kicker{{color:#59d8ff;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.4em}}
+.slide h3{{font-size:1.05rem;line-height:1.25;margin:0 0 .55em;color:#eef1fb;font-weight:700}}
+.slide ul{{margin:0;padding-left:1.05em}}
+.slide li{{font-size:.9rem;line-height:1.5;margin-bottom:.35em;color:#dfe4f5;border:0;padding:0}}
+.num{{color:#ffc46b;font-variant-numeric:tabular-nums;font-weight:600}}
+.ok{{color:#7ee6a8}}.bad{{color:#ff8ba0}}
+.dnote{{color:#78818f;font-size:.7rem;margin-top:.45em}}
 body.notext .tx{{display:none}}
 .tx .s{{transition:background .18s ease,color .18s ease;border-radius:3px}}
 .tx .s.now{{background:#1d4f33;color:#fff;box-shadow:0 0 0 .2em #1d4f33}}
@@ -255,6 +295,8 @@ padding:.15em .3em;text-decoration:underline}}
 li{{background:#f4f6fa;border-color:#e6e9ef}}li.on{{background:#e8f6ee;border-color:#4bb07a}}
 #bar{{background:#f4f6faee;border-top-color:#e3e6ec}}#bar .now{{color:#000}}
 .tx{{background:#fff;border-color:#e3e6ec;color:#25292f}}.tx.none{{color:#8a929d}}
+.slide{{background:#fff;border-color:#e3e6ec}}.slide h3{{color:#1c1f26}}.slide li{{color:#3c4250}}
+.dchip{{background:#f0f2f6;border-color:#d8dce4}}
 .tx .s.now{{background:#c9e9d7;color:#06240f;box-shadow:0 0 0 .2em #c9e9d7}}}}
 </style>
 
@@ -311,6 +353,29 @@ paintToggle();
 // not asked for and could not find the source of — twice. A page must never make sound
 // unless the person watching it asked for sound.
 let autoNew = localStorage.getItem('nm_auto_new')==='1';
+// --- slide decks (2026-08-20): the selected row's deck follows the audio ---
+function deckOf(li){{ return li ? li.querySelector('.deck') : null; }}
+function drawDeck(li, t){{
+  const d=deckOf(li); if(!d) return;
+  let slides; try{{ slides=JSON.parse(d.dataset.slides); }}catch(e){{ return; }}
+  if(!slides || !slides.length) return;
+  let i=0; for(let j=0;j<slides.length;j++) if(t>=slides[j].t) i=j;
+  if(d.dataset.cur===String(i)) return;
+  d.dataset.cur=String(i);
+  const sl=slides[i];
+  d.querySelector('.slide').innerHTML=
+    '<div class=kicker>'+(sl.k||'')+'</div><h3>'+(sl.h||'')+'</h3><ul>'+
+    (sl.b||[]).map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+  [...d.querySelectorAll('.dchip')].forEach((b,j)=>b.classList.toggle('on',j===i));
+}}
+document.addEventListener('click', ev=>{{
+  const chip=ev.target.closest('.dchip'); if(!chip) return;
+  ev.stopPropagation();
+  au.currentTime=parseFloat(chip.dataset.t)+0.3; au.play().catch(()=>{{}});
+}}, true);
+au.addEventListener('timeupdate',()=>{{ const li=document.querySelector('li.sel'); drawDeck(li, au.currentTime); }});
+au.addEventListener('seeked',()=>{{ const li=document.querySelector('li.sel'); drawDeck(li, au.currentTime); }});
+
 const autonewBtn=document.getElementById('autonew');
 function paintAutoNew(){{
   autonewBtn.classList.toggle('sel', autoNew);

@@ -33,6 +33,23 @@ audio{width:100%;margin-top:1.4rem}
 .row button{font-size:.75rem;padding:.35em .8em}
 .log{margin-top:2.2rem;text-align:left;font-size:.78rem;color:#78818f;border-top:1px solid #232833;padding-top:1rem}
 .log div{padding:.22em 0;border-bottom:1px solid #1b2029}
+/* Slide deck — inherits Tori's podcast deck look so reports and podcasts read
+   as one system (spec 2026-08-20: slides are a DEFAULT part of every report). */
+.deck{margin-top:1rem;display:none}
+.marks{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:center;margin-bottom:.6rem}
+.marks button{background:#141922;border:1px solid #232833;color:#8b93a1;border-radius:999px;
+padding:.2em .6em;font:600 .72rem/1 inherit;cursor:pointer}
+.marks button.on{background:#59d8ff;color:#04121c;border-color:#59d8ff}
+.slide{background:#0c1228;border:1px solid #26304f;border-radius:14px;padding:1.1rem;text-align:left}
+.kicker{color:#59d8ff;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.5rem}
+.slide h3{font-size:clamp(1.05rem,3.2vw,1.4rem);line-height:1.25;margin:0 0 .7rem;font-weight:700;color:#eef1fb}
+.slide ul{margin:0;padding-left:1.1rem}
+.slide li{font-size:.95rem;line-height:1.55;margin-bottom:.45rem;color:#dfe4f5}
+.num{color:#ffc46b;font-variant-numeric:tabular-nums;font-weight:600}
+.ok{color:#7ee6a8}.bad{color:#ff8ba0}
+.deck-note{color:#78818f;font-size:.72rem;margin-top:.5rem;text-align:center}
+@media(prefers-color-scheme:light){.slide{background:#fff;border-color:#e3e6ec}
+.slide h3{color:#1c1f26}.slide li{color:#3c4250}.marks button{background:#f0f2f6;border-color:#d8dce4}}
 @media(prefers-color-scheme:light){body{background:#fbfbfd;color:#1c1f26}h1{color:#000}
 button{background:#f0f2f6;border-color:#d8dce4;color:#1c1f26}.state{color:#000}
 .transcript{background:#f0f2f6;border-color:#d8dce4;color:#3c4250}
@@ -50,6 +67,8 @@ in the speaker's own voice.<br><a href="archive.html">browse every past reading 
 
 <audio id=au controls preload=none></audio>
 <div class=transcript id=tx></div>
+<div class=deck id=deck><div class=marks id=marks></div><div class=slide id=slide></div>
+<div class=deck-note id=deck-note></div></div>
 
 <div class=recent><h2>Recent readings</h2><div id=recent></div></div>
 <div class=log id=log></div>
@@ -71,6 +90,53 @@ function note(t){ const d=document.createElement('div');
 function esc(s){ const d=document.createElement('span'); d.textContent=s??''; return d.innerHTML; }
 function dur(e){ return e.duration_s?` · ${Math.round(e.duration_s)}s`:''; }
 
+let deckData=null;
+const deckEl=document.getElementById('deck'), marksEl=document.getElementById('marks'),
+      slideEl=document.getElementById('slide'), deckNote=document.getElementById('deck-note');
+const fmtT=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
+let curSlide=-1;
+
+function clearDeck(){ deckData=null; deckEl.style.display='none'; marksEl.innerHTML='';
+  slideEl.innerHTML=''; deckNote.textContent=''; curSlide=-1; }
+
+function drawSlide(i){
+  if(i===curSlide||!deckData) return; curSlide=i;
+  const sl=deckData.slides[i];
+  slideEl.innerHTML=`<div class=kicker>${sl.k||''}</div><h3>${sl.h||''}</h3>`+
+    `<ul>${(sl.b||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
+  [...marksEl.children].forEach((b,j)=>b.classList.toggle('on',j===i));
+}
+
+async function showDeck(e){
+  clearDeck();
+  if(!e||!e.file) return;
+  const deckFile=e.file.replace(/\.mp3$/,'.deck.json');
+  try{
+    const r=await fetch(deckFile+'?t='+Date.now(),{cache:'no-store'});
+    if(!r.ok) return;                       // no deck: audio-only, exactly as before
+    const d=await r.json();
+    if(!d.slides||d.slides.length<2) return;
+    deckData=d;
+    d.slides.forEach(sl=>{const b=document.createElement('button');b.textContent=fmtT(sl.t);
+      b.onclick=()=>{au.currentTime=sl.t+0.3;au.play().catch(()=>{});};marksEl.appendChild(b);});
+    deckNote.textContent = d.timing==='aligned'
+      ? 'Slides follow the audio (forced alignment). They only restate what is spoken.'
+      : 'Slide timing is estimated, not measured — sentence lengths, not forced alignment.';
+    deckEl.style.display='block';
+    drawSlide(0);
+  }catch(_){}
+}
+
+function deckTick(){
+  if(!deckData) return;
+  const t=au.currentTime; let i=0;
+  for(let j=0;j<deckData.slides.length;j++) if(t>=deckData.slides[j].t) i=j;
+  drawSlide(i);
+}
+au.addEventListener('timeupdate',deckTick);
+au.addEventListener('seeked',deckTick);
+au.addEventListener('loadedmetadata',deckTick);
+
 async function showTranscript(e){
   tx.style.display='none'; tx.textContent='';
   if(!e||!e.transcript) return;
@@ -85,6 +151,7 @@ function playEntry(e,msg){
     set('playing',`${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
     if(msg) note(msg);
     showTranscript(e);
+    showDeck(e);
   }).catch(()=>{ set('live','new reading ready — press play'); note('autoplay blocked; press play'); });
 }
 
