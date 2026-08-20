@@ -1,0 +1,13 @@
+You are the kimi gate seat (Nous route), fresh one-shot. Gate ONE change, then stop. Working directory (absolute): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg .
+
+THE CHANGE: _inference_20260820/inference_runner.py AUTHORIZATION_SHA256 was a build-time placeholder (05fc06dd..., matching no file that ever existed, making the real-data path unreachable). It now pins Duho's frozen authorization K8_CROSSING_AUTHORIZATION_20260820.md, SHA c10687595f1f4313272c66b78da4225f77b6a665050d71751f04797e52edab69, mode 444. Note: _inference_20260820/AUTHORIZATION_PIN_NOTE_20260820.md.
+
+This is the last gate before the K-8 crossing — the first real chirality label in the program's history — so verify rather than assume:
+1. The diff is EXACTLY one line. Grep both hashes across the tree; the placeholder must not survive anywhere, and nothing else in the runner may have changed (compare against the gated build's behavior via its tests).
+2. The pinned hash matches K8_CROSSING_AUTHORIZATION_20260820.md as it exists on disk right now, and that file is mode 444.
+3. Read that authorization document and confirm it is what it claims: Duho's verbatim authorization, the six binding conditions (partial-tertile prohibition, no aggregation, amendment governs, sign discipline, gated-code-only, stop conditions), and that it does NOT authorize the sky estimand, unblinding, the hand-check, or publication.
+4. Run the test suite yourself with prereg/venv_torch/bin/python (system python and the hermes venv both lack torch): expect 14 tests OK.
+5. Verify the refusal paths still work: no --authorization at all must refuse; a WRONG-hash file must refuse. Test both yourself with temp files.
+6. Confirm the runner still refuses to read real tensors on any path that bypasses authorization.
+
+Write KUN_GATE_AUTHPIN_20260820.md at LANE ROOT, first line PASS_AUTHORIZATION_PIN or HOLD_ + numbered repairs. Findings-only. No network.
