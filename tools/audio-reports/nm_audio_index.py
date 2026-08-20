@@ -178,62 +178,130 @@ def fmt_dur(d):
     m, s = divmod(int(round(d)), 60)
     return f"{m}:{s:02d}"
 
-# group by calendar day
-groups = []
-for r in rows:
-    key = r["when"].strftime("%Y-%m-%d")
-    if not groups or groups[-1][0] != key:
-        groups.append((key, []))
-    groups[-1][1].append(r)
-
 WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-body = []
-for key, items in groups:
-    d = datetime.strptime(key, "%Y-%m-%d")
-    label = f"{WEEK[d.weekday()]} {d.day} {d.strftime('%b %Y')}"
-    body.append(f'<h2>{html.escape(label)} <span class=n>{len(items)}</span></h2>')
-    body.append("<ul>")
-    for r in items:
-        meta = " · ".join(x for x in [fmt_dur(r["dur"]), f'{r["size"]//1024} KB'] if x)
-        # Transcript sits INSIDE the <li>, directly under its own row and above the
-        # next reading — always visible, not gated on a click. It was built twice
-        # before this: once as a panel in the fixed player bar, once as click-to-
-        # expand. Duho did not see it either time. Anything that needs discovering
-        # is not delivered, so rows that have text simply show it. Rows without a
-        # transcript emit nothing at all rather than 148 "not saved" notices.
-        asr_badge = ('<span class=asr title="machine transcription of the audio; '
-                     'the original written text was not saved">auto-transcribed</span>'
-                     if r.get("asr") else "")
-        tx = f'<div class=tx>{asr_badge}{spanify(r["text"])}</div>' if r["text"] else ""
-        deck_html = ""
-        if r.get("deck") and (r["deck"].get("slides") or []):
-            d = r["deck"]
-            chips = "".join(
-                f'<button class=dchip data-t="{sl["t"]}">{int(sl["t"])//60}:{int(sl["t"])%60:02d}</button>'
-                for sl in d["slides"])
-            slides_json = html.escape(json.dumps(d["slides"]), quote=True)
-            note = ("Slides follow the audio (forced alignment); they only restate what is spoken."
-                    if d.get("timing") == "aligned"
-                    else "Slide timing is estimated from sentence lengths, not measured.")
-            deck_html = (f'<div class=deck data-slides="{slides_json}">'
-                         f'<div class=marks>{chips}</div><div class=slide></div>'
-                         f'<div class=dnote>{note}</div></div>')
-        # Timing table travels on the row, with its provenance beside it.
-        tattr = (f' data-t="{",".join(str(x) for x in r["times"])}" data-tm="{r["tmode"]}"'
-                 if r.get("times") else "")
-        body.append(
-            f'<li data-src="{html.escape(r["file"])}" data-title="{html.escape(r["title"])}"{tattr}>'
-            f'<div class=row>'
-            f'<span class=play>▶</span>'
-            f'<span class=t>{html.escape(r["title"])}</span>'
-            f'<span class=m>{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
-            f'</div>{tx}{deck_html}</li>')
-    body.append("</ul>")
 
-total_min = sum(r["dur"] or 0 for r in rows) / 60
-n_text = sum(1 for r in rows if r["text"])
 
-page = f"""<!doctype html><meta charset=utf-8><title>Status readings — archive</title>
+def build_body(subset):
+    """Render one page of readings, grouped by calendar day."""
+    groups = []
+    for r in subset:
+        key = r["when"].strftime("%Y-%m-%d")
+        if not groups or groups[-1][0] != key:
+            groups.append((key, []))
+        groups[-1][1].append(r)
+    body = []
+    for key, items in groups:
+        d = datetime.strptime(key, "%Y-%m-%d")
+        label = f"{WEEK[d.weekday()]} {d.day} {d.strftime('%b %Y')}"
+        body.append(f'<h2>{html.escape(label)} <span class=n>{len(items)}</span></h2>')
+        body.append("<ul>")
+        for r in items:
+            meta = " · ".join(x for x in [fmt_dur(r["dur"]), f'{r["size"]//1024} KB'] if x)
+            # Transcript sits INSIDE the <li>, directly under its own row and above the
+            # next reading — always visible, not gated on a click. It was built twice
+            # before this: once as a panel in the fixed player bar, once as click-to-
+            # expand. Duho did not see it either time. Anything that needs discovering
+            # is not delivered, so rows that have text simply show it. Rows without a
+            # transcript emit nothing at all rather than 148 "not saved" notices.
+            asr_badge = ('<span class=asr title="machine transcription of the audio; '
+                         'the original written text was not saved">auto-transcribed</span>'
+                         if r.get("asr") else "")
+            tx = f'<div class=tx>{asr_badge}{spanify(r["text"])}</div>' if r["text"] else ""
+            deck_html = ""
+            if r.get("deck") and (r["deck"].get("slides") or []):
+                d = r["deck"]
+                chips = "".join(
+                    f'<button class=dchip data-t="{sl["t"]}">{int(sl["t"])//60}:{int(sl["t"])%60:02d}</button>'
+                    for sl in d["slides"])
+                slides_json = html.escape(json.dumps(d["slides"]), quote=True)
+                note = ("Slides follow the audio (forced alignment); they only restate what is spoken."
+                        if d.get("timing") == "aligned"
+                        else "Slide timing is estimated from sentence lengths, not measured.")
+                deck_html = (f'<div class=deck data-slides="{slides_json}">'
+                             f'<div class=marks>{chips}</div><div class=slide></div>'
+                             f'<div class=dnote>{note}</div></div>')
+            # Timing table travels on the row, with its provenance beside it.
+            tattr = (f' data-t="{",".join(str(x) for x in r["times"])}" data-tm="{r["tmode"]}"'
+                     if r.get("times") else "")
+            body.append(
+                f'<li data-src="{html.escape(r["file"])}" data-title="{html.escape(r["title"])}"{tattr}>'
+                f'<div class=row>'
+                f'<span class=play>▶</span>'
+                f'<span class=t>{html.escape(r["title"])}</span>'
+                f'<span class=m>{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
+                f'</div>{tx}{deck_html}</li>')
+        body.append("</ul>")
+    return body
+
+# --- pagination (2026-08-20) -------------------------------------------------
+# One page per calendar month. The archive had grown to 530 KB in a single
+# document — every transcript and deck inlined, rebuilt in full after every
+# reading — and it only goes one way. The CURRENT month keeps archive.html and
+# the live-append behaviour; older months become archive-YYYY-MM.html.
+# Pack readings into fixed-size pages, breaking only at day boundaries so a
+# day is never split across two pages. Month granularity was useless here —
+# the whole archive is one month old and the point is page WEIGHT, not calendar
+# tidiness. ~50 readings keeps a page near 130 KB.
+PER_PAGE = 50
+
+_days = []
+for r in rows:                      # rows are already newest-first
+    key = r["when"].strftime("%Y-%m-%d")
+    if not _days or _days[-1][0] != key:
+        _days.append((key, []))
+    _days[-1][1].append(r)
+
+pages = []                          # [(page_rows, first_day, last_day)]
+cur = []
+for key, items in _days:
+    if cur and len(cur) + len(items) > PER_PAGE:
+        pages.append(cur)
+        cur = []
+    cur.extend(items)
+pages.append(cur) if cur else None
+pages = [p for p in pages if p]
+
+MON_NAME = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
+
+def day_label(dt):
+    return f"{dt.day} {MON_NAME[dt.month - 1]}"
+
+
+def page_range(subset):
+    newest, oldest = subset[0]["when"], subset[-1]["when"]
+    a, b = day_label(oldest), day_label(newest)
+    return b if a == b else f"{a}–{b}"
+
+
+def page_file(i):
+    return "archive.html" if i == 0 else f"archive-{i + 1}.html"
+
+
+def page_nav(current):
+    if len(pages) < 2:
+        return ""
+    bits = []
+    for i, subset in enumerate(pages):
+        cls = " class=on" if i == current else ""
+        bits.append(f'<a{cls} href="{page_file(i)}">{page_range(subset)} '
+                    f'<span>{len(subset)}</span></a>')
+    return f'<nav class=months>{"".join(bits)}</nav>'
+
+
+def render_page(idx, subset):
+    body = build_body(subset)
+    total_min = sum(r["dur"] or 0 for r in subset) / 60
+    n_text = sum(1 for r in subset if r["text"])
+    return PAGE_TEMPLATE(body, subset, total_min, n_text, idx)
+
+
+def PAGE_TEMPLATE(body, rows, total_min, n_text, idx):
+    nav = page_nav(idx)
+    scope = ("newest first" if idx == 0
+             else f"{page_range(rows)} · page {idx + 1} of {len(pages)}")
+    return f"""<!doctype html><meta charset=utf-8><title>Status readings — archive</title>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <style>
 :root{{color-scheme:dark light}}*{{box-sizing:border-box}}
@@ -242,6 +310,11 @@ padding:2rem 1.1rem 9rem;background:#0f1115;color:#dfe3ea}}
 h1{{font-size:1.3rem;margin:0 0 .2em;color:#fff}}
 .sub{{color:#8b93a1;font-size:.85rem;margin-bottom:2rem}}
 .sub a{{color:#9db8e8}}
+.months{{display:flex;flex-wrap:wrap;gap:.35rem;margin:-1.4rem 0 1.8rem}}
+.months a{{color:#8b93a1;text-decoration:none;font-size:.78rem;border:1px solid #232833;
+border-radius:999px;padding:.2em .7em;background:#141922}}
+.months a.on{{color:#04121c;background:#59d8ff;border-color:#59d8ff;font-weight:600}}
+.months a span{{opacity:.6;margin-left:.25em}}
 h2{{font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;color:#8b93a1;margin:2.2em 0 .6em;
 padding-top:.7em;border-top:1px solid #232833;font-weight:600}}
 h2 .n{{color:#4d5666;font-weight:400;text-transform:none;letter-spacing:0}}
@@ -305,8 +378,9 @@ li{{background:#f4f6fa;border-color:#e6e9ef}}li.on{{background:#e8f6ee;border-co
 </style>
 
 <h1>Status readings — archive</h1>
-<div class=sub>{len(rows)} readings · {total_min:.0f} minutes total · {n_text} with transcripts · newest first ·
+<div class=sub>{len(rows)} readings · {total_min:.0f} minutes total · {n_text} with transcripts · {scope} ·
 <a href="listen.html">back to live listening</a></div>
+{nav}
 
 {chr(10).join(body)}
 
@@ -559,7 +633,15 @@ au.addEventListener('ended', ()=>{{
 </script>
 """
 
-with open(OUT, "w") as f:
-    f.write(page)
+written = []
+for idx, subset in enumerate(pages):
+    out = os.path.join(DIR, page_file(idx))
+    with open(out, "w") as f:
+        f.write(render_page(idx, subset))
+    written.append((os.path.basename(out), len(subset), os.path.getsize(out)))
 _save_dur_cache()
-print(f"{OUT}  {len(rows)} readings  {os.path.getsize(OUT)} B")
+main = written[0] if written else ("archive.html", 0, 0)
+print(f"{os.path.join(DIR, main[0])}  {main[1]} readings  {main[2]} B"
+      + (f"  (+{len(written) - 1} older month page(s): "
+         + ", ".join(f"{n} {c}r {b // 1024}KB" for n, c, b in written[1:]) + ")"
+         if len(written) > 1 else ""))
