@@ -21,5 +21,8 @@ log=/Users/duhokim/HermesOps/reports/status-audio/postprocess.log
   else
     [[ -f "$stem.txt" ]] && python3 "$S/nm_deck_derive.py" "$mp3" 2>&1
   fi
+  # The status report page is the artifact Duho opens (2026-08-21); render it
+  # after the deck exists so the slides are in it.
+  python3 "$S/nm_report_page.py" "$stem" 2>&1 | tail -1
   python3 "$S/nm_audio_index.py" 2>&1 | tail -1
 } >> "$log" 2>&1

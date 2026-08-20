@@ -229,7 +229,9 @@ def build_body(subset):
                 f'<span class=play>▶</span>'
                 f'<span class=t>{html.escape(r["title"])}</span>'
                 f'<span class=m>{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
-                f'</div>{tx}{deck_html}</li>')
+                f'</div>{tx}{deck_html}'
+                f'<div class=openrow><a href="report-{html.escape(os.path.splitext(r["file"])[0])}.html">'
+                f'open as a page &rarr;</a></div></li>')
         body.append("</ul>")
     return body
 
@@ -301,7 +303,7 @@ def PAGE_TEMPLATE(body, rows, total_min, n_text, idx):
     nav = page_nav(idx)
     scope = ("newest first" if idx == 0
              else f"{page_range(rows)} · page {idx + 1} of {len(pages)}")
-    return f"""<!doctype html><meta charset=utf-8><title>Status readings — archive</title>
+    return f"""<!doctype html><meta charset=utf-8><title>Status reports — archive</title>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <style>
 :root{{color-scheme:dark light}}*{{box-sizing:border-box}}
@@ -377,9 +379,9 @@ li{{background:#f4f6fa;border-color:#e6e9ef}}li.on{{background:#e8f6ee;border-co
 .tx .s.now{{background:#c9e9d7;color:#06240f;box-shadow:0 0 0 .2em #c9e9d7}}}}
 </style>
 
-<h1>Status readings — archive</h1>
-<div class=sub>{len(rows)} readings · {total_min:.0f} minutes total · {n_text} with transcripts · {scope} ·
-<a href="listen.html">back to live listening</a></div>
+<h1>Status reports — archive</h1>
+<div class=sub>{len(rows)} reports · {total_min:.0f} minutes total · {n_text} with transcripts · {scope} ·
+<a href="status.html">back to live status</a></div>
 {nav}
 
 {chr(10).join(body)}

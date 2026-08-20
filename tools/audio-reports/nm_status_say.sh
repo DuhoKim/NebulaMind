@@ -25,4 +25,12 @@ fi
 [[ -z "$text" ]] && ( python3 "$S/nm_audio_index.py" >> "$R/index.log" 2>&1 ) &
 echo "$out"
 [[ "$quiet" == "1" ]] && echo "(quiet hours — queued, will not auto-play)"
+# Stable per-reading link. (A lane added deck.html?f=<stem> for this at 23:35 on
+# 08-20 — right diagnosis, and it now points at the fuller status-report page,
+# which postprocess renders for every reading.) latest.mp3 is a
+# single shared slot and now races — with three Fables publishing into one dir it
+# resolves to whoever wrote last (2026-08-20: Hwao overwrote Tori's by 48s and the
+# wrong reading played). Keep latest.mp3 for the self-polling listen page, which
+# is *meant* to track the newest; link the stable URL for "play that reading".
+echo "https://duho-macstudio.taila27502.ts.net/reports/status-audio/report-${TS}-${slug}.html"
 echo "https://duho-macstudio.taila27502.ts.net/reports/status-audio/latest.mp3"
