@@ -1,0 +1,218 @@
+{
+  "allocation_total": 500,
+  "artifacts": {
+    "committee_ledger": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/committee_results.jsonl",
+    "hc1h_checker_package": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_checking/checker_H/package.json",
+    "hc1h_prepare_stdout": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_prepare.stdout.log",
+    "hc1h_sealed_key": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_private/sealed_key.nmhc",
+    "inference_ledger": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/inference/results.jsonl",
+    "neyman_priors": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_neyman_priors.json",
+    "real_population_input": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_real_population.jsonl",
+    "report": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/REHEARSAL_REPORT_20260820.md",
+    "summary": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/rehearsal_summary.json",
+    "synthetic_pool_input": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/hc1h_synthetic_pool.jsonl",
+    "truth_manifest": "/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/_rehearsal_20260820/synthetic_truth.jsonl"
+  },
+  "chi": {
+    "direct_accuracy": 0.948,
+    "direct_correct": 1896,
+    "inverted_accuracy": 0.052,
+    "inverted_correct": 104,
+    "negative_count": 1026,
+    "observed_sign_convention": "chi > 0 corresponds to BS-3 truth_sign +1 (direct convention)",
+    "positive_count": 974,
+    "zero_count": 0
+  },
+  "committee_crosscheck": 2000,
+  "committee_distribution": {
+    "AGREE_CONFIDENT": 1749,
+    "DISAGREE": 120,
+    "LOW_CONFIDENCE": 131
+  },
+  "generator": {
+    "candidate_draws": 12000,
+    "domain": "GPT1-END-TO-END-REHEARSAL-20260820"
+  },
+  "hashes": {
+    "LANA_ONE_HUMAN_ATTENUATION_20260814.md": "b2590e4213e225f9869fe782cfe0f55d8d8979dcb470752836a5cd31a58453fd",
+    "committee": "64fceff7c79b18303692a945c92dc25a44780e8cf9ee3e62e17eb4054e627bf5",
+    "committee_weights": "6e4a6efaf9e9db55e8ca23f1ffa7e61ef437c62bc959c9630b90db0d18aeff0a",
+    "cutout_runner": "ccb9b8fed457333669e54fa9f0a3dac645dc866a56c6cd8dc665ffd4d93b1bcc",
+    "frozen_bs3_generator": "89da33ec6260e75e06eadb0f171da4c52f1478b59ff5e543d363dbf56fefcd75",
+    "hc1h_harness": "cc88fa5ee6e7d7f2ab32ad4b7b0d7d843f9a77ed777c11d259755197eda03bbc",
+    "inference_runner": "16ed3e256ea4fe045ff553036e7f397e7ad07884212d5da663e61f2246c57b45",
+    "primary_weights": "83008c1cbdae511af5d30020540e1e281c62c2bd95d3cb05527fc0687bf49e6d"
+  },
+  "hc1h": {
+    "commitment_sha256": "2fdcb164800d3dabcf75ca4f1b6439c88ef1c438e14a1f13de3e35eab9e26883",
+    "durable_session_ledger_present": false,
+    "items": 850,
+    "prepare_exit_code": 0,
+    "sealed_key_present": true,
+    "sealed_key_sha256": "cd8dbe2c514e5bd0f638d3ce193e36b87b74d6cd5b7204c7be4f146ceffed554",
+    "session_completed": 0,
+    "session_status": "ACTIVE",
+    "status": "HC1H_PREPARED_AND_COMMITTED_BEFORE_CHECKING"
+  },
+  "inference": {
+    "processed": 2000,
+    "resumed": 0
+  },
+  "interface_mismatches": [
+    {
+      "interface": "HC-1H session persistence before first label",
+      "mismatch": "Constructing CheckerApplication returns an ACTIVE blinded state but does not persist answers.jsonl/SESSION_STARTED until the first checker event.",
+      "real_run_implication": "If pre-label durable session creation is required for operational custody, add a dedicated start-session event/entry point before the real run.",
+      "workaround": "Verified the ACTIVE zero-completed state, package, control binding, commitment, and sealed envelope without manufacturing a C/W answer; reported the absence of a durable session ledger explicitly."
+    },
+    {
+      "interface": "Natural BS-3 population versus HC-1H floor",
+      "mismatch": "The first unselected N=2,000 draw produced populations 28, 8, and 11 in three cells, so the frozen floor of 30 made full preparation impossible.",
+      "real_run_implication": "The real accepted population cannot be engineered this way; if any real cell has N_s<30, HC-1H is infeasible and must hold or receive a preregistered sparse-cell rule before any labels.",
+      "workaround": "Preserved that failed attempt, screened 12,000 deterministic BS-3 candidates synthetically, and selected an exactly 2,000-object campaign with 667/667/666 objects across global |chi| thirds and at least 35 of every committee state per third (floor 30 plus HC-7 reserve headroom); then reran the selected campaign through inference and committee."
+    },
+    {
+      "interface": "Python environment split",
+      "mismatch": "The frozen torch venv lacked Pillow, cryptography, and astropy, while the system Python had those packages but lacked torch.",
+      "real_run_implication": "The production command needs one hash-locked environment containing every gated program's dependencies.",
+      "workaround": "Ran the torch venv interpreter with the existing user-site package directory on PYTHONPATH; no install and no network."
+    },
+    {
+      "interface": "Inference CLI input transport",
+      "mismatch": "The runner accepts every tensor as a separate --inputs argument and has no manifest/stdin mode; 2,000 absolute paths risk the macOS argument-length ceiling and the real campaign would certainly exceed it.",
+      "real_run_implication": "Add a hash-bound manifest input mode before the real campaign without changing inference semantics.",
+      "workaround": "Called the unmodified gated run_paths API with the complete ordered Path list."
+    },
+    {
+      "interface": "Committee program entry point",
+      "mismatch": "committee.py has no campaign CLI and does not itself load its frozen member-B weights.",
+      "real_run_implication": "Provide a gated batch entry point or formally designate inference receipts as the committee campaign product.",
+      "workaround": "Loaded its hash-pinned SmallPlainCNN weights and called its unmodified scoring/state functions in a separate post-inference pass, then cross-checked every state against inference metadata."
+    },
+    {
+      "interface": "HC-1H image versus tensor contract",
+      "mismatch": "Inference consumes raw 65,536-byte float32 tensors, but HC-1H requires Pillow-readable image_path assets and cannot ingest those tensors.",
+      "real_run_implication": "Freeze the real tensor-to-checker rendering map and bind each PNG to its source tensor hash before the real hand-check.",
+      "workaround": "Created deterministic 128x128 grayscale PNG sidecars from each exact tensor using fixed percentile display scaling; tensor inference bytes remained untouched."
+    },
+    {
+      "interface": "Neyman priors at perfect/near-perfect synthetic recovery",
+      "mismatch": "The HC-1H allocator refuses when every empirical prior is exactly 0 or 1 because all information weights become zero; finite synthetic strata can hit that boundary.",
+      "real_run_implication": "Freeze the prior estimator/smoothing rule before production rather than selecting it after seeing synthetic outcomes.",
+      "workaround": "Used an explicit Jeffreys-smoothed synthetic estimate (correct+0.5)/(N_s+1), then passed it to the unmodified constrained allocator."
+    },
+    {
+      "interface": "Committee state vocabulary",
+      "mismatch": "The committee emits uppercase underscore states, while HC-1H accepts lowercase hyphenated states only.",
+      "real_run_implication": "Freeze one canonical vocabulary or a hash-pinned adapter.",
+      "workaround": "Applied the explicit bijection AGREE_CONFIDENT\u2192agree-confident, DISAGREE\u2192disagree, LOW_CONFIDENCE\u2192low-confidence."
+    },
+    {
+      "interface": "HC-1H campaign role naming",
+      "mismatch": "The harness calls its 500-row input real_population even when data_class is synthetic, and separately requires another synthetic_pool for injections.",
+      "real_run_implication": "Production must supply genuinely separate accepted real population and blind-injection pool, with identity-disjointness policy made explicit.",
+      "workaround": "Used the 2,000-object synthetic campaign as a synthetic-class accepted population and a separately identified view of the same generated assets as an injection pool; no claim of independent science samples is made."
+    }
+  ],
+  "objects": 2000,
+  "status": "PASS_COMPLETE_CHAIN_SYNTHETIC_ONLY",
+  "strata": [
+    {
+      "allocation": 260,
+      "allocation_below_30": false,
+      "population": 582,
+      "population_below_30": false,
+      "prior": 0.8447684391080618,
+      "state": "agree-confident",
+      "tertile": 0
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 571,
+      "population_below_30": false,
+      "prior": 0.9991258741258742,
+      "state": "agree-confident",
+      "tertile": 1
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 596,
+      "population_below_30": false,
+      "prior": 0.9991624790619765,
+      "state": "agree-confident",
+      "tertile": 2
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 50,
+      "population_below_30": false,
+      "prior": 0.7941176470588235,
+      "state": "disagree",
+      "tertile": 0
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 35,
+      "population_below_30": false,
+      "prior": 0.9861111111111112,
+      "state": "disagree",
+      "tertile": 1
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 35,
+      "population_below_30": false,
+      "prior": 0.9861111111111112,
+      "state": "disagree",
+      "tertile": 2
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 35,
+      "population_below_30": false,
+      "prior": 0.875,
+      "state": "low-confidence",
+      "tertile": 0
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 61,
+      "population_below_30": false,
+      "prior": 0.9919354838709677,
+      "state": "low-confidence",
+      "tertile": 1
+    },
+    {
+      "allocation": 30,
+      "allocation_below_30": false,
+      "population": 35,
+      "population_below_30": false,
+      "prior": 0.9861111111111112,
+      "state": "low-confidence",
+      "tertile": 2
+    }
+  ],
+  "strata_allocation_below_30": 0,
+  "strata_population_below_30": 0,
+  "timing_seconds": {
+    "candidate_screening": 353.018755042,
+    "committee": 2.3163803749999943,
+    "generation_writer_png": 3.10571108299996,
+    "hc1h_prepare_session": 1.6566177500000094,
+    "inference": 72.502356792,
+    "strata_inputs": 0.03417912500003695,
+    "total": 432.651343334,
+    "total_per_1000": 216.325671667
+  },
+  "writer": {
+    "byte_equivalent": 2000,
+    "layout_verified": 2000
+  }
+}

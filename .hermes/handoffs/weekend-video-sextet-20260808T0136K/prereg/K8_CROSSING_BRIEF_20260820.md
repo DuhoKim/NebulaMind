@@ -64,3 +64,58 @@ be computed even as a diagnostic — because once it exists, someone can see it.
 Between those, I lean to 1: waiting does not de-risk anything, and the pilot is the long pole.
 
 Nothing proceeds on real χ without your word.
+
+---
+
+# ADDENDUM 2026-08-20 22:xx — the rehearsal ran, and it changes the recommendation
+
+The synthetic end-to-end rehearsal completed (`_rehearsal_20260820/REHEARSAL_REPORT_20260820.md`).
+It worked — and it found **eight interface faults plus two items that must be frozen BEFORE the
+K-8 crossing, not after.** My earlier lean ("authorize now") is withdrawn until those two are
+settled, because both are parameters, and a parameter chosen after the first real χ voids the run
+under F-9.
+
+## What worked
+
+- χ recovers synthetic chirality at **94.8%** direct-sign accuracy, zero exact-zero χ.
+- **Observed sign convention: χ > 0 ↔ BS-3 truth_sign +1 (direct).** This is a fact that must be
+  written down and frozen now; a convention discovered later is a convention that can be flipped
+  to taste, and the dipole's sign is the whole result.
+- End-to-end cost **216 s per 1,000 objects** ⇒ the full 208,407 ≈ **12.5 hours** of compute.
+- The HC-1H harness accepted a real-shaped 850-item campaign and produced a blinded session with
+  a sealed key; zero labels were submitted (correctly — no human labelled anything).
+
+## The two that must be frozen before crossing
+
+1. **The Neyman prior estimator / smoothing rule (report finding 6).** The frozen allocator
+   *refuses* when empirical per-stratum priors are exactly 0 or 1, because every information
+   weight becomes zero. The rehearsal only proceeded by choosing Jeffreys smoothing
+   `(correct+0.5)/(N_s+1)`. That choice is a parameter of the allocation. The report's own
+   real-run implication, verbatim: *"Freeze the prior estimator/smoothing rule before production
+   rather than selecting it after seeing synthetic outcomes."* Choosing it after real χ exists =
+   voided run.
+2. **The sparse-cell rule (report finding 1).** The floor of 30 per stratum was only satisfiable
+   in rehearsal because the synthetic sample could be *engineered* (12,000 candidates screened
+   down to 2,000 with ≥35 per cell). Verbatim: *"The real accepted population cannot be
+   engineered this way; if any real cell has N_s<30, HC-1H is infeasible and must hold or receive
+   a preregistered sparse-cell rule before any labels."* My projection from the natural draw says
+   the smallest real cell should be ~834, so this is unlikely to bite — but "unlikely" is not a
+   rule, and the rule cannot be written after we see the real populations.
+
+## The six that are just engineering (fix, then re-gate; none touch K-8)
+
+Environment split (torch venv lacks Pillow/astropy); inference CLI takes one `--inputs` argument
+per tensor and will hit the argument-length ceiling at scale (needs a manifest/stdin mode);
+committee has no batch entry point and does not load its own member-B weights; HC-1H needs
+Pillow-readable images while inference consumes raw tensors (a rendering step must be specified,
+not improvised); committee emits `AGREE_CONFIDENT` while HC-1H accepts `agree-confident` (a
+bijection that should be frozen, not re-derived); HC-1H calls its 500-row input `real_population`
+even for synthetic data (naming, but it invites exactly the wrong mistake).
+
+## Revised recommendation
+
+**Do not cross K-8 yet.** Sequence instead: (a) freeze the sign convention, the prior-smoothing
+rule, and the sparse-cell rule as a small preregistration amendment, gated like every other;
+(b) fix the six plumbing faults and re-gate; (c) then authorize real χ, incrementally, with the
+partial-tertile prohibition from the original brief. That order costs a day and removes the two
+ways this run could have been voided after the irreversible step.
