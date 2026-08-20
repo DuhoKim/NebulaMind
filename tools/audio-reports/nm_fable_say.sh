@@ -5,6 +5,11 @@
 # old inline case-table drifted against nm_say_cast.py's). Duho 2026-08-19:
 # Hwao and Tori are female, Blanc is male.
 fable="${1:?fable name required: hwao|tori|blanc}"; shift
+# --deck <file.json>: the speaker authored their own slides (Duho 2026-08-20 —
+# each Fable makes their own, they know their content). Exported so the
+# publisher's post-processing uses it instead of deriving one.
+if [[ "$1" == "--deck" ]]; then export NM_DECK="$2"; shift 2; fi
+if [[ "${@[-2]}" == "--deck" ]]; then export NM_DECK="${@[-1]}"; set -- "${@[1,-3]}"; fi
 V=/Users/duhokim/HermesOps/reports/status-audio/voices.json
 voice=$(python3 -c "import json,sys; v=json.load(open('$V')).get('$fable'); print(v['voice'] if v else '')")
 if [[ -z "$voice" ]]; then

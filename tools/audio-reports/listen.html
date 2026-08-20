@@ -48,6 +48,10 @@ padding:.2em .6em;font:600 .72rem/1 inherit;cursor:pointer}
 .num{color:#ffc46b;font-variant-numeric:tabular-nums;font-weight:600}
 .ok{color:#7ee6a8}.bad{color:#ff8ba0}
 .deck-note{color:#78818f;font-size:.72rem;margin-top:.5rem;text-align:center}
+.slide figure{margin:0 0 .7rem}
+.slide img{width:100%;border-radius:8px;display:block;background:#000}
+.slide .attr{color:#78818f;font-size:.68rem;margin:-.4rem 0 .7rem}
+.slide .gfx{margin:0 0 .8rem}
 @media(prefers-color-scheme:light){.slide{background:#fff;border-color:#e3e6ec}
 .slide h3{color:#1c1f26}.slide li{color:#3c4250}.marks button{background:#f0f2f6;border-color:#d8dce4}}
 @media(prefers-color-scheme:light){body{background:#fbfbfd;color:#1c1f26}h1{color:#000}
@@ -102,7 +106,10 @@ function clearDeck(){ deckData=null; deckEl.style.display='none'; marksEl.innerH
 function drawSlide(i){
   if(i===curSlide||!deckData) return; curSlide=i;
   const sl=deckData.slides[i];
-  slideEl.innerHTML=`<div class=kicker>${sl.k||''}</div><h3>${sl.h||''}</h3>`+
+  const fig = sl.img ? `<figure><img src="${sl.img}" alt=""></figure>`+
+                      (sl.attr?`<div class=attr>${sl.attr}</div>`:'')
+            : (sl.svg ? `<div class=gfx>${sl.svg}</div>` : '');
+  slideEl.innerHTML=`<div class=kicker>${sl.k||''}</div><h3>${sl.h||''}</h3>${fig}`+
     `<ul>${(sl.b||[]).map(x=>`<li>${x}</li>`).join('')}</ul>`;
   [...marksEl.children].forEach((b,j)=>b.classList.toggle('on',j===i));
 }

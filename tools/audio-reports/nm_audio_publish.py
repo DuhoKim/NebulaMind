@@ -157,9 +157,10 @@ def main() -> int:
     # must never block archiving, so this is fire-and-forget and every step is
     # best-effort.
     if transcript:
+        env = dict(os.environ)  # carries NM_DECK when the speaker authored slides
         subprocess.Popen(
             ["/bin/zsh", str(R.parent.parent / "scripts" / "nm_report_postprocess.sh"), str(mp3)],
-            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, env=env)
 
     print(json.dumps({"seq": entry["seq"], "quiet": quiet, "file": mp3.name}))
     return 0

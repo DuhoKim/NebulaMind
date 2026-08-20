@@ -269,6 +269,10 @@ padding:.15em .55em;font:600 .7rem/1 inherit;cursor:pointer}}
 .num{{color:#ffc46b;font-variant-numeric:tabular-nums;font-weight:600}}
 .ok{{color:#7ee6a8}}.bad{{color:#ff8ba0}}
 .dnote{{color:#78818f;font-size:.7rem;margin-top:.45em}}
+.slide figure{{margin:0 0 .6em}}
+.slide img{{width:100%;border-radius:7px;display:block;background:#000}}
+.slide .attr{{color:#78818f;font-size:.66rem;margin:-.3em 0 .6em}}
+.slide .gfx{{margin:0 0 .7em}}
 body.notext .tx{{display:none}}
 .tx .s{{transition:background .18s ease,color .18s ease;border-radius:3px}}
 .tx .s.now{{background:#1d4f33;color:#fff;box-shadow:0 0 0 .2em #1d4f33}}
@@ -363,8 +367,11 @@ function drawDeck(li, t){{
   if(d.dataset.cur===String(i)) return;
   d.dataset.cur=String(i);
   const sl=slides[i];
+  const fig = sl.img ? '<figure><img src="'+sl.img+'" alt=""></figure>'+
+                      (sl.attr?'<div class=attr>'+sl.attr+'</div>':'')
+            : (sl.svg ? '<div class=gfx>'+sl.svg+'</div>' : '');
   d.querySelector('.slide').innerHTML=
-    '<div class=kicker>'+(sl.k||'')+'</div><h3>'+(sl.h||'')+'</h3><ul>'+
+    '<div class=kicker>'+(sl.k||'')+'</div><h3>'+(sl.h||'')+'</h3>'+fig+'<ul>'+
     (sl.b||[]).map(x=>'<li>'+x+'</li>').join('')+'</ul>';
   [...d.querySelectorAll('.dchip')].forEach((b,j)=>b.classList.toggle('on',j===i));
 }}
