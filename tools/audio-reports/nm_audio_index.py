@@ -375,6 +375,9 @@ li{{background:#f4f6fa;border-color:#e6e9ef}}li.on{{background:#e8f6ee;border-co
 #bar{{background:#f4f6faee;border-top-color:#e3e6ec}}#bar .now{{color:#000}}
 .tx{{background:#fff;border-color:#e3e6ec;color:#25292f}}.tx.none{{color:#8a929d}}
 .slide{{background:#fff;border-color:#e3e6ec}}.slide h3{{color:#1c1f26}}.slide li{{color:#3c4250}}
+.slide .kicker{{color:#0b6b83}}.num{{color:#8a5300}}.ok{{color:#146c43}}.bad{{color:#b02a37}}
+.dnote,.slide .attr{{color:#5c6472}}
+.dchip{{color:#3f4757;border-color:#cfd5df}}
 .dchip{{background:#f0f2f6;border-color:#d8dce4}}
 .tx .s.now{{background:#c9e9d7;color:#06240f;box-shadow:0 0 0 .2em #c9e9d7}}}}
 </style>

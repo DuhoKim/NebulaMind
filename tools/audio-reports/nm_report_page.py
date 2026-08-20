@@ -87,7 +87,13 @@ color:#b9c0cf;font-size:.94rem;line-height:1.72;white-space:pre-wrap}
 line-height:1.65}
 .badge{font-size:.68rem;color:#c9b280;border:1px solid #4a4020;border-radius:6px;padding:.08em .45em}
 @media(prefers-color-scheme:light){
-:root{--bg:#fbfbfd;--panel:#fff;--line:#e3e6ec;--ink:#1c1f26;--dim:#5c6472}
+/* Measured 2026-08-21: cyan kickers scored 1.65:1 and amber numbers 1.57:1 on
+   white. The numbers ARE the content of a status report, so they must not
+   vanish in daylight; these keep the semantics at >=4.5:1. */
+:root{--bg:#fbfbfd;--panel:#fff;--line:#e3e6ec;--ink:#1c1f26;--dim:#5c6472;
+--cyan:#0b6b83;--amber:#8a5300;--green:#146c43;--rose:#b02a37}
+.attr,.foot{color:#5c6472}
+.marks button{color:#3f4757;border-color:#cfd5df}
 .caption{background:#f5f6f9;border-color:#e3e6ec;color:#3c4250}
 .stage li{color:#3c4250}.marks button{background:#f0f2f6}
 .bar{background:rgba(251,251,253,.94)}}
