@@ -87,3 +87,5 @@ was not here:
 - 01:51 tick: P3/P4 — backfilled 11 report pages; measured accessibility on the real pages: light-mode numbers were 1.57:1 (invisible), kickers 1.65:1, chips 3.11:1 — all fixed to >=4.5:1; no element overflows 390px.
 - 02:12 tick: built Tori's two generators (verdictstrip, ladder) to her filed contracts; both honesty guards verified mechanically incl. the refuse-to-render path. Next: build her BHU exemplar deck, then handover.
 - 02:50 tick: BHU exemplar rendered (7/7 slides, verdictstrip + ladder live). Two exemplars now exist across unlike lanes.
+- 02:51 handover written; campaign complete pending the 08:04 delivery.
+- 03:50 tick: restored Tori's exemplar to the queue as a quiet entry so BOTH exemplars appear in the morning view (it was pulled as a draft; it is now a finished exemplar). Verified live: preview = Hwao 00:50 'queued overnight, not played', open-as-page link resolves, recent list carries both.
