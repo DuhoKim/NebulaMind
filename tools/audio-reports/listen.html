@@ -69,7 +69,7 @@ in the speaker's own voice.<br><a href="archive.html">browse every past reading 
 <div class="state" id=state><span class=dot id=sdot></span><span id=stext>not listening yet</span></div>
 <div class="meta" id=meta></div>
 
-<audio id=au controls preload=none></audio>
+<audio id=au controls preload=auto></audio>
 <div class=transcript id=tx></div>
 <div class=deck id=deck><div class=marks id=marks></div><div class=slide id=slide></div>
 <div class=deck-note id=deck-note></div></div>
@@ -100,6 +100,26 @@ const deckEl=document.getElementById('deck'), marksEl=document.getElementById('m
 const fmtT=s=>Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0');
 let curSlide=-1;
 
+// The status host runs python -m http.server, which answers Range requests with
+// a plain 200 (verified 2026-08-20) — so the browser cannot seek a streamed mp3
+// and every time-chip click snapped back to whatever was buffered, dragging the
+// slide with it. Fetching the whole (small) reading as a blob makes seeking
+// local and exact, and the deck then lands on the slide you clicked.
+let blobUrl=null;
+async function loadAudio(file){
+  if(blobUrl){ URL.revokeObjectURL(blobUrl); blobUrl=null; }
+  try{
+    const r=await fetch(file,{cache:'no-store'});
+    if(!r.ok) throw new Error(r.status);
+    blobUrl=URL.createObjectURL(await r.blob());
+    au.src=blobUrl;
+  }catch(_){ au.src=file+'?t='+Date.now(); }   // fall back to streaming
+}
+function seekTo(t){
+  const go=()=>{ try{ au.currentTime=t; }catch(_){} };
+  if(au.readyState>=1) go(); else au.addEventListener('loadedmetadata',go,{once:true});
+}
+
 function clearDeck(){ deckData=null; deckEl.style.display='none'; marksEl.innerHTML='';
   slideEl.innerHTML=''; deckNote.textContent=''; curSlide=-1; }
 
@@ -125,7 +145,7 @@ async function showDeck(e){
     if(!d.slides||d.slides.length<2) return;
     deckData=d;
     d.slides.forEach(sl=>{const b=document.createElement('button');b.textContent=fmtT(sl.t);
-      b.onclick=()=>{au.currentTime=sl.t+0.3;au.play().catch(()=>{});};marksEl.appendChild(b);});
+      b.onclick=()=>{seekTo(sl.t+0.3);au.play().catch(()=>{});};marksEl.appendChild(b);});
     deckNote.textContent = d.timing==='aligned'
       ? 'Slides follow the audio (forced alignment). They only restate what is spoken.'
       : 'Slide timing is estimated, not measured — sentence lengths, not forced alignment.';
@@ -153,8 +173,7 @@ async function showTranscript(e){
 
 function playEntry(e,msg){
   nowPlaying=e;
-  au.src=e.file+'?t='+Date.now();
-  au.play().then(()=>{
+  loadAudio(e.file).then(()=>au.play()).then(()=>{
     set('playing',`${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
     if(msg) note(msg);
     showTranscript(e);
@@ -170,7 +189,7 @@ function pump(){
 
 au.onended=()=>{ nowPlaying=null;
   if(playQ.length){ pump(); }
-  else { set('live','listening for the next one'); }
+  else { set('live','listening for the next one'); previewed=null; }
 };
 
 function renderRecent(entries){
@@ -190,12 +209,31 @@ function renderRecent(entries){
   });
 }
 
+let previewed=null;
+// Duho opens this page and does not necessarily press play — so the newest
+// reading must be visible on arrival, slides and all. Displaying costs no
+// autoplay gesture; only playback does. (Hwao, 2026-08-20: he was looking at
+// listen.html and concluding the slides feature was not there.)
+function previewLatest(entries){
+  if(nowPlaying) return;                       // never disturb a playing reading
+  if(!au.paused && !au.ended && au.currentTime>0) return;
+  const live=(entries||[]).filter(e=>!e.quiet);
+  const e=live[live.length-1];
+  if(!e || previewed===e.seq) return;
+  previewed=e.seq;
+  loadAudio(e.file);                          // loaded, not played
+  set(armed?'live':'', `latest: ${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
+  showTranscript(e);
+  showDeck(e);
+}
+
 async function checkQueue(){
   const r=await fetch(Q+'?t='+Date.now(),{cache:'no-store'});
   if(!r.ok) throw new Error(r.status);
   const q=await r.json();
   renderRecent(q.entries||[]);
   mt.textContent=`queue #${q.seq} · updated ${q.updated_utc||'?'}`;
+  previewLatest(q.entries||[]);
   if(!armed) return;
   if(lastPlayed===null){ lastPlayed=q.seq; note('watching — will play the next one'); return; }
   const fresh=(q.entries||[]).filter(e=>e.seq>lastPlayed && !e.quiet);
@@ -231,7 +269,11 @@ async function check(){
 
 go.onclick=async()=>{
   armed=true; go.disabled=true; go.textContent='listening';
-  set('live','listening'); note('armed — will play the next reading');
+  note('armed — playing the latest reading, then every new one');
+  // The gesture is here, so honor it: play what is on screen.
+  if(au.src){ au.play().then(()=>{ const t=stext.textContent.replace(/^latest: /,'');
+      set('playing', t); }).catch(()=>set('live','listening')); }
+  else set('live','listening');
   check(); setInterval(check,POLL);
 };
 check();  // populate the recent list before arming (no playback until armed)
