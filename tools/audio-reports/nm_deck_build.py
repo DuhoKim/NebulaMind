@@ -72,7 +72,7 @@ def build(mp3: pathlib.Path, authored: pathlib.Path) -> int:
                     r = graphics.cutout_grid(int(g.get("n", 12)), int(g.get("cols", 6)), f"{stem.name}:{t}")
                 elif kind == "cutout":
                     r = graphics.single_cutout(f"{stem.name}:{t}")
-                elif kind == "progress":
+                elif kind == "progress":  # numbers come from the SPEAKER, so they are checked
                     gn = numbers(f"{g.get('done')} {g.get('total')}") - src_nums
                     if gn:
                         notes.append(f"graphic at t={t} dropped: number(s) {sorted(gn)} not in the audio")
@@ -80,6 +80,12 @@ def build(mp3: pathlib.Path, authored: pathlib.Path) -> int:
                     else:
                         r = graphics.progress_svg(float(g["done"]), float(g["total"]),
                                                   str(g.get("label", "")), str(g.get("unit", "")))
+                elif kind == "skymap":
+                    r = graphics.sky_map(f"{stem.name}:{t}")
+                elif kind == "failstrip":
+                    r = graphics.failure_strip()
+                elif kind == "throughput":
+                    r = graphics.throughput(int(g.get("hours", 24)))
                 elif kind == "badges":
                     r = graphics.badge_svg([(str(a), bool(b)) for a, b in g.get("items", [])])
                 else:

@@ -44,6 +44,16 @@ fallback), but yours will always be better.
 | `{"kind":"cutout"}` | one real cutout, enlarged |
 | `{"kind":"progress","done":5300,"total":60308,"label":"bricks"}` | SVG progress bar |
 | `{"kind":"badges","items":[["receipts pass",true],["manifest bug",false]]}` | pass/fail chips |
+| `{"kind":"skymap"}` | **DESI**: accepted bricks in RA/Dec over the 208,407 parent galaxies, with the RA-ordered transfer front labelled on the image (it is not a missing region) |
+| `{"kind":"failstrip"}` | **DESI**: outcome counts from receipts.jsonl *including the zeros* — "no digest mismatch so far", never "verified perfect" |
+| `{"kind":"throughput","hours":24}` | **DESI**: bricks/hour from receipt timestamps; flat hours are the frozen transfer window, and no ETA is printed |
+
+The three DESI graphics read `receipts.jsonl` themselves, so their numbers come
+from disk rather than your script — they are exempt from the spoken-number rule
+and carry their own count and timestamp, so a screenshot cannot age silently.
+Built to Hwao's spec in `DESI_GRAPHICS_ANSWER_20260820.md`; the mosaic stays
+deterministically unsorted on purpose (sorting cutouts by χ or committee state
+would make a picture of a blinded result).
 
 You can also supply your own art directly: `"img": "graphics/yourfile.png",
 "attr": "credit line"` (drop the file in `reports/status-audio/graphics/`).

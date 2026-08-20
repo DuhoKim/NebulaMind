@@ -118,3 +118,219 @@ if __name__ == "__main__":
         print(json.dumps(cutout_grid(12, 6, "demo")))
     elif what == "one":
         print(json.dumps(single_cutout("demo")))
+
+
+# ---------------------------------------------------------------------------
+# DESI campaign graphics (2026-08-20). Built to Hwao's spec; the constraints
+# below are HIS, and each exists because a graphic can mislead more efficiently
+# than a sentence can. DESI_GRAPHICS_ANSWER_20260820.md has his reasoning.
+# ---------------------------------------------------------------------------
+RECEIPTS = pathlib.Path("/Users/duhokim/NebulaMindData/dr10_south_image_r/receipts.jsonl")
+POSITIONS = pathlib.Path("/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/"
+                         "weekend-video-sextet-20260808T0136K/prereg/_positions_20260820/"
+                         "positions_runner_view.csv")
+WORKING_SET_BRICKS = 60308   # campaign_binding.json exact_file_count
+FONT_PATH = "/System/Library/Fonts/Supplemental/Arial.ttf"
+
+
+def _font(size):
+    from PIL import ImageFont
+    try:
+        return ImageFont.truetype(FONT_PATH, size)
+    except Exception:
+        return ImageFont.load_default()
+
+
+def brick_to_radec(name: str):
+    """0001m395 -> (RA 000.1, Dec -39.5). Position is IN the name; no sidecar."""
+    try:
+        ra = int(name[:4]) / 10.0
+        sign = -1.0 if name[4].lower() == "m" else 1.0
+        dec = sign * int(name[5:8]) / 10.0
+        return ra, dec
+    except Exception:
+        return None
+
+
+def read_receipts():
+    """(accepted [(ra,dec,utc)], outcome counts, retried count, last utc)."""
+    import json as _j
+    accepted, outcomes, retried, last = [], {}, 0, None
+    if not RECEIPTS.exists():
+        return accepted, outcomes, retried, last
+    for line in RECEIPTS.open(errors="replace"):
+        try:
+            d = _j.loads(line)
+        except Exception:
+            continue
+        o = d.get("outcome", "?")
+        outcomes[o] = outcomes.get(o, 0) + 1
+        if (d.get("retry_count") or 0) > 0:
+            retried += 1
+        if o == "ACCEPTED":
+            p = brick_to_radec(str(d.get("brickname", "")))
+            if p:
+                accepted.append((p[0], p[1], d.get("utc")))
+            if d.get("utc"):
+                last = d["utc"]
+    return accepted, outcomes, retried, last
+
+
+def sky_map(seed_key: str = "") -> dict | None:
+    """Accepted bricks in RA/Dec over the parent-galaxy sky the sample needs.
+
+    Hwao's traps, all addressed on the image itself:
+      - it is NOT survey coverage: the backdrop is our 208,407 parent galaxies,
+        and the caption says so;
+      - the transfer walks bricks in RA order, so partial progress is a wedge
+        that reads as a missing region — labelled as ordering, not a gap;
+      - one brick != one galaxy, so brick coverage != sample completeness;
+      - count and timestamp are burned in, so a screenshot cannot age silently.
+    """
+    import numpy as np
+    from PIL import Image, ImageDraw
+    accepted, _, _, last_utc = read_receipts()
+    if not accepted:
+        return None
+    W, H = 900, 470
+    PAD_L, PAD_B, PAD_T = 52, 46, 40
+    plot_w, plot_h = W - PAD_L - 16, H - PAD_B - PAD_T
+
+    # backdrop: where the parent galaxies are (the sky this study actually needs)
+    dens = np.zeros((plot_h, plot_w), dtype="f4")
+    ra_lo, ra_hi, dec_lo, dec_hi = 0.0, 360.0, -90.0, 40.0
+    if POSITIONS.exists():
+        import csv
+        with POSITIONS.open() as f:
+            for row in csv.DictReader(f):
+                try:
+                    ra, dec = float(row["ra"]), float(row["dec"])
+                except Exception:
+                    continue
+                x = int((ra - ra_lo) / (ra_hi - ra_lo) * (plot_w - 1))
+                y = int((dec_hi - dec) / (dec_hi - dec_lo) * (plot_h - 1))
+                if 0 <= x < plot_w and 0 <= y < plot_h:
+                    dens[y, x] += 1
+    if dens.max() > 0:
+        d = np.log1p(dens) / np.log1p(dens.max())
+        back = (d * 135).astype("uint8")
+    else:
+        back = np.zeros((plot_h, plot_w), dtype="uint8")
+
+    img = Image.new("RGB", (W, H), (12, 18, 40))
+    plot = Image.merge("RGB", [Image.fromarray((back * 0.45).astype("uint8")),
+                               Image.fromarray((back * 0.62).astype("uint8")),
+                               Image.fromarray(back)])
+    img.paste(plot, (PAD_L, PAD_T))
+    dr = ImageDraw.Draw(img)
+
+    for ra, dec, _ in accepted:
+        x = PAD_L + int((ra - ra_lo) / (ra_hi - ra_lo) * (plot_w - 1))
+        y = PAD_T + int((dec_hi - dec) / (dec_hi - dec_lo) * (plot_h - 1))
+        dr.rectangle([x, y, x + 1, y + 1], fill=(89, 216, 255))
+
+    # The transfer walks the manifest in RA order, so the leading edge is a
+    # vertical front. Unlabelled it reads as "this region is missing"; Hwao
+    # flagged it as the likeliest misreading, so it is named ON the image.
+    ra_front = max(r for r, _, _ in accepted)
+    xf = PAD_L + int((ra_front - ra_lo) / (ra_hi - ra_lo) * (plot_w - 1))
+    for yy in range(PAD_T, PAD_T + plot_h, 6):
+        dr.line([xf, yy, xf, yy + 3], fill=(255, 196, 107))
+    dr.text((min(xf + 6, W - 210), PAD_T + 6), "transfer front — bricks are",
+            font=_font(11), fill=(255, 196, 107))
+    dr.text((min(xf + 6, W - 210), PAD_T + 20), "fetched in RA order, not skipped",
+            font=_font(11), fill=(255, 196, 107))
+
+    dr.rectangle([PAD_L, PAD_T, PAD_L + plot_w, PAD_T + plot_h], outline=(50, 62, 95))
+    f9, f10, f12 = _font(11), _font(12), _font(15)
+    for ra in range(0, 361, 60):
+        x = PAD_L + int((ra - ra_lo) / (ra_hi - ra_lo) * (plot_w - 1))
+        dr.line([x, PAD_T + plot_h, x, PAD_T + plot_h + 4], fill=(90, 104, 140))
+        dr.text((x - 10, PAD_T + plot_h + 7), f"{ra}°", font=f9, fill=(139, 147, 161))
+    for dec in range(-90, 41, 30):
+        y = PAD_T + int((dec_hi - dec) / (dec_hi - dec_lo) * (plot_h - 1))
+        dr.line([PAD_L - 4, y, PAD_L, y], fill=(90, 104, 140))
+        dr.text((6, y - 7), f"{dec:+d}°", font=f9, fill=(139, 147, 161))
+    dr.text((PAD_L, 10), "Bricks in hand, over the sky our sample needs",
+            font=f12, fill=(238, 241, 251))
+    dr.text((PAD_L, H - 17), "RA →   ·   blue haze = 208,407 parent galaxies   ·   "
+                             "cyan = bricks accepted", font=f9, fill=(139, 147, 161))
+    stamp = (last_utc or "").replace("T", " ").replace("Z", " UTC")
+    dr.text((W - 300, 12), f"{len(accepted):,} of {WORKING_SET_BRICKS:,} bricks · {stamp}",
+            font=f9, fill=(255, 196, 107))
+
+    OUT.mkdir(parents=True, exist_ok=True)
+    name = f"skymap_{len(accepted)}.png"
+    img.save(OUT / name, optimize=True)
+    return {"img": f"graphics/{name}",
+            "attr": f"{len(accepted):,} of {WORKING_SET_BRICKS:,} working-set bricks accepted as of "
+                    f"{stamp}. NOT survey sky coverage — the backdrop is the 208,407 galaxies this "
+                    f"study needs. The transfer walks bricks in RA order, so the leading edge is "
+                    f"ordering, not a missing region; and one brick is not one galaxy, so brick "
+                    f"coverage is not sample completeness."}
+
+
+def failure_strip() -> dict | None:
+    """Outcome counts INCLUDING the zeros. An absent panel is not information."""
+    _, outcomes, retried, last_utc = read_receipts()
+    if not outcomes:
+        return None
+    quarantined = outcomes.get("QUARANTINED", 0)
+    accepted = outcomes.get("ACCEPTED", 0)
+    retry_sched = outcomes.get("TRANSIENT_RETRY_SCHEDULED", 0)
+    items = [(f"{accepted:,} accepted", True),
+             (f"{retry_sched} transient retry", retry_sched == 0),
+             (f"{quarantined} quarantined", quarantined == 0)]
+    g = badge_svg(items)
+    stamp = (last_utc or "").replace("T", " ").replace("Z", " UTC")
+    g["attr"] = (f"No digest mismatch so far — {quarantined} quarantined, {retried} object(s) "
+                 f"retried, as of {stamp}. Zero quarantined means the digest check has not fired "
+                 f"yet, not that the data is verified perfect.")
+    return g
+
+
+def throughput(hours: int = 24) -> dict | None:
+    """Bricks per hour from receipt timestamps — the real history.
+
+    Shows the window structure honestly: the transfer sleeps by frozen rule, so
+    a flat stretch is compliance, not a stall. Prints no ETA (Hwao: an ETA from
+    a running-window rate is wildly early, so give none).
+    """
+    import datetime as _dt
+    accepted, _, _, last_utc = read_receipts()
+    if not accepted:
+        return None
+    KST = _dt.timezone(_dt.timedelta(hours=9))
+    buckets = {}
+    for _, _, utc in accepted:
+        if not utc:
+            continue
+        try:
+            t = _dt.datetime.strptime(utc, "%Y-%m-%dT%H:%M:%SZ").replace(tzinfo=_dt.timezone.utc)
+        except Exception:
+            continue
+        buckets[t.astimezone(KST).strftime("%m-%d %H")] = \
+            buckets.get(t.astimezone(KST).strftime("%m-%d %H"), 0) + 1
+    if not buckets:
+        return None
+    keys = sorted(buckets)[-hours:]
+    vals = [buckets[k] for k in keys]
+    peak = max(vals) or 1
+    w, h, bw = 520, 96, max(3, min(18, 500 // max(1, len(keys))))
+    bars = []
+    for i, v in enumerate(vals):
+        bh = int((v / peak) * 62)
+        x = 4 + i * bw
+        col = "#59d8ff" if v else "#2a3550"      # an empty hour is the window rule, not a stall
+        bars.append(f'<rect x="{x}" y="{70 - bh}" width="{bw - 2}" height="{max(bh,2)}" '
+                    f'rx="2" fill="{col}"/>')
+    label = f"{keys[0]} → {keys[-1]} KST · peak {peak:,}/h"
+    return {"svg": (
+        f'<svg viewBox="0 0 {w} {h}" width="100%" role="img" aria-label="bricks per hour">'
+        f'<text x="0" y="12" fill="#8b93a1" font-size="12" font-family="system-ui">'
+        f'bricks accepted per hour</text>{"".join(bars)}'
+        f'<text x="0" y="88" fill="#8b93a1" font-size="11" font-family="system-ui">{label}'
+        f'</text></svg>'),
+        "attr": "Flat hours are the frozen transfer window (the campaign sleeps by rule), "
+                "not a stall. No ETA is shown: projecting from a running-window rate lands "
+                "wildly early."}
