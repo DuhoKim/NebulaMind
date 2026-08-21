@@ -1,0 +1,33 @@
+You are the RE-GATE reviewer, fresh one-shot, no prior context. A previous gate returned
+HOLD_P3A_LOADBEARING and the author says they repaired it. Verify the repairs actually landed and
+that nothing was quietly softened elsewhere. Be adversarial; a repair that only renames the problem
+is still the problem.
+
+Working directory (absolute): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase3-cns-20260821
+
+Read: GATE_A_VERDICT.md (the HOLD and its four required fixes), TRACK_A_AUDIT.md, verdicts.json,
+extract_verdicts.py, the pre-repair copies TRACK_A_AUDIT.md.pre-gate-repair and
+verdicts.json.pre-gate-repair, and the source sources/blr_clean.txt.
+
+Write EXACTLY ONE file: REGATE_A_VERDICT.md, first line PASS_P3A_AUDIT or HOLD_P3A_<token>. Sign it.
+Edit nothing else. No network. Never portal.nersc.gov.
+
+Checks:
+1. DIFF THE REPAIR. Compare pre- and post-repair files. Confirm each of the gate's four fixes landed:
+   B-18 out of any failing count; B-9 and B-12 demoted from load_bearing; H3 softened to what the
+   source supports; n_load_bearing_failing retired rather than renamed-but-equivalent.
+2. NO COLLATERAL SOFTENING. Verify the repair did NOT weaken findings the gate upheld — H1
+   (falsifiable content and derived content are disjoint), H2 (the CNS citations, and that Smolin
+   1992 CQG is never cited), H4/H5, or the open Track C. Quote if anything was dulled.
+3. THE COUNT IS NOW HONEST. verdicts.json should report 4 load-bearing (B-2, B-4, B-5, B-17), all
+   imported-not-derived, plus 1 unverified. Rerun extract_verdicts.py and confirm the JSON matches
+   what the prose claims. Check no derived pass-rate or failure-rate can be computed from the file.
+4. H3 STILL TRUE? Re-read the softened H3 against sources/blr_clean.txt lines 52, 54, 69. Is it now
+   accurate — neither overstated nor over-retracted? If the author over-corrected and gave away a
+   valid criticism, say so; that is also a HOLD.
+5. RECEIPT unchanged and still passing: rerun receipts/r1_entropy.py.
+6. OVERCLAIM SWEEP again: nothing may imply CNS is falsified or generalise to black-hole-universe
+   cosmology. "BHU is falsified" is FALSE and must never appear.
+
+Time-box: anything not completable in a few tool calls is UNVERIFIED-AT-GATE with the reason.
+Findings only; fix nothing.

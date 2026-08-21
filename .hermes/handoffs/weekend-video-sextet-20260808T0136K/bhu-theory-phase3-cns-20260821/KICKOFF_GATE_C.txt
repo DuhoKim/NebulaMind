@@ -1,0 +1,49 @@
+You are the Track C gate reviewer, fresh one-shot, no prior context. Review ADVERSARIALLY. This track
+claims to overturn how the entire lane has framed a result, on the strength of ONE preprint. Your
+default posture should be scepticism.
+
+Working directory: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase3-cns-20260821
+
+Read: PHASE3_BRIEF.md, TRACK_C_AUDIT.md, receipts/r5_smolin_threshold.py, and the primary text
+sources/smolin_ns_clean.txt (Smolin, astro-ph/9712189). Also TRACK_A_AUDIT.md rows B-17/B-18 and
+sources/blr_clean.txt for what Brown-Lee-Rho attribute to Smolin. Context, do not re-litigate:
+../bhu-mass-adjudication-20260817/C08_MASS_ADJUDICATION_20260817.md
+
+Write EXACTLY ONE file: GATE_C_VERDICT.md, first line PASS_P3C_TRACKC or HOLD_P3C_<token>. Sign it.
+Edit nothing else. No network. Never portal.nersc.gov.
+
+Checks, each with quoted line evidence:
+
+1. THE CENTRAL CLAIM. Track C says CNS makes a LOCAL-MAXIMUM claim and that the neutron-star mass is
+   a diagnostic of which side of mu_c we are on, NOT a prediction of CNS. Verify this against
+   smolin_ns_clean.txt Sec 2 verbatim. Is the quoted "a decrease of mu would lead to a world with a
+   lower upper mass limit ... and therefor more black holes" really doing the work claimed? Could a
+   fair reader instead say Smolin DOES effectively predict a low M_max? Argue that side properly.
+
+2. THE 2.5 vs 2.0 CLAIM. Confirm 2.5 Msun is Smolin's stated clean-refutation threshold, in the
+   abstract AND Sec 5. Confirm the weaker "anything above 1.5 would be troubling" form is also
+   present and that Track C did not suppress it to make the 2.5 look more decisive than it is.
+   Rerun receipts/r5_smolin_threshold.py.
+
+3. THE NEGATIVE SEARCH. Track C asserts 0 hits for "4%", "asymmetr", "double neutron" in the Smolin
+   text — i.e. the limb that fired is not his test. Verify the negative independently, and check the
+   search was not scoped to miss a synonym (e.g. "mass ratio", "unequal", "binary pulsar masses").
+   A false negative here would be a serious error.
+
+4. OVERREACH ON OUR OWN RECORD. Track C says the cockpit lane-2 page "should not be read as saying
+   CNS failed one [of Smolin's tests]". Check whether the C08 adjudication and the page actually
+   claim what Track C implies they might. If Track C is knocking down something our record never
+   said, that is overstatement and a HOLD.
+
+5. SOURCE-STATUS DISCIPLINE — THE MOST IMPORTANT CHECK. The finding rests on a preprint that INSPIRE
+   reports as unpublished, while the lane's standing rule is that peer-reviewed articles are the base
+   layer and preprints are context, never audit targets. Does Sec 5 flag this honestly and
+   prominently enough, and does any conclusion elsewhere in the document quietly assume base-layer
+   status? If any claim outruns its source class, HOLD.
+
+6. OVERCLAIM SWEEP. Nothing may imply BHU cosmology generally is falsified or vindicated. "BHU is
+   falsified" is FALSE and must never appear. Also check the reverse: nothing may imply CNS is
+   VINDICATED - "not refuted on its author's threshold" is not "supported".
+
+Time-box: anything not completable in a few tool calls is UNVERIFIED-AT-GATE with the reason.
+Findings only; fix nothing.

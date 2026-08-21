@@ -1,0 +1,50 @@
+You are the second reviewer for a physics-paper audit, in a fresh one-shot with no prior context.
+Review ADVERSARIALLY: your job is to find what is wrong, overstated, or unsupported, not to agree.
+
+Working directory (absolute, all reads): /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-theory-phase3-cns-20260821
+
+Read: PHASE3_BRIEF.md, TRACK_A_AUDIT.md, verdicts.json, receipts/r1_entropy.py, and the audited
+source sources/blr_clean.txt (Brown, Lee & Rho, PRL 101 091101 (2008), arXiv:0802.2997v2).
+Context you may consult but must not re-litigate: ../bhu-mass-adjudication-20260817/C08_MASS_ADJUDICATION_20260817.md
+
+Write EXACTLY ONE file: GATE_A_VERDICT.md. Its first line must be PASS_P3A_AUDIT or HOLD_P3A_<token>.
+Sign it. Edit nothing else. No network. Never touch portal.nersc.gov.
+
+Checks, each answered with quoted line evidence from the source:
+
+1. QUOTE-FIDELITY. Every claim the audit makes about what BLR say must be checked against
+   sources/blr_clean.txt. Flag any paraphrase that changes meaning. In particular verify:
+   (a) that the paper really does NOT derive M_max ~ 1.5 Msun anywhere (search for TOV, equation of
+       state, any integration) — if it does derive it, row B-5 is wrong and this is a HOLD;
+   (b) that its CNS citations are Smo97 = Smolin, "The Life of the Cosmos" (a book) and
+       Smo04 = Physica A 340 (2004) 705, and that Smolin 1992 CQG 9 173 is NOT cited;
+   (c) the Section III entropy-to-maximization inference, verbatim.
+
+2. THE HARSHEST CHECK — IS H3 FAIR? The audit calls Section III's argument a category error: that
+   the second law describes evolution, not parameter selection, and is not CNS's mechanism.
+   Argue the OTHER side as strongly as you can. Could BLR be read as offering a motivating remark
+   rather than a derivation? If a reasonable referee would call H3 overstated, say HOLD and say why.
+   This is the finding most likely to be wrong and it is doing real work in the write-up.
+
+3. LOAD-BEARING SET. 7 rows are declared load_bearing in verdicts.json with reasons. Attack the
+   selection: is any of the 7 not actually load-bearing? Is any row NOT on the list that should be?
+   Note that "7 of 7 failing" echoes the Phase 2 result — check whether that parallel is real or
+   whether the auditor shaped the set to reproduce a previous finding. Say so plainly if so.
+
+4. NORMAL-PRACTICE FAIRNESS. A 4-page PRL note citing rather than re-deriving is standard. Does the
+   audit acknowledge this, or does it present ordinary citation practice as a defect? Quote where.
+
+5. RECEIPT. Rerun receipts/r1_entropy.py with python3 and confirm both numbers independently
+   (Bekenstein entropy at 1 Msun; the 10^20 ratio). Recompute at least one by hand from G, hbar, c.
+
+6. OVERCLAIM SWEEP. Grep the audit for any sentence claiming more than the rows support —
+   especially anything implying CNS itself is falsified, or that this result generalises beyond CNS
+   to black-hole-universe cosmology. The standing rule is that "BHU is falsified" is FALSE and must
+   never be said. Quote any violation.
+
+7. UNVERIFIED ITEMS. Row B-18 is marked UNVERIFIED-AT-GATE (the Smolin prediction is quoted from
+   sources we have not read). Confirm nothing downstream in the audit leans on it as if verified.
+
+Time-box: any check you cannot complete in a few tool calls is UNVERIFIED-AT-GATE with the reason.
+Findings-only. Do not fix anything. If the audit is sound, PASS is the correct answer — but say
+which checks you actually completed and which you could not.
