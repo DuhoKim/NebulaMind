@@ -50,14 +50,42 @@ def in_quiet_hours(now_kst: datetime.datetime) -> bool:
     return hm >= 22 * 60 + 30 or hm < 8 * 60
 
 
+# ffprobe lives in /opt/homebrew/bin, which is NOT on PATH for every lane that
+# publishes a report — 14 of 31 queue entries had a null duration because the
+# lookup failed and the bare `except` swallowed it (2026-08-21). Resolve it by
+# absolute path, and say why when it still fails instead of returning a silent
+# null that looks like "this file has no duration".
+FFPROBE_CANDIDATES = ("/opt/homebrew/bin/ffprobe", "/usr/local/bin/ffprobe",
+                      "/usr/bin/ffprobe", "ffprobe")
+
+
+def _ffprobe_bin() -> str | None:
+    import shutil
+    for c in FFPROBE_CANDIDATES:
+        if c.startswith("/") and os.path.exists(c):
+            return c
+        if not c.startswith("/") and shutil.which(c):
+            return c
+    return None
+
+
 def duration_of(mp3: pathlib.Path) -> float | None:
+    exe = _ffprobe_bin()
+    if not exe:
+        print(f"[duration: ffprobe not found in {list(FFPROBE_CANDIDATES)}]", file=sys.stderr)
+        return None
     try:
         out = subprocess.run(
-            ["ffprobe", "-v", "quiet", "-show_entries", "format=duration",
+            [exe, "-v", "quiet", "-show_entries", "format=duration",
              "-of", "csv=p=0", str(mp3)],
             capture_output=True, text=True, timeout=20)
-        return round(float(out.stdout.strip()), 2)
-    except Exception:
+        raw = out.stdout.strip()
+        if not raw:
+            print(f"[duration: ffprobe returned nothing for {mp3.name}]", file=sys.stderr)
+            return None
+        return round(float(raw), 2)
+    except Exception as exc:
+        print(f"[duration: {type(exc).__name__}: {exc}]", file=sys.stderr)
         return None
 
 
