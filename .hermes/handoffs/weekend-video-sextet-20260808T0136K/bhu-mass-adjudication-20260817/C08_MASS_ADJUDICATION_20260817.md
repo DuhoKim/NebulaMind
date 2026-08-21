@@ -100,7 +100,7 @@ serious-doubt tier rather than the falsifies tier.
 
 **Limb 2 (double-NS asymmetry).** **Met at the FALSIFIES standard.** PSR J1913+1102:
 Δm = 0.309 ± 0.011 M⊙, a fractional difference of 19.3 ± 0.7% — the 95.4% interval excludes
-≤ 4% at ~21σ. Both masses are from radio timing; the double-NS nature is uncontested in the
+≤ 4% at ~21σ on the preprint masses, **6.7σ on the published ones (amended 2026-08-21)**. Both masses are from radio timing; the double-NS nature is uncontested in the
 refereed literature (assumed without question in the 2026 accepted update, which models the
 companion's formation as the second NS's supernova). PSR J0737−3039 (6.7% ± ~0.01%) formally
 meets the criterion as a second, nature-beyond-contest system.
@@ -121,7 +121,7 @@ does not apply.
 
 **Outcome 1 — the mass evidence FALSIFIES the chain as the source states it**, via the
 source's own second falsifier limb: a well-measured double neutron star binary more than 4%
-different in mass exists (PSR J1913+1102, 19.3 ± 0.7%, ≤4% excluded at ~21σ), formally
+different in mass exists (PSR J1913+1102, 19.3 ± 0.7%, ≤4% excluded at **6.7σ** on published masses — amended 2026-08-21), formally
 seconded by the double pulsar. Independently, limb 1 sits at the pre-registered SERIOUS-DOUBT
 tier: three qualifying systems exceed the chain's stated 1.5 M⊙ maximum at ≥ 8σ each and the
 heaviest well-measured star's central value is above 2.00, without clearing 2.00 at 95.4%.
@@ -141,7 +141,7 @@ heaviest well-measured star's central value is above 2.00, without clearing 2.00
   this channel. And per C02, CNS is one of at least five mutually disagreeing BHU programmes:
   **"BHU is falsified" would be false and is not said.**
 
-**Confidence:** high. The statistical component is not close (21σ on the deciding limb; 8–25σ
+**Confidence:** high. The statistical component is not close (**6.7σ** on the deciding limb against the published record — amended 2026-08-21, was 21σ; 8–25σ
 on the supporting one). The residual risk is interpretive, and it is stated rather than
 hidden: the source's unquantified He-giant caveat (verdict invariant, §4) and the choice to
 read the source's two-limb abstract sentence as the falsifier set it plainly is. A referee
@@ -180,3 +180,59 @@ Kun gates this output; Duho decides what happens to it.
 - Tauris & Janka 2019, ApJL 886, L20 — arXiv:1909.12318 — J0453+1559 companion contest (context)
 
 — Lana, 2026-08-17 KST.
+
+
+---
+
+# AMENDMENT — 2026-08-21: the deciding-limb margin, corrected from ~21σ to 6.7σ
+
+Duho: *"fix the C08 headline to say 6.7 sigma"*. **The verdict is unchanged. Only the confidence
+figure moves.** Limb 2 still fires; the chain is still falsified as its source states it.
+
+## Why
+
+Two things surfaced in Phase 3 (`bhu-theory-phase3-cns-20260821/`, tracks gated
+`PASS_P3A_AUDIT`, `PASS_P3B_TRACKB`, `PASS_P3C_TRACKC`):
+
+1. **The masses this document headlined are from a preprint.** The "2026 update, accepted A&A
+   (arXiv:2606.19276)" is Miao, Freire, Wex et al., now pinned at
+   `bhu-theory-phase3-cns-20260821/sources/ar5iv_2606.19276.html`, sha256 `ad8fba27…`. **Its values
+   are exactly right** — m_p = 1.599(8), m_c = 1.290(8), q = 0.807(8), verbatim from the abstract.
+   But arXiv shows no journal_ref and no DOI, and INSPIRE has no publication_info. It is not, today,
+   a published paper. The published measurement of record remains Ferdman et al. 2020, Nature 583,
+   211: 1.62 ± 0.03 and 1.27 ± 0.03.
+2. **The source's own caveat is quantified.** §4 above treated "(modulo some small additional shift
+   by He red giant)" as unquantifiable. Brown, Lee & Rho's companion paper (Phys. Rept. 462 §3.2)
+   puts it at 0.1–0.2 M⊙ — but Tauris et al. 2017 budget total accretion onto the first-born NS at
+   **0.0134 M⊙**, overstating it 7–15×. The generous ceiling is therefore 4% + 0.0134 M⊙, not a bare
+   4%, and not the proviso's figure.
+
+## The four readings
+
+| masses | ceiling | exceedance |
+|---|---|---|
+| Miao+ 2026 (preprint) | bare 4% — *as originally computed here* | 22.8σ |
+| Miao+ 2026 (preprint) | 4% + Tauris budget | 21.6σ |
+| Ferdman+ 2020 (published) | bare 4% — this document's own criterion | 7.1σ |
+| **Ferdman+ 2020 (published)** | **4% + Tauris budget** | **6.7σ** |
+
+**6.7σ is the operative figure**: the published measurement, against the most source-generous ceiling
+the literature supports. 7.1σ is the same correction with this document's original bare-4% criterion,
+recorded so the two changes are not conflated — one is a source-class fix, the other a ceiling that
+Phase 3 established after this document was written.
+
+## What is NOT amended
+
+- The verdict: **Outcome 1, the mass evidence falsifies the chain as the source states it.** Limb 2
+  fires at every reading in the table.
+- The pre-registered criterion, which was sealed before the harvest and is not retrofitted here.
+- Limb 1's serious-doubt tier, and the per-link verdicts.
+- The reading rule from C02: "BHU is falsified" would be false and is still not said.
+
+## One thing this document got right that Phase 3 confirms
+
+It disclosed the He-giant caveat unprompted (§4) rather than hiding it, and argued around it. The gap
+was not diligence — the caveat's quantification lives in a companion paper that was not in the lane.
+
+— Tori, 2026-08-21 KST. Amendment only; the 2026-08-17 gate (`PASS_C08_ADJUDICATION`) stands over
+the original text, and this amendment is ungated pending review.

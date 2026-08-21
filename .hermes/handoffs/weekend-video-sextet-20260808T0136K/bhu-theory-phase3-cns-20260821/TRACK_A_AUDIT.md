@@ -8,8 +8,10 @@ verdict is not reopened here.
 
 ## 0. Headline findings
 
-**H1 — The paper contains no derivation of the number its own falsifier tests.** The falsifier is
-"find a neutron star ≳ 2 M⊙ and the chain dies", and the chain's quantitative core is
+**H1 — The paper contains no derivation of the number its own falsifier tests.** The falsifier is a
+neutron star ≳ 2 M⊙, which BLR say "would put in serious doubt or simply falsify" the chain — graded
+wording I earlier compressed to "the chain dies" inside quotation marks, which overstated their
+modality. *(Corrected after the cross-engine gate.)* The chain's quantitative core is
 M_max^BB ≈ 1.5 M⊙. That number is **imported**, cited to Brown & Bethe, ApJ **423** (1994) 659 and
 BLR, Phys. Rept. **462** (2008) 1. There is no TOV integration in this paper, no equation of state
 written down, and no sensitivity of M_max to n_c. Links (1) and (2) are likewise asserted by
@@ -65,13 +67,13 @@ publication the paper's survival rested on unrefereed material.
 | B-9 | §III: second law ⇒ black-hole number is maximized | UNSUPPORTED | Non-sequitur if read as parameter selection — but authors flag §III with "≈" and disclaim the mechanism in §II. **Secondary, not chain-critical** (Gate A) |
 | B-10 | §IV: M_max cannot be much below ~1.44 M⊙ because the Hulse–Taylor pulsar exists | CHECK | Valid observational floor |
 | B-11 | §IV: lowering M_max moves BH onset below ZAMS 18 M⊙ ⇒ less galactic ¹²C | CHECK-AS-ASTROPHYSICS | The astrophysics is defensible |
-| B-12 | …and that therefore M_max should not be lower | UNSUPPORTED | The loop is never closed: no step connects reduced ¹²C to a reduced black-hole count. Bounds M_max from *below*, which neither fired limb tests. **Secondary** (Gate A) |
+| B-12 | …and that therefore M_max should not be lower | UNSUPPORTED | BLR do give a qualitative bridge — massive-star production "must be extremized, in order to produce the maximum number of black holes", and that production depends on carbon/oxygen cooling — but it is never quantified or its direction established, so the step remains unsupported rather than absent. Bounds M_max from *below*, which neither fired limb tests. **Secondary** (Gate A; wording corrected at the cross-engine gate) |
 | B-13 | Eqs. (3)–(5): 3α → ¹²C, ¹²C(α,γ)¹⁶O, ¹²C+¹²C → ²⁴Mg; 20 keV vs 80 keV | CHECK | Standard nuclear astrophysics |
 | B-14 | ν-pair emission cross-section ∝ T¹¹ | CITED | Bethe 1979 |
 | B-15 | 3-body rate ∝ ρ², ¹²C removal ∝ ρ; equality at ZAMS ~18 M⊙ | CITED-NUMERICS | Bro01; not recomputed here |
 | B-16 | Kunz et al. 165 ± 50 keV·b vs Caughlan–Fowler 100 keV·b | CHECK | Published values |
 | B-17 | Link (4): CNS requires the NS upper mass limit "as low as possible" | ASSUMED-FROM-CITATION | Smo97 (*popular book*) + Smo04 (Physica A). **Load-bearing** |
-| B-18 | Quoted Smolin prediction: a star appreciably above M_max^BB "will count against the CNS scenario" | UNVERIFIED-AT-GATE | Attributed to Smo97/Smo04; neither read by us. **Unverified, which is not a failure** — an unread citation. Track C must open it. (Gate A) |
+| B-18 | Quoted Smolin prediction: a star appreciably above M_max^BB "will count against the CNS scenario" | UNVERIFIED-AT-GATE | Attributed to Smo97/Smo04; neither read by us. **Load-bearing AND unverified** — it is BLR's direct CNS falsifier, so it carries the link structurally; not having read it is a verification state, not a demotion. Demoting it conflated the two. (cross-engine gate) |
 | B-19 | PSR J0751+1807 revised 2.1 ± 0.2 → 1.26 M⊙ | CHECK-AS-REPORTED | Sourced to a conference talk URL, not a refereed paper (H5) |
 | B-20 | "no smoking-gun evidence against the BB scenario" | CHECK-AS-OF-2008 | Superseded by the 2026-08-17 adjudication |
 | B-21 | CCS/LIGO route: stiff EOS ⇒ kaon condensation pushed to ≳ 7n₀ ⇒ BB falsified | CITED / AUTHOR-FLAGGED | Authors state "the models used are not quantitatively trustworthy" |
@@ -120,6 +122,29 @@ I accept that. Every one of the four repairs is the gate's, not mine:
 **After repair: 4 load-bearing rows (B-2, B-4, B-5, B-17), all imported rather than derived, and
 1 unverified.** No "7 of 7". The spine the gate upheld — H1, the receipt, the narrower-and-sharper
 framing, and Track C left open — is untouched, and it is the part worth having.
+
+## 6. Cross-engine gate — the same-family gates were not enough
+
+Re-gated on a different engine (OpenAI Codex) after all three Phase 3 gates turned out to be
+fresh-context readers from the author's own model family. Tracks B and C passed cross-engine
+unchanged. **Track A held again**, on three findings the same-family re-gate had approved:
+
+1. **The B-18 repair overshot, in the opposite direction from the original error.** I had demoted it
+   from load-bearing because it was unverified. Structural importance and verification status are
+   different axes: B-18 is BLR's *direct* CNS falsifier and carries the entire link, whether or not
+   we have read the source. Restored to load-bearing **and** unverified. Load-bearing is now 5, of
+   which 4 are imported-not-derived and 1 unverified.
+2. **A quote-fidelity defect in my own headline.** I compressed BLR's "would put in serious doubt or
+   simply falsify" into "the chain dies" — and put it in quotation marks. That strengthens their
+   modality into unconditional falsification. Corrected in H1.
+3. **B-12 was too absolute.** BLR do give a qualitative bridge from carbon to black-hole count
+   (massive-star production "must be extremized"; that production depends on carbon/oxygen cooling).
+   It is unquantified, so the step is unsupported — but not absent, which is what I wrote.
+
+Worth recording why this matters beyond the three fixes: the same-family re-gate explicitly checked
+whether I had over-corrected and concluded I had not. A different engine found that I had, on B-18,
+in the same pass where it caught a quotation I had strengthened. One model family checking its own
+work missed both.
 
 ## 4. Constraints receipt
 

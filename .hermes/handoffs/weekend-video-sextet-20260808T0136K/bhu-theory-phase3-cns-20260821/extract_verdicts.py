@@ -11,6 +11,7 @@ LOAD_BEARING = {
  "B-4":  "link (2)'s density n_c ~ 3n0 is cited, never computed here",
  "B-5":  "link (3), M_max ~ 1.5 Msun — the number the falsifier tests — is imported",
  "B-17": "link (4): that CNS requires a low M_max",
+ "B-18": "BLR's direct CNS falsifier — structurally load-bearing even though unread",
 }
 
 # Gate A (HOLD_P3A_LOADBEARING) removed three rows from the load-bearing set and I accept all three:
@@ -24,6 +25,9 @@ SECONDARY = {
  "B-9":  "motivating gloss, not on the falsifier's critical path (Gate A)",
  "B-12": "bounds M_max from below; the fired falsifier does not test that (Gate A)",
 }
+# Cross-engine gate: structural importance and verification status are different axes.
+# B-18 is load_bearing AND unverified; the earlier repair demoted it for being unread,
+# which suppressed the fact that it carries the entire CNS link.
 UNVERIFIED = {"B-18": "quoted from sources not yet read; neither a pass nor a failure"}
 PASSING = {"CHECK", "CHECK-AS-MECHANISM", "CHECK-AS-ASTROPHYSICS",
            "CHECK-AS-REPORTED", "CHECK-AS-OF-2008"}
@@ -71,7 +75,8 @@ doc = {
    # NOT "failing". Gate A: the prose calls citation-import normal practice for a 4-page note
    # while the tally called the same rows failures; both cannot be the register of record.
    # What is true and non-pejorative: these load-bearing links are imported, not derived here.
-   "n_load_bearing_imported": sum(1 for r in rows if r["load_bearing"] and not r["passing"]),
+   "n_load_bearing_imported": sum(1 for r in rows
+                               if r["load_bearing"] and not r["passing"] and not r["unverified"]),
    "n_unverified": sum(1 for r in rows if r["unverified"]),
    "rows": rows,
  }},
