@@ -1,0 +1,80 @@
+# Audio disclosure ledger — what the published reports actually SAY
+
+Built 2026-08-21 on Duho's instruction, after `GATE_CHI_CUSTODY_R6_20260821.md`
+refuted the Chi Custody Receipt for omitting the rendered MP3 as a disclosure
+surface. Three independent local ASR runs of the 23:12 audio agreed it speaks
+real χ values aloud, and the receipt's disclosure ledger — which enumerates
+documents — had never counted it.
+
+The gate is right, and the gap is mine. Tonight's publication ledger
+(`queue_ledger.jsonl`, see [PUBLICATION_LEDGER.md](PUBLICATION_LEDGER.md))
+records **that** a report was published. Nothing recorded **what it contains**.
+A ledger that stores a filename and not the fact that the file says three real
+measurements out loud will pass its own audit while missing the thing an auditor
+came for.
+
+Reproduce with `HermesOps/scripts/nm_disclosure_audit.py`; machine-readable copy
+in `disclosure_audit_20260821.json`; recorded as a `disclosure_audit` event in
+the append-only ledger (event 45).
+
+## Method, and the discriminator
+
+All **220** transcripts on disk were scanned — live and `_drafts/` — for spoken
+(`"zero point 27"`, `"minus zero point 20"`) and numeric (`0.27`) values.
+**18** carry decimals. Only **1** carries a real measurement.
+
+The discriminator is a date, not a judgement. The campaign's first real
+measurement was **2026-08-20**. Nothing spoken before that can be a real χ: it
+is published literature (Longo's dipole amplitude, ~0.04), a preregistered
+threshold, or a rehearsal artifact. Every exclusion below is on that basis and
+is checkable without taking my word for it.
+
+## The disclosure
+
+**`20260820T231235-hwao-report`** — published seq 20, recorded 23:12:35 KST,
+published 23:12:51 KST, 16 seconds later. Never republished, never withdrawn.
+
+> "The first 3 real values: zero point 27, zero point 20, and minus zero point 20."
+
+Eleven sentences later the same report says *"nobody is allowed to look yet. No
+tertile, no average, no summary of chi until the last galaxy is cut."* Both
+sentences are in the same 182-word caption.
+
+**Six surfaces carry it**, not one. Counting only the MP3 is how it was missed:
+
+| surface | path | sha256 (16) |
+|---|---|---|
+| audio | `20260820T231235-hwao-report.mp3` | `2a38a887bd897147` |
+| caption | `20260820T231235-hwao-report.txt` | `7c8a8668a00cd9b8` |
+| slides | `20260820T231235-hwao-report.deck.json` | `1da50dc6878db905` |
+| alignment | `20260820T231235-hwao-report.times.json` | `a9cfedc4ab127794` |
+| served page | `report-20260820T231235-hwao-report.html` | `c5d5d5b81f5ae997` |
+| served page | `archive.html` | `36a0499615eb74ca` |
+
+The alignment file matters and is easy to overlook: it carries per-sentence
+timings, so it locates the values in the audio to the second.
+
+## Checked and excluded — 17
+
+Recorded because an auditor needs what was rejected, not only what was found.
+All predate 2026-08-20:
+
+- **2026-08-11 `spin-recap`** — 0.095 ± 0.024 parity symmetry, from external
+  catalogue cells, nine days before the run's first measurement.
+- **2026-08-12 (6 reports)** — Longo's published 0.04, a mirror-artifact range
+  0.058–0.944 quoted *as a fraction of the χ scale*, power targets at 0.02.
+  Systematics rehearsal, explicitly about what a resampling mirror can fake.
+- **2026-08-14 (9 reports)** — preregistered thresholds and estimator sigmas
+  (0.12 vs a 0.8 limit, 0.13 vs 0.6, a 0.85 pass floor). Design values arguing
+  about what the threshold should be, before any data.
+
+## What this does NOT rule on
+
+**Whether the disclosure was authorised.** The report says the no-unblinding
+clause was *"deliberately spent"*, which may make it sanctioned rather than a
+leak. That is the investigator's call and Duho's signature, not mine. This file
+establishes only what was published, on which surfaces, and when.
+
+Nothing was altered, withdrawn, or unpublished in producing it. Editing a
+published report in the middle of an audit of that report is precisely the
+mutation that broke the custody record earlier tonight.
