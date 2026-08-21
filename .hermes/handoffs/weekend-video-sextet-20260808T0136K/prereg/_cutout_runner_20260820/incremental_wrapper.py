@@ -32,8 +32,21 @@ signal.signal(signal.SIGTERM, lambda *_: globals().__setitem__("stop", True))
 
 
 def resolved_objects() -> set[str]:
+    """Objects the runner has resolved, keyed by ls_id READ FROM the receipt.
+
+    The runner names receipt files object-<hash>, not by ls_id, so the filename is
+    not the key — using stems silently deduped nothing and re-offered the same batch
+    forever (caught 2026-08-21 at 2,840 tensors by the NO_PROGRESS guard).
+    """
     d = OUT / "receipts"
-    return {p.stem for p in d.glob("*.json")} if d.exists() else set()
+    out: set[str] = set()
+    if d.exists():
+        for p in d.glob("*.json"):
+            try:
+                out.add(str(json.loads(p.read_text())["ls_id"]))
+            except Exception:
+                continue
+    return out
 
 
 def load_positions() -> dict[str, tuple[str, str]]:
