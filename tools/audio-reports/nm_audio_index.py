@@ -344,6 +344,9 @@ padding:.15em .55em;font:600 .7rem/1 inherit;cursor:pointer}}
 .num{{color:#ffc46b;font-variant-numeric:tabular-nums;font-weight:600}}
 .ok{{color:#7ee6a8}}.bad{{color:#ff8ba0}}
 .dnote{{color:#78818f;font-size:.7rem;margin-top:.45em}}
+.openrow{{display:none;margin:.45em 0 .1em}}
+li.sel .openrow{{display:block}}
+.openrow a{{color:#9db8e8;font-size:.78rem;text-decoration:none}}
 .slide figure{{margin:0 0 .6em}}
 .slide img{{width:100%;border-radius:7px;display:block;background:#000}}
 .slide .attr{{color:#78818f;font-size:.66rem;margin:-.3em 0 .6em}}
@@ -390,13 +393,13 @@ li{{background:#f4f6fa;border-color:#e6e9ef}}li.on{{background:#e8f6ee;border-co
 {chr(10).join(body)}
 
 <div id=bar>
-<div class=now id=now>pick a reading</div>
+<div class=now id=now>pick a report</div>
 <div id=mode>
-  <button data-m="single" title="Play this reading and stop">just this one</button>
+  <button data-m="single" title="Play this report and stop">just this one</button>
   <button data-m="list" title="Play on down the list, then stop">play the list</button>
-  <button data-m="one" title="Repeat the current reading">repeat one</button>
+  <button data-m="one" title="Repeat the current report">repeat one</button>
   <button data-m="all" title="Play the list and start again at the top">repeat all</button>
-  <button data-a="new" id=autonew title="Play new readings as soon as they are added">auto-play new</button>
+  <button data-a="new" id=autonew title="Play new reports as soon as they are added">auto-play new</button>
   <button id=stoggle title="Show or hide the spoken text">hide text</button>
 </div>
 <audio id=au controls preload=none></audio></div>
