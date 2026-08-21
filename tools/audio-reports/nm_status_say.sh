@@ -17,7 +17,11 @@ pub_args=("$out" --slug "$slug" --speaker "${NM_SPEAKER:-system}" --text "$text"
 pub=$(python3 "$S/nm_audio_publish.py" "${pub_args[@]}") || exit 1
 quiet=$(print -r -- "$pub" | python3 -c 'import json,sys; print("1" if json.load(sys.stdin)["quiet"] else "0")')
 if [[ "$quiet" != "1" && -z "${NM_SAY_NO_PLAY:-}" ]]; then
-  afplay "$out" >/dev/null 2>&1 &
+  # Playback receipt for THIS host, written when sound starts (2026-08-21).
+  seqno=$(print -r -- "$pub" | python3 -c 'import json,sys; print(json.load(sys.stdin)["seq"])')
+  print -r -- "{\"seq\":$seqno,\"file\":\"$(basename $out)\",\"host\":\"$(hostname -s)\",\"event\":\"STARTED\",\"local_time\":\"$(date '+%Y-%m-%dT%H:%M:%S%z')\"}" >> "$R/played.jsonl"
+  ( if afplay "$out" >/dev/null 2>&1; then ev=COMPLETED; else ev=INTERRUPTED; fi
+    print -r -- "{\"seq\":$seqno,\"file\":\"$(basename $out)\",\"host\":\"$(hostname -s)\",\"event\":\"$ev\",\"local_time\":\"$(date '+%Y-%m-%dT%H:%M:%S%z')\"}" >> "$R/played.jsonl" ) &
 fi
 # Archive index + alignment + slide deck are rebuilt by nm_report_postprocess.sh,
 # which the publisher spawns (it must run AFTER the transcript exists).

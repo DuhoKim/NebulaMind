@@ -8,6 +8,7 @@
 #   launchctl bootout gui/$UID/net.nebulamind.status-listener
 BASE="https://duho-macstudio.taila27502.ts.net/reports/status-audio"
 STATE="$HOME/.nm_status_listener_seq"
+RECEIPTS="$HOME/.nm_played.jsonl"      # playback receipts, collected by the Studio
 LEGACY_STATE="$HOME/.nm_status_listener_last"
 mkdir -p /tmp/nm_readings
 while true; do
@@ -35,7 +36,13 @@ for e in q['entries']:
             continue
           fi
           f="/tmp/nm_readings/$file"
-          if curl -fsS --max-time 60 "$BASE/$file" -o "$f" && afplay "$f"; then
+          if curl -fsS --max-time 60 "$BASE/$file" -o "$f"; then
+            # PLAYBACK RECEIPT (2026-08-21, Hwao's request): written when sound
+            # actually starts on THIS host, never on enqueue. A missing receipt
+            # must keep meaning "nobody heard it" — that is the whole point.
+            print -r -- "{\"seq\":$seq,\"file\":\"$file\",\"host\":\"$(hostname -s)\",\"event\":\"STARTED\",\"local_time\":\"$(date '+%Y-%m-%dT%H:%M:%S%z')\"}" >> "$RECEIPTS"
+            if afplay "$f"; then ev=COMPLETED; else ev=INTERRUPTED; fi
+            print -r -- "{\"seq\":$seq,\"file\":\"$file\",\"host\":\"$(hostname -s)\",\"event\":\"$ev\",\"local_time\":\"$(date '+%Y-%m-%dT%H:%M:%S%z')\"}" >> "$RECEIPTS"
             rm -f "$f"
             print -r -- "$seq" > "$STATE"
           else

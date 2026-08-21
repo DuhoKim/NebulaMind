@@ -67,3 +67,22 @@ Captions recovered by `nm_audio_backfill.py` (machine transcription of old
 readings whose text was never saved) carry an `.asr.json` marker and show an
 "auto-transcribed" badge — a guess at what was said is never presented as the
 written record.
+
+## Playback receipts (2026-08-21)
+
+Hwao twice told Duho a report "should be playing on the MacBook" and had no way
+to know; Duho's reply was "i don't know where you played". Appending to
+queue.json proves a report was QUEUED — it proves nothing about sound.
+
+Each player now writes a receipt **at the moment playback starts**, never on
+enqueue: the MacBook daemon appends to `~/.nm_played.jsonl`, the Studio appends
+to `played.jsonl` directly. `nm_playback_receipts.py` pulls the MacBook's over
+SSH, merges them, and reports listener health.
+
+    nm_playback_receipts.py            # what played recently, + listener alive/DEAD
+    nm_playback_receipts.py --seq 29   # answer for one report (exit 1 if none)
+
+The design rule is the point: **nothing is ever optimistically marked played.**
+A missing receipt keeps meaning "nobody heard it", so a dead listener is
+detectable instead of being discovered from Duho. Receipts record STARTED and
+then COMPLETED or INTERRUPTED, with host and local time.
