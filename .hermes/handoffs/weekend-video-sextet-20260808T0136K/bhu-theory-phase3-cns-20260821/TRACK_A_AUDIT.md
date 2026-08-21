@@ -19,14 +19,16 @@ citation (Harada–Yamawaki for the vector manifestation; BLR-kaon07 for n ≈ 3
 practice for a 4-page note — but it means the *falsifiable* content and the *derived* content of
 this paper are disjoint sets.
 
-**H2 — The CNS link rests on a popular book.** Link (4) — that CNS requires the neutron-star upper
-mass limit to be "as low as possible" — is sourced to `Smo97` = Smolin, *The Life of the Cosmos*
-(Oxford University Press, 1997), a general-audience book, and `Smo04` = Smolin, Physica A **340**
-(2004) 705. Under our own standing rule (peer-reviewed journal articles are the base layer;
-popular-science works are context, never a base source) half of that support is inadmissible.
-**Note also: this paper never cites Smolin 1992, CQG 9, 173** — our bibliography's entry 6, and the
-paper we came here to audit alongside it. The CNS attribution in the falsifying paper does not run
-through the CNS paper of record.
+**H2 — The CNS link rests partly on a popular book, and never on the CNS paper of record.**
+Link (4) has two textual moments and they are sourced differently — a distinction I got wrong at
+first and the third-engine gate caught. The *requirement* that the neutron-star upper mass limit be
+"as low as possible" (line 50) cites **`Smo04` = Smolin, Physica A 340 (2004) 705 alone**, which is
+peer-reviewed and admissible. The *prediction* quote that a heavy star "will count against the CNS
+scenario" (line 44) cites **`Smo97 ; Smo04`**, where `Smo97` = *The Life of the Cosmos* (Oxford
+University Press, 1997), a general-audience book. So the inadmissible half sits on B-18, not on
+B-17. **Note also: this paper never cites Smolin 1992, CQG 9, 173** — our bibliography's entry 6,
+and the paper we came here to audit alongside it. The CNS attribution in the falsifying paper does
+not run through the CNS paper of record.
 
 **H3 — Section III's entropy argument is a loose sentence, not a load-bearing step.**
 BLR motivate maximizing black holes thermodynamically: black-hole entropy exceeds Fe-core entropy by
@@ -72,7 +74,7 @@ publication the paper's survival rested on unrefereed material.
 | B-14 | ν-pair emission cross-section ∝ T¹¹ | CITED | Bethe 1979 |
 | B-15 | 3-body rate ∝ ρ², ¹²C removal ∝ ρ; equality at ZAMS ~18 M⊙ | CITED-NUMERICS | Bro01; not recomputed here |
 | B-16 | Kunz et al. 165 ± 50 keV·b vs Caughlan–Fowler 100 keV·b | CHECK | Published values |
-| B-17 | Link (4): CNS requires the NS upper mass limit "as low as possible" | ASSUMED-FROM-CITATION | Smo97 (*popular book*) + Smo04 (Physica A). **Load-bearing** |
+| B-17 | Link (4): CNS requires the NS upper mass limit "as low as possible" | ASSUMED-FROM-CITATION | Smo04 (Physica A) — **peer-reviewed**. Corrected at the third-engine gate: the requirement sentence (source line 50) cites Smo04 alone; the popular book attaches to the theory statement (line 49) and to B-18's prediction quote (line 44). **Load-bearing** |
 | B-18 | Quoted Smolin prediction: a star appreciably above M_max^BB "will count against the CNS scenario" | UNVERIFIED-AT-GATE | Attributed to Smo97/Smo04; neither read by us. **Load-bearing AND unverified** — it is BLR's direct CNS falsifier, so it carries the link structurally; not having read it is a verification state, not a demotion. Demoting it conflated the two. (cross-engine gate) |
 | B-19 | PSR J0751+1807 revised 2.1 ± 0.2 → 1.26 M⊙ | CHECK-AS-REPORTED | Sourced to a conference talk URL, not a refereed paper (H5) |
 | B-20 | "no smoking-gun evidence against the BB scenario" | CHECK-AS-OF-2008 | Superseded by the 2026-08-17 adjudication |
