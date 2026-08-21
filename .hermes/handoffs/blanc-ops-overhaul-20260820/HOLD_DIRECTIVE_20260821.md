@@ -23,6 +23,10 @@ scope as BHU cosmology and continues under the hold.
 
 ## What is held
 
+**The canonical enumeration is `HOLD_LIST.md` beside this file** — it covers the
+Lab's flagship studies and frontier drafts too, which have no lane and were
+therefore invisible to the marker mechanism.
+
 - `c41-trackb-shape1-uvlf-20260804` (GATE: ESTABLISHED, 355 h untouched)
 - `fesc-zsweep-merged-paper-20260804T1040K` (GATE: MINOR, 355 h untouched)
 - Any new study start outside BHU cosmology.
