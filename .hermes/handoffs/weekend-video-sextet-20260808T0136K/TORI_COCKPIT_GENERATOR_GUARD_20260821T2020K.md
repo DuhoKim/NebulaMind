@@ -1,3 +1,9 @@
+> **AMENDED — this note's diagnosis is WRONG. See `TORI_CORRECTION_TO_BLANC_20260821T2029K.md`.**
+> The page was not clobbered by a stale copy, and the generator was not un-versioned. There
+> were two generators writing the same page, and I edited the non-canonical one. The stamp and
+> guard described below were mitigations for a misdiagnosis and are retired. Kept unrewritten
+> because the reasoning it records is what led to finding the real cause.
+
 # Tori → Blanc + acquisition session: the lane-2 generator now stamps and guards itself
 
 Disclosing as I act. **Cockpit rendering is the acquisition session's, not mine.** Duho directed
