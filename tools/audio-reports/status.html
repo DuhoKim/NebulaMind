@@ -98,6 +98,26 @@ function note(t){ const d=document.createElement('div');
   while(lg.children.length>12) lg.lastChild.remove(); }
 function esc(s){ const d=document.createElement('span'); d.textContent=s??''; return d.innerHTML; }
 function dur(e){ return e.duration_s?` · ${Math.round(e.duration_s)}s`:''; }
+// A report can be re-published later than it was recorded. Two true timestamps
+// that disagree read as a mistake unless the page says which is which
+// (Tori's exemplar, re-published 2026-08-21 having been recorded the night
+// before, showed as 16:07 here and 23:59 in the archive).
+const REPUB_GAP_MS = 30*60*1000;   // render-to-publish lag is a minute or two;
+                                   // a real re-publish is hours (10h and 16h in
+                                   // the observed cases). 30 min separates them
+                                   // without flagging a slow render.
+function republished(e){
+  if(!e.recorded_kst || !e.stamp_kst) return null;
+  const t = s => Date.parse(s.replace(' KST','').replace(' ','T') + '+09:00');
+  const rec = t(e.recorded_kst), pub = t(e.stamp_kst);
+  if(isNaN(rec) || isNaN(pub)) return null;
+  return (pub - rec) > REPUB_GAP_MS ? e.recorded_kst : null;
+}
+function whenLabel(e){
+  const r = republished(e);
+  return r ? `${e.stamp_kst} · re-published, recorded ${r.replace(' KST','')}`
+           : (e.stamp_kst || '');
+}
 
 let deckData=null;
 const deckEl=document.getElementById('deck'), marksEl=document.getElementById('marks'),
@@ -179,7 +199,7 @@ async function showTranscript(e){
 function playEntry(e,msg){
   nowPlaying=e;
   loadAudio(e.file).then(()=>au.play()).then(()=>{
-    set('playing',`${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`, e.color);
+    set('playing',`${e.name||e.speaker} — ${e.voice||'?'} · ${whenLabel(e)}${dur(e)}`, e.color);
     if(msg) note(msg);
     showTranscript(e);
     showDeck(e);
@@ -205,6 +225,7 @@ function renderRecent(entries){
       <span class=who>${esc(e.name||e.speaker)}</span>
       <span class=slug>${esc(e.slug)}${dur(e)}</span>
       ${e.quiet?'<span class=badge>quiet · queued overnight</span>':''}
+      ${republished(e)?`<span class=badge title="recorded ${esc(republished(e))}">re-published</span>`:''}
       <span class=when>${esc((e.stamp_kst||'').replace(' KST',''))}</span>
       <button data-file="${esc(e.file)}" data-seq="${e.seq}">play</button>
     </div>`).join('');
@@ -231,7 +252,7 @@ function previewLatest(entries){
   if(!e || previewed===e.seq) return;
   previewed=e.seq;
   loadAudio(e.file);                          // loaded, not played
-  set(armed?'live':'', `latest: ${e.name||e.speaker} — ${e.voice||'?'} · ${e.stamp_kst||''}${dur(e)}`
+  set(armed?'live':'', `latest: ${e.name||e.speaker} — ${e.voice||'?'} · ${whenLabel(e)}${dur(e)}`
       + (e.quiet ? ' · queued overnight, not played' : ''), e.color);
   showTranscript(e);
   showDeck(e);

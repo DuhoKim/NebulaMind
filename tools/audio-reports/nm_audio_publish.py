@@ -69,6 +69,17 @@ def _ffprobe_bin() -> str | None:
     return None
 
 
+def _recorded_kst(name: str) -> str | None:
+    """The filename stamp is KST wall time at render: 20260820T235925-... ."""
+    import re as _re
+    m = _re.match(r"(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})?", name)
+    if not m:
+        return None
+    y, mo, d, hh, mm = m.group(1), m.group(2), m.group(3), m.group(4), m.group(5)
+    ss = m.group(6) or "00"
+    return f"{y}-{mo}-{d} {hh}:{mm}:{ss} KST"
+
+
 def duration_of(mp3: pathlib.Path) -> float | None:
     exe = _ffprobe_bin()
     if not exe:
@@ -157,6 +168,11 @@ def main() -> int:
         "color": meta.get("color"),
         "stamp_utc": now_utc.strftime("%Y-%m-%dT%H:%M:%SZ"),
         "stamp_kst": now_kst.strftime("%Y-%m-%d %H:%M:%S KST"),
+        # When the AUDIO was made, parsed from the filename stamp. A report can
+        # be re-published later (Tori's exemplar was, 2026-08-21), and then the
+        # queue said 16:07 while the archive filed it under 23:59 the night
+        # before — two true timestamps that silently disagreed.
+        "recorded_kst": _recorded_kst(mp3.name),
         "quiet": quiet,
         "transcript": transcript.name if transcript else None,
         "caption_normalized": caption_fixes,
