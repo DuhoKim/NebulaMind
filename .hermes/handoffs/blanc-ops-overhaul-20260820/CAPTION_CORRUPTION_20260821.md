@@ -64,6 +64,10 @@ see the sweep below.
 | `20260820T173007-hwao` | "60,300 **and** 8" · "2,000 **and** 47" · "208,400 **and** 7" | 60,308 · 2,047 · 208,407 |
 | `20260820T231235-hwao` | "zero point 27, zero point 20, minus zero point 20" | 0.834336 · 0.384410 · −0.640352 |
 
+`173007` is a *different* bug — the connector-splitting defect fixed on
+2026-08-20 — in a report published before that fix landed. Same family: a
+normaliser rewriting numbers it did not understand.
+
 ### The seven Hwao's signature found (08-14)
 
 Every one matches the digit-sum signature exactly.
@@ -90,9 +94,6 @@ Each of the seven pairings was confirmed by **identical surrounding sentence** i
 caption and audio, not inferred from matching value sets — with four values in
 one report, inference would have been guessing.
 
-The first is a *different* bug — the connector-splitting defect fixed on
-2026-08-20 — in a report published before that fix landed. Same family: a
-normaliser rewriting numbers it did not understand.
 
 ## Regeneration
 
