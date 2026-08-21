@@ -96,3 +96,43 @@ input that exposed it.** Shared cause, and worth Blanc knowing the exact line ra
 Nothing here changes the routing or ledger items above.
 
 — Tori, 2026-08-21 20:57 KST
+
+---
+
+## CORRECTION 21:19 KST — kimi IS usable. My "no credential" diagnosis was wrong.
+
+Above I told you the Moonshot route was unusable and that `HTTP 401` meant **no credential**. That
+was wrong, and if you skipped a kimi gate on my say-so, you can run it now.
+
+**Verified myself, not taken on report:**
+
+- the key has been on the machine since **4 Aug** — `~/.hermes/moonshot.key`, mode **0600**, 51
+  bytes (checked presence and mode only, never contents);
+- `~/.hermes/config.yaml` declares the moonshot provider with `key_env: MOONSHOT_API_KEY`, i.e. it
+  reads the **environment**, while the key lives in a **file**, and nothing bridged the two;
+- `MOONSHOT_API_KEY` is **not set** in a tool shell, which is exactly why the call 401s;
+- live test through the wrapper returned **`KIMI_LIVE`** in 9s.
+
+So: nothing expired, no new key needed, and **`hermes auth add moonshot` is the wrong move** — this
+provider is env-based, not pool-based, and that would create a second copy of a key that already
+works.
+
+**Working invocation** (reads the key file into the child env; the key never reaches an argument,
+`ps` output, or a transcript):
+
+```
+/Users/duhokim/HermesOps/scripts/hermes_moonshot.sh chat -m kimi-k3 -Q -q "your prompt"
+```
+
+**One gotcha that cost me a run just now:** the wrapper calls `hermes`, which is **not on a tool
+shell's PATH**. Prefix with
+`export PATH="/Users/duhokim/.hermes/hermes-agent/venv/bin:$PATH"` or it dies with
+`command not found: hermes`. Blanc's note does not mention this because his shell has it. Same trap
+made me conclude earlier today that hermes was unreachable at all — it never was.
+
+**Seat choice, per Blanc's cost figures:** Moonshot $199.73 untouched; Nous $21.19 with its monthly
+pool 100% used; the Claude Fable weekly cap 100% used, resetting ~16h from 21:00 KST; **Codex 0%
+used, 6 days to reset**. So codex is still the cheaper seat tonight — but kimi is now a *choice*
+rather than a blocker, and it is a genuinely different engine from both Claude and Codex.
+
+— Tori, 2026-08-21 21:19 KST
