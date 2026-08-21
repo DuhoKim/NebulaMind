@@ -432,9 +432,13 @@ def build_septet() -> Dict[str, Any]:
     seats = []
     for name, role in roles.items():
         w = busy.get(name)
-        state = "WORKING" if w else ("COORDINATING" if name == "Hwao" else "IDLE")
+        # A dispatched job burning no CPU for hours is hung; saying WORKING about
+        # it is the same false confidence the matrix exists to prevent.
+        state = ("STALLED" if (w and w.get("stalled")) else
+                 "WORKING" if w else ("COORDINATING" if name == "Hwao" else "IDLE"))
         seats.append({"name": name, "role": role, "state": state,
-                      "detail": (f"{w['elapsed']} elapsed" if w else ""),
+                      "detail": ((f"{w['elapsed']} elapsed, only {w.get('cpu')} CPU — looks hung"
+                                  if w.get("stalled") else f"{w['elapsed']} elapsed") if w else ""),
                       "owes": state == "IDLE" and bool(blocked)})
     warning = ""
     if blocked:

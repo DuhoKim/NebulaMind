@@ -232,9 +232,53 @@ def _tmux_seats():
 
 
 def _dispatched(cmd):
-    """A one-shot job carries a prompt flag; an interactive session does not."""
-    return (" -q " in cmd or " -p " in cmd or cmd.rstrip().endswith(" -q")
-            or cmd.rstrip().endswith(" -p") or " -Q -q" in cmd)
+    """A one-shot job carries a PROMPT flag; an interactive session does not.
+
+    `-p` was treated as a prompt flag, but in hermes `-p <name>` selects a
+    PROFILE — so `hermes -p kun --provider nous -m moonshotai/kimi-k3` is an
+    interactive session and was being counted as dispatched work. Five
+    abandoned kimi sessions therefore rendered as a live adversarial gate for
+    nearly three days at ~0% CPU (2026-08-21). That is precisely the false
+    confidence this function exists to prevent.
+
+    Prompt flags that really do mean one-shot: -z/--oneshot (hermes), -q/-Q
+    (agy and the older wrappers), --print (claude).
+    """
+    c = f" {cmd.strip()} "
+    if " -p " in c and not re.search(r" -p\s+['\"]?[A-Z0-9]", c):
+        c = re.sub(r" -p\s+\S+ ", " ", c)      # drop `-p <profile>` before testing
+    return (" -q " in c or " -Q " in c or " -z " in c
+            or " --oneshot " in c or " --print " in c)
+
+
+def _secs(t):
+    """ps elapsed (DD-HH:MM:SS / HH:MM:SS / MM:SS) or cpu time (MM:SS.ss) -> seconds."""
+    try:
+        t = str(t).strip()
+        days = 0
+        if "-" in t:
+            d, t = t.split("-", 1)
+            days = int(d)
+        bits = [float(x) for x in t.split(":")]
+        while len(bits) < 3:
+            bits.insert(0, 0.0)
+        return days * 86400 + bits[0] * 3600 + bits[1] * 60 + bits[2]
+    except Exception:
+        return None
+
+
+def _stalled(elapsed, cpu):
+    """A dispatched job that has used almost no CPU for hours is hung, not working.
+
+    Found 2026-08-21: a kimi gate showed WORKING for 2 days 9 hours having burned
+    24 minutes of CPU — 0.2%. 'Running for two days' and 'stuck for two days' look
+    identical on a board that only prints elapsed time, and only one of them means
+    someone should look.
+    """
+    e, c = _secs(elapsed), _secs(cpu)
+    if e is None or c is None or e < 3600:
+        return False
+    return (c / e) < 0.01
 
 
 def crew_live():
@@ -254,7 +298,8 @@ def crew_live():
         seat = next((s for s, m in SEAT_MATCH if m(cmd)), None)
         if not seat:
             continue
-        rec = {"seat": seat, "pid": pid, "elapsed": el, "cpu": cpu}
+        rec = {"seat": seat, "pid": pid, "elapsed": el, "cpu": cpu,
+               "stalled": _stalled(el, cpu)}
         (working if _dispatched(cmd) else interactive).append(rec)
 
     # A seat driven by send-keys into a persistent pane carries no -q/-p flag, so the flag test
