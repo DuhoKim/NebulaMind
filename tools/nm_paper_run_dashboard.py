@@ -280,6 +280,11 @@ def collect():
     for lane in sorted(glob.glob(os.path.join(HANDOFFS, "*"))):
         if not os.path.isdir(lane):
             continue
+        # A lane carrying RETIRED.md has been ruled on by Duho and must stop
+        # asking for a decision (2026-08-21). Nothing is deleted; the lane and
+        # its artifacts stay on disk, they simply leave the board.
+        if os.path.exists(os.path.join(lane, "RETIRED.md")):
+            continue
         v = latest_verdicts(lane)
         if not v:
             continue

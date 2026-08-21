@@ -366,7 +366,20 @@ def build_septet_matrix() -> Dict[str, Any]:
                         behind = (newest_art - st.st_mtime) / 3600.0
                         video["stale_by_h"] = round(behind, 1)
                     break
-        papers.append({"video": video,
+        # How long has this been waiting? A two-week-old "NEEDS YOU" looked
+        # identical to a fresh one, so three papers sat on the board since
+        # 08-06 reading as live decisions (Duho, 2026-08-21).
+        waiting_h = None
+        try:
+            lane_dir = REPO / ".hermes" / "handoffs" / r["lane"]
+            if lane_dir.exists():
+                newest_touch = max((f.stat().st_mtime for f in lane_dir.iterdir() if f.is_file()),
+                                   default=None)
+                if newest_touch:
+                    waiting_h = round((time.time() - newest_touch) / 3600.0, 1)
+        except Exception:
+            waiting_h = None
+        papers.append({"video": video, "waiting_h": waiting_h,
                        "lane": r["lane"], "state": r["state"], "cells": cells,
                        "engaged": engaged, "of": len(seats) - 1,
                        "waiting": waiting, "who": who,
@@ -2761,7 +2774,7 @@ async function load() {
         const border = mine ? '#d69a66' : (p.engaged===0 ? '#a8622f' : '#1e2637');
         const chips = c => c.map(x=>`<span style="display:inline-block;border-radius:4px;padding:1px 7px;margin:2px 3px 2px 0;font-size:12px;background:#17202f">${esc(x)}</span>`).join('');
         const askLine = mine
-          ? `<div style="margin-top:8px;font-size:14px;color:#e9eef7"><span class="pill needs-review"><span class="dot"></span><span>NEEDS YOU</span></span> <b>${esc(p.waiting||'')}</b></div>`
+          ? `<div style="margin-top:8px;font-size:14px;color:#e9eef7"><span class="pill needs-review"><span class="dot"></span><span>NEEDS YOU</span></span> <b>${esc(p.waiting||'')}</b>${p.waiting_h!=null?` <span style="color:${p.waiting_h>168?'#ff8ba0':(p.waiting_h>48?'#ffc46b':'#8b93a1')};font-size:12px">· untouched ${p.waiting_h>=48?Math.round(p.waiting_h/24)+' days':Math.round(p.waiting_h)+'h'}</span>`:''}</div>`
           : `<div style="margin-top:8px;font-size:13px;color:#a9b6cc">waiting on the crew — ${esc(p.waiting||'—')}</div>`;
         // The update time answers "is this cut current?" — and when the lane has moved since the
         // render, say so outright rather than leaving Duho to subtract two timestamps.
