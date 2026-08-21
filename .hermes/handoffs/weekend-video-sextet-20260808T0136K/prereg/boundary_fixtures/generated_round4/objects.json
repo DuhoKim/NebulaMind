@@ -1,0 +1,310 @@
+[
+  {
+    "case": "centre-control",
+    "center_x": 0,
+    "center_y": 0,
+    "dec_deg": -30.0,
+    "expected_array_path": "expected/centre.npy",
+    "expected_array_sha256": "33f69edeeb4c6cd29432a22ab0b69188e008af663aff4aa07a3444d079bfe2ae",
+    "expected_bricks": [
+      "r+0c+0"
+    ],
+    "expected_data_sha256": "7c9efc0a0fa00ce6dfab43016048aae81cd5c39fad11564ed33db1348d71550d",
+    "fixture_role": "centre",
+    "object_id": "centre",
+    "output_pixel_edge_polygon_global": [
+      [
+        -64.00000000015257,
+        -64.00000000019031
+      ],
+      [
+        0.0,
+        -64.00000000003024
+      ],
+      [
+        64.00000000015257,
+        -64.00000000019031
+      ],
+      [
+        64.00000000003092,
+        1.978150976356119e-10
+      ],
+      [
+        64.000000000206,
+        64.00000000013665
+      ],
+      [
+        0.0,
+        64.00000000020509
+      ],
+      [
+        -64.000000000206,
+        64.00000000013665
+      ],
+      [
+        -64.00000000003092,
+        1.978150976356119e-10
+      ],
+      [
+        -64.00000000015257,
+        -64.00000000019031
+      ]
+    ],
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 180.0,
+      "CRVAL2": -30.0,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "ra_deg": 180.0,
+    "source_object_id": "centre",
+    "source_round": "round1",
+    "source_set_signature_sha256": "c96c88ac9c48ee269faaa6e1b9d84f69fc1ded9d9e3088361168b5f6917aaaaa",
+    "storage_read_contract": {
+      "compression_type": "RICE_1",
+      "expected_source_bricks": [
+        "bricks/synthetic-round1-r+0c+0-image-r.fits.fz"
+      ],
+      "image_hdu_index": 1
+    }
+  },
+  {
+    "candidate_bricks": [
+      "knife-dec-max-east",
+      "knife-dec-max-west"
+    ],
+    "dec_deg": 32.25,
+    "expected_array_path": "expected/dec_max_exact_boundary.npy",
+    "expected_array_sha256": "476e3cc544141ddb816d14ce672473d586cbf2610e1cfcbd54222e46d9699c48",
+    "expected_bricks": [
+      "knife-dec-max-west"
+    ],
+    "expected_data_sha256": "afbee2e98283142fac96384c051ce6c8f6c0f659386c672efb0036ea7d49b44f",
+    "fixture_role": "edge",
+    "geometry_evidence": {
+      "achieved_edge_offset_pixels": 5.056790541857481e-10,
+      "achieved_subpixel_fraction": 5.056790541857481e-10,
+      "boundary_axis": "x",
+      "boundary_axis_index": 0,
+      "boundary_source_pixel": 3600.5,
+      "candidate_inward_sign": -1.0,
+      "output_edge_pixels": [
+        [
+          0.5,
+          0.5
+        ],
+        [
+          64.5,
+          0.5
+        ],
+        [
+          128.5,
+          0.5
+        ],
+        [
+          128.5,
+          64.5
+        ],
+        [
+          128.5,
+          128.5
+        ],
+        [
+          64.5,
+          128.5
+        ],
+        [
+          0.5,
+          128.5
+        ],
+        [
+          0.5,
+          64.5
+        ],
+        [
+          0.5,
+          0.5
+        ]
+      ],
+      "path_fraction_candidate_to_primary": 0.542725914440761,
+      "placement_method": "bisection at fixed object declination along the primary-to-candidate RA arc; objective evaluated in the candidate source TAN pixel plane",
+      "positive_offset_meaning": "output polygon crosses into knife_edge_source_brick",
+      "primary_centre_in_candidate_pixels": [
+        5235.203452170992,
+        1805.2273790829563
+      ],
+      "requested_edge_offset_pixels": 0.0,
+      "sampled_edge_candidate_source_pixels": [
+        [
+          3600.6912284413825,
+          1737.7967391384693
+        ],
+        [
+          3664.691503541396,
+          1737.8923410496611
+        ],
+        [
+          3728.6918032799795,
+          1737.9879429970902
+        ],
+        [
+          3728.5961890036697,
+          1801.9880633098016
+        ],
+        [
+          3728.5005747279147,
+          1865.9881836044042
+        ],
+        [
+          3664.5002750445024,
+          1865.8925570185904
+        ],
+        [
+          3600.4999999994943,
+          1865.7969304691703
+        ],
+        [
+          3600.5956142208734,
+          1801.7968348128886
+        ],
+        [
+          3600.6912284413825,
+          1737.7967391384693
+        ]
+      ],
+      "sampled_edge_inward_offsets_pixels": [
+        -0.19122844138246364,
+        -64.19150354139583,
+        -128.19180327997947,
+        -128.09618900366968,
+        -128.00057472791468,
+        -64.00027504450236,
+        5.056790541857481e-10,
+        -0.09561422087335814,
+        -0.19122844138246364
+      ],
+      "solve_absolute_error_pixels": 5.056790541857481e-10,
+      "solve_tolerance_pixels": 1e-08
+    },
+    "group_id": "knife-dec-max",
+    "knife_edge_source_brick": "knife-dec-max-east",
+    "object_id": "dec_max_exact_boundary",
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 200.08589381839192,
+      "CRVAL2": 32.25,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "primary_brick": "knife-dec-max-west",
+    "ra_deg": 200.08589381839192,
+    "source_object_id": "dec_max_exact_boundary",
+    "source_round": "round3",
+    "source_set_signature_sha256": "c339e31676b4043c59d25c5bb1c980960eccc79a6d74ef62355783938fbff01e",
+    "storage_read_contract": {
+      "compression_type": "RICE_1",
+      "expected_source_bricks": [
+        "bricks/synthetic-round3-knife-dec-max-west-image-r.fits.fz"
+      ],
+      "image_hdu_index": 1
+    }
+  },
+  {
+    "case": "centre exactly on both unique edges; side and diagonal neighbours required",
+    "center_x": 1736,
+    "center_y": 1736,
+    "dec_deg": -29.873577968649563,
+    "expected_array_path": "expected/corner_north_west_exact.npy",
+    "expected_array_sha256": "3f9fa83075b8516201e6a66e65f92a946a6fc457eae009f1b37d6a1b4db5e9e4",
+    "expected_bricks": [
+      "r+0c+0",
+      "r+0c+1",
+      "r+1c+0",
+      "r+1c+1"
+    ],
+    "expected_data_sha256": "2df4f0562c94f6c010f2337d654ce24b5967961be13bf45500ba7806413b702f",
+    "fixture_role": "corner",
+    "object_id": "corner_north_west_exact",
+    "output_pixel_edge_polygon_global": [
+      [
+        1671.9182320760865,
+        1672.0806721111935
+      ],
+      [
+        1735.918624173306,
+        1671.9995960354681
+      ],
+      [
+        1799.9190391868387,
+        1671.9185199305898
+      ],
+      [
+        1800.0004265153493,
+        1735.9189353391603
+      ],
+      [
+        1800.0818138736586,
+        1799.9193737221658
+      ],
+      [
+        1736.081375856304,
+        1800.0004269397728
+      ],
+      [
+        1672.0809607551755,
+        1800.0814801283555
+      ],
+      [
+        1671.9995964012123,
+        1736.081064632428
+      ],
+      [
+        1671.9182320760865,
+        1672.0806721111935
+      ]
+    ],
+    "output_wcs": {
+      "CD1_1": -7.277777777777778e-05,
+      "CD1_2": 0.0,
+      "CD2_1": 0.0,
+      "CD2_2": 7.277777777777778e-05,
+      "CRPIX1": 64.5,
+      "CRPIX2": 64.5,
+      "CRVAL1": 179.85429837635533,
+      "CRVAL2": -29.873577968649563,
+      "CTYPE1": "RA---TAN",
+      "CTYPE2": "DEC--TAN",
+      "NAXIS1": 128,
+      "NAXIS2": 128
+    },
+    "ra_deg": 179.85429837635533,
+    "source_object_id": "corner_north_west_exact",
+    "source_round": "round1",
+    "source_set_signature_sha256": "2e4f8f4488b3796e5e8c0cf4cd00fa75d2e09e97b2886e7d608c5524ff08a0e5",
+    "storage_read_contract": {
+      "compression_type": "RICE_1",
+      "expected_source_bricks": [
+        "bricks/synthetic-round1-r+0c+0-image-r.fits.fz",
+        "bricks/synthetic-round1-r+0c+1-image-r.fits.fz",
+        "bricks/synthetic-round1-r+1c+0-image-r.fits.fz",
+        "bricks/synthetic-round1-r+1c+1-image-r.fits.fz"
+      ],
+      "image_hdu_index": 1
+    }
+  }
+]

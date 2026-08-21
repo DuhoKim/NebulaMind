@@ -1,0 +1,271 @@
+{
+  "achieved_signed_object_offsets_pixels": {
+    "horizontal_inside": [
+      0.0,
+      -10.000000000055934
+    ],
+    "horizontal_one_pixel_beyond": [
+      0.0,
+      0.9999999999432916
+    ],
+    "horizontal_subpixel_inside": [
+      0.0,
+      -0.25000000032777336
+    ],
+    "horizontal_subpixel_outside": [
+      0.0,
+      0.25000000032777336
+    ],
+    "tjunction_exact": [
+      0.0,
+      4.8203219193965197e-11
+    ],
+    "vertical_inside": [
+      -10.000000000056026,
+      9.123368727159686e-12
+    ],
+    "vertical_one_pixel_beyond": [
+      0.9999999999432987,
+      -3.0748026347282575e-10
+    ],
+    "vertical_subpixel_inside": [
+      -0.24999999980333598,
+      4.7833736971369945e-11
+    ],
+    "vertical_subpixel_outside": [
+      0.24999999980333598,
+      4.7833736971369945e-11
+    ]
+  },
+  "brick_count": 5,
+  "brick_size": [
+    3600,
+    3600
+  ],
+  "brief_sha256": "34e4c0e4d8fa569bda1d31cf976dab9ec0314ffc9c39c88541769230f37524a6",
+  "coverage_min_max_by_object": {
+    "horizontal_inside": [
+      3,
+      3
+    ],
+    "horizontal_one_pixel_beyond": [
+      3,
+      3
+    ],
+    "horizontal_subpixel_inside": [
+      3,
+      3
+    ],
+    "horizontal_subpixel_outside": [
+      3,
+      3
+    ],
+    "tjunction_exact": [
+      3,
+      3
+    ],
+    "vertical_inside": [
+      3,
+      3
+    ],
+    "vertical_one_pixel_beyond": [
+      3,
+      3
+    ],
+    "vertical_subpixel_inside": [
+      3,
+      3
+    ],
+    "vertical_subpixel_outside": [
+      3,
+      3
+    ]
+  },
+  "cross_runner_loading_contract": "load through the existing round-2/round-3 pinned-tree schema as a separately counted fifth fixture block",
+  "cutout_size": [
+    128,
+    128
+  ],
+  "failure_contract": "all planned source paths and SHA-256 digests are verified before output write",
+  "geometry_sidecar_path": "geometry_sidecar.json",
+  "geometry_sidecar_sha256": "469671589abf31b4674878dc6befb4adcfd3872d318d8669165512d105b934dc",
+  "guard_source_count": 2,
+  "junction_ladder_contract": "east/north-positive object-centre offsets of -10, -0.25, exact 0, +0.25, and +1 pixels are solved independently across the vertical and horizontal unique-area branches, with the exact junction shared",
+  "meeting_source_count": 3,
+  "object_count": 9,
+  "object_schema_compatible_with": "yui-boundary-fixtures-round2-v1",
+  "objects_path": "objects.json",
+  "objects_sha256": "d40b74d3a90a4366135c0f3d336ce05695fa5d8d8e394e9f394a2327d2a21031",
+  "parent_generator_sha256": {
+    "make_boundary_fixtures.py": "24f55943bffabb855c2c6396d792e19ed4350449809bd22a63f59d3b6fa3404d",
+    "make_boundary_fixtures_round2.py": "60e3d662d72fbc87e0c82889b4f9174c033882b8f9a2019011c5104bb4aa15bc",
+    "make_boundary_fixtures_round3.py": "6b410fb40def2869d4f3431f029654d8fa7cacd20741dca5a84b12409d5e5e62",
+    "make_boundary_fixtures_round4.py": "d6c193841ff8ff52f1188ae1d48bbe5ea8c89bf553c542ad176f70189b7b7533"
+  },
+  "pattern_contract": "float32 smooth spherical sky function plus a declared per-brick value_offset; expected pixels average all three valid planned contributors",
+  "pixel_scale_arcsec": 0.262,
+  "planning_contract": "positive-area intersection after projecting the exact output nine-point pixel-edge polygon into each distinct source TAN WCS; five local candidates prove exactly three planned sources while two nearest upper-row guards stay out",
+  "real_geometry_verification": {
+    "claim": "DR10 South uses fixed 0.25-degree declination rows whose inferred full-row RA counts vary with declination; adjacent unequal-count rows offset RA boundaries and therefore contain legitimate three-cell T-junctions",
+    "claim_verified": true,
+    "local_geometry_source": {
+      "columns_read": [
+        "brickname",
+        "brickid",
+        "ra",
+        "dec",
+        "ra1",
+        "ra2",
+        "dec1",
+        "dec2",
+        "area",
+        "survey_primary"
+      ],
+      "hdu": 1,
+      "relative_to_prereg": "_tori_parent_row_count_evidence/footprint_variance_brick_counts_20260814/static/survey-bricks-dr10-south.fits.gz",
+      "rows": 366912,
+      "sha256": "863e5ded7a4aae7abcb5df76f322f35cf89945483715ff6d1874c88f5a072d9a",
+      "use_limit": "geometry/provenance metadata only; no survey image or catalogue values enter the synthetic fixtures"
+    },
+    "matched_junction": {
+      "guard_real_rows": [
+        {
+          "area": 0.06226967740390164,
+          "brickid": 97326,
+          "brickname": "1748m450",
+          "dec": -45.0,
+          "dec1": -45.125,
+          "dec2": -44.875,
+          "ra": 174.89236790606654,
+          "ra1": 174.71624266144818,
+          "ra2": 175.06849315068496,
+          "role": "upper-west-guard",
+          "survey_primary": true
+        },
+        {
+          "area": 0.06226967740390164,
+          "brickid": 97328,
+          "brickname": "1755m450",
+          "dec": -45.0,
+          "dec1": -45.125,
+          "dec2": -44.875,
+          "ra": 175.59686888454013,
+          "ra1": 175.42074363992174,
+          "ra2": 175.77299412915852,
+          "role": "upper-east-guard",
+          "survey_primary": true
+        }
+      ],
+      "junction_dec_deg": -45.125,
+      "junction_ra_deg": 175.40275049115917,
+      "lower_boundary_equality": true,
+      "lower_boundary_strictly_inside_upper_span": true,
+      "lower_row_ra_count": 1018,
+      "meeting_real_rows": [
+        {
+          "area": 0.06224098742735528,
+          "brickid": 96307,
+          "brickname": "1752m452",
+          "dec": -45.25,
+          "dec1": -45.375,
+          "dec2": -45.125,
+          "ra": 175.22593320235757,
+          "ra1": 175.04911591355597,
+          "ra2": 175.40275049115917,
+          "role": "lower-west",
+          "survey_primary": true
+        },
+        {
+          "area": 0.06226967740390164,
+          "brickid": 97327,
+          "brickname": "1752m450",
+          "dec": -45.0,
+          "dec1": -45.125,
+          "dec2": -44.875,
+          "ra": 175.24461839530332,
+          "ra1": 175.06849315068496,
+          "ra2": 175.42074363992174,
+          "role": "upper-span",
+          "survey_primary": true
+        },
+        {
+          "area": 0.062240987427335276,
+          "brickid": 96308,
+          "brickname": "1755m452",
+          "dec": -45.25,
+          "dec1": -45.375,
+          "dec2": -45.125,
+          "ra": 175.5795677799607,
+          "ra1": 175.40275049115917,
+          "ra2": 175.75638506876226,
+          "role": "lower-east",
+          "survey_primary": true
+        }
+      ],
+      "shared_declination_boundary_equality": true,
+      "upper_row_ra_count": 1022
+    },
+    "published_documentation": [
+      {
+        "supports": "Legacy Surveys bricks are approximately 0.25 degree by 0.25 degree boxes on the sky; the brick name encodes the centre RA and declination",
+        "url": "https://www.legacysurvey.org/dr9/description/"
+      },
+      {
+        "supports": "survey-bricks-dr10-south.fits.gz is the DR10 South survey-brick summary and exposes BRICKNAME/BRICKID/RA/DEC/RA1/RA2/DEC1/DEC2/AREA",
+        "url": "https://www.legacysurvey.org/dr10/files/"
+      }
+    ],
+    "systematic_row_evidence": {
+      "adjacent_row_count_changes": 426,
+      "adjacent_row_pairs": 502,
+      "declination_centre_range_deg": [
+        -89.75,
+        35.75
+      ],
+      "row_count_derivation": "round(360 / median(RA2-RA1)) for each distinct DEC row",
+      "unique_declination_rows": 503
+    }
+  },
+  "requested_signed_object_offsets_pixels": {
+    "horizontal_inside": [
+      0.0,
+      -10.0
+    ],
+    "horizontal_one_pixel_beyond": [
+      0.0,
+      1.0
+    ],
+    "horizontal_subpixel_inside": [
+      0.0,
+      -0.25
+    ],
+    "horizontal_subpixel_outside": [
+      0.0,
+      0.25
+    ],
+    "tjunction_exact": [
+      0.0,
+      0.0
+    ],
+    "vertical_inside": [
+      -10.0,
+      0.0
+    ],
+    "vertical_one_pixel_beyond": [
+      1.0,
+      0.0
+    ],
+    "vertical_subpixel_inside": [
+      -0.25,
+      0.0
+    ],
+    "vertical_subpixel_outside": [
+      0.25,
+      0.0
+    ]
+  },
+  "schema_version": "yui-boundary-fixtures-round5-v1",
+  "scope_limit": "synthetic reproduction of one verified real row-offset geometry pattern; not real survey image validation, adapter validation, or production acceptance",
+  "storage_determinism_contract": "GZIP_2 row-tile MTIME fields are canonicalized to zero and timestamped FITS checksum cards are omitted; whole-file and decoded-data SHA-256 values provide custody, and two consecutive builds must be byte-identical",
+  "synthetic_only": true
+}
