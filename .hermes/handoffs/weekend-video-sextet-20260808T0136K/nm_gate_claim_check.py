@@ -8,6 +8,13 @@ hold at the moment it was spoken. Same join, different column.
     "Phase 2 is closed: 4 gates, 4 passes"  spoken 2026-08-20 18:48
       -> did four PASS_ tokens exist on disk at 18:48 that day?
 
+WHAT THE DATE MEANS, because getting this wrong makes the tool accuse rather than
+report: git first-appearance and mtime are both UPPER bounds — they say the gate
+existed BY then, never that it did not exist EARLIER. A gate written on the 19th
+and committed on the 21st looks two days young. So a claim whose gates we can only
+date after the reading is UNVERIFIABLE, not FALSE. FALSE is reserved for a claim
+that exceeds the gates that exist AT ALL, which is the only form we can prove.
+
 EVIDENCE, in order of strength:
   1. git first-appearance (`--diff-filter=A`) — survives history rewrites of content,
      though not of history itself;
@@ -105,6 +112,18 @@ def readings(pattern="*.txt"):
         print()
 
 
+def gate_scope(stem: str):
+    """The claim's own declaration of which gates it means, if the speaker left one."""
+    f = AUDIO / f"{stem}.gates.json"
+    if not f.exists():
+        return None
+    try:
+        import json
+        return json.loads(f.read_text())
+    except Exception:
+        return None
+
+
 def main():
     g = gates()
     weak = sum(1 for x in g if x["how"].startswith("mtime"))
@@ -127,15 +146,36 @@ def main():
         for m in CLAIM.finditer(text):
             checked += 1
             claimed_gates, claimed_passes = int(m.group(1)), int(m.group(2))
-            existed = [x for x in g if x["when"] <= when]
-            passes = [x for x in existed if x["passing"]]
-            any_weak = any(x["how"].startswith("mtime") for x in existed)
-            if any_weak:
-                v = "UNVERIFIABLE"
-            elif len(passes) >= claimed_passes:
-                v = "TRUE(weak)"   # lane-wide count; see KNOWN LIMIT in the docstring
+            scope = gate_scope(p.name.rsplit(".", 1)[0])
+            if scope:
+                # SCOPED: resolve against the specific gates the claim names, and require
+                # each to have existed when spoken. This is the strong form.
+                named = {x["file"] for x in scope["gates"]}
+                have = [x for x in g if x["path"] in named]
+                undated = [x for x in have if x["how"].startswith("mtime")]
+                in_time = [x for x in have if x["when"] <= when and x["passing"]]
+                passing_now = [x for x in have if x["passing"]]
+                if len(have) != len(named):
+                    v = "UNVERIFIABLE"          # a named gate is not discoverable
+                elif len(passing_now) < claimed_passes:
+                    v = "FALSE"                 # provable: the passes do not exist even now
+                elif undated or len(in_time) < claimed_passes:
+                    # the gates exist and pass, but our earliest evidence of them postdates
+                    # the reading — an upper bound cannot rule the claim out
+                    v = "UNVERIFIABLE"
+                else:
+                    v = "TRUE(reconstructed)" if scope.get("reconstructed") else "TRUE"
+                passes = passing_now
             else:
-                v = "FALSE"
+                existed = [x for x in g if x["when"] <= when]
+                passes = [x for x in existed if x["passing"]]
+                any_weak = any(x["how"].startswith("mtime") for x in existed)
+                if any_weak:
+                    v = "UNVERIFIABLE"
+                elif len(passes) >= claimed_passes:
+                    v = "TRUE(weak)"   # lane-wide count; see KNOWN LIMIT in the docstring
+                else:
+                    v = "FALSE"
             rows.append((p.name[:34], when.strftime("%m-%d %H:%M"),
                          f"{claimed_gates} gates/{claimed_passes} passes", len(passes), v))
     print(f"  {'reading':36}{'spoken':14}{'claim':22}{'PASS':7}verdict")
@@ -150,6 +190,12 @@ def main():
             print(f"    {r[0]:36}{r[1]:14}{r[2]}")
         if len(asserted_rows) > 12:
             print(f"    ... and {len(asserted_rows)-12} more")
+    print("  FALSE = provable only: the claimed passes do not exist even now.")
+    print("  UNVERIFIABLE = our earliest evidence of the gate postdates the reading. Dates are")
+    print("  UPPER bounds, so this cannot rule the claim out — and must not be read as doubt.")
+    print("  TRUE = the gates the claim NAMES existed and passed when it was spoken.")
+    print("  TRUE(reconstructed) = same, but the naming sidecar was written after the audio,")
+    print("  so it records what the claim referred to, not what was declared at the time.")
     print("  TRUE(weak) = at least that many passes existed lane-wide; not scoped to the")
     print("  specific gates the claim means. See KNOWN LIMIT in the docstring.")
     bad = [r for r in rows if r[4] == "FALSE"]
