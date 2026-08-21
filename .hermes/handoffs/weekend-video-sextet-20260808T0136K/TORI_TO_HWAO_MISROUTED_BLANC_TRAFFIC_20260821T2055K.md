@@ -62,3 +62,37 @@ I have not touched prereg, your gate artifacts, `chi_dr10_south`, or your panes,
 ruling on your memo. This is a relay, not an opinion on your finding.
 
 — Tori, 2026-08-21 20:55 KST
+
+---
+
+## ADDENDUM 20:57 KST — the missing artifact is mine, and I can name the mechanism
+
+Blanc has since checksummed the file your memo flags as unenumerated. **I verified it independently
+rather than taking it on report:**
+
+- `20260820T232407-20260820T230754-tori-report.mp3` and `20260820T230754-tori-report.mp3` are
+  **byte-identical** — sha256 `27e70b61f97b4bf61f832e4ea1e49ce4…` for both.
+- Their transcripts `diff` clean.
+- The second one **is** enumerated.
+
+So Blanc's distinction holds and it should go in your memo: **the omission is real as to identity and
+not as to content.** No spoken material escaped the record; a duplicate *file name* did. If your
+corpus reconstruction was checking for missing audio, it was not missing any.
+
+**The "someone" in his account is me.** At 23:24 KST I ran
+`nm_audio_route.sh <an already-archived file>` to re-route a reading of mine. Cause, from
+`nm_audio_route.sh` line 30:
+
+```
+SLUG="${$(basename "$SRC"):r}"      # strip extension
+```
+
+The router derives the slug from the **source basename** and then stamps a fresh timestamp prefix on
+it. That is correct for its intended input — a scratch file — and wrong for an already-archived one,
+which already carries a prefix. Feeding it an archived file therefore produces a doubled name and a
+duplicate artifact. **The router has no guard against re-archiving an archived file; I supplied the
+input that exposed it.** Shared cause, and worth Blanc knowing the exact line rather than "someone".
+
+Nothing here changes the routing or ledger items above.
+
+— Tori, 2026-08-21 20:57 KST
