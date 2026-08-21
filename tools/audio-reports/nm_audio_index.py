@@ -178,6 +178,35 @@ def fmt_dur(d):
     m, s = divmod(int(round(d)), 60)
     return f"{m}:{s:02d}"
 
+# The files know when audio was RECORDED; only the queue knows when it was
+# PUBLISHED. A report re-published hours later would otherwise sit here under its
+# recording date with no hint, while the status page showed the later time — two
+# true timestamps disagreeing (2026-08-21).
+REPUB_GAP_S = 30 * 60
+
+
+def _queue_republished():
+    try:
+        q = json.loads(open(os.path.join(DIR, "queue.json")).read())
+    except Exception:
+        return {}
+    out = {}
+    for e in q.get("entries", []):
+        f, rec, pub = e.get("file"), e.get("recorded_kst"), e.get("stamp_kst")
+        if not (f and rec and pub):
+            continue
+        try:
+            fmt = "%Y-%m-%d %H:%M:%S KST"
+            gap = (datetime.strptime(pub, fmt) - datetime.strptime(rec, fmt)).total_seconds()
+        except Exception:
+            continue
+        if gap > REPUB_GAP_S:
+            out[f] = pub          # latest re-publish wins
+    return out
+
+
+QUEUE_REPUB = _queue_republished()
+
 WEEK = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
 
 
@@ -203,6 +232,10 @@ def build_body(subset):
             # expand. Duho did not see it either time. Anything that needs discovering
             # is not delivered, so rows that have text simply show it. Rows without a
             # transcript emit nothing at all rather than 148 "not saved" notices.
+            repub = QUEUE_REPUB.get(r["file"])
+            repub_badge = (f'<span class=repub title="recorded '
+                           f'{html.escape(r["when"].strftime("%Y-%m-%d %H:%M"))}, published later">'
+                           f're-published {html.escape(repub[:16])}</span>' if repub else "")
             asr_badge = ('<span class=asr title="machine transcription of the audio; '
                          'the original written text was not saved">auto-transcribed</span>'
                          if r.get("asr") else "")
@@ -228,7 +261,7 @@ def build_body(subset):
                 f'<div class=row>'
                 f'<span class=play>▶</span>'
                 f'<span class=t>{html.escape(r["title"])}</span>'
-                f'<span class=m>{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
+                f'<span class=m>{repub_badge}{html.escape(r["when"].strftime("%H:%M"))} · {meta}</span>'
                 f'</div>{tx}{deck_html}'
                 f'<div class=openrow><a href="report-{html.escape(os.path.splitext(r["file"])[0])}.html">'
                 f'open as a page &rarr;</a></div></li>')
@@ -327,6 +360,8 @@ border:1px solid #1e242f;background:#141922;cursor:pointer}}
 .tx{{display:none;margin:.7em 0 .15em;padding:.9em 1em;border-radius:7px;background:#0d1119;
 border:1px solid #232833;font-size:1.06rem;line-height:1.7;color:#d5dbe4;white-space:pre-wrap}}
 li.sel .tx{{display:block}}
+.repub{{display:inline-block;font-size:.66rem;color:#c9b280;border:1px solid #4a4020;border-radius:5px;
+padding:.03em .38em;margin-right:.45em;vertical-align:middle}}
 .asr{{display:inline-block;font-size:.68rem;color:#c9b280;border:1px solid #4a4020;border-radius:5px;
 padding:.05em .4em;margin-right:.5em;vertical-align:middle}}
 /* Slide deck — same look as the podcast decks and the live listen page. */
