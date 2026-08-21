@@ -18,7 +18,12 @@ from __future__ import annotations
 import json, pathlib, re, subprocess, sys
 
 HERMES = "/Users/duhokim/.local/bin/hermes"
-MODEL = "moonshotai/kimi-k3"
+# Direct Moonshot key, not the Nous route: the Nous PLAN pool is $0.10/month and
+# exhausts instantly, so "free" Nous calls actually bill purchased top-up — 102M
+# kimi tokens burned ~$35 of it in two days while the direct wallet sat untouched
+# at $199.73 (found 2026-08-21). Nous keeps TTS and gateway tools.
+PROVIDER = "moonshot"
+MODEL = "kimi-k3"
 SENT_SPLIT = re.compile(r'(?<=[.!?])\s+')
 
 
@@ -85,7 +90,7 @@ RULES (violating any one voids the deck):
 REPORT (each line prefixed with its start time in seconds):
 {numbered}
 """
-    r = subprocess.run([HERMES, "-z", prompt, "--provider", "nous", "-m", MODEL],
+    r = subprocess.run([HERMES, "-z", prompt, "--provider", PROVIDER, "-m", MODEL],
                        capture_output=True, text=True, timeout=600)
     raw = r.stdout.strip()
     m = re.search(r"\[\s*{.*}\s*\]", raw, re.S)

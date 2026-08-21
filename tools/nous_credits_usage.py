@@ -18,6 +18,11 @@ from typing import Any, Callable
 
 SCHEMA = "NM_NOUS_CREDITS_USAGE_V1"
 PROVIDER = "Hermes / Nous credits"
+
+# Floor alert (2026-08-21). The Nous plan pool is $0.10/month, so all real spend
+# comes from purchased top-up with no denominator and therefore no percentage to
+# go red. $36 vanished in two days before anyone noticed. Below this, say so.
+FLOOR_USD = 10.0
 SOURCE = "account_api"
 COLLECT_TIMEOUT_SECONDS = 15
 
@@ -263,9 +268,10 @@ def build_gauge(
     sub_gauges.extend([
         {
             "label": "Top-up balance",
-            "value_label": f"{_usd(topup)} remaining · purchased balance",
+            "value_label": (f"{_usd(topup)} remaining · purchased balance"
+                            + (f" · BELOW THE {_usd(FLOOR_USD)} FLOOR" if topup < FLOOR_USD else "")),
             "fill_pct": None,
-            "tone": "ok" if topup >= 5 else "warn",
+            "tone": "danger" if topup < FLOOR_USD else ("warn" if topup < FLOOR_USD * 2 else "ok"),
         },
         {
             "label": "Total usable",
@@ -283,6 +289,15 @@ def build_gauge(
     if renewal:
         detail_parts.append(f"Renews {renewal}.")
     detail_parts.append("Balances are USD amounts despite legacy internal field names; purchased top-up has no fixed denominator, so no percentage is invented for it.")
+    # The plan pool is $0.10, so every real call bills top-up — and with no
+    # denominator there is no percentage to turn red. $36 went in two days
+    # unnoticed (2026-08-21); name the floor explicitly instead.
+    if topup < FLOOR_USD:
+        detail_parts.append(f"TOP-UP IS BELOW THE {_usd(FLOOR_USD)} FLOOR — pause Nous-routed "
+                            f"gating and surface to Duho, as with the Moonshot wallet.")
+    elif topup < FLOOR_USD * 2:
+        detail_parts.append(f"Top-up is within 2x of the {_usd(FLOOR_USD)} floor. Nous funds TTS "
+                            f"and gateway tools; kimi gates belong on the Moonshot direct key.")
 
     age_seconds = max(0, int((now - parse_utc(checked["captured_at_utc"])).total_seconds()))
     base.update({
