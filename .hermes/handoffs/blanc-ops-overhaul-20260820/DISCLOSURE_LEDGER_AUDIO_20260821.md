@@ -1,5 +1,26 @@
 # Audio disclosure ledger — what the published reports actually SAY
 
+> **CORRECTED 2026-08-21 22:1x KST — the values below were wrong.** This file
+> first recorded the disclosed values as *"zero point 27, zero point 20, minus
+> zero point 20"*, taken from the caption. The audio says **0.834336, 0.384410,
+> and −0.640352** — six-decimal precision, verified by my own `faster_whisper`
+> run agreeing with the two models in Hwao's `CHI_DISCLOSURE_ASR_FINDING`.
+>
+> The caption was wrong because **my caption normaliser summed a digit sequence**
+> (8+3+4+3+3+6 = 27). Root cause, fix and the regeneration of the affected
+> captions: [CAPTION_CORRUPTION_20260821.md](CAPTION_CORRUPTION_20260821.md).
+>
+> **The method below is also unsound where it clears anything.** It read
+> captions, and a caption is not a faithful record of its audio. The 17
+> exclusions and the statement that none of Tori's 21 transcripts carry
+> χ-shaped values rest on text, not on what was spoken. Treat every "excluded"
+> or "clean" line here as unverified until re-run against ASR. The one
+> DISCLOSING entry is confirmed — by audio, not by caption.
+>
+> Corrections are recorded as appended ledger events
+> (`disclosure_audit_CORRECTION`, `caption_corrected` ×2), never by rewriting
+> history.
+
 Built 2026-08-21 on Duho's instruction, after `GATE_CHI_CUSTODY_R6_20260821.md`
 refuted the Chi Custody Receipt for omitting the rendered MP3 as a disclosure
 surface. Three independent local ASR runs of the 23:12 audio agreed it speaks
