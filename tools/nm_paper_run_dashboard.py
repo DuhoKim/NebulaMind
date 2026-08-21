@@ -291,6 +291,10 @@ def collect():
         name = os.path.basename(lane)
         scripts = script_state(lane)
         state, why = derive_state(name, v, running, scripts)
+        # HOLD.md: paused by Duho, reversible — unlike RETIRED.md the lane stays
+        # visible, it just stops asking anyone for anything (2026-08-21).
+        if os.path.exists(os.path.join(lane, "HOLD.md")):
+            state, why = "HELD", "on hold by Duho until he says otherwise"
         frozen, mutable = frozen_artifacts(lane)
         rows.append({"lane": name, "verdicts": v, "rounds": len(gate_files(lane)),
                      "frozen": frozen, "mutable": mutable, "scripts": scripts,

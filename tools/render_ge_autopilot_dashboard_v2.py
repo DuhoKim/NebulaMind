@@ -300,7 +300,9 @@ def build_septet_matrix() -> Dict[str, Any]:
         verdicts = r.get("verdicts") or []
         newest = verdicts[0] if verdicts else None
         waiting, who = "", ""
-        if r["state"].startswith("BLOCKED"):
+        if r["state"] == "HELD":
+            waiting, who = "on hold by Duho — not asking for anything", "—"
+        elif r["state"].startswith("BLOCKED"):
             waiting, who = f"edits owed — {newest[0]}: {newest[1]}" if newest else "edits owed", "crew"
         elif r["state"] == "RUNNING":
             waiting, who = "gate running", "—"
