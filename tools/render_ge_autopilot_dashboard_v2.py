@@ -2220,7 +2220,11 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         # The status snapshot can sleep for days while the events feed stays
         # live (coordinators append constantly). Judge health by the freshest
         # signal instead of declaring the whole system stale on the stalest.
-        if events_age is not None and events_age < 900:
+        # 15 minutes was wrong: coordinators append at GATE BOUNDARIES, not on a
+        # clock, so no realistic cadence could ever satisfy it and the board read
+        # STALE 33 minutes after a burst of real events (2026-08-21). Three hours
+        # matches how the feed is actually written; beyond that it is genuinely quiet.
+        if events_age is not None and events_age < 3 * 3600:
             if health == "healthy":
                 health = "watching"
                 health_text = f"LIVE VIA EVENTS · status snapshot {age_label(age)} old"
