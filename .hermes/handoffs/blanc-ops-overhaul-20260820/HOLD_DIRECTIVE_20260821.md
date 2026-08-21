@@ -17,9 +17,9 @@ Two lanes, because both are BHU cosmology — one is the theory, the other is it
    The campaign keeps running: 3 machines unattended, 38,456 galaxies measured,
    transfer at ~12.4k of 60,308 bricks.
 
-**If that second reading is wrong — if Duho meant the DESI campaign to stop too —
-say so and I will halt it.** I chose the reading that does not kill a running
-campaign, and I am flagging it rather than burying it.
+**CONFIRMED by Duho, 2026-08-21, verbatim: "yes, DESI spin-parity is BHU cosmology,
+keep it running."** This is no longer an inference — the DESI acquisition is in
+scope as BHU cosmology and continues under the hold.
 
 ## What is held
 
