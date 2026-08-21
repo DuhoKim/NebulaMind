@@ -1,0 +1,45 @@
+You are gating an AMENDMENT to a previously-gated artifact. Review adversarially. An amendment to a
+gated document is a high-risk object: it can quietly weaken a verdict, or launder a new claim in
+under cover of a correction. Assume that until you have checked.
+
+Working directory: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/bhu-mass-adjudication-20260817
+
+Read: C08_MASS_ADJUDICATION_20260817.md (the ORIGINAL gated text plus the 2026-08-21 amendment at
+the end), C08_MASS_ADJUDICATION_20260817.md.pre-amendment (the text as gated), KUN_C08_GATE_20260817.md
+(the gate that passed the original), and C08_CRITERION_PREREG_20260817.md (the criterion, sealed
+before the evidence harvest).
+Supporting evidence lives one directory over in ../bhu-theory-phase3-cns-20260821/ :
+SOURCE_PIN_20260821.md, TRACK_B_INTERIM_FINDING.md, receipts/r2_four_percent.py,
+receipts/r3_channel_settled.py, receipts/r4_accreted_mass.py, and sources/.
+
+Write EXACTLY ONE file: GATE_C08AMEND_VERDICT.md, first line PASS_C08_AMENDMENT or
+HOLD_C08_AMENDMENT_<token>. Sign it and name your engine. Edit nothing else. No network.
+
+Checks:
+
+1. DOES THE AMENDMENT CHANGE THE VERDICT? It claims not to — "the verdict is unchanged, only the
+   confidence figure moves". Diff the amended file against .pre-amendment and verify that. If any
+   verdict, per-link ruling, or the sealed criterion was altered, that is a HOLD.
+
+2. IS 6.7 SIGMA RIGHT? Rerun r2/r3/r4 with python3. The amendment gives four readings
+   (22.8 / 21.6 / 7.1 / 6.7) and picks 6.7 as operative: published masses (Ferdman 2020, Nature 583,
+   211) against a ceiling of 4% plus the Tauris et al. 2017 accretion budget. Check the arithmetic
+   AND the choice — is 6.7 the honest operative figure, or is a different row the defensible one?
+
+3. THE SOURCE-CLASS CLAIM. The amendment says the tighter masses (arXiv:2606.19276) are a PREPRINT,
+   not the "accepted A&A" paper the original called them. Verify from the pinned file and its
+   metadata. If that is wrong, the whole amendment collapses.
+
+4. IS ANYTHING LAUNDERED IN? The amendment is the place a new claim could enter disguised as a
+   correction. List every factual assertion it adds that was not in the gated original, and say for
+   each whether it is supported by the receipts or is new and unsupported.
+
+5. THE ORIGINAL'S HONESTY. The amendment states the original disclosed the He-giant caveat unprompted
+   rather than hiding it. Verify that against .pre-amendment; a self-serving characterisation of the
+   thing being corrected is worth catching.
+
+6. OVERCLAIM SWEEP. "BHU is falsified" would be FALSE and must not appear. Nor may anything imply
+   CNS is vindicated.
+
+Time-box: anything not completable in a few tool calls is UNVERIFIED-AT-GATE with the reason.
+Findings only; fix nothing.

@@ -121,7 +121,7 @@ does not apply.
 
 **Outcome 1 — the mass evidence FALSIFIES the chain as the source states it**, via the
 source's own second falsifier limb: a well-measured double neutron star binary more than 4%
-different in mass exists (PSR J1913+1102, 19.3 ± 0.7%, ≤4% excluded at **6.7σ** on published masses — amended 2026-08-21), formally
+different in mass exists (PSR J1913+1102; 19.3 ± 0.7% asymmetry on the preprint masses, 21.6% on the published ones; ≤4% excluded at **6.7σ** against the published record — amended 2026-08-21), formally
 seconded by the double pulsar. Independently, limb 1 sits at the pre-registered SERIOUS-DOUBT
 tier: three qualifying systems exceed the chain's stated 1.5 M⊙ maximum at ≥ 8σ each and the
 heaviest well-measured star's central value is above 2.00, without clearing 2.00 at 95.4%.
@@ -235,4 +235,4 @@ It disclosed the He-giant caveat unprompted (§4) rather than hiding it, and arg
 was not diligence — the caveat's quantification lives in a companion paper that was not in the lane.
 
 — Tori, 2026-08-21 KST. Amendment only; the 2026-08-17 gate (`PASS_C08_ADJUDICATION`) stands over
-the original text, and this amendment is ungated pending review.
+the original text, and this amendment was gated 2026-08-21 on a third model family — **`PASS_C08_AMENDMENT`**, `GATE_C08AMEND_VERDICT.md`. The gate confirmed no verdict, per-link ruling or sealed criterion moved; recomputed all four sigma rows independently (6.74σ against the stated 6.7σ); verified the Ferdman masses and Tauris per-phase maxima verbatim against the pinned sources; and found nothing laundered in under cover of the correction.
