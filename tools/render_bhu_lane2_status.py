@@ -16,6 +16,104 @@ EXP = os.path.join(W, "bhu-neutron-star-explainer-20260817")
 EXP2 = os.path.join(W, "bhu-explainer-v2-20260818")
 OUT = "/Users/duhokim/HermesOps/cockpit/bhu-lane2-status.html"
 
+BIB = os.path.join(W, "bhu-published-bibliography-20260819",
+                   "BHU_PUBLISHED_BIBLIOGRAPHY.md")
+PH2 = os.path.join(W, "bhu-theory-phase2-20260819")
+
+
+def audited_dois():
+    """DOIs we actually audited, read from the audit files themselves.
+
+    Marking entries by hand would drift the moment another paper is audited.
+    Requiring a real DOI prefix keeps arXiv paths (10.3881/Universe.tex) out.
+    """
+    out = set()
+    for f in glob.glob(os.path.join(PH2, "TRACK_A*_AUDIT.md")):
+        for d in re.findall(r"10\.\d{4,5}/[^\s)`,]+", open(f).read()):
+            d = d.rstrip(".,")
+            if not d.endswith(".tex"):
+                out.add(d.lower())
+    return out
+
+
+def bibliography():
+    """The published BHU literature, parsed from the lane's own bibliography.
+
+    Duho, 2026-08-21: "i want you to add a list of the published papers on
+    somewhere lane 2 html". Derived, not curated: if the bibliography gains an
+    entry this table gains a row, and the audited marks come from the audits.
+    """
+    try:
+        text = open(BIB).read()
+    except OSError:
+        return []
+    done = audited_dois()
+    section, entries, cur = None, [], None
+    for line in text.splitlines():
+        m = re.match(r"^## \d+\. (.+)", line)
+        if m:
+            section = m.group(1).strip()
+            continue
+        if line.startswith("## "):          # "Ranked:" / "Appendix" end the entries
+            section = None
+            continue
+        m = re.match(r"^\*\*(\d+)\. (.+?)\*\*\s*$", line)
+        if m and section:
+            cur = {"n": int(m.group(1)), "cite": m.group(2), "section": section,
+                   "doi": "", "cls": "", "worth": ""}
+            entries.append(cur)
+            continue
+        if cur is None:
+            continue
+        d = re.search(r"\b(10\.\d{4,5}/[^\s)`,]+)", line)
+        if d and not cur["doi"]:
+            cur["doi"] = d.group(1).rstrip(".,")
+        c = re.search(r"Testability: \*\*([A-Z-]+)\*\*", line)
+        if c and not cur["cls"]:
+            cur["cls"] = c.group(1)
+        a = re.search(r"Audit-worthiness: \*\*([a-z-]+)\*\*", line)
+        if a and not cur["worth"]:
+            cur["worth"] = a.group(1)
+    if not entries:
+        return []
+
+    tally = {}
+    for e in entries:
+        tally[e["cls"] or "unclassified"] = tally.get(e["cls"] or "unclassified", 0) + 1
+    n_aud = sum(1 for e in entries if e["doi"].lower() in done)
+
+    out = ["<h2>The published literature</h2>",
+           f'<p class=note>{len(entries)} verified-published papers across '
+           f'{len({e["section"] for e in entries})} branches. <b>{n_aud}</b> have been audited '
+           'equation-by-equation — the Popławski torsion-bounce chain, the only published '
+           'multi-paper BHU mechanism with explicit field equations. The rest are unaudited.</p>',
+           '<p class=note>Testability classes: '
+           + " · ".join(f'<b>{tally[k]}</b> {k.lower()}' for k in sorted(tally, key=lambda x: -tally[x]))
+           + '. Most of the field is consistency-only — it shows the idea is not ruled out, '
+             'without predicting anything measurable.</p>',
+           "<table><tr><th>#</th><th>paper</th><th>testability</th><th>audit-worth</th></tr>"]
+    last = None
+    for e in entries:
+        if e["section"] != last:
+            last = e["section"]
+            out.append(f'<tr><td></td><td colspan=3 class=m style="padding-top:.9em">'
+                       f'<b>{html.escape(last)}</b></td></tr>')
+        mark = ' <span class=y>&#10003; audited</span>' if e["doi"].lower() in done else ""
+        cls = e["cls"].lower().replace("-", " ") or "&mdash;"
+        klass = "y" if e["cls"] == "CALIBRATED-FALSIFIER" else (
+                "n" if e["cls"] == "CONSISTENCY-ONLY" else "m")
+        out.append(f'<tr><td class=m>{e["n"]}</td><td>{html.escape(e["cite"])}{mark}</td>'
+                   f'<td class={klass}>{cls}</td><td class=m>{html.escape(e["worth"] or "—")}</td></tr>')
+    out.append("</table>")
+    out.append('<p class=note>Source: <code>bhu-published-bibliography-20260819/'
+               'BHU_PUBLISHED_BIBLIOGRAPHY.md</code>. Audited marks are matched by DOI against '
+               'the Phase 2 audit files, so this table cannot claim an audit that did not happen.</p>')
+    return out
+
+
+BIB_COUNT = 0
+
+
 def sha12(p):
     try: return hashlib.sha256(open(p, "rb").read()).hexdigest()[:12]
     except OSError: return None
@@ -145,9 +243,14 @@ P += ['<div class="big ok"><div class=q>The question that was left open</div>'
       '<div class="big warn"><div class=q>What this does not say</div>'
       '<div class=a>Not "the black-hole-universe idea is falsified"</div>'
       '<p class=note>At least five mutually disagreeing programmes exist. One chain fails as its author '
-      'stated it. Smolin\'s hypothesis is not refuted either — it loses its flagship falsifiable '
-      'prediction and can leave this route, at the price of no longer being tested by this channel. '
-      'And nothing here was measured by us: the numbers are the pulsar community\'s.</p></div>']
+      'stated it. Smolin\'s hypothesis is not refuted either, and — corrected 2026-08-21 — it did '
+      'not lose a prediction of its own. His stated falsifier is a pulsar above <b>2.5 M\u2609</b>; the '
+      'heaviest well-measured star, 2.08 \u00b1 0.07, is <b>6\u03c3 short</b>, and he never proposes the 4% '
+      'binary test at all. What failed is Brown\u2013Bethe\'s 1.5 M\u2609 ceiling, which cosmological natural '
+      'selection used as an instrument for reading the strange-quark mass rather than predicted. '
+      '(Established from an unpublished preprint, so context-grade: the two published Smolin '
+      'sources remain unobtained.) And nothing here was measured by us: the numbers are the '
+      'pulsar community\'s.</p></div>']
 
 P += ["<h2>Gates</h2>", "<table><tr><th>verdict</th><th>report</th></tr>"]
 for name, verdict, _ in g:
@@ -237,12 +340,14 @@ if th:
             P.append(f'<tr><td>{html.escape(label)}</td><td class={cl}>{html.escape(token)}</td></tr>')
     P.append("</table>")
 
+P += bibliography()
+
 P += ["<h2>Status</h2>",
       "<p class=note>This is a <b>note, not a study</b> — the measurements are the pulsar community's, "
       "the threshold is the source's, and the analysis is arithmetic on published posteriors. It belongs "
       "as the closing annex to the BHU line, not grown into a manuscript. Publishing the video is an "
       "unspent decision and would be unlisted-only.</p>",
-      f'<p class=note>Regenerate: <code>python3 mkbhu.py</code>. Derived from disk — a gate that does not '
+      f'<p class=note>Regenerate: <code>python3 tools/render_bhu_lane2_status.py</code>. Derived from disk — a gate that does not '
       'exist cannot appear here, and the video\'s published state is read from its freeze record rather '
       'than remembered.</p>', "</body>"]
 
