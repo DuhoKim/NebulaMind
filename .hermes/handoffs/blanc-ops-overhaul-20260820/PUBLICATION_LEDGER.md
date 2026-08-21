@@ -15,9 +15,19 @@ knew about when she raised it:
    never been published at all.
 2. **A publish path that never enumerated.** `20260820T232407-20260820T230754-tori-report`
    reached the reports directory from a tool that renders audio without
-   publishing (the doubled timestamp in the name is the tell: a report re-voiced
-   from another report's stem). The archive scans files, so it showed up there;
-   the queue never heard about it. Two surfaces, two different truths.
+   publishing (the doubled timestamp in the name is the tell: the file was
+   re-published by passing an existing report's own stem as the slug, so the
+   publisher stamped a second prefix onto a name that already had one). The
+   archive scans files, so it showed up there; the queue never heard about it.
+   Two surfaces, two different truths.
+
+   Checked afterwards, and worth recording precisely: that artifact is
+   **byte-identical** to `20260820T230754-tori-report.mp3` — sha256
+   `27e70b61…46696646d0` for both, transcripts diff clean — and *that* file is
+   enumerated. So the omission is real as to the identity and not as to the
+   content: no unenumerated audio exists, a duplicate filename does. Tori has
+   this, because the weaker version of her finding is the true one and she
+   should not have to take the stronger one on my word.
 3. **`QUEUE_KEEP = 50`.** The queue drops its oldest row on every publish past
    the window. At 37 rows this had not bitten yet. It would have within days,
    silently, and no one would have deleted anything.
