@@ -40,6 +40,19 @@ the append-only ledger (event 45).
 
 ## Method, and the discriminator
 
+> **These counts are products of the unsound method and are superseded.**
+> `GATE_CHI_CUSTODY_EVIDENCE_20260822` Finding 5 is right that this file kept
+> asserting counts in its body while its header said the method was unverified —
+> a document contradicting itself on the same page. Current position, from the
+> audio-based sweep v2 (all numbers, both directions, 219 reports, 0 ASR errors)
+> plus a re-run of the caption audit over 222 transcripts: **1 report discloses
+> real measured values** (unchanged, and the one finding that never depended on
+> the broken method), **17 carry other decimals and are excluded**. Thirteen
+> captions were corrupted and are repaired; see
+> [CAPTION_CORRUPTION_20260821.md](CAPTION_CORRUPTION_20260821.md). The
+> historical text below is retained rather than edited, because the numbers it
+> got wrong are part of what the record has to show.
+
 All **220** transcripts on disk were scanned — live and `_drafts/` — for spoken
 (`"zero point 27"`, `"minus zero point 20"`) and numeric (`0.27`) values.
 **18** carry decimals. Only **1** carries a real measurement.
