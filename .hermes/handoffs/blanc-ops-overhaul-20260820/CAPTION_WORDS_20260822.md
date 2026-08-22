@@ -99,9 +99,35 @@ What it caught that nothing else could:
 - Plus `premordum` → premortem, `shamere` → Shamir, `reprejection` →
   reprojection, `post-hock` → post-hoc, `trace's` → tracer's.
 
-Still unidentified, no guess recorded: `Baidam` (rowcount) and `Knight's
-decider` (overnight-converged) — no source match. Zero suspicious merges from
-the aggressive short patterns (`ue`), verified after applying.
+Zero suspicious merges from the aggressive short patterns (`ue`), verified
+after applying.
+
+## Round five: the last two garbles, three evidence classes
+
+`Baidam` and `Knight's decider` were left unidentified with no guess recorded.
+Within the hour, **Hwao and Tori filed on both independently** — his by speaker
+recollection with exact phonetics, hers by idiom anchors and the split-syllable
+mechanism she had named on `F shorty` — and converged. A third, mechanical
+check settled it: word-timestamp ASR shows the token boundary inside the span
+(`cuts|63.74 for|63.96 baiting|64.28`), and a fresh run heard *"baiting"* where
+the caption run heard *"Baidam"* — the model is unstable on that span, the
+signature of a word it cannot parse.
+
+- `for Baidam` → **verbatim** (split-[vɚ]: "cuts ver-BAY-tim"; "frozen cuts
+  verbatim" is written lane idiom in two documents)
+- `set-in-all` → **sentinel** (the −99 photo-z sentinel,
+  `RECORD_SPIN_PROGRAM_20260812.md`)
+- `Knight's decider` → **night's decider** — applied as **context-strong, not
+  source-anchored**, and the ledger event says so: a homophone that is a real
+  word in both directions, in a 00:41 overnight reading, with no Knight
+  referent anywhere in the tree. Tori's classification: this class falls only
+  to reading the sentence.
+
+Ledger event 70, originals `.pre-round5`. **Zero unidentified garbles now
+remain in the corpus.** The evidence-class discipline is the point: each of the
+five rounds recorded *what kind* of evidence backed each repair — source
+document, idiom anchor, speaker recollection, mechanical ASR, or context — so
+a future auditor can weigh them differently, as they should.
 
 ## Custody
 
