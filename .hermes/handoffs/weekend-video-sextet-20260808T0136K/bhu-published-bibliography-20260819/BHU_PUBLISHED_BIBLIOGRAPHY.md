@@ -16,14 +16,15 @@ evidence itself. Anything that could not be verified published is in Appendix A,
 Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 **QUALITATIVE-DIRECTIONAL** / **CONSISTENCY-ONLY** / **PROSPECT** (points at other instruments).
 
-**Counts: 35 verified-published entries — 29 BHU papers (1–28 plus 31) and 6 support entries
-(29–30, 32–35); 8 appendix items (some grouping several papers). Numbering note: additions
+**Counts: 46 verified-published entries — 40 BHU papers (1–28, 31, 36–46) and 6 support entries
+(29–30, 32–35); 8 appendix items plus 1 pending-verification item. Numbering note: additions
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
-number.**
-Class tally over the 29 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-19 CONSISTENCY-ONLY, 1 UNREAD (entry 31 — paywalled, content unread; class deliberately not
-assigned from citations).
+number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
+Class tally over the 40 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+19 CONSISTENCY-ONLY, 12 UNREAD (entries 31 and 36–46 — texts unexamined here; class deliberately
+not assigned second-hand. The unread fraction is now 30% of the base layer and is the
+bibliography's honest debt: reading them is the outstanding work, not finding more).
 
 ---
 
@@ -69,6 +70,12 @@ matching is not smooth (null shell with surface pressure).
 Testability: **CONSISTENCY-ONLY**. Record: characterized in packet §1.1 (used as the Pathria
 commentary). Audit-worthiness: **medium** — the matching defect it identifies is exactly what a
 strict junction-condition audit would re-derive.
+
+**46. "Quantization of the universe as a black hole." Astrophys. Space Sci. 337, 19–20 (2012).**
+DOI 10.1007/s10509-011-0909-1 — VERIFIED (Crossref: ApSS, v337, p19-20, 2011-11). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #16; direct universe-as-BH claim — the gate notes scientific weight may be low while scope fit is high.
 
 ## 2. Cosmological natural selection — the calibrated falsifier
 
@@ -153,6 +160,24 @@ Claim: continues the torsion-collapse/bounce line (per Kun's abstract check: not
 Testability: **CONSISTENCY-ONLY**. Record: pinned at Kun's Phase 1 gate. Audit-worthiness:
 **medium** — the current state of the mechanism, to be read alongside entries 9–11.
 
+**39. N. J. Popławski (2012). "Big bounce from spin and torsion." Gen. Relativ. Gravit. 44, 1007–1014.**
+DOI 10.1007/s10714-011-1323-2 — VERIFIED (Crossref: GRG, v44, p1007-1014, 2012-01). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: recalled by the gate with its DOI remembered EXACTLY (verified digit-for-digit); fills the hole between the 2010 and 2012 mechanism papers of this branch.
+
+**40. N. Popławski (2021). "Gravitational collapse of a fluid with torsion into a universe in a black hole." J. Exp. Theor. Phys. 132, 374 (Zh. Eksp. Teor. Fiz. 159, 448).**
+DOI 10.31857/S0044451021030068 — VERIFIED (Crossref: ZhETF, v159, p448-456, 2021). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #10; the mechanism's direct collapse continuation, published in JETP.
+
+**41. N. Popławski (2021). "A nonsingular, anisotropic universe in a black hole with torsion and particle production." Gen. Relativ. Gravit. 53, 18.**
+DOI 10.1007/s10714-021-02790-7 — VERIFIED (Crossref: GRG, v53, 2021-02). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #11; parentage construction beyond isotropy.
+
 ## 4. The baby-universe branch
 
 **13. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1989). "Through a black hole into a new universe?" Phys. Lett. B 216, 272–276.**
@@ -184,6 +209,18 @@ DOI 10.1140/epjc/s10052-020-7964-0 — VERIFIED (Crossref: EPJC, v80, 2020-05).
 Claim: explicit toy interior in which a baby universe replaces the singularity.
 Testability: **CONSISTENCY-ONLY**. Record: baseline corpus entry, publication newly verified here.
 Audit-worthiness: **low-medium**.
+
+**42. "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362 (1991).**
+DOI 10.1016/0370-2693(91)90440-2 — VERIFIED (Crossref: PLB, v261, p357-362, 1991-06). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #31; early interior-equivalence result. Authors deliberately omitted — the harvest did not return them and Crossref title/venue is what was verified; add the author line only from the record itself.
+
+**43. "Birth of baby universes from gravitational collapse in a modified-gravity scenario." JCAP 06 (2023) 028.**
+DOI 10.1088/1475-7516/2023/06/028 — VERIFIED (Crossref: JCAP, v2023, 028, 2023-06). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #6; direct collapse-to-baby-universe construction in modified gravity.
 
 ## 5. Regular-black-hole interiors (Dymnikova line)
 
@@ -269,6 +306,47 @@ Claim: big-bang/big-crunch cosmologies behind black-hole horizons as entangled s
 CFTs, with dominance conditions in 3D gravity.
 Testability: **CONSISTENCY-ONLY**. Record: baseline corpus entry, newly verified.
 Audit-worthiness: **low-medium** — far from any observable, but the only active holographic line.
+
+## 9. Smoller–Temple shock-wave interior cosmology
+
+Added 2026-08-22: a whole programme the original taxonomy lacked — FRW/TOV shock-matching
+cosmologies constructed inside a black hole, found by the bibliography gate (one harvest hit,
+two training-memory recalls).
+
+**36. J. Smoller & B. Temple (2000). "Cosmology with a shock-wave." Commun. Math. Phys. 210, 275–308.**
+DOI 10.1007/s002200050780 — VERIFIED (Crossref: CMP, v210, p275-308, 2000-03). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: recalled by the gate's training-memory attack, missing from bibliography AND harvest; the programme's founding cosmology paper.
+
+**37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
+DOI 10.1073/pnas.1833875100 — VERIFIED (Crossref: PNAS, v100, p11216-11218, 2003-09). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Crossref says 2003 — the verified year is used.)
+
+**38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
+DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
+
+## 10. White-hole / holographic-origin big bang
+
+Added 2026-08-22: distinct from branch 7's entangled-CFT interiors per the gate's branch-gap
+finding; the big bang as the interior/exterior of a white-hole or 5D collapse.
+
+**44. R. Pourhasan, N. Afshordi & R. B. Mann (2014). "Out of the white hole: a holographic origin for the Big Bang." JCAP 04 (2014) 005.**
+DOI 10.1088/1475-7516/2014/04/005 — VERIFIED (Crossref: JCAP, v2014, 005, 2014-04). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #24; the 5D holographic/white-hole origin — the line the caption-era Afshordi identification traced back to.
+
+**45. "White hole cosmology and Hawking radiation from quantum cosmological perturbations." Phys. Rev. D 106, 123505 (2022).**
+DOI 10.1103/PhysRevD.106.123505 — VERIFIED (Crossref: PRD, v106, 2022-12). Added 2026-08-22 from the bibliography gate
+(`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
+Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Record: harvest #7; a second published white-hole cosmology route.
 
 ## 8. Measurement papers ridden by the family (verified, support-role only)
 
@@ -363,6 +441,12 @@ spot-check.
 ---
 
 ## Appendix A — context, not base (excluded from the base layer, with reasons)
+
+**A0 (pending verification, 2026-08-22).** T. Rothman & G.F.R. Ellis, "Smolin's natural selection
+hypothesis" — recalled by the bibliography gate as the published critique of CNS (QJRAS ~34, 1993).
+NOT verifiable via Crossref (QJRAS predates DOI coverage) or INSPIRE (no record); enters nowhere
+until a publication record is confirmed. The gate's recall of other identities in the same pass was
+verified digit-exact, so this is likely real — likely is not the bar.
 
 **A1. arXiv:1910.10819 — N. Popławski, "Universe in a rotating black hole and preferred axis."**
 **Preprint-only; quarantined per the standing published-papers-only rule.** Primary category
