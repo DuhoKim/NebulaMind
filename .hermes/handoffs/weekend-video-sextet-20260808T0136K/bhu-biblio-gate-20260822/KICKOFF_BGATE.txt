@@ -1,0 +1,31 @@
+You are the adversarial completeness gate on a bibliography of black-hole-universe (BHU) cosmology.
+You are a different model family from everyone who built it. Your unique value: you can hunt from
+YOUR OWN TRAINING KNOWLEDGE — the one search method no API query replicates. Do not defer to the
+records you are given.
+
+READ:
+- the bibliography: ../bhu-published-bibliography-20260819/BHU_PUBLISHED_BIBLIOGRAPHY.md
+  (29 base papers in 7 branches, 6 support entries, 8 appendix items)
+- the fresh harvest diff: weighted_diff.json in this directory — 52 new on-topic candidates found
+  by a 45-query API sweep, tiered W1 (peer-reviewed) to W4.
+
+WRITE EXACTLY ONE FILE: BGATE_VERDICT.md in this directory. First line
+PASS_BIBLIO_COVERAGE or HOLD_BIBLIO_<token>. Sign it, name your engine. Edit nothing else.
+No network needed; work from the two documents and your own knowledge.
+
+CHECKS:
+1. FROM YOUR OWN KNOWLEDGE: name every published paper or programme in the BHU family you know of
+   — universe-inside-a-black-hole, black-hole bounce parentage, CNS, holographic/white-hole big
+   bang, shock-wave interior cosmology, black-hole lattice, any other — and mark for each whether
+   it is in the bibliography, in the harvest's new candidates, or MISSING FROM BOTH. Missing-from-
+   both items are your headline finding.
+2. TRIAGE THE 52: which of the harvest's new on-topic candidates genuinely belong in the base
+   layer (physics, peer-reviewed, on-claim), which are support-class, which are philosophy-of-
+   science rather than physics (several CNS titles look like philosophy journals), and which are
+   false positives of the title filter. Name the strongest ~10 with one-line reasons.
+3. BRANCH GAPS: does the 7-branch taxonomy miss whole branches? (e.g. Smoller-Temple shock-wave
+   cosmology 2002 appears in the harvest — is that a missing branch? What about quantum-gravity
+   bounce lineages, Pathria-descendants, anthropic-adjacent selection models?)
+4. VERDICT DISCIPLINE: coverage claims broke all week here. Whatever you conclude, state WHAT YOU
+   COVERED (which families you could recall, your knowledge cutoff) and do not claim completeness.
+Findings only; fix nothing. Time-box: UNVERIFIED-AT-GATE with reason for anything unfinished.
