@@ -200,6 +200,97 @@ def build_operator_answers(source: Dict[str, Any], septet: Dict[str, Any],
                      "blockers, safe autoprompts, septet lane state and next_action")}
 
 
+
+def build_active_campaigns() -> List[Dict[str, Any]]:
+    """The lanes that are actually RUNNING, which the paper matrix cannot show.
+
+    Under Duho's BHU-cosmology hold (2026-08-21) the only work continuing is two
+    campaigns — DESI spin-parity and the BHU theory audit — and neither is a
+    paper lane, so `collect()` never sees them. The cockpit was rendering two
+    HELD rows and nothing else while Hwao ran eight gates in a day and Tori
+    closed Phase 3: 100% of the page describing 0% of the work.
+
+    Shoehorning them into the papers matrix would break what that table means,
+    so they get their own strip. Every field is derived from files at render
+    time — a hand-written status line would be stale by morning.
+    """
+    out: List[Dict[str, Any]] = []
+    pre = REPO / ".hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg"
+    if pre.is_dir():
+        def _newest(pat):
+            c = sorted(pre.glob(pat), key=lambda f: f.stat().st_mtime, reverse=True)
+            return c[0] if c else None
+
+        def _rev(f):
+            if not f:
+                return None
+            m = re.search(r"Revision (\d+)", f.read_text(errors="ignore")[:4000])
+            return int(m.group(1)) if m else None
+
+        gate = _newest("GATE_*.md")
+        verdict = age_h = None
+        if gate:
+            first = next((l.strip() for l in gate.read_text(errors="ignore").splitlines()
+                          if l.strip()), "")
+            verdict = first[:64]
+            age_h = round((time.time() - gate.stat().st_mtime) / 3600.0, 1)
+        receipt = pre / "CHI_CUSTODY_RECEIPT_20260821.md"
+        memo = pre / "DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md"
+        # A PARKED marker outranks the latest gate verdict. Without this the strip
+        # kept presenting REFUTED_CHI_CUSTODY_EVIDENCE_V2 as the current state of a
+        # lane Duho had already parked — showing a live-looking refusal for work
+        # that has deliberately stopped, which is the same staleness this strip
+        # exists to prevent.
+        parked = sorted(pre.glob("CUSTODY_RECORD_PARKED_*.md"),
+                        key=lambda f: f.stat().st_mtime, reverse=True)
+        parked = parked[0] if parked else None
+        out.append({
+            "lane": "DESI spin-parity (prereg)", "who": "Hwao",
+            "detail": ("custody write-up PARKED by Duho — acquisition continues"
+                       if parked else
+                       f"custody receipt Rev {_rev(receipt) or '?'} · decision memo Rev {_rev(memo) or '?'}"),
+            "latest_gate": gate.name if gate else None,
+            "verdict": "PARKED" if parked else verdict,
+            "gate_age_h": (round((time.time() - parked.stat().st_mtime) / 3600.0, 1)
+                           if parked else age_h),
+            # The memo is a DRAFT that says so; the cockpit must not imply it is in
+            # force. Parking the write-up does NOT decline the study.
+            "note": ("write-up parked, not abandoned; the decision memo is still an "
+                     "unsigned DRAFT — the study has not been declined"
+                     if parked else
+                     "decision memo is a DRAFT — not effective without a gate AND Duho's signature"),
+        })
+    # Tori's phase work lives in bhu-theory-phase* under the sextet handoff dir,
+    # NOT in bhu-track — pointing at the wrong directory rendered "no artifact
+    # seen" for a lane that had just closed Phase 3, which is worse than no row.
+    sextet = REPO / ".hermes/handoffs/weekend-video-sextet-20260808T0136K"
+    phases = sorted((d for d in sextet.glob("bhu-theory-phase*") if d.is_dir()),
+                    key=lambda d: d.name)
+    if phases:
+        cur = phases[-1]
+        files = sorted((f for f in cur.rglob("*.md") if f.is_file()),
+                       key=lambda f: f.stat().st_mtime, reverse=True)
+        newest = files[0] if files else None
+        verdict = None
+        if newest:
+            first = next((l.strip() for l in newest.read_text(errors="ignore").splitlines()
+                          if l.strip()), "")
+            # only surface a first line that IS a verdict token, never prose
+            if re.match(r"^[A-Z][A-Z0-9_]{6,}$", first):
+                verdict = first[:64]
+        out.append({
+            "lane": f"BHU theory / audit ({cur.name.replace('bhu-theory-', '')})",
+            "who": "Tori",
+            "detail": (newest.name[:52] if newest else "no artifact seen"),
+            "latest_gate": newest.name if newest else None,
+            "verdict": verdict,
+            "gate_age_h": (round((time.time() - newest.stat().st_mtime) / 3600.0, 1)
+                           if newest else None),
+            "note": None,
+        })
+    return out
+
+
 def build_septet_matrix() -> Dict[str, Any]:
     """Seats PER PAPER, not one global row.
 
@@ -2279,6 +2370,7 @@ def compact_status(source: Dict[str, Any]) -> Dict[str, Any]:
         "lane_summaries": lane_summaries,
         "septet": build_septet(),
         "septet_matrix": build_septet_matrix(),
+        "active_campaigns": build_active_campaigns(),
         "writer_identity": {
             # [step 3] Kun: "add writer identity so the page can rat out a stale watcher."
             # Three correct renders were silently overwritten today by a watcher holding old code.
@@ -2446,6 +2538,13 @@ def render_html() -> str:
       <h2>Hard gates closed</h2>
       <p>Hard gates closed — no product DB/API/page writes · no live wiki/publish · no deploy · no git · no public cockpit/global · no cloud/billing/OAuth · no browser · no cron. The only DB-like write is the local append-only outcome ledger under .hermes.</p>
       <div id="gates-top" class="gate-list"></div>
+    </section>
+
+    <section class="panel" id="live-now">
+      <h2>Running right now</h2>
+      <p class="micro">The two lanes continuing under the BHU-cosmology hold. Neither is a paper
+      lane, so neither appears in the matrix below — the matrix showed only held work.</p>
+      <div id="campaigns"></div>
     </section>
 
     <section class="grid hero">
@@ -2761,6 +2860,16 @@ async function load() {
       // legend, and the row that mattered (a paper waiting on Duho) looked like every other row.
       // One readable block per paper instead: seats named, the ask stated in words, and the
       // papers that need a human decision sorted to the top.
+      const camps = (d && d.active_campaigns) || [];
+      const cEl = document.getElementById('campaigns');
+      if (cEl) cEl.innerHTML = camps.length ? camps.map(c => {
+        const stale = (c.gate_age_h != null && c.gate_age_h > 12);
+        const v = c.verdict ? `<span class="chip ${/REFUT|FAIL|VOID/.test(c.verdict) ? 'bad' : 'ok'}">${esc(c.verdict)}</span>` : '';
+        const age = c.gate_age_h != null ? `<span class="micro${stale ? ' warn' : ''}">${c.gate_age_h}h ago</span>` : '';
+        return `<div class="row"><b>${esc(c.lane)}</b> <span class="micro">${esc(c.who)}</span>
+          <span>${esc(c.detail || '')}</span> ${v} ${age}
+          ${c.note ? `<div class="micro warn">${esc(c.note)}</div>` : ''}</div>`;
+      }).join('') : '<div class="empty">No active campaign detected — if work is running, this is a blind spot, not silence.</div>';
       const mx = (d && d.septet_matrix) || {};
       const papers = mx.papers || [];
       if (!papers.length) {
