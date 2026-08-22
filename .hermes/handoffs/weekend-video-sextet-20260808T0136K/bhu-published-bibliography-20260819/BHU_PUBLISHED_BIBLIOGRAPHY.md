@@ -16,15 +16,15 @@ evidence itself. Anything that could not be verified published is in Appendix A,
 Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 **QUALITATIVE-DIRECTIONAL** / **CONSISTENCY-ONLY** / **PROSPECT** (points at other instruments).
 
-**Counts: 46 verified-published entries — 40 BHU papers (1–28, 31, 36–46) and 6 support entries
-(29–30, 32–35); 8 appendix items plus 1 pending-verification item. Numbering note: additions
+**Counts: 58 verified-published entries — 51 BHU papers (1–28, 31, 36–57) and 7 support entries
+(29–30, 32–35, 58); 8 appendix items plus 5 pending-verification / ruled-context items. Numbering note: additions
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 40 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-19 CONSISTENCY-ONLY, 12 UNREAD (entries 31 and 36–46 — texts unexamined here; class deliberately
-not assigned second-hand. The unread fraction is now 30% of the base layer and is the
-bibliography's honest debt: reading them is the outstanding work, not finding more).
+Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+19 CONSISTENCY-ONLY, 23 UNREAD (entries 31 and 36–57 — texts unexamined here; class deliberately
+not assigned second-hand. The unread fraction is now 45% of the base layer: the hunt has decisively
+outrun the reading, and reading is the outstanding BHU work).
 
 ---
 
@@ -178,6 +178,30 @@ DOI 10.1007/s10714-021-02790-7 — VERIFIED (Crossref: GRG, v53, 2021-02). Added
 Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
 Record: harvest #11; parentage construction beyond isotropy.
 
+**51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
+DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R6; the singularity-avoidance mechanism paper under the torsion-bounce line.
+
+**52. "Big Bounce and Closed Universe from Spin and Torsion." ApJ 870, 78 (2019).**
+DOI 10.3847/1538-4357/aaf169 — VERIFIED (Crossref: ApJ, v870, 78, 2019). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: harvest+triage pick #2; authors omitted pending the record itself (entry-42 precedent).
+
+**53. "Analysis of big bounce in Einstein–Cartan cosmology." Class. Quantum Grav. 37, 025011 (2019).**
+DOI 10.1088/1361-6382/ab5cb9 — VERIFIED (Crossref: CQG, v37, 025011, 2019). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: triage pick #7; an independent EC bounce analysis outside the Popławski authorship line.
+
+**54. "Gravitational bounce from the quantum exclusion principle." Phys. Rev. D 111, 103537 (2025).**
+DOI 10.1103/physrevd.111.103537 — VERIFIED (Crossref: PRD, v111, 103537, 2025). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: triage pick #27; the newest published bounce mechanism in the family.
+
 ## 4. The baby-universe branch
 
 **13. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1989). "Through a black hole into a new universe?" Phys. Lett. B 216, 272–276.**
@@ -259,6 +283,12 @@ Claim: no-go obstructions for minimal regular-black-hole cosmologies.
 Testability: **CONSISTENCY-ONLY** (a constraint result). Record: baseline corpus entry (preprint),
 journal status newly established here. Audit-worthiness: **high** — see ranked target 5.
 
+**55. "Asymptotically de Sitter universe inside a Schwarzschild black hole." Phys. Rev. D 102, 066010 (2020).**
+DOI 10.1103/physrevd.102.066010 — VERIFIED (Crossref: PRD, v102, 066010, 2020). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: triage pick #41 — kimi's #1 base candidate; the most direct recent interior-universe construction.
+
 ## 6. Gaztañaga interior-matching series
 
 **23. E. Gaztañaga (2020). "The size of our causal Universe." MNRAS 494, 2766–2772.**
@@ -296,6 +326,12 @@ DOI 10.3390/universe8050257 — VERIFIED (Crossref: Universe, v8, 257, 2022-04-2
 Claim: the collapse-to-bounce route into the BHU picture. Testability: **CONSISTENCY-ONLY**.
 Record: new to us. Audit-worthiness: **medium**.
 
+**56. "The mass of our observable Universe." MNRAS Lett. 521, L59–L63 (2023).**
+DOI 10.1093/mnrasl/slad015 — VERIFIED (Crossref: MNRAS Lett, v521, pL59-L63, 2023). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: triage pick #1; completes the published Gaztañaga series in this branch.
+
 ## 7. Holographic interior cosmology
 
 **28. A. Sahu et al. (2025). "Holographic black hole cosmologies." JHEP 05 (2025) 233.**
@@ -331,6 +367,12 @@ DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004).
 Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
 
+**57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**
+DOI 10.1007/s002050050041 — VERIFIED (Crossref: ARMA, v138, p239-277, 1997). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R5; the programme's method precursor, predating entry 36.
+
 ## 10. White-hole / holographic-origin big bang
 
 Added 2026-08-22: distinct from branch 7's entangled-CFT interiors per the gate's branch-gap
@@ -347,6 +389,35 @@ DOI 10.1103/PhysRevD.106.123505 — VERIFIED (Crossref: PRD, v106, 2022-12). Add
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
 Record: harvest #7; a second published white-hole cosmology route.
+
+## 11. False-vacuum / laboratory child universes
+
+Added 2026-08-23: the "can a universe be MADE inside a collapse" programme — sibling to branch 4,
+recalled by the second-family gate and in neither the bibliography nor any harvest until tonight.
+
+**47. K. Sato, H. Kodama, M. Sasaki & K. Maeda (1982). "Multi-production of universes by first-order phase transition of a vacuum." Phys. Lett. B 108, 103–107.**
+DOI 10.1016/0370-2693(82)91152-2 — VERIFIED (Crossref: PLB, v108, p103-107, 1982). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R4; the earliest multi-universe-production construction.
+
+**48. E. Farhi & A. H. Guth (1987). "An obstacle to creating a universe in the laboratory." Phys. Lett. B 183, 149–155.**
+DOI 10.1016/0370-2693(87)90429-1 — VERIFIED (Crossref: PLB, v183, p149-155, 1987). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (Kimi remembered p149-153; Crossref says 149-155 — verified pages used.)
+
+**49. S. K. Blau, E. I. Guendelman & A. H. Guth (1987). "Dynamics of false-vacuum bubbles." Phys. Rev. D 35, 1747–1766.**
+DOI 10.1103/physrevd.35.1747 — VERIFIED (Crossref: PRD, v35, p1747-1766, 1987). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R3; the junction-condition machinery child-universe constructions stand on.
+
+**50. E. Farhi, A. H. Guth & J. Guven (1990). "Is it possible to create a universe in the laboratory by quantum tunneling?" Nucl. Phys. B 339, 417–490.**
+DOI 10.1016/0550-3213(90)90357-j — VERIFIED (Crossref: NPB, v339, p417-490, 1990). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **UNREAD** — text unexamined here.
+Record: kimi recall R2 — remembered under the wrong title ("An obstacle to building…"); venue, volume and pages were exact, and the VERIFIED title is used here.
 
 ## 8. Measurement papers ridden by the family (verified, support-role only)
 
@@ -394,6 +465,13 @@ star systems," ApJ **846**, 170 (2017), DOI 10.3847/1538-4357/aa7e89 — VERIFIE
 authority whose per-phase budget (ΔM_NS ≈ 0.0134 M⊙ total) supersedes the He-giant proviso by 7–15×
 and restores the ~21σ margin (Track B). Pinned:
 `../bhu-theory-phase3-cns-20260821/sources/ar5iv_1706.09438.html` (sha256 `09c86153…`).
+
+**58. The axis-prediction measurement** (added 2026-08-23): M. J. Longo, "Detection of a dipole in
+the handedness of spiral galaxies with redshifts z ~ 0.04," Phys. Lett. B **699**, 224–229 (2011),
+DOI 10.1016/j.physletb.2011.04.008 — VERIFIED (Crossref: PLB, v699, p224-229, 2011). kimi recall
+R10. The original published spin-handedness dipole claim — the adjudication instrument for the
+family's preferred-axis prediction, and the amplitude the DESI spin-parity campaign tests. Entry
+29's role, for the axis observable. Not a BHU paper; support tier by the same rule.
 
 ---
 
@@ -447,6 +525,16 @@ hypothesis" — recalled by the bibliography gate as the published critique of C
 NOT verifiable via Crossref (QJRAS predates DOI coverage) or INSPIRE (no record); enters nowhere
 until a publication record is confirmed. The gate's recall of other identities in the same pass was
 verified digit-exact, so this is likely real — likely is not the bar.
+
+**A0b (pending verification / ruled context, 2026-08-23, hunt round 2).** Kimi recalls not seated:
+J. Silk, "Holistic cosmology" (Science 277, 1997) — published CNS critique, verify before seating
+beside A0; L. Smolin, "The status of cosmological natural selection" (book chapter, Carr ed. 2007;
+= hep-th/0612185) — book, context by standing rule; T. X. Zhang black-hole-universe series —
+memory-uncertain, recalled venue is fringe (*Progress in Physics*); H. Culetu comment line —
+memory-uncertain, no fixable venue. Also deliberately NOT seated from kimi's top-10: the EC
+wormhole/inflaton/S-brane/MPLA rows (#22, #43, #44, #40, #21) — mechanism-family, not on-claim;
+recorded here so their exclusion is a decision, not an oversight.
+
 
 **A1. arXiv:1910.10819 — N. Popławski, "Universe in a rotating black hole and preferred axis."**
 **Preprint-only; quarantined per the standing published-papers-only rule.** Primary category
