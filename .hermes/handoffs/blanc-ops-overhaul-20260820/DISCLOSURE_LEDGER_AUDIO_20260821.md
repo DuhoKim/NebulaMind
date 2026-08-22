@@ -68,7 +68,11 @@ is checkable without taking my word for it.
 **`20260820T231235-hwao-report`** — published seq 20, recorded 23:12:35 KST,
 published 23:12:51 KST, 16 seconds later. Never republished, never withdrawn.
 
-> "The first 3 real values: zero point 27, zero point 20, and minus zero point 20."
+> "The first 3 real values: 0.834336, 0.384410, and -0.640352."
+
+The caption now says what the audio always said. The line this file originally
+quoted — *"zero point 27, zero point 20, and minus zero point 20"* — was the
+corrupted caption, and those three numbers were never measured.
 
 Eleven sentences later the same report says *"nobody is allowed to look yet. No
 tertile, no average, no summary of chi until the last galaxy is cut."* Both
@@ -79,11 +83,18 @@ sentences are in the same 182-word caption.
 | surface | path | sha256 (16) |
 |---|---|---|
 | audio | `20260820T231235-hwao-report.mp3` | `2a38a887bd897147` |
-| caption | `20260820T231235-hwao-report.txt` | `7c8a8668a00cd9b8` |
+| caption | `20260820T231235-hwao-report.txt` | `2c85b2028209273a` (was `7c8a8668a00cd9b8`) |
 | slides | `20260820T231235-hwao-report.deck.json` | `1da50dc6878db905` |
 | alignment | `20260820T231235-hwao-report.times.json` | `a9cfedc4ab127794` |
-| served page | `report-20260820T231235-hwao-report.html` | `c5d5d5b81f5ae997` |
-| served page | `archive.html` | `36a0499615eb74ca` |
+| served page | `report-20260820T231235-hwao-report.html` | `050a3f6245fc74f1` (was `c5d5d5b81f5ae997`) |
+| served page | `archive.html` | `c104ea59992472cc` (was `36a0499615eb74ca`) |
+
+Three digests moved when the corrupted caption was repaired; the old values are
+kept beside the new so a receipt pinning either can tell which it holds. The
+**audio digest never moved** — the mp3 was not touched at any point, which is
+what makes it the authority the text surfaces are checked against. `archive.html`
+changes on every index rebuild, so it is the weakest pin here and should not be
+cited as evidence of anything but the page's current state.
 
 The alignment file matters and is easy to overlook: it carries per-sentence
 timings, so it locates the values in the audio to the second.
