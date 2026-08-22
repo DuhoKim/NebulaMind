@@ -16,11 +16,14 @@ evidence itself. Anything that could not be verified published is in Appendix A,
 Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 **QUALITATIVE-DIRECTIONAL** / **CONSISTENCY-ONLY** / **PROSPECT** (points at other instruments).
 
-**Counts: 30 verified-published entries — 28 BHU papers plus 2 support entries (the CNS
-measurement pair, entry 29; the kaon-condensation mechanism review, entry 30); 8 appendix
-items (some grouping several papers).**
-Class tally over the 28 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-19 CONSISTENCY-ONLY.
+**Counts: 35 verified-published entries — 29 BHU papers (1–28 plus 31) and 6 support entries
+(29–30, 32–35); 8 appendix items (some grouping several papers). Numbering note: additions
+after 2026-08-22 take the next free number rather than renumbering, so cross-references to
+entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
+number.**
+Class tally over the 29 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+19 CONSISTENCY-ONLY, 1 UNREAD (entry 31 — paywalled, content unread; class deliberately not
+assigned from citations).
 
 ---
 
@@ -93,6 +96,18 @@ DOI 10.1038/nature09466 — VERIFIED) and PSR J0740+6620 at 2.08 ± 0.07 M☉ (F
 ApJL 915, L12, DOI 10.3847/2041-8213/ac03b8 — VERIFIED); PSR J0952−0607 (~2.35 M☉) remains
 [VERIFY]. Audit-worthiness: **high** — a strict night can recompute the EoS chain and put the
 adjudication on a quantitative credibility footing rather than a disjunction reading.
+
+**31. L. Smolin (2004). "Cosmological natural selection as the explanation for the complexity of the universe." Physica A 340, 705–713.**
+DOI 10.1016/j.physa.2004.05.021 — VERIFIED (Crossref: Physica A, v340, p705-713, 2004-09). Added
+2026-08-22 (Duho's instruction) after the Phase 3 audits found the falsifying paper's CNS
+*requirement* (B-17, "the upper mass limit of neutron stars be as low as possible") cites this and
+only this — the peer-reviewed half of link (4). No arXiv eprint; Elsevier paywalled; INSPIRE holds
+no document (both checked 2026-08-21) — **full text unobtained, content unread**.
+Testability: **UNREAD** — deliberately unclassified rather than classed from second-hand citations.
+Record: the missing base entry the CNS audit chain leaned on throughout; obtaining it is the same
+outstanding institutional-access acquisition as entry 6's full text.
+Audit-worthiness: **high** — it is the published source of the requirement the whole falsifier
+tests, and Track C stays context-grade until it or entry 6 is read.
 
 ## 3. Popławski torsion-bounce parentage — the published mechanism chain
 
@@ -275,6 +290,32 @@ Tauris et al. 2017 later supersede at 0.0134 M⊙ (Phase 3 Track B, gated `PASS_
 BHU paper: it contains no universe-in-a-black-hole claim itself. Listed because the chain's
 quantitative core lives here rather than in the papers that cite it, so the base layer names the
 document its own audits actually re-derive from.
+
+**32. The Brown–Bethe maximum-mass paper** (added 2026-08-22): G.E. Brown & H.A. Bethe, "A scenario
+for a large number of low-mass black holes in the galaxy," ApJ **423**, 659 (1994), DOI
+10.1086/173844 — VERIFIED (Crossref: ApJ, v423, p659, 1994-03). The actual home of M_max ≈ 1.5 M⊙ —
+the number every limb-1 test is aimed at; the Phase 3 Track A audit found the falsifier paper
+imports it from here without derivation (B-5, NOT-DERIVED-HERE). **Full text not held** — cited and
+Crossref-verified only.
+
+**33. The vector-manifestation pair** (added 2026-08-22): M. Harada & K. Yamawaki, PRL **86**, 757
+(2001), DOI 10.1103/PhysRevLett.86.757 — VERIFIED; and Phys. Rept. **381**, 1–233 (2003), DOI
+10.1016/S0370-1573(03)00139-X — VERIFIED. Link (1) of the falsifier chain (B-2,
+ASSUMED-FROM-CITATION) lives here: the hidden-local-symmetry prediction that the gauge coupling
+vanishes near chiral restoration. **Full text not held** — cited and Crossref-verified only.
+
+**34. The limb-2 measurement** (added 2026-08-22): R.D. Ferdman et al., "Asymmetric mass ratios for
+bright double neutron-star mergers," Nature **583**, 211–214 (2020), DOI 10.1038/s41586-020-2439-x —
+VERIFIED. The published masses (1.62/1.27 ± 0.03) behind the deciding-limb margin of 6.7σ, and the
+paper establishing PSR J1913+1102's He-star formation channel (Track B, `PASS_P3B_TRACKB`). Pinned:
+`../bhu-theory-phase3-cns-20260821/sources/ar5iv_2007.04175.html` (sha256 `20278257…`). Entry 29's
+role, for the other limb.
+
+**35. The accretion budget** (added 2026-08-22): T.M. Tauris et al., "Formation of double neutron
+star systems," ApJ **846**, 170 (2017), DOI 10.3847/1538-4357/aa7e89 — VERIFIED. The DNS-formation
+authority whose per-phase budget (ΔM_NS ≈ 0.0134 M⊙ total) supersedes the He-giant proviso by 7–15×
+and restores the ~21σ margin (Track B). Pinned:
+`../bhu-theory-phase3-cns-20260821/sources/ar5iv_1706.09438.html` (sha256 `09c86153…`).
 
 ---
 
