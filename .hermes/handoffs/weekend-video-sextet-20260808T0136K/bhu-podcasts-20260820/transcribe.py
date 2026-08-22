@@ -14,7 +14,11 @@ MODEL = "whisper-1"
 # a 2026-08-22 sweep found 29 captions carrying non-word garbles that no numeric check could see,
 # and swapping base.en for whisper-1 fixed the physics words while leaving the PROPER NOUNS intact
 # — "longdo" for Longo in a caption about his own dipole, "kuhn" for Kun, "goroo"/"guru's" for Goru.
-# A better general model does not know who these people are. This list is the actual lever.
+# MEASURED 2026-08-22: this list is NOT the lever it was written to be. Re-running the two
+# damaged files with it changed nothing (kuhn 3->3, longdo 1->1) — both models agree on the
+# garble because the TTS mispronounced the names at synthesis; the transcript is faithful to
+# wrong audio. The real fix is phonetic spelling in scripts BEFORE synthesis. The list stays
+# because it is harmless and may bias marginal cases, not because it repaired anything.
 NAMES = ("Longo, Kun, Goru, Lana, Miru, Tori, Hwao, Blanc, Yui, Duho, "
          "Poplawski, Smolin, Brown, Rho, Bethe, Ferdman, Tauris, Mittal, Shamir, Kramer, Freire")
 TERMS = ("NebulaMind, spacetime, Einstein-Cartan, torsion, spin fluid, fermion fields, Planck scale, "
