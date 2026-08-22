@@ -15,9 +15,18 @@ def check(name, got, want):
     ok &= good
     print(f"{'PASS' if good else 'FAIL'}  {name}: {got}{'' if good else f'  (wanted {want})'}")
 
-# 1. transfer complete, nothing quarantined
+# 1. transfer complete, nothing quarantined.
+# WORKING_SET is the frozen prereg working set. The heartbeat carries a `total` key today,
+# but a live process's status file is not a schema contract (Blanc, 2026-08-22) — this
+# script depends on nothing the heartbeat is not guaranteed to hold, and any absent key
+# is a clear FAIL, never a traceback.
+WORKING_SET = 60308
 h = json.load(open("/Users/duhokim/NebulaMindData/dr10_south_image_r/heartbeat.json"))
-check("bricks accepted", h["accepted"], h["total"])
+accepted = h.get("accepted")
+check("heartbeat carries `accepted`", accepted is not None, True)
+check("bricks accepted", accepted, WORKING_SET)
+if h.get("total") not in (None, WORKING_SET):
+    check("heartbeat total agrees with frozen working set", h.get("total"), WORKING_SET)
 import os
 q = "/Users/duhokim/NebulaMindData/dr10_south_image_r/quarantine"
 check("quarantine empty", len(os.listdir(q)) if os.path.isdir(q) else 0, 0)
@@ -39,7 +48,10 @@ print(f"       resolved outcome, not a failure; the resolved/tensor split is rep
 t = "/Users/duhokim/NebulaMindData/cutouts_dr10_south/tensors"
 nt = sum(1 for _ in os.scandir(t)) if os.path.isdir(t) else 0
 x = json.load(open("/Users/duhokim/NebulaMindData/chi_dr10_south/chi_heartbeat.json"))
-check("chi measured == tensors", x["measured"], nt)
+check("chi measured == tensors", x.get("measured"), nt)
+if x.get("measured") != nt:
+    print("      (chi trails the cutter by minutes while draining — if the transfer just")
+    print("       finished, rerun this script after the chain drains; a persistent gap is real)")
 
 print()
 print("VERIFIED — acquisition complete and custody clean." if ok else "PROBLEMS — do not proceed.")
