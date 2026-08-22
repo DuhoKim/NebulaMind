@@ -1,0 +1,50 @@
+You are the adversarial gate on a REPAIRED caption corpus. Five rounds of repairs claim: zero
+unidentified garbles remain, every repair is classified by evidence kind, every original retained,
+every change ledgered. Your job is to break those claims. You are a different model family from
+everyone who repaired; do not defer to their records.
+
+READ (absolute paths):
+- corpus: /Users/duhokim/HermesOps/reports/status-audio/*.txt  (223 captions; latest*.txt are pointers)
+- ledger: /Users/duhokim/HermesOps/reports/status-audio/queue_ledger.jsonl  (70 events)
+- backups: /Users/duhokim/HermesOps/reports/status-audio/_caption_backup_20260822/
+- repair records: /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/blanc-ops-overhaul-20260820/
+  (CAPTION_CORRUPTION_20260821.md, CAPTION_WORDS_20260822.md, HWAO_CANDIDATES_ROUND5_20260822.md)
+
+WRITE EXACTLY ONE FILE:
+/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/caption-corpus-gate-20260822/CGATE_VERDICT.md
+First line PASS_CAPTION_CORPUS or HOLD_CAPTION_CORPUS_<token>. Sign it, name your engine. Edit
+NOTHING else — especially no caption, no ledger, no backup. No network.
+
+CHECKS, findings-only, each with evidence:
+
+1. LEDGER-VS-MUTATION COMPLETENESS. Sample >=10 captions that differ from their backup. Each diff
+   must be covered by a ledger event; each caption-repair ledger event must correspond to a real
+   diff. An edit without an event, or an event without an edit, is a HOLD.
+
+2. EVIDENCE-CLASS HONESTY. For >=5 repairs claiming a SOURCE or IDIOM anchor, open the cited
+   document and confirm the claimed text is really there. A repair citing an anchor that does not
+   contain it is a HOLD. Confirm "the night's decider" is recorded as context-strong, NOT
+   source-anchored.
+
+3. MENTION PRESERVATION. 20260822T142239-tori-report.txt QUOTES garbles deliberately (brownly,
+   cayon, rose-owned) to correct them aloud. Corpus-wide substitution rounds must NOT have
+   "repaired" those quoted mentions. If the quotes were edited, that is a HOLD — it would falsify
+   a caption that was correct.
+
+4. THE ZERO CLAIM, ATTACKED WITH A DIFFERENT METHOD. Do not re-run their scans. Hunt residual
+   garbles your own way — for example: tokens absent from an English wordlist AND absent from the
+   name/term glossaries; suspicious capitalised tokens appearing exactly once in the corpus;
+   phonetic near-misses of the known name list. Report every candidate with context. New confirmed
+   non-word garbles refute "zero unidentified"; borderline candidates are findings, not holds,
+   if the record's own floor caveat (real-word substitutions invisible) covers them.
+
+5. REVERSIBILITY. For >=5 repaired captions, confirm the backup exists, differs only where the
+   ledger says, and that no backup was itself overwritten by a later round without a chain.
+
+6. OVERCORRECTION SWEEP. Substitution rounds used aggressive short patterns (ue -> Yui, Coon,
+   Gore, Tory). Search for contexts where the ORIGINAL word was plausibly correct English
+   ("gore", "tory", coincidental "ue") that a blanket substitution would have corrupted. The
+   record claims zero suspicious merges, verified-not-assumed; test that claim.
+
+Time-box: what you cannot finish is UNVERIFIED-AT-GATE with the reason. A sampled check states its
+sample. Findings only; fix nothing.
