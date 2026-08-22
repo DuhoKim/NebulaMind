@@ -35,14 +35,15 @@ def gate_history():
     for p in sorted(glob.glob(f"{PREREG}/HWAO_FOOTPRINT_GEOMETRY_FINDING_*.md")):
         n = os.path.basename(p)
         revs[sha(p)] = "Rev1" if "REV1" in n else "Rev2" if "REV2" in n else "Rev3(current)"
-    rows, referenced = [], set()
+    rows, referenced, inventory = [], set(), []
     for p in sorted(glob.glob(f"{PREREG}/GATE_*.md")):
+        inventory.append((os.path.basename(p), sha(p)[:12]))
         body = open(p, encoding="utf-8", errors="replace").read()
         hits = sorted({revs[h] for h in re.findall(r"\b[0-9a-f]{64}\b", body) if h in revs})
         referenced |= set(hits)
         rows.append((os.path.basename(p), body.splitlines()[0].strip(), hits))
     never = sorted(set(revs.values()) - referenced)
-    return rows, never
+    return rows, never, inventory
 
 def ledger():
     # queue.json is a ROLLING WINDOW (QUEUE_KEEP=50) and rows have been deleted from it in the
@@ -97,7 +98,7 @@ def self_sha():
 
 if __name__ == "__main__":
     print(f"GENERATOR: {os.path.basename(__file__)} sha256 {self_sha()}\n")
-    rows, never = gate_history()
+    rows, never, inventory = gate_history()
     print("A. GATE HISTORY — verdicts, and which revision HASHES each gate cites\n")
     for name, verdict, hits in rows:
         print(f"  {name}\n      verdict         : {verdict}"
@@ -105,7 +106,14 @@ if __name__ == "__main__":
     print("\n  CITATION IS NOT REVIEW. No gate declares its subject by hash, so which revision each")
     print("  gate actually reviewed is NOT DETERMINABLE from these files. This tool makes no claim")
     print("  about how many times any revision was gated.")
-    print(f"  Revisions whose hash is cited by NO gate: {', '.join(never) if never else '(none)'}\n")
+    print(f"  Revisions whose hash is cited by NO gate: {', '.join(never) if never else '(none)'}")
+    print("\n  INPUT SET — this table is reproducible ONLY against exactly these gate files.")
+    print("  A gate writing its own report into this directory ADDS a row; that is expected and")
+    print("  does not invalidate a pin taken before it. Reproduce against this inventory, not")
+    print("  against a bare fresh run.")
+    for n, h in inventory:
+        print(f"    {h}  {n}")
+    print()
 
     found, pubs = ledger()
     print("B. CHI DISCLOSURES — by report stamp, across every source class scanned\n")

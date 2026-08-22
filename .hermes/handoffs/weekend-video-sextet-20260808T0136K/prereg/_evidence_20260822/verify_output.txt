@@ -1,0 +1,38 @@
+verify.sh sha256 9437a1c312d43b797377fb094825abb1a989a24db01b434c091d1ce5c202bbfb
+claim invocations in this file: 18
+
+== digests of four files that carry the 23:12 disclosure ==
+PASS  S1   shasum of that report's mp3 is 2a38a887bd897147
+PASS  S2   shasum of its caption is 2c85b2028209273a
+PASS  S3   shasum of its deck is 1da50dc6878db905
+PASS  S4   shasum of its alignment file is a9cfedc4ab127794
+
+== strings found by grep in that one caption file ==
+PASS  S5   grep finds '0.834336, 0.384410, and -0.640352' once
+PASS  S6   grep finds 'One leaning each way among the confident pair' once
+PASS  S7   grep finds '2,725 galaxies measured' once
+
+== digests and strings in two frozen documents ==
+PASS  F1   shasum of the K-8 authorization is c10687595f1f4313
+PASS  F2   grep finds 'No sky statistic, no dipole' in it once
+PASS  F3   grep finds 'Partial-tertile prohibition' in it once
+PASS  F4   shasum of the frozen preregistration is b06901c8a0f3a057
+
+== quantities recomputed from the positions file on this run ==
+PASS  G1   the positions CSV has 208407 data rows
+PASS  G2   geom.py recomputes var(cos theta) about Longo's axis as 0.057985
+
+== two searches restricted to the handcheck/ directory ==
+PASS  H1   grep finds 'def _rank_tertiles' in handcheck/nm_handcheck.py once
+PASS  H2   grep -rl 'chi_dr10_south' under /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/ lists 0 files
+
+== one divergence of mine, left unrepaired on purpose ==
+PASS  D1   grep finds 'one galaxy at a time, 200,000 times' in that caption once
+PASS  D2   its alignment file records coverage 0.9709
+
+== the companion document, checked against a banned wordlist ==
+PASS  Q1   grep -Eic on the banned wordlist in CHI_CUSTODY_20260822.md returns 0
+
+18 passed, 0 failed
+SCOPE: the checks above ran. This script reports what they returned and nothing further.
+H2 searched /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/ and reports a count for that directory.
