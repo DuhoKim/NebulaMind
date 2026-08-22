@@ -69,12 +69,46 @@ is the defective artifact. And `tori-fresh-verdict` was repaired by **Tori**,
 not me — her whisper-1 replacement, my ledger event, after I wrongly told her
 the item was open on her side when it was open on mine.
 
+## Round four: the source-anchored pass, generalised
+
+Tori's method scaled. A 5-word-shingle matcher found **27 of 145 backfilled
+captions narrate documents that still exist** in the sextet handoff tree;
+sentence-aligning each caption against its source surfaced word divergences,
+classified rather than bulk-applied: narration paraphrase and hyphenation style
+skipped — the caption follows the *audio*, not the document's orthography —
+genuine garbles applied after corpus-wide context reads. **79 substitutions
+across 40 captions** (ledger event 67, backups `.pre-glossary4`).
+
+What it caught that nothing else could:
+
+- **Duho's own name as `do host`** ("2 clear-eyed caveats do host should grant
+  this knowing").
+- **`UE`/`U.E.` is Yui, ×17** — her estimator work was unsearchable under her
+  name. Also `Kimmy` → Kimi.
+- **Bare `Coon` ×31, `Gore` ×12, `Tory` ×17** — earlier rounds missed these
+  because residual scans checked *known forms*, not phonetic neighbours. A
+  check that confirms clean on what it looked for, beside a larger population
+  of the same defect, is the night's recurring failure shape one more time.
+- **`parody` → parity ×6** — "4-point parity", "parity custody proof",
+  "preserves parity". A physics term, invisible to every name list.
+- **The real-word class, now confirmed reachable:** `defensively frozen` →
+  *defensibly* frozen; `Kimi purchased cache` → *cash*. Both change meaning;
+  both passed every previous check; both caught only because the authored
+  source says otherwise. This partially discharges the floor caveat below —
+  for narration-type readings only.
+- Plus `premordum` → premortem, `shamere` → Shamir, `reprejection` →
+  reprojection, `post-hock` → post-hoc, `trace's` → tracer's.
+
+Still unidentified, no guess recorded: `Baidam` (rowcount) and `Knight's
+decider` (overnight-converged) — no source match. Zero suspicious merges from
+the aggressive short patterns (`ue`), verified after applying.
+
 ## Custody
 
 Every original in `_caption_backup_20260822/` (`.pre-whisper1`,
-`.pre-glossary`, `.pre-glossary2`, `.pre-glossary3`). Five ledger events —
-one `caption_corrected` for Tori's replacement, three `caption_glossary_pass`,
-ledger at 65 — each carrying full change lists and authority. Pages rebuilt;
+`.pre-glossary` through `.pre-glossary4`, `.pre-source-anchored`). Seven ledger
+events — two `caption_corrected`, four `caption_glossary_pass`, one for Tori's
+replacement — ledger at 67, each carrying full change lists and authority. Pages rebuilt;
 zero garbled forms remain in any caption or on any served page. The archive now
 says Goru ×57 and Kun ×115 where mangled forms used to sit — a search for a
 crew name or for Longo now finds the reports that discuss them.
