@@ -14,11 +14,16 @@ import re, sys
 FORBIDDEN = re.compile(r"\b(?:BHU|black[- ]hole[- ]universe)\b[^.]{0,40}\b(?:falsifi|refut|disprov)", re.I)
 VERBS = re.compile(r"\b(?:falsified|refuted|disproved|vindicated|confirmed|proven)\b", re.I)
 
-MUST_CATCH = [
-    "BHU is falsified by the pulsar data",
-    "the black-hole-universe idea is refuted",
-    "cosmological natural selection is vindicated by this",
-]
+# Each pattern is guarded SEPARATELY. Guarding them jointly is useless: the tiers
+# overlap on these sentences, so breaking one leaves the other catching everything
+# and the guard stays green. Found by sabotage on 2026-08-22 — the first version of
+# this file claimed a sabotage test it had failed.
+MUST_CATCH = {
+    "FORBIDDEN": ["BHU is falsified by the pulsar data",
+                  "the black-hole-universe idea is refuted"],
+    "VERBS": ["cosmological natural selection is vindicated by this",
+              "the chain was disproved last year"],
+}
 ASSERTS_ANYWAY = [
     "nothing in the family survives contact with the data",
     "the black-hole-universe programme is dead",
@@ -31,16 +36,21 @@ ASSERTS_ANYWAY = [
 ]
 
 
+PATTERNS = {"FORBIDDEN": FORBIDDEN, "VERBS": VERBS}
+
+
 def caught(s):
-    return bool(FORBIDDEN.search(s) or VERBS.search(s))
+    return any(p.search(s) for p in PATTERNS.values())
 
 
 def main():
-    fails = [s for s in MUST_CATCH if not caught(s)]
+    fails = [(name, s) for name, probes in MUST_CATCH.items()
+             for s in probes if not PATTERNS[name].search(s)]
     missed = [s for s in ASSERTS_ANYWAY if not caught(s)]
-    print(f"  must-catch: {len(MUST_CATCH)-len(fails)}/{len(MUST_CATCH)} caught")
-    for s in fails:
-        print(f"    REGRESSION, no longer caught: {s}")
+    total = sum(len(v) for v in MUST_CATCH.values())
+    print(f"  must-catch: {total-len(fails)}/{total} caught, each by its OWN pattern")
+    for name, s in fails:
+        print(f"    REGRESSION — {name} no longer catches: {s}")
     print(f"  paraphrases: {len(ASSERTS_ANYWAY)-len(missed)}/{len(ASSERTS_ANYWAY)} caught "
           f"-> {len(missed)} assert the forbidden claim and pass undetected")
     for s in missed:
