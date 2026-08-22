@@ -45,8 +45,24 @@ structure"* — but rewriting a possessive into a verb phrase exceeds a name
 pass. It became `Goru's`, keeping the syntax; the ledger event explains the
 residual oddness for anyone citing that line.
 
-**3. Left alone, on purpose.** `cardi` and `shorty` are garbles whose intended
-words could not be identified — guessing a name is worse than an honest error.
+**3. Left alone, on purpose — then resolved without guessing.** `cardi` and
+`shorty` were left visible because their intended words could not be identified
+from phonetics. Within the hour of this file being committed, Tori identified
+both **from the source documents the readings narrate**: `cardi` → *party*
+(`LANA_SPIN_ANISOTROPY_ENTRY_ASSESSMENT_20260811.md` line ~206, near-verbatim),
+and `F shorty` → **Afshordi** (`GORU_BHU_INDEPENDENT_LITERATURE_VERDICT` line
+11 — af-SHOR-di, the Pourhasan–Afshordi–Mann white-hole big bang, whose
+signature prediction is exactly the low-multipole suppression the sentence
+discusses). The same sentences yielded `Gia, zoo and pen` → **Jia, Zhu & Pen**,
+`anti-satripy` → anisotropy, `free access` → free-axis, `multipulse` →
+multipole. Both source lines re-verified before applying; ledger event 66.
+
+**The method point outranks the fixes:** *"the original written text was not
+saved"* is only half-true for narration-type readings — the narrated document
+survives, and it is authored text. Source-anchored repair beats any glossary:
+it surfaced an author trio (*Jia, Zhu & Pen*) that no name list carried.
+Candidates are found by matching a backfilled caption's date and distinctive
+phrases against `reviews/` and handoff documents.
 Hwao's `20260821T151843` caption (asserts "200,000 times" with no audio behind
 it) stays unrepaired by his own ruling: the caption is authored text, the audio
 is the defective artifact. And `tori-fresh-verdict` was repaired by **Tori**,
