@@ -234,6 +234,15 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                           if l.strip()), "")
             verdict = first[:64]
             age_h = round((time.time() - gate.stat().st_mtime) / 3600.0, 1)
+            # A verdict is a statement about the bytes it gated. If the custody
+            # document has been revised SINCE the newest gate, presenting that
+            # verdict as current status is false — after the un-park the row
+            # showed REFUTED_..._V2 for a v3 no gate has seen. Say what is true:
+            # the current form is ungated.
+            cur = pre / "CHI_CUSTODY_20260822.md"
+            if cur.exists() and cur.stat().st_mtime > gate.stat().st_mtime:
+                verdict = "V3 UNGATED"
+                age_h = round((time.time() - cur.stat().st_mtime) / 3600.0, 1)
         receipt = pre / "CHI_CUSTODY_RECEIPT_20260821.md"
         memo = pre / "DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md"
         # A PARKED marker outranks the latest gate verdict. Without this the strip
@@ -244,6 +253,19 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         parked = sorted(pre.glob("CUSTODY_RECORD_PARKED_*.md"),
                         key=lambda f: f.stat().st_mtime, reverse=True)
         parked = parked[0] if parked else None
+        # The park record stays on disk as history after an un-park — rightly, a
+        # custody lane deletes nothing. So file-existence is the wrong signal
+        # once the story moves on: v3's header records "un-parked by Duho
+        # 2026-08-23" and the row kept saying PARKED for a lane Duho had
+        # released. The newest declaration wins.
+        if parked:
+            cur = pre / "CHI_CUSTODY_20260822.md"
+            try:
+                head = cur.read_text(errors="ignore")[:400].lower()
+                if "un-parked" in head or "unparked" in head:
+                    parked = None
+            except OSError:
+                pass
 
         # The transfer heartbeat, measured not asserted. "Acquisition continues"
         # was a claim the strip repeated from the parked record with nothing
