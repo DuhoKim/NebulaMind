@@ -453,3 +453,44 @@ the paper makes no such claim.
 
 Pin: sha256 1d195f5f… (PDF), clean text in `sources/blau_guendelman_guth_1987_clean.txt`
 (equation OCR imperfect; classifications traced to prose, not to OCR'd equations).
+
+---
+
+# Batch 9 — entry 6, the CNS formulation itself (2026-08-23 night, Tori)
+
+## Entry 6 — Smolin 1992, "Did the universe evolve?", CQG 9, 173 — reclassed QUALITATIVE-DIRECTIONAL
+
+Acquired via IOP's IP entitlement on the CNU campus address (the second publisher the campus wall
+opened tonight); pinned sha256 951bba97…, 20 pp, IOP header verified ("downloaded from IP address
+168.188.91.189"). The theory's founding paper, read at last.
+
+**The class correction — the fourth of the day.** Our record carried entry 6 as
+CALIBRATED-FALSIFIER "via the neutron-star maximum-mass chain made explicit in entry 7" — a
+triage-inherited class. The primary text does not support it. The 1992 paper contains NO
+neutron-star maximum-mass falsifier: no kaon condensation, no 1.5 or 2.5 M☉, nothing of the
+sort. Its three worked examples are (1) the inflaton self-coupling λ — predicting λ ≈ λ_critical
+and a δρ/ρ value, which the text itself says "cannot yet be taken seriously"; (2) the
+proton–neutron mass-difference sign argument (radiative transfer weaker by α in a neutron gas →
+slower condensation → fewer black holes) — exactly the argument Rothman & Ellis 1993 attacked;
+(3) cold/tepid big-bang effects. All directional, none calibrated. The conclusions concede it in
+so many words: the proposal is "extremely speculative" and "cannot be taken very seriously
+unless a detailed scenario and mechanism, based on known physics, can be developed to explain
+the value of a particular parameter which is falsifiable" — the 1992 text KNOWS it lacks the
+calibrated test. That test arrived via Bethe–Brown 1994+ and was stated by Smolin in 2004
+(entry 31). Reclassed **QUALITATIVE-DIRECTIONAL**; the calibrated falsifiers of the CNS branch
+belong to entries 7 and 31, where they were actually written.
+
+Also in the text, worth keeping:
+- Hypothesis S in its original form: parameters near a local maximum of R(p); "to test, or
+  falsify, this theory" one need only compute R(p) NEAR our universe's parameters — the
+  locality-of-test point the whole later dialogue relies on.
+- The honest tautology discussion: natural selection is not a tautology only if mutation rates
+  are fast enough and steps small — conditions assumed, not derived.
+- The mechanism for the random element is explicitly deferred (string vacua and wormhole physics
+  are floated as possibilities).
+- The Δm model is built on stated simplifications (time-independent IMF, sharp mass cutoff,
+  "consistent with present ignorance") — the paper flags its own weakest inputs, which is where
+  Rothman & Ellis then pressed.
+
+The CNS dialogue is now read end to end on our side: 1992 formulation (this batch) → 1993
+critique (batch 7) → 2004 reply with the falsifier (batch 6) → 2026 pulsar record (C08).

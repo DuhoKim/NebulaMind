@@ -21,8 +21,11 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 4 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-33 CONSISTENCY-ONLY, 4 UNREAD (19 entries read and classed 2026-08-23, batches 1–6 and 8; A0 read in batch 7. CORRECTION to
+Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 8 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+33 CONSISTENCY-ONLY, 4 UNREAD (20 entries read and classed 2026-08-23, batches 1–6 and 8–9; A0 read in batch 7.
+Batch-9 correction: entry 6 reclassed CALIBRATED-FALSIFIER → QUALITATIVE-DIRECTIONAL — the 1992
+text contains no mass-threshold falsifier; that class had been inherited from the entry-7 chain
+at triage. The branch's calibrated falsifiers are entries 7 and 31. CORRECTION to
 the earlier floor claim: "8 unread, unobtainable on every free route, 16% irreducible" was
 overstated — a second sweep on 2026-08-23 evening found free copies of 31 (VU Amsterdam academic
 mirror), 36 (arXiv astro-ph/9812063, missed under API throttling), and 57 (author's UC Davis
@@ -94,11 +97,23 @@ DOI 10.1088/0264-9381/9/1/016 — VERIFIED (Crossref: CQG, v9, p173-191, 1992-01
 Claim: universes reproduce through black holes with mutated constants, so our constants should be
 near-optimal for black-hole production. (*The Life of the Cosmos* is the book-length version —
 Appendix A6.)
-Testability: **CALIBRATED-FALSIFIER** — via the neutron-star maximum-mass chain made explicit in
-entry 7. Record: characterized in packet §1.4; the packet's [VERIFY] on the CQG citation details
-is resolved at the publication level here (in-paper details still unread).
-Audit-worthiness: **high** — one of the two published BHU-family papers whose falsifier is a
-number.
+**Full text OBTAINED 2026-08-23 ~23:00 KST** via IOP's IP entitlement on the Studio's CNU campus
+address (second publisher opened by the campus-IP route; no credentials). Pinned:
+`bhu-reading-20260823/sources/smolin_1992_did_the_universe_evolve_cqg9_173.pdf` (sha256
+951bba97…, 20 pp, IOP header verified).
+Testability: **QUALITATIVE-DIRECTIONAL** — READ 2026-08-23 (Tori, batch 9), **reclassed from
+CALIBRATED-FALSIFIER**, the fourth triage-inherited class overturned by reading. The 1992 text
+contains no neutron-star maximum-mass falsifier — no kaon condensation, no mass threshold. Its
+three examples (inflaton λ ≈ λ_critical with a δρ/ρ that "cannot yet be taken seriously"; the
+Δm sign argument Rothman–Ellis attacked; cold big-bang effects) are all directional, and the
+conclusions concede the gap verbatim: the proposal "cannot be taken very seriously unless a
+detailed scenario … falsifiable by some combination of experiment and theory, can be developed."
+The calibrated falsifiers of this branch live where they were written: entry 7 (2008) and entry
+31 (2004). Notes: batch 9.
+Record: characterized in packet §1.4; the packet's [VERIFY] on the CQG citation is fully
+resolved — publication and content both.
+Audit-worthiness: **high** — the founding formulation; hypothesis S in original form, with the
+locality-of-test point (compute R(p) only near our parameters) the later dialogue relies on.
 
 **7. G. E. Brown, C.-H. Lee, M. Rho (2008). "Kaon Condensation, Black Holes, and Cosmological Natural Selection." Phys. Rev. Lett. 101, 091101.**
 DOI 10.1103/PhysRevLett.101.091101 — VERIFIED (Crossref: PRL, v101, 091101, 2008-08-28).
