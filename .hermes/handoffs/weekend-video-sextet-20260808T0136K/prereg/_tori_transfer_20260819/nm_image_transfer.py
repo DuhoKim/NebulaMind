@@ -1094,8 +1094,18 @@ def _run_gated(args: argparse.Namespace) -> int:
     if args.approved_byte_ceiling <= 0:
         raise ValueError("approved byte ceiling must be positive")
     records = load_manifest(args.manifest, args.manifest_sha256)
+    # 2026-08-23 CONCURRENCY_AMENDMENT (Duho: "why? make it fast"): the manifest count is
+    # checked against the frozen full-campaign count OR the sha-pinned approval's own
+    # exact_file_count — enabling disjoint shard campaigns of the same gated program. The
+    # approval remains the authority: load_approval() below still requires the manifest count
+    # to equal the approval's pinned exact_file_count byte-for-byte.
     if len(records) != EXPECTED_FILE_COUNT:
-        raise ValueError(f"manifest must contain exactly {EXPECTED_FILE_COUNT} image-r files")
+        _appr = json.loads(args.approval_file.read_text())
+        if len(records) != _appr.get("exact_file_count"):
+            raise ValueError(
+                f"manifest count {len(records)} matches neither the full campaign "
+                f"({EXPECTED_FILE_COUNT}) nor the approval's exact_file_count"
+            )
     load_approval(
         args.approval_file,
         approval_sha256=args.approval_sha256,
@@ -1128,8 +1138,18 @@ def command_launch(args: argparse.Namespace) -> int:
     if args.approved_byte_ceiling <= 0:
         raise ValueError("approved byte ceiling must be positive")
     records = load_manifest(args.manifest, args.manifest_sha256)
+    # 2026-08-23 CONCURRENCY_AMENDMENT (Duho: "why? make it fast"): the manifest count is
+    # checked against the frozen full-campaign count OR the sha-pinned approval's own
+    # exact_file_count — enabling disjoint shard campaigns of the same gated program. The
+    # approval remains the authority: load_approval() below still requires the manifest count
+    # to equal the approval's pinned exact_file_count byte-for-byte.
     if len(records) != EXPECTED_FILE_COUNT:
-        raise ValueError(f"manifest must contain exactly {EXPECTED_FILE_COUNT} image-r files")
+        _appr = json.loads(args.approval_file.read_text())
+        if len(records) != _appr.get("exact_file_count"):
+            raise ValueError(
+                f"manifest count {len(records)} matches neither the full campaign "
+                f"({EXPECTED_FILE_COUNT}) nor the approval's exact_file_count"
+            )
     load_approval(
         args.approval_file,
         approval_sha256=args.approval_sha256,
