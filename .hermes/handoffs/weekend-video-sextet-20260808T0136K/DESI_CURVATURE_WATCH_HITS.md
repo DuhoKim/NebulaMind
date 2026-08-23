@@ -23,3 +23,4 @@
 - 2026-08-23T05:54:08Z · arXiv:2601.03028 (2026-01-06) — Bounce Inflation with Dynamical Dark Energy in Light of DESI DR2
 - 2026-08-23T05:54:08Z · arXiv:2512.15962 (2025-12-17) — Cosmological Constraints from Full-Scale Clustering and Galaxy-Galaxy Lensing with DESI DR1
 - 2026-08-23T05:54:08Z · arXiv:2512.09486 (2025-12-10) — Constraints on Spatial Curvature and Dark Energy Dynamics in the $w$CDM Model from DESI DR1 and DR2
+  - READ 2026-08-23 (Tori): arXiv:2512.09486 — NO VERDICT on entry 54's window. DR2 fits flat-centred (Ω_k = 0.002 ± 0.045; window centre ~1.1σ inside), DR1 fits pull open (+0.09, opposite direction) but superseded. Not a DESI Collaboration paper — independent-group wCDM+Ω_k fits, no journal ref. Details: bhu-reading-20260823/READING_NOTES_01.md

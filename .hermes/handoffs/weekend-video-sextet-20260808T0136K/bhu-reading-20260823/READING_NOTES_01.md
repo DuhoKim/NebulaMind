@@ -263,3 +263,39 @@ hold. Rigor about the mathematics, and equal rigor about its limits.
 36, 42, 47–50, 57 — are unobtainable on every free route (Elsevier/APS/Springer paywalls; two with
 no digital records at all) and constitute the needs-institutional-access queue. No entry was
 classed from memory, citation, or triage; every class traces to a read text pinned in `sources/`.
+
+---
+
+# Watch-driven read #1 — arXiv:2512.09486 against the live falsifier (2026-08-23, Tori)
+
+**Paper:** Yadav, Dixit, Barak & Pradhan, "Constraints on Spatial Curvature and Dark Energy
+Dynamics in the wCDM Model from DESI DR1 and DR2." **Not a DESI Collaboration paper** — an
+independent group fitting wCDM+Ω_k to DESI BAO data with BBN/OHD/Pantheon+. No journal ref on the
+preprint; prose quality modest. Weight its numbers accordingly.
+
+**Its Ω_k constraints, verbatim from §III:**
+
+| combination | Ω_k |
+|---|---|
+| DR1+BBN | +0.094 ± 0.080 |
+| DR1+BBN+OHD | +0.075 +0.070/−0.054 |
+| DR2+BBN | +0.003 ± 0.048 |
+| DR2+BBN+OHD | +0.002 ± 0.045 |
+
+**Against entry 54's window (−0.07 ± 0.02 ≤ Ω_k < 0): NO VERDICT, and no kill.**
+
+- The DR2-based fits (the better data) are flat-centred; the window's centre (≈ −0.05) sits ~1.1σ
+  below their posterior centre — inside, not excluded.
+- The DR1-based fits pull *open* (+0.09), the OPPOSITE direction from the falsifier — ~1.8σ
+  against the window — but DR1 is superseded by DR2 within the paper's own analysis.
+- Everything is sub-2σ. The paper itself claims only "mild preference for an open universe."
+
+**The structural point worth keeping:** this is the geometric tug-of-war the falsifier lives in.
+Entry 54 leans on CMB-lensing's ~3σ *closed* preference (Planck PR3); BAO-side combinations like
+these pull flat-to-open. The falsifier's fate will be decided by exactly this tension resolving —
+which is why the watch watches BAO releases, not CMB reanalyses. When a DESI **Collaboration**
+Ω_k posterior tightens below ~0.02 around zero, the window starts dying; if it tightens around
+−0.04, the window starts winning. Neither has happened.
+
+Not seated in the bibliography: it is adjudication literature, one of many Ω_k fits, not a BHU
+paper and not a canonical instrument. Logged here and in the watch hits file only.

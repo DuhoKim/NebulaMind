@@ -1,0 +1,722 @@
+[2512.09486] IIntroduction 
+
+ Constraints on Spatial Curvature and Dark Energy Dynamics in the w w CDM Model from DESI DR1 and DR2
+
+Manish Yadav 1 , Archana Dixit 2 , M. S. Barak 3 ,
+Anirudh Pradhan 4 
+
+ 1,3 Department of Mathematics, Indira Gandhi University, Meerpur, Haryana 122502, India 
+
+ 2 Department of Mathematics, Gurugram University, Gurugram- 122003, Harayana, India. 
+
+ 4 Centre for Cosmology, Astrophysics and Space Science (CCASS), GLA University, Mathura-281 406, Uttar Pradesh, India 
+
+ 1 Email address: manish.math.rs@igu.ac.in 
+
+ 2 Email address: archana.ibs.maths@gmail.com 
+
+ 3 Email address: ms - barak@igu.ac.in 
+
+ 4 Email address: pradhan.anirudh@gmail.com 
+
+ Abstract. 
+
+In this study, we investigate the w w CDM dynamical dark energy model with spatial curvature utilizing the recently released DESI Collaboration data (DR1 and DR2) in conjunction with other observational probes such as BBN, Observational Hubble Data (OHD), and Pantheon Plus (PP). Our investigation attempts to discover which DESI dataset gives a better match to the w w CDM framework and assess the impact of spatial curvature on cosmological constraints. We find that the cosmic curvature parameter, Ω k \Omega_{k} , disfavors the cosmological constant for the DR2+BBN and DR2+BBN+OHD data combinations. However, the deviation from the cosmological constant remains below the 1 ​ σ 1\sigma level, indicating a mild preference for a open universe. In contrast, when using the DR1 based combinations namely DR1+BBN and DR1+BBN+OHD—the deviation from the cosmological constant increases to approximately 1.2 ​ σ 1.2\sigma , suggesting a slightly stronger indication of a open geometry. Also, the best-fit values of the Hubble constant ( H 0 H_{0} ) obtained from the DR1+BBN+OHD+PP and DR2+BBN+OHD+PP combinations within the dynamical dark energy model are consistent with the results reported by the Planck Collaboration. Our findings provide constraints on the dark energy EoS parameter w 0 w_{\mathrm{}0} , reveal a mild but notable deviation from the vacuum energy ( w = − 1 w=-1 ) scenario at a significance level 1.8 ​ σ 1.8\sigma from DR2+BBN+OHD+PP and 0.5 ​ σ 0.5\sigma from DR1+BBN+OHD+PP, both favoring the quintessence region of dark energy. Furthermore, the key physical distance measures D H D_{H} , D V D_{V} , and D M D_{M} show better consistency with our model when analyzed with the DR2 data. 
+
+### I Introduction
+
+In the past decades, the Lambda Cold Dark Matter ( Λ \Lambda CDM) model has served as the standard framework in cosmology, providing remarkably consistent with observational cosmological and astrophysical data across multiple scales and cosmic epochs ref1 ; ref2 ; ref3 ; ref4 ; ref5 ; ref5a . However, the last decade has seen emerging discrepancies in certain important cosmological parameters, such as the Hubble parameter and the density parameter of curvature. These discrepancies have spurred the scientific community to pursue alternative explanations, whether by invoking new physical theories or by examining potential sources of systematic errors in the observations, see ref. ref6 ; ref7 ; ref8 ; ref8a ; ref8b ; ref8c . Several studies have been made to investigate novel physics as a potential solution to cosmological tensions. Most of these adopt a bottom-up strategy, assuming the existence of an effective field theory that can explain why the standard cosmological model is constrained by diverse and robust datasets. In this system, addressing model degeneracy is dependent on improving the fit to the data. 
+
+A fundamental geometric property of the cosmos is its spatial curvature, indicated by k k . Given that most widely accepted models of early Universe inflation predict spatial flatness ( k = 0 k=0 ), any discovery of nonzero spatial curvature-hereafter simply referred to as curvature-would have substantial consequences for our understanding of the early Universe and its subsequent history. Several approaches have been proposed for measuring and constraining cosmic curvature. A model-independent technique, developed by ref9 , predicts the curvature with an accuracy of 6 × 10 − 3 6\times 10^{-3} utilizing strong lensing time delays and supernova distance measurements. Ref. ref10 emphasizes the importance of curvature in cosmological testing of General Relativity (GR), stating that its inclusion eliminates spurious deviations from GR and modifies the permitted parameter space for growth. According to ref. ref11 , identifying curvature with high accuracy is troublesome since it may not be achievable without assuming precise forms for dark energy (DE) evolution and using conventional Λ \Lambda CDM parameter values. 
+
+The author in Ref. ref12 proposes a test-particle method for measuring curvature, which requires at least six particles in a general setting and at least four particles in vacuum. The use of gravitational-wave standard sirens and Cosmic Chronometers (CC) in model-independent determinations of cosmic curvature has been proposed in several numerical studies. Ref. ref13 and ref14 illustrate their promise, with ref14 suggesting that the DECIGO space-based observatory could achieve trustworthy limits on curvature. Additional applications of gravitational waves and CC are examined by ref. ref15 and ref16 , where ref16 suggests that combining gravitational waves with strong gravitational-lensing systems enables measurement of cosmic curvature. Building on this work, ref. ref17 and ref18 applied model-independent approaches to the same observational datasets—cosmic chronometers (CC) and gravitational-wave standard sirens—using machine learning, and found that these methods show considerable potential for accurately measuring cosmic curvature. The Planck 2018 analyses of CMB temperature and polarization spectra, with the Plik likelihood, point toward a closed universe at > 3 ​ σ >3\sigma significance, ref3 ; ref19 ; ref20 ; ref21 , reaching 4 ​ σ 4\sigma with physical curvature density considerations ref22 . This arises primarily from a lensing excess in the temperature data ( A lens A_{\rm lens} problem ref23 ; ref24 ). Complementary analyses using CamSpec ref25 ; ref26 also indicate a closed geometry at > 99 % >99\% confidence, a result that persists in the Planck PR4 temperature-only dataset ref27 . Several other studies addressing cosmic curvature are also presented in refs. ref28 ; ref29 ; ref30 ; ref31 ; ref32 ; ref33 ; ref34 ; ref35 ; ref36 ; ref37 .
+
+In one of the most recent works, Bikash R. Dinda ref38 investigated a dynamical dark energy scenario based on the Chevallier–Polarski–Linder (CPL) parametrization using the combined dataset of DESI DR2, CMB, and Pantheon+ (PP) observations, and reported indications of a non-zero cosmic curvature. In a subsequent analysis, Dinda ref39 further examined the CPL model with an extended data combination including CC+DR2+PP+ the sound horizon at the drag epoch ( r d r_{d} ) + growth rate measurements ( f ​ σ 8 f\sigma_{8} ). This analysis yielded a non-zero mean value of 10 2 ​ Ω k = 1.8 10^{2}\Omega_{k}=1.8 for the CPL model and 10 2 ​ Ω k = 0.8 10^{2}\Omega_{k}=0.8 for the w w CDM model with the same dataset. In parallel, Pengu ref40 explored a range of dynamical dark energy models—namely w w CDM, exponential, CPL, JBP, and interacting dark energy (IDE)—using DESI DR2, Supernova (SN), and Time-Delay (TD) lensing data, and similarly found evidence for a small but non-zero curvature of Ω k ≈ 0.1 \Omega_{k}\approx 0.1 . More recently, further extensions of these analyses have incorporated CC data into the observational combinations, and they found consistent evidence for non-zero cosmic curvature, reinforcing the case for exploring dynamical dark energy models ref41 . In contrast, Shi-Fan Chen ref42 examined the Λ \Lambda CDM+ Ω k \Omega_{k} + M ν M_{\nu} framework and discovered a minor negative spatial curvature. Motivated by recent studies indicating a possible deviation from spatial flatness within dynamical dark energy scenarios, we extend the investigation by including the w w CDM+ Ω k \Omega_{k} model. For this goal, we employ high-precision data from the DESI project, notably the first (DR1) and second (DR2) data releases, in conjunction with complementing cosmological probes. A special emphasis is placed on determining which dataset, DR1 or DR2, provides more balanced and robust restrictions on cosmic curvature and the dynamical character of dark energy.
+
+In this study, we introduce the dynamical dark energy model (wCDM) with cosmic spatial curvature and investigate its consequences for the Universe’s evolution. Our primary focus in this study is the presence of curvature effects on the other cosmological parameters in the DR1 and DR2 datasets. We also examine their combination with other complementary observational probes, such as CC and Pantheon+ supernova measurements, to determine which dataset or combination provides the most robust and balanced constraints on the w w CDM model, shedding light on the interaction of spatial curvature and dark energy dynamics. This complete approach allows for a more precise assessment of the function of curvature and compares the relative strengths of various data releases in constraining cosmological theories. 
+
+The basic framework of this paper is as follows. In Section I, we provide a review of the literature related to the w w CDM model with spatial curvature. Section II outlines the observational datasets employed in this work, including OHD, Pantheon+ (PP), DESI DR1, and DR2, along with the methodology adopted for the analysis. In Section III, we present our results and discuss the implications of the findings. Finally, Section IV summarizes the main conclusions of the study. 
+
+### II MODEL, DATA AND METHODOLOGY
+
+In continuation of our previous work ref43 , we consider a dynamical dark energy model with spatial curvature, denoted as the w w CDM + Ω k \Omega_{k} model. The governing Friedmann equation for this model is given by 
+
+ H 2 ​ ( z ) H 0 2 = Ω r ​ 0 ​ [ 1 + z ] 4 + Ω m ​ 0 ​ [ 1 + z ] 3 + Ω k ​ 0 ​ [ 1 + z ] 2 + Ω de0 ​ [ 1 + z ] 3 ​ ( 1 + w de0 ) , \frac{H^{2}(z)}{H_{0}^{2}}=\Omega_{\text{r}0}[1+z]^{4}+\Omega_{\text{m}0}[1+z]^{3}+\Omega_{\text{k}0}[1+z]^{2}+\Omega_{\rm de0}[1+z]^{3(1+w_{\rm de0})}, 
+
+ (1) 
+
+Where H 0 H_{0} is the present value of the Hubble parameter, and Ω k ​ 0 \Omega_{k0} 
+denote the present-day curvature density parameter. The curvature density is related to the spatial curvature k k of the universe by Ω k ​ 0 = − c ​ k H 0 2 \Omega_{k0}=\frac{-ck}{H_{0}^{2}} , where c is the speed of light in vacuum. The geometry of the universe depends on the sign of cosmic curvature of the universe ( k k ), which depends on an open universe ( k < 0 k<0 ), a closed universe ( k > 0 k>0 ), and a flat universe ( k = 0 CLOSE (k=0 ).
+
+In our analysis, we neglect the contribution of the radiation density parameter, since radiation has a negligible effect at late times. Consequently, Eq. (1) reduces to 
+
+ H 2 ​ ( z ) H 0 2 = Ω m ​ 0 ​ [ 1 + z ] 3 + Ω k ​ 0 ​ [ 1 + z ] 2 + Ω de0 ​ [ 1 + z ] 3 ​ ( 1 + w de0 ) , \frac{H^{2}(z)}{H_{0}^{2}}=\Omega_{\text{m}0}[1+z]^{3}+\Omega_{\text{k}0}[1+z]^{2}+\Omega_{\rm de0}[1+z]^{3(1+w_{\rm de0})}, 
+
+ (2) 
+
+Here, Ω m ​ 0 \Omega_{m0} and Ω d ​ e ​ 0 \Omega_{de0} denote the present-day density parameters of matter and dark energy, respectively. The present-day values of these parameters satisfies the energy budget restriction condition in the equation
+ Ω m ​ 0 + Ω k ​ 0 + Ω d ​ e ​ 0 = 1 \Omega_{m0}+\Omega_{k0}+\Omega_{de0}=1 .
+
+The datasets and methodology used are as follows: 
+
+ Dark Energy Spectroscopic Instrument : The first-year data release by the DESI Collaboration (DRI) ref44 ; ref45 ; ref45a ; ref45b , which includes seven tracers with redshift bands: BGS ( 0 < z < 0.4 0<z<0.4 ), LRG1( 0.4 < z < 0.6 0.4<z<0.6 ), LRG2( 0.6 < z < 0.8 0.6<z<0.8 ), LRG+ELG( 0.8 < z < 1.1 0.8<z<1.1 ), ELG( 1.1 < z < 1.6 1.1<z<1.6 ), QSO ( 0.8 < z < 2.1 0.8<z<2.1 ), Ly α \alpha QSO ( 1.77 < z < 4.16 1.77<z<4.16 ). These redshift bands, along with the corresponding comoving distances, are reported in Table 1 of ref. ref46 . Subsequently, the DESI Collaboration released the second data release (DR2), which extended the analysis to nine tracers, as reported in ref. ref47 . These tracers provide more precise measurements of three important quantities, D H ​ ( z ) / r d D_{H}(z)/r_{\rm d} , D M ​ ( z ) / r d D_{M}(z)/r_{\rm d} , and D v ​ ( z ) / r d D_{v}(z)/r_{\rm d} with effective redshift are defined as: 
+
+ • 
+
+ Transverse Comoving Distance with Cosmic Curvature of the Universe: 
+
+ D M ​ ( z ) = ∫ 0 z d ​ z ′ ​ c H ⁡ ( z ′ ) ​ S κ ​ ( x ) D_{M}(z)=\int_{0}^{z}\text{d}z^{\prime}{c\over H(z^{\prime})}S_{\kappa}(x) . Where c c is the speed of light and 
+
+ S κ ​ ( x ) = { sin ⁡ ( − Ω κ ​ x ) − Ω κ , Ω κ < 0 , x , Ω κ = 0 , sinh ⁡ ( Ω κ ​ x ) Ω κ , Ω κ > 0 . S_{\kappa}(x)=\begin{cases}\dfrac{\sin\!\left(\sqrt{-\Omega_{\kappa}}\,x\right)}{\sqrt{-\Omega_{\kappa}}},&\Omega_{\kappa}<0,\\[10.0pt]
+x,&\Omega_{\kappa}=0,\\[10.0pt]
+\dfrac{\sinh\!\left(\sqrt{\Omega_{\kappa}}\,x\right)}{\sqrt{\Omega_{\kappa}}},&\Omega_{\kappa}>0.\end{cases} 
+
+ • 
+
+ Hubble Distance :
+ D H ​ ( z ) = c H ⁡ ( z ) D_{H}(z)=\frac{c}{H(z)} , 
+
+ • 
+
+ Angle-Averaged Distance :
+ D V ​ ( z ) ≡ [ z ​ D M 2 ​ ( z ) ​ D H ​ ( z ) ] 1 / 3 D_{V}(z)\equiv\left[zD^{2}_{M}(z)D_{H}(z)\right]^{1/3} 
+
+where r d = ∫ z d ∞ c s ​ d ​ z H ⁡ ( z ) r_{\rm d}=\int_{z_{\rm d}}^{\infty}\frac{c_{\rm s}\text{d}z}{H(z)} and ( c s c_{\rm s} ) are sound horizon at the drag redshift ( z d z_{\rm d} ) and sound speed of the baryon-fluid of the universe, respectively .
+
+We define χ 2 \chi^{2} function on the DR1 and DR2 measurements with covaraince metrix: 
+
+ χ DR1 2 = ∑ i [ ( D V r d ) obs ​ ( z i ) − ( D V r d ) th ​ ( z i ) ] 2 σ ( D V r d ) obs ​ ( z i ) 2 + Δ ​ D i ​ ( C DR1 − 1 ) ​ Δ ​ D i T . \chi^{2}_{\text{DR1}}=\sum_{i}\frac{[\left(\frac{D_{V}}{r_{d}}\right)^{\text{obs}}(z_{i})-\left(\frac{D_{V}}{r_{d}}\right)^{\text{th}}(z_{i})]^{2}}{\sigma^{2}_{\left(\frac{D_{V}}{r_{d}}\right)^{\text{obs}}(z_{i})}}+\Delta D_{i}\left(C_{\text{DR1}}^{-1}\right)\Delta{D_{i}}^{T}. 
+
+ (3) 
+
+ χ DR2 2 = ∑ i [ ( D V r d ) obs ​ ( z i ) − ( D V r d ) th ​ ( z i ) ] 2 σ ( D V r d ) obs ​ ( z i ) 2 + Δ ​ D i ​ ( C DR2 − 1 ) ​ Δ ​ D i T . \chi^{2}_{\text{DR2}}=\sum_{i}\frac{[\left(\frac{D_{V}}{r_{d}}\right)^{\text{obs}}(z_{i})-\left(\frac{D_{V}}{r_{d}}\right)^{\text{th}}(z_{i})]^{2}}{\sigma^{2}_{\left(\frac{D_{V}}{r_{d}}\right)^{\text{obs}}(z_{i})}}+\Delta D_{i}\left(C_{\text{DR2}}^{-1}\right)\Delta{D_{i}}^{T}. 
+
+ (4) 
+
+where, C DR1 − 1 C_{\text{DR1}}^{-1} ref48 and C DR2 − 1 C_{\text{DR2}}^{-1} are the inverse of the covariance matrix 
+
+ C DR1 − 1 = ( 19.95 3.64 0 0 0 0 0 0 0 0 3.64 3.35 0 0 0 0 0 0 0 0 0 0 11.86 2.66 0 0 0 0 0 0 0 0 2.66 3.37 0 0 0 0 0 0 0 0 0 0 15.03 4.68 0 0 0 0 0 0 0 0 4.68 9.62 0 0 0 0 0 0 0 0 0 0 2.62 1.91 0 0 0 0 0 0 0 0 1.91 7.06 0 0 0 0 0 0 0 0 0 0 1.47 3.86 0 0 0 0 0 0 0 0 3.86 44.79 ) C^{-1}_{\text{DR1}}=\begin{pmatrix}19.95&3.64&0&0&0&0&0&0&0&0\\
+3.64&3.35&0&0&0&0&0&0&0&0\\
+0&0&11.86&2.66&0&0&0&0&0&0\\
+0&0&2.66&3.37&0&0&0&0&0&0\\
+0&0&0&0&15.03&4.68&0&0&0&0\\
+0&0&0&0&4.68&9.62&0&0&0&0\\
+0&0&0&0&0&0&2.62&1.91&0&0\\
+0&0&0&0&0&0&1.91&7.06&0&0\\
+0&0&0&0&0&0&0&0&1.47&3.86\\
+0&0&0&0&0&0&0&0&3.86&44.79\\
+\end{pmatrix} 
+
+ 𝐂 DR2 − 1 = ( 45.43 8.19 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8.19 7.01 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 38.15 8.26 0 0 0 0 0 0 0 0 0 0 0 0 0 0 8.26 10.97 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 37.79 11.87 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11.87 22.63 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 52.34 17.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 17.14 32.46 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 11.32 5.90 0 0 0 0 0 0 0 0 0 0 0 0 0 0 5.90 14.41 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 12.18 7.60 0 0 0 0 0 0 0 0 0 0 0 0 0 0 7.60 25.22 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 2.30 1.57 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1.57 4.31 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 4.27 9.28 0 0 0 0 0 0 0 0 0 0 0 0 0 0 9.28 118.18 ) \mathbf{C}_{\rm DR2}^{-1}=\left(\begin{array}[]{rrrrrrrrrrrrrrrr}45.43&8.19&0&0&0&0&0&0&0&0&0&0&0&0&0&0\\
+8.19&7.01&0&0&0&0&0&0&0&0&0&0&0&0&0&0\\
+0&0&38.15&8.26&0&0&0&0&0&0&0&0&0&0&0&0\\
+0&0&8.26&10.97&0&0&0&0&0&0&0&0&0&0&0&0\\
+0&0&0&0&37.79&11.87&0&0&0&0&0&0&0&0&0&0\\
+0&0&0&0&11.87&22.63&0&0&0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&52.34&17.14&0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&17.14&32.46&0&0&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0&11.32&5.90&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0&5.90&14.41&0&0&0&0&0&0\\
+0&0&0&0&0&0&0&0&0&0&12.18&7.60&0&0&0&0\\
+0&0&0&0&0&0&0&0&0&0&7.60&25.22&0&0&0&0\\
+0&0&0&0&0&0&0&0&0&0&0&0&2.30&1.57&0&0\\
+0&0&0&0&0&0&0&0&0&0&0&0&1.57&4.31&0&0\\
+0&0&0&0&0&0&0&0&0&0&0&0&0&0&4.27&9.28\\
+0&0&0&0&0&0&0&0&0&0&0&0&0&0&9.28&118.18\end{array}\right) 
+
+and 
+
+ Δ ​ D i = { ( D M r d ) th ​ ( z i ) − ( D M r d ) obs ​ ( z i ) , for  ​ D M ​  measurements , ( D H r d ) th ​ ( z i ) − ( D H r d ) obs ​ ( z i ) , for  ​ D H ​  measurements , \Delta D_{i}=\begin{cases}\left(\frac{D_{M}}{r_{d}}\right)^{\mathrm{th}}(z_{i})-\left(\frac{D_{M}}{r_{d}}\right)^{\mathrm{obs}}(z_{i}),&\text{for }D_{M}\text{ measurements},\\[8.0pt]
+\left(\frac{D_{H}}{r_{d}}\right)^{\mathrm{th}}(z_{i})-\left(\frac{D_{H}}{r_{d}}\right)^{\mathrm{obs}}(z_{i}),&\text{for }D_{H}\text{ measurements},\\[8.0pt]
+\end{cases} 
+
+ Observational Hubble Data : The Observational Hubble data (OHD) method relies on estimating the differential ages of the oldest passively evolving galaxies at closely separated lower redshifts. This approach provides a model-independent determination of the expansion rate of the Universe by relating the Hubble parameter to the redshift and cosmic time via the relation
+ H ⁡ ( z ) = − 1 1 + z ​ d ​ z d ​ t , H(z)=-\frac{1}{1+z}\frac{dz}{dt}, as originally proposed in foundational studies  ref49 . In this work, we use 33 non-correlated measurements of the Hubble parameter H ⁡ ( z ) H(z) , covering the redshift interval 0.07 ≤ z ≤ 1.965 0.07\leq z\leq 1.965 ref50 ; ref51 ; ref52 ; ref53 ; ref54 ; ref55 ; ref56 ; ref57 , obtained through the various Hubble surveys.
+
+We define the chi-squared function for the observational Hubble data, denoted by χ OHD 2 \chi^{2}_{\rm OHD} , as follows: 
+
+ χ OHD 2 = ∑ i = 1 33 [ d o ​ b ​ s ​ ( z i ) − d t ​ h ​ ( z i ) ] 2 σ d o ​ b ​ s ​ ( z i ) 2 , \chi^{2}_{\text{OHD}}=\sum_{i=1}^{33}\frac{\left[d^{obs}(z_{i})-d^{th}(z_{i})\right]^{2}}{\sigma^{2}_{d^{obs}(z_{i})}}, 
+
+Where d o ​ b ​ s ​ ( z i ) d^{obs}(z_{i}) and d t ​ h ​ ( z i ) d^{th}(z_{i}) denotes the observed and model-predicted values of the Hubble parameter at redshift z i z_{i} , respectively, and σ d o ​ b ​ s ​ ( z i ) \sigma_{{d^{obs}(z_{i})}} represents the associated observational uncertainty. 
+
+ Big Bang Nucleosynthesis (BBN) : An independent and powerful constraint on the baryon density is provided by Big Bang Nucleosynthesis (BBN), which remains one of the most sensitive probes of early-universe physics. Beyond testing standard cosmology, BBN also reveals its possible limitations. Incorporating the latest nuclear physics results from LUNA ref58 , we will obtain a precise determination of the baryon density, ω b ≡ Ω b ​ h 2 \omega_{b}\equiv\Omega_{b}h^{2} in the present study.
+
+ Pantheon Plus : The primary evidence for cosmic accelerated expansion came from Type Ia supernovae (SNIa) observations. Among the most reliable and successful probes for investigating the cosmic expansion and nature of dark energy to date are SNIa. Over the years, several high-quality supernova datasets have been compiled, with the most recent advancement being the updated Pantheon Plus sample. This compilation includes 1701 light curves corresponding to 1550 distinct SNe Ia events, covering a wide redshift range of z ∈ [ 0.001 , 2.26 ] z\in[0.001,2.26] ref59 . Each SNIa measurement is characterized by its distance modulus, μ = m − M \mu=m-M , where m m denotes the observed apparent magnitude and M M represents the absolute magnitude of the supernova. The goodness-of-fit is then evaluated using a chi-square statistic built from the residuals between observed and theoretical values. The chi-square function is defined as: 
+
+ χ PP 2 = Δ ​ μ ​ ( C pp − 1 ) ​ Δ ​ μ T . \chi^{2}_{\text{PP}}=\Delta\mu\left(C_{\text{pp}}^{-1}\right)\Delta{\mu}^{T}. 
+
+ (5) 
+
+where C pp − 1 C_{\text{pp}}^{-1} denotes the inverse of the covariance matrix for PP datasets measurements, and Δ ​ μ = μ t ​ h − μ o ​ b ​ s \Delta\mu=\mu_{th}-\mu_{obs} , here μ t ​ h \mu_{th} and μ o ​ b ​ s \mu_{obs} represent the theoretical and observed distance moduli, respectively, u t ​ h u_{th} is defined as, 
+
+ μ t ​ h = 5 ​ log ⁡ ( H 0 − 1 1 ​ Mpc ) ​ D L ​ ( z ) + 25 , \mu_{th}=5\log\left(\frac{H_{0}^{-1}}{1\,\text{Mpc}}\right)D_{L}(z)+25, 
+
+ (6) 
+
+Where, the luminous distance D L ​ ( z ) D_{L}(z) with non-flat cosmic curvature is defined as 
+
+ D L = ( 1 + z ) ​ ∫ 0 z H 0 H ⁡ ( z ′ ) ​ d ​ z ′ . D_{L}=(1+z)\int_{0}^{z}\frac{H_{0}}{H(z^{\prime})}\,dz^{\prime}. 
+
+ (7) 
+
+Here, H 0 H_{0} is the present value of the Hubble constant.
+
+We consider the dynamical dark energy framework ( w w CDM) with the baseline parameter set 𝒫 w ​ CDM = { ω b , ω c ​ d ​ m , Ω k , H 0 , w d ​ e ​ o } \mathcal{P}_{w\text{CDM}}=\{\omega_{b},\omega_{cdm},\Omega_{k},H_{0},w_{deo}\} . In our statistical analysis, we impose flat priors on all parameters: ω b ∈ [ 0.018 , 0.024 ] \omega_{b}\in[0.018,0.024] , ω cdm ∈ [ 0.10 , 0.14 ] \omega_{\rm cdm}\in[0.10,0.14] , H 0 ∈ [ 60 , 80 ] H_{0}\in[60,80] , Ω k ∈ [ − 1 , 1 ] \Omega_{\rm k}\in[-1,1] , Ω m ∈ [ 0.20 , 0.35 ] \Omega_{\rm m}\in[0.20,0.35] and w de0 ∈ [ − 3 , 1 ] w_{\rm de0}\in[-3,1] . The parameter constraints are derived through Markov Chain Monte Carlo (MCMC) sampling with a customized implementation of the CLASS + MontePython framework ref60 ; ref61 ; ref61a . Convergence of the MCMC chains is verified using the Gelman–Rubin criterion ( R − 1 < 0.01 R-1<0.01 ) ref62 , and the posterior distributions are analyzed with the GetDist Python package ref63 ; ref63a . 
+
+### III Results and discussion
+
+In this study, we investigate the w w CDM model with curvature using a variety of dataset combinations. In specifically, we examine both the DR1 and DR2 dataset combinations to determine which one gives the strongest limitations on spatial curvature. Using the DR1+BBN and DR2+BBN datasets within the w w CDM + Ω k \Omega_{k} framework, we find present-day curvature values of 0.094 ± 0.080 0.094\pm 0.080 and 0.003 ± 0.048 0.003\pm 0.048 . This suggests non-zero curvature in both combinations; however, the DR1+BBN dataset combination provides a more robust signal of curvature than the DR2+BBN combination. When the OHD data are added to both combinations, we find Ω k = 0.075 − 0.054 + 0.070 \Omega_{k}=0.075^{+0.070}_{-0.054} from DR1+BBN+OHD and Ω k = 0.002 ± 0.045 \Omega_{k}=0.002\pm 0.045 from DR2+BBN+OHD. These findings clearly show that the DR1 + BBN + OHD combination favors a open universe, whereas the DR2 + BBN + OHD combination predicts a nearly flat but marginally open universe. The combination provides a more reliable indication of curvature than the DR2+BBN combination. From the DR1+BBN+PP and DR2+BBN+PP datasets, our results are nearly consistent with those from the first combinations. Both of these dataset combinations also suggest a non-zero cosmic curvature, favoring a open universe. As seen in Table 1 , the cosmic curvature constraints across different dataset combinations reveal non-zero distinct values: whenever OHD data are included with the DR1+BBN+PP and DR2+BBN+PP combination, we find again positive curvature values, pointing instead towards a open universe. 
+
+ Figure 1: The left 2D contour cosmic curvature Ω k \Omega_{k} versus EoS of DE w 0 w_{0} and the right 2D contour cosmic curvature Ω k \Omega_{k} versus H 0 H_{0} for w w CDM + Ω k \Omega_{k} with all given combination data sets. 
+
+From the left panel of Fig. 1 , we clearly observe that Ω k \Omega_{k} is negatively correlated with the dark energy equation of state parameter w 0 w_{0} . This implies that as the value of Ω k \Omega_{k} decreases, the corresponding value of w 0 w_{0} increases. In this figure, the horizontal black dotted line represents the flat universe ( Ω k = 0 \Omega_{k}=0 ), while the vertical black dotted line at w 0 = − 1 w_{0}=-1 corresponds to the vacuum form of dark energy (cosmological constant). In the exact figure, the contours obtained from all DR1 and DR2 dataset combinations are shown to be well-constrained. We have expanded our discussion of the correlations between w 0 w_{0} and Ω k \Omega_{k} , which are present in the left panel of Fig. 1 , and how they influence our results. Specifically, when we use the DR1 data combination, we obtain a noticeable deviation from spatial flatness, with the curvature parameter departing from zero. Due to the correlation shown in Fig. 1 , it also drives the dark-energy equation-of-state parameter away from the cosmological constant, leading to a deviation of more than a 1 ​ σ 1\sigma from w 0 = − 1 w_{0}=-1 . However, switching from DR1 to the more precise DR2 measurements, the inferred curvature shifts toward a flat universe, and consequently, w 0 w_{0} moves closer to the cosmological constant. We also note that when the PP dataset is included with DR2 data, the curvature parameter shows a slight deviation from flatness, indicating a mild preference for a universe that is not perfectly flat. These effects, consistent with the trends visible in the left panel of Fig. 1 . 
+
+The right panel of Fig. 1 presents the 2D contour plots of Ω k \Omega_{k} versus H 0 H_{0} for all combinations of DR1 and DR2 datasets, along with the 1 ​ σ 1\sigma level bands from SH0ES and TRGB measurements. We observe that no significant correlation between Ω k \Omega_{k} and H 0 H_{0} emerges in the absence of PP datasets. However, a clear negative correlation between Ω k \Omega_{k} and H 0 H_{0} appears when the PP dataset is included in both DR1 and DR2 combinations. Furthermore, the contours obtained from the DR2 combinations provide significantly tighter constraints compared to those from the DR1 combinations.
+
+ Figure 2: The posterior distribution functions (PDFs) of the EoS of DE w 0 w_{0} for w w CDM + Ω k \Omega_{k} with all given combination data sets. 
+
+One of the most striking puzzles in modern cosmology is the Hubble tension, arising from the disagreement between measurements of the Hubble constant, H 0 H_{0} , obtained through different methods. This tension reflects a major inconsistency between the local measurement from the SH0ES collaboration, H 0 = 73.04 ± 1.04 ​ kms − 1 ​ Mpc − 1 H_{0}=73.04\pm 1.04~\mathrm{kms^{-1}Mpc^{-1}} ref64 , based on Cepheid-calibrated Type Ia supernovae, and the early-Universe estimate from the Planck collaboration, H 0 = 67.36 ± 0.54 ​ kms − 1 ​ Mpc − 1 H_{0}=67.36\pm 0.54~\mathrm{kms^{-1}Mpc^{-1}} ref3 , derived from CMB observations under the Λ \Lambda CDM model. The resulting discrepancy of about 5.0 ​ σ 5.0\sigma represents one of the most persistent challenges in contemporary cosmology. Recent low-redshift observations have indicated a comparatively higher value of H 0 H_{0} ref65 ; ref66 , creating a notable tension with the estimate derived from Planck-CMB data. In this section, we present the constraints on the Hubble constant for the w w CDM + Ω k \Omega_{k} model from different combinations of observational datasets, which are summarized in Table 1 . From DR1+BBN datasets, we obtain a constraint of H 0 = 69.70 − 4.20 + 3.60 ​ kms − 1 ​ Mpc − 1 H_{0}=69.70^{+3.60}_{-4.20}~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} , while DR2+BBN yields H 0 = 68.80 ± 2.3 ​ kms − 1 ​ Mpc − 1 H_{0}=68.80\pm 2.3~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} , both of which are consistent with independent TRGB measurements. Both of these data combinations give a credible estimate of H 0 H_{0} with bigger 1 σ \sigma uncertainties. When OHD data combined with DR1/DR2 and BBN, the 1 σ \sigma uncertainty in H 0 H_{0} decreases slightly and also find the best-fit value of H 0 = 70.60 − 3.20 + 2.50 ​ kms − 1 ​ Mpc − 1 H_{0}=70.60^{+2.50}_{-3.20}~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} and H 0 = 69.10 ± 1.7 ​ kms − 1 ​ Mpc − 1 H_{0}=69.10\pm 1.7~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} from DR1+BBN+OHD and DR2+BBN+OHD combination datasets, respectively. Further adding the PP dataset leads to a more stringent constraints on H 0 H_{0} , giving in H 0 = 67.10 ± 1.5 ​ kms − 1 ​ Mpc − 1 H_{0}=67.10\pm 1.5~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} for DR1+BBN+OHD+PP and H 0 = 67.60 ± 1.2 ​ kms − 1 ​ Mpc − 1 H_{0}=67.60\pm 1.2~{\color[rgb]{0,0,1}\mathrm{kms^{-1}Mpc^{-1}}} for DR2+BBN+OHD+PP. These values are fully consistent with Planck measurements, highlighting the strong influence of the PP dataset in constraining the Hubble constant. Overall, the trend shows that as more datasets are combined, the uncertainties in H 0 H_{0} shrink, the estimates become more precise, and the results gradually reconcile local and CMB-based measurements, with PP data playing a decisive role in this convergence.
+
+ Table 1: The marginalized constraints, presented as mean values with 68 % \% confidence levels (CL), on both the free and select derived parameters of the w w CDM + Ω k \Omega_{k} model for various DR1 and DR2 combinations. 
+
+ Model 
+ w w CDM+ Ω k \Omega_{k} 
+
+ Dataset 
+ DR1+BBN 
+ DR1+BBN+OHD 
+ DR1+BBN+PP 
+ DR1+BBN+OHD+PP 
+
+ DR2+BBN 
+ DR2+BBN+OHD 
+ DR2+BBN+PP 
+ DR2+BBN+OHD+PP 
+
+ 𝟏𝟎 𝟐 ​ 𝝎 𝒃 10^{2}\omega_{b} 
+ 2.271 ± 0.038 2.271\pm 0.038 
+ 2.274 ± 0.037 2.274\pm 0.037 
+ 2.271 ± 0.037 2.271\pm 0.037 
+ 2.274 ± 0.038 2.274\pm 0.038 
+
+ 2.271 ± 0.037 2.271\pm 0.037 
+ 2.272 ± 0.037 2.272\pm 0.037 
+ 2.271 ± 0.037 2.271\pm 0.037 
+ 2.273 ± 0.037 2.273\pm 0.037 
+
+ 𝝎 𝐜𝐝𝐦 \omega{}_{\rm cdm} 
+ 0.1050 − 0.0200 + 0.0160 0.1050^{+0.0160}_{-0.0200} 
+ 0.1120 ± 0.0120 0.1120\pm 0.0120 
+ 0.1010 − 0.017 + 0.014 0.1010^{+0.014}_{-0.017} 
+ 0.1100 ± 0.011 0.1100\pm 0.011 
+
+ 0.1160 − 0.01200 + 0.01100 0.1160^{+0.01100}_{-0.01200} 
+ 0.1178 ± 0.0087 0.1178\pm 0.0087 
+ 0.1136 ± 0.011 0.1136\pm 0.011 
+ 0.1162 ± 0.0084 0.1162\pm 0.0084 
+
+ 𝑯 𝟎 H_{0} [ km s − 𝟏 ​ Mpc − 𝟏 \text{km}\text{s}^{-1}\text{Mpc}^{-1} ] 
+ 69.70 − 4.20 + 3.60 69.70^{+3.60}_{-4.20} 
+ 70.60 − 3.20 + 2.50 70.60^{+2.50}_{-3.20} 
+ 66.01 ± 2.2 66.01\pm 2.2 
+ 67.10 ± 1.5 67.10\pm 1.5 
+
+ 68.80 ± 2.3 68.80\pm 2.3 
+ 69.10 ± 1.7 69.10\pm 1.7 
+ 67.30 ± 1.5 67.30\pm 1.5 
+ 67.60 ± 1.2 67.60\pm 1.2 
+
+ 𝒘 𝒅 ​ 𝒆 ​ 𝟎 w_{de0} 
+ − 1.23 − 0.16 + 0.29 -1.23^{+0.29}_{-0.16} 
+ − 1.24 − 0.21 + 0.25 -1.24^{+0.25}_{-0.21} 
+ − 0.957 − 0.060 + 0.084 -0.957^{+0.084}_{-0.060} 
+ − 0.955 − 0.057 + 0.077 -0.955^{+0.077}_{-0.057} 
+
+ − 1.00 − 0.09 + 0.12 -1.00^{+0.12}_{-0.09} 
+ − 1.01 − 0.08 + 0.12 -1.01^{+0.12}_{-0.08} 
+ − 0.916 − 0.044 + 0.049 -0.916^{+0.049}_{-0.044} 
+ − 0.922 ± 0.047 -0.922\pm 0.047 
+
+ 𝑴 𝑩 ​ [ 𝐦𝐚𝐠 ] M_{B}{\rm[mag]} 
+ - 
+ - 
+ − 19.483 ± 0.069 -19.483\pm 0.069 
+ − 19.442 ± 0.047 -19.442\pm 0.047 
+
+ - 
+ - 
+ − 19.160 ± 0.047 -19.160\pm 0.047 
+ − 19.426 ± 0.036 -19.426\pm 0.036 
+
+ 𝛀 𝒎 \Omega{}_{m} 
+ 0.263 − 0.024 + 0.029 0.263^{+0.029}_{-0.024} 
+ 0.270 − 0.021 + 0.025 0.270^{+0.025}_{-0.021} 
+ 0.284 ± 0.019 0.284\pm 0.019 
+ 0.295 ± 0.014 0.295\pm 0.014 
+
+ 0.293 − 0.014 + 0.016 0.293^{+0.016}_{-0.014} 
+ 0.295 ± 0.014 0.295\pm 0.014 
+ 0.301 ± 0.012 0.301\pm 0.012 
+ 0.304 ± 0.010 0.304\pm 0.010 
+
+ 𝛀 𝑲 \Omega{}_{K} 
+ 0.094 ± 0.080 0.094\pm 0.080 
+ 0.075 − 0.054 + 0.070 0.075^{+0.070}_{-0.054} 
+ 0.063 ± 0.080 0.063\pm 0.080 
+ 0.030 ± 0.068 0.030\pm 0.068 
+
+ 0.003 ± 0.048 0.003\pm 0.048 
+ 0.002 ± 0.045 0.002\pm 0.045 
+ 0.010 − 0.028 + 0.012 0.010^{+0.012}_{-0.028} 
+ 0.012 − 0.025 + 0.015 0.012^{+0.015}_{-0.025} 
+
+ 𝒕 𝟎 t{}_{0} 
+ 13.97 ± 0.52 13.97\pm 0.52 
+ 13.75 ± 0.30 13.75\pm 0.30 
+ 14.01 ± 0.45 14.01\pm 0.45 
+ 13.86 ± 0.29 13.86\pm 0.29 
+
+ 13.78 ± 0.32 13.78\pm 0.32 
+ 13.73 ± 0.24 13.73\pm 0.24 
+ 13.89 ± 0.29 13.89\pm 0.29 
+ 13.81 ± 0.23 13.81\pm 0.23 
+
+ 𝒛 𝒅 z{}_{d} 
+ 1059.50 ± 1.7 1059.50\pm 1.7 
+ 1060.00 ± 1.2 1060.00\pm 1.2 
+ 1059.10 ± 1.5 1059.10\pm 1.5 
+ 1060.0 ± 1.2 1060.0\pm 1.2 
+
+ 1060.30 ± 1.2 1060.30\pm 1.2 
+ 1060.50 ± 1.0 1060.50\pm 1.0 
+ 1060.10 ± 1.2 1060.10\pm 1.2 
+ 1060.40 ± 1.0 1060.40\pm 1.0 
+
+ 𝒓 𝒔 𝒅 rs{}_{d} 
+ 151.20 ± 5.4 151.20\pm 5.4 
+ 149.10 ± 3.2 149.10\pm 3.2 
+ 152.40 ± 4.6 152.40\pm 4.6 
+ 149.4 ± 3.1 149.4\pm 3.1 
+
+ 147.80 ± 3.1 147.80\pm 3.1 
+ 147 ± 2.3 147\pm 2.3 
+ 148.5 ± 2.8 148.5\pm 2.8 
+ 147.8 ± 2.3 147.8\pm 2.3 
+
+ 𝐥𝐧 ​ 𝓩 \rm{ln}\mathcal{Z} 
+ − 6.41 -6.41 
+ − 13.89 -13.89 
+ − 711.69 -711.69 
+ − 719.40 -719.40 
+
+ − 6.78 -6.78 
+ − 14.05 -14.05 
+ − 712.04 -712.04 
+ − 719.57 -719.57 
+
+Table 1 shows that for the DR1+BBN and DR1+BBN+OHD combinations, the best-fit value of the equation of state (EoS) of dark energy favors the phantom region (the range of EoS of DE − 1 > w 0 -1>w_{0} ). On the other hand, for the DR2+BBN and DR2+BBN+OHD combinations, the EoS of DE is consistent with a cosmological constant ( w 0 = − 1 w_{0}=-1 ). When both DR1 and DR2 combinations include the PP dataset, the EoS moves towards the quintessence region ( − 1 < w 0 < − 1 / 3 -1<w_{0}<-1/3 ). We quantify the EoS of DE obtained from w w CDM + Ω k \Omega_{k} model with the EoS of vacuum energy, for the DR1+BBN and DR1+BBN+OHD combinations, EoS of DE deviation from the cosmological constant by 1 ​ σ 1\sigma . With the inclusion of the PP dataset in both DR1 and DR2 combinations, the deviation is slightly reduced to approximately 0.5 ​ σ 0.5\sigma from DR1+BBN+PP and DR1+BBN+PP+OHD, while approximately 1.8 ​ σ 1.8\sigma deviation from cosmological constant ( w 0 = − 1 w_{0}=-1 ) with DR2+BBN+PP and DR2+BBN+PP+OHD data sets. These results indicate that the combination of PP datasets shows a mild preference for quintessence, whereas the absence of PP data systematically pushes the EoS into the phantom regime, highlighting the influence of supernovae data in constraining the dark energy behavior.
+
+Figure  2 displays the posterior distribution functions (PDFs) of the dark energy equation of state parameter, w 0 w_{0} , from all the given multiple cosmological data combinations. This figure reveals several probability distributions that correlate to various redshifts ( z z ) and observational datasets. The most likely value of w 0 w_{0} deduced from the corresponding dataset is shown by the peak of each distribution. The degree of consistency or tension between various metrics is depicted by the overlapping and non-overlapping zones among the distributions. Fig.  2 , the cosmological constant, represented by the black dotted line, is w 0 = − 1 w_{0}=-1 . Notably, the peaks of the one-dimensional distributions deviate from w 0 = − 1 w_{0}=-1 for all given combination datasets, suggesting that our model tends to disfavour the cosmological constant scenario.
+
+ Figure 3: The 2D plot Hubble distance D H / ( r d ∗ z − 2 / 3 ) D_{H}/(r_{d}*z^{-2/3}) versus redshift z for w w CDM + Ω k \Omega_{k} and Λ \Lambda CDM models with DR1+BBN+PP+CC and DR2+BBN+PP+CC data sets. 
+
+In this paper, we aim to examine which of the DESI DR1 and DR2 datasets provides a better fit within our proposed model. We compare the theoretical distance predictions of the standard model with those of our model using both DR1 and DR2 data, including their respective error bars. Since the DR1 and DR2 datasets alone provide relatively weak constraints, we also use combined datasets involving CC, BBN, and PP data to strengthen the comparison of theoretical distances. Specifically, we focus on three key physical distance measures— D H D_{H} , D V D_{V} , and D M D_{M} —as illustrated in Fig. 3 , 4 , 5 . In all figure, the black curve represents the predictions from the Λ \Lambda CDM model, while the dark red curve corresponds to the w w CDM + Ω k \Omega_{k} model from observational combination DR1+BBN+PP+CC and DR2+BBN+PP+CC data sets, shown alongside the DR1 and DR2 data points with green error bars.
+
+ Figure 4: The 2D plot comoving angular diameter distance D M / ( r d ∗ z 2 / 3 ) D_{M}/(r_{d}*z^{2/3}) versus redshift z for w w CDM + Ω k \Omega_{k} and Λ \Lambda CDM models with DR1+BBN+PP+CC and DR2+BBN+PP+CC data sets. 
+
+From this left Fig. 3 , we observe that the curve of the standard model does not overlap with that of the dynamical model, indicating a deviation in the w w CDM + Ω k \Omega_{k} scenario. We first discuss the Hubble horizon distance, D H D_{H} , which is normalized in the Fig. 3 as D H / ( r d ∗ z − 2 / 3 ) D_{H}/(r_{d}*z^{-2/3}) . At z = 1.32 z=1.32 and z = 2.33 z=2.33 , the theoretical distance predictions from w w CDM + Ω k \Omega_{k} are in good agreement with the DR1 observational data points rather than the standard model. However, for the remaining low-redshift DR1 data points, both models show good consistency with the observations. When examining the DR2 data, we find that at z = 1.32 z=1.32 and z = 2.33 z=2.33 , the distance predictions of both models are consistent with the DR2 measurements, as shown in the right Fig. 3 . Meanwhile, at z = 1.48 z=1.48 , w w CDM + Ω k \Omega_{k} model provides a better theoretical fit to the observed physical distance compared to the standard model.
+
+ Figure 5: The 2D plot volume-averaged distance D V / ( r d ∗ z 2 / 3 ) D_{V}/(r_{d}*z^{2/3}) versus redshift z for w w CDM + Ω k \Omega_{k} and Λ \Lambda CDM models with DR1+BBN+PP+CC and DR2+BBN+PP+CC data sets. 
+
+Next, we examine the comoving angular diameter distance, D M D_{M} , which is normalized in the left and right Fig. 4 as D M / ( r d ∗ z 2 / 3 ) D_{M}/(r_{d}*z^{2/3}) . At z = 1.32 z=1.32 , the w w CDM + Ω k \Omega_{k} model shows good agreement with the physical distance inferred from DR2 observational data points compared to the Λ \Lambda CDM model. Further analysis of this figure, we notice that at z = 0.71 z=0.71 , a noticeable tension remains between the theoretical predictions of both cosmological models and the DR1 observational data. However, this tension is alleviated when the DR2 data points are considered in our model, whereas the standard model continues to exhibit a slight discrepancy at the same redshift. Overall, we conclude that the distance predicted by our model is strongly consistent with the DR2 data points, while it shows relatively weaker constraints with the DR1 dataset.
+
+Finally, we discuss the volume-averaged distance, D V D_{V} , which is normalized in the left and right Fig. 5 as D V / ( r d ∗ z 2 / 3 ) D_{V}/(r_{d}*z^{2/3}) . Both the standard model and our w w CDM + Ω k \Omega_{k} model show good consistency with the volume-averaged distances inferred from the DR1 and DR2 observational data points. However, a slight tension appears at z = 1.48 z=1.48 between our model and the DR2 data point, indicating a minor deviation in the predicted distance at that redshift. 
+
+### IV Conclusions
+
+In this work, we have performed a comprehensive analysis of the w w CDM + Ω k +\Omega_{k} cosmological model using the most recent spectroscopic data from the Dark Energy Spectroscopic Instrument (DESI) Data Releases 1 and 2, combined with other key cosmological probes—BBN, OHD, and Pantheon Plus (PP). Our objective is to examine the impact of spatial curvature on the constraints of cosmological parameters and to assess which DESI dataset (DR1 or DR2) provides tighter and more consistent results within the framework of dynamical dark energy.
+
+Our findings show that both DESI DR1 and DR2 datasets have a small bias for a open universe, although the evidence is still below the 2 ​ σ 2\sigma level. The curvature parameter Ω k \Omega_{k} generated from the DR1+BBN and DR1+BBN+OHD combinations indicates a significantly larger divergence from flatness ( ∼ 1.2 ​ σ \sim 1.2\sigma ) than the DR2-based combinations, which yield nearly flat but marginally open geometries. Combining DR2 data with BBN and OHD reduces uncertainty in Ω k \Omega_{k} , demonstrating the DR2 release’s improved precision and resilience. The dark energy equation-of-state parameter, w 0 w_{0} , shows a slight divergence from the cosmological constant ( w = − 1 w=-1 ). The DR1+BBN+OHD+PP combination produces a deviation at the ∼ 0.5 ​ σ \sim 0.5\sigma level, but the DR2+BBN+OHD+PP combination boosts this to ∼ 1.8 ​ σ \sim 1.8\sigma , somewhat favoring the quintessence regime ( w > − 1 w>-1 ). This tendency shows that the dynamical character of dark energy is consistent with present evidence but cannot be definitively differentiated from a cosmological constant. 
+ Furthermore, the best-fit estimates of the Hubble constant ( H 0 H_{0} ) derived from the combined datasets are compatible with Planck 2018 results under the Λ \Lambda CDM framework, spanning within the range H 0 ≈ 68 ​ - ​ 70 ​ km ​ s − 1 ​ Mpc − 1 H_{0}\approx 68\text{-}70~\mathrm{km\,s^{-1}\,Mpc^{-1}} . The inclusion of the OHD and PP datasets significantly reduces uncertainties in H 0 H_{0} , demonstrating the complementary role of low-redshift probes in breaking parameter degeneracy. When examined using DR2 data, the derived key distance measures D H D_{H} , D V D_{V} , and D M D_{M} show stronger internal consistency, demonstrating the increased statistical reliability of the second DESI data release. Our study shows that the DESI DR2 dataset provides improved constraints and better agreement across multiple cosmological probes within the w w CDM + Ω k +\Omega_{k} framework. Although the evidence for non-zero curvature and dynamical dark energy remains marginal, the consistency across independent datasets strengthens the case for further investigation using upcoming high-precision DESI data releases. Future analyses incorporating CMB, weak-lensing, and gravitational-wave standard sirens will be crucial to confirm or rule out these mild deviations from spatial flatness and the cosmological constant, thereby advancing our understanding of the fundamental dynamics governing cosmic acceleration. 
+
+### Declaration of competing interest
+
+We wish to confirm that there are no known conflicts of interest
+associated with this publication and there has been no significant financial
+support for this work that could have influenced its outcome. 
+
+### Data availability
+
+We employed publicly available DESI BAO data, Pantheon Plus (PP) data and Observational Hubble Parameter (OHD) data presented in this study. The DESI BAO data are accessible from the official repository at https://data.desi.lbl.gov/doc/releases/. The OHD data are compiled from publicly available cosmic chronometer measurements in the literature, with a representative compilation accessible at: https://github.com/AhmadMehrabi Cosmic chronometer data. The Pantheon Plus (PP) compilation (distance moduli and covariance matrices), which is publicly available on the GitHub:https://github.com/brinckmann/montepythonpublic/tree/3.6/montepython/likelihoods/Pantheon Plus. No additional datasets are used in this study. 
+
+### Acknowledgements.
+
+The authors (A. Dixit & A. Pradhan) are thankful to IUCAA, Pune, India for providing support and facility under Visiting Associateship program. M. Yadav is sponsored by a senior Research Fellowship from the Council of Scientific and Industrial Research, Government of India (CSIR/UGC Ref. No. 180010603050). The authors are grateful to the Reviewer and Associate Editor for their fruitful remarks that increased the quality of the manuscript in its current version.
+
+ Appendix I : Triangle Countor 
+
+In this appendix, we present a triangular plot with 1D- and 2D- marginalized distributions for all considered parameters presented in Table 1 within the w w CDM + Ω k \Omega_{k} model based on all DR1 and DR2 combinations without PP and with PP (See Figures 6 and 7 ). 
+
+ Figure 6: In this triangular plot, we present 1D- and 2D- marginalized distributions for all considered parameters presented in Table 1 within the w w CDM + Ω k \Omega_{k} model based on all DR1 and DR2 datasets combinations without PP. 
+
+ Figure 7: In this triangular plot, we present 1D- and 2D- marginalized distributions for all considered parameters presented in Table 1 within the w w CDM + Ω k \Omega_{k} model based on all DR1 and DR2 datasets combinations with PP. 
+
+### References
+
+ (1) 
+
+A. G. Riess et al. [Supernova Search Team],
+Observational evidence from supernovae for an accelerating universe and a cosmological constant, Astron. J. 116 , 1009 (1998).
+
+ (2) 
+
+S. Perlmutter et al. [Supernova Cosmology Project],
+Measurements of Ω \Omega and Λ \Lambda from 42 high redshift supernovae,
+Astrophys. J. 517 , 565 (1999).
+
+ (3) 
+
+N. Aghanim et al. [Planck Collaboration], Planck 2018 results. VI. Cosmological parameters, Astron. Astrophys. 641 , A6 (2020).
+
+ (4) 
+
+S. Alam et al. [eBOSS Collaboration],
+Completed SDSS-IV extended Baryon Oscillation Spectroscopic Survey: Cosmological implications from two decades of spectroscopic surveys at the Apache Point Observatory, Phys. Rev. D 103 , 083533 (2021).
+
+ (5) 
+
+T. M. C. Abbott et al. [DES Collaboration],
+Dark Energy Survey Year 3 results: Cosmological constraints from galaxy clustering and weak lensing, Phys. Rev. D 105 , 023520 (2022).
+
+ (6) 
+
+A.Dixit, M.Yadav, A.Pradhan, M.S Barak, Beyond Λ \Lambda CDM: Exploring a dynamical cosmological constant framework consistent with late-time observations, Annals of Physics , 170275 (2025).
+
+ (7) 
+
+E. Di Valentino, L. A. Anchordoqui, Ö. Akarsu, Y. Ali-Haimoud, L. Amendola, N. Arendse, M. Asgari, M. Ballardini, S. Basilakos, E. Battistelli et al. , Snowmass2021 - Letter of interest cosmology intertwined II: The Hubble constant tension, Astropart. Phys. 131 , 102605 (2021).
+
+ (8) 
+
+M. Yadav, A. Dixit, A. Pradhan, and M. S. Barak, Empirical validation: Investigating the Λ \Lambda sCDM model with new DESI BAO observations, J. High Energy Astrophys. 100453 (2025).
+
+ (9) 
+
+W. Yang, W. Giare, S. Pan, E. Di Valentino, A. Melchiorri, and J. Silk,
+Revealing the effects of curvature on the cosmological models, Phys. Rev. D 107 , 063509 (2023).
+
+ (10) 
+
+S.Verma, A.Dixit, A.Pradhan, & \& M.S Barak, Testing f ⁡ ( T ) f(T) gravity with cosmological observations: Confronting the Hubble tension and implications for the late-time universe, JHEA , 100440 (2025).
+
+ (11) 
+
+N.Cruz, G.Gomez, E. Gonzalez, G.Palma, & \& A. Rincon Exploring models of running vacuum energy with viscous dark matter from a dynamical system perspective. Physics of the Dark Universe, 42, 101351 (2023).
+
+ (12) 
+
+E. Di Valentino, J.E. Said, & \& T.C.L.Network, The CosmoVerse White Paper: Addressing observational tensions in cosmology with systematics and fundamental physics, Physics of the Dark Universe , 49 101965 (2025.
+
+ (13) 
+
+M. Denissenya, E. V. Linder, and A. Shafieloo, Cosmic curvature tested directly from observations, J. Cosmol. Astropart. Phys. 04 , 041 (2018).
+
+ (14) 
+
+J. Dossett and M. Ishak, Spatial curvature and cosmological tests of general relativity, Phys. Rev. D 86 , 103008 (2012).
+
+ (15) 
+
+C. D. Leonard, P. Bull, and R. Allison, Spatial curvature endgame: Reaching the limit of curvature determination, Phys. Rev. D 94 , 023502 (2016).
+
+ (16) 
+
+I. Ciufolini and M. Demianski, How to measure the curvature of space-time,
+Phys. Rev. D 34 , 1018 (1986).
+
+ (17) 
+
+J. J. Wei, Model-independent curvature determination from gravitational-wave standard sirens and cosmic chronometers, Astrophys. J. 868 , 29 (2018).
+
+ (18) 
+
+Y. He, Y. Pan, D. P. Shi, J. Li, S. Cao, and W. Cheng, High-precision measurements of cosmic curvature from gravitational wave and cosmic chronometer observations,
+Res. Astron. Astrophys. 22 , 085016 (2022).
+
+ (19) 
+
+J. Zheng, F. Melia, and T. J. Zhang, A model-independent measurement of the spatial curvature using cosmic chronometers and the HII Hubble diagram, arXiv:1901.05705 [astro-ph.CO] (2019).
+
+ (20) 
+
+Y. J. Wang, J. Z. Qi, B. Wang, J. F. Zhang, J. L. Cui, and X. Zhang,
+Cosmological model-independent measurement of cosmic curvature using distance sum rule with the help of gravitational waves, Mon. Not. R. Astron. Soc. 516 , 5187 (2022).
+
+ (21) 
+
+J. J. Wei and F. Melia, Model-independent distance calibration and curvature measurement using quasars and cosmic chronometers, Astrophys. J. 888 , 99 (2020).
+
+ (22) 
+
+G. J. Wang, X. J. Ma, and J. Q. Xia,
+Machine learning the cosmic curvature in a model-independent way,
+Mon. Not. R. Astron. Soc. 501 , 5714 (2021).
+
+ (23) 
+
+W. Handley,
+Curvature tension: Evidence for a closed universe, Phys. Rev. D 103 , L041301 (2021).
+
+ (24) 
+
+E. Di Valentino, A. Melchiorri, and J. Silk, Planck evidence for a closed universe and a possible crisis for cosmology, Nat. Astron. 4 , 196 (2019).
+
+ (25) 
+
+E. Di Valentino, A. Melchiorri, and J. Silk, Investigating cosmic discordance,
+Astrophys. J. Lett. 908 , L9 (2021).
+
+ (26) 
+
+A. Semenaite, A. G. Sánchez, A. Pezzotta, J. Hou, A. Eggemeier, M. Crocce, C. Zhao, J. R. Brownstein, G. Rossi, and D. P. Schneider,
+Beyond – Λ \Lambda CDM constraints from the full shape clustering measurements from BOSS and eBOSS, Mon. Not. R. Astron. Soc. 521 , 5013 (2023).
+
+ (27) 
+
+E. Calabrese, A. Slosar, A. Melchiorri, G. F. Smoot, and O. Zahn, Cosmic microwave weak lensing data as a test for the dark universe, Phys. Rev. D 77 , 123531 (2008).
+
+ (28) 
+
+E. Di Valentino, A. Melchiorri, and J. Silk, Cosmological constraints in extended parameter space from the Planck 2018 Legacy release, J. Cosmol. Astropart. Phys. 01 , 013 (2020).
+
+ (29) 
+
+G. Efstathiou and S. Gratton, The evidence for a spatially flat universe,
+Mon. Not. R. Astron. Soc. Lett. 496 , L91 (2020).
+
+ (30) 
+
+G. Efstathiou and S. Gratton, A detailed description of the CAMSPEC likelihood pipeline and a reanalysis of the Planck high frequency maps, Open J. Astrophys. 4 , 1 (2021).
+
+ (31) 
+
+E. Rosenberg, S. Gratton, and G. Efstathiou, CMB power spectra and cosmological parameters from Planck PR4 with CamSpec, Mon. Not. R. Astron. Soc. 517 , 4620 (2022).
+
+ (32) 
+
+W. Handley, Curvature tension: Evidence for a closed universe,
+Phys. Rev. D 103 , L041301 (2021).
+
+ (33) 
+
+S. Bhattacharya, G. Borghetto, A. Malhotra, S. Parameswaran, G. Tasinato, and I. Zavala, Cosmological constraints on curved quintessence, J. Cosmol. Astropart. Phys. 09 , 073 (2024).
+
+ (34) 
+
+V. Yadav, M. Yadav, S. K. Yadav et al. , Testing spatial curvature in an anisotropic extension of w w CDM model with low redshift data, arXiv:2405.11534 [astro-ph.CO] (2024).
+
+ (35) 
+
+Ö. Akarsu, E. Di Valentino, S. Kumar, M. Özyiğit, and S. Sharma,
+Testing spatial curvature and anisotropic expansion on top of the Λ \Lambda CDM model, Phys. Dark Univ. 39 , 101162 (2023).
+
+ (36) 
+
+W. Yang, W. Giare, S. Pan, E. Di Valentino, A. Melchiorri, and J. Silk,
+Revealing the effects of curvature on the cosmological models,
+Phys. Rev. D 107 , 063509 (2023).
+
+ (37) 
+
+J. Stevens, H. Khoraminezhad, and S. Saito,
+Constraining the spatial curvature with cosmic expansion history in a cosmological model with a non-standard sound horizon,
+J. Cosmol. Astropart. Phys. 07 , 046 (2023).
+
+ (38) 
+
+E. Mortsell and J. Jonsson,
+A model independent measure of the large scale curvature of the universe,
+arXiv:1102.4485 [astro-ph.CO] (2011).
+
+ (39) 
+
+E. Di Dio, F. Montanari, A. Raccanelli, R. Durrer, M. Kamionkowski, and J. Lesgourgues, Curvature constraints from large scale structure,
+J. Cosmol. Astropart. Phys. 06 , 013 (2016).
+
+ (40) 
+
+J.-M. Virey, D. Talon-Esmieu, A. Ealet, P. Taxil, and A. Tilquin,
+On the determination of curvature and dynamical dark energy,
+J. Cosmol. Astropart. Phys. 12 , 008 (2008).
+
+ (41) 
+
+E. Di Valentino et al. , Snowmass2021 - Letter of interest cosmology intertwined IV: The age of the universe and its curvature, Astropart. Phys. 131 , 102607 (2021).
+
+ (42) 
+
+B. R. Dinda and R. Maartens,
+Physical versus phantom dark energy after DESI: Thawing quintessence in a curved background,
+Mon. Not. R. Astron. Soc. Lett. 542 , L31 (2025).
+
+ (43) 
+
+B. R. Dinda,
+Cosmic curvature on large-scale structures with homogeneous dark energy,
+Phys. Rev. D 111 , 103533 (2025).
+
+ (44) 
+
+P. J. Wu and X. Zhang, Measuring cosmic curvature with non-CMB observations,
+Phys. Rev. D 112 , 063514 (2025).
+
+ (45) 
+
+P. J. Wu, Comparison of dark energy models using late-universe observations,
+Phys. Rev. D 112 , 043527 (2025).
+
+ (46) 
+
+S. F. Chen and M. Zaldarriaga, It’s all ok: Curvature in light of BAO from DESI DR2,
+arXiv:2505.00659 [astro-ph.CO] (2025).
+
+ (47) 
+
+M. Yadav, A. Dixit, M. S. Barak, and A. Pradhan, Investigating the wCDM model with latest DESI BAO observations, Eur. Phys. J. C 85 , 1 (2025).
+
+ (48) 
+
+A. G. Adame et al. ,
+DESI 2024 III: Baryon acoustic oscillations from galaxies and quasars,
+J. Cosmol. Astropart. Phys. 04 , 012 (2025).
+
+ (49) 
+
+A. Adame, J. Aguilar, et al ., DESI 2024 IV: Baryon acoustic oscillations from the Lyman alpha forest, JCAP 01 , 124 (2025).
+
+ (50) 
+
+S. Dwivedi, M. & \& Hogas 2D BAO vs 3D BAO: solving the Hubble tension with alternative cosmological models. arXiv e-prints, arXiv-2407 (2024).
+
+ (51) 
+
+M.Yadav, A. Dixit, A.Pradhan, M.S Barak, Empirical validation: Investigating the Λ s \Lambda_{s} CDM model with new DESI BAO observations, JHAP, 100453 (2025).
+
+ (52) 
+
+A. G. Adame et al. ,
+DESI 2024 VI: Cosmological constraints from the measurements of baryon acoustic oscillations, J. Cosmol. Astropart. Phys. 02 , 021 (2025).
+
+ (53) 
+
+M. Abdul Karim et al. ,
+DESI DR2 results. II. Measurements of baryon acoustic oscillations and cosmological constraints,
+Phys. Rev. D 112 , 083515 (2025).
+
+ (54) 
+
+S. Pourojaghi, M. Malekjani and Z. Davari,
+ Λ \Lambda CDM model against cosmography: A possible deviation after DESI 2024,
+Mon. Not. R. Astron. Soc. 537 , 436 (2025).
+
+ (55) 
+
+R. Jimenez and A. Loeb, Constraining cosmological parameters based on relative galaxy ages, Astrophys. J. 573 , 37
+(2002).
+
+ (56) 
+
+C. Zhang, H. Zhang, et al ., Four new observational H ⁡ ( z ) H(z) data from luminous red galaxies in the Sloan Digital Sky Survey
+data release seven, Res. Astron. Astrophys. 14 , 1221 (2014).
+
+ (57) 
+
+J. Simon, L. Verde, and R. Jimenez, Constraints on the redshift dependence of the dark energy potential, Phys. Rev. D 
+ 71 , 123001 (2005).
+
+ (58) 
+
+M. Moresco et al ., Improved constraints on the expansion rate of the Universe up to z ∼ 1.1 z\sim 1.1 from the spectroscopic
+evolution of cosmic chronometers, JCAP 08 , 006 (2012).
+
+ (59) 
+
+M. Moresco, L. Pozzetti, et al ., A 6% measurement of the Hubble parameter at z ∼ 0.45 z\sim 0.45 : direct evidence of the epoch of
+cosmic re-acceleration,” JCAP 05 , 014 (2016).
+
+ (60) 
+
+A. L. Ratsimbazafy, S. I. Loubser, S. M. Crawford, et al ., Age-dating Luminous Red Galaxies observed with the Southern
+African Large Telescope, Mon. Not. Roy. Astron. Soc. 467 , 3239 (2017).
+
+ (61) 
+
+N. Borghi, M. Moresco, and A. Cimatti, Toward a Better Understanding of Cosmic Chronometers: A New Measurement of
+ H ⁡ ( z ) ​ atz ∼ 0.7 H(z)\rm{at}z\sim 0.7 , Astrophys. J. Lett. 928 , L4 (2022).
+
+ (62) 
+
+K. Jiao, N. Borghi, M. Moresco, and T.-J. Zhang, New Observational H ⁡ ( z ) H(z) Data from Full-spectrum Fitting of Cosmic
+Chronometers in the LEGA-C Survey, Astrophys. J. Suppl. 265 , 48 (2023).
+
+ (63) 
+
+M. Moresco, Raising the bar: new constraints on the Hubble parameter with cosmic chronometers at z ∼ 2 z\sim 2 , Mon. Not.
+Roy. Astron. Soc. 450 , L16 (2015).
+
+ (64) 
+
+V. Mossa et al ., The baryon density of the Universe from an improved rate of deuterium burning, Nature 587 , 210 (2020).
+
+ (65) 
+
+D. Scolnic, D. Brout, et al ., The Pantheon+ Analysis: The Full Data Set and Light-curve Release, Astrophys. J. 938 , 113 (2022).
+
+ (66) 
+
+T. Brinckmann, J. Lesgourgues, MontePython 3: Boosted MCMC sampler and other features, phys. Dark Universe 24 , 100260 (2019).
+
+ (67) 
+
+B. Audren, J. Lesgourgues, K. Benabed, S. Prunet, Conservative constraints on early cosmology with MONTE PYTHON, JCAP 001 , 02 (2013).
+
+ (68) 
+
+M.Yadav, A.Dixit, M.S.Barak, & \& A. Pradhan, Investigating the wCDM model with latest DESI BAO observations, Eur. Phy.J.C , 85(9) , 1-13 (2025).
+
+ (69) 
+
+A. Gelman and D. B. Rubin, Inference from iterative simulation using multiple sequences, Stat. Sci. 7 , 472 (1992).
+
+ (70) 
+
+A. Lewis, Getdist: a python package for analysing monte carlo samples, arXiv:1910.13970[astro-ph.IM] (2019).
+
+ (71) 
+
+M.Högås, & \& E.Mörtsell, Bimetric gravity improves the fit to DESI BAO and eases the Hubble tension. arXiv preprint arXiv:2507.03743 (2025).
+
+ (72) 
+
+A.G Riess et al , A Comprehensive measurement of the local value of the Hubble constant with uncertainty from the Hubble Space Telescope and the SH0ES Team, Astrophys. J. Lett. 934 , L7 (2022).
+
+ (73) 
+
+D. W. Pesce, et al. ,The megamaser cosmology project. XIII. Combined Hubble constant constraints, Astrophy. Jour. Lett. 891 L1 (2020).
+
+ (74) 
+
+P. John Blakeslee et al. , The hubble constant from infrared surface brightness fluctuation distances, Astrophys, Jour. 911 65 (2021).
+
+ ◄ 
+
+ Feeling lucky? 
+
+ Conversion report 
+ Report an issue 
+ View original on arXiv ► 
+
+ Copyright 
+ Privacy Policy 
+
+ Generated by L a T e XML oxide
