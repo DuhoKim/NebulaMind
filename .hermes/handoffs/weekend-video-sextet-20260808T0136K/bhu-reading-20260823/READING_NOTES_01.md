@@ -180,3 +180,45 @@ black-hole-entropy determination.
 authors as "intriguing", and no falsifier is stated. **Audit-worthiness: medium** — the
 quantum-gravity partner to entry 39's Planck-validity concession: where the ECSK bounce hits the
 Planck wall, this is what the wall's other side might look like.
+
+---
+
+# Reading notes, batch 4 (2026-08-23, Tori)
+
+## Entry 44 — Pourhasan, Afshordi & Mann, "Out of the white hole," JCAP 04 (2014) 005
+The universe as a 3-brane emerging from 5D Schwarzschild black-hole formation (DGP braneworld);
+the earlier-found pressure singularity sits inside the white-hole horizon and "need not be real";
+a thermal atmosphere at ~20% of the 5D Planck mass yields scale-invariant perturbations with no
+inflation. **Rare self-honesty: the paper states its own base perturbation model is "already ruled
+out by cosmological observations at >5σ"** (it predicts exact scale-invariance; the observed red
+tilt needs corrections it only sketches). Prospects named: non-gaussianity bounds, GWs, BBN.
+**Class: QUALITATIVE-DIRECTIONAL** — engages data directly, reports its own tension.
+**Audit-worthiness: high** — branch 10's defining construction.
+
+## Entry 45 — Firouzjahi & Talebian, "White hole cosmology and Hawking radiation…," PRD 106, 123505 (2022)
+QFT in the white-hole interior treated as an anisotropic cosmological background; interior and
+exterior observers share a vacuum; Hawking radiation from WH perturbations; non-vacuum initial
+states deviate from Planckian. **Reading revises the triage: this is not a universe-origin claim**
+— it borrows cosmology's language for the WH interior but its result is about radiation spectra.
+Family-adjacent rather than on-claim; flagged for possible demotion to support in a future pass,
+not unseated unilaterally. **Class: CONSISTENCY-ONLY.** **Audit-worthiness: low-medium** for BHU.
+
+## Entry 43 — (…) & Olmo, "Birth of baby universes from gravitational collapse in a modified-gravity scenario," JCAP 06 (2023) 028
+Numerical relativity: perturbed boson stars in Palatini f(R) = R + ξR². In the Einstein frame the
+endpoint is an ordinary black hole; in the f(R) frame the innermost region forms a finite-size,
+exponentially expanding baby universe joined to the parent by a throat, hidden inside a horizon at
+all times. **The corpus's only numerical-relativity demonstration of baby-universe birth** —
+everything else in branches 3/4 is analytic. Conditional on Palatini f(R).
+**Class: CONSISTENCY-ONLY.** **Audit-worthiness: medium-high** — the simulation counterpart the
+analytic line lacks.
+
+## Entry 46 — Fullana i Alfonso & Alfonso-Faus, "Quantization of the universe as a black hole," ApSS 337, 19 (2012)
+Two pages of Bohr-quantization dimensional analysis: R·λ̄ = 2ℓ_p², a "conjugate black hole" of
+10⁻⁶⁵ g, 10¹²² bits, universe-as-quantum-computer. No dynamics, no derivation, no falsifier — a
+large-numbers coincidence note. The gate's "scientific weight may be low, scope fit high" was
+exactly right. **Class: CONSISTENCY-ONLY.** **Audit-worthiness: low.**
+
+## Entry 42 — author resolved from the record
+INSPIRE metadata names the author the harvest never returned: **P. F. González-Díaz** (PLB 261,
+357, 1991). Filled in the entry from the record, not from recall. Text: no documents, paywalled —
+needs-access queue.

@@ -21,12 +21,12 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 5 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-26 CONSISTENCY-ONLY, 14 UNREAD (reading in progress: 37, 39–41, 52–56 read and classed 2026-08-23;
-remaining unread: 31, 36, 38, 42–51, 57, of which 31 and 47–50 are paywalled on every free route
-and 36/57 have no records to fetch — the needs-institutional-access queue. Unread fraction 27%;
-notes per paper in `bhu-reading-20260823/`. Reading has produced the family's third
-CALIBRATED-FALSIFIER, entry 54 — the only live one).
+Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 6 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+29 CONSISTENCY-ONLY, 10 UNREAD (13 entries read and classed 2026-08-23; remaining unread: 31, 36, 38,
+42, 47–51, 57 — of which only 38 and 51 are freely readable, and the other eight are the
+needs-institutional-access queue. Unread fraction 20%; notes per paper in
+`bhu-reading-20260823/`. Reading has produced the family's third CALIBRATED-FALSIFIER, entry 54 —
+the only live one).
 
 ---
 
@@ -76,7 +76,7 @@ strict junction-condition audit would re-derive.
 **46. "Quantization of the universe as a black hole." Astrophys. Space Sci. 337, 19–20 (2012).**
 DOI 10.1007/s10509-011-0909-1 — VERIFIED (Crossref: ApSS, v337, p19-20, 2011-11). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Two pages of Bohr-quantization dimensional analysis — 10¹²² bits, no dynamics, no falsifier. The gate's low-weight/high-fit triage note was exactly right.
 Record: harvest #16; direct universe-as-BH claim — the gate notes scientific weight may be low while scope fit is high.
 
 ## 2. Cosmological natural selection — the calibrated falsifier
@@ -230,16 +230,16 @@ Claim: explicit toy interior in which a baby universe replaces the singularity.
 Testability: **CONSISTENCY-ONLY**. Record: baseline corpus entry, publication newly verified here.
 Audit-worthiness: **low-medium**.
 
-**42. "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362 (1991).**
+**42. P. F. González-Díaz (1991). "Baby universe metric equivalent to an interior black-hole metric." Phys. Lett. B 261, 357–362.**
 DOI 10.1016/0370-2693(91)90440-2 — VERIFIED (Crossref: PLB, v261, p357-362, 1991-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
 Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
-Record: harvest #31; early interior-equivalence result. Authors deliberately omitted — the harvest did not return them and Crossref title/venue is what was verified; add the author line only from the record itself.
+Record: harvest #31; early interior-equivalence result. Author filled 2026-08-23 from INSPIRE metadata (the record, not recall), resolving the earlier deliberate omission. Full text: paywalled, needs-access queue.
 
 **43. "Birth of baby universes from gravitational collapse in a modified-gravity scenario." JCAP 06 (2023) 028.**
 DOI 10.1088/1475-7516/2023/06/028 — VERIFIED (Crossref: JCAP, v2023, 028, 2023-06). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). The corpus's only numerical-relativity demonstration of baby-universe birth: perturbed boson stars in Palatini f(R), throat hidden inside a horizon at all times. Conditional on the modified gravity; no observable.
 Record: harvest #6; direct collapse-to-baby-universe construction in modified gravity.
 
 ## 5. Regular-black-hole interiors (Dymnikova line)
@@ -383,13 +383,13 @@ finding; the big bang as the interior/exterior of a white-hole or 5D collapse.
 **44. R. Pourhasan, N. Afshordi & R. B. Mann (2014). "Out of the white hole: a holographic origin for the Big Bang." JCAP 04 (2014) 005.**
 DOI 10.1088/1475-7516/2014/04/005 — VERIFIED (Crossref: JCAP, v2014, 005, 2014-04). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). 3-brane out of 5D BH formation; thermal atmosphere gives scale-invariance without inflation. Rare self-honesty: states its own base model is 'already ruled out at >5σ' (exact scale-invariance vs the observed red tilt) and names the fix as its immediate challenge.
 Record: harvest #24; the 5D holographic/white-hole origin — the line the caption-era Afshordi identification traced back to.
 
 **45. "White hole cosmology and Hawking radiation from quantum cosmological perturbations." Phys. Rev. D 106, 123505 (2022).**
 DOI 10.1103/PhysRevD.106.123505 — VERIFIED (Crossref: PRD, v106, 2022-12). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). QFT in the white-hole interior; Hawking radiation from cosmological-style perturbations. Reading revises the triage: not a universe-origin claim — family-adjacent; flagged for possible demotion to support, not unseated unilaterally.
 Record: harvest #7; a second published white-hole cosmology route.
 
 ## 11. False-vacuum / laboratory child universes

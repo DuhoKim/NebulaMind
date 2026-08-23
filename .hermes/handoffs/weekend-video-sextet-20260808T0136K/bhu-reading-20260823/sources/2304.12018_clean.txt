@@ -1,0 +1,794 @@
+[2304.12018] Birth of baby universes from gravitational collapse in a modified-gravity scenario 
+
+### Birth of baby universes from gravitational collapse in a modified-gravity scenario
+
+ and Gonzalo J. Olmo
+
+### Abstract
+
+We consider equilibrium models of spherical boson stars in Palatini f ⁡ ( ℛ ) = ℛ + ξ ​ ℛ 2 f(\mathcal{R})=\mathcal{R}+\xi\mathcal{R}^{2} gravity and study their collapse when perturbed. The Einstein-Klein-Gordon system is solved using a recently established correspondence in an Einstein frame representation. We find that, in that frame, the endpoint is a nonrotating black hole surrounded by a quasi-stationary cloud of scalar field. However, the dynamics in the f ⁡ ( ℛ ) f(\mathcal{R}) frame is dramatically different. The innermost region of the collapsing object exhibits the formation of a finite-size, exponentially-expanding baby universe connected with the outer (parent) universe via a minimal area surface (a throat or umbilical cord). Our simulations indicate that this surface is at all times hidden inside a horizon, causally disconnecting the baby universe from observers above the horizon. The implications of our findings in other areas of gravitational physics are also discussed. 
+
+### 1 Introduction
+
+The formation of singularities under reasonable initial conditions in General Relativity (GR) [ 1 , 2 , 3 ] 
+has been the driving force of multiple efforts to understand the nature and implications of these pathologies and also of possible mechanisms that could avoid them. Quantum approaches and phenomenological descriptions [ 7 , 6 , 5 , 8 , 4 ] suggest that our expanding universe could come from a previously contracting phase and that geodesic completeness in black hole geometries could be restored, among other possibilities [ 9 ] , via a bounce in the radial sector, leading generically to the existence of minimal nonzero bounds to the area/volume in which matter fields can be concentrated. In this sense, the classical collapse model of Oppenheimer and Snyder [ 10 ] offers a glimpse on how a nonsingular collapse process could proceed. The innermost region of the collapsing object could be modeled as a contracting cosmology which would bounce at a certain critical density, preventing total collapse. The evolution of the bouncing material should depend crucially on the formation or not of a horizon, because the causal structures in both cases are radically different. Without a horizon, the collapsing material should be ejected back to where it came from, though the energy scales expected in such a quantum gravity process have never been observed. If a horizon forms, the bounce should proceed much more quietly for an external observer, as the interior would be causally disconnected from it. What may happen inside is still a matter of speculation. 
+
+In this work we explore this idea by considering the collapse of boson stars  [ 11 , 12 ] , self-gravitating compact objects that can be constructed by minimally coupling a complex, massive scalar field to gravity and which under certain conditions imitate the phenomenology of black holes
+ [ 13 , 14 ] . Our model considers a modified gravity scenario defined by a quadratic f ⁡ ( ℛ ) f(\mathcal{R}) extension of GR that is known to provide bouncing cosmological solutions [ 15 ] . This theory is also intimately related to effective descriptions of nonsingular models of quantum gravity [ 16 , 17 ] . We find that the collapse generates a horizon but also develops a nonzero minimal area region near the center followed by an inflating bubble that represents the birth of a baby universe. The bubble expands at superluminal speed and the minimal surface is sustained by the energy density of the scalar field, which leaks in from a quasistationary cloud that remains bounded around the black hole. This exterior solution is consistent with previous results in the literature of GR [ 19 , 18 ] and the numerical evolution suggests that the minimal area will decay to zero when the scalar cloud is completely absorbed by the black hole. During the stationary phase, the space-time is qualitatively in agreement with results from the loop quantization of black holes [ 20 ] , heuristic black bounce models [ 21 , 22 ] , and other static solutions [ 23 , 24 ] , though always preserving an Euclidean topology. 
+
+### 2 Framework
+
+Our model is based on a metric-affine (Palatini) formulation of gravity [ 25 , 26 ] ,
+in which both the metric and the affine connection are regarded a priori as independent geometric fields. Except for the Lovelock family of theories [ 27 ] , which includes GR, the metric-affine formulation yields field equations that differ from the more usual metric approach. In the case of f ⁡ ( ℛ ) f(\mathcal{R}) and other theories whose gravity Lagrangian is a functional of the symmetric part of the Ricci tensor [ 28 ] , the resulting equations are of second order, free of ghost instabilities [ 29 ] , and gravitational waves in vacuum propagate at the speed of light. In addition, when minimally coupled to specific matter fields, their equations can be rewritten in the Einstein frame of an auxiliary metric q μ ​ ν q_{\mu\nu} (not necessarily conformal with g μ ​ ν g_{\mu\nu} ) minimally coupled to a nonlinear version of the original matter source [ 30 , 31 ] . This allows to attack the modified gravity problem by solving first the equations of GR minimally coupled to a modified matter source and then transforming back to the original frame variables. The implementation of numerical methods is thus greatly simplified. For example, the action of a BS in Palatini f ⁡ ( ℛ ) f(\mathcal{R}) gravity is 
+
+ S f ⁡ ( ℛ ) = ∫ d 4 ​ r ​ − g ​ f ⁡ ( ℛ ) 2 ​ κ − 1 2 ​ ∫ d 4 ​ r ​ − g ​ ( X − 2 ​ V ​ ( Φ ) ) , S_{f(\mathcal{R})}=\int d^{4}r\sqrt{-g}\frac{f(\mathcal{R})}{2\kappa}-\frac{1}{2}\int d^{4}r\sqrt{-g}\left(X-2V(\Phi)\right)\,, 
+
+ (2.1) 
+
+where the matter sector is represented by a complex scalar field Φ \Phi , with X ≡ g α ​ β ​ ∂ α Φ ∗ ​ ∂ β Φ X\equiv g^{\alpha\beta}\partial_{\alpha}\Phi^{*}\partial_{\beta}\Phi , V ( Φ ) = − μ 2 Φ ∗ Φ / 2 V(\Phi)=-\mu^{2}\Phi^{*}\Phi/2 , μ \mu is the scalar field mass, and κ = 8 ​ π \kappa=8\pi (in G = c = 1 G=c=1 units). Here, we define ℛ = g μ ​ ν ​ R μ ​ ν ​ ( Γ ) \mathcal{R}=g^{\mu\nu}R_{\mu\nu}(\Gamma) , with R μ ​ ν ​ ( Γ ) R_{\mu\nu}(\Gamma) representing the Ricci tensor of a connection Γ α ​ β λ \Gamma^{\lambda}_{\alpha\beta} a priori independent of the metric g μ ​ ν g_{\mu\nu} . Taking for concreteness f ⁡ ( ℛ ) = ℛ + ξ ​ ℛ 2 f(\mathcal{R})=\mathcal{R}+\xi\mathcal{R}^{2} , it can be shown [ 31 ] that the associated Einstein frame theory is 
+
+ S EF = ∫ d 4 ​ x ​ − q ​ R 2 ​ κ − 1 2 ​ ∫ d 4 ​ x ​ − q ​ ( Z − ξ ​ κ ​ Z 2 − 2 ​ V ​ ( Φ ) 1 − 8 ​ ξ ​ κ ​ V ​ ( Φ ) ) , S_{\rm EF}=\int d^{4}x\sqrt{-q}\frac{R}{2\kappa}-\frac{1}{2}\int d^{4}x\sqrt{-q}\left(\frac{Z-\xi\kappa Z^{2}-2V(\Phi)}{1-8\xi\kappa V(\Phi)}\right)\quad, 
+
+ (2.2) 
+
+where the kinetic term Z ≡ q α ​ β ​ ∂ α Φ ∗ ​ ∂ β Φ Z\equiv q^{\alpha\beta}\partial_{\alpha}\Phi^{*}\partial_{\beta}\Phi is now contracted with the (inverse) metric q α ​ β q^{\alpha\beta} , and R R is the Ricci scalar of the metric q α ​ β q_{\alpha\beta} , i.e., R = q α ​ β ​ R α ​ β ​ ( q ) R=q^{\alpha\beta}R_{\alpha\beta}(q) . The field equations also show that Γ α ​ β λ \Gamma^{\lambda}_{\alpha\beta} is the Levi-Civita connection of q μ ​ ν q_{\mu\nu} . We will refer to the representation ( 2.1 ) as the f ⁡ ( ℛ ) f(\mathcal{R}) frame, while ( 2.2 ) will be the Einstein frame. By solving the equations of ( 2.2 ), algebraic relations allow to obtain the solutions of ( 2.1 ). That will be our strategy to solve the numerical problem. In particular, for f ⁡ ( ℛ ) f(\mathcal{R}) theories one finds that 
+
+ q μ ​ ν ≡ f ℛ ​ g μ ​ ν , q_{\mu\nu}\equiv f_{\mathcal{R}}g_{\mu\nu}\ , 
+
+ (2.3) 
+
+where f ℛ ≡ ∂ f / ∂ ℛ f_{\mathcal{R}}\equiv\partial f/\partial\mathcal{R} can be written in terms of the matter source by virtue of the field equations,which yield the algebraic relation 
+
+ ℛ ​ f ℛ − 2 ​ f = κ ​ T . \mathcal{R}f_{\mathcal{R}}-2f=\kappa T\ . 
+
+ (2.4) 
+
+This equation implies that ℛ = ℛ ⁡ ( T ) \mathcal{R}=\mathcal{R}(T) is, in general, a model-dependent nonlinear function of the trace T T of the matter stress-energy tensor. When f ⁡ ( ℛ ) = ℛ f(\mathcal{R})=\mathcal{R} , one recovers the expected linear relation ℛ = − κ ​ T \mathcal{R}=-\kappa T . For the quadratic model to be considered here, f ⁡ ( ℛ ) = ℛ + ξ ​ ℛ 2 f(\mathcal{R})=\mathcal{R}+\xi\mathcal{R}^{2} , one also finds ℛ = − κ ​ T \mathcal{R}=-\kappa T , but in general a nonlinear relation is expected. 
+
+For completeness, we would like to comment a bit further on the implications of Eq.( 2.3 ), as it is important to understand the suitability of considering Palatini f ⁡ ( ℛ ) f(\mathcal{R}) gravity to study the time evolution of stellar models. Using the fact that the conformal factor f ℛ f_{\mathcal{R}} is a function of the matter, via the relation ℛ = ℛ ⁡ ( T ) \mathcal{R}=\mathcal{R}(T) , one finds that the derivatives of g μ ​ ν g_{\mu\nu} depend on derivatives of q μ ​ ν q_{\mu\nu} but also on derivatives of the trace of T T (weighted by derivatives of f ℛ f_{\mathcal{R}} ). Consequently, this peculiarity can lead to interesting phenomenology in high-energy scenarios involving strong matter gradients, though it may also lead to undesired effects when one considers simplified stellar models in which a self-gravitating polytropic fluid is matched to an exterior Schwarzschild solution. Key in this issue is the observation that for an equation of state of the form ρ ⁡ ( P ) ∝ P 1 / γ \rho(P)\propto P^{1/\gamma} , where gamma is the polytropic index, radial derivatives of the energy density ρ \rho can generate divergences near the surface, defined as the region where the pressure P → 0 P\to 0 . A detailed analysis (see [ 32 , 33 , 34 ] but also [ 35 ] ) showed that curvature scalars diverge in that limit for polytropic fluids with 3 / 2 < γ < 2 3/2<\gamma<2 , a range that includes the relevant case γ = 5 / 3 \gamma=5/3 that describes a gas of non-relativistic degenerate fermions. This disturbing effect was used to conclude that Palatini f ⁡ ( ℛ ) f(\mathcal{R}) theories were intrinsically pathological. Yet, the analysis of [ 32 , 33 , 34 ] did not use consistent junction conditions at the boundary layer that separates the interior and exterior configurations, and a more rigorous analysis based on tensorial distributions [ 36 ] shows that divergences only arise if γ > 2 \gamma>2 , shifting the problematic range of γ \gamma beyond the domain of direct physical interest. On the other hand, it has been verified that boson star models in Palatini f ⁡ ( ℛ ) f(\mathcal{R}) are free from any pathologies on their outermost regions [ 42 ] and it is expected that any self-gravitating fundamental field (either boson or fermion) will be free of the pathologies observed in polytropic models. Under this light, we conclude that the peculiarity of the field equations of Palatini theories may require in some situations the use of sources with differentiability profiles smoother than in GR, but that lack of convenience is not a solid argument to rule out such theories. 
+
+As mentioned above, the fact that a large family of metric-affine theories, which include Palatini f ⁡ ( ℛ ) f(\mathcal{R}) , can be mapped into an Einstein frame representation without introducing any new dynamical degrees of freedom puts forward that the modified dynamics of these theories is encoded in nonlinearities of the matter sector (see [ 30 , 31 , 37 ] for details and examples). This explains why the scalar degree of freedom of the scalar-tensor representation of Palatini f ⁡ ( ℛ ) f(\mathcal{R}) theories is non-dynamical. The scalar object ϕ ≡ f ℛ \phi\equiv f_{\mathcal{R}} is a model-dependent algebraic function of the matter fields governed by Eq.( 2.4 ) and, therefore, it is not an arbitrary but a concrete function of T T once the f ⁡ ( ℛ ) f(\mathcal{R}) model is specified. That algebraic relation between frames implies that the wellposedness of the modified gravity equations is guaranteed by the wellposedness of the GR equations (Einstein frame), as long as the matrix that relates q μ ​ ν q_{\mu\nu} and g μ ​ ν g_{\mu\nu} (conformal in the f ⁡ ( ℛ ) f(\mathcal{R}) case) is nondegenerate and sufficiently smooth. This is guaranteed, in particular, for fundamental fields like the complex scalar considered here, which further justifies our numerical strategy to solve the associated GR problem. 
+
+The encoding of the modified dynamics in nonlinearities of the matter sector also has deep implications when these theories are considered from an effective field theory perspective, an aspect that was analyzed in detail in [ 38 ] . For a general matter sector, the effective field theory approach implies that the predictions of Ricci-based gravity theories are degenerate with those of GR, both at the classical and quantum levels. This is a natural consequence of the peculiarities of the Palatini dynamics, which is generated by nonlinearities in the matter sector. In the effective field theory framework, that amounts to a redefinition of the effective coupling parameters because the nonlinear transformation simply modifies the coefficients of terms that were already present in the matter action. Thus, no quantum inconsistencies can be argued to invalidate these theories either [ 39 ] . If specific matter sectors are considered, as is our case, the predictions of a given Palatini theory will be different from those of GR, though the Einstein-frame representation is still very useful to solve the field equations, as emphasized above. 
+
+### 3 Initial data and methodology
+
+To study the dynamics of the collapse of a BS we use the Baumgarte-Shapiro-Shibata-Nakamura (BSSN) formalism of Einstein’s equations [ 40 , 41 ] in the Einstein frame. Details of our specific numerical implementation, including a discussion on the convergence of our code, are provided in the appendix A . The initial data describing spherically-symmetric BS in Palatini gravity were obtained in  [ 42 ] . We focus on an unstable initial configuration that undergoes gravitational collapse, choosing a central scalar field value of Φ 0 = 0.1 \Phi_{0}=0.1 and a coupling parameter ξ = 0.1 \xi=0.1 . Results for stable configurations will be reported elsewhere. To trigger the collapse we add a 3% perturbation to the initial radial distribution of the scalar field. This leads to a slight violation of the constraints. Even though it is larger than the discretization error, it is small enough not to substantially alter the original solution. Since our initial configurations  [ 42 ] are obtained in polar-areal coordinates but the time evolution is done in isotropic coordinates, we perform a coordinate transformation following  [ 43 ] . The polar-areal grid is equidistant with spatial resolution Δ ​ x pa = 0.0025 \Delta x_{\text{pa}}=0.0025 . After the transformation to isotropic coordinates a cubic-spline interpolation is applied to have the initial configuration on a two-patch grid, with a geometrical progression in the interior part up to a given radius and a hyperbolic cosine outside (see  [ 44 ] for details). To properly capture the highly non-linear, strong-field dynamics of the system close to the center of the star (see below) a fairly small minimum resolution is required for the logarithmic grid, namely Δ ​ x iso = 1.25 × 10 − 3 \Delta x_{\text{iso}}=1.25\times 10^{-3} . With this choice, the inner boundary is placed at x min iso = 6.25 × 10 − 4 x_{\text{min}}^{\text{iso}}=6.25\times 10^{-4} and the outer boundary at x max iso = 1500 x_{\text{max}}^{\text{iso}}=1500 , using a grid with 2 × 10 4 2\times 10^{4} zones. A Courant-condition-satisfying time step of Δ ​ t = 0.3 ​ Δ ​ x iso \Delta t=0.3\Delta x_{\text{iso}} is chosen to obtain long-term stable simulations. Those are performed using an updated version of the code reported in  [ 45 ] . 
+
+ Figure 1 : Time evolution of the central values of the scalar field (blue line) and of the lapse function (orange line). The black solid line indicates the instant at which the EH forms ( t ≈ 80 t\approx 80 ) while the black dashed line is the time at which the AH is found ( t ≈ 87 t\approx 87 ). 
+
+### 4 Results
+
+We start analyzing the dynamics of the collapse in the Einstein frame (i.e. the GR problem ( 2.2 )). Figure  1 shows the evolution of the central value of the scalar field Φ 0 \Phi_{0} . This quantity grows up to a maximum to then decay when an apparent horizon (AH) appears. The AH is computed using the AH finder described in  [ 46 ] . The figure also depicts the instant at which the event horizon (EH) forms. The AH, defined as the outermost closed surface on which all outgoing photons normal to it have zero expansion, is a local notion and can be monitored on each time step. On the contrary, the EH is computed a posteriori tracing backwards the last trapped null geodesic [ 47 ] . The AH is first found at time t ≈ 87 t\approx 87 and its mass, in units of M Pl / μ M_{\rm Pl}/\mu , is M AH = 0.61831 M_{\text{AH}}=0.61831 , slightly lower than the Misner-Sharp mass of the initial BS, M MS = 0.61918 M_{\text{MS}}=0.61918 . Figure  1 also displays the time evolution of the central value of the lapse function, α 0 \alpha_{0} , showing the distinctive collapse-of-the-lapse once the horizon forms. The small-amplitude oscillations of Φ 0 \Phi_{0} and α 0 \alpha_{0} during the collapse are induced by the non-linearities of the f ⁡ ( ℛ ) f(\mathcal{R}) matter Lagrangian. In addition, the shift vector at the origin β 0 \beta_{0} (not shown) attains non-zero values. The behavior of both α 0 \alpha_{0} and β 0 \beta_{0} reflect the singularity-avoiding slicing employed in the simulation and the presence of a singularity at the origin.
+Moreover, the metric function q x ​ x q_{xx} grows rapidly near the center when the collapse starts, reaching values that are several orders of magnitude higher than the initial one. On the other hand, q t ​ t q_{tt} , that initially is everywhere positive, decreases
+changing sign and approaching zero from below at the center. Therefore, all metric functions mark the presence of a black hole. In the matter sector, almost all of the scalar field is swallowed by the black hole by the end of the simulation. However, a remnant of scalar field is left outside the AH in the form of a quasi-stationary long-lived cloud  [ 45 , 48 ] . This explains the mass disparity between M AH M_{\text{AH}} and M MS M_{\text{MS}} . We note that this evolution is qualitatively identical to that of a collapsing BS in GR (without the ξ ​ ℛ 2 \xi\mathcal{R}^{2} term in the f ⁡ ( ℛ ) f(\mathcal{R}) functional). The outcome is also a black hole whose parameters are determined by the progenitor BS model. 
+
+ Figure 2 : Relationship between the area of the two-spheres in both frames at five selected times. The background indicates the regions referred to as baby universe and parent universe . 
+
+To analyze the evolution in the f ⁡ ( ℛ ) f(\mathcal{R}) frame, we need to pay special attention to the conformal factor f ℛ f_{\mathcal{R}} that relates the metrics in both frames via Eq. ( 2.3 ). As shown in figure  2 , at the onset and until t ≈ 80 t\approx 80 , the area of the two-spheres of the f ⁡ ( ℛ ) f(\mathcal{R}) frame, A ∼ g θ ​ θ A\sim g_{\theta\theta} , decreases monotonically as the center 1 1 
+ 1 
+
+ In the Einstein frame, the center is where q θ ​ θ = 0 q_{\theta\theta}=0 . of the BS is approached (red curve). As the collapse proceeds and the energy density grows at the center, f ℛ f_{\mathcal{R}} evolves towards zero at a certain distance close to the center of the BS. As a result, a local minimum arises in g θ ​ θ g_{\theta\theta} which is soon followed by a local maximum, whose height grows exponentially fast in time. The presence of a minimal two-sphere in g θ ​ θ g_{\theta\theta} can be interpreted as a cosmic bounce, i.e. as the hypersurface that connects the contracting two-spheres (from the AH inwards) with the expanding two-spheres of the newborn universe. This baby universe is thus growing out of the patch comprised between the minimal two-sphere and the BS center.
+We will refer to the outer universe as parent universe (PU) while the term baby universe (BU) will be used for the inner expanding patch.
+Their corresponding areas are displayed in figure  2 . Following  [ 49 ] the late-time phase of the collapse can thus be interpreted as generating a quasi-permanent inter-universe wormhole, with the bounce representing a kind of umbilical cord connecting the PU and the BU. 
+
+One can verify that radial null geodesics between the minimal and maximal spheres follow divergent trajectories, which refocus as they go from the maximal sphere towards the center. Due to numerical limitations associated with the singularity-avoiding slicing conditions used in the Einstein frame, we can not confirm if they converge at the center. In particular, the region between the center and the maximal sphere becomes unreachable beyond t = 91.8 t=91.8 .
+In the time interval t ∈ [ 84.6 , 91.8 ] t\in[84.6,91.8] the expansion of the BU is exponential and superluminal, always preserving the original ℝ 4 \mathbb{R}^{4} topology. 
+
+ (a) 
+
+ (b) 
+
+ (c) 
+
+ Figure 3 : Embedding diagrams of the late-time spacetime geometry at (a) t = 83.7 t=83.7 , (b) t = 84.6 t=84.6 and (c) t = 85.5 t=85.5 . 
+
+Figure  3 shows embedding diagrams of the late-time spacetime geometry for three illustrative snapshots. They have been computed following the procedure described in  [ 50 , 51 ] . The diagrams display an infinite PU connected to a finite BU through a throat. The bubble observed at the bottom part of the diagrams corresponds to the BU and its size grows exponentially with time.
+The time evolution of the position of the throat, AH, and EH in the f ⁡ ( ℛ ) f(\mathcal{R}) frame is displayed in figure  4 .
+The EH appears at t ≈ 80 t\approx 80 , the throat at t ≈ 84.6 t\approx 84.6 , with a nonzero finite area, and the AH at t ≈ 87 t\approx 87 . Note that the position of the throat initially grows and then decreases towards an asymptotic value of g θ ​ θ ≈ 0.89 g_{\theta\theta}\approx 0.89 . This is a consequence of the slicing employed in the simulation since g θ ​ θ g_{\theta\theta} is calculated in terms of q θ ​ θ q_{\theta\theta} and, as mentioned before, the area of the two-sphere does not cover the whole domain. In practice, g θ ​ θ g_{\theta\theta} approaches the smallest value of q θ ​ θ q_{\theta\theta} available in the simulation. Since the area of the minimal two-sphere depends directly on the energy density of the scalar field, the slow absorption of the external scalar cloud indicates that it will eventually shrink to zero, closing the umbilical chord connecting the two universes.
+The evolution reveals that the throat is always hidden inside the EH, preventing light rays emitted at the BU from escaping to the exterior of the PU. Accordingly, distant external observers will not be able to tell if the outcome of the collapse is an ordinary black hole or a black hole with an inner expanding universe. 
+
+ Figure 4 : Time evolution of the location of the throat, AH, and EH in the f ⁡ ( ℛ ) f(\mathcal{R}) frame using g θ ​ θ g_{\theta\theta} as pseudocoordinate. 
+
+### 5 Final remarks
+
+Our analysis of the gravitational collapse of boson stars in a metric-affine modified gravity scenario indicates that new dynamics able to trigger dramatic deformations of the space-time structure may be excited at very high energy densities. We have seen that a small patch of space can inflate giving rise to an exponentially growing baby universe. In our model, this occurs in parallel with the development of an apparent horizon, making the internal process analogous to a cosmic bounce and preventing its observation by external observers. Our results are robust and persist for all values of the gravitational coupling parameter ξ \xi and for other scalar field central amplitudes Φ 0 \Phi_{0} as long as they are in the unstable branch and the perturbation is high enough to excite the gravitational collapse.
+The fact that metric-affine theories lead to cosmic bounces quite generically suggests that other forms of matter, such as unstable neutron stars, and other gravity theories could lead to outcomes similar to those presented here 2 2 
+ 2 
+
+ Cosmic bounces may also occur in theories in which the relation between the metrics g μ ​ ν g_{\mu\nu} and q μ ​ ν q_{\mu\nu} is not conformal [ 58 , 59 ] , which lie beyond the f ⁡ ( ℛ ) f(\mathcal{R}) family. . In this sense, we note that the density-dependent modified dynamics of Palatini theories is also present in some instances of scalar-tensor theories of the Horndeski type (compare [ 52 ] and [ 53 ] ). This suggests that the phenomenology that we find here in the Palatini f ⁡ ( ℛ ) f(\mathcal{R}) framework could also be present in other relevant gravity theories, which deserves further independent analysis. 
+
+We have seen that the throat area depends on the infalling energy density and shrinks as the external quasi-stationary scalar cloud is absorbed, suggesting that it will eventually close. However, numerical limitations challenge the analysis of this late-time behavior. The case of a stationary spinning black hole with scalar hair in equilibrium, formed through superradiance  [ 54 , 55 ] or mergers of bosonic stars  [ 56 ] , could help stabilize the area of the throat, shedding light in this direction. On the other hand, in the absence of a horizon, a wormhole-like structure could be formed instead.
+These are aspects to be explored in the future. 
+
+Further research on the properties of the BU is necessary to better understand if the inflating phase could be compatible with the mechanism that supposedly contributed to the homogeneity of our own universe in its earliest stages. In this sense, we note that the period in which the scalar energy density builds up at the center of the star seems to provide, within a canonical 4-dimensional picture [ 57 ] , natural conditions to homogenize the expanding matter. Gravitational collapse in asymmetric bouncing models, such as those emerging from loop quantum gravity [ 17 ] , are also worth exploring, as they could alter the post-bounce dynamics potentially leading to black hole to white hole transitions [ 20 ] or black bounce solutions [ 20 , 21 , 22 ] . 
+
+### Acknowledgments
+
+AMF is supported by the Spanish Ministerio de Ciencia e Innovación with the PhD fellowship PRE2018-083802. NSG is supported by the Spanish Ministerio de Universidades, through a María Zambrano grant (ZA21-031) with reference UP2021-044, funded within the European Union-Next Generation EU.
+This work is also supported by the Spanish Agencia Estatal de Investigación (grants PID2020-116567GB-C21 and
+PID2021-125485NB-C21 funded by MCIN/AEI/10.13039/501100011033 and ERDF A way of making Europe) and by the project PROMETEO/2020/079 (Generalitat Valenciana). Further support is provided by the EU’s Horizon 2020 research and innovation (RISE) programme H2020-MSCA-RISE-2017 (FunFiCO-777740) and by the European Horizon Europe staff exchange (SE) programme HORIZON-MSCA-2021-SE-01 (NewFunFiCO-101086251). 
+
+### Appendix A Note on the numerical framework
+
+The BSSN evolution equations are solved numerically using a second-order, partially-implicit Runge-Kutta scheme [ 60 , 61 ] . This scheme can handle in a satisfactory way the singular terms that appear in the evolution equations due to our choice of slicing and coordinates. Explicit details about our numerical implementation have been reported in e.g.  [ 62 ] . In the 3+1 BSSN formalism  [ 40 , 41 ] space-time is foliated by a family of spatial hypersurfaces Σ t \Sigma_{t} labeled by its time coordinate t t . We denote the (future-oriented) unit normal timelike vector of each hypersurface by n α = ( 1 / α , − β i / α ) n^{\alpha}=(1/\alpha,-\beta^{i}/\alpha) , and its dual by n α = ( − α , 0 , 0 , 0 ) n_{\alpha}=(-\alpha,0,0,0) , where α \alpha is the lapse function and β i \beta^{i} is the shift vector. Since the system we study has spherical symmetry, the metric in the Einstein frame reads 
+
+ d ​ s EF 2 = \displaystyle ds_{\text{EF}}^{2}= 
+ − ( α 2 − β x ​ β x ) ​ d ​ t 2 + 2 ​ β x ​ d ​ x ​ d ​ t \displaystyle-(\alpha^{2}-\beta^{x}\beta_{x})dt^{2}+2\beta_{x}dxdt 
+
+ (A.1) 
+
+ + e 4 ​ χ ​ ( t , x ) ​ ( a ⁡ ( t , x ) ​ d ​ x 2 + x 2 ​ b ​ ( t , x ) ​ d ​ Ω 2 ) , \displaystyle+e^{4\chi(t,x)}\left(a(t,x)dx^{2}+x^{2}b(t,x)d\Omega^{2}\right)\,\,, 
+
+where x x is a radial coordinate, d ​ Ω 2 = d ​ θ 2 + sin 2 ⁡ θ ​ d ​ φ 2 d\Omega^{2}=d\theta^{2}+\sin^{2}\theta d\varphi^{2} , a ⁡ ( t , x ) a(t,x) and b ⁡ ( t , x ) b(t,x) are the conformal metric components, and χ ⁡ ( t , x ) \chi(t,x) is a conformal factor defined by 
+
+ χ = 1 12 ​ ln ⁡ ( γ / γ ^ ) . \chi=\frac{1}{12}\ln(\gamma/\hat{\gamma})\,\,. 
+
+ (A.2) 
+
+Here, γ \gamma is the determinant of the spacelike metric induced on every hypersuface Σ t \Sigma_{t} , 
+
+ γ α ​ β = q α ​ β + n α ​ n β , \gamma_{\alpha\beta}=q_{\alpha\beta}+n_{\alpha}n_{\beta}\,\,, 
+
+ (A.3) 
+
+and γ ^ \hat{\gamma} is the determinant of the conformal metric. The latter relates to the full 3-metric by 
+
+ γ ^ i ​ j = e − 4 ​ χ ​ γ i ​ j . \hat{\gamma}_{ij}=e^{-4\chi}\gamma_{ij}\,\,. 
+
+ (A.4) 
+
+Initially, the determinant of the conformal metric fulfills the condition that it equals the determinant of the flat metric in spherical coordinates, γ ^ ​ ( t = 0 ) = x 4 ​ sin 2 ⁡ θ \hat{\gamma}(t=0)=x^{4}\sin^{2}\theta . Moreover, we impose the so-called “Lagrangian” condition, ∂ t γ ^ = 0 \partial_{t}\hat{\gamma}=0 . 
+
+In the BSSN formalism the evolved fields are the conformally related 3-dimensional metric components a a and b b , the conformal exponent χ \chi , the trace of the extrinsic curvature K K , the independent component of the traceless part of the conformal extrinsic curvature, A a ≡ A x x A_{a}\equiv A^{x}_{\,x} , A b ≡ A θ θ = A φ φ A_{b}\equiv A^{\theta}_{\,\theta}=A^{\varphi}_{\,\varphi} , and the radial component of the conformal connection functions Δ ^ x ≡ γ ^ m ​ n ​ ( Γ ^ m ​ n x − Γ ^ m ​ n x ​ ( t = 0 ) ) \hat{\Delta}^{x}\equiv\hat{\gamma}^{mn}(\hat{\Gamma}^{x}_{mn}-\hat{\Gamma}^{x}_{mn}(t=0)) [ 45 , 63 ] . Explicitly, the BSSN evolution system reads 
+
+ ∂ t a = β x ​ ∂ x a + 2 ​ a ​ ∂ x β x − 2 3 ​ a ​ ∇ ^ x ​ β x − 2 ​ α ​ a ​ A a , \displaystyle\partial_{t}a=\beta^{x}\partial_{x}a+2a\partial_{x}\beta^{x}-\frac{2}{3}a\hat{\nabla}_{x}\beta^{x}-2\alpha aA_{a}\quad, 
+
+ (A.5) 
+
+ ∂ t b = β x ​ ∂ x b + 2 ​ b ​ β x x − 2 3 ​ b ​ ∇ ^ x ​ β x − 2 ​ α ​ b ​ A b , \displaystyle\partial_{t}b=\beta^{x}\partial_{x}b+2b\frac{\beta^{x}}{x}-\frac{2}{3}b\hat{\nabla}_{x}\beta^{x}-2\alpha bA_{b}\quad, 
+
+ (A.6) 
+
+ ∂ t χ = β x ​ ∂ x χ + 1 6 ​ ( α ​ K − ∇ ^ x ​ β x ) , \displaystyle\partial_{t}\chi=\beta^{x}\partial_{x}\chi+\frac{1}{6}\left(\alpha K-\hat{\nabla}_{x}\beta^{x}\right)\quad, 
+
+ (A.7) 
+
+ ∂ t K = β x ​ ∂ x K − ∇ 2 α + α ⁡ ( A a 2 + 2 ​ A b 2 + 1 3 ​ K 2 ) + 4 ​ π ​ α ​ ( ρ + S a + 2 ​ S b ) , \displaystyle\partial_{t}K=\beta^{x}\partial_{x}K-\nabla^{2}\alpha+\alpha(A_{a}^{2}+2A_{b}^{2}+\frac{1}{3}K^{2})+4\pi\alpha\left(\rho+S_{a}+2S_{b}\right)\quad, 
+
+ (A.8) 
+
+ ∂ t A a = β x ​ ∂ x A a − ( ∇ x ∇ x ​ α − 1 3 ​ ∇ 2 α ) + α ⁡ ( R x x − 1 3 ​ R ) + a ​ K ​ A a − 16 ​ π ​ α ​ ( S a − S b ) , \displaystyle\partial_{t}A_{a}=\beta^{x}\partial_{x}A_{a}-\left(\nabla^{x}\nabla_{x}\alpha-\frac{1}{3}\nabla^{2}\alpha\right)+\alpha\left(R^{x}_{x}-\frac{1}{3}R\right)+aKA_{a}-16\pi\alpha(S_{a}-S_{b})\quad, 
+
+ (A.9) 
+
+ ∂ t Δ ^ x = \displaystyle\partial_{t}\hat{\Delta}^{x}= 
+ β x ​ ∂ x Δ ^ x − Δ ^ x ​ ∂ x β x + 1 a ​ ∂ x 2 β x + 2 b ​ ∂ x ( β x x ) + 1 3 ​ ( 1 a ​ ∂ x ( ∇ ^ x ​ β x ) + 2 ​ Δ ^ x ​ ∇ ^ x ​ β x ) \displaystyle\beta^{x}\partial_{x}\hat{\Delta}^{x}-\hat{\Delta}^{x}\partial_{x}\beta^{x}+\frac{1}{a}\partial^{2}_{x}\beta^{x}+\frac{2}{b}\partial_{x}\left(\frac{\beta^{x}}{x}\right)+\frac{1}{3}\left(\frac{1}{a}\partial_{x}(\hat{\nabla}_{x}\beta^{x})+2\hat{\Delta}^{x}\hat{\nabla}_{x}\beta^{x}\right) 
+
+ (A.10) 
+
+ − 2 a ​ ( A a ​ ∂ x α + α ​ ∂ x A z ) + 2 ​ α ​ ( A a ​ Δ ^ x − 2 x ​ b ​ ( A a − A b ) ) \displaystyle-\frac{2}{a}\left(A_{a}\partial_{x}\alpha+\alpha\partial_{x}A_{z}\right)+2\alpha\left(A_{a}\hat{\Delta}^{x}-\frac{2}{xb}(A_{a}-A_{b})\right) 
+
+ + 2 ​ α a ​ [ ∂ x A a − 2 3 ​ ∂ x K + 6 ​ A a ​ ∂ x χ + ( A a − A b ) ​ ( 2 x + ∂ x b b ) − 8 ​ π ​ j x ] . \displaystyle+\frac{2\alpha}{a}\left[\partial_{x}A_{a}-\frac{2}{3}\partial_{x}K+6A_{a}\partial_{x}\chi\right.\left.+(A_{a}-A_{b})\left(\frac{2}{x}+\frac{\partial_{x}b}{b}\right)-8\pi j_{x}\right]\quad. 
+
+When performing the time evolution of the above functions we have to specify a stress-energy tensor and its 3+1 projections. The case we are concerned with is a boson star in Palatini f ⁡ ( ℛ ) = ℛ + ξ ​ ℛ 2 f(\mathcal{R})=\mathcal{R}+\xi\mathcal{R}^{2} gravity. Therefore, following [ 42 ] we write the corresponding stress-energy tensor in the Einstein frame as 
+
+ T μ ​ ν = \displaystyle T_{\mu\nu}= 
+ − 2 − q ​ ∂ ( − q ​ K ​ ( Z , Φ ) ) ∂ q μ ​ ν \displaystyle-\frac{2}{\sqrt{-q}}\frac{\partial(\sqrt{-q}K(Z,\Phi))}{\partial q^{\mu\nu}} 
+
+ (A.11) 
+
+ = \displaystyle= 
+ 1 2 ​ ( 1 + 4 ​ ξ ​ κ ​ μ 2 ​ | Φ | 2 ) [ ∂ μ Φ ∗ ∂ ν Φ + ∂ ν Φ ∗ ∂ μ Φ − q μ ​ ν ∂ α Φ ∗ ∂ α Φ − μ 2 q μ ​ ν | Φ | 2 \displaystyle\frac{1}{2(1+4\xi\kappa\mu^{2}|\Phi|^{2})}\left[\partial_{\mu}\Phi^{*}\partial_{\nu}\Phi+\partial_{\nu}\Phi^{*}\partial_{\mu}\Phi-q_{\mu\nu}\partial^{\alpha}\Phi^{*}\partial_{\alpha}\Phi-\mu^{2}q_{\mu\nu}|\Phi|^{2}\right. 
+
+ − 2 ξ κ ∂ α Φ ∗ ∂ α ( ∂ μ Φ ∗ ∂ ν Φ + ∂ ν Φ ∗ ∂ μ Φ ) + ξ κ q μ ​ ν ∂ α Φ ∗ ∂ α Φ ∂ β Φ ∗ ∂ β Φ ] . \displaystyle\left.-2\xi\kappa\partial^{\alpha}\Phi^{*}\partial_{\alpha}\left(\partial_{\mu}\Phi^{*}\partial_{\nu}\Phi+\partial_{\nu}\Phi^{*}\partial_{\mu}\Phi\right)+\xi\kappa q_{\mu\nu}\partial^{\alpha}\Phi^{*}\partial_{\alpha}\Phi\partial^{\beta}\Phi^{*}\partial_{\beta}\Phi\right]\quad. 
+
+The projections are performed using the unit normal vector n α n^{\alpha} and the induced metric γ α ​ β \gamma^{\alpha\beta} . The matter source terms appearing in the BBSN evolution equations are: 
+
+ ρ = \displaystyle\rho= 
+ n μ ​ n ν ​ T μ ​ ν \displaystyle n^{\mu}n^{\nu}T_{\mu\nu} 
+
+ (A.12) 
+
+ = \displaystyle= 
+ 1 2 ​ ( 1 + 4 ​ κ ​ ξ ​ μ 2 ​ Φ 2 ) ​ [ Π 2 + Ψ 2 a ​ e 4 ​ χ + μ 2 ​ Φ 2 − κ ​ ξ ​ ( Ψ 2 a ​ e 4 ​ χ ) 2 + 3 ​ κ ​ ξ ​ Π 4 − 2 ​ κ ​ ξ ​ Ψ 2 a ​ e 4 ​ χ ​ Π 2 ] , \displaystyle\frac{1}{2(1+4\kappa\xi\mu^{2}\Phi^{2})}\left[\Pi^{2}+\frac{\Psi^{2}}{ae^{4\chi}}+\mu^{2}\Phi^{2}-\kappa\xi\left(\frac{\Psi^{2}}{ae^{4\chi}}\right)^{2}+3\kappa\xi\Pi^{4}-2\kappa\xi\frac{\Psi^{2}}{ae^{4\chi}}\Pi^{2}\right]\quad, 
+
+ S a = \displaystyle S_{a}= 
+ γ x ​ μ ​ T x ​ μ \displaystyle\gamma^{x\mu}T_{x\mu} 
+
+ (A.13) 
+
+ = \displaystyle= 
+ 1 2 ​ ( 1 + 4 ​ κ ​ ξ ​ μ 2 ​ Φ 2 ) ​ [ Π 2 + Ψ 2 a ​ e 4 ​ χ − μ 2 ​ Φ 2 − 3 ​ κ ​ ξ ​ ( Ψ 2 a ​ e 4 ​ χ ) 2 + κ ​ ξ ​ Π 4 + 2 ​ κ ​ ξ ​ Ψ 2 a ​ e 4 ​ χ ​ Π 2 ] , \displaystyle\frac{1}{2(1+4\kappa\xi\mu^{2}\Phi^{2})}\left[\Pi^{2}+\frac{\Psi^{2}}{ae^{4\chi}}-\mu^{2}\Phi^{2}-3\kappa\xi\left(\frac{\Psi^{2}}{ae^{4\chi}}\right)^{2}+\kappa\xi\Pi^{4}+2\kappa\xi\frac{\Psi^{2}}{ae^{4\chi}}\Pi^{2}\right]\quad, 
+
+ S b = \displaystyle S_{b}= 
+ γ θ ​ μ ​ T θ ​ μ \displaystyle\gamma^{\theta\mu}T_{\theta\mu} 
+
+ (A.14) 
+
+ = \displaystyle= 
+ 1 2 ​ ( 1 + 4 ​ κ ​ ξ ​ μ 2 ​ Φ 2 ) ​ [ Π 2 − Ψ 2 a ​ e 4 ​ χ − μ 2 ​ Φ 2 + κ ​ ξ ​ ( Ψ 2 a ​ e 4 ​ χ ) 2 + κ ​ ξ ​ Π 4 − 2 ​ κ ​ ξ ​ Ψ 2 a ​ e 4 ​ χ ​ Π 2 ] , \displaystyle\frac{1}{2(1+4\kappa\xi\mu^{2}\Phi^{2})}\left[\Pi^{2}-\frac{\Psi^{2}}{ae^{4\chi}}-\mu^{2}\Phi^{2}+\kappa\xi\left(\frac{\Psi^{2}}{ae^{4\chi}}\right)^{2}+\kappa\xi\Pi^{4}-2\kappa\xi\frac{\Psi^{2}}{ae^{4\chi}}\Pi^{2}\right]\quad, 
+
+ j x = \displaystyle j_{x}= 
+ − γ x μ ​ n ν ​ T μ ​ ν \displaystyle-\gamma_{x}^{\mu}n^{\nu}T_{\mu\nu} 
+
+ (A.15) 
+
+ = \displaystyle= 
+ 1 2 ​ ( 1 + 4 ​ κ ​ ξ ​ μ 2 ​ Φ 2 ) ​ [ 1 a ​ e 4 ​ χ ​ ( Π ​ Ψ ∗ + Π ∗ ​ Ψ ) + 2 ​ κ ​ ξ ​ Ψ 2 a 2 ​ e 8 ​ χ ​ ( Π ​ Ψ ∗ + Π ∗ ​ Ψ ) − 2 ​ κ ​ ξ ​ Π 2 a ​ e 4 ​ χ ​ ( Π ​ Ψ ∗ + Π ∗ ​ Ψ ) ] . \displaystyle\frac{1}{2(1+4\kappa\xi\mu^{2}\Phi^{2})}\left[\frac{1}{ae^{4\chi}}\left(\Pi\Psi^{*}+\Pi^{*}\Psi\right)+\frac{2\kappa\xi\Psi^{2}}{a^{2}e^{8\chi}}\left(\Pi\Psi^{*}+\Pi^{*}\Psi\right)-\frac{2\kappa\xi\Pi^{2}}{ae^{4\chi}}\left(\Pi\Psi^{*}+\Pi^{*}\Psi\right)\right]\quad. 
+
+Correspondingly, the equations of motion for the scalar field are obtained by reformulating the Klein-Gordon equation in terms of the following two first-order variables 
+
+ Ψ \displaystyle\Psi 
+ : ⁣ = \displaystyle:= 
+ ∂ x Φ , \displaystyle\partial_{x}\Phi\,\,, 
+
+ (A.16) 
+
+ Π \displaystyle\Pi 
+ : ⁣ = \displaystyle:= 
+ n α ​ ∂ α Φ = 1 α ​ ( ∂ t Φ − β x ​ Ψ ) . \displaystyle n^{\alpha}\partial_{\alpha}\Phi=\frac{1}{\alpha}\left(\partial_{t}\Phi-\beta^{x}\Psi\right)\,\,. 
+
+ (A.17) 
+
+In this way the equations of motion for the scalar field read 
+
+ ∂ t Φ \displaystyle\partial_{t}\Phi 
+ = \displaystyle= 
+ β x ​ ∂ x Φ + α ​ Π , \displaystyle\beta^{x}\partial_{x}\Phi+\alpha\Pi\,\,, 
+
+ (A.18) 
+
+ ∂ t Ψ \displaystyle\partial_{t}\Psi 
+ = \displaystyle= 
+ β x ​ ∂ x Ψ + Ψ ​ ∂ x β x + ∂ x ( α ​ Π ) , \displaystyle\beta^{x}\partial_{x}\Psi+\Psi\partial_{x}\beta^{x}+\partial_{x}\left(\alpha\Pi\right)\,\,, 
+
+ (A.19) 
+
+ ∂ t Π \displaystyle\partial_{t}\Pi 
+ = \displaystyle= 
+ 1 − 2 ​ κ ​ ξ ​ Z + κ ​ ξ ​ | Π | 2 1 − 2 ​ κ ​ ξ ​ Z + 2 ​ κ ​ ξ ​ | Π | 2 ​ { Ξ − κ ​ ξ ​ Π 2 ​ Ξ ∗ 1 − 2 ​ κ ​ ξ ​ Z + κ ​ ξ ​ | Π | 2 } , \displaystyle\frac{1-2\kappa\xi Z+\kappa\xi|\Pi|^{2}}{1-2\kappa\xi Z+2\kappa\xi|\Pi|^{2}}\left\{\Xi-\frac{\kappa\xi\Pi^{2}\Xi^{*}}{1-2\kappa\xi Z+\kappa\xi|\Pi|^{2}}\right\}\,\,, 
+
+where we have introduced the new variable Ξ \Xi in order to simplify the notation, defined as 
+
+ Ξ := \displaystyle\Xi:= 
+ β x ​ ∂ x Π + Ψ a ​ e 4 ​ χ ​ ∂ x α + α a ​ e 4 ​ χ ​ [ ∂ x Ψ + Ψ ⁡ ( 2 x − ∂ x a 2 ​ a + ∂ r b b + 2 ​ ∂ x χ ) ] + α ​ K ​ Π \displaystyle\beta^{x}\partial_{x}\Pi+\frac{\Psi}{ae^{4\chi}}\partial_{x}\alpha+\frac{\alpha}{ae^{4\chi}}\left[\partial_{x}\Psi+\Psi\left(\frac{2}{x}-\frac{\partial_{x}a}{2a}+\frac{\partial_{r}b}{b}+2\partial_{x}\chi\right)\right]+\alpha K\Pi 
+
+ − α ​ μ 2 ​ Φ 1 − 2 ​ κ ​ ξ ​ Z + α ⁡ ( Z − κ ​ ξ ​ Z 2 + μ 2 ​ | Φ | 2 ) ​ 4 ​ ξ ​ κ ​ Φ ​ μ 2 ( 1 + 4 ​ κ ​ ξ ​ μ 2 ​ | Φ | 2 ) ​ ( 1 − 2 ​ κ ​ ξ ​ Z ) \displaystyle-\frac{\alpha\mu^{2}\Phi}{1-2\kappa\xi Z}+\frac{\alpha\left(Z-\kappa\xi Z^{2}+\mu^{2}|\Phi|^{2}\right)4\xi\kappa\Phi\mu^{2}}{\left(1+4\kappa\xi\mu^{2}|\Phi|^{2}\right)\left(1-2\kappa\xi Z\right)} 
+
+ − 4 ​ κ ​ ξ ​ μ 2 ​ α 1 + 4 ​ κ ​ ξ ​ μ 2 ​ | Φ | 2 ​ [ − Π α ​ ( ∂ t Φ ∗ ​ Φ + Φ ∗ ​ ∂ t Φ ) + ( Ψ e 4 ​ χ ​ a + Π ​ β x α ) ​ ( ∂ x Φ ∗ ​ Φ + Φ ∗ ​ ∂ x Φ ) ] \displaystyle-\frac{4\kappa\xi\mu^{2}\alpha}{1+4\kappa\xi\mu^{2}|\Phi|^{2}}\left[-\frac{\Pi}{\alpha}\left(\partial_{t}\Phi^{*}\Phi+\Phi^{*}\partial_{t}\Phi\right)+\left(\frac{\Psi}{e^{4\chi}a}+\frac{\Pi\beta^{x}}{\alpha}\right)\left(\partial_{x}\Phi^{*}\Phi+\Phi^{*}\partial_{x}\Phi\right)\right] 
+
+ − α ​ κ ​ ξ 1 − 2 ​ κ ​ ξ ​ Z [ − ( ∂ t Ψ ∗ ​ Ψ + Ψ ∗ ​ ∂ t Ψ ) ​ e 4 ​ χ ​ a − | Ψ | 2 ​ ( 4 ​ e 4 ​ χ ​ a ​ ∂ t χ + e 4 ​ χ ​ ∂ t a ) e 8 ​ χ ​ a 2 Π α \displaystyle-\frac{\alpha\kappa\xi}{1-2\kappa\xi Z}\left[-\frac{\left(\partial_{t}\Psi^{*}\Psi+\Psi^{*}\partial_{t}\Psi\right)e^{4\chi}a-|\Psi|^{2}\left(4e^{4\chi}a\partial_{t}\chi+e^{4\chi}\partial_{t}a\right)}{e^{8\chi}a^{2}}\frac{\Pi}{\alpha}\right. 
+
+ − ( ∂ x Ψ ∗ ​ Ψ + Ψ ∗ ​ ∂ x Ψ ) ​ e 4 ​ χ ​ a − | Ψ | 2 ​ ( 4 ​ e 4 ​ χ ​ a ​ ∂ x χ + e 4 ​ χ ​ ∂ x a ) e 8 ​ χ ​ a 2 ​ ( Ψ e 4 ​ χ ​ a + Π ​ β x α ) \displaystyle\left.-\frac{\left(\partial_{x}\Psi^{*}\Psi+\Psi^{*}\partial_{x}\Psi\right)e^{4\chi}a-|\Psi|^{2}\left(4e^{4\chi}a\partial_{x}\chi+e^{4\chi}\partial_{x}a\right)}{e^{8\chi}a^{2}}\left(\frac{\Psi}{e^{4\chi}a}+\frac{\Pi\beta^{x}}{\alpha}\right)\right. 
+
+ − ( Ψ e 4 ​ χ ​ a + Π ​ β x α ) ( ∂ x Π ∗ Π + Π ∗ ∂ x Π ) ] . \displaystyle\left.-\left(\frac{\Psi}{e^{4\chi}a}+\frac{\Pi\beta^{x}}{\alpha}\right)\left(\partial_{x}\Pi^{*}\Pi+\Pi^{*}\partial_{x}\Pi\right)\right]\,. 
+
+ (A.21) 
+
+Within the BSSN formalism we have gauge freedom to choose the “kinematical variables”, i.e. the lapse function and the shift vector. As customary in numerical relativity, we choose the so-called “non-advective 1+log” condition for the lapse function [ 64 ] , and a variation of the “Gamma-driver” condition for the shift vector [ 65 , 66 ] , 
+
+ ∂ t α \displaystyle\partial_{t}\alpha 
+ = − 2 ​ α ​ K , \displaystyle=-2\alpha K\quad, 
+
+ (A.22) 
+
+ ∂ t B x \displaystyle\partial_{t}B^{x} 
+ = 3 4 ​ Δ ^ x , \displaystyle=\frac{3}{4}\hat{\Delta}^{x}\quad, 
+
+ ∂ t β x \displaystyle\partial_{t}\beta^{x} 
+ = B x . \displaystyle=B^{x}\,\,. 
+
+We also provide the explicit form of the conformal factor f ℛ f_{\mathcal{R}} . From the Einstein field equations of the Palatini quadratic f ⁡ ( ℛ ) f(\mathcal{R}) model it can be shown that ℛ = − κ ​ T \mathcal{R}=-\kappa T . Therefore, 
+
+ f ℛ = 1 + 2 ​ ξ ​ κ ​ ℛ = 1 − 8 ​ κ ​ ξ ​ V 1 − 2 ​ κ ​ ξ ​ Z . f_{\mathcal{R}}=1+2\xi\kappa\mathcal{R}=\frac{1-8\kappa\xi V}{1-2\kappa\xi Z}\,\,. 
+
+ (A.23) 
+
+ Figure 5 : Time evolution of the total mass for different isotropic grid resolutions with fixed polar-areal grid resolution Δ ​ x pa = 0.0025 \Delta x_{\text{pa}}=0.0025 . The finest isotropic grid (black curve) is the one used in the simulations discussed in the main text. 
+
+In addition to the evolution equations, the Einstein-Klein-Gordon system also contains the Hamiltonian and momentum constraint equations.
+These equations read 
+
+ ℋ ≡ R − ( A a 2 + 2 ​ A b 2 ) + 2 3 ​ K 2 − 2 ​ κ ​ ρ = 0 , \mathcal{H}\equiv R-(A_{a}^{2}+2A_{b}^{2})+\frac{2}{3}K^{2}-2\kappa\rho=0\quad, 
+
+ (A.24) 
+
+ ℳ x ≡ \displaystyle\mathcal{M}_{x}\equiv 
+ ∂ x A a − 2 3 ​ ∂ x K + 6 ​ A a ​ ∂ x χ + ( A a − A b ) ​ ( 2 x + ∂ x b b ) − κ ​ j x = 0 . \displaystyle\partial_{x}A_{a}-\frac{2}{3}\partial_{x}K+6A_{a}\partial_{x}\chi+(A_{a}-A_{b})\left(\frac{2}{x}+\frac{\partial_{x}b}{b}\right)-\kappa j_{x}=0\quad. 
+
+ (A.25) 
+
+ Figure 6 : Comparison of the time evolution of the difference between total masses calculated for different isotropic grid resolutions with fixed polar-areal grid resolution Δ ​ x pa = 0.0025 \Delta x_{\text{pa}}=0.0025 . 
+
+ Figure 7 : Time evolution of the total mass of a stable boson star model. Top panel: Difference of the instantaneous total mass and its initial value for three different evolution grid resolutions Δ ​ x iso \Delta x_{\text{iso}} . Bottom panel: The quantities of the top panel are rescaled to show third-order convergence. 
+
+The total mass of the spacetime can be calculated by integrating the stress-energy tensor at each spatial hypersurface Σ \Sigma [ 67 ] 
+
+ M = ∫ Σ ( 2 ​ T t t − T μ μ ) ​ α ​ γ ​ 𝑑 r ​ 𝑑 θ ​ 𝑑 φ . M=\int_{\Sigma}\left(2T_{t}^{t}-T_{\mu}^{\mu}\right)\alpha\sqrt{\gamma}\,dr\,d\theta\,d\varphi\ . 
+
+ (A.26) 
+
+Figure  5 shows the time evolution of the total mass for several isotropic grid resolutions. In order to check the convergence of the results, masses calculated from different grid resolutions are compared according to 
+
+ M u − v = | M ⁡ ( Δ ​ x iso = u ) − M ⁡ ( Δ ​ x iso = v ) | . M_{u-v}=|M(\Delta x_{\text{iso}}=u)-M(\Delta x_{\text{iso}}=v)|\quad. 
+
+ (A.27) 
+
+Setting Δ ​ x pa = 0.0025 \Delta x_{\text{pa}}=0.0025 (the spatial resolution needed in the polar-areal grid used to compute the initial data) and choosing several resolutions for the isotropic grid, namely from Δ ​ x iso = 0.2 \Delta x_{\text{iso}}=0.2 to Δ ​ x iso = 0.04 \Delta x_{\text{iso}}=0.04 , we find second-order convergence during the early contraction phase and third-order convergence during the collapse and black hole formation phase. This can be inferred by the multiplicative factors employed in the first three curves in the legend of the top panel of Figure  6 . However, increasing the resolution of the isotropic grid from Δ ​ x iso = 0.04 \Delta x_{\text{iso}}=0.04 to Δ ​ x iso = 0.02 \Delta x_{\text{iso}}=0.02 , the convergence order drops to ∼ 1.8 \sim 1.8 in the early phase. In addition, for even higher resolutions of the isotropic grid, the accuracy of the evolution does not improve (see bottom panel of Figure  6 ). In this analysis we are only considering the numerical error coming from the finite-differencing of the differential equations. This dominates the error if we use resolutions coarser than that used to compute the initial data. However, we note that the change of coordinates from polar-areal to isotropic (see details on the specific transformation in  [ 45 ] ) also introduces an additional source of error, that is reflected in the loss of convergence shown in the bottom panel of Fig.  6 . In addition, since we do not further change Δ ​ x pa \Delta x_{\text{pa}} in this analysis, increasing the isotropic grid resolution does not lead to an improved convergence for the higher resolution cases discussed here. Despite the lack of convergence for an isotropic grid with Δ ​ x iso = 0.00125 \Delta x_{\text{iso}}=0.00125 , our simulations needed to use such high resolution in order to populate the vicinity of the origin with a sufficiently large number of cells (even though the accuracy of the result does not increase at the expected rate). A remedy to this shortcoming, which we believe does not affect the validity of the findings reported in this work, would be to compute the initial data directly in isotropic coordinates and thus avoid the coordinate transformation for the evolution. Further developments in this direction will be reported elsewhere. We also note that, similarly, first-order convergence is found for the polar-areal grid when the isotropic grid is fixed. 
+
+For completeness, we discuss the code convergence properties when evolving a stable boson star model using the same f ⁡ ( ℛ ) f(\mathcal{R}) theory (with ξ = 0.1 \xi=0.1 ). We select a model with ω / μ = 0.9545 \omega/\mu=0.9545 , Φ ⁡ ( r = 0 ) = 0.02 \Phi(r=0)=0.02 , and total mass M = 0.471 M=0.471 , and a polar-areal grid resolution for the initial data of Δ ​ x pa = 0.00125 \Delta x_{\text{pa}}=0.00125 . The results are plotted in Figure  7 . For this stable model, numerical errors from finite-differencing dominate the evolution and the total mass decreases with a drift that depends on resolution (see top panel of Fig.  7 ). The rate of convergence of the total mass for this stable model is third order, as shown in the bottom panel of Fig.  7 . 
+
+### References
+
+ [1] 
+
+R. Penrose,
+ Gravitational collapse: The role of general relativity ,
+Riv. Nuovo Cim. 1 , 252-276 (1969)
+
+ [2] 
+
+S. W. Hawking and R. Penrose,
+ The Singularities of gravitational collapse and cosmology ,
+Proc. Roy. Soc. Lond. A 314 , 529-548 (1970)
+
+ [3] 
+
+J. M. M. Senovilla and D. Garfinkle,
+ The 1965 Penrose singularity theorem ,
+Class. Quant. Grav. 32 , no.12, 124008 (2015)
+
+ [4] 
+
+A. Ashtekar and P. Singh,
+ Loop Quantum Cosmology: A Status Report ,
+Class. Quant. Grav. 28 , 213001 (2011)
+doi:10.1088/0264-9381/28/21/213001
+[arXiv:1108.0893 [gr-qc]].
+
+ [5] 
+
+M. Gasperini and G. Veneziano,
+ The Pre - big bang scenario in string cosmology ,
+Phys. Rept. 373 , 1-212 (2003)
+[arXiv:hep-th/0207130 [hep-th]].
+
+ [6] 
+
+J. Khoury, B. A. Ovrut, P. J. Steinhardt and N. Turok,
+ The Ekpyrotic universe: Colliding branes and the origin of the hot big bang ,
+Phys. Rev. D 64 , 123522 (2001)
+[arXiv:hep-th/0103239 [hep-th]].
+
+ [7] 
+
+R. H. Brandenberger, V. F. Mukhanov and A. Sornborger,
+ A Cosmological theory without singularities ,
+Phys. Rev. D 48 , 1629-1642 (1993)
+[arXiv:gr-qc/9303001 [gr-qc]].
+
+ [8] 
+
+M. Novello and S. E. P. Bergliaffa,
+ Bouncing Cosmologies ,
+Phys. Rept. 463 , 127-213 (2008)
+[arXiv:0802.1634 [astro-ph]].
+
+ [9] 
+
+P. S. Joshi,
+ Gravitational Collapse and Spacetime Singularities ,
+Cambridge University Press, 2012,
+ISBN 978-1-107-40536-3, 978-0-521-87104-4, 978-0-511-37283-4
+
+ [10] 
+
+J. R. Oppenheimer and H. Snyder,
+ On Continued gravitational contraction ,
+Phys. Rev. 56 , 455-459 (1939)
+
+ [11] 
+
+S. L. Liebling and C. Palenzuela,
+ Dynamical boson stars ,
+Living Rev. Rel. 15 , 6 (2012)
+[arXiv:1202.5809 [gr-qc]].
+
+ [12] 
+
+F. E. Schunck and E. W. Mielke,
+ General relativistic boson stars ,
+Class. Quant. Grav. 20 (2003), R301-R356
+[arXiv:0801.0307 [astro-ph]].
+
+ [13] 
+
+J. Calderón Bustillo, N. Sanchis-Gual, A. Torres-Forné, J. A. Font, A. Vajpeyi, R. Smith, C. Herdeiro, E. Radu and S. H. W. Leong,
+ GW190521 as a Merger of Proca Stars: A Potential New Vector Boson of 8.7 × 10 − 13 8.7\times 10^{-13} eV ,
+Phys. Rev. Lett. 126 (2021) no.8, 081101
+[arXiv:2009.05376 [gr-qc]].
+
+ [14] 
+
+J. Calderon Bustillo, N. Sanchis-Gual, S. H. W. Leong, K. Chandra, A. Torres-Forne, J. A. Font, C. Herdeiro, E. Radu, I. C. F. Wong and T. G. F. Li,
+ Searching for vector boson-star mergers within LIGO-Virgo intermediate-mass black-hole merger candidates ,
+[arXiv:2206.02551 [gr-qc]].
+
+ [15] 
+
+C. Barragan, G. J. Olmo and H. Sanchis-Alepuz,
+ Bouncing Cosmologies in Palatini f(R) Gravity ,
+Phys. Rev. D 80 , 024016 (2009)
+[arXiv:0907.0318 [gr-qc]].
+
+ [16] 
+
+G. J. Olmo and P. Singh,
+ Effective Action for Loop Quantum Cosmology a la Palatini ,
+JCAP 01 , 030 (2009)
+[arXiv:0806.2783 [gr-qc]].
+
+ [17] 
+
+A. Delhom, G. J. Olmo and P. Singh,
+ A diffeomorphism invariant family of metric-affine actions for loop cosmologies ,
+[arXiv:2302.04285 [gr-qc]].
+
+ [18] 
+
+N. Sanchis-Gual, J. C. Degollado, P. J. Montero and J. A. Font,
+ Quasistationary solutions of self-gravitating scalar fields around black holes ,
+Phys. Rev. D 91 (2015), 043005
+[arXiv:1412.8304 [gr-qc]].
+
+ [19] 
+
+J. Barranco, A. Bernal, J. C. Degollado, A. Diez-Tejedor, M. Megevand, M. Alcubierre, D. Nunez and O. Sarbach,
+ Schwarzschild black holes can wear scalar wigs ,
+Phys. Rev. Lett. 109 (2012), 081102
+[arXiv:1207.2153 [gr-qc]].
+
+ [20] 
+
+R. Gambini, J. Olmedo and J. Pullin,
+ Spherically symmetric loop quantum gravity: analysis of improved dynamics ,
+Class. Quant. Grav. 37 , no.20, 205012 (2020)
+[arXiv:2006.01513 [gr-qc]].
+
+ [21] 
+
+A. Simpson and M. Visser,
+ Black-bounce to traversable wormhole ,
+JCAP 02 , 042 (2019)
+[arXiv:1812.07114 [gr-qc]].
+
+ [22] 
+
+F. S. N. Lobo, M. E. Rodrigues, M. V. de Sousa Silva, A. Simpson and M. Visser,
+ Novel black-bounce spacetimes: wormholes, regularity, energy conditions, and causal structure ,
+Phys. Rev. D 103 , no.8, 084052 (2021)
+[arXiv:2009.12057 [gr-qc]].
+
+ [23] 
+
+G. J. Olmo and D. Rubiera-Garcia,
+ Reissner-Nordström black holes in extended Palatini theories ,
+Phys. Rev. D 86 , 044014 (2012)
+[arXiv:1207.6004 [gr-qc]].
+
+ [24] 
+
+G. J. Olmo, D. Rubiera-Garcia and H. Sanchis-Alepuz,
+ Geonic black holes and remnants in Eddington-inspired Born-Infeld gravity ,
+Eur. Phys. J. C 74 , 2804 (2014)
+[arXiv:1311.0815 [hep-th]].
+
+ [25] 
+
+G. J. Olmo,
+ Palatini Approach to Modified Gravity: f(R) Theories and Beyond ,
+Int. J. Mod. Phys. D 20 , 413-462 (2011)
+[arXiv:1101.3864 [gr-qc]].
+
+ [26] 
+
+F. W. Hehl, J. D. McCrea, E. W. Mielke and Y. Ne’eman,
+ Metric affine gauge theory of gravity: Field equations, Noether identities, world spinors, and breaking of dilation invariance ,
+Phys. Rept. 258 , 1-171 (1995)
+[arXiv:gr-qc/9402012 [gr-qc]].
+
+ [27] 
+
+Q. Exirifard and M. M. Sheikh-Jabbari,
+ Lovelock gravity at the crossroads of Palatini and metric formulations ,
+Phys. Lett. B 661 , 158-161 (2008)
+[arXiv:0705.1879 [hep-th]].
+
+ [28] 
+
+V. I. Afonso, C. Bejarano, J. Beltran Jimenez, G. J. Olmo and E. Orazi,
+ The trivial role of torsion in projective invariant theories of gravity with non-minimally coupled matter fields ,
+Class. Quant. Grav. 34 , no.23, 235003 (2017)
+[arXiv:1705.03806 [gr-qc]].
+
+ [29] 
+
+J. Beltrán Jiménez and A. Delhom,
+ Instabilities in metric-affine theories of gravity with higher order curvature terms ,
+Eur. Phys. J. C 80 , no.6, 585 (2020)
+[arXiv:2004.11357 [gr-qc]].
+
+ [30] 
+
+E. Orazi,
+ Generating Solutions of Ricci-Based gravity theories from General Relativity ,
+Int. J. Mod. Phys. D 29 , no.11, 2041010 (2020)
+[arXiv:2005.02919 [gr-qc]].
+
+ [31] 
+
+V. I. Afonso, G. J. Olmo, E. Orazi and D. Rubiera-Garcia,
+ Correspondence between modified gravity and general relativity with scalar fields ,
+Phys. Rev. D 99 , no.4, 044040 (2019)
+[arXiv:1810.04239 [gr-qc]].
+
+ [32] 
+
+E. Barausse, T. P. Sotiriou and J. C. Miller,
+Class. Quant. Grav. 25 (2008), 062001
+doi:10.1088/0264-9381/25/6/062001
+[arXiv:gr-qc/0703132 [gr-qc]].
+
+ [33] 
+
+E. Barausse, T. P. Sotiriou and J. C. Miller,
+Class. Quant. Grav. 25 (2008), 105008
+doi:10.1088/0264-9381/25/10/105008
+[arXiv:0712.1141 [gr-qc]].
+
+ [34] 
+
+E. Barausse, T. P. Sotiriou and J. C. Miller,
+EAS Publ. Ser. 30 (2008), 189-192
+doi:10.1051/eas:0830023
+[arXiv:0801.4852 [gr-qc]].
+
+ [35] 
+
+G. J. Olmo,
+Phys. Rev. D 78 (2008), 104026
+doi:10.1103/PhysRevD.78.104026
+[arXiv:0810.3593 [gr-qc]].
+
+ [36] 
+
+G. J. Olmo and D. Rubiera-Garcia,
+Class. Quant. Grav. 37 (2020) no.21, 215002
+doi:10.1088/1361-6382/abb924
+[arXiv:2007.04065 [gr-qc]].
+
+ [37] 
+
+R. B. Magalhães, L. C. B. Crispino and G. J. Olmo,
+Phys. Rev. D 105 (2022) no.6, 064007
+doi:10.1103/PhysRevD.105.064007
+[arXiv:2203.02712 [gr-qc]].
+
+ [38] 
+
+J. Beltrán Jiménez, A. Delhom, G. J. Olmo and E. Orazi,
+Phys. Lett. B 820 (2021), 136479
+doi:10.1016/j.physletb.2021.136479
+[arXiv:2104.01647 [gr-qc]].
+
+ [39] 
+
+A. Iglesias, N. Kaloper, A. Padilla and M. Park,
+Phys. Rev. D 76 (2007), 104001
+doi:10.1103/PhysRevD.76.104001
+[arXiv:0708.1163 [astro-ph]].
+
+ [40] 
+
+T. W. Baumgarte and S. L. Shapiro,
+ On the numerical integration of Einstein’s field equations ,
+Phys. Rev. D 59 (1998), 024007
+[arXiv:gr-qc/9810065 [gr-qc]].
+
+ [41] 
+
+M. Shibata and T. Nakamura,
+ Evolution of three-dimensional gravitational waves: Harmonic slicing case, 
+Phys. Rev. D 52 (1995), 5428-5444
+
+ [42] 
+
+A. Masó-Ferrando, N. Sanchis-Gual, J. A. Font and G. J. Olmo,
+ Boson stars in Palatini gravity ,
+Class. Quant. Grav. 38 (2021) no.19, 194003
+[arXiv:2103.15705 [gr-qc]].
+
+ [43] 
+
+C. W. Lai,
+ A Numerical study of boson stars ,
+[arXiv:gr-qc/0410040 [gr-qc]].
+
+ [44] 
+
+N. Sanchis-Gual, J. C. Degollado, P. J. Montero, J. A. Font and V. Mewes,
+ Quasistationary solutions of self-gravitating scalar fields around collapsing stars ,
+Phys. Rev. D 92 (2015) no.8, 083001
+[arXiv:1507.08437 [gr-qc]].
+
+ [45] 
+
+A. Escorihuela-Tomàs, N. Sanchis-Gual, J. C. Degollado and J. A. Font,
+ Quasistationary solutions of scalar fields around collapsing self-interacting boson stars ,
+Phys. Rev. D 96 (2017) no.2, 024015
+[arXiv:1704.08023 [gr-qc]].
+
+ [46] 
+
+J. Thornburg,
+ Event and apparent horizon finders for 3+1 numerical relativity ,
+Living Rev. Rel. 10 (2007), 3
+[arXiv:gr-qc/0512169 [gr-qc]].
+
+ [47] 
+
+P. Diener,
+ A New general purpose event horizon finder for 3-D numerical space-times ,
+Class. Quant. Grav. 20 (2003), 4901-4918
+[arXiv:gr-qc/0305039 [gr-qc]].
+
+ [48] 
+
+N. Sanchis-Gual, C. Herdeiro, E. Radu, J. C. Degollado and J. A. Font,
+ Numerical evolutions of spherical Proca stars ,
+Phys. Rev. D 95 (2017) no.10, 104028
+[arXiv:1702.04532 [gr-qc]].
+
+ [49] 
+
+M. Visser,
+ Lorentzian wormholes: From Einstein to Hawking ,
+American Institute of Physics Press (1996)
+
+ [50] 
+
+O. James, E. von Tunzelmann, P. Franklin and K. S. Thorne,
+ Visualizing Interstellar’s Wormhole ,
+Am. J. Phys. 83 (2015), 486
+[arXiv:1502.03809 [gr-qc]].
+
+ [51] 
+
+James B. Hartle,
+ Gravity: An Introduction to Einstein’s
+General Relativity ,
+Addison Wesley (2003)
+
+ [52] 
+
+J. Sakstein,
+Phys. Rev. Lett. 115 (2015), 201101
+doi:10.1103/PhysRevLett.115.201101
+[arXiv:1510.05964 [astro-ph.CO]].
+
+ [53] 
+
+G. J. Olmo, D. Rubiera-Garcia and A. Wojnar,
+Phys. Rev. D 100 (2019) no.4, 044020
+doi:10.1103/PhysRevD.100.044020
+[arXiv:1906.04629 [gr-qc]].
+
+ [54] 
+
+C. A. R. Herdeiro and E. Radu,
+ Kerr black holes with scalar hair ,
+Phys. Rev. Lett. 112 (2014), 221101
+[arXiv:1403.2757 [gr-qc]].
+
+ [55] 
+
+W. E. East and F. Pretorius,
+ Superradiant Instability and Backreaction of Massive Vector Fields around Kerr Black Holes ,
+Phys. Rev. Lett. 119 (2017) no.4, 041101
+[arXiv:1704.04791 [gr-qc]].
+
+ [56] 
+
+N. Sanchis-Gual, M. Zilhão, C. Herdeiro, F. Di Giovanni, J. A. Font and E. Radu,
+ Synchronized gravitational atoms from mergers of bosonic stars ,
+Phys. Rev. D 102 (2020) no.10, 101504
+[arXiv:2007.11584 [gr-qc]].
+
+ [57] 
+
+R. Pourhasan, N. Afshordi and R. B. Mann,
+ Out of the White Hole: A Holographic Origin for the Big Bang ,
+JCAP 04 , 005 (2014)
+[arXiv:1309.1487 [hep-th]].
+
+ [58] 
+
+J. Beltran Jimenez, L. Heisenberg, G. J. Olmo and D. Rubiera-Garcia,
+ Born–Infeld inspired modifications of gravity ,
+Phys. Rept. 727 , 1-129 (2018)
+[arXiv:1704.03351 [gr-qc]].
+
+ [59] 
+
+C. Barragan and G. J. Olmo,
+ Isotropic and Anisotropic Bouncing Cosmologies in Palatini Gravity ,
+Phys. Rev. D 82 , 084015 (2010)
+[arXiv:1005.4136 [gr-qc]].
+
+ [60] 
+
+I. Cordero-Carrión and P. Cerdá-Durán,
+ Partially implicit Runge-Kutta methods for wave-like equations ,
+[arXiv:1211.5930 [math-ph]]
+
+ [61] 
+
+I. Cordero-Carrión and P. Cerdá-Durán,
+ Advances in Differential Equations and Applications , SEMA SIMAI
+Springer Series Vol.4 (Springer International Publishing Switzerland, Switzerland, 2014)
+
+ [62] 
+
+N. Sanchis-Gual, J. C. Degollado, P. J. Montero, J. A. Font and C. Herdeiro,
+Phys. Rev. Lett. 116 (2016) no.14, 141101
+doi:10.1103/PhysRevLett.116.141101
+[arXiv:1512.05358 [gr-qc]].
+
+ [63] 
+
+P. J. Montero and I. Cordero-Carrion,
+Phys. Rev. D 85 (2012), 124037
+doi:10.1103/PhysRevD.85.124037
+[arXiv:1204.5377 [gr-qc]].
+
+ [64] 
+
+C. Bona, J. Masso, E. Seidel and J. Stela,
+Phys. Rev. D 56 (1997), 3405-3415
+doi:10.1103/PhysRevD.56.3405
+[arXiv:gr-qc/9709016 [gr-qc]].
+
+ [65] 
+
+M. Alcubierre, B. Bruegmann, P. Diener, M. Koppitz, D. Pollney, E. Seidel and R. Takahashi,
+Phys. Rev. D 67 (2003), 084023
+doi:10.1103/PhysRevD.67.084023
+[arXiv:gr-qc/0206072 [gr-qc]].
+
+ [66] 
+
+M. Alcubierre and M. D. Mendez,
+Gen. Rel. Grav. 43 (2011), 2769-2806
+doi:10.1007/s10714-011-1202-x
+[arXiv:1010.4013 [gr-qc]].
+
+ [67] 
+
+C. Herdeiro, E. Radu and H. Rúnarsson,
+Class. Quant. Grav. 33 (2016) no.15, 154001
+doi:10.1088/0264-9381/33/15/154001
+[arXiv:1603.02687 [gr-qc]].
+
+ ◄ 
+
+ Feeling lucky? 
+
+ Conversion report 
+ Report an issue 
+ View original on arXiv ► 
+
+ Copyright 
+ Privacy Policy 
+
+ Generated by L a T e XML oxide
