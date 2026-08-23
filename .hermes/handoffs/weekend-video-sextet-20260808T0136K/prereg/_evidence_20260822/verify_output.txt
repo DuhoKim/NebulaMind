@@ -1,38 +1,43 @@
-verify.sh sha256 9437a1c312d43b797377fb094825abb1a989a24db01b434c091d1ce5c202bbfb
-claim invocations in this file: 18
+verify.sh sha256 46a2bcfe8b4432b6c59bba925fba5dd2739aaba88f7a923877d47609e37b667e
+claim invocations in this file: 21
 
 == digests of four files that carry the 23:12 disclosure ==
-PASS  S1   shasum of that report's mp3 is 2a38a887bd897147
-PASS  S2   shasum of its caption is 2c85b2028209273a
-PASS  S3   shasum of its deck is 1da50dc6878db905
-PASS  S4   shasum of its alignment file is a9cfedc4ab127794
+PASS  S1   [ shasum -a256 231235.mp3 | cut -c1-16 ] -> 2a38a887bd897147
+PASS  S2   [ shasum -a256 231235.txt | cut -c1-16 ] -> 2c85b2028209273a
+PASS  S3   [ shasum -a256 231235.deck.json | cut -c1-16 ] -> 1da50dc6878db905
+PASS  S4   [ shasum -a256 231235.times.json | cut -c1-16 ] -> a9cfedc4ab127794
 
 == strings found by grep in that one caption file ==
-PASS  S5   grep finds '0.834336, 0.384410, and -0.640352' once
-PASS  S6   grep finds 'One leaning each way among the confident pair' once
-PASS  S7   grep finds '2,725 galaxies measured' once
+PASS  S5   [ grep -c '0.834336, 0.384410, and -0.640352' 231235.txt ] -> 1
+PASS  S6   [ grep -c 'One leaning each way...' 231235.txt ] -> 1
+PASS  S7   [ grep -c '2,725 galaxies measured' 231235.txt ] -> 1
 
 == digests and strings in two frozen documents ==
-PASS  F1   shasum of the K-8 authorization is c10687595f1f4313
-PASS  F2   grep finds 'No sky statistic, no dipole' in it once
-PASS  F3   grep finds 'Partial-tertile prohibition' in it once
-PASS  F4   shasum of the frozen preregistration is b06901c8a0f3a057
+PASS  F1   [ shasum -a256 K8_CROSSING_AUTHORIZATION | cut -c1-16 ] -> c10687595f1f4313
+PASS  F2   [ grep -c 'No sky statistic, no dipole' K8_AUTH ] -> 1
+PASS  F3   [ grep -c 'Partial-tertile prohibition' K8_AUTH ] -> 1
+PASS  F4   [ shasum -a256 PREREG_V3 | cut -c1-16 ] -> b06901c8a0f3a057
 
 == quantities recomputed from the positions file on this run ==
-PASS  G1   the positions CSV has 208407 data rows
-PASS  G2   geom.py recomputes var(cos theta) about Longo's axis as 0.057985
+PASS  G1   [ wc -l positions_parent.csv minus header ] -> 208407
+PASS  G2   [ python3 geom.py  (recomputes from positions) ] -> 0.057985
 
 == two searches restricted to the handcheck/ directory ==
-PASS  H1   grep finds 'def _rank_tertiles' in handcheck/nm_handcheck.py once
-PASS  H2   grep -rl 'chi_dr10_south' under /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/ lists 0 files
+PASS  H1   [ grep -c 'def _rank_tertiles' handcheck/nm_handcheck.py ] -> 1
+PASS  H2   [ grep -rl chi_dr10_south handcheck/ | wc -l ] -> 0
 
 == one divergence of mine, left unrepaired on purpose ==
-PASS  D1   grep finds 'one galaxy at a time, 200,000 times' in that caption once
-PASS  D2   its alignment file records coverage 0.9709
+PASS  D1   [ grep -c 'one galaxy at a time, 200,000 times' 151843.txt ] -> 1
+PASS  D2   [ python3 read coverage from 151843.times.json ] -> 0.9709
+
+== publication event and served surfaces (restored; a gate found them dropped) ==
+PASS  P1   [ python3 read ledger publish row for 231235 ] -> 20|2026-08-20 23:12:51 KST
+PASS  P2   [ shasum -a256 report-231235.html | cut -c1-16 ] -> 050a3f6245fc74f1
+PASS  P3   [ grep -c 0.834336 archive.html ] -> 1
 
 == the companion document, checked against a banned wordlist ==
-PASS  Q1   grep -Eic on the banned wordlist in CHI_CUSTODY_20260822.md returns 0
+PASS  Q1   [ grep -Eoi BANNED_WORDLIST CHI_CUSTODY.md | wc -l ] -> 0
 
-18 passed, 0 failed
+21 passed, 0 failed
 SCOPE: the checks above ran. This script reports what they returned and nothing further.
 H2 searched /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/ and reports a count for that directory.

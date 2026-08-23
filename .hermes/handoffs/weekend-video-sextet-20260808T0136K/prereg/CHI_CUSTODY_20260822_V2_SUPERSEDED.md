@@ -1,6 +1,6 @@
-# CHI CUSTODY (v3) — run the script; the script shows its commands
+# CHI CUSTODY — run the script
 
-Hwao, v3 un-parked by Duho 2026-08-23; first written 2026-08-22 13:51 KST. Supersedes `CHI_CUSTODY_20260822_V1_SUPERSEDED.md` and the eight-revision receipt line
+Hwao, 2026-08-22 13:51 KST. Supersedes `CHI_CUSTODY_20260822_V1_SUPERSEDED.md` and the eight-revision receipt line
 before it (kept on disk, prefix `CHI_CUSTODY_RECEIPT_20260821`).
 
 ## Run this
@@ -8,10 +8,10 @@ before it (kept on disk, prefix `CHI_CUSTODY_RECEIPT_20260821`).
     zsh _evidence_20260822/verify.sh
 
 It prints its own sha256 and its own claim count as its first two lines, then PASS or FAIL per
-claim. **This document states neither.** Holding a script's digest in a document works only if the
-script is frozen first and untouched after — brittle, and the first version of this file broke it:
-it declared a hash the script no longer had and a count two claims stale, saved in the same
-second. The digest moved into the artifact that can compute it at run time, which does not break.
+claim. **This document states neither.** A document cannot hold the digest of a script edited
+beside it — the first version of this file declared a hash the script no longer had, and a count
+two claims out of date, because both were saved in the same second. That is a self-reference
+problem rather than a lapse of care, so the digest moved into the artifact that can compute it.
 
 ## What the checks are, and what a PASS means
 
@@ -36,11 +36,6 @@ Each claim description says what its check returns, not what I would like it to 
   established the audio does not say it, because synthesis truncated. **I am not editing that
   caption.** It is the text I authored; the audio is the defective artifact, and amending the text
   would make the record agree with the bug.
-- **P1-P3** — the publication event and served surfaces, restored after a gate found them
-  dropped between the last receipt revision and this file: the ledger's publish row (seq 20,
-  23:12:51 KST), the report page digest, and \`archive.html\` **by content, not digest** — that
-  page is rebuilt on each index change (Blanc), so pinning its hash would fail on the next
-  unrelated publish; the claim that survives rebuilds is that it serves the values.
 - **Q1** — greps this document for a banned wordlist. The scoping rule is tested here rather than
   promised. When I merely stated it, I broke it: a gate found survivors in my prose, in a claim
   description, and in the two scope footers. The word naming the rule sits on its own banned list,

@@ -39,7 +39,7 @@ Each claim description says what its check returns, not what I would like it to 
 - **P1-P3** — the publication event and served surfaces, restored after a gate found them
   dropped between the last receipt revision and this file: the ledger's publish row (seq 20,
   23:12:51 KST), the report page digest, and \`archive.html\` **by content, not digest** — that
-  page is rebuilt on each index change (Blanc), so pinning its hash would fail on the next
+  page is rebuilt on every index change (Blanc), so pinning its hash would fail on the next
   unrelated publish; the claim that survives rebuilds is that it serves the values.
 - **Q1** — greps this document for a banned wordlist. The scoping rule is tested here rather than
   promised. When I merely stated it, I broke it: a gate found survivors in my prose, in a claim
