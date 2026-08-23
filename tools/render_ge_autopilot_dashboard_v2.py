@@ -286,12 +286,24 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         # WORKING_SET matches completion_check.py: the heartbeat carries no
         # "total" key, 60,308 is the frozen prereg working set.
         transfer = None
-        hb_path = Path("/Users/duhokim/NebulaMindData/dr10_south_image_r/heartbeat.json")
-        if hb_path.exists():
+        # Concurrency amendment v2 (PASS, 2026-08-23): the campaign runs as three
+        # shard instances with separate heartbeats. Progress is their SUM, and a
+        # stall is only a stall if the FRESHEST heartbeat is old — one shard
+        # finishing early leaves its file frozen forever, which must not read as
+        # the campaign stalling.
+        hb_paths = [Path("/Users/duhokim/NebulaMindData/dr10_south_image_r/heartbeat.json"),
+                    Path("/Users/duhokim/NebulaMindData/dr10_shardB/heartbeat.json"),
+                    Path("/Users/duhokim/NebulaMindData/dr10_shardC/heartbeat.json")]
+        hb_live = [q for q in hb_paths if q.exists()]
+        hb_path = hb_live[0] if hb_live else hb_paths[0]
+        if hb_live:
             try:
                 WORKING_SET = 60308
-                hb = json.loads(hb_path.read_text())
-                acc = int(hb.get("accepted", 0))
+                acc = 0
+                newest_mtime = 0.0
+                for q in hb_live:
+                    acc += int(json.loads(q.read_text()).get("accepted", 0))
+                    newest_mtime = max(newest_mtime, q.stat().st_mtime)
                 st = Path("/Users/duhokim/HermesOps/cockpit/.transfer_rate_state.json")
                 rate = None
                 try:
@@ -310,7 +322,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                         st.write_text(json.dumps({"accepted": acc, "epoch": time.time()}))
                 except Exception:
                     st.write_text(json.dumps({"accepted": acc, "epoch": time.time()}))
-                hb_age = time.time() - hb_path.stat().st_mtime
+                hb_age = time.time() - newest_mtime
                 rem = max(0, WORKING_SET - acc)
                 transfer = {
                     "accepted": acc, "total": WORKING_SET,
