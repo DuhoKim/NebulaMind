@@ -73,3 +73,15 @@ If A0 holds (expected), the observables are boundary-mediated and the derivation
 - [x] Sources pinned, model transcribed from S1 with locations
 - [ ] A1 shock trajectory (numerics) — next session's work
 - [ ] A2, A3, A4 — sequenced after A1
+
+## Platoon addendum (2026-08-23 23:40 KST, Duho-approved composition)
+
+- gpt1 (sextet-v2:bhu4-gpt1): BLIND independent A1 implementation — platoon/BRIEF_GPT1_BLIND_A1.md.
+  My own implementation (tomorrow) must be written WITHOUT looking at gpt1's dir; cross-check
+  happens only after both complete, as a recorded comparison.
+- agy (bhu4-agy): Track B H0-anisotropy bound-harvest — platoon/BRIEF_AGY_TRACKB_H0.md.
+- gpt2 (bhu4-gpt2): Track B CMB bound-harvest — platoon/BRIEF_GPT2_TRACKB_CMB.md.
+- kimi: gates only, when verdicts exist.
+- All three launched 2026-08-23 ~23:35 KST, verified alive by process list. Verification of
+  their outputs (quote-check against sources) is coordinator work, scheduled with the 09:23
+  wakeup.
