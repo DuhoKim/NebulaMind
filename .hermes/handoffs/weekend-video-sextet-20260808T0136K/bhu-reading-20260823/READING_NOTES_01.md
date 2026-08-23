@@ -409,3 +409,47 @@ Verdict for our record: a substantive, fair, adversarial critique — the model 
 31's §3–§4 are responding to. The two-decade dialogue (1992 CQG → 1993 critique → 2004 reply →
 2026 pulsar record) is now fully documented on our side except for the 1992 CQG text itself
 (entry 6, credential queue).
+
+---
+
+# Batch 8 — entry 49, the first paper through the campus wall (2026-08-23 night, Tori)
+
+## Entry 49 — Blau, Guendelman & Guth 1987, PRD 35, 1747 — CONSISTENCY-ONLY
+
+Acquired via APS's IP entitlement on the Studio's CNU address (Duho's insight); first of the
+credential-queue papers actually read. Abstract, introduction, and §VI read in full; the
+junction-condition machinery (§§II–V) surveyed.
+
+What the text establishes — and it is the family's strongest peer-reviewed anchor for the
+exterior-black-hole / interior-universe geometry:
+
+- A spherically symmetric false-vacuum region bounded by a domain wall in infinite true vacuum,
+  above a critical mass, inflates — and "an observer in the exterior true-vacuum region will
+  describe the system as a black hole, while an observer in the interior will describe a closed
+  universe which completely disconnects from the original spacetime" (abstract). The two-observer
+  paradox is resolved by the non-Euclidean geometry: the inflating region grows without expanding
+  into the exterior.
+- Priority is credited to Sato, Kodama, Sasaki & Maeda (our entry 47) for "child universes."
+- The detachment is slicing-dependent unless black-hole evaporation completes — with both
+  evaporation events, disconnection becomes unequivocal (no slicing keeps the manifold
+  connected). Careful, honest GR.
+- The initial-singularity obstacle is proven here first (Penrose theorem + weak energy
+  condition): the inflating solutions "can emerge only from an initial singularity" — the seed of
+  Farhi–Guth 1987 (entry 48, still locked) and the Farhi–Guth–Guven tunneling program (entry 50).
+- The Minkowski-instability idea — a quantum fluctuation nucleates false vacuum, a closed
+  universe tunnels off, a virtual black hole evaporates — is explicitly labeled "a matter of
+  speculation" by the authors.
+- On information loss they are candid against their own suggestion: in the exact solutions "all
+  of the information in the false-vacuum bubble originates in the initial singularity, and none
+  comes from the external Schwarzschild region" — no evidence for the bubble-as-repository
+  effect in what was actually solved.
+
+Class: CONSISTENCY-ONLY. Exact-solution construction; no observational discriminant anywhere;
+every speculative reach is flagged as such by the authors themselves. Audit-worth high as
+machinery: this is the junction-condition backbone that entries 47/48/50 and the whole
+child-universe branch stand on. Reader's note (mine): the geometry here is "a universe can look
+like a black hole from outside" — it says nothing about whether OUR universe sits inside one;
+the paper makes no such claim.
+
+Pin: sha256 1d195f5f… (PDF), clean text in `sources/blau_guendelman_guth_1987_clean.txt`
+(equation OCR imperfect; classifications traced to prose, not to OCR'd equations).

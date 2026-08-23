@@ -22,7 +22,7 @@ after 2026-08-22 take the next free number rather than renumbering, so cross-ref
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers: 4 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-32 CONSISTENCY-ONLY, 5 UNREAD (18 entries read and classed 2026-08-23, batches 1–6. CORRECTION to
+33 CONSISTENCY-ONLY, 4 UNREAD (19 entries read and classed 2026-08-23, batches 1–6 and 8; A0 read in batch 7. CORRECTION to
 the earlier floor claim: "8 unread, unobtainable on every free route, 16% irreducible" was
 overstated — a second sweep on 2026-08-23 evening found free copies of 31 (VU Amsterdam academic
 mirror), 36 (arXiv astro-ph/9812063, missed under API throttling), and 57 (author's UC Davis
@@ -473,7 +473,14 @@ Studio's CNU campus address ("Access Provided by Chungnam National University" �
 that the Studio sits inside the licensed range; no credentials involved). Pinned:
 `bhu-reading-20260823/sources/blau_guendelman_guth_1987_prd35_1747.pdf` (sha256 1d195f5f…, 20 pp,
 PRD 35(6) 15 March 1987 header verified).
-Testability: **UNREAD** — obtained but text not yet examined; class waits on the read.
+Testability: **CONSISTENCY-ONLY** — READ 2026-08-23 (Tori, batch 8). The family's strongest
+peer-reviewed anchor for the exterior-black-hole / interior-closed-universe geometry: above a
+critical mass the false-vacuum region inflates, the exterior observer sees a Schwarzschild black
+hole, the interior a closed universe that causally disconnects (unequivocally so once black-hole
+evaporation completes). Proves the initial-singularity obstacle (Penrose theorem + WEC) that
+entry 48 sharpens; credits entry 47 for "child universes"; labels its Minkowski-instability idea
+"a matter of speculation"; and candidly reports the exact solutions show no evidence for the
+information-repository effect. No observational discriminant. Notes: batch 8.
 Record: kimi recall R3; the junction-condition machinery child-universe constructions stand on.
 
 **50. E. Farhi, A. H. Guth & J. Guven (1990). "Is it possible to create a universe in the laboratory by quantum tunneling?" Nucl. Phys. B 339, 417–490.**
