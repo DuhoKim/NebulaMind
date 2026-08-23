@@ -26,8 +26,11 @@ Class tally over the 51 BHU papers: 4 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECT
 the earlier floor claim: "8 unread, unobtainable on every free route, 16% irreducible" was
 overstated — a second sweep on 2026-08-23 evening found free copies of 31 (VU Amsterdam academic
 mirror), 36 (arXiv astro-ph/9812063, missed under API throttling), and 57 (author's UC Davis
-page). The true floor is the remaining 5 — 42, 47, 48, 49, 50 (three Elsevier PLB/NPB, one APS
-PRD, one Elsevier PLB) — ≈10%, awaiting institutional access. Notes per paper in
+page). Further shrunk 2026-08-23 22:30: entry 49 obtained via APS's IP entitlement on the CNU
+campus address (Duho's insight — the Studio is inside the licensed range). Elsevier tested the
+same way and CNU does NOT subscribe to the pre-1995 backfile ("does not subscribe to this
+content", sighted on entry 48's page). The true credential wall is the 4 Elsevier papers — 42,
+47, 48, 50 — ≈8%, needing document delivery / interlibrary loan, not just campus IP. Notes per paper in
 `bhu-reading-20260823/`. The family now holds TWO live calibrated falsifiers: entry 54 (closed
 curvature window; DESI decides) and entry 31 (no neutron star above Smolin's stated 2.5 M☉ bar —
 live as stated, though C08 adjudicated its Brown–Bethe instrument limb broken at ≥8σ). Reading
@@ -465,7 +468,12 @@ Record: kimi recall R1; the no-go analysis for manufacturing a child universe. (
 **49. S. K. Blau, E. I. Guendelman & A. H. Guth (1987). "Dynamics of false-vacuum bubbles." Phys. Rev. D 35, 1747–1766.**
 DOI 10.1103/physrevd.35.1747 — VERIFIED (Crossref: PRD, v35, p1747-1766, 1987). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+**Full text OBTAINED 2026-08-23 22:30 KST** via APS's IP-based institutional entitlement on the
+Studio's CNU campus address ("Access Provided by Chungnam National University" — Duho's insight
+that the Studio sits inside the licensed range; no credentials involved). Pinned:
+`bhu-reading-20260823/sources/blau_guendelman_guth_1987_prd35_1747.pdf` (sha256 1d195f5f…, 20 pp,
+PRD 35(6) 15 March 1987 header verified).
+Testability: **UNREAD** — obtained but text not yet examined; class waits on the read.
 Record: kimi recall R3; the junction-condition machinery child-universe constructions stand on.
 
 **50. E. Farhi, A. H. Guth & J. Guven (1990). "Is it possible to create a universe in the laboratory by quantum tunneling?" Nucl. Phys. B 339, 417–490.**
