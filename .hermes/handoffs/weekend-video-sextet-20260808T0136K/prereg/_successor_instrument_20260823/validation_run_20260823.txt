@@ -1,0 +1,16 @@
+
+== SPHERE:  n=50,000  mean(c)=-0.0002  Var(c)=0.3320 ==
+PASS  unbiased at A=+0.0408: mean a_hat +0.04074 (sd 0.00765, analytic sigma 0.00776)
+PASS  sigma calibrated: empirical/analytic = 0.986
+PASS  sign preserved at A=-0.0408: mean a_hat -0.04159
+PASS  monopole M=0.01 does NOT leak: mean a_hat -0.000315  (predecessor on cap: -0.019)
+PASS  null false-positive rate: 0/300 at p<0.001
+
+== CAP:  n=50,000  mean(c)=-0.6460  Var(c)=0.0586 ==
+PASS  unbiased at A=+0.0408: mean a_hat +0.04117 (sd 0.01811, analytic sigma 0.01847)
+PASS  sigma calibrated: empirical/analytic = 0.981
+PASS  sign preserved at A=-0.0408: mean a_hat -0.04311
+PASS  monopole M=0.01 does NOT leak: mean a_hat -0.001479  (predecessor on cap: -0.019)
+PASS  null false-positive rate: 0/300 at p<0.001
+
+ALL PASS
