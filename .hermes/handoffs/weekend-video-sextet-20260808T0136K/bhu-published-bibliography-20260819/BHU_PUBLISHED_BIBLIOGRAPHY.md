@@ -21,12 +21,12 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 6 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-29 CONSISTENCY-ONLY, 10 UNREAD (13 entries read and classed 2026-08-23; remaining unread: 31, 36, 38,
-42, 47–51, 57 — of which only 38 and 51 are freely readable, and the other eight are the
-needs-institutional-access queue. Unread fraction 20%; notes per paper in
-`bhu-reading-20260823/`. Reading has produced the family's third CALIBRATED-FALSIFIER, entry 54 —
-the only live one).
+Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+30 CONSISTENCY-ONLY, 8 UNREAD (15 entries read and classed 2026-08-23 — the READABLE FLOOR: the remaining
+8 unread — 31, 36, 42, 47–50, 57 — are unobtainable on every free route and wait on institutional
+access. Unread fraction 16%, irreducible without credentials. Notes per paper in
+`bhu-reading-20260823/`. Reading produced the family's third CALIBRATED-FALSIFIER, entry 54 — the
+only live one — and corrected three triage-derived record claims).
 
 ---
 
@@ -183,7 +183,7 @@ Record: harvest #11; parentage construction beyond isotropy.
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
 DOI 10.1016/j.physletb.2010.04.073 — VERIFIED (Crossref: PLB, v690, p73-77, 2010). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori). Dirac fields in ECKS cannot be singular; Cartan-radius extent, max density ~10⁵¹ kg/m³, minimum black-hole mass ~10¹⁶ kg — a numbered falsifiable consequence. Reader's inference, marked as such: the clean discriminator is a sub-10¹⁶-kg primordial black hole, which standard physics permits and this forbids.
 Record: kimi recall R6; the singularity-avoidance mechanism paper under the torsion-bounce line.
 
 **52. "Big Bounce and Closed Universe from Spin and Torsion." ApJ 870, 78 (2019).**
@@ -366,7 +366,7 @@ Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Cro
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
 DOI 10.4310/maa.2004.v11.n1.a7 — VERIFIED (Crossref: MAA, v11, p77-132, 2004). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). The theorems behind entry 37. The authors' own caveat: 'only rough qualitative models' — the TOV-side equation of state cannot be imposed, only bounded. Rigor about the mathematics and equal rigor about its limits.
 Record: recalled by the gate, missing from both documents; the programme's expanded interior construction.
 
 **57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**

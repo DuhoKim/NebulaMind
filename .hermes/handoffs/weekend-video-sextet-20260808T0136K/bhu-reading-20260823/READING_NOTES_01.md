@@ -222,3 +222,44 @@ exactly right. **Class: CONSISTENCY-ONLY.** **Audit-worthiness: low.**
 INSPIRE metadata names the author the harvest never returned: **P. F. González-Díaz** (PLB 261,
 357, 1991). Filled in the entry from the record, not from recall. Text: no documents, paywalled —
 needs-access queue.
+
+---
+
+# Reading notes, batch 5 — the last two readable (2026-08-23, Tori)
+
+## Entry 51 — Popławski, "Nonsingular Dirac particles in spacetime with torsion," PLB 690, 73 (2010)
+
+**What it does:** Papapetrou multipole expansion showing a Dirac field in ECKS cannot form
+singular 1D/2D configurations — particles have spatial extent at least their Cartan radius
+(electron: ~10⁻²⁷ m, proposed as a UV cutoff). Consequences with numbers: maximum matter density
+~10⁵¹ kg/m³ (the Cartan density), hence a **minimum black-hole mass ~10¹⁶ kg**, hence "the LHC
+cannot produce micro black holes" if ECKS holds.
+
+**Class: QUALITATIVE-DIRECTIONAL** — a stated, numbered, falsifiable consequence (a black hole
+below 10¹⁶ kg refutes it), not confronted with the discriminating dataset. **My inference, marked
+as mine:** the discriminator is not the LHC (standard physics also predicts no LHC micro-BHs) but
+primordial black holes — standard physics permits sub-10¹⁶-kg PBHs, ECKS+this analysis forbids
+them, so a PBH evaporation detection would be a clean kill. The paper does not press this.
+**Audit-worthiness: high** — the microphysical foundation of the branch's singularity avoidance,
+and the mechanism paper behind entry 39's citation chain.
+
+## Entry 38 — Smoller & Temple, "Cosmology, black holes and shock waves beyond the Hubble length," MAA 11, 77 (2004)
+
+**What it does:** the full-detail companion to entry 37 (PNAS) — the theorems, proofs and
+construction behind the letter: exact entropy-satisfying shock-wave solutions extending
+Oppenheimer–Snyder to nonzero pressure inside the black hole; the entropy condition selects the
+white-hole explosion over the collapse and determines a unique solution; p = ρ/3 uniquely
+distinguished at the big bang.
+
+**The authors' own caveat, worth quoting because the family rarely writes like this:** the
+solutions are "only rough qualitative models because the equation of state on the TOV side is
+determined by the equations, and therefore cannot be imposed" — only loose bounds 0 < p̄ < ρ̄
+hold. Rigor about the mathematics, and equal rigor about its limits.
+**Class: CONSISTENCY-ONLY.** **Audit-worthiness: medium** — entry 37's proofs live here.
+
+# CAMPAIGN CLOSE — the readable floor is reached
+
+15 of 23 unread entries read and classed in one day (batches 1–5). The remaining 8 — entries 31,
+36, 42, 47–50, 57 — are unobtainable on every free route (Elsevier/APS/Springer paywalls; two with
+no digital records at all) and constitute the needs-institutional-access queue. No entry was
+classed from memory, citation, or triage; every class traces to a read text pinned in `sources/`.
