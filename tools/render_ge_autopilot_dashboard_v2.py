@@ -270,6 +270,13 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                     parked = None
             except OSError:
                 pass
+        # A FINAL record outranks both the park and the last gate verdict: the
+        # custody loop closed by Duho's decision ("final round then stop"), and
+        # showing the 21st refutation as the lane's standing status presents a
+        # deliberately-terminated process as an open failure.
+        final_rec = sorted(pre.glob("CUSTODY_RECORD_FINAL_*.md"),
+                           key=lambda f: f.stat().st_mtime, reverse=True)
+        final_rec = final_rec[0] if final_rec else None
 
         # The transfer heartbeat, measured not asserted. "Acquisition continues"
         # was a claim the strip repeated from the parked record with nothing
@@ -318,16 +325,21 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                 transfer = None
         out.append({
             "lane": "DESI spin-parity (prereg)", "who": "Hwao",
-            "detail": ("custody write-up PARKED by Duho — acquisition continues"
+            "detail": ("custody record CLOSED at 21 gates by Duho — acquisition continues"
+                       if final_rec else
+                       "custody write-up PARKED by Duho — acquisition continues"
                        if parked else
                        f"custody receipt Rev {_rev(receipt) or '?'} · decision memo Rev {_rev(memo) or '?'}"),
             "latest_gate": gate.name if gate else None,
-            "verdict": "PARKED" if parked else verdict,
+            "verdict": ("CLOSED" if final_rec else "PARKED" if parked else verdict),
             "gate_age_h": (round((time.time() - parked.stat().st_mtime) / 3600.0, 1)
                            if parked else age_h),
             # The memo is a DRAFT that says so; the cockpit must not imply it is in
             # force. Parking the write-up does NOT decline the study.
-            "note": ("write-up parked, not abandoned; the decision memo is still an "
+            "note": ("record final: mechanism unbeaten in 21 rounds, science never "
+                     "contradicted; the decision memo is still an unsigned DRAFT"
+                     if final_rec else
+                     "write-up parked, not abandoned; the decision memo is still an "
                      "unsigned DRAFT — the study has not been declined"
                      if parked else
                      "decision memo is a DRAFT — not effective without a gate AND Duho's signature"),
