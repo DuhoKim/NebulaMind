@@ -131,3 +131,52 @@ Unreadable without institutional access, recorded not skipped: branch 11 (entrie
 INSPIRE documents, no eprints, Elsevier/APS paywalls) joins Smolin 2004 (entry 31) in the
 needs-access queue. Entries 36 and 57 (Smoller–Temple CMP/ARMA) have no INSPIRE record at all;
 38 (MAA 2004) has an eprint and is fetched for batch 3, alongside 54, 55, 56.
+
+---
+
+# Reading notes, batch 3 (2026-08-23, Tori)
+
+## Entry 56 — Gaztañaga, "The mass of our observable Universe," MNRAS Lett. 521, L59 (2023)
+
+**What it does:** the BHU thesis in compact form — the universe has finite mass M_T ≈ 6×10²² M☉
+inside its own gravitational radius r_S = 2GM_T; a GHY boundary term at r_S generates an effective
+Λ = 3/r_S² ≈ 2.1 H₀², so observed acceleration is a *measurement of r_S* with no dark energy and
+no fundamental Λ. Read from the PUBLISHED MNRAS PDF (open access via INSPIRE) — the first entry
+read from its journal version rather than a preprint.
+
+**Testability, in its own words:** "The smoking gun of the BHU is a cut-off in the scale of the
+largest perturbations, which has already been measured in cosmic microwave background maps." A
+stated directional signature with cited measurements.
+**Class: QUALITATIVE-DIRECTIONAL.** **Audit-worthiness: high** — the sharpest statement of the
+branch-6 claim, and the natural target if the Gaztañaga series is ever audited Phase-2-style.
+Also useful context: it distinguishes Zhang 2018's same-named model as postulate-based — bearing
+on kimi's R9 triage.
+
+## Entry 54 — Gaztañaga, Kumar, Pradhan & Gabler, "Gravitational bounce from the quantum exclusion principle," PRD 111, 103537 (2025)
+
+**What it does:** relativistic spherical collapse with an equation of state transitioning to a
+ground-state density ρ_G (motivated by the exclusion principle, as in core-collapse supernovae) →
+analytic bounce at R_B; the bounce stays inside r_S, which acts as Λ = 3/r_S² outside; unifies
+inflation and dark-energy origin in one mechanism.
+
+**The find: the family's only LIVE numeric falsifier.** Predicted closed curvature
+**−0.07 ± 0.02 ≤ Ω_k < 0**, from χ* ≈ 15.9 Gpc tied to the CMB low-quadrupole anomaly; a confirmed
+flat universe refutes it. The paper cites Planck PR3's 3σ preference for Ω_k ≈ −0.04 ± 0.01, and
+ACT/DESI mild same-direction trends. **Class: CALIBRATED-FALSIFIER** — the third in the family
+(after Smolin 1992 and BLR 2008), and the only one not yet fired.
+
+**Branch correction:** the integration mis-seated this in branch 3 (torsion bounce). It is
+Gaztañaga-line GR + quantum exclusion — no torsion anywhere. Moved to branch 6, number unchanged.
+
+## Entry 55 — Alesci, Bahrami & Pranzetti, "Asymptotically de Sitter universe inside a Schwarzschild black hole," PRD 102, 066010 (2020)
+
+**What it does:** LQG effective Hamiltonian for the Schwarzschild interior (beyond minisuperspace,
+with inverse-volume and coherent-state corrections); the classical singularity is replaced by a
+bounce; for Barbero–Immirzi γ ≈ 0.274 the post-bounce interior is asymptotically de Sitter — a Λ
+generated purely by quantum gravity. The γ value coincides exactly with LQG's independent SU(2)
+black-hole-entropy determination.
+
+**Class: CONSISTENCY-ONLY** — the coincidence is suggestive, the Λ–mass relation is flagged by the
+authors as "intriguing", and no falsifier is stated. **Audit-worthiness: medium** — the
+quantum-gravity partner to entry 39's Planck-validity concession: where the ECSK bounce hits the
+Planck wall, this is what the wall's other side might look like.

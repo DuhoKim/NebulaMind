@@ -21,11 +21,12 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-25 CONSISTENCY-ONLY, 17 UNREAD (reading in progress: 37, 39–41, 52–53 read and classed 2026-08-23;
-remaining unread: 31, 36, 38, 42–51, 54–57, of which 31 and 47–50 are paywalled on every free route
-and 36/57 have no records to fetch — the needs-institutional-access queue. Unread fraction 33%;
-notes per paper in `bhu-reading-20260823/`).
+Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 5 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+26 CONSISTENCY-ONLY, 14 UNREAD (reading in progress: 37, 39–41, 52–56 read and classed 2026-08-23;
+remaining unread: 31, 36, 38, 42–51, 57, of which 31 and 47–50 are paywalled on every free route
+and 36/57 have no records to fetch — the needs-institutional-access queue. Unread fraction 27%;
+notes per paper in `bhu-reading-20260823/`. Reading has produced the family's third
+CALIBRATED-FALSIFIER, entry 54 — the only live one).
 
 ---
 
@@ -197,12 +198,6 @@ DOI 10.1088/1361-6382/ab5cb9 — VERIFIED (Crossref: CQG, v37, 025011, 2019). Ad
 Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). CORRECTION: this is Cubero & POPŁAWSKI — same UNH group, companion to entry 52, NOT an independent line as the triage-derived record here briefly claimed. New structural result: the scale-factor bounce is double, with a single temperature bounce and a little crunch between.
 Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) — the 'independent line' triage claim was wrong and is corrected above.
 
-**54. "Gravitational bounce from the quantum exclusion principle." Phys. Rev. D 111, 103537 (2025).**
-DOI 10.1103/physrevd.111.103537 — VERIFIED (Crossref: PRD, v111, 103537, 2025). Added 2026-08-23, hunt round 2
-(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
-Record: triage pick #27; the newest published bounce mechanism in the family.
-
 ## 4. The baby-universe branch
 
 **13. V. P. Frolov, M. A. Markov, V. F. Mukhanov (1989). "Through a black hole into a new universe?" Phys. Lett. B 216, 272–276.**
@@ -287,7 +282,7 @@ journal status newly established here. Audit-worthiness: **high** — see ranked
 **55. "Asymptotically de Sitter universe inside a Schwarzschild black hole." Phys. Rev. D 102, 066010 (2020).**
 DOI 10.1103/physrevd.102.066010 — VERIFIED (Crossref: PRD, v102, 066010, 2020). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). LQG interior bounce beyond minisuperspace; γ ≈ 0.274 gives an asymptotically de Sitter interior, and that γ coincides exactly with LQG's independent black-hole-entropy value. Suggestive, no falsifier — the quantum partner to entry 39's Planck-validity concession.
 Record: triage pick #41 — kimi's #1 base candidate; the most direct recent interior-universe construction.
 
 ## 6. Gaztañaga interior-matching series
@@ -330,8 +325,14 @@ Record: new to us. Audit-worthiness: **medium**.
 **56. "The mass of our observable Universe." MNRAS Lett. 521, L59–L63 (2023).**
 DOI 10.1093/mnrasl/slad015 — VERIFIED (Crossref: MNRAS Lett, v521, pL59-L63, 2023). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **QUALITATIVE-DIRECTIONAL**. READ 2026-08-23 (Tori), from the published MNRAS PDF. Finite-mass universe inside its own r_S; Λ = 3/r_S² as a boundary effect; M_T ≈ 6×10²² M☉. States its smoking gun — a cut-off in the largest-scale perturbations — with cited CMB measurements.
 Record: triage pick #1; completes the published Gaztañaga series in this branch.
+
+**54. "Gravitational bounce from the quantum exclusion principle." Phys. Rev. D 111, 103537 (2025).**
+DOI 10.1103/physrevd.111.103537 — VERIFIED (Crossref: PRD, v111, 103537, 2025). Added 2026-08-23, hunt round 2
+(`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
+Testability: **CALIBRATED-FALSIFIER**. READ 2026-08-23 (Tori). The family's only LIVE numeric falsifier: predicted closed curvature −0.07 ± 0.02 ≤ Ω_k < 0; a confirmed flat universe refutes it. Cites Planck PR3's 3σ preference for Ω_k ≈ −0.04 and same-direction ACT/DESI trends. NOTE: mis-seated in branch 3 at integration — this is Gaztañaga-line GR + quantum exclusion, no torsion; moved to branch 6, number unchanged.
+Record: triage pick #27; the newest published bounce mechanism in the family.
 
 ## 7. Holographic interior cosmology
 
