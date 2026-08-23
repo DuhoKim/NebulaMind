@@ -585,7 +585,15 @@ Crossref/INSPIRE both genuinely lack the record (QJRAS predates DOI coverage), w
 verification had to wait for the ADS route. Cross-check: entry 31's footnote 1 cites this paper
 as ref [13], the source of the open-universe correction Smolin accepted. Status: context (Appendix
 — a critique of CNS, not a BHU-family paper); summary states CNS "appear[s] to contain a number
-of conceptual and technical flaws". Full read pending (scan needs page-image reading, no OCR).
+of conceptual and technical flaws". READ 2026-08-23 (Tori), all 12 pages from the scan: the
+critique's strongest point is the primordial-black-hole objection (Δ(p) should peak over ALL
+holes, not stellar remnants; §6 names excluding PBHs "the primary requirement") — which entry
+31's text does not answer (it answers the neutron-universe and Λ points and refers the rest to a
+book appendix). The critics flag in print that the stars↔black-holes association is their own
+reconstruction, concede their neutron-universe reversal is "tentative", grant the programme is
+"certainly worth pursuing", and their 1993 "no more nor less amenable to experiment than the
+anthropic principle" charge is precisely what entry 31's §4 falsifier was built to answer. Full
+notes: `bhu-reading-20260823/READING_NOTES_01.md` batch 7.
 
 **A0b (pending verification / ruled context, 2026-08-23, hunt round 2).** Kimi recalls not seated:
 J. Silk, "Holistic cosmology" (Science 277, 1997) — published CNS critique, verify before seating

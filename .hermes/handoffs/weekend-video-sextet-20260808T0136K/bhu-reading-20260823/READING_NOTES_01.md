@@ -360,3 +360,52 @@ cosmological framing. Nothing here bears on observables.
 
 Pins: smolin sha256 46e57c43…, smoller-temple-2000 ef904904…, smoller-temple-1997 6e709a9c…
 (full hashes with the PDFs in `sources/`).
+
+---
+
+# Batch 7 — A0 read: Rothman & Ellis 1993, the published critique of CNS (2026-08-23, Tori)
+
+QJRAS 34, 201–212, read page-by-page from the ADS scan (image-only; pinned sha256 ad76b7ac…).
+Context entry, not base layer. What the critique actually argues:
+
+1. **The stars↔black-holes association is the critics' own reconstruction — and they say so.**
+   p. 204: the sentence "universes with the most stars are expected to be those with the most
+   black holes" is "our own. Smolin does not explicitly make such a statement" — but they argue
+   it runs tacitly through the proposal and is the source of most difficulties. Honest flagging
+   of an interpretive step, in print, in 1993.
+
+2. **The neutron-universe reversal (§2.2)** — the argument Smolin 2004 §3 answers. Their claim:
+   a Δm<0 (neutron-dominated) universe should form black holes at least as readily, because the
+   zero-angular-momentum collapse timescale (their eq. 3) is charge-independent; they concede
+   twice that "our conclusions are tentative." Smolin's 2004 counter is that massive-star
+   formation needs CO cooling, dust shielding, and shock triggering — chemistry the neutron
+   universe lacks. Both sides argue from qualitative star-formation physics; neither computes.
+
+3. **The primordial-black-hole objection (§3) — the critique's deepest point, and the one the
+   2004 primary text does NOT answer.** If tunnelling makes offspring, PBHs count as well as
+   stellar remnants, so Δ(p) should peak around maxima of ALL holes — yet generic inflation is
+   precisely what suppresses PBHs. "The primary requirement at this stage is a mechanism to
+   exclude primordial black holes from the proposal" (§6). Smolin 2004 §3 answers the
+   neutron-universe and Λ points and refers the rest to the appendix of The Life of the Cosmos
+   ("addresses the objections published in Refs. [13,14,31]") — a book, unverifiable here.
+   Reader's note (mine): on the two texts actually read, the PBH objection stands unanswered.
+
+4. **Unidirectionality (§5)**: lowering α binds the diproton → all hydrogen burns to ²He → no
+   long-lived stars but MORE black holes; raising α_g lowers the Landau–Chandrasekhar mass →
+   more black holes (or, per Rees fragmentation, no effect). "It is difficult to think of any
+   parameter change that works in only one direction." This attacks hypothesis S directly.
+
+5. **The k=+1 relaxation (§2.1)** — the point Smolin's 2004 footnote 1 credits them for,
+   confirmed: open models work as long as black holes are produced; they also note the sign of k
+   "has very little effect indeed on local gravitational collapse."
+
+6. **Testability, as of 1993 (§2)**: CNS "appears no more nor less amenable to experiment than
+   the anthropic principle." Historical arc worth recording: this was written BEFORE the
+   neutron-star-mass falsifier existed (that needed Bethe–Brown 1994+); entry 31 (2004) is
+   Smolin's direct answer to exactly this charge. The critique also grants the programme is
+   "certainly worth pursuing" and "opens up new vistas".
+
+Verdict for our record: a substantive, fair, adversarial critique — the model for what entry
+31's §3–§4 are responding to. The two-decade dialogue (1992 CQG → 1993 critique → 2004 reply →
+2026 pulsar record) is now fully documented on our side except for the 1992 CQG text itself
+(entry 6, credential queue).
