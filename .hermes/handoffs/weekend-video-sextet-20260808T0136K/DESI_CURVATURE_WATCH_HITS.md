@@ -1,0 +1,25 @@
+- 2026-08-23T05:54:08Z · arXiv:2608.15167 (2026-08-15) — Testing a Sign-Switch Cosmological Model with Curvature through Latest Planck 2018, DESI DR2 and PantheonPlus\&amp;SH0ES Observational Data
+- 2026-08-23T05:54:08Z · arXiv:2607.28445 (2026-07-30) — Inflation, Open Universes, and Dark Energy
+- 2026-08-23T05:54:08Z · arXiv:2607.27410 (2026-07-29) — DESI DR2 Results IV: Alcock-Paczyński Measurements from the Lyman Alpha Forest and Cosmological Constraints
+- 2026-08-23T05:54:08Z · arXiv:2607.09240 (2026-07-10) — Cosmological Constraints on the DGP Model in light of DESI DR2 2025 Data
+- 2026-08-23T05:54:08Z · arXiv:2607.02889 (2026-07-03) — Distinguishing wormholes via Einstein rings and global curvature
+- 2026-08-23T05:54:08Z · arXiv:2607.09732 (2026-07-02) — Late-time cosmological constraints on three holographic dark energy models with DESI DR2 BAO and Type Ia supernovae
+- 2026-08-23T05:54:08Z · arXiv:2606.30527 (2026-06-29) — Universal distance modes from DESI BAO and Type Ia supernovae: what do cosmological rulers actually measure?
+- 2026-08-23T05:54:08Z · arXiv:2606.23936 (2026-06-22) — Cosmological constraints from the DESI DR1 Bispectrum Full-Shape and DR2 BAO
+- 2026-08-23T05:54:08Z · arXiv:2606.05853 (2026-06-04) — Reconstructing dark energy with fewer assumptions
+- 2026-08-23T05:54:08Z · arXiv:2605.22362 (2026-05-21) — Constraining Spatial Curvature with Priors from Swampland Conjectures
+- 2026-08-23T05:54:08Z · arXiv:2604.23492 (2026-04-26) — The open-Universe signal: A model artifact rather than genuine curvature
+- 2026-08-23T05:54:08Z · arXiv:2604.04056 (2026-04-05) — Reconstruction of the Quintessence Scalar Field Potential Using Gaussian Processes
+- 2026-08-23T05:54:08Z · arXiv:2604.01980 (2026-04-02) — No evidence for dynamical dark energy from the Combo correlation of GRBs
+- 2026-08-23T05:54:08Z · arXiv:2603.25999 (2026-03-27) — Cosmological constraints on the big bang quantum cosmology model
+- 2026-08-23T05:54:08Z · arXiv:2603.19356 (2026-03-19) — Cosmological constraints from the DESI DR1 joint power spectrum and bispectrum analysis
+- 2026-08-23T05:54:08Z · arXiv:2603.18131 (2026-03-18) — High-redshift physics from the acoustic scale
+- 2026-08-23T05:54:08Z · arXiv:2603.15868 (2026-03-16) — Dark Energy with Constant Inertial Mass Density: Updated Constraints and Curvature-Induced Sign Transitions in $ρ_{\rm DE}$ and $ρ_{\rm DE}+p_{\rm DE}$
+- 2026-08-23T05:54:08Z · arXiv:2603.13208 (2026-03-13) — Negative Masses and Spatial Curvature: Alleviating Neutrino Mass Tensions in LambdaCDM and Extended Cosmologies
+- 2026-08-23T05:54:08Z · arXiv:2603.09973 (2026-03-10) — Probing Physics Beyond the Standard Model through Combined Analyses of Next-Generation Type Ia Supernova, CMB, and BAO Surveys
+- 2026-08-23T05:54:08Z · arXiv:2602.18761 (2026-02-21) — Cosmological constraints from a joint DESI DR1 Full-Shape and DR2 BAO
+- 2026-08-23T05:54:08Z · arXiv:2602.18554 (2026-02-20) — Reanalyzing DESI DR1: 5. Cosmological Constraints with Simulation-Based Priors
+- 2026-08-23T05:54:08Z · arXiv:2601.16165 (2026-01-22) — Reanalyzing DESI DR1: 4. Percent-Level Cosmological Constraints from Combined Probes and Robust Evidence for the Normal Neutrino Mass Hierarchy
+- 2026-08-23T05:54:08Z · arXiv:2601.03028 (2026-01-06) — Bounce Inflation with Dynamical Dark Energy in Light of DESI DR2
+- 2026-08-23T05:54:08Z · arXiv:2512.15962 (2025-12-17) — Cosmological Constraints from Full-Scale Clustering and Galaxy-Galaxy Lensing with DESI DR1
+- 2026-08-23T05:54:08Z · arXiv:2512.09486 (2025-12-10) — Constraints on Spatial Curvature and Dark Energy Dynamics in the $w$CDM Model from DESI DR1 and DR2
