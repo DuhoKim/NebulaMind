@@ -22,9 +22,9 @@ after 2026-08-22 take the next free number rather than renumbering, so cross-ref
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-19 CONSISTENCY-ONLY, 23 UNREAD (entries 31 and 36–57 — texts unexamined here; class deliberately
-not assigned second-hand. The unread fraction is now 45% of the base layer: the hunt has decisively
-outrun the reading, and reading is the outstanding BHU work).
+22 CONSISTENCY-ONLY, 20 UNREAD (reading in progress: 39–41 read and classed 2026-08-23, batch 1 of
+`bhu-reading-20260823/`; remaining unread: 31, 36–38, 42–57. The unread fraction is 39% and
+falling; notes per paper in the reading lane).
 
 ---
 
@@ -163,19 +163,19 @@ Testability: **CONSISTENCY-ONLY**. Record: pinned at Kun's Phase 1 gate. Audit-w
 **39. N. J. Popławski (2012). "Big bounce from spin and torsion." Gen. Relativ. Gravit. 44, 1007–1014.**
 DOI 10.1007/s10714-011-1323-2 — VERIFIED (Crossref: GRG, v44, p1007-1014, 2012-01). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Refines the PLB 694 bounce with all SM degrees of freedom: ε_bounce = 15.4 ε_Pl — above Planck density, a validity limit the paper concedes itself — with preons or trans-Planckian classicality as undischarged escapes; averaging still cited, not derived. Strengthens, and does not contradict, the Phase 2 audit.
 Record: recalled by the gate with its DOI remembered EXACTLY (verified digit-for-digit); fills the hole between the 2010 and 2012 mechanism papers of this branch.
 
 **40. N. Popławski (2021). "Gravitational collapse of a fluid with torsion into a universe in a black hole." J. Exp. Theor. Phys. 132, 374 (Zh. Eksp. Teor. Fiz. 159, 448).**
 DOI 10.31857/S0044451021030068 — VERIFIED (Crossref: ZhETF, v159, p448-456, 2021). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Tolman-metric homogeneous collapse; the no-singularity result holds for the SHEAR-FREE case by construction, with inhomogeneous/rotating collapse expressly open. The R₀→π cycle asymptotics is the uncompressed lineage of the audited 2025 paper's B-14 defect.
 Record: harvest #10; the mechanism's direct collapse continuation, published in JETP.
 
 **41. N. Popławski (2021). "A nonsingular, anisotropic universe in a black hole with torsion and particle production." Gen. Relativ. Gravit. 53, 18.**
 DOI 10.1007/s10714-021-02790-7 — VERIFIED (Crossref: GRG, v53, 2021-02). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Proves torsion alone loses to shear (σ² grows faster than a⁻⁶) and patches it with phenomenological βH⁴ particle production — the explicit form of the step the A2 audit marked heuristic (B-13), conceded in the mathematics and repaired with a free parameter.
 Record: harvest #11; parentage construction beyond isotropy.
 
 **51. N. J. Popławski (2010). "Nonsingular Dirac particles in spacetime with torsion." Phys. Lett. B 690, 73–77.**
