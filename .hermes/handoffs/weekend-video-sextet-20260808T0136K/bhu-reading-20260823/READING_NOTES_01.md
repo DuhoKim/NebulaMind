@@ -73,3 +73,61 @@ findings by conceding them in the mathematics (Planck validity in 39, shear-defe
 shear-free idealization in 40) and patching them with underived ingredients (preons, β). The
 branch's honest summary after reading: **the bounce is conditional on an averaging step nobody
 derives and a production rate nobody computes, and the authors' own equations say so.**
+
+---
+
+# Reading notes, batch 2 (2026-08-23, Tori)
+
+## Entry 37 — Smoller & Temple, "Shock-wave cosmology inside a black hole," PNAS 100, 11216 (2003)
+
+**What it does:** exact GR solutions (no torsion, no exotic ingredients) matching k=0 FRW to a
+TOV-form metric *inside* a black hole across a subluminous shock beyond one Hubble length. The big
+bang is a localized explosion inside the black hole of an asymptotically flat Schwarzschild
+spacetime; the entropy condition breaks time symmetry and selects the explosion; the universe
+eventually exits through a WHITE-hole horizon. σ = 1/3 is uniquely selected as the equation of
+state for which the shock emerges from the big bang at light speed. Theorem-level results with
+concrete bounds (shock ≤ 4.5 Hubble lengths when first visible; t_crit ≤ 4.5 t₀). One free
+parameter.
+
+**Distinctives:** the ONLY paper read so far with theorem-grade rigor and no underived physical
+ingredient — no averaging step, no production rate. The trade: its claim is a possible exact model,
+not a mechanism; no falsifier stated; the distinguishing structure lies beyond stated observational
+reach ("details will appear in a forthcoming paper").
+
+**Class: CONSISTENCY-ONLY.** **Audit-worthiness: medium-high** — branch 9's defining construction,
+and the natural comparison standard for rigor when auditing the softer branches.
+
+## Entry 52 — Unger & Popławski, "Big Bounce and Closed Universe from Spin and Torsion," ApJ 870, 78 (2019)
+
+**What it does:** redoes the closed-universe EC bounce keeping k=1 (the audited 2016 ApJ paper's
+bounce values "de facto considered a flat universe" — a published approximation-correction to the
+paper our A2 audit covered). Results: a closed EC universe exists only above a threshold in
+C ~ aT (C > √(8/9)); to reach dark-energy acceleration C must grow to 1.9×10⁴⁸.
+
+**The load-bearing point:** the required C-growth QUANTIFIES the branch's dependence on particle
+production — the free βH⁴ dial must deliver ~48 orders of magnitude in aT between bounce and
+Λ-domination. The dial now has a required range, still with no derivation of the mechanism.
+
+**Class: CONSISTENCY-ONLY.** **Audit-worthiness: HIGH** — direct published correction to an
+audited paper's approximation, and the quantifier of the production requirement.
+
+## Entry 53 — Cubero & Popławski, "Analysis of big bounce in Einstein–Cartan cosmology," CQG 37, 025011 (2019)
+
+**RECORD CORRECTION:** the entry carried kimi's triage line "outside the Popławski authorship
+line". FALSE — Popławski is the second author; same UNH group, companion to entry 52. Corrected in
+the entry; the mistake is left noted here because a triage line became a bibliography claim without
+an authorship check.
+
+**What it does:** same closed-universe threshold analysis (x y e^{−x²/2} > e^{−1/2}) plus one new
+structural result: the scale-factor bounce is DOUBLE — a single temperature bounce with two scale-
+factor bounces and "a little crunch" between them, symmetric if C is constant.
+
+**Class: CONSISTENCY-ONLY.** **Audit-worthiness: medium** — refines the same-group picture; no
+independent check of anything, contrary to what our record briefly claimed.
+
+## Batch-2 standing
+
+Unreadable without institutional access, recorded not skipped: branch 11 (entries 47–50 — no
+INSPIRE documents, no eprints, Elsevier/APS paywalls) joins Smolin 2004 (entry 31) in the
+needs-access queue. Entries 36 and 57 (Smoller–Temple CMP/ARMA) have no INSPIRE record at all;
+38 (MAA 2004) has an eprint and is fetched for batch 3, alongside 54, 55, 56.

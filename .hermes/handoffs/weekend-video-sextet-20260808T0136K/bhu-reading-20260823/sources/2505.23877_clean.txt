@@ -1,0 +1,922 @@
+[2505.23877] Gravitational Bounce from the Quantum Exclusion Principle 
+
+### Gravitational Bounce from the Quantum Exclusion Principle
+
+ Enrique Gaztañaga
+
+ Affiliation:  Institute of Cosmology & Gravitation,
+University of Portsmouth,
+Dennis Sciama Building, Burnaby Road,
+Portsmouth, PO1 3FX, United Kingdom
+
+ Affiliation:  Institute of Space Sciences (ICE, CSIC), 08193 Barcelona, Spain
+
+ Affiliation:  Institut d´Estudis Espacials de Catalunya (IEEC), 08034 Barcelona, Spain
+
+ K. Sravan Kumar
+
+ Affiliation:  Institute of Cosmology & Gravitation,
+University of Portsmouth,
+Dennis Sciama Building, Burnaby Road,
+Portsmouth, PO1 3FX, United Kingdom
+
+ S. Pradhan
+
+ Affiliation:  Institute of Cosmology & Gravitation,
+University of Portsmouth,
+Dennis Sciama Building, Burnaby Road,
+Portsmouth, PO1 3FX, United Kingdom
+
+ Affiliation:  Department of Physical Sciences, Indian Institute of Science Education and Research (IISER) Kolkata, Mohanpur 741246, India
+
+ M. Gabler
+
+ Affiliation:  Departmento de Astronomía y Astrofísica, Universitat de València, E-46100 Burjassot (València), Spain
+
+### Abstract
+
+We investigate the fully relativistic spherical collapse model of a uniform distribution of mass M M with initial comoving radius χ ∗ \chi_{*} and spatial curvature k ≡ 1 / χ k 2 ≤ 1 / χ ∗ 2 k\equiv 1/\chi_{k}^{2}\leq 1/\chi_{*}^{2} representing an over-density or bounded perturbation within a larger background.
+Our model incorporates a perfect fluid with an evolving equation of state, P = P ⁡ ( ρ ) P=P(\rho) , which asymptotically transitions from pressureless dust ( P = 0 P=0 ) to a ground state characterized by a uniform, time-independent energy density ρ G \rho_{\rm G} . This transition is motivated by the quantum exclusion principle, which prevents singular collapse, as observed in supernova core-collapse explosions. We analytically demonstrate that this transition induces a gravitational bounce at a radius R B = ( 8 π G ρ G / 3 ) − 1 / 2 R_{\rm B}=(8\pi G\rho_{\rm G}/3)^{-1/2} . The bounce leads to an exponential expansion phase, where P ⁡ ( ρ ) P(\rho) behaves effectively as an inflation potential. This model provides novel insights into black hole interiors and, when extended to a cosmological setting, predicts a small but non-zero closed spatial curvature: − 0.07 ± 0.02 ≤ Ω k < 0 -0.07\pm 0.02\leq\Omega_{k}<0 . This lower bound follows from the requirement of χ k ≥ χ ∗ ≃ 15.9 \chi_{k}\geq\chi_{*}\simeq 15.9 Gpc to address the cosmic microwave background low quadrupole anomaly.
+The bounce remains confined within the initial gravitational radius r S = 2 ​ G ​ M r_{\rm S}=2GM , which effectively acts as a cosmological constant Λ \Lambda inside r S = 3 / Λ r_{\rm S}=\sqrt{3/\Lambda} while still appearing as a Schwarzschild black hole from an external perspective. This framework unifies the origin of inflation and dark energy, with its key observational signature being the presence of small but nonzero spatial curvature, a testable prediction for upcoming cosmological surveys. 
+
+### I Introduction
+
+The standard model of cosmology, rooted in the Big Bang paradigm and the theory of General Relativity (GR) with the addition of cosmological constant ( Λ \Lambda ) and cold dark matter (CDM), has been remarkably successful in explaining key observations, such as the Cosmic Microwave Background (CMB), the large-scale structure of the Universe, and the accelerating cosmic expansion attributed to dark energy. However, several fundamental questions remain unresolved, such as the nature of the initial singularity, the flatness and horizon problems (or the origin of inflation), and the physical origin of dark energy. These challenges have spurred the development of alternative frameworks that seek to extend or complement the standard cosmological model. The nature of CDM and the origin of the smallness of Λ \Lambda have been the central issues of modern cosmology. 
+
+A related problem is that of understanding the singular collapse into a Black Hole (BH). Both problems can be addressed when we consider the relativistic spherical collapse of a local (finite) Friedmann-Lemaitre-Robertson-Walker (FLRW) cloud within a larger background, as shown in Fig. 1 .
+A cosmological bounce and an inflationary phase can emerge naturally from two fundamental assumptions: ρ ˙ = 0 \dot{\rho}=0 and k > 0 k>0 , which simply follow from considering a finite over-density of matter obeying the quantum exclusion principle, which prevents the density from overcoming some threshold value or ground state ρ G \rho_{\rm G} . 
+
+Crucially, this quantum mechanism violates the strong energy condition (SEC) in classical GR. As was shown in Pradhan et al. 2025 , the bounce requires a non-zero local curvature k > 0 k>0 . Both conditions sidestep the singularity GR theorems proposed by Hawking et al. 1970 , allowing us to formulate a novel solution to a pivotal issue in cosmological theory. 
+
+ Figure 1: Graphical representation of the spherical collapse. There are three uniform spherically symmetric distributions: (i) outer background ρ ¯ \bar{\rho} , (ii) inner region with radius less than R R and larger mean density ρ > ρ ¯ \rho>\bar{\rho} , and (iii) empty space outside R R . Two key ingredients of this configuration: a) the inner region collapse is decoupled from the background, and b) such gravitational bounded collapse is modeled in GR with a global spatial curvature k > 0 k>0 . 
+
+The bouncing scenario we formulate naturally extends to the subsequent stage of inflationary expansion when spatial curvature effects become negligible, resulting in the resolution of the horizon and flatness problems. Since the model is confined to a finite comoving region of spacetime, it introduces a finite comoving cutoff for super-horizon perturbations, potentially explaining anomalies in the CMB, such as the absence of structures beyond 66 degrees ( Gaztañaga and Camacho-Quevedo 2022 ) . This is a unique aspect of the model that is actually compatible with CMB observations, unlike the standard framework of inflationary cosmology.
+The value of this cut-off directly relates to a prediction of spatial curvature k > 0 k>0 . 
+
+A recent paper ( Pradhan et al. 2025 ) has numerically solved the Newtonian spherical collapse equations with a polytropic equation of state (EoS) inspired by neutron star (NS) conditions. It found bounces at or above nuclear saturation density with equivalent GR behavior in a closed FLRW metric. The GR bounce corresponds to the ground state of the matter, characterized by P = − ρ P=-\rho (which is often termed a meta-stable state or quasi-deSitter in the framework of standard inflation). Here, we elaborate on the underlying mechanisms of this phenomenon and its implications for cosmic evolution, and we find new analytical and numerical solutions for the bounce, which are fully relativistic and within classical GR with a perfect fluid P = P ⁡ ( ρ ) P=P(\rho) . 
+
+Our approach builds on the classical general relativistic treatment of a uniform, finite FLRW fluid ball (also referred to as a patch or cloud) embedded in a surrounding Schwarzschild vacuum spacetime, as studied by Zel’Dovich 1963 ; Geller et al. 2018 ; Faraoni and Atieh 2020 . The dynamics of such configurations—in both expansion and collapse—have been examined in various contexts, including early treatments of relativistic collapse by Thompson and Whitrow Thompson and Whitrow 1968 , and Bondi Bondi 1969 , who focused on pressure-supported configurations evolving toward black hole formation. Further developments by Smoller and Temple Smoller and Temple 2003 provide exact solutions featuring spherical shock waves, extending the Oppenheimer–Snyder model Oppenheimer and Snyder 1939 to cases with non-zero pressure. 
+
+Some earlier literature suggests that matching a FLRW interior to a Schwarzschild exterior requires vanishing pressure—i.e., P = 0 P=0 at the junction—to ensure metric continuity across the density discontinuity. However, this restriction arises under the specific assumption that the spherical junction radius must follow a geodesic of the FLRW metric, typically parametrized as R = a ⁡ ( τ ) ​ χ ∗ R=a(\tau)\chi_{*} with constant χ ∗ \chi_{*} . In the presence of pressure ( P ≠ 0 P\neq 0 ), the radius of the junction is no longer a fixed comoving radial coordinate but evolves dynamically, i.e., χ ∗ = χ ∗ ​ ( τ ) \chi_{*}=\chi_{*}(\tau) , as shown explicitly in Gaztañaga 2022a . In this case, a smooth matching of the FLRW and Schwarzschild metrics is still possible without introducing any discontinuity or requiring a surface layer with additional energy-momentum content. 
+
+By contrast, a distinct class of solutions—often called “bubble” or “baby universe” models—assumes a vacuum de Sitter interior matched to a Schwarzschild exterior Gonzalez-Diaz 1981 ; Blau et al. 1987 ; Grøn and Soleng 1989 ; Frolov et al. 1989 ; Aguirre and Johnson 2005 ; Kusenko et al. 2020 . These spacetimes are inherently discontinuous: a smooth junction between two distinct vacuum solutions (de Sitter and Schwarzschild) is not possible without an intermediate surface layer carrying matter or tension, often modeled via a thin shell or bubble wall. Gravastar models Mazur and Mottola 2015 are examples of such constructions. Our setup, in contrast, considers a physically continuous metric across the boundary of a matter-filled collapsing region embedded in vacuum. No additional surface term or exotic matter layer is required, making it a straightforward realization of the classical spherical collapse framework. 
+
+Naturally, our proposed model is also related to existing cosmological bouncing scenarios (such as Starobinskii 1978 ; Starobinsky 1980 ; Nojiri et al. 2017 ; Nojiri et al. 2017 ; Odintsov et al. 2020 ; Kiefer and Mohaddes 2025 ). Several classes of such bouncing cosmologies have been proposed in the literature. One prominent class involves modified gravity theories, such as f ⁡ ( R ) f(R) gravity and Gauss–Bonnet extensions, which allow for non-singular solutions that violate the strong energy condition (SEC) within a classical framework Nojiri et al. 2017 ; Faraoni 2015 . These models produce bounces through geometrical modifications of Einstein’s equations, but often require fine-tuning and may suffer from instabilities or lack of a clear quantum limit. Another approach is rooted in applying loop quantum gravity techniques to homogeneous and isotropic spacetimes. In such a loop quantum cosmology, quantum corrections to the Friedmann equations introduce a repulsive force at Planckian densities, leading to a robust bounce that replaces the classical singularity Bojowald 2008 . This framework offers a well-defined and non-singular evolution at Planckian densities, but relies on the validity of the quantum gravity formalism. A third class involves effective matter models, in which exotic scalar fields produce violations of the SEC necessary for a bounce. These kinds of models employ scalar fields with negative kinetic terms or non-minimal couplings to achieve a non-singular evolution Brandenberger and Peter 2017 ; Nojiri et al. 2017 ; Cai et al. 2011 at the cost of introducing new degrees of freedom with ambiguous physical interpretation or require extensions beyond standard quantum field theory.
+More recent developments include bounces arising from non-local gravity Biswas et al. 2006 ; Kumar et al. 2020 , string-inspired cosmologies Gasperini and Veneziano 2003 , and non-singular anisotropic models Barrow and Cotsakis 1988 ; Kumar et al. 2021 . Each of these introduces distinct mechanisms for evading singularities. However, new complex or speculative ingredients are required in these models.
+Despite the diversity of all these approaches, a common limitation is the reliance on mechanisms beyond classical GR and standard matter physics. In this context, our Black Hole Universe (BHU) model, presents a novel framework where the observable Universe emerges from the gravitational collapse of a finite, nearly homogeneous FLRW cloud of ordinary matter in standard GR.
+It is worth noting here that when we include quantum effects in curved spacetime, even if we initially start with classical fluid with positive pressure, one gets negative pressure contributions as is shown in the studies of semi-classical gravity Cesar e Silva and Shapiro 2024 ; Cesar e Silva et al. 2025 ; Shapiro 2008 .
+The quantum exclusion principle sets a new universal goal for the theories of quantum gravity Loll et al. 2022 ; Buoninfante and etal 2024 ; Buoninfante and Kumar 2022 .
+Although the full study of quantum gravity is beyond the scope of this current study, it lays a foundation for what the actual theory of quantum gravity is supposed to achieve or to be consistent with. However, a pre-requirement for a complete theory of quantum gravity is the robust development of quantum field theory in curved spacetime Kumar and Marto 2025 ; Kumar and Marto 2024 ; Gaztañaga et al. 2024 , which we aim to develop in the future for the non-singular origin of the Universe we present here. 
+
+The FLRW cloud bounce and subsequent inflation are driven by the degenerate pressure P = − ρ P=-\rho , and this is supported by the hypothesis of the quantum exclusion principle, i.e., GR with quantum matter avoids singularities, which aligns very well with Misner’s thoughts on how quantum theory should avoid singularities Misner 1969 .
+A new key ingredient for our approach is to consider a finite cloud, which allows us to
+incorporate spatial curvature, demonstrating its essential role in enabling the bounce. Finally, we address how cosmic acceleration emerges as a natural consequence of the bounce. 
+
+This work stands on its own, but it can also be used to extend and complement the Black Hole Universe (BHU) model ( Gaztañaga 2022b ; Gaztañaga 2023 ) with a closed FLRW cloud k > 0 k>0 . The flat case k = 0 k=0 used previously is a good approximation all the way to the point where we approach the singularity but does not allow for a bounce to occur.
+By connecting the early and late phases of cosmic evolution, it provides a unified model that bridges gravitational collapse, cosmic inflation, and the present accelerated expansion of the Universe. Grounded in physical principles and supported by numerical simulations, this model offers a compelling alternative to the standard cosmological paradigm while addressing its unresolved challenges. 
+
+In this paper, we elaborate on the unified scenario in which the observable Universe originates from the gravitational collapse and bounce of a finite, closed FLRW cloud of matter. We begin by setting up the relativistic spherical collapse model, emphasizing the critical role of positive spatial curvature ( k > 0 k>0 ) in describing a bounded perturbation within a larger background. In the following section, we generalize our scenario to non-vanishing pressure and introduce a pressure contribution motivated by the quantum exclusion principle. This additional (degeneracy) pressure is related to a ground state with a constant energy density and ultimately prevents the singular collapse. 
+
+Building on this, the next sections we describe how degeneracy pressure halts the collapse, leading to a gravitational bounce without requiring modifications to GR and what the implications for cosmic inflation and acceleration are. In detail, we derive the exact analytical solution describing the bounce, demonstrate how the bounce smoothly evolves into an inflationary phase, providing a natural origin for cosmic inflation within the same relativistic framework and extend the model to late-time cosmology. There we discuss how the finite mass and size of the FLRW cloud imply an effective cosmological constant, offering a physical interpretation for Λ \Lambda in terms of the BHU model. Through this sequence, we show how gravitational collapse, bounce, inflation, and dark energy can be understood as different phases of a single, continuous process, rooted in classical GR combined with quantum mechanical principles.
+We use c = 1 c=1 except when otherwise stated. 
+
+### II Spherical collapse P = 0 P=0 
+
+Here, we want to model the collapse of a finite cloud or perturbation within a larger background. We will assume that the initial cloud is a spherical overdense region of a perfect fluid that is surrounded by an empty space, as shown in Fig. 1 . This configuration is embedded in a larger volume containing a homogeneous, more diluted fluid. We also assume that Λ = 0 \Lambda=0 or negligible to start with. For an observer moving with a perfect fluid, the energy-momentum tensor is diagonal: 𝑻 μ ν = d ​ i ​ a ​ g ​ [ − ρ , P , P , P ] \boldsymbol{T}_{\mu}^{~\nu}=diag[-\rho,P,P,P] , where ρ = ρ ⁡ ( τ , χ ) \rho=\rho(\tau,\chi) is the relativistic energy density and P = P ⁡ ( τ , χ ) P=P(\tau,\chi) is the pressure.
+The cloud is initially very large and has a very low density, so the pressure and temperature can be neglected. The relativistic solution to this problem was given by Lemaitre 1933 ‘atom universe’ and is known today as the Lemaitre-Tolman-Bondi (LTB) model. The most general spherically symmetric metric in the comoving frame (i.e., moving with the fluid) is: 
+
+ d ​ s 2 = 𝒈 μ ​ ν ​ d ​ 𝒙 μ ​ d ​ 𝒙 ν = − d ​ τ 2 + ( ∂ r ∂ χ ) 2 ​ d ​ χ 2 F 2 ​ ( χ ) + r 2 ​ d ​ Ω 2 , ds^{2}=\boldsymbol{g}_{\mu\nu}d\boldsymbol{x}^{\mu}d\boldsymbol{x}^{\nu}=-d\tau^{2}+\left(\frac{\partial r}{\partial\chi}\right)^{2}\frac{d\chi^{2}}{F^{2}(\chi)}+r^{2}d\Omega^{2}, 
+
+ (1) 
+
+where F ⁡ ( χ ) F(\chi) is an arbitrary function of χ \chi . For the flat geometry, we have F 2 = 1 F^{2}=1 . For the closed geometry case
+we have F 2 = 1 − k ​ χ 2 F^{2}=1-k\chi^{2} : 
+
+ d ​ s 2 = − d ​ τ 2 + ( ∂ r ∂ χ ) 2 ​ d ​ χ 2 1 − k ​ χ 2 + r 2 ​ d ​ Ω 2 , ds^{2}=-d\tau^{2}+\left(\frac{\partial r}{\partial\chi}\right)^{2}\frac{d\chi^{2}}{1-k\chi^{2}}+r^{2}d\Omega^{2}, 
+
+ (2) 
+
+with k < 1 / χ 2 k<1/\chi^{2} .
+The physical radius (or aerial coordinate) r = r ⁡ ( τ , χ ) r=r(\tau,\chi) corresponds to the area distance and reflects spherical symmetry. The functional form of 𝒈 χ ​ χ \boldsymbol{g}_{\chi\chi} results from 𝑻 0 1 = 𝑮 0 1 = 0 \boldsymbol{T}_{0}^{1}=\boldsymbol{G}_{0}^{1}=0 in the comoving frame.
+The general solution to the Einstein field equation is: 
+
+ H 2 \displaystyle H^{2} 
+ ≡ \displaystyle\equiv 
+ ( r ˙ r ) 2 = 2 ​ G ​ M ​ ( τ , χ ) r 3 − k ​ χ 2 r 2 , \displaystyle\left(\frac{\dot{r}}{r}\right)^{2}=\frac{2GM(\tau,\chi)}{r^{3}}-\frac{k\chi^{2}}{r^{2}}\,, 
+
+ (3) 
+
+ M ⁡ ( τ , χ ) \displaystyle M(\tau,\chi) 
+ ≡ \displaystyle\equiv 
+ 4 ​ π ​ ∫ 0 χ ρ ⁡ ( τ , χ ′ ) ​ r 2 ​ ∂ r ∂ χ ′ ​ d ​ χ ′ \displaystyle 4\pi\int_{0}^{\chi}\rho(\tau,\chi^{\prime})\,r^{2}\,\frac{\partial r}{\partial\chi^{\prime}}\,d\chi^{\prime} 
+
+ (4) 
+
+ ρ ˙ \displaystyle\dot{\rho} 
+ = \displaystyle= 
+ − 3 ​ H ​ ρ , \displaystyle-3H\rho\,, 
+
+ (5) 
+
+where the over dots correspond to partial time derivatives.
+The mass-energy M M was introduced by Lemaitre 1933 and
+is sometimes called the active gravitational mass and coincides with the relativistic Misner-Sharp mass ( Misner and Sharp 1964 ), which is defined for the more general case with pressure Faraoni 2015 . 
+
+Assuming a homogeneous cloud ρ = ρ ⁡ ( τ ) \rho=\rho(\tau) requires H H to also be homogeneous. Consequently, r = a ⁡ ( τ ) ​ χ r=a(\tau)\chi and k k has to be constant. We then have: 
+
+ H 2 = ( a ˙ a ) 2 = 8 ​ π ​ G 3 ​ ρ − k a 2 \displaystyle H^{2}=\left(\frac{\dot{a}}{a}\right)^{2}=\frac{8\pi G}{3}\rho-\frac{k}{a^{2}} 
+ ; 
+ ρ = ρ i ​ ( a a i ) − 3 , \displaystyle\rho=\rho_{i}\,\left(\frac{a}{a_{i}}\right)^{-3}\,, 
+
+ (6) 
+
+ M ⁡ ( χ ) = 4 ​ π 3 ​ r 3 ​ ρ ; m ≡ M ⁡ ( χ ∗ ) \displaystyle M(\chi)=\frac{4\pi}{3}r^{3}\rho\quad;\quad m\equiv M(\chi_{*}) 
+ = \displaystyle= 
+ constant , \displaystyle\text{constant}\,, 
+
+ (7) 
+
+where ρ i = ρ ⁡ ( a i ) \rho_{i}=\rho(a_{i}) and χ ∗ = χ ⁡ ( a i ) \chi_{*}=\chi(a_{i}) are the initial density and comoving radius of the cloud so that the mass m m inside R = a ​ χ ∗ R=a\chi_{*} remains constant. Note that we use comoving units such that a = 1 a=1 at present. This is the same solution as the FLRW solution, as expected. In general, we can choose k k to have any sign depending on the initial conditions. The case of interest here
+is k ≡ 1 / χ k 2 k\equiv 1/\chi_{k}^{2} with χ k > χ ∗ \chi_{k}>\chi_{*} , which corresponds to an overdensity. The value of χ k \chi_{k} relates to the initial velocity H i ≡ H ⁡ ( a i ) H_{i}\equiv H(a_{i}) of the cloud when R = R i ≡ a i ​ χ ∗ R=R_{i}\equiv a_{i}\chi_{*} : 
+
+ 1 / ( a i ​ χ k ) 2 = 2 ​ G ​ m / R i 3 − H i 2 1/(a_{i}\chi_{k})^{2}=2Gm/R_{i}^{3}-H_{i}^{2} 
+
+ (8) 
+
+This reproduces the well-known result that a closed FLRW model exactly mirrors the relativistic spherical collapse model (see §87 in Peebles 1980 ).
+The empty region around the collapsing overdense perturbation separates the perturbation from the background and will expand with time. The corollary to Birkhoff’s theorem (the relativistic version of Gauss law) ensures that the spherical collapse evolution does not couple to the exterior spherically symmetric background (see Faraoni and Atieh 2020 ).
+In the Newtonian approximation, positive curvature ( k > 0 k>0 ) corresponds to a system with negative total energy, where gravitational attraction exceeds kinetic energy, leading to the collapse of the cloud under its own gravity. In GR, spatial curvature provides the geometric representation of a gravitationally bound system. Just as a bound orbit in Newtonian gravity (like a planet around a star) is confined, a closed universe (or a collapsing region) in GR is “confined” by its own curvature. The metric of our initial perturbation
+for χ < χ k \chi<\chi_{k} 
+is therefore the same as the one of a closed FLRW metric: 
+
+ d ​ s 2 = 𝒈 μ ​ ν ​ d ​ 𝒙 μ ​ d ​ 𝒙 ν = − d ​ τ 2 + a 2 ​ ( d ​ χ 2 1 − k ​ χ 2 + χ 2 ​ d ​ Ω 2 ) . ds^{2}=\boldsymbol{g}_{\mu\nu}d\boldsymbol{x}^{\mu}d\boldsymbol{x}^{\nu}=-d\tau^{2}+a^{2}\left(\frac{d\chi^{2}}{1-k\chi^{2}}+\chi^{2}d\Omega^{2}\right)\,. 
+
+ (9) 
+
+Note that because χ k \chi_{k} is cosmologically large,
+the corresponding curvature term k / a 2 = 1 / ( a 2 ​ χ k 2 ) k/a^{2}=1/(a^{2}\chi^{2}_{k}) is subdominant until a a becomes sufficiently small a → 0 a\rightarrow 0 .
+
+Note that the solutions in Eqs. 6 - 7 , and also for Eqs. 3 - 4 , are the same as those in the Newtonian spherical collapse studied in Pradhan et al. 2025 . The FLRW cloud is a local and finite LTB solution in contrast to the standard FLRW metric, which is usually assumed to be global and infinite.
+For χ < χ ∗ \chi<\chi_{*} , both solutions are the same because of the corollary to Birkhoff’s theorem ( see Faraoni and Atieh 2020 ). 
+
+What happens in the LTB solution for χ > χ ∗ \chi>\chi_{*} in the region of empty space ρ = 0 \rho=0 surrounding R R ?
+Lemaitre also found a solution to this question. In §11 of Lemaitre 1933 , he shows how variables can be changed to transform the LTB metric
+into the static Schwarzschild metric. This change of variables corresponds to a rest frame, that is not comoving with the fluid, just as in the case of the static version of the de-Sitter metric (i.e., see Gaztañaga 2024 ).
+Another way to approach this question is to show that the FLRW metric matches the Schwarzschild metric without discontinuities in agreement with the junction conditions.
+Two different versions of this
+approach were presented in Stuckey 1994 and in §12.5.1 in Padmanabhan 2010 . Such matching solution is what we call the FLRW cloud, which has the FLRW metric inside χ < χ ∗ \chi<\chi_{*} and the Schwarzschild metric outside χ ∗ \chi_{*} ( Gaztañaga 2022a also presented the case k = 0 k=0 and Λ = 0 \Lambda=0 for timelike and null junctions). 
+
+The relativistic spherical collapse can be interpreted either as a solution to an LTB metric, as in Lemaitre (1933) original solution, or as a matching of two different solutions (as in the above references, see also Appendix A3 in Gaztañaga and Camacho-Quevedo 2022 ). Both solutions are identical. In the LTB solution (i.e. Eq. 3 - 7 ) the density has a discontinuity at χ = χ ∗ \chi=\chi_{*} : 
+
+ ρ ⁡ ( τ , χ ) = { ρ ⁡ ( τ ) for ​ χ < χ ∗ 0 for ​ χ ≥ χ ∗ , \rho(\tau,\chi)=\left\{\begin{array}[]{ll}\rho(\tau)&{\text{for}}~~\chi<\chi_{*}\\
+0&{\text{for}}~~\chi\geq\chi_{*}\\
+\end{array}\right.\,, 
+
+ (10) 
+
+while keeping the spacetime metric continuous. The discontinuous density does not pose any problems here, because the extrinsic curvature still remains smooth. As was shown in Gaztañaga 2022a , the two metrics can be matched without discontinuities. This is in contrast to, e.g., the concept of Gravastars, where the matching of a (static) de Sitter space inside with a Schwarzschild metric outside requires a particular treatment of the junction. The discontinuous T μ ​ ν T_{\mu\nu} leads to a discontinuous extrinsic curvature, which needs to be cured by the introduction of an artificial thin shell of matter. This is not necessary in the BHU model. 
+
+Let us consider the fate of an FLRW cloud once the collapse has started. Analogously to any spherically symmetric matter distribution undergoing gravitational collapse, the outer physical radius R = a ⁡ ( τ ) ​ χ ∗ R=a(\tau)\chi_{*} of the cloud shrinks
+and eventually crosses inside the corresponding Schwarzschild radius: R < r S = 2 ​ G ​ m R<r_{\rm S}=2Gm . When this happens, the FLRW cloud becomes a BH according to the exterior or superior observer .
+ In contrast to standard collapse scenarios, where the mass involved is of stellar dimensions, here we consider cosmological scales. Consequently,
+both r S r_{\rm S} and a i ​ χ ∗ ≫ r S a_{i}\chi_{*}\gg r_{\rm S} are extremely large,
+and the corresponding densities are extremely
+small.
+We can estimate the density at a given time τ \tau before the collapse to the singularity in the absence of any pressure 
+
+ ρ = τ − 2 6 ​ π ​ G ≃ 3.97 × 10 − 13 ​ M ⊙ km 3 ​ [ τ s ] − 2 . \rho=\frac{\tau^{-2}}{6\pi G}\simeq 3.97\times 10^{-13}\,\frac{\rm M_{\odot}}{\text{km}^{3}}\,\left[\frac{\tau}{\text{s}}\right]^{-2}\,. 
+
+ (11) 
+
+This is the solution to Eq. 6 when the spatial curvature term is neglected.
+If we take m m to be as large as the mass of our observable Universe ( m ≃ 5 × 10 22 ​ M ⊙ m\simeq 5\times 10^{22}\,\rm M_{\odot} ), we find from Eq. 7 that at horizon crossing, r = r S = 2 ​ G ​ m / c 2 r=r_{\rm S}=2Gm/c^{2} , the density of the BH, ρ \rho is 
+
+ ρ BH = m 4 ​ π 3 ​ r S 3 = 3 ​ r S − 2 ​ c 2 8 ​ π ​ G ≃ 3.59 × 10 − 48 ​ M ⊙ km 3 ≃ 4 ​ protons m 3 . \rho_{\rm BH}=\frac{m}{\frac{4\pi}{3}r_{\rm S}^{3}}=\frac{3r_{\rm S}^{-2}c^{2}}{8\pi G}\simeq 3.59\times 10^{-48}\,\frac{\rm M_{\odot}}{\text{km}^{3}}\simeq 4\,\frac{\text{protons}}{\rm m^{3}}\,. 
+
+ (12) 
+
+At these low densities, it is reasonable to assume that the thermal pressure P P and temperature T T are negligible because the time scale of the collapse is negligible compared to the time scales for any interactions between neutral particles. The cold collapse proceeds inside the BH event horizon. Note in Eq. 11 how even up to one second before the singularity occurs, the density is small compared to nuclear saturation density (SD) in atomic nuclei or in NS: 
+
+ ρ ⁡ ( τ = 1 ​ s ) ≪ ρ NS ≃ ρ SD ≃ 1.4 × 10 − 4 ​ M ⊙ km 3 . \rho(\tau=1s)\ll\rho_{\rm NS}\simeq\rho_{\rm SD}\simeq 1.4\times 10^{-4}\,\frac{\rm M_{\odot}}{\text{km}^{3}}\,. 
+
+ (13) 
+
+### III SPHERICAL COLLAPSE P = P ⁡ ( ρ ) P=P(\rho) 
+
+So far, we have considered the spherical collapse of a FLRW cloud with a perfect uniform fluid and zero initial pressure, P = 0 P=0 . As the collapse proceeds, interactions among particles lead to an effective pressure, modeled as P = P ⁡ ( ρ ) P=P(\rho) . Due to the corollary of Birkhoff’s theorem (the relativistic version of Gauss law),
+the FLRW cloud solution inside χ ∗ \chi_{*} will be the same as the one for the infinite FLRW metric.
+The FLRW solution for the general case of P = P ⁡ ( ρ ) P=P(\rho) , changes to: 
+
+ H 2 = ( a ˙ a ) 2 \displaystyle H^{2}=\left(\frac{\dot{a}}{a}\right)^{2} 
+ = \displaystyle= 
+ 8 ​ π ​ G 3 ​ ρ − k a 2 , \displaystyle\frac{8\pi G}{3}\rho-\frac{k}{a^{2}}\,, 
+
+ (14) 
+
+ a ¨ a = − 4 ​ π ​ G 3 ​ ( ρ + 3 ​ P ) \displaystyle\frac{\ddot{a}}{a}=-\frac{4\pi G}{3}(\rho+3P) 
+ ; 
+ ρ ˙ + 3 ​ H ​ ( ρ + P ) = 0 , \displaystyle\dot{\rho}+3~H~(\rho+P)=0\,, 
+
+ (15) 
+
+where we have set Λ = 0 \Lambda=0 for clarity. Even if Λ \Lambda is non-zero, its contribution can be neglected when we approach high densities. 
+
+### IV Degeneracy Pressure
+
+Here, we draw an analogy of our understanding of the Universe with NSs and astrophysical black holes.
+As the collapsing cloud approaches the singularity ( a → 0 a\rightarrow 0 ), the density ρ = a − 3 ​ a i 3 ​ ρ i \rho=a^{-3}a_{i}^{3}\rho_{i} increases without bound. However, once any fermionic constituent of the cloud reaches its quantum ground state, the Pauli Exclusion Principle generates a degeneracy pressure, P = P ⁡ ( ρ ) P=P(\rho) , independent of temperature. Remarkably, this degeneracy pressure and the corresponding equilibrium density apply universally to systems ranging from atoms to NS despite their vast difference in mass—approximately 10 57 10^{57} times.
+For even larger masses, such as the mass of the Universe (about 10 22 10^{22} times greater than that of a NS), the degeneracy pressures of electrons, neutrons, or even quarks may not suffice to halt the collapse. Indeed, for masses exceeding the Tolman–Oppenheimer–Volkoff (TOV) limit of 2–3 M ⊙ \rm M_{\odot} , a black hole forms, and the collapse proceeds within the event horizon, leaving the internal physics largely unexplored.
+A version of the Pauli Exclusion Principle should remain valid even under extreme conditions, as no two fermions can occupy the same quantum state. Thus, a new quantum ground state, characterized by a maximum density ρ G \rho_{\rm G} , could also emerge if electrons and quarks are not fundamental, preventing a true singularity. This notion lies at the heart of applying principles of quantum theory in the context of gravity, which offers a framework to circumvent singular collapse and explore the limits of physical laws in extreme conditions. 
+
+In the central regions of the collapsing cloud, where the bounce occurs, the pressure and density can be treated as approximately uniform in the comoving frame. The validity of this assumption was demonstrated in Pradhan et al. 2025 using hydrodynamical simulations. 
+
+We can see from Eq. 15 that as ρ ˙ → 0 \dot{\rho}\rightarrow 0 , the relativist pressure P → − ρ P\rightarrow-\rho . Appendix A shows one way to understand this in terms of scalar fields, where the EoS plays the role of the scalar potential V ⁡ ( ϕ ) V(\phi) . 
+
+We can define a cloud radius R G R_{\rm G} from Eq. 7 : 
+
+ 8 ​ π ​ G ​ ρ G 3 ≡ r S R G 3 . \frac{8\pi G\rho_{\rm G}}{3}\equiv\frac{r_{\rm S}}{R_{\rm G}^{3}}\,. 
+
+ (16) 
+
+which corresponds to the radius R G R_{\rm G} of the cloud when it reaches ρ = ρ G \rho=\rho_{\rm G} if we neglect the effects of pressure.
+For the mass of the Universe m = 5 × 10 22 ​ M ⊙ m=5\times 10^{22}\,\rm M_{\odot} and when assuming nuclear saturation density (SD) as a lower limit ρ G > ρ SD \rho_{\rm G}>\rho_{\rm SD} (Eq. 13 ): 
+
+ R G < r SD = 4.4 × 10 8 ​ km ≃ 1.43 × 10 − 14 ​ Gpc . R_{\rm G}<r_{\rm SD}=4.4\times 10^{8}\,\text{km}\simeq 1.43\times 10^{-14}\,\rm Gpc\,. 
+
+ (17) 
+
+This value of R G R_{\rm G} represents the beginning of the transition into the ground state. The model transitions from a state of constant total energy-mass (with a uniform but evolving energy density) to a state of uniform and time-invariant energy density. 
+
+We have found that the quantum exclusion principle leads to a ground state where the relativistic equation of state (EoS) becomes: P = − ρ P=-\rho . This EoS is fundamentally distinct from the one typically considered under nuclear saturation in NSs. A key assumption for NS is that GR is negligible at scales of inter-quantum interactions.
+However, it is crucial to recognize that gravity is inherently nonlinear. The active mass-energy, as defined in Eq. 4 , includes not only matter but also gravitational energy, which can not be neglected.
+This behavior is also captured in the relativistic continuity equation (Eq. 15 ): 
+
+ ρ ˙ = − 3 ​ H ​ ( ρ + P / c 2 ) , \dot{\rho}=-3H(\rho+P/c^{2}), 
+
+ (18) 
+
+where we have included c c to illustrate that the second term P / c 2 P/c^{2} is purely relativistic and does not appear in the Newtonian equation. This equation demonstrates that once a constant density is reached, the EoS naturally transitions to P = − ρ P=-\rho (back in units of c = 1 c=1 ). This behavior is not captured by Newtonian dynamics (or relativistic corrections) and is, therefore, not present in conventional EoS models for NS, emphasizing the necessity of considering relativistic effects in describing such ground states. In the Newtonian approach, the pressure only appears as a force in the Euler equation. The GR analog of the Euler equation (or its first integral) is the Hubble-Lemaitre law in Eq. 14 , which is independent of pressure. The two approaches come together when we combine the Euler equation with the continuity equation. 
+
+The other important difference between our comoving EoS and the NS modeling is that we are considering the collapse (and later expanding) phases and not a static solution. So, our EoS lives in the comoving frame, while NS EoS refers to a Newtonian rest frame. What does the relativistic EoS look like in the rest frame? This is presented in Appendix B. 
+
+### V Bouncing solution
+
+Bringing together the insights from the two previous sections, we can now explore what happens during the collapse of an FLRW cloud as it reaches its ground state density somewhere above nuclear saturation.
+For a constant P = − ρ = − V G P=-\rho=-V_{\rm G} ,
+Eq. 14 - 15 become: 
+
+ a ¨ a \displaystyle\frac{\ddot{a}}{a} 
+ = \displaystyle= 
+ + 8 ​ π ​ G 3 ​ ρ G ≡ r S R G 3 ; ρ ˙ G = 0 , \displaystyle+\frac{8\pi G}{3}\rho_{\rm G}\equiv\frac{r_{\rm S}}{R_{\rm G}^{3}}\quad;\quad\dot{\rho}_{\rm G}=0\,, 
+
+ (19) 
+
+ H 2 \displaystyle H^{2} 
+ = \displaystyle= 
+ ( a ˙ a ) 2 = r S R G 3 − k a 2 . \displaystyle\left(\frac{\dot{a}}{a}\right)^{2}=\frac{r_{\rm S}}{R_{\rm G}^{3}}-\frac{k}{a^{2}}\,. 
+
+ (20) 
+
+This corresponds to a gravitational bounce ( a ˙ = 0 \dot{a}=0 and a ¨ > 0 \ddot{a}>0 ) at: 
+
+ a B = R G 3 χ k 2 ​ r S or R B 2 = R G 3 / r S . a_{\rm B}=\sqrt{\frac{R_{\rm G}^{3}}{\chi_{k}^{2}r_{\rm S}}}\quad\text{or}\quad R_{\rm B}^{2}=R_{\rm G}^{3}/r_{\rm S}\,. 
+
+ (21) 
+
+Note how it is critical that k > 0 k>0 (or χ k 2 < ∞ \chi_{k}^{2}<\infty ) to have a bounce before the singularity ( a = 0 a=0 ) occurs. The bounce is only possible because
+both R G > 0 R_{\rm G}>0 and the cloud is finite (that is, χ k < ∞ \chi_{k}<\infty and r S < ∞ r_{\rm S}<\infty ). It is physically inconsistent to perceive a bouncing scenario in an infinite FLRW cloud.
+This is reflected above by the mathematical fact that an infinite FLRW cloud has no bounce. 
+
+The exact solution to Eq. 20 is: 
+
+ a = a B 2 [ e − | Δ τ | / R B + e + | Δ τ | / R B ] = a B cosh ( Δ τ / R B ) , a=\frac{a_{\rm B}}{2}\left[e^{-|\Delta\tau|/R_{\rm B}}+e^{+|\Delta\tau|/R_{\rm B}}\right]=a_{\rm B}\cosh{(\Delta\tau/R_{\rm B})}\,, 
+
+ (22) 
+
+where | Δ ​ τ | |\Delta\tau| is the time to/from the bounce ( a = a B a=a_{\rm B} ) with a > a B a>a_{\rm B} , and R B R_{\rm B} is the radius of the cloud when it bounces: 
+
+ R B ≡ a B ​ χ ∗ = R G 3 / r S = 3 8 ​ π ​ G ​ ρ G , R_{\rm B}\equiv a_{\rm B}\chi_{*}=\sqrt{R_{\rm G}^{3}/r_{\rm S}}=\sqrt{\frac{3}{8\pi G\rho_{\rm G}}}\,, 
+
+ (23) 
+
+which happens to be the gravitational radius of the ground state ρ G \rho_{\rm G} . 
+
+### VI Gauss curvature scale
+
+Recall from Eq. 8 that χ k \chi_{k} needs to be larger than the cloud boundary: χ k > χ ∗ \chi_{k}>\chi_{*} .
+The existence of χ ∗ \chi_{*} imposes a natural cutoff in the spectrum of super-horizon perturbations generated during collapse, bounce, or inflation. This cutoff shows up
+in the CMB sky as: 
+
+ θ cut = χ ∗ χ CMB , \theta_{\rm cut}=\frac{\chi_{*}}{\chi_{\rm CMB}}\,, 
+
+ (24) 
+
+where χ CMB ≃ 13.8 \chi_{\rm CMB}\simeq 13.8 Gpc is the comoving radial distance to the CMB for Ω Λ ≃ 0.7 \Omega_{\Lambda}\simeq 0.7 and H 0 ≃ 70 H_{0}\simeq 70 km/s/Mpc.
+Strong evidence for such a cutoff has been known
+since COBE and confirmed by WMAP and Planck ( Hinshaw and etal 1996 ; Spergel and etal 2003 ; Planck Collaboration 2020a ). Reference
+ Camacho-Quevedo and Gaztañaga 2022 estimated the homogeneity scale to be 
+
+ θ cut ≃ 65.9 ± 9.2 ​ degrees , \theta_{\rm cut}\simeq 65.9\pm 9.2\,\text{degrees}, 
+
+ (25) 
+
+which implies: 
+
+ χ ∗ ≃ 15.93 ± 2.22 ​ Gpc , \chi_{*}\simeq 15.93\pm 2.22\,\text{Gpc}\,, 
+
+ (26) 
+
+which is the Gaussian curvature scale. This interpretation predicts a value Ω k \Omega_{k} today ( a = 1 a=1 ) of: 
+
+ Ω k ≡ − k ​ ( 1 H 0 ) 2 = − ( 0.07 ± 0.02 ) ​ ( χ ∗ χ k ) 2 , \Omega_{k}\equiv-k\left(\frac{1}{H_{0}}\right)^{2}=-(0.07\pm 0.02)\left(\frac{\chi_{*}}{\chi_{k}}\right)^{2}\,, 
+
+ (27) 
+
+which, for χ k > χ ∗ \chi_{k}>\chi_{*} , is consistent with a critical reanalysis of the Planck Legacy 2018 data Di Valentino et al. 2020 .
+This result also agrees with a previous independent way of modeling the low quadrupole C 2 C_{2} measured in the WMAP power spectrum Efstathiou 2003 . The limits for Ω k \Omega_{k} above assume that the homogeneity scale is the result of only χ ∗ \chi_{*} . This also explains the low quadrupole C 2 C_{2} Camacho-Quevedo and Gaztañaga 2022 . However, if the homogeneity scale or the low value of C 2 C_{2} has a different origin, then the value of Ω k \Omega_{k} in the floating FLRW cloud could be smaller. Inflation preceded by a bounce requires Ω k < 0 \Omega_{k}<0 , and this could be found in upcoming cosmic surveys, as indicated by the analysis in Di Valentino et al. 2020 . 
+
+### VII Cosmic Inflation
+
+The solution in Eq. 22 corresponds to an exponential expansion (or collapse) after (or before) the bounce, leading to a de-Sitter phase, just as in standard cosmic inflation. As mentioned before, the EoS plays the role of the inflation potential, and the actual solution is quasi-de-Sitter as we approach the respective ground state of the matter. 
+
+As an example, we can take the following toy ansatz to interpolate from ρ ≃ ρ G ​ ( a / a G ) − 3 \rho\simeq\rho_{\rm G}(a/a_{\rm G})^{-3} to ρ ≃ ρ G \rho\simeq\rho_{\rm G} : 
+
+ ρ ∗ ≡ ρ ρ G = 1 1 + [ ( a − a B ) / a G ] 3 , \rho_{*}\equiv\frac{\rho}{\rho_{\rm G}}=\frac{1}{1+[(a-a_{\rm B})/a_{\rm G}]^{3}}\,, 
+
+ (28) 
+
+where a = a G + a B a=a_{\rm G}+a_{\rm B} at the time when the density is half of ρ G \rho_{\rm G} and quantities with a star index ( ∗ ) are given in units of ρ G \rho_{\rm G} . Eq. 14 becomes: 
+
+ ( a ˙ ​ χ k ) 2 = ( a / a B ) 2 1 + [ ( a − a B ) / a G ] 3 − 1 . (\dot{a}\chi_{k})^{2}=\frac{(a/a_{\rm B})^{2}}{1+[(a-a_{\rm B})/a_{\rm G}]^{3}}-1\,. 
+
+ (29) 
+
+Solving this numerically, we can obtain the exact equation of state P ⁡ ( ρ ) P(\rho) , using Eq. 15 . For single field inflation like Starobinsky: the number of e-folds is N e = 2 / ( 1 − n s ) ≃ 57 N_{e}=2/(1-n_{s})\simeq 57 (where n s n_{s} is the scalar spectral index) Planck Collaboration 2014 . The current bound on the tensor-to-scalar ratio is < 0.028 <0.028 ( Galloni et al. 2023 ). This solution corresponds to a G ≃ 5.69 × 10 24 ​ a B a_{\rm G}\simeq 5.69\times 10^{24}a_{\rm B} and is shown in Fig. 2 .
+The corresponding EoS follows: 
+
+ P / ρ G = − ( ρ / ρ G ) 2 or P ∗ = − ρ ∗ 2 P/\rho_{\rm G}=-(\rho/\rho_{\rm G})^{2}\quad\text{or}\quad P_{*}=-\rho_{*}^{2} 
+
+ (30) 
+
+which corresponds to the generalized Chaplygin gas with α = 2 \alpha=2 Multamäki et al. 2004 . 
+
+The ground state is approached asymptotically, with the density remaining constant even as the scale factor grows or decreases exponentially. This behavior arises because the active mass m m is no longer constant, a purely relativistic effect where the gravitational field itself contributes non-linearly to the source term. Consequently, the model transitions from a regime of constant energy-mass, characteristic of a Newtonian solution, to one of constant energy-density, which is inherently relativistic. 
+
+As mentioned before, the saturation densities in NSs and the nucleus of an atom are comparable with Eq. 13 despite the former having a mass 10 57 10^{57} times larger than the latter. However, as discussed in Pradhan et al. 2025 , the densities at which the condition P = − ρ P=-\rho is fulfilled for masses much larger than that observed for NSs could be significantly higher than that of Eq. 13 so that the energy ρ G \rho_{\rm G} of the corresponding cosmic inflation could be much larger. In Appendix A, we show a more detailed comparison of P = P ⁡ ( ρ ) P=P(\rho) with inflation parameters and CMB observations. The amplitude of CMB fluctuations relates to a ground state that has energy densities much larger than nuclear saturation. The quasi-scale invariant spectrum and quantum parity features observed in the CMB (see Gaztañaga and Sravan Kumar 2024a ) will also be reproduced with our bouncing solution. 
+
+In summary, a bounce driven by degeneracy pressure could give rise to an epoch of cosmic inflation and reheating. This opens the possibility for an epoch of nucleosynthesis and recombination similar to that in the standard model (e.g., see Steigman 2007 ).
+Note that in standard inflation, reheating requires an oscillatory scale factor around the matter-dominated phase after the exponential expansion; in typical single field inflation: a ⁡ ( t ) ∼ t 2 / 3 ​ ( 1 + 1 M ​ t ​ sin ⁡ ( M ​ t ) ) a(t)\sim t^{2/3}\left(1+\frac{1}{Mt}\sin(Mt)\right) where M M is inflaton mass. The equivalent process in terms of P = P ⁡ ( ρ ) P=P(\rho) is detailed in Appendix A.
+This process has the potential to enable nucleosynthesis and recombination in a manner similar to the standard Big Bang model. More importantly, it also provides an alternative framework for understanding both early and late-time cosmic acceleration. 
+
+### VIII Cosmic Acceleration
+
+There is compelling observational evidence that the cosmic expansion is accelerating: a ¨ > 0 \ddot{a}>0 ( Riess and etal 1998 ; Schmidt and etal 1998 ; Perlmutter and etal 1999 ; Fosalba et al. 2003 ; Eisenstein and etal 2005 ; Betoule, M. and etal 2014 ) . This acceleration appears to be dominated by the cosmological constant Λ \Lambda . The Λ \Lambda term can be interpreted either as a fundamental modification of General Relativity (GR), denoted as Λ F \Lambda_{\rm F} , or as an effective dark energy (DE) fluid, Λ DE \Lambda_{\rm DE} , analogous to the ground state ψ \psi described earlier, but with a much smaller energy density, ρ G = ρ DE \rho_{\rm G}=\rho_{\rm DE} . 
+
+Regardless of the interpretation, the corresponding characteristic length scale, 
+
+ R Λ = 3 / Λ , R_{\Lambda}=\sqrt{3/\Lambda}, 
+
+ (31) 
+
+is vastly larger than the nuclear saturation scale R G R_{\rm G} (i.e., 8 ​ π ​ ρ G ≫ Λ 8\pi\rho_{\rm G}\gg\Lambda ). Consequently, Λ \Lambda can be neglected in our discussion of the gravitational bounce and the corresponding inflationary period. 
+
+The measured value of Λ \Lambda is extremely small but non-zero, and its fundamental origin remains an open question. Although its connection to the fundamental laws of physics is unclear, its effect is well understood: it induces an event horizon, R H R_{\rm H} , in FLRW space-time: 
+
+ R H = a ​ ∫ d ​ τ a = a ​ ∫ d ​ a H ​ a 2 < R Λ , R_{H}=a\int\frac{d\tau}{a}=a\int\frac{da}{Ha^{2}}<R_{\Lambda}, 
+
+ (32) 
+
+beyond which regions ( R > R H R>R_{\rm H} ) are not causally connected to the interior ( R < R H R<R_{\rm H} ).
+The standard assumption in cosmology is that the Universe beyond R H R_{\rm H} is identical to the interior. However, this assumption presents two fundamental issues: 
+
+ • 
+
+ Lack of causal explanation : The standard approach cannot provide a mechanism to explain how the Universe could be the same beyond R H R_{\rm H} . Cosmic inflation does not solve this puzzle because even under exponential expansion a ∼ e τ ​ H a\sim e^{\tau{\rm H}} , we have that R R is always R < R H R<R_{\rm H} . This is because the comoving distance traveled by light during Λ \Lambda domination χ = ∫ a ∞ d ​ a H ​ a 2 = 1 a ​ H \chi=\int_{a}^{\infty}\frac{da}{Ha^{2}}=\frac{1}{aH} exactly cancels the exponential expansion in R = a ​ χ R=a\chi . 
+
+ • 
+
+ Violation of the variational principle : Einstein’s field equations require that the metric asymptotically approaches Minkowski space at large distances, which is not satisfied if the FLRW universe extends indefinitely.
+At any given cosmic time (e.g., the present), the FLRW universe has the same finite, non-zero uniform density everywhere, including at spatial infinity. Hence, it is not asymptotically Minkowski. Even when the matter-energy content vanishes with time, the asymptotic metric is de Sitter and not Minkowski. 
+
+Instead, if we assume that the region beyond R H R_{\rm H} is empty, both of these issues are resolved. This leads to a finite universe with size R H → R Λ R_{\rm H}\rightarrow R_{\Lambda} and a finite total mass m m contained within it. The exterior is then naturally described by the Schwarzschild metric. This agrees well with the FLRW cloud model presented here in previous sections and in Fig. 1 . For consistency, we need to identify R Λ R_{\Lambda} with the Schwarzschild radius: 
+
+ R Λ = r S = 2 ​ G ​ m . R_{\Lambda}=r_{\rm S}=2Gm. 
+
+ (33) 
+
+as both quantities are constant.
+This immediately provides a physical interpretation of Λ \Lambda : 
+
+ Λ = 3 r S 2 . \Lambda=\frac{3}{r_{\rm S}^{2}}. 
+
+ (34) 
+
+Thus, Λ \Lambda simply corresponds to the total mass m m of our finite Universe. This also explains why Λ \Lambda is small but nonzero: it is directly linked to the total mass of the Universe as in our FLRW cloud model. Thus, the measurement of a Λ \Lambda can be interpreted as a measurement of m m and a confirmation that we live within a large but finite FLRW cloud model. This is also consistent with our new interpretation of the origin of the bounce and cosmic inflation presented here. 
+
+This reasoning provides a straightforward and intuitive explanation of Λ \Lambda without requiring detailed calculations. Such calculations are presented in Gaztañaga 2022a . By applying the relevant matching conditions, it is found that the radial null geodesics R H R_{\rm H} satisfy Israel’s matching conditions and that the action principle correctly includes the extrinsic curvature boundary term, K = 2 / r S K=2/r_{\rm S} . 
+
+This boundary interpretation of Λ \Lambda corresponds to the Black Hole Universe (BHU) model. For observational values Ω Λ ≃ 0.70 \Omega_{\Lambda}\simeq 0.70 and H 0 ≃ 70 H_{0}\simeq 70 km/s/Mpc, we obtain: 
+
+ r S \displaystyle r_{\rm S} 
+ = \displaystyle= 
+ c H 0 ​ Ω Λ ≃ 5.1 ± 0.1 ​ Gpc , \displaystyle\frac{c}{H_{0}\sqrt{\Omega_{\Lambda}}}\simeq 5.1\pm 0.1\,\text{Gpc}, 
+
+ (35) 
+
+ m \displaystyle m 
+ = \displaystyle= 
+ ( 5.4 ± 0.1 ) × 10 22 ​ M ⊙ , \displaystyle(5.4\pm 0.1)\times 10^{22}\,\rm M_{\odot}\,, 
+
+ (36) 
+
+with uncertainties from DESI Collaboration and etal 2024 .
+Note that r s < χ ∗ r_{s}<\chi_{*} in Eq. 26 , which indicates that the perturbation form before becoming a black hole. 
+
+### IX Discussion and Conclusion
+
+ Figure 2: Left: EoS ( P = P ⁡ ( ρ ) P=P(\rho) , blue, and ρ \rho , cyan) in units of ρ G \rho_{G} , derived using the numerical solution of Eq. 29 and Eq. 15 . These are compared with ρ \rho from the P = 0 P=0 case (black dotted) and the polytropic fit P ∗ = − ρ ∗ 2 P_{*}=-\rho_{*}^{2} (dashed magenta). Middle: comparison of the different solutions for scale factor—the analytic solution presented in Eq. 22 , the numerical solution of Eq. 29 for 57 e-folds of inflation, and the singular pressureless solution denoted with dashed, solid and dotted lines respectively. Right: zoom-in around the bouncing region, where we compare the analytical bounce solution in Eq. 22 and the full numerical solution for a ⁡ ( τ ) a(\tau) in Eq. 30 for 1.2 e-folds, with the Newtonian numerical simulations ( Pradhan et al. 2025 ), with different polytropic EoS for nuclear saturation in NSs: P = K ​ ρ γ P=K\rho^{\gamma} with γ = 2 − 3 \gamma=2-3 . 
+
+This paper presents a novel solution to the relativistic spherical collapse model for a bounded perturbation ( k > 0 k>0 ). The key innovation lies in the introduction of a variable equation of state, P = P ⁡ ( ρ ) P=P(\rho) , which asymptotically evolves from a pressureless, homogeneous state to a ground state characterized by a time-independent energy density. This transition naturally gives rise to a de Sitter phase in the final stages of collapse—immediately preceding the bounce—and persists throughout the ensuing expansion. The bounce itself admits an analytical expression, provided in Eq.  22 . 
+
+The cosmological implication of this new approach is a novel understanding of the origin of the universe that emerges from the collapse and subsequent bounce of a spherically symmetric matter distribution.
+We show that upon reaching a quantum ground state, the relativistic matter equation of state (EoS) transitions from P = 0 P=0 to P = − ρ P=-\rho in the comoving frame. The relativistic degenerate pressure generated in this state halts the collapse and initiates a bounce and an inflationary expansion. We discussed how this mechanism parallels phenomena in NS physics and core-collapse supernovae (see reviews by Bethe 1990 ; Burrows et al. 1995 ; Hebeler et al. 2013 ; Janka et al. 2012 ), where the ground state is determined by nucleonic or quark interaction potentials within proto-NS. On the other hand, the expansion mechanism right after the bounce also parallels that of cosmic inflation, as detailed in Appendix A. 
+
+The non-singular bounce that happens inside a closed FLRW cloud (i.e., a finite-sized Universe trapped inside an event horizon) is induced by quantum matter EoS, which results in degenerate negative pressure.
+This same process drives an exponential expansion analogous to cosmic inflation, offering a novel solution to key challenges in standard cosmology, such as the origin of inflation and dark energy.
+Our findings highlight the profound implications of relativistic quantum principles in shaping the early Universe. 
+
+We start from a low-density cloud with a i ​ χ ∗ ≫ r S a_{i}\chi_{*}\gg r_{\rm S} where a i ≫ 1 a_{i}\gg 1 is the adimensional scale factor in units of the value today a = 1 a=1 . The key simplicity of this model is that the BH is not an ad-hoc initial condition to our system but a consequence of gravitational collapse. Without this, there is no argument for Λ = 3 / r S 2 \Lambda=3/r_{\rm S}^{2} . This will happen for any initial condition where the initial density is sufficiently low. Harrison-Zeldovich-Peebles Harrison 1970 ; Zel’Dovich 1970 ; Peebles and Yu 1970 independently argued that gravitational instability alone (without inflation) would naturally produce a scale-invariant spectrum of perturbations out of an FLRW metric. Such perturbations will give rise to overdensities such as the ones considered here as the starting point to our Universe. This is our new guess for the “initial condition”. 
+
+ Figure 3: Time evolution in the radius of the FLRW cloud R ⁡ ( τ ) = a ⁡ ( τ ) ​ χ ∗ R(\tau)=a(\tau)\chi_{*} , first forming a BH and then bouncing inside to form our current observed expanding Universe. The black circle represents the FLRW cloud gravitational radius, which is also the asymptotic Λ \Lambda event horizon of our current expansion. The red dashed and blue dotted lines and circles correspond to the FLRW cloud radius and the Hubble radius r H = c / H r_{\rm H}=c/H . This figure has been adapted from Gaztañaga 2022b . Licensed under CC-BY. 
+
+Figure 3 shows the full evolution of the finite FLRW cloud radius, R ⁡ ( τ ) R(\tau) , illustrating how the horizon problem is resolved within the bounce model.
+In the middle panel of Figure 2 , we now present the exact bouncing solution, comparing the analytical expression for the scale factor a ⁡ ( τ ) a(\tau) given in Eq.  22 with the numerical solution of Eq.  29 . For reference, we also plot the singular analytic solution for P = 0 P=0 . Such singular behavior is unavoidable for an infinite cloud ( χ ∗ = ∞ \chi_{*}=\infty or r S = ∞ r_{\rm S}=\infty ) or in a flat or open geometry ( k ≤ 0 k\leq 0 ). Note how the inflationary phase has the right number of e-folds
+ N e = 2 / ( 1 − n s ) ≃ 57 N_{e}=2/(1-n_{s})\simeq 57 consistent with the scalar spectral index n s n_{s} measured by Planck Planck Collaboration 2014 . 
+
+It is evident that the analytic solution in Eq.  22 is valid only for the inflationary phase, i.e., near the bounce, whereas the numerical solution accounts for the entire evolution, including the pre-bounce phase when P ≈ 0 P\approx 0 . Before reaching the bounce, the numerical solution follows the pressureless analytic case closely, which is expected since the pressure is initially vanishing and then transitions smoothly into a constant (negative) degeneracy pressure ( P ∗ = − ρ ∗ P_{*}=-\rho_{*} ), as shown in the left panel. In this regime, the equation of state (EoS) is well approximated by P ∗ = − ρ ∗ 2 P_{*}=-\rho_{*}^{2} (dashed line).
+When we plot the pressure calculated for the numerical model (labeled e 57 e^{57} ) as a function of the corresponding density and fit it, the fitting curve is P = K ​ ρ γ P=K\rho^{\gamma} with K ≃ − 1 K\simeq-1 and γ ≃ 2 \gamma\simeq 2 . This can be interpreted as a polytropic EoS with γ = 2 \gamma=2 . 
+
+Furthermore, the transition point is clearly marked: as soon as pressure begins to build up, the numerical solution in the middle panel shifts from the analytic P = 0 P=0 solution (dotted line) to the analytic bounce solution (dashed line), denoting exponential collapse and vice-versa for exponential expansion. 
+
+The right panel provides a zoomed-in view of the bounce region, where we compare our asymptotic analytical solution with the numerical Newtonian simulations of Pradhan et al. 2025 , which adopt an equation of state of the form P = K ​ ρ γ P=K\rho^{\gamma} . This type of EoS serves as a reasonable approximation for nuclear degenerate matter, with γ = 2 \gamma=2 to 3 3 , in the Newtonian framework Lattimer and Prakash 2007 . While the Newtonian simulations remain an approximation, we observe that both models yield a strikingly similar exponential expansion post-bounce, as also noted by Pradhan et al. 2025 . Note that the Newtonian simulation results presented here are for a 20 M ⊙ cloud, for which the bounce occurs at around nuclear saturation densities and the expansion has ≈ 1.2 \approx 1.2 e-folds. For larger masses, we will have a larger number of e-folds as in the middle panel for the mass of our Universe. 
+
+The analytic solution we found in Eq. 22 is one of the cases considered in Eq.7 in Starobinsky 1980 , which corresponds to a de-Sitter Universe with closed curvature.
+Instead of degeneracy pressure, this model arises from quadratic curvature modification of the Einstein-Hilbert action motivated by 1-loop self-energy contributions due to quantum matter, which leads to the first model of cosmic inflation ( Starobinskii 1979 ).
+But the reason to consider closed curvature (other than to produce a bounce as in Starobinskii 1978 ) is not clear in this model.
+In the BHU model, the spatial curvature naturally results from the spherical collapse of a large overdensity confined to a finite region of spacetime. 
+
+Figure 3 in Gaztañaga 2022a illustrates how the boundary R ⁡ ( τ ) R(\tau) of the FLRW cloud is always outside the observational window for any (off-centered) observer inside the cloud.
+This is a general property of quasi-de-Sitter space and implies that the BHU does not result in observed anisotropies in the background of the cloud boundary. But the bounce and the initial cloud’s comoving radius χ ∗ \chi_{*} 
+can result in a cutoff of the super-horizon quantum perturbations generated during inflation, which can be observed in the CMB ( Fosalba and Gaztañaga 2021 ; Camacho-Quevedo and Gaztañaga 2022 ; Gaztañaga and Camacho-Quevedo 2022 ) and results in the constraint given by Eq. 26 . Such cutoff, together with parity asymmetry, predicts a lower quadrupole, which can explain several other CMB anomalies (see Gaztañaga and Sravan Kumar 2024a ; Gaztañaga and Sravan Kumar 2024b ; Gaztañaga et al. 2024 ). 
+
+Our analysis shows that the observed cosmological constant Λ \Lambda can be interpreted as a boundary effect from the gravitational radius of the BHU, aligning with the idea of an effective Λ \Lambda term without invoking exotic physics. The implications of this model extend to the generation of super-horizon perturbations, the observed entropy ratio of baryons to photons, and the potential origins of dark matter ( Gaztañaga 2022c ).
+Future studies should explore the role of temperature and radiation in nuclear fusion during the bounce to provide a more comprehensive understanding of the transition from collapse to expansion. 
+
+The main limitation of our model is the simplifying assumptions of uniformity and spherical symmetry. However, in contrast to molecular or protostellar clouds, the collapsing fluid in the FLRW cloud is not expected to fragment or form clumps. The gravitational collapse is almost completely determined by GR and occurs much smoother due to the nearly homogeneous, and cold initial state. Nevertheless, small deviations from uniformity may lead to localized overdensities at later stages. If these regions exceed a critical threshold before the bounce, they could undergo gravitational collapse and form compact remnants, such as primordial neutron stars or black holes, through purely relativistic gravitational instability. This process is distinct from the cooling-driven fragmentation seen in molecular clouds, because in our scenario there is no radiative cooling mechanism. If sufficiently abundant and long-lived, such objects could naturally provide a non-particle dark matter candidate within the BHU scenario Gaztañaga 2022b , analogous to but distinct from standard primordial black holes.
+It should be emphasized that this possibility remains theoretical and requires further validation. 
+
+A realistic treatment calls for a fully relativistic model of gravitational collapse and bounce within standard GR, incorporating realistic equations of state and boundary conditions, as well as numerical simulations to track the evolution of perturbations through the bounce phase. Furthermore, quantum effects are expected to become significant close to the bounce, potentially modifying both the collapse dynamics and the fate of compact remnants. Exploring these quantum effects represents an important avenue for future investigation. 
+
+The smoking gun for our bouncing scenario is the presence of both a small spatial curvature and a small Λ \Lambda term. While the latter has already been measured with high precision, the former remains a testable prediction (given here in Eq.  27 ) for upcoming cosmological surveys. The Planck PR3 lensed power spectrum revealed a 3 ​ σ 3\sigma preference for positive curvature Planck Collaboration 2020b , with Ω k ≃ − 0.04 ± 0.01 \Omega_{k}\simeq-0.04\pm 0.01 , in agreement with our Eq.  27 . Recent results from ACT ACT Collaboration 2025 similarly suggest a slight preference for positive curvature (see their Fig. 9), although the current uncertainties remain too large to decisively rule out a flat universe. The latest DESI data DESI Collaboration 2025 echo this trend, also hinting at a mild preference for positive curvature.
+Together, the ACT and DESI results support a growing pattern: when multiple high-precision datasets are combined, persistent tensions with the standard Λ \Lambda CDM model begin to emerge. Notably, the combination of DESI and CMB data reveals 3 ​ σ 3\sigma evidence for a Λ \Lambda term that evolves (reduces) slowly over cosmological time. In our framework, where Λ = 3 / r S 2 \Lambda=3/r_{\rm S}^{2} , this corresponds to an increasing
+FLRW cloud mass m m over time. If confirmed, this could be due to mass accretion into the BHU. On the contrary,
+a decreasing FLRW cloud mass could be interpreted as a signature of quantum horizon effects—such as black hole evaporation via Hawking radiation Hawking 1975 ; Kumar and Marto 2025 ; Kumar and Marto 2024 .
+Nonetheless, individual cosmological measurements have not yet yielded definitive evidence for departures from the standard Λ \Lambda CDM scenario. 
+
+### Acknowledgements.
+
+We are grateful to the referee for the valuable feedback, which has significantly contributed to making the presentation of our results clearer and more comprehensive.
+EG acknowledges grants from Spain Plan Nacional (PGC2018-102021-B-100) and Maria de Maeztu (CEX2020-001058-M). KSK acknowledges the support from the Royal Society through the Newton International Fellowship.
+SP acknowledges the support and hospitality at the Institute of Cosmology and Gravitation during a 3-month stay to conclude his Master’s Thesis.
+MG acknowledges the support through the Generalitat Valenciana via the grant CIDEGENT/2019/031,
+the grant PID2021-127495NB-I00 funded by MCIN/AEI/10.13039/501100011033 and by the European Union, and the Astrophysics and High Energy Physics program of the Generalitat Valenciana ASFAE/2022/026 funded by MCIN and the European Union NextGenerationEU (PRTR-C17.I1).
+
+### References
+
+ Pradhan et al. (2025) 
+ S. Pradhan, M. Gabler, and E. Gaztañaga, Monthly Notices of the Royal Astronomical Society 537 , 1232 (2025) , https://academic.oup.com/mnras/article-pdf/537/2/1232/61382516/staf019.pdf . 
+
+ Hawking et al. (1970) 
+ S. W. Hawking, R. Penrose, and H. Bondi, Proc. of the Royal Society of London 314 , 529 (1970). 
+
+ Gaztañaga and Camacho-Quevedo (2022) 
+ E. Gaztañaga and B. Camacho-Quevedo, Physics Letters B 835 , 137468 (2022) , arXiv:2204.10728 [astro-ph.CO] . 
+
+ Zel’Dovich (1963) 
+ Y. B. Zel’Dovich, Soviet Journal of Experimental and Theoretical Physics 16 , 732 (1963). 
+
+ Geller et al. (2018) 
+ S. R. Geller, J. K. Bloomfield, and A. H. Guth, arXiv e-prints , arXiv:1801.02249 (2018) , arXiv:1801.02249 [gr-qc] . 
+
+ Faraoni and Atieh (2020) 
+ V. Faraoni and F. Atieh, Phys. Rev. D 102 , 044020 (2020) . 
+
+ Thompson and Whitrow (1968) 
+ I. H. Thompson and G. J. Whitrow, MNRAS 139 , 499 (1968) . 
+
+ Bondi (1969) 
+ H. Bondi, MNRAS 142 , 333 (1969). 
+
+ Smoller and Temple (2003) 
+ J. Smoller and B. Temple, Poceedings of the NAS 100 , 11216 (2003) , arXiv:astro-ph/0210105 [astro-ph] . 
+
+ Oppenheimer and Snyder (1939) 
+ J. R. Oppenheimer and H. Snyder, Physical Review 56 , 455 (1939) . 
+
+ Gaztañaga (2022a) 
+ E. Gaztañaga, Symmetry 14 , 1849 (2022a) . 
+
+ Gonzalez-Diaz (1981) 
+ P. F. Gonzalez-Diaz, Nuovo Cimento Lettere 32 , 161 (1981). 
+
+ Blau et al. (1987) 
+ S. K. Blau, E. I. Guendelman, and A. H. Guth, PRD 35 , 1747 (1987). 
+
+ Grøn and Soleng (1989) 
+ Ø. Grøn and H. H. Soleng, Physics Letters A 138 , 89 (1989). 
+
+ Frolov et al. (1989) 
+ V. P. Frolov, M. A. Markov, and V. F. Mukhanov, Phys Let B 216 , 272 (1989). 
+
+ Aguirre and Johnson (2005) 
+ A. Aguirre and M. C. Johnson, PRD 72 , 103525 (2005). 
+
+ Kusenko et al. (2020) 
+ A. Kusenko, M. Sasaki, S. Sugiyama, M. Takada, V. Takhistov, and E. Vitagliano, PRL 125 , 181304 (2020). 
+
+ Mazur and Mottola (2015) 
+ P. O. Mazur and E. Mottola, Classical and Quantum Gravity 32 , 215024 (2015). 
+
+ Starobinskii (1978) 
+ A. A. Starobinskii, Pisma v Astronomicheskii Zhurnal 4 , 155 (1978). 
+
+ Starobinsky (1980) 
+ A. A. Starobinsky, Physics Letters B 91 , 99 (1980) . 
+
+ Nojiri et al. (2017) 
+ S. Nojiri, S. D. Odintsov, and V. K. Oikonomou, Phys. Rept. 692 , 1 (2017), arXiv:1705.11098 [gr-qc] . 
+
+ Nojiri et al. (2017) 
+ S. Nojiri, S. D. Odintsov, and V. K. Oikonomou, PhysRep 692 , 1 (2017) , arXiv:1705.11098 [gr-qc] . 
+
+ Odintsov et al. (2020) 
+ S. D. Odintsov, V. K. Oikonomou, F. P. Fronimos, and K. V. Fasoulakos, Phys. Rev. D 102 , 104042 (2020) , arXiv:2010.13580 [gr-qc] . 
+
+ Kiefer and Mohaddes (2025) 
+ C. Kiefer and H. Mohaddes, General Relativity and Gravitation 57 , 26 (2025) . 
+
+ Faraoni (2015) 
+ V. Faraoni, General Relativity and Gravitation 47 , 10.1007/s10714-015-1936-y (2015), arXiv:1506.06358 [gr-qc] . 
+
+ Bojowald (2008) 
+ M. Bojowald, Living Rev. Relativ. 11 , 4 (2008). 
+
+ Brandenberger and Peter (2017) 
+ R. Brandenberger and P. Peter, Foundations of Physics 47 , 797 (2017) , arXiv:1603.05834 [hep-th] . 
+
+ Cai et al. (2011) 
+ Y.-F. Cai, T. Qiu, R. Brandenberger, Y.-S. Piao, and X. Zhang, Journal of Cosmology and Astroparticle Physics 2011 (03), 003, arXiv:1101.0822 [hep-th] . 
+
+ Biswas et al. (2006) 
+ T. Biswas, A. Mazumdar, and W. Siegel, Journal of Cosmology and Astroparticle Physics 2006 (03), 009 . 
+
+ Kumar et al. (2020) 
+ K. S. Kumar, S. Maheshwari, A. Mazumdar, and J. Peng, Phys. Rev. D 102 , 024080 (2020) . 
+
+ Gasperini and Veneziano (2003) 
+ M. Gasperini and G. Veneziano, Phys. Rept. 373 , 1 (2003) , arXiv:hep-th/0207130 . 
+
+ Barrow and Cotsakis (1988) 
+ J. D. Barrow and S. Cotsakis, Physics Letters B 214 , 515 (1988) . 
+
+ Kumar et al. (2021) 
+ K. S. Kumar, S. Maheshwari, A. Mazumdar, and J. Peng, Journal of Cosmology and Astroparticle Physics 2021 (07), 025 . 
+
+ Cesar e Silva and Shapiro (2024) 
+ W. Cesar e Silva and I. L. Shapiro, Phys. Rev. D 110 , 043540 (2024) , arXiv:2402.18785 [gr-qc] . 
+
+ Cesar e Silva et al. (2025) 
+ W. Cesar e Silva, S. W. P. Oliveira, and I. L. Shapiro (2025) arXiv:2502.02281 [gr-qc] . 
+
+ Shapiro (2008) 
+ I. L. Shapiro, Class. Quant. Grav. 25 , 103001 (2008) , arXiv:0801.0216 [gr-qc] . 
+
+ Loll et al. (2022) 
+ R. Loll, G. Fabiano, D. Frattulillo, and F. Wagner, PoS CORFU2021 , 316 (2022) , arXiv:2206.06762 [hep-th] . 
+
+ Buoninfante and etal (2024) 
+ L. Buoninfante and etal, arXiv e-prints , arXiv:2412.08696 (2024) . 
+
+ Buoninfante and Kumar (2022) 
+ L. Buoninfante and K. S. Kumar, Nuovo Cim. C 45 , 25 (2022) . 
+
+ Kumar and Marto (2025) 
+ K. S. Kumar and J. Marto, Symmetry 17 , 29 (2025) , arXiv:2305.06046 [hep-th] . 
+
+ Kumar and Marto (2024) 
+ K. S. Kumar and J. Marto, PTEP 2024 , 123E01 (2024) , arXiv:2307.10345 [hep-th] . 
+
+ Gaztañaga et al. (2024) 
+ E. Gaztañaga, K. Sravan Kumar, and J. Marto, preprint.org , 202410.0190 (2024) . 
+
+ Misner (1969) 
+ C. W. Misner, Phys. Rev. 186 , 1328 (1969) . 
+
+ Gaztañaga (2022b) 
+ E. Gaztañaga, Universe 8 , 257 (2022b) , arXiv:2204.11608 [astro-ph.CO] . 
+
+ Gaztañaga (2023) 
+ E. Gaztañaga, MNRAS 521 , L59 (2023) . 
+
+ Lemaitre (1933) 
+ G. Lemaitre, Annales Soc. Sci. Bruxelles A 53 , 51 (1933) . 
+
+ Misner and Sharp (1964) 
+ C. W. Misner and D. H. Sharp, Phys. Rev. 136 , B571 (1964) . 
+
+ Faraoni (2015) 
+ V. Faraoni, General Relativity and Gravitation 47 , 84 (2015) , arXiv:1506.06358 [gr-qc] . 
+
+ Peebles (1980) 
+ P. J. E. Peebles, The large-scale structure of the universe (Princeton University Press, 1980). 
+
+ Gaztañaga (2024) 
+ E. Gaztañaga, Symmetry 16 , 1141 (2024) . 
+
+ Stuckey (1994) 
+ W. M. Stuckey, American Journal of Physics 62 , 788 (1994) , https://pubs.aip.org/aapt/ajp/article-pdf/62/9/788/12077534/788_1_online.pdf . 
+
+ Padmanabhan (2010) 
+ T. Padmanabhan, Gravitation, Cambridge Univ. Press (2010). 
+
+ Hinshaw and etal (1996) 
+ G. Hinshaw and etal, ApJl 464 , L25 (1996) , arXiv:astro-ph/9601061 [astro-ph] . 
+
+ Spergel and etal (2003) 
+ D. N. Spergel and etal, ApJs 148 , 175 (2003) , arXiv:astro-ph/0302209 [astro-ph] . 
+
+ Planck Collaboration (2020a) 
+ Planck Collaboration, A&A 641 , A7 (2020a) , arXiv:1906.02552 [astro-ph.CO] . 
+
+ Camacho-Quevedo and Gaztañaga (2022) 
+ B. Camacho-Quevedo and E. Gaztañaga, JCAP 2022 (04), 044 . 
+
+ Di Valentino et al. (2020) 
+ E. Di Valentino, A. Melchiorri, and J. Silk, Nature Astronomy 4 , 196 (2020) , arXiv:1911.02087 [astro-ph.CO] . 
+
+ Efstathiou (2003) 
+ G. Efstathiou, MNRAS 343 , L95 (2003) , arXiv:astro-ph/0303127 [astro-ph] . 
+
+ Planck Collaboration (2014) 
+ Planck Collaboration, A&A 571 , A22 (2014) , arXiv:1303.5082 [astro-ph.CO] . 
+
+ Galloni et al. (2023) 
+ G. Galloni, N. Bartolo, S. Matarrese, M. Migliaccio, A. Ricciardone, and N. Vittorio, JCAP 04 , 062 , arXiv:2208.00188 [astro-ph.CO] . 
+
+ Multamäki et al. (2004) 
+ T. Multamäki, M. Manera, and E. Gaztañaga, Phys. Rev. D 69 , 023004 (2004) , arXiv:astro-ph/0307533 [astro-ph] . 
+
+ Gaztañaga and Sravan Kumar (2024a) 
+ E. Gaztañaga and K. Sravan Kumar, JCAP 2024 (6), 001, arXiv:2401.08288 [astro-ph.CO] . 
+
+ Steigman (2007) 
+ G. Steigman, ARNPS 57 , 463 (2007). 
+
+ Riess and etal (1998) 
+ A. G. Riess and etal, AJ 116 , 1009 (1998) , arXiv:astro-ph/9805201 [astro-ph] . 
+
+ Schmidt and etal (1998) 
+ B. P. Schmidt and etal, The Astrophysical Journal 507 , 46 (1998) . 
+
+ Perlmutter and etal (1999) 
+ S. Perlmutter and etal, The Astrophysical Journal 517 , 565 (1999) . 
+
+ Fosalba et al. (2003) 
+ P. Fosalba, E. Gaztañaga, and F. J. Castander, ApJL 597 , L89 (2003) , arXiv:astro-ph/0307249 [astro-ph] . 
+
+ Eisenstein and etal (2005) 
+ D. J. Eisenstein and etal, The Astrophysical Journal 633 , 560 (2005) . 
+
+ Betoule, M. and etal (2014) 
+ Betoule, M. and etal, A&A 568 , A22 (2014) . 
+
+ DESI Collaboration and etal (2024) 
+ DESI Collaboration and etal, arXiv e-prints , arXiv:2404.03002 (2024) , arXiv:2404.03002 [astro-ph.CO] . 
+
+ Bethe (1990) 
+ H. A. Bethe, Reviews of Modern Physics 62 , 801 (1990) . 
+
+ Burrows et al. (1995) 
+ A. Burrows, J. Hayes, and B. A. Fryxell, Astrophys. J.  450 , 830 (1995) , arXiv:astro-ph/9506061 [astro-ph] . 
+
+ Hebeler et al. (2013) 
+ K. Hebeler, J. M. Lattimer, C. J. Pethick, and A. Schwenk, ApJ 773 , 11 (2013) . 
+
+ Janka et al. (2012) 
+ H.-T. Janka, F. Hanke, L. Hüdepohl, A. Marek, B. Müller, and M. Obergaulinger, Progress of Theoretical and Experimental Physics 2012 , 01A309 (2012) , arXiv:1211.1378 [astro-ph.SR] . 
+
+ Harrison (1970) 
+ E. R. Harrison, PRD 1 , 2726 (1970). 
+
+ Zel’Dovich (1970) 
+ Y. B. Zel’Dovich, AAP 500 , 13 (1970). 
+
+ Peebles and Yu (1970) 
+ P. J. E. Peebles and J. T. Yu, ApJ 162 , 815 (1970). 
+
+ Lattimer and Prakash (2007) 
+ J. M. Lattimer and M. Prakash, PhysRep 442 , 109 (2007) , arXiv:astro-ph/0612440 [astro-ph] . 
+
+ Starobinskii (1979) 
+ A. A. Starobinskii, ZhETF Pisma Redaktsiiu 30 , 719 (1979). 
+
+ Fosalba and Gaztañaga (2021) 
+ P. Fosalba and E. Gaztañaga, MNRAS 504 , 5840–5862 (2021) . 
+
+ Gaztañaga and Sravan Kumar (2024b) 
+ E. Gaztañaga and K. Sravan Kumar, arXiv , arXiv:2403.05587 (2024b) . 
+
+ Gaztañaga (2022c) 
+ E. Gaztañaga, Symmetry 14 , 1984 (2022c) . 
+
+ Planck Collaboration (2020b) 
+ Planck Collaboration, A&A 641 , A6 (2020b) , arXiv:1807.06209 [astro-ph.CO] . 
+
+ ACT Collaboration (2025) 
+ ACT Collaboration, arXiv e-prints , arXiv:2503.14452 (2025) , arXiv:2503.14452 [astro-ph.CO] . 
+
+ DESI Collaboration (2025) 
+ DESI Collaboration, arXiv e-prints , arXiv:2503.14738 (2025), arXiv:2503.14738 [astro-ph.CO] . 
+
+ Hawking (1975) 
+ S. W. Hawking, Communications in Mathematical Physics 43 , 199 (1975) . 
+
+ Weinberg (2008) 
+ S. Weinberg, Cosmology, Oxford University Press (2008). 
+
+ Akrami et al. (2020) 
+ Y. Akrami et al. (Planck), Astron. Astrophys. 641 , A10 (2020) , arXiv:1807.06211 [astro-ph.CO] . 
+
+ Kehagias et al. (2014) 
+ A. Kehagias, A. Moradinezhad Dizgah, and A. Riotto, Phys. Rev. D 89 , 043527 (2014) . 
+
+### Appendix A Appendix A: Analogy with Scalar Field
+
+We can model the quantum ground state of nuclear saturation by introducing a scalar degree of freedom ψ = ψ ⁡ ( 𝒙 α ) \psi=\psi(\boldsymbol{x}_{\alpha}) .
+Consider the Einstein-Hilbert action with minimally coupled matter fields with Lagrangian ℒ {\cal L} : 
+
+ S = ∫ V 4 d ​ V 4 ​ [ R 16 ​ π ​ G + ℒ ] , S=\int_{{V_{4}}}d{V_{4}}\left[\frac{R}{16\pi G}+{\cal L}\right]\,, 
+
+ (37) 
+
+The energy-momentum T μ ​ ν T_{\mu\nu} is defined as: 
+
+ 𝑻 μ ​ ν ≡ − 2 g ​ δ ⁡ ( − g ​ ℒ ) δ ​ 𝒈 μ ​ ν = 𝒈 μ ​ ν ​ ℒ − 2 ​ ∂ ℒ ∂ 𝒈 μ ​ ν . \boldsymbol{T}_{\mu\nu}\equiv-\frac{2}{\sqrt{g}}\frac{\delta(\sqrt{-g}{\cal L})}{\delta\boldsymbol{g}^{\mu\nu}}=\boldsymbol{g}_{\mu\nu}{\cal L}-2\frac{\partial{\cal L}}{\partial\boldsymbol{g}^{\mu\nu}}\,. 
+
+ (38) 
+
+The least action principle with respect to the metric 𝒈 μ ​ ν \boldsymbol{g}_{\mu\nu} 
+yields Einstein field equations: 
+
+ δ ​ S δ ​ 𝒈 μ ​ ν = 0 → 𝑮 μ ​ ν ≡ 𝑹 μ ​ ν − 1 2 ​ 𝒈 μ ​ ν ​ R = 8 ​ π ​ G ​ 𝑻 μ ​ ν , \frac{\delta S}{\delta\boldsymbol{g}^{\mu\nu}}=0~\rightarrow~\boldsymbol{G}_{\mu\nu}\equiv\boldsymbol{R}_{\mu\nu}-\frac{1}{2}\boldsymbol{g}_{\mu\nu}R=8\pi G\boldsymbol{T}_{\mu\nu}\,, 
+
+ (39) 
+
+For the Lagrangian, we consider a combination of a perfect fluid and an effective minimally coupled scalar field ψ = ψ ⁡ ( x α ) \psi=\psi(x_{\alpha}) with:
+ ℒ = ℒ m + ℒ ψ {\cal L}={\cal L}_{m}+{\cal L}_{\psi} , where
+ ℒ ψ = 1 2 ​ ∇ ¯ 2 ​ ψ − V ⁡ ( ψ ) {\cal L}_{\psi}={1\over{2}}\bar{\nabla}^{2}\psi-V(\psi) and ℒ m {\cal L}_{m} is the standard matter-energy content.
+We have defined ∇ ¯ 2 ​ ψ ≡ ∂ α ψ ​ ∂ α ψ \bar{\nabla}^{2}\psi\equiv\partial_{\alpha}\psi\partial^{\alpha}\psi and V ⁡ ( ψ ) V(\psi) is the potential of the classical scalar field ψ \psi . We will next explore the regime where ℒ {\cal L} is dominated by ℒ ψ {\cal L}_{\psi} . If both ℒ m {\cal L}_{m} and ℒ ψ {\cal L}_{\psi} 
+contributions are not coupled, then the general result would correspond to just adding both contributions to P P and ρ \rho .
+We can estimate the contribution of the scalar field 𝑻 μ ​ ν ​ ( ψ ) \boldsymbol{T}_{\mu\nu}(\psi) from equation ( 38 ): 
+
+ 𝑻 μ ​ ν ​ ( ψ ) = ∂ μ ψ ​ ∂ ν ψ − 𝒈 μ ​ ν ​ [ 1 2 ​ ∇ ¯ 2 ​ ψ − V ⁡ ( ψ ) ] . \boldsymbol{T}_{\mu\nu}(\psi)=\partial_{\mu}\psi\partial_{\nu}\psi-\boldsymbol{g}_{\mu\nu}\left[{1\over{2}}\bar{\nabla}^{2}\psi-V(\psi)\right]\,. 
+
+ (40) 
+
+Choosing an observer that is moving with the fluid and comparing it to a perfect fluid, we can identify (see also equations B66-B68 in Weinberg 2008 ): 
+
+ ρ = 1 2 ​ ψ ˙ 2 + V ⁡ ( ψ ) ; P = 1 2 ​ ψ ˙ 2 − V ⁡ ( ψ ) , \rho={1\over{2}}\dot{\psi}^{2}+V(\psi)\quad;\quad P={1\over{2}}\dot{\psi}^{2}-V(\psi)\,, 
+
+ (41) 
+
+where we have defined ψ ˙ ≡ ∂ 0 ψ \dot{\psi}\equiv\partial_{0}\psi .
+The ground state Ψ G \Psi_{\rm G} of the system corresponds to the configuration in which the energy is minimized. In a relativistic context, this often means that the kinetic contributions (derived from the gradient terms ∂ μ ψ \partial_{\mu}\psi ) become insignificant compared to the potential energy V G ≡ V ⁡ ( ψ G ) ≫ ψ ˙ G 2 V_{\rm G}\equiv V(\psi_{\rm G})\gg\dot{\psi}^{2}_{\rm G} .
+This simply means that the total energy is dominated by the potential energy.
+We expect something similar to happen when the collapsing cloud reaches the ground state at some supra-nuclear densities in a cold collapse. The dynamics will be dominated by the potential of the interaction of quantum particles, and their kinetic energy will not play a significant role in the evolution at the bounce. Close to the ground state, V < V G V<V_{\rm G} . During its evolution, first, the cloud ascends (rolls up) towards the potential V G V_{\rm G} as it collapses, and after the bounce, it descends (rolls down). Analogously to the scalar field considered here, a fluid with a given EoS will reach some saturation density ρ = ρ G = V G = − P G = c ​ o ​ n ​ s ​ t ​ a ​ n ​ t \rho=\rho_{\rm G}=V_{\rm G}=-P_{\rm G}=constant . Consequently, the EoS plays a role in the scalar potential. 
+
+If we take n s = 0.9649 ± 0.0042 n_{s}=0.9649\pm 0.0042 (Planck TT+TE+EE+LowE+Lensing) at k ∗ = 0.05 ​ Mpc − 1 k_{\ast}=0.05\,\text{Mpc}^{-1} from the Planck data Akrami et al. 2020 ) we find (considering the spectral index derived for Starobinsky-like inflationary scenario Kehagias et al. 2014 : 
+
+ N e = 2 2 ​ ϵ + η = 2 ( 1 − n s ) ≃ 56.98 − 6.09 + 7.74 . N_{e}=\frac{2}{2\epsilon+\eta}=\frac{2}{(1-n_{s})}\simeq 56.98^{+7.74}_{-6.09}\,. 
+
+ (42) 
+
+where ϵ = − H ˙ H 2 , η = ϵ ˙ H ​ ϵ \epsilon=-\frac{\dot{H}}{H^{2}},\,\eta=\frac{\dot{\epsilon}}{H\epsilon} are the slow-roll parameters that characterize the inflationary expansion after the bounce. 
+
+These are related to energy density ρ \rho and pressure P = P ⁡ ( ρ ) P=P(\rho) EoS as (in the units of c = 1 c=1 ) 
+
+ ϵ = ( ρ + P ) H 2 , η = ϵ ˙ H ​ ϵ = 2 H 2 ​ ( ρ + P ) − 3 ​ ( 1 + P ˙ ρ ˙ ) \epsilon=\frac{\left(\rho+P\right)}{H^{2}},\quad\eta=\frac{\dot{\epsilon}}{H\epsilon}=\frac{2}{H^{2}}\left(\rho+P\right)-3\left(1+\frac{\dot{P}}{\dot{\rho}}\right) 
+
+ (43) 
+
+which are small during the inflationary expansion, which is followed by (quasi-de Sitter) bounce that occurs in our model due to negative degeneracy pressure. In the case of Starobinsky or Higgs inflation ϵ ≈ 3 4 ​ N e 2 , η ≈ 2 / N e \epsilon\approx\frac{3}{4N_{e}^{2}},\,\eta\approx 2/N_{e} . 
+
+The primordial power spectrum (of curvature perturbation ζ \zeta ) in the framework of single-field slow-roll inflationary models is 
+
+ P ζ = A s ​ ( k k s ) n s − 1 , A s = H inf 2 m P 2 ​ 8 ​ π 2 ​ ϵ | k = k s P_{\zeta}=A_{s}\left(\frac{k}{k_{s}}\right)^{n_{s}-1},\quad A_{s}=\frac{H_{\rm inf}^{2}}{m_{\rm P}^{2}8\pi^{2}\epsilon}\Bigg|_{k=k_{s}} 
+
+ (44) 
+
+where k s = 0.05 ​ Mpc − 1 k_{s}=0.05\,{\rm Mpc}^{-1} is the pivot scale chosen by the Planck data, A s A_{s} is the amplitude of the power spectrum, which at the pivot scale measured to be A s ∼ 2.2 × 10 − 9 A_{s}\sim 2.2\times 10^{-9} , H inf H_{\rm inf} is the value of Hubble parameter during inflation and ϵ = − H ˙ inf H inf 2 ≪ 1 \epsilon=-\frac{\dot{H}_{\rm inf}}{H_{\rm inf}^{2}}\ll 1 is the known as slow-roll parameter that measures how slowly Hubble parameter varies during inflation. Using the observational constraint on the amplitude of the power spectrum, the Hubble parameter during inflation can be estimated to be 
+
+ H inf = 8 ​ π 2 ​ ϵ ​ 2.2 × 10 − 9 ​ m P ≈ 4.17 × 10 − 4 ​ ϵ ​ m P H_{\rm inf}=\sqrt{8\pi^{2}\epsilon}\sqrt{2.2\times 10^{-9}}m_{\rm P}\approx 4.17\times 10^{-4}\sqrt{\epsilon}\,m_{\rm P} 
+
+ (45) 
+
+In the case of Starobinsky inflation ϵ = 3 4 ​ N e 2 \epsilon=\frac{3}{4N_{e}^{2}} which yields H inf ≈ 6.33 − 0.76 + 0.76 × 10 − 6 ​ m P H_{\rm inf}\approx 6.33^{+0.76}_{-0.76}\times 10^{-6}\,m_{\rm P} . 
+
+Although the above measurements are much smaller than the Planck values, they remain significantly larger than the nuclear saturation scale given in Eq.  13 . This suggests the existence of a higher-energy ground state beyond neutral saturation. In particular, this energy scale is comparable to those typically considered in inflationary models, such as Starobinsky-like inflationary models Kehagias et al. 2014 . Moreover, it aligns with the observed normalization of the CMB temperature power spectrum, A s A_{s} , at the pivot scale k ∗ = 0.05 ​ Mpc − 1 k_{\ast}=0.05\,\text{Mpc}^{-1} , reinforcing its relevance in early-universe physics. 
+
+### Appendix B Appendix B: Relativistic EoS in the rest frame
+
+Consider a change in variables from comoving coordinates 𝒙 ν = [ τ , χ ] \boldsymbol{x}^{\nu}=[\tau,\chi] to rest frame coordinates 𝝃 α = [ t , r ] \boldsymbol{\xi}^{\alpha}=[t,r] , where r = a ⁡ ( τ ) ​ χ r=a(\tau)\chi is the rest frame radial coordinate, while angular variables ( θ , δ ) (\theta,\delta) remain the same. The most general form for a metric with spherical symmetry can be written in terms of Bardeen potentials Ψ ⁡ ( t , r ) \Psi(t,r) and Φ ⁡ ( t , r ) \Phi(t,r) as: 
+
+ d ​ s 2 = 𝒇 α ​ β ​ d ​ 𝝃 α ​ d ​ 𝝃 β = − ( 1 + 2 ​ Ψ ) ​ d ​ t 2 + d ​ r 2 1 + 2 ​ Φ + r 2 ​ d ​ Ω 2 ds^{2}=\boldsymbol{f}_{\alpha\beta}d\boldsymbol{\xi}^{\alpha}d\boldsymbol{\xi}^{\beta}=-({1+2\Psi})dt^{2}+\frac{dr^{2}}{1+2\Phi}+r^{2}d\Omega^{2} 
+
+ (46) 
+
+The FLRW comoving metric 𝒈 μ ​ ν \boldsymbol{g}_{\mu\nu} in Eq. 9 transforms into the rest frame FLRW metric in Eq. 46 as: 
+
+ 𝒈 μ ​ ν \displaystyle\boldsymbol{g}_{\mu\nu} 
+ = \displaystyle= 
+ Λ μ α ​ Λ ν β ​ 𝒇 α ​ β , \displaystyle\Lambda_{\mu}^{\alpha}\Lambda_{\nu}^{\beta}\boldsymbol{f}_{\alpha\beta}, 
+
+ (47) 
+
+ Λ μ α ≡ ∂ 𝝃 α ∂ 𝒙 μ \displaystyle\Lambda_{\mu}^{\alpha}\equiv\frac{\partial\boldsymbol{\xi}^{\alpha}}{\partial\boldsymbol{x}^{\mu}} 
+ = \displaystyle= 
+ ( ∂ τ t ∂ χ t ∂ τ r ∂ χ r ) \displaystyle\begin{pmatrix}\partial_{\tau}t&\partial_{\chi}t\\
+\partial_{\tau}r&\partial_{\chi}r\\
+\end{pmatrix} 
+
+ (48) 
+
+where the angular part is the identity matrix.
+Explicitly: 
+
+ Λ T ​ ( − ( 1 + 2 ​ Ψ ) 0 0 ( 1 + 2 ​ Φ ) − 1 ) ​ Λ = ( − 1 0 0 a ¯ 2 ) \Lambda^{T}\begin{pmatrix}-(1+2\Psi)&0\\
+0&(1+2\Phi)^{-1}\end{pmatrix}\Lambda=\begin{pmatrix}-1&0\\
+0&\bar{a}^{2}\end{pmatrix} 
+
+ (49) 
+
+where a ¯ 2 ≡ a 2 / ( 1 − k ​ χ 2 ) \bar{a}^{2}\equiv a^{2}/(1-k\chi^{2}) . The general solution to these equations is: 
+
+ Λ = ( ( 1 + 2 ​ Φ W ) − 1 a ¯ ​ r ​ H ​ ( 1 + 2 ​ Φ W ) − 1 r ​ H a ¯ ) \displaystyle\Lambda=\begin{pmatrix}(1+2\Phi_{\rm W})^{-1}&\bar{a}rH(1+2\Phi_{\rm W})^{-1}&\\
+rH&\bar{a}\end{pmatrix} 
+
+ (50) 
+
+ ( 1 + 2 ​ Φ W ) 2 ≡ ( 1 + 2 ​ Ψ ) ​ ( 1 + 2 ​ Φ ) \displaystyle(1+2\Phi_{\rm W})^{2}\equiv(1+2\Psi)(1+2\Phi) 
+
+ (51) 
+
+where Φ W = Φ W ​ ( t , r ) \Phi_{\rm W}=\Phi_{\rm W}(t,r) is the Weyl potential, where 2 ​ Ψ 2\Psi is arbitrary and 2 ​ Φ = r 2 ​ H 2 2\Phi=r^{2}H^{2} with H = H ⁡ ( τ ) = H ⁡ ( t , r ) H=H(\tau)=H(t,r) .
+This frame duality can be interpreted as a Lorentz contraction γ = 1 / 1 − u 2 \gamma=1/\sqrt{1-u^{2}} where the velocity u u is given by the Hubble-Lemaitre law: u = H ​ r = u ⁡ ( t , r ) u=Hr=u(t,r) . An observer in the rest frame, not moving with the fluid, sees the moving fluid element a ​ d ​ χ ad\chi contracted by the Lorentz factor γ \gamma : a ​ d ​ χ = γ ​ d ​ r = d ​ r / 1 − r 2 ​ H 2 ad\chi=\gamma dr=dr/\sqrt{1-r^{2}H^{2}} Gaztañaga 2024 . 
+
+We can now use the inverse transformation, Λ ¯ ≡ Λ − 1 \bar{\Lambda}\equiv\Lambda^{-1} , in Eq.  50 to determine the energy-momentum tensor 𝑻 ¯ α β \boldsymbol{\bar{T}}_{\alpha}^{\beta} in the rest frame: 
+
+ 𝑻 ¯ α β \displaystyle\boldsymbol{\bar{T}}_{\alpha}^{\beta} 
+ = \displaystyle= 
+ 𝒇 γ ​ β ​ 𝑻 ¯ α ​ γ = 𝒇 γ ​ β ​ Λ ¯ α μ ​ Λ ¯ γ ν ​ 𝒈 ν ​ σ ​ 𝑻 μ σ \displaystyle\boldsymbol{f}^{\gamma\beta}\boldsymbol{\bar{T}}_{\alpha\gamma}=\boldsymbol{f}^{\gamma\beta}\bar{\Lambda}_{\alpha}^{\mu}\bar{\Lambda}^{\nu}_{\gamma}\boldsymbol{g}_{\nu\sigma}\boldsymbol{T}_{\mu}^{\sigma} 
+
+ (52) 
+
+ = \displaystyle= 
+ 1 1 − u 2 ​ ( − ρ − u 2 ​ P u ⁡ ( ρ + P ) ( 1 + 2 ​ Φ W ) − u ⁡ ( ρ + P ) ( 1 + 2 ​ Φ W ) P + u 2 ​ ρ ) \displaystyle\frac{1}{1-u^{2}}\begin{pmatrix}-\rho-u^{2}P&\frac{u(\rho+P)}{(1+2\Phi_{\rm W})}\\
+-\frac{u(\rho+P)}{(1+2\Phi_{\rm W})}&P+u^{2}\rho\\
+\end{pmatrix} 
+
+We observe that the off-diagonal terms are generally nonzero, indicating that the fluid is moving in the rest frame ( u ≠ 0 u\neq 0 ), as expected. Furthermore, the stress-energy tensor 𝑻 ¯ α β \boldsymbol{\bar{T}}_{\alpha}^{\beta} is no longer uniform, even when P P and ρ \rho are, implying that both the rest-frame relativistic pressure P ¯ \bar{P} and energy density ρ ¯ \bar{\rho} depend on time and radius, ( t , r ) (t,r) .
+At the center ( r = 0 r=0 ), the energy density and pressure are the same in both frames, i.e., ρ ¯ = ρ \bar{\rho}=\rho and P ¯ = P \bar{P}=P . Neglecting the off-diagonal terms—corresponding to large values of Ψ \Psi , small u u , or the near-degenerate case P ≈ − ρ P\approx-\rho —we can explicitly express the radial dependence in terms of u = u ⁡ ( t , r ) = r ​ H ​ ( t , r ) u=u(t,r)=rH(t,r) : 
+
+ ρ ¯ = ρ + u 2 ​ P 1 − u 2 , P ¯ = P + u 2 ​ ρ 1 − u 2 . \bar{\rho}=\frac{\rho+u^{2}P}{1-u^{2}},\quad\bar{P}=\frac{P+u^{2}\rho}{1-u^{2}}. 
+
+ (53) 
+
+In the limit of degenerate pressure (the ground state), where P = − ρ P=-\rho , the energy density and pressure remain unchanged in both frames, i.e., ρ ¯ = ρ \bar{\rho}=\rho and P ¯ = P \bar{P}=P . 
+
+We conclude that the EoS used in the conventional Newtonian approach to stationary NS has little in common with the EoS in the exact analytical collapsing/expanding uniform solutions in GR. Despite this, Pradhan et al. 2025 found that numerical solutions for the Newtonian spherical collapse with the
+EoS parameters inspired by typical NS conditions exhibit remarkable similarities to the exact GR problem presented here when mapped to the equivalent uniform GR problem in the comoving frame. 
+
+ ◄ 
+
+ Feeling lucky? 
+
+ Conversion report 
+ Report an issue 
+ View original on arXiv ► 
+
+ Copyright 
+ Privacy Policy 
+
+ Generated by L a T e XML oxide

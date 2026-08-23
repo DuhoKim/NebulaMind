@@ -1,0 +1,717 @@
+[1808.08327] BIG BOUNCE AND CLOSED UNIVERSE FROM SPIN AND TORSION 
+
+ The Astrophysical Journal
+ Vol. 870 , No. 2, 78 (2019)
+ © The American Astronomical Society 
+
+### BIG BOUNCE AND CLOSED UNIVERSE FROM SPIN AND TORSION
+
+ Gabriel Unger 1,2 
+
+ Affiliation:  gunge1@seas.upenn.edu
+
+ Nikodem Popławski 1 
+
+ Affiliation:  NPoplawski@newhaven.edu
+
+ Affiliation:  1 Department of Mathematics and Physics, University of New Haven, 300 Boston Post Road, West Haven, CT 06516, USA
+
+ Affiliation:  2 Department of Mechanical Engineering and Applied Mechanics, University of Pennsylvania, 220 South 33rd Street, Philadelphia, PA 19104, USA
+
+### Abstract
+
+We analyze the dynamics of a homogeneous and isotropic universe in the Einstein–Cartan theory of gravity.
+The coupling between the spin and torsion prevents gravitational singularities and replaces the Big Bang with a nonsingular big bounce, at which the universe transitions from contraction to expansion.
+We show that a closed universe exists only when the product of the scale factor and temperature is higher than a particular threshold, contrary to a flat universe and an open universe, which are not restricted.
+During inflation, this product must increase to another threshold, so that the universe can reach dark-energy acceleration. 
+
+### Keywords: 
+cosmology: theory, early universe, gravitation.
+
+### I Cosmology in Einstein–Cartan (EC) gravity
+
+The simplest mechanism generating a nonsingular big bounce and inflation, involving only one unknown parameter and no hypothetical fields, arises in the EC theory of gravity ApJ .
+EC is the simplest and most natural theory of gravity with torsion, with the Lagrangian density for the gravitational field proportional to the Ricci scalar, as in general relativity.
+The conservation law for the total (orbital plus spin) angular momentum of fermions in curved spacetime, consistent with the Dirac equation, requires that the antisymmetric part of the affine connection, the torsion tensor Schr , is not constrained to zero req1 ; req2 .
+Instead, torsion is determined by the field equations obtained from varying the action with respect to the torsion tensor SK1 ; SK2 ; SK3 ; SK4 ; Lord ; EC1 ; EC2 ; EC4 ; EC5 ; EC6 .
+In EC, the spin of fermions is the source of torsion.
+The multipole expansion Pap of the conservation law for the spin tensor in EC gives a spin tensor that describes fermionic matter as a spin fluid (ideal fluid with spin) NSH .
+Once the torsion is integrated out, EC reduces to general relativity with an effective spin fluid as a matter source EC1 ; EC2 ; EC4 ; EC5 ; EC6 .
+The effective energy density and pressure of a spin fluid are given by 
+
+ ϵ ~ = ϵ − α ​ n f 2 , p ~ = p − α ​ n f 2 , \tilde{\epsilon}=\epsilon-\alpha n_{\textrm{f}}^{2},\quad\tilde{p}=p-\alpha n_{\textrm{f}}^{2}, 
+
+ (1) 
+
+where ϵ \epsilon and p p are the thermodynamic energy density and pressure, n f n_{\textrm{f}} is the number density of fermions, and α = κ ​ ( ℏ ​ c ) 2 / 32 \alpha=\kappa(\hbar c)^{2}/32 HHK . 
+
+The negative corrections from the spin-torsion coupling in ( 1 ) generate gravitational repulsion, which prevents the formation of gravitational singularities and replaces the Big Bang with a nonsingular bounce, at which the universe transitions from contraction to expansion avert1 ; avert2 ; avert3 .
+These corrections lead to a violation of the strong energy condition by the spin fluid when ϵ + 3 ​ p − 4 ​ α ​ n f 2 \epsilon+3p-4\alpha n_{\textrm{f}}^{2} drops below 0, thus evading the singularity theorems HHK .
+Accordingly, this violation could be thought of as the cause of the bounce.
+The dynamics of the EC universe filled with a spin fluid ( 1 ) has been studied in spinfluid1 ; spinfluid2 ; spinfluid3 ; spinfluid4 ; spinfluid5 , with a parity-violating extension in MZK , and with torsion coupled to the spinor field in nonsing .
+The expansion of the closed universe with torsion and quantum particle production shortly after a bounce is almost exponential for a finite period of time, explaining inflation ApJ .
+Depending on the particle production rate, the universe may undergo several bounces until it produces enough matter to reach a size where the cosmological constant starts cosmic acceleration.
+This expansion also predicts the cosmic microwave background radiation parameters that are consistent with the Planck 2015 observations Planck2015 ; Planck2016 , as was shown in SD . 
+
+The avoidance of singularities can also occur in cosmological models based on Riemann–Cartan geometries without spin density: Poincaré gauge theories with quadratic terms in curvature and torsion quad1 ; quad2 , scalar-tensor theories with torsion st1 ; st2 , and higher-dimensional geometries with torsion dim .
+Therefore, it seems to be a generic feature of the Riemann–Cartan spacetime, rather than a particular feature of EC.
+We consider EC because it has other interesting consequences.
+The spin-torsion coupling modifies the Dirac equation, adding a term that is cubic in spinor fields HD .
+As a result, fermions must be spatially extended non1 ; non2 , which could eliminate infinities arising in Feynman diagrams involving fermion loops.
+In the presence of torsion, the four-momentum operator components do not commute and thus the integration in the momentum space in Feynman diagrams must be replaced with the summation over the discrete momentum eigenvalues.
+The resulting sums are finite: torsion naturally regularizes ultraviolet-divergent integrals in quantum electrodynamics toreg1 ; toreg2 .
+Torsion may also explain the matter-antimatter asymmetry and dark matter anti , and the cosmological constant exp . 
+
+The analysis in ApJ considered a closed, homogeneous, and isotropic universe in EC.
+However, the calculations of the maximum temperature and the minimum scale factor at a bounce neglected the factor k = 1 k=1 in the Friedmann equations (which is justified during and after inflation but not at a bounce before inflation), de facto considering a flat universe.
+In this article, we refine these calculations by taking k k into account and analyzing the expansion of the universe for all three cases: k = 1 k=1 (closed universe), k = 0 k=0 (flat universe), and k = − 1 k=-1 (open universe).
+We discover that a closed universe exists only when the product of the scale factor and temperature is higher than a particular threshold, whereas open and flat universes are not restricted by such a condition.
+Accordingly, a closed universe forms in a region of space within a trapped null surface ApJ when this threshold is reached. 
+
+### II Dynamics of scale factor and temperature
+
+If we assume that the universe is homogeneous and isotropic, then it is described by the Friedmann–Lemaître–Robertson–Walker metric in the isotropic spherical coordinates LL : 
+
+ d ​ s 2 = c 2 ​ d ​ t 2 − a 2 ​ ( t ) ( 1 + k ​ r 2 / 4 ) 2 ​ ( d ​ r 2 + r 2 ​ d ​ θ 2 + r 2 ​ sin 2 ⁡ θ ​ d ​ ϕ 2 ) , ds^{2}=c^{2}dt^{2}-\frac{a^{2}(t)}{(1+kr^{2}/4)^{2}}(dr^{2}+r^{2}d\theta^{2}+r^{2}\sin^{2}\theta\,d\phi^{2}), 
+
+ (2) 
+
+where a ⁡ ( t ) a(t) is the scale factor as a function of the cosmic time t t .
+The Einstein field equations for this metric become the Friedmann equations LL : 
+
+ a ˙ 2 c 2 + k = 1 3 ​ κ ​ ϵ ​ a 2 \frac{\dot{a}^{2}}{c^{2}}+k=\frac{1}{3}\kappa\epsilon a^{2} 
+
+ (3) 
+
+and 
+
+ a ˙ 2 + 2 ​ a ​ a ¨ c 2 + k = − κ ​ p ​ a 2 , \frac{\dot{a}^{2}+2a\ddot{a}}{c^{2}}+k=-\kappa pa^{2}, 
+
+ (4) 
+
+where a dot denotes the derivative with respect to t t and κ = 8 ​ π ​ G / c 4 \kappa=8\pi G/c^{4} .
+Multiplying the first Friedmann equation by a a and differentiating over time, and subtracting from it the second Friedmann equation multiplied by a ˙ \dot{a} gives an equation that has the form of the first law of thermodynamics for an adiabatic universe: 
+
+ d d ​ t ​ ( ϵ ​ a 3 ) + p ​ d d ​ t ​ ( a 3 ) = 0 . \frac{d}{dt}(\epsilon a^{3})+p\frac{d}{dt}(a^{3})=0. 
+
+ (5) 
+
+For EC, the Friedmann equations have the same form but the energy density and pressure are replaced by ϵ ~ \tilde{\epsilon} and p ~ \tilde{p} spinfluid1 ; spinfluid2 ; spinfluid4 ; spinfluid5 : 
+
+ a ˙ 2 c 2 + k = 1 3 ​ κ ​ ( ϵ − α ​ n f 2 ) ​ a 2 \frac{\dot{a}^{2}}{c^{2}}+k=\frac{1}{3}\kappa(\epsilon-\alpha n_{\textrm{f}}^{2})a^{2} 
+
+ (6) 
+
+and 
+
+ d d ​ t ​ [ ( ϵ − α ​ n f 2 ) ​ a 3 ] + ( p − α ​ n f 2 ) ​ d d ​ t ​ ( a 3 ) = 0 . \frac{d}{dt}[(\epsilon-\alpha n_{\textrm{f}}^{2})a^{3}]+(p-\alpha n_{\textrm{f}}^{2})\frac{d}{dt}(a^{3})=0. 
+
+ (7) 
+
+The spin fluid in the early universe is formed by an ultrarelativistic matter in kinetic equilibrium, for which ϵ = h ⋆ ​ T 4 \epsilon=h_{\star}T^{4} , p = ϵ / 3 p=\epsilon/3 , and n f = h n ​ f ​ T 3 n_{\textrm{f}}=h_{n\textrm{f}}T^{3} , where T T is the temperature of the universe, h ⋆ = ( π 2 / 30 ) ​ ( g b + ( 7 / 8 ) ​ g f ) ​ k B 4 / ( ℏ ​ c ) 3 h_{\star}=(\pi^{2}/30)(g_{\textrm{b}}+(7/8)g_{\textrm{f}})k_{\textrm{B}}^{4}/(\hbar c)^{3} , and h n ​ f = ( ζ ⁡ ( 3 ) / π 2 ) ​ ( 3 / 4 ) ​ g f ​ k B 3 / ( ℏ ​ c ) 3 h_{n\textrm{f}}=(\zeta(3)/\pi^{2})(3/4)g_{\textrm{f}}k_{\textrm{B}}^{3}/(\hbar c)^{3} Ric .
+The quantities g b g_{\textrm{b}} and g f g_{\textrm{f}} are the numbers of spin states for all elementary bosons and fermions, respectively.
+For standard-model particles, g b = 29 g_{\textrm{b}}=29 and g f = 90 g_{\textrm{f}}=90 .
+In the presence of spin and torsion, the first Friedmann equation is therefore ApJ ; tor 
+
+ a ˙ 2 c 2 + k = 1 3 ​ κ ​ ( h ⋆ ​ T 4 − α ​ h n ​ f 2 ​ T 6 ) ​ a 2 . \frac{{\dot{a}}^{2}}{c^{2}}+k=\frac{1}{3}\kappa(h_{\star}T^{4}-\alpha h_{n\textrm{f}}^{2}T^{6})a^{2}. 
+
+ (8) 
+
+The first law of thermodynamics ( 7 ) gives ApJ 
+
+ ( a ˙ a + T ˙ T ) ​ ( 1 − 3 ​ α ​ h n ​ f 2 2 ​ h ⋆ ​ T 2 ) = 0 , \Bigl(\frac{\dot{a}}{a}+\frac{\dot{T}}{T}\Bigr)\Bigl(1-\frac{3\alpha h_{n\textrm{f}}^{2}}{2h_{\star}}T^{2}\Bigr)=0, 
+
+ (9) 
+
+which yields 
+
+ a ˙ a + T ˙ T = 0 . \frac{\dot{a}}{a}+\frac{\dot{T}}{T}=0. 
+
+ (10) 
+
+Remarkably, the last equation is the same as that for the relativistic universe without spin and torsion. 
+
+### III Analysis of solutions for a closed universe
+
+Let us consider a closed relativistic universe.
+We define nondimensional quantities: 
+
+ x = T T cr , \displaystyle x=\frac{T}{T_{\textrm{cr}}}, 
+
+ (11) 
+
+ y = a a cr , \displaystyle y=\frac{a}{a_{\textrm{cr}}}, 
+
+ (12) 
+
+ τ = c ​ t a cr , \displaystyle\tau=\frac{ct}{a_{\textrm{cr}}}, 
+
+ (13) 
+
+where 
+
+ T cr = ( 2 ​ h ⋆ 3 ​ α ​ h n ​ f 2 ) 1 / 2 = 9.410 × 10 31 ​ K T_{\textrm{cr}}=\Bigl(\frac{2h_{\star}}{3\alpha h_{n\textrm{f}}^{2}}\Bigr)^{1/2}=9.410\times 10^{31}\,\textrm{K} 
+
+ (14) 
+
+and 
+
+ a cr = 9 ​ ℏ ​ c 8 ​ 2 ​ ( α ​ h n ​ f 4 h ⋆ 3 ) 1 / 2 = 3.701 × 10 − 36 ​ m . a_{\textrm{cr}}=\frac{9\hbar c}{8\sqrt{2}}\Bigl(\frac{\alpha h_{n\textrm{f}}^{4}}{h_{\star}^{3}}\Bigr)^{1/2}=3.701\times 10^{-36}\,\textrm{m}. 
+
+ (15) 
+
+Henceforth, we will use the dot to denote the derivative with respect to the new time coordinate τ \tau .
+Equation ( 8 ) can be written as 
+
+ y ˙ 2 + 1 = ( 3 ​ x 4 − 2 ​ x 6 ) ​ y 2 . \dot{y}^{2}+1=(3x^{4}-2x^{6})y^{2}. 
+
+ (16) 
+
+Equation ( 10 ) can be integrated to 
+
+ x ​ y = C , xy=C, 
+
+ (17) 
+
+where C C is a positive constant (because the scale factor and temperature are greater than 0).
+Substitution of this relation into Equation ( 8 ) gives 
+
+ y ˙ 2 + 1 = 3 ​ C 4 y 2 − 2 ​ C 6 y 4 . \dot{y}^{2}+1=\frac{3C^{4}}{y^{2}}-\frac{2C^{6}}{y^{4}}. 
+
+ (18) 
+
+Since the left-hand side of this equation is positive, y y cannot reach zero because the right-hand side of this equation would have to become negative.
+Consequently, a cosmological singularity is never produced for any value of C C . 
+
+The big bounce and big crunch of a closed universe are turning points (there is no expansion or contraction at these points), so therefore they are determined by a condition 
+
+ y ˙ = 0 . \dot{y}=0. 
+
+ (19) 
+
+Using this relation, Equation ( 18 ) can be resolved for a quadratic, in terms of y y and C C .
+The resulting quadratic equation for y 2 y^{2} is 
+
+ y 4 − 3 ​ y 2 ​ C 4 + 2 ​ C 6 = 0 . y^{4}-3y^{2}C^{4}+2C^{6}=0. 
+
+ (20) 
+
+The solutions of this equation are: 
+
+ y ± 2 = 3 ​ C 4 ± 9 ​ C 8 − 8 ​ C 6 2 . y^{2}_{\pm}=\frac{3C^{4}\pm\sqrt{9C^{8}-8C^{6}}}{2}. 
+
+ (21) 
+
+At the big bounce, y = y − y=y_{-} , and at the big crunch, y = y + y=y_{+} .
+These turning points of a closed universe exist if the expression under the square root in Equation ( 21 ) is positive or zero.
+In order for that expression to remain positive or zero, C C must be greater than or equal to 8 / 9 \sqrt{8/9} .
+Consequently, an inequality 
+
+ C ≥ 8 / 9 , C\geq\sqrt{8/9}, 
+
+ (22) 
+
+equivalent to 
+
+ a ​ T ≥ 8 / 9 ​ a cr ​ T cr , aT\geq\sqrt{8/9}a_{\textrm{cr}}T_{\textrm{cr}}, 
+
+ (23) 
+
+is a necessary condition for creating a closed universe in a region of space with the local values of a a and T T . 
+
+If C = 8 / 9 C=\sqrt{8/9} , then the turning points coincide, y − = y + y_{-}=y_{+} , and the universe is stationary (no expansion or contraction) with the constant value of the scale factor of y = 32 / 27 y=\sqrt{32/27} .
+Since the values of y y and C C are now both known, the corresponding constant value of x x can be found using Equation ( 17 ) to be 3 / 2 \sqrt{3}/2 .
+Such a stationary universe has a constant scale factor a = 32 / 27 ​ a cr a=\sqrt{32/27}a_{\textrm{cr}} and temperature T = ( 3 / 2 ) ​ T cr T=(\sqrt{3}/2)T_{\textrm{cr}} . 
+
+If C C is greater than 8 / 9 \sqrt{8/9} , then the universe has two turning points and both the big bounce and big crunch occur.
+The value of y ˙ 2 \dot{y}^{2} is nonnegative in the range from y = y − y=y_{-} to y = y + y=y_{+} , so therefore the universe oscillates between y = y − y=y_{-} and y = y + y=y_{+} .
+If C > 8 / 9 C>\sqrt{8/9} , then Equation ( 18 ) can be rearranged to give 
+
+ y ± 2 = 3 ​ C 4 ​ [ 1 ± 1 − 8 9 ​ C 2 2 ] . y^{2}_{\pm}=3C^{4}\Bigl[\frac{1\pm\sqrt{1-\frac{8}{9C^{2}}}}{2}\Bigr]. 
+
+ (24) 
+
+In the limit C ≫ 1 C\gg 1 , using the formula ( 1 − x ) n ≈ 1 + n ​ x (1-x)^{n}\approx 1+nx for | x | ≪ 1 |x|\ll 1 gives 
+
+ y 2 = 3 ​ C 4 ​ [ 1 ± ( 1 − 4 9 ​ C 2 ) 2 ] . y^{2}=3C^{4}\Bigl[\frac{1\pm(1-\frac{4}{9C^{2}})}{2}\Bigr]. 
+
+ (25) 
+
+Accordingly, y − ≈ 2 / 3 ​ C y_{-}\approx\sqrt{2/3}C and y + ≈ 3 ​ C 2 y_{+}\approx\sqrt{3}C^{2} . 
+
+The absolute minimum value for y y among all possible values of C C can be determined from a condition d ​ y − 2 / d ​ C = 0 dy^{2}_{-}/dC=0 , giving 
+
+ C = 1 . C=1. 
+
+ (26) 
+
+For this value of C C , the nondimensionalized minimum scale factor and the corresponding maximum temperature are 
+
+ x = 1 , y min = 1 . x=1,\quad y_{\textrm{min}}=1. 
+
+ (27) 
+
+Accordingly, the constant a cr a_{\textrm{cr}} is equal to the least possible value of the scale factor of a closed universe in EC.
+A closed universe with spin and torsion is nonsingular ( y ≥ 1 y\geq 1 and thus y > 0 y>0 ). 
+
+The squared values of y min y_{\textrm{min}} , y max y_{\textrm{max}} , x min x_{\textrm{min}} , and x max x_{\textrm{max}} for different values of C C are shown in Table  1 .
+The greatest possible value of the temperature in a closed universe in EC is 3 / 2 ​ T cr \sqrt{3/2}T_{\textrm{cr}} .
+When C C is much greater than 1 1 , the universe can expand by a factor of 9 ​ C 2 / 2 9C^{2}/2 and its temperature can decrease by the same factor, reaching the value at which the transition from the radiation (relativistic) domination to the matter (nonrelativistic) domination occurs. 
+
+ C C 
+   y min 2 y^{2}_{\textrm{min}} 
+   y max 2 y^{2}_{\textrm{max}} 
+   x max 2 x^{2}_{\textrm{max}} 
+   x min 2 x^{2}_{\textrm{min}} 
+
+ 8 / 9 \sqrt{8/9} 
+ 32 27 \frac{32}{27} 
+ 32 27 \frac{32}{27} 
+ 3 4 \frac{3}{4} 
+ 3 4 \frac{3}{4} 
+
+ 1 
+ 1 
+ 2 
+ 1 
+ 1 2 \frac{1}{2} 
+
+ ≫ 1 \gg 1 
+ 2 ​ C 2 3 \frac{2C^{2}}{3} 
+ 3 ​ C 4 3C^{4} 
+ 3 2 \frac{3}{2} 
+ 1 3 ​ C 2 \frac{1}{3C^{2}} 
+
+ Table 1: The minima and maxima of the nondimensionalized temperature x x and scale factor y y for different values of the integration constant C C in a closed universe. The domain of C C is [ 8 / 9 , ∞ ) [\sqrt{8/9},\infty) . 
+
+Equation ( 18 ) can be solved analytically.
+We substitute 
+
+ y = [ E − F cos ( 2 θ ) ] 1 / 2 , y ˙ = [ E − F cos ( 2 θ ) ] − 1 / 2 F sin ( 2 θ ) θ ˙ , y=[E-F\cos(2\theta)]^{1/2},\quad\dot{y}=[E-F\cos(2\theta)]^{-1/2}F\sin(2\theta)\dot{\theta}, 
+
+ (28) 
+
+where E E and F F are positive constants such that E > F E>F , obtaining 
+
+ [ F 2 ​ sin 2 ⁡ ( 2 ​ θ ) ​ θ ˙ 2 ] ​ [ E − F ​ cos ⁡ ( 2 ​ θ ) ] + [ E − F ​ cos ⁡ ( 2 ​ θ ) ] 2 − 3 ​ C 4 ​ [ E − F ​ cos ⁡ ( 2 ​ θ ) ] + 2 ​ C 6 = 0 . [F^{2}\sin^{2}(2\theta)\dot{\theta}^{2}][E-F\cos(2\theta)]+[E-F\cos(2\theta)]^{2}-3C^{4}[E-F\cos(2\theta)]+2C^{6}=0. 
+
+ (29) 
+
+Putting 2 ​ E = 3 ​ C 4 2E=3C^{4} and E 2 − F 2 = 2 ​ C 6 E^{2}-F^{2}=2C^{6} reduces this equation into 
+
+ θ ˙ 2 ​ [ E − F ​ cos ⁡ ( 2 ​ θ ) ] = 1 , \dot{\theta}^{2}[E-F\cos(2\theta)]=1, 
+
+ (30) 
+
+which integrates to 
+
+ τ = ∫ 0 θ [ E − F ​ cos ⁡ ( 2 ​ θ ) ] 1 / 2 ​ 𝑑 θ = ( E − F ) 1 / 2 ​ ∫ 0 θ [ 1 + ξ 2 ​ sin 2 ⁡ θ ] 1 / 2 ​ 𝑑 θ , \tau=\int_{0}^{\theta}[E-F\cos(2\theta)]^{1/2}d\theta=(E-F)^{1/2}\int_{0}^{\theta}[1+\xi^{2}\sin^{2}\theta]^{1/2}d\theta, 
+
+ (31) 
+
+where ξ 2 = 2 ​ F / ( E − F ) \xi^{2}=2F/(E-F) , and θ = 0 \theta=0 at t = 0 t=0 .
+The integral in this equation is the elliptic integral of the second kind with an imaginary ξ \xi .
+Therefore, the time dependence y ⁡ ( τ ) y(\tau) of the scale factor is given in the parametric form by the first equation in ( 28 ) and Equation ( 31 ) with 
+
+ E = 3 ​ C 4 / 2 , F = 9 ​ C 8 / 4 − 2 ​ C 6 . E=3C^{4}/2,\quad F=\sqrt{9C^{8}/4-2C^{6}}. 
+
+ (32) 
+
+The parameter θ \theta runs from 0 (bounce) through π / 2 \pi/2 (crunch) to π \pi (next bounce) for one cycle.
+The minimum and maximum scale factors are given by y ± = E ± F y_{\pm}=\sqrt{E\pm F} , in agreement with ( 24 ).
+The value of F F is real, giving the condition ( 22 ).
+Figures 1 , 2 , and 3 show the nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau near a nonsingular, smooth bounce with C = 1 C=1 , C = 10 C=10 , and C = 100 C=100 , respectively.
+Figure 4 shows the nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau for one cycle with C = 1 , 10 , 100 C=1,10,100 using a logarithmic scale. 
+
+ Figure 1: Nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau near a bounce with C = 1 C=1 .
+The time τ = 0 \tau=0 is set at the bounce. 
+
+ Figure 2: Nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau near a bounce with C = 10 C=10 .
+The time τ = 0 \tau=0 is set at the bounce. 
+
+ Figure 3: Nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau near a bounce with C = 100 C=100 .
+The time τ = 0 \tau=0 is set at the bounce. 
+
+ Figure 4: Nondimensionalized scale factor y y as a function of the nondimensionalized time τ \tau for one cycle with C = 1 , 10 , 100 C=1,10,100 using a logarithmic scale. 
+
+The results of this section show that a necessary condition for the creation of an expanding universe in a given volume of space is 
+
+ C > 8 / 9 C>\sqrt{8/9} 
+
+ (33) 
+
+for all points in that volume.
+For all allowed values of C C , a closed universe in nonsingular. 
+
+### IV Analysis of solutions for a flat and an open universe
+
+For a flat relativistic universe, Equation ( 18 ) becomes 
+
+ y ˙ 2 = 3 ​ C 4 y 2 − 2 ​ C 6 y 4 . \dot{y}^{2}=\frac{3C^{4}}{y^{2}}-\frac{2C^{6}}{y^{4}}. 
+
+ (34) 
+
+The corresponding quadratic equation for y 2 y^{2} at the turning points is 
+
+ 3 ​ y 2 − 2 ​ C 2 = 0 . 3y^{2}-2C^{2}=0. 
+
+ (35) 
+
+The physical solution of this equation is 
+
+ y = 2 / 3 ​ C , y=\sqrt{2/3}C, 
+
+ (36) 
+
+which is the minimum value of the nondimensionalized scale factor.
+This value is equal to the nondimensionalized scale factor at a bounce for the case of a closed universe in the limit C ≫ 1 C\gg 1 .
+Consequently, a flat universe in EC is also nonsingular, because C C is positive.
+Since a flat universe has only one turning point (at a bounce), it expands to infinity.
+Contrary to a closed universe, there are no further restrictions on the value of C C . 
+
+For an open relativistic universe, Equation ( 18 ) becomes 
+
+ y ˙ 2 − 1 = 3 ​ C 4 y 2 − 2 ​ C 6 y 4 . \dot{y}^{2}-1=\frac{3C^{4}}{y^{2}}-\frac{2C^{6}}{y^{4}}. 
+
+ (37) 
+
+The corresponding quadratic equation for y 2 y^{2} at the turning points is 
+
+ y 4 + 3 ​ y 2 ​ C 4 − 2 ​ C 6 = 0 . y^{4}+3y^{2}C^{4}-2C^{6}=0. 
+
+ (38) 
+
+The physical solution of this equation is 
+
+ y 2 = − 3 ​ C 4 + 9 ​ C 8 + 8 ​ C 6 2 , y^{2}=\frac{-3C^{4}+\sqrt{9C^{8}+8C^{6}}}{2}, 
+
+ (39) 
+
+with y > 0 y>0 .
+This solution is the minimum value of the nondimensionalized scale factor.
+As for a flat universe, an open universe is also nonsingular and has only one turning point (at a bounce), so it expands to infinity.
+There are no further restrictions on the value of C C . 
+
+### V Analysis with cosmological constant
+
+A flat and an open universe expand to infinity.
+Without further considerations, a closed expanding universe has two turning points (provided that C > 8 / 9 C>\sqrt{8/9} ) and therefore it reaches the maximum value of the scale factor, after which it contracts.
+To avoid the big crunch and the subsequent contraction, another term in the first Friedmann equation is needed that can cause the acceleration of a late universe.
+The simplest term is given by a cosmological constant, which enters the first Friedmann equation (for relativistic matter) according to 
+
+ y ˙ 2 + 1 = 3 ​ C 4 y 2 − 2 ​ C 6 y 4 + λ ​ y 2 , \dot{y}^{2}+1=\frac{3C^{4}}{y^{2}}-\frac{2C^{6}}{y^{4}}+\lambda y^{2}, 
+
+ (40) 
+
+where λ > 0 \lambda>0 is the nondimensionalized cosmological constant: 
+
+ λ = 1 3 ​ Λ ​ a cr 2 = 5.0 × 10 − 124 . \lambda=\frac{1}{3}\Lambda a_{\textrm{cr}}^{2}=5.0\times 10^{-124}. 
+
+ (41) 
+
+This small value results from the small cosmological constant Λ = 1.1 × 10 − 52 ​ m − 2 \Lambda=1.1\times 10^{-52}\,\textrm{m}^{-2} . 
+
+For a late universe, where the values of y y are large, the y − 4 y^{-4} component of this equation can be ignored, reducing this equation to 
+
+ y ˙ 2 + 1 = 3 ​ C 4 y 2 + λ ​ y 2 . \dot{y}^{2}+1=\frac{3C^{4}}{y^{2}}+\lambda y^{2}. 
+
+ (42) 
+
+Putting y ˙ = 0 \dot{y}=0 to find the turning points, the equation can then be rewritten as the quadratic given below: 
+
+ λ ​ z 2 − z + 3 ​ C 4 = 0 , \lambda z^{2}-z+3C^{4}=0, 
+
+ (43) 
+
+where z = y 2 z=y^{2} .
+Solving the quadratic shows that in order for no turning point to exist (in a late universe), λ \lambda must be greater than 1 / ( 12 ​ C 4 ) 1/(12C^{4}) . 
+
+This condition can also be written as 
+
+ C > ( 12 λ ) − 1 / 4 . C>(12\lambda)^{-1/4}. 
+
+ (44) 
+
+A closed universe expands to infinity if the cosmological constant is sufficiently high.
+Such expansion is asymptotically exponential: y ˙ 2 ≈ λ ​ y 2 \dot{y}^{2}\approx\lambda y^{2} in a late universe gives y ∼ exp ⁡ ( λ ​ τ ) y\sim\exp(\sqrt{\lambda}\tau) .
+According to the results of Section III and the condition ( 33 ), a closed universe forms in a given region of space when the local value of C C is equal to 8 / 9 \sqrt{8/9} .
+When C > 8 / 9 C>\sqrt{8/9} , the universe expands.
+To expand to infinity, the universe must have a mechanism to increase the value of C C from 8 / 9 \sqrt{8/9} to ( 12 λ ) − 1 / 4 (12\lambda)^{-1/4} .
+If ( 12 λ ) − 1 / 4 < 8 / 9 (12\lambda)^{-1/4}<\sqrt{8/9} , then the universe expands to infinity regardless.
+A natural and physical mechanism for the growth of C C is provided by quantum particle-pair production in strong gravitational fields Zel1 ; Zel2 ; Zel3 ; Zel4 ; Zel5 ; Zel6 ; Zel7 .
+This mechanism also generates a brief period of exponential expansion of a very early universe ApJ , thus naturally deriving inflation infl1 ; infl2 ; infl3 . 
+
+This analysis would be valid for a relativistic universe.
+However, a relativistic universe transitions from the radiation-dominated era to the matter-dominated era and becomes nonrelativistic.
+Equation ( 42 ) becomes 
+
+ y ˙ 2 + 1 = B y + λ ​ y 2 , \dot{y}^{2}+1=\frac{B}{y}+\lambda y^{2}, 
+
+ (45) 
+
+where B B is a positive constant.
+This transition occurs when 
+
+ 3 ​ C 4 y 2 = B y \frac{3C^{4}}{y^{2}}=\frac{B}{y} 
+
+ (46) 
+
+and at temperature T eq = 8.8 × 10 3 T_{\textrm{eq}}=8.8\times 10^{3} K.
+Using ( 11 ) and ( 17 ), we obtain 
+
+ B = 3 ​ C 3 ​ x eq 3 , B=3C^{3}x_{\textrm{eq}}^{3}, 
+
+ (47) 
+
+where 
+
+ x eq = T eq T cr = 9.4 × 10 − 29 . x_{\textrm{eq}}=\frac{T_{\textrm{eq}}}{T_{\textrm{cr}}}=9.4\times 10^{-29}. 
+
+ (48) 
+
+A nonrelativistic universe expands to infinity if the cosmological constant is sufficiently high.
+The turning points of Equation ( 45 ) are given by a cubic equation 
+
+ y 3 − y λ + B λ = 0 . y^{3}-\frac{y}{\lambda}+\frac{B}{\lambda}=0. 
+
+ (49) 
+
+This equation has no real positive solutions if Lord 
+
+ B > 2 3 ​ 3 ​ λ . B>\frac{2}{3\sqrt{3\lambda}}. 
+
+ (50) 
+
+Consequently, ( 47 ) gives the following condition for the absence of turning points in a late universe: 
+
+ C > ( 2 9 ​ 3 ​ λ ) 1 / 3 ​ 1 x eq = 1.9 × 10 48 . C>\Bigl(\frac{2}{9\sqrt{3\lambda}}\Bigr)^{1/3}\frac{1}{x_{\textrm{eq}}}=1.9\times 10^{48}. 
+
+ (51) 
+
+If this condition is satisfied, the universe expands to infinity. 
+
+Numerical analysis of generic gravitational collapse in general relativity shows that each spatial point in the interior of a black hole locally evolves toward the singularity as an independent, spatially homogeneous, closed universe comp1 ; comp2 .
+In EC, this evolution does not reach a singularity, but instead undergoes a nonsingular bounce after which such a universe expands ApJ .
+Accordingly, if our Universe is closed, its contraction before the big bounce could correspond to gravitational collapse of matter inside a newly formed black hole existing in another universe Pat1 ; Pat2 ; Pat3 ; Pat4 ; Pat5 ; Pat6 ; Pat7 ; Pat8 ; Pat9 ; Pat10 .
+In this scenario, the formation of our Universe corresponds to the moment when the quantity C C , representing the product of the scale factor and temperature, begins to satisfy the inequality ( 33 ) in a given volume of space in the black hole.
+During inflation, this quantity increases because of quantum particle-pair production in strong gravitational fields, and must reach the threshold ( 51 ) so that the Universe could start the observed current acceleration.
+If this threshold is not reached, the closed universe contracts to another bounce and starts another cycle of expansion.
+The last bounce before reaching the threshold can be regarded as the Big Bang of the Universe. 
+
+This work was funded by the University Research Scholar program at the University of New Haven. 
+
+### References
+
+ (1) 
+ N. Popławski, Astrophys. J. 832 , 96 (2016).
+
+ (2) 
+ E. Schrödinger, Space-time Structure (Cambridge University Press, 1954).
+
+ (3) 
+ F. W. Hehl and J. D. McCrea, Found. Phys. 16 , 267 (1986).
+
+ (4) 
+ N. Popławski, arXiv:1304.0047.
+
+ (5) 
+ T. W. B. Kibble, J. Math. Phys. 2 , 212 (1961).
+
+ (6) 
+ D. W. Sciama, in Recent Developments in General Relativity , 415 (Pergamon, 1962).
+
+ (7) 
+ D. W. Sciama, Rev. Mod. Phys. 36 , 463 (1964).
+
+ (8) 
+ D. W. Sciama, Rev. Mod. Phys. 36 , 1103 (1964).
+
+ (9) 
+ E. A. Lord, Tensors, Relativity and Cosmology (McGraw-Hill, 1976).
+
+ (10) 
+ F. W. Hehl, P. von der Heyde, G. D. Kerlick, and J. M. Nester, Rev. Mod. Phys. 48 , 393 (1976).
+
+ (11) 
+ V. de Sabbata and M. Gasperini, Introduction to Gravitation (World Scientific, 1985).
+
+ (12) 
+ V. de Sabbata and C. Sivaram, Spin and Torsion in Gravitation (World Scientific, 1994).
+
+ (13) 
+ N. J. Popławski, arXiv:0911.0334.
+
+ (14) 
+ N. J. Popławski, Class. Quantum Grav. 31 , 065005 (2014).
+
+ (15) 
+ A. Papapetrou, Proc. Roy. Soc. London A 209 , 248 (1951).
+
+ (16) 
+ K. Nomura, T. Shirafuji, and K. Hayashi, Prog. Theor. Phys. 86 , 1239 (1991).
+
+ (17) 
+ F. W. Hehl, P. von der Heyde, and G. D. Kerlick, Phys. Rev. D 10 , 1066 (1974).
+
+ (18) 
+ W. Kopczyński, Phys. Lett. A 39 , 219 (1972).
+
+ (19) 
+ W. Kopczyński, Phys. Lett. A 43 , 63 (1973).
+
+ (20) 
+ A. Trautman, Nature (Phys. Sci.) 242 , 7 (1973).
+
+ (21) 
+ B. Kuchowicz, Gen. Relativ. Gravit. 9 , 511 (1978).
+
+ (22) 
+ M. Gasperini, Phys. Rev. Lett. 56 , 2873 (1986).
+
+ (23) 
+ Y. N. Obukhov and V. A. Korotky, Class. Quantum Grav. 4 , 1633 (1987).
+
+ (24) 
+ N. J. Popławski, Phys. Lett. B 694 , 181 (2010).
+
+ (25) 
+ N. J. Popławski, Phys. Lett. B 701 , 672 (2011).
+
+ (26) 
+ J. Magueijo, T. G. Zlosnik, and T. W. B. Kibble, Phys. Rev. D 87 , 063504 (2013).
+
+ (27) 
+ N. Popławski, Phys. Rev. D 85 , 107502 (2012).
+
+ (28) 
+ P. A. R. Ade et al ., Phys. Rev. Lett. 114 , 101301 (2015).
+
+ (29) 
+ P. A. R. Ade et al ., Astron. Astrophys. 594 , A13 (2016).
+
+ (30) 
+ S. Desai and N. J. Popławski, Phys. Lett. B 755 , 183 (2016).
+
+ (31) 
+ A. V. Minkevich, Phys. Lett. A 80 , 232 (1980).
+
+ (32) 
+ H. Goenner and F. Muller-Hoissen, Class. Quantum Grav. 1 , 651 (1984).
+
+ (33) 
+ A. Toloza and J. Zanelli, Class. Quantum Grav. 30 , 135003 (2013).
+
+ (34) 
+ A. Cid, F. Izaurieta, G. Leon, P. Medina, and D. Narbona, J. Cosm. Astropart. Phys. 04 , 041 (2018).
+
+ (35) 
+ O. Castillo-Felisola, C. Corral, S. del Pino, and F. Ramírez, Phys. Rev. D 94 , 124020 (2016).
+
+ (36) 
+ F. W. Hehl and B. K. Datta, J. Math. Phys. 12 , 1334 (1971).
+
+ (37) 
+ N. J. Popławski, Phys. Lett. B 690 , 73 (2010).
+
+ (38) 
+ N. J. Popławski, Phys. Lett. B 727 , 575 (2013).
+
+ (39) 
+ N. Popławski, arXiv:1712.09997.
+
+ (40) 
+ N. Popławski, arXiv:1807.07068.
+
+ (41) 
+ N. J. Popławski, Phys. Rev. D 83 , 084033 (2011).
+
+ (42) 
+ N. Popławski, Gen. Relativ. Gravit. 46 , 1625 (2014).
+
+ (43) 
+ L. D. Landau and E. M. Lifshitz, The Classical Theory of Fields (Pergamon, 1975).
+
+ (44) 
+ J. Rich, Fundamentals of Cosmology (Springer, 2001).
+
+ (45) 
+ N. J. Popławski, Gen. Relativ. Gravit. 44 , 1007 (2012).
+
+ (46) 
+ L. Parker, Phys. Rev. Lett. 21 , 562 (1968).
+
+ (47) 
+ L. Parker, Phys. Rev. 183 , 1057 (1969).
+
+ (48) 
+ Y. B. Zel’dovich, J. Exp. Theor. Phys. Lett. 12 , 307 (1970).
+
+ (49) 
+ L. Parker, Phys. Rev. D 3 , 346 (1971).
+
+ (50) 
+ L. Parker, Phys. Rev. D 3 , 2546 (1971).
+
+ (51) 
+ Y. B. Zel’dovich and A. A. Starobinskii, J. Exp. Theor. Phys. Lett. 26 , 252 (1977).
+
+ (52) 
+ V. A. Beilin, G. M. Vereshkov, Y. S. Grishkan, N. M. Ivanov, V. A. Nesterenko, and A. N. Poltavtsev, J. Exp. Theor. Phys. 51 , 1045 (1980).
+
+ (53) 
+ D. Kazanas, Astrophys. J. 241 , L59 (1980).
+
+ (54) 
+ A. H. Guth, Phys. Rev. D 23 , 347 (1981).
+
+ (55) 
+ A. Linde, Phys. Lett. B 108 , 389 (1982).
+
+ (56) 
+ B. K. Berger, D. Garfinkle, J. Isenberg, V. Moncrief, and M. Weaver, Mod. Phys. Lett. A 13 , 1565 (1998).
+
+ (57) 
+ D. Garfinkle, Phys. Rev. Lett. 93 , 161101 (2004).
+
+ (58) 
+ I. D. Novikov, J. Exp. Theor. Phys. Lett. 3 , 142 (1966).
+
+ (59) 
+ R. K. Pathria, Nature 240 , 298 (1972).
+
+ (60) 
+ V. P. Frolov, M. A. Markov, and V. F. Mukhanov, Phys. Lett. B 216 , 272 (1989).
+
+ (61) 
+ V. P. Frolov, M. A. Markov, and V. F. Mukhanov, Phys. Rev. D 41 , 383 (1990).
+
+ (62) 
+ L. Smolin, Class. Quantum Grav. 9 , 173 (1992).
+
+ (63) 
+ S. Hawking, Black Holes and Baby Universes and other Essays (Bantam Dell, 1993).
+
+ (64) 
+ W. M. Stuckey, Am. J. Phys. 62 , 788 (1994).
+
+ (65) 
+ D. A. Easson and R. H. Brandenberger, J. High Energ. Phys. 06 , 024 (2001).
+
+ (66) 
+ J. Smoller and B. Temple, Proc. Natl. Acad. Sci. USA 100 , 11216 (2003).
+
+ (67) 
+ N. J. Popławski, Phys. Lett. B 687 , 110 (2010).
+
+ ◄ 
+
+ Feeling lucky? 
+
+ Conversion report 
+ Report an issue 
+ View original on arXiv ► 
+
+ Copyright 
+ Privacy Policy 
+
+ Generated by L a T e XML oxide

@@ -22,9 +22,10 @@ after 2026-08-22 take the next free number rather than renumbering, so cross-ref
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
 Class tally over the 51 BHU papers: 2 CALIBRATED-FALSIFIER, 4 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-22 CONSISTENCY-ONLY, 20 UNREAD (reading in progress: 39–41 read and classed 2026-08-23, batch 1 of
-`bhu-reading-20260823/`; remaining unread: 31, 36–38, 42–57. The unread fraction is 39% and
-falling; notes per paper in the reading lane).
+25 CONSISTENCY-ONLY, 17 UNREAD (reading in progress: 37, 39–41, 52–53 read and classed 2026-08-23;
+remaining unread: 31, 36, 38, 42–51, 54–57, of which 31 and 47–50 are paywalled on every free route
+and 36/57 have no records to fetch — the needs-institutional-access queue. Unread fraction 33%;
+notes per paper in `bhu-reading-20260823/`).
 
 ---
 
@@ -187,14 +188,14 @@ Record: kimi recall R6; the singularity-avoidance mechanism paper under the tors
 **52. "Big Bounce and Closed Universe from Spin and Torsion." ApJ 870, 78 (2019).**
 DOI 10.3847/1538-4357/aaf169 — VERIFIED (Crossref: ApJ, v870, 78, 2019). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). The k=1 correction to the audited 2016 ApJ paper (whose bounce values 'de facto considered a flat universe', per this paper). Quantifies the production requirement: C ~ aT must grow ~48 orders of magnitude to reach dark-energy acceleration — the free dial now has a required range and still no mechanism.
 Record: harvest+triage pick #2; authors omitted pending the record itself (entry-42 precedent).
 
 **53. "Analysis of big bounce in Einstein–Cartan cosmology." Class. Quantum Grav. 37, 025011 (2019).**
 DOI 10.1088/1361-6382/ab5cb9 — VERIFIED (Crossref: CQG, v37, 025011, 2019). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
-Record: triage pick #7; an independent EC bounce analysis outside the Popławski authorship line.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). CORRECTION: this is Cubero & POPŁAWSKI — same UNH group, companion to entry 52, NOT an independent line as the triage-derived record here briefly claimed. New structural result: the scale-factor bounce is double, with a single temperature bounce and a little crunch between.
+Record: triage pick #7; a same-group companion analysis (Cubero & Popławski) — the 'independent line' triage claim was wrong and is corrected above.
 
 **54. "Gravitational bounce from the quantum exclusion principle." Phys. Rev. D 111, 103537 (2025).**
 DOI 10.1103/physrevd.111.103537 — VERIFIED (Crossref: PRD, v111, 103537, 2025). Added 2026-08-23, hunt round 2
@@ -358,7 +359,7 @@ Record: recalled by the gate's training-memory attack, missing from bibliography
 **37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
 DOI 10.1073/pnas.1833875100 — VERIFIED (Crossref: PNAS, v100, p11216-11218, 2003-09). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
+Testability: **CONSISTENCY-ONLY**. READ 2026-08-23 (Tori). Theorem-grade exact GR: big bang as a localized explosion inside a Schwarzschild black hole, subluminous shock beyond the Hubble length, white-hole exit; σ=1/3 uniquely selected. The only paper read so far with no underived ingredient — and no stated falsifier.
 Record: harvest #17; the branch-defining title. (Harvest metadata said 2002; Crossref says 2003 — the verified year is used.)
 
 **38. J. Smoller & B. Temple (2004). "Cosmology, black holes and shock waves beyond the Hubble length." Methods Appl. Anal. 11, 77–132.**
