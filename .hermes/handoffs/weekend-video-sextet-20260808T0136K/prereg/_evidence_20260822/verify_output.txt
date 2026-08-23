@@ -1,5 +1,5 @@
-verify.sh sha256 c3d1d09f09fc0a41a3026d96c81f34dedc8111f5d425c79861bf747a98ebe2a8
-claim invocations in this file: 26
+verify.sh sha256 b4aeac90cf253bcf5ea82dc00d70dc09867439dfc5436bcc5ba5bdfc02c748f4
+claim invocations in this file: 28
 
 == digests (16-hex PREFIXES of sha256; the cut is in the shown command) ==
 PASS  S1   $ shasum -a 256 /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.mp3 | cut -c1-16
@@ -12,19 +12,19 @@ PASS  S4   $ shasum -a 256 /Users/duhokim/HermesOps/reports/status-audio/2026082
           -> a9cfedc4ab127794
 
 == strings in the 23:12 caption ==
-PASS  S5   $ grep -c '0.834336, 0.384410, and -0.640352' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
+PASS  S5   $ grep -cF '0.834336, 0.384410, and -0.640352' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
           -> 1
-PASS  S6   $ grep -c 'One leaning each way among the confident pair' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
+PASS  S6   $ grep -cF 'One leaning each way among the confident pair' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
           -> 1
-PASS  S7   $ grep -c '2,725 galaxies measured' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
+PASS  S7   $ grep -cF '2,725 galaxies measured' /Users/duhokim/HermesOps/reports/status-audio/20260820T231235-hwao-report.txt
           -> 1
 
 == frozen documents the rulings rest on ==
 PASS  F1   $ shasum -a 256 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/K8_CROSSING_AUTHORIZATION_20260820.md | cut -c1-16
           -> c10687595f1f4313
-PASS  F2   $ grep -c 'No sky statistic, no dipole' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/K8_CROSSING_AUTHORIZATION_20260820.md
+PASS  F2   $ grep -cF 'No sky statistic, no dipole' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/K8_CROSSING_AUTHORIZATION_20260820.md
           -> 1
-PASS  F3   $ grep -c 'Partial-tertile prohibition' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/K8_CROSSING_AUTHORIZATION_20260820.md
+PASS  F3   $ grep -cF 'Partial-tertile prohibition' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/K8_CROSSING_AUTHORIZATION_20260820.md
           -> 1
 PASS  F4   $ shasum -a 256 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/PREREG_LONGO_AMPLITUDE_TEST_FROZEN_20260815_V3.md | cut -c1-16
           -> b06901c8a0f3a057
@@ -36,7 +36,7 @@ PASS  G2   $ python3 /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weeke
           -> 0.057985
 
 == searches restricted to handcheck/ ==
-PASS  H1   $ grep -c 'def _rank_tertiles' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/nm_handcheck.py
+PASS  H1   $ grep -cF 'def _rank_tertiles' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/nm_handcheck.py
           -> 1
 PASS  H2   $ grep -rl chi_dr10_south /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/handcheck/ | wc -l | tr -d ' '
           -> 0
@@ -50,33 +50,38 @@ PASS  X3   $ grep -c 6b2aa9a54398e53ede9545e1df9d3fc63d32aa95a28a9799b18be341d4e
           -> 2
 
 == my open divergence, left unrepaired on purpose ==
-PASS  D1   $ grep -c 'one galaxy at a time, 200,000 times' /Users/duhokim/HermesOps/reports/status-audio/20260821T151843-hwao-report.txt
+PASS  D1   $ grep -cF 'one galaxy at a time, 200,000 times' /Users/duhokim/HermesOps/reports/status-audio/20260821T151843-hwao-report.txt
           -> 1
 PASS  D2   $ python3 -c "import json;print(json.load(open('/Users/duhokim/HermesOps/reports/status-audio/20260821T151843-hwao-report.times.json'))['coverage'])"
           -> 0.9709
+PASS  D3   $ grep -c "$(shasum -a 256 /Users/duhokim/HermesOps/reports/status-audio/20260821T151843-hwao-report.mp3 | cut -d' ' -f1)" /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/GATE_CHI_CUSTODY_R7_20260821.md
+          -> 2
+
+== the decision memo's own header ==
+PASS  M1   $ sed -n 5p /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md
+          -> > **THIS IS A DRAFT. NOTHING IN IT IS IN FORCE.**
 
 == publication event and served surfaces ==
 PASS  P1   $ python3 -c "
 import json
-for l in open('/Users/duhokim/HermesOps/reports/status-audio/queue_ledger.jsonl'):
-    r=json.loads(l)
-    if r.get('event')=='publish' and '231235' in str(r.get('file','')):
-        print(r.get('seq'), r.get('stamp_kst'), 'backfilled='+str(r.get('backfilled'))); break"
-          -> 20 2026-08-20 23:12:51 KST backfilled=True
+rows=[r for r in map(json.loads,open('/Users/duhokim/HermesOps/reports/status-audio/queue_ledger.jsonl'))
+      if r.get('event')=='publish' and r.get('file')=='20260820T231235-hwao-report.mp3']
+print(len(rows), rows[0].get('seq'), rows[0].get('stamp_kst'), 'backfilled='+str(rows[0].get('backfilled')))"
+          -> 1 20 2026-08-20 23:12:51 KST backfilled=True
 PASS  P2   $ shasum -a 256 /Users/duhokim/HermesOps/reports/status-audio/report-20260820T231235-hwao-report.html | cut -c1-16
           -> 050a3f6245fc74f1
-PASS  P3   $ grep -c '0.834336, 0.384410, and -0.640352' /Users/duhokim/HermesOps/reports/status-audio/archive.html
+PASS  P3   $ python3 -c "print(open('/Users/duhokim/HermesOps/reports/status-audio/report-20260820T231235-hwao-report.html',encoding='utf-8',errors='replace').read().count('0.834336, 0.384410, and -0.640352'))"
           -> 1
-PASS  P4   $ grep -c 'report-20260820T231235-hwao-report' /Users/duhokim/HermesOps/reports/status-audio/archive.html
+PASS  P4   $ python3 -c "print(open('/Users/duhokim/HermesOps/reports/status-audio/archive.html',encoding='utf-8',errors='replace').read().count('href=\"report-20260820T231235-hwao-report.html\"'))"
           -> 1
 
 == superseded forms retained on disk (the drafting history, countable) ==
 PASS  L1   $ ls /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/CHI_CUSTODY_RECEIPT_20260821*.md /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/CHI_CUSTODY_20260822_V*_SUPERSEDED.md | wc -l | tr -d ' '
-          -> 11
+          -> 18
 
 == the companion document against the banned wordlist ==
 PASS  Q1   $ grep -Eoi 'every|everywhere|always|never|none|exhaustive|universal|\ball\b|\bany\b|\bcomplete\b|\bexact\b' /Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K/prereg/CHI_CUSTODY_20260822.md | wc -l | tr -d ' '
           -> 0
 
-26 passed, 0 failed
+28 passed, 0 failed
 SCOPE: the commands above ran as printed. This script reports their outputs and no more.
