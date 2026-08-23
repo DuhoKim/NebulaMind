@@ -1,0 +1,12 @@
+bricks with Cut-6 objects: 270,577   total objects: 832,393
+strategy                             bricks    N_cut6   Var(c)   leverage       N_eq
+FULL footprint                      270,577   832,393   0.4452    370,582  1,111,747
+DEAD-RULE brickid<=121000            55,297   171,737   0.0577      9,902     29,707
+POLAR top 10% of objects             28,182    83,241   0.9204     76,616    229,849
+POLAR top 25%                        69,580   208,100   0.8209    170,827    512,481
+POLAR top 50%                       136,604   416,197   0.6886    286,575    859,725
+EQUATOR worst 25% (contrast)         68,474   208,099   0.0790     16,448     49,344
+
+acceptance 45%: polar selection of 28,000 bricks / 82,768 objects reaches 100,000 N_eq  (Var 0.921)
+acceptance 25%: polar selection of 52,000 bricks / 155,876 objects reaches 100,000 N_eq  (Var 0.858)
+acceptance 10%: polar selection of 180,000 bricks / 551,913 objects reaches 100,000 N_eq  (Var 0.604)
