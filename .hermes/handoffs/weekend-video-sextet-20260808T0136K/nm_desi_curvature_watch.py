@@ -59,7 +59,11 @@ def main():
                            f"arXiv:{a} {t[:70]}" for a, _, t in new[:3])}, ensure_ascii=False) + "\n")
     state.update({"seen": sorted(seen), "last_run": now, "last_error": None, "last_new": len(new)})
     STATE.write_text(json.dumps(state, indent=1))
-    print(f"{len(new)} new candidate(s); {len(seen)} seen total")
+    if new:      # --no-agent cron: empty stdout = silent week; stdout only on news
+        print(f"BHU curvature watch: {len(new)} new DESI curvature paper(s) — read against "
+              f"entry 54's window (-0.07±0.02 <= Omega_k < 0):")
+        for aid, pub, ti in new[:5]:
+            print(f"  arXiv:{aid} ({pub}) {ti[:80]}")
 
 if __name__ == "__main__":
     main()
