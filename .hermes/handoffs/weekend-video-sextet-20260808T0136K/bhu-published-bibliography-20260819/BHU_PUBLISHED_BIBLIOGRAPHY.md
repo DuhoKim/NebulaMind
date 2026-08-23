@@ -21,12 +21,17 @@ Testability classes per brief: **CALIBRATED-FALSIFIER** (number + threshold) /
 after 2026-08-22 take the next free number rather than renumbering, so cross-references to
 entries 1–29 elsewhere in the record stay valid; tier is stated per entry, not implied by
 number. Branches 9–10 added 2026-08-22 by the bibliography gate.**
-Class tally over the 51 BHU papers: 3 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
-30 CONSISTENCY-ONLY, 8 UNREAD (15 entries read and classed 2026-08-23 — the READABLE FLOOR: the remaining
-8 unread — 31, 36, 42, 47–50, 57 — are unobtainable on every free route and wait on institutional
-access. Unread fraction 16%, irreducible without credentials. Notes per paper in
-`bhu-reading-20260823/`. Reading produced the family's third CALIBRATED-FALSIFIER, entry 54 — the
-only live one — and corrected three triage-derived record claims).
+Class tally over the 51 BHU papers: 4 CALIBRATED-FALSIFIER, 7 QUALITATIVE-DIRECTIONAL, 3 PROSPECT,
+32 CONSISTENCY-ONLY, 5 UNREAD (18 entries read and classed 2026-08-23, batches 1–6. CORRECTION to
+the earlier floor claim: "8 unread, unobtainable on every free route, 16% irreducible" was
+overstated — a second sweep on 2026-08-23 evening found free copies of 31 (VU Amsterdam academic
+mirror), 36 (arXiv astro-ph/9812063, missed under API throttling), and 57 (author's UC Davis
+page). The true floor is the remaining 5 — 42, 47, 48, 49, 50 (three Elsevier PLB/NPB, one APS
+PRD, one Elsevier PLB) — ≈10%, awaiting institutional access. Notes per paper in
+`bhu-reading-20260823/`. The family now holds TWO live calibrated falsifiers: entry 54 (closed
+curvature window; DESI decides) and entry 31 (no neutron star above Smolin's stated 2.5 M☉ bar —
+live as stated, though C08 adjudicated its Brown–Bethe instrument limb broken at ≥8σ). Reading
+corrected three triage-derived record claims in batches 1–5 and this floor claim in batch 6).
 
 ---
 
@@ -111,12 +116,32 @@ DOI 10.1016/j.physa.2004.05.021 — VERIFIED (Crossref: Physica A, v340, p705-71
 2026-08-22 (Duho's instruction) after the Phase 3 audits found the falsifying paper's CNS
 *requirement* (B-17, "the upper mass limit of neutron stars be as low as possible") cites this and
 only this — the peer-reviewed half of link (4). No arXiv eprint; Elsevier paywalled; INSPIRE holds
-no document (both checked 2026-08-21) — **full text unobtained, content unread**.
-Testability: **UNREAD** — deliberately unclassified rather than classed from second-hand citations.
-Record: the missing base entry the CNS audit chain leaned on throughout; obtaining it is the same
-outstanding institutional-access acquisition as entry 6's full text.
-Audit-worthiness: **high** — it is the published source of the requirement the whole falsifier
-tests, and Track C stays context-grade until it or entry 6 is read.
+no document (both checked 2026-08-21). **Full text OBTAINED 2026-08-23**: the published Physica A
+PDF is openly hosted on a VU Amsterdam academic collection
+(few.vu.nl/~wimu/Varying-Constants-Papers/Smolin-Physica-2004.pdf); pinned as
+`bhu-reading-20260823/sources/smolin_2004_cns_physica_a340.pdf`
+(sha256 46e57c43…, header/pagination verified: Physica A 340 (2004) 705–713).
+Testability: **CALIBRATED-FALSIFIER** — READ 2026-08-23 (Tori). §4 states the falsifier in the
+author's own words: if the strange-quark mass is below a critical value, kaon condensation caps
+neutron stars at "approximately 1.5 M☉" (attributed to Bethe–Brown calculations [52–54], not to
+CNS itself); a sufficiently heavy neutron star refutes S, and "sufficiently high is certainly
+2.5 M☉, although if one is completely confident of Bethe and Brown's upper limit of 1.5 solar
+masses, any value higher than this would be troubling." This **confirms Track C's central
+findings from the primary text**: CNS does not predict M_max ≈ 1.5 (that number is Brown–Bethe's
+instrument), and Smolin's own clean-refutation bar is 2.5 M☉ — unmet by any observed mass
+(C08/Track C adjudicated the instrument limb broken at ≥8σ; the 2.5 bar stands unreached).
+Footnote 6 concedes in print that S could be saved by ad-hoc parameter-coupling fixes and
+disclaims them absent independent support. Footnote 1 cites Rothman & Ellis (1993) [13] as the
+source of the open-universe correction — corroborating appendix A0's citation trail (their paper
+itself remains unread). Reader's note (mine, not the text's): §3's Λ discussion ends in an explicit
+conjecture ("one can conjecture that the present value of Λ maximizes the formation of black
+holes"), not a result.
+Record: the CNS audit chain's missing base entry, now read; Track C's published-record basis is
+upgraded to primary-source-confirmed. With entry 54, this gives the family a SECOND live
+calibrated falsifier — live at the author's stated 2.5 M☉ bar, with the caveat that its
+instrument limb (Brown–Bethe 1.5 M☉) is already broken per C08.
+Audit-worthiness: **high** — now discharged for the falsifier statement itself; entry 6 (CQG 9,
+173) remains the other primary text for the theory's original formulation.
 
 ## 3. Popławski torsion-bounce parentage — the published mechanism chain
 
@@ -354,8 +379,24 @@ two training-memory recalls).
 **36. J. Smoller & B. Temple (2000). "Cosmology with a shock-wave." Commun. Math. Phys. 210, 275–308.**
 DOI 10.1007/s002200050780 — VERIFIED (Crossref: CMP, v210, p275-308, 2000-03). Added 2026-08-22 from the bibliography gate
 (`bhu-biblio-gate-20260822/BGATE_VERDICT.md`, HOLD_BIBLIO_DIRECT_OMISSIONS). Tier: **W1**.
-Testability: **UNREAD** — full text unexamined here; class not assigned second-hand.
-Record: recalled by the gate's training-memory attack, missing from bibliography AND harvest; the programme's founding cosmology paper.
+**Full text OBTAINED 2026-08-23** via its arXiv version (astro-ph/9812063 — the eprint my
+campaign-time checks missed under arXiv throttling); pinned as
+`bhu-reading-20260823/sources/smoller_temple_2000_shockwave_astroph9812063.pdf` (sha256
+ef904904…, 66 pp, title verified).
+Testability: **CONSISTENCY-ONLY** — READ 2026-08-23 (Tori). Constructs the simplest exact
+Einstein solution with a true shock wave at the leading edge of a k=0 FRW expansion inside a
+static TOV exterior, matched to the observed H₀ and CMB temperature; derives bounds putting the
+shock position at present time comparable to the Hubble length. The paper is explicit that the
+model violates the Copernican principle (Earth near the center of a localized explosion) and that
+the shock makes the early explosion unreconstructable ("impossible to reconstruct the details of
+the early explosion from present data"); it poses "could our expanding universe have evolved from
+the center of a great explosion?" as a question and offers the solution as "a starting point",
+deriving no observational discriminant beyond the length-scale consistency. Reader's note (mine,
+not the text's): the anti-Copernican geometry implies in-principle radial anisotropies, but the
+paper does not compute any.
+Record: recalled by the gate's training-memory attack, missing from bibliography AND harvest; the
+programme's founding cosmology paper. The black-hole-interior version of this construction is
+entry 37 (PNAS 2003); here the shock sits outside any horizon.
 
 **37. J. Smoller & B. Temple (2003). "Shock-wave cosmology inside a black hole." PNAS 100, 11216–11218.**
 DOI 10.1073/pnas.1833875100 — VERIFIED (Crossref: PNAS, v100, p11216-11218, 2003-09). Added 2026-08-22 from the bibliography gate
@@ -372,8 +413,20 @@ Record: recalled by the gate, missing from both documents; the programme's expan
 **57. J. Smoller & B. Temple (1997). "General relativistic shock waves that extend the Oppenheimer–Snyder model." Arch. Rational Mech. Anal. 138, 239–277.**
 DOI 10.1007/s002050050041 — VERIFIED (Crossref: ARMA, v138, p239-277, 1997). Added 2026-08-23, hunt round 2
 (`bhu-biblio-gate-20260822/K2GATE_VERDICT.md` + `MORNING_HUNT_REPORT.md`). Tier: **W1**.
-Testability: **UNREAD** — text unexamined here.
-Record: kimi recall R5; the programme's method precursor, predating entry 36.
+**Full text OBTAINED 2026-08-23**: the published version is self-archived on Blake Temple's UC
+Davis page (math.ucdavis.edu/~temple/!!!PubsForWeb/cv47.pdf); pinned as
+`bhu-reading-20260823/sources/smoller_temple_1997_oppenheimer_snyder_arma138_cv47.pdf` (sha256
+6e709a9c…, 39 pp, Springer header verified: ARMA 138 (1997) 239–277).
+Testability: **CONSISTENCY-ONLY** — READ 2026-08-23 (Tori). Pure mathematical infrastructure:
+re-derives the FRW/Oppenheimer–Tolman shock-matching ODEs in simplified form, proves
+Lax-admissibility conditions, and obtains formulas for shock/sound/fluid speeds for numerical
+use. Explicitly restricted to shocks OUTSIDE the Schwarzschild radius (A > 0), and its §6 result
+is that outside that radius the solutions model explosions, not collapse. No observational
+content; the cosmological framing is one sentence (the FRW core may be "a star or the universe as
+a whole", with the big bang beginning as a shock-wave explosion per their earlier PRD paper).
+Record: kimi recall R5; the programme's method precursor, predating entry 36. The
+inside-the-horizon step the BHU reading cares about is entirely in later entries (36 stays
+outside horizons too; entry 37 goes inside).
 
 ## 10. White-hole / holographic-origin big bang
 

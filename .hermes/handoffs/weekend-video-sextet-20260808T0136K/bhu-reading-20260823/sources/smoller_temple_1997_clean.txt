@@ -1,0 +1,4306 @@
+Arch. Rational Mech. Anal. 138 (1997) 239±277. Ó Springer-Verlag 1997
+
+General Relativistic Shock Waves
+that Extend the Oppenheimer-Snyder Model
+JOEL SMOLLER & BLAKE TEMPLE
+Communicated by T.-P. LIU
+Abstract
+In earlier work we constructed a class of spherically symmetric, ¯uid
+dynamical shock waves that satisfy the Einstein equations of general relativity. These shock waves extend the celebrated Oppenheimer-Snyder result
+to the case of non-zero pressure. Our shock waves are determined by a system
+of ordinary dierential equations that describe the matching of a FriedmannRobertson-Walker metric (a cosmological model for the expanding universe)
+to an Oppenheimer-Tolman metric (a model for the interior of a star) across
+a shock interface. In this paper we derive an alternate version of these
+ordinary dierential equations, which are used to demonstrate that our
+theory generates a large class of physically meaningful (Lax-admissible)
+outgoing shock waves that model blast waves in a general relativistic setting.
+We also obtain formulas for the shock speed and other important quantities
+that evolve according to the equations. The resulting formulas are important
+for the numerical simulation of these solutions.
+
+1. Introduction
+In [7] we constructed a class of physically interesting shock-wave solutions
+of the Einstein equations of general relativity, and in [8] we applied these
+results to construct an exact solution of these equations that models an explosion into a static, singular, isothermal sphere. This solution provides a
+general relativistic model that parallels a Newtonian model for stellar formation. The paper [7] concluded with the derivation of a set of ordinary
+dierential equations that describe the matching of a Friedmann-RobertsonWalker (FRW) type metric, to an Oppenheimer-Tolman (OT) type metric,
+such that the interface between the two metrics de®nes a spherically symmetric, ¯uid dynamical shock wave.
+
+240
+
+J. SMOLLER AND B. TEMPLE
+
+In this paper we derive an alternative, simpler version of these ordinary
+dierential equations (cf. Theorem 7 below), and we use these ordinary
+dierential equations to compute simpli®ed formulas for the physical quantities (the pressure, the density, and the sound, shock and characteristic
+speeds) that are determined by the equations. When computing the sound
+speeds we make the assumption that the equations of state are of the simple
+form p  p q; so that the sound speed is given by dp=dq: We apply these
+formulas to obtain conditions under which the Lax shock conditions hold,
+conditions under which the pressure is greater behind the shock, and conditions under which all ``speeds'' are bounded by the speed of light c  1; cf.
+[4]. In this paper we restrict our attention to the case when the shock wave lies
+outside of the Schwarzschild radius (A > 0; cf. (2.21) below). The ordinary
+dierential equations and formulas we derive here can be used eectively in
+the numerical simulation of these shock-wave solutions.
+The FRW metric is a uniformly expanding (or contracting) solution of the
+Einstein gravitational ®eld equations and is generally accepted as a cosmological model for the expanding universe. The OT solution is a time-independent solution which models the interior of a star. Both metrics are
+spherically symmetric, and both are determined by a system of ordinary
+dierential equations that close when an equation of state p  p q for the
+¯uid is speci®ed. In our shock-wave solution, the FRW metric is an exploding
+inner core (of a star or the universe as a whole), and the boundary of this
+inner core is a shock surface that is driven by the expansion behind the shock
+into the outer, static, OT solution, which we imagine as the outer layers of a
+star, or the outer regions of the universe. (In the exact solution constructed in
+[8], the shock wave emerges from r  0 at the initial (big-bang) singularity in
+the FRW metric, and thus the model provides a scenario by which the bigbang begins with a shock-wave explosion.)
+In [7], we described a general procedure for matching dierent metric
+solutions of the Einstein equations across an interface such that the metrics
+match Lipschitz continuously at the interface. In order for the interface to
+be a true ¯uid dynamical shock wave (as opposed to a surface layer), we
+must impose an additional constraint, called the conservation constraint, on
+the equations. In [7], we showed that for the matching of a FRW metric to
+an OT metric, the Lipschitz continuous matching at an interface can be
+achieved with any two arbitrary equations of state assigned to the FRW
+and OT solutions separately. However, in order to satisfy the conservation
+constraint, we must impose one additional constraint, and thus we lose the
+freedom to impose one of the two equations of state. Said dierently, the
+conservation constraint determines the inner FRW equation of state from
+the outer OT solution. Therefore, for any given ®xed OT metric, our ordinary dierential equations (cf. (3.20)±(3.23) below) describe the evolution
+of the shock position, together with the density, pressure and cosmological
+scale factor of the FRW solution. This FRW metric (which satis®es the
+ordinary dierential equations) matches the given OT metric Lipschitz
+continuously across a true ¯uid dynamical shock wave. (This matching can
+
+Relativistic Shock Waves
+
+241
+
+be improved to a C 1;1 matching via a coordinate transformation; cf. Theorem 2 below.)
+It is well known that the FRW metric exhibits qualitatively dierent behavior depending on the sign of k (a parameter in the metric [11]), which
+determines the sign of the scalar curvature on the constant curvature surfaces
+at each ®xed time. When k > 0; the shock-wave solutions described in [7]
+reduce to the well-known model of OPPENHEIMER & SNYDER (OS) when the
+OT solution is taken to be the empty space Schwarzschild metric. In this case
+the general ordinary dierential equations derived in [7] reproduce the OS
+equation of state p  0 in the FRW metric, and thus our ordinary dierential
+equations reproduce the OS results in this limit. Thus our shock-wave solutions provide a natural generalization of the OS model to the case of non-zero
+pressure. However, there is an important dierence between the OS solution
+and our shock-wave solutions, namely, the OS interface is a time-reversible
+contact discontinuity, but the interfaces in our model describe true, timeirreversible, ¯uid dynamical, shock waves. Indeed, for a contact discontinuity,
+a smooth regularization of the solution at a ®xed time propogates as a nearby
+smooth solution for all times thereafter. In contrast, it is well known from the
+theory of hyperbolic conservation laws that, due to time-irreversibility,
+shock-wave solutions cannot be approximated globally by smooth, shockfree solutions of the hyperbolic equations [4, 5].
+The plan of the paper is as follows. In Section 2 we summarize the
+results in [7, 8]. In Section 3 we analyze the conservation constraint, and
+obtain formulas for the FRW pressure. We prove that when the FRW
+density is greater than the OT density at the shock (the case of an explosion when the FRW metric is placed inside the OT metric), the FRW
+pressure is positive if and only if it is greater than the OT pressure. In
+Section 4, we use our formulas for the pressure to obtain formulas for the
+shock speed and ¯uid speed, and we discuss the Lax shock conditions. We
+also show that for suciently strong shocks, the equation of state can be
+approximated to ®rst order in a neighborhood of a given point on both
+sides of the shock. In Section 5, we obtain formulas for the FRW sound
+speed; this is required for the veri®cation of the Lax shock conditions. In
+Section 6 we show that outside the Schwarzschild radius, the FRW density
+must exceed the OT density at the shock in order that the sound speed be
+positive. This implies that our solutions model explosions, but not gravitational collapse (except in the Oppenheimer-Snyder limit p=0).
+2. Preliminaries
+In this section we review the results in [7] and [8]. We consider the Einstein
+gravitational ®eld equations
+
+G  jT ;
+
+2:1
+
+where G denotes the Einstein curvature tensor for the space-time metric g, T
+denotes the stress-energy tensor for a perfect ¯uid:
+
+242
+
+J. SMOLLER AND B. TEMPLE
+
+T  q  pu
+
+u  pg;
+
+2:2
+
+and j  8pG: (We assume that the speed of light c  1.) Here u is the
+4-velocity of the ¯uid, G is Newton's gravitational constant, and we assume a
+barotropic equation of state of the form p  p q; where p is the pressure and
+q is the density. In a given coordinate system, T takes the form
+
+Tij  pgij  p  qui uj ;
+
+2:3
+
+where i; j are assumed to run from 0 to 3, and we use the Einstein summation
+convention throughout. The Einstein tensor G is constructed from the
+Riemann curvature tensor so as to satisfy div G  0: Thus, on solutions of
+(2.1), div T  0; and this is the relativistic version of the classical Euler
+equations for compressible ¯uid ¯ow. The Euler equations for compressible
+¯uids provide the setting for the mathematical theory of shock waves [4]. We
+now brie¯y recall the FRW and OT metrics, and the results of [7].
+The FRW metric describes a spherically symmetric space-time that is
+homogeneous and maximally symmetric at each ®xed time. In coordinates,
+the FRW metric is given by [11]
+
+
+1
+2
+2
+2
+2
+2
+2
+ds  ÿdt  R t
+dr  r dX ;
+2:4
+1 ÿ kr2
+where t  x0 ; r  x1 ; h  x2 ; u  x3 ; R  R t is the `cosmological scale factor', and dX2  dh2  sin2 h du2 denotes the standard metric on the unit
+2-sphere. The constant k can be normalized to be either 1, ÿ1; or 0 by
+appropriately rescaling the radial variable, and each of the three cases is
+qualitatively dierent. We assume that the ¯uid is perfect (i.e., (2.3) holds),
+and that the ¯uid is co-moving with the metric. The ¯uid is said to be comoving relative to a background metric gij if ui  0; i  1; 2; 3; so that g being
+diagonal and u having length 1 imply [11] that
+p
+2:5
+u0  ÿg00 :
+Substituting (2.4) into the ®eld equations, and making the assumption
+that the ¯uid is perfect and co-moving with the metric, yields the following
+constraints on the unknown functions R t; q t and p t [11, 7]:
+
+3R  ÿ4pG q  3pR;
+
+2:6
+
+RR  2R_ 2  2k  4pG q ÿ pR2 ;
+
+2:7
+
+together with
+
+_pR3 
+
+d 3
+R p  q :
+dt
+
+2:8
+
+Equation (2.8) is equivalent to
+
+p  ÿq ÿ
+
+R _q
+:
+3R_
+
+2:9
+
+Relativistic Shock Waves
+
+243
+
+Substituting (2.6) into (2.7) we get
+
+8pG 2
+R_ 2  k 
+2:10
+qR :
+3
+Since q and p are assumed to be functions of t alone in (2.4), equations (2.9)
+and (2.10) give two equations for the two unknowns R and q under the
+assumption that the equation of state is of the form p  p q: It follows from
+(2.9), (2.10) (cf. [7]) that R t; q t is a solution if and only if R ÿt; q ÿt
+is a solution, and that
+_qR_ < 0:
+
+2:11
+
+Thus to every expanding solution there exists a corresponding contracting
+solution, and conversely.
+The OT metric describes a time-independent, spherically symmetric solution that models the interior of a star. In coordinates the components of the
+metric are given by
+
+ds2  ÿB r d t2  A rÿ1 d
+r2  r2 dX2 :
+
+2:12
+
+We write this metric in bar-coordinates so that it can be distinguished from
+the unbarred coordinates when the metrics are matched. Assuming that the
+stress tensor is that of a perfect ¯uid which is co-moving with the metric, and
+substituting (2.12) into the ®eld equations (2.1) yields (cf. [11])
+
+
+2GM
+;
+2:13
+A r  1 ÿ
+r
+
+where M  M r; q
+q r and p  p r satisfy the following system of ordinary dierential equations in the unknown functions 
+q r; p r; M r :
+
+dM
+;
+ 4p
+r2 q
+d
+r
+
+
+
+
+
+4p
+r3 p
+2GM ÿ1
+p
+2 dp
+ 1
+1
+1ÿ
+:
+ÿ
+r
+ GM q
+
+r
+q
+d
+r
+M
+
+2:14
+2:15
+
+Equation (2.15) is called the Oppenheimer-Volkov equation, and is referred
+to by WEINBERG as the fundamental equation of Newtonian astrophysics with
+general-relativistic corrections supplied by the last three terms [11, page 301].
+In this paper we assume the case of a barotropic equation of state
+p  p 
+q; in which case equations (2.14), (2.15) yield a system of two ordi; M). We always assume
+nary dierential equations in the two unknowns ( q
+that
+
+0<
+
+p
+ < 1;
+l
+
+q
+
+and that the sound speed is less than the (normalized) speed of light; i.e.,
+
+244
+
+J. SMOLLER AND B. TEMPLE
+
+
+0<r
+
+d p
+2 1:
+
+dq
+
+The total mass M inside radius r is then de®ned by
+
+Z r
+M 
+r 
+
+ n dn:
+4pn2 q
+
+2:16
+
+0
+
+ and M through the
+The metric component B  B r is determined from q
+equation
+
+p 0 r
+B0 r
+:
+ ÿ2
+
+p  q
+B
+
+2:17
+
+We remark that for any given FRW and OT metrics, there are maximal
+domains of de®nitions for the variables. We assume that the FRW metric is
+de®ned on the maximal interval tÿ < t < t and 0 2 rÿ < r < r ; and that
+the OT metric is de®ned on the maximalpinterval
+0 < rÿ < r < r : For ex
+ample, if k > 0; then we must have r < 1= k ; t must be restricted so that q t
+and R t are positive, and by (2.10), we must require that 8p
+3 Gq t
+R t2 ÿ k 3 0:
+In [7], we described a procedure for constructing a coordinate transformation t; r ! t; r such that the FRW metric (2.4) matches the OT metric
+(2.12) Lipschitz continuously across a shock surface R: This shock surface is
+given implicitly by the equation
+
+M r  4p
+q t
+r3 :
+3
+
+2:18
+
+Equation (2.18) de®nes the radial coordinate r of the OT metric as a function
+of the time coordinate t of the FRW metric along the shock surface R. Note
+that for a given FRW density q t; (2.18) determines r  r t; the shock
+position. However, we can also solve (2.18) for q to obtain q as a function of
+r, namely,
+
+3 M r
+:
+4p r3
+From here on we let q refer to either q t or q r; as given by (2.18), so that
+(with slight abuse of notation)
+q
+
+q t  q r t;
+on the shock surface. With this notation, q r is determined by the OT solution alone.
+For (2.18) to be meaningful in a given problem we must assume that
+r  r t is de®ned for t 2 tÿ ; t ; r 2 rÿ ; r ; and r  Rr tt 2 rÿ ; r : Equation (2.10) applies when any equation of state p  p q is assigned to the
+FRW metric, and any equation of state p  p 
+q is assigned to the OT metric.
+The transformation r  r t; r is given by
+
+Relativistic Shock Waves
+
+245
+
+r  R tr
+
+2:19
+
+in the mapping t; r ! t; r; but the transformation t  t t; r is more
+complicated, and its existence is demonstrated in [7]. It is somewhat remarkable that, other than its existence, for our developments, we do not
+require any detailed information about the t transformation.
+The following result summarizes the result in Section 4 of [7, pp. 280±
+285].
+Theorem 1. Let any FRW and OT metrics be given such that the shock surface
+r  r t is de®ned implicitly by (2.18) in a neighborhood of a point t0 ; r0 ;
+tÿ < t0 < t ; rÿ < r < r ; and rÿ < r  Rr < r : Assume that
+
+d p
+> 0;
+
+dq
+
+2:20
+
+A r0  > 0;
+
+2:21
+
+and hence
+
+1 ÿ kr02 > 0;
+
+r0  r0 =R t0 :
+
+2:22
+
+Then for any value of t0 ; there exists a mapping t; r ! t; r (de®ned in
+Section 4 of [7]), which is denoted by
+
+W t; r  t t; r; r t; r;
+
+r t; r  R tr;
+
+2:23
+
+such that W is one-to-one and regular in a neighborhood of the point t0 ; r0 ,1
+and takes the open interval t0 ; r0  into the open interval t0 ; r0 : Moreover,
+under this coordinate identi®cation, the given FRW and OT metrics match
+Lipschitz continuously across the surface (2.18). The condition
+
+r t; r  R tr  r
+
+2:24
+
+implies that the areas of the spheres of symmetry agree in the barred and
+unbarred frames, and the shock surface in t; r-coordinates is given by
+r t  r t=R t (
+r t denotes the shock position as distinguished from the coordinate function r t; r de®ned in (2.24)).
+Remarks. The condition (2.20) says that the OT sound speed is positive,
+condition (2.21) says that r is not at the ``Schwarzschild radius'', and condition (2.22) says that the value of r0 is not outside the FRW universe, i.e., it
+is inside the region of validity of the FRW coordinate system.
+Throughout the remainder of this paper we assume implicitly that (2.20)±
+(2.22) hold on every Oppenheimer-Snyder-type shock wave that we discuss.
+
+Note that the mapping t; r ! t; r is 1-1 whenever the mapping t; r ! t; r is
+1-1, because the mapping t; r ! t; r  t; R tr has Jacobian R > 0:
+1
+
+246
+
+J. SMOLLER AND B. TEMPLE
+
+Our construction in Theorem 1 guarantees that the FRW metric matches
+the OT metric Lipschitz continuously across the shock (2.18), and thus the
+following general theorem (which is proved in [7, Theorem 4]; see also [1])
+applies:
+Theorem 2. Let R denote a smooth, 3-dimensional shock surface in space-time
+with spacelike normal vector n. Assume that the components gij of the gravitational metric g are smooth on either side of R (continuous up to the boundary
+on either side separately), and Lipschitz continuous across R in some ®xed
+coordinate system. Then the following statements are equivalent:
+(i) K  0 at each point of R: (Here,  f  denotes the jump in the quantity f
+across the surface R; and K denotes the extrinsic curvature, or second fundamental form, which is determined by g separately on each side of the shock
+surface R:)
+(ii) The curvature tensors Rijkl and Gij ; viewed as second-order operators on the
+metric components gij ; produce no delta function sources on R:
+(iii) For each point P 2 R there exists a C 1;1 coordinate transformation de®ned
+in a neighborhood of P , such that, in the new coordinates, (which can be taken to
+be the Gaussian normal coordinates for the surface), the metric components are
+C 1;1 functions of these coordinates. (By C 1;1 we mean that the ®rst derivatives
+are Lipschitz continuous.)
+(iv) For each P 2 R; there exists a coordinate frame that is locally Lorentzian at
+P ; and can be obtained from the original coordinates by a C 1;1 coordinate
+transformation. (A coordinate frame is locally Lorentzian at a point P if
+gij P   diag ÿ1; 1; 1; 1 and gij;k P   0 for all i; j; k  0; :::; 3:)
+Moreover, if any one of these equivalencies hold, then the Rankine-Hugoniot jump conditions Gij ni  0 hold at each point on R: (This expresses the
+weak form of conservation of energy and momentum across R when G  jT :)
+In the case of spherical symmetry, the conservation condition Gij ni  0
+reduces to one condition Gij ni nj  0; and this is what implies the equivalencies in Theorem 1. In fact, we have [7, Proposition 9]:
+Theorem 3. Assume that g and g are two spherically symmetric metrics that
+match Lipschitz continuously across a three-dimensional shock interface R to
+form the matched metric g [ g: That is, assume that g and g are Lorentzian
+metrics given by
+
+ds2  ÿa t; r dt2  b t; r dr2  c t; r dX2 ;
+ds2  ÿ
+a t; r d t2  b t; r d
+r2  c t; r dX2 ;
+and that there exists a smooth coordinate transformation W : t; r ! t; r;
+de®ned in a neighborhood of a shock surface R given by r  r t such that the
+metrics agree on R: (We implicitly assume that h and u are continuous across
+the surface.) Assume that
+
+Relativistic Shock Waves
+
+247
+
+c t; r  c W t; r
+in an open neighborhood of the shock surface R; so that, in particular, the areas
+of the 2-spheres of symmetry in the barred and unbarred metrics agree on the
+shock surface. Assume also that the shock surface r  r t in unbarred coordinates is mapped to the surface r  r t by t; r t   W t; r t: Assume,
+®nally, that the normal n to R is non-null, and that n c40 where n c denotes
+the derivative of the function c in the direction of the vector n: Then the following are equivalent to the statement that the components of the metric g [ g in
+any Gaussian normal coordinate system are C 1;1 functions of these coordinates
+across the surface R:
+h i
+Gij ni  0;
+2:25
+ ij 
+2:26
+G ni nj  0;
+
+K  0:
+
+2:27
+
+Here,  f   f ÿ f denotes the jump in the quantity f across R; and, as before,
+K denotes the second fundamental form on the shock interface.
+It is straightforward to check that the conditions in Theorem 3 on the
+functions c and c are met when c  r; c  Rr; and r t; r  R tr: In light of
+(2.25) and (2.26), we conclude that conservation across the shock surface
+(2.18) is equivalent to the condition that the equation T ij ni nj  0 holds
+across R: In [7] we derived the identity
+
+ ij 
+n2
+  p 0  p ÿ pjnj2 :
+T ni nj  q  pn20 ÿ q
+B
+
+2:28
+
+Here ni and ni denote the components of the normal vector n to R in the t; r
+and t; r coordinate systems, respectively. Equation (2.28) represents the
+additional constraint (the ``conservation constraint'') imposed by conservation across the shock surface (2.18). Using the expressions for the components ni and ni of n; we readily obtain the following equivalent expression
+which we refer to as the ``constraint equation'' (see (5.34) of [7])
+
+ ij 
+1 ÿ kr2  2
+1 ÿ kr2
+_  p ÿ p
+  p
+
+r
+T ni nj  p  qr_2 ÿ q
+ 0: 2:29
+R2
+AR2
+d
+r
+Here, _r; r_ denote the shock speeds dr
+dt ; dt ; respectively. In [7], we used equation
+(2.9) to eliminate p from (2.29), and thereby derived an autonomous system
+of ordinary dierential equations in R; r as a function of t that determine
+the inner FRW metric and the shock position r t in terms of any given OT
+metric (cf. (5.46)±(5.49) of [7]). Thus, for any assignment of equation of state
+p  p 
+q and initial conditions for an OT metric, our system of ordinary
+dierential equations determines the FRW functions R t; q t and p t that
+match the given OT metric Lipschitz continuously across the shock surface
+(2.18), such that conservation holds across the surface.
+We derived in [8] an equivalent form of (2.29), namely,
+
+248
+
+J. SMOLLER AND B. TEMPLE
+
+  p q  p2  p ÿ p q ÿ q
+2 ;
+0  1 ÿ h q  p p  
+q2  1 ÿ 1=h q
+2:30
+where
+
+A
+:
+2:31
+1 ÿ kr2
+This form of the constraint equation enabled us to construct the exact solution in [8]. The development to follow is likewise based on an analysis of
+(2.30). For completeness, we include the derivation of (2.30) here, but before
+giving this we ®rst show that h 2 1 is a natural condition. Indeed, by (2.10),
+the values of R for which the FRW metric is de®ned must satisfy
+h
+
+GqR2 ÿ k 3 0:
+R_ 2  8p
+3
+Using the shock surface equation (2.18), we can simplify this:
+
+
+8p
+1 2GM
+2
+2
+2
+_
+ÿ kr ;
+GqR ÿ k  2
+R 
+r
+3
+r
+and so
+This can be written as
+
+2:32
+
+2:33
+
+ÿ
+
+R_ 2 r2  ÿA  1 ÿ kr2 :
+
+2:34
+
+ÿ
+
+R_ 2 r2  1 ÿ kr2 1 ÿ h:
+
+2:35
+
+0 < h21
+
+2:36
+
+Thus the condition that
+is equivalent to (2.32), in view of our assumptions (2.21) and (2.22). Moreover, since we are assuming that (2.21), (2.22) hold throughout, it is clear that
+(2.36) is equivalent to (2.32) when k 2 0 as well. In this paper we always
+assume that (2.36) holds.
+We now give the derivation of (2.30). Dierentiating (2.18) with respect to
+t and applying (2.14) yields
+
+_q 
+
+3
+ ÿ qr_ :
+q
+r
+
+2:37
+
+3R_
+q  p:
+R
+
+2:38
+
+Solving for q_ in (2.9) yields
+
+_q  ÿ
+
+Combining (2.37) and (2.38) thus gives
+
+r_  _
+Rr
+
+q  p
+:
+
+qÿq
+
+2:39
+
+Relativistic Shock Waves
+
+249
+
+Dierentiating r  Rr with respect to t; using (2.39), and solving for r_ we get
+
+r_ 
+
+_
+  p
+Rr q
+:
+
+R qÿq
+
+2:40
+
+Substituting (2.39) and (2.40) into (2.29), we obtain the following equation,
+which is equivalent to the conservation condition T ij ni nj  0:
+
+
+1
+1
+1
+2 ÿ q
+ 2 :
+  p q  p2 
+q  p p  q
+0
+p ÿ p q ÿ q
+2
+2
+2
+_
+1 ÿ kr
+A
+r R
+2:41
+Equation (2.41) expresses conservation at the shock surface (2.18). But by
+(2.34),
+ÿ
+
+2:42
+R_ 2 r2  ÿA  1 ÿ kr2
+holds on the shock surface, and using this we can transform (2.41) into the
+®nal form (2.30).
+In the next section we develop a general theory of shock waves that extend
+the Oppenheimer-Snyder model, and our analysis is based on a careful study
+of (2.30).
+
+3. The conservation constraint
+In this section we analyze (2.30) in detail. For convenience, we summarize
+the results of Section 2 in the following theorem:
+Theorem 4. Assume that FRW and OT metrics are given that match Lipschitz
+continuously across the shock surface (2.18) such that (2.20)±(2.22) hold. Then
+(i)±(iv) of Theorem 2 hold on the shock surface if and only if (2.30) holds on the
+shock-surface.
+Now solving for p in (2.30), we obtain the following formula for the FRW
+pressure p:
+n
+o
+ÿ
+
+ÿ1
+
+2
+1
+1
+
+
+q
+q
+
+2
+ÿ
+q
+
+q
+
+2
+h
+ÿ
+1
+q
+p
+
+2
+h
+
+ÿ
+1
+q
+p
+
+SQ
+2
+h
+h
+ÿ
+
+ÿ
+
+p 
+
+1 ÿ hq  2 ÿ h ÿ 1h p  1 ÿ 1h q
+
+3:1
+where
+
+ÿ 2 2
+1=2
+ ÿ 4q3 q  q4  q
+4
+2 :
+SQ  6
+q q ÿ 4q3 q
+ qÿq
+
+3:2
+
+Thus we conclude that every OT solution determines two possible FRW
+pressures through the conservation constraint. These implicitly determine
+FRW equations of state p  p q: Let
+
+250
+
+J. SMOLLER AND B. TEMPLE
+
+r
+
+dp
+dq
+
+l
+
+p
+:
+q
+
+denote the sound speed, and let
+
+Now the terms in the numerator of (3.1) combine as follows:
+
+n
+o
+ÿ 
+q  q2  2 h  1=hq
+q qÿ
+q2  ÿ2 2 ÿ h ÿ 1=hq
+qÿ 2 qÿ
+q2 ; (3.3)
+ÿ
+
+where we use the notation that the bracket fgÿ is taken to be zero unless we
+take the minus sign in (3.1) (and the corresponding minus sign in (3.3)).
+Substituting (3.3) in (3.1) gives
+
+ÿ
+
+ÿ
+
+2 gÿ
+h ÿ 1
+qp  1h ÿ 1 q
+p ÿ 2 ÿ h ÿ 1h q
+qÿf qÿq
+ÿ
+
+ÿ
+
+p 
+
+1 ÿ hq  2 ÿ h ÿ 1h p  1 ÿ 1h q
+ÿ1
+
+ÿ 1 ÿ hf
+qp ÿ q
+qg  h ÿ 1 fq
+p  q
+qg ÿ f q ÿ 
+q2 gÿ
+ÿ1
+
+
+g
+1 ÿ hfq  pg ÿ h ÿ 1 f
+pq
+ÿ1
+
+2 gÿ
+ÿ 1 ÿ h
+q q  p  h ÿ 1 q p  
+q ÿ f q ÿ q
+ÿ
+
+
+;
+g
+1 ÿ hfq  pg ÿ 1h ÿ 1 f
+pq
+
+3:4
+
+which upon multiplying the numerator and denominator by h= 1 ÿ h yields
+
+p 
+pÿ 
+
+  p
+ÿh
+q q  p  q q
+;
+  p
+h q  p ÿ q
+  p ÿ
+ÿh
+q q  p  q q
+
+3:5
+n
+
+h
+1ÿh
+
+  p
+h q  p ÿ q
+
+2
+qÿq
+
+o
+:
+
+3:6
+
+We can further simplify pÿ as follows. First, we can verify the identity
+
+
+
+  p
+h
+1
+q
+q
+2 
+q  p
+q:
+hÿ
+ÿ h
+q q  p  q 
+q  p ÿ
+qÿq
+hÿ
+
+1ÿh
+1ÿh
+q
+q  p
+Substituting this into the numerator of (3.6) yields
+
+
+ÿ 1 
+p
+q
+q
+ q h
+h
+ÿ
+h
+ÿ
+ q  p
+q
+qp
+1ÿh
+qÿq
+
+
+pÿ 
+:
+
+
+qp
+1ÿh
+q  p h ÿ qp
+Thus, if we de®ne the variable
+
+H  ch;
+
+3:7
+
+q  p
+;
+  p
+q
+
+3:8
+
+where
+
+c
+
+Relativistic Shock Waves
+
+251
+
+then the pressures p and pÿ take the similar forms
+
+H
+qÿq
+;
+3:9
+1ÿH
+h
+qÿq
+:
+3:10
+pÿ 
+1ÿh
+The following two theorems follow directly from (3.9). (In Section 5 we will
+dp
+ > q leads to dq
+< 0; a non-physical sound speed.)
+prove that the case q
+p 
+
+Theorem 5. Assume that (2.20)±(2.22) hold and that
+
+z
+
+
+q
+< 1;
+q
+
+
+l
+
+p
+:
+
+q
+
+Then p > 0 if and only if p ÿ p > 0 if and only if h1 2 h < 1 at the shock,
+where
+
+ 
+h1  h1 z; l
+
+  p 1  l
+
+1 q
+
+
+z:
+c q  p 1  
+lz
+
+3:11
+
+Theorem 6. Assume that (2.20)±(2.22) hold and that z < 1: Then for every
+, p and q, the pressure p monotonically takes on
+choice of positive values for q
+every value from  p; 1, and the pressure dierence p ÿ p monotonically
+takes on every value from 0; 1; as h ranges monotonically from 1; h1 :
+; it follows immediately from (3.8) and (3.9) that p > 0 if
+Proof. When q > q
+and only if h > h1 : To see this, note that the numerator in (3.9) is always
+negative because
+
+chz 
+
+z
+1l
+c<1
+1
+l
+
+when z < 1: Thus by (3.9), p > 0 if and only if ch > 1: Furthermore, if 
+q; p
+and q are ®xed, then p varies monotonically from p to 1 as h varies from 1
+to h1 because ph < 0 (cf. (4.5) below), and when h  1;
+
+p 
+
+qp
+ÿq
+q
+
+qp
+:
+p  p
+1 ÿ q
+
+qp
+
+We can perform a similar analysis on the dierence p ÿ 
+p; because, as is
+easily shown,
+
+
+1ÿh
+  pc:
+q
+p ÿ p 
+ch ÿ 1
+This completes the proofs of the Theorems 5 and 6.
+Another direct consequence of (3.9), (3.10) is that if A > 0 and h < 1; then
+; the only shock waves with positive pressure must satisfy p  p
+when q > q
+and
+
+252
+
+J. SMOLLER AND B. TEMPLE
+
+H  ch > 1:
+
+3:12
+
+
+
+1
+1
+q > q  1  p:
+h
+h
+
+3:13
+
+In this case (3.8) implies that
+
+Next, using the formulas (3.9) and (3.10) for pÿ and p ; we can now
+derive a simpli®ed set of equations for the dynamics of the shock surface and
+the FRW metric, assuming a ®xed OT metric satisfying (2.20)±(2.22), and
+assuming the conservation constraint holds. Dierentiating (2.18) and using
+(2.14) gives
+
+_q 
+
+3 
+q ÿ q
+r_ :
+r
+
+3:14
+
+Using (3.14) to substitute for q_ in (2.9) gives
+
+r_  ÿ
+
+p  q r _
+R:
+ ÿ qR
+q
+
+3:15
+
+Now using the formula (3.9) for p to substitute for p in (3.15) we obtain (for
+pÿ just set c  1; or equivalently, substitute h for H in the formulas that
+follow):
+qÿq
+q
+p  q H
+H
+ 1ÿH
+
+:
+ÿq
+ÿq
+q
+q
+1ÿH
+
+3:16
+
+Using this in (3.15) yields the ®rst equation
+
+H
+_
+rR:
+3:17
+1ÿH
+We can get a correspondingly simple equation for r_ as follows: Using
+r  r=R; we can dierentiate with respect to t and use (3.17) to obtain
+
+
+1
+1
+H
+r_  r_ ÿ r _
+R 
+ÿ
+ÿ1 r_
+R;
+3:18
+R
+R
+1ÿH
+r_  ÿ
+
+which we write as
+
+r_ 
+
+
+
+1
+ÿ1
+r_
+R:
+R 1ÿH
+
+Thus our system of equations in the case p  p can be taken as
+ÿ
+
+r2 R_ 2  1 ÿ kr2 1 ÿ h;
+ÿ1 _
+rR;
+Rr_ 
+1ÿH
+
+3:19
+
+3:20
+3:21
+
+where the choice of sign in (3.21) comes from the choice of square root when
+we solve for R_ in (3.20). Hence we can also write (3.20), (3.21) as
+p p
+3:22
+rR_   1 ÿ kr2 1 ÿ h;
+
+Relativistic Shock Waves
+
+Rr_  
+
+1 p2 p
+1 ÿ kr 1 ÿ h:
+1ÿH
+
+253
+
+3:23
+
+The equations when p  pÿ are obtained by substituting h for H in (3.23),
+namely,
+p p
+3:24
+rR_   1 ÿ kr2 1 ÿ h
+
+r
+1 ÿ kr2
+Rr_  
+:
+1ÿh
+
+3:25
+
+Assuming that a ®xed OT solution satisfying (2.20) is given, we can use
+equations (3.22), (3.23) and (3.24), (3.25) to obtain a set of autonomous
+ordinary dierential equations for the shock position r t and the cosmological scale factor R t whose solutions determine the FRW metrics that
+match the given OT metric Lipschitz continuously across the shock surface
+(2.18) such that conservation holds across the shock. The solution is determined by the coordinate mapping (2.23) so long as (2.21) and (2.22) hold. To
+see this, note that ®xing the OT metric directly determines M r; A r; 
+q r
+3 M r
+and p r; and we can use the shock surface condition to determine q  4p
+r3
+as a known function of r as well. Since our coordinate identi®cation sets
+r  Rr; all of these functions can be taken as known functions of the shock
+position r t and scale factor R t: Thus
+
+A
+1 ÿ kr2
+is a known function of r t; R t; and
+
+qq
+c
+
+q  p
+h
+
+is a known function of r t; R t, and hence
+
+H  ch
+is also a known function of r t; R t: Substituting these known functions of
+r t; R t into the right-hand sides of (3.22), (3.23), or (3.24), (3.25) produces
+an autonomous system of two ordinary dierential equations in the two
+unknowns r; R; the shock position r and the cosmological scale factor R of
+the FRW metric. These quantities then determine the FRW density
+q t  q r t; and the FRW pressure p t  p r t; cf. the note following
+(2.18).
+Assume, then, that we have a smooth solution of (3.22), (3.23), or (3.24),
+(3.25). Reversing the steps (3.16) to (3.25) implies that (3.14) and (3.15) hold
+3 M r
+with p  p or p  pÿ ; respectively. The shock surface equation q  4p
+r3
+together with (3.20) then imply (2.33), so the solution R t; q t; p t must
+satisfy the FRW equations (2.9), (2.10). Conservation then follows from
+(2.30) and Theorem 3. We have proved
+
+254
+
+J. SMOLLER AND B. TEMPLE
+
+Theorem 7. Let a ®xed OT solution satisfying (2.20) be given. Then any FRW
+metric that matches this OT metric Lipschitz continuously across the shock
+surface (2.18) such that (2.21), (2.22) and (2.36) hold, and such that the Rankine-Hugoniot jump conditions
+ ij 
+T ni  0
+also hold across the shock, must satisfy the ordinary dierential equations
+(3.22), (3.23) or (3.24), (3.25). Conversely, any smooth solution of (3.22), (3.23)
+or (3.24), (3.25) satisfying (2.21), (2.22) and (2.36), will determine a solution of
+FRW type if
+
+q
+
+3 M
+;
+4p r3
+
+and p is given by (3.9) or (3.10), respectively. This solution matches the OT
+metric Lipschitz continuously across the shock surface (2.18) (when the coordinate identi®cation (2.23) is made), and the Rankine-Hugoniot jump conditions
+hold across the shock.
+In the above problem we assumed as given the OT equation of state and
+solution, and we then determined the FRW pressure, and ordinary dierential equations for shock solution. One can also consider the ``inverse''
+problem of assigning the FRW equation of state and solution, and of trying
+to determine the OT pressure and corresponding ordinary dierential equations for the shock solution. For the pressure, one can solve (3.9) for 
+p: An
+easy calculation gives
+
+p 
+
+
+hcq ÿ q
+;
+1 ÿ hc
+
+3:26
+
+p
+q
+:
+qp
+
+3:27
+
+where
+
+c 
+
+Note the remarkable symmetry between (3.26) and (3.9). However, this
+symmetry does not carry over to the corresponding shock equations. Indeed,
+when the FRW variables are known functions of t; we need to replace t with a
+known function of r and the unknown OT variables in order to derive a
+closed system of ordinary dierential equations for 
+q and M as functions of r:
+r3 ; and invert
+For this, one must go to the shock surface equation M  4p
+3 q
+(the known) q t in order to express t as a known function of the two variables M and r: Moreover, in this case the conservation equation and the OT
+equations depend explicitly on r as well, and so ®xing the FRW metric and
+solving for the OT metric leads to a considerably more complicated nonautonomous system of ordinary dierential equations. The reason our approach is simpler and leads to an autonomous system of ordinary dierential
+equations is because we can get r directly as a function of r and R from the
+identi®cation r  Rr; and we can solve for q as a known function of r from
+
+Relativistic Shock Waves
+
+255
+
+the shock-surface equation. Thus the conservation equation, as well as the
+FRW equations, is autonomous. This justi®es the approach we have taken.
+We now obtain the (invariant) shock speed relative to an observer ®xed
+with the FRW ¯uid element. We recall that the ``speed'' of a shock is a
+coordinate-dependent quantity that can be interpreted in a special relativistic
+sense at a point P in coordinate systems for which gij P   diag ÿ1; 1; 1; 1.
+(We call such coordinate frames ``locally Minkowskian'' to distinguish these
+from ``locally Lorentzian'' frames in which gij;k P   0 as well. Since we are
+dealing only with velocities and not accelerations, we do not need to invoke
+the additional condition gij;k P   0 for a local Lorentzian coordinate frame
+in order to recover a special relativistic interpretation for velocities.) Moreover, since we are dealing only with radial motion, it suces to work with
+coordinate systems that are locally Minkowskian in the t; r-variables alone.
+In such coordinate frames, a ``speed'' at P transforms according to the special
+relativistic velocity transformation law when a Lorentz transformation is
+performed. We now determine the shock speed at a point P on the shock in a
+locally Minkowskian frame that is co-moving with the FRW metric. To this
+end, let t; r-coordinates correspond to the FRW metric (2.4). Let t; r~coordinates correspond to a locally Minkowskian system obtained from t; r
+by a transformation of the form r  u r~; so that, in t; r-coordinates,
+
+ds2  ÿdt2 
+2
+
+R t2
+u0 2 d~
+r2 :
+1 ÿ kr2
+
+R t
+0 2
+Choose u pso
+2that 1ÿkr2 u   1 at the point P ; i.e., at P  P t; r;
+1ÿkr
+0
+set u r  R t : Thus, in the t; r~-coordinates,
+
+ds2  ÿdt2  d~
+r2
+at the point P ; and so the t; r~-coordinates represent the class of locally
+Minkowskian coordinate frames that are ®xed relative to the ¯uid particles of
+the FRW metric at the point P : (That is, any two members of this class of
+coordinate frames dier by higher-order terms that do not aect the calculation of radial velocities at P :) Therefore, the speed d~
+r=dt of a particle in
+t; r~-coordinates gives the value of the speed of the particle relative to the
+FRW ¯uid in the special relativistic sense. Since
+p
+1 ÿ kr2 d~
+dr dr d~
+r
+r
+r
+0 d~
+
+u
+
+;
+3:28
+R
+dt d~
+r dt
+dt
+dt
+we conclude that if the speed of a particle in t; r-coordinates is dr=dt; then its
+geometric speed relative to observers ®xed with the FRW ¯uid (and hence
+also ®xed relative to the radial coordinate r of the FRW metric because the
+R
+2 dr
+¯uid is co-moving) is equal to p1ÿkr
+dt :
+Thus, let
+
+s
+
+d~
+r
+R
+dr
+ p
+dt
+1 ÿ kr2 dt
+
+3:29
+
+256
+
+J. SMOLLER AND B. TEMPLE
+
+be the shock speed relative to the FRW ¯uid as measured in the local
+Minkowski frame ®xed relative to the FRW ¯uid element. Then by (3.23) the
+speed s2 for pressure p is given by
+
+s2 
+
+1ÿh
+1 ÿ H2
+
+:
+
+3:30
+
+Thus the condition that the shock speed be less than the speed of light is
+
+1ÿh
+1 ÿ H2
+Substituting H  ch into (3.31) yields
+
+2c ÿ 1
+h>
+1ÿ
+c2
+Substituting
+
+h
+
+
+
+A
+;
+1 ÿ kr2
+
+< 1:
+
+3:31
+
+1ÿz
+1  l z
+c
+
+2
+
+ hÿ :
+
+3:32
+
+q  p
+  p
+q
+
+into (3.32) and using the identity
+
+
+
+ 2
+2c ÿ 1
+qÿq
+
+1
+ÿ
+c2
+q  p
+
+yields the expression
+
+
+
+ qÿq
+ 2
+A > 1 ÿ kr
+ kr2 :
+q  p
+ÿ
+
+2
+
+3:33
+
+This proves
+Theorem 8. Both (3.32) and (3.33) are equivalent to the condition that the
+shock speed s be less than the speed of light on solutions of (3.22), (3.23) when
+p  p :
+When we take p  pÿ ; we obtain s2ÿ by substituting h for H in (3.30),
+namely,
+1
+s2ÿ 
+:
+3:34
+1ÿh
+1
+Since 1ÿh
+> 1 when h < 1; we conclude that (3.34) rules out shocks with
+p  pÿ as physical when h < 1: (This rules out pÿ as physically possible for
+the FRW pressure when A > 0: In Section 5 we show by another argument
+q > q; this rules out
+that even if p  p ; the sound speed is not positive when 
+implosions as physically meaningful when the FRW metric is inside the OT
+metric. Thus the only physically interesting case left when A > 0 is when
+q=q < 1; the case of an explosion when the FRW metric is on
+p  p and z  
+the inside.)
+The following lemma gives a simple expression for the shock speed as
+measured in the OT barred coordinate frame in the case p  p :
+
+Relativistic Shock Waves
+
+257
+
+Lemma 1. Consider any solution of the shock ordinary dierential equations
+(3.22), (3.23) when the pressure p is given by (3.9). Then the speed dr=d t of the
+shock surface r t as measured in the OT barred coordinate frame is given by
+
+ 2 
+2
+d
+r
+c
+
+1 ÿ hAB:
+dt
+cÿ1
+
+3:35
+
+Proof. We use the identities (4.51), (4.33), (4.42), (4.54), (8.1), respectively,
+derived in [6]:
+
+C  R2 A;
+_ r;
+E  ÿRR
+w2 
+
+3:36
+3:37
+
+1
+;
+r2 C
+B R2 ÿ k
+
+R_ 2 r2  ÿA  1 ÿ kr2 ;
+d t  wC ÿ wE _
+Rr dt ÿ wER dr:
+
+3:38
+3:39
+3:40
+
+Now note that (3.36) and (3.37) imply that
+
+_
+Rr
+E
+ ;
+A
+C
+and that (3.36) and (3.38) imply that
+ÿ
+
+w2 C 2 
+By (3.40),
+
+A
+:
+B 1 ÿ kr2 
+
+
+
+@ t
+E _
+_
+ wC ÿ wERr  wC 1 ÿ Rr ;
+@t
+C
+
+3:41
+
+3:42
+
+3:43
+
+so using (3.41), (3.42) and (3.39), we obtain
+
+ 2
+
+
+_ 2
+Rr
+@ t
+E _ 2
+A
+2 2
+1
+ w C 1 ÿ Rr 
+A
+@t
+C
+B 1 ÿ kr2 
+
+
+A
+ÿA  1 ÿ kr2
+
+1
+A
+B 1 ÿ kr2 
+
+
+
+1 ÿ kr2
+1
+
+:
+AB
+hB
+
+Next, from (3.40), we get
+
+
+
+@ t
+@r
+
+so using (3.37)±(3.39), we have
+
+2
+
+3:44
+
+ w2 E 2 R 2 ;
+
+3:45
+
+258
+
+J. SMOLLER AND B. TEMPLE
+
+
+
+@t
+@r
+
+2
+
+_ r2
+R4 R
+R2 ÿA  1 ÿ kr2 
+
+1 ÿ kr2 AB
+1 ÿ kr2 AB
+
+
+2
+R
+ÿ1
+1
+R2
+1 ÿ h:
+
+
+
+B 1 ÿ kr2 A
+AB
+
+
+
+3:46
+
+Now
+
+r t  r t t; r;
+so that
+
+
+
+d
+r d
+r @ t @ t
+
+ r_ ;
+dt dt @t @r
+
+and using (3.45) and (3.46) we ®nd
+
+so
+
+d
+r d
+r 1 h c ÿ 1
+ p
+;
+dt dt hB ch ÿ 1
+
+3:47
+
+p
+d
+r d
+r hB ch ÿ 1
+:
+
+d t dt h c ÿ 1
+
+3:48
+
+But adding (3.22) and (3.23) gives
+
+r_ 
+
+p p
+1 ÿ kr2 1 ÿ h
+
+ch
+:
+ch ÿ 1
+
+3:49
+
+Therefore,
+
+p
+hB ch ÿ 1
+dr p2 p ch
+c pp
+1ÿh
+
+ 1 ÿ kr
+AB 1 ÿ h;
+d t
+ch ÿ 1 h c ÿ 1
+cÿ1
+
+3:50
+
+which proves the lemma.
+We now brie¯y discuss the signi®cance of (3.31)±(3.33). Note that A and c
+are determined by the OT solution and r alone. For the ordinary dierential
+equations (3.22), (3.23), we are free to choose two initial conditions r and R:
+Moreover, the OT solution is determined by the choice of initial conditions M
+ at given r for arbitrary equation of state p  p q
+: Therefore we can
+and q
+determine local shock wave solutions by arbitrarily assigning the OT equa; M and one of r or R (because Rr  r), thus
+tion of state, as well as r; q
+allowing four initial conditions in all. Note that as c ! 1 (which is equivalent
+; the weak shock limit) in (3.32),
+to q ! q
+
+2c ÿ 1
+! 1;
+c2
+so h ! 1 and the shock speed tends to zero.
+We now consider the problem of determining when the Lax shock conditions hold for the shocks determined by (3.22), (3.23). To this end, we ®rst
+
+259
+
+Relativistic Shock Waves
+
+®nd the OT ¯uid velocity as measured in the local Minkowski coordinate
+frame ®xed with the FRW ¯uid. Using the identities
+p
+dr
+r
+d
+r
+1 ÿ kr2 d~
+
+;
+ _rR  rR_  0;
+R
+dt
+dt
+dt
+for the speeds of the OT ¯uid, we obtain
+
+Rr_
+rR_
+u~  p  ÿ p ;
+1 ÿ kr2
+1 ÿ kr2
+where u~ denotes the velocity d~
+r=dt of the OT ¯uid as measured in a locally
+Minkowskian coordinate frame ®xed relative to the FRW ¯uid. Thus by
+(2.35),
+p
+u~  ÿ 1 ÿ h:
+3:51
+When h < 1; (3.51) implies
+
+j~
+uj < 1:
+
+3:52
+
+We now ®nd expressions for the Lax shock condition in the case when the
+shock is an outgoing 2-shock (q > 
+q; the only physically interesting case
+remaining when A > 0), and the FRW metric is inside the OT metric. The
+Lax shock conditions express the requirement that the characteristics in the
+family of the shock impinge on the shock, and all other characteristics cross
+the shock. For a 2-shock the Lax shock conditions are (cf. [4])
+p
+r>s
+FRW ÿ Lax;
+3:53
+
+kOT
+s>~
+2
+
+OT ÿ Lax;
+
+3:54
+
+where
+
+r
+
+dp p_ p0
+ 
+dq q_ q0
+
+3:55
+
+denotes the FRW sound speed, and ~
+kOT
+2 denotes the characteristic speed of
+the outgoing OT sound wave as measured in the t; r~ coordinate system.
+Here we let the dot denote d=dt and the prime denote d=d
+r:
+To simplify (3.54), we recall that the OT characteristic speed ~kOT
+2 is obtained by using
+the
+relativistic
+addition
+of
+velocities
+formula
+to
+add
+the vep
+; where
+locities u~ to r
+
+
+r
+i.e.,
+
+d p
+;
+
+dq
+
+p
+
+u~  r
+OT
+~
+p :
+k2 
+
+1  u~ r
+
+3:56
+
+3:57
+
+260
+
+J. SMOLLER AND B. TEMPLE
+
+Thus for outgoing shocks with p > 0 (which implies that H ÿ 1 > 0 by
+(3.12)), (3.54) is equivalent to
+p
+p
+
+u~  r
+1 ÿ h ~OT
+p :
+3:58
+> k2 
+H ÿ 1
+r
+1  u~ 
+Using (3.51) and simplifying, we obtain (cf. (3.12))
+
+ppp  p p
+ 1ÿr
+ 1ÿr
+ > ÿ 1ÿh 
+1ÿ r
+r H ÿ 1;
+which, after simplying and squaring, leads to
+
+
+cÿ1 2
+:
+h<1ÿ
+r
+c
+
+3:59
+
+3:60
+
+But
+1
+
+
+l
+
+z
+ÿ1
+c ÿ 1 1
+1ÿz
+l
+ 1l 
+;
+z
+z
+c
+1l
+
+3:61
+
+1ÿz
+<1
+z
+1l
+
+3:62
+
+1
+l
+
+and
+
+for 0 2 
+l < 1 and 0 < z < 1; and so the OT-Lax condition (3.54) reduces to
+
+
+1ÿz 2
+  h z; l
+; r
+:
+r
+h<1ÿ
+3:63
+z
+1l
+Now if we set l  p =q; then by (3.9)
+
+l
+
+chz ÿ 1
+:
+1 ÿ ch
+
+3:64
+
+By using (3.64) to solve for h in the inequality l < 1, it is straightforward to
+verify that the (physically interesting) condition 0 < l < 1 is equivalent to
+(cf. (3.11))
+
+h>
+
+
+2z 1  l
+ 3 h1 z; l
+:
+ h2 z; l
+1  z 1  
+lz
+
+3:65
+
+We use
+Lemma 2. The following inequalities hold for z > 0:
+
+h1 < h2 < hÿ < h ;
+
+3:66
+
+hÿ < 4z:
+
+3:67
+
+261
+
+Relativistic Shock Waves
+
+Proof of Lemma 2. By (3.32),
+21z 2
+l
+ÿ 1 2z 1  
+l
+1
+l
+hÿ   1 2 
+ÿ
+
+l
+
+1
+
+l
+z
+z
+1
+l
+
+1
+l2 z2
+z2
+1l
+
+:
+
+3:68
+
+By neglecting the negative term in (3.68) and estimating j
+lj < 1 we see immediately that
+
+hÿ < 4z:
+
+3:69
+
+Moreover, from (3.68) we can also estimate
+
+hÿ 
+
+ 1  z
+2 z2
+2z 1  l
+1l
+ÿ
+z
+1  z 1  l
+z2
+1l
+
+ h2 
+
+
+ 2
+2z2 1  l
+z2 1  l
+ÿ
+z
+1  z 1  l
+z2
+1l
+
+> h2 ;
+
+3:70
+
+because
+
+2 z2 1  
+
+2z2 1  
+l
+z2 1  l
+l 1 ÿ z 1 ÿ l
+> 0:
+
+ÿ
+2
+2
+z
+1  z 1  l
+
+
+1  lz
+1  lz 1  z
+The inequality h1 < h2 follows directly from (3.11). Finally,
+
+
+cÿ1 2
+h ÿ hÿ 
+1ÿ
+r > 0;
+c
+in light of the identity
+
+cÿ1
+1ÿz
+
+:
+z
+c
+1l
+This proves the lemma.
+We can now state and prove
+Theorem 9. Assume that an OT solution 
+q > 0; p r > 0 and M r > 0 of
+(2.14), (2.15) is de®ned and smooth for all r in the interval
+
+rÿ < r < r 2 1:
+Assume also that the following additional conditions hold throughout the interval rÿ ; r :
+
+0<
+l
+
+p r
+< 1;
+ r
+q
+
+3:71
+
+0<
+r
+
+p0 r
+< 1;
+
+q0 r
+
+3:72
+
+262
+
+J. SMOLLER AND B. TEMPLE
+
+3 M r
+:
+>q
+3:73
+4p r3
+Then the solution r t; R t of the shock equations (3.22) and (3.23)ÿ starting
+from initial data r0 ; R0  satisfying
+q
+
+rÿ < r0  r0 R0 < r
+
+3:74
+
+exists, and determines an outgoing shock wave that satis®es
+
+0 < s < 1;
+
+3:75
+
+p > p;
+
+3:76
+
+;
+q>q
+
+3:77
+
+0<l
+
+p
+< 1;
+q
+
+3:78
+
+together with the OT-Lax condition (3.54) throughout the maximal sub-interval
+of rÿ ; r  containing r0 on which
+where
+
+hÿ < h < h ;
+
+3:79
+
+
+
+2c ÿ 1
+1ÿz 2
+ 
+hÿ  hÿ z; l
+1ÿ
+;
+c2
+1  lz
+
+3:80
+
+
+; 
+r  1 ÿ
+h  h z; l
+
+
+1ÿz 2
+:
+r
+1
+l
+
+3:81
+
+Corollary 1. Condition (3.79) is implied by the simpler, less sharp condition
+
+4z < h < 1 ÿ
+
+
+r
+ 2
+1l
+
+:
+
+3:82
+
+Proof of Theorem 9. The only obstruction to existence for (3.22), (3.23) is
+H  ch  1; the latter occuring at h  h1 ; cf. equation (3.11). Since h1 < hÿ ;
+existence is clear. Moreover, (3.75), (3.78) and the OT-Lax conditions hold in
+light of (3.32), (3.65) and (3.63). The veri®cation of (3.82) follows directly
+from (3.66) and (3.81). That (3.76) and (3.77) hold follows from Theorem 5.
+This proves the theorem and corollary.
+In the next section we derive the following formula for the sound speed r:
+
+
+1 h 1 ÿ A
+1ÿh
+2h
+5
+  b z; l
+
+
+1 ÿ hc2 r 
+a z; l
+ h ÿ ; 3:83
+
+
+r
+6A 1  l
+3A
+3
+where
+
+Relativistic Shock Waves
+
+263
+
+ 
+a z; l
+
+3 ÿ 7z  5
+lz ÿ 9
+lz2
+;
+z
+
+3:84
+
+ 
+b z; l
+
+1  3
+lz 1  
+lz2
+:
+z 1 ÿ z
+
+3:85
+
+Using this, it is not dicult to show that the FRW-Lax shock condition
+(3.53) is equivalent to
+
+
+1 h 1 ÿ A
+1 ÿ h
+2h
+8
+  b z; 
+
+a z; l
+l
+ 2h > :
+3:86
+
+
+r
+6A 1  l
+3A
+3
+
+r
+Note now that hÿ ! 0 and h ! 1 ÿ 1
+>1ÿ
+r as z ! 0: Moreover, note
+l 2
+1
+that a; b and c tend to 1 like z as z ! 0: Using this it is not dicult to
+verify the following theorem which states (roughly) that for outgoing shocks,
+the Lax characteristic conditions (3.53) and (3.54) hold, and the FRW sound
+speed is positive and less than the speed of light, if the shock is suciently
+strong. This demonstrates that system (3.22), (3.23) generates a large set of
+physically meaningful shock-wave solutions of the Einstein equations that
+model explosions.
+
+Theorem 10. Assume that (2.20)±(2.22) hold and let p  p : Fix the dimen; r
+; A; and h (assume that 0 < A < h < 1 if k > 0 or
+sionless constants l
+0 < h 2 A if k 2 0) such that (3.79) holds. If z  
+q=q is suciently small, then
+0 < r < 1; p > p, and the FRW-Lax shock conditions (3.53) and (3.54) both
+hold.
+Since the FRW equation of state is determined by the OT equation of
+state through the ordinary dierential equations (3.22), (3.23), there remains
+the question of how the FRW equation of state is restricted by these equa: We now show that given any
+tions. Assume an outgoing shock with q > q
+0 ; r0 ; l0 and q0 > 0 satisfying
+values of 
+r0 ; l
+
+0 ; l
+0 ; r0 ; l0 < 1;
+0<r
+
+3:87
+
+there exists a range of values of z0 ; near z  0; such that, when
+0 ; 
+l0 ; r0 ; l0 ; q0 and z0 are taken as initial values for (3.22), (3.23) and the
+r
+outer OT solution, then the shock-wave solution so determined is a Lax
+shock wave which moves at less than the speed of light in some neighborhood
+of the initial point. This demonstrates (roughly) that, for suciently strong
+shocks, arbitrary equations of state can be approximated locally on each side
+of the shock in this theory. Note that r0 ; l0 ; q0 and z0 supply the requisite
+number of initial conditions, two for the OT equations (2.14), (2.15) and two
+for the shock equations (3.22), (3.23). In the next theorem we show that even
+0 and 
+r0 for the OT equation of state at a point, we still
+after prescribing l
+have enough freedom in the initial conditions to freely assign r0 ; l0 ; q0 ; and
+0 ; 
+l0 ; r 0
+z0 ; at a point. To state the theorem, note ®rst that for any values of r
+and l0 ; satisfying (3.87), we can use
+
+264
+
+J. SMOLLER AND B. TEMPLE
+
+chz ÿ 1
+1 ÿ ch
+
+3:88
+
+ 0  1  l0 
+1l
+z:
+0 z z  l0 
+1l
+
+3:89
+
+l
+to solve for h and obtain
+
+h
+
+It is readily shown that when (3.87) holds, equation (3.89) de®nes h as a
+continuous function of z that takes on all values from 0 to 1 as z increases
+from 0 to 1.
+0 ; r0 ; l0 satisfying (3.87), and any choice of
+Theorem 11. For any choice of 
+r0 ; l
+z0 ; h0 2 0; 1 such that
+
+h0 
+
+ 0  1  l0 
+1l
+z0
+0 z z  l0 
+1l
+
+3:90
+
+;
+h0 < 1 ÿ r
+
+3:91
+
+and such that
+
+there exists A0 2 0; 1 such that (cf. (3.83))
+
+r0  1 ÿ c0 h0 ÿ2
+
+
+
+
+
+
+1 h0 1 ÿ A0 
+1 ÿ h0
+2 h0
+5
+
+ h0 ÿ :
+a0  b 0
+0
+0 
+r
+6 A0 1  l
+3 A0
+3
+3:92
+
+Before proving the theorem, we make a few remarks. First, we conclude
+from the theorem that the choice of values A0 ; l0 ; q0 and z0 (together with a
+d p
+
+0 and pqq0   l
+0 ) uniquely
+given OT equation of state satisfying d
+q q0   r
+0
+determines the initial conditions for the OT ordinary dierential equations
+(2.9), (2.10) and the shock ordinary dierential equations (3.22), (3.23). To
+r3 and the identity
+see this, note that the shock surface condition M  4p
+3 q
+q0 is determined
+A  1 ÿ 2GM=r determine M0 and r0 from q0 and A0 ; and 
+from 
+q0  z0 q0 : Thus, assuming any OT equation of state that satis®es
+d p
+
+0 
+0 ; we obtain a (local) OT solution from (2.14),
+q0 and d
+p0  l
+q q0   r
+A
+(2.15). We obtain r0 and R0 from the identity h  1ÿkr
+2 ; thus supplying the
+remaining initial conditions required for (3.22), (3.23). Furthermore, if we
+restrict the choice of z0 so that (3.89) implies (cf. (3.32), (3.80) and (3.81))
+2c ÿ 1
+hÿ < h0 < h ; h0 > 0 2 ;
+c0
+then the resulting solution is (locally) a Lax shock, and the shock speed is
+(locally) less than the speed of light. Moreover, it is straightforward to verify
+that as z0 ! 0 (strong shocks), (3.90) implies that h0 asymptotically looks like
+
+h0 
+
+ 0  1  l0 
+1l
+z;
+l0
+
+265
+
+Relativistic Shock Waves
+
+while hÿ and 2cc02ÿ1 asymptotically look like 2 1  
+l0 z0 ; and so h0 < h ; and
+0
+both hÿ < h0 ; and 2cc02ÿ1 < h0 < h ; for suciently small z0 : Thus we
+0
+have shown that the equation of state can be freely assigned at a point for
+suciently strong shocks.
+Note too that A < h for k > 0; A  h for k  0; and A > h for k > 0; and
+so the relative sizes of A0 and h0 determine k uniquely. Note also that in the
+above, we could just as well have initially assigned r0 instead of q0 ; etc., with
+the same conclusion.
+Proof of Theorem 11. We use
+: Then
+Lemma 3. Assume that h < 1 ÿ r
+
+a z; l  b z; l
+
+1ÿh
+3
+3
+:
+
+r
+7z 1 ÿ z
+
+3:93
+
+We can use this lemma to demonstrate the theorem as follows: By using
+(3.93) and (3.83) we can estimate
+
+1 h 1 ÿ A
+3
+2h
+5
+
+hÿ
+6A 1  
+l 7z 1 ÿ z 3 A
+3
+
+
+1 ÿ A
+2
+5
+
+1 ÿ :
+h
+21 1  
+lA2 z 1 ÿ z 3A
+3
+
+1 ÿ hc2 r 3
+
+3:94
+
+But since h < 1; we can see directly from the right-hand side of the formula
+(3.83) that r < 0 when A  1: Moreover, by (3.94) we see directly that
+r ! 1 as A ! 0: Thus by continuity we know that for every choice of
+r0 2 0; 1; there exists A0 2 0; 1 such that (3.92) holds. Thus the lemma
+implies the theorem.
+Proof of Lemma 3. Since we assume h < 1 ÿ 
+r; it follows that
+
+1ÿh
+3 1;
+3:95
+
+r
+and thus (3.84) and (3.85) imply that to verify (3.93), it suces to show that
+ 3 37;
+f z; l
+where
+
+ 
+f z; l
+
+
+
+3 ÿ 7z  5
+lz ÿ 9
+lz2  1 ÿ z I 
+
+3:96
+n
+
+1  3
+lz 1  
+lz2
+
+o
+II
+
+:
+
+3:97
+Simplifying gives
+
+fgI  3  ÿ10  5
+lz  7 ÿ 14
+lz2  9
+lz3 ;
+
+3:98
+
+lz  7
+l2 z2  3
+l3 z3 :
+fgII  1  5
+
+3:99
+
+266
+
+J. SMOLLER AND B. TEMPLE
+
+Thus
+
+  fgI fgII  4  10 
+ ÿ 12 z2  9
+f z; l
+l ÿ 1z  7 l
+lz3 :
+
+3:100
+
+;
+But for ®xed l
+
+ ÿ 1z  7 l
+ ÿ 12 z2
+g z  4  10 l
+
+3:101
+
+takes a minimum value at
+
+z  z 
+
+5
+;
+
+7 1ÿl
+
+3:102
+
+and
+
+g z   37;
+
+3:103
+
+  3 35  9
+f z; l
+lz3 3 35
+
+3:104
+
+independent of 
+l: Thus
+ ! 0 or z ! 0:
+gives (3.96), and this estimate is sharp as l
+In the next section we shall derive the formula (3.83) for the FRW sound
+speed.
+
+4. The FRW sound speed
+In this section we prove the following theorem which was anticipated in
+(3.83):
+dp
+; as determined by the shock
+Theorem 12. The FRW sound speed r  dq
+equations (3.20), (3.21) is given by (3.83).
+
+In order to calculate the FRW sound speed r  _p= _q for any solution of
+(3.22), (3.23), recall that the pressure p is given by
+
+p 
+
+H
+qÿq
+;
+1ÿH
+
+4:1
+
+where
+
+H  h c;
+
+c
+
+q  p
+;
+  p
+q
+
+h
+
+A
+:
+1 ÿ kr2
+
+(The formulas for pÿ could be obtained from the formulas for p by replacing
+H by h; or equivalently by replacing c by 1 in the formulas to follow.)
+Let the OT equation ofpstate
+q be given satisfying (2.20), let the OT
+ p  p 
+; where
+sound speed be given by r
+
+d p
+;
+r
+
+dq
+ be de®ned by
+and let l
+
+4:2
+
+Relativistic Shock Waves
+
+267
+
+p  
+l
+q:
+
+4:3
+
+0
+We now calculate r  p
+=q0 ; where ``prime'' denotes dierentiation with
+respect to r; in terms of the following three dimensionless quantities that
+evolve according to (3.22), (3.23):
+
+h
+
+A
+;
+1 ÿ kr2
+
+A1ÿ
+
+2GM
+;
+r
+
+z
+
+
+q
+:
+q
+
+Dierentiating (4.1) with respect to r; and denoting p by p (for notational
+convenience), we obtain
+
+p0  ph h0  pc c0  pq 
+q 0  p q q0 :
+
+4:4
+
+Now from (4.1), we have
+
+ph 
+
+1 ÿ hc c
+q ÿ hc
+q ÿ q ÿc
+1 ÿ hc2
+
+;
+
+thus
+
+ph 
+
+ ÿ q
+cq
+1 ÿ hc2
+
+:
+
+4:5
+
+;
+
+4:6
+
+Similarly, we have
+
+pc 
+
+h 
+q ÿ q
+1 ÿ hc2
+
+pq 
+
+hc
+;
+1 ÿ hc
+
+4:7
+
+pq 
+
+ÿ1
+:
+1 ÿ hc
+
+4:8
+
+A0
+2krA dr
+
+:
+2
+1 ÿ kr
+r
+1 ÿ kr2 2 d
+
+4:9
+
+2GM 0 2GM
+ 2 ;
+r
+r
+
+4:10
+
+ÿ
+
+A0  8pG
+r 13q ÿ 
+q ;
+
+4:11
+
+Furthermore,
+
+h0 
+Now
+
+A0  ÿ
+which simpli®es to
+
+and using (2.39) and (2.40), we have
+
+_
+
+  p q ÿ q
+dr dr dt r_
+Rr q
+;
+
+ 
+_
+_
+ Rr q  p
+d
+r dt d
+r r R q ÿ q
+
+268
+
+J. SMOLLER AND B. TEMPLE
+
+which simpli®es to
+
+p
+q
+dr
+:
+
+d
+r R q  p
+
+4:12
+
+hc
+qÿq
+;
+1 ÿ hc
+
+4:13
+
+But by (4.1),
+
+p
+so that
+
+qÿq
+  hc
+ 1 ÿ hc  hc
+qÿq
+dr 1 q
+1q
+1ÿhc
+
+;
+
+hc
+q
+ÿq
+qÿq
+d
+r R q  1ÿhc
+R q 1 ÿ hc  hc
+
+4:14
+
+dr
+1
+
+:
+d
+r Rhc
+
+4:15
+
+thus
+
+Now from (4.9), using (4.11) and (4.15), we obtain
+
+
+8pG
+r ÿ1
+h
+1
+
+q
+ÿ
+q
+
+2kr
+3
+1 ÿ kr2
+1 ÿ kr2
+Rhc
+
+8pG
+r ÿ1
+2kr2 1
+
+q
+ÿ
+q
+
+
+1 ÿ kr2 rc
+1 ÿ kr2 3
+
+
+ÿ
+ 2
+1
+2
+1
+
+:
+ÿ
+z
+q
+r
+c
+
+2kr
+8pG
+3
+rc
+1 ÿ kr2 
+
+h0 
+
+4:16
+
+But
+
+q
+r2 
+
+3
+1 ÿ A;
+8pG
+
+4:17
+
+1 ÿ kr2 
+
+A
+;
+h
+
+4:18
+
+kr2  1 ÿ
+
+A
+:
+h
+
+4:19
+
+so that
+
+Now using (4.17)±(4.19) in (4.16) gives
+
+
+
+1h
+A
+h0 
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+:
+rc A
+h
+Now
+
+4:20
+
+Relativistic Shock Waves
+
+
+c0 
+
+
+269
+
+
+  p q0  p0  ÿ q  p q
+0  p0 
+q  p 0 q
+
+2
+
+q  p
+
+q  p
+
+  pq0  q
+  p ÿ q ÿ p
+q
+p0 ÿ q  p
+q0
+;
+
+q  p2
+
+so that
+
+c0 
+
+ ÿ q 0
+1
+q
+q  p 0
+;
+q0 
+p ÿ
+q
+2
+  p
+q
+
+  p2
+q  p
+q
+
+4:21
+
+1
+c ÿ 1 0
+c
+0 :
+p ÿ
+q
+q0 ÿ
+  p
+  p
+  p
+q
+q
+q
+
+4:22
+
+1
+p0 ÿ c
+q0 g:
+fq0 ÿ c ÿ 1
+  p
+q
+
+4:23
+
+or
+
+c0 
+Thus we have
+
+c0 
+
+Now using (4.2) and (4.3), we have
+
+ÿ
+
+  p 13q  p Aÿ1
+
+p0  r
+q0  ÿ4pG
+r q
+ÿ
+
+ 
+z qAÿ1 ;
+ ÿ4pG
+r 1l
+q 13  l
+
+thus
+
+ÿ
+
+ 13  l
+z Aÿ1 q2 r:
+p0  ÿ4pGz 1  l
+
+4:24
+
+Since
+
+q0 
+
+ ÿ q
+3q
+;
+r
+
+we have
+
+q0  3
+
+z ÿ 1
+q:
+r
+
+4:25
+
+Thus
+
+ÿ
+
+4pG z
+p0
+  13  
+ÿ
+lz Aÿ1 q
+r2 ;
+1l
+0
+q
+3 zÿ1
+therefore
+
+
+
+p0 1  z  1 ÿ A
+ 1  3
+
+1l
+lz:
+q0 6 1 ÿ z
+A
+
+But
+1
+1
+
+l
+ÿ1
+cÿ1 z
+ÿ1 z
+
+1
+l
+1
+l
+
+so that
+
+
+
+
+1ÿz 1
+;
+ z
+1l
+
+4:26
+
+270
+
+J. SMOLLER AND B. TEMPLE
+
+z
+1
+ 
+1l
+;
+1ÿz
+cÿ1
+and thus
+
+Hence
+
+
+
+
+p0 1 1 ÿ A 1  3
+lz
+
+:
+q0 6
+A
+cÿ1
+
+4:27
+
+
+
+
+c 
+q ÿ q 1 h
+A
+ph h 
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+h
+1 ÿ hc2 rc A
+
+
+
+z ÿ 1 h
+A q
+:
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+
+2
+r
+A
+h
+1 ÿ hc
+0
+
+Thus
+
+h0
+zÿ1 h
+ph 0 
+q
+1 ÿ hc2 A
+
+
+
+
+
+A q r
+1
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+;
+r q 3 z ÿ 1
+h
+
+so
+
+h0 1
+1
+h
+ph 0 
+2
+q
+3 1 ÿ hc A
+
+
+
+
+
+A
+:
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+h
+
+4:28
+
+Next, from (4.23), we have
+
+so that
+
+ ÿ q
+hq
+
+1
+q0 ÿ c ÿ 1p0 ÿ cq0 ;
+
+q
+
+p
+1 ÿ hc
+
+4:29
+
+
+
+ ÿ q 1
+c0
+hq
+p0
+q0
+1 ÿ c ÿ 1 0 ÿ c 0 ;
+pc 0 
+  p
+q
+q
+q
+1 ÿ hc2 q
+
+4:30
+
+p c c0 
+
+2
+
+where
+
+0 1 1 ÿ A 1  3
+p0
+q
+lz
+ 0
+r
+:
+0
+q
+q
+6 A
+cÿ1
+But (4.30) further simpli®es upon noting that
+
+ÿq
+q
+ 1 ÿ c;
+  p
+q
+so that
+
+
+
+
+p0
+q0
+c0 ÿh c ÿ 1
+pc 0 
+1 ÿ c ÿ 1 0 ÿ c 0 :
+q
+q
+q
+1 ÿ hc2
+
+Now
+
+q0 
+pq 
+
+hc 0
+hc 1 0
+p ;
+q 
+
+1 ÿ hc
+1 ÿ hc r
+
+pq q0 
+
+ÿ1 0
+q;
+1 ÿ hc
+
+4:31
+
+271
+
+Relativistic Shock Waves
+
+thus
+
+pq
+
+0
+q
+hc 1 p0
+
+;
+ q0
+q0 1 ÿ hc r
+ÿ1
+pq 
+:
+1 ÿ hc
+
+4:32
+4:33
+
+Therefore
+
+r
+
+0
+q
+p0
+h0
+c0
+
+p
+
+p
+
+p
+ pq ;
+
+q
+h
+c
+q0
+q0
+q0
+q0
+
+4:34
+
+where
+
+
+ )
+A
+;
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+h a
+I
+(
+
+)
+0
+p0
+q
+c0
+ÿh
+c ÿ 1 1 ÿ c ÿ 1 0 ÿ c 0
+;
+pc 0 
+q
+q
+q b
+1 ÿ hc2
+II
+
+
+0
+q
+q0
+hc 
+;
+pq 0 
+1 ÿ hc q0 III
+q
+
+
+ÿ1
+:
+pq 
+1 ÿ hc IV
+h0
+ph 0 
+q
+
+(
+
+1
+1
+h
+2
+3 1 ÿ hc A
+
+
+
+ÿh
+To simplify (4.34), we can distribute 1ÿhc
+2 c ÿ 1 over the three terms in
+0
+ b ; and then add the ®rst term to fgIV ; and the third qq0 term in  b to fgIII :
+
+"
+# "
+# "
+#
+0
+p0
+q
+c0
+ÿh c ÿ 1
+h c ÿ 1
+hc
+pc 0 
+
+c ÿ 1 0 
+c ÿ 1 0 :
+q
+q
+q
+1 ÿ hc2 c
+1 ÿ hc2
+1 ÿ hc2
+d
+e
+Then
+
+ c  fgIV 
+ e  fgIII 
+
+
+1
+1 ÿ hc
+1
+
+2
+
+fh 1 ÿ c ÿ 1 ÿ hcg  ÿ
+
+2
+
+fhc c ÿ 1  hc 1 ÿ hcg
+
+1 ÿ hc
+
+1
+
+hc2 ÿ h2 c2
+
+1 ÿ hc2
+0
+hc2 1 ÿ h q
+
+:
+1 ÿ hc2 q0
+Thus our formula for r is
+
+1ÿh
+1 ÿ hc2
+
+;
+
+
+q0
+q0
+
+
+q0
+q0
+4:35
+
+272
+
+J. SMOLLER AND B. TEMPLE
+
+ 
+
+
+1h
+A
+2
+1 ÿ hc r 
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+3A
+h
+I
+0
+0
+
+
+2p
+2q
+ h c ÿ 1 0  h 1 ÿ hc 0 ÿ 1 ÿ h;
+q
+q
+so that
+
+ 
+
+ 
+1h
+A
+1 ÿ hc2 r 
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+3A
+h
+I
+ 0 
+
+2
+c 1 ÿ h p
+2
+h 0 ÿ 1 ÿ h;
+
+c ÿ 1 
+
+q II
+r
+
+4:36
+
+where
+
+p0 1 1 ÿ A 1  3
+lz
+
+:
+0
+q
+6 A
+cÿ1
+This gives
+
+
+
+A
+1 ÿ 3z 1 ÿ Ac  2 1 ÿ
+4:37
+h
+"
+#
+1h
+c2 1 ÿ h
+
+1 ÿ A 1  3
+lz c ÿ 1 1 
+ h ÿ 1:
+6A
+ c ÿ 12
+r
+
+1h
+1 ÿ hc r 
+3A
+2
+
+
+
+By collecting terms, it is easily veri®ed that (4.37) is equivalent to
+
+1 ÿ hc2 r 
+
+1 h 1 ÿ A
+2 1 ÿ 3zc  1  3
+lz c ÿ 1
+4:38
+6
+A
+
+ 2 
+1h
+c
+1
+5
+1 ÿ h 1 ÿ A  4  h ÿ :
+1  3
+lz
+
+
+cÿ1 r
+6A
+3
+
+We use the following easily veri®able identities to eliminate c in favor of z and
+then z in favor of c in (4.38):
+
+3 ÿ 9
+lz2 ÿ 7z  5
+lz
+;
+
+z 1l
+
+4:39
+
+z2
+c2
+1 ÿ 3
+lz 1  l
+
+:
+
+cÿ1
+z 1 ÿ z 1  l
+
+4:40
+
+2 1 ÿ 3zc  1  3
+lz c ÿ 1 
+1  3
+lz
+
+Using (4.39) and (4.40) to eliminate c in favor of z in (4.38) gives
+
+
+h 1 ÿ A
+1 ÿ h
+2h
+5
+2
+
+
+1 ÿ hc r 
+a z; 
+l  b z; l
+hÿ ;
+
+
+r
+6A 1  l
+3A
+3
+
+4:41
+
+where
+
+a
+
+3 ÿ 7z  5
+lz ÿ 9
+lz 2
+;
+z
+
+4:42
+
+Relativistic Shock Waves
+
+273
+
+z2
+1  3
+lz 1  l
+b
+:
+z 1 ÿ z
+
+4:43
+
+This gives r; and completes the proof of Theorem 12.
+Alternatively, we can replace z in favor of c in (4.38). By (4.41)±(4.43) we
+need only do the replacement in a and b: Since
+1
+
+l
+c z
+;
+
+1l
+
+we have
+
+z
+
+1
+;
+c ÿ l
+
+1l
+
+and substituting this into (4.42) and (4.43) gives
+
+a
+
+c ÿ 7c ÿ 2
+
+3c2  3
+lc2 ÿ l
+l 1  l
+;
+c ÿ l
+
+1l
+
+4:44
+
+c  2
+1l
+l c2
+:
+1l
+c ÿ l
+ cÿ1
+1l
+
+4:45
+
+b
+
+As a check, note that it is readily veri®ed that (4.41) yields
+
+r
+
+ 
+r
+r  7
+;
+
+3 1ÿr
+
+  const., and
+when z  13; and 
+lr
+
+hA
+
+2
+1r
+;
+2
+1  6
+rr
+
+cf. [8].
+As an application, we note that in light of (4.41), (3.30) and (3.53), the
+FRW-Lax shock condition holds at the shock-wave described by (3.22),
+(3.23) if and only if the following inequality holds (where a and b are given by
+(4.42) and (4.43)):
+
+
+1 h 1 ÿ A
+1 ÿ h
+2h
+8
+
+
+
+a z; l  b z; l
+ 2h > :
+4:46
+
+
+r
+6A 1  l
+3A
+3
+A direct consequence of (3.86)±(4.43) is Theorem 10 of Section 3, which states
+that, for outgoing shocks, the Lax characteristic conditions (3.53) and (3.54)
+hold, and r; the sound speed squared, must be positive, if the shock is suf®ciently strong.
+
+274
+
+J. SMOLLER AND B. TEMPLE
+
+5. Inadmissibility of 
+q>q
+ > q as
+In this section we prove the following theorem, which rules out q
+physical, when A > 0: (Recall that shocks with p  pÿ (cf. (3.10)), have already been ruled out because then the shock speed is larger than the speed of
+light.)
+Theorem 13. Assume that (2.20)±(2.22) hold. Then any shock wave determined
+by (3.22),
+q > q and p  p cannot have a positive sound
+p (3.23) that satis®es 
+speed r because r < 0:
+In order to prove this theorem, we need an alternative formula for p0 (we
+always let ``prime'' denote d=d
+r), which we now derive. Our strategy is to
+0
+q0 ; and q0 in the expression for p
+; because these
+collect the coecients of p0 ; 
+have a de®nite sign. We use the formulas
+
+p  p 
+c
+
+H
+qÿq
+;
+1ÿH
+
+q  p
+;
+  p
+q
+
+h
+
+H  ch;
+A
+:
+1 ÿ kr2
+
+Dierentiating p with repect to r we get
+
+1 ÿ H2 p0  1 ÿ H H
+q ÿ q0 ÿ H
+q ÿ q 1 ÿ H0
+  H
+q0  q0  ÿ H
+ 1 ÿ H H0 q
+q ÿ q ÿH0 
+ ÿ qH0  1 ÿ HHq0 ÿ 1 ÿ Hq0 ;
+ q
+thus
+
+ ÿ q h0 c  hc0   1 ÿ HH
+1 ÿ H2 p0  q
+q0 ÿ 1 ÿ Hq0 :
+
+5:1
+
+Now
+
+H0 
+
+A0 c
+Ac
+dr
+A
+
+2kr 
+c0 ;
+2
+2
+1 ÿ kr
+d
+r 1 ÿ kr2
+1 ÿ kr2 
+
+5:2
+
+A0 c
+hc
+dr
+2kr  hc0 ;
+
+1 ÿ kr2
+1 ÿ kr2 
+d
+r
+
+5:3
+
+or
+
+H0 
+
+and using (3.17) and (3.19) we get
+
+dr r_
+1
+ 
+:
+d
+r r_ HR
+Using this and (4.11) in (5.3) gives
+
+5:4
+
+But
+
+
+0
+
+c 
+
+Relativistic Shock Waves
+
+275
+
+ÿ
+
+
+8pGc
+r 13 q ÿ q
+2kr
+0
+H 
+
+ hc0 :
+1 ÿ kr2
+1 ÿ kr2 R
+
+5:5
+
+
+  p q0  p0  ÿ q  p q
+0  p0 
+q  p 0
+q
+
+  p
+q
+  p2
+q
+
+
+so that
+
+1
+qÿ
+q 0
+q  p 0
+;
+p ÿ
+q
+q0 ÿ
+2
+  p
+q
+
+
+q  p
+q  p2
+
+ÿ
+
+
+8pGc
+r 13 q ÿ q
+2kr
+h
+q0
+H 
+
+
+2
+2
+q  p
+1 ÿ kr
+1 ÿ kr R 
+h qÿ
+q 0 h q  p 0
+:
+p ÿ
+q
+ÿ
+  p2
+  p2
+q
+q
+0
+
+5:6
+
+Using (5.6) we get
+
+ ÿ qH0  1 ÿ HH
+1 ÿ H2 p0  q
+q0 ÿ 1 ÿ Hq0
+ÿ
+
+
+q ÿ q 
+ r2  2kr2
+8pGc 13q ÿ q
+
+2
+r
+1 ÿ kr 
+(
+)
+
+
+ ÿ qh
+h qÿ
+q2
+q
+0
+p  ÿ 1 ÿ H 
+q0
+
+ ÿ p II
+q
+
+q  p2 I
+(
+)
+ ÿ qh
+q  p q
+0 :
+q
+ 1 ÿ HH ÿ
+  p2
+q
+III
+But
+
+5:7
+
+
+
+ÿq
+q
+fgIII  H 1 ÿ H ÿ
+  p
+q
+
+
+
+q  p
+q ÿ q
+H 1ÿ
+hÿ
+
+  p
+q  p
+q
+q  p 1 ÿ h
+ Hc 1 ÿ h;
+H
+
+q  p
+fgII  ÿ1 
+
+ ÿ qh
+  ph
+q  ph
+q
+q
+
+ ÿ1 
+ ÿ1  h;
+  p
+  p
+  p
+q
+q
+q
+
+so that (5.7) becomes
+
+1 ÿ H2 p0 
+
+5:8
+
+o
+q
+
+ ÿ q n
+q
+2
+2
+
+
+r
+
+2kr
+8pGc
+ÿ
+q
+r
+1 ÿ kr2 
+3
+IV
+
+
+ ÿ q2 0
+hq
+p  c 1 ÿ hH
+q0 ÿ 1 ÿ hq0 :
+  p2
+q
+
+5:9
+
+276
+
+J. SMOLLER AND B. TEMPLE
+
+Now using (2.20) and (2.21), together with the Oppenheimer-Volko equaq0 are both negative. Furthermore, from (2.37),
+tion (2.15), we see that p0 and 
+0
+ > q: Thus (5.9) implies that p0 < 0 provided that fgIV < 0:
+q > 0 because q
+Now
+
+
+
+
+1 q
+cq
+r2  2kr2 ;
+fgIV  8pG ÿ
+3 q
+
+5:10
+
+so using (4.17) and (4.19) we have
+
+
+
+
+1 ÿ Ah
+
+q
+:
+fgIV  1 ÿ A 1 ÿ 3 c  2
+1ÿA
+q
+
+5:11
+
+=q and l
+
+Since z  q
+p=
+q; we have
+1
+
+l
+c z
+;
+
+1l
+
+so that
+
+fgIV 
+
+1 ÿ A
+
+1l
+
+
+
+
+
+
+1 ÿ Ah
+1
+ 2 1l
+
+:
+1 ÿ 3z  l
+1ÿA
+z
+
+But the largest the fraction
+
+1 ÿ Ah
+1ÿA
+can be for ®xed A is when h  1; so that
+
+1 ÿ Ah
+2 1:
+1ÿA
+Thus for fgIV < 0; it suces to show that
+
+
+1
+f z  1 ÿ 3z  
+l 2 1
+l 2 0
+z
+
+5:12
+
+for z 3 1: Now f 1  0; and
+
+
+
+
+1
+1
+  1 ÿ 3z ÿ 2 < 0
+f 0 z  ÿ3  l
+z
+z
+for z 3 1; and so
+
+f z 2 0
+ > q; and as
+for z 3 1: Thus fgIV < 0 for z > 1: Therefore p0 < 0 when q
+q0 > 0; this proves that the sound speed r  p0 =q0 < 0:
+
+277
+
+Relativistic Shock Waves
+
+Acknowledgement. The research of J. SMOLLER was supported in part by NSF Applied
+Mathematics Grant Number DMS-92-06631, in part by ONR, US NAVY grant number
+N00014-94-1-0691 and by the Institute of Theoretical Dynamics, UC-Davis. The research of B. TEMPLE was supported in part by NSF Applied Mathematics Grant Number
+DMS-92-06631, in part by ONR, US NAVY grant number N00014-94-1-0691, a
+Guggenheim Fellowship, and by the Institute of Theoretical Dynamics, UC-Davis.
+
+References
+[1] W. ISRAEL, Singular hypersurfaces and thin shells in general relativity, Il Nuovo
+Cimento, 44 B (1966), 1±14.
+[2] P. D. LAX, Hyperbolic systems of conservation laws, II, Comm. Pure Appl. Math.,
+10 (1957), 537±566.
+[3] J. R. OPPENHEIMER & J. R. SNYDER, On continued gravitational contraction, Phys.
+Rev., 56 (1939), 455±459.
+[4] J. SMOLLER, Shock-Waves and Reaction-Diusion Equations, Second edn.,
+Springer-Verlag, 1994.
+[5] J. SMOLLER, B. TEMPLE & Z. P. XIN, Instability of rarefaction shocks for systems
+of conservation laws, Arch. Rational Mech. Anal., 112, (1990), 63±81.
+[6] J. SMOLLER & B. TEMPLE, Global solutions of the relativistic Euler equations,
+Comm. Math. Phys., 157 (1993), 67±99.
+[7] J. SMOLLER & B. TEMPLE, Shock-wave solutions of the Einstein equations: The
+Oppenheimer-Snyder model of gravitational collapse extended to the case of nonzero pressure, Arch. Rational Mech. Anal., 128 (1994), 249±297.
+[8] J. SMOLLER & B. TEMPLE, Astrophysical shock-wave solutions of the Einstein
+equations, Phys. Rev. D, 51 (1995), 2733±2743.
+[9] R. TOLMAN, Static solutions of Einstein's ®eld equations for spheres of ¯uid, Phys.
+Rev., 55 (1939), 364±374.
+[10] R. TOLMAN, Relativity, Thermodynamics and Cosmology, Oxford University
+Press, 1934.
+[11] S. WEINBERG, Gravitation and Cosmology: Principles and Applications of the
+General Theory of Relativity, Wiley, New York, 1972.
+Department of Mathematics
+University of Michigan
+Ann Arbor, Michigan 48109
+and
+Department of Mathematics
+University of California
+Davis, California 95616
+(Accepted January 19, 1996)
+
+

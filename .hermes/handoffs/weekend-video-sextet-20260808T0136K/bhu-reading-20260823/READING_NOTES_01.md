@@ -299,3 +299,64 @@ which is why the watch watches BAO releases, not CMB reanalyses. When a DESI **C
 
 Not seated in the bibliography: it is adjudication literature, one of many Ω_k fits, not a BHU
 paper and not a canonical instrument. Logged here and in the watch hits file only.
+
+---
+
+# Batch 6 — the recovered three (2026-08-23 evening, Tori)
+
+Prompted by Duho asking whether I could fetch the paywalled queue myself. A second sweep found
+free, legitimate copies of 3 of the 8: entry 31 (published PDF on a VU Amsterdam academic
+collection), entry 36 (arXiv astro-ph/9812063 — missed during the campaign because the eprint
+checks ran into arXiv throttling and I wrongly recorded "no free route"), entry 57 (self-archived
+on Temple's UC Davis page). **The campaign's "16% irreducible floor" claim was therefore wrong;
+the true floor is 5 papers ≈ 10%** (42, 47–50 — Elsevier + APS only). Corrected in the
+bibliography tally.
+
+## Entry 31 — Smolin 2004, Physica A 340, 705 (CNS) — CALIBRATED-FALSIFIER
+
+The paper the whole CNS audit leaned on, now read in the original. What the text actually says:
+
+- The falsifier (§4, "Why a single heavy neutron star would refute S"): kaon-condensate cores
+  (Bethe–Brown [52–54]) cap M_max at "approximately 1.5 M☉" **if** the strange-quark mass is
+  below a critical value; conventional EOS otherwise, limit "almost certainly above 2".
+  Refutation: "Sufficiently high is certainly 2.5 M☉, although if one is completely confident of
+  Bethe and Brown's upper limit of 1.5 solar masses, any value higher than this would be
+  troubling."
+- **Track C is confirmed from the primary text**: CNS does not predict 1.5 M☉ (that is
+  Brown–Bethe's number, used as an instrument), and Smolin's own clean bar is 2.5 M☉. The
+  published-record basis Track C used matches the primary source exactly, including the
+  "troubling" sentence verbatim.
+- Footnote 6 concedes ad-hoc rescues exist and disclaims them absent independent theory support —
+  the author states his own demarcation.
+- Footnote 1 credits Rothman & Ellis [13] and Ellis [14] for the open-universe correction —
+  corroborates appendix A0's citation trail (their text itself still unread).
+- §2 is explicit that the low-energy parameter "successes" are explanations, not predictions
+  ("selection effects prevent us from claiming these as unique predictions").
+- Reader's note (mine): the Λ argument in §3 ends in a stated conjecture, not a result; and the
+  1.5-vs-2.5 gap means the falsifier's live status depends on which bar you hold — C08 broke the
+  instrument limb (≥8σ), the author's stated bar stands unreached (heaviest well-measured masses
+  sit below 2.5).
+
+Consequence for the family: **a second live calibrated falsifier** joins entry 54. Yesterday's
+"exactly one live falsifier" line is amended — it counted only classed entries, and 31 was UNREAD.
+
+## Entry 36 — Smoller & Temple 2000, CMP 210, 275 — CONSISTENCY-ONLY
+
+The shock-wave programme's founding cosmology paper. Constructs the simplest exact solution with
+a true shock at the leading edge of a k=0 FRW region inside a static TOV exterior, tuned to the
+observed H₀ and CMB temperature; the derived shock position comes out comparable to the Hubble
+length with no free parameters — the paper's own headline result. It is candid that the model
+violates the Copernican principle and that shock entropy destroys memory of the initial explosion.
+No observational discriminant is derived; the cosmological reading is posed as a question and the
+solution offered as "a starting point". The horizon is not crossed anywhere in this paper — the
+inside-a-black-hole step is entry 37 (PNAS 2003).
+
+## Entry 57 — Smoller & Temple 1997, ARMA 138, 239 — CONSISTENCY-ONLY
+
+Method precursor: simplified FRW/Oppenheimer–Tolman shock-matching ODEs, Lax admissibility,
+speed formulas for numerics. Explicitly restricted to shocks outside the Schwarzschild radius;
+§6 shows these solutions model explosions, not collapse. Pure mathematics; one sentence of
+cosmological framing. Nothing here bears on observables.
+
+Pins: smolin sha256 46e57c43…, smoller-temple-2000 ef904904…, smoller-temple-1997 6e709a9c…
+(full hashes with the PDFs in `sources/`).
