@@ -241,7 +241,11 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
             # the current form is ungated.
             cur = pre / "CHI_CUSTODY_20260822.md"
             if cur.exists() and cur.stat().st_mtime > gate.stat().st_mtime:
-                verdict = "V3 UNGATED"
+                # version from the doc's own title — a hardcoded "V3" said V3
+                # for a v4, the exact stale-label failure this branch exists
+                # to prevent
+                m = re.search(r"\((v\d+)\)", cur.read_text(errors="ignore")[:200])
+                verdict = f"{m.group(1).upper()} UNGATED" if m else "CURRENT FORM UNGATED"
                 age_h = round((time.time() - cur.stat().st_mtime) / 3600.0, 1)
         receipt = pre / "CHI_CUSTODY_RECEIPT_20260821.md"
         memo = pre / "DECISION_MEMO_DECLINE_TO_PROCEED_20260821.md"
