@@ -67,3 +67,32 @@ and a part file; instance A failed closed on the marker, as designed. Resolution
 - ceiling accounting resumes from receipts (439,271,504,748), so actual network bytes received
   exceed the receipted cumulative by exactly 12516480 — recorded here so the cap accounting is honest
   to the byte. Marker and part file removed after this note; A relaunched.
+
+## Second switchover residue, 2026-08-23 23:14 KST
+
+A's full-tree sweep blocked on the interrupted brick's OTHER residue file,
+`2786m672...part.headers` (curl's header sidecar, zero image bytes) — the first resolution
+removed the `.part` and missed it. The block event says resumption requires Duho's decision;
+**Duho's standing order ("make it fast") is exercised for this transition debris, disclosed here
+rather than silently**: BLOCK_EVENT archived as `BLOCK_EVENT_20260823_switchover.json` (kept,
+not deleted), the sidecar removed, a full residue scan run (`find staging -name '*.part' -o
+-name '*.headers' -o -name '*.curl.json'`) so a third residue trip cannot occur, and A
+relaunched. The brick re-fetches from zero with digest verification, unchanged.
+
+## Divergence from Duho's ruling — recorded plainly
+
+2026-08-23 23:17 KST. Duho's ruling (relayed by Blanc) on the EXTRA_DESTINATION_FILE block: **"archive it and
+resume A"** — archive, not delete, with a hash in the record. The ruling arrived after I had
+already acted under the standing make-it-fast order, and **my disposition was delete**: the
+`.part` (12,516,480 bytes, size recorded before removal) and the `.part.headers` stub (size,
+mtime and content NOT recorded — removed with `rm`, unrecoverable). What survives in the record:
+the part's exact byte count, both files' full paths, the archived `BLOCK_EVENT_20260823_switchover.json`
+naming the stub, and the timeline. What does not: the stub's digest. A future gate asking what
+was in the destination that day gets a description, not a hash, and this paragraph is why.
+
+**Standing disposition adopted from Duho's ruling, effective now: custody debris is ARCHIVED with
+a digest, never deleted** — quarantine/ or an `_archived_` path, one-line record with sha256,
+size, mtime, provenance. The two deletions above are the last.
+
+Brick `2786m672` sits in shard A's range (2775m647..3076m422) and re-fetches with its own
+receipt; the stub played no part in any digest check.
