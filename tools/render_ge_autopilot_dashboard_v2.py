@@ -244,6 +244,52 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
         parked = sorted(pre.glob("CUSTODY_RECORD_PARKED_*.md"),
                         key=lambda f: f.stat().st_mtime, reverse=True)
         parked = parked[0] if parked else None
+
+        # The transfer heartbeat, measured not asserted. "Acquisition continues"
+        # was a claim the strip repeated from the parked record with nothing
+        # behind it; the heartbeat is on disk and the renderer runs every ten
+        # minutes, so the rate can be computed across renders and the row can
+        # say how far, how fast, and when — or say STALLED, which matters more.
+        # WORKING_SET matches completion_check.py: the heartbeat carries no
+        # "total" key, 60,308 is the frozen prereg working set.
+        transfer = None
+        hb_path = Path("/Users/duhokim/NebulaMindData/dr10_south_image_r/heartbeat.json")
+        if hb_path.exists():
+            try:
+                WORKING_SET = 60308
+                hb = json.loads(hb_path.read_text())
+                acc = int(hb.get("accepted", 0))
+                st = Path("/Users/duhokim/HermesOps/cockpit/.transfer_rate_state.json")
+                rate = None
+                try:
+                    prev = json.loads(st.read_text())
+                    dt = time.time() - prev["epoch"]
+                    # only trust an interval long enough to average over
+                    if 300 <= dt <= 6 * 3600 and acc >= prev["accepted"]:
+                        rate = (acc - prev["accepted"]) / dt * 3600
+                except Exception:
+                    pass
+                # persist this render's sample for the next one (min 5-min spacing
+                # so back-to-back manual renders don't shrink the baseline)
+                try:
+                    prev = json.loads(st.read_text())
+                    if time.time() - prev["epoch"] >= 300:
+                        st.write_text(json.dumps({"accepted": acc, "epoch": time.time()}))
+                except Exception:
+                    st.write_text(json.dumps({"accepted": acc, "epoch": time.time()}))
+                hb_age = time.time() - hb_path.stat().st_mtime
+                rem = max(0, WORKING_SET - acc)
+                transfer = {
+                    "accepted": acc, "total": WORKING_SET,
+                    "pct": round(acc / WORKING_SET * 100, 1),
+                    "rate_per_h": round(rate) if rate else None,
+                    "eta_h": round(rem / rate, 1) if rate and rate > 0 else None,
+                    "heartbeat_age_s": round(hb_age),
+                    "stalled": hb_age > 7200,
+                    "complete": acc >= WORKING_SET,
+                }
+            except Exception:
+                transfer = None
         out.append({
             "lane": "DESI spin-parity (prereg)", "who": "Hwao",
             "detail": ("custody write-up PARKED by Duho — acquisition continues"
@@ -259,6 +305,7 @@ def build_active_campaigns() -> List[Dict[str, Any]]:
                      "unsigned DRAFT — the study has not been declined"
                      if parked else
                      "decision memo is a DRAFT — not effective without a gate AND Duho's signature"),
+            "transfer": transfer,
         })
     # Tori's phase work lives in bhu-theory-phase* under the sextet handoff dir,
     # NOT in bhu-track — pointing at the wrong directory rendered "no artifact
@@ -2864,11 +2911,16 @@ async function load() {
       const cEl = document.getElementById('campaigns');
       if (cEl) cEl.innerHTML = camps.length ? camps.map(c => {
         const stale = (c.gate_age_h != null && c.gate_age_h > 12);
-        const v = c.verdict ? `<span class="chip ${/REFUT|FAIL|VOID/.test(c.verdict) ? 'bad' : 'ok'}">${esc(c.verdict)}</span>` : '';
+        const v = c.verdict ? `<span class="chip ${/REFUT|FAIL|VOID|STALL/.test(c.verdict) ? 'bad' : 'ok'}">${esc(c.verdict)}</span>` : '';
+        const tr = c.transfer;
+        const trHtml = tr ? `<div class="micro${tr.stalled ? ' warn' : ''}">transfer ${tr.accepted.toLocaleString()} / ${tr.total.toLocaleString()} (${tr.pct}%)` +
+          (tr.stalled ? ` · <b>HEARTBEAT SILENT ${Math.round(tr.heartbeat_age_s/3600)}h — stalled?</b>` :
+           tr.complete ? ` · <b>COMPLETE — completion_check window open</b>` :
+           (tr.rate_per_h ? ` · ${tr.rate_per_h.toLocaleString()}/h · ~${(tr.eta_h/24).toFixed(1)}d to complete` : ` · rate pending next render`)) + `</div>` : '';
         const age = c.gate_age_h != null ? `<span class="micro${stale ? ' warn' : ''}">${c.gate_age_h}h ago</span>` : '';
         return `<div class="row"><b>${esc(c.lane)}</b> <span class="micro">${esc(c.who)}</span>
           <span>${esc(c.detail || '')}</span> ${v} ${age}
-          ${c.note ? `<div class="micro warn">${esc(c.note)}</div>` : ''}</div>`;
+          ${trHtml}${c.note ? `<div class="micro warn">${esc(c.note)}</div>` : ''}</div>`;
       }).join('') : '<div class="empty">No active campaign detected — if work is running, this is a blind spot, not silence.</div>';
       const mx = (d && d.septet_matrix) || {};
       const papers = mx.papers || [];
