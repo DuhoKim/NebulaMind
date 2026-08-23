@@ -575,11 +575,17 @@ spot-check.
 
 ## Appendix A — context, not base (excluded from the base layer, with reasons)
 
-**A0 (pending verification, 2026-08-22).** T. Rothman & G.F.R. Ellis, "Smolin's natural selection
-hypothesis" — recalled by the bibliography gate as the published critique of CNS (QJRAS ~34, 1993).
-NOT verifiable via Crossref (QJRAS predates DOI coverage) or INSPIRE (no record); enters nowhere
-until a publication record is confirmed. The gate's recall of other identities in the same pass was
-verified digit-exact, so this is likely real — likely is not the bar.
+**A0 (VERIFIED 2026-08-23).** T. Rothman & G.F.R. Ellis, "Smolin's Natural Selection Hypothesis,"
+Q. J. R. astr. Soc. (1993) 34, 201–212. Verified against the ADS-hosted journal scan
+(bibcode 1993QJRAS..34..201R, free full text), title page sighted: authors, title, volume and
+pages exact; received 1992 November 19. Pinned:
+`bhu-reading-20260823/sources/rothman_ellis_1993_qjras34.pdf` (sha256 ad76b7ac…, 12 pp,
+image-only scan — no text layer). The gate's 2026-08-22 recall was digit-exact after all;
+Crossref/INSPIRE both genuinely lack the record (QJRAS predates DOI coverage), which is why
+verification had to wait for the ADS route. Cross-check: entry 31's footnote 1 cites this paper
+as ref [13], the source of the open-universe correction Smolin accepted. Status: context (Appendix
+— a critique of CNS, not a BHU-family paper); summary states CNS "appear[s] to contain a number
+of conceptual and technical flaws". Full read pending (scan needs page-image reading, no OCR).
 
 **A0b (pending verification / ruled context, 2026-08-23, hunt round 2).** Kimi recalls not seated:
 J. Silk, "Holistic cosmology" (Science 277, 1997) — published CNS critique, verify before seating
