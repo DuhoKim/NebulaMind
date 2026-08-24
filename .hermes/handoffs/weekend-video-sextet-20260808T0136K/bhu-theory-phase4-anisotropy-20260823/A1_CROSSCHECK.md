@@ -35,3 +35,9 @@ r̄(t), √N(t), u, v, s profiles for σ = 1/3) stands verified and feeds A2.
 
 Pins: my script 2ee881ea…, my CSV 3264de39…, my receipt 98c99f37… (full hashes via shasum in
 the receipts); gpt1's dir committed as delivered, unmodified.
+
+## Custody refresh (2026-08-24, amendment 1)
+
+The pin line above cites the pre-addendum A1_RECEIPT prefix 98c99f37…. After the anchor-label
+addendum and this amendment cycle, current hashes: A1_RECEIPT.md
+7c4e96837fa255bb0bc415d7b49d5385a5bc630e4eb18688a839dd38fd448109; a1_shock_trajectory.py eb79b52746ebafe8e8b9bb7f1767a4b213a393a53e50a011bb0a02b171bb1984; a1_results.csv c00b26b0244b3cd649b45b117e9e95732972cb0fc256fb7b11bfddac5c8985c7.

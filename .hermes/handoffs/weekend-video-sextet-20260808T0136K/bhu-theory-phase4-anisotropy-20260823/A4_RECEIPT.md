@@ -19,7 +19,9 @@ Center law z_c = √N(η_e); nearest-direction bound x_max(z; t_obs) = η_o[(1+�
 
 **P2 — the constraint surface x_max(t_obs)** at z_ls = 1100: consistency with the observed
 uniform CMB sky ⇔ NO CAP ⇔ x_off < x_max(t_obs). Sampled (x_max as fraction of the comoving
-shock radius): t = 0.14 (half t_vis): **0.20**; t = 0.274 (≈t_vis): **4.3×10⁻³**; t = 0.277
+shock radius; the t = 0.14 value is from the in-script check `cap opens exactly at x_max(t)`,
+not from the delivered map, which starts near 0.98 t_vis — gate correction): t = 0.14 (half
+t_vis): **0.20** (one sample, not a summary of all early observers); t = 0.274 (≈t_vis): **4.3×10⁻³**; t = 0.277
 (band middle): **5.7×10⁻⁴**; t → t_1100 = 0.27744: **0**. Below the surface the model is
 consistent AND the boundary is strictly unobservable (opacity + interior exactness): the
 consistent region is observationally EMPTY of signatures — consistency bought at the price of

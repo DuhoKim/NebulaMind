@@ -17,7 +17,7 @@ Seed (derived by hand from (5.4) near S=0, sigma=1/3; derivation in A1_RECEIPT.m
   u(S) = 1/3 - (4/3) sqrt(S) + O(S)
 
 Time mapping (derived, FRW side, sigma=1/3 so H=1/(2t), rbar = 2 t sqrt(N)):
-  dt/d(sqrtN) = 2t/(s - sqrtN), t(sqrtN=1) = t0
+  dt/d(sqrtN) = 2t/(s - sqrtN), t(sqrtN=1) = t_crit
 Cross-check: rbar from (4.2) integration must equal 2 t sqrt(N) up to one global constant.
 """
 import numpy as np
@@ -76,7 +76,7 @@ for i in range(len(Sg)-2, -1, -1):     # integrate d ln r = integrand dS, anchor
     lnr[i] = lnr[i+1] - 0.5*(integrand[i]+integrand[i+1])*(Sg[i+1]-Sg[i])
 rbar = np.exp(lnr)                      # rbar / rbar(N=1)
 
-# --- t(sqrtN) from dt/dsqrtN = 2t/(s - sqrtN), anchored t=1 at sqrtN=1 (t in units of t0) ---
+# --- t(sqrtN) from dt/dsqrtN = 2t/(s - sqrtN), anchored t=1 at sqrtN=1 (t in units of t_crit) ---
 sqrtN = np.sqrt(N)
 def u_of_S(S): return sol.sol(np.atleast_1d(min(S, 1.0-delta)))[0][0]
 def dlnt_dq(q, y):                      # q = sqrtN
@@ -87,7 +87,7 @@ qspan = [1.0, sqrtN[0]]
 solt = solve_ivp(dlnt_dq, qspan, [0.0], method='LSODA', rtol=1e-11, atol=1e-13, dense_output=True)
 assert solt.success, solt.message
 lnt = solt.sol(sqrtN)[0]
-t = np.exp(lnt)                         # t / t0
+t = np.exp(lnt)                         # t / t_crit
 
 # cross-check: rbar (ODE) vs 2 t sqrtN (FRW-side identity) — ratio must be one global constant
 ratio = rbar/(2*t*sqrtN)
@@ -99,7 +99,7 @@ chk("t -> 0 toward Big Bang (N large)", t[0] < 1e-3, f"t(sqrtN={sqrtN[0]:.0f})={
 with open("a1_results.csv", "w", newline="") as f:
     w = csv.writer(f)
     w.writerow(["S","N","sqrtN_hubble_lengths","u_pbar_over_rho","v_rhobar_over_rho",
-                "shock_speed_s","rbar_over_rbar_at_N1","t_over_t0"])
+                "shock_speed_s","rbar_over_rbar_at_N1","t_over_tcrit"])
     for i in range(len(Sg)):
         w.writerow([f"{Sg[i]:.10e}",f"{N[i]:.10e}",f"{sqrtN[i]:.10e}",f"{u[i]:.10e}",
                     f"{v[i]:.10e}",f"{s[i]:.10e}",f"{rbar[i]:.10e}",f"{t[i]:.10e}"])
