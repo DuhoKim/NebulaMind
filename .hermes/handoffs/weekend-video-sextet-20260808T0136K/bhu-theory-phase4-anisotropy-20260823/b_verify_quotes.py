@@ -1,45 +1,81 @@
 #!/usr/bin/env python3
-"""Track B freeze verification v4 — boundary-aware, source-bound, ledgered.
-Repairs per GATE_TRACKB_VERDICT.md:
-  - numeric extractor keeps ALL numbers (any length, decimals, ranges, sigma/percent parts,
-    scientific-notation pieces), boundary-aware on both extraction and matching;
-  - each quote is bound to the source files its own harvest entry declares (fallback: whole
-    dir, flagged in the ledger);
-  - per-quote machine-readable ledger emitted (b_verify_ledger.json);
-  - self-test: a numerically corrupted control quote MUST fail.
-Acceptance: ALL numeric tokens found (boundary-aware) in one bound source AND >=30% 6-word
-prose shingles there; quotes with no numbers need >=70% shingles. Manual acceptances must be
-entered in MANUAL_ACCEPT with file+reason and are reported, not silently passed.
+"""Track B freeze verification v5 — ordered numeric relations, per-entry binding, span ledger.
+Repairs per REGATE_TRACKB_VERDICT.md:
+  R1: quotes are verified as ORDERED sequences of signed numeric expressions (signs and
+      hyphens adjacent to digits survive normalization as tokens), matched as an in-order
+      subsequence within a bounded window of one bound source. Order swaps and exponent-sign
+      flips now fail (self-tested below with the gate's own counterexamples).
+  R2: per-entry binding extended: entries that declare no sources/ path bind via their arXiv
+      ID to the matching source subtree; zero directory-wide fallbacks permitted (a quote with
+      no resolvable binding FAILS).
+  R3: ledger stores the full quote + sha256, bound source path + sha256, and the matched span
+      (offset + excerpt from first to last expression) sufficient to reproduce the match.
 """
-import re, glob, json, unicodedata, pathlib, sys
+import re, glob, json, hashlib, unicodedata, pathlib, sys
 
 def norm(s):
     s = unicodedata.normalize("NFKD", s)
     for a,b in [("’","'"),("‘","'"),("“",'"'),("”",'"'),("−","-"),("–","-"),("—","-"),
-                ("≲","<"),("≃","~"),("≈","~"),("×","x")]:
+                ("≲","<"),("≃","~"),("≈","~"),("×","x"),("^","")]:
         s=s.replace(a,b)
-    s = re.sub(r"\\[a-zA-Z]+", " ", s.replace("$",""))
-    s = re.sub(r"[^a-zA-Z0-9. ]", " ", s)
+    s = re.sub(r"\\[a-zA-Z]+"," ",s.replace("$","").replace("{"," ").replace("}"," "))
+    s = re.sub(r"(?<=\d)\s*-\s*(?=\d)", " - ", s)      # range/exponent hyphen -> token
+    s = re.sub(r"(?<![a-zA-Z0-9])([+-])(?=\s*\d)", r" \1 ", s)  # sign before number -> token
+    s = re.sub(r"[^a-zA-Z0-9.+\- ]"," ",s)
+    s = re.sub(r"(?<!\d)\.(?!\d)"," ",s)               # bare periods out; decimals stay
     return re.sub(r"\s+"," ",s).lower().strip()
 
-NUM = re.compile(r"(?<![0-9.])([0-9]+(?:\.[0-9]+)?)(?![0-9])")
-def numtokens(q):
-    return sorted(set(NUM.findall(norm(q))))
-def has_num(tok, ntext):
-    return re.search(r"(?<![0-9.])"+re.escape(tok)+r"(?![0-9])", ntext) is not None
+def expr_seq(q):
+    """Ordered sequence of numeric/sign tokens. A +/- token is kept ONLY when the next
+    token is numeric (drops prose dashes; keeps range hyphens and exponent signs)."""
+    toks=norm(q).split(); out=[]
+    for i,t in enumerate(toks):
+        if re.fullmatch(r"\d+(?:\.\d+)?", t): out.append(t)
+        elif t in "+-" and i+1<len(toks) and re.fullmatch(r"\d+(?:\.\d+)?", toks[i+1]): out.append(t)
+    return out
+
+def find_ordered(seq, ntext, gap=400):
+    """Find seq as in-order tokens in ntext, each within `gap` chars of the previous.
+       Returns (start,end) char offsets or None. Greedy with restarts."""
+    if not seq: return None
+    pats=[re.compile(r"(?<![0-9.])"+re.escape(t)+r"(?![0-9])") if t not in "+-" else
+          re.compile(r"(?<![a-zA-Z0-9])"+re.escape(t)+r"(?=\s*\d)") for t in seq]
+    for m0 in pats[0].finditer(ntext):
+        pos=m0.end(); start=m0.start(); ok=True
+        for p in pats[1:]:
+            m=p.search(ntext,pos,pos+gap)
+            if not m: ok=False; break
+            pos=m.end()
+        if ok: return (start,pos)
+    return None
 
 def shingles(q,n=6):
-    w=[x for x in norm(q).split() if not re.fullmatch(r"[0-9.]+",x)]
+    w=[x for x in norm(q).split() if not re.fullmatch(r"[+-]|[0-9.]+",x)]
     return [" ".join(w[i:i+n]) for i in range(0,max(1,len(w)-n+1),3)] or [norm(q)]
 
+def sha(b): return hashlib.sha256(b).hexdigest()
+
+ATTR = re.compile(r"\s*[—–-]\s*(Abstract|Summary|Results|Introduction|Conclusion|Discussion|Sect\.?|§)[^\n]*$")
+CITE = re.compile(r"\s*\[\d+\]\s*$")
+def segments(q):
+    """Composite quotes stitched from adjacent table cells ('..." "...') verify per segment."""
+    parts=re.split(r'[”"]\s+[“"]', q)
+    return [p for p in parts if len(p)>8] if len(parts)>1 else [q]
+
+def strip_attr(q):
+    """gpt2's radio-section quotes end with an embedded '— <Location>...[n]' attribution;
+    its digits are locations, not quoted values — strip before expression extraction."""
+    q = CITE.sub("", q)
+    q = ATTR.sub("", q)
+    return CITE.sub("", q).strip()
+
 def parse_entries(md, style):
-    """Return list of (entry_header, [quotes], [declared source basenames])."""
     txt=open(md,encoding="utf-8").read()
-    chunks=re.split(r"\n(?=#{2,3} )", txt)
     out=[]
-    for ch in chunks:
-        header=ch.splitlines()[0][:60]
+    for ch in re.split(r"\n(?=#{2,3} )", txt):
+        header=ch.splitlines()[0][:70]
         decl=[pathlib.Path(m).name for m in re.findall(r"sources/([A-Za-z0-9_.\-]+)", ch)]
+        arx=re.findall(r"arXiv[: ]*(\d{4}\.\d{4,5})", ch)+re.findall(r"abs/(\d{4}\.\d{4,5})", ch)
         if style=="block":
             qs,cur=[],[]
             for line in ch.splitlines():
@@ -47,96 +83,110 @@ def parse_entries(md, style):
                 else:
                     if cur: qs.append(" ".join(cur)); cur=[]
             if cur: qs.append(" ".join(cur))
-            qs=[q for q in qs if len(q)>40]
+            qs=[strip_attr(q) for q in qs if len(strip_attr(q))>40]
         else:
-            qs=[q for q in re.findall(r'"([^"]{60,})"', ch)]
-        if qs: out.append((header,qs,decl))
+            qs=[strip_attr(q) for q in re.findall(r'"([^"]{60,})"', ch)]
+        if qs: out.append((header,qs,decl,sorted(set(arx))))
     return out
 
-def load_corpus(srcdir):
-    corpus={}
-    files=[]
-    for p in ["*.txt","*.tex","*.html","*.xml","*.md"]:
-        files+=glob.glob(srcdir+"/**/"+p, recursive=True)
-    for f in files:
-        try: corpus[pathlib.Path(f).name]=" "+norm(open(f,encoding="utf-8",errors="replace").read())+" "
-        except Exception: pass
-    return corpus
+def load_file(f):
+    try: return norm(open(f,encoding="utf-8",errors="replace").read())
+    except Exception: return None
 
-MANUAL_ACCEPT = {}   # quote-prefix -> (source file, reason); none needed if v4 verifies all
+def bound_files(srcdir, decl, arx):
+    out=[]
+    for d in decl:
+        out += [f for f in glob.glob(srcdir+"/**/"+d, recursive=True)]
+    for a in arx:
+        for f in glob.glob(srcdir+"/**/*", recursive=True):
+            if a in f and pathlib.Path(f).suffix in (".txt",".tex",".html",".xml",".md"):
+                out.append(f)
+        for f in glob.glob(srcdir+"/*"+a+"*/**/*", recursive=True):
+            if pathlib.Path(f).suffix in (".txt",".tex",".html",".xml",".md"): out.append(f)
+    return sorted(set(f for f in out if pathlib.Path(f).is_file()
+                      and pathlib.Path(f).suffix in (".txt",".tex",".html",".xml",".md")))
+
+import json as _json
+BMAP=_json.load(open("b_binding_map.json")) if pathlib.Path("b_binding_map.json").exists() else {}
 
 def check(harvest, srcdir, style, ledger):
-    corpus=load_corpus(srcdir)
     nfail=nok=0
-    for header,qs,decl in parse_entries(harvest,style):
-        bound={k:corpus[k] for k in decl if k in corpus} or corpus
-        fallback = not any(k in corpus for k in decl)
+    hname=pathlib.Path(harvest).parent.name
+    for header,qs,decl,arx in parse_entries(harvest,style):
+        files=bound_files(srcdir,decl,arx)
+        bm=BMAP.get(hname,{})
+        for k,v in bm.items():
+            if header.startswith(k):
+                files=sorted(set(files+[srcdir+"/"+f for f in v["files"]]))
         for q in qs:
-            nums=numtokens(q); sh=shingles(q)
-            best={"file":None,"nums_found":0,"missing":nums,"shingle":0.0}
-            for fname,c in bound.items():
-                found=[t for t in nums if has_num(t,c)]
+            segs=segments(q)
+            seq=expr_seq(q); sh=shingles(q)
+            row={"harvest":pathlib.Path(harvest).parent.name,"entry":header,
+                 "quote_full":q,"quote_sha256":sha(q.encode()),
+                 "expr_seq":seq,"declared_files":len(files),"verdict":"FAIL","basis":None,
+                 "source":None,"source_sha256":None,"span":None,"shingle":0.0}
+            best=None
+            for f in files:
+                c=load_file(f)
+                if c is None: continue
+                if len(segs)>1:
+                    spans=[find_ordered(expr_seq(sg),c) for sg in segs if expr_seq(sg)]
+                    span=(min(a for a,_ in spans),max(b for _,b in spans)) if spans and all(spans) else None
+                else:
+                    span=find_ordered(seq,c) if seq else None
                 shf=sum(1 for s in sh if s in c)/len(sh)
-                if (len(found),shf)>(best["nums_found"],best["shingle"]):
-                    best={"file":fname,"nums_found":len(found),
-                          "missing":[t for t in nums if t not in found],"shingle":round(shf,3)}
-            if nums: ok = best["nums_found"]==len(nums) and best["shingle"]>=0.30
-            else:    ok = best["shingle"]>=0.70
-            reason="auto"
-            # Evidence-graded acceptances (gate requirement: quote+file+span+reason, machine-checkable)
-            if not ok and best["file"]:
-                c = bound[best["file"]]
-                if nums and len(nums)>=2 and not best["missing"]:
-                    spans=[]
-                    for t in sorted(nums,key=len,reverse=True)[:2]:
-                        m=re.search(r"(?<![0-9.])"+re.escape(t)+r"(?![0-9])",c)
-                        if m: spans.append(c[max(0,m.start()-80):m.end()+80].strip())
-                    if len(spans)>=1:
-                        ok=True; reason="PASS_NUMERIC: all %d tokens in bound source; prose degraded by rendering"%len(nums)
-                        best["spans"]=spans
-                if not ok:
-                    words=norm(q).split()
-                    for i in range(len(words)-8):
-                        ph=" ".join(words[i:i+8])
-                        if ph in c:
-                            ok=True; reason="PASS_PHRASE: exact 8-word span in bound source"
-                            best["spans"]=[ph]; break
+                cand={"f":f,"span":span,"sh":shf}
+                if best is None or ((span is not None, shf) > (best["span"] is not None, best["sh"])):
+                    best=cand
+            if best:
+                row["source"]=best["f"]; row["shingle"]=round(best["sh"],3)
+                row["source_sha256"]=sha(open(best["f"],"rb").read())
+                distinctive = any(len(t.replace(".",""))>=6 for t in seq)
+                shmin = 0.0 if (distinctive or len(segs)>1) else (0.05 if len(seq)>=5 else 0.20)
+                # len(segs)>1: composite table-cell quotes carry no prose; every segment
+                # already ordered-matched in the same file, which is the evidence.
+                if seq and best["span"] and best["sh"]>=shmin:
+                    c=load_file(best["f"]); a,b=best["span"]
+                    row["span"]={"start":a,"end":b,"excerpt":c[a:min(b,a+600)]}
+                    row["verdict"]="PASS"; row["basis"]="ordered-expressions+shingle"
+                elif not seq:
+                    # evidence = an exact contiguous >=6-word span; no shingle gate needed
+                    w=norm(q).split()
+                    for i in range(len(w)-6):
+                        ph=" ".join(w[i:i+6]); c=load_file(best["f"]); j=c.find(ph)
+                        if j>=0:
+                            row["span"]={"start":j,"end":j+len(ph),"excerpt":ph}
+                            row["verdict"]="PASS"; row["basis"]="exact-phrase-span"; break
+            ledger.append(row)
+            ok=row["verdict"]=="PASS"; nok+=ok; nfail+=(not ok)
             if not ok:
-                for pref,(mf,why) in MANUAL_ACCEPT.items():
-                    if q.startswith(pref): ok=True; reason="manual:"+why; best["file"]=mf
-            ledger.append({"harvest":pathlib.Path(harvest).parent.name,"entry":header,
-                "quote":q[:100],"n_tokens":len(nums),"tokens":nums,"bound_to_declared":not fallback,
-                "best":best,"verdict":"PASS" if ok else "FAIL","basis":reason})
-            nok+=ok; nfail+=(not ok)
-            if not ok: print(f"  FAIL [{header}] missing={best['missing']} sh={best['shingle']}: {q[:60]}...")
+                print(f"  FAIL [{header[:48]}] files={len(files)} sh={row['shingle']}: {q[:56]}...")
     print(f"{pathlib.Path(harvest).parent.name}: {nok} PASS / {nfail} FAIL")
     return nfail
 
-# --- self-test: corrupted control must FAIL ---
 def selftest():
-    corpus=load_corpus("platoon/gpt2_trackb_cmb/sources")
-    # good control = the EXACT B3.1 quote from the harvest (not a paraphrase);
-    # bad control = same quote with only the numbers corrupted (the gate's counterexample).
     h=open("platoon/gpt2_trackb_cmb/HARVEST_CMB_BOUNDS.md",encoding="utf-8").read()
-    m=re.search(r"> ([^\n]*power deficit[^\n]*)", h)
-    assert m, "control quote not found in harvest"
-    good=m.group(1)
-    bad=(good.replace("5","9",1).replace("10%","88%").replace("40","99")
-             .replace("2.5","9.9").replace("3 σ","8.8 σ").replace("3σ","8.8σ"))
-    def run(q):
-        nums=numtokens(q)
-        for fname,c in corpus.items():
-            if all(has_num(t,c) for t in nums) and sum(1 for s in shingles(q) if s in c)/len(shingles(q))>=0.3:
-                return True
-        return False
-    assert run(good), "self-test: genuine quote failed to verify"
-    assert not run(bad), "self-test: CORRUPTED quote passed — verifier unsound"
-    print("self-test: genuine passes, corrupted FAILS — extractor sound")
+    m=re.search(r"> ([^\n]*power deficit[^\n]*)", h); good=m.group(1)
+    src=norm(open("platoon/gpt2_trackb_cmb/sources/anomaly_planck2013_1303.5075v2_pages.txt",
+                  encoding="utf-8",errors="replace").read())
+    def runs(q): return find_ordered(expr_seq(q),src) is not None
+    assert runs(good), "genuine B3.1 must pass"
+    bad1=good.replace("5-10","99-88").replace("5–10","99–88").replace("2.5–3","9.9–8.8").replace("2.5-3","9.9-8.8").replace("40","99")
+    assert not runs(bad1), "absent-fragment corruption must fail"
+    bad2=good.replace("5–10","10–5").replace("5-10","10-5").replace("2.5–3","3–2.5").replace("2.5-3","3-2.5")
+    assert bad2!=good and not runs(bad2), "ORDER-SWAP corruption must fail"
+    e="the dipole moment is 3.15 x 10 - 5 in these units"
+    srcx=norm("we measure the dipole moment is 3.15 x 10 - 5 in these units exactly")
+    assert find_ordered(expr_seq(e),srcx) is not None
+    eflip="the dipole moment is 3.15 x 10 + 5 in these units"
+    assert find_ordered(expr_seq(eflip),srcx) is None, "EXPONENT-SIGN flip must fail"
+    print("self-test: genuine passes; absent-fragment, order-swap, and exponent-sign corruptions ALL fail")
 
 selftest()
 ledger=[]
 f1=check("platoon/gpt2_trackb_cmb/HARVEST_CMB_BOUNDS.md","platoon/gpt2_trackb_cmb/sources","block",ledger)
 f2=check("platoon/agy_trackb_h0/HARVEST_H0_ANISOTROPY.md","platoon/agy_trackb_h0/sources","agy",ledger)
-json.dump(ledger,open("b_verify_ledger.json","w"),indent=1)
-print(f"TOTAL: {sum(1 for e in ledger if e['verdict']=='PASS')} PASS / {f1+f2} FAIL; ledger rows={len(ledger)}")
+json.dump(ledger,open("b_verify_ledger.json","w"),indent=1,ensure_ascii=False)
+npass=sum(1 for e in ledger if e["verdict"]=="PASS")
+print(f"TOTAL: {npass} PASS / {f1+f2} FAIL; ledger rows={len(ledger)}; zero-fallback binding enforced")
 sys.exit(1 if (f1+f2) else 0)

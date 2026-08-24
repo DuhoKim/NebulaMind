@@ -2,1168 +2,1216 @@
  {
   "harvest": "gpt2_trackb_cmb",
   "entry": "### Planck final Solar-dipole measurement",
-  "quote": "\u201cTable 2. COBE, WMAP, LFI, HFI, and combined Planck measurements of the Solar dipole. The uncertaint",
-  "n_tokens": 8,
-  "tokens": [
-   "0.005",
-   "0.011",
-   "0.99",
-   "2",
+  "quote_full": "“Table 2. COBE, WMAP, LFI, HFI, and combined Planck measurements of the Solar dipole. The uncertainties are dominated by systematic effects, whose assessment is discussed in Planck Collaboration II (2018) and Planck Collaboration III (2018).”  “Amplitude [µK_CMB] … Galactic coordinates … l [deg] … b [deg]”  “Planck 2018 … 3362.08 ± 0.99 … 264.021 ± 0.011 … 48.253 ± 0.005”",
+  "quote_sha256": "bf3ccc146131681c6c03c965b7ef2f0d04c087462e2895924103a1b697cb4a11",
+  "expr_seq": [
    "2018",
-   "264.021",
+   "2018",
+   "2018",
    "3362.08",
-   "48.253"
+   "0.99",
+   "264.021",
+   "0.011",
+   "48.253",
+   "0.005"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_planck2018_overview_1807.06205v2.txt",
-   "nums_found": 8,
-   "missing": [],
-   "shingle": 0.538
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_planck2018_overview_1807.06205v2.txt",
+  "source_sha256": "4c4b44a4e9346af1a7c235e079319d983bea0ca3b3d6d02bde5db44ba3da3aa9",
+  "span": {
+   "start": 7105,
+   "end": 19384,
+   "excerpt": "2018 release 52 dominantly adiabatic kogut et al 2003 from the phasing of a.1 papers in the 2018 release 52 the peaks and polarization and provided multiple simultane- a.2 data products in the 2018 release 52 ous tight constraints on cosmological parameters bennett et al 2003 - a legacy that the planck mission has continued and en- b changes for the 2018 release 52 riched sect 3.2 b.1 2018 lfi processing improvements 52 planck was the third-generation space mission dedicated to b.2 2018 hfi processing improvements 53 measurements of cmb anisotropies it was a tremendous tech- b.3 simulations 53"
+  },
+  "shingle": 0.538
  },
  {
   "harvest": "gpt2_trackb_cmb",
   "entry": "### Planck final Solar-dipole measurement",
-  "quote": "\u201cThe dipole amplitude corresponds to \u03b2 \u2261 v/c = (1.23357 \u00b1 0.00036) \u00d7 10\u22123 or v = (369.82 \u00b1 0.11) km ",
-  "n_tokens": 7,
-  "tokens": [
-   "0.00036",
-   "0.11",
-   "1",
+  "quote_full": "“The dipole amplitude corresponds to β ≡ v/c = (1.23357 ± 0.00036) × 10−3 or v = (369.82 ± 0.11) km s−1, where we have added in the systematic uncertainties linearly.”",
+  "quote_sha256": "7a7d840bf63b2adbc11cffc169010e5af3a365659542cfad7be97de73fd79069",
+  "expr_seq": [
    "1.23357",
+   "0.00036",
    "10",
+   "-",
    "3",
-   "369.82"
+   "369.82",
+   "0.11"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_planck2018_overview_1807.06205v2.txt",
-   "nums_found": 7,
-   "missing": [],
-   "shingle": 0.5
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_planck2018_overview_1807.06205v2.txt",
+  "source_sha256": "4c4b44a4e9346af1a7c235e079319d983bea0ca3b3d6d02bde5db44ba3da3aa9",
+  "span": {
+   "start": 21050,
+   "end": 21091,
+   "excerpt": "1.23357 0.00036 x 10 - 3 or v 369.82 0.11"
+  },
+  "shingle": 0.5
  },
  {
   "harvest": "gpt2_trackb_cmb",
   "entry": "### Planck final Solar-dipole measurement",
-  "quote": "\u201cWe distinguish between two dipoles related to motion with respect to the CMB rest frame. The first ",
-  "n_tokens": 0,
-  "tokens": [],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_planck2018_overview_1807.06205v2.txt",
-   "nums_found": 0,
-   "missing": [],
-   "shingle": 0.6,
-   "spans": [
-    "we distinguish between two dipoles related to motion"
-   ]
-  },
+  "quote_full": "“We distinguish between two dipoles related to motion with respect to the CMB rest frame. The first is the ‘Solar dipole,’ induced by the motion of the Solar System barycentre with respect to the CMB.”",
+  "quote_sha256": "0a85ac3d0f32fa52a361fae7f2ce69455a067a5ba48f24658d0375f47aff1e89",
+  "expr_seq": [],
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "PASS_PHRASE: exact 8-word span in bound source"
+  "basis": "exact-phrase-span",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_planck2018_overview_1807.06205v2.txt",
+  "source_sha256": "4c4b44a4e9346af1a7c235e079319d983bea0ca3b3d6d02bde5db44ba3da3aa9",
+  "span": {
+   "start": 14020,
+   "end": 14062,
+   "excerpt": "we distinguish between two dipoles related"
+  },
+  "shingle": 0.6
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constrai",
-  "quote": "\u201cCombining these new measurements with the dipole one we get the first constraints on the intrinsic ",
-  "n_tokens": 2,
-  "tokens": [
-   "3.7",
+  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constraint",
+  "quote_full": "“Combining these new measurements with the dipole one we get the first constraints on the intrinsic CMB dipole. Assuming a standard dipolar lensing contribution we can put an upper limit on the intrinsic amplitude: 3.7mK (95% CI).”",
+  "quote_sha256": "201ab8074ef700135b8b1b761e30206cda0ab1f02df87de5ec3fbc4a1ad1a051",
+  "expr_seq": [
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_arxiv_metadata_2011.08385.xml",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.909
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_arxiv_metadata_2011.08385.xml",
+  "source_sha256": "d7fc9ccb820d74da560af587c7a8221715b3b98839e77fef8983cdfc7059f468",
+  "span": {
+   "start": 1713,
+   "end": 1715,
+   "excerpt": "95"
+  },
+  "shingle": 0.909
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constrai",
-  "quote": "\u201cSMICA < 3.6 mK [95% CI]\u201d  \u201cNILC < 3.7 mK [95% CI]\u201d",
-  "n_tokens": 3,
-  "tokens": [
+  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constraint",
+  "quote_full": "“SMICA < 3.6 mK [95% CI]”  “NILC < 3.7 mK [95% CI]”",
+  "quote_sha256": "22c9771166103e0a04b515b81b3347d73c9fee6227d184dde8dea4ad90c0e22f",
+  "expr_seq": [
    "3.6",
+   "95",
    "3.7",
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_ferreira_quartin_2011.08385v2.txt",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.0,
-   "spans": [
-    "berration effect of any kind. t t ee 1 int ng amplitude value 95 ci value smica 3.6 mk 95 ci 0.1 1.0 3.0 3.9 0.7 has uncertainties which are gaussian 29 . the full",
-    "2021 lensing contribution we can put an upper limit on the intrinsic amplitude 3.7mk 95 ci . we estimate the peculiar velocity of the solar system without assumin"
-   ]
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 3 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_ferreira_quartin_2011.08385v2.txt",
+  "source_sha256": "efa1f2f88cd9e1aca7333892d4f0bcd8f3ba74c35d85d8e53614a45c02db0c4a",
+  "span": {
+   "start": 1231,
+   "end": 17133,
+   "excerpt": "3.7mk 95 ci we estimate the peculiar velocity of the solar system without assuming a negligible intrinsic dipole con- tribution v 300+111 + 111 - 93 km s with l b 276 33 51 19 smica and v 296 - 88 km s with l b 280 33 50 20 nilc with negligible systematic contributions these values are consistent with the peculiar velocity hypothesis of the dipole introduction the cmb temperature dipole is the in the last 30 years 8 - 13 these measurements have a largest cmb anisotropy not coming from foregrounds number of potential systematics 14 and the reported and has been precisely measured since a few de"
+  },
+  "shingle": 0.0
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constrai",
-  "quote": "\u201cThe results for \u22061,int and \u03b1NG are shown in Table III using 95% CI. In all cases the values are con",
-  "n_tokens": 2,
-  "tokens": [
+  "entry": "### Ferreira and Quartin: Planck Doppler/aberration constraint",
+  "quote_full": "“The results for ∆1,int and αNG are shown in Table III using 95% CI. In all cases the values are consistent with zero, so we only quote limits for |∆1,int|, which turns out to be similar to the observed ∆1 value.”  “We remark that these are the first direct constraints on the intrinsic CMB dipole, the largest mode in the SLS.”",
+  "quote_sha256": "211c34fa6c4782011008f2b3a41e83851780e82e5bded15dc454fb6fc3d7b364",
+  "expr_seq": [
    "1",
-   "95"
+   "95",
+   "1",
+   "1"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_ferreira_quartin_2011.08385v2.txt",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.333
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_ferreira_quartin_2011.08385v2.txt",
+  "source_sha256": "efa1f2f88cd9e1aca7333892d4f0bcd8f3ba74c35d85d8e53614a45c02db0c4a",
+  "span": {
+   "start": 17952,
+   "end": 18297,
+   "excerpt": "1 int and ng are shown the kinematic hypothesis the gray histograms assume in table iii using 95 ci in all cases the values are no doppler or aberration effects are present which means consistent with zero so we only quote limits for 1 int the leakage is not an issue and therefore the statistical which turns out to be similar to the observed 1"
+  },
+  "shingle": 0.333
  },
  {
   "harvest": "gpt2_trackb_cmb",
   "entry": "### Planck aberration/modulation measurement",
-  "quote": "\u201cHere we report a first measurement of this velocity signature using the aberration and modulation e",
-  "n_tokens": 6,
-  "tokens": [
-   "1",
-   "115",
+  "quote_full": "“Here we report a first measurement of this velocity signature using the aberration and modulation effects on the CMB temperature anisotropies, finding a component in the known dipole direction, (l, b) = (264°, 48°), of 384 km s−1 ± 78 km s−1 (stat.) ± 115 km s−1 (syst.). This is a significant confirmation of the expected velocity.”",
+  "quote_sha256": "5ec9ded7620f8b7c01a2e5427a6891cc3473d88ab521441c20b65c52a8483549",
+  "expr_seq": [
    "264",
-   "384",
    "48",
-   "78"
+   "384",
+   "78",
+   "115"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_planck_aberration_1303.5087v3.txt",
-   "nums_found": 6,
-   "missing": [],
-   "shingle": 0.667
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_arxiv_metadata_1303.5087.xml",
+  "source_sha256": "28f856d530e03f83c2e8cd444eba6da0da657d581c93933030225a37b2e371df",
+  "span": {
+   "start": 1867,
+   "end": 1912,
+   "excerpt": "264 48 deg of 384km s + - 78km s stat + - 115"
+  },
+  "shingle": 0.733
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "### Schwarz, Copi, Huterer, and Starkman: indirect allowance",
-  "quote": "\u201cIt is important to note here that the observed dipole could also receive contributions from effects",
-  "n_tokens": 1,
-  "tokens": [
+  "entry": "### Schwarz, Copi, Huterer, and Starkman: indirect allowance stated fr",
+  "quote_full": "“It is important to note here that the observed dipole could also receive contributions from effects other than the Solar System’s proper motion. These could be as large as 40 per cent without contradicting the Planck measurement at the highest multipole moments.”",
+  "quote_sha256": "53c51aa0cd6f4aa360a93f561c8f78b3023c54be7fd6439aca1a323addd086ac",
+  "expr_seq": [
    "40"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "dipole_schwarz_et_al_1510.07929v1.txt",
-   "nums_found": 1,
-   "missing": [],
-   "shingle": 0.923
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_schwarz_et_al_1510.07929v1.txt",
+  "source_sha256": "9ace770dbe2451eae6ce2904c8f6d271b8a45c730cf8af6423dcc3c735d32d78",
+  "span": {
+   "start": 3851,
+   "end": 3853,
+   "excerpt": "40"
+  },
+  "shingle": 0.923
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Ellis & Baldwin \u2014 test definition",
-  "quote": "\u201cIf the standard interpretation of the dipole anisotropy in the microwave background radiation as be",
-  "n_tokens": 2,
-  "tokens": [
-   "1",
-   "377"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_ellis_baldwin_1984.txt",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.783
-  },
+  "entry": "## Ellis & Baldwin — test definition",
+  "quote_full": "“If the standard interpretation of the dipole anisotropy in the microwave background radiation as being due to our peculiar velocity in a homogeneous isotropic universe is correct, then radio-source number counts must show a similar anisotropy. Conversely, determination of a dipole anisotropy in those counts determines our velocity relative to their rest frame; this velocity must agree with that determined from the microwave background radiation anisotropy.”",
+  "quote_sha256": "df807dad4f4b7cea08317cc0b69a8f2b24cf3f76cc2159299f1822ce730486a9",
+  "expr_seq": [],
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "exact-phrase-span",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_ellis_baldwin_1984.txt",
+  "source_sha256": "9252c17eaa2ec6e99ab1e45911d7a0c432fa24d193e7ffb826fbcf3c3ec8bb42",
+  "span": {
+   "start": 241,
+   "end": 278,
+   "excerpt": "if the standard interpretation of the"
+  },
+  "shingle": 0.857
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Singal \u2014 NVSS excess claim",
-  "quote": "\u201cOur results give a direction of the velocity vector in agreement with the Cosmic Microwave Backgrou",
-  "n_tokens": 7,
-  "tokens": [
-   "1",
+  "entry": "## Singal — NVSS excess claim",
+  "quote_full": "“Our results give a direction of the velocity vector in agreement with the Cosmic Microwave Background Radiation (CMBR) value, but the magnitude (∼ 1600 ± 400 km/s) is ∼ 4 times the CMBR value (369 ± 1 km/s) at a statistically significant (∼ 3σ) level.”",
+  "quote_sha256": "467061cd95c907804c29a99e3ab50b185d16d55cd0a6895033aad1d04e425c5c",
+  "expr_seq": [
    "1600",
-   "2",
-   "3",
+   "400",
+   "4",
    "369",
-   "4",
-   "400"
+   "1",
+   "3"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_singal_2011_v1.txt",
-   "nums_found": 7,
-   "missing": [],
-   "shingle": 0.5
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_singal_2011_v1.txt",
+  "source_sha256": "906bb11df4341bef3515358b3573aa2fbe42b798403af45b0be23df946813f6c",
+  "span": {
+   "start": 1453,
+   "end": 1536,
+   "excerpt": "1600 400 km s is 4 times the cmbr value 369 1 km s at a statistically significant 3"
+  },
+  "shingle": 0.545
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Secrest et al. \u2014 CatWISE quasar dipole",
-  "quote": "\u201cOur sample of 1,355,352 quasars exhibits a dipole with amplitude D = 0.01554, pointing towards (l, ",
-  "n_tokens": 12,
-  "tokens": [
-   "0.007",
-   "0.01554",
+  "entry": "## Secrest et al. — CatWISE quasar dipole",
+  "quote_full": "“Our sample of 1,355,352 quasars exhibits a dipole with amplitude D = 0.01554, pointing towards (l, b) = (238.°2, 28.°8). This is 27.°8 from the direction of the CMB dipole and over twice as large as the expected amplitude of ∼ 0.007, using Equation 1.”",
+  "quote_sha256": "91c6320c9c3db0bbf8cfabdae7de9f943a03731f28baaeed56f6be8d7210865d",
+  "expr_seq": [
    "1",
-   "2",
-   "238",
-   "27",
-   "28",
-   "352",
    "355",
-   "4",
-   "5",
-   "8"
+   "352",
+   "0.01554",
+   "2",
+   "8",
+   "8",
+   "0.007"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_secrest_et_al_2021_v2.txt",
-   "nums_found": 12,
-   "missing": [],
-   "shingle": 0.182,
-   "spans": [
-    "a dipole cosmological constant and this has led to today s con with amplitude d 0.01554 pointing towards l b cordance cdm model. if the purely kinematic inter 238. 2 2",
-    "he expected procedure is in fact suspect then so are the important amplitude of 0.007 using equation 1. the ampli conclusions that follow from adopting it. in fact a"
-   ]
-  },
+  "declared_files": 3,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 12 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_secrest_et_al_2009.14826v2.txt",
+  "source_sha256": "9f8e8c4162ba8e9ce41f6e6261d132794f48f31230e56d100f95e967006c39e0",
+  "span": {
+   "start": 19923,
+   "end": 20340,
+   "excerpt": "1 355 352 quasars exhibits a dipole cosmological constant and this has led to today s con- with amplitude d 0.01554 pointing towards l b cordance cdm model if the purely kinematic inter- 238. 2 28. 8 this is 27. 8 from the direction of the pretation of the cmb dipole that underpins the above cmb dipole and over twice as large as the expected procedure is in fact suspect then so are the important amplitude of 0.007"
+  },
+  "shingle": 0.2
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Secrest et al. \u2014 CatWISE quasar dipole",
-  "quote": "\u201cWhile the direction of the dipole in the quasar sky is similar to that of the cosmic microwave back",
-  "n_tokens": 6,
-  "tokens": [
-   "1",
+  "entry": "## Secrest et al. — CatWISE quasar dipole",
+  "quote_full": "“While the direction of the dipole in the quasar sky is similar to that of the cosmic microwave background (CMB), its amplitude is over twice as large as expected, rejecting the canonical, exclusively kinematic interpretation of the CMB dipole with a p-value of 5 × 10−7 (4.9σ for a normal distribution, one-sided), the highest significance achieved to date in such studies.”",
+  "quote_sha256": "8abcf7af771558a96049225e4e15106108641fef4f767f170e1542fd641bae10",
+  "expr_seq": [
+   "5",
    "10",
-   "4",
-   "4.9",
-   "5",
-   "7"
+   "-",
+   "7",
+   "4.9"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_secrest_et_al_2021_v2.txt",
-   "nums_found": 6,
-   "missing": [],
-   "shingle": 0.85
-  },
+  "declared_files": 3,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_arxiv_metadata_2009.14826.xml",
+  "source_sha256": "6540a60213cb060fe57678f054b3777295a5fe1eb2e1027eda2cb6c49d39b6e6",
+  "span": {
+   "start": 1604,
+   "end": 1616,
+   "excerpt": "5 10 - 7 4.9"
+  },
+  "shingle": 0.889
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Darling \u2014 radio counter-result",
-  "quote": "\u201cTypical fits find a 331+161/\u2212107 km s\u22121 velocity dipole with apex (l, b) = (271+55/\u221258, 56+13/\u221235) ",
-  "n_tokens": 21,
-  "tokens": [
-   "1",
+  "entry": "## Darling — radio counter-result",
+  "quote_full": "“Typical fits find a 331+161/−107 km s−1 velocity dipole with apex (l, b) = (271+55/−58, 56+13/−35) in Galactic coordinates from source counts and 399+264/−199 km s−1 toward (l, b) = (301+30/−30, 43+19/−17) from radio fluxes. These are consistent with the CMB-solar velocity, 370 km s−1 toward (l, b) = (264, 48).”",
+  "quote_sha256": "56eb2e8f14df4d7bdaf7b93ba248035fa1e2a355d52e6c85fbe5a1bc7f3dec55",
+  "expr_seq": [
+   "-",
    "107",
-   "13",
-   "161",
-   "17",
-   "19",
-   "199",
-   "264",
-   "271",
-   "30",
-   "301",
-   "331",
+   "-",
+   "58",
+   "-",
    "35",
+   "-",
+   "199",
+   "-",
+   "30",
+   "-",
+   "17",
    "370",
-   "399",
-   "43",
-   "48",
-   "5",
-   "55",
-   "56",
-   "58"
+   "264",
+   "48"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_darling_2022_v1.txt",
-   "nums_found": 21,
-   "missing": [],
-   "shingle": 0.154,
-   "spans": [
-    "ral different methods and all show similar results. typical fits find a 331 161 107 km s 1 velocity dipole with apex b 271 55 13 58 56 35 in galactic coordinates f",
-    "several different methods and all show similar results. typical fits find a 331 161 107 km s 1 velocity dipole with apex b 271 55 13 58 56 35 in galactic coordinat"
-   ]
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 21 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_darling_2022_v1.txt",
+  "source_sha256": "54f5a0b07279af86330224de98fcf32c8ce50c97eb6da9a24c36e55de364a479",
+  "span": {
+   "start": 1396,
+   "end": 1663,
+   "excerpt": "- 107 km s - 1 velocity dipole with apex b 271+55 + 13 - 58 56 - 35 in galactic coordinates from source + 264 + 30 + 19 counts and 399 - 199 km s-1 toward b 301 - 30 43 - 17 from radio fluxes these are consistent with the cmb-solar velocity 370 km s-1 toward b 264 48"
+  },
+  "shingle": 0.143
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Secrest et al. \u2014 joint radio-galaxy/quasar statistic",
-  "quote": "\u201cUsing a completely general statistic that accounts for correlation between the found dipole amplitu",
-  "n_tokens": 10,
-  "tokens": [
-   "1",
+  "entry": "## Secrest et al. — joint radio-galaxy/quasar statistic",
+  "quote_full": "“Using a completely general statistic that accounts for correlation between the found dipole amplitude and its directional offset from the CMB dipole, the null hypothesis is independently rejected by the radio galaxy and quasar samples with p-value of 8.9 × 10−3 and 1.2 × 10−5, respectively, corresponding to 2.6σ and 4.4σ significance. The joint significance, using sample size-weighted Z-scores, is 5.1σ.”",
+  "quote_sha256": "c9f4d30cf52073f1b0226d85428622663ba00ac0ac31ce23e1f42fcd0dbb58a5",
+  "expr_seq": [
+   "8.9",
+   "10",
+   "-",
+   "3",
    "1.2",
    "10",
+   "-",
+   "5",
    "2.6",
-   "3",
    "4.4",
-   "5",
-   "5.1",
-   "6",
-   "8.9"
+   "5.1"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_secrest_et_al_2022_v2.txt",
-   "nums_found": 10,
-   "missing": [],
-   "shingle": 0.737
-  },
+  "declared_files": 3,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_arxiv_metadata_2206.05624.xml",
+  "source_sha256": "85d4eb64f9d7215dbf25ab4eaae7fc5deb4186980d28d0b81b077c2554861873",
+  "span": {
+   "start": 2002,
+   "end": 2148,
+   "excerpt": "8.9 10 - 3 and 1.2 10 - 5 respectively corresponding to 2.6 and 4.4 significance the joint significance using sample size-weighted z-scores is 5.1"
+  },
+  "shingle": 0.765
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Secrest et al. \u2014 joint radio-galaxy/quasar statistic",
-  "quote": "\u201cThe consistency of the two dipoles improves if we boost to the CMB frame assuming its dipole to be ",
-  "n_tokens": 2,
-  "tokens": [
-   "1",
-   "6"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_secrest_et_al_2022_v2.txt",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.917
-  },
+  "entry": "## Secrest et al. — joint radio-galaxy/quasar statistic",
+  "quote_full": "“The consistency of the two dipoles improves if we boost to the CMB frame assuming its dipole to be fully kinematic, suggesting that cosmologically distant radio galaxies and quasars may have an intrinsic anisotropy in this frame.”",
+  "quote_sha256": "d74e2658a0d4d2df3f6d557e7cf01906df993d41355bba410eade47723dfe367",
+  "expr_seq": [],
+  "declared_files": 3,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "exact-phrase-span",
+  "source": "platoon/gpt2_trackb_cmb/sources/dipole_arxiv_metadata_2206.05624.xml",
+  "source_sha256": "85d4eb64f9d7215dbf25ab4eaae7fc5deb4186980d28d0b81b077c2554861873",
+  "span": {
+   "start": 2296,
+   "end": 2330,
+   "excerpt": "the consistency of the two dipoles"
+  },
+  "shingle": 1.0
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Dam, Lewis & Brewer \u2014 Bayesian CatWISE reanalysis",
-  "quote": "\u201cWe find unambiguous evidence for the presence of a dipole in the distribution of quasars with a dir",
-  "n_tokens": 4,
-  "tokens": [
-   "1",
+  "entry": "## Dam, Lewis & Brewer — Bayesian CatWISE reanalysis",
+  "quote_full": "“We find unambiguous evidence for the presence of a dipole in the distribution of quasars with a direction that is consistent with the dipole identified in the CMB. However, the amplitude of the dipole is found to be 2.7 times larger than that expected from the conventional kinematic explanation of the CMB dipole, with a statistical significance of 5.7σ.”",
+  "quote_sha256": "fcfedcb0f7caf19fe97f0e05538840dffefddf34eeedb4969638e77e1fe4d777",
+  "expr_seq": [
    "2.7",
-   "5.7",
-   "7"
+   "5.7"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_dam_et_al_2023_v2.txt",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.842
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_dam_et_al_2023_v2.txt",
+  "source_sha256": "49a44aa949aa2f0c81bf332ecc664130623acd40bacaddda422d9facbdccc684",
+  "span": {
+   "start": 1392,
+   "end": 1528,
+   "excerpt": "2.7 times larger than that expected from the conventional kinematic explanation of the cmb dipole with a statistical significance of 5.7"
+  },
+  "shingle": 0.889
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Dam, Lewis & Brewer \u2014 Bayesian CatWISE reanalysis",
-  "quote": "\u201cWe find P(D > DCMB | D) = 0.9999999888, corresponding to a statistical significance of 5.7\u03c3.\u201d \u2014 Res",
-  "n_tokens": 5,
-  "tokens": [
+  "entry": "## Dam, Lewis & Brewer — Bayesian CatWISE reanalysis",
+  "quote_full": "“We find P(D > DCMB | D) = 0.9999999888, corresponding to a statistical significance of 5.7σ.”",
+  "quote_sha256": "43b8658302153dc5bba52ce0da57941c7e855cd73a00ef747d2e56082b9e5f21",
+  "expr_seq": [
    "0.9999999888",
-   "2",
-   "5",
-   "5.7",
-   "7"
+   "5.7"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_dam_et_al_2023_v2.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.0,
-   "spans": [
-    "ky coverage for partial sky coverage the distribution is no we find p d d cmb d 0.9999999888 corresponding to a longer maxwellian due to the loss of isotropy. as we will sh",
-    "onal kinematic explanation of the cmb dipole with a statistical significance of 5.7 . to compare these results with theoretical expectations we sharpen the cdm pre"
-   ]
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 5 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_dam_et_al_2023_v2.txt",
+  "source_sha256": "49a44aa949aa2f0c81bf332ecc664130623acd40bacaddda422d9facbdccc684",
+  "span": {
+   "start": 21505,
+   "end": 21637,
+   "excerpt": "0.9999999888 corresponding to a longer maxwellian due to the loss of isotropy as we will show in the statistical significance of 5.7"
+  },
+  "shingle": 0.0
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Abghari et al. \u2014 masking/higher-multipole reassessment",
-  "quote": "\u201cSecondly, the 50 percent sky cut associated with the quasar catalogue strongly couples the multipol",
-  "n_tokens": 3,
-  "tokens": [
-   "1",
+  "entry": "## Abghari et al. — masking/higher-multipole reassessment",
+  "quote_full": "“Secondly, the 50 percent sky cut associated with the quasar catalogue strongly couples the multipoles, meaning that the power estimate at ℓ = 1 contains significant contributions from ℓ > 1. In particular, the dominant quadrupole mode in the Galactic mask strongly couples the dipole with the octupole, leading to a large uncertainty in the dipole amplitude. Together these issues mean that the dipole in the quasar catalogue has an uncertainty large enough that consistency with the cosmic microwave background (CMB) dipole cannot be ruled out.”",
+  "quote_sha256": "5a85360717e4beea15f5f695142a3747c038769f971ed90de89c11153fdada5f",
+  "expr_seq": [
    "50",
-   "9"
+   "1"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_abghari_et_al_2024_v2.txt",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.741
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_abghari_et_al_2024_v2.txt",
+  "source_sha256": "56fd7557de8240bdcaf1a4f87aef41a37fa3bf6db11ceb7c56bc0326684e0acb",
+  "span": {
+   "start": 1132,
+   "end": 1258,
+   "excerpt": "50 percent sky cut associated with the quasar catalogue strongly couples the multipoles meaning that the power estimate at l 1"
+  },
+  "shingle": 0.769
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Abghari et al. \u2014 masking/higher-multipole reassessment",
-  "quote": "\u201cWe demonstrate that with these systematic effects in the data, the p-value associated with the meas",
-  "n_tokens": 4,
-  "tokens": [
-   "1",
-   "2",
-   "3",
-   "9"
+  "entry": "## Abghari et al. — masking/higher-multipole reassessment",
+  "quote_full": "“We demonstrate that with these systematic effects in the data, the p-value associated with the measurement of the aforementioned dipole magnitude will be notably reduced, approximately to the 2 σ significance level.”",
+  "quote_sha256": "aef09b48c04bfec5454017fd74ddf3b641a1ca13924d65b69e6514a22a8b9023",
+  "expr_seq": [
+   "2"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_abghari_et_al_2024_v2.txt",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.8
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_abghari_et_al_2024_v2.txt",
+  "source_sha256": "56fd7557de8240bdcaf1a4f87aef41a37fa3bf6db11ceb7c56bc0326684e0acb",
+  "span": {
+   "start": 118,
+   "end": 119,
+   "excerpt": "2"
+  },
+  "shingle": 0.889
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## B\u00f6hme et al. \u2014 overdispersed radio-source counts",
-  "quote": "\u201cCombining the two best understood wide-area surveys, NVSS and RACS-low, and the deepest wide-area s",
-  "n_tokens": 6,
-  "tokens": [
-   "0.49",
-   "1",
-   "10",
-   "2",
+  "entry": "## Böhme et al. — overdispersed radio-source counts",
+  "quote_full": "“Combining the two best understood wide-area surveys, NVSS and RACS-low, and the deepest wide-area survey, LoTSS-DR2, we find that the source count dipole exceeds its expected value as the kinematic dipole amplitude from standard cosmology by a factor of 3.67 ± 0.49 — a 5.4σ discrepancy.”",
+  "quote_sha256": "3265d1124dbbc5bfa1644d05d890827c110c1d946775614bd87ba227bbd520f3",
+  "expr_seq": [
    "3.67",
+   "0.49",
    "5.4"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_boehme_et_al_2025_v1.txt",
-   "nums_found": 6,
-   "missing": [],
-   "shingle": 0.867
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_boehme_et_al_2025_v1.txt",
+  "source_sha256": "5f7a8cbedcc258242bc70e74eca3abde2a4f49e752dd61e386d9a9163859dbf5",
+  "span": {
+   "start": 1806,
+   "end": 1823,
+   "excerpt": "3.67 0.49 - a 5.4"
+  },
+  "shingle": 1.0
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Bashir, Chingangbam & Appleby \u2014 clustering/mask reassessm",
-  "quote": "\u201cThe analysis yields a revised significance of 3.63\u03c3 in the absence of a clustering dipole, and 3.44",
-  "n_tokens": 5,
-  "tokens": [
-   "1",
-   "11",
-   "3.27",
+  "entry": "## Bashir, Chingangbam & Appleby — clustering/mask reassessment",
+  "quote_full": "“The analysis yields a revised significance of 3.63σ in the absence of a clustering dipole, and 3.44σ with a randomly oriented clustering dipole. When the clustering dipole is aligned with the kinematic dipole, the significance decreases further to 3.27σ. Although the anomaly is reduced, it cannot be explained solely by the clustering dipole or mode coupling from the survey mask.”",
+  "quote_sha256": "286010502447ec4bea765e75c2aa7f01406fbd3c7b5881b42739bb3f40f9370d",
+  "expr_seq": [
+   "3.63",
    "3.44",
-   "3.63"
+   "3.27"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_bashir_et_al_2026_v2.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.737
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_bashir_et_al_2026_v2.txt",
+  "source_sha256": "858cad70223af0d3b34759a9da613d01046700cde8c819591c853797e1e907c6",
+  "span": {
+   "start": 1391,
+   "end": 1592,
+   "excerpt": "3.63 in the absence of a clustering dipole and 3.44 with a randomly oriented clustering dipole when the clustering dipole is aligned with the kinematic dipole the significance decreases further to 3.27"
+  },
+  "shingle": 0.778
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Bashir, Chingangbam & Appleby \u2014 clustering/mask reassessm",
-  "quote": "\u201cWe further assess dipole measurement robustness by fitting models with successively higher-order mu",
-  "n_tokens": 3,
-  "tokens": [
-   "1",
-   "11",
-   "4"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "radio_bashir_et_al_2026_v2.txt",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.765
-  },
+  "entry": "## Bashir, Chingangbam & Appleby — clustering/mask reassessment",
+  "quote_full": "“We further assess dipole measurement robustness by fitting models with successively higher-order multipoles up to ℓ = 4. Partial sky coverage induces mode coupling, shifting the dipole estimate to higher values when the octopole is included and inflating its variance as additional modes are incorporated, reflected in the increasing condition number of the estimator.”",
+  "quote_sha256": "863dac7c9e9b03e8265b640f25ed389e425facfb9c92e577f8d06a6a10774f54",
+  "expr_seq": [],
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "exact-phrase-span",
+  "source": "platoon/gpt2_trackb_cmb/sources/radio_bashir_et_al_2026_v2.txt",
+  "source_sha256": "858cad70223af0d3b34759a9da613d01046700cde8c819591c853797e1e907c6",
+  "span": {
+   "start": 1718,
+   "end": 1765,
+   "excerpt": "we further assess dipole measurement robustness"
+  },
+  "shingle": 0.812
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Direct Planck low-\u2113 power-spectrum measurement \u2014 higher-s",
-  "quote": "\u201cWe find no indication of significant departures from the \u039bCDM framework. Finally, we report a tensi",
-  "n_tokens": 5,
-  "tokens": [
+  "entry": "## Direct Planck low-ℓ power-spectrum measurement — higher-significanc",
+  "quote_full": "“We find no indication of significant departures from the ΛCDM framework. Finally, we report a tension between the Planck best-fit ΛCDM model and the low-ℓ spectrum in the form of a power deficit of 5–10% at ℓ ≲ 40, with a statistical significance of 2.5–3 σ. Without a theoretically motivated model for this power deficit, we do not elaborate further on its cosmological implications, but note that this is our most puzzling finding in an otherwise remarkably consistent dataset.”",
+  "quote_sha256": "dd9e9e3834dc26e235066e6d7d7a46e124a50017d24349a48b7a5f610f870150",
+  "expr_seq": [
+   "5",
+   "-",
    "10",
-   "2.5",
-   "3",
    "40",
-   "5"
+   "2.5",
+   "-",
+   "3"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_planck2013_1303.5075v2_pages.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.75
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_planck2013_1303.5075v2.txt",
+  "source_sha256": "5f61039b317474b4143e507e21206e483b423ed6b40211effeedd27565b2441d",
+  "span": {
+   "start": 6343,
+   "end": 6398,
+   "excerpt": "5 - 10 at 40 with a statistical significance of 2.5 - 3"
+  },
+  "shingle": 0.739
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Planck large-angle temperature variance \u2014 mission-paper m",
-  "quote": "\u201cThe results for 1D moments presented here are in very good agreement with the Planck 2015 analysis ",
-  "n_tokens": 10,
-  "tokens": [
-   "0.5",
-   "0.7",
-   "0.8",
-   "1",
-   "15",
-   "16",
-   "2013",
+  "entry": "## Planck large-angle temperature variance — mission-paper measurement",
+  "quote_full": "“The results for 1D moments presented here are in very good agreement with the Planck 2015 analysis (PCIS15), showing a decreasing lower-tail probability with decreasing resolution. This lower-tail probability is related to the presence of the well known lack of power on large angular scales. However, in the previous analysis we found a minimum value for the probability of 0.5 % at Nside = 16 for all the maps considered, compared to a probability of roughly 1 % here. The difference can be explained by the fact that the 2018 common mask rejects less of the sky than the 2016 common mask, and previous work (PCIS15; Gruppuso et al. 2013) has shown that the low variance anomaly becomes less significant with increasing sky coverage. Indeed, when we apply the 2016 common mask to the current data set, the probability decreases to 0.7–0.8 %, in better agreement with the previous results.”",
+  "quote_sha256": "c9c1bfda2389a11dce2424d8e6b5eb30c466495145859dcc4458b3cf8e99700b",
+  "expr_seq": [
    "2015",
-   "2016",
-   "2018"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_planck2020_1906.02552v2_pages.txt",
-   "nums_found": 10,
-   "missing": [],
-   "shingle": 0.378
-  },
-  "verdict": "PASS",
-  "basis": "auto"
- },
- {
-  "harvest": "gpt2_trackb_cmb",
-  "entry": "## Planck large-angle temperature variance \u2014 mission-paper m",
-  "quote": "\u201cIn summary, we confirm previous results based on the analysis of the temperature anisotropy (PCIS13",
-  "n_tokens": 3,
-  "tokens": [
+   "0.5",
+   "16",
    "1",
-   "13",
-   "15"
+   "2018",
+   "2016",
+   "2013",
+   "2016",
+   "0.7",
+   "-",
+   "0.8"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_planck2020_1906.02552v2_pages.txt",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.385
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_planck2020_1906.02552v2.txt",
+  "source_sha256": "583401aa87ad3ec27b1064264ee151a159be39adccec02a5f2126cf61b0a0263",
+  "span": {
+   "start": 40473,
+   "end": 41783,
+   "excerpt": "2015 analysis pcis15 showing a decreasing lower- tail probability with decreasing resolution this lower-tail 2 probability is related to the presence of the well known lack cmb hq1 q2 + u1 u2 i - hqn n n n 1 q2 + u1 u2 imc 8 of power on large angular scales however in the previous analysis we found a minimum value for the probability of where q1 q2 u1 and u2 are the stokes parameters of the 0.5 at nside 16 for all the maps considered compared two maps from either the hm- or oe-cleaned data split n n to a probability of roughly 1 here the difference can be and hqn n 1 q2 + u1 u2 imc is the corr"
+  },
+  "shingle": 0.295
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## WMAP-team quadrupole posterior \u2014 low-significance positio",
-  "quote": "\u201cThe peak of the likelihood is at 200 \u00b5K\u00b2, the median is at 430 \u00b5K\u00b2, and the mean is at 1000 \u00b5K\u00b2. Th",
-  "n_tokens": 14,
-  "tokens": [
-   "0.824",
-   "000",
-   "1000",
-   "2",
+  "entry": "## Planck large-angle temperature variance — mission-paper measurement",
+  "quote_full": "“In summary, we confirm previous results based on the analysis of the temperature anisotropy (PCIS13; PCIS15), indicating that the data are consistent with Gaussianity, although exhibiting low variance on large angular scales, with a probability of about 1 % as compared to our fiducial cosmological model.”",
+  "quote_sha256": "6382ae674489588173fe54b40f74e31203e6df2f15692ce62d82bdc5377a20ea",
+  "expr_seq": [
+   "1"
+  ],
+  "declared_files": 2,
+  "verdict": "PASS",
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_planck2020_1906.02552v2.txt",
+  "source_sha256": "583401aa87ad3ec27b1064264ee151a159be39adccec02a5f2126cf61b0a0263",
+  "span": {
+   "start": 1726,
+   "end": 1727,
+   "excerpt": "1"
+  },
+  "shingle": 0.385
+ },
+ {
+  "harvest": "gpt2_trackb_cmb",
+  "entry": "## WMAP-team quadrupole posterior — low-significance position",
+  "quote_full": "“The peak of the likelihood is at 200 µK², the median is at 430 µK², and the mean is at 1000 µK². The 68% confidence range extends from 80 to 700 µK², and the 95% confidence range extends from 40 to 3200 µK². Figure 4 shows the cumulative quadrupole distribution derived from 300,000 Gibbs samples. The mean quadrupole predicted by the best-fit ΛCDM model lies at a cumulative probability of 0.824, well within the 95% confidence region allowed by the data. We conclude that the WMAP quadrupole measurement is not anomalously low. Further, while alternative models that predict a lower quadrupole will better match this specific part of the data, it is impossible to significantly favor such models on the basis of quadrupole power alone.”",
+  "quote_sha256": "dda574139889419c7f8c72a7fb00a23459aec6d20dc1390ee9a593e0dc97a05c",
+  "expr_seq": [
    "200",
-   "300",
+   "430",
+   "1000",
+   "68",
+   "80",
+   "700",
+   "95",
+   "40",
    "3200",
    "4",
-   "40",
-   "430",
-   "68",
-   "700",
-   "80",
+   "300",
+   "000",
+   "0.824",
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_bennett2011_1001.4758v2_pages.txt",
-   "nums_found": 14,
-   "missing": [],
-   "shingle": 0.556
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_bennett2011_1001.4758v2.txt",
+  "source_sha256": "0ab70971559d86239cc42ce50d2dd40ba82df1e30607a822f42f694048009368",
+  "span": {
+   "start": 24312,
+   "end": 24896,
+   "excerpt": "200 k2 the model as provide a small modification to it given the median is at 430 k2 and the mean is at 1000 k2 the evidence to date the wmap team is of the opinion 68 confidence range extends from 80 to 700 k2 and that there is insufficient statistical support to conclude the 95 confidence range extends from 40 to 3200 k2 that the cold spot is a cmb anomaly relative to cdm figure 4 shows the cumulative quadrupole distribu- tion derived from 300 000 gibbs samples the mean quadrupole predicted by the best-fit cdm model lies at a cumulative probability of 0.824 well within the 95"
+  },
+  "shingle": 0.528
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## WMAP-team quadrupole posterior \u2014 low-significance positio",
-  "quote": "\u201cAs can be seen, C(\u03b8) lies within the 95% confidence range of the best-fit \u039bCDM model for all \u03b8, as ",
-  "n_tokens": 1,
-  "tokens": [
+  "entry": "## WMAP-team quadrupole posterior — low-significance position",
+  "quote_full": "“As can be seen, C(θ) lies within the 95% confidence range of the best-fit ΛCDM model for all θ, as determined by Monte Carlo simulations. This supports the conclusion that there is no statistically significant lack of large-scale power on the full sky.”",
+  "quote_sha256": "0fda6f224bb8a26e94d9cbf2a6f33b58d077d9baca97df33cb0b7836425d2dff",
+  "expr_seq": [
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_bennett2011_1001.4758v2_pages.txt",
-   "nums_found": 1,
-   "missing": [],
-   "shingle": 0.462
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_bennett2011_1001.4758v2.txt",
+  "source_sha256": "0ab70971559d86239cc42ce50d2dd40ba82df1e30607a822f42f694048009368",
+  "span": {
+   "start": 2090,
+   "end": 2092,
+   "excerpt": "95"
+  },
+  "shingle": 0.417
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## WMAP-team quadrupole posterior \u2014 low-significance positio",
-  "quote": "\u201cThe full-sky angular correlation function lies within the 95% confidence range. For all of these re",
-  "n_tokens": 1,
-  "tokens": [
+  "entry": "## WMAP-team quadrupole posterior — low-significance position",
+  "quote_full": "“The full-sky angular correlation function lies within the 95% confidence range. For all of these reasons, we conclude that the large-angle CMB correlation function is consistent with ΛCDM.”",
+  "quote_sha256": "aaf084e1cc08feba39240af4aee6a4c704022ca5931f8f512b730d74eb1a00cd",
+  "expr_seq": [
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_bennett2011_1001.4758v2_pages.txt",
-   "nums_found": 1,
-   "missing": [],
-   "shingle": 0.625
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_bennett2011_1001.4758v2.txt",
+  "source_sha256": "0ab70971559d86239cc42ce50d2dd40ba82df1e30607a822f42f694048009368",
+  "span": {
+   "start": 2090,
+   "end": 2092,
+   "excerpt": "95"
+  },
+  "shingle": 0.5
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Low-quadrupole frequentist/Bayesian reassessment \u2014 low-si",
-  "quote": "\u201cThe WMAP quadrupole and octopole amplitudes in the publicly available data release are given as \u0394T\u2082",
-  "n_tokens": 10,
-  "tokens": [
-   "1",
+  "entry": "## Low-quadrupole frequentist/Bayesian reassessment — low-significance",
+  "quote_full": "“The WMAP quadrupole and octopole amplitudes in the publicly available data release are given as ΔT₂² = 123 µK² and ΔT₃² = 611 µK². The quadrupole amplitude in particular (shown by the dashed line in Figure 1) is much lower than the amplitude of the fiducial ΛCDM model. The Bennett et al. (2003a) WMAP summary paper lists the quadrupole amplitude as 154 ± 70 µK², slightly higher than the value in the public data release. The error on this number is a 95% confidence limit on the uncertainty associated mainly from modelling foreground Galactic emission.”",
+  "quote_sha256": "d603ce727e9186fb6678f6e13ec162f4db495512c39ed7db9d94ffb16a0afecd",
+  "expr_seq": [
    "123",
-   "154",
-   "2",
-   "2003",
-   "22",
-   "32",
    "611",
+   "1",
+   "154",
    "70",
    "95"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
-   "nums_found": 10,
-   "missing": [],
-   "shingle": 0.296,
-   "spans": [
-    "odels that might reproduce the low quadrupole the wmap satellite bennett et al. 2003a hinshaw et al. and octopole. for example s03 and tegmark de oliveira 2003 sper",
-    "the dp cl exp 2 clt 2ctl ct l publicly available data release are given as t22 123 k2 and t32 611 k2 . the quadrupole amplitude in par where clt is the expectatio"
-   ]
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 10 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
+  "source_sha256": "ed08cb7e3d014653ad4a736d3d4411bf9805ade2298f5b858a72553b9696a901",
+  "span": {
+   "start": 7990,
+   "end": 8482,
+   "excerpt": "123 k2 and t32 611 k2 the quadrupole amplitude in par- where clt is the expectation value of cl integrating equa- ticular shown by the dashed line in figure 1 is much tion 2 the probability of observing a value cl is given lower than the amplitude of the fiducial cdm model the by bennett et al 2003a wmap summary paper lists the 2l+1 2l+1 cl quadrupole amplitude as 154 70 k2 slightly higher than 2 2 ct the value in the public data release the error on this num- p cl 2l+1 l 3 2 ber is a 95"
+  },
+  "shingle": 0.296
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Low-quadrupole frequentist/Bayesian reassessment \u2014 low-si",
-  "quote": "\u201cFrom this Table, we see that the probability of observing a quadrupole lower than 123\u00b5K\u00b2 is about 1",
-  "n_tokens": 5,
-  "tokens": [
-   "0.32",
-   "03",
-   "1.3",
+  "entry": "## Low-quadrupole frequentist/Bayesian reassessment — low-significance",
+  "quote_full": "“From this Table, we see that the probability of observing a quadrupole lower than 123µK² is about 1.3% and that the joint probability of finding quadrupole and octopole amplitudes smaller than those observed is about 0.32% which is about twice the value inferred by S03 from their analysis of the S statistic.”",
+  "quote_sha256": "7af28c2f40264a0570512d49160c140d61ab7938002de61ef4f575634d452892",
+  "expr_seq": [
    "123",
-   "2"
+   "1.3",
+   "0.32"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.4
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
+  "source_sha256": "ed08cb7e3d014653ad4a736d3d4411bf9805ade2298f5b858a72553b9696a901",
+  "span": {
+   "start": 11010,
+   "end": 11150,
+   "excerpt": "123 k2 is about 1.3 and that the joint probability of finding quadrupole and octopole ampli- tudes smaller than those observed is about 0.32"
+  },
+  "shingle": 0.4
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Low-quadrupole frequentist/Bayesian reassessment \u2014 low-si",
-  "quote": "\u201cThese errors were neglected in S03\u2019s analysis of the S statistic and hence their estimate of a 1 in",
-  "n_tokens": 6,
-  "tokens": [
-   "03",
+  "entry": "## Low-quadrupole frequentist/Bayesian reassessment — low-significance",
+  "quote_full": "“These errors were neglected in S03’s analysis of the S statistic and hence their estimate of a 1 in 700 chance of reproducing the observations according to the concordance ΛCDM model is an overestimate of the true odds. The Bayesian analysis of Section 4 suggests that a more reasonable estimate of the odds is more like 1 in 10 or 1 in 20. Whatever your statistical orientation, there is no convincing evidence for a discrepancy with the concordance ΛCDM model.”",
+  "quote_sha256": "8e0d2cbbfabafde8e8747c3d7543bf308b1bcd0b0859fcaad6dfb2b2769d4841",
+  "expr_seq": [
+   "1",
+   "700",
+   "4",
    "1",
    "10",
-   "20",
-   "4",
-   "700"
+   "1"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
-   "nums_found": 6,
-   "missing": [],
-   "shingle": 0.261,
-   "spans": [
-    "argu ments and claim that the discrepancy would occur by chance about 1 time in 700 if the concordance model is correct. other authors have used bayesian arguments",
-    "e wmap satellite bennett et al. 2003a hinshaw et al. and octopole. for example s03 and tegmark de oliveira 2003 spergel et al. 2003 has led to a precise measureme"
-   ]
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 6 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
+  "source_sha256": "ed08cb7e3d014653ad4a736d3d4411bf9805ade2298f5b858a72553b9696a901",
+  "span": {
+   "start": 18269,
+   "end": 18743,
+   "excerpt": "1 in 700 chance of reproduc- ity numerical values for these frequencies for the octopole ing the observations according to the concordance cdm and quadrupole neglecting minor effects from a cut sky model is an overestimate of the true odds the bayesian are given in table 1b for values of clt crit equal to those analysis of section 4 suggests that a more reasonable esti- of the fiducial model and for values at the low end of the mate of the odds is more like 1 in 10 or 1"
+  },
+  "shingle": 0.261
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Low-quadrupole frequentist/Bayesian reassessment \u2014 low-si",
-  "quote": "\u201cHowever, we find that the frequency with which (\u0394T\u2082)\u00b2 > 1000\u00b5K\u00b2, given the observed WMAP quadrupole",
-  "n_tokens": 4,
-  "tokens": [
-   "0.10",
+  "entry": "## Low-quadrupole frequentist/Bayesian reassessment — low-significance",
+  "quote_full": "“However, we find that the frequency with which (ΔT₂)² > 1000µK², given the observed WMAP quadrupole of 123µK² is only 0.10, and so again we conclude that the evidence against the ΛCDM model is marginal.”",
+  "quote_sha256": "fa6aed42510b7deef06dfe959fdeb902f590929c64c7202b0f757c1581689ddb",
+  "expr_seq": [
+   "2",
    "1000",
    "123",
-   "2"
+   "0.10"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.3
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2003_astro-ph0306431v3_pages.txt",
+  "source_sha256": "ed08cb7e3d014653ad4a736d3d4411bf9805ade2298f5b858a72553b9696a901",
+  "span": {
+   "start": 19531,
+   "end": 19656,
+   "excerpt": "2 2 1000 k2 given the observed wmap quadrupole topole amplitudes provided that the number of extra pa- of 123 k2 is only 0.10"
+  },
+  "shingle": 0.3
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Large-angle correlation reassessment \u2014 estimator-dependen",
-  "quote": "\u201cFor the all-sky analysis, the p-value of finding S\u2081/\u2082 < 7373 (\u00b5K)\u2074 is 8% and hence is not statistic",
-  "n_tokens": 8,
-  "tokens": [
-   "0.065",
-   "1",
+  "entry": "## Large-angle correlation reassessment — estimator-dependent and low-",
+  "quote_full": "“For the all-sky analysis, the p-value of finding S₁/₂ < 7373 (µK)⁴ is 8% and hence is not statistically significant. However, if we apply the KQ75 mask, the p-value for S₁/₂ < 647 (µK)⁴ is only 0.065%. This result appears strongly significant and, at face value, inconsistent with the p-value for the all-sky analysis.”",
+  "quote_sha256": "30554d3cb8b2959687ff5e00ed2d308506e9e109d3e20d7055450979ccebe3d0",
+  "expr_seq": [
    "2",
-   "4",
-   "647",
    "7373",
-   "75",
-   "8"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2010_0911.5399v1_pages.txt",
-   "nums_found": 8,
-   "missing": [],
-   "shingle": 0.625
-  },
-  "verdict": "PASS",
-  "basis": "auto"
- },
- {
-  "harvest": "gpt2_trackb_cmb",
-  "entry": "## Large-angle correlation reassessment \u2014 estimator-dependen",
-  "quote": "\u201cThe data, irrespective of estimator or sky cut, clearly prefer low values of S\u2081/\u2082 but cannot exclud",
-  "n_tokens": 4,
-  "tokens": [
-   "1",
-   "2",
    "4",
-   "49000"
+   "8",
+   "2",
+   "647",
+   "4",
+   "0.065"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2010_0911.5399v1_pages.txt",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.444
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2010_0911.5399v1.txt",
+  "source_sha256": "00756445652add6b06c351e554a033093cf7fc760439c9dfce9490534beea9cd",
+  "span": {
+   "start": 33494,
+   "end": 33853,
+   "excerpt": "2 computed from the pixel estimator are plotted in figure 8b the distributions of figures 8a and 8b look fairly similar but the frequentist interpretation is very different for the all-sky analysis the p-value of finding s1 2 7373 k 4 is 8 and hence is not statistically significant however if we apply the kq75 mask the p-value for s1 2 647 k 4 is only 0.065"
+  },
+  "shingle": 0.667
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Large-angle correlation reassessment \u2014 estimator-dependen",
-  "quote": "\u201cIn summary, the results of this paper suggest that, irrespective of the imposition of Galactic sky ",
-  "n_tokens": 0,
-  "tokens": [],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_efstathiou2010_0911.5399v1_pages.txt",
-   "nums_found": 0,
-   "missing": [],
-   "shingle": 1.0
-  },
+  "entry": "## Large-angle correlation reassessment — estimator-dependent and low-",
+  "quote_full": "“The data, irrespective of estimator or sky cut, clearly prefer low values of S₁/₂ but cannot exclude the value of S₁/₂ᵀ ∼ 49000 (µK)⁴ expected for the concordance inflationary ΛCDM model.”",
+  "quote_sha256": "01964acf1ed0eb27091bed08bd4bcd7f7fd2e56eb0f6a954447a925f63f1aa3e",
+  "expr_seq": [
+   "2",
+   "49000",
+   "4"
+  ],
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2010_0911.5399v1.txt",
+  "source_sha256": "00756445652add6b06c351e554a033093cf7fc760439c9dfce9490534beea9cd",
+  "span": {
+   "start": 32269,
+   "end": 32599,
+   "excerpt": "2 6000 k 4 and so low values of s1 2 are clearly preferred by the data however the posterior distributions have a very long tail to high values as expected from the inverse gamma distribution 30 the best fitting six parameter cdm model as determined from the 5 year wmap analysis komatsu et al 2009 has a value of t s1 2 49000 k 4"
+  },
+  "shingle": 0.444
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Cut-sky large-angle correlation analysis \u2014 higher-signifi",
-  "quote": "\u201cWe find a statistically robust and significant result: p-values for the missing correlations lying ",
-  "n_tokens": 4,
-  "tokens": [
-   "0.03",
+  "entry": "## Large-angle correlation reassessment — estimator-dependent and low-",
+  "quote_full": "“In summary, the results of this paper suggest that, irrespective of the imposition of Galactic sky cuts or assumptions of statistical isotropy, the large-scale correlations of the CMB temperature field provide unconvincing evidence against the concordance inflationary ΛCDM cosmology.”",
+  "quote_sha256": "b1b8a99301df9fe55c5371a5c55c721a90843fa91c9c26e6a8a749f40afed74b",
+  "expr_seq": [],
+  "declared_files": 2,
+  "verdict": "PASS",
+  "basis": "exact-phrase-span",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_efstathiou2010_0911.5399v1.txt",
+  "source_sha256": "00756445652add6b06c351e554a033093cf7fc760439c9dfce9490534beea9cd",
+  "span": {
+   "start": 41128,
+   "end": 41158,
+   "excerpt": "in summary the results of this"
+  },
+  "shingle": 1.0
+ },
+ {
+  "harvest": "gpt2_trackb_cmb",
+  "entry": "## Cut-sky large-angle correlation analysis — higher-significance posi",
+  "quote_full": "“We find a statistically robust and significant result: p-values for the missing correlations lying below 0.24 per cent (i.e. evidence at more than 3σ) for foreground cleaned maps, in complete agreement with previous analyses based upon earlier WMAP data. A cut-sky analysis of the Planck HFI 100 GHz frequency band, the ‘cleanest CMB channel’ of this instrument, returns a p-value as small as 0.03 per cent, based on the conservative mask defined by WMAP.”",
+  "quote_sha256": "80ca6f7e21c6039260b1c32082338e3290adf18380c6a084afa094234a27c395",
+  "expr_seq": [
    "0.24",
+   "3",
    "100",
-   "3"
+   "0.03"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_copi2015_1310.3831v3_pages.txt",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.652
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_copi2015_1310.3831v3.txt",
+  "source_sha256": "7d1360791b3d16d202805e52e98933d7c7eff8f5ed6ab0182df2523a406b7b9e",
+  "span": {
+   "start": 968,
+   "end": 1251,
+   "excerpt": "0.24 per cent i e evidence at more than 3 for foreground cleaned maps in complete agreement with previous analyses based upon earlier wmap data a cut- sky analysis of the planck hfi 100 ghz frequency band the cleanest cmb channel of this instrument returns a p-value as small as 0.03"
+  },
+  "shingle": 0.591
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Cut-sky large-angle correlation analysis \u2014 higher-signifi",
-  "quote": "\u201cIn our analysis we find that the p-value for the observed cut-sky S\u2081/\u2082 in an ensemble of realizatio",
-  "n_tokens": 3,
-  "tokens": [
-   "0.33",
-   "1",
-   "2"
+  "entry": "## Cut-sky large-angle correlation analysis — higher-significance posi",
+  "quote_full": "“In our analysis we find that the p-value for the observed cut-sky S₁/₂ in an ensemble of realizations of the best-fitting ΛCDM model never exceeds 0.33 per cent for any of the analysed combinations of maps and masks, with and without correcting for the Doppler quadrupole.”",
+  "quote_sha256": "0c63e30013c1825107535fff7b21c5c5ff03a4576b98c8235de2aeaada0c1671",
+  "expr_seq": [
+   "2",
+   "0.33"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_copi2015_1310.3831v3_pages.txt",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.333
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_copi2015_1310.3831v3.txt",
+  "source_sha256": "7d1360791b3d16d202805e52e98933d7c7eff8f5ed6ab0182df2523a406b7b9e",
+  "span": {
+   "start": 39281,
+   "end": 39673,
+   "excerpt": "2 appears remarkably robust other systematics further this is in contrast to the full-sky s1 2 and trustworthy in our analysis we find that the p-value for the which vary significantly from data release to data release and from observed cut-sky s1 2 in an ensemble of realizations of the best- map to map the behaviour of the full-sky s1 2 is discussed in fitting cdm model never exceeds 0.33"
+  },
+  "shingle": 0.286
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Cut-sky large-angle correlation analysis \u2014 higher-signifi",
-  "quote": "\u201cThe HFI 100 GHz map \u2013 the presumably cleanest CMB band of HFI \u2013 with the more conservative mask tha",
-  "n_tokens": 2,
-  "tokens": [
-   "0.03",
-   "100"
+  "entry": "## Cut-sky large-angle correlation analysis — higher-significance posi",
+  "quote_full": "“The HFI 100 GHz map – the presumably cleanest CMB band of HFI – with the more conservative mask that has been defined by WMAP gives a p-value of only 0.03 per cent!”",
+  "quote_sha256": "db259ce63ee4174434cc9a58e4725fbbd3a8bc0c13bfe28405bd2d75bd5c2104",
+  "expr_seq": [
+   "100",
+   "0.03"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_copi2015_1310.3831v3_pages.txt",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.333
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_copi2015_1310.3831v3.txt",
+  "source_sha256": "7d1360791b3d16d202805e52e98933d7c7eff8f5ed6ab0182df2523a406b7b9e",
+  "span": {
+   "start": 1150,
+   "end": 1251,
+   "excerpt": "100 ghz frequency band the cleanest cmb channel of this instrument returns a p-value as small as 0.03"
+  },
+  "shingle": 0.25
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators",
-  "quote": "\u201cOur analysis shows that the estimator based only on temperature data confirms the presence of a lac",
-  "n_tokens": 5,
-  "tokens": [
+  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators — higher-",
+  "quote_full": "“Our analysis shows that the estimator based only on temperature data confirms the presence of a lack of power with a lower-tail-probability (LTP), depending on the component separation method, ≤ 0.33% and ≤ 1.76% for PR3 and PR4, respectively. To our knowledge, the LTP≤ 0.33% for the PR3 dataset is the lowest one present in the literature obtained from Planck 2018 data, considering the Planck confidence mask.”",
+  "quote_sha256": "1df7687a30ee26a2c7c79f19a8f7792a28aeb3f1509d3c6503732eff77fc0960",
+  "expr_seq": [
    "0.33",
    "1.76",
-   "2018",
-   "3",
-   "4"
+   "0.33",
+   "2018"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_billi2024_2312.09989v2_pages.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.8
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_billi2024_2312.09989v2.txt",
+  "source_sha256": "6d40bd0d03a370096a2f19330843ad4296ebf2020daf178192dab1ce95835cd6",
+  "span": {
+   "start": 1801,
+   "end": 1963,
+   "excerpt": "0.33 and 1.76 for pr3 and pr4 respectively to our knowledge the ltp 0.33 for the pr3 dataset is the lowest one present in the literature obtained from planck 2018"
+  },
+  "shingle": 0.684
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators",
-  "quote": "\u201cThe minimum value of the LTP is reached at \u2113max = 26: we confirm the presence of a lack of power wi",
-  "n_tokens": 6,
-  "tokens": [
-   "0.33",
-   "1",
-   "1.76",
+  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators — higher-",
+  "quote_full": "“The minimum value of the LTP is reached at ℓmax = 26: we confirm the presence of a lack of power with a LTP ≤ 0.33% (PR3) and ≤ 1.76% (PR4), see table 1.”",
+  "quote_sha256": "b6e5a9dd861deb884e9d1e997a3393e2a056b8af55423d34876a110b432b0153",
+  "expr_seq": [
    "26",
-   "3",
-   "4"
+   "0.33",
+   "1.76"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_billi2024_2312.09989v2_pages.txt",
-   "nums_found": 6,
-   "missing": [],
-   "shingle": 0.5
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_billi2024_2312.09989v2.txt",
+  "source_sha256": "6d40bd0d03a370096a2f19330843ad4296ebf2020daf178192dab1ce95835cd6",
+  "span": {
+   "start": 29379,
+   "end": 29453,
+   "excerpt": "26 we confirm the presence of a lack of power with a ltp 0.33 pr3 and 1.76"
+  },
+  "shingle": 0.5
  },
  {
   "harvest": "gpt2_trackb_cmb",
-  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators",
-  "quote": "\u201cHowever, this analysis is limited by the number of MC simulations we have. In particular, it is not",
-  "n_tokens": 5,
-  "tokens": [
-   "0.17",
+  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators — higher-",
+  "quote_full": "“However, this analysis is limited by the number of MC simulations we have. In particular, it is not possible to distinguish between LTP < 0.33% for the PR3 dataset and between LTP < 0.25% and LTP < 0.17% for the hybrid and SEVEM PR4 pipelines. If the LTP value is below the aforementioned thresholds, it indicates that the data is lower than all the simulations.”",
+  "quote_sha256": "3c254fe3e6de3b13fe6f611641e5e13e28b6fc92ef6ec063284c60bbe26867b0",
+  "expr_seq": [
+   "0.33",
    "0.25",
-   "0.33",
+   "0.17"
+  ],
+  "declared_files": 2,
+  "verdict": "PASS",
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_billi2024_2312.09989v2.txt",
+  "source_sha256": "6d40bd0d03a370096a2f19330843ad4296ebf2020daf178192dab1ce95835cd6",
+  "span": {
+   "start": 28586,
+   "end": 28644,
+   "excerpt": "0.33 for the pr3 dataset and between ltp 0.25 and ltp 0.17"
+  },
+  "shingle": 0.722
+ },
+ {
+  "harvest": "gpt2_trackb_cmb",
+  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators — higher-",
+  "quote_full": "“In particular at ℓmax = 26, applying Eᵥjoint to the PR3 dataset, we find that no simulation has a value as low as the data for all the pipelines.”",
+  "quote_sha256": "308615f8f26271defafbc063d07058e7250446136b0d2e2f41a9f632df0f9ab8",
+  "expr_seq": [
+   "26"
+  ],
+  "declared_files": 2,
+  "verdict": "PASS",
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_billi2024_2312.09989v2.txt",
+  "source_sha256": "6d40bd0d03a370096a2f19330843ad4296ebf2020daf178192dab1ce95835cd6",
+  "span": {
+   "start": 2577,
+   "end": 2579,
+   "excerpt": "26"
+  },
+  "shingle": 0.75
+ },
+ {
+  "harvest": "gpt2_trackb_cmb",
+  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators — higher-",
+  "quote_full": "“This effect has been studied with the variance estimator in WMAP [3, 23, 24] and in Planck 2013 [25], Planck 2015 [26] and Planck 2018 [27] data, measuring a lower-tail-probability (LTP) of the order of a few per cent. Such a percentage can be even smaller, below 1%, if only regions at high Galactic latitude are considered [24]. However, when using only temperature data, this anomaly is not sufficiently significant to claim new physics beyond the standard cosmological model.”",
+  "quote_sha256": "4ceaa170fd886577daf04c46301c553bce8428ef067b11b64c8d9dfb7b7b37cc",
+  "expr_seq": [
    "3",
-   "4"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_billi2024_2312.09989v2_pages.txt",
-   "nums_found": 5,
-   "missing": [],
-   "shingle": 0.667
-  },
-  "verdict": "PASS",
-  "basis": "auto"
- },
- {
-  "harvest": "gpt2_trackb_cmb",
-  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators",
-  "quote": "\u201cIn particular at \u2113max = 26, applying E\u1d65joint to the PR3 dataset, we find that no simulation has a v",
-  "n_tokens": 2,
-  "tokens": [
-   "26",
-   "3"
-  ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_billi2024_2312.09989v2_pages.txt",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.75
-  },
-  "verdict": "PASS",
-  "basis": "auto"
- },
- {
-  "harvest": "gpt2_trackb_cmb",
-  "entry": "## Updated Planck PR3/PR4 optimized lack-of-power estimators",
-  "quote": "\u201cThis effect has been studied with the variance estimator in WMAP [3, 23, 24] and in Planck 2013 [25",
-  "n_tokens": 10,
-  "tokens": [
-   "1",
-   "2013",
-   "2015",
-   "2018",
    "23",
    "24",
+   "2013",
    "25",
+   "2015",
    "26",
+   "2018",
    "27",
-   "3"
+   "1",
+   "24"
   ],
-  "bound_to_declared": true,
-  "best": {
-   "file": "anomaly_billi2024_2312.09989v2_pages.txt",
-   "nums_found": 10,
-   "missing": [],
-   "shingle": 0.636
-  },
+  "declared_files": 2,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/gpt2_trackb_cmb/sources/anomaly_billi2024_2312.09989v2.txt",
+  "source_sha256": "6d40bd0d03a370096a2f19330843ad4296ebf2020daf178192dab1ce95835cd6",
+  "span": {
+   "start": 6181,
+   "end": 6426,
+   "excerpt": "3 23 24 and in planck 2013 25 planck 2015 26 and planck 2018 27 data measuring a lower-tail- probability ltp of the order of a few per cent such a percentage can be even smaller below 1 if only regions at high galactic latitude are considered 24"
+  },
+  "shingle": 0.571
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 1. Migkas et al. (2020)",
-  "quote": "The apparently maximum acceleration direction is found toward $(l,b)=(274^{\\circ}, -22^{\\circ})$ wit",
-  "n_tokens": 15,
-  "tokens": [
-   "0",
-   "1.72",
-   "1.81",
-   "13",
-   "17",
-   "21",
-   "22",
-   "263",
+  "quote_full": "The apparently maximum acceleration direction is found toward $(l,b)=(274^{\\circ}, -22^{\\circ})$ with $H_0=66.20\\pm 1.72$ km/s/Mpc while the most extreme opposite behavior is found at $(l,b)=(17^{\\circ}, -9^{\\circ})$ with $H_0=75.17\\pm 1.81$ km/s/Mpc. Their deviation from each other is at 3.59$\\sigma$ ($13\\pm 4\\%$). The most extreme dipole is centered at $(l,b)=(263^{\\circ}, -21^{\\circ})$ with a $3.15\\sigma$ significance.",
+  "quote_sha256": "a54a024444905b3d696e93336b7778692adac73b8986f7c8de23c382a8637025",
+  "expr_seq": [
    "274",
-   "3.15",
-   "3.59",
-   "4",
+   "-",
+   "22",
+   "0",
    "66.20",
+   "1.72",
+   "17",
+   "-",
+   "9",
+   "0",
    "75.17",
-   "9"
+   "1.81",
+   "3.59",
+   "13",
+   "4",
+   "263",
+   "-",
+   "21",
+   "3.15"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "Migkas_etal.tex",
-   "nums_found": 15,
-   "missing": [],
-   "shingle": 0.467
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/Migkas_etal.tex",
+  "source_sha256": "bd5ddc5b5f57c2e3c0af982143c2e8b9cada22759c72998019277999aedb72ae",
+  "span": {
+   "start": 133966,
+   "end": 134208,
+   "excerpt": "274 - 22 with h 0 66.20 1.72 km s mpc while the most extreme opposite behavior is found at l b 17 - 9 with h 0 75.17 1.81 km s mpc their deviation from each other is at 3.59 13 4 the most extreme dipole is centered at l b 263 - 21 with a 3.15"
+  },
+  "shingle": 0.467
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 2. Migkas et al. (2021)",
-  "quote": "The combined maximum anisotropy direction is found toward $(l,b)=(276^{\\circ}\\pm 26^{\\circ},-14^{\\ci",
-  "n_tokens": 10,
-  "tokens": [
-   "0",
-   "13",
-   "14",
-   "2.5",
-   "20",
-   "26",
+  "quote_full": "The combined maximum anisotropy direction is found toward $(l,b)=(276^{\\circ}\\pm 26^{\\circ},-14^{\\circ}\\pm20^{\\circ} )$, with $H_0=63.4\\pm 2.5$ km/s/Mpc, at a $4.3\\sigma$ tension with the rest of the sky ($13\\pm 3\\%$). ... Finally, a dipole form of the anisotropy is apparent in the sigma maps.",
+  "quote_sha256": "b09c307ab615af54762744c2fe7d444a2bf909fe7552b9bdb070524425f7640f",
+  "expr_seq": [
    "276",
-   "3",
+   "26",
+   "-",
+   "14",
+   "20",
+   "0",
+   "63.4",
+   "2.5",
    "4.3",
-   "63.4"
+   "13",
+   "3"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "Migkas_etal_21.tex",
-   "nums_found": 10,
-   "missing": [],
-   "shingle": 0.545
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/Migkas_etal_21.tex",
+  "source_sha256": "9dbe2d705ea5ccb197afb613e520bbf1b471a515d37c8428ea4d23bad08fb8af",
+  "span": {
+   "start": 85746,
+   "end": 85834,
+   "excerpt": "276 26 - 14 20 with h 0 63.4 2.5 km s mpc at a 4.3 tension with the rest of the sky 13 3"
+  },
+  "shingle": 0.545
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 3. Dam et al. (2023)",
-  "quote": "We find unambiguous evidence for the presence of a dipole in the distribution of quasars with a dire",
-  "n_tokens": 2,
-  "tokens": [
+  "quote_full": "We find unambiguous evidence for the presence of a dipole in the distribution of quasars with a direction that is consistent with the dipole identified in the CMB. However, the amplitude of the dipole is found to be 2.7 times larger than that expected from the conventional kinematic explanation of the CMB dipole, with a statistical significance of $5.7\\sigma$.",
+  "quote_sha256": "efca5ac34bf48d90c0d3f5264e2097f2a172be58add6391ca24c8061dc685bca",
+  "expr_seq": [
    "2.7",
    "5.7"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "paper.tex",
-   "nums_found": 2,
-   "missing": [],
-   "shingle": 0.889
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/paper.tex",
+  "source_sha256": "4969f024dbc7a1ba2522f95a10df38305717fb7c0ae8238275fb4bf048263089",
+  "span": {
+   "start": 3908,
+   "end": 4044,
+   "excerpt": "2.7 times larger than that expected from the conventional kinematic explanation of the cmb dipole with a statistical significance of 5.7"
+  },
+  "shingle": 0.889
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 3. Dam et al. (2023)",
-  "quote": "For $M_7$, where the amplitude of the dipole is free to vary, we find $D / D_\\text{CMB} = 2.46 \\pm 0",
-  "n_tokens": 4,
-  "tokens": [
-   "0.18",
+  "quote_full": "For $M_7$, where the amplitude of the dipole is free to vary, we find $D / D_\\text{CMB} = 2.46 \\pm 0.18$, demonstrating that, as with S21, the amplitude of the quasar dipole is significantly different to the expectation from the CMB.",
+  "quote_sha256": "ee9321e636aac97ddd28f4045d2edfad19d9c7e055e3d43edcb2c6655b5dae5e",
+  "expr_seq": [
+   "7",
    "2.46",
-   "21",
-   "7"
+   "0.18"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "paper.tex",
-   "nums_found": 4,
-   "missing": [],
-   "shingle": 0.727
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/paper.tex",
+  "source_sha256": "4969f024dbc7a1ba2522f95a10df38305717fb7c0ae8238275fb4bf048263089",
+  "span": {
+   "start": 21404,
+   "end": 21687,
+   "excerpt": "7 and m 8. it is clear that m 6 -- which assumes a dipole with a fixed amplitude and direction to match the expectations of the kinematic dipole -- is highly disfavoured when compared to m 7 and m 8. for m 7 where the amplitude of the dipole is free to vary we find d d cmb 2.46 0.18"
+  },
+  "shingle": 0.727
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 4. Hu et al. (2024)",
-  "quote": "The values of $D_\\mathrm{max}$ to $\\Omega_{m}$ and $H_{0}$ are $D_{\\mathrm{max},\\Omega_{m}}$ = 3.29$",
-  "n_tokens": 3,
-  "tokens": [
+  "quote_full": "The values of $D_\\mathrm{max}$ to $\\Omega_{m}$ and $H_{0}$ are $D_{\\mathrm{max},\\Omega_{m}}$ = 3.29$\\sigma$ and $D_{\\mathrm{max}, H_{0}}$ = 4.48$\\sigma$, respectively.",
+  "quote_sha256": "cb8f6e780ac1f2df3a0434d816f56add75d07327a7aee6d28a421de0a210332e",
+  "expr_seq": [
    "0",
    "3.29",
+   "0",
    "4.48"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "47121corr.tex",
-   "nums_found": 3,
-   "missing": [],
-   "shingle": 0.4
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/47121corr.tex",
+  "source_sha256": "9ab8ecc010e4ffee8387475fb04edcd8ee2723ccaf713bb7ff5f8886281ce0ba",
+  "span": {
+   "start": 24583,
+   "end": 24941,
+   "excerpt": "0 and draw the 1 regions of local matter underdensity and cosmic anisotropy as shown in the upper panel and lower panel of fig f4 respectively in fig f4 the range of m and h 0 are 0.29 0.41 and 72.03 74.26 respectively the corresponding differences are m 0.12 and h 0 2.23 km s - 1 mpc - 1 the values of d max to m and h 0 are d max m 3.29 and d max h 0 4.48"
+  },
+  "shingle": 0.4
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 4. Hu et al. (2024)",
-  "quote": "The maximum constraint of $H_{0}$ is $H_{0,\\mathrm{max}}$ = 74.26$\\pm$ 0.39 km s$^{-1}$ Mpc$^{-1}$, ",
-  "n_tokens": 12,
-  "tokens": [
+  "quote_full": "The maximum constraint of $H_{0}$ is $H_{0,\\mathrm{max}}$ = 74.26$\\pm$ 0.39 km s$^{-1}$ Mpc$^{-1}$, and the corresponding constraint of $\\Omega_{m}$ is 0.30$^{+0.03}_{-0.03}$... The preferred direction of cosmic anisotropy and corresponding 1$\\sigma$ range are $(l, b) = ({313.4^{\\circ}}_{-18.2}^{+19.6}, {-16.8^{\\circ}}_{-10.7}^{+11.1})$",
+  "quote_sha256": "c9fcf968f357164b654dd2209b072132d8ee7f95d25ca4c842c9e2fd51c83a75",
+  "expr_seq": [
    "0",
-   "0.03",
-   "0.30",
+   "0",
+   "74.26",
    "0.39",
+   "-",
    "1",
-   "10.7",
-   "11.1",
-   "16.8",
-   "18.2",
-   "19.6",
+   "-",
+   "1",
+   "0.30",
+   "+",
+   "0.03",
+   "-",
+   "0.03",
+   "1",
    "313.4",
-   "74.26"
+   "-",
+   "18.2",
+   "+",
+   "19.6",
+   "-",
+   "16.8",
+   "-",
+   "10.7",
+   "+",
+   "11.1"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "47121corr.tex",
-   "nums_found": 12,
-   "missing": [],
-   "shingle": 0.222,
-   "spans": [
-    "7 47.6 18.2 28.8 21.1 as well as a preferred direction of the cosmic anisotropy 313.4 18.2 19.6 16.8 10.7 11.1 in galactic coordinates. similar directions may imply",
-    "fig. f4 respectively. in fig. f4 the range of m and h 0 are 0.29 0.41 and 72.03 74.26 respectively. the corresponding differences are m 0.12 and h 0 2.23 km s 1 mpc"
-   ]
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "PASS_NUMERIC: all 12 tokens in bound source; prose degraded by rendering"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/47121corr.tex",
+  "source_sha256": "9ab8ecc010e4ffee8387475fb04edcd8ee2723ccaf713bb7ff5f8886281ce0ba",
+  "span": {
+   "start": 25035,
+   "end": 25719,
+   "excerpt": "0.02 1 and the corresponding constraint for h 0 is 74.11 + 0.40 - 0.40 km s - 1 mpc - 1 the direction and corresponding 1 range that can be adopted to describe the local matter underdensity are equation l b 308.4 - 48.7 + 47.6 - 18.2 - 28.8 + 21.1 lbf4 equation the lower panel of fig f4 shows the corresponding all-sky distribution of the hubble expansion the maximum constraint of h 0 is h 0 max 74.26 0.39 km s - 1 mpc - 1 and the corresponding constraint of m is 0.30 + 0.03 - 0.03 its confidence contours are shown in fig total marked with blue lines the preferred direction of cosmic anisotropy"
+  },
+  "shingle": 0.222
  },
  {
   "harvest": "agy_trackb_h0",
   "entry": "## 5. Cowell et al. (2023)",
-  "quote": "We constrain the eigenvalues of the quadrupole in the Hubble parameter to be $\\lambda_1 =0.021\\pm{ 0",
-  "n_tokens": 15,
-  "tokens": [
-   "0.011",
-   "0.012",
-   "0.021",
+  "quote_full": "We constrain the eigenvalues of the quadrupole in the Hubble parameter to be $\\lambda_1 =0.021\\pm{ 0.011}$ and $ {\\lambda_2= 3.15\\times 10^{-5}}\\pm 0.012$ and place a $1\\sigma$ upper limit on its amplitude of $2.88\\%$. We find no significant dipole in the deceleration parameter, finding constraints of $q_{\\rm dip} =  4.5^{+1.9}_{-5.4}$. However, in the rest frame of the CMB without corrections, we find $ q_{ \\rm dip} = 9.6^{+4.0}_{-6.9}$, a $>2\\sigma$ positive amplitude.",
+  "quote_sha256": "c62f60b8b77baac4598ece589a6bef7651090a77d1b5c138b7e6a95f1dbf4f9e",
+  "expr_seq": [
    "1",
-   "1.9",
-   "10",
+   "0.021",
+   "0.011",
    "2",
-   "2.88",
    "3.15",
-   "4.0",
-   "4.5",
+   "10",
+   "-",
    "5",
+   "0.012",
+   "1",
+   "2.88",
+   "4.5",
+   "+",
+   "1.9",
+   "-",
    "5.4",
+   "9.6",
+   "+",
+   "4.0",
+   "-",
    "6.9",
-   "9.6"
+   "2"
   ],
-  "bound_to_declared": false,
-  "best": {
-   "file": "mnras_template.tex",
-   "nums_found": 15,
-   "missing": [],
-   "shingle": 0.529
-  },
+  "declared_files": 1,
   "verdict": "PASS",
-  "basis": "auto"
+  "basis": "ordered-expressions+shingle",
+  "source": "platoon/agy_trackb_h0/sources/mnras_template.tex",
+  "source_sha256": "c23e24ea46985ebf48216c693bd71dcae75ad663848bb1987a8f0bacde8046b1",
+  "span": {
+   "start": 4794,
+   "end": 5078,
+   "excerpt": "1 0.021 0.011 and 2 3.15 10 - 5 0.012 and place a 1 upper limit on its amplitude of 2.88 we find no significant dipole in the deceleration parameter finding constraints of q dip 4.5 + 1.9 - 5.4 however in the rest frame of the cmb without corrections we find q dip 9.6 + 4.0 - 6.9 a 2"
+  },
+  "shingle": 0.529
  }
 ]
