@@ -94,7 +94,7 @@ ratio = rbar/(2*t*sqrtN)
 chk("cross-check (4.2) vs FRW identity rbar=2t*sqrtN: ratio constant",
     (ratio.max()-ratio.min())/ratio.mean() < 1e-5,
     f"spread={(ratio.max()-ratio.min())/ratio.mean():.2e}")
-chk("t -> 0 toward Big Bang (N large)", t[0] < 1e-3, f"t(sqrtN={sqrtN[0]:.0f})={t[0]:.3e} t0")
+chk("t -> 0 toward Big Bang (N large)", t[0] < 1e-3, f"t(sqrtN={sqrtN[0]:.0f})={t[0]:.3e} t_crit")
 
 with open("a1_results.csv", "w", newline="") as f:
     w = csv.writer(f)

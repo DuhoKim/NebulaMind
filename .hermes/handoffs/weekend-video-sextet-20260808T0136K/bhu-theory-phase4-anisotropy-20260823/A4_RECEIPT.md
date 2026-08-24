@@ -17,15 +17,18 @@ correction addendum. Second self-correction of the phase, both caught by the mac
 **P1 — z_c(μ; x_off, t_obs)** (A2 solver + analytic laws): boundary-crossing redshift.
 Center law z_c = √N(η_e); nearest-direction bound x_max(z; t_obs) = η_o[(1+√N(η_e))/(1+z) − 1].
 
-**P2 — the constraint surface x_max(t_obs)** at z_ls = 1100: consistency with the observed
-uniform CMB sky ⇔ NO CAP ⇔ x_off < x_max(t_obs). Sampled (x_max as fraction of the comoving
+**P2 — the crossing surface x_max(t_obs)** at z_ls = 1100 *(conformed to Amendment 1)*:
+x_off < x_max(t_obs) is SUFFICIENT for all direct CMB rays to remain interior (no cap).
+Necessity for observational consistency is NOT established — what a crossing ray looks like
+is uncalibrated without TOV-side optics. Sampled (x_max as fraction of the comoving
 shock radius; the t = 0.14 value is from the in-script check `cap opens exactly at x_max(t)`,
 not from the delivered map, which starts near 0.98 t_vis — gate correction): t = 0.14 (half
 t_vis): **0.20** (one sample, not a summary of all early observers); t = 0.274 (≈t_vis): **4.3×10⁻³**; t = 0.277
 (band middle): **5.7×10⁻⁴**; t → t_1100 = 0.27744: **0**. Below the surface the model is
-consistent AND the boundary is strictly unobservable (opacity + interior exactness): the
-consistent region is observationally EMPTY of signatures — consistency bought at the price of
-untestability, the K2 closure quantified.
+consistent and the boundary is unobservable TO DIRECT POST-RECOMBINATION PHOTONS whose
+complete paths remain interior (the z_ls screen is a sharp approximation; neutrinos and
+gravitational waves unanalyzed): within the photon channel the region is empty of
+signatures — consistency at the price of photon-untestability, the K2 closure quantified.
 
 **P3 — the cap** (analytic sphere–sphere geometry): where the LSS pokes past the shock, a
 single circular cap around the offset direction, with
@@ -39,15 +42,22 @@ single circular cap around the offset direction, with
 | 1.5   | 48.2° | 0.17 | ~4 |
 | 2.0   | 60.0° | 0.25 | ~3 |
 
-So the model's only observable near-threshold signature is a SINGLE large-angle circular
-patch of boundary-affected CMB around one direction — reaching the anomaly multipoles
+So the model's only near-threshold CROSSING GEOMETRY is a SINGLE large-angle circular
+patch of boundary-crossing directions around one axis (what it looks like is uncalibrated;
+ℓ ~ π/θ is an angular-scale heuristic, not a spectrum) — reaching the anomaly multipoles
 (ℓ ≲ 10) already at 10% past the bound. Whether any claimed CMB anomaly has that morphology
 (one cap, one direction, generic TOV-side amplitude) is Track C's question against gpt2's
 frozen bounds; nothing here presumes the answer.
 
 ## What Track B/C confront, and with what
 
-- H₀-anisotropy bounds (agy): NOT-A-DISCRIMINANT (A3 observable (b), null by exactness).
+- H₀-anisotropy bounds (agy): NOT-A-DISCRIMINANT for wholly-interior sources (A3 (b), null
+  by exactness); boundary-influenced expansion probes UNCALIBRATED, not closed.
 - CMB uniformity + anomaly morphology (gpt2): confronts P2/P3.
 - The conspiracy escape (TOV side mimicking FRW across the cap) remains the one unmodeled
   out; any Track C verdict must name it.
+
+## Conformance addendum (2026-08-24, regate residue)
+
+Wording conformed to TRACK_A_VERDICT.md Amendment 1 at the codex regate's direction. The
+underlying geometry, tables, and checks are unchanged.

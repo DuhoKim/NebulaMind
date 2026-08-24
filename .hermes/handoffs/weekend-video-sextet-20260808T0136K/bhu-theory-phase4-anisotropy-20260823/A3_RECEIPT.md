@@ -14,9 +14,10 @@ By A0 the interior is exact FRW, so the redshift–distance relation for any sou
 stay inside is standard and isotropic AT ANY OFFSET. **The strict model predicts NO H₀ dipole,
 no expansion anisotropy, for interior sources — not small: zero.** The brief's motivating claim
 ("the geometry generically implies … an anisotropy in the locally inferred expansion rate") is
-REFUTED by the exact solution for this observable. Consequence for Track B: the H₀-anisotropy
-bounds (agy's harvest) CANNOT constrain this model; that limb of the confrontation closes as
-NOT-A-DISCRIMINANT. This is the kind of result the strict-model discipline exists to force.
+REFUTED by the exact solution for this observable. Consequence for Track B *(scope conformed to Amendment 1)*: for sources whose complete light
+paths remain interior, the H₀-anisotropy bounds CANNOT constrain this model — that
+wholly-interior limb closes as NOT-A-DISCRIMINANT; boundary-crossing or boundary-influenced
+expansion probes remain UNCALIBRATED, not null. This is the kind of result the strict-model discipline exists to force.
 
 ## Observable (c) — non-kinematic dipole: not predicted.
 
@@ -42,10 +43,12 @@ only escape). Three regimes in t_obs (units of t_crit; σ = 1/3 model):
    TOV side produces order-unity sky differences (A2's z_c tables). EXCLUDED by observed
    isotropy, absent the conspiracy.
 
-**The calibrated statement Track C inherits:** the observable-scale version of this branch —
-boundary inside the past light cone — survives only in a temporal band of width ~1.4×10⁻³ with
-offset ≤ 10⁻³ of the boundary radius; otherwise it is either excluded (visible regime) or
-strictly untestable (hidden regime). The only in-model reading that PREDICTS something visible
+**The geometric statement Track C inherits** *(wording conformed to Amendment 1: sufficiency, not calibration)*: the observable-scale version of this branch —
+boundary inside the past light cone — keeps all direct CMB rays interior only in a temporal band of width ~1.4×10⁻³ with
+offset ≤ 10⁻³ of the boundary radius; outside that band some rays cross the boundary —
+what crossing looks like observationally is UNCALIBRATED (TOV-side optics unmodeled), and in
+the hidden regime the boundary is unobservable to direct post-recombination photons
+(other messengers unanalyzed). The only in-model reading that PREDICTS something visible
 is the marginal band, whose signature would live at the largest angular scales — whether the
 observed low-ℓ anomalies can be read as that signature is Track C's question, on gpt2's frozen
 CMB bounds, and nothing here presumes the answer.
@@ -68,3 +71,9 @@ cone), the trichotomy COLLAPSES TO A DICHOTOMY governed by one constraint surfac
 consistent ⇔ no cap ⇔ **x_off < x_max(t_obs)**, with x_max(t) the A3 formula extended to all t.
 The corrected regime map and numbers are A4's (`a4_regime_map.csv`); the marginal "band" of
 this receipt survives only as the t-slice where x_max(t) is between 0 and its t_vis value.
+
+## Conformance addendum (2026-08-24, regate residue)
+
+Wording above conformed to TRACK_A_VERDICT.md Amendment 1 at the codex regate's direction:
+sufficiency not calibration, photon-only unobservability, wholly-interior H₀ null. The
+underlying numbers are unchanged.
