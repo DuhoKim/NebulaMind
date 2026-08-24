@@ -13,10 +13,13 @@ but always stamps last_run in the state file so a dead watch is detectable.
 """
 import json, re, sys, time, urllib.request, urllib.parse, pathlib, datetime
 
-HERE = pathlib.Path(__file__).resolve().parent
-STATE = HERE / "desi_curvature_watch_state.json"
-HITS = HERE / "DESI_CURVATURE_WATCH_HITS.md"
-FEED = HERE.parent / "galaxy-evolution/mastermind/autopilot-events.jsonl"
+# Absolute lane paths: the cron copy runs from ~/.hermes/scripts/, and HERE-relative
+# resolution forked the state there (caught 2026-08-24: lane state stale while cron
+# state showed a 429). One state, one hits file, one feed — the lane's.
+LANE = pathlib.Path("/Users/duhokim/NebulaMind/NebulaMind/.hermes/handoffs/weekend-video-sextet-20260808T0136K")
+STATE = LANE / "desi_curvature_watch_state.json"
+HITS = LANE / "DESI_CURVATURE_WATCH_HITS.md"
+FEED = LANE.parent / "galaxy-evolution/mastermind/autopilot-events.jsonl"
 Q = ('(abs:"DESI" AND (abs:"spatial curvature" OR abs:"Omega_k" OR abs:"curvature of the universe")) '
      'OR (ti:"DESI" AND ti:"cosmological constraints")')
 
@@ -25,15 +28,22 @@ def main():
     seen = set(state["seen"])
     url = ("https://export.arxiv.org/api/query?search_query=" + urllib.parse.quote(Q) +
            "&sortBy=submittedDate&sortOrder=descending&max_results=25")
-    try:
-        t = urllib.request.urlopen(urllib.request.Request(
-            url, headers={"User-Agent": "NebulaMind-curvature-watch/1.0 (mailto:duhokim81@gmail.com)"}),
-            timeout=60).read().decode("utf-8", "replace")
-    except Exception as e:
+    t = None
+    err = None
+    for attempt in range(3):   # arXiv 429s happen on this shared IP; back off and retry
+        try:
+            t = urllib.request.urlopen(urllib.request.Request(
+                url, headers={"User-Agent": "NebulaMind-curvature-watch/1.1 (mailto:duhokim81@gmail.com)"}),
+                timeout=60).read().decode("utf-8", "replace")
+            break
+        except Exception as e:
+            err = e
+            time.sleep(40 * (attempt + 1))
+    if t is None:
         state["last_run"] = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
-        state["last_error"] = str(e)[:120]
+        state["last_error"] = str(err)[:120]
         STATE.write_text(json.dumps(state, indent=1))
-        sys.exit(0)          # transient network failure: recorded, not fatal
+        sys.exit(0)          # transient network failure: recorded (after 3 tries), not fatal
     new = []
     for e in re.findall(r"<entry>(.*?)</entry>", t, re.S):
         aid = re.sub(r"v\d+$", "", ((re.search(r"<id>(.*?)</id>", e) or [None, ""])[1]).split("/abs/")[-1])
