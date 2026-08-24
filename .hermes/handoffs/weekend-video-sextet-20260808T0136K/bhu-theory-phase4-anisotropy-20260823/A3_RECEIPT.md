@@ -57,3 +57,14 @@ CMB bounds, and nothing here presumes the answer.
   excluded trichotomy, z_c = √N law) is the robust content; the digits are not.
 - The TOV-side optics are not modeled by the source papers; every statement above about the
   visible regime assumes only that a generic TOV side differs observably from FRW.
+
+## Correction addendum (2026-08-24, from A4)
+
+Regime 1 above ("t_obs < t_vis: ANY offset allowed") is an OVERCLAIM, caught by A4's failed
+check: t_vis is the CENTER observer's first visibility; an offset observer's last-scattering
+sphere pokes past the shock earlier (at t = 0.99 t_vis, a 30% offset already has a 97° cap).
+Additionally, folding in opacity (crossings at z > z_ls are unobservable even inside the past
+cone), the trichotomy COLLAPSES TO A DICHOTOMY governed by one constraint surface:
+consistent ⇔ no cap ⇔ **x_off < x_max(t_obs)**, with x_max(t) the A3 formula extended to all t.
+The corrected regime map and numbers are A4's (`a4_regime_map.csv`); the marginal "band" of
+this receipt survives only as the t-slice where x_max(t) is between 0 and its t_vis value.
