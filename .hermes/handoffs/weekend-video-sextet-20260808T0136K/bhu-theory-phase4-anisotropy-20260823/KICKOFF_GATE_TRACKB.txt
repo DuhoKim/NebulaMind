@@ -1,0 +1,21 @@
+ADVERSARIAL GATE — Phase 4 Track B freeze. Your job is to REFUTE the freeze.
+
+Read in this directory: PHASE4_BRIEF.md (Track B section), TRACK_B_FREEZE.md,
+platoon/gpt2_trackb_cmb/HARVEST_CMB_BOUNDS.md, platoon/agy_trackb_h0/HARVEST_H0_ANISOTROPY.md,
+b_verify_quotes.py, and spot-check the local sources under platoon/*/sources/.
+
+Attack, at minimum:
+1. Fidelity: pick at least 6 frozen table rows across B2/B3 and verify their numbers against
+   the harvest quotes AND the underlying local source texts. Any number that differs kills the
+   freeze.
+2. Balance: does the freeze carry both sides of the two literature disputes (dipole excess;
+   low-ell significance) with equal custody, per the brief? Any editorializing?
+3. Scope: is the B1 reference-tier demotion consistent with the GATED Track A verdict
+   (wholly-interior null only) — neither wider nor narrower?
+4. Omissions: is any load-bearing bound class named in the brief (B1/B2/B3) missing from the
+   freeze in a way that would bias Track C?
+5. The verification method: is b_verify_quotes.py's acceptance criterion (numbers-first)
+   sound, and were its manual-acceptance residues legitimate?
+
+Write GATE_TRACKB_VERDICT.md (codex) with PASS_TRACK_B_FREEZE or HOLD_<reason>, objections
+concrete. Do not modify other files.
