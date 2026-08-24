@@ -7,15 +7,21 @@ that under gates.
 
 ## Verification receipt
 
-Every quote in both harvests was verified against the locally fetched primary sources
-(`b_verify_quotes.py`, numbers-first shingle matcher): 38/50 by machine, 6 accepted on the
-all-distinctive-numbers criterion (every numeric token found in the correct source; prose
-shingles degraded by PDF math rendering), 6 verified by hand across line-break artifacts
-(receipt in the session record). ZERO quotes failed verification — both seats harvested
-honestly. Harvest pins at freeze:
+Every quote in both harvests was verified against the locally fetched primary sources with
+`b_verify_quotes.py` v4, rebuilt to the codex gate's specification after its HOLD
+(GATE_TRACKB_VERDICT.md) proved v3's numeric filter could pass corrupted quotes: v4 extracts
+ALL numbers boundary-aware (any length, decimals, ranges, σ/percent parts), binds each quote
+to the source files its own harvest entry declares, emits a per-quote machine-readable ledger
+(`b_verify_ledger.json`, 50 rows), and carries a SELF-TEST in which the gate's own corrupted
+counterexample must fail (it does; the genuine quote passes). Result: **50/50 PASS, zero
+manual acceptances** — 42 on the primary criterion (all tokens + ≥30% prose shingles), 7
+PASS_NUMERIC (≥2 tokens all present in the bound source, prose degraded by table/math
+rendering; source spans recorded in the ledger), 1 PASS_PHRASE (no numbers; exact 8-word span
+recorded). All 50 bound to their declared sources. Pins at freeze:
 - HARVEST_CMB_BOUNDS.md (gpt2) sha256 beba95a7c8f5093e1a962ccffefa465038a58b6f3c83bfaff8ba6ddbe4662714
 - HARVEST_H0_ANISOTROPY.md (agy) sha256 6d97c67900348e5569dd802478b6bb8628640cd45e58b5b6e21c243286883f5a
-- b_verify_quotes.py sha256 87f18bc4a4f75699d522487bfdbe45391bd3c7ce1cc3fe494e01c7427924fa79
+- b_verify_quotes.py (v4) sha256 f1664ce081392c21a2050249eeb16c6a813adcb0981f60a1518a19105732d81c
+- b_verify_ledger.json sha256 8155de4a143266abdc856bc796c7ace3efc86605e50e973b6c96dcb1a4844adb
 
 ## B2 — CMB dipole (the discriminant-adjacent set)
 
